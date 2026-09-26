@@ -830,3 +830,188 @@ def test_root_governance_symlink_alias_cannot_create_or_activate(tmp_path,existi
     result=run_guard(repo,*args)
     assert result.returncode==1 and 'Root source write refused' in result.stderr
     assert (status.read_bytes() if status.exists() else None)==before
+
+
+# ---------------------------------------------------------------------------
+# Reopening ISSUED -> IN_PROGRESS under an accepted amendment (D-GOV-50/51)
+# ---------------------------------------------------------------------------
+
+AMENDMENT_ROOT_REL = "projects/fixture/execution/_ScopeChange"
+REGISTER_HEADER = (
+    "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,"
+    "AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\n"
+)
+
+
+def add_amendment(repo: Path, action: str = "MODIFY", scope: str = "NO", groups=("1", "2", "3")) -> str:
+    """Commit fixture scope-change records naming DEL-01-01; return the new HEAD."""
+    import hashlib
+
+    root = repo / AMENDMENT_ROOT_REL
+    snapshot = root / "SCA-001_2026-09-26_1200"
+    snapshot.mkdir(parents=True)
+    register = snapshot / "Amendment_Actions.csv"
+    register.write_text(
+        REGISTER_HEADER + f"SCA-001,1,{action},DELIVERABLE,DEL-01-01,fixture,,,NO,{scope}\n"
+    )
+    sha = hashlib.sha256(register.read_bytes()).hexdigest()
+    for group in groups:
+        folder = root / "checkpoint_snapshots" / f"SCA-001_GROUP-{group}_2026-09-26"
+        folder.mkdir(parents=True)
+        (folder / "DECISION.md").write_text(
+            f"# SCA-001 checkpoint group {group} — accepted fixture\n"
+        )
+        rows = "Path,SHA256,Role,AcceptanceBoundary\n"
+        if group == "2":
+            rows += f"{register.relative_to(repo).as_posix()},{sha},exact final action register,Accepted\n"
+        (folder / "ACCEPTED_MANIFEST.csv").write_text(rows)
+    _git(repo, "add", "-A")
+    _git(repo, "commit", "-q", "-m", "fixture amendment")
+    return _git(repo, "rev-parse", "HEAD")
+
+
+def test_reopen_admitted_with_accepted_amendment(tmp_path):
+    repo, deldir, _ = make_repo(tmp_path, MANIFEST_SHA_DECLARING, state="ISSUED")
+    head = add_amendment(repo)
+    result = run_guard(
+        repo, deldir, "IN_PROGRESS", "human", "--amendment", "SCA-001", "--approval-sha", head
+    )
+    assert result.returncode == 0, result.stderr
+    text = read_status(deldir)
+    assert "**Current State:** IN_PROGRESS" in text
+    history = text.strip().splitlines()[-1]
+    assert "State set to IN_PROGRESS (human) [reopened from ISSUED; amendment: SCA-001 (" in history
+    assert f"{AMENDMENT_ROOT_REL}/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26)" in history
+    assert "ActionSeq 1 MODIFY" in history
+    assert f"approval SHA: {head}]" in history
+    assert "reopened from ISSUED under SCA-001" in result.stdout
+
+
+def test_reopen_admitted_with_amendment_path_on_no_sha_schema_root(tmp_path):
+    repo, deldir, _ = make_repo(tmp_path, MANIFEST_NO_SHA_SCHEMA, state="ISSUED")
+    head = add_amendment(repo, action="RECLASSIFY", scope="YES")
+    group3 = f"{AMENDMENT_ROOT_REL}/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26"
+    result = run_guard(
+        repo, deldir, "IN_PROGRESS", "Human", "--amendment", group3, "--approval-sha", head
+    )
+    assert result.returncode == 0, result.stderr
+    assert "ActionSeq 1 RECLASSIFY" in read_status(deldir)
+
+
+@pytest.mark.parametrize("manifest", [MANIFEST_SHA_DECLARING, MANIFEST_NO_SHA_SCHEMA])
+def test_reopen_requires_approval_sha_on_every_root(tmp_path, manifest):
+    repo, deldir, _ = make_repo(tmp_path, manifest, state="ISSUED")
+    add_amendment(repo)
+    before = read_status(deldir)
+    result = run_guard(repo, deldir, "IN_PROGRESS", "human", "--amendment", "SCA-001")
+    assert result.returncode == 1
+    assert "BLOCK APPROVAL_SHA_REQUIRED" in result.stderr
+    assert read_status(deldir) == before
+
+
+def test_reopen_refuses_unreachable_approval_sha(tmp_path):
+    repo, deldir, _ = make_repo(tmp_path, MANIFEST_SHA_DECLARING, state="ISSUED")
+    add_amendment(repo)
+    before = read_status(deldir)
+    result = run_guard(
+        repo, deldir, "IN_PROGRESS", "human", "--amendment", "SCA-001",
+        "--approval-sha", "deadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+    )
+    assert result.returncode == 1
+    assert "APPROVAL_SHA_UNREACHABLE" in result.stderr
+    assert read_status(deldir) == before
+
+
+def test_reopen_refuses_approval_sha_without_the_acceptance(tmp_path):
+    repo, deldir, first = make_repo(tmp_path, MANIFEST_SHA_DECLARING, state="ISSUED")
+    add_amendment(repo)
+    before = read_status(deldir)
+    result = run_guard(
+        repo, deldir, "IN_PROGRESS", "human", "--amendment", "SCA-001", "--approval-sha", first
+    )
+    assert result.returncode == 1
+    assert "AMENDMENT_NOT_AT_APPROVAL_SHA" in result.stderr
+    assert read_status(deldir) == before
+
+
+def test_reopen_refuses_non_human_actor(tmp_path):
+    repo, deldir, _ = make_repo(tmp_path, MANIFEST_SHA_DECLARING, state="ISSUED")
+    head = add_amendment(repo)
+    before = read_status(deldir)
+    result = run_guard(
+        repo, deldir, "IN_PROGRESS", "WORKING_ITEMS", "--amendment", "SCA-001", "--approval-sha", head
+    )
+    assert result.returncode == 1
+    assert "BLOCK UNAUTHORIZED_ACTOR" in result.stderr
+    assert read_status(deldir) == before
+
+
+@pytest.mark.parametrize(
+    "action,scope,groups,code",
+    [
+        ("ADD", "YES", ("1", "2", "3"), "ACTION_NOT_AUTHORIZING"),
+        ("RECLASSIFY", "NO", ("1", "2", "3"), "RECLASSIFY_NOT_SCOPE_CHANGING"),
+        ("MODIFY", "NO", ("1", "2"), "GROUP3_NOT_ACCEPTED"),
+    ],
+)
+def test_reopen_refuses_when_checker_refuses(tmp_path, action, scope, groups, code):
+    repo, deldir, _ = make_repo(tmp_path, MANIFEST_SHA_DECLARING, state="ISSUED")
+    head = add_amendment(repo, action=action, scope=scope, groups=groups)
+    before = read_status(deldir)
+    result = run_guard(
+        repo, deldir, "IN_PROGRESS", "human", "--amendment", "SCA-001", "--approval-sha", head
+    )
+    assert result.returncode == 1
+    assert f"BLOCK AMENDMENT_NOT_ADMITTED: {code}:" in result.stderr
+    assert read_status(deldir) == before
+
+
+def test_reopen_refuses_hash_mismatch(tmp_path):
+    repo, deldir, _ = make_repo(tmp_path, MANIFEST_SHA_DECLARING, state="ISSUED")
+    head = add_amendment(repo)
+    register = repo / AMENDMENT_ROOT_REL / "SCA-001_2026-09-26_1200" / "Amendment_Actions.csv"
+    register.write_text(register.read_text() + "SCA-001,2,ADD,OTHER,X,late,,,NO,NO\n")
+    before = read_status(deldir)
+    result = run_guard(
+        repo, deldir, "IN_PROGRESS", "human", "--amendment", "SCA-001", "--approval-sha", head
+    )
+    assert result.returncode == 1
+    assert "REGISTER_HASH_MISMATCH" in result.stderr
+    assert read_status(deldir) == before
+
+
+def test_override_cannot_waive_reopening_preconditions(tmp_path):
+    repo, deldir, _ = make_repo(tmp_path, MANIFEST_SHA_DECLARING, state="ISSUED")
+    head = add_amendment(repo, action="ADD")
+    before = read_status(deldir)
+    result = run_guard(
+        repo, deldir, "IN_PROGRESS", "human", "--amendment", "SCA-001", "--approval-sha", head,
+        "--force-human-override", "fixture reason",
+    )
+    assert result.returncode == 1
+    assert "BLOCK AMENDMENT_NOT_ADMITTED" in result.stderr
+    assert "not overridable" in result.stderr
+    assert read_status(deldir) == before
+
+
+def test_amendment_argument_on_other_transitions_is_usage_error(tmp_path):
+    repo, deldir, head = make_repo(tmp_path, MANIFEST_SHA_DECLARING, state="IN_PROGRESS")
+    before = read_status(deldir)
+    result = run_guard(
+        repo, deldir, "CHECKING", "human", "--ruling", RULING_REL, "--approval-sha", head,
+        "--amendment", "SCA-001",
+    )
+    assert result.returncode == 2
+    assert "--amendment applies only to ISSUED -> IN_PROGRESS" in result.stderr
+    assert read_status(deldir) == before
+
+
+def test_non_git_reopen_refused(tmp_path):
+    deldir = _make_non_git_tree(tmp_path, "ISSUED")
+    before = read_status(deldir)
+    result = run_guard(
+        tmp_path, deldir, "IN_PROGRESS", "human", "--amendment", "SCA-001", "--approval-sha", "abc1234"
+    )
+    assert result.returncode == 1
+    assert "REOPEN_REQUIRES_GIT" in result.stderr
+    assert read_status(deldir) == before

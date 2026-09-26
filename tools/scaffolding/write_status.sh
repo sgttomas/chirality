@@ -16,12 +16,22 @@
 # --approval-sha where the adapter declares that schema. The history line is
 # suffixed "[reversal from CHECKING; ruling: <path>]". Existing approval-SHA /
 # Authorization Basis fields are left as history; the next CHECKING entry
-# replaces them. Every other backward move stays BLOCKED, including
-# ISSUED -> IN_PROGRESS, which belongs to the governed scope-change process
-# and is not admitted by this tool. --force-human-override cannot waive the
-# reversal's ruling preconditions or the ISSUED -> IN_PROGRESS block.
+# replaces them.
 #
-# Usage: ./write_status.sh <DEL_PATH> <STATE> <ACTOR> [--ruling <path>] [--approval-sha <sha>] [--force-human-override <reason>]
+# Reopening (SPEC §3.3, D-GOV-50, D-GOV-51): ISSUED -> IN_PROGRESS is admitted
+# only under an accepted scope-change amendment. It requires a HUMAN actor, a git
+# repository, --approval-sha on every root (well formed, a reachable commit, and
+# one whose tree holds the amendment's group-3 DECISION.md), and --amendment
+# <id-or-path> that passes tools/validation/check_amendment_reopen.py (group 3
+# accepted; register bound by hash in the group-2 ACCEPTED_MANIFEST.csv and
+# unchanged; a DELIVERABLE row with MODIFY, or RECLASSIFY with ScopeChanging YES).
+# Without --amendment it stays BLOCKED as a backward transition. The history line
+# is suffixed "[reopened from ISSUED; amendment: <ID> (<group-3 snapshot>);
+# action: <register> ActionSeq <n> <type>; approval SHA: <sha>]". Every other
+# backward move stays BLOCKED. --force-human-override cannot waive the
+# reversal's ruling preconditions or any reopening precondition.
+#
+# Usage: ./write_status.sh <DEL_PATH> <STATE> <ACTOR> [--ruling <path>] [--approval-sha <sha>] [--amendment <id-or-path>] [--force-human-override <reason>]
 #
 # Inputs:
 #   DEL_PATH — Path to deliverable folder (must exist)
@@ -37,6 +47,12 @@
 #                           guard_requires_approval_sha; must match ^[0-9a-f]{7,64}$ and
 #                           be reachable (git cat-file -e <sha>^{commit}). Roots that do
 #                           not declare an approval-SHA schema get a REVIEW note and proceed.
+#                           Required on every root for ISSUED -> IN_PROGRESS.
+#   --amendment <id-or-path>
+#                         — Accepted scope-change amendment authorizing ISSUED -> IN_PROGRESS:
+#                           an amendment ID (SCA-NNN, SCA-APP-NNN; its _ScopeChange/ is found
+#                           above DEL_PATH) or its snapshot or group-3 decision path. A usage
+#                           error for any other transition. --ruling is not used for reopening.
 #   --force-human-override <reason>
 #                         — HUMAN-actor-only: converts a BLOCK into a recorded override;
 #                           the reason is appended to the history line as
@@ -58,6 +74,8 @@
 #     --ruling execution/_Coordination/_DECISIONS/D-XX.md --approval-sha abc1234
 #   ./write_status.sh ./execution/PKG-001_.../1_Working/DEL-001-01_... IN_PROGRESS human \
 #     --ruling execution/_Coordination/_DECISIONS/D-YY_check_withdrawn.md --approval-sha def5678
+#   ./write_status.sh ./execution/PKG-001_.../1_Working/DEL-001-01_... IN_PROGRESS human \
+#     --amendment SCA-007 --approval-sha 0123abc
 #
 # K-GATE-1: this guard checks objective preconditions only (ruling path committed,
 # SHA verifiable, actor class, state-machine shape); it never evaluates or blocks
@@ -66,9 +84,12 @@
 # recorded in tools/practitioner_harness/README.md §Guard reconciliation.
 
 usage() {
-  echo "Usage: $0 <DEL_PATH> <STATE> <ACTOR> [--ruling <path>] [--approval-sha <sha>] [--force-human-override <reason>]" >&2
+  echo "Usage: $0 <DEL_PATH> <STATE> <ACTOR> [--ruling <path>] [--approval-sha <sha>] [--amendment <id-or-path>] [--force-human-override <reason>]" >&2
   exit 2
 }
+
+# The reopening checker ships beside this tool (tools/validation/).
+CHECKER="${0:A:h}/../validation/check_amendment_reopen.py"
 
 DEL_PATH="$1"
 STATE="$2"
@@ -80,6 +101,7 @@ shift 3
 
 RULING=""
 APPROVAL_SHA=""
+AMENDMENT=""
 OVERRIDE=0
 OVERRIDE_REASON=""
 while [ $# -gt 0 ]; do
@@ -90,6 +112,9 @@ while [ $# -gt 0 ]; do
     --approval-sha)
       [ -n "$2" ] || usage
       APPROVAL_SHA="$2"; shift 2 ;;
+    --amendment)
+      [ -n "$2" ] || usage
+      AMENDMENT="$2"; shift 2 ;;
     --force-human-override)
       [ -n "$2" ] || usage
       OVERRIDE=1; OVERRIDE_REASON="$2"; shift 2 ;;
@@ -228,8 +253,9 @@ block() {
   BLOCKED=1
 }
 # hard_block: a refusal --force-human-override cannot waive (the reversal's
-# ruling preconditions and ISSUED -> IN_PROGRESS, which SPEC §3.3/§3.4 reserve
-# to a recorded ruling and the governed scope-change process respectively).
+# ruling preconditions and every ISSUED -> IN_PROGRESS precondition, which SPEC
+# §3.3/§3.4 reserve to a recorded ruling and an accepted scope-change amendment
+# respectively).
 hard_block() {
   local code="$1"; shift
   echo "BLOCK $code: $* (not overridable)" >&2
@@ -244,6 +270,7 @@ sha_format_ok() {
 
 SAME_STATE=0
 REVERSAL=0
+REOPEN=0
 if [ $CREATING -eq 1 ]; then
   if [ "$STATE" != "OPEN" ]; then
     block NEW_FILE_NOT_OPEN "no existing _STATUS.md at $STATUS_FILE — new-file creation is allowed only at OPEN (requested: $STATE)"
@@ -256,8 +283,11 @@ else
     if [ "$CURRENT>$STATE" = "CHECKING>IN_PROGRESS" ]; then
       # SPEC §3.3: human reversal, the sole exit from an unsuccessful or withdrawn check.
       REVERSAL=1
+    elif [ "$CURRENT>$STATE" = "ISSUED>IN_PROGRESS" ] && [ -n "$AMENDMENT" ]; then
+      # SPEC §3.3: reopening under an accepted scope-change amendment (checked below).
+      REOPEN=1
     elif [ "$CURRENT>$STATE" = "ISSUED>IN_PROGRESS" ]; then
-      hard_block BACKWARD_TRANSITION "backward transitions are not allowed ($CURRENT -> $STATE); ISSUED changes use the governed scope-change process, which this tool does not perform"
+      hard_block BACKWARD_TRANSITION "backward transitions are not allowed ($CURRENT -> $STATE) without --amendment; ISSUED changes use the governed scope-change process, and reopening needs an accepted amendment (SPEC §3.3)"
     else
       block BACKWARD_TRANSITION "backward transitions are not allowed ($CURRENT -> $STATE); the only admitted reversal is the human-ruled CHECKING -> IN_PROGRESS"
     fi
@@ -268,6 +298,74 @@ else
       *)
         block TRANSITION_NOT_ALLOWED "transition $CURRENT -> $STATE is not an allowed step" ;;
     esac
+  fi
+fi
+
+if [ -n "$AMENDMENT" ] && [ $REOPEN -eq 0 ]; then
+  echo "ERROR: --amendment applies only to ISSUED -> IN_PROGRESS (current: ${CURRENT:-<none>}, requested: $STATE)" >&2
+  usage
+fi
+
+# Reopening preconditions (SPEC §3.3, D-GOV-50/51). Every refusal is hard.
+REOPEN_AMENDMENT_ID=""
+REOPEN_GROUP3=""
+REOPEN_REGISTER=""
+REOPEN_SEQ=""
+REOPEN_ACTION=""
+if [ $REOPEN -eq 1 ]; then
+  if [ "$NORM_ACTOR" != "HUMAN" ]; then
+    hard_block UNAUTHORIZED_ACTOR "reopening ISSUED -> IN_PROGRESS requires a HUMAN actor (got '$ACTOR' -> '$NORM_ACTOR'); SPEC §3.3"
+  fi
+  if [ -n "$RULING" ]; then
+    echo "NOTE: --ruling is not used for reopening; the accepted amendment is the authorizing record" >&2
+  fi
+  if [ $IN_GIT -eq 0 ]; then
+    hard_block REOPEN_REQUIRES_GIT "reopening ISSUED -> IN_PROGRESS needs a git repository to verify --approval-sha and the amendment record"
+  else
+    SHA_OK=0
+    if [ -z "$APPROVAL_SHA" ]; then
+      hard_block APPROVAL_SHA_REQUIRED "reopening ISSUED -> IN_PROGRESS requires --approval-sha on every root"
+    elif ! sha_format_ok "$APPROVAL_SHA"; then
+      hard_block INVALID_APPROVAL_SHA "--approval-sha must be a git SHA-like hexadecimal token (7-64 chars); got '$APPROVAL_SHA'"
+    elif ! git -C "$REPO_ROOT" cat-file -e "${APPROVAL_SHA}^{commit}" 2>/dev/null; then
+      hard_block APPROVAL_SHA_UNREACHABLE "--approval-sha $APPROVAL_SHA is not a reachable commit in this repository"
+    else
+      SHA_OK=1
+    fi
+    if [ ! -f "$CHECKER" ]; then
+      hard_block AMENDMENT_CHECK_ERROR "reopening checker not found: $CHECKER"
+    else
+      CHECK_JSON=$(python3 "$CHECKER" --deliverable "$DEL_ABS" --amendment "$AMENDMENT" \
+        --project-root "$REPO_ROOT" --json 2>/dev/null)
+      CHECK_RC=$?
+      # One field per line (whitespace collapsed), then an END sentinel so an
+      # empty trailing field is not lost to command substitution.
+      CHECK_FIELDS=("${(@f)$(printf '%s' "$CHECK_JSON" | python3 -c '
+import json, sys
+try:
+    d = json.load(sys.stdin)
+except Exception:
+    sys.exit(3)
+for key in ("code", "reason", "amendment_id", "group3_snapshot", "group3_decision",
+            "register_path", "action_seq", "action_type"):
+    print(" ".join(str(d.get(key) or "").split()))
+print("END")
+' 2>/dev/null)}")
+      if [ ${#CHECK_FIELDS} -ne 9 ] || [ "${CHECK_FIELDS[9]}" != "END" ]; then
+        hard_block AMENDMENT_CHECK_ERROR "the reopening checker could not decide (exit $CHECK_RC); run tools/validation/check_amendment_reopen.py --deliverable '$DEL_PATH' --amendment '$AMENDMENT' for details"
+      elif [ $CHECK_RC -eq 0 ] && [ "${CHECK_FIELDS[1]}" = "ADMITTED" ]; then
+        REOPEN_AMENDMENT_ID="${CHECK_FIELDS[3]}"
+        REOPEN_GROUP3="${CHECK_FIELDS[4]}"
+        REOPEN_REGISTER="${CHECK_FIELDS[6]}"
+        REOPEN_SEQ="${CHECK_FIELDS[7]}"
+        REOPEN_ACTION="${CHECK_FIELDS[8]}"
+        if [ $SHA_OK -eq 1 ] && ! git -C "$REPO_ROOT" cat-file -e "${APPROVAL_SHA}:${CHECK_FIELDS[5]}" 2>/dev/null; then
+          hard_block AMENDMENT_NOT_AT_APPROVAL_SHA "group-3 decision ${CHECK_FIELDS[5]} is not in approval commit $APPROVAL_SHA; cite a commit that contains the accepted amendment"
+        fi
+      else
+        hard_block AMENDMENT_NOT_ADMITTED "${CHECK_FIELDS[1]}: ${CHECK_FIELDS[2]}"
+      fi
+    fi
   fi
 fi
 
@@ -363,6 +461,9 @@ HISTORY_SUFFIX=""
 if [ $REVERSAL -eq 1 ]; then
   HISTORY_SUFFIX=" [reversal from CHECKING; ruling: ${RULING_DISPLAY:-none}]"
 fi
+if [ $REOPEN -eq 1 ]; then
+  HISTORY_SUFFIX=" [reopened from ISSUED; amendment: $REOPEN_AMENDMENT_ID ($REOPEN_GROUP3); action: $REOPEN_REGISTER ActionSeq ${REOPEN_SEQ:-?} $REOPEN_ACTION; approval SHA: $APPROVAL_SHA]"
+fi
 if [ $OVERRIDE_USED -eq 1 ]; then
   HISTORY_SUFFIX="$HISTORY_SUFFIX [override: $OVERRIDE_REASON]"
 fi
@@ -457,6 +558,8 @@ fi
 
 if [ $REVERSAL -eq 1 ]; then
   echo "Status: $DEL_ID → $STATE (by $ACTOR; reversal from CHECKING)"
+elif [ $REOPEN -eq 1 ]; then
+  echo "Status: $DEL_ID → $STATE (by $ACTOR; reopened from ISSUED under $REOPEN_AMENDMENT_ID)"
 else
   echo "Status: $DEL_ID → $STATE (by $ACTOR)"
 fi
