@@ -5,14 +5,16 @@ Undertaking `HELP-HUMAN-PEC-20260925-POST-SCA005`, work-graph node U1 (N1–N3 a
 ## PR
 
 - **PR:** #924, https://github.com/sgttomas/chirality/pull/924, `claude/pec-d95-currency-act` → `main`. OPEN and **not merged**, as the brief requires.
-- **Head at hand-back:** the commit that adds this return. Its SHA is given in the hand-back report to HELP_HUMAN, because a file cannot contain the SHA of its own commit.
+- **Head at hand-back:** the commit that last updates this return. Its SHA is given in the hand-back report to HELP_HUMAN, because a file cannot contain the SHA of its own commit.
 - **Commits:**
   - `fdc7a2071`: the act, T1 and the checks;
   - `fb030850b`: MANIFEST, VALIDATION and HANDOFF_STATE;
   - `0ed78d797`: verdict 01 and the N-1..N-3 repairs;
   - `5caaf4b94`: the saved containment rerun;
-  - the commit that adds this return.
-- **CI:** at `5caaf4b94`, every completed required check was SUCCESS or SKIPPED and `harness` was still IN_PROGRESS. `mergeStateStatus` was BLOCKED while checks ran. There was no "Update the PR base" notice.
+  - `0df0c0adf`: the first commit of this return, with verdict 02 then pending;
+  - `a06c36d83`: verdict 02 and the N2-1 wording repair;
+  - the commit that updates this return.
+- **CI:** at `0df0c0adf`, every completed check was SUCCESS or SKIPPED and `harness` was still IN_PROGRESS. Each push re-triggers the checks, so read CI on the final head. `mergeStateStatus` was BLOCKED while checks ran. There was no "Update the PR base" notice.
 
 ## `{D}`
 
@@ -56,7 +58,7 @@ The manifest is `projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09
   - `checks/`, indexed by `checks/COMMANDS.txt` with exit codes;
   - the read-only check helpers;
   - MANIFEST, VALIDATION and HANDOFF_STATE;
-  - `VERIFIER_VERDICT_01.md`.
+  - `VERIFIER_VERDICT_01.md` and `VERIFIER_VERDICT_02.md`.
 - **This return:** `projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/returns/U1_D95_CURRENCY_ACT.md`.
 
 ## Check results
@@ -75,7 +77,14 @@ Run from the repository root with `PYTHONDONTWRITEBYTECODE=1` and Python 3.13.7.
 - **Closure.** `closure_summary.json` is `bd73806c…187a` before and after, equal to D-PEC-93's: 111 edges, 66 nodes, 0 SCCs.
 - **Schema:** VALID for each of the 10 registers.
 - **Receipts validator and `harness.py self-check`:** exit 0, with output byte-identical before and after.
-- **Containment.** 119 product modifications and 2 Task Management modifications. Everything else is an addition under the run root or this return. Nothing is outside the boundary.
+- **Containment.** At `a06c36d838e5f138f4533df220d5dd1a8f4814d6`, the last commit before this update, `containment.py origin/main` printed:
+  - 119 product MODIFY;
+  - 2 Task Management MODIFY;
+  - 66 run-root ADD;
+  - 1 return ADD;
+  - 0 granted paths unchanged and 0 outside the boundary: `RESULT PASS`.
+
+  The update changes only this return.
 - **`git diff --check`:** clean outside the run root. The whole diff has 291 trailing-whitespace notices, all in raw run-root tool outputs kept byte-exact. This deviation is disclosed as in D-PEC-93.
 - **T1, under `workflows/task-management/`:**
   - federation preflight: COMPLETE, with no register writes;
@@ -92,8 +101,12 @@ The verifier was a fresh read-only `pec-reviewer` (TASK), which the host reports
   - Every fixed check matched.
   - DEP-10-05-004's weaker warrant is recorded and not failed, per the ruling.
   - Its three non-blocking notes, N-1..N-3, were repaired in run-root records only.
-- **Verdict 02 (backcheck of `5caaf4b94`): PENDING at hand-back.** The same verifier (agent `a0042f7d556e45196`) was resumed with the repairs and had not returned when hand-back was required. HELP_HUMAN should collect its result, save it as `VERIFIER_VERDICT_02.md` in the run root, and re-run review on the final head before merging.
-- Verdict 01 is saved verbatim in the run root.
+- **Verdict 02 (backcheck of `5caaf4b94`): PASS WITH NOTES**, with no blocking finding.
+  - Verdict 01 is transcribed faithfully.
+  - N-1..N-3 are resolved without overstatement.
+  - The repair delta touches only the run root, and containment passes (119 / 2 / 65).
+  - Its one non-blocking note, N2-1, was a present-tense claim about this return. It is repaired in `VALIDATION.md` at `a06c36d83`.
+- Both verdicts are saved verbatim in the run root. After `5caaf4b94`, only run-root records and this return changed; no product or register byte changed.
 
 ## Containment
 
@@ -109,7 +122,7 @@ Scratch material (the pre-act export and the verifier's exports and helpers) liv
 
 ## Unresolved, for HELP_HUMAN
 
-1. **Verdict 02 and merge.** Collect the pending verdict 02 from agent `a0042f7d556e45196` and transcribe it into the run root. PR #924 is open and unmerged. Under the standing authorization it can be merged once required CI passes on the final head and review has no unresolved blocking finding.
+1. **Merge.** PR #924 is open and unmerged. The commits after `5caaf4b94` touch only the run root and this return and have had no separate review. HELP_HUMAN decides whether that needs a backcheck. Under the standing authorization it can be merged once required CI passes on the final head and review has no unresolved blocking finding.
 2. **Loop records.** These remain yours:
    - the work graph (U1/T1 outcome);
    - the central receipt;
