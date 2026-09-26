@@ -80,7 +80,7 @@ The packet may be scaffolded deterministically with `tools/retrieval/scaffold_re
 (immutable `RCH_<UTC>_<slug>/` with canonical headers; refuses to overwrite), so the packet shape
 is not re-derived by reasoning each run.
 
-Research packets are derivative packages. Their `HANDOFF_STATE.md` must name accepted upstream snapshot(s), retrieval snapshot(s), derivative-package status, caveats, conflict status, pointer status, coverage gaps (work not completed), and whether any amendment/downstream action is recommended.
+Research packets are derivative packages. Their `HANDOFF_STATE.md` must name accepted upstream snapshot(s), retrieval snapshot(s), derivative-package status, caveats, conflict status, pointer status (not updated; scaffolded with `--no-update-latest`), coverage gaps (work not completed), and whether any amendment/downstream action is recommended.
 
 ### Step 5 — Handoff If Action Is Needed
 

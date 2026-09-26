@@ -13,7 +13,7 @@
 4. **Freshness scout.** Run `tools/source_catalog/check_snapshot_freshness.py --snapshot
    {RETRIEVAL_SNAPSHOT} --json`; record the `FRESH|STALE` verdict in `HANDOFF_STATE.md`. Do
    **not** rebuild. If `STALE`, every retrieval-only claim carries a staleness caveat and
-   load-bearing claims must be re-verified against the live tree.
+   load-bearing claims must be re-verified against the live tree or accepted snapshot.
 5. **Classify.** Use `RESEARCH_MODE` if given; otherwise classify per `inquiry.md`
    Step 1 and record the assumption.
 6. **Retrieve and synthesize** per `inquiry.md`, logging every query with

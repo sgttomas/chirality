@@ -28,6 +28,9 @@ One row per sub-question:
 | "Enumerate the current tool-descriptor surface" | AGENT | yes | yes |
 | "Exact name of the collision-check helper" | DIRECT | no | no |
 
+While `CRITIC_REQUIRED = true`, a row's `critic?` value cannot remove the critic step from a
+load-bearing claim.
+
 `DIRECT` rows are answered by a single `query_source_index.py`/`grep` call.
 `AGENT` rows are dispatched as TASK streams with
 `methods: [{kind: "skill", name: "researcher", source: <descriptor.source>, sourceRootId: <descriptor.sourceRootId>}]`,

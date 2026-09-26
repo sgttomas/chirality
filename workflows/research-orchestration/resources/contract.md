@@ -155,7 +155,7 @@ A valid WORKING_ITEMS answer:
 - distinguishes ontology/register truth from retrieval evidence,
 - labels external evidence and inference separately,
 - preserves caveats and unresolved issues,
-- records the verification source of each evidence row (live source, retrieval index, or inherited brief),
+- records the verification source of each evidence row (live tree, accepted snapshot, retrieval index, or inherited brief),
 - self-flags load-bearing claims, and reports partial results with a coverage-gaps statement when a run is incomplete rather than failing silently,
 - avoids changing accepted decomposition truth.
 

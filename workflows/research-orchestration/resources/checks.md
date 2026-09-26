@@ -26,15 +26,17 @@ these hold; otherwise report the lower verdict with the specific failing check.
    omitted. A preserved partial packet does not by itself count as complete coverage.
 4. **Recovery records are truthful.** Per-stream retries ≤ `MAX_RETRIES`. Each attempt
    records its attempt number, its parent attempt, and the recovery mechanism actually used:
-   `RESUME` with the host resume identifier (for example `resumeFromRunId`) only when a host
-   resume facility actually executed, otherwise `NEW_ATTEMPT` with the preserved packets and
+   `RESUME` with the identifier the host's resume facility actually returned, only when such a
+   resume actually executed, otherwise `NEW_ATTEMPT` with the preserved packets and
    evidence it builds on. Never describe a newly launched attempt as a resume. A
-   `FAILED_INPUTS` return is not a transient failure and does not consume retries; correct
-   the brief before a new attempt, or record the stream's coverage as a gap.
+   `FAILED_INPUTS` return is not a transient failure and does not consume retries. Record a
+   corrected-brief attempt as `NEW_ATTEMPT` with its parent; route a missing input that needs
+   a human decision (for example the accepted snapshot) to the human; otherwise close the
+   stream as `FAILED-NO-OUTPUT` or `FAILED-WITH-PARTIAL` with a coverage gap.
 5. **Freshness recorded.** The `check_snapshot_freshness.py` verdict is in `HANDOFF_STATE.md`;
    if `STALE`, the caveat is explicit and no rebuild/refresh was performed.
-6. **Conflicts surfaced.** Disagreements found by the critic stage are rows in
-   `Conflicts.csv`, not silently reconciled.
+6. **Conflicts surfaced.** Disagreements found during verification or the critic stage are
+   rows in `Conflicts.csv`, not silently reconciled.
 7. **Packet integrity.** The packet contains the canonical files with correct headers (the
    scaffolder guarantees this) and the queries in `Query_Log.csv` are tool-emitted, not
    hand-written.
@@ -44,6 +46,9 @@ these hold; otherwise report the lower verdict with the specific failing check.
 
 ## Failure reporting
 
+- Required planned coverage is the `StreamPlan` coverage frozen at Method step 1, unless the
+  human narrows it on record. Do not reclassify planned coverage as optional to reach a
+  higher verdict.
 - Report a single readiness verdict, determined by the applicable checks and the required
   planned coverage that remains unresolved — not merely by whether every stream terminated
   or produced a packet:

@@ -54,7 +54,8 @@ A valid result:
   headers (the scaffolder guarantees the shape);
 - logs queries via the retrieval tool, not from memory;
 - records `VerificationSource`, `AssertionMode`, and `LoadBearing` on each evidence row;
-- live-verifies every load-bearing claim (never inherited) before it reaches `R3+`;
+- verifies every load-bearing claim against the live tree or accepted snapshot (never inherited
+  or retrieval-only) before it reaches `R3+`;
 - returns the structured object (below) with `STATUS ∈ {COMPLETE, PARTIAL, FAILED_INPUTS}`;
 - when `PARTIAL`, states explicit coverage gaps rather than failing silently;
 - recommends only — applies no change to accepted truth and approves nothing.
