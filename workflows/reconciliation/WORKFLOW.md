@@ -1,16 +1,24 @@
 ---
 name: reconciliation
-description: Reconcile claims, artifacts, implementation, evidence, lifecycle, and remaining work with accepted project truth.
+description: Reconcile claims, artifacts, implementation, evidence, lifecycle, and unfulfilled obligations (legacy Remaining only where pinned) with accepted project truth.
 metadata:
   category: Review and validation
-  applicability: Reconcile claims, evidence, lifecycle, and remaining work across a deliverable corpus.
+  applicability: Reconcile claims, evidence, lifecycle, and unfulfilled obligations (legacy Remaining only where pinned) across a deliverable corpus.
 ---
 
 # reconciliation
 
-Reconcile claims, artifacts, implementation, evidence, lifecycle, and remaining work with accepted project truth.
+Reconcile claims, artifacts, implementation, evidence, lifecycle, and unfulfilled obligations (legacy Remaining only where pinned) with accepted project truth.
 
 WORKING_ITEMS coordinates this undertaking and assigns bounded contributions to TASK.
+
+## When to select
+
+Select this workflow for a formal, human-activated corpus concordance program:
+frozen basis, claim ledgers, decision packets, authorized repair tranches, and
+a backcheck. For one undertaking's bounded documentation closeout before its
+final PR, select `bounded-reconciliation`. For one deliverable's lifecycle
+transition, select `review`.
 
 ## Method
 
@@ -21,4 +29,4 @@ WORKING_ITEMS coordinates this undertaking and assigns bounded contributions to 
 
 ## Resources
 
-Load [inputs, modes, and output contracts](resources/contract.md) when framing the assignment. Use [the detailed method](resources/method.md) for the current stage. Resolve tool commands against the declared tool root.
+Load [inputs, modes, and output contracts](resources/contract.md) when framing the assignment. Use [the detailed method](resources/method.md) for the current stage. Load [the representation-migration profile](resources/representation-migration.md) only for a deliverable-format or representation migration. Resolve tool commands against the declared tool root.

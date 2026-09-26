@@ -29,8 +29,8 @@ CENTRAL = (
 CORE = CENTRAL + ("task-management", "review", "reconciliation")
 CORE_DISPLAY_NAMES = {
     "task-management": "Manage tasks",
-    "review": "Review results",
-    "reconciliation": "Check project status",
+    "review": "Lifecycle transition review",
+    "reconciliation": "Run corpus concordance program",
 }
 NAVIGATION_CATEGORIES = ("core", "specialist", "superseded")
 NAVIGATION_TIERS = ("primary", "supporting")

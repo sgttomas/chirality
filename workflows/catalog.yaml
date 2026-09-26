@@ -42,11 +42,11 @@
       },
       {
         "name": "review",
-        "displayName": "Review results"
+        "displayName": "Lifecycle transition review"
       },
       {
         "name": "reconciliation",
-        "displayName": "Check project status"
+        "displayName": "Run corpus concordance program"
       }
     ],
     "specialist": [

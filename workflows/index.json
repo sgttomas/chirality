@@ -2428,7 +2428,7 @@
       "name": "reconciliation",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Reconcile claims, artifacts, implementation, evidence, lifecycle, and remaining work with accepted project truth.",
+      "description": "Reconcile claims, artifacts, implementation, evidence, lifecycle, and unfulfilled obligations (legacy Remaining only where pinned) with accepted project truth.",
       "central": false,
       "compatibility": "canonical",
       "executionRoleIds": [
@@ -2438,13 +2438,14 @@
         "WORKFLOW.md",
         "execution.json",
         "resources/contract.md",
-        "resources/method.md"
+        "resources/method.md",
+        "resources/representation-migration.md"
       ],
       "navigation": {
         "category": "core",
         "tier": "primary",
         "order": 9,
-        "displayName": "Check project status"
+        "displayName": "Run corpus concordance program"
       },
       "execution": {
         "schemaVersion": 1,
@@ -2465,7 +2466,7 @@
       },
       "metadata": {
         "category": "Review and validation",
-        "applicability": "Reconcile claims, evidence, lifecycle, and remaining work across a deliverable corpus."
+        "applicability": "Reconcile claims, evidence, lifecycle, and unfulfilled obligations (legacy Remaining only where pinned) across a deliverable corpus."
       }
     },
     {
@@ -2562,7 +2563,7 @@
         "category": "core",
         "tier": "primary",
         "order": 8,
-        "displayName": "Review results"
+        "displayName": "Lifecycle transition review"
       },
       "execution": {
         "schemaVersion": 1,
