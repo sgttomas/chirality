@@ -43,13 +43,14 @@ Each evidence row records how it was verified:
 
 - `LIVE_TREE` — checked against the current live source/tree.
 - `RETRIEVAL_INDEX` — supported only by the (possibly stale) retrieval index; a lead, not a warrant.
+- `ACCEPTED_SNAPSHOT` — checked against the artifacts of the accepted snapshot named as the basis (manifest, registers, ledger rows, recorded decisions).
 - `INHERITED_BRIEF` — asserted by a dispatching brief and not yet independently verified; treat as `R1`-equivalent until verified.
 
 Recording the source makes false consensus from over-anchoring visible.
 
 ### Load-Bearing Claims
 
-A claim is **load-bearing** when a downstream decision (acceptance, dispatch, sequencing, amendment, release) depends on it being true. WORKING_ITEMS self-flags load-bearing claims (`LoadBearing = TRUE`) so a caller knows what to double-cover. Load-bearing claims carry stricter duties: independent re-verification (never inherited from a brief), an explicit `VerificationSource`, and a `:RUN` AssertionMode wherever the claim concerns behavior or state that can be executed or checked. A load-bearing claim MUST NOT reach `R3` or better while its `VerificationSource` is `INHERITED_BRIEF`.
+A claim is **load-bearing** when a downstream decision (acceptance, dispatch, sequencing, amendment, release) depends on it being true. WORKING_ITEMS self-flags load-bearing claims (`LoadBearing = TRUE`) so a caller knows what to double-cover. Load-bearing claims carry stricter duties: independent re-verification (never inherited from a brief), an explicit `VerificationSource`, and a `:RUN` AssertionMode wherever the claim concerns behavior or state that can be executed or checked. A load-bearing claim MUST NOT reach `R3` or better while its `VerificationSource` is `INHERITED_BRIEF` or `RETRIEVAL_INDEX`.
 
 ### Research Output Minimum
 
@@ -78,9 +79,9 @@ schema; readers MUST NOT reorder existing columns):
 EvidenceID,ClaimID,EvidenceLevel,SourceKind,ArtifactPath,SourceDocID,SourceRef,AtomicUnitID,SectionID,CategoryID,KnowledgeTypeID,SubjectID,RetrievalMode,Rank,Score,QuotedOrParaphrasedEvidence,Interpretation,Limitations,VerificationSource,AssertionMode,LoadBearing
 ```
 
-- `VerificationSource` ∈ `LIVE_TREE | RETRIEVAL_INDEX | INHERITED_BRIEF` (see SPEC § Verification Source).
-- `AssertionMode` ∈ `READ | RUN` (see SPEC § Assertion Mode). `RunAsserted` is expressed only via this column — no separate boolean.
-- `LoadBearing` ∈ `TRUE | FALSE` (see SPEC § Load-Bearing Claims).
+- `VerificationSource` ∈ `LIVE_TREE | ACCEPTED_SNAPSHOT | RETRIEVAL_INDEX | INHERITED_BRIEF` (see § Verification Source above).
+- `AssertionMode` ∈ `READ | RUN` (see § Assertion Mode above). `RunAsserted` is expressed only via this column — no separate boolean.
+- `LoadBearing` ∈ `TRUE | FALSE` (see § Load-Bearing Claims above).
 
 ### Query Log Columns
 
@@ -112,7 +113,10 @@ AmendmentID,ClaimID,CandidateKind,TargetSurface,CurrentState,ProposedChange,Evid
 ```
 
 - `CandidateKind` ∈ `NEW_ATOM | SCOPE_GAP | KTY_REMAP | CATEGORY_CONFLICT | SOURCE_UPDATE | VOCAB`.
-- `RecommendedRoute` ∈ `WORKING_ITEMS (workflow: scope-change) | WORKING_ITEMS (workflow: domain-decomp) | WORKING_ITEMS (workflow: change) | WORKING_ITEMS (workflow: dbm-publisher)`.
+- `RecommendedRoute` ∈ `WORKING_ITEMS (workflow: scope-change) | WORKING_ITEMS (workflow: domain-decomp) | RESPONSIBLE_ROLE_WITH_APPLICABLE_CHANGE_CONVENTIONS | WORKING_ITEMS (workflow: dbm-publisher)`.
+- Readers may continue to accept historical `WORKING_ITEMS (workflow: change)`
+  values without rewriting them. New repository-edit rows use
+  `RESPONSIBLE_ROLE_WITH_APPLICABLE_CHANGE_CONVENTIONS`.
 - `HumanRuling` defaults `TBD` — WORKING_ITEMS proposes; the human rules.
 
 ### Open Questions Columns

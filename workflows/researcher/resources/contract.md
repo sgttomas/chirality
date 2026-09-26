@@ -6,7 +6,7 @@
 |---|---|---|
 | `MODE` | Literal `ORCHESTRATED` marker; echoed in the packet and return so the run is auditable as unattended | Required |
 | `DOMAIN_ROOT` | Domain package to research | Required |
-| `QUERY_STRING` / `BRIEF` | The bounded research question(s), plus any "established facts" the dispatcher supplies | Required. Brief-asserted facts are **leads, not warrants** (`VerificationSource = INHERITED_BRIEF`); see PROTOCOL Step 7 |
+| `QUERY_STRING` / `BRIEF` | The bounded research question(s), plus any "established facts" the dispatcher supplies | Required. Brief-asserted facts are **leads, not warrants** (`VerificationSource = INHERITED_BRIEF`); see `method.md` step 7 |
 | `RESEARCH_MODE` | One of `inquiry.md` modes (`ONTOLOGY`, `SEMANTIC_DISCOVERY`, `LEXICAL_LOOKUP`, `EVIDENCE_MAP`, `CROSS_CATEGORY`, `AMENDMENT_CANDIDATE`, `EXTERNAL_AUGMENTED`) | Default `EVIDENCE_MAP` |
 | `OUTPUT_DIR` | Packet destination | MUST resolve under `{RESEARCH_ROOT}`; otherwise STOP with `ERROR: OUTPUT_DIR_OUTSIDE_RESEARCH_ROOT` |
 | `ACCEPTED_SNAPSHOT_PATH` | Gate snapshot to treat as the accepted basis | Required explicit accepted snapshot path from the caller |
@@ -30,11 +30,11 @@
 - **Recommend, never approve.** Amendment candidates and conflicts are *returned* for the
   dispatcher/human to route and rule on. TASK applies no change to accepted truth.
 - **Write quarantine.** Writes go only under `{OUTPUT_DIR}` within `{RESEARCH_ROOT}`. No
-  source, ledger, register, snapshot, or index is modified. Packets are writable within the assigned run and become immutable at finalization. The caller owns shared pointers.
+  source, ledger, register, snapshot, or index is modified. Packets are writable within the assigned run and become immutable at finalization. TASK never updates shared pointers such as `{RESEARCH_ROOT}/_LATEST.md`.
 - **No silent refresh.** TASK never rebuilds the source database or retrieval index;
   it reports the snapshot's freshness and proceeds or surfaces the staleness.
 - **No silent failure.** On a transient error, return partial results with an explicit
-  coverage-gaps statement (PROTOCOL Step 9).
+  coverage-gaps statement (`method.md` step 9).
 
 ---
 
@@ -42,10 +42,10 @@
 
 The evidence-quality rubric (`R0`–`R5`), the `:READ`/`:RUN` AssertionMode, the
 `VerificationSource` enum, and the Load-Bearing Claims duties are defined in
-`evidence.md` contract and apply unchanged. Summary of the load-bearing rule: a
+`evidence.md` and apply unchanged. Summary of the load-bearing rule: a
 load-bearing claim must carry an explicit `VerificationSource`, prefer `:RUN` for anything
 executable/checkable, and MUST NOT reach `R3+` while its `VerificationSource` is
-`INHERITED_BRIEF`.
+`INHERITED_BRIEF` or `RETRIEVAL_INDEX`.
 
 ### Valid TASK result
 
@@ -55,7 +55,7 @@ A valid result:
 - logs queries via the retrieval tool, not from memory;
 - records `VerificationSource`, `AssertionMode`, and `LoadBearing` on each evidence row;
 - live-verifies every load-bearing claim (never inherited) before it reaches `R3+`;
-- returns the structured object (STRUCTURE) with `STATUS ∈ {COMPLETE, PARTIAL, FAILED_INPUTS}`;
+- returns the structured object (below) with `STATUS ∈ {COMPLETE, PARTIAL, FAILED_INPUTS}`;
 - when `PARTIAL`, states explicit coverage gaps rather than failing silently;
 - recommends only — applies no change to accepted truth and approves nothing.
 
@@ -93,7 +93,7 @@ Caveats[]             # limitations, staleness notes, unresolved issues
 ### Packet members
 
 The packet files and their CSV/markdown schemas are defined in `evidence.md`
-STRUCTURE (Evidence_Map, Query_Log, Conflicts, Amendment_Candidate, Open_Questions columns;
+(Evidence_Map, Query_Log, Conflicts, Amendment_Candidate, Open_Questions columns;
 Research Note sections) and emitted with canonical headers by
 `tools/retrieval/scaffold_research_packet.py` (backed by `tools/source_catalog/research_packet.py`).
 TASK populates them; it does not redefine them.

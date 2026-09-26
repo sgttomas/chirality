@@ -63,7 +63,7 @@ If the human asks for a durable research artifact, write under:
 {RESEARCH_ROOT}/RCH_<UTC>_<slug>/
 ```
 
-Each packet is an immutable derivative snapshot. Do not overwrite an existing packet. If a new run supersedes an earlier packet, create a new `RCH_*` directory and, when useful, update `{RESEARCH_ROOT}/_LATEST.md` as the mutable pointer.
+Each packet is an immutable derivative snapshot. Do not overwrite an existing packet. If a new run supersedes an earlier packet, create a new `RCH_*` directory and name the superseded packet in its `HANDOFF_STATE.md`. This workflow does not update `{RESEARCH_ROOT}/_LATEST.md`; pointer maintenance is a separately authorized undertaking.
 
 Minimum packet contents:
 - `RESEARCH_NOTE.md`
@@ -74,9 +74,9 @@ Minimum packet contents:
 
 Conditional packet contents:
 - `Conflicts.csv` when conflicting accepted evidence, source evidence, or derivative index evidence is found.
-- `Amendment_Candidates.csv` when research surfaces a possible change to accepted truth (see STRUCTURE § Amendment Candidate Columns). Routing these as structured rows — not prose — is what gets them to `WORKING_ITEMS (workflow: scope-change)` / `WORKING_ITEMS (workflow: domain-decomp)` in Step 5.
+- `Amendment_Candidates.csv` when research surfaces a possible change to accepted truth (see `contract.md` § Amendment Candidate Columns). Routing these as structured rows — not prose — is what gets them to `WORKING_ITEMS (workflow: scope-change)` / `WORKING_ITEMS (workflow: domain-decomp)` in Step 5.
 
-The packet may be scaffolded deterministically with `tools/retrieval/scaffold_research_packet.py`
+The packet may be scaffolded deterministically with `tools/retrieval/scaffold_research_packet.py --no-update-latest`
 (immutable `RCH_<UTC>_<slug>/` with canonical headers; refuses to overwrite), so the packet shape
 is not re-derived by reasoning each run.
 
