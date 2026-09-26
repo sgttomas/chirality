@@ -229,7 +229,9 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
   Open:
   - SOW currency and first SOWs for DEL-02-08/09;
   - DEL-00-01/00-03 derivative review;
-  - the loop registry source packet;
+  - the loop registry source packet, proposed as `D-PEC-96` and awaiting the
+    owner's ruling
+    (`execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md`);
   - P1 fixtures;
   - residual `projects/pec/AGENTS.md` corrections;
   - the D-PEC-90 reliance amendment. This is scope change SCA-006. The

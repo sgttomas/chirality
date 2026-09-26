@@ -1,0 +1,103 @@
+{
+  "$id": "https://chirality.local/pec/v2/config/loops.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Local configuration format naming the loops PEC serves and the closed, PEC-versioned feed profiles PEC reads each loop with. Schema version 1 is not accepted by the version-2 loader.",
+  "properties": {
+    "loops": {
+      "description": "The configured loops PEC may read as non-authoritative file-truth locations.",
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "feed_profiles": {
+            "description": "The feed profiles PEC applies to this loop: PEC's reading hypothesis, never the loop's truth. At least one entry; a profile identifier appears at most once per loop.",
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "basis": {
+                  "description": "Citation to the loop's own record that supports this declaration. Normalized repository-relative path (no leading '/', no '..' segment, no backslash).",
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "profile": {
+                  "description": "Identifier from PEC's closed feed-profile vocabulary. Path conventions and grammars for each profile live in PEC's adapters.",
+                  "oneOf": [
+                    {
+                      "const": "agentruns-json",
+                      "description": "JSON run evidence under execution/_Coordination/AgentRuns/ (WORK_GRAPH.json, STATUS.json, RUNTIME_SUMMARY.json)."
+                    },
+                    {
+                      "const": "loop-receipts-ledger",
+                      "description": "The loop's loop/LOOP_RECEIPTS.md receipt ledger, under that loop's grammar."
+                    },
+                    {
+                      "const": "remaining-loop",
+                      "description": "Loops that select work from _STATUS.md '## Remaining' items: lifecycle with those items, the loop/LOOP_RECEIPTS.md ledger as the receipt feed, dependency registers and decision registers."
+                    },
+                    {
+                      "const": "shared-dev-loop",
+                      "description": "The shared development-loop method: undertaking work graphs (execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md), central receipts (execution/_Coordination/AgentRuns/<RunID>/RECEIPT.md), the deliverable MEMORY.md run index, _STATUS.md lifecycle, dependency registers and decision registers."
+                    }
+                  ],
+                  "type": "string"
+                },
+                "state": {
+                  "description": "live: the loop currently writes this generation. historical: the generation is frozen, and its silence is never reported as staleness.",
+                  "enum": [
+                    "historical",
+                    "live"
+                  ],
+                  "type": "string"
+                },
+                "version": {
+                  "const": 1,
+                  "description": "Version of the selected profile; every profile in this vocabulary is at version 1.",
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "basis",
+                "profile",
+                "state",
+                "version"
+              ],
+              "type": "object"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "loop_id": {
+            "description": "Stable lower-case identifier for one configured loop.",
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "type": "string"
+          },
+          "loop_init_path": {
+            "description": "Repository-relative path to the loop's governed LOOP_INIT.md surface.",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "feed_profiles",
+          "loop_id",
+          "loop_init_path"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "schema_version": {
+      "const": 2,
+      "description": "Version of this local loop-registry configuration format.",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema_version",
+    "loops"
+  ],
+  "title": "PEC local loop registry configuration v2",
+  "type": "object"
+}
