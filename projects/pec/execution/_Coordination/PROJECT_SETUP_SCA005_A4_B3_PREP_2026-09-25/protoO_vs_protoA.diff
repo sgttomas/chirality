@@ -1,0 +1,33 @@
+diff --git a/protoA/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_DEPENDENCIES.md b/protoO/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_DEPENDENCIES.md
+index 5a1f56e..2746924 100644
+--- a/protoA/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_DEPENDENCIES.md
++++ b/protoO/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_DEPENDENCIES.md
+@@ -15,6 +15,7 @@ Register storage is deliverable-local by owner ruling (no central register).
+ ## Downstream (informational; consumers of this deliverable)
+ 
+ - DEL-03-01 (Full-rebuild reconciler (one command)) — CONSUMES [E-P81]
++- DEL-04-01 (Loop orientation return) — CONSUMES [E-P83]
+ 
+ ## Non-gating constraints and register-wide rules
+ 
+diff --git a/protoA/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/Dependencies.csv b/protoO/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/Dependencies.csv
+index d9f2863..14778f0 100644
+--- a/protoA/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/Dependencies.csv
++++ b/protoO/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/Dependencies.csv
+@@ -4,3 +4,4 @@ v3.1,DEP-04-01-002,PKG-04,DEL-04-01,Loop orientation return,ANCHOR,TRACES_TO_REQ
+ v3.1,DEP-04-01-003,PKG-04,DEL-04-01,Loop orientation return,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-10,DEL-10-01,DEL-10-01,Step-0 cost baseline (pre-P1),execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1,Declared pre-P1 sequencing against SOW-004,execution/_Decomposition/ScopeLedger.csv,ScopeLedger.csv row SOW-058 Notes column,"Sequencing obligation, pre-P1; baselines SOW-004/041",EXPLICIT,INITIALIZED,TBD,PENDING,HIGH,DECLARED,2026-07-25,2026-07-25,ACTIVE,DECLARED; Flag=none; EdgeID=E-A27
+ v3.1,DEP-04-01-004,PKG-04,DEL-04-01,Loop orientation return,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-01,DEL-01-01,DEL-01-01,Record-tier schema & entity model,execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model,Orientation derivation entry point of PKG-04,execution/_Decomposition/Deliverables.csv,Deliverables.csv row DEL-01-01 ContextEnvelopeNotes column,the schema every derivation package depends on,IMPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-07-25,2026-07-25,ACTIVE,PROPOSAL; Flag=none; EdgeID=E-P11
+ v3.1,DEP-04-01-005,PKG-04,DEL-04-01,Loop orientation return,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-03,DEL-03-01,DEL-03-01,Full-rebuild reconciler (one command),execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command,Orientation derives from a populated record tier,docs/PRD.md,PRD.md §6 invariant PEC-K-07,the reconciler over file truth is the source of every record-tier fact,IMPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-07-25,2026-07-25,ACTIVE,PROPOSAL; Flag=none; EdgeID=E-P32
++v3.1,DEP-04-01-006,PKG-04,DEL-04-01,Loop orientation return,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-02,DEL-02-08,DEL-02-08,Work-graph parser,execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser,Orientation reads work-graph node states,docs/PRD.md,PRD.md §9.1 requirement PEC-ORI-001,"gate states (from decision registers, scope-change state and work-graph `BLOCKED` nodes)",IMPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-09-25,2026-09-25,ACTIVE,PROPOSAL; Flag=none; EdgeID=E-P83; seeded under D-PEC-93 (SCA-005 B3)
+diff --git a/protoA/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_DEPENDENCIES.md b/protoO/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_DEPENDENCIES.md
+index a1e29b7..6143126 100644
+--- a/protoA/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_DEPENDENCIES.md
++++ b/protoO/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_DEPENDENCIES.md
+@@ -12,6 +12,7 @@ Register storage is deliverable-local by owner ruling (no central register).
+ | DEL-10-01 (Step-0 cost baseline (pre-P1)) | DECLARED | SEQUENCING |  | E-A27 |
+ | DEL-01-01 (Record-tier schema & entity model) | PROPOSAL | CONSUMES |  | E-P11 |
+ | DEL-03-01 (Full-rebuild reconciler (one command)) | PROPOSAL | CONSUMES |  | E-P32 |
++| DEL-02-08 (Work-graph parser) | PROPOSAL | CONSUMES |  | E-P83 |
+ 
+ ## Downstream (informational; consumers of this deliverable)
+ 

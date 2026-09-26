@@ -44,7 +44,10 @@ def _git(*args: str) -> str:
 def changed_paths(base: str) -> list[str] | None:
     """Committed + working-tree changed paths, or None if base is unusable."""
     try:
-        committed = _git("diff", "--name-only", f"{base}...HEAD")
+        # --no-renames: both halves of a rename select their suites, and Git
+        # never reads deleted content for similarity (a blob-less CI clone
+        # would otherwise download it, e.g. after a run-record archive).
+        committed = _git("diff", "--name-only", "--no-renames", f"{base}...HEAD")
     except subprocess.CalledProcessError:
         return None
     paths = {line for line in committed.splitlines() if line}

@@ -61,3 +61,35 @@ def test_conflict_markers_in_plus_prefixed_filename_block(repo):
 def test_cosmetic_source_line_resembling_diagnostic_does_not_block(repo):
     result = check(repo, ' \tpretend.md:1: leftover conflict marker\n')
     assert result.returncode == 0, result.stdout + result.stderr
+
+
+def test_mass_removal_beyond_rename_limit_is_clean(repo):
+    # An archive removes tens of thousands of files; Git's rename-limit
+    # warning on stderr must not turn that into a failed check.
+    root, git, base = repo
+    git('config', 'diff.renameLimit', '1')
+    for n in range(4):
+        (root / f'old{n}.md').write_text(f'old {n}\n')
+    git('add', '.')
+    git('commit', '-qm', 'more history')
+    base = git('rev-parse', 'HEAD').stdout.strip()
+    git('rm', '-q', *[f'old{n}.md' for n in range(4)])
+    for n in range(3):
+        (root / f'new{n}.md').write_text(f'new {n}\n')
+    git('add', '.')
+    git('commit', '-qm', 'archive')
+    result = subprocess.run([sys.executable, str(SCRIPT), '--base', base],
+                            cwd=root, capture_output=True, text=True)
+    assert result.returncode == 0, result.stdout + result.stderr
+
+
+def test_marker_added_in_renamed_file_still_blocks(repo):
+    root, git, base = repo
+    git('mv', 'sample.md', 'moved.md')
+    (root / 'moved.md').write_text('base\n<<<<<<< HEAD\nleft\n=======\nright\n>>>>>>> other\n')
+    git('add', '.')
+    git('commit', '-qm', 'rename with marker')
+    result = subprocess.run([sys.executable, str(SCRIPT), '--base', base],
+                            cwd=root, capture_output=True, text=True)
+    assert result.returncode == 1
+    assert 'moved.md' in result.stdout

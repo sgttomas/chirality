@@ -15,7 +15,7 @@ Register storage is deliverable-local by owner ruling (no central register).
 ## Downstream (informational; consumers of this deliverable)
 
 - DEL-06-01 (Session presence records) — CONSUMES [E-P45]
-- DEL-06-04 (Live hierarchy edges) — CONSUMES [E-P47]
+- ~~DEL-06-04 (Live hierarchy edges) — CONSUMES [E-P47]~~ — **RETIRED 2026-09-25 under SCA-005 (D-PEC-93)**: DEL-06-04 retired (A-34); register row `DEP-06-04-006` kept with `Status=RETIRED`
 - DEL-10-12 (Poll-adoption measurement) — MEASURES [E-P77]
 
 ## Non-gating constraints and register-wide rules

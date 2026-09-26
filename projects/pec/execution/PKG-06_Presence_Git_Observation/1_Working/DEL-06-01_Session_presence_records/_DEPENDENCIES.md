@@ -14,7 +14,7 @@ Register storage is deliverable-local by owner ruling (no central register).
 
 ## Downstream (informational; consumers of this deliverable)
 
-- DEL-06-04 (Live hierarchy edges) — CONSUMES [E-N10]
+- ~~DEL-06-04 (Live hierarchy edges) — CONSUMES [E-N10]~~ — **RETIRED 2026-09-25 under SCA-005 (D-PEC-93)**: DEL-06-04 retired (A-34); register row `DEP-06-04-004` kept with `Status=RETIRED`
 - DEL-06-03 (Session×worktree×scope correlation) — CONSUMES [E-P41]
 - DEL-06-05 (TTL/heartbeat discipline & citation exclusion) — CONSUMES [E-P44]
 - DEL-08-05 (SSE delta/presence subscription) — CONSUMES [E-P57]

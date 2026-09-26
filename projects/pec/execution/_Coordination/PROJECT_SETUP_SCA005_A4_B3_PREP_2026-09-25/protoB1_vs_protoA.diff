@@ -1,0 +1,1612 @@
+diff --git a/protoA/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_CONTEXT.md b/protoB/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_CONTEXT.md
+index dc4843c..60ded61 100644
+--- a/protoA/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_REFERENCES.md b/protoB/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_REFERENCES.md
+index 0a1fbdd..7cb2e5c 100644
+--- a/protoA/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-00-01
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-088)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-00_Architecture_Runway_Contracts/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_REFERENCES.md b/protoB/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_REFERENCES.md
+index ed5563b..08b4713 100644
+--- a/protoA/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-00-02
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-034)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-00_Architecture_Runway_Contracts/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_CONTEXT.md b/protoB/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_CONTEXT.md
+index 39cddf5..3d37bf0 100644
+--- a/protoA/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_REFERENCES.md b/protoB/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_REFERENCES.md
+index d424ce5..1e34d82 100644
+--- a/protoA/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-00-03
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-089)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-00_Architecture_Runway_Contracts/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_REFERENCES.md b/protoB/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_REFERENCES.md
+index b539d53..1f72c1c 100644
+--- a/protoA/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-01-01
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-001)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-01_Service_Core_Store/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/_CONTEXT.md b/protoB/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/_CONTEXT.md
+index 3e93610..183717c 100644
+--- a/protoA/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/_REFERENCES.md b/protoB/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/_REFERENCES.md
+index 9b0efba..e051286 100644
+--- a/protoA/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-01-02
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-002)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-01_Service_Core_Store/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_CONTEXT.md b/protoB/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_CONTEXT.md
+index 1e23f5a..c9c20ef 100644
+--- a/protoA/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_REFERENCES.md b/protoB/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_REFERENCES.md
+index 589b93c..9afe5b2 100644
+--- a/protoA/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-01-03
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-056)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-01_Service_Core_Store/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/_CONTEXT.md b/protoB/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/_CONTEXT.md
+index 82d2d08..b64a2e0 100644
+--- a/protoA/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/_REFERENCES.md b/protoB/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/_REFERENCES.md
+index 6e04c92..904cb65 100644
+--- a/protoA/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-01-04
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-057)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-01_Service_Core_Store/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_CONTEXT.md b/protoB/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_CONTEXT.md
+index 621106a..4d019cb 100644
+--- a/protoA/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_REFERENCES.md b/protoB/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_REFERENCES.md
+index 76e5356..286c82b 100644
+--- a/protoA/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-01-05
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-052;SOW-053)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-01_Service_Core_Store/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_REFERENCES.md b/protoB/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_REFERENCES.md
+index 26097c9..f197bb8 100644
+--- a/protoA/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-01-06
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-077;SOW-094)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-01_Service_Core_Store/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_CONTEXT.md b/protoB/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_CONTEXT.md
+index cb93c1b..aff00d9 100644
+--- a/protoA/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_REFERENCES.md b/protoB/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_REFERENCES.md
+index ee648bd..6713399 100644
+--- a/protoA/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-02-01
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-011)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-02_File_Truth_Parsers/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_CONTEXT.md b/protoB/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_CONTEXT.md
+index 75e5d6f..d12fa3b 100644
+--- a/protoA/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_REFERENCES.md b/protoB/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_REFERENCES.md
+index 78bafd2..71e0a35 100644
+--- a/protoA/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-02-02
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-012)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-02_File_Truth_Parsers/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_REFERENCES.md b/protoB/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_REFERENCES.md
+index bca6841..607a9a7 100644
+--- a/protoA/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-02-03
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-013)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-02_File_Truth_Parsers/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_REFERENCES.md b/protoB/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_REFERENCES.md
+index 57ccac7..cb3294d 100644
+--- a/protoA/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-02-04
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-014)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-02_File_Truth_Parsers/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_REFERENCES.md b/protoB/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_REFERENCES.md
+index 4ea7441..caf8c00 100644
+--- a/protoA/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-02-05
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-015)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-02_File_Truth_Parsers/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_REFERENCES.md b/protoB/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_REFERENCES.md
+index e10cab0..7c464ec 100644
+--- a/protoA/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-02-06
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-016)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-02_File_Truth_Parsers/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_REFERENCES.md b/protoB/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_REFERENCES.md
+index 87ae30f..c0f0be7 100644
+--- a/protoA/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-02-07
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-017)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-02_File_Truth_Parsers/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/_CONTEXT.md b/protoB/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/_CONTEXT.md
+index 8cbf368..1c91388 100644
+--- a/protoA/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/_REFERENCES.md b/protoB/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/_REFERENCES.md
+index 7393451..98239aa 100644
+--- a/protoA/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-03-01
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-010;SOW-021)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-03_Reconciliation_Parity/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_CONTEXT.md b/protoB/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_CONTEXT.md
+index 12881c1..ac855b1 100644
+--- a/protoA/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_REFERENCES.md b/protoB/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_REFERENCES.md
+index 158f113..9219aa5 100644
+--- a/protoA/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-03-02
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-018)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-03_Reconciliation_Parity/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/_REFERENCES.md b/protoB/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/_REFERENCES.md
+index 1481193..8f87125 100644
+--- a/protoA/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-03-03
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-019)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-03_Reconciliation_Parity/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_CONTEXT.md b/protoB/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_CONTEXT.md
+index 07aee13..d25a1fd 100644
+--- a/protoA/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_REFERENCES.md b/protoB/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_REFERENCES.md
+index b3a2d74..48d45b9 100644
+--- a/protoA/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-03-04
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-020)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-03_Reconciliation_Parity/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_REFERENCES.md b/protoB/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_REFERENCES.md
+index c8fc56e..cbbde5a 100644
+--- a/protoA/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-03-05
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-038)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-03_Reconciliation_Parity/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/_CONTEXT.md b/protoB/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/_CONTEXT.md
+index dff3375..0b880da 100644
+--- a/protoA/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/_REFERENCES.md b/protoB/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/_REFERENCES.md
+index 1578d80..91e5515 100644
+--- a/protoA/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-03-06
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-054)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-03_Reconciliation_Parity/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_REFERENCES.md b/protoB/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_REFERENCES.md
+index a06ce25..0c529e2 100644
+--- a/protoA/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-04-01
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-004)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-04_Orientation_Services/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_CONTEXT.md b/protoB/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_CONTEXT.md
+index e6e0871..5a5f986 100644
+--- a/protoA/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_REFERENCES.md b/protoB/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_REFERENCES.md
+index f4abce2..c5ecb18 100644
+--- a/protoA/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-04-02
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-005)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-04_Orientation_Services/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_CONTEXT.md b/protoB/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_CONTEXT.md
+index fbfeaa7..b96d721 100644
+--- a/protoA/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_REFERENCES.md b/protoB/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_REFERENCES.md
+index 2c3967f..43bac9c 100644
+--- a/protoA/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-04-03
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-006;SOW-007)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-04_Orientation_Services/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/_CONTEXT.md b/protoB/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/_CONTEXT.md
+index cd38456..0040da7 100644
+--- a/protoA/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/_REFERENCES.md b/protoB/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/_REFERENCES.md
+index 319fe06..69f45eb 100644
+--- a/protoA/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-04-04
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-008)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-04_Orientation_Services/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_CONTEXT.md b/protoB/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_CONTEXT.md
+index 5a8a2f2..6dd653a 100644
+--- a/protoA/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_REFERENCES.md b/protoB/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_REFERENCES.md
+index 1537a42..af2dbd3 100644
+--- a/protoA/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-04-05
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-009)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-04_Orientation_Services/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/_REFERENCES.md b/protoB/projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/_REFERENCES.md
+index e41fe35..e3e100b 100644
+--- a/protoA/projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-05-01
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-022;SOW-023)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-05_Gate_Evaluation_Decision_Slate/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/_CONTEXT.md b/protoB/projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/_CONTEXT.md
+index 46804d9..2f2b8ca 100644
+--- a/protoA/projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/_REFERENCES.md b/protoB/projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/_REFERENCES.md
+index f374918..8c33dc6 100644
+--- a/protoA/projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-05-02
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-024)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-05_Gate_Evaluation_Decision_Slate/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/_REFERENCES.md b/protoB/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/_REFERENCES.md
+index 75870f3..434d075 100644
+--- a/protoA/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-06-01
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-026)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-06_Presence_Git_Observation/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/_CONTEXT.md b/protoB/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/_CONTEXT.md
+index 8a3ea87..581ff46 100644
+--- a/protoA/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/_REFERENCES.md b/protoB/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/_REFERENCES.md
+index 190055b..855123d 100644
+--- a/protoA/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-06-02
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-027)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-06_Presence_Git_Observation/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/_CONTEXT.md b/protoB/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/_CONTEXT.md
+index dcf6d49..1f7613c 100644
+--- a/protoA/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/_REFERENCES.md b/protoB/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/_REFERENCES.md
+index 7e07c0f..4b74922 100644
+--- a/protoA/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-06-03
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-028)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-06_Presence_Git_Observation/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/_REFERENCES.md b/protoB/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/_REFERENCES.md
+index 80b7d49..2ab9dfb 100644
+--- a/protoA/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-06-04
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-029)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-06_Presence_Git_Observation/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/_CONTEXT.md b/protoB/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/_CONTEXT.md
+index c06340f..6598a36 100644
+--- a/protoA/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/_REFERENCES.md b/protoB/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/_REFERENCES.md
+index f84fdf7..7556224 100644
+--- a/protoA/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-06-05
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-030;SOW-032)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-06_Presence_Git_Observation/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/_CONTEXT.md b/protoB/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/_CONTEXT.md
+index 4a8afd7..3eb87c1 100644
+--- a/protoA/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/_REFERENCES.md b/protoB/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/_REFERENCES.md
+index e5fc677..0828f61 100644
+--- a/protoA/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-06-06
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-031)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-06_Presence_Git_Observation/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_CONTEXT.md b/protoB/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_CONTEXT.md
+index 41f8247..05d3110 100644
+--- a/protoA/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_REFERENCES.md b/protoB/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_REFERENCES.md
+index f497a7c..c1422e5 100644
+--- a/protoA/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-07-01
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-033;SOW-039)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-07_Event_Ingest_Bridges/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_REFERENCES.md b/protoB/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_REFERENCES.md
+index 7572b51..03c10c0 100644
+--- a/protoA/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-07-02
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-035)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-07_Event_Ingest_Bridges/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_REFERENCES.md b/protoB/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_REFERENCES.md
+index d2f1bc5..8e79f99 100644
+--- a/protoA/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-07-03
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-036)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-07_Event_Ingest_Bridges/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_REFERENCES.md b/protoB/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_REFERENCES.md
+index 13a6590..8d0c99c 100644
+--- a/protoA/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-07-04
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-037)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-07_Event_Ingest_Bridges/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_REFERENCES.md b/protoB/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_REFERENCES.md
+index 754b435..9fdf1c7 100644
+--- a/protoA/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-07-05
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-087)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-07_Event_Ingest_Bridges/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_REFERENCES.md b/protoB/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_REFERENCES.md
+index e890fb1..21e94d3 100644
+--- a/protoA/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-08-01
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-003;SOW-040)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-08_API_Access/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_CONTEXT.md b/protoB/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_CONTEXT.md
+index 60b22ec..8643da2 100644
+--- a/protoA/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_REFERENCES.md b/protoB/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_REFERENCES.md
+index 019a474..7badf1e 100644
+--- a/protoA/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-08-02
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-042)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-08_API_Access/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_CONTEXT.md b/protoB/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_CONTEXT.md
+index a3745db..67274bd 100644
+--- a/protoA/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_REFERENCES.md b/protoB/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_REFERENCES.md
+index 560fbc1..359508f 100644
+--- a/protoA/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-08-03
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-043)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-08_API_Access/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_CONTEXT.md b/protoB/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_CONTEXT.md
+index 6a50051..67d80c0 100644
+--- a/protoA/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_REFERENCES.md b/protoB/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_REFERENCES.md
+index 590a72e..8baf6b6 100644
+--- a/protoA/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-08-04
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-041)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-08_API_Access/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_REFERENCES.md b/protoB/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_REFERENCES.md
+index 6afb248..9011cdc 100644
+--- a/protoA/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-08-05
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-044)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-08_API_Access/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_CONTEXT.md b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_CONTEXT.md
+index d2a37fc..aaa8e9b 100644
+--- a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_REFERENCES.md b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_REFERENCES.md
+index f2259b9..ec9a08c 100644
+--- a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-09-01
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-045)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-09_Dashboards/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_CONTEXT.md b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_CONTEXT.md
+index 4d39aec..0c0a6d6 100644
+--- a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_REFERENCES.md b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_REFERENCES.md
+index f375516..a32a4d9 100644
+--- a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-09-02
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-046)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-09_Dashboards/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_CONTEXT.md b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_CONTEXT.md
+index e9b0c94..f024baa 100644
+--- a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_REFERENCES.md b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_REFERENCES.md
+index 8a43690..10ad315 100644
+--- a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-09-03
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-047)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-09_Dashboards/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_CONTEXT.md b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_CONTEXT.md
+index 680a655..db4b830 100644
+--- a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_REFERENCES.md b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_REFERENCES.md
+index fc0c46e..0c3d1ef 100644
+--- a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-09-04
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-048)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-09_Dashboards/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_REFERENCES.md b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_REFERENCES.md
+index 4f81a78..fe14508 100644
+--- a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-09-05
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-049)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-09_Dashboards/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_CONTEXT.md b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_CONTEXT.md
+index 29ed741..e4c1be1 100644
+--- a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_REFERENCES.md b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_REFERENCES.md
+index 75dc815..b8c126e 100644
+--- a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-09-06
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-050)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-09_Dashboards/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_CONTEXT.md b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_CONTEXT.md
+index d396abe..faf293c 100644
+--- a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_REFERENCES.md b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_REFERENCES.md
+index 3bb612c..c7596ef 100644
+--- a/protoA/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-09-07
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-051)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-09_Dashboards/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/_CONTEXT.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/_CONTEXT.md
+index a87ae15..56d34b9 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/_REFERENCES.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/_REFERENCES.md
+index 7f747bb..55b3d2a 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-10-01
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-058)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-10_Validation_Measurement/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_CONTEXT.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_CONTEXT.md
+index ad4d213..69108d0 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_REFERENCES.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_REFERENCES.md
+index fe94157..61a0b45 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-10-02
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-055)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-10_Validation_Measurement/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/_CONTEXT.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/_CONTEXT.md
+index ee6d44b..3f2869a 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/_REFERENCES.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/_REFERENCES.md
+index ce9417e..db4287a 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-10-03
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-025)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-10_Validation_Measurement/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/_CONTEXT.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/_CONTEXT.md
+index 45ce3cb..696ca13 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/_REFERENCES.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/_REFERENCES.md
+index 7cd440d..a27a750 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-10-04
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-059)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-10_Validation_Measurement/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_CONTEXT.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_CONTEXT.md
+index 674efbb..3bfe192 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_REFERENCES.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_REFERENCES.md
+index 1298783..755751e 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-10-05
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-085)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-10_Validation_Measurement/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/_CONTEXT.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/_CONTEXT.md
+index f92c49f..aa1f414 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/_REFERENCES.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/_REFERENCES.md
+index e1a94f8..94772e2 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-10-06
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-061)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-10_Validation_Measurement/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/_CONTEXT.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/_CONTEXT.md
+index 0bd8f68..185bbba 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/_REFERENCES.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/_REFERENCES.md
+index ca1724f..867fc97 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-10-07
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-062)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-10_Validation_Measurement/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_REFERENCES.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_REFERENCES.md
+index 1f94919..1a8e987 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-10-08
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-063)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-10_Validation_Measurement/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/_CONTEXT.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/_CONTEXT.md
+index 98d807e..34f1308 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/_REFERENCES.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/_REFERENCES.md
+index 9d8795d..fb9dbb9 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-10-09
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-084)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-10_Validation_Measurement/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_CONTEXT.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_CONTEXT.md
+index 8c8ea59..0b5581b 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_REFERENCES.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_REFERENCES.md
+index 3f9fc0c..84c19a2 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-10-10
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-064)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-10_Validation_Measurement/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/_CONTEXT.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/_CONTEXT.md
+index 13812bf..4f26f25 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/_REFERENCES.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/_REFERENCES.md
+index 4cf7041..2fa6548 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-10-11
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-093)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-10_Validation_Measurement/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/_CONTEXT.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/_CONTEXT.md
+index 1d7bd3c..209d3de 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/_CONTEXT.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/_CONTEXT.md
+@@ -30,7 +30,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+ `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+ successor), superseded by revision 1.2 (`current_basis`, SCA-002
+ successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
+-successor), then by revision 1.4 (`current_basis`, SCA-004 successor).
++successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
++then by revision 1.5 (`current_basis`, SCA-005 successor).
+ Fields templated deterministically from
+ `Deliverables.csv`; this file restates register truth and is not an
+ independent authority.
+diff --git a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/_REFERENCES.md b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/_REFERENCES.md
+index a28563e..74b401b 100644
+--- a/protoA/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/_REFERENCES.md
++++ b/protoB/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/_REFERENCES.md
+@@ -1,9 +1,9 @@
+ # _REFERENCES — DEL-10-12
+ 
+-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
++- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+ - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-060)
+-- `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)
++- `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-10_Validation_Measurement/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+ - `execution/_Coordination/_COORDINATION.md` (coordination representation: FULL_GRAPH, threshold INITIALIZED)

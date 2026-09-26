@@ -1,0 +1,52 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-CI-BURDEN-REDUCTION-20260925
+title: Reduce hosted CI runner burden without reducing code coverage
+date: 2026-09-25
+basis: aa312755e671b0fc7d598314d591c552749aaea6
+instruction_surface_paths:
+  - .github/workflows/governance-harness.yml
+  - .github/workflows/piping-desktop-e2e.yml
+  - .github/workflows/piping-e2e-cache.yml
+  - docs/CI_SELECTION.md
+  - tools/practitioner_harness/test_live_baseline.py
+  - docs/governance_harness/tranche_manifests/ROOT-CI-BURDEN-REDUCTION-20260925.yaml
+m2_gate:
+  authorization: >-
+    Ryan Tufts directed in active chat: 'Evaluate the full test suite and CI
+    for this repo (including all subprojects: App and Piping and PEC and
+    Runtime). Your goal is to remove 20 - 40% of all testing and CI by
+    anticipated resource burden (not just strictly by quantity of tests, for
+    instance), which not reducing coverage by more than 2%. We can recover
+    fairly easily from a dropped test that was important, and we stand to gain
+    back significant time if you are successful.'
+  authorized_by: Ryan Tufts
+  authorization_date: 2026-09-25
+  integration_owner: HELP_HUMAN /root
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-25_CI_BURDEN_REDUCTION.md
+  rationale: >-
+    Piping owns the changed selector, hosted compact-profile scope and checkout
+    shape. App, Runtime and PEC workflows and selection are unchanged. The
+    governance-harness change is Root's own surface: the duplicate self-check
+    CLI step is removed, and the always-run live baseline test is now the
+    fail-closed gate for the same exit-0 contract.
+candidate_paths:
+  - .github/workflows/governance-harness.yml
+  - .github/workflows/piping-desktop-e2e.yml
+  - .github/workflows/piping-e2e-cache.yml
+  - docs/CI_SELECTION.md
+  - docs/governance_harness/tranche_manifests/ROOT-CI-BURDEN-REDUCTION-20260925.yaml
+  - tools/practitioner_harness/test_live_baseline.py
+  - projects/chirality-piping/tools/ci/e2e_plan.py
+  - projects/chirality-piping/tests/test_ci_e2e_plan.py
+  - projects/chirality-piping/docs/CI_STRATEGY.md
+  - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-25_CI_BURDEN_REDUCTION.md
+scope_limits:
+  - Hosted CI selection and checkout shape only; stable check names, aggregates and branch protection are unchanged.
+  - No product assertion, threshold, timeout or skip is changed; the Playwright configuration, local evidence sweeps and manual full dispatch keep both viewport profiles, preserving the DEC-093 surface-4 CI binding path.
+  - Pull-request compact-profile scope is a Piping-owned choice the receiving loop may adopt, amend or revert.
+  - Self-check still gates every PR and main push through the always-run practitioner_harness suite.

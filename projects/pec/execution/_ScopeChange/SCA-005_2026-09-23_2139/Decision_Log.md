@@ -2,8 +2,8 @@
 amendment_id: SCA-005
 doc_kind: scope_change.decision_log
 decomp_variant: SOFTWARE
-current_checkpoint_group: 2
-status: checkpoint_1_accepted_checkpoint_2_preparation_authorized
+current_checkpoint_group: 3
+status: closed_for_scope_change_only
 ---
 
 # SCA-005 Decision Log
@@ -37,8 +37,8 @@ rulings.
 | SCA005-A1-CMUX | 1 (amendment 1) | Add to intake: Seq 77 SOW-037 IN to OUT `**Deferred**`; Seq 78 retire DEL-07-04 under R1; Seq 43 PKG-07 charter narrowed; Seq 68 dropped (moot); Seq 75 extended so PEC-STR-003 and §12 P4 record cmux as deferred | `DIRECTED BY OWNER` | Owner act 2026-09-24 (verbatim below); `../checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-1_2026-09-24/Amendment_Actions_Addendum.csv` |
 | SCA005-A2-SOW033 | 1 (amendment 2) | Add to intake: Seq 79 SOW-033 `ObjectiveIDs` to `OBJ-003` (DEL-07-01 unchanged at `OBJ-003`); no IN scope item remains without an objective after application | `DIRECTED BY OWNER` | Owner act 2026-09-24 (verbatim below); `../checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-2_2026-09-24/DECISION.md` |
 | SCA005-D90-NOTE | 2 (preparation note) | Carry into checkpoint-2 preparation: DEL-04-01 and the PRD §8 refresh are not rebuilt around verify-before-rely; PEC-K-03, §8, §9, §12 and `projects/pec/AGENTS.md` reliance text is amended by a later PEC scope change after checkpoint 2 is accepted (D-PEC-90 R-A). Checkpoint 2 still quotes the in-force PRD v2.2 (including PEC-K-03 verify-before-rely) where it quotes at all; the note means do not design around verify-before-rely, not diverge from the in-force text. Adds no scope and changes no accepted selection | `DIRECTED BY OWNER` | Owner act 2026-09-25 (verbatim below); `../../_Coordination/_DECISIONS/D-PEC-90_RULING_2026-09-25.md` |
-| SCA005-CP2 | 2 | Exact amendment and propagation plan (incl. PRD v2.3 successor candidate, `Supersession_Delta.csv`, carrying the owner-selected TM-PEC-023 values and amendments 1 and 2) | `PREPARATION AUTHORIZED / NOT_STARTED` | SCA005-CP1 acceptance 2026-09-24; acceptance itself is a later owner act |
-| SCA005-CP3 | 3 | Audited poststate acceptance, pointer moves | `NOT_STARTED` | requires SCA005-CP2 acceptance |
+| SCA005-CP2 | 2 | Exact amendment and propagation plan (incl. PRD v2.3 successor candidate, `Supersession_Delta.csv`, carrying the owner-selected TM-PEC-023 values and amendments 1 and 2): `Amendment_Preview.md` `ad48cc5621d796a662addc03640a32f7f4cdafbf627ad6fda3f60bdede65ebe4`; `Propagation_Plan.md` `50cd0b1d91ea25cc8ecba28ce649278b376fb952feec09e007a26ca5bbf91350`; `Amendment_Actions_CP2.csv` `7bb3bada88ed20adccab6a4077d77d2d7702f03637db230d88f862dea2a09987`; `Supersession_Delta.csv` `cb2a3585a7d75a76c101c30777175ea683079aab0ff74e7ce7783bb55ce89a06`; PRD candidate `fff27a66cd23c758cf50609ee028c58f4fb643f23ee7f6f801eb2362dfffdc32`; postimages listed in §"SCA005-CP2 — package prepared" below | `ACCEPTED` — Q-CP2-A accept; Q-CP2-1 (a); Q-CP2-2 (a); Q-CP2-3 (a); Q-CP2-4 (a) with Lane A4 deferred | Owner act 2026-09-25 (verbatim below); `../checkpoint_snapshots/SCA-005_GROUP-2_2026-09-25/DECISION.md`; register row `D-PEC-92` |
+| SCA005-CP3 | 3 | Audited poststate acceptance (revision 1.5 applied: `SOFTWARE_DECOMP.md` pre-acceptance form `37ea1084a8219943a69057be377646c69a609a76728241963045d7cfb015a6cc`, accepted form `dc2b84791454ac888e692bfa507221f5d4a588c63bb8ab5005cc00343b119660`; registers `83152a94d91c75da1205f98aec712f901529af4da562f02f5f1124b3ba3fd9df` / `b8628fc4c7b32b66eae373e19eb943ccaa866125e79119172b82614a01d3d65a` / `2a1941050d06e5e07f6cde629d0abf0c2d80acde1983139e6c1918cfca9eb0df` / `7c8a24a868ff03415c4440055dc099aaf7e2d87cca8dc0267e77d1a676976ef8`; PRD v2.3 `fff27a66cd23c758cf50609ee028c58f4fb643f23ee7f6f801eb2362dfffdc32`; audit `COV_SCA005_POSTCHANGE_2026-09-25_1344` `coverage_summary.json` `912610ff55e7e53788cb07c972a5a27afe5e246ecadb042932d57776cc0c4deb`, `BLOCKERS` by count rule, both blockers expected from the A4 deferral); closure verdict (Q-CP3-1); pointer moves (A6) | `ACCEPTED` — Q-CP3-A accept; Q-CP3-1 (a) `CLOSED_FOR_SCOPE_CHANGE_ONLY`; A6 performed | Owner act 2026-09-25 (verbatim below); `../checkpoint_snapshots/SCA-005_GROUP-3_2026-09-25/DECISION.md`; package in `RUN_SUMMARY.md` §"Checkpoint-3 owner question" (`e3480b782b9e219af1a0dcb569829df8d6014f617ffe826f2afc33529107196a`) |
 
 ## SCA005-G1 — owner direction of record (verbatim)
 
@@ -111,3 +111,53 @@ R-A's first grant item is row SCA005-D90-NOTE. It is a preparation note, not a c
   accepted hashes.
 
 Companion (2026-09-24): `../../_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/CHECKPOINT1_RESOLUTION_NOTE.md` records, per question, the accepted source that decided it. Its Section A became the selected options through the CP1-B acceptance above; its Section B TM-PEC-023 rows remain the owner's at checkpoint 2.
+
+## SCA005-CP2 — package prepared (not a decision)
+
+Prepared 2026-09-25 by WORKING_ITEMS node B2 of HELP_HUMAN run `HELP-HUMAN-PEC-20260923-SCA005` under brief `B2_SCA005_CHECKPOINT2.md` (SHA-256 `75a8f596712e00926358aa721455a296e6370ee69dda4b8c2eb7c57324e48f11`). No owner decision is recorded here: every checkpoint-2 question in `Propagation_Plan.md` §"Checkpoint-2 owner question set" is `AWAITING_OWNER`. Package hashes:
+
+| Artifact | SHA-256 |
+|---|---|
+| `Amendment_Preview.md` | `ad48cc5621d796a662addc03640a32f7f4cdafbf627ad6fda3f60bdede65ebe4` |
+| `Propagation_Plan.md` | `50cd0b1d91ea25cc8ecba28ce649278b376fb952feec09e007a26ca5bbf91350` |
+| `Amendment_Actions_CP2.csv` | `7bb3bada88ed20adccab6a4077d77d2d7702f03637db230d88f862dea2a09987` |
+| `Supersession_Delta.csv` | `cb2a3585a7d75a76c101c30777175ea683079aab0ff74e7ce7783bb55ce89a06` |
+| `PRD_V2_3_SUCCESSOR_DIFF.md` | `153a4dedb4551102ffe20c26a4dd7d4d4dba9138b28ce47f2e0889925197eba2` |
+| `CP2_CANDIDATE/docs/PRD.md` | `fff27a66cd23c758cf50609ee028c58f4fb643f23ee7f6f801eb2362dfffdc32` |
+| `CP2_CANDIDATE/_Decomposition/SOFTWARE_DECOMP.md` | `dc2b84791454ac888e692bfa507221f5d4a588c63bb8ab5005cc00343b119660` |
+| `CP2_CANDIDATE/_Decomposition/ScopeLedger.csv` | `83152a94d91c75da1205f98aec712f901529af4da562f02f5f1124b3ba3fd9df` |
+| `CP2_CANDIDATE/_Decomposition/Deliverables.csv` | `b8628fc4c7b32b66eae373e19eb943ccaa866125e79119172b82614a01d3d65a` |
+| `CP2_CANDIDATE/_Decomposition/ContextBudgetQA.csv` | `2a1941050d06e5e07f6cde629d0abf0c2d80acde1983139e6c1918cfca9eb0df` |
+| `CP2_CANDIDATE/_Decomposition/Companion_Inventory.csv` | `7c8a24a868ff03415c4440055dc099aaf7e2d87cca8dc0267e77d1a676976ef8` |
+
+Independent verification: `B2_VERIFIER_VERDICT_01.md` (`434958b94d3a7559a86c977623224bb3a66f2b0026558e6adccacb0e0c063b60`); `B2_VERIFIER_VERDICT_02.md` (`e514d2aa2ce429a9450e92621e1a0f658c5d991122199e0bc4dff2185d2f906a`) in the run's `returns/` folder.
+
+## SCA005-CP2 — owner acceptance of record (verbatim)
+
+Owner, 2026-09-25, on the checkpoint-2 package published in PR #908:
+
+> CP2: accept; Q1 a; Q2 a; Q3 a; Q4 a with A4 deferred.
+
+Interpretation, accepted hashes and the bounds of Q-CP2-4 (a) with A4 deferred are in `../checkpoint_snapshots/SCA-005_GROUP-2_2026-09-25/`; the amendment-qualified pointer is `../SCA-005_GROUP-2_AUTHORIZED.md`.
+
+## SCA005-CP3 — package prepared (not a decision)
+
+Prepared 2026-09-25 by WORKING_ITEMS node B3 of HELP_HUMAN run `HELP-HUMAN-PEC-20260923-SCA005` under brief `B3_SCA005_CHECKPOINT3.md` (SHA-256 `69c2296749cee727e1bd84b13f7a4ebcad93400f8ceb6267519e79601811b17f`). Lane A1–A3 applied exactly as accepted (32 paths at their planned hashes; A4 not opened; no pointer moved); A5 completed; Lane C run. No owner decision is recorded here: Q-CP3-A and Q-CP3-1 in `RUN_SUMMARY.md` are `AWAITING_OWNER`. Package hashes:
+
+| Artifact | SHA-256 |
+|---|---|
+| `RUN_SUMMARY.md` | `e3480b782b9e219af1a0dcb569829df8d6014f617ffe826f2afc33529107196a` |
+| `Supersession_Map.csv` (accumulator output) | `4ca705ba090cafb9a74870a0095be490c1d507149767dac32ec52879c487240c` |
+| `Post_Change_Coverage.json` (copy of the C4 `coverage_summary.json`) | `912610ff55e7e53788cb07c972a5a27afe5e246ecadb042932d57776cc0c4deb` |
+| live `_Decomposition/SOFTWARE_DECOMP.md` (pre-acceptance form) | `37ea1084a8219943a69057be377646c69a609a76728241963045d7cfb015a6cc` |
+| live `docs/PRD.md` (v2.3) | `fff27a66cd23c758cf50609ee028c58f4fb643f23ee7f6f801eb2362dfffdc32` |
+
+Evidence correction recorded (not a decision and not a plan change): the accepted plan's "40" `_CONTEXT.md` awaiting the B1 re-pin is 42 on census (audit COV-072); B1's selection rule is unchanged.
+
+## SCA005-CP3 — owner acceptance of record (verbatim)
+
+Owner, 2026-09-25, on the audited poststate published in PR #911:
+
+> CP3: accept; Q1 a
+
+Interpretation, accepted hashes and the A6 pointer moves are in `../checkpoint_snapshots/SCA-005_GROUP-3_2026-09-25/`. SCA-005 is closed for scope change only; open work is separately gated.

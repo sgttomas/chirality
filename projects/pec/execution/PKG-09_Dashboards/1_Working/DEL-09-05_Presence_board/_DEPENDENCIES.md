@@ -11,10 +11,14 @@ Register storage is deliverable-local by owner ruling (no central register).
 |---|---|---|---|---|
 | DEL-09-06 (Universal drill-down to cited source) | DERIVED | CONSUMES |  | E-A10 |
 | DEL-09-07 (Explain-shaped pressure rules) | DECLARED | CONSUMES |  | E-A16 |
-| DEL-06-04 (Live hierarchy edges) | DERIVED | CONSUMES | PHASE_TENSION | E-N02 |
+| ~~DEL-06-04 (Live hierarchy edges)~~ | DERIVED | CONSUMES | PHASE_TENSION | ~~E-N02~~ |
 | DEL-06-03 (Session×worktree×scope correlation) | DERIVED | CONSUMES |  | E-P64 |
 | DEL-06-05 (TTL/heartbeat discipline & citation exclusion) | DERIVED | CONSUMES |  | E-P65 |
 | DEL-06-06 (Advisory overlap detection) | DERIVED | CONSUMES |  | E-P66 |
+
+**RETIRED 2026-09-25 under SCA-005 (D-PEC-93):** `E-N02` — register row `DEP-09-05-005`
+kept with `Status=RETIRED`: DEL-06-04 is retired and the presence board no longer
+renders live hierarchy edges (A-33, A-38).
 
 ## Non-gating constraints and register-wide rules
 
