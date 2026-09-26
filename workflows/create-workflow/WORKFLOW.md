@@ -84,8 +84,9 @@ with its earlier version preserved and the exact changes accepted before any
 replacement. Prepare the revision as a draft under a new name and register it
 alongside the original; or, when the human explicitly authorizes replacing the
 registered package, retain the prior version outside discovery (for example, a
-dated copy outside `.chirality/workflows`), then replace it with the exact
-accepted draft through the available file tools and re-query the catalog. Do
+dated copy outside both `.chirality/workflows` and `.chirality/workflow-drafts`),
+then replace it with the exact accepted draft through the available file tools,
+confirm the package contains no symbolic or hard links, and re-query the catalog. Do
 not automatically execute the newly registered workflow.
 
 When using another host without these controls, present the complete proposed

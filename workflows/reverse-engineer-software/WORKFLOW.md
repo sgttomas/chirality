@@ -232,8 +232,8 @@ Bind the actual response to preserved content identities, scope, and conditions
 in a separate decision record at the location the brief supplies. For partial
 or qualified acceptance, identify the accepted portions and shared constraints;
 do not pass an unaccepted remainder to decomposition as accepted scope. The
-handoff to decomposition names the PRD identity (path, revision or content
-hash, and included set), the separate decision record, and the accepted-portions
+handoff to decomposition names the PRD identity (path, content hash, revision
+where versioned, and included set), the separate decision record, and the accepted-portions
 list with shared constraints and open work. Preserve the prior basis; changed
 content needs affected examination and applicable acceptance. Source preservation, acceptance
 of a reference account, and acceptance of successor requirements are distinct.

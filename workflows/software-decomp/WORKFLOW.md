@@ -10,7 +10,8 @@ Organize software intent into cohesive work domains and implementable bounded co
 WORKING_ITEMS coordinates this undertaking and assigns bounded contributions to TASK.
 
 This package implements the grouped-checkpoint Chirality v3 edition of
-`docs/DECOMPOSITION_STANDARD.md` (commit `9b005c23a`, 2026-09-09). An in-flight
+`docs/DECOMPOSITION_STANDARD.md` (commit `9b005c23a`, 2026-09-09; a prospective
+amendment, see the standard's status note). An in-flight
 project keeps the edition it adopted; nothing is retrofitted.
 
 ## Method

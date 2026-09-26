@@ -27,9 +27,9 @@ Record the accepted basis before normalizing it: its path, content hash, the
 separate acceptance decision record, and the accepted portions and shared
 constraints that record names. For a partial or qualified acceptance (for
 example, a `reverse-engineer-software` handoff), normalize only the accepted
-portions as candidate `IN` scope. Record material outside them as `TBD` or
-`OUT` Scope Items with a `SourceRef` to its location in the basis; do not treat
-it as accepted scope. Carry the basis identity into the group-1 `DECISION.md`
+portions as candidate `IN` scope. Record material outside them as `TBD` Scope
+Items with a `SourceRef` to its location in the basis, using `OUT` only where
+the decision record excludes it; do not treat it as accepted scope. Carry the basis identity into the group-1 `DECISION.md`
 and `HANDOFF_STATE.md`.
 
 Collect requirements, tickets, notes, architecture, constraints, non-functional

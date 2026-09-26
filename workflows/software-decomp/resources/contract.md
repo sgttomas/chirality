@@ -36,17 +36,30 @@ Outputs are written under `DECOMP_ROOT = {EXECUTION_ROOT}/_Decomposition/`
 | Output | Package role |
 |---|---|
 | Main decomposition document | working surface |
-| `Deliverables.csv` | authoritative companion register |
-| `ScopeLedger.csv` | authoritative companion register |
-| `ContextBudgetQA.csv` | authoritative companion register |
-| `Companion_Inventory.csv` | authoritative companion register (filename, package role, description for every companion) |
+| `Deliverables.csv` | authoritative companion register, when registers are kept as files |
+| `ScopeLedger.csv` | authoritative companion register, when registers are kept as files |
+| `ContextBudgetQA.csv` | authoritative companion register, when registers are kept as files |
+| `Companion_Inventory.csv` | optional file backing the main document's required companion-inventory section (filename, package role, description for every companion) |
 | `{DECOMP_ROOT}/checkpoint_snapshots/<group>-<UTC>/{DECISION.md,ACCEPTED_MANIFEST.csv,HANDOFF_STATE.md}` | immutable accepted checkpoint snapshot |
 | `{DECOMP_ROOT}/checkpoint_snapshots/_LATEST_GROUP1.md`, `_LATEST_GROUP2.md`, `_LATEST_ACCEPTED.md` | pointers to the accepted snapshots |
 
+When registers are kept as companion files, use these headers, because the
+register validator reads these names (list cells are separated by `;`):
+
+- `Deliverables.csv`: `DeliverableID,PackageID,Name,Description,Type,ResponsibleParty,AnticipatedArtifacts,CoversScopeItems,SupportsObjectives,ContextEnvelope,ContextEnvelopeNotes,PhaseHint`
+- `ScopeLedger.csv`: `ScopeItemID,InOutStatus,ScopeItemStatement,SourceRef,PackageID,DeliverableIDs,ObjectiveIDs,DecisionRef,OpenIssue,Notes`
+- `ContextBudgetQA.csv`: `DeliverableID,PackageID,ContextEnvelope,Risk,RecommendedAction,Notes`
+
+The entity fields below map to these columns: a Deliverable's `ParentPackageID`
+is the `PackageID` column, and a Scope Item's `DeliverableID(s)` and
+`ObjectiveID(s)` are the `DeliverableIDs` and `ObjectiveIDs` columns.
+
 Before checkpoint groups 2 and 3, check the registers with
-`python3 tools/validation/validate_decomposition_registers.py <EXECUTION_ROOT>`
-(report-only; its XRG family cross-checks `Deliverables.csv`,
-`ScopeLedger.csv`, and `ContextBudgetQA.csv`; `--list-checks` lists all checks).
+`python3 tools/validation/validate_decomposition_registers.py <EXECUTION_ROOT> --families XRG`
+(report-only; the XRG family cross-checks `Deliverables.csv`,
+`ScopeLedger.csv`, and `ContextBudgetQA.csv`; other families assume
+deliverable folders that exist only after project setup; `--list-checks` lists
+all checks).
 Findings route repair or are presented as exceptions; they do not add a
 checkpoint.
 
@@ -76,7 +89,7 @@ The accepted package is consumed downstream by `project-setup`, then by
   - Packages: `PKG-XX` (two digits, zero-padded)
   - Deliverables: `DEL-XX-YY` (two digits for package, two digits within package)
   - If other instruction sets or legacy materials require a different width (e.g., `PKG-XXX`), the agent MUST surface the mismatch as a contradiction and request a human ruling before proceeding.
-  - Check ID format and coupling against these patterns (the register validator above reads deliverable folders as `DEL-\d{2}-\d{2}`). `tools/validation/validate_id_format.sh` currently expects the 3-digit `PKG-XXX`/`DEL-XXX-YY` forms and is being corrected separately to accept the 2- and 3-digit forms; until then, do not treat its rejection of a conforming 2-digit ID as a finding.
+  - Check ID format and coupling against these patterns (the register validator above reads deliverable folders as `DEL-\d{2}-\d{2}`). `tools/validation/validate_id_format.sh` checks the same forms; a rejection of a conforming ID by any checker is a tool defect to report, not a decomposition finding.
 - **Deterministic DeliverableID ↔ PackageID coupling.**
   - The first `XX` in `DEL-XX-YY` MUST equal the package numeric portion.
   - The `YY` is a sequential counter unique within that package (`01`, `02`, …).
