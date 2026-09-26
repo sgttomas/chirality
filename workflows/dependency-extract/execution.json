@@ -8,7 +8,9 @@
   "tools": {
     "commands": [
       "python3 tools/validation/validate_dependencies_schema.py:*",
-      "python3 tools/validation/validate_enum.py:*"
+      "python3 tools/validation/validate_enum.py:*",
+      "bash tools/validation/validate_id_format.sh:*",
+      "python3 tools/validation/validate_decomposition_registers.py:*"
     ]
   }
 }

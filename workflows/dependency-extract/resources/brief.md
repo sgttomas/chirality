@@ -1,6 +1,6 @@
 # dependency-extract — Brief Schema
 
-This workflow is dispatched by WORKING_ITEMS (workflow: project-setup) (or other personas) via TASK with `Workflow: dependency-extract`. The following fields describe the brief expected by a single invocation.
+This workflow is dispatched via TASK with `Workflow: dependency-extract` by WORKING_ITEMS (workflow: project-setup) in its Function 2 dependency stage, for `scope-change` reruns, or by any manager briefing an explicit refresh. The following fields describe the brief expected by a single invocation.
 
 ## Required
 
@@ -14,16 +14,17 @@ This workflow is dispatched by WORKING_ITEMS (workflow: project-setup) (or other
 ## Optional — source-document selection
 
 - `SOURCE_DOCS` — `AUTO` (default) or explicit list of filenames/paths to scan per deliverable.
-- `DOC_ROLE_MAP` — `DEFAULT` (default) or explicit mapping of doc roles (`ANCHOR_DOC` / `EXECUTION_DOCS`) to filename patterns.
+- `DOC_ROLE_MAP` — `DEFAULT` (default) or explicit mapping of doc roles (`ANCHOR_DOC` / `EXECUTION_DOCS`) to filename patterns. `DEFAULT` uses `ScopeOfWork.md` as both anchor and execution source when present, with the legacy four-document names (`Datasheet.md`/`Specification.md` for anchor, `Procedure.md`/`Guidance.md` for execution) as transitional inputs.
 - `ANCHOR_DOC` — `AUTO` (default) or explicit filename/path. Controls Pass 1 (Vertical / Tree anchoring).
 - `EXECUTION_DOC_ORDER` — `AUTO` (default) or ordered list of filenames/paths. Controls Pass 2 (Horizontal / DAG execution-edge extraction).
 
 ## Optional — run controls
 
 - `MODE` — `UPDATE` (default), `RESET_EXTRACTED`, or `CANONICALIZE_EXISTING`.
+  - `RESET_EXTRACTED` re-extracts without match/merge against prior extracted rows: prior `Origin=EXTRACTED` rows become `Status=RETIRED` (never deleted), new rows receive new `DependencyID`s, and `Origin=DECLARED` rows are preserved.
   - `CANONICALIZE_EXISTING` is for type-system rectification runs. It reads an existing register, normalizes core enum fields to canonical write form, preserves legacy values in `Notes`, and moves candidate/non-gating graph dispositions out of `Status=CANDIDATE`.
 - `STRICTNESS` — `CONSERVATIVE` (default) or `AGGRESSIVE`. `AGGRESSIVE` permits strongly-implied anchors marked `ASSUMPTION` with `Confidence=LOW`.
-- `CONSUMER_CONTEXT` — `NONE` (default) | `TASK_ESTIMATING` | `TASK (workflow: aggregation)` | `WORKING_ITEMS (workflow: reconciliation)`. When set to a non-`NONE` value, the workflow adds a `## Downstream Handoff Notes` section and (for `TASK_ESTIMATING`) attempts to populate `ConsumerHint` and `EstimateImpactClass` extension columns.
+- `CONSUMER_CONTEXT` — `NONE` (default) | `TASK_ESTIMATING` | `AGGREGATION` | `RECONCILIATION`. When set to a non-`NONE` value, the workflow adds a `## Downstream Handoff Notes` section and (for `TASK_ESTIMATING`) attempts to populate `ConsumerHint` and `EstimateImpactClass` extension columns.
 - `ARCHITECTURE_BASIS_POLICY` — `NONE` (default) | `PKG00_CONSISTENCY_TRACKERS`. When enabled, `DEL-00-*` rows are retained as architecture-consistency dependency trackers when supported by evidence, and PKG-00 files may be read but not written.
 
 ## Deliverable-local read-only inputs (if present)
@@ -36,7 +37,7 @@ This workflow is dispatched by WORKING_ITEMS (workflow: project-setup) (or other
 
 ```yaml
 Workflow: dependency-extract
-SCOPE: DEL-001
+SCOPE: DEL-01-01
 RUN_ROOT: /abs/path/to/run
 DECOMPOSITION_PATH: /abs/path/to/run/_Decomposition/latest.md
 MODE: UPDATE
@@ -48,24 +49,24 @@ CONSUMER_CONTEXT: NONE
 
 ```yaml
 Workflow: dependency-extract
-SCOPE: DEL-001
+SCOPE: DEL-01-01
 RUN_ROOT: /abs/path/to/run
-DECOMPOSITION_PATH: /abs/path/to/run/_Decomposition/WORKING_ITEMS (workflow: software-decomp).md
+DECOMPOSITION_PATH: /abs/path/to/run/_Decomposition/SOFTWARE_DECOMP.md
 MODE: CANONICALIZE_EXISTING
 STRICTNESS: CONSERVATIVE
-CONSUMER_CONTEXT: WORKING_ITEMS (workflow: reconciliation)
+CONSUMER_CONTEXT: RECONCILIATION
 ```
 
 ## Semantic refresh brief example
 
 ```yaml
 Workflow: dependency-extract
-SCOPE: DEL-001
+SCOPE: DEL-01-01
 RUN_ROOT: /abs/path/to/run
-DECOMPOSITION_PATH: /abs/path/to/run/_Decomposition/WORKING_ITEMS (workflow: software-decomp).md
+DECOMPOSITION_PATH: /abs/path/to/run/_Decomposition/SOFTWARE_DECOMP.md
 MODE: UPDATE
 STRICTNESS: CONSERVATIVE
-CONSUMER_CONTEXT: WORKING_ITEMS (workflow: reconciliation)
+CONSUMER_CONTEXT: RECONCILIATION
 ARCHITECTURE_BASIS_POLICY: PKG00_CONSISTENCY_TRACKERS
 ApplyEdits: true
 AllowedWriteTargets:
