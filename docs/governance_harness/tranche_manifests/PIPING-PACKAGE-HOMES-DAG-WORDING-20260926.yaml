@@ -6,7 +6,6 @@ basis: 121900105d93d9458a4680d7d4cfc37c93e6ca0c
 instruction_surface_paths:
   - "projects/chirality-piping/docs/AGENTIC_DEVELOPMENT_WORKFLOW.md"
   - "projects/chirality-piping/docs/_Registers/ScopeLedger.csv"
-  - "projects/chirality-piping/execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-01_Project governance baseline/_DEPENDENCIES.md"
   - "projects/chirality-piping/execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-02_Copyright and protected-data boundary policy/_DEPENDENCIES.md"
   - "projects/chirality-piping/execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-03_Contributor certification workflow/_DEPENDENCIES.md"
   - "projects/chirality-piping/execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-04_Professional responsibility and product-claims policy/_DEPENDENCIES.md"
@@ -118,17 +117,22 @@ instruction_surface_paths:
   - "docs/governance_harness/tranche_manifests/PIPING-PACKAGE-HOMES-DAG-WORDING-20260926.yaml"
 m2_gate:
   authorization: >-
-    Answers of 2026-09-26 to the four questions of projects/chirality-piping/execution/_Coordination/PROPOSAL_2026-09-26_PACKAGE_HOMES_D-GOV-48.md: Package homes, "Accept all five (Recommended)"; XRG-004, "Warn only if home holds none (Recommended)"; SOFTWARE_DECOMP.md section 6, "Mark as supporting (Recommended)"; DAG wording (proposed D-78), "Full proposal (Recommended)". Recorded as Piping D-77 (Package homes SOW-030 to PKG-10, SOW-046
+    The owner answered four multiple-choice questions on 2026-09-26 about projects/chirality-piping/execution/_Coordination/PROPOSAL_2026-09-26_PACKAGE_HOMES_D-GOV-48.md. Each question label below is followed by the owner's selected option, quoted verbatim: Package homes -> "Accept all five (Recommended)"; XRG-004 -> "Warn only if home holds none (Recommended)"; SOFTWARE_DECOMP.md section 6 -> "Mark as supporting (Recommended)"; DAG wording (proposed D-78) -> "Full proposal (Recommended)". Recorded as Piping D-77 (Package homes SOW-030 to PKG-10, SOW-046
     to PKG-08, SOW-052 to PKG-05, SOW-074 and SOW-075 to PKG-15; Deliverable
     mappings unchanged; section 6 lists the non-home Package's items as
     "(supporting)"; DEC-115; SOFTWARE_DECOMP.md revision 0.14) and D-78 (edits
-    A1 to A3 and B1 to B3; 85 DAG-007 Coordination Mode bullets repointed to
-    execution/_DAG/_LATEST.md; DEL-07-09 refreshed with
+    A1 to A3 and B1 to B3; 84 DAG-007 Coordination Mode bullets repointed to
+    execution/_DAG/_LATEST.md, excluding the proposal's 85th in DEL-01-01
+    because DEL-01-01 is ISSUED: its stale wording is part of the accepted
+    baseline and changes only through a future scope-change; DEL-07-09
+    refreshed with
     materialize_local_dependencies.py --refresh-pointers scoped to that
     deliverable; parsed Approved graph authority key lines and historical
     records kept). D-77 is an owner-ruled allocation, not a scope-change
-    amendment: no ISSUED deliverable is touched and no Deliverable is created,
-    retired or remapped.
+    amendment, departing from the proposal's SCA-012 recommendation: no
+    Deliverable is created, retired, merged, split or remapped, and no file of
+    an ISSUED deliverable changes (every deliverable path in this tranche was
+    checked against its _STATUS.md; none is ISSUED).
   authorized_by: Ryan Tufts (repository owner sgttomas, Claude Code conversation)
   authorization_date: '2026-09-26'
   integration_owner: >-
@@ -150,3 +154,4 @@ scope_limits:
   - Pre-existing XRG-005 (29) and XRG-008 (106) findings are not addressed.
   - Historical records (DAG audits and versions, the D-56 packet and ruling, SCA-004 and SCA-011 records and snapshots, reconciliation records, earlier workplans, LOOP_RECEIPTS, local run notes and run history) are not edited; the proposal is kept unchanged as the decision basis.
   - Project AGENTS.md is unchanged.
+  - No file of an ISSUED deliverable changes; DEL-01-01 (ISSUED) is byte-identical to the basis.

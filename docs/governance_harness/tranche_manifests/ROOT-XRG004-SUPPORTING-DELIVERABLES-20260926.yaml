@@ -16,7 +16,7 @@ instruction_surface_paths:
   - "exports/chirality-app/export-report.md"
 m2_gate:
   authorization: >-
-    Answers of 2026-09-26 to the four questions of projects/chirality-piping/execution/_Coordination/PROPOSAL_2026-09-26_PACKAGE_HOMES_D-GOV-48.md: Package homes, "Accept all five (Recommended)"; XRG-004, "Warn only if home holds none (Recommended)"; SOFTWARE_DECOMP.md section 6, "Mark as supporting (Recommended)"; DAG wording (proposed D-78), "Full proposal (Recommended)". The XRG-004 answer directs this Root validator change: no finding
+    The owner answered four multiple-choice questions on 2026-09-26 about projects/chirality-piping/execution/_Coordination/PROPOSAL_2026-09-26_PACKAGE_HOMES_D-GOV-48.md. Each question label below is followed by the owner's selected option, quoted verbatim: Package homes -> "Accept all five (Recommended)"; XRG-004 -> "Warn only if home holds none (Recommended)"; SOFTWARE_DECOMP.md section 6 -> "Mark as supporting (Recommended)"; DAG wording (proposed D-78) -> "Full proposal (Recommended)". The XRG-004 answer directs this Root validator change: no finding
     when the item's home Package holds at least one of its linked Deliverables,
     and a WARNING when it holds none. It aligns XRG-004 with D-GOV-48 and
     management manual v7 ("Several Deliverables may contribute to an included
