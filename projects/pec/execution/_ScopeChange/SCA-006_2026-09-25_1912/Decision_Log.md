@@ -3,7 +3,7 @@ amendment_id: SCA-006
 doc_kind: scope_change.decision_log
 decomp_variant: SOFTWARE
 current_checkpoint_group: 3
-status: checkpoint_3_prepared_awaiting_owner
+status: closed_for_scope_change_only
 ---
 
 # SCA-006 Decision Log
@@ -28,7 +28,7 @@ hashes are quoted here and in the run return.
 | SCA006-CP2 | 2 | Exact amendment and propagation plan (PRD v2.4 candidate, decomposition revision 1.6 text, AGENTS.md text, supersession bindings) | `ACCEPTED` (2026-09-25); Q-CP2-1 `SELECTED (a)`; Q-CP2-2 `SELECTED (a)` | owner act verbatim below; snapshot `../checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/`; register row `D-PEC-97` (Q-CP2-2 (a)) |
 | SCA006-G2-A1 | 2 (amendment) | The `AGENTS.md` Remaining-sections correction rides the checkpoint-3 instruction tranche | `DIRECTED` (2026-09-26); `HUNK APPROVED` (2026-09-26) | owner acts verbatim below; `../checkpoint_snapshots/SCA-006_GROUP-2_AMENDMENT-1_2026-09-26/`; hunk `AGENTS_MD_AMENDMENT1_DIFF.md` §3; approved postimage `projects/pec/AGENTS.md` `4400c4e9…139c` |
 | SCA006-CP3-EDITION | 3 | Scope-change method edition for checkpoint 3: the pinned edition (`contract.md` `4453a719…`, `method.md` `34187e83…`) or the Root wave-2A revision | `SELECTED PINNED` (2026-09-26) | owner act verbatim below; `../checkpoint_snapshots/SCA-006_GROUP-2_AMENDMENT-1_2026-09-26/` |
-| SCA006-CP3 | 3 | Audited poststate acceptance, pointer moves | `PREPARED / AWAITING_OWNER` (2026-09-26) | SCA006-CP2 accepted 2026-09-25; package hashes in §"SCA006-CP3 — package prepared (not a decision)"; question set `RUN_SUMMARY.md` §9 |
+| SCA006-CP3 | 3 | Audited poststate acceptance, pointer moves | `ACCEPTED` (2026-09-26) — Q-CP3-A accept; Q-CP3-1 (a) COV-083 drift carried knowingly for a later PEC scope change; Q-CP3-2 (a) audit pointer moved; closure verdict `CLOSED_FOR_SCOPE_CHANGE_ONLY`; A6 performed | owner act verbatim below; `../checkpoint_snapshots/SCA-006_GROUP-3_2026-09-26/DECISION.md`; package hashes in §"SCA006-CP3 — package prepared (not a decision)"; question set `RUN_SUMMARY.md` §9 (`690b4923…9b62`) |
 
 ## SCA006-G1 — owner directions of record (verbatim)
 
@@ -176,3 +176,11 @@ unchanged, and no `_STATUS.md` or lifecycle changed. Hashes at preparation:
 
 Independent verification: `B6_VERIFIER_VERDICT_NN.md` in
 `execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/returns/`.
+
+## SCA006-CP3 — owner acceptance of record (verbatim), 2026-09-26
+
+Owner, 2026-09-26, on the audited poststate published in PR #943 (merge `db9328789`):
+
+> SCA-006 CP3: accept; Q1 a; Q2 a.
+
+Interpretation, accepted hashes and the A6 pointer moves are in `../checkpoint_snapshots/SCA-006_GROUP-3_2026-09-26/`. SCA-006 is closed for scope change only; Lane B and the COV-083 correction are separately gated. HELP_HUMAN transcription under K-AUTH-1.

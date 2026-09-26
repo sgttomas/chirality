@@ -1,0 +1,16 @@
+Path,SHA256,Role,AcceptanceBoundary
+projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md,9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1,"decomposition revision 1.6, accepted form (A6)",Accepted; pre-acceptance form 3ef0412a99812885e247bc4e9726fe005ce3446372f609c47274b6ad25b29b59 with status and accepted lines restored; all four date slots at 2026-09-26
+projects/pec/execution/_Decomposition/ScopeLedger.csv,1d24a4b86f05dc6fd57028c08e202d33f9f317b148821f9c61246c6e91ee916e,register,Accepted poststate
+projects/pec/execution/_Decomposition/Deliverables.csv,94ee5d182ae99092324505a72bf2f3b0581f85c0bae6c693214cfef709179805,register,Accepted poststate
+projects/pec/execution/_Decomposition/ContextBudgetQA.csv,93b0bb075a0e83d3219e6293303c3feaa432e693e7255569d4e522ea42434c7c,register,Accepted poststate
+projects/pec/execution/_Decomposition/Companion_Inventory.csv,1597ceec7af45f33fe348d46429cc3f82042db5dbd6a083903ae04c7bf908662,register,Accepted poststate
+projects/pec/docs/PRD.md,ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe,PRD v2.4,Settled by this acceptance
+projects/pec/AGENTS.md,4400c4e97d5c9dfeda7a9a764b204ed14784c687e55e81bb04875323b6c7139c,SCA-006 instruction tranche with the amendment-1 hunk,Accepted; hunk approved by the owner 2026-09-26
+docs/governance_harness/tranche_manifests/PEC-SCA006-OPERATIONAL-RELIANCE-20260926.yaml,2b29af181947ba0ed75cd83a286c56a2863802d1d6a7e5b3ca9ab82330cdee74,tranche manifest,Accepted
+projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA006_POSTCHANGE_2026-09-26_0051/coverage_summary.json,b9a068c078ba6ca4daf5d6129c2823141cae787f7770068e1d70644b13a09cf0,post-change audit summary,WARNINGS; 0 BLOCKER; audit pointer moved here (Q-CP3-2 (a))
+projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/RUN_SUMMARY.md,690b4923e7e7f7e62c25a6db35540e0e6b8bcd1276fbaa69dc078cf2b70c9b62,checkpoint-3 package and owner question,Context at presentation
+projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Decision_Log.md,96cc5602ebbf9fa95d30fb0bfee2ca75b1c40c60c9b256de3638fc7a369d38c7,decision log at presentation,Context; updated additively by this act
+projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Handoff_State.md,89af74b86eb235f7b4a24dcbfdd6d1b58dc8b0edd593b3d8c9f41b87753ecfde,handoff state at presentation,Context; updated additively by this act
+projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/AGENTS_MD_AMENDMENT1_DIFF.md,8b2386415b79f7666c5561873d8ce7b8a753d805c5e4bfbd1800fa5824206d4f,amendment-1 hunk,Context; hunk approved 2026-09-26
+projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Supersession_Map.csv,010ce5c423530123f923413dbfad03ce70fc0ba0c072ee7726f7718847caab92,cumulative supersession map (accumulator output),Accepted
+projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Post_Change_Coverage.json,b9a068c078ba6ca4daf5d6129c2823141cae787f7770068e1d70644b13a09cf0,copy of the audit summary,Accepted
