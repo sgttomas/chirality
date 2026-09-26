@@ -136,7 +136,7 @@ ordinary Remaining carriers (Receipt 174), with the frozen DEL-01-05 carrier
 not applied. PEC adopted the shared 2026-09-22 development-loop method on
 2026-09-25 under `D-PEC-94`, exercising `D-PEC-86` §3 I-7.
 
-**Active scope change — SCA-005:** opened at Gate 1 on 2026-09-23 under
+**Scope change SCA-005 (closed for scope change only, 2026-09-25):** opened at Gate 1 on 2026-09-23 under
 `D-PEC-86` (owner direction of record, §1) to rebaseline PEC's feed model on
 the shared App/Piping development-loop file shapes and the A2 Runtime
 topology. Its checkpoint-group-1 package is
