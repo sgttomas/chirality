@@ -1,0 +1,50 @@
+== projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv
+VALID: projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 16
+exit=0
+== projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/Dependencies.csv
+VALID: projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 5
+exit=0
+== projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/Dependencies.csv
+VALID: projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 4
+exit=0
+== projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/Dependencies.csv
+VALID: projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 4
+exit=0
+== projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv
+VALID: projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 6
+exit=0
+== projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/Dependencies.csv
+VALID: projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 5
+exit=0
+== projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv
+VALID: projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 8
+exit=0
+== projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/Dependencies.csv
+VALID: projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 5
+exit=0
+== projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/Dependencies.csv
+VALID: projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 4
+exit=0
+== projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/Dependencies.csv
+VALID: projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 5
+exit=0

@@ -1,0 +1,6 @@
+PASS	act path set equals genP.tsv	119 paths
+PASS	files equal to their P postimage (genP.tsv)	115/115
+PASS	retired _REFERENCES.md equal to their A + R postimage (genAR.tsv)	4/4
+PASS	byte-unchanged projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Handoff_State.md	a86ae910d0c9ae7bf20a7ebb47de3edb345d1a6067cb1988fc04d5c1d213328a
+PASS	byte-unchanged projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/RUN_SUMMARY.md	e9a0224ec0152bba75c78b84e2c9abe7a5996014eec602b46de4fe3153c1e518
+RESULT	PASS
