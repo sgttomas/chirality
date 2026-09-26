@@ -18,6 +18,7 @@ Register storage is deliverable-local by owner ruling (no central register).
   counter-evidence (seam is daemon-facing integration); register row
   `DEP-07-05-004` removed on the consumer side
 - DEL-10-03 (No-ruling-write verification) — TESTS [E-P55]
+- DEL-08-06 (Agent tool-call query surface) — CONSUMES [E-P85]
 
 ## Non-gating constraints and register-wide rules
 

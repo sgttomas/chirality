@@ -16,6 +16,7 @@ Register storage is deliverable-local by owner ruling (no central register).
 - DEL-08-04 (Orientation latency budget (p95 ≤ 100 ms)) — TESTS [E-P52]
 - DEL-10-03 (No-ruling-write verification) — TESTS [E-P54]
 - DEL-08-05 (SSE delta/presence subscription) — CONSUMES [E-P58]
+- DEL-08-06 (Agent tool-call query surface) — CONSUMES [E-P84]
 
 ## Non-gating constraints and register-wide rules
 

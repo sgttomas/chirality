@@ -18,6 +18,7 @@ Register storage is deliverable-local by owner ruling (no central register).
 - DEL-04-05 (Measurement-limitation honesty) — CONSUMES [E-N17]
 - DEL-08-03 (Compact citation-bearing response format) — CONSUMES [E-P53]
 - DEL-09-06 (Universal drill-down to cited source) — CONSUMES [E-P70]
+- DEL-10-13 (Reliance-advertisement gate) — TESTS [E-P89]
 
 ## Non-gating constraints and register-wide rules
 
