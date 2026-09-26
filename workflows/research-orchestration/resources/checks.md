@@ -31,8 +31,8 @@ these hold; otherwise report the lower verdict with the specific failing check.
    evidence it builds on. Never describe a newly launched attempt as a resume. A
    `FAILED_INPUTS` return is not a transient failure and does not consume retries. Record a
    corrected-brief attempt as `NEW_ATTEMPT` with its parent; route a missing input that needs
-   a human decision (for example the accepted snapshot) to the human; otherwise close the
-   stream as `FAILED-NO-OUTPUT` or `FAILED-WITH-PARTIAL` with a coverage gap.
+   a human decision (for example the accepted snapshot) to the human; otherwise, when the brief cannot be
+   corrected, close the stream as `FAILED-NO-OUTPUT` or `FAILED-WITH-PARTIAL` with a coverage gap.
 5. **Freshness recorded.** The `check_snapshot_freshness.py` verdict is in `HANDOFF_STATE.md`;
    if `STALE`, the caveat is explicit and no rebuild/refresh was performed.
 6. **Conflicts surfaced.** Disagreements found during verification or the critic stage are
@@ -46,7 +46,7 @@ these hold; otherwise report the lower verdict with the specific failing check.
 
 ## Failure reporting
 
-- Required planned coverage is the `StreamPlan` coverage frozen at Method step 1, unless the
+- Required planned coverage is the `StreamPlan` coverage frozen at `WORKFLOW.md` Method step 1, unless the
   human narrows it on record. Do not reclassify planned coverage as optional to reach a
   higher verdict.
 - Report a single readiness verdict, determined by the applicable checks and the required
