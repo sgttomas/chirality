@@ -136,9 +136,9 @@ historical, closed by Receipt 197. *Historical:* `D-PEC-80` A–D (ruled
 boundary and retired the workplan overlay, with work selected from deliverable
 `_STATUS.md` `## Remaining` (that selection is replaced under `D-PEC-94`.
 Since SCA-006 amendment 1, PEC adds no new Remaining sections or entries and
-no feed profile reads them. The existing sections stay as records until the
-retirement undertaking `HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT`
-concludes), and `plans/workplans/` is history only. `D-PEC-81` calibrated and `D-PEC-82`
+no feed profile reads them. The existing sections stay in place as records
+until any retirement ruling; the owner opened the retirement undertaking
+`HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT` on 2026-09-26), and `plans/workplans/` is history only. `D-PEC-81` calibrated and `D-PEC-82`
 reported the Remaining concordance; `D-PEC-83` R-A/A-A applied the 57
 ordinary Remaining carriers (Receipt 174), with the frozen DEL-01-05 carrier
 not applied. PEC adopted the shared 2026-09-22 development-loop method on
@@ -209,7 +209,7 @@ P-A.
 
 ## What's next (owner gates, in order)
 
-Current owner gates (2026-09-25; none is accepted or inferred here):
+Current owner gates (2026-09-26; none is accepted or inferred here):
 
 - **SCA-005 follow-on work (each separately gated):** SCA-005 closed for
   scope change only on 2026-09-25
@@ -224,25 +224,29 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
   `execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/`):
   - `_Decomposition/_LATEST.md`, `_ScopeChange/_LATEST.md` and
     `_COORDINATION.md` describe the post-setup state;
-  - all 66 contexts and 66 references name revision 1.5;
+  - all 66 contexts and 66 references name revision 1.5. Since the SCA-006
+    application, three contexts (DEL-04-03, DEL-08-01, DEL-08-03) also carry
+    the revision-1.6 successor clause;
   - the 19 stale dependency evidence quotes are refreshed, so all 111 active
     execution quotes are verbatim;
   - TM-PEC-023 is closed `RESOLVED_BY_DECISION` and archived.
 
-  No re-audit ran, by owner ruling. The next audit to observe this state is
-  SCA-006's post-change audit. The SCA-005 `Handoff_State.md` and
+  No re-audit ran, by owner ruling. SCA-006's post-change audit
+  (`COV_SCA006_POSTCHANGE_2026-09-26_0051`) has since observed this state. The SCA-005 `Handoff_State.md` and
   `RUN_SUMMARY.md` stay unchanged at their current bytes, and
   `_COORDINATION.md` records them as superseded for current state.
 
   Open:
-  - SOW currency and first SOWs for DEL-02-08/09;
+  - SOW currency and first SOWs for DEL-02-08/09. The first SOWs are proposed
+    as `D-PEC-98`, verified, and await the owner's ruling;
   - DEL-00-01/00-03 derivative review;
-  - the loop registry source packet, proposed as `D-PEC-96`. On 2026-09-26
-    the owner directed a revision 4 that drops the Remaining-reading profiles.
-    The ruling follows it
+  - the loop registry source packet, `D-PEC-96`. The owner ruled revision 4
+    (option A, PEC's row migrated to `shared-dev-loop`) on 2026-09-26, and its
+    act merged the same day as PR #950
     (`execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md`);
   - P1 fixtures;
-  - residual `projects/pec/AGENTS.md` corrections;
+  - residual `projects/pec/AGENTS.md` corrections: applied in the SCA-006
+    instruction tranche; they complete with the checkpoint-3 acceptance;
   - the D-PEC-90 reliance amendment. This is scope change SCA-006. The
     owner accepted checkpoint 1 on 2026-09-25 (DQ a, ENV a, BUD a, GATE a,
     INS a, R-C excluded;
@@ -250,13 +254,15 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
     and the owner accepted checkpoint 2 on 2026-09-25 (`D-PEC-97`;
     `execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/`);
     checkpoint 3 was applied and audited on 2026-09-26, on the pinned
-    scope-change edition (audit `WARNINGS`: 0 blockers). The owner approved
-    the `AGENTS.md` Remaining-sections paragraph ("approve hunk"). The
-    owner's checkpoint-3 acceptance is pending; the pointers move only after
-    it.
-  - Owner decision pending: whether to open a separate undertaking to retire
-    the 57 `## Remaining` sections, as App and Piping did (work-graph node
-    RS1).
+    scope-change edition (audit `WARNINGS`: 0 blockers;
+    `execution/_Evaluation/DecompCoverage/COV_SCA006_POSTCHANGE_2026-09-26_0051/`).
+    The owner approved the `AGENTS.md` Remaining-sections paragraph
+    ("approve hunk"). The owner's checkpoint-3 acceptance is pending; the
+    pointers move only after it.
+  - Retiring the 57 `## Remaining` sections, as App and Piping did: the owner
+    opened it on 2026-09-26 as undertaking
+    `HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT`. Its census and decision
+    account are in preparation.
 
   These are organized in the work graph
   `execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md`.

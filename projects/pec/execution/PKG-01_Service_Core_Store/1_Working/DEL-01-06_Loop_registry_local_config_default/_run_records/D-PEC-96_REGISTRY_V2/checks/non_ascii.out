@@ -1,0 +1,11 @@
+0 v2/config/loops.json
+0 v2/config/loops.schema.json
+0 v2/src/pec_v2/core/ports/loop_registry.py
+0 v2/src/pec_v2/core/ports/__init__.py
+0 v2/src/pec_v2/core/__init__.py
+0 v2/src/pec_v2/adapters/config/loop_registry.py
+0 v2/tests/config/test_json_loop_registry.py
+0 v2/tests/config/test_loop_registry_contract.py
+0 v2/tests/config/fixtures/duplicate_loop_id.json
+0 v2/tests/config/fixtures/missing_loop_id.json
+0 v2/tests/config/fixtures/schema_version_1.json

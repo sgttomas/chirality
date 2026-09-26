@@ -31,7 +31,8 @@ owner-selected full DAG, scaffolded 11 packages / 64 deliverables (66 after
 `D-PEC-93` added DEL-02-08 and DEL-02-09), and completed the SCA-004
 metadata-alignment subset (all context provenance blocks and reference packets
 were current for revision 1.4; since the `D-PEC-95` act of 2026-09-25 all 66
-contexts and 66 references name revision 1.5), and DEL-01-06 carries the non-gating
+contexts and 66 references name revision 1.5, and three contexts also carry
+the SCA-006 revision-1.6 clause), and DEL-01-06 carries the non-gating
 SOW-077 requirement anchor. Thirty-two Phase 2.2 ScopeOfWork contracts are
 initialized. DEL-01-06 now has the accepted revision-1.4 production contract
 at SHA-256 `5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8`;
