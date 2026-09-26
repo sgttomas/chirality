@@ -82,9 +82,9 @@ No `_DEPENDENCIES.md` mirrors either quote. After rendering, **127/127** ACTIVE 
 1. **Add-on C — two stale "covers" bullets.** Revision 1.6 added SOW-097 to DEL-04-03 and SOW-098 to DEL-08-03 (`CoversScopeItems` `SOW-006;SOW-007;SOW-097` and `SOW-043;SOW-098`), and their A2 contexts already say so, but their `_REFERENCES.md` still read "covers SOW-006;SOW-007" and "covers SOW-043". K4 as briefed leaves semantic fields untouched, so those two files would newly name revision 1.6 next to a coverage list revision 1.6 contradicts, the case `D-PEC-95` add-on R handled for the retired four. Add-on C (`--covers`) rewrites that one bullet in each to the register value. It adds no path. Every other `_REFERENCES.md` covers list agrees with its register (the retired four in their add-on R form).
 2. **DEL-02-07 is not given an edge.** The plan says "the PKG-02 parser deliverables". Eight PKG-02 deliverables are named parsers; DEL-02-07 is the "`adapter.yaml` feed-manifest consumer", read "as a parity-peer input only", whose output reaches the gate through DEL-03-04 parity. Adding it (a ninth PROPOSAL edge, E-P100) is an amend.
 3. **DEL-08-06 → DEL-04-03 is not added.** PEC-API-007 cites PEC-ORI-007 (SOW-097, DEL-04-03), but the accepted plan lists DEL-04-01, and DEL-08-06 already reaches DEL-04-03 through DEL-08-03 → DEL-04-03 (E-P53). The same reasoning `D-PEC-93` gave for omitting its option O applies. Adding it is an amend.
-4. **DEL-10-13 and constraint C-08.** The accepted row says the gate is "re-proved at each such release" and consumes no internals "(as DEL-10-02)"; DEL-10-02 and DEL-03-04 are C-08 standing nodes (owner-confirmed at `D-PEC-62`). Classifying DEL-10-13 as standing changes one-shot blocker arithmetic and is an owner classification; the new `_DEPENDENCIES.md` records the observation in Run Notes and makes no classification (question 4).
+4. **DEL-10-13 and constraint C-08.** The accepted row says the gate is "re-proved at each such release" and consumes no internals "(as DEL-10-02)"; DEL-10-02 and DEL-03-04 are C-08 standing nodes (owner-confirmed at `D-PEC-62`). Classifying DEL-10-13 as standing changes one-shot blocker arithmetic and is an owner classification. The new `_DEPENDENCIES.md` records the observation in Run Notes and makes no classification, so the question can wait for DEL-10-13's first Scope of Work (node K2): neither later answer changes any byte of this packet, and it is not asked here.
 5. **Later `dependency-extract` runs.** Under the D-GOV-46 follow-ups (`NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md`, `4f06f230…6a11`; PEC defers adoption), a future `dependency-extract` run would mirror legacy informational downstream bullets into `Origin=DECLARED` `ENABLES` rows. That is true of all 111 existing bullets as well as the 16 new ones; this packet adds nothing to that exposure beyond the new edges, and runs no extraction.
-6. **The human-owned `_COORDINATION.md` Notes line** (L225–227, `_COORDINATION.md` `95ebe344…8d90c`) still says "revision 1.5 is `current_basis` since SCA-005" (review record `returns/REVIEW_PR954_03.md`, `beaaa497…23fa`). It is not this packet's to edit; question 5 offers exact text.
+6. **The human-owned `_COORDINATION.md` Notes line** (L225–227, `_COORDINATION.md` `95ebe344…8d90c`) still says "revision 1.5 is `current_basis` since SCA-005" (review record `returns/REVIEW_PR954_03.md`, `beaaa497…23fa`). It is not this packet's to edit; question 4, a separate optional question, offers exact text.
 7. **Re-audit ordering.** The audit pointer names `COV_SCA006_POSTCHANGE_2026-09-26_0051`, whose EXPECTED_CONSEQUENCE rows this packet resolves. Without a re-audit they stay on record as expected consequences; nothing is mis-stated, because they were attributed to deferred Lane B work.
 
 ## Options (two separately rulable parts, one add-on)
@@ -92,7 +92,7 @@ No `_DEPENDENCIES.md` mirrors either quote. After rendering, **127/127** ACTIVE 
 - **Part K4 — re-pin (B7).** One act on **129 product paths**, all modifications: 63 `_CONTEXT.md` and 66 `_REFERENCES.md`. Slot-free (no date in any postimage). **Add-on C** (recommended) gives two of the 66 references different postimages and adds no path. Without C, K4 stays inside the brief's "semantic fields untouched".
 - **Part K1 — setup and dependency work (B1–B3).** One act on **32 product paths**: 12 created in the two new folders; 20 modified (4 `Dependencies.csv`, 16 `_DEPENDENCIES.md`). Rows: **22 added** (4 new-folder ANCHOR + 2 appended ANCHOR + 16 EXECUTION), **2 refreshed**, 0 retired, 0 deleted. Two new `OPEN` lifecycle files.
 - **Add-on V — re-audit after the act (recommended with K1).** A TASK `audit-decomp` run into a new `COV_D101_POSTSETUP_*` folder, with the `_Evaluation/DecompCoverage/_LATEST.md` move only on 0 BLOCKERs (the `D-PEC-93` rule). It confirms forward coverage back at 100 % (68/68) and records COV-003/004/073–078/080 as resolved. With K4 alone it is not recommended (version-only metadata, checked mechanically).
-- **Amend.** For example: add DEL-02-07 (finding 2) or DEL-08-06 → DEL-04-03 (finding 3); different strata or quotes; classify DEL-10-13 under C-08 in its `_DEPENDENCIES.md`.
+- **Amend.** For example: add DEL-02-07 (finding 2) or DEL-08-06 → DEL-04-03 (finding 3); different strata or quotes.
 - **Defer (either part).** Nothing opens. Deferring K4 leaves COV-077/078 on record (version-only staleness). Deferring K1 leaves the two DRB-008 warnings, COV-003/004/073/074/075/076/080, and blocks K2 (first SOWs for the two deliverables) and so K3.
 
 K4 and K1 may ride one PR or two. If both are ruled, the recommended order is K1 then K4 (either works; the trees are identical).
@@ -190,7 +190,7 @@ This proposal, and any ruling selecting K4, K1, C, V or an amendment, grants non
 - any action on the 26 D-GOV-48 XRG-013 warnings;
 - a `project-setup` `INCREMENTAL` run, `SETUP_LOG.md` or `project-dag` adoption;
 - an audit run or pointer move under `_Evaluation/**` unless V is selected, and then only as stated;
-- the tier-0 profile act (K3), a foreign, Root or instruction-surface write, including `projects/pec/AGENTS.md`, and the human-owned `_COORDINATION.md` Notes section (question 5 is separate);
+- the tier-0 profile act (K3), a foreign, Root or instruction-surface write, including `projects/pec/AGENTS.md`, and the human-owned `_COORDINATION.md` Notes section (question 4 is separate);
 - a schedule reading: blocker output stays advisory (`FULL_GRAPH`, threshold `INITIALIZED`).
 
 Existing reliance-hold, dependency, lifecycle and release boundaries survive unchanged.
@@ -200,9 +200,33 @@ Existing reliance-hold, dependency, lifecycle and release boundaries survive unc
 1. **Part K4.** Take K4 with add-on C (recommended), K4 without C, amend, or defer.
 2. **Part K1.** Take K1 as prepared (recommended), amend (for example findings 2 or 3), or defer.
 3. **Add-on V (re-audit).** With K1: run it, moving the audit pointer only on 0 BLOCKERs (recommended). With K4 alone: none (recommended).
-4. **DEL-10-13 and C-08.** Leave its standing-node classification unmade here and decide it with its first Scope of Work (K2) (recommended), or classify it as a C-08 standing node now (amend: its `_DEPENDENCIES.md` gains a "Standing obligation (constraint C-08)" note).
-5. **The human-owned `_COORDINATION.md` Notes line.** It is outside this packet's grant. Either (a) authorize HELP_HUMAN to replace, in the act PR, the parenthetical "(revision 1.1 at seeding; revision 1.5 is `current_basis` since SCA-005, whose dependency rerun under `D-PEC-93` retired, refreshed and added register rows)" with "(revision 1.1 at seeding; revision 1.6 is `current_basis` since SCA-006; SCA-005's dependency rerun under `D-PEC-93` retired, refreshed and added register rows, and `D-PEC-101` added the DEL-08-06 and DEL-10-13 registers)" — or, without K1, the same text ending at "added register rows)" (recommended); (b) edit it yourself; or (c) leave it.
-6. **Actor string and models.** Keep `TASK+preparation` and the defaults above, or state others.
+4. **Optional, separate from the grant: the human-owned `_COORDINATION.md` Notes line.** It is outside this packet's grant, and nothing in K4 or K1 depends on it. Either (a) authorize HELP_HUMAN to replace `_COORDINATION.md` L225–227 (inside "## Notes (human-owned)"; file `95ebe344…8d90c` at `aca930622`), whose current text is
+
+   ```text
+     (revision 1.1 at seeding; revision 1.5 is `current_basis` since
+     SCA-005, whose dependency rerun under `D-PEC-93` retired, refreshed and
+     added register rows) and are never a substitute for decomposition truth.
+   ```
+
+   with, if K1 is ruled,
+
+   ```text
+     (revision 1.1 at seeding; revision 1.6 is `current_basis` since
+     SCA-006; SCA-005's dependency rerun under `D-PEC-93` retired, refreshed
+     and added register rows, and `D-PEC-101` added the DEL-08-06 and
+     DEL-10-13 registers) and are never a substitute for decomposition truth.
+   ```
+
+   or, without K1,
+
+   ```text
+     (revision 1.1 at seeding; revision 1.6 is `current_basis` since
+     SCA-006; SCA-005's dependency rerun under `D-PEC-93` retired, refreshed
+     and added register rows) and are never a substitute for decomposition truth.
+   ```
+
+   (recommended); (b) edit it yourself; or (c) leave it. HELP_HUMAN applies (a) only on your explicit authorization; no other byte of that section changes.
+5. **Actor string and models.** Keep `TASK+preparation` and the defaults above, or state others.
 
 ## Preparation evidence
 

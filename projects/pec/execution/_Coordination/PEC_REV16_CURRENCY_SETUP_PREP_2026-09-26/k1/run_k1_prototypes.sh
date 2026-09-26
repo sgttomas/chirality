@@ -1,6 +1,6 @@
 #!/bin/zsh
 # D-PEC-101 K1 prototype runner (scratch only; preparation aid).
-# Usage: run_k1_prototypes.sh <work_dir> <base_export> <repo_root_for_git_clone> <act_date> [<k4_generator>]
+# Usage: [PRECOMMIT=<sha>] run_k1_prototypes.sh <work_dir> <base_export> <repo_root_for_git_clone> <act_date> [<k4_generator>]
 #   <base_export> : git archive export of aca930622 (never written)
 # Every proto* tree is an APFS clone (cp -Rc) of base. Nothing touches the real checkout.
 set -u
@@ -51,7 +51,7 @@ python3 $V $BASE $BASE > /dev/null; log verify_sanity $? "verify base against it
 sed -i '' "s#$BASE/##; s#$M/protoK1/##" $E/K1_vs_base.diff 2>/dev/null || true
 # git-backed checks in a shared clone
 rm -rf $M/gitmeta; git clone -q --shared --no-checkout $REPO $M/gitmeta
-(cd $M/gitmeta && git checkout -q --detach aca930622ba167689881416044ba0feaee3ef003)
+(cd $M/gitmeta && git checkout -q --detach ${PRECOMMIT:-aca930622ba167689881416044ba0feaee3ef003})
 (cd $M/gitmeta && python3 tools/validation/validate_pec_loop_receipts.py --repo-root . > $E/G_pre_receipts.out 2>&1); log pre_receipts $? "receipts validator, pre"
 (cd $M/gitmeta && python3 tools/practitioner_harness/harness.py self-check > $E/G_pre_harness.out 2>&1); log pre_harness $? "harness self-check, pre"
 (cd $M/gitmeta && python3 $G --repo "$(git rev-parse --show-toplevel)" --act-date $D > $E/genG.tsv 2> $E/genG.err); log genG $? "K1 act in git clone"
