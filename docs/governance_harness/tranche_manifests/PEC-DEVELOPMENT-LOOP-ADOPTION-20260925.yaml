@@ -29,8 +29,8 @@ m2_gate:
   authorized_by: Ryan Tufts
   authorization_date: 2026-09-25
   integration_owner: >-
-    HELPS_HUMANS manager for node M1 under HELP_HUMAN run
-    HELP-HUMAN-PEC-20260923-SCA005; roles instruction-asserted, not
+    HELPS_HUMANS manager for node M1 (pec-manager definition) under HELP_HUMAN
+    run HELP-HUMAN-PEC-20260923-SCA005; roles instruction-asserted, not
     mechanically enforced. HELP_HUMAN owns the merge.
   merge_gate: owner-authorized-pr
   self_merge: true
@@ -43,8 +43,10 @@ m6_notice:
     - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-25_PEC_DEVELOPMENT_LOOP_ADOPTION.md
   rationale: >-
     PEC changes only its own loop instructions. Root owns the shared method
-    texts (SPEC section 9.8, the 2026-09-22 amendment record and the bundled
-    graph workflow), which name only App and Piping; App and Piping run the
+    texts (SPEC section 9.8, PRD_ROOT E-1, the 2026-09-22 amendment record and
+    the bundled graph workflow), which name only App and Piping, and its
+    alignment manual still describes PEC's loop as Remaining-based; App and
+    Piping run the
     method PEC now mirrors; the Root tranches that published the method also
     notified Runtime. Each notice is non-binding and asks for no write.
 supersession:
@@ -57,20 +59,23 @@ supersession:
     PR sequence and one central receipt per undertaking. Item D's workplan
     retirement and owner-intent record stand; its selection only from
     deliverable Remaining surfaces is replaced by steering-selected
-    undertakings and work graphs. The per-loop receipt ledger closes at
-    Receipt 197; its v2 receipt contract and validator keep protecting it.
+    undertakings and work graphs, and its former Step 0 mechanical plan check
+    is retired while the no-plan rule stands. The per-loop receipt ledger
+    closes at Receipt 197; its v2 receipt contract and validator keep
+    protecting it.
   D-PEC-88: >-
-    Continues. Its trace clause (item 4) is met by naming each STATUS/README
-    change in the undertaking's work graph and central receipt and reviewing
-    it with the carrying PR. Whether it carries into the migrated loop is
-    decided at this migration (D-PEC-88 item 6); D-PEC-94 is its record.
+    Item 6 leaves to this migration whether the standing STATUS/README
+    maintenance carries into the migrated loop; D-PEC-94 must record that
+    disposition. While D-PEC-88 applies, its trace clause (item 4) is met by
+    naming each STATUS/README change in the undertaking's work graph and
+    central receipt and reviewing it with the carrying PR.
   D-GOV-20: >-
     PEC AGENTS.md Shared Runtime Boundary now records that D-GOV-43 topology
     A2 supersedes D-GOV-20 items 2-4 on the App MVP Codex path.
 checks:
   - python3 tools/validation/validate_pec_loop_receipts.py --repo-root .
   - python3 tools/validation/validate_decomposition_registers.py --strict projects/pec/execution
-  - git diff --check
+  - git diff --check eb56e108377c102ded295a39abcf91986da247aa..HEAD
   - python3 tools/validation/validate_instruction_entrypoints.py .
   - python3 tools/validation/validate_instruction_tranche_manifest.py
   - python3 tools/validation/validate_instruction_tranche_manifest.py --base origin/main --head HEAD --added-manifests-only
@@ -90,5 +95,6 @@ scope_limits:
   - D-PEC-80 ruling text, the decision register and the D-PEC-90 reliance text are unchanged.
   - PEC's fences F-PEC-1..4, the owner-ruled D-PEC packet rule, K-AUTH-1 and the reliance-hold control are unchanged.
   - projects/pec/init/dev-loop-init-prompt.md is unchanged because the Root launcher catalog must byte-match it.
+  - projects/pec/init/taskmgmt-init-prompt.md, docs/STATUS.md and README.md still describe PEC's former loop; they were outside this tranche's write scope.
   - Root SPEC, amendment records, workflows, tools and App/Piping/Runtime files other than the notices are unchanged.
   - No CHECKING, ISSUED, acceptance, release or reliance act.

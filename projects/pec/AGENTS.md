@@ -143,8 +143,9 @@ supersedes `D-GOV-20` items 2–4 on the App MVP Codex path without editing
 them. There is no per-user runtime daemon on that path: the App starts, owns
 and stops one Runtime service child, which owns the stock `codex app-server`
 child; the Runtime service owns engines, sessions, delegation, tools, turn
-ownership and interruption. `D-T0-23`'s convergence on the Root-owned shared
-runtime is read as amended by that record. Agents working on PEC in another
+ownership and interruption. This file reads `D-T0-23`'s convergence on the
+Root-owned shared runtime as amended by that record; that is an
+interpretation, since `D-GOV-43` does not cite `D-T0-23`. Agents working on PEC in another
 host use that host's actual execution and delegation, recorded as Root
 `AGENTS.md` and `D-GOV-35` require. In every case PEC v2 creates **no second
 execution loop** and holds no session authority.
@@ -156,7 +157,7 @@ Its **no-dual-loop boundary (behavior 4) and human-only-act restrictions
 (behavior 7) survive unchanged**. The client seam carries as a concept,
 reimplemented against v2 entities (PRD v2 §13).
 
-Daemon and user-data state is operational and non-authoritative. PEC project
+Runtime and user-data state is operational and non-authoritative. PEC project
 truth, run evidence, decisions, and acceptance evidence remain
 checkout-contained and authoritative over any PEC store.
 
@@ -241,8 +242,12 @@ PEC's deliverable `_STATUS.md` `## Remaining` sections stay in place as
 deliverable-local records of open scope under their owning decisions (for
 example `D-PEC-83`). They are no longer a work-selection surface: steering
 selects the undertaking and its graph accounts for the Remaining items it
-touches. A Remaining item's own gate markers still bind that item. Their
-retirement, if wanted, is a separate owner-directed undertaking.
+touches. A Remaining item's own gate markers still bind that item. When an
+undertaking completes or changes an item, update it under the packet that
+opens that `_STATUS.md`; without that grant, record the consequence in the
+graph and bring it to the owner. Record new open scope in the graph and its
+governing records rather than as a new Remaining entry. Retiring the sections,
+as App and Piping did, is a separate owner-directed undertaking.
 
 Each substantive PR includes the documentary, reconciliation and conditional
 Task Management consequences needed for that slice. Perform one final bounded
@@ -262,7 +267,9 @@ under the default-writable `execution/_Coordination/**`. A deliverable's
 MEMORY row needs the path grant of the undertaking's governing `D-PEC` packet
 like any other write there. Name the affected `MEMORY.md` paths in that
 packet. Where no packet opens a deliverable, record the run in the graph and
-central receipt and bring the missing grant to the owner.
+central receipt and bring the missing grant to the owner. The graph completes
+only after that grant is given and the row written, or after the owner
+decides to complete without the row; record that decision in the graph.
 
 Preserve owner directions faithfully. A chat-only direction without another
 governed home is quoted verbatim, with its date, in the graph or a linked
@@ -272,15 +279,22 @@ register and its packets. Rely on an owner act, ruling, routed notice or
 reliance-hold release only once its record is observable on `origin/main`
 after `git fetch`, never on an unmerged branch's claim of it.
 
-`D-PEC-88` continues under this loop. Its trace clause (item 4) is now met by
-naming each `docs/STATUS.md` and `README.md` change in the undertaking's work
-graph, carrying it into that undertaking's central receipt at closeout, and
-reviewing it with the PR that carries it.
+`D-PEC-88` item 6 leaves to this migration whether its standing
+`docs/STATUS.md` and `README.md` maintenance carries into the migrated loop;
+`D-PEC-94` records that disposition. While `D-PEC-88` applies, its trace
+clause (item 4) is met by naming each `docs/STATUS.md` and `README.md` change
+in the undertaking's work graph, carrying it into that undertaking's central
+receipt at closeout, and reviewing it with the PR that carries it.
 
 `loop/LOOP_RECEIPTS.md` is a historical ledger, closed by Receipt 197 at this
 adoption. Append nothing further; handoff records go to the undertaking's
 graph and central receipt. `tools/validation/validate_pec_loop_receipts.py`
 still protects the existing records; that validation requires no new entries.
+App and Piping stopped their ledgers without a closing receipt. PEC closes its
+ledger with one because its former procedure required a receipt at every
+closeout. The ledger header's rule that it is "the one place chat-only
+directions become durable" is superseded by the owner-direction rule above;
+its header text stays unedited.
 
 `D-PEC-80` is not edited. This adoption reads it as follows. Item A stands: the
 loop home `projects/pec/loop/`, the Task Management home and the AgentRuns
@@ -290,12 +304,35 @@ historical mapping move into this file. Item C's per-iteration commit and
 receipt with one PR at terminus is replaced by the graph's PR sequence and one
 central receipt. Item D's workplan retirement and owner-intent record stand:
 retired plans stay in `plans/workplans/`, and a `WORKPLAN_*.md` appearing in
-`loop/` is a defect, never loaded or selected. Item D's selection only from
+`loop/` is a defect, never loaded or selected. The former Step 0 command that
+mechanically checked for such a plan is retired with the old procedure; the
+rule itself stands. Item D's selection only from
 deliverable `## Remaining` surfaces is replaced by steering-selected
 undertakings and work graphs. The per-loop receipt ledger is
 replaced as described above. The owner-intent record at
 `execution/_Coordination/_DECISIONS/D-PEC-80_D_RULING_OWNER_INTENT_OF_RECORD_2026-09-05.md`
 remains orientation for the loop's standing purpose, never a selection surface.
+
+## Selection and decisions
+
+For work within an undertaking, use the human's steering, accepted scope,
+dependencies, deliverable memory and actual source/evidence under LOOP_INIT.
+A dependency-register row blocks work only when it is `ACTIVE`, of type
+`PREREQUISITE`, its `SatisfactionStatus` is `TBD`, `PENDING` or `IN_PROGRESS`,
+and the work needs its target. `INTERFACE`, `HANDOVER`, `CONSTRAINT` and
+`ENABLES` rows order work and never block; `SATISFIED`, `WAIVED` and
+`NOT_APPLICABLE` never block. Separately, a matching `ACTIVE` reliance-hold
+row blocks its prohibited act under the preflight below.
+
+Recompute any hash a selected item or packet pins and stop on mismatch; a
+historical preimage hash identifies history, not current bytes. A tracking
+row is not its ruling source; read the packet and later owner records behind
+it. Open legacy rows do not revive retired work. Material forks, source
+openings, scope amendments, profile changes and owner-shaped decisions go to
+the PEC decision register; ordinary method choices inside an existing grant
+are attributed to the agent. Record every gate outcome and its reason,
+including no-ops, in the graph. Never record a ruling that did not occur;
+role assertion is not mechanical enforcement.
 
 ## Issue-Plan Rule
 
