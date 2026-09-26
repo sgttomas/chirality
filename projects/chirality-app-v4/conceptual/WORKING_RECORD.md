@@ -53,7 +53,7 @@ extracted programmatically from the host's transcripts.
 | T6 | SWBPIPE as host | claude-opus-5-5 | 19:58:39 → 20:10:23 |
 | T7 | Supplier landscape (web) | claude-opus-5-5 | 20:03:40 → 20:23:26 |
 | T8 | T3 Code suitability, including local models (web, GitHub read-only) | claude-opus-5-5 | dispatched after the owner's answers; pending |
-| T9 | PEC and Domains as connectors | claude-opus-5-5 | dispatched after the owner's answers; pending |
+| T9 | PEC and Domains as connectors | claude-opus-5-5 | 2026-09-26 05:07:31 → 05:16:51 |
 
 Notes on the returns:
 

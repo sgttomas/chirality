@@ -143,3 +143,54 @@ manuals), resource and cost tracking for agent work (model usage, time), and
 project management inside host applications for engineering projects
 themselves (option C). Which of these, or what else, does the owner have in
 mind?
+
+## 5. PEC and Domains as connectors (Q-07, D-08)
+
+From T9 (read-only; `2b0572fe0`, `origin/main`, the SCA-006 branch, and the
+Git-ignored `domains/` residue), with one check of the private repository's
+activity by HELPS_HUMANS:
+
+- **"Domains" is ambiguous in the record.** It most probably means the
+  **domain packs**: knowledge corpora, each with an accepted decomposition
+  ledger (atoms → category, knowledge type, subject) and a derived BM25 plus
+  vector search index queried through the `researcher` and
+  `research-orchestration` workflows (`tools/retrieval/query_source_index.py
+  --json`). Three of the four packs index project repositories (Chirality,
+  the App, Piping); the fourth indexes piping-design handbooks. The corpora
+  moved on 2026-08-20 to the private repository `sgttomas/chirality-domains`,
+  whose last push was 2026-08-21. The word also names **domain engines**
+  (`_DomainEngines/`), and PEC is itself registered as one — which would make
+  PEC one of the Domains unless the two senses are kept apart.
+- **Domain packs already realise two of the thesis's three "intended"
+  pieces** (a decomposition over files; BM25 plus vector search through a
+  workflow), contrary to thesis §4.3.5's "None of the three is built". The
+  local indexes date from June 2026 and are stale against today's files.
+- **PEC** prepares a read-only, rebuildable projection of loop files in two
+  tiers — record (orientation, deltas, gate verdicts, the "Waiting on you"
+  slate, work graphs, run records, drift) and presence (sessions, worktrees,
+  scope claims) — designed for a local token-scoped socket. On `origin/main`
+  only foundations exist (API envelope, registry, store); reliance begins
+  only at a PEC release that passes its reliance gate (D-PEC-90). An
+  `agent` access class for tool-call queries is a checkpoint-2 candidate.
+- **Independence holds** in code and data. The coupling risks are the shared
+  word "domain", the shared substrate (both project the same files), and
+  that v4's own project-management files (work graphs, decision records)
+  would become things PEC parses — a de facto contract.
+
+**Proposed reading for the PRD:** the App has two optional, independent
+connectors. **Domains** supplies knowledge — accepted decompositions and a
+search index over corpora (including, potentially, each application's own
+files); results locate evidence and never prove membership or authority.
+**PEC** supplies coordination state — a pinned, freshness-stamped view of
+work across loops; the App acts, PEC observes. The App works without either
+(files are the fallback) and always shows the standing and freshness of what
+it shows.
+
+**Questions for the owner:**
+
+1. Does "Domains" mean the domain packs (knowledge corpora), the domain
+   engines (such as SWBPIPE's solver lineage), or both?
+2. Is the June 2026 pack format what you are preparing now, or a successor —
+   and where does that work live?
+3. Should v4's project-management files use formats PEC already reads, and
+   should the v4 project register as a PEC loop?

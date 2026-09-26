@@ -21,7 +21,7 @@ The owner's words are recorded in [`DECISIONS.md`](DECISIONS.md) (D-01…D-15).
 | Q-05 supplier | Direction given (D-05) | Local model server required; T3 Code is the leading candidate; investigating its local-model support and embeddability (T8) |
 | Q-15 distribution | Settled (D-06) | Mac first; OAuth, API key and local model, possibly all at once — check against vendor terms (T7, T8) |
 | Q-06 records | Settled — proposal (D-07) | — |
-| Q-07 users and hosts | Partly settled (D-08) | PEC and Domains are independent connectors the App consumes (T9 investigating what each prepares). Confirm SWBPIPE and the standalone app as the essential hosts |
+| Q-07 users and hosts | Partly settled (D-08) | PEC and Domains are independent connectors the App consumes; T9 returned — see `DISCUSSION_2026-09-25.md` §5 for the proposed reading and three questions (what "Domains" means). Confirm SWBPIPE and the standalone app as the essential hosts |
 | Q-08 project management | Settled — option B (D-09) | The owner signals more scope: to discuss |
 | Q-09 roles | Settled (D-10) | — |
 | Q-10 replacement | Settled — (b) building on (a) (D-11) | — |
