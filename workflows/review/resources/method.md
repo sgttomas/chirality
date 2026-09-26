@@ -25,9 +25,10 @@ intended transition (or withdrawal of a current check).
      surfaces (contract, Frozen candidate) are unchanged since it, for example
      with `git diff --quiet {FROZEN_SHA} -- {deliverable_folder}` and
      `:(exclude)` pathspecs for the excluded records, paired with
-     `git status --porcelain -- {deliverable_folder}` so that untracked files
-     are seen too. A changed frozen surface means the candidate under review is not
-     the frozen one: stop and present the reversal branch of Gate 5.
+     `git status --porcelain` on the same folder and exclusions so that
+     untracked files are seen too. A changed frozen surface means the candidate
+     under review is not the frozen one: stop and present the reversal branch
+     of Gate 5.
    - If no frozen SHA or declared checking basis is recorded (for example, a
      deliverable that entered `CHECKING` under an earlier override), stop and
      surface the missing basis. Offer the human two routes: a committed ruling
@@ -151,7 +152,14 @@ Ask: "Proceed with review, or resolve precondition issues first?"
      Axiology; confirm every `OUT-*`, `AC-*`, and `VER-*` closes through the
      output/evaluation matrix.
 
-5) **Dependency Satisfaction** (from `Dependencies.csv`):
+5) **Dependency Satisfaction** (per the tracking mode, `docs/SPEC.md` §5.3):
+   - `NOT_TRACKED`: record that dependencies are coordinated outside the
+     files and give no computed ready/blocked judgment; skip the rows below.
+   - `DECLARED`: read the recorded register (the declared sections of
+     `_DEPENDENCIES.md`, or `Dependencies.csv` where extraction has run) and
+     state that it is a partial view.
+   - In any mode, an edge in an unresolved dependency cycle is reported as held,
+     not as a blocker.
    - For each UPSTREAM dependency with `DependencyClass=EXECUTION` and `Status=ACTIVE`:
      - Is `SatisfactionStatus` recorded?
      - Is the upstream deliverable in a state that can provide the needed information?
