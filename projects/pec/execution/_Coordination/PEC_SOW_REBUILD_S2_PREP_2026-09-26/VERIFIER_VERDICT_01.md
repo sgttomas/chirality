@@ -214,13 +214,13 @@ The results are the same for all seven: DEL-01-01, DEL-01-06, DEL-02-03, DEL-02-
 
 ## Manager dispositions (WORKING_ITEMS, 2026-09-26)
 
-All eight findings are repaired in the next commit; no candidate contract byte changes.
+All eight findings are repaired in commit `97cc398b7`. One candidate byte range changed, in DEL-02-07 only (item 8).
 
-1. Draft Provenance "Source state" rewritten: `dfb089b8a` is the PR #960 merge; PRs #961 and #960 both landed after `aca930622`; the changed files the packet reads are named (the undertaking `WORK_GRAPH.md`, App `LOOP_RECEIPTS.md`), with why no candidate is affected. `apply_s2p.py`'s pin comment names `dfb089b8a` (script rebound).
-2. Evidence file name corrected to `evidence/run_main/SUMMARY.out`; the verdict references now point at this saved file.
+1. Draft Provenance "Source state" rewritten: `dfb089b8a` is the PR #960 merge; PRs #961, #960 and (since) #963 landed after `aca930622`; the changed files the packet reads are named (the undertaking `WORK_GRAPH.md`, App `LOOP_RECEIPTS.md`), with why no candidate is affected. The final check ran at `5aa4285c2` (PR #963, Piping only), and `apply_s2p.py`'s pin comment names that commit (script rebound).
+2. Evidence file name corrected to `evidence/run_main/SUMMARY.out`; the verifier references now name `VERIFIER_VERDICT_01.md` onward.
 3. Strict baseline stated as 28 warnings: 26 `XRG-013` and 2 `DRB-008` (DEL-08-06 and DEL-10-13 have register rows and no folders yet; node K1).
-4. Method gains the ID-meaning reading and a list of kept IDs whose rule changed.
-5. Every quote whose source is a mutable tree file (anything other than the seven production contract paths, which must read the post-act tree) is pinned with `"commit": "aca930622"`; the verification row says so.
-6. `apply_s2p.py --check-only` now prints `CHECK preflight passed; planned write set 0 creates, 7 modifies, 0 removes (not yet inventoried); nothing written`; the draft row describes it as the preflight.
-7. Grant wording aligned with Method: the ruling authorizes the replacement; `MODE=VERIFY` is the independent check.
-8. `claims/DEL-01-06.json` gains one `contains` claim per named file; `quotes/DEL-02-07.json` Q46 is lengthened to the full exhibit sentence the note relies on or removed if the candidate does not quote it; the negative-controls label is corrected by an appended note.
+4. Method gains the ID-meaning reading and the list of kept IDs whose rule changed.
+5. All 412 quote entries whose source is a tree file other than the seven production contract paths now carry `"commit": "aca930622"`; verification row 5 says so. The JSON files were re-serialized with two-space indentation in the same pass.
+6. `apply_s2p.py --check-only` now prints `CHECK preflight passed; planned write set 7 modifies, 0 creates, 0 removes (not yet inventoried; the inventory check runs in apply mode); nothing written`; verification row 1 describes it that way.
+7. Grant wording aligned with Method: this ruling authorizes the replacements; the workflow supplies the `INIT` authoring discipline and the independent `MODE=VERIFY`.
+8. `claims/DEL-01-06.json` gains S187–S192, one `contains` claim per named file. `quotes/DEL-02-07.json` Q46 now quotes "each verification method this contract declares" from the REM-004 carry-forward. Checking Q46 showed the candidate's note quoting that phrase with a capital "This contract", while the exhibit has it lower-case; the manager corrected the DEL-02-07 candidate to `"this contract" in the quotation` (postimage `3d122087…18fb`) and rebound the act script. The negative-controls label is corrected by an appended note.
