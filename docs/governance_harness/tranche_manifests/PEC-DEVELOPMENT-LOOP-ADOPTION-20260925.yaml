@@ -93,9 +93,9 @@ rollback: >-
 scope_limits:
   - No work graph is created; HELP_HUMAN constructs the first graph after this merges.
   - Deliverable Remaining sections, MEMORY.md, _STATUS.md, decomposition, registers, SOWs and v2/** are unchanged.
-  - D-PEC-80 ruling text, the decision register and the D-PEC-90 reliance text are unchanged.
+  - D-PEC-80 ruling text and the D-PEC-90 reliance text are unchanged; the decision register changes only by HELP_HUMAN's D-PEC-94 row in the same PR.
   - PEC's fences F-PEC-1..4, the owner-ruled D-PEC packet rule, K-AUTH-1 and the reliance-hold control are unchanged.
   - projects/pec/init/dev-loop-init-prompt.md is unchanged because the Root launcher catalog must byte-match it.
-  - projects/pec/init/taskmgmt-init-prompt.md, docs/STATUS.md and README.md still describe PEC's former loop; they were outside this tranche's write scope.
+  - projects/pec/init/taskmgmt-init-prompt.md, docs/STATUS.md and README.md were outside this tranche's write scope; HELP_HUMAN corrects them in the same PR under D-PEC-94 and D-PEC-88, as Receipt 197 records.
   - Root SPEC, amendment records, workflows, tools and App/Piping/Runtime files other than the notices are unchanged.
   - No CHECKING, ISSUED, acceptance, release or reliance act.

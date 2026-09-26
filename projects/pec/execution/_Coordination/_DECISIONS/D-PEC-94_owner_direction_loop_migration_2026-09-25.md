@@ -27,7 +27,7 @@ Status: **DIRECTION OF RECORD / EFFECTIVE ON SHARED-MAIN PUBLICATION**.
 
 ## The adoption tranche (the packet this record opens)
 
-The migration is the tranche `docs/governance_harness/tranche_manifests/PEC-DEVELOPMENT-LOOP-ADOPTION-20260925.yaml` (SHA-256 `0fece2fd032ee0207d1f4fbf977d740532721977fd474c60a622e50803a728b4`), prepared by HELPS_HUMANS (run-record node M1) and independently verified. This record opens exactly its paths, acts, checks and rollback:
+The migration is the tranche `docs/governance_harness/tranche_manifests/PEC-DEVELOPMENT-LOOP-ADOPTION-20260925.yaml` (SHA-256 `0ccddebe999f1ee3a35ff0672069fce20302ab9ae56517836e825c68a3beb783`), prepared by HELPS_HUMANS (run-record node M1) and independently verified. This record opens exactly its paths, acts, checks and rollback:
 - `projects/pec/loop/LOOP_INIT.md` (rewritten as PEC's instance of the shared method), `projects/pec/AGENTS.md` (loop, record and check sections; PRD v2.3; D-GOV-43 A2 Runtime boundary), and `projects/pec/loop/LOOP_RECEIPTS.md` (append-only closing Receipt 197; frozen thereafter);
 - the four non-binding adoption notices (Root, App, Piping, Runtime);
 - in addition, `projects/pec/init/taskmgmt-init-prompt.md`, whose lines saying the pointer does not adopt the App/Piping loop become false, is opened for that correction.
