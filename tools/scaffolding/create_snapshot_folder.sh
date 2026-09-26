@@ -35,6 +35,12 @@ mkdir -p "$TOOL_ROOT" || exit 1
 # existence check and two concurrent runs cannot claim the same folder.
 SNAP_DIR="$BASE_DIR"
 if ! mkdir "$SNAP_DIR" 2>/dev/null; then
+  if [ ! -e "$SNAP_DIR" ]; then
+    # mkdir failed for a reason other than an existing folder (permissions,
+    # missing parent); report it instead of trying suffixes.
+    mkdir "$SNAP_DIR"
+    exit 1
+  fi
   SNAP_DIR=""
   n=2
   while [ "$n" -le 99 ]; do

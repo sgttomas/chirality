@@ -4,6 +4,7 @@ title: Deferred workflow-library naming and wording fixes
 date: '2026-09-26'
 basis: 8f9bd314c5f2499e6faf5bf4bdce917927e8185e
 instruction_surface_paths:
+  - tools/validation/test_validate_decomposition_registers.py
   - tools/coordination/audit_dag.py
   - tools/validation/validate_decomposition_registers.py
   - tools/REGISTRY.md
@@ -46,6 +47,7 @@ m6_notice:
   disposition: routed
   routed_to:
     - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE3_NITS.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE3_NITS.md
     - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE3_NITS.md
     - projects/pec/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE3_NITS.md
   rationale: >-

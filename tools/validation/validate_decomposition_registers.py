@@ -647,7 +647,7 @@ def check_cross_register(
             if len(homes) == 1 and record_pkg and homes[0] != record_pkg:
                 findings.append(
                     Finding("XRG-004", paths["ledger"],
-                            f"{item_id} declares PackageID {ledger_pkg!r} but {deliverable_id} "
+                            f"{item_id} declares PackageID {homes[0]!r} but {deliverable_id} "
                             f"is in {record_pkg!r}", row_id=item_id)
                 )
             supports = split_list(record.get("SupportsObjectives"))
