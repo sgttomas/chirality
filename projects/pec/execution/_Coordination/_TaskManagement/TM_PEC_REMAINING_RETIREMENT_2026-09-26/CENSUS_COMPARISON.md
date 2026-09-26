@@ -7,7 +7,10 @@ ticked or transferred. Prepared by the RR1 WORKING_ITEMS manager (undertaking
 ## Basis
 
 - Source state: fetched `origin/main` `6281273fa7bd96b66703009e6325db2fa74815b3`
-  (branch `claude/pec-remaining-retirement-account` cut from it).
+  (branch `claude/pec-remaining-retirement-account` cut from it). The branch
+  was later rebased onto `origin/main` `f90320c1d` (PR #946, the `D-PEC-96`
+  ruling); no `projects/pec/execution/PKG-*` file changed, and a rebuild of
+  the census there produced byte-identical output.
 - Census: `REMAINING_CENSUS.csv` in this folder, built by a stdlib Python
   parser that anchors on each file's single `## Remaining` heading, requires
   every byte of the section body to belong to a keyed item block (no stray
@@ -48,7 +51,7 @@ rulings, none altering the applied text):
 | Keys | Change | Record |
 |---|---|---|
 | `DEL-01-03-REM-001`–`-003` | Ticked `[x]` | `DEL-01-03/_STATUS.md` History, 2026-09-24, under `D-PEC-87_RULING_2026-09-24.md` L-1a, citing three `REMAINING_EVIDENCE_*` reports |
-| `DEL-06-04-REM-001`, `DEL-07-02-REM-001`, `DEL-07-04-REM-001`, `DEL-07-05-REM-001` | Ticked `[x]` with a `NOT_SELECTABLE_UNTIL … trigger T-RT` annotation and "Closed unexecuted by retirement, not completed" | Each deliverable's History, 2026-09-25, SCA-005 checkpoint 3 (`D-PEC-92` Lane A "four `_STATUS.md` retirements") |
+| `DEL-06-04-REM-001`, `DEL-07-02-REM-001`, `DEL-07-04-REM-001`, `DEL-07-05-REM-001` | Ticked `[x]` with a `NOT_SELECTABLE_UNTIL …` annotation and "Closed unexecuted by retirement, not completed". The reinstatement condition is trigger T-RT for DEL-06-04, DEL-07-02 and DEL-07-05; for DEL-07-04 it is "a later owner direction and accepted scope-change amendment" (no T-RT). Each condition is also recorded in the decomposition registers (`ScopeLedger.csv`, `Deliverables.csv`, `SOFTWARE_DECOMP.md`) | Each deliverable's History, 2026-09-25, SCA-005 checkpoint 3 (`D-PEC-92` Lane A "four `_STATUS.md` retirements") |
 
 ## Classes in the census
 
@@ -77,7 +80,11 @@ The concordance also records 73 held or conditional residuals
 (`HeldOrConditionalResidualIDs` in `CARRIER_DISPOSITIONS.csv`), including all
 proposals for the five `NO_APPLICATION_HELD_OR_CONDITIONAL` carriers. They
 were never written to any Remaining section. Their home remains the accepted
-`D-PEC-83` R-A report; retiring the sections neither moves nor closes them.
+`D-PEC-83` R-A report (`CARRIER_DISPOSITIONS.csv` and
+`RESIDUAL_RECOMMENDATIONS.csv` in the concordance package); retiring the
+sections neither moves nor closes them, so none is lost. The gaps in the live
+key numbering (for example `DEL-03-02-REM-015`, `DEL-04-01-REM-003`) are these
+held residuals.
 
 ## Rebuild
 
