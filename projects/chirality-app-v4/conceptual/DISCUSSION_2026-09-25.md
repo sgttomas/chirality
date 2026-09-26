@@ -194,3 +194,91 @@ it shows.
    and where does that work live?
 3. Should v4's project-management files use formats PEC already reads, and
    should the v4 project register as a PEC loop?
+
+## 6. T3 Code and the local-model requirement (Q-05, D-05, D-06)
+
+From T8 (GitHub and web, read-only; `pingdotgg/t3code@a21b42c`,
+`openai/codex@e72da2b`, `jundot/omlx@3f2d07e`), with three claims checked
+directly by HELPS_HUMANS against those commits (T3's Codex launch-argument
+layer; Codex's per-thread `modelProvider` on `thread/start`; oMLX's
+`/v1/responses`, `/v1/messages` and `/v1/chat/completions` routes).
+
+**Your question — has T3 Code ported Codex's local-model support?** Not as
+a feature. T3 Code has no local-model provider or "OSS" switch; feature
+requests for one were closed. Local models **do work by pass-through**,
+because T3 runs your own harness binaries with your own configuration:
+
+- **Codex:** a T3 "Codex" instance whose launch arguments point Codex at a
+  custom provider (`-c model_provider=…`). Works; lightly documented; open
+  bugs (truncated replies from custom providers — fix pending; misleading
+  auth and usage warnings).
+- **Claude Code:** a T3 "Claude" instance with `ANTHROPIC_BASE_URL` set to a
+  local Anthropic-compatible server. Documented by T3.
+- **OpenCode:** the route T3's maintainer recommends for local models.
+
+oMLX ships its own integrations for both Codex and Claude Code, so both
+routes are plausible on this Mac; whether oMLX handles everything Codex
+sends in long agentic turns is unknown until tried. A reported March 2026
+post by T3's founder says local models "are not capable of meaningful
+engineering work" (unverified: the post itself could not be retrieved).
+
+**What T3 Code does well for your requirements:**
+
+- Multi-provider on `main`: Codex, Claude Code, Cursor, Grok, OpenCode,
+  Antigravity; Pi and a generic agent-protocol provider are in its pending
+  rewrite.
+- **OAuth, API key and local at once**: separate provider instances
+  (for example "Claude subscription", "Claude API", "Claude oMLX", "Codex
+  ChatGPT", "Codex oMLX") shown together; each conversation picks one.
+- It uses the user's own sign-ins to the official CLIs, which keeps it out
+  of "offering claude.ai login" — though whether a *distributed* Chirality
+  application may rely on users' subscriptions still needs written vendor
+  confirmation.
+- Mac first: yes. MIT licence. Momentum: ~23.6k stars, very active.
+
+**Where it is a weak fit:**
+
+- **Alpha and moving fast**: versions 0.0.x; 1,522 commits in September; an
+  open rewrite of its orchestrator of roughly +341k/−171k lines;
+  contributions "not actively accepted"; roughly half the commits from one
+  maintainer.
+- **No host-tool interface**: it passes no application tools to Codex and
+  no in-process tools to Claude; host tools would come in as an MCP server
+  registered in the harness's own configuration.
+- **No role or workflow concept**, its own injected instructions and tools,
+  default permission "Full access", usage telemetry on by default.
+- **Embedding**: `t3 serve` runs headless with an HTTP and WebSocket API that
+  third parties already drive, but it is not declared stable. A native
+  SWBPIPE panel means writing a client for that API, or forking.
+
+**A useful separation this reveals.** If each host exposes its typed
+operations (inspect, preview, submit proposal, status) as an **MCP server**,
+any harness — Codex, Claude Code, OpenCode, directly or through T3 — can use
+them. The host-integration contract (D-02) then does not depend on the
+harness choice at all. Condition: the harness must speak the current MCP
+protocol (SWBPIPE's earlier attempt failed against an older bundled Codex
+client; current Codex supports the 2026-07-28 protocol behind a flag).
+
+**Three harness arrangements to test, not yet to choose:**
+
+| Arrangement | Local model | OAuth + API + local | Host tools | Maintenance |
+|---|---|---|---|---|
+| T3 Code unmodified, run as a gateway (`t3 serve`), driven by Chirality's own interface | Pass-through (Codex, Claude Code, OpenCode) | Yes, per conversation | MCP server registered in harness config | Low code, but tracks an unstable alpha API |
+| Stock Codex App Server directly (the v3 path) | Codex custom provider, chosen **per conversation** (`modelProvider`) | Yes within Codex; Claude models not available | Codex application tools or MCP | Known; single loop vendor |
+| T3's MIT provider adapters as a pattern source for a thin Chirality provider layer | As above, both harnesses | Yes | Either | Most code owned by Chirality |
+
+**Experiments that would settle it** (each disposable, in scratch
+directories, and each needing your go-ahead because it installs T3 Code
+and uses your oMLX server, which the Piping records say is not to be used
+without an agreed slot):
+
+1. T3 Code + Codex + oMLX: a multi-file edit, a plan, a restart and resume,
+   and a switch to a ChatGPT instance mid-conversation.
+2. T3 Code + Claude Code with three instances (subscription, API key, oMLX).
+3. Stock Codex App Server with a per-conversation oMLX provider (baseline
+   without T3).
+4. `t3 serve` driven by a toy Tauri host that exposes one typed tool as an MCP
+   server.
+
+LM Studio and OpenCode are also installed on this Mac; LM Studio is a second
+local server Codex supports natively.

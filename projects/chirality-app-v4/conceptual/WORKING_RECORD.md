@@ -52,7 +52,7 @@ extracted programmatically from the host's transcripts.
 | T5 | Runtime, PEC, Root program | claude-opus-5-5 | 19:58:39 → 20:09:25 |
 | T6 | SWBPIPE as host | claude-opus-5-5 | 19:58:39 → 20:10:23 |
 | T7 | Supplier landscape (web) | claude-opus-5-5 | 20:03:40 → 20:23:26 |
-| T8 | T3 Code suitability, including local models (web, GitHub read-only) | claude-opus-5-5 | dispatched after the owner's answers; pending |
+| T8 | T3 Code suitability, including local models (web, GitHub read-only) | claude-opus-5-5 | 2026-09-26 05:07:31 → 05:22:57 |
 | T9 | PEC and Domains as connectors | claude-opus-5-5 | 2026-09-26 05:07:31 → 05:16:51 |
 
 Notes on the returns:
@@ -70,6 +70,11 @@ Notes on the returns:
   local-model intent; the 1,044 / 3,217 census). One refinement: the D-PEC-57
   line about a "human-used project-management tool" is an agent's summary of
   the owner's direction, and is cited as such.
+- T8 reported one boundary deviation: it wrote a temporary path-and-size
+  listing of the T3 Code repository tree (about 1.7 MB) into this session's
+  scratchpad, outside the repository, despite a no-local-files brief. No
+  other file was created or changed. The listing is scratch material and is
+  not part of the record.
 - All returns and the synthesis are same-family model work; none of it is
   independent review.
 
@@ -127,7 +132,7 @@ two follow-ups on autonomy (Q-04). No PRD requirement is accepted yet.
 | Item | Owner | Condition |
 |---|---|---|
 | Discussion of Q-01, Q-04 follow-ups, Q-08 scope, Q-11 method | Owner with HELPS_HUMANS | Stage D |
-| T8 and T9 returns folded into the questions | HELPS_HUMANS | On return |
+| Harness experiments 1–4 (`DISCUSSION_2026-09-25.md` §6) | Owner's go-ahead (installs T3 Code; uses oMLX) | Stage E3 |
 | Stage E1 arrangement (the owner drives, or grants access later, or skip) | Owner | When convenient |
 | Stage E investigations selected by the answers | HELPS_HUMANS with TASKs | After D |
 | Hosted CI routing has no rule for `projects/chirality-app-v4/**`, so a PR touching it selects full product coverage | Owner's choice whether to add a `records` route (a Root tooling change) | When CI cost matters |
