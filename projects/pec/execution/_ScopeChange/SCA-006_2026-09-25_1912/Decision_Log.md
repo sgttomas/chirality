@@ -26,6 +26,8 @@ hashes are quoted here and in the run return.
 | SCA006-CP1-INS | 1 | `projects/pec/AGENTS.md` route: (a) carried at checkpoint 3 as an instruction tranche with its own manifest and notices; (b) a separate instruction tranche after checkpoint 3 | `SELECTED (a)` | owner act 2026-09-25 (verbatim below) |
 | SCA006-CP1-RC | 1 | Confirm that R-C (PEC output citable as authority) stays excluded | `CONFIRMED EXCLUDED` | owner act 2026-09-25 (verbatim below) |
 | SCA006-CP2 | 2 | Exact amendment and propagation plan (PRD v2.4 candidate, decomposition revision 1.6 text, AGENTS.md text, supersession bindings) | `ACCEPTED` (2026-09-25); Q-CP2-1 `SELECTED (a)`; Q-CP2-2 `SELECTED (a)` | owner act verbatim below; snapshot `../checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/`; register row `D-PEC-97` (Q-CP2-2 (a)) |
+| SCA006-CP3-EDITION | 3 | Scope-change method edition for checkpoint 3: the pinned edition (`contract.md` `4453a719…`, `method.md` `34187e83…`) or the Root wave-2A revision | `SELECTED PINNED` (2026-09-26) | owner act verbatim below; `../checkpoint_snapshots/SCA-006_GROUP-2_AMENDMENT-1_2026-09-26/` |
+| SCA006-G2-A1 | 2 (amendment) | The `AGENTS.md` Remaining-sections correction rides the checkpoint-3 instruction tranche | `DIRECTED` (2026-09-26); exact hunk shown to the owner before the application PR merges | owner act verbatim below; `../checkpoint_snapshots/SCA-006_GROUP-2_AMENDMENT-1_2026-09-26/` |
 | SCA006-CP3 | 3 | Audited poststate acceptance, pointer moves | `PREPARATION AUTHORIZED` | SCA006-CP2 accepted 2026-09-25 |
 
 ## SCA006-G1 — owner directions of record (verbatim)
@@ -122,3 +124,12 @@ HELP_HUMAN recorded this under K-AUTH-1. The interpretation and bounds are in
 `../checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/DECISION.md`, and register
 row `D-PEC-97` makes that snapshot the Lane A packet. At the owner's act, this
 log's hash was `dc6e89fe74059e9a016cbcd69b0019dc567a7048062c626c83daa6225d5b170e`.
+
+## Group-2 amendment 1 and the checkpoint-3 edition — owner acts (verbatim), 2026-09-26
+
+> Why am I seeing `remaining-items` appearing?  There must not be any of those going forward, so no need to scan for them.
+
+> revision 4: drop remaining-items and remaining-loop; yes, ride checkpoint 3.  SCA-006 pinned.
+
+HELP_HUMAN recorded these under K-AUTH-1. The interpretation and bounds are
+in `../checkpoint_snapshots/SCA-006_GROUP-2_AMENDMENT-1_2026-09-26/DECISION.md`.
