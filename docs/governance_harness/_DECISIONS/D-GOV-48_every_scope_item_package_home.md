@@ -118,7 +118,9 @@ the owner had already set.
    those items blank. Both checks apply only when the ledger has a
    `PackageID` column. `XRG-007` (ERROR: non-IN item carrying
    `DeliverableIDs`) is unchanged and carries the "no production mapping"
-   half of the rule.
+   half of the rule. New `XRG-014` (ERROR) flags an item that names more than one
+   `PackageID`, and new `XRG-015` (WARNING) flags a `PackageID` that no
+   deliverable in `Deliverables.csv` belongs to.
 
 ## Adoption
 
@@ -132,8 +134,11 @@ being redeveloped, and the owner is deferring action on any findings until
 that settles. The warnings are informational until then. This record does not
 edit PEC's registers.
 
-The App, Runtime and Piping loops have no `ScopeLedger.csv`, so the XRG
-family skips them.
+The App, Runtime and Piping loops have no `_Decomposition/ScopeLedger.csv`
+under their execution root, so the XRG family skips them. Piping's register
+ledger (`projects/chirality-piping/docs/_Registers/ScopeLedger.csv`, 79 IN
+items, each with a `PackageID`) already conforms, and Runtime's
+`_Decomposition/RUNTIME_SCOPE_LEDGER.csv` holds one IN item with a `PackageID`.
 
 ## Unchanged
 

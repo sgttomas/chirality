@@ -453,6 +453,25 @@ def test_every_scope_item_has_a_package_home(tmp_path: Path) -> None:
     assert "XRG-012" not in vdr.CHECKS  # retired by D-GOV-48, not reused
 
 
+def test_package_home_is_exactly_one_known_package(tmp_path: Path) -> None:
+    """D-GOV-48: a ledger item names exactly one Package, and that Package exists."""
+    execution_root = build_workspace(tmp_path)
+    ledger_path = execution_root / "_Decomposition" / "ScopeLedger.csv"
+    ledger = list(csv.DictReader(ledger_path.open(encoding="utf-8-sig")))
+    blank = {"ScopeItemStatement": "s", "DeliverableIDs": "", "ObjectiveIDs": "",
+             "DecisionRef": "", "OpenIssue": "FALSE", "Notes": ""}
+    ledger.append({"ScopeItemID": "SOW-003", "InOutStatus": "OUT", "SourceRef": "§7.3",
+                   "PackageID": "PKG-99", **blank})
+    ledger.append({"ScopeItemID": "SOW-004", "InOutStatus": "TBD", "SourceRef": "§7.4",
+                   "PackageID": "PKG-01;PKG-02", **blank})
+    write_csv(ledger_path, LEDGER_COLUMNS, ledger)
+    report = vdr.run(execution_root, families=("XRG",))
+
+    assert codes(report) == {"XRG-014": 1, "XRG-015": 1}
+    assert ids_for(report, "XRG-014") == ["SOW-004"]
+    assert ids_for(report, "XRG-015") == ["SOW-003"]
+
+
 def test_package_home_checks_skip_a_ledger_without_a_package_column(tmp_path: Path) -> None:
     columns = [c for c in LEDGER_COLUMNS if c != "PackageID"]
     ledger = [
@@ -461,6 +480,12 @@ def test_package_home_checks_skip_a_ledger_without_a_package_column(tmp_path: Pa
          "DecisionRef": "", "OpenIssue": "FALSE", "Notes": ""},
         {"ScopeItemID": "SOW-002", "InOutStatus": "IN", "ScopeItemStatement": "s",
          "SourceRef": "§7.2", "DeliverableIDs": "DEL-02-01", "ObjectiveIDs": "OBJ-001",
+         "DecisionRef": "", "OpenIssue": "FALSE", "Notes": ""},
+        {"ScopeItemID": "SOW-003", "InOutStatus": "OUT", "ScopeItemStatement": "s",
+         "SourceRef": "§7.3", "DeliverableIDs": "", "ObjectiveIDs": "",
+         "DecisionRef": "", "OpenIssue": "FALSE", "Notes": ""},
+        {"ScopeItemID": "SOW-004", "InOutStatus": "TBD", "ScopeItemStatement": "s",
+         "SourceRef": "§7.4", "DeliverableIDs": "", "ObjectiveIDs": "",
          "DecisionRef": "", "OpenIssue": "FALSE", "Notes": ""},
     ]
     execution_root = build_workspace(tmp_path)
