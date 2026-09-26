@@ -1,26 +1,32 @@
 ---
 name: scc-resolution-case
-description: Create or update a PKG-00 SCC resolution case that accumulates bounded TASK findings, evidence, human rulings, candidate remedies,
-  and owner-workflow handoffs until DepClosure can verify closure.
+description: Create or update an SCC resolution case, under `_DAG/cases/<SCC-ID>/` or a project's legacy PKG-00 control deliverable, that accumulates
+  bounded TASK findings, evidence, human rulings, candidate remedies, and owner-workflow handoffs until DepClosure can verify closure.
 ---
 
 # WORKFLOW — scc-resolution-case
 
 ## Purpose
 
-Create or update one **SCC Resolution Case** under a PKG-00 control deliverable. The case is a living receptacle for repeated bounded TASK work across affected deliverables, human rulings, candidate remedies, owner-workflow handoffs, and eventual DepClosure evidence.
+Create or update one **SCC Resolution Case** in the project's case home. The case is a living receptacle for repeated bounded TASK work across affected deliverables, human rulings, candidate remedies, owner-workflow handoffs, and eventual DepClosure evidence.
 
 This workflow does not resolve an SCC by itself. It records and organizes the evidence needed for the owning workflows to act.
 
+## Case Home
+
+- **Default:** `{EXECUTION_ROOT}/_DAG/cases/<SCC-ID>/`, in the `_DAG/` tool root registered in `docs/SPEC.md` §1.2 (D-GOV-49). Every project uses this home from D-GOV-49 onward.
+- **Legacy:** a project whose cases are already held in a PKG-00 control deliverable (for example `PKG-00_DAG_Closure_and_Project_Control/.../scc-cases/`) may keep using it. Existing cases stay where they are and are not migrated.
+- Each project uses one home for its cases; do not split them. Retiring the legacy PKG-00 home is a later decision, once no active project uses it.
+
 ## Suitable Shell
 
-- `TASK` in generic shell mode with `ScopePath` set to a PKG-00 control deliverable folder or to the case folder itself.
+- `TASK` in generic shell mode with `ScopePath` set to the case folder, to `{EXECUTION_ROOT}/_DAG/cases/`, or, for the legacy home, to the PKG-00 control deliverable folder.
 
 ## Required Inputs
 
-- `ScopePath` — PKG-00 control deliverable folder or case folder.
+- `ScopePath` — the case folder, `{EXECUTION_ROOT}/_DAG/cases/`, or the legacy PKG-00 control deliverable folder.
 - `RuntimeOverrides.CASE_ID` — local case ID, for example `CASE-SCC-002`.
-- `RuntimeOverrides.CASE_PATH` — absolute output folder inside `{control-deliverable}/scc-cases/`.
+- `RuntimeOverrides.CASE_PATH` — absolute output folder: `{EXECUTION_ROOT}/_DAG/cases/<SCC-ID>/` by default, or inside `{control-deliverable}/scc-cases/` for the legacy home.
 - `RuntimeOverrides.CASE_TITLE` — human-readable case title.
 - `RuntimeOverrides.SCC_ID` — SCC identifier from DepClosure.
 - `RuntimeOverrides.DEPCLOSURE_SNAPSHOT` — accepted upstream DepClosure snapshot.
@@ -42,7 +48,7 @@ This workflow does not resolve an SCC by itself. It records and organizes the ev
 
 Read only:
 
-- the PKG-00 control deliverable in scope;
+- the project's case home in scope (`_DAG/cases/`, or the legacy PKG-00 control deliverable);
 - existing case files under `CASE_PATH`;
 - existing `case-seeds/` artifacts;
 - cited DepClosure snapshot evidence;
@@ -97,7 +103,7 @@ Never write:
 ## Method
 
 1. Load `agents/AGENT_TASK.md`, this workflow, and resources required for the current stage.
-2. Resolve `CASE_PATH` and confirm it is under a PKG-00 control deliverable.
+2. Resolve `CASE_PATH` and confirm it is in the project's one case home: under `{EXECUTION_ROOT}/_DAG/cases/`, or under the legacy PKG-00 control deliverable that already holds the project's cases.
 3. Read existing packet seeds and case files when present.
 4. Create or update the case receptacle files.
 5. Preserve existing packet artifacts as seed evidence, not active WORKING_ITEMS (workflow: scope-change) intake.

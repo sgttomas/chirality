@@ -1,21 +1,20 @@
 # BRIEF SCHEMA — scc-resolution-case
 
-Use this workflow when WORKING_ITEMS needs to create or update a PKG-00 SCC case file.
+Use this workflow when WORKING_ITEMS needs to create or update an SCC case in the project's case home: `{EXECUTION_ROOT}/_DAG/cases/<SCC-ID>/` by default, or a legacy PKG-00 control deliverable that already holds the project's cases.
 
 ## Required Fields
 
 ```yaml
 PURPOSE: Create or update one SCC resolution case.
 RequestedBy: WORKING_ITEMS
-ScopePath: /abs/path/to/DEL-00-XX_...
+ScopePath: /abs/path/to/execution/_DAG/cases/SCC-002
 Workflow: scc-resolution-case
 ApplyEdits: true
 AllowedWriteTargets:
-  - /abs/path/to/DEL-00-XX_.../scc-cases/<case-folder>/
-  - /abs/path/to/DEL-00-XX_.../_run_records/
+  - /abs/path/to/execution/_DAG/cases/SCC-002/
 RuntimeOverrides:
   CASE_ID: CASE-SCC-002
-  CASE_PATH: /abs/path/to/DEL-00-XX_.../scc-cases/<case-folder>
+  CASE_PATH: /abs/path/to/execution/_DAG/cases/SCC-002
   CASE_TITLE: SCC-002 PKG-10 Policy Proposal
   SCC_ID: SCC-002
   DEPCLOSURE_SNAPSHOT: /abs/path/to/execution/_Reconciliation/DepClosure/CLOSURE_...
@@ -32,6 +31,10 @@ ExpectedOutputs:
   - Owner_Workflow_Handoff.md
   - Case_QA.md
 ```
+
+For the legacy home, `ScopePath` is the PKG-00 control deliverable folder, and
+`AllowedWriteTargets` are `{control-deliverable}/scc-cases/<case-folder>/` and
+`{control-deliverable}/_run_records/`.
 
 ## Optional Runtime Overrides
 

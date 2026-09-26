@@ -1,0 +1,82 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-PROJECT-DAG-D-GOV-49-20260926
+title: One accepted DAG per project; authority from acceptance while current (D-GOV-49) and the project-dag workflow
+date: '2026-09-26'
+basis: 5bbc9de22378f8f7056a010e1a05d2c13518f0e7
+instruction_surface_paths:
+  - docs/CONTRACT.md
+  - docs/SPEC.md
+  - docs/DIRECTIVE.md
+  - docs/governance_harness/_DECISIONS/D-GOV-49_project_dag_authority_and_currency.md
+  - docs/governance_harness/_DECISIONS/_REGISTER.md
+  - docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.md
+  - docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html
+  - docs/alignment-manual/README.md
+  - workflows/project-dag/WORKFLOW.md
+  - workflows/project-dag/execution.json
+  - workflows/project-dag/resources/contract.md
+  - workflows/project-dag/resources/method.md
+  - workflows/project-dag/resources/graph-version.md
+  - workflows/project-dag/resources/currency.md
+  - workflows/scc-resolution-case/WORKFLOW.md
+  - workflows/scc-resolution-case/resources/brief.md
+  - workflows/scc-resolution-case/resources/checks.md
+  - workflows/construct-local-work-graph/WORKFLOW.md
+  - workflows/project-setup/WORKFLOW.md
+  - workflows/project-setup/resources/method.md
+  - workflows/catalog.yaml
+  - workflows/index.json
+  - tools/validation/build_workflow_index.py
+  - tools/validation/test_workflow_catalog.py
+  - docs/governance_harness/tranche_manifests/ROOT-PROJECT-DAG-D-GOV-49-20260926.yaml
+m2_gate:
+  authorization: >-
+    The repository owner directed on 2026-09-26 that the deferred project-DAG
+    workflow "needs your attention", then clarified K-DEP-1: "The "no central
+    dependency graph" was only meant to be about the Chirality repo as a
+    whole, because it's made up of projects and each of those projects will
+    have it's own DAG for that project as a whole. And then each development
+    loop will build a work graph for some tranche of work within that DAG.
+    That should be how the governance is written and should be consistent
+    with how the projects are being developed now." On local files that
+    disagree with the DAG the owner said "local files that break the DAG need
+    to trigger an audit but the DAG can't be its own authority", and answered
+    the agent's proposed model "yes, write D-GOV-49 that way." The owner
+    approved registering _DAG/ in SPEC section 1.2 with snapshots and a
+    _LATEST.md pointer, making the three fields audit_dag.py --strict rejects
+    REQUIRED for an accepted DAG version, and "We should make that `_DAG/cases`
+    be the place where all projects work from going forward, and allow for
+    PKG-00 to still be used for legacy projects." The owner said the new
+    workflows "can become core". Recorded as D-GOV-49.
+  authorized_by: Ryan Tufts (repository owner sgttomas, current Claude Code conversation)
+  authorization_date: '2026-09-26'
+  integration_owner: >-
+    The parent Claude Code integration session under the standing Git
+    authorization of 2026-09-12; the authoring worktree commits locally and
+    does not push, open or merge the PR.
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_PROJECT_DAG_D-GOV-49.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_PROJECT_DAG_D-GOV-49.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_PROJECT_DAG_D-GOV-49.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-26_PROJECT_DAG_D-GOV-49.md
+  rationale: >-
+    App, Piping and PEC route development through construct-local-work-graph
+    and use project-setup's dependency stage and scc-resolution-case; the App
+    keeps its legacy PKG-00 case home. Runtime resolves and packages the
+    catalog, in which project-dag is now a core entry. Piping's records call
+    its approved DAG the dependency graph authority and its local registers
+    synchronized mirrors; its notice names that wording as stronger than
+    D-GOV-49 and leaves any change to the Piping loop. PEC is being
+    redeveloped and the owner is deferring action there; its notice is
+    informational only. Each loop decides its own adoption.
+scope_limits:
+  - Rewrite CONTRACT K-DEP-1 only; K-DEP-2 is unchanged.
+  - SPEC changes are limited to the section 0.2.3 containment note, the section 0.3 DAG_ROOT token, the section 1 tree, the section 1.2 _DAG/ registration, a section 5.3 applicability note, new section 5.4, the section 6.2 annotations and a section 11.2 note.
+  - project-dag joins the catalog's core navigation list only; centralWorkflowNames and the Root AGENTS.md table are unchanged.
+  - Change project-setup only at its SCC routing and DAG handoff lines and one Phase 3.1 blocker bullet.
+  - Do not change audit_dag.py, validate_scc_resolution_case.py, materialize_local_dependencies.py, the dependency-extract mirroring or the review workflow.
+  - Do not construct, accept, migrate or modify any project's DAG, dependency register, pointer or SCC case; nothing is retrofitted; no release.

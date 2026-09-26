@@ -42,7 +42,7 @@ Render this edition with its explicit source basis:
   --source docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.md \
   --output docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html \
   --basis-date 2026-09-26 \
-  --basis-revision 7f33b4dd51f93553f17607167077c28ddd773ff6
+  --basis-revision 5bbc9de22378f8f7056a010e1a05d2c13518f0e7
 ```
 
 Render the field book with its reading label and source metadata at the end:

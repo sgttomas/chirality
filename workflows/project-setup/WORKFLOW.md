@@ -16,7 +16,7 @@ instance with actual host permissions and a run-specific brief.
 
 1. Inspect accepted decomposition, existing workspace state, coordination representation, and activation scope.
 2. Apply the `preparation` skill, then dispatch the selected production, semantic, dependency (`dependency-extract`, then `audit-dep-closure`), or domain workflows as bounded stages.
-3. Sequence dependent work from accepted outputs; route SCCs to `scc-resolution-case` and keep cycle-participating edges non-gating until their owning decisions resolve them. Project-DAG construction and acceptance has no bundled workflow yet and runs under an authorized ad hoc plan with human acceptance.
+3. Sequence dependent work from accepted outputs; route SCCs to `scc-resolution-case` and keep cycle-participating edges non-gating until their owning decisions resolve them. When the project needs an accepted DAG, hand its construction and acceptance to `project-dag`.
 4. Prepare estimation inputs and schedule-basis decisions where selected, then validate setup evidence and hand off current derivatives and blockers.
 
 Apply accepted defaults and carry authorized preparation forward on agent

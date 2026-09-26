@@ -2356,6 +2356,48 @@
     },
     {
       "kind": "workflow",
+      "name": "project-dag",
+      "source": "bundled",
+      "sourceRootId": "chirality-root",
+      "description": "Construct, examine, and obtain human acceptance of a project DAG version from the deliverable-local dependency evidence, audit its currency when that evidence changes, and hold affected deliverables as DAG pending until the human accepts a successor or rejects the change. Use it toward the 30% gate, after a decomposition or scope change, or when local dependency files may have departed from the accepted DAG.",
+      "central": false,
+      "compatibility": "canonical",
+      "executionRoleIds": [
+        "WORKING_ITEMS"
+      ],
+      "resources": [
+        "WORKFLOW.md",
+        "execution.json",
+        "resources/contract.md",
+        "resources/currency.md",
+        "resources/graph-version.md",
+        "resources/method.md"
+      ],
+      "navigation": {
+        "category": "core",
+        "tier": "primary",
+        "order": 7
+      },
+      "execution": {
+        "schemaVersion": 1,
+        "compatibleRoles": [
+          "WORKING_ITEMS"
+        ],
+        "tools": {
+          "capabilities": [
+            "read",
+            "write",
+            "bash",
+            "delegate_agent",
+            "report_coordination_notice",
+            "send_agent_update",
+            "ack_agent_update"
+          ]
+        }
+      }
+    },
+    {
+      "kind": "workflow",
       "name": "project-decomp",
       "source": "bundled",
       "sourceRootId": "chirality-root",
@@ -2446,7 +2488,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 9,
+        "order": 10,
         "displayName": "Run corpus concordance program"
       },
       "execution": {
@@ -2564,7 +2606,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 8,
+        "order": 9,
         "displayName": "Lifecycle transition review"
       },
       "execution": {
@@ -2583,7 +2625,7 @@
       "name": "scc-resolution-case",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Create or update a PKG-00 SCC resolution case that accumulates bounded TASK findings, evidence, human rulings, candidate remedies, and owner-workflow handoffs until DepClosure can verify closure.",
+      "description": "Create or update an SCC resolution case, under `_DAG/cases/<SCC-ID>/` or a project's legacy PKG-00 control deliverable, that accumulates bounded TASK findings, evidence, human rulings, candidate remedies, and owner-workflow handoffs until DepClosure can verify closure.",
       "central": false,
       "compatibility": "canonical",
       "executionRoleIds": [
@@ -2965,7 +3007,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 7,
+        "order": 8,
         "displayName": "Manage tasks"
       },
       "execution": {

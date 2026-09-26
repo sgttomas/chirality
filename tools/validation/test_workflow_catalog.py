@@ -490,6 +490,35 @@ def test_d_gov_48_every_scope_item_has_a_package_home():
     assert "Every **IN-scope Handbook Unit** must be assigned to exactly one Category" in domain
 
 
+def test_d_gov_49_project_dag_authority_and_case_home():
+    contract = " ".join((ROOT / "docs/CONTRACT.md").read_text().split())
+    assert "neither the local dependency files nor a project DAG is self-authorizing (D-GOV-49)" in contract
+    assert "There is no central dependency graph" not in contract
+    assert "The Chirality repository has no cross-project dependency graph" in contract
+
+    spec = (ROOT / "docs/SPEC.md").read_text()
+    flat_spec = " ".join(spec.split())
+    assert "### 5.4 Accepted Project DAG" in spec
+    assert "| `_DAG/` |" in spec
+    assert "| `{DAG_ROOT}` | tool-root-relative | `{EXECUTION_ROOT}/_DAG/`" in spec
+    assert "`_DAG/cases/<SCC-ID>/` is the home for SCC resolution cases" in flat_spec
+    assert "**DAG pending.**" in spec
+    for field in ("Explicitness", "SatisfactionStatus", "Confidence"):
+        assert f"`{field}` | enum | SHOULD (REQUIRED in an accepted DAG version, §5.4) |" in spec
+
+    # project-dag is a core (not central) workflow and no longer a derived view.
+    assert "project-dag" in CORE and "project-dag" not in CENTRAL
+    workflow = (ROOT / "workflows/project-dag/WORKFLOW.md").read_text()
+    assert "derived view" not in workflow
+    assert "`DAG pending`" in workflow
+    method = (ROOT / "workflows/project-dag/resources/method.md").read_text()
+    assert "Without one, unresolved SCCs are still held as candidates" not in method
+
+    scc = (ROOT / "workflows/scc-resolution-case/WORKFLOW.md").read_text()
+    assert "`{EXECUTION_ROOT}/_DAG/cases/<SCC-ID>/`" in scc
+    assert "confirm it is under a PKG-00 control deliverable" not in scc
+
+
 def test_research_uses_grouped_domain_acceptance_with_legacy_fallback():
     contract = (ROOT / "workflows/research-orchestration/resources/contract.md").read_text()
     method = (ROOT / "workflows/research-orchestration/resources/method.md").read_text()
