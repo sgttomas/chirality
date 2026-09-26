@@ -16,6 +16,7 @@ Register storage is deliverable-local by owner ruling (no central register).
 
 - DEL-09-06 (Universal drill-down to cited source) — CONSUMES [E-N07]
 - DEL-08-04 (Orientation latency budget (p95 ≤ 100 ms)) — TESTS [E-N12]
+- DEL-08-06 (Agent tool-call query surface) — CONSUMES [E-P86]
 
 ## Non-gating constraints and register-wide rules
 

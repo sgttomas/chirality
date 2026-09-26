@@ -1,0 +1,4 @@
+pre {('WARNING', 'XRG-013'): 26, ('WARNING', 'DRB-008'): 2}
+post {('WARNING', 'XRG-013'): 26}
+XRG-013 pre 26 post 26 identical
+ERROR post 0 DRB-008 post 0

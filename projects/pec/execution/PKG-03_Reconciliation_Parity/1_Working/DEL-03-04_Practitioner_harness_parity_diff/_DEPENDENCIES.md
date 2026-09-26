@@ -14,6 +14,7 @@ Register storage is deliverable-local by owner ruling (no central register).
 ## Downstream (informational; consumers of this deliverable)
 
 - DEL-10-11 (Parity metric (DriftFindings per reconcile)) — MEASURES [E-A18]
+- DEL-10-13 (Reliance-advertisement gate) — TESTS [E-P88]
 
 ## Standing obligation (constraint C-08)
 
