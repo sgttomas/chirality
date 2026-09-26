@@ -1,0 +1,11 @@
+PASS	population	66 contexts / 66 references
+PASS	contexts name revision 1.5	66/66; ending at 1.4: 0
+PASS	references name revision 1.5 and PRD v2.3	66/66; at 1.4/v2.2: 0
+PASS	metadata edits confined to anchors	changed 42 contexts / 64 references; off-anchor []
+PASS	64 pre-existing contexts share one provenance block	1 distinct
+PASS	only the 19 rows changed	19 rows
+PASS	only EvidenceQuote, LastSeen, Notes changed	[('EvidenceQuote', 'LastSeen', 'Notes')]
+PASS	ACTIVE EXECUTION quotes verbatim	111/111
+PASS	ACTIVE ANCHOR rows agree with the registers	132/132
+PASS	Handoff_State.md append-only	+1739 bytes
+PASS	RUN_SUMMARY.md append-only	+1721 bytes

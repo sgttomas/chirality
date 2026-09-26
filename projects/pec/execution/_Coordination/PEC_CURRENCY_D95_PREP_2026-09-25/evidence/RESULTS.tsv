@@ -1,0 +1,47 @@
+genA	0	option A
+genA2	0	option A, second fresh clone
+genP	0	option P
+genAR	0	option A + add-on R
+genR	0	option A at another date (slot rule)
+det_report	0	reports A vs A2 identical (0 = identical)
+det_tree	0	trees A vs A2 identical (0 = identical)
+rerun	1	rerun on applied tree (expect 1)
+wrongdate	1	act date != local date (expect 1)
+checkonly	0	check-only on base
+base_untouched	1	base projects/ equals a fresh export (0 = equal)
+protoA_strict	0	strict registers
+protoA_closure	0	closure
+protoA_closure_same	0	closure_summary equals base (0 = equal)
+protoA_strict_same	0	strict output equals base (0 = equal)
+protoP_strict	0	strict registers
+protoP_closure	0	closure
+protoP_closure_same	0	closure_summary equals base (0 = equal)
+protoP_strict_same	0	strict output equals base (0 = equal)
+protoAR_strict	0	strict registers
+protoAR_closure	0	closure
+protoAR_closure_same	0	closure_summary equals base (0 = equal)
+protoAR_strict_same	0	strict output equals base (0 = equal)
+verify_A	0	postimage checks
+verify_P	0	postimage checks
+verify_AR	0	postimage checks
+verify_sanity	1	verify base against itself (expect 1)
+pre_receipts	0	receipts validator, pre-state
+pre_harness	0	harness self-check, pre-state
+pre_validate_REGISTER.csv	0	taskmgmt validate, pre-state
+pre_validate_REGISTER_CLOSED.csv	0	taskmgmt validate, pre-state
+genG	0	option A in git clone
+genG_same	0	git-clone report equals protoA report (0 = equal)
+containment	0	changed paths == write set (0 = equal)
+diffcheck	0	git diff --check (.gitattributes in force)
+receipts	0	receipts validator
+harness	0	harness self-check
+harness_same	0	harness output equals pre-state (0 = equal)
+receipts_same	0	receipts output equals pre-state (0 = equal)
+t1	0	T1 row closure
+t1_validate_REGISTER.csv	0	taskmgmt validate after close
+t1_validate_REGISTER_CLOSED.csv	0	taskmgmt validate after close
+t1_archive	0	taskmgmt archive
+t1_validate2_REGISTER.csv	0	taskmgmt validate after archive
+t1_validate2_REGISTER_CLOSED.csv	0	taskmgmt validate after archive
+diffP	1	P vs A diff written (1 = differences)
+diffR	1	A+R vs A diff written (1 = differences)
