@@ -278,6 +278,9 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     the DEL-00-03 SPEC premise, the tier-0 profile entry, the revision-1.6
     re-pin and the API schema fields) and the correction of the stale
     `remaining-loop` design text stay open, each under its own packet.
+    The owner ruled `D-PEC-101` on 2026-09-26 for the folders, dependency
+    work and re-pin (Lane B1, B2, B3, B7: K4 with add-on C, K1, and a
+    re-audit); the act follows.
   - Retiring the 57 `## Remaining` sections, as App and Piping did: the owner
     opened it on 2026-09-26 as undertaking
     `HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT`. Its census and decision
