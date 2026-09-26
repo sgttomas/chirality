@@ -50,11 +50,13 @@ ticked, and review of the corrected bytes. The slice merged on 2026-09-24
 ruled for closure as `D-PEC-89` A, whose slice merged on 2026-09-25 (PR #897);
 the L-2a review of the corrected bytes then found defects, whose repairs are
 ruled as `D-PEC-91` A-53, whose slice merged on 2026-09-25 (PR #903). Build phases P1–P4 remain
-separately owner-gated. `D-PEC-80` made `projects/pec/loop/` the loop home:
-follow `projects/pec/loop/LOOP_INIT.md` to discover
-work from deliverable `## Remaining` surfaces. Retired plans live in
-`projects/pec/plans/workplans/` as history only. PEC's adoption of the shared
-development-loop method is deferred until SCA-005 closes (`D-PEC-86` §3 I-7).
+separately owner-gated. PEC runs the shared development loop under `D-PEC-94`
+(2026-09-25): `projects/pec/loop/LOOP_INIT.md` is the evergreen procedure, the
+human's steering selects each undertaking, its work graph lives at
+`execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md`, and each
+undertaking ends with one central receipt under `execution/_Coordination/AgentRuns/`.
+`loop/LOOP_RECEIPTS.md` is a historical ledger closed by Receipt 197. Retired
+plans live in `projects/pec/plans/workplans/` as history only.
 
 **SCA-005** (feed-model rebaseline, `D-PEC-86`) is closed for scope change
 only (below). Its
@@ -111,7 +113,7 @@ TM-PEC-023 moved into SCA-005 intake.
 | `execution/_Coordination/` | Decision packets, register, coordination records |
 | `execution/_Decomposition/` | Accepted software decomposition revision 1.5 (`current_basis`, SCA-005) and authoritative companion registers |
 | `execution/_ScopeChange/` | Immutable SCA-001 to SCA-005 amendment evidence, the SCA-005 checkpoint-group snapshots under `checkpoint_snapshots/`, and the active scope-change pointer (SCA-005) |
-| `loop/` | Loop instruction surface (`LOOP_INIT.md`) and receipts ledger (`LOOP_RECEIPTS.md`), per `D-PEC-80` |
+| `loop/` | Loop instruction surface (`LOOP_INIT.md`, shared method under `D-PEC-94`) and the historical receipts ledger (`LOOP_RECEIPTS.md`, closed at Receipt 197) |
 | `v2/` | P1 source from owner-ruled slices (`D-PEC-74`, `D-PEC-75`, `D-PEC-77`, `D-PEC-84`, `D-PEC-85`) |
 | `core/`, `server/`, `web/`, `agent-sidecar/`, `tools/`, `fixtures/` | **Frozen reference corpus** — the v0.4-baseline prototype; read/cite only, quarried by citation in build briefs (PRD §13); run instructions preserved at `docs/.archive/README_v0.4_prototype.md` |
 | `init/` | Loop launcher prompt (points at `projects/pec/loop/LOOP_INIT.md`) |
@@ -133,5 +135,7 @@ consumer rows: `D-PEC-67`; v2.2 concordance: `D-PEC-68`; loop-registry ruling:
 `D-PEC-78`; accepted decomposition successor: `SCA-005` (revision 1.5,
 checkpoint 2 `D-PEC-92`), after `SCA-004`; historical contract
 reconciliation and hold release: `D-PEC-69`/`D-PEC-70`; loop home: `D-PEC-80`;
-first store/guard slice: `D-PEC-85`; SCA-005 opening: `D-PEC-86`). Receipts:
-`projects/pec/loop/LOOP_RECEIPTS.md`. Project agent rules: `AGENTS.md`.
+first store/guard slice: `D-PEC-85`; SCA-005 opening: `D-PEC-86`; loop adoption:
+`D-PEC-94`). Receipts: one central `RECEIPT.md` per undertaking under
+`execution/_Coordination/AgentRuns/`; the earlier ledger
+`projects/pec/loop/LOOP_RECEIPTS.md` is historical. Project agent rules: `AGENTS.md`.

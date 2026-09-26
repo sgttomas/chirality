@@ -123,15 +123,19 @@ DEL-02-08 and DEL-02-09): 30 `OPEN` / 26 `INITIALIZED` / 4 `CHECKING`
 DEL-01-05) / 4 `RETIRED` (DEL-06-04, DEL-07-02, DEL-07-04, DEL-07-05). No
 deliverable is `ISSUED`.
 
-**Loop:** `D-PEC-80` A–D (ruled 2026-09-05) made `projects/pec/loop/`
-(`LOOP_INIT.md`, `LOOP_RECEIPTS.md`) the loop home with a generic instruction
-surface, adopted the run-based PR boundary, and retired the workplan overlay:
-work is selected from deliverable `_STATUS.md` `## Remaining`, and
-`plans/workplans/` is history only. `D-PEC-81` calibrated and `D-PEC-82`
+**Loop:** PEC runs the shared development loop under `D-PEC-94` (2026-09-25):
+the evergreen `loop/LOOP_INIT.md`, steering-selected undertakings, work graphs
+under `execution/_Coordination/WorkGraphs/`, one central receipt per
+undertaking and terse deliverable `MEMORY.md` rows; `loop/LOOP_RECEIPTS.md` is
+historical, closed by Receipt 197. *Historical:* `D-PEC-80` A–D (ruled
+2026-09-05) made `projects/pec/loop/` the loop home, adopted the run-based PR
+boundary and retired the workplan overlay, with work selected from deliverable
+`_STATUS.md` `## Remaining` (that selection is replaced under `D-PEC-94`; the
+sections remain as records), and `plans/workplans/` is history only. `D-PEC-81` calibrated and `D-PEC-82`
 reported the Remaining concordance; `D-PEC-83` R-A/A-A applied the 57
 ordinary Remaining carriers (Receipt 174), with the frozen DEL-01-05 carrier
-not applied. PEC's adoption of the shared 2026-09-22 development-loop method
-is deferred until SCA-005 closes (`D-PEC-86` §3 I-7); no ruling on it exists.
+not applied. PEC adopted the shared 2026-09-22 development-loop method on
+2026-09-25 under `D-PEC-94`, exercising `D-PEC-86` §3 I-7.
 
 **Active scope change — SCA-005:** opened at Gate 1 on 2026-09-23 under
 `D-PEC-86` (owner direction of record, §1) to rebaseline PEC's feed model on
@@ -307,19 +311,24 @@ Gate lineage (historical record; the current gates are listed above):
    release, or professional reliance is authorized.
 2. P2 dashboards → P3 opt-in consumer-integration capability (falsification
    clause armed; receiving consumers retain their own authority and cadence) →
-   P4 streams are historical phase orientation; live work is discovered from
-   deliverable `## Remaining` surfaces under `loop/LOOP_INIT.md`.
+   P4 streams are historical phase orientation; live work is selected by the
+   human's steering and carried in work graphs under `loop/LOOP_INIT.md`
+   (`D-PEC-94`).
 
 ## Orient yourself (read-order)
 
 1. `docs/PRD.md` — the adopted product definition (v2.3), including the
    invariants (PEC-K-01..11), modes ladder, and release strategy.
-2. `projects/pec/loop/LOOP_INIT.md` — protocol, gates, fences and deliverable
-   discovery. `projects/pec/plans/workplans/` is history only.
+2. `projects/pec/loop/LOOP_INIT.md` — the evergreen development-loop
+   procedure (`D-PEC-94`); `projects/pec/AGENTS.md` holds fences and authority
+   rules. `projects/pec/plans/workplans/` is history only.
 3. `execution/_Coordination/_DECISIONS/_REGISTER.md` — decision register
-   (D-PEC-57/58 are the pivot and adoption rows; D-PEC-86 is the active
-   SCA-005 row).
-4. `projects/pec/loop/LOOP_RECEIPTS.md` — handoff ledger.
+   (D-PEC-57/58 are the pivot and adoption rows; D-PEC-86 opened SCA-005;
+   D-PEC-94 adopted the shared loop).
+4. The current undertaking's work graph under
+   `execution/_Coordination/WorkGraphs/` and its central receipt under
+   `execution/_Coordination/AgentRuns/`; `projects/pec/loop/LOOP_RECEIPTS.md`
+   is the historical ledger (closed at Receipt 197).
 
 ## Governance & agent harness
 
@@ -342,7 +351,7 @@ truth without changing topology, dependencies, lifecycle, or implementation.
 `D-PEC-70` released the exceptional reliance hold. SCA-004 resolved OI-003
 in decomposition truth, the metadata subset is current, and DEL-01-06 RF-002
 is resolved by exact successor acceptance; the nine TM-PEC-023 objective
-blanks now carry owner selections (SCA-005 amendment 1), applied only when SCA-005 applies. P1
+blanks now carry owner selections (SCA-005 amendment 1), applied in revision 1.5. P1
 source work remains separately owner-gated and fenced by `F-PEC-1`.
 Loop instruction surface: `loop/LOOP_INIT.md` under `D-PEC-80`.
 Domain-engine profile `_DomainEngines/profiles/pec.yaml` contains the exact
