@@ -41,7 +41,7 @@ eleven-contract reconciliation remains historical under `D-PEC-69`, and
 `PEC-HOLD-001` was released by `D-PEC-70`. The SCA-004 closeout
 (`execution/_Coordination/PEC_CURRENCY_REPAIR_CLOSEOUT_2026-08-09/HANDOFF_STATE.md`)
 recorded derivative state as incomplete only for TM-PEC-023, which was closed `RESOLVED_BY_DECISION` under
-`D-PEC-95` on 2026-09-25. Lifecycle census (2026-09-25): 30 `OPEN` / 26
+`D-PEC-95` on 2026-09-25. Lifecycle census (2026-09-26): 28 `OPEN` / 28
 `INITIALIZED` / 4 `CHECKING` / 2 `IN_PROGRESS` / 4 `RETIRED`, none `ISSUED`. DEL-01-03 is
 `IN_PROGRESS` with the `D-PEC-85` store/guard slice produced; DEL-01-05 is
 `IN_PROGRESS` after the `D-PEC-84` L reversal; no artifact acceptance or

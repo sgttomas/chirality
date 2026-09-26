@@ -1,0 +1,13 @@
+# cwd=/Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-d98-first-sows-act/projects/pec HEAD=6b48b6f26ed3e9ef60fde1c7d2289843bd1aea25 register_sha256=f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc script_sha256=b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md --operation dispatch-for-production
+{"operation": "dispatch-for-production", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md --operation dispatch-for-production
+{"operation": "dispatch-for-production", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_STATUS.md --operation dispatch-for-production
+{"operation": "dispatch-for-production", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_STATUS.md --operation dispatch-for-production
+{"operation": "dispatch-for-production", "status": "ALLOW"}
+exit=0

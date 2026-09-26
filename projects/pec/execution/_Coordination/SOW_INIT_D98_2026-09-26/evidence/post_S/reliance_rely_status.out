@@ -1,0 +1,7 @@
+# cwd=/Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-d98-first-sows-act/projects/pec HEAD=1e40886239a59655985976a9ffe1f4e4d7bc30a4
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_STATUS.md --operation rely-for-production
+{"operation": "rely-for-production", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_STATUS.md --operation rely-for-production
+{"operation": "rely-for-production", "status": "ALLOW"}
+exit=0
