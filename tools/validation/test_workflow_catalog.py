@@ -55,16 +55,24 @@ SUPERSEDED = {
 }
 # Group order follows catalog.yaml navigation.specialist authoring order.
 SPECIALIST_GROUPS = [
-    ("plan-organize", "Plan & organize", 5),
-    ("research-understand", "Research & understand", 8),
-    ("extract-documents", "Extract from documents", 15),
-    ("create-publish-documents", "Create & publish documents", 8),
-    ("build-maintain-software", "Build & maintain software", 1),
-    ("estimate-cost", "Estimate & cost", 3),
-    ("review-check", "Review & check", 10),
-    ("manage-changes", "Manage changes", 5),
+    ("plan-organize", "Plan & organize"),
+    ("research-understand", "Research & understand"),
+    ("extract-documents", "Extract from documents"),
+    ("create-publish-documents", "Create & publish documents"),
+    ("build-maintain-software", "Build & maintain software"),
+    ("estimate-cost", "Estimate & cost"),
+    ("review-check", "Review & check"),
+    ("manage-changes", "Manage changes"),
 ]
-SPECIALIST_GROUP_SIZES = {key: size for key, _, size in SPECIALIST_GROUPS}
+
+
+def _catalog_specialist_members() -> dict:
+    """Authored specialist membership, in order, keyed by group (catalog.yaml is strict JSON)."""
+    catalog = json.loads((ROOT / "workflows/catalog.yaml").read_text(encoding="utf-8"))
+    return {
+        group["key"]: [item["name"] for item in group["workflows"]]
+        for group in catalog["navigation"]["specialist"]
+    }
 
 
 def test_root_index_is_fresh_and_classification_is_bounded():
@@ -91,8 +99,10 @@ def test_root_navigation_partition_is_complete_and_ordered():
     assert {item["name"]: item["navigation"].get("displayName") for item in core if "displayName" in item["navigation"]} == CORE_DISPLAY_NAMES
     assert all(item["navigation"]["tier"] == "primary" and "group" not in item["navigation"] for item in core)
     specialist = [item for item in workflows.values() if item["navigation"]["category"] == "specialist"]
-    assert len(specialist) == 55
+    catalog_members = _catalog_specialist_members()
+    assert len(specialist) == sum(len(names) for names in catalog_members.values())
     groups = {}
+    members = {}
     group_identity = {}
     for item in specialist:
         navigation = item["navigation"]
@@ -100,10 +110,11 @@ def test_root_navigation_partition_is_complete_and_ordered():
         assert navigation["tier"] in ("primary", "supporting")
         assert set(navigation["group"]) == {"key", "label", "order"} and navigation["group"]["label"].strip()
         groups.setdefault(navigation["group"]["key"], []).append(navigation["order"])
+        members.setdefault(navigation["group"]["key"], []).append((navigation["order"], item["name"]))
         group_identity.setdefault(navigation["group"]["key"], set()).add((navigation["group"]["label"], navigation["group"]["order"]))
-    assert {key: len(orders) for key, orders in groups.items()} == SPECIALIST_GROUP_SIZES
+    assert {key: [name for _, name in sorted(entries)] for key, entries in members.items()} == catalog_members
     assert all(sorted(orders) == list(range(len(orders))) for orders in groups.values())
-    assert group_identity == {key: {(label, order)} for order, (key, label, _) in enumerate(SPECIALIST_GROUPS)}
+    assert group_identity == {key: {(label, order)} for order, (key, label) in enumerate(SPECIALIST_GROUPS)}
     assert workflows["semantic-matrix-build"]["navigation"]["tier"] == "supporting"
     assert workflows["scope-of-work"]["navigation"]["tier"] == "primary"
     retired = {"deliverable-consistency", "preparation", "proposal-format", "researcher", "software-code-review", "software-defect-diagnosis"}

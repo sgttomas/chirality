@@ -2,16 +2,16 @@
 
 ## Method
 
-### Operational — \"How to do?\"
+### Operational — "How to do?"
 
 This section defines the grouped-checkpoint conversational procedure for software development decomposition.
 
 ### Output Target
 
-The agent maintains a **canonical working package** (living draft consisting of the main decomposition document and any companion registers) and revises it after human feedback until it passes the grouped checkpoints and validity checks in SPEC.
+The agent maintains a **canonical working package** (living draft consisting of the main decomposition document and any companion registers) and revises it after human feedback until it passes the grouped checkpoints and the [Validity](contract.md#validity) requirements in the contract.
 
 For each accepted group, finalize
-`checkpoint_snapshots/<group>-<UTC>/{DECISION.md,ACCEPTED_MANIFEST.csv,HANDOFF_STATE.md}`
+`{DECOMP_ROOT}/checkpoint_snapshots/<group>-<UTC>/{DECISION.md,ACCEPTED_MANIFEST.csv,HANDOFF_STATE.md}`
 and then update `_LATEST_GROUP1.md`, `_LATEST_GROUP2.md`, or
 `_LATEST_ACCEPTED.md` as applicable. The manifest binds paths, package roles,
 and hashes. The handoff names the accepted upstream snapshot, derivative
@@ -22,6 +22,15 @@ snapshot. Reopened decisions create successors; never overwrite a snapshot.
 ### Preparation and checkpoint groups
 
 #### Group 1 preparation — basis, normalized scope, vocabulary, objectives
+
+Record the accepted basis before normalizing it: its path, content hash, the
+separate acceptance decision record, and the accepted portions and shared
+constraints that record names. For a partial or qualified acceptance (for
+example, a `reverse-engineer-software` handoff), normalize only the accepted
+portions as candidate `IN` scope. Record material outside them as `TBD` or
+`OUT` Scope Items with a `SourceRef` to its location in the basis; do not treat
+it as accepted scope. Carry the basis identity into the group-1 `DECISION.md`
+and `HANDOFF_STATE.md`.
 
 Collect requirements, tickets, notes, architecture, constraints, non-functional
 requirements, target platforms, rollout expectations, prior decompositions, and
@@ -59,7 +68,9 @@ Deliverable within one Package and one cohesive verification context. Split `XL`
 items where possible; otherwise identify the precise exception and risk.
 
 Run coverage, ID-coupling, Context Budget, interface, artifact, responsibility,
-and objective-mapping checks. Prepare Coverage & Telemetry and the specific
+and objective-mapping checks, including the register validator in the
+contract's [Inputs and outputs](contract.md#inputs-and-outputs) and its
+identifier-format invariants. Prepare Coverage & Telemetry and the specific
 exception/open-issue list before asking for a decision.
 
 **Checkpoint group 2:** Present the proposed Packages and Deliverables together

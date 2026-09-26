@@ -34,9 +34,11 @@ examined and what each can support. Source code and live access are optional;
 their absence limits the conclusions, not every useful part of the inquiry.
 
 Resolve authorised working and output locations, predecessor documents,
-concurrent activity, and permitted observations or experiments. Keep the
-successor candidate separate from the effective project basis. A small run can
-use a reference account, a candidate PRD, and one working record. Add documents
+concurrent activity, and permitted observations or experiments. The brief
+supplies the locations of the working record and the decision record; if it
+names none, propose them before writing. Keep the successor candidate separate
+from the effective project basis. A small run can use a reference account, a
+candidate PRD, and one working record. Add documents
 only where distinct subjects or working surfaces help. Inspect sources
 proportionately rather than scanning the whole repository by default.
 
@@ -166,6 +168,13 @@ affected choices when new evidence changes their grounds.
 
 For successor work, turn the agreed direction into a readable product basis.
 The [basis guide](resources/successor-basis.md) explains the output and handoff.
+The two human confirmation points in this workflow are checkpoints A and B of
+chapter 2 of the management manual
+(`docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_2`,
+"The software PRD sequence"): confirmation of the proposed direction before
+writing is checkpoint A, which existing human direction may already satisfy;
+acceptance of the examined candidate below is checkpoint B, the passage to
+decomposition. Writing, investigation, and repair between them add no approvals.
 If the assignment ends at a reference account, retain the findings, selections,
 and unanswered design questions for the next participant instead.
 
@@ -220,9 +229,12 @@ For a completed successor basis, present the identified PRD and included set,
 source and review account, unresolved matters, and proposed use in decomposition.
 The human accepts, qualifies, returns, redirects, or stops that undertaking.
 Bind the actual response to preserved content identities, scope, and conditions
-in a separate decision record. For partial or qualified acceptance, identify
-the accepted portions and shared constraints; do not pass an unaccepted
-remainder to decomposition as accepted scope. Preserve the prior basis; changed
+in a separate decision record at the location the brief supplies. For partial
+or qualified acceptance, identify the accepted portions and shared constraints;
+do not pass an unaccepted remainder to decomposition as accepted scope. The
+handoff to decomposition names the PRD identity (path, revision or content
+hash, and included set), the separate decision record, and the accepted-portions
+list with shared constraints and open work. Preserve the prior basis; changed
 content needs affected examination and applicable acceptance. Source preservation, acceptance
 of a reference account, and acceptance of successor requirements are distinct.
 

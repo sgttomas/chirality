@@ -67,8 +67,9 @@ reusable library. In Chirality App, write the proposed package at
 `<project>/.chirality/workflow-drafts/<name>/WORKFLOW.md` or
 `~/.chirality/workflow-drafts/<name>/WORKFLOW.md`, with its supporting files
 inside that draft package. Use ordinary files and directories, without symbolic
-or hard links. Ordinary file permissions, including executable helpers, are
-preserved on registration; special permission bits are not. Do not write it to
+or hard links; registration rejects a draft that contains either. Ordinary
+file permissions, including executable helpers, are preserved on registration;
+special permission bits are not. Do not write it to
 `.chirality/workflows` yet.
 The Workflows panel lists these packages under **Ready for review**. Tell the
 human where to open the draft; do not claim that it is registered.
@@ -80,7 +81,12 @@ changed draft requires another inspection. Existing registered names are not
 overwritten by this control: use a distinct name to preserve an existing
 workflow. Revision of a registered method is a separate explicit amendment,
 with its earlier version preserved and the exact changes accepted before any
-replacement. Do not automatically execute the newly registered workflow.
+replacement. Prepare the revision as a draft under a new name and register it
+alongside the original; or, when the human explicitly authorizes replacing the
+registered package, retain the prior version outside discovery (for example, a
+dated copy outside `.chirality/workflows`), then replace it with the exact
+accepted draft through the available file tools and re-query the catalog. Do
+not automatically execute the newly registered workflow.
 
 When using another host without these controls, present the complete proposed
 instructions and resource inventory through an inspectable file or the
@@ -100,8 +106,11 @@ Optional `execution.json` uses `schema_version: 1` and `compatible_roles`, with
 optional `tools` restrictions; consult the selected library's runtime contract
 before adding it. Omitting it inherits compatibility; empty restriction lists
 deny rather than grant capability. Metadata never proves host enforcement.
-Optional resources must resolve inside the package, including through symlinks;
-link them at the point of use and load only what the stage needs.
+Optional resources must resolve inside the package; link them at the point of
+use and load only what the stage needs. A draft for App registration contains
+no symbolic or hard links. In a library maintained directly as files, such as
+Root's bundled source, a symlink is tolerated only when its real path stays
+inside the package, which Root's index builder checks.
 
 A flat Markdown document is not a discoverable package. For project and personal
 libraries, after the reviewed package is registered, re-query the effective workflow
@@ -109,17 +118,26 @@ catalog through available host capabilities and inspect its qualified entry.
 Do not claim a refresh or successful discovery without observing it. If the
 host cannot expose the catalog, report that verification as outstanding.
 
-For an authorized Root bundled-library edit, register the package in
-`workflows/catalog.yaml` navigation and regenerate `workflows/index.json` with
-`python3 tools/validation/build_workflow_index.py` from that source root.
-Central membership is a library-maintenance choice, not a requirement for every
-new workflow. Use that library's actual authoring rules; a generated index is
-derived from package metadata, not a substitute for it.
+For an authorized Root bundled-library edit, present the exact candidate as a
+committed proposal or pull-request diff; Root's `.chirality/` is ignored by Git,
+so a draft there is not a reviewable bundled candidate. A bundled edit is an
+instruction change: it needs a G4 tranche manifest under
+`docs/governance_harness/tranche_manifests/`, checked with
+`python3 tools/validation/validate_instruction_tranche_manifest.py`, and notices
+to the project loops that consume the changed workflow. Register the package in
+`workflows/catalog.yaml` navigation, regenerate `workflows/index.json` with
+`python3 tools/validation/build_workflow_index.py` from that source root, and
+run `python3 -m pytest tools/validation/test_workflow_catalog.py`, updating its
+navigation expectations when a group or tier changes. Central membership is a
+library-maintenance choice, not a requirement for every new workflow. Use that
+library's actual authoring rules; a generated index is derived from package
+metadata, not a substitute for it.
 
 ## Check and return
 
 Read the saved package back. Check metadata, name, resource containment, links,
-and intended source identity using available library validators. Walk through
+and intended source identity, using available library validators where they
+cover the check and reading the package where they do not. Walk through
 a representative use, including a plausible failure or interruption, to check
 that the inputs, outputs, decisions, and recovery are usable. Scale further
 execution checks to the method; distinguish a walkthrough from a real run.
@@ -127,8 +145,11 @@ execution checks to the method; distinguish a walkthrough from a real run.
 In the Root source tree, useful references are `workflows/README.md`,
 `workflows/catalog.schema.json`, `docs/AGENT_WORKFLOW_RUNTIME.md`, and
 `tools/workflow_runtime/README.md`. Focused structural checks are
-`python3 tools/validation/validate_workflow_metadata.py` and
-`python3 tools/validation/build_workflow_index.py --check`. These are Root
+`python3 tools/validation/validate_workflow_metadata.py`, which checks the
+folder `name`, the `description`, optional `execution.json`, and index
+freshness but not links, and
+`python3 tools/validation/build_workflow_index.py --check`, which also rejects
+missing or escaping package files. Check links by reading. These are Root
 source tools, not assumed App tools; use the selected host's actual validation
 capabilities for project and personal libraries.
 
