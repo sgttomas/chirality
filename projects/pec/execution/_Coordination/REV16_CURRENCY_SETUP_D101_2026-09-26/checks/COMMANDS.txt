@@ -1,3 +1,5 @@
+00a_run_root_copies.sha256	exit=0	(from projects/pec/execution/_Coordination/REV16_CURRENCY_SETUP_D101_2026-09-26) shasum -a 256 gen_d101_k1.py gen_d101_k4.py verify_d101_k1.py verify_d101_k4.py  (after cp -p from PEC_REV16_CURRENCY_SETUP_PREP_2026-09-26/k1 and k4, each cmp-equal; entry added after VERIFIER_VERDICT_01 finding 3)
+01_preflight_dispatch-for-production.out	exit=0	(from projects/pec) sh execution/_Coordination/REV16_CURRENCY_SETUP_D101_2026-09-26/run_holds.sh dispatch-for-production  (164 targets in checks/hold_targets.txt; before any dispatch; entry added after VERIFIER_VERDICT_01 finding 3)
 02_pre_strict_registers.out	exit=1	python3 tools/validation/validate_decomposition_registers.py projects/pec/execution --strict
 03_pre_closure.out	exit=0	python3 tools/coordination/analyze_dep_closure.py projects/pec/execution --output-dir projects/pec/execution/_Coordination/REV16_CURRENCY_SETUP_D101_2026-09-26/closure_pre
 04_pre_harness_selfcheck.out	exit=0	python3 tools/practitioner_harness/harness.py self-check
