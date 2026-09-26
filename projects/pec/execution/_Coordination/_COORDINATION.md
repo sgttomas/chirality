@@ -198,6 +198,19 @@
     `WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md`. No
     source, lifecycle, release, or reliance act is inferred.
 
+15. **SCA-006 operational reliance (2026-09-26):** revision **1.6** is
+    accepted `current_basis` and PRD v2.4 is the product definition of
+    record (SCA-006 checkpoint 3, accepted 2026-09-26 after the checkpoint-2
+    ruling `D-PEC-97`; `execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-3_2026-09-26/`).
+    Both `_LATEST.md` pointers name revision 1.6 and SCA-006, and the audit
+    pointer names `COV_SCA006_POSTCHANGE_2026-09-26_0051`. This item
+    supersedes item 14's present-tense statements of revision 1.5 as
+    `current_basis`. SCA-006's Lane B work (new DEL-08-06 and DEL-10-13
+    folders, dependency work, SOW currency, the revision-1.6 re-pin) is
+    separately gated and planned in the same work graph. The Notes line below
+    is human-owned and is left unchanged. No source, lifecycle, release, or
+    reliance act is inferred.
+
 ## Notes (human-owned)
 
 - Scaffolding and local-register seeding were authorized by `D-PEC-62`
@@ -209,7 +222,6 @@
   is now **frozen gate provenance**: the deliverable-local
   `Dependencies.csv` registers are the sole live dependency basis. Both
   are derivative packages citing the accepted decomposition snapshot
-  (revision 1.1 at seeding; revision 1.6 is `current_basis` since
-  SCA-006; SCA-005's dependency rerun under `D-PEC-93` retired, refreshed and
-  added register rows, and SCA-006's dependency work (Lane B2, B3) is
-  separately gated) and are never a substitute for decomposition truth.
+  (revision 1.1 at seeding; revision 1.5 is `current_basis` since
+  SCA-005, whose dependency rerun under `D-PEC-93` retired, refreshed and
+  added register rows) and are never a substitute for decomposition truth.

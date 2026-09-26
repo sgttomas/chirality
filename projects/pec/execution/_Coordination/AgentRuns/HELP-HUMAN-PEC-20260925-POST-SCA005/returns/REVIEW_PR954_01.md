@@ -94,7 +94,7 @@ I reviewed read-only. I read files with `git show` and ran the validators in the
 | NON-BLOCKING 2 (`docs/STATUS.md` audit-pointer and "describe the post-setup state" lines) | Repaired: both lines are past tense, naming the move to `COV_SCA006_POSTCHANGE_2026-09-26_0051` and the revision-1.6 pointers |
 | NON-BLOCKING 3 (`README.md` `_ScopeChange/` row) | Repaired: SCA-001 to SCA-006 evidence, SCA-005 and SCA-006 snapshots, active pointer SCA-006 |
 | NON-BLOCKING 4 (graph S2 state) | Repaired: DEL-01-06 is in S2's packet preparation (G1 COMPLETE) |
-| NON-BLOCKING 5 (`_COORDINATION.md` basis lines) | Repaired in this PR (default-writable): the accepted-basis line and the derivative-package parenthetical name revision 1.6 |
+| NON-BLOCKING 5 (`_COORDINATION.md` basis lines) | Repaired in this PR: the accepted-basis line (L16–19, default-writable body) names revision 1.6, and a dated item 15 records the SCA-006 acceptance. `b823aac16` also rewrote the derivative-package parenthetical in the human-owned Notes section; review 02 blocked that, and it is restored to its base bytes (`REVIEW_PR954_02.md`) |
 | NOTE acceptance commit | No change: the merge-commit reading is the ruling's stated definition and consistent with question 4 |
 | NOTE graph return path for RR1 | Repaired |
 | NOTE register D-PEC-98 "Blocks" cell | Repaired: the cell records that add-on S opens the two `_STATUS.md` paths |
