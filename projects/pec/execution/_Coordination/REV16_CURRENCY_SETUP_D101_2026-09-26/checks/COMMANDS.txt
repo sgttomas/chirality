@@ -1,0 +1,5 @@
+02_pre_strict_registers.out	exit=1	python3 tools/validation/validate_decomposition_registers.py projects/pec/execution --strict
+03_pre_closure.out	exit=0	python3 tools/coordination/analyze_dep_closure.py projects/pec/execution --output-dir projects/pec/execution/_Coordination/REV16_CURRENCY_SETUP_D101_2026-09-26/closure_pre
+04_pre_harness_selfcheck.out	exit=0	python3 tools/practitioner_harness/harness.py self-check
+05_pre_receipts.out	exit=0	python3 tools/validation/validate_pec_loop_receipts.py --repo-root .
+06_pre_preimages.out	exit=0	python3 projects/pec/execution/_Coordination/REV16_CURRENCY_SETUP_D101_2026-09-26/check_hashes.py projects/pec/execution/_Coordination/_DECISIONS/D-PEC-101_rev16_currency_setup_proposal_2026-09-26.md pre
