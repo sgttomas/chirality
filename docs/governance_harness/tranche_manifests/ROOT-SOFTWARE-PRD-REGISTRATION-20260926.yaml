@@ -2,7 +2,7 @@ schema: instruction-tranche-manifest/v1
 tranche_id: ROOT-SOFTWARE-PRD-REGISTRATION-20260926
 title: Register the software-prd workflow as a core bundled workflow
 date: '2026-09-26'
-basis: 6281273fa7bd96b66703009e6325db2fa74815b3
+basis: 6b48b6f26ed3e9ef60fde1c7d2289843bd1aea25
 instruction_surface_paths:
   - workflows/software-prd/WORKFLOW.md
   - workflows/software-prd/execution.json

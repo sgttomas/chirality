@@ -206,7 +206,9 @@ relying on the decision. Accepted limitations cannot waive higher-priority
 obligations or imply that a missing review occurred.
 
 Write the checkpoint B snapshot defined in the [contract](contract.md) from the
-actual response, then update `_LATEST_ACCEPTED.md`. Use the host's established
+actual response. Update `_LATEST_ACCEPTED.md` only for an accepted or
+limited-basis acceptance; a returned or stopped outcome leaves the pointer on
+the predecessor. Use the host's established
 approval mechanism where one exists. A changed candidate requires renewed
 examination and an applicable acceptance of its changed basis; preserve
 unaffected prior decisions and the historical candidate, and never transfer an

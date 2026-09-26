@@ -81,9 +81,11 @@ candidate receives a new `<candidate-id>`.
 
 ## Checkpoint B snapshot
 
-After the human's response, write a new snapshot folder, then update
-`_LATEST_ACCEPTED.md`. Never overwrite a snapshot; a reopened or revised
-acceptance creates a successor.
+After the human's response, always write a new snapshot folder. Update
+`_LATEST_ACCEPTED.md` only when the outcome is `accepted` or `accepted with a
+limited basis`; for `returned` or `stopped`, leave the pointer on the
+predecessor accepted snapshot (or absent). Never overwrite a snapshot; a
+reopened or revised acceptance creates a successor.
 
 `DECISION.md` is written from the actual response and is not a member of the
 manifests whose hashes it cites:
@@ -116,7 +118,8 @@ candidate manifest and `AcceptanceBoundary` one of `accepted`, `partial`
 
 - **PRD identity:** path of the frozen accepted PRD, its SHA-256, the revision
   where the project is versioned, and the included set (by reference to
-  `ACCEPTED_MANIFEST.csv`).
+  `ACCEPTED_MANIFEST.csv`, with that manifest's SHA-256 when annexes are
+  included, so annex bytes are bound directly).
 - **Decision record:** the path of this snapshot's `DECISION.md`.
 - **Accepted portions:** the accepted-portions list with shared constraints,
   explicit exclusions, the unaccepted remainder, and open work with owners and
@@ -154,8 +157,9 @@ bytes or a `PRD_TARGET` copy whose hash matches. This workflow neither supplies
 decomposition's checkpoint decisions nor pre-allocates `PKG-*`, `DEL-*`, Scope
 Item, Objective, or Context Envelope identities.
 
-The same form is used by `reverse-engineer-software` for a successor PRD, so
-`software-decomp` consumes either producer's handoff identically.
+`reverse-engineer-software` supplies the same basis-identity fields for a
+successor PRD, so `software-decomp` group 1 can consume either producer's
+handoff.
 
 ## Invariants
 

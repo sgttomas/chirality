@@ -100,6 +100,7 @@ def test_root_navigation_partition_is_complete_and_ordered():
     assert all(item["navigation"]["tier"] == "primary" and "group" not in item["navigation"] for item in core)
     assert workflows["software-prd"]["navigation"]["category"] == "core" and not workflows["software-prd"]["central"]
     assert workflows["software-prd"]["executionRoleIds"] == ["HELP_HUMAN", "HELPS_HUMANS", "WORKING_ITEMS"]
+    assert set(CENTRAL) <= set(CORE)
     specialist = [item for item in workflows.values() if item["navigation"]["category"] == "specialist"]
     catalog_members = _catalog_specialist_members()
     assert len(specialist) == sum(len(names) for names in catalog_members.values())

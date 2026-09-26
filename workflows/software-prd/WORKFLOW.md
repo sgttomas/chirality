@@ -66,8 +66,8 @@ consumer of the handoff when the human directs `software-decomp`.
 The workflow is compatible with HELP_HUMAN, HELPS_HUMANS and WORKING_ITEMS;
 TASK does not select or run it. Bounded inspections, comparisons, section
 writing, and reviews may still be assigned to TASK with a brief naming sources,
-write targets, return, and checks. TASK applies that bounded part under its
-brief, does not delegate, and returns integration needs and human decisions to
+write targets, return, and checks. TASK works from that brief without
+selecting this workflow, does not delegate, and returns integration needs and human decisions to
 its caller. Selection does not change role or create a PRD-specific agent.
 
 ## Sequence and grouped checkpoints
