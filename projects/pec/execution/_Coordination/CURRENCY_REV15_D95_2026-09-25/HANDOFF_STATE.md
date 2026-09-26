@@ -111,6 +111,13 @@
   observe this state) and routed to HELP_HUMAN. N-3 — `containment.py` added
   to the MANIFEST helper list; the `<pre>` identity in VALIDATION stated by
   tar hash.
+- **Verdict 02 (reviewed `5caaf4b94`): PASS WITH NOTES**, no blocking
+  finding (`VERIFIER_VERDICT_02.md`, transcribed verbatim). Verdict 01
+  transcribed faithfully; N-1..N-3 resolved without overstatement; the
+  repair delta touches only the run root; containment PASS (119 / 2 / 65).
+  N2-1 (non-blocking wording): the VALIDATION Containment row now says the
+  U1 return records the rerun at the last commit before it, and the return
+  does so.
 
 ## Not claimed
 
