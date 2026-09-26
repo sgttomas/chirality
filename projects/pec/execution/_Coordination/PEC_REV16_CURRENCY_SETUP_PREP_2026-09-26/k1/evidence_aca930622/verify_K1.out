@@ -1,0 +1,77 @@
+PASS no file deleted (0)
+PASS containment: 32 changed/added; grant 12 created + 20 modified; outside grant []
+PASS DEL-04-03: every pre row survives
+PASS DEL-04-03 DEP-04-03-001: changed cells []
+PASS DEL-04-03 DEP-04-03-002: changed cells []
+PASS DEL-04-03 DEP-04-03-003: changed cells []
+PASS DEL-04-03 DEP-04-03-004: changed cells []
+PASS DEL-04-03: 1 appended ANCHOR row(s)
+PASS DEL-04-03: pre rows keep their order and bytes (append-only)
+PASS DEL-08-03: every pre row survives
+PASS DEL-08-03 DEP-08-03-001: changed cells []
+PASS DEL-08-03 DEP-08-03-002: changed cells []
+PASS DEL-08-03 DEP-08-03-003: changed cells []
+PASS DEL-08-03 DEP-08-03-004: changed cells []
+PASS DEL-08-03: 1 appended ANCHOR row(s)
+PASS DEL-08-03: pre rows keep their order and bytes (append-only)
+PASS DEL-09-06: every pre row survives
+PASS DEL-09-06 DEP-09-06-001: changed cells []
+PASS DEL-09-06 DEP-09-06-002: changed cells []
+PASS DEL-09-06 DEP-09-06-003: changed cells ['EvidenceQuote', 'LastSeen', 'Notes']
+PASS DEL-09-06 DEP-09-06-004: changed cells []
+PASS DEL-09-06 DEP-09-06-005: changed cells []
+PASS DEL-09-06: 0 appended ANCHOR row(s)
+PASS DEL-09-06: pre rows keep their order and bytes (append-only)
+PASS DEL-10-03: every pre row survives
+PASS DEL-10-03 DEP-10-03-001: changed cells []
+PASS DEL-10-03 DEP-10-03-002: changed cells []
+PASS DEL-10-03 DEP-10-03-003: changed cells ['EvidenceQuote', 'LastSeen', 'Notes']
+PASS DEL-10-03 DEP-10-03-004: changed cells []
+PASS DEL-10-03: 0 appended ANCHOR row(s)
+PASS DEL-10-03: pre rows keep their order and bytes (append-only)
+PASS DEL-02-01 mirror: pre lines preserved in order (insertion only)
+PASS DEL-02-02 mirror: pre lines preserved in order (insertion only)
+PASS DEL-02-03 mirror: pre lines preserved in order (insertion only)
+PASS DEL-02-04 mirror: pre lines preserved in order (insertion only)
+PASS DEL-02-05 mirror: pre lines preserved in order (insertion only)
+PASS DEL-02-06 mirror: pre lines preserved in order (insertion only)
+PASS DEL-02-08 mirror: pre lines preserved in order (insertion only)
+PASS DEL-02-09 mirror: pre lines preserved in order (insertion only)
+PASS DEL-03-04 mirror: pre lines preserved in order (insertion only)
+PASS DEL-04-01 mirror: pre lines preserved in order (insertion only)
+PASS DEL-04-03 mirror: pre lines preserved in order (insertion only)
+PASS DEL-04-05 mirror: pre lines preserved in order (insertion only)
+PASS DEL-08-01 mirror: pre lines preserved in order (insertion only)
+PASS DEL-08-02 mirror: pre lines preserved in order (insertion only)
+PASS DEL-08-03 mirror: pre lines preserved in order (insertion only)
+PASS DEL-10-02 mirror: pre lines preserved in order (insertion only)
+PASS mirror invariant: every ACTIVE EXECUTION edge has one source-table row and one target bullet (missing [])
+PASS quote currency: 127/127 ACTIVE EXECUTION quotes verbatim
+INFO counts: registers 68; rows 285; ANCHOR 146; EXECUTION 139; ACTIVE EXECUTION 127
+PASS anchor coverage: every IN scope item traced by each deliverable it names (gaps [])
+PASS COV-080: SOW-097..100 traced
+PASS DEL-08-06 _CONTEXT DeliverableID = register
+PASS DEL-08-06 _CONTEXT Canonical name = register
+PASS DEL-08-06 _CONTEXT Type = register
+PASS DEL-08-06 _CONTEXT ContextEnvelope = register
+PASS DEL-08-06 _CONTEXT PhaseHint = register
+PASS DEL-08-06 _CONTEXT CoversScopeItems = register
+PASS DEL-08-06 _CONTEXT SupportsObjectives = register
+PASS DEL-08-06 _CONTEXT description/artifacts/notes = register
+PASS DEL-08-06 _STATUS.md is the OPEN form
+PASS DEL-08-06 _SEMANTIC.md empty
+PASS DEL-08-06 _DEPENDENCIES.md has the SPEC §5.2 headings in order
+PASS DEL-08-06 _REFERENCES names revision 1.6, PRD v2.4 and its coverage
+PASS DEL-10-13 _CONTEXT DeliverableID = register
+PASS DEL-10-13 _CONTEXT Canonical name = register
+PASS DEL-10-13 _CONTEXT Type = register
+PASS DEL-10-13 _CONTEXT ContextEnvelope = register
+PASS DEL-10-13 _CONTEXT PhaseHint = register
+PASS DEL-10-13 _CONTEXT CoversScopeItems = register
+PASS DEL-10-13 _CONTEXT SupportsObjectives = register
+PASS DEL-10-13 _CONTEXT description/artifacts/notes = register
+PASS DEL-10-13 _STATUS.md is the OPEN form
+PASS DEL-10-13 _SEMANTIC.md empty
+PASS DEL-10-13 _DEPENDENCIES.md has the SPEC §5.2 headings in order
+PASS DEL-10-13 _REFERENCES names revision 1.6, PRD v2.4 and its coverage
+RESULT PASS

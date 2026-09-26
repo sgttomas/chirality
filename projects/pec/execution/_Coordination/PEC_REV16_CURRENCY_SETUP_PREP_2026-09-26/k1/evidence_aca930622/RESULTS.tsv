@@ -1,0 +1,35 @@
+genK1	0	K1 act
+genK1b	0	K1 act, second fresh clone
+det_report	0	reports identical (0 = identical)
+det_tree	0	trees identical (0 = identical)
+rerun	1	rerun on applied tree (expect 1)
+wrongdate	1	act date != local date (expect 1)
+checkonly	0	check-only
+checkonly_untouched	0	check-only tree equals base (0 = equal)
+genR	0	K1 at another date (slot rule)
+slot_diff	1	D vs D+1 diff written (1 = differences)
+slot_rule	0	every difference is the date slot (0 = yes)
+K1_strict	1	strict registers (exit 1 = warnings only)
+base_strict	1	strict registers on base
+K1_closure	0	closure
+base_closure	0	closure on base
+schema	0	projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/Dependencies.csv
+schema	0	projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/Dependencies.csv
+schema	0	projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/Dependencies.csv
+schema	0	projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv
+schema	0	projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv
+schema	0	projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/Dependencies.csv
+verify_K1	0	independent postimage checks
+verify_sanity	1	verify base against itself (expect 1)
+diff	1	K1 vs base diff written (1 = differences)
+pre_receipts	0	receipts validator, pre
+pre_harness	0	harness self-check, pre
+genG	0	K1 act in git clone
+genG_same	0	git-clone report equals protoK1 report (0 = equal)
+containment	0	changed paths == write set (0 = equal)
+diffcheck	0	git diff --check (.gitattributes in force)
+post_receipts	0	receipts validator, post
+post_harness	0	harness self-check, post
+receipts_same	0	receipts output equal (0 = equal)
+harness_same	0	harness output equal (0 = equal)
+entrypoints	0	instruction entrypoints
