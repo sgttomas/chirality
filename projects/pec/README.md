@@ -123,7 +123,7 @@ on 2026-09-25 under `D-PEC-95`.
 | `docs/.archive/` | Retired v0.4/v1.0 product docs (PRD v1.0, SPEC, TRACEABILITY, PILOT, ADRs, prototype README/STATUS) |
 | `execution/_Coordination/` | Decision packets, register, coordination records |
 | `execution/_Decomposition/` | Accepted software decomposition revision 1.6 (`current_basis`, SCA-006) and authoritative companion registers |
-| `execution/_ScopeChange/` | Immutable SCA-001 to SCA-005 amendment evidence, the SCA-005 checkpoint-group snapshots under `checkpoint_snapshots/`, and the active scope-change pointer (SCA-005) |
+| `execution/_ScopeChange/` | Immutable SCA-001 to SCA-006 amendment evidence, the SCA-005 and SCA-006 checkpoint-group snapshots under `checkpoint_snapshots/`, and the active scope-change pointer (SCA-006) |
 | `loop/` | Loop instruction surface (`LOOP_INIT.md`, shared method under `D-PEC-94`) and the historical receipts ledger (`LOOP_RECEIPTS.md`, closed at Receipt 197) |
 | `v2/` | P1 source from owner-ruled slices (`D-PEC-74`, `D-PEC-75`, `D-PEC-77`, `D-PEC-84`, `D-PEC-85`) |
 | `core/`, `server/`, `web/`, `agent-sidecar/`, `tools/`, `fixtures/` | **Frozen reference corpus** — the v0.4-baseline prototype; read/cite only, quarried by citation in build briefs (PRD §13); run instructions preserved at `docs/.archive/README_v0.4_prototype.md` |

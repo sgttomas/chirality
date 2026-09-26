@@ -13,9 +13,10 @@
   PROJECT_SETUP with `FULL_GRAPH` already selected
   (`execution/_Decomposition/_LATEST.md`, `execution/_ScopeChange/_LATEST.md`).
 - Accepted upstream basis: `execution/_Decomposition/SOFTWARE_DECOMP.md`
-  revision **1.5** (`current_basis`, SCA-005 successor, accepted
-  2026-09-25 at SCA-005 checkpoint 3 after the checkpoint-2 ruling
-  `D-PEC-92`; evidence `execution/_ScopeChange/SCA-005_2026-09-23_2139/`).
+  revision **1.6** (`current_basis`, SCA-006 successor, accepted
+  2026-09-26 at SCA-006 checkpoint 3 after the checkpoint-2 ruling
+  `D-PEC-97`; evidence `execution/_ScopeChange/SCA-006_2026-09-25_1912/`;
+  revision 1.5 was accepted 2026-09-25 through SCA-005 under `D-PEC-92`).
   Historical: revision 1.1 was the basis at this gate's ruling, revision 1.2
   was accepted through SCA-002, revision 1.3 through SCA-003, and revision
   1.4 through SCA-004 (2026-08-03, D-PEC-78 O-A); read
@@ -208,6 +209,7 @@
   is now **frozen gate provenance**: the deliverable-local
   `Dependencies.csv` registers are the sole live dependency basis. Both
   are derivative packages citing the accepted decomposition snapshot
-  (revision 1.1 at seeding; revision 1.5 is `current_basis` since
-  SCA-005, whose dependency rerun under `D-PEC-93` retired, refreshed and
-  added register rows) and are never a substitute for decomposition truth.
+  (revision 1.1 at seeding; revision 1.6 is `current_basis` since
+  SCA-006; SCA-005's dependency rerun under `D-PEC-93` retired, refreshed and
+  added register rows, and SCA-006's dependency work (Lane B2, B3) is
+  separately gated) and are never a substitute for decomposition truth.

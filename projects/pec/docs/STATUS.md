@@ -166,7 +166,8 @@ resolution note's Section A options (interpretation in the group-1
 recommended feed model O-B2 with presence option P-β; both were selected at
 checkpoint 1. The owner accepted checkpoint 2 (exact amendment and propagation
 plan) and checkpoint 3 (audited poststate) on 2026-09-25; SCA-005 is closed for
-scope change only and `_ScopeChange/_LATEST.md` names it. The `D-PEC-79` hunks
+scope change only. `_ScopeChange/_LATEST.md` named it until SCA-006's
+checkpoint-3 acceptance (2026-09-26) and now names SCA-006. The `D-PEC-79` hunks
 are applied as part of PRD v2.3.
 
 On 2026-09-24 HELP_HUMAN answered the checkpoint-1 question set from the accepted sources in `execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/CHECKPOINT1_RESOLUTION_NOTE.md`: every Q1–Q10 and manager item resolves to one option by citation, leaving the owner CP1-A/CP1-B acceptance (given 2026-09-24) and the TM-PEC-023 row selections (nine rows reduced to seven live choices, still the owner's at checkpoint 2). The DEL-01-03 obligations were triaged the same way (15 settled, 13 folded into eight repairs proposed as D-PEC-87, 4 reduced to two lifecycle choices).
@@ -221,12 +222,15 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
   (`D-PEC-93` A, merged 2026-09-25 as PR #914: registers 0 errors / 0
   warnings, 111 dependency edges with no cycles; re-audit
   `execution/_Evaluation/DecompCoverage/COV_SCA005_POSTSETUP_2026-09-25_1606/`
-  0 blockers, now named by `_Evaluation/DecompCoverage/_LATEST.md`).
+  0 blockers; `_Evaluation/DecompCoverage/_LATEST.md` named it until the
+  SCA-006 checkpoint-3 acceptance moved it to
+  `COV_SCA006_POSTCHANGE_2026-09-26_0051`).
   Done under `D-PEC-95` P + R (act merged 2026-09-25 as PR #924,
   `abfd0897b`; run root
   `execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/`):
   - `_Decomposition/_LATEST.md`, `_ScopeChange/_LATEST.md` and
-    `_COORDINATION.md` describe the post-setup state;
+    `_COORDINATION.md` were brought to the post-setup state (since
+    superseded: both pointers name revision 1.6 and SCA-006);
   - all 66 contexts and 66 references name revision 1.5. Since the SCA-006
     application, three contexts (DEL-04-03, DEL-08-01, DEL-08-03) also carry
     the revision-1.6 successor clause;
