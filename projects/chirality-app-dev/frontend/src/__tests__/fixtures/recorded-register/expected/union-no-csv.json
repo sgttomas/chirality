@@ -1,0 +1,177 @@
+{
+  "currency": null,
+  "defaultMaturity": {
+    "source": "COORDINATION_RECORD",
+    "value": "INITIALIZED"
+  },
+  "queue": {
+    "acceptedDagVersion": null,
+    "blockedCount": 1,
+    "blockerSource": "RECORDED_REGISTER",
+    "dagPendingCount": 0,
+    "declaredDisagreements": [],
+    "declaredOnlyCount": 2,
+    "gatingArcCount": 2,
+    "heldArcCount": 0,
+    "notTrackedCount": 0,
+    "queueRows": [
+      {
+        "ActiveUpstreamCount": "2",
+        "BlockerState": "BLOCKED",
+        "BlockingEdgeIDs": "DECLARED-DEL-01-01-001",
+        "BlockingUpstreamCount": "1",
+        "BlockingUpstreamDeliverables": "DEL-01-02",
+        "DagPendingReasons": "",
+        "DeliverableID": "DEL-01-01",
+        "DeliverableName": "Alpha",
+        "EvidenceCommit": "",
+        "HeldEdgeIDs": "",
+        "ImplementationEvidenceState": "",
+        "LifecycleState": "IN_PROGRESS",
+        "PackageID": "PKG-01",
+        "SatisfiedUpstreamCount": "1",
+        "TrackingMode": "DECLARED"
+      },
+      {
+        "ActiveUpstreamCount": "0",
+        "BlockerState": "UNBLOCKED",
+        "BlockingEdgeIDs": "",
+        "BlockingUpstreamCount": "0",
+        "BlockingUpstreamDeliverables": "",
+        "DagPendingReasons": "",
+        "DeliverableID": "DEL-01-02",
+        "DeliverableName": "Beta",
+        "EvidenceCommit": "",
+        "HeldEdgeIDs": "",
+        "ImplementationEvidenceState": "",
+        "LifecycleState": "INITIALIZED",
+        "PackageID": "PKG-01",
+        "SatisfiedUpstreamCount": "0",
+        "TrackingMode": "DECLARED"
+      },
+      {
+        "ActiveUpstreamCount": "0",
+        "BlockerState": "UNBLOCKED",
+        "BlockingEdgeIDs": "",
+        "BlockingUpstreamCount": "0",
+        "BlockingUpstreamDeliverables": "",
+        "DagPendingReasons": "",
+        "DeliverableID": "DEL-01-03",
+        "DeliverableName": "Gamma",
+        "EvidenceCommit": "",
+        "HeldEdgeIDs": "",
+        "ImplementationEvidenceState": "",
+        "LifecycleState": "CHECKING",
+        "PackageID": "PKG-01",
+        "SatisfiedUpstreamCount": "0",
+        "TrackingMode": "UNKNOWN"
+      }
+    ],
+    "unblockedCount": 2
+  },
+  "registers": {
+    "DEL-01-01": {
+      "csvPresent": false,
+      "declarationsPresent": true,
+      "declaredOnly": [
+        {
+          "AnchorType": "NOT_APPLICABLE",
+          "Confidence": "HIGH",
+          "DependencyClass": "EXECUTION",
+          "DependencyID": "DECLARED-DEL-01-01-001",
+          "DependencyType": "PREREQUISITE",
+          "Direction": "UPSTREAM",
+          "EvidenceFile": "_DEPENDENCIES.md",
+          "EvidenceQuote": "DEL-01-02 Beta — Reason: needs the schema",
+          "Explicitness": "EXPLICIT",
+          "FromDeliverableID": "DEL-01-01",
+          "Notes": "declared_only=_DEPENDENCIES.md; type_from=section_heading",
+          "Origin": "DECLARED",
+          "RegisterSchemaVersion": "v3.1",
+          "RequiredMaturity": "IN_PROGRESS",
+          "SatisfactionStatus": "TBD",
+          "SourceRef": "_DEPENDENCIES.md ## Declared Upstream (I need these before I can proceed)",
+          "Statement": "needs the schema",
+          "Status": "ACTIVE",
+          "TargetDeliverableID": "DEL-01-02",
+          "TargetLocation": "../DEL-01-02_Beta",
+          "TargetName": "Beta",
+          "TargetType": "DELIVERABLE"
+        },
+        {
+          "AnchorType": "NOT_APPLICABLE",
+          "Confidence": "HIGH",
+          "DependencyClass": "EXECUTION",
+          "DependencyID": "DECLARED-DEL-01-01-002",
+          "DependencyType": "PREREQUISITE",
+          "Direction": "UPSTREAM",
+          "EvidenceFile": "_DEPENDENCIES.md",
+          "EvidenceQuote": "DEL-01-03 Gamma — Reason: reads the configuration",
+          "Explicitness": "EXPLICIT",
+          "FromDeliverableID": "DEL-01-01",
+          "Notes": "declared_only=_DEPENDENCIES.md; type_from=section_heading",
+          "Origin": "DECLARED",
+          "RegisterSchemaVersion": "v3.1",
+          "RequiredMaturity": "CHECKING",
+          "SatisfactionStatus": "TBD",
+          "SourceRef": "_DEPENDENCIES.md ## Declared Upstream (I need these before I can proceed)",
+          "Statement": "reads the configuration",
+          "Status": "ACTIVE",
+          "TargetDeliverableID": "DEL-01-03",
+          "TargetLocation": "../../2_Checking/DEL-01-03_Gamma",
+          "TargetName": "Gamma",
+          "TargetType": "DELIVERABLE"
+        }
+      ],
+      "deliverableId": "DEL-01-01",
+      "disagreements": [],
+      "entries": [
+        {
+          "direction": "UPSTREAM",
+          "heading": "## Declared Upstream (I need these before I can proceed)",
+          "location": "../DEL-01-02_Beta",
+          "raw": "DEL-01-02 Beta — Reason: needs the schema",
+          "reason": "needs the schema",
+          "requiredMaturity": "IN_PROGRESS",
+          "targetId": "DEL-01-02",
+          "targetName": "Beta"
+        },
+        {
+          "direction": "UPSTREAM",
+          "heading": "## Declared Upstream (I need these before I can proceed)",
+          "location": "../../2_Checking/DEL-01-03_Gamma",
+          "raw": "DEL-01-03 Gamma — Reason: reads the configuration",
+          "reason": "reads the configuration",
+          "requiredMaturity": "CHECKING",
+          "targetId": "DEL-01-03",
+          "targetName": "Gamma"
+        }
+      ],
+      "mode": "DECLARED",
+      "rows": [],
+      "unread": []
+    },
+    "DEL-01-02": {
+      "csvPresent": false,
+      "declarationsPresent": true,
+      "declaredOnly": [],
+      "deliverableId": "DEL-01-02",
+      "disagreements": [],
+      "entries": [],
+      "mode": "DECLARED",
+      "rows": [],
+      "unread": []
+    },
+    "DEL-01-03": {
+      "csvPresent": false,
+      "declarationsPresent": false,
+      "declaredOnly": [],
+      "deliverableId": "DEL-01-03",
+      "disagreements": [],
+      "entries": [],
+      "mode": "UNKNOWN",
+      "rows": [],
+      "unread": []
+    }
+  }
+}

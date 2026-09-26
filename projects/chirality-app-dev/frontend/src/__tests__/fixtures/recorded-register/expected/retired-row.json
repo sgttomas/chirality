@@ -1,0 +1,167 @@
+{
+  "currency": null,
+  "defaultMaturity": {
+    "source": "COORDINATION_RECORD",
+    "value": "INITIALIZED"
+  },
+  "queue": {
+    "acceptedDagVersion": null,
+    "blockedCount": 1,
+    "blockerSource": "RECORDED_REGISTER",
+    "dagPendingCount": 0,
+    "declaredDisagreements": [
+      {
+        "Csv": "RETIRED",
+        "Declared": "ACTIVE",
+        "DeliverableID": "DEL-03-01",
+        "DependencyID": "DEP-03-01-001",
+        "Direction": "UPSTREAM",
+        "Field": "Status",
+        "TargetDeliverableID": "DEL-03-02"
+      }
+    ],
+    "declaredOnlyCount": 1,
+    "gatingArcCount": 1,
+    "heldArcCount": 0,
+    "notTrackedCount": 0,
+    "queueRows": [
+      {
+        "ActiveUpstreamCount": "1",
+        "BlockerState": "BLOCKED",
+        "BlockingEdgeIDs": "DECLARED-DEL-03-01-001",
+        "BlockingUpstreamCount": "1",
+        "BlockingUpstreamDeliverables": "DEL-03-02",
+        "DagPendingReasons": "",
+        "DeliverableID": "DEL-03-01",
+        "DeliverableName": "Reader",
+        "EvidenceCommit": "",
+        "HeldEdgeIDs": "",
+        "ImplementationEvidenceState": "",
+        "LifecycleState": "IN_PROGRESS",
+        "PackageID": "PKG-03",
+        "SatisfiedUpstreamCount": "0",
+        "TrackingMode": "DECLARED"
+      },
+      {
+        "ActiveUpstreamCount": "0",
+        "BlockerState": "UNBLOCKED",
+        "BlockingEdgeIDs": "",
+        "BlockingUpstreamCount": "0",
+        "BlockingUpstreamDeliverables": "",
+        "DagPendingReasons": "",
+        "DeliverableID": "DEL-03-02",
+        "DeliverableName": "Writer",
+        "EvidenceCommit": "",
+        "HeldEdgeIDs": "",
+        "ImplementationEvidenceState": "",
+        "LifecycleState": "OPEN",
+        "PackageID": "PKG-03",
+        "SatisfiedUpstreamCount": "0",
+        "TrackingMode": "UNKNOWN"
+      }
+    ],
+    "unblockedCount": 1
+  },
+  "registers": {
+    "DEL-03-01": {
+      "csvPresent": true,
+      "declarationsPresent": true,
+      "declaredOnly": [
+        {
+          "AnchorType": "NOT_APPLICABLE",
+          "Confidence": "HIGH",
+          "DependencyClass": "EXECUTION",
+          "DependencyID": "DECLARED-DEL-03-01-001",
+          "DependencyType": "PREREQUISITE",
+          "Direction": "UPSTREAM",
+          "EvidenceFile": "_DEPENDENCIES.md",
+          "EvidenceQuote": "DEL-03-02 Writer — Reason: output format restored",
+          "Explicitness": "EXPLICIT",
+          "FromDeliverableID": "DEL-03-01",
+          "Notes": "declared_only=_DEPENDENCIES.md; type_from=section_heading",
+          "Origin": "DECLARED",
+          "RegisterSchemaVersion": "v3.1",
+          "RequiredMaturity": "TBD",
+          "SatisfactionStatus": "TBD",
+          "SourceRef": "_DEPENDENCIES.md ## Declared Upstream (I need these before I can proceed)",
+          "Statement": "output format restored",
+          "Status": "ACTIVE",
+          "TargetDeliverableID": "DEL-03-02",
+          "TargetLocation": "../DEL-03-02_Writer",
+          "TargetName": "Writer",
+          "TargetType": "DELIVERABLE"
+        }
+      ],
+      "deliverableId": "DEL-03-01",
+      "disagreements": [
+        {
+          "Csv": "RETIRED",
+          "Declared": "ACTIVE",
+          "DeliverableID": "DEL-03-01",
+          "DependencyID": "DEP-03-01-001",
+          "Direction": "UPSTREAM",
+          "Field": "Status",
+          "TargetDeliverableID": "DEL-03-02"
+        }
+      ],
+      "entries": [
+        {
+          "direction": "UPSTREAM",
+          "heading": "## Declared Upstream (I need these before I can proceed)",
+          "location": "../DEL-03-02_Writer",
+          "raw": "DEL-03-02 Writer — Reason: output format restored",
+          "reason": "output format restored",
+          "requiredMaturity": "TBD",
+          "targetId": "DEL-03-02",
+          "targetName": "Writer"
+        }
+      ],
+      "mode": "DECLARED",
+      "rows": [
+        {
+          "AnchorType": "NOT_APPLICABLE",
+          "Confidence": "HIGH",
+          "DependencyClass": "EXECUTION",
+          "DependencyID": "DEP-03-01-001",
+          "DependencyType": "PREREQUISITE",
+          "Direction": "UPSTREAM",
+          "EvidenceFile": "_CONTEXT.md",
+          "EvidenceQuote": "fixture",
+          "Explicitness": "EXPLICIT",
+          "FirstSeen": "2026-09-26",
+          "FromDeliverableID": "DEL-03-01",
+          "FromDeliverableName": "",
+          "FromPackageID": "PKG-03",
+          "LastSeen": "2026-09-26",
+          "Notes": "",
+          "Origin": "DECLARED",
+          "ProposedMaturity": "",
+          "RegisterSchemaVersion": "v3.1",
+          "RequiredMaturity": "SEMANTIC_READY",
+          "SatisfactionStatus": "TBD",
+          "SourceRef": "_CONTEXT.md",
+          "Statement": "DEL-03-01 upstream DEL-03-02",
+          "Status": "RETIRED",
+          "TargetDeliverableID": "DEL-03-02",
+          "TargetLocation": "",
+          "TargetName": "",
+          "TargetPackageID": "PKG-03",
+          "TargetRefID": "",
+          "TargetType": "DELIVERABLE"
+        }
+      ],
+      "unread": []
+    },
+    "DEL-03-02": {
+      "csvPresent": false,
+      "declarationsPresent": false,
+      "declaredOnly": [],
+      "deliverableId": "DEL-03-02",
+      "disagreements": [],
+      "entries": [],
+      "mode": "UNKNOWN",
+      "rows": [],
+      "unread": []
+    }
+  }
+}
