@@ -1,0 +1,54 @@
+diff -ru /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoA/projects/pec/execution/_Coordination/_COORDINATION.md /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoP/projects/pec/execution/_Coordination/_COORDINATION.md
+--- /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoA/projects/pec/execution/_Coordination/_COORDINATION.md	2026-09-25 19:30:44
++++ /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoP/projects/pec/execution/_Coordination/_COORDINATION.md	2026-09-25 19:30:44
+@@ -184,8 +184,12 @@
+     `execution/_Evaluation/DecompCoverage/COV_SCA005_POSTSETUP_2026-09-25_1606/`.
+     `D-PEC-95` (2026-09-25) re-pinned the remaining 42 contexts and 64 reference
+     packets to revision 1.5 and refreshed 19 stale dependency evidence
+-    quotes. The SCA-005 snapshot's `Handoff_State.md` and `RUN_SUMMARY.md` carry
+-    dated post-closure notes; their earlier sections are unchanged.
++    quotes. The SCA-005 snapshot's `Handoff_State.md` (SHA-256
++    `a86ae910d0c9ae7bf20a7ebb47de3edb345d1a6067cb1988fc04d5c1d213328a`) and
++    `RUN_SUMMARY.md` (SHA-256
++    `e9a0224ec0152bba75c78b84e2c9abe7a5996014eec602b46de4fe3153c1e518`)
++    stay byte-identical; for current state they are superseded by this
++    item and the two `_LATEST.md` pointers.
+     This item supersedes the present-tense statements of items 12 and 13
+     (revision 1.4 as `current_basis`, TM-PEC-023 held for a mapping
+     session, and the two-category derivative state). Remaining
+diff -ru /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoA/projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Handoff_State.md /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoP/projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Handoff_State.md
+--- /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoA/projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Handoff_State.md	2026-09-25 19:30:44
++++ /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoP/projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Handoff_State.md	2026-09-25 19:03:26
+@@ -289,5 +289,3 @@
+ Repair 2026-09-25 (WORKING_ITEMS B3, after verifier verdict 01, PASS WITH MINOR): `RUN_SUMMARY.md` now records the actual `git diff --check` result (CRLF in the accumulator output only), states where the B3 brief is held, places the foreign notices in checkpoint-3 preparation as group-2 `DECISION.md` §Notices says, describes the in-place edits, and closes out audit COV-075 and the deferred C4 isolated-node sub-expectation; this file's items above are aligned. Hashes: `RUN_SUMMARY.md` 89c1ed8c1660e5d0b7f962190e94a1660927146b8c7fbcf24c5492339144d984 → e3480b782b9e219af1a0dcb569829df8d6014f617ffe826f2afc33529107196a; `Decision_Log.md` c285e66299b6a3290685764ce9585bdd19e44707b5037afe7842b4c9c1fa505f → 85676c5326da5446e62698c70760a2c55eea011bc4e2810727e3509f393f4d7b (only the two `RUN_SUMMARY.md` hash citations changed). No Lane A byte changed.
+ 
+ Amendment 2026-09-25 (checkpoint-3 acceptance, HELP_HUMAN): the owner accepted the audited poststate and chose closure verdict (a) (verbatim in `Decision_Log.md` §"SCA005-CP3 — owner acceptance of record"; record `../checkpoint_snapshots/SCA-005_GROUP-3_2026-09-25/`). A6 performed the same day: the live `_Decomposition/SOFTWARE_DECOMP.md` now equals the accepted candidate `dc2b84791454ac888e692bfa507221f5d4a588c63bb8ab5005cc00343b119660` (`status: current_basis`; every date slot at 2026-09-25, the acceptance date); `_Decomposition/_LATEST.md` names revision 1.5 and `_ScopeChange/_LATEST.md` names SCA-005. `_Evaluation/DecompCoverage/_LATEST.md` is unchanged (not opened by D-PEC-92). The three informational notices this file's checkpoint-3 section lists as still to be written were written in PR #911 (commit `653e645a6`). Final state fields: `DecompositionTruthState` `COMPLETE`; `DerivativePackageState` `INCOMPLETE`; `ContentRemediationState` `NOT_REQUIRED`; `DownstreamRerunState` `FROZEN`; `MetadataAlignmentState` `IN_PROGRESS`; `AuditState` `BLOCKED` by the count rule (adjusted reading WARN); `ReadyForNextPhase` `NO`; closure verdict `CLOSED_FOR_SCOPE_CHANGE_ONLY`. `Decision_Log.md` now hashes `09f99fb175c0b81c23b4f680babd04272a8e1e4126887f30582d7a072bb95a6e` and `RUN_SUMMARY.md` (with its appended outcome section) `e9a0224ec0152bba75c78b84e2c9abe7a5996014eec602b46de4fe3153c1e518`; the hash table above is updated in place. Moving `_Evaluation/DecompCoverage/_LATEST.md` to the SCA-005 audit needs its own grant and is carried as open work alongside the re-audit after A4 and B3.
+-
+-Amendment 2026-09-25 (post-closure outcome note, `D-PEC-95`; append-only): this note records later downstream acts and rewrites nothing above; the checkpoint-3 state fields above remain the record of that acceptance. After checkpoint 3, PROJECT_SETUP ran A4 with B3 under `D-PEC-93` (PR #914, merge `961ee1054210fbae7ef5b403547e7a397fb18c95`; closeout `_Coordination/PROJECT_SETUP_SCA005_A4_B3_2026-09-25/HANDOFF_STATE.md`): the DEL-02-08 and DEL-02-09 folders exist at `OPEN`; 20 dependency rows were retired, 1 refreshed and 8 added; the strict register validator reads 0 errors / 0 warnings; the dependency graph has 111 execution edges and 0 SCCs. The re-audit `COV_SCA005_POSTSETUP_2026-09-25_1606` reads `WARNINGS` (0 blockers / 3 warnings / 70 info), and `_Evaluation/DecompCoverage/_LATEST.md` names it. On 2026-09-25, under `D-PEC-95`, B1 re-pinned the remaining 42 `_CONTEXT.md` and 64 `_REFERENCES.md` to revision 1.5, and 19 stale `EvidenceQuote` cells in 10 `Dependencies.csv` registers were refreshed (that re-audit's COV-072). `projects/pec/AGENTS.md` names PRD v2.3 and the D-GOV-43 Runtime boundary since `D-PEC-94` (PR #917). State fields now: `DecompositionTruthState` `COMPLETE`; `DerivativePackageState` `INCOMPLETE`; `ContentRemediationState` `NOT_REQUIRED`; `DownstreamRerunState` `IN_PROGRESS`; `MetadataAlignmentState` `COMPLETE`; `AuditState` `WARNINGS`; `ReadyForNextPhase` `NO`; closure verdict `CLOSED_FOR_SCOPE_CHANGE_ONLY` (unchanged). Open, each separately gated: B4–B7 and the D-PEC-90 reliance amendment; TM-PEC-023's state is in the Task Management register. `RUN_SUMMARY.md` gains a dated section with the same facts and now hashes `bfc151a5c97e94eefdc344877a275ba7a6b6dd39a7fd6cb43cc49d3cd36e3172`.
+diff -ru /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoA/projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/RUN_SUMMARY.md /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoP/projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/RUN_SUMMARY.md
+--- /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoA/projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/RUN_SUMMARY.md	2026-09-25 19:30:44
++++ /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoP/projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/RUN_SUMMARY.md	2026-09-25 19:03:26
+@@ -338,23 +338,3 @@
+ ## Checkpoint-3 outcome (HELP_HUMAN, 2026-09-25)
+ 
+ The owner accepted the audited poststate and chose closure verdict (a): "CP3: accept; Q1 a" (record `../checkpoint_snapshots/SCA-005_GROUP-3_2026-09-25/`). A6 is performed; closure verdict `CLOSED_FOR_SCOPE_CHANGE_ONLY`. The rows above that describe the pre-acceptance state are superseded by this section; the three informational notices were written in PR #911.
+-
+-## Post-closure outcome (2026-09-25, `D-PEC-95`; append-only)
+-
+-This section adds later facts. Nothing above is rewritten; the sections above
+-remain the record of checkpoint 3. Audit IDs below are those of
+-`COV_SCA005_POSTSETUP_2026-09-25_1606`, not of the checkpoint-3 audit.
+-
+-| Item | State on 2026-09-25 | Record |
+-|---|---|---|
+-| A4 — DEL-02-08/09 folders | DONE — both `OPEN` | `D-PEC-93`, PR #914; `_Coordination/PROJECT_SETUP_SCA005_A4_B3_2026-09-25/HANDOFF_STATE.md` |
+-| B3 — dependency rerun | DONE — 20 rows retired, 1 refreshed, 8 added; 111 execution edges, 0 SCCs; strict validator 0 / 0 | same |
+-| Re-audit after A4 and B3 | DONE — `WARNINGS`, 0 blockers / 3 warnings / 70 info; `_Evaluation/DecompCoverage/_LATEST.md` names it | same |
+-| B1 — re-pin 42 `_CONTEXT.md` and 64 `_REFERENCES.md` | DONE | `D-PEC-95` |
+-| Evidence-quote currency, 19 rows in 10 registers (COV-072) | DONE — every ACTIVE execution quote is verbatim in its cited file | `D-PEC-95` |
+-| B4–B7 | OPEN — each separately gated | undertaking `HELP-HUMAN-PEC-20260925-POST-SCA005` work graph |
+-| B8 — D-PEC-90 reliance amendment | OPEN — next PEC scope change | same |
+-| B8 — `projects/pec/AGENTS.md` L28/L170 and Shared Runtime Boundary | DONE — PRD v2.3 and the D-GOV-43 Runtime boundary | `D-PEC-94`, PR #917 |
+-| B8 — TM-PEC-023 | see the Task Management register | task-management |
+-
+-State fields now: `DecompositionTruthState` `COMPLETE`; `DerivativePackageState` `INCOMPLETE`; `ContentRemediationState` `NOT_REQUIRED`; `DownstreamRerunState` `IN_PROGRESS`; `MetadataAlignmentState` `COMPLETE`; `AuditState` `WARNINGS`; `ReadyForNextPhase` `NO`; closure verdict `CLOSED_FOR_SCOPE_CHANGE_ONLY` (unchanged).

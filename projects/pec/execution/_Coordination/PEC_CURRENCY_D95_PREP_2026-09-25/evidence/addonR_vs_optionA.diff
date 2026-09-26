@@ -1,0 +1,48 @@
+diff -ru /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoA/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/_REFERENCES.md /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoAR/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/_REFERENCES.md
+--- /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoA/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/_REFERENCES.md	2026-09-25 19:30:44
++++ /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoAR/projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/_REFERENCES.md	2026-09-25 19:30:44
+@@ -2,7 +2,7 @@
+ 
+ - `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+-- `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-029)
++- `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers none — retired under SCA-005, formerly SOW-029)
+ - `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-06_Presence_Git_Observation/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+diff -ru /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoA/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_REFERENCES.md /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoAR/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_REFERENCES.md
+--- /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoA/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_REFERENCES.md	2026-09-25 19:30:44
++++ /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoAR/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_REFERENCES.md	2026-09-25 19:30:44
+@@ -2,7 +2,7 @@
+ 
+ - `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+-- `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-035)
++- `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers none — retired under SCA-005, formerly SOW-035)
+ - `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-07_Event_Ingest_Bridges/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+diff -ru /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoA/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_REFERENCES.md /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoAR/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_REFERENCES.md
+--- /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoA/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_REFERENCES.md	2026-09-25 19:30:44
++++ /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoAR/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_REFERENCES.md	2026-09-25 19:30:44
+@@ -2,7 +2,7 @@
+ 
+ - `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+-- `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-037)
++- `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers none — retired under SCA-005, formerly SOW-037)
+ - `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-07_Event_Ingest_Bridges/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)
+diff -ru /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoA/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_REFERENCES.md /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoAR/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_REFERENCES.md
+--- /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoA/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_REFERENCES.md	2026-09-25 19:30:44
++++ /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.ubyCyPjneu/protoAR/projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_REFERENCES.md	2026-09-25 19:30:44
+@@ -2,7 +2,7 @@
+ 
+ - `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.5, accepted `current_basis`; SCA-005 successor)
+ - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
+-- `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-087)
++- `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers none — retired under SCA-005, formerly SOW-087)
+ - `docs/PRD.md` v2.3 (accepted source corpus; see SourceRef column of the ledger)
+ - `PKG-07_Event_Ingest_Bridges/0_References/` (package reference staging)
+ - `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` (accepted dependency-DAG gate exhibit, frozen provenance)

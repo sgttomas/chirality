@@ -136,7 +136,8 @@ ordinary Remaining carriers (Receipt 174), with the frozen DEL-01-05 carrier
 not applied. PEC adopted the shared 2026-09-22 development-loop method on
 2026-09-25 under `D-PEC-94`, exercising `D-PEC-86` §3 I-7.
 
-**Scope change SCA-005 (closed for scope change only, 2026-09-25):** opened at Gate 1 on 2026-09-23 under
+**Scope change SCA-005 (closed for scope change only, 2026-09-25):**
+opened at Gate 1 on 2026-09-23 under
 `D-PEC-86` (owner direction of record, §1) to rebaseline PEC's feed model on
 the shared App/Piping development-loop file shapes and the A2 Runtime
 topology. Its checkpoint-group-1 package is
@@ -219,6 +220,9 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
   work graph
   `execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md`. Owners: the SCA-005 `RUN_SUMMARY.md` downstream table and the
   D-PEC-93 run root `HANDOFF_STATE.md`.
+  The records currency, the re-pinning, the 19 quotes and the TM-PEC-023
+  disposition are proposed together as `D-PEC-95`, awaiting the owner's
+  ruling (`execution/_Coordination/_DECISIONS/D-PEC-95_revision_1_5_currency_proposal_2026-09-25.md`).
 - **Other lifecycle and P1 acts:** DEL-01-05 repaired-artifact acceptance,
   DEL-01-06 Gate 5 (HOLD at `INITIALIZED`), DEL-08-02 short of `ISSUED`, and
   every later P1 node each need their own owner-ruled act.
