@@ -142,12 +142,13 @@ The dependencies are acyclic, and the named inputs, not this listing, decide whe
 
 ## Current state and recovery
 
-- **Checked basis:** `origin/main` `aca930622`, after PR #958 (the `D-PEC-98` act), PR #957 (`22502e059`, the `D-PEC-99` act), PR #954 (`189f205ff`) and Root PRs #955, #956 and #959.
+- **Checked basis:** `origin/main` `c46ad2143`, after the `D-PEC-100` ruling (PR #971, `bdae9d66b`), the `D-PEC-101` ruling (PR #969, `f392294b5`), the S2 and K1/K4 preparations (PRs #964, #962) and Root PRs through #975 (including #968, D-GOV-51).
 - **Next work:**
-  - Prepare the S1, S2, S4, D1, K1 and K4 packets; S1, S2 and S4 absorb the `D-PEC-99` Part B items named in their rows. Each fenced packet comes to the owner to rule on.
-  - Carry to a later packet: the owner question on the human-owned `_COORDINATION.md` Notes line that still names revision 1.5 (`returns/REVIEW_PR954_03.md`), and the DEL-02-08/09 contract-wording items below.
-- **Local or unmerged work:** this graph update.
-- **Active operations and ownership:** none running. The R3 (B6), G1 act (G2), S3 drafter, RR1, RR3 and S3A managers have handed back. Their briefs are under `AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/briefs/`; the returns are under that run's `returns/`, except RR1's, which is `AgentRuns/HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT/returns/RR1_REMAINING_RETIREMENT_ACCOUNT.md`. The S3A and RR3 briefs and returns are merged. Scratch helpers named in earlier returns are not in the repository.
+  - Review and merge PR #976 (the `D-PEC-101` act, with the Notes (a) replacement and these records); then receive, review and merge the S2 act (`D-PEC-100`).
+  - Prepare the S1, S4, D1 and K2 packets (K2 after K1 merges); S1 and S4 absorb the `D-PEC-99` Part B items named in their rows and the quotations of old S2 text. Each fenced packet comes to the owner to rule on.
+  - Carry to a later packet: the DEL-02-08/09 contract-wording items below.
+- **Local or unmerged work:** PR #976 (this record); the S2 act, in progress on branch `claude/pec-d100-act`.
+- **Active operations and ownership:** the S2 act manager (brief `briefs/S2A_D100_SOW_ACT.md`, committed with its PR). Handed back: the R3 (B6), G1 act (G2), S3 drafter, RR1, RR3, S3A, S2P, K14P and K14A managers. Their briefs are under `AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/briefs/`; the returns are under that run's `returns/`, except RR1's, which is `AgentRuns/HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT/returns/RR1_REMAINING_RETIREMENT_ACCOUNT.md`. Scratch helpers named in earlier returns are not in the repository.
 - **Graph maintainer:** HELP_HUMAN.
 - **Earlier run:** `HELP-HUMAN-PEC-20260923-SCA005`, under PEC's former loop; its `RUN.md` is history. The owner's CHECKING reservation for DEL-01-03 stands, and nothing here prompts for it.
 
