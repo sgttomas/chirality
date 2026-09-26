@@ -10,6 +10,14 @@ T=$(mktemp -d "${TMPDIR:-/tmp}/s2pchk.XXXXXX")
 PRE=$T/pre; POST=$T/post; mkdir -p "$PRE" "$POST"
 git -C "$REPO" archive "$C" | tar -x -C "$PRE"
 git -C "$REPO" archive "$C" | tar -x -C "$POST"
+# Give each export a Git identity without a second checkout: an empty repository whose
+# object store borrows the source repository's objects (alternates), with HEAD at <commit>.
+# The every-PR tools need a repo root and resolve commits; nothing is written to <repo>.
+OBJ=$(cd "$REPO" && cd "$(git rev-parse --git-common-dir)" && pwd)/objects
+SHA=$(git -C "$REPO" rev-parse "$C^{commit}")
+for d in "$PRE" "$POST"; do
+  git -C "$d" init -q && print -r -- "$OBJ" > "$d/.git/objects/info/alternates" && git -C "$d" update-ref HEAD "$SHA"
+done
 fail=0
 note() { print -r -- "$1" | tee -a "$OUT/SUMMARY.out"; }
 : > "$OUT/SUMMARY.out"
