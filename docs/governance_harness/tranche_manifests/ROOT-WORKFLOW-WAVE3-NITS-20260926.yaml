@@ -4,6 +4,8 @@ title: Deferred workflow-library naming and wording fixes
 date: '2026-09-26'
 basis: 8f9bd314c5f2499e6faf5bf4bdce917927e8185e
 instruction_surface_paths:
+  - tools/coordination/audit_dag.py
+  - tools/validation/validate_decomposition_registers.py
   - tools/REGISTRY.md
   - tools/practitioner_harness/test_write_status_guard.py
   - tools/scaffolding/create_snapshot_folder.sh
