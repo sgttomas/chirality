@@ -472,6 +472,18 @@ def test_package_home_is_exactly_one_known_package(tmp_path: Path) -> None:
     assert ids_for(report, "XRG-015") == ["SOW-003"]
 
 
+def test_unknown_package_check_needs_a_deliverable_package_column(tmp_path: Path) -> None:
+    """XRG-015 is suppressed when Deliverables.csv carries no PackageID column."""
+    execution_root = build_workspace(tmp_path)
+    decomposition = execution_root / "_Decomposition"
+    rows = list(csv.DictReader((decomposition / "Deliverables.csv").open(encoding="utf-8-sig")))
+    columns = [c for c in DELIVERABLE_COLUMNS if c != "PackageID"]
+    write_csv(decomposition / "Deliverables.csv", columns,
+              [{k: v for k, v in row.items() if k != "PackageID"} for row in rows])
+
+    assert "XRG-015" not in codes(vdr.run(execution_root, families=("XRG",)))
+
+
 def test_package_home_checks_skip_a_ledger_without_a_package_column(tmp_path: Path) -> None:
     columns = [c for c in LEDGER_COLUMNS if c != "PackageID"]
     ledger = [

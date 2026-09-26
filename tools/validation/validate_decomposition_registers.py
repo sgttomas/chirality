@@ -642,7 +642,9 @@ def check_cross_register(
                             f"CoversScopeItems does not name {item_id}", row_id=item_id)
                 )
             record_pkg = (record.get("PackageID") or "").strip()
-            if ledger_pkg and record_pkg and ledger_pkg != record_pkg:
+            # With several homes, XRG-014 already reports the item; compare
+            # only a single home so the same defect is not repeated per link.
+            if len(homes) == 1 and record_pkg and ledger_pkg != record_pkg:
                 findings.append(
                     Finding("XRG-004", paths["ledger"],
                             f"{item_id} declares PackageID {ledger_pkg!r} but {deliverable_id} "

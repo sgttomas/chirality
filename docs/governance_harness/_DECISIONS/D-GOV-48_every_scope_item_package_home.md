@@ -136,8 +136,10 @@ edit PEC's registers.
 
 The App, Runtime and Piping loops have no `_Decomposition/ScopeLedger.csv`
 under their execution root, so the XRG family skips them. Piping's register
-ledger (`projects/chirality-piping/docs/_Registers/ScopeLedger.csv`, 79 IN
-items, each with a `PackageID`) already conforms, and Runtime's
+ledger (`projects/chirality-piping/docs/_Registers/ScopeLedger.csv`) has 79
+IN items, all with a `PackageID`; 74 name exactly one Package, and SOW-030,
+SOW-046, SOW-052, SOW-074 and SOW-075 name two, which `XRG-014` would flag.
+Nothing is retrofitted; the Piping loop decides its adoption. Runtime's
 `_Decomposition/RUNTIME_SCOPE_LEDGER.csv` holds one IN item with a `PackageID`.
 
 ## Unchanged
@@ -159,7 +161,11 @@ items, each with a `PackageID`) already conforms, and Runtime's
   `docs/governance_harness/tranche_manifests/ROOT-PACKAGE-HOME-D-GOV-48-20260926.yaml`.
 - `tools/validation/test_validate_decomposition_registers.py` covers the
   conforming case (OUT and TBD items with a Package home), `XRG-011` on an
-  IN item, `XRG-013` on OUT and TBD items, and the retirement of `XRG-012`.
+  IN item, `XRG-013` on OUT and TBD items, `XRG-014` on an item naming two
+  Packages, `XRG-015` on an unknown Package (and its suppression when
+  `Deliverables.csv` has no `PackageID` column), and the retirement of
+  `XRG-012`. `XRG-015` learns Packages only from `Deliverables.csv`, so a
+  Package holding only OUT or TBD items is reported as a warning.
   `tools/validation/test_workflow_catalog.py` checks the every-item text in
   TYPES, the standard and both decomposition packages, that the combined
   review text stands, and that DOMAIN keeps its IN-only Category rule.
