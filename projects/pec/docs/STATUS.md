@@ -61,8 +61,8 @@ deliverables retire, and cmux (SOW-037, DEL-07-04) is added to the deferred,
 out-of-scope items. SOW-033 is mapped to OBJ-003 by amendment 2
 (`checkpoint_snapshots/SCA-005_GROUP-1_AMENDMENT-2_2026-09-24/`), so no
 in-scope item remains without an objective once SCA-005 applies. The objective fields and the SOW-037 / DEL-07-04 status
-change only when SCA-005 applies; today SOW-037 is still `IN` and DEL-07-04
-still `OPEN`. Nothing in the PRD is an
+changed when SCA-005 applied (2026-09-25): SOW-037 is `OUT` and DEL-07-04
+is `RETIRED`. Nothing in the PRD is an
 implementation mandate; each tranche needs its own owner-ruled packet.
 
 **First store/guard slice:** `D-PEC-85` P-A (ruled 2026-09-08) produced the
@@ -186,7 +186,8 @@ currency lane and left SCA-004 derivative state incomplete only for
 TM-PEC-023 (`execution/_Coordination/PEC_CURRENCY_REPAIR_CLOSEOUT_2026-08-09/HANDOFF_STATE.md`);
 TM-PEC-011, TM-PEC-013 and TM-PEC-014 are archived `CLOSED /
 RESOLVED_WITH_CHANGE` in `_TaskManagement/REGISTER_CLOSED.csv`; TM-PEC-023 is
-carried into SCA-005 intake as described above.
+carried into SCA-005 intake as described above, and was closed
+`RESOLVED_BY_DECISION` on 2026-09-25 under `D-PEC-95`.
 
 **The old application** (v0.4-baseline prototype: `core/`, `server/`, `web/`,
 `agent-sidecar/`, `tools/`, `fixtures/`) is a **frozen reference corpus** —
@@ -231,9 +232,11 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
   - the loop registry source packet;
   - P1 fixtures;
   - residual `projects/pec/AGENTS.md` corrections;
-  - the D-PEC-90 reliance amendment. This is scope change SCA-006, whose
-    checkpoint-1 package (`execution/_ScopeChange/SCA-006_2026-09-25_1912/`)
-    awaits the owner.
+  - the D-PEC-90 reliance amendment. This is scope change SCA-006. The
+    owner accepted checkpoint 1 on 2026-09-25 (DQ a, ENV a, BUD a, GATE a,
+    INS a, R-C excluded;
+    `execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-1_2026-09-25/`),
+    and checkpoint-2 preparation is authorized.
 
   These are organized in the work graph
   `execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md`.
@@ -246,9 +249,10 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
   stays file-native; agents may eventually query PEC directly through tool
   calls. Reliance begins at a PEC release whose gates prove parity and
   coverage, not now. The PRD and `projects/pec/AGENTS.md` text (PEC-K-03, §8, §9, §12) is
-  amended by scope change SCA-006, whose checkpoint-1 package awaits the
-  owner (see above); until it applies, the existing wording stands (the v2.3
-  successor keeps it). Checkpoint 2 carried a note so DEL-04-01 and the §8
+  amended by scope change SCA-006, whose checkpoint 1 the owner accepted on
+  2026-09-25 with a read-only `agent` access class for direct query (see
+  above); until it applies, the existing wording stands (the v2.3
+  successor keeps it). SCA-005's checkpoint 2 carried a note so DEL-04-01 and the §8
   refresh are not rebuilt around verify-before-rely.
 
 Gate lineage (historical record; the current gates are listed above):

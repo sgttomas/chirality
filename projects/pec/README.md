@@ -35,10 +35,9 @@ at SHA-256 `5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8`;
 RF-001 and RF-002 are resolved, while Gate 5 remains HOLD at `INITIALIZED`.
 The earlier
 eleven-contract reconciliation remains historical under `D-PEC-69`, and
-`PEC-HOLD-001` was released by `D-PEC-70`. Current SCA-004 derivative state is
-recorded in
-`execution/_Coordination/PEC_CURRENCY_REPAIR_CLOSEOUT_2026-08-09/HANDOFF_STATE.md`:
-incomplete only for TM-PEC-023, which was closed `RESOLVED_BY_DECISION` under
+`PEC-HOLD-001` was released by `D-PEC-70`. The SCA-004 closeout
+(`execution/_Coordination/PEC_CURRENCY_REPAIR_CLOSEOUT_2026-08-09/HANDOFF_STATE.md`)
+recorded derivative state as incomplete only for TM-PEC-023, which was closed `RESOLVED_BY_DECISION` under
 `D-PEC-95` on 2026-09-25. Lifecycle census (2026-09-25): 30 `OPEN` / 26
 `INITIALIZED` / 4 `CHECKING` / 2 `IN_PROGRESS` / 4 `RETIRED`, none `ISSUED`. DEL-01-03 is
 `IN_PROGRESS` with the `D-PEC-85` store/guard slice produced; DEL-01-05 is
@@ -85,8 +84,10 @@ response's examined-through commit, within stated bounds, while authority
 stays file-native; agents may eventually query PEC directly through tool
 calls. Reliance begins at a PEC release whose gates prove parity and
 coverage, not now. The existing PRD wording (kept in the v2.3 successor) stands
-until scope change SCA-006 amends it; its checkpoint-1 package
-(`execution/_ScopeChange/SCA-006_2026-09-25_1912/`) awaits the owner.
+until scope change SCA-006 amends it. The owner accepted its checkpoint 1 on
+2026-09-25, specifying direct query under a new read-only `agent` access
+class (`execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-1_2026-09-25/`);
+checkpoint-2 preparation is authorized.
 
 *Historical (2026-08-03; state as of that date):* superseding owner
 direction on 2026-08-03 sends TM-PEC-023 to a dedicated
