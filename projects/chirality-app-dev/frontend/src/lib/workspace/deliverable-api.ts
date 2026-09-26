@@ -166,6 +166,122 @@ export function requiresApprovalShaForTarget(targetState: string | undefined): b
   return HUMAN_GATE_TARGETS.has((targetState ?? '').trim().toUpperCase());
 }
 
+/**
+ * The human-authorized backward moves the transition API admits (App SPEC §4.3):
+ * the human-ruled reversal out of `CHECKING` and the reopening of `ISSUED` under
+ * an accepted amendment. Both return to `IN_PROGRESS`.
+ */
+const HUMAN_BACKWARD_TARGETS: Partial<Record<LifecycleState, LifecycleState[]>> = {
+  CHECKING: ['IN_PROGRESS'],
+  ISSUED: ['IN_PROGRESS']
+};
+
+/** Forward targets followed by the human-authorized reversal or reopening, if any. */
+export function lifecycleTransitionTargets(currentState: LifecycleState): LifecycleState[] {
+  return [...nextLifecycleTargets(currentState), ...(HUMAN_BACKWARD_TARGETS[currentState] ?? [])];
+}
+
+export type LifecycleTransitionKind = 'forward' | 'ruled-reversal' | 'amendment-reopen';
+
+export type LifecycleEvidenceField = 'required' | 'optional' | 'none';
+
+export interface LifecycleTransitionEvidence {
+  kind: LifecycleTransitionKind;
+  /** Human gates take an approval SHA and only a HUMAN actor. */
+  humanGate: boolean;
+  approvalSha: Exclude<LifecycleEvidenceField, 'none'>;
+  ruling: LifecycleEvidenceField;
+  amendment: Exclude<LifecycleEvidenceField, 'optional'>;
+}
+
+function normalizeState(value: string | undefined): string {
+  return (value ?? '').trim().toUpperCase();
+}
+
+/**
+ * The evidence the transition API requires or accepts for `from -> to`, so the
+ * forms can show the right inputs. The API remains the enforcing check.
+ */
+export function lifecycleTransitionEvidence(
+  from: string | undefined,
+  to: string | undefined
+): LifecycleTransitionEvidence {
+  const source = normalizeState(from);
+  const target = normalizeState(to);
+  if (target === 'IN_PROGRESS' && source === 'CHECKING') {
+    return { kind: 'ruled-reversal', humanGate: true, approvalSha: 'required', ruling: 'required', amendment: 'none' };
+  }
+  if (target === 'IN_PROGRESS' && source === 'ISSUED') {
+    return { kind: 'amendment-reopen', humanGate: true, approvalSha: 'required', ruling: 'none', amendment: 'required' };
+  }
+  if (requiresApprovalShaForTarget(target)) {
+    return { kind: 'forward', humanGate: true, approvalSha: 'required', ruling: 'optional', amendment: 'none' };
+  }
+  return { kind: 'forward', humanGate: false, approvalSha: 'optional', ruling: 'none', amendment: 'none' };
+}
+
+/** Option label for a transition target, naming the reversal or reopening. */
+export function lifecycleTransitionTargetLabel(from: string | undefined, to: string): string {
+  const { kind } = lifecycleTransitionEvidence(from, to);
+  if (kind === 'ruled-reversal') {
+    return `${to} (ruled reversal)`;
+  }
+  if (kind === 'amendment-reopen') {
+    return `${to} (amendment reopening)`;
+  }
+  return to;
+}
+
+const TRANSITION_REFUSAL_HINTS: Record<string, string> = {
+  APPROVAL_SHA_REQUIRED: 'Enter the approval commit SHA.',
+  INVALID_APPROVAL_SHA: 'The approval SHA must be 7 to 64 hexadecimal characters.',
+  RULING_REQUIRED:
+    "Name the human ruling record: a non-empty file inside the project, other than this deliverable's _STATUS.md.",
+  INVALID_RULING_REFERENCE:
+    "Name the human ruling record: a non-empty file inside the project, other than this deliverable's _STATUS.md.",
+  RULING_NOT_APPLICABLE: 'Only CHECKING, ISSUED and the CHECKING -> IN_PROGRESS reversal take a ruling.',
+  AMENDMENT_NOT_APPLICABLE: 'Only the ISSUED -> IN_PROGRESS reopening takes an amendment.',
+  INVALID_AMENDMENT_REFERENCE: 'Give the amendment ID, or its snapshot or group-3 decision path, on one line.',
+  AMENDMENT_NOT_ADMITTED: 'The amendment record check refused the reopening.',
+  AMENDMENT_CHECK_ERROR: 'An amendment record could not be read.',
+  HISTORY_NOT_PRESERVED: 'The transition would have dropped a recorded reopening from the history.',
+  INVALID_STATUS_FORMAT: '_STATUS.md has a line break or layout the transition cannot edit safely.',
+  BACKWARD_TRANSITION: 'Only the human-ruled reversal and the reopening under an accepted amendment go back.'
+};
+
+function refusalCodeOf(details: unknown): string | undefined {
+  if (typeof details !== 'object' || details === null) {
+    return undefined;
+  }
+  const refusalCode = (details as { refusalCode?: unknown }).refusalCode;
+  return typeof refusalCode === 'string' && refusalCode ? refusalCode : undefined;
+}
+
+/**
+ * Error text for a refused lifecycle transition: the API code and message, the
+ * amendment checker's own code where the API reports one, and a short hint.
+ * Every listed code is a refusal before `_STATUS.md` is written.
+ */
+export function lifecycleTransitionErrorMessage(error: unknown): string {
+  if (!(error instanceof WorkspaceApiClientError)) {
+    return workspaceApiErrorMessage(error);
+  }
+
+  const hint = TRANSITION_REFUSAL_HINTS[error.code];
+  const refusalCode = refusalCodeOf(error.details);
+  let head = `${error.code}: ${error.message}`;
+  if (refusalCode) {
+    const prefix = `${refusalCode}: `;
+    const reason = error.message.startsWith(prefix) ? error.message.slice(prefix.length) : error.message;
+    head = `${error.code} (checker code ${refusalCode}): ${reason}`;
+  }
+  if (!hint) {
+    return head;
+  }
+  const separator = /[.!?]$/.test(head) ? ' ' : '. ';
+  return `${head}${separator}${hint} _STATUS.md was not changed.`;
+}
+
 export function canAgentTransitionLifecycle(agent: string | undefined): boolean {
   return LIFECYCLE_TRANSITION_AGENTS.has((agent ?? '').trim().toUpperCase());
 }

@@ -257,6 +257,8 @@ Rules:
   - the one history line it appends at the end of the `## History` section, as a table row when the history is a table.
 
   Every other byte is kept, in order and with its line endings: existing history lines (including ones the parser does not read, such as an actor containing `)`), sections after `## History`, and lines appended below them. A transition that would still drop a recorded `reopened from ISSUED; amendment: <ID>` marker is refused (`HISTORY_NOT_PRESERVED`). Before this rule the writer rebuilt the file from its parsed form, dropping unread history lines and trailing sections.
+
+  The written content is parsed again before it is saved. Unless it reads as the target state, with the transition date as `Last Updated` and exactly one more history entry, the transition is refused (`INVALID_STATUS_FORMAT`) and the file is left unchanged. The writer splits lines only at LF and CRLF, while the parser also treats a lone CR, U+2028 and U+2029 as line ends; this check catches a file where the two would read different lines.
 - Known limits of the reopening check. The App runs no git process, so it makes none of the Root checker's anchored at-commit checks:
   - that the approval SHA is a reachable commit (`APPROVAL_SHA_UNREACHABLE`);
   - that it is an ancestor of `HEAD` (`APPROVAL_SHA_NOT_ANCESTOR`);

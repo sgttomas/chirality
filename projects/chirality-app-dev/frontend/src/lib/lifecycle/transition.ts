@@ -61,6 +61,7 @@ export type TransitionErrorCode =
   | 'AMENDMENT_NOT_ADMITTED'
   | 'AMENDMENT_CHECK_ERROR'
   | 'HISTORY_NOT_PRESERVED'
+  | 'INVALID_STATUS_FORMAT'
   | 'INVALID_METADATA';
 
 export class LifecycleTransitionError extends Error {
@@ -506,12 +507,14 @@ export function applyLifecycleTransition(
     notes = reopenHistoryNote(decision, approvalSha);
   }
 
+  // One date for the write and the post-write check below.
+  const date = options.date?.trim() || new Date().toISOString().slice(0, 10);
   let updated: ReturnType<typeof updateStatusDocument>;
   try {
     updated = updateStatusDocument(currentStatusContent, {
       targetState: to,
       actor,
-      date: options.date,
+      date,
       metadata,
       // The reversal withdraws the check, so its approval SHA no longer describes
       // the current state; the history line keeps the record.
@@ -523,6 +526,30 @@ export function applyLifecycleTransition(
       throw new LifecycleTransitionError('INVALID_METADATA', error.message, error.details);
     }
     throw error;
+  }
+
+  // Post-write check: the written file must parse as the transition intended. The
+  // writer splits lines only at LF (and CRLF), while the parser's `^`/`$` also
+  // match at a lone CR, U+2028 and U+2029, so a header that hides such a line
+  // break could make the writer edit a different line than the parser reads.
+  const historyBefore = parseStatusDocument(currentStatusContent).history.length;
+  const written = updated.parsed;
+  const historyAdded = written.history.length - historyBefore;
+  if (written.currentState !== to || written.lastUpdated !== date || historyAdded !== 1) {
+    throw new LifecycleTransitionError(
+      'INVALID_STATUS_FORMAT',
+      `The written _STATUS.md would not read as the transition to ${to}: it would show ` +
+        `${written.currentState}, last updated ${written.lastUpdated}, with ${historyAdded} ` +
+        'new history entries. Check the file for line breaks other than LF or CRLF ' +
+        '(a lone CR, U+2028 or U+2029).',
+      {
+        from,
+        to,
+        writtenState: written.currentState,
+        writtenLastUpdated: written.lastUpdated,
+        historyAdded
+      }
+    );
   }
 
   // Safety net: a transition never loses a recorded reopening, which the

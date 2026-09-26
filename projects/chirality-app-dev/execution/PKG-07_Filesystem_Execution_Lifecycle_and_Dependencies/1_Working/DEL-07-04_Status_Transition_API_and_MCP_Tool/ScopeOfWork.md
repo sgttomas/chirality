@@ -61,7 +61,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 > | Transport boundary | A transport grants no lifecycle authority. Retained MCP policy is compatibility evidence; live API callers still require the applicable actor authority and candidate-bound approval. | `docs/CONTRACT.md` Section 1.6 K-MCP-1; `docs/DIRECTIVE.md` Design commitments |
 >
 >
-> Verification hooks: `frontend/src/__tests__/lib/lifecycle-status.test.ts` and `frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts`. The live caller-supplied actor/SHA limit remains open under P-07/P-14; field validation does not authenticate a human act.
+> Verification hooks: `frontend/src/__tests__/lib/lifecycle-status.test.ts`, `frontend/src/__tests__/lib/amendment-reopen-parity.test.ts` and `frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts`. They cover the gates App SPEC §4.3 states and the tools implement: the full transition table; the human-ruled `CHECKING -> IN_PROGRESS` reversal (HUMAN actor, approval SHA and a `ruling` record; the `Checking Approval SHA` field is removed); and the `ISSUED -> IN_PROGRESS` reopening, admitted only for a HUMAN actor with an approval SHA and an `amendment` that passes the working-tree amendment check. They also cover history preservation and the post-write check. The Workbench and Pipeline forms take the `ruling` and `amendment` inputs (`frontend/src/__tests__/components/lifecycle-transition-gates.test.tsx`). The live caller-supplied actor/SHA limit remains open under P-07/P-14. These checks validate format, location and content; they do not authenticate a human act, and `tools/scaffolding/write_status.sh` is the anchored check.
 
 ### CLM-004 — Conditions
 
@@ -113,7 +113,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 
 ### CLM-008 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
-> UPD-132 records a historical module-selection decision. Current source evidence is `frontend/src/lib/lifecycle/status-parser.ts`, `status-writer.ts`, the lifecycle validator, and the status API routes. Retained MCP modules are compatibility evidence. Verification hooks are `frontend/src/__tests__/lib/lifecycle-status.test.ts` and `frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts`; candidate-bound actor identity, reversal, schema and preservation checks remain open. ResponsibleParty assignment remains human-owned.
+> UPD-132 records a historical module-selection decision. Current source evidence is `frontend/src/lib/lifecycle/status-parser.ts`, `status-writer.ts`, the lifecycle validator, and the status API routes. Retained MCP modules are compatibility evidence. Verification hooks are `frontend/src/__tests__/lib/lifecycle-status.test.ts`, `frontend/src/__tests__/lib/amendment-reopen-parity.test.ts` and `frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts`. As of 2026-09-26 they verify the implemented App SPEC §4.3 reversal and reopening gates and history preservation (runs `APP-LIFECYCLE-DEPS-2026-09-26`, `APP-AMENDMENT-REOPEN-2026-09-26` and `APP-TRANSITION-FORMS-2026-09-26`). Candidate-bound actor identity and accepted schema fixtures remain open. The reopening check is unanchored in the App (no git), and `write_status.sh` is the anchored check. ResponsibleParty assignment remains human-owned.
 
 ## Completion and Reliance Basis — Epistemology
 

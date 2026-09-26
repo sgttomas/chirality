@@ -2,6 +2,21 @@
 
 ## Runs
 
+- 2026-09-26 — `APP-TRANSITION-FORMS-2026-09-26` (work-graph FU3, FU4):
+  the Workbench and Pipeline transition forms offer the `CHECKING -> IN_PROGRESS`
+  reversal (required `ruling`) and the `ISSUED -> IN_PROGRESS` reopening
+  (required `amendment`), take an optional ruling on the forward gates, and show
+  refusals with the amendment checker's code. Their help text says the actor is
+  caller-asserted and `write_status.sh` is the anchored check. D-APP-36 component
+  render tests and a static browser layout check are recorded. The forms are not
+  mounted in the live App, so the D-APP-36 item stays open for the App loop.
+  From the 3a review, a transition is now refused (`INVALID_STATUS_FORMAT`)
+  unless the written file reads as the target state, the transition date and one
+  more history entry. This catches a header with a lone CR, U+2028 or U+2029 that
+  made the writer edit a different line than the parser reads. CLM-003 and
+  CLM-008 now describe the implemented App SPEC §4.3 gates (FU4). No lifecycle
+  change. Evidence:
+  [receipt](../../../_Coordination/AgentRuns/APP-TRANSITION-FORMS-2026-09-26/RECEIPT.md).
 - 2026-09-26 — `APP-AMENDMENT-REOPEN-2026-09-26` (work-graph FU1; owner D2):
   the validator, API, MCP tool and client admit `ISSUED -> IN_PROGRESS` only for
   a HUMAN actor with a valid approval SHA and an `amendment` that passes
