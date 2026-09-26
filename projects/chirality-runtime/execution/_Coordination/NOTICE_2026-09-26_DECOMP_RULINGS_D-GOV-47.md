@@ -5,3 +5,5 @@ Owner-directed Root tranche `ROOT-DECOMP-RULINGS-D-GOV-47-20260926` records two 
 - **Combined review sitting.** For a small, reversible undertaking, the human may decide all three checkpoint groups in one sitting. The independent audit is completed first, the decision names the groups it covers, the group-1, -2 and -3 snapshots and pointers are still written in order and must match the hashes the audit and decision recorded, and a material change reopens the affected groups and every later group. DOMAIN is unchanged.
 
 In-flight decompositions keep the rule and edition they adopted; nothing is retrofitted. This loop decides its own adoption; this source tranche grants no release.
+
+Runtime-specific: this loop's Scope Ledger reports no `XRG-011` or `XRG-012` findings.

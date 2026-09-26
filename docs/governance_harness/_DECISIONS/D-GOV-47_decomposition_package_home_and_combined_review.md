@@ -84,13 +84,17 @@ outside this record.
    checkpoint groups in one sitting: the basis, normalized scope, vocabulary
    and objectives; the proposed Packages and Deliverables with coverage
    findings and exceptions; and the audited final decomposition. Conditions:
-   - each stage is prepared on the preceding stage's proposed state, and the
-     independent audit of the final package is completed before the decision;
-   - the decision records which groups it covers;
+   - groups 2 and 3 are each prepared on the preceding group's proposed
+     state, and the independent audit of the final package is completed
+     before the decision;
+   - the decision records which groups it covers, and the audit and decision
+     record the hashes of the presented package;
    - the group-1, group-2 and group-3 snapshots and pointers are still
-     written in that order after the decision;
-   - a material change found during the sitting reopens only the groups it
-     affects.
+     written in that order after the decision, and must match the recorded
+     hashes;
+   - a material change found during the sitting reopens the groups it
+     affects and every later group; only earlier, unaffected groups may
+     still be decided in the sitting.
 
    The standard's I1 and PROTOCOL, both methods, both contracts and both
    `WORKFLOW.md` entrypoints carry this. DOMAIN does not use the allowance.
@@ -125,6 +129,6 @@ outside this record.
 
 - Application paths are listed in the tranche manifest
   `docs/governance_harness/tranche_manifests/ROOT-DECOMP-RULINGS-D-GOV-47-20260926.yaml`.
-- Notices are routed to the App, Piping and PEC loops. The App authority
+- Notices are routed to the App, Runtime, Piping and PEC loops. The App authority
   corpus pins `software-decomp` hashes, so it will report drift against these
   bytes. Each loop decides its own adoption. No release is made.

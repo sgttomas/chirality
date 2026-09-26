@@ -38,11 +38,12 @@ m6_notice:
   disposition: routed
   routed_to:
     - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_DECOMP_RULINGS_D-GOV-47.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_DECOMP_RULINGS_D-GOV-47.md
     - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_DECOMP_RULINGS_D-GOV-47.md
     - projects/pec/execution/_Coordination/NOTICE_2026-09-26_DECOMP_RULINGS_D-GOV-47.md
   rationale: >-
-    App, Piping and PEC use project-decomp or software-decomp and the register
-    validator; the App pins software-decomp hashes in its authority corpus and
+    App, Runtime, Piping and PEC use project-decomp or software-decomp and the
+    register validator; the App pins software-decomp hashes in its authority corpus and
     bundles the library, so drift is expected there.
 scope_limits:
   - PROJECT and SOFTWARE only; domain-decomp and its Category rule are unchanged.
