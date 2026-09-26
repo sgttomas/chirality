@@ -1,0 +1,51 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-XRG004-SUPPORTING-DELIVERABLES-20260926
+title: XRG-004 warns only when an item's home Package holds none of its linked deliverables; --registers-dir option
+date: '2026-09-26'
+basis: 121900105d93d9458a4680d7d4cfc37c93e6ca0c
+instruction_surface_paths:
+  - "tools/validation/validate_decomposition_registers.py"
+  - "tools/validation/test_validate_decomposition_registers.py"
+  - "tools/REGISTRY.md"
+  - "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_XRG004_SUPPORTING.md"
+  - "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_XRG004_SUPPORTING.md"
+  - "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_XRG004_SUPPORTING.md"
+  - "projects/pec/execution/_Coordination/NOTICE_2026-09-26_XRG004_SUPPORTING.md"
+  - "docs/governance_harness/tranche_manifests/ROOT-XRG004-SUPPORTING-DELIVERABLES-20260926.yaml"
+  - "exports/chirality-app/export-manifest.csv"
+  - "exports/chirality-app/export-report.md"
+m2_gate:
+  authorization: >-
+    Answers of 2026-09-26 to the four questions of projects/chirality-piping/execution/_Coordination/PROPOSAL_2026-09-26_PACKAGE_HOMES_D-GOV-48.md: Package homes, "Accept all five (Recommended)"; XRG-004, "Warn only if home holds none (Recommended)"; SOFTWARE_DECOMP.md section 6, "Mark as supporting (Recommended)"; DAG wording (proposed D-78), "Full proposal (Recommended)". The XRG-004 answer directs this Root validator change: no finding
+    when the item's home Package holds at least one of its linked Deliverables,
+    and a WARNING when it holds none. It aligns XRG-004 with D-GOV-48 and
+    management manual v7 ("Several Deliverables may contribute to an included
+    obligation, including supporting contributions from another Package").
+    The caller's brief also asked for a small, clean --registers-dir option so
+    the validator can read registers kept outside _Decomposition/.
+  authorized_by: Ryan Tufts (repository owner sgttomas, Claude Code conversation)
+  authorization_date: '2026-09-26'
+  integration_owner: >-
+    The Claude Code parent session integrating this candidate under the standing Git authorization of 2026-09-12; the authoring worktree commits locally and does not push, open or merge the PR.
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+  - "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_XRG004_SUPPORTING.md"
+  - "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_XRG004_SUPPORTING.md"
+  - "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_XRG004_SUPPORTING.md"
+  - "projects/pec/execution/_Coordination/NOTICE_2026-09-26_XRG004_SUPPORTING.md"
+  rationale: >-
+    The validator is shared by every loop that checks decomposition registers,
+    so App, Runtime, Piping and PEC each receive a short notice. PEC's notice
+    is informational only: PEC is being redeveloped and the owner defers
+    action there; its XRG result is unchanged (26 XRG-013 warnings, exit 0).
+    The XRG family still skips App and Runtime, which have no
+    _Decomposition/ScopeLedger.csv. Piping's notice cites its own records of
+    the same change (D-77, DEC-115, D-78).
+scope_limits:
+  - Only XRG-004 changes meaning (ERROR per link outside the home becomes a WARNING once per item whose home holds none of its linked deliverables); every other check, severity and exit code is unchanged.
+  - --registers-dir is additive; without it the validator reads EXECUTION_ROOT/_Decomposition as before.
+  - The decomposition standard, the project-decomp, software-decomp and audit-decomp packages and TYPES never stated that an item's deliverables must sit in its Package, so none of them is edited; workflows/index.json is unchanged.
+  - No project register is edited by this tranche; Piping's register edits are carried by PIPING-PACKAGE-HOMES-DAG-WORDING-20260926. No release.
