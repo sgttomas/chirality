@@ -50,7 +50,7 @@ The candidate bindings SB-1..SB-6 are listed in Impact Assessment §9.3.
 | `Impact_Assessment.md` | `93253b7d016de041b2295307af5564808fdc3d9a4e392f1cf92892363fecb691` |
 | `Amendment_Actions.csv` (PROPOSED) | `c5f90801989ee9948ccdd375917ba052fdb5838183e387ed373d8c7c2b824891` |
 | `Pre_Change_Coverage.json` | `b7b432a2b9e9ae13a911c7193b02776e64cd07e247135b3c98caf77882f4128d` |
-| `Decision_Log.md` | `4968fe9d62be5151ee3f6832b82c8471b786f9be9061407915eb3bf87e26537c` (after the checkpoint-1 acceptance; `8a01bd653eca52bb8ffae947ffce28d83d7da6beaf690b35c72563f88615547a` at the owner's act) |
+| `Decision_Log.md` | `b4b75e3569a210597ba87b8c0bd223b81bb3f98db18444b63ca73e1e389465df` (after the checkpoint-2 acceptance; `dc6e89fe74059e9a016cbcd69b0019dc567a7048062c626c83daa6225d5b170e` at the checkpoint-2 act; `8a01bd653eca52bb8ffae947ffce28d83d7da6beaf690b35c72563f88615547a` at the checkpoint-1 act) |
 
 ## Basis hashes not repeated elsewhere
 
@@ -201,7 +201,17 @@ pointer is `../SCA-006_GROUP-2_AUTHORIZED.md`, and the Lane A packet row is
 `D-PEC-97`.
 
 - The next owning actor is WORKING_ITEMS, for checkpoint-3 preparation.
-- `ReadyForNextPhase` stays `NO` until checkpoint 3. The state fields above
-  are otherwise unchanged; `DerivativePackageState` is `INCOMPLETE` and
-  `DownstreamRerunState` is `FROZEN`.
+- `ReadyForNextPhase` stays `NO` until checkpoint 3, and
+  `DerivativePackageState` is `INCOMPLETE`, and `DownstreamRerunState` is
+  `FROZEN`.
+- Some lines in the checkpoint-2 preparation section above describe the
+  pre-acceptance state. They are: "The checkpoint-group-2 package is
+  prepared and awaits the owner"; the closure-verdict note "checkpoints 2
+  and 3 are open"; and the "Next owning actor" list. After the acceptance,
+  checkpoint 2 is accepted, checkpoint 3 is open, HELP_HUMAN has written the
+  group-2 snapshot, the `D-PEC-97` row, the graph and the STATUS/README
+  updates, and the next owning actor is WORKING_ITEMS for checkpoint-3
+  preparation.
+- Open before checkpoint-3 dispatch: the owner's choice of scope-change
+  method edition. See the group-2 `DECISION.md`.
 - At the owner's act, this file's hash was `0043e9b1fcf453678e120461ae7809a220091ee35060131fcd1518576af479a9`.

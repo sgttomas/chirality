@@ -11,10 +11,12 @@ scope change under a HELP_HUMAN brief:
 - verify the checkpoint-3 preconditions in
   `../../SCA-006_2026-09-25_1912/Propagation_Plan.md` against the live bytes;
 - execute Lane A1, A2, A4 and A5. A6 waits for the checkpoint-3 acceptance;
-- write the A4 tranche manifest and the three notices;
+- write the A4 tranche manifest (HELP_HUMAN writes the three notices in the same PR, plan §A4.3);
 - run Lane C, with the C4 audit written into a new `COV_SCA006_POSTCHANGE_*`
   folder;
 - present the audited poststate for the owner's checkpoint-3 acceptance.
+
+**Open before dispatch.** The owner's choice of scope-change method edition for checkpoint 3 (the pinned edition or the Root wave-2A revision; see `DECISION.md`).
 
 **Derivative and closure state.**
 - Derivative status is `INCOMPLETE`.

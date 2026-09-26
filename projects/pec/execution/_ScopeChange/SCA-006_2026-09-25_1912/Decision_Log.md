@@ -25,7 +25,7 @@ hashes are quoted here and in the run return.
 | SCA006-CP1-GATE | 1 | Reliance gate: (a) standing gate for any release that advertises operational reliance, with SOW-100 and a new DEL-10-13; (b) bind to the P1 exit test and extend existing deliverables | `SELECTED (a)` | owner act 2026-09-25 (verbatim below) |
 | SCA006-CP1-INS | 1 | `projects/pec/AGENTS.md` route: (a) carried at checkpoint 3 as an instruction tranche with its own manifest and notices; (b) a separate instruction tranche after checkpoint 3 | `SELECTED (a)` | owner act 2026-09-25 (verbatim below) |
 | SCA006-CP1-RC | 1 | Confirm that R-C (PEC output citable as authority) stays excluded | `CONFIRMED EXCLUDED` | owner act 2026-09-25 (verbatim below) |
-| SCA006-CP2 | 2 | Exact amendment and propagation plan (PRD v2.4 candidate, decomposition revision 1.6 text, AGENTS.md text, supersession bindings) | `ACCEPTED` (2026-09-25) | owner act verbatim below; snapshot `../checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/`; register row `D-PEC-97` (Q-CP2-2 (a)) |
+| SCA006-CP2 | 2 | Exact amendment and propagation plan (PRD v2.4 candidate, decomposition revision 1.6 text, AGENTS.md text, supersession bindings) | `ACCEPTED` (2026-09-25); Q-CP2-1 `SELECTED (a)`; Q-CP2-2 `SELECTED (a)` | owner act verbatim below; snapshot `../checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/`; register row `D-PEC-97` (Q-CP2-2 (a)) |
 | SCA006-CP3 | 3 | Audited poststate acceptance, pointer moves | `PREPARATION AUTHORIZED` | SCA006-CP2 accepted 2026-09-25 |
 
 ## SCA006-G1 — owner directions of record (verbatim)
@@ -71,8 +71,13 @@ Checkpoint groups 1–3 remain the owner's acceptances.
   row `D-PEC-90` gained a pointer to this scope change.
 - No access class has changed. No consumer has adopted anything. The
   `D-PEC-67` L-A1 reliance-hold control is untouched.
-- No notice has been sent to Root, the App or Runtime; notices are graph node
-  R4, after checkpoint 3.
+- No notice has been sent to Root, the App or Runtime. Under the accepted
+  plan (§A4.3), HELP_HUMAN writes the three notices in the checkpoint-3
+  instruction-tranche PR (graph node R4).
+- The checkpoint-2 acceptance added the group-2 decision snapshot
+  (`../checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/`), the
+  amendment-qualified pointer `../SCA-006_GROUP-2_AUTHORIZED.md`, and PEC
+  decision-register row `D-PEC-97`.
 - The checkpoint-1 decision snapshot was written after the owner's acceptance,
   at `../checkpoint_snapshots/SCA-006_GROUP-1_2026-09-25/`.
 
@@ -88,7 +93,7 @@ was `8a01bd653eca52bb8ffae947ffce28d83d7da6beaf690b35c72563f88615547a`.
 
 ## SCA006-CP2 — package prepared (not a decision)
 
-Prepared 2026-09-25 by WORKING_ITEMS (node R2 of HELP_HUMAN undertaking `HELP-HUMAN-PEC-20260925-POST-SCA005`) under brief `B5_SCA006_CHECKPOINT2.md` (HELP_HUMAN scratchpad; SHA-256 `142d6be0b0f44c459e895d067081a004df8fa229ac455349e4cc8b26e8abefb4`). No owner decision is recorded here: every checkpoint-2 question is `AWAITING_OWNER`. The recommendations (Q-CP2-A accept; Q-CP2-1 (a), the I1 corrections ride the instruction tranche; Q-CP2-2 (a), the group-2 snapshot with a D-PEC register row is the Lane A packet) are the manager's, not rulings. Nothing is applied: live decomposition revision 1.5, its registers, PRD v2.3, `projects/pec/AGENTS.md`, every SOW, SPEC, `_CONTEXT.md`, `_STATUS.md`, `Dependencies.csv`, `v2/**`, the tier-0 profile, both `_LATEST.md` pointers and the checkpoint snapshots are byte-unchanged. `Propagation_Plan.md` cannot quote its own hash; it is quoted here. Package hashes (acceptance slots at their defaults):
+Prepared 2026-09-25 by WORKING_ITEMS (node R2 of HELP_HUMAN undertaking `HELP-HUMAN-PEC-20260925-POST-SCA005`) under brief `B5_SCA006_CHECKPOINT2.md` (HELP_HUMAN scratchpad; SHA-256 `142d6be0b0f44c459e895d067081a004df8fa229ac455349e4cc8b26e8abefb4`). No owner decision is recorded here: every checkpoint-2 question was `AWAITING_OWNER` at preparation (pre-acceptance; the owner accepted on 2026-09-25, below). The recommendations (Q-CP2-A accept; Q-CP2-1 (a), the I1 corrections ride the instruction tranche; Q-CP2-2 (a), the group-2 snapshot with a D-PEC register row is the Lane A packet) are the manager's, not rulings. Nothing is applied: live decomposition revision 1.5, its registers, PRD v2.3, `projects/pec/AGENTS.md`, every SOW, SPEC, `_CONTEXT.md`, `_STATUS.md`, `Dependencies.csv`, `v2/**`, the tier-0 profile, both `_LATEST.md` pointers and the checkpoint snapshots are byte-unchanged. `Propagation_Plan.md` cannot quote its own hash; it is quoted here. Package hashes (acceptance slots at their defaults):
 
 | Artifact | SHA-256 |
 |---|---|

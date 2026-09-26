@@ -240,7 +240,8 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
     `execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-1_2026-09-25/`),
     and the owner accepted checkpoint 2 on 2026-09-25 (`D-PEC-97`;
     `execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/`);
-    checkpoint-3 preparation is authorized.
+    checkpoint-3 preparation is authorized. It waits on the owner's choice
+    of scope-change method edition.
 
   These are organized in the work graph
   `execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md`.
@@ -253,9 +254,10 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
   stays file-native; agents may eventually query PEC directly through tool
   calls. Reliance begins at a PEC release whose gates prove parity and
   coverage, not now. The PRD and `projects/pec/AGENTS.md` text (PEC-K-03, §8, §9, §12) is
-  amended by scope change SCA-006, whose checkpoint 1 the owner accepted on
-  2026-09-25 with a read-only `agent` access class for direct query (see
-  above); until it applies, the existing wording stands (the v2.3
+  amended by scope change SCA-006. The owner accepted its checkpoint 1 on
+  2026-09-25 with a read-only `agent` access class for direct query, and its
+  checkpoint 2, the exact PRD v2.4 text (`D-PEC-97`), the same day (see
+  above). Until it applies, the existing wording stands (the v2.3
   successor keeps it). SCA-005's checkpoint 2 carried a note so DEL-04-01 and the §8
   refresh are not rebuilt around verify-before-rely.
 
