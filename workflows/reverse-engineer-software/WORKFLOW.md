@@ -20,9 +20,12 @@ from the assignment before choosing the depth of work.
 
 For a new product PRD formed from intent and supplied sources without
 examining a reference project, use the `software-prd` workflow. Both
-workflows use checkpoints A and B and hand an accepted basis to
-`software-decomp` in the same form; the `software-prd` contract resource sets
-out a decision record and handoff layout that a successor run may also use.
+workflows use checkpoints A and B and hand `software-decomp` an accepted
+basis carrying the same basis-identity fields its group 1 consumes: path,
+content hash, separate acceptance decision record, accepted portions and shared
+constraints. The `software-prd` contract resource maps those fields under
+"Handoff to `software-decomp`" and sets out a decision record and handoff
+layout that a successor run may also use.
 
 ## Frame the undertaking and its basis
 

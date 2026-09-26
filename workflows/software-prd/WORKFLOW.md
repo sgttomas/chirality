@@ -40,8 +40,10 @@ be formed by examining an existing software project, recovering its exemplars
 and lessons, and developing its successor, use `reverse-engineer-software`.
 Use this workflow when the PRD is formed from intent, conversation, and
 supplied sources without that reverse-engineering inquiry. Both workflows use the same
-checkpoints A and B and hand an accepted basis to `software-decomp` in the same
-form. An existing codebase can still be a source here, examined within its
+checkpoints A and B and hand `software-decomp` an accepted basis carrying the
+same basis-identity fields its group 1 consumes: path, content hash, separate
+acceptance decision record, accepted portions and shared constraints (contract
+resource, "Handoff to `software-decomp`"). An existing codebase can still be a source here, examined within its
 supported scope; selecting this workflow does not require a reference-project
 study.
 
