@@ -54,6 +54,8 @@ extracted programmatically from the host's transcripts.
 | T7 | Supplier landscape (web) | claude-opus-5-5 | 20:03:40 → 20:23:26 |
 | T8 | T3 Code suitability, including local models (web, GitHub read-only) | claude-opus-5-5 | 2026-09-26 05:07:31 → 05:22:57 |
 | T9 | PEC and Domains as connectors | claude-opus-5-5 | 2026-09-26 05:07:31 → 05:16:51 |
+| T10 | Pi libraries: browser use, data behaviour, stability (read-only) | claude-opus-5-5 | dispatched after D-19; pending |
+| T11 | v3 Runtime responsibilities and frontend reuse (read-only) | claude-opus-5-5 | dispatched after D-19; pending |
 
 Notes on the returns:
 
@@ -138,10 +140,13 @@ Notes on the returns:
     parity in hosts. HELPS_HUMANS verified Pi's model and agent libraries
     (licence, local-provider and browser support, telemetry defaults) from
     its repository and added §10 to the analysis.
+17. The owner accepted the two-tier direction as the v4.0 basis (D-19).
+    HELPS_HUMANS dispatched T10 and T11 (reading only) for the architecture
+    basis and wrote [`SEED_SET_PLAN.md`](SEED_SET_PLAN.md).
 
 ## Current position
 
-Stage D (direction conversation) in progress. The owner has answered the
+Stage D (direction conversation) substantially complete; Stage F (drafting the seed set) beginning. The owner has answered the
 questions (D-01…D-15). Open for discussion: the working statement (Q-01),
 the build method (Q-11), the further project-management scope (Q-08), and
 two follow-ups on autonomy (Q-04). No PRD requirement is accepted yet.
@@ -151,7 +156,8 @@ two follow-ups on autonomy (Q-04). No PRD requirement is accepted yet.
 | Item | Owner | Condition |
 |---|---|---|
 | Discussion of Q-01, Q-04 follow-ups, Q-08 scope, Q-11 method | Owner with HELPS_HUMANS | Stage D |
-| Owner's view of the two-tier direction (Codex App Server in the Chirality App; Pi libraries with the local model and the host's capability catalog in hosts) and the semantic-parity definition | Owner | [`MAINTAINABILITY_ANALYSIS.md`](MAINTAINABILITY_ANALYSIS.md) §9–10 |
+| Confirm or correct the drafting defaults for the open items | Owner | [`SEED_SET_PLAN.md`](SEED_SET_PLAN.md) §3 |
+| Fold in T10 and T11; draft the PRD's load-bearing sections | HELPS_HUMANS | Stage F |
 | Stage E1 arrangement (the owner drives, or grants access later, or skip) | Owner | When convenient |
 | Stage E investigations selected by the answers | HELPS_HUMANS with TASKs | After D |
 | Hosted CI routing has no rule for `projects/chirality-app-v4/**`, so a PR touching it selects full product coverage | Owner's choice whether to add a `records` route (a Root tooling change) | When CI cost matters |

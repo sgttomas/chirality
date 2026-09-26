@@ -37,3 +37,11 @@ I'm not convinced.  I think that's going to be hard to build my own ACP layer, w
 That's appropriate for the Chirality App to wrap the full Codex experience, but for SWBPIPE a simpler agent experience and local models are acceptable.  Maybe your first proposal was discarded too quickly?  Because my third priority is having the local model server be the primary interface and be a good user experience and capabilities that keep up with developments and not have to depend upon a third party harness that sends data elsewhere.  So local models and data privacy are my third priority and having that still provide the user with an agent that can take the same actions as the human user ("semantic parity" as it's been called at times).
 
 ---
+
+## M-05 — acceptance of the two-tier balance
+
+---
+
+This is the balance I was after.  Of course, the only certainty is that the pace of change will continue.  This is the best I can think of and should be the basis for v4.0 and if we learn better we can change for v5.0.
+
+---
