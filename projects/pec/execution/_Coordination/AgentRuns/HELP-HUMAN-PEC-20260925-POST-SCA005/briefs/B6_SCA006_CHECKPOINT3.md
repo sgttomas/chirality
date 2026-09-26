@@ -54,7 +54,7 @@ Stop before any write if any of these fails. A mismatch returns the work to chec
 - **A4.** Carry out the instruction tranche `PEC-SCA006-OPERATIONAL-RELIANCE-<YYYYMMDD>`, where the date is the application date.
   1. Start from `CP2_CANDIDATE/AGENTS.candidate.md`, which is Q-CP2-1 (a) with I1. Fill its application-date slots per `AGENTS_MD_CANDIDATE_DIFF.md` §9.
   2. **Amendment 1.** Replace exactly the paragraph at candidate L261–270, which begins "PEC's deliverable `_STATUS.md` `## Remaining` sections stay in place as". Change no other line.
-     - The replacement states the owner's direction: PEC adds no new `## Remaining` sections or entries, PEC does not read them, and new open scope goes to the work graph and its governing records.
+     - The replacement states the owner's direction: PEC adds no new `## Remaining` sections or entries, no PEC feed profile reads them (the coordination plane does not scan them), and new open scope goes to the work graph and its governing records.
      - It keeps the status quo for the existing sections until any retirement ruling: they stay in place, each item's gate markers still bind that item, and they are updated only under a packet that opens that `_STATUS.md`.
      - It keeps the statement that retiring them, as App and Piping did, is a separate owner-directed undertaking.
      - Keep the change minimal and factual, and do not decide the retirement.
@@ -94,6 +94,8 @@ Stop before any write if any of these fails. A mismatch returns the work to chec
   - the SCA-006 snapshot folder;
   - the `COV_SCA006_POSTCHANGE_*` folder;
   - your returns.
+
+  HELP_HUMAN may add its own later commits to the same PR, after your verification: the `docs/STATUS.md` correction under D-PEC-88 (amendment 1, "Known consequence outside A4"), and any notice edits from its review. Your C1 covers your writes, and HELP_HUMAN's commits are reviewed separately before merge.
 
   Every hash must match under the slot rule. For `AGENTS.md`, the expected postimage is the accepted candidate plus the amendment-1 hunk, with slots filled.
 - **C2.** Run the strict registers validator. Expect 0 errors and exactly two DRB-008 warnings, for DEL-08-06 and DEL-10-13. Run `analyze_dep_closure.py`. Expect 111 edges and 0 SCCs, unchanged.

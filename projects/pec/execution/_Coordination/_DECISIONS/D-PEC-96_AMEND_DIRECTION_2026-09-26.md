@@ -26,7 +26,7 @@ owner then directed:
 
 | Item | Effect |
 |---|---|
-| Direction on the Remaining sections | PEC's `## Remaining` sections are not a surface going forward: PEC adds none and does not read them, and no profile declares them. |
+| Direction on the Remaining sections | PEC's `## Remaining` sections are not a surface going forward: PEC adds none, and no PEC feed profile declares or reads them. |
 | Revision 4 | The G1 preparer revises the proposal. `remaining-items` and `remaining-loop` leave the closed vocabulary, so the vocabulary becomes `shared-dev-loop`, `loop-receipts-ledger` and `agentruns-json`. Option A-R goes, and PEC's row is `shared-dev-loop` live with `loop-receipts-ledger` and `agentruns-json` historical. The revision is independently backchecked before the owner rules. |
 | Question 4 | The direction also answers the vocabulary part of question 4 with a smaller vocabulary. The coherence rules and the row shape are still confirmed at the ruling. |
 | Question 2 | The row's departure from SCA-005 §B6 and SCA005-CP1-Q8 (a) still needs its ruling when the packet is presented. The direction implies the migrated row. |
