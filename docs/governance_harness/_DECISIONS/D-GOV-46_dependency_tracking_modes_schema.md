@@ -84,7 +84,8 @@ Item #1 of wave 2b is this amendment.
    - `NOT_TRACKED`: coordination occurs outside the files; no computed
      ready/blocked judgment is reported from dependencies.
    - `DECLARED`: the recorded critical edges are a partial view. Blockers
-     come only from declared edges. Agent extraction may populate
+     come only from the recorded register, and edges in an unresolved
+     cycle are non-gating and held, as under `FULL_GRAPH`. Agent extraction may populate
      `Dependencies.csv` when the human-confirmed dependency rules call for it
      (project-setup Phases 1.3 and 2.2b). Extraction does not make the view
      complete or replace the human-owned declarations. SPEC's earlier "no

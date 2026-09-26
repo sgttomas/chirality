@@ -93,7 +93,7 @@ Recommended lifecycle ownership (may vary by project):
 - **Coordination representation**: The human’s chosen way to coordinate across packages/deliverables.
 - **Dependency tracking mode** (`docs/SPEC.md` §5.3):
   - `NOT_TRACKED` — dependency coordination occurs outside the files (humans or an external schedule); do not compute blockers or report a ready/blocked judgment from dependencies.
-  - `DECLARED` — only critical dependencies are recorded (partial, human-curated); the recorded edges are a partial view. Compute blockers only from declared edges. Dependency extraction may add `Dependencies.csv` rows when the Phase 1.3 rules call for it; it does not make the view complete.
+  - `DECLARED` — only critical dependencies are recorded (partial, human-curated); the recorded edges are a partial view. Compute blockers only from the recorded register (the declared sections, or `Dependencies.csv`, whose DECLARED-origin rows carry the declarations, where extraction has run). Dependency extraction may add `Dependencies.csv` rows when the Phase 1.3 rules call for it; it does not make the view complete.
   - `FULL_GRAPH` — dependency declarations are intended to form a complete DAG; compute blockers only from the declared graph, after closure audit and cycle treatment (see Validity).
   - A legacy `TRACKED` value in an existing record is read as `FULL_GRAPH`; new records write `FULL_GRAPH`.
 - **Dependency register**: deliverable-local dependency artifacts (prefer `Dependencies.csv` when present; `_DEPENDENCIES.md` as human-readable view, with the `docs/SPEC.md` §5.2 headings).
@@ -117,7 +117,7 @@ A workspace is valid when:
 
 - Representation and dependency mode were explicitly confirmed by the human.
 - If mode is `NOT_TRACKED`, reports must not label deliverables as blocked/available based on dependencies.
-- If mode is `FULL_GRAPH`, blockers are computed only from edges outside unresolved cycles. Edges that participate in an unresolved SCC are non-gating: they are excluded from blocker computation and reported as held pending resolution through `scc-resolution-case` and the owning decisions (`docs/CYCLE_DRIVEN_RESOLUTION.md` §2 rule 4). A cycle does not by itself invalidate the coordination record or block independent work.
+- If mode is `DECLARED` or `FULL_GRAPH`, blockers are computed only from edges outside unresolved cycles. Edges that participate in an unresolved SCC are non-gating: they are excluded from blocker computation and reported as held pending resolution through `scc-resolution-case` and the owning decisions (`docs/CYCLE_DRIVEN_RESOLUTION.md` §2 rule 4). A cycle does not by itself invalidate the coordination record or block independent work.
 
 ### S-EST — Estimating pipeline validity
 
