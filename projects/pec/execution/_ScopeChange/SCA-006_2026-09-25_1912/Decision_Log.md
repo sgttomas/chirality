@@ -93,8 +93,8 @@ Prepared 2026-09-25 by WORKING_ITEMS (node R2 of HELP_HUMAN undertaking `HELP-HU
 | Artifact | SHA-256 |
 |---|---|
 | `Amendment_Preview.md` | `737af0e690688be00c479d1a5e54f2fa82b2c4e25e777abbe07670836473ecf4` |
-| `Propagation_Plan.md` | `abeeedb477505b5c277e97c19496bd6376b299a3128d4aa9a9693de69e429859` |
-| `Amendment_Actions_CP2.csv` | `dc69afb7796d84b92c4ed225560945a64aa86576c30e723b93aa149e4d5c0d2a` |
+| `Propagation_Plan.md` | `f95d00d154610d44a37d4aeabfae3fff29aac6c0a0c016bb1241810ebc87d7d8` |
+| `Amendment_Actions_CP2.csv` | `d901b432b9401dca0478a2ff73015273c387d29a1149ae66f5c6fbb2162fc1de` |
 | `Supersession_Delta.csv` | `e69f97814294ccd993fceff12cdf992623156c33ca4993adb103b61774e5977b` |
 | `PRD_V2_4_SUCCESSOR_DIFF.md` | `a743a5273c66dc679a99888c4dc2b865a318dab64fcaaa7768ecb71f35696a4c` |
 | `AGENTS_MD_CANDIDATE_DIFF.md` | `7c57a1b2c02c872fae6f778beeddf7f812809d469b504e34d1e6f79bbb48a158` |

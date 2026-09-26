@@ -4,7 +4,7 @@ Reviewer: a fresh `pec-reviewer` (read-only TASK; Claude Code Agent tool, `model
 - Brief: `BRIEF_V_VERIFIER.md` (session scratchpad), SHA-256 `f319a23973833c12b1e9373abc478554939f8d21ed3d223dfe57d0fec0fd25b4`.
 - Candidate: `87a3f29b76635938db7a35ad2226d1db1468ab33`.
 
-The manager transcribed the verdict below verbatim from the reviewer's hand-back. The manager's dispositions follow it.
+The manager transcribed the verdict below from the reviewer's hand-back, lightly edited for wording and list layout; no finding, severity, locus or check result was altered (confirmed by the reviewer in verdict 02, finding 1). The manager's dispositions follow it.
 
 ---
 
@@ -130,6 +130,6 @@ No Git state changed, and I wrote no repository file. My only writes were scratc
 | 3 (MINOR) | **Recorded as deliberate; no candidate change.** At preparation time no D-PEC number exists for the checkpoint-2 act, and the canon forbids naming one that does not exist. The candidates cite the group-2 snapshot folder instead, and a D-PEC register row under Q-CP2-2 (a) points to that folder. This follows the D-PEC-92 pattern, where the register row points to the snapshot. `Propagation_Plan.md` §A4 now states that the checkpoint-3 tranche may add the register-row number as a lineage completion only if the owner's checkpoint-2 act directs it; otherwise the folder citation stands. |
 | 4 (NOTE) | **Kept.** The front-matter `status:` is the log's state field, updated as SCA-005's log was at the same stage; row content is additive. |
 | 5 (NOTE) | **Noted.** Not merged; reported to HELP_HUMAN if CI asks for a base update. |
-| 6 (NOTE) | **Noted.** The PRD diff §3 attributes it to Seq 7 with the SOW-099 notes as its source; it grants nothing. |
+| 6 (NOTE) | **Noted.** The sentence realizes intake Seq 7 together with the tier-0 requirement that intake Seq 26 (SOW-099 notes) and IA §7.4 state; `PRD_V2_4_SUCCESSOR_DIFF.md` H-11 cites Seq 7 only. It grants nothing (verdict 02, NOTE 3). |
 | 7 (NOTE) | **Carried** to the checkpoint-3 brief as a recommendation, in the return. |
 | 8 (NOTE) | **Agreed.** |
