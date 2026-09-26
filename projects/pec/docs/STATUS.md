@@ -243,7 +243,11 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
     `execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/`);
     checkpoint-3 preparation is authorized on the pinned scope-change edition
     (owner 2026-09-26). The `AGENTS.md` correction to the Remaining sections
-    rides its instruction tranche.
+    rides its instruction tranche. The owner must explicitly approve the exact
+    text before it merges.
+  - Owner decision pending: whether to open a separate undertaking to retire
+    the 57 `## Remaining` sections, as App and Piping did (work-graph node
+    RS1).
 
   These are organized in the work graph
   `execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md`.

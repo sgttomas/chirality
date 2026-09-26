@@ -26,8 +26,9 @@ owner then directed:
 
 | Item | Effect |
 |---|---|
-| Direction on the Remaining sections | PEC's `## Remaining` sections are not a surface going forward. PEC does not read them, and no profile declares them. |
+| Direction on the Remaining sections | PEC's `## Remaining` sections are not a surface going forward: PEC adds none and does not read them, and no profile declares them. |
 | Revision 4 | The G1 preparer revises the proposal. `remaining-items` and `remaining-loop` leave the closed vocabulary, so the vocabulary becomes `shared-dev-loop`, `loop-receipts-ledger` and `agentruns-json`. Option A-R goes, and PEC's row is `shared-dev-loop` live with `loop-receipts-ledger` and `agentruns-json` historical. The revision is independently backchecked before the owner rules. |
+| Question 4 | The direction also answers the vocabulary part of question 4 with a smaller vocabulary. The coherence rules and the row shape are still confirmed at the ruling. |
 | Question 2 | The row's departure from SCA-005 §B6 and SCA005-CP1-Q8 (a) still needs its ruling when the packet is presented. The direction implies the migrated row. |
 | `projects/pec/AGENTS.md` | The sentences keeping the Remaining sections as records are corrected in the SCA-006 checkpoint-3 instruction tranche ("yes, ride checkpoint 3"). They are recorded as SCA-006 group-2 amendment 1. |
 | The 57 existing sections | This direction does not delete or retire them. `projects/pec/AGENTS.md` says retiring them "as App and Piping did, is a separate owner-directed undertaking"; whether to open it is put to the owner. |

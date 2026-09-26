@@ -18,7 +18,7 @@ Saved at `projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-2026092
   - P1 parser implementation itself (`v2/**` beyond the registry packet);
   - P2–P4;
   - CHECKING, ISSUED and acceptance acts, which are the owner's own;
-  - retiring the `## Remaining` sections;
+  - retiring the `## Remaining` sections (a separate owner-directed undertaking; this graph holds only the decision whether to open it, RS1);
   - Root launcher alignment, which is Root-owned (notice only).
 - **Route through the project DAG:**
   - Start from the accepted revision 1.5 decomposition and PRD v2.3 (`_Decomposition/_LATEST.md`, `docs/PRD.md`).
@@ -60,7 +60,7 @@ Saved at `projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-2026092
 | R4 Reliance notices | Root, App and Runtime notices of the instruction tranche, and the reliance-amendment notices. The checkpoint-2 plan names the Runtime basis: Runtime DEL-02-06 pins `projects/pec/AGENTS.md`, `Deliverables.csv` and `ScopeLedger.csv` (`SOURCE_PINS.json` S4–S6). Piping gets none. The notice content rides the checkpoint-3 PR (HELP_HUMAN) | R3 | Notices merged | PLANNED |
 | S1 SOW currency: review class outside the S4 set | Review-class SOWs from SCA-005 §B4 that SCA-006 does not name as affected, plus the 5 housekeeping-only (pins, false revision-1.1 claims) (WORKING_ITEMS with REVIEW or artifact gates) | U1; the latest SCA-006 affected-SOW list (R1's, replaced by R2's once accepted), whose members stay out of S1; packet per batch | Each SOW validator-clean and reviewed | READY — packet preparation; U1 and R1 are met. The accepted §7.1 AFFECTED set (9) stays out |
 | S2 SOW currency: rebuild class outside the S4 set | DEL-01-01, DEL-02-03, DEL-02-04, DEL-02-05, DEL-02-06, DEL-02-07; DEL-01-06 after G1 (WORKING_ITEMS) | U1; R1 (the affected list, as for S1 and S3); packet(s); parser carry-forward (CON-001 cases for RETIRED, node states, run tokens). A member of the latest SCA-006 affected list moves to S4 | Same | READY — packet preparation for the six named; DEL-01-06 waits for G1 |
-| S3 First SOWs for DEL-02-08 and DEL-02-09 | Their `ScopeOfWork.md`, via preparation → Scope of Work (WORKING_ITEMS) | U1; R1 (the affected list, as for S1 and S2); packet. S2's parser carry-forward context informs it, but S3 is not blocked on S2 | Same | READY — packet preparation; U1 and R1 are met |
+| S3 First SOWs for DEL-02-08 and DEL-02-09 | Their `ScopeOfWork.md`, via preparation → Scope of Work (WORKING_ITEMS) | U1; R1 (the affected list, as for S1 and S2); packet. S2's parser carry-forward context informs it, but S3 is not blocked on S2 | Same | ACTIVE — the `D-PEC-98` draft (number provisional until published with a register row) is being prepared by a read-only TASK under brief `briefs/S3_FIRST_SOWS_PROPOSAL.md` (`ef12b740…537a`) |
 | S4 SOWs whose quoted PRD text SCA-006 changes | Fixed at checkpoint 2 (`Propagation_Plan.md` §B4, accepted 2026-09-25): DEL-04-01, DEL-04-02, DEL-08-01, DEL-08-03, DEL-08-04, DEL-04-03, DEL-03-04 and DEL-10-03, with DEL-00-03 through D1, all held until R3. Holding DEL-03-04, DEL-10-03 and DEL-00-03 is more conservative than IA §7.1's "S1 or D1", and the plan records it as deliberate. §7.1 classifies DEL-01-01, DEL-01-05, DEL-02-03 and DEL-01-06 NOT_AFFECTED (WORKING_ITEMS) | R3; packet, or the accepted checkpoint-2 propagation plan where it binds exact rows | Same | PLANNED |
 | G1 Registry source packet | `v2/config/loops.json`, `loops.schema.json`, `RegisteredLoop` port and tests (WORKING_ITEMS) | Packet (F-PEC-1); VER-001/VER-003 rerun | v2 checks pass; review | ACTIVE — the owner directed a revision 4 on 2026-09-26 (`_DECISIONS/D-PEC-96_AMEND_DIRECTION_2026-09-26.md`): drop `remaining-items` and `remaining-loop`. The preparer is revising the draft; a backcheck follows, then the owner's ruling |
 | D1 Derivative premise review | DEL-00-01 ADRs, DEL-00-03 SPEC (WORKING_ITEMS with owning workflows) | Packet binding exact bytes (outside default surfaces); after R3 for K-03 text | Owner rules the packet; premise-only amendments merged | PLANNED |
@@ -71,7 +71,7 @@ Saved at `projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-2026092
 | K3 Tier-0 profile act | `_DomainEngines/profiles/pec.yaml` (the tool-surface declaration) (owner-ruled tier-0 act) | R3 and K2: the profile act follows DEL-08-06's first Scope of Work, which fixes the tool's shape (plan §B6). It comes before any PEC tool surface is declared or invoked | Profile validators pass | PLANNED |
 | K4 Re-pin to revision 1.6 | `_CONTEXT.md` and `_REFERENCES.md` pins after SCA-006 applies (checkpoint-2 plan B7) (WORKING_ITEMS with PROJECT_SETUP) | R3; packet (the D-PEC-95 method) | Every file names revision 1.6 | PLANNED |
 | I1 `AGENTS.md` residual corrections | `projects/pec/AGENTS.md` (HELPS_HUMANS) | Instruction tranche with manifest | Validators pass; notice | PLANNED — rides R3's instruction tranche (Q-CP2-1 (a)); completes with R3 |
-| RS1 Retire the `## Remaining` sections | The 57 deliverable `_STATUS.md` `## Remaining` sections, with each open item routed to the graph or its governing records, as App and Piping did (owner-directed undertaking) | The owner's decision to open it: `projects/pec/AGENTS.md` makes retiring them a separate owner-directed undertaking. The owner's 2026-09-26 direction ("There must not be any of those going forward") bears on it, but did not open it | Owner rules the retirement packet; sections retired with no open item lost | BLOCKED — awaiting the owner's decision whether to open it |
+| RS1 Owner decision: open a separate undertaking to retire the `## Remaining` sections? | A decision record only. The retirement itself is not in this undertaking: `projects/pec/AGENTS.md` makes it a separate owner-directed undertaking, as App and Piping did (HELP_HUMAN records) | The owner's 2026-09-26 direction ("There must not be any of those going forward") bears on it, but did not open it | Decision recorded; if opened, the new undertaking's graph is named | BLOCKED — awaiting the owner's decision whether to open it |
 | C1 Bounded closeout | Affected deliverables and records (HELP_HUMAN) | All substantive PRs merged | `bounded-reconciliation` comparisons; warranted edits | PLANNED |
 | M1 Record the run | Central `RECEIPT.md`; MEMORY rows named by the governing packets (HELP_HUMAN) | C1 | Receipt and rows written | PLANNED |
 | F1 Final PR | Integrated undertaking (HELP_HUMAN) | M1 and all checks | Final PR merged | PLANNED |
@@ -79,7 +79,8 @@ Saved at `projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-2026092
 **Order.**
 - Done: U1 (with N1–N3 and T1), R1 and R2.
 - Active: G1 (`D-PEC-96` revision 4, by owner direction).
-- Ready now: R3, and S1–S3 packet preparation (S3's `D-PEC-98` draft is active).
+- Active: S3 (`D-PEC-98` draft, provisional number).
+- Ready now: R3, and S1–S2 packet preparation.
 - Blocked on the owner: RS1 (whether to retire the Remaining sections).
 - After U1 and R1: S1, S2 and S3. Their membership follows the latest SCA-006 affected-SOW list (R1's, replaced by R2's once accepted).
 - After G1: DEL-01-06 in S2.
@@ -94,19 +95,23 @@ The dependencies are acyclic, and the named inputs, not this listing, decide whe
 - DEP-10-05-004's warrant is weaker after the refresh: its cited cell no longer names orientation reads. Moving its evidence to SOW-085 would change `EvidenceFile` and `SourceRef`, so it is left for a later dependency packet and was not prepared. The owner accepted the row as prepared (`D-PEC-95` ruling).
 - SCA-005 Propagation_Plan §B1 counts "40" `_CONTEXT.md` files. The correct figure is 42 (COV-072 in the checkpoint-3 audit), which `D-PEC-95` uses.
 
-**Notice triage (2026-09-26, five Root wave-2A workflow notices in `execution/_Coordination/`).** Each has a home in this graph or is recorded here, so no Task Management intake is needed.
+**Notice triage (2026-09-26: five Root wave-2A workflow notices and three later Root notices in `execution/_Coordination/`).** Each has a home in this graph or is recorded here, so no Task Management intake is needed.
 - **`NOTICE_2026-09-26_WORKFLOW_WAVE2A_EXECUTION.md`:**
   - `software-bounded-implementation` is retired. `D-PEC-96` revision 3 and the SCA-006 I1 candidate already use `construct-local-work-graph` implementation nodes.
   - The revised `construct-local-work-graph` names PEC as an adopting loop and says a node awaiting a human decision is BLOCKED, naming the decision. This graph applies that from this update (G1, R3).
 - **`NOTICE_2026-09-26_WORKFLOW_WAVE2A_CHANGE_CONCERNS.md`:**
   - It revises `scope-change` (`contract.md` `4453a719…` → `74793f04…`; `method.md` `34187e83…` → `fd3fe525…`), `audit-scope-closure`, `scope-change-packet` and `task-management`.
-  - SCA-006 was prepared on the earlier scope-change edition. Adopting the revision mid-run is an open choice for the owner. HELP_HUMAN recommends that SCA-006 finish checkpoint 3 on its pinned edition, and that later scope changes use the revised one.
+  - SCA-006 was prepared on the earlier scope-change edition. HELP_HUMAN put the adoption choice to the owner, recommending the pinned edition for SCA-006 and the revised one for later scope changes.
   - The revision's group-2 register rule (a distinct name when group 1 already binds `Amendment_Actions.csv`) matches SCA-006's `Amendment_Actions_CP2.csv` already.
   - Its PEC-specific item answers PEC's 2026-09-25 RETIRED-status notice, and SCA-005 is closed.
-  - The group-2 `DECISION.md` records the edition question as open. It is put to the owner before R3 is dispatched. The owner chose the pinned edition on 2026-09-26. R3's audit will use the current `audit-decomp` (SETUP_DEPS), so the editions are mixed; this was disclosed to the owner before the choice.
+  - The group-2 `DECISION.md` recorded the edition question as open. The owner chose the pinned edition on 2026-09-26 (group-2 amendment 1). R3's audit will use the current `audit-decomp` (SETUP_DEPS), so the editions are mixed; this was disclosed to the owner before the choice.
   - It also records that SCA-005's hand-written RETIRED states would trip `adapter_project.py` if PEC adopted the practitioner harness. PEC has not adopted it, so this is recorded here with no node.
 - **`NOTICE_2026-09-26_WORKFLOW_WAVE2A_SETUP_DEPS.md`:** revises `project-setup`, `dependency-extract`, `audit-dep-closure` and `audit-decomp`. It applies when K1 and the R3 audit run. The new `EXPECTED_CONSEQUENCE` classification in `audit-decomp` can attribute COV-068/069/072/073 to `D-PEC-95` at R3.
 - **`NOTICE_2026-09-26_WORKFLOW_WAVE2A_CLOSURE.md`:** revises `reconciliation` and `bounded-reconciliation`. C1 uses the edition current when it runs.
+- **Three later Root notices (merged by `8f9bd314c`):**
+  - **`NOTICE_2026-09-26_DEPENDENCY_SCHEMA_D-GOV-46.md`:** one tracking-mode vocabulary and one `_DEPENDENCIES.md` heading schema. Existing files keep their headings; new files use the amended schema. It applies to K1's new DEL-08-06 and DEL-10-13 files.
+  - **`NOTICE_2026-09-26_DECOMP_RULINGS_D-GOV-47.md`:** package home for IN items only, and an optional combined review sitting. The notice records that PEC's ledger already follows the IN-only convention. SCA-006's revision 1.6 keeps it: SOW-097..100 are IN with packages, and the OUT and TBD rows are unchanged. No action.
+  - **`NOTICE_2026-09-26_REVIEW_SPEC34_REVERSAL.md`:** aligns the lifecycle `review` workflow and `write_status.sh` with `docs/SPEC.md` §3.3–3.4. It is informational for PEC deliverables' lifecycle records. This undertaking makes no lifecycle act, R3's review is the scope-change review instance and not this workflow, and nothing here prompts about CHECKING.
 - **`NOTICE_2026-09-26_WORKFLOW_WAVE2A_FORMATION.md`:** revises `software-decomp` and other formation methods. Nothing in flight uses them, and nothing is retrofitted.
 
 **Carried from SCA-006 checkpoint-1 preparation (settled at R2: see K1–K3, R4 and I1).**
@@ -119,20 +124,20 @@ The dependencies are acyclic, and the named inputs, not this listing, decide whe
 
 ## Current state and recovery
 
-- **Checked basis:** `origin/main` `971ca68a1`: PR #928 merged as `6721457be` and PR #934 as `a558f5a40`, with Root wave-2A tranches before and after (the FORMATION tranche, PR #935, merged after #934).
+- **Checked basis:** `origin/main` `8f9bd314c`. PR #928 merged as `6721457be`, #934 as `a558f5a40` and #936 as `dcf660a19`, with Root tranches before and after, through PR #939.
 - **Next work:**
-  - The owner's `D-PEC-96` ruling (presented 2026-09-25/26, HELP_HUMAN's account). On a ruling: record it, then dispatch the act.
-  - Dispatch R3 once this record merges.
+  - Dispatch R3 once this record merges (brief `briefs/B6_SCA006_CHECKPOINT3.md`). The owner must explicitly approve the `AGENTS.md` amendment-1 hunk before its application PR merges.
   - Receive `D-PEC-96` revision 4, backcheck it, then present it for the ruling.
-  - Receive the `D-PEC-98` draft (S3), review it, then present it.
+  - Receive the `D-PEC-98` draft (S3, provisional number), publish it with a register row, review it, then present it.
   - The owner's decision on RS1.
-  - Prepare the S1–S3 Scope of Work packets.
+  - Prepare the S1–S2 Scope of Work packets.
   - Each fenced packet comes to the owner to rule on.
 - **Local or unmerged work:** this graph's eighth PR (branch `claude/pec-owner-directions-20260926`). It records the owner's 2026-09-26 directions.
 - **Active operations and ownership:**
   - The SCA-006 checkpoint-1 manager handed back (`returns/B4_SCA006_CHECKPOINT1.md`); its scratch helpers are named in the SCA-006 `Handoff_State.md` (not hashed, and not in the repository).
   - The U1 act manager handed back (`returns/U1_D95_CURRENCY_ACT.md`, brief `briefs/U1_D95_CURRENCY_ACT.md`); nothing is running from it.
-  - G1: the preparer handed back revision 3, now merged; nothing is running.
+  - G1: the read-only preparer is making `D-PEC-96` revision 4 by the owner's direction (brief `briefs/G1_REGISTRY_SOURCE_PROPOSAL.md` plus the direction record). It writes a HELP_HUMAN scratch folder, and HELP_HUMAN publishes the result.
+  - S3: a read-only TASK is drafting `D-PEC-98` under brief `briefs/S3_FIRST_SOWS_PROPOSAL.md` (`ef12b740…537a`). It writes a HELP_HUMAN scratch folder.
   - R2: the WORKING_ITEMS manager handed back its final return after three forced interim handbacks; nothing is running. Its scratch scripts are in HELP_HUMAN's scratchpad `B5/mgr/` (not in the repository).
 - **Graph maintainer:** HELP_HUMAN.
 - **Earlier run:** `HELP-HUMAN-PEC-20260923-SCA005`, under PEC's former loop; its `RUN.md` is history. The owner's CHECKING reservation for DEL-01-03 stands, and nothing here prompts for it.
@@ -143,7 +148,7 @@ The dependencies are acyclic, and the named inputs, not this listing, decide whe
 | `D-PEC-95` preparation (N1–N3, T1) | TASK draft, generator and prototype evidence published. Brief `briefs/H9_D95_CURRENCY_PROPOSAL.md`; return `returns/H9_D95_CURRENCY_PROPOSAL.md`. The generator's check-only run on `bec8bdd65` passed, with no preimage drift | Resolved: PR #921 merged as `325629882` after review 01 PASS (`returns/REVIEW_PR921_01.md`), and the owner ruled P + R. Review 01's findings 3, 4, 5 and 7 are repaired in this graph's third PR; findings 1, 2 and 8 went to the owner with the presentation |
 | SCA-006 checkpoint-1 package (R1) | Six snapshot files under `_ScopeChange/SCA-006_2026-09-25_1912/`: 54 PROPOSED actions, and all 32 SOWs classified (9 AFFECTED). Verifier PASS on round 03; PR #922 merged as `b1145955e`, with branch updated and package bytes unchanged. The owner accepted it 2026-09-25 (recommended set) | R2 checkpoint-2 preparation |
 | U1 currency act (N1–N3, T1) | PR #924 merged as `abfd0897b`. 119 P + R paths byte-identical to the tabled postimages; TM-PEC-023 archived; strict registers 0/0; closure unchanged; verifier PASS WITH NOTES ×2 (run root `VERIFIER_VERDICT_01.md`, `_02.md`) | None |
-| `D-PEC-96` publication (G1) | PR #928 merged as `6721457be`: revision 3 after reviews 01 FAIL, 02 FAIL and 03 PASS | Owner ruling |
+| `D-PEC-96` publication (G1) | PR #928 merged as `6721457be`: revision 3 after reviews 01 FAIL, 02 FAIL and 03 PASS | Superseded by the owner's revision-4 direction (2026-09-26); the ruling follows revision 4 |
 | SCA-006 checkpoint-2 package (R2) | PR #934 merged as `a558f5a40`: PRD v2.4 candidate, revision 1.6 postimages, `AGENTS.md` candidates, 54 actions, 16 bindings, plan. Verifier PASS round 03. The owner accepted it on 2026-09-25 (Q1 a, Q2 a); group-2 snapshot; `D-PEC-97` | R3 checkpoint-3 preparation |
 | SCA-006 checkpoint-1 acceptance record | PR #926 merged as `4d5f7b911`. Group-1 snapshot and pointer; reviews 01 FAIL, 02 FAIL and 03 PASS, with every finding repaired (`returns/REVIEW_PR926_0{1,2,3}.md`) | None |
 
@@ -168,4 +173,4 @@ The dependencies are acyclic, and the named inputs, not this listing, decide whe
     - Review repair (PR #926 review 01): STATUS and README say checkpoint-2 preparation is "authorized", not "in preparation". STATUS names SCA-005 in the "Checkpoint 2 carried a note" sentence.
   - Sixth PR: the `docs/STATUS.md` owner-gates list names `D-PEC-96` as awaiting ruling.
   - Seventh PR: `docs/STATUS.md` and `README.md` record the SCA-006 checkpoint-2 acceptance (`D-PEC-97`) and that checkpoint-3 preparation is authorized. After review 01, the STATUS reliance paragraph also records checkpoint 2, and the owner-gates entry names the method-edition choice.
-  - Eighth PR: the `docs/STATUS.md` owner-gates list records the pinned edition and the `D-PEC-96` revision-4 direction.
+  - Eighth PR: the `docs/STATUS.md` owner-gates list records the pinned edition, the `D-PEC-96` revision-4 direction and the RS1 owner decision.

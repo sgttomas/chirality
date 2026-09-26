@@ -219,6 +219,6 @@ pointer is `../SCA-006_GROUP-2_AUTHORIZED.md`, and the Lane A packet row is
 ## Group-2 amendment 1 and checkpoint-3 edition (HELP_HUMAN, 2026-09-26; appended)
 
 - **Method edition:** the owner chose the pinned edition ("SCA-006 pinned").
-- **AGENTS.md:** the owner directed that the correction to the Remaining sections ride the checkpoint-3 instruction tranche. The record is `../checkpoint_snapshots/SCA-006_GROUP-2_AMENDMENT-1_2026-09-26/`.
+- **AGENTS.md:** the owner directed that the correction to the Remaining sections ride the checkpoint-3 instruction tranche. The owner must explicitly approve its exact hunk before the application PR merges. The record is `../checkpoint_snapshots/SCA-006_GROUP-2_AMENDMENT-1_2026-09-26/`.
 - **Next:** WORKING_ITEMS runs checkpoint-3 preparation.
 - **State fields:** `ReadyForNextPhase` stays `NO`, and the other state fields are unchanged.
