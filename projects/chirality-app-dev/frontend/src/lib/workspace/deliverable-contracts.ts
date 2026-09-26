@@ -361,6 +361,71 @@ export interface DeliverableStatusTransitionResult extends DeliverableStatusSnap
   };
 }
 
+/**
+ * Resolves the ruling reference of the human-ruled `CHECKING -> IN_PROGRESS`
+ * reversal to a project-relative POSIX path. The reference may be relative to
+ * projectRoot or absolute; it must resolve, lexically and after symlink
+ * resolution, to a regular file inside projectRoot. This checks existence and
+ * location only: it does not establish that a human made the ruling or that the
+ * record is committed.
+ */
+async function resolveRulingReference(
+  projectRoot: string,
+  canonicalProjectRoot: string,
+  rulingInput: string
+): Promise<string> {
+  const ruling = rulingInput.trim();
+  const candidatePath = path.resolve(projectRoot, ruling);
+  const lexicalRelative = path.relative(projectRoot, candidatePath);
+  if (!lexicalRelative || lexicalRelative.startsWith('..') || path.isAbsolute(lexicalRelative)) {
+    throw new WorkspaceOperationError(
+      'RULING_OUTSIDE_PROJECT_ROOT',
+      400,
+      'ruling must resolve inside projectRoot',
+      { ruling }
+    );
+  }
+
+  let canonicalPath: string;
+  let rulingStat;
+  try {
+    canonicalPath = await realpath(candidatePath);
+    rulingStat = await stat(canonicalPath);
+  } catch {
+    throw new WorkspaceOperationError(
+      'RULING_NOT_FOUND',
+      400,
+      'ruling does not name an accessible record in projectRoot',
+      { ruling }
+    );
+  }
+
+  const canonicalRelative = path.relative(canonicalProjectRoot, canonicalPath);
+  if (
+    !canonicalRelative ||
+    canonicalRelative.startsWith('..') ||
+    path.isAbsolute(canonicalRelative)
+  ) {
+    throw new WorkspaceOperationError(
+      'RULING_OUTSIDE_PROJECT_ROOT',
+      400,
+      'ruling must resolve inside projectRoot',
+      { ruling }
+    );
+  }
+
+  if (!rulingStat.isFile()) {
+    throw new WorkspaceOperationError(
+      'RULING_NOT_FOUND',
+      400,
+      'ruling must name a ruling record file',
+      { ruling }
+    );
+  }
+
+  return canonicalRelative.split(path.sep).join('/');
+}
+
 export async function transitionDeliverableStatus(
   input: DeliverableStatusTransitionInput
 ): Promise<DeliverableStatusTransitionResult> {
@@ -372,6 +437,9 @@ export async function transitionDeliverableStatus(
     input.deliverablePath
   );
   const statusFilePath = path.join(deliverablePath, '_STATUS.md');
+  const ruling = input.ruling?.trim()
+    ? await resolveRulingReference(projectRoot, canonicalProjectRoot, input.ruling)
+    : undefined;
 
   try {
     const transition = await transitionStatusFile(
@@ -381,7 +449,8 @@ export async function transitionDeliverableStatus(
       {
         date: input.date,
         metadata: input.metadata,
-        approvalSha: input.approvalSha
+        approvalSha: input.approvalSha,
+        ruling
       }
     );
 

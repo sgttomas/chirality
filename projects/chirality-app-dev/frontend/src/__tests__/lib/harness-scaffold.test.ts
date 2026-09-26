@@ -131,6 +131,35 @@ describe('scaffoldExecutionRoot', () => {
 
     const coordination = await readFile(path.join(executionRoot, '_Coordination', '_COORDINATION.md'), 'utf8');
     expect(coordination).toContain('**Representation:** HYBRID');
+    expect(coordination).toContain('**Dependency tracking mode:** FULL_GRAPH');
+
+    // SPEC §5.2 skeleton (D-GOV-46): exact headings in order, mode taken from the
+    // coordination record, placeholders only, and no inferred edges.
+    const dependencies = await readFile(path.join(deliverablePath, '_DEPENDENCIES.md'), 'utf8');
+    expect(dependencies.split('\n').filter((line) => line.startsWith('#'))).toEqual([
+      '# Dependencies: DEL-01-01 DMG Build: Baseline',
+      '## Dependency Tracking Mode',
+      '## Declared Upstream (I need these before I can proceed)',
+      '## Declared Downstream (These need me)',
+      '## Extracted Dependency Register',
+      '## Lifecycle Summary',
+      '## Run Notes',
+      '## Run History'
+    ]);
+    expect(dependencies).toContain('- **Mode:** FULL_GRAPH\n');
+    expect(dependencies).toContain(
+      '- **Register:** Dependencies.csv (schema v3.1) when present; otherwise the declared sections of this file\n'
+    );
+    const coordinationPointer = dependencies.match(/^- \*\*Notes:\*\* (.+)$/m)?.[1];
+    expect(coordinationPointer).toBeDefined();
+    await expect(
+      readFile(path.resolve(deliverablePath, coordinationPointer as string), 'utf8')
+    ).resolves.toBe(coordination);
+    expect(dependencies).toContain('## Extracted Dependency Register\n- **Status:** NOT_RUN_YET\n');
+    const [, ...bodyLines] = dependencies.split('\n');
+    expect(bodyLines.join('\n')).not.toMatch(/DEL-\d{2,3}-\d{2}/);
+    expect(dependencies).not.toContain('Downstream Handoff Notes');
+    expect(dependencies).not.toContain('## Dependency Tracking\n');
   });
 
   it('is idempotent and does not overwrite existing files on rerun', async () => {

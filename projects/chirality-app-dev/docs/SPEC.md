@@ -233,6 +233,8 @@ Rules:
 - `_STATUS.md` is the canonical lifecycle file.
 - Transitions are forward-only except the two human-authorized reversal transitions above; any other reversal requires a human explicitly amending the record.
 - Transitions to `CHECKING` or `ISSUED` require approval SHA evidence.
+- `CHECKING → IN_PROGRESS` also requires approval SHA evidence and a `ruling` naming the human ruling record, a file inside the project root; the history entry records the ruling and SHA. The ruling and SHA are evidence of the authorization; they do not by themselves prove a human act.
+- `ISSUED → IN_PROGRESS` occurs only through the governed scope-change process. It is authorized only by an ACCEPTED amendment (checkpoint group 3 accepted) whose accepted action register names that deliverable with action `MODIFY` (repo-root `docs/SPEC.md` §3.3; the `scope-change` workflow). The status-transition tools do not perform that process or yet check that amendment record, and they reject the transition until that check is implemented.
 - SDK/MCP status-transition tools MUST enforce these rules.
 
 ### 4.4 Lifecycle Regimes and CHECKING Entry Conditions
@@ -301,23 +303,81 @@ Rules:
 
 ### 5.2 `_DEPENDENCIES.md`
 
-Hybrid container with human-owned and agent/tool-owned sections:
+Hybrid container with human-owned and agent/tool-owned sections. Its single
+heading schema is repo-root `docs/SPEC.md` §5.2 (D-GOV-46); this section
+restates it for App surfaces.
 
-- Dependency Tracking Mode
-- Declared Upstream
-- Declared Downstream
-- Extracted Dependency Register
-- Lifecycle Summary
-- Run Notes
-- Run History
+- **Human-owned** (created by PREPARATION/scaffold; maintained by humans or the
+  coordinating workflow): Dependency Tracking Mode, Declared Upstream, Declared
+  Downstream.
+- **Agent-owned** (populated by `dependency-extract`; PREPARATION/scaffold
+  creates the first four as placeholders): Extracted Dependency Register,
+  Lifecycle Summary, Run Notes, Run History, and Downstream Handoff Notes
+  (present only after a run whose `CONSUMER_CONTEXT` is not `NONE`).
 
-Tracking modes:
+Agent-owned sections never overwrite or rename human-owned sections. A new file,
+or a section added to an existing file, uses these exact headings in order:
+
+```markdown
+# Dependencies: {DEL-ID} {DeliverableName}
+
+## Dependency Tracking Mode
+- **Mode:** {NOT_TRACKED | DECLARED | FULL_GRAPH}
+- **Register:** Dependencies.csv (schema v3.1) when present; otherwise the declared sections of this file
+- **Notes:** {pointer to _COORDINATION.md or the external coordination system, or TBD}
+
+## Declared Upstream (I need these before I can proceed)
+## Declared Downstream (These need me)
+## Extracted Dependency Register
+## Lifecycle Summary
+## Run Notes
+## Run History
+## Downstream Handoff Notes
+```
+
+Declared entries name `{DEL-ID} {Name} — Reason: {reason}` with `Required
+maturity` and `Location`, or, under `NOT_TRACKED`, "Dependencies coordinated
+externally by humans." Before the first extraction the declared sections come
+only from supplied declarations (`TBD` when none were supplied; edges are never
+inferred), the register body is `- **Status:** NOT_RUN_YET`, the other
+agent-owned bodies are `- (placeholder)`, and Downstream Handoff Notes is
+omitted. The App scaffold (`frontend/src/lib/harness/scaffold.ts`) writes this
+skeleton and takes the mode from the `_COORDINATION.md` it writes.
+
+Existing files keep their headings and are not rewritten. Readers accept the
+legacy headings listed in the repo-root SPEC §5.2 table as the corresponding
+sections (for example `## Coordination (human-owned)`, `## Coordination Mode` or
+`## Dependency Tracking` for Dependency Tracking Mode, `## Run Notes & History`
+for Run Notes and Run History, and `## Consumer Handoff Notes` for Downstream
+Handoff Notes). An agent-owned heading with the suffix `(populated by
+TASK+dependency-extract)` is the same section as the heading without it. Other
+headings are preserved and read by their content.
+App dependency reads take structured rows only from `Dependencies.csv`;
+`_DEPENDENCIES.md` is a secondary summary from which no rows are inferred.
+
+Tracking modes (repo-root SPEC §5.3). The human chooses the project mode; it is
+recorded in `execution/_Coordination/_COORDINATION.md` and in each deliverable's
+Dependency Tracking Mode section.
 
 | Mode | Meaning |
 |---|---|
-| `NOT_TRACKED` | Dependencies coordinated externally by humans. |
-| `DECLARED` | Human-declared upstream/downstream only. |
-| `TRACKED` | Full extraction via dependency workflow and `Dependencies.csv`. |
+| `NOT_TRACKED` | Coordination occurs outside the files. Reports give no computed ready/blocked judgment from dependencies. |
+| `DECLARED` | The recorded critical edges are a partial, human-curated view. Blockers come only from the recorded register (the declared sections, or `Dependencies.csv` where extraction has run), and the absence of a recorded blocker is not a complete readiness judgment. Extraction MAY add evidence when the confirmed dependency rules call for it; it neither completes the view nor replaces the declarations. |
+| `FULL_GRAPH` | Declarations are intended to cover the selected graph semantics. Blockers are computed only from the declared graph after closure audit and cycle treatment. |
+
+Under `DECLARED` and `FULL_GRAPH`, edges in an unresolved strongly connected
+component are non-gating and reported as held pending resolution. In any mode a
+dependency graph is not by itself a schedule. The legacy value `TRACKED` is read
+as `FULL_GRAPH`; files that record it are not rewritten, and new or updated
+records write `FULL_GRAPH`.
+
+`_COORDINATION.md` (repo-root SPEC §13) records the project's coordination
+representation once, together with its tracking mode. Under `SCHEDULE_FIRST`
+the schedule drives sequencing and dependency tracking, unless its mode is
+`NOT_TRACKED`, supports blocker detection and audit; under `DEPENDENCY_TRACKED`
+the dependency graph drives sequencing; `HYBRID` combines them. The
+representation does not change what a mode means, and only `FULL_GRAPH`
+intends a complete graph.
 
 ### 5.3 `_REFERENCES.md`
 

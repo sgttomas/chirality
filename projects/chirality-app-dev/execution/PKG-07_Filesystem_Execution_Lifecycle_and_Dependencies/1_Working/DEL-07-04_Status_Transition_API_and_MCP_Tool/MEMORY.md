@@ -1,5 +1,28 @@
 # MEMORY - DEL-07-04
 
+## Runs
+
+- 2026-09-26 — `APP-LIFECYCLE-DEPS-2026-09-26`: the transition validator, API and
+  MCP tool now admit the human-ruled `CHECKING -> IN_PROGRESS` reversal for a
+  HUMAN/USER/OPERATOR actor with an approval SHA and a `ruling` file inside the
+  project root. `ISSUED -> IN_PROGRESS` and every other backward move stay
+  rejected. REQ-004's open question, which record authorizes the scope-change
+  route for `ISSUED -> IN_PROGRESS`, is answered by the owner's 2026-09-26
+  decision (E, recorded in the receipt): an ACCEPTED amendment (checkpoint group
+  3 accepted) whose accepted action register names the deliverable with action
+  `MODIFY`; App SPEC §4.3 states it. Tool enforcement is pending: the tools keep
+  refusing the move until an amendment-record check is implemented (App
+  follow-up). This addresses the CHECKING part of CLM-011.4 and the
+  `NOTICE_2026-09-26_REVIEW_SPEC34_REVERSAL.md` lag. Known limit: the App layer
+  cannot verify that the ruling is committed or the SHA is a real commit, so
+  HUMAN plus a well-formed SHA plus a real ruling path suffices, as for the
+  CHECKING/ISSUED gates; the REQ-005 human-identity limit remains. The other App
+  follow-ups (Runtime descriptor `ruling`, UI reversal input, SOW verification
+  sentences) are in the work graph. No lifecycle change. Evidence:
+  [receipt](../../../_Coordination/AgentRuns/APP-LIFECYCLE-DEPS-2026-09-26/RECEIPT.md),
+  [work graph](../../../_Coordination/WorkGraphs/app-lifecycle-deps-2026-09-26/WORK_GRAPH.md),
+  branch `wave3-app-lifecycle-deps`.
+
 ## Decisions And Evidence
 
 - 2026-07-12 - D-APP-56 R4-P19 implemented exact HUMAN/USER/OPERATOR aliases; HUMAN-prefixed inventions fail with UNAUTHORIZED_ACTOR and approval-SHA evidence remains required. No lifecycle transition occurred.

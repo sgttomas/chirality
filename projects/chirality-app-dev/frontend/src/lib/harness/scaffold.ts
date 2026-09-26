@@ -44,6 +44,12 @@ const PREPARATION_REQUIRED_METADATA_FILES = [
 
 const COORDINATION_MODES = ['SCHEDULE_FIRST', 'DEPENDENCY_TRACKED', 'HYBRID'] as const;
 
+/**
+ * Dependency tracking mode (SPEC §5.3) the scaffold records in `_COORDINATION.md`.
+ * Each deliverable `_DEPENDENCIES.md` takes its mode from that record.
+ */
+const SCAFFOLD_DEPENDENCY_TRACKING_MODE = 'FULL_GRAPH';
+
 export type CoordinationMode = (typeof COORDINATION_MODES)[number];
 
 type ParsedDeliverable = {
@@ -568,7 +574,7 @@ function buildCoordinationTemplate(coordinationMode: CoordinationMode): string {
   return `# Coordination Record
 
 **Representation:** ${coordinationMode}
-**Dependency tracking mode:** FULL_GRAPH
+**Dependency tracking mode:** ${SCAFFOLD_DEPENDENCY_TRACKING_MODE}
 
 ## Coordination Representations
 
@@ -621,17 +627,45 @@ project workflow.
 `;
 }
 
+/**
+ * Writes the SPEC §5.2 `_DEPENDENCIES.md` skeleton (Root SPEC §5.2, D-GOV-46) in
+ * the placeholder form of the `preparation` scaffold contract. The scaffold has no
+ * supplied declarations, so the human-owned declared sections stay `TBD`; it never
+ * infers edges. `dependency-extract` later replaces the agent-owned placeholders.
+ */
 function buildDependenciesTemplate(deliverable: PackagePlan['deliverables'][number]): string {
   return `# Dependencies: ${deliverable.id} ${deliverable.name}
 
-## Dependency Tracking
+## Dependency Tracking Mode
+- **Mode:** ${SCAFFOLD_DEPENDENCY_TRACKING_MODE}
+- **Register:** Dependencies.csv (schema v3.1) when present; otherwise the declared sections of this file
+- **Notes:** ../../../_Coordination/_COORDINATION.md
 
-No accepted upstream dependency edges are recorded by the scaffold baseline.
+---
 
-## Scaffold Notes
+## Declared Upstream (I need these before I can proceed)
+- TBD (no declarations supplied at scaffold; edges are not inferred)
 
-Populate this file through governed dependency-discovery or dependency-closure workflows. Do not infer
-dependency satisfaction from scaffold creation.
+## Declared Downstream (These need me)
+- TBD (no declarations supplied at scaffold; edges are not inferred)
+
+---
+
+## Extracted Dependency Register
+- **Status:** NOT_RUN_YET
+
+---
+
+## Lifecycle Summary
+- (placeholder)
+
+---
+
+## Run Notes
+- (placeholder)
+
+## Run History
+- (placeholder)
 `;
 }
 

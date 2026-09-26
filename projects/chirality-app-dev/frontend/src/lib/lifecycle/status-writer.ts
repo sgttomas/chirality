@@ -22,6 +22,8 @@ export interface StatusUpdateInput {
   actor: string;
   date?: string;
   metadata?: Record<string, string>;
+  /** Optional history note, written as a `[...]` suffix on the appended history line. */
+  notes?: string;
 }
 
 function assertIsoDate(value: string, field: string): void {
@@ -132,12 +134,14 @@ export function updateStatusDocument(
   const date = input.date?.trim() || new Date().toISOString().slice(0, 10);
   assertIsoDate(date, 'Transition date');
 
+  const notes = input.notes?.trim() || undefined;
   const nextHistory: StatusHistoryEntry[] = [
     ...parsed.history,
     {
       date,
       state: targetState,
       actor,
+      ...(notes ? { notes } : {}),
       source: 'list',
       raw: ''
     }

@@ -327,6 +327,108 @@ describe('working-root deliverable contract routes', () => {
     });
   });
 
+  describe('human-ruled CHECKING reversal', () => {
+    const RULING_RELATIVE = 'execution/_Coordination/_DECISIONS/D-001_check_withdrawn.md';
+
+    function statusAt(state: 'CHECKING' | 'ISSUED'): string {
+      return `${INITIAL_STATUS.replace('**Current State:** INITIALIZED', `**Current State:** ${state}`)}- 2026-02-25 - State set to ${state} (HUMAN)\n`;
+    }
+
+    async function postTransition(body: Record<string, unknown>): Promise<Response> {
+      const routes = await importRouteModules();
+      return routes.transitionRoute.POST(
+        new Request('http://localhost/api/working-root/deliverable/status/transition', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            projectRoot: fixture.projectRoot,
+            deliverablePath: fixture.deliverablePath,
+            targetState: 'IN_PROGRESS',
+            actor: 'HUMAN',
+            date: '2026-02-27',
+            approvalSha: 'abc1234',
+            ...body
+          })
+        })
+      );
+    }
+
+    beforeEach(async () => {
+      await mkdir(path.join(fixture.projectRoot, path.dirname(RULING_RELATIVE)), { recursive: true });
+      await writeFile(path.join(fixture.projectRoot, RULING_RELATIVE), '# Ruling\n', 'utf8');
+    });
+
+    it('applies CHECKING -> IN_PROGRESS with a ruling inside projectRoot and records it', async () => {
+      await writeFile(fixture.statusFilePath, statusAt('CHECKING'), 'utf8');
+
+      const response = await postTransition({ ruling: RULING_RELATIVE });
+
+      expect(response.status).toBe(200);
+      expect(await response.json()).toMatchObject({
+        transition: { from: 'CHECKING', to: 'IN_PROGRESS', actor: 'HUMAN' },
+        status: { currentState: 'IN_PROGRESS' }
+      });
+      const statusFile = await readFile(fixture.statusFilePath, 'utf8');
+      expect(statusFile).toContain(
+        `- 2026-02-27 - State set to IN_PROGRESS (HUMAN) [reversal from CHECKING; ruling: ${RULING_RELATIVE}; approval SHA: abc1234]`
+      );
+    });
+
+    it('records an absolute ruling path inside projectRoot as project-relative', async () => {
+      await writeFile(fixture.statusFilePath, statusAt('CHECKING'), 'utf8');
+
+      const response = await postTransition({
+        ruling: path.join(fixture.projectRoot, RULING_RELATIVE)
+      });
+
+      expect(response.status).toBe(200);
+      await expect(readFile(fixture.statusFilePath, 'utf8')).resolves.toContain(
+        `[reversal from CHECKING; ruling: ${RULING_RELATIVE}; approval SHA: abc1234]`
+      );
+    });
+
+    it.each([
+      ['CHECKING', 'a caller-supplied HUMAN string alone', { approvalSha: undefined }, 'APPROVAL_SHA_REQUIRED'],
+      ['CHECKING', 'HUMAN with a SHA but no ruling', {}, 'RULING_REQUIRED'],
+      ['CHECKING', 'no SHA', { approvalSha: undefined, ruling: RULING_RELATIVE }, 'APPROVAL_SHA_REQUIRED'],
+      ['CHECKING', 'an agent actor', { actor: 'WORKING_ITEMS', ruling: RULING_RELATIVE }, 'UNAUTHORIZED_ACTOR'],
+      ['CHECKING', 'a missing ruling', { ruling: 'execution/_Coordination/_DECISIONS/D-404.md' }, 'RULING_NOT_FOUND'],
+      ['CHECKING', 'a directory ruling', { ruling: 'execution/_Coordination/_DECISIONS' }, 'RULING_NOT_FOUND'],
+      ['CHECKING', 'the project root as ruling', { ruling: '.' }, 'RULING_OUTSIDE_PROJECT_ROOT'],
+      ['CHECKING', 'a ruling outside projectRoot', { ruling: '../outside-ruling.md' }, 'RULING_OUTSIDE_PROJECT_ROOT'],
+      ['CHECKING', 'a non-string ruling', { ruling: 42 }, 'INVALID_REQUEST'],
+      ['ISSUED', 'a ruling on ISSUED -> IN_PROGRESS', { ruling: RULING_RELATIVE }, 'BACKWARD_TRANSITION'],
+      ['ISSUED', 'ISSUED -> CHECKING', { targetState: 'CHECKING', ruling: RULING_RELATIVE }, 'BACKWARD_TRANSITION']
+    ] as const)('denies %s reversal request with %s as %s without writing', async (state, _label, body, type) => {
+      await writeFile(path.join(fixture.tmpRoot, 'outside-ruling.md'), '# Outside\n', 'utf8');
+      const before = statusAt(state);
+      await writeFile(fixture.statusFilePath, before, 'utf8');
+
+      const response = await postTransition(body);
+
+      expect(response.status).toBe(400);
+      expect(await response.json()).toMatchObject({ error: { type } });
+      await expect(readFile(fixture.statusFilePath, 'utf8')).resolves.toBe(before);
+    });
+
+    it('denies a ruling symlink that resolves outside projectRoot', async () => {
+      await writeFile(fixture.statusFilePath, statusAt('CHECKING'), 'utf8');
+      const outside = path.join(fixture.tmpRoot, 'outside-ruling.md');
+      await writeFile(outside, '# Outside\n', 'utf8');
+      const link = path.join(fixture.projectRoot, 'execution/_Coordination/_DECISIONS/D-LINK.md');
+      await symlink(outside, link);
+
+      const response = await postTransition({
+        ruling: 'execution/_Coordination/_DECISIONS/D-LINK.md'
+      });
+
+      expect(response.status).toBe(400);
+      expect(await response.json()).toMatchObject({
+        error: { type: 'RULING_OUTSIDE_PROJECT_ROOT' }
+      });
+    });
+  });
+
   it('reads dependency register data from Dependencies.csv', async () => {
     const routes = await importRouteModules();
     const response = await routes.dependenciesRoute.GET(
