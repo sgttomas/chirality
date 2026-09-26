@@ -1,6 +1,6 @@
 # D-PEC-99 (provisional) — Retire PEC's deliverable `## Remaining` sections after a finite governed transfer — proposal
 
-Status: **DRAFT PROPOSAL / AWAITING_RULING. Number provisional.** `D-PEC-98` sits in open PR #944, so the final number is fixed only when HELP_HUMAN publishes this packet with its register row. The generator takes the number as a slot (`--decision`), so renumbering changes no other byte. Prepared by the RR1 WORKING_ITEMS manager under HELP_HUMAN (undertaking `HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT`, node RR1), 2026-09-26, from brief `RR1_REMAINING_RETIREMENT_ACCOUNT.md` (SHA-256 `e0bda78f24357181457409b5f035e7b2717d32f9e3c20ab6584a5ceca6486227`) and HELP_HUMAN's course-correction message of the same day. **No earlier direction approves this file.** It performs no act: no `_STATUS.md`, Scope of Work, decision, register, instruction, graph or foreign file was edited, and every prototype ran on a scratch export. It asks for no lifecycle change. HELP_HUMAN owns the register row and the filing. Suggested filing names: `execution/_Coordination/_DECISIONS/D-PEC-99_remaining_retirement_proposal_2026-09-26.md`, with its generator and closure check copied byte for byte into the run root (below).
+Status: **DRAFT PROPOSAL / AWAITING_RULING. Number provisional.** `D-PEC-98` was published by PR #944 (merged; `db9328789` carries its register row) and no `D-PEC-99` row exists there, but the final number is fixed only when HELP_HUMAN publishes this packet with its register row. The generator takes the number as a slot (`--decision`), so renumbering changes no other byte. Prepared by the RR1 WORKING_ITEMS manager under HELP_HUMAN (undertaking `HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT`, node RR1), 2026-09-26, from brief `RR1_REMAINING_RETIREMENT_ACCOUNT.md` (SHA-256 `e0bda78f24357181457409b5f035e7b2717d32f9e3c20ab6584a5ceca6486227`) and HELP_HUMAN's course-correction message of the same day. **No earlier direction approves this file.** It performs no act: no `_STATUS.md`, Scope of Work, decision, register, instruction, graph or foreign file was edited, and every prototype ran on a scratch export. It asks for no lifecycle change. HELP_HUMAN owns the register row and the filing. Suggested filing names: `execution/_Coordination/_DECISIONS/D-PEC-99_remaining_retirement_proposal_2026-09-26.md`, with its generator and closure check copied byte for byte into the run root (below).
 
 ## Provenance
 
@@ -65,7 +65,7 @@ No edit changes a lifecycle state. The act edits `_STATUS.md` only by removing t
 ## Options
 
 - **A — the act as tabled below, with question 1 answered (a) (recommended).** One act on **62 paths**: 57 `_STATUS.md` modifications, `projects/pec/AGENTS.md`, and four new files (the exhibit, the tranche manifest and two notices). Every Remaining section is removed. 71 items go to exhibit Part A, 12 to Part B (S1 4, S2 4, S4 4) and 9 close on record.
-- **A′ — as A with question 1 answered (b) (park).** The same 62 paths; `--q1 park` puts DEL-03-06-REM-004 in Part A, unselected, with its correction input shown as parked: Part A 72, Part B 11, closed 9.
+- **A′ — as A with question 1 answered (b) (park).** The same 62 paths; `--q1 park` puts DEL-03-06-REM-004 in Part A under its own heading as a parked documentary correction (not an evidence inquiry), unselected, with its correction input: Part A 71 + 1 parked, Part B 11, closed 9.
 - **A″ — as A with question 1 answered (c) (decline).** The same 62 paths; `--q1 decline` closes DEL-03-06-REM-004 by this ruling: Part A 71, Part B 11, closed 10.
 
 Under A′ and A″ only the exhibit and DEL-03-06's `_STATUS.md` postimages differ from A; the verifier replays them.
@@ -151,7 +151,7 @@ Paths are `projects/pec/execution/<PKG>/1_Working/<DEL folder>/_STATUS.md`, exac
 | Path | Act | Preimage SHA-256 | Postimage SHA-256 (A) |
 |---|---|---|---|
 | `projects/pec/AGENTS.md` | modify: front-matter `amended:` line; replace the Remaining paragraph (L261–272) with the text below | `4400c4e97d5c9dfeda7a9a764b204ed14784c687e55e81bb04875323b6c7139c` | `df9196d152a01afe59b388111ae0a14381b4ad74f280e95f9c44a1eaee925eb8` |
-| `projects/pec/execution/_Coordination/_DECISIONS/{N}_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md` | create (decision-owned exhibit; rendered for review as `DRAFT_D-PEC-99_EXHIBIT_MOVED_ITEMS.rendered.md`, byte-identical) | — | `03eaf9f09b9094a7207698d43f949a79716a7818b6dac8c044c34eaca40fc3ec` |
+| `projects/pec/execution/_Coordination/_DECISIONS/{N}_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md` | create (decision-owned exhibit; rendered for review as `DRAFT_D-PEC-99_EXHIBIT_MOVED_ITEMS.rendered.md`, byte-identical) | — | `69b646f8481fe39a12b811d8078ed14a4c49622d9a8ab566d87f83683044f45e` |
 | `docs/governance_harness/tranche_manifests/PEC-REMAINING-RETIREMENT-{DC}.yaml` | create | — | `f077b9958d42c9115234aef94c6c7d1d480f767829b552107d729a52412baeef` |
 | `execution/_Coordination/NOTICE_{D}_PEC_REMAINING_RETIREMENT.md` | create (Root notice) | — | `e1b3929fe1a514b361811ffee9b50d1e9f618346524e53b9aa2284fcdca38add` |
 | `projects/chirality-runtime/execution/_Coordination/NOTICE_{D}_PEC_REMAINING_RETIREMENT.md` | create (Runtime notice) | — | `20aecce99a9835cba3e28f38154852138755ac914a9b42fb85aeba37a2a16aa6` |
@@ -181,7 +181,7 @@ Front matter: `amended: 2026-09-26 (SCA-006 operational-reliance instruction tra
 
 ### Generation method (binding)
 
-The bytes come from one run of `gen_d99.py`, **SHA-256 `50b02124c7faf946cc4a67184568f87b546948725265e889f3d74913180b500f`**, stdlib-only Python prepared with CPython 3.13.7, copied byte for byte into the run root and run from the repository root:
+The bytes come from one run of `gen_d99.py`, **SHA-256 `1fad023951f8fca887974452a6b65cfd312b74c1312997ac99a5260b64ee7237`**, stdlib-only Python prepared with CPython 3.13.7, copied byte for byte into the run root and run from the repository root:
 
 ```text
 PYTHONDONTWRITEBYTECODE=1 python3 projects/pec/execution/_Coordination/REMAINING_RETIREMENT_{N}_{D}/gen_d99.py --repo <REPO_ROOT> --act-date {D} --ruling-date {R} --decision {N} --q1 s1|park|decline
@@ -204,7 +204,7 @@ Run from the repository root with `PYTHONDONTWRITEBYTECODE=1`; record each comma
 | Generator | `gen_d99.py … --check-only`, then the act | `CHECK write_set 62`, `CHECK status_sections_removed 57`; postimages equal the tables (or the slot-rule replay) |
 | Finite-account closure, after | immediately after the generator, before any other write: `python3 <run root>/verify_d99.py --repo . --pre <git archive export of the commit immediately before the generator run> --decision {N} --q1 <answer>`; if other default-writable files were written first, name each with `--allow-extra` (only `execution/_Coordination/**`, `docs/STATUS.md` and `README.md` are accepted) | `RESULT PASS`: exhibit carries every moved key's text, `Depends:`, gate and Part B carry-forward; every census `_STATUS.md` present and none of the (at least 66) deliverable `_STATUS.md` keeps a `## Remaining` heading; each `_STATUS.md` edit is exactly section removal + `Last Updated` + one History line naming its keys; changed paths = 57 + `AGENTS.md`; new paths = the four; no `ScopeOfWork.md`, `Dependencies.csv`, CHECKING-deliverable or DEL-01-05 file changed |
 | Scope of Work validation | `python3 tools/scope_of_work/validate_scope_of_work.py <each of the 32 SOWs>` | 32/32 `PASS format=SOW_V1`, unchanged (no SOW is written; Part B texts are validated by their node packets) |
-| Strict registers | `python3 tools/validation/validate_decomposition_registers.py --strict projects/pec/execution` | output identical before and after (baseline at `db9328789`: 0 errors, 28 warnings) |
+| Strict registers | `python3 tools/validation/validate_decomposition_registers.py --strict projects/pec/execution` | exit 1 both before and after (strict mode fails on warnings) with byte-identical output; baseline at `db9328789`: 0 errors, 28 warnings |
 | Tranche manifest | `python3 tools/validation/validate_instruction_tranche_manifest.py`; the same with `--base origin/main --head HEAD --added-manifests-only` | `G4 PASS` in both modes |
 | Launcher/posture | `python3 tools/validation/validate_instruction_entrypoints.py .`; `python3 -m pytest -q tools/validation/test_validate_instruction_entrypoints.py tools/validation/test_validate_pec_loop_receipts.py` | PASS; 33 passed |
 | Every-PR checks | `PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check`; `python3 tools/validation/validate_pec_loop_receipts.py --repo-root .` | exit 0; no harness finding cites a target path that the pre-act run did not; ledger VALID and unchanged |
@@ -234,7 +234,7 @@ A fresh read-only TASK that authored nothing returns a verdict file. It checks: 
 
 ## Limits
 
-This proposal, and any ruling selecting A, A′ or an amendment, grants none of the following:
+This proposal, and any ruling selecting A, A′, A″ or an amendment, grants none of the following:
 
 - any `ScopeOfWork.md` write (Part B texts are applied only by the S1, S2 and S4 packets under their own rulings), and any `Dependencies.csv`, `_CONTEXT.md`, `_REFERENCES.md`, `MEMORY.md` or `_DEPENDENCIES.md` write;
 - any lifecycle change; `CHECKING`, `ISSUED`, artifact acceptance, or any readiness or reliance claim; this packet creates no prompt, gate or reminder about CHECKING;
@@ -253,6 +253,6 @@ Lifecycle routing: no edit touches a CHECKING or ISSUED deliverable, and none ch
 1. **DEL-03-06-REM-004** (documentary correction of DEL-03-06's SOW paraphrases, still stale against the `D-PEC-65` register repair). DEL-03-06's SOW is class `current`, so no pending node owns it. **(a) Recommended:** carry it in exhibit Part B for S1, which also carries the paired DEL-03-02 correction its CLM-009 cites as precedent; the graph sentence HELP_HUMAN adds for S1 would then name DEL-03-06 for this correction only (option A). (b) Park it verbatim in Part A, unselected, until a later DEL-03-06 currency pass (option A′). (c) Decline it; the item closes by this ruling (option A″). Applying the correction directly in this act is possible only as an amendment. Without an answer the act waits.
 2. **The 71 evidence inquiries.** **(a) Recommended:** keep them, unselected, in exhibit Part A as the `D-PEC-83` E follow-up, each with its gate. (b) Close them as superseded by the shared loop, where a selected undertaking maps the evidence it needs (amend: they become (c); nothing is carried). (c) Move them into Scope of Work files (amend; conflicts with the sequencing rule for S-node SOWs).
 3. **The four RETIRED deliverables** (DEL-06-04, DEL-07-02, DEL-07-04, DEL-07-05). Their sections hold only closed items. **(a) Recommended:** remove the sections like the others, with the History line; lifecycle stays RETIRED and the reinstatement conditions stay in the decomposition registers. (b) Leave their four files untouched (amend: four fewer paths; those four headings survive, contrary to the owner's "There must not be any of those going forward").
-4. **The frozen DEL-01-05 carrier** (`D-PEC-83` F). **Recommended: confirm** that F closes without application: REM-001/-002 were executed under `D-PEC-84` S-A (acceptance of the repaired bytes stays separate and DEL-01-05 stays IN_PROGRESS), and REM-003 joins the Part A set. No DEL-01-05 file is written.
+4. **The frozen DEL-01-05 carrier** (`D-PEC-83` F). **Recommended: confirm** that F closes without application: REM-001/-002 were executed under `D-PEC-84` S-A (acceptance of the repaired bytes stays separate and DEL-01-05 stays IN_PROGRESS), and REM-003 joins the Part A set. No DEL-01-05 file is written. The exhibit's provenance line for DEL-01-05-REM-003 presupposes this confirmation; without it the act waits (or the packet is amended).
 5. **MEMORY.** DEL-01-03 is the only section-bearing deliverable with a `MEMORY.md` (DEL-01-06 now has one but no section). **Recommended: no MEMORY row**; the History line, graph and central receipt record the retirement. Alternatively name that path for one terse row (amend).
 6. **Model steer.** Keep the defaults above, or state others.

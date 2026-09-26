@@ -65,9 +65,9 @@ def main():
     ap.add_argument('--q1', choices=('s1', 'park', 'decline'), default='s1')
     ap.add_argument('--allow-extra', nargs='*', default=[])
     a = ap.parse_args()
-    base = a.pre if a.pre else a.repo  # sources for the account checks are the preimage tree
-    acc = csv_rows(rd(a.repo, TM + 'SEMANTIC_DECISION_ACCOUNT.csv'))
-    cen = csv_rows(rd(a.repo, TM + 'REMAINING_CENSUS.csv'))
+    base = a.pre if a.pre else a.repo  # sources and the account are read from the preimage tree in act mode
+    acc = csv_rows(rd(base, TM + 'SEMANTIC_DECISION_ACCOUNT.csv'))
+    cen = csv_rows(rd(base, TM + 'REMAINING_CENSUS.csv'))
     keys = [r['Key'] for r in acc]
     check('keys_equal_census', keys == [r['Key'] for r in cen], '%d/%d' % (len(keys), len(cen)))
     check('keys_unique_92', len(set(keys)) == 92 == len(keys))
@@ -126,6 +126,8 @@ def main():
             if r['DestinationExactText'].strip() not in ex:
                 missing.append(r['Key'] + ':carry')
     check('moved_items_in_exhibit', not missing, ','.join(missing[:10]))
+    declined = [r['Key'] for r in acc if r['Disposition'] == 'e' and a.q1 == 'decline']
+    check('declined_items_absent_from_exhibit', not [k for k in declined if k in ex], ','.join(declined))
     all_status = sorted(glob.glob(os.path.join(a.repo, 'projects/pec/execution/PKG-*/1_Working/DEL-*/_STATUS.md')))
     surv = [p for p in all_status if re.search(r'^## Remaining', open(p, encoding='utf-8').read(), re.M)]
     present = all(os.path.isfile(os.path.join(a.repo, r['SourcePath'])) for r in acc if r['Population'] == 'LIVE_REMAINING')

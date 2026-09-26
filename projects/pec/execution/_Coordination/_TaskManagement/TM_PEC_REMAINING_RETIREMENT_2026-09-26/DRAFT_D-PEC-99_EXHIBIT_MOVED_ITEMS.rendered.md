@@ -4,7 +4,7 @@ Created by the D-PEC-99 retirement act on 2026-09-26 (ruling of 2026-09-26). Eac
 
 ## Part A — the `D-PEC-83` E evidence-inquiry set (71 items)
 
-`D-PEC-83` E selected no individual evidence-only inquiry. These items stay **unselected**. One may run only when owner steering selects it into a work graph and its own gate is met. At selection, re-derive its linked claims against the deliverable's `ScopeOfWork.md` current at that time; the currency notes below are the retirement assessment's observations, not authority.
+`D-PEC-83` E selected no individual evidence-only inquiry. These items stay **unselected**. One may run only when owner steering selects it into a work graph and its own gate is met. At selection, re-derive its linked claims against the deliverable's `ScopeOfWork.md` current at that time; the currency notes below are the retirement assessment's observations, not authority. They predate the merge of SCA-006 checkpoint 3 (PR #943, `db9328789`, 2026-09-26): where a note calls SCA-006 pending or #943 unmerged, it has since merged.
 
 ### DEL-00-02-REM-001 (DEL-00-02, OPEN)
 

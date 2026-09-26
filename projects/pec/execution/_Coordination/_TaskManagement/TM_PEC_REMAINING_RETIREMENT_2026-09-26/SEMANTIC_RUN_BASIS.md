@@ -128,14 +128,14 @@ are `git archive` exports of the branch head (post-#943).
 | Federation | worktree, ignored `.candidates/` output | COMPLETE; 4 registers; 28 findings, none PEC; 0 writes |
 | `gen_d99.py --check-only` | live worktree (read) | `CHECK write_set 62`, `status_sections_removed 57`, exit 0; POST hashes equal the packet tables |
 | `gen_d99.py` act | scratch clone | wrote 62 files; a second run fails `FAIL preimage …` (exit 1) |
-| `--q1 park`; `--q1 decline`; `--decision D-PEC-100` | scratch clones | exit 0; classes A72/B11/closed 9, A71/B11/closed 9 + 1 by ruling, and unchanged; `verify_d99.py` PASS for park and decline |
+| `--q1 park`; `--q1 decline`; `--decision D-PEC-100` | scratch clones | exit 0; classes A71 + 1 parked/B11/closed 9, A71/B11/closed 9 + 1 by ruling, and unchanged; `verify_d99.py` PASS for park and decline, and FAIL when a decline check runs on the s1 tree |
 | `verify_d99.py --account-only` | worktree | `RESULT PASS` |
-| `verify_d99.py --repo <post> --pre <pre>` | scratch | `RESULT PASS` (16 checks) |
+| `verify_d99.py --repo <post> --pre <pre>` | scratch | `RESULT PASS` (17 checks) |
 | Same with a run-root file and a `docs/STATUS.md` edit, no allowance / allowed / allowance of a `PKG-03` path | scratch | FAIL / PASS / FAIL (`allow_extra_default_writable_only`) |
 | Same on a mutated post-tree (Remaining heading re-added; one SOW byte added) | scratch | `RESULT FAIL` on the four expected checks (before the review-01 repairs) |
 | Tranche manifest, CI mode (module `repo_root` pointed at the scratch post-tree; no Git) | scratch | `G4 PASS`, 128 manifests |
 | `validate_instruction_entrypoints.py .` | scratch pre and post | PASS / PASS |
-| `validate_decomposition_registers.py --strict` | scratch pre and post | identical output: 0 errors, 28 warnings (baseline at `db9328789`) |
+| `validate_decomposition_registers.py --strict` | scratch pre and post | exit 1 both times (strict mode fails on warnings), identical output: 0 errors, 28 warnings (baseline at `db9328789`) |
 | `validate_scope_of_work.py`, 32 SOWs | worktree | 32/32 PASS (no SOW is written) |
 | `harness.py self-check` | worktree (pre) | exit 0 (the post-act run is an act-time check: it needs Git metadata) |
 | `validate_pec_loop_receipts.py --repo-root .` | worktree | VALID (the ledger is not a target) |

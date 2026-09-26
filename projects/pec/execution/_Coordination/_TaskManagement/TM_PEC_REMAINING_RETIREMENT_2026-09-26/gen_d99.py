@@ -593,7 +593,7 @@ def resolved(r, a):
     if r['Disposition'] == 'e':
         if r['Key'] != 'DEL-03-06-REM-004':
             fail('unexpected owner-decision row ' + r['Key'])
-        return {'s1': 'EXHIBIT_B_CARRY_S1', 'park': 'EXHIBIT_A_D83E', 'decline': 'CLOSED_BY_RULING'}[a.q1]
+        return {'s1': 'EXHIBIT_B_CARRY_S1', 'park': 'EXHIBIT_A_PARKED', 'decline': 'CLOSED_BY_RULING'}[a.q1]
     return r['DestinationClass']
 
 
@@ -604,6 +604,9 @@ def label(cls, a):
         n = cls[-2:]
         return ('the %s exhibit, for exact carry-forward into this deliverable\'s `ScopeOfWork.md` by '
                 'work-graph node %s' % (a.decision, n))
+    if cls == 'EXHIBIT_A_PARKED':
+        return ('the %s exhibit, Part A, parked by the owner\'s answer to question 1 (a documentary correction, '
+                'not an evidence inquiry; not selected)' % a.decision)
     if cls == 'CLOSED_BY_RULING':
         return 'closed by the %s ruling (the owner declined the correction)' % a.decision
     if cls == 'CLOSED_ON_RECORD':
@@ -627,7 +630,7 @@ def status_post(pre, keys, rs, a, exhibit_rel):
         fail('Last Updated / History anchor')
     head = head.replace(lu[0], '**Last Updated:** ' + a.act_date, 1)
     groups = []
-    for cls in ('EXHIBIT_A_D83E', 'EXHIBIT_B_CARRY_S1', 'EXHIBIT_B_CARRY_S2', 'EXHIBIT_B_CARRY_S4', 'CLOSED_ON_RECORD', 'CLOSED_BY_RULING'):
+    for cls in ('EXHIBIT_A_D83E', 'EXHIBIT_A_PARKED', 'EXHIBIT_B_CARRY_S1', 'EXHIBIT_B_CARRY_S2', 'EXHIBIT_B_CARRY_S4', 'CLOSED_ON_RECORD', 'CLOSED_BY_RULING'):
         ks = [r['Key'] for r in rs if resolved(r, a) == cls]
         if ks:
             groups.append('%s → %s' % (', '.join(ks), label(cls, a)))
@@ -642,6 +645,7 @@ def status_post(pre, keys, rs, a, exhibit_rel):
 
 def exhibit(rows, a):
     A = [r for r in rows if resolved(r, a) == 'EXHIBIT_A_D83E']
+    P = [r for r in rows if resolved(r, a) == 'EXHIBIT_A_PARKED']
     B = {n: [r for r in rows if resolved(r, a) == 'EXHIBIT_B_CARRY_' + n] for n in ('S1', 'S2', 'S4')}
     L = ['# %s exhibit — PEC Remaining items moved on retirement' % a.decision, '',
          'Created by the %s retirement act on %s (ruling of %s). Each item below was a deliverable `_STATUS.md` '
@@ -651,11 +655,13 @@ def exhibit(rows, a):
          'gate, and **its gate still binds it here**. Being listed performs no inquiry or production, opens no '
          'path, selects no work and implies no completion, CHECKING, ISSUED or acceptance.'
          % (a.decision, a.act_date, a.ruling_date, TM_REL), '',
-         '## Part A — the `D-PEC-83` E evidence-inquiry set (%d items)' % len(A), '',
+         '## Part A — the `D-PEC-83` E evidence-inquiry set (%d items%s)' % (len(A), ', plus 1 parked correction' if P else ''), '',
          '`D-PEC-83` E selected no individual evidence-only inquiry. These items stay **unselected**. One may run '
          'only when owner steering selects it into a work graph and its own gate is met. At selection, re-derive '
          'its linked claims against the deliverable\'s `ScopeOfWork.md` current at that time; the currency notes '
-         'below are the retirement assessment\'s observations, not authority.', '']
+         'below are the retirement assessment\'s observations, not authority. They predate the merge of SCA-006 '
+         'checkpoint 3 (PR #943, `db9328789`, 2026-09-26): where a note calls SCA-006 pending or #943 unmerged, it '
+         'has since merged.', '']
     for r in A:
         L += ['### %s (%s, %s)' % (r['Key'], r['DeliverableID'], r['Lifecycle']), '', r['ItemText'], '',
               'Depends: ' + r['Depends'], '', 'Gate: ' + r['GateMarkers'], '']
@@ -664,9 +670,12 @@ def exhibit(rows, a):
         if r['Population'] != 'LIVE_REMAINING':
             L += ['Provenance (frozen `D-PEC-83` F carrier, never applied; its application gate is superseded by '
                   'this ruling\'s closure of F): ' + r['Annotations'], '']
-        if r['Disposition'] == 'e':
-            L += ['Correction input (parked by the owner\'s answer to question 1; not applied, not selected): '
-                  + ' '.join(r['DestinationExactText'].split()), '']
+    for r in P:
+        L += ['### %s (%s, %s) — parked documentary correction' % (r['Key'], r['DeliverableID'], r['Lifecycle']), '',
+              'Parked in Part A by the owner\'s answer to question 1. This is a documentary correction, not a '
+              '`D-PEC-83` E evidence inquiry; it stays unselected until a later currency pass on this Scope of Work '
+              'selects it.', '', r['ItemText'], '', 'Depends: ' + r['Depends'], '', 'Gate: ' + r['GateMarkers'], '',
+              'Correction input (parked; not applied):', '', r['DestinationExactText'].strip(), '']
     L += ['## Part B — Scope of Work carry-forwards (%d items)' % sum(len(v) for v in B.values()), '',
           'Each of these items belongs in its deliverable\'s `ScopeOfWork.md`, which a pending currency node of '
           'work graph `HELP-HUMAN-PEC-20260925-POST-SCA005` will rewrite. To avoid editing the same Scope of Work '
