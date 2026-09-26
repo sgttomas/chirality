@@ -11,16 +11,16 @@ HELP_HUMAN relayed a replacement for the brief's "Method choice as an owner opti
 ## Publication
 
 - **PR:** https://github.com/sgttomas/chirality/pull/964 — branch `claude/pec-s2-sow-rebuild-proposal`, base `main`.
-- **Head at the last check run:** `dafce6d7ee8c4bb98af341286658b80e44b439ea`. The commit adding this return and the final verdict follows it (see the PR).
-- **Worktree:** `/Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-s2-sow-rebuild`. It was created from fresh `origin/main` `aca930622`, and `origin/main` was merged in as it moved; the last merge was `2b5389a97`. The caller's checkout was not modified. A PreToolUse hook blocked Write tool calls into a second worktree, so I entered the new worktree with `EnterWorktree`.
+- **Head at the last check run:** `541090b00ebcbc97c5d0bbc08c6eec6e83ce5af7`. The commit that updates this return follows it (see the PR).
+- **Worktree:** `/Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-s2-sow-rebuild`. It was created from fresh `origin/main` `aca930622`, and `origin/main` was merged in as it moved; the last merge was `121900105` (PR #966). The caller's checkout was not modified. A PreToolUse hook blocked Write tool calls into a second worktree, so I entered the new worktree with `EnterWorktree`.
 - **"Update the PR base" failures:** none seen.
 
 ## Draft
 
 - **Path:** `projects/pec/execution/_Coordination/PEC_SOW_REBUILD_S2_PREP_2026-09-26/DRAFT_D-PEC-100_s2_sow_rebuild_proposal.md`.
-- **SHA-256:** `730f043224b2448a7816bcd26c5cc21c021707f8ac9a828bfd0f727477bf9384` (352 lines).
+- **SHA-256:** `a6d9abe861ea76a7d87ce5c14d3c49ac71ad4e30d487b73d7fd3219aa16afe8e` (352 lines).
 - **Suggested filing name:** `_DECISIONS/D-PEC-100_s2_sow_rebuild_proposal_2026-09-26.md`.
-- **Register:** HELP_HUMAN adds the register row. At `2b5389a97` there is no D-PEC-100 row.
+- **Register:** HELP_HUMAN adds the register row. At `121900105` there is no D-PEC-100 row.
 
 ## Candidate hashes
 
@@ -36,7 +36,7 @@ Paths are under `projects/pec/execution/`. Each postimage is also at `PREP/candi
 | DEL-02-06 | INITIALIZED | `c8ca6292bae19d2da754918bdf530d32a4c0a8348146ed10743acfd0acfbbec8` | `53d99682795a2181b8074df41f3456d3f35c510c4257f6eb8d5b9920c7282928` |
 | DEL-02-07 | INITIALIZED | `d044499ab5ace12305434ab3c7b5e17e21f730f8d77b45ff64c055d1edce2559` | `3d1220872c55bc5a33b5f659cb465b83d6bd69177d48c68534c82358539f18fb` |
 
-- **Bound act script:** `PREP/apply_s2p.py`, SHA-256 `2e1955902bed16884f4628683594f475863c804d0585766e6ba1a75ea1bf190c`. It carries 7 TARGETS and 23 PINNED files.
+- **Bound act script:** `PREP/apply_s2p.py`, SHA-256 `42dc95532fdb39a308f59cf86e2bee73f8cf4f17808e403f42adcb308fc03d20`. It carries 7 TARGETS and 23 PINNED files.
 
 ## Recommended option and method
 
@@ -49,7 +49,7 @@ Paths are under `projects/pec/execution/`. Each postimage is also at `PREP/candi
 
 ## Lifecycle answer
 
-- All seven deliverables are `INITIALIZED` at `aca930622` and at `2b5389a97`. The brief expected five, and I checked each one.
+- All seven deliverables are `INITIALIZED` at `aca930622` and at `121900105`. The brief expected five, and I checked each one.
 - None is CHECKING or ISSUED.
 - The method does nothing to `_STATUS.md` (WORKFLOW "Do not modify `_STATUS.md` …"; checks item 3). Standard §8's `INITIALIZED` condition still holds after the act.
 - **No transition is proposed.** The act pins all seven `_STATUS.md` files and refuses to run if any has changed.
@@ -67,7 +67,7 @@ Each carry-forward and Gate line is verbatim, in a blockquote with the carve-out
 
 ## Check results
 
-Final `run_s2p_checks.sh` at `origin/main` `2b5389a97` (`PREP/evidence/run_main/SUMMARY.out`), run on `git archive` exports: **OVERALL PASS**.
+Final `run_s2p_checks.sh` at `origin/main` `121900105` (`PREP/evidence/run_main/SUMMARY.out`), run on `git archive` exports: **OVERALL PASS**.
 
 - act: check-only 0, apply 0, rerun refuses 1
 - containment: exactly the 7 `ScopeOfWork.md` files
@@ -93,7 +93,7 @@ Each verdict was given by a fresh read-only `pec-reviewer`. Each is saved verbat
 | `VERIFIER_VERDICT_01.md` | `c0919e261` | PASS WITH NOTES | 8 non-blocking notes, all repaired. One candidate wording fix: DEL-02-07 `"this contract"`. |
 | `VERIFIER_VERDICT_02.md` | `c7719559b` | FAIL | One mechanical blocker: `SHA256SUMS` listed an untracked `.pyc`. Repaired, with 5 further notes. |
 | `VERIFIER_VERDICT_03.md` | `3be700545` | PASS WITH NOTES | Nothing blocking. The changed-ID disclosure and the run-root guard were repaired after it. |
-| `VERIFIER_VERDICT_04.md` | `dafce6d7e` | see the file | Focused backcheck of the round-3 repairs. |
+| `VERIFIER_VERDICT_04.md` | `dafce6d7e` | PASS WITH NOTES | Nothing blocking. The run-root guard held against bypass probes. Four wording notes were repaired afterwards; those repairs were not re-reviewed. |
 
 ## Owner questions (in the draft)
 
@@ -144,4 +144,5 @@ No question concerns CHECKING or REVISE adoption.
   - SCA-005 `Propagation_Plan.md` `50cd0b1d…1350`; SCA-006 IA `93253b7d…b691`
   - Project-setup incremental notice `8829ac84…64af`
   - Decomposition revision 1.6 and PRD v2.4 at the draft's basis hashes
+- **SHA256SUMS:** `shasum -a 256 -c` on a `git archive` of `541090b00`: exit 0, 87 entries, all tracked.
 - **Wider consultation:** none beyond the WORKING_ITEMS role. `agents/AGENT_TASK.md` was read only by the TASK children.
