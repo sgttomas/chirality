@@ -90,6 +90,12 @@
 # Preconditions reconciled with frontend transition.ts (DEL-07-04) — divergences
 # recorded in tools/practitioner_harness/README.md §Guard reconciliation.
 
+# Git reads below (and in the amendment checker, which inherits these) ignore
+# local replace refs and grafts, so object substitution cannot change what the
+# approval commit contains or which commits are its ancestors.
+export GIT_NO_REPLACE_OBJECTS=1
+export GIT_GRAFT_FILE=/dev/null
+
 usage() {
   echo "Usage: $0 <DEL_PATH> <STATE> <ACTOR> [--ruling <path>] [--approval-sha <sha>] [--amendment <id-or-path>] [--force-human-override <reason>]" >&2
   exit 2

@@ -814,6 +814,44 @@ def test_attack_b_uncommitted_heading_flip_refused_at_commit(tmp_path):
     assert "returned by owner" in decision.reason
 
 
+def test_git_replace_refs_do_not_change_what_is_read_at_commit(tmp_path):
+    # Reviewer probe: `git replace` a committed REMOVE register (and its
+    # manifest) with forged MODIFY copies. The at-commit read must ignore
+    # local replace refs and still see the committed bytes.
+    paths = build(tmp_path, [row("REMOVE", scope="NO")])
+    head = commit_all(tmp_path)
+    manifest = paths["root"] / "checkpoint_snapshots" / "SCA-001_GROUP-2_2026-09-26" / "ACCEPTED_MANIFEST.csv"
+    register_rel = paths["register"].relative_to(tmp_path).as_posix()
+    manifest_rel = manifest.relative_to(tmp_path).as_posix()
+    old_register = git(tmp_path, "rev-parse", f"{head}:{register_rel}")
+    old_manifest = git(tmp_path, "rev-parse", f"{head}:{manifest_rel}")
+    paths["register"].write_text(paths["register"].read_text().replace("REMOVE", "MODIFY"))
+    rebind_group2(tmp_path, paths)
+    new_register = git(tmp_path, "hash-object", "-w", str(paths["register"]))
+    new_manifest = git(tmp_path, "hash-object", "-w", str(manifest))
+    git(tmp_path, "replace", old_register, new_register)
+    git(tmp_path, "replace", old_manifest, new_manifest)
+    git(tmp_path, "checkout", "-q", "--", ".")
+    assert git(tmp_path, "cat-file", "-p", f"{head}:{register_rel}").count("MODIFY") >= 1  # replace is live
+    decision = check(tmp_path, paths["deliverable"], at_commit=head)
+    assert decision.code == mod.DELIVERABLE_REMOVED
+
+
+def test_git_graft_does_not_make_a_side_commit_an_ancestor(tmp_path):
+    paths = build(tmp_path, [row("MODIFY", scope="NO")], groups=("1", "2"))
+    base = commit_all(tmp_path)
+    git(tmp_path, "checkout", "-q", "-b", "side")
+    group3 = paths["root"] / "checkpoint_snapshots" / "SCA-001_GROUP-3_2026-09-26"
+    group3.mkdir()
+    (group3 / "DECISION.md").write_text("# SCA-001 checkpoint group 3 — accepted\n")
+    (group3 / "ACCEPTED_MANIFEST.csv").write_text("Path,SHA256\n")
+    side = commit_all(tmp_path, "forged side")
+    git(tmp_path, "checkout", "-q", "-")
+    git(tmp_path, "replace", "--graft", "HEAD", base, side)
+    decision = check(tmp_path, paths["deliverable"], at_commit=side)
+    assert decision.code == mod.APPROVAL_SHA_NOT_ANCESTOR
+
+
 def test_untracked_forged_group3_folder_does_not_count_at_commit(tmp_path):
     paths = build(tmp_path, [row("MODIFY", scope="NO")], groups=("1", "2"))
     head = commit_all(tmp_path)

@@ -102,7 +102,8 @@ scope-changing reclassification from a move.
    read from that commit through git, never from the working tree:
    `checkpoint_snapshots/` is listed from the commit's tree, tree entries are
    resolved as such, a symlink entry whose target leaves the scope-change root
-   is refused, and the commit must be an ancestor of `HEAD`. Without it the
+   is refused, and the commit must be an ancestor of `HEAD`. Git reads
+   ignore local replace refs and grafts. Without it the
    working tree is read and the result is reported as unanchored; that mode
    serves inspection only. The scope-change root is the `_ScopeChange/` folder
    of the deliverable's execution root (its outermost `execution/` ancestor,

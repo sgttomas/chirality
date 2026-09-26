@@ -20,8 +20,9 @@ Modes:
   bound register. ``checkpoint_snapshots/`` is enumerated from the commit's
   tree, so untracked or uncommitted folders do not count. The commit must be
   an ancestor of ``HEAD`` (``git merge-base --is-ancestor``). Paths resolve
-  as tree entries; a symlink entry is followed only while its target stays
-  inside the scope-change root. The project root must be the git top level.
+  as tree entries; a symlink entry is followed only when its target resolves
+  inside the scope-change root. Git replace refs and grafts are ignored, so
+  local object substitution cannot change what is read. The project root must be the git top level.
   ``tools/scaffolding/write_status.sh`` uses only this mode, with the
   approval SHA.
 - **Working tree** (no ``--at-commit``). The same checks read the working
@@ -270,7 +271,9 @@ class _GitTree:
         self._trees: dict[str, dict[str, tuple[str, str, str]] | None] = {}
 
     def _git(self, *args: str) -> bytes | None:
-        out = subprocess.run(["git", "-C", str(self.proj), *args], capture_output=True, check=False)
+        out = subprocess.run(
+            ["git", "-C", str(self.proj), *args], capture_output=True, check=False, env=_git_env()
+        )
         return out.stdout if out.returncode == 0 else None
 
     def _tree(self, rel: str) -> dict[str, tuple[str, str, str]] | None:
@@ -332,6 +335,14 @@ class _GitTree:
         return data
 
 
+def _git_env() -> dict[str, str]:
+    """Environment for git reads that ignores local replace refs and grafts."""
+    env = dict(os.environ)
+    env["GIT_NO_REPLACE_OBJECTS"] = "1"
+    env["GIT_GRAFT_FILE"] = os.devnull
+    return env
+
+
 def _git_toplevel(start: Path) -> Path | None:
     probe = start if start.is_dir() else start.parent
     try:
@@ -340,6 +351,7 @@ def _git_toplevel(start: Path) -> Path | None:
             capture_output=True,
             text=True,
             check=False,
+            env=_git_env(),
         )
     except OSError:
         return None
@@ -707,6 +719,7 @@ def _anchor(proj: Path, at_commit: str) -> str:
         capture_output=True,
         text=True,
         check=False,
+        env=_git_env(),
     )
     if out.returncode != 0 or not out.stdout.strip():
         raise _Refusal(APPROVAL_SHA_UNREACHABLE, f"{at_commit} is not a reachable commit in this repository")
@@ -716,6 +729,7 @@ def _anchor(proj: Path, at_commit: str) -> str:
         capture_output=True,
         text=True,
         check=False,
+        env=_git_env(),
     )
     if ancestry.returncode == 1:
         raise _Refusal(
