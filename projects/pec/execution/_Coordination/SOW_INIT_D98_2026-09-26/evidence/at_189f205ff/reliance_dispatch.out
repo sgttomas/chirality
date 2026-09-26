@@ -1,0 +1,12 @@
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md --operation dispatch-for-production
+{"operation": "dispatch-for-production", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md --operation dispatch-for-production
+{"operation": "dispatch-for-production", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_STATUS.md --operation dispatch-for-production
+{"operation": "dispatch-for-production", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_STATUS.md --operation dispatch-for-production
+{"operation": "dispatch-for-production", "status": "ALLOW"}
+exit=0
