@@ -13,7 +13,7 @@ changed. It makes no product claim.
 | How to read | Absolute paths below the archive root, from any worktree or session. Worktrees do not carry these files. |
 | Rule | **Read only.** Do not modify, move, rename, extract into, or delete anything below these paths. Keep them until the owner decides v4 has replaced the v3.0.1 fallback (OD-09). |
 | Hazard | These paths are Git-ignored. `git clean -X` or `git clean -x` run in the original checkout would delete them, and Git could not restore them. Do not run either there. |
-| Check | `python3 projects/chirality-app-v4/reference/archives/archive_digests.py verify` recomputes the content digests and names any archive, subtree, or listed file that changed. |
+| Check | `python3 projects/chirality-app-v4/reference/archives/archive_digests.py verify` recomputes the content digests and names any location or subtree that changed. Add `--root <path>` to check the protective clone (below). |
 | Recorded | 2026-09-25 (UTC time in [`archive_digests.json`](archive_digests.json)); 19 locations, 57,073 files; recording takes about 20 s |
 
 The digest file holds, for every location, a whole-location digest with its
@@ -68,10 +68,15 @@ PRD. The history investigation refines these ratings (see the
 | `projects/chirality-piping/apps/desktop/{dist,public,src-tauri/gen}` and `*.tsbuildinfo`, `Cargo.lock` files under `core/` | Build outputs and lock files generated locally. |
 | `.DS_Store` files | Finder metadata. |
 
-## Optional hardening (not performed)
+## Protective clone (owner decision Q-13, 2026-09-25)
 
-The archives exist in one place. On this APFS volume a copy-on-write clone
-(`cp -cR`) would protect them against accidental deletion in the original
-checkout at almost no additional disk space. Making one creates a new
-directory outside the repository, so it waits for the owner's choice (see
-the conceptual questions).
+| Item | Value |
+|---|---|
+| Location | `/Users/ryan/ai-env/archives/chirality-2026-09-25/` (outside any repository) |
+| Contents | The 19 locations above, at the same relative paths, copied as APFS copy-on-write clones (`cp -cRp`); free disk space was unchanged by the copy |
+| Check | `archive_digests.py verify --root /Users/ryan/ai-env/archives/chirality-2026-09-25` — all 19 locations matched the recorded digests on 2026-09-25 |
+| Protection | Made read-only (`chmod -R a-w`). To remove it deliberately later: `chmod -R u+w <clone>` first. |
+| Limit | 35 symbolic links were copied as links; those with absolute targets still point into the original checkout's `domains/` tree, whose content the clone also holds. A clone protects against deletion or change in the original checkout; it is on the same disk, so it is not a backup against disk failure. |
+
+Both copies are kept until the owner decides v4 has replaced the v3.0.1
+fallback (OD-09).

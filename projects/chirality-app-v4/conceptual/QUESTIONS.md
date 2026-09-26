@@ -8,6 +8,28 @@ in [`DECISIONS.md`](DECISIONS.md); this file then records the disposition.
 Exemplar (`X-`), lesson (`L-`) and tension (`N-`) references point to
 [`EXEMPLARS_AND_LESSONS.md`](EXEMPLARS_AND_LESSONS.md).
 
+## Dispositions after the owner's answers (2026-09-25)
+
+The owner's words are recorded in [`DECISIONS.md`](DECISIONS.md) (D-01…D-15).
+
+| Question | Status | Follow-up |
+|---|---|---|
+| Q-01 nucleus | Open — corrected (D-01) | Revise the working statement with the owner: the standalone app is the App for Creating Workflows and the exemplar; workflows, skills and tools are made in each application for its needs; the same four agents apply everywhere |
+| Q-02 host integration | Settled — option D (D-02) | Topology and panel surface follow the supplier experiments |
+| Q-03 workflow | Settled — option C (D-03) | Define the declared part in the PRD |
+| Q-04 autonomy | Settled — option B (D-04) | Confirm two points the words leave open: whether harness classifier approval modes are an acceptable user choice, and whether one invariant holds everywhere — an agent never originates or represents a human act (acceptance, checked mark, approval) in the human's name |
+| Q-05 supplier | Direction given (D-05) | Local model server required; T3 Code is the leading candidate; investigating its local-model support and embeddability (T8) |
+| Q-15 distribution | Settled (D-06) | Mac first; OAuth, API key and local model, possibly all at once — check against vendor terms (T7, T8) |
+| Q-06 records | Settled — proposal (D-07) | — |
+| Q-07 users and hosts | Partly settled (D-08) | PEC and Domains are independent connectors the App consumes (T9 investigating what each prepares). Confirm SWBPIPE and the standalone app as the essential hosts |
+| Q-08 project management | Settled — option B (D-09) | The owner signals more scope: to discuss |
+| Q-09 roles | Settled (D-10) | — |
+| Q-10 replacement | Settled — (b) building on (a) (D-11) | — |
+| Q-11 build method | Open — owner's proposal (D-12) | Discuss: agents follow the Project Management manual according to the Agents User Manual, within the retained decomposition, execution structure and graph-traversal loop |
+| Q-12 review | Settled (D-13) | Codex reviewer when the seed is ready; Claude on a different model as fallback |
+| Q-13 archives | Settled; done (D-14) | Clone made, verified, read-only |
+| Q-14 v3 examination | v3.0.1 installed and open (D-15) | Stage E1 |
+
 Questions Q-01 to Q-08 and Q-15 (placed after Q-05, which it informs) shape
 the PRD. Q-09 to Q-14 are narrower and can be answered briefly or deferred.
 

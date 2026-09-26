@@ -52,6 +52,8 @@ extracted programmatically from the host's transcripts.
 | T5 | Runtime, PEC, Root program | claude-opus-5-5 | 19:58:39 → 20:09:25 |
 | T6 | SWBPIPE as host | claude-opus-5-5 | 19:58:39 → 20:10:23 |
 | T7 | Supplier landscape (web) | claude-opus-5-5 | 20:03:40 → 20:23:26 |
+| T8 | T3 Code suitability, including local models (web, GitHub read-only) | claude-opus-5-5 | dispatched after the owner's answers; pending |
+| T9 | PEC and Domains as connectors | claude-opus-5-5 | dispatched after the owner's answers; pending |
 
 Notes on the returns:
 
@@ -94,18 +96,39 @@ Notes on the returns:
 7. Committed `3c37fe292`; the committed thesis tree equals the source tree
    object `47fc49e96c2931ba18090f1a82d56a49f230b3ee`. Pushed the branch.
 8. Folded T7 (supplier landscape) into Q-02, Q-04, Q-05 and a new Q-15.
+9. Received the owner's answers; preserved them exactly
+   ([`OWNER_ANSWERS_2026-09-25.md`](../execution/_Coordination/AgentRuns/V4-CONCEPT-20260925/OWNER_ANSWERS_2026-09-25.md))
+   and recorded D-01…D-15 in [`DECISIONS.md`](DECISIONS.md); added
+   dispositions to [`QUESTIONS.md`](QUESTIONS.md).
+10. Q-13: made the protective APFS clone of the archives, verified it against
+    the recorded digests, and made it read-only
+    ([`ARCHIVES.md`](../reference/archives/ARCHIVES.md)).
+11. Q-14: requested computer-use access to Chirality v3.0.1 for an
+    observation-only tour; the owner declined the access request. No
+    interaction with the app occurred. Stage E1 awaits the owner's preferred
+    arrangement.
+12. Noted concurrent activity: `origin/main` moved 141 commits past the
+    investigation revision (workflow repairs, PEC work). Of the sources this
+    undertaking relies on, only `docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.md`
+    and its README changed (link and wording updates after the retirement of
+    `software-bounded-implementation` and the `preparation` workflow). The
+    investigation revision stays `2b0572fe0`; the change matters to Q-11,
+    since the User Manual moves with the Root workflow library.
 
 ## Current position
 
-Stage C (first synthesis) complete; Stage D (direction conversation) next.
-No v4 requirement is accepted. The questions in [`QUESTIONS.md`](QUESTIONS.md)
-await the owner.
+Stage D (direction conversation) in progress. The owner has answered the
+questions (D-01…D-15). Open for discussion: the working statement (Q-01),
+the build method (Q-11), the further project-management scope (Q-08), and
+two follow-ups on autonomy (Q-04). No PRD requirement is accepted yet.
 
 ## Open work
 
 | Item | Owner | Condition |
 |---|---|---|
-| Answers to Q-01…Q-14 | Owner | Stage D |
+| Discussion of Q-01, Q-04 follow-ups, Q-08 scope, Q-11 method | Owner with HELPS_HUMANS | Stage D |
+| T8 and T9 returns folded into the questions | HELPS_HUMANS | On return |
+| Stage E1 arrangement (the owner drives, or grants access later, or skip) | Owner | When convenient |
 | Stage E investigations selected by the answers | HELPS_HUMANS with TASKs | After D |
 | Hosted CI routing has no rule for `projects/chirality-app-v4/**`, so a PR touching it selects full product coverage | Owner's choice whether to add a `records` route (a Root tooling change) | When CI cost matters |
 
