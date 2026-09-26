@@ -137,11 +137,12 @@ historical, closed by Receipt 197. *Historical:* `D-PEC-80` A–D (ruled
 boundary and retired the workplan overlay, with work selected from deliverable
 `_STATUS.md` `## Remaining` (that selection is replaced under `D-PEC-94`.
 Since SCA-006 amendment 1, PEC adds no new Remaining sections or entries and
-no feed profile reads them. The existing sections stay in place as records
-until any retirement ruling; the owner opened the retirement undertaking
+no feed profile reads them. The owner opened the retirement undertaking
 `HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT` on 2026-09-26 and ruled its
-retirement packet `D-PEC-99` A the same day; the sections are removed only
-when that act merges), and `plans/workplans/` is history only. `D-PEC-81` calibrated and `D-PEC-82`
+retirement packet `D-PEC-99` A the same day. The `D-PEC-99` act removed all
+57 sections: each item was closed on record or moved verbatim, with its gate,
+into the exhibit `execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md`,
+and deliverable `_STATUS.md` files now carry lifecycle and history only), and `plans/workplans/` is history only. `D-PEC-81` calibrated and `D-PEC-82`
 reported the Remaining concordance; `D-PEC-83` R-A/A-A applied the 57
 ordinary Remaining carriers (Receipt 174), with the frozen DEL-01-05 carrier
 not applied. PEC adopted the shared 2026-09-22 development-loop method on
@@ -277,7 +278,12 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     opened it on 2026-09-26 as undertaking
     `HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT`. Its census and decision
     account merged as PR #951, and the owner ruled the retirement packet
-    `D-PEC-99` A on 2026-09-26; the act follows.
+    `D-PEC-99` A on 2026-09-26. Done: the act removed all 57 sections and
+    replaced the `AGENTS.md` paragraph (run root
+    `execution/_Coordination/REMAINING_RETIREMENT_D-PEC-99_2026-09-26/`).
+    Still open from it: the 71 unselected evidence inquiries stay in the
+    exhibit until steering selects one, and the 12 Scope of Work
+    carry-forwards are absorbed by the S1, S2 and S4 SOW-currency packets.
 
   These are organized in the work graph
   `execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md`.
