@@ -1,0 +1,58 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-PACKAGE-HOME-D-GOV-48-20260926
+title: Every scope item has one Package home (D-GOV-48, supersedes D-GOV-47 item 1)
+date: '2026-09-26'
+basis: 8f9bd314c5f2499e6faf5bf4bdce917927e8185e
+instruction_surface_paths:
+  - docs/TYPES.md
+  - docs/DECOMPOSITION_STANDARD.md
+  - docs/governance_harness/_DECISIONS/D-GOV-48_every_scope_item_package_home.md
+  - docs/governance_harness/_DECISIONS/_REGISTER.md
+  - tools/validation/validate_decomposition_registers.py
+  - tools/validation/test_validate_decomposition_registers.py
+  - tools/validation/test_workflow_catalog.py
+  - workflows/project-decomp/resources/contract.md
+  - workflows/project-decomp/resources/method.md
+  - workflows/software-decomp/WORKFLOW.md
+  - workflows/software-decomp/resources/contract.md
+  - workflows/software-decomp/resources/method.md
+  - docs/governance_harness/tranche_manifests/ROOT-PACKAGE-HOME-D-GOV-48-20260926.yaml
+m2_gate:
+  authorization: >-
+    The repository owner asked, of the D-GOV-47 IN-only ruling, '"Old wording"
+    ?  Why does every scope item NOT get a package, such that you think the
+    docs need to be updated?' The agent identified its framing error (the
+    management manual v7 and Field Book already give every scope item one
+    Package home) and proposed restoring the every-item rule, with IN items
+    also mapping to Deliverables, OUT and TBD items keeping a Package home for
+    traceability with no production mapping, and the validator warning rather
+    than erroring on OUT/TBD items without a Package. The owner replied "yes go
+    ahead, but PEC is being redeveloped right now so I'm deferring taking
+    action on any findings until the dust settles." Recorded as D-GOV-48,
+    superseding D-GOV-47 item 1.
+  authorized_by: Ryan Tufts (repository owner sgttomas, current Claude Code conversation)
+  authorization_date: '2026-09-26'
+  integration_owner: >-
+    Claude Code session integrating local branch wave3-package-home under the
+    standing Git authorization of 2026-09-12
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_PACKAGE_HOME_D-GOV-48.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_PACKAGE_HOME_D-GOV-48.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_PACKAGE_HOME_D-GOV-48.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-26_PACKAGE_HOME_D-GOV-48.md
+  rationale: >-
+    App, Runtime, Piping and PEC use project-decomp or software-decomp and the
+    register validator; the App pins software-decomp hashes in its authority
+    corpus and bundles the library, so drift is expected there. PEC's ledger
+    now reports XRG-013 warnings, which the owner has deferred while PEC is
+    redeveloped.
+scope_limits:
+  - PROJECT and SOFTWARE only; domain-decomp and its IN-only Category rule are unchanged.
+  - D-GOV-47's combined review sitting is unchanged; the D-GOV-47 record is not edited.
+  - The management manual, the Field Book and the thesis already state the every-item rule and are not edited.
+  - PEC registers are not edited; the owner defers action on findings while PEC is redeveloped.
+  - In-flight projects keep their adopted decomposition rule and edition; nothing is retrofitted; no release.
