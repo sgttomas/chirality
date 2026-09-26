@@ -1,4 +1,4 @@
-import { lstat, mkdtemp, mkdir, readFile, rm, symlink, writeFile } from 'node:fs/promises';
+import { lstat, mkdtemp, mkdir, readFile, rename, rm, symlink, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -703,6 +703,30 @@ describe('working-root deliverable contract routes', () => {
     expect(body.recordedRegister.blockers.blockerState).toBe('NOT_ASSESSED');
     expect(body.recordedRegister.blockers.notAssessedReason).toMatch(/^READ_REFUSED:/);
     expect(JSON.stringify(body.recordedRegister)).not.toContain('DEL-05-09');
+  });
+
+  it('gives no recorded-register verdict for a deliverable reached through a linked package folder', async () => {
+    const packageName = 'PKG-05_Filesystem_Execution_Model';
+    await mkdir(path.join(fixture.projectRoot, 'store'));
+    await rename(path.join(fixture.projectRoot, packageName), path.join(fixture.projectRoot, 'store', packageName));
+    await symlink(path.join(fixture.projectRoot, 'store', packageName), path.join(fixture.projectRoot, packageName), 'dir');
+
+    const routes = await importRouteModules();
+    const response = await routes.dependenciesRoute.GET(
+      new Request(
+        `http://localhost/api/working-root/deliverable/dependencies?projectRoot=${encodeURIComponent(fixture.projectRoot)}&deliverablePath=${encodeURIComponent(fixture.deliverablePath)}`
+      )
+    );
+
+    expect(response.status).toBe(200);
+    const body = (await response.json()) as {
+      warnings: string[];
+      recordedRegister: { executionRoot: string | null; blockers: { blockerState: string; notAssessedReason?: string } };
+    };
+    expect(body.recordedRegister.executionRoot).toBeNull();
+    expect(body.recordedRegister.blockers.blockerState).toBe('NOT_ASSESSED');
+    expect(body.recordedRegister.blockers.notAssessedReason).toMatch(/^SYMLINKED_UNIT_PATH: /);
+    expect(body.warnings).toContain(`RECORDED_REGISTER_${body.recordedRegister.blockers.notAssessedReason}`);
   });
 
   it('rejects symlink deliverable paths that resolve outside projectRoot', async () => {

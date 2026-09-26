@@ -90,8 +90,9 @@ quoted approval.
 - The same test file checks the read containment (a lifecycle folder,
   `_Coordination`, `_DAG`, a DAG version folder and `_LATEST.md` linked outside
   the root; `_LATEST.md` and `Dependencies.csv` linked inside it, which match
-  the Root tools' result), the 5 MiB size cap, and cycle detection on a
-  12,000-arc chain. The symbolic-link tests fail on the module as first
+  the Root tools' result), a symbolic-link loop, a deliverable requested
+  through a linked package folder, the 5 MiB size cap, and cycle detection on
+  a 12,000-arc chain. The symbolic-link tests fail on the module as first
   committed, and again when the containment check alone is disabled.
 - Wider check, not committed: on this basis, the TypeScript and Python queues
   were compared on the four live project execution roots (App, Runtime,
@@ -119,9 +120,15 @@ and recorded them in its own hand-off.
   canonical project root is followed, as the Python tools follow it, so parity
   holds for in-root links. A file or folder whose canonical path is outside the
   root is refused with a warning, where the Python tools follow it; a file over
-  5 MiB is refused with a warning, where they read it. Either refusal gives
-  `NOT_ASSESSED`. Symbolic-link unit and package folders are skipped when the
-  units are inventoried, where the Python tools include them. The check is made
+  5 MiB is refused with a warning, where they read it; a symbolic-link loop is
+  refused with a warning, where they read it as absent. Any refusal gives
+  `NOT_ASSESSED` (`READ_REFUSED`). Symbolic-link unit and package folders are
+  skipped when the units are inventoried, where the Python tools include them.
+  In consequence, a deliverable requested through a linked package, lifecycle
+  or unit folder gets `NOT_ASSESSED` (`SYMLINKED_UNIT_PATH`, also a warning)
+  rather than a verdict: its canonical folder may lie under another execution
+  root, where a verdict could be silently wrong, while the Python tools, run on
+  the requested root, would judge it. The check is made
   when each path is read, so a link swapped in between that check and the open
   is not detected. The default-threshold reading of `_COORDINATION.md` is the
   App's own; the Root tools take it as `--default-maturity`.

@@ -14,7 +14,7 @@
  * then run this test. A difference here means the TypeScript module and the
  * Root tools no longer agree on the same files.
  */
-import { cp, mkdir, mkdtemp, readFile, readdir, rename, rm, symlink, writeFile } from 'node:fs/promises';
+import { cp, mkdir, mkdtemp, readFile, readdir, realpath, rename, rm, symlink, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
@@ -361,6 +361,39 @@ describe('recorded register reads stay inside the read root', () => {
       `READ_OUTSIDE_ROOT: ${path.join('_DAG', '_LATEST.md')} resolves outside the read root; it was not read.`
     ]);
     expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
+  });
+
+  it('gives no verdict for a deliverable reached through a package folder linked inside the root', async () => {
+    const { root } = await copyCase('dag-current');
+    await mkdir(path.join(root, 'store'));
+    await rename(path.join(root, 'PKG-07_Graph'), path.join(root, 'store', 'PKG-07_Graph'));
+    await symlink(path.join(root, 'store', 'PKG-07_Graph'), path.join(root, 'PKG-07_Graph'), 'dir');
+    const requestedPath = path.join(root, 'PKG-07_Graph', '1_Working', 'DEL-07-01_Planner');
+    const deliverablePath = await realpath(requestedPath);
+
+    // The canonical folder sits under root/store, which has no _DAG: a verdict there would be silently wrong.
+    const read = await readDeliverableRecordedRegister({ deliverablePath, requestedPath, containmentRoot: root });
+    expect(read.executionRoot).toBeNull();
+    expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
+    expect(read.blockers.notAssessedReason).toMatch(/^SYMLINKED_UNIT_PATH: /);
+    expect(read.warnings).toEqual([read.blockers.notAssessedReason]);
+
+    const direct = await readDeliverableRecordedRegister({ deliverablePath: requestedPath, containmentRoot: root });
+    expect(direct.blockers.notAssessedReason).toMatch(/^SYMLINKED_UNIT_PATH: /);
+  });
+
+  it('refuses a symbolic-link loop instead of reading it as an absent file', async () => {
+    const { root } = await copyCase('union-with-csv');
+    const consumer = path.join(root, 'PKG-02_Data', '1_Working', 'DEL-02-01_Consumer');
+    await rm(path.join(consumer, 'Dependencies.csv'));
+    await symlink('Dependencies.csv', path.join(consumer, 'Dependencies.csv'));
+
+    const read = await readDeliverableRecordedRegister({ deliverablePath: consumer, containmentRoot: root });
+    expect(read.warnings).toEqual([
+      `LINK_LOOP: ${path.join('PKG-02_Data', '1_Working', 'DEL-02-01_Consumer', 'Dependencies.csv')} is a symbolic-link loop; it was not read.`
+    ]);
+    expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
+    expect(read.blockers.notAssessedReason).toMatch(/^READ_REFUSED:/);
   });
 
   it('reports a file over the size cap as a warning instead of reading it', async () => {

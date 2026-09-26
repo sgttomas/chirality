@@ -405,9 +405,13 @@ parity fixtures check that both give the same result on the same files:
   root. A symbolic link whose target stays inside the project root is read as
   its target, as the Root tools read it. A file or folder that leaves the
   project root through a link, at any level, is not read and is reported as a
-  warning, and so is a file larger than 5 MiB. A read that refused anything
-  gives `NOT_ASSESSED` rather than a verdict on incomplete evidence. Symbolic-link
-  unit and package folders are skipped when the units are inventoried. It
+  warning, and so are a file larger than 5 MiB and a symbolic-link loop. A read
+  that refused anything gives `NOT_ASSESSED` rather than a verdict on
+  incomplete evidence. Symbolic-link unit and package folders are skipped when
+  the units are inventoried. A deliverable requested through a linked package,
+  lifecycle or unit folder therefore gets `NOT_ASSESSED`
+  (`SYMLINKED_UNIT_PATH`, also a warning), since its canonical folder may lie
+  under another execution root. It
   reads the declared sections of each `_DEPENDENCIES.md`, including the legacy
   headings above, together with each `Dependencies.csv`. A declared entry and an
   ACTIVE row with the same `Direction` and target count once. Where they disagree

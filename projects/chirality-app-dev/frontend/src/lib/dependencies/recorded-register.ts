@@ -34,10 +34,13 @@
  * execution root or unit folder passed in). A symbolic link whose target stays
  * inside that root is read as its target, as the Python tools read it; one whose
  * target, or any intermediate folder's target, leaves the root is not read and
- * is reported as a warning. Files larger than `MAX_REGISTER_FILE_BYTES` are not
- * read either and are reported the same way. A deliverable read that met either
- * refusal gives no verdict (`NOT_ASSESSED`). Symbolic-link unit and package
- * folders are skipped when the units are inventoried.
+ * is reported as a warning. Files larger than `MAX_REGISTER_FILE_BYTES`, and
+ * symbolic-link loops, are not read either and are reported the same way. A
+ * deliverable read that met any refusal gives no verdict (`NOT_ASSESSED`).
+ * Symbolic-link unit and package folders are skipped when the units are
+ * inventoried; a deliverable requested through such a link (or a linked
+ * lifecycle folder) gets `NOT_ASSESSED` with reason `SYMLINKED_UNIT_PATH`,
+ * since its canonical folder may sit under another execution root.
  */
 
 import { open, readdir, realpath, stat } from 'node:fs/promises';
@@ -586,7 +589,12 @@ export function createReadScope(root: string): RegisterReadScope {
 
 function isMissing(error: unknown): boolean {
   const code = (error as NodeJS.ErrnoException | undefined)?.code;
-  return code === 'ENOENT' || code === 'ENOTDIR' || code === 'ELOOP';
+  return code === 'ENOENT' || code === 'ENOTDIR';
+}
+
+/** A symbolic-link loop is a refused read, not an absent file. */
+function isLinkLoop(error: unknown): boolean {
+  return (error as NodeJS.ErrnoException | undefined)?.code === 'ELOOP';
 }
 
 function isWithin(root: string, candidate: string): boolean {
@@ -621,7 +629,8 @@ async function canonicalScopeRoot(scope: RegisterReadScope): Promise<string | nu
 
 /**
  * The canonical path of `target` when it exists and resolves inside the scope's
- * canonical root, or null. A path that resolves outside is reported.
+ * canonical root, or null. A path that resolves outside, or a symbolic-link
+ * loop, is reported (a refused read, not an absent file).
  */
 async function containedPath(scope: RegisterReadScope, target: string): Promise<string | null> {
   const root = await canonicalScopeRoot(scope);
@@ -633,6 +642,10 @@ async function containedPath(scope: RegisterReadScope, target: string): Promise<
     real = await realpath(target);
   } catch (error) {
     if (isMissing(error)) {
+      return null;
+    }
+    if (isLinkLoop(error)) {
+      warn(scope, `LINK_LOOP: ${scopePath(scope, target)} is a symbolic-link loop; it was not read.`);
       return null;
     }
     throw error;
@@ -649,8 +662,9 @@ async function containedPath(scope: RegisterReadScope, target: string): Promise<
 
 /**
  * A regular file's text, or null when it is absent, not a regular file,
- * resolves outside the scope's root, or is larger than
- * `MAX_REGISTER_FILE_BYTES` (the last two are reported in the scope's warnings).
+ * resolves outside the scope's root, is a symbolic-link loop, or is larger than
+ * `MAX_REGISTER_FILE_BYTES` (the last three are refused reads, reported in the
+ * scope's warnings).
  */
 async function readRegularFile(filePath: string, scope: RegisterReadScope): Promise<string | null> {
   const real = await containedPath(scope, filePath);
@@ -682,6 +696,10 @@ async function readRegularFile(filePath: string, scope: RegisterReadScope): Prom
     }
   } catch (error) {
     if (isMissing(error)) {
+      return null;
+    }
+    if (isLinkLoop(error)) {
+      warn(scope, `LINK_LOOP: ${scopePath(scope, filePath)} is a symbolic-link loop; it was not read.`);
       return null;
     }
     throw error;
@@ -1519,6 +1537,43 @@ export function executionRootForDeliverable(deliverablePath: string): string | n
   return matches ? path.dirname(partition) : null;
 }
 
+/** The package (or category), lifecycle-folder and unit names ending a deliverable path. */
+function unitTail(deliverablePath: string): string[] {
+  const folder = path.dirname(deliverablePath);
+  return [path.basename(path.dirname(folder)), path.basename(folder), path.basename(deliverablePath)];
+}
+
+/**
+ * A warning when the requested deliverable path reaches its folder through a
+ * symbolic link in its package, lifecycle or unit folder, or null. Such a path
+ * names one execution root while its canonical folder lies in another, so a
+ * verdict computed over either could be wrong without saying so.
+ */
+async function symlinkedUnitPath(requestedPath: string): Promise<string | null> {
+  let canonical: string;
+  let canonicalParent: string;
+  try {
+    canonical = await realpath(requestedPath);
+    canonicalParent = await realpath(path.dirname(path.dirname(path.dirname(requestedPath))));
+  } catch (error) {
+    if (isMissing(error)) {
+      return null;
+    }
+    if (isLinkLoop(error)) {
+      return `SYMLINKED_UNIT_PATH: ${requestedPath} is a symbolic-link loop; no verdict is given`;
+    }
+    throw error;
+  }
+  const requestedTail = unitTail(requestedPath);
+  const canonicalTail = unitTail(canonical);
+  const same =
+    requestedTail.every((part, index) => part === canonicalTail[index]) &&
+    path.dirname(path.dirname(path.dirname(canonical))) === canonicalParent;
+  return same
+    ? null
+    : `SYMLINKED_UNIT_PATH: ${requestedPath} reaches ${canonical} through a symbolic link in its package, lifecycle or unit folder, so its execution root is ambiguous; no verdict is given`;
+}
+
 function notAssessed(reason: string, defaultMaturity: DefaultMaturity): DeliverableBlockerJudgement {
   return {
     blockerState: NOT_ASSESSED,
@@ -1551,14 +1606,25 @@ function splitList(value: string, separator: string): string[] {
  * `MAX_REGISTER_FILE_BYTES`. The execution root must itself resolve inside
  * `containmentRoot`; otherwise only the deliverable's own register is read and
  * no verdict is given. A read that refused any file gives no verdict either.
+ *
+ * `requestedPath` is the deliverable path as the caller asked for it, before
+ * canonicalization (default: `deliverablePath`). When it reaches the
+ * deliverable through a symbolic link in its package, lifecycle or unit folder
+ * (so the canonical folder sits under another execution root), the judgment is
+ * `NOT_ASSESSED` with reason `SYMLINKED_UNIT_PATH`, also reported as a warning.
  */
 export async function readDeliverableRecordedRegister(input: {
   deliverablePath: string;
+  requestedPath?: string;
   containmentRoot: string;
 }): Promise<DeliverableRecordedRegister> {
   const deliverableId = unitId(input.deliverablePath);
   const scope = createReadScope(input.containmentRoot);
-  const candidateRoot = executionRootForDeliverable(input.deliverablePath);
+  const linkedUnit = await symlinkedUnitPath(input.requestedPath ?? input.deliverablePath);
+  if (linkedUnit !== null) {
+    warn(scope, linkedUnit);
+  }
+  const candidateRoot = linkedUnit === null ? executionRootForDeliverable(input.deliverablePath) : null;
   const executionRoot =
     candidateRoot !== null &&
     isWithin(input.containmentRoot, candidateRoot) &&
@@ -1572,7 +1638,9 @@ export async function readDeliverableRecordedRegister(input: {
 
   let queue: ProjectBlockerQueue | null = null;
   let blockers: DeliverableBlockerJudgement;
-  if (executionRoot === null) {
+  if (linkedUnit !== null) {
+    blockers = notAssessed(linkedUnit, defaultMaturity);
+  } else if (executionRoot === null) {
     blockers = notAssessed(
       candidateRoot === null
         ? 'EXECUTION_ROOT_NOT_RESOLVED: the deliverable is not at {EXECUTION_ROOT}/PKG-*/<lifecycle folder>/DEL-*'

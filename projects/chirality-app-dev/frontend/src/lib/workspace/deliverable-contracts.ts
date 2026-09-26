@@ -588,11 +588,13 @@ export interface DeliverableDependenciesSnapshot {
  */
 async function readRecordedRegisterForSnapshot(
   deliverablePath: string,
+  requestedPath: string,
   canonicalProjectRoot: string
 ): Promise<{ recordedRegister?: DeliverableRecordedRegister; warnings: string[] }> {
   try {
     const recordedRegister = await readDeliverableRecordedRegister({
       deliverablePath,
+      requestedPath,
       containmentRoot: canonicalProjectRoot
     });
     return {
@@ -623,7 +625,12 @@ export async function readDeliverableDependencies(
   const dependenciesFilePath = path.join(deliverablePath, 'Dependencies.csv');
   const dependenciesSummaryPath = path.join(deliverablePath, '_DEPENDENCIES.md');
   const secondarySummaryPresent = await isRegularFilePresent(dependenciesSummaryPath);
-  const recorded = await readRecordedRegisterForSnapshot(deliverablePath, canonicalProjectRoot);
+  // The requested path, before canonicalization, shows a package, lifecycle or unit folder reached through a link.
+  const recorded = await readRecordedRegisterForSnapshot(
+    deliverablePath,
+    requireNonEmptyPath(deliverablePathInput, 'deliverablePath'),
+    canonicalProjectRoot
+  );
   const recordedRegister = recorded.recordedRegister;
   let csv: string;
 

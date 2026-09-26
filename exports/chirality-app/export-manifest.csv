@@ -117,7 +117,7 @@ desktop/src/__tests__/api/harness/scaffold-route.test.ts,5572,06d4ee74843a5fc68f
 desktop/src/__tests__/api/harness/turn-registry-routes.test.ts,9093,980f76d5ee9842a6684d2d9efdfcaa243a40f0735d83468cbb1b6b64598e126d
 desktop/src/__tests__/api/harness/turn-route-attachments.test.ts,6165,8963e9efaaf24413f88cc819cc51fd3d4f50a6157f1cbdadf73795b8bcfde78a
 desktop/src/__tests__/api/project/deliverables-route.test.ts,10709,64523601a2a5b4cef3a178992f59c5ff81249454397f4a37e57a82e6689f4ce7
-desktop/src/__tests__/api/working-root/deliverable-contracts.test.ts,39927,d2c1ae0c772cb613cd073c1648b42479cf851780dc23a3b36edcbc6209ad393d
+desktop/src/__tests__/api/working-root/deliverable-contracts.test.ts,41329,3ff8f5f51b4e913f10fb58cdfd2512e9bd942662c223b39290817868944c7809
 desktop/src/__tests__/api/working-root/file-route.test.ts,16443,8fb4cf4c12b9e6c97065d2194a9122f4cc6257384ec9822289892adbd5111f63
 desktop/src/__tests__/api/working-root/tree-route.test.ts,6089,068cc0dc11f0e48fbd229bbc381d4807ea83eb97e65d812fa8ed7289d5db92d6
 desktop/src/__tests__/api/working-root/validate-route.test.ts,2703,1bfc432c5011c0fe617b0581ff9d1411cc8047cac0a56835185877b23929ca67
@@ -391,7 +391,7 @@ desktop/src/__tests__/lib/pkg08-compatibility-boundaries.test.ts,1838,3d5f647849
 desktop/src/__tests__/lib/plan-executions.test.ts,3861,f50290dffa1215d992249a41778decf4dc9c008e0841aeeb273e89df5430b0a5
 desktop/src/__tests__/lib/plan-export-dialog.test.ts,3021,f5a9224c921127d964d13d678b7550869f2f56d0de607996c78bf71c01b2e973
 desktop/src/__tests__/lib/recorded-agent-hierarchy.test.ts,4073,dabf78dc57fa255bd96ac020592e9f9b26ff3d7ac37836b817504ffb9105fe5c
-desktop/src/__tests__/lib/recorded-register-parity.test.ts,19719,6ea0f87a54321eb325efbf18155a1c55e63cc6dd9bc977e90aa88e8949443aa0
+desktop/src/__tests__/lib/recorded-register-parity.test.ts,21776,0f19e54e12e01477bb7ced33bf78f1a1e70e771001bdd373dba88a6e1cad12f2
 desktop/src/__tests__/lib/redaction-path-matrix.test.ts,3398,cb386af8beda2b0158734b2f63e7faad4cd29321761058dff274c19a162295d5
 desktop/src/__tests__/lib/run-logger.test.ts,3743,9ce9ec664f91670923add2a63925df927471ea067da3c212c899695b7323d390
 desktop/src/__tests__/lib/runtime-daemon-harness-port.test.ts,59111,65252b9b8be980e4ec17c71a1ce54469a39309c8772b4c2c1c059c4d1b6a57c4
@@ -582,7 +582,7 @@ desktop/src/lib/consent/fake-hosted-engine-consent-port.ts,13466,9d43b0fdf38ab63
 desktop/src/lib/consent/hosted-engine-consent-port.ts,14209,2caeff6a7a3f2aefa1ce4a167a734214f7ac916746e8c34d26b03c15f8ff006d
 desktop/src/lib/credential-storage-state.ts,1581,b9a9e171ae8de26845d1868fe03510e3f4b8737a177460538127ba7376441e43
 desktop/src/lib/dependencies/csv-utils.ts,1713,5e5e3f727e78934f540c8a10366e4c9f63277715ca6c60bece5cc131be09df77
-desktop/src/lib/dependencies/recorded-register.ts,57867,142e8435f51d20c641b87eb3c8f4dd99abb9429db3dc47477971c7a9c695a3ca
+desktop/src/lib/dependencies/recorded-register.ts,60991,12f79940562a2be4306a8e8e929036801c1a8628d480bb85ef68eac174180e2b
 desktop/src/lib/dependencies/register-reader.ts,4089,63e54980cba8acb21ff163a0ef0a952ffe0ea333760dd3a90ce43a1a5feec504
 desktop/src/lib/dependencies/register-writer.ts,13903,b14be869ce17de370e85d222185b8e2cfac848b5d1606178f4dd41e80ae3f747
 desktop/src/lib/dependencies/schema.ts,6350,a6a5bc29f70226ebc6e6e951bb5a025e27b5c9a985e734a941bf04c2d219f8da
@@ -676,7 +676,7 @@ desktop/src/lib/shell/turn-phase.ts,4066,a61446375b2173d2624c8ca541e411b574c8929
 desktop/src/lib/shell/user-data-inventory.ts,6803,e8911bfb99e6f9d2aaf4f693817e7d8a5356374abe262668c3d126cf683c8942
 desktop/src/lib/shell/workflow-library.ts,3944,c7284eab0f43d8a4e394c1b0bd8c1387631b470276d3c21f3716fc35b3fe8966
 desktop/src/lib/workspace/deliverable-api.ts,11735,f60d83855956b96456a82cc518f01c7c8a25204149dec3eadf10fc9a57e4c422
-desktop/src/lib/workspace/deliverable-contracts.ts,23445,999aa70f74b634c0b364897ec2836d777b4d086ce13286af330459ae93e9fa49
+desktop/src/lib/workspace/deliverable-contracts.ts,23685,eb647b287a056d40edf197373f693befce35a06b8953e2773faeeaf86250a894
 desktop/src/lib/workspace/file-tree-refresh.ts,1109,7e1cbe7392ebb796ab5ac6ac91036a39199e58d1e5cc9342719dd4deeaa9227c
 desktop/src/lib/workspace/filesystem.ts,40702,810e9af626acc30bb5f171b2a91537af5fb804c9c1407e2f10f6679b05034819
 desktop/src/lib/workspace/governed-workflow.ts,11981,dbd3ff9b5ba20fc7aa66dd6677cdff96b00761d2b5ce35dcb5882d522b489768
