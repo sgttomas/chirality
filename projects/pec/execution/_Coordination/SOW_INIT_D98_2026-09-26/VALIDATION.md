@@ -32,7 +32,7 @@ the first baseline).
 | Every-PR: harness | `python3 tools/practitioner_harness/harness.py self-check`, same three points | 0 ×3 | output identical | exit 0; identical | `evidence/harness_pre.out`, `evidence/post/harness_post.out`, `evidence/post_S/harness_postS.out` |
 | Every-PR: receipts | `python3 tools/validation/validate_pec_loop_receipts.py --repo-root .`, same three points | 0 ×3 | `VALID … frozen through Receipt-166`; identical | exit 0; identical | `evidence/receipts_pre.out`, `evidence/post/receipts_post.out`, `evidence/post_S/receipts_postS.out` |
 | Containment | `git diff --name-status origin/main...HEAD` | 0 | the two created contracts; after S the two `_STATUS.md`; the run root; the brief copy and the return under `AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/`; nothing else | as stated | `evidence/post/containment.out`; final state in `HANDOFF_STATE.md` |
-| Whitespace | `git diff --check origin/main...HEAD` | 0 | clean | clean | `evidence/post/whitespace.out` |
+| Whitespace | `git diff --check origin/main...HEAD` | 0 | clean after the act; at closeout clean with `S_TASK_RETURN.md` marked `-whitespace` in the run-root `.gitattributes`, because its verbatim unified diff has single-space blank context lines (the same exemption covers `evidence/**`, which has no trailing whitespace) | clean | `evidence/post/whitespace.out`; final run in the manager's return |
 
 ## Re-pin checks (question 4)
 
