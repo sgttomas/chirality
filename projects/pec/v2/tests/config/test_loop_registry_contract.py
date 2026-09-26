@@ -13,14 +13,39 @@ V2_ROOT = Path(__file__).resolve().parents[2]
 SRC_ROOT = V2_ROOT / "src"
 sys.path.insert(0, str(SRC_ROOT))
 
-from pec_v2.core.ports.loop_registry import LoopRegistry, RegisteredLoop  # noqa: E402
+from pec_v2.core.ports.loop_registry import (  # noqa: E402
+    FeedProfile,
+    FeedProfileState,
+    LoopRegistry,
+    RegisteredLoop,
+)
 
 
 class LoopRegistryContractTests(unittest.TestCase):
     def test_registered_loop_is_immutable(self) -> None:
-        loop = RegisteredLoop("pec", "projects/pec/loop/LOOP_INIT.md")
+        profile = FeedProfile(
+            "shared-dev-loop", 1, FeedProfileState.LIVE, "projects/pec/AGENTS.md"
+        )
+        loop = RegisteredLoop("pec", "projects/pec/loop/LOOP_INIT.md", (profile,))
         with self.assertRaises(dataclasses.FrozenInstanceError):
             loop.loop_id = "root"  # type: ignore[misc]
+        with self.assertRaises(dataclasses.FrozenInstanceError):
+            loop.feed_profiles = ()  # type: ignore[misc]
+        with self.assertRaises(dataclasses.FrozenInstanceError):
+            profile.state = FeedProfileState.HISTORICAL  # type: ignore[misc]
+
+    def test_registered_loop_carries_the_typed_feed_profile_field(self) -> None:
+        self.assertEqual(
+            [field.name for field in dataclasses.fields(RegisteredLoop)],
+            ["loop_id", "loop_init_path", "feed_profiles"],
+        )
+        self.assertEqual(
+            [field.name for field in dataclasses.fields(FeedProfile)],
+            ["profile", "version", "state", "basis"],
+        )
+        self.assertEqual(
+            {member.value for member in FeedProfileState}, {"live", "historical"}
+        )
 
     def test_port_has_only_the_typed_capability_method(self) -> None:
         public = [name for name in vars(LoopRegistry) if not name.startswith("_")]

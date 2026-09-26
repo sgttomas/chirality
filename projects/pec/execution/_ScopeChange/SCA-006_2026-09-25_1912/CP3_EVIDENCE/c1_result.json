@@ -1,0 +1,240 @@
+{
+ "changed_paths": 46,
+ "not_allowed": [],
+ "hash_checks": 34,
+ "hash_failures": [],
+ "planned_writes_missing_from_diff": [],
+ "fails": 0,
+ "paths": [
+  {
+   "status": "A",
+   "path": "docs/governance_harness/tranche_manifests/PEC-SCA006-OPERATIONAL-RELIANCE-20260926.yaml",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "execution/_Coordination/NOTICE_2026-09-26_PEC_SCA-006_OPERATIONAL_RELIANCE.md",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_PEC_SCA-006_OPERATIONAL_RELIANCE.md",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_PEC_SCA-006_OPERATIONAL_RELIANCE.md",
+   "allowed": true
+  },
+  {
+   "status": "M",
+   "path": "projects/pec/AGENTS.md",
+   "allowed": true
+  },
+  {
+   "status": "M",
+   "path": "projects/pec/docs/PRD.md",
+   "allowed": true
+  },
+  {
+   "status": "M",
+   "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_CONTEXT.md",
+   "allowed": true
+  },
+  {
+   "status": "M",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_CONTEXT.md",
+   "allowed": true
+  },
+  {
+   "status": "M",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_CONTEXT.md",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/returns/B6_SCA006_CHECKPOINT3.md",
+   "allowed": true
+  },
+  {
+   "status": "M",
+   "path": "projects/pec/execution/_Decomposition/Companion_Inventory.csv",
+   "allowed": true
+  },
+  {
+   "status": "M",
+   "path": "projects/pec/execution/_Decomposition/ContextBudgetQA.csv",
+   "allowed": true
+  },
+  {
+   "status": "M",
+   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "allowed": true
+  },
+  {
+   "status": "M",
+   "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "allowed": true
+  },
+  {
+   "status": "M",
+   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA006_POSTCHANGE_2026-09-26_0051/Brief.md",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA006_POSTCHANGE_2026-09-26_0051/Decision_Log.md",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA006_POSTCHANGE_2026-09-26_0051/Decomp_Coverage_IssueLog.csv",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA006_POSTCHANGE_2026-09-26_0051/Decomp_Coverage_Matrix.csv",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA006_POSTCHANGE_2026-09-26_0051/Decomp_Coverage_Report.md",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA006_POSTCHANGE_2026-09-26_0051/PrePost_Comparison.md",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA006_POSTCHANGE_2026-09-26_0051/QA_Report.md",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA006_POSTCHANGE_2026-09-26_0051/RUN_SUMMARY.md",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA006_POSTCHANGE_2026-09-26_0051/coverage_summary.json",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA006_POSTCHANGE_2026-09-26_0051/inventory.json",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA006_POSTCHANGE_2026-09-26_0051/structure.json",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/AGENTS_MD_AMENDMENT1_DIFF.md",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/CP3_EVIDENCE/C4_3_REVIEW.md",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/CP3_EVIDENCE/apply_a1_a2.py",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/CP3_EVIDENCE/apply_a4_agents.py",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/CP3_EVIDENCE/apply_a4_manifest_notices.py",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/CP3_EVIDENCE/c1_containment.py",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/CP3_EVIDENCE/c1_result.json",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/CP3_EVIDENCE/c3_assert.py",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/CP3_EVIDENCE/c3_result.json",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/CP3_EVIDENCE/c5_completeness.py",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/CP3_EVIDENCE/c5_result.json",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/CP3_EVIDENCE/extract_drafts.py",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/CP3_EVIDENCE/precheck.py",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/CP3_EVIDENCE/preflight.py",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/CP3_EVIDENCE/verify_manifest.py",
+   "allowed": true
+  },
+  {
+   "status": "M",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Decision_Log.md",
+   "allowed": true
+  },
+  {
+   "status": "M",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Handoff_State.md",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Post_Change_Coverage.json",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/RUN_SUMMARY.md",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Supersession_Map.csv",
+   "allowed": true
+  }
+ ]
+}

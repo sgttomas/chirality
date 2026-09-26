@@ -14,7 +14,7 @@
 
 ## Description
 
-Local-only Unix-socket binding with token-scoped access classes (owner, harness, admin); auth-reuse choice tracked by OI-006.
+Local-only Unix-socket binding with token-scoped access classes (owner, harness, agent, admin; agent is read-only query for tool calls); auth-reuse choice tracked by OI-006.
 
 ## Anticipated artifacts
 
@@ -31,7 +31,8 @@ Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
 successor), superseded by revision 1.2 (`current_basis`, SCA-002
 successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
 successor), then by revision 1.4 (`current_basis`, SCA-004 successor),
-then by revision 1.5 (`current_basis`, SCA-005 successor).
+then by revision 1.5 (`current_basis`, SCA-005 successor),
+then by revision 1.6 (`current_basis`, SCA-006 successor).
 Fields templated deterministically from
 `Deliverables.csv`; this file restates register truth and is not an
 independent authority.

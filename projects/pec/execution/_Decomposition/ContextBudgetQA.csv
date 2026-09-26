@@ -43,9 +43,10 @@ DEL-07-04,PKG-07,M,LOW,[RETIRED — SCA-005] None; row retained non-destructivel
 DEL-07-05,PKG-07,M,LOW,[RETIRED — SCA-005] None; row retained non-destructively,"M is provisional: the seam's artifact shape follows the D-PEC-56 concept, not a PEC-*-NNN requirement; re-envelope at WORKING_ITEMS activation if the shape proves larger; Retired under SCA-005 (R1 deferral); excluded from active envelope counts"
 DEL-08-01,PKG-08,M,MEDIUM,Hold envelope; re-assess on the linked OI's ruling,"OI-006 determines the PEC-local token mechanism (Runtime token registries are private to each application's Runtime instance, so no shared registry exists to reuse); the socket+access-class core is stable either way, but the auth half may be reworked on ruling"
 DEL-08-02,PKG-08,S,LOW,None,
-DEL-08-03,PKG-08,S,LOW,None,
+DEL-08-03,PKG-08,M,LOW,None; single cohesive slice,"M under SCA-006: declared response-size budgets met by pagination or continuation, with stated truncation, join the compact citation-bearing format (SOW-043, SOW-098); kept one cohesive format slice"
 DEL-08-04,PKG-08,S,LOW,None,
 DEL-08-05,PKG-08,M,LOW,None; single cohesive slice,
+DEL-08-06,PKG-08,M,MEDIUM,Hold envelope; re-assess on the linked OI's ruling,Token mechanism follows OI-006; the tier-0 profile is amended before any tool is declared or invoked
 DEL-09-01,PKG-09,M,LOW,None; single cohesive slice,
 DEL-09-02,PKG-09,M,LOW,None; single cohesive slice,
 DEL-09-03,PKG-09,M,LOW,None; single cohesive slice,
@@ -65,3 +66,4 @@ DEL-10-09,PKG-10,S,LOW,None,
 DEL-10-10,PKG-10,M,MEDIUM,Hold envelope; validate as one standing progression record,"M because the record spans the full DAG, capability cutovers, negative function dispositions, fallback proof, and human-gated amendment routes; split only if evidence volume prevents one coherent progression"
 DEL-10-11,PKG-10,S,LOW,None,
 DEL-10-12,PKG-10,S,LOW,None,
+DEL-10-13,PKG-10,S,LOW,None,Binds the first release that advertises operational reliance; composes other packages' evidence and consumes no internals (as DEL-10-02)
