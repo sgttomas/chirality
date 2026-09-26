@@ -45,9 +45,12 @@ govern this workflow:
   registers "synchronized mirrors". That wording is stronger than D-GOV-49,
   under which a DAG carries authority only through acceptance while it is
   current, and a departure is decided by the human rather than resolved in
-  the DAG's favour. `audit_dag.py`'s generated markdown report carries
-  similar fixed "synchronized mirrors" wording. This workflow neither adopts nor extends it. Such a loop keeps its
-  own accepted records until its owning loop decides otherwise.
+  the DAG's favour. This workflow neither adopts nor extends it. Such a loop
+  keeps its own accepted records until its owning loop decides otherwise.
+  Records generated earlier by `audit_dag.py --markdown-out` or
+  `materialize_local_dependencies.py --refresh-pointers` may carry the same
+  wording; both tools now state the D-GOV-49 reading, and earlier outputs are
+  historical.
 
 Human-owned sections of `_DEPENDENCIES.md` (tracking mode and declarations)
 stay human-owned. Agent-owned content is changed only through

@@ -62,8 +62,9 @@ Run this phase **only if** the human selects `DECLARED` or `FULL_GRAPH`.
 **Action:**
 - Confirm a default maturity threshold rule used for blocker computation (recommended default: `INITIALIZED`, unless the human specifies otherwise).
 - Confirm where dependencies live:
-  - Prefer `Dependencies.csv` if the `dependency-extract` workflow is used.
-  - Otherwise, treat `_DEPENDENCIES.md` as the declared register format.
+  - Declarations are recorded in the declared sections of `_DEPENDENCIES.md`.
+  - If the `dependency-extract` workflow is used, it also writes `Dependencies.csv` and mirrors each declaration there as an `Origin=DECLARED` row.
+  - Blockers are read from both sources together (Phase 3.1).
 - If the human wants help proposing dependencies:
   - Propose candidates using heuristics, but clearly label them **PROPOSAL** requiring human acceptance.
 
@@ -371,8 +372,11 @@ for the method contracts.
 
 Dependencies:
 - If dependency tracking mode is `DECLARED` or `FULL_GRAPH`:
-  - Compute `BLOCKED/UNBLOCKED` only from **declared** dependency registers (prefer `Dependencies.csv` when present).
-  - Where the project has an accepted project DAG, compute them instead from its accepted current version, and report deliverables the latest currency audit lists as `DAG pending` as pending, not blocked or unblocked (`docs/SPEC.md` §5.4).
+  - Where the project has **no accepted project DAG**, compute `BLOCKED/UNBLOCKED` only from the recorded register (`docs/SPEC.md` §5.3). That register is the union of the declared entries in `_DEPENDENCIES.md` and the rows of `Dependencies.csv` when present. Do not rely on the CSV alone: a declaration not yet mirrored as an `Origin=DECLARED` row still counts.
+    - Treat a declared entry and a row for the same direction and target as one edge, counted once. Where they disagree, use the declared entry and report the disagreement.
+    - For an entry without a CSV row, compare its `Required maturity` with the upstream deliverable's `_STATUS.md` state. Use the Phase 1.3 default threshold when the entry states none.
+    - Under `FULL_GRAPH`, compute blockers only after the closure audit and cycle treatment (Phase 2.2b).
+  - Where the project has an accepted project DAG, compute them instead from its accepted current version (resolved through `_DAG/_LATEST.md`), with satisfaction read from the local files. Report deliverables the latest currency audit lists as `DAG pending`, or whose local evidence departs from the version, as pending, not blocked or unblocked (`docs/SPEC.md` §5.4).
   - Edges that participate in an unresolved cycle (SCC) are non-gating: exclude them from blocker computation and report them separately as **HELD** pending resolution (`docs/CYCLE_DRIVEN_RESOLUTION.md` §2 rule 4; `scc-resolution-case`). Do not label a deliverable blocked, or withhold independent work, solely because of a held edge.
 - If dependency tracking mode is `NOT_TRACKED`:
   - Do not label items as blocked/available.
@@ -390,9 +394,10 @@ Always report by lifecycle state:
 - ISSUED
 
 Additionally, if dependency tracking mode is enabled, provide an **advisory** section:
-- UNBLOCKED (declared dependencies met)
-- BLOCKED (declared dependencies not met)
+- UNBLOCKED (recorded or accepted-version dependencies met)
+- BLOCKED (recorded or accepted-version dependencies not met)
 - HELD (edges in unresolved cycles; non-gating and excluded from BLOCKED)
+- DAG PENDING (accepted project DAG only: deliverables affected by an undecided departure, each with the departure and the decision awaited; no ready or blocked verdict, `docs/SPEC.md` §5.4)
 
 Under `DECLARED`, label this section a partial view of the recorded critical edges (`docs/SPEC.md` §5.3).
 

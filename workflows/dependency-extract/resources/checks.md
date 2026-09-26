@@ -17,7 +17,8 @@ This file enumerates the mandatory invariants and local quality checks that must
 11. **Lifecycle hygiene.** Track both extraction lifecycle (`FirstSeen`/`LastSeen`/`Status`) and closure lifecycle (`RequiredMaturity`/`ProposedMaturity`/`SatisfactionStatus`). `Status` is only `ACTIVE` or `RETIRED`; candidate/non-gating dispositions are worklist/review states, not `Status` values.
 12. **Referential integrity.** `FromDeliverableID` must match the current deliverable; preserve unresolved targets as `UNKNOWN`/`TBD` rather than guessing.
 13. **Information flow only.** Do not create edges that are merely "coordination" or "structural adjacency."
-14. **Architecture-basis consistency.** When `ARCHITECTURE_BASIS_POLICY=PKG00_CONSISTENCY_TRACKERS`, supported `DEL-00-*` rows are valid consistency dependencies; do not retire them merely because they point to PKG-00.
+14. **Declared entries mirrored.** Each readable entry in the declared sections of `_DEPENDENCIES.md` has exactly one ACTIVE `Origin=DECLARED` row in `Dependencies.csv`. That row is either a mirror row marked `mirrored_from=_DEPENDENCIES.md` or an existing direct declaration of the same `Direction` and target. Mirror rows copy only the stated fields and leave the rest `TBD`/`UNKNOWN`, and a rerun with unchanged declarations adds no rows. A mirror row whose entry was removed is `RETIRED`, never deleted. Existing human-owned sections are read, never edited (WORKFLOW.md Function 3, "Mirror declared entries"); a missing one is only added as a `TBD` placeholder (Function 4). A mirror row's `DependencyType` comes from its section heading (`PREREQUISITE` upstream, `ENABLES` downstream), noted as `type_from=section_heading`; a legacy informational downstream heading gives `IMPLICIT`/`MEDIUM`.
+15. **Architecture-basis consistency.** When `ARCHITECTURE_BASIS_POLICY=PKG00_CONSISTENCY_TRACKERS`, supported `DEL-00-*` rows are valid consistency dependencies; do not retire them merely because they point to PKG-00.
 
 ## Mandatory local quality checks (WORKFLOW.md Function 5)
 
@@ -66,6 +67,7 @@ A `dependency-extract` run is valid when all of the following hold:
 - `DependencyID` values are unique within each deliverable register.
 - Write-form enums are canonical (legacy values normalized and not re-emitted).
 - `_DEPENDENCIES.md` summary/lifecycle counts are consistent with `Dependencies.csv`.
+- Declared entries are mirrored as `Origin=DECLARED` rows (invariant 14); unreadable entries are listed in Run Notes as `[WARNING] DECLARED_ENTRY_UNREAD`.
 - If decomposition cannot be located, `_DEPENDENCIES.md` Run Notes include `[WARNING] MISSING_DECOMPOSITION` and anchor validation/label resolution is explicitly marked degraded.
 
 ## Non-fatal integrity warnings (required)
@@ -75,6 +77,8 @@ The following warnings MUST be emitted to `_DEPENDENCIES.md` Run Notes when cond
 - **`[WARNING] FLOATING_NODE`** — no ACTIVE parent anchor (zero rows with `Status=ACTIVE`, `DependencyClass=ANCHOR`, `AnchorType=IMPLEMENTS_NODE`).
 - **`[WARNING] AMBIGUOUS_ANCHOR`** — multiple ACTIVE parent anchors (more than one row with the same classification).
 - **`[WARNING] MISSING_DECOMPOSITION`** — decomposition document could not be located; anchor validation/label resolution is degraded.
+- **`[WARNING] DECLARED_ENTRY_UNREAD`** — a declared entry's direction or target could not be read, so it was not mirrored; the raw line is recorded.
+- **`[WARNING] DECLARED_MISMATCH`** — a direct `Origin=DECLARED` CSV row and a declared entry name the same edge with different fields; both are left unchanged and the human-owned section governs readers.
 
 ## Failure-reporting expectations
 
