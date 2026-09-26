@@ -1,0 +1,4 @@
+HEAD ddec1a2f90d1835380dc11e62fb26c27d78e9784 base 189f205ff
+grant paths in diff 62/62; run-root files 42; other allowed ['projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/briefs/RR3_D99_RETIREMENT_ACT.md', 'projects/pec/execution/_Coordination/_TaskManagement/TM_PEC_REMAINING_RETIREMENT_2026-09-26/FINAL_ROW_ACCOUNT.csv']; HELP_HUMAN-owned 0; outside 0
+RESULT PASS
+exit=0

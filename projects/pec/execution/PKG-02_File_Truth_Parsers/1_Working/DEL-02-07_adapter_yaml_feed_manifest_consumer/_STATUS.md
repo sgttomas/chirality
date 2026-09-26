@@ -1,26 +1,9 @@
 # Status: DEL-02-07
 
 **Current State:** INITIALIZED
-**Last Updated:** 2026-07-25
+**Last Updated:** 2026-09-26
 
 ## History
 - 2026-07-25 — State set to OPEN (PREPARATION)
 - 2026-07-25 — State set to INITIALIZED (TASK+status-advance)
-
-## Remaining
-
-- [ ] DEL-02-07-REM-001 — Declare the consumed manifest grammar and YAML parsing approach within REQ-002/REQ-007, then produce the per-project feed-manifest reader and valid/undeclared-field invariance evidence.
-  Depends: NONE
-  (gated: separate exact owner-ruled DEL-02-07 production packet on origin/main opening the named source/test paths, acts, verification and rollback under F-PEC-1; WORKING_ITEMS activation; current reliance preflight)
-
-- [ ] DEL-02-07-REM-002 — Resolve the loop-to-project manifest relation using accepted evidence; if no accepted derivation exists, obtain the CON-002 scope-change ruling. Implement and verify loop-set acquisition only through the LoopRegistry port.
-  Depends: DEL-01-06
-  (gated: separate exact owner-ruled DEL-02-07 production packet on origin/main opening the named source/test paths, acts, verification and rollback under F-PEC-1; WORKING_ITEMS activation; current reliance preflight) (gated: accepted CON-002 loop-to-project relation derivation or owner-ruled SCOPE_CHANGE if not derivable)
-
-- [ ] DEL-02-07-REM-003 — Produce and verify explicit absent/unreadable/malformed/schema-invalid manifest limitations; source byte preservation; content-minimal payload; zero-third-party runtime dependency and no external egress.
-  Depends: NONE
-  (gated: separate exact owner-ruled DEL-02-07 production packet on origin/main opening the named source/test paths, acts, verification and rollback under F-PEC-1; WORKING_ITEMS activation; current reliance preflight)
-
-- [ ] DEL-02-07-REM-004 — Produce and register the DEL-02-07 fixture suite covering VER-001..006, then run the PKG-02 suite and show every assertion derives from the accepted contract.
-  Depends: NONE
-  (gated: separate exact owner-ruled DEL-02-07 production packet on origin/main opening the named source/test paths, acts, verification and rollback under F-PEC-1; WORKING_ITEMS activation; current reliance preflight)
+- 2026-09-26 — `## Remaining` section retired under D-PEC-99 by WORKING_ITEMS (PEC Remaining retirement). Its items, with their original text, are accounted for in `execution/_Coordination/_TaskManagement/TM_PEC_REMAINING_RETIREMENT_2026-09-26/`; each was moved verbatim, with its gate, or closed: DEL-02-07-REM-001, DEL-02-07-REM-002, DEL-02-07-REM-003, DEL-02-07-REM-004 → the D-PEC-99 exhibit, for exact carry-forward into this deliverable's `ScopeOfWork.md` by work-graph node S2. Exhibit: `execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md`. No lifecycle change: no CHECKING, ISSUED or artifact acceptance is implied.
