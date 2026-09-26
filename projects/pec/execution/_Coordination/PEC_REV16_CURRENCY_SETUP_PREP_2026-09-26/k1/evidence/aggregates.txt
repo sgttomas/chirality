@@ -1,0 +1,6 @@
+K1 aggregate hashes (provisional D-PEC-101, part K1), {D} = 2026-09-26
+Order: bytewise-sorted full paths (projects/pec/...). Aggregate = SHA-256 of the concatenated file bytes in that order. Path list = SHA-256 of the paths, each followed by one LF (the K4 convention).
+set	files	pathlist_sha256	pre_sha256	post_sha256
+all_K1	32	c1fbca79ae25d68c5e34aed84f536197c727dce2ae13d602bd82b8f1224fa7f4	(12 absent)	483ec2393ac4a9256fe2c0ab294c7f563c622349076a9a87ba36dc862d020234
+modified_K1	20	8c569e6091905c043113aff302804066daaae50aaf76ea54b79042792a92db2f	48e96f7244f3c8ae72b7aa2b9e21d24def0663b87b0785ba348c28858d782516	186d9c72282424bd8eb317106d9dbc72b9d595b35e4227822f2869fc9bb06e8f
+created_K1	12	bfca84fab01676f7380f7af04241e83719501236cbcc2d966b90f63c83be7eef	absent	e72fc7e9702f5f7acb4e2870cb1b53385b2b874635c7a6fd60b01e2a3f35e887
