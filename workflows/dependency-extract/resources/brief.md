@@ -37,7 +37,7 @@ This workflow is dispatched via TASK with `Workflow: dependency-extract` by WORK
 
 ```yaml
 Workflow: dependency-extract
-SCOPE: DEL-001
+SCOPE: DEL-01-01
 RUN_ROOT: /abs/path/to/run
 DECOMPOSITION_PATH: /abs/path/to/run/_Decomposition/latest.md
 MODE: UPDATE
@@ -49,7 +49,7 @@ CONSUMER_CONTEXT: NONE
 
 ```yaml
 Workflow: dependency-extract
-SCOPE: DEL-001
+SCOPE: DEL-01-01
 RUN_ROOT: /abs/path/to/run
 DECOMPOSITION_PATH: /abs/path/to/run/_Decomposition/SOFTWARE_DECOMP.md
 MODE: CANONICALIZE_EXISTING
@@ -61,7 +61,7 @@ CONSUMER_CONTEXT: RECONCILIATION
 
 ```yaml
 Workflow: dependency-extract
-SCOPE: DEL-001
+SCOPE: DEL-01-01
 RUN_ROOT: /abs/path/to/run
 DECOMPOSITION_PATH: /abs/path/to/run/_Decomposition/SOFTWARE_DECOMP.md
 MODE: UPDATE

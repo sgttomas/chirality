@@ -451,4 +451,4 @@ See `resources/checks.md` for the authoritative invariant list. Summary:
 
 ## Downstream consumer
 
-This workflow produces deliverable-local registers only. Downstream workflows (TASK (workflow: aggregation) for project-level graphs, WORKING_ITEMS (workflow: reconciliation) for cross-deliverable consistency, TASK_ESTIMATING for estimating readiness, TASK (workflow: audit-dep-closure) for closure-level audit via `tools/coordination/analyze_dep_closure.py`) consume these registers. This workflow does not build project-level graphs.
+This workflow produces deliverable-local registers only. Downstream consumers (the `aggregation` workflow for project-level roll-ups, the `reconciliation` workflow for cross-deliverable consistency, TASK_ESTIMATING for estimating readiness, TASK (workflow: audit-dep-closure) for closure-level audit via `tools/coordination/analyze_dep_closure.py`) consume these registers. This workflow does not build project-level graphs.

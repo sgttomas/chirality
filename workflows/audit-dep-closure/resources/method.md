@@ -10,7 +10,7 @@
    - Compare it with the workspace folders. Report accepted units without a folder and folders without an accepted row as inventory findings.
    - Apply `EXEMPT_UNITS` (for example `CONTROL` units such as PKG-00 control deliverables, or `RETIRED` units). Report each exemption with its class and authority; do not count an exempt unit's missing or invalid register as FAIL/BLOCKER. Exempt units stay in the workspace inventory, so edges that target them are reported as outside-scope rather than orphans.
    - If `SCOPE` is a list: treat entries as deliverable IDs, package IDs, or explicit paths and resolve them within that inventory.
-   - Pass the analyzer `--scope ALL` only when the accepted inventory, workspace inventory, and exemptions agree; otherwise pass the explicit non-exempt unit IDs.
+   - Pass the analyzer `--scope ALL` only when the accepted inventory, workspace inventory, and exemptions agree; otherwise pass the explicit non-exempt unit IDs that have a workspace folder and report accepted units without one as inventory findings.
 3) If zero deliverables found: write `RUN_SUMMARY.md (FAILED_INPUTS)` and stop.
 
 ---

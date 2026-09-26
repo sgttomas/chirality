@@ -106,7 +106,7 @@ Run this phase **only if** the human selects `DECLARED` or `FULL_GRAPH`.
 - Scaffolding order and ownership:
   - `scaffold_deliverable.sh` creates all five empty stubs (`_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, `_SEMANTIC.md`) in one call. Inventory targets first, capture each `CREATED_PATH`, and populate only files created by that invocation; an existing empty file is existing work.
   - `write_status.sh` cannot initialize an empty `_STATUS.md`; the `preparation` skill writes the exact `OPEN` form into the newly created stub, and `write_status.sh` is used only for later transitions.
-  - When file ownership is split (for example, `_DEPENDENCIES.md` belongs to another owner or stage), the actor may instead use inventoried exclusive creation of exactly its accepted targets: record target existence before writing, create each target only if absent, and report created paths and hashes. The Piping SCA-011 carrier application is the precedent. Do not create placeholder files outside the actor's ownership.
+  - When file ownership is split (for example, `_DEPENDENCIES.md` belongs to another owner or stage), the actor may instead use inventoried exclusive creation of exactly its accepted targets: record target existence before writing, create each target only if absent, and report created paths and hashes. Do not create placeholder files outside the actor's ownership.
   - Folder labels follow the project's recorded label rule where one exists; the `preparation` skill's sanitization rule is the default for new workspaces.
 - `PREPARATION_ACTOR` uses the language model only to populate metadata text from the decomposition and any human-confirmed declarations:
   - `_CONTEXT.md`
@@ -175,7 +175,7 @@ skipped.
 See `workflows/scope-of-work/WORKFLOW.md`, the retained compatibility
 `workflows/four-documents/WORKFLOW.md`, and `workflows/domain-documents/WORKFLOW.md`.
 
-**Gate question:** “Pass 1+2 complete. Ready to generate semantic lenses (if using semantic lensing)?”
+**Gate question:** “Pass 1+2 complete. Ready for dependency extraction (Phase 2.2b, if the coordination mode calls for it) or semantic lenses (if using semantic lensing)?”
 
 ---
 
