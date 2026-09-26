@@ -51,8 +51,11 @@ descriptor change (FU2, PR #978). They are listed under Result.
     details (`AMENDMENT_NOT_ADMITTED (checker code REGISTER_SCHEMA): …`). Known
     refusal codes (the mapped `RULING_*` and `AMENDMENT_*` codes,
     `INVALID_AMENDMENT_REFERENCE`, `HISTORY_NOT_PRESERVED`,
-    `INVALID_STATUS_FORMAT`, approval-SHA and backward codes) add a short hint and "_STATUS.md was not changed."; each is raised
-    before the file is written.
+    `INVALID_STATUS_FORMAT`, approval-SHA and backward codes) add a short hint
+    and "_STATUS.md was not changed."; each is raised before the file is
+    written. The ruling-resolution codes `RULING_NOT_FOUND`,
+    `RULING_OUTSIDE_PROJECT_ROOT`, `RULING_IS_STATUS_FILE` and `RULING_EMPTY`
+    have no hint and show as the plain code and message.
 - **Post-write check (3a review item 1).** `applyLifecycleTransition` re-parses
   the written content and refuses the transition (`INVALID_STATUS_FORMAT`,
   new in `TransitionErrorCode`) unless it reads as the target state, with the
