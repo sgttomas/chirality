@@ -1,0 +1,8 @@
+PRESENT projects/pec/loop/LOOP_INIT.md
+PRESENT projects/pec/execution/_Coordination/_DECISIONS/D-PEC-94_owner_direction_loop_migration_2026-09-25.md
+PRESENT projects/pec/AGENTS.md
+PRESENT projects/pec/execution/_Coordination/_DECISIONS/D-PEC-94_owner_direction_loop_migration_2026-09-25.md
+schema_version 2 rows 1
+ROW shared-dev-loop v1 live projects/pec/execution/_Coordination/_DECISIONS/D-PEC-94_owner_direction_loop_migration_2026-09-25.md
+ROW loop-receipts-ledger v1 historical projects/pec/AGENTS.md
+ROW agentruns-json v1 historical projects/pec/execution/_Coordination/_DECISIONS/D-PEC-94_owner_direction_loop_migration_2026-09-25.md
