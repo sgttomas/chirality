@@ -1,0 +1,19 @@
+CHECK keys_equal_census PASS 92/92
+CHECK keys_unique_92 PASS
+CHECK one_disposition_each PASS
+CHECK c_rows_cite_existing_evidence PASS
+CHECK d_rows_exhibit_class PASS
+CHECK e_rows_have_question PASS
+CHECK item_blocks_match_census PASS
+CHECK held_residuals_outside_census PASS held=73
+CHECK exhibit_present PASS
+CHECK moved_items_in_exhibit PASS
+CHECK declined_items_absent_from_exhibit PASS
+CHECK no_remaining_heading_all PASS 66 files; survivors 0
+CHECK status_edits_exact PASS 57 files; bad 0
+CHECK allow_extra_default_writable_only PASS
+CHECK changed_paths_equal_grant PASS changed 58; unexpected []
+CHECK new_paths_equal_grant PASS new ['docs/governance_harness/tranche_manifests/PEC-REMAINING-RETIREMENT-20260926.yaml', 'execution/_Coordination/NOTICE_2026-09-26_PEC_REMAINING_RETIREMENT.md', 'projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_PEC_REMAINING_RETIREMENT.md', 'projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md']; removed 0
+CHECK protected_paths_unchanged PASS
+RESULT PASS
+closure_post rc=0
