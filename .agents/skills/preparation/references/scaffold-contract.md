@@ -41,7 +41,7 @@ Do not normalize or embellish accepted field values. Use `TBD` only when the acc
 
 ## Dependency Tracking Mode
 - **Mode:** [NOT_TRACKED | DECLARED | FULL_GRAPH]
-- **Register:** Dependencies.csv (schema v3.1) when present; otherwise the declared sections of this file
+- **Register:** the declared sections of this file together with Dependencies.csv (schema v3.1) when present (docs/SPEC.md §5.3)
 - **Notes:** [pointer to coordination record or external system, or "TBD"]
 
 ---

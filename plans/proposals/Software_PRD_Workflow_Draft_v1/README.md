@@ -19,3 +19,7 @@ After accepted registration and observed discovery, select `Workflow: software-p
 No execution.json is included. The package has no unverified tool or role restriction metadata; actual host permissions and instructions still govern. No live PRD run, independent review, accepted PRD, or empirical reuse is claimed.
 
 SHA256SUMS.json identifies the bytes in this export, excluding itself. Earlier supplied sources remain unchanged.
+
+## Registration note (2026-09-26)
+
+On the owner's direction, this draft was revised to current conventions and registered in the Root bundled library at `workflows/software-prd/` (tranche `ROOT-SOFTWARE-PRD-REGISTRATION-20260926`). The registered package is in core navigation and adds an `execution.json` limiting compatible roles to HELP_HUMAN, HELPS_HUMANS and WORKING_ITEMS. This folder remains unchanged as history apart from this note. `SHA256SUMS.json` identifies the export as delivered; its `README.md` entry matches this file as it stood before the note was added (repository revision `8f9bd314c5f2499e6faf5bf4bdce917927e8185e`).

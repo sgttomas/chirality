@@ -16,6 +16,7 @@ type TransitionRequest = {
   date?: string;
   metadata?: Record<string, string>;
   approvalSha?: string;
+  ruling?: string;
 };
 
 function requireNonEmptyString(value: unknown, field: string): string {
@@ -23,6 +24,16 @@ function requireNonEmptyString(value: unknown, field: string): string {
     throw new WorkspaceValidationError('INVALID_REQUEST', 400, `Missing or invalid '${field}'`);
   }
   return value.trim();
+}
+
+function parseOptionalString(value: unknown, field: string): string | undefined {
+  if (value === undefined || value === null) {
+    return undefined;
+  }
+  if (typeof value !== 'string') {
+    throw new WorkspaceValidationError('INVALID_REQUEST', 400, `${field} must be a string`);
+  }
+  return value.trim() || undefined;
 }
 
 function parseMetadata(value: unknown): Record<string, string> | undefined {
@@ -59,7 +70,8 @@ export async function POST(request: Request): Promise<Response> {
       actor: requireNonEmptyString(body.actor, 'actor'),
       date: body.date?.trim(),
       metadata: parseMetadata(body.metadata),
-      approvalSha: body.approvalSha?.trim()
+      approvalSha: body.approvalSha?.trim(),
+      ruling: parseOptionalString(body.ruling, 'ruling')
     };
 
     const result = await transitionDeliverableStatus(transitionInput);

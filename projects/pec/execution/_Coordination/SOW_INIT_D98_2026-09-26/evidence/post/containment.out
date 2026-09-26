@@ -1,0 +1,36 @@
+$ git diff --name-status origin/main...HEAD
+# cwd=/Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-d98-first-sows-act HEAD=af1a3c74bbf038fc42cec8676da2e8c6a685275a
+A	projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md
+A	projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md
+A	projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/briefs/S3A_D98_SOW_ACT.md
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/.gitattributes
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/REPIN.md
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/REPIN_WORDDIFF.txt
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/apply_d98.py
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/candidates/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/candidates/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/evidence/apply_check_only.out
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/evidence/apply_run.out
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/evidence/at_189f205ff/harness_pre.exit
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/evidence/at_189f205ff/harness_pre.out
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/evidence/at_189f205ff/quotes_precandidate_repin.out
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/evidence/at_189f205ff/receipts_pre.exit
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/evidence/at_189f205ff/receipts_pre.out
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/evidence/at_189f205ff/reliance_dispatch.out
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/evidence/at_189f205ff/repin_quotes.out
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/evidence/at_189f205ff/state_pre_repin.out
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/evidence/at_189f205ff/strict_pre.exit
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/evidence/at_189f205ff/strict_pre.out
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/evidence/harness_pre.out
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/evidence/receipts_pre.out
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/evidence/reliance_dispatch.out
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/evidence/repin_quotes.out
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/evidence/repin_state_claims.out
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/evidence/strict_pre.out
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/evidence/test_apply_d98.out
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/repin_candidates.py
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/run_d98_checks.sh
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/test_apply_d98.py
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/verify_d98_quotes.py
+A	projects/pec/execution/_Coordination/SOW_INIT_D98_2026-09-26/verify_d98_state_claims.py
+exit=0
