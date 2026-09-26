@@ -449,6 +449,18 @@
    "text": "Adding a profile, version or surface shall be a PEC code change under an owner-ruled D-PEC packet within schema version 2",
    "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
    "where": "CLM-017"
+  },
+  {
+   "id": "Q69",
+   "text": "`loop_init_path` is read for loop identity on every row, whatever its profiles, as PRD PEC-RCN-002 requires, so it is not a profile surface",
+   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+   "where": "CON-004"
+  },
+  {
+   "id": "Q70",
+   "text": "`loop_init_path` is read for loop identity on every row, whatever its profiles, as PRD PEC-RCN-002 requires, so it is not a profile surface",
+   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md",
+   "where": "CON-004"
   }
  ]
 }
