@@ -227,11 +227,12 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
   `_COORDINATION.md` records them as superseded for current state.
 
   Open:
-  - SOW currency and first SOWs for DEL-02-08/09;
+  - SOW currency and first SOWs for DEL-02-08/09. The first SOWs are proposed
+    as `D-PEC-98`, under independent verification before the owner's ruling;
   - DEL-00-01/00-03 derivative review;
-  - the loop registry source packet, proposed as `D-PEC-96`. On 2026-09-26
-    the owner directed a revision 4 that drops the Remaining-reading profiles.
-    The ruling follows it
+  - the loop registry source packet, `D-PEC-96`. The owner ruled revision 4
+    (option A, PEC's row migrated to `shared-dev-loop`) on 2026-09-26, and its
+    act is in progress
     (`execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md`);
   - P1 fixtures;
   - residual `projects/pec/AGENTS.md` corrections;
@@ -245,9 +246,10 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
     (owner 2026-09-26). The `AGENTS.md` correction to the Remaining sections
     rides its instruction tranche. The owner must explicitly approve the exact
     text before it merges.
-  - Owner decision pending: whether to open a separate undertaking to retire
-    the 57 `## Remaining` sections, as App and Piping did (work-graph node
-    RS1).
+  - Retiring the 57 `## Remaining` sections, as App and Piping did: the owner
+    opened it on 2026-09-26 as undertaking
+    `HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT`. Its census and decision
+    account are in preparation.
 
   These are organized in the work graph
   `execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md`.

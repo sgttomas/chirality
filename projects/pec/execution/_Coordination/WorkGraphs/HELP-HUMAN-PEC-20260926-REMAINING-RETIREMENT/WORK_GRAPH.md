@@ -1,0 +1,39 @@
+# Work graph — retire PEC's deliverable `## Remaining` sections
+
+This graph is saved at `projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT/WORK_GRAPH.md` under `projects/pec/loop/LOOP_INIT.md`, the shared method (`D-PEC-94`). Method: `chirality-root:bundled:workflow:construct-local-work-graph`.
+
+## Intent and selected route
+
+- **Stable run identity:** `HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT`.
+- **Steering basis:** the owner's words on 2026-09-26, verbatim:
+  - "Why am I seeing `remaining-items` appearing?  There must not be any of those going forward, so no need to scan for them."
+  - After HELP_HUMAN explained RS1 (node RS1 of `HELP-HUMAN-PEC-20260925-POST-SCA005`): "open RS1".
+
+  *Interpretation:* this opens the separate owner-directed undertaking that `projects/pec/AGENTS.md` names, retiring the sections "as App and Piping did". It rules no packet.
+- **Intended result:**
+  - Every open item in PEC's 57 deliverable `_STATUS.md` `## Remaining` sections is moved to its governing home, with no obligation lost. Homes are a Scope of Work or governing decision, a Task Management row, a work-graph node, or an owner decision.
+  - Items already satisfied or superseded are shown so with evidence.
+  - The sections are then removed under an owner-ruled packet, and `projects/pec/AGENTS.md` is corrected in an instruction tranche.
+- **Precedent:**
+  - Piping's `TM_PIP_REMAINING_RETIREMENT_20260922/` and commit `82f4a16ce`;
+  - App's commit `1f78abfd4`;
+  - PEC's `D-PEC-83` concordance.
+- **Left for later:** the 73 held or conditional `D-PEC-83` residuals, which were never in any Remaining section.
+- **Route:**
+  - After the SCA-006 checkpoint-3 merge (PR #943): the instruction change builds on the owner-approved amendment-1 paragraph.
+  - Items whose receiving SOW is rewritten by a pending SOW-currency node (S2, S4, D1 of `HELP-HUMAN-PEC-20260925-POST-SCA005`) are carried by that node.
+
+## Work
+
+| ID / outcome | Deliverables and write scope (owner) | Needs / why | Completion check | State |
+|---|---|---|---|---|
+| RR1 Census, decision account and draft packet | `_TaskManagement/TM_PEC_REMAINING_RETIREMENT_2026-09-26/` (WORKING_ITEMS) | Owner direction ("open RS1") | Account finite and closed; every item keyed and disposed with evidence; verifier passes | ACTIVE — census done (92 keys, matching `D-PEC-83`). Brief `AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/briefs/RR1_REMAINING_RETIREMENT_ACCOUNT.md` (`e0bda78f…6227`) |
+| RR2 Owner ruling on the retirement packet | Decision record and register row (HELP_HUMAN records) | RR1 published and reviewed | Owner rules | PLANNED |
+| RR3 Retirement act | The 57 `_STATUS.md` sections, the receiving documents, Task Management rows, and the `projects/pec/AGENTS.md` instruction tranche with notices (WORKING_ITEMS) | RR2; SCA-006 checkpoint 3 merged | Account closure check; validators; review | PLANNED |
+| C1 / M1 / F1 Closeout, receipt, final PR | Affected records (HELP_HUMAN) | RR3 | Merged | PLANNED |
+
+## Current state and recovery
+
+- **Checked basis:** `origin/main` `53145aaeb`.
+- **Active operations:** RR1, run by a WORKING_ITEMS manager on branch `claude/pec-remaining-retirement-account`.
+- **Graph maintainer:** HELP_HUMAN.
