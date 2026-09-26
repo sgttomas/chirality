@@ -686,3 +686,23 @@ describe('tool descriptor registry', () => {
     ]);
   });
 });
+
+describe('deps_read descriptor description (FU2 review)', () => {
+  it('equals the live MCP deps_read tool description', () => {
+    const descriptor = getHarnessToolDescriptor('dependency_read');
+    const liveToolName = toRawChiralityMcpToolName(
+      descriptor?.adapter.claudeAgentSdk?.toolName as ChiralityMcpAllowedToolName
+    );
+    const live = buildChiralityMcpTools({
+      context: { projectRoot: '/tmp/chirality-project', sessionId: 'sess_deps_read_description' },
+      mode: 'workspaceWrite',
+      allowedToolNames: CHIRALITY_MCP_ALLOWED_TOOL_NAMES
+    })
+      .map((definition) => definition as { name: string; description: string })
+      .find((definition) => definition.name === liveToolName);
+
+    expect(liveToolName).toBe('deps_read');
+    expect(live?.description).toBeTruthy();
+    expect(descriptor?.description).toBe(live?.description);
+  });
+});

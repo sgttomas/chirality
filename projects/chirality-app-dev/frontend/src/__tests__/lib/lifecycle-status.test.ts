@@ -1180,3 +1180,128 @@ describe('amendment record size bounds', () => {
     expect(result.to).toBe('IN_PROGRESS');
   });
 });
+
+describe('post-write check and history safety net (3a review follow-ups)', () => {
+  // The writer splits lines only at LF/CRLF; the parser's `^`/`$` also match at a
+  // lone CR, U+2028 and U+2029. A second Current State line in a trailing section
+  // is then the first line the writer sees, while the parser keeps reading the
+  // hidden header line.
+  const hiddenHeader = (separator: string): string =>
+    `# Status: DEL-05-03 Lifecycle State Handling
+
+note${separator}**Current State:** INITIALIZED
+**Last Updated:** 2026-02-25
+
+## History
+- 2026-02-21 - State set to OPEN (PREPARATION)
+- 2026-02-25 - State set to INITIALIZED (HUMAN)
+
+## Notes
+**Current State:** OPEN
+`;
+
+  it.each([
+    ['a lone CR', '\r'],
+    ['U+2028', ' '],
+    ['U+2029', ' ']
+  ])('refuses a transition the written file would not show (%s in the header)', (_label, separator) => {
+    const status = hiddenHeader(separator);
+    expect(parseStatusDocument(status).currentState).toBe('INITIALIZED');
+    expect(() =>
+      applyLifecycleTransition(status, 'IN_PROGRESS', 'WORKING_ITEMS', { date: '2026-02-26' })
+    ).toThrowError(
+      expect.objectContaining({
+        code: 'INVALID_STATUS_FORMAT',
+        details: expect.objectContaining({ writtenState: 'INITIALIZED', to: 'IN_PROGRESS' })
+      }) satisfies Partial<LifecycleTransitionError>
+    );
+  });
+
+  it('leaves the file unchanged when the post-write check refuses', async () => {
+    tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-postwrite-'));
+    const statusPath = path.join(tmpDir, '_STATUS.md');
+    const status = hiddenHeader('\r');
+    await writeFile(statusPath, status, 'utf8');
+    await expect(
+      transitionStatusFile(statusPath, 'IN_PROGRESS', 'WORKING_ITEMS', { date: '2026-02-26' })
+    ).rejects.toMatchObject({ code: 'INVALID_STATUS_FORMAT' });
+    await expect(readFile(statusPath, 'utf8')).resolves.toBe(status);
+  });
+
+  it('refuses a table-format history entry that cannot be written as a table row', () => {
+    // A `|` in the ruling makes the row unwritable as a table cell; the list-line
+    // fallback would hide the table history from the parser.
+    const status = TABLE_FORMAT_STATUS.replace('**Current State:** SEMANTIC_READY', '**Current State:** IN_PROGRESS');
+    expect(() =>
+      applyLifecycleTransition(status, 'CHECKING', 'HUMAN', {
+        date: '2026-02-26',
+        approvalSha: 'abc1234',
+        ruling: 'records/a|b.md'
+      })
+    ).toThrowError(
+      expect.objectContaining({
+        code: 'INVALID_STATUS_FORMAT',
+        details: expect.objectContaining({ writtenState: 'CHECKING' })
+      }) satisfies Partial<LifecycleTransitionError>
+    );
+  });
+
+  const MARKER = 'reopened from ISSUED; amendment: SCA-001';
+
+  it('refuses metadata that would overwrite a field line carrying a reopening marker', () => {
+    const status = statusAt('INITIALIZED').replace(
+      '**Last Updated:** 2026-02-25\n',
+      `**Last Updated:** 2026-02-25\n**Reviewer Note:** ${MARKER}\n`
+    );
+    expect(() =>
+      applyLifecycleTransition(status, 'IN_PROGRESS', 'WORKING_ITEMS', {
+        date: '2026-02-26',
+        metadata: { reviewerNote: 'replaced' }
+      })
+    ).toThrowError(
+      expect.objectContaining({
+        code: 'HISTORY_NOT_PRESERVED',
+        details: expect.objectContaining({ amendmentId: 'SCA-001' })
+      }) satisfies Partial<LifecycleTransitionError>
+    );
+  });
+
+  it('refuses a reversal that would remove a Checking Approval SHA field carrying a reopening marker', () => {
+    const status = statusAt('CHECKING').replace(
+      '**Last Updated:** 2026-02-25\n',
+      `**Last Updated:** 2026-02-25\n**Checking Approval SHA:** abc1234; ${MARKER}\n`
+    );
+    expect(() =>
+      applyLifecycleTransition(status, 'IN_PROGRESS', 'HUMAN', {
+        date: '2026-02-26',
+        approvalSha: 'abc1234',
+        ruling: 'execution/_Coordination/_DECISIONS/D-001_check_withdrawn.md'
+      })
+    ).toThrowError(
+      expect.objectContaining({ code: 'HISTORY_NOT_PRESERVED' }) satisfies Partial<LifecycleTransitionError>
+    );
+  });
+
+  it('replaces a lone `-` history placeholder with the first entry and keeps the rest', () => {
+    const status = `# Status: DEL-05-03 Lifecycle State Handling
+
+**Current State:** OPEN
+**Last Updated:** 2026-02-25
+
+## History
+-
+
+## Notes
+kept
+`;
+    expect(parseStatusDocument(status).history).toHaveLength(0);
+    const result = applyLifecycleTransition(status, 'INITIALIZED', '4_DOCUMENTS', { date: '2026-02-26' });
+    expect(result.content).toBe(
+      status
+        .replace('**Current State:** OPEN', '**Current State:** INITIALIZED')
+        .replace('**Last Updated:** 2026-02-25', '**Last Updated:** 2026-02-26')
+        .replace('## History\n-\n', '## History\n- 2026-02-26 - State set to INITIALIZED (4_DOCUMENTS)\n')
+    );
+    expect(parseStatusDocument(result.content).history.map((entry) => entry.state)).toEqual(['INITIALIZED']);
+  });
+});

@@ -214,3 +214,65 @@ describe('PipelineLifecycleTransitionForm rendering', () => {
     expect(html).toContain('<button type="submit">Apply Transition</button>');
   });
 });
+
+describe('PipelineLifecycleTransitionForm human-gate inputs (App SPEC §4.3)', () => {
+  const noop = () => {};
+  async function render(currentState: string, targets: string[], target: string, error: string | null = null) {
+    const { PipelineLifecycleTransitionForm } = await import(
+      '../../components/pipeline/pipeline-surface'
+    );
+    return renderToStaticMarkup(
+      createElement(PipelineLifecycleTransitionForm, {
+        availableTransitionTargets: targets,
+        canSubmitTransition: false,
+        currentState,
+        requiresApprovalSha: true,
+        transitionActor: 'HUMAN',
+        transitionAmendment: '',
+        transitionApprovalSha: '',
+        transitionDate: '2026-09-26',
+        transitionError: error,
+        transitionRuling: '',
+        transitionSubmitting: false,
+        transitionTarget: target,
+        onActorChange: noop,
+        onAmendmentChange: noop,
+        onApprovalShaChange: noop,
+        onDateChange: noop,
+        onRulingChange: noop,
+        onSubmit: noop,
+        onTargetChange: noop
+      })
+    );
+  }
+
+  it('requires a ruling record for the reversal from CHECKING', async () => {
+    const html = await render('CHECKING', ['ISSUED', 'IN_PROGRESS'], 'IN_PROGRESS');
+    expect(html).toContain(
+      '<option value="IN_PROGRESS" selected="">IN_PROGRESS (ruled reversal)</option>'
+    );
+    expect(html).toContain('Ruling record (required)');
+    expect(html).toMatch(/<input name="ruling"[^>]*required=""/);
+    expect(html).not.toContain('name="amendment"');
+    expect(html).toContain('The actor is asserted by the caller');
+    expect(html).toContain('<code>tools/scaffolding/write_status.sh</code>');
+    expect(html).toContain('<option value="WORKING_ITEMS" disabled="">WORKING_ITEMS</option>');
+    expect(html).toContain('<button type="submit" disabled="">Apply Transition</button>');
+  });
+
+  it('requires an accepted amendment for the reopening of ISSUED', async () => {
+    const html = await render('ISSUED', ['IN_PROGRESS'], 'IN_PROGRESS');
+    expect(html).toContain('IN_PROGRESS (amendment reopening)');
+    expect(html).toContain('Accepted amendment (required)');
+    expect(html).toMatch(/<input name="amendment"[^>]*required=""/);
+    expect(html).not.toContain('name="ruling"');
+  });
+
+  it('offers an optional ruling on the forward gates and shows refusals as alerts', async () => {
+    const html = await render('CHECKING', ['ISSUED', 'IN_PROGRESS'], 'ISSUED', 'RULING_NOT_APPLICABLE: no');
+    expect(html).toContain('<option value="ISSUED" selected="">ISSUED</option>');
+    expect(html).toContain('Ruling record (optional)');
+    expect(html).not.toMatch(/<input name="ruling"[^>]*required=""/);
+    expect(html).toContain('<p class="panel-error" role="alert">RULING_NOT_APPLICABLE: no</p>');
+  });
+});

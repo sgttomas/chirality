@@ -116,7 +116,8 @@ recorded here only as part of the quoted decision.
     line, owned-field edits and table history.
   - Negative control: with the old writer in place, the six new preservation
     tests fail, and both replays stop at `HISTORY_NOT_PRESERVED`.
-- **Scan of all 698 tracked `_STATUS.md` files** (NUL-separated list). Each file
+- **Scan of all 698 tracked files ending in `_STATUS.md`**, of which 689 are
+  named exactly `_STATUS.md` (NUL-separated list). Each file
   was copied into memory and given a legal next transition through
   `applyLifecycleTransition`, or, for the one ISSUED file, through the writer
   alone.
@@ -142,7 +143,8 @@ recorded here only as part of the quoted decision.
 
 ## D2 caller scan
 
-- Tracked `_STATUS.md` files (NUL-separated `git ls-files -z`): 698. The
+- Tracked files ending in `_STATUS.md` (NUL-separated `git ls-files -z`): 698,
+  of which 689 are named exactly `_STATUS.md`. The
   gate-evidence labels occur in the Root `execution/` tree (`Authorization Basis`
   212, `Accepted Basis SHA` 180, `Accepted ScopeOfWork SHA-256` 32), written by
   Root project-setup materialization and Root tools, not by App transitions.
@@ -186,6 +188,15 @@ regeneration; the Root validators.
 - The Git work-tree top level is found by the nearest `.git` directory or file.
   `GIT_DIR`, `GIT_CEILING_DIRECTORIES` and similar git discovery settings are
   not honoured.
+- In-place writer limits (recorded after review, in run
+  `APP-TRANSITION-FORMS-2026-09-26`):
+  - fields and other content below `## History` are preserved but not managed,
+    so a stale `Checking Approval SHA` in a trailing section is not removed on
+    the reversal;
+  - a table-format history row is appended after the last non-blank line of the
+    History section, so after any paragraph that follows the table;
+  - a `## ` line inside a code fence counts as a heading when the writer finds
+    the end of the History section.
 - Check-to-write race: `transitionStatusFile` reads `_STATUS.md`, runs the
   asynchronous amendment check and rewrites the file with no lock. A concurrent
   write inside that window can be lost, as for every App transition.
