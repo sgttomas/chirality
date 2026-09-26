@@ -213,7 +213,7 @@ A decomposition amendment cycle is valid when:
 - The decomposition document's Change Register contains the amendment entry.
 - Stable IDs were preserved unless the human explicitly approved renumbering.
 - Retired / removed source IDs were not reused.
-- `Amendment_Actions.csv`, the accepted checkpoint-group-2 action register, accounts for every atomic change; `Handoff_State.md` names it as the authoritative register.
+- `Amendment_Actions.csv` (or the distinct name bound in the group-2 manifest for a run whose group-1 snapshot already bound that file), the accepted checkpoint-group-2 action register, accounts for every atomic change; `Handoff_State.md` names it as the authoritative register.
 - `Decision_Log.md` records all human decisions at each checkpoint.
 - `Handoff_State.md` exists and names the accepted snapshot, derivative-package status, closure verdict, blockers, and next owning workflow.
 - Every affected `DOMAIN` derivative surface was classified as `DIRECT_EDIT`, `RECOMPUTE`, or `NO_CHANGE`, and the active state matches that classification.

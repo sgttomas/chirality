@@ -57,9 +57,10 @@ preceding accepted snapshot; it does not rely on the mutable preview alone.
      current pre-change state. Record the reused audit path, the compared input
      hashes and the reuse in `Brief.md` or `Impact_Assessment.md`.
 6) Write the parsed actions to `Intake_Actions.csv` with every row
-`Status = PROPOSED`. A run whose group-1 snapshot already binds `Amendment_Actions.csv`
-as its intake keeps that file unchanged and writes its group-2 register under a
-distinct name (for example `Amendment_Actions_CP2.csv`). It is intake evidence, not the accepted register. Carry the
+`Status = PROPOSED`. It is intake evidence, not the accepted register. A run
+whose group-1 snapshot already binds `Amendment_Actions.csv` as its intake keeps
+that file unchanged and writes its group-2 register under a distinct name (for
+example `Amendment_Actions_CP2.csv`). Carry the
 parsed action list, validation results, errors, warnings, unknowns, and
 pre-change coverage into the impact assessment. Do not ask for a separate
 intake decision.
@@ -451,7 +452,7 @@ under its owning checkpoint rules before proceeding.
      snapshot path when posture is `ACCEPTED_PREDECESSOR`, otherwise the
      accepted decomposition and group-2 bases for `FIRST_AMENDMENT`
    - Authoritative truth changed in this run
-   - Authoritative action register: `Amendment_Actions.csv` as accepted in the
+   - Authoritative action register: `Amendment_Actions.csv` (or the distinct name bound in the group-2 manifest for a run whose group-1 snapshot already bound that file) as accepted in the
      group-2 snapshot (path and hash); `Intake_Actions.csv` is group-1 evidence only
    - Derivative-package state table (`package`, `owner`, `status`, `evidence`, `next required action`)
    - Active derivative-surface state table (`surface`, `classification`, `status`, `evidence`)

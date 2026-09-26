@@ -13,7 +13,7 @@
    - Resolve the accepted checkpoint-group-2 decision snapshot (the amendment-qualified pointer `{SCOPE_CHANGE_ROOT}/{AMENDMENT_ID}_GROUP-2_AUTHORIZED.md`, or the latest `checkpoint_snapshots/{AMENDMENT_ID}_GROUP-2_*/` folder it names). Use the action register bound in its `ACCEPTED_MANIFEST.csv` and verify the recorded SHA-256.
    - Current runs bind `Amendment_Actions.csv`. A historical run may bind another name (for example `Amendment_Actions_CP2.csv`); use the bound file and record its name. `Intake_Actions.csv` holds group-1 `PROPOSED` rows and is never the register.
    - The register is the single manifest row whose path basename matches `Amendment_Actions*.csv`; none or more than one is `FAILED_INPUTS`.
-   - Fallback only for a run with no `checkpoint_snapshots/` at all (for example a gate-era run): use `Amendment_Actions.csv` in the amendment snapshot and record the fallback as an OBSERVATION. A run with a group-1 snapshot but no group-2 snapshot is `FAILED_INPUTS`.
+   - Fallback only for an amendment with no `checkpoint_snapshots/{AMENDMENT_ID}_GROUP-*` folder (for example a gate-era run): use `Amendment_Actions.csv` in the amendment snapshot and record the fallback as an OBSERVATION. A run with a group-1 snapshot but no group-2 snapshot is `FAILED_INPUTS`.
    - If the bound register is missing, malformed or hash-mismatched: `FAILED_INPUTS`.
    - Later passes use this resolved register wherever this method names `Amendment_Actions.csv`.
 5. Read `RUN_SUMMARY.md` from the snapshot for downstream rerun recommendations.
