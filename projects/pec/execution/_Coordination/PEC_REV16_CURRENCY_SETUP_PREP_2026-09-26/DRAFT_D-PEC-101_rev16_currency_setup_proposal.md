@@ -565,6 +565,8 @@ Preparation artifacts in `execution/_Coordination/PEC_REV16_CURRENCY_SETUP_PREP_
 |---|---|
 | `README.md` | `2940a6320c200c0be36eba2530cc3db77799167285fa8d27ed5959ef4d3cb85a` |
 | `REVIEW_VERDICT_01.md` | `017f2af13d18b277b39ff602fab30d1b1433aa3006d1dfefcd1ca6c1fcdad078` |
+| `REVIEW_VERDICT_02.md` | `5d2fb71e17f6e2bb7ddfb20bda727543f1a9a589c4ca2d78bf4ab4952d326cc8` |
+| `REVIEW_VERDICT_03.md` | `0d27872cda2d18004d1902192aa64e0f0ba7612568051430275cd9ba62c30b26` |
 | `check_short_hashes.py` | `4faf5ccc0967a39a9e358b607deb2042afa57cce0bf2ee266d63f8f9dc921e38` |
 | `child_briefs/T_K4_GENERATOR.md` | `daa69a7444b20d43f4c0ac8d471f2745f543ee76f8d01f6b875a5ceb8b839d16` |
 | `fill_draft.py` | `a9e7cd0a93a0a0cfe586736ad9ed798dd2559b27054b7f3c18c5da9dd97bfa3c` |
