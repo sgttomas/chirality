@@ -3,7 +3,7 @@
 Generated from the public `chirality` source profile `exports/chirality-app`.
 
 - Staging path: `exports/chirality-app/staging`
-- Manifest rows: 1785
+- Manifest rows: 1886
 - Text files sanitized for machine-absolute paths: 0
 - Boundary findings: 0
 
@@ -19,8 +19,8 @@ Generated from the public `chirality` source profile `exports/chirality-app`.
 | `LICENSE.md` | 1 |
 | `README.md` | 1 |
 | `agents` | 5 |
-| `desktop` | 572 |
-| `docs` | 319 |
+| `desktop` | 670 |
+| `docs` | 322 |
 | `init` | 1 |
 | `runtime` | 152 |
 | `tools` | 413 |
