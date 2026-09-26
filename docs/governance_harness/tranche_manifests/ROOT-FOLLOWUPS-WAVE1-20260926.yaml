@@ -1,0 +1,99 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-FOLLOWUPS-WAVE1-20260926
+title: Follow-ups wave 1 (closure-tool brief binding, dependency follow-up notice errata, handoff and closeout wording, SCC case validator for _DAG/cases)
+date: '2026-09-26'
+basis: dfb089b8abae48ee699117c5bc167301963b2ab5
+instruction_surface_paths:
+  - tools/evaluation/README.md
+  - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
+  - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
+  - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
+  - projects/pec/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
+  - workflows/software-prd/WORKFLOW.md
+  - workflows/reverse-engineer-software/WORKFLOW.md
+  - execution/_Coordination/LOOP_INIT.md
+  - tools/validation/validate_scc_resolution_case.py
+  - tools/validation/test_validate_scc_resolution_case.py
+  - workflows/scc-resolution-case/resources/checks.md
+  - docs/governance_harness/tranche_manifests/ROOT-FOLLOWUPS-WAVE1-20260926.yaml
+  - exports/chirality-app/export-manifest.csv
+  - exports/chirality-app/export-report.md
+m2_gate:
+  authorization: >-
+    The repository owner approved the follow-up work plan on 2026-09-26: "D1
+    and D2 as recommended, D3 (a), and D4 yes proceed that way. Your work plan
+    is approved." This tranche is that plan's Wave 1: (1) the closure tool's
+    INCLUDE_DECLARED brief-field binding in tools/evaluation/README.md; (2)
+    dated errata on the four delivered dependency follow-up notices,
+    correcting item 4's reading of which closure-tool outputs depend on an
+    accepted DAG; (3) precise handoff wording in software-prd and
+    reverse-engineer-software, and the Root LOOP_INIT closeout pointer naming
+    chirality-change; (4) validate_scc_resolution_case.py generalized to the
+    D-GOV-49 _DAG/cases/<CASE-ID>/ home with legacy PKG-00 behaviour
+    unchanged, with tests.
+  authorized_by: Ryan Tufts (repository owner sgttomas, Claude Code conversation)
+  authorization_date: '2026-09-26'
+  integration_owner: >-
+    The Claude Code parent session integrating this candidate under the
+    standing Git authorization of 2026-09-12; the authoring worktree commits
+    locally and does not push, open or merge the PR.
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
+  rationale: >-
+    The errata are the notices. Each is a dated "Erratum (2026-09-26)" section
+    appended to the already-delivered dependency follow-up notice, leaving its
+    earlier text unchanged. It states the closure tool's actual behaviour: the
+    declared_* outputs are written on every run with an output directory, and
+    only dag_pending.csv and the accepted_dag section depend on
+    _DAG/_LATEST.md. PEC receives the same erratum for the record only; it
+    requires no action there. The other changes need no further notice.
+    README and workflow wording changes alter no behaviour. LOOP_INIT is Root's
+    own loop entry. The validator's legacy PKG-00 behaviour, which the App's
+    two existing cases use, is unchanged and both still pass. Its new checks
+    apply only under _DAG/cases/, which no project holds yet.
+rationale: >-
+  This tranche carries out the owner-approved plan above and adds no
+  governance meaning, so no D-GOV record is made. (1) The brief-field table in
+  tools/evaluation/README.md gains the INCLUDE_DECLARED row, matching the
+  audit-dep-closure contract (default true, passed as --include-declared). (2)
+  analyze_dep_closure.py was read and run on scratch fixtures: it writes
+  declared_only.csv, declared_disagreements.csv and declared_unread.csv on every
+  run with --output-dir, with headers only under --include-declared false. It
+  writes dag_pending.csv only when _DAG/_LATEST.md exists, with headers only
+  when the pointer cannot be resolved. (3) software-prd and
+  reverse-engineer-software now say they supply the same basis-identity fields
+  that software-decomp group 1 consumes, as their contract's "Handoff to
+  software-decomp" maps them. Root execution/_Coordination/LOOP_INIT.md
+  already named chirality-change for Git closeout in its map. Its protocol
+  line still said "the change workflow", and now names the chirality-change
+  skill. The project loops' LOOP_INIT files name neither and are unchanged.
+  (4) validate_scc_resolution_case.py recognizes a case under
+  {EXECUTION_ROOT}/_DAG/cases/ whatever the execution root is named. For such
+  a case it adds these checks: the folder sits directly under _DAG/cases/; its
+  name has the SCC-CASE-NNN form; Case_Datasheet.md records that ID; no other
+  folder there uses the same number; no Dependencies.csv exists anywhere under
+  _DAG/cases/; _DAG/cases/_run_records/ does not exist; and the project holds
+  no cases in a legacy PKG-00 home. The shared content checks run in both
+  homes. Any other case path takes the unchanged legacy path, including the
+  PKG-00 Dependencies.csv check, and its errors and messages are the same as
+  before. The new test_validate_scc_resolution_case.py runs in CI's pytest
+  step over tools/. It covers both homes and re-validates the App's existing
+  legacy cases. The scc-resolution-case checks resource no longer calls the
+  _DAG/cases/ register check manual and lists what the validator covers.
+  tools/REGISTRY.md does not document this validator and is unchanged. The
+  workflow index was rebuilt and is unchanged. The public export manifest and
+  report were regenerated.
+scope_limits:
+  - The delivered notices' earlier text is not rewritten; only the dated erratum is appended.
+  - D-GOV-49's record, which says the validator checks only the legacy path, is historical and is not edited.
+  - Existing SCC cases are not moved, renamed or rewritten, and no case is created under any _DAG/cases/.
+  - The originating snapshot, SCC ID and member-node-set records in a case datasheet remain a manual check.
+  - Project loops' own LOOP_INIT files and App-owned surfaces are not changed.
+  - No release is granted.
