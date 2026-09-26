@@ -4,7 +4,7 @@
 
 **Candidate.** `9815ba867da8e728ea91c8d6f33a47cacc02efdb`.
 
-**Transcription.** The manager transcribed the verdict below from the reviewer's hand-back. The text is verbatim apart from Markdown headings and list layout. The manager's dispositions follow it.
+**Transcription.** The manager transcribed the verdict below from the reviewer's hand-back. The text is verbatim apart from Markdown headings, list layout and minor wording; no finding, severity or result was changed (confirmed by the reviewer in verdict 03). The manager's dispositions follow it.
 
 ---
 
