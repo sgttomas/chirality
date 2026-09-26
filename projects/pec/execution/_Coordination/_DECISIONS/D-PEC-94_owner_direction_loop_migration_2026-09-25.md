@@ -47,3 +47,9 @@ The migration is the tranche `docs/governance_harness/tranche_manifests/PEC-DEVE
 ## Limits
 
 No CHECKING, ISSUED, artifact acceptance or release. No product, decomposition or lifecycle change is made by this record. D-PEC-88's standing STATUS/README duty continues; its "trace in receipts" now means the undertaking's central receipt and work graph.
+
+## Owner confirmation (added 2026-09-25, after publication)
+
+Owner, verbatim: "re: D-PEC-88 confirmed yes it carries over"
+
+This confirms the first disposition row above: `D-PEC-88`'s standing STATUS/README maintenance carries into the migrated loop, and its trace is met through each undertaking's work graph and central receipt. That row is now an owner act, not only HELP_HUMAN's interpretation. The other dispositions are unchanged.
