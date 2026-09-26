@@ -3,7 +3,7 @@ doc_id: PEC-AGENTS
 doc_kind: governance.agent_index
 status: live
 created: 2026-07-04
-amended: 2026-09-25 (shared development-loop adoption under D-PEC-94)
+amended: 2026-09-25 (SCA-006 operational-reliance instruction tranche; earlier, shared development-loop adoption under D-PEC-94)
 ---
 
 # AGENTS - PEC Agent Index
@@ -46,9 +46,10 @@ Binding on every agent, now and in every future tranche:
   Operational reliance on it (acting on a record-tier claim as true as of its
   examined-through SHA, within the pin, coverage and tier the response
   declares, with file fallback; PEC-K-03, `D-PEC-90`) applies only to a PEC
-  release whose §12 reliance-advertisement gate has passed. Until then, read
-  the files directly. Operational reliance is distinct from the reliance-hold
-  control (§Active Reliance Holds) and from professional reliance.
+  release whose PRD §12 reliance-advertisement gate has passed. Until then,
+  read the files directly. Operational reliance is distinct from the
+  reliance-hold control (§Active Reliance Holds) and from professional
+  reliance.
 - **Observation, not participation (PEC-K-06).** PEC dispatches nothing and
   arbitrates nothing; no leases, no merge opinions. Conflicts are surfaced,
   never prevented; gate verdicts are advisory and Explain-shaped.

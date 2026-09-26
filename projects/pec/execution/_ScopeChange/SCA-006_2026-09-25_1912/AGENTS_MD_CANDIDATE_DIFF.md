@@ -4,15 +4,16 @@ doc_kind: scope_change.instruction_candidate_diff
 status: candidate_pending_checkpoint_2
 amendment: SCA-006
 prepared: 2026-09-25
+revision: 1 (manager decisions on observations O-2, O-3 and O-5 applied; see §8)
 prepared_by: TASK child T3 (Type 2) under the WORKING_ITEMS manager for brief B5, HELP_HUMAN undertaking HELP-HUMAN-PEC-20260925-POST-SCA005, work-graph node R2; roles instruction-asserted, not mechanically enforced
 preimage: projects/pec/AGENTS.md
 preimage_sha256: c9d3b44dfb5b07cff9790d58a67ff02825e297fcf0d2e290ab1599bf59ee197a
 candidate_with_I1: CP2_CANDIDATE/AGENTS.candidate.md
-candidate_with_I1_sha256: ea6c62edf9321bde2d293e6fa78c1eecc4a3005e0e49d854a89ab07222ef8ab4
-candidate_with_I1_lines: 453
+candidate_with_I1_sha256: bd34d03dd41cdabd5b0f5470b46481afca5f0e05df4f77560c5f60cbef202919
+candidate_with_I1_lines: 454
 candidate_without_I1: CP2_CANDIDATE/AGENTS.candidate_without_I1.md
-candidate_without_I1_sha256: 432d8d6827073cd34bbca664689710128af4c767561c076bc862905c13ec57da
-candidate_without_I1_lines: 447
+candidate_without_I1_sha256: a8b8d906f7df22f35fc8489a04fcb5476700e919af896c8256c0b713bf961188
+candidate_without_I1_lines: 448
 preimage_lines: 434
 ---
 
@@ -47,9 +48,9 @@ value (§9).
 | Executor | TASK child T3, claude-opus-5-5 at high reasoning effort as steered; the runtime exposed that model name; no delegation |
 | Repository basis | worktree branch `claude/pec-sca006-cp2-package` at `4d5f7b91102b7106ff74b98118b2bda2fe873f36`; no tracked file modified. Other TASK children wrote their own untracked files in the same snapshot concurrently (`PRD_V2_4_SUCCESSOR_DIFF.md`, `CP2_CANDIDATE/docs/`, `CP2_CANDIDATE/_Decomposition/`); this task did not read or touch them |
 | Preimage | `projects/pec/AGENTS.md`, SHA-256 `c9d3b44dfb5b07cff9790d58a67ff02825e297fcf0d2e290ab1599bf59ee197a`, 434 lines |
-| Candidate with I1 | `CP2_CANDIDATE/AGENTS.candidate.md`, SHA-256 `ea6c62edf9321bde2d293e6fa78c1eecc4a3005e0e49d854a89ab07222ef8ab4`, 453 lines |
-| Candidate without I1 | `CP2_CANDIDATE/AGENTS.candidate_without_I1.md`, SHA-256 `432d8d6827073cd34bbca664689710128af4c767561c076bc862905c13ec57da`, 447 lines |
-| Draft tranche manifest | full text in §6.1 (SHA-256 of the draft bytes `b7a58cff4058af022e3f4c575c7ac05e59f6cd8297eeb6f3d9089f6af26beb44`); not written into `docs/` |
+| Candidate with I1 | `CP2_CANDIDATE/AGENTS.candidate.md`, SHA-256 `bd34d03dd41cdabd5b0f5470b46481afca5f0e05df4f77560c5f60cbef202919`, 454 lines |
+| Candidate without I1 | `CP2_CANDIDATE/AGENTS.candidate_without_I1.md`, SHA-256 `a8b8d906f7df22f35fc8489a04fcb5476700e919af896c8256c0b713bf961188`, 448 lines |
+| Draft tranche manifest | full text in §6.1 (SHA-256 of the draft bytes `852b1d5b876500fb4970df8b688394ad2c15883ede6f4a8e8cd821989efbbc45`); not written into `docs/` |
 | Draft notices | full texts in §6.3 (Root `43cfa3183ed242d7ec3d349e77cce6403e2355bc8965ed93560f2917c132b930`, App `eb927e1f061fd81760079868e78ee288134d180ad41a9c20c0bbdf8ed00b704a`, Runtime `385e5e2f5495634470c1c3439b6c8937edc88074132b4f89de211b67ffadc8bc`) |
 
 ## 2. Basis (every hash recomputed before drafting; all matched)
@@ -83,8 +84,10 @@ No checkpoint-2 act exists yet. §6 and §9 carry it only as a slot.
 
 Diffs run from the preimage to `AGENTS.candidate_without_I1.md`; the line
 numbers on the left are preimage lines and on the right candidate-without-I1
-lines. Each hunk uses the canonical text of CANON §4 verbatim; only line
-wrapping differs. No other SCA-006 byte changes.
+lines. Each hunk uses the canonical text of CANON §4 verbatim, with line
+wrapping fitted to the file, except for two manager-directed fittings made in
+revision 1 (§3.5): "PRD §12" in the K-02 gloss and the front-matter
+`amended:` line as a Seq 16 lineage hunk. No other SCA-006 byte changes.
 
 ### 3.1 Seq 14 — K-02 gloss (Annex B: L40–43)
 
@@ -92,19 +95,21 @@ wrapping differs. No other SCA-006 byte changes.
 remain file-native (K-AUTH-1)." is kept byte-for-byte: L40–41 are unchanged,
 and the changed L42 keeps its first words "view, or verdict is labeled
 non-authoritative data". The verify-before-rely sentence is replaced by the
-canonical text.
+canonical text, with "§12" written "PRD §12" as a manager-directed fitting
+(revision 1, O-2).
 
 ```diff
-@@ -42,2 +45,7 @@
+@@ -42,2 +45,8 @@
 -  view, or verdict is labeled non-authoritative data, verified against its
 -  cited source before reliance.
 +  view, or verdict is labeled non-authoritative data in that authority sense.
 +  Operational reliance on it (acting on a record-tier claim as true as of its
 +  examined-through SHA, within the pin, coverage and tier the response
 +  declares, with file fallback; PEC-K-03, `D-PEC-90`) applies only to a PEC
-+  release whose §12 reliance-advertisement gate has passed. Until then, read
-+  the files directly. Operational reliance is distinct from the reliance-hold
-+  control (§Active Reliance Holds) and from professional reliance.
++  release whose PRD §12 reliance-advertisement gate has passed. Until then,
++  read the files directly. Operational reliance is distinct from the
++  reliance-hold control (§Active Reliance Holds) and from professional
++  reliance.
 ```
 
 ### 3.2 Seq 15 — consumer-owned-use bullet (Annex B: L47–50)
@@ -113,7 +118,7 @@ canonical text.
 becomes the canonical text.
 
 ```diff
-@@ -48,3 +56,6 @@
+@@ -48,3 +57,6 @@
 -  and never forced. An explicitly enabled consumer owns whether and when it
 -  consumes and whether it injects labeled PEC data; no external cadence or
 -  receiving-loop duty is inferred (`D-PEC-67`, `D-PEC-68`).
@@ -125,7 +130,17 @@ becomes the canonical text.
 +  envelope (PEC-ORI-007).
 ```
 
-### 3.3 Seq 16 — lineage (Annex B: L26–32; L180–189)
+### 3.3 Seq 16 — lineage (Annex B: L26–32; L180–189; front matter L6)
+
+Front matter (manager-directed, revision 1, O-3). The `amended:` line is
+lineage and takes the date the tranche is applied at checkpoint 3 (an
+application-date slot, §9); the earlier adoption stays named.
+
+```diff
+@@ -6 +6 @@
+-amended: 2026-09-25 (shared development-loop adoption under D-PEC-94)
++amended: 2026-09-25 (SCA-006 operational-reliance instruction tranche; earlier, shared development-loop adoption under D-PEC-94)
+```
 
 Product Posture names PRD v2.4 and adds the v2.4 lineage item. The sentence
 "Implementation does not exist yet; nothing in the PRD is an implementation
@@ -153,7 +168,7 @@ D-PEC number is named for the adoption, per CANON §1). The items are appended
 at the end of the existing parenthesis, which changes one preimage line.
 
 ```diff
-@@ -189 +200,3 @@
+@@ -189 +201,3 @@
 -  shared development-loop adoption)
 +  shared development-loop adoption; `D-PEC-90` operational reliance on PEC
 +  data (R-A); SCA-006 checkpoint group 2 — PRD v2.4 adopted
@@ -163,7 +178,7 @@ at the end of the existing parenthesis, which changes one preimage line.
 ### 3.4 Seq 17 — "Product release/reconciliation work" checks row (Annex B: L409)
 
 ```diff
-@@ -409 +422 @@
+@@ -409 +423 @@
 -| Product release/reconciliation work | The packet's standing kill test and practitioner-harness parity diff, with rerunnable evidence; absent implementations are unmet gates, never fabricated passes |
 +| Product release/reconciliation work | The packet's standing kill test and practitioner-harness parity diff, with rerunnable evidence; a release that advertises operational reliance also passes the PRD §12 reliance-advertisement gate (parity clean or explained, coverage statements under seeded feed failures, the reliance envelope, parser fixture suites, the kill test); absent implementations are unmet gates, never fabricated passes |
 ```
@@ -172,9 +187,9 @@ at the end of the existing parenthesis, which changes one preimage line.
 
 | Locus | Canonical text | Adaptation |
 |---|---|---|
-| Seq 14 | CANON §4 K-02 gloss, both kept sentences and the replacement, verbatim | line wrapping only. "§12" is kept as in the canon (see §8, observation O-2) |
+| Seq 14 | CANON §4 K-02 gloss, both kept sentences and the replacement | line wrapping; "whose §12 reliance-advertisement gate" written "whose PRD §12 reliance-advertisement gate" as a manager-directed fitting of the canon text (revision 1, O-2), matching the canon's own "PRD §12" in the Seq 17 row |
 | Seq 15 | CANON §4 consumer-owned use, verbatim | line wrapping only |
-| Seq 16 | "`docs/PRD.md` v2.4"; lineage item "the v2.4 successor, carrying the `D-PEC-90` operational-reliance direction, adopted through SCA-006 checkpoint group 2", verbatim; pointers "`D-PEC-90` operational reliance on PEC data (R-A)" and "SCA-006 checkpoint group 2 — PRD v2.4 adopted" with the group-2 folder slot | list punctuation fitted to the host list |
+| Seq 16 | "`docs/PRD.md` v2.4"; lineage item "the v2.4 successor, carrying the `D-PEC-90` operational-reliance direction, adopted through SCA-006 checkpoint group 2", verbatim; pointers "`D-PEC-90` operational reliance on PEC data (R-A)" and "SCA-006 checkpoint group 2 — PRD v2.4 adopted" with the group-2 folder slot | list punctuation fitted to the host list; plus the manager-directed front-matter lineage line `amended: 2026-09-25 (SCA-006 operational-reliance instruction tranche; earlier, shared development-loop adoption under D-PEC-94)` (revision 1, O-3), whose date is an application-date slot |
 | Seq 17 | CANON §4 checks row, verbatim | table-cell syntax |
 
 ## 4. I1 residual corrections (separate from SCA-006)
@@ -191,7 +206,7 @@ tranche by choosing a candidate.
 Proof that the I1 hunks are exactly the difference:
 `diff -U0 CP2_CANDIDATE/AGENTS.candidate_without_I1.md CP2_CANDIDATE/AGENTS.candidate.md`
 yields exactly the four hunks below and nothing else; and the preimage-to-
-without-I1 diff (§3) contains no I1 text. The build script applies the five
+without-I1 diff (§3) contains no I1 text. The build script applies the six
 SCA-006 replacements to the preimage, writes the without-I1 file, then applies
 the nine I1 replacements (each asserted to match exactly once) to that text
 to write the full candidate.
@@ -238,17 +253,17 @@ PRD is an implementation mandate" is kept verbatim.
 ### 4.2 I1 (ii) — pre-v3 role names in the Primary Agents table
 
 ```diff
-@@ -115 +117 @@
+@@ -116 +118 @@
 -| Agent | Type | Role in this project |
 +| Role and method | Type | Role in this project |
-@@ -117,3 +119,3 @@
+@@ -118,3 +120,3 @@
 -| `SOFTWARE_DECOMP` | 1 | Ran the decomposition over PRD v2, Gates 1–7 per `{REPO_ROOT}/docs/DECOMPOSITION_STANDARD.md` (session and acceptance state: `D-PEC-60` and `execution/_Decomposition/_LATEST.md` — this table asserts no gate state). The accepted package at `execution/_Decomposition/` is the authoritative downstream basis; no tranche is scoped from the PRD directly; post-acceptance amendment goes through the scope-change machinery, not direct edits. |
 -| `PROJECT_SETUP` | 1 | Scaffolds packages/deliverables from the accepted decomposition, after acceptance and under its own packet. |
 -| `WORKING_ITEMS` | 1 | Per-package activations and their work graph, using the five `software-*` TASK skills (roster: root `AGENTS.md` agent index and `{REPO_ROOT}/skills/software-*`), conforming to `{REPO_ROOT}/docs/SOFTWARE_WORKFLOW_PROFILE.md`; integrates results, validates, and prepares closeout. |
 +| `WORKING_ITEMS` with `software-decomp` (formerly `SOFTWARE_DECOMP`) | 1 | Ran the decomposition over PRD v2, Gates 1–7 per `{REPO_ROOT}/docs/DECOMPOSITION_STANDARD.md` (session and acceptance state: `D-PEC-60` and `execution/_Decomposition/_LATEST.md` — this table asserts no gate state). The accepted package at `execution/_Decomposition/` is the authoritative downstream basis; no tranche is scoped from the PRD directly; post-acceptance amendment goes through the scope-change machinery, not direct edits. |
 +| `WORKING_ITEMS` with `project-setup` (formerly `PROJECT_SETUP`) | 1 | Scaffolds packages/deliverables from the accepted decomposition, after acceptance and under its own packet. |
 +| `WORKING_ITEMS` | 1 | Per-package activations and their work graph, using the five `software-*` TASK workflows (`software-repository-reconnaissance`, `software-test-planning`, `software-bounded-implementation`, `software-code-review`, `software-defect-diagnosis`; catalog: `{REPO_ROOT}/workflows/index.json`), conforming to `{REPO_ROOT}/docs/SOFTWARE_WORKFLOW_PROFILE.md`; integrates results, validates, and prepares closeout. |
-@@ -121,5 +123,9 @@
+@@ -122,5 +124,9 @@
 -| `CHANGE` | 1 | Performs scoped Git/file-state closeout for validated tranches. CHANGE owns Git state; PEC never will. |
 -| `REVIEW` | 1 | Reviews outputs against scope, validation evidence, product invariants, and acceptance criteria. |
 -| `RECONCILIATION` | 1 | Detects cross-surface conflicts, stale assumptions, dependency issues, and inconsistent terminology. |
@@ -297,10 +312,10 @@ row; `term_check.py` scans every added line for bare "reliance"/"rely" and
 trailing whitespace.
 
 **Sections.** Both candidates keep every heading, in order. Only these
-sections differ from the preimage: Product Posture, Governance Pointers,
-Development checks and evidence (both candidates) and Primary Agents
-(candidate with I1 only). Front matter, Path Anchors, Frozen Reference
-Corpus, Agent Posture, Session model convention, Write Scopes And Fences,
+sections differ from the preimage: the front matter (the `amended:` line
+only), Product Posture, Governance Pointers, Development checks and evidence
+(both candidates) and Primary Agents (candidate with I1 only). The title and
+opening paragraph, Path Anchors, Frozen Reference Corpus, Agent Posture, Session model convention, Write Scopes And Fences,
 Shared Runtime Boundary, Data And Residency, Project-Wide Execution
 Discipline, Deliverable records and loop ownership, Selection and decisions,
 Issue-Plan Rule, Closeout And Git Discipline and Active Reliance Holds are
@@ -321,8 +336,8 @@ Development-checks row "Any dispatch, review, fan-in, promotion, or reliance"
 (the L-A1 sense) is byte-identical.
 
 **(b) No availability now.** The only permissive sentence, in K-02, is
-conditioned: operational reliance "applies only to a PEC release whose §12
-reliance-advertisement gate has passed. Until then, read the files
+conditioned: operational reliance "applies only to a PEC release whose PRD
+§12 reliance-advertisement gate has passed. Until then, read the files
 directly." Seq 15 describes who owns use; it grants no use. Seq 17 adds a
 gate, not a capability. No PEC release exists: the register records none,
 and `D-PEC-90` states that no consumer surface exists yet. With I1 the
@@ -352,7 +367,8 @@ workflow and skill identities; it creates no role and delegates nothing
 
 **Terminology (CANON §1).** No added line uses bare "reliance" or "rely".
 The scanner's only hits are line-wrap artifacts of canonical compounds
-("reliance / envelope" at candidate L62, without-I1 L60) and, in the drafts
+("professional / reliance." at candidate L54, without-I1 L52; "reliance /
+envelope" at candidate L63, without-I1 L61) and, in the drafts
 of §6, the quoted name of the superseded "verify-before-rely" precondition
 and one wrapped "Operational / reliance". No D-PEC number is invented;
 `D-PEC-90` exists (register row, ruling file). No trailing whitespace or tab
@@ -366,6 +382,9 @@ Product Posture hunk ending at its L36 in the unchanged-wording form shown in
 ```diff
 --- preimage projects/pec/AGENTS.md (c9d3b44d)
 +++ AGENTS.candidate.md
+@@ -6 +6 @@
+-amended: 2026-09-25 (shared development-loop adoption under D-PEC-94)
++amended: 2026-09-25 (SCA-006 operational-reliance instruction tranche; earlier, shared development-loop adoption under D-PEC-94)
 @@ -28 +28 @@
 -loop Step 0 and the deterministic parts of Step 1. `docs/PRD.md` v2.3 is the
 +loop Step 0 and the deterministic parts of Step 1. `docs/PRD.md` v2.4 is the
@@ -379,17 +398,18 @@ Product Posture hunk ending at its L36 in the unchanged-wording form shown in
 +(`D-PEC-74`, `D-PEC-75`, `D-PEC-77`, `D-PEC-84`, `D-PEC-85`, `D-PEC-87`,
 +`D-PEC-89`, `D-PEC-91`); no consumer surface exists yet, and nothing in the
 +PRD is an implementation mandate.
-@@ -42,2 +47,7 @@
+@@ -42,2 +47,8 @@
 -  view, or verdict is labeled non-authoritative data, verified against its
 -  cited source before reliance.
 +  view, or verdict is labeled non-authoritative data in that authority sense.
 +  Operational reliance on it (acting on a record-tier claim as true as of its
 +  examined-through SHA, within the pin, coverage and tier the response
 +  declares, with file fallback; PEC-K-03, `D-PEC-90`) applies only to a PEC
-+  release whose §12 reliance-advertisement gate has passed. Until then, read
-+  the files directly. Operational reliance is distinct from the reliance-hold
-+  control (§Active Reliance Holds) and from professional reliance.
-@@ -48,3 +58,6 @@
++  release whose PRD §12 reliance-advertisement gate has passed. Until then,
++  read the files directly. Operational reliance is distinct from the
++  reliance-hold control (§Active Reliance Holds) and from professional
++  reliance.
+@@ -48,3 +59,6 @@
 -  and never forced. An explicitly enabled consumer owns whether and when it
 -  consumes and whether it injects labeled PEC data; no external cadence or
 -  receiving-loop duty is inferred (`D-PEC-67`, `D-PEC-68`).
@@ -399,17 +419,17 @@ Product Posture hunk ending at its L36 in the unchanged-wording form shown in
 +  no external cadence or receiving-loop duty is inferred (`D-PEC-67`,
 +  `D-PEC-68`, `D-PEC-90`). Injected or queried PEC data carries its reliance
 +  envelope (PEC-ORI-007).
-@@ -104 +117 @@
+@@ -104 +118 @@
 -| Agent | Type | Role in this project |
 +| Role and method | Type | Role in this project |
-@@ -106,3 +119,3 @@
+@@ -106,3 +120,3 @@
 -| `SOFTWARE_DECOMP` | 1 | Ran the decomposition over PRD v2, Gates 1–7 per `{REPO_ROOT}/docs/DECOMPOSITION_STANDARD.md` (session and acceptance state: `D-PEC-60` and `execution/_Decomposition/_LATEST.md` — this table asserts no gate state). The accepted package at `execution/_Decomposition/` is the authoritative downstream basis; no tranche is scoped from the PRD directly; post-acceptance amendment goes through the scope-change machinery, not direct edits. |
 -| `PROJECT_SETUP` | 1 | Scaffolds packages/deliverables from the accepted decomposition, after acceptance and under its own packet. |
 -| `WORKING_ITEMS` | 1 | Per-package activations and their work graph, using the five `software-*` TASK skills (roster: root `AGENTS.md` agent index and `{REPO_ROOT}/skills/software-*`), conforming to `{REPO_ROOT}/docs/SOFTWARE_WORKFLOW_PROFILE.md`; integrates results, validates, and prepares closeout. |
 +| `WORKING_ITEMS` with `software-decomp` (formerly `SOFTWARE_DECOMP`) | 1 | Ran the decomposition over PRD v2, Gates 1–7 per `{REPO_ROOT}/docs/DECOMPOSITION_STANDARD.md` (session and acceptance state: `D-PEC-60` and `execution/_Decomposition/_LATEST.md` — this table asserts no gate state). The accepted package at `execution/_Decomposition/` is the authoritative downstream basis; no tranche is scoped from the PRD directly; post-acceptance amendment goes through the scope-change machinery, not direct edits. |
 +| `WORKING_ITEMS` with `project-setup` (formerly `PROJECT_SETUP`) | 1 | Scaffolds packages/deliverables from the accepted decomposition, after acceptance and under its own packet. |
 +| `WORKING_ITEMS` | 1 | Per-package activations and their work graph, using the five `software-*` TASK workflows (`software-repository-reconnaissance`, `software-test-planning`, `software-bounded-implementation`, `software-code-review`, `software-defect-diagnosis`; catalog: `{REPO_ROOT}/workflows/index.json`), conforming to `{REPO_ROOT}/docs/SOFTWARE_WORKFLOW_PROFILE.md`; integrates results, validates, and prepares closeout. |
-@@ -110,5 +123,5 @@
+@@ -110,5 +124,5 @@
 -| `CHANGE` | 1 | Performs scoped Git/file-state closeout for validated tranches. CHANGE owns Git state; PEC never will. |
 -| `REVIEW` | 1 | Reviews outputs against scope, validation evidence, product invariants, and acceptance criteria. |
 -| `RECONCILIATION` | 1 | Detects cross-surface conflicts, stale assumptions, dependency issues, and inconsistent terminology. |
@@ -420,33 +440,37 @@ Product Posture hunk ending at its L36 in the unchanged-wording form shown in
 +| `WORKING_ITEMS` with `reconciliation` (formerly `RECONCILIATION`) | 1 | Detects cross-surface conflicts, stale assumptions, dependency issues, and inconsistent terminology. |
 +| `WORKING_ITEMS` with `research-orchestration` (formerly `RESEARCH`) | 1 | Read-only inquiry over accepted docs, the frozen corpus, and retrieval indexes; returns cited findings without changing state. |
 +| `TASK` with an `audit-*` workflow (formerly `AUDIT_*`) | 2 | Bounded checks for governance conformance, dependency closure, release-quality evidence, and epistemic integrity. |
-@@ -115,0 +129,4 @@
+@@ -115,0 +130,4 @@
 +The roles are Root's four (`{REPO_ROOT}/agents/registry.json`). The former
 +agent names map to these role and method pairs in
 +`{REPO_ROOT}/workflows/index.json` (`legacy.retiredRoles`).
 +
-@@ -189 +206,3 @@
+@@ -189 +207,3 @@
 -  shared development-loop adoption)
 +  shared development-loop adoption; `D-PEC-90` operational reliance on PEC
 +  data (R-A); SCA-006 checkpoint group 2 — PRD v2.4 adopted
 +  (`execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-2_2026-09-25/`))
-@@ -409 +428 @@
+@@ -409 +429 @@
 -| Product release/reconciliation work | The packet's standing kill test and practitioner-harness parity diff, with rerunnable evidence; absent implementations are unmet gates, never fabricated passes |
 +| Product release/reconciliation work | The packet's standing kill test and practitioner-harness parity diff, with rerunnable evidence; a release that advertises operational reliance also passes the PRD §12 reliance-advertisement gate (parity clean or explained, coverage statements under seeded feed failures, the reliance envelope, parser fixture suites, the kill test); absent implementations are unmet gates, never fabricated passes |
 ```
 
 | Preimage lines | Candidate-with-I1 lines | Source |
 |---|---|---|
+| 6 | 6 | Seq 16 (front-matter `amended:`, revision 1) |
 | 28 | 28 | Seq 16 |
 | 32–33 | 32–38 | Seq 16 (32–34) + I1 (i) (35–38) |
-| 42–43 | 47–53 | Seq 14 |
-| 48–50 | 58–63 | Seq 15 |
-| 104 | 117 | I1 (ii) header |
-| 106–108 | 119–121 | I1 (ii) |
-| 110–114 | 123–127 | I1 (ii) |
-| (inserted after 115) | 129–132 (three note lines, blank) | I1 (ii) note |
-| 189 | 206–208 | Seq 16 |
-| 409 | 428 | Seq 17 |
+| 42–43 | 47–54 | Seq 14 |
+| 48–50 | 59–64 | Seq 15 |
+| 104 | 118 | I1 (ii) header |
+| 106–108 | 120–122 | I1 (ii) |
+| 110–114 | 124–128 | I1 (ii) |
+| (inserted after 115) | 130–133 (three note lines, blank) | I1 (ii) note |
+| 189 | 207–209 | Seq 16 |
+| 409 | 429 | Seq 17 |
+
+Without-I1 candidate lines for the same SCA-006 hunks: 6; 28; 32–36; 45–52;
+57–62; 201–203; 423.
 
 ## 6. Instruction-tranche manifest and notices (drafts)
 
@@ -559,7 +583,7 @@ rollback: >-
   this manifest. No lifecycle, source or data state changes.
 scope_limits:
   - Only projects/pec/AGENTS.md, this manifest and the three notices change under this manifest.
-  - The four SCA-006 loci are the K-02 gloss, the consumer-owned-use bullet, the Product Posture lineage with the Governance Pointers, and the "Product release/reconciliation work" checks row; the I1 corrections, if carried, are the Product Posture implementation sentence and the Primary Agents table.
+  - The four SCA-006 loci are the K-02 gloss, the consumer-owned-use bullet, the lineage (the front-matter amended line, the Product Posture lineage and the Governance Pointers), and the "Product release/reconciliation work" checks row; the I1 corrections, if carried, are the Product Posture implementation sentence and the Primary Agents table, applied only if the owner's checkpoint-2 act accepts them.
   - PEC-K-01, PEC-K-02, PEC-K-06, PEC-K-11, K-AUTH-1, D-GOV-01 Option A and Root PRD N-1 stand unchanged; PEC output stays never citable as authority (D-PEC-90 R-C not selected).
   - Operational reliance is available only from a PEC release that has passed the PRD section 12 reliance-advertisement gate; this manifest makes nothing usable now.
   - F-PEC-1..4, Write Scopes And Fences, the frozen-corpus rules, the default-writable surfaces, the owner-ruled D-PEC packet rule and the reliance-hold control are unchanged.
@@ -574,6 +598,11 @@ schema, key set and order (`schema`, `tranche_id`, `title`, `date`, `basis`,
 `instruction_surface_paths`, `candidate_paths`, `m2_gate` with
 `owner-authorized-pr` and `self_merge: true`, `m6_notice` `routed`,
 `supersession`, `checks`, `rollback`, `scope_limits`).
+
+Revision 1 changed one line of the draft: the second `scope_limits` item now
+names the front-matter `amended:` line within the lineage locus and says the
+I1 corrections are applied only if the owner's checkpoint-2 act accepts them
+(pre-revision draft SHA-256 `b7a58cff4058af022e3f4c575c7ac05e59f6cd8297eeb6f3d9089f6af26beb44`).
 
 ### 6.2 Notice routing and the Runtime basis
 
@@ -747,8 +776,8 @@ repository's own `tools/validation/` at the basis.
 |---|---|---|---|---|---|
 | V1 | `git archive --format=tar -o SCR/head.tar HEAD`, then `tar -xf … -C SCR/repo` | worktree | full copy of `4d5f7b911`; `projects/pec/AGENTS.md` hash `c9d3b44d…` | 0 | extracted |
 | V2 | `python3 REPO/tools/validation/validate_instruction_entrypoints.py SCR/repo` | `SCR` | preimage (before) | 0 | `PASS: root instruction entrypoints are canonical` |
-| V3 | same | `SCR` | `AGENTS.candidate_without_I1.md` in place (`432d8d68…`) | 0 | PASS |
-| V4 | same | `SCR` | `AGENTS.candidate.md` in place (`ea6c62ed…`) | 0 | PASS |
+| V3 | same | `SCR` | pre-revision `AGENTS.candidate_without_I1.md` in place (`432d8d68…`) | 0 | PASS |
+| V4 | same | `SCR` | pre-revision `AGENTS.candidate.md` in place (`ea6c62ed…`) | 0 | PASS |
 | V5 | `PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider tools/validation/test_validate_instruction_entrypoints.py` | `SCR/repo` | candidate with I1 | 0 | 24 passed |
 | V6 | `python3 REPO/tools/validation/validate_instruction_tranche_manifest.py` (CI mode) | `SCR/repo` (after `git init`, no commits) | existing corpus | 0 | `G4 PASS (CI mode): 114 tranche manifest(s)` |
 | V7 | same | `SCR/repo` | + draft manifest + three notices at their paths | 0 | `G4 PASS (CI mode): 115 tranche manifest(s)`; INFO: `projects/pec/AGENTS.md` and the three notice paths "do not intersect the instruction surface (over-declaration; non-blocking)", as for the `D-PEC-94` precedent; INFO self-merge under the standing owner Git grant |
@@ -764,9 +793,31 @@ repository's own `tools/validation/` at the basis.
 | V17 | `PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider tools/validation/test_validate_instruction_entrypoints.py tools/validation/test_validate_pec_loop_receipts.py` | worktree (read-only) | unchanged | 0 | 33 passed. In `SCR/repo` 2 receipts tests fail for lack of Git history (31 passed) |
 | V18 | `PYTHONDONTWRITEBYTECODE=1 python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target AGENTS.md --operation exact-correction-preparation` (and the same for `execution/_ScopeChange/SCA-006_2026-09-25_1912/CP2_CANDIDATE/AGENTS.candidate.md`) | `projects/pec` | — | 0, 0 | `{"operation": "exact-correction-preparation", "status": "ALLOW"}` |
 
+V1–V18 are the original run on the pre-revision candidates
+(`ea6c62ed…` with I1, `432d8d68…` without) and the pre-revision manifest draft
+(`b7a58cff…`). Revision 1 (manager decisions O-2 and O-3, and the resulting
+`scope_limits` wording in the manifest draft) was rechecked as follows:
+
+| # | Command | cwd | State | Exit | Result |
+|---|---|---|---|---|---|
+| R1 | `python3 build_candidates.py` (6 SCA-006 + 9 I1 replacements, each asserted to match once) | `SCR` | preimage `c9d3b44d…` | 0 | without I1 `a8b8d906f7df22f35fc8489a04fcb5476700e919af896c8256c0b713bf961188` (448 lines); with I1 `bd34d03dd41cdabd5b0f5470b46481afca5f0e05df4f77560c5f60cbef202919` (454 lines) |
+| R2 | `python3 REPO/tools/validation/validate_instruction_entrypoints.py SCR/repo` | `SCR` | preimage; then without I1 (`a8b8d906…`); then with I1 (`bd34d03d…`) | 0, 0, 0 | PASS each time |
+| R3 | `PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider tools/validation/test_validate_instruction_entrypoints.py` | `SCR/repo` | with I1 | 0 | 24 passed |
+| R4 | `python3 REPO/tools/validation/validate_instruction_tranche_manifest.py` (CI) | `SCR/repo` | revised manifest draft (`852b1d5b…`) + three notices | 0 | `G4 PASS (CI mode): 115 tranche manifest(s)` |
+| R5 | third scratch commit replacing the manifest draft and `projects/pec/AGENTS.md` (revised candidate with I1); `git diff --name-status base HEAD` | `SCR/g4repo` | 4 A + 1 M | 0 | — |
+| R6 | `… validate_instruction_tranche_manifest.py` (CI) | `SCR/g4repo` | HEAD | 0 | `G4 PASS (CI mode): 115` |
+| R7 | `… validate_instruction_tranche_manifest.py --base base --head HEAD --added-manifests-only` | `SCR/g4repo` | HEAD | 0 | `G4 PASS (diff mode)`; "diff base..HEAD: 5 changed path(s), 1 on the instruction surface, checked against 1 manifest(s)" |
+| R8 | `git diff --check base HEAD` | `SCR/g4repo` | HEAD | 0 | no whitespace errors |
+| R9 | `python3 term_check.py`; `python3 selfcheck.py` | `SCR` | both revised candidates, all drafts | 0, 0 | no trailing whitespace or tab in any added line of either candidate or in any draft; no bare "reliance"/"rely" beyond the line-wrap artifacts of §5; every heading kept in order, eleven invariants present, one checks row differs |
+
+Not rerun after revision 1: V8 (negative control; the notice set is
+unchanged), V15 (harness), V16–V17 (they read neither `AGENTS.md` nor the
+drafts) and V18 (the preflight checks target paths, which are unchanged).
+The notice drafts are byte-identical to the original run.
+
 Fit notes. `validate_instruction_entrypoints.py` checks only that
 `projects/pec/AGENTS.md` contains `software_workflow_profile.md` (kept at
-candidate L121 and L432) plus launcher and LOOP_INIT rules; it does not
+candidate L122 and L433) plus launcher and LOOP_INIT rules; it does not
 inspect meaning, so its PASS shows structural conformance only. The G4
 validator does not treat `projects/pec/AGENTS.md` as instruction surface (its
 surface is Root `AGENTS.md`, `CLAUDE.md`, `agents/`, `.agents/skills/`,
@@ -783,24 +834,28 @@ routes that exist in the worktree, and V6–V8 used a full copy.
   still prescribes `opus` and `fable` model assignments. The M1 return (§7
   item 5) notes that App rescinded its equivalent under `D-GOV-17` M1-D.
   I1 does not name it, so both candidates leave it byte-identical.
-- **O-2 "§12" inside `AGENTS.md`.** CANON §4 writes "§12" in the K-02 gloss
-  and "PRD §12" in the checks row. Inside this file "§" also marks internal
-  headings ("§Active Reliance Holds"), so a reader could look for a §12 of
-  `AGENTS.md`. The candidate keeps the canonical "§12" (the adjacent Product
-  Posture paragraph names `docs/PRD.md`); writing "PRD §12" would be a
-  one-token clarification the manager may choose to allow.
-- **O-3 Front matter.** `amended:` still reads "2026-09-25 (shared
-  development-loop adoption under D-PEC-94)". The `D-PEC-94` tranche updated
-  that line; the SCA-006 loci do not include it, so it is unchanged. The
-  checkpoint-3 applier may want a CANON decision on it (it would be a fifth
-  locus).
+- **O-2 "§12" inside `AGENTS.md` — disposed (revision 1).** CANON §4 writes
+  "§12" in the K-02 gloss and "PRD §12" in the checks row; inside this file
+  "§" also marks internal headings ("§Active Reliance Holds"). Manager
+  decision: the K-02 gloss reads "whose PRD §12 reliance-advertisement gate
+  has passed", recorded as a manager-directed fitting of the canon text
+  (§3.1, §3.5). Applied in both candidates.
+- **O-3 Front matter — disposed (revision 1).** Manager decision: the
+  `amended:` line is lineage (Seq 16) and reads `amended: 2026-09-25 (SCA-006
+  operational-reliance instruction tranche; earlier, shared development-loop
+  adoption under D-PEC-94)`. It is its own Seq 16 hunk (§3.3), applied in both
+  candidates, and its date is an application-date slot (§9).
 - **O-4 Lineage wording.** Product Posture keeps "exact PEC-K-03/-11 rows
   adopted by `D-PEC-67`" as history; after v2.4 the PEC-K-03 row is no longer
   the `D-PEC-67` bytes (CANON C-S15). The lineage lists what each act adopted,
   so it stays true as history.
-- **O-5 I1 node owner.** The work graph assigns I1 to HELPS_HUMANS and R3 to
-  WORKING_ITEMS. If I1 rides this tranche, the manifest's integration owner is
-  the R3 manager; the graph may need a note.
+- **O-5 I1 node owner — disposed (revision 1).** The work graph assigns I1 to
+  HELPS_HUMANS and R3 to WORKING_ITEMS. Manager decision: I1 rides only if the
+  owner says so at checkpoint 2 (the checkpoint-2 plan asks it as an owner
+  question). If it rides, the checkpoint-3 instruction tranche applies it
+  under that acceptance, and the integration owner named in the manifest
+  applies it. If it does not ride, `AGENTS.candidate_without_I1.md` is the
+  accepted text and I1 stays a planned graph node.
 - **O-6 Notice filename.** The brief's `NOTICE_20260925_PEC_SCA006_…` form
   was replaced by the observed convention (§6.2).
 - **O-7 Stale pointers outside I1.** Other `AGENTS.md` text not named by I1
@@ -818,8 +873,10 @@ loci and recompute; no other byte changes.
 
 | File | Locus | Token (default) |
 |---|---|---|
-| `CP2_CANDIDATE/AGENTS.candidate.md` | L208, Governance Pointers | `SCA-006_GROUP-2_2026-09-25` |
-| `CP2_CANDIDATE/AGENTS.candidate_without_I1.md` | L202, Governance Pointers | `SCA-006_GROUP-2_2026-09-25` |
+| `CP2_CANDIDATE/AGENTS.candidate.md` | L6, front-matter `amended:` (application-date slot: the date the tranche is applied at checkpoint 3) | `2026-09-25` (the first token of the line only) |
+| `CP2_CANDIDATE/AGENTS.candidate.md` | L209, Governance Pointers | `SCA-006_GROUP-2_2026-09-25` |
+| `CP2_CANDIDATE/AGENTS.candidate_without_I1.md` | L6, front-matter `amended:` (application-date slot, as above) | `2026-09-25` (the first token of the line only) |
+| `CP2_CANDIDATE/AGENTS.candidate_without_I1.md` | L203, Governance Pointers | `SCA-006_GROUP-2_2026-09-25` |
 | Manifest draft (§6.1) | `tranche_id`, filename, `instruction_surface_paths` item 2 | date part `20260925` |
 | Manifest draft | `date`; `m2_gate.authorization_date` | `2026-09-25` |
 | Manifest draft | `basis` | `4d5f7b91102b7106ff74b98118b2bda2fe873f36` (replace with the checkpoint-3 basis commit) |
@@ -828,8 +885,9 @@ loci and recompute; no other byte changes.
 | Three notice drafts (§6.3) | group-2 folder path (Root L9, App L10, Runtime L9) | `SCA-006_GROUP-2_2026-09-25` |
 | Three notice drafts | manifest path (Root L22, App L22, Runtime L17) | date part `20260925` |
 
-Not slots (fixed facts): `2026-09-25` in the `amended:` line (L6) and in
-"owner direction of 2026-09-25" (`D-PEC-94`); the undertaking ID
+Not slots (fixed facts): "owner direction of 2026-09-25" (`D-PEC-94`,
+candidate L242, without-I1 L236); the rest of the `amended:` line, which
+names the `D-PEC-94` adoption without a date; the undertaking ID
 `HELP-HUMAN-PEC-20260925-POST-SCA005`; the snapshot folder
 `SCA-006_2026-09-25_1912`; the checkpoint-1 date and folder
 `SCA-006_GROUP-1_2026-09-25`; `PEC-DEVELOPMENT-LOOP-ADOPTION-20260925`.
