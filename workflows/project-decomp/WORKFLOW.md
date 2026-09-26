@@ -14,7 +14,7 @@ WORKING_ITEMS coordinates this undertaking and assigns bounded contributions to 
 1. Extract and reconcile the atomic scope ledger, objectives, assumptions, and unresolved decisions.
 2. Partition the work into flat Packages, then define Deliverables within each Package and their anticipated artifacts.
 3. Prepare coverage, responsibility, interface, boundary, and exception checks before each grouped human checkpoint.
-4. Preserve stable IDs and source mappings through three checkpoint groups: basis; proposed structure with findings; and audited final acceptance for downstream use.
+4. Preserve stable IDs and source mappings through three checkpoint groups: basis; proposed structure with findings; and audited final acceptance for downstream use. A small, reversible undertaking may decide all three in one sitting after the independent audit.
 
 ## Resources
 

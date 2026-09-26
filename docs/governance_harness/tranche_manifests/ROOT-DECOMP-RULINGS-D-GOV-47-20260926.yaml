@@ -1,0 +1,51 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-DECOMP-RULINGS-D-GOV-47-20260926
+title: Decomposition rulings D-GOV-47 (Package home for IN items only; combined review sitting)
+date: '2026-09-26'
+basis: 971ca68a15a562f6df33cf4c78d27948ad07f822
+instruction_surface_paths:
+  - docs/TYPES.md
+  - docs/DECOMPOSITION_STANDARD.md
+  - docs/governance_harness/_DECISIONS/D-GOV-47_decomposition_package_home_and_combined_review.md
+  - docs/governance_harness/_DECISIONS/_REGISTER.md
+  - tools/validation/validate_decomposition_registers.py
+  - tools/validation/test_validate_decomposition_registers.py
+  - tools/validation/test_workflow_catalog.py
+  - workflows/project-decomp/WORKFLOW.md
+  - workflows/project-decomp/resources/contract.md
+  - workflows/project-decomp/resources/method.md
+  - workflows/software-decomp/WORKFLOW.md
+  - workflows/software-decomp/resources/contract.md
+  - workflows/software-decomp/resources/method.md
+  - docs/governance_harness/tranche_manifests/ROOT-DECOMP-RULINGS-D-GOV-47-20260926.yaml
+m2_gate:
+  authorization: >-
+    The repository owner directed "yes, go ahead with wave 2b #1 and 2, and on
+    #3 and 4 as recommended." Recommendation #3: only in-scope items need a
+    Package; out-of-scope and TBD items stay in the ledger with their source
+    reference but don't get a Package. Recommendation #4: allow one sitting in
+    which basis, structure and final package are presented, with the
+    independent audit still done first and the three snapshots still written
+    in order. Recorded as D-GOV-47.
+  authorized_by: Ryan Tufts (repository owner sgttomas, current Claude Code conversation)
+  authorization_date: '2026-09-26'
+  integration_owner: >-
+    Claude Code session on claude/brave-goodall-wj3hok under the standing Git
+    authorization of 2026-09-12
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_DECOMP_RULINGS_D-GOV-47.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_DECOMP_RULINGS_D-GOV-47.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-26_DECOMP_RULINGS_D-GOV-47.md
+  rationale: >-
+    App, Piping and PEC use project-decomp or software-decomp and the register
+    validator; the App pins software-decomp hashes in its authority corpus and
+    bundles the library, so drift is expected there.
+scope_limits:
+  - PROJECT and SOFTWARE only; domain-decomp and its Category rule are unchanged.
+  - The management manual and thesis still carry the earlier every-item Package wording; they are not edited here.
+  - Dependency schema, SPEC section 5, workflows/review, write_status.sh, semantic-lens and engineering-extraction are unchanged.
+  - In-flight projects keep their adopted decomposition rule and edition; nothing is retrofitted; no release.

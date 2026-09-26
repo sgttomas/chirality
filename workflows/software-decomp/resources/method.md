@@ -19,6 +19,26 @@ status, closure verdict, rerun requirements, and blockers. A later preparation
 stage begins by resolving the preceding pointer and reading that immutable
 snapshot. Reopened decisions create successors; never overwrite a snapshot.
 
+### Combined review for a small, reversible undertaking
+
+For a small, reversible undertaking, the human may choose to decide all three
+checkpoint groups in one sitting (`docs/DECOMPOSITION_STANDARD.md`, PROTOCOL,
+combined review sitting). Propose it where it fits; the human chooses it. Then:
+
+- Prepare group 2 on the proposed group-1 state and group 3 on the proposed
+  group-2 state, and complete the independent audit of the final package
+  before the human decides.
+- Present the three groups together. The human's decision records which
+  groups it covers.
+- After the decision, write the group-1, group-2, and group-3 snapshots in
+  that order, each naming the preceding snapshot as its upstream basis, and
+  update each pointer only after its snapshot is complete.
+- A material change found during the sitting reopens only the groups it
+  affects. Refresh their dependent preparation and audit before they are
+  decided; unaffected groups may still be decided in the sitting.
+
+Otherwise, the groups below are decided in separate sittings.
+
 ### Preparation and checkpoint groups
 
 #### Group 1 preparation — basis, normalized scope, vocabulary, objectives
@@ -58,8 +78,9 @@ proposal.
 
 Propose flat Packages as cohesive work domains, supported by the accepted
 domain signals rather than a timeline. Assign each IN Scope Item to exactly one
-Package. Resolve overlap by proposing an evidenced split or presenting the
-boundary as a human decision.
+Package. OUT and TBD Scope Items stay in the Scope Ledger with their
+`SourceRef` and receive no Package. Resolve overlap by proposing an evidenced
+split or presenting the boundary as a human decision.
 
 Within each Package, propose agent-executable Deliverables with stable coupled
 `DEL-XX-YY` IDs, descriptions, responsible parties, types, anticipated

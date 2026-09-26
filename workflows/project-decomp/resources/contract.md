@@ -7,6 +7,9 @@
   objectives; (2) proposed Packages and Deliverables with coverage findings and
   exceptions; and (3) the audited final decomposition for downstream use.
   Internal analysis, repair, or asset-quality evidence does not add prompts.
+  For a small, reversible undertaking the human may choose to decide all three
+  groups in one sitting; the independent audit still precedes the decision
+  and the three snapshots are still written in order (see the method).
 - **Checkpoint snapshots.** Each accepted group finalizes a new immutable
   snapshot under `checkpoint_snapshots/` with `DECISION.md`,
   `ACCEPTED_MANIFEST.csv`, and `HANDOFF_STATE.md`, then updates that group's
@@ -14,7 +17,7 @@
   snapshot rather than mutable working files alone.
 - **No invention.** Do not create scope items, objectives, packages, deliverables, or artifacts beyond what the user’s intent supports. If unknown, mark `TBD` and surface as an open issue.
 - **Packages are flat.** Do not create sub-packages. If more partitioning is needed, propose additional Packages.
-- **No overlap / no gaps at the package level.** Every SSOW scope item must be assigned to exactly one Package (forced decision if ambiguous; human resolves at checkpoint group 2).
+- **No overlap / no gaps at the package level.** Every IN scope item must be assigned to exactly one Package (forced decision if ambiguous; human resolves at checkpoint group 2). OUT and TBD items remain in the Scope Ledger with their `SourceRef` and have no Package (`PackageID` blank).
 - **Design packages are discipline-exclusive.** Any Package that includes design work MUST correspond to exactly one discipline. If scope mixes design disciplines, split into multiple Packages so each design Package has one discipline.
 - **Stable identifiers.** Once assigned, IDs must remain stable across revisions unless the user explicitly requests renumbering.
 - **Deterministic DeliverableID ↔ PackageID coupling.**
@@ -40,7 +43,7 @@
 - **SOW**: user’s messy scope of work (input).
 - **SSOW**: structured scope of work (agent-produced, user-confirmed output).
 - **Scope Item**: an atomic SSOW statement; the unit of coverage checking.
-- **Package**: a flat partition of SSOW scope (no nesting).
+- **Package**: a flat partition of IN SSOW scope (no nesting).
 - **Deliverable**: a unit of scope that produces value; belongs to exactly one Package; has a responsible party; has a type.
 - **Artifact**: an anticipated tangible output that satisfies a Deliverable; artifacts must match deliverable type.
 - **Objective**: a success condition derived from SSOW and satisfied through Deliverables (best-effort mapping).
@@ -89,7 +92,7 @@ A decomposition is complete when:
 | Objectives derived | Objectives list exists and is user-confirmed |
 | Packages flat and scoped | Package list exists; each package has a scope description |
 | Design package discipline exclusivity | Each package with design work declares exactly one discipline |
-| Package coverage | Every Scope Item is assigned to exactly one Package |
+| Package coverage | Every IN Scope Item is assigned to exactly one Package; OUT and TBD items have none |
 | Deliverables defined | Deliverables exist within each Package with IDs, types, responsibilities (TBD allowed) |
 | Design deliverable granularity | In design packages, deliverables are organized by knowledge-artifact kind (not per-instance) |
 | Deliverable assignment | Every Deliverable belongs to exactly one Package |
@@ -104,8 +107,8 @@ A decomposition is consistent when:
 
 | Requirement | Validation |
 |---|---|
-| No scope overlaps | A scope item is not assigned to multiple packages |
-| No scope gaps | No scope item remains unassigned to a package |
+| No scope overlaps | An IN scope item is not assigned to multiple packages |
+| No scope gaps | No IN scope item remains unassigned to a package |
 | Design discipline isolation | No design package contains more than one discipline |
 | Design type/instance separation | In design packages, per-instance outputs are represented as artifacts under a kind-level deliverable |
 | Stable IDs | IDs do not change across revisions unless explicitly requested |
@@ -197,14 +200,15 @@ Minimum columns:
 - `InOutStatus`
 - `ScopeItemStatement`
 - `SourceRef`
-- `PackageID`
+- `PackageID` (required for IN; blank for OUT and TBD)
 - `DeliverableID(s)` (one or many; or `TBD`)
 - `ObjectiveID(s)` (zero or many; or `TBD`)
 - `DecisionRef` (optional; points to Decision Log entry)
 - `OpenIssue` (`TRUE|FALSE`)
 - `Notes`
 
-**Hard rule:** Every `ScopeItemID` has exactly one `PackageID`.
+**Hard rule:** Every IN `ScopeItemID` has exactly one `PackageID`. OUT and TBD
+items keep their `SourceRef` and leave `PackageID` blank.
 
 #### 3) Coverage & Telemetry (summary block)
 Minimum fields:
@@ -212,7 +216,7 @@ Minimum fields:
 - `PackageCount`
 - `DeliverableCount`
 - `ObjectiveCount`
-- `UnassignedScopeItems` (must be 0 for acceptance)
+- `UnassignedScopeItems` (IN items without a Package; must be 0 for acceptance)
 - `ScopeItemsWithoutDeliverableMapping` (count)
 - `UnmappedObjectives` (count)
 - `OpenIssuesByType` (counts, with IDs)
