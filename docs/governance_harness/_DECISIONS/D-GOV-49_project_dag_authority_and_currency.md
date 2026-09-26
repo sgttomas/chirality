@@ -174,8 +174,9 @@ On the working-records exception to K-SNAP-1 for `_DAG/cases/` and
     reads "at most one accepted DAG per project" instead of "no central
     dependency graph to maintain". The agent manual v3 §8 is aligned and its
     HTML regenerated. `docs/PRD_ROOT.md` O-8, which transcribed the earlier
-    K-DEP-1, is revised to this decision, with an owner amendment note at the
-    top of the file.
+    K-DEP-1, is revised to this decision, and N-5, which transcribes K-SNAP-1,
+    carries the item 10 exception, with an owner amendment note at the top of
+    the file.
 12. **Workflows.** `project-dag` drops its "derived view" framing and applies
     items 1 to 10: currency audit, `DAG pending`, successor or rejection,
     `_DAG/_LATEST.md`, `_DAG/cases/`, and the required fields. Its fallback of
