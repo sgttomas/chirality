@@ -29,3 +29,27 @@ protoA_strict_counts	0	0 ERROR / 26 XRG-013 / 2 DRB-008 / 28 WARNING (0 = as exp
 protoAC_strict_counts	0	0 ERROR / 26 XRG-013 / 2 DRB-008 / 28 WARNING (0 = as expected)
 whitespace	0	written files: no CR, no trailing whitespace, one final LF (A and A+C)
 G_clone	0	git clone --shared --no-checkout
+G_checkout	0	checkout detached at aca930622
+base_equals_commit	0	BASE projects/ equals the aca930622 checkout (0 = equal)
+G_pre_receipts	0	receipts validator, pre-state
+G_pre_harness	0	harness self-check, pre-state
+genG	0	option A in the git clone via --repo $(git rev-parse --show-toplevel)
+genG_same	0	git-clone report equals protoA report (0 = equal)
+G_containment	0	git diff --name-only equals the write set (0 = equal)
+G_no_other_status	0	no untracked or non-modify status entries (0 = none)
+G_diffcheck	0	git diff --check
+G_post_receipts	0	receipts validator, post-state
+G_post_harness	0	harness self-check, post-state
+G_receipts_same	0	receipts output identical pre/post (0 = equal)
+G_harness_same	0	harness output identical pre/post (0 = equal)
+verify_G	0	verify the git-clone post-state (expect 0)
+genK1	0	synthetic K1-first tree: generator tolerates the new folder (expect 0)
+genK1_population	0	report counts the tolerated folder (0 = as expected)
+genK1_same_writes	0	same 129 writes and postimages as A (0 = equal)
+verify_K1_allow	0	verify with --allow-k1 (expect 0)
+verify_K1_noallow	1	verify without --allow-k1 (expect 1)
+genK1bad	1	unpinned context still at revision 1.5 (expect 1)
+genK1bad_nothing_written	0	refused run wrote nothing (0 = nothing written)
+diff_addonC	1	A+C vs A diff written (1 = differences; file timestamps stripped from ---/+++ lines)
+tables	0	grant_table.md, aggregates.txt, census.md
+base_untouched	0	BASE projects/ manifest unchanged across the run (0 = unchanged)
