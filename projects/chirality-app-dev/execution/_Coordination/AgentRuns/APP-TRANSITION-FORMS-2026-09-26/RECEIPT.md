@@ -49,9 +49,9 @@ descriptor change (FU2, PR #978). They are listed under Result.
   - Refusals are shown in a `role="alert"` paragraph as `CODE: message`. For
     `AMENDMENT_NOT_ADMITTED` the text names the checker code from the API
     details (`AMENDMENT_NOT_ADMITTED (checker code REGISTER_SCHEMA): …`). Known
-    refusal codes (`RULING_*`, `AMENDMENT_*`, `INVALID_AMENDMENT_REFERENCE`,
-    `HISTORY_NOT_PRESERVED`, `INVALID_STATUS_FORMAT`, approval-SHA and backward
-    codes) add a short hint and "_STATUS.md was not changed."; each is raised
+    refusal codes (the mapped `RULING_*` and `AMENDMENT_*` codes,
+    `INVALID_AMENDMENT_REFERENCE`, `HISTORY_NOT_PRESERVED`,
+    `INVALID_STATUS_FORMAT`, approval-SHA and backward codes) add a short hint and "_STATUS.md was not changed."; each is raised
     before the file is written.
 - **Post-write check (3a review item 1).** `applyLifecycleTransition` re-parses
   the written content and refuses the transition (`INVALID_STATUS_FORMAT`,
@@ -81,8 +81,8 @@ descriptor change (FU2, PR #978). They are listed under Result.
   control, with the live text temporarily set to the base descriptor text,
   passed and was reverted.
 - **FU2 review item 2.** Runtime Receipt 4 does not exist on this base, so the
-  corrected evidence line is handed to the parent session for integration, not
-  written here.
+  corrected evidence line was applied by the parent session at integration
+  (PR #980).
 - **FU4.** DEL-07-04 CLM-003 and CLM-008 name the verification hooks
   (`lifecycle-status.test.ts`, `amendment-reopen-parity.test.ts`,
   `deliverable-contracts.test.ts`, and for the forms
@@ -130,6 +130,10 @@ Produced:
    Headless Chromium 141 screenshotted each state at 1000 px (two-column grid)
    and at 500 px (single column). The commands, input hashes, HTML hashes and
    PNG hashes are in `render/MANIFEST.json`, and the PNGs are in `render/png/`.
+   The input hashes were taken at the pre-integration commit `cebb0da1b`; at
+   the integrated candidate the three inputs differ only by #972's dependency
+   summary code, and an independent review re-bundled the renderer at the
+   candidate and reproduced all four HTML hashes and all eight PNG hashes.
    An agent inspected all eight and found no overlap, no clipping of labels or
    controls, and no hidden required control. Long values scroll inside their
    inputs. One finding was fixed: the first option labels
@@ -180,7 +184,8 @@ other is the new `deps_read` description test, described above.
   a test covers it. The list-line fallback there would have hidden the table
   history from the parser.
 - The new `deps_read` description test fails on this base until FU2 and #972
-  are integrated.
+  are integrated; at the integrated candidate (PR #980) it passes, and the only
+  full-suite failure is the known uid-0 `harness-attachment-resolver` case.
 - Work-graph FU2 and FU3 rows are adjacent, so integrating this commit after the
   FU2 commit (`8b4a0dd6e`/`c94ab79a7`) may need a trivial merge of those two
   table lines. The same applies to `exports/chirality-app/*`, which is
