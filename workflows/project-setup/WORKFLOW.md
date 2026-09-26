@@ -28,4 +28,4 @@ prompt by itself.
 
 Load [inputs, modes, and output contracts](resources/contract.md) when framing the assignment. Use [the detailed method](resources/method.md) for the current stage. Resolve tool commands against the declared tool root.
 
-For an activated package’s subsequent production, load [package activation and production](resources/package-activation.md). Software implementations additionally use [software activation](../software-bounded-implementation/resources/activation.md).
+For an activated package’s subsequent production, load [package activation and production](resources/package-activation.md). Software implementations additionally use [software activation](resources/software-activation.md).

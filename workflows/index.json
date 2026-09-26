@@ -294,7 +294,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 5,
+        "order": 4,
         "group": {
           "key": "plan-organize",
           "label": "Plan & organize",
@@ -730,7 +730,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 6,
+        "order": 5,
         "group": {
           "key": "research-understand",
           "label": "Research & understand",
@@ -1087,45 +1087,6 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 8,
-        "group": {
-          "key": "review-check",
-          "label": "Review & check",
-          "order": 6
-        }
-      },
-      "execution": {
-        "schemaVersion": 1,
-        "compatibleRoles": [
-          "TASK",
-          "WORKING_ITEMS",
-          "HELPS_HUMANS"
-        ]
-      }
-    },
-    {
-      "kind": "workflow",
-      "name": "deliverable-consistency",
-      "source": "bundled",
-      "sourceRootId": "chirality-root",
-      "description": "Run a deliverable-local consistency sweep across production documents in one deliverable. Use when checking for unresolved markers, missing core artifacts, identity-label mismatches, or candidate unsourced numeric statements.",
-      "central": false,
-      "compatibility": "canonical",
-      "executionRoleIds": [
-        "TASK",
-        "WORKING_ITEMS",
-        "HELPS_HUMANS"
-      ],
-      "resources": [
-        "WORKFLOW.md",
-        "execution.json",
-        "resources/brief.md",
-        "resources/checks.md",
-        "resources/tools.md"
-      ],
-      "navigation": {
-        "category": "specialist",
-        "tier": "primary",
         "order": 7,
         "group": {
           "key": "review-check",
@@ -1139,12 +1100,7 @@
           "TASK",
           "WORKING_ITEMS",
           "HELPS_HUMANS"
-        ],
-        "tools": {
-          "commands": [
-            "python3 tools/validation/scan_deliverable_consistency.py:*"
-          ]
-        }
+        ]
       }
     },
     {
@@ -1291,7 +1247,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 2,
+        "order": 1,
         "group": {
           "key": "research-understand",
           "label": "Research & understand",
@@ -1336,7 +1292,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 1,
+        "order": 0,
         "group": {
           "key": "research-understand",
           "label": "Research & understand",
@@ -1863,7 +1819,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 9,
+        "order": 8,
         "group": {
           "key": "review-check",
           "label": "Review & check",
@@ -1908,7 +1864,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "supporting",
-        "order": 10,
+        "order": 9,
         "group": {
           "key": "review-check",
           "label": "Review & check",
@@ -1954,7 +1910,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 3,
+        "order": 2,
         "group": {
           "key": "plan-organize",
           "label": "Plan & organize",
@@ -2032,7 +1988,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 4,
+        "order": 3,
         "group": {
           "key": "plan-organize",
           "label": "Plan & organize",
@@ -2071,7 +2027,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 3,
+        "order": 2,
         "group": {
           "key": "research-understand",
           "label": "Research & understand",
@@ -2398,49 +2354,6 @@
     },
     {
       "kind": "workflow",
-      "name": "preparation",
-      "source": "bundled",
-      "sourceRootId": "chirality-root",
-      "description": "Materialize accepted scope as predictable folders and source-faithful metadata.",
-      "central": false,
-      "compatibility": "canonical",
-      "executionRoleIds": [
-        "TASK"
-      ],
-      "resources": [
-        "WORKFLOW.md",
-        "execution.json",
-        "resources/contract.md",
-        "resources/method.md"
-      ],
-      "navigation": {
-        "category": "specialist",
-        "tier": "primary",
-        "order": 1,
-        "group": {
-          "key": "plan-organize",
-          "label": "Plan & organize",
-          "order": 0
-        }
-      },
-      "execution": {
-        "schemaVersion": 1,
-        "compatibleRoles": [
-          "TASK"
-        ],
-        "tools": {
-          "capabilities": [
-            "read",
-            "write",
-            "bash",
-            "report_coordination_notice",
-            "ack_agent_update"
-          ]
-        }
-      }
-    },
-    {
-      "kind": "workflow",
       "name": "project-decomp",
       "source": "bundled",
       "sourceRootId": "chirality-root",
@@ -2484,7 +2397,8 @@
         "execution.json",
         "resources/contract.md",
         "resources/method.md",
-        "resources/package-activation.md"
+        "resources/package-activation.md",
+        "resources/software-activation.md"
       ],
       "navigation": {
         "category": "core",
@@ -2506,46 +2420,6 @@
             "send_agent_update",
             "ack_agent_update"
           ]
-        }
-      }
-    },
-    {
-      "kind": "workflow",
-      "name": "proposal-format",
-      "source": "bundled",
-      "sourceRootId": "chirality-root",
-      "description": "Structured recommendation output using PROPOSAL blocks with evidence, change, risk, and status fields. Use for any deliverable-local task that surfaces actionable findings.",
-      "central": false,
-      "compatibility": "canonical",
-      "executionRoleIds": [
-        "TASK",
-        "WORKING_ITEMS",
-        "HELPS_HUMANS"
-      ],
-      "resources": [
-        "CONTRACT.md",
-        "WORKFLOW.md",
-        "execution.json"
-      ],
-      "navigation": {
-        "category": "specialist",
-        "tier": "primary",
-        "order": 6,
-        "group": {
-          "key": "plan-organize",
-          "label": "Plan & organize",
-          "order": 0
-        }
-      },
-      "execution": {
-        "schemaVersion": 1,
-        "compatibleRoles": [
-          "TASK",
-          "WORKING_ITEMS",
-          "HELPS_HUMANS"
-        ],
-        "tools": {
-          "commands": []
         }
       }
     },
@@ -2639,51 +2513,6 @@
     },
     {
       "kind": "workflow",
-      "name": "researcher",
-      "source": "bundled",
-      "sourceRootId": "chirality-root",
-      "description": "Investigate one bounded question through independently verified and recoverable evidence.",
-      "central": false,
-      "compatibility": "canonical",
-      "executionRoleIds": [
-        "TASK"
-      ],
-      "resources": [
-        "WORKFLOW.md",
-        "execution.json",
-        "resources/contract.md",
-        "resources/evidence.md",
-        "resources/inquiry.md",
-        "resources/method.md"
-      ],
-      "navigation": {
-        "category": "specialist",
-        "tier": "primary",
-        "order": 0,
-        "group": {
-          "key": "research-understand",
-          "label": "Research & understand",
-          "order": 1
-        }
-      },
-      "execution": {
-        "schemaVersion": 1,
-        "compatibleRoles": [
-          "TASK"
-        ],
-        "tools": {
-          "capabilities": [
-            "read",
-            "write",
-            "bash",
-            "report_coordination_notice",
-            "ack_agent_update"
-          ]
-        }
-      }
-    },
-    {
-      "kind": "workflow",
       "name": "reverse-engineer-software",
       "source": "bundled",
       "sourceRootId": "chirality-root",
@@ -2704,7 +2533,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 8,
+        "order": 7,
         "group": {
           "key": "research-understand",
           "label": "Research & understand",
@@ -2888,7 +2717,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 2,
+        "order": 1,
         "group": {
           "key": "plan-organize",
           "label": "Plan & organize",
@@ -2939,7 +2768,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 4,
+        "order": 3,
         "group": {
           "key": "research-understand",
           "label": "Research & understand",
@@ -2978,7 +2807,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "supporting",
-        "order": 5,
+        "order": 4,
         "group": {
           "key": "research-understand",
           "label": "Research & understand",
@@ -2992,102 +2821,6 @@
           "WORKING_ITEMS",
           "HELPS_HUMANS"
         ]
-      }
-    },
-    {
-      "kind": "workflow",
-      "name": "software-bounded-implementation",
-      "source": "bundled",
-      "sourceRootId": "chirality-root",
-      "description": "Implement one sealed software change within explicit write targets and acceptance criteria, then produce normalized verification evidence. Use for bounded features, repairs, refactors, migrations, or documentation changes after the owning manager freezes scope.",
-      "central": false,
-      "compatibility": "canonical",
-      "executionRoleIds": [
-        "TASK",
-        "WORKING_ITEMS",
-        "HELPS_HUMANS"
-      ],
-      "resources": [
-        "WORKFLOW.md",
-        "execution.json",
-        "resources/activation.md",
-        "resources/brief.md",
-        "resources/checks.md",
-        "resources/tools.md"
-      ],
-      "navigation": {
-        "category": "specialist",
-        "tier": "primary",
-        "order": 0,
-        "group": {
-          "key": "build-maintain-software",
-          "label": "Build & maintain software",
-          "order": 4
-        }
-      },
-      "execution": {
-        "schemaVersion": 1,
-        "compatibleRoles": [
-          "TASK",
-          "WORKING_ITEMS",
-          "HELPS_HUMANS"
-        ],
-        "tools": {
-          "commands": [
-            "python3 tools/software_workflow/select_affected_checks.py:*",
-            "python3 tools/software_workflow/run_registered_checks.py:*",
-            "python3 tools/software_workflow/validate_change_scope.py:*",
-            "python3 tools/software_workflow/verify_generated_manifest.py:*",
-            "python3 tools/software_workflow/compare_structured.py:*"
-          ]
-        }
-      }
-    },
-    {
-      "kind": "workflow",
-      "name": "software-code-review",
-      "source": "bundled",
-      "sourceRootId": "chirality-root",
-      "description": "Review a bounded software diff for correctness, regressions, scope compliance, contracts, security, maintainability, and verification evidence. Use at staged or terminal fan-in before a manager accepts an implementation return.",
-      "central": false,
-      "compatibility": "canonical",
-      "executionRoleIds": [
-        "TASK",
-        "WORKING_ITEMS",
-        "HELPS_HUMANS"
-      ],
-      "resources": [
-        "WORKFLOW.md",
-        "execution.json",
-        "resources/brief.md",
-        "resources/checks.md",
-        "resources/tools.md"
-      ],
-      "navigation": {
-        "category": "specialist",
-        "tier": "primary",
-        "order": 1,
-        "group": {
-          "key": "build-maintain-software",
-          "label": "Build & maintain software",
-          "order": 4
-        }
-      },
-      "execution": {
-        "schemaVersion": 1,
-        "compatibleRoles": [
-          "TASK",
-          "WORKING_ITEMS",
-          "HELPS_HUMANS"
-        ],
-        "tools": {
-          "commands": [
-            "python3 tools/software_workflow/select_affected_checks.py:*",
-            "python3 tools/software_workflow/validate_change_scope.py:*",
-            "python3 tools/software_workflow/compare_structured.py:*",
-            "python3 tools/software_workflow/verify_generated_manifest.py:*"
-          ]
-        }
       }
     },
     {
@@ -3121,52 +2854,6 @@
     },
     {
       "kind": "workflow",
-      "name": "software-defect-diagnosis",
-      "source": "bundled",
-      "sourceRootId": "chirality-root",
-      "description": "Reproduce, isolate, and explain a software defect using bounded evidence without assuming repair authority. Use for failing tests, regressions, runtime errors, performance anomalies, or conflicting reports that require a causal diagnosis before implementation.",
-      "central": false,
-      "compatibility": "canonical",
-      "executionRoleIds": [
-        "TASK",
-        "WORKING_ITEMS",
-        "HELPS_HUMANS"
-      ],
-      "resources": [
-        "WORKFLOW.md",
-        "execution.json",
-        "resources/brief.md",
-        "resources/checks.md",
-        "resources/tools.md"
-      ],
-      "navigation": {
-        "category": "specialist",
-        "tier": "primary",
-        "order": 2,
-        "group": {
-          "key": "build-maintain-software",
-          "label": "Build & maintain software",
-          "order": 4
-        }
-      },
-      "execution": {
-        "schemaVersion": 1,
-        "compatibleRoles": [
-          "TASK",
-          "WORKING_ITEMS",
-          "HELPS_HUMANS"
-        ],
-        "tools": {
-          "commands": [
-            "python3 tools/software_workflow/discover_repository.py:*",
-            "python3 tools/software_workflow/select_affected_checks.py:*",
-            "python3 tools/software_workflow/run_registered_checks.py:*"
-          ]
-        }
-      }
-    },
-    {
-      "kind": "workflow",
       "name": "software-repository-reconnaissance",
       "source": "bundled",
       "sourceRootId": "chirality-root",
@@ -3188,7 +2875,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 7,
+        "order": 6,
         "group": {
           "key": "research-understand",
           "label": "Research & understand",
@@ -3233,7 +2920,7 @@
       "navigation": {
         "category": "specialist",
         "tier": "primary",
-        "order": 3,
+        "order": 0,
         "group": {
           "key": "build-maintain-software",
           "label": "Build & maintain software",
@@ -3592,10 +3279,6 @@
         "kind": "workflow",
         "name": "semantic-matrix-build"
       },
-      "software-bounded-implementation": {
-        "kind": "workflow",
-        "name": "software-bounded-implementation"
-      },
       "software-code-review": {
         "kind": "skill",
         "name": "software-code-review"
@@ -3613,7 +3296,9 @@
         "name": "software-test-planning"
       }
     },
-    "historicalOnly": [],
+    "historicalOnly": [
+      "software-bounded-implementation"
+    ],
     "unknownLegacyBehavior": "error"
   },
   "discoveryContract": {

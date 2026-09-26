@@ -27,7 +27,7 @@ Read [references/scaffold-contract.md](references/scaffold-contract.md) before c
 3. Capture each tool-emitted `CREATED_PATH` and compare it with the pre-run inventory. Treat an existing empty file as existing work.
 4. Populate only files created by this invocation. Initialize `OPEN` status only when `_STATUS.md` is new.
 5. For a deliverable or knowledge type, ensure `_CONTEXT.md`, `_DEPENDENCIES.md`, `_STATUS.md`, `_REFERENCES.md`, and a placeholder `_SEMANTIC.md` exist. `_CONTEXT.md` must reproduce accepted decomposition fields exactly. Add only human-declared dependencies; otherwise record the declared coordination mode without inventing edges.
-6. Run `tools/validation/check_min_viable_fileset.sh` for each deliverable or knowledge-type scaffold. Use `tools/validation/validate_id_format.sh` before creating a path when identifier validity is uncertain.
+6. Run `tools/validation/check_min_viable_fileset.sh` for each deliverable or knowledge-type scaffold. Use `tools/validation/validate_id_format.sh` before creating a path when identifier validity is uncertain; if validation fails, do not scaffold and report the invalid ID.
 7. Return exact `created_paths`, `skipped_paths`, validation results, and unresolved source fields.
 
 ## Boundaries

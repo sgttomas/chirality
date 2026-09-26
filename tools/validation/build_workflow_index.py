@@ -383,6 +383,9 @@ def validate_and_build(root: Path, public_export: bool = False) -> dict:
                 raise ValueError(f"unknown workflow successor: {alias}")
             if successor["kind"] == "skill" and successor["name"] not in skill_names:
                 raise ValueError(f"unknown skill successor: {alias}")
+        workflow_target = mapping.get("workflow")
+        if workflow_target is not None and workflow_target not in names and successor is None:
+            raise ValueError(f"retired-role workflow was removed without a canonical successor: {alias}")
     if methods["unknownLegacyBehavior"] != "error" or not isinstance(methods["historicalOnly"], list):
         raise ValueError("unconverted legacy methods must remain historical and unknown selection must error")
     converted = methods["convertedWorkflowAliases"]

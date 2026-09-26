@@ -343,7 +343,7 @@ Walk the route before dispatch. Check executable cycles, omitted verification, s
 
 A useful brief gives an executor enough purpose to make sound local choices and enough boundary to avoid inventing authority. It states the result and its use; accepted basis; relevant sources and scope; exact allowed writes; exclusions; required checks; expected return; parent; and return path. Small read-only work can use the retained launch message itself. Larger or governed work needs the structured record required by its method. Do not duplicate forms solely to make a small task look formal. [Root entry][root-entry] · [Runtime contract][runtime-contract] · [App instructions][app-agents]
 
-For `software-bounded-implementation`, the required brief names `ScopePath`, selected `Workflow`, `PackageID`, `DeliverableIDs`, `Objective`, `AcceptedBasis`, `AllowedWriteTargets`, `EXCLUSIONS`, `AcceptanceCriteria`, `ExpectedReturn`, `PROFILE_PATH`, and `ApplyEdits: true`. The profile identifies registered checks; the brief supplies the applicable execution authorization. If write authority is absent, the executor returns a proposal rather than applying changes. [Bounded implementation brief][implementation-brief]
+A software implementation assignment also names the deliverables it serves, the project software profile (`software-workflow.json`) whose registered checks it authorizes, and whether edits may be applied. The profile identifies registered checks; the brief supplies the applicable execution authorization. If write authority is absent, the executor returns a proposal rather than applying changes. [Construct a local work graph][construct-graph] · [TASK][task]
 
 Before launch, preserve the supplied basis and actual method identity. Under governed delegation, sealing and the applicable human authorization are requirements; a nonempty approval-reference field does not establish that approval occurred. Cite an existing applicable owner act when it already authorizes the assignment. Do not manufacture a new permission ceremony or invent approval-token syntax. If a particular workflow reserves a fresh gate, prepare its concrete decision package before pausing at that gate. [CONTRACT K-SEAL-1][contract] · [Chirality change conventions][chirality-change]
 
@@ -361,7 +361,7 @@ Adjust delegation when evidence calls for it. Repeated repair attempts without n
 
 ## 11. Implement, verify, review, and integrate
 
-Start implementation from the accepted objective, current candidate, explicit write fence, exclusions, and checking basis. Inspect the smallest coherent implementation and test surface. Make the change needed to establish the behavior, including source, tests, configuration, or documentation when their relationship requires it. Preserve unrelated user work. A local repair does not authorize unrelated dependency or public-contract changes, migrations, release, or operations excluded by its brief or method. Authorized registered setup may proceed within those boundaries. [Bounded implementation][bounded-implementation] · [Chirality change conventions][chirality-change]
+Start implementation from the accepted objective, current candidate, explicit write fence, exclusions, and checking basis. Inspect the smallest coherent implementation and test surface. Make the change needed to establish the behavior, including source, tests, configuration, or documentation when their relationship requires it. Preserve unrelated user work. A local repair does not authorize unrelated dependency or public-contract changes, migrations, release, or operations excluded by its brief or method. Authorized registered setup may proceed within those boundaries. [Construct a local work graph][construct-graph] · [Chirality change conventions][chirality-change]
 
 Use tests to examine the requirement, not to invent it. Identify the expected result and its source. Protect adopted tolerances, oracles, limits, and checks when they conflict with implementation. A known failure disappears illegitimately if its criterion is removed or weakened. Diagnose the discrepancy, preserve the measured result, and bring a protected-criterion conflict to the owner with a recommendation. Hold the affected acceptance or merge while independent work proceeds. [App review rules][app-agents] · [Piping software checks][piping-agents]
 
@@ -385,7 +385,7 @@ python3 tools/software_workflow/run_registered_checks.py \
   --output <authorized-evidence-path.json>
 ```
 
-Supply each authorized check explicitly; omitting `--check` causes the current runner to run all registered checks. The output path also needs authorization. The bounded implementation method prohibits unregistered install, release, network, and destructive commands. A missing prerequisite should return as a specific preparation need or revised assignment, not an improvised command outside that method. [Registered runner][registered-runner] · [Implementation tool policy][implementation-tools]
+Supply each authorized check explicitly; omitting `--check` causes the current runner to run all registered checks. The output path also needs authorization. Implementation assignments do not run unregistered install, release, network, or destructive commands. A missing prerequisite should return as a specific preparation need or revised assignment, not an improvised command outside the brief. [Registered runner][registered-runner]
 
 A registered check may own a bounded service lifecycle. The runner can allocate a loopback port, start the service, wait for readiness, inject declared environment values, run the check, and shut down the service. Preserve the distinction between service setup failure, timeout, and a product check failure. An App premerge command run without its required service is not the registered check. Coordinate ordinary dev servers with build and premerge operations so shared output directories are not written concurrently. [Software profile, managed service][software-profile] · [App profile][app-profile] · [App checks][app-agents]
 
@@ -642,7 +642,7 @@ Keep roles, workflows, skills, tools, briefs, and plans distinct. A workflow is 
 
 Discover before loading. Inspect the effective catalog's name, description, origin, compatibility, and collision status, then load only the selected entrypoint and stage resources. Unqualified workflow lookup uses project, user, then bundled precedence. Preserve the full selected identity—kind, source, source-root ID, and name—through execution and replay. For example, the current App/Piping loop explicitly selects the bundled `chirality-root` local-graph methods. A later same-name discovery cannot replace that selection silently. [Runtime contract, libraries and catalogs][runtime-contract] · [Workflow index][workflow-index]
 
-For setup, retain the effective `preparation` **skill** and its actual origin. The Root index also carries a workflow with that basename; preserving the kind prevents an accidental substitution. In the App, available skills come from Codex's native discovery, including project, user, and bundled origins. An index entry or a historical selection does not establish the bytes supplied to the present run. Root reference tools and current source packages likewise do not prove a consumer's adoption or production qualification. [Root entry][root-entry] · [Runtime contract][runtime-contract] · [Project setup][project-setup]
+For setup, retain the effective `preparation` **skill** and its actual origin. Its former same-named workflow package was retired on 2026-09-26, and an unqualified legacy selection of that name resolves to this skill; preserving the kind still prevents an accidental substitution. In the App, available skills come from Codex's native discovery, including project, user, and bundled origins. An index entry or a historical selection does not establish the bytes supplied to the present run. Root reference tools and current source packages likewise do not prove a consumer's adoption or production qualification. [Root entry][root-entry] · [Runtime contract][runtime-contract] · [Project setup][project-setup]
 
 Legacy `TaskSkill` and unqualified converted workflow names use the explicit compatibility mapping. A source-qualified workflow identity preserves its historical workflow and bypasses that alias conversion. Retired named agents are mapped through compatibility records; they are not reintroduced as standing roles. Record what was supplied and what resolved. If historical bytes cannot be recovered, report that limit instead of replaying today's same-name file as though it were the original. [Runtime contract, workflow packages][runtime-contract]
 
@@ -685,7 +685,7 @@ Return: Diff, tested candidate, observed outcomes, evidence, and residuals.
 Parent: The implementation manager; return interface changes before applying.
 ```
 
-This concise human-readable explanation complements any required structured fields. If the diagnosis shows the interface itself cannot express the needed condition, the child returns that design question. It does not silently change every caller or weaken the expected preservation behavior. [Bounded implementation][bounded-implementation] · [Implementation brief][implementation-brief]
+This concise human-readable explanation complements any required structured fields. If the diagnosis shows the interface itself cannot express the needed condition, the child returns that design question. It does not silently change every caller or weaken the expected preservation behavior. [Construct a local work graph][construct-graph]
 
 ### A decision package the human can act on
 
@@ -765,9 +765,6 @@ The human-facing manual uses **reckoning** for agent interpretation, comparison,
 [construct-graph]: ../../workflows/construct-local-work-graph/WORKFLOW.md
 [graph-template]: ../../workflows/construct-local-work-graph/resources/work-graph-template.md
 [bounded-reconciliation]: ../../workflows/bounded-reconciliation/WORKFLOW.md
-[bounded-implementation]: ../../workflows/software-bounded-implementation/WORKFLOW.md
-[implementation-brief]: ../../workflows/software-bounded-implementation/resources/brief.md
-[implementation-tools]: ../../workflows/software-bounded-implementation/resources/tools.md
 [software-profile]: ../SOFTWARE_WORKFLOW_PROFILE.md
 [registered-runner]: ../../tools/software_workflow/run_registered_checks.py
 [software-code-review]: ../../.agents/skills/software-code-review/SKILL.md
