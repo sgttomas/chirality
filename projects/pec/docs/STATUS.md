@@ -227,11 +227,12 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
   `_COORDINATION.md` records them as superseded for current state.
 
   Open:
-  - SOW currency and first SOWs for DEL-02-08/09;
+  - SOW currency and first SOWs for DEL-02-08/09. The first SOWs are proposed
+    as `D-PEC-98`, under independent verification before the owner's ruling;
   - DEL-00-01/00-03 derivative review;
-  - the loop registry source packet, proposed as `D-PEC-96`. On 2026-09-26
-    the owner directed a revision 4 that drops the Remaining-reading profiles.
-    The ruling follows it
+  - the loop registry source packet, proposed as `D-PEC-96`. Revision 4,
+    made at the owner's 2026-09-26 direction, is reviewed and awaits the
+    owner's ruling
     (`execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md`);
   - P1 fixtures;
   - residual `projects/pec/AGENTS.md` corrections;

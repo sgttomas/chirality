@@ -1,0 +1,15 @@
+## negative control: DEL-02-08 candidate with the AC-017/VER-017 matrix row removed
+FAIL format=INVALID target=<neg>/DEL-02-08_Work_graph_parser
+- format state is INVALID
+- defined acceptance criteria missing from matrix: AC-017
+- defined verification methods missing from matrix: VER-017
+validate exit=1
+ERROR: format state is INVALID; validated ScopeOfWork.md is required: defined acceptance criteria missing from matrix: AC-017; defined verification methods missing from matrix: VER-017
+checklist exit=1
+no output artifact created
+## negative control: one quotation mutated in each candidate
+FAIL DEL-02-08 CLM-001 ledger row verbatim
+FAIL DEL-02-08 CLM-005 register Description verbatim
+FAIL 09 §7.1 RunRecord row [480 chars]
+RESULT FAIL 68/71
+verify exit=1 (expected 1)
