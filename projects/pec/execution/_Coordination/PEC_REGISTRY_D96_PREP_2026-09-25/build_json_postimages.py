@@ -2,7 +2,7 @@
 """Build the D-PEC-96 JSON postimages in canonical form (sorted keys, indent 2, LF, final newline).
 
 Preparation aid only. The bound act script embeds the resulting bytes.
-Usage: build_json_postimages.py <out-root> [--pec-row migrated|remaining]
+Usage: build_json_postimages.py <out-root>
 """
 
 from __future__ import annotations
@@ -12,7 +12,6 @@ import json
 from pathlib import Path
 
 D94 = "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-94_owner_direction_loop_migration_2026-09-25.md"
-D86 = "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-86_sca_005_feed_model_rebaseline_2026-09-23.md"
 PEC_AGENTS = "projects/pec/AGENTS.md"
 PEC_LOOP_INIT = "projects/pec/loop/LOOP_INIT.md"
 
@@ -84,25 +83,6 @@ SCHEMA = {
                                             ),
                                         },
                                         {
-                                            "const": "remaining-items",
-                                            "description": (
-                                                "The '## Remaining' sections of the loop's _STATUS.md files, read "
-                                                "as deliverable-local records of open scope with their gate "
-                                                "markers, never as a work-selection signal. Surfaces: "
-                                                "status-remaining."
-                                            ),
-                                        },
-                                        {
-                                            "const": "remaining-loop",
-                                            "description": (
-                                                "Loops that select work from _STATUS.md '## Remaining' items: "
-                                                "lifecycle with those items, the loop/LOOP_RECEIPTS.md ledger as "
-                                                "the receipt feed, dependency registers and decision registers. "
-                                                "Surfaces: decision-registers, dependency-registers, "
-                                                "receipt-ledger, status-lifecycle, status-remaining."
-                                            ),
-                                        },
-                                        {
                                             "const": "shared-dev-loop",
                                             "description": (
                                                 "The shared development-loop method: undertaking work graphs "
@@ -167,20 +147,12 @@ SCHEMA = {
 }
 
 
-def default_document(pec_row: str) -> dict:
-    if pec_row == "migrated":
-        profiles = [
-            {"basis": D94, "profile": "shared-dev-loop", "state": "live", "version": 1},
-            {"basis": PEC_AGENTS, "profile": "remaining-items", "state": "live", "version": 1},
-            {"basis": PEC_AGENTS, "profile": "loop-receipts-ledger", "state": "historical", "version": 1},
-            {"basis": D94, "profile": "agentruns-json", "state": "historical", "version": 1},
-        ]
-    elif pec_row == "remaining":
-        profiles = [
-            {"basis": D86, "profile": "remaining-loop", "state": "live", "version": 1},
-        ]
-    else:
-        raise SystemExit(f"unknown --pec-row {pec_row}")
+def default_document() -> dict:
+    profiles = [
+        {"basis": D94, "profile": "shared-dev-loop", "state": "live", "version": 1},
+        {"basis": PEC_AGENTS, "profile": "loop-receipts-ledger", "state": "historical", "version": 1},
+        {"basis": D94, "profile": "agentruns-json", "state": "historical", "version": 1},
+    ]
     return {
         "loops": [
             {
@@ -216,12 +188,11 @@ MISSING = {
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("out_root")
-    parser.add_argument("--pec-row", default="migrated", choices=["migrated", "remaining"])
     args = parser.parse_args()
     out = Path(args.out_root)
     files = {
         "v2/config/loops.schema.json": canonical(SCHEMA),
-        "v2/config/loops.json": canonical(default_document(args.pec_row)),
+        "v2/config/loops.json": canonical(default_document()),
         "v2/tests/config/fixtures/duplicate_loop_id.json": canonical(DUPLICATE),
         "v2/tests/config/fixtures/missing_loop_id.json": canonical(MISSING),
     }

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Preparation aid: build the bound D-PEC-96 act script from reviewed postimage trees.
 
-Usage: build_apply_d96.py <post-tree A> <post-tree A-R overrides> <preimages.txt> <out apply_d96.py>
+Usage: build_apply_d96.py <post-tree A> <preimages.txt> <out apply_d96.py>
 """
 
 from __future__ import annotations
@@ -33,7 +33,6 @@ UNCHANGED = [
     "software-workflow.json",
     "v2/config/service_core_posture.json",
 ]
-AR_OVERRIDES = ["v2/config/loops.json", "v2/tests/config/test_json_loop_registry.py"]
 
 
 def sha(data: bytes) -> str:
@@ -41,17 +40,14 @@ def sha(data: bytes) -> str:
 
 
 def main() -> int:
-    post_a, post_ar, pre_file, out = (Path(p) for p in sys.argv[1:5])
+    post_a, pre_file, out = (Path(p) for p in sys.argv[1:4])
     pre = {}
     for line in pre_file.read_text().splitlines():
         digest, path = line.split("  ", 1)
         pre[path.removeprefix(PEC)] = digest
     payload_a = {rel: (post_a / rel).read_bytes() for rel in MODIFIED + CREATED}
-    payload_ar = dict(payload_a)
-    for rel in AR_OVERRIDES:
-        payload_ar[rel] = (post_ar / rel).read_bytes()
     blobs = {}
-    for data in list(payload_a.values()) + list(payload_ar.values()):
+    for data in payload_a.values():
         blobs[sha(data)] = base64.b64encode(data).decode("ascii")
     lines = []
     lines.append("PREIMAGES = {")
@@ -64,7 +60,7 @@ def main() -> int:
     for rel in UNCHANGED:
         lines.append(f"    {rel!r}: {pre[rel]!r},")
     lines.append("}")
-    for name, payload in (("POSTIMAGES_A", payload_a), ("POSTIMAGES_AR", payload_ar)):
+    for name, payload in (("POSTIMAGES_A", payload_a),):
         lines.append(f"{name} = {{")
         for rel in MODIFIED + CREATED:
             lines.append(f"    {rel!r}: {sha(payload[rel])!r},")

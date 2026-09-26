@@ -1,6 +1,5 @@
-OPTION A-R
 BASELINE exit=0
-M1 accept schema version 1: CAUGHT (exit=1)
+M1 accept schema version 1: NOT_APPLIED (RuntimeError: mutation anchor not unique in v2/src/pec_v2/adapters/config/loop_registry.py: 'no-such-anchor')
 M2 drop duplicate-profile check: CAUGHT (exit=1)
 M3 skip basis path check: CAUGHT (exit=1)
 M4 widen vocabulary: CAUGHT (exit=1)
@@ -10,13 +9,14 @@ M7 feed_profiles optional: CAUGHT (exit=1)
 M8 unlocated state failure: CAUGHT (exit=1)
 M9 admit version 2 of every profile: CAUGHT (exit=1)
 M10 schema const reverts to 1: CAUGHT (exit=1)
-M11 default profile identifier swapped: CAUGHT (exit=1)
+M11 default declares the ledger live: CAUGHT (exit=1)
 M12 RegisteredLoop field order: CAUGHT (exit=1)
 M13 allow traversing loop_init_path: CAUGHT (exit=1)
 M14 drop surface-disjointness check: CAUGHT (exit=1)
 M15 drop at-least-one-live rule: CAUGHT (exit=1)
-M16 remaining-loop no longer claims the ledger: CAUGHT (exit=1)
-M17 overlap allowed between live and historical only: CAUGHT (exit=1)
+M16 shared-dev-loop also claims the receipt ledger: CAUGHT (exit=1)
+M17 overlap allowed when states differ: CAUGHT (exit=1)
 M18 echo the invalid state value: CAUGHT (exit=1)
-M19 default loses a declared surface or its live profile: CAUGHT (exit=1)
-RESULT PASS
+M19 default drops agentruns-json: CAUGHT (exit=1)
+TOTAL 18/19 CAUGHT
+RESULT FAIL

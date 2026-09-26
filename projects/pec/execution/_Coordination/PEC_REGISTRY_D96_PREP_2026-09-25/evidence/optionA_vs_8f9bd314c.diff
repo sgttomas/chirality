@@ -1,8 +1,8 @@
 diff --git a/projects/pec/v2/config/loops.json b/projects/pec/v2/config/loops.json
-index 499d97254..c65ca5e10 100644
+index 499d97254..d5e60779b 100644
 --- a/projects/pec/v2/config/loops.json
 +++ b/projects/pec/v2/config/loops.json
-@@ -1,9 +1,35 @@
+@@ -1,9 +1,29 @@
  {
    "loops": [
      {
@@ -10,12 +10,6 @@ index 499d97254..c65ca5e10 100644
 +        {
 +          "basis": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-94_owner_direction_loop_migration_2026-09-25.md",
 +          "profile": "shared-dev-loop",
-+          "state": "live",
-+          "version": 1
-+        },
-+        {
-+          "basis": "projects/pec/AGENTS.md",
-+          "profile": "remaining-items",
 +          "state": "live",
 +          "version": 1
 +        },
@@ -40,10 +34,10 @@ index 499d97254..c65ca5e10 100644
 +  "schema_version": 2
  }
 diff --git a/projects/pec/v2/config/loops.schema.json b/projects/pec/v2/config/loops.schema.json
-index b8f23f9b4..982006b7c 100644
+index b8f23f9b4..7a0469b04 100644
 --- a/projects/pec/v2/config/loops.schema.json
 +++ b/projects/pec/v2/config/loops.schema.json
-@@ -1,14 +1,75 @@
+@@ -1,14 +1,67 @@
  {
 -  "$id": "https://chirality.local/pec/v2/config/loops.schema.json",
 +  "$id": "https://chirality.local/pec/v2/config/loops.schema.v2.json",
@@ -77,14 +71,6 @@ index b8f23f9b4..982006b7c 100644
 +                    {
 +                      "const": "loop-receipts-ledger",
 +                      "description": "The loop's loop/LOOP_RECEIPTS.md receipt ledger, under that loop's grammar. Surfaces: receipt-ledger."
-+                    },
-+                    {
-+                      "const": "remaining-items",
-+                      "description": "The '## Remaining' sections of the loop's _STATUS.md files, read as deliverable-local records of open scope with their gate markers, never as a work-selection signal. Surfaces: status-remaining."
-+                    },
-+                    {
-+                      "const": "remaining-loop",
-+                      "description": "Loops that select work from _STATUS.md '## Remaining' items: lifecycle with those items, the loop/LOOP_RECEIPTS.md ledger as the receipt feed, dependency registers and decision registers. Surfaces: decision-registers, dependency-registers, receipt-ledger, status-lifecycle, status-remaining."
 +                    },
 +                    {
 +                      "const": "shared-dev-loop",
@@ -121,7 +107,7 @@ index b8f23f9b4..982006b7c 100644
            "loop_id": {
              "description": "Stable lower-case identifier for one configured loop.",
              "minLength": 1,
-@@ -22,6 +83,7 @@
+@@ -22,6 +75,7 @@
            }
          },
          "required": [
@@ -129,7 +115,7 @@ index b8f23f9b4..982006b7c 100644
            "loop_id",
            "loop_init_path"
          ],
-@@ -31,7 +93,7 @@
+@@ -31,7 +85,7 @@
        "type": "array"
      },
      "schema_version": {
@@ -138,7 +124,7 @@ index b8f23f9b4..982006b7c 100644
        "description": "Version of this local loop-registry configuration format.",
        "type": "integer"
      }
-@@ -40,6 +102,6 @@
+@@ -40,6 +94,6 @@
      "schema_version",
      "loops"
    ],
@@ -147,10 +133,10 @@ index b8f23f9b4..982006b7c 100644
    "type": "object"
  }
 diff --git a/projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py b/projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py
-index 85a79d32a..ef66cad0f 100644
+index 85a79d32a..76d1fbb41 100644
 --- a/projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py
 +++ b/projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py
-@@ -7,10 +7,50 @@ import re
+@@ -7,10 +7,39 @@ import re
  from pathlib import Path, PurePosixPath
  from typing import Any
  
@@ -167,27 +153,16 @@ index 85a79d32a..ef66cad0f 100644
 +FEED_PROFILE_VERSIONS: dict[str, frozenset[int]] = {
 +    "agentruns-json": frozenset({1}),
 +    "loop-receipts-ledger": frozenset({1}),
-+    "remaining-items": frozenset({1}),
-+    "remaining-loop": frozenset({1}),
 +    "shared-dev-loop": frozenset({1}),
 +}
 +
 +# The file-truth surfaces each profile reads. The profiles declared on one
 +# loop must cover pairwise-disjoint surfaces, so no surface is read under two
-+# grammars or declared both live and historical.
++# grammars or declared both live and historical. The three profiles here are
++# disjoint from one another; the rule guards any later vocabulary change.
 +FEED_PROFILE_SURFACES: dict[str, frozenset[str]] = {
 +    "agentruns-json": frozenset({"json-run-evidence"}),
 +    "loop-receipts-ledger": frozenset({"receipt-ledger"}),
-+    "remaining-items": frozenset({"status-remaining"}),
-+    "remaining-loop": frozenset(
-+        {
-+            "decision-registers",
-+            "dependency-registers",
-+            "receipt-ledger",
-+            "status-lifecycle",
-+            "status-remaining",
-+        }
-+    ),
 +    "shared-dev-loop": frozenset(
 +        {
 +            "central-receipts",
@@ -202,7 +177,7 @@ index 85a79d32a..ef66cad0f 100644
  
  
  class LoopRegistryConfigError(ValueError):
-@@ -52,8 +92,11 @@ class JsonLoopRegistry:
+@@ -52,8 +81,11 @@ class JsonLoopRegistry:
          self._require_exact_fields(document, {"schema_version", "loops"}, "$")
  
          version = document["schema_version"]
@@ -216,7 +191,7 @@ index 85a79d32a..ef66cad0f 100644
  
          loop_rows = document["loops"]
          if not isinstance(loop_rows, list):
-@@ -67,7 +110,9 @@ class JsonLoopRegistry:
+@@ -67,7 +99,9 @@ class JsonLoopRegistry:
              location = f"$.loops[{index}]"
              if not isinstance(row, dict):
                  self._fail(location, "expected an object")
@@ -227,7 +202,7 @@ index 85a79d32a..ef66cad0f 100644
  
              loop_id = row["loop_id"]
              if not isinstance(loop_id, str) or not _LOOP_ID.fullmatch(loop_id):
-@@ -81,21 +126,100 @@ class JsonLoopRegistry:
+@@ -81,21 +115,100 @@ class JsonLoopRegistry:
                      f"duplicate loop identifier first declared at $.loops[{seen[loop_id]}].loop_id",
                  )
  
@@ -338,7 +313,7 @@ index 85a79d32a..ef66cad0f 100644
      def _require_exact_fields(
          self, value: dict[str, Any], expected: set[str], location: str
      ) -> None:
-@@ -104,7 +228,10 @@ class JsonLoopRegistry:
+@@ -104,7 +217,10 @@ class JsonLoopRegistry:
              self._fail(f"{location}.{missing[0]}", "required field is missing")
          unexpected = sorted(value.keys() - expected)
          if unexpected:
@@ -477,17 +452,23 @@ index 64d517693..4636e8dcf 100644
 +  "schema_version": 2
  }
 diff --git a/projects/pec/v2/tests/config/test_json_loop_registry.py b/projects/pec/v2/tests/config/test_json_loop_registry.py
-index d9111247b..e5de3b775 100644
+index d9111247b..76bc70bb7 100644
 --- a/projects/pec/v2/tests/config/test_json_loop_registry.py
 +++ b/projects/pec/v2/tests/config/test_json_loop_registry.py
-@@ -1,5 +1,6 @@
+@@ -1,10 +1,12 @@
  from __future__ import annotations
  
 +import copy
  import json
  import sys
  import tempfile
-@@ -14,31 +15,107 @@ FIXTURES = Path(__file__).resolve().parent / "fixtures"
+ import unittest
+ from pathlib import Path
++from unittest import mock
+ 
+ 
+ V2_ROOT = Path(__file__).resolve().parents[2]
+@@ -14,31 +16,105 @@ FIXTURES = Path(__file__).resolve().parent / "fixtures"
  sys.path.insert(0, str(SRC_ROOT))
  
  from pec_v2.adapters.config.loop_registry import (  # noqa: E402
@@ -521,7 +502,6 @@ index d9111247b..e5de3b775 100644
 +                "loop_init_path": PEC_LOOP_INIT,
 +                "feed_profiles": [
 +                    {"profile": "shared-dev-loop", "version": 1, "state": "live", "basis": D_PEC_94},
-+                    {"profile": "remaining-items", "version": 1, "state": "live", "basis": PEC_AGENTS},
 +                    {"profile": "loop-receipts-ledger", "version": 1, "state": "historical", "basis": PEC_AGENTS},
 +                    {"profile": "agentruns-json", "version": 1, "state": "historical", "basis": D_PEC_94},
 +                ],
@@ -548,7 +528,6 @@ index d9111247b..e5de3b775 100644
 +                    PEC_LOOP_INIT,
 +                    (
 +                        FeedProfile("shared-dev-loop", 1, FeedProfileState.LIVE, D_PEC_94),
-+                        FeedProfile("remaining-items", 1, FeedProfileState.LIVE, PEC_AGENTS),
 +                        FeedProfile("loop-receipts-ledger", 1, FeedProfileState.HISTORICAL, PEC_AGENTS),
 +                        FeedProfile("agentruns-json", 1, FeedProfileState.HISTORICAL, D_PEC_94),
 +                    ),
@@ -601,7 +580,7 @@ index d9111247b..e5de3b775 100644
  
      def test_missing_loop_id_is_rejected_with_location(self) -> None:
          with self.assertRaisesRegex(LoopRegistryConfigError, r"\$\.loops\[0\]\.loop_id"):
-@@ -67,11 +144,107 @@ class JsonLoopRegistryTests(unittest.TestCase):
+@@ -67,11 +143,150 @@ class JsonLoopRegistryTests(unittest.TestCase):
              with self.assertRaisesRegex(LoopRegistryConfigError, r"configuration file is unreadable"):
                  JsonLoopRegistry(directory).registered_loops()
  
@@ -629,9 +608,6 @@ index d9111247b..e5de3b775 100644
 +            "unknown state": (lambda d: d["loops"][0]["feed_profiles"][0].__setitem__("state", "active"), f"{entry}.state", "expected live or historical"),
 +            "state not a string": (lambda d: d["loops"][0]["feed_profiles"][0].__setitem__("state", 1), f"{entry}.state", "expected live or historical"),
 +            "profile null": (lambda d: d["loops"][0]["feed_profiles"][0].__setitem__("profile", None), f"{entry}.profile", "closed feed-profile vocabulary"),
-+            "ledger live and historical": (lambda d: d["loops"][0].__setitem__("feed_profiles", [dict(d["loops"][0]["feed_profiles"][2], profile="remaining-loop", state="live"), d["loops"][0]["feed_profiles"][2]]), f"{row}.feed_profiles[1].profile", "surface receipt-ledger is already covered by"),
-+            "two live lifecycle readers": (lambda d: d["loops"][0].__setitem__("feed_profiles", [d["loops"][0]["feed_profiles"][0], dict(d["loops"][0]["feed_profiles"][0], profile="remaining-loop")]), f"{row}.feed_profiles[1].profile", "surface decision-registers is already covered by"),
-+            "remaining read twice": (lambda d: d["loops"][0].__setitem__("feed_profiles", [dict(d["loops"][0]["feed_profiles"][0], profile="remaining-loop"), d["loops"][0]["feed_profiles"][1]]), f"{row}.feed_profiles[1].profile", "surface status-remaining is already covered by"),
 +            "no live profile": (lambda d: [entry.__setitem__("state", "historical") for entry in d["loops"][0]["feed_profiles"]], f"{row}.feed_profiles", "expected at least one live feed profile"),
 +            "empty basis": (lambda d: d["loops"][0]["feed_profiles"][0].__setitem__("basis", ""), f"{entry}.basis", "expected a non-empty string"),
 +            "absolute basis": (lambda d: d["loops"][0]["feed_profiles"][0].__setitem__("basis", "/etc/passwd"), f"{entry}.basis", "normalized repository-relative path"),
@@ -647,6 +623,52 @@ index d9111247b..e5de3b775 100644
 +                text = str(raised.exception)
 +                self.assertIn(f":{location}: ", text)
 +                self.assertIn(message, text)
++
++    def test_shipped_vocabulary_surfaces_are_pairwise_disjoint(self) -> None:
++        profiles = sorted(FEED_PROFILE_SURFACES)
++        for index, first in enumerate(profiles):
++            for second in profiles[index + 1:]:
++                with self.subTest(pair=(first, second)):
++                    self.assertFalse(FEED_PROFILE_SURFACES[first] & FEED_PROFILE_SURFACES[second])
++
++    def test_overlapping_profiles_are_rejected_with_location(self) -> None:
++        # The shipped profiles are pairwise disjoint, so overlap needs a vocabulary
++        # the adapter does not ship. Two probe profiles, each copying one surface of
++        # a shipped profile, exercise the rule without changing the shipped files.
++        probes_versions = {"probe-ledger": frozenset({1}), "probe-lifecycle": frozenset({1})}
++        probes_surfaces = {
++            "probe-ledger": frozenset({"receipt-ledger"}),
++            "probe-lifecycle": frozenset({"status-lifecycle"}),
++        }
++        row = "$.loops[0]"
++
++        def entry(profile: str, state: str) -> dict:
++            return {"profile": profile, "version": 1, "state": state, "basis": PEC_AGENTS}
++
++        cases = {
++            "live and historical on one surface": [entry("probe-ledger", "live"), entry("loop-receipts-ledger", "historical")],
++            "two live readers of one surface": [entry("shared-dev-loop", "live"), entry("probe-lifecycle", "live")],
++            "two historical grammars for one surface": [entry("shared-dev-loop", "live"), entry("loop-receipts-ledger", "historical"), entry("probe-ledger", "historical")],
++        }
++        expected = {
++            "live and historical on one surface": (f"{row}.feed_profiles[1].profile", "surface receipt-ledger is already covered by $.loops[0].feed_profiles[0].profile"),
++            "two live readers of one surface": (f"{row}.feed_profiles[1].profile", "surface status-lifecycle is already covered by $.loops[0].feed_profiles[0].profile"),
++            "two historical grammars for one surface": (f"{row}.feed_profiles[2].profile", "surface receipt-ledger is already covered by $.loops[0].feed_profiles[1].profile"),
++        }
++        with mock.patch.dict(FEED_PROFILE_VERSIONS, probes_versions), mock.patch.dict(FEED_PROFILE_SURFACES, probes_surfaces):
++            for name, profiles in cases.items():
++                with self.subTest(case=name):
++                    document = copy.deepcopy(valid_document())
++                    document["loops"][0]["feed_profiles"] = profiles
++                    with self.assertRaises(LoopRegistryConfigError) as raised:
++                        self.load(document)
++                    location, message = expected[name]
++                    self.assertIn(f":{location}: ", str(raised.exception))
++                    self.assertIn(message, str(raised.exception))
++            disjoint = copy.deepcopy(valid_document())
++            disjoint["loops"][0]["feed_profiles"] = [entry("probe-ledger", "live"), entry("shared-dev-loop", "historical")]
++            self.assertEqual(len(self.load(disjoint)[0].feed_profiles), 2)
++        self.assertNotIn("probe-ledger", FEED_PROFILE_VERSIONS)
 +
 +    def test_failures_do_not_echo_document_values(self) -> None:
 +        sentinel = "zzsentinelzz"

@@ -31,14 +31,6 @@
                       "description": "The loop's loop/LOOP_RECEIPTS.md receipt ledger, under that loop's grammar. Surfaces: receipt-ledger."
                     },
                     {
-                      "const": "remaining-items",
-                      "description": "The '## Remaining' sections of the loop's _STATUS.md files, read as deliverable-local records of open scope with their gate markers, never as a work-selection signal. Surfaces: status-remaining."
-                    },
-                    {
-                      "const": "remaining-loop",
-                      "description": "Loops that select work from _STATUS.md '## Remaining' items: lifecycle with those items, the loop/LOOP_RECEIPTS.md ledger as the receipt feed, dependency registers and decision registers. Surfaces: decision-registers, dependency-registers, receipt-ledger, status-lifecycle, status-remaining."
-                    },
-                    {
                       "const": "shared-dev-loop",
                       "description": "The shared development-loop method: undertaking work graphs (execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md), central receipts (execution/_Coordination/AgentRuns/<RunID>/RECEIPT.md), the deliverable MEMORY.md run index, _STATUS.md lifecycle, dependency registers and decision registers. Surfaces: central-receipts, decision-registers, dependency-registers, memory-run-index, status-lifecycle, work-graphs."
                     }
