@@ -124,9 +124,11 @@ Optional (defaults shown):
   _LATEST.md                       accepted pointer (mutable; SPEC §11.2 form);
                                    names only an accepted version
   _Candidates/
-    DAG-NNN/                       candidate being prepared; working record, mutable
-                                   until presented; immutable once accepted as a version;
-                                   REJECTION_RECORD.md when the human rejects the change
+    DAG-NNN/                       candidate being prepared; working record until
+                                   accepted or rejected (a change after presentation
+                                   requires re-presentation); immutable once accepted
+                                   as a version; frozen once REJECTION_RECORD.md is
+                                   written when the human rejects the change
   cases/
     <CASE-ID>/                     SCC resolution case (scc-resolution-case); working
                                    record keyed by its stable SCC-CASE-NNN identity

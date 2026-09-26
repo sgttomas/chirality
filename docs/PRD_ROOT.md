@@ -10,7 +10,9 @@
 
 > **Owner O-8 amendment — 2026-09-26.** O-8 in §5.2 below is revised to match
 > D-GOV-49 at the owner's direction ("PRD_ROOT item O-8 should be revised to
-> match D-GOV-49"); no other requirement in this file changes.
+> match D-GOV-49"), and N-5 carries the D-GOV-49 working-records exception
+> ("yes, approve the exception, including N-5"); no other requirement in this
+> file changes.
 
 > PROSPECTIVE EXACT POST-IMAGE — NOT APPLIED. The runtime migration authority contract controls the named successor clauses only after its actual owner acceptance and effective propagation. Prior ratification remains the basis for unaffected requirements; historical product completion/ownership statements are prospectively superseded as specified below. No product gate, release or Root retirement is declared complete by these draft bytes.
 
@@ -402,7 +404,7 @@ annex (§10.1) and is regenerable from it.
 | **N-2** | The invariant catalog is the binding constraint set Root governance and project work must continue to satisfy. **Incorporated by reference**: the catalog governs its own membership; this PRD maintains no parallel list of `K-*` IDs. | TRANSCRIBED — `docs/CONTRACT.md` §1; K-AGENTS-1 live-registry principle |
 | **N-3** | Human authority at every consequential gate: only humans author binding approvals; approvals bind to a specific git SHA and are voided by content change; approvals are always binding and only binding; gates are dynamic per project with a stated minimum, and no machine BLOCK on the issuance judgment may be non-overridable. | TRANSCRIBED — K-AUTH-1, K-AUTH-2, K-BIND-1, K-GATE-1; `docs/DIRECTIVE.md` §2.3 |
 | **N-4** | Epistemic discipline is architectural, not advisory: mandatory provenance; unknowns become `TBD` rather than guesses; conflicts are surfaced with pointers, never silently resolved; claims are calibrated to their warrant. | TRANSCRIBED — K-PROV-1, K-INVENT-1, K-CONFLICT-1, K-CLAIM-1; `docs/DIRECTIVE.md` §2.4 |
-| **N-5** | Write containment is architectural: every agent has an explicit declared write scope; every scope path and write target resolves under the active checkout or the task stops; task outputs to tool roots are immutable snapshots. | TRANSCRIBED — K-WRITE-1, K-WRITE-2, K-SNAP-1; `docs/SPEC.md` §0.2.3 |
+| **N-5** | Write containment is architectural: every agent has an explicit declared write scope; every scope path and write target resolves under the active checkout or the task stops; task outputs to tool roots are immutable snapshots, except the `_DAG/` working records (SCC cases and candidate versions), which are updated in place with Git history as their revision record (D-GOV-49). | TRANSCRIBED — K-WRITE-1, K-WRITE-2, K-SNAP-1 as revised by D-GOV-49; `docs/SPEC.md` §0.2.3, §1.2, §11.1 |
 | **N-6** | The authority chain is DIRECTIVE (why) → CONTRACT (binding invariants) → SPEC (structures and path anchoring) → TYPES (vocabulary), with `AGENTS.md` and `agents/` as the live instruction surface. Where a lower or candidate document conflicts with ratified governance, ratified governance controls and the conflict is surfaced. | TRANSCRIBED — `docs/DIRECTIVE.md` §Authority chain |
 | **N-7** | The four pillars — ontology, epistemology, praxiology, axiology — are the system's accountability ontology; ontology, praxiology, and axiology exist to serve the epistemology. | TRANSCRIBED — `docs/DIRECTIVE.md` §2 |
 | **N-8** | The professional-responsibility model holds where it activates (§2.2): AI outputs are drafts; the licensed professional retains scope, code selection, hazard acceptance, adjudication, and issuance rights; competence includes tool competence; the hierarchy of authority runs laws → codes → project specifications → verified analysis → professional judgment. | TRANSCRIBED — `docs/DIRECTIVE.md` §3 |

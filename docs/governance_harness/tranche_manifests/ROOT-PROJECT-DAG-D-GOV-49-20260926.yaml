@@ -52,7 +52,8 @@ m2_gate:
     item O-8 should be revised to match D-GOV-49"; docs/PRD_ROOT.md O-8 is
     revised with an owner amendment note. The K-SNAP-1 working-records clause
     for _DAG/cases/ and _DAG/_Candidates/ is a consequence of the owner's
-    _DAG/cases ruling, pending owner confirmation (the PR does not merge without it). Recorded as D-GOV-49.
+    _DAG/cases ruling, and the owner confirmed it, including PRD_ROOT N-5:
+    "yes, approve the exception, including N-5". Recorded as D-GOV-49.
   authorized_by: Ryan Tufts (repository owner sgttomas, current Claude Code conversation)
   authorization_date: '2026-09-26'
   integration_owner: >-
@@ -84,5 +85,5 @@ scope_limits:
   - project-dag joins the catalog's core navigation list only; centralWorkflowNames and the Root AGENTS.md table are unchanged.
   - Change project-setup only at its SCC routing and DAG handoff lines and one Phase 3.1 blocker bullet.
   - Do not change audit_dag.py, analyze_dep_closure.py, validate_scc_resolution_case.py, materialize_local_dependencies.py, the dependency-extract mirroring or the review workflow.
-  - Change docs/PRD_ROOT.md only at O-8 and its owner amendment note; Root product historical files restating the old O-8 are not edited.
+  - Change docs/PRD_ROOT.md only at O-8, N-5 and its owner amendment note; Root product historical files restating the old O-8 are not edited.
   - Do not construct, accept, migrate or modify any project's DAG, dependency register, pointer or SCC case; nothing is retrofitted; no release.

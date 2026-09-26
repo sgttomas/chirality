@@ -168,7 +168,7 @@ Tool roots are workspace-level directories for derived outputs and project contr
 | `_Aggregation/` | Aggregation snapshots and templates | AGGREGATION |
 | `_Change/` | Change management records | CHANGE |
 | `_Coordination/` | Coordination representation | PROJECT_SETUP |
-| `_DAG/` | Accepted project DAG versions as immutable `DAG-NNN/` snapshots, the `_LATEST.md` pointer to the accepted current version, candidate versions under `_Candidates/`, and SCC resolution cases under `cases/<CASE-ID>/` (§5.4) | WORKING_ITEMS with `project-dag` (versions and pointer, after human acceptance); TASK + `scc-resolution-case` (`cases/`) |
+| `_DAG/` | Accepted project DAG versions as immutable `DAG-NNN/` snapshots, the `_LATEST.md` pointer to the accepted current version, candidate versions under `_Candidates/`, and SCC resolution cases under `cases/<CASE-ID>/` (§5.4) | WORKING_ITEMS with `project-dag` (versions and pointer, after human acceptance); TASK under `project-dag` (`_Candidates/`); TASK + `scc-resolution-case` (`cases/`) |
 | `_Decomposition/` | Project/domain decomposition document(s) and companions | WORKING_ITEMS with `project-decomp`, `software-decomp`, or `domain-decomp` |
 | `_Estimates/` | Cost estimate snapshots | TASK + estimate workflows |
 | `_Evaluation/` | Current evaluation reports plus structural, dependency, epistemic, governance, agent, coherence, and review snapshots | EVALUATION / EVALUATION_* / REVIEW / AUDIT_* |

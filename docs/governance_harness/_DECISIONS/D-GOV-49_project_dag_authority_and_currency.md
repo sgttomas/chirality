@@ -16,7 +16,7 @@ AcceptedBasis: main@53145aaebb23b617e7ba1d2c626a6218d2be9176 (merge of PR #947;
 PR #942 carried D-GOV-48)
 
 Amends: `docs/CONTRACT.md` K-DEP-1 (rewritten; K-DEP-2 unchanged) and K-SNAP-1
-(a `_DAG/` working-records clause added); `docs/PRD_ROOT.md` O-8. No earlier
+(a `_DAG/` working-records clause added); `docs/PRD_ROOT.md` O-8 and N-5. No earlier
 D-GOV record is superseded.
 
 PriorRevisions (git blob SHAs at AcceptedBasis, preserved by history):
@@ -88,6 +88,11 @@ On the charter restatement of K-DEP-1:
 
 > PRD_ROOT item O-8 should be revised to match D-GOV-49
 
+On the working-records exception to K-SNAP-1 for `_DAG/cases/` and
+`_DAG/_Candidates/`, and the matching PRD_ROOT N-5 text:
+
+> yes, approve the exception, including N-5
+
 ## Decision
 
 1. **Neither side is self-authorizing.** Neither the project DAG nor the local
@@ -155,7 +160,9 @@ On the charter restatement of K-DEP-1:
     immutable snapshots; a candidate becomes immutable when it is accepted as
     a version. CONTRACT K-SNAP-1, SPEC §1.2 and SPEC §11.1 carry this clause.
     It is a consequence of the owner's `_DAG/cases` ruling (an SCC case is
-    updated over time), PENDING OWNER CONFIRMATION (asked 2026-09-26; this PR does not merge without it).
+    updated over time), and the owner confirmed it: "yes, approve the
+    exception, including N-5". PRD_ROOT N-5, which transcribes K-SNAP-1,
+    carries the same exception.
 11. **Surfaces.** CONTRACT K-DEP-1 is rewritten to items 1 to 6, and K-DEP-1
     joins the human-review enforcement row. K-SNAP-1 gains the item 10
     clause. SPEC gains §5.4 (Accepted Project DAG, with the DAG-current and
