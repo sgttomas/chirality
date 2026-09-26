@@ -209,10 +209,10 @@ Run this phase only when the recorded dependency tracking mode is `DECLARED` or 
 **Action:**
 1. After the production contracts from Phase 2.2 exist, dispatch **TASK + `dependency-extract`** once per deliverable (one deliverable per brief), with `SCOPE`, `DECOMPOSITION_PATH`, and the write boundary of `workflows/dependency-extract/resources/brief.md`. The default `DOC_ROLE_MAP` reads `ScopeOfWork.md`.
 2. After all extraction runs report, dispatch **TASK + `audit-dep-closure`** over the accepted scope inventory, with any declared exemptions and `UPDATE_LATEST_POINTER` set by the brief.
-3. Route each non-trivial SCC in the closure result to **`scc-resolution-case`** under an existing PKG-00 control deliverable. Cycle-participating edges stay non-gating and are reported as held until the owning decisions resolve them (see Phase 3.1).
-4. Project-DAG construction and acceptance currently have no bundled workflow (deferred). Where the project needs an accepted DAG, WORKING_ITEMS carries it out under an authorized ad hoc plan that cites the closure snapshot and ends in explicit human acceptance; do not present the closure snapshot or its `_LATEST.md` observation pointer as the accepted DAG.
+3. Route each non-trivial SCC in the closure result to **`scc-resolution-case`** in the project's case home (`_DAG/cases/<CASE-ID>/`, or a legacy PKG-00 control deliverable that already holds its cases). Cycle-participating edges stay non-gating and are reported as held until the owning decisions resolve them (see Phase 3.1).
+4. Where the project needs an accepted DAG, hand off to the **`project-dag`** workflow with the closure snapshot, the frozen scope inventory, and the SCC cases. It constructs a version from this dependency evidence and ends in explicit human acceptance (`docs/SPEC.md` §5.4). Do not present the closure snapshot or its `_LATEST.md` observation pointer as the accepted DAG.
 
-**Gate question:** “Dependency registers extracted for [N] deliverables; closure audit [status] with [K] SCCs routed to resolution cases. Proceed to semantic lensing (if used), or first plan DAG construction and acceptance?”
+**Gate question:** “Dependency registers extracted for [N] deliverables; closure audit [status] with [K] SCCs routed to resolution cases. Proceed to semantic lensing (if used), or first construct and accept the project DAG (`project-dag`)?”
 
 ---
 
@@ -364,6 +364,7 @@ for the method contracts.
 Dependencies:
 - If dependency tracking mode is `DECLARED` or `FULL_GRAPH`:
   - Compute `BLOCKED/UNBLOCKED` only from **declared** dependency registers (prefer `Dependencies.csv` when present).
+  - Where the project has an accepted project DAG, compute them instead from its accepted current version, and report deliverables the latest currency audit lists as `DAG pending` as pending, not blocked or unblocked (`docs/SPEC.md` §5.4).
   - Edges that participate in an unresolved cycle (SCC) are non-gating: exclude them from blocker computation and report them separately as **HELD** pending resolution (`docs/CYCLE_DRIVEN_RESOLUTION.md` §2 rule 4; `scc-resolution-case`). Do not label a deliverable blocked, or withhold independent work, solely because of a held edge.
 - If dependency tracking mode is `NOT_TRACKED`:
   - Do not label items as blocked/available.

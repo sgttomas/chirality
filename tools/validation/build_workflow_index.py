@@ -25,8 +25,8 @@ CENTRAL = (
     "scope-change",
 )
 # Ordered core navigation set: the central workflows plus the
-# three everyday project workflows the App shows at first glance.
-CORE = CENTRAL + ("task-management", "review", "reconciliation")
+# everyday project workflows the App shows at first glance.
+CORE = CENTRAL + ("project-dag", "task-management", "review", "reconciliation")
 CORE_DISPLAY_NAMES = {
     "task-management": "Manage tasks",
     "review": "Lifecycle transition review",
