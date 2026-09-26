@@ -8,6 +8,8 @@ Q-CP2-1 (a) (I1 rides the instruction tranche) and Q-CP2-2 (a). Register row
 `D-PEC-97` makes this snapshot the D-PEC packet that opens Lane A. It consumes
 the group-1 snapshot (`SCA-006_GROUP-1_AUTHORIZED.md`).
 
+**Amendment 1 (additive, 2026-09-26):** `checkpoint_snapshots/SCA-006_GROUP-2_AMENDMENT-1_2026-09-26/`. The owner chose the pinned scope-change edition, and directed that the `AGENTS.md` Remaining-sections correction ride the checkpoint-3 instruction tranche. The owner's explicit approval of the exact hunk is required before the application PR merges.
+
 **Next:** checkpoint-3 preparation. Execute Lane A as bounded, run Lane C, and
 present the audited poststate.
 
