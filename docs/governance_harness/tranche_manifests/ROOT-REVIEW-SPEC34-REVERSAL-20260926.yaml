@@ -1,0 +1,46 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-REVIEW-SPEC34-REVERSAL-20260926
+title: Review workflow aligned to SPEC §3.4 with a human-ruled CHECKING reversal
+date: '2026-09-26'
+basis: 971ca68a15a562f6df33cf4c78d27948ad07f822
+instruction_surface_paths:
+  - tools/REGISTRY.md
+  - tools/practitioner_harness/README.md
+  - tools/practitioner_harness/test_write_status_guard.py
+  - tools/scaffolding/write_status.sh
+  - workflows/review/WORKFLOW.md
+  - workflows/review/resources/contract.md
+  - workflows/review/resources/method.md
+  - docs/governance_harness/tranche_manifests/ROOT-REVIEW-SPEC34-REVERSAL-20260926.yaml
+m2_gate:
+  authorization: >-
+    The repository owner selected "Rewrite to SPEC §3.4 (Recommended)" for the
+    review workflow: entering CHECKING becomes a check against SPEC's
+    requirements (no deferrals, a recorded checking basis and the frozen
+    candidate hash), a human-ruled reversal path is added, and write_status.sh
+    gains a proper CHECKING→IN_PROGRESS reversal. The owner then directed "yes,
+    go ahead with wave 2b #1 and 2"; this tranche is #2. It implements the
+    existing SPEC §3.3/§3.4 and TYPES §5.4 text; no SPEC or TYPES change and no
+    new D-GOV record.
+  authorized_by: Ryan Tufts (repository owner sgttomas, current Claude Code conversation)
+  authorization_date: '2026-09-26'
+  integration_owner: >-
+    Claude Code session on claude/brave-goodall-wj3hok under the standing Git
+    authorization of 2026-09-12
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_REVIEW_SPEC34_REVERSAL.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_REVIEW_SPEC34_REVERSAL.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-26_REVIEW_SPEC34_REVERSAL.md
+  rationale: >-
+    App, Piping and PEC consume the bundled review workflow and the
+    write_status.sh guard for lifecycle transitions; PEC holds deliverables in
+    CHECKING.
+scope_limits:
+  - ISSUED→IN_PROGRESS stays blocked in write_status.sh; it belongs to the governed scope-change process.
+  - No App or Runtime TypeScript change; transition.ts still rejects the reversal and its adoption is the App loop's decision.
+  - LEGACY_FOUR_DOC and MIGRATION_DUAL review branches are retained because SPEC §2.2 still recognizes them.
+  - No lifecycle state is changed and historical review records are not rewritten.

@@ -3,10 +3,22 @@
 # Writes or updates _STATUS.md with a lifecycle state transition.
 # Appends to History section; updates Current State.
 # Enforces objective transition preconditions BEFORE any file edit:
-# state-machine shape (ordered states, no backward moves, no skips),
-# actor class (CHECKING/ISSUED are human-only), committed-ruling path,
-# and approval-SHA reachability where the project's adapter manifest
-# (_harness/adapter.yaml, found by walking up from DEL_PATH) declares it.
+# state-machine shape (ordered states, no skips, no backward moves except the
+# human-ruled CHECKING -> IN_PROGRESS reversal), actor class (CHECKING/ISSUED
+# and the reversal are human-only), committed-ruling path, and approval-SHA
+# reachability where the project's adapter manifest (_harness/adapter.yaml,
+# found by walking up from DEL_PATH) declares it.
+#
+# Reversal (SPEC §3.3/§3.4): CHECKING -> IN_PROGRESS is the sole exit from an
+# unsuccessful or withdrawn check. It requires a HUMAN actor and --ruling naming
+# the ruling record (always required for the reversal, independent of
+# guard_requires_committed_ruling_path; git-tracked when in a git repo), plus
+# --approval-sha where the adapter declares that schema. The history line is
+# suffixed "[reversal from CHECKING; ruling: <path>]". Existing approval-SHA /
+# Authorization Basis fields are left as history; the next CHECKING entry
+# replaces them. Every other backward move stays BLOCKED, including
+# ISSUED -> IN_PROGRESS, which belongs to the governed scope-change process
+# and is not admitted by this tool.
 #
 # Usage: ./write_status.sh <DEL_PATH> <STATE> <ACTOR> [--ruling <path>] [--approval-sha <sha>] [--force-human-override <reason>]
 #
@@ -17,9 +29,10 @@
 #   --ruling <path>       — Ruling/decision record authorizing a human-gate transition.
 #                           Required for CHECKING/ISSUED when the adapter manifest sets
 #                           guard_requires_committed_ruling_path (default true in a git
-#                           repo when no manifest is found). Must exist and be git-tracked.
+#                           repo when no manifest is found); always required for the
+#                           CHECKING -> IN_PROGRESS reversal. Must exist and be git-tracked.
 #   --approval-sha <sha>  — Git commit SHA evidencing the ruling. Required for
-#                           CHECKING/ISSUED when the adapter manifest sets
+#                           CHECKING/ISSUED and the reversal when the adapter manifest sets
 #                           guard_requires_approval_sha; must match ^[0-9a-f]{7,64}$ and
 #                           be reachable (git cat-file -e <sha>^{commit}). Roots that do
 #                           not declare an approval-SHA schema get a REVIEW note and proceed.
@@ -42,6 +55,8 @@
 #   ./write_status.sh ./execution/PKG-001_.../1_Working/DEL-001-01_... INITIALIZED TASK+four-documents
 #   ./write_status.sh ./execution/PKG-001_.../1_Working/DEL-001-01_... CHECKING human \
 #     --ruling execution/_Coordination/_DECISIONS/D-XX.md --approval-sha abc1234
+#   ./write_status.sh ./execution/PKG-001_.../1_Working/DEL-001-01_... IN_PROGRESS human \
+#     --ruling execution/_Coordination/_DECISIONS/D-YY_check_withdrawn.md --approval-sha def5678
 #
 # K-GATE-1: this guard checks objective preconditions only (ruling path committed,
 # SHA verifiable, actor class, state-machine shape); it never evaluates or blocks
@@ -219,6 +234,7 @@ sha_format_ok() {
 }
 
 SAME_STATE=0
+REVERSAL=0
 if [ $CREATING -eq 1 ]; then
   if [ "$STATE" != "OPEN" ]; then
     block NEW_FILE_NOT_OPEN "no existing _STATUS.md at $STATUS_FILE — new-file creation is allowed only at OPEN (requested: $STATE)"
@@ -228,7 +244,14 @@ else
     SAME_STATE=1
     warn "same-state re-assert ($STATE) — allowed, history appended (idempotent; divergence from transition.ts recorded)"
   elif [ "$TARGET_IDX" -lt "$CUR_IDX" ]; then
-    block BACKWARD_TRANSITION "backward transitions are not allowed ($CURRENT -> $STATE)"
+    if [ "$CURRENT>$STATE" = "CHECKING>IN_PROGRESS" ]; then
+      # SPEC §3.3: human reversal, the sole exit from an unsuccessful or withdrawn check.
+      REVERSAL=1
+    elif [ "$CURRENT>$STATE" = "ISSUED>IN_PROGRESS" ]; then
+      block BACKWARD_TRANSITION "backward transitions are not allowed ($CURRENT -> $STATE); ISSUED changes use the governed scope-change process, which this tool does not perform"
+    else
+      block BACKWARD_TRANSITION "backward transitions are not allowed ($CURRENT -> $STATE); the only admitted reversal is the human-ruled CHECKING -> IN_PROGRESS"
+    fi
   else
     case "$CURRENT>$STATE" in
       "OPEN>INITIALIZED"|"INITIALIZED>SEMANTIC_READY"|"INITIALIZED>IN_PROGRESS"|"SEMANTIC_READY>IN_PROGRESS"|"IN_PROGRESS>CHECKING"|"CHECKING>ISSUED")
@@ -239,21 +262,34 @@ else
   fi
 fi
 
-if [ "$STATE" = "CHECKING" ] || [ "$STATE" = "ISSUED" ]; then
+RULING_ABS=""
+if [ "$STATE" = "CHECKING" ] || [ "$STATE" = "ISSUED" ] || [ $REVERSAL -eq 1 ]; then
   if [ "$NORM_ACTOR" != "HUMAN" ]; then
-    block UNAUTHORIZED_ACTOR "state $STATE requires a HUMAN actor (got '$ACTOR' -> '$NORM_ACTOR'); SPEC §3.3"
+    if [ $REVERSAL -eq 1 ]; then
+      block UNAUTHORIZED_ACTOR "reversal CHECKING -> IN_PROGRESS requires a HUMAN actor (got '$ACTOR' -> '$NORM_ACTOR'); SPEC §3.3"
+    else
+      block UNAUTHORIZED_ACTOR "state $STATE requires a HUMAN actor (got '$ACTOR' -> '$NORM_ACTOR'); SPEC §3.3"
+    fi
   fi
 
   if [ $IN_GIT -eq 0 ]; then
     review "not a git repository — committed-ruling and SHA reachability checks unavailable here"
+    if [ $REVERSAL -eq 1 ]; then
+      if [ -z "$RULING" ]; then
+        block RULING_REQUIRED "reversal CHECKING -> IN_PROGRESS requires --ruling <ruling path>"
+      elif [ ! -e "$RULING" ]; then
+        block RULING_PATH_MISSING "--ruling path not found: $RULING"
+      fi
+    fi
     if [ -n "$APPROVAL_SHA" ] && ! sha_format_ok "$APPROVAL_SHA"; then
       block INVALID_APPROVAL_SHA "--approval-sha must be a git SHA-like hexadecimal token (7-64 chars)"
     fi
   else
-    # Committed-ruling precondition.
-    RULING_ABS=""
+    # Committed-ruling precondition (always required for the reversal).
     if [ -z "$RULING" ]; then
-      if [ "$REQ_RULING" = "true" ]; then
+      if [ $REVERSAL -eq 1 ]; then
+        block RULING_REQUIRED "reversal CHECKING -> IN_PROGRESS requires --ruling <committed ruling path>"
+      elif [ "$REQ_RULING" = "true" ]; then
         block RULING_REQUIRED "state $STATE requires --ruling <committed ruling path> (guard_requires_committed_ruling_path)"
       fi
     else
@@ -304,9 +340,16 @@ fi
 DEL_NAME=$(basename "$DEL_ABS")
 DEL_ID="${DEL_NAME%%_*}"
 TODAY=$(date +%Y-%m-%d)
+RULING_DISPLAY="$RULING"
+if [ -n "$RULING_ABS" ] && [ -n "$REPO_ROOT" ]; then
+  RULING_DISPLAY="${RULING_ABS#$REPO_ROOT/}"
+fi
 HISTORY_SUFFIX=""
+if [ $REVERSAL -eq 1 ]; then
+  HISTORY_SUFFIX=" [reversal from CHECKING; ruling: ${RULING_DISPLAY:-none}]"
+fi
 if [ $OVERRIDE_USED -eq 1 ]; then
-  HISTORY_SUFFIX=" [override: $OVERRIDE_REASON]"
+  HISTORY_SUFFIX="$HISTORY_SUFFIX [override: $OVERRIDE_REASON]"
 fi
 
 if [ $CREATING -eq 0 ]; then
@@ -393,12 +436,12 @@ upsert_field() {
 if [ "$STATE" = "CHECKING" ] && [ "$REQ_SHA" = "true" ] && [ -n "$APPROVAL_SHA" ]; then
   upsert_field "$SHA_FIELD" "$APPROVAL_SHA"
   if [ -n "$RULING" ]; then
-    RULING_DISPLAY="$RULING"
-    if [ -n "$RULING_ABS" ] && [ -n "$REPO_ROOT" ]; then
-      RULING_DISPLAY="${RULING_ABS#$REPO_ROOT/}"
-    fi
     upsert_field "Authorization Basis" "ruling: $RULING_DISPLAY"
   fi
 fi
 
-echo "Status: $DEL_ID → $STATE (by $ACTOR)"
+if [ $REVERSAL -eq 1 ]; then
+  echo "Status: $DEL_ID → $STATE (by $ACTOR; reversal from CHECKING)"
+else
+  echo "Status: $DEL_ID → $STATE (by $ACTOR)"
+fi
