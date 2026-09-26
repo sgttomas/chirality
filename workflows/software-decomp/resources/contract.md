@@ -86,7 +86,7 @@ The accepted package is consumed downstream by `project-setup`, then by
   review sitting, where snapshots are written in order after the decision).
 - **No invention.** Do not create scope items, objectives, packages, deliverables, or artifacts beyond what the user’s intent supports. If unknown, mark `TBD` and surface as an open issue.
 - **Packages are flat.** Do not create sub-packages.
-- **No overlap / no gaps at the package level.** Every IN scope item must be assigned to exactly one Package (forced decision if ambiguous; human resolves at checkpoint group 2). OUT and TBD items remain in the Scope Ledger with their `SourceRef` and have no Package (`PackageID` blank).
+- **No overlap / no gaps at the package level.** Every SSOW scope item, whether `IN`, `OUT` or `TBD`, must be assigned to exactly one Package as its accountable home (forced decision if ambiguous; human resolves at checkpoint group 2). Only IN items map to Deliverables; an OUT or TBD item keeps its Package home and `SourceRef` for traceability and needs no production mapping.
 - **Deliverables are the smallest unit.** There is no task sub-level inside a deliverable. Therefore deliverables MUST be sized to be executable by a Type 2 specialist with bounded context.
 - **Stable identifiers.** Once assigned, IDs must remain stable across revisions unless the human explicitly requests renumbering.
 - **Identifier format must conform to `docs/TYPES.md` §2 (Stable Identifiers) and the conforming-workflows table in `docs/DECOMPOSITION_STANDARD.md`.**
@@ -155,7 +155,7 @@ A decomposition is complete when:
 | Scope defined | SSOW exists; each scope item has an ID and `IN|OUT|TBD` status |
 | Objectives derived | Objectives list exists and is human-confirmed |
 | Packages flat and domain-based | Package list exists; each package has a scope description that is a *work domain/category* (not a phase) |
-| Package coverage | Every IN `ScopeItemID` is assigned to exactly one Package; OUT and TBD items have none |
+| Package coverage | Every `ScopeItemID`, whether IN, OUT or TBD, is assigned to exactly one Package; only IN items map to Deliverables |
 | Deliverables defined | Deliverables exist within each Package with IDs, types, responsibilities (TBD allowed) |
 | Deliverable assignment | Every deliverable belongs to exactly one Package |
 | Artifacts anticipated | Each deliverable lists anticipated artifacts (TBD allowed) |
@@ -170,8 +170,8 @@ A decomposition is consistent when:
 
 | Requirement | Validation |
 |---|---|
-| No scope overlaps | An IN scope item is not assigned to multiple packages |
-| No scope gaps | No IN scope item remains unassigned to a package |
+| No scope overlaps | A scope item is not assigned to multiple packages |
+| No scope gaps | No scope item, whether IN, OUT or TBD, remains unassigned to a package |
 | Stable IDs | IDs do not change across revisions unless explicitly requested |
 | Terminology consistent | Canonical terms are used consistently; synonyms are mapped |
 | Decisions explicit | Non-trivial choices are recorded and referencable |
@@ -278,15 +278,16 @@ Minimum columns:
 - `InOutStatus`
 - `ScopeItemStatement`
 - `SourceRef`
-- `PackageID` (required for IN; blank for OUT and TBD)
-- `DeliverableID(s)` (one or many; or `TBD`)
+- `PackageID` (exactly one for every item, whether IN, OUT or TBD)
+- `DeliverableID(s)` (IN items: one or many, or `TBD`; blank for OUT and TBD items)
 - `ObjectiveID(s)` (zero or many; or `TBD`)
 - `DecisionRef` (optional)
 - `OpenIssue` (`TRUE|FALSE`)
 - `Notes`
 
-Hard rule: every IN `ScopeItemID` has exactly one `PackageID`. OUT and TBD
-items keep their `SourceRef` and leave `PackageID` blank.
+Hard rule: every `ScopeItemID`, whether IN, OUT or TBD, has exactly one
+`PackageID`. Only IN items require Deliverable mappings; an OUT or TBD item's
+home is for accountability and traceability.
 
 #### 6) Coverage & Telemetry (summary block)
 Minimum fields:
@@ -294,8 +295,8 @@ Minimum fields:
 - `PackageCount`
 - `DeliverableCount`
 - `ObjectiveCount`
-- `UnassignedScopeItems` (IN items without a Package; must be 0 for acceptance)
-- `ScopeItemsWithoutDeliverableMapping`
+- `UnassignedScopeItems` (scope items of any status without a Package; must be 0 for acceptance)
+- `ScopeItemsWithoutDeliverableMapping` (IN items)
 - `UnmappedObjectives`
 - `ContextEnvelopeCounts` (S/M/L/XL)
 - `OpenIssuesByType` (counts + IDs)

@@ -419,31 +419,38 @@ def test_unknown_ids_objectives_and_context_budget_drift(tmp_path: Path) -> None
     assert found["XRG-010"] == 1
 
 
-def test_package_home_is_required_for_in_items_only(tmp_path: Path) -> None:
-    """D-GOV-47: IN items have exactly one Package; OUT/TBD items keep a blank PackageID."""
+def test_every_scope_item_has_a_package_home(tmp_path: Path) -> None:
+    """D-GOV-48: every IN, OUT and TBD item has one Package; only IN items map to Deliverables.
+
+    A missing home is XRG-011 (ERROR) on an IN item and XRG-013 (WARNING) on an
+    OUT or TBD item. XRG-012 (D-GOV-47) is retired: an OUT or TBD item with a
+    PackageID conforms.
+    """
     execution_root = build_workspace(tmp_path)
     ledger_path = execution_root / "_Decomposition" / "ScopeLedger.csv"
     ledger = list(csv.DictReader(ledger_path.open(encoding="utf-8-sig")))
     blank = {"ScopeItemStatement": "s", "DeliverableIDs": "", "ObjectiveIDs": "",
              "DecisionRef": "", "OpenIssue": "FALSE", "Notes": ""}
     ledger.append({"ScopeItemID": "SOW-003", "InOutStatus": "OUT", "SourceRef": "§7.3",
-                   "PackageID": "", **blank})
+                   "PackageID": "PKG-01", **blank})
     ledger.append({"ScopeItemID": "SOW-004", "InOutStatus": "TBD", "SourceRef": "§7.4",
-                   "PackageID": "", **blank})
+                   "PackageID": "PKG-02", **blank})
     write_csv(ledger_path, LEDGER_COLUMNS, ledger)
 
-    # OUT and TBD items without a Package are conforming.
+    # OUT and TBD items with a Package home and no Deliverable mapping conform.
     assert vdr.run(execution_root, families=("XRG",))["findings"] == []
 
-    ledger[0]["PackageID"] = ""        # IN item without a Package -> XRG-011
-    ledger[3]["PackageID"] = "PKG-01"  # TBD item given a Package -> XRG-012
+    ledger[0]["PackageID"] = ""  # IN item without a Package  -> XRG-011
+    ledger[2]["PackageID"] = ""  # OUT item without a Package -> XRG-013
+    ledger[3]["PackageID"] = ""  # TBD item without a Package -> XRG-013
     write_csv(ledger_path, LEDGER_COLUMNS, ledger)
     report = vdr.run(execution_root, families=("XRG",))
 
-    assert codes(report) == {"XRG-011": 1, "XRG-012": 1}
+    assert codes(report) == {"XRG-011": 1, "XRG-013": 2}
     assert ids_for(report, "XRG-011") == ["SOW-001"]
-    assert ids_for(report, "XRG-012") == ["SOW-004"]
-    assert report["error_count"] == 1  # XRG-012 is a WARNING
+    assert ids_for(report, "XRG-013") == ["SOW-003", "SOW-004"]
+    assert report["error_count"] == 1  # XRG-013 is a WARNING
+    assert "XRG-012" not in vdr.CHECKS  # retired by D-GOV-48, not reused
 
 
 def test_package_home_checks_skip_a_ledger_without_a_package_column(tmp_path: Path) -> None:
