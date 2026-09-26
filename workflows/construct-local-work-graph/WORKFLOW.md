@@ -61,12 +61,14 @@ integration. A label such as "work on package" is not an assessable result.
 
 An implementation node is a bounded TASK assignment. Its brief carries the
 objective, accepted basis, write fence, exclusions, acceptance criteria and the
-registered checks it authorizes, and says whether edits may be applied. The
+registered checks it authorizes, and says whether edits may be applied;
+without edit authority the executor returns a proposed diff. The
 executor makes the smallest coherent change with proportionate tests, runs only
 authorized checks, validates changed paths against the fence, and returns the
 diff, evidence, residual risks and blockers. It never silently changes scope,
-public contracts, migrations, shared ownership, tests or acceptance criteria; it
-returns those needs to the graph.
+public contracts, migrations, shared ownership or acceptance criteria, and never
+weakens or removes adopted tests, oracles or tolerances; it returns those needs
+to the graph.
 
 Include the implementation, investigation, verification, validation where
 applicable, independent review, repairs and integration needed for the result.
@@ -84,9 +86,7 @@ use the graph's stable run ID for one receipt at
 point to it. Other loops retain their adopted recording rules. MEMORY and
 closeout writes remain subject to the project's write fences; where a needed
 grant is missing, record the entry in the graph or receipt and route the grant.
-Divide
-deliverable
-comparisons into bounded assignments as needed. Missing required production
+Divide deliverable comparisons into bounded assignments as needed. Missing required production
 returns to the graph for repair and an affected backcheck, not transfer-based
 completion. Central decisions and intake outcomes retain their actual status.
 

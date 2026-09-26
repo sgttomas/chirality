@@ -91,8 +91,8 @@ holds the package's final bytes for historical replay.
 package. Implementation is commissioned as a bounded TASK assignment whose brief
 carries the objective, accepted basis, write fence, exclusions, acceptance
 criteria and authorized checks; `construct-local-work-graph` states the node
-requirements. The legacy-method ledger lists it as historical only, so a new
-selection of the name fails. Its last revision is
+requirements. The legacy-method ledger lists it as historical only; it is no longer
+bundled or aliased, so a bundled selection of the name fails. Its last revision is
 `d1166698d433da2fefbb6e3caee68b7d7910f27d`.
 
 HELPS_HUMANS helps develop or revise workflows; WORKING_ITEMS coordinates their
