@@ -180,6 +180,6 @@ FAIL with two blocking findings. Both are repaired in the next commit, and the r
 | 3 | The Decision_Log preamble is current, and the snapshot path uses `../`. |
 | 4 | STATUS and README say "checkpoint-2 preparation is authorized". |
 | 5 | The graph states that three `D-PEC-95` paths overlap SCA-006 `AffectedFiles` with no amended text changed. `DECISION.md` says "no text that SCA-006 amends". |
-| 6 | The CP1-DQ row distinguishes the rows specific to the agent class from the direct-query rows kept under every DQ option (IA §13.1). |
+| 6 | The CP1-DQ row distinguishes the rows specific to the agent class from the direct-query rows shared by DQ-a and DQ-b, which DQ-c drops or changes (IA §13.1). The first repair wrote "kept under every DQ option"; re-review R1 corrected it. |
 | 7 | The graph records that it holds DEL-03-04, DEL-10-03 and DEL-00-03 until R3, which is more conservative than IA §7.1's "S1 or D1", and that R2 records this. |
 | 8 | The G1 row is rewritten. "Recommended" is changed to "selected" where the owner has selected. The owner-evidence account is labelled as HELP_HUMAN's. The STATUS sentence now says SCA-005's checkpoint 2. S3's needs no longer imply a block on S2. |
