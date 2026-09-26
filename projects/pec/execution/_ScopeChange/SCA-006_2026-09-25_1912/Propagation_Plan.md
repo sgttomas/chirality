@@ -7,7 +7,7 @@ created: 2026-09-25
 status: candidate_awaiting_checkpoint_2_acceptance
 accepted_impact_assessment_sha256: 93253b7d016de041b2295307af5564808fdc3d9a4e392f1cf92892363fecb691
 accepted_intake_sha256: c5f90801989ee9948ccdd375917ba052fdb5838183e387ed373d8c7c2b824891
-amendment_preview_sha256: 3a665e5b1e533baa3465069380d42b5563e49b668c2f1184242177052df5f6ac
+amendment_preview_sha256: 737af0e690688be00c479d1a5e54f2fa82b2c4e25e777abbe07670836473ecf4
 ---
 
 # SCA-006 — checkpoint-group-2 propagation plan
@@ -39,9 +39,9 @@ Package files and candidate postimages:
 
 | File | Role | SHA-256 |
 |---|---|---|
-| `Amendment_Preview.md` | exact decomposition amendment (Seq 18–43), diff-style, mechanically proved | `3a665e5b1e533baa3465069380d42b5563e49b668c2f1184242177052df5f6ac` |
-| `Amendment_Actions_CP2.csv` | final action register (54 rows) | `6e57aa610cfc491f2fa9173a58dde5d4e1d815bb4a38831448200a9fbc5379af` |
-| `Supersession_Delta.csv` | 16 bindings | `028fb4e021e1f565d5c7d9eab275ec94e9d3baf9d19606d887fb24d78b39d4fc` |
+| `Amendment_Preview.md` | exact decomposition amendment (Seq 18–43), diff-style, mechanically proved | `737af0e690688be00c479d1a5e54f2fa82b2c4e25e777abbe07670836473ecf4` |
+| `Amendment_Actions_CP2.csv` | final action register (54 rows) | `dc69afb7796d84b92c4ed225560945a64aa86576c30e723b93aa149e4d5c0d2a` |
+| `Supersession_Delta.csv` | 16 bindings | `e69f97814294ccd993fceff12cdf992623156c33ca4993adb103b61774e5977b` |
 | `PRD_V2_4_SUCCESSOR_DIFF.md` | exact PRD amendment (Seq 1–13), section by section | `a743a5273c66dc679a99888c4dc2b865a318dab64fcaaa7768ecb71f35696a4c` |
 | `AGENTS_MD_CANDIDATE_DIFF.md` | exact instruction amendment (Seq 14–17), I1 hunks separated, tranche manifest and notice drafts | `7c57a1b2c02c872fae6f778beeddf7f812809d469b504e34d1e6f79bbb48a158` |
 | `CP2_CANDIDATE/docs/PRD.md` | PRD v2.4 successor candidate (preimage v2.3 `fff27a66…dfc32`) | `ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe` |
@@ -228,6 +228,8 @@ The checkpoint-3 PR carries the instruction tranche `PEC-SCA006-OPERATIONAL-RELI
 
    Their texts are drafted in `AGENTS_MD_CANDIDATE_DIFF.md` §6.3. The date in each name is the application-date slot. They are the only foreign-path writes this plan covers, and they grant nothing in the receiving loops.
 4. Run the checks the draft names: `validate_instruction_entrypoints.py`, the G4 check `validate_instruction_tranche_manifest.py` in CI mode and in `--added-manifests-only` diff mode over the PR range, `validate_pec_loop_receipts.py`, and `git diff --check`.
+
+Lineage citation: both `AGENTS.md` candidates cite the SCA-006 adoption by its group-2 snapshot folder, not by a D-PEC number, because no such number exists at preparation and the canon forbids inventing one. Under Q-CP2-2 (a) the new D-PEC register row points to that same folder, as `D-PEC-92` does for SCA-005. The tranche adds the register-row number to the Product Posture and Governance Pointers lines only if the owner's checkpoint-2 act directs it; otherwise the folder citation stands and the candidate bytes are applied unchanged.
 
 If the owner prefers the notices after checkpoint-3 acceptance instead, the manifest records `disposition: pending`, which the G4 guard accepts. The notices then go out as graph node R4 without editing the manifest. A later edit to the manifest would itself need a new manifest.
 
@@ -512,9 +514,9 @@ The owner answers these as one package. The settled selections are not re-asked:
 
 | Artifact | SHA-256 |
 |---|---|
-| `Amendment_Preview.md` | `3a665e5b1e533baa3465069380d42b5563e49b668c2f1184242177052df5f6ac` |
-| `Amendment_Actions_CP2.csv` | `6e57aa610cfc491f2fa9173a58dde5d4e1d815bb4a38831448200a9fbc5379af` |
-| `Supersession_Delta.csv` | `028fb4e021e1f565d5c7d9eab275ec94e9d3baf9d19606d887fb24d78b39d4fc` |
+| `Amendment_Preview.md` | `737af0e690688be00c479d1a5e54f2fa82b2c4e25e777abbe07670836473ecf4` |
+| `Amendment_Actions_CP2.csv` | `dc69afb7796d84b92c4ed225560945a64aa86576c30e723b93aa149e4d5c0d2a` |
+| `Supersession_Delta.csv` | `e69f97814294ccd993fceff12cdf992623156c33ca4993adb103b61774e5977b` |
 | `PRD_V2_4_SUCCESSOR_DIFF.md` | `a743a5273c66dc679a99888c4dc2b865a318dab64fcaaa7768ecb71f35696a4c` |
 | `AGENTS_MD_CANDIDATE_DIFF.md` | `7c57a1b2c02c872fae6f778beeddf7f812809d469b504e34d1e6f79bbb48a158` |
 | `CP2_CANDIDATE/docs/PRD.md` | `ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe` |

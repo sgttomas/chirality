@@ -62,7 +62,7 @@ Pre-acceptance variant SHA-256: `3ad0de686616f895c5fc63cceccef15dca3cd45ba1ca154
 
 ## Final action set
 
-`Amendment_Actions_CP2.csv` holds **54 actions: 12 ADD / 42 MODIFY** (0 REMOVE / RECLASSIFY / MERGE / SPLIT). It is the accepted intake exactly: every intake Seq 1–54 is carried with the same ActionSeq, ActionType, EntityType and EntityID, and nothing is dropped or added. The owner's selections (DQ-a, ENV-a, BUD-a, GATE-a, INS-a; R-C excluded) are the intake's recommended set, so no option delta of Impact Assessment §13 applies. Each row's Description states its exact text and cites its intake Seq.
+`Amendment_Actions_CP2.csv` holds **54 actions: 12 ADD / 42 MODIFY** (0 REMOVE / RECLASSIFY / MERGE / SPLIT). It is the accepted intake exactly: every intake Seq 1–54 is carried with the same ActionSeq, ActionType, EntityType and EntityID, and nothing is dropped or added. The owner's selections (DQ-a, ENV-a, BUD-a, GATE-a, INS-a; R-C excluded) are the intake's recommended set, so no option delta of Impact Assessment §13 applies. Each row's Description states its scope, cites its intake Seq and points to its exact text (the candidate text itself for the ADDed scope items and vocabulary rows).
 
 Differences from the intake rows, all within their accepted scope:
 

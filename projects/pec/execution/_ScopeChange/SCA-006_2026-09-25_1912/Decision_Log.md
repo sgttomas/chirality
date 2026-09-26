@@ -92,10 +92,10 @@ Prepared 2026-09-25 by WORKING_ITEMS (node R2 of HELP_HUMAN undertaking `HELP-HU
 
 | Artifact | SHA-256 |
 |---|---|
-| `Amendment_Preview.md` | `3a665e5b1e533baa3465069380d42b5563e49b668c2f1184242177052df5f6ac` |
-| `Propagation_Plan.md` | `22e56f40a0ceff93e3a7923b1608dfea9bcd82b3f7e1fe9a55024e71483338c6` |
-| `Amendment_Actions_CP2.csv` | `6e57aa610cfc491f2fa9173a58dde5d4e1d815bb4a38831448200a9fbc5379af` |
-| `Supersession_Delta.csv` | `028fb4e021e1f565d5c7d9eab275ec94e9d3baf9d19606d887fb24d78b39d4fc` |
+| `Amendment_Preview.md` | `737af0e690688be00c479d1a5e54f2fa82b2c4e25e777abbe07670836473ecf4` |
+| `Propagation_Plan.md` | `abeeedb477505b5c277e97c19496bd6376b299a3128d4aa9a9693de69e429859` |
+| `Amendment_Actions_CP2.csv` | `dc69afb7796d84b92c4ed225560945a64aa86576c30e723b93aa149e4d5c0d2a` |
+| `Supersession_Delta.csv` | `e69f97814294ccd993fceff12cdf992623156c33ca4993adb103b61774e5977b` |
 | `PRD_V2_4_SUCCESSOR_DIFF.md` | `a743a5273c66dc679a99888c4dc2b865a318dab64fcaaa7768ecb71f35696a4c` |
 | `AGENTS_MD_CANDIDATE_DIFF.md` | `7c57a1b2c02c872fae6f778beeddf7f812809d469b504e34d1e6f79bbb48a158` |
 | `CP2_CANDIDATE/docs/PRD.md` | `ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe` |
