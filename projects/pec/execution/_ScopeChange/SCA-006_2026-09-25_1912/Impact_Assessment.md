@@ -54,7 +54,7 @@ views, 4 other ledger/constraint/issue rows and 1 vocabulary term, adds 3
 vocabulary terms, and records 13 PRD and 4 instruction loci as
 product-authority and instruction inputs outside the decomposition. Its main
 cost is derivative: **9 of the 32 existing Scope of Work contracts** (§7.1),
-the DEL-00-03 SPEC, three dependency EvidenceQuotes, two new deliverables to
+the DEL-00-03 SPEC, four dependency EvidenceQuotes, two new deliverables to
 set up, and consumer notices.
 
 Checkpoint group 1 is **not accepted** by this document.
@@ -80,7 +80,7 @@ Checkpoint group 1 is **not accepted** by this document.
 | D-GOV-43 A2 supplement | `fa3756ad3bdf02104da47fc5ba697b4f96d8a02029f008b32bd96a094ec46cb2` |
 | Runtime `APPLICATION_TOOLS.md` / `APPLICATION_CONSUMER_GUIDE.md` | `59e401d14d566814983ba4c242b8449b71ecdb6f3dec1134289c51f836cc307b` / `2f9f37788a17be9c5030c631dbb53be2f1b59a325bd51bc5bf6ac4e86a781865` |
 | Tier-0 profile `_DomainEngines/profiles/pec.yaml` | `6858d567ee27bae9b832115a40a41b106a9a2a58a62d661ca0e0c2acff9b314f` |
-| Locus inventory (TASK child A1; manager scratchpad, not committed) | `INVENTORY.csv` 232 rows `bfcad344…c682`; `SOW_POPULATION.csv` 32 rows `5829902f…4143`; quote verifier `failures=0` (264 checks). Every locus this document relies on is re-cited here by file, line and quotation |
+| Locus inventory (TASK child A1; manager scratchpad, not committed) | `INVENTORY.csv` 232 rows `bfcad344…c682`; `SOW_POPULATION.csv` 32 rows `5829902f…4143`; quote verifier `failures=0` (264 checks). Every locus this document relies on is re-cited here by file, line and quotation. The child classed 7 SOWs AFFECTED; the manager classes 9, adding DEL-04-03 (scope growth) and DEL-00-03 (stale requirement-count premise), see §7.1 |
 | Pre-change baseline | `Pre_Change_Coverage.json` = byte copy of `_Evaluation/DecompCoverage/COV_SCA005_POSTSETUP_2026-09-25_1606/coverage_summary.json` (`b7b432a2b9e9ae13a911c7193b02776e64cd07e247135b3c98caf77882f4128d`, `cmp` identical); reuse justified in §2.1 |
 | Baseline result | `WARNINGS`: 0 blockers / 3 warnings / 70 info; 11/11 packages; 66/66 deliverables and contexts (62 active, 4 retired); 96 ledger rows (70 IN / 18 OUT / 8 TBD); 0 IN rows and 0 active deliverables without an objective |
 | Strict register validator (before) | 66 registers / 263 dependency rows / 0 errors / 0 warnings, exit 0 |
@@ -100,6 +100,29 @@ migration (`AGENTS.md`, `loop/`, `init/`), `README.md`, `docs/STATUS.md` and
 is therefore the current pre-change state byte for byte, and a fresh run would
 re-audit identical inputs. The baseline is reused, and no pre-change audit
 folder is created. A post-change audit remains mandatory at checkpoint 3.
+
+### 2.2 Basis drift during preparation
+
+The package was prepared against `origin/main` `13df8b795`, and every line
+number and hash above is a pin at that commit. Before publication the branch
+merged `origin/main` `bec8bdd65` (PRs #919 and #920). That merge changed these
+files:
+
+- `D-PEC-94`: an owner-confirmation section was added about `D-PEC-88`, taking
+  the file from `eb9793aa…5e81` to
+  `b6814e902c23f24020337ab925a7c287b66b5ee485785bee07b042e25e1e5a6b`. The
+  direction quoted in `Decision_Log.md` is unchanged.
+- `_DECISIONS/_REGISTER.md`: `031adae3…a2f7` →
+  `19a385c898d50b9dfc8d754a5cc9c84c29f0116e321eeafe29eed21a00dc64a3`.
+- The work graph, which is now on `main`:
+  `WORK_GRAPH.md` `f669ebe53d483419799e5c947ea903996187570e608f3ee2b849030c0ec00f78`.
+- PEC records: `docs/STATUS.md`, the prior run's `RUN.md`, and review returns
+  for PR #919.
+- Unrelated Root research-workflow files.
+
+No PRD, `projects/pec/AGENTS.md`, decomposition, register, Scope of Work, SPEC,
+`_CONTEXT.md` or dependency file changed, so every locus in this document still
+holds at `bec8bdd65`. The drift is not material.
 
 ## 3. Parsed change set and part-A validation
 
@@ -128,10 +151,17 @@ DELIVERABLE Scope of Work rows, the SPEC, the EvidenceQuotes).
 | K — PRD | 1–13 | PEC-K-03; §8 Agents and access classes; §1.1; new PEC-ORI-007, PEC-API-006, PEC-API-007; §12 reliance gate and P3 row; §11 metric 4; §15; §16.6; header v2.4 | product authority, outside the decomposition |
 | I — instructions | 14–17 | `projects/pec/AGENTS.md` K-02 gloss, consumer-use bullet, lineage and pointers, checks table | PEC instruction file, outside the decomposition |
 | D — decomposition | 18–43 | C3; §1.2; SOW-003/060/080; OI-006; new SOW-097..100; new DEL-08-06, DEL-10-13; DEL-04-03/08-01/08-03 rows; PKG-04/08/10; OBJ-001/002 views; vocabulary; telemetry; traceability | canonical working package |
-| S — derivative | 44–54 | nine Scope of Work contracts, the DEL-00-03 SPEC, three EvidenceQuotes | derived artifacts; rerun advisories only |
+| S — derivative | 44–54 | nine Scope of Work contracts, the DEL-00-03 SPEC, four EvidenceQuotes (three registers) | derived artifacts; rerun advisories only |
 
 **Part-A validation** (deterministic script over the live registers and PRD;
-per-action table in Annex A): **54/54 PASS**.
+per-action table in Annex A): **54/54 PASS**. The script checks the following
+mechanically for every row: enums, file existence, ID presence or absence,
+parent presence, the K-03 clause and the vocabulary terms. For 18 rows (Seq
+2–4, 8–17, 19, 42, 43, 53, 54) it confirms only enums and file existence. Their
+loci rest on Annex B and on the child inventory's byte-exact quote verifier
+(264 checks), and the independent verifier spot-checked them. For the group-S
+deliverable rows (44–52) the script checks that each deliverable exists; the
+quote verifier checks their Scope of Work loci.
 
 - Every MODIFY target exists: SOW-003 (IN), SOW-060 (IN), SOW-080 (TBD),
   C3, OI-006, PKG-04/08/10, OBJ-001/002, the `harness` term, DEL-04-01/02/03,
@@ -210,7 +240,7 @@ per-action table in Annex A): **54/54 PASS**.
 | 30–32 | DEL-04-03/08-01/08-03 rows | `Deliverables.csv`, three `_CONTEXT.md` | AUDIT_DECOMP; context mirrors |
 | 33–41 | packages, objective views, vocabulary | `SOFTWARE_DECOMP.md` §3, §4, §9 | AUDIT_DECOMP |
 | 42–43 | telemetry, traceability | §5–§8, front matter, `Companion_Inventory.csv`, pointers | AUDIT_DECOMP, HELP_HUMAN (after checkpoint 3) |
-| 44–54 | derivative advisories | nine SOWs, SPEC, three `Dependencies.csv` | WORKING_ITEMS (S1/S4), DEL-00-03 owner (D1), dependency-extract |
+| 44–54 | derivative advisories | nine SOWs, SPEC, four EvidenceQuotes in three `Dependencies.csv` | WORKING_ITEMS (S1/S4), DEL-00-03 owner (D1), dependency-extract |
 
 ## 5. Expected decomposition-state delta (recommended set)
 
@@ -243,7 +273,7 @@ per-action table in Annex A): **54/54 PASS**.
 | `_CONTEXT.md` of DEL-04-03, DEL-08-01, DEL-08-03 | variant-local metadata (SOFTWARE propagation default) | DIRECT_EDIT of mirrored description only | checkpoint 2 propagation plan |
 | Nine `ScopeOfWork.md` (§7.1) | derived publication artifacts | NO_CHANGE by SCA-006; STALE for their owners | owning WORKING_ITEMS packets |
 | DEL-00-03 `artifacts/v2/SPEC.md` | derived artifact (CHECKING) | NO_CHANGE by SCA-006; STALE_REVIEW_REQUIRED | DEL-00-03 owner, exact-byte gate |
-| Three `Dependencies.csv` EvidenceQuotes | derived register cells | NO_CHANGE by SCA-006; refresh advisory | dependency-extract |
+| Four `Dependencies.csv` EvidenceQuotes (DEP-09-06-003/-004, DEP-10-03-003, DEP-10-12-004) | derived register cells | NO_CHANGE by SCA-006; refresh advisory | dependency-extract |
 | `_REFERENCES.md` (66) | variant-local metadata | NO_CHANGE: all cite the PRD by path only; version re-pin is graph node N2 | — |
 | Other `_CONTEXT.md` (63) | variant-local metadata | NO_CHANGE: none quotes K-03 or the access classes | — |
 | `v2/contracts/api/v1/schema.json`, `v2/docs/*` | source tree (fenced) | NO_CHANGE; additive schema evolution can carry budgets and envelope later | own D-PEC packet |
@@ -267,27 +297,43 @@ option column gives the change under other options. Line numbers are at
 | DEL-08-03 | **AFFECTED** | REQ-005 L256 (labeled non-authoritative injection; harnesses as the machine consumers); REQ-006 L257 "No accepted source states a size metric, threshold, or budget for compactness"; AC-006 L274; CON-001 L286; VER-006 L321; CLM-009 L229 "the three token-scoped access classes" | PEC-K-03; §8; PEC-API-006 (Seq 6); SOW-098 added to its coverage | BUD-b: still AFFECTED (PEC-API-004 re-expressed) |
 | DEL-04-03 | **AFFECTED** (scope growth) | quotes no changed text (L146 cites SOFTWARE_DECOMP §8 Context Budget QA; L220 names access classes only as DEL-08-01's act) | its coverage gains SOW-097 / PEC-ORI-007 (Seq 24, 30) | ENV-b: still AFFECTED (PEC-ORI-003 extended) |
 | DEL-03-04 | **AFFECTED** (review level) | CON-001 L248 "Whether this deliverable's parity gate carries *release-gating authority* is unconfirmed."; CON-002 L249 "or explained" undefined; AC-016 L296 | §12 reliance gate (Seq 8) makes both load-bearing | GATE-b: still AFFECTED (P1 row) |
-| DEL-08-04 | **AFFECTED** (DQ-a) | CLM-011 L288 "implementing the three token-scoped access classes is `DEL-08-01`"; L266 and REQ-007 L314 assign size metrics to DEL-08-03 (true under BUD-a); L274 cites PRD §8 (true) | §8 class count (Seq 3) | DQ-b/c: NOT_AFFECTED |
+| DEL-08-04 | **AFFECTED** (DQ-a) | CLM-011 L288 "implementing the three token-scoped access classes is `DEL-08-01`"; L266 and REQ-007 L314 assign size metrics to DEL-08-03 (true under BUD-a); L274 cites PRD §8 (true); CLM-010 L287 quotes the §12 P1 row, which GATE-a leaves unedited | §8 class count (Seq 3) | DQ-b/c: NOT_AFFECTED unless GATE-b; GATE-b: AFFECTED through L287 |
 | DEL-10-03 | **AFFECTED** (DQ-a) | CLM-008 L191 "exactly one of the access classes owner, harness, and admin" | §8 class count (Seq 3); the new class must also be in the no-ruling-write negative surface | DQ-b/c: NOT_AFFECTED |
-| DEL-00-03 | **AFFECTED** (review level) | CLM-006 L77 "The 46 PEC-\*-NNN requirements"; CLM-004 L70 "(46 requirements / 64 deliverables)" | requirement count 46 → 49 (Seq 5–7) | ENV-b + BUD-b + DQ-c: NOT_AFFECTED (no new requirement) |
+| DEL-00-03 | **AFFECTED** (review level, premise only) | CLM-006 L77 "The 46 PEC-\*-NNN requirements"; CLM-004 L70 "(46 requirements / 64 deliverables)". Both quote sources SCA-006 does not edit (the §1.4 intake posture and a `Deliverables.csv` cell), so both quotes stay verbatim. The classification rests only on the contract's premise that the PRD holds 46 requirements | requirement count 46 → 49 (Seq 5–7) | ENV-b + BUD-b + DQ-c: NOT_AFFECTED (no new requirement) |
 | DEL-01-05 | NOT_AFFECTED | L66 cites PRD §8 only for the local-only, token-scoped posture via PEC-API-001 | none (PEC-API-001 unchanged; its v2.2 quotation is SCA-005 residue) | same |
 | DEL-01-06 | NOT_AFFECTED | no K-03, verify-before-rely, §8, access-class, auth, size or parity text; AX-001/AX-002 (L93–94) cite K-01/K-02 in the authority sense | none | same |
 | DEL-01-01 | NOT_AFFECTED | L90 (CLM-007) cites SOFTWARE_DECOMP §8 Context Budget QA, not PRD §8; REQ-006 "non-authoritative" concerns Runtime user data | none | same |
 | DEL-02-03 | NOT_AFFECTED | L104 (CLM-007) cites SOFTWARE_DECOMP §8 | none | same |
-| DEL-10-11 | NOT_AFFECTED | CON-004 L213 and AC-015 L255 leave gating to a later ruling; the gate is defined over DEL-03-04's parity output, not the metric | none (GATE-a does not gate on metric 5) | AFFECTED only if the owner defines the gate over metric 5 |
+| DEL-10-11 | NOT_AFFECTED | CON-004 L213 and AC-015 L255 leave gating to a later ruling; the gate is defined over DEL-03-04's parity output, not the metric; L185 quotes DEL-03-04 CON-001, which quotes the unedited P1 row | none (GATE-a does not gate on metric 5) | AFFECTED if the gate is defined over metric 5, or under GATE-b (L185) |
 | DEL-10-01 | NOT_AFFECTED | L77 quotes §11 metric 1 and the falsification clause | Seq 10 edits metric 4 only; the falsification clause keeps its meaning | same |
-| DEL-10-02 | NOT_AFFECTED | kill test (PEC-K-01) unchanged; L125 "fault injection" unrelated | none | same |
-| DEL-10-10 | NOT_AFFECTED | "relied on" (L339, L354) means DAG nodes consuming accepted capabilities (C16) | none | same |
+| DEL-10-02 | NOT_AFFECTED | kill test (PEC-K-01) unchanged; CLM-004 L125 quotes the §12 P1 row, which GATE-a leaves unedited; "fault injection" unrelated | none | GATE-b: AFFECTED (L125) |
+| DEL-10-10 | NOT_AFFECTED | "relied on" (L339, L354) means DAG nodes consuming accepted capabilities (C16); L137 quotes the §12 P1 row, which GATE-a leaves unedited | none | GATE-b: AFFECTED (L137) |
+| DEL-03-06 | NOT_AFFECTED | CLM-016 L373 quotes the §12 P1 exit test, which GATE-a leaves unedited | none | GATE-b: AFFECTED (L373) |
 | DEL-00-01 | NOT_AFFECTED | cites K-02 only (L45, L82); its ADR artifact cites K-03/K-11 for "not a new consumer duty", which stays true | none | same |
 | DEL-04-05 | NOT_AFFECTED | states coverage honesty (PEC-ORI-006) with no non-reliance premise; the gate cites it as an input | none | GATE-b: AFFECTED (it becomes a P1 exit proof) |
-| DEL-01-03, DEL-01-04, DEL-02-01, DEL-02-02, DEL-02-04, DEL-02-05, DEL-02-06, DEL-02-07, DEL-03-01, DEL-03-02, DEL-03-03, DEL-03-06, DEL-08-02 | NOT_AFFECTED (13) | no verify-before-rely, K-03, PRD §8, access-class, auth-reuse, response-size or parity-gate text; "reliable input" and "Completion and Reliance Basis" are template boilerplate in the professional sense | none | same |
+| DEL-01-03, DEL-01-04, DEL-02-01, DEL-02-02, DEL-02-04, DEL-02-05, DEL-02-06, DEL-02-07, DEL-03-01, DEL-03-02, DEL-03-03, DEL-08-02 | NOT_AFFECTED (12) | no verify-before-rely, K-03, PRD §8, access-class, auth-reuse, response-size or parity-gate text; "reliable input" and "Completion and Reliance Basis" are template boilerplate in the professional sense | none | same |
 
-Totals (recommended set): **9 AFFECTED, 23 NOT_AFFECTED** of 32. The graph's
-S4 batch (K-03-bound) is DEL-04-01, DEL-04-02, DEL-08-01, DEL-08-03, DEL-08-04
-and DEL-04-03; DEL-03-04, DEL-10-03 and DEL-00-03 are review-level and fit S1
-or D1. **DEL-01-06 is not K-03-bound on its own evidence**; the graph's S4
-listing of it rests on G1 (registry schema v2), not on SCA-006. DEL-08-06 and
-DEL-10-13 need first Scope of Work contracts after PROJECT_SETUP.
+Totals (recommended set): **9 AFFECTED, 23 NOT_AFFECTED** of 32.
+
+**Proposed S4 set.** The work graph on `origin/main` `bec8bdd65`
+(`WORK_GRAPH.md` `f669ebe5…0f78`) defines S4 as "The set that checkpoint 2
+fixes". It lists candidates from a grep of `5570fd095`: DEL-04-01, DEL-04-02,
+DEL-08-01, DEL-08-03, DEL-01-01, DEL-01-05, DEL-02-03, DEL-04-03 and
+DEL-08-04. This table is the checkpoint-1 proposal for that set:
+
+- **Proposed S4:** DEL-04-01, DEL-04-02, DEL-08-01, DEL-08-03, DEL-08-04 and
+  DEL-04-03.
+- **Review-level (S1 or D1):** DEL-03-04, DEL-10-03 and DEL-00-03.
+- **Grep candidates found not affected:** DEL-01-01, DEL-02-03 and DEL-01-05.
+  The first two cite SOFTWARE_DECOMP §8; DEL-01-05 cites only the unchanged
+  local-only posture.
+- **DEL-01-06** is NOT_AFFECTED on its own evidence. This matches the graph,
+  which places it in S2 after G1.
+
+DEL-08-06 and DEL-10-13 need first Scope of Work contracts after
+PROJECT_SETUP. The child inventory classed 7 of these SOWs AFFECTED. The
+manager adds DEL-04-03 (its scope grows) and DEL-00-03 (its premise goes
+stale).
 
 ### 7.2 Other derivative packages
 
@@ -295,7 +341,7 @@ DEL-10-13 need first Scope of Work contracts after PROJECT_SETUP.
 |---|---|---|---|
 | DEL-00-03 `SPEC.md` (CHECKING) | DEL-00-03 owning workflow (graph D1) | `STALE_REVIEW_REQUIRED` (already so under SCA-005) | premise-only amendment: K-03 row L46, counts L23/L62, API row L73, release list L78 (Seq 53) |
 | DEL-00-01 `ADRs.md` | DEL-00-01 owner | `CURRENT` for SCA-006 | none |
-| `Dependencies.csv` EvidenceQuotes DEP-09-06-003, DEP-10-03-003, DEP-10-12-004 | dependency-extract | `STALE_REBUILD_REQUIRED` once Seq 31/34 apply | verbatim refresh (Seq 54) |
+| `Dependencies.csv` EvidenceQuotes DEP-09-06-003, DEP-10-03-003, DEP-10-12-004, and DEP-09-06-004 (BUD-a, if the checkpoint-2 wording changes the DEL-08-03 sentence it quotes) | dependency-extract | `STALE_REBUILD_REQUIRED` once Seq 31, 32 or 34 apply | verbatim refresh (Seq 54) |
 | New DEL-08-06, DEL-10-13 folders and registers | PROJECT_SETUP under its own D-PEC packet | absent | create folders, `_CONTEXT/_STATUS/_REFERENCES/_DEPENDENCIES`, extract dependencies |
 | `_REFERENCES.md` PRD version pins (66) | graph node N2 | stale on version only | re-pin with N2 or after checkpoint 3 |
 | Post-change `audit-decomp` | TASK audit-decomp | `NOT_RUN` | at checkpoint 3 |
@@ -320,7 +366,7 @@ DEL-10-13 need first Scope of Work contracts after PROJECT_SETUP.
 | Root `docs/CONTRACT.md` K-AUTH-1 "No agent may claim to certify, approve, sign, seal, or issue work for reliance." | Root | Unaffected: operational reliance issues nothing and approves nothing. The new vocabulary term keeps the senses apart |
 | Root `docs/CONTRACT.md` K-RUNTIME-1 and D-GOV-43 A2 | Root / Runtime loop | Unaffected. The Runtime owns sessions, tools and turn admission. A Runtime-hosted PEC tool would be an application's registration (Runtime `APPLICATION_TOOLS.md`), and the consumer guide forbids pointing a new consumer at the running App's socket or token file. PEC supplies a tool surface; it never adds a Runtime path |
 | App loop consumers of PEC-K-03 (the row adopted by D-PEC-67 K03-A in coordination with consumer loops) | App loop | Notice (R4). Each consumer decides its own adoption; K-03 and K-11 keep consumer-owned use |
-| Runtime loop | Runtime | Notice (R4), non-binding |
+| Runtime loop | Runtime | Graph R4 sends a Runtime notice only if the checkpoint-2 plan names one. The manager recommends that the plan name it, because PEC-API-007 touches the tool path that K-RUNTIME-1 and the Runtime's application-tools interface own. Any notice is non-binding |
 | `_DomainEngines/profiles/pec.yaml` L81 "profile amendment before any runtime, adapter-client, mutating, proposal, or external-result tool is declared or invoked" | tier-0 (D-T0-27) | Implementing or invoking the PEC-API-007 tool surface needs that separate tier-0 act. SCA-006 states the requirement only |
 
 ## 8. Authority boundary and governance compliance
@@ -360,7 +406,7 @@ but the governed gate is decided from the files. No action is proposed.
 PEC-owned and amended through SCA-006: `docs/PRD.md`, `projects/pec/AGENTS.md`,
 the decomposition package, the `_CONTEXT.md` mirrors, and later, by their
 owners, the Scope of Work contracts, SPEC and registers named in §7.
-Notice-only: Root, the App loop and the Runtime loop (§7.4). The tier-0 profile
+Notice-only: Root and the App loop, per the D-PEC-90 grant, and the Runtime loop if the checkpoint-2 plan names it (§7.4). The tier-0 profile
 needs its own act. D-PEC-90 grant item 2's notices were already sent for the
 direction. The R4 notices announce the adopted text.
 
@@ -389,7 +435,7 @@ release whose gate has passed.
     parser deliverables.
   The closure tool must stay acyclic.
 - Strict register validator: expected unchanged at 0/0. Dependency registers
-  change only in their three EvidenceQuote cells, and only after the refresh.
+  change only in their four EvidenceQuote cells, and only after the refresh.
 - Objective invariant: 0 IN items and 0 active deliverables unmapped, before
   and after.
 
@@ -406,7 +452,7 @@ enumeration, and OI-006 still governs the token half.
 
 | Candidate | Action | Superseded authority fact | Type |
 |---|---|---|---|
-| SB-1 | Seq 1 | D-PEC-67 K03-A accepted row (`OD7-G3_APPLICATIONS/D-PEC-67/sections/05_K03-A/ACCEPTED_INPUT.md`): "If it injects PEC data, verify-before-rely is an interface precondition" | SUPERSESSION (owner ruling D-PEC-90 R-A authorizes) |
+| SB-1 | Seq 1 | the PEC-K-03 row in `docs/PRD.md` (L212 at v2.3), whose bytes D-PEC-67 K03-A adopted: "If it injects PEC data, verify-before-rely is an interface precondition; injection is not required." The K03-A accepted input (`OD7-G3_APPLICATIONS/D-PEC-67/sections/05_K03-A/ACCEPTED_INPUT.md` L20–21) says the same thing in other words: "If a consumer injects PEC data, verify-before-rely is an interface precondition; it does not require injection." Checkpoint 2 binds the PRD row's exact value | SUPERSESSION (owner ruling D-PEC-90 R-A authorizes) |
 | SB-2 | Seq 2 | D-PEC-68 v2.2 §8 Agents concordance "never call PEC directly by instruction under the current access classes" | SUPERSESSION |
 | SB-3 | Seq 3 | PRD v2.0 §8 (D-PEC-58) "access classes are owner, harness, and admin" | SUPERSESSION (DQ-a) or SUPPLEMENTARY_EXTENSION (DQ-b clarifies) |
 | SB-4 | Seq 18 | C3 wording derived from SB-1 | SUPERSESSION (derived) |
@@ -448,9 +494,11 @@ always qualify the word. None of the other uses changes.
 - **Estimate and schedule.** None exists for PEC v2 yet, so nothing goes
   stale. Two deliverables are added (DEL-08-06 at P3, DEL-10-13 from P1) and
   one envelope grows.
-- **Phase effects.** P1 gains no mandatory scope: the gate binds only a release
-  that advertises reliance, and response budgets are numbered at P1 (PEC-API-006).
-  P3 gains the tool-call surface. §16 "None of the remaining open decisions
+- **Phase effects.** P1 deliverables gain scope: DEL-04-03 takes the reliance
+  envelope (SOW-097), and DEL-08-03 takes the response budgets (SOW-098; S →
+  M), with numeric budgets confirmed at P1 (PEC-API-006). Both carry PhaseHint
+  P1. Only the reliance gate (DEL-10-13) is conditional: it binds a release
+  that advertises reliance. P3 gains the tool-call surface. §16 "None of the remaining open decisions
   blocks P0–P2" stays true.
 - **Reliance timing.** Nothing is relied on now. The first release that
   advertises reliance must pass DEL-10-13.
@@ -471,10 +519,10 @@ now wait on both.
 | audit-decomp post-change | checkpoint 3 | TASK (WORKING_ITEMS dispatch) |
 | strict register validator; dependency closure | checkpoint 3 and after setup | WORKING_ITEMS |
 | PROJECT_SETUP for DEL-08-06, DEL-10-13 + dependency-extract | after checkpoint 3, own D-PEC packet | PROJECT_SETUP |
-| EvidenceQuote refresh (3 rows) | after checkpoint 3 | dependency-extract |
+| EvidenceQuote refresh (4 cells) | after checkpoint 3 | dependency-extract |
 | SOW currency for the 9 AFFECTED contracts; first SOWs for DEL-08-06 and DEL-10-13 | after checkpoint 3 (graph S4/S1) | WORKING_ITEMS per packet |
 | SPEC premise amendment | after checkpoint 3 (graph D1) | DEL-00-03 owner |
-| Notices to Root, App and Runtime | after checkpoint 3 (graph R4) | HELP_HUMAN |
+| Notices to Root and App (D-PEC-90 grant); Runtime if the checkpoint-2 plan names it (recommended) | after checkpoint 3 (graph R4) | HELP_HUMAN |
 
 ## 13. Option deltas (so the owner can switch at checkpoint 1 without a re-run)
 
@@ -522,10 +570,16 @@ Recommended: **DQ-a + ENV-a + BUD-a + GATE-a + INS-a** (54 actions: 12 ADD /
   - Seq 8 re-targets the P1 row;
   - add MODIFY rows for SOW-009 and SOW-020 notes, and for the DEL-04-05 and
     DEL-03-04 descriptions (+4);
-  - DEL-04-05 becomes AFFECTED.
+  - add group-S advisories for the SOWs that quote the P1 row or become P1
+    exit proofs: DEL-04-05, DEL-10-02 (L125), DEL-10-10 (L137), DEL-03-06
+    (L373) and DEL-10-11 (L185) (+5). DEL-08-04 (L287) is already an
+    advisory under DQ-a; under DQ-b or DQ-c it is added (+1).
 
-  The action count is 55. Risk: reliance is proved only once, at P1, and
-  later phases would need their own restatement.
+  The action count is 60 with DQ-a. The SOW population becomes **14 AFFECTED**
+  (the 9 above plus DEL-04-05, DEL-10-02, DEL-10-10, DEL-03-06 and DEL-10-11).
+  Risk: reliance is proved only once, at P1, and later phases would need their
+  own restatement. Under GATE-a the P1 row text is not edited, so these
+  quoting SOWs stay current.
 
 ### 13.5 Instruction route (CP1-INS)
 
@@ -595,7 +649,10 @@ This asks nothing about CHECKING, ISSUED or acceptance of any deliverable.
 
 Deterministic validation over the live PRD, `SOFTWARE_DECOMP.md`,
 `ScopeLedger.csv` and `Deliverables.csv` at `13df8b795`. The result is 54/54
-PASS, with 0 failures. Eight quote spot-checks were also byte-present: the
+PASS, with 0 failures. Rows whose Basis column gives only line ranges (Seq
+2–4, 8–17, 19, 42, 43, 53, 54) were checked mechanically for enums and file
+existence only. Their loci rest on Annex B and on the child's quote verifier,
+as §3 explains. Eight quote spot-checks were also byte-present: the
 K-03 clause, the §8 Agents and access-class sentences, the §15 D-PEC-67
 bullet, §16.6, the P3 row, the C3 clause and the AGENTS.md gloss.
 
@@ -654,7 +711,7 @@ bullet, §16.6, the P3 row, the C3 clause and the AGENTS.md gloss.
 | 51 | MODIFY | DELIVERABLE | DEL-10-03 | S | DQ-a | PASS | SOW L191 |
 | 52 | MODIFY | DELIVERABLE | DEL-00-03 | S | all | PASS | SOW L70, L77 |
 | 53 | MODIFY | OTHER | DEL-00-03-SPEC | S | all | PASS | SPEC L46, L23, L62, L73, L78 |
-| 54 | MODIFY | OTHER | DEP-EvidenceQuotes | S | all | PASS | three `Dependencies.csv` paths exist |
+| 54 | MODIFY | OTHER | DEP-EvidenceQuotes | S | all | PASS | three `Dependencies.csv` paths (four cells) exist |
 
 ## Annex B — PRD and instruction loci (current text; needed change; no bytes changed here)
 

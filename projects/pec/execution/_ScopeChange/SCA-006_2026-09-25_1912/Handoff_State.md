@@ -22,6 +22,8 @@ status: checkpoint_1_package_prepared_awaiting_owner
 | Impact Assessment for owner acceptance | `Impact_Assessment.md`, at the SHA-256 in the table below |
 | Group-1 decision snapshot | not created; it follows owner acceptance, under `_ScopeChange/checkpoint_snapshots/` |
 | Next owning actor | the owner (question set, Impact Assessment §15); then WORKING_ITEMS (scope-change) prepares checkpoint 2 from the accepted group-1 snapshot |
+| Blockers | the owner's checkpoint-1 decision is the only blocker. The package has no internal blocker: independent verification reported none (`returns/B4_VERIFIER_VERDICT_*.md`) |
+| Basis commit | prepared at `origin/main` `13df8b795`; branch merged `origin/main` `bec8bdd65` before publication with no material drift (Impact Assessment §2.2) |
 
 ## Required state fields
 
@@ -44,11 +46,11 @@ The candidate bindings SB-1..SB-6 are listed in Impact Assessment §9.3.
 
 | File | SHA-256 |
 |---|---|
-| `Brief.md` | `259448dfeec0a123f2f6ea527366e2d05c8fa53846abc0104c44e4f43e764f34` |
-| `Impact_Assessment.md` | `c2ad7c417c96c87fb8c96fb0b0e6fb7474abb675ec0366b8daa7ba32fd888a72` |
-| `Amendment_Actions.csv` (PROPOSED) | `a8e600e3ea3969d2421d4bd670e599b73ad2535b1d7364214d7e6ddef548a902` |
+| `Brief.md` | `205a46c04f2db6d34bead78db3064a02ff9d9d66a5e54fa9ff06b5c6314a1831` |
+| `Impact_Assessment.md` | `87df5ea7b4d3954a2fc08fe3932272761d8a4eb779e7f1cc6e4945bb3f5d7601` |
+| `Amendment_Actions.csv` (PROPOSED) | `e8973bdd3fb699fc720c8db30e53ff678a60975b0a0e741460397794f444d44f` |
 | `Pre_Change_Coverage.json` | `b7b432a2b9e9ae13a911c7193b02776e64cd07e247135b3c98caf77882f4128d` |
-| `Decision_Log.md` | `249bfb69901ddd71abac7d086ee17e021dd03c3a2bda9e00059707b8c9242107` |
+| `Decision_Log.md` | `2e188ac8b11b62aecf547cd5ff2a03bcfa84b71ed769d42fc026590a4b0433db` |
 
 ## Basis hashes not repeated elsewhere
 
@@ -56,7 +58,8 @@ The candidate bindings SB-1..SB-6 are listed in Impact Assessment §9.3.
 |---|---|
 | Root `docs/PRD_ROOT.md` | `b6fa4e3d5ec5c20a4aa1dbfdfd43bed5a13d8287bc78f4635e3d944fb6c11931` |
 | Root `docs/CONTRACT.md` | `64747d2a3c58ae93194bd5c7118d89a591b7b4ebe8cec7e88cb6a95dc55895bd` |
-| `_Coordination/_DECISIONS/_REGISTER.md` | `031adae37d3984c26545a21662d010b7377532aefefe79c5c7addeccca4ba2f7` |
+| `_Coordination/_DECISIONS/_REGISTER.md` | `031adae37d3984c26545a21662d010b7377532aefefe79c5c7addeccca4ba2f7` at base; `19a385c898d50b9dfc8d754a5cc9c84c29f0116e321eeafe29eed21a00dc64a3` at `bec8bdd65` |
+| `WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md` at `bec8bdd65` | `f669ebe53d483419799e5c947ea903996187570e608f3ee2b849030c0ec00f78` |
 | `_ScopeChange/_LATEST.md` | `a2b5b789d996d52aa43c86419c9a4f02d1aa01f438f1616f3d51921e34f84268` |
 | `_Evaluation/DecompCoverage/_LATEST.md` | `2b43dc3bb34163ae51067f6176ebf235430b59aa668890c1e65d7cc9d3cf1450` |
 | `_Decomposition/_LATEST.md` | `1f2cdcba31b3db2fd8818b16202d2bbc89c3f4a20702a962d133a73e10f556b6` |
@@ -69,7 +72,8 @@ The candidate bindings SB-1..SB-6 are listed in Impact Assessment §9.3.
 | Child | Mechanism | Parent | Basis supplied | Write scope | Enforcement limits | Return |
 |---|---|---|---|---|---|---|
 | A1 locus inventory (TASK, Type 2) | Claude Code Agent tool, `subagent_type: pec-task`, `model: opus` (host maps to claude-opus-5-5); background | this WORKING_ITEMS instance, itself dispatched by HELP_HUMAN for node R1 of `HELP-HUMAN-PEC-20260925-POST-SCA005` | child brief SHA-256 `7e9cafa8da8995b10118a1058572455891fbe7e47898719830b4445f9ada9e67`, plus two manager messages relaying the HELP_HUMAN addenda | the manager's scratchpad only; read-only on the repository | read-only use and "no Git state change" were instruction-asserted, not tool-enforced; verified afterwards by `git status` (only this snapshot folder is untracked) | `INVENTORY.csv` 232 rows (`bfcad344fe0715c18c8c375ff3b07c402b1f2ed5474737631b235f9e556ac682`), `SOW_POPULATION.csv` 32 rows (`5829902f0938e7c51b3a99d20913bf3ddb6c8b0883e9f64caaa9ab07c9764143`), `INVENTORY.md` (`3c1cce98228953793a05ad47084a22a543d150d833b29e3c1426c78ecd13d16c`); quote verifier `failures=0` over 264 checks |
-| Independent verifier (TASK, read-only) | Agent tool, `subagent_type: pec-reviewer`, `model: opus` | this WORKING_ITEMS instance | the committed candidate and brief B4 | none (the reviewer agent type has no write tools) | tool-enforced: no Edit or Write | recorded in `returns/B4_VERIFIER_VERDICT_NN.md` |
+| Independent verifier, round 1 (TASK, read-only) | Agent tool, `subagent_type: pec-reviewer`, `model: opus` | this WORKING_ITEMS instance | candidate `e2855e552` and brief B4 | none (the reviewer agent type has no write tools) | tool-enforced: no Edit or Write | PASS WITH MINOR: 7 MINOR, 5 NOTE, 0 BLOCKING (`returns/B4_VERIFIER_VERDICT_01.md`). All MINOR findings and NOTEs 8–12 repaired; NOTE 10 is met by the return commit |
+| Independent verifier, round 2 (TASK, read-only; same instance, resumed) | as round 1 | this WORKING_ITEMS instance | the repaired candidate | none | as round 1 | recorded in `returns/B4_VERIFIER_VERDICT_02.md` |
 
 No audit-decomp child ran; the baseline was reused. The manager drafted every
 snapshot file itself.

@@ -109,6 +109,10 @@ Both are applied in Impact Assessment §7.1. The child inventory checked every
 line number they give; all match. It found one more: DEL-08-04 L290 also cites
 `SOFTWARE_DECOMP.md` §8.
 
+## Basis commit
+
+Prepared against `origin/main` `13df8b795e47ab2284018eeefc9d5473d00c232d`. Before publication the branch merged `origin/main` `bec8bdd65`. That merge changed no PRD, `projects/pec/AGENTS.md`, decomposition, register, Scope of Work, SPEC, `_CONTEXT.md` or dependency file, so the package's loci hold at both commits (Impact Assessment §2.2).
+
 ## Pre-change baseline
 
 `Pre_Change_Coverage.json` is a byte copy of the latest audit,
@@ -149,10 +153,11 @@ not created; it follows owner acceptance.
 | `workflows/scope-change/resources/contract.md` | `4453a719f1588c4eba08bdb4a979140ff3541ed5a29f04477ea58a844f344d02` |
 | `workflows/scope-change/resources/method.md` | `34187e83856853f655389625e3465e3c2cb9ff8ad38be1f4d138ee7470d167f5` |
 | Brief B4 (HELP_HUMAN scratchpad, not in the repository) | `87612acaa41fb3975a87fddd6a97803a4968e0f0d1d1df837ce0373e82d0ae90` |
-| Work graph as read (PR #919 branch commit `5570fd0953f69dd8c23e0e7ae43501a31cad8947`) | `f78484a79a923b09d5acb9ee964ebf07acaa5d8234f9de36e1738593fc60c329` |
+| Work graph as first read (PR #919 branch commit `5570fd0953f69dd8c23e0e7ae43501a31cad8947`; superseded) | `f78484a79a923b09d5acb9ee964ebf07acaa5d8234f9de36e1738593fc60c329` |
+| Work graph on `origin/main` `bec8bdd65` (after the PR #919 repair; compared in Impact Assessment §7.1) | `f669ebe53d483419799e5c947ea903996187570e608f3ee2b849030c0ec00f78` |
 | D-PEC-90 ruling / proposal | `43a0c663c1a57a95001f0470cabb0d36bab098754867ecfe6c30127e7de5efab` / `b04a8aa25c1d402fb03f6f15b6fb1eb27a0110e5cd3f3ded1db3717649a5e147` |
 | D-PEC-91 ruling | `5d896204a0afcf39066f5aa56a9e043d199ed8fe7eb96397bcbe054f90ef3fbe` |
-| D-PEC-94 record | `eb9793aaaf3b618c911f34db43220d8bf5bf7093fafb0ac9c375a5f6456a5e81` |
+| D-PEC-94 record | `eb9793aaaf3b618c911f34db43220d8bf5bf7093fafb0ac9c375a5f6456a5e81` at base; `b6814e902c23f24020337ab925a7c287b66b5ee485785bee07b042e25e1e5a6b` at `bec8bdd65` (owner-confirmation section added; quoted direction unchanged) |
 | D-PEC-67 record | `c04f8ddd90cfe4ca3ecdabad8f48b4820c9952c9c4515655dc8ed21304d9d9a8` |
 
 The manager read only its own role file. `workflows/audit-decomp/WORKFLOW.md`

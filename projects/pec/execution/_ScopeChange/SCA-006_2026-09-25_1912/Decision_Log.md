@@ -18,7 +18,7 @@ run return).
 | DecisionRef | Checkpoint | Decision | Status | Authority |
 |---|---|---|---|---|
 | SCA006-G1 | Gate 1 intake | Open SCA-006 (SOFTWARE variant) under `chirality-root:bundled:workflow:scope-change` to amend PEC's reliance text: PRD PEC-K-03, §8 (agents, access classes, direct query through tool calls), §9 reliance envelope and response-size budgets, §12 reliance gate, and the `projects/pec/AGENTS.md` K-02 gloss | `OPENED BY OWNER DIRECTION` | `D-PEC-90` R-A grant item 3 and the owner's direct-query answer (verbatim below); `D-PEC-94` direction (verbatim below); precondition met by `D-PEC-92` (SCA-005 checkpoint 2 accepted 2026-09-25) |
-| SCA006-CP1 | 1 | Confirm or modify the parsed change set (`Amendment_Actions.csv`, SHA-256 `a8e600e3ea3969d2421d4bd670e599b73ad2535b1d7364214d7e6ddef548a902`, 54 PROPOSED actions) and accept `Impact_Assessment.md` at SHA-256 `c2ad7c417c96c87fb8c96fb0b0e6fb7474abb675ec0366b8daa7ba32fd888a72`, together with the owner items below | `AWAITING_OWNER` | — |
+| SCA006-CP1 | 1 | Confirm or modify the parsed change set (`Amendment_Actions.csv`, SHA-256 `e8973bdd3fb699fc720c8db30e53ff678a60975b0a0e741460397794f444d44f`, 54 PROPOSED actions) and accept `Impact_Assessment.md` at SHA-256 `87df5ea7b4d3954a2fc08fe3932272761d8a4eb779e7f1cc6e4945bb3f5d7601`, together with the owner items below | `AWAITING_OWNER` | — |
 | SCA006-CP1-DQ | 1 | Direct query through tool calls: (a) specify now with a read-only `agent` access class; (b) specify now, riding the `harness` class; (c) defer behind a new §16 access-class decision | `AWAITING_OWNER` | manager recommends (a) |
 | SCA006-CP1-ENV | 1 | Reliance envelope: (a) new PEC-ORI-007 mapped to DEL-04-03; (b) fold into PEC-ORI-003 | `AWAITING_OWNER` | manager recommends (a) |
 | SCA006-CP1-BUD | 1 | Response-size budgets: (a) new PEC-API-006 mapped to DEL-08-03, numeric values confirmed at P1; (b) fold into PEC-API-004 | `AWAITING_OWNER` | manager recommends (a) |
@@ -45,7 +45,7 @@ above."
 
 Owner, 2026-09-25, as transcribed in
 `execution/_Coordination/_DECISIONS/D-PEC-94_owner_direction_loop_migration_2026-09-25.md`
-(SHA-256 `eb9793aaaf3b618c911f34db43220d8bf5bf7093fafb0ac9c375a5f6456a5e81`):
+(SHA-256 `eb9793aaaf3b618c911f34db43220d8bf5bf7093fafb0ac9c375a5f6456a5e81` at base `13df8b795`; `b6814e902c23f24020337ab925a7c287b66b5ee485785bee07b042e25e1e5a6b` after its owner-confirmation section merged at `bec8bdd65`, with the direction below unchanged):
 
 > You can continue with all the open work you identified.  Start with the loop migration, then use the loops for organizing the remaining work into a work graph to help plan and orchestrate the implementation.  You are now HELP_HUMAN in the Agent 0 role.  Read your instructions if you need a refresher and carry on.
 
