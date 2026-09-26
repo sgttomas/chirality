@@ -1,0 +1,44 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-WORKFLOW-WAVE2A-CLOSURE-20260926
+title: Closure workflow fixes (reconciliation, bounded-reconciliation)
+date: '2026-09-26'
+basis: 7f33b4dd51f93553f17607167077c28ddd773ff6
+instruction_surface_paths:
+  - tools/validation/build_workflow_index.py
+  - tools/validation/test_workflow_catalog.py
+  - workflows/bounded-reconciliation/WORKFLOW.md
+  - workflows/catalog.yaml
+  - workflows/index.json
+  - workflows/reconciliation/WORKFLOW.md
+  - workflows/reconciliation/resources/contract.md
+  - workflows/reconciliation/resources/method.md
+  - workflows/reconciliation/resources/representation-migration.md
+  - docs/governance_harness/tranche_manifests/ROOT-WORKFLOW-WAVE2A-CLOSURE-20260926.yaml
+m2_gate:
+  authorization: >-
+    The repository owner directed wave 2a of the workflow-library review ("go
+    ahead in the proposed order starting with wave 2a"): correctness fixes to
+    the workflows the loops use, from the independent wave 2 evaluation. This
+    tranche carries the closure-cluster fixes; the review workflow rewrite is
+    wave 2b.
+  authorized_by: Ryan Tufts (repository owner sgttomas, current Claude Code conversation)
+  authorization_date: '2026-09-26'
+  integration_owner: >-
+    Claude Code session on claude/brave-goodall-wj3hok under the standing Git
+    authorization of 2026-09-12
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE2A_CLOSURE.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE2A_CLOSURE.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE2A_CLOSURE.md
+  rationale: >-
+    App, Piping and PEC run reconciliation and bounded-reconciliation; the App
+    bundles the library and shows the changed display names.
+scope_limits:
+  - Changes reconciliation, bounded-reconciliation and two catalog display names only.
+  - The review workflow is unchanged here; its SPEC 3.4 rewrite is a separate tranche.
+  - Owner delegation is limited to recording an explicit written delegation; no standing-disposition doctrine is created.
+  - Historical run records are not rewritten.
