@@ -1,0 +1,61 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-WORKFLOW-DUPLICATE-RETIREMENT-20260926
+title: Retire workflow packages duplicated by canonical skills
+date: '2026-09-26'
+basis: 3245f9acd42d447238033e926ccace6c9aa5176d
+instruction_surface_paths:
+  - workflows/deliverable-consistency/**
+  - workflows/preparation/**
+  - workflows/proposal-format/**
+  - workflows/researcher/**
+  - workflows/software-code-review/**
+  - workflows/software-defect-diagnosis/**
+  - .agents/skills/deliverable-consistency/SKILL.md
+  - .agents/skills/preparation/SKILL.md
+  - .agents/skills/preparation/references/scaffold-contract.md
+  - .agents/skills/researcher/SKILL.md
+  - .agents/skills/software-code-review/SKILL.md
+  - .agents/skills/software-defect-diagnosis/SKILL.md
+  - workflows/catalog.yaml
+  - workflows/index.json
+  - workflows/README.md
+  - workflows/domain-documents/WORKFLOW.md
+  - workflows/project-setup/resources/method.md
+  - tools/validation/build_workflow_index.py
+  - tools/validation/test_workflow_catalog.py
+  - tools/workflow_runtime/README.md
+  - tools/workflow_runtime/resolve_workflow.py
+  - tools/workflow_runtime/test_resolve_workflow.py
+  - docs/governance_harness/tranche_manifests/ROOT-WORKFLOW-DUPLICATE-RETIREMENT-20260926.yaml
+m2_gate:
+  authorization: >-
+    In a workflow-library review, the repository owner selected "Retire
+    workflow copies" for the six methods that exist both as a canonical skill
+    under D-GOV-42 and as an older same-named workflow package, and defined
+    retirement as removing the package from the bundled catalog while recording
+    its name and last revision. The owner excluded drawing-titleblock-page and
+    other engineering-extraction methods from change.
+  authorized_by: Ryan Tufts (repository owner sgttomas, current Claude Code conversation)
+  authorization_date: '2026-09-26'
+  integration_owner: >-
+    Claude Code session on claude/brave-goodall-wj3hok under the standing Git
+    authorization of 2026-09-12
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_DUPLICATE_RETIREMENT.md
+  rationale: >-
+    The App's Workflows panel lists bundled workflow packages and hides skill
+    browsing in v3.0.0, so these six methods leave that panel while remaining
+    available as bundled skills. Runtime resolution already maps the legacy
+    names to the skills through the unchanged legacy-method ledger.
+scope_limits:
+  - Retires only the six workflow packages; the canonical skills remain and carry the methods.
+  - Before retirement, execution-critical content missing from the skills was ported (exact _STATUS.md form, scaffold tool operations, research packet command and return fields, diagnosis and consistency write limits, blocking labels for review findings).
+  - The legacy-method ledger format and Runtime parsers are unchanged; last revisions are recorded in workflows/README.md.
+  - The reference resolver routes a legacy agent whose historical workflow was retired to its recorded canonical successor and records that mapping; the index validator rejects a retired-role workflow removed without a successor.
+  - project-setup's status step is aligned with the preparation skill because write_status.sh cannot initialize the scaffolder's empty stub.
+  - drawing-titleblock-page, superseded packages, and all other workflows are unchanged apart from one link repair and the project-setup status step.
+  - Historical run evidence and pinned identities are not rewritten.

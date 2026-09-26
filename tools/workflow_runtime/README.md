@@ -22,7 +22,9 @@ historical workflow and bypasses alias conversion. `--method` accepts ordered
 JSON references or source-qualified identities; distinct ordered methods stay
 ordered. Results record original fields, mapping decisions, normalized methods,
 and fully qualified resolved identities separately. `--legacy-agent` reads the
-explicit legacy-agent map and preserves its historical workflow route.
+explicit legacy-agent map and preserves its historical workflow route. When
+that workflow package has been retired, it resolves to the alias's recorded
+`canonical_successor` and records a `retired-workflow-successor` decision.
 
 A package's `compatible_roles` applies to the whole method. TASK receives a
 bounded child workflow or a brief. Resources are selected explicitly through

@@ -55,13 +55,13 @@ SUPERSEDED = {
 }
 # Group order follows catalog.yaml navigation.specialist authoring order.
 SPECIALIST_GROUPS = [
-    ("plan-organize", "Plan & organize", 7),
-    ("research-understand", "Research & understand", 9),
+    ("plan-organize", "Plan & organize", 5),
+    ("research-understand", "Research & understand", 8),
     ("extract-documents", "Extract from documents", 15),
     ("create-publish-documents", "Create & publish documents", 8),
-    ("build-maintain-software", "Build & maintain software", 4),
+    ("build-maintain-software", "Build & maintain software", 2),
     ("estimate-cost", "Estimate & cost", 3),
-    ("review-check", "Review & check", 11),
+    ("review-check", "Review & check", 10),
     ("manage-changes", "Manage changes", 5),
 ]
 SPECIALIST_GROUP_SIZES = {key: size for key, _, size in SPECIALIST_GROUPS}
@@ -91,7 +91,7 @@ def test_root_navigation_partition_is_complete_and_ordered():
     assert {item["name"]: item["navigation"].get("displayName") for item in core if "displayName" in item["navigation"]} == CORE_DISPLAY_NAMES
     assert all(item["navigation"]["tier"] == "primary" and "group" not in item["navigation"] for item in core)
     specialist = [item for item in workflows.values() if item["navigation"]["category"] == "specialist"]
-    assert len(specialist) == 62
+    assert len(specialist) == 56
     groups = {}
     group_identity = {}
     for item in specialist:
@@ -105,7 +105,10 @@ def test_root_navigation_partition_is_complete_and_ordered():
     assert all(sorted(orders) == list(range(len(orders))) for orders in groups.values())
     assert group_identity == {key: {(label, order)} for order, (key, label, _) in enumerate(SPECIALIST_GROUPS)}
     assert workflows["semantic-matrix-build"]["navigation"]["tier"] == "supporting"
-    assert workflows["researcher"]["navigation"]["tier"] == "primary"
+    assert workflows["scope-of-work"]["navigation"]["tier"] == "primary"
+    retired = {"deliverable-consistency", "preparation", "proposal-format", "researcher", "software-code-review", "software-defect-diagnosis"}
+    assert not retired & set(workflows)
+    assert all(index["legacy"]["convertedWorkflowAliases"][name] == {"kind": "skill", "name": name} for name in retired)
     assert workflows["construct-local-work-graph"]["navigation"]["group"]["key"] == "plan-organize"
     assert workflows["bounded-reconciliation"]["navigation"]["group"]["key"] == "review-check"
     superseded = {item["name"]: item for item in workflows.values() if item["navigation"]["category"] == "superseded"}
@@ -445,3 +448,13 @@ def test_research_uses_grouped_domain_acceptance_with_legacy_fallback():
     assert "LEGACY_ACCEPTED_GATE_POINTER" in contract
     assert "Gate6_Publication_Manifest.csv" in contract
     assert "clearly label that compatibility basis" in method
+
+
+def test_retired_role_workflow_requires_a_catalog_package_or_successor(tmp_path):
+    root = _fixture_root(tmp_path)
+    ledger = root / "workflows" / "legacy-agents.json"
+    ledger.write_text(json.dumps({"schema_version": 1, "aliases": {"LIVE": {"role": "WORKING_ITEMS", "workflow": CORE[0]}}}))
+    validate_and_build(root)
+    ledger.write_text(json.dumps({"schema_version": 1, "aliases": {"GONE": {"role": "TASK", "workflow": "removed"}}}))
+    with pytest.raises(ValueError, match="removed without a canonical successor"):
+        validate_and_build(root)
