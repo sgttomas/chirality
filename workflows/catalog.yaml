@@ -37,6 +37,9 @@
         "name": "scope-change"
       },
       {
+        "name": "project-dag"
+      },
+      {
         "name": "task-management",
         "displayName": "Manage tasks"
       },

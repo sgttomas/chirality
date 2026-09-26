@@ -64,6 +64,8 @@ Every `ScopePath` and every `AllowedWriteTarget` (see `AGENT_WORKFLOW_RUNTIME.md
 
 A `ScopePath` or write target that resolves outside the selected working root — including a sibling pack, the instruction root, a symlink escape, or `..` traversal — MUST be rejected (`SCOPE_OUTSIDE_WORKTREE` or `WRITE_TARGET_OUTSIDE_WORKTREE`); the task stops rather than writing. This is the deterministic backstop that prevents a run from writing into another checkout or pack. This rule is bound as `CONTRACT.md` invariant **K-WRITE-2**.
 
+The registered tool roots and their registered subtrees (§1.2) are allowed write locations under this rule when a brief names them and they resolve under `WORKING_ROOT`. This includes `{DAG_ROOT}/cases/<CASE-ID>/`, the home for SCC resolution cases (§1.2, §5.4). Containment itself grants no authority to write there.
+
 ### 0.2.4 Path reference discipline
 
 - **Instruction-surface references** (to `agents/`, `workflows/`, `tools/`, root `docs/`, `AGENTS.md`) resolve **`INSTRUCTION_ROOT`-relative**.
@@ -88,6 +90,7 @@ Agent instructions and workflows reference roots through `{*_ROOT}` tokens. Each
 | `{EVALUATION_ROOT}` | tool-root-relative | `{EXECUTION_ROOT}/_Evaluation/` |
 | `{RECONCILIATION_ROOT}` | tool-root-relative | `{EXECUTION_ROOT}/_Reconciliation/` |
 | `{ESTIMATES_ROOT}` | tool-root-relative | `{EXECUTION_ROOT}/_Estimates/` |
+| `{DAG_ROOT}` | tool-root-relative | `{EXECUTION_ROOT}/_DAG/`: accepted project DAG versions, their `_LATEST.md` pointer, candidates and SCC cases (§1.2, §5.4) |
 | `{SOURCE_AUDIT_ROOT}`, `{ASSETS_ROOT}`, `{PUBLICATION_ROOT}`, `{RESEARCH_ROOT}`, `{PLANNING_ROOT}`, `{RUN_ROOT}`, `{CONTEXT_ROOT}` | `WORKING_ROOT`-relative | domain/workspace-local roots bound by the owning role/workflow; MUST resolve under `WORKING_ROOT` |
 | `{WORKFLOW_ROOT}` | `INSTRUCTION_ROOT`-relative | `{INSTRUCTION_ROOT}/workflows/<name>/` |
 | `{SKILL_ROOT}` | historical adapter token | Historical briefs retain their recorded binding; the migration adapter maps a selected legacy package to `{WORKFLOW_ROOT}` without granting writes. |
@@ -121,6 +124,11 @@ An execution instance is a self-contained project workspace rooted at `{EXECUTIO
 ├── _Change/                         # Change management records
 ├── _Coordination/                   # Coordination representation
 │   └── _COORDINATION.md
+├── _DAG/                            # Accepted project DAG versions (§5.4)
+│   ├── _LATEST.md                   # Pointer to the accepted current version
+│   ├── DAG-NNN/                     # Immutable accepted versions
+│   ├── _Candidates/                 # Candidate versions (working records)
+│   └── cases/                       # SCC resolution cases (working records)
 ├── _Decomposition/                  # Project/domain decomposition document(s)
 │   └── _Archive/
 ├── _Estimates/                      # Cost estimate snapshots
@@ -153,13 +161,14 @@ The `_Archive/` subfolders above are **local working state, not tracked repo con
 
 ### 1.2 Tool Roots
 
-Tool roots are workspace-level directories for derived outputs, resolved `{EXECUTION_ROOT}`-relative. Each tool root is isolated from source truth (deliverable folders). A tool-root path is the canonical write destination for `tool-root-only` agents (see §9.5); `AUDIT_GOVERNANCE` validates that every agent's `WRITE_SCOPE` references a registered tool root and that every tool root has at least one writer.
+Tool roots are workspace-level directories for derived outputs and project control records, resolved `{EXECUTION_ROOT}`-relative. Each tool root is isolated from source truth (deliverable folders). A tool-root path is the canonical write destination for `tool-root-only` agents (see §9.5); `AUDIT_GOVERNANCE` validates that every agent's `WRITE_SCOPE` references a registered tool root and that every tool root has at least one writer.
 
 | Tool Root | Purpose | Typical Writer |
 |---|---|---|
 | `_Aggregation/` | Aggregation snapshots and templates | AGGREGATION |
 | `_Change/` | Change management records | CHANGE |
 | `_Coordination/` | Coordination representation | PROJECT_SETUP |
+| `_DAG/` | Accepted project DAG versions as immutable `DAG-NNN/` snapshots, the `_LATEST.md` pointer to the accepted current version, candidate versions under `_Candidates/`, and SCC resolution cases under `cases/<CASE-ID>/` (§5.4) | WORKING_ITEMS with `project-dag` (versions and pointer, after human acceptance); TASK under `project-dag` (`_Candidates/`); TASK + `scc-resolution-case` (`cases/`) |
 | `_Decomposition/` | Project/domain decomposition document(s) and companions | WORKING_ITEMS with `project-decomp`, `software-decomp`, or `domain-decomp` |
 | `_Estimates/` | Cost estimate snapshots | TASK + estimate workflows |
 | `_Evaluation/` | Current evaluation reports plus structural, dependency, epistemic, governance, agent, coherence, and review snapshots | EVALUATION / EVALUATION_* / REVIEW / AUDIT_* |
@@ -181,6 +190,30 @@ named subtrees that are themselves snapshot roots — e.g.
 such a subtree satisfies the registry through its parent tool root. Legacy
 generic-audit subtrees under `_Reconciliation/` remain readable immutable
 evidence but are not current write destinations.
+
+**`_DAG/` (D-GOV-49).** `_DAG/` holds the project's accepted DAG versions
+(§5.4). A version folder `DAG-NNN/` carries a stable sequential identity
+rather than a timestamped label, and is immutable once complete (§11.1).
+`_DAG/_LATEST.md` names only a version the human accepted; a candidate, a
+closure snapshot, or an observation is never named there. Currency audits
+are observations and are written under `_Evaluation/DAGCurrency/`.
+`_DAG/cases/<CASE-ID>/` is the home for SCC resolution cases in every project
+from D-GOV-49 onward. A case folder is named by the stable `CASE_ID` assigned
+when the case opens (`SCC-CASE-NNN`), not by the positional SCC ID of a closure
+run; `scc-resolution-case` defines the identity and how later closure snapshots
+are matched to existing cases. A project whose cases are already held in a PKG-00
+control deliverable (for example
+`PKG-00_DAG_Closure_and_Project_Control`) may keep using that legacy home.
+Each project uses one home for its cases; existing cases are not migrated.
+Retiring the legacy PKG-00 home is a later decision, once no active project
+uses it.
+
+Within `_DAG/`, SCC cases under `cases/<CASE-ID>/` and candidate versions
+under `_Candidates/DAG-NNN/` are working records, not snapshots: they are
+updated in place under their workflow's brief, with Git history as their
+revision record. Accepted `DAG-NNN/` versions and `_Evaluation/DAGCurrency/`
+snapshots remain immutable snapshots. A candidate becomes immutable when it is
+accepted as a version (§11.1; `CONTRACT.md` K-SNAP-1).
 
 ---
 
@@ -499,11 +532,80 @@ section.
 
 In any mode, a dependency graph is not by itself a schedule.
 
+The blocker rules in this table apply to a project that has no accepted
+project DAG. A project with an accepted DAG computes blockers under §5.4.
+
 **Legacy value.** `TRACKED` was this section's previous full-extraction value.
 It is read as `FULL_GRAPH`. Files that record it are not rewritten; new and
 updated records write `FULL_GRAPH`. The previous revision also said `DECLARED`
 used no agent extraction. D-GOV-46 withdraws that restriction in favour of the
 `DECLARED` meaning above.
+
+### 5.4 Accepted Project DAG
+
+This section applies `CONTRACT.md` K-DEP-1 as amended by D-GOV-49.
+
+**Authority.** Neither the local dependency files nor a project DAG is
+self-authorizing. Authority comes from the human's acceptance, as with an
+accepted decomposition snapshot.
+
+- The local files (`_DEPENDENCIES.md` and `Dependencies.csv`) are the
+  dependency evidence: human declarations and agent extractions. They may
+  change at any time.
+- An accepted project DAG version is a snapshot of that evidence which the
+  human reviewed and accepted. It carries authority only through its
+  acceptance record, and only while it is current with the evidence.
+- The Chirality repository has no cross-project dependency graph. Each project
+  may accept its own project DAG, under `{EXECUTION_ROOT}/_DAG/` (§1.2). Each
+  development loop builds work graphs (`construct-local-work-graph`) for a
+  tranche of work within that DAG.
+
+A project in `DECLARED` mode may accept a DAG labelled as a partial view. A
+project in `NOT_TRACKED` mode has no DAG built from its files.
+
+**Required fields.** Every edge row of an accepted version carries the 29 v3.1
+core columns (§6.2) and the provenance the version defines. `Explicitness`,
+`SatisfactionStatus` and `Confidence`, which §6.2 marks SHOULD for a register,
+are REQUIRED in an accepted version and hold canonical values (§6.3):
+`tools/coordination/audit_dag.py --canonical --strict` rejects them blank. A
+blank is completed in the local file by its owner before the version is
+accepted.
+
+**Departure from the accepted version.** A local file departs from the
+accepted version when its evidence adds an edge, removes an edge, or creates a
+cycle among the version's deliverables. An accepted decomposition change that
+adds, removes or splits deliverables has the same effect. Neither side
+silently wins:
+
+1. A currency audit flags the DAG stale for the affected deliverables.
+2. A candidate new version is prepared.
+3. The human accepts it or rejects the change.
+
+Other changes to the local files leave the version current: satisfaction
+progress, dates, evidence text, or a further row on an edge the version already
+represents. Satisfaction and other progress fields are read from the live
+local files.
+
+**Blockers.**
+
+| Project state | Blocker computation |
+|---|---|
+| No accepted project DAG | From the recorded registers under §5.3. |
+| Accepted DAG; deliverable current | From the accepted current version's edges, with satisfaction read from the local files. Edges the version holds as unresolved-cycle candidates stay non-gating (`docs/CYCLE_DRIVEN_RESOLUTION.md` §2 rule 4). |
+| Accepted DAG; deliverable affected by an undecided departure | **DAG pending.** No ready or blocked verdict is given from dependencies. Reports show the departure and the decision awaited. |
+
+Unaffected work continues to use the accepted version. The DAG-pending flag
+clears when the human accepts a new version or rejects the change. A rejected
+change is recorded; the accepted version stands, and the departing evidence is
+routed to its owner.
+
+**SCC cases.** SCC resolution cases live under `{DAG_ROOT}/cases/<CASE-ID>/`,
+or in a project's legacy PKG-00 control deliverable where it already holds its
+cases (§1.2). A project uses one home for its cases. A case is identified by
+the `CASE_ID` assigned when it opens, not by a closure run's positional SCC
+ID. Its `Case_Datasheet.md` records the originating closure snapshot, the SCC
+ID there, and the member node set; a later closure snapshot's SCC is matched
+to an existing case by member node set (`scc-resolution-case`).
 
 ---
 
@@ -538,11 +640,11 @@ The `RegisterSchemaVersion` column MUST be present in every row and set to `v3.1
 | 17 | `EvidenceFile` | string | MUST* | Source document containing evidence (* or `location TBD`) |
 | 18 | `SourceRef` | string | MUST* | Path + heading/section within the evidence file (* or `location TBD`) |
 | 19 | `EvidenceQuote` | string | SHOULD | Short quote from source (<= 30 words) |
-| 20 | `Explicitness` | enum | SHOULD | `EXPLICIT` or `IMPLICIT` |
+| 20 | `Explicitness` | enum | SHOULD (REQUIRED in an accepted DAG version, §5.4) | `EXPLICIT` or `IMPLICIT` |
 | 21 | `RequiredMaturity` | string | optional | Maturity level required for the dependency to be satisfied |
 | 22 | `ProposedMaturity` | string | optional | Proposed maturity level (agent suggestion) |
-| 23 | `SatisfactionStatus` | enum | SHOULD | See Section 6.3 |
-| 24 | `Confidence` | enum | SHOULD | `HIGH`, `MEDIUM`, or `LOW` |
+| 23 | `SatisfactionStatus` | enum | SHOULD (REQUIRED in an accepted DAG version, §5.4) | See Section 6.3 |
+| 24 | `Confidence` | enum | SHOULD (REQUIRED in an accepted DAG version, §5.4) | `HIGH`, `MEDIUM`, or `LOW` |
 | 25 | `Origin` | enum | MUST | `DECLARED` or `EXTRACTED` |
 | 26 | `FirstSeen` | date | MUST | ISO date of first extraction (`YYYY-MM-DD`) |
 | 27 | `LastSeen` | date | MUST | ISO date of most recent confirmation (`YYYY-MM-DD`) |
@@ -879,6 +981,8 @@ Task agents that produce outputs to tool roots SHOULD write to timestamped snaps
 
 Snapshot folders are immutable after creation. Reruns create new snapshot folders. This is the enforcement point for `CONTRACT.md` K-SNAP-1.
 
+Within `_DAG/`, `cases/<CASE-ID>/` and `_Candidates/DAG-NNN/` are working records rather than snapshots. They are updated in place under their workflow's brief, with Git history as their revision record. Accepted `DAG-NNN/` versions and `_Evaluation/DAGCurrency/` snapshots remain immutable snapshots; a candidate becomes immutable when it is accepted as a version (§1.2, D-GOV-49).
+
 ### 11.2 Pointer Files
 
 `_LATEST.md` is a mutable pointer file that references the most recent snapshot:
@@ -888,7 +992,8 @@ Latest: {SNAPSHOT_FOLDER_NAME}
 Updated: {YYYY-MM-DD}
 ```
 
-Pointer files MAY be overwritten; snapshots MUST NOT.
+Pointer files MAY be overwritten; snapshots MUST NOT. In `_DAG/`, `_LATEST.md`
+names only a version the human accepted (§5.4).
 
 ---
 
