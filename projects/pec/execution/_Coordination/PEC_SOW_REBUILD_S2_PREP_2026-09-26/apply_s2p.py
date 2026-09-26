@@ -59,7 +59,7 @@ TARGETS = {
         ("d044499ab5ace12305434ab3c7b5e17e21f730f8d77b45ff64c055d1edce2559",
          "3d1220872c55bc5a33b5f659cb465b83d6bd69177d48c68534c82358539f18fb"),
 }
-# Read-only files the act re-verifies (values at origin/main 2b5389a97; unchanged since aca930622).
+# Read-only files the act re-verifies (values at origin/main 121900105; unchanged since aca930622).
 PINNED = {
     E + "_Decomposition/SOFTWARE_DECOMP.md":
         "9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1",
