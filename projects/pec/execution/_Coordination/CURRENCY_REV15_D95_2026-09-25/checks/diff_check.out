@@ -1,0 +1,22 @@
+outside run root: exit=0 notices=0
+whole diff: exit=2 notices=291
+  1	trailing whitespace.	projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/checks/closure_post/bidirectional_pairs.csv
+  67	trailing whitespace.	projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/checks/closure_post/coverage.csv
+  1	trailing whitespace.	projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/checks/closure_post/cycles_sample.csv
+  2	trailing whitespace.	projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/checks/closure_post/hubs.csv
+  1	trailing whitespace.	projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/checks/closure_post/id_normalization.csv
+  7	trailing whitespace.	projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/checks/closure_post/isolated.csv
+  1	trailing whitespace.	projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/checks/closure_post/orphans.csv
+  1	trailing whitespace.	projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/checks/closure_post/outside_scope.csv
+  1	trailing whitespace.	projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/checks/closure_post/scc_summary.csv
+  1	trailing whitespace.	projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/checks/closure_pre/bidirectional_pairs.csv
+  67	trailing whitespace.	projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/checks/closure_pre/coverage.csv
+  1	trailing whitespace.	projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/checks/closure_pre/cycles_sample.csv
+  2	trailing whitespace.	projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/checks/closure_pre/hubs.csv
+  1	trailing whitespace.	projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/checks/closure_pre/id_normalization.csv
+  7	trailing whitespace.	projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/checks/closure_pre/isolated.csv
+  1	trailing whitespace.	projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/checks/closure_pre/orphans.csv
+  1	trailing whitespace.	projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/checks/closure_pre/outside_scope.csv
+  1	trailing whitespace.	projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/checks/closure_pre/scc_summary.csv
+  2	trailing whitespace.	projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/checks/verify_d95.out
+  125	trailing whitespace.	projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/gen_d95_report.tsv

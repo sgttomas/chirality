@@ -32,3 +32,5 @@ exit=0	checks/t1_06_validate_post_REGISTER.out	python3 tools/taskmgmt/taskmgmt.p
 exit=0	checks/t1_06_validate_post_REGISTER_CLOSED.out	python3 tools/taskmgmt/taskmgmt.py validate --register projects/pec/execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv
 exit=0	checks/preimages_at_590ec52c1.out	python3 <RR>/check_preimages.py <pre> <EV>   [126/126: 124 generator READ pins + 2 Task Management preimages, against the pre-act export]
 exit=0	checks/hold_rely-for-production.tsv	(cwd projects/pec) sh <RR>/run_holds.sh rely-for-production <RR>/checks/hold_targets.txt <RR>/checks/hold_rely-for-production.tsv   [121/121 ALLOW, before fan-in]
+exit=0	checks/diff_check.out	python3 <RR>/diffcheck.py origin/main   [after the act commit fdc7a2071; wraps git diff --check origin/main...HEAD outside the run root (exit 0, 0 notices) and over the whole diff (exit 2, 291 notices, all in raw run-root tool outputs)]
+exit=0	(terminal; see VALIDATION.md)	python3 <RR>/containment.py origin/main   [at fdc7a2071: 119 product MODIFY, 2 Task Management MODIFY, 57 run-root ADD; PASS]
