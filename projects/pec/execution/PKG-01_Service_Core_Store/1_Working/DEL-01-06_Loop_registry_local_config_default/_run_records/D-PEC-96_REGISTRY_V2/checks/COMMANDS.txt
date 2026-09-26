@@ -36,3 +36,5 @@
 # dispatch-for-production preflight (01:33:44 MDT, before any act): cwd=projects/pec, pec_reliance_hold.py --operation dispatch-for-production on the 13 targets	> checks/hold_dispatch-for-production.tsv
 # pristine_*.out: the same five non-registered commands as the pre phase, run at 01:34 MDT in the clean worktree before the run root existed (outputs first written to the session scratchpad, then copied)
 # apply_d96.py: --check-only then the act, cwd=., see apply_d96_check_only.out, apply_d96_report.txt, apply_d96_stderr.txt, apply_d96_run_time.txt; both exit 0
+# act command line (added after the fact from the manager's session record, verdict 02 B1; not a mechanical capture; <RR> = this run root, <REPO> = the worktree root):
+#   cd <REPO> && date > <RR>/apply_d96_run_time.txt && PYTHONDONTWRITEBYTECODE=1 /Library/Frameworks/Python.framework/Versions/3.13/bin/python3 <RR>/apply_d96.py --repo <REPO> > <RR>/apply_d96_report.txt 2> <RR>/apply_d96_stderr.txt

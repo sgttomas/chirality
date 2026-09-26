@@ -87,6 +87,8 @@ Its findings, and what I did with each:
 
 **Backcheck (verdict 02)** of the N1/N2 repairs at `02ae9e2a0` was dispatched to the same verifier and was still running at hand-back. It is not yet recorded as `VERIFIER_VERDICT_02.md`.
 
+*Note added after hand-back, at HELP_HUMAN's direction:* verdict 02 is now recorded in the run root as `VERIFIER_VERDICT_02.md`. It is PASS WITH NOTES, with no blocking or non-blocking defects. Its optional notes B1 and B2 were applied to the run-root records only.
+
 ## Containment
 
 At `dd63560a7` the branch diff was 11 product paths, each with its granted act, 54 run-root files and 1 `MEMORY.md`, with nothing outside. The verifier's check at `a8e6fd959` found 73 paths (11 product, 1 `MEMORY.md`, 61 run-root) with nothing outside. Later commits add only run-root files and this return.
