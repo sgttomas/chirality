@@ -274,15 +274,22 @@ def resolve(root: Path, role: str, workflow=None, task_skill=None, resources=(),
                 if not isinstance(successor, dict):
                     raise ValueError(f"legacy agent workflow was retired without a canonical successor: {alias['workflow']}")
                 retired_route = {'kind': successor['kind'], 'name': successor['name']}
-                methods = [retired_route, *methods]
+                methods = [*methods, retired_route]
         if stage and alias.get('stage') and stage != alias['stage']:
             raise ValueError('conflicting legacy stage')
         stage = stage or alias.get('stage')
     selection = normalize_method_selection(root, workflow, task_skill, methods)
     if retired_route is not None:
+        # The successor stands in for the legacy agent's Workflow selection, so
+        # a different TaskSkill selection still conflicts as it did before.
+        resolved = next(m for m in selection['resolved_methods']
+                        if (m['kind'], m['name']) == (retired_route['kind'], retired_route['name']))
+        for decision in selection['mapping_decisions']:
+            if decision['field'] == 'TaskSkill' and decision['resolved'] != resolved:
+                raise ValueError('conflicting Workflow/TaskSkill selections after legacy normalization')
         selection['mapping_decisions'].append({
             'field': 'legacyAgent', 'original': legacy_agent, 'historicalWorkflow': alias['workflow'],
-            'mapping': 'retired-workflow-successor', 'resolved': dict(selection['resolved_methods'][0]),
+            'mapping': 'retired-workflow-successor', 'resolved': dict(resolved),
         })
     selected_methods = selection['resolved_methods']
     role_config = registry['roles'][role]

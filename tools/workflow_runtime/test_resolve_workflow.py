@@ -193,3 +193,14 @@ def test_legacy_agent_routes_retired_workflow_to_recorded_successor(root):
         'mapping':'retired-workflow-successor','resolved':retired['methods'][0]}
     with pytest.raises(ValueError, match='retired without a canonical successor'):
         resolve(root,'TASK',legacy_agent='ORPHANED')
+    same=resolve(root,'TASK',legacy_agent='RETIRED',task_skill='converted-skill')
+    assert [(m['kind'],m['name']) for m in same['methods']]==[('skill','converted-skill')]
+    (root/'.agents/skills/other-skill').mkdir()
+    (root/'.agents/skills/other-skill/SKILL.md').write_text('other skill')
+    legacy=json.loads((root/'workflows/legacy-methods.json').read_text())
+    legacy['convertedWorkflowAliases']['other-skill']={'kind':'skill','name':'other-skill'}
+    (root/'workflows/legacy-methods.json').write_text(json.dumps(legacy))
+    with pytest.raises(ValueError, match='conflicting Workflow/TaskSkill'):
+        resolve(root,'TASK',legacy_agent='RETIRED',task_skill='other-skill')
+    ordered=resolve(root,'TASK',legacy_agent='RETIRED',methods=['fixture-bundle:bundled:skill:other-skill'])
+    assert [m['name'] for m in ordered['methods']]==['other-skill','converted-skill']
