@@ -202,9 +202,6 @@
         "label": "Build & maintain software",
         "workflows": [
           {
-            "name": "software-bounded-implementation"
-          },
-          {
             "name": "software-test-planning"
           }
         ]
