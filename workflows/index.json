@@ -651,7 +651,7 @@
       "name": "change",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Prepare and close a coherent Git change with inspectable evidence and existing human decision rights.",
+      "description": "Prepare and close a coherent Git change in any repository, isolating the work when warranted, checking and reviewing the diff, and committing, pushing, opening a PR, or merging only as far as the user or the repository actually authorizes.",
       "central": false,
       "compatibility": "canonical",
       "executionRoleIds": [
@@ -3018,7 +3018,7 @@
           "name": "chirality-change",
           "scope": "project"
         },
-        "compatibility_note": "Legacy CHANGE runs retain the historical change workflow; new Chirality repository change work may select the project-only chirality-change skill."
+        "compatibility_note": "Legacy CHANGE runs map to the change workflow, now a repository-agnostic Git method; Chirality repository change work uses the project-only chirality-change skill, which specializes it."
       },
       "DBM_PUBLISHER": {
         "role": "WORKING_ITEMS",
