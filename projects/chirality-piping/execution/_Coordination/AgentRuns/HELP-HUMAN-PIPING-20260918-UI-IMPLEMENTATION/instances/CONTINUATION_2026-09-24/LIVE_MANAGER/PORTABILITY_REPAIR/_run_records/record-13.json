@@ -1,0 +1,56 @@
+{
+  "candidate": "b0cb8bce5c9f1057b317bc593e86abe2d665d605",
+  "role": "TASK /root/live_manager/native; parent /root/live_manager; no descendants",
+  "origin_sha256": {
+    "AGENTS.md": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+    "agents/AGENT_TASK.md": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+    "projects/chirality-piping/AGENTS.md": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/NATIVE_BRIEF.md": "4141f55b4df9e3f95f62967057c6c9975fb5db93a207b5a28b508ef7176f6f49",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/MERGE_EXCEPTION.json": "26971f52f7be1abe5bebc88c3094fd829d584c244c3927147157087ba098e6d8",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/MERGE_RESULT.json": "78b11077624a1e3ebfab230e0b8ccec55fd2b49ca4671e44f58ea7fcada7bcc0"
+  },
+  "git_input_objects": {
+    "projects/chirality-piping/apps/desktop/src-tauri": "463dde140f626456153121f4827b1a442de80ab7",
+    "projects/chirality-piping/core": "2ab2ed323ff47ae779473abb54da5951b2d75fd3",
+    "projects/chirality-piping/fixtures": "142b2acbdeeb4afbb09df5e5951370c8c00a85c0",
+    "projects/chirality-piping/apps/desktop/package.json": "bc154c963df739f3535ae1056638d11f179dccd4",
+    "projects/chirality-piping/package-lock.json": "490bae945bd016ee6c43b879b36b71c184b8cb67",
+    "projects/chirality-piping/apps/desktop/src": "1a095af594c8777333e90edf0ed6e05a07be4210",
+    "projects/chirality-piping/apps/desktop/scripts": "19c319a9d6c4775577e735ff6462db386dc9dff0",
+    "projects/chirality-piping/package.json": "d24b2f7784cb822c8ae4a6756e405bbe167a5887"
+  },
+  "generated_public_inputs": {
+    "projects/chirality-piping/apps/desktop/public/self-weight-engine/open_pipe_stress_self_weight_wasm.d.ts": "634546fac35bc42da31bf903e52a5799429422f44291d901495675bb4da4cc01",
+    "projects/chirality-piping/apps/desktop/public/self-weight-engine/open_pipe_stress_self_weight_wasm.js": "ea2b3fd611a6478222e552b1230ceb717abd60cdd6df5ba30b4827511543f8f3",
+    "projects/chirality-piping/apps/desktop/public/self-weight-engine/open_pipe_stress_self_weight_wasm_bg.wasm": "07044c4579f69f864fb89f0e5d6e9a451b2420c365710af6f0d734ff68f5f4cb",
+    "projects/chirality-piping/apps/desktop/public/self-weight-engine/open_pipe_stress_self_weight_wasm_bg.wasm.d.ts": "dd78c7c8fa07894717b89a9bcda4d781200ca7a4d02a8dc153b7763290085c7b",
+    "projects/chirality-piping/apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier.d.ts": "af2b07abf12dac915fb0e90124135d578eb7c2b473ec402dbe285900608cb8a8",
+    "projects/chirality-piping/apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier.js": "5682432840e2199512059d7956dfdb51521179b797145a05835a5bfa0be71595",
+    "projects/chirality-piping/apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier_bg.wasm": "29989414fec177ca1028293cb13ceef021f191ba4a83fccb23418b3ed4f872a7",
+    "projects/chirality-piping/apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier_bg.wasm.d.ts": "37a68fc929d21e62fad7683b94f26b7233691df567956908f345c257c8a3ae16"
+  },
+  "preflight_note": "Initial read-only inventory command attempted Git tree identity for generated/untracked public directory and exited128; corrected evidence inventory to actual generated file hashes. No build/source action had occurred.",
+  "prebuild_desktop_sha256": "23849ca75ae43eca05b7cf8142b2e3d13715df1a3ff8b2699b7233defc29030b",
+  "immediate_prebuild_cli_sha256": "75c4f82e60effee3ee65047e19a027229c18a302de84af6163ff374e05385a3d",
+  "environment_presence_only": {
+    "TAURI_CONFIG": false,
+    "APPLE_SIGNING_IDENTITY": false,
+    "APPLE_CERTIFICATE": false,
+    "APPLE_CERTIFICATE_PASSWORD": false,
+    "APPLE_ID": false,
+    "APPLE_PASSWORD": false,
+    "APPLE_TEAM_ID": false,
+    "APPLE_API_ISSUER": false,
+    "APPLE_API_KEY": false,
+    "APPLE_API_KEY_PATH": false
+  },
+  "command": "env -u SWBPIPE_LIVE_CONTROL CARGO_BUILD_JOBS=2 CARGO_NET_OFFLINE=true CARGO_TARGET_DIR=/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target npm_config_offline=true npm run tauri -- build --debug --bundles app",
+  "cwd": "projects/chirality-piping/apps/desktop",
+  "versions": {
+    "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
+    "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+    "node": "v24.18.0",
+    "npm": "11.16.0"
+  },
+  "native_tests": "not rerun: retained by exact native/core/fixtures/dependency Git object equality"
+}

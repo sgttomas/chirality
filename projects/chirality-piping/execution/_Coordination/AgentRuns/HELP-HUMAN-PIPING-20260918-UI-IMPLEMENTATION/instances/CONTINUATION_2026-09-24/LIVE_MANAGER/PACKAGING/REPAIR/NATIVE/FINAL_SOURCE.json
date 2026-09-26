@@ -1,0 +1,61 @@
+{
+  "base_commit": "c6837e02c79d6691ff5c66ce5e6bc6171b45fb3f",
+  "source_delta_hashes": {
+    "projects/chirality-piping/apps/desktop/src-tauri/src/live_control_cli/swbpipe-control.rs": "725033045d7765b8aa750492cb081ca12c0a543c16f1886048e9f6abcb9275f5",
+    "projects/chirality-piping/apps/desktop/src-tauri/Cargo.toml": "fa9647e95b607d42233cf2d4e31357d6e572043f9d86bac740498202eff2fd07",
+    "projects/chirality-piping/docs/LIVE_CONTROL_DEVELOPMENT.md": "24203b9697ca43158a0fe7be2e12fbd1f673786776b80895430052a40fc00431"
+  },
+  "relocated_cli_bytes_unchanged": true,
+  "old_path_absent": true,
+  "cargo_change_exactly_cli_path": true,
+  "other_sources_unchanged": {
+    "projects/chirality-piping/apps/desktop/src-tauri/Cargo.lock": true,
+    "projects/chirality-piping/apps/desktop/src-tauri/src/main.rs": true,
+    "projects/chirality-piping/apps/desktop/src-tauri/src/lib.rs": true,
+    "projects/chirality-piping/apps/desktop/src-tauri/src/live_control.rs": true,
+    "projects/chirality-piping/apps/desktop/src-tauri/src/live_control_wire.rs": true,
+    "projects/chirality-piping/apps/desktop/src-tauri/tauri.conf.json": true,
+    "projects/chirality-piping/apps/desktop/src-tauri/capabilities/live-control.json": true,
+    "projects/chirality-piping/apps/desktop/src-tauri/tests/live_control_cli.rs": true,
+    "projects/chirality-piping/apps/desktop/src-tauri/tests/live_control_transport.rs": true
+  },
+  "original_cli_artifact_sha256": "ff2073bb59b62a3c8b06ae82a88320ac2a8a8fc9ed36321fbb29c5797e96f175",
+  "immediate_pre_normal_build_cli_sha256": "75c4f82e60effee3ee65047e19a027229c18a302de84af6163ff374e05385a3d",
+  "failed_bundle_preserved": {
+    "Contents/Info.plist": true,
+    "Contents/MacOS/openpipestress-desktop": true,
+    "Contents/MacOS/swbpipe-control": true,
+    "Contents/Resources/icon.icns": true
+  },
+  "cargo_binary_fingerprints": [
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/target/debug/.fingerprint/openpipestress-desktop-4b3d5d48282c054c/bin-openpipestress-desktop.json",
+      "sha256": "31db98f87a807b4ccec36d8aab7d001218a247769a59a94841562b6ec8d3e03c",
+      "mtime_utc": "2026-09-24T06:12:57.129302+00:00",
+      "features": "[]",
+      "declared_features": "[\"live-control-cli\"]"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/target/debug/.fingerprint/openpipestress-desktop-5bc034c21459a086/bin-openpipestress-desktop.json",
+      "sha256": "19dfc8b71edec558e89320906af076bf1c4a84c980790dc567607473df7329a7",
+      "mtime_utc": "2026-09-24T06:11:25.488730+00:00",
+      "features": "[]",
+      "declared_features": "[\"live-control-cli\"]"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/target/debug/.fingerprint/openpipestress-desktop-bf215c4ccfc207b3/bin-openpipestress-desktop.json",
+      "sha256": "3872dd41c671d908cf95c2d7050dbab5c51bd76147100182e961612d9bb4c7de",
+      "mtime_utc": "2026-09-24T06:11:53.154081+00:00",
+      "features": "[\"live-control-cli\"]",
+      "declared_features": "[\"live-control-cli\"]"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/target/debug/.fingerprint/openpipestress-desktop-e640860082413388/bin-swbpipe-control.json",
+      "sha256": "2956814621c54c55089315f935d8270fc7d83b5936a76b5d1455f5f84e637c4e",
+      "mtime_utc": "2026-09-24T06:11:53.041594+00:00",
+      "features": "[\"live-control-cli\"]",
+      "declared_features": "[\"live-control-cli\"]"
+    }
+  ],
+  "scope_departures": []
+}

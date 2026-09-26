@@ -1,0 +1,11 @@
+{
+  "status": "source-ready; unexecuted repairs R1/R4/R5",
+  "files": {
+    "apps/desktop/src-tauri/capabilities/live-control.json": "76293ac8a3d010a8646baa72eee6085c5d26eb9414edc9163ea2005c06882272",
+    "apps/desktop/src-tauri/src/live_control.rs": "bdc865616b21ce388f2976ccbac37f56748a521dea66aa030a801fd18af4dee3",
+    "apps/desktop/src-tauri/src/bin/swbpipe-control.rs": "725033045d7765b8aa750492cb081ca12c0a543c16f1886048e9f6abcb9275f5",
+    "apps/desktop/src-tauri/tests/live_control_transport.rs": "bb666b0544a561b37ed0631bb1bb2566658bf5f967b1aee24049603751c55cdd",
+    "docs/LIVE_CONTROL_DEVELOPMENT.md": "50a71b13d86079df21bfb9f3899303cb44a47f1ffcacb0975d6823f564e56514"
+  },
+  "pre_edit_schema_target_plan": "REPAIR_PLAN.json"
+}

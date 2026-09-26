@@ -1,0 +1,12 @@
+{
+  "candidate": "b0cb8bce5c9f1057b317bc593e86abe2d665d605",
+  "new_binary_sha256": "b5cf18a7aab4975c3c95a717bf5ebc3de5e62730b7dd81d5f799e7de6183d9ef",
+  "conditional_execution_reason": "Fresh integrated packaged desktop differs from prior tested binary",
+  "protected_section_sha256": "067cf00ccf6167c1c2eada73837b07cc055b6e3837f80de3720f9ac513714018",
+  "main_sha256": "03c5b9f8fc8812114d1a7db1b1e2c5c9f2ce6c7bbf0f000565fbb872e7a1d5ca",
+  "protected_source_expectations_unchanged": true,
+  "prior_source_verification_sha256": "8e7d366a469f8f1c9d7f58f03b13671d96c9dbf27fa5598ce0fa1956487436e5",
+  "prior_runner_origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/SELF_TEST/RUN_SELF_TEST.py",
+  "prior_runner_sha256": "08272bb21785832397fe76f2f105c6821a16a5720b77a45c76a550d7334aa9fa",
+  "runner_changes": "Only evidence output subtree and exact expected binary hash; unchanged argv/temp/sentinel/observation behavior"
+}

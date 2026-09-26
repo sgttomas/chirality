@@ -1,0 +1,157 @@
+{
+  "executor": "/root/design_manager",
+  "parent": "/root",
+  "role": "HELPS_HUMANS Type 1",
+  "mechanism": "delegated-harness-native followup task; no children",
+  "basis": "c6837e02c79d6691ff5c66ce5e6bc6171b45fb3f",
+  "root": "/private/tmp/piping-live-control-20260924",
+  "write_scope": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/DESIGN",
+  "execution": "No source edits/build/tests/native/CUA/Git mutation. Only evidence reads and DESIGN writes.",
+  "local_sources": [
+    {
+      "path": "AGENTS.md",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_HELPS_HUMANS.md",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/agents/AGENT_HELPS_HUMANS.md",
+      "sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/WIRE_PROPOSAL.md",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/WIRE_PROPOSAL.md",
+      "sha256": "91f4910026bcceffc98c669a4d2487539ad63cc878822061e6cc1b40c98c40ce"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION_BRIEFS.md",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION_BRIEFS.md",
+      "sha256": "5a3116ca2a6999204a3d6f8dcd65d9cd4a176fa9404940f68b631fbb38938915"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/RETURN.md",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/RETURN.md",
+      "sha256": "55c58b41f7ff3e2caf33b5633f0dac1dd3ef234d9a871b96be8f26ccf9f3bd49"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/PRE_RUN.json",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/PRE_RUN.json",
+      "sha256": "bac5d2de516dbc4b515754fdb1b1319b980283d0e1eab9633f3fa08d57ca778a"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/ARTIFACTS.json",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/ARTIFACTS.json",
+      "sha256": "52d7bbd0d1e32ac9af6bd0e7d02821d73598f73bb0ae42a94a519c94bca34cd2"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/GENERATED_INPUTS.json",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/GENERATED_INPUTS.json",
+      "sha256": "a3884d0f7c51e3dabafd3e749345b0a96acda420b6408fee3f4dbdc895384168"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/Cargo.toml",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/Cargo.toml",
+      "sha256": "ad7ee4d05b548c22e3ad2bf0cbf9ae98a78e525f62d694bd8e7a1ed15f00f18c"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/Cargo.lock",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/Cargo.lock",
+      "sha256": "8b68e437515761bf5877a485cc99c52947bac386595f0182f5dcbc17732c71af"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/tauri.conf.json",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/tauri.conf.json",
+      "sha256": "b3de0965f205e1ed34f07744939314c9ac40dd00af2ee8c0de336c6e2bfba5d0"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/src/main.rs",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/src/main.rs",
+      "sha256": "03c5b9f8fc8812114d1a7db1b1e2c5c9f2ce6c7bbf0f000565fbb872e7a1d5ca"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/src/bin/swbpipe-control.rs",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/src/bin/swbpipe-control.rs",
+      "sha256": "725033045d7765b8aa750492cb081ca12c0a543c16f1886048e9f6abcb9275f5"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/src/live_control_wire.rs",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/src/live_control_wire.rs",
+      "sha256": "7de038550e4f288423927f70e564c0ea6ac443914d13443356e7cce6fd0fdae5"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/tests/live_control_cli.rs",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/tests/live_control_cli.rs",
+      "sha256": "2580b515e7d40b531e48777e663b60da85860d7f0d7efed48bfafcf32b0cfc8f"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/tests/live_control_transport.rs",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/tests/live_control_transport.rs",
+      "sha256": "bb666b0544a561b37ed0631bb1bb2566658bf5f967b1aee24049603751c55cdd"
+    },
+    {
+      "path": "projects/chirality-piping/docs/LIVE_CONTROL_DEVELOPMENT.md",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/docs/LIVE_CONTROL_DEVELOPMENT.md",
+      "sha256": "50a71b13d86079df21bfb9f3899303cb44a47f1ffcacb0975d6823f564e56514"
+    },
+    {
+      "path": "projects/chirality-piping/software-workflow.json",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/software-workflow.json",
+      "sha256": "3a6fd86bd362eed5e1fbcda05dcde961fca8ad46cb14375ce3dd79c3872e09b7"
+    },
+    {
+      "path": "projects/chirality-piping/tools/release/check_release_readiness.py",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/tools/release/check_release_readiness.py",
+      "sha256": "c386cdef9fe16ae0239dc509cb29dbadf0f6ce138cf7c0b7ab40867cb34e930f"
+    },
+    {
+      "path": "projects/chirality-piping/tools/release/run_evidence_sweep.py",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/tools/release/run_evidence_sweep.py",
+      "sha256": "cdb7bd4914652e6e5497f09f084d755107977dbbf58968dadfebda9f44ddcd3c"
+    },
+    {
+      "path": "projects/chirality-piping/node_modules/@tauri-apps/cli/package.json",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/node_modules/@tauri-apps/cli/package.json",
+      "sha256": "0e2b570d3f07cb905ab582ef9998815d7bf682900398aa7af5d79a502f5da7a7"
+    },
+    {
+      "path": "projects/chirality-piping/node_modules/@tauri-apps/cli-darwin-arm64/package.json",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/node_modules/@tauri-apps/cli-darwin-arm64/package.json",
+      "sha256": "5c2ea5432f47a5903baef736709a8d54bee314cee638ed5c34674453d5a590fd"
+    },
+    {
+      "path": "projects/chirality-piping/node_modules/@tauri-apps/cli/config.schema.json",
+      "resolved_origin": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/node_modules/@tauri-apps/cli/config.schema.json",
+      "sha256": "fff78eb68796e13a836ef42d188492232c3ff1f39174ea4f615a94bd65f7797c"
+    }
+  ],
+  "official_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/tauri-apps/tauri/tauri-cli-v2.11.1/crates/tauri-cli/src/interface/rust.rs",
+      "basis": "official version tag tauri-cli-v2.11.1",
+      "locators": "630\u2013678,868\u2013949",
+      "custody": "read through web tool; no exact transport-byte hash asserted"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tauri-apps/tauri/tauri-cli-v2.11.1/crates/tauri-bundler/src/bundle/macos/app.rs",
+      "basis": "official matching version tag",
+      "locators": "51\u201364,151\u2013165",
+      "custody": "read through web tool; no exact transport-byte hash asserted"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tauri-apps/tauri/tauri-cli-v2.11.1/crates/tauri-cli/src/bundle.rs",
+      "basis": "official matching version tag",
+      "locators": "51\u201397",
+      "custody": "read through web tool"
+    },
+    {
+      "url": "https://doc.rust-lang.org/cargo/reference/cargo-targets.html#configuring-a-target",
+      "basis": "official Cargo manual; general supported path/required-features behavior, not claimed a pinned 1.97 source snapshot",
+      "custody": "read through web tool"
+    }
+  ]
+}

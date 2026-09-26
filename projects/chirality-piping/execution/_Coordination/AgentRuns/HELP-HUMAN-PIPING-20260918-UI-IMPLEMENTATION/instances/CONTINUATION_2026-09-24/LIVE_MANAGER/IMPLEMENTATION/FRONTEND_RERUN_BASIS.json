@@ -1,0 +1,81 @@
+{
+  "head": "2b31099233df5f3504959cdf8d9fbf90904ff938",
+  "node": "v24.18.0",
+  "npm": "11.16.0",
+  "core_git_tree": "2ab2ed323ff47ae779473abb54da5951b2d75fd3",
+  "core_dirty_diff": "",
+  "files": [
+    {
+      "path": "apps/desktop/src/features/workspace/workspaceSession.ts",
+      "sha256": "614807f807353b53b201829d6aff0588b2e32350fd6aaf98450d6856ffe3f78e"
+    },
+    {
+      "path": "apps/desktop/src/features/workspace/liveControlTypes.ts",
+      "sha256": "70d5a4e8cd319b7deeade59fc83ad97600272da37cf89dbdfb9fe2dee9f70d19"
+    },
+    {
+      "path": "apps/desktop/src/features/workspace/liveControlController.ts",
+      "sha256": "15e56812e386a9ed135228db5343a06e51c8d7ee5d0c65a085de54997896f637"
+    },
+    {
+      "path": "apps/desktop/src/features/workspace/liveControlController.test.ts",
+      "sha256": "f68b6f38f0d07d29f8b5a3dd6ecbc40d8b668fadd0b52b2da425f05f8bdc3a79"
+    },
+    {
+      "path": "apps/desktop/src/features/workspace/workspaceSession.liveControl.test.tsx",
+      "sha256": "6042eb94889231eaab0d63da6b02d47187c278069ca472d2ccd2f017195f55be"
+    },
+    {
+      "path": "apps/desktop/src/features/workspace/workspaceSession.shell.test.tsx",
+      "sha256": "4b546c8e5dd6bd056a13f1ac3afb4c271851dac1e19e1b9d0dc3cd1e439e40dd"
+    },
+    {
+      "path": "apps/desktop/src/services/liveControlBridge.ts",
+      "sha256": "778a5424e8f9c204e16711abacf1ebe07f35a0db3698a91b495f40f62b167d69"
+    },
+    {
+      "path": "apps/desktop/src/services/liveControlBridge.test.ts",
+      "sha256": "9fccc57b4a7c1fc5e62ee269516ecd8119d83b5d72d135e19112a379e0ad77f1"
+    },
+    {
+      "path": "apps/desktop/src/features/toolkit/BatchReviewPanel.tsx",
+      "sha256": "6606236822ab4b126eb6e2b722bfce03eebdc8c2a3c3ee45806067ce1eb5d345"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "0dd1616e1ef3c596d5cdaa8e56994f26127c20943bfde066f26c9f924c65d732"
+    },
+    {
+      "path": "apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier_bg.wasm",
+      "sha256": "29989414fec177ca1028293cb13ceef021f191ba4a83fccb23418b3ed4f872a7"
+    },
+    {
+      "path": "apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier.d.ts",
+      "sha256": "af2b07abf12dac915fb0e90124135d578eb7c2b473ec402dbe285900608cb8a8"
+    },
+    {
+      "path": "apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier_bg.wasm.d.ts",
+      "sha256": "37a68fc929d21e62fad7683b94f26b7233691df567956908f345c257c8a3ae16"
+    },
+    {
+      "path": "apps/desktop/public/wasm-engine/open_pipe_stress_operation_applier.js",
+      "sha256": "5682432840e2199512059d7956dfdb51521179b797145a05835a5bfa0be71595"
+    },
+    {
+      "path": "apps/desktop/public/self-weight-engine/open_pipe_stress_self_weight_wasm_bg.wasm.d.ts",
+      "sha256": "dd78c7c8fa07894717b89a9bcda4d781200ca7a4d02a8dc153b7763290085c7b"
+    },
+    {
+      "path": "apps/desktop/public/self-weight-engine/open_pipe_stress_self_weight_wasm.js",
+      "sha256": "ea2b3fd611a6478222e552b1230ceb717abd60cdd6df5ba30b4827511543f8f3"
+    },
+    {
+      "path": "apps/desktop/public/self-weight-engine/open_pipe_stress_self_weight_wasm.d.ts",
+      "sha256": "634546fac35bc42da31bf903e52a5799429422f44291d901495675bb4da4cc01"
+    },
+    {
+      "path": "apps/desktop/public/self-weight-engine/open_pipe_stress_self_weight_wasm_bg.wasm",
+      "sha256": "07044c4579f69f864fb89f0e5d6e9a451b2420c365710af6f0d734ff68f5f4cb"
+    }
+  ]
+}

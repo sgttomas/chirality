@@ -1,0 +1,10 @@
+{
+  "relocated_cli_bytes_unchanged": true,
+  "old_path_absent": true,
+  "changed_source_hashes": {
+    "projects/chirality-piping/apps/desktop/src-tauri/src/live_control_cli/swbpipe-control.rs": "725033045d7765b8aa750492cb081ca12c0a543c16f1886048e9f6abcb9275f5",
+    "projects/chirality-piping/apps/desktop/src-tauri/Cargo.toml": "fa9647e95b607d42233cf2d4e31357d6e572043f9d86bac740498202eff2fd07",
+    "projects/chirality-piping/docs/LIVE_CONTROL_DEVELOPMENT.md": "24203b9697ca43158a0fe7be2e12fbd1f673786776b80895430052a40fc00431"
+  },
+  "departures": []
+}

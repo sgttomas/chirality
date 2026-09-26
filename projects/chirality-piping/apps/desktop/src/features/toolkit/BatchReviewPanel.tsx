@@ -7,8 +7,9 @@ export type QueuedBatch = {
   basisModel: PreviewModel;
   basisHash: ModelHashEvidence;
   basisRevision: number;
+  live?: import("../workspace/liveControlTypes").LiveAdmission;
 };
-export type BatchReceipt = { batch: OperationBatch; outcome: OperationBatchOutcome };
+export type BatchReceipt = { liveReceiptId?: string; batch: OperationBatch; outcome: OperationBatchOutcome };
 type Props = {
   batches: QueuedBatch[];
   outcomes: Record<string, OperationBatchOutcome>;
@@ -44,6 +45,7 @@ export function BatchReviewPanel({ batches, outcomes, receipts, revision, busy, 
         return (
           <article key={entry.key} data-testid={`batch-${entry.key}`}>
             <h4>{entry.batch.batch_id}</h4>
+            {entry.live ? <p data-testid="live-batch-origin">External agent proposal via local JSON CLI. Ticket: {entry.live.ticket}. Apply records this local review route; identity is not verified.</p> : null}
             <p>{entry.batch.operations.length} proposed changes. {stale ? reason : "Bound to the model used to prepare this batch."}</p>
             <button type="button" data-testid={`validate-batch-${entry.key}`} disabled={stale || busy} title={reason} onClick={() => onValidate(entry)}>Validate batch</button>
             <button type="button" data-testid={`apply-batch-${entry.key}`} disabled={stale || busy} title={reason} onClick={() => onApply(entry)}>Apply entire batch</button>

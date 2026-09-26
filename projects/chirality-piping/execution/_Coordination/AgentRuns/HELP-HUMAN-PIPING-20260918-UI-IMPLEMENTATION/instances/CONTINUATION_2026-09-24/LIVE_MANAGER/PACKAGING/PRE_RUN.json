@@ -1,0 +1,83 @@
+{
+  "candidate": "c6837e02c79d6691ff5c66ce5e6bc6171b45fb3f",
+  "role": "WORKING_ITEMS /root/live_manager, parent /root",
+  "mechanism": "manager executes bounded packaging command; no new child",
+  "instruction_note": "Canonical WORKING_ITEMS reread fully on this activation. Root/project AGENTS and LOOP_INIT were read fully previously; current hashes retained here. No changed instruction source inferred.",
+  "environment_presence_only": {
+    "SWBPIPE_LIVE_CONTROL": false,
+    "TAURI_CONFIG": false,
+    "CARGO_TARGET_DIR": false,
+    "CARGO_BUILD_JOBS": false,
+    "APPLE_SIGNING_IDENTITY": false,
+    "APPLE_CERTIFICATE": false,
+    "APPLE_CERTIFICATE_PASSWORD": false,
+    "APPLE_ID": false,
+    "APPLE_PASSWORD": false,
+    "APPLE_TEAM_ID": false,
+    "APPLE_API_ISSUER": false,
+    "APPLE_API_KEY": false,
+    "APPLE_API_KEY_PATH": false
+  },
+  "origins": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "path": ".agents/skills/chirality-change/SKILL.md",
+      "sha256": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba"
+    },
+    {
+      "path": "projects/chirality-piping/package-lock.json",
+      "sha256": "0dd1616e1ef3c596d5cdaa8e56994f26127c20943bfde066f26c9f924c65d732"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/package.json",
+      "sha256": "c0e3ddd045e0ea7576a4cd01af86c4921bab7314e7b3d927b5eab11822e959fa"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/Cargo.toml",
+      "sha256": "ad7ee4d05b548c22e3ad2bf0cbf9ae98a78e525f62d694bd8e7a1ed15f00f18c"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/Cargo.lock",
+      "sha256": "8b68e437515761bf5877a485cc99c52947bac386595f0182f5dcbc17732c71af"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/tauri.conf.json",
+      "sha256": "b3de0965f205e1ed34f07744939314c9ac40dd00af2ee8c0de336c6e2bfba5d0"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/src/main.rs",
+      "sha256": "03c5b9f8fc8812114d1a7db1b1e2c5c9f2ce6c7bbf0f000565fbb872e7a1d5ca"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/src/lib.rs",
+      "sha256": "9bf20ec511f761eb4549a5b3ad051f1de72866f79b90593c9700320ef6f41979"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/capabilities/live-control.json",
+      "sha256": "76293ac8a3d010a8646baa72eee6085c5d26eb9414edc9163ea2005c06882272"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/scripts/build-wasm-engine.mjs",
+      "sha256": "331a792124925e9dc436e3c4dd563bdd22cc4d370cc87a53afe0a33f82a04ee5"
+    }
+  ],
+  "source_tree": "ce210d0fa15b64e53a627b4b48ee5062d54ee38d",
+  "command": "env -u SWBPIPE_LIVE_CONTROL CARGO_BUILD_JOBS=2 CARGO_NET_OFFLINE=true CARGO_TARGET_DIR=<isolated desktop src-tauri/target> npm_config_offline=true npm run tauri -- build --debug --bundles app",
+  "cwd": "projects/chirality-piping/apps/desktop",
+  "scope": "Only generated isolated artifacts and this PACKAGING subtree. No source/config repair, app/self-test execution, actual endpoint, browser/CUA, installation/signing-account interaction, primary bundle or PID9925 action."
+}

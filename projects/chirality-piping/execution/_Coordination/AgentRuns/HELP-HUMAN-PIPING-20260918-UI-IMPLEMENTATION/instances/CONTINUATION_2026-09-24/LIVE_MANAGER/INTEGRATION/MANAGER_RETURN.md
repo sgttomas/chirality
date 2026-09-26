@@ -1,0 +1,22 @@
+# Exact primary/live integration — manager return
+
+**Bounded integration/evidence backcheck PASS; no actionable findings.** Combined source is `b0cb8bce5c9f1057b317bc593e86abe2d665d605`, produced by ROOT's explicit one-local-merge exception from parents `62168bf42d85efbf377bc718633c5dde65b5505d` and `1c1b8b072a25a5014f41dcc0e0fd8fd9d1ab0a9a`. Common base is `2b31099233df5f3504959cdf8d9fbf90904ff938`. No push, PR, main mutation or additional merge occurred. Final records-only handoff commit identity is returned separately; product source remains this reviewed combined tree.
+
+## Lineage and source preservation
+
+MERGE_EXCEPTION.json records the actual scope exception and preflight. MERGE_RESULT.json proves exact preservation of all118 prior live paths and175 incoming paths. Only common changed path was the byte-identical live activation record; incoming Piping ModelTree/EngineeringTable/OverflowRail/e2e changes were disjoint from controller/native/packaging code. All66 PEC paths were preserved as exact incoming primary documentation/record lineage, with no PEC authorship or substantive adoption by this manager. The merge completed with ort and no conflicts or manual resolution.
+
+The full native/src-tauri, core and fixtures trees plus package/lock blobs equal prior reviewed4dcd48fe. Thus prior supplemental8 native-library/7 transport/4 CLI-unit/3 CLI-integration checks remain applicable by exact input identity; they were not rerun solely for recovery. No reviewed live, wire, permission, packaging or protected self-test change was lost.
+
+## Fresh combined-source checks
+
+- TypeScript passed. Nine affected live/session/table/ModelTree/App component suites passed **124/124**. FRONTEND_CHECKS.json and raw logs identify exact source/commands/results. Nested npm consumed the intended worker flag; actual Vitest defaults and its warning are disclosed. ROOT accepted no functional rerun solely to change worker count. No calibrated timing claim is made. jsdom canvas-unavailable messages remain visible; no browser/viewport/native qualification follows.
+- The maintained normal debug app build passed with Cargo jobs2, offline inputs, isolated target, live opt-in unset and no CLI feature. Full app executable inventory contains only `openpipestress-desktop`; CFBundleExecutable and built/bundled desktop agree. The standalone CLI remained outside with unchanged hash `75c4f82e60effee3ee65047e19a027229c18a302de84af6163ff374e05385a3d`.
+- Fresh packaged executable SHA-256 is **`b5cf18a7aab4975c3c95a717bf5ebc3de5e62730b7dd81d5f799e7de6183d9ef`**. Complete bundle-manifest SHA-256 is **`0132c911a013aed09a8c3731b520df7788d9a60f8261428160c43f661e6f2e07`**. Source trees, generated frontend/Wasm inputs, all package files, tool versions, command/exit/raw output and pre/post artifact identities are in NATIVE records.
+- Since the packaged binary changed, only that new hash-bound binary ran with `--self-test-saved-edited-load`: **PID87681, exit0, PASS, empty stderr**. Protected source/fixture/oracle/tolerance were unchanged. Its exact private PID/nonce store was observed then removed by the wrapper; sibling sentinel and binary hash remained unchanged. No manual cleanup or ordinary app startup occurred. NATIVE/SELF_TEST retains actual argv, output and observations.
+
+## Independent review and return boundary
+
+Fresh nonimplementing TASK /root/live_manager/integration_review (requested Astra/xhigh, no inherited conversation) verified the combined lineage/source interactions and all applicable evidence. REVIEW/RETURN.md and MANIFEST.json retain its PASS,85 fresh native artifact/input/self-test consistency checks and retained supplemental hashes. Manager's separate artifact/source crosscheck is MANAGER_ARTIFACT_CHECK.json. DELEGATION.json retains actual roles, parentage and supplied origins.
+
+All execution resources are released. C4's browser5174/5175 lane was unused; no ordinary app/GUI/controller endpoint, CUA, userstore, primary PID9925, installation/signing-account or host-policy change occurred. The only package execution was the already-authorized isolated flag route. This result binds a build and self-test to the exact combined source; it does not prove actual GUI/controller admission, I1/I2, human H1/H2, browser behavior, engineering/Runtime/lifecycle acceptance or release. ROOT still owns broader actual-candidate merge/CI/evidence checks, future source integration and eventual native/human witnesses.

@@ -1,0 +1,17 @@
+{
+  "wire_sha256": "91f4910026bcceffc98c669a4d2487539ad63cc878822061e6cc1b40c98c40ce",
+  "acks": [
+    {
+      "writer": "NATIVE",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/ACK.md",
+      "sha256": "acebb38b2ccddd3137ff52225c30ee5887f48a818e88c0efe4eccb92331622cc"
+    },
+    {
+      "writer": "FRONTEND",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/FRONTEND/ACK.md",
+      "sha256": "d169e854222df20c9e9f47e40e012bf15e1d353729df19dfc7c94ebfcb1f5f74"
+    }
+  ],
+  "manager_disposition": "Both executing TASK writers independently acknowledge exact wire and their disjoint scopes. Manager releases source/test authoring only after reporting this record to ROOT. No test/build/npm/browser/native/socket/CUA execution is released.",
+  "canonical_fixture_sha256": "4c8c26c2a519fa2bed47c56f0e6fe0eaec758bdf940b02cff1a0ca78baee747d"
+}

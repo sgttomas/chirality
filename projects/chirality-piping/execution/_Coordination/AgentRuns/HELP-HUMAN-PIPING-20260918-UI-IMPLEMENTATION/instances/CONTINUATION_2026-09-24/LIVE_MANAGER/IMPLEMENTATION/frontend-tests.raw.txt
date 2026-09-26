@@ -1,0 +1,78 @@
+
+> openpipestress-workspace@0.1.0 test:desktop
+> npm test --workspace apps/desktop src/features/workspace/liveControlController.test.ts src/features/workspace/workspaceSession.liveControl.test.tsx src/services/liveControlBridge.test.ts src/features/workspace/workspaceSession.shell.test.tsx
+
+
+> @openpipestress/desktop@0.1.0 test
+> vitest run src/features/workspace/liveControlController.test.ts src/features/workspace/workspaceSession.liveControl.test.tsx src/services/liveControlBridge.test.ts src/features/workspace/workspaceSession.shell.test.tsx
+
+
+ RUN  v4.1.10 /private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop
+
+ ❯ src/services/liveControlBridge.test.ts (4 tests | 3 failed) 11ms
+     × buffers a request before registration promise completion and installs both listeners first 4ms
+     × keeps disabled registration inert and cleans listeners on a partial setup failure 1ms
+     × serializes StrictMode retirement and binds cancellation to dispatch and request identity 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/services/liveControlBridge.test.ts > native live bridge lifecycle > buffers a request before registration promise completion and installs both listeners first
+TypeError: release is not a function
+ ❯ src/services/liveControlBridge.test.ts:33:5
+     31|     const controller = fake(), dispose = startLiveControlBridge(contro…
+     32|     await flush(); expect(controller.request).not.toHaveBeenCalled();
+     33|     release(registration); await flush();
+       |     ^
+     34|     expect(controller.bind).toHaveBeenCalledWith("app-test");
+     35|     expect(controller.request).toHaveBeenCalledTimes(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/services/liveControlBridge.test.ts > native live bridge lifecycle > keeps disabled registration inert and cleans listeners on a partial setup failure
+TypeError: mocks.listeners.get(...) is not a function
+ ❯ src/services/liveControlBridge.test.ts:43:69
+     41|     mocks.invoke.mockResolvedValue({ ...registration, enabled: false, …
+     42|     const controller = fake(), dispose = startLiveControlBridge(contro…
+     43|     await flush(); mocks.listeners.get("piping-live-control-request")!…
+       |                                                                     ^
+     44|     expect(controller.request).not.toHaveBeenCalled(); expect(controll…
+     45|     dispose(); await flush();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  src/services/liveControlBridge.test.ts > native live bridge lifecycle > serializes StrictMode retirement and binds cancellation to dispatch and request identity
+AssertionError: expected [] to deeply equal [ 'live_control_register', …(2) ]
+
+- Expected
++ Received
+
+- [
+-   "live_control_register",
+-   "live_control_unregister",
+-   "live_control_register",
+- ]
++ []
+
+ ❯ src/services/liveControlBridge.test.ts:59:22
+     57|     const dispose = startLiveControlBridge(controller as unknown as Li…
+     58|     const commands = mocks.invoke.mock.calls.map(([command]) => comman…
+     59|     expect(commands).toEqual(["live_control_register", "live_control_u…
+       |                      ^
+     60|     mocks.listeners.get("piping-live-control-request")!({ payload: req…
+     61|     mocks.listeners.get("piping-live-control-cancel")!({ payload: { ..…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  3 failed | 30 passed (33)
+   Start at  22:51:55
+   Duration  2.56s (transform 1.09s, setup 791ms, import 1.39s, tests 1.60s, environment 2.95s)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop
+npm error workspace @openpipestress/desktop@0.1.0
+npm error location /private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop
+npm error command failed
+npm error command sh -c vitest run src/features/workspace/liveControlController.test.ts src/features/workspace/workspaceSession.liveControl.test.tsx src/services/liveControlBridge.test.ts src/features/workspace/workspaceSession.shell.test.tsx

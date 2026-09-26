@@ -1,0 +1,22 @@
+# Independent complete-diff implementation review brief
+
+ROOT explicitly requested fresh independent Astra/xhigh TASK review after the owned isolated implementation commit. Assigned by /root/live_manager; reviewer must not implement or delegate. Work only in {REPO_ROOT}, branch codex/piping-live-control-20260924. Full TASK instructions: agents/AGENT_TASK.md, read by parent before dispatch; Root/project AGENTS and .agents/skills/software-code-review/SKILL.md apply. Read full bodies on activation and record actual origins/hashes.
+
+Frozen source/evidence candidate: 1811d70a129419d8d06502b61ef28bb2977a6d93.
+Complete diff base: 2b31099233df5f3504959cdf8d9fbf90904ff938.
+Wire: ../WIRE_PROPOSAL.md SHA-256 91f4910026bcceffc98c669a4d2487539ad63cc878822061e6cc1b40c98c40ce.
+Owner activation: ../../LIVE_IMPLEMENTATION_ACTIVATION.md SHA-256 9fda39962acb516469ddcfa7898119e16a9104316b57ebb0d2a5e6b9356c6628; exact-byte equality verified against ROOT tracked adc346bcc4a5685a5dd3adcec0589742ffe9a21d. Supplied paths above are relative to this IMPLEMENTATION directory where appropriate; use actual repository paths when resolving. Current owner decisions are at ../../OWNER_DECISIONS.md. Prior WIRE_REVIEW is retained preparation evidence and cannot substitute for this implementation review.
+
+Review complete changed-path diff first against the exact N/F implementation scopes, then trace code across actual callers and tests. Cover private native permissions/descriptor/auth/framing/admission/registration/correlation/cancellation/lifecycle/cleanup and CLI/main desktop target; frontend coherent basis/full source attribution/frozen operations/atomic batch/publication/dedup/Undo/results/Save/Open/project/restart recovery; native hook/bridge event/order seams and truthful evidence/guide. Read relevant unchanged callers/engine/hash/persistence only as needed. No core or Runtime/App change is authorized. Ask manager if source differs from candidate before drawing current conclusions.
+
+Read IMPLEMENTATION_RETURN.md, BINDING_CLARIFICATIONS.md, WIRE_ACKS.json, DELEGATION.json, VALIDATION.json, FRONTEND_RERUN_BASIS.json, FRONTEND/RETURN.md, NATIVE/RETURN.md, NATIVE/RUNS.json and relevant raw logs. Final checks: TypeScript;33 focused frontend tests;8 native library,6 transport,3CLI unit+3integration;CLI build. Initial source typing and test timing/fixture cleanup failures plus default-sandbox socket EPERM are preserved, with affected repaired passes and supported escalation. Review applicability of source identities; do not infer every scenario from aggregate counts.
+
+Read-only review: no source changes, tests/build/npm/process/server/socket/browser/native/CUA/network, primary checkout/index/Git mutation. Do not interact with PID9925. Primary has exclusive clean-sweep/browser resource ownership. Only write your bounded REVIEW/RETURN.md and consulted-origin manifest if needed. No separate loop receipt or acceptance act.
+
+Report actionable findings with exact candidate location, trigger, concrete consequence, evidence and repair direction, severity ordered. Separate confirmed defects from missing verification/residual risk. Conclude suitability for manager fan-in. Actual Tauri invoking-main-webview and live CLI-controller-human Apply connecting path I1/I2, package/default-target/self-test witnesses, long timeout/concurrency, unsupported-host qualification and actual human H1/H2 remain explicitly unqualified; do not relabel component tests or automated actions as those witnesses. No engineering/Runtime/usability/release acceptance.
+
+Return complete candidate identity, review findings/disposition and gaps to /root/live_manager. Manager integrates; ROOT retains programme graph/push/PR/merge and all later native/human resource grants.
+
+## Preserved execution identity
+
+Original supplied bytes: [historical execution record](../PORTABILITY_REPAIR/_run_records/record-11.md), SHA-256 `8175807138314016cba25e887d863a61c61f53009c84424f76edafc465617fe4`. Historical execution record; original_reference_base records the original document directory and applies only to otherwise document-relative links, never the raw storage directory. Explicit schema/field roots and declared repository, project, package, bundle or temporary-directory bases take precedence; repository-relative paths and absolute historical identities retain their original meaning. Historical source hashes identify original bytes, never this pointer. No new execution or authority is implied.

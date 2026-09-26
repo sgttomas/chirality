@@ -1,0 +1,569 @@
+{
+  "pid": 87681,
+  "argv": [
+    "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/debug/bundle/macos/SWBPIPE.app/Contents/MacOS/openpipestress-desktop",
+    "--self-test-saved-edited-load"
+  ],
+  "cwd": "/private/tmp/piping-live-control-20260924",
+  "start_utc": "2026-09-24T07:15:05.400239+00:00",
+  "end_utc": "2026-09-24T07:15:06.331273+00:00",
+  "exit_code": 0,
+  "timed_out": false,
+  "binary_pre_sha256": "b5cf18a7aab4975c3c95a717bf5ebc3de5e62730b7dd81d5f799e7de6183d9ef",
+  "binary_post_sha256": "b5cf18a7aab4975c3c95a717bf5ebc3de5e62730b7dd81d5f799e7de6183d9ef",
+  "TMPDIR": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3",
+  "SWBPIPE_LIVE_CONTROL_present": false,
+  "HOME_overridden": false,
+  "parent_mode": "0o700",
+  "before": [
+    {
+      "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/sibling-sentinel.txt",
+      "relative": "sibling-sentinel.txt",
+      "kind": "file",
+      "size": 70
+    }
+  ],
+  "during": [
+    {
+      "time_utc": "2026-09-24T07:15:05.403522+00:00",
+      "entries": [
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/sibling-sentinel.txt",
+          "relative": "sibling-sentinel.txt",
+          "kind": "file",
+          "size": 70
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-09-24T07:15:06.299332+00:00",
+      "entries": [
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000",
+          "kind": "directory",
+          "size": 64
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/sibling-sentinel.txt",
+          "relative": "sibling-sentinel.txt",
+          "kind": "file",
+          "size": 70
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-09-24T07:15:06.311644+00:00",
+      "entries": [
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000",
+          "kind": "directory",
+          "size": 128
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3",
+          "kind": "file",
+          "size": 0
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-journal",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-journal",
+          "kind": "file",
+          "size": 512
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/sibling-sentinel.txt",
+          "relative": "sibling-sentinel.txt",
+          "kind": "file",
+          "size": 70
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-09-24T07:15:06.313453+00:00",
+      "entries": [
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000",
+          "kind": "directory",
+          "size": 160
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3",
+          "kind": "file",
+          "size": 4096
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-shm",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-shm",
+          "kind": "file",
+          "size": 32768
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-wal",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-wal",
+          "kind": "file",
+          "size": 37112
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/sibling-sentinel.txt",
+          "relative": "sibling-sentinel.txt",
+          "kind": "file",
+          "size": 70
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-09-24T07:15:06.315225+00:00",
+      "entries": [
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000",
+          "kind": "directory",
+          "size": 160
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3",
+          "kind": "file",
+          "size": 4096
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-shm",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-shm",
+          "kind": "file",
+          "size": 32768
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-wal",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-wal",
+          "kind": "file",
+          "size": 82432
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/sibling-sentinel.txt",
+          "relative": "sibling-sentinel.txt",
+          "kind": "file",
+          "size": 70
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-09-24T07:15:06.316970+00:00",
+      "entries": [
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000",
+          "kind": "directory",
+          "size": 160
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3",
+          "kind": "file",
+          "size": 4096
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-shm",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-shm",
+          "kind": "file",
+          "size": 32768
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-wal",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-wal",
+          "kind": "file",
+          "size": 140112
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/sibling-sentinel.txt",
+          "relative": "sibling-sentinel.txt",
+          "kind": "file",
+          "size": 70
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-09-24T07:15:06.318730+00:00",
+      "entries": [
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000",
+          "kind": "directory",
+          "size": 160
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3",
+          "kind": "file",
+          "size": 4096
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-shm",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-shm",
+          "kind": "file",
+          "size": 32768
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-wal",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-wal",
+          "kind": "file",
+          "size": 201912
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/sibling-sentinel.txt",
+          "relative": "sibling-sentinel.txt",
+          "kind": "file",
+          "size": 70
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-09-24T07:15:06.320521+00:00",
+      "entries": [
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000",
+          "kind": "directory",
+          "size": 160
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3",
+          "kind": "file",
+          "size": 86016
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-shm",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-shm",
+          "kind": "file",
+          "size": 32768
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-wal",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-wal",
+          "kind": "file",
+          "size": 0
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/sibling-sentinel.txt",
+          "relative": "sibling-sentinel.txt",
+          "kind": "file",
+          "size": 70
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-09-24T07:15:06.322272+00:00",
+      "entries": [
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000",
+          "kind": "directory",
+          "size": 96
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3",
+          "kind": "file",
+          "size": 86016
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/sibling-sentinel.txt",
+          "relative": "sibling-sentinel.txt",
+          "kind": "file",
+          "size": 70
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-09-24T07:15:06.324208+00:00",
+      "entries": [
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000",
+          "kind": "directory",
+          "size": 160
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3",
+          "kind": "file",
+          "size": 86016
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-shm",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-shm",
+          "kind": "file",
+          "size": 32768
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-wal",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-wal",
+          "kind": "file",
+          "size": 0
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/sibling-sentinel.txt",
+          "relative": "sibling-sentinel.txt",
+          "kind": "file",
+          "size": 70
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-09-24T07:15:06.326017+00:00",
+      "entries": [
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000",
+          "kind": "directory",
+          "size": 160
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3",
+          "kind": "file",
+          "size": 94208
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-shm",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-shm",
+          "kind": "file",
+          "size": 32768
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-wal",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3-wal",
+          "kind": "file",
+          "size": 0
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/sibling-sentinel.txt",
+          "relative": "sibling-sentinel.txt",
+          "kind": "file",
+          "size": 70
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-09-24T07:15:06.327713+00:00",
+      "entries": [
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000",
+          "kind": "directory",
+          "size": 96
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3",
+          "relative": "openpipestress-packaged-edited-load-smoke-87681-1790234106298500000/openpipestress-projects.sqlite3",
+          "kind": "file",
+          "size": 94208
+        },
+        {
+          "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/sibling-sentinel.txt",
+          "relative": "sibling-sentinel.txt",
+          "kind": "file",
+          "size": 70
+        }
+      ]
+    }
+  ],
+  "after": [
+    {
+      "path": "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/sibling-sentinel.txt",
+      "relative": "sibling-sentinel.txt",
+      "kind": "file",
+      "size": 70
+    }
+  ],
+  "observed_wrapper_directories": [
+    "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000"
+  ],
+  "observed_wrapper_paths_removed": {
+    "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/packaged-self-test-tmz24kd3/openpipestress-packaged-edited-load-smoke-87681-1790234106298500000": true
+  },
+  "wrapper_name_matches_child_pid": true,
+  "sentinel_unchanged": true,
+  "sentinel_sha256": "b271657b59538d999833a6e4807c6e0555dc3aaf3b0b4d24e91813d23bd4ad84",
+  "stdout_sha256": "3821bc35b5ac117d57f1fd6f2f26f75c751a3d806a423e39bcb63e79069943c7",
+  "stdout_bytes": 5371,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_bytes": 0,
+  "result": {
+    "attachments": {
+      "load_node": "node:WF-TIP",
+      "material": "material:invented-carbon-steel",
+      "pipe_from": "node:WF-ROOT",
+      "pipe_to": "node:WF-TIP",
+      "support_node": "node:WF-ROOT"
+    },
+    "boundary": {
+      "network": false,
+      "private_data": false,
+      "protected_content": false,
+      "repository_write": false,
+      "telemetry": false
+    },
+    "fixture_class": "invented_public",
+    "hashes": {
+      "agent_intent": "sha256:89e98532e3854148803b53dec91c43db0e628305b86d379bec743612557c0336",
+      "baseline": "sha256:f9721ded0aeee2e5d97c3d76d732ae62fbaa9e6320b840b5c673410c9d77c92c",
+      "edit": "sha256:6729455ab1e526f0107a1a3d57d2dff257634ee1cbf41b99ee783526a1eaacdb",
+      "equivalent_agent": "sha256:6729455ab1e526f0107a1a3d57d2dff257634ee1cbf41b99ee783526a1eaacdb",
+      "human_intent": "sha256:a4d7c3d16898d85ba83596dc8e85347aa966146fde78b79b9097cdb14a0c8401",
+      "redo_checkpoint": "sha256:6729455ab1e526f0107a1a3d57d2dff257634ee1cbf41b99ee783526a1eaacdb",
+      "undo_checkpoint": "sha256:f9721ded0aeee2e5d97c3d76d732ae62fbaa9e6320b840b5c673410c9d77c92c"
+    },
+    "operation": {
+      "after": 500,
+      "application_status": "applied_to_session_model",
+      "before": 350,
+      "professional_approval": false,
+      "target": "load:WF/load:WF-FY",
+      "unit": "N"
+    },
+    "persistence": {
+      "analysis_run": "missing_no_native_builder",
+      "historical_result_preserved": true,
+      "input_manifest": "missing_not_invented",
+      "project_envelope_hash": "missing_preserved",
+      "reopen_store_schema_version": 11,
+      "restored_unit": "N",
+      "restored_value": 500,
+      "storage": "isolated_file_backed_sqlite",
+      "store_migration": {
+        "document_status": "current",
+        "persistence_state": "stored_document_current",
+        "store_schema_version": 11
+      },
+      "unchanged_save_preserves_evidence": true,
+      "writer_connection_closed_before_restore": true
+    },
+    "project_id": "project:workflow-cantilever",
+    "route": "packaged_binary_saved_edited_load_self_test",
+    "solve": {
+      "analytical_witnesses": [
+        {
+          "force_N": 350.0,
+          "published": [
+            {
+              "actual": 1.663072,
+              "expected": 1.663071716046058,
+              "result_id": "result:disp:node-WF-TIP:uy",
+              "unit": "mm"
+            },
+            {
+              "actual": 0.00078,
+              "expected": 0.0007795648668965897,
+              "result_id": "result:disp:node-WF-TIP:rz",
+              "unit": "rad"
+            },
+            {
+              "actual": 350.0,
+              "expected": 350.0,
+              "result_id": "result:reaction:support-WF-ROOT",
+              "unit": "N"
+            },
+            {
+              "actual": 350.0,
+              "expected": 350.0,
+              "result_id": "result:force:pipe-WF:shear-z",
+              "unit": "N"
+            },
+            {
+              "actual": -1120.0,
+              "expected": -1120.0,
+              "result_id": "result:moment:pipe-WF:bending-y",
+              "unit": "N*m"
+            }
+          ]
+        },
+        {
+          "force_N": 500.0,
+          "published": [
+            {
+              "actual": 2.375817,
+              "expected": 2.375816737208654,
+              "result_id": "result:disp:node-WF-TIP:uy",
+              "unit": "mm"
+            },
+            {
+              "actual": 0.001114,
+              "expected": 0.0011136640955665567,
+              "result_id": "result:disp:node-WF-TIP:rz",
+              "unit": "rad"
+            },
+            {
+              "actual": 500.0,
+              "expected": 500.0,
+              "result_id": "result:reaction:support-WF-ROOT",
+              "unit": "N"
+            },
+            {
+              "actual": 500.0,
+              "expected": 500.0,
+              "result_id": "result:force:pipe-WF:shear-z",
+              "unit": "N"
+            },
+            {
+              "actual": -1600.0,
+              "expected": -1600.0,
+              "result_id": "result:moment:pipe-WF:bending-y",
+              "unit": "N*m"
+            }
+          ]
+        },
+        {
+          "force_N": 500.0,
+          "published": [
+            {
+              "actual": 2.375817,
+              "expected": 2.375816737208654,
+              "result_id": "result:disp:node-WF-TIP:uy",
+              "unit": "mm"
+            },
+            {
+              "actual": 0.001114,
+              "expected": 0.0011136640955665567,
+              "result_id": "result:disp:node-WF-TIP:rz",
+              "unit": "rad"
+            },
+            {
+              "actual": 500.0,
+              "expected": 500.0,
+              "result_id": "result:reaction:support-WF-ROOT",
+              "unit": "N"
+            },
+            {
+              "actual": 500.0,
+              "expected": 500.0,
+              "result_id": "result:force:pipe-WF:shear-z",
+              "unit": "N"
+            },
+            {
+              "actual": -1600.0,
+              "expected": -1600.0,
+              "result_id": "result:moment:pipe-WF:bending-y",
+              "unit": "N*m"
+            }
+          ]
+        }
+      ],
+      "edited_result_differs_from_baseline": true,
+      "fresh_resolve_matches_saved_result_rows": true,
+      "mechanics": "MECHANICS_SOLVED",
+      "model_ref": "project:workflow-cantilever",
+      "publication_tolerance_declared_units": 5.001e-07,
+      "reaction_transform": "y_reference global Z: local Z=-global Y and local Y=global Z; end-i fz=+F and my=-FL correspond to global root Fy=-F and Mz=-FL; public support row is resultant only",
+      "result_rows": 67
+    },
+    "status": "PASS"
+  },
+  "manual_temp_cleanup": false,
+  "process_complete": true
+}

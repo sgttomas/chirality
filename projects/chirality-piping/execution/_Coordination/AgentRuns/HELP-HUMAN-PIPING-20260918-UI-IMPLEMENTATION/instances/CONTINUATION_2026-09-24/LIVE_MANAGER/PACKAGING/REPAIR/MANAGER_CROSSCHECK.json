@@ -1,0 +1,23 @@
+{
+  "base": "c6837e02c79d6691ff5c66ce5e6bc6171b45fb3f",
+  "executor": "manager read-only crosscheck after native build",
+  "cli_source_byte_identical": true,
+  "cli_source_sha256": "725033045d7765b8aa750492cb081ca12c0a543c16f1886048e9f6abcb9275f5",
+  "cargo_change_exactly_one_path": true,
+  "unchanged_paths": [
+    "apps/desktop/src-tauri/src/main.rs",
+    "apps/desktop/src-tauri/src/lib.rs",
+    "apps/desktop/src-tauri/src/live_control_wire.rs",
+    "apps/desktop/src-tauri/Cargo.lock",
+    "apps/desktop/src-tauri/tauri.conf.json",
+    "apps/desktop/src-tauri/capabilities/live-control.json",
+    "apps/desktop/src-tauri/tests/live_control_cli.rs",
+    "apps/desktop/src-tauri/tests/live_control_transport.rs"
+  ],
+  "full_bundle_macos_inventory": [
+    "openpipestress-desktop"
+  ],
+  "retained_cli_sha256": "75c4f82e60effee3ee65047e19a027229c18a302de84af6163ff374e05385a3d",
+  "expected_retained_cli_sha256_from_executor": "75c4f82e60effee3ee65047e19a027229c18a302de84af6163ff374e05385a3d",
+  "no_app_execution": true
+}

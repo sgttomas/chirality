@@ -1,0 +1,17 @@
+{
+  "source_hashes": {
+    "apps/desktop/src-tauri/src/live_control.rs": "4e41f4337d733ce893dc874d6cd49a111d711a673d0e8f1b9bdf537b0ca277b5",
+    "apps/desktop/src-tauri/src/live_control_wire.rs": "7de038550e4f288423927f70e564c0ea6ac443914d13443356e7cce6fd0fdae5",
+    "apps/desktop/src-tauri/src/bin/swbpipe-control.rs": "e31e7407d4cd9c59eff0730b04aad98973d5824d9b063a05b99d39c3046a12d7",
+    "apps/desktop/src-tauri/src/lib.rs": "9bf20ec511f761eb4549a5b3ad051f1de72866f79b90593c9700320ef6f41979",
+    "apps/desktop/src-tauri/Cargo.toml": "ad7ee4d05b548c22e3ad2bf0cbf9ae98a78e525f62d694bd8e7a1ed15f00f18c",
+    "apps/desktop/src-tauri/Cargo.lock": "8b68e437515761bf5877a485cc99c52947bac386595f0182f5dcbc17732c71af",
+    "apps/desktop/src-tauri/tests/live_control_transport.rs": "4e2c1c9ba8e0a0ee26f0b8e79f8ace6813b7384b1ab7a21840d8898d6647c392",
+    "apps/desktop/src-tauri/tests/live_control_cli.rs": "0103570e7cb40fd1b7573fd571711cf8d2ac9fc1b6160b4f61a1dd8a0f9dbfcf",
+    "apps/desktop/src-tauri/tests/fixtures/live-control-wire-v1.json": "6a35f885b5175ab9ee5c8ae9ea2290cfe118512b6476b59ff986f0aace1af8dc"
+  },
+  "versions": {
+    "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
+    "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "manager": "/root/live_manager",
+  "parent": "/root",
+  "candidate": "b0cb8bce5c9f1057b317bc593e86abe2d665d605",
+  "mechanism": "delegated-harness-native",
+  "executors": [
+    {
+      "task": "/root/live_manager/native",
+      "role": "TASK Type2",
+      "allocation": "retained Astra/low",
+      "scope": "fresh normal build and changed-binary flag-only self-test; no source edits or retained supplemental reruns"
+    },
+    {
+      "task": "/root/live_manager/integration_review",
+      "role": "TASK Type2 independent nonimplementer",
+      "spawn_request": {
+        "model": "gpt-6-astra",
+        "reasoning_effort": "xhigh",
+        "fork_turns": "none"
+      },
+      "scope": "read-only fresh integration/evidence review, final disposition withheld until actual package evidence"
+    }
+  ],
+  "instruction_and_brief_origins": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/MERGE_EXCEPTION.json",
+      "sha256": "26971f52f7be1abe5bebc88c3094fd829d584c244c3927147157087ba098e6d8"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/NATIVE_BRIEF.md",
+      "sha256": "4141f55b4df9e3f95f62967057c6c9975fb5db93a207b5a28b508ef7176f6f49"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/REVIEW/BRIEF.md",
+      "sha256": "f0dd6407680f094c6558419225fee0f49c1056efe21fc8d717f16776912d7ab9"
+    }
+  ],
+  "limits": "No child delegation, browser/native ordinary app/endpoint/CUA, primary mutation or policy expansion. All Git integration remains manager/ROOT-owned."
+}

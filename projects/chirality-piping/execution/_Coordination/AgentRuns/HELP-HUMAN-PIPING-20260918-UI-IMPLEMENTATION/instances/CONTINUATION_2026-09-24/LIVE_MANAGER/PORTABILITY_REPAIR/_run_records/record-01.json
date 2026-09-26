@@ -1,0 +1,79 @@
+{
+  "at": "2026-09-24T04:36:56.584255+00:00",
+  "manager": "/root/live_manager",
+  "parent": "/root",
+  "checkout": "/private/tmp/piping-live-control-20260924",
+  "base": "2b31099233df5f3504959cdf8d9fbf90904ff938",
+  "mechanism": "delegated-harness-native descendants",
+  "children": [
+    {
+      "task": "/root/live_manager/native",
+      "role": "TASK Type2",
+      "model": "gpt-6-astra",
+      "reasoning_effort": "low",
+      "history": "none",
+      "scope": "Native/CLI TASK N in IMPLEMENTATION_BRIEFS.md",
+      "phase": "ACK only before explicit authoring release"
+    },
+    {
+      "task": "/root/live_manager/frontend",
+      "role": "TASK Type2",
+      "model": "gpt-6-astra",
+      "reasoning_effort": "low",
+      "history": "none",
+      "scope": "Frontend/controller TASK F in IMPLEMENTATION_BRIEFS.md",
+      "phase": "ACK only before explicit authoring release"
+    }
+  ],
+  "enforcement_limit": "Scope and resource limits are supplied instructions, not a claim the harness creates per-file enforcement. Host sandbox remains actual boundary.",
+  "supplied_origins": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_IMPLEMENTATION_ACTIVATION.md",
+      "sha256": "9fda39962acb516469ddcfa7898119e16a9104316b57ebb0d2a5e6b9356c6628"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/WIRE_REVIEW/RETURN.md",
+      "sha256": "aea713d09daf18c9fff3d9b18d22d407b8f991d3144d8ba772a746fe923a90d5"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/OWNER_DECISIONS.md",
+      "sha256": "7f244d1cbdfc6060d77de371e141b082adc936bccbfd4eb36e2a3b4308434b2e"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/WIRE_PROPOSAL.md",
+      "sha256": "91f4910026bcceffc98c669a4d2487539ad63cc878822061e6cc1b40c98c40ce"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION_BRIEFS.md",
+      "sha256": "5a3116ca2a6999204a3d6f8dcd65d9cd4a176fa9404940f68b631fbb38938915"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/TEST_PLAN.md",
+      "sha256": "a68a1ca42c9a44fdd2aaa01b63813a4045fd69b64757d34892fe1278ab2e5bb7"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/MANAGER_ACTIVATION.md",
+      "sha256": "50ee6807f042a2182bddbf18030d97270f11b012ac46bb1dd319cd5a5fd2095a"
+    }
+  ]
+}

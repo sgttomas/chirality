@@ -1,0 +1,40 @@
+
+> openpipestress-workspace@0.1.0 test:desktop
+> npm test --workspace apps/desktop --maxWorkers=1 src/features/workspace/liveControlController.test.ts src/features/workspace/workspaceSession.liveControl.test.tsx src/services/liveControlBridge.test.ts src/features/workspace/workspaceSession.shell.test.tsx src/features/workspace/table/EngineeringTable.test.tsx src/features/workspace/table/OverflowRail.test.tsx src/features/workspace/table/ModelTree.table.test.tsx src/features/model-tree/ModelTree.test.tsx src/App.tableOperations.test.tsx
+
+npm warn Unknown cli config "--maxWorkers". This will stop working in the next major version of npm.
+
+> @openpipestress/desktop@0.1.0 test
+> vitest run src/features/workspace/liveControlController.test.ts src/features/workspace/workspaceSession.liveControl.test.tsx src/services/liveControlBridge.test.ts src/features/workspace/workspaceSession.shell.test.tsx src/features/workspace/table/EngineeringTable.test.tsx src/features/workspace/table/OverflowRail.test.tsx src/features/workspace/table/ModelTree.table.test.tsx src/features/model-tree/ModelTree.test.tsx src/App.tableOperations.test.tsx
+
+
+ RUN  v4.1.10 /private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop
+
+Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+    at module.exports (/private/tmp/piping-live-control-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+    at HTMLCanvasElementImpl.getContext (/private/tmp/piping-live-control-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+    at HTMLCanvasElement.getContext (/private/tmp/piping-live-control-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+    at getContext (file:///private/tmp/piping-live-control-20260924/projects/chirality-piping/node_modules/three/build/three.module.js:15443:18)
+    at new WebGLRenderer (file:///private/tmp/piping-live-control-20260924/projects/chirality-piping/node_modules/three/build/three.module.js:15472:11)
+    at new ViewportResource (/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/viewportResource.ts:509:21)
+    at /private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx:909:18
+    at Object.react_stack_bottom_frame (/private/tmp/piping-live-control-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:25989:20)
+    at runWithFiberInDEV (/private/tmp/piping-live-control-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+    at commitHookEffectListMount (/private/tmp/piping-live-control-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:13249:29) undefined
+Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+    at module.exports (/private/tmp/piping-live-control-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+    at HTMLCanvasElementImpl.getContext (/private/tmp/piping-live-control-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+    at HTMLCanvasElement.getContext (/private/tmp/piping-live-control-20260924/projects/chirality-piping/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+    at getContext (file:///private/tmp/piping-live-control-20260924/projects/chirality-piping/node_modules/three/build/three.module.js:15443:18)
+    at new WebGLRenderer (file:///private/tmp/piping-live-control-20260924/projects/chirality-piping/node_modules/three/build/three.module.js:15476:11)
+    at new ViewportResource (/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/viewportResource.ts:509:21)
+    at /private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src/features/viewport/PipeViewport.tsx:909:18
+    at Object.react_stack_bottom_frame (/private/tmp/piping-live-control-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:25989:20)
+    at runWithFiberInDEV (/private/tmp/piping-live-control-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+    at commitHookEffectListMount (/private/tmp/piping-live-control-20260924/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:13249:29) undefined
+
+ Test Files  9 passed (9)
+      Tests  124 passed (124)
+   Start at  01:09:47
+   Duration  3.34s (transform 3.89s, setup 1.30s, import 4.97s, tests 8.87s, environment 4.92s)
+

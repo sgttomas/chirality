@@ -1,0 +1,11 @@
+# Independent R1–R5 backcheck brief
+
+Prepared while repair execution is held. The retained reviewer has now been resumed for source-only backcheck; final disposition explicitly waits for actual affected regression/ACL evidence. No verification pass is implied by this document.
+
+Retained nonimplementing reviewer /root/live_manager/implementation_review remains TASK Type2 Astra/xhigh. Canonical TASK and software-code-review sources and same no-resource/write boundaries in REVIEW_BRIEF.md apply; parent read their full bodies before initial review dispatch. Confirm current identity before backcheck. Source candidate is de52a7cfc6cca083877ef53df559f5ee73701615, original complete-diff base2b31099233df5f3504959cdf8d9fbf90904ff938; repair delta starts at1811d70a129419d8d06502b61ef28bb2977a6d93. Reviewed wire91f491 and activation9fda399 remain unchanged.
+
+Read original REVIEW/RETURN.md and REPAIR_SCOPE.md, then exact repair delta and consequences across the full candidate. R1: local-main listen/unlisten-only capability and generated ACL admission; R2: original/joined unpublished Clear settlement only after committed absence; R3: invocation-owned epoch check after preview await, preserving fresh request and historical recovery; R4: matching native/frontend WebviewWindow/main targets, guards and Any-listener limitation; R5: explicit exact envelope/correlation keys and malformed negatives. Verify no source scope expansion beyond named narrow capability file.
+
+Affected regression/TypeScript/native/ACL results must be supplied before final backcheck disposition. All initial passing checks predate R1–R5 repairs and cannot substitute. The manager will identify the repair evidence record and any changed candidate upon actual dispatch. Do not infer new results from filenames or this planned brief.
+
+Read-only; no tests/build/npm/native/browser/CUA/socket/network/Git/index mutation or primary checkout work. Write REVIEW/BACKCHECK_RETURN.md and bounded origin manifest only. Confirm each finding closed or remaining with specific source/evidence basis; identify newly introduced defects if present. Actual native/package/main-webview handshake/CLI-to-human Apply I1/I2/H1/H2 remains outstanding regardless of component passes. Return exact reviewed candidate and risk boundaries to manager; ROOT owns integration and later resource grants.

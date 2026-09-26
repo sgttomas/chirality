@@ -1,0 +1,24 @@
+[
+  {
+    "command": "env -u SWBPIPE_LIVE_CONTROL CARGO_BUILD_JOBS=2 CARGO_NET_OFFLINE=true CARGO_TARGET_DIR=/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target npm_config_offline=true npm run tauri -- build --debug --bundles app",
+    "cwd": "projects/chirality-piping/apps/desktop",
+    "exit_code": 0,
+    "log": "build.raw.txt",
+    "log_sha256": "f978682680a798cc553d6ab041c5d01e60bf15da049560e06473712461e3e698",
+    "permission": "default sandbox",
+    "result": "Integrated package passes desktop-only inventory and retained CLI hash check"
+  },
+  {
+    "command": "python3 projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/NATIVE/SELF_TEST/RUN_SELF_TEST.py",
+    "child_argv": [
+      "/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target/debug/bundle/macos/SWBPIPE.app/Contents/MacOS/openpipestress-desktop",
+      "--self-test-saved-edited-load"
+    ],
+    "child_pid": 87681,
+    "exit_code": 0,
+    "permission": "default sandbox",
+    "result": "Conditional newly hash-bound packaged self-test PASS",
+    "stdout_sha256": "3821bc35b5ac117d57f1fd6f2f26f75c751a3d806a423e39bcb63e79069943c7",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

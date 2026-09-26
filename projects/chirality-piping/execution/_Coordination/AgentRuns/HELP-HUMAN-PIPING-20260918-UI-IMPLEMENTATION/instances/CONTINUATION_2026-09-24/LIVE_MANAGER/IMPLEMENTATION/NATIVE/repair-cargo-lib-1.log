@@ -1,0 +1,31 @@
+   Compiling openpipestress-desktop v0.1.0 (/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri)
+warning: constant `MAX_DESCRIPTOR_BYTES` is never used
+ --> src/live_control_wire.rs:9:11
+  |
+9 | pub const MAX_DESCRIPTOR_BYTES: usize = 16_384;
+  |           ^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `read_attachment` is never used
+   --> src/live_control_wire.rs:237:12
+    |
+237 |     pub fn read_attachment(path: &Path) -> Result<Attachment, WireError> {
+    |            ^^^^^^^^^^^^^^^
+
+warning: `openpipestress-desktop` (lib test) generated 2 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.81s
+     Running unittests src/lib.rs (projects/chirality-piping/apps/desktop/src-tauri/target/debug/deps/openpipestress_desktop_lib-a910d088770e20c0)
+
+running 8 tests
+test live_control::tests::disabled_is_inert ... ok
+test live_control_wire::tests::reply_cannot_replace_correlation_or_mix_result_and_error ... ok
+test live_control::tests::authentication_and_method_errors_never_dispatch ... ok
+test live_control::transport::tests::disconnect_cancels_original_dispatch_without_claiming_absence ... ok
+test live_control::tests::registration_replacement_and_correlation_are_not_caller_controlled ... ok
+test live_control::tests::admission_and_cancel_preserve_successor ... ok
+test live_control::transport::tests::socket_carrier_routes_historical_result_and_redacts_capability ... ok
+test live_control_wire::tests::frame_boundary_and_unterminated_are_explicit ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 102 filtered out; finished in 0.12s
+
