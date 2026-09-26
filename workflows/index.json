@@ -1170,7 +1170,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 4
+        "order": 5
       },
       "execution": {
         "schemaVersion": 1,
@@ -2376,7 +2376,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 7
+        "order": 8
       },
       "execution": {
         "schemaVersion": 1,
@@ -2488,7 +2488,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 10,
+        "order": 11,
         "displayName": "Run corpus concordance program"
       },
       "execution": {
@@ -2536,7 +2536,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 5
+        "order": 6
       },
       "execution": {
         "schemaVersion": 1,
@@ -2606,7 +2606,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 9,
+        "order": 10,
         "displayName": "Lifecycle transition review"
       },
       "execution": {
@@ -2679,7 +2679,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 6
+        "order": 7
       },
       "execution": {
         "schemaVersion": 1,
@@ -2888,11 +2888,46 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
+        "order": 4
+      },
+      "execution": {
+        "schemaVersion": 1,
+        "compatibleRoles": [
+          "WORKING_ITEMS"
+        ]
+      }
+    },
+    {
+      "kind": "workflow",
+      "name": "software-prd",
+      "source": "bundled",
+      "sourceRootId": "chirality-root",
+      "description": "Develop a product requirements document for a new software product or a defined development undertaking with the human, examine the complete candidate independently, and hand the human-accepted PRD to software-decomp as its accepted basis. For a successor PRD formed by examining an existing project, use reverse-engineer-software. Not for maintenance, bug repair, issue-ticket execution, or stand-alone data repair or analysis.",
+      "central": false,
+      "compatibility": "canonical",
+      "executionRoleIds": [
+        "HELP_HUMAN",
+        "HELPS_HUMANS",
+        "WORKING_ITEMS"
+      ],
+      "resources": [
+        "WORKFLOW.md",
+        "execution.json",
+        "resources/contract.md",
+        "resources/method.md",
+        "resources/product-questions.md",
+        "resources/records-and-review.md"
+      ],
+      "navigation": {
+        "category": "core",
+        "tier": "primary",
         "order": 3
       },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
+          "HELP_HUMAN",
+          "HELPS_HUMANS",
           "WORKING_ITEMS"
         ]
       }
@@ -3007,7 +3042,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 8,
+        "order": 9,
         "displayName": "Manage tasks"
       },
       "execution": {
