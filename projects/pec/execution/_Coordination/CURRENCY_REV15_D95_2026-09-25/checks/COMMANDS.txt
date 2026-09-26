@@ -1,0 +1,34 @@
+Index of commands for the D-PEC-95 P + R act (run root CURRENCY_REV15_D95_2026-09-25).
+Unless stated, cwd = repository root (worktree agent-a471961b37f906dd4, branch claude/pec-d95-currency-act),
+PYTHONDONTWRITEBYTECODE=1, Python 3.13.7 (/Library/Frameworks/Python.framework/Versions/3.13/bin/python3),
+local date 2026-09-25 (America/Edmonton, MDT). <pre> = git archive export of origin/main
+590ec52c15f86d812ce3c5d4919b475fe9cf3985 (tar SHA-256 152aba22aee83d9b0a76c7265d533f523a0373f43b6e6cda9ac7033ef75a4024),
+extracted outside the repository in the session scratchpad. <RR> = projects/pec/execution/_Coordination/CURRENCY_REV15_D95_2026-09-25.
+<EV> = projects/pec/execution/_Coordination/PEC_CURRENCY_D95_PREP_2026-09-25/evidence.
+Format: exit=<code><TAB><output file><TAB><command>. Listed in execution order.
+
+exit=0	checks/hold_dispatch-for-production.tsv	(cwd projects/pec) sh <RR>/run_holds.sh dispatch-for-production <RR>/checks/hold_targets.txt <RR>/checks/hold_dispatch-for-production.tsv   [121 targets: 119 P + R paths + REGISTER.csv + REGISTER_CLOSED.csv; 121/121 ALLOW, exit 0 each]
+exit=0	checks/pre_strict.out	python3 tools/validation/validate_decomposition_registers.py projects/pec/execution --strict   [pre-act]
+exit=0	checks/pre_receipts.out	python3 tools/validation/validate_pec_loop_receipts.py --repo-root .   [pre-act]
+exit=0	checks/pre_harness.out	python3 tools/practitioner_harness/harness.py self-check   [pre-act; the run root then held the copied scripts, run_holds.sh and the outputs above]
+exit=0	checks/closure_pre.out, checks/closure_pre/	python3 tools/coordination/analyze_dep_closure.py projects/pec/execution --output-dir <RR>/checks/closure_pre   [pre-act]
+exit=0	gen_d95_report.tsv, gen_d95_stderr.txt (empty)	python3 <RR>/gen_d95.py --repo . --act-date 2026-09-25 --option P --retired-covers   [the one generator run, 2026-09-25 20:36:19 MDT]
+exit=0	checks/byte_identity.out	python3 <RR>/check_byte_identity.py <EV> <RR>/gen_d95_report.tsv
+exit=0	checks/verify_d95.out	python3 <RR>/verify_d95.py <pre> . --option P --retired-covers
+exit=0	checks/post_strict.out	python3 tools/validation/validate_decomposition_registers.py projects/pec/execution --strict   [byte-identical to pre_strict.out]
+exit=0	checks/closure_post.out, checks/closure_post/	python3 tools/coordination/analyze_dep_closure.py projects/pec/execution --output-dir <RR>/checks/closure_post   [closure_summary.json byte-identical to closure_pre and to D-PEC-93's]
+exit=0	checks/post_receipts.out	python3 tools/validation/validate_pec_loop_receipts.py --repo-root .   [byte-identical to pre_receipts.out]
+exit=0	checks/schema_10.out	sh <RR>/run_schema.sh <RR>/gen_d95_report.tsv <RR>/checks/schema_10.out   [validate_dependencies_schema.py on the 10 N3 registers; exit 0 each]
+exit=0	checks/post_harness.out	python3 tools/practitioner_harness/harness.py self-check   [byte-identical to pre_harness.out]
+exit=0	checks/t1_00_federation.out, checks/t1_federation_projection.json	python3 tools/taskmgmt/taskmgmt.py federation --register projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv --out <RR>/checks/t1_federation_projection.json   [task-management federation preflight; COMPLETE; register_writes 0]
+exit=0	checks/t1_01_validate_pre_REGISTER.out	python3 tools/taskmgmt/taskmgmt.py validate --register projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv
+exit=0	checks/t1_01_validate_pre_REGISTER_CLOSED.out	python3 tools/taskmgmt/taskmgmt.py validate --register projects/pec/execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv
+exit=0	checks/t1_02_apply.out, checks/t1_02_apply.err (empty)	python3 <RR>/t1_tm_pec_023.py --repo . --act-date 2026-09-25
+exit=0	checks/t1_03_validate_closed_REGISTER.out	python3 tools/taskmgmt/taskmgmt.py validate --register projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv
+exit=0	checks/t1_03_validate_closed_REGISTER_CLOSED.out	python3 tools/taskmgmt/taskmgmt.py validate --register projects/pec/execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv
+exit=0	checks/t1_04_archive_dryrun.out	python3 tools/taskmgmt/taskmgmt.py archive --register projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv --dry-run
+exit=0	checks/t1_05_archive.out	python3 tools/taskmgmt/taskmgmt.py archive --register projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv
+exit=0	checks/t1_06_validate_post_REGISTER.out	python3 tools/taskmgmt/taskmgmt.py validate --register projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv
+exit=0	checks/t1_06_validate_post_REGISTER_CLOSED.out	python3 tools/taskmgmt/taskmgmt.py validate --register projects/pec/execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv
+exit=0	checks/preimages_at_590ec52c1.out	python3 <RR>/check_preimages.py <pre> <EV>   [126/126: 124 generator READ pins + 2 Task Management preimages, against the pre-act export]
+exit=0	checks/hold_rely-for-production.tsv	(cwd projects/pec) sh <RR>/run_holds.sh rely-for-production <RR>/checks/hold_targets.txt <RR>/checks/hold_rely-for-production.tsv   [121/121 ALLOW, before fan-in]

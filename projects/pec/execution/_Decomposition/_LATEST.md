@@ -31,25 +31,31 @@ exact amendment and propagation plan accepted the same day, register row
   resolved issues.
 - **Closure verdict:** `CLOSED_FOR_SCOPE_CHANGE_ONLY` (owner Q-CP3-1 (a)).
 - **Audit:**
-  `_Evaluation/DecompCoverage/COV_SCA005_POSTCHANGE_2026-09-25_1344/`;
-  `BLOCKERS` by the method's count rule (2 / 6 / 74). Both blockers are the
-  absent DEL-02-08/09 folders, an expected consequence of the owner's
-  deferral of Lane A4; excluding expected consequences, 0 blockers / 4
-  warnings. The audit folder's own `_LATEST.md` still names the SCA-004
-  audit; moving it was not part of this act.
+  `_Evaluation/DecompCoverage/COV_SCA005_POSTSETUP_2026-09-25_1606/`, which
+  the audit folder's `_LATEST.md` names: `WARNINGS`, 0 blockers / 3
+  warnings / 70 info, run after PROJECT_SETUP created DEL-02-08/09 and
+  applied the dependency rerun under `D-PEC-93`. The three warnings are
+  pre-existing (v2 artifacts held outside their deliverable folders). Its
+  INFO findings COV-068/069 (context and reference pins), COV-072
+  (evidence-quote currency) and COV-073 (stale handoff text) were addressed
+  on 2026-09-25 under `D-PEC-95` without a further audit. The checkpoint-3 audit
+  `COV_SCA005_POSTCHANGE_2026-09-25_1344/` is superseded.
 - **Scope-change snapshot:** `_ScopeChange/SCA-005_2026-09-23_2139/`.
-- **Derivative state:** `INCOMPLETE`; `DownstreamRerunState = FROZEN`;
-  `MetadataAlignmentState = IN_PROGRESS`; `ReadyForNextPhase = NO`. The
-  SCA-004 downstream repairs closed on 2026-08-09
+- **Derivative state:** `INCOMPLETE`; `DownstreamRerunState = IN_PROGRESS`;
+  `MetadataAlignmentState = COMPLETE`; `ReadyForNextPhase = NO`. Done under
+  their own packets: DEL-02-08/09 preparation with the dependency rerun, the
+  re-audit and the audit-pointer move (`D-PEC-93`; closeout
+  `_Coordination/PROJECT_SETUP_SCA005_A4_B3_2026-09-25/HANDOFF_STATE.md`);
+  context and reference re-pinning and the evidence-quote refresh
+  (`D-PEC-95`). `projects/pec/AGENTS.md` names PRD v2.3 and the D-GOV-43
+  Runtime boundary since `D-PEC-94`. Open, each separately gated: SOW
+  currency, derivative-artifact review, the registry source packet,
+  fixtures and the D-PEC-90 reliance amendment; TM-PEC-023's state is in
+  the Task Management register. Undertaking
+  `HELP-HUMAN-PEC-20260925-POST-SCA005` plans the open items in
+  `_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md`.
+  The SCA-004 downstream repairs closed on 2026-08-09
   (`_Coordination/PEC_CURRENCY_REPAIR_CLOSEOUT_2026-08-09/HANDOFF_STATE.md`).
-  Open SCA-005 work, each separately gated, is listed in the SCA-005
-  `Handoff_State.md` and `RUN_SUMMARY.md`: DEL-02-08/09 preparation with
-  the dependency rerun (PROJECT_SETUP, own packet), context and reference
-  re-pinning, SOW currency, derivative-artifact review, the registry source
-  packet, fixtures, TM-PEC-023 disposition, the `projects/pec/AGENTS.md`
-  instruction tranche, the D-PEC-90 reliance amendment, a re-audit after the
-  DEL-02-08/09 preparation, and (under its own grant) moving the audit
-  folder's `_LATEST.md` to the SCA-005 audit.
 - **Authority fence:** no downstream repair, source, lifecycle beyond the
   four accepted retirements, artifact acceptance, release, professional
   reliance, or foreign-loop duty is implied by this pointer.
