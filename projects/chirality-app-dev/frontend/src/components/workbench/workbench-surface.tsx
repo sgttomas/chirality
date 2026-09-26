@@ -2,7 +2,8 @@
 
 import { useSearchParams } from 'next/navigation';
 import React from 'react';
-import { useEffect, useMemo, useState, type FormEvent } from 'react';
+import { useEffect, useId, useMemo, useState, type FormEvent } from 'react';
+import { LifecycleGateFields, LifecycleGateNote } from '../pipeline/lifecycle-gate-fields';
 import { DocumentView } from '../shell/document-view';
 import { useWorkspace } from '../workspace/workspace-provider';
 import {
@@ -13,8 +14,10 @@ import {
   formatBlockingUpstreamMetric,
   formatBlockingUpstreamNote,
   isExecutionBlockerSubsetRow,
-  nextLifecycleTargets,
-  requiresApprovalShaForTarget,
+  lifecycleTransitionErrorMessage,
+  lifecycleTransitionEvidence,
+  lifecycleTransitionTargetLabel,
+  lifecycleTransitionTargets,
   summarizeDependencyRows,
   transitionDeliverableStatus,
   workspaceApiErrorMessage,
@@ -44,19 +47,27 @@ type Option = {
 type WorkbenchLifecycleTransitionFormProps = {
   availableTransitionTargets: readonly string[];
   canSubmitTransition: boolean;
+  /** Current lifecycle state; selects the ruling and amendment inputs (App SPEC §4.3). */
+  currentState?: string;
   requiresApprovalSha: boolean;
   transitionActor: string;
+  transitionAmendment?: string;
   transitionApprovalSha: string;
   transitionDate: string;
   transitionError: string | null;
+  transitionRuling?: string;
   transitionSubmitting: boolean;
   transitionTarget: string;
   onActorChange: (value: string) => void;
+  onAmendmentChange?: (value: string) => void;
   onApprovalShaChange: (value: string) => void;
   onDateChange: (value: string) => void;
+  onRulingChange?: (value: string) => void;
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
   onTargetChange: (value: string) => void;
 };
+
+const ignoreChange = (_value: string): void => {};
 
 const TRANSITION_ACTOR_OPTIONS: Option[] = [
   { value: 'WORKING_ITEMS', label: 'WORKING_ITEMS' },
@@ -76,19 +87,26 @@ function normalizeAgent(rawValue: string | null): string {
 export function WorkbenchLifecycleTransitionForm({
   availableTransitionTargets,
   canSubmitTransition,
+  currentState,
   requiresApprovalSha,
   transitionActor,
+  transitionAmendment = '',
   transitionApprovalSha,
   transitionDate,
   transitionError,
+  transitionRuling = '',
   transitionSubmitting,
   transitionTarget,
   onActorChange,
+  onAmendmentChange = ignoreChange,
   onApprovalShaChange,
   onDateChange,
+  onRulingChange = ignoreChange,
   onSubmit,
   onTargetChange
 }: WorkbenchLifecycleTransitionFormProps): JSX.Element {
+  const noteId = useId();
+  const evidence = lifecycleTransitionEvidence(currentState, transitionTarget);
   return (
     <form
       className="pipeline-transition-form"
@@ -112,7 +130,7 @@ export function WorkbenchLifecycleTransitionForm({
             ) : null}
             {availableTransitionTargets.map((state) => (
               <option key={state} value={state}>
-                {state}
+                {lifecycleTransitionTargetLabel(currentState, state)}
               </option>
             ))}
           </select>
@@ -159,9 +177,24 @@ export function WorkbenchLifecycleTransitionForm({
             placeholder={requiresApprovalSha ? 'e.g. abcd1234' : 'Optional (required at CHECKING/ISSUED)'}
           />
         </label>
+
+        <LifecycleGateFields
+          evidence={evidence}
+          noteId={noteId}
+          transitionAmendment={transitionAmendment}
+          transitionRuling={transitionRuling}
+          onAmendmentChange={onAmendmentChange}
+          onRulingChange={onRulingChange}
+        />
       </div>
 
-      {transitionError ? <p className="panel-error">{transitionError}</p> : null}
+      <LifecycleGateNote evidence={evidence} noteId={noteId} />
+
+      {transitionError ? (
+        <p className="panel-error" role="alert">
+          {transitionError}
+        </p>
+      ) : null}
 
       <div className="pipeline-transition-actions">
         <button type="submit" disabled={!canSubmitTransition}>
@@ -192,6 +225,8 @@ export function WorkbenchSurface(): JSX.Element {
   const [transitionActor, setTransitionActor] = useState('WORKING_ITEMS');
   const [transitionDate, setTransitionDate] = useState(currentIsoDate);
   const [transitionApprovalSha, setTransitionApprovalSha] = useState('');
+  const [transitionRuling, setTransitionRuling] = useState('');
+  const [transitionAmendment, setTransitionAmendment] = useState('');
   const [transitionError, setTransitionError] = useState<string | null>(null);
   const [transitionSubmitting, setTransitionSubmitting] = useState(false);
 
@@ -293,13 +328,14 @@ export function WorkbenchSurface(): JSX.Element {
   const currentLifecycleState = statusSnapshot?.status.currentState;
   const transitionEnabled = useMemo(() => canAgentTransitionLifecycle(agent), [agent]);
   const availableTransitionTargets = useMemo(
-    () => (currentLifecycleState ? nextLifecycleTargets(currentLifecycleState) : []),
+    () => (currentLifecycleState ? lifecycleTransitionTargets(currentLifecycleState) : []),
     [currentLifecycleState]
   );
-  const requiresApprovalSha = useMemo(
-    () => requiresApprovalShaForTarget(transitionTarget),
-    [transitionTarget]
+  const transitionEvidence = useMemo(
+    () => lifecycleTransitionEvidence(currentLifecycleState, transitionTarget),
+    [currentLifecycleState, transitionTarget]
   );
+  const requiresApprovalSha = transitionEvidence.humanGate;
 
   useEffect(() => {
     if (!currentLifecycleState) {
@@ -307,7 +343,7 @@ export function WorkbenchSurface(): JSX.Element {
       return;
     }
 
-    const allowedTargets = nextLifecycleTargets(currentLifecycleState);
+    const allowedTargets = lifecycleTransitionTargets(currentLifecycleState);
     setTransitionTarget((existing) => {
       if (existing && allowedTargets.some((state) => state === existing)) {
         return existing;
@@ -382,6 +418,8 @@ export function WorkbenchSurface(): JSX.Element {
     Boolean(selectedDeliverablePath) &&
     Boolean(transitionTarget) &&
     (!requiresApprovalSha || Boolean(transitionApprovalSha.trim())) &&
+    (transitionEvidence.ruling !== 'required' || Boolean(transitionRuling.trim())) &&
+    (transitionEvidence.amendment !== 'required' || Boolean(transitionAmendment.trim())) &&
     !transitionSubmitting &&
     !contractsLoading;
 
@@ -393,7 +431,15 @@ export function WorkbenchSurface(): JSX.Element {
     }
 
     if (requiresApprovalSha && !transitionApprovalSha.trim()) {
-      setTransitionError('APPROVAL_SHA_REQUIRED: approvalSha is required for CHECKING/ISSUED transitions.');
+      setTransitionError('APPROVAL_SHA_REQUIRED: approvalSha is required for human-gated transitions.');
+      return;
+    }
+    if (transitionEvidence.ruling === 'required' && !transitionRuling.trim()) {
+      setTransitionError('RULING_REQUIRED: the reversal from CHECKING needs the human ruling record.');
+      return;
+    }
+    if (transitionEvidence.amendment === 'required' && !transitionAmendment.trim()) {
+      setTransitionError('Amendment required: reopening ISSUED needs an accepted amendment.');
       return;
     }
 
@@ -408,11 +454,17 @@ export function WorkbenchSurface(): JSX.Element {
         targetState: transitionTarget,
         actor: effectiveActor,
         date: transitionDate.trim() || undefined,
-        approvalSha: transitionApprovalSha.trim() || undefined
+        approvalSha: transitionApprovalSha.trim() || undefined,
+        // Only the inputs shown for this transition are sent; the API refuses the others.
+        ruling: transitionEvidence.ruling !== 'none' ? transitionRuling.trim() || undefined : undefined,
+        amendment:
+          transitionEvidence.amendment !== 'none' ? transitionAmendment.trim() || undefined : undefined
       });
       setStatusSnapshot(result);
+      setTransitionRuling('');
+      setTransitionAmendment('');
     } catch (error) {
-      setTransitionError(workspaceApiErrorMessage(error));
+      setTransitionError(lifecycleTransitionErrorMessage(error));
     } finally {
       setTransitionSubmitting(false);
     }
@@ -565,15 +617,30 @@ export function WorkbenchSurface(): JSX.Element {
                 <WorkbenchLifecycleTransitionForm
                   availableTransitionTargets={availableTransitionTargets}
                   canSubmitTransition={canSubmitTransition}
+                  currentState={currentLifecycleState}
                   requiresApprovalSha={requiresApprovalSha}
                   transitionActor={transitionActor}
+                  transitionAmendment={transitionAmendment}
                   transitionApprovalSha={transitionApprovalSha}
                   transitionDate={transitionDate}
                   transitionError={transitionError}
+                  transitionRuling={transitionRuling}
                   transitionSubmitting={transitionSubmitting}
                   transitionTarget={transitionTarget}
                   onActorChange={(value) => {
                     setTransitionActor(value);
+                    if (transitionError) {
+                      setTransitionError(null);
+                    }
+                  }}
+                  onAmendmentChange={(value) => {
+                    setTransitionAmendment(value);
+                    if (transitionError) {
+                      setTransitionError(null);
+                    }
+                  }}
+                  onRulingChange={(value) => {
+                    setTransitionRuling(value);
                     if (transitionError) {
                       setTransitionError(null);
                     }

@@ -9,6 +9,10 @@ import {
   formatBlockingUpstreamMetric,
   formatBlockingUpstreamNote,
   isExecutionBlockerSubsetRow,
+  lifecycleTransitionErrorMessage,
+  lifecycleTransitionEvidence,
+  lifecycleTransitionTargetLabel,
+  lifecycleTransitionTargets,
   nextLifecycleTargets,
   requiresApprovalShaForTarget,
   summarizeDependencyRows,
@@ -266,6 +270,129 @@ describe('deliverable API helpers', () => {
     expect(requiresApprovalShaForTarget('issued')).toBe(true);
     expect(requiresApprovalShaForTarget('IN_PROGRESS')).toBe(false);
     expect(requiresApprovalShaForTarget(undefined)).toBe(false);
+  });
+
+  it('adds the human-authorized reversal and reopening targets after the forward targets', () => {
+    expect(lifecycleTransitionTargets('IN_PROGRESS')).toEqual(['CHECKING']);
+    expect(lifecycleTransitionTargets('CHECKING')).toEqual(['ISSUED', 'IN_PROGRESS']);
+    expect(lifecycleTransitionTargets('ISSUED')).toEqual(['IN_PROGRESS']);
+    expect(lifecycleTransitionTargets('INITIALIZED')).toEqual(['SEMANTIC_READY', 'IN_PROGRESS']);
+  });
+
+  it('describes the evidence each transition takes (App SPEC §4.3)', () => {
+    expect(lifecycleTransitionEvidence('CHECKING', 'IN_PROGRESS')).toEqual({
+      kind: 'ruled-reversal',
+      humanGate: true,
+      approvalSha: 'required',
+      ruling: 'required',
+      amendment: 'none'
+    });
+    expect(lifecycleTransitionEvidence('issued', 'in_progress')).toEqual({
+      kind: 'amendment-reopen',
+      humanGate: true,
+      approvalSha: 'required',
+      ruling: 'none',
+      amendment: 'required'
+    });
+    for (const [from, to] of [
+      ['IN_PROGRESS', 'CHECKING'],
+      ['CHECKING', 'ISSUED']
+    ]) {
+      expect(lifecycleTransitionEvidence(from, to)).toMatchObject({
+        kind: 'forward',
+        humanGate: true,
+        ruling: 'optional',
+        amendment: 'none'
+      });
+    }
+    expect(lifecycleTransitionEvidence('INITIALIZED', 'IN_PROGRESS')).toMatchObject({
+      humanGate: false,
+      approvalSha: 'optional',
+      ruling: 'none',
+      amendment: 'none'
+    });
+    expect(lifecycleTransitionEvidence(undefined, '')).toMatchObject({ humanGate: false });
+    expect(lifecycleTransitionTargetLabel('CHECKING', 'IN_PROGRESS')).toBe(
+      'IN_PROGRESS (ruled reversal)'
+    );
+    expect(lifecycleTransitionTargetLabel('ISSUED', 'IN_PROGRESS')).toBe(
+      'IN_PROGRESS (amendment reopening)'
+    );
+    expect(lifecycleTransitionTargetLabel('CHECKING', 'ISSUED')).toBe('ISSUED');
+  });
+
+  it('formats transition refusals with the checker code and a hint', () => {
+    expect(
+      lifecycleTransitionErrorMessage(
+        new WorkspaceApiClientError(400, 'AMENDMENT_NOT_ADMITTED', 'DELIVERABLE_REMOVED: REMOVE row', {
+          refusalCode: 'DELIVERABLE_REMOVED'
+        })
+      )
+    ).toBe(
+      'AMENDMENT_NOT_ADMITTED (checker code DELIVERABLE_REMOVED): REMOVE row. ' +
+        'The amendment record check refused the reopening. _STATUS.md was not changed.'
+    );
+    // A refusal without a checker code (the decision did not match the request).
+    expect(
+      lifecycleTransitionErrorMessage(
+        new WorkspaceApiClientError(400, 'AMENDMENT_NOT_ADMITTED', 'The amendment decision does not match')
+      )
+    ).toBe(
+      'AMENDMENT_NOT_ADMITTED: The amendment decision does not match. ' +
+        'The amendment record check refused the reopening. _STATUS.md was not changed.'
+    );
+    expect(
+      lifecycleTransitionErrorMessage(new WorkspaceApiClientError(400, 'RULING_REQUIRED', 'needs a ruling'))
+    ).toContain("RULING_REQUIRED: needs a ruling. Name the human ruling record: a non-empty file inside the project");
+    expect(
+      lifecycleTransitionErrorMessage(new WorkspaceApiClientError(400, 'HISTORY_NOT_PRESERVED', 'would drop'))
+    ).toContain('HISTORY_NOT_PRESERVED: would drop. The transition would have dropped a recorded reopening');
+    expect(
+      lifecycleTransitionErrorMessage(new WorkspaceApiClientError(400, 'INVALID_STATUS_FORMAT', 'would not read'))
+    ).toContain('INVALID_STATUS_FORMAT: would not read. _STATUS.md has a line break');
+    expect(
+      lifecycleTransitionErrorMessage(new WorkspaceApiClientError(404, 'STATUS_FILE_NOT_FOUND', 'missing'))
+    ).toBe('STATUS_FILE_NOT_FOUND: missing');
+    expect(lifecycleTransitionErrorMessage(new Error('network down'))).toBe('network down');
+  });
+
+  it('posts the ruling and amendment and reports the checker code of a refused reopening', async () => {
+    const fetchMock = vi.mocked(fetch);
+    fetchMock.mockResolvedValueOnce(
+      jsonResponse(
+        {
+          error: {
+            type: 'AMENDMENT_NOT_ADMITTED',
+            message: 'AMENDMENT_ALREADY_USED: already reopened under SCA-001',
+            details: { refusalCode: 'AMENDMENT_ALREADY_USED' }
+          }
+        },
+        400
+      )
+    );
+
+    let caught: unknown;
+    try {
+      await transitionDeliverableStatus({
+        projectRoot: '/tmp/project',
+        deliverablePath: '/tmp/project/DEL-05-03_X',
+        targetState: 'IN_PROGRESS',
+        actor: 'HUMAN',
+        approvalSha: 'abc1234',
+        amendment: 'SCA-001'
+      });
+    } catch (error) {
+      caught = error;
+    }
+
+    expect(JSON.parse(String(fetchMock.mock.calls[0]?.[1]?.body))).toMatchObject({
+      targetState: 'IN_PROGRESS',
+      approvalSha: 'abc1234',
+      amendment: 'SCA-001'
+    });
+    expect(lifecycleTransitionErrorMessage(caught)).toContain(
+      'AMENDMENT_NOT_ADMITTED (checker code AMENDMENT_ALREADY_USED): already reopened under SCA-001'
+    );
   });
 
   it('limits lifecycle transition controls to approved agents', () => {

@@ -91,7 +91,8 @@
   the reversal exactly as it can reach those gates.
 - The workbench and pipeline transition forms still offer forward targets only
   (`nextLifecycleTargets`) and have no ruling input. Adding one is UI work that
-  needs D-APP-36 render evidence.
+  needs D-APP-36 render evidence. (FU3 has since added the inputs; see the
+  follow-up table.)
 - The Runtime-owned descriptor for `status_transition`
   (`projects/chirality-runtime/packages/contracts/src/harness/tool-descriptor.ts`)
   does not list `ruling`, and its human-gate text still names only
@@ -104,6 +105,7 @@
 - DEL-07-04 ScopeOfWork CLM-003/CLM-008 still list "reversal" among open
   candidate-bound checks. The requirement text is unchanged. Updating those
   verification-state sentences is left to the undertaking's bounded closeout.
+  (FU4 has since updated them; see the follow-up table.)
 - `loop/LOOP_RECEIPTS.md` gains one notice-adoption pointer at the dispatch
   brief's direction. Since `NOTICE_2026-09-23_CENTRAL_LOOP_RECEIPTS.md`, LOOP_INIT
   §5 places the undertaking receipt in `AgentRuns/<RunID>/RECEIPT.md`; the ledger
@@ -115,7 +117,7 @@
 |---|---|---|
 | FU1 | Status tools check the amendment record (ACCEPTED, checkpoint group 3, action register names the deliverable with `MODIFY` or scope-changing `RECLASSIFY`) before admitting `ISSUED -> IN_PROGRESS`. | DEL-07-04 REQ-004. IMPLEMENTED in run `APP-AMENDMENT-REOPEN-2026-09-26` ([receipt](../../AgentRuns/APP-AMENDMENT-REOPEN-2026-09-26/RECEIPT.md)): `amendment-reopen.ts` ports the working-tree mode of Root `check_amendment_reopen.py` as revised at `5038f2554` (same rules and refusal codes less the two at-commit codes; parity test against the Root checker); the validator, API, MCP tool and client admit the reopening for a HUMAN actor with a valid approval SHA and an admitted `amendment`, and record amendment, register row and SHAs in history. The owner's D2 gate-evidence metadata rule landed with it. Known limit: no git, so the Root-only at-commit checks (`APPROVAL_SHA_UNREACHABLE`, `APPROVAL_SHA_NOT_ANCESTOR`, records read at the approval commit) are not made and uncommitted record edits are not detected; `write_status.sh` is the anchored check. |
 | FU2 | The Runtime `status_transition` descriptor lists `ruling` and names the reversal gate. | DEL-07-04 MCP surface; Runtime-owned descriptor. IMPLEMENTED in Runtime tranche `RUNTIME-STATUS-DESCRIPTOR-20260926` (Runtime `loop/LOOP_RECEIPTS.md` Receipt 4; [notice](../../NOTICE_2026-09-26_RUNTIME_STATUS_DESCRIPTOR.md)): the descriptor lists `ruling` and `amendment` and its gate text names entry to CHECKING and ISSUED, the CHECKING reversal and the ISSUED reopening; the `deps_read` descriptor carries the recorded-register text (FU5). The App tool catalog is regenerated and a parity test pins the descriptor inputs to the live MCP schemas. |
-| FU3 | Workbench and pipeline transition forms gain a reversal input, with D-APP-36 render evidence. | DEL-07-04 UI consumers |
-| FU4 | DEL-07-04 SOW verification sentences (CLM-003/CLM-008) updated at the bounded closeout. | Undertaking closeout |
+| FU3 | Workbench and pipeline transition forms gain a reversal input, with D-APP-36 render evidence. | DEL-07-04 UI consumers. IMPLEMENTED in run `APP-TRANSITION-FORMS-2026-09-26` ([receipt](../../AgentRuns/APP-TRANSITION-FORMS-2026-09-26/RECEIPT.md)): both forms offer the `CHECKING -> IN_PROGRESS` reversal with a required `ruling` and the `ISSUED -> IN_PROGRESS` reopening with a required `amendment`, take an optional ruling on the forward gates, send only the inputs shown, and show refusals (with the amendment checker's code) as alerts; short help text says the actor is caller-asserted and `write_status.sh` is the anchored check. D-APP-36 component render tests and a static browser layout check are recorded. The D-APP-36 item stays OPEN for the App loop: the forms are not mounted in the live App (the woven shell discards the legacy tertiary shell), so there is no in-App or packaged render, and the screenshots had an agent's inspection, not a human visual check. |
+| FU4 | DEL-07-04 SOW verification sentences (CLM-003/CLM-008) updated at the bounded closeout. | Undertaking closeout. DONE in run `APP-TRANSITION-FORMS-2026-09-26`: CLM-003 and CLM-008 describe the implemented App SPEC §4.3 reversal and reopening gates and their verification hooks; actor identity and schema fixtures stay open. |
 | FU5 | App dependency reads compute blockers from the recorded register (the union of the declared sections and `Dependencies.csv`); at this run they were CSV-only register evidence. **Implemented** by the separate run `APP-RECORDED-REGISTER-2026-09-26` (owner work plan of 2026-09-26, item 3c): supplier-judged blockers, the D-GOV-49 accepted-DAG split with `DAG_PENDING`, and parity fixtures against the Root tools; see its [receipt](../../AgentRuns/APP-RECORDED-REGISTER-2026-09-26/RECEIPT.md). | App dependency read surfaces |
 | FU6 | Decide when the App's bundled `dependency-extract`, `project-setup` and `review` workflows pick up the dependency follow-up revision. | App loop |
