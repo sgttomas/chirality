@@ -574,7 +574,88 @@ describe('working-root deliverable contract routes', () => {
     expect(body.rows).toEqual([]);
     expect(body.headers).toEqual([]);
     expect(body.warnings).toEqual([
-      'DEPENDENCY_REGISTER_NOT_FOUND: Dependencies.csv is absent; _DEPENDENCIES.md is present as a secondary summary, but no structured rows were inferred.'
+      'DEPENDENCY_REGISTER_NOT_FOUND: Dependencies.csv is absent; the recorded register is read from the declared sections of _DEPENDENCIES.md (recordedRegister), and no CSV rows are inferred from it.'
+    ]);
+  });
+
+  it('computes the supplier-judged verdict from the recorded register alongside the CSV rows', async () => {
+    const supplierPath = path.join(
+      fixture.projectRoot,
+      'PKG-05_Filesystem_Execution_Model',
+      '1_Working',
+      'DEL-05-02_Execution_Root_Scaffolding'
+    );
+    await mkdir(supplierPath, { recursive: true });
+    await writeFile(
+      path.join(supplierPath, '_STATUS.md'),
+      '# Status: DEL-05-02\n\n**Current State:** INITIALIZED\n**Last Updated:** 2026-09-26\n\n## History\n',
+      'utf8'
+    );
+    await writeFile(
+      path.join(fixture.deliverablePath, '_DEPENDENCIES.md'),
+      [
+        '# Dependencies: DEL-05-03 Lifecycle State Handling',
+        '',
+        '## Dependency Tracking Mode',
+        '- **Mode:** DECLARED',
+        '',
+        '## Declared Upstream (I need these before I can proceed)',
+        '- DEL-05-02 Execution Root Scaffolding — Reason: scaffolding baseline',
+        '  - Required maturity: CHECKING',
+        '- DEL-05-01 Folder Model — Reason: declared only in the markdown',
+        '  - Required maturity: INITIALIZED',
+        '',
+        '## Declared Downstream (These need me)',
+        '- TBD',
+        ''
+      ].join('\n'),
+      'utf8'
+    );
+
+    const routes = await importRouteModules();
+    const response = await routes.dependenciesRoute.GET(
+      new Request(
+        `http://localhost/api/working-root/deliverable/dependencies?projectRoot=${encodeURIComponent(fixture.projectRoot)}&deliverablePath=${encodeURIComponent(fixture.deliverablePath)}`
+      )
+    );
+
+    expect(response.status).toBe(200);
+    const body = (await response.json()) as {
+      rows: DependencyRegisterRow[];
+      recordedRegister: {
+        trackingMode: string;
+        declaredOnlyRows: DependencyRegisterRow[];
+        unionRows: DependencyRegisterRow[];
+        disagreements: Array<Record<string, string>>;
+        blockers: {
+          blockerState: string;
+          blockerSource: string;
+          blockingUpstreamCount: number | null;
+          blockingUpstreamDeliverables: string[];
+          upstreamArcs: Array<{ supplier: string; requiredMaturity: string; supplierState: string }>;
+        };
+      };
+    };
+
+    // The CSV rows stay as they are on disk: register evidence.
+    expect(body.rows).toHaveLength(1);
+    expect(body.rows[0].RequiredMaturity).toBe('IN_PROGRESS');
+    const recorded = body.recordedRegister;
+    expect(recorded.trackingMode).toBe('DECLARED');
+    expect(recorded.unionRows.map((row) => row.DependencyID)).toEqual([
+      'DEP-05-03-001',
+      'DECLARED-DEL-05-03-001'
+    ]);
+    expect(recorded.declaredOnlyRows.map((row) => row.TargetDeliverableID)).toEqual(['DEL-05-01']);
+    expect(recorded.disagreements).toEqual([
+      expect.objectContaining({ DependencyID: 'DEP-05-03-001', Declared: 'CHECKING', Csv: 'IN_PROGRESS' })
+    ]);
+    expect(recorded.blockers.blockerState).toBe('BLOCKED');
+    expect(recorded.blockers.blockerSource).toBe('RECORDED_REGISTER');
+    expect(recorded.blockers.blockingUpstreamCount).toBe(2);
+    expect(recorded.blockers.upstreamArcs).toEqual([
+      expect.objectContaining({ supplier: 'DEL-05-01', requiredMaturity: 'INITIALIZED', supplierState: 'UNKNOWN' }),
+      expect.objectContaining({ supplier: 'DEL-05-02', requiredMaturity: 'CHECKING', supplierState: 'INITIALIZED' })
     ]);
   });
 

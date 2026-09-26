@@ -10,6 +10,7 @@ import {
   currentIsoDate,
   fetchDeliverableDependencies,
   fetchDeliverableStatus,
+  formatBlockingUpstreamMetric,
   isExecutionBlockerSubsetRow,
   nextLifecycleTargets,
   requiresApprovalShaForTarget,
@@ -351,13 +352,20 @@ export function WorkbenchSurface(): JSX.Element {
   );
 
   const dependencySummary = useMemo(
-    () => (dependenciesSnapshot ? summarizeDependencyRows(dependenciesSnapshot.rows) : null),
+    () =>
+      dependenciesSnapshot
+        ? summarizeDependencyRows(dependenciesSnapshot.rows, dependenciesSnapshot.recordedRegister)
+        : null,
     [dependenciesSnapshot]
   );
 
   const blockerCandidateIds = useMemo(() => {
     if (!dependenciesSnapshot) {
       return [] as string[];
+    }
+
+    if (dependenciesSnapshot.recordedRegister) {
+      return dependenciesSnapshot.recordedRegister.blockers.blockingUpstreamDeliverables.slice(0, 5);
     }
 
     return dependenciesSnapshot.rows
@@ -518,14 +526,18 @@ export function WorkbenchSurface(): JSX.Element {
                   <dd>{dependencySummary?.activeRows ?? 0}</dd>
                 </div>
                 <div>
-                  <dt>Blocker-subset rows</dt>
-                  <dd>{dependencySummary?.activeUpstreamBlockerCandidates ?? 0}</dd>
+                  <dt>Blocking upstream</dt>
+                  <dd>{formatBlockingUpstreamMetric(dependencySummary)}</dd>
                 </div>
               </dl>
 
               {blockerCandidateIds.length > 0 ? (
                 <div className="pipeline-contract-warnings">
-                  <h4>Top blocker-subset candidates</h4>
+                  <h4>
+                    {dependenciesSnapshot.recordedRegister
+                      ? 'Blocking upstream deliverables'
+                      : 'Top blocker-subset candidates'}
+                  </h4>
                   <ul>
                     {blockerCandidateIds.map((dependencyId) => (
                       <li key={dependencyId}>{dependencyId}</li>

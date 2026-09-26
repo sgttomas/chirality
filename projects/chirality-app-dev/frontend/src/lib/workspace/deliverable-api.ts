@@ -1,3 +1,4 @@
+import type { DeliverableRecordedRegister } from '../dependencies/recorded-register';
 import type { DependencyRegisterRow } from '../dependencies/schema';
 import type { LifecycleState, ParsedStatusDocument } from '../lifecycle/status-parser';
 
@@ -95,8 +96,11 @@ export interface DeliverableDependenciesSnapshot {
   registerPresent: boolean;
   secondarySummaryPresent: boolean;
   headers: string[];
+  /** Raw Dependencies.csv rows: register evidence, not a blocker judgment. */
   rows: DependencyRegisterRow[];
   warnings: string[];
+  /** The recorded register and supplier-judged blocker verdict (App SPEC §5.2). */
+  recordedRegister?: DeliverableRecordedRegister;
 }
 
 export interface DeliverableStatusTransitionInput {
@@ -111,10 +115,25 @@ export interface DeliverableStatusTransitionInput {
 }
 
 export interface DependencyRowSummary {
+  /** Dependencies.csv rows. */
   totalRows: number;
   activeRows: number;
+  /**
+   * With a recorded register that gives a verdict: the number of upstream
+   * suppliers blocking the deliverable (repo-root SPEC §5.3–§5.4). Without one:
+   * the CSV blocker-subset row count, which is register evidence only.
+   */
   activeUpstreamBlockerCandidates: number;
   bySatisfaction: Record<string, number>;
+  /** CSV blocker-subset rows (`isExecutionBlockerSubsetRow`), whatever the verdict. */
+  csvBlockerSubsetRows: number;
+  /** `CSV_EVIDENCE` when no recorded register was read. */
+  blockerState: DeliverableRecordedRegister['blockers']['blockerState'] | 'CSV_EVIDENCE';
+  blockingUpstreamDeliverables: string[];
+  dagPending: boolean;
+  dagPendingReasons: string[];
+  disagreementCount: number;
+  declaredOnlyRows: number;
 }
 
 export function workspaceApiErrorMessage(error: unknown): string {
@@ -184,10 +203,13 @@ export function isExecutionBlockerSubsetRow(row: DependencyRegisterRow): boolean
   return !hasUnresolvedAssumptionGate(row.Notes);
 }
 
-export function summarizeDependencyRows(rows: DependencyRegisterRow[]): DependencyRowSummary {
+export function summarizeDependencyRows(
+  rows: DependencyRegisterRow[],
+  recordedRegister?: DeliverableRecordedRegister
+): DependencyRowSummary {
   const bySatisfaction: Record<string, number> = {};
   let activeRows = 0;
-  let activeUpstreamBlockerCandidates = 0;
+  let csvBlockerSubsetRows = 0;
 
   for (const row of rows) {
     const normalizedStatus = (row.Status ?? '').trim().toUpperCase();
@@ -200,16 +222,50 @@ export function summarizeDependencyRows(rows: DependencyRegisterRow[]): Dependen
     }
 
     if (isExecutionBlockerSubsetRow(row)) {
-      activeUpstreamBlockerCandidates += 1;
+      csvBlockerSubsetRows += 1;
     }
   }
 
+  const blockers = recordedRegister?.blockers;
   return {
     totalRows: rows.length,
     activeRows,
-    activeUpstreamBlockerCandidates,
-    bySatisfaction
+    activeUpstreamBlockerCandidates: blockers
+      ? blockers.blockingUpstreamCount ?? 0
+      : csvBlockerSubsetRows,
+    bySatisfaction,
+    csvBlockerSubsetRows,
+    blockerState: blockers?.blockerState ?? 'CSV_EVIDENCE',
+    blockingUpstreamDeliverables: blockers?.blockingUpstreamDeliverables ?? [],
+    dagPending: blockers?.dagPending ?? false,
+    dagPendingReasons: blockers?.dagPendingReasons ?? [],
+    disagreementCount: recordedRegister?.disagreements.length ?? 0,
+    declaredOnlyRows: recordedRegister?.declaredOnlyRows.length ?? 0
   };
+}
+
+/**
+ * Display text for the blocking-upstream metric: the count with its verdict,
+ * or the reason no verdict is given (a zero count alone would read as
+ * unblocked).
+ */
+export function formatBlockingUpstreamMetric(summary: DependencyRowSummary | null): string {
+  if (!summary) {
+    return '0';
+  }
+  switch (summary.blockerState) {
+    case 'BLOCKED':
+    case 'UNBLOCKED':
+      return `${summary.activeUpstreamBlockerCandidates} (${summary.blockerState})`;
+    case 'DAG_PENDING':
+      return 'DAG pending (no verdict)';
+    case 'NOT_TRACKED':
+      return 'Not tracked (no verdict)';
+    case 'NOT_ASSESSED':
+      return 'Not assessed';
+    default:
+      return `${summary.activeUpstreamBlockerCandidates} CSV rows (evidence only)`;
+  }
 }
 
 export async function fetchDeliverableStatus(

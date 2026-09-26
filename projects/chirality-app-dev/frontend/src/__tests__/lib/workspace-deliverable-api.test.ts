@@ -5,6 +5,7 @@ import {
   currentIsoDate,
   fetchDeliverableDependencies,
   fetchDeliverableStatus,
+  formatBlockingUpstreamMetric,
   isExecutionBlockerSubsetRow,
   nextLifecycleTargets,
   requiresApprovalShaForTarget,
@@ -12,6 +13,50 @@ import {
   transitionDeliverableStatus
 } from '../../lib/workspace/deliverable-api';
 import type { DependencyRegisterRow } from '../../lib/dependencies/schema';
+import type { DeliverableRecordedRegister } from '../../lib/dependencies/recorded-register';
+
+function makeRecordedRegister(
+  blockers: Partial<DeliverableRecordedRegister['blockers']> = {}
+): DeliverableRecordedRegister {
+  return {
+    deliverableId: 'DEL-05-04',
+    executionRoot: '/repo/execution',
+    trackingMode: 'DECLARED',
+    csvPresent: true,
+    declarationsPresent: true,
+    declaredEntries: [],
+    unionRows: [],
+    declaredOnlyRows: [{ DependencyID: 'DECLARED-DEL-05-04-001' }],
+    disagreements: [
+      {
+        DeliverableID: 'DEL-05-04',
+        Direction: 'UPSTREAM',
+        TargetDeliverableID: 'DEL-05-02',
+        DependencyID: 'DEP-05-04-001',
+        Field: 'RequiredMaturity',
+        Declared: 'CHECKING',
+        Csv: 'IN_PROGRESS'
+      }
+    ],
+    unreadDeclarations: [],
+    blockers: {
+      blockerState: 'BLOCKED',
+      blockerSource: 'RECORDED_REGISTER',
+      acceptedDagVersion: null,
+      defaultMaturity: { value: 'INITIALIZED', source: 'FALLBACK' },
+      activeUpstreamCount: 3,
+      satisfiedUpstreamCount: 2,
+      blockingUpstreamCount: 1,
+      blockingUpstreamDeliverables: ['DEL-05-02'],
+      blockingEdgeIds: ['DEP-05-04-001'],
+      upstreamArcs: [],
+      heldSuppliers: [],
+      dagPending: false,
+      dagPendingReasons: [],
+      ...blockers
+    }
+  };
+}
 
 function jsonResponse(payload: unknown, status = 200): Response {
   return new Response(JSON.stringify(payload), {
@@ -123,6 +168,44 @@ describe('deliverable API helpers', () => {
     expect(summary.activeUpstreamBlockerCandidates).toBe(2);
     expect(summary.bySatisfaction.PENDING).toBe(8);
     expect(summary.bySatisfaction.SATISFIED).toBe(1);
+    expect(summary.blockerState).toBe('CSV_EVIDENCE');
+    expect(formatBlockingUpstreamMetric(summary)).toBe('2 CSV rows (evidence only)');
+  });
+
+  it('takes the blocking count from the recorded register verdict when one is read', () => {
+    const rows = [makeRow({ SatisfactionStatus: 'PENDING' }), makeRow({ DependencyID: 'DEP-05-04-002' })];
+
+    const blocked = summarizeDependencyRows(rows, makeRecordedRegister());
+    expect(blocked.totalRows).toBe(2);
+    expect(blocked.csvBlockerSubsetRows).toBe(2);
+    expect(blocked.activeUpstreamBlockerCandidates).toBe(1);
+    expect(blocked.blockingUpstreamDeliverables).toEqual(['DEL-05-02']);
+    expect(blocked.disagreementCount).toBe(1);
+    expect(blocked.declaredOnlyRows).toBe(1);
+    expect(formatBlockingUpstreamMetric(blocked)).toBe('1 (BLOCKED)');
+
+    const pending = summarizeDependencyRows(
+      rows,
+      makeRecordedRegister({
+        blockerState: 'DAG_PENDING',
+        blockerSource: 'ACCEPTED_DAG:DAG-002',
+        blockingUpstreamCount: null,
+        blockingUpstreamDeliverables: [],
+        dagPending: true,
+        dagPendingReasons: ['arc added: DEL-05-04 -> DEL-05-09']
+      })
+    );
+    expect(pending.activeUpstreamBlockerCandidates).toBe(0);
+    expect(pending.dagPending).toBe(true);
+    expect(pending.dagPendingReasons).toEqual(['arc added: DEL-05-04 -> DEL-05-09']);
+    expect(formatBlockingUpstreamMetric(pending)).toBe('DAG pending (no verdict)');
+
+    expect(
+      formatBlockingUpstreamMetric(
+        summarizeDependencyRows(rows, makeRecordedRegister({ blockerState: 'NOT_TRACKED', blockingUpstreamCount: null }))
+      )
+    ).toBe('Not tracked (no verdict)');
+    expect(formatBlockingUpstreamMetric(null)).toBe('0');
   });
 
   it('returns allowed forward lifecycle targets per state', () => {

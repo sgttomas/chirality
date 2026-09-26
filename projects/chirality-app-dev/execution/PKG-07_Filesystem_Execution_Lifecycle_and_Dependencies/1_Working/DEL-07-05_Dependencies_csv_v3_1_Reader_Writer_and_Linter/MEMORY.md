@@ -1,5 +1,18 @@
 # MEMORY - DEL-07-05
 
+## Runs
+
+- 2026-09-26 — `APP-RECORDED-REGISTER-2026-09-26` (follow-up FU5): the new
+  `frontend/src/lib/dependencies/recorded-register.ts` reads the recorded
+  register, the union of the `_DEPENDENCIES.md` declared sections (legacy
+  headings included) and `Dependencies.csv`, and judges each arc by its
+  supplier. It covers the D-GOV-49 accepted-DAG split with `DAG_PENDING`. The
+  dependencies API, MCP `deps_read` and the workbench/pipeline panels expose it
+  additively as `recordedRegister`. The CSV rows stay as register evidence.
+  Parity fixtures check it against the Root tools. No lifecycle change and no
+  dependency acceptance. Evidence:
+  [receipt](../../../_Coordination/AgentRuns/APP-RECORDED-REGISTER-2026-09-26/RECEIPT.md).
+
 ## Decisions And Evidence
 
 - 2026-06-16 - Human project authority advanced this deliverable lifecycle from SEMANTIC_READY to IN_PROGRESS because active code implementation is underway. This does not imply CHECKING, ISSUED, release readiness, dependency satisfaction, professional approval, certification, sealing, authentication, or code-compliance acceptance.

@@ -1020,7 +1020,7 @@ export function createChiralityReadMcpServer(
       ),
       tool(
         'deps_read',
-        'Read parsed dependency rows and warnings from a deliverable Dependencies.csv file, or explicit absence status when only _DEPENDENCIES.md is available.',
+        'Read the deliverable Dependencies.csv rows and warnings (register evidence) and its recorded register: the union with the _DEPENDENCIES.md declared sections, declaration/CSV disagreements, and the supplier-judged blocker verdict (DAG pending where an accepted project DAG is departed from).',
         {
           deliverablePath: z.string().min(1)
         },
@@ -1072,7 +1072,7 @@ export function buildChiralityMcpTools(input: {
     tools.push(
       tool(
         'deps_read',
-        'Read parsed dependency rows and warnings from a deliverable Dependencies.csv file.',
+        'Read the deliverable Dependencies.csv rows and warnings (register evidence) and its recorded register: the union with the _DEPENDENCIES.md declared sections, declaration/CSV disagreements, and the supplier-judged blocker verdict (DAG pending where an accepted project DAG is departed from).',
         {
           deliverablePath: z.string().min(1)
         },

@@ -390,13 +390,47 @@ only while it is current with the local evidence (repo-root SPEC §5.4). A
 project has no DAG built from its files. The App project has no
 `execution/_DAG/`, so its blockers follow the no-accepted-DAG row.
 
-App dependency reads (the `Dependencies.csv` rows and the
-`activeUpstreamBlockerCandidates` count) take structured rows only from
-`Dependencies.csv` and infer no rows from `_DEPENDENCIES.md`. They are register
-evidence, not a blocker judgment: they do not read declarations held only in
-the markdown, so they do not implement the union rule above, and a zero count
-does not mean a deliverable is unblocked. Computing blockers from the recorded
-register is an App follow-up.
+App dependency reads (the working-root dependencies API, the MCP `deps_read`
+tool and the workbench and pipeline contract panels) compute blockers from the
+recorded register (`frontend/src/lib/dependencies/recorded-register.ts`). They
+follow the Root reference tools `tools/coordination/dependency_evidence.py` and
+the project mode of `tools/coordination/build_dev001_blocker_queue.py`, and
+parity fixtures check that both give the same result on the same files:
+
+- The read covers the execution root that holds the deliverable
+  (`{EXECUTION_ROOT}/PKG-*/1_Working|2_Checking|3_Issued/DEL-*`, and
+  `CAT-*`/`KTY-*`), and only when that root lies inside the project root. It
+  reads the declared sections of each `_DEPENDENCIES.md`, including the legacy
+  headings above, together with each `Dependencies.csv`. A declared entry and an
+  ACTIVE row with the same `Direction` and target count once. Where they disagree
+  on required maturity, the declaration governs and the disagreement is
+  reported. A declaration whose only matching row is RETIRED is also a reported
+  disagreement, and it still governs as a synthesized `Origin=DECLARED` row.
+- Without an accepted project DAG, each consumer-to-supplier arc is judged by
+  its supplier. `DOWNSTREAM` rows are reversed, so a supplier's row counts as the
+  consumer's upstream arc. The supplier's `_STATUS.md` state must have reached
+  the arc's required maturity. A declared maturity governs, then the rows'
+  maturity. When neither states one, the default maturity threshold recorded in
+  `_COORDINATION.md` applies, or `INITIALIZED` when the record names none. Arcs
+  in a cycle are held and non-gating. A `NOT_TRACKED` deliverable gets no
+  verdict.
+- When `execution/_DAG/_LATEST.md` names an accepted version, deliverables whose
+  local evidence is current get blockers from that version's edges. A
+  deliverable at either end of an added or removed arc, or added to or removed
+  from the inventory, is `DAG_PENDING` with its reasons and no verdict. A pointer
+  that does not resolve gives no verdict.
+
+The read keeps the raw `Dependencies.csv` rows as register evidence. It adds a
+`recordedRegister` field with the union rows, the synthesized declared rows,
+disagreements, unread declaration lines and the blocker judgment. The judgment
+gives the state (`BLOCKED`, `UNBLOCKED`, `DAG_PENDING`, `NOT_TRACKED` or
+`NOT_ASSESSED`), each upstream arc with its required maturity and supplier
+state, held suppliers and DAG-pending reasons. The
+`activeUpstreamBlockerCandidates` count carries the number of blocking
+suppliers when there is a verdict. Without a recorded register it falls back to
+the CSV blocker-subset count, which remains evidence only. Under `DECLARED` the
+absence of a blocker is still not a complete readiness judgment. The Runtime-owned
+`deps_read` descriptor text still describes the CSV-only read.
 
 `_COORDINATION.md` (repo-root SPEC §13) records the project's coordination
 representation once, together with its tracking mode. Under `SCHEDULE_FIRST`
