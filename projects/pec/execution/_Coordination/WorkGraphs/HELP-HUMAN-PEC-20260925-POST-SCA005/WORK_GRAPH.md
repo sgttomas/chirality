@@ -153,7 +153,7 @@ The dependencies are acyclic, and the named inputs, not this listing, decide whe
 - **Next work:**
   - Review and merge PR #979 (the S2 act, with these records).
   - Prepare the S1, S4, D1 and K2 packets; S1 and S4 absorb the `D-PEC-99` Part B items named in their rows and the quotations of old S2 text. Each fenced packet comes to the owner to rule on.
-  - Carry to a later packet: the DEL-02-08/09 contract-wording items and the DEL-02-07 `CLM-011` count below.
+  - Carry to a later packet: the DEL-02-08/09 contract-wording items and the DEL-02-07 `CLM-011` count above.
 - **Local or unmerged work:** PR #979 (this record).
 - **Active operations and ownership:** none running. Handed back: the R3 (B6), G1 act (G2), S3 drafter, RR1, RR3, S3A, S2P, K14P, K14A and S2A managers. Their briefs are under `AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/briefs/`; the returns are under that run's `returns/`, except RR1's, which is `AgentRuns/HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT/returns/RR1_REMAINING_RETIREMENT_ACCOUNT.md`. Scratch helpers named in earlier returns are not in the repository.
 - **Graph maintainer:** HELP_HUMAN.

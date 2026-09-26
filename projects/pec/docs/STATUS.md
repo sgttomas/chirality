@@ -291,7 +291,7 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     work and re-pin (Lane B1, B2, B3, B7: K4 with add-on C, K1, and a
     re-audit). Its act created DEL-08-06 and DEL-10-13 (`OPEN`), added 22
     dependency rows and refreshed two quotes (127 execution edges, no
-    cycles), re-pinned every context and reference to revision 1.6 / PRD
+    cycles), re-pinned the remaining 63 contexts and all 66 references to revision 1.6 / PRD
     v2.4, and re-audited: `COV_D101_POSTSETUP_2026-09-26_1651`, 0 blockers,
     coverage 100 %, now named by `_Evaluation/DecompCoverage/_LATEST.md`
     (run root `execution/_Coordination/REV16_CURRENCY_SETUP_D101_2026-09-26/`).
