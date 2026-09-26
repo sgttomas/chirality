@@ -102,3 +102,18 @@ Manager scripts are in its scratchpad and not in the repository:
 
 A reviewer can rerun the part-A checks by re-reading the cited lines and
 registers.
+
+## Checkpoint-1 acceptance (HELP_HUMAN, 2026-09-25; appended)
+
+The owner accepted checkpoint group 1 on 2026-09-25: "SCA-006 CP1: accept;
+DQ a; ENV a; BUD a; GATE a; INS a; R-C excluded". The group-1 decision
+snapshot is `../checkpoint_snapshots/SCA-006_GROUP-1_2026-09-25/`, and the
+amendment-qualified pointer is `../SCA-006_GROUP-1_AUTHORIZED.md`.
+
+- The next owning actor is WORKING_ITEMS, which prepares checkpoint 2.
+- `ReadyForNextPhase` for checkpoint-2 preparation is `YES`. All other state
+  fields above are unchanged.
+- The `D-PEC-95` act post-dates this package's reused baseline; see the
+  baseline note in the group-1 `DECISION.md`.
+- This file's hash at the owner's act was
+  `4526797c0bab914906b13cf095078508f9df2f8ea606fb4a4542dda5ce55f9df`.
