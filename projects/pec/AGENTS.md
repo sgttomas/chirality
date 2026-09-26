@@ -141,9 +141,9 @@ opens no path either. These fences were formerly repeated verbatim in
 Amended under `D-GOV-43` (topology A2, supplement recorded 2026-09-12), which
 supersedes `D-GOV-20` items 2–4 on the App MVP Codex path without editing
 them. There is no per-user runtime daemon on that path: the App starts, owns
-and stops one Runtime service child, which owns the stock `codex app-server`
-child; the Runtime service owns engines, sessions, delegation, tools, turn
-ownership and interruption. This file reads `D-T0-23`'s convergence on the
+and stops one Runtime service child, which is the exclusive owner of the stock
+`codex app-server` child together with sessions, delegation, tools, turn locks
+and interruption (Root CONTRACT K-RUNTIME-1). This file reads `D-T0-23`'s convergence on the
 Root-owned shared runtime as amended by that record; that is an
 interpretation, since `D-GOV-43` does not cite `D-T0-23`. Agents working on PEC in another
 host use that host's actual execution and delegation, recorded as Root

@@ -70,8 +70,9 @@ supersession:
     naming each STATUS/README change in the undertaking's work graph and
     central receipt and reviewing it with the carrying PR.
   D-GOV-20: >-
-    PEC AGENTS.md Shared Runtime Boundary now records that D-GOV-43 topology
-    A2 supersedes D-GOV-20 items 2-4 on the App MVP Codex path.
+    PEC AGENTS.md Shared Runtime Boundary now records that D-GOV-43, whose
+    topology A2 the App MVP Codex path uses, supersedes D-GOV-20 items 2-4 on
+    that path.
 checks:
   - python3 tools/validation/validate_pec_loop_receipts.py --repo-root .
   - python3 tools/validation/validate_decomposition_registers.py --strict projects/pec/execution

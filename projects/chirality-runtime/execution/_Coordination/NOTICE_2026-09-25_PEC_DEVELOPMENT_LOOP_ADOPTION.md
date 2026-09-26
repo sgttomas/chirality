@@ -17,8 +17,9 @@ ledger `projects/pec/loop/LOOP_RECEIPTS.md` is closed as history at Receipt
 Authority and changed paths: `D-PEC-94` and
 `docs/governance_harness/tranche_manifests/PEC-DEVELOPMENT-LOOP-ADOPTION-20260925.yaml`.
 
-For this loop: PEC's project `AGENTS.md` now records that `D-GOV-43`
-topology A2 supersedes `D-GOV-20` items 2–4 on the App MVP Codex path. No
+For this loop: PEC's project `AGENTS.md` now records that `D-GOV-43`, whose
+topology A2 the App MVP Codex path uses, supersedes `D-GOV-20` items 2–4 on
+that path. No
 packaged workflow source, Runtime contract or Runtime record changes. PEC
 reads no Runtime instruction as changed by this notice.
 
