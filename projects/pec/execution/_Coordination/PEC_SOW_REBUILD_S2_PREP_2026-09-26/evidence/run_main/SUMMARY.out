@@ -31,5 +31,5 @@ PASS strict identical before/after, export root normalized (exit=1)
 PASS harness identical before/after, export root normalized (exit=0)
 PASS receipts identical before/after, export root normalized (exit=0)
 PASS whitespace
-PASS fault injection: RESULT PASS 8/8
+PASS fault injection: RESULT PASS 9/9
 OVERALL PASS

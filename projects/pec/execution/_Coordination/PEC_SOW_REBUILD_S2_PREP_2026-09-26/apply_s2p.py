@@ -25,7 +25,10 @@ Failure semantics:
   exactly the seven targets, each modified from preimage to postimage, with
   nothing created or removed. The script's own directory (the run root, where
   the act's evidence is written) is left out of the inventory, so recording
-  output there during the run cannot trip the check.
+  output there during the run cannot trip the check. If the script sits inside
+  projects/pec anywhere other than a run root (projects/pec/execution/
+  _Coordination/SOW_REBUILD_S2_*), preflight refuses, so the exclusion can
+  never cover another directory.
 It never touches _STATUS.md, MEMORY.md or any other file. Stdlib only.
 """
 import argparse, hashlib, os, sys
@@ -111,6 +114,7 @@ def sha_b(b): return hashlib.sha256(b).hexdigest()
 def sha(path): return sha_b(Path(path).read_bytes())
 
 SELF_DIR = Path(__file__).resolve().parent  # the run root when the script runs from it
+RUN_ROOT_PREFIX = "projects/pec/execution/_Coordination/SOW_REBUILD_S2_"  # the only in-tree home it accepts
 
 def inventory(repo):
     """Every file under projects/pec, except this script's own directory (the run
@@ -156,6 +160,14 @@ def main():
         f = repo / rel
         if not f.is_file(): problems.append(f"pinned file missing: {rel}")
         elif sha(f) != want: problems.append(f"pinned hash mismatch: {rel}")
+    try:
+        rel_self = SELF_DIR.relative_to(repo).as_posix()
+    except ValueError:
+        rel_self = None  # the script runs from outside the repository: nothing is excluded
+    if rel_self is not None and rel_self.startswith("projects/pec/") and \
+            not rel_self.startswith(RUN_ROOT_PREFIX):
+        problems.append(f"script directory {rel_self} is inside projects/pec but is not a run root "
+                        f"({RUN_ROOT_PREFIX}*); run the bound copy from its run root or from outside the repository")
     for msg in problems: print("FAIL " + msg)
     if problems:
         print("preflight failed; nothing written"); return 1
@@ -192,7 +204,7 @@ def main():
             print(f"FAIL {e}; ROLLBACK INCOMPLETE: {errs}"); return 2
         print(f"FAIL {e}; every replaced target restored to its preimage and every temporary file removed"); return 1
     for rel in TARGETS: print("WRITE " + rel)
-    print(f"CHECK targets {len(TARGETS)}/{len(TARGETS)} byte-exact; write set = grant (0 created, {len(TARGETS)} modified, 0 removed under projects/pec); pinned {len(PINNED)}/{len(PINNED)} unchanged")
+    print(f"CHECK targets {len(TARGETS)}/{len(TARGETS)} byte-exact; write set = grant (0 created, {len(TARGETS)} modified, 0 removed under projects/pec outside the run root); pinned {len(PINNED)}/{len(PINNED)} unchanged")
     return 0
 
 if __name__ == "__main__":

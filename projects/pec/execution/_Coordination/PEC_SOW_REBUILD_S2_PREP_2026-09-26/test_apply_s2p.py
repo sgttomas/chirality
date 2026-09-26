@@ -81,6 +81,14 @@ def c8(repo):  # evidence written into the run root during the act does not trip
          mock.patch.object(sys, "argv", ["apply_s2p.py", "--repo", str(repo), "--candidates", str(cand)]):
         rc = mm.main()
     return rc == 0 and applied(repo) and (rr / "act_log_1.txt").exists()
+def c9(repo):  # the bound copy placed in projects/pec outside a run root is refused at preflight
+    od = repo / "projects/pec/tools/x"; od.mkdir(parents=True)
+    shutil.copy(Path(__file__).with_name("apply_s2p.py"), od / "apply_s2p.py")
+    sp = importlib.util.spec_from_file_location("apply_s2p_bad", od / "apply_s2p.py")
+    mm = importlib.util.module_from_spec(sp); sp.loader.exec_module(mm)
+    with mock.patch.object(sys, "argv", ["apply_s2p.py", "--repo", str(repo), "--candidates", str(cand)]):
+        rc = mm.main()
+    return rc == 1 and pristine(repo)
 case("rename failure on the fourth target: exit 1, all targets restored, no temporary left", c1)
 case("post-write inventory shows an unexpected modified file: exit 1, rolled back", c2)
 case("post-write inventory shows an extra file: exit 1, rolled back", c3)
@@ -89,6 +97,7 @@ case("target not at its preimage: preflight exit 1, nothing written", c5)
 case("temporary hash mismatch on the last target: exit 1, rolled back", c6)
 case("check-only writes nothing; apply succeeds; second run refuses", c7)
 case("run-root evidence written during the act is outside the inventory: apply succeeds", c8)
+case("bound copy inside projects/pec but outside a run root: preflight exit 1, nothing written", c9)
 bad = [n for ok, n in results if not ok]
 print(f"RESULT {'PASS' if not bad else 'FAIL'} {len(results)-len(bad)}/{len(results)}")
 sys.exit(1 if bad else 0)
