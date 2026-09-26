@@ -35,18 +35,19 @@ No schedule gate may be skipped. Repetitive graph analysis, calculation, and ren
 
 **Action:**
 - Ask the human how they intend to coordinate work across packages/deliverables.
-- Offer representation options that are topologically equivalent in intent but different in interaction style:
+- Offer the coordination representations (`docs/TYPES.md` §6), which differ in what drives sequencing:
 
-| Option | What it means | When it fits |
+| Representation | What it means | When it fits |
 |---|---|---|
-| Schedule-first | Humans coordinate sequencing externally; filesystem tracks lifecycle state only | Large programs where a schedule already exists elsewhere |
-| Declared critical dependencies | Only interface-critical dependencies are recorded in-file; humans manage the rest | When you want some machine visibility without a full graph |
-| Full dependency graph (DAG) | Dependencies are intended to be complete and acyclic; blockers can be computed | Smaller programs or teams committed to maintaining the graph |
+| `SCHEDULE_FIRST` | A schedule (Gantt) drives sequencing; recorded dependencies, unless the mode is `NOT_TRACKED`, support blocker detection and audit | Large programs where a schedule already exists elsewhere |
+| `DEPENDENCY_TRACKED` | The dependency graph drives sequencing | Smaller programs or teams committed to maintaining the graph |
+| `HYBRID` | A combination of schedule-first and dependency-tracked | When a schedule drives some sequencing and recorded dependencies drive the rest |
 
-- Record the human’s choice in `{COORDINATION_ROOT}/_COORDINATION.md`.
+- Separately, offer the dependency tracking modes (`docs/SPEC.md` §5.3; see the contract glossary): `NOT_TRACKED` (coordination outside the files; lifecycle state only), `DECLARED` (only interface-critical dependencies recorded; humans manage the rest), or `FULL_GRAPH` (dependencies intended to be complete and acyclic; blockers can be computed). The representation does not change what a mode means.
+- Record both choices in `{COORDINATION_ROOT}/_COORDINATION.md`.
 - Bootstrap coordination root: `tools/scaffolding/scaffold_tool_root.sh {EXECUTION_ROOT} _Coordination`
 
-**Gate question:** “Confirm coordination representation: [Schedule-first | Declared deps | Full graph]. Should I compute blocked/available, or only report lifecycle state?”
+**Gate question:** “Confirm coordination representation: [SCHEDULE_FIRST | DEPENDENCY_TRACKED | HYBRID], and dependency tracking mode: [NOT_TRACKED | DECLARED | FULL_GRAPH]. Should I compute blocked/available, or only report lifecycle state?”
 
 **Do not proceed until the human confirms.**
 

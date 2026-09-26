@@ -86,13 +86,14 @@ Each packet must contain the fixed ten-file set named above.
 `Proposed_SCA_Actions.csv` uses columns:
 
 ```csv
-PacketID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedDeliverables,AffectedFiles,EvidenceRefs,SCOPE_CHANGE_Gate,Status
+PacketID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedDeliverables,AffectedFiles,EvidenceRefs,SCOPE_CHANGE_Checkpoint,Status
 ```
 
-`SCOPE_CHANGE_Gate` keeps its column name for validator and historical-packet
-compatibility. New packets record the checkpoint group or groups the row serves
+`SCOPE_CHANGE_Checkpoint` records the checkpoint group or groups the row serves
 (`CHECKPOINT_GROUP_1`, `CHECKPOINT_GROUP_2`, `CHECKPOINT_GROUP_3`,
-semicolon-separated). Historical gate labels remain readable as written.
+semicolon-separated). Historical packets used the legacy column name
+`SCOPE_CHANGE_Gate` with gate labels; the validator still accepts that name on
+read, and historical packets remain readable as written and are not rewritten.
 
 `Affected_Surfaces.csv` uses columns:
 

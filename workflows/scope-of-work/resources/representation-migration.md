@@ -2,6 +2,8 @@
 
 WORKING_ITEMS selects this profile only for an explicitly authorized LEGACY_FOUR_DOC to SOW_V1 conversion. The method retains the accepted operating limits and member-level evidence requirements from the frozen pre-overhaul WORKING_ITEMS package.
 
+This profile governs production batching. Reconciliation verification of the same migration is governed by `reconciliation`'s own representation-migration profile.
+
 - **Bounded representation-migration batches.** For related four-document to
   `SOW_V1` conversion work, use one package-wide author Agent 2 followed by one
   fresh package-wide verifier Agent 2 for a batch of no more than five members

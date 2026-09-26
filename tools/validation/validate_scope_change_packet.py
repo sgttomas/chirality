@@ -32,9 +32,15 @@ ACTION_COLUMNS = [
     "AffectedDeliverables",
     "AffectedFiles",
     "EvidenceRefs",
-    "SCOPE_CHANGE_Gate",
+    "SCOPE_CHANGE_Checkpoint",
     "Status",
 ]
+
+# Legacy column names accepted on read so historical packets stay valid.
+# New packets use the current name; historical packets are not rewritten.
+LEGACY_ACTION_COLUMN_ALIASES = {
+    "SCOPE_CHANGE_Checkpoint": "SCOPE_CHANGE_Gate",
+}
 
 SURFACE_COLUMNS = [
     "PacketID",
@@ -124,12 +130,16 @@ def validate_packet(packet_path: Path, decomposition_path: str | None = None) ->
     surface_fields, surfaces = read_csv(packet_path / "Affected_Surfaces.csv")
     evidence_fields, evidence = read_csv(packet_path / "Evidence_Index.csv")
 
-    for expected, actual, name in [
-        (ACTION_COLUMNS, action_fields, "Proposed_SCA_Actions.csv"),
-        (SURFACE_COLUMNS, surface_fields, "Affected_Surfaces.csv"),
-        (EVIDENCE_COLUMNS, evidence_fields, "Evidence_Index.csv"),
+    for expected, actual, name, aliases in [
+        (ACTION_COLUMNS, action_fields, "Proposed_SCA_Actions.csv", LEGACY_ACTION_COLUMN_ALIASES),
+        (SURFACE_COLUMNS, surface_fields, "Affected_Surfaces.csv", {}),
+        (EVIDENCE_COLUMNS, evidence_fields, "Evidence_Index.csv", {}),
     ]:
-        missing = [col for col in expected if col not in actual]
+        missing = [
+            col
+            for col in expected
+            if col not in actual and aliases.get(col) not in actual
+        ]
         if missing:
             errors.append(f"{name} missing columns: {', '.join(missing)}")
 

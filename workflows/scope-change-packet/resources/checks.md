@@ -3,7 +3,7 @@
 ## Required Checks
 
 - Required ten packet files exist.
-- Required CSV columns are present.
+- Required CSV columns are present. `SCOPE_CHANGE_Checkpoint` is required; the legacy name `SCOPE_CHANGE_Gate` is accepted in its place on historical packets.
 - Every `Proposed_SCA_Actions.csv` row has non-empty `EvidenceRefs`.
 - Every affected deliverable ID exists in the current decomposition authority or is explicitly marked `TBD`.
 - Packet text does not claim:

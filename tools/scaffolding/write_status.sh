@@ -303,7 +303,7 @@ if [ "$STATE" = "CHECKING" ] || [ "$STATE" = "ISSUED" ] || [ $REVERSAL -eq 1 ]; 
       fi
     else
       if [ -e "$RULING" ]; then
-        RULING_ABS="$(cd "$(dirname "$RULING")" && pwd)/$(basename "$RULING")"
+        RULING_ABS="$(cd "$(dirname "$RULING")" && pwd -P)/$(basename "$RULING")"
       elif [ -e "$REPO_ROOT/$RULING" ]; then
         RULING_ABS="$REPO_ROOT/$RULING"
       elif [ $REVERSAL -eq 1 ]; then

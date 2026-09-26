@@ -447,7 +447,7 @@ def render_markdown(summary: dict[str, object]) -> str:
         "",
         "## Authority",
         "",
-        "- Source of truth: `execution/_DAG/DAG-001/DependencyEdges.csv`.",
+        "- Accepted project dependency basis: `execution/_DAG/DAG-001/DependencyEdges.csv`.",
         "- Local `Dependencies.csv` files are synchronized mirrors, not independent sequencing authority.",
         "- `CANDIDATE` rows remain non-gating.",
         f"- Canonical dependency enum mode: {summary.get('canonical_mode', False)}.",

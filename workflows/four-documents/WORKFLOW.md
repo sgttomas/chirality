@@ -286,7 +286,7 @@ A successful run produces all four documents regardless of pass directive (Pass 
 
 ## Glossary
 
-- **Minimum viable fileset** (seeded by TASK (workflow: preparation)): `_CONTEXT.md`, `_DEPENDENCIES.md`, `_STATUS.md`, `_REFERENCES.md`, `_SEMANTIC.md` (placeholder).
+- **Minimum viable fileset** (seeded with the `preparation` skill): `_CONTEXT.md`, `_DEPENDENCIES.md`, `_STATUS.md`, `_REFERENCES.md`, `_SEMANTIC.md` (placeholder).
 - **Four documents** (produced/overwritten here): `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`.
 - **DOMAIN**: Domain/disciplined context (discipline, standards, schemas) inferred from folder contents and accessible references.
 - **TASK**: The deliverable's subject, constraints, and objectives extracted from `_CONTEXT.md` and the decomposition (with conservative inference rules).
@@ -302,7 +302,7 @@ A successful run produces all four documents regardless of pass directive (Pass 
 - **No human input.** Work entirely from the deliverable folder, accessible references, and the decomposition. Do not ask questions or wait for answers.
 - **Respect human work.** If `_STATUS.md` indicates a state NOT in `ALLOW_OVERWRITE_STATES`, do not overwrite the four documents; return `SKIPPED_PROTECT_HUMAN_WORK`.
 - **Cross-document consistency.** Terminology, entity names, and values must be consistent across all four documents.
-- **Do not modify metadata files** created by TASK (workflow: preparation) (`_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, `_MEMORY.md`, `_SEMANTIC.md`, `_SEMANTIC_LENSING.md`) except `_STATUS.md` (safe state update only).
+- **Do not modify metadata files** created with the `preparation` skill (`_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, `_MEMORY.md`, `_SEMANTIC.md`, `_SEMANTIC_LENSING.md`) except `_STATUS.md` (safe state update only).
 - **Decomposition not overstated.** Do not create requirements, design values, or procedural steps from decomposition prose when the actual source text is locally available.
 - **Pass 3 source rereads evidenced.** Each substantive Pass 3 change records which source slice was consulted.
 - **DOMAIN variant unsupported.** A brief with `DECOMP_VARIANT=DOMAIN` returns `RUN_STATUS=UNSUPPORTED_VARIANT`; DOMAIN Knowledge Types use the separate `domain-documents` workflow.

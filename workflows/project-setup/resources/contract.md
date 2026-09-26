@@ -90,7 +90,11 @@ Recommended lifecycle ownership (may vary by project):
 - **Package**: A top-level scope grouping in the decomposition (`PKG-…`).
 - **Deliverable / Working item**: A scoped unit of work (`DEL-…`) represented by one deliverable folder.
 - **Lifecycle state**: `OPEN | INITIALIZED | SEMANTIC_READY | IN_PROGRESS | CHECKING | ISSUED` (local to the deliverable folder).
-- **Coordination representation**: The human’s chosen way to coordinate across packages/deliverables.
+- **Coordination representation** (`docs/TYPES.md` §6, `docs/SPEC.md` §13): The human’s chosen way to coordinate across packages/deliverables, recorded separately from the dependency tracking mode:
+  - `SCHEDULE_FIRST` — a schedule (Gantt) drives sequencing; recorded dependencies, unless the mode is `NOT_TRACKED`, support blocker detection and audit.
+  - `DEPENDENCY_TRACKED` — the dependency graph drives sequencing.
+  - `HYBRID` — a combination of schedule-first and dependency-tracked.
+  - Earlier records may carry the former option labels (`Schedule-first`; `Declared deps` or `Declared critical dependencies`; `Full graph` or `Full dependency graph (DAG)`); they remain readable as written. `Schedule-first` corresponds to `SCHEDULE_FIRST`; the declared and full-graph labels named a tracking mode (`DECLARED`, `FULL_GRAPH`) rather than a representation, so confirm the representation with the human when the record is next updated.
 - **Dependency tracking mode** (`docs/SPEC.md` §5.3):
   - `NOT_TRACKED` — dependency coordination occurs outside the files (humans or an external schedule); do not compute blockers or report a ready/blocked judgment from dependencies.
   - `DECLARED` — only critical dependencies are recorded (partial, human-curated); the recorded edges are a partial view. Compute blockers only from the recorded register (the declared sections, or `Dependencies.csv`, whose DECLARED-origin rows carry the declarations, where extraction has run). Dependency extraction may add `Dependencies.csv` rows when the Phase 1.3 rules call for it; it does not make the view complete.
@@ -202,7 +206,7 @@ Every deliverable folder should be seeded with:
 ```markdown
 # Coordination Record
 
-**Representation:** [Schedule-first | Declared deps | Full graph]
+**Representation:** [SCHEDULE_FIRST | DEPENDENCY_TRACKED | HYBRID]
 **Dependency tracking mode:** [NOT_TRACKED | DECLARED | FULL_GRAPH]
 **External schedule / coordination artifact:** [path/link or "N/A"]
 **Default maturity threshold (if computing blockers):** [INITIALIZED|SEMANTIC_READY|IN_PROGRESS|CHECKING|ISSUED]
