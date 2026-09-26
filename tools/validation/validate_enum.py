@@ -7,13 +7,15 @@ Usage:
     python3 validate_enum.py <enum_name> <value>
 
 Exit codes:
-    0 = valid
+    0 = valid (a legacy read value is accepted and names its write form)
     1 = invalid (prints valid options to stderr)
 
 Example:
     python3 validate_enum.py BASIS_OF_ESTIMATE PARAMETRIC
     python3 validate_enum.py LIFECYCLE_STATE SEMANTIC_READY
 """
+
+from __future__ import annotations
 
 import sys
 
@@ -32,7 +34,8 @@ ENUMS = {
     "BASIS_OF_ESTIMATE": ["QUOTE", "RATE_TABLE", "HISTORICAL", "PARAMETRIC", "ALLOWANCE"],
     "BASIS_OF_SCHEDULE": ["PRECEDENCE", "CONSTRAINT", "HYBRID"],
     "COORDINATION_REPR": ["SCHEDULE_FIRST", "DEPENDENCY_TRACKED", "HYBRID"],
-    "TRACKING_MODE": ["NOT_TRACKED", "DECLARED", "TRACKED"],
+    # docs/SPEC.md §5.3 (D-GOV-46). Legacy TRACKED is read via LEGACY_ALIASES.
+    "TRACKING_MODE": ["NOT_TRACKED", "DECLARED", "FULL_GRAPH"],
     "DECOMP_VARIANT": ["PROJECT", "SOFTWARE", "DOMAIN"],
     "RUN_PASSES": ["FULL", "P1_P2", "P3_ONLY"],
     "AGENT_TYPE": ["TYPE 0", "TYPE 1", "TYPE 2"],
@@ -43,6 +46,20 @@ ENUMS = {
     "FINDING_SEVERITY": ["CRITICAL", "MAJOR", "MINOR", "OBSERVATION"],
     "ESTIMATE_PREP_PHASE": ["SCAFFOLD", "BOE"],
 }
+
+# Legacy values accepted when reading existing records; writers use the
+# canonical value. Files that carry a legacy value are not rewritten.
+LEGACY_ALIASES = {
+    "TRACKING_MODE": {"TRACKED": "FULL_GRAPH"},
+}
+
+
+def canonical_value(enum_name: str, value: str) -> str | None:
+    """Return the canonical value for ``value``, or None if it is not valid."""
+    if value in ENUMS[enum_name]:
+        return value
+    return LEGACY_ALIASES.get(enum_name, {}).get(value)
+
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:
@@ -61,6 +78,10 @@ if __name__ == '__main__':
     valid_values = ENUMS[enum_name]
     if value in valid_values:
         print(f"VALID: {value} is a valid {enum_name}")
+        sys.exit(0)
+    canonical = canonical_value(enum_name, value)
+    if canonical is not None:
+        print(f"VALID (legacy): {value} is a legacy {enum_name} read as {canonical}; write {canonical}")
         sys.exit(0)
     else:
         print(f"INVALID: {value} is not a valid {enum_name}", file=sys.stderr)
