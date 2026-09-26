@@ -33,7 +33,7 @@ Allowed writes are limited to derivative research packets under:
 {RESEARCH_ROOT}/RCH_<UTC>_<slug>/
 ```
 
-Research packet directories are immutable run snapshots. Do not overwrite an existing `RCH_*` packet; reruns must create a new packet. `{RESEARCH_ROOT}/_LATEST.md` may be updated as a mutable pointer only after a research packet is intentionally written.
+Research packet directories are immutable run snapshots. Do not overwrite an existing `RCH_*` packet; reruns must create a new packet. Writing a packet does not authorize updating `{RESEARCH_ROOT}/_LATEST.md`; scaffold with `--no-update-latest`. Pointer maintenance is a separately authorized undertaking.
 
 WORKING_ITEMS must not edit accepted snapshots, ledgers, registers, decomposition files, source catalogs, local indexes, source materials, publication packages, or repository metadata.
 
@@ -132,10 +132,14 @@ and partial return on failure).
 
 When fanning out, follow the `research-orchestration` workflow (`workflows/research-orchestration/`):
 triage cheap greppable facts to a direct `query_source_index.py` call; anchor lightly and
-require each TASK stream using the selected `researcher` skill to re-verify load-bearing anchors; run an adversarial live critic on
-load-bearing claims before they enter authority; on a transient `API 500`/timeout, **retry only
-the failed stream(s)** (resume, do not restart the whole batch), cap retries, and surface
-coverage-gaps rather than dropping a stream silently. WORKING_ITEMS owns the synthesis and the
+require each TASK stream using the selected `researcher` skill to re-verify load-bearing anchors; verify load-bearing claims
+against the live tree or accepted snapshot before they enter authority, adding the adversarial critic step when
+`CRITIC_REQUIRED` is true; on a transient `API 500`/timeout, **retry only
+the failed stream(s)** (do not restart the whole batch), cap retries, and surface
+coverage-gaps rather than dropping a stream silently. Resume a stream only through a host
+resume facility that actually exists; otherwise launch a new bounded attempt from the
+preserved evidence into a freshly allocated packet, record its parent attempt, and never
+describe it as a resume. WORKING_ITEMS owns the synthesis and the
 recommendation; it approves nothing.
 
 ---
@@ -151,7 +155,7 @@ A valid WORKING_ITEMS answer:
 - distinguishes ontology/register truth from retrieval evidence,
 - labels external evidence and inference separately,
 - preserves caveats and unresolved issues,
-- records the verification source of each evidence row (live source, retrieval index, or inherited brief),
+- records the verification source of each evidence row (live tree, accepted snapshot, retrieval index, or inherited brief),
 - self-flags load-bearing claims, and reports partial results with a coverage-gaps statement when a run is incomplete rather than failing silently,
 - avoids changing accepted decomposition truth.
 
@@ -183,13 +187,14 @@ Each evidence row records how it was verified:
 
 - `LIVE_TREE` — checked against the current live source/tree.
 - `RETRIEVAL_INDEX` — supported only by the (possibly stale) retrieval index; a lead, not a warrant.
+- `ACCEPTED_SNAPSHOT` — checked against the artifacts of the accepted snapshot named as the basis (manifest, registers, ledger rows, recorded decisions).
 - `INHERITED_BRIEF` — asserted by a dispatching brief and not yet independently verified; treat as `R1`-equivalent until verified.
 
 Recording the source makes false consensus from over-anchoring visible.
 
 ### Load-Bearing Claims
 
-A claim is **load-bearing** when a downstream decision (acceptance, dispatch, sequencing, amendment, release) depends on it being true. WORKING_ITEMS self-flags load-bearing claims (`LoadBearing = TRUE`) so a caller knows what to double-cover. Load-bearing claims carry stricter duties: independent re-verification (never inherited from a brief), an explicit `VerificationSource`, and a `:RUN` AssertionMode wherever the claim concerns behavior or state that can be executed or checked. A load-bearing claim MUST NOT reach `R3` or better while its `VerificationSource` is `INHERITED_BRIEF`.
+A claim is **load-bearing** when a downstream decision (acceptance, dispatch, sequencing, amendment, release) depends on it being true. WORKING_ITEMS self-flags load-bearing claims (`LoadBearing = TRUE`) so a caller knows what to double-cover. Load-bearing claims carry stricter duties: independent re-verification (never inherited from a brief), an explicit `VerificationSource`, and a `:RUN` AssertionMode wherever the claim concerns behavior or state that can be executed or checked. A load-bearing claim MUST NOT reach `R3` or better while its `VerificationSource` is `INHERITED_BRIEF` or `RETRIEVAL_INDEX`.
 
 ### Research Output Minimum
 
@@ -218,9 +223,9 @@ schema; readers MUST NOT reorder existing columns):
 EvidenceID,ClaimID,EvidenceLevel,SourceKind,ArtifactPath,SourceDocID,SourceRef,AtomicUnitID,SectionID,CategoryID,KnowledgeTypeID,SubjectID,RetrievalMode,Rank,Score,QuotedOrParaphrasedEvidence,Interpretation,Limitations,VerificationSource,AssertionMode,LoadBearing
 ```
 
-- `VerificationSource` ∈ `LIVE_TREE | RETRIEVAL_INDEX | INHERITED_BRIEF` (see SPEC § Verification Source).
-- `AssertionMode` ∈ `READ | RUN` (see SPEC § Assertion Mode). `RunAsserted` is expressed only via this column — no separate boolean.
-- `LoadBearing` ∈ `TRUE | FALSE` (see SPEC § Load-Bearing Claims).
+- `VerificationSource` ∈ `LIVE_TREE | ACCEPTED_SNAPSHOT | RETRIEVAL_INDEX | INHERITED_BRIEF` (see § Verification Source above).
+- `AssertionMode` ∈ `READ | RUN` (see § Assertion Mode above). `RunAsserted` is expressed only via this column — no separate boolean.
+- `LoadBearing` ∈ `TRUE | FALSE` (see § Load-Bearing Claims above).
 
 ### Query Log Columns
 

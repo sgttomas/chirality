@@ -1,0 +1,53 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-RESEARCH-CONTRACT-ALIGN-20260926
+title: Research workflow contract alignment
+date: '2026-09-26'
+basis: 13df8b795e47ab2284018eeefc9d5473d00c232d
+instruction_surface_paths:
+  - workflows/research-orchestration/WORKFLOW.md
+  - workflows/research-orchestration/resources/brief.md
+  - workflows/research-orchestration/resources/checks.md
+  - workflows/research-orchestration/resources/contract.md
+  - workflows/research-orchestration/resources/method.md
+  - workflows/research-orchestration/resources/tools.md
+  - workflows/researcher/WORKFLOW.md
+  - workflows/researcher/resources/contract.md
+  - workflows/researcher/resources/evidence.md
+  - workflows/researcher/resources/method.md
+  - .agents/skills/researcher/SKILL.md
+  - .agents/skills/researcher/references/evidence-contract.md
+  - docs/governance_harness/tranche_manifests/ROOT-RESEARCH-CONTRACT-ALIGN-20260926.yaml
+m2_gate:
+  authorization: >-
+    After a READ review of the research-orchestration and researcher packages
+    and Claude's assessment of it, the repository owner replied: "I agree with
+    your recommendations." This covered (1) aligning readiness verdicts with
+    unresolved required coverage, making the critic requirement conditional
+    while keeping live/accepted-source verification of load-bearing claims
+    mandatory, recording actual recovery mechanisms instead of assumed resumes,
+    removing shared-pointer updates (option A) with --no-update-latest
+    required, adding an ACCEPTED_SNAPSHOT verification source, and mapping
+    researcher FAILED_INPUTS returns; and (2) aligning the RecommendedRoute
+    vocabulary and repairing stale cross-references. The owner declined
+    retrieval-stack work for now.
+  authorized_by: Ryan Tufts (repository owner sgttomas, current Claude Code conversation)
+  authorization_date: '2026-09-26'
+  integration_owner: >-
+    Claude Code session on claude/brave-goodall-wj3hok under the standing Git
+    authorization of 2026-09-12
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_RESEARCH_CONTRACT_ALIGNMENT.md
+  rationale: >-
+    The App packages Root workflows and skills as its bundled library, so its
+    loop receives notice of the revised research contracts. No other project
+    loop pins these packages. Historical research packets and run evidence are
+    unchanged.
+scope_limits:
+  - Contract text only; no retrieval tool, index, schema header, or validator behavior changes.
+  - Historical RecommendedRoute values and existing packets remain readable and are not rewritten.
+  - No retrieval-stack changes (embeddings, reranker); deferred by the owner until the workflow is in use.
+  - No release, acceptance of governed truth, or downstream adoption.
