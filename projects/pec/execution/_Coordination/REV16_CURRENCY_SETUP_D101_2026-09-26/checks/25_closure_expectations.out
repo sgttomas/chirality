@@ -1,0 +1,15 @@
+PASS graph_edges expected 127 got 127
+PASS graph_nodes expected 68 got 68
+PASS scc_count expected 0 got 0
+PASS bidirectional_pair_count expected 0 got 0
+PASS orphan_count expected 0 got 0
+PASS declared_disagreement_count expected 0 got 0
+PASS declared_only_rows expected 127 got 127
+PASS declared_unread_count expected 136 got 136
+PASS hub_count expected 1 got 1
+PASS isolated_count expected 6 got 6
+subject_status PASS run_status COMPLETE
+isolated ['DEL-00-03', 'DEL-01-05', 'DEL-06-04', 'DEL-07-02', 'DEL-07-04', 'DEL-07-05']
+hubs [['DEL-03-01', '13']]
+PASS isolated exactly the six
+RESULT PASS
