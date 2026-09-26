@@ -1,0 +1,2 @@
+taskmgmt validate PASS: projects/pec/execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv — 16 row(s), schema columns and referential rules conform. Form only; content judgment stays human (PRD §9.3).
+exit=0
