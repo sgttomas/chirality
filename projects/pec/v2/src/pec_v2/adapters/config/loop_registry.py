@@ -7,10 +7,39 @@ import re
 from pathlib import Path, PurePosixPath
 from typing import Any
 
-from ...core.ports.loop_registry import RegisteredLoop
+from ...core.ports.loop_registry import FeedProfile, FeedProfileState, RegisteredLoop
 
 
 _LOOP_ID = re.compile(r"^[a-z][a-z0-9-]*$")
+_SCHEMA_VERSION = 2
+
+# PEC's closed feed-profile vocabulary: each profile identifier and the
+# versions this adapter accepts. Extending it is a PEC code change under an
+# owner-ruled D-PEC packet; loops never declare it.
+FEED_PROFILE_VERSIONS: dict[str, frozenset[int]] = {
+    "agentruns-json": frozenset({1}),
+    "loop-receipts-ledger": frozenset({1}),
+    "shared-dev-loop": frozenset({1}),
+}
+
+# The file-truth surfaces each profile reads. The profiles declared on one
+# loop must cover pairwise-disjoint surfaces, so no surface is read under two
+# grammars or declared both live and historical. The three profiles here are
+# disjoint from one another; the rule guards any later vocabulary change.
+FEED_PROFILE_SURFACES: dict[str, frozenset[str]] = {
+    "agentruns-json": frozenset({"json-run-evidence"}),
+    "loop-receipts-ledger": frozenset({"receipt-ledger"}),
+    "shared-dev-loop": frozenset(
+        {
+            "central-receipts",
+            "decision-registers",
+            "dependency-registers",
+            "memory-run-index",
+            "status-lifecycle",
+            "work-graphs",
+        }
+    ),
+}
 
 
 class LoopRegistryConfigError(ValueError):
@@ -52,8 +81,11 @@ class JsonLoopRegistry:
         self._require_exact_fields(document, {"schema_version", "loops"}, "$")
 
         version = document["schema_version"]
-        if type(version) is not int or version != 1:
-            self._fail("$.schema_version", "expected integer constant 1")
+        if type(version) is not int or version != _SCHEMA_VERSION:
+            self._fail(
+                "$.schema_version",
+                f"expected integer constant {_SCHEMA_VERSION}; no other schema version is accepted",
+            )
 
         loop_rows = document["loops"]
         if not isinstance(loop_rows, list):
@@ -67,7 +99,9 @@ class JsonLoopRegistry:
             location = f"$.loops[{index}]"
             if not isinstance(row, dict):
                 self._fail(location, "expected an object")
-            self._require_exact_fields(row, {"loop_id", "loop_init_path"}, location)
+            self._require_exact_fields(
+                row, {"loop_id", "loop_init_path", "feed_profiles"}, location
+            )
 
             loop_id = row["loop_id"]
             if not isinstance(loop_id, str) or not _LOOP_ID.fullmatch(loop_id):
@@ -81,20 +115,99 @@ class JsonLoopRegistry:
                     f"duplicate loop identifier first declared at $.loops[{seen[loop_id]}].loop_id",
                 )
 
-            loop_init_path = row["loop_init_path"]
-            if not isinstance(loop_init_path, str) or not loop_init_path:
-                self._fail(f"{location}.loop_init_path", "expected a non-empty string")
-            locator = PurePosixPath(loop_init_path)
-            if locator.is_absolute() or ".." in locator.parts or "\\" in loop_init_path:
-                self._fail(
-                    f"{location}.loop_init_path",
-                    "expected a normalized repository-relative path",
-                )
+            loop_init_path = self._repository_path(
+                row["loop_init_path"], f"{location}.loop_init_path"
+            )
+            feed_profiles = self._feed_profiles(
+                row["feed_profiles"], f"{location}.feed_profiles"
+            )
 
             seen[loop_id] = index
-            loops.append(RegisteredLoop(loop_id=loop_id, loop_init_path=loop_init_path))
+            loops.append(
+                RegisteredLoop(
+                    loop_id=loop_id,
+                    loop_init_path=loop_init_path,
+                    feed_profiles=feed_profiles,
+                )
+            )
 
         return tuple(loops)
+
+    def _feed_profiles(self, value: Any, location: str) -> tuple[FeedProfile, ...]:
+        if not isinstance(value, list):
+            self._fail(location, "expected an array")
+        if not value:
+            self._fail(location, "expected at least one feed profile")
+
+        profiles: list[FeedProfile] = []
+        seen: dict[str, int] = {}
+        covered: dict[str, int] = {}
+        for index, entry in enumerate(value):
+            entry_location = f"{location}[{index}]"
+            if not isinstance(entry, dict):
+                self._fail(entry_location, "expected an object")
+            self._require_exact_fields(
+                entry, {"profile", "version", "state", "basis"}, entry_location
+            )
+
+            profile = entry["profile"]
+            if not isinstance(profile, str) or profile not in FEED_PROFILE_VERSIONS:
+                self._fail(
+                    f"{entry_location}.profile",
+                    "expected an identifier from the closed feed-profile vocabulary",
+                )
+            if profile in seen:
+                self._fail(
+                    f"{entry_location}.profile",
+                    f"duplicate feed profile first declared at {location}[{seen[profile]}].profile",
+                )
+
+            version = entry["version"]
+            if type(version) is not int or version not in FEED_PROFILE_VERSIONS[profile]:
+                self._fail(
+                    f"{entry_location}.version",
+                    f"expected a supported integer version of feed profile {profile}",
+                )
+
+            state = entry["state"]
+            if not isinstance(state, str) or state not in {
+                member.value for member in FeedProfileState
+            }:
+                self._fail(f"{entry_location}.state", "expected live or historical")
+
+            basis = self._repository_path(entry["basis"], f"{entry_location}.basis")
+
+            for surface in sorted(FEED_PROFILE_SURFACES[profile]):
+                if surface in covered:
+                    self._fail(
+                        f"{entry_location}.profile",
+                        f"surface {surface} is already covered by "
+                        f"{location}[{covered[surface]}].profile",
+                    )
+            for surface in FEED_PROFILE_SURFACES[profile]:
+                covered[surface] = index
+
+            seen[profile] = index
+            profiles.append(
+                FeedProfile(
+                    profile=profile,
+                    version=version,
+                    state=FeedProfileState(state),
+                    basis=basis,
+                )
+            )
+
+        if not any(item.state is FeedProfileState.LIVE for item in profiles):
+            self._fail(location, "expected at least one live feed profile")
+        return tuple(profiles)
+
+    def _repository_path(self, value: Any, location: str) -> str:
+        if not isinstance(value, str) or not value:
+            self._fail(location, "expected a non-empty string")
+        locator = PurePosixPath(value)
+        if locator.is_absolute() or ".." in locator.parts or "\\" in value:
+            self._fail(location, "expected a normalized repository-relative path")
+        return value
 
     def _require_exact_fields(
         self, value: dict[str, Any], expected: set[str], location: str
@@ -104,7 +217,10 @@ class JsonLoopRegistry:
             self._fail(f"{location}.{missing[0]}", "required field is missing")
         unexpected = sorted(value.keys() - expected)
         if unexpected:
-            self._fail(f"{location}.{unexpected[0]}", "field is not defined by schema v1")
+            self._fail(
+                f"{location}.{unexpected[0]}",
+                f"field is not defined by schema v{_SCHEMA_VERSION}",
+            )
 
     def _fail(self, location: str, message: str) -> None:
         raise LoopRegistryConfigError(f"{self._config_path}:{location}: {message}")
