@@ -111,6 +111,19 @@ Brief fields bind as follows:
 | MAX_CYCLES | `--max-cycles <nonnegative integer>` |
 | PRIOR_RUN_LABEL | Owner resolves the accepted label to an explicit `--prior-summary <closure_summary.json>` |
 
+Each unit's graph input is its recorded register (`docs/SPEC.md` §5.3): the
+`Dependencies.csv` rows plus the declared entries of its `_DEPENDENCIES.md`
+that have no ACTIVE EXECUTION row with the same direction and target. Only
+§5.2-form entries are read; other lines naming a deliverable are listed in
+`declared_unread.csv`, and required-maturity disagreements in
+`declared_disagreements.csv` (the declaration governs). `--include-declared
+false` reads the CSV alone, as earlier runs did. When
+`{EXECUTION_ROOT}/_DAG/_LATEST.md` names an accepted project DAG, the summary's
+`accepted_dag` section and `dag_pending.csv` list the deliverables whose local
+evidence adds or removes an arc, or whose inventory differs, relative to that
+version (`docs/SPEC.md` §5.4); the `project-dag` currency audit governs where it
+differs from this check.
+
 Normalization strips descriptive suffixes from DEL/KTY/PKG/CAT IDs for analysis
 only. Source text stays unchanged. Direction remains dependent-to-prerequisite:
 UPSTREAM uses From→Target; DOWNSTREAM reverses it. Header-invalid/unreadable files

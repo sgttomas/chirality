@@ -75,3 +75,54 @@ def test_cli_outputs_and_prior_comparison(tmp_path, capsys):
     assert summary["run_status"] == "COMPLETE" and summary["subject_status"] == "FAIL"
     assert closure.main([str(tmp_path), "--prior-summary", str(output / "closure_summary.json")]) == 0
     assert closure.main([str(tmp_path), "--scope", "DEL-99-99"]) == 2
+
+
+def declare(root, unit, text):
+    path = root / f"PKG-01_A/1_Working/{unit}/_DEPENDENCIES.md"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8")
+
+
+def test_declared_entries_without_csv_rows_join_the_graph(tmp_path):
+    put(tmp_path, "DEL-01-01_A", "DEL-01-02")
+    put(tmp_path, "DEL-01-02_B", "DEL-01-03", RequiredMaturity="ISSUED")
+    # DEL-01-02 declares its CSV edge again (one edge, maturity disagreement) and a new one closing a cycle.
+    declare(tmp_path, "DEL-01-02_B", "## Declared Upstream (I need these before I can proceed)\n"
+            "- DEL-01-03 C — Reason: r\n  - Required maturity: IN_PROGRESS\n- DEL-01-01 A — Reason: r\n")
+    (tmp_path / "PKG-01_A/1_Working/DEL-01-03_C").mkdir()
+    summary, data = closure.analyze(tmp_path)
+    assert summary["include_declared"] is True
+    assert summary["declared_only_rows"] == 1
+    assert summary["declared_disagreement_count"] == 1
+    assert summary["graph_edges"] == 3
+    assert summary["scc_count"] == 1 and data["sccs"] == [["DEL-01-01", "DEL-01-02"]]
+    assert summary["total_rows"] == 2 and summary["execution_rows"] == 2
+    assert summary["checks"]["declared_disagreements"] == "WARNING"
+    assert summary["checks"]["dag_currency"] == "NOT_APPLICABLE" and summary["accepted_dag"] is None
+    csv_only = closure.analyze(tmp_path, include_declared=False)[0]
+    assert csv_only["graph_edges"] == 2 and csv_only["scc_count"] == 0
+
+
+def test_accepted_dag_departure_reported_as_dag_pending(tmp_path, capsys):
+    put(tmp_path, "DEL-01-01_A", "DEL-01-02")
+    put(tmp_path, "DEL-01-02_B", "DEL-01-03")
+    (tmp_path / "PKG-01_A/1_Working/DEL-01-03_C").mkdir()
+    version = tmp_path / "_DAG" / "DAG-001"
+    version.mkdir(parents=True)
+    with (version / "DeliverableNodes.csv").open("w", newline="") as stream:
+        stream.write("DeliverableID,PackageID\nDEL-01-01,PKG-01\nDEL-01-02,PKG-01\nDEL-01-03,PKG-01\n")
+    source = tmp_path / "PKG-01_A/1_Working/DEL-01-01_A/Dependencies.csv"
+    (version / "DependencyEdges.csv").write_text(source.read_text())
+    (tmp_path / "_DAG" / "_LATEST.md").write_text("Latest: DAG-001\nUpdated: 2026-09-26\n")
+    summary, _data = closure.analyze(tmp_path, ["DEL-01-02"])
+    dag = summary["accepted_dag"]
+    assert dag["version"] == "DAG-001" and dag["result"] == "DEPARTURE"
+    assert dag["added_arcs"] == [["DEL-01-02", "DEL-01-03"]]
+    assert sorted(dag["dag_pending"]) == ["DEL-01-02", "DEL-01-03"]
+    assert dag["dag_pending_in_scope"] == ["DEL-01-02"]
+    assert summary["checks"]["dag_currency"] == "WARNING"
+    output = tmp_path / "reports"
+    assert closure.main([str(tmp_path), "--output-dir", str(output)]) == 0
+    assert "DEL-01-03" in (output / "dag_pending.csv").read_text()
+    (tmp_path / "_DAG" / "_LATEST.md").write_text("no pointer\n")
+    assert closure.analyze(tmp_path)[0]["accepted_dag"]["result"] == "INCOMPLETE"

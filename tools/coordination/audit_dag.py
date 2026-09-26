@@ -447,8 +447,10 @@ def render_markdown(summary: dict[str, object]) -> str:
         "",
         "## Authority",
         "",
-        "- Accepted project dependency basis: `execution/_DAG/DAG-001/DependencyEdges.csv`.",
-        "- Local `Dependencies.csv` files are synchronized mirrors, not independent sequencing authority.",
+        f"- Edges audited: `{summary['edges_path']}`.",
+        "- This audit does not establish authority. Under `docs/SPEC.md` §5.4 (D-GOV-49) the local "
+        "`_DEPENDENCIES.md` and `Dependencies.csv` files are the dependency evidence, and an accepted project DAG "
+        "version governs blockers only through its acceptance record and only while it is current with that evidence.",
         "- `CANDIDATE` rows remain non-gating.",
         f"- Canonical dependency enum mode: {summary.get('canonical_mode', False)}.",
         "",

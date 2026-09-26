@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
 """Analyze a declared dependency scope with exhaustive CSV validation and graph evidence.
 
+The graph is read from each unit's recorded register (docs/SPEC.md §5.3): its
+`Dependencies.csv` rows together with the declared entries of its
+`_DEPENDENCIES.md` that have no matching row (`--include-declared false` reads
+the CSV alone, as earlier runs did). When `{EXECUTION_ROOT}/_DAG/_LATEST.md`
+names an accepted project DAG, the summary also reports the deliverables whose
+local evidence departs from it as `DAG pending` (docs/SPEC.md §5.4).
+
 The historical positional root and --output-dir interface remains supported.
 See tools/evaluation/README.md for report meanings and all brief-to-CLI options.
 """
@@ -14,7 +21,9 @@ from collections import defaultdict, deque
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "evaluation"))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from audit_common import in_lifecycle_folder, inventory, parse_register, require_root, schema
+import dependency_evidence as evidence
 
 REQUIRED_COLUMNS = schema.REQUIRED_COLUMNS
 HUB_THRESHOLD = 20
@@ -180,11 +189,54 @@ def select_units(root, scope):
     return sorted(selected), units
 
 
-def analyze(root, scope=None, active_only=True, normalize_ids=True, dependency_class="EXECUTION", target_type="DELIVERABLE", hub_threshold=20, max_cycles=10000):
+def declared_rows(selected, rows, normalize_ids=True):
+    """Rows for declared entries without a matching CSV row, and declaration findings (SPEC §5.3)."""
+    added, disagreements, unread = [], [], []
+    by_file = defaultdict(list)
+    for row in rows:
+        if row["_eligible"]:
+            by_file[row["_source_file"]].append(row)
+    for unit in selected:
+        path = unit / "_DEPENDENCIES.md"
+        if not path.is_file():
+            continue
+        key = unit.name.split("_")[0]
+        declarations = evidence.parse_declarations(path.read_text(encoding="utf-8", errors="replace"))
+        _rows, extra, found = evidence.union_register(key, by_file.get(str(unit / "Dependencies.csv"), []), declarations)
+        disagreements.extend(found)
+        unread.extend({"DeliverableID": key, "Path": str(path), "Line": line} for line in declarations.unread)
+        for ordinal, row in enumerate(extra, 1):
+            full = {name: "" for name in REQUIRED_COLUMNS}
+            full.update(row)
+            full.update(_source_file=str(path), _record=ordinal, _issues=[], _eligible=True)
+            for field, target in (("FromDeliverableID", "_from_id_norm"), ("TargetDeliverableID", "_target_id_norm")):
+                full[target] = normalize_id(full[field])[0] if normalize_ids else full[field].strip()
+            added.append(full)
+    return added, disagreements, unread
+
+
+def dag_currency(root, selected_ids):
+    """Accepted project DAG and the deliverables whose evidence departs from it (SPEC §5.4), or None."""
+    try:
+        dag = evidence.resolve_accepted_dag(root)
+    except evidence.DagPointerError as exc:
+        return {"result": "INCOMPLETE", "pointer": str(root / "_DAG" / "_LATEST.md"), "error": str(exc), "dag_pending": {}, "dag_pending_count": 0}
+    if dag is None:
+        return None
+    report = {"version": dag.name, "path": str(dag.path), "pointer": str(dag.pointer)}
+    report.update(evidence.check_currency(dag, evidence.project_registers(root)).as_dict())
+    report["dag_pending_in_scope"] = sorted(set(report["dag_pending"]) & set(selected_ids))
+    return report
+
+
+def analyze(root, scope=None, active_only=True, normalize_ids=True, dependency_class="EXECUTION", target_type="DELIVERABLE", hub_threshold=20, max_cycles=10000, include_declared=True):
     root = require_root(Path(root))
     selected, all_units = select_units(root, scope or ["ALL"])
     paths = [str(unit / "Dependencies.csv") for unit in selected if (unit / "Dependencies.csv").is_file()]
     rows, reports, normalizations = load_all_edges(paths, normalize_ids)
+    csv_row_count = len(rows)
+    declared, disagreements, unread = declared_rows(selected, rows, normalize_ids) if include_declared else ([], [], [])
+    rows.extend(declared)
     ids = {unit.name.split("_")[0] for unit in selected}
     if len(ids) != len(selected):
         raise ValueError("duplicate production-unit IDs in selected inventory")
@@ -224,9 +276,9 @@ def analyze(root, scope=None, active_only=True, normalize_ids=True, dependency_c
         "scope": scope or ["ALL"], "filters": {"active_only": active_only, "normalize_ids": normalize_ids, "dependency_class": dependency_class, "target_type": target_type, "hub_threshold": hub_threshold, "max_cycles": max_cycles},
         "total_files": len(paths), "total_rows": sum(info["rows"] for info in reports.values()), "production_units": len(ids),
         "schema_valid": sum(info["valid"] for info in reports.values()), "schema_invalid": sum(not info["valid"] for info in reports.values()),
-        "anchor_rows": sum(row["DependencyClass"].strip() == "ANCHOR" for row in rows), "execution_rows": sum(row["DependencyClass"].strip() == "EXECUTION" for row in rows),
+        "anchor_rows": sum(row["DependencyClass"].strip() == "ANCHOR" for row in rows[:csv_row_count]), "execution_rows": sum(row["DependencyClass"].strip() == "EXECUTION" for row in rows[:csv_row_count]),
         "implements_node_present": sum(info["implements_node_rows"] > 0 for info in reports.values()), "implements_node_missing": sum(info["implements_node_rows"] == 0 for info in reports.values()),
-        "evidence_populated": sum(bool(row["EvidenceFile"].strip()) for row in rows), "evidence_total": sum(info["rows"] for info in reports.values()),
+        "evidence_populated": sum(bool(row["EvidenceFile"].strip()) for row in rows[:csv_row_count]), "evidence_total": sum(info["rows"] for info in reports.values()),
         "denominator_complete": all(info.get("denominator_complete", True) for info in reports.values()),
         "graph_nodes": len(graph_nodes | ids), "graph_edges": sum(len(targets) for targets in graph.values()),
         "orphan_count": len(orphan_rows), "isolated_count": len(isolated), "outside_scope_count": len(outside_rows),
@@ -236,6 +288,11 @@ def analyze(root, scope=None, active_only=True, normalize_ids=True, dependency_c
     invalid_ids = [{"field": field, "value": row[field], "path": row["_source_file"], "record": row["_record"]}
         for row in rows for field in ("FromDeliverableID", "TargetDeliverableID")
         if row[field].strip() and not ID_PATTERN.fullmatch(row[field].strip())]
+    summary["include_declared"] = include_declared
+    summary["declared_only_rows"] = len(declared)
+    summary["declared_disagreement_count"] = len(disagreements)
+    summary["declared_unread_count"] = len(unread)
+    summary["accepted_dag"] = dag_currency(root, ids)
     summary["misplaced_field_count"] = misplaced
     summary["invalid_ids"] = invalid_ids
     summary["checks"] = {
@@ -248,8 +305,11 @@ def analyze(root, scope=None, active_only=True, normalize_ids=True, dependency_c
         "isolated_units": "WARNING" if isolated else "PASS",
         "hubs": "WARNING" if hubs else "PASS",
         "bidirectional_pairs": "INFO" if bidirectional else "PASS",
+        "declared_disagreements": "WARNING" if disagreements else "PASS",
+        "dag_currency": "NOT_APPLICABLE" if summary["accepted_dag"] is None else "PASS" if summary["accepted_dag"]["result"] == "NO_DEPARTURE_FOUND" else "WARNING",
     }
-    return summary, {"orphans": orphan_rows, "outside_scope": outside_rows, "isolated": isolated, "sccs": components, "cycles": cycles, "hubs": hubs, "bidirectional": bidirectional, "coverage": coverage, "normalizations": normalizations}
+    return summary, {"orphans": orphan_rows, "outside_scope": outside_rows, "isolated": isolated, "sccs": components, "cycles": cycles, "hubs": hubs, "bidirectional": bidirectional, "coverage": coverage, "normalizations": normalizations,
+        "declared": declared, "disagreements": disagreements, "unread": unread}
 
 
 def boolean(value):
@@ -277,11 +337,12 @@ def main(argv=None):
     parser.add_argument("--hub-threshold", type=int, default=20)
     parser.add_argument("--max-cycles", type=int, default=10000)
     parser.add_argument("--prior-summary", type=Path, help="Explicit prior closure_summary.json for comparison")
+    parser.add_argument("--include-declared", type=boolean, default=True, help="Add declared _DEPENDENCIES.md entries without a CSV row (docs/SPEC.md §5.3); false reads the CSV alone")
     args = parser.parse_args(argv)
     try:
         if args.hub_threshold < 1 or args.max_cycles < 0:
             raise ValueError("hub threshold must be positive; max cycles must be nonnegative")
-        summary, data = analyze(args.execution_root, args.scope, args.filter_active_only, args.normalize_ids, args.dependency_class, args.target_type, args.hub_threshold, args.max_cycles)
+        summary, data = analyze(args.execution_root, args.scope, args.filter_active_only, args.normalize_ids, args.dependency_class, args.target_type, args.hub_threshold, args.max_cycles, args.include_declared)
         if args.prior_summary:
             prior = json.loads(args.prior_summary.read_text(encoding="utf-8"))
             if not isinstance(prior, dict):
@@ -304,6 +365,13 @@ def main(argv=None):
             write_csv(output, "bidirectional_pairs.csv", ["NodeA", "NodeB"], data["bidirectional"])
             fields = ["DeliverableID", "HasDependencyCsv", "RowCount", "SchemaValid", "HasImplementsNode"]
             write_csv(output, "coverage.csv", fields, [[row[field] for field in fields] for row in data["coverage"]])
+            write_csv(output, "declared_only.csv", ["FromDeliverableID", "Direction", "TargetDeliverableID", "RequiredMaturity", "Evidence"], [[row[key] for key in ("FromDeliverableID", "Direction", "TargetDeliverableID", "RequiredMaturity", "_source_file")] for row in data["declared"]])
+            fields = ["DeliverableID", "Direction", "TargetDeliverableID", "DependencyID", "Field", "Declared", "Csv"]
+            write_csv(output, "declared_disagreements.csv", fields, [[row[field] for field in fields] for row in data["disagreements"]])
+            write_csv(output, "declared_unread.csv", ["DeliverableID", "Path", "Line"], [[row[key] for key in ("DeliverableID", "Path", "Line")] for row in data["unread"]])
+            if summary["accepted_dag"] is not None:
+                pending = summary["accepted_dag"]["dag_pending"]
+                write_csv(output, "dag_pending.csv", ["DeliverableID", "Reasons"], [[key, "; ".join(pending[key])] for key in sorted(pending)])
             write_csv(output, "id_normalization.csv", ["Original", "Normalized", "Field", "File", "Record"], [[row[key] for key in ("original", "normalized", "field", "file", "record")] for row in data["normalizations"]])
         print(json.dumps(summary, indent=2, sort_keys=True))
         return 0

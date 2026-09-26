@@ -1,0 +1,124 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-DEPENDENCY-FOLLOWUPS-20260926
+title: Dependency follow-ups to D-GOV-46 under D-GOV-49 (blocker source by DAG state, declared-entry mirroring, materializer preservation, union and DAG-pending tool readers, review dependency item)
+date: '2026-09-26'
+basis: ddf0cf4849f83a0196c62dcccc1c91180ef80de3
+instruction_surface_paths:
+  - docs/SPEC.md
+  - .agents/skills/preparation/references/scaffold-contract.md
+  - tools/REGISTRY.md
+  - tools/evaluation/README.md
+  - tools/coordination/dependency_evidence.py
+  - tools/coordination/test_dependency_evidence.py
+  - tools/coordination/materialize_local_dependencies.py
+  - tools/coordination/test_materialize_local_dependencies.py
+  - tools/coordination/analyze_dep_closure.py
+  - tools/coordination/test_analyze_dep_closure.py
+  - tools/coordination/build_dev001_blocker_queue.py
+  - tools/coordination/test_dev001_blocker_queue.py
+  - tools/coordination/audit_dag.py
+  - tools/coordination/test_dag_control_plane.py
+  - workflows/dependency-extract/WORKFLOW.md
+  - workflows/dependency-extract/resources/brief.md
+  - workflows/dependency-extract/resources/checks.md
+  - workflows/project-setup/resources/contract.md
+  - workflows/project-setup/resources/method.md
+  - workflows/project-dag/resources/contract.md
+  - workflows/project-dag/resources/graph-version.md
+  - workflows/review/resources/contract.md
+  - workflows/review/resources/method.md
+  - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
+  - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
+  - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
+  - projects/pec/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
+  - docs/governance_harness/tranche_manifests/ROOT-DEPENDENCY-FOLLOWUPS-20260926.yaml
+  - exports/chirality-app/export-manifest.csv
+  - exports/chirality-app/export-report.md
+m2_gate:
+  authorization: >-
+    The repository owner, shown the three dependency follow-ups left open by
+    D-GOV-46 (the materializer's --refresh-pointers overwriting human-owned
+    _DEPENDENCIES.md sections; declarations recorded only in _DEPENDENCIES.md
+    never reaching Dependencies.csv; review Gate 2 item 5 assuming CSV columns
+    and not naming FULL_GRAPH), directed "Fix these appropriately." After
+    D-GOV-49 was drafted, the owner was shown recommendations on how the
+    branch sits with it and decided on 2026-09-26: "A, B, C and E all as
+    recommended". Decision B, as recommended: (1) a project without an
+    accepted project DAG reads blockers from the union of the declared
+    sections and Dependencies.csv, the same edge counting once and the
+    declaration governing a disagreement, while a project with an accepted DAG
+    reads them from the accepted current version with DAG pending under SPEC
+    section 5.4, stated in SPEC section 5.3, project-setup and the review item;
+    (2) a mirrored row's DependencyType comes from its section heading
+    (upstream PREREQUISITE, downstream ENABLES) and dependency-extract says so;
+    (3) materialize_local_dependencies.py keeps Origin=DECLARED rows when it
+    rewrites Dependencies.csv from the aggregate graph, with a test;
+    (4) build_dev001_blocker_queue.py and analyze_dep_closure.py implement
+    that rule, a union reader without an accepted DAG and, with one, the
+    version named by _DAG/_LATEST.md with DAG pending on departure, keeping
+    their existing behaviour for current inputs, with tests; (5) when an
+    existing _DEPENDENCIES.md lacks a human-owned section, the materializer
+    and dependency-extract add it as a TBD placeholder and never fill it, and
+    SPEC section 5.2 says so, with a test.
+  authorized_by: Ryan Tufts (repository owner sgttomas, current Claude Code conversation)
+  authorization_date: '2026-09-26'
+  integration_owner: >-
+    The Claude Code parent session integrating on branch
+    claude/brave-goodall-wj3hok under the standing Git authorization of
+    2026-09-12; the authoring worktree commits locally and does not push, open
+    or merge the PR.
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
+  rationale: >-
+    The same four loops that received the D-GOV-46 and D-GOV-49 notices hold
+    _DEPENDENCIES.md files and use project-setup, dependency-extract and
+    review. The App mirrors SPEC section 5 in its own docs and has no _DAG/.
+    Runtime records mode DECLARED and has no _DAG/, so the union rule governs
+    its blocker reports. Piping has an accepted DAG pointer, has used the
+    materializer and blocker queue, and keeps their DAG-file behaviour. PEC is
+    being redeveloped and the owner is deferring action there; its notice is
+    routed for the record only.
+rationale: >-
+  This tranche applies D-GOV-46 and D-GOV-49 and the owner's decision recorded
+  above; it adds no governance meaning beyond them, so no new D-GOV record is
+  made. (1) SPEC section 5.3 defines the recorded register as the union of the
+  declared entries and the CSV rows, and states it as the no-accepted-DAG case,
+  consistent with section 5.4; the earlier text assumed a mirroring step
+  dependency-extract did not have. project-setup and review Gate 2 item 5
+  state both cases. (2) dependency-extract mirrors declarations as
+  Origin=DECLARED rows whose DependencyType the heading supplies. (3) The
+  materializer obeys SPEC section 5.1: it writes only agent-owned sections,
+  keeps local Origin=DECLARED rows, adds missing human-owned sections as TBD
+  placeholders only, and states the D-GOV-49 authority reading. (4) A shared
+  reader (dependency_evidence.py) gives the blocker queue and closure tool the
+  union and an arc-and-inventory departure check against the accepted
+  version; the project-dag currency audit governs where they differ. The
+  blocker queue's DEV-001 DAG-file behaviour is unchanged and the new rule sits
+  behind --execution-root; the closure tool reads the union by default, with
+  --include-declared false for the earlier CSV-only reading. (5) SPEC section
+  5.2 and the preparation scaffold's Register line name both sources.
+  (6) As a consequential alignment with D-GOV-49 made in the integrating
+  session's brief, audit_dag.py's markdown report names the edge file it
+  audited and gives the D-GOV-49 reading; project-dag's graph-version and contract notes about
+  that report are updated, on their D-GOV-49 wording as merged. (7) The
+  tranche is rebased onto the incremental project-setup and D-GOV-50 basis.
+  project-setup Phase 3.1 and Phase 5.6 read blockers by the same two cases,
+  and Phase 3.2's advisory section gains a DAG PENDING group so that the
+  pending deliverables Phase 3.1 and Phase 5.7 name have a place in the
+  report. The workflow index was rebuilt and is unchanged, because no
+  package metadata changed; the public export manifest and report were
+  regenerated.
+scope_limits:
+  - No existing _DEPENDENCIES.md, Dependencies.csv, DAG version, pointer, generated report or historical run record is changed or regenerated; no tool was run to write project files.
+  - The Dependencies.csv v3.1 schema (SPEC section 6), the section 5.2 headings and the section 5.3 mode vocabulary are unchanged.
+  - The tools' departure check compares arcs and inventory only. It does not verify source hashes, re-apply a version's selection rules or read rejection records, so a rejected departure still shows as DAG pending there; the project-dag currency audit governs.
+  - The declared-entry reader accepts only the SPEC section 5.2 entry form (and the legacy combined upstream/downstream labels); other lines naming a deliverable are reported as unread, never inferred.
+  - App-owned surfaces (projects/chirality-app-dev/docs/SPEC.md) and project loops' own wording are left to their loops through the notices.
+  - No release is granted.

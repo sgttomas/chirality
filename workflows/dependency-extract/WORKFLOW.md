@@ -110,7 +110,7 @@ Reads are limited to the current deliverable folder plus the decomposition docum
 | `{deliverable}/_REFERENCES.md` | Full (if present) | Resolve document pointers for `TargetType=DOCUMENT` rows |
 | Source documents in scope | Full | Evidence extraction (anchors + execution edges) |
 | `{deliverable}/Dependencies.csv` | Full (if present) | Match/merge with existing rows |
-| `{deliverable}/_DEPENDENCIES.md` | Full (if present) | Preserve declared lists + Run History |
+| `{deliverable}/_DEPENDENCIES.md` | Full (if present) | Preserve declared lists + Run History; mirror declared entries into `Dependencies.csv` |
 | `{DECOMPOSITION_PATH}` | Read-only | Validate anchors + resolve canonical labels |
 | Architecture-basis / PKG-00 source files | Relevant excerpts when cited | Confirm architecture-consistency dependency rows without writing PKG-00 |
 | `{EXECUTION_ROOT}` registers | Only through the optional `validate_decomposition_registers.py` check, when the brief permits | Report `EVQ`/`DRB` findings for in-scope registers |
@@ -252,7 +252,7 @@ Normalize legacy values on write:
 - Preserve existing `DependencyID` for matchable rows.
 - Update `LastSeen`, set `Status=ACTIVE` when found.
 - Mark unseen extracted rows `RETIRED` (do not delete).
-- Preserve declared edges (`Origin=DECLARED`).
+- Preserve declared edges (`Origin=DECLARED`); mirror rows for `_DEPENDENCIES.md` declarations follow "Mirror declared entries" below.
 - In `MODE=CANONICALIZE_EXISTING`, do not extract new rows from prose. Read the existing register, normalize all core enum fields to canonical write form, preserve legacy values in `Notes`, and move any non-gating candidate relationship to a non-authoritative candidate worklist or mark the register row `RETIRED` with a candidate-disposition note.
 - Ensure `FromDeliverableID` matches the host deliverable identity.
 - Ensure `DependencyID` uniqueness within the deliverable register.
@@ -261,10 +261,34 @@ Normalize legacy values on write:
   - For non-deliverable targets (e.g., `WBS_NODE`, `REQUIREMENT`, `DOCUMENT`, `EXTERNAL`), `TargetDeliverableID` MUST be empty; use `TargetRefID` (if a stable ID exists) and `TargetName`.
   - For `TargetType=DELIVERABLE`, `TargetDeliverableID` MUST contain the deliverable stable ID.
 
-Match/merge precedence for extracted rows (in order):
+Match/merge precedence for extracted rows (in order), against existing `Origin=EXTRACTED` rows only:
 1. Existing `DependencyID` exact match
 2. Same `DependencyClass` + `AnchorType` + `Direction` + `DependencyType` + `TargetType` + target identifiers + near-equivalent `Statement`
 3. Otherwise create new row with new `DependencyID`
+
+An extracted row that duplicates a declared edge (same `Direction` and target) is kept as its own `Origin=EXTRACTED` row; note `corroborates=<DECLARED DependencyID>` in its `Notes`.
+
+#### Mirror declared entries (every `MODE`)
+
+`docs/SPEC.md` §5.3 reads the recorded register as the declared sections of `_DEPENDENCIES.md` together with `Dependencies.csv`. So that a reader of the CSV alone does not miss a declaration, mirror each declared entry into one `Origin=DECLARED` row. This reads the human-owned sections and never edits them.
+
+- **Entries.** Read the Declared Upstream and Declared Downstream sections, or their legacy equivalents in the SPEC §5.2 table, and take each entry in the §5.2 form: `- {DEL-ID} {Name} — Reason: {reason}` with optional `Required maturity:` and `Location:` sub-lines. Skip `TBD` entries, template placeholders and the `NOT_TRACKED` text "Dependencies coordinated externally by humans." In a combined legacy section, take the direction from the entry's own upstream/downstream label. If an entry's direction or target cannot be read, do not mirror it; record it in Run Notes as `[WARNING] DECLARED_ENTRY_UNREAD` with the raw line.
+- **Row fields.** Copy only what the entry states:
+  - `DependencyClass=EXECUTION`, `AnchorType=NOT_APPLICABLE`.
+  - `Direction` comes from the section: `UPSTREAM` for Declared Upstream, `DOWNSTREAM` for Declared Downstream.
+  - `DependencyType` is supplied by the section heading: `PREREQUISITE` for an entry under Declared Upstream ("I need these before I can proceed") and `ENABLES` for an entry under Declared Downstream ("These need me"). In a combined legacy section, the entry's own upstream/downstream label decides. The §5.2 entry form has no type field, so the heading is the only source; a declaration of another type is recorded as a direct `Origin=DECLARED` CSV row.
+  - For a deliverable ID, set `TargetType=DELIVERABLE` and `TargetDeliverableID`. Set `TargetPackageID` only when the decomposition resolves it; otherwise leave it empty. For no resolvable ID, set `TargetType=UNKNOWN` and keep the raw text in `TargetName`.
+  - `TargetName` is the entry's name. `TargetLocation` is the stated location, or `TBD`. `Statement` is the stated reason.
+  - `RequiredMaturity` is the stated required maturity, or `TBD`. Leave `ProposedMaturity` empty.
+  - `EvidenceFile=_DEPENDENCIES.md`. `SourceRef` is `_DEPENDENCIES.md` plus the section heading as the file writes it. `EvidenceQuote` is the entry line, at most 30 words.
+  - `Explicitness=EXPLICIT`, `Confidence=HIGH`, `Origin=DECLARED`, `Status=ACTIVE`.
+  - `SatisfactionStatus=TBD` on a new row.
+  - `Notes` records `mirrored_from=_DEPENDENCIES.md`.
+- **Idempotent update.** Match a mirror row by `Origin=DECLARED` + `mirrored_from=_DEPENDENCIES.md` + `Direction` + target identifier (`TargetDeliverableID`, or `TargetName` for an `UNKNOWN` target). On a match, keep the `DependencyID`, `FirstSeen` and `SatisfactionStatus`. Refresh the stated fields and `LastSeen`, and set `Status=ACTIVE`. Otherwise create the row with the next §6.8 `DependencyID`. A rerun with unchanged declarations changes nothing but `LastSeen`.
+- **Removed declarations.** A mirror row whose entry no longer appears is set `Status=RETIRED`, with `retired_by=declaration_removed` in `Notes`. It is never deleted. `Origin=DECLARED` rows without the `mirrored_from` marker were declared directly in the CSV and are preserved unchanged.
+- **Direct CSV declarations.** Sometimes an `Origin=DECLARED` row without the marker already names the entry's `Direction` and target. That row already carries the declaration, so do not add a mirror row. If its fields differ from the entry, leave the row unchanged and record `[WARNING] DECLARED_MISMATCH` in Run Notes. The human-owned section governs readers until a human reconciles the two.
+
+Record the counts of mirror rows added, refreshed, retired, and entries skipped in Run Notes.
 
 ### Function 4 — Update `_DEPENDENCIES.md` index
 
@@ -275,7 +299,7 @@ Match/merge precedence for extracted rows (in order):
 - `## Run History` (append-only; one entry per run: timestamp, mode, strictness, decomposition path/status, warnings, ACTIVE counts)
 - `## Downstream Handoff Notes` (only when `CONSUMER_CONTEXT` is not `NONE`)
 
-If `_DEPENDENCIES.md` is missing, create it with the SPEC §5.2 headings and leave the human-owned mode and declarations as `TBD`; never infer them. In an existing file, do not rename the declared dependency sections or edit their content. Legacy headings in existing files (SPEC §5.2 legacy-heading table, for example `## Coordination (human-owned)`, `## Coordination Mode`, `## Run Notes & History`, `## Consumer Handoff Notes (optional)`, or a `(populated by TASK+dependency-extract)` suffix) are preserved and read as their §5.2 sections: refresh each agent-owned section under the heading the file already uses, and add a missing section under its §5.2 heading. A legacy `TRACKED` mode value is read as `FULL_GRAPH` and left as written.
+If `_DEPENDENCIES.md` is missing, create it with the SPEC §5.2 headings and leave the human-owned mode and declarations as `TBD`; never infer them. In an existing file, do not rename the declared dependency sections or edit their content. If an existing file lacks a human-owned section (and, for the declared lists, no combined legacy section covers it), add it under its §5.2 heading as a `TBD` placeholder: `- **Mode:** TBD` for the tracking mode, `- TBD` for a declared list. Never fill a placeholder; the human records the mode and declarations. Legacy headings in existing files (SPEC §5.2 legacy-heading table, for example `## Coordination (human-owned)`, `## Coordination Mode`, `## Run Notes & History`, `## Consumer Handoff Notes (optional)`, or a `(populated by TASK+dependency-extract)` suffix) are preserved and read as their §5.2 sections: refresh each agent-owned section under the heading the file already uses, and add a missing section under its §5.2 heading. A legacy `TRACKED` mode value is read as `FULL_GRAPH` and left as written.
 
 ### Function 5 — Local quality checks (mandatory)
 
@@ -447,7 +471,8 @@ See `resources/checks.md` for the authoritative invariant list. Summary:
 - `DependencyID` values are unique within each deliverable register.
 - Write-form enums are canonical; legacy and project-specific values are read-only migration inputs, never emitted.
 - `_DEPENDENCIES.md` summary/lifecycle counts are consistent with `Dependencies.csv`.
-- Non-fatal integrity warnings: `[WARNING] FLOATING_NODE` (no parent anchor), `[WARNING] AMBIGUOUS_ANCHOR` (multiple parent anchors), `[WARNING] MISSING_DECOMPOSITION`.
+- Each readable declared entry has exactly one ACTIVE `Origin=DECLARED` row; mirror rows whose entry was removed are `RETIRED`.
+- Non-fatal integrity warnings: `[WARNING] FLOATING_NODE` (no parent anchor), `[WARNING] AMBIGUOUS_ANCHOR` (multiple parent anchors), `[WARNING] MISSING_DECOMPOSITION`, `[WARNING] DECLARED_ENTRY_UNREAD`, `[WARNING] DECLARED_MISMATCH`.
 
 ## Downstream consumer
 

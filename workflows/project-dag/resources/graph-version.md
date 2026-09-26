@@ -128,14 +128,13 @@ Rules on rows and arcs:
    derived reading aid and not a schedule).
 
 Do not publish `--markdown-out` output in a graph version. The tool's markdown
-report has fixed text naming `execution/_DAG/DAG-001/DependencyEdges.csv` as
-the accepted dependency basis and local `Dependencies.csv` files as
-"synchronized mirrors, not independent sequencing authority", whatever path
-was audited. Under the [contract](contract.md#authority) neither side is
+report names the audited edge file and states that the audit establishes no
+authority, as the [contract](contract.md#authority) holds: neither side is
 self-authorizing; a version carries authority only through its acceptance
-while it is current, and a departure is decided by the human. The JSON's
-`dev001_projection` section is a project-specific projection outside this
-workflow's checks. Report both points rather than relying on them.
+while it is current, and a departure is decided by the human. Its title and
+front matter, however, are a project-specific DEV-001 audit record, and the
+JSON's `dev001_projection` section is a project-specific projection outside
+this workflow's checks. Report both points rather than relying on them.
 
 ## Accounting and fidelity
 
