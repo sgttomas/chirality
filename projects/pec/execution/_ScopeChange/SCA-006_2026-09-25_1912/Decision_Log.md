@@ -3,7 +3,7 @@ amendment_id: SCA-006
 doc_kind: scope_change.decision_log
 decomp_variant: SOFTWARE
 current_checkpoint_group: 2
-status: checkpoint_1_accepted_checkpoint_2_preparation_authorized
+status: checkpoint_2_package_prepared_awaiting_owner
 ---
 
 # SCA-006 Decision Log
@@ -25,7 +25,7 @@ hashes are quoted here and in the run return.
 | SCA006-CP1-GATE | 1 | Reliance gate: (a) standing gate for any release that advertises operational reliance, with SOW-100 and a new DEL-10-13; (b) bind to the P1 exit test and extend existing deliverables | `SELECTED (a)` | owner act 2026-09-25 (verbatim below) |
 | SCA006-CP1-INS | 1 | `projects/pec/AGENTS.md` route: (a) carried at checkpoint 3 as an instruction tranche with its own manifest and notices; (b) a separate instruction tranche after checkpoint 3 | `SELECTED (a)` | owner act 2026-09-25 (verbatim below) |
 | SCA006-CP1-RC | 1 | Confirm that R-C (PEC output citable as authority) stays excluded | `CONFIRMED EXCLUDED` | owner act 2026-09-25 (verbatim below) |
-| SCA006-CP2 | 2 | Exact amendment and propagation plan (PRD v2.4 candidate, decomposition revision 1.6 text, AGENTS.md text, supersession bindings) | `PREPARATION AUTHORIZED` | SCA006-CP1 accepted 2026-09-25 |
+| SCA006-CP2 | 2 | Exact amendment and propagation plan (PRD v2.4 candidate, decomposition revision 1.6 text, AGENTS.md text, supersession bindings) | `PREPARED / AWAITING_OWNER` | SCA006-CP1 accepted 2026-09-25; package hashes in §"SCA006-CP2 — package prepared (not a decision)"; question set in `Propagation_Plan.md` §"Checkpoint-2 owner question set" (Q-CP2-A, Q-CP2-1, Q-CP2-2) |
 | SCA006-CP3 | 3 | Audited poststate acceptance, pointer moves | `NOT_STARTED` | requires SCA006-CP2 acceptance |
 
 ## SCA006-G1 — owner directions of record (verbatim)
@@ -85,3 +85,26 @@ HELP_HUMAN recorded this under K-AUTH-1. The interpretation and bounds are in
 act, the owner asked for the DQ (a) and (b) implications, and HELP_HUMAN
 explained them in chat, recommending (a). This log's hash at the owner's act
 was `8a01bd653eca52bb8ffae947ffce28d83d7da6beaf690b35c72563f88615547a`.
+
+## SCA006-CP2 — package prepared (not a decision)
+
+Prepared 2026-09-25 by WORKING_ITEMS (node R2 of HELP_HUMAN undertaking `HELP-HUMAN-PEC-20260925-POST-SCA005`) under brief `B5_SCA006_CHECKPOINT2.md` (HELP_HUMAN scratchpad; SHA-256 `142d6be0b0f44c459e895d067081a004df8fa229ac455349e4cc8b26e8abefb4`). No owner decision is recorded here: every checkpoint-2 question is `AWAITING_OWNER`. The recommendations (Q-CP2-A accept; Q-CP2-1 (a), the I1 corrections ride the instruction tranche; Q-CP2-2 (a), the group-2 snapshot with a D-PEC register row is the Lane A packet) are the manager's, not rulings. Nothing is applied: live decomposition revision 1.5, its registers, PRD v2.3, `projects/pec/AGENTS.md`, every SOW, SPEC, `_CONTEXT.md`, `_STATUS.md`, `Dependencies.csv`, `v2/**`, the tier-0 profile, both `_LATEST.md` pointers and the checkpoint snapshots are byte-unchanged. `Propagation_Plan.md` cannot quote its own hash; it is quoted here. Package hashes (acceptance slots at their defaults):
+
+| Artifact | SHA-256 |
+|---|---|
+| `Amendment_Preview.md` | `a8aad4dbab59979214c7f814695765679255f13b1e26181dafc0abdd0d725cca` |
+| `Propagation_Plan.md` | `05f7f8f8ccc75aa67c1cd4f9033680169f68283586d6c7e1eb034d74e6e95acb` |
+| `Amendment_Actions_CP2.csv` | `6e57aa610cfc491f2fa9173a58dde5d4e1d815bb4a38831448200a9fbc5379af` |
+| `Supersession_Delta.csv` | `028fb4e021e1f565d5c7d9eab275ec94e9d3baf9d19606d887fb24d78b39d4fc` |
+| `PRD_V2_4_SUCCESSOR_DIFF.md` | `a743a5273c66dc679a99888c4dc2b865a318dab64fcaaa7768ecb71f35696a4c` |
+| `AGENTS_MD_CANDIDATE_DIFF.md` | `e736f579bd28ad9e292c1a03d41a918ff9c93d0265abbc88e27ba9f2f3ec5e2b` |
+| `CP2_CANDIDATE/docs/PRD.md` | `ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe` |
+| `CP2_CANDIDATE/AGENTS.candidate.md` | `bd34d03dd41cdabd5b0f5470b46481afca5f0e05df4f77560c5f60cbef202919` |
+| `CP2_CANDIDATE/AGENTS.candidate_without_I1.md` | `a8b8d906f7df22f35fc8489a04fcb5476700e919af896c8256c0b713bf961188` |
+| `CP2_CANDIDATE/_Decomposition/SOFTWARE_DECOMP.md` | `4eed1247de47d1921e5526ef5027c12d504bffd4b8393b59645bb973fac62d71` |
+| `CP2_CANDIDATE/_Decomposition/ScopeLedger.csv` | `1d24a4b86f05dc6fd57028c08e202d33f9f317b148821f9c61246c6e91ee916e` |
+| `CP2_CANDIDATE/_Decomposition/Deliverables.csv` | `94ee5d182ae99092324505a72bf2f3b0581f85c0bae6c693214cfef709179805` |
+| `CP2_CANDIDATE/_Decomposition/ContextBudgetQA.csv` | `93b0bb075a0e83d3219e6293303c3feaa432e693e7255569d4e522ea42434c7c` |
+| `CP2_CANDIDATE/_Decomposition/Companion_Inventory.csv` | `1597ceec7af45f33fe348d46429cc3f82042db5dbd6a083903ae04c7bf908662` |
+
+Independent verification: `B5_VERIFIER_VERDICT_NN.md` in `execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/returns/`.

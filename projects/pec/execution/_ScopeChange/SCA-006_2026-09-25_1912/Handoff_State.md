@@ -123,3 +123,67 @@ amendment-qualified pointer is `../SCA-006_GROUP-1_AUTHORIZED.md`.
   baseline note in the group-1 `DECISION.md`.
 - This file's hash at the owner's act was
   `4526797c0bab914906b13cf095078508f9df2f8ea606fb4a4542dda5ce55f9df`.
+
+## Checkpoint-2 preparation (WORKING_ITEMS B5, 2026-09-25; appended)
+
+The checkpoint-group-2 package is prepared and awaits the owner. Nothing is applied.
+
+- **Brief:** `B5_SCA006_CHECKPOINT2.md` (HELP_HUMAN scratchpad), SHA-256 `142d6be0b0f44c459e895d067081a004df8fa229ac455349e4cc8b26e8abefb4`.
+- **Basis:** `origin/main` `4d5f7b91102b7106ff74b98118b2bda2fe873f36` (PR #926 merged).
+- **Branch:** `claude/pec-sca006-cp2-package`.
+- **Decision log:** row SCA006-CP2 moved to `PREPARED / AWAITING_OWNER`. The package hashes are in `Decision_Log.md` §"SCA006-CP2 — package prepared (not a decision)".
+- **Unchanged here:** `Impact_Assessment.md`, `Amendment_Actions.csv`, `Brief.md` and `Pre_Change_Coverage.json`.
+
+**Basis statement (`D-PEC-95`).** This package's §2.1 byte-identity statement no longer holds exactly, because the `D-PEC-95` act changed 119 derivative paths after the reused baseline audit. No text SCA-006 amends changed. The checkpoint-3 audit attributes the resolution of COV-068/069/072/073 to `D-PEC-95` (see `Amendment_Preview.md` §13 and `Propagation_Plan.md` §"Basis currency since checkpoint 1").
+
+### State fields after checkpoint-2 preparation
+
+| Field | Value | Note |
+|---|---|---|
+| `DecompositionTruthState` | `INCOMPLETE` | exact amendment prepared as candidate postimages; not applied |
+| `DerivativePackageState` | `INCOMPLETE` | every derivative obligation is future work (`Propagation_Plan.md` Lane B) |
+| `ContentRemediationState` | `NOT_REQUIRED` | SOFTWARE variant |
+| `DownstreamRerunState` | `FROZEN` | no downstream rerun authorized |
+| `MetadataAlignmentState` | `NOT_STARTED` | 3 direct `_CONTEXT.md` mirrors planned (Lane A2), not applied |
+| `AuditState` | `WARNINGS` | pre-change baseline only. The candidate register validation gives 0 errors and 2 expected DRB-008 warnings. The post-change audit is `NOT_RUN` |
+| `ReadyForNextPhase` | `NO` | |
+| Closure verdict | none | checkpoints 2 and 3 are open |
+
+### Checks (cwd `REPO_ROOT` of the worktree; shell zsh; interpreter `python3` 3.13.7)
+
+| # | Check | Exit | Result |
+|---:|---|---:|---|
+| 1 | `python3 tools/validation/validate_decomposition_registers.py projects/pec/execution --strict` (live tree) | 0 | 66 registers, 263 rows, 0 errors, 0 warnings |
+| 2 | The same on a scratch copy of `projects/pec/execution` with the five candidate decomposition files overlaid (byte-identical, checked with `cmp`) | 1 | 0 errors, 2 WARNING DRB-008 (DEL-08-06 and DEL-10-13 have no folder until PROJECT_SETUP, B1); expected, as in SCA-005 |
+| 3 | `python3 tools/coordination/analyze_dep_closure.py <scratch>/execution --output-dir <scratch>` (TASK T2) | 0 | COMPLETE/PASS, 111 edges, 66 nodes, 0 SCCs, identical to the live run; the dependency registers do not change |
+| 4 | Preimage hashes recomputed: the decomposition, four registers, PRD, `projects/pec/AGENTS.md`, both `_LATEST.md` and the three A2 `_CONTEXT.md` | — | all equal the values in `Propagation_Plan.md` §"Checkpoint-3 preconditions" |
+| 5 | `python3 tools/validation/validate_scope_change_packet.py <snapshot>` | 1 | the schema does not fit: the tool validates a PKG-00 consumable packet (`Proposed_SCA_Actions.csv`, `Affected_Surfaces.csv`, …), not a scope-change snapshot (as in SCA-005 and at checkpoint 1) |
+| 6 | Parse check of `Amendment_Actions.csv` and `Amendment_Actions_CP2.csv` against the contract columns and enums (manager script `check_csv.py`) | 0 | 54 + 54 rows, 0 errors. The CP2 identity columns equal the intake, every CP2 row cites its intake Seq, and the `Supersession_Delta.csv` DecisionIDs equal the 16 `YES` rows |
+| 7 | `validate_instruction_entrypoints.py` on a scratch `git archive` copy with each `AGENTS.md` candidate in place (TASK T3) | 0 | PASS for the preimage, the without-I1 candidate and the with-I1 candidate; entrypoint pytest 24 passed |
+| 8 | `validate_instruction_tranche_manifest.py` on scratch copies with the draft manifest and notices (TASK T3) | 0 | CI mode PASS (115 manifests); `--added-manifests-only` diff mode PASS. A negative control with a notice removed gives BLOCK (exit 1) |
+| 9 | `validate_instruction_entrypoints.py .` and `validate_instruction_tranche_manifest.py` (CI mode) on the live tree | 0 / 0 | PASS; nothing in the instruction surface changed |
+| 10 | `pec_reliance_hold.py --operation exact-correction-preparation` for the decomposition, its four registers, `docs/PRD.md` and `AGENTS.md` (run from `projects/pec`) | 0 ×7 | `ALLOW`; the register has a header and no rows |
+| 11 | `accumulate_supersession_map.py` dry run to scratch (prior SCA-005 map + this delta) | 0 | 45 rows, 0 findings |
+| 12 | Proof scripts: `prove_preview.py` (43 markdown hunks + 17 register rows reproduce the candidates) and PRD `prove_diff.py` (17 hunks reproduce the PRD candidate); `AGENTS.md` `build_candidates.py` | 0 / 0 / 0 | byte-for-byte |
+| 13 | EvidenceQuote scan (`evidence_quotes.py --prd <PRD candidate>`) | 0 | exactly DEP-09-06-003 and DEP-10-03-003 break; DEP-09-06-004 and DEP-10-12-004 stay verbatim |
+| 14 | `PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check`; `python3 tools/validation/validate_pec_loop_receipts.py --repo-root .` | 0 / 0 | pre-existing findings only, none about this snapshot; VALID |
+| 15 | `git diff --check origin/main` and containment of `git diff --name-only origin/main` | — | recorded in the run return |
+
+Scripts from the manager and the TASK children are in the session scratchpad (`…/scratchpad/B5/`) and are not in the repository. A reviewer can re-check by recomputing the hashes and by applying the diff documents' hunks to the preimages.
+
+### Delegation record
+
+| Child | Mechanism | Basis supplied | Write scope | Enforcement | Return |
+|---|---|---|---|---|---|
+| T1, PRD v2.4 candidate (TASK) | Claude Code Agent tool, `subagent_type: pec-task`, `model: opus` (host maps to claude-opus-5-5); background | brief `BRIEF_T1_PRD.md` (`3d594cf2…`), shared canon `CANON.md` (`5617eb1c…`) | `CP2_CANDIDATE/docs/PRD.md`, `PRD_V2_4_SUCCESSOR_DIFF.md`, scratch | instruction-asserted; verified by `git status` and hashes | candidate `ae49b806…`, diff `a743a527…` after one manager-directed revision (F-16 keeps "non-authoritative" in §8 Agents; F-17 defines the v2.4 block's `PROPOSED`) |
+| T2, decomposition revision 1.6 and preview (TASK) | as T1 | brief `BRIEF_T2_DECOMP.md` (`a8ff54e9…`), canon, one addendum (provenance tail, paired MEMORY read) | `CP2_CANDIDATE/_Decomposition/**`, `Amendment_Preview.md`, scratch | as T1 | five candidates, preview `25cf2e84…` (filled by the manager afterwards) |
+| T3, `projects/pec/AGENTS.md` candidate (TASK) | as T1 | brief `BRIEF_T3_AGENTS.md` (`50876109…`), canon, one revision (PRD §12 wording; `amended:` line) | `CP2_CANDIDATE/AGENTS.candidate*.md`, `AGENTS_MD_CANDIDATE_DIFF.md`, scratch | as T1 | candidates `bd34d03d…` / `a8b8d906…`, diff `e736f579…` |
+| Independent verifier (TASK, read-only) | Agent tool, `subagent_type: pec-reviewer`, `model: opus`, fresh instance | the package at its commit and brief B5 | none (no write tools) | tool-enforced | `returns/B5_VERIFIER_VERDICT_NN.md` |
+
+The manager wrote `Amendment_Actions_CP2.csv`, `Supersession_Delta.csv` and `Propagation_Plan.md`. It filled the preview's placeholders and made these additive updates.
+
+### Next owning actor
+
+1. The owner decides the checkpoint-2 question set (`Propagation_Plan.md`).
+2. HELP_HUMAN then writes the group-2 decision snapshot, the D-PEC register row, the graph and STATUS/README updates.
+3. WORKING_ITEMS then prepares checkpoint 3 from the accepted group-2 snapshot.
