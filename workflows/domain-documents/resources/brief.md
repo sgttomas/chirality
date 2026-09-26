@@ -65,7 +65,8 @@ material bounded by `SourceSpan` is factual authority, while decomposition data
 scopes and routes the work.
 
 `SCA_DRIVEN` is used only when WORKING_ITEMS (workflow: scope-change) dispatches regeneration after an
-accepted amendment. In this mode, admitted decomposition state, structured SCA
+accepted amendment, or when WORKING_ITEMS (workflow: project-setup) dispatches it on a post-amendment root
+(`INCREMENTAL` mode for new Knowledge Types, or a Phase 2.2a rerun) as that amendment's hand-off. In this mode, admitted decomposition state, structured SCA
 artifacts, and `SUPERSESSION_MAP_PATH` are current factual authority. Source
 material is provenance verification only and must not override accepted
 SCA/decomposition truth.

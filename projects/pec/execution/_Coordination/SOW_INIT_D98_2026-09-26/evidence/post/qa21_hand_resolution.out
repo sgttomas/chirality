@@ -1,0 +1,6 @@
+DEL-02-08 REQ-009: cites CLM-011=True; excluded-act owners ['DEL-04-05']; each named in CLM-011=True
+DEL-02-08 REQ-010: cites CLM-011=True; excluded-act owners ['DEL-01-03']; each named in CLM-011=True
+DEL-02-08 REQ-011: cites CLM-011=True; excluded-act owners ['DEL-04-03']; each named in CLM-011=True
+DEL-02-09 REQ-007: cites CLM-010=True; excluded-act owners ['DEL-04-05']; each named in CLM-010=True
+DEL-02-09 REQ-008: cites CLM-010=True; excluded-act owners ['DEL-01-03']; each named in CLM-010=True
+DEL-02-09 REQ-009: cites CLM-010=True; excluded-act owners ['DEL-04-03']; each named in CLM-010=True

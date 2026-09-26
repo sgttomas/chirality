@@ -1,0 +1,10 @@
+CHECK keys_equal_census PASS 92/92
+CHECK keys_unique_92 PASS
+CHECK one_disposition_each PASS
+CHECK c_rows_cite_existing_evidence PASS
+CHECK d_rows_exhibit_class PASS
+CHECK e_rows_have_question PASS
+CHECK item_blocks_match_census PASS
+CHECK held_residuals_outside_census PASS held=73
+RESULT PASS
+closure_pre rc=0

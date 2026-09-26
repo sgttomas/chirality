@@ -3,7 +3,7 @@ doc_id: PEC-AGENTS
 doc_kind: governance.agent_index
 status: live
 created: 2026-07-04
-amended: 2026-09-26 (SCA-006 operational-reliance instruction tranche; earlier, shared development-loop adoption under D-PEC-94)
+amended: 2026-09-26 (Remaining retirement under D-PEC-99; earlier, SCA-006 operational-reliance instruction tranche and shared development-loop adoption under D-PEC-94)
 ---
 
 # AGENTS - PEC Agent Index
@@ -258,18 +258,22 @@ Keep it Git-tracked in the undertaking's PR sequence and return its path for
 continuation. Preserve historical graph files. `_STATUS.md` retains
 lifecycle and history.
 
-PEC adds no new deliverable `_STATUS.md` `## Remaining` sections or entries
-(owner direction of 2026-09-26, recorded as SCA-006 checkpoint group 2
-amendment 1). No PEC feed profile reads them, so the coordination plane does
-not scan them, and they are not a work-selection surface. Steering selects the
-undertaking; record new open scope in its work graph and governing records.
-Until any retirement ruling, the existing sections stay in place as
-deliverable-local records of open scope under their owning decisions (for
-example `D-PEC-83`). A Remaining item's own gate markers still bind that item.
-Update an item only under the packet that opens that `_STATUS.md`. If an
-undertaking completes or affects an item without such a grant, record the
-consequence in the graph and bring it to the owner. Retiring the sections, as
-App and Piping did, is a separate owner-directed undertaking.
+PEC's deliverable `_STATUS.md` files carry lifecycle and history only. Their
+former `## Remaining` sections were retired under `D-PEC-99` (owner
+directions of 2026-09-26; the first is recorded as SCA-006 checkpoint group 2
+amendment 1). The finite account is
+`execution/_Coordination/_TaskManagement/TM_PEC_REMAINING_RETIREMENT_2026-09-26/`.
+Each item was closed on its cited record or moved verbatim, with its gate,
+into the exhibit of `D-PEC-99`: the unselected `D-PEC-83` E evidence
+inquiries stay there until steering selects one, and each Scope of Work
+carry-forward is absorbed by the currency packet the exhibit names. A moved
+item's gate markers still bind it at its destination. When selected work
+completes or changes an exhibit item, record that in the selecting graph and
+its central receipt; the exhibit is not edited. Add no `## Remaining` section
+or entry. No PEC feed profile reads such sections, so the coordination plane
+does not scan them, and they are not a work-selection surface. Steering
+selects the undertaking; record new open scope in its work graph and
+governing records.
 
 Each substantive PR includes the documentary, reconciliation and conditional
 Task Management consequences needed for that slice. Perform one final bounded

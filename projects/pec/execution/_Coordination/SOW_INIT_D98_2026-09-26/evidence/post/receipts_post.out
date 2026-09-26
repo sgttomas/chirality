@@ -1,0 +1,4 @@
+$ python3 tools/validation/validate_pec_loop_receipts.py --repo-root .
+# cwd=/Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-d98-first-sows-act HEAD=af1a3c74bbf038fc42cec8676da2e8c6a685275a python=Python 3.13.7
+VALID /Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-d98-first-sows-act/projects/pec/loop/LOOP_RECEIPTS.md: frozen through Receipt-166; versioned receipt contract satisfied
+exit=0

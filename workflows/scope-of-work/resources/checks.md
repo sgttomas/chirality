@@ -1,10 +1,11 @@
 # QA CHECKS — scope-of-work
 
-Items 2, 5–7, 10–12, 14, and 17 apply to `CONVERT` only; under `INIT` they are
-`NOT_APPLICABLE` and are recorded as such rather than passed or failed. Items
-1, 3, 4, 8, 9, 13, 16, and 18 apply to every mode. Item 15 applies whenever an
-HTML derivative was requested, in any mode. Items 19, 20, and 21 apply to every
-mode. `VERIFY` runs the mode-applicable subset read-only.
+Items 2, 5–7, 10–12, 14, and 17 apply to `CONVERT` only; under `INIT` and
+`REVISE` they are `NOT_APPLICABLE` and are recorded as such rather than passed
+or failed. Items 1, 3, 4, 8, 9, 13, 16, and 18 apply to every mode. Item 15
+applies whenever an HTML derivative was requested, in any mode. Items 19, 20,
+and 21 apply to every mode. Item 22 applies to `REVISE` only. `VERIFY` runs the
+mode-applicable subset read-only.
 
 1. The exact pilot variance covers the deliverable path.
 2. All four source files exist, remain byte-identical, and retain authority.
@@ -50,6 +51,14 @@ mode. `VERIFY` runs the mode-applicable subset read-only.
     to a named owner in a claim that requirement cites, and
     `check_boundary_owner_resolution.py` reports no `UNRESOLVED_OWNER` or
     `UNDEFINED_CLAIM` finding for the contract.
+
+22. For `REVISE`: the amendment is accepted at checkpoint group 3 and its
+    action register names this deliverable with `MODIFY` or `RECLASSIFY`; the
+    lifecycle state was `INITIALIZED`, `SEMANTIC_READY` or `IN_PROGRESS` and is
+    unchanged; the diff from the prior contract hash stays within
+    `REVISION_SCOPE` and the amendment reference; existing IDs keep their
+    meaning outside that scope and no ID is renumbered or reused; the
+    amendment reference is recorded; and the closing `MODE=VERIFY` passes.
 
 Any failure produces a failed return and rerun requirements; it does not
 silently weaken the acceptance gate.

@@ -31,7 +31,7 @@ This workflow is dispatched via TASK with `Workflow: dependency-extract` by WORK
 
 - `_REFERENCES.md` — used to resolve document pointers for `TargetType=DOCUMENT` rows.
 - `Dependencies.csv` — existing register used for match/merge and preserving declared edges (`Origin=DECLARED`).
-- `_DEPENDENCIES.md` — existing index used to preserve declared lists and append Run History.
+- `_DEPENDENCIES.md` — existing index used to preserve declared lists and append Run History. Its declared entries are mirrored into `Dependencies.csv` as `Origin=DECLARED` rows in every `MODE` (WORKFLOW.md Function 3); the declared sections themselves are never edited.
 
 ## Example brief
 
