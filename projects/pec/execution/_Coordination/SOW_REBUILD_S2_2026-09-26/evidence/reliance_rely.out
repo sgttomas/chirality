@@ -1,0 +1,22 @@
+# cwd: projects/pec; HEAD 117215d8e3d29b6350985eed693bcacb577bbe5a + uncommitted act writes; register sha256 f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc; script sha256 b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md --operation rely-for-production
+{"operation": "rely-for-production", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md --operation rely-for-production
+{"operation": "rely-for-production", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/ScopeOfWork.md --operation rely-for-production
+{"operation": "rely-for-production", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/ScopeOfWork.md --operation rely-for-production
+{"operation": "rely-for-production", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/ScopeOfWork.md --operation rely-for-production
+{"operation": "rely-for-production", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/ScopeOfWork.md --operation rely-for-production
+{"operation": "rely-for-production", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/ScopeOfWork.md --operation rely-for-production
+{"operation": "rely-for-production", "status": "ALLOW"}
+exit=0
