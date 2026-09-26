@@ -1,0 +1,159 @@
+{
+  "currency": {
+    "addedArcs": [],
+    "addedDeliverables": [],
+    "dagPending": {
+      "DEL-10-01": [
+        "arc removed: DEL-10-03 -> DEL-10-01"
+      ],
+      "DEL-10-03": [
+        "arc removed: DEL-10-03 -> DEL-10-01"
+      ]
+    },
+    "dagPendingCount": 2,
+    "removedArcs": [
+      [
+        "DEL-10-03",
+        "DEL-10-01"
+      ]
+    ],
+    "removedDeliverables": [],
+    "result": "DEPARTURE"
+  },
+  "defaultMaturity": {
+    "source": "COORDINATION_RECORD",
+    "value": "INITIALIZED"
+  },
+  "queue": {
+    "acceptedDagVersion": "DAG-001",
+    "blockedCount": 0,
+    "blockerSource": "ACCEPTED_DAG:DAG-001",
+    "dagPendingCount": 2,
+    "declaredDisagreements": [],
+    "declaredOnlyCount": 0,
+    "gatingArcCount": 1,
+    "heldArcCount": 1,
+    "notTrackedCount": 0,
+    "queueRows": [
+      {
+        "ActiveUpstreamCount": "1",
+        "BlockerState": "DAG_PENDING",
+        "BlockingEdgeIDs": "",
+        "BlockingUpstreamCount": "",
+        "BlockingUpstreamDeliverables": "",
+        "DagPendingReasons": "arc removed: DEL-10-03 -> DEL-10-01",
+        "DeliverableID": "DEL-10-01",
+        "DeliverableName": "Loader",
+        "EvidenceCommit": "",
+        "HeldEdgeIDs": "",
+        "ImplementationEvidenceState": "",
+        "LifecycleState": "IN_PROGRESS",
+        "PackageID": "PKG-10",
+        "SatisfiedUpstreamCount": "1",
+        "TrackingMode": "UNKNOWN"
+      },
+      {
+        "ActiveUpstreamCount": "0",
+        "BlockerState": "UNBLOCKED",
+        "BlockingEdgeIDs": "",
+        "BlockingUpstreamCount": "0",
+        "BlockingUpstreamDeliverables": "",
+        "DagPendingReasons": "",
+        "DeliverableID": "DEL-10-02",
+        "DeliverableName": "Parser",
+        "EvidenceCommit": "",
+        "HeldEdgeIDs": "",
+        "ImplementationEvidenceState": "",
+        "LifecycleState": "CHECKING",
+        "PackageID": "PKG-10",
+        "SatisfiedUpstreamCount": "0",
+        "TrackingMode": "UNKNOWN"
+      },
+      {
+        "ActiveUpstreamCount": "0",
+        "BlockerState": "DAG_PENDING",
+        "BlockingEdgeIDs": "",
+        "BlockingUpstreamCount": "",
+        "BlockingUpstreamDeliverables": "",
+        "DagPendingReasons": "arc removed: DEL-10-03 -> DEL-10-01",
+        "DeliverableID": "DEL-10-03",
+        "DeliverableName": "Exporter",
+        "EvidenceCommit": "",
+        "HeldEdgeIDs": "DEL-10-03->DEL-10-01",
+        "ImplementationEvidenceState": "",
+        "LifecycleState": "INITIALIZED",
+        "PackageID": "PKG-10",
+        "SatisfiedUpstreamCount": "0",
+        "TrackingMode": "UNKNOWN"
+      }
+    ],
+    "unblockedCount": 1
+  },
+  "registers": {
+    "DEL-10-01": {
+      "csvPresent": true,
+      "declarationsPresent": false,
+      "declaredOnly": [],
+      "deliverableId": "DEL-10-01",
+      "disagreements": [],
+      "entries": [],
+      "mode": "UNKNOWN",
+      "rows": [
+        {
+          "AnchorType": "NOT_APPLICABLE",
+          "Confidence": "HIGH",
+          "DependencyClass": "EXECUTION",
+          "DependencyID": "DEP-10-01-001",
+          "DependencyType": "PREREQUISITE",
+          "Direction": "UPSTREAM",
+          "EvidenceFile": "_CONTEXT.md",
+          "EvidenceQuote": "fixture",
+          "Explicitness": "EXPLICIT",
+          "FirstSeen": "2026-09-26",
+          "FromDeliverableID": "DEL-10-01",
+          "FromDeliverableName": "",
+          "FromPackageID": "PKG-10",
+          "LastSeen": "2026-09-26",
+          "Notes": "",
+          "Origin": "EXTRACTED",
+          "ProposedMaturity": "",
+          "RegisterSchemaVersion": "v3.1",
+          "RequiredMaturity": "IN_PROGRESS",
+          "SatisfactionStatus": "TBD",
+          "SourceRef": "_CONTEXT.md",
+          "Statement": "DEL-10-01 upstream DEL-10-02",
+          "Status": "ACTIVE",
+          "TargetDeliverableID": "DEL-10-02",
+          "TargetLocation": "",
+          "TargetName": "",
+          "TargetPackageID": "PKG-10",
+          "TargetRefID": "",
+          "TargetType": "DELIVERABLE"
+        }
+      ],
+      "unread": []
+    },
+    "DEL-10-02": {
+      "csvPresent": false,
+      "declarationsPresent": false,
+      "declaredOnly": [],
+      "deliverableId": "DEL-10-02",
+      "disagreements": [],
+      "entries": [],
+      "mode": "UNKNOWN",
+      "rows": [],
+      "unread": []
+    },
+    "DEL-10-03": {
+      "csvPresent": false,
+      "declarationsPresent": false,
+      "declaredOnly": [],
+      "deliverableId": "DEL-10-03",
+      "disagreements": [],
+      "entries": [],
+      "mode": "UNKNOWN",
+      "rows": [],
+      "unread": []
+    }
+  }
+}

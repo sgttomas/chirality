@@ -573,7 +573,8 @@ export const HARNESS_TOOL_DESCRIPTORS = [
   chiralityReadMcpDescriptor({
     name: 'dependency_read',
     aliases: ['dependencies', 'deps', 'deps_read', 'mcp.deps_read'],
-    description: 'Read parsed dependency rows and warnings from a deliverable Dependencies.csv.',
+    description:
+      'Read the deliverable Dependencies.csv rows and warnings (register evidence) and its recorded register: the union with the _DEPENDENCIES.md declared sections, declaration/CSV disagreements, and the supplier-judged blocker verdict (DAG pending where an accepted project DAG is departed from).',
     mcpToolName: 'deps_read',
     inputSchema: {
       type: 'object',
@@ -586,7 +587,14 @@ export const HARNESS_TOOL_DESCRIPTORS = [
     },
     outputSchema: {
       type: 'object',
-      required: ['projectRoot', 'deliverablePath', 'dependenciesFilePath', 'headers', 'rows', 'warnings']
+      required: ['projectRoot', 'deliverablePath', 'dependenciesFilePath', 'headers', 'rows', 'warnings'],
+      properties: {
+        recordedRegister: {
+          type: 'object',
+          description:
+            'The recorded register and the supplier-judged blocker verdict, or DAG_PENDING under an accepted project DAG that the local evidence departs from. Absent, with a RECORDED_REGISTER_UNAVAILABLE warning, when it could not be read; headers and rows remain CSV register evidence.'
+        }
+      }
     }
   }),
   chiralityReadMcpDescriptor({
@@ -692,7 +700,7 @@ export const HARNESS_TOOL_DESCRIPTORS = [
     name: 'status_transition',
     aliases: ['mcp.status_transition', 'transition_status'],
     description:
-      'Apply a governed lifecycle transition to a deliverable _STATUS.md file.',
+      'Apply a governed lifecycle transition to a deliverable _STATUS.md file. ruling names a ruling record inside the project root: required for CHECKING -> IN_PROGRESS, optional for the forward gates into CHECKING and ISSUED. amendment names an accepted scope-change amendment (its ID, or its snapshot or group-3 decision path): required for ISSUED -> IN_PROGRESS.',
     mcpToolName: 'status_transition',
     inputSchema: {
       type: 'object',
@@ -713,6 +721,12 @@ export const HARNESS_TOOL_DESCRIPTORS = [
         approvalSha: {
           type: 'string'
         },
+        ruling: {
+          type: 'string'
+        },
+        amendment: {
+          type: 'string'
+        },
         metadata: {
           type: 'object',
           additionalProperties: {
@@ -728,7 +742,8 @@ export const HARNESS_TOOL_DESCRIPTORS = [
     humanGate: {
       required: true,
       gate: 'approval-sha',
-      reason: 'CHECKING and ISSUED transitions require HUMAN actor approvalSha evidence.'
+      reason:
+        'Transitions into CHECKING and ISSUED require a HUMAN actor with approvalSha evidence and accept an optional ruling. CHECKING -> IN_PROGRESS requires a HUMAN actor, approvalSha and a ruling. ISSUED -> IN_PROGRESS requires a HUMAN actor, approvalSha and an amendment that passes the amendment-record check (D-GOV-50, D-GOV-51).'
     }
   }),
   chiralityMutatingMcpDescriptor({

@@ -1,3 +1,4 @@
+import type { DeliverableRecordedRegister } from '../dependencies/recorded-register';
 import type { DependencyRegisterRow } from '../dependencies/schema';
 import type { LifecycleState, ParsedStatusDocument } from '../lifecycle/status-parser';
 
@@ -95,8 +96,11 @@ export interface DeliverableDependenciesSnapshot {
   registerPresent: boolean;
   secondarySummaryPresent: boolean;
   headers: string[];
+  /** Raw Dependencies.csv rows: register evidence, not a blocker judgment. */
   rows: DependencyRegisterRow[];
   warnings: string[];
+  /** The recorded register and supplier-judged blocker verdict (App SPEC §5.2). */
+  recordedRegister?: DeliverableRecordedRegister;
 }
 
 export interface DeliverableStatusTransitionInput {
@@ -108,13 +112,34 @@ export interface DeliverableStatusTransitionInput {
   metadata?: Record<string, string>;
   approvalSha?: string;
   ruling?: string;
+  /** Accepted scope-change amendment (ID or path) authorizing ISSUED -> IN_PROGRESS. */
+  amendment?: string;
 }
 
 export interface DependencyRowSummary {
+  /** Dependencies.csv rows. */
   totalRows: number;
   activeRows: number;
+  /**
+   * With a recorded register that gives a verdict: the number of upstream
+   * suppliers blocking the deliverable (repo-root SPEC §5.3–§5.4). Without one:
+   * the CSV blocker-subset row count, which is register evidence only.
+   */
   activeUpstreamBlockerCandidates: number;
   bySatisfaction: Record<string, number>;
+  /** CSV blocker-subset rows (`isExecutionBlockerSubsetRow`), whatever the verdict. */
+  csvBlockerSubsetRows: number;
+  /** `CSV_EVIDENCE` when no recorded register was read. */
+  blockerState: DeliverableRecordedRegister['blockers']['blockerState'] | 'CSV_EVIDENCE';
+  blockingUpstreamDeliverables: string[];
+  dagPending: boolean;
+  dagPendingReasons: string[];
+  disagreementCount: number;
+  declaredOnlyRows: number;
+  /** The deliverable's tracking mode from `_DEPENDENCIES.md`, or null when no recorded register was read. */
+  trackingMode: string | null;
+  /** Why no verdict was given, when the state is `NOT_ASSESSED`. */
+  notAssessedReason: string | null;
 }
 
 export function workspaceApiErrorMessage(error: unknown): string {
@@ -184,10 +209,13 @@ export function isExecutionBlockerSubsetRow(row: DependencyRegisterRow): boolean
   return !hasUnresolvedAssumptionGate(row.Notes);
 }
 
-export function summarizeDependencyRows(rows: DependencyRegisterRow[]): DependencyRowSummary {
+export function summarizeDependencyRows(
+  rows: DependencyRegisterRow[],
+  recordedRegister?: DeliverableRecordedRegister
+): DependencyRowSummary {
   const bySatisfaction: Record<string, number> = {};
   let activeRows = 0;
-  let activeUpstreamBlockerCandidates = 0;
+  let csvBlockerSubsetRows = 0;
 
   for (const row of rows) {
     const normalizedStatus = (row.Status ?? '').trim().toUpperCase();
@@ -200,16 +228,91 @@ export function summarizeDependencyRows(rows: DependencyRegisterRow[]): Dependen
     }
 
     if (isExecutionBlockerSubsetRow(row)) {
-      activeUpstreamBlockerCandidates += 1;
+      csvBlockerSubsetRows += 1;
     }
   }
 
+  const blockers = recordedRegister?.blockers;
   return {
     totalRows: rows.length,
     activeRows,
-    activeUpstreamBlockerCandidates,
-    bySatisfaction
+    activeUpstreamBlockerCandidates: blockers
+      ? blockers.blockingUpstreamCount ?? 0
+      : csvBlockerSubsetRows,
+    bySatisfaction,
+    csvBlockerSubsetRows,
+    blockerState: blockers?.blockerState ?? 'CSV_EVIDENCE',
+    blockingUpstreamDeliverables: blockers?.blockingUpstreamDeliverables ?? [],
+    dagPending: blockers?.dagPending ?? false,
+    dagPendingReasons: blockers?.dagPendingReasons ?? [],
+    disagreementCount: recordedRegister?.disagreements.length ?? 0,
+    declaredOnlyRows: recordedRegister?.declaredOnlyRows.length ?? 0,
+    trackingMode: recordedRegister?.trackingMode ?? null,
+    notAssessedReason: blockers?.notAssessedReason ?? null
   };
+}
+
+/** Shown when no dependency summary has been read. */
+export const NO_METRIC = '—';
+
+/** The reason code of a `NOT_ASSESSED` judgment (the text before its first colon). */
+function notAssessedCode(reason: string | null): string | null {
+  if (!reason) {
+    return null;
+  }
+  const separator = reason.indexOf(':');
+  return (separator < 0 ? reason : reason.slice(0, separator)).trim() || null;
+}
+
+/**
+ * Display text for the blocking-upstream metric: the count with its verdict,
+ * or the reason no verdict is given (a zero count alone would read as
+ * unblocked). A dash when nothing has been read.
+ */
+export function formatBlockingUpstreamMetric(summary: DependencyRowSummary | null): string {
+  if (!summary) {
+    return NO_METRIC;
+  }
+  switch (summary.blockerState) {
+    case 'BLOCKED':
+    case 'UNBLOCKED':
+      return `${summary.activeUpstreamBlockerCandidates} (${summary.blockerState})`;
+    case 'DAG_PENDING':
+      return 'DAG pending (no verdict)';
+    case 'NOT_TRACKED':
+      return 'Not tracked (no verdict)';
+    case 'NOT_ASSESSED': {
+      const code = notAssessedCode(summary.notAssessedReason);
+      return code ? `Not assessed (${code})` : 'Not assessed (no verdict)';
+    }
+    default:
+      return `${summary.activeUpstreamBlockerCandidates} CSV rows (evidence only)`;
+  }
+}
+
+/** Root SPEC §5.3: under DECLARED the recorded edges are a partial, human-curated view. */
+export const DECLARED_READINESS_CAVEAT =
+  'DECLARED tracking: the recorded register holds only the critical dependencies, so no recorded blocker is not a complete readiness judgment (SPEC §5.3).';
+
+/**
+ * A note to show under the blocking-upstream metric, or null: the full reason
+ * a judgment was not assessed, or the SPEC §5.3 caveat when the deliverable's
+ * tracking mode is `DECLARED` and a verdict is given.
+ */
+export function formatBlockingUpstreamNote(summary: DependencyRowSummary | null): string | null {
+  if (!summary) {
+    return null;
+  }
+  if (summary.blockerState === 'NOT_ASSESSED') {
+    return `Not assessed: ${summary.notAssessedReason ?? 'no reason was recorded'}.`;
+  }
+  if (
+    summary.trackingMode === 'DECLARED' &&
+    (summary.blockerState === 'BLOCKED' || summary.blockerState === 'UNBLOCKED')
+  ) {
+    return DECLARED_READINESS_CAVEAT;
+  }
+  return null;
 }
 
 export async function fetchDeliverableStatus(

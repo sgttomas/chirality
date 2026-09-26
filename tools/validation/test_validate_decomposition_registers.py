@@ -374,7 +374,7 @@ def test_non_reciprocal_scope_coverage_is_reported_from_both_sides(tmp_path: Pat
     report = vdr.run(execution_root, families=("XRG",))
 
     assert codes(report)["XRG-003"] == 2  # once from the ledger, once from Deliverables
-    assert codes(report)["XRG-004"] == 1  # PackageID PKG-01 vs DEL-02-01 in PKG-02
+    assert codes(report)["XRG-004"] == 1  # home PKG-01 holds none of SOW-001's deliverables
 
 
 def test_unknown_ids_objectives_and_context_budget_drift(tmp_path: Path) -> None:
@@ -484,6 +484,108 @@ def test_single_home_is_compared_after_parsing(tmp_path: Path) -> None:
     ledger[0]["PackageID"] = "PKG-02;"
     write_csv(ledger_path, LEDGER_COLUMNS, ledger)
     assert codes(vdr.run(execution_root, families=("XRG",))).get("XRG-004") == 1
+
+
+def test_supporting_deliverable_in_another_package_is_not_a_finding(tmp_path: Path) -> None:
+    """XRG-004: a linked deliverable in another Package is a supporting contribution.
+
+    Management manual v7: "Several Deliverables may contribute to an included
+    obligation, including supporting contributions from another Package." No
+    finding while the home Package holds at least one linked deliverable.
+    """
+    execution_root = build_workspace(tmp_path)
+    decomposition = execution_root / "_Decomposition"
+    ledger = list(csv.DictReader((decomposition / "ScopeLedger.csv").open(encoding="utf-8-sig")))
+    ledger[0]["DeliverableIDs"] = "DEL-01-01;DEL-02-01"  # home PKG-01, support from PKG-02
+    write_csv(decomposition / "ScopeLedger.csv", LEDGER_COLUMNS, ledger)
+    deliverables = list(csv.DictReader((decomposition / "Deliverables.csv").open(encoding="utf-8-sig")))
+    deliverables[1]["CoversScopeItems"] = "SOW-002;SOW-001"
+    write_csv(decomposition / "Deliverables.csv", DELIVERABLE_COLUMNS, deliverables)
+
+    report = vdr.run(execution_root, families=("XRG",))
+
+    assert report["findings"] == []
+
+
+def test_home_package_holding_no_linked_deliverable_is_a_warning(tmp_path: Path) -> None:
+    """XRG-004 warns once per item when the home Package holds none of its deliverables."""
+    execution_root = build_workspace(tmp_path)
+    decomposition = execution_root / "_Decomposition"
+    deliverables = list(csv.DictReader((decomposition / "Deliverables.csv").open(encoding="utf-8-sig")))
+    deliverables.append({
+        "DeliverableID": "DEL-02-02", "PackageID": "PKG-02",
+        "Name": "Second parser", "Description": "d", "Type": "CODE",
+        "ResponsibleParty": "TBD", "AnticipatedArtifacts": "a",
+        "CoversScopeItems": "SOW-001", "SupportsObjectives": "OBJ-001",
+        "ContextEnvelope": "S", "ContextEnvelopeNotes": "", "PhaseHint": "P1",
+    })
+    deliverables[1]["CoversScopeItems"] = "SOW-002;SOW-001"
+    deliverables[0]["CoversScopeItems"] = ""
+    write_csv(decomposition / "Deliverables.csv", DELIVERABLE_COLUMNS, deliverables)
+    ledger = list(csv.DictReader((decomposition / "ScopeLedger.csv").open(encoding="utf-8-sig")))
+    ledger[0]["DeliverableIDs"] = "DEL-02-01;DEL-02-02"  # home PKG-01 holds neither
+    write_csv(decomposition / "ScopeLedger.csv", LEDGER_COLUMNS, ledger)
+    context_qa = list(csv.DictReader((decomposition / "ContextBudgetQA.csv").open(encoding="utf-8-sig")))
+    context_qa.append({"DeliverableID": "DEL-02-02", "PackageID": "PKG-02", "ContextEnvelope": "S",
+                       "Risk": "LOW", "RecommendedAction": "None", "Notes": ""})
+    write_csv(decomposition / "ContextBudgetQA.csv", CONTEXT_QA_COLUMNS, context_qa)
+
+    report = vdr.run(execution_root, families=("XRG",))
+
+    assert codes(report) == {"XRG-004": 1}  # one finding per item, not per link
+    assert ids_for(report, "XRG-004") == ["SOW-001"]
+    assert report["error_count"] == 0
+    assert report["warning_count"] == 1
+    assert vdr.CHECKS["XRG-004"][1] == vdr.WARNING
+
+
+def test_xrg004_is_not_repeated_for_an_item_with_several_homes(tmp_path: Path) -> None:
+    """With two homes, XRG-014 reports the item and XRG-004 stays silent."""
+    execution_root = build_workspace(tmp_path)
+    ledger_path = execution_root / "_Decomposition" / "ScopeLedger.csv"
+    ledger = list(csv.DictReader(ledger_path.open(encoding="utf-8-sig")))
+    ledger[0]["PackageID"] = "PKG-02;PKG-03"
+    write_csv(ledger_path, LEDGER_COLUMNS, ledger)
+
+    report = vdr.run(execution_root, families=("XRG",))
+
+    assert "XRG-004" not in codes(report)
+    assert codes(report)["XRG-014"] == 1
+
+
+def test_registers_dir_reads_companion_registers_outside_decomposition(tmp_path: Path) -> None:
+    """--registers-dir finds registers a project keeps outside _Decomposition/."""
+    execution_root = build_workspace(tmp_path)
+    registers = tmp_path / "docs" / "_Registers"
+    registers.mkdir(parents=True)
+    for name in ("Deliverables.csv", "ScopeLedger.csv", "ContextBudgetQA.csv"):
+        (execution_root / "_Decomposition" / name).rename(registers / name)
+    ledger = list(csv.DictReader((registers / "ScopeLedger.csv").open(encoding="utf-8-sig")))
+    ledger[0]["PackageID"] = "PKG-01;PKG-02"  # XRG-014, visible only through the option
+    write_csv(registers / "ScopeLedger.csv", LEDGER_COLUMNS, ledger)
+
+    default = vdr.run(execution_root, families=("XRG",))
+    assert default["skipped"] == ["XRG family (Deliverables.csv and/or ScopeLedger.csv absent)"]
+
+    report = vdr.run(execution_root, families=("XRG",), registers_dir=registers)
+    assert report["skipped"] == []
+    assert codes(report) == {"XRG-014": 1}
+    assert report["registers_dir"] == str(registers)
+
+    cli = subprocess.run(
+        [sys.executable, str(TOOL), str(execution_root), "--families", "XRG",
+         "--registers-dir", str(registers)],
+        capture_output=True, text=True,
+    )
+    assert cli.returncode == 1, cli.stdout + cli.stderr
+    assert "XRG-014" in cli.stdout
+
+    missing = subprocess.run(
+        [sys.executable, str(TOOL), str(execution_root), "--registers-dir",
+         str(tmp_path / "nope")],
+        capture_output=True, text=True,
+    )
+    assert missing.returncode == 2
 
 
 def test_unknown_package_check_needs_a_deliverable_package_column(tmp_path: Path) -> None:

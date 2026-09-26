@@ -11,6 +11,8 @@ import {
   currentIsoDate,
   fetchDeliverableDependencies,
   fetchDeliverableStatus,
+  formatBlockingUpstreamMetric,
+  formatBlockingUpstreamNote,
   nextLifecycleTargets,
   requiresApprovalShaForTarget,
   summarizeDependencyRows,
@@ -475,9 +477,13 @@ export function PipelineSurface(): JSX.Element {
   );
 
   const dependencySummary = useMemo(
-    () => (dependenciesSnapshot ? summarizeDependencyRows(dependenciesSnapshot.rows) : null),
+    () =>
+      dependenciesSnapshot
+        ? summarizeDependencyRows(dependenciesSnapshot.rows, dependenciesSnapshot.recordedRegister)
+        : null,
     [dependenciesSnapshot]
   );
+  const blockingUpstreamNote = formatBlockingUpstreamNote(dependencySummary);
 
   const satisfactionSummary = useMemo(() => {
     if (!dependencySummary) {
@@ -1057,10 +1063,12 @@ export function PipelineSurface(): JSX.Element {
                   <dd>{dependencySummary?.activeRows ?? 0}</dd>
                 </div>
                 <div>
-                  <dt>Blocker-subset rows</dt>
-                  <dd>{dependencySummary?.activeUpstreamBlockerCandidates ?? 0}</dd>
+                  <dt>Blocking upstream</dt>
+                  <dd>{formatBlockingUpstreamMetric(dependencySummary)}</dd>
                 </div>
               </dl>
+
+              {blockingUpstreamNote ? <p className="pipeline-note">{blockingUpstreamNote}</p> : null}
 
               {satisfactionSummary.length > 0 ? (
                 <div className="pipeline-contract-satisfaction">
