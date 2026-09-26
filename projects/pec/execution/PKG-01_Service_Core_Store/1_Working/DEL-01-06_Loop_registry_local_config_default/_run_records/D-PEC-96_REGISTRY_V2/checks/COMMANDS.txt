@@ -28,3 +28,11 @@
 0	cwd=projects/pec	count non-ASCII bytes in each of the 11 postimages	> checks/non_ascii.out
 1	cwd=projects/pec	grep -rniE remaining v2/ (expected exit 1, no match)	> checks/grep_remaining.out
 0	cwd=.	python3 tools/software_workflow/select_affected_checks.py projects/pec/software-workflow.json <the 11 paths, project-relative as the proposal tables them>	> checks/selection.out
+# phase containment and holds; Sat Sep 26 01:42:44 MDT 2026
+0	cwd=.	git diff --name-status origin/main...HEAD (at dd63560a7)	> checks/containment_name_status.txt
+0	cwd=<run root>	python3 containment.py checks/containment_name_status.txt	> checks/containment.out
+0	cwd=.	git diff --check origin/main...HEAD (at dd63560a7): no output	(terminal only; rerun at the final head is recorded in VALIDATION.md)
+0	cwd=projects/pec	pec_reliance_hold.py --operation rely-for-production on the 13 hold_targets.txt targets	> checks/hold_rely-for-production.tsv
+# dispatch-for-production preflight (01:33:44 MDT, before any act): cwd=projects/pec, pec_reliance_hold.py --operation dispatch-for-production on the 13 targets	> checks/hold_dispatch-for-production.tsv
+# pristine_*.out: the same five non-registered commands as the pre phase, run at 01:34 MDT in the clean worktree before the run root existed (outputs first written to the session scratchpad, then copied)
+# apply_d96.py: --check-only then the act, cwd=., see apply_d96_check_only.out, apply_d96_report.txt, apply_d96_stderr.txt, apply_d96_run_time.txt; both exit 0
