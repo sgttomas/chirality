@@ -84,8 +84,8 @@ response's examined-through commit, within stated bounds, while authority
 stays file-native; agents may eventually query PEC directly through tool
 calls. Reliance begins at a PEC release whose gates prove parity and
 coverage, not now. The existing PRD wording (kept in the v2.3 successor) stands
-until a later scope change, which may be prepared now that SCA-005 checkpoint 2
-is accepted, amends it.
+until scope change SCA-006 amends it; its checkpoint-1 package
+(`execution/_ScopeChange/SCA-006_2026-09-25_1912/`) awaits the owner.
 
 *Historical (2026-08-03; state as of that date):* superseding owner
 direction on 2026-08-03 sends TM-PEC-023 to a dedicated
