@@ -54,7 +54,8 @@ constraints that record names. For a partial or qualified acceptance (for
 example, a `reverse-engineer-software` handoff), normalize only the accepted
 portions as candidate `IN` scope. Record material outside them as `TBD` Scope
 Items with a `SourceRef` to its location in the basis, using `OUT` only where
-the decision record excludes it; do not treat it as accepted scope. Carry the basis identity into the group-1 `DECISION.md`
+the decision record excludes it; do not treat it as accepted scope. Packages
+do not exist yet, so these items receive their Package home at group 2. Carry the basis identity into the group-1 `DECISION.md`
 and `HANDOFF_STATE.md`.
 
 Collect requirements, tickets, notes, architecture, constraints, non-functional
@@ -82,10 +83,13 @@ Resolve and consume the accepted group-1 snapshot before developing this
 proposal.
 
 Propose flat Packages as cohesive work domains, supported by the accepted
-domain signals rather than a timeline. Assign each IN Scope Item to exactly one
-Package. OUT and TBD Scope Items stay in the Scope Ledger with their
-`SourceRef` and receive no Package. Resolve overlap by proposing an evidenced
-split or presenting the boundary as a human decision.
+domain signals rather than a timeline. Assign every Scope Item, whether `IN`,
+`OUT` or `TBD`, to exactly one Package as its accountable home; this includes
+material recorded as `TBD` at group 1, before Packages existed. The home
+allocates responsibility for accounting for the item. Only IN Scope Items map
+to Deliverables; an OUT or TBD item keeps its home and `SourceRef` for
+traceability and needs no production mapping. Resolve overlap by proposing an
+evidenced split or presenting the boundary as a human decision.
 
 Within each Package, propose agent-executable Deliverables with stable coupled
 `DEL-XX-YY` IDs, descriptions, responsible parties, types, anticipated

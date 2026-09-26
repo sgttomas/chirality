@@ -19,27 +19,16 @@ _SCHEMA_VERSION = 2
 FEED_PROFILE_VERSIONS: dict[str, frozenset[int]] = {
     "agentruns-json": frozenset({1}),
     "loop-receipts-ledger": frozenset({1}),
-    "remaining-items": frozenset({1}),
-    "remaining-loop": frozenset({1}),
     "shared-dev-loop": frozenset({1}),
 }
 
 # The file-truth surfaces each profile reads. The profiles declared on one
 # loop must cover pairwise-disjoint surfaces, so no surface is read under two
-# grammars or declared both live and historical.
+# grammars or declared both live and historical. The three profiles here are
+# disjoint from one another; the rule guards any later vocabulary change.
 FEED_PROFILE_SURFACES: dict[str, frozenset[str]] = {
     "agentruns-json": frozenset({"json-run-evidence"}),
     "loop-receipts-ledger": frozenset({"receipt-ledger"}),
-    "remaining-items": frozenset({"status-remaining"}),
-    "remaining-loop": frozenset(
-        {
-            "decision-registers",
-            "dependency-registers",
-            "receipt-ledger",
-            "status-lifecycle",
-            "status-remaining",
-        }
-    ),
     "shared-dev-loop": frozenset(
         {
             "central-receipts",

@@ -12,9 +12,10 @@ WORKING_ITEMS coordinates this undertaking and assigns bounded contributions to 
 This package implements the grouped-checkpoint Chirality v3 edition of
 `docs/DECOMPOSITION_STANDARD.md` (commit `9b005c23a`, 2026-09-09; a prospective
 amendment, see the standard's status note), as amended by D-GOV-47
-(2026-09-26: Package homes for IN items only; optional combined review for a
-small, reversible undertaking). An in-flight
-project keeps the edition it adopted; nothing is retrofitted.
+(2026-09-26: optional combined review for a small, reversible undertaking) and
+D-GOV-48 (2026-09-26: every scope item, whether IN, OUT or TBD, has one Package
+home, superseding D-GOV-47's IN-only rule). An in-flight project keeps the
+edition it adopted; nothing is retrofitted.
 
 ## Method
 

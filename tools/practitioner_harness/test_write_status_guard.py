@@ -8,6 +8,7 @@ NOT read or written by these tests.
 """
 from __future__ import annotations
 
+import os
 import subprocess
 import importlib.util
 from pathlib import Path
@@ -221,6 +222,31 @@ def test_checking_success_on_sha_declaring_root_updates_fields(tmp_path):
     assert f"**Authorization Basis:** ruling: {RULING_REL}" in text
     assert "State set to CHECKING (human)" in text
     assert "Status: DEL-01-01" in result.stdout
+
+
+def test_ruling_display_is_repo_relative_under_symlinked_cwd(tmp_path):
+    repo, deldir, head = make_repo(tmp_path, MANIFEST_SHA_DECLARING)
+    link = tmp_path / "linked-repo"
+    link.symlink_to(repo, target_is_directory=True)
+    result = subprocess.run(
+        [
+            "zsh",
+            str(SCRIPT),
+            str(link / deldir.relative_to(repo)),
+            "CHECKING",
+            "human",
+            "--ruling",
+            RULING_REL,
+            "--approval-sha",
+            head,
+        ],
+        cwd=link,
+        env={**os.environ, "PWD": str(link)},
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0, result.stderr
+    assert f"**Authorization Basis:** ruling: {RULING_REL}\n" in read_status(deldir)
 
 
 def test_no_sha_schema_root_proceeds_with_review(tmp_path):

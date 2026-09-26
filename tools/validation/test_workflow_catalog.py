@@ -451,24 +451,43 @@ def test_grouped_checkpoint_boundaries_use_accepted_snapshots():
     assert "Do not update `_LATEST.md` before checkpoint group 3 acceptance" in scope_change
 
 
-def test_d_gov_47_package_home_and_combined_review():
+def test_d_gov_47_combined_review():
+    # D-GOV-47 item 2 (combined review sitting) stands; its item 1 is superseded by D-GOV-48.
     standard = (ROOT / "docs/DECOMPOSITION_STANDARD.md").read_text()
     assert "#### Combined review sitting (PROJECT and SOFTWARE only)" in standard
     assert "DOMAIN does not use this\nallowance." in standard
-    assert "- `PartitionID` (required for IN; blank for OUT and TBD)" in standard
+
+    for name in ("project-decomp", "software-decomp"):
+        method = (ROOT / "workflows" / name / "resources/method.md").read_text()
+        assert "### Combined review for a small, reversible undertaking" in method
+
+    domain = (ROOT / "workflows/domain-decomp/resources/method.md").read_text()
+    assert "Combined review" not in domain
+
+
+def test_d_gov_48_every_scope_item_has_a_package_home():
+    standard = (ROOT / "docs/DECOMPOSITION_STANDARD.md").read_text()
+    assert "In PROJECT and SOFTWARE, every atomic unit, whether IN, OUT or TBD, MUST be assigned to exactly one partition" in standard
+    assert "In DOMAIN, every IN-scope atomic unit MUST be assigned to exactly one partition." in standard
+    assert "blank for OUT and TBD" not in standard
     types = (ROOT / "docs/TYPES.md").read_text()
-    assert "- Every IN scope item belongs to exactly one package" in types
+    assert "- Every scope item, whether IN, OUT or TBD, belongs to exactly one package" in types
+    assert "Every IN scope item belongs to exactly one package" not in types
 
     for name in ("project-decomp", "software-decomp"):
         method = (ROOT / "workflows" / name / "resources/method.md").read_text()
         contract = (ROOT / "workflows" / name / "resources/contract.md").read_text()
-        assert "### Combined review for a small, reversible undertaking" in method
-        assert "receive no Package" in method
-        assert "very IN `ScopeItemID` has exactly one `PackageID`." in contract
-        assert "very `ScopeItemID` has exactly one `PackageID`" not in contract
+        flat_contract = " ".join(contract.split())
+        assert "Assign every Scope Item, whether `IN`," in " ".join(method.split())
+        assert "receive no Package" not in method
+        assert "very `ScopeItemID`, whether IN, OUT or TBD, has exactly one `PackageID`." in flat_contract
+        assert "- `PackageID` (exactly one for every item, whether IN, OUT or TBD)" in contract
+        assert "`UnassignedScopeItems` (scope items of any status without a Package" in contract
+        assert "`PackageID` (required for IN; blank for OUT and TBD)" not in contract
 
-    domain = (ROOT / "workflows/domain-decomp/resources/method.md").read_text()
-    assert "Combined review" not in domain
+    # DOMAIN keeps its Category rule for IN Handbook Units only.
+    domain = (ROOT / "workflows/domain-decomp/resources/contract.md").read_text()
+    assert "Every **IN-scope Handbook Unit** must be assigned to exactly one Category" in domain
 
 
 def test_research_uses_grouped_domain_acceptance_with_legacy_fallback():

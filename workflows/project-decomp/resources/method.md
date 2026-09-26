@@ -71,10 +71,13 @@ proposal.
 
 Propose a flat Package partition with stable `PKG-XX` IDs, scope descriptions,
 inclusion criteria, and exactly one discipline for every design Package. Assign
-each IN Scope Item to exactly one Package. OUT and TBD Scope Items stay in the
-Scope Ledger with their `SourceRef` and receive no Package. Resolve apparent
-overlap by proposing an evidenced split or by presenting the boundary as a
-human decision.
+every Scope Item, whether `IN`, `OUT` or `TBD`, to exactly one Package as its
+accountable home; this includes material recorded as `TBD` at group 1, before
+Packages existed. The home allocates responsibility for accounting for the
+item. Only IN Scope Items map to Deliverables; an OUT or TBD item keeps its
+home and `SourceRef` for traceability and needs no production mapping. Resolve
+apparent overlap by proposing an evidenced split or by presenting the boundary
+as a human decision.
 
 Within each Package, propose Deliverables with stable coupled
 `DEL-XX-YY_{shortDescription}` IDs, descriptions, responsible parties, types,
