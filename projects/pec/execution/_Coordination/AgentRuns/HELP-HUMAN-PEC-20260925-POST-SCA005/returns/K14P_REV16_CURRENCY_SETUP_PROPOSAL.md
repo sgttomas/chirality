@@ -41,7 +41,9 @@ Other checks: determinism, fail-closed rerun, wrong-date refusal, `--check-only`
 
 ## Verifier verdicts
 
-See `PEC_REV16_CURRENCY_SETUP_PREP_2026-09-26/REVIEW_VERDICT_NN.md` (fresh read-only `pec-reviewer`, opus). Summary: {{VERDICTS}}
+See `PEC_REV16_CURRENCY_SETUP_PREP_2026-09-26/REVIEW_VERDICT_NN.md` (fresh read-only `pec-reviewer`, opus). Summary:
+- **Review 01** (head `540d2ce2a`): **FAIL** — one BLOCKING (eight wrong short hashes in the draft prose; the full hashes and every bound byte were correct) and five NON-BLOCKING (combined-tree K4 verifier expectation; unbound `--actor` / `--reproduction`; resume amendment not in Provenance; unrecorded dispatch preflight; provisional number embedded in K1 bytes). The reviewer reproduced every grant hash, aggregate, generator hash, fail-closed behaviour, validator and closure result, quote and PR containment. All findings repaired in `b6a56559d` (dispositions in `REVIEW_VERDICT_01.md`); no bound byte changed.
+- **Review 02** (backcheck of `b6a56559d`): {{VERDICT02}}
 
 ## Owner questions (in the draft)
 
