@@ -61,7 +61,8 @@ not demonstrate that a known defect was repaired.
 Keep claims at the level of commitments, relied-on interfaces and meaningful
 verification. Apply the claim granularity rule
 (`docs/DELIVERABLE_CONCORDANCE_METHOD.md` §3.1: the decision, interface and
-verification tests), or the project's adopted variant: incidental mechanism
+verification tests), or a variant the project has adopted in its decision
+records: incidental mechanism
 detail belongs in code, tests or technical evidence; a decision-bound mechanism
 retains its force. Lift is the default repair: move stale incidental wording to
 its stable claim rather than repeatedly rewriting the mechanism. Borderline

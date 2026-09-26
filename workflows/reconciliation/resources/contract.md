@@ -27,7 +27,8 @@
   permission to invent or change scope. Agent dispositions are not human
   rulings. A ruling not yet applied to its carriers is R5 work under that
   ruling, not a new owner question. An application under an explicit written
-  owner delegation, recorded verbatim, is an agent disposition; issuance,
+  owner delegation that names the decision class or rows it covers, recorded
+  verbatim and kept within its words, is an agent disposition; issuance,
   professional acceptance, and holds stay with their holders.
 - **Source-state binding.** Every evidence citation names the source state it
   evaluated. Material source change marks affected work `STALE_INPUT` and
@@ -57,8 +58,9 @@
   Only a single deliverable's lifecycle transition routes to WORKING_ITEMS
   (workflow: review); other review acts route to a bounded independent TASK
   review with a named output, or to the owner or engineering holder. Git
-  closeout in this repository follows `.agents/skills/chirality-change/SKILL.md`,
-  elsewhere the project's change conventions. Workflow-component findings route
+  closeout in the Chirality repository (`sgttomas/chirality`) follows
+  `.agents/skills/chirality-change/SKILL.md`; elsewhere it follows WORKING_ITEMS
+  (workflow: change) or the project's change conventions. Workflow-component findings route
   to HELPS_HUMANS.
 - **One execution record.** In an adopting local-graph loop, the authorized
   graph carries executable work; no new Remaining seeding or duplicate residual

@@ -13,6 +13,9 @@ instruction_surface_paths:
   - workflows/reconciliation/resources/contract.md
   - workflows/reconciliation/resources/method.md
   - workflows/reconciliation/resources/representation-migration.md
+  - docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.md
+  - docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html
+  - docs/alignment-manual/README.md
   - docs/governance_harness/tranche_manifests/ROOT-WORKFLOW-WAVE2A-CLOSURE-20260926.yaml
 m2_gate:
   authorization: >-
@@ -38,7 +41,7 @@ m6_notice:
     App, Piping and PEC run reconciliation and bounded-reconciliation; the App
     bundles the library and shows the changed display names.
 scope_limits:
-  - Changes reconciliation, bounded-reconciliation and two catalog display names only.
+  - Changes reconciliation, bounded-reconciliation, two catalog display names, and one agent-manual citation (HTML regenerated).
   - The review workflow is unchanged here; its SPEC 3.4 rewrite is a separate tranche.
   - Owner delegation is limited to recording an explicit written delegation; no standing-disposition doctrine is created.
   - Historical run records are not rewritten.

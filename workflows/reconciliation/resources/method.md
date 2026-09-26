@@ -79,8 +79,9 @@ granularity rule (`docs/DELIVERABLE_CONCORDANCE_METHOD.md` §3.1).
 First sort the rows into ruled-but-not-yet-applied rows and genuinely open
 decisions. A row an existing ruling already settles becomes R5 work under that
 ruling, citing it; do not ask the owner to decide it again. Where the owner has
-given an explicit written delegation, record its words verbatim and record each
-application under it as an agent disposition, not a human ruling; issuance,
+given an explicit written delegation that names the decision class or rows it
+covers, record its words verbatim; each application stays within those words
+and this run and is recorded as an agent disposition, not a human ruling; issuance,
 professional acceptance, and holds are never delegated this way.
 
 For the open decisions, produce decision packets containing options, evidence,
@@ -177,7 +178,8 @@ Keep phase state append-only in `RUN_STATE.jsonl` (phase openings, frozen
 briefs and bound-input hashes, launches, returns, capacity) with a `RESUME.md`
 that says how to replay it. Freeze briefs so that relaunching one is
 idempotent: it rewrites only its declared outputs. A launch without a matching
-return is in flight; relaunch it from its stored brief with a fresh agent. An
+return is unresolved; confirm it is no longer executing, or interrupt it, before
+relaunching it from its stored brief with a fresh agent. An
 interrupted or partial return is recorded as an execution failure and never
 promoted to PASS; hand its partial findings to a fresh agent for independent
 checking.
