@@ -39,7 +39,7 @@ return file `execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA0
   - N3 and N6 are notes on bound bytes. They are carried below as residuals 9 and 10.
   - N4 (`origin/main` moved) is carried as residual 11.
   - N5 (the brief's hash cannot be recomputed from the repository) needs no action.
-- **Backcheck** of the N1/N2 repairs, in `VERIFIER_VERDICT_02.md` (candidate `02ae9e2a0`, with the return commit `f3ee68225` also checked): **PASS WITH NOTES**. It found no blocking or non-blocking defects; N1 and N2 are repaired and containment holds.
+- **Backcheck** of the N1/N2 repairs, in `VERIFIER_VERDICT_02.md` (final report, candidate `9839a0e19`, the update-branch merge; the interim report on `02ae9e2a0`/`f3ee68225` is `VERIFIER_VERDICT_02_INTERIM.md`): **PASS WITH NOTES**. B4 (two return statements overtaken by events) needs no edit. It found no blocking or non-blocking defects; N1 and N2 are repaired and containment holds.
   - B1: `MANIFEST.md` now labels the timing sentence as the manager's statement, and the act command line has been added to `checks/COMMANDS.txt` after the fact.
   - B2: the typo in the verdict-01 header note is fixed.
   - B3: no action needed. These are dispatch facts the manager attests.
