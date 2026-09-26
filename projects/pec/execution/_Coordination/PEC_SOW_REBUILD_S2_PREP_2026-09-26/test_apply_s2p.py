@@ -68,6 +68,19 @@ def c6(repo):  # temporary-file hash check fails on the last target
 def c7(repo):  # check-only writes nothing; apply succeeds; second run refuses
     return (run(repo, "--check-only") == 0 and pristine(repo)
             and run(repo) == 0 and applied(repo) and run(repo) == 1 and applied(repo))
+def c8(repo):  # evidence written into the run root during the act does not trip the write-set check
+    rr = repo / "projects/pec/execution/_Coordination/SOW_REBUILD_S2_TEST"; rr.mkdir(parents=True)
+    shutil.copy(Path(__file__).with_name("apply_s2p.py"), rr / "apply_s2p.py")
+    sp = importlib.util.spec_from_file_location("apply_s2p_rr", rr / "apply_s2p.py")
+    mm = importlib.util.module_from_spec(sp); sp.loader.exec_module(mm)
+    real = os.replace; n = {"i": 0}
+    def logging_replace(a, b):
+        n["i"] += 1; (rr / f"act_log_{n['i']}.txt").write_text("evidence\n")
+        return real(a, b)
+    with mock.patch.object(mm.os, "replace", logging_replace), \
+         mock.patch.object(sys, "argv", ["apply_s2p.py", "--repo", str(repo), "--candidates", str(cand)]):
+        rc = mm.main()
+    return rc == 0 and applied(repo) and (rr / "act_log_1.txt").exists()
 case("rename failure on the fourth target: exit 1, all targets restored, no temporary left", c1)
 case("post-write inventory shows an unexpected modified file: exit 1, rolled back", c2)
 case("post-write inventory shows an extra file: exit 1, rolled back", c3)
@@ -75,6 +88,7 @@ case("pinned basis file changed: preflight exit 1, nothing written", c4)
 case("target not at its preimage: preflight exit 1, nothing written", c5)
 case("temporary hash mismatch on the last target: exit 1, rolled back", c6)
 case("check-only writes nothing; apply succeeds; second run refuses", c7)
+case("run-root evidence written during the act is outside the inventory: apply succeeds", c8)
 bad = [n for ok, n in results if not ok]
 print(f"RESULT {'PASS' if not bad else 'FAIL'} {len(results)-len(bad)}/{len(results)}")
 sys.exit(1 if bad else 0)

@@ -1,4 +1,4 @@
-basis commit: 5aa4285c222f8f272218e49b31232f0f5e3a976a
+basis commit: 2b5389a970847850ea05762ca9ca35ac9fbaacb4
 python: Python 3.13.7
 PASS act: check-only 0, apply 0, rerun refuses 1
 PASS containment: 7 differing files, all ScopeOfWork.md
@@ -31,5 +31,5 @@ PASS strict identical before/after, export root normalized (exit=1)
 PASS harness identical before/after, export root normalized (exit=0)
 PASS receipts identical before/after, export root normalized (exit=0)
 PASS whitespace
-PASS fault injection: RESULT PASS 7/7
+PASS fault injection: RESULT PASS 8/8
 OVERALL PASS

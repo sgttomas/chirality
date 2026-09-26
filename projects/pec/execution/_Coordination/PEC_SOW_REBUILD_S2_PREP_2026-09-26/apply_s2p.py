@@ -23,7 +23,9 @@ Failure semantics:
 - Write-set check: the script inventories every file under projects/pec (path
   and SHA-256) before and after the write and requires the difference to be
   exactly the seven targets, each modified from preimage to postimage, with
-  nothing created or removed.
+  nothing created or removed. The script's own directory (the run root, where
+  the act's evidence is written) is left out of the inventory, so recording
+  output there during the run cannot trip the check.
 It never touches _STATUS.md, MEMORY.md or any other file. Stdlib only.
 """
 import argparse, hashlib, os, sys
@@ -54,7 +56,7 @@ TARGETS = {
         ("d044499ab5ace12305434ab3c7b5e17e21f730f8d77b45ff64c055d1edce2559",
          "3d1220872c55bc5a33b5f659cb465b83d6bd69177d48c68534c82358539f18fb"),
 }
-# Read-only files the act re-verifies (values at origin/main 5aa4285c2; unchanged since aca930622).
+# Read-only files the act re-verifies (values at origin/main 2b5389a97; unchanged since aca930622).
 PINNED = {
     E + "_Decomposition/SOFTWARE_DECOMP.md":
         "9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1",
@@ -108,10 +110,15 @@ TMP_SUFFIX = ".s2ptmp"
 def sha_b(b): return hashlib.sha256(b).hexdigest()
 def sha(path): return sha_b(Path(path).read_bytes())
 
+SELF_DIR = Path(__file__).resolve().parent  # the run root when the script runs from it
+
 def inventory(repo):
+    """Every file under projects/pec, except this script's own directory (the run
+    root, where the act's evidence is written while it runs) and caches."""
     base = repo / "projects/pec"; inv = {}
     for dirpath, dirnames, filenames in os.walk(base):
-        dirnames[:] = [d for d in dirnames if d not in (".git", "__pycache__")]
+        dirnames[:] = [d for d in dirnames if d not in (".git", "__pycache__")
+                       and (Path(dirpath) / d).resolve() != SELF_DIR]
         for f in filenames:
             p = Path(dirpath) / f
             if p.is_file() and not p.is_symlink():

@@ -32,3 +32,8 @@ checklist exit=1 artifact=absent
 #   validator output line is its failure message; the checklist refused with no artifact (QA 18).
 # - Label correction (verdict 01, finding 8): control 4 altered the first sha256 claim of
 #   claims/DEL-02-05.json, which is S003 on SOFTWARE_DECOMP.md at 189f205ff, not the PRD.
+# 2b (rerun after exhibit quotes were pinned to aca930622; verdict 02 finding 3): source side read at the first parent of the D-PEC-99 act merge cb85f85d1, where the exhibit does not exist, for Q38 and Q40 (expect those two to FAIL on the source side)
+FAIL DEL-02-07 Q38 [620 chars; candidate=yes; source=NO] projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md@cb85f85d1923d978bb7181eea1b69ce39d57fb99
+FAIL DEL-02-07 Q40 [695 chars; candidate=yes; source=NO] projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md@cb85f85d1923d978bb7181eea1b69ce39d57fb99
+RESULT FAIL 58/60
+# NOTE: after verdict 01 finding 5 pinned the exhibit quotes to aca930622, control 2 (a tree-side alteration) no longer reaches them; control 2b above is its replacement.
