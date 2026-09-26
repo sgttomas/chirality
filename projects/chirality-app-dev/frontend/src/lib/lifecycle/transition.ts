@@ -502,7 +502,10 @@ export async function transitionStatusFile(
       amendmentDecision = await checkAmendmentForReopen({
         workingRoot: context.projectRoot,
         deliverablePath: path.dirname(statusFilePath),
-        amendment: validated.amendment
+        amendment: validated.amendment,
+        // A reopening already recorded under this amendment is refused
+        // (AMENDMENT_ALREADY_USED).
+        statusText: existingContent
       });
     } catch (error) {
       if (error instanceof AmendmentReopenUsageError) {

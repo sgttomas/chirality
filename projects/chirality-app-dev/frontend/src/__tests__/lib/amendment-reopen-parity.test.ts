@@ -1,19 +1,22 @@
 import { existsSync, readFileSync } from 'node:fs';
-import { mkdir, mkdtemp, realpath, rm, symlink, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, realpath, rm, symlink, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { afterAll, describe, expect, it } from 'vitest';
 import {
+  AMENDMENT_REOPEN_REFUSAL_CODES,
+  ROOT_ONLY_REFUSAL_CODES,
   AmendmentReopenUsageError,
   checkAmendmentReopen
 } from '../../lib/lifecycle/amendment-reopen';
 
-// Shared inputs and the Root checker's decisions, written by
+// Shared inputs and the Root checker's working-tree decisions, written by
 // fixtures/amendment-reopen/generate_expected.py from
 // tools/validation/check_amendment_reopen.py.
 const FIXTURE_DIR = fileURLToPath(new URL('../fixtures/amendment-reopen/', import.meta.url));
-const REPO_ROOT = path.resolve(FIXTURE_DIR, '../../../../../..');
+// fixtures/amendment-reopen -> fixtures, __tests__, src, frontend, chirality-app-dev, projects, repository.
+const REPO_ROOT = path.resolve(FIXTURE_DIR, '../../../../../../..');
 
 type Query = {
   deliverable: string;
@@ -23,6 +26,8 @@ type Query = {
   scopeChangeRoot: string | null;
   projectRoot: string;
   cwd: string;
+  /** The deliverable's `_STATUS.md`: the Root checker's `--status-file`, passed to the App as text. */
+  statusFile: string | null;
 };
 type Tree = { files: Record<string, string>; symlinks: Record<string, string>; dirs: string[] };
 type Cases = {
@@ -62,7 +67,20 @@ async function materialize(tree: Tree): Promise<string> {
   return root;
 }
 
+async function readStatusText(file: string): Promise<string> {
+  // Python read_text(encoding="utf-8-sig"): strict UTF-8, one leading BOM removed.
+  return new TextDecoder('utf-8', { fatal: true }).decode(await readFile(file));
+}
+
 async function run(query: Query, root: string): Promise<Record<string, unknown>> {
+  let statusText: string | undefined;
+  if (query.statusFile !== null) {
+    try {
+      statusText = await readStatusText(path.join(root, query.statusFile));
+    } catch {
+      return { usageError: true };
+    }
+  }
   try {
     const decision = await checkAmendmentReopen(
       query.deliverableIsPath ? path.join(root, query.deliverable) : query.deliverable,
@@ -70,6 +88,7 @@ async function run(query: Query, root: string): Promise<Record<string, unknown>>
       {
         projectRoot: path.join(root, query.projectRoot),
         cwd: path.join(root, query.cwd),
+        ...(statusText !== undefined ? { statusText } : {}),
         ...(query.scopeChangeRoot !== null
           ? { scopeChangeRoot: path.join(root, query.scopeChangeRoot) }
           : {})
@@ -102,27 +121,19 @@ describe('amendment reopen checker parity with tools/validation/check_amendment_
         .map((result) => result.code)
         .filter(Boolean)
     );
-    expect([...codes].sort()).toEqual(
-      [
-        'ADMITTED',
-        'AMENDMENT_UNRESOLVED',
-        'SCOPE_CHANGE_ROOT_NOT_FOUND',
-        'PATH_ESCAPE',
-        'AMENDMENT_OUTSIDE_DELIVERABLE_ROOT',
-        'GROUP3_NOT_ACCEPTED',
-        'GROUP2_MANIFEST_MISSING',
-        'MANIFEST_SCHEMA',
-        'REGISTER_NOT_BOUND',
-        'REGISTER_AMBIGUOUS',
-        'REGISTER_MISSING',
-        'REGISTER_HASH_MISMATCH',
-        'REGISTER_SCHEMA',
-        'NO_DELIVERABLE_ACTION',
-        'RECLASSIFY_LEGACY_REGISTER',
-        'RECLASSIFY_NOT_SCOPE_CHANGING',
-        'ACTION_NOT_AUTHORIZING'
-      ].sort()
-    );
+    expect([...codes].sort()).toEqual(['ADMITTED', ...AMENDMENT_REOPEN_REFUSAL_CODES].sort());
+  });
+
+  it('mirrors the Root REFUSAL_CODES less the at-commit codes (skipped when the Root checker is absent)', () => {
+    const checker = path.join(REPO_ROOT, 'tools', 'validation', 'check_amendment_reopen.py');
+    if (!existsSync(checker)) {
+      return;
+    }
+    const source = readFileSync(checker, 'utf8');
+    const tuple = /^REFUSAL_CODES = \(([\s\S]*?)^\)/m.exec(source)?.[1] ?? '';
+    const rootCodes = [...tuple.matchAll(/^\s+([A-Z0-9_]+),/gm)].map((match) => match[1]);
+    expect(rootCodes.length).toBeGreaterThan(0);
+    expect([...AMENDMENT_REOPEN_REFUSAL_CODES, ...ROOT_ONLY_REFUSAL_CODES].sort()).toEqual([...rootCodes].sort());
   });
 
   it.each(cases.fixtures.map((item) => [item.name, item] as const))(

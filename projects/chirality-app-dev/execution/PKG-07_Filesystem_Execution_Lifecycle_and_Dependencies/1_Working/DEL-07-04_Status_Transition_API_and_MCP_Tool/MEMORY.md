@@ -5,13 +5,14 @@
 - 2026-09-26 — `APP-AMENDMENT-REOPEN-2026-09-26` (work-graph FU1; owner D2):
   the validator, API, MCP tool and client admit `ISSUED -> IN_PROGRESS` only for
   a HUMAN actor with a valid approval SHA and an `amendment` that passes
-  `amendment-reopen.ts`, a port of Root `check_amendment_reopen.py` with a parity
-  test against it. Without an amendment the move stays `BACKWARD_TRANSITION`.
+  `amendment-reopen.ts`, a port of the working-tree mode of Root
+  `check_amendment_reopen.py` (at `5038f2554`) with a parity test against it. Without an amendment the move stays `BACKWARD_TRANSITION`.
   History records the amendment, register row and SHAs. `Authorization Basis`,
   `Accepted Basis SHA` and `Accepted ScopeOfWork SHA-256` metadata now need a
-  HUMAN actor. Known limit: no git, so SHA reachability, the decision at that
-  commit and uncommitted record edits are unchecked; `write_status.sh` is the
-  anchored check. No lifecycle change. Evidence:
+  HUMAN actor. Known limit: no git, so the Root-only at-commit checks
+  (`APPROVAL_SHA_UNREACHABLE`, `APPROVAL_SHA_NOT_ANCESTOR`, records read at the
+  approval commit) are not made and uncommitted record edits are not detected;
+  `write_status.sh` is the anchored check. No lifecycle change. Evidence:
   [receipt](../../../_Coordination/AgentRuns/APP-AMENDMENT-REOPEN-2026-09-26/RECEIPT.md).
 - 2026-09-26 — `APP-LIFECYCLE-DEPS-2026-09-26`: the transition validator, API
   and MCP tool now admit the human-ruled `CHECKING -> IN_PROGRESS` reversal for

@@ -2,32 +2,46 @@
  * Amendment check for reopening an `ISSUED` deliverable (`ISSUED -> IN_PROGRESS`;
  * repo-root `docs/SPEC.md` §3.3, D-GOV-50, D-GOV-51; App SPEC §4.3).
  *
- * This is a port of the Root checker `tools/validation/check_amendment_reopen.py`.
- * It keeps the same admission rules, refusal codes and containment:
+ * This is a port of the working-tree mode of the Root checker
+ * `tools/validation/check_amendment_reopen.py`. It keeps that mode's admission
+ * rules, refusal codes and containment:
  *
- * 1. **Group 3 accepted.** `checkpoint_snapshots/<ID>_GROUP-3_*` under the
- *    scope-change root holds `ACCEPTED_MANIFEST.csv` and a `DECISION.md` whose
- *    first heading reads `# <ID> checkpoint group 3 — accepted ...`.
- * 2. **Register bound by hash.** The amendment's group-2
- *    `ACCEPTED_MANIFEST.csv` binds one `Amendment_Actions*.csv` register inside
- *    the scope-change root, and the register's current SHA-256 equals the bound
- *    value.
- * 3. **Qualifying row.** A `DELIVERABLE` row names the deliverable with
- *    `MODIFY`, or `RECLASSIFY` with `ScopeChanging` `YES`. A legacy register
- *    without the `ScopeChanging` column admits `MODIFY` and refuses `RECLASSIFY`.
+ * 1. **Group 3 accepted.** A decision folder
+ *    `checkpoint_snapshots/<ID>_GROUP-3_[AMENDMENT-<K>_]<YYYY-MM-DD>[_<N>]` under
+ *    the scope-change root holds `ACCEPTED_MANIFEST.csv` and a `DECISION.md`
+ *    whose first non-blank line is `# <ID> checkpoint group 3 — accepted`,
+ *    with `accepted` followed by whitespace, `.`, `,`, `;` or the line end.
+ * 2. **Register bound by hash.** The latest group-2 decision folder whose
+ *    `ACCEPTED_MANIFEST.csv` binds an `Amendment_Actions*.csv` register governs;
+ *    among several such rows the one whose `Role` is `action register` or
+ *    `exact final action register` (optionally with a parenthesized note) is
+ *    the register. It lies inside the scope-change root and its SHA-256 equals
+ *    the bound value.
+ * 3. **Qualifying row.** Rows naming the deliverable have `AmendmentID` equal to
+ *    the amendment or blank; none is `REMOVE`; one is `MODIFY`, or
+ *    `RECLASSIFY` with `ScopeChanging` `YES` (a legacy register without that
+ *    column refuses `RECLASSIFY`). Relevant values are not stripped: stray
+ *    whitespace is a schema error.
+ * 4. **Not already used.** The deliverable's `_STATUS.md` history does not
+ *    already record `reopened from ISSUED; amendment: <ID>`.
  *
- * Paths are resolved inside the project root, and the amendment records inside
- * the scope-change root, after symbolic links are resolved. Python path,
- * `realpath`, CSV, string-strip and `repr` behaviour is reproduced so both
- * checkers decide alike; the parity test
- * `src/__tests__/lib/amendment-reopen-parity.test.ts` compares them on shared
- * fixtures.
+ * The scope-change root is `<execution root>/_ScopeChange`, the execution root
+ * being the deliverable's outermost ancestor folder named `execution`; an
+ * adapter manifest (`_harness/adapter.yaml`) above the deliverable must imply
+ * the same execution root.
  *
- * Differences from the Python checker: the project root must be given (there is
- * no `git rev-parse` fallback), and paths containing a NUL character are a usage
- * error rather than an uncaught exception. The check reads recorded structure
- * and hashes only; it does not establish that a human act was genuine, and it
- * grants nothing (K-AUTH-1).
+ * The Root checker's at-commit mode (`--at-commit`: records read from the
+ * approval commit through git; the commit must be reachable and an ancestor of
+ * HEAD, refusal codes `APPROVAL_SHA_UNREACHABLE` and
+ * `APPROVAL_SHA_NOT_ANCESTOR`) is not ported: the App runs no git process.
+ * This check reads the working tree and is unanchored; `write_status.sh` is
+ * the anchored check.
+ *
+ * Python path, `realpath`, `csv`, `str.strip`, `str.splitlines` and `repr`
+ * behaviour is reproduced so both checkers decide alike; the parity test
+ * `src/__tests__/lib/amendment-reopen-parity.test.ts` compares them. The
+ * project root must be given (there is no `git rev-parse` fallback). The check
+ * reads recorded structure and hashes only; it grants nothing (K-AUTH-1).
  */
 import { createHash } from 'node:crypto';
 import type { Stats } from 'node:fs';
@@ -36,12 +50,16 @@ import nodePath from 'node:path';
 
 export const AMENDMENT_REOPEN_ADMITTED = 'ADMITTED';
 
-/** Refusal codes, identical to the Python checker's. */
+/**
+ * Refusal codes of the Root checker's working-tree mode, identical to its
+ * `REFUSAL_CODES` less the two at-commit codes below.
+ */
 export const AMENDMENT_REOPEN_REFUSAL_CODES = [
   'AMENDMENT_UNRESOLVED',
   'SCOPE_CHANGE_ROOT_NOT_FOUND',
   'PATH_ESCAPE',
   'AMENDMENT_OUTSIDE_DELIVERABLE_ROOT',
+  'AMENDMENT_ALREADY_USED',
   'GROUP3_NOT_ACCEPTED',
   'GROUP2_MANIFEST_MISSING',
   'MANIFEST_SCHEMA',
@@ -51,13 +69,21 @@ export const AMENDMENT_REOPEN_REFUSAL_CODES = [
   'REGISTER_HASH_MISMATCH',
   'REGISTER_SCHEMA',
   'NO_DELIVERABLE_ACTION',
+  'DELIVERABLE_REMOVED',
   'RECLASSIFY_LEGACY_REGISTER',
   'RECLASSIFY_NOT_SCOPE_CHANGING',
   'ACTION_NOT_AUTHORIZING'
 ] as const;
 
+/** Root-only refusal codes of the anchored at-commit mode, which needs git. */
+export const ROOT_ONLY_REFUSAL_CODES = ['APPROVAL_SHA_UNREACHABLE', 'APPROVAL_SHA_NOT_ANCESTOR'] as const;
+
 export type AmendmentReopenRefusalCode = (typeof AMENDMENT_REOPEN_REFUSAL_CODES)[number];
 export type AmendmentReopenCode = typeof AMENDMENT_REOPEN_ADMITTED | AmendmentReopenRefusalCode;
+
+const UNANCHORED_NOTE =
+  'working-tree read: UNANCHORED; the records were read from the working tree, not from a commit, ' +
+  'and may differ from any committed record; write_status.sh never uses this mode';
 
 /** The checker's decision; project-root-relative POSIX paths, as the Python checker reports them. */
 export interface AmendmentReopenDecision {
@@ -66,6 +92,11 @@ export interface AmendmentReopenDecision {
   reason: string;
   deliverableId: string;
   amendmentId: string;
+  /** Always `working-tree`: the App reads no commit. */
+  mode: 'working-tree';
+  anchored: false;
+  atCommit: '';
+  executionRoot: string;
   scopeChangeRoot: string;
   group3Snapshot: string;
   group3Decision: string;
@@ -82,10 +113,12 @@ export interface AmendmentReopenDecision {
 export interface AmendmentReopenCheckOptions {
   /** Containment root (the Python checker's `--project-root`). Required. */
   projectRoot: string;
-  /** The `_ScopeChange/` folder; found above the deliverable folder when omitted. */
+  /** The `_ScopeChange/` folder; `<execution root>/_ScopeChange` of the deliverable folder when omitted. */
   scopeChangeRoot?: string;
   /** Base for relative inputs (Python `cwd`). Defaults to the project root. */
   cwd?: string;
+  /** The deliverable's `_STATUS.md` content, checked for a prior reopening (`--status-file`). */
+  statusText?: string;
 }
 
 /** Unusable input or an operational failure (the Python checker's exit 2). */
@@ -116,11 +149,28 @@ class RecordReadError extends Error {}
 // Characters Python's str.isspace() accepts (str.strip() and `\s`).
 const PY_WS = '\\t\\n\\u000b\\f\\r\\u001c-\\u001f \\u0085\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000';
 const PY_STRIP = new RegExp(`^[${PY_WS}]+|[${PY_WS}]+$`, 'gu');
-// Python's `\w` for str patterns (letters, numbers, underscore); used for `\b`.
-const PY_WORD = '[\\p{L}\\p{N}_]';
+const PY_RSTRIP = new RegExp(`[${PY_WS}]+$`, 'u');
+// Line boundaries of Python's str.splitlines().
+const PY_LINE_BREAK = /\r\n|[\n\r\u000b\f\u001c\u001d\u001e\u0085\u2028\u2029]/u;
 
 function pyStrip(value: string): string {
   return value.replace(PY_STRIP, '');
+}
+
+function pyRstrip(value: string): string {
+  return value.replace(PY_RSTRIP, '');
+}
+
+function pySplitlines(text: string): string[] {
+  if (text === '') {
+    return [];
+  }
+  const lines = text.split(new RegExp(PY_LINE_BREAK.source, 'gu'));
+  // A trailing line break does not open a further (empty) line.
+  if (lines.length > 1 && lines[lines.length - 1] === '') {
+    lines.pop();
+  }
+  return lines;
 }
 
 function escapeRegExp(value: string): string {
@@ -157,25 +207,49 @@ function pyRepr(value: string): string {
   return out + quote;
 }
 
+const DECIMAL_DIGIT = /^\p{Nd}$/u;
+
+/** Python `int()` of a run of Unicode decimal digits (each Nd block starts at its zero). */
+function pyInt(digits: string | undefined): number {
+  let value = 0;
+  for (const ch of digits ?? '') {
+    const cp = ch.codePointAt(0) ?? 0;
+    let start = cp;
+    while (start > 0 && DECIMAL_DIGIT.test(String.fromCodePoint(start - 1))) {
+      start -= 1;
+    }
+    value = value * 10 + ((cp - start) % 10);
+  }
+  return value;
+}
+
 // Python `\d` matches every Unicode decimal digit; `$` also matches before a
 // final newline, which only matters for names read from the filesystem.
-const AMENDMENT_ID_RE = /^SCA-(?:[A-Z][A-Z0-9]*-)*\p{Nd}+\n?$/u;
+const ID = 'SCA-(?:[A-Z][A-Z0-9]*-)*\\p{Nd}+';
+const AMENDMENT_ID_RE = new RegExp(`^${ID}\\n?$`, 'u');
 const DELIVERABLE_ID_RE = /^DEL-[0-9A-Za-z]+(?:-[0-9A-Za-z]+)+\n?$/u;
-const FOLDER_ID_RE = /^(SCA-(?:[A-Z][A-Z0-9]*-)*\p{Nd}+)_/u;
-const GROUP_FOLDER_RE = /^(SCA-(?:[A-Z][A-Z0-9]*-)*\p{Nd}+)_GROUP-([123])_/u;
-const REFUSING_WORDS_RE = new RegExp(
-  `(?<!${PY_WORD})(?:not accepted|rejected|returned|withdrawn|refused)(?!${PY_WORD})`,
-  'iu'
+const FOLDER_ID_RE = new RegExp(`^(${ID})_`, 'u');
+// Anything named like a checkpoint folder, and the decision-snapshot names that count.
+const GROUP_PREFIX_RE = new RegExp(`^(${ID})_GROUP-(\\p{Nd}+)_`, 'u');
+const GROUP_FOLDER_RE = new RegExp(
+  `^(${ID})_GROUP-([123])_(?:AMENDMENT-(\\p{Nd}+)_)?(\\p{Nd}{4}-\\p{Nd}{2}-\\p{Nd}{2})(?:_(\\p{Nd}+))?\\n?$`,
+  'u'
 );
 const REGISTER_NAME_RE = /^Amendment_Actions[^/]*\.csv\n?$/u;
+const REGISTER_ROLE_RE = /^(?:exact final )?action register(?: \([^()]*\))?\n?$/iu;
+const REGISTER_COLUMNS = ['AmendmentID', 'ActionType', 'EntityType', 'EntityID', 'ScopeChanging'];
 
-function acceptedHeadingRe(amendmentId: string): RegExp {
-  // Python: ^{ID}\s+checkpoint group 3\b.*\baccepted\b (IGNORECASE). `.` is
-  // `[^\n]` because JavaScript's `.` also stops at U+2028 and U+2029.
+function headingRe(amendmentId: string): RegExp {
+  // Python: ^#\s+{ID}\s+checkpoint group 3\s+[—–-]+\s+accepted(?:\s|$|[.,;]) (IGNORECASE).
   return new RegExp(
-    `^${escapeRegExp(amendmentId)}[${PY_WS}]+checkpoint group 3(?!${PY_WORD})[^\\n]*(?<!${PY_WORD})accepted(?!${PY_WORD})`,
+    `^#[${PY_WS}]+${escapeRegExp(amendmentId)}[${PY_WS}]+checkpoint group 3[${PY_WS}]+[—–-]+[${PY_WS}]+accepted(?:[${PY_WS}]|$|[.,;])`,
     'iu'
   );
+}
+
+function priorReopeningRe(amendmentId: string): RegExp {
+  // Python: reopened from ISSUED; amendment: {ID}(?=[\s(;\]]|$)
+  return new RegExp(`reopened from ISSUED; amendment: ${escapeRegExp(amendmentId)}(?=[${PY_WS}(;\\]]|$)`, 'u');
 }
 
 function compareCodePoints(a: string, b: string): number {
@@ -208,6 +282,7 @@ function pyIsAbsolute(p: string): boolean {
   return p.startsWith('/');
 }
 
+/** `Path(p).name`. */
 function pyName(p: string): string {
   const normalized = pyPath(p);
   if (normalized === '.' || normalized === '/' || normalized === '//') {
@@ -216,6 +291,7 @@ function pyName(p: string): string {
   return normalized.slice(normalized.lastIndexOf('/') + 1);
 }
 
+/** `Path(p).parent`. */
 function pyParent(p: string): string {
   const normalized = pyPath(p);
   if (normalized === '.' || normalized === '/' || normalized === '//') {
@@ -260,6 +336,16 @@ function posixSplit(p: string): [string, string] {
   return [head, tail];
 }
 
+/** `posixpath.basename(p)`. */
+function posixBasename(p: string): string {
+  return p.slice(p.lastIndexOf('/') + 1);
+}
+
+/** `posixpath.dirname(p)`. */
+function posixDirname(p: string): string {
+  return posixSplit(p)[0];
+}
+
 /** `posixpath.normpath(p)`. */
 function posixNormpath(p: string): string {
   if (p === '') {
@@ -281,12 +367,17 @@ function posixNormpath(p: string): string {
   return joined || '.';
 }
 
+/** The checker's `_join`: non-empty parts joined with `/`. */
+function relJoin(...parts: (string | null | undefined)[]): string {
+  return parts.filter((part): part is string => Boolean(part)).join('/');
+}
+
 function errorCode(error: unknown): string | undefined {
   const code = (error as { code?: unknown } | null)?.code;
   return typeof code === 'string' ? code : undefined;
 }
 
-// Errors pathlib's exists()/is_dir()/is_file()/is_symlink() treat as "no".
+// Errors pathlib's exists()/is_dir()/is_file() treat as "no".
 const IGNORED_STAT_ERRORS = new Set(['ENOENT', 'ENOTDIR', 'EBADF', 'ELOOP', 'ERR_INVALID_ARG_VALUE']);
 
 async function pyStat(p: string, follow: boolean): Promise<Stats | null> {
@@ -300,10 +391,6 @@ async function pyStat(p: string, follow: boolean): Promise<Stats | null> {
   }
 }
 
-async function pyExists(p: string): Promise<boolean> {
-  return (await pyStat(p, true)) !== null;
-}
-
 async function pyIsDir(p: string): Promise<boolean> {
   return (await pyStat(p, true))?.isDirectory() ?? false;
 }
@@ -312,8 +399,22 @@ async function pyIsFile(p: string): Promise<boolean> {
   return (await pyStat(p, true))?.isFile() ?? false;
 }
 
-async function pyIsSymlink(p: string): Promise<boolean> {
-  return (await pyStat(p, false))?.isSymbolicLink() ?? false;
+/** `os.path.lexists(p)`. */
+async function pyLexists(p: string): Promise<boolean> {
+  try {
+    await lstat(p);
+    return true;
+  } catch (error) {
+    if (errorCode(error) === 'ERR_INVALID_ARG_VALUE') {
+      throw error;
+    }
+    return false;
+  }
+}
+
+/** `Path.exists()`. */
+async function pyExists(p: string): Promise<boolean> {
+  return (await pyStat(p, true)) !== null;
 }
 
 /** Python 3.11 `posixpath._joinrealpath` (non-strict). */
@@ -383,6 +484,7 @@ async function pyRealpath(p: string): Promise<string> {
   return posixNormpath(resolved);
 }
 
+/** `_inside`: `path == root or root in path.parents` for absolute paths. */
 function isInside(p: string, root: string): boolean {
   if (p === root) {
     return true;
@@ -393,44 +495,30 @@ function isInside(p: string, root: string): boolean {
   return p.startsWith(`${root}/`);
 }
 
-function pyRel(p: string, root: string): string {
+/** `_inside_rel` for project-relative paths (`""` is the project root). */
+function insideRel(p: string, root: string): boolean {
+  return root === '' || p === root || p.startsWith(`${root}/`);
+}
+
+/** `Path(p).relative_to(root).as_posix()` for `p` inside `root`. */
+function relativeTo(p: string, root: string): string {
   if (p === root) {
     return '.';
   }
-  return isInside(p, root) ? p.slice(root === '/' ? 1 : root.length + 1) : p;
-}
-
-/** The real path of `p`; refused when it leaves `root`. */
-async function contained(p: string, root: string, what: string): Promise<string> {
-  const real = await pyRealpath(p);
-  if (!isInside(real, root)) {
-    throw new Refusal('PATH_ESCAPE', `${what} ${p} resolves outside ${root} (path or symlink escape)`);
-  }
-  return real;
+  return p.slice(root === '/' ? 1 : root.length + 1);
 }
 
 // ---------------------------------------------------------------------------
 // Record reading (utf-8-sig text, Python csv module, excel dialect)
 // ---------------------------------------------------------------------------
 
-async function readText(p: string): Promise<string> {
-  const bytes = await readFile(p);
+/** `bytes.decode("utf-8-sig")`: strict, one leading byte-order mark removed. */
+function decodeUtf8Sig(bytes: Uint8Array, what: string): string {
   try {
-    // Strips one leading byte-order mark, as Python's utf-8-sig does.
     return new TextDecoder('utf-8', { fatal: true }).decode(bytes);
   } catch {
-    throw new RecordReadError(`${p} is not valid UTF-8`);
+    throw new RecordReadError(`${what} is not valid UTF-8`);
   }
-}
-
-async function firstHeading(p: string): Promise<string> {
-  const text = await readText(p);
-  for (const line of text.replace(/\r\n?/g, '\n').split('\n')) {
-    if (line.startsWith('# ')) {
-      return pyStrip(line.slice(2));
-    }
-  }
-  return '';
 }
 
 const CSV_FIELD_LIMIT = 131072;
@@ -456,7 +544,7 @@ function csvRecords(text: string): string[][] {
     field.push(ch);
   };
   const isLineBreak = (ch: string | null): boolean => ch === '\n' || ch === '\r' || ch === EOL;
-  // Read through a function: \`processChar\` changes the state, which the
+  // Read through a function: `processChar` changes the state, which the
   // compiler's narrowing of the loop below does not see.
   const currentState = (): State => state;
   const processChar = (ch: string | null): void => {
@@ -557,16 +645,22 @@ function csvRecords(text: string): string[][] {
 }
 
 type CsvRow = Map<string, string>;
+const REST_KEY = Symbol('restkey');
 
-/** `_read_csv`: DictReader rows with stripped keys and values, and the stripped header. */
-async function readCsv(p: string): Promise<{ header: string[]; rows: CsvRow[] }> {
-  const records = csvRecords(await readText(p));
+/**
+ * `csv.DictReader` rows: `dict(zip(fieldnames, row))`, extra cells under the
+ * rest key, missing cells as `None`. Returns the raw field names and rows.
+ */
+function dictReader(text: string): {
+  fieldnames: string[] | null;
+  rows: Map<string | symbol, string | string[] | null>[];
+} {
+  const records = csvRecords(text);
   if (records.length === 0) {
-    return { header: [], rows: [] };
+    return { fieldnames: null, rows: [] };
   }
   const [fieldnames, ...rest] = records;
-  const REST_KEY = Symbol('restkey');
-  const rows: CsvRow[] = [];
+  const rows: Map<string | symbol, string | string[] | null>[] = [];
   for (const record of rest) {
     if (record.length === 0) {
       continue;
@@ -583,13 +677,41 @@ async function readCsv(p: string): Promise<{ header: string[]; rows: CsvRow[] }>
         raw.set(key, null);
       }
     }
-    const row: CsvRow = new Map();
-    for (const [key, value] of raw) {
-      row.set(typeof key === 'string' ? pyStrip(key) : '', typeof value === 'string' ? pyStrip(value) : '');
-    }
-    rows.push(row);
+    rows.push(raw);
   }
-  return { header: fieldnames.map(pyStrip), rows };
+  return { fieldnames, rows };
+}
+
+/** `_read_manifest`: rows with stripped keys and values, and the stripped header. */
+function readManifest(text: string): { header: string[]; rows: CsvRow[] } {
+  const { fieldnames, rows } = dictReader(text);
+  return {
+    header: (fieldnames ?? []).map(pyStrip),
+    rows: rows.map((raw) => {
+      const row: CsvRow = new Map();
+      for (const [key, value] of raw) {
+        row.set(typeof key === 'string' ? pyStrip(key) : '', typeof value === 'string' ? pyStrip(value) : '');
+      }
+      return row;
+    })
+  };
+}
+
+/** `_qualifying_row`'s reading: raw keys and values, the rest key dropped. */
+function readRegister(text: string): { header: string[]; rows: CsvRow[] } {
+  const { fieldnames, rows } = dictReader(text);
+  return {
+    header: [...(fieldnames ?? [])],
+    rows: rows.map((raw) => {
+      const row: CsvRow = new Map();
+      for (const [key, value] of raw) {
+        if (typeof key === 'string') {
+          row.set(key, typeof value === 'string' ? value : '');
+        }
+      }
+      return row;
+    })
+  };
 }
 
 function cell(row: CsvRow, key: string): string {
@@ -597,8 +719,71 @@ function cell(row: CsvRow, key: string): string {
 }
 
 // ---------------------------------------------------------------------------
+// Working-tree store (the Python checker's `_WorkTree`)
+// ---------------------------------------------------------------------------
+
+interface Entry {
+  /** Resolved, project-root-relative POSIX path (`""` is the project root). */
+  path: string;
+  kind: 'tree' | 'blob' | 'other';
+}
+
+function escapeRefusal(what: string, rel: string, within: string): Refusal {
+  return new Refusal(
+    'PATH_ESCAPE',
+    `${what} ${rel || '.'} resolves outside ${within || 'the project root'} (path or symlink escape)`
+  );
+}
+
+class WorkTree {
+  constructor(private readonly proj: string) {}
+
+  async resolve(rel: string, within: string, what: string): Promise<Entry | null> {
+    const target = rel ? pyJoin(this.proj, rel) : this.proj;
+    const real = await pyRealpath(target);
+    const bound = within ? pyJoin(this.proj, within) : this.proj;
+    if (!isInside(real, bound)) {
+      throw escapeRefusal(what, rel, within);
+    }
+    let kind: Entry['kind'];
+    if (await pyIsDir(real)) {
+      kind = 'tree';
+    } else if (await pyIsFile(real)) {
+      kind = 'blob';
+    } else if (!(await pyLexists(target)) && !(await pyExists(real))) {
+      return null;
+    } else {
+      kind = 'other';
+    }
+    const resolved = relativeTo(real, this.proj);
+    return { path: resolved === '.' ? '' : resolved, kind };
+  }
+
+  async children(rel: string): Promise<string[]> {
+    return (await readdir(rel ? pyJoin(this.proj, rel) : this.proj)).sort(compareCodePoints);
+  }
+
+  async read(entry: Entry): Promise<Buffer> {
+    return readFile(entry.path ? pyJoin(this.proj, entry.path) : this.proj);
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Checker
 // ---------------------------------------------------------------------------
+
+/** `_to_rel`: project-relative POSIX form of a path argument, or null outside. */
+async function toRel(value: string, base: string, proj: string): Promise<string | null> {
+  const raw = pyPath(value);
+  const absolute = posixNormpath(pyIsAbsolute(raw) ? raw : pyJoin(base, raw));
+  for (const candidate of [absolute, await pyRealpath(absolute)]) {
+    if (isInside(candidate, proj)) {
+      const rel = relativeTo(candidate, proj);
+      return rel === '.' ? '' : rel;
+    }
+  }
+  return null;
+}
 
 async function normalizeDeliverable(deliverable: string, cwd: string): Promise<[string, string | null]> {
   const candidate = pyJoin(cwd, pyPath(deliverable));
@@ -619,70 +804,109 @@ async function normalizeDeliverable(deliverable: string, cwd: string): Promise<[
   return [deliverableId, null];
 }
 
-async function findScopeChangeRoot(start: string, projectRoot: string): Promise<string | null> {
-  let current = await pyRealpath(start);
-  while (isInside(current, projectRoot)) {
-    const candidate = pyJoin(current, '_ScopeChange');
-    if (await pyIsDir(candidate)) {
-      return candidate;
+/**
+ * `_execution_root`: the deliverable's outermost `execution` ancestor, which an
+ * adapter manifest found by walking up must imply too.
+ */
+async function executionRoot(deliverableReal: string, proj: string): Promise<string> {
+  const relative = relativeTo(deliverableReal, proj);
+  const parts = relative === '.' ? [] : relative.split('/');
+  const index = parts.slice(0, -1).indexOf('execution');
+  if (index < 0) {
+    throw new Refusal(
+      'SCOPE_CHANGE_ROOT_NOT_FOUND',
+      `${relative} is not inside an execution/ folder; pass --scope-change-root`
+    );
+  }
+  const execRel = parts.slice(0, index + 1).join('/');
+  let current = deliverableReal;
+  for (;;) {
+    const adapter = pyJoin(current, '_harness/adapter.yaml');
+    if (await pyIsFile(adapter)) {
+      const implied = pyName(current) === 'execution' ? current : pyJoin(current, 'execution');
+      if (implied !== pyJoin(proj, execRel)) {
+        throw new Refusal(
+          'SCOPE_CHANGE_ROOT_NOT_FOUND',
+          `adapter manifest ${relativeTo(adapter, proj)} implies execution root ` +
+            `${isInside(implied, proj) ? relativeTo(implied, proj) : implied}, ` +
+            `but the deliverable's execution root is ${execRel}`
+        );
+      }
+      break;
     }
-    if (current === projectRoot) {
+    if (current === proj) {
       break;
     }
     current = pyParent(current);
   }
-  return null;
+  return execRel;
 }
 
 async function resolveAmendment(
+  store: WorkTree,
   amendment: string,
-  cwd: string,
-  projectRoot: string
+  base: string,
+  proj: string
 ): Promise<[string, string | null, string | null]> {
   const value = pyStrip(amendment);
   if (AMENDMENT_ID_RE.test(value)) {
     return [value, null, null];
   }
-  const candidate = pyPath(value);
-  const options = pyIsAbsolute(candidate)
-    ? [candidate]
-    : [pyJoin(cwd, candidate), pyJoin(projectRoot, candidate)];
-  let target: string | null = null;
+  const raw = pyPath(value);
+  const options = pyIsAbsolute(raw) ? [raw] : [pyJoin(base, raw), pyJoin(proj, raw)];
+  const rels: string[] = [];
   for (const option of options) {
-    if (await pyExists(option)) {
-      target = option;
+    const rel = await toRel(option, base, proj);
+    if (rel !== null && !rels.includes(rel)) {
+      rels.push(rel);
+    }
+  }
+  if (rels.length === 0) {
+    throw new Refusal('PATH_ESCAPE', `--amendment path ${pyRepr(amendment)} lies outside the project root`);
+  }
+  let entry: Entry | null = null;
+  for (const rel of rels) {
+    entry = await store.resolve(rel, '', '--amendment path');
+    if (entry !== null) {
       break;
     }
   }
-  if (target === null) {
+  if (entry === null) {
     throw new Refusal(
       'AMENDMENT_UNRESOLVED',
       `--amendment is neither an amendment ID nor an existing path: ${pyRepr(amendment)}`
     );
   }
-  let real = await contained(target, projectRoot, '--amendment path');
-  if (await pyIsFile(real)) {
-    if (pyName(real) !== 'DECISION.md') {
-      throw new Refusal(
-        'AMENDMENT_UNRESOLVED',
-        `--amendment file must be a group-3 DECISION.md: ${pyRepr(amendment)}`
-      );
+  let entryPath = entry.path;
+  if (entry.kind === 'blob') {
+    if (posixBasename(entryPath) !== 'DECISION.md') {
+      throw new Refusal('AMENDMENT_UNRESOLVED', `--amendment file must be a group-3 DECISION.md: ${pyRepr(amendment)}`);
     }
-    real = pyParent(real);
+    entryPath = posixDirname(entryPath);
   }
-  const group = GROUP_FOLDER_RE.exec(pyName(real));
-  if (group && pyName(pyParent(real)) === 'checkpoint_snapshots') {
-    if (group[2] !== '3') {
-      throw new Refusal(
-        'GROUP3_NOT_ACCEPTED',
-        `${pyName(real)} is a group-${group[2]} decision; only an accepted checkpoint-group-3 decision authorizes reopening`
-      );
+  const name = posixBasename(entryPath);
+  const parent = posixDirname(entryPath);
+  if (posixBasename(parent) === 'checkpoint_snapshots') {
+    const loose = GROUP_PREFIX_RE.exec(name);
+    if (loose) {
+      if (loose[2] !== '3') {
+        throw new Refusal(
+          'GROUP3_NOT_ACCEPTED',
+          `${name} is a group-${loose[2]} decision; only an accepted checkpoint-group-3 decision authorizes reopening`
+        );
+      }
+      if (!GROUP_FOLDER_RE.test(name)) {
+        throw new Refusal(
+          'GROUP3_NOT_ACCEPTED',
+          `${name} is not a group-3 decision snapshot name (${loose[1]}_GROUP-3_[AMENDMENT-K_]YYYY-MM-DD[_N]); candidate folders do not count`
+        );
+      }
+      return [loose[1], posixDirname(parent), entryPath];
     }
-    return [group[1], pyParent(pyParent(real)), real];
   }
-  const folder = FOLDER_ID_RE.exec(pyName(real));
-  if (folder && pyName(pyParent(real)) === '_ScopeChange') {
-    return [folder[1], pyParent(real), null];
+  const folder = FOLDER_ID_RE.exec(name);
+  if (folder && posixBasename(parent) === '_ScopeChange') {
+    return [folder[1], parent, null];
   }
   throw new Refusal(
     'AMENDMENT_UNRESOLVED',
@@ -690,66 +914,120 @@ async function resolveAmendment(
   );
 }
 
-async function groupFolders(root: string, amendmentId: string, group: string): Promise<string[]> {
-  const snapshots = pyJoin(root, 'checkpoint_snapshots');
-  if (!(await pyIsDir(snapshots))) {
-    return [];
-  }
-  const names = (await readdir(snapshots)).sort(compareCodePoints);
-  const found: string[] = [];
-  for (const name of names) {
-    const match = GROUP_FOLDER_RE.exec(name);
-    const entry = pyJoin(snapshots, name);
-    if (match && match[1] === amendmentId && match[2] === group && (await pyIsDir(entry))) {
-      found.push(entry);
+function firstLine(text: string): string {
+  for (const line of pySplitlines(text)) {
+    if (pyStrip(line)) {
+      return pyRstrip(line);
     }
   }
-  return found;
+  return '';
 }
 
-async function acceptedGroup3(root: string, amendmentId: string, pinned: string | null): Promise<string> {
-  const folders = pinned !== null ? [pinned] : await groupFolders(root, amendmentId, '3');
-  const problems: string[] = [];
-  const headingRe = acceptedHeadingRe(amendmentId);
-  for (const folder of folders) {
-    const real = await contained(folder, root, 'group-3 decision folder');
-    const decision = pyJoin(real, 'DECISION.md');
-    const manifest = pyJoin(real, 'ACCEPTED_MANIFEST.csv');
-    if (!(await pyIsFile(decision)) || !(await pyIsFile(manifest))) {
-      problems.push(`${pyName(folder)} lacks DECISION.md or ACCEPTED_MANIFEST.csv`);
+interface GroupFolder {
+  key: [number, string, number];
+  name: string;
+  path: string;
+}
+
+function compareGroupFolders(a: GroupFolder, b: GroupFolder): number {
+  return (
+    a.key[0] - b.key[0] ||
+    compareCodePoints(a.key[1], b.key[1]) ||
+    a.key[2] - b.key[2] ||
+    compareCodePoints(a.name, b.name) ||
+    compareCodePoints(a.path, b.path)
+  );
+}
+
+/** Decision-snapshot folders of one group, oldest first, and ignored look-alikes. */
+async function groupFolders(
+  store: WorkTree,
+  root: string,
+  amendmentId: string,
+  group: string
+): Promise<{ found: GroupFolder[]; ignored: string[] }> {
+  const snapshots = await store.resolve(relJoin(root, 'checkpoint_snapshots'), root, 'checkpoint_snapshots');
+  if (snapshots === null || snapshots.kind !== 'tree') {
+    return { found: [], ignored: [] };
+  }
+  const found: GroupFolder[] = [];
+  const ignored: string[] = [];
+  for (const name of await store.children(snapshots.path)) {
+    const loose = GROUP_PREFIX_RE.exec(name);
+    if (!loose || loose[1] !== amendmentId || loose[2] !== group) {
       continue;
     }
-    await contained(decision, root, 'group-3 DECISION.md');
-    await contained(manifest, root, 'group-3 ACCEPTED_MANIFEST.csv');
-    const heading = await firstHeading(decision);
-    if (headingRe.test(heading) && !REFUSING_WORDS_RE.test(heading)) {
-      return real;
+    const match = GROUP_FOLDER_RE.exec(name);
+    if (match === null) {
+      ignored.push(name);
+      continue;
     }
-    problems.push(`${pyName(folder)}/DECISION.md heading does not record group-3 acceptance: ${pyRepr(heading)}`);
-  }
-  let detail: string;
-  if (problems.length > 0) {
-    detail = problems.join('; ');
-  } else {
-    const earlier: string[] = [];
-    for (const group of ['1', '2']) {
-      earlier.push(...(await groupFolders(root, amendmentId, group)).map(pyName));
+    const entry = await store.resolve(relJoin(snapshots.path, name), root, `group-${group} decision folder`);
+    if (entry !== null && entry.kind === 'tree') {
+      found.push({ key: [pyInt(match[3]), match[4], pyInt(match[5])], name, path: entry.path });
     }
-    detail =
-      `no checkpoint_snapshots/${amendmentId}_GROUP-3_* decision snapshot` +
-      (earlier.length > 0
-        ? ` (only ${earlier.join(', ')}; a group-1 or group-2 decision does not authorize reopening)`
-        : '');
   }
-  throw new Refusal('GROUP3_NOT_ACCEPTED', detail);
+  return { found: found.sort(compareGroupFolders), ignored };
 }
 
-async function manifestBinding(
-  manifest: string,
+async function acceptedGroup3(
+  store: WorkTree,
   root: string,
-  projectRoot: string
-): Promise<[string, string] | null> {
-  const { header, rows } = await readCsv(manifest);
+  amendmentId: string,
+  pinned: string | null
+): Promise<[string, string]> {
+  let ignored: string[] = [];
+  let folders: [string, string][];
+  if (pinned !== null) {
+    const entry = await store.resolve(pinned, root, 'group-3 decision folder');
+    folders = entry && entry.kind === 'tree' ? [[posixBasename(pinned), entry.path]] : [];
+  } else {
+    const groups = await groupFolders(store, root, amendmentId, '3');
+    ignored = groups.ignored;
+    folders = groups.found.reverse().map((item) => [item.name, item.path]);
+  }
+  const heading = headingRe(amendmentId);
+  const problems: string[] = [];
+  for (const [name, folderPath] of folders) {
+    const decision = await store.resolve(relJoin(folderPath, 'DECISION.md'), root, 'group-3 DECISION.md');
+    const manifest = await store.resolve(relJoin(folderPath, 'ACCEPTED_MANIFEST.csv'), root, 'group-3 ACCEPTED_MANIFEST.csv');
+    if (!(decision && decision.kind === 'blob' && manifest && manifest.kind === 'blob')) {
+      problems.push(`${name} lacks DECISION.md or ACCEPTED_MANIFEST.csv`);
+      continue;
+    }
+    const line = firstLine(decodeUtf8Sig(await store.read(decision), decision.path));
+    if (heading.test(line)) {
+      return [folderPath, decision.path];
+    }
+    problems.push(`${name}/DECISION.md first line does not record group-3 acceptance: ${pyRepr(line)}`);
+  }
+  if (ignored.length > 0) {
+    problems.push(
+      `ignored ${ignored.join(', ')} (not named ${amendmentId}_GROUP-3_[AMENDMENT-K_]YYYY-MM-DD[_N]; candidate folders do not count)`
+    );
+  }
+  if (folders.length === 0) {
+    const earlier: string[] = [];
+    for (const group of ['1', '2']) {
+      earlier.push(...(await groupFolders(store, root, amendmentId, group)).found.map((item) => item.name));
+    }
+    problems.unshift(
+      `no checkpoint_snapshots/${amendmentId}_GROUP-3_* decision snapshot` +
+        (earlier.length > 0
+          ? ` (only ${earlier.join(', ')}; a group-1 or group-2 decision does not authorize reopening)`
+          : '')
+    );
+  }
+  throw new Refusal('GROUP3_NOT_ACCEPTED', problems.join('; '));
+}
+
+/** `_manifest_binding`: [register entry or null when missing, lexical path, bound SHA], or null when unbound. */
+async function manifestBinding(
+  store: WorkTree,
+  manifest: Entry,
+  root: string
+): Promise<[Entry | null, string, string] | null> {
+  const { header, rows } = readManifest(decodeUtf8Sig(await store.read(manifest), manifest.path));
   const lookup = new Map<string, string>();
   for (const name of header) {
     lookup.set(name.toLowerCase().replaceAll('-', ''), name);
@@ -758,11 +1036,11 @@ async function manifestBinding(
   const shaCol = lookup.get('sha256');
   const roleCol = lookup.get('role');
   if (!pathCol || !shaCol) {
-    throw new Refusal('MANIFEST_SCHEMA', `${pyRel(manifest, projectRoot)} has no Path and SHA256 columns`);
+    throw new Refusal('MANIFEST_SCHEMA', `${manifest.path} has no Path and SHA256 columns`);
   }
-  let candidates = rows.filter((row) => REGISTER_NAME_RE.test(pyName(cell(row, pathCol))));
+  let candidates = rows.filter((row) => REGISTER_NAME_RE.test(posixBasename(cell(row, pathCol))));
   if (candidates.length > 1 && roleCol) {
-    const named = candidates.filter((row) => cell(row, roleCol).toLowerCase().includes('action register'));
+    const named = candidates.filter((row) => REGISTER_ROLE_RE.test(cell(row, roleCol)));
     if (named.length === 1) {
       candidates = named;
     }
@@ -774,51 +1052,71 @@ async function manifestBinding(
   if (distinct.size > 1) {
     throw new Refusal(
       'REGISTER_AMBIGUOUS',
-      `${pyRel(manifest, projectRoot)} binds several Amendment_Actions*.csv files and no single row's Role names the action register`
+      `${manifest.path} binds several Amendment_Actions*.csv files and no single row's Role is the action register`
     );
   }
   const rawPath = cell(candidates[0], pathCol);
   const boundSha = cell(candidates[0], shaCol).toLowerCase();
-  if (pyIsAbsolute(pyPath(rawPath))) {
-    throw new Refusal('PATH_ESCAPE', `register path in ${pyRel(manifest, projectRoot)} is absolute: ${rawPath}`);
+  if (rawPath.startsWith('/')) {
+    throw new Refusal('PATH_ESCAPE', `register path in ${manifest.path} is absolute: ${rawPath}`);
   }
-  // Manifest paths are project-root relative; execution-root-parent relative
-  // paths are accepted too. A missing file resolves to the in-root candidate so
-  // the refusal names the missing register rather than an escape.
-  const options = [pyJoin(projectRoot, rawPath), pyJoin(pyParent(pyParent(root)), rawPath)];
-  const inside: string[] = [];
-  for (const option of options) {
-    if (isInside(await pyRealpath(option), root)) {
-      inside.push(option);
+  // Manifest paths are project-root relative; paths relative to the execution
+  // root's parent are accepted too. A missing file resolves to the in-root
+  // candidate so the refusal names the missing register, not an escape.
+  const projectDir = posixDirname(posixDirname(root));
+  const options: string[] = [];
+  for (const option of [rawPath, relJoin(projectDir, rawPath)]) {
+    const normal = posixNormpath(option);
+    if (normal !== '..' && !normal.startsWith('../') && !options.includes(normal)) {
+      options.push(normal);
     }
   }
-  let target = (inside.length > 0 ? inside : options)[0];
+  let escaped = false;
+  let missing: string | null = null;
   for (const option of options) {
-    if ((await pyExists(option)) || (await pyIsSymlink(option))) {
-      target = option;
-      break;
+    let entry: Entry | null;
+    try {
+      entry = await store.resolve(option, '', 'register');
+    } catch (error) {
+      if (error instanceof Refusal) {
+        escaped = true;
+        continue;
+      }
+      throw error;
     }
+    if (entry === null) {
+      if (missing === null && insideRel(option, root)) {
+        missing = option;
+      }
+      continue;
+    }
+    if (!insideRel(entry.path, root)) {
+      escaped = true;
+      continue;
+    }
+    return [entry, option, boundSha];
   }
-  const real = await pyRealpath(target);
-  if (!isInside(real, root)) {
+  if (escaped || missing === null) {
     throw new Refusal(
       'PATH_ESCAPE',
-      `register ${rawPath} bound in ${pyRel(manifest, projectRoot)} resolves outside the scope-change root (path or symlink escape)`
+      `register ${rawPath} bound in ${manifest.path} resolves outside the scope-change root (path or symlink escape)`
     );
   }
-  return [real, boundSha];
+  return [null, missing, boundSha];
 }
 
+/** `_bound_register`: the binding of the latest group-2 decision snapshot that binds a register. */
 async function boundRegister(
+  store: WorkTree,
   root: string,
-  amendmentId: string,
-  projectRoot: string
-): Promise<[string, string, string]> {
-  const manifests: string[] = [];
-  for (const folder of await groupFolders(root, amendmentId, '2')) {
-    const manifest = pyJoin(folder, 'ACCEPTED_MANIFEST.csv');
-    if (await pyIsFile(manifest)) {
-      manifests.push(await contained(manifest, root, 'group-2 ACCEPTED_MANIFEST.csv'));
+  amendmentId: string
+): Promise<[Entry | null, string, string, string]> {
+  const { found } = await groupFolders(store, root, amendmentId, '2');
+  const manifests: Entry[] = [];
+  for (const item of found) {
+    const entry = await store.resolve(relJoin(item.path, 'ACCEPTED_MANIFEST.csv'), root, 'group-2 ACCEPTED_MANIFEST.csv');
+    if (entry !== null && entry.kind === 'blob') {
+      manifests.push(entry);
     }
   }
   if (manifests.length === 0) {
@@ -827,49 +1125,74 @@ async function boundRegister(
       `no checkpoint_snapshots/${amendmentId}_GROUP-2_*/ACCEPTED_MANIFEST.csv binds the accepted register`
     );
   }
-  const bindings: [string, string, string][] = [];
-  for (const manifest of manifests) {
-    const binding = await manifestBinding(manifest, root, projectRoot);
+  for (const manifest of [...manifests].reverse()) {
+    const binding = await manifestBinding(store, manifest, root);
     if (binding !== null) {
-      bindings.push([binding[0], binding[1], manifest]);
+      return [binding[0], binding[1], binding[2], manifest.path];
     }
   }
-  if (bindings.length === 0) {
-    throw new Refusal(
-      'REGISTER_NOT_BOUND',
-      `no group-2 ACCEPTED_MANIFEST.csv of ${amendmentId} binds an Amendment_Actions*.csv register`
-    );
-  }
-  if (new Set(bindings.map(([register, sha]) => `${register}\u0000${sha}`)).size > 1) {
-    throw new Refusal('REGISTER_AMBIGUOUS', `group-2 manifests of ${amendmentId} bind different registers or hashes`);
-  }
-  return bindings[0];
+  throw new Refusal(
+    'REGISTER_NOT_BOUND',
+    `no group-2 ACCEPTED_MANIFEST.csv of ${amendmentId} binds an Amendment_Actions*.csv register`
+  );
 }
 
 function matchesDeliverable(entityId: string, deliverableId: string): boolean {
   return entityId === deliverableId || entityId.startsWith(`${deliverableId}_`);
 }
 
-async function qualifyingRow(
-  register: string,
+function qualifyingRow(
+  text: string,
+  registerPath: string,
   amendmentId: string,
-  deliverableId: string,
-  projectRoot: string
-): Promise<[CsvRow, boolean]> {
-  const { header, rows } = await readCsv(register);
+  deliverableId: string
+): [CsvRow, boolean] {
+  const { header, rows } = readRegister(text);
+  const padded = header.filter((name) => name !== pyStrip(name) && REGISTER_COLUMNS.includes(pyStrip(name)));
+  if (padded.length > 0) {
+    throw new Refusal(
+      'REGISTER_SCHEMA',
+      `${registerPath} column name(s) carry stray whitespace: ${padded.map(pyRepr).join(', ')}`
+    );
+  }
   const missing = ['ActionType', 'EntityType', 'EntityID'].filter((column) => !header.includes(column));
   if (missing.length > 0) {
-    throw new Refusal('REGISTER_SCHEMA', `${pyRel(register, projectRoot)} lacks column(s) ${missing.join(', ')}`);
+    throw new Refusal('REGISTER_SCHEMA', `${registerPath} lacks column(s) ${missing.join(', ')}`);
   }
   const hasScope = header.includes('ScopeChanging');
+  rows.forEach((row, offset) => {
+    if (pyStrip(cell(row, 'EntityType')).toUpperCase() !== 'DELIVERABLE') {
+      return;
+    }
+    if (!matchesDeliverable(pyStrip(cell(row, 'EntityID')), deliverableId)) {
+      return;
+    }
+    const paddedValues = REGISTER_COLUMNS.filter((column) => cell(row, column) !== pyStrip(cell(row, column)));
+    if (paddedValues.length > 0) {
+      throw new Refusal(
+        'REGISTER_SCHEMA',
+        `${registerPath} line ${offset + 2} (ActionSeq ${cell(row, 'ActionSeq') || '?'}) has stray whitespace in ` +
+          paddedValues.map((column) => `${column} ${pyRepr(cell(row, column))}`).join(', ')
+      );
+    }
+  });
   const named = rows.filter(
     (row) =>
       cell(row, 'EntityType').toUpperCase() === 'DELIVERABLE' &&
       matchesDeliverable(cell(row, 'EntityID'), deliverableId) &&
-      (!cell(row, 'AmendmentID') || cell(row, 'AmendmentID') === amendmentId)
+      (cell(row, 'AmendmentID') === '' || cell(row, 'AmendmentID') === amendmentId)
   );
   if (named.length === 0) {
     throw new Refusal('NO_DELIVERABLE_ACTION', `no ${amendmentId} register row names DELIVERABLE ${deliverableId}`);
+  }
+  const seqs = named.map((row) => `${cell(row, 'ActionSeq') || '?'} ${cell(row, 'ActionType') || '?'}`).join(', ');
+  const removes = named.filter((row) => cell(row, 'ActionType').toUpperCase() === 'REMOVE');
+  if (removes.length > 0) {
+    throw new Refusal(
+      'DELIVERABLE_REMOVED',
+      `${amendmentId} removes ${deliverableId} (ActionSeq ${removes.map((row) => cell(row, 'ActionSeq') || '?').join(', ')}); ` +
+        `a removed deliverable is not reopened, whatever other rows name it (${seqs})`
+    );
   }
   for (const row of named) {
     const action = cell(row, 'ActionType').toUpperCase();
@@ -881,9 +1204,6 @@ async function qualifyingRow(
     }
   }
   const reclassify = named.filter((row) => cell(row, 'ActionType').toUpperCase() === 'RECLASSIFY');
-  const seqs = named
-    .map((row) => `${cell(row, 'ActionSeq') || '?'} ${cell(row, 'ActionType') || '?'}`)
-    .join(', ');
   if (reclassify.length > 0 && !hasScope) {
     throw new Refusal(
       'RECLASSIFY_LEGACY_REGISTER',
@@ -904,8 +1224,14 @@ async function qualifyingRow(
   );
 }
 
-async function sha256File(p: string): Promise<string> {
-  return createHash('sha256').update(await readFile(p)).digest('hex');
+function priorReopening(statusText: string, amendmentId: string): string | null {
+  const pattern = priorReopeningRe(amendmentId);
+  for (const line of pySplitlines(statusText)) {
+    if (pattern.test(line)) {
+      return pyStrip(line);
+    }
+  }
+  return null;
 }
 
 function isOperationalError(error: unknown): boolean {
@@ -914,9 +1240,9 @@ function isOperationalError(error: unknown): boolean {
 
 /**
  * Decide whether `amendment` authorizes reopening `deliverable` (a deliverable
- * folder or ID). Throws `AmendmentReopenUsageError` for unusable input or an
- * unreadable record; every other outcome is a decision whose `admitted` is true
- * only when all checks pass.
+ * folder or ID), reading the working tree. Throws `AmendmentReopenUsageError`
+ * for unusable input or an unreadable record; every other outcome is a
+ * decision whose `admitted` is true only when all checks pass.
  */
 export async function checkAmendmentReopen(
   deliverable: string,
@@ -946,10 +1272,11 @@ async function checkAmendmentReopenUnchecked(
   if (!options.projectRoot) {
     throw new AmendmentReopenUsageError('cannot resolve the project root; pass projectRoot');
   }
-  const base = pyPath(options.cwd ?? options.projectRoot);
-  if (!pyIsAbsolute(base)) {
+  const cwd = pyPath(options.cwd ?? options.projectRoot);
+  if (!pyIsAbsolute(cwd)) {
     throw new AmendmentReopenUsageError(`cwd must be absolute: ${options.cwd}`);
   }
+  const base = await pyRealpath(cwd);
   const [deliverableId, deliverablePath] = await normalizeDeliverable(deliverable, base);
   const decision: AmendmentReopenDecision = {
     admitted: false,
@@ -957,6 +1284,10 @@ async function checkAmendmentReopenUnchecked(
     reason: '',
     deliverableId,
     amendmentId: '',
+    mode: 'working-tree',
+    anchored: false,
+    atCommit: '',
+    executionRoot: '',
     scopeChangeRoot: '',
     group3Snapshot: '',
     group3Decision: '',
@@ -974,66 +1305,96 @@ async function checkAmendmentReopenUnchecked(
     throw new AmendmentReopenUsageError(`project root is not a directory: ${proj}`);
   }
   proj = await pyRealpath(proj);
+  decision.notes.push(UNANCHORED_NOTE);
 
   try {
-    const deliverableReal =
-      deliverablePath !== null ? await contained(deliverablePath, proj, 'deliverable folder') : null;
-    const [amendmentId, derivedRoot, pinned] = await resolveAmendment(amendment, base, proj);
+    const store = new WorkTree(proj);
+    let execRoot: string | null = null;
+    if (deliverablePath !== null) {
+      const deliverableReal = await pyRealpath(deliverablePath);
+      if (!isInside(deliverableReal, proj)) {
+        throw new Refusal(
+          'PATH_ESCAPE',
+          `deliverable folder ${deliverablePath} resolves outside ${proj} (path or symlink escape)`
+        );
+      }
+      execRoot = await executionRoot(deliverableReal, proj);
+      decision.executionRoot = execRoot;
+    }
+
+    const [amendmentId, derivedRoot, pinned] = await resolveAmendment(store, amendment, base, proj);
     decision.amendmentId = amendmentId;
+
+    if (options.statusText !== undefined) {
+      const prior = priorReopening(options.statusText, amendmentId);
+      if (prior !== null) {
+        throw new Refusal(
+          'AMENDMENT_ALREADY_USED',
+          `_STATUS.md already records a reopening under ${amendmentId} (${prior}); one tool-recorded ` +
+            'reopening per accepted amendment; a further reopening needs a new amendment or a direct human record'
+        );
+      }
+    }
 
     let root: string | null = null;
     if (options.scopeChangeRoot !== undefined) {
-      const given = pyJoin(base, pyPath(options.scopeChangeRoot));
-      if (!(await pyIsDir(given))) {
+      const rel = await toRel(options.scopeChangeRoot, base, proj);
+      if (rel === null) {
+        throw new Refusal('PATH_ESCAPE', `--scope-change-root ${options.scopeChangeRoot} lies outside the project root`);
+      }
+      const entry = await store.resolve(rel, '', '--scope-change-root');
+      if (entry === null || entry.kind !== 'tree') {
         throw new Refusal(
           'SCOPE_CHANGE_ROOT_NOT_FOUND',
           `--scope-change-root is not a directory: ${options.scopeChangeRoot}`
         );
       }
-      root = await contained(given, proj, '--scope-change-root');
+      root = entry.path;
     }
     if (derivedRoot !== null) {
-      const derivedReal = await contained(derivedRoot, proj, 'scope-change root');
-      if (root !== null && root !== derivedReal) {
+      const entry = await store.resolve(derivedRoot, '', 'scope-change root');
+      if (entry === null || entry.kind !== 'tree') {
+        throw new Refusal('AMENDMENT_UNRESOLVED', `scope-change root ${derivedRoot} of --amendment is not a directory`);
+      }
+      if (root !== null && root !== entry.path) {
         throw new Refusal('AMENDMENT_UNRESOLVED', '--amendment path is not under --scope-change-root');
       }
-      root = derivedReal;
+      root = entry.path;
     }
+    const expected = execRoot !== null ? relJoin(execRoot, '_ScopeChange') : null;
     if (root === null) {
-      if (deliverableReal === null) {
+      if (expected === null) {
         throw new Refusal(
           'SCOPE_CHANGE_ROOT_NOT_FOUND',
           'an amendment ID with a deliverable ID needs --scope-change-root or a deliverable folder'
         );
       }
-      const found = await findScopeChangeRoot(deliverableReal, proj);
-      if (found === null) {
-        throw new Refusal(
-          'SCOPE_CHANGE_ROOT_NOT_FOUND',
-          `no _ScopeChange/ folder above ${pyRel(deliverableReal, proj)}`
-        );
+      const entry = await store.resolve(expected, '', 'scope-change root');
+      if (entry === null || entry.kind !== 'tree') {
+        throw new Refusal('SCOPE_CHANGE_ROOT_NOT_FOUND', `no ${expected}/ beside the deliverable's execution root`);
       }
-      root = await contained(found, proj, 'scope-change root');
+      root = entry.path;
     }
-    decision.scopeChangeRoot = pyRel(root, proj);
-    if (deliverableReal !== null && !isInside(deliverableReal, pyParent(root))) {
+    decision.scopeChangeRoot = root;
+    if (expected !== null && root !== expected) {
       throw new Refusal(
         'AMENDMENT_OUTSIDE_DELIVERABLE_ROOT',
-        `${decision.scopeChangeRoot} does not belong to the execution root of ${pyRel(deliverableReal, proj)}`
+        `${root} is not ${expected}, the scope-change root of the deliverable's execution root ${execRoot}`
       );
     }
 
-    const group3 = await acceptedGroup3(root, amendmentId, pinned);
-    decision.group3Snapshot = pyRel(group3, proj);
-    decision.group3Decision = pyRel(pyJoin(group3, 'DECISION.md'), proj);
+    const [group3, group3Decision] = await acceptedGroup3(store, root, amendmentId, pinned);
+    decision.group3Snapshot = group3;
+    decision.group3Decision = group3Decision;
 
-    const [register, boundSha, manifest] = await boundRegister(root, amendmentId, proj);
-    decision.group2Manifest = pyRel(manifest, proj);
-    decision.registerPath = pyRel(register, proj);
-    if (!(await pyIsFile(register))) {
+    const [register, lexical, boundSha, manifest] = await boundRegister(store, root, amendmentId);
+    decision.group2Manifest = manifest;
+    decision.registerPath = register !== null ? register.path : lexical;
+    if (register === null || register.kind !== 'blob') {
       throw new Refusal('REGISTER_MISSING', `bound register ${decision.registerPath} does not exist`);
     }
-    const actual = await sha256File(register);
+    const data = await store.read(register);
+    const actual = createHash('sha256').update(data).digest('hex');
     decision.registerSha256 = actual;
     if (actual !== boundSha) {
       throw new Refusal(
@@ -1042,7 +1403,12 @@ async function checkAmendmentReopenUnchecked(
       );
     }
 
-    const [row, hasScope] = await qualifyingRow(register, amendmentId, deliverableId, proj);
+    const [row, hasScope] = qualifyingRow(
+      decodeUtf8Sig(data, decision.registerPath),
+      decision.registerPath,
+      amendmentId,
+      deliverableId
+    );
     if (!hasScope) {
       decision.notes.push('legacy register without ScopeChanging: RECLASSIFY is not admitted by this tool');
     }
@@ -1063,7 +1429,7 @@ async function checkAmendmentReopenUnchecked(
   decision.reason =
     `${decision.amendmentId} accepted at group 3 (${decision.group3Snapshot}); register ` +
     `${decision.registerPath} matches its group-2 hash; ActionSeq ${decision.actionSeq || '?'} ` +
-    `${decision.actionType} names ${deliverableId}`;
+    `${decision.actionType} names ${deliverableId}; records read in the working tree (unanchored)`;
   return decision;
 }
 
@@ -1098,15 +1464,17 @@ export interface AmendmentForReopenInput {
   deliverablePath: string;
   /** Amendment ID (`SCA-NNN`, `SCA-APP-NNN`) or snapshot / group-3 decision path. */
   amendment: string;
+  /** The deliverable's current `_STATUS.md` content, checked for a prior reopening. */
+  statusText?: string;
 }
 
 /**
- * Runs the checker the way `write_status.sh` does, with the Git work-tree top
- * level as the project root (so repository-relative manifest paths resolve),
- * or the working root when it is not inside a work tree. A relative amendment
- * path is read from the working root, then the project root. The App also
- * requires the scope-change root to lie inside the working root and refuses
- * one outside it as `PATH_ESCAPE`.
+ * Runs the checker the way `write_status.sh` runs the Root checker, less the
+ * git anchoring: the Git work-tree top level is the project root (so
+ * repository-relative manifest paths resolve), or the working root when it is
+ * not inside a work tree. A relative amendment path is read from the working
+ * root, then the project root. The App also requires the scope-change root to
+ * lie inside the working root and refuses one outside it as `PATH_ESCAPE`.
  */
 export async function checkAmendmentForReopen(
   input: AmendmentForReopenInput
@@ -1123,7 +1491,8 @@ export async function checkAmendmentForReopen(
   }
   const decision = await checkAmendmentReopen(input.deliverablePath, input.amendment, {
     projectRoot,
-    cwd: workingRoot
+    cwd: workingRoot,
+    statusText: input.statusText
   });
   if (decision.scopeChangeRoot) {
     const scopeRoot = nodePath.resolve(projectRoot, decision.scopeChangeRoot);

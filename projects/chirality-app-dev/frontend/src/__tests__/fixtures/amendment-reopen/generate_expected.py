@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 """Fixtures and expected decisions for the App amendment-reopen parity test.
 
-The App checker `src/lib/lifecycle/amendment-reopen.ts` ports the Root checker
-`tools/validation/check_amendment_reopen.py`. This script writes the shared
-inputs and the Root checker's decisions on them:
+The App checker `src/lib/lifecycle/amendment-reopen.ts` ports the working-tree
+mode of the Root checker `tools/validation/check_amendment_reopen.py` (no
+`--at-commit`: the App runs no git). This script writes the shared inputs and
+the Root checker's working-tree decisions on them:
 
 - `cases.json`: fixture trees (files, symlinks, empty folders) with the
   queries run against each. The trees mirror
   `tools/validation/test_check_amendment_reopen.py` and add cases for CSV,
-  heading and path handling.
+  heading and path handling. A query may name the deliverable's
+  `_STATUS.md` (`statusFile`), which the Root checker reads with
+  `--status-file` and the App receives as text.
 - `expected.json`: `check_reopen()`'s decision for every fixture query, and for
   the real amendment records in this checkout (PEC, Piping, Runtime and App
   scope-change roots) read in place. A real case whose records are absent is
@@ -145,8 +148,9 @@ def merge(*trees: dict) -> dict:
 
 
 def q(deliverable=DEL_REL, amendment="SCA-001", *, deliverable_is_path=True, amendment_is_path=False,
-      scope_change_root=None, project_root=".", cwd=".") -> dict:
+      scope_change_root=None, project_root=".", cwd=".", status_file=None) -> dict:
     return {
+        "statusFile": status_file,
         "deliverable": deliverable,
         "deliverableIsPath": deliverable_is_path,
         "amendment": amendment,
@@ -238,6 +242,15 @@ def fixture_cases() -> list[dict]:
             "SCA-001 checkpoint group 3 — preaccepted",
             "sca-001   CHECKPOINT GROUP 3: ACCEPTED",
             "SCA-001\tcheckpoint group 3 (owner 'accepted' it)",
+            "SCA-001 checkpoint group 3 — Accepted.",
+            "SCA-001 checkpoint group 3 – accepted, with a limited basis",
+            "SCA-001 checkpoint group 3 -- accepted; see below",
+            "SCA-001 checkpoint group 3 - accepted",
+            "SCA-001 checkpoint group 3 — accepted: audited",
+            "SCA-001 checkpoint group 3 — acceptedly",
+            "SCA-001 checkpoint group 3 — the owner accepted",
+            "SCA-001 checkpoint group 3 —accepted",
+            "SCA-001 checkpoint group 3 — accepted\u2028continued",
         ]
     ):
         add(f"group3-heading-{index}", tree([row("MODIFY", scope="NO")], group3_heading=heading))
@@ -403,6 +416,143 @@ def fixture_cases() -> list[dict]:
         q("outside/DEL-01-01_Out", project_root="projects"),
         q("project-link/DEL-01-01_Escape", project_root="project-link"),
     )
+    # Rules of the Root review fix (5038f2554)
+    def group_folder(spec, name, heading=None, manifest_rows=(), header="Path,SHA256,Role,AcceptanceBoundary"):
+        folder = f"{SC_REL}/checkpoint_snapshots/{name}"
+        spec["files"][f"{folder}/DECISION.md"] = f"# {heading or name}\n"
+        spec["files"][f"{folder}/ACCEPTED_MANIFEST.csv"] = header + "\n" + "".join(r + "\n" for r in manifest_rows)
+        return spec
+
+    accepted3 = "SCA-001 checkpoint group 3 — accepted"
+    for index, name in enumerate(
+        [
+            "SCA-001_GROUP-3_candidate",
+            "SCA-001_GROUP-3_2026-09-27_draft",
+            "SCA-001_GROUP-3_26-09-27",
+            "SCA-001_GROUP-03_2026-09-27",
+        ]
+    ):
+        spec = tree([row("MODIFY", scope="NO")], groups=("1", "2"))
+        group_folder(spec, name, accepted3)
+        add(
+            f"strict-group3-name-{index}",
+            spec,
+            q(),
+            q(amendment=f"{SC_REL}/checkpoint_snapshots/{name}", amendment_is_path=True),
+        )
+    for index, name in enumerate(["SCA-001_GROUP-3_AMENDMENT-1_2026-09-24", "SCA-001_GROUP-3_2026-09-27_2"]):
+        spec = tree([row("MODIFY", scope="NO")], group3_heading="SCA-001 checkpoint group 3 — returned")
+        group_folder(spec, name, accepted3)
+        add(f"strict-group3-name-admitted-{index}", spec)
+    latest = tree([row("MODIFY", scope="NO")])
+    group_folder(latest, "SCA-001_GROUP-3_2026-09-26_2", "SCA-001 checkpoint group 3 — returned")
+    add("latest-group3-governs", latest)
+
+    add(
+        "deliverable-removed",
+        tree([row("MODIFY", seq="1", scope="NO"), row("REMOVE", seq="2", scope="YES")]),
+    )
+    add("deliverable-removed-lowercase", tree([row("remove", seq="4", scope="NO"), row("RECLASSIFY", seq="5", scope="YES")]))
+
+    used = tree([row("MODIFY", scope="NO")])
+    used["files"][f"{DEL_REL}/_STATUS.md"] = (
+        "# Status: DEL-01-01\n\n**Current State:** ISSUED\n\n## History\n"
+        "- 2026-09-20 - State set to IN_PROGRESS (HUMAN) [reopened from ISSUED; amendment: SCA-001 "
+        "(projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); approval SHA: abc1234]\n"
+        "- 2026-09-21 - State set to ISSUED (HUMAN)\n"
+    )
+    used["files"]["status/other.md"] = "- x [reopened from ISSUED; amendment: SCA-0011; approval SHA: abc]\r\n"
+    used["files"]["status/bracket.md"] = "\ufeff- x [reopened from ISSUED; amendment: SCA-001]"
+    used["files"]["status/empty.md"] = ""
+    add(
+        "amendment-already-used",
+        used,
+        q(status_file=f"{DEL_REL}/_STATUS.md"),
+        q(status_file="status/other.md"),
+        q(status_file="status/bracket.md"),
+        q(status_file="status/empty.md"),
+        q(amendment=GROUP_REL.format(group="3"), amendment_is_path=True, status_file=f"{DEL_REL}/_STATUS.md"),
+        q(status_file="status/missing.md"),
+    )
+
+    package_root = tree([row("MODIFY", scope="NO")])
+    for key in list(package_root["files"]):
+        if key.startswith(f"{SC_REL}/"):
+            package_root["files"][key.replace(SC_REL, "projects/fixture/execution/PKG-01_Fixture/_ScopeChange", 1)] = package_root["files"].pop(key)
+    add(
+        "package-scope-change-root-not-used",
+        package_root,
+        q(),
+        q(scope_change_root="projects/fixture/execution/PKG-01_Fixture/_ScopeChange"),
+    )
+    nested = tree([row("MODIFY", scope="NO")])
+    nested["files"]["projects/fixture/execution/PKG-01_Fixture/execution/DEL-01-01_Nested/_STATUS.md"] = "# Status\n"
+    add("outermost-execution-root", nested, q("projects/fixture/execution/PKG-01_Fixture/execution/DEL-01-01_Nested"))
+    no_exec = tree([row("MODIFY", scope="NO")])
+    no_exec["files"]["projects/fixture/work/DEL-01-01_Loose/_STATUS.md"] = "# Status\n"
+    add("deliverable-outside-execution", no_exec, q("projects/fixture/work/DEL-01-01_Loose"))
+    adapter_ok = tree([row("MODIFY", scope="NO")])
+    adapter_ok["files"]["projects/fixture/_harness/adapter.yaml"] = "schema: fixture\n"
+    add("adapter-agrees", adapter_ok)
+    adapter_exec = tree([row("MODIFY", scope="NO")])
+    adapter_exec["files"]["projects/fixture/execution/_harness/adapter.yaml"] = "schema: fixture\n"
+    add("adapter-in-execution-agrees", adapter_exec)
+    adapter_bad = tree([row("MODIFY", scope="NO")])
+    adapter_bad["files"]["projects/fixture/execution/PKG-01_Fixture/_harness/adapter.yaml"] = "schema: fixture\n"
+    add("adapter-disagrees", adapter_bad)
+
+    later_text = csv_text(BASE_COLUMNS + ["ScopeChanging"], [row("ADD", scope="YES")])
+    revised = tree([row("MODIFY", scope="NO")])
+    revised["files"][f"{SNAPSHOT_REL}/Amendment_Actions_R1.csv"] = later_text
+    group_folder(
+        revised,
+        "SCA-001_GROUP-2_AMENDMENT-1_2026-09-20",
+        manifest_rows=[f"{SNAPSHOT_REL}/Amendment_Actions_R1.csv,{sha(later_text)},exact final action register,Accepted"],
+    )
+    add("revised-group2-governs", revised)
+    unbound_revision = tree([row("MODIFY", scope="NO")])
+    group_folder(unbound_revision, "SCA-001_GROUP-2_AMENDMENT-1_2026-09-20", manifest_rows=[f"{SNAPSHOT_REL}/Notes.md,{'2' * 64},notes,Accepted"])
+    add("revised-group2-without-register-keeps-binding", unbound_revision)
+    candidate2 = tree([row("MODIFY", scope="NO")])
+    candidate2["files"][f"{SNAPSHOT_REL}/Amendment_Actions_R1.csv"] = later_text
+    group_folder(
+        candidate2,
+        "SCA-001_GROUP-2_candidate",
+        manifest_rows=[f"{SNAPSHOT_REL}/Amendment_Actions_R1.csv,{sha(later_text)},exact final action register,Accepted"],
+    )
+    add("candidate-group2-ignored", candidate2)
+
+    add("amendment-id-padded", tree([row("MODIFY", scope="NO", amendment=" SCA-001")]))
+    add("amendment-id-blank-admitted", tree([row("MODIFY", scope="NO", amendment="")]))
+    add("amendment-id-other-case", tree([row("MODIFY", scope="NO", amendment="sca-001")]))
+
+    for index, roles in enumerate(
+        [
+            ("action register (final)", "intake context"),
+            ("not the action register", "also an action register"),
+            ("Exact Final Action Register", "action register draft"),
+            ("action register (a (nested) note)", "context"),
+        ]
+    ):
+        other_reg = f"{SNAPSHOT_REL}/Amendment_Actions_Intake.csv"
+        spec = tree([row("MODIFY", scope="NO")], extra_manifest_rows=[f"{other_reg},{'1' * 64},{roles[1]},Context"])
+        manifest_key = f"{GROUP_REL.format(group='2')}/ACCEPTED_MANIFEST.csv"
+        spec["files"][manifest_key] = spec["files"][manifest_key].replace("exact final action register", roles[0])
+        spec["files"][other_reg] = "x\n"
+        add(f"register-role-{index}", spec)
+
+    add("padded-entity-id", tree([row("MODIFY", entity=" DEL-01-01", scope="NO")]))
+    add("padded-scope-changing", tree([row("RECLASSIFY", scope="YES ")]))
+    add("padded-action-type", tree([row("MODIFY ", scope="NO")]))
+    add("padded-other-deliverable-ignored", tree([row("MODIFY", scope="NO"), row("ADD", entity="DEL-01-02 ", scope="NO")]))
+    add(
+        "padded-column-name",
+        tree([], register_text="AmendmentID, ActionType,EntityType,EntityID\nSCA-001,MODIFY,DELIVERABLE,DEL-01-01\n"),
+    )
+    add(
+        "lowercase-values-admitted",
+        tree([row("modify", seq="7", entity_type="deliverable", scope="no")]),
+    )
     return cases
 
 
@@ -421,6 +571,7 @@ def real_cases() -> list[dict]:
             "requires": [f"{PEC_SC}/checkpoint_snapshots/SCA-006_GROUP-3_2026-09-26", PEC_DEL],
             "queries": [
                 q(PEC_DEL, "SCA-006"),
+                q(PEC_DEL, "SCA-006", status_file=f"{PEC_DEL}/_STATUS.md"),
                 q("DEL-08-06", f"{PEC_SC}/checkpoint_snapshots/SCA-006_GROUP-3_2026-09-26", deliverable_is_path=False),
                 q("DEL-04-03", "SCA-006", deliverable_is_path=False, scope_change_root=PEC_SC),
                 q("DEL-09-09", "SCA-006", deliverable_is_path=False, scope_change_root=PEC_SC),
@@ -471,10 +622,13 @@ def run(query: dict, root: Path) -> dict:
     deliverable = str(root / query["deliverable"]) if query["deliverableIsPath"] else query["deliverable"]
     amendment = str(root / query["amendment"]) if query["amendmentIsPath"] else query["amendment"]
     scope_root = str(root / query["scopeChangeRoot"]) if query["scopeChangeRoot"] is not None else None
+    status_file = str(root / query["statusFile"]) if query["statusFile"] is not None else None
     try:
+        # Working-tree mode: no at_commit (the App reads no commit).
         decision = checker.check_reopen(
             deliverable,
             amendment,
+            status_file=status_file,
             scope_change_root=scope_root,
             project_root=str(root / query["projectRoot"]),
             cwd=str(root / query["cwd"]),
@@ -491,6 +645,10 @@ def run(query: dict, root: Path) -> dict:
         "reason": reason,
         "deliverableId": data["deliverable_id"],
         "amendmentId": data["amendment_id"],
+        "mode": data["mode"],
+        "anchored": data["anchored"],
+        "atCommit": data["at_commit"],
+        "executionRoot": data["execution_root"],
         "scopeChangeRoot": data["scope_change_root"],
         "group3Snapshot": data["group3_snapshot"],
         "group3Decision": data["group3_decision"],

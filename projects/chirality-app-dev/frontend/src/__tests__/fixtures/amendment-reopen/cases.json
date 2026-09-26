@@ -10,7 +10,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -38,7 +39,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -66,7 +68,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -94,7 +97,8 @@
           "deliverable": "DEL-01-01",
           "deliverableIsPath": false,
           "projectRoot": ".",
-          "scopeChangeRoot": "projects/fixture/execution/_ScopeChange"
+          "scopeChangeRoot": "projects/fixture/execution/_ScopeChange",
+          "statusFile": null
         },
         {
           "amendment": "SCA-001",
@@ -103,7 +107,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -131,7 +136,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -159,7 +165,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         },
         {
           "amendment": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md",
@@ -168,7 +175,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         },
         {
           "amendment": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200",
@@ -177,7 +185,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         },
         {
           "amendment": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
@@ -186,7 +195,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -214,7 +224,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -242,7 +253,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -271,7 +283,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -299,7 +312,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -328,7 +342,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -356,7 +371,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -384,7 +400,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         },
         {
           "amendment": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200",
@@ -393,7 +410,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -419,7 +437,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -443,7 +462,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -465,7 +485,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         },
         {
           "amendment": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md",
@@ -474,7 +495,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -502,7 +524,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -530,7 +553,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -558,7 +582,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -586,7 +611,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -614,7 +640,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -642,7 +669,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -670,7 +698,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -698,7 +727,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -726,7 +756,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -745,6 +776,267 @@
       }
     },
     {
+      "name": "group3-heading-9",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — Accepted.\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "group3-heading-10",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 – accepted, with a limited basis\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "group3-heading-11",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 -- accepted; see below\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "group3-heading-12",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 - accepted\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "group3-heading-13",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted: audited\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "group3-heading-14",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — acceptedly\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "group3-heading-15",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — the owner accepted\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "group3-heading-16",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 —accepted\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "group3-heading-17",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted continued\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
       "name": "group3-heading-bom-crlf",
       "queries": [
         {
@@ -754,7 +1046,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -782,7 +1075,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -810,7 +1104,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -840,7 +1135,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -869,7 +1165,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -896,7 +1193,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -923,7 +1221,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -951,7 +1250,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -979,7 +1279,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1007,7 +1308,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1034,7 +1336,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1062,7 +1365,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1090,7 +1394,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1118,7 +1423,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1146,7 +1452,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1174,7 +1481,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1202,7 +1510,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1230,7 +1539,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1258,7 +1568,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1286,7 +1597,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1314,7 +1626,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1342,7 +1655,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1370,7 +1684,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1398,7 +1713,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1426,7 +1742,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1454,7 +1771,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1482,7 +1800,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1510,7 +1829,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1538,7 +1858,8 @@
           "deliverable": "project/projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": "project",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1567,7 +1888,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1596,7 +1918,8 @@
           "deliverable": "project/projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": "project",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1626,7 +1949,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1656,7 +1980,8 @@
           "deliverable": "project/projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": "project",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1686,7 +2011,8 @@
           "deliverable": "project/projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": "project",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1722,7 +2048,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": "projects/other/execution/_ScopeChange"
+          "scopeChangeRoot": "projects/other/execution/_ScopeChange",
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1752,7 +2079,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": "projects/fixture/execution/missing_ScopeChange"
+          "scopeChangeRoot": "projects/fixture/execution/missing_ScopeChange",
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1780,7 +2108,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": "projects/fixture/execution/PKG-01_Fixture/_ScopeChange"
+          "scopeChangeRoot": "projects/fixture/execution/PKG-01_Fixture/_ScopeChange",
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1810,7 +2139,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         },
         {
           "amendment": "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv",
@@ -1819,7 +2149,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         },
         {
           "amendment": "projects/fixture",
@@ -1828,7 +2159,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         },
         {
           "amendment": "  SCA-001  ",
@@ -1837,7 +2169,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         },
         {
           "amendment": "SCA-001x",
@@ -1846,7 +2179,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1874,7 +2208,8 @@
           "deliverable": "DEL-01-01",
           "deliverableIsPath": false,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1902,7 +2237,8 @@
           "deliverable": "not-a-deliverable",
           "deliverableIsPath": false,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         },
         {
           "amendment": "SCA-001",
@@ -1911,7 +2247,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
           "deliverableIsPath": true,
           "projectRoot": "no-such-project-root",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1939,7 +2276,8 @@
           "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Link",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         },
         {
           "amendment": "SCA-001",
@@ -1948,7 +2286,8 @@
           "deliverable": "outside/DEL-01-01_Out",
           "deliverableIsPath": true,
           "projectRoot": "projects",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         },
         {
           "amendment": "SCA-001",
@@ -1957,7 +2296,8 @@
           "deliverable": "project-link/DEL-01-01_Escape",
           "deliverableIsPath": true,
           "projectRoot": "project-link",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "tree": {
@@ -1978,6 +2318,1060 @@
           "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Link": "DEL-01-01_Fixture"
         }
       }
+    },
+    {
+      "name": "strict-group3-name-0",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        },
+        {
+          "amendment": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_candidate",
+          "amendmentIsPath": true,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_candidate/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_candidate/DECISION.md": "# SCA-001 checkpoint group 3 — accepted\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "strict-group3-name-1",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        },
+        {
+          "amendment": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-27_draft",
+          "amendmentIsPath": true,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-27_draft/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-27_draft/DECISION.md": "# SCA-001 checkpoint group 3 — accepted\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "strict-group3-name-2",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        },
+        {
+          "amendment": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_26-09-27",
+          "amendmentIsPath": true,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_26-09-27/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_26-09-27/DECISION.md": "# SCA-001 checkpoint group 3 — accepted\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "strict-group3-name-3",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        },
+        {
+          "amendment": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-03_2026-09-27",
+          "amendmentIsPath": true,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-03_2026-09-27/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-03_2026-09-27/DECISION.md": "# SCA-001 checkpoint group 3 — accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "strict-group3-name-admitted-0",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — returned\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_AMENDMENT-1_2026-09-24/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_AMENDMENT-1_2026-09-24/DECISION.md": "# SCA-001 checkpoint group 3 — accepted\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "strict-group3-name-admitted-1",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — returned\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-27_2/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-27_2/DECISION.md": "# SCA-001 checkpoint group 3 — accepted\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "latest-group3-governs",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26_2/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26_2/DECISION.md": "# SCA-001 checkpoint group 3 — returned\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "deliverable-removed",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\nSCA-001,2,REMOVE,DELIVERABLE,DEL-01-01,fixture,,,NO,YES\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,bc1444dbc167f466123ef8d4d7c786d35fabe53af9cac48c072866035669bf95,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "deliverable-removed-lowercase",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,4,remove,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\nSCA-001,5,RECLASSIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,YES\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,5f60c42ad898be8ab93b2fecca593676a0f45f46e103530a7c0ea716e55e3c76,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "amendment-already-used",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md"
+        },
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": "status/other.md"
+        },
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": "status/bracket.md"
+        },
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": "status/empty.md"
+        },
+        {
+          "amendment": "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26",
+          "amendmentIsPath": true,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md"
+        },
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": "status/missing.md"
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n\n## History\n- 2026-09-20 - State set to IN_PROGRESS (HUMAN) [reopened from ISSUED; amendment: SCA-001 (projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); approval SHA: abc1234]\n- 2026-09-21 - State set to ISSUED (HUMAN)\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n",
+          "status/bracket.md": "﻿- x [reopened from ISSUED; amendment: SCA-001]",
+          "status/empty.md": "",
+          "status/other.md": "- x [reopened from ISSUED; amendment: SCA-0011; approval SHA: abc]\r\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "package-scope-change-root-not-used",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        },
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": "projects/fixture/execution/PKG-01_Fixture/_ScopeChange",
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/PKG-01_Fixture/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/PKG-01_Fixture/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/PKG-01_Fixture/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/PKG-01_Fixture/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/PKG-01_Fixture/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/PKG-01_Fixture/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/PKG-01_Fixture/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "outermost-execution-root",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/execution/DEL-01-01_Nested",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/PKG-01_Fixture/execution/DEL-01-01_Nested/_STATUS.md": "# Status\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "deliverable-outside-execution",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/work/DEL-01-01_Loose",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/work/DEL-01-01_Loose/_STATUS.md": "# Status\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "adapter-agrees",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/_harness/adapter.yaml": "schema: fixture\n",
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "adapter-in-execution-agrees",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_harness/adapter.yaml": "schema: fixture\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "adapter-disagrees",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/PKG-01_Fixture/_harness/adapter.yaml": "schema: fixture\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "revised-group2-governs",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions_R1.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,ADD,DELIVERABLE,DEL-01-01,fixture,,,NO,YES\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_AMENDMENT-1_2026-09-20/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions_R1.csv,5349f24da67f30632b6e6dfbee60962ed2b932c3b67299ae04277665b64c6b8d,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_AMENDMENT-1_2026-09-20/DECISION.md": "# SCA-001_GROUP-2_AMENDMENT-1_2026-09-20\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "revised-group2-without-register-keeps-binding",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_AMENDMENT-1_2026-09-20/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Notes.md,2222222222222222222222222222222222222222222222222222222222222222,notes,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_AMENDMENT-1_2026-09-20/DECISION.md": "# SCA-001_GROUP-2_AMENDMENT-1_2026-09-20\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "candidate-group2-ignored",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions_R1.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,ADD,DELIVERABLE,DEL-01-01,fixture,,,NO,YES\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_candidate/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions_R1.csv,5349f24da67f30632b6e6dfbee60962ed2b932c3b67299ae04277665b64c6b8d,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_candidate/DECISION.md": "# SCA-001_GROUP-2_candidate\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "amendment-id-padded",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\n SCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,fba0d50a4ebfdf82f5856afabc6dcaa904db5dfb98f94ba3a37e21f052471428,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "amendment-id-blank-admitted",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\n,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,542e6a277dea81f917e9e3b2a1b58791047519be856e966d3809fbeae21092f7,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "amendment-id-other-case",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nsca-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,98c0b2332c4b12ab954fa37d1079a967362b89772e8e4f403cfa467c4bb00e8d,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "register-role-0",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions_Intake.csv": "x\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,action register (final),Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions_Intake.csv,1111111111111111111111111111111111111111111111111111111111111111,intake context,Context\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "register-role-1",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions_Intake.csv": "x\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,not the action register,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions_Intake.csv,1111111111111111111111111111111111111111111111111111111111111111,also an action register,Context\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "register-role-2",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions_Intake.csv": "x\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,Exact Final Action Register,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions_Intake.csv,1111111111111111111111111111111111111111111111111111111111111111,action register draft,Context\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "register-role-3",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions_Intake.csv": "x\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,3317bd7a557e9671a7ff43d1cdd7edd7e70da1642f0b737ab23770645822c1bf,action register (a (nested) note),Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions_Intake.csv,1111111111111111111111111111111111111111111111111111111111111111,context,Context\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "padded-entity-id",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE, DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,dc663570ee529804d7df61c969128ada90bfbb3b699ba20957bd80ff0eed96ba,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "padded-scope-changing",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,RECLASSIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,YES \n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,b50606f0f902f97f353d7f45e9f87f539b3d162dfb3f0be10969a86e6554f34f,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "padded-action-type",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY ,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,eaf31831a89004a888ebd323ee2878aaf76159ec69fde55978d53f41320020aa,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "padded-other-deliverable-ignored",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,1,MODIFY,DELIVERABLE,DEL-01-01,fixture,,,NO,NO\nSCA-001,1,ADD,DELIVERABLE,DEL-01-02 ,fixture,,,NO,NO\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,19c70cf7620572849c83f2249acd2516e55455e4266a810a64af1255930284bb,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "padded-column-name",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID, ActionType,EntityType,EntityID\nSCA-001,MODIFY,DELIVERABLE,DEL-01-01\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,600c3551f53938117c62748b191ade1d0331332add4e806d051c8de3ec462042,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
+    },
+    {
+      "name": "lowercase-values-admitted",
+      "queries": [
+        {
+          "amendment": "SCA-001",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": null
+        }
+      ],
+      "tree": {
+        "dirs": [],
+        "files": {
+          "projects/fixture/execution/PKG-01_Fixture/1_Working/DEL-01-01_Fixture/_STATUS.md": "# Status: DEL-01-01\n\n**Current State:** ISSUED\n",
+          "projects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv": "AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns,SupersessionBindingPresent,ScopeChanging\nSCA-001,7,modify,deliverable,DEL-01-01,fixture,,,NO,no\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-1_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 1 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv,925d1005f02382944d5dfcdae490d21745c7658550c14d9629b45634a9a7db37,exact final action register,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-2_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 2 — accepted fixture\n\nFixture decision.\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/ACCEPTED_MANIFEST.csv": "Path,SHA256,Role,AcceptanceBoundary\nprojects/fixture/execution/_ScopeChange/SCA-001_2026-09-26_1200/Propagation_Plan.md,0000000000000000000000000000000000000000000000000000000000000000,plan,Accepted\n",
+          "projects/fixture/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26/DECISION.md": "# SCA-001 checkpoint group 3 — accepted fixture\n\nFixture decision.\n"
+        },
+        "symlinks": {}
+      }
     }
   ],
   "real": [
@@ -1991,7 +3385,18 @@
           "deliverable": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access",
           "deliverableIsPath": true,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
+        },
+        {
+          "amendment": "SCA-006",
+          "amendmentIsPath": false,
+          "cwd": ".",
+          "deliverable": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access",
+          "deliverableIsPath": true,
+          "projectRoot": ".",
+          "scopeChangeRoot": null,
+          "statusFile": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_STATUS.md"
         },
         {
           "amendment": "projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-3_2026-09-26",
@@ -2000,7 +3405,8 @@
           "deliverable": "DEL-08-06",
           "deliverableIsPath": false,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         },
         {
           "amendment": "SCA-006",
@@ -2009,7 +3415,8 @@
           "deliverable": "DEL-04-03",
           "deliverableIsPath": false,
           "projectRoot": ".",
-          "scopeChangeRoot": "projects/pec/execution/_ScopeChange"
+          "scopeChangeRoot": "projects/pec/execution/_ScopeChange",
+          "statusFile": null
         },
         {
           "amendment": "SCA-006",
@@ -2018,7 +3425,8 @@
           "deliverable": "DEL-09-09",
           "deliverableIsPath": false,
           "projectRoot": ".",
-          "scopeChangeRoot": "projects/pec/execution/_ScopeChange"
+          "scopeChangeRoot": "projects/pec/execution/_ScopeChange",
+          "statusFile": null
         }
       ],
       "requires": [
@@ -2036,7 +3444,8 @@
           "deliverable": "DEL-01-01",
           "deliverableIsPath": false,
           "projectRoot": ".",
-          "scopeChangeRoot": "projects/pec/execution/_ScopeChange"
+          "scopeChangeRoot": "projects/pec/execution/_ScopeChange",
+          "statusFile": null
         },
         {
           "amendment": "SCA-005",
@@ -2045,7 +3454,8 @@
           "deliverable": "DEL-07-04",
           "deliverableIsPath": false,
           "projectRoot": ".",
-          "scopeChangeRoot": "projects/pec/execution/_ScopeChange"
+          "scopeChangeRoot": "projects/pec/execution/_ScopeChange",
+          "statusFile": null
         },
         {
           "amendment": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139",
@@ -2054,7 +3464,8 @@
           "deliverable": "DEL-02-08",
           "deliverableIsPath": false,
           "projectRoot": ".",
-          "scopeChangeRoot": null
+          "scopeChangeRoot": null,
+          "statusFile": null
         }
       ],
       "requires": [
@@ -2071,7 +3482,8 @@
           "deliverable": "DEL-04-07",
           "deliverableIsPath": false,
           "projectRoot": ".",
-          "scopeChangeRoot": "projects/chirality-piping/execution/_ScopeChange"
+          "scopeChangeRoot": "projects/chirality-piping/execution/_ScopeChange",
+          "statusFile": null
         }
       ],
       "requires": [
@@ -2088,7 +3500,8 @@
           "deliverable": "DEL-01-01",
           "deliverableIsPath": false,
           "projectRoot": ".",
-          "scopeChangeRoot": "projects/chirality-runtime/execution/_ScopeChange"
+          "scopeChangeRoot": "projects/chirality-runtime/execution/_ScopeChange",
+          "statusFile": null
         }
       ],
       "requires": [
@@ -2105,7 +3518,8 @@
           "deliverable": "DEL-02-05",
           "deliverableIsPath": false,
           "projectRoot": ".",
-          "scopeChangeRoot": "projects/chirality-app-dev/execution/_ScopeChange"
+          "scopeChangeRoot": "projects/chirality-app-dev/execution/_ScopeChange",
+          "statusFile": null
         }
       ],
       "requires": [

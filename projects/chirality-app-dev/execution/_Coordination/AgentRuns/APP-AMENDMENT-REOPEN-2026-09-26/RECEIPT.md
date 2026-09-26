@@ -32,13 +32,24 @@ recorded here only as part of the quoted decision.
 
 ## Result
 
-- New `frontend/src/lib/lifecycle/amendment-reopen.ts`: a port of
-  `check_amendment_reopen.py` at `be76d5b9e`. It keeps the three admission checks,
-  the sixteen refusal codes, the legacy `ScopeChanging` rule and the containment:
-  paths are resolved after symbolic links inside the project root and inside the
-  scope-change root. To decide as the Python checker does, the port reproduces
-  Python's path, `realpath`, `csv` (excel dialect), `str.strip` and `repr`
-  behaviour. The App adapter uses the Git work-tree top level above the working
+- New `frontend/src/lib/lifecycle/amendment-reopen.ts`: a port of the
+  working-tree mode of `check_amendment_reopen.py` as revised at `5038f2554` (the
+  Root review fix). It keeps that mode's admission rules and its 18 refusal
+  codes: `REFUSAL_CODES` less the at-commit `APPROVAL_SHA_UNREACHABLE` and
+  `APPROVAL_SHA_NOT_ANCESTOR`. The port covers:
+  - the anchored group-3 heading and the strict decision-folder names;
+  - `DELIVERABLE_REMOVED` and `AMENDMENT_ALREADY_USED`;
+  - the scope-change root beside the outermost `execution/` folder, with the
+    adapter-manifest agreement rule;
+  - the latest binding group-2 revision, the `AmendmentID` equal-or-blank rule,
+    exact `Role` matching and unstripped register values;
+  - containment: paths are resolved after symbolic links inside the project root
+    and inside the scope-change root.
+
+  To decide as the Python checker does, the port reproduces Python's path,
+  `realpath`, `csv` (excel dialect), `str.strip`, `str.splitlines` and `repr`
+  behaviour. The first candidate (`6dc8f8356`) followed `be76d5b9e`, and this
+  revision brings it to `5038f2554`. The App adapter uses the Git work-tree top level above the working
   root, found from the filesystem, as the project root, as `write_status.sh`
   does. It falls back to the working root when there is none. It refuses a
   scope-change root outside the working root as `PATH_ESCAPE`.
@@ -46,7 +57,8 @@ recorded here only as part of the quoted decision.
   Without `amendment` the move stays `BACKWARD_TRANSITION`. With one, the actor,
   approval SHA and metadata are checked first, and a `ruling` is rejected
   (`RULING_NOT_APPLICABLE`). `transitionStatusFile` then runs the check on the
-  deliverable folder. A refusal is `AMENDMENT_NOT_ADMITTED`, carrying the
+  deliverable folder, passing the `_STATUS.md` content it already read for the
+  prior-reopening check. A refusal is `AMENDMENT_NOT_ADMITTED`, carrying the
   checker's code; an unreadable record or a missing project root is
   `AMENDMENT_CHECK_ERROR`. An `amendment` on any other transition is
   `AMENDMENT_NOT_APPLICABLE`. The history entry reads
@@ -57,14 +69,22 @@ recorded here only as part of the quoted decision.
 - `amendment` is wired through `deliverable-contracts.ts`, the transition route,
   `deliverable-api.ts` and the MCP `status_transition` zod schema, as `ruling` was.
 - Parity: `src/__tests__/fixtures/amendment-reopen/generate_expected.py` builds
-  the fixture trees into `cases.json`: 66 trees and 79 queries, mirroring the
-  Root tests plus CSV, heading, path and symlink cases. It records the Root
-  checker's decisions in `expected.json`, together with 10 queries on the real
-  PEC SCA-005/SCA-006, Piping SCA-011, Runtime SCA-003 and App SCA-APP-010
-  records. `--check` reports drift.
+  the fixture trees into `cases.json`: 107 trees and 130 queries. They mirror the
+  Root tests, add CSV, heading, path and symlink cases, and add cases for each
+  rule of the review fix (heading variants, candidate and revised folder names,
+  removal, prior reopening with status files, package and nested execution
+  roots, adapter agreement, revised group-2 bindings, `AmendmentID`, `Role` and
+  whitespace). It records the Root checker's working-tree decisions (no
+  `--at-commit`) in `expected.json`, together with 11 queries on the real PEC
+  SCA-005/SCA-006, Piping SCA-011, Runtime SCA-003 and App SCA-APP-010 records.
+  `--check` reports drift.
   `amendment-reopen-parity.test.ts` materializes the same trees and compares
-  every decision field, reason text included. It skips a real case whose
-  records are absent.
+  every decision field, reason text included. It also checks that the App's
+  refusal codes plus the two Root-only codes equal the Python `REFUSAL_CODES`.
+  It skips a real case whose records are absent. In the first candidate the
+  test's repository-root path was one level short, so the real cases were
+  skipped silently; this revision corrects it, and a mutation that drops the
+  removal rule now fails the real PEC SCA-005 case as well as three fixtures.
 - App SPEC §4.3, work-graph FU1, DEL-07-04 MEMORY, `loop/LOOP_RECEIPTS.md`
   Receipt-267 and the tranche manifest
   `docs/governance_harness/tranche_manifests/APP-AMENDMENT-REOPEN-20260926.yaml`.
@@ -99,11 +119,15 @@ regeneration; the Root validators.
 ## Limits
 
 - The App runs no git process: no existing App pattern runs git, and this run
-  adds no process spawning. It therefore does not check that the approval SHA is
-  a reachable commit, that the group-3 `DECISION.md` exists at that commit, or
-  that the amendment records are committed. It reads the working-tree records,
-  so uncommitted edits to them are not detected. `write_status.sh` makes the git
-  checks and is the anchored check.
+  adds no process spawning. It therefore makes none of the Root checker's
+  anchored at-commit checks, which are Root-only:
+  - that the approval SHA is a reachable commit (`APPROVAL_SHA_UNREACHABLE`);
+  - that it is an ancestor of `HEAD` (`APPROVAL_SHA_NOT_ANCESTOR`);
+  - that every amendment record is read from that commit (`--at-commit`).
+
+  It reads the working-tree records, so uncommitted edits to them are not
+  detected, and its decision is unanchored. `write_status.sh` uses only the
+  at-commit mode and is the anchored check.
 - The actor is caller-asserted, as for the other human gates (REQ-005 live
   limit). An agent that supplies HUMAN, a well-formed SHA and an amendment whose
   records pass can reopen through the MCP tool, exactly as it can reach
@@ -111,7 +135,7 @@ regeneration; the Root validators.
 - The Git work-tree top level is found by the nearest `.git` directory or file.
   `GIT_DIR`, `GIT_CEILING_DIRECTORIES` and similar git discovery settings are
   not honoured.
-- The port follows the Root checker at `be76d5b9e`. A later Root change needs a
+- The port follows the Root checker at `5038f2554`. A later Root change needs a
   matching App change and a regenerated `expected.json`; `generate_expected.py
   --check` reports the drift.
 - The Runtime `status_transition` descriptor does not list `ruling` or

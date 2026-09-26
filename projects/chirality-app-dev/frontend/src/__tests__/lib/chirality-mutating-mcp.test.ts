@@ -316,10 +316,14 @@ describe('Chirality mutating MCP tools', () => {
       '**Current State:** IN_PROGRESS',
       '**Current State:** ISSUED'
     ).concat('- 2026-02-25 - State set to ISSUED (HUMAN)\n');
-    const statusPath = path.join(fixture.deliverablePath, '_STATUS.md');
+    // The amendment check reads <execution root>/_ScopeChange.
+    const execution = path.join(fixture.projectRoot, 'execution');
+    const deliverablePath = path.join(execution, 'PKG-05_Lifecycle', '1_Working', 'DEL-05-03_Lifecycle');
+    await mkdir(deliverablePath, { recursive: true });
+    const statusPath = path.join(deliverablePath, '_STATUS.md');
     await writeFile(statusPath, issued, 'utf8');
     await writeAmendmentRecords({
-      scopeChangeRoot: path.join(fixture.projectRoot, '_ScopeChange'),
+      scopeChangeRoot: path.join(execution, '_ScopeChange'),
       manifestBase: fixture.projectRoot,
       rows: [
         { AmendmentID: 'SCA-001', ActionSeq: '1', ActionType: 'MODIFY', EntityType: 'DELIVERABLE', EntityID: 'DEL-05-03', ScopeChanging: 'NO' }
@@ -327,7 +331,7 @@ describe('Chirality mutating MCP tools', () => {
     });
     const context = { projectRoot: fixture.projectRoot, sessionId, mode: 'workspaceWrite' as const };
     const base = {
-      deliverablePath: fixture.deliverablePath,
+      deliverablePath,
       targetState: 'IN_PROGRESS',
       date: '2026-02-26',
       approvalSha: 'abc1234'
@@ -347,8 +351,8 @@ describe('Chirality mutating MCP tools', () => {
     );
     expect(result.transition).toMatchObject({ from: 'ISSUED', to: 'IN_PROGRESS' });
     await expect(readFile(statusPath, 'utf8')).resolves.toContain(
-      '[reopened from ISSUED; amendment: SCA-001 (_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); ' +
-        'action: _ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv ActionSeq 1 MODIFY;'
+      '[reopened from ISSUED; amendment: SCA-001 (execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); ' +
+        'action: execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv ActionSeq 1 MODIFY;'
     );
   });
 
