@@ -401,7 +401,7 @@ Gate lineage (historical record; the current gates are listed above):
 
 ## Governance & agent harness
 
-Project-local agent rules: `AGENTS.md` (rewritten 2026-07-24, `D-PEC-59`; loop, record and Runtime-boundary sections amended 2026-09-25 under `D-PEC-94`).
+Project-local agent rules: `AGENTS.md` (rewritten 2026-07-24, `D-PEC-59`; loop, record and Runtime-boundary sections amended 2026-09-25 under `D-PEC-94`; the SCA-006 operational-reliance instruction tranche 2026-09-26; the Remaining paragraph replaced 2026-09-26 under `D-PEC-99`).
 Decomposition session ruled and closed 2026-07-24 (`D-PEC-60`, Gates 1–7
 accepted; `execution/_Decomposition/**` opened by its fence for the
 canonical working package). Directed-bootstrap amendment `SCA-001` closed
