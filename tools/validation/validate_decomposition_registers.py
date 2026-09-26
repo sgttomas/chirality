@@ -644,10 +644,10 @@ def check_cross_register(
             record_pkg = (record.get("PackageID") or "").strip()
             # With several homes, XRG-014 already reports the item; compare
             # only a single home so the same defect is not repeated per link.
-            if len(homes) == 1 and record_pkg and ledger_pkg != record_pkg:
+            if len(homes) == 1 and record_pkg and homes[0] != record_pkg:
                 findings.append(
                     Finding("XRG-004", paths["ledger"],
-                            f"{item_id} declares PackageID {ledger_pkg!r} but {deliverable_id} "
+                            f"{item_id} declares PackageID {homes[0]!r} but {deliverable_id} "
                             f"is in {record_pkg!r}", row_id=item_id)
                 )
             supports = split_list(record.get("SupportsObjectives"))

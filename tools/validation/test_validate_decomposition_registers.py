@@ -472,6 +472,20 @@ def test_package_home_is_exactly_one_known_package(tmp_path: Path) -> None:
     assert ids_for(report, "XRG-015") == ["SOW-003"]
 
 
+def test_single_home_is_compared_after_parsing(tmp_path: Path) -> None:
+    """XRG-004 compares the parsed home, so a stray separator is not a mismatch."""
+    execution_root = build_workspace(tmp_path)
+    ledger_path = execution_root / "_Decomposition" / "ScopeLedger.csv"
+    ledger = list(csv.DictReader(ledger_path.open(encoding="utf-8-sig")))
+    ledger[0]["PackageID"] = "PKG-01; "
+    write_csv(ledger_path, LEDGER_COLUMNS, ledger)
+    assert "XRG-004" not in codes(vdr.run(execution_root, families=("XRG",)))
+
+    ledger[0]["PackageID"] = "PKG-02;"
+    write_csv(ledger_path, LEDGER_COLUMNS, ledger)
+    assert codes(vdr.run(execution_root, families=("XRG",))).get("XRG-004") == 1
+
+
 def test_unknown_package_check_needs_a_deliverable_package_column(tmp_path: Path) -> None:
     """XRG-015 is suppressed when Deliverables.csv carries no PackageID column."""
     execution_root = build_workspace(tmp_path)

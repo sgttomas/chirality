@@ -3,8 +3,8 @@
 Load this profile only when a concordance run performs or verifies an
 authorized deliverable-format or representation migration. It governs
 reconciliation verification; production batching for the same migration is
-governed by `scope-of-work`'s own representation-migration resource. It adds to the
-[contract](contract.md) and [method](method.md); it does not apply to an
+governed by `scope-of-work`'s own representation-migration resource. It adds to
+the [contract](contract.md) and [method](method.md); it does not apply to an
 ordinary concordance run. The migration-specific validity clauses remain in
 the contract.
 
