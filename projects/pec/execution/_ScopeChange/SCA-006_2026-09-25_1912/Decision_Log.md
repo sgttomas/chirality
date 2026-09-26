@@ -168,7 +168,7 @@ unchanged, and no `_STATUS.md` or lifecycle changed. Hashes at preparation:
 | `projects/pec/docs/PRD.md` (v2.4) | `ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe` |
 | `projects/pec/AGENTS.md` (hunk approved) | `4400c4e97d5c9dfeda7a9a764b204ed14784c687e55e81bb04875323b6c7139c` |
 | tranche manifest `PEC-SCA006-OPERATIONAL-RELIANCE-20260926.yaml` | `2b29af181947ba0ed75cd83a286c56a2863802d1d6a7e5b3ca9ab82330cdee74` |
-| `RUN_SUMMARY.md` (question set §9) | `992d86d366f35493bb13b2402b6d6543acd9d76464b0eda8f2e02b811f03eacf` |
+| `RUN_SUMMARY.md` (question set §9) | `fd0f8a73a781a8db82d6b307d1b255e5e32df7cd66cb45cd5218e15c7e1e4ca2` |
 | `AGENTS_MD_AMENDMENT1_DIFF.md` | `0202158bb6d3232c3ccf411672e6f95e32bef8d15f272e96b8323087a40ac111` |
 | `Supersession_Map.csv` / `Post_Change_Coverage.json` | `010ce5c4…ab92` / `b9a068c0…09cf0` |
 | C4.3 review `CP3_EVIDENCE/C4_3_REVIEW.md` | `3caacea4d805a576fec0c00e6747cd5442e15a77dc51836bdbd42200c86a402d` |

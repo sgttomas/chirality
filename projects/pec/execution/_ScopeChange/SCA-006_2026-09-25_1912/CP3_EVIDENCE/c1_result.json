@@ -1,5 +1,5 @@
 {
- "changed_paths": 43,
+ "changed_paths": 46,
  "not_allowed": [],
  "hash_checks": 34,
  "hash_failures": [],
@@ -143,6 +143,11 @@
   },
   {
    "status": "A",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/CP3_EVIDENCE/C4_3_REVIEW.md",
+   "allowed": true
+  },
+  {
+   "status": "A",
    "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/CP3_EVIDENCE/apply_a1_a2.py",
    "allowed": true
   },
@@ -163,6 +168,11 @@
   },
   {
    "status": "A",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/CP3_EVIDENCE/c1_result.json",
+   "allowed": true
+  },
+  {
+   "status": "A",
    "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/CP3_EVIDENCE/c3_assert.py",
    "allowed": true
   },
@@ -174,6 +184,11 @@
   {
    "status": "A",
    "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/CP3_EVIDENCE/c5_completeness.py",
+   "allowed": true
+  },
+  {
+   "status": "A",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/CP3_EVIDENCE/c5_result.json",
    "allowed": true
   },
   {

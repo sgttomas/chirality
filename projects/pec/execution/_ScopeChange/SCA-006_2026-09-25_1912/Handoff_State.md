@@ -300,7 +300,7 @@ The owner (checkpoint 3), then HELP_HUMAN (A6), then the Lane B owners under the
 
 ### Lane C results and snapshot hashes (final rerun at the merged head)
 
-- **C1:** `CP3_EVIDENCE/c1_containment.py` over `git diff --name-status origin/main HEAD` (after the `f90320c1d` merge), exit 0. 43 changed paths, all allowed; 34 hash checks pass; no deletion.
+- **C1:** `CP3_EVIDENCE/c1_containment.py` over `git diff --name-status origin/main HEAD` (after the `f90320c1d` merge), exit 0. Every changed path allowed (46 at the final rerun, before the return and verifier files; `CP3_EVIDENCE/c1_result.json`); 34 hash checks pass; no deletion.
 - **C2:** 0 ERROR; 2 DRB-008 (planned); 26 XRG-013 (pre-existing, `D-GOV-48`). Closure: 111 edges, 0 SCCs.
 - **C3:** 31/31 PASS (`CP3_EVIDENCE/c3_result.json`).
 - **C4:** `COV_SCA006_POSTCHANGE_2026-09-26_0051`, `WARNINGS` (0 BLOCKER).
