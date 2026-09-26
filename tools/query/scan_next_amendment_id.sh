@@ -25,7 +25,7 @@ SCOPE_ROOT="${1:?Usage: $0 <SCOPE_CHANGE_ROOT> [PREFIX]}"
 PREFIX="${2:-}"
 
 if [ -n "$PREFIX" ]; then
-  if ! echo "$PREFIX" | grep -qE '^[A-Z][A-Z0-9]*$'; then
+  if [[ ! "$PREFIX" =~ '^[A-Z][A-Z0-9]*$' ]]; then
     echo "Invalid PREFIX: $PREFIX (expected an uppercase letter, then uppercase letters or digits)" >&2
     exit 2
   fi

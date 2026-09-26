@@ -12,7 +12,8 @@
 4. Resolve and parse the accepted action register:
    - Resolve the accepted checkpoint-group-2 decision snapshot (the amendment-qualified pointer `{SCOPE_CHANGE_ROOT}/{AMENDMENT_ID}_GROUP-2_AUTHORIZED.md`, or the latest `checkpoint_snapshots/{AMENDMENT_ID}_GROUP-2_*/` folder it names). Use the action register bound in its `ACCEPTED_MANIFEST.csv` and verify the recorded SHA-256.
    - Current runs bind `Amendment_Actions.csv`. A historical run may bind another name (for example `Amendment_Actions_CP2.csv`); use the bound file and record its name. `Intake_Actions.csv` holds group-1 `PROPOSED` rows and is never the register.
-   - Fallback for a run with no group-2 checkpoint snapshot (for example a gate-era run): use `Amendment_Actions.csv` in the amendment snapshot and record the fallback as an OBSERVATION.
+   - The register is the single manifest row whose path basename matches `Amendment_Actions*.csv`; none or more than one is `FAILED_INPUTS`.
+   - Fallback only for a run with no `checkpoint_snapshots/` at all (for example a gate-era run): use `Amendment_Actions.csv` in the amendment snapshot and record the fallback as an OBSERVATION. A run with a group-1 snapshot but no group-2 snapshot is `FAILED_INPUTS`.
    - If the bound register is missing, malformed or hash-mismatched: `FAILED_INPUTS`.
    - Later passes use this resolved register wherever this method names `Amendment_Actions.csv`.
 5. Read `RUN_SUMMARY.md` from the snapshot for downstream rerun recommendations.
@@ -60,7 +61,7 @@ For each row in `Amendment_Actions.csv`, verify the action was executed:
 **REMOVE actions:**
 - Confirm the decomposition document's deliverable row is annotated with `[RETIRED — {AMENDMENT_ID}]`.
 - Confirm `_STATUS.md` history contains an appended line recording the retirement under the amendment ID.
-- Confirm the retirement left the lifecycle state unchanged: RETIRED is not a project lifecycle value (`docs/SPEC.md` §3.2). If a historical run's accepted group-2 decision explicitly authorized a hand-authored `RETIRED` current state, verify against that decision and cite it rather than reporting a discrepancy.
+- Confirm the retirement left the lifecycle state unchanged: RETIRED is not a project lifecycle value (`docs/SPEC.md` §3.2 lists no such state, and its historical-product extension says RETIRED is never an active project lifecycle value). If a historical run's accepted group-2 decision explicitly authorized a hand-authored `RETIRED` current state, verify against that decision and cite it rather than reporting a discrepancy.
 - Confirm the deliverable folder still exists (non-destructive removal).
 
 **MODIFY actions:**

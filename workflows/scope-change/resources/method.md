@@ -57,7 +57,9 @@ preceding accepted snapshot; it does not rely on the mutable preview alone.
      current pre-change state. Record the reused audit path, the compared input
      hashes and the reuse in `Brief.md` or `Impact_Assessment.md`.
 6) Write the parsed actions to `Intake_Actions.csv` with every row
-`Status = PROPOSED`. It is intake evidence, not the accepted register. Carry the
+`Status = PROPOSED`. A run whose group-1 snapshot already binds `Amendment_Actions.csv`
+as its intake keeps that file unchanged and writes its group-2 register under a
+distinct name (for example `Amendment_Actions_CP2.csv`). It is intake evidence, not the accepted register. Carry the
 parsed action list, validation results, errors, warnings, unknowns, and
 pre-change coverage into the impact assessment. Do not ask for a separate
 intake decision.
@@ -234,7 +236,7 @@ Based on the approved amendment, produce a propagation plan **limited to the app
 2) **For `REMOVE` actions**
    - `PROJECT/SOFTWARE`:
      - Annotate the decomposition row `[RETIRED — {AMENDMENT_ID}]`.
-     - Read the deliverable `_STATUS.md` and sibling `_MEMORY.md` / `MEMORY.md` when present, then plan one appended `_STATUS.md` history line recording the retirement under the amendment, for example `- {YYYY-MM-DD} — Retired under {AMENDMENT_ID}; lifecycle state unchanged ({ACTOR})`. Leave `**Current State:**` unchanged: RETIRED is never an active project lifecycle value (`docs/SPEC.md` §3.2), and `tools/scaffolding/write_status.sh` is not used for retirement.
+     - Read the deliverable `_STATUS.md` and sibling `_MEMORY.md` / `MEMORY.md` when present, then plan one appended `_STATUS.md` history line recording the retirement under the amendment, for example `- {YYYY-MM-DD} — Retired under {AMENDMENT_ID}; lifecycle state remains {CURRENT_STATE} ({ACTOR})`. Leave `**Current State:**` unchanged (`docs/SPEC.md` §3.2 lists no such state, and its historical-product extension says RETIRED is never an active project lifecycle value), and `tools/scaffolding/write_status.sh` is not used for retirement.
      - Do **not** delete the folder or any files
      - If a `PACKAGE` is being retired, enumerate every child deliverable and Scope Ledger row being retired or remapped in the same amendment
    - `DOMAIN`:
@@ -400,7 +402,7 @@ under its owning checkpoint rules before proceeding.
        accepted group-2 decision deferred or excluded (cite that decision and
        item), or new. Do not repair or hide an expected consequence; handle a
        new finding on its own merits. Report both the raw `AuditState` over all
-       findings and the adjusted `AuditState` excluding `EXPECTED_CONSEQUENCE`
+       findings (the `AuditState` field) and the `AdjustedAuditState` excluding `EXPECTED_CONSEQUENCE`
        findings, with the classification table
      - `PROJECT/SOFTWARE` specific:
        - no package change left deliverables or Scope Ledger rows parentless

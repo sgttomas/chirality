@@ -37,7 +37,7 @@ Defaults (only when not otherwise specified by the human):
   amendment and propagation plan; and (3) audited poststate acceptance. Internal
   analysis, validation, remediation, and derivative-quality evidence do not add
   prompts.
-- **Non-destructive.** Removed entities are retired or legacy-annotated; they are not silently erased. For `PROJECT/SOFTWARE`, a removed deliverable's decomposition row is annotated `[RETIRED — {AMENDMENT_ID}]` and its `_STATUS.md` gains an appended history line recording the retirement under the amendment; its lifecycle state is left unchanged, because RETIRED is never an active project lifecycle value (`docs/SPEC.md` §3.2), and `tools/scaffolding/write_status.sh` is not used for it. Folders and files are never deleted. For `DOMAIN`, Domain Ledger rows and change records are preserved even when entities move out of active scope.
+- **Non-destructive.** Removed entities are retired or legacy-annotated; they are not silently erased. For `PROJECT/SOFTWARE`, a removed deliverable's decomposition row is annotated `[RETIRED — {AMENDMENT_ID}]` and its `_STATUS.md` gains an appended history line recording the retirement under the amendment; its lifecycle state is left unchanged (`docs/SPEC.md` §3.2 lists no such state, and its historical-product extension says RETIRED is never an active project lifecycle value), and `tools/scaffolding/write_status.sh` is not used for it. Folders and files are never deleted. For `DOMAIN`, Domain Ledger rows and change records are preserved even when entities move out of active scope.
 - **Impact before action.** The human must review and accept the impact assessment before any file is modified.
 - **No direct collateral writes.** Except for an authoritative carrier the accepted checkpoint-group-2 write boundary names exactly (see `ALLOWED_PROPAGATION_WRITES`), WORKING_ITEMS does not directly modify deliverable scope carriers (`ScopeOfWork.md`, or the legacy four-document set only where a deliverable still pins it), `Dependencies.csv`, estimates, schedules, generated knowledge artifacts, or other downstream truth. When a `DOMAIN` amendment affects KTY-local content or metadata needs, WORKING_ITEMS must dispatch bounded TASK workflows, collect their evidence, update SCA-owned closure surfaces, and block closure when required evidence is missing. WORKING_ITEMS never edits active `Scoping.md`, `KA-*.md`, `_CONTEXT.md`, `_STATUS.md`, or `_REFERENCES.md` inside KTY folders itself.
 - **Derivative packages are downstream only.** `DERIVATIVE_PACKAGES` may consume accepted decomposition truth, but they do not redefine it and they are never updated in place by WORKING_ITEMS except for the amendment snapshot artifacts WORKING_ITEMS itself owns.
@@ -289,7 +289,11 @@ Historical runs remain readable as written. A run that predates this layout may
 carry its accepted register under another name (for example
 `Amendment_Actions_CP2.csv`, bound in its group-2 `ACCEPTED_MANIFEST.csv`) or
 gate-numbered handoff files; consumers resolve the register through the
-accepted manifest and do not rewrite those runs.
+accepted manifest and do not rewrite those runs. A run whose group-1 snapshot
+already binds `Amendment_Actions.csv` as its intake keeps that file unchanged
+and writes its group-2 register under a distinct name (for example
+`Amendment_Actions_CP2.csv`), bound in the group-2 `ACCEPTED_MANIFEST.csv` and
+named in `Handoff_State.md`.
 
 ### `RUN_SUMMARY.md` / `Handoff_State.md` state fields
 
@@ -302,7 +306,8 @@ The active snapshot must expose these fixed state fields across `RUN_SUMMARY.md`
 | `ContentRemediationState` | `NOT_REQUIRED` / `PENDING` / `COMPLETE` / `BLOCKED` / `DEFERRED` | Rollup state for SCA-owned KTY content remediation manifest rows |
 | `DownstreamRerunState` | `NOT_REQUIRED` / `FROZEN` / `IN_PROGRESS` / `COMPLETE` / `BLOCKED` | Whether downstream reruns are pending or complete |
 | `MetadataAlignmentState` | `NOT_REQUIRED` / `NOT_STARTED` / `IN_PROGRESS` / `COMPLETE` / `BLOCKED` | Whether post-regeneration metadata alignment is complete |
-| `AuditState` | `NOT_RUN` / `WARNINGS` / `NON_BLOCKING_PASS` / `BLOCKED` | Current audit / verification state |
+| `AuditState` | `NOT_RUN` / `WARNINGS` / `NON_BLOCKING_PASS` / `BLOCKED` | Current audit / verification state over all findings (raw) |
+| `AdjustedAuditState` | same values | Audit state excluding findings classified `EXPECTED_CONSEQUENCE`; recorded with that classification table |
 | `ReadyForNextPhase` | `NO` / `REGEN_ONLY` / `PHASE7_REVIEW` / `PUBLICATION_GATED` / `NOT_APPLICABLE` | Highest phase the current artifact state actually supports; `NOT_APPLICABLE` when the variant has no such phase ladder (for example `PROJECT/SOFTWARE`) |
 
 ### KTY Remediation Closure Rules

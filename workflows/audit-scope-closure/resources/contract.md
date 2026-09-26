@@ -32,12 +32,12 @@ A scope closure audit is valid when:
 - The amendment snapshot was located and its accepted action register was resolved, hash-checked where bound, and parsed.
 - `Handoff_State.md` and later handoff records for the amendment were read, and every `DEFERRED_BY_HUMAN`, `NOT_ACTIVATED` or `SUPERSEDED_BY:<ref>` status cites its deciding record.
 - `INPUT_MANIFEST.sha256` records the hash of every input read.
-- Every row in `Amendment_Actions.csv` was checked against filesystem state (Pass 1).
+- Every row in the resolved accepted register was checked against filesystem state (Pass 1).
 - Every recommended downstream rerun was checked for evidence of completion (Pass 2).
 - Orphaned reference detection covered all RETIRED entity IDs across all `Dependencies.csv` files (Pass 3).
 - Decomposition document consistency was verified against the amendment record (Pass 4).
 - Context metadata for every affected deliverable was checked against the decomposition (Pass 5).
-- Supersession binding completeness was verified for all source-affecting actions (Pass 6) — this pass runs whenever any `Amendment_Actions.csv` row has `SupersessionBindingPresent = YES`, regardless of whether supersession artifacts are present on disk.
+- Supersession binding completeness was verified for all source-affecting actions (Pass 6) — this pass runs whenever any row of the resolved accepted register has `SupersessionBindingPresent = YES`, regardless of whether supersession artifacts are present on disk.
 - For `DECOMP_VARIANT = DOMAIN`, KTY content remediation state was verified against `KTY_Remediation_Manifest.csv` when present or required (Pass 7).
 - For `DOMAIN`, `.Archive/` scanner exclusion was checked against downstream allowlist, section-map, regeneration-input, and publication-input surfaces where present.
 - For `DOMAIN`, decomposition integrity was verified through `validate_domain_decomposition_integrity.py`, and supersession-map accumulation was verified through `accumulate_supersession_map.py` when supersession inputs were in scope.
@@ -108,7 +108,7 @@ inputs or evidence binding; the superseded snapshot's bytes stay unchanged and
 
 | Column | Type | Description |
 |---|---|---|
-| `IssueID` | string | `SCA-ISS-{NNN}` sequential within this audit. Historical logs using `SCC-{NNN}` remain readable as written; the new prefix avoids collision with SCC resolution case IDs |
+| `IssueID` | string | `ASC-ISS-{NNN}` sequential within this audit. Historical logs using `SCC-{NNN}` remain readable as written; the prefix avoids collision with SCC resolution case IDs and with project-qualified amendment IDs |
 | `Pass` | integer | Which audit pass found the issue (1–7) |
 | `Category` | enum | `ACTION_NOT_EXECUTED`, `DOWNSTREAM_NOT_RUN`, `ORPHANED_REFERENCE`, `DECOMP_INCONSISTENCY`, `METADATA_STALE`, `COVERAGE_REGRESSION`, `SUPERSESSION_INCOMPLETE`, `KTY_CONTENT_REMEDIATION`, `ARCHIVE_SCANNER_LEAK` |
 | `Severity` | enum | `CRITICAL`, `MAJOR`, `MINOR`, `OBSERVATION` |
