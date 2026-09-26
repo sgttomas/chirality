@@ -18,6 +18,12 @@ the successor's requirements or structure. A bounded reference specification
 can instead be the complete requested result. Establish the intended outcome
 from the assignment before choosing the depth of work.
 
+For a new product PRD formed from intent and supplied sources without
+examining a reference project, use the `software-prd` workflow. Both
+workflows use checkpoints A and B and hand an accepted basis to
+`software-decomp` in the same form; the `software-prd` contract resource sets
+out a decision record and handoff layout that a successor run may also use.
+
 ## Frame the undertaking and its basis
 
 Recover the human's purpose, the reference project, intended users and

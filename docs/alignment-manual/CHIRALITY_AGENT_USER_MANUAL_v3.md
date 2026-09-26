@@ -206,7 +206,7 @@ For a new undertaking, HELPS_HUMANS helps turn intention into a concrete account
 
 Prepare a source map before substantial drafting. For each significant statement, establish what the source may support: a governing requirement, an accepted decision, observed behavior, a proposed direction, or background explanation. Read the actual source where its meaning matters. A title, search result, extracted snippet, or old summary may identify the material without establishing the claim. Keep unresolved conflicts visible instead of blending incompatible positions into confident prose. [DIRECTIVE §§2.4–2.5][directive] · [CONTRACT K-PROV-1, K-INVENT-1, K-CONFLICT-1][contract]
 
-No `software-prd` workflow is registered in the Root catalog at this manual's source basis. Conduct PRD formation through the authorized design brief and adopted project method, or prepare a reusable method through `create-workflow` if asked. The registered `dbm-publisher` has a different purpose: publication from an accepted DOMAIN root, with its own admission and human decisions. Its source discipline can inform other writing, but its registration supplies no generic PRD method or automatic prerequisite. Establish availability and applicability from the effective catalog and actual package. [Workflow index][workflow-index] · [Design Basis Memorandum publication][dbm-publisher] · [Runtime contract][runtime-contract]
+The Root catalog includes `software-prd` for forming a new software PRD: six working steps with two grouped human checkpoints, A (product direction and basis for authoring) and B (the independently examined PRD and passage to FEED), ending in a separate decision record and a handoff that `software-decomp` group 1 records as its accepted basis. For a successor PRD formed by examining an existing project, use `reverse-engineer-software`, which hands off in the same form. Selecting either remains optional unless the brief or an adopted project method requires it. The registered `dbm-publisher` has a different purpose: publication from an accepted DOMAIN root, with its own admission and human decisions. Its source discipline can inform other writing, but its registration supplies no generic PRD method or automatic prerequisite. Establish availability and applicability from the effective catalog and actual package. [Software PRD][software-prd] · [Reverse engineer software][reverse-engineer-software] · [Workflow index][workflow-index] · [Design Basis Memorandum publication][dbm-publisher] · [Runtime contract][runtime-contract]
 
 Before decomposition, identify the accepted basis and exact applicable protocol. The repository contains `project-decomp` for project scope, `software-decomp` for software, and `domain-decomp` for knowledge domains. Their current packages express grouped checkpoints, while the current decomposition standard explicitly retains a prospective-status warning and identifies the earlier ratified edition. Use the project's adopted edition and recorded authority. Do not silently substitute the latest package into an in-flight accepted method. [Decomposition standard][decomp-standard] · [Project decomposition][project-decomp] · [Software decomposition][software-decomp] · [Domain decomposition][domain-decomp]
 
@@ -723,7 +723,7 @@ The version and repository revision identify this guide's documentation basis. T
 |---|---|
 | Runtime entry, roles, authority, permission intersections | [Root entry][root-entry], [role registry][registry], [Runtime contract][runtime-contract], [CONTRACT][contract] |
 | Paths, lifecycle, dependency representation | [SPEC][spec], [TYPES][types], [cycle doctrine][cycles] |
-| Formation and setup | [decomposition standard][decomp-standard], [workflow index][workflow-index], [project setup][project-setup] |
+| Formation and setup | [software PRD][software-prd], [decomposition standard][decomp-standard], [workflow index][workflow-index], [project setup][project-setup] |
 | Production and examination | [Scope-of-Work standard][sow-standard], [software profile][software-profile], [concordance method][concordance] |
 | Repeated development | [v7 route and adoption boundary](#v7-adoption), [construct local graph][construct-graph], [bounded reconciliation][bounded-reconciliation], each project's live loop |
 | Run indexing and conditional intake | [Runs entry](#memory-runs), [Task Management](#task-management), [human manual §5.6][human-manual] |
@@ -755,6 +755,8 @@ The human-facing manual uses **reckoning** for agent interpretation, comparison,
 [decomp-standard]: ../DECOMPOSITION_STANDARD.md
 [project-decomp]: ../../workflows/project-decomp/WORKFLOW.md
 [software-decomp]: ../../workflows/software-decomp/WORKFLOW.md
+[software-prd]: ../../workflows/software-prd/WORKFLOW.md
+[reverse-engineer-software]: ../../workflows/reverse-engineer-software/WORKFLOW.md
 [domain-decomp]: ../../workflows/domain-decomp/WORKFLOW.md
 [project-setup]: ../../workflows/project-setup/WORKFLOW.md
 [setup-contract]: ../../workflows/project-setup/resources/contract.md

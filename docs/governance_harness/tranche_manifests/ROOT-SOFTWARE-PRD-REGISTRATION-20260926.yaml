@@ -1,0 +1,82 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-SOFTWARE-PRD-REGISTRATION-20260926
+title: Register the software-prd workflow as a core bundled workflow
+date: '2026-09-26'
+basis: 6281273fa7bd96b66703009e6325db2fa74815b3
+instruction_surface_paths:
+  - workflows/software-prd/WORKFLOW.md
+  - workflows/software-prd/execution.json
+  - workflows/software-prd/resources/contract.md
+  - workflows/software-prd/resources/method.md
+  - workflows/software-prd/resources/product-questions.md
+  - workflows/software-prd/resources/records-and-review.md
+  - workflows/reverse-engineer-software/WORKFLOW.md
+  - workflows/software-decomp/resources/contract.md
+  - workflows/catalog.yaml
+  - workflows/index.json
+  - tools/validation/build_workflow_index.py
+  - tools/validation/test_workflow_catalog.py
+  - docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.md
+  - docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html
+  - docs/alignment-manual/README.md
+  - plans/proposals/Software_PRD_Workflow_Draft_v1/README.md
+  - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_SOFTWARE_PRD_REGISTRATION.md
+  - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_SOFTWARE_PRD_REGISTRATION.md
+  - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_SOFTWARE_PRD_REGISTRATION.md
+  - projects/pec/execution/_Coordination/NOTICE_2026-09-26_SOFTWARE_PRD_REGISTRATION.md
+  - docs/governance_harness/tranche_manifests/ROOT-SOFTWARE-PRD-REGISTRATION-20260926.yaml
+m2_gate:
+  authorization: >-
+    The repository owner directed on 2026-09-26 that the deferred item "needs
+    your attention": register the software-prd workflow draft held at
+    plans/proposals/Software_PRD_Workflow_Draft_v1/. This is the separate
+    library-maintenance authority the draft's README required before a bundled
+    registration. The owner then decided on 2026-09-26: "You don't need to
+    call those two workflows "unproven" they can become core", and "A, B, C
+    and E all as recommended". The adopted C decisions for software-prd are:
+    place it in the catalog's core navigation next to software-decomp (core
+    navigation only, not a central workflow and not added to the Root
+    AGENTS.md table); limit compatible roles to HELP_HUMAN, HELPS_HUMANS and
+    WORKING_ITEMS, excluding TASK; name software-prd in software-decomp's
+    contract Inputs as a producer of accepted PRDs alongside
+    reverse-engineer-software; confirm the default locations RUN_ROOT =
+    {WORKING_ROOT}/planning/prd/<run-id>/ and PRD_TARGET = docs/PRD.md; and
+    record checkpoint A as a note in PRD_RECORD.md with no required snapshot,
+    so that only checkpoint B is always snapshotted. The tranche revises the
+    draft to current workflow conventions, registers it in Root's bundled
+    catalog with an execution.json, updates the index builder's fixed core
+    navigation list and its test, cross-references reverse-engineer-software,
+    makes the one-line software-decomp Inputs edit, and updates the agent
+    manual's statement that no software-prd is registered.
+  authorized_by: Ryan Tufts (repository owner sgttomas, current Claude Code conversation)
+  authorization_date: '2026-09-26'
+  integration_owner: >-
+    The Claude Code parent session integrating on branch
+    claude/brave-goodall-wj3hok under the standing Git authorization of
+    2026-09-12
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_SOFTWARE_PRD_REGISTRATION.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_SOFTWARE_PRD_REGISTRATION.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_SOFTWARE_PRD_REGISTRATION.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-26_SOFTWARE_PRD_REGISTRATION.md
+  rationale: >-
+    The App bundles the Root workflow library and shows core navigation; its
+    authority corpus and _REFERENCES rows pin software-decomp files, so the
+    one-line software-decomp contract edit drifts those pins. Runtime owns
+    the effective catalog and packaging path. Piping and PEC are software
+    loops that form and revise PRDs and consume software-decomp. PEC is being
+    redeveloped and the owner is deferring action there; its notice is
+    recorded without requesting adoption. Each receiving loop retains its own
+    adoption and pin decisions.
+scope_limits:
+  - Register software-prd as a bundled workflow in core navigation, placed before software-decomp, without adding it to centralWorkflowNames or the Root AGENTS.md table.
+  - Add execution.json limiting compatible roles to HELP_HUMAN, HELPS_HUMANS and WORKING_ITEMS, with no tool restrictions and no helper tools.
+  - Update the fixed core navigation list in tools/validation/build_workflow_index.py and the catalog test, without changing the central set.
+  - Add a one-paragraph cross-reference to reverse-engineer-software, and a minimal edit to software-decomp's contract Inputs naming software-prd as a producer of accepted PRDs.
+  - Leave the draft under plans/proposals/ in place as history, adding only a registration note to its README.
+  - Update the agent manual v3 formation paragraph, navigation row and link references minimally, and regenerate its HTML with the recorded basis.
+  - Do not execute software-prd, create or accept a PRD, run decomposition, or release a product.
