@@ -10,10 +10,12 @@ rows (human declarations and their `dependency-extract` mirrors) with their
 field values unchanged: the local files are the dependency evidence
 (docs/SPEC.md §5.4), so a declaration is never dropped by a rewrite from the
 aggregate. The kept rows are written under the output header, so column order,
-quoting and empty cells for columns they lacked follow that header. They are
-filtered by the same statuses as the aggregate rows (ACTIVE and CANDIDATE, or
-ACTIVE only with --canonical-output); a declared row with another status, such
-as a RETIRED mirror of a withdrawn declaration, is set aside and counted.
+quoting and empty cells for columns they lacked follow that header. By
+default every local declared row is kept whatever its Status, including a
+RETIRED mirror of a withdrawn declaration, which dependency-extract never
+deletes. With --canonical-output only ACTIVE declared rows are kept, so the
+register holds only canonical ACTIVE rows; the others are set aside and
+counted.
 Where the aggregate carries a row with the same DependencyID, the local
 declared row is kept and the difference is reported.
 
@@ -66,20 +68,25 @@ def merge_declared_rows(
     rows: list[dict[str, str]],
     local_header: list[str],
     local_rows: list[dict[str, str]],
-    statuses: set[str] | frozenset[str] = frozenset(MATERIALIZED_STATUSES),
+    statuses: set[str] | frozenset[str] | None = None,
 ) -> tuple[list[str], list[dict[str, str]], list[dict[str, str]], list[str], list[dict[str, str]]]:
     """Keep the local register's `Origin=DECLARED` rows in a rewrite from the aggregate.
 
-    Only declared rows whose `Status` is in `statuses` (the materialized
-    statuses) are kept; the others are set aside. Returns the output header
+    With `statuses` None (the default mode) every declared row is kept,
+    whatever its `Status`. With a status set (`--canonical-output`: ACTIVE),
+    only declared rows whose `Status` is in it are kept and the others are set
+    aside. Returns the output header
     (the aggregate header plus any local columns the kept rows need), the rows
     to write, the kept declared rows, the DependencyIDs where an aggregate row
     with different content was set aside for the local declared row with the
     same ID, and the declared rows set aside by status.
     """
     all_declared = [row for row in local_rows if row.get("Origin", "").strip() == DECLARED_ORIGIN]
-    declared = [row for row in all_declared if row.get("Status", "").strip() in statuses]
-    set_aside = [row for row in all_declared if row.get("Status", "").strip() not in statuses]
+    if statuses is None:
+        declared, set_aside = all_declared, []
+    else:
+        declared = [row for row in all_declared if row.get("Status", "").strip() in statuses]
+        set_aside = [row for row in all_declared if row.get("Status", "").strip() not in statuses]
     if not declared:
         return header, rows, [], [], set_aside
     by_id = {row.get("DependencyID", "").strip(): row for row in declared}
@@ -542,7 +549,7 @@ def materialize_local_dependencies(
 
         local_header, local_rows = read_local_register(csv_path)
         out_header, out_rows, kept_declared, collisions, set_aside = merge_declared_rows(
-            header, rows, local_header, local_rows, materialized_statuses
+            header, rows, local_header, local_rows, CANONICAL_MATERIALIZED_STATUSES if canonical_output else None
         )
         write_dependency_csv(csv_path, out_header, out_rows, dry_run=dry_run)
         pointer_action = ""
@@ -627,7 +634,7 @@ def render_console(summary: dict[str, object]) -> str:
         f"Missing execution paths: {summary['missing_execution_path_count']}",
         f"Rows materialized: total={summary['total_rows']} active={summary['total_active_rows']} candidate={summary['total_candidate_rows']}",
         f"Local Origin=DECLARED rows preserved: {summary['total_preserved_declared_rows']}",
-        f"Local Origin=DECLARED rows set aside by status: {summary['total_set_aside_declared_rows']}",
+        f"Local Origin=DECLARED rows set aside by status (--canonical-output only): {summary['total_set_aside_declared_rows']}",
         f"DeclaredIdCollisions: {summary['total_declared_id_collisions']}",
         f"Canonical output: {summary['canonical_output']} canonical_findings={summary['canonical_finding_count']}",
         f"Pointer refresh: {summary['refresh_pointers']}",
@@ -639,8 +646,8 @@ def render_console(summary: dict[str, object]) -> str:
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
-            "Materialize local Dependencies.csv mirrors from an aggregate DAG. Local Origin=DECLARED rows with a "
-            "materialized status are kept with their field values unchanged."
+            "Materialize local Dependencies.csv mirrors from an aggregate DAG. Local Origin=DECLARED rows are kept "
+            "with their field values unchanged, whatever their Status (ACTIVE only with --canonical-output)."
         )
     )
     parser.add_argument(
@@ -665,7 +672,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         action="store_true",
         help=(
             "Materialize only canonical ACTIVE rows, from the aggregate and among the kept local Origin=DECLARED "
-            "rows, and report canonical validation findings."
+            "rows (other declared rows are set aside and listed), and report canonical validation findings."
         ),
     )
     parser.add_argument("--dry-run", action="store_true")

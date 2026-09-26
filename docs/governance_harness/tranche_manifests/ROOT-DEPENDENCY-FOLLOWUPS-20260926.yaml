@@ -123,9 +123,11 @@ rationale: >-
   the heading, type_from=section_heading, IMPLICIT/MEDIUM under a legacy
   informational downstream heading, which dependency-extract now states).
   The materializer keeps local declared rows with their field values
-  unchanged, re-serialized under the output header, only when their status
-  is materialized (ACTIVE only with --canonical-output), sets the others
-  aside and counts them, and prints the collision total. SPEC section 5.3
+  unchanged, re-serialized under the output header. By default it keeps
+  every declared row whatever its Status, including RETIRED mirrors, which
+  dependency-extract never deletes; with --canonical-output it keeps only
+  ACTIVE declared rows and sets the others aside and lists them. It prints
+  the collision and set-aside totals. SPEC section 5.3
   states that a declared entry without a required maturity uses the
   project-setup Phase 1.3 default threshold, and review Gate 2 item 5
   applies the same rule. (5) SPEC section

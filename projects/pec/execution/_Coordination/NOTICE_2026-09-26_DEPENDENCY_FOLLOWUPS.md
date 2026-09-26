@@ -16,7 +16,7 @@ Owner-directed Root tranche `ROOT-DEPENDENCY-FOLLOWUPS-20260926` (manifest `docs
    - Human-owned, legacy-headed and unrecognized sections keep their text unchanged. Only a blank separator line may be added after one when a missing section is inserted next to it.
    - A missing human-owned section is added as a `TBD` placeholder (mode `TBD`, declared lists `TBD`) and never filled. A missing file gets the §5.2 skeleton.
    - Rewriting `Dependencies.csv` from the aggregate DAG now keeps the local `Origin=DECLARED` rows with their field values unchanged. They are re-serialized under the output header, so column order, quoting and empty trailing cells follow that header.
-   - Only declared rows with a status the run materializes are kept: `ACTIVE` and `CANDIDATE`, or `ACTIVE` only with `--canonical-output`. Other declared rows, such as `RETIRED` mirrors of withdrawn declarations, are set aside and listed per deliverable as `SetAsideDeclaredRows`.
+   - By default every local declared row is kept whatever its `Status`, including `RETIRED` mirrors of withdrawn declarations, which `dependency-extract` never deletes. Only with `--canonical-output` are the kept declared rows limited to `ACTIVE`; the others are then set aside and listed per deliverable as `SetAsideDeclaredRows`.
    - Where an aggregate row has the same `DependencyID`, the local declared row is kept and the collision is listed as `DeclaredIdCollisions`. The console summary prints the totals of both.
    - The register section's authority statement now gives the D-GOV-49 reading: the local files are the evidence, and an accepted version governs only while it is current.
 4. **Blocker and closure tools.**

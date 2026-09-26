@@ -322,24 +322,24 @@ def test_materializer_keeps_local_declared_rows_when_rewriting_csv(tmp_path: Pat
     assert header == REQUIRED_COLUMNS + ["LocalExtension"]
     by_id = {row["DependencyID"]: row for row in rows}
     # Aggregate rows are written; the stale extracted row is replaced as before.
-    # The retired declared row is set aside: only materialized statuses are written.
-    assert sorted(by_id) == ["DAG-001-E0001", "DEP-01-01-001", "DEP-01-01-002"]
-    # Kept local declared rows (mirror and direct) keep their field values, including extension columns.
-    for row in (mirror, direct):
+    # In the default mode every local declared row is kept, including the retired mirror.
+    assert sorted(by_id) == ["DAG-001-E0001", "DEP-01-01-001", "DEP-01-01-002", "DEP-01-01-003"]
+    # Kept local declared rows keep their field values, including extension columns.
+    for row in (mirror, direct, retired):
         assert by_id[row["DependencyID"]] == {column: row.get(column, "") for column in header}
     assert by_id["DEP-01-01-002"]["Statement"] == "declared directly in the CSV"
     item = summary["written"][0]
-    assert item["PreservedDeclaredRows"] == 2
-    assert item["SetAsideDeclaredRows"] == ["DEP-01-01-003"]
+    assert item["PreservedDeclaredRows"] == 3
+    assert item["SetAsideDeclaredRows"] == []
     assert item["DeclaredIdCollisions"] == ["DEP-01-01-002"]
-    assert summary["total_preserved_declared_rows"] == 2
-    assert summary["total_set_aside_declared_rows"] == 1
+    assert summary["total_preserved_declared_rows"] == 3
+    assert summary["total_set_aside_declared_rows"] == 0
     assert summary["total_declared_id_collisions"] == 1
     console = render_console(summary)
     assert "DeclaredIdCollisions: 1" in console
-    assert "Local Origin=DECLARED rows set aside by status: 1" in console
+    assert "Local Origin=DECLARED rows set aside by status (--canonical-output only): 0" in console
     pointer = (unit / "_DEPENDENCIES.md").read_text(encoding="utf-8")
-    assert "- **Rows:** 3 total; 3 ACTIVE; 0 CANDIDATE." in pointer
+    assert "- **Rows:** 4 total; 3 ACTIVE; 0 CANDIDATE." in pointer
 
     # A rerun keeps the same bytes.
     before = (unit / "Dependencies.csv").read_bytes()
@@ -379,6 +379,7 @@ def test_canonical_output_keeps_only_active_local_declared_rows(tmp_path: Path) 
     assert ids == ["DAG-001-E0001", "DEP-01-01-001"]
     assert summary["written"][0]["SetAsideDeclaredRows"] == ["DEP-01-01-002", "DEP-01-01-003"]
 
+    # The default mode keeps every local declared row, whatever its Status.
     summary, ids = run(canonical=False)
-    assert ids == ["DAG-001-E0001", "DEP-01-01-001", "DEP-01-01-002"]
-    assert summary["written"][0]["SetAsideDeclaredRows"] == ["DEP-01-01-003"]
+    assert ids == ["DAG-001-E0001", "DEP-01-01-001", "DEP-01-01-002", "DEP-01-01-003"]
+    assert summary["written"][0]["SetAsideDeclaredRows"] == []
