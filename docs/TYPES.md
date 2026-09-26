@@ -26,9 +26,9 @@ The project hierarchy is flat: **packages contain deliverables**. There are no p
 A **package** is a flat partition of project scope. Packages do not nest.
 
 - Every IN scope item belongs to exactly one package (no overlaps, no gaps)
-  and maps to its deliverables (or `TBD`). OUT and TBD scope items remain in the scope
-  ledger with their source reference and have no package (`PackageID`
-  blank) (D-GOV-47).
+  and maps to its deliverables (or `TBD`). OUT and TBD scope items remain in
+  the scope ledger with their source reference and have no package
+  (`PackageID` blank) (D-GOV-47).
 - Packages are proposed through `project-decomp` and confirmed by the human.
 
 ### 1.2 Deliverable

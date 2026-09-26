@@ -6,4 +6,4 @@ Owner-directed Root tranche `ROOT-DECOMP-RULINGS-D-GOV-47-20260926` records two 
 
 In-flight decompositions keep the rule and edition they adopted; nothing is retrofitted. This loop decides its own adoption; this source tranche grants no release.
 
-Runtime-specific: this loop's Scope Ledger reports no `XRG-011` or `XRG-012` findings.
+Runtime-specific: this loop's ledger (`_Decomposition/RUNTIME_SCOPE_LEDGER.csv`, one IN item with a `PackageID`) has no item `XRG-011` or `XRG-012` would flag. The validator's XRG family skips this loop because the file is not named `ScopeLedger.csv`.

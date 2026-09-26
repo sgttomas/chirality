@@ -34,7 +34,8 @@ combined review sitting). Propose it where it fits; the human chooses it. Then:
 - After the decision, write the group-1, group-2, and group-3 snapshots in
   that order, each naming the preceding snapshot as its upstream basis, and
   update each pointer only after its snapshot is complete. The snapshots must
-  match the recorded hashes; any difference reopens the affected groups.
+  match the recorded hashes; any difference reopens the affected groups and
+  every later group.
 - A material change found during the sitting reopens the groups it affects
   and every later group. Refresh their dependent preparation and audit
   before they are decided; only earlier, unaffected groups may still be

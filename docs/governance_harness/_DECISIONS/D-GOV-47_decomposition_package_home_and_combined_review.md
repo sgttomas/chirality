@@ -91,7 +91,7 @@ outside this record.
      record the hashes of the presented package;
    - the group-1, group-2 and group-3 snapshots and pointers are still
      written in that order after the decision, and must match the recorded
-     hashes;
+     hashes (a difference reopens the affected groups and every later group);
    - a material change found during the sitting reopens the groups it
      affects and every later group; only earlier, unaffected groups may
      still be decided in the sitting.
@@ -110,8 +110,8 @@ outside this record.
 5. **Not changed.** Dependency schema and `docs/SPEC.md` §5,
    `workflows/review`, `write_status.sh`, the `semantic-lens` and
    `engineering-extraction` workflows, `domain-decomp`, `scope-change` and
-   `audit-decomp` are not changed. The management manual and the thesis are
-   not edited by this record (see Known residue).
+   `audit-decomp` are not changed. The management manual, the field book and the
+   thesis are not edited by this record (see Known residue).
 
 ## Known residue
 
