@@ -136,7 +136,7 @@ ordinary Remaining carriers (Receipt 174), with the frozen DEL-01-05 carrier
 not applied. PEC adopted the shared 2026-09-22 development-loop method on
 2026-09-25 under `D-PEC-94`, exercising `D-PEC-86` §3 I-7.
 
-**Active scope change — SCA-005:** opened at Gate 1 on 2026-09-23 under
+**Scope change SCA-005 (closed for scope change only, 2026-09-25):** opened at Gate 1 on 2026-09-23 under
 `D-PEC-86` (owner direction of record, §1) to rebaseline PEC's feed model on
 the shared App/Piping development-loop file shapes and the A2 Runtime
 topology. Its checkpoint-group-1 package is
@@ -215,8 +215,9 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
   quotes (residual under `D-PEC-93`); SOW currency and first SOWs for
   DEL-02-08/09; DEL-00-01/00-03 derivative review; the loop registry source
   packet; P1 fixtures; TM-PEC-023 disposition; residual `projects/pec/AGENTS.md`
-  corrections; the D-PEC-90 reliance amendment. These will be organized in
-  the work graph that follows the `D-PEC-94` adoption. Owners: the SCA-005 `RUN_SUMMARY.md` downstream table and the
+  corrections; the D-PEC-90 reliance amendment. These are organized in the
+  work graph
+  `execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md`. Owners: the SCA-005 `RUN_SUMMARY.md` downstream table and the
   D-PEC-93 run root `HANDOFF_STATE.md`.
 - **Other lifecycle and P1 acts:** DEL-01-05 repaired-artifact acceptance,
   DEL-01-06 Gate 5 (HOLD at `INITIALIZED`), DEL-08-02 short of `ISSUED`, and
