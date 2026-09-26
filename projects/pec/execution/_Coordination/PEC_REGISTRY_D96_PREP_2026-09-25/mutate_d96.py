@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """Apply D-PEC-96 mutations one at a time to scratch copies and confirm the registry suite catches each.
 
-Usage: mutate_d96.py <projects/pec root of an applied prototype>
+Usage: mutate_d96.py <projects/pec root of an applied tree> [--pec-row migrated|remaining]
+--pec-row names the option applied to the tree: migrated (A, default) or
+remaining (A-R). M1-M10 and M12-M18 are the same for both; M11 and M19 act on
+the checked-in default and have one variant per option.
 Exit 0 only when the baseline passes and every mutation is caught.
 """
 
@@ -26,7 +29,7 @@ def replace(rel: str, old: str, new: str):
         path = root / rel
         text = path.read_text(encoding="utf-8")
         if text.count(old) != 1:
-            raise SystemExit(f"mutation anchor not unique in {rel}: {old!r}")
+            raise RuntimeError(f"mutation anchor not unique in {rel}: {old!r}")
         path.write_text(text.replace(old, new), encoding="utf-8")
     return apply
 
@@ -44,10 +47,25 @@ def schema_version_const_1(data):
     data["properties"]["schema_version"]["const"] = 1
 
 
-def default_remaining(data):
-    data["loops"][0]["feed_profiles"] = [
-        {"basis": "projects/pec/AGENTS.md", "profile": "remaining-loop", "state": "live", "version": 1}
-    ]
+def default_profiles_swapped_to_remaining_loop(data):
+    # A: keep the first entry's basis and state; only the profile identifier changes.
+    first = data["loops"][0]["feed_profiles"][0]
+    data["loops"][0]["feed_profiles"] = [dict(first, profile="remaining-loop")]
+
+
+def default_profile_swapped_to_shared_dev_loop(data):
+    # A-R: same basis, state and version; only the profile identifier changes.
+    data["loops"][0]["feed_profiles"][0]["profile"] = "shared-dev-loop"
+
+
+def default_drops_remaining_items(data):
+    # A: the Remaining sections silently drop out of the default.
+    data["loops"][0]["feed_profiles"].pop(1)
+
+
+def default_remaining_loop_historical(data):
+    # A-R: the only profile turns historical, so the default has no live profile.
+    data["loops"][0]["feed_profiles"][0]["state"] = "historical"
 
 
 MUTATIONS = {
@@ -61,7 +79,10 @@ MUTATIONS = {
     "M8 unlocated state failure": replace(ADAPTER, '                self._fail(f"{entry_location}.state", "expected live or historical")\n', "                pass\n"),
     "M9 admit version 2 of every profile": replace(ADAPTER, '"shared-dev-loop": frozenset({1}),', '"shared-dev-loop": frozenset({1, 2}),'),
     "M10 schema const reverts to 1": edit_json(SCHEMA, schema_version_const_1),
-    "M11 default declares remaining-loop": edit_json(DEFAULT, default_remaining),
+    "M11 default profile identifier swapped": {
+        "migrated": edit_json(DEFAULT, default_profiles_swapped_to_remaining_loop),
+        "remaining": edit_json(DEFAULT, default_profile_swapped_to_shared_dev_loop),
+    },
     "M12 RegisteredLoop field order": replace(PORT, "    loop_init_path: str\n    feed_profiles: tuple[FeedProfile, ...]\n", "    feed_profiles: tuple[FeedProfile, ...]\n    loop_init_path: str\n"),
     "M13 allow traversing loop_init_path": replace(ADAPTER, 'if locator.is_absolute() or ".." in locator.parts or "\\\\" in value:', 'if locator.is_absolute() or "\\\\" in value:'),
     "M14 drop surface-disjointness check": replace(ADAPTER, "                if surface in covered:\n", "                if False:\n"),
@@ -69,7 +90,10 @@ MUTATIONS = {
     "M16 remaining-loop no longer claims the ledger": replace(ADAPTER, '            "receipt-ledger",\n            "status-lifecycle",\n            "status-remaining",\n', '            "status-lifecycle",\n            "status-remaining",\n'),
     "M17 overlap allowed between live and historical only": replace(ADAPTER, "                if surface in covered:\n", "                if surface in covered and entry[\"state\"] == profiles[covered[surface]].state.value:\n"),
     "M18 echo the invalid state value": replace(ADAPTER, 'self._fail(f"{entry_location}.state", "expected live or historical")', 'self._fail(f"{entry_location}.state", f"expected live or historical, got {state!r}")'),
-    "M19 default drops remaining-items": edit_json(DEFAULT, lambda d: d["loops"][0]["feed_profiles"].pop(1)),
+    "M19 default loses a declared surface or its live profile": {
+        "migrated": edit_json(DEFAULT, default_drops_remaining_items),
+        "remaining": edit_json(DEFAULT, default_remaining_loop_historical),
+    },
 }
 
 
@@ -83,7 +107,14 @@ def run_suite(root: Path) -> int:
 
 
 def main() -> int:
-    source = Path(sys.argv[1]).resolve()
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("pec_root")
+    parser.add_argument("--pec-row", choices=["migrated", "remaining"], default="migrated")
+    args = parser.parse_args()
+    source = Path(args.pec_root).resolve()
+    print(f"OPTION {'A' if args.pec_row == 'migrated' else 'A-R'}")
     ok = True
     with tempfile.TemporaryDirectory() as temporary:
         base = Path(temporary) / "base"
@@ -96,7 +127,14 @@ def main() -> int:
             if work.exists():
                 shutil.rmtree(work)
             shutil.copytree(base, work)
-            mutate(work)
+            if isinstance(mutate, dict):
+                mutate = mutate[args.pec_row]
+            try:
+                mutate(work)
+            except Exception as error:  # a mutation that cannot apply is a runner defect
+                print(f"{name}: NOT_APPLIED ({error.__class__.__name__}: {error})")
+                ok = False
+                continue
             code = run_suite(work)
             caught = code != 0
             print(f"{name}: {'CAUGHT' if caught else 'SURVIVED'} (exit={code})")

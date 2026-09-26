@@ -17,6 +17,6 @@ test_registered_loop_carries_the_typed_feed_profile_field (test_loop_registry_co
 test_registered_loop_is_immutable (test_loop_registry_contract.LoopRegistryContractTests.test_registered_loop_is_immutable) ... ok
 
 ----------------------------------------------------------------------
-Ran 17 tests in 0.026s
+Ran 17 tests in 0.022s
 
 OK

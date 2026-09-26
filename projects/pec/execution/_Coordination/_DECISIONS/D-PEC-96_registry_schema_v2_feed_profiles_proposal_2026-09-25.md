@@ -1,18 +1,29 @@
 # D-PEC-96 — Loop-registry schema v2 with closed feed profiles (SCA-005 §B6 registry source packet) — proposal
 
-Status: **PROPOSAL / AWAITING_RULING** (revision 2). Prepared by a TASK (Type 2) under HELP_HUMAN (undertaking `HELP-HUMAN-PEC-20260925-POST-SCA005`, work-graph node G1) for the PEC loop, 2026-09-25 (session date), from brief `G1_REGISTRY_SOURCE_PROPOSAL.md` (SHA-256 `084eadd8eeb77a3c2fa31e0c51646e69bbb18c8bd2a30da750c69222c2b0fca1`). No earlier direction approves this file. It performs no production act: no tracked file was edited, and every prototype ran on scratch copies only. It asks for no lifecycle change. HELP_HUMAN owns the `_REGISTER.md` row; this file does not add it. At `56a626c3b` the register has no D-PEC-96 row. Suggested filing name: `execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md`.
+Status: **PROPOSAL / AWAITING_RULING** (revision 3). Prepared by a TASK (Type 2) under HELP_HUMAN (undertaking `HELP-HUMAN-PEC-20260925-POST-SCA005`, work-graph node G1) for the PEC loop, 2026-09-25 (session date), from brief `G1_REGISTRY_SOURCE_PROPOSAL.md` (SHA-256 `084eadd8eeb77a3c2fa31e0c51646e69bbb18c8bd2a30da750c69222c2b0fca1`). No earlier direction approves this file. It performs no production act: no tracked file was edited, and every prototype ran on scratch copies only. It asks for no lifecycle change. HELP_HUMAN owns the `_REGISTER.md` row; this file does not add it. At `7f33b4dd5` the register has no D-PEC-96 row. Suggested filing name: `execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md`.
 
-**Revision 2.** Revision 1 (SHA-256 `f486111927dbd0b29ec7ec9ff653e51b5169d02dce53e4ab7357f544c1697d87`) was published unchanged as PR #928. The independent REVIEW required by D-PEC-78 §4.3, relayed by HELP_HUMAN, reproduced every hash and check and 13/13 mutations. It raised seven points. This revision addresses them:
+**Revision 3.** Revision 2 (SHA-256 `4655e757ae759de28e82f9cdea5cc785bcf4ede856496efcf0e8469488df8da7`) was re-reviewed. The review found option A fully reproducible (19/19 mutations) and every review-01 finding resolved. It raised one blocking finding and three non-blocking ones, which this revision addresses:
 
-| Point | Change in revision 2 |
+| Re-review point | Change in revision 3 |
+|---|---|
+| Blocking: `mutate_d96.py` crashed under option A-R | Reproduced: on an A-R tree, the revision-2 runner raised `IndexError: pop index out of range` at M19, exited 1 and printed no `RESULT` line. The runner is now option-aware (`--pec-row migrated|remaining`). M11 and M19 each have one variant per option, both acting on the checked-in default: M11 swaps only the profile identifier, keeping basis and state, and M19 removes a declared surface (A) or the only live profile (A-R). A mutation that cannot apply is reported `NOT_APPLIED` and fails the run instead of crashing it. Both option runs are in the evidence: A 19/19 CAUGHT, A-R 19/19 CAUGHT, `RESULT PASS` each. The verification table states the per-option expectation |
+| Rollback | The ruling record and register rows are never reverted. A rollback is recorded as its own new register row and record, under the register header's convention |
+| Question 2 | Now says that A-R as offered leaves PEC's one `WORK_GRAPH.json` unread, and that "Other" can pair `remaining-loop` with `agentruns-json` historical |
+| Numbering | The revision-2 table below is numbered by review 01's finding numbers (1–4 and 6–8) |
+
+The product bytes and `apply_d96.py` are unchanged from revision 2. Only the mutation runner, the evidence and this text changed.
+
+**Revision 2** (history). Revision 1 (SHA-256 `f486111927dbd0b29ec7ec9ff653e51b5169d02dce53e4ab7357f544c1697d87`) was published unchanged as PR #928. The independent REVIEW required by D-PEC-78 §4.3 (review 01) reproduced every hash and check and 13/13 mutations. Revision 2 addressed its findings, numbered here as review 01 numbers them:
+
+| Review 01 finding | Change in revision 2 |
 |---|---|
 | 1 Remaining sections invisible (medium) | New profile `remaining-items`: it reads the `## Remaining` sections as records only, not as a selection surface and not with the ledger. PEC's row declares it `live`. The choice is owner question 3 |
 | 2 Overlapping or contradictory profiles accepted (medium) | Each profile now names the surfaces it covers. The adapter rejects a row whose profiles overlap on any surface, and a row with no live profile. There are 6 new located test cases and 6 new mutations (M14–M19) |
 | 3 `agentruns-json` narrower than PRD v2.3 (low–medium) | Coverage is now JSON run evidence anywhere under `execution/`, as PRD §7.1 says. PEC's row declares it `historical`, which covers PEC's one `WORK_GRAPH.json` |
 | 4 §B6 quoted in part (low) | §B6 is quoted in full. Owner question 2 states the departure from the letter of §B6 and Q8 (a), and why |
-| 5 Containment "nothing else" (low) | HELP_HUMAN's records under `execution/_Coordination/**` may ride the act PR; the draft lists them |
-| 6 HOLD citation (low) | Now cites DEL-01-06 `_REVIEW.md` L45–48 |
-| 7 Test and schema nits (low) | Added tests for a non-string `state` and a `null` `profile`. A new test proves that no failure echoes a document value. The schema `$id` is now `…/loops.schema.v2.json` |
+| 6 Containment "nothing else" (low) | HELP_HUMAN's records under `execution/_Coordination/**` may ride the act PR; the draft lists them |
+| 7 HOLD citation (low) | Now cites DEL-01-06 `_REVIEW.md` L45–48 |
+| 8 Test and schema nits (low) | Added tests for a non-string `state` and a `null` `profile`. A new test proves that no failure echoes a document value. The schema `$id` is now `…/loops.schema.v2.json` |
 
 ## Provenance
 
@@ -31,15 +42,16 @@ Status: **PROPOSAL / AWAITING_RULING** (revision 2). Prepared by a TASK (Type 2)
   - PRD v2.3 §16.3 says a strict schema version 2 "arrives only through a later D-PEC packet, within D-PEC-78 O-A".
 - **Precedents.** `D-PEC-95` (proposal format; a bound, preimage-checked act script; revert-PR rollback). `D-PEC-91` (v2 source grant, registered-check table, mutation evidence). `D-PEC-87` X-1 (the store-guard path rule). `D-PEC-75` (DEL-01-06 run records under `_run_records/`).
 - **Source state.**
-  - Revision 1 was read at `origin/main` `abfd0897b`. Revision 2 was read at `origin/main` `56a626c3b5515fea790b0d40549e7729669b7dff` (PR #927), from a fresh `git archive` export.
-  - That commit descends from `4d5f7b911`, the basis HELP_HUMAN named, and changes nothing under `projects/pec` since it. No `v2/**` path changed since `abfd0897b`, and every product preimage and must-remain hash was re-verified.
-  - Cited files that changed since revision 1:
+  - Revision 1 was read at `origin/main` `abfd0897b` and revision 2 at `56a626c3b`. Revision 3 was read at `origin/main` `7f33b4dd51f93553f17607167077c28ddd773ff6` (PR #930), from a fresh `git archive` export.
+  - HELP_HUMAN named `56a626c3b` as the basis. Since then `origin/main` has changed one PEC file: it added `execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE2A_EXECUTION.md` (`d194b1b5…4383`). That Root tranche retired the bundled `software-bounded-implementation` workflow and moved implementation-node requirements into `construct-local-work-graph`, so the administrative grant now cites that workflow.
+  - No `v2/**` path has changed since `abfd0897b`, and every product preimage and must-remain hash was re-verified at `7f33b4dd5`.
+  - Cited files that changed between revisions 1 and 2:
     - `_REGISTER.md` (`d94bfeab…b59e`), which still has no D-PEC-96 row;
     - the work graph (`ac0db3b4…0be7`), where G1 is `ACTIVE`;
     - SCA-006 checkpoint 1, now accepted (see below);
     - the verifier skill `.agents/skills/software-code-review/SKILL.md` (`ee085d58…8bca`).
   - The checkout (now on branch `claude/pec-d96-registry-proposal`, moved by another actor) was not changed. This TASK switched no branch and ran only read-only Git commands and `git fetch`.
-- **Holds.** `execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv` (`f877d931…41cbc`) has a header and no rows. `execution/_Scripts/pec_reliance_hold.py` (`b1712e4b…cd0e`), run from `projects/pec` at `56a626c3b` with `--operation exact-correction-preparation`, returned `{"operation": "exact-correction-preparation", "status": "ALLOW"}` with exit 0 for all 13 targets: the 11 product paths and the two administrative paths below.
+- **Holds.** `execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv` (`f877d931…41cbc`) has a header and no rows. `execution/_Scripts/pec_reliance_hold.py` (`b1712e4b…cd0e`), run from `projects/pec` at `7f33b4dd5` with `--operation exact-correction-preparation`, returned `{"operation": "exact-correction-preparation", "status": "ALLOW"}` with exit 0 for all 13 targets: the 11 product paths and the two administrative paths below.
 
 ## What preparation found
 
@@ -93,7 +105,7 @@ Consequences of A, none blocking:
 
 ### Remaining sections: read as records (review point 1)
 
-**Observed.** `projects/pec/AGENTS.md` §"Deliverable records and loop ownership" says the `## Remaining` sections "stay in place as deliverable-local records of open scope under their owning decisions". It also says they are "no longer a work-selection surface" and that "A Remaining item's own gate markers still bind that item". There are 57 such sections at `56a626c3b`. Revision 1's row declared no profile that reads them. `remaining-loop` cannot sit beside `shared-dev-loop`, because it also claims the lifecycle, dependency and decision surfaces and the ledger as live.
+**Observed.** `projects/pec/AGENTS.md` §"Deliverable records and loop ownership" says the `## Remaining` sections "stay in place as deliverable-local records of open scope under their owning decisions". It also says they are "no longer a work-selection surface" and that "A Remaining item's own gate markers still bind that item". There are 57 such sections at `7f33b4dd5`. Revision 1's row declared no profile that reads them. `remaining-loop` cannot sit beside `shared-dev-loop`, because it also claims the lifecycle, dependency and decision surfaces and the ledger as live.
 
 **Options considered.**
 
@@ -142,7 +154,7 @@ Under this table, PEC's row A (`shared-dev-loop` + `remaining-items` + `loop-rec
 
 - **The PRD's scope.** PRD v2.3 §7.1 reads: RunRecord: "`STATUS.json` / `RUNTIME_SUMMARY.json` under `execution/**` are read as declared historical grammar or current evidence per the loop's feed profile". DependencyEdge: "`WORK_GRAPH.json` is read as a declared historical grammar where the loop's feed profile says so".
 - **The fix.** Revision 1 pinned the profile to `execution/_Coordination/AgentRuns/`. Revision 2 describes it as "JSON run evidence anywhere under the loop's execution/ tree (WORK_GRAPH.json, STATUS.json, RUNTIME_SUMMARY.json), including AgentRuns/ and deliverable _run_records/". The identifier keeps its SCA-005 name for traceability to the accepted vocabulary term. The schema says so.
-- **What PEC's row covers.** At `56a626c3b`, PEC has exactly one such file: `execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/WORK_GRAPH.json` (D-PEC-85's working-items graph). There is no `STATUS.json` or `RUNTIME_SUMMARY.json` anywhere under `projects/pec`. The design note's §3.1 count of 13 PEC `STATUS.json` files does not reproduce at `56a626c3b`, and where it came from is UNKNOWN. PEC's row declares `agentruns-json` `historical`, so this file is read, as FX-PEC-0 expects.
+- **What PEC's row covers.** At `7f33b4dd5`, PEC has exactly one such file: `execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/WORK_GRAPH.json` (D-PEC-85's working-items graph). There is no `STATUS.json` or `RUNTIME_SUMMARY.json` anywhere under `projects/pec`. The design note's §3.1 count of 13 PEC `STATUS.json` files does not reproduce at `7f33b4dd5`, and where it came from is UNKNOWN. PEC's row declares `agentruns-json` `historical`, so this file is read, as FX-PEC-0 expects.
 - **Its basis.** It cites the D-PEC-94 record, which adopts work graphs and central receipts as PEC's run records. No PEC record states in so many words that JSON run evidence is historical; the citation supports it by implication. Question 2 lets the owner name another basis.
 
 ### Backward compatibility: version-1 files are rejected; the one checked-in file is migrated
@@ -432,7 +444,7 @@ class LoopRegistry(Protocol):
 
 ### 4. The adapter — `v2/src/pec_v2/adapters/config/loop_registry.py`
 
-The behaviour is listed here; the exact bytes are in the act script and `optionA_vs_56a626c3b.diff`.
+The behaviour is listed here; the exact bytes are in the act script and `optionA_vs_7f33b4dd5.diff`.
 
 - It accepts only `schema_version` 2, as described under backward compatibility.
 - Each row needs exactly `loop_id`, `loop_init_path` and `feed_profiles`.
@@ -493,7 +505,7 @@ A narrower source-only option is not offered. Every part of A is needed for the 
 
 ## Exact product grant (A)
 
-After this ruling and its register row are merged and observed on fetched `origin/main`, one WORKING_ITEMS instance may run the bound act script **once** for PKG-01 / DEL-01-06. The script writes only the paths below, relative to `projects/pec/`. Preimage SHA-256 values were read at `56a626c3b` and are equal at `abfd0897b`.
+After this ruling and its register row are merged and observed on fetched `origin/main`, one WORKING_ITEMS instance may run the bound act script **once** for PKG-01 / DEL-01-06. The script writes only the paths below, relative to `projects/pec/`. Preimage SHA-256 values were read at `7f33b4dd5` and are equal at `56a626c3b` and `abfd0897b`.
 
 | # | Path | Act | Preimage SHA-256 | Postimage SHA-256 (A) |
 |---|---|---|---|---|
@@ -563,7 +575,7 @@ Run the registered checks from `projects/pec` (cwd `.`, as registered), and `har
 | `v2-api-contract` (`always_checks`) | `python3 -m unittest discover -s v2/tests/contracts/api -p test_*.py` | exit 0; Ran 6, OK |
 | `harness-self-check` (`always_checks`; every PR) | `PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check` | exit 0; output identical to the pre-act run. On the prototype it was `INFO=14, NOT_APPLICABLE=1, REVIEW=4, WARN=124` both times, stdout `e5f9ff70…d110` |
 | Receipts validator (every PR) | `python3 tools/validation/validate_pec_loop_receipts.py --repo-root .` | exit 0; output unchanged |
-| Mutation evidence | `mutate_d96.py projects/pec` (copied into the run root) | baseline passes; M1–M19 each CAUGHT; `RESULT PASS` |
+| Mutation evidence | `mutate_d96.py projects/pec --pec-row migrated` for option A, or `--pec-row remaining` for A-R (copied into the run root) | For the ruled option: baseline passes; M1–M19 each CAUGHT, none `NOT_APPLIED`; `RESULT PASS`. M1–M10 and M12–M18 are identical for both options. M11 and M19 have one variant per option, both acting on the checked-in default: A swaps the profile identifier / drops `remaining-items`; A-R swaps the profile identifier / makes the only profile historical |
 | Byte identity | recompute SHA-256 of the 11 paths | equal to the grant table for the chosen option |
 | Basis citations | `test -f` on each `basis` and `loop_init_path` in the new `loops.json` | all present at the act commit |
 | Containment | `git diff --name-status origin/main...HEAD` | the 11 paths, plus the run root and, if question 6 is answered yes, `MEMORY.md`. HELP_HUMAN's own records may ride the same PR: the D-PEC-96 register row, ruling and proposal files under `execution/_Coordination/_DECISIONS/`, the work graph, and the undertaking's `AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/` briefs, returns and receipt, all under the default-writable `execution/_Coordination/**`, plus `docs/STATUS.md` and `README.md` under D-PEC-88. Any of them may instead go in a separate PR. Nothing else |
@@ -592,7 +604,7 @@ A fresh read-only TASK that authored nothing applies `.agents/skills/software-co
 ## Administrative grant
 
 - **Scope.** WORKING_ITEMS owns PKG-01 / DEL-01-06 only, for this act.
-  - The manager runs the reliance preflights and the script. No author TASK is needed, because the bytes are bound. The manager may instead dispatch a bounded TASK to run the script under `workflows/software-bounded-implementation/WORKFLOW.md`.
+  - The manager runs the reliance preflights and the script. No author TASK is needed, because the bytes are bound. The manager may instead dispatch a bounded TASK to run the script, commissioned as an implementation node under `construct-local-work-graph` (`3e197c9d…9dc3`). Its brief carries the objective, basis, write fence, exclusions, acceptance criteria and authorized checks, as that workflow requires.
   - One fresh read-only TASK is the verifier.
 - **Run root.** `execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_run_records/D-PEC-96_REGISTRY_V2/**`, a new folder beside the D-PEC-75 and D-PEC-77 records. It holds:
   - `apply_d96.py` (exact bytes) and its report;
@@ -602,7 +614,7 @@ A fresh read-only TASK that authored nothing applies `.agents/skills/software-co
   - `VERIFIER_VERDICT_NN.md`.
 
   The earlier `_run_records/*` stay immutable.
-- **`MEMORY.md` (question 6).** If the owner agrees, the act creates `execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/MEMORY.md` from `docs/templates/MEMORY_TEMPLATE.md` (`5a9564f4…6a5a`). The path does not exist at `56a626c3b`. At closeout, the undertaking's M1 node writes one run row: the run ID, the date, "schema version 2 source act under D-PEC-96", the PR and the central receipt.
+- **`MEMORY.md` (question 6).** If the owner agrees, the act creates `execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/MEMORY.md` from `docs/templates/MEMORY_TEMPLATE.md` (`5a9564f4…6a5a`). The path does not exist at `7f33b4dd5`. At closeout, the undertaking's M1 node writes one run row: the run ID, the date, "schema version 2 source act under D-PEC-96", the PR and the central receipt.
 - **Not opened.**
   - DEL-01-06 `ScopeOfWork.md`, `_STATUS.md`, `_REVIEW.md`, `Review_Findings.csv`, `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md` and `Dependencies.csv`.
   - Every other deliverable.
@@ -614,7 +626,7 @@ A fresh read-only TASK that authored nothing applies `.agents/skills/software-co
 
 - **During execution.** The script writes nothing unless every check passes. If a later check fails, discard the branch or worktree; nothing reaches `origin/main`.
 - **Before merge.** Close the PR and discard the branch.
-- **After merge, at owner direction.** A revert PR of the act restores the 10 preimages tabled above. It removes the created fixture, the run root and, if created, `MEMORY.md`. History is preserved and no reset is made. HELP_HUMAN's records that rode the PR are reverted with it, or kept by a partial revert; that is HELP_HUMAN's choice.
+- **After merge, at owner direction.** A revert PR of the act restores the 10 preimages tabled above. It removes the created fixture, the run root and, if created, `MEMORY.md`. History is preserved and no reset is made. The owner's ruling record and every register row are never reverted. Under the register header's convention a ruled row is not reopened or annotated, so the rollback is recorded as its own new register row and record, citing D-PEC-96 and the revert PR. HELP_HUMAN's other records that rode the act PR (graph, briefs, returns) stay as history and gain a dated note. If the revert PR touches them, it may only add to them.
 - **Stores and consumers.**
   - No store holds registry data and no consumer reads the port, so there is no migration or consumer rollback to do.
   - The version-1 bytes also survive as `schema_version_1.json` until reverted.
@@ -641,8 +653,8 @@ Existing reliance-hold, dependency, lifecycle and release boundaries survive unc
 2. **PEC's own row: the migration row change, ruled here as its own item.**
    - **The departure.** Option A departs from the letter of the CP2-accepted §B6 ("PEC's own `pec` row `remaining-loop`, Q8 (a)"; "D-PEC-86 I-7 … stays deferred") and of SCA005-CP1-Q8 (a). Their premise, that PEC still selected from `## Remaining` with I-7 deferred, ended when D-PEC-94 exercised I-7 after checkpoint 3. The migration they foresee as "one owner-gated row change" is what this question asks.
    - **Migrated (recommended):** `shared-dev-loop` v1 `live` (basis: the D-PEC-94 record), `loop-receipts-ledger` v1 `historical` (basis: `projects/pec/AGENTS.md`) and `agentruns-json` v1 `historical` (basis: the D-PEC-94 record, by implication; see review point 3). The Remaining sections are question 3.
-   - **As accepted:** `remaining-loop` v1 `live` alone (option A-R). The migration then needs a later ruling.
-   - **Other:** state the profiles and basis citations.
+   - **As accepted:** `remaining-loop` v1 `live` alone (option A-R). The migration then needs a later ruling. As offered, A-R leaves PEC's one JSON run-evidence file unread: `execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_run_records/P1_STORE_GUARD_01/WORK_GRAPH.json`, which fixture FX-PEC-0 includes.
+   - **Other:** state the profiles and basis citations. For example, `remaining-loop` v1 `live` with `agentruns-json` v1 `historical` is valid under the surface rules and reads that file.
 
    Either answer is within the accepted scope. Neither needs a scope change.
 3. **PEC's `## Remaining` sections** (57, kept as records whose gate markers still bind their items).
@@ -666,9 +678,9 @@ Existing reliance-hold, dependency, lifecycle and release boundaries survive unc
 
 Everything ran in fresh `mktemp -d` directories under the host's temporary area, outside the session scratchpad and the checkout.
 
-- `base` is a `git archive` export of the whole tree at `56a626c3b`.
+- `base` is a `git archive` export of the whole tree at `7f33b4dd5`.
 - Each prototype is an APFS clone (`cp -Rc`) of `base` with a variant applied.
-- For `harness-self-check` and `git diff`, the base clone and the option-A prototype were made throwaway repositories: `git init`; an `objects/info/alternates` entry pointing read-only at the source object store; `git read-tree 56a626c3b`; `update-ref HEAD` inside the export only.
+- For `harness-self-check` and `git diff`, the base clone and the option-A prototype were made throwaway repositories: `git init`; an `objects/info/alternates` entry pointing read-only at the source object store; `git read-tree 7f33b4dd5`; `update-ref HEAD` inside the export only.
 
 Nothing was written to the checkout or its repository. The interpreter was Python 3.13.7 (CPython), and the local date was 2026-09-25.
 
@@ -683,7 +695,9 @@ Nothing was written to the checkout or its repository. The interpreter was Pytho
 | `apply_d96.py` rerun on the applied clone | 1 | "preimage mismatch v2/config/loops.json …; nothing written" |
 | `apply_d96.py` on a clone with `software-workflow.json` altered | 1 | "must-remain file differs: software-workflow.json; nothing written"; no file created |
 | `apply_d96.py --pec-row remaining` (A-R) on a fresh clone | 0 | 11 WRITE; differs from A in exactly `loops.json` and the test file; registry suite Ran 17, OK |
-| `mutate_d96.py` on the applied A clone | 0 | baseline OK; **M1–M19 all CAUGHT**. M1–M13 as in revision 1. M14 drop the surface-disjointness check; M15 drop the at-least-one-live rule; M16 `remaining-loop` stops claiming the ledger; M17 allow overlap between live and historical; M18 echo an invalid `state` value; M19 default drops `remaining-items` |
+| revision-2 `mutate_d96.py` on the applied A-R clone (the blocking finding, reproduced) | 1 | `IndexError: pop index out of range` at M19; no `RESULT` line |
+| `mutate_d96.py actAR/projects/pec --pec-row remaining` | 0 | baseline OK; **M1–M19 all CAUGHT**; `RESULT PASS` |
+| `mutate_d96.py actA/projects/pec` (default `--pec-row migrated`) | 0 | baseline OK; **M1–M19 all CAUGHT**. M1–M13 as in revision 1. M14 drop the surface-disjointness check; M15 drop the at-least-one-live rule; M16 `remaining-loop` stops claiming the ledger; M17 allow overlap between live and historical; M18 echo an invalid `state` value; M19 default drops `remaining-items`. In revision 3, M11 swaps only the profile identifier; revision 2's version also changed the basis |
 | `validate_pec_loop_receipts.py --repo-root .` on `base` / prototype | 0 / 0 | VALID; identical apart from the absolute path prefix |
 | `validate_decomposition_registers.py --strict projects/pec/execution` on `base` / prototype | 0 / 0 | 0 errors / 0 warnings; output byte-identical |
 | prototype `git diff --check`; non-ASCII scan of the 11 postimages | 0 | clean; 0 non-ASCII bytes |
@@ -695,14 +709,14 @@ Scratch artifacts are in the preparer's `g1/` folder, with hashes in `g1/SHA256S
 | Artifact | SHA-256 |
 |---|---|
 | `apply_d96.py` (the bound act script) | `b314213a7b4e615fd97c6c1b7f0fdac170c8c7c493354e2f54c390cc35a36dd4` |
-| `mutate_d96.py` (mutation runner) | `c438e7acd67e1138ee8b816d752780ffad52a7bf6a64231ea4c31c75ad146ad7` |
+| `mutate_d96.py` (mutation runner) | `8d3d2fb3cc555dfec64bbd40feec0783ce791d40b4077921d487b3b08e2efe45` |
 | `build_apply_d96.py`, `apply_d96.template.py`, `build_json_postimages.py` (preparation aids) | `a0a71e6f…831d`, `4fe61dc1…8290`, `f3dfb9c8…998b` |
-| `evidence/optionA_vs_56a626c3b.diff` (A; includes the created fixture) | `b8d7d9ab6ab24cf5d382842dcf7d2bb75de5940224ca2e9b864457f9aa986169` |
-| `evidence/optionAR_vs_optionA.diff` | `ca122d953fec5d53af3e25939f132ef0abb66ab6c39e2f3478ae5386d331a928` |
-| `evidence/CHECKS_SUMMARY.txt`, `evidence/mutate_d96.out`, `evidence/optionA_v2-loop-registry_verbose.txt`, `evidence/preflight.txt`, `evidence/actA.report.txt`, `evidence/actAR.report.txt`, `evidence/preimages.txt` | in `SHA256SUMS` |
+| `evidence/optionA_vs_7f33b4dd5.diff` (A; includes the created fixture) | `b8d7d9ab6ab24cf5d382842dcf7d2bb75de5940224ca2e9b864457f9aa986169` |
+| `evidence/optionAR_vs_optionA.diff` | `2a477e5eb7181929a28a935a68deeab47efc001509bbc1bc1b8470bda75c301c` |
+| `evidence/CHECKS_SUMMARY.txt`, `evidence/mutate_optionA.out`, `evidence/mutate_optionAR.out`, `evidence/mutate_optionAR_revision2_runner.out`, `evidence/optionA_v2-loop-registry_verbose.txt`, `evidence/optionAR_v2-loop-registry_verbose.txt`, `evidence/preflight.txt`, `evidence/actA.report.txt`, `evidence/actAR.report.txt`, `evidence/preimages.txt` | in `SHA256SUMS` |
 | `postimages/optionA_v2/**`, `postimages/optionAR_overrides/*` (postimage copies for review) | in `SHA256SUMS` |
 
-The basis read for preparation, at `56a626c3b`:
+The basis read for preparation, at `7f33b4dd5`:
 
 | Source | SHA-256 |
 |---|---|
@@ -747,7 +761,8 @@ The basis read for preparation, at `56a626c3b`:
 | `docs/templates/MEMORY_TEMPLATE.md` | `5a9564f4663b000cdf0175bf4f0262001001bc50c719912499df2527d01c6a5a` |
 | `projects/pec/execution/_ScopeChange/checkpoint_snapshots/SCA-006_GROUP-1_2026-09-25/DECISION.md` | `0160dd881c0501e95c7245b71ffccffc332240573bb96a31196ed492c67250df` |
 | `.agents/skills/software-code-review/SKILL.md` | `ee085d589c44f912d11a59eead8edac214f0343761d26b0d33e886a979888bca` |
-| `workflows/software-bounded-implementation/WORKFLOW.md` | `2ea0ddf4f53241fa94274e709b8042ad9de4d8beb9c82cd1ed1dcd0c6f8f0f7b` |
+| `workflows/construct-local-work-graph/WORKFLOW.md` | `3e197c9ddc75d40daa02929dc3df653a66f7d76ab6996239e823bba647dd9dc3` |
+| `projects/pec/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE2A_EXECUTION.md` | `d194b1b5ae55b07a10a14d059334f6047dc1044069ae603138a2638faf3d4383` |
 | Brief G1 (scratch) | `084eadd8eeb77a3c2fa31e0c51646e69bbb18c8bd2a30da750c69222c2b0fca1` |
 
 Attribution: prepared by a TASK (Type 2) under HELP_HUMAN, node G1 of `HELP-HUMAN-PEC-20260925-POST-SCA005`, with no delegation. The host reports the serving model as Opus 5.5 (`claude-opus-5-5`). The role and the `high` reasoning effort are instruction-asserted.

@@ -210,3 +210,96 @@ The revised draft is ready for review. All seven review points are addressed. Ev
 
 ### Files
 - My helpers are in `/private/tmp/claude-501/g1work.uHT090/` (revision-2 files in its `r2/` folder). Large exports and clones were deleted.
+
+## Revision 3 (after PR #928 review 02)
+
+HELP_HUMAN returned revision 2 to the preparer with review 02's blocking finding B1 (the A-R mutation crash) and its non-blocking findings 1, 3 and 5. The preparer's revision-3 report follows.
+
+- **SHA-256 of the report text (UTF-8):** `700f22e03ed4d2edf6f098f1228b3b6bac856da52fe9ab74ab7561c2b0f80faf`.
+- **Publication:** HELP_HUMAN replaced the published proposal with revision 3, SHA-256 `2f7d987540131ae2d31b0d64d9eff1de7b5b368da02dfed7b8feec88e2f4afc4`, and replaced the preparation folder with the revision-3 `g1/` contents. Its `SHA256SUMS` verifies except for the draft, and `.gitattributes` was added again. `apply_d96.py` and every postimage are unchanged from revision 2. Revision-2 bytes stay recoverable at `d38f1744b`.
+
+### Revision-3 report (verbatim)
+
+## G1 revision 3: D-PEC-96 draft, blocking finding fixed
+
+The blocking finding is fixed: the mutation runner now catches all 19 mutations under both option A and option A-R, with `RESULT PASS` each. I also addressed the three non-blocking points. The product bytes and `apply_d96.py` are unchanged from revision 2; only the mutation runner, the evidence and the draft text changed.
+
+**Basis:** `origin/main` `7f33b4dd51f93553f17607167077c28ddd773ff6` (PR #930), fetched at the start and again at the end with no change.
+- It is newer than the `56a626c3b` you named. Since then it changed one PEC file, adding `execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE2A_EXECUTION.md`. That Root tranche also retired `workflows/software-bounded-implementation`, which the draft had cited, so the draft now cites `construct-local-work-graph` instead (details below).
+- No `v2/**` path has changed. All 10 product preimages and the 6 files the act must leave unchanged were re-verified. The register still has no D-PEC-96 row.
+- The checkout is clean and I switched no branch; it is on `claude/pec-d96-registry-proposal`, where another actor left it.
+
+### Hashes
+- **Draft:** `/private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/g1/D-PEC-96_DRAFT.md`, SHA-256 `2f7d987540131ae2d31b0d64d9eff1de7b5b368da02dfed7b8feec88e2f4afc4` (768 lines, status "revision 3").
+- **`apply_d96.py`:** `b314213a7b4e615fd97c6c1b7f0fdac170c8c7c493354e2f54c390cc35a36dd4`, unchanged from revision 2.
+- **`mutate_d96.py`:** `8d3d2fb3cc555dfec64bbd40feec0783ce791d40b4077921d487b3b08e2efe45`.
+- **Postimages:** all 11 unchanged from revision 2 (`loops.json` A `aad70470…678e`; A-R `6e1321e3…7961`).
+- **Evidence:** `SHA256SUMS` in `g1/` covers 30 files and verifies. The diff file is now `evidence/optionA_vs_7f33b4dd5.diff`.
+
+### Mutation results
+| Run | Result |
+|---|---|
+| Option A, `mutate_d96.py <pec> --pec-row migrated` | baseline OK; M1–M19 all CAUGHT; `RESULT PASS` |
+| Option A-R, `mutate_d96.py <pec> --pec-row remaining` | baseline OK; M1–M19 all CAUGHT; `RESULT PASS` |
+| Revision-2 runner on an A-R tree | exit 1 with `IndexError: pop index out of range` at M19, no `RESULT` line — the finding, reproduced |
+
+Evidence files: `evidence/mutate_optionA.out`, `evidence/mutate_optionAR.out`, `evidence/mutate_optionAR_revision2_runner.out`.
+
+### What changed
+- **Blocking finding: `mutate_d96.py` is now option-aware** (`--pec-row migrated|remaining`, default `migrated`).
+  - M1–M10 and M12–M18 are the same for both options.
+  - M11 and M19 each have an A and an A-R variant, both acting on the checked-in default:
+    - M11 swaps only the profile identifier and keeps basis and state. Under A this is `remaining-loop`; under A-R it is `shared-dev-loop`. Under A-R, M11 is therefore no longer caught only because the basis differs.
+    - M19 under A drops `remaining-items`. Under A-R it makes the only profile historical, so the no-live-profile rule fails.
+  - A mutation that cannot apply is now reported `NOT_APPLIED` and fails the run, instead of crashing it.
+  - The verification table states the expectation per option: M1–M19 each CAUGHT, none `NOT_APPLIED`, `RESULT PASS`.
+- **Rollback.** The owner's ruling record and every register row are never reverted. Under the register header's convention, a ruled row is not reopened or annotated. A rollback is therefore recorded as its own new register row and record, citing D-PEC-96 and the revert PR. HELP_HUMAN's other records that rode the act PR stay as history; a revert may only add to them.
+- **Question 2.** It now says A-R as offered leaves PEC's one `WORK_GRAPH.json` unread (`DEL-01-03/_run_records/P1_STORE_GUARD_01/`, part of FX-PEC-0). It also says "Other" can pair `remaining-loop` v1 live with `agentruns-json` v1 historical, which is valid under the surface rules.
+- **Numbering.** A new revision-3 table was added. The revision-2 table is kept as history, now numbered by review 01's findings: 1–4 and 6–8.
+- **Basis-driven change.** The administrative grant used to cite the retired `workflows/software-bounded-implementation`. It now says an optional script-running TASK is commissioned as an implementation node under `construct-local-work-graph` (`3e197c9d…9dc3`). The notice (`d194b1b5…4383`) and that workflow were added to the basis table.
+
+### Owner questions
+These are unchanged from revision 2, apart from the question-2 additions above:
+1. A, A-R, amend or defer. Recommended: A.
+2. PEC's row as its own ruling. Recommended: migrated.
+3. The Remaining sections. Recommended: (a) `remaining-items`, live.
+4. Confirm the five-profile vocabulary, the surfaces and the coherence rules.
+5. Version-1 files. Recommended: rejected.
+6. DEL-01-06 `MEMORY.md`. Recommended: create it.
+7. Model steer.
+
+### Prototype results (on `7f33b4dd5`)
+- **Registered checks:** all five exit 0 before and after.
+
+  | Check | Before | After (option A) |
+  |---|---|---|
+  | `v2-loop-registry` | 12 OK | 17 OK |
+  | `v2-store-guard` | 13 OK | 13 OK |
+  | `v2-api-contract` | 6 OK | 6 OK |
+  | `v2-core-posture` | PASS, 0 findings | PASS, 0 findings; core tree `88f590c0…` → `dd7e1dda…` |
+  | `harness-self-check` | stdout `e5f9ff70…d110` | byte-identical |
+
+- **Other checks:**
+  - enforcement tests: 28 OK;
+  - receipts validator: exit 0, output unchanged;
+  - strict register validator: exit 0, output byte-identical;
+  - `git diff --check`: clean.
+- **Act script:**
+  - `--check-only` exits 0 and leaves the tree unchanged.
+  - Option A exits 0 and writes exactly the 11 paths.
+  - A second run exits 1 and writes nothing; so does a run against a drifted must-remain file.
+  - Option A-R exits 0, and its registry suite runs 17 OK.
+- **Reliance-hold preflight:** `exact-correction-preparation` returned ALLOW with exit 0 on all 13 targets.
+
+### Unresolved
+- **Re-review.** Revision 3 changes only the runner, the evidence and the text. A reviewer follow-up on the mutation runner and the per-option expectation completes the D-PEC-78 §4.3 order.
+- **Carried from revision 2:**
+  - The `agentruns-json` basis for PEC is by implication from D-PEC-94.
+  - `remaining-items` is not among the SCA-005 example profiles.
+  - The path-normalization residual (amendment only).
+  - The DEL-01-06 SOW lag, for S2.
+  - The stale "declares `remaining-loop` now" sentences.
+  - FX-PEC-0 and R-05, carried to X1.
+
+### Files
+- My helpers are in `/private/tmp/claude-501/g1work.uHT090/` (`r3/` for this revision). The large exports and clones are deleted.

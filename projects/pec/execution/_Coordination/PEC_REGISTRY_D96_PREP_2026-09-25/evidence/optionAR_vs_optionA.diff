@@ -1,5 +1,5 @@
---- protoA/projects/pec/v2/config/loops.json	2026-09-25 22:16:04
-+++ protoAR/projects/pec/v2/config/loops.json	2026-09-25 22:16:21
+--- actA/projects/pec/v2/config/loops.json	2026-09-25 22:36:03
++++ actAR/projects/pec/v2/config/loops.json	2026-09-25 22:36:03
 @@ -3,28 +3,10 @@
      {
        "feed_profiles": [
@@ -31,8 +31,8 @@
          }
        ],
        "loop_id": "pec",
---- protoA/projects/pec/v2/tests/config/test_json_loop_registry.py	2026-09-25 22:16:04
-+++ protoAR/projects/pec/v2/tests/config/test_json_loop_registry.py	2026-09-25 22:16:21
+--- actA/projects/pec/v2/tests/config/test_json_loop_registry.py	2026-09-25 22:36:03
++++ actAR/projects/pec/v2/tests/config/test_json_loop_registry.py	2026-09-25 22:36:03
 @@ -69,10 +69,13 @@
                      "pec",
                      PEC_LOOP_INIT,
