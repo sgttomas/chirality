@@ -16,6 +16,9 @@ consequences do not require a formal pass after each node. The final stage
 checks the combined result and completes the documentary/governance closeout.
 For a formal, human-activated corpus concordance program, select
 `reconciliation`; for one deliverable's lifecycle transition, select `review`.
+`review` may also dispatch this method for a read-only whole-deliverable
+candidacy comparison at a candidate commit; that use makes no edits and returns
+any warranted document edit as production work outside the review.
 
 TASK can perform one deliverable or a small connected comparison without
 further delegation. Its parent integrates the return and any resulting work
@@ -66,7 +69,8 @@ records: incidental mechanism
 detail belongs in code, tests or technical evidence; a decision-bound mechanism
 retains its force. Lift is the default repair: move stale incidental wording to
 its stable claim rather than repeatedly rewriting the mechanism. Borderline
-cases go to the owning decision. This test does not authorize changing a requirement.
+cases go to the owning decision. This test does not authorize changing a
+requirement.
 
 ## 3. Make the warranted changes
 
@@ -82,7 +86,8 @@ basis follow their owning decision path. Updating a navigation pointer to an
 already accepted basis is an ordinary correction; changing a
 `decomposition_basis`, an approval SHA or an authority pin keeps its owning
 path. When direct edits are not authorized, return precise proposed changes
-and leave application outstanding. Ordinary factual corrections already within the assignment need no new human prompt.
+and leave application outstanding. Ordinary factual corrections already
+within the assignment need no new human prompt.
 Code repair remains separate unless included in the assignment.
 
 A useful current document must say what it means. Adding a memory entry or a

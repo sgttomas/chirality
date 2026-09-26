@@ -93,7 +93,7 @@ The accepted package is consumed downstream by `project-setup`, then by
   - Packages: `PKG-XX` (two digits, zero-padded)
   - Deliverables: `DEL-XX-YY` (two digits for package, two digits within package)
   - If other instruction sets or legacy materials require a different width (e.g., `PKG-XXX`), the agent MUST surface the mismatch as a contradiction and request a human ruling before proceeding.
-  - Check ID format and coupling against these patterns (the register validator above reads deliverable folders as `DEL-\d{2}-\d{2}`). `tools/validation/validate_id_format.sh` checks the same forms; a rejection of a conforming ID by any checker is a tool defect to report, not a decomposition finding.
+  - Check ID format and coupling against these patterns (the register validator above reads deliverable folders as `DEL-\d{2}-\d{2}`). `tools/validation/validate_id_format.sh` accepts these forms (and 3-digit widths, so it does not flag `PKG-001` or enforce the 2-digit width; check the width against the patterns above); a rejection of a conforming ID by any checker is a tool defect to report, not a decomposition finding.
 - **Deterministic DeliverableID ↔ PackageID coupling.**
   - The first `XX` in `DEL-XX-YY` MUST equal the package numeric portion.
   - The `YY` is a sequential counter unique within that package (`01`, `02`, …).

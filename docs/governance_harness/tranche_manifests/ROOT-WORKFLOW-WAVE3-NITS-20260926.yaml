@@ -1,0 +1,59 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-WORKFLOW-WAVE3-NITS-20260926
+title: Deferred workflow-library naming and wording fixes
+date: '2026-09-26'
+basis: 8f9bd314c5f2499e6faf5bf4bdce917927e8185e
+instruction_surface_paths:
+  - tools/REGISTRY.md
+  - tools/practitioner_harness/test_write_status_guard.py
+  - tools/scaffolding/create_snapshot_folder.sh
+  - tools/scaffolding/test_scaffold.py
+  - tools/scaffolding/write_status.sh
+  - tools/validation/test_validate_scope_change_packet.py
+  - tools/validation/validate_scope_change_packet.py
+  - workflows/audit-hypergraph-closure/resources/method.md
+  - workflows/bounded-reconciliation/WORKFLOW.md
+  - workflows/domain-decomp/resources/contract.md
+  - workflows/domain-documents/WORKFLOW.md
+  - workflows/four-documents/WORKFLOW.md
+  - workflows/project-decomp/resources/contract.md
+  - workflows/project-setup/resources/contract.md
+  - workflows/project-setup/resources/method.md
+  - workflows/reconciliation/resources/contract.md
+  - workflows/reconciliation/resources/method.md
+  - workflows/reconciliation/resources/representation-migration.md
+  - workflows/scope-change-packet/WORKFLOW.md
+  - workflows/scope-change-packet/resources/checks.md
+  - workflows/scope-of-work/resources/representation-migration.md
+  - workflows/software-decomp/resources/contract.md
+  - docs/governance_harness/tranche_manifests/ROOT-WORKFLOW-WAVE3-NITS-20260926.yaml
+m2_gate:
+  authorization: >-
+    The repository owner directed that the deferred naming and wording nits
+    from the earlier workflow-library waves "need your attention"
+    (2026-09-26), and ruled that the semantic-lens / semantic-matrix-build
+    family stays unchanged. This tranche carries those deferred fixes.
+  authorized_by: Ryan Tufts (repository owner sgttomas, current Claude Code conversation)
+  authorization_date: '2026-09-26'
+  integration_owner: >-
+    Claude Code session integrating local branch wave3-nits under the standing
+    Git authorization of 2026-09-12
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE3_NITS.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE3_NITS.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-26_WORKFLOW_WAVE3_NITS.md
+  rationale: >-
+    App, Piping and PEC run scope-change packets, review snapshots and
+    reconciliation; the snapshot-folder behavior, the renamed packet column
+    (legacy name still accepted) and the write_status.sh ruling display touch
+    their runs, and App and Piping pin reconciliation bytes. PEC is being
+    redeveloped and the owner is deferring action there.
+scope_limits:
+  - The semantic-lens / semantic-matrix-build family is unchanged (owner direction).
+  - Historical scope-change packets keep the SCOPE_CHANGE_Gate column; the validator accepts it on read.
+  - Coordination records carrying the former representation labels are not rewritten.
+  - Historical run records are not rewritten; in-flight runs keep their bound files.

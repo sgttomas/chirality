@@ -81,8 +81,8 @@ decisions. A row an existing ruling already settles becomes R5 work under that
 ruling, citing it; do not ask the owner to decide it again. Where the owner has
 given an explicit written delegation that names the decision class or rows it
 covers, record its words verbatim; each application stays within those words
-and this run and is recorded as an agent disposition, not a human ruling; issuance,
-professional acceptance, and holds are never delegated this way.
+and this run and is recorded as an agent disposition, not a human ruling;
+issuance, professional acceptance, and holds are never delegated this way.
 
 For the open decisions, produce decision packets containing options, evidence,
 provenance/reliability, affected claim IDs and packages, risks, recommended

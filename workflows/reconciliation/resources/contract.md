@@ -28,8 +28,8 @@
   rulings. A ruling not yet applied to its carriers is R5 work under that
   ruling, not a new owner question. An application under an explicit written
   owner delegation that names the decision class or rows it covers, recorded
-  verbatim and kept within its words, is an agent disposition; issuance,
-  professional acceptance, and holds stay with their holders.
+  verbatim and kept within its words and this run, is an agent disposition;
+  issuance, professional acceptance, and holds stay with their holders.
 - **Source-state binding.** Every evidence citation names the source state it
   evaluated. Material source change marks affected work `STALE_INPUT` and
   requires rerun.
@@ -60,13 +60,14 @@
   review with a named output, or to the owner or engineering holder. Git
   closeout in the Chirality repository (`sgttomas/chirality`) follows
   `.agents/skills/chirality-change/SKILL.md`; elsewhere it follows WORKING_ITEMS
-  (workflow: change) or the project's change conventions. Workflow-component findings route
-  to HELPS_HUMANS.
+  (workflow: change) or the project's change conventions. Workflow-component
+  findings route to HELPS_HUMANS.
 - **One execution record.** In an adopting local-graph loop, the authorized
   graph carries executable work; no new Remaining seeding or duplicate residual
   list is required. Scope and decisions retain their authority; MEMORY is
-  a terse index of actual runs and central evidence. Earlier pinned programs retain their own Remaining-based
-  conventions and audited source populations until a specific migration.
+  a terse index of actual runs and central evidence. Earlier pinned programs
+  retain their own Remaining-based conventions and audited source populations
+  until a specific migration.
 - **No false closure.** Closure requires backchecked changed claims, evidence
   accounting for unfulfilled obligations and their owning work/decision,
   derivative disposition, source-state binding, blockers and handoff state.
@@ -98,8 +99,8 @@ A concordance run is valid only when:
 6. Project-specific reliability and professional-boundary rules are applied.
 7. Every wave passes structural validation and independent fan-in review. A
    narrowed [representation-migration](representation-migration.md) fan-in
-   additionally proves its 100% aggregate coverage, exception population, deterministic sample, and
-   escalation disposition.
+   additionally proves its 100% aggregate coverage, exception population,
+   deterministic sample, and escalation disposition.
 8. Package and corpus summaries reproduce from accepted claim rows.
 9. Conflicts, unknowns, stale inputs, unmapped implementation, lifecycle
    issues, and unfulfilled-obligation mismatches (legacy Remaining only where

@@ -168,7 +168,7 @@ If `PRIOR_RUN_LABEL` is provided:
    - snapshot path
    - closure status (PASS/WARNING/BLOCKER)
    - top issues (≤10)
-   - recommended next action (e.g., rerun TASK (workflow: domain-hypergraph), fix TASK (workflow: preparation) scaffolds, correct `_CONTEXT.md` IDs)
+   - recommended next action (e.g., rerun TASK (workflow: domain-hypergraph), fix scaffolds made with the `preparation` skill, correct `_CONTEXT.md` IDs)
 
 > Tool invocations (from Outputs section; used during snapshot publication):
 > - `tools/scaffolding/scaffold_tool_root.sh {EXECUTION_ROOT}/_Evaluation HypergraphClosure` (bootstrap once per tool root)
