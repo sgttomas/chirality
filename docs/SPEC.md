@@ -376,18 +376,25 @@ Distinctness: the `IN_PROGRESS` token also appears as a `SatisfactionStatus` enu
 
 ### 5.1 Format
 
-`_DEPENDENCIES.md` is a hybrid container with two ownership zones:
+`_DEPENDENCIES.md` is a hybrid container with two ownership zones. §5.2 is the
+single heading schema for the file (D-GOV-46); the `preparation` skill, the
+`dependency-extract` workflow, and `project-setup` MUST use its exact headings
+when they create a file or add a missing section.
 
-**Human-owned sections** (PREPARATION creates; human/PROJECT_SETUP maintains):
+**Human-owned sections** (the `preparation` skill creates them; humans or the coordinating workflow, ordinarily `project-setup`, maintain them):
 - Dependency Tracking Mode
 - Declared Upstream
 - Declared Downstream
 
-**Agent-owned sections** (TASK+dependency-extract populates):
+**Agent-owned sections** (TASK+`dependency-extract` populates them; `preparation` creates the first four as placeholders):
 - Extracted Dependency Register
-- Run Notes & History
 - Lifecycle Summary
-- Consumer Handoff Notes
+- Run Notes
+- Run History
+- Downstream Handoff Notes (optional; present only after a run with `CONSUMER_CONTEXT` other than `NONE`)
+
+Agent-owned sections never overwrite human-owned sections, and an agent never
+renames a human-owned section.
 
 ### 5.2 Schema
 
@@ -395,16 +402,22 @@ Distinctness: the `IN_PROGRESS` token also appears as a `SatisfactionStatus` enu
 # Dependencies: {DEL-ID} {DeliverableName}
 
 ## Dependency Tracking Mode
-- **Mode:** {NOT_TRACKED | DECLARED | TRACKED}
-- **Register:** Dependencies.csv (schema v3.1)
+- **Mode:** {NOT_TRACKED | DECLARED | FULL_GRAPH}
+- **Register:** Dependencies.csv (schema v3.1) when present; otherwise the declared sections of this file
+- **Notes:** {pointer to _COORDINATION.md or the external coordination system, or TBD}
 
 ---
 
 ## Declared Upstream (I need these before I can proceed)
-{Human-owned declarations, or "Dependencies coordinated externally by humans."}
+{Human-owned declarations, one entry each:
+- {DEL-ID} {Name} — Reason: {reason}
+  - Required maturity: {OPEN | INITIALIZED | SEMANTIC_READY | IN_PROGRESS | CHECKING | ISSUED}
+  - Location: {path if known, else TBD}
+or, when Mode = NOT_TRACKED, "Dependencies coordinated externally by humans."}
 
 ## Declared Downstream (These need me)
-{Human-owned declarations, or "Dependencies coordinated externally by humans."}
+{Human-owned declarations in the same entry form (Required maturity: the state they need from me),
+or, when Mode = NOT_TRACKED, "Dependencies coordinated externally by humans."}
 
 ---
 
@@ -425,7 +438,7 @@ Distinctness: the `IN_PROGRESS` token also appears as a `SatisfactionStatus` enu
 ---
 
 ## Lifecycle Summary
-{Dimension / Count table}
+{Dimension / Count table: ACTIVE/RETIRED counts and closure-state breakdown}
 
 ---
 
@@ -434,15 +447,63 @@ Distinctness: the `IN_PROGRESS` token also appears as a `SatisfactionStatus` enu
 
 ## Run History
 {Append-only log: one entry per run}
+
+## Downstream Handoff Notes
+{Only when a run's CONSUMER_CONTEXT is not NONE: notes for that consumer}
 ```
+
+**Before the first extraction run.** `preparation` writes the three
+human-owned sections from supplied declarations (it never infers edges). It
+writes the Extracted Dependency Register, Lifecycle Summary, Run Notes, and Run
+History headings with placeholder bodies: `- **Status:** NOT_RUN_YET` under the
+register heading and `- (placeholder)` under the others. It omits Downstream
+Handoff Notes. `dependency-extract` later replaces the placeholder bodies.
+If `dependency-extract` finds no file, it creates one with the §5.2 headings and
+leaves the human-owned mode and declarations as `TBD` until the human records
+them; `TBD` is a placeholder, not a §5.3 mode.
+
+**Legacy headings.** Existing files keep the headings they have; they are not
+rewritten to this schema. Readers MUST accept these legacy headings as the
+named §5.2 sections:
+
+| §5.2 section | Legacy headings read as equivalent |
+|---|---|
+| Dependency Tracking Mode | `## Coordination (human-owned)`, `## Coordination Mode`, `## Dependency Tracking` |
+| Declared Upstream | `## Upstream (I need these before I can proceed) — human-owned declarations`, `## Upstream (this deliverable depends on)`, `## Upstream (I need these)`, `## Upstream`, `## Declared Upstream`, `## Declared Upstream Dependencies` |
+| Declared Downstream | `## Downstream (These need me) — human-owned declarations`, `## Downstream (informational; consumers of this deliverable)`, `## Downstream`, `## Declared Downstream`, `## Declared Downstream Dependencies` |
+| Declared Upstream and Declared Downstream | `## Declared upstream/downstream lists` (one combined section) |
+| Run Notes and Run History | `## Run Notes & History` (one combined section) |
+| Downstream Handoff Notes | `## Consumer Handoff Notes (optional)`, `## Consumer Handoff Notes` |
+
+Other headings an existing file carries are preserved as they are and read by
+their content.
+
+An agent-owned heading with the suffix `(populated by TASK+dependency-extract)`
+is the same section as the heading without the suffix. When
+`dependency-extract` updates an existing file, it keeps the declared sections
+and their headings unchanged. It refreshes each agent-owned section under the
+heading the file already uses, and adds a missing agent-owned section under its
+§5.2 heading.
 
 ### 5.3 Tracking Modes
 
+The human chooses the dependency tracking mode for the project. It is recorded
+in `_COORDINATION.md` (§13) and in each deliverable's Dependency Tracking Mode
+section.
+
 | Mode | Meaning |
 |---|---|
-| `NOT_TRACKED` | Dependencies coordinated externally by humans |
-| `DECLARED` | Human-declared upstream/downstream only; no agent extraction |
-| `TRACKED` | Full extraction via TASK+dependency-extract; `Dependencies.csv` present |
+| `NOT_TRACKED` | Dependency coordination occurs outside the files (by humans or an external schedule). The declared sections say "Dependencies coordinated externally by humans." Reports MUST NOT give a computed ready/blocked judgment from dependencies, because the files do not hold the graph. `project-setup` skips its dependency extraction stage and records the skip. |
+| `DECLARED` | Only critical dependencies are recorded (partial, human-curated). The recorded critical edges are a partial view, not the whole graph. Blockers are computed only from the recorded register (the declared sections, or `Dependencies.csv`, whose DECLARED-origin rows carry the declarations, where extraction has run), and the absence of a recorded blocker is not a complete readiness judgment. Edges in an unresolved strongly connected component are non-gating and reported as held, as under `FULL_GRAPH`. Agent extraction MAY populate `Dependencies.csv` when the human-confirmed dependency rules call for extracted registers (`project-setup` Phases 1.3 and 2.2b). Extracted rows add evidence but do not make the view complete, and they never replace the human-owned declarations. Without extraction, `_DEPENDENCIES.md` is the declared register. |
+| `FULL_GRAPH` | Dependency declarations are intended to cover the selected graph semantics (a complete DAG). Blockers are computed only from the declared graph, and only after closure audit and cycle treatment. Edges in an unresolved strongly connected component are non-gating: they are excluded from blocker computation and reported as held pending resolution through `scc-resolution-case` and the owning decisions (`docs/CYCLE_DRIVEN_RESOLUTION.md` §2 rule 4). Extraction by TASK+`dependency-extract` and closure audit by TASK+`audit-dep-closure` are the ordinary means (`project-setup` Phase 2.2b); `Dependencies.csv` is present once extraction has run. |
+
+In any mode, a dependency graph is not by itself a schedule.
+
+**Legacy value.** `TRACKED` was this section's previous full-extraction value.
+It is read as `FULL_GRAPH`. Files that record it are not rewritten; new and
+updated records write `FULL_GRAPH`. The previous revision also said `DECLARED`
+used no agent extraction. D-GOV-46 withdraws that restriction in favour of the
+`DECLARED` meaning above.
 
 ---
 
@@ -871,11 +932,11 @@ A deliverable folder is **dependency-tracked** when it additionally contains:
 Located at `{EXECUTION_ROOT}/_Coordination/_COORDINATION.md`.
 
 Records the project's chosen coordination representation:
-- **Schedule-first:** Gantt drives sequencing; dependency tracking is active for blocker detection and audit
+- **Schedule-first:** Gantt drives sequencing; dependency tracking, unless its mode is `NOT_TRACKED`, supports blocker detection and audit
 - **Dependency-tracked:** Dependency graph drives sequencing
 - **Hybrid:** Combination of schedule-first and dependency-tracked
 
-The coordination representation is chosen per project instance and recorded once. It does not change the dependency tracking mechanics (which always maintain the full DAG), only how teams use the graph for scheduling.
+The coordination representation is chosen per project instance and recorded once. The record also carries the project's dependency tracking mode (`NOT_TRACKED | DECLARED | FULL_GRAPH`, §5.3). The representation does not change what a mode means; only `FULL_GRAPH` intends a complete graph. It changes how teams use the recorded dependencies for scheduling.
 
 The coordination root also holds the session control-plane handoff files (`NEXT_INSTANCE_PROMPT.md` and, where used, `NEXT_INSTANCE_STATE.md`); see `workflows/project-setup/WORKFLOW.md`.
 

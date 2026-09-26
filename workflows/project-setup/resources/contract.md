@@ -91,11 +91,12 @@ Recommended lifecycle ownership (may vary by project):
 - **Deliverable / Working item**: A scoped unit of work (`DEL-…`) represented by one deliverable folder.
 - **Lifecycle state**: `OPEN | INITIALIZED | SEMANTIC_READY | IN_PROGRESS | CHECKING | ISSUED` (local to the deliverable folder).
 - **Coordination representation**: The human’s chosen way to coordinate across packages/deliverables.
-- **Dependency tracking mode**:
-  - `NOT_TRACKED` — dependencies are coordinated externally by humans; do not compute blockers.
-  - `DECLARED` — only critical dependencies are recorded (partial, human-curated); compute blockers only from declared edges.
-  - `FULL_GRAPH` — dependency declarations are intended to form a complete DAG; compute blockers only from the declared graph.
-- **Dependency register**: deliverable-local dependency artifacts (prefer `Dependencies.csv` when present; `_DEPENDENCIES.md` as human-readable view).
+- **Dependency tracking mode** (`docs/SPEC.md` §5.3):
+  - `NOT_TRACKED` — dependency coordination occurs outside the files (humans or an external schedule); do not compute blockers or report a ready/blocked judgment from dependencies.
+  - `DECLARED` — only critical dependencies are recorded (partial, human-curated); the recorded edges are a partial view. Compute blockers only from the recorded register (the declared sections, or `Dependencies.csv`, whose DECLARED-origin rows carry the declarations, where extraction has run). Dependency extraction may add `Dependencies.csv` rows when the Phase 1.3 rules call for it; it does not make the view complete.
+  - `FULL_GRAPH` — dependency declarations are intended to form a complete DAG; compute blockers only from the declared graph, after closure audit and cycle treatment (see Validity).
+  - A legacy `TRACKED` value in an existing record is read as `FULL_GRAPH`; new records write `FULL_GRAPH`.
+- **Dependency register**: deliverable-local dependency artifacts (prefer `Dependencies.csv` when present; `_DEPENDENCIES.md` as human-readable view, with the `docs/SPEC.md` §5.2 headings).
 - **Semantic lens artifacts**:
   - `_SEMANTIC.md` is a lens scaffold (question-shaping), not an authority.
   - `_SEMANTIC_LENSING.md` is an enrichment register, not an authority.
@@ -116,7 +117,7 @@ A workspace is valid when:
 
 - Representation and dependency mode were explicitly confirmed by the human.
 - If mode is `NOT_TRACKED`, reports must not label deliverables as blocked/available based on dependencies.
-- If mode is `FULL_GRAPH`, blockers are computed only from edges outside unresolved cycles. Edges that participate in an unresolved SCC are non-gating: they are excluded from blocker computation and reported as held pending resolution through `scc-resolution-case` and the owning decisions (`docs/CYCLE_DRIVEN_RESOLUTION.md` §2 rule 4). A cycle does not by itself invalidate the coordination record or block independent work.
+- If mode is `DECLARED` or `FULL_GRAPH`, blockers are computed only from edges outside unresolved cycles. Edges that participate in an unresolved SCC are non-gating: they are excluded from blocker computation and reported as held pending resolution through `scc-resolution-case` and the owning decisions (`docs/CYCLE_DRIVEN_RESOLUTION.md` §2 rule 4). A cycle does not by itself invalidate the coordination record or block independent work.
 
 ### S-EST — Estimating pipeline validity
 
@@ -189,7 +190,7 @@ Every deliverable folder should be seeded with:
 | `_CONTEXT.md` | Identity and scope | Must contain stable IDs from decomposition |
 | `_STATUS.md` | Lifecycle state | Authoritative lifecycle indicator |
 | `_REFERENCES.md` | Sources index | Pointers to package references and other materials |
-| `_DEPENDENCIES.md` | Human-readable dependency view | May be stub; may be overwritten by TASK+dependency-extract outputs |
+| `_DEPENDENCIES.md` | Human-readable dependency view | Created with the `docs/SPEC.md` §5.2 skeleton; TASK+dependency-extract refreshes only its agent-owned sections |
 | `Dependencies.csv` | Structured dependency edges | Optional; created by TASK+dependency-extract when run |
 | `_SEMANTIC.md` | Semantic lens scaffold | Required placeholder at scaffold time; lens content optional and created/overwritten by TASK+semantic-matrix-build |
 | `_SEMANTIC_LENSING.md` | Enrichment register | Optional; created by TASK+lens-register |

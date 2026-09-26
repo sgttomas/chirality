@@ -34,41 +34,50 @@ Do not normalize or embellish accepted field values. Use `TBD` only when the acc
 
 ## Dependency file
 
-`_DEPENDENCIES.md` is a durable container. Humans or the coordinating workflow own the declared sections; `dependency-extract` later fills the extracted sections and must find these headings unchanged. Create it with this skeleton, using `KTY`/category labels for a knowledge type. Do not infer dependency edges.
+`_DEPENDENCIES.md` is a durable container whose single heading schema is `docs/SPEC.md` §5.2 (D-GOV-46). Humans or the coordinating workflow own the three declared sections; `dependency-extract` later fills the extracted sections, keeps the declared sections and their headings unchanged, and adds any missing section under its §5.2 heading. When the file is newly created, including an empty stub from the scaffolder, write exactly this skeleton, using `KTY`/category labels for a knowledge type. Take the mode from the coordination record (`NOT_TRACKED`, `DECLARED` or `FULL_GRAPH`; SPEC §5.3). Do not infer dependency edges. Do not rewrite an existing file to this skeleton.
 
 ```markdown
 # Dependencies: [DEL-ID] [Deliverable Name]
 
-## Coordination (human-owned)
+## Dependency Tracking Mode
 - **Mode:** [NOT_TRACKED | DECLARED | FULL_GRAPH]
+- **Register:** Dependencies.csv (schema v3.1) when present; otherwise the declared sections of this file
 - **Notes:** [pointer to coordination record or external system, or "TBD"]
 
-## Upstream (I need these before I can proceed) — human-owned declarations
+---
+
+## Declared Upstream (I need these before I can proceed)
 - (If Mode = NOT_TRACKED: write “Dependencies coordinated externally by humans.”)
 - [DEL-ID] [Name] — Reason: [from WORKING_ITEMS (workflow: project-setup) declarations]
   - Required maturity: [OPEN | INITIALIZED | SEMANTIC_READY | IN_PROGRESS | CHECKING | ISSUED]
   - Location: [path if known, else TBD]
 
-## Downstream (These need me) — human-owned declarations
+## Declared Downstream (These need me)
 - (If Mode = NOT_TRACKED: write “Dependencies coordinated externally by humans.”)
 - [DEL-ID] [Name] — Reason: [from WORKING_ITEMS (workflow: project-setup) declarations]
   - Required maturity: [state they need from me]
   - Location: [path if known, else TBD]
 
-## Extracted Dependency Register (populated by TASK+dependency-extract)
+---
+
+## Extracted Dependency Register
 - **Status:** NOT_RUN_YET
-- **Dependencies.csv:** TBD
-- **Summary:** TBD
 
-## Run Notes & History (populated by TASK+dependency-extract)
+---
+
+## Lifecycle Summary
 - (placeholder)
 
-## Lifecycle Summary (populated by TASK+dependency-extract)
+---
+
+## Run Notes
 - (placeholder)
 
-## Consumer Handoff Notes (optional)
+## Run History
 - (placeholder)
 ```
+
+Do not add `## Downstream Handoff Notes`; `dependency-extract` adds it only for a run whose `CONSUMER_CONTEXT` is not `NONE`.
 
 ## Remaining control files
 

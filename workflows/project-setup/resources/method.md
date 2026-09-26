@@ -110,7 +110,7 @@ Run this phase **only if** the human selects `DECLARED` or `FULL_GRAPH`.
   - Folder labels follow the project's recorded label rule where one exists; the `preparation` skill's sanitization rule is the default for new workspaces.
 - `PREPARATION_ACTOR` uses the language model only to populate metadata text from the decomposition and any human-confirmed declarations:
   - `_CONTEXT.md`
-  - `_DEPENDENCIES.md`
+  - `_DEPENDENCIES.md` (the `docs/SPEC.md` §5.2 skeleton given in the `preparation` skill's scaffold contract, carrying the recorded dependency tracking mode)
   - `_REFERENCES.md`
 - `PREPARATION_ACTOR` validates each newly created deliverable or knowledge-type folder with:
   - `tools/validation/check_min_viable_fileset.sh {folder}`
@@ -383,6 +383,8 @@ Additionally, if dependency tracking mode is enabled, provide an **advisory** se
 - UNBLOCKED (declared dependencies met)
 - BLOCKED (declared dependencies not met)
 - HELD (edges in unresolved cycles; non-gating and excluded from BLOCKED)
+
+Under `DECLARED`, label this section a partial view of the recorded critical edges (`docs/SPEC.md` §5.3).
 
 WORKING_ITEMS does not assign or recommend priorities.
 

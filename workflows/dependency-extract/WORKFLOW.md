@@ -268,14 +268,14 @@ Match/merge precedence for extracted rows (in order):
 
 ### Function 4 — Update `_DEPENDENCIES.md` index
 
-Keep declared lists and add/refresh:
+`docs/SPEC.md` §5.2 is the heading schema for `_DEPENDENCIES.md`. Keep the declared sections (`## Dependency Tracking Mode`, `## Declared Upstream (I need these before I can proceed)`, `## Declared Downstream (These need me)`) and add/refresh, in this order:
 - `## Extracted Dependency Register` (counts + compact table)
+- `## Lifecycle Summary` (ACTIVE/RETIRED counts + closure-state breakdown)
 - `## Run Notes` (defaults + assumptions + paths used + warnings)
 - `## Run History` (append-only; one entry per run: timestamp, mode, strictness, decomposition path/status, warnings, ACTIVE counts)
-- `## Lifecycle Summary` (ACTIVE/RETIRED counts + closure-state breakdown)
 - `## Downstream Handoff Notes` (only when `CONSUMER_CONTEXT` is not `NONE`)
 
-Do not rename the declared dependency sections.
+If `_DEPENDENCIES.md` is missing, create it with the SPEC §5.2 headings and leave the human-owned mode and declarations as `TBD`; never infer them. In an existing file, do not rename the declared dependency sections or edit their content. Legacy headings in existing files (SPEC §5.2 legacy-heading table, for example `## Coordination (human-owned)`, `## Coordination Mode`, `## Run Notes & History`, `## Consumer Handoff Notes (optional)`, or a `(populated by TASK+dependency-extract)` suffix) are preserved and read as their §5.2 sections: refresh each agent-owned section under the heading the file already uses, and add a missing section under its §5.2 heading. A legacy `TRACKED` mode value is read as `FULL_GRAPH` and left as written.
 
 ### Function 5 — Local quality checks (mandatory)
 
@@ -406,11 +406,11 @@ Estimating-oriented guidance (when `CONSUMER_CONTEXT=TASK_ESTIMATING`):
 
 ### `_DEPENDENCIES.md`
 
-Must contain:
-- declared upstream/downstream lists (human-owned)
+Follows the `docs/SPEC.md` §5.2 schema (legacy headings in existing files preserved). Must contain:
+- dependency tracking mode and declared upstream/downstream lists (human-owned)
 - extracted register summary
-- run notes + run history
 - lifecycle summary
+- run notes + run history
 - downstream handoff notes when a consumer context is provided
 
 ## Outputs
