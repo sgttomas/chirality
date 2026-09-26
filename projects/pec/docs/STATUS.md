@@ -161,10 +161,12 @@ are applied as part of PRD v2.3.
 On 2026-09-24 HELP_HUMAN answered the checkpoint-1 question set from the accepted sources in `execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/CHECKPOINT1_RESOLUTION_NOTE.md`: every Q1–Q10 and manager item resolves to one option by citation, leaving the owner CP1-A/CP1-B acceptance (given 2026-09-24) and the TM-PEC-023 row selections (nine rows reduced to seven live choices, still the owner's at checkpoint 2). The DEL-01-03 obligations were triaged the same way (15 settled, 13 folded into eight repairs proposed as D-PEC-87, 4 reduced to two lifecycle choices).
 
 **Task Management** (`execution/_Coordination/_TaskManagement/`): the live
-register holds 10 rows (9 `OPEN`, 1 `DEFERRED`) and the archive 15 `CLOSED`
-rows after the 2026-09-22 review (Receipt 178). The 2026-09-23 notice triage
-(`NOTICE_TRIAGE_2026-09-23.md`) added no rows. TM-PEC-022 stays `DEFERRED`;
-TM-PEC-023 stays `OPEN` pending its task-management disposition (`RESOLVED_BY_DECISION`, SCA-005 Lane B8); its selections are applied in the accepted revision 1.5 registers.
+register holds 9 rows (8 `OPEN`, 1 `DEFERRED`) and the archive 16 `CLOSED`
+rows. The 2026-09-23 notice triage (`NOTICE_TRIAGE_2026-09-23.md`) added no
+rows. TM-PEC-022 stays `DEFERRED`. TM-PEC-023 was closed
+`RESOLVED_BY_DECISION` on the owner's confirmation (`D-PEC-95`, 2026-09-25)
+and archived by the PR #924 act; its selections are applied in the accepted
+revision 1.5 registers.
 
 **Historical — superseding owner ruling, 2026-08-03 (state as of that
 date):** TM-PEC-023 now proceeds through a
@@ -208,26 +210,33 @@ Current owner gates (2026-09-25; none is accepted or inferred here):
   warnings, 111 dependency edges with no cycles; re-audit
   `execution/_Evaluation/DecompCoverage/COV_SCA005_POSTSETUP_2026-09-25_1606/`
   0 blockers, now named by `_Evaluation/DecompCoverage/_LATEST.md`).
-  `_Decomposition/_LATEST.md`, `_ScopeChange/_LATEST.md` and
-  `_COORDINATION.md` still describe the pre-setup audit state, and the
-  `D-PEC-95` act updates them. The SCA-005 `Handoff_State.md` and
-  `RUN_SUMMARY.md` stay as accepted: under the P ruling `_COORDINATION.md`
-  records them as superseded for current state (`RUN_SUMMARY.md` still
-  lists the re-audit as open). Open: context and
-  reference re-pinning to revision 1.5; the 19 stale dependency evidence
-  quotes (residual under `D-PEC-93`); SOW currency and first SOWs for
-  DEL-02-08/09; DEL-00-01/00-03 derivative review; the loop registry source
-  packet; P1 fixtures; TM-PEC-023 disposition; residual `projects/pec/AGENTS.md`
-  corrections; the D-PEC-90 reliance amendment. These are organized in the
-  work graph
-  `execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md`. Owners: the SCA-005 `RUN_SUMMARY.md` downstream table and the
-  D-PEC-93 run root `HANDOFF_STATE.md`.
-  The records currency, the re-pinning, the 19 quotes and the TM-PEC-023
-  disposition were ruled together as `D-PEC-95` option P + R on 2026-09-25
-  (`execution/_Coordination/_DECISIONS/D-PEC-95_RULING_2026-09-25.md`); the
-  act has not run yet. The D-PEC-90 reliance amendment is scope change
-  SCA-006, whose checkpoint-1 package
-  (`execution/_ScopeChange/SCA-006_2026-09-25_1912/`) awaits the owner.
+  Done under `D-PEC-95` P + R (act merged 2026-09-25 as PR #924,
+  `abfd0897b`; run root
+  `execution/_Coordination/CURRENCY_REV15_D95_2026-09-25/`):
+  - `_Decomposition/_LATEST.md`, `_ScopeChange/_LATEST.md` and
+    `_COORDINATION.md` describe the post-setup state;
+  - all 66 contexts and 66 references name revision 1.5;
+  - the 19 stale dependency evidence quotes are refreshed, so all 111 active
+    execution quotes are verbatim;
+  - TM-PEC-023 is closed `RESOLVED_BY_DECISION` and archived.
+
+  No re-audit ran, by owner ruling. The next audit to observe this state is
+  SCA-006's post-change audit. The SCA-005 `Handoff_State.md` and
+  `RUN_SUMMARY.md` stay unchanged at their current bytes, and
+  `_COORDINATION.md` records them as superseded for current state.
+
+  Open:
+  - SOW currency and first SOWs for DEL-02-08/09;
+  - DEL-00-01/00-03 derivative review;
+  - the loop registry source packet;
+  - P1 fixtures;
+  - residual `projects/pec/AGENTS.md` corrections;
+  - the D-PEC-90 reliance amendment. This is scope change SCA-006, whose
+    checkpoint-1 package (`execution/_ScopeChange/SCA-006_2026-09-25_1912/`)
+    awaits the owner.
+
+  These are organized in the work graph
+  `execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md`.
 - **Other lifecycle and P1 acts:** DEL-01-05 repaired-artifact acceptance,
   DEL-01-06 Gate 5 (HOLD at `INITIALIZED`), DEL-08-02 short of `ISSUED`, and
   every later P1 node each need their own owner-ruled act.
