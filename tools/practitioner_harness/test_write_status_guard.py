@@ -251,6 +251,224 @@ def test_backward_transition_refused(tmp_path):
     assert read_status(deldir) == before
 
 
+# ---------------------------------------------------------------------------
+# Human-ruled CHECKING -> IN_PROGRESS reversal (SPEC §3.3)
+# ---------------------------------------------------------------------------
+
+
+def test_checking_reversal_with_committed_ruling_records_reversal(tmp_path):
+    repo, deldir, head = make_repo(tmp_path, MANIFEST_SHA_DECLARING, state="CHECKING")
+    result = run_guard(
+        repo,
+        deldir,
+        "IN_PROGRESS",
+        "human",
+        "--ruling",
+        RULING_REL,
+        "--approval-sha",
+        head,
+    )
+    assert result.returncode == 0, result.stderr
+    text = read_status(deldir)
+    assert "**Current State:** IN_PROGRESS" in text
+    assert (
+        f"State set to IN_PROGRESS (human) [reversal from CHECKING; ruling: {RULING_REL}]\n"
+        in text
+    )
+    assert "reversal from CHECKING" in result.stdout
+    # The reversal never records a new checking approval.
+    assert "Checking Approval SHA" not in text
+    assert "Authorization Basis" not in text
+
+
+def test_checking_reversal_on_no_sha_schema_root(tmp_path):
+    repo, deldir, _head = make_repo(tmp_path, MANIFEST_NO_SHA_SCHEMA, state="CHECKING")
+    result = run_guard(repo, deldir, "IN_PROGRESS", "HUMAN", "--ruling", RULING_REL)
+    assert result.returncode == 0, result.stderr
+    assert "REVIEW" in result.stderr
+    text = read_status(deldir)
+    assert "**Current State:** IN_PROGRESS" in text
+    assert f"[reversal from CHECKING; ruling: {RULING_REL}]" in text
+
+
+def test_checking_reversal_requires_ruling(tmp_path):
+    repo, deldir, head = make_repo(tmp_path, MANIFEST_SHA_DECLARING, state="CHECKING")
+    before = read_status(deldir)
+    result = run_guard(repo, deldir, "IN_PROGRESS", "human", "--approval-sha", head)
+    assert result.returncode == 1
+    assert "RULING_REQUIRED" in result.stderr
+    assert read_status(deldir) == before
+
+
+def test_checking_reversal_requires_ruling_even_when_manifest_waives_it(tmp_path):
+    manifest = MANIFEST_NO_SHA_SCHEMA.replace(
+        "guard_requires_committed_ruling_path: true",
+        "guard_requires_committed_ruling_path: false",
+    )
+    repo, deldir, _head = make_repo(tmp_path, manifest, state="CHECKING")
+    before = read_status(deldir)
+    result = run_guard(repo, deldir, "IN_PROGRESS", "human")
+    assert result.returncode == 1
+    assert "RULING_REQUIRED" in result.stderr
+    assert read_status(deldir) == before
+
+
+def test_checking_reversal_refuses_uncommitted_ruling(tmp_path):
+    repo, deldir, head = make_repo(tmp_path, MANIFEST_SHA_DECLARING, state="CHECKING")
+    untracked = repo / "projects" / "fixture" / "docs" / "untracked_reversal.md"
+    untracked.write_text("not committed\n")
+    before = read_status(deldir)
+    result = run_guard(
+        repo,
+        deldir,
+        "IN_PROGRESS",
+        "human",
+        "--ruling",
+        "projects/fixture/docs/untracked_reversal.md",
+        "--approval-sha",
+        head,
+    )
+    assert result.returncode == 1
+    assert "RULING_NOT_COMMITTED" in result.stderr
+    assert read_status(deldir) == before
+
+
+def test_checking_reversal_requires_sha_on_sha_declaring_root(tmp_path):
+    repo, deldir, _head = make_repo(tmp_path, MANIFEST_SHA_DECLARING, state="CHECKING")
+    before = read_status(deldir)
+    result = run_guard(repo, deldir, "IN_PROGRESS", "human", "--ruling", RULING_REL)
+    assert result.returncode == 1
+    assert "APPROVAL_SHA_REQUIRED" in result.stderr
+    assert read_status(deldir) == before
+
+
+def test_checking_reversal_refuses_non_human_actor(tmp_path):
+    repo, deldir, head = make_repo(tmp_path, MANIFEST_SHA_DECLARING, state="CHECKING")
+    before = read_status(deldir)
+    result = run_guard(
+        repo,
+        deldir,
+        "IN_PROGRESS",
+        "WORKING_ITEMS",
+        "--ruling",
+        RULING_REL,
+        "--approval-sha",
+        head,
+    )
+    assert result.returncode == 1
+    assert "UNAUTHORIZED_ACTOR" in result.stderr
+    assert "reversal" in result.stderr
+    assert read_status(deldir) == before
+
+
+@pytest.mark.parametrize(
+    "current,target",
+    [("CHECKING", "SEMANTIC_READY"), ("CHECKING", "INITIALIZED"), ("ISSUED", "CHECKING")],
+)
+def test_other_backward_moves_from_checking_or_issued_stay_blocked(tmp_path, current, target):
+    repo, deldir, head = make_repo(tmp_path, MANIFEST_SHA_DECLARING, state=current)
+    before = read_status(deldir)
+    result = run_guard(
+        repo, deldir, target, "human", "--ruling", RULING_REL, "--approval-sha", head
+    )
+    assert result.returncode == 1
+    assert "BACKWARD_TRANSITION" in result.stderr
+    assert read_status(deldir) == before
+
+
+def test_issued_to_in_progress_stays_blocked_even_with_ruling(tmp_path):
+    repo, deldir, head = make_repo(tmp_path, MANIFEST_SHA_DECLARING, state="ISSUED")
+    before = read_status(deldir)
+    result = run_guard(
+        repo, deldir, "IN_PROGRESS", "human", "--ruling", RULING_REL, "--approval-sha", head
+    )
+    assert result.returncode == 1
+    assert "BACKWARD_TRANSITION" in result.stderr
+    assert "scope-change" in result.stderr
+    assert read_status(deldir) == before
+
+
+def test_override_cannot_waive_reversal_ruling(tmp_path):
+    repo, deldir, head = make_repo(tmp_path, MANIFEST_SHA_DECLARING, state="CHECKING")
+    before = read_status(deldir)
+    result = run_guard(
+        repo, deldir, "IN_PROGRESS", "human", "--approval-sha", head,
+        "--force-human-override", "fixture reason",
+    )
+    assert result.returncode == 1
+    assert "BLOCK RULING_REQUIRED" in result.stderr
+    assert "not overridable" in result.stderr
+    assert read_status(deldir) == before
+
+
+def test_override_cannot_waive_uncommitted_reversal_ruling(tmp_path):
+    repo, deldir, head = make_repo(tmp_path, MANIFEST_SHA_DECLARING, state="CHECKING")
+    untracked = repo / "projects" / "fixture" / "docs" / "untracked_reversal.md"
+    untracked.write_text("not committed\n")
+    before = read_status(deldir)
+    result = run_guard(
+        repo, deldir, "IN_PROGRESS", "human",
+        "--ruling", "projects/fixture/docs/untracked_reversal.md",
+        "--approval-sha", head,
+        "--force-human-override", "fixture reason",
+    )
+    assert result.returncode == 1
+    assert "BLOCK RULING_NOT_COMMITTED" in result.stderr
+    assert read_status(deldir) == before
+
+
+def test_override_cannot_waive_issued_to_in_progress(tmp_path):
+    repo, deldir, head = make_repo(tmp_path, MANIFEST_SHA_DECLARING, state="ISSUED")
+    before = read_status(deldir)
+    result = run_guard(
+        repo, deldir, "IN_PROGRESS", "human", "--ruling", RULING_REL,
+        "--approval-sha", head, "--force-human-override", "fixture reason",
+    )
+    assert result.returncode == 1
+    assert "BLOCK BACKWARD_TRANSITION" in result.stderr
+    assert "not overridable" in result.stderr
+    assert read_status(deldir) == before
+
+
+def test_checking_reversal_leaves_existing_approval_fields_as_history(tmp_path):
+    repo, deldir, head = make_repo(tmp_path, MANIFEST_SHA_DECLARING, state="IN_PROGRESS")
+    entry = run_guard(
+        repo, deldir, "CHECKING", "human", "--ruling", RULING_REL, "--approval-sha", head
+    )
+    assert entry.returncode == 0, entry.stderr
+    fields = [
+        line
+        for line in read_status(deldir).splitlines()
+        if line.startswith(("**Checking Approval SHA:**", "**Authorization Basis:**"))
+    ]
+    assert len(fields) == 2
+    result = run_guard(
+        repo, deldir, "IN_PROGRESS", "human", "--ruling", RULING_REL, "--approval-sha", head
+    )
+    assert result.returncode == 0, result.stderr
+    text = read_status(deldir)
+    assert "**Current State:** IN_PROGRESS" in text
+    for line in fields:
+        assert text.count(line + "\n") == 1
+
+
+def test_non_git_checking_reversal_requires_existing_ruling(tmp_path):
+    deldir = _make_non_git_tree(tmp_path, "CHECKING")
+    before = read_status(deldir)
+    result = run_guard(tmp_path, deldir, "IN_PROGRESS", "human")
+    assert result.returncode == 1
+    assert "RULING_REQUIRED" in result.stderr
+    assert read_status(deldir) == before
+    ruling = tmp_path / "reversal_ruling.md"
+    ruling.write_text("# fixture reversal ruling (test material)\n")
+    result = run_guard(tmp_path, deldir, "IN_PROGRESS", "human", "--ruling", ruling)
+    assert result.returncode == 0, result.stderr
+    assert "REVIEW: not a git repository" in result.stderr
+    text = read_status(deldir)
+    assert "**Current State:** IN_PROGRESS" in text
+    assert "[reversal from CHECKING; ruling: " in text
+
+
 def test_skip_transition_refused(tmp_path):
     repo, deldir, head = make_repo(tmp_path, MANIFEST_SHA_DECLARING, state="OPEN")
     before = read_status(deldir)

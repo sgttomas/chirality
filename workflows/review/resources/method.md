@@ -1,32 +1,67 @@
 # review — method
 
+Apply the [contract](contract.md)'s transitions table and its single severity
+and disposition rule throughout. Governing text: `docs/SPEC.md` §3.2–3.4.
+
 ## Method
 
 ### Gate 1 — Scope and Precondition Check
 
-**Human provides:** Which deliverable to review and what review type.
+**Human provides:** Which deliverable to review, what review type, and the
+intended transition (or withdrawal of a current check).
 
 **Agent does:**
 
 1) Resolve `DELIVERABLE_PATH`. Confirm the folder exists.
 2) Read `_STATUS.md`. Validate lifecycle state:
-   - For `IN_PROGRESS → CHECKING` review: state must be `IN_PROGRESS` (or `SEMANTIC_READY` / `INITIALIZED` if the human explicitly overrides)
-   - For `CHECKING → ISSUED` review: state must be `CHECKING`
-   - If state is `OPEN`: warn that the deliverable has not been initialized and
-     route production through the currently authoritative format workflow.
-   - If state is `ISSUED`: warn — "Deliverable is already ISSUED; this would be a re-review"
+   - For an `IN_PROGRESS → CHECKING` candidacy review: state must be
+     `IN_PROGRESS`. There is no override from earlier states. `INITIALIZED` or
+     `SEMANTIC_READY` first moves to `IN_PROGRESS` through its own authorized
+     transition (SPEC §3.3); `OPEN` routes production through the currently
+     authoritative format workflow.
+   - For a `CHECKING → ISSUED` review: state must be `CHECKING`. Read the
+     frozen candidate SHA recorded at entry (in the prior `_REVIEW.md` Freeze
+     section or the entry snapshot) and confirm the deliverable's claim
+     surfaces (contract, Frozen candidate) are unchanged since it, for example
+     with `git diff --quiet {FROZEN_SHA} -- {deliverable_folder}` and
+     `:(exclude)` pathspecs for the excluded records, paired with
+     `git status --porcelain` on the same folder and exclusions so that
+     untracked files are seen too. A changed frozen surface means the candidate
+     under review is not the frozen one: stop and present the reversal branch
+     of Gate 5.
+   - If no frozen SHA or declared checking basis is recorded (for example, a
+     deliverable that entered `CHECKING` under an earlier override), stop and
+     surface the missing basis. Offer the human two routes: a committed ruling
+     that records the checking basis and the entry-commit SHA as the frozen
+     candidate, and either cites the entry evidence it relied on or directs
+     the candidacy comparison to be run now at that SHA, after which this
+     review continues; or the reversal branch of Gate 5.
+   - For a withdrawn check (state `CHECKING`, human withdraws): go directly to
+     the reversal branch of Gate 5 after recording the stated reason.
+   - If state is `ISSUED`: stop. Changes to an accepted baseline use the
+     governed scope-change process, not this workflow.
 3) Read `_CONTEXT.md`. Extract identity and mappings, then resolve the
    production format. `SOW_V1` and complete `LEGACY_FOUR_DOC` are valid;
    `MIGRATION_DUAL` requires exact accepted path authority. Refuse all other
    states.
-4) If `DECOMPOSITION_PATH` is available: dispatch TASK (workflow: audit-decomp) scoped to this single deliverable (pass `DECOMP_VARIANT` if known; otherwise infer from the decomposition document's entity names). Report context validity:
+4) Identify the owning loop's lifecycle instruments from its instructions and
+   `_harness/adapter.yaml`: the required ruling instrument, approval-SHA
+   schema, promotion preflight (for example, the App's APP-HOLD-1
+   `app_hold.py check --operation checking-promotion`), issuance fences (for
+   example, App F-APP-4: no `CHECKING → ISSUED`), and whether the loop has
+   adopted SPEC §3.4 candidacy or still pins an earlier Remaining-based entry
+   criterion. When a fence prohibits the intended transition, say so now; the
+   review may still gather evidence, but Gate 5 will not record that
+   transition.
+5) If `DECOMPOSITION_PATH` is available: dispatch TASK (workflow: audit-decomp) scoped to this single deliverable (pass `DECOMP_VARIANT` if known; otherwise infer from the decomposition document's entity names). Report context validity:
    - `PASS`: decomposition and filesystem agree for this deliverable
    - `WARNING`: discrepancies exist (list them)
    - `SKIP`: no decomposition available (proceed with filesystem-only review)
-5) Present precondition summary:
+6) Present precondition summary:
    - Deliverable identity and current state
-   - Review type selected
+   - Intended transition and review type selected
    - Context validity result
+   - Owning-loop preflight, fences, and candidacy basis in force
    - Anticipated artifacts from decomposition
    - Any precondition warnings
 
@@ -36,11 +71,46 @@ Ask: "Proceed with review, or resolve precondition issues first?"
 
 ---
 
-### Gate 2 — Checklist Generation
+### Gate 2 — Candidacy Account, Checking Basis, and Checklist
 
 **Agent does:**
 
-Generate a structured review checklist from multiple sources. Each checklist item has an ID, source reference, and a blank status field.
+1) **Candidacy account** (`IN_PROGRESS → CHECKING` only). Establish current
+   candidate-bound evidence that accounts for the deliverable's applicable
+   production obligations and shows that none remains unfulfilled within the
+   proposed checking scope (SPEC §3.4 layer 1):
+   - Identify the candidate commit SHA.
+   - Consume `CANDIDACY_ACCOUNT` when it is a current whole-deliverable
+     comparison bound to that commit: a bounded-reconciliation return, or a
+     concordance `OBLIGATION_ACCOUNT.csv` covering this deliverable. Otherwise
+     dispatch TASK (workflow: bounded-reconciliation) for a read-only
+     comparison of this deliverable at the candidate commit; any warranted
+     document edit it finds is production work outside this review.
+   - The comparison covers the Scope of Work, actual outputs, dependencies,
+     and required production verification. Closing graph nodes or deleting a
+     list is not proof of coverage.
+   - Where the owning loop still pins a Remaining-based entry criterion, apply
+     it as the candidacy basis and record which basis applied.
+   - Record the result in `_REVIEW.md` §Candidacy Account. If any production
+     obligation is unfulfilled, including one needing a human decision or
+     missing required production verification, the deliverable stays
+     `IN_PROGRESS`: report each item with its owning graph node or decision,
+     recommend `RECOMMEND_HOLD`, and route it to production or to the owning
+     rescoping decision. There is no deferral path. The human may end the
+     review here or continue gathering evidence; Gate 5 will not freeze while
+     any obligation remains.
+
+2) **Checking basis.** Draft the candidate-specific checking basis
+   appropriate to the deliverable's claims and risk (SPEC §3.4 layer 2):
+   review type, criteria and checklist scope, reviewers, and the evidence the
+   check will append. Record it in `_REVIEW.md` §Checking Basis as a
+   `PROPOSAL`; the human declares it at Gate 5. For `CHECKING → ISSUED`, the
+   basis is the one declared at entry; a change to it requires a recorded
+   human ruling.
+
+3) **Checklist.** Generate a structured review checklist from multiple
+   sources. Each checklist item has an ID, source reference, and a blank
+   status field.
 
 **Common checklist items (all review types):**
 
@@ -55,10 +125,11 @@ Generate a structured review checklist from multiple sources. Each checklist ite
 2) **Acceptance Criteria**:
    - Legacy mode: scan `Specification.md` for testable acceptance criteria,
      requirements, or success conditions and assign review-local `AC-{NNN}`.
-   - `SOW_V1` or authorized migration-dual mode: invoke
-     `tools/scope_of_work/derive_review_checklist.py` with the validated
-     `ScopeOfWork.md` and exact accepted format basis, or consume an artifact
-     already produced by that registered tool. Verify its source SHA-256
+   - `SOW_V1` or authorized migration-dual mode: run
+     `python3 {INSTRUCTION_ROOT}/tools/scope_of_work/derive_review_checklist.py {deliverable_folder}/ScopeOfWork.md --output {working_package}/review_checklist.json`
+     (add `--isolated-migration --migration-authority {AUTHORITY}` only under
+     exact accepted migration authority), or consume an artifact already
+     produced by that registered tool. Verify its source SHA-256
      matches the current SOW source. Copy every emitted `AC-*` ID and text into
      the checklist in emitted order, together with its qualified identity,
      source line/hash binding, and linked `VER-*` or explicit human-review
@@ -81,7 +152,14 @@ Generate a structured review checklist from multiple sources. Each checklist ite
      Axiology; confirm every `OUT-*`, `AC-*`, and `VER-*` closes through the
      output/evaluation matrix.
 
-5) **Dependency Satisfaction** (from `Dependencies.csv`):
+5) **Dependency Satisfaction** (per the tracking mode, `docs/SPEC.md` §5.3):
+   - `NOT_TRACKED`: record that dependencies are coordinated outside the
+     files and give no computed ready/blocked judgment; skip the rows below.
+   - `DECLARED`: read the recorded register (the declared sections of
+     `_DEPENDENCIES.md`, or `Dependencies.csv` where extraction has run) and
+     state that it is a partial view.
+   - In any mode, an edge in an unresolved dependency cycle is reported as held,
+     not as a blocker.
    - For each UPSTREAM dependency with `DependencyClass=EXECUTION` and `Status=ACTIVE`:
      - Is `SatisfactionStatus` recorded?
      - Is the upstream deliverable in a state that can provide the needed information?
@@ -90,7 +168,10 @@ Generate a structured review checklist from multiple sources. Each checklist ite
 6) **TBD Inventory**:
    - Count `TBD` occurrences across the four documents in legacy mode; in
      SOW mode count registered `TBD-*` items plus unregistered TBD text.
-   - If count > 0: checklist item "Remaining TBDs have been assessed and are acceptable for this review stage"
+   - Classify each: an unfulfilled production obligation (it blocks entry to
+     `CHECKING` and belongs in the candidacy account), or outside the proposed
+     checking scope by a cited owning decision. A TBD is never accepted "for
+     this review stage".
    - ID format: `TB-001`
 
 **Review-type-specific items:**
@@ -109,14 +190,17 @@ Generate a structured review checklist from multiple sources. Each checklist ite
 9) **Custom items** (from `CUSTOM_CHECKLIST_ITEMS` input, if provided):
    - ID format: `CU-{NNN}`
 
-Write `_REVIEW.md` to the deliverable folder with the complete checklist (status fields blank).
+Write `_REVIEW.md` to the deliverable folder with the candidacy account (when
+applicable), the proposed checking basis, and the complete checklist (status
+fields blank). Start the run-local working review package (see Gate 5) with
+the checklist artifact.
 
-Present the checklist to the human. Ask: "Is this checklist adequate, or do
-you want to add custom review items?" In SOW mode, additions use the
-`CU-*` namespace and do not alter, replace, or remove the deterministic
-`AC-*` rows.
+Present the candidacy account, proposed checking basis, and checklist to the
+human. Ask: "Is this checklist and checking basis adequate, or do you want to
+add custom review items?" In SOW mode, additions use the `CU-*` namespace and
+do not alter, replace, or remove the deterministic `AC-*` rows.
 
-**Human confirms** or modifies the checklist.
+**Human confirms** or modifies the checklist and basis.
 
 ---
 
@@ -135,13 +219,11 @@ This gate is iterative. The human provides findings across multiple conversation
    - `SectionRef`: specific section/heading (best-effort)
    - `ClaimRef`: qualified SOW claim/criterion ID or `N/A`
    - `EvidenceRefs`: source and verification references or `N/A`
-   - `FindingSeverity`: classify based on human's description:
-     - `CRITICAL` — blocks issuance; safety, regulatory, or fundamental correctness issue
-     - `MAJOR` — must resolve before advancing; significant technical issue
-     - `MINOR` — should resolve; quality improvement
-     - `OBSERVATION` — noted for record; no action required
+   - `FindingSeverity`: classify from the human's description using the
+     contract's severity table (`CRITICAL`, `MAJOR`, `MINOR`, `OBSERVATION`);
+     flag uncertain classifications for human confirmation
    - `Description`: the finding as stated
-   - `ProposedDisposition`: agent may suggest one of `ACCEPT_AS_IS`, `REVISE`, `DEFER`, `NOT_APPLICABLE` — always labeled as `PROPOSAL`
+   - `ProposedDisposition`: agent may suggest one of `ACCEPT_AS_IS`, `REVISE`, `DEFER`, `NOT_APPLICABLE` — always labeled as `PROPOSAL`; never propose `DEFER` as a path into `CHECKING`, or for a `CRITICAL` or `MAJOR` finding
    - `HumanDisposition`: `TBD` (until human rules at Gate 4)
    - `Status`: `OPEN`
    - `ReviewerID`: from input or `TBD`
@@ -153,6 +235,8 @@ This gate is iterative. The human provides findings across multiple conversation
    - Findings by severity: CRITICAL ({n}), MAJOR ({n}), MINOR ({n}), OBSERVATION ({n})
    - Open/Resolved counts
    - Any findings the agent flagged for severity confirmation
+   - While `CHECKING`: any finding that would require correcting the frozen
+     candidate (a candidate for an unsuccessful check)
 
 **Agent may perform mechanical checks** and present results either as checklist outcomes or as findings entries.
 
@@ -177,30 +261,34 @@ Typical mechanical checks:
 
 2) Record human rulings in `Review_Findings.csv`:
    - Update `HumanDisposition` from `TBD` to the human's choice
-   - Update `Status` to `RESOLVED` if disposition is final, or `DEFERRED` if deferred with rationale
+   - Update `Status` to `RESOLVED`, `WITHDRAWN`, or (only at issuance, and only
+     for a `MINOR` or `OBSERVATION` finding) `DEFERRED` with the human's
+     rationale; a finding awaiting correction stays `OPEN`
 
-3) Compile review summary:
+3) If a `REVISE` ruling during a candidacy review is corrected through
+   separately authorized production work, re-run the checklist derivation and
+   recheck the affected candidacy comparison against the corrected candidate
+   commit before relying on them.
+
+4) Compile review summary:
    - **Finding totals** by severity and status
-   - **All CRITICAL findings** with dispositions (must all be dispositioned)
-   - **All MAJOR findings** with dispositions (must all be dispositioned)
+   - **All CRITICAL and MAJOR findings** with dispositions
    - **MINOR/OBSERVATION** summary counts
    - **Checklist completion**: items checked vs total
-   - **TBD inventory**: remaining TBDs in deliverable content
-   - **Transition readiness assessment**:
-     - For `IN_PROGRESS → CHECKING`: all CRITICAL findings dispositioned (resolved, deferred with rationale, or accepted)
-     - For `CHECKING → ISSUED`: all CRITICAL findings RESOLVED; all MAJOR findings RESOLVED or DEFERRED with documented rationale; zero TBD dispositions remain for CRITICAL/MAJOR
+   - **Candidacy account result** and TBD classification (entry to `CHECKING`)
+   - **Transition readiness assessment** against the contract's severity and
+     disposition rule for the intended transition; while `CHECKING`, name
+     any finding that makes the check unsuccessful
 
-4) Update `_REVIEW.md` with the summary section.
+5) Update `_REVIEW.md` with the summary section.
 
-5) Prepare a run-local working review package. After the Gate 5 decision, finalize a new immutable snapshot using: `tools/scaffolding/create_snapshot_folder.sh {REVIEWS_ROOT} REV {DeliverableID}`
-   Stage these members in the working package; copy them to the snapshot only after the Gate 5 decision is recorded:
-   - `Brief.md` (deliverable, review type, reviewers)
+6) Stage the run-local working review package. It is finalized as an
+   immutable snapshot only at Gate 5:
+   - `Brief.md` (deliverable, transition, review type, reviewers, checking basis)
    - `RUN_SUMMARY.md` (complete review summary)
    - `Review_Summary.md` (human-readable narrative)
    - `Decision_Log.md` (all gate decisions + finding dispositions)
-   - `QA_Report.md` (checklist coverage, mechanical check results)
-
-6) After Gate 5 and snapshot finalization, update the authorized pointer: `tools/scaffolding/update_latest_pointer.sh {REVIEWS_ROOT} {snapshot_folder_name}`
+   - `QA_Report.md` (checklist coverage, candidacy account, mechanical check results)
 
 Present the review summary and transition readiness assessment. Ask: "Are all dispositions final?"
 
@@ -208,53 +296,117 @@ Present the review summary and transition readiness assessment. Ask: "Are all di
 
 ---
 
-### Gate 5 — Lifecycle Transition
+### Gate 5 — Lifecycle Decision
 
 **Agent does:**
 
-1) Evaluate transition readiness based on the review summary:
+1) Evaluate readiness under the contract's severity and disposition rule:
 
-   **For `IN_PROGRESS → CHECKING`:**
-   - Required: all CRITICAL findings have a non-TBD disposition
-   - Required: checklist has been populated (Gate 2 completed)
-   - Recommended: MAJOR findings dispositioned (warn if not)
-   - Present: `RECOMMEND_ADVANCE` or `RECOMMEND_HOLD` with reasons
+   **For `IN_PROGRESS → CHECKING` (candidacy and freeze):**
+   - Required: `_REVIEW.md` §Candidacy Account shows `NO_UNFULFILLED_OBLIGATION`
+     bound to the current candidate commit (or the loop's pinned criterion is
+     met).
+   - Required: checklist populated (Gate 2) and bound to the same candidate.
+   - Required: findings meet the entry rule — no `TBD`, no `DEFER`/`DEFERRED`,
+     no `OPEN`, every `REVISE` resolved.
+   - Present: `RECOMMEND_ADVANCE` or `RECOMMEND_HOLD` with reasons.
 
    **For `CHECKING → ISSUED`:**
-   - Required: all CRITICAL findings are RESOLVED
-   - Required: all MAJOR findings are RESOLVED or DEFERRED with documented rationale
-   - Required: zero `HumanDisposition = TBD` for any CRITICAL or MAJOR finding
-   - Recommended: MINOR findings dispositioned (warn if not)
-   - Present: `RECOMMEND_ADVANCE` or `RECOMMEND_HOLD` with reasons
+   - Required: frozen claim surfaces unchanged since the frozen candidate SHA.
+   - Required: findings meet the issuance rule.
+   - Present: `RECOMMEND_ADVANCE`, `RECOMMEND_HOLD` (continue checking), or
+     `RECOMMEND_REVERSAL` (unsuccessful check) with reasons.
 
-2) Present the recommendation with evidence summary.
+2) For entry to `CHECKING` and for issuance only (the reversal is a demotion
+   and needs neither), run the owning loop's required promotion preflight for
+   the intended transition (for example, from the App working root:
+   `python3 execution/_Scripts/app_hold.py check --operation checking-promotion --entry-path {declared-entry-path} --target {DeliverableID}`)
+   and check its issuance fences. A failing preflight or an applicable fence
+   (for example, App F-APP-4 for `CHECKING → ISSUED`) holds the transition:
+   record the hold, do not ask for or record that transition, and continue at
+   the decline branch.
 
-3) Ask: "Do you approve advancing {DeliverableID} to {target state}?"
+3) Present the recommendation with evidence summary. Ask the question for the
+   transition:
+   - Entry: "Do you declare this checking basis and freeze {DeliverableID} at
+     candidate {SHA}, advancing it to `CHECKING`?"
+   - Issuance: "Do you approve issuing {DeliverableID}, continue checking, or
+     rule a reversal to `IN_PROGRESS`?"
 
-**If human approves:**
+**If the human approves (freeze or issuance):**
 
-4) Record the human approval through the owning loop’s ruling instrument. Resolve the exact ruling path and approval commit required by that root’s `_harness/adapter.yaml`. If the required committed ruling or reachable approval SHA is not yet available, carry the approved decision to the owning change workflow and hold the status write until those inputs exist.
+4) Record the human decision through the owning loop’s ruling instrument. For
+   entry, the ruling names the declared checking basis and the frozen
+   candidate SHA; record both in `_REVIEW.md` §Checking Basis and §Freeze.
+   Resolve the exact ruling path and approval commit required by that root’s
+   `_harness/adapter.yaml`. If the required committed ruling or reachable
+   approval SHA is not yet available, carry the approved decision to the
+   Git handoff (step 9) and hold the status write until those inputs exist.
 
-   Invoke the guarded transition from the declared tool root:
+5) Invoke the guarded transition:
    ```text
    zsh {INSTRUCTION_ROOT}/tools/scaffolding/write_status.sh {deliverable_folder} {TARGET_STATE} HUMAN --ruling {RULING_PATH} --approval-sha {APPROVAL_SHA}
    ```
    HUMAN identifies the recorded decision-maker; WORKING_ITEMS is the executing recorder and records that distinction in the review evidence. CHECKING and ISSUED require a human decision. Supply `--ruling` whenever required by the adapter (including the default committed-ruling rule in Git roots); supply `--approval-sha` when the adapter declares that schema. Where the root explicitly does not require an approval SHA, omit that option and retain the tool’s REVIEW note. Do not invent a ruling/SHA or use an override to bypass missing inputs. The tool updates Current State and appends history only after its checks pass.
 
-5) Present handoff to WORKING_ITEMS (workflow: change):
-   - Files modified: `_REVIEW.md`, `Review_Findings.csv`, `_STATUS.md`
-   - Recommended commit message:
-     ```
-     review: {DeliverableID} — {target state} ({total} findings, {open} open)
-     ```
+**If the human rules a reversal (`CHECKING → IN_PROGRESS`):**
 
-**If human declines:**
+This is the sole exit from an unsuccessful or withdrawn check (SPEC §3.3).
 
-6) Do NOT update `_STATUS.md`.
-7) Record the decision in the working package’s `Decision_Log.md`, then finalize the snapshot and pointer as specified in Gate 4: "Human declined transition at Gate 5. Reason: {stated reason or 'not stated'}."
-8) Present options:
+6) Record the human ruling through the owning loop’s ruling instrument,
+   stating whether the check was unsuccessful or withdrawn, the findings or
+   reason, and where the required correction is carried in authorized work
+   (graph node or decision). Commit it, then invoke:
+   ```text
+   zsh {INSTRUCTION_ROOT}/tools/scaffolding/write_status.sh {deliverable_folder} IN_PROGRESS HUMAN --ruling {RULING_PATH} --approval-sha {APPROVAL_SHA}
+   ```
+   The reversal always requires a committed `--ruling`; supply
+   `--approval-sha` when the adapter declares that schema. The tool records
+   `[reversal from CHECKING; ruling: …]` in the history line. Set
+   `_REVIEW.md` Status to `REVERSED`. Prior review evidence and the frozen
+   candidate record remain history; a later entry to `CHECKING` needs a new
+   candidacy account, basis, and freeze.
+
+**If the human declines, or a preflight or fence holds the transition:**
+
+7) Do NOT update `_STATUS.md`. From `IN_PROGRESS`, the deliverable remains
+   `IN_PROGRESS`. From `CHECKING`, the check continues against the frozen
+   candidate; its only other exit is the reversal branch above. Record in the
+   working package’s `Decision_Log.md`: "Human declined transition at Gate 5
+   (or transition held by {preflight/fence}). Reason: {stated reason or 'not
+   stated'}." Set `_REVIEW.md` Status to `HELD`. Present options:
    - Return to Gate 3 to capture additional findings
    - Return to Gate 4 to revise dispositions
+   - Route unfulfilled obligations or corrections to production work
    - End review session (findings preserved for future review)
+
+**In every branch:**
+
+8) Finalize the review snapshot after the Gate 5 outcome is recorded (for an
+   approved or reversal branch, after the guarded status write succeeds; a
+   status write still pending its ruling or SHA (step 4) keeps the package
+   run-local until it completes or is abandoned, and an abandoned write is
+   recorded as a hold). A withdrawn check that skipped Gate 4 stages at least
+   `Brief.md` (with the stated reason) and `Decision_Log.md` first:
+   ```text
+   zsh {INSTRUCTION_ROOT}/tools/scaffolding/create_snapshot_folder.sh {REVIEWS_ROOT} REV {DeliverableID}
+   ```
+   Copy the staged members into the new folder, including the Gate 5 outcome
+   in `Decision_Log.md`; never modify an existing snapshot. Then update the
+   authorized pointer:
+   ```text
+   zsh {INSTRUCTION_ROOT}/tools/scaffolding/update_latest_pointer.sh {REVIEWS_ROOT} {snapshot_folder_name}
+   ```
+
+9) Present the Git handoff. In `sgttomas/chirality`, follow
+   `.agents/skills/chirality-change/SKILL.md`; elsewhere, WORKING_ITEMS
+   (workflow: change) or the project's own change conventions.
+   - Files modified: `_REVIEW.md`, `Review_Findings.csv`, `_STATUS.md` (when
+     written), the ruling record (when this review created it), the new
+     `REV_*` snapshot folder, and `_LATEST.md`
+   - Recommended commit message:
+     ```
+     review: {DeliverableID} — {CHECKING|ISSUED|IN_PROGRESS (reversal)|HELD} ({total} findings, {open} open)
+     ```
 
 ---

@@ -490,8 +490,9 @@ Configuration first, parser code only for a genuinely new dialect.
 
 `tools/scaffolding/write_status.sh` now enforces preconditions reconciled with
 chirality-app-dev's `frontend/src/lib/lifecycle/transition.ts` (DEL-07-04):
-same six-state order with backward-transition blocking; same allowed from→to
-pairs; HUMAN-only CHECKING/ISSUED; same approval-SHA format rule
+same six-state order with backward-transition blocking (except the reversal
+in divergence 7); same allowed forward from→to pairs; HUMAN-only
+CHECKING/ISSUED; same approval-SHA format rule
 (`^[0-9a-f]{7,64}$`). Adapter-declared per root (D-GOV-03): app-dev declares
 approval-SHA fields, so the git-verifiable SHA precondition blocks there;
 piping's status schema carries no SHA fields, so an absent SHA surfaces as
@@ -511,7 +512,8 @@ Recorded divergences from transition.ts:
 3. **New-file creation permitted at OPEN** (`transition.ts` only transitions
    existing documents); creation at any other state is refused.
 4. **`--force-human-override <reason>` exists** (HUMAN-only; reason recorded in
-   the history line as `[override: ...]`; never overrides usage errors) —
+   the history line as `[override: ...]`; never overrides usage errors, the
+   reversal's `--ruling` preconditions, or the `ISSUED → IN_PROGRESS` block) —
    BLOCK override is human-only and recorded, per D-GOV-02. `transition.ts`
    has no override path.
 5. **Approval-SHA requirement is adapter-conditional**
@@ -522,6 +524,16 @@ Recorded divergences from transition.ts:
    Format matched case-insensitively, mirroring `transition.ts`.
 6. **Invalid state is exit 2 (usage)** rather than the pre-guard script's
    exit 1, aligning with the adopted operational-error convention.
+7. **Human-ruled `CHECKING → IN_PROGRESS` reversal is admitted** (SPEC §3.3:
+   the sole exit from an unsuccessful or withdrawn check). It requires a HUMAN
+   actor and `--ruling` in every root (git-tracked in a git repo, independent
+   of `guard_requires_committed_ruling_path`), plus `--approval-sha` where the
+   adapter declares that schema; the history line carries
+   `[reversal from CHECKING; ruling: <path>]`. Existing approval-SHA and
+   Authorization Basis fields are left as history. `transition.ts` still
+   rejects the reversal as `BACKWARD_TRANSITION`; adopting it there is the App
+   loop's decision. `ISSUED → IN_PROGRESS` remains blocked here: it belongs to
+   the governed scope-change process, which this tool does not perform.
 
 Stated honestly: tool usage is guided operationally, not enforced — hand edits
 bypass any guard. The guard hardens the sanctioned path; drift detection
