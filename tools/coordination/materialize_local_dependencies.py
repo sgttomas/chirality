@@ -30,7 +30,8 @@ section is inserted next to it); legacy headings are read per the SPEC §5.2
 table. A missing
 human-owned section is added as a TBD placeholder (mode and declarations TBD)
 and is never filled. A missing file is created from the §5.2 skeleton with the
-human-owned mode and declarations left TBD.
+human-owned mode and declarations left TBD. A refreshed file ends with exactly
+one newline and no blank line at end of file.
 """
 
 from __future__ import annotations
@@ -394,18 +395,42 @@ def history_line(generated: str, source_label: str, rows: list[dict[str, str]]) 
     )
 
 
-def replace_content(section: Section, new_lines: list[str]) -> None:
+# A blank line separates a written section from the section after it. It is
+# supplied only when another section follows: at the end of the file there is
+# nothing to separate, and a separator there is a blank line at end of file.
+SEPARATOR = ["\n"]
+
+
+def replace_content(section: Section, new_lines: list[str], separator: list[str]) -> None:
     _content, tail = section.content_and_tail()
-    section.lines = [line + "\n" for line in new_lines] + (tail or ["\n"])
+    section.lines = [line + "\n" for line in new_lines] + (tail or separator)
 
 
-def append_history(section: Section, entry: str) -> None:
+def append_history(section: Section, entry: str, separator: list[str]) -> None:
     content, tail = section.content_and_tail()
     if any(line.strip() == entry for line in content):
         return
     if "".join(content).strip() in PLACEHOLDER_BODIES:
         content = []
-    section.lines = content + [entry + "\n"] + (tail or ["\n"])
+    elif not content[-1].endswith("\n"):
+        content = content[:-1] + [content[-1] + "\n"]
+    section.lines = content + [entry + "\n"] + (tail or separator)
+
+
+def end_file(sections: list[Section]) -> None:
+    """End the last section with exactly one newline and no blank line after it.
+
+    Only blank lines at the end of the file are dropped (for example one left by
+    an earlier revision of this tool); the text before them is unchanged.
+    """
+    last = sections[-1]
+    while last.lines and not last.lines[-1].strip():
+        last.lines.pop()
+    if not last.text().endswith("\n"):
+        if last.lines:
+            last.lines[-1] += "\n"
+        else:
+            last.heading = (last.heading or "") + "\n"
 
 
 def refresh_dependencies_text(
@@ -421,14 +446,21 @@ def refresh_dependencies_text(
 
     A missing or blank file starts from the §5.2 skeleton. In an existing file,
     human-owned sections, unrecognized sections and Downstream Handoff Notes
-    keep their text unchanged; only a blank separator line may be added after
-    one when a missing section is inserted next to it. A missing human-owned section is added as a TBD
+    keep their text unchanged, except that blank lines at end of file are
+    dropped; only a blank separator line may be added after one when a missing
+    section is inserted next to it. A missing human-owned section is added as a TBD
     placeholder and never filled. Agent-owned sections are refreshed under the
     heading the file already uses, and missing ones are added under their §5.2
     heading in §5.2 order. Refreshing twice with the same inputs is a no-op.
+    The result ends with exactly one newline: blank lines at end of file are
+    dropped and none is added there.
     """
     if existing is None or not existing.strip():
         existing = skeleton_text(node.get("DeliverableID", "").strip(), node.get("DeliverableName", "").strip())
+    if not existing.endswith("\n"):
+        # An unterminated last line (even a bare heading) must not be joined to
+        # text appended after it.
+        existing += "\n"
     sections = split_sections(existing)
 
     has_register = any(section.key == REGISTER for section in sections)
@@ -462,20 +494,25 @@ def refresh_dependencies_text(
         if not previous.text().endswith("\n\n"):
             previous.lines.append("\n")
         body = HUMAN_PLACEHOLDERS.get(key, ["- (placeholder)"])
-        sections.insert(position, Section(f"## {SPEC_HEADINGS[key]}\n", [line + "\n" for line in body] + ["\n"]))
+        separator = SEPARATOR if position < len(sections) else []
+        sections.insert(position, Section(f"## {SPEC_HEADINGS[key]}\n", [line + "\n" for line in body] + separator))
         present.add(key)
 
     entry = history_line(generated, source_label, rows)
-    for section in sections:
+    for index, section in enumerate(sections):
+        separator = SEPARATOR if index + 1 < len(sections) else []
         if section.key == REGISTER:
-            replace_content(section, register_lines(rows, generated, source_label, source_edges_path, canonical_output))
+            replace_content(
+                section, register_lines(rows, generated, source_label, source_edges_path, canonical_output), separator
+            )
         elif section.key == LIFECYCLE:
-            replace_content(section, lifecycle_lines(rows))
+            replace_content(section, lifecycle_lines(rows), separator)
         elif section.key == RUN_NOTES and section.content_text() in PLACEHOLDER_BODIES:
-            replace_content(section, RUN_NOTES_LINES)
+            replace_content(section, RUN_NOTES_LINES, separator)
         elif section.key in {RUN_HISTORY, RUN_NOTES_HISTORY}:
-            append_history(section, entry)
+            append_history(section, entry, separator)
 
+    end_file(sections)
     return "".join(section.text() for section in sections)
 
 

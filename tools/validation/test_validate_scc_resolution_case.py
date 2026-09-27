@@ -145,9 +145,90 @@ def test_dag_case_rejects_split_with_legacy_home(tmp_path: Path) -> None:
     assert vscc.validate_case(case) == [expected]
 
 
+def misplaced(found: str) -> str:
+    return (
+        "a case under _DAG/ must be a folder directly under _DAG/cases/, named by its case ID: "
+        f"_DAG/cases/SCC-CASE-NNN/ (D-GOV-49; docs/SPEC.md §1.2); found {found}"
+    )
+
+
 def test_dag_case_must_sit_directly_under_cases(tmp_path: Path) -> None:
     case = write_case(tmp_path / "execution/_DAG/cases/SCC-CASE-001/nested", "SCC-CASE-001")
-    assert vscc.validate_case(case) == ["a case under _DAG/ must be a folder directly under _DAG/cases/: SCC-CASE-001/nested"]
+    assert vscc.validate_case(case) == [misplaced("_DAG/cases/SCC-CASE-001/nested/")]
+
+
+@pytest.mark.parametrize(
+    "relative",
+    [
+        "SCC-CASE-001",  # directly under _DAG/
+        "DAG-011/SCC-CASE-001",  # in a DAG version folder
+        "DAG-011/cases/SCC-CASE-001",  # a cases/ folder that is not _DAG/cases/
+        "_Candidates/DAG-012/SCC-CASE-001",  # nested deeper
+        "scc-cases/CASE-SCC-001_Legacy_Name",  # a legacy-style case under _DAG/
+    ],
+)
+def test_case_elsewhere_under_dag_is_refused(tmp_path: Path, relative: str) -> None:
+    case = write_case(tmp_path / "execution" / "_DAG" / relative, Path(relative).name)
+    assert vscc.validate_case(case) == [misplaced(f"_DAG/{relative}/")]
+
+
+def test_case_elsewhere_under_dag_keeps_content_and_one_home_checks(tmp_path: Path) -> None:
+    case = write_case(tmp_path / "execution/_DAG/SCC-CASE-001", "SCC-CASE-001")
+    (case / "Case_QA.md").unlink()
+    assert vscc.validate_case(case) == [misplaced("_DAG/SCC-CASE-001/"), "missing required file: Case_QA.md"]
+    write_case(tmp_path / "execution/_DAG/SCC-CASE-002", "SCC-CASE-002")
+    legacy_case(tmp_path)
+    expected_legacy = (
+        "project also holds SCC cases in a legacy PKG-00 home "
+        f"({vscc.LEGACY_CONTROL_DELIVERABLE}/1_Working/{LEGACY_DELIVERABLE}/scc-cases); each project uses one case home"
+    )
+    assert vscc.validate_case(tmp_path / "execution/_DAG/SCC-CASE-002") == [
+        misplaced("_DAG/SCC-CASE-002/"),
+        expected_legacy,
+    ]
+
+
+def test_dag_tool_root_itself_is_not_a_case(tmp_path: Path) -> None:
+    dag = tmp_path / "execution" / "_DAG"
+    dag.mkdir(parents=True)
+    assert vscc.validate_case(dag) == ["path is the _DAG/ tool root, not a case folder; pass _DAG/cases/<CASE-ID>/"]
+
+
+def test_cli_fails_case_directly_under_dag(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    case = write_case(tmp_path / "execution/_DAG/SCC-CASE-001", "SCC-CASE-001")
+    monkeypatch.setattr("sys.argv", ["validate_scc_resolution_case.py", str(case)])
+    assert vscc.main() == 1
+    assert capsys.readouterr().out == (
+        f"FAIL: SCC resolution case validation\n- {misplaced('_DAG/SCC-CASE-001/')}\n"
+    )
+
+
+def test_legacy_case_rejects_split_with_dag_home(tmp_path: Path) -> None:
+    case = legacy_case(tmp_path)
+    dag_case(tmp_path, "SCC-CASE-001")
+    dag_case(tmp_path, "SCC-CASE-002")
+    assert vscc.validate_case(case) == [
+        "project also holds SCC cases in the _DAG/cases/ home (SCC-CASE-001; SCC-CASE-002); each project uses one case home"
+    ]
+
+
+def test_legacy_case_ignores_empty_dag_cases_home_and_other_projects(tmp_path: Path) -> None:
+    case = legacy_case(tmp_path / "app")
+    (tmp_path / "app" / "execution" / "_DAG" / "cases").mkdir(parents=True)
+    dag_case(tmp_path / "piping")
+    assert vscc.validate_case(case) == []
+
+
+def test_legacy_split_reported_under_any_execution_root_name(tmp_path: Path) -> None:
+    deliverable = tmp_path / "project-exec" / vscc.LEGACY_CONTROL_DELIVERABLE / "1_Working" / LEGACY_DELIVERABLE
+    case = write_case(deliverable / "scc-cases" / "CASE-SCC-002_Policy", "CASE-SCC-002_Policy")
+    assert vscc.validate_case(case) == []
+    write_case(tmp_path / "project-exec" / "_DAG" / "cases" / "SCC-CASE-001", "SCC-CASE-001")
+    assert vscc.validate_case(case) == [
+        "project also holds SCC cases in the _DAG/cases/ home (SCC-CASE-001); each project uses one case home"
+    ]
 
 
 def test_dag_cases_home_itself_is_not_a_case(tmp_path: Path) -> None:
@@ -178,3 +259,39 @@ def test_cli_reports_dag_case(tmp_path: Path, monkeypatch: pytest.MonkeyPatch, c
     (case.parent / "_run_records").mkdir()
     assert vscc.main() == 1
     assert "FAIL: SCC resolution case validation" in capsys.readouterr().out
+
+
+def test_symlinked_case_into_dag_refused(tmp_path):
+    execution = tmp_path / "proj" / "execution"
+    real = execution / "elsewhere" / "SCC-CASE-001"
+    real.mkdir(parents=True)
+    (execution / "_DAG").mkdir()
+    (execution / "_DAG" / "SCC-CASE-001").symlink_to(real, target_is_directory=True)
+    errors = vscc.validate_case(execution / "_DAG" / "SCC-CASE-001")
+    assert any("through a symbolic link" in e for e in errors), errors
+
+
+def test_symlinked_dag_folder_refused(tmp_path):
+    execution = tmp_path / "proj" / "execution"
+    real_dag = tmp_path / "outside" / "_DAGREAL"
+    (real_dag / "cases" / "SCC-CASE-001").mkdir(parents=True)
+    execution.mkdir(parents=True)
+    (execution / "_DAG").symlink_to(real_dag, target_is_directory=True)
+    errors = vscc.validate_case(execution / "_DAG" / "cases" / "SCC-CASE-001")
+    assert any("through a symbolic link" in e for e in errors), errors
+
+
+def test_differently_cased_dag_refused(tmp_path):
+    case = tmp_path / "proj" / "execution" / "_dag" / "cases" / "SCC-CASE-001"
+    case.mkdir(parents=True)
+    errors = vscc.validate_case(case)
+    assert any("named exactly _DAG/cases/" in e for e in errors), errors
+
+
+def test_symlink_above_the_project_is_not_a_route(tmp_path):
+    real_parent = tmp_path / "real"
+    case = real_parent / "proj" / "execution" / "_DAG" / "cases" / "SCC-CASE-001"
+    case.mkdir(parents=True)
+    (tmp_path / "linked").symlink_to(real_parent, target_is_directory=True)
+    errors = vscc.validate_case(tmp_path / "linked" / "proj" / "execution" / "_DAG" / "cases" / "SCC-CASE-001")
+    assert not any("symbolic link" in e for e in errors), errors
