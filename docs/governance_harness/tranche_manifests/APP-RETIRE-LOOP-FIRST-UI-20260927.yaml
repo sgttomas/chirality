@@ -84,17 +84,22 @@ m2_gate:
     ACCEPTED_MANIFEST.csv SHA-256
     0574aca5909331732e5791eea8ef023cd6b2fb5f1a7f45f024acb8443cce6ac9).
     Propagation_Plan.md section 4 (revision 2, a4295f9ed) specifies this code
-    change. This tranche is the checkpoint-group-3 code candidate. Group 3 is
-    not accepted; the tranche merges only after the owner's group-3
-    acceptance, with the SCA-APP-012 scope text, in one PR. Transcription is
-    recorded in
+    change. Checkpoint group 3 accepted by Ryan Tufts on 2026-09-27 ("I
+    accept SCA-APP-012 checkpoint group 3";
+    checkpoint_snapshots/SCA-APP-012_GROUP-3_2026-09-27/, DECISION.md SHA-256
+    612e4cbe6d7e160f7e7d030b822f37d5d2c8272e6abf6d0f4c6d201af110c267,
+    ACCEPTED_MANIFEST.csv SHA-256
+    5aee579d4ccb9a1aefc4cacecafdabbdd32cc20608bebd478ff1a2cdf310b2b2),
+    on the integrated candidate ac67109d931eb5a4609bc5ad7c656ac938f6f15b. The
+    tranche merges with the SCA-APP-012 scope text in one PR (#1020).
+    Transcription is recorded in
     projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP-RETIRE-LOOP-FIRST-UI-2026-09-27/RECEIPT.md.
   authorized_by: Ryan Tufts
   authorization_date: '2026-09-27'
   integration_owner: >-
     Claude Code coordinating session integrating the worktree candidate, under
-    the standing Git authorization of 2026-09-12, only after the owner's
-    SCA-APP-012 checkpoint-group-3 acceptance
+    the standing Git authorization of 2026-09-12, after the owner's
+    SCA-APP-012 checkpoint-group-3 acceptance of 2026-09-27
   merge_gate: owner-authorized-pr
   self_merge: true
 m6_notice:

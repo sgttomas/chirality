@@ -3,12 +3,12 @@
 Derivative account of the SCA-APP-012 code change. SCA-APP-012 and the
 sources below keep their authority.
 
-**Status: checkpoint-group-3 candidate, awaiting the owner's acceptance.**
-This is the code side of SCA-APP-012. The owner has accepted checkpoint
-groups 1 and 2. Checkpoint group 3 is **not** accepted: it reviews this code
-candidate together with the SCA-APP-012 scope-text candidate (choice Q-a).
-After the owner accepts group 3, one PR lands both. Nothing here is pushed or
-merged.
+**Status: accepted at checkpoint group 3 (2026-09-27).** This is the code
+side of SCA-APP-012. The owner accepted checkpoint groups 1, 2 and 3; group 3
+reviewed this code candidate together with the SCA-APP-012 scope text (choice
+Q-a). One PR (#1020) lands both, once CI passes and review has no blocking
+finding.
+See "Acceptance" below. The text below records the candidate as built.
 
 ## Authority
 
@@ -46,7 +46,8 @@ merged.
 
 The SCA-APP-012 supersession bindings (D-APP-74 lines 97-99 and 107 for the
 loop-first UI and the two retired routes, the SCA-APP-011 DEL-07-02 follow-up
-and D-APP-56 R4-P29) take effect only on group-3 acceptance.
+and D-APP-56 R4-P29) take effect with the group-3 acceptance, through the
+accumulated `Supersession_Map.csv` now named by `_ScopeChange/_LATEST.md`.
 
 ## Result
 
@@ -176,11 +177,31 @@ ledger's validator; Root G0–G3 and G4; conflict-marker and run-record-leak
 checks; the workflow index check; `git diff --check`;
 `run_affected_tests.py`; and export regeneration.
 
+## Acceptance
+
+The owner accepted checkpoint group 3 on 2026-09-27, as relayed verbatim by
+the coordinating session:
+
+> I accept SCA-APP-012 checkpoint group 3
+
+- Decision folder `execution/_ScopeChange/checkpoint_snapshots/SCA-APP-012_GROUP-3_2026-09-27/` (`DECISION.md` SHA-256 `612e4cbe6d7e160f7e7d030b822f37d5d2c8272e6abf6d0f4c6d201af110c267`,
+  `ACCEPTED_MANIFEST.csv` SHA-256 `5aee579d4ccb9a1aefc4cacecafdabbdd32cc20608bebd478ff1a2cdf310b2b2`). It accepts the
+  integrated candidate at `ac67109d931eb5a4609bc5ad7c656ac938f6f15b`
+  (PR #1020) and binds this code by its git trees and records by hash.
+- The acceptance-conditional edits were applied by
+  `Evidence/Group3/group3_finalize.py` (E26, `_LATEST.md` to SCA-APP-012 and
+  the status records) and validated in `execution/_ScopeChange/_PostAcceptanceValidation/SCA-APP-012_20260927T214035Z/`
+  (PASS).
+- This receipt, the tranche manifest and the MEMORY rows were updated after the
+  act to record it; Receipt-280 is unchanged and Receipt-281 records the
+  acceptance.
+
 ## Limits
 
-- Group 3 of SCA-APP-012 is not accepted. The candidate lands only with the
-  scope text, in one PR, after the owner's group-3 acceptance, independent
-  review and actual-candidate CI.
+- Group 3 of SCA-APP-012 is accepted (see "Acceptance"). The change lands
+  only with the scope text, in one PR, after actual-candidate CI; the
+  coordinating session reports that the independent review and its
+  confirmation found no blocking finding.
 - The premerge harness gate (`harness:validate:premerge`) needs a running
   harness server and Codex and could not run in this environment (every case
   reported "fetch failed"). No packaged run. The removed modules were not
