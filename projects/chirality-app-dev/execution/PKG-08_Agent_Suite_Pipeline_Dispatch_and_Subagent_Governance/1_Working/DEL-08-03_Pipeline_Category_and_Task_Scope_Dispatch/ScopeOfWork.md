@@ -35,17 +35,17 @@ category/task-scope interpretation, dynamic scope, and disabled-option rules for
 contextual Run consumers.
 
 Applied row notes: Semantic dispatch owner; the contextual Pipeline presentation
-is retired from the active shell by SCA-APP-010 (code retained), so no active
-presentation consumer exists; any later consumer may not infer plans/tasks from
+is retired from the active shell by SCA-APP-010 and its code and tests by
+SCA-APP-011, so no presentation consumer exists; any later consumer may not infer plans/tasks from
 conversational prose.
 
-Applied row outputs: Dispatch contract tests; Pipeline selector tests;
+Applied row outputs: Dispatch contract tests; task-scope selection tests;
 knowledge-type discovery; dynamic-scope and disabled-option handling.
 
 ### Current acceptance obligations
 
 1. DECOMP/PREP/TASK/AUDIT lane semantics, category and task-scope interpretation, dynamic scope, and disabled-option rules remain presentation-neutral and owned here.
-2. The contextual Pipeline presentation is retired from the active shell by SCA-APP-010 (code retained); no active presentation consumer exists.
+2. The contextual Pipeline presentation is retired from the active shell by SCA-APP-010, and its code and tests are retired by SCA-APP-011; no presentation consumer exists.
 3. Any later consumer may not infer plans or tasks from conversational prose.
 
 ### Seating and rulings
@@ -57,6 +57,13 @@ writes WI-056, WI-057, WI-058, WI-059, WI-060 performed in run
 the registered dependency-extract pass after owner acceptance of this alignment.
 No lifecycle, Checking Approval SHA, dependency-acceptance, product, or release
 act is implied.
+
+## SCA-APP-011 Current Contract (Controlling)
+
+SCA-APP-011 (owner direction 2026-09-27; DEC-026) retires the Pipeline form code and tests (`frontend/src/components/pipeline/pipeline-surface.tsx`, `frontend/src/components/pipeline/lifecycle-gate-fields.tsx`, `frontend/src/__tests__/components/pipeline-surface.test.ts`). Where the SCA-APP-010 section or any earlier clause says the Pipeline code is retained or names Pipeline selector tests, this section controls; earlier clauses remain dated history.
+
+- Semantic ownership is unchanged: DECOMP/PREP/TASK/AUDIT lane semantics, dynamic task scope and disabled-option rules (`frontend/src/lib/pipeline/pipeline-dispatch-contract.ts`, `frontend/src/lib/workspace/task-scope.ts`). No presentation consumer exists; any later consumer needs its own amendment.
+- Verification is at the dispatch-contract and task-scope level: `frontend/src/__tests__/lib/pipeline-dispatch-contract.test.ts`, `frontend/src/__tests__/lib/task-scope-selection.test.ts`, `frontend/src/__tests__/api/project/deliverables-route.test.ts` and `frontend/src/__tests__/lib/pkg08-compatibility-boundaries.test.ts`.
 
 ## Deliverable Definition — Ontology
 
@@ -131,7 +138,7 @@ act is implied.
 > | Scope identifies the active working root, a valid deliverable and, for knowledge-type scope, a valid target bucket; stale or disabled selections are rejected or cleared. | `frontend/src/__tests__/api/project/deliverables-route.test.ts`; `frontend/src/__tests__/lib/task-scope-selection.test.ts`. |
 > | Preserve child-governance and project-acceptance boundaries regardless of the component presenting intent. | `frontend/src/__tests__/lib/pkg08-compatibility-boundaries.test.ts`; the governance evidence owned by DEL-08-04. |
 >
-> D-APP-108/SCA-APP-010 retired the active Pipeline presentation while retaining this semantic ownership. `frontend/src/__tests__/components/pipeline-surface.test.ts` is retained presentation/compatibility evidence; its existence does not establish an active shell consumer. No new consumer or execution authority is created by this lift.
+> D-APP-108/SCA-APP-010 retired the active Pipeline presentation while retaining this semantic ownership. The Pipeline form test `frontend/src/__tests__/components/pipeline-surface.test.ts` is retired with the form (SCA-APP-011). No new consumer or execution authority is created by this lift.
 
 ### CLM-006 — Implementation Evidence
 
@@ -139,7 +146,7 @@ act is implied.
 >
 > The deliverable requires presentation-neutral, bounded dispatch intent, not a particular component or arrangement of option arrays. Verify that obligation through `frontend/src/__tests__/lib/pipeline-dispatch-contract.test.ts`, including the exact taxonomy, disabled-option rejection and inert admitted intent; verify scoped target discovery through `frontend/src/__tests__/api/project/deliverables-route.test.ts` and `frontend/src/__tests__/lib/task-scope-selection.test.ts`.
 >
-> The implementation evidence is `frontend/src/lib/pipeline/pipeline-dispatch-contract.ts`. The retained `frontend/src/components/pipeline/pipeline-surface.tsx` and its component tests provide compatibility presentation evidence under D-APP-108, not an active product-surface claim. Record revisions and actual results in the verification run; source filenames and local state layout are not additional scope obligations.
+> The implementation evidence is `frontend/src/lib/pipeline/pipeline-dispatch-contract.ts`. The former `frontend/src/components/pipeline/pipeline-surface.tsx` and its component tests are retired by SCA-APP-011. Record revisions and actual results in the verification run; source filenames and local state layout are not additional scope obligations.
 
 ### CLM-007 — Dependency Edge Snapshot
 
@@ -236,8 +243,8 @@ act is implied.
 > | DEL-08-03-REQ-009 | Knowledge-type discovery shall align with the canonical `KnowledgeTypeOption` vocabulary when metadata buckets are exposed. | P1 | `docs/TYPES.md` Section 4.4 |
 > | DEL-08-03-REQ-010 | Scope scanning shall use the active working-root scope surface rather than hard-coded project assumptions, with evidence showing a call, mock contract, or fixture for `/api/project/deliverables`. | P0 | `docs/SPEC.md` Section 17.2; `docs/PRD.md` FR-013; D-APP-56 R4-P21 |
 > | DEL-08-03-REQ-011 | Dispatch behavior shall not expand agent authority or bypass Type 2 governance constraints; pass evidence shall show selector state cannot bypass write-scope, sealed-context, no-ghost-input, approval-reference, or fail-closed delegation gates. | P0 | `docs/CONTRACT.md` K-WRITE-1, K-SEAL-1, K-GHOST-1, K-SUBAGENT-1 |
-> | DEL-08-03-REQ-012 | Selector tests shall cover pipeline selector behavior, knowledge-type discovery, disabled option handling, and invalid-selection reset fixtures for root change, removed deliverable, disabled marker, and stale knowledge target. | P1 | Decomposition anticipated artifacts; `docs/PRD.md` FR-013 |
-> | DEL-08-03-REQ-013 | Dispatch semantics MUST remain presentation-neutral: re-hosted or contextual consumers owned by DEL-02-02 MUST use the same DECOMP/PREP/TASK/AUDIT taxonomy, category options, task-scope rules, dynamic-scope validation, and disabled states. | P0 | SCA-APP-004; SOW-007 |
+> | DEL-08-03-REQ-012 | Tests shall cover task-scope selection behavior at the dispatch-contract and task-scope level, knowledge-type discovery, disabled option handling, and invalid-selection reset fixtures for root change, removed deliverable, disabled marker, and stale knowledge target. | P1 | Decomposition anticipated artifacts; `docs/PRD.md` FR-013 |
+> | DEL-08-03-REQ-013 | Dispatch semantics MUST remain presentation-neutral: any later contextual consumer MUST use the same DECOMP/PREP/TASK/AUDIT taxonomy, category options, task-scope rules, dynamic-scope validation, and disabled states. | P0 | SCA-APP-004; SOW-007 |
 > | DEL-08-03-REQ-014 | A Work/Agents consumer MUST display only explicitly recorded dispatch/task sources with provenance, status basis, and currency; it MUST NOT convert conversational prose or UI grouping into a structured plan/task. | P0 | SCA-APP-004 coordination-projection invariant |
 > | DEL-08-03-REQ-015 | Runtime task/check completion MUST remain distinct from governed project-plan completion, deliverable lifecycle state, approval, issuance, or professional reliance. | P0 | `docs/CONTRACT.md` K-FS-1, K-NOMEM-1, K-BIND-1; SCA-APP-004 |
 > | DEL-08-03-REQ-016 | DEL-08-03 MUST NOT own Coordination Panel presentation, general plan authority, replay persistence, child-run parentage, scheduling, direct child messaging, or lifecycle transition. | P0 | SCA-APP-004 semantic ownership partition |
@@ -282,7 +289,7 @@ act is implied.
 >
 > Required or expected artifacts:
 >
-> - Pipeline selector tests.
+> - Task-scope selection tests (SCA-APP-011 retired the Pipeline selector tests).
 > - Knowledge-type discovery tests.
 > - Disabled option handling tests.
 > - TASK scope selector fixtures for `DELIVERABLES` and `KNOWLEDGE_TYPES`.
@@ -290,7 +297,7 @@ act is implied.
 > - Evidence that invalid selections reset after root and scan changes, including root-change, removed-deliverable, disabled-marker, and stale-target fixtures.
 > - Scope-scan evidence showing `/api/project/deliverables` integration or a mocked equivalent for active-root scanning.
 > - Governance guard evidence showing selector state does not bypass Type 2 sealed context, approval metadata, no-ghost-input limits, write-scope limits, or fail-closed delegation.
-> - Cross-surface dispatch evidence proving contextual Run/Workbench/Work-panel consumers preserve Pipeline taxonomy, scope validation, and disabled states.
+> - Cross-surface dispatch evidence proving any later contextual consumer preserves the dispatch taxonomy, scope validation, and disabled states.
 > - Projection evidence proving only explicitly recorded task/dispatch sources appear, conversational prose is not synthesized into structured work, and runtime status is not presented as project acceptance.
 > - ASSUMPTION: implementation notes may be needed once actual frontend component/module paths are selected.
 >
@@ -402,7 +409,7 @@ act is implied.
 >    - Cover stale-selection reset cases.
 >
 > 9. Verify contextual presentation consumers.
->    - Prove re-hosted Pipeline/Workbench and contextual Run controls consume
+>    - Prove any later contextual consumer uses
 >      the same DECOMP/PREP/TASK/AUDIT semantics and dynamic task-scope rules.
 >    - Prove Work-panel items cite an admitted dispatch/task source, status
 >      basis, and currency.
@@ -435,7 +442,7 @@ act is implied.
 >
 > Maintain or produce these records during implementation:
 >
-> - Pipeline selector tests.
+> - Task-scope selection tests.
 > - Category-specific option-list source or fixture inventory.
 > - Knowledge-type discovery tests or fixtures.
 > - Disabled option handling tests.

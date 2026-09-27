@@ -1403,8 +1403,6 @@ button:disabled {
 }
 
 .portal-matrix header h3,
-.pipeline-card header h3,
-.pipeline-summary h3,
 .workbench-card h3 {
   margin: 0;
 }
@@ -1562,186 +1560,11 @@ button:disabled {
   font-size: 0.86rem;
 }
 
-.pipeline-layout {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-}
-
-.pipeline-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
-}
-
-.pipeline-card,
-.pipeline-summary,
 .workbench-card {
   border: 1px solid var(--rule);
   border-radius: 10px;
   background: var(--surface);
   padding: 0.85rem 0.9rem;
-}
-
-.pipeline-card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.pipeline-card--active {
-  border-color: var(--accent);
-  box-shadow: inset 0 0 0 1px var(--accent);
-}
-
-.pipeline-card header p {
-  margin: 0.4rem 0 0;
-  color: var(--ink-soft);
-  font-size: 0.9rem;
-}
-
-.pipeline-card label {
-  display: flex;
-  flex-direction: column;
-  gap: 0.28rem;
-  color: var(--ink-soft);
-  font-size: 0.9rem;
-}
-
-.pipeline-note {
-  margin: 0;
-  color: var(--ink-soft);
-  font-size: 0.88rem;
-}
-
-.pipeline-summary p {
-  margin: 0.45rem 0 0;
-}
-
-.pipeline-contracts {
-  border: 1px solid var(--rule);
-  border-radius: 10px;
-  background: var(--surface);
-  padding: 0.85rem 0.9rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.pipeline-contracts label {
-  display: flex;
-  flex-direction: column;
-  gap: 0.28rem;
-  color: var(--ink-soft);
-  font-size: 0.88rem;
-}
-
-.pipeline-contracts-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 0.75rem;
-}
-
-.pipeline-contracts-header h3 {
-  margin: 0;
-}
-
-.pipeline-contract-path {
-  margin: 0;
-  border: 1px solid var(--rule);
-  border-radius: 10px;
-  background: var(--ground);
-  padding: 0.45rem 0.55rem;
-  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
-  font-size: 0.8rem;
-  overflow-wrap: anywhere;
-}
-
-.pipeline-contract-metrics {
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.55rem;
-}
-
-.pipeline-contract-metrics div {
-  border: 1px solid var(--rule);
-  border-radius: 10px;
-  background: var(--ground);
-  padding: 0.42rem 0.5rem;
-}
-
-.pipeline-contract-metrics dt {
-  color: var(--ink-soft);
-  font-size: 0.74rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.pipeline-contract-metrics dd {
-  margin: 0.24rem 0 0;
-  font-size: 0.95rem;
-  font-weight: 700;
-}
-
-.pipeline-contract-satisfaction h4,
-.pipeline-contract-warnings h4,
-.pipeline-transition-form h4 {
-  margin: 0;
-}
-
-.pipeline-contract-tags {
-  margin-top: 0.45rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-.pipeline-contract-tag {
-  border: 1px solid var(--rule);
-  border-radius: 999px;
-  background: var(--ground);
-  padding: 0.2rem 0.5rem;
-  font-size: 0.78rem;
-}
-
-.pipeline-contract-warnings ul {
-  margin: 0.45rem 0 0;
-  padding-left: 1.05rem;
-}
-
-.pipeline-contract-warnings li {
-  color: var(--ink-soft);
-  font-size: 0.87rem;
-}
-
-.pipeline-transition-form {
-  border-top: 1px dashed var(--rule);
-  padding-top: 0.7rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-}
-
-.pipeline-transition-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.55rem;
-}
-
-.pipeline-transition-grid label {
-  display: flex;
-  flex-direction: column;
-  gap: 0.28rem;
-  color: var(--ink-soft);
-  font-size: 0.88rem;
-}
-
-.pipeline-transition-actions {
-  display: flex;
-  justify-content: flex-start;
-  gap: 0.45rem;
 }
 
 .workbench-card dl {
@@ -1766,12 +1589,6 @@ button:disabled {
 .workbench-card p {
   margin: 0.9rem 0 0;
   line-height: 1.45;
-}
-
-.workbench-layout {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
 }
 
 /* The former OS-driven dark block is gone: dark is now an explicit human
@@ -1872,10 +1689,6 @@ button:disabled {
     width: 100%;
   }
 
-  .pipeline-grid {
-    grid-template-columns: 1fr;
-  }
-
   .portal-deliverable-grid {
     grid-template-columns: 1fr;
   }
@@ -1894,14 +1707,6 @@ button:disabled {
   }
 
   .workbench-card dl {
-    grid-template-columns: 1fr;
-  }
-
-  .pipeline-contract-metrics {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .pipeline-transition-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2141,24 +1946,10 @@ button:disabled {
   width: 100%;
 }
 
-.workspace-sidebar-body > .pipeline-layout,
-.workspace-sidebar-body > .workbench-layout {
-  width: 100%;
-  min-width: 0;
-  overflow: auto;
-  padding: 0.65rem;
-}
-
-.workspace-sidebar-body .pipeline-grid,
-.workspace-sidebar-body .pipeline-contract-metrics,
-.workspace-sidebar-body .pipeline-transition-grid,
 .workspace-sidebar-body .workbench-card dl {
   grid-template-columns: minmax(0, 1fr);
 }
 
-.workspace-sidebar-body .pipeline-card,
-.workspace-sidebar-body .pipeline-summary,
-.workspace-sidebar-body .pipeline-contracts,
 .workspace-sidebar-body .workbench-card {
   border-radius: 8px;
 }
@@ -3022,9 +2813,7 @@ button:disabled {
   backdrop-filter: blur(10px);
 }
 
-.woven-focused-surface > .panel,
-.woven-focused-surface > .pipeline-layout,
-.woven-focused-surface > .workbench-layout {
+.woven-focused-surface > .panel {
   margin: 0.75rem;
   box-shadow: none;
 }
@@ -3543,118 +3332,6 @@ button:disabled {
   .woven-dialogue-toolbar .persona-picker select {
     width: 100%;
   }
-}
-
-/* ── C5. Workbench "Documents" block (Stage B1 carry-forward).
-   Documents, evidence and contracts are provenance-bearing objects, so the
-   block takes the reference's object-card treatment: one frame, a ruled head,
-   a body, and no nested box. `DocumentView` keeps its own markup — it is only
-   de-boxed here so the card reads as a single object. */
-
-.workbench-documents-block {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border-color: var(--rule-strong);
-  background: var(--card);
-  padding: 0;
-}
-
-.workbench-documents-block > header {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.5rem 0.9rem;
-  border-bottom: 1px solid var(--rule);
-}
-
-.workbench-documents-block > header h3 {
-  font-family: var(--font-display);
-  font-size: 0.98rem;
-  font-weight: 600;
-}
-
-.workbench-documents-block > .pipeline-note {
-  margin: 0;
-  padding: 0.6rem 0.9rem 0;
-  font-size: 0.8rem;
-  line-height: 1.5;
-  color: var(--ink-soft);
-}
-
-.workbench-documents-block > .panel--document {
-  min-width: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-}
-
-.workbench-documents-block .panel--document > .panel-header {
-  position: relative;
-  border-bottom: 0;
-  padding: 0.6rem 0.9rem 0;
-}
-
-/* "Document" restates the block heading one line above it. */
-.workbench-documents-block .panel--document > .panel-header > h2 {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-/* With no deliverables the header holds only the hidden heading, so it should
-   not reserve a band of its own. */
-.workbench-documents-block .panel--document > .panel-header:not(:has(.document-view-controls)) {
-  padding: 0;
-}
-
-.workbench-documents-block .document-view-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-}
-
-.workbench-documents-block .document-view-selector {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  min-width: 0;
-  flex: 1 1 14rem;
-}
-
-/* These label live controls, so they take `--ink-soft` rather than the
-   decorative-eyebrow `--ink-faint`, which does not reach AA at this size. */
-.workbench-documents-block .document-view-selector > span {
-  font-size: 0.63rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-
-.workbench-documents-block .document-view-selector select {
-  min-width: 0;
-  width: 100%;
-  font-size: 0.78rem;
-}
-
-.workbench-documents-block .document-view-body {
-  padding: 0.6rem 0.9rem 0.85rem;
-  min-width: 0;
-  max-height: 26rem;
-}
-
-.workbench-documents-block .document-view-body > .panel-empty,
-.workbench-documents-block .document-view-body > .panel-error {
-  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
-  font-size: 0.74rem;
 }
 
 /* ── C6. Reduced motion. The stylesheet carries one transition
