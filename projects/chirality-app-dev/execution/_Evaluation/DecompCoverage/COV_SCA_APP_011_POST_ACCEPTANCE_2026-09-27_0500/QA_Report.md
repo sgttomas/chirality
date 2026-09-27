@@ -1,0 +1,8 @@
+# QA Report
+
+- Inputs: decomposition `cf6e56ebb1474d30a45dd3973dcb449d8aab30a84d731649336091afd2321876`; companion register `918e475a48899d18755139027e61db200d23a531e48ed9f969c526dd842fa944`; `_LATEST.md` `904c1bd6fc30b4293b7da78aa52268142c08d69bfe71b3ea8812c56762185637`.
+- Parser (heading-text binding): 10 package rows, 52 deliverable rows, 84 ledger rows, 10 objective rows.
+- `tools/evaluation/audit_structure.py --root projects/chirality-app-dev/execution/ --variant SOFTWARE --inventory inventory.json --output structure.json`: exit 0; run_status COMPLETE; summary {'fail': 0, 'lifecycle_states': {'IN_PROGRESS': 53, 'OPEN': 1}, 'partitions': 11, 'pass': 54, 'production_formats': {'SOW_V1': 54}, 'units': 54}; issues ['partition directory contract is incomplete', 'required tool roots are missing'].
+- `tools/scope_of_work/validate_scope_of_work.py` per physical deliverable folder: 54/54 pass.
+- Artifact presence is a path and filename screen (backticked paths resolved against the App root, the frontend root and the repository root; otherwise at least two long tokens of the description in one file name in the deliverable folder). Absence of a match is not proof the behavior is absent.
+- Limits: no semantic product verification; no file outside this snapshot folder was written; no decomposition, Scope of Work, dependency, lifecycle or pointer change. The DecompCoverage `_LATEST.md` pointer is not moved (not authorized by the brief).

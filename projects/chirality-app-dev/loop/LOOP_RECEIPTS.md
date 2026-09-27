@@ -7325,3 +7325,14 @@
   - Checks: post-acceptance validation PASS; this ledger's validator, Root G0–G4 and export regeneration, as recorded in the post-acceptance record and hand-off. PR CI remains a merge gate.
   - Model-Attribution: Claude Code WORKING_ITEMS subagent for the parent session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
   - Gate-Outcome: `EXECUTED` — SCA-APP-011 accepted and active: E47 applied, `_LATEST.md` moved from SCA-APP-010, Runtime notice sent, status records and post-acceptance record written, exactly per `Evidence/Group3/ACCEPTANCE_CONDITIONAL_EDITS.csv`. Closure `OPEN_PENDING_DERIVATIVE_CLOSURE`: `project-setup` INCREMENTAL, `dependency-extract`, `audit-decomp` and `audit-scope-closure` remain. No lifecycle change, repin or release.
+
+- **2026-09-27 — Receipt 272** (SCA-APP-011 post-acceptance follow-ups: audits run; incremental setup, dependency writes and APP-R058 held for the owner).
+  - Receipt-ID: `Receipt-272`
+  - Examined-Through: `78e74f590d6010a52565d250288290b3305a2942`
+  - Parent-Receipt: `Receipt-271`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING; no new owner direction in this run. The handoffs are those SCA-APP-011's accepted records name (`Propagation_Plan.md` §7–§8, `Handoff_State.md`), relayed by the coordinating session after PR #995 merged.
+  - Pointers: run receipt `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` (with the setup, dependency and APP-R058 proposals); `execution/_Evaluation/DecompCoverage/COV_SCA_APP_011_POST_ACCEPTANCE_2026-09-27_0500/`; `execution/_Evaluation/ScopeClosureAudit/ScopeClosure_SCA-APP-011_2026-09-27_0505/`; nine deliverable `MEMORY.md` rows.
+  - Stale-Map-Delta: DecompCoverage and ScopeClosureAudit `_LATEST.md` pointers not moved; `_COORDINATION.md` records no dependency tracking mode (the registers record FULL_GRAPH).
+  - Checks: this ledger's validator, Root G0–G4, conflict-marker and run-record-leak checks, the workflow index check, `git diff --check` and export regeneration, as recorded in the hand-off.
+  - Model-Attribution: Claude Code WORKING_ITEMS subagent for the parent session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
+  - Gate-Outcome: `AWAITING_OWNER` — audit-decomp WARNINGS with no blocker and unchanged topology; audit-scope-closure OPEN (every register action verified; setup, re-extraction and the stale dependency rows open); `project-setup` INCREMENTAL (its baseline and plan gates), dependency-extract (with HGD-2) and APP-R058 prepared as proposals, not applied. No dependency, lifecycle, scope or pointer write; no release.

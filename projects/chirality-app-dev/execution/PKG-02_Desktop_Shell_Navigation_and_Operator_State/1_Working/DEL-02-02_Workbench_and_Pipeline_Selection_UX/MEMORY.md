@@ -6,6 +6,7 @@ D-APP-131 applies D-GOV-43/D-APP-127 to the current SoW source blocks and Remain
 
 - 2026-07-12 — D-APP-56 R4-P06 governed corpus transcription applied for DEL-02-02: live ruled behavior is reflected in authority/kit text without code or lifecycle change; the original D-APP-55 run remains immutable. D-APP-38 reconciliation is executed separately for this tranche.
 - 2026-09-27 — `APP-REMOVE-LEGACY-FORMS-2026-09-27` (SCA-APP-011 code change; checkpoint-group-3 candidate, lands with the SCA-APP-011 scope text after group-3 acceptance): removes `WorkbenchSurface`, `PipelineSurface`, `LifecycleGateFields`, their tests, the form-only CSS and the client module `deliverable-api.ts`. SCA-APP-011 rescopes DEL-02-02 (DQ-R); its right-panel scope and code are unchanged, and its Scope of Work and `_CONTEXT.md` text is the SCA-APP-011 scope-text side. No lifecycle change. Evidence: [receipt](../../../_Coordination/AgentRuns/APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md); amendment `execution/_ScopeChange/SCA-APP-011_2026-09-27_0155_Workbench_Pipeline_Forms_and_Deliverable_Routes_Retirement/`.
+- 2026-09-27 — SCA-APP-011 checkpoint group 3 accepted (`execution/_ScopeChange/checkpoint_snapshots/SCA-APP-011_GROUP-3_2026-09-27/`); landed in PR #995 (`78e74f590`). Run receipt: `execution/_Coordination/AgentRuns/APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md`.
 
 ## Decisions And Evidence
 
