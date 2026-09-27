@@ -9,8 +9,8 @@
 **Context root:** `projects/chirality-app-dev/execution`
 **Decomposition:** `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`
 **Allow renumbering:** `false`
-**Basis commit:** `0adfbc7476df33521883ce1573781237cd24d384` (`origin/main`, merge of PR #1009). The package commits were then rebased onto `ec81ef2c728e5ae4854894e5321dfc693902a8ef` (merge of PR #1010, after PR #1011). Those merges change only `projects/chirality-app-v4/` and `projects/pec/`, so every input named below is byte-identical at both commits. The builder reports `governed_inputs_identical_to_basis: true` on the rebased tree and reproduces `Pre_Change_Coverage.json` byte for byte.
-**Revision:** 2 (folds in the additional conflicts found at the basis, at the coordinator's request; adds choice W)
+**Basis commit:** `e1af32fc438e4448ff7d9bfbd6387c28647b7adf` (`origin/main`, merge of PR #1007, after PR #1012). Revision 3 moved the package onto this basis. Revisions 1 and 2 were prepared at `0adfbc747` (PR #1009) and `ec81ef2c7` (PRs #1011 and #1010). Between `0adfbc747` and this basis only these changed: `projects/chirality-app-v4/`, `projects/pec/`, the Runtime scaffold-API retirement (PR #1012, merge commit `49bbc9787238d59fe2945c8e9413206d554e56b7`), the App notice `execution/_Coordination/NOTICE_2026-09-27_RUNTIME_SCAFFOLD_API_RETIRED.md` and three App files that construct `RuntimeService` (`frontend/scripts/controlled-ci-runtime.ts` and two integration tests). Every input hashed below is byte-identical at all three commits. The builder reports `governed_inputs_identical_to_basis: true` at this basis.
+**Revision:** 3 (revision 2 folded in the additional conflicts and added choice W; revision 3 moves the basis past PR #1012 and records the Runtime scaffold-API retirement as merged)
 **Stage:** checkpoint-group-1 preparation only (intake, validation and impact). This package writes no decomposition, register, PRD, SPEC, PLAN, Scope of Work, `_CONTEXT.md`, `_STATUS.md`, dependency register, pointer, decision snapshot, `DECISION.md`, `SCA-APP-012_GROUP-1_AUTHORIZED.md` or `_LATEST.md` byte, and no code.
 **Precedent:** SCA-APP-011 (PRs #995 and #1009). Its group-1 `Impact_Assessment.md` (choice B) and `Intake_Actions.csv` rows 28–32 assessed this legacy-shell removal as set L, which the owner excluded from SCA-APP-011 ("Exclude it (Recommended)"). This run reuses that analysis, re-verified at the basis, and follows the same package layout and the `checkpoint_snapshots/` decision-snapshot layout.
 
@@ -27,7 +27,7 @@ Direction 1 answered the coordinating session's proposal, whose opening sentence
 - it folds in the DEL-02-03 REQ-009 residual (restate REQ-009 as task-scope preselection, or retire it; settle DEP-02-03-009);
 - it needs the owner at the same three checkpoints as SCA-APP-011, but is smaller, with no new or retired deliverables.
 
-Direction 2 is the owner's authority for retiring the Runtime project-scaffold API (a separate Runtime change, under review and not merged at this basis). The coordinating session asked this package to restate the App texts that still name a future App-side scaffold entry.
+Direction 2 is the owner's authority for retiring the Runtime project-scaffold API. The Runtime loop did so in PR #1012 (merge commit `49bbc9787238d59fe2945c8e9413206d554e56b7`, Runtime Receipt 5) and informed the App with the notice `execution/_Coordination/NOTICE_2026-09-27_RUNTIME_SCAFFOLD_API_RETIRED.md`. The coordinating session asked this package to restate the App texts that still name a future App-side scaffold entry.
 
 These are the owner's direction and route selection. They are not the group-1 acceptance, which is a separate act on this package. Accepted App instruments require a separate owner decision before the loop-first UI is retired (PRD KG-033, PRD §6.4, D-APP-74 L107). That decision is made through this amendment's checkpoints; nothing in this package claims it.
 
@@ -48,7 +48,7 @@ These are the owner's direction and route selection. They are not the group-1 ac
 | Decide the `/workbench` and `/pipeline` pages | Proposal item 4 | Owner choice P (keep as URL compatibility, redirect, or remove) |
 | Settle DEL-02-03 REQ-009 and DEP-02-03-009 | Proposal item 5; "Include the items with the other owners" | Owner choice R (retire or restate) |
 | No App-side scaffold entry is planned | Direction 2 | MODIFY DEL-07-02, DEL-06-03 CLM-031, SPEC §14.2 and PRD goal 17 / §6.1 wording; the Runtime retirement stays the Runtime loop's change |
-| "Include the items with the other owners" | Direction 1 | Read here as: include the residuals held in other deliverables' contracts (DEL-02-03, DEL-07-03, DEL-08-02, DEL-07-02, DEL-06-03), the dependency settlement (DEP-02-03-009) and the Task Management consequence (TM-APP-051). The Runtime scaffold API belongs to another project loop and is handled only by wording that stays true whichever change merges first. The owner can correct this reading at group 1 |
+| "Include the items with the other owners" | Direction 1 | Read here as: include the residuals held in other deliverables' contracts (DEL-02-03, DEL-07-03, DEL-08-02, DEL-07-02, DEL-06-03), the dependency settlement (DEP-02-03-009) and the Task Management consequence (TM-APP-051). The Runtime scaffold API belongs to another project loop, which retired it in PR #1012; this amendment aligns the App texts with that. The owner can correct this reading at group 1 |
 | "You can make changes as necessary" | Direction 1 | Authority to include the items found at the basis beyond the proposal list, each named in the Impact Assessment. It is not the group-1 acceptance |
 
 ## Accepted inputs (read-only at this stage)
@@ -88,6 +88,7 @@ These are the owner's direction and route selection. They are not the group-1 ac
 | `frontend/src/components/shell/chat-panel.tsx` | `eef3e49f11a6f4c9fefb077c9b852e854bab973fa03fd69acbe1bd41b831fae1` | L194-208 `resolveMode` maps `/workbench` and `/pipeline` |
 | `frontend/electron/main.ts` / `frontend/scripts/run-packaged-security-proof.mjs` / `frontend/src/__tests__/contract-pins.manifest.ts` | `747bd71dd6a827445bbcf9bd400811c066926115b19ffbb55ec006965a99793c` / `5585d6a471661bf1984448b9f5b75c47509f2388707ad9d546cdab93783ee5de` / `df42a6f398cf65978ca73510a402db1adb750122c785b265f8a5347870d2208e` | The four page routes are probed and pinned (choice P) |
 | `frontend/src/components/woven-dialogue/workflows-view.tsx` / `workflow-detail.tsx` / `app/api/working-root/workflow/route.ts` / `components/woven-dialogue/right-panel.tsx` | `0f47a87cbd1e3bda048fd99d6a64568e96e377de326d86c46022829a5fd9ddd2` / `4488d3a4e29526d505979077e09548b7a1f18920e6ce7e54b0ad65abc4246330` / `f206a554686f2da2459db7892296029272745329e23056156c33b297054c15df` / `59d88d5c77b597ee35f64ac80a3e3e8911a7eaae87e504feb1a384e984e1da7f` | Choice W: the unmounted flat-file view, its detail and read route; the live Workflows tab (`MethodLibraryView`, L14, L190) |
+| `execution/_Coordination/NOTICE_2026-09-27_RUNTIME_SCAFFOLD_API_RETIRED.md` | `5be3999622b233fe326081485ec92a38f5bbd38e43989a4b3652db1c334916ab` | Runtime loop's informational notice: the Runtime scaffold API is retired (PR #1012) |
 | `tools/query/scan_next_amendment_id.sh` | `2310630d2888858d35d6415001d7374e4e0bef821107da5750f73337816d9bdb` | Amendment-ID helper |
 
 Semantic section binding (by heading text, decomposition at basis): Change Register = `12. Decision Log / Change Log` (L613; Change Log L644); Unit Ledger = `9. Scope Ledger` (L403); Objectives = `6. Objectives` (L263); Primary Partitions = `7. Packages` (L280); Secondary Entities = `8. Deliverables` (L297); Vocabulary Map = `4. Vocabulary Map` (L121); SSOW = `5. SSOW` (L172); Open Issues = `11. Open Issues` (L598); Coverage Basis = `10. Coverage and Telemetry` (L496). Additional sections touched: `3. Intake Summary` Hard Constraints (L96, L102) and `13. Downstream Execution Notes` (L664). All bindings resolved; none by position.
@@ -101,7 +102,7 @@ The machine-readable intake is `Intake_Actions.csv`: 41 rows (revision 2; revisi
 | Set | Rows | Meaning |
 |---|---|---|
 | BASE | 1–22 | Owner-directed: the loop-first shell, role-directory panel and portal helpers (DEL-02-01, DEL-08-02); `DeliverablesProvider`, `/api/working-root/scope` and REQ-010 (DEL-02-03, DEL-07-03); SOW-001 notes, hard constraint, §13 note, DEC-027, telemetry; PRD, SPEC and PLAN, including the text that still calls the loop-first shell live; the `?legacy=1` link and the layout metadata (code); the DEP-02-03-004 and DEP-08-03-007 re-extraction outcomes; the TM-APP-051 note |
-| S | 23–25 | Owner-directed scaffold decision: DEL-07-02, DEL-06-03 CLM-031, SPEC §14.2 and PRD goal 17 / §6.1 wording. True whether or not the Runtime scaffold-API retirement has merged |
+| S | 23–25 | Owner-directed scaffold decision: DEL-07-02, DEL-06-03 CLM-031, SPEC §14.2 and PRD goal 17 / §6.1 wording. Aligned with the Runtime scaffold-API retirement merged in PR #1012 |
 | R-b | 26–27 | Recommended answer to choice R: retire DEL-02-03-REQ-009; DEP-02-03-009 retired at re-extraction |
 | R-a | 28–31 | Alternative: restate REQ-009 as task-scope preselection; DEL-08-03, SOW-007 and PRD §7.5 admit it as a declared consumer; DEP-02-03-009 restated |
 | W-b | 32–33 | Recommended answer to choice W: delete the unmounted flat-file workflow view, its detail and its only-called read route `GET /api/working-root/workflow`; DEL-02-02 note and hard-constraint exception |
@@ -128,7 +129,7 @@ Counts: BASE 21 MODIFY + 1 ADD; S 3 MODIFY; R-b 2 MODIFY; R-a 4 MODIFY; W-b 2 MO
 
 ## Pre-change baseline
 
-`Pre_Change_Coverage.json` is built by `Evidence/Group1/build_pre_change_baseline.py`. The builder is read-only and reproducible from the repository root; two consecutive runs of revision 2 gave byte-identical output (`e676e10d…1b31e9`). Revision 1 of the builder produced `4504d70e…0018cb`; revision 2 adds the choice-W and layout-metadata code references.
+`Pre_Change_Coverage.json` is built by `Evidence/Group1/build_pre_change_baseline.py`. The builder is read-only and reproducible from the repository root; two consecutive runs of revision 3 gave byte-identical output (`4e03a9d6…d69880`). Earlier outputs were `4504d70e…0018cb` (revision 1) and `e676e10d…1b31e9` (revision 2); revision 2 added the choice-W and layout-metadata code references, and revision 3 moves the basis and records the Runtime notice by hash. At this basis the Runtime scan finds no `ProjectScaffoldPort` or `ScaffoldExecutionRoot{Request,Response}`.
 
 It reuses the latest full `audit-decomp` run, `COV_SCA_APP_011_POST_ACCEPTANCE_2026-09-27_0500`, because all 122 of its recorded inputs are byte-identical to this basis (method step 5). It adds:
 
@@ -156,6 +157,6 @@ It reuses the latest full `audit-decomp` run, `COV_SCA_APP_011_POST_ACCEPTANCE_2
 - TYPES §4 legacy matrix vocabulary, persona aliases and the route/query compatibility semantics keyed with DEL-08-02 (their open TYPES §4 alignment stays with DEL-08-02).
 - The versioned local-state schema. `WovenWorkspaceSurface` keeps `'workbench' | 'pipeline'` values, and existing keys stay readable (SPEC §17.8).
 - The Work projection and the retained SDK-path modules that have no product importer at the basis. They are recorded as an observation (Impact Assessment §10.3) and are not proposed. `workflows-view.tsx` and `workflow-detail.tsx` are owner choice W.
-- The Runtime scaffold API and every other Runtime-owned surface: the Runtime loop owns them; its retirement change is pending.
+- Every Runtime-owned surface. The Runtime scaffold API was retired by the Runtime loop in PR #1012; this amendment only aligns the App texts with that.
 - CONTRACT invariant text and the companion register.
 - Any lifecycle transition, release, publication, `_LATEST.md` movement, or closure of other open SCA-APP-011 work.

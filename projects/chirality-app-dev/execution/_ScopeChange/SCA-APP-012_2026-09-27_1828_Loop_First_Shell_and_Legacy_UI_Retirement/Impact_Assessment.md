@@ -5,8 +5,8 @@ decomp_variant: SOFTWARE
 checkpoint_group: 1
 created: 2026-09-27
 status: awaiting_checkpoint_1_acceptance
-revision: 2 (folds in the additional conflicts found at the basis; adds choice W)
-basis_commit: 0adfbc7476df33521883ce1573781237cd24d384
+revision: 3 (revision 2 folded in the additional conflicts and added choice W; revision 3 moves the basis past PR #1012)
+basis_commit: e1af32fc438e4448ff7d9bfbd6387c28647b7adf
 workflow: scope-change (bundled)
 ---
 
@@ -81,8 +81,9 @@ drafting group 2:
 2. **S (Rows 23–25), owner-directed.** Restate DEL-07-02, DEL-06-03 CLM-031,
    SPEC §14.2 and PRD goal 17 / §6.1: scaffolding is done by the agent through
    Root `project-setup`, and no App-side scaffold entry is planned. The
-   wording holds whichever lands first, this amendment or the Runtime change
-   that retires `ProjectScaffoldPort`.
+   Runtime loop already retired `ProjectScaffoldPort` and the rest of its
+   scaffold API in PR #1012 (merge commit `49bbc9787`); these rows align the
+   App texts with it.
 3. **Your answers to choices R, W and P below**, and the defaults listed
    after them unless you say otherwise.
 4. **Group 2 drafting.** I prepare the exact text, `Amendment_Actions.csv`,
@@ -168,10 +169,11 @@ No scope item goes OUT and no objective loses support. The main costs are:
 
 | Evidence | SHA-256 / result |
 |---|---|
-| `Brief.md` (this snapshot, revision 2) | `688725ec61db5a5f481239309f63e2ab48ba914599f8af4df55af7f2340bb8df` (revision 1: `d540c607…9b9b27`) |
-| `Intake_Actions.csv` (this snapshot, revision 2) | `1acab7da1b71ac1c8bd480e2d7311d07bd40d297ac5492cdbcb6419f25a7e916`; 41 rows, all `PROPOSED` (revision 1: `8c5a3e6d…fdff2`, 29 rows) |
-| `Pre_Change_Coverage.json` (this snapshot, revision 2) | `e676e10dd7fbd2699006a3cab0ec4d2766a57c0757eee77b880e078ddc1b31e9`; two runs byte-identical at `ec81ef2c7` (revision 1: `4504d70e…0018cb`) |
-| `Evidence/Group1/build_pre_change_baseline.py` (revision 2) | `dc6313b82fa662b106895248363b4436de5fdffff571f2f7068af0a22e29736e` (revision 1: `e7abdab1…dbe7b`) |
+| `Brief.md` (this snapshot, revision 3) | `d7cae385b97057407458104a47922281fd3e5acaa985bb096caf013650a5db72` (revision 1: `d540c607…9b9b27`; revision 2: `688725ec…bb8df`) |
+| `Intake_Actions.csv` (this snapshot, revision 3) | `b109be9e3f04b033b035b9783d6f77f5aa66e1215213df0d05e00fbe607f9610`; 41 rows, all `PROPOSED` (revision 1: `8c5a3e6d…fdff2`, 29 rows; revision 2: `1acab7da…a7e916`) |
+| `Pre_Change_Coverage.json` (this snapshot, revision 3) | `4e03a9d6b4ce083ef35bf5465db41bb3151cb05e538cfe59d0144ee883d69880`; two runs byte-identical at `e1af32fc4` (revision 1: `4504d70e…0018cb`; revision 2: `e676e10d…1b31e9`) |
+| `Evidence/Group1/build_pre_change_baseline.py` (revision 3) | `8522ed1df1a29423f723d7231e12ebef8bb56f75053bd467ac819c00b6894e32` (revision 1: `e7abdab1…dbe7b`; revision 2: `dc6313b8…29736e`) |
+| `execution/_Coordination/NOTICE_2026-09-27_RUNTIME_SCAFFOLD_API_RETIRED.md` | `5be3999622b233fe326081485ec92a38f5bbd38e43989a4b3652db1c334916ab`; the Runtime loop's notice of the scaffold-API retirement (PR #1012) |
 | Reused audit `COV_SCA_APP_011_POST_ACCEPTANCE_2026-09-27_0500` | 122/122 recorded inputs byte-identical at this basis; `WARNINGS`, 0 blockers |
 | Decomposition / companion register / `_LATEST.md` | `cf6e56eb…d2321876` / `918e475a…a942c` / `904c1bd6…c42c04e3` (full values in `Brief.md`) |
 | Other inputs | as listed with full SHA-256 in `Brief.md` |
@@ -467,18 +469,24 @@ nor the SPEC §17.2 table.
 
 ## 9. Item S — no App-side scaffold entry
 
-**Owner direction:** "Scaffolding through the agent is enough." The
-coordinating session reports a separate Runtime change, under review and not
-merged at this basis, that retires `ProjectScaffoldPort`,
-`RuntimeService.scaffold`, `POST /v1/projects/{id}/scaffold`, the client
-method and the scaffold types.
+**Owner direction:** "Scaffolding through the agent is enough." The Runtime
+loop acted on it in PR #1012 (merge commit
+`49bbc9787238d59fe2945c8e9413206d554e56b7`; commit `c5092d09a` "runtime:
+retire the unused project-scaffold API"; Runtime Receipt 5). It removed
+`ProjectScaffoldPort`, `RuntimeService.scaffold`, the daemon route
+`POST /v1/projects/{projectId}/scaffold`, `RuntimeClient.scaffold`, and the
+scaffold request, response and `ScaffoldExecutionRoot*` types. Its notice to
+the App, `execution/_Coordination/NOTICE_2026-09-27_RUNTIME_SCAFFOLD_API_RETIRED.md`, says the
+App scaffold library and `scaffold_preview` are unaffected, and that
+DEL-07-02's follow-up still names "a composed `ProjectScaffoldPort`", which
+no longer exists. Rows 23–25 answer that point.
 
 **App scope text that names a future App-side scaffold entry** (Baseline
 `scope_text_hits`, tag `scaffold_entry`):
 
 | Text | Line | Row | Treatment |
 |---|---|---|---|
-| DEL-07-02 SOW | L24 (the Runtime API is Runtime-owned; the Runtime loop decides) | 23 | Restated to the owner's decision; the retirement is the Runtime loop's change |
+| DEL-07-02 SOW | L24 (the Runtime API is Runtime-owned; the Runtime loop decides) | 23 | Restated to the owner's decision; the Runtime loop retired the API in PR #1012 |
 | DEL-07-02 SOW | L25 (follow-up: an App-side entry such as a Runtime application tool or a composed `ProjectScaffoldPort`, defaulting to `<project>/execution`) | 23 | Restated: no App-side entry is planned; the agent scaffolds through `project-setup` into `<project>/execution` |
 | DEL-07-02 SOW | L229 (the live composition lacks its `ProjectScaffoldPort`) | 23 | Restated |
 | DEL-07-02 SOW | L477 (APP-R058, closed) | — | History; unchanged |
@@ -488,18 +496,16 @@ method and the scaffold types.
 | PRD §3.1 goal 17, §6.1 | L155, L323 (scaffold among the in-process tools) | 25 | Read as scaffold preview |
 | PRD FR-119, §8.13 sequence, L1513; PLAN R2 L204; TYPES §8.4 L482 | — | — | NO_CHANGE: the retained SDK-path record, preview wording already, or tool-name vocabulary |
 | DEL-06-04-REQ-010, PRD §7.3, PLAN §1 L45, DEL-03-03 | — | — | Already consistent (agent path; preview read-only) |
-| `_ScopeChange/_LATEST.md` L37 ("the Runtime loop's decision on its scaffold API") | — | — | Pointer text; not edited here. At SCA-APP-012 group 3 the new pointer states that item's status as it is then |
+| `_ScopeChange/_LATEST.md` L37 ("the Runtime loop's decision on its scaffold API") | — | — | Pointer text; not edited here. That SCA-APP-011 item is now decided (PR #1012); at SCA-APP-012 group 3 the new pointer records it as closed by the Runtime loop |
 
-**Merge order.** No App code imports the Runtime scaffold port or types at
-the basis: SCA-APP-011 removed the App port member, and the Baseline
-`frontend_references` shows `ProjectScaffoldPort` and
-`ScaffoldExecutionRoot{Request,Response}` only under
-`projects/chirality-runtime/packages`. Rows 23–25 say "no App-side entry is
-planned" and name the Runtime API as Runtime-owned "whose retirement is the
-Runtime loop's own change". That is true before and after the Runtime change
-merges, so neither change depends on the other. If the Runtime change were
-withdrawn, the rows would still be true; only the pointer's status line would
-differ.
+**Relation to the Runtime change.** At this basis no App or Runtime source
+names `ProjectScaffoldPort` or `ScaffoldExecutionRoot{Request,Response}`
+(Baseline `frontend_references`). The App scaffold library declares its own
+types. The App construction sites of `RuntimeService` were updated inside
+PR #1012 itself. Rows 23–25 therefore change App scope text only: they record
+that no App-side scaffold entry is planned, and that the composed-port route
+the DEL-07-02 follow-up named is gone. Any later App scaffold entry would need
+a Runtime amendment as well as an App one, as the notice says.
 
 ## 10. Findings
 
@@ -580,7 +586,7 @@ and no new edge is proposed, so no cycle can form.
 |---|---|
 | App frontend | The code change after group 3 (§15) |
 | MCP tools (`read-tools.ts`) | None: `scope_scan` and `scaffold_preview` call their libraries directly |
-| Runtime (`projects/chirality-runtime`) | None from this amendment: no reference to `/api/working-root/scope` or `/api/working-root/workflow`. Its own scaffold-API retirement is separate and pending (§9) |
+| Runtime (`projects/chirality-runtime`) | None from this amendment: no reference to `/api/working-root/scope` or `/api/working-root/workflow`. Its scaffold API is already retired (PR #1012, §9); no further notice is needed beyond the one it sent |
 | Electron and packaged security proof | None under P-keep; route lists, pins and native witness under P-x |
 | Task Management | TM-APP-051 disposition note after group 3 (§13) |
 | `exports/chirality-app` projection | Lists the deleted files; regenerated with the code change |
@@ -700,8 +706,8 @@ The cumulative map is carried forward from SCA-APP-011 through
 - **Pointer posture for group 3: `ACCEPTED_PREDECESSOR`.** `_LATEST.md` names
   SCA-APP-011 (`OPEN_PENDING_DERIVATIVE_CLOSURE`) and stays unchanged until
   SCA-APP-012's group-3 acceptance. SCA-APP-011's open derivative items
-  remain its own, apart from the Runtime scaffold-API item, which the new
-  pointer reports as it then stands.
+  remain its own, apart from the Runtime scaffold-API item, which PR #1012
+  closed and the new pointer records as closed.
 - **Decision snapshots.** Group-1 and group-2 decisions will be recorded under
   `_ScopeChange/checkpoint_snapshots/SCA-APP-012_GROUP-{1,2}_{date}/`, with
   `SCA-APP-012_GROUP-{1,2}_AUTHORIZED.md` pointers. None exists and none is

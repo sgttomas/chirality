@@ -19,13 +19,17 @@ excluded).
 The scaffold-entry scan (added at the coordinator's request of 2026-09-27)
 records every App scope text that names `ProjectScaffoldPort` or a future App
 scaffold entry, and every App or Runtime source that names the Runtime
-scaffold port or its types. The Runtime retirement of that API is a separate,
-pending change; the scan reports the basis only.
+scaffold port or its types. The Runtime retirement of that API merged in
+PR #1012 (merge commit 49bbc9787238d59fe2945c8e9413206d554e56b7); the scan
+reports the basis only.
 
 Revision 2 (same basis) also reports the flat-file workflow view and its read
 route (choice W) and the layout metadata string among the code references,
 and lists the workflow view among the in-scope modules without a product
 importer.
+
+Revision 3 moves the basis to e1af32fc4 (after PR #1012) and records the App
+notice NOTICE_2026-09-27_RUNTIME_SCAFFOLD_API_RETIRED.md by hash.
 
 Inputs (read-only):
   - projects/chirality-app-dev/execution/_Decomposition/*.md, *.csv
@@ -58,13 +62,14 @@ SNAP_REL = (
     "projects/chirality-app-dev/execution/_ScopeChange/"
     "SCA-APP-012_2026-09-27_1828_Loop_First_Shell_and_Legacy_UI_Retirement"
 )
-BASIS_COMMIT = "0adfbc7476df33521883ce1573781237cd24d384"
+BASIS_COMMIT = "e1af32fc438e4448ff7d9bfbd6387c28647b7adf"
 APP = "projects/chirality-app-dev"
 EXEC = f"{APP}/execution"
 DOCS = f"{APP}/docs"
 DECOMP = f"{EXEC}/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md"
 REGISTER = f"{EXEC}/_Decomposition/contract_invariant_coverage_register.csv"
 POINTER = f"{EXEC}/_ScopeChange/_LATEST.md"
+RUNTIME_SCAFFOLD_NOTICE = f"{EXEC}/_Coordination/NOTICE_2026-09-27_RUNTIME_SCAFFOLD_API_RETIRED.md"
 REUSED_AUDIT = f"{EXEC}/_Evaluation/DecompCoverage/COV_SCA_APP_011_POST_ACCEPTANCE_2026-09-27_0500"
 FRONTEND = f"{APP}/frontend"
 SRC = f"{FRONTEND}/src"
@@ -436,6 +441,8 @@ def main() -> int:
         "companion_register_path": REGISTER,
         "companion_register_sha256": sha256(REGISTER),
         "scope_change_pointer_sha256": sha256(POINTER),
+        "runtime_scaffold_notice_path": RUNTIME_SCAFFOLD_NOTICE,
+        "runtime_scaffold_notice_sha256": sha256(RUNTIME_SCAFFOLD_NOTICE) if os.path.isfile(RUNTIME_SCAFFOLD_NOTICE) else None,
         "active_snapshot": "execution/_ScopeChange/SCA-APP-011_2026-09-27_0155_Workbench_Pipeline_Forms_and_Deliverable_Routes_Retirement/",
         "accepted_project_dag": None,
         "reused_full_audit": {

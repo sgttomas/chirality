@@ -2,13 +2,15 @@
   "run_label": "SCA_APP_012_GROUP1_PRECHANGE",
   "decomp_variant": "SOFTWARE",
   "method": "Pre-change baseline under scope-change method step 5. The latest full audit-decomp run is reused because every one of its recorded inputs is byte-identical to this basis; it is complemented by the registered structure, dependency-closure and register tools, a static import-reachability analysis of the frontend, and a line-level scan of the scope and governance texts.",
-  "basis_commit": "0adfbc7476df33521883ce1573781237cd24d384",
+  "basis_commit": "e1af32fc438e4448ff7d9bfbd6387c28647b7adf",
   "governed_inputs_identical_to_basis": true,
   "decomposition_path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
   "decomposition_sha256": "cf6e56ebb1474d30a45dd3973dcb449d8aab30a84d731649336091afd2321876",
   "companion_register_path": "projects/chirality-app-dev/execution/_Decomposition/contract_invariant_coverage_register.csv",
   "companion_register_sha256": "918e475a48899d18755139027e61db200d23a531e48ed9f969c526dd842fa944",
   "scope_change_pointer_sha256": "904c1bd6fc30b4293b7da78aa52268142c08d69bfe71b3ea8812c56762185637",
+  "runtime_scaffold_notice_path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-27_RUNTIME_SCAFFOLD_API_RETIRED.md",
+  "runtime_scaffold_notice_sha256": "5be3999622b233fe326081485ec92a38f5bbd38e43989a4b3652db1c334916ab",
   "active_snapshot": "execution/_ScopeChange/SCA-APP-011_2026-09-27_0155_Workbench_Pipeline_Forms_and_Deliverable_Routes_Retirement/",
   "accepted_project_dag": null,
   "reused_full_audit": {
@@ -945,28 +947,19 @@
       "product": [],
       "tests": [],
       "electron_scripts": [],
-      "runtime": [
-        "packages/core/src/runtime-service.ts"
-      ]
+      "runtime": []
     },
     "ScaffoldExecutionRootRequest": {
       "product": [],
       "tests": [],
       "electron_scripts": [],
-      "runtime": [
-        "packages/contracts/src/harness/types.ts",
-        "packages/contracts/src/protocol.ts"
-      ]
+      "runtime": []
     },
     "ScaffoldExecutionRootResponse": {
       "product": [],
       "tests": [],
       "electron_scripts": [],
-      "runtime": [
-        "packages/contracts/src/harness/types.ts",
-        "packages/contracts/src/protocol.ts",
-        "packages/core/src/runtime-service.ts"
-      ]
+      "runtime": []
     },
     "/api/working-root/workflow?": {
       "product": [
