@@ -1,0 +1,518 @@
+{
+  "schema": "pec-v2-parser-fixtures-synthetic/v1",
+  "cases": [
+    {
+      "id": "SYN-WG-01",
+      "case": "missing-run-identity",
+      "files": [
+        "work_graph/missing_run_identity.md"
+      ],
+      "expect": {
+        "run_identity_available": false,
+        "fabricated_identity": false,
+        "limitation": "missing-run-identity",
+        "decoy_token": "SYN-RUN-DECOY-0101"
+      },
+      "binds": [
+        "DEL-02-08/REQ-006",
+        "DEL-02-08/REQ-017",
+        "DEL-02-08/AC-006",
+        "DEL-02-08/AC-017",
+        "DEL-02-08/VER-006",
+        "DEL-02-08/VER-017"
+      ]
+    },
+    {
+      "id": "SYN-WG-02",
+      "case": "duplicated-run-identity",
+      "files": [
+        "work_graph/duplicated_run_identity.md"
+      ],
+      "expect": {
+        "run_identity_available": false,
+        "fabricated_identity": false,
+        "limitation": "duplicated-run-identity"
+      },
+      "binds": [
+        "DEL-02-08/REQ-006",
+        "DEL-02-08/REQ-017",
+        "DEL-02-08/AC-006",
+        "DEL-02-08/AC-017",
+        "DEL-02-08/VER-006",
+        "DEL-02-08/VER-017"
+      ]
+    },
+    {
+      "id": "SYN-WG-03",
+      "case": "unrecognized-state-token",
+      "files": [
+        "work_graph/unrecognized_state_token.md"
+      ],
+      "expect": {
+        "recognized_states": [
+          "PLANNED",
+          "READY",
+          "ACTIVE",
+          "BLOCKED",
+          "UNCERTAIN",
+          "COMPLETE"
+        ],
+        "limitation": "unrecognized-state",
+        "coerced_state": false,
+        "unrecognized_token_carried": false,
+        "unrecognized_token": "MARINATING"
+      },
+      "binds": [
+        "DEL-02-08/REQ-004",
+        "DEL-02-08/REQ-017",
+        "DEL-02-08/AC-004",
+        "DEL-02-08/AC-017",
+        "DEL-02-08/VER-004",
+        "DEL-02-08/VER-017"
+      ]
+    },
+    {
+      "id": "SYN-WG-04",
+      "case": "no-node-table",
+      "files": [
+        "work_graph/no_node_table.md"
+      ],
+      "expect": {
+        "nodes_emitted": 0,
+        "limitation": "no-node-table",
+        "presented_as_complete": false
+      },
+      "binds": [
+        "DEL-02-08/REQ-009",
+        "DEL-02-08/REQ-017",
+        "DEL-02-08/AC-009",
+        "DEL-02-08/AC-017",
+        "DEL-02-08/VER-009",
+        "DEL-02-08/VER-017"
+      ]
+    },
+    {
+      "id": "SYN-WG-05",
+      "case": "unresolved-pr-number",
+      "files": [
+        "work_graph/unresolved_pr_number.md"
+      ],
+      "expect": {
+        "cited_pr": 99999999,
+        "pr_resolution": "unresolved-locally",
+        "guessed_commit": false,
+        "network_access": false
+      },
+      "binds": [
+        "DEL-02-08/REQ-008",
+        "DEL-02-08/REQ-017",
+        "DEL-02-08/AC-008",
+        "DEL-02-08/AC-017",
+        "DEL-02-08/VER-008",
+        "DEL-02-08/VER-017"
+      ]
+    },
+    {
+      "id": "SYN-WG-06",
+      "case": "two-graphs-bind-one-deliverable",
+      "files": [
+        "work_graph/two_graphs_bind_one_deliverable_a.md",
+        "work_graph/two_graphs_bind_one_deliverable_b.md"
+      ],
+      "expect": {
+        "bindings_emitted_per_graph": true,
+        "overlap_verdict_emitted": false,
+        "shared_deliverable": "DEL-99-01"
+      },
+      "binds": [
+        "DEL-02-08/REQ-007",
+        "DEL-02-08/REQ-015",
+        "DEL-02-08/REQ-017",
+        "DEL-02-08/AC-007",
+        "DEL-02-08/AC-015",
+        "DEL-02-08/AC-017",
+        "DEL-02-08/VER-007",
+        "DEL-02-08/VER-015",
+        "DEL-02-08/VER-017"
+      ]
+    },
+    {
+      "id": "SYN-WG-07",
+      "case": "prose-in-every-position",
+      "files": [
+        "work_graph/prose_in_every_position.md"
+      ],
+      "expect": {
+        "prose_marker": "ZEBRA-PROSE",
+        "prose_in_output": false,
+        "prose_capable_field_types": 0
+      },
+      "binds": [
+        "DEL-02-08/REQ-010",
+        "DEL-02-08/AC-010",
+        "DEL-02-08/VER-010"
+      ]
+    },
+    {
+      "id": "SYN-WG-08",
+      "case": "links-and-bindings",
+      "files": [
+        "work_graph/links_and_bindings.md"
+      ],
+      "expect": {
+        "link_text_emitted": false,
+        "external_url_followed": false,
+        "external_url_emitted_as_path": false,
+        "link_text_marker": "ZEBRA-LINKTEXT"
+      },
+      "binds": [
+        "DEL-02-08/REQ-007",
+        "DEL-02-08/AC-007",
+        "DEL-02-08/VER-007"
+      ]
+    },
+    {
+      "id": "SYN-MEM-01",
+      "case": "template-table-form",
+      "files": [
+        "memory/template_table_form.md"
+      ],
+      "expect": {
+        "form": "table",
+        "inferred_run_id": false
+      },
+      "binds": [
+        "DEL-02-09/REQ-002",
+        "DEL-02-09/REQ-004",
+        "DEL-02-09/REQ-014",
+        "DEL-02-09/AC-002",
+        "DEL-02-09/AC-004",
+        "DEL-02-09/AC-014",
+        "DEL-02-09/VER-002",
+        "DEL-02-09/VER-004",
+        "DEL-02-09/VER-014"
+      ]
+    },
+    {
+      "id": "SYN-MEM-02",
+      "case": "entry-without-readable-run-token",
+      "files": [
+        "memory/entry_without_readable_run_token.md"
+      ],
+      "expect": {
+        "form": "table",
+        "inferred_run_id": false,
+        "run_id_unavailable_marked": true,
+        "decoy_tokens": [
+          "D-SYN-9202",
+          "ZEBRA_PAREN_0202",
+          "SYN-RUN-DECOY-0203"
+        ]
+      },
+      "binds": [
+        "DEL-02-09/REQ-004",
+        "DEL-02-09/REQ-014",
+        "DEL-02-09/AC-004",
+        "DEL-02-09/AC-014",
+        "DEL-02-09/VER-004",
+        "DEL-02-09/VER-014"
+      ]
+    },
+    {
+      "id": "SYN-MEM-03",
+      "case": "unreadable-date",
+      "files": [
+        "memory/unreadable_date.md"
+      ],
+      "expect": {
+        "form": "table",
+        "inferred_date": false,
+        "date_unavailable_marked": true
+      },
+      "binds": [
+        "DEL-02-09/REQ-005",
+        "DEL-02-09/REQ-014",
+        "DEL-02-09/AC-005",
+        "DEL-02-09/AC-014",
+        "DEL-02-09/VER-005",
+        "DEL-02-09/VER-014"
+      ]
+    },
+    {
+      "id": "SYN-MEM-04",
+      "case": "file-without-run-index-entry",
+      "files": [
+        "memory/file_without_run_index_entry.md"
+      ],
+      "expect": {
+        "entries": 0,
+        "coverage_limit": true,
+        "nonconformance": false
+      },
+      "binds": [
+        "DEL-02-09/REQ-001",
+        "DEL-02-09/REQ-014",
+        "DEL-02-09/AC-001",
+        "DEL-02-09/AC-014",
+        "DEL-02-09/VER-001",
+        "DEL-02-09/VER-014"
+      ]
+    },
+    {
+      "id": "SYN-MEM-05",
+      "case": "deliverable-without-memory-file",
+      "files": [],
+      "construction": "At test time, create a deliverable folder DEL-99-15 inside a loop whose registry declaration covers the run index, and put no MEMORY file in it.",
+      "expect": {
+        "entries": 0,
+        "coverage_limit": true,
+        "nonconformance": false
+      },
+      "binds": [
+        "DEL-02-09/REQ-001",
+        "DEL-02-09/REQ-014",
+        "DEL-02-09/AC-001",
+        "DEL-02-09/AC-014",
+        "DEL-02-09/VER-001",
+        "DEL-02-09/VER-014"
+      ]
+    },
+    {
+      "id": "SYN-MEM-06",
+      "case": "runs-section-mixed-with-dated-sections",
+      "files": [
+        "memory/runs_section_mixed_with_dated_sections.md"
+      ],
+      "expect": {
+        "every_entry_names_form": true,
+        "silent_omission": false,
+        "dated_heading_run_token_emitted": false
+      },
+      "binds": [
+        "DEL-02-09/REQ-007",
+        "DEL-02-09/REQ-014",
+        "DEL-02-09/AC-007",
+        "DEL-02-09/AC-014",
+        "DEL-02-09/VER-007",
+        "DEL-02-09/VER-014",
+        "DEL-02-09/TBD-005"
+      ]
+    },
+    {
+      "id": "SYN-MEM-07",
+      "case": "prose-in-every-position",
+      "files": [
+        "memory/prose_in_every_position_table.md",
+        "memory/prose_in_every_position_bullet.md",
+        "memory/prose_in_every_position_heading.md"
+      ],
+      "expect": {
+        "forms": [
+          "table",
+          "bullet",
+          "dated-heading"
+        ],
+        "prose_marker": "ZEBRA-PROSE",
+        "prose_in_output": false,
+        "prose_capable_field_types": 0
+      },
+      "binds": [
+        "DEL-02-09/REQ-008",
+        "DEL-02-09/AC-008",
+        "DEL-02-09/VER-008"
+      ]
+    },
+    {
+      "id": "SYN-MEM-08",
+      "case": "links-in-each-form",
+      "files": [
+        "memory/links_in_each_form_table.md",
+        "memory/links_in_each_form_bullet.md",
+        "memory/links_in_each_form_heading.md"
+      ],
+      "expect": {
+        "forms": [
+          "table",
+          "bullet",
+          "dated-heading"
+        ],
+        "link_text_emitted": false,
+        "external_url_followed": false,
+        "external_url_emitted": false,
+        "link_text_marker": "ZEBRA-LINKTEXT"
+      },
+      "binds": [
+        "DEL-02-09/REQ-003",
+        "DEL-02-09/AC-003",
+        "DEL-02-09/VER-003"
+      ]
+    },
+    {
+      "id": "SYN-RCP-01",
+      "case": "marker-carrying-ledger-entry",
+      "files": [
+        "receipts/marker_carrying_ledger_entry.md"
+      ],
+      "expect": {
+        "marker_present": true,
+        "governed_fields": [
+          "Receipt-ID",
+          "Examined-Through",
+          "Parent-Receipt",
+          "Gate-Outcome"
+        ],
+        "prose_value_presence_only": true,
+        "ungoverned_fields_unavailable": true,
+        "fabricated_value": false,
+        "fifth_contract_field": false
+      },
+      "binds": [
+        "DEL-02-03/REQ-003",
+        "DEL-02-03/REQ-017",
+        "DEL-02-03/AC-003",
+        "DEL-02-03/AC-018",
+        "DEL-02-03/VER-003",
+        "DEL-02-03/VER-017"
+      ]
+    },
+    {
+      "id": "SYN-RCP-02",
+      "case": "prose-structured-ledger-entry",
+      "files": [
+        "receipts/prose_structured_ledger_entry.md"
+      ],
+      "expect": {
+        "marker_present": false,
+        "contract_fields_marked_unavailable": true,
+        "inferred_field": false,
+        "prose_in_output": false
+      },
+      "binds": [
+        "DEL-02-03/REQ-004",
+        "DEL-02-03/REQ-017",
+        "DEL-02-03/AC-004",
+        "DEL-02-03/AC-018",
+        "DEL-02-03/VER-004",
+        "DEL-02-03/VER-017"
+      ]
+    },
+    {
+      "id": "SYN-RCP-03",
+      "case": "receipt-without-examined-through",
+      "files": [
+        "receipts/receipt_without_examined_through.md"
+      ],
+      "expect": {
+        "generation": "central-receipt",
+        "examined_through_available": false,
+        "examined_through_marked_unavailable": true,
+        "inferred_examined_through": false
+      },
+      "binds": [
+        "DEL-02-03/REQ-004",
+        "DEL-02-03/REQ-017",
+        "DEL-02-03/AC-004",
+        "DEL-02-03/AC-018",
+        "DEL-02-03/VER-004",
+        "DEL-02-03/VER-017"
+      ]
+    },
+    {
+      "id": "SYN-RCP-04",
+      "case": "malformed-ledger",
+      "files": [
+        "receipts/malformed_ledger.md"
+      ],
+      "expect": {
+        "limitation": "malformed-ledger",
+        "presented_as_complete": false,
+        "fabricated_value": false,
+        "conflicting_value_chosen": false
+      },
+      "binds": [
+        "DEL-02-03/REQ-004",
+        "DEL-02-03/REQ-017",
+        "DEL-02-03/AC-004",
+        "DEL-02-03/AC-018",
+        "DEL-02-03/VER-004",
+        "DEL-02-03/VER-017"
+      ]
+    },
+    {
+      "id": "SYN-RCP-05",
+      "case": "unreadable-file",
+      "files": [],
+      "construction": "At test time, copy receipts/marker_carrying_ledger_entry.md to the ledger path of a loop that declares the receipt-ledger surface, then remove read permission from the copy.",
+      "expect": {
+        "limitation": "unreadable-file",
+        "receipts_emitted": 0,
+        "presented_as_complete": false
+      },
+      "binds": [
+        "DEL-02-03/REQ-004",
+        "DEL-02-03/REQ-017",
+        "DEL-02-03/AC-004",
+        "DEL-02-03/AC-018",
+        "DEL-02-03/VER-004",
+        "DEL-02-03/VER-017"
+      ]
+    },
+    {
+      "id": "SYN-RCP-06",
+      "case": "undeclared-loop",
+      "files": [],
+      "construction": "At test time, copy receipts/marker_carrying_ledger_entry.md to the ledger path of a loop that has no registry declaration at all.",
+      "expect": {
+        "no_declaration_reported": true,
+        "receipts_emitted": 0,
+        "declaration_inferred_from_files": false
+      },
+      "binds": [
+        "DEL-02-03/REQ-014",
+        "DEL-02-03/REQ-017",
+        "DEL-02-03/AC-015",
+        "DEL-02-03/AC-018",
+        "DEL-02-03/VER-014",
+        "DEL-02-03/VER-017"
+      ]
+    },
+    {
+      "id": "SYN-RCP-07",
+      "case": "receipt-folder-diverges-from-cursor",
+      "files": [
+        "receipts/receipt_folder_diverges_from_cursor.md"
+      ],
+      "expect": {
+        "cursor_receipt_id": "SYN-RUN-RCP-CURSOR-0701",
+        "placement_folder": "SYN-RUN-RCP-FOLDER-0702",
+        "receipt_id_source": "cursor-field",
+        "folder_derived_identity": false,
+        "nonconformance": false
+      },
+      "binds": [
+        "DEL-02-03/REQ-016",
+        "DEL-02-03/AC-017",
+        "DEL-02-03/VER-016"
+      ]
+    },
+    {
+      "id": "SYN-RCP-08",
+      "case": "prose-in-every-position",
+      "files": [
+        "receipts/prose_in_every_position_ledger.md",
+        "receipts/prose_in_every_position_central.md"
+      ],
+      "expect": {
+        "prose_marker": "ZEBRA-PROSE",
+        "prose_in_output": false,
+        "prose_capable_field_types": 0,
+        "prose_value_presence_only": true
+      },
+      "binds": [
+        "DEL-02-03/REQ-007",
+        "DEL-02-03/AC-007",
+        "DEL-02-03/VER-007"
+      ]
+    }
+  ]
+}
