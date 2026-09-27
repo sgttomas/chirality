@@ -372,6 +372,15 @@ Current owner gates (2026-09-27; none is accepted or inferred here):
   after a DEL-08-06 production packet); and three Task Management intake
   candidates awaiting the owner's disposition
   (`execution/_Coordination/_TaskManagement/TM_PEC_CLOSEOUT_POST_SCA005_2026-09-27/INTAKE.md`).
+  On 2026-09-27 the owner disposed of them (`D-PEC-107`):
+  - CAND-01 (b): each deliverable's own production or currency packet absorbs its items;
+  - CAND-02 promoted, to be resolved in the next PEC scope change, which also takes up a per-project consumer-contract design item;
+  - CAND-03 promoted and routed to Root;
+  - RV1 authorized;
+  - K3 moved to a PEC Task Management row, triggered by a DEL-08-06 production packet.
+
+  Production is left to a separate session. The follow-on undertaking is
+  `execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260927-RV1-INTAKE/WORK_GRAPH.md`.
 - **Other lifecycle and P1 acts:** DEL-01-05 repaired-artifact acceptance,
   DEL-01-06 Gate 5 (HOLD at `INITIALIZED`), DEL-08-02 short of `ISSUED`, and
   every later P1 node each need their own owner-ruled act.
