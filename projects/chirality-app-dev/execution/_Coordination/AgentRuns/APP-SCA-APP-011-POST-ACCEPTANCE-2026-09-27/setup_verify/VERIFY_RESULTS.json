@@ -1,0 +1,236 @@
+[
+ {
+  "deliverable": "DEL-02-02",
+  "lifecycle": "IN_PROGRESS",
+  "scope_of_work_sha256": "6cb61fe4fd0c1b6678c6f6655c2350439e9dec335cd8c3879183b4494c555582",
+  "status_sha256": "b8b706625f1c8c9721b8bfc54c27821a1091549b90004cd5aeb5bae380857daa",
+  "scope_of_work_unchanged": true,
+  "status_unchanged": true,
+  "validate_rc": 0,
+  "validate": {
+   "format": "SOW_V1",
+   "issues": [],
+   "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/ScopeOfWork.md",
+   "valid": true
+  },
+  "checklist_rc": 0,
+  "checklist_repeat_identical": true,
+  "checklist_items": 1,
+  "boundary_owner_rc": 0,
+  "boundary_owner_summary": {
+   "status": "NOT_APPLICABLE",
+   "requirements_checked": 0,
+   "findings_by_category": [
+    "NOT_APPLICABLE"
+   ]
+  }
+ },
+ {
+  "deliverable": "DEL-02-03",
+  "lifecycle": "IN_PROGRESS",
+  "scope_of_work_sha256": "e55fa6e2899c061ac68d426a4386a1a583eb2a19b8724056fa15e3198115b3f8",
+  "status_sha256": "c6132084f55624a28bcb5658b042a22154fb7b80d5bf44b982f7ea384ff8ed53",
+  "scope_of_work_unchanged": true,
+  "status_unchanged": true,
+  "validate_rc": 0,
+  "validate": {
+   "format": "SOW_V1",
+   "issues": [],
+   "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md",
+   "valid": true
+  },
+  "checklist_rc": 0,
+  "checklist_repeat_identical": true,
+  "checklist_items": 1,
+  "boundary_owner_rc": 0,
+  "boundary_owner_summary": {
+   "status": "NOT_APPLICABLE",
+   "requirements_checked": 0,
+   "findings_by_category": [
+    "NOT_APPLICABLE"
+   ]
+  }
+ },
+ {
+  "deliverable": "DEL-03-03",
+  "lifecycle": "IN_PROGRESS",
+  "scope_of_work_sha256": "d7a932ebdda7304622a08074c84c95aaba65d9e4871654708e248e9d08c93283",
+  "status_sha256": "0d69627c77f42eb05c2e0ef06304da3d9bea7962f72e4e52fb1c5f654afe6e2c",
+  "scope_of_work_unchanged": true,
+  "status_unchanged": true,
+  "validate_rc": 0,
+  "validate": {
+   "format": "SOW_V1",
+   "issues": [],
+   "target": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/ScopeOfWork.md",
+   "valid": true
+  },
+  "checklist_rc": 0,
+  "checklist_repeat_identical": true,
+  "checklist_items": 1,
+  "boundary_owner_rc": 0,
+  "boundary_owner_summary": {
+   "status": "NOT_APPLICABLE",
+   "requirements_checked": 0,
+   "findings_by_category": [
+    "NOT_APPLICABLE"
+   ]
+  }
+ },
+ {
+  "deliverable": "DEL-07-01",
+  "lifecycle": "IN_PROGRESS",
+  "scope_of_work_sha256": "bd24fcf27a41fd70a4b13660bd0d7c1173b04852fda0886e55098b9ff270910c",
+  "status_sha256": "3dde2589888884a19383075163a98d63bd65e0fd521b274f1f3413ad4231af1b",
+  "scope_of_work_unchanged": true,
+  "status_unchanged": true,
+  "validate_rc": 0,
+  "validate": {
+   "format": "SOW_V1",
+   "issues": [],
+   "target": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/ScopeOfWork.md",
+   "valid": true
+  },
+  "checklist_rc": 0,
+  "checklist_repeat_identical": true,
+  "checklist_items": 1,
+  "boundary_owner_rc": 0,
+  "boundary_owner_summary": {
+   "status": "NOT_APPLICABLE",
+   "requirements_checked": 0,
+   "findings_by_category": [
+    "NOT_APPLICABLE"
+   ]
+  }
+ },
+ {
+  "deliverable": "DEL-07-02",
+  "lifecycle": "IN_PROGRESS",
+  "scope_of_work_sha256": "697754d4324058cc2b8aa27e30bd1a34b3b6383ea780fb1c22b0f0b263b121a4",
+  "status_sha256": "23fee8e46f915b516f668995e3050cb9e310c130909ae4a5e39f365de75bd7e4",
+  "scope_of_work_unchanged": true,
+  "status_unchanged": true,
+  "validate_rc": 0,
+  "validate": {
+   "format": "SOW_V1",
+   "issues": [],
+   "target": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-02_Execution_Root_Scaffolding_from_Decomposition/ScopeOfWork.md",
+   "valid": true
+  },
+  "checklist_rc": 0,
+  "checklist_repeat_identical": true,
+  "checklist_items": 1,
+  "boundary_owner_rc": 0,
+  "boundary_owner_summary": {
+   "status": "NOT_APPLICABLE",
+   "requirements_checked": 0,
+   "findings_by_category": [
+    "NOT_APPLICABLE"
+   ]
+  }
+ },
+ {
+  "deliverable": "DEL-07-04",
+  "lifecycle": "IN_PROGRESS",
+  "scope_of_work_sha256": "df03ef53fe679a7e4a4e49f0959c1f49cf8d620afe872da800de55b3385107ba",
+  "status_sha256": "2bd550404ae2797d3cfa278934165501492b1db644de82d68ad14d3000abd56d",
+  "scope_of_work_unchanged": true,
+  "status_unchanged": true,
+  "validate_rc": 0,
+  "validate": {
+   "format": "SOW_V1",
+   "issues": [],
+   "target": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-04_Status_Transition_API_and_MCP_Tool/ScopeOfWork.md",
+   "valid": true
+  },
+  "checklist_rc": 0,
+  "checklist_repeat_identical": true,
+  "checklist_items": 1,
+  "boundary_owner_rc": 0,
+  "boundary_owner_summary": {
+   "status": "NOT_APPLICABLE",
+   "requirements_checked": 0,
+   "findings_by_category": [
+    "NOT_APPLICABLE"
+   ]
+  }
+ },
+ {
+  "deliverable": "DEL-07-05",
+  "lifecycle": "IN_PROGRESS",
+  "scope_of_work_sha256": "edd9377519617799f78c20433631390096b52b86236ee3710a501d25c1d095b8",
+  "status_sha256": "71b50f298f742e7f6bca593dcb22f81208977fd74630cb6d98d313a61ff052a9",
+  "scope_of_work_unchanged": true,
+  "status_unchanged": true,
+  "validate_rc": 0,
+  "validate": {
+   "format": "SOW_V1",
+   "issues": [],
+   "target": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-05_Dependencies_csv_v3_1_Reader_Writer_and_Linter/ScopeOfWork.md",
+   "valid": true
+  },
+  "checklist_rc": 0,
+  "checklist_repeat_identical": true,
+  "checklist_items": 1,
+  "boundary_owner_rc": 0,
+  "boundary_owner_summary": {
+   "status": "NOT_APPLICABLE",
+   "requirements_checked": 0,
+   "findings_by_category": [
+    "NOT_APPLICABLE"
+   ]
+  }
+ },
+ {
+  "deliverable": "DEL-08-03",
+  "lifecycle": "IN_PROGRESS",
+  "scope_of_work_sha256": "cf968ae8134e690f22d35a702666a7f704f2a16f39fdbce4549258685a2e0651",
+  "status_sha256": "00fca38507561ab1fb7204e77cb6acb16ee8fbe9f7b3baed9290b12bf9b07f1c",
+  "scope_of_work_unchanged": true,
+  "status_unchanged": true,
+  "validate_rc": 0,
+  "validate": {
+   "format": "SOW_V1",
+   "issues": [],
+   "target": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/ScopeOfWork.md",
+   "valid": true
+  },
+  "checklist_rc": 0,
+  "checklist_repeat_identical": true,
+  "checklist_items": 1,
+  "boundary_owner_rc": 0,
+  "boundary_owner_summary": {
+   "status": "NOT_APPLICABLE",
+   "requirements_checked": 0,
+   "findings_by_category": [
+    "NOT_APPLICABLE"
+   ]
+  }
+ },
+ {
+  "deliverable": "DEL-09-03",
+  "lifecycle": "IN_PROGRESS",
+  "scope_of_work_sha256": "bc704dc50f386286f947da1fc4ff0fbef21bd6afa8fe2aa8bbe75d4837e83d76",
+  "status_sha256": "4be3a817bdd53205652a7db48e1b875cf922ee2aa794f368ecd75dd63becaded",
+  "scope_of_work_unchanged": true,
+  "status_unchanged": true,
+  "validate_rc": 0,
+  "validate": {
+   "format": "SOW_V1",
+   "issues": [],
+   "target": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-03_Unit_and_Integration_Test_Expansion/ScopeOfWork.md",
+   "valid": true
+  },
+  "checklist_rc": 0,
+  "checklist_repeat_identical": true,
+  "checklist_items": 1,
+  "boundary_owner_rc": 0,
+  "boundary_owner_summary": {
+   "status": "NOT_APPLICABLE",
+   "requirements_checked": 0,
+   "findings_by_category": [
+    "NOT_APPLICABLE"
+   ]
+  }
+ }
+]

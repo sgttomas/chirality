@@ -6,6 +6,8 @@ D-APP-131 applies D-GOV-43/D-APP-127 to the current SoW source blocks and Remain
 
 - 2026-07-12 — D-APP-56 R4-P06 governed corpus transcription applied for DEL-02-02: live ruled behavior is reflected in authority/kit text without code or lifecycle change; the original D-APP-55 run remains immutable. D-APP-38 reconciliation is executed separately for this tranche.
 - 2026-09-27 — `APP-REMOVE-LEGACY-FORMS-2026-09-27` (SCA-APP-011 code change; checkpoint-group-3 candidate, lands with the SCA-APP-011 scope text after group-3 acceptance): removes `WorkbenchSurface`, `PipelineSurface`, `LifecycleGateFields`, their tests, the form-only CSS and the client module `deliverable-api.ts`. SCA-APP-011 rescopes DEL-02-02 (DQ-R); its right-panel scope and code are unchanged, and its Scope of Work and `_CONTEXT.md` text is the SCA-APP-011 scope-text side. No lifecycle change. Evidence: [receipt](../../../_Coordination/AgentRuns/APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md); amendment `execution/_ScopeChange/SCA-APP-011_2026-09-27_0155_Workbench_Pipeline_Forms_and_Deliverable_Routes_Retirement/`.
+- 2026-09-27 — SCA-APP-011 checkpoint group 3 accepted (`execution/_ScopeChange/checkpoint_snapshots/SCA-APP-011_GROUP-3_2026-09-27/`); landed in PR #995 (`78e74f590`). Run receipts: `execution/_Coordination/AgentRuns/APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md` (the change) and `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` (this post-acceptance follow-up).
+- 2026-09-27 — `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27` (SCA-APP-011 incremental setup; owner confirmed the baseline and plan on 2026-09-27): `scope-of-work` VERIFY passed; `dependency-extract` UPDATE: 13 rows re-seen; retired DEP-02-02-005, DEP-02-02-006, DEP-02-02-007, DEP-02-02-008, DEP-02-02-009; re-evidenced (ESR-1) DEP-02-02-022; held as ESR-1 retire candidates DEP-02-02-021. Receipt: `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md`.
 
 ## Decisions And Evidence
 
@@ -52,3 +54,9 @@ DEL-02-02-V3-03 had no known product residual and required owner merge, reviewed
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
 
 - 2026-09-22 — D-APP-132 current continuation: `execution/_Coordination/_DECISIONS/D-APP-132_RULING_P01_AND_AGENT0_DISPOSITIONS_2026-09-22.md` and `execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/CURRENT_RESIDUAL_DISPOSITIONS.csv` govern the listed follow-up keys; earlier references to these decisions as awaiting this reconciliation's owner choice are historical. D116/117 optional enhancement preparation closed/not adopted here; future adoption gates remain. Obsolete D119 candidate withdrawn without reducing existing organisation obligations. No lifecycle, dependency acceptance or product completion.
+
+## Runs
+
+| Run ID / date | Work in this deliverable | Result and source links |
+|---|---|---|
+| `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27` / 2026-09-27 | ESR-1 owner ruling (2026-09-27, "ESR-1: retire DEP-02-02-021, DEP-02-04-015, DEP-02-04-016 and DEP-02-01-014."): DEP-02-02-021 retired in this register; ESR-1 closed | Registers updated; receipt `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` |

@@ -2,6 +2,8 @@
 
 - 2026-07-12 — D-APP-56 consolidated R5 decision application recorded for DEL-08-03; governed kit wording/ruling state updated without lifecycle transition. Original D-APP-55 run evidence remains immutable.
 - 2026-09-27 — `APP-REMOVE-LEGACY-FORMS-2026-09-27` (SCA-APP-011 code change; checkpoint-group-3 candidate, lands with the SCA-APP-011 scope text after group-3 acceptance): removes `pipeline-surface.tsx` and its tests. Dispatch semantics, `task-scope.ts`, `pipeline-dispatch-contract.ts` and their tests are unchanged; SCA-APP-011 drops the "code retained" text (scope-text side). No lifecycle change. Evidence: [receipt](../../../_Coordination/AgentRuns/APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md); amendment `execution/_ScopeChange/SCA-APP-011_2026-09-27_0155_Workbench_Pipeline_Forms_and_Deliverable_Routes_Retirement/`.
+- 2026-09-27 — SCA-APP-011 checkpoint group 3 accepted (`execution/_ScopeChange/checkpoint_snapshots/SCA-APP-011_GROUP-3_2026-09-27/`); landed in PR #995 (`78e74f590`). Run receipts: `execution/_Coordination/AgentRuns/APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md` (the change) and `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` (this post-acceptance follow-up).
+- 2026-09-27 — `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27` (SCA-APP-011 incremental setup; owner confirmed the baseline and plan on 2026-09-27): `scope-of-work` VERIFY passed; `dependency-extract` UPDATE: 9 rows re-seen; restated DEP-08-03-010. Receipt: `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md`.
 
 ## Decisions And Evidence
 
