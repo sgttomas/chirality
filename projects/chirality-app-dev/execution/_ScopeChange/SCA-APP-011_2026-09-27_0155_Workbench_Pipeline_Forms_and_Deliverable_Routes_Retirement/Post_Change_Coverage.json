@@ -1,0 +1,968 @@
+{
+  "run_label": "SCA_APP_011_GROUP3_POSTCHANGE_CANDIDATE",
+  "decomp_variant": "SOFTWARE",
+  "method": "Synthesized deterministic post-change baseline for the group-3 CANDIDATE, produced by the accepted group-1 builder (Evidence/Group1/build_pre_change_baseline.py) with only the output name, run label and DEL-07-01 substituted (Evidence/Group3/build_post_change_coverage.py). A full audit-decomp TASK run was not dispatched from this bounded session; the same registered tools as the pre-change baseline were run on the candidate.",
+  "basis_commit": "5ca09e2e631feb389ca28a72723de356a9a4f662",
+  "decomposition_path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+  "decomposition_sha256": "dc1314638af4b60608a200ccbbe2fb33c53a45c509b7083338db043c9bc04459",
+  "companion_register_path": "projects/chirality-app-dev/execution/_Decomposition/contract_invariant_coverage_register.csv",
+  "companion_register_sha256": "918e475a48899d18755139027e61db200d23a531e48ed9f969c526dd842fa944",
+  "scope_change_pointer_sha256": "6fdba0c96f6d1d6c2dc60c35219fb51f8a9fd9bbee9e390c5653398a742c04e3",
+  "active_snapshot": "execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/",
+  "accepted_project_dag": null,
+  "repository_topology": {
+    "packages": 10,
+    "deliverables": 52,
+    "retired_deliverables": [
+      "DEL-09-07"
+    ],
+    "objectives": 10,
+    "scope_items": 84,
+    "ledger_rows": 84
+  },
+  "ledger_distribution": {
+    "IN": 78,
+    "OUT": 5,
+    "TBD": 1
+  },
+  "context_envelopes": {
+    "L": 2,
+    "M": 41,
+    "S": 9
+  },
+  "forward_coverage": {
+    "declared": 52,
+    "found": 52,
+    "missing_folders": []
+  },
+  "reverse_coverage": {
+    "folders": 54,
+    "undeclared_folders": [
+      "DEL-00-01",
+      "DEL-00-02"
+    ]
+  },
+  "scope_items_without_deliverable": [],
+  "objectives_without_deliverable": [],
+  "lifecycle_distribution": {
+    "IN_PROGRESS": 53,
+    "OPEN": 1
+  },
+  "issued_deliverables": [],
+  "affected_lifecycle": {
+    "DEL-02-01": "IN_PROGRESS",
+    "DEL-02-02": "IN_PROGRESS",
+    "DEL-02-03": "IN_PROGRESS",
+    "DEL-03-03": "IN_PROGRESS",
+    "DEL-05-01": "IN_PROGRESS",
+    "DEL-07-01": "IN_PROGRESS",
+    "DEL-07-02": "IN_PROGRESS",
+    "DEL-07-04": "IN_PROGRESS",
+    "DEL-07-05": "IN_PROGRESS",
+    "DEL-08-02": "IN_PROGRESS",
+    "DEL-08-03": "IN_PROGRESS",
+    "DEL-09-03": "IN_PROGRESS"
+  },
+  "target_deliverable": {
+    "id": "DEL-02-02",
+    "decomposition_name": "Right-Panel Coordination, Workflows, and Proposal UX",
+    "covers_scope_items": [
+      "SOW-006",
+      "SOW-081",
+      "SOW-082"
+    ],
+    "supports_objectives": [
+      "OBJ-001",
+      "OBJ-007"
+    ],
+    "scope_items_mapped_in_ledger": [
+      {
+        "scope_item": "SOW-006",
+        "status": "IN",
+        "other_mapped_deliverables": [
+          "DEL-05-04",
+          "DEL-08-02"
+        ],
+        "only_deliverable": false
+      },
+      {
+        "scope_item": "SOW-081",
+        "status": "IN",
+        "other_mapped_deliverables": [
+          "DEL-07-03",
+          "DEL-04-04"
+        ],
+        "only_deliverable": false
+      },
+      {
+        "scope_item": "SOW-082",
+        "status": "IN",
+        "other_mapped_deliverables": [
+          "DEL-06-03",
+          "DEL-05-02",
+          "DEL-08-01"
+        ],
+        "only_deliverable": false
+      }
+    ],
+    "objectives": [
+      {
+        "objective": "OBJ-001",
+        "other_active_supporting_deliverables": 8
+      },
+      {
+        "objective": "OBJ-007",
+        "other_active_supporting_deliverables": 7
+      }
+    ],
+    "dependency_rows_touching": [
+      {
+        "DependencyID": "DEP-02-01-007",
+        "From": "DEL-02-01",
+        "Class": "EXECUTION",
+        "Direction": "DOWNSTREAM",
+        "Type": "INTERFACE",
+        "Target": "DEL-02-02",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "TBD"
+      },
+      {
+        "DependencyID": "DEP-02-02-001",
+        "From": "DEL-02-02",
+        "Class": "ANCHOR",
+        "Direction": "UPSTREAM",
+        "Type": "OTHER",
+        "Target": "PKG-02",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "TBD"
+      },
+      {
+        "DependencyID": "DEP-02-02-002",
+        "From": "DEL-02-02",
+        "Class": "ANCHOR",
+        "Direction": "UPSTREAM",
+        "Type": "OTHER",
+        "Target": "SOW-006",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "TBD"
+      },
+      {
+        "DependencyID": "DEP-02-02-003",
+        "From": "DEL-02-02",
+        "Class": "ANCHOR",
+        "Direction": "UPSTREAM",
+        "Type": "OTHER",
+        "Target": "SOW-007",
+        "Status": "RETIRED",
+        "SatisfactionStatus": "TBD"
+      },
+      {
+        "DependencyID": "DEP-02-02-004",
+        "From": "DEL-02-02",
+        "Class": "ANCHOR",
+        "Direction": "UPSTREAM",
+        "Type": "OTHER",
+        "Target": "OBJ-001",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "TBD"
+      },
+      {
+        "DependencyID": "DEP-02-02-005",
+        "From": "DEL-02-02",
+        "Class": "EXECUTION",
+        "Direction": "UPSTREAM",
+        "Type": "INTERFACE",
+        "Target": "DEL-02-01",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "TBD"
+      },
+      {
+        "DependencyID": "DEP-02-02-006",
+        "From": "DEL-02-02",
+        "Class": "EXECUTION",
+        "Direction": "UPSTREAM",
+        "Type": "INTERFACE",
+        "Target": "DEL-02-03",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "TBD"
+      },
+      {
+        "DependencyID": "DEP-02-02-007",
+        "From": "DEL-02-02",
+        "Class": "EXECUTION",
+        "Direction": "UPSTREAM",
+        "Type": "INTERFACE",
+        "Target": "DEL-07-04",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "TBD"
+      },
+      {
+        "DependencyID": "DEP-02-02-008",
+        "From": "DEL-02-02",
+        "Class": "EXECUTION",
+        "Direction": "UPSTREAM",
+        "Type": "INTERFACE",
+        "Target": "DEL-07-05",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "TBD"
+      },
+      {
+        "DependencyID": "DEP-02-02-009",
+        "From": "DEL-02-02",
+        "Class": "EXECUTION",
+        "Direction": "UPSTREAM",
+        "Type": "CONSTRAINT",
+        "Target": "DEL-08-03",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "TBD"
+      },
+      {
+        "DependencyID": "DEP-02-02-010",
+        "From": "DEL-02-02",
+        "Class": "ANCHOR",
+        "Direction": "UPSTREAM",
+        "Type": "OTHER",
+        "Target": "SOW-081",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "TBD"
+      },
+      {
+        "DependencyID": "DEP-02-02-011",
+        "From": "DEL-02-02",
+        "Class": "ANCHOR",
+        "Direction": "UPSTREAM",
+        "Type": "OTHER",
+        "Target": "SOW-082",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "TBD"
+      },
+      {
+        "DependencyID": "DEP-02-02-012",
+        "From": "DEL-02-02",
+        "Class": "ANCHOR",
+        "Direction": "UPSTREAM",
+        "Type": "OTHER",
+        "Target": "OBJ-007",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "TBD"
+      },
+      {
+        "DependencyID": "DEP-02-02-013",
+        "From": "DEL-02-02",
+        "Class": "EXECUTION",
+        "Direction": "UPSTREAM",
+        "Type": "INTERFACE",
+        "Target": "DEL-07-03",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "PENDING"
+      },
+      {
+        "DependencyID": "DEP-02-02-014",
+        "From": "DEL-02-02",
+        "Class": "EXECUTION",
+        "Direction": "UPSTREAM",
+        "Type": "INTERFACE",
+        "Target": "DEL-06-03",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "PENDING"
+      },
+      {
+        "DependencyID": "DEP-02-02-015",
+        "From": "DEL-02-02",
+        "Class": "EXECUTION",
+        "Direction": "UPSTREAM",
+        "Type": "INTERFACE",
+        "Target": "DEL-05-02",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "PENDING"
+      },
+      {
+        "DependencyID": "DEP-02-02-016",
+        "From": "DEL-02-02",
+        "Class": "EXECUTION",
+        "Direction": "UPSTREAM",
+        "Type": "CONSTRAINT",
+        "Target": "ROOT-PROPOSAL-EVENT-ACCEPTANCE",
+        "Status": "RETIRED",
+        "SatisfactionStatus": "PENDING"
+      },
+      {
+        "DependencyID": "DEP-02-02-017",
+        "From": "DEL-02-02",
+        "Class": "EXECUTION",
+        "Direction": "UPSTREAM",
+        "Type": "INTERFACE",
+        "Target": "DEL-08-05",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "PENDING"
+      },
+      {
+        "DependencyID": "DEP-02-02-018",
+        "From": "DEL-02-02",
+        "Class": "EXECUTION",
+        "Direction": "UPSTREAM",
+        "Type": "INTERFACE",
+        "Target": "DEL-05-04",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "TBD"
+      },
+      {
+        "DependencyID": "DEP-02-02-019",
+        "From": "DEL-02-02",
+        "Class": "EXECUTION",
+        "Direction": "UPSTREAM",
+        "Type": "CONSTRAINT",
+        "Target": "DEL-08-04",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "PENDING"
+      },
+      {
+        "DependencyID": "DEP-02-02-020",
+        "From": "DEL-02-02",
+        "Class": "EXECUTION",
+        "Direction": "UPSTREAM",
+        "Type": "CONSTRAINT",
+        "Target": "DEL-08-02",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "TBD"
+      },
+      {
+        "DependencyID": "DEP-02-02-021",
+        "From": "DEL-02-02",
+        "Class": "EXECUTION",
+        "Direction": "UPSTREAM",
+        "Type": "PREREQUISITE",
+        "Target": "DEL-02-03",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "SATISFIED"
+      },
+      {
+        "DependencyID": "DEP-02-02-022",
+        "From": "DEL-02-02",
+        "Class": "EXECUTION",
+        "Direction": "UPSTREAM",
+        "Type": "INTERFACE",
+        "Target": "DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "PENDING"
+      },
+      {
+        "DependencyID": "DEP-02-04-015",
+        "From": "DEL-02-04",
+        "Class": "EXECUTION",
+        "Direction": "UPSTREAM",
+        "Type": "PREREQUISITE",
+        "Target": "DEL-02-02",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "SATISFIED"
+      },
+      {
+        "DependencyID": "DEP-05-02-016",
+        "From": "DEL-05-02",
+        "Class": "EXECUTION",
+        "Direction": "DOWNSTREAM",
+        "Type": "INTERFACE",
+        "Target": "DEL-02-02",
+        "Status": "RETIRED",
+        "SatisfactionStatus": "NOT_APPLICABLE"
+      },
+      {
+        "DependencyID": "DEP-06-03-016",
+        "From": "DEL-06-03",
+        "Class": "EXECUTION",
+        "Direction": "DOWNSTREAM",
+        "Type": "HANDOVER",
+        "Target": "DEL-02-02",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "PENDING"
+      },
+      {
+        "DependencyID": "DEP-07-03-012",
+        "From": "DEL-07-03",
+        "Class": "EXECUTION",
+        "Direction": "DOWNSTREAM",
+        "Type": "INTERFACE",
+        "Target": "DEL-02-02",
+        "Status": "ACTIVE",
+        "SatisfactionStatus": "PENDING"
+      }
+    ]
+  },
+  "scaffold_route_choice_s_c": {
+    "deliverable": "DEL-07-02",
+    "decomposition_name": "Execution Root Scaffolding from Decomposition",
+    "covers_scope_items": [
+      "SOW-024",
+      "SOW-025"
+    ],
+    "supports_objectives": [
+      "OBJ-006"
+    ],
+    "scope_items_in_ledger": {
+      "SOW-024": {
+        "status": "IN",
+        "package": "PKG-07",
+        "deliverables": [
+          "DEL-07-02"
+        ],
+        "objectives": [
+          "OBJ-006"
+        ]
+      },
+      "SOW-025": {
+        "status": "IN",
+        "package": "PKG-07",
+        "deliverables": [
+          "DEL-07-02"
+        ],
+        "objectives": [
+          "OBJ-006"
+        ]
+      }
+    },
+    "objective_other_active_supporters": {
+      "OBJ-006": 9
+    },
+    "dependency_rows": [
+      {
+        "DependencyID": "DEP-07-02-001",
+        "From": "DEL-07-02",
+        "Target": "PKG-07",
+        "Status": "ACTIVE",
+        "names_scaffold_route": false
+      },
+      {
+        "DependencyID": "DEP-07-02-002",
+        "From": "DEL-07-02",
+        "Target": "SOW-024",
+        "Status": "ACTIVE",
+        "names_scaffold_route": false
+      },
+      {
+        "DependencyID": "DEP-07-02-003",
+        "From": "DEL-07-02",
+        "Target": "SOW-025",
+        "Status": "ACTIVE",
+        "names_scaffold_route": false
+      },
+      {
+        "DependencyID": "DEP-07-02-004",
+        "From": "DEL-07-02",
+        "Target": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+        "Status": "ACTIVE",
+        "names_scaffold_route": false
+      },
+      {
+        "DependencyID": "DEP-07-02-005",
+        "From": "DEL-07-02",
+        "Target": "DEL-07-01",
+        "Status": "ACTIVE",
+        "names_scaffold_route": false
+      },
+      {
+        "DependencyID": "DEP-07-02-006",
+        "From": "DEL-07-02",
+        "Target": "REF-002",
+        "Status": "ACTIVE",
+        "names_scaffold_route": false
+      },
+      {
+        "DependencyID": "DEP-07-02-007",
+        "From": "DEL-07-02",
+        "Target": "_REFERENCES.md",
+        "Status": "ACTIVE",
+        "names_scaffold_route": false
+      }
+    ],
+    "frontend_references": {
+      "/api/harness/scaffold": {
+        "product": [
+          "components/pipeline/pipeline-surface.tsx",
+          "lib/harness/client.ts"
+        ],
+        "tests": [
+          "__tests__/api/harness/scaffold-route.test.ts",
+          "__tests__/lib/harness-client.test.ts"
+        ]
+      },
+      "scaffoldHarnessExecutionRoot": {
+        "product": [
+          "components/pipeline/pipeline-surface.tsx",
+          "lib/harness/client.ts"
+        ],
+        "tests": [
+          "__tests__/lib/harness-client.test.ts"
+        ]
+      },
+      "scaffoldExecutionRoot(": {
+        "product": [
+          "lib/harness/scaffold.ts"
+        ],
+        "tests": [
+          "__tests__/api/harness/fake-daemon-harness-port.ts",
+          "__tests__/lib/harness-scaffold.test.ts"
+        ]
+      }
+    }
+  },
+  "prior_full_audit": {
+    "path": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SCA_APP_010_POST_RECORD_RECON_2026-09-22_2026-09-22_1513",
+    "inputs": [
+      {
+        "path": "AGENTS.md",
+        "prior": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+        "current": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+        "identical": false
+      },
+      {
+        "path": "projects/chirality-app-dev/AGENTS.md",
+        "prior": "abb4ff48987b427015ef412874aef8651e028fbc62c49fc3e53a3a9b755b015f",
+        "current": "41995dfe123041e1d0235a73e532fddb913f2c2124a9e8ec43857a87d7e5822c",
+        "identical": false
+      },
+      {
+        "path": "workflows/audit-decomp/WORKFLOW.md",
+        "prior": "4aaa7e10990ddd1b769ba09da78a03f9f491a6b6f3be6df08a1a8de93c26e3e6",
+        "current": "7ba6291c836973a6af0aeb81d56d60ede89466c3d006673d7ef07f09b984246b",
+        "identical": false
+      },
+      {
+        "path": "workflows/audit-decomp/resources/contract.md",
+        "prior": "70a5abebc8ff34826415e1566715373a322baded2939325b5b73828d78401a0c",
+        "current": "704929c7c006a20a5fbe3fc903d4f172e2edb4c6a451c4b6db40506b40004e75",
+        "identical": false
+      },
+      {
+        "path": "workflows/audit-decomp/resources/method.md",
+        "prior": "97df84022ccbec434aea9745296b93b6e549ef840acc0ca9df0a215e634d79c2",
+        "current": "51a0c69b389d0c641f88e8faa7bebbc2b3650518eede8882436853c583308827",
+        "identical": false
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+        "prior": "9261ce30f933a0b72364a5af09c8aeed9208372774959864ff24a805126ea8a6",
+        "current": "dc1314638af4b60608a200ccbbe2fb33c53a45c509b7083338db043c9bc04459",
+        "identical": false
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Decomposition/contract_invariant_coverage_register.csv",
+        "prior": "918e475a48899d18755139027e61db200d23a531e48ed9f969c526dd842fa944",
+        "current": "918e475a48899d18755139027e61db200d23a531e48ed9f969c526dd842fa944",
+        "identical": true
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_ScopeChange/_LATEST.md",
+        "prior": "f3a25a9baadefb69b3b30494774e4e9d0971b3f756ae4d7a55ff7b254fe8fffb",
+        "current": "6fdba0c96f6d1d6c2dc60c35219fb51f8a9fd9bbee9e390c5653398a742c04e3",
+        "identical": false
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/MANIFEST.sha256",
+        "prior": "2ccd2b29da4e9fae79af83730f6917237f03075e147584f8f8196a8ca8d298a6",
+        "current": "2ccd2b29da4e9fae79af83730f6917237f03075e147584f8f8196a8ca8d298a6",
+        "identical": true
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SCA_APP_010_POST_D_APP_109_2026-09-05_0807/coverage_summary.json",
+        "prior": "c36f1ed9dbd35c5c143e5c9c8577eef36108fb8faad8bfff013b6a7737df6074",
+        "current": "c36f1ed9dbd35c5c143e5c9c8577eef36108fb8faad8bfff013b6a7737df6074",
+        "identical": true
+      },
+      {
+        "path": "tools/scope_of_work/validate_scope_of_work.py",
+        "prior": "f0f10590538b5aab788c120a0993a66addba6e106b352959fe11ee97511fecfe",
+        "current": "f0f10590538b5aab788c120a0993a66addba6e106b352959fe11ee97511fecfe",
+        "identical": true
+      }
+    ],
+    "reuse": "Not reused: the candidate decomposition differs from the prior audit's input. Listed for provenance only."
+  },
+  "tools": {
+    "analyze_dep_closure": {
+      "accepted_dag": null,
+      "anchor_rows": 275,
+      "bidirectional_pair_count": 0,
+      "cycles_truncated": false,
+      "declared_disagreement_count": 0,
+      "declared_only_rows": 0,
+      "declared_unread_count": 0,
+      "denominator_complete": true,
+      "evidence_populated": 656,
+      "evidence_total": 656,
+      "execution_rows": 381,
+      "exit": 0,
+      "graph_edges": 111,
+      "graph_nodes": 54,
+      "hub_count": 0,
+      "implements_node_missing": 2,
+      "implements_node_present": 52,
+      "include_declared": true,
+      "isolated_count": 6,
+      "misplaced_field_count": 0,
+      "normalization_count": 0,
+      "orphan_count": 0,
+      "outside_scope_count": 0,
+      "production_units": 54,
+      "representative_cycles": 0,
+      "run_status": "COMPLETE",
+      "scc_count": 0,
+      "schema_invalid": 2,
+      "schema_valid": 52,
+      "schema_version": 2,
+      "subject_status": "FAIL",
+      "total_files": 52,
+      "total_rows": 656
+    },
+    "audit_structure": {
+      "exit": 0,
+      "issues": [
+        "partition directory contract is incomplete",
+        "required tool roots are missing"
+      ],
+      "run_status": "COMPLETE",
+      "subject_status": "FAIL",
+      "summary": {
+        "fail": 0,
+        "lifecycle_states": {
+          "IN_PROGRESS": 53,
+          "OPEN": 1
+        },
+        "partitions": 11,
+        "pass": 54,
+        "production_formats": {
+          "SOW_V1": 54
+        },
+        "units": 54
+      },
+      "target_unit": {
+        "current_state": "IN_PROGRESS",
+        "production_format": "SOW_V1",
+        "valid": true
+      }
+    },
+    "validate_decomposition_registers": {
+      "dependency_rows": 656,
+      "error_count": 592,
+      "exit": 1,
+      "findings_by_code": {
+        "EVQ-006": 592
+      },
+      "note": "XRG is skipped because the App carries no Deliverables.csv/ScopeLedger.csv; EVQ-006 reflects deliverable-relative EvidenceFile paths (carried convention).",
+      "registers_scanned": 52,
+      "skipped": [
+        "XRG family (Deliverables.csv and/or ScopeLedger.csv absent)"
+      ],
+      "warning_count": 0
+    }
+  },
+  "candidate": {
+    "state": "CANDIDATE (not accepted; _LATEST.md unchanged)",
+    "builder_sha256": "d17933bb0fb136e45c5a40dd07de43eaed4956e54efbb7861ea27dec90f9b4c9",
+    "wrapper_sha256": "e96a59f7502df3ee52bb472ad8e3849133b53b5a4f68fe7544c35837fc308ff8",
+    "pre_change_coverage_sha256": "ef2eb2f5e95b655440918d17fa09cfb83d1c8a0f1e1cf02a4a62efb2ff91ab82",
+    "acceptance_conditional_withheld": [
+      "E47"
+    ]
+  },
+  "comparison_to_pre_change": {
+    "repository_topology": {
+      "pre": {
+        "packages": 10,
+        "deliverables": 52,
+        "retired_deliverables": [
+          "DEL-09-07"
+        ],
+        "objectives": 10,
+        "scope_items": 84,
+        "ledger_rows": 84
+      },
+      "post": {
+        "packages": 10,
+        "deliverables": 52,
+        "retired_deliverables": [
+          "DEL-09-07"
+        ],
+        "objectives": 10,
+        "scope_items": 84,
+        "ledger_rows": 84
+      },
+      "equal": true
+    },
+    "ledger_distribution": {
+      "pre": {
+        "IN": 78,
+        "OUT": 5,
+        "TBD": 1
+      },
+      "post": {
+        "IN": 78,
+        "OUT": 5,
+        "TBD": 1
+      },
+      "equal": true
+    },
+    "context_envelopes": {
+      "pre": {
+        "L": 2,
+        "M": 41,
+        "S": 9
+      },
+      "post": {
+        "L": 2,
+        "M": 41,
+        "S": 9
+      },
+      "equal": true
+    },
+    "forward_coverage": {
+      "pre": {
+        "declared": 52,
+        "found": 52,
+        "missing_folders": []
+      },
+      "post": {
+        "declared": 52,
+        "found": 52,
+        "missing_folders": []
+      },
+      "equal": true
+    },
+    "reverse_coverage": {
+      "pre": {
+        "folders": 54,
+        "undeclared_folders": [
+          "DEL-00-01",
+          "DEL-00-02"
+        ]
+      },
+      "post": {
+        "folders": 54,
+        "undeclared_folders": [
+          "DEL-00-01",
+          "DEL-00-02"
+        ]
+      },
+      "equal": true
+    },
+    "scope_items_without_deliverable": {
+      "pre": [],
+      "post": [],
+      "equal": true
+    },
+    "objectives_without_deliverable": {
+      "pre": [],
+      "post": [],
+      "equal": true
+    },
+    "lifecycle_distribution": {
+      "pre": {
+        "IN_PROGRESS": 53,
+        "OPEN": 1
+      },
+      "post": {
+        "IN_PROGRESS": 53,
+        "OPEN": 1
+      },
+      "equal": true
+    },
+    "issued_deliverables": {
+      "pre": [],
+      "post": [],
+      "equal": true
+    },
+    "affected_lifecycle": {
+      "pre": {
+        "DEL-02-01": "IN_PROGRESS",
+        "DEL-02-02": "IN_PROGRESS",
+        "DEL-02-03": "IN_PROGRESS",
+        "DEL-03-03": "IN_PROGRESS",
+        "DEL-05-01": "IN_PROGRESS",
+        "DEL-07-02": "IN_PROGRESS",
+        "DEL-07-04": "IN_PROGRESS",
+        "DEL-07-05": "IN_PROGRESS",
+        "DEL-08-02": "IN_PROGRESS",
+        "DEL-08-03": "IN_PROGRESS",
+        "DEL-09-03": "IN_PROGRESS"
+      },
+      "post": {
+        "DEL-02-01": "IN_PROGRESS",
+        "DEL-02-02": "IN_PROGRESS",
+        "DEL-02-03": "IN_PROGRESS",
+        "DEL-03-03": "IN_PROGRESS",
+        "DEL-05-01": "IN_PROGRESS",
+        "DEL-07-01": "IN_PROGRESS",
+        "DEL-07-02": "IN_PROGRESS",
+        "DEL-07-04": "IN_PROGRESS",
+        "DEL-07-05": "IN_PROGRESS",
+        "DEL-08-02": "IN_PROGRESS",
+        "DEL-08-03": "IN_PROGRESS",
+        "DEL-09-03": "IN_PROGRESS"
+      },
+      "equal": false
+    },
+    "audit_structure.run_status": {
+      "pre": "COMPLETE",
+      "post": "COMPLETE",
+      "equal": true
+    },
+    "audit_structure.subject_status": {
+      "pre": "FAIL",
+      "post": "FAIL",
+      "equal": true
+    },
+    "audit_structure.summary": {
+      "pre": {
+        "fail": 0,
+        "lifecycle_states": {
+          "IN_PROGRESS": 53,
+          "OPEN": 1
+        },
+        "partitions": 11,
+        "pass": 54,
+        "production_formats": {
+          "SOW_V1": 54
+        },
+        "units": 54
+      },
+      "post": {
+        "fail": 0,
+        "lifecycle_states": {
+          "IN_PROGRESS": 53,
+          "OPEN": 1
+        },
+        "partitions": 11,
+        "pass": 54,
+        "production_formats": {
+          "SOW_V1": 54
+        },
+        "units": 54
+      },
+      "equal": true
+    },
+    "audit_structure.issue_count": {
+      "pre": 2,
+      "post": 2,
+      "equal": true
+    },
+    "audit_structure.target_unit": {
+      "pre": {
+        "current_state": "IN_PROGRESS",
+        "production_format": "SOW_V1",
+        "valid": true
+      },
+      "post": {
+        "current_state": "IN_PROGRESS",
+        "production_format": "SOW_V1",
+        "valid": true
+      },
+      "equal": true
+    },
+    "analyze_dep_closure": {
+      "pre": {
+        "accepted_dag": null,
+        "anchor_rows": 275,
+        "bidirectional_pair_count": 0,
+        "cycles_truncated": false,
+        "declared_disagreement_count": 0,
+        "declared_only_rows": 0,
+        "declared_unread_count": 0,
+        "denominator_complete": true,
+        "evidence_populated": 656,
+        "evidence_total": 656,
+        "execution_rows": 381,
+        "exit": 0,
+        "graph_edges": 111,
+        "graph_nodes": 54,
+        "hub_count": 0,
+        "implements_node_missing": 2,
+        "implements_node_present": 52,
+        "include_declared": true,
+        "isolated_count": 6,
+        "misplaced_field_count": 0,
+        "normalization_count": 0,
+        "orphan_count": 0,
+        "outside_scope_count": 0,
+        "production_units": 54,
+        "representative_cycles": 0,
+        "run_status": "COMPLETE",
+        "scc_count": 0,
+        "schema_invalid": 2,
+        "schema_valid": 52,
+        "schema_version": 2,
+        "subject_status": "FAIL",
+        "total_files": 52,
+        "total_rows": 656
+      },
+      "post": {
+        "accepted_dag": null,
+        "anchor_rows": 275,
+        "bidirectional_pair_count": 0,
+        "cycles_truncated": false,
+        "declared_disagreement_count": 0,
+        "declared_only_rows": 0,
+        "declared_unread_count": 0,
+        "denominator_complete": true,
+        "evidence_populated": 656,
+        "evidence_total": 656,
+        "execution_rows": 381,
+        "exit": 0,
+        "graph_edges": 111,
+        "graph_nodes": 54,
+        "hub_count": 0,
+        "implements_node_missing": 2,
+        "implements_node_present": 52,
+        "include_declared": true,
+        "isolated_count": 6,
+        "misplaced_field_count": 0,
+        "normalization_count": 0,
+        "orphan_count": 0,
+        "outside_scope_count": 0,
+        "production_units": 54,
+        "representative_cycles": 0,
+        "run_status": "COMPLETE",
+        "scc_count": 0,
+        "schema_invalid": 2,
+        "schema_valid": 52,
+        "schema_version": 2,
+        "subject_status": "FAIL",
+        "total_files": 52,
+        "total_rows": 656
+      },
+      "equal": true
+    },
+    "validate_decomposition_registers.findings_by_code": {
+      "pre": {
+        "EVQ-006": 592
+      },
+      "post": {
+        "EVQ-006": 592
+      },
+      "equal": true
+    },
+    "validate_decomposition_registers.error_count": {
+      "pre": 592,
+      "post": 592,
+      "equal": true
+    },
+    "validate_decomposition_registers.exit": {
+      "pre": 1,
+      "post": 1,
+      "equal": true
+    },
+    "decomposition_sha256": {
+      "pre": "9261ce30f933a0b72364a5af09c8aeed9208372774959864ff24a805126ea8a6",
+      "post": "dc1314638af4b60608a200ccbbe2fb33c53a45c509b7083338db043c9bc04459",
+      "equal": false
+    },
+    "companion_register_sha256": {
+      "pre": "918e475a48899d18755139027e61db200d23a531e48ed9f969c526dd842fa944",
+      "post": "918e475a48899d18755139027e61db200d23a531e48ed9f969c526dd842fa944",
+      "equal": true
+    },
+    "scope_change_pointer_sha256": {
+      "pre": "6fdba0c96f6d1d6c2dc60c35219fb51f8a9fd9bbee9e390c5653398a742c04e3",
+      "post": "6fdba0c96f6d1d6c2dc60c35219fb51f8a9fd9bbee9e390c5653398a742c04e3",
+      "equal": true
+    }
+  }
+}
