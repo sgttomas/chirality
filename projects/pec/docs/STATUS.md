@@ -332,9 +332,9 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     independently verified, DEL-10-13 classified by the owner as a C-08
     standing node, and both deliverables `INITIALIZED` (run root
     `execution/_Coordination/SOW_INIT_K2_2026-09-26/`); their `MEMORY.md`
-    files follow at the undertaking's closeout. Still open from
-    Lane B: the DEL-00-03 SPEC premise, the tier-0 profile entry (K3) and
-    the API schema fields.
+    files follow at the undertaking's closeout. The DEL-00-03 SPEC premise
+    is done under `D-PEC-105` (above). Still open from Lane B: the tier-0
+    profile entry (K3) and the API schema fields.
   - Retiring the 57 `## Remaining` sections, as App and Piping did: the owner
     opened it on 2026-09-26 as undertaking
     `HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT`. Its census and decision
