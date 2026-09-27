@@ -5,6 +5,7 @@
 **Product:** Chirality desktop harness and bundled agent operating system
 **Applies to:** Chirality App vNext filesystem, APIs, runtime, packaged app, and validation
 **Amended:** Amended under D-GOV-43 (A2), 2026-09-12: the browser event contract, harness-port and SSE clauses, release verification and §25 shared runtime revised to the application-owned Runtime service; residency subsections retired to history
+**Amended (SCA-APP-011):** owner direction 2026-09-27: §17.1-17.2 retire the three deliverable routes and `/api/harness/scaffold`; §17.3 drops the Workbench and Pipeline forms; §5.2 dependency-read wording
 
 This document is the authoritative specification for Chirality App physical structures, file formats, schemas, runtime mechanics, session storage, validation surfaces, and layout conventions.
 
@@ -419,8 +420,11 @@ only while it is current with the local evidence (repo-root SPEC §5.4). A
 project has no DAG built from its files. The App project has no
 `execution/_DAG/`, so its blockers follow the no-accepted-DAG row.
 
-App dependency reads (the working-root dependencies API, the MCP `deps_read`
-tool and the workbench and pipeline contract panels) compute blockers from the
+App dependency reads (`readDeliverableDependencies` in
+`frontend/src/lib/workspace/deliverable-contracts.ts` and the retained
+`deps_read` tool that wraps it; SCA-APP-011 retired the working-root
+dependencies route and the Workbench and Pipeline contract panels) compute
+blockers from the
 recorded register (`frontend/src/lib/dependencies/recorded-register.ts`). They
 follow the Root reference tools `tools/coordination/dependency_evidence.py` and
 the project mode of `tools/coordination/build_dev001_blocker_queue.py`, and
@@ -487,8 +491,8 @@ reads are added to the read's warnings. The
 `activeUpstreamBlockerCandidates` count carries the number of blocking
 suppliers when there is a verdict. Without a recorded register it falls back to
 the CSV blocker-subset count, which remains evidence only. Under `DECLARED` the
-absence of a blocker is still not a complete readiness judgment, and the panels
-state this caveat beside the verdict. The Runtime-owned
+absence of a blocker is still not a complete readiness judgment, and a reader
+that presents the verdict states this caveat beside it. The Runtime-owned
 `deps_read` descriptor text still describes the CSV-only read.
 
 `_COORDINATION.md` (repo-root SPEC §13) records the project's coordination
@@ -1108,11 +1112,10 @@ Rules:
 | `/api/harness/session/[id]/events` | GET | Replay the session's append-only HarnessEvent stream. |
 | `/api/harness/turn` | POST | Execute turn and stream UI events over SSE. |
 | `/api/harness/interrupt` | POST | Interrupt active turn. |
-| `/api/harness/scaffold` | POST | Scaffold execution root from decomposition markdown. |
 | `/api/harness/permission` | POST | Resolve the governed permission decision for a pending tool request. |
 | `/api/harness/agents` | GET | Return the packaged agent roster used by the runtime shell. |
 
-Existing route shapes remain stable during adapter adoption and TurnEngine extraction. Under D-GOV-43 (A2) the routes are thin loopback adapters over the Runtime service's socket API; the turn route streams per §11 and its cancel path unsubscribes without interrupting.
+Existing route shapes remain stable during adapter adoption and TurnEngine extraction, except `POST /api/harness/scaffold`, retired by SCA-APP-011. Under D-GOV-43 (A2) the routes are thin loopback adapters over the Runtime service's socket API; the turn route streams per §11 and its cancel path unsubscribes without interrupting.
 
 ### 17.2 Workspace APIs
 
@@ -1122,9 +1125,21 @@ Existing route shapes remain stable during adapter adoption and TurnEngine extra
 | `/api/working-root/tree` | GET | Return bounded file tree. |
 | `/api/working-root/scope` | GET | Scan deliverables and knowledge types. |
 | `/api/project/deliverables` | GET | Return deliverables plus knowledge decomposition metadata. |
-| `/api/working-root/deliverable/status` | GET | Read `_STATUS.md` snapshot. |
-| `/api/working-root/deliverable/status/transition` | POST | Apply allowed lifecycle transition. |
-| `/api/working-root/deliverable/dependencies` | GET/PUT | Read/write `Dependencies.csv`. |
+
+SCA-APP-011 retired `/api/working-root/deliverable/status`,
+`/api/working-root/deliverable/status/transition` and
+`/api/working-root/deliverable/dependencies`. Lifecycle status read and
+transition and dependency read and write are served by `readDeliverableStatus`,
+`transitionDeliverableStatus`, `readDeliverableDependencies` and
+`writeDeliverableDependencies` in `frontend/src/lib/workspace/deliverable-contracts.ts`
+and by the Chirality tool contracts `status_read`, `status_transition`,
+`deps_read` and `deps_write` (§14.2) that wrap them. Those tools run only on
+the retained SDK path today. Live exposure of the read tools `status_read` and
+`deps_read` through the Runtime application-tool interface is DEL-06-03's
+open work; `status_transition` and `deps_write` remain retained, governed
+operations with no live registration, and any live registration of them is
+governed by DEL-06-04-REQ-010. `/api/working-root/deliverable/content` is
+unaffected.
 
 ### 17.3 Woven Dialogue Physical UI Contract
 
@@ -1139,14 +1154,18 @@ The target shell is Woven Dialogue with these presentation regions:
 4. a right Coordination Panel toggling between Work and Agents;
 5. an Activity Shelf for tools, tests, canonical events, evidence, and
    diagnostics; and
-6. re-hosted Workbench, Pipeline, toolkit, working-root, credential, runtime,
-   and settings controls under their existing semantic and security owners.
+6. toolkit, working-root, credential, runtime, and settings controls under
+   their existing semantic and security owners. SCA-APP-011 retired the former
+   Workbench and Pipeline forms; lifecycle status, transition and dependency
+   rules are served by the library in
+   `frontend/src/lib/workspace/deliverable-contracts.ts` and the Chirality tool
+   contracts in §14.2, not by a UI form or an HTTP route.
 
 Shared intent is emergent from dialogue. The shell MUST NOT store or require
 an authoritative intent object or automatically generated intent summary.
 
 The primary live dialogue MUST remain mounted across inline/focused artifact,
-Work, Agents, Workbench, Pipeline, and compatibility-surface changes. Its
+Work, Agents, and compatibility-surface changes. Its
 session identity, draft, attachments, explicit next-turn context references,
 permissions, interruption state, and interaction authority MUST remain its
 own.
@@ -1257,7 +1276,8 @@ unknown parameters, remain round-trippable. Legacy matrix aliases and launch
 guards remain compatible even though the target shell does not require a
 fixed matrix.
 
-Browser API shapes in §17.1-17.2, the event representation in §11 as revised
+Browser API shapes in §17.1-17.2 (apart from the four routes SCA-APP-011
+retired), the event representation in §11 as revised
 under D-GOV-43, credential handling, network policy, Runtime service
 ownership (D-GOV-43 A2), session storage, permission policy, child
 capability, and runtime contracts remain unchanged by this information

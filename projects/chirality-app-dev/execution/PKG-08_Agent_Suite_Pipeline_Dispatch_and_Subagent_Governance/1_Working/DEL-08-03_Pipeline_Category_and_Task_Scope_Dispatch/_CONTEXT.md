@@ -31,12 +31,12 @@ contextual Run consumers.
 
 Applied decomposition row L370 (SCA-APP-010 Gate 5, 2026-09-04) notes: Semantic
 dispatch owner; the contextual Pipeline presentation is retired from the active
-shell by SCA-APP-010 (code retained), so no active presentation consumer exists;
+shell by SCA-APP-010 (its code and tests retired by SCA-APP-011), so no presentation consumer exists;
 any later consumer may not infer plans/tasks from conversational prose.
 
 ## Anticipated Artifacts
 
-Dispatch contract tests; Pipeline selector tests; knowledge-type discovery;
+Dispatch contract tests; task-scope selection tests; knowledge-type discovery;
 dynamic-scope and disabled-option handling
 
 ## Traceability
@@ -52,8 +52,8 @@ dynamic-scope and disabled-option handling
 - DEL-08-03 owns DECOMP/PREP/TASK/AUDIT lane and dynamic task-scope semantics.
 - DEL-02-02 owns the right-panel Who is working view, Workflows view, and
   proposal card presentation (applied row L308); the contextual Pipeline
-  presentation is retired from the active shell by SCA-APP-010 (DEC-025; code,
-  routes, and tests retained), so DEL-08-03's dispatch semantics have no
+  presentation is retired from the active shell by SCA-APP-010 (DEC-025) and its
+  code and tests by SCA-APP-011 (DEC-026), so DEL-08-03's dispatch semantics have no
   presentation consumer until a separate amendment re-hosts one.
 - DEL-08-05 remains the unchanged owner of canonical child-run parentage,
   assignments, returns, and artifact references.

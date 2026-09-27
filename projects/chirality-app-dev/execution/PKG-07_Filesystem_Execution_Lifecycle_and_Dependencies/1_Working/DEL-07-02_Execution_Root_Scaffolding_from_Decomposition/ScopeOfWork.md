@@ -15,6 +15,15 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 
 - **OUT-001** — A decomposition-driven execution-root scaffolder producing INIT.md, coordination, flat package and deliverable folders, minimum PREPARATION files, diagnostics, and idempotence evidence.
 
+## SCA-APP-011 Current Contract (Controlling)
+
+SCA-APP-011 (owner direction 2026-09-27; DEC-026) retires the App HTTP scaffold entry `POST /api/harness/scaffold`, its client function `scaffoldHarnessExecutionRoot` and the App-side `scaffold` member of `DaemonHarnessPort`. Where any earlier clause names that route, its route test or a live App scaffold operation, this section controls; the earlier clauses remain dated history.
+
+- DEL-07-02 keeps SOW-024 and SOW-025 and the scaffold library `frontend/src/lib/harness/scaffold.ts` (`scaffoldExecutionRoot`, `previewScaffoldExecutionRoot`) with `frontend/src/__tests__/lib/harness-scaffold.test.ts`. The library's parser, layout, idempotence, fail-fast and path-policy requirements are unchanged.
+- DEL-07-02-REQ-009 is retired. The App has no UI or HTTP scaffold entry. Execution roots are scaffolded by the Root `project-setup` workflow into `<project>/execution` with the packaged `tools/scaffolding` scripts, run by an agent under the user's approval and sandbox policy.
+- APP-R058 is closed by removal: no App live scaffold operation remains to repair. The Runtime's own scaffold API (`/v1/projects/{id}/scaffold`, `ProjectScaffoldPort`) is Runtime-owned; the Runtime loop receives an informational notice with this amendment and decides on it.
+- Follow-up (recorded, not scheduled): any later App-side scaffold entry, such as a Runtime application tool (a read-only preview under DEL-06-03; any write-capable scaffold registration under DEL-06-04-REQ-010) or a composed `ProjectScaffoldPort`, needs its own amendment and should default to `<project>/execution`, as `project-setup` does. The retained library accepts any execution root contained in the project.
+
 ## Deliverable Definition — Ontology
 
 ### CLM-001 — Datasheet: DEL-07-02 Execution Root Scaffolding from Decomposition
@@ -50,7 +59,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 > | Attribute | Value | Source |
 > |---|---|---|
 > | Primary function | Scaffold SPEC-conformant execution roots from decomposition markdown idempotently and recoverably. | `_CONTEXT.md` Deliverable Scope; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` PKG-07 table |
-> | Runtime surface | `/api/harness/scaffold` must provide scaffolding through the App-owned Runtime service; the missing ProjectScaffoldPort composition and resulting 501 remain open. | `docs/SPEC.md` Section 17.1; `docs/PRD.md` Section 7.3 |
+> | Runtime surface | [RETIRED — SCA-APP-011] `/api/harness/scaffold` is retired; the App has no HTTP or UI scaffold entry (SCA-APP-011 section). | `docs/SPEC.md` Section 17.1; `docs/PRD.md` Section 7.3 |
 > | Execution root contents | `INIT.md`, flat package folders, and tool roots including `_Aggregation`, `_Change`, `_Coordination`, `_Decomposition`, `_Estimates`, `_Reconciliation`, `_Archive`, `_Scripts`, and `_Sources`. | `docs/SPEC.md` Section 2; `docs/PRD.md` FR-045 |
 > | Coordination artifact | `_Coordination/_COORDINATION.md` is part of the execution-root layout and scaffold output. | `docs/SPEC.md` Section 2.2; `docs/PRD.md` Section 7.3 |
 > | Package layout | Flat `PKG-XX_Label` or `PKG-XXX_Label` folders; no nested package layer. | `docs/SPEC.md` Section 2.1; `docs/PRD.md` FR-046; `docs/CONTRACT.md` K-HIER-1 |
@@ -82,7 +91,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 >
 > The operation must return validation/PREPARATION compatibility, issue and scaffold counts, created paths and actionable failure diagnostics including stage and target. Reruns must preserve existing directories, file contents and applicable metadata without duplication or corruption. Verification hook: `frontend/src/__tests__/lib/harness-scaffold.test.ts`, including the creation and idempotence fixtures, paired with a live App-to-Runtime scaffold invocation and result record.
 >
-> D-GOV-43/D-APP-127 place the live service in the application-owned Runtime. The retained scaffold module's tests do not demonstrate that live operation: R3 records that the live scaffold route returns ENGINE_UNAVAILABLE/501 because no scaffold adapter is composed. The operation remains required; bounded implementation and live verification remain open. This lift neither retires scaffolding nor claims that a module test repairs the live gap.
+> D-GOV-43/D-APP-127 place the live service in the application-owned Runtime. The retained scaffold module's tests do not demonstrate that live operation: R3 records that the live scaffold route returns ENGINE_UNAVAILABLE/501 because no scaffold adapter is composed. The operation remains required; bounded implementation and live verification remain open. This lift neither retires scaffolding nor claims that a module test repairs the live gap. SCA-APP-011 later retired the App route; see its section.
 
 ### CLM-006 — References
 
@@ -116,7 +125,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 > - Create or validate `INIT.md`, tool roots, `_Coordination/_COORDINATION.md`, package folders, deliverable folders, and the minimum PREPARATION fileset.
 > - Preserve flat package topology and deliverable folder naming.
 > - Return diagnostics that support idempotent reruns and recovery after fail-fast errors.
-> - Support the `/api/harness/scaffold` runtime route or its backend service layer.
+> - Provide the backend scaffold service layer (`frontend/src/lib/harness/scaffold.ts`); the `/api/harness/scaffold` route is retired (SCA-APP-011).
 >
 > Out of scope:
 >
@@ -142,7 +151,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 > | DEL-07-02-REQ-006 | The scaffold operation MUST create or validate `_Coordination/_COORDINATION.md` under the execution root. | Tree assertion and coordination-file existence check. | `docs/SPEC.md` Section 2; `docs/PRD.md` Section 7.3 |
 > | DEL-07-02-REQ-007 | The scaffold operation MUST be idempotent for existing directories and files; reruns preserve existing paths and existing file contents unless a separately authorized workflow owns migration or repair. | Rerun test against a previously scaffolded root verifies no duplicate path creation, no destructive rewrite, and unchanged pre-existing file content hashes or byte comparisons. | `docs/PRD.md` Section 7.3; `docs/PRD.md` NFR-011 |
 > | DEL-07-02-REQ-008 | Failures MUST fail fast and return diagnostics including stage, target path, and created paths sufficient for recovery. | Conflict-path test asserts typed failure payload. | `docs/PRD.md` Section 7.3 |
-> | DEL-07-02-REQ-009 | The scaffold route MUST expose the operation through `POST /api/harness/scaffold`. | API route test posts request and verifies response. | `docs/SPEC.md` Section 17.1; `docs/PRD.md` Section 17.1 |
+> | DEL-07-02-REQ-009 | [RETIRED — SCA-APP-011] The scaffold route MUST expose the operation through `POST /api/harness/scaffold`. | API route test posts request and verifies response. | `docs/SPEC.md` Section 17.1; `docs/PRD.md` Section 17.1 |
 > | DEL-07-02-REQ-010 | The scaffold operation SHOULD report PREPARATION compatibility before downstream TASK work proceeds. | Response payload contains compatibility readiness and issue count. | `docs/PRD.md` Section 7.3 |
 > | DEL-07-02-REQ-011 | Runtime tools involved in scaffolding MUST enforce working-root containment and must not mutate the instruction root during ordinary project execution. | Path-policy and write-denial tests. | `docs/CONTRACT.md` K-ROOT-1 through K-ROOT-3; `docs/PRD.md` NFR-005 and NFR-006 |
 > | DEL-07-02-REQ-012 | Unknown decomposition-derived values or unsupported parser details MUST be preserved as `TBD` or reported diagnostics rather than guessed. | Fixture with missing values verifies explicit `TBD` or typed issue. | `docs/CONTRACT.md` K-INVENT-1 |
@@ -151,9 +160,9 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 
 ### CLM-010 — Scaffold API Result Contract
 
-> Scaffold results must identify the requested root and decomposition, parsed package/deliverable counts, created paths, existing-layout compatibility and recoverable failure stage/path. Verification: `frontend/src/__tests__/lib/harness-scaffold.test.ts` and `frontend/src/__tests__/api/harness/scaffold-route.test.ts` against the actual application-owned Runtime composition.
+> Scaffold results must identify the requested root and decomposition, parsed package/deliverable counts, created paths, existing-layout compatibility and recoverable failure stage/path. Verification: `frontend/src/__tests__/lib/harness-scaffold.test.ts`; the route test `scaffold-route.test.ts` is retired with the route (SCA-APP-011).
 >
-> The retained result type in `frontend/src/lib/harness/scaffold.ts` supplies `executionRoot`, `packageCount`, `deliverableCount`, `created`, `layoutValidation` and `preparationCompatibility`; these are evidence of the selected contract, not unresolved naming decisions. Existing-path validation is represented by layout checks. The live Runtime composition does not currently supply ProjectScaffoldPort, so route-level 501 behavior remains a delivery gap; retained service tests do not establish live creation.
+> The retained result type in `frontend/src/lib/harness/scaffold.ts` supplies `executionRoot`, `packageCount`, `deliverableCount`, `created`, `layoutValidation` and `preparationCompatibility`; these are evidence of the selected contract, not unresolved naming decisions. Existing-path validation is represented by layout checks. The live Runtime composition does not supply ProjectScaffoldPort. SCA-APP-011 retired the App route that returned 501, so no App route-level delivery gap remains; retained service tests do not establish live creation.
 
 ### CLM-011 — Standards
 
@@ -175,7 +184,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 >
 > Required verification set:
 >
-> 1. Scaffold route API test for `POST /api/harness/scaffold`.
+> 1. [RETIRED — SCA-APP-011] Scaffold route API test for `POST /api/harness/scaffold`.
 > 2. Unit test for parsing decomposition package and deliverable tables.
 > 3. Layout test for SPEC Section 2 execution-root tree.
 > 4. Package-layout test proving flat package folders and required/expected subfolders.
@@ -199,7 +208,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 > - Package and deliverable folder creation behavior.
 > - Idempotence tests.
 > - Fail-fast recovery diagnostics.
-> - API contract notes for `/api/harness/scaffold`.
+> - [RETIRED — SCA-APP-011] API contract notes for `/api/harness/scaffold`.
 > - REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes.
 >
 
@@ -217,7 +226,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 > | F-002 coordination schema disposition | Already covered as a named TBD; sources require `_Coordination/_COORDINATION.md` presence and coordination vocabulary but do not provide a complete template. |
 > | F-003 idempotence disposition | Incorporated by requiring rerun tests to preserve existing file contents, not only paths. |
 > | E-001 scaffold API response disposition | Field-name decision resolved by the retained result type cited in CLM-010; live producer and verification remain open. |
-> | Existing code surface | The retained frontend scaffold service is evidence; the live App-owned Runtime composition lacks its ProjectScaffoldPort. CLM-010 names selected contract/tests; code is not scope authority. |
+> | Existing code surface | The retained frontend scaffold service is evidence; the live App-owned Runtime composition lacks its ProjectScaffoldPort, and SCA-APP-011 retired the App route that depended on it. CLM-010 names selected contract/tests; code is not scope authority. |
 
 - **AC-001** — The accepted v3.2 decomposition shape produces the SPEC-conformant flat execution tree and PREPARATION fileset, preserves existing content on rerun, reports unsupported shapes and failures without guessing, and confines writes to the working root.
 
@@ -300,7 +309,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 >
 > 9. Verify with tests.
 >    - Run unit tests for parser, layout creation, idempotence, fail-fast conflict handling, and path policy.
->    - Run API route tests for `POST /api/harness/scaffold`.
+>    - [RETIRED — SCA-APP-011] Run API route tests for `POST /api/harness/scaffold`.
 >    - Source: `docs/PRD.md` FR-045 through FR-048, FR-064; NFR-011.
 >
 
@@ -317,7 +326,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 > | Status baseline | New scaffolded deliverables start at `OPEN`. | DEL-07-02-REQ-005 |
 > | Idempotence | Rerun preserves existing paths/files and reports already-existing content without destructive rewrite. | DEL-07-02-REQ-007 |
 > | Fail-fast recovery | Filesystem conflicts return stage, target path, and created paths. | DEL-07-02-REQ-008 |
-> | API route | `POST /api/harness/scaffold` invokes scaffold behavior and returns summary payload. | DEL-07-02-REQ-009 |
+> | API route | [RETIRED — SCA-APP-011] `POST /api/harness/scaffold` invokes scaffold behavior and returns summary payload. | DEL-07-02-REQ-009 |
 > | Path policy | Writes outside active working root and instruction-root writes are rejected. | DEL-07-02-REQ-011 |
 > | Parser boundary | Accepted v3.2 SOFTWARE_DECOMP fixtures parse; unsupported table shapes return compatibility issues. | DEL-07-02-REQ-013 |
 >
@@ -328,7 +337,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 >
 > Implementation should leave or update these records:
 >
-> - Source code for scaffold parser/service and route integration.
+> - Source code for the scaffold parser and service (route integration retired by SCA-APP-011).
 > - Unit and API test results for scaffold behavior.
 > - Scaffold result payload examples or fixtures.
 > - PREPARATION compatibility diagnostics.
@@ -402,7 +411,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 > | Strict failure vs. best-effort creation | Best-effort creation can leave ambiguous partial state; strict fail-fast behavior may require reruns. | Prefer fail-fast with created-path inventory, matching PRD acceptance. |
 > | Preserve existing files vs. normalize on rerun | Rewriting existing files could repair drift but risks destroying human or agent work. | Preserve existing paths/files during scaffold rerun; report compatibility issues separately. |
 > | Generated defaults vs. source fidelity | Rich defaults make folders look complete but can invent unsupported values. | Seed required files conservatively and use `TBD` where source data is missing. |
-> | Route-owned behavior vs. service-owned behavior | Fat routes are easy to wire but hard to test and reuse. | Keep `/api/harness/scaffold` thin and place behavior in a reusable scaffold service, consistent with PRD route principles. |
+> | Route-owned behavior vs. service-owned behavior | Fat routes are easy to wire but hard to test and reuse. | Place behavior in a reusable scaffold service (the `/api/harness/scaffold` route is retired by SCA-APP-011). |
 > | Broad markdown parser vs. bounded fixture support | A broad parser may appear flexible but can silently reinterpret unsupported decomposition shapes. | Start with the accepted v3.2 SOFTWARE_DECOMP package/deliverable table shape, then report unsupported shapes as compatibility issues until additional grammars are source-backed. |
 >
 
@@ -465,6 +474,6 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 
 These clauses preserve operative meaning from the retired App status source. The immutable [source census](../../../_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/REMAINING_WORK_CENSUS.csv) and [finite Task Management account](../../../_Coordination/_TaskManagement/APP_REMAINING_RETIREMENT_2026-09-22/ROWS.csv) preserve the full original wording, evidence and disposition. These clauses do not assert implementation, acceptance, lifecycle promotion, foreign-loop assignment or a selected execution slot. Current decisions and formal change gates control where they differ from historical wording.
 
-- **APP-R058:** The scaffold must compose on the current ProjectScaffoldPort/501 App/Runtime path. Identify the live handoff and repair/prove the gap before claiming scaffold delivery.
+- **APP-R058:** The scaffold must compose on the current ProjectScaffoldPort/501 App/Runtime path. Identify the live handoff and repair/prove the gap before claiming scaffold delivery. Closed by SCA-APP-011: the App scaffold route is retired, so no App live scaffold operation remains to repair.
 
 - **APP-R059:** Exact INIT/coordination templates and parser grammar remain source-backed choices in CLM-010. A selected scaffold tranche checks accepted sources and obtains a human template decision only if a mandatory choice remains unresolved.

@@ -93,7 +93,6 @@ function client(overrides: Partial<RuntimeClient> = {}): RuntimeClient {
         { id: 'TASK', agentType: 2, directEntry: false, defaultForNewChat: false, description: 'task', instruction: 'agents/AGENT_TASK.md' }
       ]
     }),
-    scaffold: vi.fn(),
     ...overrides
   } as unknown as RuntimeClient;
 }
@@ -999,53 +998,6 @@ describe('RuntimeDaemonHarnessPort', () => {
       message: 'Malformed existing manifest'
     });
     expect(installBoundPort).not.toHaveBeenCalled();
-  });
-
-  it('uses only the fixed app-dev project for contained scaffold requests', async () => {
-    const scaffoldResult = {
-      executionRoot: `${project.canonicalRoot}/execution/demo`,
-      decompositionPath: `${project.canonicalRoot}/execution/demo/decomposition.json`,
-      copiedDecompositionPath: `${project.canonicalRoot}/execution/demo/decomposition.json`,
-      projectName: 'demo',
-      coordinationMode: 'HYBRID' as const,
-      packageCount: 0,
-      deliverableCount: 0,
-      created: { directories: [], files: [] },
-      layoutValidation: {
-        valid: true,
-        executionRoot: { path: 'execution/demo', valid: true, missing: [] },
-        packages: [],
-        deliverables: []
-      },
-      preparationCompatibility: {
-        ready: true,
-        deliverablesChecked: 0,
-        issueCount: 0,
-        deliverables: []
-      }
-    };
-    const runtimeClient = client({
-      scaffold: vi.fn().mockResolvedValue(scaffoldResult)
-    });
-    const port = new RuntimeDaemonHarnessPort(runtimeClient);
-
-    await expect(
-      port.scaffold({
-        executionRoot: scaffoldResult.executionRoot,
-        decompositionPath: scaffoldResult.decompositionPath,
-        coordinationMode: 'HYBRID'
-      })
-    ).resolves.toEqual(scaffoldResult);
-    expect(runtimeClient.scaffold).toHaveBeenCalledWith(
-      project.projectId,
-      {
-        executionRoot: scaffoldResult.executionRoot,
-        decompositionPath: scaffoldResult.decompositionPath,
-        coordinationMode: 'HYBRID'
-      },
-      undefined
-    );
-    expect(runtimeClient.listProjects).not.toHaveBeenCalled();
   });
 
   it('translates daemon failures into the legacy route error vocabulary', async () => {

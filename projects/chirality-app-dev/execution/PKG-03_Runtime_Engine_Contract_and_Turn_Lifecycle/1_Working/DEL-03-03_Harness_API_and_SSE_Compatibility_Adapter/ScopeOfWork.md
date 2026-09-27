@@ -15,6 +15,14 @@ This Scope of Work defines `DEL-03-03` in service of project scope [SOW-011, SOW
 
 - **OUT-001** — A harness API and SSE compatibility adapter package for DEL-03-03 comprising the route adapter tests, SSE compatibility fixtures, and UI event contract documentation defined by the preserved legacy source kit.
 
+## SCA-APP-011 Current Contract (Controlling)
+
+SCA-APP-011 (owner direction 2026-09-27; DEC-026) retires `POST /api/harness/scaffold` and its client function `scaffoldHarnessExecutionRoot`. Where any earlier clause in this document names that route, its route test or its scaffold composition, this section controls; the earlier clauses remain dated history and are not deleted.
+
+- The route is no longer supported, and the route compatibility obligations in this document do not cover it. Every other `/api/harness/*` route and the browser SSE event names are unchanged.
+- The P-15 scaffold-composition residual (CLM-005), the open scaffold composition gap (CLM-008), the CLM-017 step to identify the uncomposed scaffold operation, the CLM-020 record of unsupported scaffold composition and the scaffold-composition delivery task in CLM-027 are closed by removal, consistent with DEL-07-02's APP-R058 closure.
+- `RouteAdapterTestIndex.md` drops its `scaffold-route.test.ts` and `/api/harness/scaffold` entries in the SCA-APP-011 code change.
+
 ## Deliverable Definition — Ontology
 
 ### CLM-001 — Datasheet: DEL-03-03 Harness API and SSE Compatibility Adapter
@@ -61,7 +69,7 @@ Retain route-shape compatibility, one-active-turn rejection and truthful termina
 
 Harness routes must remain thin, validated clients of the App-owned Runtime service. Their compatibility obligation concerns the supported App operations and inspectable outcomes, with live Codex notifications preserved through the full protocol. Compatibility does not require manufacturing every legacy SDK event name or translating away an unknown Codex notification.
 
-The stream must preserve ordering and replay identity, expose failures, and permit detach/reattach without turning a renderer disconnect into a turn interrupt. Runtime owns turn coordination. Route presence alone does not establish operation completeness: the live scaffold route's missing composition remains a P-15 residual, and fake-port tests do not establish a live fixture capture.
+The stream must preserve ordering and replay identity, expose failures, and permit detach/reattach without turning a renderer disconnect into a turn interrupt. Runtime owns turn coordination. Route presence alone does not establish operation completeness: the live scaffold route's missing composition was a P-15 residual, closed by removal under SCA-APP-011, and fake-port tests do not establish a live fixture capture.
 
 Verification hooks: `frontend/src/__tests__/api/harness/turn-registry-routes.test.ts`, `frontend/src/__tests__/lib/runtime-daemon-harness-port.test.ts`, and `projects/chirality-runtime/tests/daemon.test.ts`. `RouteAdapterTestIndex.md` and the R3 rows preserve missing-fixture evidence separately.
 
@@ -90,7 +98,7 @@ Basis: D-GOV-43 / topology A2 and D-APP-127; claim-level application D-APP-131.
 
 ### CLM-008 — Scope
 
-Own the App route/stream boundary and its conformance evidence against the application-owned Runtime service. Preserve supported `/api/harness/*` request/response behavior, current SSE transport, full upstream events, keepalive and detach/reattach continuity. Runtime owns the turn and lock. Exact fixture capture and the scaffold composition gap remain open delivery tasks. Verification hooks: `projects/chirality-runtime/tests/turn-hardening.test.ts`, `projects/chirality-runtime/tests/turn-registry.test.ts`, `projects/chirality-runtime/tests/app-owned-composition.test.ts`, and `frontend/src/__tests__/api/harness/turn-registry-routes.test.ts`. These are named checks, not a claim that this record repair ran them or supplied missing live evidence.
+Own the App route/stream boundary and its conformance evidence against the application-owned Runtime service. Preserve supported `/api/harness/*` request/response behavior, current SSE transport, full upstream events, keepalive and detach/reattach continuity. Runtime owns the turn and lock. Exact fixture capture remains an open delivery task; the scaffold composition gap is closed by removal (SCA-APP-011). Verification hooks: `projects/chirality-runtime/tests/turn-hardening.test.ts`, `projects/chirality-runtime/tests/turn-registry.test.ts`, `projects/chirality-runtime/tests/app-owned-composition.test.ts`, and `frontend/src/__tests__/api/harness/turn-registry-routes.test.ts`. These are named checks, not a claim that this record repair ran them or supplied missing live evidence.
 
 ### CLM-009 — Requirements
 
@@ -155,7 +163,7 @@ Use the current source basis and extracted `Dependencies.csv`; no unextracted-ed
 3. Verify thin forwarding to Runtime and one active turn; the App must not own an independent lock.
 4. Check keepalive, absence of idle interruption, replay ordering and recovery of outstanding decisions.
 5. Check known-event views and unfamiliar notification inspection with original identity/payload retained and secrets redacted.
-6. Update the route-to-fixture index and UI-event docs; identify the still-uncomposed scaffold operation explicitly.
+6. Update the route-to-fixture index and UI-event docs; the scaffold route is retired (SCA-APP-011), so no scaffold operation is indexed.
 7. Record results, missing captures, source validity and the required current native witness.
 
 Verification hooks: `projects/chirality-runtime/tests/turn-hardening.test.ts`, `projects/chirality-runtime/tests/turn-registry.test.ts`, `projects/chirality-runtime/tests/app-owned-composition.test.ts`, and `frontend/src/__tests__/api/harness/turn-registry-routes.test.ts`. These are named checks, not a claim that this record repair ran them or supplied missing live evidence.
@@ -178,14 +186,14 @@ Verify every supported route against its source-bound fixture; keep uncaptured c
 > | `/api/harness/session/[id]` | GET/DELETE | TBD | TBD | TBD | TBD |
 > | `/api/harness/turn` | POST | TBD | TBD | TBD | TBD |
 > | `/api/harness/interrupt` | POST | TBD | TBD | TBD | TBD |
-> | `/api/harness/scaffold` | POST | TBD | TBD | TBD | TBD |
+> | `/api/harness/scaffold` | POST | [RETIRED — SCA-APP-011] | — | — | — |
 >
 > Source: `docs/SPEC.md` Section 17.1; `docs/PRD.md` Section 9.1.
 >
 
 ### CLM-020 — Records
 
-Required records are route and current SSE fixtures, baseline/candidate SHA, capture and replay outputs, route-to-fixture index, UI-event contract documentation, and S-2/renderer-disconnect evidence. Distinguish deterministic fake-port results from live results. Record unsupported scaffold composition separately. Existing legacy docs stay historical until reissued for D-GOV-43; exact payload or result gaps remain unknown.
+Required records are route and current SSE fixtures, baseline/candidate SHA, capture and replay outputs, route-to-fixture index, UI-event contract documentation, and S-2/renderer-disconnect evidence. Distinguish deterministic fake-port results from live results. The scaffold route is retired (SCA-APP-011); no scaffold composition record is required. Existing legacy docs stay historical until reissued for D-GOV-43; exact payload or result gaps remain unknown.
 
 - **VER-001** — Review the preserved legacy requirements and execute the specified route adapter, SSE compatibility, stream integration, mapper/contract, and artifact checks, retaining TBD where fixture capture or baseline evidence remains unresolved.
 
@@ -218,7 +226,7 @@ When a renderer disconnects, its subscription ends while Runtime continues the t
 
 ### CLM-027 — Conflict Table (for human ruling)
 
-D-GOV-43/D-APP-127 settle the old closed-event and disconnect-cancellation conflicts. Full event preservation and secret protection both survive. Current route/SSE fixture capture, redaction verification and scaffold composition remain delivery tasks; reference observations remain distinct from accepted corpus pins.
+D-GOV-43/D-APP-127 settle the old closed-event and disconnect-cancellation conflicts. Full event preservation and secret protection both survive. Current route/SSE fixture capture and redaction verification remain delivery tasks (scaffold composition is closed by removal under SCA-APP-011); reference observations remain distinct from accepted corpus pins.
 
 ## Output and Evaluation Matrix
 

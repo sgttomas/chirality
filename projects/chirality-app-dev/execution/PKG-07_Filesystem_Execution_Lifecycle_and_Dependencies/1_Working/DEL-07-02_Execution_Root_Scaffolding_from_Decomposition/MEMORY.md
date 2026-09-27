@@ -2,6 +2,7 @@
 
 ## Runs
 
+- 2026-09-27 — `APP-REMOVE-LEGACY-FORMS-2026-09-27` (SCA-APP-011 code change; checkpoint-group-3 candidate, lands with the SCA-APP-011 scope text after group-3 acceptance): removes `POST /api/harness/scaffold`, its client helper and the App scaffold proxy. The scaffold library `frontend/src/lib/harness/scaffold.ts` and `harness-scaffold.test.ts` stay. SCA-APP-011 closes APP-R058 by removal (scope-text side). No lifecycle change. Evidence: [receipt](../../../_Coordination/AgentRuns/APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md); amendment `execution/_ScopeChange/SCA-APP-011_2026-09-27_0155_Workbench_Pipeline_Forms_and_Deliverable_Routes_Retirement/`.
 - 2026-09-26 — `APP-LIFECYCLE-DEPS-2026-09-26`: the scaffold's
   `_DEPENDENCIES.md` template now writes the SPEC §5.2 (D-GOV-46) skeleton. It
   takes the mode from the `_COORDINATION.md` it writes, uses placeholders only
