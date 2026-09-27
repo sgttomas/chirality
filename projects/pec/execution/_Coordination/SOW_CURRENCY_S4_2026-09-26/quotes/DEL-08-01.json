@@ -1,0 +1,277 @@
+{
+ "deliverable": "DEL-08-01",
+ "quotes": [
+  {
+   "id": "Q01",
+   "text": "Unix-socket server + token-scoped access",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "125cfacc1",
+   "where": "Purpose; CLM-007",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-08-01",
+   "column": "Name"
+  },
+  {
+   "id": "Q02",
+   "text": "SOW-003,IN,\"Implement token-scoped access with four access classes: owner, harness, agent (read-only query for tool calls), admin\",§8,PKG-08,DEL-08-01,OBJ-001,DL-11; SCA-006,FALSE,v1.0/prototype role ontologies retired",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "Purpose source chain 1"
+  },
+  {
+   "id": "Q03",
+   "text": "SOW-040,IN,\"Bind the service local-only on a Unix socket by default, token-scoped\",PEC-API-001,PKG-08,DEL-08-01,OBJ-001,,FALSE,Loopback TCP is TBD (SOW-083)",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "Purpose source chain 1"
+  },
+  {
+   "id": "Q04",
+   "text": "| PEC-API-001 | The service binds local-only, Unix socket by default, with token-scoped access; any loopback TCP listener is a §16 open decision in light of D-GOV-43 A2 (no network-exposed listener), superseding D-GOV-20 item 4. |",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "Purpose source chain 2"
+  },
+  {
+   "id": "Q05",
+   "text": "Access is local-only (Unix socket; any loopback listener is a §16 open decision), token-scoped. The v1.0 role ontology (12 roles, v1.0 §8) and the prototype's implemented 14-role RBAC set (`core/src/types.ts`) are retired; access classes are owner, harness, agent, and admin. The `agent` class is read-only query access for tool calls: orientation, deltas, gate verdicts, decision-slate and presence reads, with no event ingest, no presence reports and no admin act. Every class is local-only and token-scoped; the token mechanism, including credentials for the `agent` class, is the open §16.6 decision.",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "Purpose source chain 3"
+  },
+  {
+   "id": "Q06",
+   "text": "| DEL-08-01 | Unix-socket server + token-scoped access | SECURITY_CONTROL | M | P1 | SOW-003, 040 |",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "Purpose source chain 4"
+  },
+  {
+   "id": "Q07",
+   "text": "OI-006 determines the PEC-local token mechanism (Runtime token registries are private to each application's Runtime instance, so no shared registry exists to reuse); the socket+access-class core is stable either way, but the auth half may be reworked on ruling",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "125cfacc1",
+   "where": "Purpose source chain 4",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-08-01",
+   "column": "ContextEnvelopeNotes"
+  },
+  {
+   "id": "Q08",
+   "text": "| OBJ-001 | Orientation for any loop is a sub-second query with per-claim citations, not a session-length prose derivation | §3.1 | SOW-001, SOW-003..009, SOW-011..017, SOW-038, SOW-040..044, SOW-089, SOW-095..099; instruments: SOW-058, SOW-059, SOW-063, SOW-100 | DEL-00-03, DEL-01-01, DEL-02-01..09, DEL-03-05, DEL-04-01..05, DEL-08-01..06, DEL-10-01, DEL-10-04, DEL-10-08, DEL-10-13 |",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "Purpose source chain 5"
+  },
+  {
+   "id": "Q09",
+   "text": "Socket server + auth + tests",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "125cfacc1",
+   "where": "Ontology outputs paragraph",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-08-01",
+   "column": "AnticipatedArtifacts"
+  },
+  {
+   "id": "Q10",
+   "text": "Local-only Unix-socket binding with token-scoped access classes (owner, harness, agent, admin; agent is read-only query for tool calls); auth-reuse choice tracked by OI-006.",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-007",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-08-01",
+   "column": "Description"
+  },
+  {
+   "id": "Q11",
+   "text": "read-only query access for tool calls: orientation, deltas, gate verdicts, decision-slate and presence reads, with no event ingest, no presence reports and no admin act",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-004"
+  },
+  {
+   "id": "Q12",
+   "text": "- **Agents** — may act on PEC data received through an explicitly enabled consumer, and may query PEC directly through tool calls under the read-only `agent` access class (PEC-API-007) where that surface is enabled. Either way they act on labeled, non-authoritative data under operational reliance within the declared envelope (PEC-K-03, PEC-ORI-007), never as authority (PEC-K-02), and only from a release that has passed the §12 reliance-advertisement gate. Enabling any path is consumer-owned; injection is not required, and no agent, harness or loop is required to query PEC (PEC-K-01, PEC-K-11).",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-008"
+  },
+  {
+   "id": "Q13",
+   "text": "under the `agent` access class",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-008"
+  },
+  {
+   "id": "Q14",
+   "text": "P3 capability",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-008"
+  },
+  {
+   "id": "Q15",
+   "text": "DEL-08-01 (socket + tokens — OI-006 decides the PEC-local token mechanism; no shared Runtime token registry exists to reuse). Held at current envelope; re-assessed on the linked ruling.",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-006"
+  },
+  {
+   "id": "Q16",
+   "text": "Hold envelope; re-assess on the linked OI's ruling",
+   "source": "projects/pec/execution/_Decomposition/ContextBudgetQA.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-006",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-08-01",
+   "column": "RecommendedAction"
+  },
+  {
+   "id": "Q17",
+   "text": "the agent class is one more enumeration, and OI-006 still governs the token half.",
+   "source": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Impact_Assessment.md",
+   "commit": "125cfacc1",
+   "where": "CLM-006"
+  },
+  {
+   "id": "Q18",
+   "text": "Tool-call queries run under the read-only agent access class of the socket server",
+   "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/Dependencies.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-002",
+   "kind": "csv_cell",
+   "key_column": "DependencyID",
+   "key": "DEP-08-06-003",
+   "column": "Statement"
+  },
+  {
+   "id": "Q19",
+   "text": "in light of D-GOV-43 A2 (no network-exposed listener), superseding D-GOV-20 item 4",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "REQ-005"
+  },
+  {
+   "id": "Q20",
+   "text": "| OI-006 | SOW-080 | §16.6 auth reuse undecided; premise re-expressed under SCA-005: Runtime token registries are private to each application's Runtime instance and reuse of an App registry is foreclosed, so the open choice is the PEC-local token mechanism; the open choice also covers credentials for the agent access class (tool-call query, SOW-099; SCA-006) | §16 ruling |",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CON-001"
+  },
+  {
+   "id": "Q21",
+   "text": "Auth reuse: which PEC-local token mechanism PEC uses, including credentials for the agent access class (premise: Runtime token registries are private to each application's Runtime instance, and reuse of an App registry is foreclosed by the Runtime consumer guide)",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CON-001",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-080",
+   "column": "ScopeItemStatement"
+  },
+  {
+   "id": "Q22",
+   "text": "OI-006. Affects SOW-003 implementation choice",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CON-001",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-080",
+   "column": "Notes"
+  },
+  {
+   "id": "Q23",
+   "text": "The decision on PEC's own token mechanism stays open; it includes the credentials of the `agent` access class for tool-call query (PEC-API-007).",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CON-001"
+  },
+  {
+   "id": "Q24",
+   "text": "Loopback TCP is TBD (SOW-083)",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CON-002",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-040",
+   "column": "Notes"
+  },
+  {
+   "id": "Q25",
+   "text": "Event-contract home (shared Runtime contracts at `projects/chirality-runtime/packages/contracts` vs PEC-local schema + pinned mirror) and API transport (Unix socket only vs additional loopback listener; transport posture per D-GOV-43 A2)",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CON-002",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-083",
+   "column": "ScopeItemStatement"
+  },
+  {
+   "id": "Q26",
+   "text": "OI-009. Fenced: PEC builds local-first either way (SOW-034/040)",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CON-002",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-083",
+   "column": "Notes"
+  },
+  {
+   "id": "Q27",
+   "text": "orientation, deltas, gate verdicts, decision-slate and presence reads",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CON-003"
+  },
+  {
+   "id": "Q28",
+   "text": "read-only query interface",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CON-003 (PEC-API-007)"
+  },
+  {
+   "id": "Q29",
+   "text": "read-only query interface",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CON-003 (SOW-099)",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-099",
+   "column": "ScopeItemStatement"
+  },
+  {
+   "id": "Q30",
+   "text": "read-only query access",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CON-003"
+  },
+  {
+   "id": "Q31",
+   "text": "Unix socket by default",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "AX-001"
+  },
+  {
+   "id": "Q32",
+   "text": "with the token-scoped transport",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "AX-002"
+  }
+ ]
+}
