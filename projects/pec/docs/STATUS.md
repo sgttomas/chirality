@@ -48,10 +48,10 @@ DEL-01-06.** Its accepted revision-1.4 production contract was SHA-256
 `D-PEC-100` act (2026-09-26) replaced it with the revision-1.6 contract
 `2053fb65abc24b75c2526a78aa4bd4b64a1e6ead11dd7ac2d5131cd736eb177e`, which
 no REVIEW has accepted.
-The current SELF_CHECK snapshot
+The latest SELF_CHECK snapshot
 `execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-04_1113/` records
 AC-001 through AC-006 `PASS`, RF-001 `RESOLVED` with exact VER-005 evidence,
-and RF-002 `REVISE / RESOLVED`: the accepted successor maps SOW-077 and SOW-094
+and RF-002 `REVISE / RESOLVED`: the accepted revision-1.4 successor maps SOW-077 and SOW-094
 to DEL-01-06 and records OI-003 resolved by D-PEC-78 O-A. DEL-01-06 remains
 `INITIALIZED` under HOLD; no product/source artifact, next P1 node, release, or
 professional reliance is authorized. D-T0-27 remains `ADOPTED / READ_ONLY`
@@ -303,7 +303,8 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     A + S + M + C8, ruled 2026-09-26): both contracts written and
     independently verified, DEL-10-13 classified by the owner as a C-08
     standing node, and both deliverables `INITIALIZED` (run root
-    `execution/_Coordination/SOW_INIT_K2_2026-09-26/`). Still open from
+    `execution/_Coordination/SOW_INIT_K2_2026-09-26/`); their `MEMORY.md`
+    files follow at the undertaking's closeout. Still open from
     Lane B: the DEL-00-03 SPEC premise, the tier-0 profile entry (K3) and
     the API schema fields.
   - Retiring the 57 `## Remaining` sections, as App and Piping did: the owner
