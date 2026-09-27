@@ -1,0 +1,39 @@
+KEPT DEL-01-05 quotes DEL-10-03: ", and that packet reads the acceptance as taking the exhibit's **flags as flags**:"
+KEPT DEL-01-05 quotes DEL-10-03: '. What is settled is therefore the arithmetic exclusion — `C-08` is a non-gating constraint row and this deliverable is excluded from one-sh'
+STALE DEL-01-05 quotes DEL-08-01: 'Event-contract home ... and API transport (Unix socket only vs additional loopback listener)'
+STALE DEL-02-01 quotes DEL-04-03: ", read in that packet as taking the exhibit's flags as flags."
+KEPT DEL-03-01 quotes DEL-03-04: 'labeled generated artifacts (reports, briefs, evidence records) under declared generated paths'
+KEPT DEL-03-02 quotes DEL-04-02: '`DecisionRef` empty and `Notes` empty — two of the ten fields are unpopulated, `Notes` trailing;'
+STALE DEL-03-02 quotes DEL-04-02: ', `EvidenceQuote` **empty**, `Explicitness` `IMPLICIT`, `RequiredMaturity` `INITIALIZED`, `ProposedMaturity` `TBD`, `SatisfactionStatus` `PE'
+KEPT DEL-03-02 quotes DEL-04-02: 'Not a Git actor. Read-only plumbing access; CHANGE owns Git state'
+KEPT DEL-03-03 quotes DEL-04-02: "the downstream row lives in the consumer's own local register, per the deliverable-local storage ruling of `D-PEC-62`."
+KEPT DEL-03-06 quotes DEL-08-04: 'This contract does not choose the corpus and does not read the phrase as fixing one:'
+KEPT DEL-04-05 quotes DEL-04-01: "the `..` ranges are the source's own notation, not an elision."
+KEPT DEL-04-05 quotes DEL-04-01: 'DEL-00-03, DEL-01-01, DEL-02-01..07, DEL-04-01..05, DEL-08-01..04, DEL-10-01, DEL-10-04 ``` (`Amendment_Preview.md`, action `A003b`, "Line 3'
+KEPT DEL-04-05 quotes DEL-04-03: "the doubled quotation marks are the source's own CSV escaping."
+STALE DEL-04-05 quotes DEL-08-03: '(`DEL-04-03/ScopeOfWork.md`, Epistemology section;'
+STALE DEL-04-05 quotes DEL-04-01: '- **REQ-001** — The builder shall compose, for a named loop, a return carrying all six components enumerated at `SOW-004` and `PEC-ORI-001` '
+STALE DEL-04-05 quotes DEL-04-01: 'What remains genuinely unsettled is the *shape* of the honest answer — an empty return carrying six stated absences, a single stated absence'
+KEPT DEL-04-05 quotes DEL-04-01: "is the objective's own word and its buildable form is `SOW-041` —"
+KEPT DEL-04-05 quotes DEL-04-01: 'this contract asserts no latency bound and produces no latency evidence.'
+KEPT DEL-04-05 quotes DEL-04-01: '. `ResponsibleParty` is `TBD` throughout the register by the §5 preamble —'
+STALE DEL-04-05 quotes DEL-04-03: 'That is a register-hygiene observation of the class `OI-013` records —'
+STALE DEL-04-05 quotes DEL-04-03: "carries two undefined terms. No accepted source defines what constitutes a *feed* for stamping purposes: the nearest is `PEC-RCN-002`'s mini"
+KEPT DEL-04-05 quotes DEL-04-01: 'and the reconciler contract asserts no standing populated state (CLM-012). The invariants nevertheless fix the posture rather than leaving i'
+STALE DEL-08-02 quotes DEL-08-01: '| OBJ-001 | Orientation for any loop is a sub-second query with per-claim citations, not a session-length prose derivation | §3.1 | ... | DE'
+KEPT DEL-10-02 quotes DEL-10-03: '"**`SOW-055` precedent withdrawn as tautological** — it restates OBJ-005 nearly verbatim and selects nothing for `SOW-025`".'
+KEPT DEL-10-02 quotes DEL-10-03: 'shall expose a binding interface through which an externally owned change path or release gate can invoke it without modification to the sui'
+KEPT DEL-10-02 quotes DEL-10-03: 'this contract delivers no gate wiring and places no obligation on any other deliverable to re-run, re-certify, or maintain anything'
+KEPT DEL-10-02 quotes DEL-10-03: "at `D-PEC-62` §1(4), which that packet reads as taking the exhibit's flags as flags;"
+STALE DEL-10-02 quotes DEL-10-03: ', and `_DEPENDENCIES.md` records that blocker output is'
+STALE DEL-10-10 quotes DEL-10-03: 'Validation & Measurement — Release-gating proof and metrics: kill test, no-ruling-write verification, Step-0 baseline, defect/adoption/colli'
+KEPT DEL-10-11 quotes DEL-03-04: '`SOW-021` ⊆ `{OBJ-005}`** (see F-2) | Unit Ledger (§6 + `ScopeLedger.csv`) | (`execution/_ScopeChange/SCA-002_2026-07-25_1042/Brief.md`, act'
+KEPT DEL-10-11 quotes DEL-03-04: '`E-A18,DEL-03-04,DEL-10-11,DECLARED,MEASURES,,"Deliverables.csv DEL-10-11:'
+KEPT DEL-10-11 quotes DEL-04-01: 'each is cited to its owner in CLM-015 and none is discharged here.'
+STALE DEL-10-11 quotes DEL-03-04: '`PRD.md` §12\'s `P1` exit test — "Parity-diff vs harness clean or explained" (CLM-005) — is evidence that the comparison is release-relevant,'
+KEPT DEL-10-11 quotes DEL-03-04: 'no metric, report, threshold, or count presented as the §11 parity metric'
+KEPT DEL-10-11 quotes DEL-03-04: "in its own `Notes`, the exhibit's node-class paragraph repeats"
+STALE DEL-10-11 quotes DEL-03-04: ', and `D-PEC-62` §1 item 4 accepted the standing-node set as a recorded-but-unresolved, non-gating annotation rather than ruling it (CLM-008'
+KEPT DEL-10-11 quotes DEL-03-04: 'it imposes no obligation on that deliverable'
+KEPT DEL-10-11 quotes DEL-03-04: ', and `D-PEC-62` §1 item 4 accepted the exhibit'
+SUMMARY stale=13 kept=25

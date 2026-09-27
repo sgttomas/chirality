@@ -1,0 +1,7 @@
+PASS control tripped: DEL-04-01 Gate line altered -> quote check (RESULT FAIL 150/151)
+PASS control tripped: DEL-08-01 OUT-001 altered -> DEP-08-04-006/DEP-08-05-005 raw quotes (RESULT FAIL 34/36)
+PASS control tripped: DEL-04-02 Part B replacement (4) altered -> quote check (RESULT FAIL 100/101)
+PASS control tripped: DEL-10-03 sha256 claim value wrong -> state-claim check (RESULT FAIL 125/126)
+PASS control tripped: DEL-04-02 cites undefined DEL-04-03/REQ-099 -> sibling check (RESULT FAIL 46/47)
+PASS control tripped: DEL-08-01 last matrix row removed -> validator ()
+RESULT PASS negative controls

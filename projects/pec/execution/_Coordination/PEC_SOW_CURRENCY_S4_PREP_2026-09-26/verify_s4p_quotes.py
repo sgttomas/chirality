@@ -20,6 +20,7 @@ Further checks, per candidate:
     a raw (unnormalized) substring of the candidate, as gen_d95.py checks it.
   - FORBID: the candidate does not contain the phrase "at the basis".
   - OBS: the candidate names the observation commit given by --observation.
+  - MULT: a text that N entries quote from one source occurs at least N times in the candidate.
 
 Usage:
   verify_s4p_quotes.py --tree <export root> --gitdir <repo> --prep <prep dir>
@@ -96,6 +97,17 @@ for qf in qfiles:
                 in_s = n in norm(src, emph)
         where = q["source"] + (f"@{q['commit']}" if q.get("commit") else "")
         ok(in_c and in_s, f"{deliv} {qid} [{len(n)} chars; candidate={'yes' if in_c else 'NO'}; source={'yes' if in_s else 'NO'}] {where}")
+    # MULT: a text that N entries quote from the same source must occur at least N times in the
+    # candidate (so two identical carried texts, such as two identical Gate lines, cannot be
+    # satisfied by one copy). One quotation checked against two different sources counts once.
+    mult = {}
+    for q in spec["quotes"]:
+        k = (norm(q["text"], bool(q.get("strip_emphasis"))), bool(q.get("strip_emphasis")), q["source"], q.get("commit"))
+        mult[k] = mult.get(k, 0) + 1
+    for (n, emph, _src, _c), cnt in mult.items():
+        if cnt > 1:
+            have = (cand_e if emph else cand_n).count(n)
+            ok(have >= cnt, f"{deliv} MULT text quoted by {cnt} entries occurs {have} times in candidate: {n[:60]!r}")
     # DEP: dependency EvidenceQuotes that cite this deliverable's contract (raw, as gen_d95.py)
     rel_c = cp.relative_to(prep / "candidates" / "projects" / "pec").as_posix()
     n_dep = 0

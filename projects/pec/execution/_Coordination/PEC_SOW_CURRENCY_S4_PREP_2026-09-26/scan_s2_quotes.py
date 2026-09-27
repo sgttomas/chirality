@@ -5,7 +5,8 @@ D-PEC-100 replaced seven S2 contracts. This scan lists, for each S4 contract,
 every quoted span (a blockquote block at columns 0-3, or a double-quoted span of
 40+ characters, and each sentence of 40+ characters inside one) that occurs in a
 PRIOR S2 contract (read at --prior-commit, the D-PEC-100 preimages) and in no
-accepted upstream source, and reports whether it still occurs in the CURRENT S2
+accepted upstream source, no contract outside the S2 and S4 sets and no top-level
+_Coordination record, and reports whether it still occurs in the CURRENT S2
 contract (the D-PEC-100 postimage in --tree).
 
 With --candidates, the S4 contracts are read from the candidate folder instead
@@ -39,6 +40,14 @@ for g in ["projects/pec/execution/_Decomposition/*.csv", "projects/pec/execution
           "projects/pec/execution/_Coordination/_DECISIONS/**/*.md", "projects/pec/execution/PKG-*/1_Working/*/Dependencies.csv"]:
     for f in tree.glob(g):
         upstream.append(norm(f.read_text(encoding="utf-8")).replace('""', '"'))
+# A span that another contract outside S2 and S4, or a top-level coordination record
+# (for example the 2026-07-25 DAG plan exhibit), also carries is quoted from there, not
+# from an S2 contract; those files join the skip set.
+for f in tree.glob("projects/pec/execution/PKG-*/1_Working/DEL-*/ScopeOfWork.md"):
+    if f.parent.name[:9] not in S2 + S4:
+        upstream.append(norm(f.read_text(encoding="utf-8")).replace('""', '"'))
+for f in tree.glob("projects/pec/execution/_Coordination/*.md"):
+    upstream.append(norm(f.read_text(encoding="utf-8")).replace('""', '"'))
 UP = "\n".join(upstream)
 
 def s2path(d):

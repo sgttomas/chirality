@@ -10,7 +10,9 @@ markers stripped, whitespace collapsed). A span that occurs in a PRIOR S4
 contract is reported with whether it still occurs in that deliverable's
 CANDIDATE. Spans that also occur in an accepted upstream source (registers,
 decomposition, PRD, AGENTS.md, scope-change snapshots, decision records,
-dependency registers) are shared quotations and are skipped. Read-only; stdlib only. Informational: the packet discloses the
+dependency registers, deliverable-local _DEPENDENCIES.md and _CONTEXT.md mirrors,
+top-level _Coordination records, or a second contract outside S4) are shared
+quotations and are skipped. Read-only; stdlib only. Informational: the packet discloses the
 STALE lines as consequences for their owning nodes; it writes none of them.
 
 Usage: scan_external_quotes.py --tree <pre-act export root> --prep <prep dir>
@@ -37,7 +39,17 @@ for g in ["projects/pec/execution/_Decomposition/*.csv", "projects/pec/execution
           "projects/pec/execution/_Coordination/_DECISIONS/**/*.md", "projects/pec/execution/PKG-*/1_Working/*/Dependencies.csv"]:
     for f in tree.glob(g):
         upstream.append(norm(f.read_text(encoding="utf-8")).replace('""', '"'))
+# Deliverable-local mirrors and top-level coordination records (for example the
+# 2026-07-25 DAG plan exhibit) are shared sources too.
+for g in ["projects/pec/execution/PKG-*/1_Working/*/_DEPENDENCIES.md", "projects/pec/execution/PKG-*/1_Working/*/_CONTEXT.md",
+          "projects/pec/execution/_Coordination/*.md"]:
+    for f in tree.glob(g):
+        upstream.append(norm(f.read_text(encoding="utf-8")).replace('""', '"'))
 UP = "\n".join(upstream)
+# A span that a second contract outside S4 also carries is a shared quotation of some
+# third source (for example an S2 contract's prior text), not a quotation of S4 text.
+OTHERS = {f.parent.name[:9]: norm(f.read_text(encoding="utf-8"))
+          for f in tree.glob("projects/pec/execution/PKG-*/1_Working/DEL-*/ScopeOfWork.md")}
 
 prior, cand = {}, {}
 for d in S4:
@@ -69,9 +81,10 @@ for f in sorted(tree.glob("projects/pec/execution/PKG-*/1_Working/DEL-*/ScopeOfW
         pieces = [n] + [x.strip() for x in re.split(r"(?<=[.;:])\s+", n) if len(x.strip()) >= 40]
         pieces = [x for x in pieces if "ID-shaped text" not in x]  # carve-out boilerplate is not a quotation
         for d in S4:
-            hits = [x for x in pieces if x in prior[d] and x not in UP]
+            hits = [x for x in pieces if x in prior[d] and x not in UP
+                    and not any(x in txt for o, txt in OTHERS.items() if o not in S4 and o != owner)]
             if not hits: continue
-            gone = [x for x in hits if x not in cand[d]]
+            gone = [x for x in hits if not any(x in cand[k] for k in S4)]  # still carried by any S4 candidate = kept
             key = (owner, d, (gone or hits)[0])
             if key in seen: break
             seen.add(key)
