@@ -121,6 +121,9 @@ Independent review and actual-candidate CI remain merge gates.
   `execution`, for example a bare `PKG-*` tree at the project root, now gets
   no verdict from the App, as the reopening check already refuses it. The
   Root tools can still be run on it with `--execution-root`.
+  The App's own Pipeline scaffold creates that layout (it passes the project
+  root as the execution root); those forms are being withdrawn under
+  SCA-APP-011, and scaffolding into `<project>/execution` is a follow-up.
 - No lifecycle transition, dependency acceptance, DAG acceptance,
   authority-corpus repin, Runtime change or release.
 
@@ -128,3 +131,12 @@ Execution: a Claude Code subagent (TASK-type executor, no delegation) in an
 isolated worktree for the parent session. Model identifiers are withheld at
 the dispatching session's instruction; the commit's session trailer identifies
 the run.
+
+
+## Review follow-through (2026-09-27)
+
+- `readDeliverableRecordedRegister` now resolves the requested deliverable path
+  with `realpath` before comparing it with the canonical execution root and
+  inventory, so a direct call through an aliased (symlinked) project path keeps
+  its verdict. The requested path is still used as given to detect a linked
+  unit folder. A regression test covers the alias.

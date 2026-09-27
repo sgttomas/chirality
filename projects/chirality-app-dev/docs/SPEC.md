@@ -444,7 +444,8 @@ parity fixtures check that both give the same result on the same files:
   `EXECUTION_ROOT_OUTSIDE_PROJECT_ROOT`. A deliverable named at the real path
   behind a linked package folder is therefore not judged over a root guessed
   from its path. The Root tools take the execution root as an argument
-  (`--execution-root`); the parity fixtures name it the same way. Every file and folder it reads or lists is first resolved with `realpath`,
+  (`--execution-root`); the parity fixtures name it the same way. Every file
+  and folder it reads or lists is first resolved with `realpath`,
   and it is read only when its canonical path lies inside the canonical project
   root. A symbolic link whose target stays inside the project root is read as
   its target, as the Root tools read it. A file or folder that leaves the

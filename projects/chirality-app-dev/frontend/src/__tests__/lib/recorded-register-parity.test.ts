@@ -554,6 +554,20 @@ describe('recorded register reads resolve the execution root', () => {
     );
   });
 
+  it('keeps the verdict when the project is reached through an aliased path', async () => {
+    const { project: projectRoot, root } = await project('union-with-csv', 'execution');
+    const unit = path.join(root, 'PKG-02_Data', '1_Working', 'DEL-02-01_Consumer');
+    const direct = await readDeliverableRecordedRegister({ deliverablePath: unit, containmentRoot: projectRoot });
+    const alias = path.join(path.dirname(projectRoot), 'alias');
+    await symlink(projectRoot, alias, 'dir');
+    const aliased = await readDeliverableRecordedRegister({
+      deliverablePath: path.join(alias, 'execution', 'PKG-02_Data', '1_Working', 'DEL-02-01_Consumer'),
+      containmentRoot: projectRoot
+    });
+    expect(direct.blockers.blockerState).not.toBe('NOT_ASSESSED');
+    expect(aliased.blockers).toEqual(direct.blockers);
+  });
+
   it('gives no verdict when an adapter manifest implies another execution root', async () => {
     const { project: projectRoot, root } = await project('union-with-csv', path.join('app', 'execution'));
     await writeAdapter(projectRoot);

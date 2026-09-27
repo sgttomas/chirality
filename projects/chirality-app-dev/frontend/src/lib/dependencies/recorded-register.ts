@@ -1707,7 +1707,11 @@ export async function readDeliverableRecordedRegister(input: {
   containmentRoot: string;
   executionRoot?: string;
 }): Promise<DeliverableRecordedRegister> {
-  const deliverableId = unitId(input.deliverablePath);
+  // Compare canonical paths: the execution root below is resolved canonically,
+  // so a caller's alias of the same folder must not lose the verdict. The
+  // requested path stays as given so a linked unit folder is still detected.
+  const deliverablePath = await realpath(input.deliverablePath).catch(() => path.resolve(input.deliverablePath));
+  const deliverableId = unitId(deliverablePath);
   const scope = createReadScope(input.containmentRoot);
   const linkedUnit = await symlinkedUnitPath(input.requestedPath ?? input.deliverablePath);
   if (linkedUnit !== null) {
@@ -1716,7 +1720,7 @@ export async function readDeliverableRecordedRegister(input: {
   let executionRoot: string | null = null;
   let unresolvedRoot = 'EXECUTION_ROOT_NOT_RESOLVED';
   if (linkedUnit === null) {
-    const location = await locateExecutionRoot(input.deliverablePath, input.executionRoot, scope);
+    const location = await locateExecutionRoot(deliverablePath, input.executionRoot, scope);
     if ('executionRoot' in location) {
       executionRoot = location.executionRoot;
     } else {
@@ -1748,8 +1752,8 @@ export async function readDeliverableRecordedRegister(input: {
   }
 
   let register = queue?.registers.get(deliverableId);
-  if (!register || register.path !== input.deliverablePath) {
-    register = await readRecordedRegister(input.deliverablePath, scope);
+  if (!register || register.path !== deliverablePath) {
+    register = await readRecordedRegister(deliverablePath, scope);
   }
   const row = queue?.queueRows.find((item) => item.DeliverableID === deliverableId);
   if (executionRoot !== null && scope.warnings.length > 0) {
@@ -1760,7 +1764,7 @@ export async function readDeliverableRecordedRegister(input: {
   } else if (
     queue !== null &&
     row !== undefined &&
-    queue.registers.get(deliverableId)?.path === input.deliverablePath
+    queue.registers.get(deliverableId)?.path === deliverablePath
   ) {
     const verdict = row.BlockerState === BLOCKED || row.BlockerState === UNBLOCKED;
     blockers = {
