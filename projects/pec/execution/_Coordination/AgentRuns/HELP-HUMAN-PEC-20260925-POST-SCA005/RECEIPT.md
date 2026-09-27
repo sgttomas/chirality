@@ -38,7 +38,7 @@ Ryan Tufts, 2026-09-25 (`D-PEC-94`), verbatim: "You can continue with all the op
   - an in-run independent verifier;
   - one or more fresh HELP_HUMAN PR reviews, transcribed under [`returns/`](returns/) as `REVIEW_PR*.md`;
   - required CI.
-- Strict registers stayed at 0 errors and 26 `XRG-013` warnings (D-GOV-48 deferred), identical before and after each act. The harness self-check and the receipts validator passed.
+- Strict registers stayed at 0 errors throughout. Each act recorded its own before-and-after comparison. `D-PEC-95` ended at 0 warnings. `D-PEC-101` moved the result from 26 `XRG-013` plus 2 `DRB-008` to 26 `XRG-013` (68 registers, 285 rows). Every later act kept the 26 `XRG-013` identical (D-GOV-48 deferred). The harness self-check and the receipts validator passed.
 - **Closeout C1** ([account](../../CLOSEOUT_POST_SCA005_2026-09-27/C1_ACCOUNT.md)):
   - a supported no-change result for every deliverable-local record of the 33 touched deliverables;
   - 127/127 active execution dependency quotes verbatim;
@@ -55,7 +55,7 @@ Intake `../../_TaskManagement/TM_PEC_CLOSEOUT_POST_SCA005_2026-09-27/INTAKE.md` 
   - S2-1, the "(provisional `D-PEC-100`)" references;
   - F-C2, S4 CON items still routed to the K2 first Scopes of Work;
   - the S1 and S4 wording items;
-  - DEL-10-11 `CLM-014`, DEL-03-04, DEL-02-07 and DEL-10-13 `CON-003` premises;
+  - DEL-10-11 `CLM-014`; DEL-03-04's quotation of DEL-03-01 `CON-005`; the partly overtaken DEL-02-07 and DEL-10-13 `CON-003` premises;
   - the DEL-02-08/09 wording items and others in the graph's carry list.
 - **CAND-02:** decomposition, PRD and instruction wording awaiting a scope change or instruction tranche.
 - **CAND-03:** hosted CI does not run PEC v2's registered checks (Root/CI scope).
@@ -79,7 +79,7 @@ Intake `../../_TaskManagement/TM_PEC_CLOSEOUT_POST_SCA005_2026-09-27/INTAKE.md` 
   - `SOW_INIT_K2_2026-09-26/HANDOFF_STATE.md`;
   - `X1_FIXTURES_2026-09-27/HANDOFF_STATE.md`;
   - the `D-PEC-100` proposal's register list.
-- **Other owner-gated work:** DEL-01-05 repaired-artifact acceptance, DEL-01-06 Gate 5, DEL-08-02 short of `ISSUED`, the API schema fields, and every later P1 node.
+- **Lapsed acceptances:** each deliverable's exact-byte `_REVIEW.md` binding records the prior bytes. An ordinary REVIEW is required before any of them advances, and RV1 covers the D1 pair.
 
 ## Final PR
 
@@ -87,7 +87,7 @@ Intake `../../_TaskManagement/TM_PEC_CLOSEOUT_POST_SCA005_2026-09-27/INTAKE.md` 
 
 ## Limits
 
-- No lifecycle change other than the ruled add-ons: `D-PEC-98` S and `D-PEC-103` S (`OPEN → INITIALIZED`) and `D-PEC-106` L (`INITIALIZED → IN_PROGRESS`).
+- The only lifecycle changes were ruled ones. `D-PEC-101` K1 created DEL-08-06 and DEL-10-13 at `OPEN`. The add-ons `D-PEC-98` S and `D-PEC-103` S moved them `OPEN → INITIALIZED`, and `D-PEC-106` L moved three deliverables `INITIALIZED → IN_PROGRESS`.
 - No CHECKING, ISSUED, artifact acceptance or REVIEW act, and nothing prompted about CHECKING.
 - No readiness, release or reliance claim. Operational reliance still begins only at a release that passes the PRD §12 gate.
 - No Task Management promotion or disposition. The three intake candidates are the owner's to dispose.

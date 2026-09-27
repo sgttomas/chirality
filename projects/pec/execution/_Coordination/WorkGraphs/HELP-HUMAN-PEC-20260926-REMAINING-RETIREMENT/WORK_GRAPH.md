@@ -34,7 +34,7 @@ This graph is saved at `projects/pec/execution/_Coordination/WorkGraphs/HELP-HUM
 
 ## Current state and recovery
 
-- **Checked basis:** `origin/main` `947075c9a`.
+- **Checked basis:** `origin/main` `947075c9a` at closeout; the final PR #982 merged as `ce99bc256`.
 - **Local or unmerged work:** none; the final PR #982 merged as `ce99bc256`. (This state line was brought current by HELP_HUMAN in the POST-SCA005 final PR #1014, per PR #982 review 02 N1 and PR #989 review 02 note 2.)
 - **Active operations:** none. The RR1 and RR3 managers handed back.
 - **Next work:** none; the undertaking is closed. S2, S4 and S1 absorbed their carry-forwards in the POST-SCA005 undertaking (PRs #979, #998, #1010). The `FINAL_ROW_ACCOUNT.csv` keeps `HumanDecision=PENDING` because the grant names only `AppliedResult`; the owner's decision is the `D-PEC-99` ruling.
