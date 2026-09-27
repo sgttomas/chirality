@@ -29,7 +29,7 @@ Parse `_STATUS.md` and enforce forward-only actor-authorized transitions with ap
 
 ## Anticipated Artifacts
 
-Status parser; transition API/tool; approval SHA tests
+Status parser; transition library and tool; approval SHA tests
 
 ## Traceability
 

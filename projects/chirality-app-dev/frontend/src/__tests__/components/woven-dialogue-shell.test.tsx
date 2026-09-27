@@ -92,16 +92,10 @@ vi.mock('../../components/shell/persona-picker', () => ({
 vi.mock('../../components/shell/file-tree-panel', () => ({
   FileTreePanel: () => <div data-file-tree="mounted" />
 }));
-// Mocked defensively: after the Artifacts→Workbench fold, `WorkbenchSurface`
-// transitively imports `DocumentView` (react-markdown ESM + fetch).
+// Mocked defensively: the woven navigator and right panel import
+// `DocumentView` (react-markdown ESM + fetch).
 vi.mock('../../components/shell/document-view', () => ({
   DocumentView: () => <div data-document-view="mounted" />
-}));
-vi.mock('../../components/workbench/workbench-surface', () => ({
-  WorkbenchSurface: () => <div data-workbench-surface="mounted" />
-}));
-vi.mock('../../components/pipeline/pipeline-surface', () => ({
-  PipelineSurface: () => <div data-pipeline-surface="mounted" />
 }));
 vi.mock('../../components/woven-dialogue/agents-projection', () => ({
   AgentsProjection: () => <div data-agents="mounted" />
@@ -160,8 +154,6 @@ describe('WovenDialogueShell composition', () => {
     expect(html).toContain('data-woven-surface="dialogue"');
     expect(html).toContain('data-chat-panel="mounted"');
     expect(html).not.toContain('data-focused-surface');
-    expect(html).not.toContain('data-workbench-surface');
-    expect(html).not.toContain('data-pipeline-surface');
     expect(html).not.toContain('woven-navigator-chevron');
     expect(html).not.toMatch(/\shidden=/);
   });

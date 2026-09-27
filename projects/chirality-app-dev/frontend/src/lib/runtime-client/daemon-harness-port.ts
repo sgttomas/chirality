@@ -5,8 +5,6 @@ import { HarnessError } from '@chirality/runtime-contracts/errors';
 import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
 import type {
   InterruptRequest,
-  ScaffoldExecutionRootRequest,
-  ScaffoldExecutionRootResponse,
   SessionBootRequest,
   SessionBootResponse,
   SessionCreateRequest,
@@ -314,10 +312,6 @@ export interface DaemonHarnessPort {
     request: ExportNativePlanRequest,
     options?: DaemonRequestOptions
   ): Promise<ExportNativePlanResponse>;
-  scaffold(
-    request: ScaffoldExecutionRootRequest,
-    options?: DaemonRequestOptions
-  ): Promise<ScaffoldExecutionRootResponse>;
 }
 
 function daemonClientUnavailable(): never {
@@ -354,8 +348,7 @@ const unboundDaemonHarnessPort: DaemonHarnessPort = {
   listNativePlanRevisions: daemonClientUnavailable,
   listNativePlanClarifications: daemonClientUnavailable,
   replyNativePlanClarification: daemonClientUnavailable,
-  exportNativePlan: daemonClientUnavailable,
-  scaffold: daemonClientUnavailable
+  exportNativePlan: daemonClientUnavailable
 };
 
 const unboundHostedBootstrapPort: HostedBootstrapPort = {
@@ -420,9 +413,9 @@ const routeKinds = {
   resolveSelectedContext: 'session', replaceSelectedMethods: 'session',
   getNativePlanCapability: 'session', listNativePlanRevisions: 'session',
   listNativePlanClarifications: 'session', replyNativePlanClarification: 'session',
-  exportNativePlan: 'session', scaffold: 'executionRoot'
+  exportNativePlan: 'session'
 } as const satisfies Record<keyof DaemonHarnessPort,
-  'rootObject' | 'root' | 'session' | 'sessionObject' | 'selected' | 'executionRoot'>;
+  'rootObject' | 'root' | 'session' | 'sessionObject' | 'selected'>;
 
 function createRoutingPort(registry: HarnessPortRegistry): DaemonHarnessPort {
   const owners = registry.sessionOwners ??= new Map();
@@ -493,12 +486,11 @@ function createRoutingPort(registry: HarnessPortRegistry): DaemonHarnessPort {
     async (...args: unknown[]) => {
       const last = args.at(-1);
       const options = last && typeof last === 'object' && 'signal' in last ? last as DaemonRequestOptions : undefined;
-      const input = args[0] as { sessionId: string; projectRoot: string; executionRoot: string };
+      const input = args[0] as { sessionId: string; projectRoot: string };
       const port = kind === 'session' ? await sessionPort(args[0] as string, options)
         : kind === 'sessionObject' ? await sessionPort(input.sessionId, options)
         : kind === 'root' ? await rootPort(args[0] as string, options)
         : kind === 'rootObject' ? await rootPort(input.projectRoot, options)
-        : kind === 'executionRoot' ? await rootPort(input.executionRoot, options)
         : registry.daemonPort ?? unboundDaemonHarnessPort;
       const result = await Reflect.apply(port[name as keyof DaemonHarnessPort], port, args);
       if (name === 'createSession' || name === 'listSessions') {

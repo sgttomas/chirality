@@ -9,7 +9,6 @@ import { getPermissionBroker } from '../../../lib/harness/permission-broker';
 import { resolveRuntimeOptions } from '../../../lib/harness/options';
 import { getHarnessRuntime } from '../../../lib/harness/runtime';
 import { buildHarnessRuntimeFingerprint } from '../../../lib/harness/runtime-fingerprint';
-import { scaffoldExecutionRoot } from '../../../lib/harness/scaffold';
 import { replayHarnessEvents } from '../../../lib/harness/session-events';
 import { assertProjectRootAccessible } from '../../../lib/harness/session-manager';
 import { deriveTranscriptView } from '@chirality/runtime-contracts/transcript-replay';
@@ -256,10 +255,6 @@ export function createFakeDaemonHarnessPort(): DaemonHarnessPort {
 
     async exportNativePlan() {
       throw new HarnessError('ENGINE_UNAVAILABLE', 503, 'Native Plan export is not configured in fake daemon');
-    },
-
-    async scaffold(request) {
-      return scaffoldExecutionRoot(request);
     }
   };
 }

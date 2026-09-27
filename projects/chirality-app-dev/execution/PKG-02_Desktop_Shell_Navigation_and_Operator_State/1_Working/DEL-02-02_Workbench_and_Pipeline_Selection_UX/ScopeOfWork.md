@@ -17,6 +17,8 @@ This Scope of Work defines `DEL-02-02` in service of project scope [SOW-006, SOW
 
 ## SCA-APP-004 Gate-5 Current Contract (Controlling until SCA-APP-010)
 
+> [RETIRED — SCA-APP-011] The Workbench and Pipeline re-hosting and obligation 4 of this section are retired with the forms; the section remains dated history.
+
 The owner-approved SCA-APP-004 amendment re-hosts Workbench and Pipeline around
 the central dialogue and adds the Work/Agents Coordination presentation.
 Where older clauses below prescribe a fixed matrix/right-sidebar target
@@ -86,8 +88,9 @@ agent/session selections and the current HELP_HUMAN/HELPS_HUMANS/WORKING_ITEMS d
 source, authority class, responsible reference, currency, and evidence; the
 Workflows view, roadmap, New workflow form, library, and bind actions over
 governed workflow files; and the transcript proposal card rendered from
-`proposal.*` events. Workbench and Pipeline are retired from the active shell
-(code, routes, and tests retained) and the Work projection is unmounted until an
+`proposal.*` events. The Workbench and Pipeline forms are retired (SCA-APP-010
+unmounted them; SCA-APP-011 retired their code and tests) and the Work projection
+is unmounted until an
 explicitly recorded plan/task source exists.
 
 Applied row notes: DEL-08-02 retains routing, DEL-08-03 retains dispatch,
@@ -106,7 +109,7 @@ and query compatibility tests.
 
 ### Current acceptance obligations
 
-1. The primary dialogue is invariant; Workbench and Pipeline are unmounted from the active shell with code, routes, and tests retained and the routes reachable by URL (Q3); the Work projection stays unmounted until an explicitly recorded plan/task source exists.
+1. The primary dialogue is invariant; the Workbench and Pipeline forms are retired (SCA-APP-011) and the `/workbench` and `/pipeline` URLs stay reachable and unlisted (Q3); the Work projection stays unmounted until an explicitly recorded plan/task source exists.
 2. Who is working renders only canonical recorded sessions and exact parentage with source, authority class, responsible reference, currency, and evidence; unknown stays unknown and provenance-labelled.
 3. The Workflows view lists, opens, follows, pauses, creates, and binds governed workflow files with provenance (`roadmapSource` and hash), reports currency (Q15), and advances position only at human gates recording who advanced it (Q16); creation refuses role, folder, or delegation policy unset; the file steers and never records.
 4. The proposal card promotes nothing silently; Accept, Adjust, and Not now are human acts applied by the app; one proposal per chat per trigger; live proposal consumption waits on current extensible Runtime event/record evidence with DEL-05-02 and DEL-08-04/05; the retired closed schema-v2 acceptance is not a gate.
@@ -121,6 +124,15 @@ Alignment writes WI-006, WI-007, WI-008, WI-009, WI-010 performed in run
 `APP_SCA_APP_010_SEATING_2026-09-04`; dependency writes DEP-003, DEP-004 were performed under D-APP-109/D-APP-110 on 2026-09-05; the extracted register now exists.
 No lifecycle, Checking Approval SHA, dependency-acceptance, product, or release
 act is implied.
+
+## SCA-APP-011 Current Contract (Controlling)
+
+SCA-APP-011 (owner direction 2026-09-27; DEC-026) rescopes this deliverable. The Workbench and Pipeline forms and their tests are retired, and this deliverable keeps its right-panel scope unchanged (SOW-006, SOW-081, SOW-082; OBJ-001, OBJ-007; name, ID, folder and envelope unchanged). Where any earlier section or clause disagrees, this section controls; earlier sections remain dated history and are not deleted.
+
+- Obligation 1 of the SCA-APP-010 section is restated there. Obligations 2 to 6 are unchanged.
+- [RETIRED — SCA-APP-011] The Workbench and Pipeline content of CLM-003, CLM-004, CLM-005, CLM-008 to CLM-010 (including DEL-02-02-REQ-001 to DEL-02-02-REQ-011), CLM-012 to CLM-014, CLM-016, CLM-019 and CLM-023 to CLM-027 is history only; none of it is a current obligation.
+- Retired code and tests: `frontend/src/components/workbench/workbench-surface.tsx`, `frontend/src/components/pipeline/pipeline-surface.tsx`, `frontend/src/components/pipeline/lifecycle-gate-fields.tsx`, their tests (`workbench-surface.test.ts`, `pipeline-surface.test.ts`, `lifecycle-transition-gates.test.tsx`), and the client module `frontend/src/lib/workspace/deliverable-api.ts` with `frontend/src/__tests__/lib/workspace-deliverable-api.test.ts`.
+- Current right-panel verification hooks are those in CLM-018.
 
 ## Deliverable Definition — Ontology
 
@@ -225,7 +237,7 @@ The original nine-row/UPD evidence describes the earlier Workbench/Pipeline impl
 > Sources: `_CONTEXT.md` Package Scope and Deliverable Scope; `docs/PRD.md` Section 8.2; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` Sections 7-9.
 >
 
-### CLM-010 — Requirements
+### CLM-010 — Requirements [RETIRED — SCA-APP-011; history only]
 
 > ##### Requirements
 >
@@ -289,7 +301,7 @@ The original nine-row/UPD evidence describes the earlier Workbench/Pipeline impl
 > - Any human ruling needed for cross-package ownership of SOW-007 and matrix-routing overlap with PKG-08.
 >
 
-### CLM-014 — D-APP-56 PIPELINE surface amendment (2026-07-12)
+### CLM-014 — D-APP-56 PIPELINE surface amendment (2026-07-12) [RETIRED — SCA-APP-011; history only]
 
 > ##### D-APP-56 PIPELINE surface amendment (2026-07-12)
 >
@@ -323,7 +335,7 @@ Dependency extraction ran under D-APP-109/D-APP-110 on 2026-09-05. `Dependencies
 4. Verify proposal Accept/Adjust/Not now as actual human acts, once-per-chat/trigger and without silent promotion.
 5. Verify supported current role entry, routing/query compatibility and read-only project records with their semantic owners.
 6. Use current extensible Runtime events and DEL-08-04/05 records for live wiring; no retired closed-schema gate applies.
-7. Record D-APP-36 render/browser and current-source component/integration results, retaining missing implementation explicitly. Current hooks: frontend/src/__tests__/components/woven-dialogue-shell.test.tsx and woven-dialogue-controls.test.tsx, with workspace-deliverable-api.test.ts for the read-only contract.
+7. Record D-APP-36 render/browser and current-source component/integration results, retaining missing implementation explicitly. Current hooks: frontend/src/__tests__/components/woven-dialogue-shell.test.tsx and woven-dialogue-controls.test.tsx; the read-only contract test workspace-deliverable-api.test.ts is retired with its client module (SCA-APP-011).
 
 ### CLM-019 — Verification
 
