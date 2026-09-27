@@ -94,4 +94,16 @@ Relevant paths:
 
 ## Dispositions (WORKING_ITEMS)
 
-Pending; completed after the repair round.
+| Finding | Disposition |
+|---|---|
+| NB-1 | **Repaired at publication.** The verdicts 01–03 are committed with dispositions; `SHA256SUMS` is generated over the tracked prep files at the final head. |
+| NB-2 | **Repaired.** The C8 paragraph quotes SPEC §5.1 exactly ("humans or the coordinating workflow, ordinarily `project-setup`, maintain them"; "Agent-owned sections never overwrite human-owned sections") and rests owner-only application on `D-PEC-101` finding 4. |
+| N1 | **Repaired.** Placement names the five D-PEC-62 C-08 nodes and presents the bullet as a conservative choice, with the legacy-style section as a possible amend. |
+| N2 | **Repaired.** The candidates table gives "61 quotes (+2 file checks)" and "72 quotes (+2 file checks)". |
+| N3 | **Repaired.** `run_k2_checks.sh` now asserts harness and receipts exit 0, a non-empty closure summary with no cycle or bidirectional pair, 0 `NOT_CHECKABLE`, and checklist item count = AC count, and records each checklist hash; rows 3, 4 and 10 say so. |
+| N4 | **Repaired.** `test_apply_k2.py` adds the C8 run-root guard, a C8 pinned-file change, and the exit-2 paths of both scripts: 19/19. |
+| N5 | **Repaired.** `check_cited_ids.py` labels DEL-04-05, DEL-10-02 and the other SCA-005 review-class contracts S1. |
+| N6 | **Repaired.** The REVISE disclosure carries the notice hash `8829ac84…64af`. |
+| N7 | **Repaired.** Source state records the recheck at `e548d4cfa` (17/17 pins hold); the final run is on the branch head that merges it. |
+| N8 | **Repaired.** The C8 section states the ordering: after A, not with an amend that omits DEL-10-13, not concurrently with S; any single-contract amend rebuilds `apply_k2.py`. |
+| N9 | The PR is opened after verdict 04 and the return is written; recorded. |

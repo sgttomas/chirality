@@ -140,4 +140,15 @@ Pin facts S02–S11 recomputed and matching: `SOFTWARE_DECOMP.md` `9374c21f…8e
 
 ## Dispositions (WORKING_ITEMS)
 
-Pending. Repairs are routed to the DEL-10-13 drafter, followed by a backcheck; this section is completed after the backcheck.
+The DEL-10-13 drafter (the author) repaired the candidate and its quote and claim files. The candidate went from `23f6505e…f182` to `02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d` (253 lines; ID counts unchanged; no ID added, removed or renumbered). Quotes: 72 (Q71, Q72 appended; Q46 text replaced in place). Claims: 334 (S333, S334 appended).
+
+| Finding | Disposition |
+|---|---|
+| N1 | **Repaired.** "`_CONTEXT.md` names revision 1.6, and `_REFERENCES.md` names revision 1.6 and PRD v2.4"; S20–S22 split; S334 checks that `_CONTEXT.md` does not contain "v2.4". |
+| N2 | **Repaired, without deciding.** TBD-006 now covers who produces the seeded-feed evidence and the case set, noting the register attributes the evidence to DEL-04-05 but assigns seeding to no one (Q72). REQ-003, AC-003 and VER-003: the harness obtains seeded-feed evidence from the producer TBD-006 names and seeds nothing unless TBD-006, once fixed, assigns it. |
+| N3 | **Repaired.** AC-004 and VER-004 require the fallback signal only where PEC is absent, degraded or failing its own checks; REQ-004 was aligned so the criterion traces to it, and requires at least one such case in the evidence. |
+| N4 | **Repaired.** CLM-012 quotes the full D-PEC-62 clause and notes that the DEL-10-02 contract at `125cfacc1` reads C-08's force as unconfirmed (Q71, S333); the contract relies on neither reading. |
+| n1–n7 | **Applied** as suggested (AX-004 lower case and CLM-005; "complete" kept; register read at the candidate's commit; "at most one candidate"; VER-010 limited to prose copied from evidence; AX-008 "available inputs"; Praxeology rewrapped). |
+| C8 and S | Confirmed by the verifier and the drafter: the contract is true under either answer. |
+
+Backcheck: the full runner at the repaired head gives OVERALL PASS; a fresh reviewer backchecks the repairs in verdict 04.

@@ -138,4 +138,19 @@ Rerun validate, the checklist derivation twice, the boundary check, and both pre
 
 ## Dispositions (WORKING_ITEMS)
 
-Pending. Repairs are routed to the DEL-08-06 drafter, followed by a backcheck; this section is completed after the backcheck.
+The DEL-08-06 drafter (the author, not the verifier) repaired the candidate and its quote and claim files. The candidate went from `31d0aa6e…d036` to `120b61c098bee2d24761cb90be731beedbafe8cbb30b8a611ce16d5ba54f632d` (249 lines; ID counts unchanged; no ID added, removed or renumbered). The quote file gained 2 entries (61) and the claim file 1 (148).
+
+| Finding | Disposition |
+|---|---|
+| B-1 | **Repaired.** REQ-005, AC-005 and VER-005 now give "file-fallback signal and no claim" only where no API response exists (PEC absent or unreachable, service stopped, request refused before any response). Any API response, including a degraded or check-failing one, passes through unchanged under REQ-002 with its claims, envelope and any signal it carries; envelope semantics stay with TBD-006 and CON-004. The matrix row adds CON-004. |
+| NB-1 | **Repaired.** REQ-008: the binding embeds no token-mechanism choice; credential handling follows the OI-006 ruling through the service's token-scoped access path (TBD-002, CLM-011, which names DEL-08-01 as the access-path owner). |
+| NB-2 | **Repaired.** CLM-013 quotes the `pec.yaml` human gate "separate owner act for artifact fitness, lifecycle, release, or professional reliance" (new quote and claim). CLM-012, REQ-015 and AX-009 say "separate owner act"; the REQ-015 matrix row cites CLM-012 and CLM-013. |
+| NB-3 | **Repaired.** "Define"/"definition" replaces "declare" for authoring tool definitions in REQ-001, AC-001, AC-002, VER-002 and the Praxeology line; "declare" remains only for fields inside a definition and in the tier-0 sense. |
+| N-1 | **Repaired.** AC-016: "by an executing test or review record". |
+| N-2 | **Repaired.** AX-010: "the inputs the edges name". |
+| N-3 | **Repaired.** CLM-015 quotes PEC-K-03's pull-only clause (new quote) and introduces the excerpts with "states". |
+| N-4 | Recorded (sufficiency confirmed). |
+| N-5 | **Applied.** "may transcribe". |
+| N-6, N-7 | Recorded (substrate). REQ-015's instrument owners are carried by hand in the proposal's QA 21 table. |
+
+Backcheck: the full runner at the repaired head gives OVERALL PASS (`evidence/run_main/SUMMARY.out`); a fresh reviewer backchecks the repairs in verdict 04.

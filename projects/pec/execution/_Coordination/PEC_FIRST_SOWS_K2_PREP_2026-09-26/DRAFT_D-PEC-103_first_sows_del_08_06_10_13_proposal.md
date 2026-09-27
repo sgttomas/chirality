@@ -40,7 +40,7 @@ One bound script does this in one run, with no lifecycle change.
   - Observation commit **`125cfacc1`** (`125cfacc10f664685cb91802a9166b1041f42a25`, the PR #979 merge, `origin/main` when preparation began). Both candidates say that every unanchored state claim is an observation there, and every tree quotation is read there.
   - Frontmatter pin **`189f205ff02df4111b33c20be441ce06e65ada7a`**, the SCA-006 checkpoint-3 acceptance commit and an ancestor of `origin/main`. These five files are byte-identical at the pin, at `125cfacc1` and at `947075c9a`: `SOFTWARE_DECOMP.md`, `Deliverables.csv`, `ScopeLedger.csv`, `ContextBudgetQA.csv` and `docs/PRD.md`.
   - Checked again at **`947075c9a2164ab3f047c2019ce2d82719f25de7`** (PR #981 merge). Between `125cfacc1` and it, only the undertaking `WORK_GRAPH.md` and `returns/REVIEW_PR981_0{1,2,3}.md` changed in `projects/pec`, `_DomainEngines`, `tools`, `workflows` and `docs`. None is pinned.
-  - All 17 pins of the act script hash as tabled at `947075c9a`. The checks ran on the branch head `6608f56a5`, which merges `947075c9a`.
+  - Rechecked at **`e548d4cfada4d2105de6231516dc6e5fc4bd4689`** (PR #982 and later). Since `947075c9a` only `docs/STATUS.md`, the two undertaking work graphs, one central receipt and two review returns changed; none is pinned. All 17 pins of the act script hash as tabled at `125cfacc1`, `947075c9a` and `e548d4cfa`. The final check run is on the branch head named under Preparation evidence, which merges `origin/main`.
 - **Holds.** `execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv` (`f877d931…cbc`) has a header and no rows. `execution/_Scripts/pec_reliance_hold.py` (`b1712e4b…cd0e`) was run from `projects/pec` with `--operation exact-correction-preparation` on all seven possible targets: both `ScopeOfWork.md`, both `_STATUS.md`, both `MEMORY.md`, and DEL-10-13 `_DEPENDENCIES.md`. Result: `ALLOW`, exit 0, ×7 (`evidence/run_main/reliance_hold_preflight.out`).
 
 ## Method
@@ -63,13 +63,13 @@ One bound script does this in one run, with no lifecycle change.
   - Cite no other contract's local ID unless necessary.
   - Quote no text from the prior S2 contracts.
   - Pin every tree quotation to `125cfacc1`, and anchor every state claim to a named commit.
-- **Tools** (`tools/scope_of_work/`, unchanged at `947075c9a`): `validate_scope_of_work.py` `f0f10590…fecfe`, `derive_review_checklist.py` `bfb64dc9…0109`, `check_boundary_owner_resolution.py` `22ef57e0…ae16a`, `common.py` `61a34722…0389`.
+- **Tools** (`tools/scope_of_work/`, unchanged at `947075c9a` and `e548d4cfa`): `validate_scope_of_work.py` `f0f10590…fecfe`, `derive_review_checklist.py` `bfb64dc9…0109`, `check_boundary_owner_resolution.py` `22ef57e0…ae16a`, `common.py` `61a34722…0389`.
 
 ## What preparation found
 
 ### Lifecycle
 
-- **Both deliverables are `OPEN`** at `125cfacc1` and at `947075c9a`: `_STATUS.md` `73e21846…2511` for DEL-08-06 and `c7a5705d…543b` for DEL-10-13. Each has one history line, "State set to OPEN (TASK+preparation)", from `D-PEC-101`. Neither is `CHECKING` or `ISSUED`.
+- **Both deliverables are `OPEN`** at `125cfacc1`, `947075c9a` and `e548d4cfa`: `_STATUS.md` `73e21846…2511` for DEL-08-06 and `c7a5705d…543b` for DEL-10-13. Each has one history line, "State set to OPEN (TASK+preparation)", from `D-PEC-101`. Neither is `CHECKING` or `ISSUED`.
 - **The method never touches `_STATUS.md`.**
   - `WORKFLOW.md`: "Do not modify `_STATUS.md`, lifecycle state, underscore control files, …".
   - `checks.md` item 3: "`_STATUS.md` is byte-identical and its lifecycle state is unchanged".
@@ -89,8 +89,8 @@ One bound script does this in one run, with no lifecycle change.
 | Defined IDs | OUT 3, CLM 16, REQ 16, AC 17, VER 16, AX 13, TBD 8, CON 4 | OUT 2, CLM 16, REQ 18, AC 19, VER 18, AX 12, TBD 7, CON 4 |
 | Outputs | tool definitions over the read API; the `agent` access-class binding; tests (the register's three-part artifact list) | the gate harness; the gate record (the register's "Gate harness + gate record") |
 | Checklist items | 17 | 19 |
-| Quotes / claims checked | 61 / 147 | 72 / 332 |
-| Size / SHA-256 | 249 lines, `31d0aa6e9d77e345b1c7178acde16fbb099d510500130e58aafdbdd60212d036` | 252 lines, `23f6505e8832cea2212f64c61020fa4ec2f390822f0a9a3baf997285eefff182` |
+| Quotes / claims checked | 61 quotes (+2 file checks) / 148 claims | 72 quotes (+2 file checks) / 334 claims |
+| Size / SHA-256 | 249 lines, `120b61c098bee2d24761cb90be731beedbafe8cbb30b8a611ce16d5ba54f632d` | 253 lines, `02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d` |
 
 Both follow the form of the most recent first contracts (`DEL-02-08`, `DEL-02-09`):
 - the same frontmatter keys and the six required headings;
@@ -106,17 +106,17 @@ Both follow the form of the most recent first contracts (`DEL-02-08`, `DEL-02-09
   - **outputs:** the versioned API response unchanged, with its citations, stamps, limitations, truncation statements, continuation and reliance envelope (REQ-002);
   - **paths:** PEC's own store only, through the versioned API (REQ-003);
   - **mode and side effects:** read-only, none (REQ-004);
-  - **failure:** the file-fallback signal, and never silence as a claim (REQ-005);
+  - **failure:** where no API response exists (PEC absent or unreachable, service stopped, request refused), the file-fallback signal and no claim; any API response, including a degraded or check-failing one, passes through unchanged with its envelope and any signal it carries (REQ-005);
   - **result schema:** the API's, versioned additively (REQ-006);
   - **human gates:** enabling is consumer-owned, and no tool is declared or invoked before the tier-0 act is effective (REQ-007);
-  - **binding:** `agent`-class only, with no escalation (REQ-008);
+  - **binding:** `agent`-class only, with no escalation; it embeds no token-mechanism choice (REQ-008);
   - **also:** labelling (REQ-009), graceful absence (REQ-010), pull only (REQ-011), content-minimal (REQ-012), locality (REQ-013), and boundary exclusions (REQ-014, REQ-015).
   - It chooses no token mechanism, harness, App or agent configuration, and declares or invokes nothing.
 - **DEL-10-13.**
   - **One evaluation per candidate:** a harness that, for one release candidate and the scope it serves, evaluates the five PRD §12 conditions over evidence produced by their owners (REQ-001):
     - parity (DEL-03-04), clean or each difference explained by a recorded DriftFinding disposition (REQ-002);
-    - coverage honesty under seeded unparseable and stale feeds (DEL-04-05; REQ-003);
-    - the reliance envelope (DEL-04-03 under SOW-097; REQ-004);
+    - complete coverage statements under seeded unparseable and stale feeds, evidence attributed by the register to DEL-04-05; who seeds the feeds is left open (TBD-006; REQ-003);
+    - the reliance envelope (DEL-04-03 under SOW-097), with the file-fallback signal required only where PEC is absent, degraded or failing its own checks (REQ-004);
     - the fixture suites of the PKG-02 deliverables its ACTIVE rows name (REQ-005);
     - the kill test (DEL-10-02; REQ-006).
   - **Composition only:** the harness composes evidence and implements none of the producing behaviours (REQ-007).
@@ -140,7 +140,8 @@ Both follow the form of the most recent first contracts (`DEL-02-08`, `DEL-02-09
 | 10-13 CON-002 | Whether DEL-02-07's suite is among "the PKG-02 parser fixture suites" (`D-PEC-101` finding 2). REQ-005 composes what the ACTIVE rows name at evaluation time, so it holds either way | an owner-ruled dependency-register amend |
 | 10-13 CON-003 | The contracts of DEL-03-04, DEL-04-03, DEL-04-05 and DEL-10-02 predate the gate; DEL-04-03's lacks SOW-097. Missing evidence counts as not passed | S4 and S1; ordering is the graph's and owner's |
 | 10-13 CON-004 | No accepted release process for PEC v2, and no defined act of "advertising". The contract's reading that release and advertisement are the owner's acts is labelled an interpretation | owner, before any reliance-advertising release |
-| TBD (others) | ResponsibleParty; tool-definition representation; operation mapping; numeric budgets (Phase 1); fallback representation without a response (08-06). Release-candidate identity and scope; evidence-access method; gate-record form and location; DriftFinding-disposition owner; seeded-case set; "every response" extent (10-13) | production within the REQs, or the named owner |
+| 10-13 TBD-006 | Who produces the seeded-feed evidence (seeds the feeds and runs the coverage statements) and the seeded-case set. The register attributes the coverage-honesty evidence to DEL-04-05 but assigns the seeding to no one; the harness seeds nothing unless this TBD, once fixed, assigns it | production packet or owner |
+| TBD (others) | ResponsibleParty; tool-definition representation; operation mapping; numeric budgets (Phase 1); fallback representation without a response (08-06). Release-candidate identity and scope; evidence-access method; gate-record form and location; DriftFinding-disposition owner; "every response" extent (10-13) | production within the REQs, or the named owner |
 
 ### Qualified IDs cited from contracts under parallel revision (for the S4 and S1 packets)
 
@@ -203,8 +204,8 @@ After this ruling and its register row are merged and observed on fetched `origi
 
 | Item | Path | Preimage | Postimage SHA-256 |
 |---|---|---|---|
-| A | `PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/ScopeOfWork.md` | absent (new file) | `31d0aa6e9d77e345b1c7178acde16fbb099d510500130e58aafdbdd60212d036` |
-| A | `PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/ScopeOfWork.md` | absent (new file) | `23f6505e8832cea2212f64c61020fa4ec2f390822f0a9a3baf997285eefff182` |
+| A | `PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/ScopeOfWork.md` | absent (new file) | `120b61c098bee2d24761cb90be731beedbafe8cbb30b8a611ce16d5ba54f632d` |
+| A | `PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/ScopeOfWork.md` | absent (new file) | `02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d` |
 | S (if selected) | `PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_STATUS.md` | `73e21846186b3ab46d4d11042ecb2bb00d0c69a0d7b4fa70734c75e65a892511` | `75366b6b8a0050c520ab583be927da3960d21df0b8cd3011668b2047db89a127` (`{D}` = 2026-09-26) |
 | S (if selected) | `PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_STATUS.md` | `c7a5705d7203a26f525317e85fa068d29cfeb49b8686eab1b5cd3e782e22543b` | `3771d5262b8f9044a3dbed81af0032a155ec12e876ec90c1f8253a8e5237e567` (`{D}` = 2026-09-26) |
 | M (if selected) | `PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/MEMORY.md` | absent (new file) | template instance with slots (below) |
@@ -213,7 +214,7 @@ After this ruling and its register row are merged and observed on fetched `origi
 
 The A postimages are the exact candidate files, copied byte for byte into the run root as `candidates/…`. They have no date slot.
 
-Read-only files the act re-verifies and never writes (SHA-256 at `125cfacc1` and at `947075c9a`; the first five equal at the pin `189f205ff`):
+Read-only files the act re-verifies and never writes (SHA-256 at `125cfacc1`, `947075c9a` and `e548d4cfa`; the first five equal at the pin `189f205ff`):
 
 - `_Decomposition/SOFTWARE_DECOMP.md` `9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1`
 - `_Decomposition/Deliverables.csv` `94ee5d182ae99092324505a72bf2f3b0581f85c0bae6c693214cfef709179805`
@@ -285,7 +286,7 @@ The postimage (`addons/C8/…/_DEPENDENCIES.md`) inserts exactly this line after
 
 ## Generation method (binding)
 
-The A bytes come from one run of `apply_k2.py`, **SHA-256 `557b73eec48ccd1c2c058b28ef86685d4d7b9ff592333cbb49921d8de7028589`**. The C8 bytes, if selected, come from one run of `apply_k2_c8.py`, **SHA-256 `0b162a74a4068da154f1c77ddf1fdd77151ba9186155fe08632cfff2443aa1ba`**. Both are stdlib-only Python, prepared with CPython 3.13.7. They are copied byte for byte into the run root with the candidate files and the C8 postimage:
+The A bytes come from one run of `apply_k2.py`, **SHA-256 `7d99f3ffb8fab442434b2cbe6a8b0af732c6c9e3d38f88a08821ba04f793563d`**. The C8 bytes, if selected, come from one run of `apply_k2_c8.py`, **SHA-256 `3fd1e53bc8519f60446a98ac4c751900d70490d5a0f52b3fa408754827d823d4`**. Both are stdlib-only Python, prepared with CPython 3.13.7. They are copied byte for byte into the run root with the candidate files and the C8 postimage:
 
 ```text
 PYTHONDONTWRITEBYTECODE=1 python3 projects/pec/execution/_Coordination/SOW_INIT_K2_{D}/apply_k2.py --repo <REPO_ROOT> --candidates projects/pec/execution/_Coordination/SOW_INIT_K2_{D}/candidates [--check-only]
@@ -310,12 +311,12 @@ The check aids, which are not bound:
 
 | Aid | SHA-256 | Role |
 |---|---|---|
-| `test_apply_k2.py` | `f6893e8206c6b41c12099466ed82fe76d5a049f40e0796b64cb22998ae2831a0` | fault injection, 15 cases (11 A, 4 C8) |
+| `test_apply_k2.py` | `4594c8bb6271425b69afaf482a54ac4df82aec5a35707ddaed276e6ad1c73df7` | fault injection, 19 cases (12 A, 7 C8) |
 | `verify_k2_quotes.py` | `50343b9fdc83530e09b4b60ab1a878a4566f551aa52d2a755277a39415f64642` | two-sided quote check, raw dependency quotes, forbidden phrase, observation commit |
 | `verify_k2_state_claims.py` | `8c7146f2d4a5fabf8aa6849cdbbb52f3f5342bed8ba5e871d1493d0408b35b29` | commit-anchored state claims, each also matched in the candidate |
-| `check_cited_ids.py` | `0389f1dcdf1890bd3830cea115b52d4ced353a25924c737143bceaa6e9ab6335` | qualified citations resolve at the observation commit, labelled by node |
+| `check_cited_ids.py` | `70dfdc625a5010ed9a9b1b63d38110bff064ff13e2f519064a785336411571c5` | qualified citations resolve at the observation commit, labelled by node |
 | `scan_old_s2_text.py` | `b4043dfb52cad1274ed5751e699301dccf587b05e18173130997c1111df2f78a` | no prior-S2 text dropped by `D-PEC-100` |
-| `run_k2_checks.sh` | `670b284c4494100ac659e8342c28480f66d4aa32b0180ad7995d49385aa9cdd6` | runs every check on pre/post exports (the rerun method) |
+| `run_k2_checks.sh` | `6e1276e6925cd7de82ecf2ab4abbe643bc3391f5fae6d1618cce5c593b10d58c` | runs every check on pre/post exports (the rerun method) |
 
 ## Finite verification
 
@@ -325,14 +326,14 @@ Run from the repository root with `PYTHONDONTWRITEBYTECODE=1`, on the act branch
 |---|---|---|
 | 1. Preconditions | ruling and register row on fetched `origin/main`; `apply_k2.py --check-only`; `pec_reliance_hold.py --operation dispatch-for-production` on each target before dispatch and `rely-for-production` before fan-in | pins as tabled; `CHECK preflight passed`; `ALLOW` everywhere; on any pin mismatch, stop and route to the owner (no re-pin is pre-authorized) |
 | 2. Contract validity | `python3 tools/scope_of_work/validate_scope_of_work.py <DEL folder>` ×2 | `PASS format=SOW_V1` ×2 |
-| 3. Checklist | `python3 tools/scope_of_work/derive_review_checklist.py --output <run root>/checklist_<DEL>.json <DEL folder>`, each twice | exit 0; 17 and 19 items; reruns byte-identical; equal to the prepared `d9eae773…4c21` and `b0b56b38…c8be` |
-| 4. Boundary owners (QA 21) | `python3 tools/scope_of_work/check_boundary_owner_resolution.py --json <run root>/boundary_<DEL>.json --show-not-checkable <DEL folder>/ScopeOfWork.md` ×2 | exit 0; 1 requirement checked and 0 failing each; 0 `NOT_CHECKABLE`; the non-deliverable owners resolved by hand as tabled below |
-| 5. Quote fidelity | `python3 <run root>/verify_k2_quotes.py --tree . --gitdir . --prep <run root> --observation 125cfacc1` | `RESULT PASS 133/133` (both sides; tree quotations read at `125cfacc1`; 0 dependency rows cite either contract) |
-| 6. State claims | `python3 <run root>/verify_k2_state_claims.py --gitdir . --prep <run root>` | `RESULT PASS 479/479` |
+| 3. Checklist | `python3 tools/scope_of_work/derive_review_checklist.py --output <run root>/checklist_<DEL>.json <DEL folder>`, each twice | exit 0; 17 and 19 items, one per AC (the runner asserts the count); reruns byte-identical; equal to the prepared `a8e63dc9…d34f` and `e3d43d16…9107` |
+| 4. Boundary owners (QA 21) | `python3 tools/scope_of_work/check_boundary_owner_resolution.py --json <run root>/boundary_<DEL>.json --show-not-checkable <DEL folder>/ScopeOfWork.md` ×2 | exit 0; 1 requirement checked and 0 failing each; 0 `NOT_CHECKABLE` (asserted by the runner); the non-deliverable owners resolved by hand as tabled below |
+| 5. Quote fidelity | `python3 <run root>/verify_k2_quotes.py --tree . --gitdir . --prep <run root> --observation 125cfacc1` | `RESULT PASS 137/137` (both sides; tree quotations read at `125cfacc1`; 0 dependency rows cite either contract) |
+| 6. State claims | `python3 <run root>/verify_k2_state_claims.py --gitdir . --prep <run root>` | `RESULT PASS 482/482` |
 | 7. Cited IDs and old S2 text | `check_cited_ids.py --commit 125cfacc1`; `scan_old_s2_text.py --prior ce934ac33 --current 125cfacc1` | `RESULT PASS 0/0`; `stale=0` |
 | 8. Lifecycle preserved (A) | `git diff --name-status origin/main...HEAD -- '**/_STATUS.md'` | empty under A; under S exactly the two tabled postimages |
 | 9. Strict registers (D-GOV-48) | `python3 tools/validation/validate_decomposition_registers.py --strict projects/pec/execution`, before and after | exit code and output **identical** to the pre-act run (at `947075c9a` + branch: exit 1, 0 errors, 26 pre-existing `XRG-013` warnings, owner-deferred) |
-| 10. Closure and every-PR checks | `analyze_dep_closure.py projects/pec/execution`; `harness.py self-check`; `validate_pec_loop_receipts.py --repo-root .` | summary and outputs identical before and after A (and after C8) |
+| 10. Closure and every-PR checks | `analyze_dep_closure.py projects/pec/execution`; `harness.py self-check`; `validate_pec_loop_receipts.py --repo-root .` | harness and receipts exit 0; closure summary non-empty with no cycle or bidirectional pair; each output identical before and after A (and after C8) (all asserted by the runner) |
 | 11. C8 (if selected) | `apply_k2_c8.py --check-only`, then apply | exit 0; write set exactly the one `_DEPENDENCIES.md`; row 9 and 10 outputs unchanged |
 | 12. Containment | `git diff --name-status origin/main...HEAD` | the two created contracts; S's two `_STATUS.md`, M's two `MEMORY.md` and C8's `_DEPENDENCIES.md` only if selected; the run root and HELP_HUMAN's records under `execution/_Coordination/**`; nothing else |
 | 13. Whitespace | `git diff --check origin/main...HEAD` | clean |
@@ -364,6 +365,17 @@ The method's independent verification is a separate `MODE=VERIFY` run, read-only
    - The objective attributions are no stronger than the sources.
    - No `## Remaining` section is read or presented as a surface.
 5. **Containment and lifecycle**, as in the table above.
+
+### Preparation verification history
+
+| Verdict | Scope | Result | Outcome |
+|---|---|---|---|
+| `VERIFIER_VERDICT_01.md` | `MODE=VERIFY`, DEL-08-06 (`31d0aa6e…d036`) | FAILED: 1 blocking (B-1, failure behaviour contradicted pass-through), 3 non-blocking, 7 notes | all repaired by the author; candidate now `120b61c0…632d` |
+| `VERIFIER_VERDICT_02.md` | `MODE=VERIFY`, DEL-10-13 (`23f6505e…f182`) | PASS WITH NOTES: 4 non-blocking, 7 notes | all repaired by the author; candidate now `02fc0c16…3a1d` |
+| `VERIFIER_VERDICT_03.md` | packet review (draft, scripts, tests, hashes, containment) | PASS WITH NOTES: 2 non-blocking, 9 notes | all repaired or recorded |
+| `VERIFIER_VERDICT_04.md` | fresh backcheck of every repair, on the final head | see that file | see that file |
+
+Each verdict file carries the reviewer's report and the manager's dispositions. The verifiers reviewed and did not repair.
 
 ## Administrative grant
 
