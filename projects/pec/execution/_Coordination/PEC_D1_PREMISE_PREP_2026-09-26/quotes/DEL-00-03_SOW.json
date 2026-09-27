@@ -1,0 +1,249 @@
+{
+ "key": "DEL-00-03_SOW",
+ "quotes": [
+  {
+   "id": "Q01",
+   "text": "v2 SPEC seed",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "189f205ff",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-00-03",
+   "column": "Name",
+   "where": "Purpose L14 (deliverable name)"
+  },
+  {
+   "id": "Q02",
+   "text": "Author the v2 SPEC from the accepted decomposition",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "189f205ff",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-089",
+   "column": "ScopeItemStatement",
+   "where": "Purpose L18 (SOW-089 statement)"
+  },
+  {
+   "id": "Q03",
+   "text": "v2 SPEC is born from the decomposition",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "189f205ff",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-089",
+   "column": "Notes",
+   "where": "Purpose L21 (SOW-089 note)"
+  },
+  {
+   "id": "Q04",
+   "text": "SPEC / TRACEABILITY / PILOT /\nADR-001..014",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "189f205ff",
+   "where": "Purpose L27 (PRD §13 surface)"
+  },
+  {
+   "id": "Q05",
+   "text": "Historical baseline retained under `docs/.archive/` with\nexisting disclaimers; v2 SPEC is born from the decomposition; live postures\n(ADR-002, ADR-014) re-cited in v2's first ADRs.",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "189f205ff",
+   "where": "Purpose L28-30 (PRD §13 row)"
+  },
+  {
+   "id": "Q06",
+   "text": "Orientation for any loop is a sub-second query with per-claim\ncitations, not a session-length prose derivation",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "189f205ff",
+   "where": "Purpose L32 (OBJ-001, §3)"
+  },
+  {
+   "id": "Q07",
+   "text": "the weakest in\nthe set",
+   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Amendment_Preview.md",
+   "commit": "6c6cc1b00",
+   "where": "Objective warrant L42 (SCA-002 Gate 3 record Q1.2)"
+  },
+  {
+   "id": "Q08",
+   "text": "specifies the whole product and\nserves no single outcome",
+   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Amendment_Preview.md",
+   "commit": "6c6cc1b00",
+   "where": "Objective warrant L43"
+  },
+  {
+   "id": "Q09",
+   "text": "is about prototype\ndisposition, not any outcome",
+   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Amendment_Preview.md",
+   "commit": "6c6cc1b00",
+   "where": "Objective warrant L44"
+  },
+  {
+   "id": "Q10",
+   "text": "but non-arbitrary",
+   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Amendment_Preview.md",
+   "commit": "6c6cc1b00",
+   "where": "Objective warrant L46: the SOW quotes 'thin but non-arbitrary'; the source reads 'Thin but non-arbitrary.' (capital T, pre-existing case difference; reported, not changed); entry covers the case-exact part"
+  },
+  {
+   "id": "Q11",
+   "text": "v2 SPEC seed",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "189f205ff",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-00-03",
+   "column": "Name",
+   "where": "CLM-001 L69"
+  },
+  {
+   "id": "Q12",
+   "text": "The v2 SPEC born from this decomposition: seeded before P1 from the accepted packages/deliverables, amended per phase under governed updates",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "189f205ff",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-00-03",
+   "column": "Description",
+   "where": "CLM-002 L70"
+  },
+  {
+   "id": "Q13",
+   "text": "SPEC markdown",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "189f205ff",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-00-03",
+   "column": "AnticipatedArtifacts",
+   "where": "CLM-003 L71"
+  },
+  {
+   "id": "Q14",
+   "text": "M because the seed derives structure from an accepted basis (46 requirements / 64 deliverables) rather than inventing content; grows per phase under governed updates",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "189f205ff",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-00-03",
+   "column": "ContextEnvelopeNotes",
+   "where": "CLM-004 L72"
+  },
+  {
+   "id": "Q15",
+   "text": "46 requirements",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "189f205ff",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-00-03",
+   "column": "ContextEnvelopeNotes",
+   "where": "CLM-004 L72 (P04 own-voice correction)"
+  },
+  {
+   "id": "Q16",
+   "text": "The 46 PEC-\\*-NNN requirements, 11 PEC-K invariants, §3 outcomes, §11 metrics/falsification clause, §5 modes ladder, and §12 exit tests are the scope-item source. Governance instruments (workplan, fences, D-GOV/D-T0 rulings) enter as constraints, not scope; the frozen corpus enters as reference, not scope",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "189f205ff",
+   "where": "CLM-006 L79 (§1.4 intake posture 1, verbatim at revision 1.6)"
+  },
+  {
+   "id": "Q17",
+   "text": "v2 identifiers are `PEC-K-*` (invariants) and `PEC-{ORI,RCN,GAT,PRS,STR,API,DSH,SVC}-NNN` (requirements); no family overlaps v1.0 or v0.4, so a bare ID is always unambiguous.",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "189f205ff",
+   "where": "CLM-007 L80 (PRD §14)"
+  },
+  {
+   "id": "Q18",
+   "text": "with existing disclaimers",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "189f205ff",
+   "where": "CLM-007 L80 (PRD §13)"
+  },
+  {
+   "id": "Q19",
+   "text": "quarried by citation",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "189f205ff",
+   "where": "CLM-007 L80 (PRD §13)"
+  },
+  {
+   "id": "Q20",
+   "text": "Authoring surfaces: ADRs and the v2 SPEC as governed product records (amended at Phase 6, DL-14)",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "189f205ff",
+   "where": "CLM-008 L81 (§2.4)"
+  },
+  {
+   "id": "Q21",
+   "text": "PKG-00 publishes ahead of consumers",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "189f205ff",
+   "where": "CLM-008 L81 (DL-14)"
+  },
+  {
+   "id": "Q22",
+   "text": "Published specifications others consume: v2's first ADRs (incl. the OI-012 core-isolation decision), the v2 SPEC born from this decomposition, and the versioned event-contract types consumed by the hooks CLI bridge, the only remaining bridge",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "189f205ff",
+   "where": "CLM-009 L82 (§4 PKG-00 role; re-quoted by P08)"
+  },
+  {
+   "id": "Q23",
+   "text": "Implementation of any contract (consuming packages); cross-package edits — PKG-00 publishes, dependants consume",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "189f205ff",
+   "where": "CLM-009 L82 (§4 PKG-00 exclusions)"
+  },
+  {
+   "id": "Q24",
+   "text": "PKG-00 deliverables publish artifacts that dependants consume as declared dependencies — a deliverable never writes into another package (disjoint write scopes preserved).",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "189f205ff",
+   "where": "CLM-009 L82 (DL-12)"
+  },
+  {
+   "id": "Q25",
+   "text": "§16 open decisions enter the SSOW as `TBD` items with open issues attached, so their eventual rulings amend the decomposition through the scope-change machinery instead of being silently pre-decided",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "189f205ff",
+   "where": "CLM-011 L84 (§1.4 intake posture 3; source bolds the lead words)",
+   "strip_emphasis": true
+  },
+  {
+   "id": "Q26",
+   "text": "no upstream predecessors (root node)",
+   "source": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_DEPENDENCIES.md",
+   "commit": "6c6cc1b00",
+   "where": "CLM-012 L88 (_DEPENDENCIES.md; source bolds it)",
+   "strip_emphasis": true
+  },
+  {
+   "id": "Q27",
+   "text": "All three complete before any P1 node starts",
+   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+   "commit": "6c6cc1b00",
+   "where": "CLM-013 L89 (accepted DAG exhibit §4.2 C-05)"
+  },
+  {
+   "id": "Q28",
+   "text": "seeded before P1",
+   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+   "commit": "6c6cc1b00",
+   "where": "CLM-013 L89: SOW presents \"DEL-00-03 'seeded before P1'\"; the exhibit's CSV cell reads DEL-00-03 \"\"seeded before P1\"\" (quote style only); entry covers the quoted words"
+  },
+  {
+   "id": "Q29",
+   "text": "The v2 SPEC seed has declared dependants; the accepted text names none at deliverable level",
+   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+   "commit": "6c6cc1b00",
+   "where": "CON-001 L90 (C-06 statement)"
+  },
+  {
+   "id": "Q30",
+   "text": "resolvable at WORKING_ITEMS activation or by owner ruling",
+   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+   "commit": "6c6cc1b00",
+   "where": "CON-001 L90 (C-06 notes)"
+  }
+ ]
+}

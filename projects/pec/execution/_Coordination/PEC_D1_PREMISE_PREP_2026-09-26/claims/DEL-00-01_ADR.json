@@ -1,0 +1,181 @@
+{
+ "key": "DEL-00-01_ADR",
+ "claims": [
+  {
+   "id": "S01",
+   "commit": "6c6cc1b00",
+   "kind": "sha256",
+   "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md",
+   "value": "f63ecc2725b26e0e78be993a7902ad5b901cdfbb2e7921a19fc3442c9d785db5",
+   "candidate_text": "`f63ecc2725b26e0e78be993a7902ad5b901cdfbb2e7921a19fc3442c9d785db5`"
+  },
+  {
+   "id": "S02",
+   "commit": "189f205ff",
+   "kind": "ancestor",
+   "value": "6c6cc1b00dd5cc2bf77a5a262d0ac593fc96e240",
+   "candidate_text": "accepted at `189f205ff`"
+  },
+  {
+   "id": "S03",
+   "commit": "189f205ff",
+   "kind": "contains",
+   "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "value": "status: current_basis\nrevision: \"1.6\"",
+   "candidate_text": "revision 1.6 (`current_basis`, accepted at `189f205ff`)"
+  },
+  {
+   "id": "S04",
+   "commit": "189f205ff",
+   "kind": "contains",
+   "path": "projects/pec/docs/PRD.md",
+   "value": "| **Version** | 2.4 |",
+   "candidate_text": "`projects/pec/docs/PRD.md` v2.4"
+  },
+  {
+   "id": "S05",
+   "commit": "189f205ff",
+   "kind": "contains",
+   "path": "projects/pec/docs/PRD.md",
+   "value": "**Harnesses** (an application-owned Runtime service, one private Runtime per application under `D-GOV-43` A2; terminal-session hooks CLI)",
+   "candidate_text": "CLI, application-owned Runtime service, socket, filesystem, store, or dashboard"
+  },
+  {
+   "id": "S06",
+   "commit": "189f205ff",
+   "kind": "contains",
+   "path": "projects/pec/docs/PRD.md",
+   "value": "Supported bridge: the harness hooks CLI (session start/stop, status, scope declaration), the only remaining bridge.",
+   "candidate_text": "Git observation, the hooks CLI bridge, Unix-socket/API transport"
+  },
+  {
+   "id": "S07",
+   "commit": "189f205ff",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "value": {
+    "key_column": "ScopeItemID",
+    "key": "SOW-035",
+    "column": "InOutStatus",
+    "equals": "OUT"
+   },
+   "candidate_text": "the hooks CLI bridge"
+  },
+  {
+   "id": "S08",
+   "commit": "189f205ff",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "value": {
+    "key_column": "ScopeItemID",
+    "key": "SOW-037",
+    "column": "InOutStatus",
+    "equals": "OUT"
+   },
+   "candidate_text": "the hooks CLI bridge"
+  },
+  {
+   "id": "S09",
+   "commit": "189f205ff",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "value": {
+    "key_column": "ScopeItemID",
+    "key": "SOW-088",
+    "column": "ScopeItemStatement",
+    "contains": "carrying forward the accepted v2 runtime/client and human-only-act boundary"
+   },
+   "candidate_text": "runtime-ownership / optional-client / human-only-act boundary (`SOW-088`;"
+  },
+  {
+   "id": "S10",
+   "commit": "6c6cc1b00",
+   "kind": "contains",
+   "path": "docs/CONTRACT.md",
+   "value": "that service is the exclusive owner of the stock, version-pinned `codex app-server` child together with sessions, delegation, tools, turn locks, and interruption for that App instance",
+   "candidate_text": "`codex app-server` child together with sessions, delegation, tools, turn locks, and interruption"
+  },
+  {
+   "id": "S11",
+   "commit": "6c6cc1b00",
+   "kind": "contains",
+   "path": "docs/CONTRACT.md",
+   "value": "Credentials are custodied by Codex within Chirality's effective Codex home",
+   "candidate_text": "credentials are custodied by Codex"
+  },
+  {
+   "id": "S12",
+   "commit": "6c6cc1b00",
+   "kind": "contains",
+   "path": "docs/DIRECTIVE.md",
+   "value": "The per-user daemon, its LaunchAgent, and local-model residency are retired.",
+   "candidate_text": "local-model residency is retired"
+  },
+  {
+   "id": "S13",
+   "commit": "189f205ff",
+   "kind": "contains",
+   "path": "projects/pec/docs/PRD.md",
+   "value": "`D-GOV-43` supersedes `D-GOV-20` items 2–4 on the App MVP Codex path",
+   "candidate_text": "superseding `D-GOV-20` items 2–4 on that path"
+  },
+  {
+   "id": "S14",
+   "commit": "189f205ff",
+   "kind": "contains",
+   "path": "projects/pec/docs/PRD.md",
+   "value": "PEC creates no second loop and holds no session authority.",
+   "candidate_text": "PRD v2.4 §4.2 and §15"
+  },
+  {
+   "id": "S15",
+   "commit": "189f205ff",
+   "kind": "contains",
+   "path": "projects/pec/docs/PRD.md",
+   "value": "Its no-dual-loop boundary (behavior 4) and human-only-act restrictions (behavior 7) survive unchanged.",
+   "candidate_text": "`D-PEC-56` behaviors 2, 4, and 7 as limited by `D-PEC-58` behavior 8"
+  },
+  {
+   "id": "S16",
+   "commit": "189f205ff",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "value": {
+    "key_column": "ScopeItemID",
+    "key": "SOW-087",
+    "column": "InOutStatus",
+    "equals": "OUT"
+   },
+   "candidate_text": "(`SOW-087`, deferred OUT; PRD v2.4 §13)"
+  },
+  {
+   "id": "S17",
+   "commit": "189f205ff",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "value": {
+    "key_column": "ScopeItemID",
+    "key": "SOW-087",
+    "column": "Notes",
+    "contains": "**Deferred**, not permanent — trigger T-RT"
+   },
+   "candidate_text": "deferred behind trigger T-RT"
+  },
+  {
+   "id": "S18",
+   "commit": "189f205ff",
+   "kind": "contains",
+   "path": "projects/pec/docs/PRD.md",
+   "value": "a per-application Runtime client is **Deferred, not permanent** — trigger T-RT",
+   "candidate_text": "PEC's runtime-client seam, deferred behind trigger T-RT, is an adapter"
+  },
+  {
+   "id": "S19",
+   "commit": "6c6cc1b00",
+   "kind": "contains",
+   "path": "projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md",
+   "value": "| D1 Derivative premise review | DEL-00-01 ADRs, DEL-00-03 SPEC",
+   "candidate_text": "work-graph node D1 (`HELP-HUMAN-PEC-20260925-POST-SCA005`)"
+  }
+ ]
+}
