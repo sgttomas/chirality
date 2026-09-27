@@ -1,0 +1,85 @@
+--- a/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md
++++ b/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md
+@@ -9,6 +9,16 @@
+ `projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.3 at
+ `11a494e9a`, accepted through SCA-003.
+ 
++**Premise amendment:** premises that SCA-005 and SCA-006 made false are
++brought current to `projects/pec/docs/PRD.md` v2.4 and decomposition
++revision 1.6 (`current_basis`, accepted at `189f205ff`), under an
++owner-ruled exact-byte packet of work-graph node D1
++(`HELP-HUMAN-PEC-20260925-POST-SCA005`). The owner-accepted bytes this
++amends (SHA-256
++`f63ecc2725b26e0e78be993a7902ad5b901cdfbb2e7921a19fc3442c9d785db5`)
++remain history; nothing else is revised, and no acceptance of these bytes
++is recorded here.
++
+ ## ADR-PEC-V2-001 — Hexagonal application isolation
+ 
+ - Status: DECIDED by D-PEC-72 O-B
+@@ -51,10 +61,11 @@
+    grain and PKG-02/06/store + PKG-07/08/09 edge grain (OI-012).
+ 2. Ports are named for capabilities or use cases, not for the current external
+    actor. An adapter may bind App, Root, Task Management, a domain application,
+-   CLI, daemon, socket, filesystem, store, or dashboard to such a port, but
+-   those actor names do not enter the PEC core merely because they are the
+-   first consumers or providers. This is an architectural interpretation of
+-   the selected O-B style, not a new consumer duty (`PEC-K-03`, `PEC-K-11`).
++   CLI, application-owned Runtime service, socket, filesystem, store, or
++   dashboard to such a port, but those actor names do not enter the PEC core
++   merely because they are the first consumers or providers. This is an
++   architectural interpretation of the selected O-B style, not a new consumer
++   duty (`PEC-K-03`, `PEC-K-11`).
+ 3. Where the accepted product already requires a cross-boundary schema, the
+    port contract is typed and versioned. Commands, queries, events, results,
+    errors, and compatibility behavior belong to that contract to the extent
+@@ -81,8 +92,8 @@
+ 
+ ### Consequences
+ 
+-- Filesystem grammars, the projection store, Git observation, daemon/hook/cmux
+-  bridges, Unix-socket/API transport, and dashboards can be replaced without
++- Filesystem grammars, the projection store, Git observation, the hooks CLI
++  bridge, Unix-socket/API transport, and dashboards can be replaced without
+   changing PEC's domain/application behavior, provided their adapters continue
+   to satisfy the applicable typed port contracts.
+ - Tests can exercise the core through in-memory port implementations and run
+@@ -125,7 +136,7 @@
+ The frozen v0.4 ADR catalogue is historical evidence, not present authority.
+ The accepted v2 basis requires the first ADR set to re-cite ADR-002 in its v2
+ carried form, cite ADR-014 only as lineage, and state the surviving
+-Root-runtime / optional-client / human-only-act boundary (`SOW-088`;
++runtime-ownership / optional-client / human-only-act boundary (`SOW-088`;
+ `DEL-00-01` REQ-003..005).
+ 
+ ### Carried posture
+@@ -141,15 +152,20 @@
+    allocation of deterministic acts, RBAC, reporting, visibility, and data
+    boundaries to an old PEC project-adapter service. That allocation is not a
+    PEC v2 requirement and is not re-adopted here.
+-3. **The surviving live boundary is independent of ADR-014:** Root owns generic
+-   runtime semantics including sessions, delegation, turn locks, credentials,
+-   interruption, and model residency; PEC is an optional client and starts no
+-   second execution loop; adoption, ruling, acceptance, rejection, force, and
+-   other human-only acts remain unavailable to agents (`D-PEC-56` behaviors
+-   2, 4, and 7 as limited by `D-PEC-58` behavior 8; PRD v2.2 §4.2 and §15).
+-4. PEC's runtime-client seam is an adapter under ADR-PEC-V2-001. It does not
+-   transfer Root runtime ownership into PEC and does not restore the retired
+-   v0.4 project-adapter allocation (`SOW-087`).
++3. **The surviving live boundary is independent of ADR-014:** for each App
++   instance, the application-owned Runtime service owns the stock
++   `codex app-server` child together with sessions, delegation, tools, turn
++   locks, and interruption; credentials are custodied by Codex, and
++   local-model residency is retired (`D-GOV-43` A2, superseding `D-GOV-20`
++   items 2–4 on that path; Root `docs/CONTRACT.md` K-RUNTIME-1); PEC is an
++   optional client and starts no second execution loop; adoption, ruling,
++   acceptance, rejection, force, and other human-only acts remain
++   unavailable to agents (`D-PEC-56` behaviors 2, 4, and 7 as limited by
++   `D-PEC-58` behavior 8; PRD v2.4 §4.2 and §15).
++4. PEC's runtime-client seam, deferred behind trigger T-RT, is an adapter
++   under ADR-PEC-V2-001 if taken up. It does not transfer runtime ownership
++   into PEC and does not restore the retired v0.4 project-adapter allocation
++   (`SOW-087`, deferred OUT; PRD v2.4 §13).
+ 
+ ### Consequences and boundary
+ 
