@@ -19,33 +19,33 @@ Current extracted downstream rows: NONE. These are existing register projections
 
 ## Extracted Dependency Register
 
-Structured register: `Dependencies.csv` v3.1
+Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated sections elsewhere in this file keep the counts of their dates.
 
-Extraction timestamp: 2026-08-24T00:54:53-0600
-
-| Count Type | Value |
+| Count Type | Count |
 |---|---:|
 | Total rows | 11 |
 | ACTIVE rows | 11 |
 | RETIRED rows | 0 |
-| ANCHOR rows | 3 |
-| EXECUTION rows | 8 |
-| Parent anchors (`IMPLEMENTS_NODE`) | 1 |
-| Trace anchors (`TRACES_TO_REQUIREMENT`) | 2 |
+| ACTIVE ANCHOR rows | 3 |
+| ACTIVE EXECUTION rows | 8 |
+| ACTIVE parent anchors (`IMPLEMENTS_NODE`) | 1 |
+| ACTIVE Origin=DECLARED rows | 0 |
 
-| DependencyID | Class | Type / Anchor | Direction | TargetType | Target | Status |
+### Compact Register
+
+| DependencyID | Class | Direction | Type | Target | Status | SatisfactionStatus |
 |---|---|---|---|---|---|---|
-| DEP-08-05-001 | ANCHOR | OTHER | UPSTREAM | SOW-063 | ACTIVE | SATISFIED |
-| DEP-08-05-002 | ANCHOR | OTHER | UPSTREAM | OBJ-003 | ACTIVE | SATISFIED |
-| DEP-08-05-003 | ANCHOR | OTHER | UPSTREAM | OBJ-007 | ACTIVE | SATISFIED |
-| DEP-08-05-004 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-08-04 | ACTIVE | TBD |
-| DEP-08-05-005 | EXECUTION | PREREQUISITE | UPSTREAM | Runtime event schema and HarnessEvent | ACTIVE | TBD |
-| DEP-08-05-006 | EXECUTION | PREREQUISITE | UPSTREAM | Artifact storage policy | ACTIVE | SATISFIED |
-| DEP-08-05-007 | EXECUTION | CONSTRAINT | UPSTREAM | Runtime redaction policy | ACTIVE | TBD |
-| DEP-08-05-008 | EXECUTION | CONSTRAINT | UPSTREAM | SDK transcript metadata boundary | ACTIVE | TBD |
-| DEP-08-05-009 | EXECUTION | CONSTRAINT | UPSTREAM | Retired unified pipeline run record boundary | ACTIVE | TBD |
-| DEP-08-05-010 | EXECUTION | CONSTRAINT | UPSTREAM | D-APP-40 denied child-run allocation boundary | ACTIVE | SATISFIED |
-| DEP-08-05-011 | EXECUTION | INTERFACE | UPSTREAM | DEL-08-04 | ACTIVE | TBD |
+| DEP-08-05-001 | ANCHOR | UPSTREAM | OTHER | SOW-063 | ACTIVE | SATISFIED |
+| DEP-08-05-002 | ANCHOR | UPSTREAM | OTHER | OBJ-003 | ACTIVE | SATISFIED |
+| DEP-08-05-003 | ANCHOR | UPSTREAM | OTHER | OBJ-007 | ACTIVE | SATISFIED |
+| DEP-08-05-004 | EXECUTION | UPSTREAM | PREREQUISITE | DEL-08-04 | ACTIVE | TBD |
+| DEP-08-05-005 | EXECUTION | UPSTREAM | PREREQUISITE | Runtime event schema and HarnessEvent | ACTIVE | TBD |
+| DEP-08-05-006 | EXECUTION | UPSTREAM | PREREQUISITE | Artifact storage policy | ACTIVE | SATISFIED |
+| DEP-08-05-007 | EXECUTION | UPSTREAM | CONSTRAINT | Runtime redaction policy | ACTIVE | TBD |
+| DEP-08-05-008 | EXECUTION | UPSTREAM | CONSTRAINT | SDK transcript metadata boundary | ACTIVE | TBD |
+| DEP-08-05-009 | EXECUTION | UPSTREAM | CONSTRAINT | Retired unified pipeline run record boundary | ACTIVE | TBD |
+| DEP-08-05-010 | EXECUTION | UPSTREAM | CONSTRAINT | D-APP-40 denied child-run allocation boundary | ACTIVE | SATISFIED |
+| DEP-08-05-011 | EXECUTION | UPSTREAM | INTERFACE | DEL-08-04 | ACTIVE | TBD |
 
 ## Run Notes
 
@@ -76,6 +76,20 @@ Extraction timestamp: 2026-08-24T00:54:53-0600
 - `[WARNING] ID_FORMAT_VALIDATOR_PROJECT_CONVENTION`: `validate_id_format.sh` requires `DEL-[0-9]{3}-[0-9]{2}` and `PKG-[0-9]{3}`, so it rejects the accepted live project identifiers `DEL-08-05`, `DEL-08-04`, and `PKG-08`. The extraction preserves those decomposition-authoritative identifiers; no alternative IDs were invented.
 - Schema validation passed: 29 required columns and 11 data rows.
 
+## Run Notes - 2026-09-27 SCA-APP-011 incremental setup refresh (UPDATE)
+
+- Run: `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`, `project-setup` INCREMENTAL Phase 5.6 (FULL_GRAPH) dispatch of `bundled:chirality-root/dependency-extract`, run directly by WORKING_ITEMS after the owner confirmed the SCA-APP-011 incremental plan on 2026-09-27 (verbatim in `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/CHAT_TRANSCRIPTION.md`). Role: FULL_GRAPH neighbour of the SCA-APP-011 MODIFY set.
+- Runtime overrides: `SCOPE=DEL-08-05`; `RUN_ROOT=projects/chirality-app-dev/execution`; `DECOMPOSITION_PATH=projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=NONE`; `SOURCE_DOCS=AUTO` (`ScopeOfWork.md`, `_CONTEXT.md`, `_REFERENCES.md`, `_STATUS.md`); `ANCHOR_DOC=ScopeOfWork.md`; `EXECUTION_DOC_ORDER=ScopeOfWork.md, _CONTEXT.md`.
+- Decomposition authority: FOUND, SHA-256 `cf6e56ebb1474d30a45dd3973dcb449d8aab30a84d731649336091afd2321876` (as amended by SCA-APP-011).
+- Source-preservation gate: `ScopeOfWork.md` `e6fc2662e5b8f3e08a8b602828283f31025574e979d521dbe4aac21f333c4cb3`; `_CONTEXT.md` `337a22d959dd6974434cd6ab6b6ba7be7aa4d9560938ee6b3851a42d8b676d1f`; `_REFERENCES.md` `08f14e6b91d8b44280958a7701286e7529b71d58b841e127388dcc0deeb5bd26`; `_STATUS.md` `aaa583ef134d721a29aa518e03212f0379f19d851b4a149889d3bac689dca627`; read-only and unchanged by this run.
+- Pre-images: `Dependencies.csv` `7261ccd9edd95c789f23dd6f0d6eb869309e28ab16808aa296cb5f977c1e281a`, `_DEPENDENCIES.md` `3f232964125c4cb7daaa9af76be5c23f65a6782c8fd3dc8c67748c1fe0462fb1`.
+- Method: every existing ACTIVE row was re-checked against its cited current source (quote found verbatim, and not only inside a `[RETIRED` clause or a clause SCA-APP-011 declared history). Text added to the sources since the previous extraction (2026-09-22) was scanned for new explicit cross-deliverable relationships. Unchanged source text yields the rows already recorded.
+- Results: re-seen 11 (`LastSeen=2026-09-27`); restated in place 0; kept with a note 0; retired 0; added 0; held with `[WARNING] EVIDENCE_SOURCE_RETIRED` 0. No row deleted; every existing `DependencyID` preserved; `Status=CANDIDATE` not emitted.
+- Declared entries: none (the declared sections carry no SPEC §5.2 entry). Mirror rows added 0, refreshed 0, retired 0; entries skipped 0.
+- Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` row (1).
+- Function 5 checks (`execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/dep_extract/FUNCTION5_CHECKS.json`): `validate_dependencies_schema.py` PASS; `DependencyID` unique; every enum value written by this run VALID (`validate_enum.py`); ID format PASS for `FromDeliverableID`, `FromPackageID` and every `DependencyID` (`validate_id_format.sh`; the PROJECT_ID_FORMAT_PROFILE warning of earlier runs no longer reproduces); index counts match `Dependencies.csv`.
+- [INFO] EVQ-006 (report-only, `validate_decomposition_registers.py --families EVQ,DRB`): the validator resolves `EvidenceFile` from the project root, so it reports every App register row whose `EvidenceFile` is deliverable- or repository-relative. This is a project-wide pre-existing convention finding, not a defect introduced here; no EVQ-003, EVQ-004 or DRB-006 finding.
+
 ## Run History
 
 | Timestamp | Mode | Strictness | Decomposition Status | ACTIVE Rows | Warnings |
@@ -84,20 +98,24 @@ Extraction timestamp: 2026-08-24T00:54:53-0600
 | 2026-06-21T05:00:00-0600 | ADQ-12 | CONSERVATIVE | D-APP-38 current authority corpus, D-APP-40 child-run taxonomy, and child-output artifact evidence applied | 10 | none |
 | 2026-06-21T03:00:20-0600 | ADQ-05 | CONSERVATIVE | D-APP-38 current authority corpus and D-APP-40 child-run taxonomy applied | 10 | none |
 | 2026-05-20T20:55:00-0600 | UPDATE | CONSERVATIVE | Found and used explicit path | 10 | superseded source-state warning; superseded denied-allocation ruling request |
+| 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`) | UPDATE | CONSERVATIVE | FOUND `cf6e56ebb147…` (SCA-APP-011 amended) | ACTIVE=11 (ANCHOR=3; EXECUTION=8) | none |
 
 ## Lifecycle Summary
 
-Current descriptive counts from unchanged `Dependencies.csv` (2026-09-22); this projection does not change satisfaction or maturity.
+Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`), from `Dependencies.csv`; counts cover all rows (ACTIVE and RETIRED). This projection changes no satisfaction or maturity.
 
-| Field | Count |
-|---|---:|
-| ACTIVE | 11 |
-| RequiredMaturity=SEMANTIC_READY | 11 |
-| ProposedMaturity=SATISFIED | 1 |
-| ProposedMaturity=SEMANTIC_READY | 4 |
-| ProposedMaturity=TBD | 6 |
-| SatisfactionStatus=SATISFIED | 5 |
-| SatisfactionStatus=TBD | 6 |
+| Dimension | Value | Count |
+|---|---|---:|
+| Status | ACTIVE | 11 |
+| SatisfactionStatus | SATISFIED | 5 |
+| SatisfactionStatus | TBD | 6 |
+| RequiredMaturity | SEMANTIC_READY | 11 |
+| DependencyClass | ANCHOR | 3 |
+| DependencyClass | EXECUTION | 8 |
+| DependencyType | CONSTRAINT | 4 |
+| DependencyType | INTERFACE | 1 |
+| DependencyType | OTHER | 3 |
+| DependencyType | PREREQUISITE | 3 |
 
 ## Downstream Handoff Notes
 
