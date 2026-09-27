@@ -36,7 +36,7 @@
     "DEP-02-02-018": "RESEEN",
     "DEP-02-02-019": "RESEEN",
     "DEP-02-02-020": "RESEEN",
-    "DEP-02-02-021": "HOLD ESR-1 (retire candidate)",
+    "DEP-02-02-021": "RETIRE ESR-1 (owner ruling)",
     "DEP-02-02-022": "RESTATE ESR-1 (re-evidenced)"
    }
   },
@@ -288,7 +288,7 @@
     "DEP-02-01-011": "RESEEN",
     "DEP-02-01-012": "RESEEN",
     "DEP-02-01-013": "RESTATE (beyond DX)",
-    "DEP-02-01-014": "HOLD ESR-1 (retire candidate)"
+    "DEP-02-01-014": "RETIRE ESR-1 (owner ruling)"
    }
   },
   "DEL-02-04": {
@@ -319,8 +319,8 @@
     "DEP-02-04-012": "RESEEN",
     "DEP-02-04-013": "RESEEN",
     "DEP-02-04-014": "RESEEN",
-    "DEP-02-04-015": "HOLD ESR-1 (retire candidate)",
-    "DEP-02-04-016": "HOLD ESR-1 (retire candidate)",
+    "DEP-02-04-015": "RETIRE ESR-1 (owner ruling)",
+    "DEP-02-04-016": "RETIRE ESR-1 (owner ruling)",
     "DEP-02-04-017": "RESTATE ESR-1 (re-evidenced)",
     "DEP-02-04-018": "RESTATE ESR-1 (re-evidenced)",
     "DEP-02-04-019": "RESTATE ESR-1 (re-evidenced)",

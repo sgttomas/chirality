@@ -365,8 +365,8 @@
  },
  "index_counts": {
   "DEL-02-02": {
-   "index_active": 15,
-   "csv_active": 15,
+   "index_active": 14,
+   "csv_active": 14,
    "match": true
   },
   "DEL-02-03": {
@@ -410,13 +410,13 @@
    "match": true
   },
   "DEL-02-01": {
-   "index_active": 12,
-   "csv_active": 12,
+   "index_active": 11,
+   "csv_active": 11,
    "match": true
   },
   "DEL-02-04": {
-   "index_active": 21,
-   "csv_active": 21,
+   "index_active": 19,
+   "csv_active": 19,
    "match": true
   },
   "DEL-02-05": {

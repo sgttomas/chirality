@@ -35,12 +35,11 @@ review of `0ca5ffcca..1d5909491`.
 
 | Action | Rows |
 |---|---|
-| Retired | DEP-02-02-005, 006, 007, 008, 009 (DX-01 to DX-05); DEP-02-01-007 (DX-06); DEP-02-01-008 (DX-07, owner's HGD-2 ruling) |
+| Retired | DEP-02-02-005, 006, 007, 008, 009 (DX-01 to DX-05); DEP-02-01-007 (DX-06); DEP-02-01-008 (DX-07, owner's HGD-2 ruling); DEP-02-02-021, DEP-02-04-015, DEP-02-04-016, DEP-02-01-014 (owner's ESR-1 ruling) |
 | Restated in place | DEP-07-05-025 (DX-08 to DX-10); DEP-08-03-010 (DX-11, DX-12); DEP-08-02-003 (DX-13); DEP-08-02-005 (DX-14); DEP-07-05-015 and DEP-02-01-013 (beyond DX, below) |
 | Re-evidenced in place (ESR-1) | DEP-02-02-022; DEP-02-04-017, 018, 019; DEP-07-01-010; DEP-08-01-018, 019; DEP-08-04-013 |
 | Kept, with the tension noted | DEP-02-03-009 (DX-15) |
 | Added | DEP-07-04-009 (beyond DX, below) |
-| Held ACTIVE as retire candidates (ESR-1) | DEP-02-02-021; DEP-02-01-014; DEP-02-04-015, 016 |
 
 - **Registers with no change beyond `LastSeen`:** DEL-03-03, DEL-07-02,
   DEL-09-03, DEL-02-05, DEL-03-02, DEL-03-04, DEL-04-04, DEL-05-02, DEL-05-04,
@@ -74,7 +73,9 @@ review of `0ca5ffcca..1d5909491`.
 - **Graph after extraction** (analyzer): 54 nodes, 107 edges, 0 SCC, 0 orphans.
   - The retired rows remove five distinct edges, and DEP-07-04-009 adds
     DEL-07-04 → DEL-06-03.
-  - The ESR-1 follow-up changed no edge.
+  - The ESR-1 re-evidence changed no edge.
+  - The owner's ESR-1 ruling removes four more edges, leaving 103 edges and
+    0 SCC (closure snapshot `CLOSURE_SCA_APP_011_ESR1_RULING_2026-09-27_1739`).
 
 ## Outcomes beyond the confirmed expected outcomes (DX-01 to DX-16)
 
@@ -145,10 +146,10 @@ review of `0ca5ffcca..1d5909491`.
 | DEP-08-01-019 | DEL-07-01 → DEL-08-01 | Re-evidenced, IMPLICIT/MEDIUM | Decomposition Scope Ledger SOW-084, line 492 |
 | DEP-08-01-018 | DEL-06-03 → DEL-08-01 | Re-evidenced, IMPLICIT/MEDIUM | Decomposition Scope Ledger SOW-082, line 490 |
 | DEP-08-04-013 | DEL-03-02 → DEL-08-04 | Re-evidenced, IMPLICIT/MEDIUM | Decomposition Scope Ledger SOW-083, line 491 (also DEL-08-04 SOW acceptance obligation 2) |
-| DEP-02-02-021 | DEL-02-03 → DEL-02-02 | Retire candidate | None. The SOW's seated line names only the item IDs. APP-R022 says DEL-02-03 provides the view switcher, but no source says the Workflows view mounts in it |
-| DEP-02-04-015 | DEL-02-02 → DEL-02-04 | Retire candidate | None. The item gate "not selectable until DEL-02-02-V3-03 landed" is stated nowhere current |
-| DEP-02-04-016 | DEL-02-03 → DEL-02-04 | Retire candidate | None, as for DEP-02-02-021 (Activity view) |
-| DEP-02-01-014 | DEL-01-03 → DEL-02-01 | Retire candidate | None. No current source states the professional-boundary copy constraint on DEL-02-01's copy pass |
+| DEP-02-02-021 | DEL-02-03 → DEL-02-02 | Retired (owner ruling) | None. The SOW's seated line names only the item IDs. APP-R022 says DEL-02-03 provides the view switcher, but no source says the Workflows view mounts in it |
+| DEP-02-04-015 | DEL-02-02 → DEL-02-04 | Retired (owner ruling) | None. The item gate "not selectable until DEL-02-02-V3-03 landed" is stated nowhere current |
+| DEP-02-04-016 | DEL-02-03 → DEL-02-04 | Retired (owner ruling) | None, as for DEP-02-02-021 (Activity view) |
+| DEP-02-01-014 | DEL-01-03 → DEL-02-01 | Retired (owner ruling) | None. No current source states the professional-boundary copy constraint on DEL-02-01's copy pass |
 
 **Notes on the re-evidenced rows**
 - **D-APP-110 record.** It lies outside the workflow's default read boundary.
@@ -158,7 +159,7 @@ review of `0ca5ffcca..1d5909491`.
   Confidence MEDIUM; the prior values are kept in `Notes`.
 - **Integrity.** No edge, target, status or satisfaction changed.
 
-### Owner decision: four retire candidates
+### Owner ruling: the four retire candidates (applied; ESR-1 closed)
 
 Retiring these rows has no gating cost:
 - **Blockers do not change.** Each row requires SEMANTIC_READY and each target
@@ -177,12 +178,19 @@ Retiring these rows has no gating cost:
   impact of all.
 - **DEP-02-01-014** removes DEL-01-03 → DEL-02-01.
 
-**Proposed owner reply:**
+**Owner ruling**, typed in chat on 2026-09-27 (verbatim;
+`CHAT_TRANSCRIPTION_ESR-1_2026-09-27.md`):
 
 > ESR-1: retire DEP-02-02-021, DEP-02-04-015, DEP-02-04-016 and DEP-02-01-014.
 
-The alternative is to keep any of them as a preserved accepted row, by naming
-it in the reply.
+**Applied** (`dep_extract/apply_esr1_ruling.py`), using the registers'
+retired-row convention:
+- `Status=RETIRED` and `SatisfactionStatus=NOT_APPLICABLE`;
+- the prior value and the ruling, verbatim, in `Notes`;
+- the ID kept, no row deleted, and every other field unchanged.
+
+The three affected `_DEPENDENCIES.md` files record ESR-1 as closed. **ESR-1 is
+closed.**
 
 ## HGD-2 and HGD-3
 

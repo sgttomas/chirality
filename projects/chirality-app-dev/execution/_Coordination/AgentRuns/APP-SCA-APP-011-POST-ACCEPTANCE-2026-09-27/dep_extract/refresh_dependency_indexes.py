@@ -136,6 +136,13 @@ def run_notes(d, info, rows):
                    "ruling record D-APP-110 (its SD-003 decompose names the row) or the decomposition Scope Ledger allocation "
                    "(IMPLICIT, MEDIUM). The D-APP-110 record lies outside the workflow's default read boundary and was read because it "
                    "is the accepted ruling that names these rows. No edge, target, status or satisfaction changed.")
+    ruled = [k for k, v in acts.items() if "ESR-1 (owner ruling)" in v]
+    if ruled:
+        out.append("- ESR-1 CLOSED 2026-09-27: " + ", ".join(ruled) + (" was" if len(ruled) == 1 else " were")
+                   + " held as retire candidates (no current source; preserved by the accepted 2026-09-23 instrument) and are now "
+                   "RETIRED by the owner's ruling in chat on 2026-09-27 (verbatim, transcription `execution/_Coordination/AgentRuns/"
+                   + RUN_ID + "/CHAT_TRANSCRIPTION_ESR-1_2026-09-27.md`): \"ESR-1: retire DEP-02-02-021, DEP-02-04-015, "
+                   "DEP-02-04-016 and DEP-02-01-014.\"")
     if by["HOLD"]:
         out.append("- [WARNING] EVIDENCE_SOURCE_RETIRED: " + ", ".join(by["HOLD"]) + (" cites" if len(by["HOLD"]) == 1 else " cite")
                    + " the former `_STATUS.md` `## Remaining` section, retired by the owner-directed 2026-09-23 finite Task "
@@ -253,8 +260,9 @@ def hgd_updates(L):
         f"ruling \"{OWNER_WORDS}\" (transcription `{TRANSCRIPT}`).",
         "- Reconcile with the DEL-02-02 register: its reverse row DEP-02-02-005 and this register's DEP-02-01-007, the matrix-era "
         f"pair HGD-2 and HGD-3 turned on, are both RETIRED as of {TODAY}. HGD-3's four-node SCC concern no longer arises from them; "
-        "HGD-3 itself is not decided. The DEL-02-04 reciprocal DEP-02-04-017 (D-APP-110 SD-003) is unchanged and held with "
-        "`[WARNING] EVIDENCE_SOURCE_RETIRED`.",
+        "HGD-3 itself is not decided. The DEL-02-04 reciprocal DEP-02-04-017 (D-APP-110 SD-003) is unchanged in topology and is "
+        "re-evidenced to the D-APP-110 ruling record (ESR-1). ESR-1 is CLOSED: its four retire candidates, including this "
+        "register's DEP-02-01-014, were retired by the owner's ruling of 2026-09-27.",
     ]
     return L
 

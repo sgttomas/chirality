@@ -45,20 +45,20 @@ Superseded on 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`): the cur
 - Source-preservation gate: `ScopeOfWork.md` `6cb61fe4fd0c1b6678c6f6655c2350439e9dec335cd8c3879183b4494c555582`; `_CONTEXT.md` `5cf78966a568cea0238de37ac8ec37e0ef44f01bb02eaae9d5086f66f6ee5d28`; `_REFERENCES.md` `14952d205dc7b30daf8b6cc662a3583031c5b610caa9b2f2261f222a2ae63aff`; `_STATUS.md` `b8b706625f1c8c9721b8bfc54c27821a1091549b90004cd5aeb5bae380857daa`; read-only and unchanged by this run.
 - Pre-images: `Dependencies.csv` `19c2d69e37550feee87ca885b7b3dda6ca073606fa7ea530391a55026389db0b`, `_DEPENDENCIES.md` `43424bcece77c23a7c60ffb1ebaad17dc805a2ca7c17a726ac10bfb8c7b29161`.
 - Method: every existing ACTIVE row was re-checked against its cited current source (quote found verbatim, and not only inside a `[RETIRED` clause or a clause SCA-APP-011 declared history). Text added to the sources since the previous extraction (2026-09-22) was scanned for new explicit cross-deliverable relationships. Unchanged source text yields the rows already recorded.
-- Results: re-seen 13 (`LastSeen=2026-09-27`); restated in place 1; kept with a note 0; retired 5; added 0; held with `[WARNING] EVIDENCE_SOURCE_RETIRED` 1. No row deleted; every existing `DependencyID` preserved; `Status=CANDIDATE` not emitted.
+- Results: re-seen 13 (`LastSeen=2026-09-27`); restated in place 1; kept with a note 0; retired 6; added 0; held with `[WARNING] EVIDENCE_SOURCE_RETIRED` 0. No row deleted; every existing `DependencyID` preserved; `Status=CANDIDATE` not emitted.
   - RETIRED DEP-02-02-005 (EXECUTION UPSTREAM INTERFACE -> DEL-02-01) DX-01; see the row `Notes`.
   - RETIRED DEP-02-02-006 (EXECUTION UPSTREAM INTERFACE -> DEL-02-03) DX-02; see the row `Notes`.
   - RETIRED DEP-02-02-007 (EXECUTION UPSTREAM INTERFACE -> DEL-07-04) DX-03; see the row `Notes`.
   - RETIRED DEP-02-02-008 (EXECUTION UPSTREAM INTERFACE -> DEL-07-05) DX-04; see the row `Notes`.
   - RETIRED DEP-02-02-009 (EXECUTION UPSTREAM CONSTRAINT -> DEL-08-03) DX-05; see the row `Notes`.
+  - RETIRED DEP-02-02-021 (EXECUTION UPSTREAM PREREQUISITE -> DEL-02-03) ESR-1 (owner ruling); see the row `Notes`.
   - RE-EVIDENCED DEP-02-02-022 (EXECUTION UPSTREAM INTERFACE -> DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1) ESR-1 (re-evidenced); see the row `Notes`.
-  - HELD DEP-02-02-021 (EXECUTION UPSTREAM PREREQUISITE -> DEL-02-03) ESR-1 (retire candidate); see the row `Notes`.
 - Declared entries: none (the declared sections carry no SPEC §5.2 entry). Mirror rows added 0, refreshed 0, retired 0; entries skipped 0.
 - Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` row (1).
 - Function 5 checks (`execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/dep_extract/FUNCTION5_CHECKS.json`): `validate_dependencies_schema.py` PASS; `DependencyID` unique; every enum value written by this run VALID (`validate_enum.py`); ID format PASS for `FromDeliverableID`, `FromPackageID` and every `DependencyID` (`validate_id_format.sh`; the PROJECT_ID_FORMAT_PROFILE warning of earlier runs no longer reproduces); index counts match `Dependencies.csv`.
 - [INFO] EVQ-006 (report-only, `validate_decomposition_registers.py --families EVQ,DRB`): the validator resolves `EvidenceFile` from the project root, so it reports every App register row whose `EvidenceFile` is deliverable- or repository-relative. This is a project-wide pre-existing convention finding, not a defect introduced here; no EVQ-003, EVQ-004 or DRB-006 finding.
 - ESR-1 re-evidence: DEP-02-02-022 cited the former `_STATUS.md` `## Remaining` section, retired on 2026-09-23. Each is re-anchored in place to a current accepted source that states the dependency: the owner ruling record D-APP-110 (its SD-003 decompose names the row) or the decomposition Scope Ledger allocation (IMPLICIT, MEDIUM). The D-APP-110 record lies outside the workflow's default read boundary and was read because it is the accepted ruling that names these rows. No edge, target, status or satisfaction changed.
-- [WARNING] EVIDENCE_SOURCE_RETIRED: DEP-02-02-021 cites the former `_STATUS.md` `## Remaining` section, retired by the owner-directed 2026-09-23 finite Task Management account. That accepted instrument preserved the rows (FINAL_CLOSEOUT.md: 'the accepted Dependencies.csv rows and source quotes remain unchanged'; the current-source note at the top of this file directs gating to `Dependencies.csv`) and takes precedence over the workflow's own unseen-row retirement, so they stay ACTIVE with `LastSeen` unchanged. No current source states them; they are retire candidates proposed to the owner (ESR-1 in `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/DEPENDENCY_EXTRACT_RESULTS.md`).
+- ESR-1 CLOSED 2026-09-27: DEP-02-02-021 was held as retire candidates (no current source; preserved by the accepted 2026-09-23 instrument) and are now RETIRED by the owner's ruling in chat on 2026-09-27 (verbatim, transcription `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/CHAT_TRANSCRIPTION_ESR-1_2026-09-27.md`): "ESR-1: retire DEP-02-02-021, DEP-02-04-015, DEP-02-04-016 and DEP-02-01-014."
 
 ## Run Notes - 2026-09-05 SCA-APP-010 dependency closure (UPDATE)
 
@@ -126,10 +126,10 @@ Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated s
 | Count Type | Count |
 |---|---:|
 | Total rows | 22 |
-| ACTIVE rows | 15 |
-| RETIRED rows | 7 |
+| ACTIVE rows | 14 |
+| RETIRED rows | 8 |
 | ACTIVE ANCHOR rows | 6 |
-| ACTIVE EXECUTION rows | 9 |
+| ACTIVE EXECUTION rows | 8 |
 | ACTIVE parent anchors (`IMPLEMENTS_NODE`) | 1 |
 | ACTIVE Origin=DECLARED rows | 0 |
 
@@ -157,7 +157,7 @@ Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated s
 | DEP-02-02-018 | EXECUTION | UPSTREAM | INTERFACE | DEL-05-04 | ACTIVE | TBD |
 | DEP-02-02-019 | EXECUTION | UPSTREAM | CONSTRAINT | DEL-08-04 | ACTIVE | PENDING |
 | DEP-02-02-020 | EXECUTION | UPSTREAM | CONSTRAINT | DEL-08-02 | ACTIVE | TBD |
-| DEP-02-02-021 | EXECUTION | UPSTREAM | PREREQUISITE | DEL-02-03 | ACTIVE | SATISFIED |
+| DEP-02-02-021 | EXECUTION | UPSTREAM | PREREQUISITE | DEL-02-03 | RETIRED | NOT_APPLICABLE |
 | DEP-02-02-022 | EXECUTION | UPSTREAM | INTERFACE | DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 | ACTIVE | PENDING |
 
 ## Run History
@@ -168,7 +168,7 @@ Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated s
 | 2026-09-05T01:05:00-0600 | UPDATE | CONSERVATIVE | found at pinned identity `c7c05169` (commit `dbd812a5`) | 15 | CONTEXT_SOW_007_RESIDUE; V3_01_ROLE_ENTRY_SEATING_CONFLICT; PROJECT_ID_FORMAT_PROFILE; six proposals held under amendment v1.1 (H-002 to H-007) |
 | 2026-09-05T07:59-0600 (D-APP-109 emission) | UPDATE | CONSERVATIVE | found at pinned identity `c7c05169` (commit `dbd812a5`) | 21 | CONTEXT_SOW_007_RESIDUE (carried; `_CONTEXT.md` not read, concurrent N8 write); V3_01_ROLE_ENTRY_SEATING_CONFLICT (carried); PROJECT_ID_FORMAT_PROFILE; CYCLE_PARTICIPATING_ROWS: six rows emitted under D-APP-109 (H-002 to H-007) inside the enlarged SCC-001, non-gating until resolved by a recorded move |
 | 2026-09-05T10:15-0600 (D-APP-110 decompose) | UPDATE | CONSERVATIVE | found at pinned identity `c7c05169` (commit `dbd812a5`) | 21 | CONTEXT_SOW_007_RESIDUE (carried; `_CONTEXT.md` not read); V3_01_ROLE_ENTRY_SEATING_CONFLICT (carried); PROJECT_ID_FORMAT_PROFILE; no cycle-participating row remains (SD-005 decomposed DEP-02-02-022 to a DOCUMENT contract; five D-APP-109 rows marked RESOLVED) |
-| 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`) | UPDATE | CONSERVATIVE | FOUND `cf6e56ebb147…` (SCA-APP-011 amended) | ACTIVE=15 (ANCHOR=6; EXECUTION=9) | EVIDENCE_SOURCE_RETIRED DEP-02-02-021 |
+| 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`) | UPDATE | CONSERVATIVE | FOUND `cf6e56ebb147…` (SCA-APP-011 amended) | ACTIVE=14 (ANCHOR=6; EXECUTION=8) | none |
 
 ## Lifecycle Summary
 
@@ -176,11 +176,10 @@ Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`), from `D
 
 | Dimension | Value | Count |
 |---|---|---:|
-| Status | ACTIVE | 15 |
-| Status | RETIRED | 7 |
-| SatisfactionStatus | NOT_APPLICABLE | 5 |
+| Status | ACTIVE | 14 |
+| Status | RETIRED | 8 |
+| SatisfactionStatus | NOT_APPLICABLE | 6 |
 | SatisfactionStatus | PENDING | 7 |
-| SatisfactionStatus | SATISFIED | 1 |
 | SatisfactionStatus | TBD | 9 |
 | RequiredMaturity | SEMANTIC_READY | 22 |
 | DependencyClass | ANCHOR | 7 |
