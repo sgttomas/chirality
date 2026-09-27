@@ -168,7 +168,7 @@ freeze point. The owner later confirmed under it, verbatim: "Yes I still want
 you to complete the task management work and the RV1." Applied by the WORKING_ITEMS
 manager of node TM1 of `HELP-HUMAN-PEC-20260927-RV1-INTAKE` (brief
 `../../AgentRuns/HELP-HUMAN-PEC-20260927-RV1-INTAKE/briefs/TM1_INTAKE_DISPOSITIONS.md`).
-The interpretations applied are the ones `D-PEC-107` records.
+The interpretations applied are the ones `D-PEC-107` records, except that the two status mappings (`ELEVATED` for CAND-03 and `DEFERRED` for K3) are WORKING_ITEMS's readings, disclosed in each row.
 
 | Candidate | Register row | Result (the owner's direction as `D-PEC-107` records and interprets it) |
 |---|---|---|
@@ -183,7 +183,7 @@ Not an intake candidate:
   TBD-006). The row replaces the carried graph node K3. It is HELP_HUMAN's
   interpretation under `D-PEC-107`. It departs from this intake's judgment that
   K3 was already homed (the K3 row of "Supplied concerns judged already homed",
-  above, which is kept as prepared). It is a consideration under the freeze point.
+  above, which is kept as prepared). It is a consideration under the freeze point. Its `DEFERRED` status is WORKING_ITEMS's reading of a checkable trigger (the method's deferral form), disclosed in the row.
 
 ## Outcome
 

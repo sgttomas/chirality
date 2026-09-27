@@ -27,7 +27,7 @@
 
 The sources cited in the rows and the notice, with their hashes, are listed in the row `SourceRef`/`SourceSha` cells and in the notice.
 
-For precedent and form I also consulted: Piping `TM-PIP-030` (ELEVATED-to-Root form), `plans/chirality-task-management/PRD_CANDIDATE_2026-07-31.md` §6.2–6.3, and the earlier PEC harvest outcome sections. None of these is authority here.
+For precedent and form I also consulted: Piping `TM-PIP-030` (`OPEN` with `ElevatedTo` Root, as its owner ruled; corrected by HELP_HUMAN after PR #1021 review 01, which found the original parenthetical mis-cited it), `plans/chirality-task-management/PRD_CANDIDATE_2026-07-31.md` §6.2–6.3, and the earlier PEC harvest outcome sections. None of these is authority here.
 
 ## Written
 

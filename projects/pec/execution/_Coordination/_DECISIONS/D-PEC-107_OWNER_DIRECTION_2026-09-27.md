@@ -83,3 +83,15 @@ The DEL-02-07/DEL-01-06 pair was not on the list; its re-review waits for their 
 
   Asked whether RV1 should be held as part of the freeze, the owner replied, verbatim: "Yes I still want you to complete the task management work and the RV1."
 - **MEMORY.** This record grants no `MEMORY.md` path. At closeout, HELP_HUMAN asks the owner for the grant (`projects/pec/AGENTS.md`, "Deliverable records and loop ownership"). The graph completes after the rows are written, or after the owner's recorded decision to complete without them.
+
+## MEMORY grant (owner direction, same day, verbatim)
+
+The MEMORY bullet above said that at closeout HELP_HUMAN would ask the owner for the grant. The owner gave it in advance:
+
+> grant the MEMORY rows for DEL-00-01 and DEL-00-03
+
+**Resolution (HELP_HUMAN interpretation).** At closeout (graph node M1), WORKING_ITEMS appends one `## Runs` row for this undertaking to each of these existing files. Both files were created under `D-PEC-105` add-on M. Each row records the RV1 REVIEW and its outcome and links the central receipt.
+- `projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/MEMORY.md`
+- `projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/MEMORY.md`
+
+Prior bytes are preserved. No other `MEMORY.md` is opened. The grant is recorded here, in the governing `D-PEC` record, as `projects/pec/AGENTS.md` ("Deliverable records and loop ownership") requires.
