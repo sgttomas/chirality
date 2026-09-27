@@ -157,3 +157,7 @@ counts" is broader than the bound, left byte-unchanged by the grant) is
 carried. DEL-01-03 remains IN_PROGRESS; `_STATUS.md` is untouched. No
 CHECKING, ISSUED or artifact acceptance. Record:
 `_run_records/P1_STORE_GUARD_04/RUN.md`.
+
+## 2026-09-27 — D-PEC-104 S1 Scope of Work currency (graph node S1)
+
+[central receipt](../../../_Coordination/AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/RECEIPT.md); PR #1010; [D-PEC-104 ruling](../../../_Coordination/_DECISIONS/D-PEC-104_RULING_2026-09-27.md)
