@@ -50,23 +50,31 @@ DX-07 are found by this run's pre-extraction screen (below).
 ## Found before extraction: two rows the plan did not list
 
 A read-only quote screen over the 315 ACTIVE rows of the 24 in-scope
-registers found every quote in its cited source except three, all in DEL-02-03:
+registers found every quote in its cited source except four, all in DEL-02-03:
 
-- **DEP-02-03-004** is DX-02, as planned.
+- **DEP-02-03-009** is DX-01 and **DEP-02-03-004** is DX-02, as planned
+  (DEP-02-03-009's quoted row now carries the `[RETIRED — SCA-APP-012]` marker).
 - **DEP-02-03-007 and DEP-02-03-008** lost their quotes to accepted SCA-APP-012
   text: register row 3 (DEL-02-03-REQ-010 restated) and the CLM-005 widget row
   (line 90). `Propagation_Plan.md` §7 lists only DX-01 and DX-02 for DEL-02-03,
   so these two are outcomes beyond the accepted plan.
-  - **DEP-02-03-007 → re-evidenced (DX-06).** The restated REQ-010 still says
-    deliverable summaries "carry no transition control; transitions go through
-    the lifecycle library". DEL-07-04 owns that library
-    (`frontend/src/lib/lifecycle/`, DEL-07-04 `ScopeOfWork.md` line 22). The
-    relationship is still stated, so only the evidence moves.
+  - **DEP-02-03-007 → re-evidenced (DX-06).** The restated REQ-010 still has
+    deliverable summaries "present lifecycle status read-only from
+    `/api/project/deliverables`". DEL-07-04 owns the lifecycle status
+    semantics and the canonical `_STATUS.md` parser (OUT-001;
+    `frontend/src/lib/lifecycle/`, DEL-07-04 `ScopeOfWork.md` line 22), so the
+    read-only status relationship still holds and only the evidence moves. The
+    transition-control clause is not the basis: the accepted `execution/_ScopeChange/SCA-APP-012_2026-09-27_1828_Loop_First_Shell_and_Legacy_UI_Retirement/Impact_Assessment.md`
+    lines 463-464 says it leaves DEL-02-03, so the row's Statement drops its
+    transition-control wording.
   - **DEP-02-03-008 → retired (DX-07).** CLM-005 now says SCA-APP-012 "moved
     dependency snapshots out of this UI". REQ-010 names the dependency library
     only as the place where snapshots are read instead of a browser API. No
     current DEL-02-03 text says its widgets consume DEL-07-05 output, so under
-    `STRICTNESS=CONSERVATIVE` the row is unseen and retires.
+    `STRICTNESS=CONSERVATIVE` the row is unseen and retires. The accepted
+    `execution/_ScopeChange/SCA-APP-012_2026-09-27_1828_Loop_First_Shell_and_Legacy_UI_Retirement/Impact_Assessment.md` lines 457-464 (Row 3,
+    `ScopeChanging` YES) records that "the dependency-snapshot presentation
+    and the transition-control clause leave DEL-02-03".
 
 These follow from the accepted text and need no owner ruling. They are listed
 so that the plan confirmation covers them knowingly. If the owner would rather

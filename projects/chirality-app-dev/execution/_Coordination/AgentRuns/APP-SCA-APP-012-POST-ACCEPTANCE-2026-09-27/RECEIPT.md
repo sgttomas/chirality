@@ -25,7 +25,7 @@ owner confirmation, and the TM-APP-051 note waits on the row's owner.**
   2026-09-27 ("I accept SCA-APP-012 checkpoint group 3";
   `execution/_ScopeChange/checkpoint_snapshots/SCA-APP-012_GROUP-3_2026-09-27/`).
   It landed on `main` in PR #1020 (`bc1ea504d`).
-- **Handoffs run.** These are the ones the amendment names:
+- **Handoffs addressed (run or prepared).** These are the ones the amendment names:
   - `Propagation_Plan.md` §7, §8 (items 1, 2, 3 and 5; items 4, 6 and 7 were
     done in PR #1020) and §11;
   - `Handoff_State.md`, next owning workflows.
