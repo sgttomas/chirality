@@ -65,8 +65,13 @@ and reversal rules) was not read or applied. Tools used (SHA-256):
    `_REVIEW.md`, `Review_Findings.csv` and the snapshot. The two performers
    drafted them in their own scratch directories; the manager placed them
    with only these edits: the snapshot name filled in for the
-   `{SNAPSHOT_NAME}` placeholder, and one sentence in each `_REVIEW.md` naming
-   where the evidence and snapshot are filed.
+   `{SNAPSHOT_NAME}` placeholder (in the DEL-00-01 `_REVIEW.md` substitution
+   2 the sentence was reworded to "the manager wrote them and named the
+   snapshot …"); in DEL-00-01 the evidence sentence of the review basis was
+   replaced, and in DEL-00-03 one sentence was added after it, naming where
+   the evidence and snapshot are filed. The CSVs were placed byte-identical to
+   the drafts. Later repairs after verdict 01 are listed under "Independent
+   verification".
 3. **Review-type rows.** The old method gives no ID format for `SELF_CHECK`
    or `PEER_REVIEW` focus rows; they are review-local `SC-*` and `PEER-*`
    rows, not `CU-*` items.
@@ -83,6 +88,13 @@ and reversal rules) was not read or applied. Tools used (SHA-256):
 6. **Human gates.** Gate 1 human input is `D-PEC-107`; no new owner
    confirmation of either checklist was given; every new finding is
    `AGENT_CHECK` with `HumanDisposition=TBD`.
+7. **Severity gloss (manager-level departure, disclosed).** The common
+   performer brief glossed the method's MAJOR as including "a criterion the
+   bytes fail". That gloss is the manager's, not the `2f825f180` text
+   ("MAJOR — must resolve before advancing; significant technical issue";
+   "MINOR — should resolve; quality improvement"). After verdict 01 the
+   DEL-00-01 RF-001 record states its severity on the method's own words and
+   names the gloss as the manager's.
 
 ## Review type, performers and independence
 
@@ -142,6 +154,11 @@ only), script `b1712e4b…d0e`; each of the four targets with
 | DEL-00-01 (`SELF_CHECK`) | 0 | 1 open (RF-001, AC-002) | 3 open (RF-002, RF-003, RF-005) | 1 open (RF-004) | AC-007 unsatisfied — READY FOR OWNER DECISION |
 | DEL-00-03 (`PEER_REVIEW`) | 0 | 0 new (RF-001..003 historical, resolved) | 2 open (RF-004, RF-005) | 5 open (RF-006..RF-010) | AC-011 unsatisfied — READY FOR OWNER DECISION |
 
+**C-05.** `D-PEC-72` records the owner's closure of `C-05` on the exact
+accepted fan-in, with AC-007 and AC-011 satisfied at the prior hashes. Those
+acceptances have lapsed; this review does not decide whether the lapse bears
+on the recorded closure.
+
 CU-001 (DEL-00-03) is not carried as an active item; it is kept as history
 (its revision-1.4 totals no longer describe the rebound bytes, and an agent
 may not restate an owner custom item). Every new finding is `OPEN`,
@@ -149,10 +166,35 @@ may not restate an owner custom item). Every new finding is `OPEN`,
 (`D-PEC-107` §"Freeze point"); a `ScopeOfWork.md` or artifact change needs an
 owner-ruled correction packet before re-acceptance.
 
+## Independent verification
+
+One fresh read-only `pec-reviewer` (Opus 5.5, Agent tool, harness-native
+descendant) verified the candidate at `d6ed711f6`: **PASS WITH NOTES**, no
+blocking finding (`VERIFIER_VERDICT_01.md`, with the manager's dispositions).
+Repairs made after it, in text only (no reviewed byte, checklist, finding
+count or severity changed):
+
+- `SHA256SUMS` added (finding 1).
+- DEL-00-01 RF-001: severity stated on the method's wording with the gloss
+  disclosed; the functional-core element located in Decision item 5 (L78–82)
+  as well as Alternatives; CSV `ChecklistItemRef` `AC-002;XD-006;SC-002` →
+  `AC-002;SC-002`; both owner paths (`REVISE`; `ACCEPT_AS_IS` or downgrade)
+  set out neutrally (finding 2).
+- A C-05 consequence line, without a prompt, in both "Acceptance status"
+  sections (finding 3).
+- The root SPEC §3.4 reversal-path tension recorded as a consequence, not a
+  question, in both records (finding 4).
+- CU-001 and the RF dispositions are carried into the owner-decision text of
+  the return (finding 5).
+- Finding 6: the snapshot `Review_Summary.md` wording ("Remaining gate … only")
+  is left unchanged because snapshots are immutable once finalized; the
+  `_REVIEW.md` records state the full next step. This manifest's disclosure of
+  the placement edits is corrected.
+
 ## Written paths
 
 Listed with their SHA-256 in `SHA256SUMS` beside this file (paths relative
-to `projects/pec/execution/`).
+to `projects/pec/execution/`; `SHA256SUMS` itself excluded).
 
 ## Checks (candidate against `origin/main` `acc7d3cc7`)
 

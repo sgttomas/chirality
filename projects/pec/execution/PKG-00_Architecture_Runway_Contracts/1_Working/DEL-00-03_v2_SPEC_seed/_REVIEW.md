@@ -344,6 +344,14 @@ the owner's decision, and the owner may disposition them in the same act.
 
 Nothing here performs, implies or presumes that acceptance.
 
+**C-05 consequence (recorded; no prompt).** `D-PEC-72` "Closure outcome"
+and its register row record the owner's closure of `C-05 PRE_P1_OBLIGATION`
+on the exact accepted fan-in, with AC-011 satisfied at the then-accepted
+hashes; later P1 slices (from `D-PEC-74`) cite that closure. That
+acceptance has lapsed. This review does not decide whether the lapse bears
+on the recorded closure (see the AC-009 note). The owner's exact-byte act
+would restore AC-011 at the new hashes.
+
 ## Freeze-point limit
 
 Under `D-PEC-107` §"Freeze point", any correction a finding calls for is
@@ -362,6 +370,16 @@ or for reversal. DEL-00-03 entered `CHECKING` on 2026-08-01 under the D-PEC-72
 review-from-`INITIALIZED` override (`_STATUS.md` history). This is recorded
 as a consequence for the owner's reserved decision under that edition, if PEC
 ever adopts it. Nothing here prompts about `CHECKING`.
+
+Root `docs/SPEC.md` §3.4 (`feb5e79c…109e`) also states that in `CHECKING`
+"reversal to `IN_PROGRESS` is the only edit path" and that "A failed formal
+check returns through the prescribed reversal"; the same section keeps
+earlier pinned criteria applicable until the owning loop adopts the
+replacement. The `D-PEC-105` act amended this `CHECKING` deliverable in place
+under an owner-ruled packet (the 2026-08-09 practice), and any correction
+packet a `REVISE` disposition calls for would be of the same kind. This
+tension is recorded as a consequence for the owner's reserved decision; it
+is not a question, and nothing here prompts about `CHECKING`.
 
 ## Transition readiness
 
