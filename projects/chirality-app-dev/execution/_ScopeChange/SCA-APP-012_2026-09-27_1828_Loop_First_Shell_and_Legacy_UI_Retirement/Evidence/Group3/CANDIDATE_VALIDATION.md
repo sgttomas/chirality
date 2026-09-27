@@ -1,10 +1,10 @@
 # SCA-APP-012 group-3 candidate validation
 
-Accepted group-2 commit `dad463311`; candidate revision `8a3230d5e` (scope text only (code change not yet integrated)). Git ran with every `GIT_*` variable removed. The script modifies no scope file and writes only this report.
+Accepted group-2 commit `dad463311`; candidate revision `c47b74fd5` (integrated scope text and code). Git ran with every `GIT_*` variable removed. The script modifies no scope file and writes only this report.
 
 1. Candidate hashes: 12/12 files match `PREIMAGE_POSTIMAGE.csv`.
 2. Non-conditional edits present: 79/79; acceptance-conditional edits withheld: E26; files carrying a `{APPLICATION_DATE}` literal: 0.
-3. Write containment (`dad463311..8a3230d5e`): 12 paths changed; scope-text paths 12 (outside the accepted boundary: 0; boundary files not written: 0); code-change paths 0; SCA-folder paths 0; protected paths changed: 0; paths in no permitted category: 0.
+3. Write containment (`dad463311..c47b74fd5`): 84 paths changed; scope-text paths 12 (outside the accepted boundary: 0; boundary files not written: 0); code-change paths 55; SCA-folder paths 17; protected paths changed: 0; paths in no permitted category: 0.
 4. `validate_scope_of_work.py` on each written Scope of Work:
 
 | Deliverable folder | Exit |
@@ -20,6 +20,6 @@ Accepted group-2 commit `dad463311`; candidate revision `8a3230d5e` (scope text 
 
 5. Retired-item sweep: 114 files; uncovered units: 0; listed historical passages: 3.
 6. Table rows written by edits checked for column count: 17.
-7. Code alignment: cited live files present 19/19; new cited test present 0/1 (expected 0 before the code change); section-4 deletions still present 20/20 (expected before the code change); frozen `renderer-window-policy.ts` at its pinned hash: yes.
+7. Code alignment: cited live files present 19/19; new cited test present 1/1; section-4 deletions still present 0/20; frozen `renderer-window-policy.ts` at its pinned hash: yes.
 
 Result: PASS
