@@ -25,16 +25,18 @@ Modes:
       Write nothing. Fail on any of: a preimage hash differs from the CSV; the
       CSV rows (files, edit ids, candidate and final hashes) differ from what the
       edit data produces; Amendment_Preview.md differs from the rendering of the
-      edit data.
+      edit data; Amendment_Actions.csv breaks its schema (10 contract columns,
+      no surrounding whitespace, sequential ActionSeq, YES/NO flags).
 
   build_amendment_preview.py --candidate [--root DIR]
       Group-3 preparation, after group-2 acceptance (method.md, checkpoint group
       3 preparation, steps 1-2). Recheck every preimage hash against the CSV,
       write the candidate poststate (no acceptance-conditional edit is applied),
       and verify every written file against the CSV candidate hash. Without
-      --root it writes the repository tree and requires the group-2 authority
-      pointer `_ScopeChange/SCA-APP-011_GROUP-2_AUTHORIZED.md`; with --root it
-      writes a scratch copy rooted at DIR and needs no pointer.
+      --root, or with a --root that resolves to this repository, it writes the
+      repository tree and requires the group-2 authority pointer
+      `_ScopeChange/SCA-APP-011_GROUP-2_AUTHORIZED.md`; with --root naming a
+      scratch copy it writes that copy and needs no pointer.
 
   build_amendment_preview.py --finalize --date YYYY-MM-DD --group3-decision PATH [--root DIR]
       After group-3 acceptance only. PATH must be
@@ -67,6 +69,10 @@ GROUP2_POINTER = f"{SCOPE_CHANGE}/SCA-APP-011_GROUP-2_AUTHORIZED.md"
 GROUP3_DECISION = re.compile(
     re.escape(SCOPE_CHANGE) + r"/checkpoint_snapshots/SCA-APP-011_GROUP-3_(\d{4}-\d{2}-\d{2})/DECISION\.md")
 GROUP3_HEADING = re.compile(r"^# SCA-APP-011 checkpoint group 3 — accepted[ .,;…]")
+REPO_TOP = os.path.realpath(os.path.join(SNAP, *[".."] * (len(SCOPE_CHANGE.split("/")) + 1)))
+REGISTER = os.path.join(SNAP, "Amendment_Actions.csv")
+REGISTER_FIELDS = ["AmendmentID", "ActionSeq", "ActionType", "EntityType", "EntityID", "Description",
+                   "AffectedFiles", "DownstreamReruns", "SupersessionBindingPresent", "ScopeChanging"]
 FIELDS = ["File", "Edits", "ConditionalEdits", "PreimageSHA256", "CandidateSHA256", "FinalSHA256", "FinalRule"]
 
 
@@ -194,6 +200,25 @@ def recorded_rows():
     return {r["File"]: r for r in csv.DictReader(open(CSV_PATH, newline="", encoding="utf-8"))}
 
 
+def register_errors() -> list:
+    with open(REGISTER, encoding="utf-8", newline="") as fh:
+        rows = list(csv.reader(fh))
+    if not rows or rows[0] != REGISTER_FIELDS:
+        return ["Amendment_Actions.csv header differs from the contract columns"]
+    bad = []
+    for n, row in enumerate(rows[1:], start=1):
+        if len(row) != len(REGISTER_FIELDS):
+            bad.append(f"Amendment_Actions.csv row {n} has {len(row)} fields")
+            continue
+        if any(v != v.strip() for v in row):
+            bad.append(f"Amendment_Actions.csv row {n} has surrounding whitespace")
+        if row[0] != "SCA-APP-011" or row[1] != str(n):
+            bad.append(f"Amendment_Actions.csv row {n} has AmendmentID/ActionSeq {row[0]}/{row[1]}")
+        if row[8] not in ("YES", "NO") or row[9] not in ("YES", "NO"):
+            bad.append(f"Amendment_Actions.csv row {n} has a flag that is not YES/NO")
+    return bad
+
+
 def write_files(root: str, texts: dict):
     for path, text in texts.items():
         with open(os.path.join(root, path), "w", encoding="utf-8") as fh:
@@ -235,13 +260,14 @@ def main() -> int:
         current = open(PREVIEW, encoding="utf-8").read() if os.path.isfile(PREVIEW) else ""
         if current != render(results, carried):
             bad.append("Amendment_Preview.md differs from the rendering of amendment_edits.py")
+        bad += register_errors()
         for b in bad:
             print(b)
         print("check:", "FAIL" if bad else f"OK ({len(rec)} files, {len(ids)} edits)")
         return 1 if bad else 0
 
     if args.candidate:
-        if root == "." and not os.path.isfile(GROUP2_POINTER):
+        if os.path.realpath(root) == REPO_TOP and not os.path.isfile(os.path.join(REPO_TOP, GROUP2_POINTER)):
             print(f"refused: {GROUP2_POINTER} is absent (group 2 not accepted)", file=sys.stderr)
             return 3
         rec = recorded_rows()

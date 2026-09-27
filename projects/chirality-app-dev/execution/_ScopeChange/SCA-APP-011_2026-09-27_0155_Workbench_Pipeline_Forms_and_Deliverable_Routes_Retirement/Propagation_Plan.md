@@ -58,8 +58,11 @@ SCA-APP-010 until then.
 
 ### Corrections in revision 2
 
-These change wording, not the substance you accepted at group 1. They are
-listed so that your group-2 act covers them knowingly.
+Items 1 and 3–5 correct wording or procedure; they do not change the
+substance you accepted at group 1. Item 2 does more: it extends the accepted
+impact set. Register row 29 (DEL-07-01) is scope-changing and has no intake
+row, so accepting group 2 reopens that part of group 1 and decides it. All
+five are listed so that your group-2 act covers them knowingly.
 
 1. **Truth correction to the accepted M-a wording.** The group-1 record says
    "live Codex exposure is DEL-06-03's open work" for all four tool contracts.
@@ -151,11 +154,14 @@ amendment; dependency re-extraction is a downstream handoff (§8).
 | **W** | Who writes the Scope of Work, PRD, SPEC and PLAN text | **W-a:** this amendment writes the exact text at group-3 preparation. The write boundary names all 16 files (§2). **W-b:** this amendment writes only the decomposition and the three `_CONTEXT.md` files; the Scopes of Work go to `project-setup` INCREMENTAL (`scope-of-work` REVISE), and the PRD, SPEC and PLAN to a separate owner-approved change. | **W-a.** The exact text is ready and validated (§9). One audited poststate is simpler, and W-b would re-derive the same text. |
 | **Q** | Sequencing of scope text and code | **Q-a:** group 3 reviews the written scope-text candidate together with the rebased code candidate (§4). After your group-3 acceptance, one PR lands both. **Q-b:** the scope-text PR lands first and the code PR after it. For a short time the hooks would name a test file that does not exist yet. | **Q-a.** It matches your direction ("You accept each of its three checkpoints, then the code removal merges") and avoids any window where text and code disagree. |
 
-Everything else is fixed by your group-1 acceptance.
+Everything else is fixed by your group-1 acceptance, except the revision-2
+corrections above. Your group-2 act covers those too, including the group-2
+addition of register row 29 (DEL-07-01).
 
 **A short answer is enough**, for example: "Accept SCA-APP-011 group 2: W-a,
-Q-a." I then record your words verbatim in the group-2 decision snapshot and
-prepare group 3.
+Q-a, with the revision-2 corrections and row 29." I then record your words
+verbatim in the group-2 decision snapshot, record row 29 there as a reopened
+group-1 item, and prepare group 3.
 
 ---
 
@@ -536,12 +542,12 @@ accepted group-1 record changed).
 
 | Artifact | SHA-256 |
 |---|---|
-| `Amendment_Actions.csv` | `e46c5fca48745dd7fbd4d0afadbcff002fed8fb85c22dbbca9b9bef66e54b908` |
+| `Amendment_Actions.csv` | `416097312beffa47143b2993bfe17721e5c312630789a1101e6cbda688edbc22` |
 | `Supersession_Delta.csv` | `33a4d558ba86fd716ec185a56fc47569cf1837ada3bd4692e4d0623548af1030` |
 | `Amendment_Preview.md` | `3781bf3e548bb1497e8f74fe2cb0ecd38314aac7834a7d6a4f7d3eeb7f6a6f40` |
 | `DRAFT_NOTICE_TO_RUNTIME.md` | `3c8806a7d10ba5b37392cd77acb6fbf8501d9fda2d49c7257b3cb89fd994ad78` |
 | `Evidence/Group2/amendment_edits.py` | `190a41df429ef33c70b3cb31cad819abbe2385b7f32d532ec6684452392e3edf` |
-| `Evidence/Group2/build_amendment_preview.py` | `5de7b6a0f839e5696fb04497ec4c3dee998fb2dfe2b63b1f6bdc9309a1d4e40a` |
+| `Evidence/Group2/build_amendment_preview.py` | `e028eb35ee724e19b665e30f2cc9dbc0b99396391bbf20d5d037f9f2e4c0be88` |
 | `Evidence/Group2/validate_postimage.py` | `1570fdafa673653448c328a9af75ee415f51d8c2332338e1664d671b66bb80ca` |
 | `Evidence/Group2/check_candidate_mode.py` | `acd0d41143761aeb40c4d736dec3389d085709ac5952a35e3c4d9f6ab479fb79` |
 | `Evidence/Group2/PREIMAGE_POSTIMAGE.csv` | `db9e647cef23f3c8a9f0cc39ba23c906fcfb6e6fbdd43816995d35a911ff035b` |
