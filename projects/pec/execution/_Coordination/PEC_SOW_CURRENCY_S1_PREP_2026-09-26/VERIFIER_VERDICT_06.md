@@ -33,7 +33,7 @@ Commands (as returned): `git fetch` 0; grant loop at four commits 0 (all match);
 - **P-5 — repaired** (stated under "Produced artifacts").
 - **P-6 — repaired** (the Part B landing table describes the authored wording accurately).
 - **P-7 — repaired.** Negative controls rerun on the final candidates at `4b930819c` (RESULT PASS); the draft says so.
-- **P-8 — repaired.** The branch merges `origin/main` `4b930819c` (PR #987, the K2 preparation, and App/Piping/Root-tool PRs; no target, pin or quoted file changed); the full checks rerun there (OVERALL PASS) and the draft cites `4b930819c`.
+- **P-8 — repaired.** The branch merges `origin/main` `4b930819c`; the full checks rerun there (OVERALL PASS) and the draft cites `4b930819c`. (Corrected after verdict 07, R3-1: this disposition first said no quoted file changed; in fact `tools/REGISTRY.md`, quoted by DEL-03-01 at `125cfacc1`, changed in #985, and this undertaking's `WORK_GRAPH.md`, cited by a DEL-10-10 claim at `125cfacc1`, changed in #981/#982. No target or pinned file changed, both quoted strings are still present at `4b930819c`, and every quotation is commit-anchored. The draft's account is corrected accordingly.)
 - **P-9 — repaired.** Docstrings corrected (aid hashes updated in the draft); `__pycache__/` removed.
 - **P-10 — no change** (pre-existing; not caused by this act).
 - **P-11 — repaired.** Add-on M names the DEL-01-03 `MEMORY.md` path and the path rule for the eleven created files.
