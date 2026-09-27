@@ -27,6 +27,6 @@ $ git show origin/main:projects/pec/execution/_Coordination/_DECISIONS/D-PEC-106
 $ git show origin/main:.../D-PEC-106_x1_parser_fixture_suites_proposal_2026-09-26.md | shasum -a 256
 677b59f6b1ae19b911e6e07aecfa4df0f39a380fb3ab806903da87c8fa18d279  -
 $ git show origin/main:.../_REGISTER.md | grep '^| D-PEC-106 ' | grep -o 'RULED[^|]*'
-RULED A / FX-PEC-0 AND THRESHOLDS CONFIRMED / L / M / EFFECTIVE ON MERGE 
+RULED A / FX-PEC-0 AND THRESHOLDS CONFIRMED / L / M / EFFECTIVE ON MERGE
 $ git log --oneline -1 --format='%H %s' c5d852c4a
 c5d852c4a95a478f34d9e4e4375d603e08245e25 Merge pull request #1006 from sgttomas/claude/pec-d105-ruling 16010b4ca9ab6c00247593177e1a8defa97a3ab6 0a7a4bdd162fb69ccc8c6217cdb43730def730b0
