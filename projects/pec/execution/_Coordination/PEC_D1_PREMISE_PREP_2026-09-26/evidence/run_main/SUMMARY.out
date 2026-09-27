@@ -35,5 +35,5 @@ INFO diff_DEL-00-03_SOW.diff.txt (group A; trailing whitespace stripped, review 
 INFO diff_DEL-00-01_ADR.diff.txt (group A; trailing whitespace stripped, review aid only): +31 -16 lines
 INFO diff_DEL-00-01_SOW.diff.txt (group P; trailing whitespace stripped, review aid only): +3 -2 lines
 PASS fault injection: RESULT PASS 24/24
-PASS evidence whitespace: 0 file(s) with trailing whitespace
+PASS evidence whitespace: 0 file(s) with trailing whitespace or a blank line at EOF
 OVERALL PASS

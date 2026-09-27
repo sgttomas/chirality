@@ -246,7 +246,7 @@ Check aids (not bound):
 | `check_quote_currency.py` | `c654431455e866bb03b71f3b74e69ef8a47ea621c76c1d31c7f0b9ad02d9d319` | corpus-wide `D-PEC-95` quote currency; target-cited rows |
 | `scan_external_quotes.py` | `ab6c914330a6c8a365068e4637b0360d1477cbc5ba92316f96646c95ff25551b` | informational downstream quote and hash-anchor scan |
 | `test_apply_d1p.py` | `330087edaebfe73df663fdb3beeb72302e441093c82f7f6b6f34114de1d91094` | fault injection, 24 cases |
-| `run_d1p_checks.sh` | `a77b33f82319e65396768f2c798ae31d1ee618c999869e432a142a63982d0e7b` | runs rows 2–11 on pre/post exports in both modes, and checks its own stored outputs for trailing whitespace |
+| `run_d1p_checks.sh` | `80714ae4a69a8178d7726f095657e8c4297b8babbe9ed86933c2deacd8b0ed8e` | runs rows 2–11 on pre/post exports in both modes, and checks its own stored outputs for trailing whitespace and blank lines at EOF |
 | `negative_controls.sh` | `7f2a2195328ee57c6686034da28888ebd936ef599a7c0631d51c76c365010411` | six negative controls |
 | `build_apply_d1p.py` / `apply_d1p.template.py` | `27abb5e3ece4ecc9fdb9e33757143b17f7705fd131352e57c248fce57a3ab9da` / `79a532837eca6177f01780be2b2bdf52a7aaa5973d39782e5ca1469edb48e692` | renders the bound script |
 | `targets.json` | `1efbc5af6f01736c9b7657b554404560404782aa3f8dab671deae62c11d48aa9` | targets, groups, preimages, commits |
@@ -343,7 +343,7 @@ PASS dependency quote currency identical, both modes (127/127; TARGET-cited acti
 INFO external-quote scan: stale=82 anchor=2198 kept=43231 history-anchor=30 (files_scanned=6380)
 PASS whitespace (4 candidates)
 PASS fault injection: RESULT PASS 24/24
-PASS evidence whitespace: 0 file(s) with trailing whitespace
+PASS evidence whitespace: 0 file(s) with trailing whitespace or a blank line at EOF
 OVERALL PASS
 ```
 

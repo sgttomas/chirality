@@ -24,7 +24,7 @@ Manager: WORKING_ITEMS (Type 1) under HELP_HUMAN, undertaking `HELP-HUMAN-PEC-20
 
 ## Recommendation
 
-**A** (the three premise-only replacements, no lifecycle change), **with add-on P** (recommended together; see "For the caller"), **R1** for re-review, readings 4(a) and 4(b) confirmed, **M** at closeout, default models.
+**A** (the three premise-only replacements, no lifecycle change), **with add-on P** (recommended together; see "For the caller"), **RR1** for re-review, readings 4(a) and 4(b) confirmed, **M** at closeout, default models.
 
 ## Owning-workflow identity
 
@@ -56,7 +56,7 @@ Both targets are `CHECKING` (entered 2026-08-01 by the D-PEC-72 override); per t
 
 - DEL-00-03: the owner's 2026-08-09 `ACCEPT_EXACT_BYTES` of SOW `3e4f0efc…` and SPEC `cc9f4754…` lapses on the record's own terms ("Any SOW or SPEC byte change invalidates this acceptance and requires a new checklist derivation and REVIEW rerun"); AC-011 becomes unsatisfied for the new bytes.
 - DEL-00-01: the owner's AC-007 ACCEPT of ADR `f63ecc27…` (2026-08-01, "these artifact bytes only") lapses (hash-bound); with P, the SELF_CHECK's SOW basis describes superseded bytes. No acceptance of the DEL-00-01 SOW was found.
-- Re-review offered, not assumed: **R1** (recommended) later REVIEW rerun with fresh checklists, then owner `ACCEPT_EXACT_BYTES` with the AC-007/AC-011 confirmations — selecting it records a graph node for a later REVIEW packet; **R2** owner exact re-acceptance in this ruling (discloses the departure from DEL-00-03's stated requirement; words must cover AC-007/AC-011); **R3** neither now (default without an answer).
+- Re-review offered, not assumed: **RR1** (recommended) later REVIEW rerun with fresh checklists, then owner `ACCEPT_EXACT_BYTES` with the AC-007/AC-011 confirmations — selecting it records a graph node for a later REVIEW packet; **RR2** owner exact re-acceptance in this ruling (discloses the departure from DEL-00-03's stated requirement; words must cover AC-007/AC-011); **RR3** neither now (default without an answer).
 
 ## Downstream and anchor accounts
 
@@ -80,7 +80,7 @@ Both targets are `CHECKING` (entered 2026-08-01 by the D-PEC-72 override); per t
 
 ## Owner questions (in the draft)
 
-1. A, amend or defer (recommend A). 2. Add-on P (recommend include; it goes beyond the brief's touch limit). 3. Re-review R1/R2/R3 (recommend R1; default R3). 4. Readings (a) DEL-00-03 rebind to revision 1.6 / PRD v2.4 and (b) ADR keeps "optional client", behaviors 2/4/7, the Sources line, and DEL-00-01's birth basis (recommend confirm). 5. Add-on M, two `MEMORY.md` at closeout (recommend). 6. Model steer.
+1. A, amend or defer (recommend A). 2. Add-on P (recommend include; it goes beyond the brief's touch limit). 3. Re-review RR1/RR2/RR3 (recommend RR1; default RR3). 4. Readings (a) DEL-00-03 rebind to revision 1.6 / PRD v2.4 and (b) ADR keeps "optional client", behaviors 2/4/7, the Sources line, and DEL-00-01's birth basis (recommend confirm). 5. Add-on M, two `MEMORY.md` at closeout (recommend). 6. Model steer.
 
 ## For the caller to resolve
 
