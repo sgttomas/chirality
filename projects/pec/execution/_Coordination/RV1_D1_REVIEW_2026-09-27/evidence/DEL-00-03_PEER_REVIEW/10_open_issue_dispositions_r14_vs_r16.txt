@@ -1,0 +1,61 @@
+cwd: {REPO_ROOT} (repository root; branch claude/pec-rv1-d1-review, HEAD a1735cc3b)
+interpreter: python3 (CPython 3.13.7, as reported by python3 --version); shell bash
+env: TMPDIR=<review scratch dir>, PYTHONDONTWRITEBYTECODE=1
+command: F=projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md; git show e92a82ca9:$F | shasum -a 256 | sed "s/-$/(revision 1.4 at e92a82ca9)/"; shasum -a 256 $F | sed "s#$F#(revision 1.6 at HEAD = 189f205ff)#"; for rev in e92a82ca9 189f205ff; do echo "== $rev: OI rows (ID | closing action column)"; git show $rev:$F | awk "/^## 10. Open Issues/{f=1} /^## 11/{f=0} f" | grep "^| OI-" | awk -F"|" "{gsub(/^ +| +$/,\"\",\$2); gsub(/^ +| +$/,\"\",\$6); s=\$4; st=(s ~ /RESOLVED/)?\"RESOLVED\":\"OPEN\"; print \$2\" | \"st\" | closes: \"\$6}"; done; echo "== ledger status of OI refs at revision 1.4 vs 1.6"; for rev in e92a82ca9 189f205ff; do echo "-- $rev"; git show $rev:projects/pec/execution/_Decomposition/ScopeLedger.csv | grep -E "^SOW-0(64|75|76|77|78|79|80|81|82|83|88)," | cut -d, -f1,2; done
+---- output ----
+7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81  (revision 1.4 at e92a82ca9)
+9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1  (revision 1.6 at HEAD = 189f205ff)
+== e92a82ca9: OI rows (ID | closing action column)
+OI-001 | OPEN | closes:
+OI-002 | OPEN | closes:
+OI-003 | RESOLVED | closes:
+OI-004 | OPEN | closes:
+OI-005 | OPEN | closes:
+OI-006 | OPEN | closes:
+OI-007 | OPEN | closes:
+OI-008 | OPEN | closes:
+OI-009 | OPEN | closes:
+OI-010 | RESOLVED | closes:
+OI-011 | RESOLVED | closes:
+OI-012 | OPEN | closes:
+OI-013 | OPEN | closes:
+== 189f205ff: OI rows (ID | closing action column)
+OI-001 | OPEN | closes:
+OI-002 | OPEN | closes:
+OI-003 | RESOLVED | closes:
+OI-004 | OPEN | closes:
+OI-005 | OPEN | closes:
+OI-006 | OPEN | closes:
+OI-007 | OPEN | closes:
+OI-008 | OPEN | closes:
+OI-009 | OPEN | closes:
+OI-010 | RESOLVED | closes:
+OI-011 | RESOLVED | closes:
+OI-012 | OPEN | closes:
+OI-013 | OPEN | closes:
+== ledger status of OI refs at revision 1.4 vs 1.6
+-- e92a82ca9
+SOW-064,IN
+SOW-088,IN
+SOW-075,TBD
+SOW-076,TBD
+SOW-077,IN
+SOW-078,TBD
+SOW-079,TBD
+SOW-080,TBD
+SOW-081,TBD
+SOW-082,TBD
+SOW-083,TBD
+-- 189f205ff
+SOW-064,IN
+SOW-088,IN
+SOW-075,TBD
+SOW-076,TBD
+SOW-077,IN
+SOW-078,TBD
+SOW-079,TBD
+SOW-080,TBD
+SOW-081,TBD
+SOW-082,TBD
+SOW-083,TBD
+---- exit code: 0 ----

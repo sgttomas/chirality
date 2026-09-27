@@ -1,0 +1,14 @@
+cwd: {REPO_ROOT} (repository root; branch claude/pec-rv1-d1-review, HEAD a1735cc3b)
+interpreter: python3 (CPython 3.13.7, as reported by python3 --version); shell bash
+env: TMPDIR=<review scratch dir>, PYTHONDONTWRITEBYTECODE=1
+command: python3 tools/scope_of_work/validate_scope_of_work.py projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed; echo "exit: $?"; python3 tools/scope_of_work/validate_scope_of_work.py --json projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed
+---- output ----
+PASS format=SOW_V1 target=projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed
+exit: 0
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed",
+  "valid": true
+}
+---- exit code: 0 ----
