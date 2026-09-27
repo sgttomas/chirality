@@ -473,7 +473,12 @@ record changed).
 | `validate_postimage.py` | PASS (`Evidence/Group2/POSTIMAGE_VALIDATION.md`): 17 edited table rows keep their column count; all 8 edited Scopes of Work validate (exit 0 before and after); every edited unit naming a retired item carries an SCA-APP-012 marker; all 19 retired items are named with a marker; the two retired routes are gone from the PRD §9.2 and SPEC §17.2 tables; every register row has edits or is carried; the sweep of 114 files (every deliverable `ScopeOfWork.md` and `_CONTEXT.md`, the decomposition, PRD, SPEC, PLAN, DIRECTIVE and TYPES) finds 0 uncovered mentions after the edits (39 before), with 3 listed historical passages |
 | `accumulate_supersession_map.py` dry run | 85 rows, 0 findings |
 | Group-1 baseline builder rerun (at `830913331`) | Differs from the accepted `Pre_Change_Coverage.json` only in the three G1B-01 values; the accepted file was restored unchanged (SHA-256 `c470779a…0cc0b2`) |
-| Root G0–G4, conflict markers, leak screen, `build_workflow_index.py --check`, `git diff --check`, export freshness | Reported in the package commit's hand-off |
+| Root G0–G3 (`validate_root_materialization_fence.py`, `validate_root_harness_adapter.py`, `validate_root_surface_ownership.py`, `validate_root_work_graph_dispatch.py`) | G0, G1, G2 and G3 PASS |
+| G4 (`validate_instruction_tranche_manifest.py --base 830913331 --head HEAD --added-manifests-only`) | Exit 0; 0 changed paths on the instruction surface |
+| `validate_conflict_markers.py`, `validate_run_record_leaks.py` (base `830913331`) | PASS; PASS (0 run-record files, 0 possible credentials) |
+| `build_workflow_index.py --check` | PASS (78 methods) |
+| `git diff --check` (base `830913331`) | PASS |
+| `exports/chirality-app/export_public.py`, run twice | No tracked change (export projection fresh); staging removed |
 
 ## 10. State fields and derivative surfaces
 
