@@ -1,0 +1,7 @@
+=== DEL-01-03 projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md
+L63 SELF: "register-row identity and status only … never the row's prose"
+L64 SELF: 'is the PEC database of `PEC-K-02`: gitignored and safe to delete, holding a record tier that is regenerated from sources by one command and a presence tier that'
+L66 SELF: 'and the ledger note naming `SOW-056` as its'
+L67 OTHER-SOW DEL-03-04: 'Reconciler + orientation store + API for one loop'
+L71 SELF: 'without naming a technology, and PRD §7.3 carries'
+--- DEL-01-03 counts {'UPSTREAM': 20, 'SELF': 4, 'OTHER-SOW': 1}

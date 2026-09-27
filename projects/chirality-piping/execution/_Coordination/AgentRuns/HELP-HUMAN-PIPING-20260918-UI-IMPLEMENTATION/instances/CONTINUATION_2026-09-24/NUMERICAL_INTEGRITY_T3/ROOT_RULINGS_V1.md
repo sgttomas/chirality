@@ -480,3 +480,206 @@ I4's base-against-candidate comparison of the 14 formation rows: UDL-W1e80 is bi
   - (i) SF-4 is a required fix: the S* floor, or an equivalent, is in the design. V1's collinear-run probe is a test that stays silent, and all 6 UDL rows stay caught.
   - (ii) R-b is decided on evidence. D1 forecasts at least **R-b** as written and **R-b′**, which is R-b restricted to rows at or above the V1-S8 floor (|q| ≥ about 5.4e-11·S*) or the contract floor at that row. Each is run over the committed fixtures, the frozen references and the 221, reporting: the INPLANE rows caught, and whether each is a Passed breach under today's predicate; the false demotions (rows correct under today's predicate), split committed, frozen-realistic and synthetic; and the overlap with K-D5.
   - **Default:** the variant that catches every INPLANE row that is a published Passed breach under today's predicate, with no committed-fixture demotion of a row correct under that predicate. Otherwise the numbers go to ROOT.
+
+## S11-G note revision 2: rulings, conditional on V1's delta check (ROOT, 2026-09-27, on `a5137da0f`)
+
+1. **R-b′ selected**, by ROOT's default rule. It catches all 8 INPLANE rows, each a Passed breach under today's predicate; it demotes no committed row that is correct today; and its 12 false demotions are all synthetic. V1 confirms the committed forecast (0 firings) and the synthetic classification of the 12.
+2. **SF-4's per-row floor, 2^-10·Σ|self-equilibrated formed terms|: accepted.** V1 confirms that the collinear and pure-pressure runs are silent, that the 6 UDL catches are unchanged, and that the floor cannot be gamed to hide a real formation error (a counterexample search: a row with a real defect below the floor but above the criterion).
+3. **SF-2's CannotBound for curved consistent vectors, with its availability loss: accepted.** Realized curved bends are opt-in, and no committed model uses one. The loss is disclosed in S11-G's CHANGE_RECORD, and W1c with T4 removes it.
+4. **The formation list is emptied when S11-G merges,** provided S11-G's gate run shows all 14 rows published non-Passed on both entries and both modes. Until then it stays pinned.
+5. **K-D5 on INPLANE** (1.6× and 2.0× its trigger in D1's recal): I3 confirms on the merged state. If K-D5 does demote them, the overlap is recorded as defence in depth, not a conflict; S11-G's R-b′ still ships.
+
+After V1's PASS, the manager writes the S11-G implementation brief. S11-G goes on main after S11-F merges. I4's formation_rows.json input is pinned by full hash (`c548f51999b4df16…`) in `DESIGN_NUMERICS/_run_records/inputs/` until I4's commit lands.
+
+## S11-G revision 2 after V1's delta check (ROOT, 2026-09-27, on `a3ddc4dea`)
+
+1. **DB-1 accepted as V1 proposes.** The SF-4 floor applies **only to the self-equilibrated part of the defect**, with two exact accumulators, and a net formation defect is never floored.
+   - D1 adds test **T6b** (V1's counterexample: a UDL-type fixed-end defect at a free row, masked by two anchored thermal members; it must fire) and its killing mutation.
+   - **Residual accepted for now:** a junction of self-equilibrated terms only, with a genuine small net, is hidden by any noise-silencing floor. It is disclosed in the note and in S11-G's CHANGE_RECORD, and routed to W1/F2, which removes it.
+2. **DS-1 accepted. Ruling 5 of "S11-G note revision 2" is amended:** K-D5 does **not** demote the INPLANE cases after S11-F. D1's 1.6× and 2.0× came from recal_d5's pre-S11-F folded force, and V1's exact-residual EF with the S11-F force gives 2·EF ≈ 1.3e-6 to 3.2e-6 of the trigger. **R-b′ is the only catch; there is no defence in depth there.**
+   - The note's §1, §5 and §6.4 are corrected.
+   - I3 is told to expect K-D5 to stay silent on these cases, and not to "fix" that.
+   - R-b′'s tests are therefore load-bearing, and the implementation review mutation-checks them hard.
+3. **V1's NOTEs go into the implementation brief:**
+   - the underflow condition on the FMA error term;
+   - the constant 1e-9 made safe by strict rounding or an exact rational;
+   - a source pin tying the routing site to the tested predicate (M7);
+   - a skew-member unit test of the bound (the M14 |Tu| variant).
+4. **Next:** D1 writes revision 2.1, V1 checks the diff only, and on PASS the manager writes the S11-G implementation brief.
+
+## Selection: the S11-G design (ROOT, 2026-09-27)
+
+**S11-G's design is selected at revision 2.1** (`DESIGN_NUMERICS/S11G_GUARD.md`, sha256 `7c052c9e…`, commit `ba5d26924`), on V1's PASS (`REVIEW/S11G_CHECK.md` delta-2.1, sha256 `a064bc93…`, commit `02d071f88`). ROOT's earlier rulings are its conditions:
+- **R-b′** is the recovery guard;
+- **the SF-4 floor applies to the self-equilibrated defect only,** with two exact accumulators; a net formation defect is never floored;
+- **CannotBound for curved consistent vectors,** with its availability loss disclosed in S11-G's CHANGE_RECORD;
+- **the formation list is emptied at S11-G's merge,** provided all 14 rows are published non-Passed on both entries and both modes;
+- **R-b′'s tests are load-bearing** (the only INPLANE catch after S11-F);
+- **the DN-4 residual** (a self-equilibrated-only junction with a genuine small net) is disclosed, and routed to W1/F2.
+
+V1's two implementation NOTEs go into I5's brief:
+- **D21-1:** the exact test |A_net| > 12·(T0 − B), with ±12B and ∓12T0 added exactly into the accumulator copy, and no rounded comparison;
+- **D21-2:** the scaled-RoundedProduct underflow fallback is γ2·|value| + |k|·2^-1074.
+
+S11-G is implemented by I5 on main after S11-F merges, and reviewed by RV4.
+
+## K-D5 mutation M31b: accepted as equivalent at the criterion (ROOT, 2026-09-27)
+
+**The mutant.** M31b is the chord-only form of the design's mutation 31. K_t is still re-formed, but the intended element's H is built from the product's formula chord R(cos φ − 1, R sin φ, 0), using binary64 R, atan2, cos and sin, instead of the actual node chord. The formula evaluated at p (M31b0) also survives. Every other K-D5 mutation is killed: M23, M26, M27, M28, **M31a** (the whole-matrix form, where K_int is the product's binary64 matrix), M32a and M32b.
+
+**Evidence (I3):**
+- On CSKEW_8_5, the mutant's trigger equals the correct check's to 4+ digits.
+- Admissible radius-mismatch elbow:
+  - the centre is shifted −6.5e-10·R, giving |ri| − |rj| = 9.2e-10 relative, inside the product's 1e-9 tolerance;
+  - the formula chord differs from the actual chord by about 1.4e-10 m per component, confirmed on an instrumented build;
+  - triggers are 1.681 (mutant) against 1.685 (correct);
+  - the chord error moves EF by about 0.002 of the criterion.
+- **The mechanism:** a rigid-rotation force pair from a chord error has only a second-order net moment on the soft mode.
+- **Consistency:** this agrees with V1's `REVIEW/VERIFY_R5.md` item 16, which reproduced mutation 31 only through the shared matrix.
+
+**Ruling: option (a) accepted.** M31b is recorded as an equivalent mutant at the unchanged 1e-9 criterion. Nothing is weakened. The conditions are:
+1. **What stays required:**
+   - the test `kd5_curved_intended_element_uses_the_actual_chord` (the admissible-mismatch elbow, k_X = 30; it demotes in both modes and kills M31a);
+   - M31a's kill;
+   - the actual-chord implementation (R5-4 §2 step 6).
+
+   The equivalence is about the test's power, not the implementation: the code must still use the actual chord.
+2. **The K-D5 reviewer (RV-K-D5) gets a specific attack:** construct an admissible product model on which M31b is observable at the criterion. Candidates include:
+   - small bend angles;
+   - near-π angles short of the AngleDomain refusal;
+   - extreme R/L;
+   - stiff-X or soft-Y combinations;
+   - the most distorted admissible centre.
+
+   If RV-K-D5 finds such a model, it becomes a required test, and M31b must be killed before merge.
+3. **Records:**
+   - The equivalence is recorded, with these numbers, in K-D5's RETURN and CHANGE_RECORD and here.
+   - The claim in `DESIGN_NUMERICS/R5_4_CURVED.md` and `D5_TRIGGER.md` that "H from the product's chord misses k_X = 8.5" holds only for the whole-matrix form, M31a. It is corrected at the next D1 touch, or noted in the K-D5 record.
+
+## S11-G implementation: I5 rulings (ROOT, 2026-09-27)
+
+These are on I5's three items from base `43b8f83aa`, before any build.
+
+**1. Ordering: accepted, with the manager's condition.**
+- **The approach:** R-b′ needs the published rows, which exist only after the straight element-recovery loop. The load-row finding therefore goes in at `append_integrity_report` on both call sites. After the loop, R-b′'s finding amends the same integrity diagnostic, through the same helper and the same no-op rule, and only while its code is still `CHECKS_PASSED`. Diagnostic order and byte layout are unchanged. If both guards fire, the load-row sentence stands.
+- **The condition:** I5 enumerates every reader of the diagnostic code, the envelope's `solve_quality` or the case standing between the append and R-b′'s amendment. **Any reader in that window stops the work and comes back to the manager.**
+- **Required tests:** R-b′ alone, and both guards firing.
+
+**2. The erratum at B = T0 = 0: accepted.**
+- **The change:** the first clause fires on `B > 0 && B ≥ T0`, instead of the design's `B ≥ T0`. The design's own T6 pin (CHECKS_PASSED) decides this. D21-1's exact second test and the A_se third test are unchanged.
+- **Required:**
+  - boundary tests: B = T0 = 0 with A = 0 does not fire; A_net ≠ 0 fires; |A_se| > 12·Tf fires; B > 0 with B = T0 fires;
+  - a mutation restoring the old clause, which T6 must kill;
+  - the deviation from S11G_GUARD.md rev 2.1 recorded in CHANGE_RECORD.
+- RV4 checks it. No D1 or V1 round is needed, because the change is confined to the degenerate point.
+
+**3. Receipt coverage on the captured entry: option (b), with conditions.**
+- **The edge:** a multi-case captured invocation in which one case is source-selected, and another case is demoted from Passed by a guard. `OrdinaryAttempt::wire` then requires the published outcome to equal the ordinary checks_passed, finalization fails, and the invocation is refused with the blocking `SOURCE_BLOCK_RECOVERY_FINALIZATION_FAILED`.
+- **Why (b):** "never refuse" in S11-G is a design rule against losing availability. The hard constraint is never publishing a silently wrong value, and this edge fails closed. The proper fix is a receipt contract change, and it belongs with the finalization owner, not inside a guard slice.
+- **Conditions:**
+  - **(a) Scope of the residual.** I5 checks whether the same refusal already happens on main through S11-F's `LOAD_CONTRIBUTION_ABSORBED` demotion, and through K-D5's formation-check demotion, in a multi-case captured invocation. Record the actual reach per slice. If S11-F already has it on main, it is an existing residual that S11-G widens, and the record says so.
+  - **(b) The test.** The pinning test is labelled a characterization of a known residual, not desired behaviour. It asserts that the invocation is refused with the finalization code, that no case value is published, and that single-case captured invocations are demoted and not refused. Its comment references the owning item.
+  - **(c) Ownership.** The "demoted-ordinary" receipt form, including the reader update, is routed to T3's composite `SOURCE_BLOCKS_FINALIZATION_FAILED` item. **It must close before T3 closes**; it is not deferred past T3. It goes into the work graph's T3 row in the next records PR.
+  - **(d) Disclosure.** It is disclosed in S11-G's CHANGE_RECORD and PR body as a fail-closed availability residual. **RV4 confirms that it fails closed on every reachable path; any path that publishes a value is BLOCKING.**
+
+The cargo token order is unchanged: I4, then I3, then I5.
+
+## S11-G ruling 3, revision 1: path 2 goes back to the design (ROOT, 2026-09-27)
+
+**What I5 found** (from the code, on `3d844fea4`, before any build):
+- **The corrected reach (condition a, accepted).** S11-F's `LOAD_CONTRIBUTION_ABSORBED` and K-D5's formation check have **no** receipt residual. Their Sensitive verdict is on the kernel `StructuralReport` (FK `structural.rs:1400` on main; kd5 `structural.rs:1479-1492`), so the case enters routing and gets a receipt entry. S11-G is the only slice with the residual, by two paths:
+  - **Path 1:** a Passed case demoted beside a source-selected case. This needs per-case stiffness, because Sensitive otherwise follows the invocation-wide rcond.
+  - **Path 2:** the design's routing gate (`source_eligible … && load_row_finding.is_none()`, S11G_GUARD rev 2.1 §3.5). An already-Sensitive case whose load-row guard fires gets no retained-source attempt, and so no receipt entry. Coverage then fails, and the invocation is refused. I5 reports this as reachable in ordinary models, for example an N05-type case beside a formation-noisy second case.
+
+**The revised ruling.** Ruling 3 accepted option (b) on the premise of a narrow edge. Path 2 would refuse whole invocations in ordinary models, which is an availability regression introduced by S11-G, so it is not an acceptable disclosed residual. **S11-G must not ship with path 2.**
+1. **Path 2 goes back to the design.** D1 writes a narrow S11G_GUARD delta, **revision 2.2**, limited to the routing gate. It answers:
+   - why the design withholds the retained-source attempt from an already-Sensitive case whose load-row guard fires;
+   - whether giving that case the attempt is sound, with the guard's Sensitive demotion and diagnostic applied whatever the attempt's outcome, so that receipt coverage holds with no receipt contract change;
+   - if that is unsound, the smallest in-design alternative that avoids refusal. A receipt contract change is out of scope for S11-G.
+
+   V1 then runs a delta check. ROOT selects 2.2 on V1's PASS, by the default rule, and I5 implements it. I5 carries on with everything else meanwhile.
+2. **Path 1 stays under ruling 3:** a disclosed, fail-closed residual, owned by the composite `SOURCE_BLOCKS_FINALIZATION_FAILED` item, closing before T3 closes. It is preferable for 2.2's fix to remove it too. The characterization test stays for whatever residual remains after 2.2.
+3. **Condition (b) remains a gate.** I5's consumer enumeration continues. If any consumer can present, export or qualify rows from a refused envelope, that is BLOCKING whatever 2.2 does, and it comes to ROOT.
+4. **Condition (a), the corrected reach, is accepted.** It is recorded in the work graph's T3 row once I5's test confirms it, correcting the earlier framing.
+
+D1 and V1 do writing and analysis only; no cargo unless the manager grants a slot. The cargo order stays I3, then I5.
+
+**Note (ROOT, 2026-09-27, on D1's revision 2.2 at `3c80158e9`): moving R-b′ before routing is declined for S11-G.**
+- D1 recorded, without proposing, the option of moving R-b′ before routing so that it feeds `needs_source_recovery`. That would also remove path 1's R-b′ variant.
+- It is declined because it changes R-b′'s semantics, which V1 checked and ROOT selected at 2.1.
+- **The R-b′ variant of path 1 stays a disclosed residual under ruling 3.** It was judged narrow at the time. (Corrected 2026-09-27 by the C1 note below: per-case modulus bases are sufficient, not necessary.) It fails closed: the captured entry returns `Err` and no envelope. It is characterized by T20. It is owned by the composite `SOURCE_BLOCKS_FINALIZATION_FAILED` item, which closes before T3 closes.
+- The finalization item may take the option up, with its own design and check.
+- ROOT selects 2.2 on V1's PASS, by the default rule. I5 implements it in its cargo slot, confirming T18 and the T19/T20 multi-basis selection by run.
+
+**Note (ROOT, 2026-09-27, on RV4's interim finding C1 during the PR1003 review): the R-b′ path-1 residual is reachable. Ruling 3 is unchanged.**
+- **Construction C1 (RV4):** N05's cantilever with per-case modulus bases. Case A, the cancelling tip torques on the base basis, is Sensitive and selected by recovery. Case B, on a soft basis (E = 1 Pa, G = 0.4 Pa), carries only nodal inputs (tip F_y = 1 N, M_z = 1e-7 N·m).
+- **The outcome:** on the captured entry, in both modes, the invocation returns `Err("SOURCE_BLOCKS_FINALIZATION_FAILED")` with no envelope. Case B alone is Passed in its report, and R-b′ demotes it as a true catch (a genuine error of 6.1e-9 relative). With m = 0.5, R-b′ is silent and the invocation returns Ok with a receipt. The typed entry publishes case B as Sensitive.
+- **Ruling 3 stands, and moving R-b′ before routing stays declined for S11-G.** C1 uses per-case modulus bases. Single-basis reach through FK's load audit and through K-D5 (V1's N1, the design's E-2) is **not refuted**. The refusal needs a pre-0.4 captured invocation (0.4.0 republishes), a Sensitive source-selected case, and an R-b′ catch on another case. **On that basis the ruling is unchanged:** it fails closed (an `Err` with no envelope; nothing wrong is published), it is confined to the pre-0.4 captured entry, and the finalization item closes it before T3 closes. (Corrected 2026-09-27 on the PR1004 review, S1. The earlier text listed per-case modulus bases as a necessary condition.)
+- **Ownership:** the composite `SOURCE_BLOCKS_FINALIZATION_FAILED` item owns it, treats it as **demonstrated** with C1 as its test case, and closes it before T3 closes. Once K-D5 merges, the item re-attempts a single-basis construction through K-D5's per-case formation check.
+- **The S11-G repair (tests and records only):** T20 is rebuilt around C1, and the disclosures read "reachable (C1), fail-closed, needs per-case modulus bases and a pre-0.4 captured invocation". RV4 delta-checks that commit. (Corrected 2026-09-27: the accurate wording is "reachable (C1, which uses per-case modulus bases; single-basis reach not refuted), fail-closed, confined to a pre-0.4 captured invocation".)
+
+## Selection: S11-G revision 2.2 (ROOT, 2026-09-27)
+
+**S11G_GUARD revision 2.2 is selected** (`DESIGN_NUMERICS/S11G_GUARD.md`, sha256 `680fecdd…`, commit `3c80158e9`), on V1's delta-2.2 PASS (`REVIEW/S11G_CHECK.md`, sha256 `ec0efce7…`; 1 SHOULD-FIX, 4 NOTE). **D22-1's preferred fix is a binding condition.** 2.2 supersedes 2.1's routing gate. The rest of 2.1 and every earlier S11-G ruling stand.
+
+**What 2.2 does:**
+- **G-1:** the routing gate is removed.
+- **G-2:** a load-row finding routes like a Sensitive verdict, and `OrdinaryAttempt` records the outcome as sensitive. This is a constructor argument only; V1 confirmed it is not a receipt contract change.
+- **G-3:** `decline_formation()`, which V1 found load-bearing in a 0.4.0 subnormal eigen-load corner.
+
+This removes path 2 and path 1's load-row variant. Path 1's R-b′ variant stays under ruling 3.
+
+**1. D22-1 is required, not disclosed.**
+- **The problem.** G-2's new attempt on a Passed, guard-fired case charges recovery work up front (SRec:458-472) that neither main nor 2.1 spends. Near the invocation limit, that can cost a later case its selection or refuse the invocation. This is the same class of availability regression ruled out for path 2.
+- **The fix I5 implements, per V1's preferred fix:**
+  - When main would not attempt the case (report Passed, no `Err`) and the load-row finding is `Some`, record the formation decline **without running the attempt**: a zero-work `RecoveryFailure` plus the same info diagnostic, with existing codes accepted under WORK_LEDGER and FAILURE_CATEGORY.
+  - Already-Sensitive guard-fired cases keep the real attempt, so T18's byte-equality with main holds.
+- **Required tests:**
+  - the invocation budget equals main's on a Passed, guard-fired case;
+  - the reader accepts the zero-work entry;
+  - a mutation that restores the charged attempt is killed.
+- **Records.** D1 adds a short 2.2 erratum (§0.2) with the D22-1 text, and fixes the mislabelled trace check. This is records only and does not block I5 starting on G-1 to G-3. RV4 checks the fix against V1's specification.
+
+**2. The NOTEs:**
+- **N1: accepted as information.** The R-b′ residual is reachable through a single basis via FK's load audit (for example an unaudited range row (1e15, −1e15, 1e-300)), and through K-D5 once merged, not only through per-case modulus bases. The residual stays under ruling 3 as recorded. I5 may use the single-basis construction for T19 and T20, which also settles N3 if multi-basis selection does not confirm. The work graph's reach wording is updated to match.
+- **N2:** no action.
+- **N3:** settled through N1.
+- **N4:** T20 is labelled pre-0.4 only. On 0.4.0 the case is republished (CP3 SF-1), not refused; this is recorded.
+
+**3. I5 implements** G-1 to G-3 plus the D22-1 zero-work decline. In its cargo slot it confirms T18, T19 and T20 by run. RV4's basis is 2.2 plus the D22-1 erratum.
+
+**Note on T18–T20 and T6a (ROOT, 2026-09-27, on I5's first runs):**
+- **The run evidence.** T18 passes by run in both modes: path 2 is removed, the captured invocation publishes with a receipt, and case B keeps today's integrity bytes. T19 passes by run on a per-case modulus-basis construction: path 1's load-row variant is removed, case B gets the zero-work unsupported entry, and nothing is refused. **T19 settles V1's N3: multi-basis selection works.** T21 and T22 pass.
+- **T20: option (a).** I5 could not construct a selected case A beside a case B that R-b′ demotes. It tried three constructions:
+  1. A single-basis load-audit row modelled on V1's N1 (V1's row is (1e15, −1e15, 1e-300); I5 used (4e15, −4e15, 1e-300), with PR1002's G = 4e15): recovery refuses case A on the exact radix.
+  2. The INPLANE geometry with N05's torsion spring: `UnsupportedBlock { order: 3 }`.
+  3. Two disjoint bodies: `UnsupportedBlock { order: 4 }`.
+  In each, R-b′ demotes case B without refusal, but no case is selected.
+  - T20 is rewritten as a characterization of the actual behaviour: published, no receipt, case B demoted, not refused. A comment names the residual and its owner.
+  - RETURN records the three constructions and their outcomes.
+  - The residual is disclosed as **"not demonstrated reachable"**. It stays under ruling 3, owned by the composite finalization item, which closes before T3 closes.
+  - **Superseded (2026-09-27):** RV4's construction C1 shows the residual is reachable and fails closed. See the C1 note under "S11-G ruling 3, revision 1". T20 is rebuilt around C1, and the disclosure is corrected.
+  - **RV4 attempts a construction independently.** If one refuses, RV4 checks that it fails closed (no envelope). It is BLOCKING only if it publishes a value.
+  - The work graph notes that K-D5, once merged, may supply a selected case A through its per-case formation check. The finalization item re-attempts the construction then.
+- **T6a's pressure run** (the straight-thrust `RoundedProduct` family, refused on fresh solves with `PRESSURE_MODEL_REAUTHOR_REQUIRED`). The manager's direction is upheld: run it through any solve path, including a legacy replay, that reaches the family. Otherwise record the unreachability with file:line evidence, keep a unit-level test of the family's bound, and disclose the deviation for RV4.
+
+## K-D5: the combined-tree gate after S11-G (ROOT, 2026-09-27)
+
+**The pre-S11-G gate passes.** On 3befacff4 plus I3's 8 addendum-4 edits, against the lists at `59fff0d9e`, both entries:
+- 888 runs;
+- the trusted breach triples are exactly FORMATION_EXCEPTIONS' 7, and none of the former 221 re-breaches;
+- RF-SKEW-T-CANT-OFF-122-r1e-04 is the only standing change against P1 (sensitive/needs_recompute on both entries and in both modes).
+
+**After the forward merge of S11-G (main `b24b3d536`),** the combined candidate needs, before RV5:
+- the affected suites;
+- the T9 fixture diff against main;
+- the full both-entry gate against main's **empty** lists, where any trusted breach is a FAIL.
+
+**The ruling: run the full 888, and skip nothing.** It is ordered in two parts, so that RV5 is not held up:
+- **Part 1:** every run except the 4 known dense timeouts (RF-LARGE-CHAIN-n01000-ROT and RF-LARGE-TREE-n01000-AX, dense, on both entries). About 50 min. Its result is reported as soon as it finishes.
+- **Part 2:** the 4 timeout cases, run immediately after, **with no other cargo on the host.** Contention would bias them toward timing out, which would make the confirmation meaningless. If any of them finishes and publishes, its result is checked against the empty lists like any other run, and a trusted breach is a FAIL.
+- **The gate's verdict is the union of both parts,** on the same binary and the same combined head.
+
+**RV5** may be spawned on the combined candidate once part 1, the suites and T9 are green. It reads and traces during part 2, and gets no cargo until part 2 finishes.
+
+Conflict resolution in the forward merge is I3's. Any design question about how K-D5's formation check composes with S11-G's guard (the integrity diagnostic, the no-op rule, routing, D22-1) comes to ROOT.

@@ -1,0 +1,8 @@
+DEL-04-01 exit=0 unresolved_or_undefined=0 not_checkable_lines=5 json=identical-to-prepared
+DEL-04-02 exit=0 unresolved_or_undefined=0 not_checkable_lines=4 json=identical-to-prepared
+DEL-08-01 exit=0 unresolved_or_undefined=0 not_checkable_lines=0 json=identical-to-prepared
+DEL-08-03 exit=0 unresolved_or_undefined=0 not_checkable_lines=7 json=identical-to-prepared
+DEL-08-04 exit=0 unresolved_or_undefined=0 not_checkable_lines=1 json=identical-to-prepared
+DEL-04-03 exit=0 unresolved_or_undefined=0 not_checkable_lines=3 json=identical-to-prepared
+DEL-03-04 exit=0 unresolved_or_undefined=0 not_checkable_lines=2 json=identical-to-prepared
+DEL-10-03 exit=0 unresolved_or_undefined=0 not_checkable_lines=1 json=identical-to-prepared

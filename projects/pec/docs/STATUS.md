@@ -258,11 +258,28 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     Done: its act replaced the seven contracts with the ruled bytes (no
     lifecycle change; DEL-02-07 carries the four `D-PEC-99` Part B items
     with their gates; run root
-    `execution/_Coordination/SOW_REBUILD_S2_2026-09-26/`). Open: S1 and S4,
-    which absorb the quotations of old S2 text in 13 contracts. The owner
+    `execution/_Coordination/SOW_REBUILD_S2_2026-09-26/`). The quotations of
+    old S2 text in 13 contracts go to S4 (done, below) and S1 (open). The owner
     ruled the S4 currency packet `D-PEC-102` (eight contracts: DEL-04-01,
     DEL-04-02, DEL-04-03, DEL-08-01, DEL-08-03, DEL-08-04, DEL-03-04,
-    DEL-10-03) A + M on 2026-09-26; its act is next. Done: the first SOWs for DEL-02-08/09
+    DEL-10-03) A + M on 2026-09-26. Done: its act replaced the eight contracts
+    with the ruled bytes (no lifecycle change; DEL-04-01 carries its two
+    `D-PEC-99` Part B production obligations with their gates still binding;
+    the owner's 2026-08-09 exact-byte acceptance of DEL-04-01's prior
+    contract lapsed; run root
+    `execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/`); the eight
+    `MEMORY.md` files follow at closeout. The owner ruled the S1 currency
+    packet `D-PEC-104` (twelve contracts; DEL-01-03 and DEL-01-05
+    currency-only) A + M on 2026-09-27; its act is in progress. The owner ruled the D1 premise packet `D-PEC-105`
+    (DEL-00-01 ADRs and contract, DEL-00-03 SPEC and contract;
+    premise-only, with the DEL-00-03 contract rebound to revision 1.6) A + P
+    + M on 2026-09-27, choosing a later REVIEW and owner re-acceptance (RR1:
+    intent only, needing its own authorization);
+    the lapsed acceptances are recorded when its act lands. The owner ruled
+    the X1 P1 fixture packet `D-PEC-106` (34 fixture files and the
+    `v2-parsers` check; no parser code) A + L + M on 2026-09-27: at X1
+    production start DEL-02-03, DEL-02-08 and DEL-02-09 move to
+    `IN_PROGRESS`. Done: the first SOWs for DEL-02-08/09
     (`D-PEC-98` A + S + M, ruled 2026-09-26): both contracts written,
     re-pinned to revision 1.6, validated and independently verified, and
     both deliverables `INITIALIZED` (run root
@@ -319,8 +336,8 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     `execution/_Coordination/REMAINING_RETIREMENT_D-PEC-99_2026-09-26/`).
     Still open from it: the 71 unselected evidence inquiries stay in the
     exhibit until steering selects one; S2 absorbed its four Scope of Work
-    carry-forwards (`D-PEC-100`, PR #979), and S1 and S4 absorb the other
-    eight. The undertaking's receipt is
+    carry-forwards (`D-PEC-100`, PR #979), S4 absorbed its four
+    (`D-PEC-102`, PR #998), and S1 absorbs the other four. The undertaking's receipt is
     `execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT/RECEIPT.md`.
 
   These are organized in the work graph

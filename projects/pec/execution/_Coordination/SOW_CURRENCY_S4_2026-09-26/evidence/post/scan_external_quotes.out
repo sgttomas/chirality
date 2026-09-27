@@ -1,0 +1,36 @@
+$ python3 projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/scan_external_quotes.py --tree . --prep projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26
+KEPT DEL-01-05 quotes DEL-10-03: ", and that packet reads the acceptance as taking the exhibit's **flags as flags**:"
+KEPT DEL-01-05 quotes DEL-10-03: '. What is settled is therefore the arithmetic exclusion — `C-08` is a non-gating constraint row and this deliverable is excluded from one-sh'
+KEPT DEL-02-04 quotes DEL-04-02: ', `EvidenceFile` `docs/PRD.md`, `SourceRef`'
+KEPT DEL-03-01 quotes DEL-03-04: 'labeled generated artifacts (reports, briefs, evidence records) under declared generated paths'
+KEPT DEL-03-02 quotes DEL-04-02: '`DecisionRef` empty and `Notes` empty — two of the ten fields are unpopulated, `Notes` trailing;'
+KEPT DEL-03-02 quotes DEL-04-02: 'Not a Git actor. Read-only plumbing access; CHANGE owns Git state'
+KEPT DEL-03-03 quotes DEL-04-02: "the downstream row lives in the consumer's own local register, per the deliverable-local storage ruling of `D-PEC-62`."
+KEPT DEL-03-06 quotes DEL-08-04: 'This contract does not choose the corpus and does not read the phrase as fixing one:'
+KEPT DEL-04-05 quotes DEL-04-01: "the `..` ranges are the source's own notation, not an elision."
+KEPT DEL-04-05 quotes DEL-04-01: 'DEL-00-03, DEL-01-01, DEL-02-01..07, DEL-04-01..05, DEL-08-01..04, DEL-10-01, DEL-10-04 ``` (`Amendment_Preview.md`, action `A003b`, "Line 3'
+KEPT DEL-04-05 quotes DEL-04-03: "the doubled quotation marks are the source's own CSV escaping."
+KEPT DEL-04-05 quotes DEL-04-03: '- **REQ-001** — Every orientation response the layer stamps shall carry all three fields `SOW-006` and `PEC-ORI-003` require — the examined-'
+KEPT DEL-04-05 quotes DEL-04-03: '`PEC-K-04` fixes only that the consumer detects staleness structurally from what the stamp carries.'
+KEPT DEL-04-05 quotes DEL-04-01: '- **REQ-006** — Where the record tier holds no reconciled state for the named loop, where the loop is unknown to the record tier, or where t'
+KEPT DEL-04-05 quotes DEL-04-01: '- **CON-004** — No accepted source states what a per-loop orientation return *is* when the record tier has never been reconciled for that lo'
+KEPT DEL-04-05 quotes DEL-04-01: "is the objective's own word and its buildable form is `SOW-041` —"
+KEPT DEL-04-05 quotes DEL-04-01: 'this contract asserts no latency bound and produces no latency evidence.'
+KEPT DEL-04-05 quotes DEL-04-01: '. `ResponsibleParty` is `TBD` throughout the register by the §5 preamble —'
+KEPT DEL-04-05 quotes DEL-04-01: 'and the reconciler contract asserts no standing populated state (CLM-012). The invariants nevertheless fix the posture rather than leaving i'
+KEPT DEL-08-06 quotes DEL-04-01: 'the versioned additive API schema is `DEL-08-02` (`SOW-042`);'
+KEPT DEL-10-02 quotes DEL-10-03: '"**`SOW-055` precedent withdrawn as tautological** — it restates OBJ-005 nearly verbatim and selects nothing for `SOW-025`".'
+KEPT DEL-10-02 quotes DEL-10-03: 'shall expose a binding interface through which an externally owned change path or release gate can invoke it without modification to the sui'
+KEPT DEL-10-02 quotes DEL-10-03: 'this contract delivers no gate wiring and places no obligation on any other deliverable to re-run, re-certify, or maintain anything'
+KEPT DEL-10-02 quotes DEL-10-03: "at `D-PEC-62` §1(4), which that packet reads as taking the exhibit's flags as flags;"
+KEPT DEL-10-11 quotes DEL-03-04: '`SOW-021` ⊆ `{OBJ-005}`** (see F-2) | Unit Ledger (§6 + `ScopeLedger.csv`) | (`execution/_ScopeChange/SCA-002_2026-07-25_1042/Brief.md`, act'
+KEPT DEL-10-11 quotes DEL-03-04: '`E-A18,DEL-03-04,DEL-10-11,DECLARED,MEASURES,,"Deliverables.csv DEL-10-11:'
+KEPT DEL-10-11 quotes DEL-04-01: 'each is cited to its owner in CLM-015 and none is discharged here.'
+KEPT DEL-10-11 quotes DEL-03-04: "- **CON-001** — Whether this deliverable's parity gate carries *release-gating authority* is unconfirmed."
+KEPT DEL-10-11 quotes DEL-03-04: 'no metric, report, threshold, or count presented as the §11 parity metric'
+KEPT DEL-10-11 quotes DEL-03-04: "in its own `Notes`, the exhibit's node-class paragraph repeats"
+KEPT DEL-10-11 quotes DEL-03-04: ', and `D-PEC-62` §1 item 4 accepted the standing-node set as a recorded-but-unresolved, non-gating annotation rather than ruling it (CLM-008'
+KEPT DEL-10-11 quotes DEL-03-04: 'it imposes no obligation on that deliverable'
+KEPT DEL-10-11 quotes DEL-03-04: ', and `D-PEC-62` §1 item 4 accepted the exhibit'
+SUMMARY stale=0 kept=33
+exit=0

@@ -1,0 +1,10 @@
+# Add-on L prototype: write_status.sh 0bf835f5…ece3 on a git-archive export of 6c6cc1b00, {D}=2026-09-26, actor as tabled
+35ba885f5eb7c6ce8a279b61e18173c5b8f4ae5b1270aa78df8fb90a2b4334b7  projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_STATUS.md
+012e905dba8b6eb0c512966b3293e20dcf84354ffa847d89064ea57471c1ce60  projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_STATUS.md
+ffe81899d2ce902c053db16581ddd894cb64ab0c528f2502889b2d262629edb8  projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_STATUS.md
+3c3
+< **Current State:** INITIALIZED
+---
+> **Current State:** IN_PROGRESS
+8a9
+> - 2026-09-26 — State set to IN_PROGRESS (WORKING_ITEMS at actual D-PEC-106 X1 production start; semantic step skipped under Root docs/SPEC.md §3.3; ruling, preflights and act evidence in execution/_Coordination/X1_FIXTURES_2026-09-26/)

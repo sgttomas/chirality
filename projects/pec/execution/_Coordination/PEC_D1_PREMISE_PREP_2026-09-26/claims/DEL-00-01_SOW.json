@@ -1,0 +1,138 @@
+{
+ "key": "DEL-00-01_SOW",
+ "claims": [
+  {
+   "id": "S01",
+   "commit": "6c6cc1b00",
+   "kind": "sha256",
+   "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md",
+   "value": "4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740",
+   "candidate_text": "`4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740`"
+  },
+  {
+   "id": "S02",
+   "commit": "189f205ff",
+   "kind": "ancestor",
+   "value": "6c6cc1b00dd5cc2bf77a5a262d0ac593fc96e240",
+   "candidate_text": "pinned at `189f205ff`"
+  },
+  {
+   "id": "S11",
+   "commit": "6c6cc1b00",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md",
+   "value": "decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@11a494e9a",
+   "candidate_text": "birth basis, revision 1.3 at `11a494e9a`"
+  },
+  {
+   "id": "S12",
+   "commit": "6c6cc1b00",
+   "kind": "contains",
+   "path": "docs/CONTRACT.md",
+   "value": "that service is the exclusive owner of the stock, version-pinned `codex app-server` child together with sessions, delegation, tools, turn locks, and interruption for that App instance",
+   "candidate_text": "Root `docs/CONTRACT.md` K-RUNTIME-1"
+  },
+  {
+   "id": "S13",
+   "commit": "189f205ff",
+   "kind": "contains",
+   "path": "projects/pec/docs/PRD.md",
+   "value": "`D-GOV-43` supersedes `D-GOV-20` items 2–4 on the App MVP Codex path",
+   "candidate_text": "superseding `D-GOV-20` items 2–4 on that path"
+  },
+  {
+   "id": "S14",
+   "commit": "189f205ff",
+   "kind": "contains",
+   "path": "projects/pec/docs/PRD.md",
+   "value": "Sessions, delegation, and turn admission are owned per application by its application-owned Runtime service",
+   "candidate_text": "`docs/PRD.md` v2.4 §4.2 and §15"
+  },
+  {
+   "id": "S15",
+   "commit": "189f205ff",
+   "kind": "contains",
+   "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "value": "| C13 | No second execution loop; sessions, delegation and turn admission are owned per application by its application-owned Runtime service (one private Runtime per application; D-GOV-43 A2), which supersedes D-GOV-20 items 2–4 on that path |",
+   "candidate_text": "`SOFTWARE_DECOMP.md` C13"
+  },
+  {
+   "id": "S16",
+   "commit": "6c6cc1b00",
+   "kind": "contains",
+   "path": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
+   "value": "| DEL-00-01 | CHECKING | `433461504444…` | C13/D-GOV-43 runtime-ownership premise (ADR carried posture 3) | `STALE_REVIEW_REQUIRED` |",
+   "candidate_text": "`Propagation_Plan.md` §B4, row `DEL-00-01`, `STALE_REVIEW_REQUIRED`"
+  },
+  {
+   "id": "S17",
+   "commit": "6c6cc1b00",
+   "kind": "contains",
+   "path": "projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md",
+   "value": "| D1 Derivative premise review | DEL-00-01 ADRs, DEL-00-03 SPEC",
+   "candidate_text": "work-graph node D1 (`HELP-HUMAN-PEC-20260925-POST-SCA005`)"
+  },
+  {
+   "id": "S19",
+   "commit": "6c6cc1b00",
+   "kind": "not_contains",
+   "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md",
+   "value": "**AX-008**",
+   "candidate_text": "- **AX-008** — Premise-amendment provenance."
+  },
+  {
+   "id": "S20",
+   "commit": "1c6ecc6d9",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_REFERENCES.md",
+   "value": "(revision 1.4, accepted `current_basis`; SCA-004 successor)",
+   "candidate_text": "reference re-pin `1c6ecc6d9`"
+  },
+  {
+   "id": "S21",
+   "commit": "1c6ecc6d9",
+   "kind": "ancestor",
+   "value": "6c6cc1b00dd5cc2bf77a5a262d0ac593fc96e240",
+   "candidate_text": "`1c6ecc6d9`"
+  },
+  {
+   "id": "S22",
+   "commit": "65955cceb",
+   "kind": "contains",
+   "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "value": "revision: \"1.4\"",
+   "candidate_text": "revision 1.4 applied at `65955cceb`"
+  },
+  {
+   "id": "S23",
+   "commit": "65955cceb",
+   "kind": "ancestor",
+   "value": "6c6cc1b00dd5cc2bf77a5a262d0ac593fc96e240",
+   "candidate_text": "`65955cceb`"
+  },
+  {
+   "id": "S24",
+   "commit": "6c6cc1b00",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md",
+   "value": "Status: DECIDED by D-PEC-72 O-B",
+   "candidate_text": "written before the D-PEC-72 ADR existed"
+  },
+  {
+   "id": "S25",
+   "commit": "6c6cc1b00",
+   "kind": "contains",
+   "path": "docs/CONTRACT.md",
+   "value": "Credentials are custodied by Codex within Chirality's effective Codex home",
+   "candidate_text": "credentials custodied by Codex and local-model residency retired"
+  },
+  {
+   "id": "S26",
+   "commit": "6c6cc1b00",
+   "kind": "contains",
+   "path": "docs/DIRECTIVE.md",
+   "value": "The per-user daemon, its LaunchAgent, and local-model residency are retired.",
+   "candidate_text": "local-model residency is retired"
+  }
+ ]
+}

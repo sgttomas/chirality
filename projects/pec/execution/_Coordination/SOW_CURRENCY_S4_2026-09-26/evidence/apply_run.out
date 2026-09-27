@@ -1,0 +1,20 @@
+# 2026-09-27T04:53:46Z (date -u); cwd repo root; HEAD 70a3cebf961145dacab68403146945908f30e514; origin/main 4c2a7768ff43ef2d3590a37a28e53c519de744d9; output written in the run root (excluded from the script's write-set inventory)
+$ python3 projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/apply_s4p.py --repo /Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-d102-act --candidates projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/candidates
+PLAN projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md
+PLAN projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/ScopeOfWork.md
+PLAN projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/ScopeOfWork.md
+PLAN projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/ScopeOfWork.md
+PLAN projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/ScopeOfWork.md
+PLAN projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md
+PLAN projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/ScopeOfWork.md
+PLAN projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/ScopeOfWork.md
+WRITE projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md
+WRITE projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/ScopeOfWork.md
+WRITE projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/ScopeOfWork.md
+WRITE projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/ScopeOfWork.md
+WRITE projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/ScopeOfWork.md
+WRITE projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md
+WRITE projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/ScopeOfWork.md
+WRITE projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/ScopeOfWork.md
+CHECK targets 8/8 byte-exact; write set = grant (0 created, 8 modified, 0 removed under projects/pec outside the run root); pinned 19/19 unchanged
+exit=0
