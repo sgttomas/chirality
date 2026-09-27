@@ -2,7 +2,9 @@
 
 Status: **proposal only.** No register has been written. Each ruling below is yours to make.
 
-Basis: `origin/main` `0adfbc7476df33521883ce1573781237cd24d384`, after PR #1009. The simulations reproduce the current
+Basis: `origin/main` `0adfbc7476df33521883ce1573781237cd24d384`, after PR #1009. The candidate was rebased onto
+`8bbd022b98140e2128b6132bf661786ee3a8d108` (PR #1011), which changes only `projects/chirality-app-v4`;
+`projects/chirality-app-dev` and `tools/` are identical at both commits. The simulations reproduce the current
 closure snapshot `_Evaluation/DepClosure/CLOSURE_SCA_APP_011_ESR1_RULING_2026-09-27_1739` exactly (51 units, 103
 edges, 0 SCC; `Evidence/BASIS_CHECK.json`).
 
@@ -14,7 +16,7 @@ edges, 0 SCC; `Evidence/BASIS_CHECK.json`).
 | **HGD-3**: DEL-02-01-V3-01's prerequisite on DEL-02-02-V3-03 | **Close it without adding a row** | Unchanged | No change |
 | **FC-1**: redaction helper, owned by DEL-05-03 | **Resolve DEP-02-01-012 to DEL-05-03** | Still 0 SCC, with or without HGD-1 | No change |
 | **FC-2**: session binding, DEL-03-02 | **Close it without adding a row** | Unchanged | No change |
-| **FC-3**: account row presentation, DEL-02-05 | **Close it without adding a row.** DEP-02-05-014 already records this relation | Unchanged | No change |
+| **FC-3**: account row presentation, DEL-02-05 | **Close it without adding a row.** DEP-02-05-014 already records the converse relation (DEL-02-05 on DEL-02-01) | Unchanged | No change |
 
 Taken together, these rulings leave 104 edges and 0 SCC (scenario `S1+FC1`). No blocker verdict changes. All
 53 tracked deliverables stay UNBLOCKED and none is BLOCKED.
@@ -28,7 +30,8 @@ Any other combination can be ruled item by item. The consequences of each altern
 ### Two findings that correct the recorded picture
 
 1. **HGD-3 still creates a cycle, though not the recorded one.** The record says that emitting HGD-3 would
-   "no longer close the four-node SCC" (DEL-02-01 `_DEPENDENCIES.md` L99; Receipt-274 to 276). That is true, but
+   "no longer close the four-node SCC" (DEL-02-01 `_DEPENDENCIES.md` L99; `AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md`
+   L61–63: "the four-node cycle it guarded against no longer arises"). That is true, but
    the row is still not cycle-free. On the current graph it creates an **11-node SCC**, because DEL-02-02 now
    reaches DEL-02-01 by another route:
    - DEP-02-02-020 (DEL-02-02 on DEL-08-02), emitted under D-APP-109 as H-006 after the 2026-09-05 preview ran S2;
@@ -64,7 +67,7 @@ reversed.
 | Scenario | Edges | SCCs (members) | New edges | Blocked / held arcs | Blocker verdict change |
 |---|---:|---|---|---|---|
 | BASE (current) | 103 | none | none | 0 / 0 | none |
-| S1: HGD-1 inverted | 103 | none | DEL-02-01→DEL-08-02 replaces DEL-08-02→DEL-02-01 (DEP-02-01-006) | 0 / 0 | none. DEL-02-01 gains 1 gating arc (satisfied) and DEL-08-02 loses its only one |
+| S1: HGD-1 inverted | 103 | none | DEL-02-01→DEL-08-02 replaces DEL-08-02→DEL-02-01 (DEP-02-01-006) | 0 / 0 | none. DEL-02-01 gains 1 gating arc, met by supplier state (IN_PROGRESS ≥ SEMANTIC_READY); its `SatisfactionStatus` stays TBD, and DEL-08-02 loses its only one |
 | S2: HGD-3 row | 104 | **1 SCC, 11 nodes**: DEL-02-01, 02-02, 03-02, 04-02, 04-03, 04-04, 05-02, 05-04, 08-02, 08-04, 08-05 | DEL-02-01→DEL-02-02 | 0 / **15 held** | none BLOCKED. The closure check `circular_dependencies` becomes BLOCKER |
 | FC1 | 104 | none | DEL-02-01→DEL-05-03 (DEP-02-01-012) | 0 / 0 | none |
 | FC2 | 104 | **1 SCC, 7 nodes**: DEL-02-01, 03-02, 04-02, 04-03, 04-04, 05-02, 08-02 | DEL-02-01→DEL-03-02 | 0 / 7 held | none BLOCKED; closure BLOCKER |
@@ -114,7 +117,7 @@ Quotations are exact. Paths are under `projects/chirality-app-dev/execution/`, w
   - L337 (CLM-027): "The exact surviving TYPES §4 route/query compatibility question remains keyed with DEL-08-02; … DEL-08-02 owns routing/guarded selection; DEL-02-02/03 own adjacent right-panel/workspace presentation."
   - L210 (DEL-02-01-REQ-007): "Resolve the exact surviving TYPES §4 row/column query contract with DEL-08-02 before assigning a current compatibility handler."
   - L205 (DEL-02-01-REQ-002): "their exact TYPES §4 query-intent semantics remain keyed with DEL-08-02."
-  - L194 (CLM-009): "Own navigation and presentation handoff, preserving the primary dialogue and session identity. Adjacent DEL-02-02/03 and DEL-08-02/03 retain selector, workspace and routing semantics." This is the only text that says "handoff". It names no recipient and no artifact that DEL-08-02 receives.
+  - L194 (CLM-009): "Own navigation and presentation handoff, preserving the primary dialogue and session identity. Adjacent DEL-02-02/03 and DEL-08-02/03 retain selector, workspace and routing semantics." This is the only handoff text touching DEL-08-02. It names no recipient and no artifact that DEL-08-02 receives.
   - L375 (APP-R017): "DEL-08-02 carries routing and DEL-09-04 carries packaging evidence".
 - **Decomposition** (`_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`, `cf6e56eb…`):
   - L413, the SOW-005 reverse view (the L408 of the original note): "DEL-02-01 presents; DEL-08-02 owns aliases, routing, selection guards, and legacy compatibility."
@@ -135,7 +138,7 @@ Consequences:
 - The graph stays acyclic (S1).
 - DEL-08-02, the routing contract, no longer appears to wait on the shell. As recorded today, DEL-02-01 is
   DEL-08-02's only strict supplier.
-- DEL-02-01 gains a satisfied gating arc on DEL-08-02 and no blocker verdict changes.
+- DEL-02-01 gains a gating arc on DEL-08-02, met by supplier state (IN_PROGRESS ≥ SEMANTIC_READY); its `SatisfactionStatus` stays TBD. No blocker verdict changes.
 - The inversion also removes the path that makes HGD-3 and FC-2 cycle-forming. Both would then be acyclic if you
   ever chose to emit them.
 - DEL-08-02's register needs no write; its L63 note stays true.
@@ -169,6 +172,16 @@ Consequences:
 
 Register change: none to the row fields. The index records HGD-1 CLOSED with the ruling quoted.
 
+### HGD-1: alternative, direction-only flip (UPSTREAM HANDOVER)
+
+Set `Direction` to `UPSTREAM` and keep `DependencyType=HANDOVER`. The graph result is identical to S1 (neither
+the analyzer nor the blocker queue reads `DependencyType`), so it stays acyclic with no blocker change.
+It records DEL-02-01 as receiving a handover from DEL-08-02. No source describes a handover in that direction
+either: DEL-08-02 owns a contract that DEL-02-01 consumes, which is what INTERFACE denotes and what the siblings
+DEP-02-02-020 (CONSTRAINT) and DEP-04-04-006 (INTERFACE) record. Register change: `Direction` DOWNSTREAM → UPSTREAM;
+`LastSeen` and `Notes` as for the recommended ruling; `DependencyType` unchanged. Index: Compact Register row 006
+becomes UPSTREAM / HANDOVER; the Lifecycle Summary type counts are unchanged.
+
 ## HGD-3: DEL-02-01-V3-01's prerequisite on DEL-02-02-V3-03
 
 **Row derived from the cited source.** This is the row the 2026-09-05 N1 preview held (`PREVIEW.md` §3). It is
@@ -188,8 +201,8 @@ Reasons:
 - **No current source.** The register's current-source note (L3) says "The historical Depends text adds no
   prerequisite". The receiving clause APP-R013 (`ScopeOfWork.md` L369) carries no DEL-02-02 dependency. A
   CONSERVATIVE `dependency-extract` run emits only from current sources.
-- **The gate is already met.** DEL-02-02-V3-03 landed on 2026-09-06 (PR #733, merge `8e649eaa5`; DEL-02-02
-  `_STATUS.md` L14). The row would record a sequencing gate that has already passed.
+- **The gate is already met.** DEL-02-02-V3-03 landed with PR #733, merged as `8e649eaa5` on 2026-09-05 at
+  20:35 -0600; the closeout was recorded on 2026-09-06 (DEL-02-02 `_STATUS.md` L14). The row would record a sequencing gate that has already passed.
 - **Your ESR-1 ruling set the precedent.** It retired DEP-02-04-015, whose only basis was a gate on the same item:
   "not selectable until DEL-02-02-V3-03 landed", stated nowhere current.
 - **Emitting it risks a cycle.** On the current graph the row creates an 11-node SCC (see the findings above).
@@ -210,6 +223,16 @@ Register change: add the S2 row, with these differences from the simulated field
 
 Expect an evidence-source warning, because the source is retired.
 
+### HGD-3: alternative, item-level decompose (the 2026-09-05 preview's option)
+
+The N1 preview (`PREVIEW.md` L61) listed "decompose (record at seated-item level only; keep the deliverable-level
+edge non-gating)". The ordering would be recorded between the items DEL-02-01-V3-01 and DEL-02-02-V3-03 and not as
+a deliverable row. Consequences: no graph or blocker change. The seated-item home it relied on, the `_STATUS.md`
+Remaining section, was retired on 2026-09-23, so today the item-level record exists only in the historical census
+and App Task Management row APP-R013; no current register or work-graph field would hold it. Register change: none;
+the `_DEPENDENCIES.md` HGD-3 line would record the decompose disposition and point to the census row. In effect this
+matches the recommended closure, with a different stated rationale.
+
 ## FC-1 to FC-3
 
 The fence, F1 ("do not make DEL-02-01 an SCC-001 member"), no longer applies as written: the closure has no SCC.
@@ -228,13 +251,14 @@ its own ruling. The register notes (L181) keep them out "unless separately ruled
 The current sources name the owner:
 - decomposition L343: DEL-05-03 artifacts "App redaction helper";
 - SOW-041 L449;
-- DEL-05-03 `ScopeOfWork.md` L67: "Historical helper contract: `frontend/src/lib/harness/run-logger.ts` exports … `redactJsonLike`".
+- DEL-05-03 `ScopeOfWork.md` L204: "Define the operational steps for producing and verifying the DEL-05-03 implementation artifacts: a redaction helper, redacted run logger behavior, …";
+- DEL-05-03 `ScopeOfWork.md` L77, which keeps the "Shared redaction helper identity" (module path, API name, token) TBD in DEL-05-03.
 
 The row's own `Notes` already name DEL-05-03 as a PROPOSAL.
 
 Consequences:
 - 0 SCC, with or without HGD-1 (FC1, S1+FC1).
-- A satisfied gating arc; no blocker change.
+- A new gating arc, met by supplier state (IN_PROGRESS ≥ SEMANTIC_READY); its `SatisfactionStatus` stays TBD; no blocker change.
 - The `TARGET_UNRESOLVED` warning is cleared.
 
 Register change on DEP-02-01-012:
@@ -247,7 +271,18 @@ Register change on DEP-02-01-012:
 | `TargetRefID` | `TBD` | `DEL-05-03` |
 | `TargetName` | `Existing redaction helper under frontend/src/lib/harness/** (derived chat titles, Q6)` | `Redacted RunLogger and Secret Hygiene` (prior value kept in `Notes`) |
 | `TargetLocation` | `TBD` | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` |
+| `Explicitness` | `EXPLICIT` | `IMPLICIT` (prior value kept in `Notes`) |
+| `Confidence` | `MEDIUM` | `MEDIUM` (unchanged) |
 | `LastSeen` / `Notes` | | apply date / the ruling verbatim, prior values, and the basis above |
+
+`Explicitness` follows the ESR-1 precedent (`DEPENDENCY_EXTRACT_RESULTS.md`, "Ledger-based rows"): the relation
+itself is explicit in DEL-02-01 (obligation 4), but the target comes from the decomposition's allocation of the
+helper to DEL-05-03, not from a DEL-02-01 line naming DEL-05-03, so the row is IMPLICIT/MEDIUM.
+
+`_DEPENDENCIES.md` index changes: the Compact Register row for 012 shows target `DEL-05-03`; the
+`[WARNING] TARGET_UNRESOLVED` run note is marked resolved by the ruling; the L181 sentence "Fenced candidates
+FC-1 to FC-3 stay out of the register unless separately ruled." is replaced by a dated line recording the FC-1 to
+FC-3 rulings (FC-1 resolved into DEP-02-01-012; FC-2 and FC-3 closed without a row).
 
 Alternative, keep `UNKNOWN`: nothing changes, and the warning stays.
 
@@ -257,19 +292,19 @@ Since 2026-09-22 (D-GOV-43/D-APP-127), DEL-02-01's session-record relation is re
 row: "Runtime-owned current session record and project identity". No current DEL-02-01 clause names a DEL-03-02
 contract. Decomposition L418 maps SOW-010 to DEL-03-02 alone.
 
-Consequences: none.
+Consequences: none. Register change: none. Index: the L181 line described under FC-1 records the FC-2 closure with the ruling quoted.
 
 Alternative, add the FC2 row (`SCENARIOS.json` → `moves.FC2`: UPSTREAM INTERFACE on DEL-03-02, IMPLICIT/MEDIUM,
 quoting obligation 8 at L111). This is safe only with the HGD-1 inversion. Without it, the row creates a 7-node SCC.
 
 ### FC-3: recommended ruling, close without emitting
 
-The relation is already in the register from the other side. DEP-02-05-014 records DEL-02-05 UPSTREAM PREREQUISITE
+The converse relation is already in the register. DEP-02-05-014 records DEL-02-05 UPSTREAM PREREQUISITE
 on DEL-02-01, SATISFIED: "DEL-02-05 current account row and Settings feedback integrate with the DEL-02-01 shell
 host". A deliverable row in the opposite direction pairs with it into a two-node SCC under every HGD-1 choice. The
 DEL-02-05-V3-05 gate was sequencing in a retired Remaining line (F3).
 
-Consequences: none.
+Consequences: none. Register change: none. Index: the L181 line described under FC-1 records the FC-3 closure with the ruling quoted.
 
 Alternative: record DEL-02-01's side in the D-APP-110 decompose form, which adds no deliverable edge. The row would
 be UPSTREAM INTERFACE, `TargetType=DOCUMENT`, with:
@@ -282,7 +317,7 @@ The deliverable form (`moves.FC3`) is not recommended.
 
 ## How a ruling is applied
 
-Each ruling is applied by one `TASK + bundled:chirality-root/dependency-extract` run, as follows:
+All rulings are applied in one DEL-02-01 UPDATE run of `TASK + bundled:chirality-root/dependency-extract`, as follows:
 - **Settings:** `SCOPE=DEL-02-01`, `MODE=UPDATE`, `STRICTNESS=CONSERVATIVE`, apply mode.
 - **The rows:** it writes the ruled rows in the form used for the ESR-1 and HGD-2 rulings
   (`AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/dep_extract/apply_esr1_ruling.py`):

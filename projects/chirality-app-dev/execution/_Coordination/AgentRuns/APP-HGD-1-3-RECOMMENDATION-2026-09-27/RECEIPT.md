@@ -74,8 +74,8 @@ See [RECOMMENDATION.md](RECOMMENDATION.md). The proposed reply is:
   - `REACHABILITY.json`, `BASIS_CHECK.json`, `INPUT_HASHES.json`;
   - `runs/<scenario>/`;
   - `MANIFEST.sha256`.
-- The loop ledger entry in `loop/LOOP_RECEIPTS.md`: Receipt-277. The number may be renumbered at integration if a
-  parallel entry takes 277.
+- The loop ledger entry in `loop/LOOP_RECEIPTS.md`: Receipt-277 on this branch. A parallel housekeeping receipt
+  also takes 277 and merges first, so this entry is resequenced at integration to Receipt-278 with parent Receipt-277.
 
 ## Checks
 
@@ -97,7 +97,9 @@ The results are in the hand-off.
   next free IDs.
 - **Blocker semantics:** blocker results use the Root recorded-register reference tool. Its parity with the App's
   `recorded-register.ts` is established by the APP-RECORDED-REGISTER-2026-09-26 fixtures. This run did not execute
-  the App module.
+  the App module. The coordinating session relayed that the independent review of `bae0d05a9` ran
+  `recorded-register.ts` on all 35 scenarios and got 53 UNBLOCKED, 1 NOT_TRACKED and 0 BLOCKED in every one,
+  matching the Python queue.
 
 Execution: a Claude Code TASK-type subagent for the coordinating session, in an isolated worktree, with no delegation.
 Model identifiers are withheld at the dispatching session's instruction; the commit's session trailer identifies the
