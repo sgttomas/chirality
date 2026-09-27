@@ -5,8 +5,7 @@ import React, {
   useContext,
   useMemo,
   useRef,
-  type KeyboardEvent,
-  type ReactNode
+  type KeyboardEvent
 } from 'react';
 import { DocumentView } from './document-view';
 import { FileTreePanel } from './file-tree-panel';
@@ -17,9 +16,6 @@ import { ToolStreamView } from './tool-stream-view';
 import { TranscriptStreamView } from './transcript-stream-view';
 
 export type SidebarTabId =
-  | 'portal'
-  | 'workbench'
-  | 'pipeline'
   | 'files'
   | 'sessions'
   | 'transcript'
@@ -44,10 +40,6 @@ const SIDEBAR_TABS: readonly SidebarTab[] = [
   { id: 'workflow', label: 'Workflow' },
   { id: 'toolkit', label: 'Tool Kit' }
 ];
-
-const PORTAL_TAB: SidebarTab = { id: 'portal', label: 'Portal' };
-const WORKBENCH_TAB: SidebarTab = { id: 'workbench', label: 'Workbench' };
-const PIPELINE_TAB: SidebarTab = { id: 'pipeline', label: 'Pipeline' };
 
 const TAB_PANEL_ID = 'workspace-sidebar-panel';
 
@@ -81,9 +73,6 @@ function SidebarPlaceholder({ title, note }: { title: string; note: string }): J
 type WorkspaceSidebarProps = {
   activeTab: SidebarTabId;
   onTabChange: (tab: SidebarTabId) => void;
-  pipelineTab?: ReactNode;
-  portalTab?: ReactNode;
-  workbenchTab?: ReactNode;
 };
 
 /**
@@ -96,20 +85,9 @@ type WorkspaceSidebarProps = {
  * unmounted on collapse. Implements the WAI-ARIA tabs pattern: roving tabindex,
  * arrow/Home/End navigation, and a labelled tabpanel.
  */
-export function WorkspaceSidebar({
-  activeTab,
-  onTabChange,
-  pipelineTab,
-  portalTab,
-  workbenchTab
-}: WorkspaceSidebarProps): JSX.Element {
+export function WorkspaceSidebar({ activeTab, onTabChange }: WorkspaceSidebarProps): JSX.Element {
   const tabRefs = useRef<Partial<Record<SidebarTabId, HTMLButtonElement | null>>>({});
-  const tabs = [
-    ...(portalTab ? [PORTAL_TAB] : []),
-    ...(workbenchTab ? [WORKBENCH_TAB] : []),
-    ...(pipelineTab ? [PIPELINE_TAB] : []),
-    ...SIDEBAR_TABS
-  ];
+  const tabs = SIDEBAR_TABS;
   const visibleActiveTab = tabs.some((tab) => tab.id === activeTab) ? activeTab : tabs[0].id;
   const sidebarActions = useMemo<WorkspaceSidebarActions>(
     () => ({
@@ -194,9 +172,6 @@ export function WorkspaceSidebar({
           aria-labelledby={tabButtonId(visibleActiveTab)}
           tabIndex={0}
         >
-          {visibleActiveTab === 'portal' && portalTab ? portalTab : null}
-          {visibleActiveTab === 'workbench' && workbenchTab ? workbenchTab : null}
-          {visibleActiveTab === 'pipeline' && pipelineTab ? pipelineTab : null}
           {visibleActiveTab === 'files' ? <FileTreePanel /> : null}
           {visibleActiveTab === 'sessions' ? <SessionListView /> : null}
           {visibleActiveTab === 'transcript' ? <TranscriptStreamView /> : null}

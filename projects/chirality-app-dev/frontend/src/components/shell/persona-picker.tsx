@@ -10,7 +10,6 @@ import { useWorkspace } from '../workspace/workspace-provider';
 
 type PersonaPickerProps = {
   compact?: boolean;
-  buildHref?: (persona: string) => string;
   disabled?: boolean;
   onPersonaSelected?: (persona: string) => void;
 };
@@ -24,7 +23,6 @@ type PersonaPickerProps = {
  */
 export function PersonaPicker({
   compact = false,
-  buildHref,
   disabled = false,
   onPersonaSelected
 }: PersonaPickerProps): JSX.Element {
@@ -80,12 +78,9 @@ export function PersonaPicker({
         disabled={disabled || loading || personas.length === 0}
         onChange={(event) => {
           const persona = event.target.value;
-          const href = buildHref ? buildHref(persona) : (() => {
-            const params = new URLSearchParams(searchParams.toString());
-            params.set('agent', persona);
-            return `${pathname || '/'}?${params.toString()}`;
-          })();
-          router.replace(href);
+          const params = new URLSearchParams(searchParams.toString());
+          params.set('agent', persona);
+          router.replace(`${pathname || '/'}?${params.toString()}`);
           onPersonaSelected?.(persona);
         }}
       >
