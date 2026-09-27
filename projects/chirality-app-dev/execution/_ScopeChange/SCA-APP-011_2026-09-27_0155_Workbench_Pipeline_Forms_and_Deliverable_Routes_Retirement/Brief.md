@@ -1,6 +1,6 @@
 # SCA-APP-011 Brief — Retire the Workbench and Pipeline Forms and the Deliverable HTTP Routes
 
-**Status:** `CHECKPOINT_GROUP_1_ACCEPTED` — the owner accepted checkpoint group 1 on revision 2 on 2026-09-27 ("I accept SCA-APP-011 checkpoint group 1"); see `../checkpoint_snapshots/SCA-APP-011_GROUP-1_2026-09-27/`. Group 2 is in preparation. Nothing is applied.
+**Status:** `CHECKPOINT_GROUP_1_ACCEPTED` — the owner accepted checkpoint group 1 on revision 2 on 2026-09-27 ("I accept SCA-APP-011 checkpoint group 1"); see `../checkpoint_snapshots/SCA-APP-011_GROUP-1_2026-09-27/`. The group-2 candidate is in `Propagation_Plan.md` and is awaiting the owner. Nothing is applied.
 **Date:** `2026-09-27` (folder time `0155` is UTC)
 **Requested by:** Ryan Tufts (repository owner `sgttomas`), in the Claude Code conversation of 2026-09-27
 **Prepared by:** WORKING_ITEMS, bounded Claude Code subagent, working in an isolated worktree
