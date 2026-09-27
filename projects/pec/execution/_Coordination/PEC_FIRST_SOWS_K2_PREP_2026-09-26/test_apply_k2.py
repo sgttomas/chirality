@@ -114,6 +114,44 @@ def c4(repo):  # C8 rename fails: target keeps its preimage, no temporary left
     with mock.patch.object(c8.os, "replace", mock.Mock(side_effect=OSError("injected"))): rc = run(c8, repo, c8dir)
     return rc == 1 and c8_pre(repo)
 
+def a12(repo):  # clean-up itself fails after a post-write failure: exit 2 (reported, never silent)
+    real = m.inventory; n = {"i": 0}
+    def inv(r):
+        d = real(r); n["i"] += 1
+        if n["i"] == 2: d["projects/pec/execution/_Coordination/stray.md"] = "1" * 64
+        return d
+    real_unlink = Path.unlink
+    def bad_unlink(self, *a, **k):
+        if self.name == "ScopeOfWork.md": raise PermissionError("injected unlink failure")
+        return real_unlink(self, *a, **k)
+    with mock.patch.object(m, "inventory", inv), mock.patch.object(Path, "unlink", bad_unlink):
+        rc = run(m, repo, cand)
+    return rc == 2
+def c5(repo):  # C8 bound copy below projects/pec outside a run root is refused
+    if run(m, repo, cand) != 0: return False
+    od = repo / "projects/pec/tools/y"; od.mkdir(parents=True)
+    shutil.copy(HERE / "apply_k2_c8.py", od / "apply_k2_c8.py")
+    return run(load("apply_k2_c8_bad", od / "apply_k2_c8.py"), repo, c8dir) == 1 and c8_pre(repo)
+def c6(repo):  # C8 pinned file changed: preflight refuses
+    if run(m, repo, cand) != 0: return False
+    p = repo / "projects/pec/execution/_Decomposition/Deliverables.csv"; p.write_bytes(p.read_bytes() + b"\n")
+    return run(c8, repo, c8dir) == 1 and c8_pre(repo)
+def c7(repo):  # C8 restore itself fails after a post-write failure: exit 2
+    if run(m, repo, cand) != 0: return False
+    real = c8.inventory; n = {"i": 0}
+    def inv(r):
+        d = real(r); n["i"] += 1
+        if n["i"] == 2: d["projects/pec/execution/_Coordination/stray.md"] = "1" * 64
+        return d
+    real_put = c8.put; calls = {"i": 0}
+    def put(repo_, data, want):
+        calls["i"] += 1
+        if calls["i"] == 2: raise OSError("injected restore failure")
+        return real_put(repo_, data, want)
+    with mock.patch.object(c8, "inventory", inv), mock.patch.object(c8, "put", put):
+        rc = run(c8, repo, c8dir)
+    return rc == 2
+
 case("A: rename failure on the second target: exit 1, no target or temporary left", a1)
 case("A: post-write inventory shows an unexpected modified file: exit 1, cleaned up", a2)
 case("A: post-write inventory shows an extra file: exit 1, cleaned up", a3)
@@ -125,10 +163,14 @@ case("A: check-only writes nothing; apply succeeds; second run refuses", a8)
 case("A: run-root evidence written during the act is outside the inventory: apply succeeds", a9)
 case("A: bound copy below projects/pec outside a run root: preflight exit 1", a10)
 case("A: bound copy directly in projects/pec: preflight exit 1", a11)
+case("A: clean-up failure after a post-write failure: exit 2 reported", a12)
 case("C8: run before A: preflight exit 1, nothing written", c1)
 case("C8: after A, check-only writes nothing; apply succeeds; second run refuses", c2)
 case("C8: post-write inventory shows an extra file: exit 1, preimage restored", c3)
 case("C8: rename failure: exit 1, preimage kept, no temporary left", c4)
+case("C8: bound copy below projects/pec outside a run root: preflight exit 1", c5)
+case("C8: pinned file changed: preflight exit 1, nothing written", c6)
+case("C8: restore failure after a post-write failure: exit 2 reported", c7)
 bad = [n for ok, n in results if not ok]
 print(f"RESULT {'PASS' if not bad else 'FAIL'} {len(results)-len(bad)}/{len(results)}")
 sys.exit(1 if bad else 0)

@@ -8,7 +8,7 @@ ScopeOfWork.md read with `git show <commit>:<path>` at the observation commit.
 A definition is `**PFX-NNN**` at a list item or table cell start. Citations on
 blockquote lines (columns 0-3) are upstream text and are reported as INFO.
 A candidate's citation of its own ID is INFO. Each cited contract is labelled
-with the work-graph node that may revise it (S4 or D1 in parallel with this
+with the work-graph node that may revise it (S4, S1 or D1 in parallel with this
 packet; S2 or S3 already applied), so the parallel packets can keep the IDs.
 Read-only; stdlib only.
 Usage: check_cited_ids.py --prep <prep dir> --gitdir <repo> --commit <observation commit>
@@ -26,6 +26,9 @@ K2 = ["DEL-08-06", "DEL-10-13"]
 NODE = {**{d: "S4 (parallel packet)" for d in ["DEL-04-01", "DEL-04-02", "DEL-08-01", "DEL-08-03",
                                                 "DEL-08-04", "DEL-04-03", "DEL-03-04", "DEL-10-03"]},
         "DEL-00-03": "D1 (parallel packet)",
+        **{d: "S1 (parallel packet; SCA-005 review class)" for d in ["DEL-04-05", "DEL-10-02", "DEL-10-10", "DEL-02-01",
+                                                                     "DEL-02-02", "DEL-03-01", "DEL-03-03", "DEL-01-03",
+                                                                     "DEL-01-05", "DEL-00-01"]},
         **{d: "S2 (applied, D-PEC-100)" for d in ["DEL-01-01", "DEL-01-06", "DEL-02-03", "DEL-02-04",
                                                    "DEL-02-05", "DEL-02-06", "DEL-02-07"]},
         "DEL-02-08": "S3 (applied, D-PEC-98)", "DEL-02-09": "S3 (applied, D-PEC-98)"}

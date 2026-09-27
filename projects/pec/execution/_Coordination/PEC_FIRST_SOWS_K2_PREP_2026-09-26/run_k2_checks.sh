@@ -46,6 +46,10 @@ run_state() {  # $1 export root, $2 tag
   (cd "$1" && python3 tools/coordination/analyze_dep_closure.py projects/pec/execution --output-dir "$T/closure_$2" > "$OUT/closure_$2.out" 2>&1; print "exit=$?" >> "$OUT/closure_$2.out")
   python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); [d.pop(k,None) for k in ("generated_at","timestamp","run_date","output_dir","execution_root")]; print(json.dumps(d,sort_keys=True,indent=1))' "$T/closure_$2/closure_summary.json" > "$OUT/closure_summary_$2.json" 2>>"$OUT/closure_$2.out"
 }
+check_state() {  # $1 tag: harness and receipts exit 0; closure summary non-empty with 0 cycles
+  grep -q '^exit=0$' "$OUT/harness_$1.out" && grep -q '^exit=0$' "$OUT/receipts_$1.out" && note "PASS harness and receipts exit 0 ($1)" || { note "FAIL harness/receipts exit ($1)"; fail=1; }
+  python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); assert d and d.get("checks",{}).get("circular_dependencies")=="PASS" and d.get("bidirectional_pair_count")==0' "$OUT/closure_summary_$1.json" 2>/dev/null && note "PASS closure summary non-empty, no cycles, no bidirectional pairs ($1)" || { note "FAIL closure summary ($1)"; fail=1; }
+}
 compare_state() {  # $1 tag a, $2 tag b, $3 export a, $4 export b
   for k in strict harness receipts closure_summary; do
     ext=out; [[ $k == closure_summary ]] && ext=json
@@ -54,6 +58,7 @@ compare_state() {  # $1 tag a, $2 tag b, $3 export a, $4 export b
   done
 }
 run_state "$PRE" pre
+check_state pre
 
 # 2. option A: check-only, apply, second run
 (cd "$POST" && python3 "$PREP/apply_k2.py" --repo . --candidates "$PREP/candidates" --check-only > "$OUT/apply_checkonly.out" 2>&1; print "exit=$?" >> "$OUT/apply_checkonly.out")
@@ -77,6 +82,12 @@ for d in $D86 $D13; do
   cmp -s "$OUT/checklist_$id.json" "$T/checklist_$id.2.json" && grep -q '^exit=0$' "$OUT/checklist_$id.out" && note "PASS checklist $id (rerun byte-identical)" || { note "FAIL checklist $id"; fail=1; }
   (cd "$POST" && python3 tools/scope_of_work/check_boundary_owner_resolution.py --json "$OUT/boundary_$id.json" --show-not-checkable "$d/ScopeOfWork.md" > "$OUT/boundary_$id.out" 2>&1; print "exit=$?" >> "$OUT/boundary_$id.out")
   grep -qE 'UNRESOLVED_OWNER|UNDEFINED_CLAIM' "$OUT/boundary_$id.out" && { note "FAIL boundary $id"; fail=1; } || { grep -q '^exit=0$' "$OUT/boundary_$id.out" && note "PASS boundary $id (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)" || { note "FAIL boundary $id exit"; fail=1; } }
+  grep -q 'per-act exclusions for skill QA: 0 ' "$OUT/boundary_$id.out" && note "PASS boundary $id: 0 NOT_CHECKABLE" || { note "FAIL boundary $id: NOT_CHECKABLE present"; fail=1; }
+  # checklist item count equals the number of AC definitions in the contract
+  nac=$(grep -cE '^- \*\*AC-[0-9]{3}\*\*' "$POST/$d/ScopeOfWork.md")
+  nitem=$(python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); it=d.get("items", d.get("checklist", d if isinstance(d, list) else [])); print(len(it))' "$OUT/checklist_$id.json" 2>/dev/null)
+  [[ -n "$nitem" && "$nitem" == "$nac" ]] && note "PASS checklist $id: $nitem items = $nac AC" || { note "FAIL checklist $id item count ($nitem vs $nac AC)"; fail=1; }
+  print -r -- "checklist $id sha256 $(shasum -a 256 "$OUT/checklist_$id.json" | cut -c1-64)" >> "$OUT/SUMMARY.out"
 done
 
 # 5. quotes (two-sided; tree quotations pinned to the observation commit), state claims,
@@ -92,6 +103,7 @@ note "$( [[ $r -eq 0 ]] && print PASS || print FAIL ) old S2 text: $(tail -1 "$O
 
 # 6. after-A state identical to before (D-GOV-48: identical, not 0/0)
 run_state "$POST" postA
+check_state postA
 compare_state pre postA "$PRE" "$POST"
 
 # 7. add-on C8 (after A): check-only, apply, rerun; containment; state identical
@@ -104,6 +116,7 @@ diff -rq -x .git "$PRE" "$POST" > "$OUT/containment_c8.out" 2>&1
 n=$(grep -c . "$OUT/containment_c8.out"); nd=$(grep -c "_DEPENDENCIES.md differ$" "$OUT/containment_c8.out")
 [[ $n -eq 3 && $nd -eq 1 ]] && note "PASS containment after C8: 2 new contracts + 1 modified _DEPENDENCIES.md" || { note "FAIL containment after C8 ($n)"; fail=1; }
 run_state "$POST" postC8
+check_state postC8
 compare_state pre postC8 "$PRE" "$POST"
 
 # 8. whitespace in the candidates and the C8 postimage
