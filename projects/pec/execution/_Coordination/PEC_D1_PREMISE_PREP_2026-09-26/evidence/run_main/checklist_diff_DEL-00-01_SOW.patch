@@ -5,7 +5,7 @@
          "line": 107,
          "section": "Completion and Reliance Basis — Epistemology",
 -        "sha256": "4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740"
-+        "sha256": "98695572cac1bf362bcb33ce4b0f4c93121f9d44a1e2737d741da5de0ffb0c61"
++        "sha256": "f5090fb36fd739bc5db01ad08d0d53400854b46e78a53cc18dede77629fdf43f"
        },
        "text": "The published ADR set contains exactly one decision record that names a single selected v2 core isolation style and states in its own text that it resolves OI-012.",
        "verification": [
@@ -14,7 +14,7 @@
          "line": 108,
          "section": "Completion and Reliance Basis — Epistemology",
 -        "sha256": "4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740"
-+        "sha256": "98695572cac1bf362bcb33ce4b0f4c93121f9d44a1e2737d741da5de0ffb0c61"
++        "sha256": "f5090fb36fd739bc5db01ad08d0d53400854b46e78a53cc18dede77629fdf43f"
        },
        "text": "That decision record's context section reproduces the recorded Gate 4 basis elements of CLM-006 and adds no invariant or service rule absent from the accepted PRD and decomposition.",
        "verification": [
@@ -23,7 +23,7 @@
          "line": 109,
          "section": "Completion and Reliance Basis — Epistemology",
 -        "sha256": "4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740"
-+        "sha256": "98695572cac1bf362bcb33ce4b0f4c93121f9d44a1e2737d741da5de0ffb0c61"
++        "sha256": "f5090fb36fd739bc5db01ad08d0d53400854b46e78a53cc18dede77629fdf43f"
        },
        "text": "The ADR set re-cites ADR-002 as the sole live carried posture, cites ADR-014 as historical lineage only, carries the accepted v2 runtime/client and human-only-act boundary without the retired PEC-project-adapter allocation, and asserts no other archived ADR as live authority.",
        "verification": [
@@ -32,7 +32,7 @@
          "line": 110,
          "section": "Completion and Reliance Basis — Epistemology",
 -        "sha256": "4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740"
-+        "sha256": "98695572cac1bf362bcb33ce4b0f4c93121f9d44a1e2737d741da5de0ffb0c61"
++        "sha256": "f5090fb36fd739bc5db01ad08d0d53400854b46e78a53cc18dede77629fdf43f"
        },
        "text": "The ADR set names itself in its own text as the resolution of OI-012, and that self-identification is consistent with the disposition the open-issue register already carries for OI-012 — \"Decided in DEL-00-01's ADR; owner review at that ADR\" — requiring no change to it. The set decides none of OI-001 through OI-009 or OI-013 and claims no register-side effect; any register-side update is an out-of-scope downstream act (SCOPE_CHANGE or coordination upkeep), not a completion condition of this deliverable.",
        "verification": [
@@ -41,7 +41,7 @@
          "line": 111,
          "section": "Completion and Reliance Basis — Epistemology",
 -        "sha256": "4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740"
-+        "sha256": "98695572cac1bf362bcb33ce4b0f4c93121f9d44a1e2737d741da5de0ffb0c61"
++        "sha256": "f5090fb36fd739bc5db01ad08d0d53400854b46e78a53cc18dede77629fdf43f"
        },
        "text": "The ADR set states the entity-schema versus store-persistence seam inside PKG-01 explicitly enough that a reader can classify a candidate PKG-01 change as core or adapter.",
        "verification": [
@@ -50,7 +50,7 @@
          "line": 112,
          "section": "Completion and Reliance Basis — Epistemology",
 -        "sha256": "4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740"
-+        "sha256": "98695572cac1bf362bcb33ce4b0f4c93121f9d44a1e2737d741da5de0ffb0c61"
++        "sha256": "f5090fb36fd739bc5db01ad08d0d53400854b46e78a53cc18dede77629fdf43f"
        },
        "text": "The v2 docs-tree path is recorded in the deliverable packet, the ADR markdown entries exist at that path, and the run produced no write outside `PKG-00`.",
        "verification": [
@@ -59,7 +59,7 @@
          "line": 113,
          "section": "Completion and Reliance Basis — Epistemology",
 -        "sha256": "4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740"
-+        "sha256": "98695572cac1bf362bcb33ce4b0f4c93121f9d44a1e2737d741da5de0ffb0c61"
++        "sha256": "f5090fb36fd739bc5db01ad08d0d53400854b46e78a53cc18dede77629fdf43f"
        },
        "text": "An accountable owner confirms the selected core isolation style at the ADR, consistent with the OI-012 disposition \"owner review at that ADR\", and confirms that nothing in the set makes a governed act depend on PEC-held state.",
        "verification": [
@@ -68,7 +68,7 @@
      "package_id": "PKG-00",
      "schema": "chirality-deliverable-sow/v1",
 -    "sha256": "4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740"
-+    "sha256": "98695572cac1bf362bcb33ce4b0f4c93121f9d44a1e2737d741da5de0ffb0c61"
++    "sha256": "f5090fb36fd739bc5db01ad08d0d53400854b46e78a53cc18dede77629fdf43f"
    },
    "tool_version": "1"
  }

@@ -13,7 +13,7 @@
   },
   {
    "id": "P02",
-   "locus": "L53-54 (ADR-PEC-V2-001 Decision item 2)",
+   "locus": "L53-57 (ADR-PEC-V2-001 Decision item 2; daemon token L54; reflow only)",
    "cause": "SCA-005 Propagation_Plan §B5 row DEL-00-01 (daemon mention L54); IA row 287; INV-179; D-GOV-43 A2",
    "pre": "   actor. An adapter may bind App, Root, Task Management, a domain application,\n   CLI, daemon, socket, filesystem, store, or dashboard to such a port, but\n   those actor names do not enter the PEC core merely because they are the\n   first consumers or providers. This is an architectural interpretation of\n   the selected O-B style, not a new consumer duty (`PEC-K-03`, `PEC-K-11`).",
    "post": "   actor. An adapter may bind App, Root, Task Management, a domain application,\n   CLI, application-owned Runtime service, socket, filesystem, store, or\n   dashboard to such a port, but those actor names do not enter the PEC core\n   merely because they are the first consumers or providers. This is an\n   architectural interpretation of the selected O-B style, not a new consumer\n   duty (`PEC-K-03`, `PEC-K-11`).",
