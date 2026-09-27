@@ -1,4 +1,4 @@
-# MEMORY - DEL-01-06
+# MEMORY - DEL-02-06
 
 > Terse deliverable-local index of runs. Record what each run did here and point
 > to the central loop receipt where adopted (App/Piping require one), plus the
@@ -11,5 +11,4 @@
 
 | Run ID / date | Work in this deliverable | Result and source links |
 |---|---|---|
-| HELP-HUMAN-PEC-20260925-POST-SCA005 / 2026-09-27 | Schema version 2 source act under D-PEC-96 (graph node G1). | [central receipt](../../../_Coordination/AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/RECEIPT.md); PR #950 |
 | HELP-HUMAN-PEC-20260925-POST-SCA005 / 2026-09-27 | Scope of Work rebuilt under D-PEC-100 (graph node S2). | [central receipt](../../../_Coordination/AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/RECEIPT.md); PR #979; [D-PEC-100 ruling](../../../_Coordination/_DECISIONS/D-PEC-100_RULING_2026-09-26.md) |
