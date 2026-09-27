@@ -10,8 +10,8 @@ that checkpoint. This log only indexes it.
 | DIR-1 | 2026-09-27 | Owner direction (pre-intake) | "We don't need to carry the Workbench or Pipeline forms any longer. They are obsolete." Route option "Remove the routes (Recommended)"; scope option "Scope-change amendment (Recommended)" | Initiates SCA-APP-011 (`Brief.md`) | — |
 | SEL-1 | 2026-09-27 | Group-1 choices (AskUserQuestion) | A "Rescope it (Recommended)"; B "Exclude it (Recommended)"; D "Restate them (Recommended)"; S "Remove the route too" | Stated selections, not a checkpoint acceptance (`Brief.md`) | — |
 | G1-ACCEPT | 2026-09-27 | Checkpoint group 1 | "I accept SCA-APP-011 checkpoint group 1" | BASE + DQ-R + S-c; D restate; L excluded; E no change; M-a; scaffold library kept | `checkpoint_snapshots/SCA-APP-011_GROUP-1_2026-09-27/` |
-| G2 | — | Checkpoint group 2 | Awaiting owner: the candidate is revision 2 of `Propagation_Plan.md` (presentation at top, with the G1-NOTE-1 correction and the DEL-07-01 addition), `Amendment_Preview.md`, `Amendment_Actions.csv`, `Supersession_Delta.csv`; open choices W and Q | — | — |
-| G3 | — | Checkpoint group 3 | Awaiting owner | — | — |
+| G2-ACCEPT | 2026-09-27 | Checkpoint group 2 | "Accept SCA-APP-011 group 2: W-a, Q-a, with the revision-2 corrections and row 29." | W-a; Q-a; exact amendment (127 edits, 16 files; E47 acceptance-conditional); register of 29 rows; 18 supersession rows; revision-2 corrections 1–5, including the M-a tool-owner truth correction (G1-NOTE-1); row 29 (DEL-07-01) recorded as a reopened group-1 item decided by this act | `checkpoint_snapshots/SCA-APP-011_GROUP-2_2026-09-27/` |
+| G3 | — | Checkpoint group 3 | Awaiting owner: the candidate poststate and `RUN_SUMMARY.md` (presentation at top), reviewed jointly with the code candidate (Q-a) | — | — |
 
 ## Notes on accepted records (not owner acts)
 
