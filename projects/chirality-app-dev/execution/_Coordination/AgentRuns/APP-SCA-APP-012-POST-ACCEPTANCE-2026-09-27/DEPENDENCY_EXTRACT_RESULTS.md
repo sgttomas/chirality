@@ -42,7 +42,9 @@ Of the 315 ACTIVE rows, 310 were re-seen and got `LastSeen=2026-09-27`. 266
 of them already carried that date from the SCA-APP-011 run, so their bytes are
 unchanged; the other 44 are the rows of DEL-05-03 (13), DEL-06-01 (11),
 DEL-06-02 (11) and DEL-09-04 (9). The five rows not counted above, plus DX-04,
-are below.
+are below. Arrows in this table are in register direction (owning
+deliverable → target); line-level production-direction edges appear under the
+closure section.
 
 | Action | Rows | Expected outcome |
 |---|---|---|
