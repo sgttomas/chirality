@@ -1,0 +1,139 @@
+{
+  "schema": "pec-v2-parser-fixtures-golden/v1",
+  "fixture": "FC-3",
+  "expectations": [
+    {
+      "id": "FC-3.graph.run-identity",
+      "pin": "FC-3.graph",
+      "tier": "fixed",
+      "fact": "declared-run-identity",
+      "source": {
+        "run_identity": "APP-REPLAY-BOUNDARY-2026-09-23"
+      },
+      "expect": {
+        "equals_folder": false
+      },
+      "binds": [
+        "DEL-02-08/REQ-006",
+        "DEL-02-08/AC-006",
+        "DEL-02-08/VER-006"
+      ]
+    },
+    {
+      "id": "FC-3.graph.terminal-node-state",
+      "pin": "FC-3.graph",
+      "tier": "fixed",
+      "fact": "terminal-node-declared-state",
+      "source": {
+        "node_id": "F1",
+        "state": "ACTIVE"
+      },
+      "expect": {
+        "derived_claims": "none"
+      },
+      "binds": [
+        "DEL-02-08/REQ-005",
+        "DEL-02-08/AC-005",
+        "DEL-02-08/VER-005"
+      ]
+    },
+    {
+      "id": "FC-3.graph.final-pr",
+      "pin": "FC-3.graph",
+      "tier": "observed",
+      "fact": "terminal-node-cited-pr-merge",
+      "source": {
+        "pr": 868
+      },
+      "expect": {
+        "local_merge_commit": "10b672caed0a0e013ac72508ac72f6b3ce274286"
+      },
+      "binds": [
+        "DEL-02-08/REQ-008",
+        "DEL-02-08/AC-008",
+        "DEL-02-08/VER-008",
+        "DEL-02-08/TBD-003"
+      ]
+    },
+    {
+      "id": "FC-3.graph.node-id-suffix",
+      "pin": "FC-3.graph",
+      "tier": "fixed",
+      "fact": "em-dash-node-suffix-not-emitted",
+      "source": {
+        "node_id": "F1"
+      },
+      "expect": {
+        "node_suffix_prose_emitted": false
+      },
+      "binds": [
+        "DEL-02-08/REQ-010",
+        "DEL-02-08/AC-010",
+        "DEL-02-08/VER-010"
+      ]
+    },
+    {
+      "id": "FC-3.memory.DEL-05-04.runs-entry-form",
+      "pin": "FC-3.memory.DEL-05-04",
+      "tier": "fixed",
+      "fact": "runs-bullet-entry-form",
+      "expect": {
+        "form": "bullet",
+        "anchor_line": 5
+      },
+      "binds": [
+        "DEL-02-09/REQ-002",
+        "DEL-02-09/REQ-014",
+        "DEL-02-09/AC-002",
+        "DEL-02-09/AC-014",
+        "DEL-02-09/VER-002",
+        "DEL-02-09/VER-014"
+      ]
+    },
+    {
+      "id": "FC-3.memory.DEL-05-04.runs-entry-run-token",
+      "pin": "FC-3.memory.DEL-05-04",
+      "tier": "observed",
+      "fact": "runs-bullet-entry-run-token",
+      "source": {
+        "run_token": "APP-REPLAY-BOUNDARY-2026-09-23"
+      },
+      "binds": [
+        "DEL-02-09/REQ-004",
+        "DEL-02-09/AC-004",
+        "DEL-02-09/VER-004"
+      ]
+    },
+    {
+      "id": "FC-3.memory.DEL-05-04.runs-entry-date",
+      "pin": "FC-3.memory.DEL-05-04",
+      "tier": "observed",
+      "fact": "runs-bullet-entry-date",
+      "source": {
+        "date": "2026-09-23"
+      },
+      "binds": [
+        "DEL-02-09/REQ-005",
+        "DEL-02-09/AC-005",
+        "DEL-02-09/VER-005"
+      ]
+    },
+    {
+      "id": "FC-3.memory.DEL-05-04.runs-entry-link-targets",
+      "pin": "FC-3.memory.DEL-05-04",
+      "tier": "observed",
+      "fact": "runs-bullet-entry-link-targets",
+      "source": {
+        "link_target_as_cited": "../../../_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/WORK_GRAPH.md",
+        "evidence_link_target_as_cited": "../../../_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/RUN_EVIDENCE.md",
+        "substantive_pr": 866,
+        "final_pr": 868
+      },
+      "binds": [
+        "DEL-02-09/REQ-003",
+        "DEL-02-09/AC-003",
+        "DEL-02-09/VER-003"
+      ]
+    }
+  ]
+}

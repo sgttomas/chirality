@@ -149,14 +149,26 @@ def leaves(value, path: str = "$"):
         yield path, value
 
 
-def is_label_value(key: str, value) -> bool:
+def is_token(value) -> bool:
+    return isinstance(value, str) and bool(TOKEN.match(value)) and "://" not in value
+
+
+def is_expect_value(value) -> bool:
+    """An expectation value: a boolean, an integer, one token, or a list of tokens."""
     if isinstance(value, (bool, int)):
         return True
-    if isinstance(value, str):
-        return bool(LABEL.match(value) or (key == "local_merge_commit" and FULL_SHA.match(value)))
     if isinstance(value, list):
-        return all(isinstance(item, str) and LABEL.match(item) for item in value)
-    return False
+        return all(is_token(item) for item in value)
+    return is_token(value)
+
+
+def json_text_runs(value, width: int) -> set:
+    """Word runs of a JSON fixture's string leaves, except repository paths."""
+    found = set()
+    for path, leaf in leaves(value):
+        if isinstance(leaf, str) and not path.endswith((".path", ".tree")):
+            found |= runs(leaf, width)
+    return found
 
 
 def unreachable(pin: dict, cause: str) -> str:
@@ -312,10 +324,15 @@ class ParserFixtureIntegrityTests(unittest.TestCase):
         self.assert_repository_can_hold_pins()
         for tree in self.pinned["trees"]:
             with self.subTest(tree=tree["id"]):
-                listing = git("ls-tree", "--name-only", tree["commit"], tree["tree"] + "/")
+                listing = git("ls-tree", "--full-tree", "--name-only", tree["commit"], tree["tree"] + "/")
                 names = {line.rsplit("/", 1)[-1] for line in listing.stdout.decode("utf-8").splitlines()}
                 if tree.get("tree_absent"):
                     self.assertEqual(names, set(), "tree exists at the pinned commit")
+                    parent, _, leaf = tree["tree"].rpartition("/")
+                    siblings = git("ls-tree", "--full-tree", "--name-only", tree["commit"], parent + "/")
+                    siblings = {line.rsplit("/", 1)[-1] for line in siblings.stdout.decode("utf-8").splitlines()}
+                    self.assertTrue(siblings, "the parent of an absent tree must exist at the pinned commit")
+                    self.assertNotIn(leaf, siblings)
                     continue
                 self.assertTrue(names, "tree missing at the pinned commit")
                 for name in tree.get("present", []):
@@ -369,7 +386,9 @@ class ParserFixtureIntegrityTests(unittest.TestCase):
             for key, value in expectation.get("expect", {}).items():
                 with self.subTest(expectation=expectation["id"], key=key):
                     self.assertRegex(key, KEY)
-                    self.assertTrue(is_label_value(key, value), f"not a boolean, integer or label: {value!r}")
+                    self.assertTrue(is_expect_value(value), f"not a boolean, integer or token: {value!r}")
+                    if key == "local_merge_commit":
+                        self.assertRegex(value, FULL_SHA)
 
     def test_no_fixture_source_is_copied_into_the_tree(self) -> None:
         pinned_ids = {entry["blob"] for entry in self.pinned["pins"]}
@@ -383,7 +402,11 @@ class ParserFixtureIntegrityTests(unittest.TestCase):
             with self.subTest(path=relative):
                 data = path.read_bytes()
                 self.assertNotIn(git_blob_id(data), pinned_ids, "a pinned source is copied into the tree")
-                overlap = runs(data.decode("utf-8", "replace"), width) & copied
+                if path.suffix == ".json":
+                    text_runs = json_text_runs(json.loads(data.decode("utf-8")), width)
+                else:
+                    text_runs = runs(data.decode("utf-8", "replace"), width)
+                overlap = text_runs & copied
                 self.assertFalse(overlap, f"{len(overlap)} copied {width}-word runs, e.g. {sorted(overlap)[:1]}")
 
     def test_synthetic_cases_cover_the_contract_minimums(self) -> None:
@@ -412,7 +435,7 @@ class ParserFixtureIntegrityTests(unittest.TestCase):
                 self.assertTrue(case["expect"])
                 for key, value in case["expect"].items():
                     self.assertRegex(key, KEY)
-                    self.assertTrue(is_label_value(key, value), f"{key}: {value!r}")
+                    self.assertTrue(is_expect_value(value), f"{key}: {value!r}")
                 for deliverable in {bind.split("/")[0] for bind in case["binds"]}:
                     if deliverable in labels:
                         labels[deliverable].add(case["case"])
