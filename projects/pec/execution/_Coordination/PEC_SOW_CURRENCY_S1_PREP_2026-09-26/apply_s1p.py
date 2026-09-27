@@ -73,7 +73,7 @@ TARGETS = {
          "f5590cf55b19f3170cb04e65340e076e672d5d54d8f1e98385372d1dd8f3436e"),
     E + "PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/ScopeOfWork.md":
         ("640f23711f93ec7e987742ed5ed998bea04c681f14bff06bdf2e35a669fcbd5e",
-         "15c10a56c21bf35e18d93b46d47f5f91e2d079872c1fc644aae89704bd0135f4"),
+         "813839a080d7e245a0174959bc4f67be265cfabfd5b2177f83cb6fdc934737c8"),
 }
 # Read-only files the act re-verifies (values at origin/main 125cfacc1).
 PINNED = {

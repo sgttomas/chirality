@@ -5,17 +5,17 @@ Contracts outside S1 are read from the tree; an S1 contract is read as its CANDI
 (so quotations between S1 siblings are included, and a hit there means the quoting
 candidate still carries replaced sibling text).
 
-For each ScopeOfWork.md under projects/pec/execution/PKG-*/1_Working/ that is not
-one of the seven S2 targets, every blockquote block (columns 0-3) and every
-double-quoted or backticked span of 40+ characters is normalized (blockquote
-markers stripped, whitespace collapsed). A span that occurs in a PRIOR S2
-contract is reported with whether it still occurs in that deliverable's
-CANDIDATE. Spans that also occur in an accepted upstream source (registers,
+For each ScopeOfWork.md under projects/pec/execution/PKG-*/1_Working/ (an S1
+target read as its candidate), every blockquote block (columns 0-3) and every
+double-quoted span of 40+ characters is normalized (blockquote markers
+stripped, whitespace collapsed). A span that occurs in the PRIOR contract of
+another S1 target is reported with whether it still occurs in that target's
+CANDIDATE. (The list variable keeps its D-PEC-100 name, S2, but holds the S1 set.) Spans that also occur in an accepted upstream source (registers,
 decomposition, PRD, AGENTS.md, scope-change snapshots, decision records,
 dependency registers) are shared quotations and are skipped. Read-only; stdlib only. Informational: the packet discloses the
 STALE lines as consequences for their owning nodes; it writes none of them.
 
-Usage: scan_external_quotes.py --tree <pre-act export root> --prep <prep dir>
+Usage: scan_s1_consequences.py --tree <pre-act export root> --prep <prep dir>
 """
 import argparse, re
 from pathlib import Path

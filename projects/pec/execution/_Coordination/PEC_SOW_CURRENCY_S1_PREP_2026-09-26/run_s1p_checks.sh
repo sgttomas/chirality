@@ -1,6 +1,6 @@
 #!/bin/zsh
 # Run every S1 (provisional D-PEC-104) preparation check on fresh `git archive` exports (never on a checkout).
-# Pattern of the D-PEC-100 runner run_s1p_checks.sh.
+# Pattern of the D-PEC-100 runner run_s2p_checks.sh.
 # Usage: run_s1p_checks.sh <repo (for git objects)> <commit> <prep dir> <out dir> [observation commit, default 125cfacc1]
 # Writes all outputs under <out dir>; prints a summary; exit 0 only if every check passes.
 set -u

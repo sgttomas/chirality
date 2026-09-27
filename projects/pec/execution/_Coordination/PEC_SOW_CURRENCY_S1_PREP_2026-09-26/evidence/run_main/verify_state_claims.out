@@ -892,4 +892,5 @@ PASS DEL-10-10 S103 contains 125cfacc1:projects/pec/execution/_Coordination/Work
 PASS DEL-10-10 S104 contains 125cfacc1:projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_RULING_2026-09-26.md [git=yes; candidate=yes]
 PASS DEL-10-10 S105 not_contains 125cfacc1:projects/pec/v2/config/loops.schema.json [git=yes; candidate=yes]
 PASS DEL-10-10 S106 not_contains 125cfacc1:projects/pec/v2/config/loops.schema.json [git=yes; candidate=yes]
-RESULT PASS 894/894
+PASS DEL-10-10 MR01 not_contains ea6b4b5d0:projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_CONTEXT.md [git=yes; candidate=yes]
+RESULT PASS 895/895

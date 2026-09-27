@@ -1,4 +1,4 @@
-basis commit: 3488a236af293762ef47b0101a4c209845f372e7
+basis commit: 4b930819cd6630d5b4eb422dbb7054d731f2267c
 python: Python 3.13.7
 PASS act: check-only 0, apply 0, rerun refuses 1
 PASS containment: 12 differing files, all ScopeOfWork.md
@@ -39,7 +39,7 @@ PASS validate DEL-10-10
 PASS checklist DEL-10-10 (rerun byte-identical)
 PASS boundary DEL-10-10 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
 PASS quotes: RESULT PASS 884/884
-PASS state claims: RESULT PASS 894/894
+PASS state claims: RESULT PASS 895/895
 PASS qualified IDs: RESULT PASS 44/44
 PASS dependency quote currency (pre): RESULT PASS 127/127
 PASS dependency quote currency (post): RESULT PASS 127/127
