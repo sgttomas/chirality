@@ -1,6 +1,6 @@
-basis commit: 78e74f590d6010a52565d250288290b3305a2942
+basis commit: f0a6159c9440557d18a728416166cc1e3e0c862d
 python: Python 3.13.7
-S4 overlay from 91a2e8407f27d03be0ad1c1a862f3c51b613196f (simulated S4 act on both exports where not yet applied): DEL-04-01_Loop_orientation_return=overlaid DEL-04-03_Citation_freshness_stamping=overlaid
+S4 overlay from 91a2e8407f27d03be0ad1c1a862f3c51b613196f (simulated S4 act on both exports where not yet applied): DEL-04-01_Loop_orientation_return=already-S4-postimage(no-op) DEL-04-03_Citation_freshness_stamping=already-S4-postimage(no-op)
 PASS act: check-only 0, apply 0, rerun refuses 1
 PASS containment: 12 differing files, all ScopeOfWork.md
 PASS validate DEL-01-03

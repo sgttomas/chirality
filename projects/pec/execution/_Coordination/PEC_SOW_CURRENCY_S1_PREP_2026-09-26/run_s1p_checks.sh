@@ -19,7 +19,7 @@ SHA=$(git -C "$REPO" rev-parse "$C^{commit}")
 for d in "$PRE" "$POST"; do
   git -C "$d" init -q && print -r -- "$OBJ" > "$d/.git/objects/info/alternates" && git -C "$d" update-ref HEAD "$SHA"
 done
-# S1 lands after S4 (provisional D-PEC-102): simulate the S4 act on both exports by writing the two
+# S1 lands after S4 (D-PEC-102, ruled A): simulate the S4 act on both exports by writing the two
 # S4 postimages the S1 act pins (DEL-04-01, DEL-04-03), read from the S4 preparation branch commit.
 # Once the S4 act is on the basis commit the check reports a no-op. Override the S4 commit with S4_COMMIT.
 S4C=${S4_COMMIT:-91a2e8407f27d03be0ad1c1a862f3c51b613196f}

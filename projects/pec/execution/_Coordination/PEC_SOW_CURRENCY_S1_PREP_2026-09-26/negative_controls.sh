@@ -48,8 +48,12 @@ fresh; rm -rf "$T/act"; cp -R "$T/tree" "$T/act"
 python3 "$T/p/apply_s1p.py" --repo "$T/act" --candidates "$T/p/candidates" --check-only > "$T/out" 2>&1 || { print "FAIL control baseline: unmodified candidates do not pass check-only"; bad=1; }
 f=$(cand DEL-10-10); print >> "$f"
 python3 "$T/p/apply_s1p.py" --repo "$T/act" --candidates "$T/p/candidates" --check-only > "$T/out" 2>&1; ok $? "a candidate differs from its tabled postimage (apply --check-only)"
-# 6b. the S4 postimages absent (S4 not yet applied): the bound act refuses at preflight
-fresh; rm -rf "$T/act"; mkdir -p "$T/act"; git -C "$REPO" archive "$C" | tar -x -C "$T/act"
+# 6b. the S4 postimages absent (DEL-04-01/DEL-04-03 at their pre-S4 bytes, as at 125cfacc1): the bound act refuses at preflight
+fresh; rm -rf "$T/act"; cp -R "$T/tree" "$T/act"
+for t in projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md \
+         projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md; do
+  git -C "$REPO" show "125cfacc1:$t" > "$T/act/$t"
+done
 python3 "$T/p/apply_s1p.py" --repo "$T/act" --candidates "$T/p/candidates" --check-only > "$T/out" 2>&1; r=$?; [[ $(grep -c "pinned hash mismatch: projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-0[13]_" "$T/out") -eq 2 ]] || r=0
 ok $r "S4 postimages not applied (DEL-04-01/DEL-04-03 pins): apply --check-only refuses for exactly those two pins"
 # 7. a matrix row removed: the validator fails and the checklist refuses with no artifact
