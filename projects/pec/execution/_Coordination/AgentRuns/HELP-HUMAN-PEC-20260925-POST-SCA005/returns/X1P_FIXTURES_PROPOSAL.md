@@ -173,7 +173,7 @@ Reliance preflight: `exact-correction-preparation`, `ALLOW` ×41 (the 35 targets
 | 06 | packet, `082a2a96f` | PASS WITH NOTES; nothing blocks. Draft-only repairs. |
 | — | HELP_HUMAN PR review, `4f2e4f44a` | PASS WITH NOTES; eight repairs requested, all made. |
 | 07 | repair delta, `c49817153` | **FAIL**: one blocking finding (the new path rule required cited paths to resolve). Repaired; four non-blocking findings also repaired. |
-| 08 | backcheck of 07 | see `VERIFIER_VERDICT_08.md` |
+| 08 | backcheck of 07 and of HELP_HUMAN's eight repairs, `4db36e6de` | PASS WITH NOTES; nothing blocks. Three non-blocking wording findings, repaired in the draft. |
 
 Drafters were two `pec-task` instances (Opus): pinned fixtures, and synthetic fixtures (two rounds). Their returns are in `evidence/drafter_returns/`.
 
