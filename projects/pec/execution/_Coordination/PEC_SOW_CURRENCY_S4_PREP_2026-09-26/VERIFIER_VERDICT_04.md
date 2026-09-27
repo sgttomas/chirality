@@ -126,4 +126,5 @@ Checklist items:
 | N-3 (QA 21 DEL-04-02 REQ-008) | Repaired with the suggested wording |
 | N-4 (DEL-04-02 second flag) | Repaired with the suggested wording |
 | N-5 (a) (DEL-04-01 "either declaration") | Repaired: "any production declaration" (DEL-04-01 re-hashed; re-verified in verdict 06) |
+| (transcription note) | This report's "`3152effc…c449`" (twice) is the reviewer's slip [sic]: the hash bound at `cf23df7df` is `3152effced678fd3b2d716e06e308bd961def6a1788df88db071570cbd7ce449`, ending `…e449` (found by verdict 07). The report text is kept verbatim |
 | N-5 (b) (date and seven-count claims) | Recorded: the date is checked by hand here and in verdict 04; the seven-component count is DEL-04-01's reading, put to the owner as question 3(a) and grounded in PRD v2.4 PEC-ORI-001 |
