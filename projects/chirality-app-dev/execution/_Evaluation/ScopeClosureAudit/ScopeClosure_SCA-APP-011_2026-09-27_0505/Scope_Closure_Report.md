@@ -63,7 +63,9 @@ Register `projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-011_2026-09-
 
 ## Pass 3 — Orphaned References
 
-No REMOVE, MERGE or RECLASSIFY action. 52 `Dependencies.csv` files scanned for ACTIVE rows describing retired surfaces: 11 found — DEP-02-01-007, DEP-02-01-008, DEP-02-02-005, DEP-02-02-006, DEP-02-02-007, DEP-02-02-008, DEP-02-02-009, DEP-07-05-025, DEP-08-02-003, DEP-08-02-005, DEP-08-03-010.
+Method Pass 3: no REMOVE, MERGE or RECLASSIFY action and no retired entity ID, so 0 orphaned references.
+
+Disclosed extension (retired-surface screen): 52 `Dependencies.csv` files scanned for ACTIVE rows describing surfaces SCA-APP-011 retired: 11 found — DEP-02-01-007, DEP-02-01-008, DEP-02-02-005, DEP-02-02-006, DEP-02-02-007, DEP-02-02-008, DEP-02-02-009, DEP-07-05-025, DEP-08-02-003, DEP-08-02-005, DEP-08-03-010. They are filed as `METADATA_STALE` (stale register rows awaiting re-extraction), not `ORPHANED_REFERENCE`. Tension observation (DEL-02-03-REQ-009 against E80): DEP-02-03-009.
 
 ## Pass 4 — Decomposition Consistency
 
@@ -100,11 +102,11 @@ NOT_APPLICABLE (SOFTWARE variant; no KTY manifest).
 
 ## Closure Determination
 
-Findings: {'CRITICAL': 0, 'MAJOR': 16, 'MINOR': 5, 'OBSERVATION': 0}. **OPEN**: every accepted edit is applied and the supersession map checks, but incremental setup and dependency re-extraction have not run and 11 ACTIVE dependency rows still describe retired surfaces.
+Findings: {'CRITICAL': 0, 'MAJOR': 16, 'MINOR': 5, 'OBSERVATION': 1}. **OPEN**: every accepted edit is applied and the supersession map checks, but incremental setup and dependency re-extraction have not run and 11 ACTIVE dependency rows still describe retired surfaces.
 
 ## Recommendations
 
-1. Owner confirms the incremental-setup baseline and plan (`INCREMENTAL_SETUP_PROPOSAL.md`), including HGD-2.
-2. Run dependency-extract for the seven named deliverables, applying the row proposal as confirmed; then audit-dep-closure (FULL_GRAPH).
+1. Owner confirms the incremental-setup baseline and plan (`INCREMENTAL_SETUP_PROPOSAL.md`) and rules HGD-2 on DEP-02-01-008.
+2. Run dependency-extract straight through for the affected deliverables and neighbours; then audit-dep-closure (FULL_GRAPH). The rerun of this audit checks `DEPENDENCY_EXTRACT_EXPECTED_OUTCOMES.csv`.
 3. Owner records the APP-R058 disposition.
 4. Rerun this audit after setup.

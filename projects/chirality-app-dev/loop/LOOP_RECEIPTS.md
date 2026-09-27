@@ -7336,3 +7336,14 @@
   - Checks: this ledger's validator, Root G0–G4, conflict-marker and run-record-leak checks, the workflow index check, `git diff --check` and export regeneration, as recorded in the hand-off.
   - Model-Attribution: Claude Code WORKING_ITEMS subagent for the parent session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
   - Gate-Outcome: `AWAITING_OWNER` — audit-decomp WARNINGS with no blocker and unchanged topology; audit-scope-closure OPEN (every register action verified; setup, re-extraction and the stale dependency rows open); `project-setup` INCREMENTAL (its baseline and plan gates), dependency-extract (with HGD-2) and APP-R058 prepared as proposals, not applied. No dependency, lifecycle, scope or pointer write; no release.
+
+- **2026-09-27 — Receipt 273** (SCA-APP-011 post-acceptance follow-ups, review revision: owner package reframed to the setup gates and HGD-2).
+  - Receipt-ID: `Receipt-273`
+  - Examined-Through: `54d96f2a640acb9cdf16e4f10269549f60040179`
+  - Parent-Receipt: `Receipt-272`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING; no new owner direction. The coordinating session relayed an independent review of `54d96f2a6` (one blocking finding on the dependency framing, nine non-blocking).
+  - Pointers: run receipt `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md`; `DEPENDENCY_EXTRACT_EXPECTED_OUTCOMES.md` (replaces the dependency proposal); `execution/_Evaluation/ScopeClosureAudit/_LATEST.md` (a row for SCA-APP-011 added).
+  - Stale-Map-Delta: Receipt-272 describes dependency-extract as a proposal awaiting approval. The workflow runs straight through, so the run record now lists expected outcomes. Retiring DEP-02-01-007 was already accepted at groups 1 and 2, and only DEP-02-01-008 remains under HGD-2.
+  - Checks: this ledger's validator, Root G0–G4, conflict-marker and run-record-leak checks, the workflow index check, `git diff --check` and export freshness, as recorded in the hand-off.
+  - Model-Attribution: Claude Code WORKING_ITEMS subagent for the parent session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
+  - Gate-Outcome: `AWAITING_OWNER` — incremental setup waits on the owner's baseline and plan confirmations and the HGD-2 ruling on DEP-02-01-008; APP-R058 waits on its owner. Audits unchanged in verdict (scope closure OPEN before setup). No dependency, lifecycle or scope write; no release.

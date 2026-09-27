@@ -12,7 +12,8 @@
  "downstreamRerunsRecommended": 13,
  "downstreamRerunsCompleted": 3,
  "downstreamRerunsDeferredOrNotActivated": 0,
- "orphanedReferencesFound": 11,
+ "orphanedReferencesFound": 0,
+ "retiredSurfaceScreenRows": 11,
  "contentRemediationState": "NOT_REQUIRED",
  "ktyRemediationRows": 0,
  "ktyRemediationRowsBlocked": 0,
@@ -21,6 +22,6 @@
   "CRITICAL": 0,
   "MAJOR": 16,
   "MINOR": 5,
-  "OBSERVATION": 0
+  "OBSERVATION": 1
  }
 }

@@ -128,7 +128,7 @@ def main():
         if not bound:
             issue(2, "DOWNSTREAM_NOT_RUN", "MAJOR", "N/A", d, folder + "/_DEPENDENCIES.md", "Run Notes",
                   "No dependency-extract run binds the post-change decomposition and contract hashes; the register may carry stale rows",
-                  f"Run dependency-extract after the incremental plan is confirmed; row proposal in {RUN}DEPENDENCY_EXTRACT_PROPOSAL.md")
+                  f"Run dependency-extract after the incremental plan is confirmed; check the expected outcomes in {RUN}DEPENDENCY_EXTRACT_EXPECTED_OUTCOMES.csv")
     p2.append(("analyze_dep_closure after re-extraction", "ALL", f"{RUN}dep_closure/ is a pre-extraction reconfirmation only", "NO_EVIDENCE"))
     issue(2, "DOWNSTREAM_NOT_RUN", "MINOR", "N/A", "analyze_dep_closure", RUN + "dep_closure/closure_summary.json", "whole file",
           "Closure has been rerun on the unchanged registers only (54 nodes, 111 edges, 0 SCC); the post-extraction closure audit awaits extraction",
@@ -144,7 +144,10 @@ def main():
           "row APP-R058", "The row still records the ProjectScaffoldPort/501 live-composition hold; its owner has not recorded 'closed by removal under SCA-APP-011'",
           f"Owner records the disposition proposed in {RUN}APP_R058_PROPOSAL.md", "FACT")
 
-    # Pass 3 — orphaned references (no REMOVE/MERGE/RECLASSIFY here; scan all registers for stale references to the retired routes/forms)
+    # Pass 3 — orphaned references. Method Pass 3 targets rows pointing at RETIRED entity IDs; SCA-APP-011 has no
+    # REMOVE/MERGE/RECLASSIFY action and retires no ID, so proper Pass 3 finds nothing for this amendment.
+    # Disclosed extension: a phrase screen for ACTIVE rows that still describe a retired surface (route/form).
+    # Those rows are stale register metadata awaiting re-extraction, so they are filed as METADATA_STALE.
     retired_rx = re.compile(r"api/working-root/deliverable/(status|dependencies)|api/harness/scaffold|Retained Workbench|Retained Pipeline|"
                             r"Workbench and Pipeline routes|Pipeline selector presentation|WORKBENCH deep-link|PIPELINE deep-link|"
                             r"pipeline selectors|WORKBENCH agent|governed WORKBENCH, PIPELINE", re.I)
@@ -160,9 +163,17 @@ def main():
                 orphans.append((r["DependencyID"], f))
     for did, f in orphans:
         sev = "MAJOR" if did.startswith(("DEP-02-02-00", "DEP-02-01-00", "DEP-07-05-025")) else "MINOR"
-        issue(3, "ORPHANED_REFERENCE", sev, "N/A", did, f, did,
-              "ACTIVE dependency row still describes a surface SCA-APP-011 retired (Workbench/Pipeline forms, deliverable routes or scaffold route)",
-              f"Retire or restate at dependency-extract; see {RUN}DEPENDENCY_EXTRACT_PROPOSAL.md", "FACT")
+        issue(3, "METADATA_STALE", sev, "N/A", did, f, did,
+              "ACTIVE dependency row still describes a surface SCA-APP-011 retired (Workbench/Pipeline forms, deliverable routes or scaffold route); found by the disclosed retired-surface screen, not by method Pass 3 (no entity ID is retired)",
+              f"Re-extract; check the expected outcome in {RUN}DEPENDENCY_EXTRACT_EXPECTED_OUTCOMES.csv", "FACT")
+    tension = []
+    for f in sorted(glob.glob(EX + "PKG-*/*/DEL-02-03_*/Dependencies.csv")):
+        for r in csv.DictReader(io.StringIO(read(f))):
+            if r.get("Status") == "ACTIVE" and "PIPELINE `TASK*` preselection" in r.get("EvidenceQuote", ""):
+                tension.append(r["DependencyID"])
+                issue(3, "METADATA_STALE", "OBSERVATION", "N/A", r["DependencyID"], f, r["DependencyID"],
+                      "ACTIVE row cites DEL-02-03-REQ-009 (PIPELINE TASK* preselection) while accepted E80 withdrew the old Pipeline routing examples; REQ-009 itself was not amended and Propagation_Plan section 7 records no own-register change for DEL-02-03",
+                      f"Keep with the stated reason and record the tension in Notes at re-extraction ({RUN}DEPENDENCY_EXTRACT_EXPECTED_OUTCOMES.csv DX-15)", "FACT")
     for f in sorted(glob.glob(EX + "PKG-*/*/DEL-*/Dependencies.csv")):
         for r in csv.DictReader(io.StringIO(open(f, encoding="utf-8").read())):
             if r.get("Status") == "ACTIVE" and r.get("TargetDeliverableID") == "DEL-09-07":
@@ -237,7 +248,7 @@ def main():
                "actionsDiscrepant": sum(1 for x in p1 if x[4] == "DISCREPANCY"), "actionsNotExecuted": sum(1 for x in p1 if x[4] == "NOT_EXECUTED"),
                "actionsDeferredByHuman": 0, "actionsSuperseded": 0, "downstreamRerunsRecommended": len(p2),
                "downstreamRerunsCompleted": sum(1 for x in p2 if x[3].startswith("COMPLETED")),
-               "downstreamRerunsDeferredOrNotActivated": 0, "orphanedReferencesFound": len(orphans),
+               "downstreamRerunsDeferredOrNotActivated": 0, "orphanedReferencesFound": 0, "retiredSurfaceScreenRows": len(orphans),
                "contentRemediationState": "NOT_REQUIRED", "ktyRemediationRows": 0, "ktyRemediationRowsBlocked": 0, "archiveScannerLeaks": 0,
                "findingsBySeverity": sev}
     json.dump(summary, open(os.path.join(HERE, "scope_closure_summary.json"), "w"), indent=1)
@@ -257,8 +268,10 @@ def main():
     rep += [f"| {a} | {t} | {e} | {x} | {s} |\n" for a, t, e, x, s, _ in p1]
     rep.append("\n## Pass 2 — Downstream Rerun Verification\n\n| Agent | Scope | Evidence | Status |\n|---|---|---|---|\n")
     rep += [f"| {a} | {s} | {e} | {st} |\n" for a, s, e, st in p2]
-    rep.append(f"\n## Pass 3 — Orphaned References\n\nNo REMOVE, MERGE or RECLASSIFY action. {nregs} `Dependencies.csv` files scanned for ACTIVE rows "
-               f"describing retired surfaces: {len(orphans)} found — " + ", ".join(d for d, _ in orphans) + ".\n\n## Pass 4 — Decomposition Consistency\n\n")
+    rep.append(f"\n## Pass 3 — Orphaned References\n\nMethod Pass 3: no REMOVE, MERGE or RECLASSIFY action and no retired entity ID, so 0 orphaned references.\n\n"
+               f"Disclosed extension (retired-surface screen): {nregs} `Dependencies.csv` files scanned for ACTIVE rows describing surfaces SCA-APP-011 retired: "
+               f"{len(orphans)} found — " + ", ".join(d for d, _ in orphans) + ". They are filed as `METADATA_STALE` (stale register rows awaiting re-extraction), "
+               f"not `ORPHANED_REFERENCE`. Tension observation (DEL-02-03-REQ-009 against E80): " + (", ".join(tension) or "none") + ".\n\n## Pass 4 — Decomposition Consistency\n\n")
     rep += [f"- {n}: {'PASS' if ok else 'FAIL'}\n" for n, ok in p4]
     rep.append("\n## Pass 5 — Context Metadata Consistency\n\n| Deliverable | Context identity | Lifecycle now | Lifecycle pre-change |\n|---|---|---|---|\n")
     rep += [f"| {d} | {c} | {s} | {p} |\n" for d, c, s, p in p5]
@@ -268,19 +281,23 @@ def main():
                "## Pass 7 — KTY Content Remediation Verification\n\nNOT_APPLICABLE (SOFTWARE variant; no KTY manifest).\n\n"
                f"## Closure Determination\n\nFindings: {sev}. **{status}**: every accepted edit is applied and the supersession map checks, but "
                f"incremental setup and dependency re-extraction have not run and {len(orphans)} ACTIVE dependency rows still describe retired surfaces.\n\n"
-               "## Recommendations\n\n1. Owner confirms the incremental-setup baseline and plan (`INCREMENTAL_SETUP_PROPOSAL.md`), including HGD-2.\n"
-               "2. Run dependency-extract for the seven named deliverables, applying the row proposal as confirmed; then audit-dep-closure (FULL_GRAPH).\n"
+               "## Recommendations\n\n1. Owner confirms the incremental-setup baseline and plan (`INCREMENTAL_SETUP_PROPOSAL.md`) and rules HGD-2 on DEP-02-01-008.\n"
+               "2. Run dependency-extract straight through for the affected deliverables and neighbours; then audit-dep-closure (FULL_GRAPH). "
+               "The rerun of this audit checks `DEPENDENCY_EXTRACT_EXPECTED_OUTCOMES.csv`.\n"
                "3. Owner records the APP-R058 disposition.\n4. Rerun this audit after setup.\n")
     open(os.path.join(HERE, "Scope_Closure_Report.md"), "w", encoding="utf-8").write("".join(rep))
     open(os.path.join(HERE, "QA_Report.md"), "w", encoding="utf-8").write(
         f"# QA — Scope Closure Audit {AID}\n\n## Coverage\n- Actions checked: {len(p1)} of {len(rows)}\n- Downstream reruns checked: {len(p2)} of {len(p2)}\n"
         f"- Dependencies.csv files scanned for orphans: {nregs}\n- Deliverable _CONTEXT.md files checked: {len(p5)}\n- KTY remediation manifest rows checked: 0\n"
-        "- `.Archive/` scanner exclusion surfaces checked: 0 (not applicable)\n\n## Limitations\n- The retired-surface scan in Pass 3 is a phrase screen over "
-        "Statement, TargetLocation, TargetName and EvidenceQuote.\n- Pass 5 context identity is taken from the same-day audit-decomp matrix.\n\n"
+        "- `.Archive/` scanner exclusion surfaces checked: 0 (not applicable)\n\n## Limitations\n- The retired-surface scan in Pass 3 is a disclosed extension: a phrase screen over "
+        "Statement, TargetLocation, TargetName and EvidenceQuote. Its rows are filed as METADATA_STALE because method Pass 3 (ORPHANED_REFERENCE) covers only rows targeting retired entity IDs.\n"
+        "- Pass 5 context identity is taken from the same-day audit-decomp matrix.\n"
+        "- Regenerated in place within the unmerged candidate after independent review (Pass 3 relabel, DEP-02-03-009 observation, expected-outcome file name, pointer step); "
+        "the published snapshot bytes are those of this rerun.\n\n"
         "## Self-Assessment\n- All passes completed: yes\n- All findings have evidence: yes\n- No silent resolutions: yes\n")
     open(os.path.join(HERE, "Brief.md"), "w", encoding="utf-8").write(
         f"# Brief\n\n```\nPURPOSE: Verify closure of scope change amendment\nAMENDMENT_ID: {AID}\nEXECUTION_ROOT: {EX}\nSCOPE_CHANGE_ROOT: {SC}\n"
-        f"DECOMPOSITION_PATH: {DECOMP}\nDECOMP_VARIANT: SOFTWARE\nCONSTRAINTS:\n  - read-only on project state; do not move _LATEST.md\n"
+        f"DECOMPOSITION_PATH: {DECOMP}\nDECOMP_VARIANT: SOFTWARE\nCONSTRAINTS:\n  - read-only on project state; add this snapshot to the per-amendment _LATEST.md table (method step 5)\n"
         "NOTES:\n  - handoff named in SCA-APP-011 Handoff_State.md; run after PR #995 merged and before incremental setup\n```\n")
     open(os.path.join(HERE, "INPUT_MANIFEST.sha256"), "w").write("".join(f"{h}  {p}\n" for p, h in sorted(inputs.items())))
     print(status, sev, "actions", summary["actionsVerified"], "/", len(rows), "orphans", len(orphans))

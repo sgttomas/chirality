@@ -389,7 +389,8 @@ def main():
         "- Artifact presence is a path and filename screen (backticked paths resolved against the App root, the frontend root and the repository root; "
         "otherwise at least two long tokens of the description in one file name in the deliverable folder). Absence of a match is not proof the behavior is absent.\n"
         "- Limits: no semantic product verification; no file outside this snapshot folder was written; no decomposition, Scope of Work, dependency, "
-        "lifecycle or pointer change. The DecompCoverage `_LATEST.md` pointer is not moved (not authorized by the brief).\n")
+        "lifecycle or pointer change. The DecompCoverage `_LATEST.md` pointer is not moved (not authorized by the brief).\n"
+        "- Layout disclosure: before this snapshot's `MANIFEST.sha256` was generated, the report header was changed from Markdown hard line breaks (two trailing spaces) to plain list items so that `git diff --check` passes. The committed `audit_decomp_run.py` emits that layout, and a rerun of it with this run's timestamp reproduces the committed report files. The one checkout-dependent field, `basis_commit` in `coverage_summary.json`, is read from HEAD, so it matches only on the basis commit `78e74f590`.\n")
     open(os.path.join(HERE, "Decision_Log.md"), "w", encoding="utf-8").write(
         "# Decision Log\n\n- DECOMP_VARIANT = SOFTWARE; SCOPE = ALL; RUN_LABEL = SCA_APP_011_POST_ACCEPTANCE.\n"
         "- Check 7 objectives come from the Scope Ledger `ObjectiveID(s)` column (SOFTWARE rule); the Objectives section is compared for mismatches.\n"
