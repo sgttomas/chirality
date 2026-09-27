@@ -12,7 +12,7 @@ const record = (sessionId: string, projectRoot: unknown, persona = 'HELP_HUMAN',
 const trees: renderer.ReactTestRenderer[] = [];
 afterEach(() => { act(() => trees.splice(0).forEach(tree => tree.unmount())); vi.unstubAllGlobals(); });
 function mount(sessions: SessionRecord[], overrides: Partial<React.ComponentProps<typeof Navigator>> = {}) {
-  const props = { activeSurface: 'dialogue' as const, legacyHref: '/?legacy=1', onOpenSurface: vi.fn(), onSelectSession: vi.fn(), onNewChat: vi.fn(), sessions, ...overrides };
+  const props = { activeSurface: 'dialogue' as const, onOpenSurface: vi.fn(), onSelectSession: vi.fn(), onNewChat: vi.fn(), sessions, ...overrides };
   let tree!: renderer.ReactTestRenderer;
   act(() => { tree = renderer.create(<Navigator {...props} />); });
   trees.push(tree);

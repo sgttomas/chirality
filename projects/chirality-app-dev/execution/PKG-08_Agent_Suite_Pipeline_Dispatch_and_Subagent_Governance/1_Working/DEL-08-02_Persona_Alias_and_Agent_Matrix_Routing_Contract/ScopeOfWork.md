@@ -15,6 +15,16 @@ This Scope of Work defines `DEL-08-02` in service of project scope [SOW-005, SOW
 
 - **OUT-001** — Persona alias, agent/session routing, and legacy matrix compatibility contract, with alias resolver, guarded session-selection, route/query, persona-resolution, and compatibility tests that keep canonical identity and navigation intent consistent without making a fixed matrix part of the target shell.
 
+## SCA-APP-012 Current Contract (Controlling)
+
+SCA-APP-012 (owner direction 2026-09-27; DEC-027) retires the loop-first shell and the two `lib/portal` matrix helpers, `frontend/src/lib/portal/agent-matrix-cells.ts` and `frontend/src/lib/portal/agent-matrix-launch.ts`, with their tests. Where any earlier clause in this document names those helpers or their tests, a matrix guard test, the loop-first shell contract or loop-first route state as a current obligation, this section controls; the earlier clauses remain dated history and are not deleted. D-APP-28 citations stay as historical sources.
+
+- Aliases, persona resolution, guarded selection, the TYPES §4 route/query/alias semantics, SOW-005, SOW-006 and SOW-017, and the requirements are unchanged.
+- Aliases live in `frontend/src/lib/shell/persona-resolution.ts`, tested by `frontend/src/__tests__/lib/persona-resolution.test.ts`, which also carries the direct-entry registry case ported from `agent-matrix-cells.test.ts` (TASK is not direct-entry; HELP_HUMAN is the new-chat default; both read from `CHIRALITY_ROLES`).
+- The recorded-session guard lives in `frontend/src/lib/woven-dialogue/guarded-session-selection.ts` (`frontend/src/__tests__/lib/guarded-session-selection.test.ts`). The role picker in `frontend/src/components/shell/chat-panel.tsx` is disabled while a turn runs, tested by `frontend/src/__tests__/components/chat-panel-role-picker-guard.test.tsx` (added by the SCA-APP-012 code change).
+- `frontend/src/__tests__/lib/pkg08-compatibility-boundaries.test.ts` keeps its role-boundary case, reading the three direct-entry roles from `CHIRALITY_ROLES`, and its dispatch case; its matrix-helper round-trip case is retired with the helpers.
+- Unknown-query-parameter preservation stays an open obligation, to be verified against the live dialogue-shell route.
+
 ## Deliverable Definition — Ontology
 
 ### CLM-001 — Datasheet: DEL-08-02 Persona Alias, Agent/Session Routing, and Legacy Matrix Compatibility Contract
@@ -83,8 +93,8 @@ This Scope of Work defines `DEL-08-02` in service of project scope [SOW-005, SOW
 > |---|---|---|
 > | Alias resolution | Use only sourced aliases and resolve to an eligible canonical role; aliases must not create additional roles or grant TASK direct-entry authority. | `frontend/src/__tests__/lib/persona-resolution.test.ts` checks the current HELP/AGENTS aliases, HELP_HUMAN default and three direct-entry roles. |
 > | Persona identity | Preserve canonical role identity and the applicable instruction basis; missing or ineligible selections must not silently gain authority. | `frontend/src/__tests__/api/harness/routes.test.ts` and `frontend/src/__tests__/lib/persona-resolution.test.ts`; route and UI fallback subjects must be distinguished. |
-> | Legacy navigation | Preserve compatibility only within the accepted retirement boundary. A fixed matrix is not required in the active shell; D-APP-108 Q3 is historical; the 2026-09-09 removal leaves matrix routes as preserved compatibility evidence. | `frontend/src/__tests__/lib/agent-matrix-cells.test.ts` is compatibility evidence, not an active matrix acceptance check. |
-> | Dialogue/session selection | Preserve exact selected identity, applicable query context and unknown parameters while guarding an in-flight primary session and retaining the adopted live/replay boundary. | `frontend/src/__tests__/lib/guarded-session-selection.test.ts` and `frontend/src/__tests__/lib/pkg08-compatibility-boundaries.test.ts`; live query-preservation and continuation/isolation verification remain open. |
+> | Legacy navigation | Preserve compatibility only within the accepted retirement boundary. A fixed matrix is not required in the active shell; D-APP-108 Q3 is historical; the 2026-09-09 removal leaves matrix routes as preserved compatibility evidence. | `frontend/src/__tests__/lib/persona-resolution.test.ts` carries the direct-entry registry case ported from the retired `agent-matrix-cells.test.ts` (SCA-APP-012: TASK is not direct-entry; HELP_HUMAN is the new-chat default); no matrix helper remains. |
+> | Dialogue/session selection | Preserve exact selected identity, applicable query context and unknown parameters while guarding an in-flight primary session and retaining the adopted live/replay boundary. | `frontend/src/__tests__/lib/guarded-session-selection.test.ts` and `frontend/src/__tests__/components/chat-panel-role-picker-guard.test.tsx` (the role picker is disabled while a turn runs; added by SCA-APP-012); live query-preservation and continuation/isolation verification remain open. |
 > | Dispatch boundary | Navigation or selection may describe intent but must not grant dispatch, lifecycle or approval authority. Presentation-neutral dispatch remains owned by DEL-08-03. | `frontend/src/__tests__/lib/pipeline-dispatch-contract.test.ts` and `frontend/src/__tests__/lib/pkg08-compatibility-boundaries.test.ts`. |
 >
 > Implementation module names and query-key snapshots belong in those evidence records. The former F-001/D-001 implementation slots do not impose a recurring requirement to copy code paths or state keys into this deliverable. The updated requirement rows apply current role and continuation direction; lagging App authority-corpus clauses remain a separate owning amendment obligation.
@@ -151,8 +161,8 @@ This Scope of Work defines `DEL-08-02` in service of project scope [SOW-005, SOW
 > |---|---|---|---|
 > | DEL-08-02-REQ-001 | The UI alias resolver MUST map `HELP` to `HELP_HUMAN`. | `docs/TYPES.md` Section 3.4; `docs/PRD.md` FR-026 | Alias resolver unit test. |
 > | DEL-08-02-REQ-002 | New direct-entry selection MUST use the current four-role basis and sourced HELP/AGENTS aliases; historical ORCHESTRATE is not a new execution role. | `docs/TYPES.md` Section 3.4; `docs/PRD.md` FR-026 | Alias resolver unit test. |
-> | DEL-08-02-REQ-003 | TASK and historical Type 2 labels MUST NOT become direct-entry roles through aliases. | D-APP-28 loop-first routing; D-APP-24 Type 0/1 direct-chat guard; `docs/TYPES.md` Type 2 vocabulary | Negative alias resolver unit test and matrix guard test. |
-> | DEL-08-02-REQ-004 | Historical RECONCILING and matrix labels MUST remain replay metadata and MUST NOT create execution roles. | D-APP-28 loop-first routing; D-APP-24 Type 0/1 direct-chat guard; `docs/TYPES.md` matrix vocabulary | Negative alias resolver unit test and matrix guard test. |
+> | DEL-08-02-REQ-003 | TASK and historical Type 2 labels MUST NOT become direct-entry roles through aliases. | D-APP-28 loop-first routing; D-APP-24 Type 0/1 direct-chat guard; `docs/TYPES.md` Type 2 vocabulary | Negative alias resolver unit test in `persona-resolution.test.ts`, including the direct-entry registry case ported by SCA-APP-012. |
+> | DEL-08-02-REQ-004 | Historical RECONCILING and matrix labels MUST remain replay metadata and MUST NOT create execution roles. | D-APP-28 loop-first routing; D-APP-24 Type 0/1 direct-chat guard; `docs/TYPES.md` matrix vocabulary | Negative alias resolver unit test in `persona-resolution.test.ts`, including the direct-entry registry case ported by SCA-APP-012. |
 > | DEL-08-02-REQ-005 | The UI alias resolver MUST map `AGENTS` to `HELPS_HUMANS`. | `docs/TYPES.md` Section 3.4; `docs/PRD.md` FR-026 | Alias resolver unit test. |
 > | DEL-08-02-REQ-006 | Historical matrix row identity MUST remain readable in preserved records without requiring a live matrix. | `docs/TYPES.md` Section 4.1; SCA-APP-004 | Legacy matrix compatibility test. |
 > | DEL-08-02-REQ-007 | Historical matrix column identity MUST remain readable in preserved records without requiring a live matrix. | `docs/TYPES.md` Section 4.2; SCA-APP-004 | Legacy matrix compatibility test. |
@@ -162,7 +172,7 @@ This Scope of Work defines `DEL-08-02` in service of project scope [SOW-005, SOW
 > | DEL-08-02-REQ-011 | Legacy and target routing MUST preserve exact selected agent/session identity and compatible agent/row/column query context without transferring another session's draft, context, permissions, or interaction authority. | SCA-APP-004; preserved D-APP-30 guard | Route-state and session-isolation test. |
 > | DEL-08-02-REQ-012 | Selected execution roles MUST resolve to their supplied canonical instruction basis, preserving source identity and eligibility. | `docs/PRD.md` FR-025; `docs/SPEC.md` Section 13.2 | Persona resolver test with existing and missing personas. |
 > | DEL-08-02-REQ-013 | A missing or ineligible role MUST NOT silently gain execution authority; record the actual resolution or denial result. | `docs/PRD.md` FR-025 | Negative persona resolver test. |
-> | DEL-08-02-REQ-014 | New chats MUST default to HELP_HUMAN. Direct-entry eligibility follows the current four-role registry; UI fallback and execution admission MUST be checked separately. | `docs/SPEC.md` Section 13.1; `docs/PRD.md` FR-023; current loop-first shell contract | Runtime option fallback and negative persona resolver tests. |
+> | DEL-08-02-REQ-014 | New chats MUST default to HELP_HUMAN. Direct-entry eligibility follows the current four-role registry; UI fallback and execution admission MUST be checked separately. | `docs/SPEC.md` Section 13.1; `docs/PRD.md` FR-023; current dialogue-shell contract (the loop-first shell is retired by SCA-APP-012) | Runtime option fallback and negative persona resolver tests. |
 > | DEL-08-02-REQ-015 | Unknown runtime option keys MUST warn without silently mutating behavior. | `docs/SPEC.md` Section 13.1; `docs/PRD.md` FR-024 | Runtime option warning test. |
 > | DEL-08-02-REQ-016 | Unsupported retained controls MUST NOT initiate execution; removed legacy matrix/Pipeline surfaces are historical and are not required coming-soon controls. | `docs/PRD.md` Section 7.2; `docs/PRD.md` FR-011 | UI fixture or interaction test. |
 > | DEL-08-02-REQ-017 | The implementation MUST NOT invent additional alias mappings, matrix rows, columns, or canonical persona names without a governed source update. | `docs/CONTRACT.md` K-INVENT-1; `docs/TYPES.md` Sections 3.4 and 4 | Fixture completeness and snapshot tests. |
@@ -201,7 +211,7 @@ This Scope of Work defines `DEL-08-02` in service of project scope [SOW-005, SOW
 > - Alias resolver tests.
 > - Route fixtures.
 > - Matrix mapping tests.
-> - Any implementation-local notes needed to explain route-state keys if they change from the current loop-first launch contract.
+> - Any implementation-local notes needed to explain route-state keys if they change from the current dialogue-shell route/query contract (the loop-first launch contract is retired by SCA-APP-012).
 > - Concrete verification evidence paths or command outputs for the checks listed in the Pass 3 evidence slots.
 >
 > Implementation evidence is named in CLM-005; record actual candidate-bound results rather than keeping selected paths as TBD.
@@ -257,7 +267,7 @@ This Scope of Work defines `DEL-08-02` in service of project scope [SOW-005, SOW
 > 13. Mark any unsupported behavior as TBD rather than inventing requirements.
 > 14. Read the current dependency register when closure or fixture coverage depends on dependency state; do not create or rewrite `Dependencies.csv` during this four-document procedure.
 > 15. Record selected module paths and fixture/test file paths for alias resolver, matrix mapping, route fixtures, and persona resolver.
-> 16. Record the active loop-first route-state behavior for selected agent, row, and column.
+> 16. Record the dialogue-shell route-state behavior for selected agent, row, and column (the loop-first route state is retired by SCA-APP-012).
 > 17. Record unknown-alias behavior as normalized pass-through to instruction-file resolution and keep Type 2 alias removals covered by negative tests.
 > 18. Verify guarded recorded-session selection against an in-flight primary dialogue.
 > 19. Verify selected replay remains read-only and cannot receive or overwrite primary draft, context, permission, interruption, or identity state.

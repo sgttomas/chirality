@@ -1,0 +1,2385 @@
+{
+  "run_label": "SCA_APP_012_POST_ACCEPTANCE",
+  "decomp_variant": "SOFTWARE",
+  "method": "Pre-change baseline under scope-change method step 5. The latest full audit-decomp run is reused because every one of its recorded inputs is byte-identical to this basis; it is complemented by the registered structure, dependency-closure and register tools, a static import-reachability analysis of the frontend, and a line-level scan of the scope and governance texts.",
+  "basis_commit": "c83a868cd03fef3aff6d773e360ce2cb7d3100b5",
+  "governed_inputs_identical_to_basis": true,
+  "decomposition_path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+  "decomposition_sha256": "6ac7811824201b7abaf2fdd4b6d208cd2d3c92c56126d2a4aa34114fad29a577",
+  "companion_register_path": "projects/chirality-app-dev/execution/_Decomposition/contract_invariant_coverage_register.csv",
+  "companion_register_sha256": "918e475a48899d18755139027e61db200d23a531e48ed9f969c526dd842fa944",
+  "scope_change_pointer_sha256": "3d7e0352b4ce271535d801d86706142481845227bdfe87f4693f1ce10bc95d8b",
+  "runtime_scaffold_notice_path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-27_RUNTIME_SCAFFOLD_API_RETIRED.md",
+  "runtime_scaffold_notice_sha256": "5be3999622b233fe326081485ec92a38f5bbd38e43989a4b3652db1c334916ab",
+  "active_snapshot": "execution/_ScopeChange/SCA-APP-012_2026-09-27_1828_Loop_First_Shell_and_Legacy_UI_Retirement/",
+  "accepted_project_dag": null,
+  "reused_full_audit": {
+    "path": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SCA_APP_011_POST_ACCEPTANCE_2026-09-27_0500",
+    "inputs_recorded": 122,
+    "inputs_identical": 120,
+    "run_status": "WARNINGS",
+    "closure_readiness": "FAIL",
+    "repository_topology": {
+      "packages": 10,
+      "deliverables": 52,
+      "objectives": 10,
+      "ledger_rows": 84
+    },
+    "ledger_distribution": {
+      "IN": 78,
+      "OUT": 5,
+      "TBD": 1
+    },
+    "physical_inventory": {
+      "packages": 11,
+      "deliverable_folders": 54,
+      "undeclared_packages": [
+        "PKG-00"
+      ],
+      "undeclared_deliverables": [
+        "DEL-00-01",
+        "DEL-00-02"
+      ]
+    },
+    "lifecycle_distribution": {
+      "IN_PROGRESS": 53,
+      "OPEN": 1
+    },
+    "issue_counts": {
+      "WARNING": 57
+    },
+    "checks": {
+      "1 — Forward coverage: packages": "PASS",
+      "2 — Forward coverage: deliverables": "PASS",
+      "3 — Reverse coverage: folders": "WARNING",
+      "4 — ID consistency": "PASS",
+      "5 — Context fidelity": "WARNING",
+      "6 — Artifact presence": "WARNING",
+      "7 — Objective mapping": "PASS",
+      "8 — Ledger integrity": "PASS",
+      "9 — Derivative package parity": "SKIPPED",
+      "9b — Package-shape conformance": "PASS",
+      "10 — Active snapshot and handoff state": "PASS",
+      "11 — Lifecycle distribution": "PASS"
+    }
+  },
+  "repository_topology": {
+    "packages": 10,
+    "deliverables": 52,
+    "retired_deliverables": [
+      "DEL-09-07"
+    ],
+    "objectives": 10,
+    "scope_items": 84,
+    "ledger_rows": 84,
+    "highest_decision_log_id": "DEC-027"
+  },
+  "ledger_distribution": {
+    "IN": 78,
+    "OUT": 5,
+    "TBD": 1
+  },
+  "forward_coverage": {
+    "declared": 52,
+    "found": 52,
+    "missing_folders": []
+  },
+  "reverse_coverage": {
+    "folders": 54,
+    "undeclared_folders": [
+      "DEL-00-01",
+      "DEL-00-02"
+    ]
+  },
+  "scope_items_without_deliverable": [],
+  "objectives_without_deliverable": [],
+  "lifecycle_distribution": {
+    "IN_PROGRESS": 53,
+    "OPEN": 1
+  },
+  "issued_deliverables": [],
+  "checking_deliverables": [],
+  "affected_deliverables": {
+    "DEL-02-01": {
+      "name": "Woven Dialogue Shell and Compatibility Navigation",
+      "type": "UX_UI_SLICE",
+      "envelope": "M",
+      "covers_scope_items": [
+        "SOW-001",
+        "SOW-005"
+      ],
+      "supports_objectives": [
+        "OBJ-001"
+      ],
+      "lifecycle": "IN_PROGRESS"
+    },
+    "DEL-02-03": {
+      "name": "Working Root File Tree and Scope Scan UI",
+      "type": "UX_UI_SLICE",
+      "envelope": "M",
+      "covers_scope_items": [
+        "SOW-002",
+        "SOW-003"
+      ],
+      "supports_objectives": [
+        "OBJ-001",
+        "OBJ-006"
+      ],
+      "lifecycle": "IN_PROGRESS"
+    },
+    "DEL-06-03": {
+      "name": "Initial Chirality MCP Read Tools",
+      "type": "BACKEND_FEATURE_SLICE",
+      "envelope": "M",
+      "covers_scope_items": [
+        "SOW-048",
+        "SOW-050",
+        "SOW-064",
+        "SOW-082"
+      ],
+      "supports_objectives": [
+        "OBJ-005",
+        "OBJ-006"
+      ],
+      "lifecycle": "IN_PROGRESS"
+    },
+    "DEL-06-04": {
+      "name": "Write/Edit Surface and Path Hooks",
+      "type": "SECURITY_CONTROL",
+      "envelope": "L",
+      "covers_scope_items": [
+        "SOW-027",
+        "SOW-057",
+        "SOW-060"
+      ],
+      "supports_objectives": [
+        "OBJ-005",
+        "OBJ-006"
+      ],
+      "lifecycle": "IN_PROGRESS"
+    },
+    "DEL-07-02": {
+      "name": "Execution Root Scaffolding from Decomposition",
+      "type": "BACKEND_FEATURE_SLICE",
+      "envelope": "M",
+      "covers_scope_items": [
+        "SOW-024",
+        "SOW-025"
+      ],
+      "supports_objectives": [
+        "OBJ-006"
+      ],
+      "lifecycle": "IN_PROGRESS"
+    },
+    "DEL-07-03": {
+      "name": "Deliverable Metadata and Document Kit Contracts",
+      "type": "BACKEND_FEATURE_SLICE",
+      "envelope": "M",
+      "covers_scope_items": [
+        "SOW-026",
+        "SOW-081"
+      ],
+      "supports_objectives": [
+        "OBJ-006"
+      ],
+      "lifecycle": "IN_PROGRESS"
+    },
+    "DEL-08-02": {
+      "name": "Persona Alias, Agent/Session Routing, and Legacy Matrix Compatibility Contract",
+      "type": "UX_UI_SLICE",
+      "envelope": "S",
+      "covers_scope_items": [
+        "SOW-005",
+        "SOW-006",
+        "SOW-017"
+      ],
+      "supports_objectives": [
+        "OBJ-001",
+        "OBJ-007"
+      ],
+      "lifecycle": "IN_PROGRESS"
+    },
+    "DEL-08-03": {
+      "name": "Pipeline Category and Task Scope Dispatch",
+      "type": "UX_UI_SLICE",
+      "envelope": "M",
+      "covers_scope_items": [
+        "SOW-007",
+        "SOW-026"
+      ],
+      "supports_objectives": [
+        "OBJ-001",
+        "OBJ-007"
+      ],
+      "lifecycle": "IN_PROGRESS"
+    },
+    "DEL-09-06": {
+      "name": "Network, Key, Attachment, and Renderer Security Checks",
+      "type": "SECURITY_CONTROL",
+      "envelope": "M",
+      "covers_scope_items": [
+        "SOW-019",
+        "SOW-020",
+        "SOW-022",
+        "SOW-023"
+      ],
+      "supports_objectives": [
+        "OBJ-008"
+      ],
+      "lifecycle": "IN_PROGRESS"
+    }
+  },
+  "affected_scope_items": {
+    "SOW-001": {
+      "status": "IN",
+      "package": "PKG-02",
+      "deliverables": [
+        "DEL-02-01"
+      ],
+      "objectives": [
+        "OBJ-001"
+      ],
+      "active_carriers": [
+        "DEL-02-01"
+      ]
+    },
+    "SOW-003": {
+      "status": "IN",
+      "package": "PKG-02",
+      "deliverables": [
+        "DEL-02-03"
+      ],
+      "objectives": [
+        "OBJ-001"
+      ],
+      "active_carriers": [
+        "DEL-02-03"
+      ]
+    },
+    "SOW-005": {
+      "status": "IN",
+      "package": "PKG-02",
+      "deliverables": [
+        "DEL-02-01",
+        "DEL-08-02"
+      ],
+      "objectives": [
+        "OBJ-001",
+        "OBJ-007"
+      ],
+      "active_carriers": [
+        "DEL-02-01",
+        "DEL-08-02"
+      ]
+    },
+    "SOW-007": {
+      "status": "IN",
+      "package": "PKG-08",
+      "deliverables": [
+        "DEL-08-03"
+      ],
+      "objectives": [
+        "OBJ-001",
+        "OBJ-007"
+      ],
+      "active_carriers": [
+        "DEL-08-03"
+      ]
+    },
+    "SOW-024": {
+      "status": "IN",
+      "package": "PKG-07",
+      "deliverables": [
+        "DEL-07-02"
+      ],
+      "objectives": [
+        "OBJ-006"
+      ],
+      "active_carriers": [
+        "DEL-07-02"
+      ]
+    },
+    "SOW-025": {
+      "status": "IN",
+      "package": "PKG-07",
+      "deliverables": [
+        "DEL-07-02"
+      ],
+      "objectives": [
+        "OBJ-006"
+      ],
+      "active_carriers": [
+        "DEL-07-02"
+      ]
+    }
+  },
+  "objective_active_supporters": {
+    "OBJ-001": [
+      "DEL-02-01",
+      "DEL-02-02",
+      "DEL-02-03",
+      "DEL-02-04",
+      "DEL-02-05",
+      "DEL-03-03",
+      "DEL-05-04",
+      "DEL-08-02",
+      "DEL-08-03"
+    ],
+    "OBJ-006": [
+      "DEL-02-03",
+      "DEL-06-03",
+      "DEL-06-04",
+      "DEL-07-01",
+      "DEL-07-02",
+      "DEL-07-03",
+      "DEL-07-04",
+      "DEL-07-05",
+      "DEL-07-06",
+      "DEL-09-03"
+    ],
+    "OBJ-007": [
+      "DEL-02-02",
+      "DEL-04-04",
+      "DEL-08-01",
+      "DEL-08-02",
+      "DEL-08-03",
+      "DEL-08-04",
+      "DEL-08-05",
+      "DEL-09-02"
+    ]
+  },
+  "del_02_03_req_009": {
+    "scope_of_work": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md",
+    "lines": [
+      {
+        "line": 20,
+        "text": "SCA-APP-012 (owner direction 2026-09-27; DEC-027) retires `GET /api/working-root/scope`, the unconsumed `DeliverablesProvider` (`frontend/src/components/workspace/deliverables-provider.tsx`) and DEL-02-03-REQ-009, and restates DEL-02-03-REQ-010. Where any earl"
+      },
+      {
+        "line": 23,
+        "text": "- DEL-02-03-REQ-009 is retired, with its verification row and the D-APP-56 R4-P29 launcher confirmation (CLM-015). No deliverable summary widget routes to a dispatch intent. DEL-08-03 keeps the TASK scope semantics (PRD FR-012, SOW-007); any later deliverable-"
+      },
+      {
+        "line": 25,
+        "text": "- The CLM-011 verification rows change with their requirements: DEL-02-03-REQ-009's is retired, DEL-02-03-REQ-010's is restated, and DEL-02-03-REQ-013's no longer names route identity. The other requirements and verification rows, SOW-002 and SOW-003, OBJ-001 "
+      },
+      {
+        "line": 125,
+        "text": "> - Deliverable summary widgets sufficient for read-only inspection (operator routing retired by SCA-APP-012 with DEL-02-03-REQ-009)."
+      },
+      {
+        "line": 152,
+        "text": "> | DEL-02-03-REQ-009 | [RETIRED — SCA-APP-012] Deliverable summary widgets shall support routing to PIPELINE `TASK*` with a deliverable preselected when deliverables are present. | `docs/PRD.md` §7.5 |"
+      },
+      {
+        "line": 156,
+        "text": "> | DEL-02-03-REQ-013 | Stable deliverable IDs, not folder labels alone, shall drive deliverable identity in summary widgets (route targets retired by SCA-APP-012 with DEL-02-03-REQ-009). | `docs/CONTRACT.md` K-ID-1, K-PATH-1; `docs/TYPES.md` §1.2 |"
+      },
+      {
+        "line": 190,
+        "text": "> | DEL-02-03-REQ-009 | [RETIRED — SCA-APP-012] Routing test from deliverable row to PIPELINE `TASK*` preselection. |"
+      },
+      {
+        "line": 225,
+        "text": "> [RETIRED — SCA-APP-012: DEL-02-03-REQ-009 and the portal deliverable-rows launcher are retired; this confirmation is dated history.] R4-P29 confirms that the portal deliverable-rows launcher is within the existing DEL-02-03 REQ-009 claim. This is an ownershi"
+      },
+      {
+        "line": 326,
+        "text": "> | Deliverable display by path vs. ID | Use paths for navigation context, but use stable IDs for identity (dispatch preselection retired by SCA-APP-012 with DEL-02-03-REQ-009). | `docs/CONTRACT.md` K-ID-1, K-PATH-1 |"
+      },
+      {
+        "line": 359,
+        "text": "- **APP-R024:** Preserve scope scan, summary and status consumers (route consumers retired by SCA-APP-012 with DEL-02-03-REQ-009; scope scan through `/api/project/deliverables`) alongside native PDF/security and source-bound evidence. Compare the receiving DEL"
+      }
+    ]
+  },
+  "dependency_rows": [
+    {
+      "DependencyID": "DEP-02-01-003",
+      "From": "DEL-02-01",
+      "Direction": "UPSTREAM",
+      "Type": "OTHER",
+      "Target": "SOW-005",
+      "TargetName": "Semantic persona/agent/session routing, guarded dialogue selection, and legacy route/query/alias/matrix compatibility.",
+      "Status": "ACTIVE",
+      "SatisfactionStatus": "NOT_APPLICABLE",
+      "Statement": "DEL-02-01 traces to SOW-005."
+    },
+    {
+      "DependencyID": "DEP-02-01-006",
+      "From": "DEL-02-01",
+      "Direction": "UPSTREAM",
+      "Type": "INTERFACE",
+      "Target": "DEL-08-02",
+      "TargetName": "Persona Alias, Agent/Session Routing, and Legacy Matrix Compatibility Contract",
+      "Status": "ACTIVE",
+      "SatisfactionStatus": "TBD",
+      "Statement": "DEL-02-01 consumes DEL-08-02 routing/guarded-selection contracts; current folder/direct-entry behavior preserves exact retained query compatibility without restoring the old matrix."
+    },
+    {
+      "DependencyID": "DEP-02-01-007",
+      "From": "DEL-02-01",
+      "Direction": "DOWNSTREAM",
+      "Type": "INTERFACE",
+      "Target": "DEL-02-02",
+      "TargetName": "Right-Panel Coordination, Workflows, and Proposal UX",
+      "Status": "RETIRED",
+      "SatisfactionStatus": "NOT_APPLICABLE",
+      "Statement": "DEL-02-01 verifies retained WORKBENCH deep-link/query compatibility while adjacent selector ownership stays DEL-02-02; the old visual matrix is historical."
+    },
+    {
+      "DependencyID": "DEP-02-01-008",
+      "From": "DEL-02-01",
+      "Direction": "DOWNSTREAM",
+      "Type": "INTERFACE",
+      "Target": "DEL-08-03",
+      "TargetName": "Pipeline Category and Task Scope Dispatch",
+      "Status": "RETIRED",
+      "SatisfactionStatus": "NOT_APPLICABLE",
+      "Statement": "DEL-02-01 verifies retained PIPELINE deep-link/query compatibility while adjacent selector ownership stays DEL-08-03; the old visual matrix is historical."
+    },
+    {
+      "DependencyID": "DEP-02-02-005",
+      "From": "DEL-02-02",
+      "Direction": "UPSTREAM",
+      "Type": "INTERFACE",
+      "Target": "DEL-02-01",
+      "TargetName": "Woven Dialogue Shell and Compatibility Navigation",
+      "Status": "RETIRED",
+      "SatisfactionStatus": "NOT_APPLICABLE",
+      "Statement": "Retained Workbench and Pipeline routes (unmounted from the active shell) consume matrix and compatibility routing inputs presented by the DEL-02-01 shell and compatibility navigation; DEL-08-02 retains routing semantics."
+    },
+    {
+      "DependencyID": "DEP-02-02-020",
+      "From": "DEL-02-02",
+      "Direction": "UPSTREAM",
+      "Type": "CONSTRAINT",
+      "Target": "DEL-08-02",
+      "TargetName": "Persona Alias, Agent/Session Routing, and Legacy Matrix Compatibility Contract",
+      "Status": "ACTIVE",
+      "SatisfactionStatus": "TBD",
+      "Statement": "The Who is working view presents recorded agent/session selections under the guarded dialogue/session selection, route/query mapping, and legacy compatibility semantics DEL-08-02 owns; this carrier's query compatibility "
+    },
+    {
+      "DependencyID": "DEP-02-03-004",
+      "From": "DEL-02-03",
+      "Direction": "UPSTREAM",
+      "Type": "INTERFACE",
+      "Target": "REF-003",
+      "TargetName": "Workspace API contract for working-root and scope endpoints",
+      "Status": "ACTIVE",
+      "SatisfactionStatus": "TBD",
+      "Statement": "DEL-02-03 consumes workspace API contracts for root validation, bounded tree data, scope scans, and deliverable summaries."
+    },
+    {
+      "DependencyID": "DEP-02-03-009",
+      "From": "DEL-02-03",
+      "Direction": "DOWNSTREAM",
+      "Type": "INTERFACE",
+      "Target": "DEL-08-03",
+      "TargetName": "Pipeline Category and Task Scope Dispatch",
+      "Status": "ACTIVE",
+      "SatisfactionStatus": "TBD",
+      "Statement": "DEL-02-03 provides deliverable-row routing/preselection behavior that interfaces with PIPELINE TASK scope dispatch."
+    },
+    {
+      "DependencyID": "DEP-08-02-013",
+      "From": "DEL-08-02",
+      "Direction": "DOWNSTREAM",
+      "Type": "INTERFACE",
+      "Target": "DEL-08-03",
+      "TargetName": "Pipeline Category and Task Scope Dispatch",
+      "Status": "ACTIVE",
+      "SatisfactionStatus": "TBD",
+      "Statement": "DEL-08-02 provides row-level OPERATIVE to PIPELINE routing boundaries that interface with DEL-08-03 pipeline category and task-scope dispatch."
+    },
+    {
+      "DependencyID": "DEP-08-03-007",
+      "From": "DEL-08-03",
+      "Direction": "UPSTREAM",
+      "Type": "INTERFACE",
+      "Target": "REF-003",
+      "TargetName": "docs/SPEC.md Section 17.2 working-root scope API",
+      "Status": "ACTIVE",
+      "SatisfactionStatus": "TBD",
+      "Statement": "Dynamic scope scanning must use the active working-root scope surface instead of hard-coded project assumptions."
+    }
+  ],
+  "frontend_reachability": {
+    "method": "Static relative-import graph over frontend/src (tests excluded) and frontend/electron. Roots: every app page.tsx, layout.tsx, not-found.tsx and route.ts, and every electron module. A JSX element passed as `legacy` counts as an import edge although WovenDialogueRoute never renders it; the scenarios remove those edges to show what is reachable only through them.",
+    "product_modules": 244,
+    "reachable_S0_actual": 199,
+    "S1_only_via_discarded_legacy_element": [],
+    "S2_additionally_only_via_DeliverablesProvider": [],
+    "S3_additionally_only_via_workbench_pipeline_pages": [
+      {
+        "module": "src/app/pipeline/page.tsx",
+        "product_importers": [],
+        "test_importers": []
+      },
+      {
+        "module": "src/app/pipeline/pipeline-client.tsx",
+        "product_importers": [
+          "src/app/pipeline/page.tsx"
+        ],
+        "test_importers": [
+          "src/__tests__/components/loop-tertiary-routes.test.ts"
+        ]
+      },
+      {
+        "module": "src/app/workbench/page.tsx",
+        "product_importers": [],
+        "test_importers": []
+      },
+      {
+        "module": "src/app/workbench/workbench-client.tsx",
+        "product_importers": [
+          "src/app/workbench/page.tsx"
+        ],
+        "test_importers": [
+          "src/__tests__/components/loop-tertiary-routes.test.ts"
+        ]
+      }
+    ],
+    "unreachable_at_basis_in_scope": [],
+    "unreachable_at_basis_other_count": 50,
+    "unreachable_at_basis_other": [
+      "src/components/woven-dialogue/work-projection.tsx",
+      "src/lib/consent/consent-ux-fixtures.ts",
+      "src/lib/consent/fake-hosted-engine-consent-port.ts",
+      "src/lib/harness/agent-runtime-contract.ts",
+      "src/lib/harness/agent-sdk-manager.ts",
+      "src/lib/harness/anthropic-agent-sdk-manager.ts",
+      "src/lib/harness/attachment-resolver.ts",
+      "src/lib/harness/chirality-hooks.ts",
+      "src/lib/harness/chirality-tool-bridge.ts",
+      "src/lib/harness/claude-agent-sdk-manager.ts",
+      "src/lib/harness/claude-tool-binder.ts",
+      "src/lib/harness/engine-registry.ts",
+      "src/lib/harness/event-factory.ts",
+      "src/lib/harness/harness-ui-bridge.ts",
+      "src/lib/harness/managed-delegation.ts",
+      "src/lib/harness/mcp/coordination-tools.ts",
+      "src/lib/harness/mcp/domain-headless-preview-runner.ts",
+      "src/lib/harness/mcp/domain-profile-registry.ts",
+      "src/lib/harness/mcp/domain-proposal-tools.ts",
+      "src/lib/harness/mcp/pec-bridge-client.ts",
+      "src/lib/harness/mcp/read-tools.ts",
+      "src/lib/harness/omlx-provider-config.ts",
+      "src/lib/harness/options.ts",
+      "src/lib/harness/permission-broker.ts",
+      "src/lib/harness/permission-event-channel.ts",
+      "src/lib/harness/permission-overlay.ts",
+      "src/lib/harness/persona-manager.ts",
+      "src/lib/harness/pi-agent-engine-adapter.ts",
+      "src/lib/harness/pi-event-mapper.ts",
+      "src/lib/harness/pi-tool-binder.ts",
+      "src/lib/harness/runtime-fingerprint.ts",
+      "src/lib/harness/runtime.ts",
+      "src/lib/harness/sanitize.ts",
+      "src/lib/harness/scaffold.ts",
+      "src/lib/harness/scripted-agent-sdk-proof.ts",
+      "src/lib/harness/sdk-message-mapper.ts",
+      "src/lib/harness/sdk-options-builder.ts",
+      "src/lib/harness/subagent-bridge.ts",
+      "src/lib/harness/subagent-governance.ts",
+      "src/lib/harness/tool-evidence.ts",
+      "src/lib/harness/tool-path-policy.ts",
+      "src/lib/harness/tool-pool.ts",
+      "src/lib/harness/tool-result-artifacts.ts",
+      "src/lib/harness/tool-shell-policy.ts",
+      "src/lib/harness/turn-engine.ts",
+      "src/lib/pipeline/pipeline-dispatch-contract.ts",
+      "src/lib/workspace/governed-workflow.ts",
+      "src/lib/workspace/navigation-intent.ts",
+      "src/lib/workspace/task-scope.ts",
+      "src/types/chirality-window.d.ts"
+    ]
+  },
+  "frontend_references": {
+    "/api/working-root/scope": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "scanProjectScopes": {
+      "product": [
+        "src/lib/harness/mcp/read-tools.ts",
+        "src/lib/workspace/filesystem.ts"
+      ],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "useDeliverables": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "DeliverablesProvider": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "legacy={": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "legacyHref": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "'/workbench'": {
+      "product": [
+        "src/components/shell/chat-panel.tsx"
+      ],
+      "tests": [
+        "src/__tests__/contract-pins.manifest.ts"
+      ],
+      "electron_scripts": [
+        "electron/main.ts",
+        "scripts/run-packaged-security-proof.mjs"
+      ],
+      "runtime": []
+    },
+    "'/pipeline'": {
+      "product": [
+        "src/components/shell/chat-panel.tsx"
+      ],
+      "tests": [
+        "src/__tests__/contract-pins.manifest.ts"
+      ],
+      "electron_scripts": [
+        "electron/main.ts",
+        "scripts/run-packaged-security-proof.mjs"
+      ],
+      "runtime": []
+    },
+    "mergeMatrixTargetIntoCurrentUrl": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "DIRECT_ENTRY_ROLE_IDS": {
+      "product": [
+        "src/lib/woven-dialogue/operator-projection.ts"
+      ],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "isRoleSelectionBlocked": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "buildPortalPersonaHref": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "buildDirectChatHref": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "RoleDirectoryPanel": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "AgentMatrix": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "createTertiarySidebarTabs": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "SidebarRightLoopLayout": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "LoopTertiaryShell": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "PortalLoopShell": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "LoopShell": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "pipelineTab": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "workbenchTab": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "portalTab": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "RENDERER_SECURITY_PROBE_ROUTES": {
+      "product": [],
+      "tests": [
+        "src/__tests__/contract-pins.manifest.ts"
+      ],
+      "electron_scripts": [
+        "electron/main.ts"
+      ],
+      "runtime": []
+    },
+    "PACKAGED_RENDERER_ROUTES": {
+      "product": [],
+      "tests": [
+        "src/__tests__/contract-pins.manifest.ts",
+        "src/__tests__/scripts/run-packaged-security-proof.test.ts"
+      ],
+      "electron_scripts": [
+        "scripts/run-packaged-security-proof.mjs"
+      ],
+      "runtime": []
+    },
+    "ProjectScaffoldPort": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "ScaffoldExecutionRootRequest": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "ScaffoldExecutionRootResponse": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "/api/working-root/workflow?": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "WorkflowsView": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "WorkflowDetail": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "workflow-read-contract": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "workflow-store": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "PORTAL, PIPELINE, and WORKBENCH": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "Loading live loop portal": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "Loading workbench": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "Loading pipeline": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "Loading direct chat": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "guardRecordedSessionSelection": {
+      "product": [
+        "src/components/woven-dialogue/right-panel.tsx",
+        "src/components/woven-dialogue/woven-dialogue-shell.tsx",
+        "src/lib/woven-dialogue/guarded-session-selection.ts"
+      ],
+      "tests": [
+        "src/__tests__/lib/guarded-session-selection.test.ts"
+      ],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "open legacy interface": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [
+        "electron/renderer-window-policy.ts"
+      ],
+      "runtime": []
+    }
+  },
+  "legacy_css_tokens": {
+    "button-muted": {
+      "other_product_users": [
+        "src/components/settings/account-consent-settings.tsx",
+        "src/components/settings/api-key-settings.tsx",
+        "src/components/settings/hosted-bootstrap-view.tsx",
+        "src/components/settings/product-instructions-settings.tsx",
+        "src/components/settings/runtime-settings.tsx",
+        "src/components/settings/runtime-status.tsx",
+        "src/components/shell/app-shell.tsx",
+        "src/components/shell/chat-panel.tsx",
+        "src/components/shell/file-picker.tsx",
+        "src/components/shell/folder-select.tsx",
+        "src/components/shell/native-plan-panel.tsx",
+        "src/components/shell/operator-toolkit-panel.tsx",
+        "src/components/shell/permission-requests.tsx",
+        "src/components/shell/request-card.tsx",
+        "src/components/shell/session-list-view.tsx",
+        "src/components/shell/shell-frame.tsx",
+        "src/components/woven-dialogue/activity-shelf.tsx",
+        "src/components/woven-dialogue/agents-projection.tsx",
+        "src/components/woven-dialogue/chat-attention.tsx",
+        "src/components/woven-dialogue/navigator.tsx",
+        "src/components/woven-dialogue/woven-dialogue-shell.tsx"
+      ],
+      "globals_css_selector_hits": 2
+    },
+    "chat-transcript": {
+      "other_product_users": [
+        "src/components/shell/app-shell.tsx",
+        "src/components/shell/chat-panel.tsx"
+      ],
+      "globals_css_selector_hits": 10
+    },
+    "loop-chat-host": {
+      "other_product_users": [],
+      "globals_css_selector_hits": 0
+    },
+    "loop-grid": {
+      "other_product_users": [],
+      "globals_css_selector_hits": 0
+    },
+    "loop-grid--sidebar-collapsed": {
+      "other_product_users": [],
+      "globals_css_selector_hits": 0
+    },
+    "loop-main": {
+      "other_product_users": [],
+      "globals_css_selector_hits": 0
+    },
+    "loop-persona-bar": {
+      "other_product_users": [],
+      "globals_css_selector_hits": 0
+    },
+    "loop-sidebar": {
+      "other_product_users": [],
+      "globals_css_selector_hits": 0
+    },
+    "method-library-list": {
+      "other_product_users": [
+        "src/components/woven-dialogue/method-library-view.tsx",
+        "src/components/woven-dialogue/workflow-draft-review.tsx"
+      ],
+      "globals_css_selector_hits": 9
+    },
+    "panel": {
+      "other_product_users": [
+        "src/components/settings/account-consent-settings.tsx",
+        "src/components/settings/api-key-settings.tsx",
+        "src/components/settings/runtime-settings-controller.tsx",
+        "src/components/shell/account-popover.tsx",
+        "src/components/shell/account-row.tsx",
+        "src/components/shell/app-shell.tsx",
+        "src/components/shell/app-update-summary.tsx",
+        "src/components/shell/chat-panel.tsx",
+        "src/components/shell/document-view.tsx",
+        "src/components/shell/file-tree-panel.tsx",
+        "src/components/shell/native-plan-panel.tsx",
+        "src/components/shell/operator-toolkit-panel.tsx",
+        "src/components/shell/permission-requests.tsx",
+        "src/components/shell/request-card.tsx",
+        "src/components/shell/session-list-view.tsx",
+        "src/components/shell/shell-frame.tsx",
+        "src/components/shell/subagent-stream-view.tsx",
+        "src/components/shell/tool-stream-view.tsx",
+        "src/components/shell/transcript-stream-view.tsx",
+        "src/components/shell/workspace-sidebar.tsx",
+        "src/components/workspace/harness-events-provider.tsx",
+        "src/components/woven-dialogue/activity-shelf.tsx",
+        "src/components/woven-dialogue/right-panel.tsx",
+        "src/components/woven-dialogue/selected-session-replay-lens.tsx",
+        "src/components/woven-dialogue/workflow-draft-review.tsx",
+        "src/components/woven-dialogue/woven-dialogue-shell.tsx",
+        "src/lib/consent/consent-ux-fixtures.ts",
+        "src/lib/consent/fake-hosted-engine-consent-port.ts",
+        "src/lib/consent/hosted-engine-consent-port.ts",
+        "src/lib/credential-storage-state.ts",
+        "src/lib/harness/chat-draft.ts",
+        "src/lib/harness/hosted-bootstrap-context.tsx",
+        "src/lib/harness/toolkit.ts",
+        "src/lib/shell/loop-first.ts",
+        "src/lib/shell/turn-activity.ts",
+        "src/lib/shell/turn-phase.ts",
+        "src/lib/workspace/use-conversation-file-catalog.ts",
+        "src/lib/woven-dialogue/operator-projection.ts"
+      ],
+      "globals_css_selector_hits": 10
+    },
+    "panel--chat": {
+      "other_product_users": [
+        "src/components/shell/app-shell.tsx",
+        "src/components/shell/chat-panel.tsx"
+      ],
+      "globals_css_selector_hits": 16
+    },
+    "panel-body": {
+      "other_product_users": [
+        "src/components/shell/app-shell.tsx",
+        "src/components/shell/chat-panel.tsx",
+        "src/components/shell/document-view.tsx",
+        "src/components/shell/file-tree-panel.tsx",
+        "src/components/shell/operator-toolkit-panel.tsx",
+        "src/components/shell/session-list-view.tsx",
+        "src/components/shell/subagent-stream-view.tsx",
+        "src/components/shell/tool-stream-view.tsx",
+        "src/components/shell/transcript-stream-view.tsx",
+        "src/components/shell/workspace-sidebar.tsx",
+        "src/components/woven-dialogue/activity-shelf.tsx"
+      ],
+      "globals_css_selector_hits": 6
+    },
+    "panel-empty": {
+      "other_product_users": [
+        "src/components/shell/app-shell.tsx",
+        "src/components/shell/chat-panel.tsx",
+        "src/components/shell/document-view.tsx",
+        "src/components/shell/file-picker.tsx",
+        "src/components/shell/file-tree-panel.tsx",
+        "src/components/shell/session-list-view.tsx",
+        "src/components/shell/subagent-stream-view.tsx",
+        "src/components/shell/tool-stream-view.tsx",
+        "src/components/shell/transcript-stream-view.tsx",
+        "src/components/shell/workspace-sidebar.tsx",
+        "src/components/woven-dialogue/activity-shelf.tsx",
+        "src/components/woven-dialogue/agents-projection.tsx",
+        "src/components/woven-dialogue/coordination-panel.tsx",
+        "src/components/woven-dialogue/navigator.tsx",
+        "src/components/woven-dialogue/woven-dialogue-shell.tsx"
+      ],
+      "globals_css_selector_hits": 3
+    },
+    "panel-header": {
+      "other_product_users": [
+        "src/components/shell/app-shell.tsx",
+        "src/components/shell/chat-panel.tsx",
+        "src/components/shell/document-view.tsx",
+        "src/components/shell/file-tree-panel.tsx",
+        "src/components/shell/operator-toolkit-panel.tsx",
+        "src/components/shell/session-list-view.tsx",
+        "src/components/shell/subagent-stream-view.tsx",
+        "src/components/shell/tool-stream-view.tsx",
+        "src/components/shell/transcript-stream-view.tsx",
+        "src/components/shell/workspace-sidebar.tsx",
+        "src/components/woven-dialogue/activity-shelf.tsx"
+      ],
+      "globals_css_selector_hits": 18
+    },
+    "portal-launch-notice": {
+      "other_product_users": [],
+      "globals_css_selector_hits": 0
+    },
+    "portal-matrix": {
+      "other_product_users": [],
+      "globals_css_selector_hits": 0
+    },
+    "portal-matrix--sidebar": {
+      "other_product_users": [],
+      "globals_css_selector_hits": 0
+    },
+    "portal-matrix-header": {
+      "other_product_users": [],
+      "globals_css_selector_hits": 0
+    },
+    "portal-matrix-heading": {
+      "other_product_users": [],
+      "globals_css_selector_hits": 0
+    },
+    "shell-pane": {
+      "other_product_users": [
+        "src/components/shell/app-shell.tsx"
+      ],
+      "globals_css_selector_hits": 3
+    },
+    "shell-pane--collapsed": {
+      "other_product_users": [
+        "src/components/shell/app-shell.tsx"
+      ],
+      "globals_css_selector_hits": 10
+    },
+    "shell-pane--sidebar": {
+      "other_product_users": [
+        "src/components/shell/app-shell.tsx"
+      ],
+      "globals_css_selector_hits": 0
+    },
+    "shell-pane-collapsed-label": {
+      "other_product_users": [
+        "src/components/shell/app-shell.tsx"
+      ],
+      "globals_css_selector_hits": 2
+    },
+    "shell-pane-toggle": {
+      "other_product_users": [
+        "src/components/shell/app-shell.tsx"
+      ],
+      "globals_css_selector_hits": 3
+    }
+  },
+  "dead_css_candidates": {
+    "matrix-grid": {
+      "product_users": [],
+      "globals_css_selector_hits": 0
+    },
+    "matrix-cell": {
+      "product_users": [],
+      "globals_css_selector_hits": 0
+    },
+    "matrix-header-cell": {
+      "product_users": [],
+      "globals_css_selector_hits": 0
+    },
+    "matrix-row-group": {
+      "product_users": [],
+      "globals_css_selector_hits": 0
+    },
+    "matrix-row-label": {
+      "product_users": [],
+      "globals_css_selector_hits": 0
+    },
+    "portal-start-session": {
+      "product_users": [],
+      "globals_css_selector_hits": 0
+    },
+    "portal-deliverables": {
+      "product_users": [],
+      "globals_css_selector_hits": 0
+    },
+    "portal-deliverable-grid": {
+      "product_users": [],
+      "globals_css_selector_hits": 0
+    },
+    "portal-deliverable-row": {
+      "product_users": [],
+      "globals_css_selector_hits": 0
+    },
+    "portal-deliverable-name": {
+      "product_users": [],
+      "globals_css_selector_hits": 0
+    },
+    "portal-deliverable-key": {
+      "product_users": [],
+      "globals_css_selector_hits": 0
+    }
+  },
+  "scope_text_hits": {
+    "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md": [
+      {
+        "line": 102,
+        "tags": [
+          "scope_route",
+          "workflow_read_route"
+        ],
+        "text": "- Browser-facing route shapes and SSE event names remain stable during the runtime pivot, except the routes retired by SCA-APP-011: `/api/working-root/deliverable/status`, `/api/working-root/deliverable/status/transition"
+      },
+      {
+        "line": 176,
+        "tags": [
+          "loop_first",
+          "page_routes"
+        ],
+        "text": "| SOW-001 | IN | REF-006 Section 8.1; SCA-APP-010 SR-01/SR-02/SR-06 | Provide a dialogue-centred desktop shell in which the centre dialogue is the invariant primary surface, the left panel is the chat history and navigat"
+      },
+      {
+        "line": 312,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "| DEL-02-01 | Woven Dialogue Shell and Compatibility Navigation | TBD | UX_UI_SLICE | Compose the persistent primary human–agent transcript and composer with its context line (folder, agent, permissions, delegation, rung"
+      },
+      {
+        "line": 374,
+        "tags": [
+          "agent_matrix_ui",
+          "matrix_guard",
+          "route_query_compat"
+        ],
+        "text": "| DEL-08-02 | Persona Alias, Agent/Session Routing, and Legacy Matrix Compatibility Contract | TBD | UX_UI_SLICE | Keep UI aliases, canonical agent names, persona resolution, guarded dialogue/session selection, route/que"
+      },
+      {
+        "line": 409,
+        "tags": [
+          "loop_first",
+          "page_routes"
+        ],
+        "text": "| SOW-001 | IN | Dialogue-centred shell: invariant centre dialogue, left chat navigator, one-view-at-a-time right panel, no header row. | REF-006 Section 8.1; SCA-APP-010 | PKG-02 | DEL-02-01 | OBJ-001 | DEC-004; DEC-025"
+      },
+      {
+        "line": 413,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "| SOW-005 | IN | Semantic persona/agent/session routing, guarded dialogue selection, and legacy route/query/alias/matrix compatibility. | REF-006 Section 8.2 | PKG-02 | DEL-02-01, DEL-08-02 | OBJ-001, OBJ-007 | DEC-004 |"
+      },
+      {
+        "line": 636,
+        "tags": [
+          "legacy_prop_or_link"
+        ],
+        "text": "| DEC-020 | 2026-07-23 | SCA-APP-004 replaces the fixed surface/matrix target UI with owner-selected Woven Dialogue and a Work/Agents Coordination Panel while preserving routing, dispatch, runtime, compatibility, and hum"
+      },
+      {
+        "line": 643,
+        "tags": [
+          "deliverables_provider",
+          "legacy_prop_or_link",
+          "loop_first",
+          "page_routes",
+          "req_009",
+          "scaffold_entry",
+          "scope_route",
+          "workflow_read_route"
+        ],
+        "text": "| DEC-027 | 2026-09-27 | SCA-APP-012 retires the loop-first compatibility UI (its shells, role-directory panel, discarded `legacy` prop and `?legacy=1` link, and the `lib/portal` matrix helpers), `DeliverablesProvider`, "
+      },
+      {
+        "line": 655,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "- 2026-07-23: SCA-APP-004 prospectively selected Woven Dialogue with a Work/Agents Coordination Panel, replacing fixed target-shell presentation while preserving legacy route/query/matrix compatibility, runtime capabilit"
+      },
+      {
+        "line": 662,
+        "tags": [
+          "deliverables_provider",
+          "loop_first",
+          "page_routes",
+          "req_009",
+          "scaffold_entry",
+          "scope_route",
+          "workflow_read_route"
+        ],
+        "text": "- 2026-09-27: SCA-APP-012 retired the loop-first compatibility UI, `DeliverablesProvider`, `/api/working-root/scope`, the flat-file workflow view with `/api/working-root/workflow`, and DEL-02-03-REQ-009, kept the `/workb"
+      },
+      {
+        "line": 675,
+        "tags": [
+          "loop_first"
+        ],
+        "text": "- SCA-APP-004 selects Woven Dialogue with a Work/Agents Coordination Panel as the target information architecture. Work plans/tasks are shown only from explicitly recorded sources with visible authority/provenance classe"
+      },
+      {
+        "line": 678,
+        "tags": [
+          "deliverables_provider",
+          "legacy_prop_or_link",
+          "loop_first",
+          "page_routes",
+          "req_009",
+          "scaffold_entry",
+          "scope_route",
+          "workflow_read_route"
+        ],
+        "text": "- SCA-APP-012 retires the loop-first shell (the loop, portal and tertiary shells, their sidebar layout and tab factory, and the role-directory panel), the discarded `legacy` prop and `?legacy=1` link, the two `lib/portal"
+      }
+    ],
+    "projects/chirality-app-dev/docs/PRD.md": [
+      {
+        "line": 15,
+        "tags": [
+          "loop_first",
+          "scope_route",
+          "workflow_read_route"
+        ],
+        "text": "**Amended (SCA-APP-012):** owner direction 2026-09-27: the loop-first compatibility UI, `/api/working-root/scope` and `/api/working-root/workflow` retired; §3.1, §6.1, §6.3, §6.4, §7.2, §8.13, §9.2, FR-001, FR-007, FR-11"
+      },
+      {
+        "line": 165,
+        "tags": [
+          "agent_matrix_ui",
+          "loop_first",
+          "matrix_guard",
+          "scope_route",
+          "workflow_read_route"
+        ],
+        "text": "25. Preserve legacy routes, query parameters, aliases, matrix behavior, API/SSE contracts, and provider composition through a compatibility period. SCA-APP-011 records the owner's separate retirement of `/api/working-roo"
+      },
+      {
+        "line": 331,
+        "tags": [
+          "agent_matrix_ui",
+          "loop_first",
+          "matrix_guard",
+          "page_routes",
+          "scope_route",
+          "workflow_read_route"
+        ],
+        "text": "- Preserve `/`, `/chat`, `/pipeline`, and `/workbench`, existing/unknown query parameters, legacy aliases/matrix behavior, browser API shapes (apart from the four routes SCA-APP-011 retired and the two SCA-APP-012 retire"
+      },
+      {
+        "line": 357,
+        "tags": [
+          "loop_first",
+          "page_routes"
+        ],
+        "text": "- The Woven Dialogue shell across `/`, `/chat`, `/pipeline`, and `/workbench`; it has been the live baseline since 2026-09-09. The earlier loop-first, chat-dominant compatibility shell is retired by SCA-APP-012."
+      },
+      {
+        "line": 385,
+        "tags": [
+          "loop_first",
+          "scope_route",
+          "workflow_read_route"
+        ],
+        "text": "- Deleting or retiring the loop-first compatibility UI or any existing route before Woven Dialogue parity, accessibility, migration, performance, runtime regression, packaged Desktop proof, and separate owner acceptance."
+      },
+      {
+        "line": 415,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "6. Legacy route/query/alias launches remain available through the"
+      },
+      {
+        "line": 416,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "compatibility period; the matrix survives as the TYPES §4 route/query/alias"
+      },
+      {
+        "line": 449,
+        "tags": [
+          "page_routes"
+        ],
+        "text": "1. User enters Woven Dialogue directly or through a compatible persona deep link, including the `/workbench` URL."
+      },
+      {
+        "line": 468,
+        "tags": [
+          "page_routes"
+        ],
+        "text": "SCA-APP-011 retired the Pipeline form; no App surface presents this journey. It states the DEL-08-03 dispatch semantics that any later consumer, or a compatible `/pipeline` deep link, must honor."
+      },
+      {
+        "line": 599,
+        "tags": [
+          "loop_first"
+        ],
+        "text": "| FR-001 | P0 | The app shall provide a Woven Dialogue shell with one mounted primary human–agent transcript/composer, provenance-bearing inline/focused artifacts, a Navigator, a right Work/Agents Coordination Panel, and"
+      },
+      {
+        "line": 610,
+        "tags": [
+          "agent_matrix_ui",
+          "matrix_guard"
+        ],
+        "text": "| FR-007 | P0 | The target shell shall preserve semantic persona/agent/session routing and canonical aliases without requiring a fixed matrix presentation. | Route/query mappings, aliases, unavailable-persona behavior, a"
+      },
+      {
+        "line": 888,
+        "tags": [
+          "scope_route"
+        ],
+        "text": "SCA-APP-012 retired `/api/working-root/scope`. `/api/project/deliverables` is the scope-scan surface, and the scan library stays for the retained `scope_scan` tool contract."
+      },
+      {
+        "line": 1267,
+        "tags": [
+          "agent_matrix_ui",
+          "loop_first",
+          "matrix_guard"
+        ],
+        "text": "- legacy routes, known and unknown query parameters, aliases/matrix behavior, browser APIs (apart from the routes retired by SCA-APP-011 and SCA-APP-012), SSE names/order, provider composition, and security boundaries re"
+      },
+      {
+        "line": 1678,
+        "tags": [
+          "loop_first",
+          "scope_route",
+          "workflow_read_route"
+        ],
+        "text": "20. Existing routes, queries, APIs, SSE, provider composition, runtime ownership, security controls, and the loop-first compatibility UI pass regression and packaged Desktop checks before any retirement decision. The fou"
+      },
+      {
+        "line": 1718,
+        "tags": [
+          "legacy_prop_or_link",
+          "loop_first",
+          "page_routes"
+        ],
+        "text": "| KG-033 | Woven Dialogue implementation drift | The Woven Dialogue shell is now the default UI for `/`, `/chat`, `/workbench`, and `/pipeline`, carrying the owner-approved calm-editorial light-first design system, with "
+      }
+    ],
+    "projects/chirality-app-dev/docs/SPEC.md": [
+      {
+        "line": 9,
+        "tags": [
+          "loop_first",
+          "scaffold_entry",
+          "scope_route"
+        ],
+        "text": "**Amended (SCA-APP-012):** owner direction 2026-09-27: §17.2 retires `/api/working-root/scope`; §17.9 records the loop-first UI retirement; §14.2 narrows `mcp__chirality__scaffold` to the read-only preview"
+      },
+      {
+        "line": 1000,
+        "tags": [
+          "scaffold_entry"
+        ],
+        "text": "| `mcp__chirality__scaffold` | Read-only scaffold preview (dry run); no write-capable scaffold tool is planned (SCA-APP-012). | Gated. |"
+      },
+      {
+        "line": 1129,
+        "tags": [
+          "scope_route"
+        ],
+        "text": "SCA-APP-012 retired `/api/working-root/scope`. `/api/project/deliverables`"
+      },
+      {
+        "line": 1276,
+        "tags": [
+          "page_routes"
+        ],
+        "text": "Routes `/`, `/chat`, `/pipeline`, and `/workbench` continue resolving during"
+      },
+      {
+        "line": 1284,
+        "tags": [
+          "scope_route"
+        ],
+        "text": "retired and `/api/working-root/scope`, retired by SCA-APP-012), the event representation in §11 as revised"
+      },
+      {
+        "line": 1288,
+        "tags": [
+          "loop_first"
+        ],
+        "text": "architecture. The loop-first UI, formerly kept as a compatibility"
+      },
+      {
+        "line": 1290,
+        "tags": [
+          "page_routes"
+        ],
+        "text": "SCA-APP-012, which is that decision; `/`, `/chat`, `/pipeline` and"
+      },
+      {
+        "line": 1291,
+        "tags": [
+          "page_routes"
+        ],
+        "text": "`/workbench` render the dialogue shell."
+      }
+    ],
+    "projects/chirality-app-dev/docs/PLAN.md": [
+      {
+        "line": 9,
+        "tags": [
+          "loop_first",
+          "scope_route",
+          "workflow_read_route"
+        ],
+        "text": "**Amended (SCA-APP-012):** owner direction 2026-09-27: baseline, compatibility and §13 entries record the retired loop-first UI, `/api/working-root/scope` and `/api/working-root/workflow`"
+      },
+      {
+        "line": 38,
+        "tags": [
+          "loop_first",
+          "page_routes"
+        ],
+        "text": "- The Woven Dialogue shell with toolkit, file-tree, and replay surfaces is the live baseline on `/`, `/chat`, `/workbench` and `/pipeline` (since 2026-09-09). SCA-APP-011 retired the WORKBENCH and PIPELINE forms; SCA-APP"
+      },
+      {
+        "line": 120,
+        "tags": [
+          "scope_route",
+          "workflow_read_route"
+        ],
+        "text": "retired and `/api/working-root/scope` and `/api/working-root/workflow`,"
+      },
+      {
+        "line": 122,
+        "tags": [
+          "loop_first"
+        ],
+        "text": "through the compatibility period. SCA-APP-012 retired the loop-first UI."
+      },
+      {
+        "line": 189,
+        "tags": [
+          "scope_route",
+          "workflow_read_route"
+        ],
+        "text": "- Route shapes and SSE event names are unchanged (SCA-APP-011 later retired `/api/harness/scaffold` and the three deliverable routes, and SCA-APP-012 `/api/working-root/scope` and `/api/working-root/workflow`)."
+      },
+      {
+        "line": 396,
+        "tags": [
+          "agent_matrix_ui",
+          "loop_first",
+          "matrix_guard"
+        ],
+        "text": "- Existing routes, queries, aliases/matrix behavior, APIs (apart from the routes SCA-APP-011 and SCA-APP-012 retired), SSE, and provider composition remain compatible until a separate owner retirement decision; SCA-APP-0"
+      },
+      {
+        "line": 512,
+        "tags": [
+          "deliverables_provider",
+          "legacy_prop_or_link",
+          "loop_first",
+          "page_routes",
+          "req_009",
+          "scaffold_entry",
+          "scope_route",
+          "workflow_read_route"
+        ],
+        "text": "| `SCA-APP-012` | 2026-09-27 | Retires the loop-first compatibility UI (its shells, role-directory panel, discarded `legacy` prop and `?legacy=1` link, and the `lib/portal` matrix helpers), `DeliverablesProvider`, `GET /"
+      },
+      {
+        "line": 537,
+        "tags": [
+          "page_routes"
+        ],
+        "text": "1. Freeze a compatibility matrix for `/`, `/chat`, `/pipeline`, `/workbench`,"
+      },
+      {
+        "line": 543,
+        "tags": [
+          "loop_first"
+        ],
+        "text": "`9b005c23a`, and SCA-APP-012 retired the loop-first side.)"
+      },
+      {
+        "line": 560,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "8. Run component/render, route/query, API/SSE/replay/interruption, runtime,"
+      },
+      {
+        "line": 564,
+        "tags": [
+          "loop_first"
+        ],
+        "text": "After this sequence the existing loop-first UI remained the compatibility"
+      }
+    ],
+    "projects/chirality-app-dev/docs/TYPES.md": [
+      {
+        "line": 143,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "route/query/alias compatibility contract; it is not a required visual matrix"
+      },
+      {
+        "line": 482,
+        "tags": [
+          "scaffold_entry"
+        ],
+        "text": "- `mcp__chirality__scaffold`"
+      }
+    ],
+    "projects/chirality-app-dev/docs/DIRECTIVE.md": [
+      {
+        "line": 234,
+        "tags": [
+          "agent_matrix_ui",
+          "matrix_guard",
+          "page_routes"
+        ],
+        "text": "- semantic persona, agent, session, Workbench, and Pipeline routing while preserving legacy PORTAL/WORKBENCH/PIPELINE routes, queries, aliases, and matrix behavior through a compatibility period;"
+      }
+    ],
+    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-74_RULING_2026-07-23.md": [
+      {
+        "line": 63,
+        "tags": [
+          "loop_first"
+        ],
+        "text": "- `D-APP-28`: the fixed loop-first/right-sidebar/matrix-gateway presentation as"
+      },
+      {
+        "line": 98,
+        "tags": [
+          "legacy_prop_or_link"
+        ],
+        "text": "names/order/replay frames, provider composition, and current UI remain"
+      },
+      {
+        "line": 107,
+        "tags": [
+          "legacy_prop_or_link"
+        ],
+        "text": "Old-UI retirement requires separate owner acceptance after parity,"
+      }
+    ],
+    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-108_RULING_SCA_APP_010_SEATING_AND_SHELL_QUESTIONS_2026-09-04.md": [
+      {
+        "line": 48,
+        "tags": [
+          "page_routes"
+        ],
+        "text": "| Q3 | Should the retired `/workbench` and `/pipeline` routes stay reachable by URL, or return 404 while the code stays? | \"Reachable, unlisted (Recommended)\" — description: \"Matches the applied SOW-001 text exactly: rou"
+      }
+    ],
+    "projects/chirality-app-dev/execution/_ScopeChange/_LATEST.md": [
+      {
+        "line": 10,
+        "tags": [
+          "loop_first"
+        ],
+        "text": "SCA-APP-012 applies the owner-directed retirement of the loop-first"
+      },
+      {
+        "line": 15,
+        "tags": [
+          "legacy_prop_or_link"
+        ],
+        "text": "- the discarded `legacy` prop and the `?legacy=1` link;"
+      },
+      {
+        "line": 18,
+        "tags": [
+          "deliverables_provider",
+          "scope_route"
+        ],
+        "text": "It also retires `DeliverablesProvider`, `GET /api/working-root/scope`, the"
+      },
+      {
+        "line": 19,
+        "tags": [
+          "workflow_read_route"
+        ],
+        "text": "unmounted flat-file workflow view with `GET /api/working-root/workflow`, and"
+      },
+      {
+        "line": 20,
+        "tags": [
+          "req_009"
+        ],
+        "text": "DEL-02-03-REQ-009."
+      },
+      {
+        "line": 22,
+        "tags": [
+          "page_routes"
+        ],
+        "text": "- **`/workbench` and `/pipeline`** stay as unlisted entries into the dialogue"
+      },
+      {
+        "line": 24,
+        "tags": [
+          "scaffold_entry"
+        ],
+        "text": "- **No App-side scaffold entry** and no write-capable scaffold tool is"
+      }
+    ],
+    "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/ScopeOfWork.md": [
+      {
+        "line": 54,
+        "tags": [
+          "page_routes"
+        ],
+        "text": "1. Preserve `/`, `/chat`, `/workbench`, and `/pipeline`, current deep-link"
+      },
+      {
+        "line": 57,
+        "tags": [
+          "agent_matrix_ui",
+          "loop_first"
+        ],
+        "text": "2. [RETIRED — SCA-APP-012] Keep the existing loop-first and matrix UI reachable until separately"
+      },
+      {
+        "line": 69,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "7. Provide component/render, route/query compatibility, focus restoration,"
+      },
+      {
+        "line": 100,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "account row host; route/query and compatibility tests."
+      },
+      {
+        "line": 108,
+        "tags": [
+          "loop_first"
+        ],
+        "text": "5. Existing routes, queries, and aliases remain compatibility surfaces; the loop-first UI is retired by SCA-APP-012; the retired Workbench and Pipeline routes stay reachable by URL and unlisted (Q3)."
+      },
+      {
+        "line": 124,
+        "tags": [
+          "agent_matrix_ui",
+          "legacy_prop_or_link",
+          "loop_first"
+        ],
+        "text": "SCA-APP-012 (owner direction 2026-09-27; DEC-027) is the separate owner decision that retires the loop-first compatibility UI. Where any earlier section or clause in this document keeps the loop-first UI, the matrix UI o"
+      },
+      {
+        "line": 126,
+        "tags": [
+          "agent_matrix_ui",
+          "legacy_prop_or_link",
+          "legacy_shell_module",
+          "loop_first"
+        ],
+        "text": "- Retired: the loop-first shell (`frontend/src/components/shell/loop-shell.tsx`, `portal-loop-shell.tsx`, `loop-tertiary-shell.tsx`, `sidebar-right-loop-layout.tsx` and `tertiary-sidebar-tabs.tsx`), the role-directory pa"
+      },
+      {
+        "line": 127,
+        "tags": [
+          "legacy_prop_or_link",
+          "page_routes"
+        ],
+        "text": "- `/`, `/chat`, `/workbench` and `/pipeline` keep rendering the dialogue shell; `/workbench` and `/pipeline` stay reachable by URL and unlisted (D-APP-108 Q3). Existing routes, known query parameters, unknown-parameter p"
+      },
+      {
+        "line": 128,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "- Obligation 2 of the SCA-APP-004 section is retired, and obligation 5 of the SCA-APP-010 section is restated there. The TYPES §4 route/query compatibility question stays keyed with DEL-08-02, unchanged."
+      },
+      {
+        "line": 129,
+        "tags": [
+          "page_routes"
+        ],
+        "text": "- Verification hooks: the hooks named in this document stay. `frontend/src/__tests__/components/woven-dialogue-route.test.tsx` covers the route surfaces without a `legacy` prop, and `frontend/src/__tests__/components/loo"
+      },
+      {
+        "line": 162,
+        "tags": [
+          "agent_matrix_ui",
+          "loop_first",
+          "route_query_compat"
+        ],
+        "text": "The old 3x4 visual matrix and loop-first pane arrangement are dated presentation history under SCA-APP-010. The exact surviving TYPES §4 route/query compatibility question remains keyed with DEL-08-02; unrendered helper "
+      },
+      {
+        "line": 172,
+        "tags": [
+          "agent_matrix_ui",
+          "loop_first",
+          "route_query_compat"
+        ],
+        "text": "Provide navigation, per-chat folder controls, role/permission context and local chat organisation without making UI state project truth. Delegation/rung context fields, full multi-root listing, native Finder/Dock behavio"
+      },
+      {
+        "line": 203,
+        "tags": [
+          "agent_matrix_ui",
+          "loop_first",
+          "route_query_compat"
+        ],
+        "text": "Own navigation and presentation handoff, preserving the primary dialogue and session identity. Adjacent DEL-02-02/03 and DEL-08-02/03 retain selector, workspace and routing semantics. The old 3x4 visual matrix and loop-f"
+      },
+      {
+        "line": 214,
+        "tags": [
+          "page_routes",
+          "route_query_compat"
+        ],
+        "text": "> | DEL-02-01-REQ-002 | Navigation SHALL preserve current shell entry and recorded-session context. `/workbench` and `/pipeline` remain reachable, unlisted compatibility routes; their exact TYPES §4 query-intent semantic"
+      },
+      {
+        "line": 216,
+        "tags": [
+          "agent_matrix_ui"
+        ],
+        "text": "> | DEL-02-01-REQ-004 | The former 3x4 visual matrix is dated presentation history under SCA-APP-010. Preserve its source identity for compatibility analysis, without imposing its geometry on the current shell. | P0 | RE"
+      },
+      {
+        "line": 217,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "> | DEL-02-01-REQ-005 | Former matrix row labels and order are dated presentation history. The exact TYPES §4 row/query meaning is retained for source alignment with DEL-08-02. | P0 | REF-006 Section 8.2 FR-007; REF-004 "
+      },
+      {
+        "line": 218,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "> | DEL-02-01-REQ-006 | Former matrix column labels and order are dated presentation history. The exact TYPES §4 column/query meaning is retained for source alignment with DEL-08-02. | P0 | REF-006 Section 8.2 FR-007; RE"
+      },
+      {
+        "line": 221,
+        "tags": [
+          "page_routes"
+        ],
+        "text": "> | DEL-02-01-REQ-009 | The former OPERATIVE matrix-cell Pipeline launch description is historical. Keep `/pipeline` reachable and unlisted under D-APP-108 Q3; resolve any separate TYPES §4 row/column query meaning with "
+      },
+      {
+        "line": 223,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "> | DEL-02-01-REQ-011 | Stable identifiers SHALL remain distinct from paths and labels in current navigation. `agent`, `row`, `column`, `category`, `taskScopeMode`, `scopeKey`, and `pkg::deliverable` are retained impleme"
+      },
+      {
+        "line": 243,
+        "tags": [
+          "loop_first",
+          "route_query_compat"
+        ],
+        "text": "Verify primary-dialogue isolation, current navigation, role/permission/folder context, invalid selection refusal, local organisation and unsupported-state labels. Former matrix/loop-first tests retain historical subject "
+      },
+      {
+        "line": 252,
+        "tags": [
+          "agent_matrix_ui",
+          "route_query_compat"
+        ],
+        "text": "> - Dated matrix UI tests, labelled historical presentation evidence; current woven-shell and route/query checks are separate."
+      },
+      {
+        "line": 279,
+        "tags": [
+          "agent_matrix_ui",
+          "loop_first",
+          "route_query_compat"
+        ],
+        "text": "Produce and verify the current woven shell while preserving primary dialogue, recorded session identity and navigation intent. The old 3x4 visual matrix and loop-first pane arrangement are dated presentation history unde"
+      },
+      {
+        "line": 294,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "6. Carry the exact route/query, delegation/rung and icon/source-handoff residuals with their owners; do not infer retirement from absent UI."
+      },
+      {
+        "line": 304,
+        "tags": [
+          "agent_matrix_ui",
+          "loop_first",
+          "route_query_compat"
+        ],
+        "text": "Current checks cover primary dialogue, navigation/selection, context, folder lifetime, organisation, native folder behavior and update handoff. Old 3x4 rows/columns and loop-first pane snapshots are historical checks. Su"
+      },
+      {
+        "line": 315,
+        "tags": [
+          "agent_matrix_ui"
+        ],
+        "text": "> - Dated matrix UI test results, labelled historical presentation evidence; current woven-shell render/browser results are recorded separately."
+      },
+      {
+        "line": 338,
+        "tags": [
+          "agent_matrix_ui",
+          "loop_first",
+          "route_query_compat"
+        ],
+        "text": "The current shell has a headerless Navigator, primary centre dialogue, right-panel views and an activity strip. Folder selection is per chat before its first message and fixed thereafter; current no-folder behavior is co"
+      },
+      {
+        "line": 342,
+        "tags": [
+          "agent_matrix_ui",
+          "loop_first",
+          "route_query_compat"
+        ],
+        "text": "Keep the primary dialogue invariant, distinguish recorded session state from local convenience state, and preserve stable identity across label/path changes. Use the current four-role entry model and visible unavailable "
+      },
+      {
+        "line": 346,
+        "tags": [
+          "agent_matrix_ui",
+          "loop_first",
+          "route_query_compat"
+        ],
+        "text": "D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus p"
+      },
+      {
+        "line": 366,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "The live package folder and stable DEL-02-01 identity are established; the older dispatch-label mismatch is history. Earlier PRD MATCH/warning and FR-008/SPEC-pointer conflicts are source snapshots, not current acceptanc"
+      },
+      {
+        "line": 384,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "- **APP-R017:** The shell acceptance includes current wordmark/copy, Finder and Dock folder actions, route/query/update consumers and source-artwork to packaged-icon trace. DEL-08-02 carries routing and DEL-09-04 carries"
+      }
+    ],
+    "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/ScopeOfWork.md": [
+      {
+        "line": 112,
+        "tags": [
+          "page_routes"
+        ],
+        "text": "1. The primary dialogue is invariant; the Workbench and Pipeline forms are retired (SCA-APP-011) and the `/workbench` and `/pipeline` URLs stay reachable and unlisted (Q3); the Work projection stays unmounted until an ex"
+      },
+      {
+        "line": 119,
+        "tags": [
+          "workflow_read_route"
+        ],
+        "text": "SCA-APP-012 record (no obligation changes): the unmounted flat-file workflow list `frontend/src/components/woven-dialogue/workflows-view.tsx` and `workflow-detail.tsx`, their test `woven-workflows.test.tsx`, and its read"
+      },
+      {
+        "line": 172,
+        "tags": [
+          "loop_first"
+        ],
+        "text": "> | Primary UI surfaces | WORKBENCH contract/context review and PIPELINE selection controls as right-sidebar/deep-link tertiary forms in the loop-first shell. | `docs/PRD.md` Section 7.2; `docs/PRD.md` Section 8.2; `docs"
+      },
+      {
+        "line": 212,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "The original nine-row/UPD evidence describes the earlier Workbench/Pipeline implementation. SCA-APP-010 unmounts those active-shell panes while preserving the exact route/query compatibility question. Current right-panel"
+      },
+      {
+        "line": 249,
+        "tags": [
+          "loop_first"
+        ],
+        "text": "> | DEL-02-02-REQ-002 | Matrix routing inputs to this UX shall preserve the loop-first rule that NORMATIVE and EVALUATIVE cells select live-loop persona context, while OPERATIVE cells open PIPELINE. WORKBENCH remains ava"
+      },
+      {
+        "line": 364,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "The original nine-row/UPD evidence describes the earlier Workbench/Pipeline implementation. SCA-APP-010 unmounts those active-shell panes while preserving the exact route/query compatibility question. Current right-panel"
+      },
+      {
+        "line": 390,
+        "tags": [
+          "loop_first"
+        ],
+        "text": "> - Preserve context at route boundaries: Workbench shall show selected agent, row, and column when opened as a sidebar/deep-link tertiary form; NORMATIVE/EVALUATIVE matrix cells now select live-loop persona context unde"
+      },
+      {
+        "line": 435,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "Current source-state observations are in `_REFERENCES.md`; prior MATCH results are historical. Exact TYPES §4 route/query compatibility, descendant-card provenance versus the recorded owner removal direction, and workflo"
+      }
+    ],
+    "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md": [
+      {
+        "line": 20,
+        "tags": [
+          "deliverables_provider",
+          "req_009",
+          "scope_route"
+        ],
+        "text": "SCA-APP-012 (owner direction 2026-09-27; DEC-027) retires `GET /api/working-root/scope`, the unconsumed `DeliverablesProvider` (`frontend/src/components/workspace/deliverables-provider.tsx`) and DEL-02-03-REQ-009, and re"
+      },
+      {
+        "line": 23,
+        "tags": [
+          "req_009"
+        ],
+        "text": "- DEL-02-03-REQ-009 is retired, with its verification row and the D-APP-56 R4-P29 launcher confirmation (CLM-015). No deliverable summary widget routes to a dispatch intent. DEL-08-03 keeps the TASK scope semantics (PRD "
+      },
+      {
+        "line": 25,
+        "tags": [
+          "req_009"
+        ],
+        "text": "- The CLM-011 verification rows change with their requirements: DEL-02-03-REQ-009's is retired, DEL-02-03-REQ-010's is restated, and DEL-02-03-REQ-013's no longer names route identity. The other requirements and verifica"
+      },
+      {
+        "line": 63,
+        "tags": [
+          "scope_route"
+        ],
+        "text": "> | Workspace APIs surfaced by this UI | `/api/working-root/validate`, `/api/working-root/tree`, `/api/project/deliverables` ([RETIRED — SCA-APP-012] `/api/working-root/scope`) | `docs/SPEC.md` §17.2; `docs/PRD.md` §9.2 "
+      },
+      {
+        "line": 125,
+        "tags": [
+          "req_009"
+        ],
+        "text": "> - Deliverable summary widgets sufficient for read-only inspection (operator routing retired by SCA-APP-012 with DEL-02-03-REQ-009)."
+      },
+      {
+        "line": 152,
+        "tags": [
+          "req_009"
+        ],
+        "text": "> | DEL-02-03-REQ-009 | [RETIRED — SCA-APP-012] Deliverable summary widgets shall support routing to PIPELINE `TASK*` with a deliverable preselected when deliverables are present. | `docs/PRD.md` §7.5 |"
+      },
+      {
+        "line": 156,
+        "tags": [
+          "req_009"
+        ],
+        "text": "> | DEL-02-03-REQ-013 | Stable deliverable IDs, not folder labels alone, shall drive deliverable identity in summary widgets (route targets retired by SCA-APP-012 with DEL-02-03-REQ-009). | `docs/CONTRACT.md` K-ID-1, K-P"
+      },
+      {
+        "line": 190,
+        "tags": [
+          "req_009"
+        ],
+        "text": "> | DEL-02-03-REQ-009 | [RETIRED — SCA-APP-012] Routing test from deliverable row to PIPELINE `TASK*` preselection. |"
+      },
+      {
+        "line": 225,
+        "tags": [
+          "req_009"
+        ],
+        "text": "> [RETIRED — SCA-APP-012: DEL-02-03-REQ-009 and the portal deliverable-rows launcher are retired; this confirmation is dated history.] R4-P29 confirms that the portal deliverable-rows launcher is within the existing DEL-"
+      },
+      {
+        "line": 326,
+        "tags": [
+          "req_009"
+        ],
+        "text": "> | Deliverable display by path vs. ID | Use paths for navigation context, but use stable IDs for identity (dispatch preselection retired by SCA-APP-012 with DEL-02-03-REQ-009). | `docs/CONTRACT.md` K-ID-1, K-PATH-1 |"
+      },
+      {
+        "line": 359,
+        "tags": [
+          "req_009"
+        ],
+        "text": "- **APP-R024:** Preserve scope scan, summary and status consumers (route consumers retired by SCA-APP-012 with DEL-02-03-REQ-009; scope scan through `/api/project/deliverables`) alongside native PDF/security and source-b"
+      }
+    ],
+    "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/ScopeOfWork.md": [
+      {
+        "line": 115,
+        "tags": [
+          "legacy_prop_or_link"
+        ],
+        "text": "> | DEL-03-03-REQ-007 | Additional upstream notifications remain inspectable through generic presentation even when no specialized view exists; no notification is silently ignored or dropped. | Compatibility review confi"
+      }
+    ],
+    "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/ScopeOfWork.md": [
+      {
+        "line": 364,
+        "tags": [
+          "scaffold_entry"
+        ],
+        "text": "> Scaffold preview belongs in this read-tool slice only as a non-mutating planning surface. `docs/SPEC.md` Section 14.2 classifies `mcp__chirality__scaffold` as gated, while `docs/PLAN.md` R2 sequences read and preview c"
+      },
+      {
+        "line": 378,
+        "tags": [
+          "scaffold_entry"
+        ],
+        "text": "> | `mcp__chirality__scaffold` | Preview/dry-run plan showing intended scaffold effects without applying filesystem writes. |"
+      },
+      {
+        "line": 410,
+        "tags": [
+          "scaffold_entry"
+        ],
+        "text": "> | E-002 | Incorporated | Scaffold preview rationale now explains why preview/dry-run is in scope while write-capable scaffold execution remains gated. Source reread: `docs/SPEC.md` Section 14.2; `docs/PLAN.md` R2. |"
+      }
+    ],
+    "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-02_Execution_Root_Scaffolding_from_Decomposition/ScopeOfWork.md": [
+      {
+        "line": 20,
+        "tags": [
+          "scaffold_entry"
+        ],
+        "text": "SCA-APP-011 (owner direction 2026-09-27; DEC-026) retires the App HTTP scaffold entry `POST /api/harness/scaffold`, its client function `scaffoldHarnessExecutionRoot` and the App-side `scaffold` member of `DaemonHarnessP"
+      },
+      {
+        "line": 23,
+        "tags": [
+          "scaffold_entry"
+        ],
+        "text": "- DEL-07-02-REQ-009 is retired. The App has no UI or HTTP scaffold entry. Execution roots are scaffolded by the Root `project-setup` workflow into `<project>/execution` with the packaged `tools/scaffolding` scripts, run "
+      },
+      {
+        "line": 24,
+        "tags": [
+          "scaffold_entry"
+        ],
+        "text": "- APP-R058 is closed by removal: no App live scaffold operation remains to repair. The Runtime's own scaffold API (`/v1/projects/{id}/scaffold`, `ProjectScaffoldPort`) was Runtime-owned. On the owner's direction of 2026-"
+      },
+      {
+        "line": 25,
+        "tags": [
+          "scaffold_entry"
+        ],
+        "text": "- [RETIRED — SCA-APP-012] The follow-up for a later App-side scaffold entry is withdrawn. No App-side scaffold entry is planned: no App UI, HTTP, application-tool or Runtime-port entry, and no write-capable scaffold tool"
+      },
+      {
+        "line": 62,
+        "tags": [
+          "scaffold_entry"
+        ],
+        "text": "> | Runtime surface | [RETIRED — SCA-APP-011] `/api/harness/scaffold` is retired; the App has no HTTP or UI scaffold entry (SCA-APP-011 section). | `docs/SPEC.md` Section 17.1; `docs/PRD.md` Section 7.3 |"
+      },
+      {
+        "line": 165,
+        "tags": [
+          "scaffold_entry"
+        ],
+        "text": "> The retained result type in `frontend/src/lib/harness/scaffold.ts` supplies `executionRoot`, `packageCount`, `deliverableCount`, `created`, `layoutValidation` and `preparationCompatibility`; these are evidence of the s"
+      },
+      {
+        "line": 229,
+        "tags": [
+          "scaffold_entry"
+        ],
+        "text": "> | Existing code surface | The retained frontend scaffold service is evidence; the Runtime retired its `ProjectScaffoldPort` in PR #1012 (SCA-APP-012), and SCA-APP-011 retired the App route that depended on it. CLM-010 "
+      },
+      {
+        "line": 477,
+        "tags": [
+          "scaffold_entry"
+        ],
+        "text": "- **APP-R058:** The scaffold must compose on the current ProjectScaffoldPort/501 App/Runtime path. Identify the live handoff and repair/prove the gap before claiming scaffold delivery. Closed by SCA-APP-011: the App scaf"
+      }
+    ],
+    "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/ScopeOfWork.md": [
+      {
+        "line": 185,
+        "tags": [
+          "scope_route"
+        ],
+        "text": "> | DEL-07-03-REQ-010 | ASSUMPTION: Scanner outputs should be consumable by `/api/project/deliverables` or adjacent working-root/project APIs without changing their public route shapes (`/api/working-root/scope` is retir"
+      },
+      {
+        "line": 255,
+        "tags": [
+          "scope_route"
+        ],
+        "text": "> | E-002 API consumer contract | Integration evidence for `/api/project/deliverables` or an accepted adjacent API, if scanner output is exposed there (`/api/working-root/scope` is retired by SCA-APP-012). | Reframed as "
+      },
+      {
+        "line": 403,
+        "tags": [
+          "scope_route"
+        ],
+        "text": "> - If scanner results feed `/api/project/deliverables` (SCA-APP-012 retired `/api/working-root/scope`), keep route shapes stable unless the implementation task explicitly includes API contract changes. Source: `docs/SPE"
+      }
+    ],
+    "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-02_Persona_Alias_and_Agent_Matrix_Routing_Contract/ScopeOfWork.md": [
+      {
+        "line": 16,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "- **OUT-001** — Persona alias, agent/session routing, and legacy matrix compatibility contract, with alias resolver, guarded session-selection, route/query, persona-resolution, and compatibility tests that keep canonical"
+      },
+      {
+        "line": 20,
+        "tags": [
+          "agent_matrix_ui",
+          "loop_first",
+          "matrix_guard"
+        ],
+        "text": "SCA-APP-012 (owner direction 2026-09-27; DEC-027) retires the loop-first shell and the two `lib/portal` matrix helpers, `frontend/src/lib/portal/agent-matrix-cells.ts` and `frontend/src/lib/portal/agent-matrix-launch.ts`"
+      },
+      {
+        "line": 22,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "- Aliases, persona resolution, guarded selection, the TYPES §4 route/query/alias semantics, SOW-005, SOW-006 and SOW-017, and the requirements are unchanged."
+      },
+      {
+        "line": 23,
+        "tags": [
+          "agent_matrix_ui"
+        ],
+        "text": "- Aliases live in `frontend/src/lib/shell/persona-resolution.ts`, tested by `frontend/src/__tests__/lib/persona-resolution.test.ts`, which also carries the direct-entry registry case ported from `agent-matrix-cells.test."
+      },
+      {
+        "line": 59,
+        "tags": [
+          "agent_matrix_ui",
+          "matrix_guard",
+          "route_query_compat"
+        ],
+        "text": "> | Scope summary | Keep UI aliases, canonical agent names, persona resolution, guarded dialogue/session selection, route/query mappings, and legacy matrix behavior consistent. | `_CONTEXT.md`; decomposition entry DEL-08"
+      },
+      {
+        "line": 60,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "> | Anticipated artifacts | Alias resolver tests; guarded session-selection tests; route/query fixtures; legacy matrix compatibility and unavailable-persona tests. | `_CONTEXT.md`; decomposition entry DEL-08-02 |"
+      },
+      {
+        "line": 63,
+        "tags": [
+          "loop_first"
+        ],
+        "text": "> | UI alias map | The sourced live aliases are HELP → HELP_HUMAN and AGENTS → HELPS_HUMANS. They create no additional roles; historical alias labels remain replay metadata. | `docs/TYPES.md` Section 3.4; `docs/PRD.md` F"
+      },
+      {
+        "line": 96,
+        "tags": [
+          "agent_matrix_ui"
+        ],
+        "text": "> | Legacy navigation | Preserve compatibility only within the accepted retirement boundary. A fixed matrix is not required in the active shell; D-APP-108 Q3 is historical; the 2026-09-09 removal leaves matrix routes as "
+      },
+      {
+        "line": 130,
+        "tags": [
+          "agent_matrix_ui",
+          "matrix_guard",
+          "route_query_compat"
+        ],
+        "text": "> selection, legacy route/query/matrix behavior, and persona resolution"
+      },
+      {
+        "line": 142,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "> - Tests and fixtures for alias resolution, guarded selection, route/query behavior, persona resolution, and legacy matrix compatibility."
+      },
+      {
+        "line": 164,
+        "tags": [
+          "loop_first"
+        ],
+        "text": "> | DEL-08-02-REQ-003 | TASK and historical Type 2 labels MUST NOT become direct-entry roles through aliases. | D-APP-28 loop-first routing; D-APP-24 Type 0/1 direct-chat guard; `docs/TYPES.md` Type 2 vocabulary | Negati"
+      },
+      {
+        "line": 165,
+        "tags": [
+          "loop_first"
+        ],
+        "text": "> | DEL-08-02-REQ-004 | Historical RECONCILING and matrix labels MUST remain replay metadata and MUST NOT create execution roles. | D-APP-28 loop-first routing; D-APP-24 Type 0/1 direct-chat guard; `docs/TYPES.md` matrix"
+      },
+      {
+        "line": 175,
+        "tags": [
+          "loop_first"
+        ],
+        "text": "> | DEL-08-02-REQ-014 | New chats MUST default to HELP_HUMAN. Direct-entry eligibility follows the current four-role registry; UI fallback and execution admission MUST be checked separately. | `docs/SPEC.md` Section 13.1"
+      },
+      {
+        "line": 214,
+        "tags": [
+          "loop_first",
+          "route_query_compat"
+        ],
+        "text": "> - Any implementation-local notes needed to explain route-state keys if they change from the current dialogue-shell route/query contract (the loop-first launch contract is retired by SCA-APP-012)."
+      },
+      {
+        "line": 219,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "- **AC-001** — The DEL-08-02 contract is accepted when alias, persona, guarded session-selection, route/query, and legacy matrix compatibility tests demonstrate canonical identity and navigation consistency, strict prima"
+      },
+      {
+        "line": 261,
+        "tags": [
+          "loop_first"
+        ],
+        "text": "> 7. Extract loop-persona context behavior from `docs/PRD.md` Section 7.4 and FR-009 as interpreted by the D-APP-28 loop-first pivot."
+      },
+      {
+        "line": 264,
+        "tags": [
+          "agent_matrix_ui"
+        ],
+        "text": "> 10. Build or update matrix mapping tests for the canonical 3x4 row/column vocabulary."
+      },
+      {
+        "line": 270,
+        "tags": [
+          "loop_first"
+        ],
+        "text": "> 16. Record the dialogue-shell route-state behavior for selected agent, row, and column (the loop-first route state is retired by SCA-APP-012)."
+      },
+      {
+        "line": 274,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "> 20. Verify legacy route/query/matrix inputs remain compatible and unknown query parameters are preserved."
+      }
+    ],
+    "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_CONTEXT.md": [
+      {
+        "line": 49,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "route/query and compatibility tests"
+      }
+    ],
+    "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-02_Persona_Alias_and_Agent_Matrix_Routing_Contract/_CONTEXT.md": [
+      {
+        "line": 29,
+        "tags": [
+          "agent_matrix_ui",
+          "matrix_guard",
+          "route_query_compat"
+        ],
+        "text": "dialogue/session selection, route/query mappings, and legacy matrix behavior"
+      },
+      {
+        "line": 35,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "Alias resolver tests; guarded session-selection tests; route/query fixtures;"
+      },
+      {
+        "line": 49,
+        "tags": [
+          "route_query_compat"
+        ],
+        "text": "dialogue/session selection, persona resolution, and legacy route/query/matrix"
+      }
+    ]
+  },
+  "tools": {
+    "analyze_dep_closure": {
+      "accepted_dag": null,
+      "anchor_rows": 275,
+      "bidirectional_pair_count": 0,
+      "cycles_truncated": false,
+      "declared_disagreement_count": 0,
+      "declared_only_rows": 0,
+      "declared_unread_count": 0,
+      "denominator_complete": true,
+      "evidence_populated": 657,
+      "evidence_total": 657,
+      "execution_rows": 382,
+      "exit": 0,
+      "graph_edges": 104,
+      "graph_nodes": 54,
+      "hub_count": 0,
+      "implements_node_missing": 2,
+      "implements_node_present": 52,
+      "include_declared": true,
+      "isolated_count": 7,
+      "misplaced_field_count": 0,
+      "normalization_count": 0,
+      "orphan_count": 0,
+      "outside_scope_count": 0,
+      "production_units": 54,
+      "representative_cycles": 0,
+      "run_status": "COMPLETE",
+      "scc_count": 0,
+      "schema_invalid": 2,
+      "schema_valid": 52,
+      "schema_version": 2,
+      "subject_status": "FAIL",
+      "total_files": 52,
+      "total_rows": 657
+    },
+    "audit_structure": {
+      "exit": 0,
+      "issues": [
+        "partition directory contract is incomplete",
+        "required tool roots are missing"
+      ],
+      "run_status": "COMPLETE",
+      "subject_status": "FAIL",
+      "summary": {
+        "fail": 0,
+        "lifecycle_states": {
+          "IN_PROGRESS": 53,
+          "OPEN": 1
+        },
+        "partitions": 11,
+        "pass": 54,
+        "production_formats": {
+          "SOW_V1": 54
+        },
+        "units": 54
+      }
+    },
+    "validate_decomposition_registers": {
+      "dependency_rows": 657,
+      "error_count": 36,
+      "exit": 1,
+      "findings_by_code": {
+        "EVQ-006": 36
+      },
+      "note": "XRG is skipped because the App carries no Deliverables.csv/ScopeLedger.csv. EVQ-006 counts EvidenceFile cells that resolve in none of the forms the validator tries at this basis (PR #1013).",
+      "registers_scanned": 52,
+      "skipped": [
+        "XRG family (Deliverables.csv and/or ScopeLedger.csv absent)"
+      ],
+      "warning_count": 0
+    }
+  }
+}

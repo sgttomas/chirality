@@ -18,7 +18,7 @@ let tree: ReactTestRenderer | undefined;
 let state: State;
 function Fixture({ searchMessages = async () => [] }: { searchMessages?: (query: string, sessions: readonly SessionRecord[]) => Promise<string[]> }) {
   const [current, update] = React.useState<State>(state); state = current;
-  return <Navigator activeSurface="dialogue" legacyHref="/?legacy=1" onOpenSurface={vi.fn()} sessions={SESSIONS}
+  return <Navigator activeSurface="dialogue" onOpenSurface={vi.fn()} sessions={SESSIONS}
     referenceDay="2026-09-07" firstOperatorMessages={{ today: 'First operator request' }} {...current}
     searchMessages={searchMessages} onSelectSession={vi.fn()} onOrganizationChange={patch => update(value => ({ ...value, ...patch }))} />;
 }
@@ -33,7 +33,7 @@ afterEach(() => { if (tree) act(() => tree!.unmount()); tree = undefined; vi.uns
 
 describe('Woven Dialogue Navigator', () => {
   it('renders folder sections, derived title/time, folder basename/no-folder, and unchanged live/selected/streaming guards', () => {
-    const html = renderToStaticMarkup(<Navigator activeSurface="dialogue" legacyHref="/?legacy=1" onOpenSurface={vi.fn()} sessions={SESSIONS} referenceDay="2026-09-07" firstOperatorMessages={{ today: 'First operator request' }} liveSessionId="today" selectedSessionId="week" selectionDisabled currentRoot="/two/folder" />);
+    const html = renderToStaticMarkup(<Navigator activeSurface="dialogue" onOpenSurface={vi.fn()} sessions={SESSIONS} referenceDay="2026-09-07" firstOperatorMessages={{ today: 'First operator request' }} liveSessionId="today" selectedSessionId="week" selectionDisabled currentRoot="/two/folder" />);
     expect(html).toContain('data-chat-folder="/one/project"'); expect(html).toContain('data-chat-folder="/two/folder"'); expect(html).toContain('No folder chats');
     expect(html.indexOf('data-chat-folder="/two/folder"')).toBeLessThan(html.indexOf('data-chat-folder="/one/project"'));
     expect(html).toContain('Folder for new chats'); expect(html).not.toContain('Today');
@@ -96,20 +96,20 @@ describe('Woven Dialogue Navigator', () => {
 
   it('selects historical and unattributed sessions and exposes loading, error, and empty states', () => {
     const select = vi.fn(); const open = vi.fn();
-    act(() => { tree = create(<Navigator activeSurface="dialogue" legacyHref="/?legacy=1" onOpenSurface={open} sessions={[SESSIONS[1]]} onSelectSession={select} />); });
+    act(() => { tree = create(<Navigator activeSurface="dialogue" onOpenSurface={open} sessions={[SESSIONS[1]]} onSelectSession={select} />); });
     act(() => tree!.root.findByProps({ 'data-session-id': 'yesterday' }).props.onClick());
     expect(select).toHaveBeenCalledWith('yesterday'); expect(open).not.toHaveBeenCalled();
-    act(() => tree!.update(<Navigator activeSurface="dialogue" legacyHref="/?legacy=1" onOpenSurface={open} sessionsLoading />));
+    act(() => tree!.update(<Navigator activeSurface="dialogue" onOpenSurface={open} sessionsLoading />));
     expect(tree!.root.findByType('nav').findAllByType('p').some(node => node.children.includes('Loading recorded sessions…'))).toBe(true);
-    act(() => tree!.update(<Navigator activeSurface="dialogue" legacyHref="/?legacy=1" onOpenSurface={open} sessionsError="Unable to list chats" />));
+    act(() => tree!.update(<Navigator activeSurface="dialogue" onOpenSurface={open} sessionsError="Unable to list chats" />));
     expect(tree!.root.findByProps({ role: 'alert' }).children).toEqual(['Unable to list chats']);
-    act(() => tree!.update(<Navigator activeSurface="dialogue" legacyHref="/?legacy=1" onOpenSurface={open} />));
+    act(() => tree!.update(<Navigator activeSurface="dialogue" onOpenSurface={open} />));
     expect(tree!.root.findAllByType('p').some(node => node.children.includes('No recorded sessions.'))).toBe(true);
   });
 
   it('renders invalid dates safely and preserves exact persona in friendly-title tooltips', () => {
     const odd = [session('raw-id', 'invalid', ''), session('helper', '2026-09-07T00:00:00Z', 'HELP_HUMAN')];
-    const html = renderToStaticMarkup(<Navigator activeSurface="dialogue" legacyHref="/?legacy=1" onOpenSurface={vi.fn()} sessions={odd} onSelectSession={vi.fn()} />);
+    const html = renderToStaticMarkup(<Navigator activeSurface="dialogue" onOpenSurface={vi.fn()} sessions={odd} onSelectSession={vi.fn()} />);
     expect(html).toContain('raw-id'); expect(html).not.toContain('Invalid Date');
     expect(html).toMatch(/title="Assistant · HELP_HUMAN · helper"/);
   });
@@ -205,7 +205,7 @@ describe('legacy session projection compatibility', () => {
 describe('Navigator folder sections', () => {
   it('collapses folder sections through the organisation patch and shows recovery actions for an unavailable folder', () => {
     const locate = vi.fn(); const forget = vi.fn(); const change = vi.fn();
-    act(() => { tree = create(<Navigator activeSurface="dialogue" legacyHref="/?legacy=1" onOpenSurface={vi.fn()} sessions={SESSIONS} referenceDay="2026-09-07" onSelectSession={vi.fn()} onOrganizationChange={change}
+    act(() => { tree = create(<Navigator activeSurface="dialogue" onOpenSurface={vi.fn()} sessions={SESSIONS} referenceDay="2026-09-07" onSelectSession={vi.fn()} onOrganizationChange={change}
       folderNotices={{ '/two/folder': { kind: 'unavailable', message: 'This folder is missing or inaccessible.' }, '/one/project': { kind: 'indexed', message: 'Listed from this App’s index.' } }} onLocateFolder={locate} onForgetFolder={forget} foldersCollapsed={['/one/project']} />); });
     const headings = tree!.root.findAll(node => node.type === 'button' && typeof node.props['data-chat-folder'] === 'string');
     expect(headings.map(node => [node.props['data-chat-folder'], node.props['aria-expanded']])).toEqual([['/one/project', false], ['/two/folder', true]]);
