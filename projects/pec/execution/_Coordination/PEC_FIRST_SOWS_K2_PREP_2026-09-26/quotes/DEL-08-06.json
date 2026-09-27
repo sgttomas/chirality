@@ -1,0 +1,476 @@
+{
+  "deliverable": "DEL-08-06",
+  "quotes": [
+    {
+      "id": "Q01",
+      "text": "Agent tool-call query surface",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "where": "Purpose opening; CLM-004",
+      "commit": "125cfacc1",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-08-06",
+      "column": "Name"
+    },
+    {
+      "id": "Q02",
+      "text": "SOW-099 (agent tool-call query surface, PEC-API-007 → new DEL-08-06, P3)",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "Objective warrant (DL-21)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q03",
+      "text": "all mapped to OBJ-001",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "Objective warrant (DL-21)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q04",
+      "text": "SOW-099,IN,Offer a read-only query interface for agent tool calls over the versioned API under the agent access class; enabling it is consumer-owned,\"PEC-API-007, §8\",PKG-08,DEL-08-06,OBJ-001,SCA-006,FALSE,New under SCA-006 (D-PEC-90 owner answer; DQ-a); token mechanism OI-006; tier-0 profile amendment before any tool is declared or invoked; P3",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "where": "CLM-001",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q05",
+      "text": "ScopeItemID,InOutStatus,ScopeItemStatement,SourceRef,PackageID,DeliverableIDs,ObjectiveIDs,DecisionRef,OpenIssue,Notes",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "where": "CLM-001 column header",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q06",
+      "text": "PEC shall offer a read-only query interface packaged for agent tool calls, over the same versioned API and responses (PEC-API-003, PEC-API-004, PEC-API-006, PEC-ORI-007), under the `agent` access class. Enabling it in any harness, App or agent configuration is consumer-owned (PEC-K-03, PEC-K-11); PEC never injects or schedules. Before any such tool is declared or invoked, the PEC Domain Engine Profile (`_DomainEngines/profiles/pec.yaml`) is amended under its own tier-0 act. P3 capability.",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-002 (PEC-API-007)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q07",
+      "text": "may act on PEC data received through an explicitly enabled consumer, and may query PEC directly through tool calls under the read-only `agent` access class (PEC-API-007) where that surface is enabled",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-002 (§8 Agents)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q08",
+      "text": "The `agent` class is read-only query access for tool calls: orientation, deltas, gate verdicts, decision-slate and presence reads, with no event ingest, no presence reports and no admin act. Every class is local-only and token-scoped; the token mechanism, including credentials for the `agent` class, is the open §16.6 decision.",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-002 (§8 access classes)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q09",
+      "text": "Orientation for any loop is a sub-second query with per-claim citations, not a session-length prose derivation",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-003 (OBJ-001)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q10",
+      "text": "agents may eventually query PEC directly, yes.  Through tool calls.",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-90_RULING_2026-09-25.md",
+      "where": "CLM-003",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q11",
+      "text": "SCA-006 CP1: accept; DQ a; ENV a; BUD a; GATE a; INS a; R-C excluded",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "where": "CLM-003",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q12",
+      "text": "Least privilege: an owner can enable agent query without giving the tool host harness ingest rights.",
+      "source": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Impact_Assessment.md",
+      "where": "CLM-003 (IA §13.1)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q13",
+      "text": "Tool definitions over the read API + access-class binding + tests",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "where": "Ontology intro",
+      "commit": "125cfacc1",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-08-06",
+      "column": "AnticipatedArtifacts"
+    },
+    {
+      "id": "Q14",
+      "text": "Token mechanism follows OI-006; the tier-0 profile is amended before any tool is declared or invoked",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "where": "CLM-004",
+      "commit": "125cfacc1",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-08-06",
+      "column": "ContextEnvelopeNotes"
+    },
+    {
+      "id": "Q15",
+      "text": "| DEL-08-06 | Agent tool-call query surface | BACKEND_FEATURE_SLICE | M | P3 | SOW-099 |",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-004 (§5 PKG-08 table)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q16",
+      "text": "Hold envelope; re-assess on the linked OI's ruling",
+      "source": "projects/pec/execution/_Decomposition/ContextBudgetQA.csv",
+      "where": "CLM-004",
+      "commit": "125cfacc1",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-08-06",
+      "column": "RecommendedAction"
+    },
+    {
+      "id": "Q17",
+      "text": "DEL-08-06 (agent tool-call query surface) is M with MEDIUM risk, coupled to OI-006 like DEL-08-01 and held at its envelope until that ruling",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-004 (§8)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q18",
+      "text": "Read-only query interface packaged for agent tool calls over the versioned API and responses, bound to the read-only agent access class; enabling it is consumer-owned; writes nothing.",
+      "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "where": "CLM-005",
+      "commit": "125cfacc1",
+      "kind": "csv_cell",
+      "key_column": "DeliverableID",
+      "key": "DEL-08-06",
+      "column": "Description"
+    },
+    {
+      "id": "Q19",
+      "text": "also covers credentials for the agent access class (tool-call query, SOW-099; SCA-006)",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-006 (OI-006)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q20",
+      "text": "materially affects architecture the affected work is fenced or flagged, never guessed",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-006 (C12)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q21",
+      "text": "Tool-call queries run under the read-only agent access class of the socket server",
+      "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/Dependencies.csv",
+      "where": "CLM-007",
+      "commit": "125cfacc1",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-08-06-003",
+      "column": "Statement"
+    },
+    {
+      "id": "Q22",
+      "text": "Tool calls query over the versioned API schema (PEC-API-003)",
+      "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/Dependencies.csv",
+      "where": "CLM-007",
+      "commit": "125cfacc1",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-08-06-004",
+      "column": "Statement"
+    },
+    {
+      "id": "Q23",
+      "text": "Tool calls return the compact citation-bearing, budget-bounded responses (PEC-API-004, PEC-API-006)",
+      "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/Dependencies.csv",
+      "where": "CLM-007",
+      "commit": "125cfacc1",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-08-06-005",
+      "column": "Statement"
+    },
+    {
+      "id": "Q24",
+      "text": "Tool-call queries serve orientation reads",
+      "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/Dependencies.csv",
+      "where": "CLM-007",
+      "commit": "125cfacc1",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-08-06-006",
+      "column": "Statement"
+    },
+    {
+      "id": "Q25",
+      "text": "Unix-socket server + token-scoped access",
+      "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/Dependencies.csv",
+      "where": "CLM-007",
+      "commit": "125cfacc1",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-08-06-003",
+      "column": "TargetName"
+    },
+    {
+      "id": "Q26",
+      "text": "Versioned additive API schema",
+      "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/Dependencies.csv",
+      "where": "CLM-007",
+      "commit": "125cfacc1",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-08-06-004",
+      "column": "TargetName"
+    },
+    {
+      "id": "Q27",
+      "text": "Compact citation-bearing response format",
+      "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/Dependencies.csv",
+      "where": "CLM-007",
+      "commit": "125cfacc1",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-08-06-005",
+      "column": "TargetName"
+    },
+    {
+      "id": "Q28",
+      "text": "Loop orientation return",
+      "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/Dependencies.csv",
+      "where": "CLM-007",
+      "commit": "125cfacc1",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-08-06-006",
+      "column": "TargetName"
+    },
+    {
+      "id": "Q29",
+      "text": "No deliverable depends on this one at setup.",
+      "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_DEPENDENCIES.md",
+      "where": "CLM-007",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q30",
+      "text": "**DEL-08-06 → DEL-04-03 is not added.** PEC-API-007 cites PEC-ORI-007 (SOW-097, DEL-04-03), but the accepted plan lists DEL-04-01, and DEL-08-06 already reaches DEL-04-03 through DEL-08-03 → DEL-04-03 (E-P53).",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-101_rev16_currency_setup_proposal_2026-09-26.md",
+      "where": "CLM-008 blockquote",
+      "commit": "125cfacc1",
+      "strip_emphasis": true
+    },
+    {
+      "id": "Q31",
+      "text": "Adding it is an amend.",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-101_rev16_currency_setup_proposal_2026-09-26.md",
+      "where": "CLM-008",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q32",
+      "text": "PEC-side interfaces/adapters usable by hooks CLI or application-owned Runtime service consumers, and the agent tool-call query surface (PEC-API-007)",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-009 (§12 P3 row)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q33",
+      "text": "do not themselves authorize Root, App, a harness, an agent's tool host, or another loop to poll, push, inject, subscribe, or consume",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-009 (§12)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q34",
+      "text": "The delivered access-class set shall be exactly owner, harness, and admin",
+      "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/ScopeOfWork.md",
+      "where": "CLM-010",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q35",
+      "text": "The machine-consumer surface: Unix-socket binding, token-scoped access classes, p95 latency, versioned additive schema, compact citation-bearing responses, SSE subscription, response-size budgets, and the agent tool-call query surface",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-011 (PKG-08 charter)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q36",
+      "text": "Dashboard rendering (PKG-09)",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-011 (PKG-08 exclusion)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q37",
+      "text": "enabled agent tool-call surfaces",
+      "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "where": "CLM-011 (SOW-060)",
+      "commit": "125cfacc1",
+      "kind": "csv_cell",
+      "key_column": "ScopeItemID",
+      "key": "SOW-060",
+      "column": "ScopeItemStatement"
+    },
+    {
+      "id": "Q38",
+      "text": "The decision on PEC's own token mechanism stays open; it includes the credentials of the `agent` access class for tool-call query (PEC-API-007).",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-012 (§16.6)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q39",
+      "text": "creates no consumer duty and does not change the phase exit tests above",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-012 (§12 gate)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q40",
+      "text": "later `D-PEC` source packet (PEC-API-003 additive evolution)",
+      "source": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Propagation_Plan.md",
+      "where": "CLM-012 (§B8)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q41",
+      "text": "execution_policy: \"DECLARED_READ_ONLY_AND_SUMMARY_TOOLS_ONLY\"",
+      "source": "_DomainEngines/profiles/pec.yaml",
+      "where": "CLM-013",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q42",
+      "text": "profile_status: \"ADOPTED\"",
+      "source": "_DomainEngines/profiles/pec.yaml",
+      "where": "CLM-013",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q43",
+      "text": "integration_level: \"READ_ONLY\"",
+      "source": "_DomainEngines/profiles/pec.yaml",
+      "where": "CLM-013",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q44",
+      "text": "profile amendment before any runtime, adapter-client, mutating, proposal, or external-result tool is declared or invoked",
+      "source": "_DomainEngines/profiles/pec.yaml",
+      "where": "CLM-013 blockquote (human gate)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q45",
+      "text": "Before any future adapter or runtime-client invocation, amend this profile with exact inputs, outputs, paths, modes, side effects, failure behavior, result schemas, and human gates.",
+      "source": "_DomainEngines/profiles/pec.yaml",
+      "where": "CLM-013 blockquote (open issue)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q46",
+      "text": "After DEL-08-06's first Scope of Work fixes the tool's shape, and **before** any agent tool-call query tool is declared or invoked in the profile, a harness, the App or an agent configuration.",
+      "source": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Propagation_Plan.md",
+      "where": "CLM-013 (§B6 When)",
+      "commit": "125cfacc1",
+      "strip_emphasis": true
+    },
+    {
+      "id": "Q47",
+      "text": "One declared tool entry for the agent tool-call query surface, with exact inputs (query kinds), outputs (the versioned response carrying the reliance envelope and budgets), paths (reads only PEC's own store through the versioned API), mode `read_only`, side effects (none), failure behavior (the file-fallback signal), result schemas and human gates (enabling it stays consumer-owned)",
+      "source": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Propagation_Plan.md",
+      "where": "CLM-013 blockquote (§B6 Exact change)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q48",
+      "text": "The tier-0 owner rules it. PEC prepares it and brings it to the owner; it is outside PEC's default write scope",
+      "source": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Propagation_Plan.md",
+      "where": "CLM-013 (§B6 Instrument)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q49",
+      "text": "is not a precondition of checkpoint 3, of the B1 setup packet or of Scope of Work authoring, which declare and invoke nothing",
+      "source": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Propagation_Plan.md",
+      "where": "CLM-013 (§B6 When)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q50",
+      "text": "the profile act follows DEL-08-06's first Scope of Work, which fixes the tool's shape (plan §B6)",
+      "source": "projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md",
+      "where": "CLM-013 (node K3)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q51",
+      "text": "Within the pin, coverage and trust tier that a response declares (PEC-ORI-007), a consumer, or an agent acting through one or through the tool-call surface (PEC-API-007), may take a record-tier claim as true as of its examined-through SHA and act on it without re-reading the cited source (operational reliance); wherever PEC is absent, degraded, failing its own checks or stating a limitation, it falls back to the files (PEC-K-01). Operational reliance is available only from a PEC release that has passed the §12 reliance-advertisement gate.",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-014 (PEC-K-03)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q52",
+      "text": "a file-fallback signal whenever PEC is absent, degraded or failing its own checks",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-014 (PEC-ORI-007)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q53",
+      "text": "No consumer may treat silence as a claim.",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-014, REQ-005 (PEC-ORI-007)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q54",
+      "text": "A budget is never met by dropping citations, stamps or stated limitations, and any truncation is stated in the response, never silent.",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-014 (PEC-API-006)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q55",
+      "text": "An explicitly enabled consumer, whether a harness or an agent querying through tool calls under the read-only `agent` access class, owns whether and when it consumes and whether it injects labeled PEC data",
+      "source": "projects/pec/AGENTS.md",
+      "where": "CLM-014",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q56",
+      "text": "No governed act may require a PEC read or write. Deleting PEC blocks nothing.",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-015 (PEC-K-01)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q57",
+      "text": "Pipeline and unscoped-conversation modes support testable zero-contact operation.",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-015 (PEC-K-11)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q58",
+      "text": "An agent may also query directly through tool calls under the agent access class; that agent is not a harness",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "where": "CLM-015 (vocabulary)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q59",
+      "text": "Numeric budgets are confirmed at Phase 1",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "TBD-005 (PEC-API-006)",
+      "commit": "125cfacc1"
+    }
+  ]
+}
