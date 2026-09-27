@@ -81,7 +81,7 @@ Saved at `projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-2026092
 - Done since the rulings: the retirement act (`D-PEC-99`), merged as PR #957 (`22502e059`), and the S3 act (`D-PEC-98`), merged as PR #958 (`aca930622`). Add-on M (the DEL-02-08/09 `MEMORY.md` files) is written at M1.
 - Done: the `D-PEC-101` act (K1 then K4 with C, add-on V), merged as PR #976 (`ce934ac33`), with the owner-authorized Notes (a) replacement applied after the verifier passed K1.
 - Done: the S2 act (`D-PEC-100`), merged as PR #979 (`125cfacc1`).
-- Ready now: packet preparation for K2 (first SOWs for DEL-08-06 and DEL-10-13), since K1 is done.
+- Ready now: packet preparation for K2 (first SOWs for DEL-08-06 and DEL-10-13), since K1 is done, and for X1 (P1 fixture suites), since S2 and S3 are done.
 - Ready now: packet preparation for S1, S4 and D1. Ordering: S2 has landed, so the S1 and S4 packets absorb the quotations of old S2 text in 13 of the 15 contracts (the other two, DEL-02-08/09, belong to a later DEL-02-08/09 revision). S2 absorbed its `D-PEC-99` exhibit Part B items (PR #979); the S1 and S4 packets absorb theirs.
 - K2 after K1; K3 after K2.
 - After S2 and S3: X1.

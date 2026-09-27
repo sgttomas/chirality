@@ -2,7 +2,7 @@
 
 - **Reviewer:** a fresh read-only `pec-reviewer` (TASK, `claude-opus-5-5`, high), dispatched by HELP_HUMAN. It authored nothing in the PR. Its final report is transcribed verbatim from the host subagent transcript.
 - **Reviewed head:** `748f9c0ec4bbb51278d173d90f68b01889d26e2f` (base `origin/main` `125cfacc1`). Repairs: `0f7f19a1f`; this file is added after that.
-- **SHA-256 of the report text below (UTF-8; the report text between the blank line after "## Report (verbatim)" and the blank line before the final "## Disposition", with no trailing newline):** `ef5231ab1e068881ba5277c5b89e8e495ad50630df53cbb05eb873f2a9d2fced`.
+- **SHA-256 of the report text below** (UTF-8; the text between the blank line after "## Report (verbatim)" and the blank line before the final "## Disposition", no trailing newline): `b6e67656c901848c1946ff2c8c779d2e8c2cf195780fed8570a9e7930d31dd9d`. The reviewer's hand-back hashes to `ef5231ab1e068881ba5277c5b89e8e495ad50630df53cbb05eb873f2a9d2fced`; the one difference is two trailing spaces removed from report line 23 (an otherwise blank line), so the file passes `git diff --check` (review 02).
 
 ## Report (verbatim)
 
@@ -20,7 +20,7 @@ Nothing blocks the merge. Every statement the PR changes is true at head, and al
 - **Review transcriptions.** `returns/REVIEW_PR979_01.md` and `returns/REVIEW_PR979_02.md` both exist on `origin/main`. I recomputed their report-cut SHA-256s:
   - 01: `4302177e…cc32`
   - 02: `1d5e060a…5d40`
-  
+
   Both match the hashes the files state.
 - **Changed lines.**
   - **S2 COMPLETE (L62).** Accurate.
