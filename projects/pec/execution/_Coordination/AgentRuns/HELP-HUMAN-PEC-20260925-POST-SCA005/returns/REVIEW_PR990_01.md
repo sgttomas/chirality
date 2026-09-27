@@ -138,10 +138,12 @@ Verdict PASS WITH NOTES; nothing blocking. Dispositions:
 
 - **NB-1 (DEL-04-05 REQ-013 missing): repaired.** The DEL-04-05 consequence row and the ordering bullet now name DEL-04-05 `REQ-013`, quoted. HELP_HUMAN has told the S1 preparer, whose DEL-04-05 candidate still carries it.
 - **NB-2 (S1 ordering covers one direction): repaired.** A new bullet beside the ordering bullet discloses the other direction: the DEL-03-04 postimage quotes DEL-03-01 `CON-005`, which the S1 draft revises. Under either ruling order, DEL-03-04 would then carry a stale but commit-anchored quotation. It is suggested for the work graph as a later DEL-03-04 currency item.
-- **Note 3 ("not yet ruled" wording): disclosed.** A new bullet says seven postimages describe the packet as not yet ruled (DEL-04-02 says "provisional"), which is true under their `125cfacc1` observation clause but dated once the act lands. The candidates are not re-rendered.
+- **Note 3 ("not yet ruled" wording): disclosed.** A new bullet says the postimages describe the packet as not yet ruled, which is true under their `125cfacc1` observation clause but dated once the act lands. The candidates are not re-rendered.
 - **Note 4 (review record after the act): disclosed.** Option A now says DEL-04-01's untouched `_REVIEW.md` will still read "EXACT-BYTE ARTIFACT ACCEPTANCE COMPLETE" for the prior bytes. HELP_HUMAN will record the lapse in the graph and the central receipt.
 - **Note 5 (dated statements): repaired.** The K2 sentence now says the `D-PEC-103` act is PR #992. A new source-state bullet records the recheck at `origin/main` `7004eaeda`: only Piping changed since `d385b6a19`, and this review's rerun at `3e861f53c` gave OVERALL PASS. The status line keeps its `d385b6a19` reservation fact, which is still true.
 - **Notes 6 and 7: no change here.** Note 6 is carried in the work graph (PR #992) and goes to the owner. Note 7 is S1's, and HELP_HUMAN has passed it on.
 - **CI "Update the PR base": repaired by HELP_HUMAN**, by merging `origin/main` into the branch without a rebase.
 
 After the repairs the draft is `3e6943139a7d96ed8158674ec0c138f1b2615516d811324d83e1a92a24d88b81` (was `cc01a5fd…b1ba`), and `SHA256SUMS` is updated to match; all its entries pass `shasum -c`. No candidate, act script, check script or evidence file changed. The manager's return keeps the preparation-time draft hash as history. The repair head needs a fresh review before merge.
+
+*Correction after review 02 (NB-1):* the note-3 disposition first said "seven postimages … (DEL-04-02 says 'provisional')", following review 01's heading. All eight contain the phrase (DEL-04-02 at L385); the draft bullet and this disposition were corrected. The report above is unchanged.
