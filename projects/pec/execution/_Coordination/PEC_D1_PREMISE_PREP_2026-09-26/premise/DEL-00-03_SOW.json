@@ -1,0 +1,127 @@
+{
+ "key": "DEL-00-03_SOW",
+ "target": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md",
+ "preimage_sha256": "3e4f0efc775849b11ae5bdfa851e0d3c125804db87d70f55aac9bc7c77e65741",
+ "hunks": [
+  {
+   "id": "P01",
+   "locus": "L5 (frontmatter decomposition_basis)",
+   "cause": "Brief rule 5 (a basis that the method requires changing); manager decision; SCA-006 Propagation_Plan §B4 pass rule (re-quote PRD v2.4 and revision 1.6); AC-002/AC-005/VER-002 resolve 'at the bound basis'",
+   "pre": "decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@11a494e9a\n",
+   "post": "decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@189f205ff02df4111b33c20be441ce06e65ada7a\n",
+   "why": "The premise-amended SPEC names revision 1.6 identifiers (DEL-02-08/09, DEL-08-06, DEL-10-13, SOW-095..100, PEC-ORI-007, PEC-API-006/007) that do not resolve at revision 1.3, so a binding at 11a494e9a would make AC-002/AC-005/VER-002 fail against a correct SPEC."
+  },
+  {
+   "id": "P02",
+   "locus": "L52-57 (Basis provenance note)",
+   "cause": "Consequence of P01; D-PEC-95 and D-PEC-101 re-pins (_REFERENCES.md and _CONTEXT.md name revision 1.6 at 6c6cc1b00)",
+   "pre": "**Basis provenance note.** `_REFERENCES.md` names `SOFTWARE_DECOMP.md` revision\n1.3 as the accepted `current_basis`, and `_CONTEXT.md` records the complete\nrevision 1.1 → 1.2 → 1.3 supersession chain. The accepted basis bound in this\ncontract's frontmatter is revision 1.3 at merge `11a494e9a`, accepted through\nSCA-003. Revision 1.2 at `3623b958b` remains prior accepted provenance, not a\ncompeting current basis.",
+   "post": "**Basis provenance note.** `_REFERENCES.md` names `SOFTWARE_DECOMP.md` revision\n1.6 as the accepted `current_basis`, and `_CONTEXT.md` records the complete\nrevision 1.1 → 1.2 → 1.3 → 1.4 → 1.5 → 1.6 supersession chain (both observed\nat `6c6cc1b00`). The accepted basis bound in this contract's frontmatter is\nrevision 1.6 at merge `189f205ff`, accepted through SCA-006; revision 1.3 at\nmerge `11a494e9a`, accepted through SCA-003, is the basis the SPEC was born\nfrom, and revisions 1.4 and 1.5 are prior accepted provenance. Revision 1.2 at\n`3623b958b` remains prior accepted provenance, not a competing current basis.",
+   "why": "The note described the frontmatter binding (now revision 1.6) and the reference/context pins, which D-PEC-101 moved to revision 1.6; its first sentence was already stale at acceptance (1c6ecc6d9 re-pinned to 1.4 on 2026-08-03) and is corrected here only as part of the rebinding."
+  },
+  {
+   "id": "P03",
+   "locus": "L60 (OUT-002)",
+   "cause": "SCA-006 Propagation_Plan §B4 (DEL-00-03: requirement source; pass rule: re-quote PRD v2.4); PRD v2.4 adopted through SCA-006 checkpoint group 2",
+   "pre": "resolves to a `PRD.md` v2.2 requirement or invariant identifier and/or an accepted decomposition identifier, together with",
+   "post": "resolves to a `PRD.md` v2.4 requirement or invariant identifier and/or an accepted decomposition identifier, together with",
+   "why": "The requirement source of record is PRD v2.4 at revision 1.6; PEC-ORI-007 and PEC-API-006/007 exist only in v2.4."
+  },
+  {
+   "id": "P04",
+   "locus": "L70 (CLM-004)",
+   "cause": "SCA-006 Propagation_Plan §B4 row L307 (CLM-004 L70: the 46-requirements premise, 49 after SCA-006) and §B5",
+   "pre": "source `Deliverables.csv` `ContextEnvelopeNotes` for `DEL-00-03`.\n",
+   "post": "source `Deliverables.csv` `ContextEnvelopeNotes` for `DEL-00-03`. The note is unchanged at revision 1.6; its \"46 requirements\" is the PRD v2.2 count, and `PRD.md` v2.4 carries 49 `PEC-*-NNN` requirements after SCA-006.\n",
+   "why": "The register quotation stays verbatim (its source is unchanged); the false count premise is corrected in own voice next to it."
+  },
+  {
+   "id": "P05",
+   "locus": "L76 (CLM-005)",
+   "cause": "Consequence of P01; SCA-005 (DL-20) and SCA-006 (DL-21) register changes; SOFTWARE_DECOMP.md §7 at revision 1.6",
+   "pre": "- **CLM-005** — The accepted basis this seed derives from comprises: 11 packages `PKG-00`..`PKG-10`, 64 deliverables, 6 objectives, and 94 scope items (71 `IN` / 14 out-of-scope / 9 `TBD`), per `SOFTWARE_DECOMP.md` §7 Coverage & Telemetry at revision 1.3.",
+   "post": "- **CLM-005** — The accepted basis this seed derives from comprises: 11 packages `PKG-00`..`PKG-10`, 68 deliverable rows (64 active; `DEL-06-04`, `DEL-07-02`, `DEL-07-04` and `DEL-07-05` retired under SCA-005), 6 objectives, and 100 scope items (74 `IN` / 18 out-of-scope / 8 `TBD`), per `SOFTWARE_DECOMP.md` §7 Coverage & Telemetry at revision 1.6.",
+   "why": "True of revision 1.3; the basis the seed now derives from (rebound, P01) is revision 1.6 with 68 rows / 64 active and 100 items (74/18/8)."
+  },
+  {
+   "id": "P06",
+   "locus": "L77 (CLM-006)",
+   "cause": "SCA-006 Propagation_Plan §B4 row L307 (CLM-006 L77) and §B5; INV-131 (quotation verbatim); revision 1.6 source_corpus PRD v2.4",
+   "pre": "- **CLM-006** — The requirement source of record is `PRD.md` v2.2 alone: \"The 46 PEC-",
+   "post": "- **CLM-006** — The requirement source of record is `PRD.md` v2.4 alone (the revision 1.6 `source_corpus`; 49 `PEC-*-NNN` requirements and 11 `PEC-K-*` invariants after SCA-006). Intake posture 1 states the rule in its revision 1.3 wording, which still names PRD v2.2 and 46 requirements: \"The 46 PEC-",
+   "why": "The lead 'PRD.md v2.2 alone' is the false premise; the §1.4 posture 1 quotation is still verbatim and stays, with the correction in own voice."
+  },
+  {
+   "id": "P07",
+   "locus": "L77 (CLM-006 source parenthesis)",
+   "cause": "Same as P06 (consequence inside the same claim)",
+   "pre": "(`SOFTWARE_DECOMP.md` §1.4 intake posture 1, confirmed at Gate 1 and carried through revision 1.3).",
+   "post": "(`SOFTWARE_DECOMP.md` §1.4 intake posture 1, confirmed at Gate 1 and verbatim at revision 1.6).",
+   "why": "The quotation is re-anchored to the rebound basis where it is still verbatim."
+  },
+  {
+   "id": "P08",
+   "locus": "L80 (CLM-009 §4 PKG-00 role quotation)",
+   "cause": "SCA-005 (PKG-00 re-expressed, DL-20); INV-132 ('refresh only if the charter changes'); SCA-005 Impact_Assessment L309",
+   "pre": "and the versioned event-contract types shared by daemon, hooks CLI, and adapters\"",
+   "post": "and the versioned event-contract types consumed by the hooks CLI bridge, the only remaining bridge\"",
+   "why": "The quoted revision 1.3 charter text is no longer at its source; revision 1.6 §4 PKG-00 reads 'consumed by the hooks CLI bridge, the only remaining bridge' (re-quoted)."
+  },
+  {
+   "id": "P09",
+   "locus": "L96 (REQ-001)",
+   "cause": "Consequence of P01 (the frontmatter now binds revision 1.6 while the SPEC was born from revision 1.3)",
+   "pre": "The seed shall be authored from the accepted decomposition at the basis revision and commit bound in this contract's frontmatter, deriving",
+   "post": "The seed shall be authored from the accepted decomposition, as brought current to the revision and commit bound in this contract's frontmatter, deriving",
+   "why": "With the rebound basis, 'authored from ... the revision bound in the frontmatter' would read as a claim that the seed was authored from revision 1.6; the seed was born from revision 1.3 and is brought current by this premise amendment. Meaning (derive from the accepted basis, invent nothing) is kept."
+  },
+  {
+   "id": "P10",
+   "locus": "L97 (REQ-002)",
+   "cause": "SCA-006 Propagation_Plan §B4 (requirement source); PRD v2.4",
+   "pre": "using only `PRD.md` v2.2's requirement families and invariants",
+   "post": "using only `PRD.md` v2.4's requirement families and invariants",
+   "why": "The requirement source at the rebound basis is PRD v2.4."
+  },
+  {
+   "id": "P11",
+   "locus": "L98 (REQ-003)",
+   "cause": "SCA-006 Propagation_Plan §B4 (requirement source); PRD v2.4",
+   "pre": "resolvable citation: a `PRD.md` v2.2 requirement or invariant identifier",
+   "post": "resolvable citation: a `PRD.md` v2.4 requirement or invariant identifier",
+   "why": "Citations must resolve into PRD v2.4, which carries PEC-ORI-007 and PEC-API-006/007."
+  },
+  {
+   "id": "P12",
+   "locus": "L111 (AC-003)",
+   "cause": "SCA-006 Propagation_Plan §B4 (requirement source); PRD v2.4",
+   "pre": "carries a citation that resolves to a `PRD.md` v2.2 requirement or invariant identifier or to",
+   "post": "carries a citation that resolves to a `PRD.md` v2.4 requirement or invariant identifier or to",
+   "why": "A citation-resolution pass against PRD v2.2 would reject correct v2.4 identifiers."
+  },
+  {
+   "id": "P13",
+   "locus": "L125 (Praxeology production sequence)",
+   "cause": "SCA-006 Propagation_Plan §B4 (requirement source); PRD v2.4",
+   "pre": "§13 anchor; read `PRD.md` v2.2's requirement families and invariants; derive the",
+   "post": "§13 anchor; read `PRD.md` v2.4's requirement families and invariants; derive the",
+   "why": "The production sequence reads the requirement source at the rebound basis."
+  },
+  {
+   "id": "P14",
+   "locus": "L148 (AX-003)",
+   "cause": "Consequence of P01; revision 1.6 accepted through SCA-006 (SOFTWARE_DECOMP.md front matter at 189f205ff)",
+   "pre": "- **AX-003** — The accepted basis is `SOFTWARE_DECOMP.md` revision 1.3 at merge `11a494e9a`, accepted through SCA-003. Revision 1.2 at `3623b958b` and revision 1.1 remain prior accepted provenance, not competing current authority.",
+   "post": "- **AX-003** — The accepted basis is `SOFTWARE_DECOMP.md` revision 1.6 at merge `189f205ff`, accepted through SCA-006. Revision 1.3 at merge `11a494e9a`, accepted through SCA-003, is the basis the SPEC was born from; it, revisions 1.5 and 1.4, revision 1.2 at `3623b958b` and revision 1.1 remain prior accepted provenance, not competing current authority.",
+   "why": "The bound basis is revision 1.6; the SPEC's birth basis (1.3 at 11a494e9a) is kept as named provenance."
+  },
+  {
+   "id": "P15",
+   "locus": "after L153 (new AX-009)",
+   "cause": "Brief rule 5 (exactly one new AX-* as premise-amendment provenance)",
+   "pre": "not to supply the decisions the accepted text withholds.\n",
+   "post": "not to supply the decisions the accepted text withholds.\n- **AX-009** — Premise-amendment provenance. This contract's bytes are the premise-only amendment of work-graph node D1 (`HELP-HUMAN-PEC-20260925-POST-SCA005`) under an owner-ruled exact-byte packet; they amend the owner-accepted contract of SHA-256 `3e4f0efc775849b11ae5bdfa851e0d3c125804db87d70f55aac9bc7c77e65741`, which remains history. The causes are SCA-005 (`Propagation_Plan.md` §B4 and §B5: the quoted `SOFTWARE_DECOMP.md` §4 `PKG-00` charter and the SPEC premises this contract measures) and SCA-006 (`Propagation_Plan.md` §B4 and §B5: the 46-requirement premise, 49 after SCA-006, with `PRD.md` v2.4 as the requirement source). Because the premise-amended SPEC names revision 1.6 identifiers that must resolve at the bound basis (AC-002, AC-005, VER-002), the frontmatter `decomposition_basis` is rebound from revision 1.3 at `11a494e9a` to revision 1.6 at `189f205ff`. Kept IDs whose rule changed: OUT-002, REQ-002, REQ-003, AC-003 and the production sequence now name `PRD.md` v2.4; REQ-001 now reads the seed as brought current to the rebound basis; and AC-002, AC-004, VER-002 and VER-004 now resolve against the rebound basis; CLM-004, CLM-005, CLM-006, CLM-009, AX-003 and the basis provenance note are brought current. Every kept ID keeps its subject; for OUT-002, REQ-001, REQ-002, REQ-003 and AC-003 the rebind also changes the basis and the requirement source their rules resolve against (revision 1.6 and `PRD.md` v2.4 in place of revision 1.3 and v2.2), a change beyond the premise-only scope of SCA-006 `Propagation_Plan.md` §B4 that the packet carrying these bytes puts to the owner. No ID is retired, reused or added other than this AX-009. Every state claim not anchored to a named commit is an observation at `origin/main` `6c6cc1b00`. Pin: revision 1.6 at `189f205ff`.\n",
+   "why": "Provenance of the premise-only amendment, per the brief."
+  }
+ ]
+}

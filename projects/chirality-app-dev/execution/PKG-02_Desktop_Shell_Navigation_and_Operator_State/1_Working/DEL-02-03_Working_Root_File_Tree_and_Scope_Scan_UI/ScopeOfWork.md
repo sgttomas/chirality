@@ -319,7 +319,7 @@ D-APP-38 established the reference-observation model. Earlier MATCH and hash-war
 
 ### CLM-029 — Examples
 
-A chat chooses a valid folder before its first message and keeps that identity. A tree result marks truncation and skipped/inaccessible content truthfully. A chat without a valid folder has dependent actions unavailable. Scope-scan/deliverable-routing examples from the old Pipeline surface remain unverified current compatibility obligations, not live observations. Verification hooks: `frontend/src/__tests__/components/woven-dialogue-shell.test.tsx`, `woven-dialogue-navigator.test.tsx`, `woven-dialogue-controls.test.tsx`, and `chat-panel-folder-binding.test.tsx` in the same test directory. Current D-APP-36 render/browser evidence remains required; named checks are not reported results.
+A chat chooses a valid folder before its first message and keeps that identity. A tree result marks truncation and skipped/inaccessible content truthfully. A chat without a valid folder has dependent actions unavailable. Scope-scan/deliverable-routing examples from the old Pipeline surface are withdrawn with the form (SCA-APP-011) and are not compatibility obligations. Verification hooks: `frontend/src/__tests__/components/woven-dialogue-shell.test.tsx`, `woven-dialogue-navigator.test.tsx`, `woven-dialogue-controls.test.tsx`, and `chat-panel-folder-binding.test.tsx` in the same test directory. Current D-APP-36 render/browser evidence remains required; named checks are not reported results.
 
 ### CLM-030 — Conflict Table (for human ruling)
 

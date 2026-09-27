@@ -1,0 +1,3 @@
+$ python3 projects/pec/execution/_Coordination/SOW_INIT_K2_2026-09-26/check_cited_ids.py --prep projects/pec/execution/_Coordination/SOW_INIT_K2_2026-09-26 --gitdir . --commit 125cfacc1   (cwd: repository root)
+RESULT PASS 0/0
+exit=0

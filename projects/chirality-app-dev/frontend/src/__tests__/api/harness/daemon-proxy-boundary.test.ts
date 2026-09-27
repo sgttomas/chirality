@@ -46,7 +46,6 @@ function daemonPort(
     listNativePlanClarifications: unimplemented,
     replyNativePlanClarification: unimplemented,
     exportNativePlan: unimplemented,
-    scaffold: unimplemented,
     ...overrides
   };
 }

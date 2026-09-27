@@ -1,0 +1,12 @@
+# 2026-09-27T05:25:51Z; HEAD c8b3a8f9c974c5cbac54c2be75924430ae7e38e4
+$ python3 projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/apply_s4p.py --repo $X --candidates projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/candidates --check-only
+RENDER projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md
+RENDER projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/ScopeOfWork.md
+RENDER projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/ScopeOfWork.md
+RENDER projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/ScopeOfWork.md
+RENDER projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/ScopeOfWork.md
+RENDER projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md
+RENDER projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/ScopeOfWork.md
+RENDER projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/ScopeOfWork.md
+CHECK preflight passed; planned write set 8 modifies, 0 creates, 0 removes (not yet inventoried; the inventory check runs in apply mode); nothing written
+exit=0

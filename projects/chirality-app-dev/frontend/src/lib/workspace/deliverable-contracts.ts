@@ -2,6 +2,10 @@ import { lstat, open, readFile, realpath, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { writeTextFileAtomically } from '../atomic-write';
 import { readDependencyRegister } from '../dependencies/register-reader';
+import {
+  DeliverableRecordedRegister,
+  readDeliverableRecordedRegister
+} from '../dependencies/recorded-register';
 import { serializeDependencyRegister } from '../dependencies/register-writer';
 import {
   DELIVERABLE_ID_PATTERN,
@@ -518,8 +522,11 @@ export async function transitionDeliverableStatus(
         date: input.date,
         metadata: input.metadata,
         approvalSha: input.approvalSha,
-        ruling
-      }
+        ruling,
+        amendment: input.amendment
+      },
+      // A reopening checks the amendment record inside the working root.
+      { projectRoot }
     );
 
     return {
@@ -558,11 +565,53 @@ export interface DeliverableDependenciesSnapshot {
   deliverablePath: string;
   dependenciesFilePath: string;
   dependenciesSummaryPath?: string;
+  /** Dependencies.csv is present. */
   registerPresent: boolean;
+  /** _DEPENDENCIES.md is present. */
   secondarySummaryPresent: boolean;
+  /** Raw Dependencies.csv header and rows: register evidence, not a blocker judgment. */
   headers: string[];
   rows: DependencyRegisterRow[];
   warnings: string[];
+  /**
+   * The recorded register (the union of the _DEPENDENCIES.md declared sections
+   * and Dependencies.csv, root SPEC §5.3) and the supplier-judged blocker
+   * verdict for this deliverable, or `DAG_PENDING` under an accepted DAG that
+   * the local evidence departs from (§5.4). Present on reads.
+   */
+  recordedRegister?: DeliverableRecordedRegister;
+}
+
+/**
+ * The recorded register for a dependency read. Its reads stay inside the
+ * canonical project root; a refused read (outside the root, or too large) is
+ * carried as a warning. A filesystem failure while reading the execution root
+ * leaves the register out and adds a warning, so the CSV register evidence is
+ * still returned.
+ */
+async function readRecordedRegisterForSnapshot(
+  deliverablePath: string,
+  requestedPath: string,
+  canonicalProjectRoot: string
+): Promise<{ recordedRegister?: DeliverableRecordedRegister; warnings: string[] }> {
+  try {
+    const recordedRegister = await readDeliverableRecordedRegister({
+      deliverablePath,
+      requestedPath,
+      containmentRoot: canonicalProjectRoot
+    });
+    return {
+      recordedRegister,
+      warnings: recordedRegister.warnings.map((warning) => `RECORDED_REGISTER_${warning}`)
+    };
+  } catch (error) {
+    const errnoCode = getErrnoCode(error);
+    return {
+      warnings: [
+        `RECORDED_REGISTER_UNAVAILABLE: the recorded register could not be read${errnoCode ? ` (${errnoCode})` : ''}; no blocker judgment is given.`
+      ]
+    };
+  }
 }
 
 export async function readDeliverableDependencies(
@@ -579,6 +628,13 @@ export async function readDeliverableDependencies(
   const dependenciesFilePath = path.join(deliverablePath, 'Dependencies.csv');
   const dependenciesSummaryPath = path.join(deliverablePath, '_DEPENDENCIES.md');
   const secondarySummaryPresent = await isRegularFilePresent(dependenciesSummaryPath);
+  // The requested path, before canonicalization, shows a package, lifecycle or unit folder reached through a link.
+  const recorded = await readRecordedRegisterForSnapshot(
+    deliverablePath,
+    requireNonEmptyPath(deliverablePathInput, 'deliverablePath'),
+    canonicalProjectRoot
+  );
+  const recordedRegister = recorded.recordedRegister;
   let csv: string;
 
   try {
@@ -605,9 +661,11 @@ export async function readDeliverableDependencies(
       rows: [],
       warnings: [
         secondarySummaryPresent
-          ? 'DEPENDENCY_REGISTER_NOT_FOUND: Dependencies.csv is absent; _DEPENDENCIES.md is present as a secondary summary, but no structured rows were inferred.'
-          : 'DEPENDENCY_REGISTER_NOT_FOUND: Dependencies.csv is absent and _DEPENDENCIES.md is absent; no structured dependency rows are available.'
-      ]
+          ? 'DEPENDENCY_REGISTER_NOT_FOUND: Dependencies.csv is absent; the recorded register is read from the declared sections of _DEPENDENCIES.md (recordedRegister), and no CSV rows are inferred from it.'
+          : 'DEPENDENCY_REGISTER_NOT_FOUND: Dependencies.csv is absent and _DEPENDENCIES.md is absent; no structured dependency rows are available.',
+        ...recorded.warnings
+      ],
+      recordedRegister
     };
   }
 
@@ -621,7 +679,8 @@ export async function readDeliverableDependencies(
     secondarySummaryPresent,
     headers: parsed.headers,
     rows: parsed.rows,
-    warnings: parsed.warnings
+    warnings: [...parsed.warnings, ...recorded.warnings],
+    recordedRegister
   };
 }
 

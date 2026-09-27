@@ -222,6 +222,7 @@
   is now **frozen gate provenance**: the deliverable-local
   `Dependencies.csv` registers are the sole live dependency basis. Both
   are derivative packages citing the accepted decomposition snapshot
-  (revision 1.1 at seeding; revision 1.5 is `current_basis` since
-  SCA-005, whose dependency rerun under `D-PEC-93` retired, refreshed and
-  added register rows) and are never a substitute for decomposition truth.
+  (revision 1.1 at seeding; revision 1.6 is `current_basis` since
+  SCA-006; SCA-005's dependency rerun under `D-PEC-93` retired, refreshed
+  and added register rows, and `D-PEC-101` added the DEL-08-06 and
+  DEL-10-13 registers) and are never a substitute for decomposition truth.

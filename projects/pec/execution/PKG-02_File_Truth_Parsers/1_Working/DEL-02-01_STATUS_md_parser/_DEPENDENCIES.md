@@ -14,6 +14,7 @@ Register storage is deliverable-local by owner ruling (no central register).
 ## Downstream (informational; consumers of this deliverable)
 
 - DEL-03-01 (Full-rebuild reconciler (one command)) — CONSUMES [E-P19]
+- DEL-10-13 (Reliance-advertisement gate) — TESTS [E-P92]
 
 ## Non-gating constraints and register-wide rules
 

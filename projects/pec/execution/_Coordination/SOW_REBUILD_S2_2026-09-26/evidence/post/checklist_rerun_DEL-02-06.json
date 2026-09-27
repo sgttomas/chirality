@@ -1,0 +1,387 @@
+{
+  "item_count": 15,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-06-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 154,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "53d99682795a2181b8074df41f3456d3f35c510c4257f6eb8d5b9920c7282928"
+      },
+      "text": "For a fixture registry row and its `LOOP_INIT.md` fixture, the parser emits exactly the loop identity, entrypoint and procedure-SHA facts the declared grammar maps, and nothing else read from the file.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-02-06-VER-001",
+          "source_line": 189,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the parser over a fixture registry row and its well-formed `LOOP_INIT.md` fixture and assert that the emitted facts equal the fixture's declared expectation for loop identity, entrypoint and procedure SHA, with no other fact read from the file."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-06-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 155,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "53d99682795a2181b8074df41f3456d3f35c510c4257f6eb8d5b9920c7282928"
+      },
+      "text": "Both grammar declarations exist as readable artifacts with an identifier and version and name every construct the parser reads; altering an undeclared construct in a fixture changes nothing in the output; and a fixture whose structure a grammar does not recognize is handled as that grammar states rather than by best-effort interpretation.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-02-06-VER-002",
+          "source_line": 190,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect both grammar declarations for identifier, version and construct coverage; compare the constructs actually read, by instrumentation or code inspection, against them; mutate an undeclared construct in a fixture and assert output invariance; and execute a fixture whose structure a grammar does not recognize, asserting the documented behaviour rather than a best-effort parse."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-06-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 156,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "53d99682795a2181b8074df41f3456d3f35c510c4257f6eb8d5b9920c7282928"
+      },
+      "text": "Reviewed against the `DEL-01-01` contract in force at review time, every emitted fact is an instance of its Loop, Workplan or Step type as that contract obliges it, and every value takes the kind that contract assigns; no fact carries a current gate state of any loop; no record-tier type is defined in this deliverable's source; and no element asserts or requires that an upstream schema, model or store exists.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-02-06-VER-003",
+          "source_line": 191,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Review the emitted facts field by field against the `DEL-01-01` contract in force at review time, including the kind of every value and the absence of any current gate state of any loop; search this deliverable's source for any record-tier type definition and assert none; and search the source and fixtures for any assumption that an upstream schema, model or store exists, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-06-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 157,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "53d99682795a2181b8074df41f3456d3f35c510c4257f6eb8d5b9920c7282928"
+      },
+      "text": "A `LOOP_INIT.md` fixture carrying numbered steps, gate-shaped suffixes and lifecycle-like tokens yields no step or gate fact; a historical workplan fixture carrying gate-shaped tokens yields only facts labelled historical, none of which presents, evaluates, defaults or infers a gate state of any loop, and its gate-shaped tokens are emitted or not, and typed, only as CON-009 settles; and the module contains no gate-precondition evaluation, verdict computation or ruling-inference path.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-02-06-VER-004",
+          "source_line": 192,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute over a `LOOP_INIT.md` fixture carrying numbered steps, gate-shaped suffixes and lifecycle-like tokens, and over historical workplan fixtures carrying gate-shaped tokens; assert no step or gate fact from the former and, from the latter, only facts labelled historical, none presenting, evaluating, defaulting or inferring a gate state of any loop, with gate-shaped tokens emitted or not, and typed, as CON-009 settles; and inspect the call graph for any evaluation, verdict or ruling-inference path."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-06-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 158,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "53d99682795a2181b8074df41f3456d3f35c510c4257f6eb8d5b9920c7282928"
+      },
+      "text": "No fact emitted from a workplan fixture presents it as a standing, current or live plan, and every such fact carries the historical label; a fixture tree with a pointer file, a newer-dated plan and a `WORKPLAN_*.md` beside a `LOOP_INIT.md` in a `loop/` directory yields no selected plan.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-02-06-VER-005",
+          "source_line": 193,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Apply the historical workplan grammar directly to a fixture tree containing a pointer file, several dated workplans and a `WORKPLAN_*.md` beside a `LOOP_INIT.md` in a `loop/` directory; assert that no workplan fact presents a standing, current or live plan, that every workplan fact is labelled historical, and that no plan is selected."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-06-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 159,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "53d99682795a2181b8074df41f3456d3f35c510c4257f6eb8d5b9920c7282928"
+      },
+      "text": "For a sample fact of each kind, the recorded provenance is present and resolves to the live source by loop identifier, path, blob SHA, examined commit and grammar identifier.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-02-06-VER-006",
+          "source_line": 194,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "For a sample fact of each kind, resolve the recorded provenance to its source and assert that loop identifier, path, blob SHA, examined commit and grammar identifier are present and locatable."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-06-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 160,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "53d99682795a2181b8074df41f3456d3f35c510c4257f6eb8d5b9920c7282928"
+      },
+      "text": "For a `LOOP_INIT.md` fixture that is absent at its `loop_init_path`, unreadable, malformed or unrecognized, for one lacking an obtainable field, for an unreadable declared workplan, and for a loop with no workplan declaration, the parser returns an explicit limitation naming loop, path and fault, and never a silently dropped, empty, partial or defaulted fact.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-02-06-VER-007",
+          "source_line": 195,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute against an absent, unreadable, malformed and unrecognized `LOOP_INIT.md`, one lacking an obtainable field, an unreadable declared workplan, and a registry row with no workplan declaration; assert per case an explicit limitation naming loop, path and fault, with no dropped, empty, partial or defaulted fact."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-06-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 161,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "53d99682795a2181b8074df41f3456d3f35c510c4257f6eb8d5b9920c7282928"
+      },
+      "text": "A parser run leaves the fixture repository's files, objects, refs, index and worktree byte-identical, and the module contains no write, create, delete or ref-updating call.",
+      "verification": [
+        {
+          "id": "VER-008",
+          "kind": "VER",
+          "qualified_id": "DEL-02-06-VER-008",
+          "source_line": 196,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Hash the fixture repository's files, objects, refs, index and worktree before and after a parser run and assert byte-identity; inspect the module's call graph for write, create, delete or ref-updating operations."
+        }
+      ]
+    },
+    {
+      "id": "AC-009",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-06-AC-009",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 162,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "53d99682795a2181b8074df41f3456d3f35c510c4257f6eb8d5b9920c7282928"
+      },
+      "text": "The facts emitted for prose-dense fixtures contain none of the heading text, instruction prose, entry sentence, step bodies or gate prose; the entrypoint is a normalized repository-relative path and the procedure SHA a full-length digest; and no value is encoded, truncated, padded or relabelled to pass the guard.",
+      "verification": [
+        {
+          "id": "VER-009",
+          "kind": "VER",
+          "qualified_id": "DEL-02-06-VER-009",
+          "source_line": 197,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute over prose-dense `LOOP_INIT.md` and workplan fixtures carrying distinctive heading text, entry sentences, step bodies and gate prose; assert field by field that none of it appears in the output, that the entrypoint is a normalized repository-relative path and the procedure SHA a full-length digest; and inspect the code for any encoding, truncation, padding or relabelling of a value to pass the guard."
+        }
+      ]
+    },
+    {
+      "id": "AC-010",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-06-AC-010",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 163,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "53d99682795a2181b8074df41f3456d3f35c510c4257f6eb8d5b9920c7282928"
+      },
+      "text": "Two runs over the same registry rows, blobs and grammar declarations produce identical facts and limitations, and inspection finds no emitted value a rebuild from the same sources could not reproduce.",
+      "verification": [
+        {
+          "id": "VER-010",
+          "kind": "VER",
+          "qualified_id": "DEL-02-06-VER-010",
+          "source_line": 198,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the parser twice over the same registry rows, blobs and grammar declarations and assert identical facts and limitations; inspect the emitted field inventory for any value not derived from the sources."
+        }
+      ]
+    },
+    {
+      "id": "AC-011",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-06-AC-011",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 164,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "53d99682795a2181b8074df41f3456d3f35c510c4257f6eb8d5b9920c7282928"
+      },
+      "text": "The parser and its fixtures add no third-party runtime dependency and make no network call, leaving the `DEL-01-05` zero-dependency and locality assertion intact.",
+      "verification": [
+        {
+          "id": "VER-011",
+          "kind": "VER",
+          "qualified_id": "DEL-02-06-VER-011",
+          "source_line": 199,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the `PKG-02` dependency manifest and this module's import graph for third-party runtime dependencies and network calls, and re-run the `DEL-01-05` zero-dependency and locality enforcement once that deliverable is available, without discharging it here."
+        }
+      ]
+    },
+    {
+      "id": "AC-012",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-06-AC-012",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 165,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "53d99682795a2181b8074df41f3456d3f35c510c4257f6eb8d5b9920c7282928"
+      },
+      "text": "The parser reads no sibling feed, including no `_STATUS.md` file and no `## Remaining` section, resolves no decision identifier a workplan names, and performs none of the excluded acts of REQ-012.",
+      "verification": [
+        {
+          "id": "VER-012",
+          "kind": "VER",
+          "qualified_id": "DEL-02-06-VER-012",
+          "source_line": 200,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Boundary inspection: assert the module opens no sibling feed path and no `## Remaining` section, performs no lookup of a decision identifier found in workplan prose, and contains none of the excluded acts of REQ-012."
+        }
+      ]
+    },
+    {
+      "id": "AC-013",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-02-06-AC-013",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 166,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "53d99682795a2181b8074df41f3456d3f35c510c4257f6eb8d5b9920c7282928"
+      },
+      "text": "The fixture test suite implements VER-001 through VER-012 and VER-014, executes in the `PKG-02` test run, passes, and introduces no acceptance criterion absent from this contract.",
+      "verification": [
+        {
+          "id": "VER-013",
+          "kind": "VER",
+          "qualified_id": "DEL-02-06-VER-013",
+          "source_line": 201,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the `PKG-02` test suite and confirm that each of VER-001 through VER-012 and VER-014 has a corresponding executing automated test and that no test asserts a criterion absent from this contract."
+        }
+      ]
+    },
+    {
+      "id": "AC-014",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-06-AC-014",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 167,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "53d99682795a2181b8074df41f3456d3f35c510c4257f6eb8d5b9920c7282928"
+      },
+      "text": "The review gate confirms this contract's traceability to `SOW-016`, `OBJ-001` and `OBJ-002` as ruled at SCA-002 Gate 3 Q2 and carried by the revision-1.6 §3 mapping note; confirms that the indirect `OBJ-002` leg is stated no more strongly than those records state it, including the unadopted narrowing evidence; confirms that the rebuild keeps the meaning of every kept ID and states every retired one; and confirms that no `PKG-01`, sibling `PKG-02`, `PKG-03`, `PKG-04` or `PKG-05` scope has been absorbed.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "review gate confirms traceability to SOW-016 and to OBJ-001/OBJ-002 as ruled at SCA-002 Gate 3 Q2 and carried by the revision-1.6 §3 mapping note, confirms the indirect OBJ-002 leg is stated no more strongly than those records state it, confirms kept IDs keep their meaning and retired IDs are stated, and confirms no sibling or cross-package scope absorption"
+        }
+      ]
+    },
+    {
+      "id": "AC-015",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-06-AC-015",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 168,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "53d99682795a2181b8074df41f3456d3f35c510c4257f6eb8d5b9920c7282928"
+      },
+      "text": "Over a fixture registry, the parser reads `LOOP_INIT.md` only at each row's `loop_init_path` and ignores same-named files elsewhere; for a row whose profiles declare no workplan surface it reads no workplan and reports the missing declaration; and placing workplan files in a loop's `loop/` directory or a `plans/workplans/` directory changes nothing without a declaration.",
+      "verification": [
+        {
+          "id": "VER-014",
+          "kind": "VER",
+          "qualified_id": "DEL-02-06-VER-014",
+          "source_line": 202,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute discovery over a fixture registry whose rows carry only profiles of the ruled vocabulary, with a `loop_init_path` that resolves, same-named `LOOP_INIT.md` copies at other paths, and workplan files in `loop/` and `plans/workplans/` directories; assert reading only at `loop_init_path`, no workplan read and a missing-declaration report per row. If a later vocabulary declares a workplan surface, repeat with a row carrying it and assert discovery of only the files it declares."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-02-06",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-02",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "53d99682795a2181b8074df41f3456d3f35c510c4257f6eb8d5b9920c7282928"
+  },
+  "tool_version": "1"
+}

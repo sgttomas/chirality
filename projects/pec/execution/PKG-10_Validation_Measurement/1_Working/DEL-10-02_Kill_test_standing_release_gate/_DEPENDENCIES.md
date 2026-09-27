@@ -12,6 +12,10 @@ Register storage is deliverable-local by owner ruling (no central register).
 | DEL-01-03 (Store bootstrap & content-minimal guard) | PROPOSAL | TESTS |  | E-P71 |
 | DEL-03-01 (Full-rebuild reconciler (one command)) | PROPOSAL | TESTS |  | E-P72 |
 
+## Downstream (informational; consumers of this deliverable)
+
+- DEL-10-13 (Reliance-advertisement gate) — TESTS [E-P91]
+
 ## Standing obligation (constraint C-08)
 
 This deliverable is a STANDING node: it gates releases, not successors,

@@ -13,7 +13,14 @@ package_objective_refs: [OBJ-006]
 
 This candidate defines `DEL-07-05` in service of project scope [SOW-029] and package objectives [OBJ-006].
 
-- **OUT-001** — A Dependencies.csv v3.1 reader, writer, and linter with API/MCP integration, schema and lifecycle preservation, provenance, compatibility warnings, and fixtures.
+- **OUT-001** — A Dependencies.csv v3.1 reader, writer, and linter with library and Chirality tool integration, schema and lifecycle preservation, provenance, compatibility warnings, and fixtures.
+
+## SCA-APP-011 Current Contract (Controlling)
+
+SCA-APP-011 (owner direction 2026-09-27; DEC-026) retires the HTTP route `GET/PUT /api/working-root/deliverable/dependencies` and the client fetch function that called it. Where any earlier clause names that route or its route test, this section controls; the earlier clauses remain dated history.
+
+- The dependency read and write interface is the library: `readDeliverableDependencies` and `writeDeliverableDependencies` in `frontend/src/lib/workspace/deliverable-contracts.ts`, over `frontend/src/lib/dependencies/`. The Chirality tool contracts that wrap this library (SPEC §14.2) run only on the retained SDK path today. Live exposure of the read tool `deps_read` through the Runtime application-tool interface is DEL-06-03's open work; `deps_write` remains a retained, governed operation with no live registration, and any live registration is governed by DEL-06-04-REQ-010. On the Codex path an agent maintains dependency registers through the Root dependency workflows (for example `dependency-extract`), or edits them directly within the authority Root `docs/SPEC.md` §5 gives the declaring or extracting actor.
+- REQ-DEL-07-05-013 is restated to the library. Its verification is `frontend/src/__tests__/lib/deliverable-contracts.test.ts`, which carries the dependency read, write, recorded-register, write-failure and symlink cases formerly in the route test, except the request-body parsing cases (`INVALID_REQUEST`), which retire with the route.
 
 ## Deliverable Definition — Ontology
 
@@ -57,7 +64,7 @@ This candidate defines `DEL-07-05` in service of project scope [SOW-029] and pac
 > | Reader behavior | Read and validate `Dependencies.csv`; expose required headers, enum values, identity rules, and warnings through contract APIs | `docs/SPEC.md` Section 14.2; `docs/PRD.md` Section 8.9 |
 > | Writer behavior | Append/update rows while preserving v3.1 schema, host deliverable consistency, row lifecycle, and warnings for legacy/invalid data | `docs/SPEC.md` Sections 6.2 and 14.2; `docs/PRD.md` Section 8.9 |
 > | Linter behavior | Validate schema, enum values, identity rules, provenance, and resolvable deliverable references; report warnings without fabricating values | `docs/CONTRACT.md` Section 1.7; `docs/PRD.md` Section 8.9 |
-> | API surface | `/api/working-root/deliverable/dependencies` supports GET/PUT for `Dependencies.csv` snapshot rows | `docs/PRD.md` Section 17.2 |
+> | API surface | [RETIRED — SCA-APP-011] `/api/working-root/deliverable/dependencies` is retired; the dependency library in `frontend/src/lib/workspace/deliverable-contracts.ts` is the interface (SCA-APP-011 section) | `docs/PRD.md` Section 17.2 |
 > | MCP surface | `mcp__chirality__deps_read` and `mcp__chirality__deps_write` | `docs/SPEC.md` Section 14.2 |
 > | Source warning | `docs/PRD.md` is locally accessible but has a historical D-APP-38 source state; verify current candidate bytes in `_REFERENCES.md`; use as warned source, not as silent accepted hash truth | `_REFERENCES.md` (Authoritative Source Corpus) — reconciled under D-APP-38 |
 >
@@ -178,7 +185,7 @@ This candidate defines `DEL-07-05` in service of project scope [SOW-029] and pac
 > - Serialize append/update writes without deleting retired rows.
 > - Normalize legacy missing `RegisterSchemaVersion` to `v3.1` on write.
 > - Preserve optional extension columns without treating them as breaking schema changes.
-> - Expose read/write behavior through the product dependency contract surface, including `/api/working-root/deliverable/dependencies` and Chirality MCP dependency tools.
+> - Expose read/write behavior through the product dependency library (`frontend/src/lib/workspace/deliverable-contracts.ts`) and the Chirality dependency tool contracts; the `/api/working-root/deliverable/dependencies` route is retired (SCA-APP-011).
 > - Return structured warnings for legacy, invalid, missing, or unresolved data where the source permits warning behavior.
 >
 > Out of scope:
@@ -208,7 +215,7 @@ This candidate defines `DEL-07-05` in service of project scope [SOW-029] and pac
 > | REQ-DEL-07-05-010 | Dependency references to deliverables MUST resolve to existing stable deliverable IDs; unresolvable targets MUST use `TargetType=UNKNOWN`. | `docs/CONTRACT.md` Section 1.7; `docs/TYPES.md` Section 6.5 |
 > | REQ-DEL-07-05-011 | Unknown values MUST remain `TBD` rather than being guessed. | `docs/CONTRACT.md` Section 1.7; `docs/DIRECTIVE.md` Section 2.5 |
 > | REQ-DEL-07-05-012 | The writer MUST preserve host deliverable consistency, schema version, row lifecycle behavior, and warnings for legacy or invalid data. | `docs/PRD.md` Section 8.9 |
-> | REQ-DEL-07-05-013 | The dependency API surface MUST support GET/PUT for `Dependencies.csv` snapshot rows at `/api/working-root/deliverable/dependencies`. | `docs/PRD.md` Section 17.2 |
+> | REQ-DEL-07-05-013 | The dependency library MUST support read and write of `Dependencies.csv` snapshot rows through `readDeliverableDependencies` and `writeDeliverableDependencies` (restated by SCA-APP-011; the `/api/working-root/deliverable/dependencies` route is retired). | `docs/PRD.md` Section 8.9; SCA-APP-011 |
 > | REQ-DEL-07-05-014 | Current dependency application tools MUST pass through applicable user-selected Codex policy and App-owned Runtime path, instruction-root, redaction and event controls; retained MCP/SDK fixtures are compatibility evidence. | `docs/CONTRACT.md` Section 1.6; `docs/SPEC.md` Section 14.2 |
 > | REQ-DEL-07-05-015 | Filesystem write behavior MUST respect project-root containment, instruction-root protection, symlink write rejection, and provenance hook policy. | `docs/SPEC.md` Sections 15.1 and 15.2; `docs/CONTRACT.md` Section 1.6 |
 > | REQ-DEL-07-05-016 | Extension columns MAY be present and MUST be non-breaking to the schema reader/writer. | `docs/SPEC.md` Section 6.1 |
@@ -239,12 +246,12 @@ This candidate defines `DEL-07-05` in service of project scope [SOW-029] and pac
 > |---|---|
 > | REQ-DEL-07-05-001 through -007 | Schema/version, valid and malformed headers, duplicate IDs, host identity, anchor and execution rows; `frontend/src/__tests__/lib/dependencies-register-contract.test.ts`. Missing or malformed-header coverage remains open. |
 > | REQ-DEL-07-05-008 through -012 | Retain retired rows and lifecycle fields, provenance, explicit unknowns and target resolution; the same register-contract test. Target-existence coverage remains open. |
-> | REQ-DEL-07-05-013 | GET/PUT contract, write failures and symlink handling; `frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts`. |
+> | REQ-DEL-07-05-013 | Read/write contract, write failures and symlink handling; `frontend/src/__tests__/lib/deliverable-contracts.test.ts`. |
 > | REQ-DEL-07-05-014, -015 | Applicable permission, path containment, instruction-root, symlink and provenance protection. `frontend/src/__tests__/lib/chirality-mutating-mcp.test.ts` and `frontend/src/__tests__/lib/chirality-read-mcp.test.ts` are legacy tool evidence; they do not qualify live Codex enforcement. Dependency instruction-root and other missing live checks remain open. |
 > | REQ-DEL-07-05-016, -017 | Non-breaking extension columns and warning behavior for unknown options; register-contract and API tests above. Unknown-option coverage remains open. |
 > | REQ-DEL-07-05-018 | A candidate-bound scope-review record must confirm no retired graph generator, deliverable lock, staleness propagation or unified pipeline run-record scope is reintroduced; R3 found no such check. |
 >
-> The evidence modules are `frontend/src/lib/dependencies/` and the dependency API route; their local names are not additional scope. D-GOV-43/D-APP-127 make Codex the live engine and leave sandbox choice to the user. That choice does not waive dependency integrity, human authority or the unresolved read-linter/live-protection gaps.
+> The evidence modules are `frontend/src/lib/dependencies/` and `frontend/src/lib/workspace/deliverable-contracts.ts` (SCA-APP-011 retired the dependency API route); their local names are not additional scope. D-GOV-43/D-APP-127 make Codex the live engine and leave sandbox choice to the user. That choice does not waive dependency integrity, human authority or the unresolved read-linter/live-protection gaps.
 
 ### CLM-015 — Pass 3 Acceptance Evidence Mapping
 
@@ -335,7 +342,7 @@ This candidate defines `DEL-07-05` in service of project scope [SOW-029] and pac
 >    - Pass through working-root containment, instruction-root protection, symlink rejection, and provenance/event hooks.
 >
 > 7. Connect contract surfaces.
->    - Expose read/write behavior through `/api/working-root/deliverable/dependencies` GET/PUT.
+>    - [RETIRED — SCA-APP-011] Expose read/write behavior through `/api/working-root/deliverable/dependencies` GET/PUT; the dependency library is the interface.
 >    - Verify the current dependency application-tool read/write path under applicable Codex host policy and App-owned Runtime controls; retained `mcp__chirality__deps_read`/`deps_write` are compatibility checks only where actually exposed.
 >    - Treat unknown option keys as warnings rather than behavior mutations.
 >

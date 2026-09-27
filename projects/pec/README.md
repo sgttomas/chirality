@@ -27,21 +27,29 @@ I-5 and `D-PEC-88`). Decomposition revision 1.6 is the accepted current basis af
 `SCA-006` (owner checkpoint-3 acceptance 2026-09-26); before it, revision 1.5
 after `SCA-005` and revision 1.4 after `SCA-004` under `D-PEC-78` O-A. PROJECT_SETUP has materialized the
 owner-selected full DAG, scaffolded 11 packages / 64 deliverables (66 after
-`D-PEC-93` added DEL-02-08 and DEL-02-09), and completed the SCA-004
+`D-PEC-93` added DEL-02-08 and DEL-02-09, and 68 after `D-PEC-101` added
+DEL-08-06 and DEL-10-13), and completed the SCA-004
 metadata-alignment subset (all context provenance blocks and reference packets
-were current for revision 1.4; since the `D-PEC-95` act of 2026-09-25 all 66
-contexts and 66 references name revision 1.5, and three contexts also carry
-the SCA-006 revision-1.6 clause), and DEL-01-06 carries the non-gating
-SOW-077 requirement anchor. Thirty-two Phase 2.2 ScopeOfWork contracts are
-initialized. DEL-01-06 now has the accepted revision-1.4 production contract
-at SHA-256 `5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8`;
-RF-001 and RF-002 are resolved, while Gate 5 remains HOLD at `INITIALIZED`.
+were current for revision 1.4; after the `D-PEC-95` act of 2026-09-25 all 66
+contexts and 66 references named revision 1.5 (the act re-pinned 42 contexts
+and 64 references; the others were already at 1.5); SCA-006 then gave three
+contexts (DEL-04-03, DEL-08-01, DEL-08-03) the revision-1.6 clause, and the
+`D-PEC-101` act of 2026-09-26 re-pinned the remaining 63 contexts and all 66
+references to revision 1.6 / PRD v2.4 and created the DEL-08-06 and DEL-10-13
+folders, so all 68 contexts and 68 references now name revision 1.6), and DEL-01-06 carries the non-gating
+SOW-077 requirement anchor. Thirty-six ScopeOfWork contracts exist: the thirty-two
+Phase 2.2 contracts, and the first contracts for DEL-02-08 and DEL-02-09
+(`D-PEC-98`) and for DEL-08-06 and DEL-10-13 (`D-PEC-103`). DEL-01-06's accepted revision-1.4 production contract
+(SHA-256 `5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8`,
+RF-001 and RF-002 resolved) was replaced under `D-PEC-100` on 2026-09-26 by
+the revision-1.6 contract `2053fb65…177e`, which no REVIEW has accepted;
+Gate 5 remains HOLD at `INITIALIZED`.
 The earlier
 eleven-contract reconciliation remains historical under `D-PEC-69`, and
 `PEC-HOLD-001` was released by `D-PEC-70`. The SCA-004 closeout
 (`execution/_Coordination/PEC_CURRENCY_REPAIR_CLOSEOUT_2026-08-09/HANDOFF_STATE.md`)
 recorded derivative state as incomplete only for TM-PEC-023, which was closed `RESOLVED_BY_DECISION` under
-`D-PEC-95` on 2026-09-25. Lifecycle census (2026-09-26): 28 `OPEN` / 28
+`D-PEC-95` on 2026-09-25. Lifecycle census (2026-09-26, 68 deliverables): 28 `OPEN` / 30
 `INITIALIZED` / 4 `CHECKING` / 2 `IN_PROGRESS` / 4 `RETIRED`, none `ISSUED`. DEL-01-03 is
 `IN_PROGRESS` with the `D-PEC-85` store/guard slice produced; DEL-01-05 is
 `IN_PROGRESS` after the `D-PEC-84` L reversal; no artifact acceptance or

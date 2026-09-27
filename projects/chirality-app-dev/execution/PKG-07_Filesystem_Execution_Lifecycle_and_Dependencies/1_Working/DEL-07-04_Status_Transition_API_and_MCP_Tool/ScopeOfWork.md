@@ -15,6 +15,14 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 
 - **OUT-001** — A canonical _STATUS.md parser and deny-first status transition API/MCP tool with actor authorization, approval-SHA gates, policy integration, schemas, and acceptance tests.
 
+## SCA-APP-011 Current Contract (Controlling)
+
+SCA-APP-011 (owner direction 2026-09-27; DEC-026) retires the HTTP status routes `GET /api/working-root/deliverable/status` and `POST /api/working-root/deliverable/status/transition` and the client fetch functions that called them (`frontend/src/lib/workspace/deliverable-api.ts`). Where any earlier clause in this document names those routes, their route test or the Workbench and Pipeline forms, this section controls; the earlier clauses remain dated history and are not deleted.
+
+- The status read and transition interface is the library: `readDeliverableStatus` and `transitionDeliverableStatus` in `frontend/src/lib/workspace/deliverable-contracts.ts`, over `frontend/src/lib/lifecycle/`. The Chirality tool contracts that wrap this library (SPEC §14.2) run only on the retained SDK path today. Live exposure of the read tool `status_read` through the Runtime application-tool interface is DEL-06-03's open work; `status_transition` remains a retained, governed operation with no live registration, and any live registration is governed by DEL-06-04-REQ-010. On the Codex path an actor records a lifecycle transition with the Root tool `tools/scaffolding/write_status.sh`, or edits `_STATUS.md` directly within the actor authority of Root `docs/SPEC.md` §3.3.
+- DEL-07-04-REQ-007 and DEL-07-04-REQ-008 are retired. The other requirements are unchanged.
+- Verification hooks: `frontend/src/__tests__/lib/lifecycle-status.test.ts`, `frontend/src/__tests__/lib/amendment-reopen-parity.test.ts` and `frontend/src/__tests__/lib/deliverable-contracts.test.ts`. The last carries, against the library, every status read, transition, human-ruled `CHECKING -> IN_PROGRESS` reversal and `ISSUED -> IN_PROGRESS` reopening case formerly in the route test, except the cases that only exercised request-body parsing (`INVALID_REQUEST`, including the `ruling: 42` and `amendment: 7` table rows), which retire with the route; the route test was `frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts` (retired by SCA-APP-011), with each HTTP status expectation restated as the thrown workspace error's code and status (`WorkspaceOperationError` for most refusals, `WorkspaceValidationError` for path validation). `frontend/src/__tests__/lib/chirality-mutating-mcp.test.ts` remains retained tool-contract evidence.
+
 ## Deliverable Definition — Ontology
 
 ### CLM-001 — Datasheet: DEL-07-04 Status Transition API and MCP Tool
@@ -56,12 +64,12 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 > | Valid lifecycle chain | `OPEN -> INITIALIZED -> SEMANTIC_READY -> IN_PROGRESS -> CHECKING -> ISSUED`. | `docs/SPEC.md` Section 4.2; `docs/TYPES.md` Section 4.1 |
 > | Transition rule | Transitions require authorized actors and follow the allowed forward and explicit human-authorized reversal paths in SPEC §4.3. | `docs/PRD.md` Section 8.9 FR-053; `docs/SPEC.md` Section 4.3 |
 > | Human gate evidence | Transitions to `CHECKING` or `ISSUED` require approval SHA evidence; PRD acceptance calls for a 7-64 character hex SHA-like token. | `docs/SPEC.md` Section 4.3; `docs/PRD.md` Section 8.9 FR-054 |
-> | API surface | `GET /api/working-root/deliverable/status` reads status; `POST /api/working-root/deliverable/status/transition` applies allowed transition. | `docs/PRD.md` API inventory; `docs/SPEC.md` Section 17.2 |
+> | API surface | [RETIRED — SCA-APP-011] `GET /api/working-root/deliverable/status` and `POST /api/working-root/deliverable/status/transition` are retired; the status library in `frontend/src/lib/workspace/deliverable-contracts.ts` is the interface (SCA-APP-011 section). | `docs/PRD.md` API inventory; `docs/SPEC.md` Section 17.2 |
 > | Retained MCP compatibility surface | `mcp__chirality__status_read` and `mcp__chirality__status_transition` are retained legacy interfaces. D-GOV-43/D-APP-127 do not make them live Codex tools. | `docs/SPEC.md` Section 14.2; `docs/TYPES.md` Section 8.4 |
 > | Transport boundary | A transport grants no lifecycle authority. Retained MCP policy is compatibility evidence; live API callers still require the applicable actor authority and candidate-bound approval. | `docs/CONTRACT.md` Section 1.6 K-MCP-1; `docs/DIRECTIVE.md` Design commitments |
 >
 >
-> Verification hooks: `frontend/src/__tests__/lib/lifecycle-status.test.ts` and `frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts`. The live caller-supplied actor/SHA limit remains open under P-07/P-14; field validation does not authenticate a human act.
+> Verification hooks: `frontend/src/__tests__/lib/lifecycle-status.test.ts`, `frontend/src/__tests__/lib/amendment-reopen-parity.test.ts` and `frontend/src/__tests__/lib/deliverable-contracts.test.ts`. They cover the gates App SPEC §4.3 states and the tools implement: the full transition table; the human-ruled `CHECKING -> IN_PROGRESS` reversal (HUMAN actor, approval SHA and a `ruling` record; the `Checking Approval SHA` field is removed); and the `ISSUED -> IN_PROGRESS` reopening, admitted only for a HUMAN actor with an approval SHA and an `amendment` that passes the working-tree amendment check. They also cover history preservation and the post-write check. The Workbench and Pipeline forms that took the `ruling` and `amendment` inputs are retired with their test (SCA-APP-011). The live caller-supplied actor/SHA limit remains open under P-07/P-14. These checks validate format, location and content; they do not authenticate a human act, and `tools/scaffolding/write_status.sh` is the anchored check.
 
 ### CLM-004 — Conditions
 
@@ -83,7 +91,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 >
 > The status contract must read `_STATUS.md` as canonical lifecycle state, expose Current State, Last Updated and history, and reject transitions that lack the required actor authority or candidate-bound approval evidence. Apply the allowed transitions and explicit human-authorized reversal paths in SPEC §4.3; a generic forward-only rule must not erase those exceptions.
 >
-> Named verification hooks are `frontend/src/__tests__/lib/lifecycle-status.test.ts` and `frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts`. They check parser and transition behavior through the status API. `frontend/src/__tests__/lib/chirality-mutating-mcp.test.ts` is retained MCP compatibility evidence, not a live Codex tool qualification under D-GOV-43/D-APP-127.
+> Named verification hooks are `frontend/src/__tests__/lib/lifecycle-status.test.ts` and `frontend/src/__tests__/lib/deliverable-contracts.test.ts`. They check parser and transition behavior through the status library. `frontend/src/__tests__/lib/chirality-mutating-mcp.test.ts` is retained MCP compatibility evidence, not a live Codex tool qualification under D-GOV-43/D-APP-127.
 >
 > Human gates remain human acts. A caller-supplied actor string and a correctly shaped SHA are not proof that a human approved the exact candidate. R3/P-07/P-14 identify this live enforcement gap; it remains a remedy and verification obligation even when the former transition UI is absent. No lifecycle change, approval refresh or acceptance follows from this text repair.
 
@@ -113,7 +121,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 
 ### CLM-008 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
-> UPD-132 records a historical module-selection decision. Current source evidence is `frontend/src/lib/lifecycle/status-parser.ts`, `status-writer.ts`, the lifecycle validator, and the status API routes. Retained MCP modules are compatibility evidence. Verification hooks are `frontend/src/__tests__/lib/lifecycle-status.test.ts` and `frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts`; candidate-bound actor identity, reversal, schema and preservation checks remain open. ResponsibleParty assignment remains human-owned.
+> UPD-132 records a historical module-selection decision. Current source evidence is `frontend/src/lib/lifecycle/status-parser.ts`, `status-writer.ts`, the lifecycle validator, and the status library in `frontend/src/lib/workspace/deliverable-contracts.ts` (SCA-APP-011 retired the status API routes). Retained MCP modules are compatibility evidence. Verification hooks are `frontend/src/__tests__/lib/lifecycle-status.test.ts`, `frontend/src/__tests__/lib/amendment-reopen-parity.test.ts` and `frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts` (ported by SCA-APP-011 to `frontend/src/__tests__/lib/deliverable-contracts.test.ts`). As of 2026-09-26 they verify the implemented App SPEC §4.3 reversal and reopening gates and history preservation (runs `APP-LIFECYCLE-DEPS-2026-09-26`, `APP-AMENDMENT-REOPEN-2026-09-26` and `APP-TRANSITION-FORMS-2026-09-26`). Candidate-bound actor identity and accepted schema fixtures remain open. The reopening check is unanchored in the App (no git), and `write_status.sh` is the anchored check. ResponsibleParty assignment remains human-owned.
 
 ## Completion and Reliance Basis — Epistemology
 
@@ -158,8 +166,8 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 > | DEL-07-04-REQ-004 | The validator SHALL enforce the authorized transition table, including human-authorized CHECKING -> IN_PROGRESS and ISSUED -> IN_PROGRESS through the scope-change path; other backward transitions are rejected. | `docs/SPEC.md` Section 4.3; `docs/PRD.md` Section 8.9 FR-053 |
 > | DEL-07-04-REQ-005 | The validator SHALL enforce actor authorization for lifecycle transitions according to SPEC Section 4.3, including human initialization and the authorized reversal paths. A caller-supplied HUMAN/USER/OPERATOR string and format-valid SHA alone do not establish a human act. | `docs/SPEC.md` Section 4.3; `docs/PRD.md` Section 8.9 FR-053 |
 > | DEL-07-04-REQ-006 | Transitions to `CHECKING` or `ISSUED` SHALL require approval SHA evidence; the PRD acceptance criterion is a 7-64 character hex SHA-like token. | `docs/SPEC.md` Section 4.3; `docs/PRD.md` Section 8.9 FR-054 |
-> | DEL-07-04-REQ-007 | The implementation SHALL expose a status read API at `GET /api/working-root/deliverable/status`. | `docs/PRD.md` API inventory; `docs/SPEC.md` Section 17.2 |
-> | DEL-07-04-REQ-008 | The implementation SHALL expose a status transition API at `POST /api/working-root/deliverable/status/transition`. | `docs/PRD.md` API inventory; `docs/SPEC.md` Section 17.2 |
+> | DEL-07-04-REQ-007 | [RETIRED — SCA-APP-011] The implementation SHALL expose a status read API at `GET /api/working-root/deliverable/status`. | `docs/PRD.md` API inventory; `docs/SPEC.md` Section 17.2 |
+> | DEL-07-04-REQ-008 | [RETIRED — SCA-APP-011] The implementation SHALL expose a status transition API at `POST /api/working-root/deliverable/status/transition`. | `docs/PRD.md` API inventory; `docs/SPEC.md` Section 17.2 |
 > | DEL-07-04-REQ-009 | The implementation SHALL expose `mcp__chirality__status_read` and `mcp__chirality__status_transition` as Chirality MCP tool names. | `docs/SPEC.md` Section 14.2; `docs/TYPES.md` Section 8.4 |
 > | DEL-07-04-REQ-010 | `mcp__chirality__status_transition` SHALL be write-gated and SHALL apply authorized lifecycle transitions with approval SHA where required. | `docs/SPEC.md` Section 14.2; `docs/CONTRACT.md` Section 1.7 K-STATUS-2 |
 > | DEL-07-04-REQ-011 | Current status application tools SHALL pass through applicable user-selected Codex policy and App-owned Runtime actor, approval, path, redaction and event controls; retained MCP/SDK fixtures are compatibility evidence. | `docs/CONTRACT.md` Section 1.6 K-MCP-1; `docs/PRD.md` Section 8.13 FR-119 |
@@ -210,7 +218,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 
 > ##### Documentation
 >
-> Maintain evidence for the canonical status parser, permitted and denied transitions, candidate-bound human approval, API responses, and applicable write protection. The parser and transition implementation evidence is `frontend/src/lib/lifecycle/status-parser.ts` and `frontend/src/lib/lifecycle/transition.ts`; named verification is `frontend/src/__tests__/lib/lifecycle-status.test.ts` and `frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts`.
+> Maintain evidence for the canonical status parser, permitted and denied transitions, candidate-bound human approval, library results, and applicable write protection. The parser and transition implementation evidence is `frontend/src/lib/lifecycle/status-parser.ts` and `frontend/src/lib/lifecycle/transition.ts`; named verification is `frontend/src/__tests__/lib/lifecycle-status.test.ts` and `frontend/src/__tests__/lib/deliverable-contracts.test.ts`.
 >
 > Request/response and actor-policy evidence must identify the accepted contract and exercised entry path. D-APP-56 R4-P19 supplies the recorded actor-alias mapping; copying current enum or payload fields is not a replacement for contract fixtures. Preserve unresolved schema-fixture and live permission/path-policy coverage. Retained MCP schema and `frontend/src/__tests__/lib/chirality-mutating-mcp.test.ts` evidence applies to compatibility only.
 >
@@ -292,7 +300,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 >    - Require approval SHA evidence for transitions to `CHECKING` or `ISSUED`.
 >    - Apply the PRD Section 8.9 FR-054 acceptance detail: 7-64 character hex SHA-like token. PRD historical D-APP-38 source state; verify current candidate bytes status applies. (reconciled under D-APP-38).
 >
-> 6. Implement the status API surface.
+> 6. [RETIRED — SCA-APP-011] Implement the status API surface. The HTTP routes below are retired; the status library is the interface (SCA-APP-011 section).
 >    - Provide `GET /api/working-root/deliverable/status` for read-only status snapshots.
 >    - Provide `POST /api/working-root/deliverable/status/transition` for allowed lifecycle transitions.
 >    - Return structured success and denial outcomes. Exact response schema is `TBD`.
