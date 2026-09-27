@@ -1,6 +1,6 @@
 # Review — DEL-00-01 v2 first ADRs
 
-**Review stage:** REVIEW COMPLETE FOR THE D-PEC-105 BYTES — ONE MAJOR FINDING OPEN (HumanDisposition TBD) — OWNER EXACT-BYTE ACCEPTANCE PENDING — GATE 5 NOT ENTERED
+**Review stage:** EXACT-BYTE RE-ACCEPTANCE COMPLETE FOR THE D-PEC-105 BYTES (OWNER, 2026-09-27) — ALL RV1 FINDINGS `ACCEPT_AS_IS` / `RESOLVED` — GATE 5 NOT ENTERED
 
 **Review Type:** SELF_CHECK
 
@@ -13,6 +13,12 @@
 **Lifecycle:** `CHECKING`, unchanged. No lifecycle transition is proposed, prompted or evaluated. Gate 5 is not entered.
 
 **Target transition:** none. This review is the `D-PEC-105` RR1 REVIEW of the postimage bytes; it attempts no transition.
+
+**Owner exact-byte re-acceptance ruling (verbatim, 2026-09-27):**
+
+> ACC: option 1; accept all findings as is; re-accept DEL-00-01 and DEL-00-03 exact bytes; retire CU-001
+
+The ruling answers HELP_HUMAN's presentation of this review's outcome. Its ruling record is `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-108_D1_REACCEPTANCE_2026-09-27.md`, which HELP_HUMAN writes in the same PR as this record. This record applies the ruling's DEL-00-01 parts; "Exact-byte acceptance and remaining gates" below records them. The RV1 sections that follow are kept verbatim as recorded at review time, except the review stage line above. Where they say that the owner's acceptance has not been given or that a disposition is `TBD`, that section records the current state.
 
 ### Authority
 
@@ -214,6 +220,71 @@ Root `docs/SPEC.md` §3.4 (`feb5e79c…109e`) also states that in `CHECKING` "re
 ## Transition Readiness
 
 **Transition readiness:** no transition attempted; Gate 5 not entered. `DEL-00-01` remains `CHECKING`.
+
+## Exact-byte acceptance and remaining gates
+
+Recorded 2026-09-27 by the WORKING_ITEMS manager of `HELP-HUMAN-PEC-20260927-RV1-INTAKE` (graph node ACC), transcribing the owner's ruling above. REVIEW does not perform the acceptance; the owner does.
+
+**What option 1 records for DEL-00-01.** The owner's words are "option 1; accept all findings as is; re-accept DEL-00-01 and DEL-00-03 exact bytes". HELP_HUMAN's presentation stated that option 1 records the following for DEL-00-01. The presentation's text is carried in the ACC brief, `projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260927-RV1-INTAKE/briefs/ACCCLOSE_ACCEPTANCE_AND_MEMORY.md` (SHA-256 `facf2974e882afca57e57e9441263f21fa7b77e77f5d507f1bf7cbbb936ec461`).
+
+- **AC-007:** the owner accepts the ADRs at `ad6bab7ee00779e0cff5900d74d986e5e05c66b7dc469f5ddd9b224ecc65c49e` as fit for DEL-00-01. The owner also confirms ports-and-adapters (hexagonal) isolation as the selected core-isolation style, and confirms that no governed act depends on PEC-held state.
+- **Contract:** exact-byte acceptance of the contract at `3757632b507d1f5a5668ccefb99d87b9e2a30a9e6bd38d7349e9f4721c5da647`. This is its first owner acceptance.
+- **Findings:** every RV1 finding is accepted as-is and recorded as a known limitation.
+- **Scope:** exact bytes only.
+
+The owner has performed `ACCEPT_EXACT_BYTES` for:
+
+- `artifacts/v2/ADRs.md` SHA-256
+  `ad6bab7ee00779e0cff5900d74d986e5e05c66b7dc469f5ddd9b224ecc65c49e`;
+- `ScopeOfWork.md` SHA-256
+  `3757632b507d1f5a5668ccefb99d87b9e2a30a9e6bd38d7349e9f4721c5da647`.
+
+Both hashes were reproduced before this record was written, and PEC `promote` reliance-hold preflights for both objects returned `ALLOW` (`projects/pec/execution/_Coordination/RV1_ACCEPTANCE_RECORD_2026-09-27/evidence/`).
+
+**AC-007 is satisfied for these exact bytes** by the owner's ruling: the ADRs at `ad6bab7e…c49e` are accepted as fit for DEL-00-01, ports-and-adapters (hexagonal) isolation is confirmed as the selected core-isolation style, and no governed act depends on PEC-held state. AC-001 and AC-003..AC-006 remain as assessed above.
+
+**AC-002 is accepted as partly met.** The owner's `ACCEPT_AS_IS` disposition of RF-001 accepts the gap recorded at AC-002 as a known limitation. It does not change the AC-002 result recorded above (PARTIAL), and it makes no severity call: RF-001 stays `MAJOR`.
+
+### Finding dispositions (owner, 2026-09-27)
+
+Basis for every row: the owner's ruling above, "accept all findings as is". Each finding is recorded as a known limitation. `ACCEPT_AS_IS` is a final disposition, so each `Status` is `RESOLVED` under the method's Gate 4 rule. `ACCEPT_AS_IS` is not `DEFER`, and no finding is `DEFERRED`.
+
+| Finding | Severity (unchanged) | ProposedDisposition (PROPOSAL, kept) | HumanDisposition | Status |
+|---|---|---|---|---|
+| RF-001 | MAJOR | REVISE | ACCEPT_AS_IS | RESOLVED |
+| RF-002 | MINOR | REVISE | ACCEPT_AS_IS | RESOLVED |
+| RF-003 | MINOR | REVISE | ACCEPT_AS_IS | RESOLVED |
+| RF-004 | OBSERVATION | ACCEPT_AS_IS | ACCEPT_AS_IS | RESOLVED |
+| RF-005 | MINOR | REVISE | ACCEPT_AS_IS | RESOLVED |
+
+The reviewer's `REVISE` proposals (RF-001, RF-002, RF-003, RF-005) and the corrections recorded for them above stay on the record. They are considerations for the owner's ground-up reassessment under the `D-PEC-107` freeze point. No correction packet is prepared, and no ADR or contract byte changes.
+
+### Findings summary (after the owner's dispositions)
+
+| Severity | Total | Resolved | Open | Deferred |
+|---|---|---|---|---|
+| CRITICAL | 0 | 0 | 0 | 0 |
+| MAJOR | 1 | 1 | 0 | 0 |
+| MINOR | 3 | 3 | 0 | 0 |
+| OBSERVATION | 1 | 1 | 0 | 0 |
+
+No finding remains open, and none is deferred. The RV1 "Findings Summary" above records the counts at review time.
+
+### Custom item
+
+DEL-00-01 has no `CU-*` item, and the RV1 SELF_CHECK recorded none. The ruling's "retire CU-001" concerns DEL-00-03's owner custom item.
+
+### Scope limits and closure
+
+The acceptance is limited to the exact ADR and contract bytes above. There is no `ISSUED`, Gate 5, lifecycle, P1 or production act, and no C-05 act; C-05, the `D-PEC-72` closure, stays as recorded. `_STATUS.md` remains byte-identical at `CHECKING` (SHA-256 `41c871a5e4c07655a1f526aeb20f74603099f0b5997bbba4d7a8fcc2897ceeea`). This record writes no `ScopeOfWork.md`, artifact, `_STATUS.md`, dependency, register, context or reference file. The acceptance is not issuance, release readiness or professional reliance.
+
+**Before this record, the review stage line read:** "REVIEW COMPLETE FOR THE D-PEC-105 BYTES — ONE MAJOR FINDING OPEN (HumanDisposition TBD) — OWNER EXACT-BYTE ACCEPTANCE PENDING — GATE 5 NOT ENTERED".
+
+**Acceptance snapshot:** `projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-09-27_1655/`. The RV1 review snapshot remains `REV_DEL-00-01_2026-09-27_1554`.
+
+**Final review closure state:** `ARTIFACT_ACCEPTANCE_COMPLETE / GATE_5_UNENTERED / CHECKING`.
+
+Any ADR or contract byte change invalidates this acceptance and requires a new checklist derivation and REVIEW rerun.
 
 ## History — prior review record (describes superseded bytes)
 
