@@ -1,6 +1,7 @@
 # PEC Task Management — bounded intake — closeout of HELP-HUMAN-PEC-20260925-POST-SCA005 — 2026-09-27
 
-**Status:** CANDIDATES AWAITING OWNER DISPOSITION. No register row exists for any
+**Status:** OWNER DISPOSED 2026-09-27 (`D-PEC-107`); see "Owner disposition" below.
+At preparation (PR #1014) the status was: CANDIDATES AWAITING OWNER DISPOSITION. No register row exists for any
 candidate below; nothing here is a promotion, disposition, priority, assignment,
 approval or lifecycle effect (K-TM-3/K-TM-5). Promotion, disposition and external
 assignment are the owner's acts.
@@ -154,9 +155,46 @@ assignment are the owner's acts.
 | `D-PEC-105` "Other findings" 10 (DEL-00-01 REQ-005 literal archive path) | RV1 ("an RR1 review would meet it") |
 | `D-PEC-105` "Other findings" 11 | `TM-PEC-021` |
 
+## Owner disposition (2026-09-27)
+
+The owner's direction, verbatim, from
+`../../_DECISIONS/D-PEC-107_OWNER_DIRECTION_2026-09-27.md` (SHA-256
+`403a0497ae65c413f844b656daf6b3f5a58f99ffd65012dfd42b078430def346`):
+
+> Intake: CAND-01 b (each deliverable's production packet will absorb its own); CAND-02 promote; CAND-03 promote to Root; keep D-PEC-96 row.
+
+and, on K3, "Take the approach you recommend for K3." The same record sets a
+freeze point. The owner later confirmed under it, verbatim: "Yes I still want
+you to complete the task management work and the RV1." Applied by the WORKING_ITEMS
+manager of node TM1 of `HELP-HUMAN-PEC-20260927-RV1-INTAKE` (brief
+`../../AgentRuns/HELP-HUMAN-PEC-20260927-RV1-INTAKE/briefs/TM1_INTAKE_DISPOSITIONS.md`).
+The interpretations applied are the ones `D-PEC-107` records.
+
+| Candidate | Register row | Owner-ruled result |
+|---|---|---|
+| `CAND-PEC-2026-09-27-01` | None (not promoted) | **Disposition (b).** Each residual contract item is absorbed by its own deliverable's first production or currency packet. The PKG-02 items go with the first parser packet. The DEL-00-01 and DEL-00-03 items go with RV1: they are inputs to that REVIEW, and any correction needs an owner-ruled packet. During the `D-PEC-107` freeze, any correction a RV1 finding calls for is recorded only and not prepared. No SOW-currency packet is allocated, and no register row is opened per item. The candidate's item list above stays the reference those packets use. This disposition schedules no packet: production packets are decided in a different session (`D-PEC-107`, Production). |
+| `CAND-PEC-2026-09-27-02` | `TM-PEC-026` (`OPEN`) | **Promoted.** It resolves in the next PEC scope change, bundling the listed decomposition and PRD wording, plus an instruction-tranche item for the `AGENTS.md` sentence. The row also carries the per-project consumer-contract design consideration (`D-PEC-107`). It is a consideration for the ground-up reassessment under the freeze point, not scheduled work. SCA-007 is not opened. |
+| `CAND-PEC-2026-09-27-03` | `TM-PEC-027` (`ELEVATED`, to Root) | **Promoted and routed to Root.** The notice is `execution/_Coordination/NOTICE_2026-09-27_PEC_HOSTED_CI_V2_CHECKS.md` (repository root; SHA-256 `14dcfe1371fdc6a0dd2e6bfdf1031da5b30fef6b8625c31628710cb3d2cea172`). It asks Root to consider hosted CI for PEC v2's registered checks with a full-history checkout. Root decides its own intake. |
+
+Not an intake candidate:
+
+- **K3** is now `TM-PEC-028` (`DEFERRED`). Its trigger is a DEL-08-06 production
+  packet that fixes the tool's exact shape (DEL-08-06 TBD-003, TBD-004 and
+  TBD-006). The row replaces the carried graph node K3. It is HELP_HUMAN's
+  interpretation under `D-PEC-107`. It departs from this intake's judgment that
+  K3 was already homed (the K3 row of "Supplied concerns judged already homed",
+  above, which is kept as prepared). It is a consideration under the freeze point.
+
 ## Outcome
 
-Three candidates await the owner's disposition. Until then no register row is written,
-and `REGISTER.csv` / `REGISTER_CLOSED.csv` are unchanged. The originating closeout
-(`../../CLOSEOUT_POST_SCA005_2026-09-27/C1_ACCOUNT.md`) links this intake, and the
-central receipt should link it.
+At preparation: three candidates awaited the owner's disposition, no register row was
+written, and `REGISTER.csv` / `REGISTER_CLOSED.csv` were unchanged. The originating
+closeout (`../../CLOSEOUT_POST_SCA005_2026-09-27/C1_ACCOUNT.md`) links this intake, and
+the central receipt should link it.
+
+After the 2026-09-27 disposition, `REGISTER.csv` gains `TM-PEC-026`, `TM-PEC-027` and
+`TM-PEC-028`, and `REGISTER_CLOSED.csv` is unchanged. From here the register is the
+maintained disposition record for the promoted rows. This intake stays their source,
+and it is the only record of the CAND-01 disposition. No candidate awaits disposition.
+
+- DEL-01-06 `MEMORY.md` `D-PEC-96` row: kept as merged in PR #1014 (owner: "keep D-PEC-96 row"); no change.
