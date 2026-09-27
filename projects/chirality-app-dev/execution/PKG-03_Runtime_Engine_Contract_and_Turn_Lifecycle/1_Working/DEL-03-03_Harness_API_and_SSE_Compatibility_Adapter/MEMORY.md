@@ -16,3 +16,7 @@ D-APP-131 applies D-GOV-43/D-APP-127 to the current SoW source blocks and Remain
 - 2026-07-12 - R6 re-extraction found that UPD-045's SPEC §17.1 catalog half had remained pending after the initial P06 merge. The authorized three-route amendment was applied through a corrective D-APP-38 corpus bump; the obsolete P06 Remaining item was removed. No runtime or lifecycle change occurred.
 
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
+
+## Runs
+
+- 2026-09-27 — `APP-REMOVE-LEGACY-FORMS-2026-09-27` (SCA-APP-011 code change; checkpoint-group-3 candidate, lands with the SCA-APP-011 scope text after group-3 acceptance): removes `POST /api/harness/scaffold`, the client helper `scaffoldHarnessExecutionRoot` and the App's `DaemonHarnessPort.scaffold` proxy with its test stubs; `RouteAdapterTestIndex.md` drops its `scaffold-route.test.ts` and `/api/harness/scaffold` rows. SCA-APP-011 closes the scaffold-composition items by removal. No lifecycle change. Evidence: [receipt](../../../_Coordination/AgentRuns/APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md); amendment `execution/_ScopeChange/SCA-APP-011_2026-09-27_0155_Workbench_Pipeline_Forms_and_Deliverable_Routes_Retirement/`.

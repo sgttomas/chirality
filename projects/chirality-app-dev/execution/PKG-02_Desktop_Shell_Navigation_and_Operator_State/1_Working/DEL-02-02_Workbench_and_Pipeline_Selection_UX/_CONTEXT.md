@@ -37,8 +37,9 @@ agent/session selections and current HELP_HUMAN/HELPS_HUMANS/WORKING_ITEMS direc
 source, authority class, responsible reference, currency, and evidence; the
 Workflows view, roadmap, New workflow form, library, and bind actions over
 governed workflow files; and the transcript proposal card rendered from
-`proposal.*` events. Workbench and Pipeline are retired from the active shell
-(code, routes, and tests retained) and the Work projection is unmounted until an
+`proposal.*` events. The Workbench and Pipeline forms are retired (SCA-APP-010
+unmounted them; SCA-APP-011 retired their code and tests) and the Work projection
+is unmounted until an
 explicitly recorded plan/task source exists.
 
 Applied decomposition row L308 (SCA-APP-010 Gate 5, 2026-09-04) notes: DEL-08-02
