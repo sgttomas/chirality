@@ -1,6 +1,6 @@
 basis commit: 6c6cc1b00dd5cc2bf77a5a262d0ac593fc96e240; observation: 6c6cc1b00
 python: Python 3.13.7
-apply_d1p.py sha256: e95c6e2606fbf38db329a4cf33af5715db6f9b9362c683b615c125731d60ed44
+apply_d1p.py sha256: 0793095aa4935df76bd837d6cbd220bef0e34bf5b7970387dd48770c5423f817
 PASS apply_d1p.py equals a fresh rendering at its basis 6c6cc1b00 (template, targets.json, candidates)
 PASS render_candidates check: every target's candidate equals its ledger rendering (RESULT PASS fails=0)
 PASS act mode A: check-only 0 (CHECK preflight passed), apply 0, rerun refuses 1
@@ -15,11 +15,11 @@ PASS checklist mode AP DEL-00-03_SOW: exit 0, rerun byte-identical (sha256 52291
 PASS boundary mode AP DEL-00-03_SOW: exit 0, no UNRESOLVED_OWNER/UNDEFINED_CLAIM (0 NOT_CHECKABLE line(s) for hand resolution)
 INFO checklist diff PRE -> post DEL-00-03_SOW: 2 changed text line(s) (checklist_diff_DEL-00-03_SOW.patch)
 PASS validate mode AP DEL-00-01_SOW: PASS format=SOW_V1
-PASS checklist mode AP DEL-00-01_SOW: exit 0, rerun byte-identical (sha256 f363f7d9e4d3)
+PASS checklist mode AP DEL-00-01_SOW: exit 0, rerun byte-identical (sha256 c1981c7cb62a)
 PASS boundary mode AP DEL-00-01_SOW: exit 0, no UNRESOLVED_OWNER/UNDEFINED_CLAIM (0 NOT_CHECKABLE line(s) for hand resolution)
 INFO checklist diff PRE -> post DEL-00-01_SOW: 0 changed text line(s) (checklist_diff_DEL-00-01_SOW.patch)
 PASS quotes: RESULT PASS 74/74
-PASS state claims: RESULT PASS 134/134
+PASS state claims: RESULT PASS 121/121
 PASS strict identical before/after mode A, export root normalized ( ERROR findings: 0; WARNING findings: 26;exit=1)
 PASS harness identical before/after mode A, export root normalized (exit=0)
 PASS receipts identical before/after mode A, export root normalized (exit=0)
@@ -28,11 +28,11 @@ PASS harness identical before/after mode AP, export root normalized (exit=0)
 PASS receipts identical before/after mode AP, export root normalized (exit=0)
 PASS dependency quote currency identical before/after mode A (SUMMARY active_execution_quotes_verbatim 127/127; TARGET-cited active rows: 0)
 PASS dependency quote currency identical before/after mode AP (SUMMARY active_execution_quotes_verbatim 127/127; TARGET-cited active rows: 0)
-INFO external-quote scan (informational): SUMMARY files_scanned=6106 stale=76 anchor=2198 kept=39291 history-stale=0 history-anchor=30 history-kept=0
+INFO external-quote scan (informational): SUMMARY files_scanned=6106 stale=75 anchor=2198 kept=39292 history-stale=0 history-anchor=30 history-kept=0
 PASS whitespace: no trailing blanks, tabs or CR; final newline (4 candidates)
 INFO diff_DEL-00-03_SPEC.patch (group A): +49 -29 lines
 INFO diff_DEL-00-03_SOW.patch (group A): +20 -17 lines
 INFO diff_DEL-00-01_ADR.patch (group A): +32 -16 lines
-INFO diff_DEL-00-01_SOW.patch (group P): +13 -10 lines
+INFO diff_DEL-00-01_SOW.patch (group P): +3 -2 lines
 PASS fault injection: RESULT PASS 24/24
 OVERALL PASS

@@ -17,4 +17,5 @@ PASS DEL-00-01_ADR S16 csv_cell 189f205ff:projects/pec/execution/_Decomposition/
 PASS DEL-00-01_ADR S17 csv_cell 189f205ff:projects/pec/execution/_Decomposition/ScopeLedger.csv [git=yes; candidate=yes]
 PASS DEL-00-01_ADR S18 contains 189f205ff:projects/pec/docs/PRD.md [git=yes; candidate=yes]
 PASS DEL-00-01_ADR S19 contains 6c6cc1b00:projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md [git=yes; candidate=yes]
-RESULT FAIL 18/19
+PASS DEL-00-01_ADR S20 contains 6c6cc1b00:projects/pec/execution/_Coordination/_DECISIONS/D-PEC-56_shared_runtime_agent_migration.md [git=yes; candidate=yes]
+RESULT FAIL 19/20

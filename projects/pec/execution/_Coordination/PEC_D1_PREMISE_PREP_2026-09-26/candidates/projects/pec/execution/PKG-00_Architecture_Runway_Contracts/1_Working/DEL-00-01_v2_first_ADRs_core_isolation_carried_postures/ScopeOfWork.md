@@ -28,9 +28,9 @@ blocking any governed act" (`SOFTWARE_DECOMP.md` §Objectives, `SourceRef` = §3
 
 **Objective warrant.** The `DEL-00-01` → `OBJ-005` attribution was made by
 `SCA-002` and accepted at `SOFTWARE_DECOMP.md` revision 1.2
-(`session_authorization` D-PEC-64); it remains unchanged in revision 1.3 and
-in revision 1.6, the current successor basis. `OBJ-005`'s mapped scope items
-include `SOW-088` and its mapped deliverables include `DEL-00-01`
+(`session_authorization` D-PEC-64); it remains unchanged in revision 1.3, the
+current successor basis. `OBJ-005`'s mapped scope items include
+`SOW-088` and its mapped deliverables include `DEL-00-01`
 (`SOFTWARE_DECOMP.md` §Objectives). The ruled attribution stands. This contract
 does not restate it as a new derivation — and it records it at the strength the
 Gate 3 record actually gives it, rather than at a strength the record does not
@@ -56,13 +56,11 @@ ADR-014 is historical lineage and the accepted v2 boundary is carried
 independently.
 
 **Basis provenance note.** `_REFERENCES.md` now names `SOFTWARE_DECOMP.md`
-revision 1.6 as the accepted `current_basis`; it named revision 1.3 under the
-reference-parity integration at `af62343d3`. `_CONTEXT.md` retains the
-revision-1.1 to revision-1.2 supersession trace, while SCA-006 establishes
-revision 1.6 as the current successor. The accepted basis bound in this
-contract's frontmatter is revision 1.3 at merge `11a494e9a`. This contract
-cites revision 1.3, except where its premise amendment (AX-008) brings a
-premise current to PRD v2.4 and revision 1.6.
+revision 1.3 as the accepted `current_basis` under the reference-parity
+integration at `af62343d3`. `_CONTEXT.md` retains the revision-1.1 to
+revision-1.2 supersession trace, while SCA-003 establishes revision 1.3 as the
+current successor. The accepted basis bound in this contract's frontmatter is
+revision 1.3 at merge `11a494e9a`. This contract cites revision 1.3.
 
 - **OUT-001** — The v2 ADR recording the decided core isolation style for the PEC v2 service, explicitly identified as the resolution of open issue OI-012.
 - **OUT-002** — The v2 ADR content re-citing ADR-002 as the live carried zero-dependency posture, citing ADR-014 as historical lineage only, and carrying the accepted v2 runtime/client and human-only-act boundary forward without the retired PEC-project-adapter allocation.
@@ -141,7 +139,7 @@ that is not already stated in this contract.
 - **AX-005** — Unknowns remain marked. `TBD-001`, `TBD-002`, and `CON-001` are recorded rather than resolved by inference; OI-012 is the owner's decision at the ADR, and this contract's job is to fix the form that decision must take, not its content.
 - **AX-006** — This contract is lifecycle-neutral. `_STATUS.md` remains the sole lifecycle authority and is untouched by this reconciliation; the deliverable is at `INITIALIZED` and no ADR has been authored.
 - **AX-007** — `C-10` `STRATUM_RULE` is a register-wide non-gating constraint and its own text ends "strata are provenance not authority". Both downstream relations in CLM-007 are `PROPOSAL`, and `[E-N18]` additionally carries `LOW_CONFIDENCE` ("owner may prefer PKG-00 unordered"). `D-PEC-62` §1.4 accepted the exhibit's strata as presented while carrying that flag forward as a recorded-but-unresolved, non-gating annotation. This contract cites both edges at that status: they establish provenance for an expected consumption pattern, and they establish no obligation on this deliverable or on either named consumer.
-- **AX-008** — Premise-amendment provenance. The prior contract bytes (SHA-256 `4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740`) remain history; this contract's bytes are the premise-only amendment of work-graph node D1 (`HELP-HUMAN-PEC-20260925-POST-SCA005`) under an owner-ruled exact-byte packet. Causes: SCA-005 adopted the `D-GOV-43` A2 runtime topology (`docs/PRD.md` v2.4 §4.2 and §15; `SOFTWARE_DECOMP.md` C13), under which the application-owned Runtime service, not Root, owns sessions, delegation, tools, turn locks, and interruption for each App instance, which made false the statement in CLM-005 and REQ-004 that Root owns generic runtime semantics (SCA-005 `Propagation_Plan.md` §B4, row `DEL-00-01`, `STALE_REVIEW_REQUIRED`). The currency wording of the objective warrant and the basis provenance note, stale since the SCA-004 successor and its reference re-pin (`1c6ecc6d9`), was made false again by the SCA-005 and SCA-006 successors and their reference re-pins (`fdc7a2071`, `62230fa46`). Kept IDs whose rule changed: CLM-005 and REQ-004; in each, only the named runtime owner changes. Every kept ID keeps its meaning; no ID is retired or reused, and none is added other than this AX-008. The frontmatter `decomposition_basis` and AX-002 remain this contract's birth basis, revision 1.3 at `11a494e9a`. Every state claim not anchored to a named commit is an observation at `origin/main` `6c6cc1b00`. `docs/PRD.md` v2.4 and `SOFTWARE_DECOMP.md` revision 1.6 are cited as pinned at `189f205ff`.
+- **AX-008** — Premise-amendment provenance. The prior contract bytes (SHA-256 `4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740`) remain history; this contract's bytes are the premise-only amendment of work-graph node D1 (`HELP-HUMAN-PEC-20260925-POST-SCA005`) under an owner-ruled exact-byte packet. Cause: SCA-005 adopted the `D-GOV-43` A2 runtime topology (`docs/PRD.md` v2.4 §4.2 and §15; `SOFTWARE_DECOMP.md` C13), which made false the statement in CLM-005 and REQ-004 that Root owns generic runtime semantics (SCA-005 `Propagation_Plan.md` §B4, row `DEL-00-01`, `STALE_REVIEW_REQUIRED`). Kept IDs whose rule changed: CLM-005 and REQ-004; in each, the named runtime owner and the scope it owns change, from Root's generic runtime semantics to the application-owned Runtime service's sessions, delegation, tools, turn locks, and interruption for each App instance (Root `docs/CONTRACT.md` K-RUNTIME-1). Every kept ID keeps its meaning; no ID is retired or reused, and none is added other than this AX-008. Apart from this amendment the contract cites its birth basis: the frontmatter `decomposition_basis` and AX-002 remain revision 1.3 at `11a494e9a`, and the currency wording of the objective warrant and the basis provenance note, stale since the SCA-004 reference re-pin (`1c6ecc6d9`), is left unchanged and reported for later. Every state claim not anchored to a named commit is an observation at `origin/main` `6c6cc1b00`. `docs/PRD.md` v2.4 and `SOFTWARE_DECOMP.md` C13 are cited as pinned at `189f205ff`.
 
 ## Output and Evaluation Matrix
 

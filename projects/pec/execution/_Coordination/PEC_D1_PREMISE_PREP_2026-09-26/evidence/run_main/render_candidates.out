@@ -1,5 +1,5 @@
 PASS DEL-00-01_ADR 6 hunks; candidate equals ledger rendering; sha256 9e6961ac0b1722e9df3496d46aed730f42fa5e037ec45c6598d290b04cff8387
-PASS DEL-00-01_SOW 5 hunks; candidate equals ledger rendering; sha256 61a31ff030aef5b363dc4f78c5a2e0305f73044af358f0d626fd241c7a81eb88
+PASS DEL-00-01_SOW 3 hunks; candidate equals ledger rendering; sha256 98695572cac1bf362bcb33ce4b0f4c93121f9d44a1e2737d741da5de0ffb0c61
 PASS DEL-00-03_SOW 15 hunks; candidate equals ledger rendering; sha256 a6b57d3f918931fe500559845a5d5beddfadbe75e797c8631c51f4abecd38156
 PASS DEL-00-03_SPEC 22 hunks; candidate equals ledger rendering; sha256 f84c067bf8388cbd348541dd821af040cee4e84fb34fe4e3e3ab473acdd5f617
 RESULT PASS fails=0

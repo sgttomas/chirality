@@ -176,6 +176,14 @@
    "path": "projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md",
    "value": "| D1 Derivative premise review | DEL-00-01 ADRs, DEL-00-03 SPEC",
    "candidate_text": "work-graph node D1 (`HELP-HUMAN-PEC-20260925-POST-SCA005`)"
+  },
+  {
+   "id": "S20",
+   "commit": "6c6cc1b00",
+   "kind": "contains",
+   "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-56_shared_runtime_agent_migration.md",
+   "value": "2. Remove independent LLM, credential, session, delegation, interruption, and model-residency ownership from the PEC agent path.",
+   "candidate_text": "`D-PEC-56` behaviors 2, 4, and 7"
   }
  ]
 }

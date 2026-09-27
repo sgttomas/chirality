@@ -5,22 +5,6 @@
  "hunks": [
   {
    "id": "P01",
-   "locus": "L31-33 (Objective warrant)",
-   "cause": "SCA-005 and SCA-006 successors (revisions 1.5, 1.6; D-PEC-95/D-PEC-101 re-pins); first made false by SCA-004 (revision 1.4) — see report",
-   "pre": "(`session_authorization` D-PEC-64); it remains unchanged in revision 1.3, the\ncurrent successor basis. `OBJ-005`'s mapped scope items include\n`SOW-088` and its mapped deliverables include `DEL-00-01`",
-   "post": "(`session_authorization` D-PEC-64); it remains unchanged in revision 1.3 and\nin revision 1.6, the current successor basis. `OBJ-005`'s mapped scope items\ninclude `SOW-088` and its mapped deliverables include `DEL-00-01`",
-   "why": "Revision 1.3 is no longer the current successor; revision 1.6 is current_basis at 189f205ff and its OBJ-005 row still maps SOW-088 and DEL-00-01. Kept coherent with P02."
-  },
-  {
-   "id": "P02",
-   "locus": "L58-63 (Basis provenance note)",
-   "cause": "D-PEC-95 and D-PEC-101 re-pins of _REFERENCES.md to revisions 1.5 and 1.6 (SCA-005/SCA-006 propagation); first made false by the SCA-004 re-pin 1c6ecc6d9 — see report",
-   "pre": "**Basis provenance note.** `_REFERENCES.md` now names `SOFTWARE_DECOMP.md`\nrevision 1.3 as the accepted `current_basis` under the reference-parity\nintegration at `af62343d3`. `_CONTEXT.md` retains the revision-1.1 to\nrevision-1.2 supersession trace, while SCA-003 establishes revision 1.3 as the\ncurrent successor. The accepted basis bound in this contract's frontmatter is\nrevision 1.3 at merge `11a494e9a`. This contract cites revision 1.3.",
-   "post": "**Basis provenance note.** `_REFERENCES.md` now names `SOFTWARE_DECOMP.md`\nrevision 1.6 as the accepted `current_basis`; it named revision 1.3 under the\nreference-parity integration at `af62343d3`. `_CONTEXT.md` retains the\nrevision-1.1 to revision-1.2 supersession trace, while SCA-006 establishes\nrevision 1.6 as the current successor. The accepted basis bound in this\ncontract's frontmatter is revision 1.3 at merge `11a494e9a`. This contract\ncites revision 1.3, except where its premise amendment (AX-008) brings a\npremise current to PRD v2.4 and revision 1.6.",
-   "why": "At 6c6cc1b00 _REFERENCES.md names revision 1.6 (D-PEC-101 re-pin 62230fa46) and SCA-006 established revision 1.6; the frontmatter birth basis is kept; the last sentence must admit the amendment's current citations."
-  },
-  {
-   "id": "P03",
    "locus": "L81 (CLM-005, third sentence)",
    "cause": "SCA-005 Propagation_Plan §B4 row DEL-00-01 (C13/D-GOV-43 runtime-ownership premise, STALE_REVIEW_REQUIRED); IA row 308; INV-130",
    "pre": "The live carried boundary is limited to Root ownership of generic runtime semantics, PEC as an optional client with no second execution loop, and the surviving human-only-act restrictions.",
@@ -28,20 +12,20 @@
    "why": "Root ownership of generic runtime semantics (PRD v2.2 §15, D-GOV-20) is superseded on the App MVP Codex path by D-GOV-43 A2 (PRD v2.4 §15; K-RUNTIME-1); the optional-client, no-second-loop and human-only-act clauses stand."
   },
   {
-   "id": "P04",
+   "id": "P02",
    "locus": "L99 (REQ-004, second sentence)",
-   "cause": "SCA-005 Propagation_Plan §B4 row DEL-00-01; INV-130 note (same premise in REQ-004)",
+   "cause": "SCA-005 Propagation_Plan §B4 row DEL-00-01 (C13/D-GOV-43 runtime-ownership premise, STALE_REVIEW_REQUIRED); found by review: REQ-004 restates CLM-005's 'Root owns generic runtime semantics' verbatim (INV-130 names CLM-005 and, in its note, REQ-005/AC-003/AX-004, not REQ-004)",
    "pre": "Root owns generic runtime semantics; PEC remains an optional client",
    "post": "the application-owned Runtime service owns sessions, delegation, tools, turn locks, and interruption for each App instance (`D-GOV-43` A2); PEC remains an optional client",
    "why": "Same premise as CLM-005, which REQ-004 restates; the rest of REQ-004 is unchanged."
   },
   {
-   "id": "P05",
+   "id": "P03",
    "locus": "after L141 (new AX-008)",
    "cause": "D1 brief rule 5 (one provenance AX)",
    "pre": "they establish no obligation on this deliverable or on either named consumer.\n",
-   "post": "they establish no obligation on this deliverable or on either named consumer.\n- **AX-008** — Premise-amendment provenance. The prior contract bytes (SHA-256 `4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740`) remain history; this contract's bytes are the premise-only amendment of work-graph node D1 (`HELP-HUMAN-PEC-20260925-POST-SCA005`) under an owner-ruled exact-byte packet. Causes: SCA-005 adopted the `D-GOV-43` A2 runtime topology (`docs/PRD.md` v2.4 §4.2 and §15; `SOFTWARE_DECOMP.md` C13), under which the application-owned Runtime service, not Root, owns sessions, delegation, tools, turn locks, and interruption for each App instance, which made false the statement in CLM-005 and REQ-004 that Root owns generic runtime semantics (SCA-005 `Propagation_Plan.md` §B4, row `DEL-00-01`, `STALE_REVIEW_REQUIRED`). The currency wording of the objective warrant and the basis provenance note, stale since the SCA-004 successor and its reference re-pin (`1c6ecc6d9`), was made false again by the SCA-005 and SCA-006 successors and their reference re-pins (`fdc7a2071`, `62230fa46`). Kept IDs whose rule changed: CLM-005 and REQ-004; in each, only the named runtime owner changes. Every kept ID keeps its meaning; no ID is retired or reused, and none is added other than this AX-008. The frontmatter `decomposition_basis` and AX-002 remain this contract's birth basis, revision 1.3 at `11a494e9a`. Every state claim not anchored to a named commit is an observation at `origin/main` `6c6cc1b00`. `docs/PRD.md` v2.4 and `SOFTWARE_DECOMP.md` revision 1.6 are cited as pinned at `189f205ff`.\n",
-   "why": "Required premise-amendment provenance AX, next unused number (AX-001..AX-007 exist)."
+   "post": "they establish no obligation on this deliverable or on either named consumer.\n- **AX-008** — Premise-amendment provenance. The prior contract bytes (SHA-256 `4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740`) remain history; this contract's bytes are the premise-only amendment of work-graph node D1 (`HELP-HUMAN-PEC-20260925-POST-SCA005`) under an owner-ruled exact-byte packet. Cause: SCA-005 adopted the `D-GOV-43` A2 runtime topology (`docs/PRD.md` v2.4 §4.2 and §15; `SOFTWARE_DECOMP.md` C13), which made false the statement in CLM-005 and REQ-004 that Root owns generic runtime semantics (SCA-005 `Propagation_Plan.md` §B4, row `DEL-00-01`, `STALE_REVIEW_REQUIRED`). Kept IDs whose rule changed: CLM-005 and REQ-004; in each, the named runtime owner and the scope it owns change, from Root's generic runtime semantics to the application-owned Runtime service's sessions, delegation, tools, turn locks, and interruption for each App instance (Root `docs/CONTRACT.md` K-RUNTIME-1). Every kept ID keeps its meaning; no ID is retired or reused, and none is added other than this AX-008. Apart from this amendment the contract cites its birth basis: the frontmatter `decomposition_basis` and AX-002 remain revision 1.3 at `11a494e9a`, and the currency wording of the objective warrant and the basis provenance note, stale since the SCA-004 reference re-pin (`1c6ecc6d9`), is left unchanged and reported for later. Every state claim not anchored to a named commit is an observation at `origin/main` `6c6cc1b00`. `docs/PRD.md` v2.4 and `SOFTWARE_DECOMP.md` C13 are cited as pinned at `189f205ff`.\n",
+   "why": "One provenance AX per the D1 brief rule 5; records the SCA-005 cause, the changed rules (owner and owned scope; K-RUNTIME-1 for the enumerated list), the birth basis, and that the SCA-004-era currency wording is left and reported (verdicts 02 and 03)."
   }
  ]
 }

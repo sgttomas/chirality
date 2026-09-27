@@ -63,7 +63,7 @@ TARGETS = {
     E + "PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md":
         ("P", "DEL-00-01_SOW",
          "4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740",
-         "61a31ff030aef5b363dc4f78c5a2e0305f73044af358f0d626fd241c7a81eb88"),
+         "98695572cac1bf362bcb33ce4b0f4c93121f9d44a1e2737d741da5de0ffb0c61"),
 }
 # Read-only files the act re-verifies before and after the write.
 # Rendered by build_apply_d1p.py at basis commit 6c6cc1b00dd5cc2bf77a5a262d0ac593fc96e240 (6c6cc1b00); PINNED values and preimages read there.
