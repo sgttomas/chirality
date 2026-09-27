@@ -3,7 +3,7 @@
 @@ -8,6 +8,16 @@
  `projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.3 at
  commit `11a494e9a`, accepted through SCA-003.
- 
+
 +**Premise amendment:** premises that SCA-005 and SCA-006 made false are
 +brought current to `projects/pec/docs/PRD.md` v2.4 and decomposition
 +revision 1.6 (`current_basis`, accepted at `189f205ff`), under an
@@ -16,9 +16,9 @@
 +
  **Deliverable:** DEL-00-03; **scope item:** SOW-089; **recorded objective:**
  OBJ-001, with the accepted SCA-002 LOW-confidence qualification retained.
- 
+
 @@ -15,12 +25,12 @@
- 
+
  This is the pre-P1 seed of the PEC v2 product specification. It derives its
  structure from the accepted objectives, work-domain packages, deliverables,
 -scope items, and PRD v2.2 requirement identifiers (`SOW-089`, `DEL-00-03`). It
@@ -26,7 +26,7 @@
  specifies the coordination-plane product; it does not assert that any PEC v2
  capability is implemented or accepted (`PKG-00`; `DEL-00-03` REQ-001,
  REQ-002, and REQ-012).
- 
+
 -The requirement source is PRD v2.2: 46 `PEC-*-NNN` requirements, 11 `PEC-K-*`
 +The requirement source is PRD v2.4: 49 `PEC-*-NNN` requirements, 11 `PEC-K-*`
  invariants, product outcomes, the modes ladder, metrics/falsification posture,
@@ -42,14 +42,14 @@
  | PEC-K-05 | Record and presence trust tiers never blur. |
  | PEC-K-06 | PEC observes and explains; it does not dispatch, arbitrate, lease, or block. |
 @@ -59,32 +69,34 @@
- 
+
  ## 3. Product capabilities
- 
+
 -The following table carries the full 46-requirement catalogue by accepted PRD
 +The following table carries the full 49-requirement catalogue by accepted PRD
  family. The PRD rows are the normative requirement text; this seed groups them
  without replacing them.
- 
+
  | Family | IDs | Specified capability | Accepted scope |
  |---|---|---|---|
 -| Orientation | PEC-ORI-001..006 | Per-loop orientation, deltas, SHA/freshness stamps, per-claim citations, scope parameters, and explicit limitations | SOW-004..009 |
@@ -65,7 +65,7 @@
 +| API | PEC-API-001..007 | Local token-scoped service, ≤100 ms p95 orientation, additive schema, compact cited responses, SSE subscription, response-size budgets, and a read-only agent tool-call query surface | SOW-003, SOW-040..044, SOW-098, SOW-099 |
  | Dashboards | PEC-DSH-001..007 | Overview, lifecycle census, source-linked registers/slate, presence board, drill-down, and Explain-shaped pressure rules | SOW-045..051 |
  | Service | PEC-SVC-001..006 | Dependency-free core, local/no-egress posture, bounded reconcile, kill test, gitignored content-minimal store, and self-observability | SOW-052..057 |
- 
+
  Measurement and release proof remain separate work: Step-0 cost, defect rate,
  consumer uptake, collision incidents, parity, kill/no-ruling-write checks,
 -seeded conflict, TTL honesty, stream-loss recovery, and directed bootstrap
@@ -75,9 +75,9 @@
 +evidence, and the §12 standing reliance-advertisement gate (`SOW-025`,
 +`SOW-055`, `SOW-058`..`SOW-064`, `SOW-084`, `SOW-085`, `SOW-093`,
 +`SOW-100`).
- 
+
  ## 4. Information model
- 
+
 -The record tier models Loop, Workplan/Step/Gate, Receipt, DecisionRow, Fence,
 -Package (entity)/Deliverable (entity), DependencyEdge, RunRecord,
 -CandidateBrief, OrientationSnapshot, and DriftFinding from governed sources
@@ -89,9 +89,9 @@
  PresenceRecord, HierarchyEdge, and ScopeClaim as TTL'd operational data that is
  never record-tier citable (`SOW-002`; PEC-K-05).
 @@ -111,26 +123,26 @@
- 
+
  ## 6. Work-domain package and deliverable structure
- 
+
 -All 11 accepted work-domain packages and all 64 deliverables are represented
 -below. The concise ID lists are deliberate: detailed names, types, envelopes,
 -phase hints, and scope mappings remain normative in `Deliverables.csv` and
@@ -100,7 +100,7 @@
 +four retired under SCA-005) are represented below. The concise ID lists are
 +deliberate: detailed names, types, envelopes, phase hints, and scope mappings
 +remain normative in `Deliverables.csv` and `SOFTWARE_DECOMP.md` §5.
- 
+
  | Work-domain package | Role | Deliverables |
  |---|---|---|
  | PKG-00 Architecture Runway & Contracts | Publish ADR, SPEC, and event contracts; no consuming implementation | DEL-00-01..03 |
@@ -120,7 +120,7 @@
  | PKG-09 Dashboards | Source-linked owner views and Explain-shaped pressure rules | DEL-09-01..07 |
 -| PKG-10 Validation & Measurement | Release proof and metrics; not the behaviors under test | DEL-10-01..12 |
 +| PKG-10 Validation & Measurement | Release proof and metrics; not the behaviors under test | DEL-10-01..13 |
- 
+
 -The accepted scope ledger contains 94 items: 72 IN, 14 OUT, and 8 TBD. This
 +The accepted scope ledger contains 100 items: 74 IN, 18 OUT, and 8 TBD. This
  seed does not reproduce all row prose because `ScopeLedger.csv` is the
@@ -128,7 +128,7 @@
  above are a complete structural index into it (`SOFTWARE_DECOMP.md` §7).
 @@ -143,8 +155,10 @@
  cadence (`PEC-K-03`, `PEC-K-11`; PRD.md §5).
- 
+
  Delivery follows P0 governance, D1 decomposition, P1 one-loop reconciliation
 -and read API, P2 dashboards, P3 optional integration interfaces/presence/Git
 -observation, and P4 streams/live hierarchy. P1 first ingests PEC v2's own
@@ -140,7 +140,7 @@
  predecessors, and file-native fallback remains operable (`SOW-064`; PRD.md
  §12). This seed is pre-P1 and asserts no phase completion.
 @@ -153,7 +167,13 @@
- 
+
  The accepted basis retains OI-001, OI-002, and OI-004..009 for register
  structure, global event feed, long-term placement, UI packaging, auth reuse,
 -name, receipt contract, and contract-home/API-transport choices. OI-003

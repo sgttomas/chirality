@@ -12,7 +12,7 @@
         "document": "ScopeOfWork.md",
         "line": 111,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a6b57d3f918931fe500559845a5d5beddfadbe75e797c8631c51f4abecd38156"
+        "sha256": "0fed4ecb771ccef8f8575dd08420e13792629cd7ac9d14f720423eba6c2ae843"
       },
       "text": "The SPEC markdown exists at the packet-recorded path, that path is recorded in this deliverable's packet before the artifact is treated as consumable, and the change set that produced it touches no path outside `PKG-00`.",
       "verification": [
@@ -37,7 +37,7 @@
         "document": "ScopeOfWork.md",
         "line": 112,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a6b57d3f918931fe500559845a5d5beddfadbe75e797c8631c51f4abecd38156"
+        "sha256": "0fed4ecb771ccef8f8575dd08420e13792629cd7ac9d14f720423eba6c2ae843"
       },
       "text": "Every package, deliverable, objective, and scope item named in the seed resolves to a row of the accepted registers at the bound basis; the seed introduces none that is absent from that basis, and any scoped subset of the 11 packages or 64 deliverables it carries is stated as a subset with its reason.",
       "verification": [
@@ -70,7 +70,7 @@
         "document": "ScopeOfWork.md",
         "line": 113,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a6b57d3f918931fe500559845a5d5beddfadbe75e797c8631c51f4abecd38156"
+        "sha256": "0fed4ecb771ccef8f8575dd08420e13792629cd7ac9d14f720423eba6c2ae843"
       },
       "text": "Every specification claim in the seed carries a citation that resolves to a `PRD.md` v2.4 requirement or invariant identifier or to an accepted decomposition identifier; a citation-resolution pass finds no unresolvable, invented, or retired-family identifier presented as live.",
       "verification": [
@@ -103,7 +103,7 @@
         "document": "ScopeOfWork.md",
         "line": 114,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a6b57d3f918931fe500559845a5d5beddfadbe75e797c8631c51f4abecd38156"
+        "sha256": "0fed4ecb771ccef8f8575dd08420e13792629cd7ac9d14f720423eba6c2ae843"
       },
       "text": "The seed states the accepted basis revision and commit in its own text, and that statement equals the basis bound in this contract's frontmatter or a later accepted successor named as such.",
       "verification": [
@@ -128,7 +128,7 @@
         "document": "ScopeOfWork.md",
         "line": 115,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a6b57d3f918931fe500559845a5d5beddfadbe75e797c8631c51f4abecd38156"
+        "sha256": "0fed4ecb771ccef8f8575dd08420e13792629cd7ac9d14f720423eba6c2ae843"
       },
       "text": "The seed contains no requirement, invariant, objective, package, deliverable, or scope item that is absent from the accepted basis, and no v1.0 or v0.4 identifier family is used for a v2 identifier.",
       "verification": [
@@ -169,7 +169,7 @@
         "document": "ScopeOfWork.md",
         "line": 116,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a6b57d3f918931fe500559845a5d5beddfadbe75e797c8631c51f4abecd38156"
+        "sha256": "0fed4ecb771ccef8f8575dd08420e13792629cd7ac9d14f720423eba6c2ae843"
       },
       "text": "Wherever the seed references the archived baseline `SPEC.md`, `TRACEABILITY.md`, `PILOT.md`, or `ADR-001..014`, the reference is marked historical, and none of them is cited as live authority.",
       "verification": [
@@ -202,7 +202,7 @@
         "document": "ScopeOfWork.md",
         "line": 117,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a6b57d3f918931fe500559845a5d5beddfadbe75e797c8631c51f4abecd38156"
+        "sha256": "0fed4ecb771ccef8f8575dd08420e13792629cd7ac9d14f720423eba6c2ae843"
       },
       "text": "The seed's own text states that it was seeded before P1 from the accepted basis, that it is amended per phase under governed updates, and what it does not acquire between amendments.",
       "verification": [
@@ -227,7 +227,7 @@
         "document": "ScopeOfWork.md",
         "line": 118,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a6b57d3f918931fe500559845a5d5beddfadbe75e797c8631c51f4abecd38156"
+        "sha256": "0fed4ecb771ccef8f8575dd08420e13792629cd7ac9d14f720423eba6c2ae843"
       },
       "text": "After publication, the accepted decomposition shows `OI-003` resolved by D-PEC-78 O-A and SCA-004; `OI-001`, `OI-002`, `OI-004`..`OI-009`, `OI-012`, and `OI-013` retain their accepted dispositions, and the remaining §16-derived `TBD` scope items remain `TBD`.",
       "verification": [
@@ -252,7 +252,7 @@
         "document": "ScopeOfWork.md",
         "line": 119,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a6b57d3f918931fe500559845a5d5beddfadbe75e797c8631c51f4abecd38156"
+        "sha256": "0fed4ecb771ccef8f8575dd08420e13792629cd7ac9d14f720423eba6c2ae843"
       },
       "text": "The seed is complete before any P1 node starts, it declares no dependency on a P1 or later deliverable, and it asserts no consumer obligation on any deliverable the accepted text does not name.",
       "verification": [
@@ -277,7 +277,7 @@
         "document": "ScopeOfWork.md",
         "line": 120,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a6b57d3f918931fe500559845a5d5beddfadbe75e797c8631c51f4abecd38156"
+        "sha256": "0fed4ecb771ccef8f8575dd08420e13792629cd7ac9d14f720423eba6c2ae843"
       },
       "text": "Terminology in the seed conforms to the accepted vocabulary map, and every use of \"package\" is disambiguated in the sense §9 requires.",
       "verification": [
@@ -302,7 +302,7 @@
         "document": "ScopeOfWork.md",
         "line": 121,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a6b57d3f918931fe500559845a5d5beddfadbe75e797c8631c51f4abecd38156"
+        "sha256": "0fed4ecb771ccef8f8575dd08420e13792629cd7ac9d14f720423eba6c2ae843"
       },
       "text": "An accountable owner confirms that the published seed is the v2 SPEC of record born from the accepted decomposition, and confirms that the seed's single-objective attribution to `OBJ-001` remains acceptable given the recorded LOW-confidence qualification and the unadopted alternatives.",
       "verification": [
@@ -321,7 +321,7 @@
     "migration_authority": null,
     "package_id": "PKG-00",
     "schema": "chirality-deliverable-sow/v1",
-    "sha256": "a6b57d3f918931fe500559845a5d5beddfadbe75e797c8631c51f4abecd38156"
+    "sha256": "0fed4ecb771ccef8f8575dd08420e13792629cd7ac9d14f720423eba6c2ae843"
   },
   "tool_version": "1"
 }

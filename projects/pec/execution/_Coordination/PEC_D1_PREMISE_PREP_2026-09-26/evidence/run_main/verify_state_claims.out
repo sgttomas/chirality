@@ -33,6 +33,8 @@ PASS DEL-00-01_SOW S21 ancestor 1c6ecc6d9: [git=yes; candidate=yes]
 PASS DEL-00-01_SOW S22 contains 65955cceb:projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md [git=yes; candidate=yes]
 PASS DEL-00-01_SOW S23 ancestor 65955cceb: [git=yes; candidate=yes]
 PASS DEL-00-01_SOW S24 contains 6c6cc1b00:projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md [git=yes; candidate=yes]
+PASS DEL-00-01_SOW S25 contains 6c6cc1b00:docs/CONTRACT.md [git=yes; candidate=yes]
+PASS DEL-00-01_SOW S26 contains 6c6cc1b00:docs/DIRECTIVE.md [git=yes; candidate=yes]
 PASS DEL-00-03_SOW S01 sha256 6c6cc1b00:projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md [git=yes; candidate=yes]
 PASS DEL-00-03_SOW S02 contains 189f205ff:projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md [git=yes; candidate=yes]
 PASS DEL-00-03_SOW S03 contains 189f205ff:projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md [git=yes; candidate=yes]
@@ -122,4 +124,4 @@ PASS DEL-00-03_SPEC S53 contains 189f205ff:projects/pec/execution/_Decomposition
 PASS DEL-00-03_SPEC S54 contains 189f205ff:projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md [git=yes; candidate=yes]
 PASS DEL-00-03_SPEC S55 contains 189f205ff:projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md [git=yes; candidate=yes]
 PASS DEL-00-03_SPEC S56 contains 189f205ff:projects/pec/docs/PRD.md [git=yes; candidate=yes]
-RESULT PASS 124/124
+RESULT PASS 126/126

@@ -1,3 +1,4 @@
+STALE DEL-00-03_SOW projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/ScopeOfWork.md:214 'SOFTWARE_DECOMP.md@11a494e9a'
 STALE DEL-00-03_SOW projects/pec/execution/_Coordination/PEC_SOW_CURRENCY_S4_PREP_2026-09-26/candidates/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/ScopeOfWork.md:214 'SOFTWARE_DECOMP.md@11a494e9a'
 STALE DEL-00-03_SOW projects/pec/execution/_Coordination/PEC_SOW_CURRENCY_S4_PREP_2026-09-26/claims/DEL-04-02.json:161 'SOFTWARE_DECOMP.md@11a494e9a'
 STALE DEL-00-03_SOW projects/pec/execution/_Coordination/PEC_SOW_CURRENCY_S4_PREP_2026-09-26/claims/DEL-04-03.json:144 'decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@11a494e9a'
@@ -13,6 +14,12 @@ STALE DEL-00-01_ADR projects/pec/execution/_Coordination/SCA-005_PREP_2026-09-23
 STALE DEL-00-01_ADR projects/pec/execution/_Coordination/SCA-005_PREP_2026-09-23/IMPACT_INVENTORY_PEC_BASIS.csv:182 "PEC's runtime-client seam is an adapter under ADR-PEC-V2-001."
 STALE DEL-00-03_SPEC projects/pec/execution/_Coordination/SCA-005_PREP_2026-09-23/IMPACT_INVENTORY_PEC_BASIS.csv:183 'The record tier models Loop, Workplan/Step/Gate, Receipt, DecisionRow, Fence,'
 STALE DEL-00-03_SPEC projects/pec/execution/_Coordination/SCA-005_PREP_2026-09-23/IMPACT_INVENTORY_PEC_BASIS.csv:184 'Durable ingest and declared daemon/hook/cmux/runtime-client bridges'
+STALE DEL-00-03_SOW projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/candidates/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/ScopeOfWork.md:214 'SOFTWARE_DECOMP.md@11a494e9a'
+STALE DEL-00-03_SOW projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/claims/DEL-04-02.json:161 'SOFTWARE_DECOMP.md@11a494e9a'
+STALE DEL-00-03_SOW projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/claims/DEL-04-03.json:144 'decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@11a494e9a'
+STALE DEL-00-03_SOW projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/claims/DEL-08-01.json:120 'decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@11a494e9a'
+STALE DEL-00-03_SOW projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/claims/DEL-08-03.json:1344 'decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@11a494e9a'
+STALE DEL-00-03_SOW projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/claims/DEL-08-04.json:636 'SOFTWARE_DECOMP.md@11a494e9a'
 STALE DEL-00-03_SOW projects/pec/execution/_Coordination/TM-PEC-014_SPEC_CURRENCY_2026-08-09/REVISION_01_RF-002_RF-003_2026-08-09/DEL-00-03_REVIEW_CHECKLIST.json:75 'Every specification claim in the seed carries a citation that resolves to a `PRD.md` v2.2 requirement or invariant identifier or to an accepted decomposition id'
 STALE DEL-00-03_SPEC projects/pec/execution/_Coordination/_DECISIONS/D-PEC-90_agent_reliance_on_pec_data_proposal_2026-09-25.md:65 'an enabled consumer owns use and verify-before-rely'
 STALE DEL-00-03_SPEC projects/pec/execution/_Coordination/_TaskManagement/HANDOFF_TM-PEC-014_DEL-00-03_SPEC_CURRENCY.md:78 'name, receipt contract, and contract-home/API-transport choices. OI-003'
@@ -2301,4 +2308,4 @@ ANCHOR DEL-00-01_ADR projects/pec/loop/LOOP_RECEIPTS.md:1424 full f63ecc2725b2
 ANCHOR DEL-00-01_ADR projects/pec/loop/LOOP_RECEIPTS.md:1443 full f63ecc2725b2
 ANCHOR DEL-00-03_SOW projects/pec/loop/LOOP_RECEIPTS.md:1849 full 3e4f0efc7758
 ANCHOR DEL-00-03_SPEC projects/pec/loop/LOOP_RECEIPTS.md:1850 full cc9f4754ac3d
-SUMMARY files_scanned=6106 stale=75 anchor=2198 kept=39292 history-stale=0 history-anchor=30 history-kept=0
+SUMMARY files_scanned=6380 stale=82 anchor=2198 kept=43231 history-stale=0 history-anchor=30 history-kept=0

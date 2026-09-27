@@ -3,7 +3,7 @@
 @@ -9,6 +9,16 @@
  `projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.3 at
  `11a494e9a`, accepted through SCA-003.
- 
+
 +**Premise amendment:** premises that SCA-005 and SCA-006 made false are
 +brought current to `projects/pec/docs/PRD.md` v2.4 and decomposition
 +revision 1.6 (`current_basis`, accepted at `189f205ff`), under an
@@ -15,7 +15,7 @@
 +is recorded here.
 +
  ## ADR-PEC-V2-001 — Hexagonal application isolation
- 
+
  - Status: DECIDED by D-PEC-72 O-B
 @@ -51,10 +61,11 @@
     grain and PKG-02/06/store + PKG-07/08/09 edge grain (OI-012).
@@ -34,9 +34,9 @@
     port contract is typed and versioned. Commands, queries, events, results,
     errors, and compatibility behavior belong to that contract to the extent
 @@ -81,8 +92,8 @@
- 
+
  ### Consequences
- 
+
 -- Filesystem grammars, the projection store, Git observation, daemon/hook/cmux
 -  bridges, Unix-socket/API transport, and dashboards can be replaced without
 +- Filesystem grammars, the projection store, Git observation, the hooks CLI
@@ -51,9 +51,9 @@
 -Root-runtime / optional-client / human-only-act boundary (`SOW-088`;
 +runtime-ownership / optional-client / human-only-act boundary (`SOW-088`;
  `DEL-00-01` REQ-003..005).
- 
+
  ### Carried posture
-@@ -141,15 +152,20 @@
+@@ -141,15 +152,19 @@
     allocation of deterministic acts, RBAC, reporting, visibility, and data
     boundaries to an old PEC project-adapter service. That allocation is not a
     PEC v2 requirement and is not re-adopted here.
@@ -67,10 +67,9 @@
 -   transfer Root runtime ownership into PEC and does not restore the retired
 -   v0.4 project-adapter allocation (`SOW-087`).
 +3. **The surviving live boundary is independent of ADR-014:** for each App
-+   instance, the application-owned Runtime service owns the stock
-+   `codex app-server` child together with sessions, delegation, tools, turn
-+   locks, and interruption; credentials are custodied by Codex, and
-+   local-model residency is retired (`D-GOV-43` A2, superseding `D-GOV-20`
++   instance, the application-owned Runtime service owns sessions, delegation,
++   tools, turn locks, and interruption; credentials are custodied by Codex,
++   and local-model residency is retired (`D-GOV-43` A2, superseding `D-GOV-20`
 +   items 2–4 on that path; Root `docs/CONTRACT.md` K-RUNTIME-1); PEC is an
 +   optional client and starts no second execution loop; adoption, ruling,
 +   acceptance, rejection, force, and other human-only acts remain
@@ -80,6 +79,6 @@
 +   under ADR-PEC-V2-001 if taken up. It does not transfer runtime ownership
 +   into PEC and does not restore the retired v0.4 project-adapter allocation
 +   (`SOW-087`, deferred OUT; PRD v2.4 §13).
- 
+
  ### Consequences and boundary
- 
+
