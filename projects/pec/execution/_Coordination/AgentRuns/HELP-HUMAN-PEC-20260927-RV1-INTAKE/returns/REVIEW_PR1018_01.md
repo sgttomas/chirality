@@ -148,12 +148,12 @@ Verdict **FAIL**, with one blocking finding. Dispositions:
 - **N5: repaired.** The `_LATEST.md` pointer is aligned in the register row and the graph.
 - **N6: repaired.** `D-PEC-107` grants no `MEMORY.md` path. The graph and the record say RV1 is recorded in the graph and receipt only, unless the owner grants rows at closeout.
 - **N7: repaired.** The method basis now pins its four file hashes.
-- **Risks (a)–(c): repaired in the record and the RV1 brief.**
+- **Risks (a)–(c): repaired in the record, and carried into the RV1 brief when it is dispatched.**
   - No CRITICAL or MAJOR finding is recorded as DEFERRED.
   - There is no transition, and Gate 5 is not entered, as on 2026-08-09.
   - The agent reviewer's identity and independence are named.
 - **Notes:**
-  - CU-001's carry-forward is now stated in the record and the brief.
+  - CU-001's carry-forward is now stated in the record, and carried into the RV1 brief.
   - The K3 wording notes go on the K3 row.
   - The register state now reads "DIRECTION OF RECORD".
   - The STATUS K3 tense is repaired. The owner-gates header note is left as it is.
