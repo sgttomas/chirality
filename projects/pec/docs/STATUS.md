@@ -287,7 +287,8 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     follow at closeout. Done: the first SOWs for DEL-02-08/09
     (`D-PEC-98` A + S + M, ruled 2026-09-26): both contracts written,
     re-pinned to revision 1.6, validated and independently verified, and
-    both deliverables `INITIALIZED` (run root
+    both deliverables then `INITIALIZED` (now `IN_PROGRESS` under
+    `D-PEC-106`; run root
     `execution/_Coordination/SOW_INIT_D98_2026-09-26/`); their `MEMORY.md`
     files come at the undertaking's closeout;
   - DEL-00-01/00-03 derivative review;
@@ -295,7 +296,8 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     (option A, PEC's row migrated to `shared-dev-loop`) on 2026-09-26, and its
     act merged the same day as PR #950
     (`execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md`);
-  - P1 fixtures;
+  - done: P1 fixtures (X1, `D-PEC-106`, above); the parser production
+    packets follow;
   - done: residual `projects/pec/AGENTS.md` corrections, applied in the
     SCA-006 instruction tranche and accepted with checkpoint 3;
   - the D-PEC-90 reliance amendment. This is scope change SCA-006. The

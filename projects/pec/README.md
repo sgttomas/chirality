@@ -22,7 +22,7 @@ rows `D-PEC-67`, v2.2 `D-PEC-68`. **New here? Read
 
 ## State
 
-Early P1 implementation (present-current as of 2026-09-26, `D-PEC-86` §3
+Early P1 implementation (present-current as of 2026-09-27, `D-PEC-86` §3
 I-5 and `D-PEC-88`). Decomposition revision 1.6 is the accepted current basis after
 `SCA-006` (owner checkpoint-3 acceptance 2026-09-26); before it, revision 1.5
 after `SCA-005` and revision 1.4 after `SCA-004` under `D-PEC-78` O-A. PROJECT_SETUP has materialized the

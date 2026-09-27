@@ -69,3 +69,5 @@ Every command, exit code and output: `X1_FIXTURES_2026-09-27/VALIDATION.md` and 
 ## Limits
 
 No lifecycle change other than add-on L's three `INITIALIZED → IN_PROGRESS`. No dependency `SatisfactionStatus` written. No `CON` resolved. No CHECKING, ISSUED, REVIEW gate, acceptance, readiness, release or reliance claim, and nothing here asks about CHECKING.
+
+*HELP_HUMAN note, added after PR #1008 review 01:* the review-01 repair appended one line to `VALIDATION.md` and regenerated its `SHA256SUMS` entry. Any hashes of those two files given in the hand-back report are superseded: `VALIDATION.md` is now `138fa1f30b6eb4a9f52e1c4ac46a0bef002c53588fb63302f63cf88eed2b1727` and `SHA256SUMS` is now `779a755b361c9a6be02346090f12204e5e4abd2102e18bd6dc3b860ddad191c6`.
