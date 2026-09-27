@@ -253,7 +253,8 @@ Current owner gates (2026-09-27; none is accepted or inferred here):
   `_COORDINATION.md` records them as superseded for current state.
 
   Open:
-  - SOW currency (S1, S2, S4). The owner ruled the S2 rebuild `D-PEC-100`
+  - SOW currency (S1, S2, S4): all three acts done (below); open only their
+    `MEMORY.md` records at closeout. The owner ruled the S2 rebuild `D-PEC-100`
     (seven contracts: DEL-01-01, DEL-01-06, DEL-02-03..07) on 2026-09-26.
     Done: its act replaced the seven contracts with the ruled bytes (no
     lifecycle change; DEL-02-07 carries the four `D-PEC-99` Part B items
@@ -273,8 +274,9 @@ Current owner gates (2026-09-27; none is accepted or inferred here):
     currency-only) A + M on 2026-09-27. Done: its act replaced the twelve
     contracts with the ruled bytes (no lifecycle change; DEL-01-03 and
     DEL-01-05 requirement, acceptance and verification lines unchanged; the
-    owner's DEL-03-01 exact-byte acceptance lapsed and the `D-PEC-77`
-    DEL-01-05 acceptance is history; run root
+    owner's DEL-03-01 exact-byte acceptance lapsed, and the `D-PEC-77`
+    DEL-01-05 acceptance and the separate 2026-08-03 exact-artifact
+    acceptance are history; run root
     `execution/_Coordination/SOW_CURRENCY_S1_2026-09-27/`); the `MEMORY.md`
     records follow at closeout. The owner ruled the D1 premise packet `D-PEC-105`
     (DEL-00-01 ADRs and contract, DEL-00-03 SPEC and contract;

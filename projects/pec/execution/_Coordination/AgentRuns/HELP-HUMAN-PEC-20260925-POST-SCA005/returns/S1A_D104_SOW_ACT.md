@@ -19,7 +19,7 @@ work-graph node S1 (the act). Brief `S1A.md` `b60d21db…296a`, copied unchanged
 
 1. **Preconditions (all met).** Fetched `origin/main` `16010b4ca` carries the ruling
    (`bb88deb5…1bd`) and the register row `D-PEC-104` `RULED A / PART B, SCOPE AND Q4
-   CONFIRMED / M / EFFECTIVE ON MERGE`; the proposal hashes `35301840…6f51`; the prep
+   CONFIRMED / M / EFFECTIVE ON MERGE`; the proposal hashes `35301840…5f51`; the prep
    `SHA256SUMS` checks 158/158; since `b0a9a52b6` no S1 target or pin changed (the S1
    prep folder, the ruling and Piping only). Reliance preflight `dispatch-for-production`
    ALLOW ×12 at 17:18:24Z. `apply_s1p.py --check-only` exit 0 with all 12 preimages and
