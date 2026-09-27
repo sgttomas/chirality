@@ -34,8 +34,9 @@ The candidate writes the accepted scope text: 126 of 127 edits in 16 files.
   DEL-07-04, DEL-07-05, DEL-08-03 and DEL-09-03.
 - Three `_CONTEXT.md` files: DEL-02-02, DEL-07-04 and DEL-08-03.
 
-E47 is withheld until acceptance. No `_STATUS.md`, `Dependencies.csv`,
-companion register or code is changed.
+E47 is withheld until acceptance. The scope-text candidate changes no code,
+`_STATUS.md`, `Dependencies.csv` or companion register; the code change is the
+separate App-loop half of the integrated revision (above).
 
 ## Authoritative action register
 
@@ -54,7 +55,7 @@ accepted in `checkpoint_snapshots/SCA-APP-011_GROUP-2_2026-09-27/`. It has
 | `ContentRemediationState` | `NOT_REQUIRED` | SOFTWARE variant; no KTY content |
 | `DownstreamRerunState` | `FROZEN` | Downstream reruns start after group-3 acceptance |
 | `MetadataAlignmentState` | `NOT_REQUIRED` | SOFTWARE variant |
-| `AuditState` | `WARNINGS` | Raw deterministic post-change findings, all carried unchanged from the pre-change baseline (`RUN_SUMMARY.md` §4). The independent review is still to run (Q-a) |
+| `AuditState` | `WARNINGS` | Raw deterministic post-change findings, all carried unchanged from the pre-change baseline (`RUN_SUMMARY.md` §4). The independent review of `3d8ead912` found no blocking finding (`RUN_SUMMARY.md` §8) |
 | `AdjustedAuditState` | `WARNINGS` | The same carried findings; no new finding; expected consequences listed in `RUN_SUMMARY.md` §4 |
 | `ReadyForNextPhase` | `NOT_APPLICABLE` | SOFTWARE variant |
 
@@ -63,11 +64,11 @@ accepted in `checkpoint_snapshots/SCA-APP-011_GROUP-2_2026-09-27/`. It has
 | Package | Owner | Status | Evidence | Next required action |
 |---|---|---|---|---|
 | Dependency registers (DEL-02-02 DEP-02-02-005..009; DEL-07-05 DEP-07-05-025; DEL-02-01, DEL-02-03, DEL-07-04, DEL-08-02, DEL-08-03 wording) | `dependency-extract` | STALE | `Propagation_Plan.md` §7–8 | Re-extract after acceptance, then `analyze_dep_closure.py` |
-| Code change (forms, routes, client module, scaffold route and port member, test split) | App loop, per `Propagation_Plan.md` §4 | INTEGRATED (commits `5ba17042b`, `653fdfb72` on `claude/brave-goodall-wj3hok`) | run receipt `APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md`; `RUN_SUMMARY.md` | Joint independent review (Q-a); one PR after group-3 acceptance |
+| Code change (forms, routes, client module, scaffold route and port member, test split) | App loop, per `Propagation_Plan.md` §4 | INTEGRATED and independently reviewed (commits `5ba17042b`, `653fdfb72` on `claude/brave-goodall-wj3hok`) | run receipt `APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md`; `RUN_SUMMARY.md` | One PR after group-3 acceptance, once PR CI passes |
 | `RouteAdapterTestIndex.md` (DEL-03-03, lines 24 and 46 at basis) | App loop code change | DONE (both rows dropped) | commit `653fdfb72` | None |
 | `dcd37f9ae` records (run receipt, Receipt-269, APP-TRANSITION-FORMS note, MEMORY rows) | App loop code change | DONE; the group-2 snapshot is bound by hash (commit `3f75abfab`) | run receipt; `loop/LOOP_RECEIPTS.md` Receipt-269; tranche manifest | None |
 | Task Management APP-R058 | Row owner | OPEN | `Propagation_Plan.md` §8 item 6 | Record "closed by removal under SCA-APP-011" |
-| Runtime notice | WORKING_ITEMS after acceptance | DRAFT | `DRAFT_NOTICE_TO_RUNTIME.md` | Send after acceptance (acceptance-conditional item 4) |
+| Runtime notice | WORKING_ITEMS after acceptance | DRAFT; exact post-image prepared | `Evidence/Group3/RUNTIME_NOTICE_POSTIMAGE.md` | Send after acceptance (acceptance-conditional item 4) |
 
 ## Active derivative-surface state
 
@@ -81,8 +82,9 @@ accepted in `checkpoint_snapshots/SCA-APP-011_GROUP-2_2026-09-27/`. It has
 
 ## Remaining blockers and human decisions
 
-- **Checkpoint group 3.** The owner accepts or returns this candidate together
-  with the code candidate (Q-a), after the independent review.
+- **Checkpoint group 3.** The owner accepts, amends or returns this candidate
+  together with the code candidate (Q-a). The independent review is complete
+  with no blocking finding; PR CI is still to run.
 - **No reopening.** All nine written deliverables are
   `IN_PROGRESS`. No `ISSUED` deliverable is reopened, and no `CHECKING`
   deliverable is held.
@@ -93,7 +95,7 @@ accepted in `checkpoint_snapshots/SCA-APP-011_GROUP-2_2026-09-27/`. It has
 
 ## Next owning workflows
 
-1. **Group 3.** The independent review (not the author), then the owner's act.
+1. **Group 3.** The owner's act (the independent review is complete).
    After acceptance, apply the acceptance-conditional edits exactly
    (`Evidence/Group3/ACCEPTANCE_CONDITIONAL_EDITS.csv`) and write the
    `_PostAcceptanceValidation/` record.

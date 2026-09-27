@@ -1,6 +1,6 @@
 # SCA-APP-011 group-3 candidate validation
 
-Accepted group-2 commit `e7f6daee1`; integrated candidate revision `3f75abfab`. Read-only; the tree is not modified.
+Accepted group-2 commit `e7f6daee1`; integrated candidate revision `3f75abfab`. The script modifies no scope file and writes only this report.
 
 1. Candidate hashes: 16/16 files match their expected group-3 candidate hash (14 group-2 hash, 1 basis refresh, 1 correction); basis refreshes re-derived from their basis commit with the accepted edits: 1/1.
 2. Non-conditional edits present: 126/126; acceptance-conditional edits withheld: E47; files carrying a `{APPLICATION_DATE}` literal: 0.

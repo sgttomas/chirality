@@ -58,6 +58,7 @@ retained" bindings D-006 and D-015 and SR-06's "the code stays"
 
 The candidate starts from `dcd37f9ae` (the forms removal), cherry-picked onto
 `main` at `5a305bc04`, and ends in the state `Propagation_Plan.md` §4 specifies.
+For the SCA-APP-011 group-3 review it was integrated on `origin/main` `4087a4f8c`; between `5a305bc04` and `4087a4f8c` only `projects/pec` and `projects/chirality-piping` differ, and the App, `exports`, `docs` and `tools` trees are identical.
 
 - **Forms removed** (from `dcd37f9ae`).
   `frontend/src/components/workbench/workbench-surface.tsx`,

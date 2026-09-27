@@ -31,8 +31,9 @@ with each HTTP status expectation restated as the thrown workspace error's code 
 ```
 
 **Why.** The accepted sentence names the wrong error class. In
-`frontend/src/lib/workspace/deliverable-contracts.ts`, 31 throws are
-`WorkspaceOperationError` and 4 are `WorkspaceValidationError`. The
+`frontend/src/lib/workspace/deliverable-contracts.ts`, 29 `throw new` sites
+construct `WorkspaceOperationError` and 3 construct `WorkspaceValidationError`
+(`grep -c "new WorkspaceOperationError"` and `grep -c "new WorkspaceValidationError"`). The
 operation errors cover the gate, ruling, amendment and dependency-write
 refusals, including the symlink writes. The validation errors cover path
 validation only. Both classes are defined in `frontend/src/lib/workspace/filesystem.ts`

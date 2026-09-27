@@ -3,7 +3,7 @@ amendment_id: SCA-APP-011
 doc_kind: scope_change.run_summary
 decomp_variant: SOFTWARE
 checkpoint_group: 3
-status: CANDIDATE_ready_for_independent_review
+status: CANDIDATE_ready_for_owner_group3_decision
 created: 2026-09-27
 branch: claude/brave-goodall-wj3hok
 integrated_scope_and_code_commit: 3f75abfab
@@ -13,11 +13,12 @@ pointer_posture: ACCEPTED_PREDECESSOR (SCA-APP-010)
 
 # SCA-APP-011 — Checkpoint group 3: audited poststate (CANDIDATE)
 
-> **Status: CANDIDATE, ready for independent review.** It is not yet ready
-> for your decision. The scope text and the code change are integrated on one
-> branch. An independent reviewer who did not author either half must review
-> them together first (Q-a). `_LATEST.md` still names SCA-APP-010. Nothing is
-> merged.
+> **Status: CANDIDATE, ready for your group-3 decision.** The scope text and
+> the code change are integrated on one branch, and the independent review is
+> complete with no blocking finding. That review was run by an independent
+> instance, which neither authored nor applied the candidate, on HEAD
+> `3d8ead912` (Q-a). Its results are in §8. CI on the PR is still to come.
+> `_LATEST.md` still names SCA-APP-010. Nothing is merged.
 
 ---
 
@@ -65,6 +66,11 @@ correction at group 2. Details are in `Evidence/Group3/G3_CORRECTIONS.md`.
   hook, or in any other file, changes. I scanned the other 15 files and every
   path and identifier in the accepted text against the code; nothing else is
   contradicted.
+
+  Accepting group 3 reopens and replaces that one sentence of E13. If you
+  returned G3C-01 alone, the accepted group-2 sentence would stand, and the
+  text would stay untrue about the code. So G3C-01 comes to you as part of
+  group 3: you accept, amend or return group 3 as a whole.
 - **G3B-01, a basis refresh (no text change).** Main changed one App SPEC
   paragraph on the recorded-register read (Receipt-270) after group 2. The
   change is outside every SCA-APP-011 edit. The accepted SPEC edits reapply
@@ -128,22 +134,22 @@ Every file was restored afterwards.
 |---|---|
 | Candidate hashes | 16/16 match their expected group-3 hash: 14 at the group-2 hash, 1 basis refresh re-derived from `4087a4f8c`, 1 correction |
 | Edits present | 126/126; E47 withheld; no `{APPLICATION_DATE}` literal |
-| Write containment (`e7f6daee1..3f75abfab`) | 70 paths. Scope text is exactly the 16 accepted files. The other 54 fall in §4's code-change categories or the SCA folder. No `_STATUS.md`, `Dependencies.csv`, `_LATEST.md` or companion-register change |
+| Write containment (`e7f6daee1..3f75abfab`) | 74 paths. Scope text is exactly the 16 accepted files. The other 58 fall in §4's code-change categories or the SCA folder. No `_STATUS.md`, `Dependencies.csv`, `_LATEST.md` or companion-register change |
 | Scope of Work validator; retired-route sweep | 9/9 pass; 108 contracts and contexts, 0 uncovered lines |
 | Topology, coverage, lifecycle, closure | Unchanged from the pre-change baseline: 10/52/84/10; 53 `IN_PROGRESS`, 1 `OPEN`; 54 nodes, 111 edges, 0 SCCs; `EVQ-006` ×592 only. No code reference to the retired routes, client function or forms remains |
 | Supersession map | 63 rows, 0 findings |
 | Group-3 finalize path | 15/15 on a scratch copy (`Evidence/Group3/check_group3_finalize.py`) |
-| TypeScript (both configs) | 0 errors on the integrated tree |
-| Focused Vitest | 12 files, 440 tests pass, including the 55 + 10 ported tests |
-| Full Vitest (code agent, same code) | 2590 passed; the known uid-0 `harness-attachment-resolver` failure is the only failure |
-| Root validators | G0–G4, receipts, agent instructions, workflow metadata, instruction entrypoints, conflict markers, run-record leaks, workflow index and `git diff --check`: see §8 |
+| TypeScript | `npm run typecheck`: 0 (independent review) |
+| Ported tests | 65/65 (55 library, 10 content route) |
+| Focused Vitest | The reviewer's focused set: 12 files, 465/465 |
+| Full Vitest | Only the known uid-0 `harness-attachment-resolver` failure |
+| Root validators | G0–G4, receipts, agent instructions, workflow metadata, instruction entrypoints, conflict markers, run-record leaks, workflow index, affected tests and `git diff --check`: all 0 (§8) |
 | `AuditState` (raw) / `AdjustedAuditState` | `WARNINGS` / `WARNINGS`. Every tool finding was present before the change; there are 0 new findings |
 
-### Still needed before your decision
+### Still to come
 
-- The independent review of the integrated revision, from a reviewer who is
-  not an author.
-- Actual-candidate CI on the PR.
+- CI on the PR. It runs when the PR is opened, and it is a merge gate after
+  your acceptance.
 
 ---
 
@@ -248,11 +254,18 @@ before acceptance, and any edit not on the list returns to the owner.
 3. **`_LATEST.md`.** Replace it with `LATEST_POSTIMAGE.md` (`03fb208d…786ba0`),
    with both `{APPLICATION_DATE}` occurrences set to `{date}`. The before hash
    is `6fdba0c9…42c04e3`.
-4. **Runtime notice.** Copy it to
-   `projects/chirality-runtime/execution/_Coordination/NOTICE_{date}_APP_SCA-APP-011_SCAFFOLD_API.md`,
-   without the draft header.
-5. **Status records.** Update the `Brief.md` status line, the
-   `Decision_Log.md` G3 row and `Handoff_State.md`.
+4. **Runtime notice.** Write `Evidence/Group3/RUNTIME_NOTICE_POSTIMAGE.md`,
+   with both `{APPLICATION_DATE}` occurrences set to `{date}`, to
+   `projects/chirality-runtime/execution/_Coordination/NOTICE_{date}_APP_SCA-APP-011_SCAFFOLD_API.md`.
+   It is the draft notice without the "DRAFT — " title prefix and without the
+   draft Status paragraph (draft lines 3–6). The `**From:**` line stays, and
+   its parenthetical names the acceptance date and decision folder.
+5. **Status records.** Apply the exact post-images in
+   `Evidence/Group3/STATUS_RECORDS_POSTIMAGE.md`: the `Brief.md` status line,
+   the `Decision_Log.md` G3 row, and `Handoff_State.md`, which is replaced by
+   `Evidence/Group3/HANDOFF_STATE_POSTIMAGE.md`. The slots are
+   `{APPLICATION_DATE}`, `{OWNER_ACT_VERBATIM}` and `{UTC}`, and the
+   post-images apply to a plain acceptance only.
 6. **Post-acceptance record.** Write `_PostAcceptanceValidation/SCA-APP-011_{UTC}/`.
 
 ## 6. Recommended downstream reruns (not executed)
@@ -292,18 +305,47 @@ Branch `claude/brave-goodall-wj3hok`, on `origin/main` `4087a4f8c`:
 | `94befbf6c`, `1cb9ecc56` | Candidate text and evidence |
 | `5ba17042b`, `653fdfb72` | Code |
 | `3f75abfab` | G3C-01, G3B-01, the group-3 finalize path and code-record binding |
+| `9884008cb`, `3d8ead912` | Integrated evidence and presentation; the regenerated export |
 
-This presentation's evidence commit and the export commit follow.
+After `3d8ead912`, one commit applies the review's non-blocking items. It adds
+the post-acceptance templates, corrects counts and wording, and adds these
+results. It changes no scope file and no code. If the export changes, it is
+regenerated in a final commit.
 
-Validators run on the integrated tree:
-- Root G0–G3; G4 `validate_instruction_tranche_manifest.py --base origin/main --head HEAD --added-manifests-only`;
-- `validate_app_dev_loop_receipts.py`, `validate_agent_instructions.py`,
-  `validate_workflow_metadata.py` and `validate_instruction_entrypoints.py`;
-- `validate_conflict_markers.py` and `validate_run_record_leaks.py` against
-  `origin/main`;
-- `build_workflow_index.py --check` and `git diff --check`.
+### Independent review results (HEAD `3d8ead912`)
 
-The results are reported with the final commit.
+The reviewer was an independent instance that neither authored nor applied
+the candidate. It found no blocking findings. Exit codes:
+
+| Check | Result |
+|---|---|
+| `validate_candidate.py` | 0; byte-identical on rerun |
+| `group3_corrections.py --check` | 0 |
+| `check_group3_finalize.py` | 0 (15/15) |
+| Supersession `accumulate_supersession_map.py --check-map` | 0 |
+| Post-change coverage (`build_post_change_coverage.py`) | 0 |
+| `npm run typecheck` | 0 |
+| Ported tests | 65/65 |
+| Focused Vitest (the reviewer's set) | 12 files, 465/465 |
+| Full Vitest | Only the known uid-0 `harness-attachment-resolver` failure |
+| `validate_app_dev_loop_receipts.py`, `validate_agent_instructions.py`, `validate_workflow_metadata.py` (70), `validate_instruction_entrypoints.py` | 0 |
+| G0, G1, G2, G3 | 0 |
+| `validate_conflict_markers.py` and `validate_run_record_leaks.py` against `origin/main` | 0 |
+| `build_workflow_index.py --check` | 0 |
+| G4 (`validate_instruction_tranche_manifest.py --base origin/main --head HEAD --added-manifests-only`) | 0 |
+| `tools/run_affected_tests.py --base origin/main` | 0 (1147 passed) |
+| `git diff --check` | 0 |
+| Export freshness | No diff |
+
+The reviewer's own gate mutations each failed the ported tests as expected:
+
+| Gate broken | Failures |
+|---|---|
+| Ruling requirement | 1 |
+| Amendment-admission refusal | 9 |
+| Missing-amendment backward gate | 2 |
+
+**Still to come:** CI on the PR.
 
 ## Evidence basis
 
@@ -311,14 +353,17 @@ The results are reported with the final commit.
 |---|---|
 | `Supersession_Map.csv` | `9847a4d0d05b65bfbf8d431ba0fb3c24662d73c2574f186e7c259413aa6e65d6` |
 | `Post_Change_Coverage.json` | `f62b84a38cc633f6c8f475f92f3025b65b189393ef93f1b0d8a643746feb2f81` |
-| `Handoff_State.md` | `505cda2b20123ffda9cb6b1e1a6478e3a182b265397c9b8f0718580a2309762b` |
-| `Evidence/Group3/ACCEPTANCE_CONDITIONAL_EDITS.csv` | `59a5cf95fa12eee5c2d2579e8549d17f78bd23fad5e997d1908e345970d8665f` |
-| `Evidence/Group3/CANDIDATE_VALIDATION.md` | `65a776300073bf692e5d13c5a555e4d857fa3704b4cfe13e404c9cb325e61547` |
-| `Evidence/Group3/G3_CORRECTIONS.md` | `69fb4edd3b3961a0ef28d29d7ec80eb2094b6539722d6a41a104033527ab5265` |
+| `Handoff_State.md` | `f38531ef3e6c5f81388231b470e242c6116389634638f8b039b11871393c8d68` |
+| `Evidence/Group3/ACCEPTANCE_CONDITIONAL_EDITS.csv` | `2f09fd51b65cd6d03c9e55dd3936728652bed996d2e86f3ef3f755a423ad5e4b` |
+| `Evidence/Group3/CANDIDATE_VALIDATION.md` | `7821a03e8618ce27369abaad953422383313cd161c80dbfa93f37f78dd1b7dcd` |
+| `Evidence/Group3/G3_CORRECTIONS.md` | `e42342d593efc22d48fd62467a6c5fd31e2fbb2c349ccd83715e26bc8dd9f7e5` |
 | `Evidence/Group3/group3_corrections.py` | `ecd97bfba72aa70e189ec9af48674068980246cd8835ccc155055619a25b4071` |
 | `Evidence/Group3/check_group3_finalize.py` | `034819f64efe018cfc66c65489100aa658261bea92af27ed3f99836e17155d02` |
 | `Evidence/Group3/LATEST_POSTIMAGE.md` | `03fb208dbf0fac87e66c30fab9ca848bd2795f41c2152188528d5c9fca786ba0` |
 | `Evidence/Group3/PRE_POST_COMPARISON.md` | `c430a3c2a00730a6d61907b359fbc4ca7879cef7037b0e280771628747276702` |
 | `Evidence/Group3/Supersession_Findings.csv` | `d288096f20845863777a4b5d0956be5c7783577857e3148e6d174200b74eb8b4` |
 | `Evidence/Group3/build_post_change_coverage.py` | `e96a59f7502df3ee52bb472ad8e3849133b53b5a4f68fe7544c35837fc308ff8` |
-| `Evidence/Group3/validate_candidate.py` | `b06114ce38d69d636d7361a18bcb417264c5ff924b480ae99624b9d23a1dd265` |
+| `Evidence/Group3/validate_candidate.py` | `1cbbad7fc2f60b6ca96d39143991af4726347a5790d29694e3df2be43d5297a6` |
+| `Evidence/Group3/RUNTIME_NOTICE_POSTIMAGE.md` | `53d7deee8e8e1e2a99c74570f115422b95fdc8649d37199dc494c03fca10b118` |
+| `Evidence/Group3/STATUS_RECORDS_POSTIMAGE.md` | `c9771459d8ca9c99e6c5c041fbdb77014670f1f8d0a58cf4c96d5cb6e569d981` |
+| `Evidence/Group3/HANDOFF_STATE_POSTIMAGE.md` | `83b69791cc11139413776b5806185ff8864dd253cf8ba3c19a7bb1c30272772c` |

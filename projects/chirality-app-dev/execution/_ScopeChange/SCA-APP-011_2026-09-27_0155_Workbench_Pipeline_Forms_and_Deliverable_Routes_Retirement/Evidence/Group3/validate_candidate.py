@@ -7,8 +7,8 @@ Run from the repository root:
 
 C2 is the commit that recorded the accepted group-2 snapshot; REV (default
 HEAD) is the integrated candidate revision (scope text plus the code change).
-The script checks the working tree, which must hold REV's content, and writes
-Evidence/Group3/CANDIDATE_VALIDATION.md:
+The script checks the working tree, which must hold REV's content. It modifies
+no scope file and writes only its report, Evidence/Group3/CANDIDATE_VALIDATION.md:
 
   1. every file in PREIMAGE_POSTIMAGE.csv has its expected group-3 candidate
      hash (group3_corrections.py: the group-2 candidate hash, a basis-refreshed
@@ -83,7 +83,7 @@ def main() -> int:
     failures: list[str] = []
     out = ["# SCA-APP-011 group-3 candidate validation\n\n",
            f"Accepted group-2 commit `{args.accepted_commit}`; integrated candidate revision `{args.head}`. "
-           "Read-only; the tree is not modified.\n\n"]
+           "The script modifies no scope file and writes only this report.\n\n"]
 
     # 1. candidate hashes
     ok = 0

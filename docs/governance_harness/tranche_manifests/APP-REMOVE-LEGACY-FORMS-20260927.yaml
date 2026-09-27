@@ -3,6 +3,10 @@ tranche_id: APP-REMOVE-LEGACY-FORMS-20260927
 title: SCA-APP-011 code change — App removes the Workbench and Pipeline forms, the deliverable status, transition and dependency routes, their client module and the scaffold route
 date: '2026-09-27'
 basis: 5a305bc0479d0bad8cfdb4aca392bc3bd3c7569f
+# The basis is the candidate's build base. For the SCA-APP-011 group-3 review
+# it was integrated on origin/main 4087a4f8c; between the two commits only
+# projects/pec and projects/chirality-piping differ, and the App, exports,
+# docs and tools trees are identical.
 # Full coverage: every path this tranche changes is declared. Only this
 # manifest lies on the Root instruction surface; the rest are the removed and
 # edited product source and tests, deliverable records, run records and
