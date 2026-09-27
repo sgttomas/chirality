@@ -140,6 +140,16 @@ and recorded them in its own hand-off.
   existing static render tests do not reach.
 - No lifecycle transition, dependency acceptance, DAG acceptance,
   authority-corpus repin, Runtime change or release.
+- Note added 2026-09-27 (this entry is otherwise unchanged): the
+  `SYMLINKED_UNIT_PATH` limit above covered a deliverable requested through a
+  link, but the read still took the execution root from the shape of the
+  deliverable path. A deliverable named at the real path behind a linked
+  package folder (for example `<project>/store/PKG-07_Graph/1_Working/DEL-07-01`)
+  was judged over `store/` as if it were an execution root, with no warning.
+  Run `APP-EXECUTION-ROOT-2026-09-27` closes that gap: the read now resolves
+  the root as the reopening checks do and gives such a deliverable
+  `NOT_ASSESSED` with a warning; see its
+  [receipt](../APP-EXECUTION-ROOT-2026-09-27/RECEIPT.md).
 
 Execution: a Claude Code subagent (TASK-type executor, no delegation) in an
 isolated worktree for the parent session. Model identifiers are withheld at

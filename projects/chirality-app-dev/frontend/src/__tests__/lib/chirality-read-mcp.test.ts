@@ -1,4 +1,4 @@
-import { mkdtemp, mkdir, rm, stat, writeFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, rename, rm, stat, symlink, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
@@ -130,6 +130,7 @@ beforeEach(async () => {
   const projectRoot = path.join(tmpRoot, 'project-root');
   const deliverablePath = path.join(
     projectRoot,
+    'execution',
     'PKG-05_Filesystem_Execution_Model',
     '1_Working',
     'DEL-05-03_Lifecycle_State_Handling'
@@ -242,6 +243,28 @@ describe('Chirality read MCP tools', () => {
     });
     expect(JSON.stringify(replay.events[1].data)).not.toContain('INITIALIZED');
     expect(JSON.stringify(replay.events[3].data)).not.toContain('DEP-05-03-001');
+  });
+
+  it('gives deps_read no recorded-register verdict for a linked package requested at its target', async () => {
+    const packageName = 'PKG-05_Filesystem_Execution_Model';
+    const store = path.join(fixture.projectRoot, 'store');
+    await mkdir(store);
+    await rename(path.join(fixture.projectRoot, 'execution', packageName), path.join(store, packageName));
+    await symlink(path.join('..', 'store', packageName), path.join(fixture.projectRoot, 'execution', packageName), 'dir');
+    const context = { projectRoot: fixture.projectRoot, sessionId };
+
+    const result = parseJsonToolResult<{
+      warnings: string[];
+      recordedRegister: { executionRoot: string | null; blockers: { blockerState: string; notAssessedReason?: string } };
+    }>(
+      await dependenciesReadTool(context, {
+        deliverablePath: path.join(store, packageName, '1_Working', 'DEL-05-03_Lifecycle_State_Handling')
+      })
+    );
+    expect(result.recordedRegister.executionRoot).toBeNull();
+    expect(result.recordedRegister.blockers.blockerState).toBe('NOT_ASSESSED');
+    expect(result.recordedRegister.blockers.notAssessedReason).toMatch(/^EXECUTION_ROOT_NOT_RESOLVED: store\//);
+    expect(result.warnings).toContain(`RECORDED_REGISTER_${result.recordedRegister.blockers.notAssessedReason}`);
   });
 
   it('scans project scopes without reading document bodies', async () => {

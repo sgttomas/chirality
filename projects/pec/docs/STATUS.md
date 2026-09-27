@@ -295,7 +295,8 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     v2.4, and re-audited: `COV_D101_POSTSETUP_2026-09-26_1651`, 0 blockers,
     coverage 100 %, now named by `_Evaluation/DecompCoverage/_LATEST.md`
     (run root `execution/_Coordination/REV16_CURRENCY_SETUP_D101_2026-09-26/`).
-    Still open from Lane B: first SOWs for the two new deliverables (K2),
+    Still open from Lane B: first SOWs for the two new deliverables (K2;
+    the owner ruled `D-PEC-103` A + S + M + C8 on 2026-09-26, act next),
     the DEL-00-03 SPEC premise, the tier-0 profile entry (K3) and the API
     schema fields.
   - Retiring the 57 `## Remaining` sections, as App and Piping did: the owner
@@ -306,8 +307,10 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     replaced the `AGENTS.md` paragraph (run root
     `execution/_Coordination/REMAINING_RETIREMENT_D-PEC-99_2026-09-26/`).
     Still open from it: the 71 unselected evidence inquiries stay in the
-    exhibit until steering selects one, and the 12 Scope of Work
-    carry-forwards are absorbed by the S1, S2 and S4 SOW-currency packets.
+    exhibit until steering selects one; S2 absorbed its four Scope of Work
+    carry-forwards (`D-PEC-100`, PR #979), and S1 and S4 absorb the other
+    eight. The undertaking's receipt is
+    `execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT/RECEIPT.md`.
 
   These are organized in the work graph
   `execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md`.
