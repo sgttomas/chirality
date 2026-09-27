@@ -17,8 +17,11 @@ App tree with HEAD):
         both the accepted Pre_Change_Coverage.json and the refresh.
 
 Both modes run the accepted group-1 builder Evidence/Group1/build_pre_change_baseline.py
-unchanged in logic, with three substitutions made in memory: the output file,
-the run label, and BASIS_COMMIT set to HEAD. Every GIT_* variable is removed
+with four substitutions made in memory: the output file, the run label,
+BASIS_COMMIT set to HEAD, and the legacy CSS token set, which starts from the
+accepted baseline's tokens so that the builder still runs once the code change
+has deleted the legacy components it reads (on a tree where they exist, the
+result is the same as before). Every GIT_* variable is removed
 from the environment first, so git answers for this checkout only, and HEAD is
 resolved with a git call that must succeed. The group-1 builder file and
 Pre_Change_Coverage.json are not modified.
@@ -45,6 +48,11 @@ REPORT = os.path.join(HERE, "PRE_POST_COMPARISON.md")
 OLD_BASIS = 'BASIS_COMMIT = "adc8bdae18b2e1e48dcf01a304cc055d2cbf84e0"'
 OLD_OUT = 'out = os.path.join(SNAP_REL, "Pre_Change_Coverage.json")'
 OLD_LABEL = '"run_label": "SCA_APP_012_GROUP1_PRECHANGE"'
+# The legacy components whose class tokens the builder reads are deleted by the code change. The token set is
+# taken from the accepted baseline, plus any token still found in a legacy component that exists; each token's
+# remaining users and globals.css selector hits are then measured on the current tree.
+OLD_TOKENS = "    tokens = set()\n    for f in legacy:\n"
+NEW_TOKENS = "    tokens = set(PRE_LEGACY_TOKENS)\n    for f in [p for p in legacy if os.path.isfile(p)]:\n"
 COMPARE = [
     "repository_topology", "ledger_distribution", "forward_coverage", "reverse_coverage",
     "scope_items_without_deliverable", "objectives_without_deliverable", "lifecycle_distribution",
@@ -69,11 +77,13 @@ def run_builder(out_rel: str, label: str, basis: str) -> dict:
     src = open(BUILDER, encoding="utf-8").read()
     for a, b in ((OLD_BASIS, f'BASIS_COMMIT = "{basis}"'),
                  (OLD_OUT, f'out = {out_rel!r}'),
-                 (OLD_LABEL, f'"run_label": "{label}"')):
+                 (OLD_LABEL, f'"run_label": "{label}"'),
+                 (OLD_TOKENS, NEW_TOKENS)):
         if src.count(a) != 1:
             raise SystemExit(f"substitution anchor not found once: {a}")
         src = src.replace(a, b)
     mod = types.ModuleType("group3_builder")
+    mod.__dict__["PRE_LEGACY_TOKENS"] = sorted(json.load(open(PRE, encoding="utf-8"))["legacy_css_tokens"])
     exec(compile(src, BUILDER + " (group-3 substitutions)", "exec"), mod.__dict__)
     rc = mod.main()
     if rc:

@@ -2,7 +2,7 @@
   "run_label": "SCA_APP_012_GROUP3_POSTCHANGE_CANDIDATE",
   "decomp_variant": "SOFTWARE",
   "method": "Deterministic post-change baseline for the group-3 CANDIDATE, produced by the accepted group-1 builder (Evidence/Group1/build_pre_change_baseline.py) with only the output name, run label and basis commit substituted (Evidence/Group3/build_post_change_coverage.py). A full audit-decomp TASK run was not dispatched from this bounded session; the same registered tools as the pre-change baseline were run on the candidate.",
-  "basis_commit": "8a3230d5e56a1ea99968071b62f7a8defb10cdd6",
+  "basis_commit": "30e8495ecfdf430e796cb1c4495a6675e0afd2fa",
   "governed_inputs_identical_to_basis": true,
   "decomposition_path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
   "decomposition_sha256": "929267727acbfd276359319877c0d3e4dc8eea9202ac5b0173d482b7a2fad4e0",
@@ -507,79 +507,10 @@
   ],
   "frontend_reachability": {
     "method": "Static relative-import graph over frontend/src (tests excluded) and frontend/electron. Roots: every app page.tsx, layout.tsx, not-found.tsx and route.ts, and every electron module. A JSX element passed as `legacy` counts as an import edge although WovenDialogueRoute never renders it; the scenarios remove those edges to show what is reachable only through them.",
-    "product_modules": 259,
-    "reachable_S0_actual": 211,
-    "S1_only_via_discarded_legacy_element": [
-      {
-        "module": "src/components/portal/agent-matrix.tsx",
-        "product_importers": [
-          "src/components/shell/tertiary-sidebar-tabs.tsx"
-        ],
-        "test_importers": [
-          "src/__tests__/components/agent-matrix-panel.test.ts"
-        ]
-      },
-      {
-        "module": "src/components/shell/loop-shell.tsx",
-        "product_importers": [
-          "src/app/chat/page.tsx"
-        ],
-        "test_importers": []
-      },
-      {
-        "module": "src/components/shell/loop-tertiary-shell.tsx",
-        "product_importers": [
-          "src/app/pipeline/pipeline-client.tsx",
-          "src/app/workbench/workbench-client.tsx"
-        ],
-        "test_importers": []
-      },
-      {
-        "module": "src/components/shell/portal-loop-shell.tsx",
-        "product_importers": [
-          "src/app/page.tsx"
-        ],
-        "test_importers": []
-      },
-      {
-        "module": "src/components/shell/sidebar-right-loop-layout.tsx",
-        "product_importers": [
-          "src/components/shell/loop-shell.tsx",
-          "src/components/shell/loop-tertiary-shell.tsx",
-          "src/components/shell/portal-loop-shell.tsx"
-        ],
-        "test_importers": [
-          "src/__tests__/components/workspace-sidebar.test.ts"
-        ]
-      },
-      {
-        "module": "src/components/shell/tertiary-sidebar-tabs.tsx",
-        "product_importers": [
-          "src/components/shell/loop-shell.tsx",
-          "src/components/shell/loop-tertiary-shell.tsx",
-          "src/components/shell/portal-loop-shell.tsx"
-        ],
-        "test_importers": []
-      }
-    ],
-    "S2_additionally_only_via_DeliverablesProvider": [
-      {
-        "module": "src/components/workspace/deliverables-provider.tsx",
-        "product_importers": [
-          "src/app/layout.tsx"
-        ],
-        "test_importers": []
-      },
-      {
-        "module": "src/lib/workspace/task-scope.ts",
-        "product_importers": [
-          "src/components/workspace/deliverables-provider.tsx"
-        ],
-        "test_importers": [
-          "src/__tests__/lib/task-scope-selection.test.ts"
-        ]
-      }
-    ],
+    "product_modules": 244,
+    "reachable_S0_actual": 199,
+    "S1_only_via_discarded_legacy_element": [],
+    "S2_additionally_only_via_DeliverablesProvider": [],
     "S3_additionally_only_via_workbench_pipeline_pages": [
       {
         "module": "src/app/pipeline/page.tsx",
@@ -610,41 +541,8 @@
         ]
       }
     ],
-    "unreachable_at_basis_in_scope": [
-      {
-        "module": "src/components/woven-dialogue/workflow-detail.tsx",
-        "product_importers": [
-          "src/components/woven-dialogue/workflows-view.tsx"
-        ],
-        "test_importers": [
-          "src/__tests__/components/woven-workflows.test.tsx"
-        ]
-      },
-      {
-        "module": "src/components/woven-dialogue/workflows-view.tsx",
-        "product_importers": [],
-        "test_importers": [
-          "src/__tests__/components/woven-workflows.test.tsx"
-        ]
-      },
-      {
-        "module": "src/lib/portal/agent-matrix-cells.ts",
-        "product_importers": [],
-        "test_importers": [
-          "src/__tests__/lib/agent-matrix-cells.test.ts",
-          "src/__tests__/lib/pkg08-compatibility-boundaries.test.ts"
-        ]
-      },
-      {
-        "module": "src/lib/portal/agent-matrix-launch.ts",
-        "product_importers": [],
-        "test_importers": [
-          "src/__tests__/lib/agent-matrix-launch.test.ts",
-          "src/__tests__/lib/pkg08-compatibility-boundaries.test.ts"
-        ]
-      }
-    ],
-    "unreachable_at_basis_other_count": 49,
+    "unreachable_at_basis_in_scope": [],
+    "unreachable_at_basis_other_count": 50,
     "unreachable_at_basis_other": [
       "src/components/woven-dialogue/work-projection.tsx",
       "src/lib/consent/consent-ux-fixtures.ts",
@@ -694,6 +592,7 @@
       "src/lib/pipeline/pipeline-dispatch-contract.ts",
       "src/lib/workspace/governed-workflow.ts",
       "src/lib/workspace/navigation-intent.ts",
+      "src/lib/workspace/task-scope.ts",
       "src/types/chirality-window.d.ts"
     ]
   },
@@ -706,7 +605,6 @@
     },
     "scanProjectScopes": {
       "product": [
-        "src/app/api/working-root/scope/route.ts",
         "src/lib/harness/mcp/read-tools.ts",
         "src/lib/workspace/filesystem.ts"
       ],
@@ -715,46 +613,26 @@
       "runtime": []
     },
     "useDeliverables": {
-      "product": [
-        "src/components/workspace/deliverables-provider.tsx"
-      ],
+      "product": [],
       "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "DeliverablesProvider": {
-      "product": [
-        "src/app/layout.tsx",
-        "src/components/workspace/deliverables-provider.tsx"
-      ],
+      "product": [],
       "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "legacy={": {
-      "product": [
-        "src/app/chat/page.tsx",
-        "src/app/page.tsx",
-        "src/app/pipeline/pipeline-client.tsx",
-        "src/app/workbench/workbench-client.tsx"
-      ],
-      "tests": [
-        "src/__tests__/components/woven-dialogue-route.test.tsx"
-      ],
+      "product": [],
+      "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "legacyHref": {
-      "product": [
-        "src/components/shell/shell-frame.tsx",
-        "src/components/woven-dialogue/navigator.tsx",
-        "src/components/woven-dialogue/woven-dialogue-shell.tsx"
-      ],
-      "tests": [
-        "src/__tests__/components/historical-chat-reveal.test.tsx",
-        "src/__tests__/components/woven-dialogue-navigator.test.tsx",
-        "src/__tests__/components/woven-dialogue-shell.test.tsx"
-      ],
+      "product": [],
+      "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
@@ -763,9 +641,7 @@
         "src/components/shell/chat-panel.tsx"
       ],
       "tests": [
-        "src/__tests__/components/woven-dialogue-shell.test.tsx",
-        "src/__tests__/contract-pins.manifest.ts",
-        "src/__tests__/lib/agent-matrix-launch.test.ts"
+        "src/__tests__/contract-pins.manifest.ts"
       ],
       "electron_scripts": [
         "electron/main.ts",
@@ -775,8 +651,7 @@
     },
     "'/pipeline'": {
       "product": [
-        "src/components/shell/chat-panel.tsx",
-        "src/lib/portal/agent-matrix-launch.ts"
+        "src/components/shell/chat-panel.tsx"
       ],
       "tests": [
         "src/__tests__/contract-pins.manifest.ts"
@@ -788,165 +663,94 @@
       "runtime": []
     },
     "mergeMatrixTargetIntoCurrentUrl": {
-      "product": [
-        "src/lib/portal/agent-matrix-launch.ts"
-      ],
-      "tests": [
-        "src/__tests__/lib/agent-matrix-launch.test.ts",
-        "src/__tests__/lib/pkg08-compatibility-boundaries.test.ts"
-      ],
+      "product": [],
+      "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "DIRECT_ENTRY_ROLE_IDS": {
       "product": [
-        "src/lib/portal/agent-matrix-cells.ts",
         "src/lib/woven-dialogue/operator-projection.ts"
       ],
-      "tests": [
-        "src/__tests__/lib/agent-matrix-cells.test.ts",
-        "src/__tests__/lib/pkg08-compatibility-boundaries.test.ts"
-      ],
+      "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "isRoleSelectionBlocked": {
-      "product": [
-        "src/lib/portal/agent-matrix-cells.ts"
-      ],
-      "tests": [
-        "src/__tests__/lib/agent-matrix-cells.test.ts"
-      ],
+      "product": [],
+      "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "buildPortalPersonaHref": {
-      "product": [
-        "src/components/shell/portal-loop-shell.tsx",
-        "src/lib/shell/loop-first.ts"
-      ],
-      "tests": [
-        "src/__tests__/lib/loop-first.test.ts"
-      ],
+      "product": [],
+      "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "buildDirectChatHref": {
-      "product": [
-        "src/lib/shell/loop-first.ts"
-      ],
-      "tests": [
-        "src/__tests__/lib/loop-first.test.ts"
-      ],
+      "product": [],
+      "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "RoleDirectoryPanel": {
-      "product": [
-        "src/components/portal/agent-matrix.tsx"
-      ],
-      "tests": [
-        "src/__tests__/components/agent-matrix-panel.test.ts"
-      ],
+      "product": [],
+      "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "AgentMatrix": {
-      "product": [
-        "src/components/portal/agent-matrix.tsx",
-        "src/components/shell/tertiary-sidebar-tabs.tsx"
-      ],
+      "product": [],
       "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "createTertiarySidebarTabs": {
-      "product": [
-        "src/components/shell/loop-shell.tsx",
-        "src/components/shell/loop-tertiary-shell.tsx",
-        "src/components/shell/portal-loop-shell.tsx",
-        "src/components/shell/tertiary-sidebar-tabs.tsx"
-      ],
+      "product": [],
       "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "SidebarRightLoopLayout": {
-      "product": [
-        "src/components/shell/loop-shell.tsx",
-        "src/components/shell/loop-tertiary-shell.tsx",
-        "src/components/shell/portal-loop-shell.tsx",
-        "src/components/shell/sidebar-right-loop-layout.tsx"
-      ],
-      "tests": [
-        "src/__tests__/components/workspace-sidebar.test.ts"
-      ],
+      "product": [],
+      "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "LoopTertiaryShell": {
-      "product": [
-        "src/app/pipeline/pipeline-client.tsx",
-        "src/app/workbench/workbench-client.tsx",
-        "src/components/shell/loop-tertiary-shell.tsx"
-      ],
-      "tests": [
-        "src/__tests__/components/loop-tertiary-routes.test.ts"
-      ],
+      "product": [],
+      "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "PortalLoopShell": {
-      "product": [
-        "src/app/page.tsx",
-        "src/components/shell/portal-loop-shell.tsx"
-      ],
+      "product": [],
       "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "LoopShell": {
-      "product": [
-        "src/app/chat/page.tsx",
-        "src/app/page.tsx",
-        "src/components/shell/loop-shell.tsx",
-        "src/components/shell/portal-loop-shell.tsx"
-      ],
+      "product": [],
       "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "pipelineTab": {
-      "product": [
-        "src/components/shell/sidebar-right-loop-layout.tsx",
-        "src/components/shell/workspace-sidebar.tsx"
-      ],
-      "tests": [
-        "src/__tests__/components/workspace-sidebar.test.ts"
-      ],
+      "product": [],
+      "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "workbenchTab": {
-      "product": [
-        "src/components/shell/sidebar-right-loop-layout.tsx",
-        "src/components/shell/workspace-sidebar.tsx"
-      ],
-      "tests": [
-        "src/__tests__/components/workspace-sidebar.test.ts"
-      ],
+      "product": [],
+      "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "portalTab": {
-      "product": [
-        "src/components/shell/sidebar-right-loop-layout.tsx",
-        "src/components/shell/tertiary-sidebar-tabs.tsx",
-        "src/components/shell/workspace-sidebar.tsx"
-      ],
-      "tests": [
-        "src/__tests__/components/workspace-sidebar.test.ts"
-      ],
+      "product": [],
+      "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
@@ -990,90 +794,61 @@
       "runtime": []
     },
     "/api/working-root/workflow?": {
-      "product": [
-        "src/components/woven-dialogue/workflows-view.tsx"
-      ],
-      "tests": [
-        "src/__tests__/api/working-root-workflow.test.ts"
-      ],
+      "product": [],
+      "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "WorkflowsView": {
-      "product": [
-        "src/components/woven-dialogue/workflows-view.tsx"
-      ],
-      "tests": [
-        "src/__tests__/components/woven-workflows.test.tsx"
-      ],
+      "product": [],
+      "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "WorkflowDetail": {
-      "product": [
-        "src/components/woven-dialogue/workflow-detail.tsx",
-        "src/components/woven-dialogue/workflows-view.tsx"
-      ],
-      "tests": [
-        "src/__tests__/components/woven-workflows.test.tsx"
-      ],
+      "product": [],
+      "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "workflow-read-contract": {
-      "product": [
-        "src/app/api/working-root/workflow/workflow-store.ts",
-        "src/components/woven-dialogue/workflow-detail.tsx",
-        "src/components/woven-dialogue/workflows-view.tsx"
-      ],
+      "product": [],
       "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "workflow-store": {
-      "product": [
-        "src/app/api/working-root/workflow/route.ts"
-      ],
+      "product": [],
       "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "PORTAL, PIPELINE, and WORKBENCH": {
-      "product": [
-        "src/app/layout.tsx"
-      ],
+      "product": [],
       "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "Loading live loop portal": {
-      "product": [
-        "src/app/page.tsx"
-      ],
+      "product": [],
       "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "Loading workbench": {
-      "product": [
-        "src/app/workbench/page.tsx"
-      ],
+      "product": [],
       "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "Loading pipeline": {
-      "product": [
-        "src/app/pipeline/page.tsx"
-      ],
+      "product": [],
       "tests": [],
       "electron_scripts": [],
       "runtime": []
     },
     "Loading direct chat": {
-      "product": [
-        "src/app/chat/page.tsx"
-      ],
+      "product": [],
       "tests": [],
       "electron_scripts": [],
       "runtime": []
@@ -1135,27 +910,27 @@
     },
     "loop-chat-host": {
       "other_product_users": [],
-      "globals_css_selector_hits": 2
+      "globals_css_selector_hits": 0
     },
     "loop-grid": {
       "other_product_users": [],
-      "globals_css_selector_hits": 2
+      "globals_css_selector_hits": 0
     },
     "loop-grid--sidebar-collapsed": {
       "other_product_users": [],
-      "globals_css_selector_hits": 2
+      "globals_css_selector_hits": 0
     },
     "loop-main": {
       "other_product_users": [],
-      "globals_css_selector_hits": 2
+      "globals_css_selector_hits": 0
     },
     "loop-persona-bar": {
       "other_product_users": [],
-      "globals_css_selector_hits": 2
+      "globals_css_selector_hits": 0
     },
     "loop-sidebar": {
       "other_product_users": [],
-      "globals_css_selector_hits": 2
+      "globals_css_selector_hits": 0
     },
     "method-library-list": {
       "other_product_users": [
@@ -1199,12 +974,13 @@
         "src/lib/harness/chat-draft.ts",
         "src/lib/harness/hosted-bootstrap-context.tsx",
         "src/lib/harness/toolkit.ts",
+        "src/lib/shell/loop-first.ts",
         "src/lib/shell/turn-activity.ts",
         "src/lib/shell/turn-phase.ts",
         "src/lib/workspace/use-conversation-file-catalog.ts",
         "src/lib/woven-dialogue/operator-projection.ts"
       ],
-      "globals_css_selector_hits": 11
+      "globals_css_selector_hits": 10
     },
     "panel--chat": {
       "other_product_users": [
@@ -1267,23 +1043,23 @@
     },
     "portal-launch-notice": {
       "other_product_users": [],
-      "globals_css_selector_hits": 1
+      "globals_css_selector_hits": 0
     },
     "portal-matrix": {
       "other_product_users": [],
-      "globals_css_selector_hits": 2
+      "globals_css_selector_hits": 0
     },
     "portal-matrix--sidebar": {
       "other_product_users": [],
-      "globals_css_selector_hits": 8
+      "globals_css_selector_hits": 0
     },
     "portal-matrix-header": {
       "other_product_users": [],
-      "globals_css_selector_hits": 2
+      "globals_css_selector_hits": 0
     },
     "portal-matrix-heading": {
       "other_product_users": [],
-      "globals_css_selector_hits": 1
+      "globals_css_selector_hits": 0
     },
     "shell-pane": {
       "other_product_users": [
@@ -1319,47 +1095,47 @@
   "dead_css_candidates": {
     "matrix-grid": {
       "product_users": [],
-      "globals_css_selector_hits": 3
+      "globals_css_selector_hits": 0
     },
     "matrix-cell": {
       "product_users": [],
-      "globals_css_selector_hits": 5
+      "globals_css_selector_hits": 0
     },
     "matrix-header-cell": {
       "product_users": [],
-      "globals_css_selector_hits": 7
+      "globals_css_selector_hits": 0
     },
     "matrix-row-group": {
       "product_users": [],
-      "globals_css_selector_hits": 2
+      "globals_css_selector_hits": 0
     },
     "matrix-row-label": {
       "product_users": [],
-      "globals_css_selector_hits": 3
+      "globals_css_selector_hits": 0
     },
     "portal-start-session": {
       "product_users": [],
-      "globals_css_selector_hits": 3
+      "globals_css_selector_hits": 0
     },
     "portal-deliverables": {
       "product_users": [],
-      "globals_css_selector_hits": 3
+      "globals_css_selector_hits": 0
     },
     "portal-deliverable-grid": {
       "product_users": [],
-      "globals_css_selector_hits": 3
+      "globals_css_selector_hits": 0
     },
     "portal-deliverable-row": {
       "product_users": [],
-      "globals_css_selector_hits": 2
+      "globals_css_selector_hits": 0
     },
     "portal-deliverable-name": {
       "product_users": [],
-      "globals_css_selector_hits": 1
+      "globals_css_selector_hits": 0
     },
     "portal-deliverable-key": {
       "product_users": [],
-      "globals_css_selector_hits": 1
+      "globals_css_selector_hits": 0
     }
   },
   "scope_text_hits": {
@@ -2557,7 +2333,7 @@
   "candidate": {
     "state": "CANDIDATE (not accepted; _LATEST.md unchanged)",
     "builder_sha256": "1136d9d8eba59ecc6abac42d5656f96ee379ca04371fc5b717c3efbbc7a41a88",
-    "wrapper_sha256": "c4ee92ad2da7d18a79893e506d3c13f57885a62ace5206c001e9b270cf1943f9",
+    "wrapper_sha256": "01432c40ea338b170d99e4b599ef0cc49c67cd66dce1873dd6a4536e5f1efec9",
     "pre_change_coverage_sha256": "c470779a3d25c9e911248322d2b1785aa0895c1666cdb7311aacb980017cc0b2",
     "pre_change_refresh_sha256": "220ecfbaf56cf2f99c27503c86b8207db367264e8d4696caddd2b41cd7d83e91",
     "acceptance_conditional_withheld": [
@@ -4195,79 +3971,10 @@
       },
       "post": {
         "method": "Static relative-import graph over frontend/src (tests excluded) and frontend/electron. Roots: every app page.tsx, layout.tsx, not-found.tsx and route.ts, and every electron module. A JSX element passed as `legacy` counts as an import edge although WovenDialogueRoute never renders it; the scenarios remove those edges to show what is reachable only through them.",
-        "product_modules": 259,
-        "reachable_S0_actual": 211,
-        "S1_only_via_discarded_legacy_element": [
-          {
-            "module": "src/components/portal/agent-matrix.tsx",
-            "product_importers": [
-              "src/components/shell/tertiary-sidebar-tabs.tsx"
-            ],
-            "test_importers": [
-              "src/__tests__/components/agent-matrix-panel.test.ts"
-            ]
-          },
-          {
-            "module": "src/components/shell/loop-shell.tsx",
-            "product_importers": [
-              "src/app/chat/page.tsx"
-            ],
-            "test_importers": []
-          },
-          {
-            "module": "src/components/shell/loop-tertiary-shell.tsx",
-            "product_importers": [
-              "src/app/pipeline/pipeline-client.tsx",
-              "src/app/workbench/workbench-client.tsx"
-            ],
-            "test_importers": []
-          },
-          {
-            "module": "src/components/shell/portal-loop-shell.tsx",
-            "product_importers": [
-              "src/app/page.tsx"
-            ],
-            "test_importers": []
-          },
-          {
-            "module": "src/components/shell/sidebar-right-loop-layout.tsx",
-            "product_importers": [
-              "src/components/shell/loop-shell.tsx",
-              "src/components/shell/loop-tertiary-shell.tsx",
-              "src/components/shell/portal-loop-shell.tsx"
-            ],
-            "test_importers": [
-              "src/__tests__/components/workspace-sidebar.test.ts"
-            ]
-          },
-          {
-            "module": "src/components/shell/tertiary-sidebar-tabs.tsx",
-            "product_importers": [
-              "src/components/shell/loop-shell.tsx",
-              "src/components/shell/loop-tertiary-shell.tsx",
-              "src/components/shell/portal-loop-shell.tsx"
-            ],
-            "test_importers": []
-          }
-        ],
-        "S2_additionally_only_via_DeliverablesProvider": [
-          {
-            "module": "src/components/workspace/deliverables-provider.tsx",
-            "product_importers": [
-              "src/app/layout.tsx"
-            ],
-            "test_importers": []
-          },
-          {
-            "module": "src/lib/workspace/task-scope.ts",
-            "product_importers": [
-              "src/components/workspace/deliverables-provider.tsx"
-            ],
-            "test_importers": [
-              "src/__tests__/lib/task-scope-selection.test.ts"
-            ]
-          }
-        ],
+        "product_modules": 244,
+        "reachable_S0_actual": 199,
+        "S1_only_via_discarded_legacy_element": [],
+        "S2_additionally_only_via_DeliverablesProvider": [],
         "S3_additionally_only_via_workbench_pipeline_pages": [
           {
             "module": "src/app/pipeline/page.tsx",
@@ -4298,41 +4005,8 @@
             ]
           }
         ],
-        "unreachable_at_basis_in_scope": [
-          {
-            "module": "src/components/woven-dialogue/workflow-detail.tsx",
-            "product_importers": [
-              "src/components/woven-dialogue/workflows-view.tsx"
-            ],
-            "test_importers": [
-              "src/__tests__/components/woven-workflows.test.tsx"
-            ]
-          },
-          {
-            "module": "src/components/woven-dialogue/workflows-view.tsx",
-            "product_importers": [],
-            "test_importers": [
-              "src/__tests__/components/woven-workflows.test.tsx"
-            ]
-          },
-          {
-            "module": "src/lib/portal/agent-matrix-cells.ts",
-            "product_importers": [],
-            "test_importers": [
-              "src/__tests__/lib/agent-matrix-cells.test.ts",
-              "src/__tests__/lib/pkg08-compatibility-boundaries.test.ts"
-            ]
-          },
-          {
-            "module": "src/lib/portal/agent-matrix-launch.ts",
-            "product_importers": [],
-            "test_importers": [
-              "src/__tests__/lib/agent-matrix-launch.test.ts",
-              "src/__tests__/lib/pkg08-compatibility-boundaries.test.ts"
-            ]
-          }
-        ],
-        "unreachable_at_basis_other_count": 49,
+        "unreachable_at_basis_in_scope": [],
+        "unreachable_at_basis_other_count": 50,
         "unreachable_at_basis_other": [
           "src/components/woven-dialogue/work-projection.tsx",
           "src/lib/consent/consent-ux-fixtures.ts",
@@ -4382,11 +4056,12 @@
           "src/lib/pipeline/pipeline-dispatch-contract.ts",
           "src/lib/workspace/governed-workflow.ts",
           "src/lib/workspace/navigation-intent.ts",
+          "src/lib/workspace/task-scope.ts",
           "src/types/chirality-window.d.ts"
         ]
       },
       "refresh_equals_accepted": true,
-      "post_equals_refresh": true
+      "post_equals_refresh": false
     },
     "frontend_references": {
       "pre_accepted": {
@@ -5202,7 +4877,6 @@
         },
         "scanProjectScopes": {
           "product": [
-            "src/app/api/working-root/scope/route.ts",
             "src/lib/harness/mcp/read-tools.ts",
             "src/lib/workspace/filesystem.ts"
           ],
@@ -5211,46 +4885,26 @@
           "runtime": []
         },
         "useDeliverables": {
-          "product": [
-            "src/components/workspace/deliverables-provider.tsx"
-          ],
+          "product": [],
           "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "DeliverablesProvider": {
-          "product": [
-            "src/app/layout.tsx",
-            "src/components/workspace/deliverables-provider.tsx"
-          ],
+          "product": [],
           "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "legacy={": {
-          "product": [
-            "src/app/chat/page.tsx",
-            "src/app/page.tsx",
-            "src/app/pipeline/pipeline-client.tsx",
-            "src/app/workbench/workbench-client.tsx"
-          ],
-          "tests": [
-            "src/__tests__/components/woven-dialogue-route.test.tsx"
-          ],
+          "product": [],
+          "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "legacyHref": {
-          "product": [
-            "src/components/shell/shell-frame.tsx",
-            "src/components/woven-dialogue/navigator.tsx",
-            "src/components/woven-dialogue/woven-dialogue-shell.tsx"
-          ],
-          "tests": [
-            "src/__tests__/components/historical-chat-reveal.test.tsx",
-            "src/__tests__/components/woven-dialogue-navigator.test.tsx",
-            "src/__tests__/components/woven-dialogue-shell.test.tsx"
-          ],
+          "product": [],
+          "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
@@ -5259,9 +4913,7 @@
             "src/components/shell/chat-panel.tsx"
           ],
           "tests": [
-            "src/__tests__/components/woven-dialogue-shell.test.tsx",
-            "src/__tests__/contract-pins.manifest.ts",
-            "src/__tests__/lib/agent-matrix-launch.test.ts"
+            "src/__tests__/contract-pins.manifest.ts"
           ],
           "electron_scripts": [
             "electron/main.ts",
@@ -5271,8 +4923,7 @@
         },
         "'/pipeline'": {
           "product": [
-            "src/components/shell/chat-panel.tsx",
-            "src/lib/portal/agent-matrix-launch.ts"
+            "src/components/shell/chat-panel.tsx"
           ],
           "tests": [
             "src/__tests__/contract-pins.manifest.ts"
@@ -5284,165 +4935,94 @@
           "runtime": []
         },
         "mergeMatrixTargetIntoCurrentUrl": {
-          "product": [
-            "src/lib/portal/agent-matrix-launch.ts"
-          ],
-          "tests": [
-            "src/__tests__/lib/agent-matrix-launch.test.ts",
-            "src/__tests__/lib/pkg08-compatibility-boundaries.test.ts"
-          ],
+          "product": [],
+          "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "DIRECT_ENTRY_ROLE_IDS": {
           "product": [
-            "src/lib/portal/agent-matrix-cells.ts",
             "src/lib/woven-dialogue/operator-projection.ts"
           ],
-          "tests": [
-            "src/__tests__/lib/agent-matrix-cells.test.ts",
-            "src/__tests__/lib/pkg08-compatibility-boundaries.test.ts"
-          ],
+          "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "isRoleSelectionBlocked": {
-          "product": [
-            "src/lib/portal/agent-matrix-cells.ts"
-          ],
-          "tests": [
-            "src/__tests__/lib/agent-matrix-cells.test.ts"
-          ],
+          "product": [],
+          "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "buildPortalPersonaHref": {
-          "product": [
-            "src/components/shell/portal-loop-shell.tsx",
-            "src/lib/shell/loop-first.ts"
-          ],
-          "tests": [
-            "src/__tests__/lib/loop-first.test.ts"
-          ],
+          "product": [],
+          "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "buildDirectChatHref": {
-          "product": [
-            "src/lib/shell/loop-first.ts"
-          ],
-          "tests": [
-            "src/__tests__/lib/loop-first.test.ts"
-          ],
+          "product": [],
+          "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "RoleDirectoryPanel": {
-          "product": [
-            "src/components/portal/agent-matrix.tsx"
-          ],
-          "tests": [
-            "src/__tests__/components/agent-matrix-panel.test.ts"
-          ],
+          "product": [],
+          "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "AgentMatrix": {
-          "product": [
-            "src/components/portal/agent-matrix.tsx",
-            "src/components/shell/tertiary-sidebar-tabs.tsx"
-          ],
+          "product": [],
           "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "createTertiarySidebarTabs": {
-          "product": [
-            "src/components/shell/loop-shell.tsx",
-            "src/components/shell/loop-tertiary-shell.tsx",
-            "src/components/shell/portal-loop-shell.tsx",
-            "src/components/shell/tertiary-sidebar-tabs.tsx"
-          ],
+          "product": [],
           "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "SidebarRightLoopLayout": {
-          "product": [
-            "src/components/shell/loop-shell.tsx",
-            "src/components/shell/loop-tertiary-shell.tsx",
-            "src/components/shell/portal-loop-shell.tsx",
-            "src/components/shell/sidebar-right-loop-layout.tsx"
-          ],
-          "tests": [
-            "src/__tests__/components/workspace-sidebar.test.ts"
-          ],
+          "product": [],
+          "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "LoopTertiaryShell": {
-          "product": [
-            "src/app/pipeline/pipeline-client.tsx",
-            "src/app/workbench/workbench-client.tsx",
-            "src/components/shell/loop-tertiary-shell.tsx"
-          ],
-          "tests": [
-            "src/__tests__/components/loop-tertiary-routes.test.ts"
-          ],
+          "product": [],
+          "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "PortalLoopShell": {
-          "product": [
-            "src/app/page.tsx",
-            "src/components/shell/portal-loop-shell.tsx"
-          ],
+          "product": [],
           "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "LoopShell": {
-          "product": [
-            "src/app/chat/page.tsx",
-            "src/app/page.tsx",
-            "src/components/shell/loop-shell.tsx",
-            "src/components/shell/portal-loop-shell.tsx"
-          ],
+          "product": [],
           "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "pipelineTab": {
-          "product": [
-            "src/components/shell/sidebar-right-loop-layout.tsx",
-            "src/components/shell/workspace-sidebar.tsx"
-          ],
-          "tests": [
-            "src/__tests__/components/workspace-sidebar.test.ts"
-          ],
+          "product": [],
+          "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "workbenchTab": {
-          "product": [
-            "src/components/shell/sidebar-right-loop-layout.tsx",
-            "src/components/shell/workspace-sidebar.tsx"
-          ],
-          "tests": [
-            "src/__tests__/components/workspace-sidebar.test.ts"
-          ],
+          "product": [],
+          "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "portalTab": {
-          "product": [
-            "src/components/shell/sidebar-right-loop-layout.tsx",
-            "src/components/shell/tertiary-sidebar-tabs.tsx",
-            "src/components/shell/workspace-sidebar.tsx"
-          ],
-          "tests": [
-            "src/__tests__/components/workspace-sidebar.test.ts"
-          ],
+          "product": [],
+          "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
@@ -5486,90 +5066,61 @@
           "runtime": []
         },
         "/api/working-root/workflow?": {
-          "product": [
-            "src/components/woven-dialogue/workflows-view.tsx"
-          ],
-          "tests": [
-            "src/__tests__/api/working-root-workflow.test.ts"
-          ],
+          "product": [],
+          "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "WorkflowsView": {
-          "product": [
-            "src/components/woven-dialogue/workflows-view.tsx"
-          ],
-          "tests": [
-            "src/__tests__/components/woven-workflows.test.tsx"
-          ],
+          "product": [],
+          "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "WorkflowDetail": {
-          "product": [
-            "src/components/woven-dialogue/workflow-detail.tsx",
-            "src/components/woven-dialogue/workflows-view.tsx"
-          ],
-          "tests": [
-            "src/__tests__/components/woven-workflows.test.tsx"
-          ],
+          "product": [],
+          "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "workflow-read-contract": {
-          "product": [
-            "src/app/api/working-root/workflow/workflow-store.ts",
-            "src/components/woven-dialogue/workflow-detail.tsx",
-            "src/components/woven-dialogue/workflows-view.tsx"
-          ],
+          "product": [],
           "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "workflow-store": {
-          "product": [
-            "src/app/api/working-root/workflow/route.ts"
-          ],
+          "product": [],
           "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "PORTAL, PIPELINE, and WORKBENCH": {
-          "product": [
-            "src/app/layout.tsx"
-          ],
+          "product": [],
           "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "Loading live loop portal": {
-          "product": [
-            "src/app/page.tsx"
-          ],
+          "product": [],
           "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "Loading workbench": {
-          "product": [
-            "src/app/workbench/page.tsx"
-          ],
+          "product": [],
           "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "Loading pipeline": {
-          "product": [
-            "src/app/pipeline/page.tsx"
-          ],
+          "product": [],
           "tests": [],
           "electron_scripts": [],
           "runtime": []
         },
         "Loading direct chat": {
-          "product": [
-            "src/app/chat/page.tsx"
-          ],
+          "product": [],
           "tests": [],
           "electron_scripts": [],
           "runtime": []
@@ -5596,7 +5147,7 @@
         }
       },
       "refresh_equals_accepted": true,
-      "post_equals_refresh": true
+      "post_equals_refresh": false
     },
     "legacy_css_tokens": {
       "pre_accepted": {
@@ -6069,27 +5620,27 @@
         },
         "loop-chat-host": {
           "other_product_users": [],
-          "globals_css_selector_hits": 2
+          "globals_css_selector_hits": 0
         },
         "loop-grid": {
           "other_product_users": [],
-          "globals_css_selector_hits": 2
+          "globals_css_selector_hits": 0
         },
         "loop-grid--sidebar-collapsed": {
           "other_product_users": [],
-          "globals_css_selector_hits": 2
+          "globals_css_selector_hits": 0
         },
         "loop-main": {
           "other_product_users": [],
-          "globals_css_selector_hits": 2
+          "globals_css_selector_hits": 0
         },
         "loop-persona-bar": {
           "other_product_users": [],
-          "globals_css_selector_hits": 2
+          "globals_css_selector_hits": 0
         },
         "loop-sidebar": {
           "other_product_users": [],
-          "globals_css_selector_hits": 2
+          "globals_css_selector_hits": 0
         },
         "method-library-list": {
           "other_product_users": [
@@ -6133,12 +5684,13 @@
             "src/lib/harness/chat-draft.ts",
             "src/lib/harness/hosted-bootstrap-context.tsx",
             "src/lib/harness/toolkit.ts",
+            "src/lib/shell/loop-first.ts",
             "src/lib/shell/turn-activity.ts",
             "src/lib/shell/turn-phase.ts",
             "src/lib/workspace/use-conversation-file-catalog.ts",
             "src/lib/woven-dialogue/operator-projection.ts"
           ],
-          "globals_css_selector_hits": 11
+          "globals_css_selector_hits": 10
         },
         "panel--chat": {
           "other_product_users": [
@@ -6201,23 +5753,23 @@
         },
         "portal-launch-notice": {
           "other_product_users": [],
-          "globals_css_selector_hits": 1
+          "globals_css_selector_hits": 0
         },
         "portal-matrix": {
           "other_product_users": [],
-          "globals_css_selector_hits": 2
+          "globals_css_selector_hits": 0
         },
         "portal-matrix--sidebar": {
           "other_product_users": [],
-          "globals_css_selector_hits": 8
+          "globals_css_selector_hits": 0
         },
         "portal-matrix-header": {
           "other_product_users": [],
-          "globals_css_selector_hits": 2
+          "globals_css_selector_hits": 0
         },
         "portal-matrix-heading": {
           "other_product_users": [],
-          "globals_css_selector_hits": 1
+          "globals_css_selector_hits": 0
         },
         "shell-pane": {
           "other_product_users": [
@@ -6251,7 +5803,7 @@
         }
       },
       "refresh_equals_accepted": true,
-      "post_equals_refresh": true
+      "post_equals_refresh": false
     },
     "dead_css_candidates": {
       "pre_accepted": {
@@ -6349,51 +5901,51 @@
       "post": {
         "matrix-grid": {
           "product_users": [],
-          "globals_css_selector_hits": 3
+          "globals_css_selector_hits": 0
         },
         "matrix-cell": {
           "product_users": [],
-          "globals_css_selector_hits": 5
+          "globals_css_selector_hits": 0
         },
         "matrix-header-cell": {
           "product_users": [],
-          "globals_css_selector_hits": 7
+          "globals_css_selector_hits": 0
         },
         "matrix-row-group": {
           "product_users": [],
-          "globals_css_selector_hits": 2
+          "globals_css_selector_hits": 0
         },
         "matrix-row-label": {
           "product_users": [],
-          "globals_css_selector_hits": 3
+          "globals_css_selector_hits": 0
         },
         "portal-start-session": {
           "product_users": [],
-          "globals_css_selector_hits": 3
+          "globals_css_selector_hits": 0
         },
         "portal-deliverables": {
           "product_users": [],
-          "globals_css_selector_hits": 3
+          "globals_css_selector_hits": 0
         },
         "portal-deliverable-grid": {
           "product_users": [],
-          "globals_css_selector_hits": 3
+          "globals_css_selector_hits": 0
         },
         "portal-deliverable-row": {
           "product_users": [],
-          "globals_css_selector_hits": 2
+          "globals_css_selector_hits": 0
         },
         "portal-deliverable-name": {
           "product_users": [],
-          "globals_css_selector_hits": 1
+          "globals_css_selector_hits": 0
         },
         "portal-deliverable-key": {
           "product_users": [],
-          "globals_css_selector_hits": 1
+          "globals_css_selector_hits": 0
         }
       },
       "refresh_equals_accepted": true,
-      "post_equals_refresh": true
+      "post_equals_refresh": false
     },
     "decomposition_sha256": {
       "pre_accepted": "cf6e56ebb1474d30a45dd3973dcb449d8aab30a84d731649336091afd2321876",

@@ -24,9 +24,11 @@ applied, with the other acceptance-conditional items, by
 `Evidence/Group3/group3_finalize.py`. There is no group-3 correction and no
 basis refresh of an edited file.
 
-The code change of `Propagation_Plan.md` §4 is prepared separately and is
-integrated for the joint group-3 review (Q-a). Until then the candidate is the
-scope text alone.
+The code change of `Propagation_Plan.md` §4 was prepared on its own branch
+and is integrated with the scope text for the joint group-3 review (Q-a): the
+integrated revision is `c47b74fd5` (code `85f206dae`, records `8df9c3f78`,
+export `c47b74fd5`) on `origin/main` `974bf7da4`, validated with
+`Evidence/Group3/validate_candidate.py --integrated` (PASS).
 
 ## Authoritative truth changed by the candidate
 
@@ -37,7 +39,8 @@ The candidate writes the accepted scope text: 79 of 80 edits in 12 files.
 
 E26 is withheld. The scope-text candidate changes no code, `_CONTEXT.md`,
 `_STATUS.md`, `Dependencies.csv`, companion register or Task Management
-register.
+register; the code change is the separate App-loop half of the integrated
+revision (above).
 
 ## Authoritative action register
 
@@ -64,7 +67,7 @@ accepted in `checkpoint_snapshots/SCA-APP-012_GROUP-2_2026-09-27/`. It has
 | Package | Owner | Status | Evidence | Next required action |
 |---|---|---|---|---|
 | Dependency registers (DEL-02-03 DEP-02-03-009 and DEP-02-03-004; DEL-08-03 DEP-08-03-007) | `dependency-extract` | STALE | `Propagation_Plan.md` §8 item 2 (DX-01, DX-02, DX-03, DX-05) | Re-extract after acceptance, then `analyze_dep_closure.py` |
-| Code change (`Propagation_Plan.md` §4) | App loop, on a separate branch | IN PREPARATION; integrated for the joint review (Q-a) | `RUN_SUMMARY.md` §6 | Integrate, then the independent review of scope text and code together |
+| Code change (`Propagation_Plan.md` §4) | App loop | INTEGRATED (commits `85f206dae`, `8df9c3f78`, `c47b74fd5`); validated with the scope text | run receipt `APP-RETIRE-LOOP-FIRST-UI-2026-09-27/RECEIPT.md`; Receipt-280; `RUN_SUMMARY.md` | Independent review of scope text and code together; one PR after group-3 acceptance, once PR CI passes |
 | Task Management TM-APP-051 | Row owner | NOTE PENDING | `Propagation_Plan.md` §8 item 5 | Record the disposition note after acceptance |
 
 ## Active derivative-surface state
@@ -74,13 +77,13 @@ accepted in `checkpoint_snapshots/SCA-APP-012_GROUP-2_2026-09-27/`. It has
 | `_Evaluation/DecompCoverage` | STALE_REBUILD_REQUIRED | Candidate baseline in `Post_Change_Coverage.json`; full `audit-decomp` after acceptance | `Evidence/Group3/PRE_POST_COMPARISON.md` |
 | `_Evaluation/ScopeClosureAudit` | STALE_REBUILD_REQUIRED | After incremental setup and the code change | — |
 | `_Evaluation/DepClosure` | STALE_REBUILD_REQUIRED | After dependency re-extraction | — |
-| `exports/chirality-app` | STALE_REBUILD_REQUIRED | Regenerated with the integrated code change | export tooling |
+| `exports/chirality-app` | REGENERATED | Regenerated in the integrated revision (commit `c47b74fd5`; 1,864 manifest rows) | export tooling |
 | Companion register | NO_CHANGE (E) | Unchanged, SHA-256 `918e475a…a944` | `Post_Change_Coverage.json` |
 
 ## Remaining blockers and human decisions
 
-- **Code integration and joint review.** The code change of §4 is integrated
-  and the independent review covers scope text and code together (Q-a).
+- **Joint review.** The independent review covers the integrated scope text
+  and code together (Q-a); PR CI is still to run.
 - **Checkpoint group 3.** The owner accepts, amends or returns this candidate
   together with the code candidate.
 - **No reopening.** All eight written deliverables are `IN_PROGRESS`. No
