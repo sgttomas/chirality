@@ -344,7 +344,7 @@
   },
   {
    "id": "Q48",
-   "text": "the C-08 standing-node exclusion from one-shot blocker arithmetic",
+   "text": "the flags-as-flags reading of ruling 4 is confirmed, including the C-08 standing-node exclusion from one-shot blocker arithmetic",
    "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-62_project_setup_scaffold_and_local_dependency_registers.md",
    "where": "CLM-012",
    "commit": "125cfacc1"
@@ -510,6 +510,24 @@
    "key_column": "DeliverableID",
    "key": "DEL-10-13",
    "column": "ContextEnvelopeNotes"
+  },
+  {
+   "id": "Q71",
+   "text": "The `C-08` `STANDING_NODES` classification's *force* is unconfirmed.",
+   "source": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/ScopeOfWork.md",
+   "where": "CLM-012",
+   "commit": "125cfacc1"
+  },
+  {
+   "id": "Q72",
+   "text": "coverage honesty under seeded feed failures",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "where": "TBD-006",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-10-13",
+   "column": "Description"
   }
  ]
 }

@@ -50,7 +50,7 @@ One bound script does this in one run, with no lifecycle change.
   - Standard: `docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md` `26c8254aaf2e2894e7d32096ec1e0d71b3ad881c1445094945031be19741433c`, ratified by D-GOV-16: "New deliverables use `SOW_V1`".
 - **Mode.** `MODE=INIT` (no production contract exists for either deliverable), `DECOMP_VARIANT=SOFTWARE`, `STATUS_POLICY=NO_STATUS_TOUCH`, `RENDER_HTML=false`. There is no evidence candidate, map, parity or finalizer. The authored contract is the production contract, and `MODE=VERIFY` is the independent check.
   - `preparation` is not re-run: `D-PEC-101` created both folders with the `preparation` skill scaffold.
-  - Disclosure (one line): Root's `NOTICE_2026-09-26_PROJECT_SETUP_INCREMENTAL.md` added `scope-of-work` `MODE=REVISE`; the owner defers adopting it in PEC, and it is not relevant to a first contract.
+  - Disclosure (one line): Root's `NOTICE_2026-09-26_PROJECT_SETUP_INCREMENTAL.md` (`8829ac84…64af`) added `scope-of-work` `MODE=REVISE`; the owner defers adopting it in PEC, and it is not relevant to a first contract.
 - **Actors.**
   - Two Type 2 TASK drafters, one per deliverable, under `K2_DRAFTER_BRIEF.md` (`aefa51fafa07ed250fa161f10ac3f8d76e686164be8662916355562f8073aa40`, in this folder). Each wrote its candidate and its quote and claim files, and ran the self-checks.
   - WORKING_ITEMS wrote the brief, the verifiers, the act scripts and tests, and the add-on postimages. It integrated the drafts, bound the hashes and ran the checks.
@@ -257,7 +257,7 @@ The slots `{D}` and `{PR}` and the two link targets are fixed at closeout. The v
 
 ### Add-on C8 — the owner's C-08 classification of DEL-10-13 (only if question 4 selects it)
 
-**What it writes, and why it needs the owner.** The one added line goes in the **"Dependency Tracking Mode" section, which is human-owned** under `docs/SPEC.md` §5.1. There, "humans or the coordinating workflow" maintain it, and an agent "never fills" a human-owned section. So C8 **applies only on the owner's explicit selection**, as the owner's own classification; the agent only transcribes it.
+**What it writes, and why it needs the owner.** The one added line goes in the **"Dependency Tracking Mode" section, which is human-owned** under `docs/SPEC.md` §5.1 ("humans or the coordinating workflow, ordinarily `project-setup`, maintain them"; "Agent-owned sections never overwrite human-owned sections"). The classification it records is the owner's: `D-PEC-101` finding 4 says classifying DEL-10-13 as standing "changes one-shot blocker arithmetic and is an owner classification". So C8 **applies only on the owner's explicit selection**, as the owner's own classification; WORKING_ITEMS only transcribes it into the human-owned section.
 - Without an explicit C8 answer, nothing is written and DEL-10-13 stays unclassified.
 - A "decline" answer also writes nothing, and the classification remains the owner's to make later.
 
@@ -267,9 +267,9 @@ The postimage (`addons/C8/…/_DEPENDENCIES.md`) inserts exactly this line after
 - **Standing obligation (constraint C-08):** STANDING node — it gates releases, not successors, and is excluded from one-shot COMPLETE/UNBLOCKED arithmetic (owner-classified under `D-PEC-103`).
 ```
 
-**Placement.** D-GOV-46 gives new files a single heading schema, so no new heading is added.
-- The legacy standing nodes (DEL-10-02, DEL-03-04) carry a separate `## Standing obligation (constraint C-08)` section.
-- A human-owned bullet under the existing Tracking Mode heading is the schema-conformant equivalent.
+**Placement (a conservative choice).** The five `D-PEC-62` C-08 nodes (DEL-01-05, DEL-03-04, DEL-10-02, DEL-10-03, DEL-10-10) carry a separate `## Standing obligation (constraint C-08)` section in their legacy-heading files, and `D-PEC-101` finding 7 speaks of "the C-08 section".
+- DEL-10-13's file uses the D-GOV-46 §5.2 heading schema. That schema binds `preparation`, `dependency-extract` and `project-setup` when they create a file or add a missing section; it does not forbid another heading in an existing file.
+- This packet nonetheless adds no heading: a bullet inside the existing human-owned Tracking Mode section records the same classification without departing from the §5.2 headings. An amend could instead add the legacy-style section.
 - The Run Notes bullet saying `D-PEC-101` did not classify the deliverable stays, and stays true.
 
 **Effects checked.** No tool reads the annotation.
@@ -280,6 +280,7 @@ The postimage (`addons/C8/…/_DEPENDENCIES.md`) inserts exactly this line after
 - One run of `apply_k2_c8.py`, after `apply_k2.py`.
 - Preflight pins: the target's preimage, the DEL-10-13 contract's postimage, DEL-10-13 `Dependencies.csv` and `Deliverables.csv`. `_STATUS.md` is not pinned, because S may already have run.
 - The write set is exactly the one modified file.
+- **Ordering.** C8 pins DEL-10-13's option-A postimage, so it runs only after A has written that contract; an amend that writes only DEL-08-06 excludes C8. Any single-contract amend needs a rebuilt, re-hashed `apply_k2.py`. C8 and S must not run concurrently (C8's inventory check would fail and roll back); run them one after the other.
 - **If the final packet number is not 103**, the one token `D-PEC-103` in the line changes. The postimage hash and `apply_k2_c8.py` are then rebuilt, and the verifier checks that the diff is that token.
 
 ## Generation method (binding)

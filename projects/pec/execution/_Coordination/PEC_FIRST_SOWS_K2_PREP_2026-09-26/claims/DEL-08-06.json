@@ -1625,13 +1625,21 @@
     {
       "id": "S139",
       "commit": "125cfacc1",
+      "kind": "contains",
+      "path": "_DomainEngines/profiles/pec.yaml",
+      "value": "- \"separate owner act for artifact fitness, lifecycle, release, or professional reliance\"",
+      "candidate_text": "Its human gates also keep a \"separate owner act for artifact fitness, lifecycle, release, or professional reliance\""
+    },
+    {
+      "id": "S140",
+      "commit": "125cfacc1",
       "kind": "sha256_prefix",
       "path": "projects/pec/v2/contracts/api/v1/schema.json",
       "value": "0a4e42737e62",
       "candidate_text": "`0a4e42737e62…5c67`"
     },
     {
-      "id": "S140",
+      "id": "S141",
       "commit": "125cfacc1",
       "kind": "not_contains",
       "path": "projects/pec/v2/contracts/api/v1/schema.json",
@@ -1639,7 +1647,7 @@
       "candidate_text": "contains no `agent` term"
     },
     {
-      "id": "S141",
+      "id": "S142",
       "commit": "125cfacc1",
       "kind": "contains",
       "path": "projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md",
@@ -1647,7 +1655,7 @@
       "candidate_text": "carries the act as node K3"
     },
     {
-      "id": "S142",
+      "id": "S143",
       "commit": "125cfacc1",
       "kind": "contains",
       "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
@@ -1655,7 +1663,7 @@
       "candidate_text": "(`OI-009`, `SOW-083`)"
     },
     {
-      "id": "S143",
+      "id": "S144",
       "commit": "125cfacc1",
       "kind": "contains",
       "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
@@ -1663,7 +1671,7 @@
       "candidate_text": "(`OI-006`, `SOW-080` `TBD`)"
     },
     {
-      "id": "S144",
+      "id": "S145",
       "commit": "125cfacc1",
       "kind": "contains",
       "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_DEPENDENCIES.md",
@@ -1671,7 +1679,7 @@
       "candidate_text": "`C-04` `PHASE_PRECEDENCE`"
     },
     {
-      "id": "S145",
+      "id": "S146",
       "commit": "125cfacc1",
       "kind": "contains",
       "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_DEPENDENCIES.md",
@@ -1679,7 +1687,7 @@
       "candidate_text": "`C-10` `STRATUM_RULE`"
     },
     {
-      "id": "S146",
+      "id": "S147",
       "commit": "125cfacc1",
       "kind": "contains",
       "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_DEPENDENCIES.md",
@@ -1687,7 +1695,7 @@
       "candidate_text": "under `FULL_GRAPH` at threshold `INITIALIZED`"
     },
     {
-      "id": "S147",
+      "id": "S148",
       "commit": "125cfacc1",
       "kind": "contains",
       "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",

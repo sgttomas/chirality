@@ -159,7 +159,7 @@
    "kind": "contains",
    "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_CONTEXT.md",
    "value": "`execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.6",
-   "candidate_text": "`_CONTEXT.md` and `_REFERENCES.md` name revision 1.6 and PRD v2.4"
+   "candidate_text": "`_CONTEXT.md` names revision 1.6"
   },
   {
    "id": "S21",
@@ -167,7 +167,7 @@
    "kind": "contains",
    "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_REFERENCES.md",
    "value": "(revision 1.6, accepted `current_basis`",
-   "candidate_text": "`_CONTEXT.md` and `_REFERENCES.md` name revision 1.6 and PRD v2.4"
+   "candidate_text": "`_REFERENCES.md` names revision 1.6 and PRD v2.4"
   },
   {
    "id": "S22",
@@ -175,7 +175,7 @@
    "kind": "contains",
    "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_REFERENCES.md",
    "value": "`docs/PRD.md` v2.4",
-   "candidate_text": "`_CONTEXT.md` and `_REFERENCES.md` name revision 1.6 and PRD v2.4"
+   "candidate_text": "`_REFERENCES.md` names revision 1.6 and PRD v2.4"
   },
   {
    "id": "S23",
@@ -3681,7 +3681,7 @@
    "kind": "contains",
    "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-62_project_setup_scaffold_and_local_dependency_registers.md",
    "value": "the flags-as-flags reading of ruling 4 is confirmed, including the C-08 standing-node exclusion from one-shot blocker arithmetic",
-   "candidate_text": "the `D-PEC-62` ruling confirmed"
+   "candidate_text": "the `D-PEC-62` ruling text reads"
   },
   {
    "id": "S317",
@@ -3689,7 +3689,7 @@
    "kind": "contains",
    "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-62_project_setup_scaffold_and_local_dependency_registers.md",
    "value": "owner selected \"RULED as drafted\" at the in-session gate: the proposed §7 ruling text applies verbatim",
-   "candidate_text": "the `D-PEC-62` ruling confirmed"
+   "candidate_text": "the `D-PEC-62` ruling text reads"
   },
   {
    "id": "S318",
@@ -3810,6 +3810,22 @@
    "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
    "value": "| DL-21 | 2026-09-26 | SCA-006",
    "candidate_text": "Decision-log entry `DL-21` records"
+  },
+  {
+   "id": "S333",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/ScopeOfWork.md",
+   "value": "The `C-08` `STANDING_NODES` classification's *force* is unconfirmed.",
+   "candidate_text": "The `DEL-10-02` contract at `125cfacc1` reads the force of C-08 as unconfirmed"
+  },
+  {
+   "id": "S334",
+   "commit": "125cfacc1",
+   "kind": "not_contains",
+   "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_CONTEXT.md",
+   "value": "v2.4",
+   "candidate_text": "`_CONTEXT.md` names revision 1.6,"
   }
  ]
 }

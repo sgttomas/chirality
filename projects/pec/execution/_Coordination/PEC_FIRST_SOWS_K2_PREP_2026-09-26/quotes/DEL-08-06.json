@@ -471,6 +471,20 @@
       "source": "projects/pec/docs/PRD.md",
       "where": "TBD-005 (PEC-API-006)",
       "commit": "125cfacc1"
+    },
+    {
+      "id": "Q60",
+      "text": "separate owner act for artifact fitness, lifecycle, release, or professional reliance",
+      "source": "_DomainEngines/profiles/pec.yaml",
+      "where": "CLM-013 (human gate); owner of the reliance advertisement (CLM-012, REQ-015, AX-009)",
+      "commit": "125cfacc1"
+    },
+    {
+      "id": "Q61",
+      "text": "PEC provides labeled, non-authoritative orientation data on request and never self-polls, schedules a consumer, injects into an agent, or claims an external cadence.",
+      "source": "projects/pec/docs/PRD.md",
+      "where": "CLM-015 (PEC-K-03 pull-only clause), REQ-011",
+      "commit": "125cfacc1"
     }
   ]
 }
