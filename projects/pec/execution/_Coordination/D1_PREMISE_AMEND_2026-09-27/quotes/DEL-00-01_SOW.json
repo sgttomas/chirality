@@ -1,0 +1,175 @@
+{
+ "key": "DEL-00-01_SOW",
+ "quotes": [
+  {
+   "id": "Q01",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-088",
+   "column": "ScopeItemStatement",
+   "text": "Author v2's first ADRs: decide core isolation (OI-012); re-cite ADR-002 as a live carried posture; cite ADR-014 as historical lineage only while carrying forward the accepted v2 runtime/client and human-only-act boundary",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "189f205ff",
+   "where": "L18-20 Purpose (unchanged)"
+  },
+  {
+   "id": "Q02",
+   "text": "Everything PEC holds can be deleted at any moment without blocking any governed act",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "189f205ff",
+   "where": "L25-26 Purpose, OBJ-005 (unchanged)"
+  },
+  {
+   "id": "Q03",
+   "text": "live postures (ADR-002, ADR-014) re-cited in v2's first ADRs",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "189f205ff",
+   "where": "L41-42 Objective warrant, PRD §13 still-present phrase (unchanged)"
+  },
+  {
+   "id": "Q04",
+   "text": "persistence separability underwrites PEC-K-02's deletability → `OBJ-005`",
+   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Amendment_Preview.md",
+   "commit": "6c6cc1b00",
+   "where": "L45-46 Objective warrant (unchanged)"
+  },
+  {
+   "id": "Q05",
+   "text": "zero-dependency posture",
+   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Amendment_Preview.md",
+   "commit": "6c6cc1b00",
+   "where": "L47 Objective warrant (unchanged)"
+  },
+  {
+   "id": "Q06",
+   "text": "the chain to a *product outcome* runs through two inferential steps",
+   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Amendment_Preview.md",
+   "commit": "6c6cc1b00",
+   "where": "L47-48 Objective warrant (unchanged)"
+  },
+  {
+   "id": "Q07",
+   "text": "is to keep session ownership *out* of PEC, so it argues for absence, not service",
+   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Amendment_Preview.md",
+   "commit": "6c6cc1b00",
+   "where": "L50-51 Objective warrant (unchanged)"
+  },
+  {
+   "id": "Q08",
+   "text": "`OBJ-005` recommended, weakly",
+   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Amendment_Preview.md",
+   "commit": "6c6cc1b00",
+   "where": "L51 Objective warrant (unchanged)"
+  },
+  {
+   "id": "Q09",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-00-01",
+   "column": "Name",
+   "text": "v2 first ADRs (core isolation + carried postures)",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "189f205ff",
+   "where": "L72 CLM-001 (unchanged)"
+  },
+  {
+   "id": "Q10",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-00-01",
+   "column": "Description",
+   "text": "ADR-v2 set: core isolation style resolving OI-012; ADR-002 re-cited as the live zero-dependency posture; ADR-014 cited as historical lineage only; accepted v2 runtime/client and human-only-act boundary carried forward",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "189f205ff",
+   "where": "L73 CLM-002 (unchanged)"
+  },
+  {
+   "id": "Q11",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-00-01",
+   "column": "AnticipatedArtifacts",
+   "text": "ADR markdown entries under the v2 docs tree (path set by its packet)",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "189f205ff",
+   "where": "L74 CLM-003 (unchanged)"
+  },
+  {
+   "id": "Q12",
+   "text": "One language (TypeScript) across core/server/web",
+   "source": "projects/pec/docs/.archive/adr/ADR.md",
+   "commit": "6c6cc1b00",
+   "where": "L80 CLM-004, first fragment of the elided quotation (unchanged)"
+  },
+  {
+   "id": "Q13",
+   "text": "No server runtime dependencies",
+   "source": "projects/pec/docs/.archive/adr/ADR.md",
+   "commit": "6c6cc1b00",
+   "where": "L80 CLM-004, second fragment of the elided quotation (unchanged)"
+  },
+  {
+   "id": "Q14",
+   "text": "The service core has zero third-party runtime dependencies (carries ADR-002); workspace-internal runtime contracts packages are permitted",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "189f205ff",
+   "where": "L80 CLM-004, PEC-SVC-001 (unchanged)"
+  },
+  {
+   "id": "Q15",
+   "text": "Decided in DEL-00-01's ADR; owner review at that ADR",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "189f205ff",
+   "where": "L83 CON-001 (unchanged)"
+  },
+  {
+   "id": "Q16",
+   "text": "Decided in DEL-00-01's ADR; owner review at that ADR",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "189f205ff",
+   "where": "L110 AC-004 (unchanged)"
+  },
+  {
+   "id": "Q17",
+   "text": "owner review at that ADR",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "189f205ff",
+   "where": "L113 AC-007 (unchanged)"
+  },
+  {
+   "id": "Q18",
+   "text": "owner may prefer PKG-00 unordered",
+   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+   "commit": "6c6cc1b00",
+   "where": "L87 CLM-007 (unchanged)"
+  },
+  {
+   "id": "Q19",
+   "text": "owner may prefer PKG-00 unordered",
+   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+   "commit": "6c6cc1b00",
+   "where": "L141 AX-007 (unchanged)"
+  },
+  {
+   "id": "Q20",
+   "text": "PKG-00 deliverables publish artifacts that dependants consume as declared dependencies — a deliverable never writes into another package (disjoint write scopes preserved)",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "189f205ff",
+   "where": "L88 CLM-008, DL-12 (unchanged)"
+  },
+  {
+   "id": "Q21",
+   "text": "nearly all §16 open decisions are adapter-level",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "189f205ff",
+   "where": "L102 REQ-007 elided quotation 'nearly all ... adapter-level' (unchanged); its fragments are verified through this verbatim span, which CLM-006 L82 carries"
+  },
+  {
+   "id": "Q22",
+   "text": "strata are provenance not authority",
+   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+   "commit": "6c6cc1b00",
+   "where": "L141 AX-007, C-10 STRATUM_RULE (unchanged)"
+  }
+ ]
+}
