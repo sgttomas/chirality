@@ -258,8 +258,8 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     Done: its act replaced the seven contracts with the ruled bytes (no
     lifecycle change; DEL-02-07 carries the four `D-PEC-99` Part B items
     with their gates; run root
-    `execution/_Coordination/SOW_REBUILD_S2_2026-09-26/`). S1 and S4
-    absorb the quotations of old S2 text in 13 contracts. The owner
+    `execution/_Coordination/SOW_REBUILD_S2_2026-09-26/`). The quotations of
+    old S2 text in 13 contracts go to S4 (done, below) and S1 (open). The owner
     ruled the S4 currency packet `D-PEC-102` (eight contracts: DEL-04-01,
     DEL-04-02, DEL-04-03, DEL-08-01, DEL-08-03, DEL-08-04, DEL-03-04,
     DEL-10-03) A + M on 2026-09-26. Done: its act replaced the eight contracts
@@ -325,8 +325,8 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     `execution/_Coordination/REMAINING_RETIREMENT_D-PEC-99_2026-09-26/`).
     Still open from it: the 71 unselected evidence inquiries stay in the
     exhibit until steering selects one; S2 absorbed its four Scope of Work
-    carry-forwards (`D-PEC-100`, PR #979), and S1 and S4 absorb the other
-    eight. The undertaking's receipt is
+    carry-forwards (`D-PEC-100`, PR #979), S4 absorbed its four
+    (`D-PEC-102`, PR #998), and S1 absorbs the other four. The undertaking's receipt is
     `execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT/RECEIPT.md`.
 
   These are organized in the work graph
