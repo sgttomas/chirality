@@ -2,7 +2,7 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-01-04
 package_id: PKG-01
-decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@3623b958b
+decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@189f205ff02df4111b33c20be441ce06e65ada7a
 project_scope_refs: [SOW-057]
 package_objective_refs: [OBJ-006]
 ---
@@ -14,30 +14,43 @@ package_objective_refs: [OBJ-006]
 This Scope of Work is the production contract for `DEL-01-04` —
 "Self-observability logging" — in `PKG-01` Service Core & Store of the PEC v2
 build. It covers project scope item `SOW-057` in service of package objective
-`OBJ-006`.
+`OBJ-006`. It brings the deliverable's earlier contract (SHA-256
+`4dd777f8f30c…7e62`) current as a whole, and AX-006 records what changed.
 
 The accepted basis is `execution/_Decomposition/SOFTWARE_DECOMP.md`
-**revision 1.2** (`current_basis`, SCA-002 successor; accepted 2026-07-25 at
-D-PEC-64 closure, commit `3623b958b`). The deliverable-local `_REFERENCES.md`
-still names revision 1.1; that phrase is superseded provenance from a deferred
-pointer sweep and is not the basis of this contract, as `_CONTEXT.md`'s own
-supersession line records.
+**revision 1.6** (`current_basis`, SCA-006 successor), accepted by the owner at
+SCA-006 checkpoint group 3 on 2026-09-26. The frontmatter pin
+`189f205ff02df4111b33c20be441ce06e65ada7a` is the checkpoint-3 acceptance
+commit, an ancestor of `origin/main` `125cfacc1`. At the pin
+`SOFTWARE_DECOMP.md` has SHA-256 `9374c21fb87b…8eb1`, `Deliverables.csv`
+`94ee5d182ae9…9805`, `ScopeLedger.csv` `1d24a4b86f05…916e` and
+`ContextBudgetQA.csv` `93b0bb075a0e…4c7c`, the decomposition, ledger and
+deliverable values `_Decomposition/_LATEST.md` records, and `docs/PRD.md` v2.4
+has SHA-256 `ae49b8065698…3fbe`. This contract was authored against revision 1.2 (SCA-002 successor; accepted 2026-07-25 at D-PEC-64 closure), kept here as its dated basis. The deliverable-local `_REFERENCES.md` and `_CONTEXT.md` carry their own revision pins; this contract asserts nothing about their present text.
+
+**Observation commit.** The pin binds the accepted decomposition bytes only.
+Unless a claim names another commit, every statement below about the state of a
+file, record, lifecycle or decision is an observation at `origin/main`
+`125cfacc1`. There `SOFTWARE_DECOMP.md`, the three registers and the PRD are
+byte-identical to the pin, so every decomposition passage, register cell and
+PRD passage quoted below reads the same at both commits.
 
 **Objective warrant.** The `DEL-01-04` → `OBJ-006` attribution is
 **register-direct**, not SCA-002-qualified. The `ScopeLedger.csv` row for
 `SOW-057` already carried `OBJ-006` before SCA-002, and the `Deliverables.csv`
 row for `DEL-01-04` already carried `SupportsObjectives` `OBJ-006`; revision
 1.2 added no mapping here. The warrant is read directly from the accepted
-register: `OBJ-006` is anchored at PRD §11, whose measurability outcome is that
-the thesis metrics are "measured in system behavior, not human behavior" and
-that the falsification clause stays armed. Metrics gathered in system behavior
+register: `OBJ-006` is anchored at PRD §11, which PRD v2.4 heads "Success
+metrics (measured in observable system and use behavior)", and `OBJ-006` requires the
+thesis metrics to be "gathered in system behavior" and the falsification clause
+to stay armed. Metrics gathered in system behavior
 require PEC's own runs to be observable, which is exactly what `SOW-057`
 requires and this deliverable produces.
 
 - **CLM-001** — `SOW-057` states: "Log PEC's own reconcile runs and ingest activity, inspectable (self-observability)", with SourceRef `PEC-SVC-006`, `InOutStatus` `IN`, `OpenIssue` `FALSE`, and an empty ledger note.
 - **CLM-002** — `PEC-SVC-006` (PRD §10) states: "PEC's own reconcile runs and ingest activity are logged and inspectable (it is observable about itself)."
 - **CLM-003** — `OBJ-006` states: "The product thesis remains measurable and falsifiable: adoption, parity, defect, and collision metrics are gathered in system behavior and the §11 falsification clause stays armed", anchored at PRD §11.
-- **CLM-004** — `SOW-085` (`DEL-10-05`, Owner-consultation logging, P2) is recorded in the ledger as "grounded in SOW-057 self-observability", and PRD §11's preamble states the metrics are measured in system behavior; this deliverable is the observation substrate other `OBJ-006` instruments build on, and is not itself a metric.
+- **CLM-004** — `SOW-085` (`DEL-10-05`, Owner-consultation logging, P2) is recorded in the ledger as "grounded in SOW-057 self-observability", and PRD §11's heading states the metrics are "measured in observable system and use behavior"; this deliverable is the observation substrate other `OBJ-006` instruments build on, and is not itself a metric.
 
 ## Deliverable Definition — Ontology
 
@@ -55,9 +68,9 @@ holds only the two ANCHOR rows (`DEP-01-04-001` package anchor,
 - **OUT-003** — An automated test suite covering the module and the inspection command, implementing the verification methods declared in this contract.
 
 - **CLM-005** — The two logged subject classes are PEC's own activity, not governed-loop content: a "reconcile run" is an execution of the reconciler (`DEL-03-01`, `SOW-010`/`SOW-021`, P1) and "ingest activity" is PEC's own event ingest (`DEL-07-01`, `SOW-033`/`SOW-039`, P3).
-- **CLM-006** — Three consumer edges depend on this deliverable in the frozen gate exhibit, all downstream and informational in the deliverable-local register: `DEL-10-05` `[E-A26]` DECLARED ("SOW-085 note: 'grounded in SOW-057 self-observability'"), `DEL-03-01` `[E-N14]` PROPOSAL ("facility-first — logging facility precedes its emitting subjects"), and `DEL-07-01` `[E-N15]` PROPOSAL ("ingest-logging half is phase-staged to P3").
+- **CLM-006** — Three consumer edges depend on this deliverable in the frozen gate exhibit, all downstream and informational in the deliverable-local register: `DEL-10-05` `[E-A26]` DECLARED (SOW-085 note: "grounded in SOW-057 self-observability"), `DEL-03-01` `[E-N14]` PROPOSAL ("facility-first — logging facility precedes its emitting subjects"), and `DEL-07-01` `[E-N15]` PROPOSAL ("ingest-logging half is phase-staged to P3").
 - **CLM-007** — PRD §6 records that "the append-only discipline of v1.0 PEC-I-11 applies to PEC's own event log", and `PEC-K-10` content-minimal restricts recorded values to "Paths, counts, SHAs, states, hashes — never file or diff content"; `PEC-SVC-005` places the store at a gitignored path with the content-minimal rule enforced at ingest.
-- **CLM-008** — The deliverable is at lifecycle state `OPEN` with no implementation present. Every requirement, acceptance criterion, and verification method below states a contract on future production; none asserts that anything has been built.
+- **CLM-008** — The deliverable is at lifecycle state `INITIALIZED` with no implementation present: no file under `projects/pec/v2/` cites `SOW-057` or `PEC-SVC-006`. Every requirement, acceptance criterion, and verification method below states a contract on future production; none asserts that anything has been built.
 - **CLM-009** — The system-level kill test is owned elsewhere and is not reachable from this deliverable. `SOW-055` — "delete the store, run representative governed workflows, nothing blocks" — and its PRD anchor `PEC-SVC-004` are covered by `DEL-10-02` (Kill test, standing release gate). `SOW-057`, which this deliverable covers, does not reach that gate, and the accepted edge register records no edge in either direction between `DEL-01-04` and `DEL-10-02`: this deliverable's only recorded relations are the three downstream consumer edges of CLM-006. `DEL-10-02` will observe graceful absence at the system level under its own contract; nothing here executes, gates on, or discharges it.
 - **TBD-001** — `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation.
 - **TBD-002** — The concrete event schema, field set, serialization, on-disk file layout, and any rotation or retention policy of the log are not fixed by any accepted source; they are chosen during production within the bounds of REQ-003, REQ-004, and REQ-007.
@@ -106,9 +119,10 @@ edit.
 
 - **AX-001** — `PEC-K-01` graceful absence governs, with `PEC-SVC-004` as its standing release gate: PEC observing itself must never become something a governed act depends on. Logging is the first place that temptation appears, so REQ-006 and AC-005 are non-negotiable rather than best-effort.
 - **AX-002** — `PEC-K-10` content-minimal governs the recorded events. Self-observability is not an exemption from the ingest-boundary rule; `PEC-SVC-005` states that rule is enforced at ingest, and PEC's own log is ingested state like any other.
-- **AX-003** — PRD §6 carries the v1.0 `PEC-I-11` append-only discipline onto PEC's own event log. An observability record that can be rewritten cannot support §11's system-behavior measurement, which is why REQ-004 forbids mutation rather than merely discouraging it.
+- **AX-003** — PRD §6 carries the v1.0 `PEC-I-11` append-only discipline onto PEC's own event log. An observability record that can be rewritten cannot support §11's measurement of observable system behavior, which is why REQ-004 forbids mutation rather than merely discouraging it.
 - **AX-004** — `PEC-K-02` files govern: the log records what PEC did, never what a governed loop decided. Log contents are not citable as authority over any loop's file truth, and no consumer may treat this deliverable's output as a source of governed state.
 - **AX-005** — `C-04` PHASE_PRECEDENCE and `C-10` STRATUM_RULE are register-wide non-gating constraints. The `P1`/`P3` gap behind CON-001 is release-strategy ordering. Two of the three consumer edges in CLM-006 are `PROPOSAL` stratum (`[E-N14]`, `[E-N15]`) and the third is `DECLARED` (`[E-A26]`), and all three are *accepted* at those strata: `D-PEC-62` §1.4 records the owner accepting the DAG candidate "all strata as presented", so no stratum here is pending. What that ruling left recorded-but-unresolved is the enumerated set of flag annotations — `E-A11`, `E-P69`/`E-N02`, `E-N13`/`E-N18`, the `C-02` direction, and the `C-08` standing-node set — none of which attaches to any edge cited in this contract. Stratum is provenance, not authority.
+- **AX-006** — Currency provenance. This contract is the prior contract (SHA-256 `4dd777f8f30cf5483d3c33bd002359e7266f8e411e74ba8655e2afc5aa367e62`) brought current, as a whole, under the S1 Scope of Work currency packet (provisional `D-PEC-104`), authored under `MODE=INIT` discipline against revision 1.6 and PRD v2.4. SCA-005 classes the deliverable `housekeeping only`, with no SCA-005 cause, and SCA-006 classes it `NOT_AFFECTED`. What changed: the frontmatter pin (the earlier `@3623b958b` pin does not resolve in this repository); the basis paragraph, which now states revision 1.6 and keeps revision 1.2 as the dated authoring basis; the observation-commit paragraph; the claim that `_REFERENCES.md` still names revision 1.1 (true at authoring, false since that file's revision-1.3 re-pin of 2026-07-28, commit `b7d0450b1`), replaced by the ruled `D-PEC-99` wording; the PRD §11 quotations in the objective warrant and CLM-004, re-quoted from PRD v2.4 because the heading phrase the earlier contract quoted is PRD v2.1 text absent from PRD v2.4, with AX-003's paraphrase aligned; the CLM-006 evidence quotation, restored to the exhibit's own quotation marks; and the stale lifecycle state in CLM-008, now `INITIALIZED` where the earlier contract recorded `OPEN`. The contract quotes no S2 contract text, and no `D-PEC-99` Part B item applies to it. No ID is retired; every earlier ID is kept with its meaning. New: AX-006.
 
 ## Output and Evaluation Matrix
 
@@ -122,4 +136,4 @@ edit.
 | OUT-002 | SOW-057 OBJ-006 | REQ-005, CLM-006, TBD-003 | AC-004 | VER-004, VER-005 | Inspection-command output over populated, single-event, empty, and absent log fixtures, showing recorded order, per-event identity and timestamp, and the explicit absence report |
 | OUT-002 | SOW-057 OBJ-006 | REQ-006, CLM-009 | AC-005 | VER-005 | Reconcile-run transcripts under deleted, unwritable, and absent log stores showing unblocked completion (the kill-test transcript is DEL-10-02's evidence under SOW-055, not this deliverable's) |
 | OUT-002 | SOW-057 OBJ-006 | REQ-007 | AC-006 | VER-006 | Dependency-manifest plus import-graph inspection records |
-| OUT-003 | SOW-057 OBJ-006 | REQ-008, CLM-008 | AC-007 | VER-007 | Service-core test-run output mapping each executed test to its declared verification method |
+| OUT-003 | SOW-057 OBJ-006 | REQ-008, CLM-008, AX-006 | AC-007 | VER-007 | Service-core test-run output mapping each executed test to its declared verification method |

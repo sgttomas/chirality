@@ -2,7 +2,7 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-02-02
 package_id: PKG-02
-decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@3623b958b
+decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@189f205ff02df4111b33c20be441ce06e65ada7a
 project_scope_refs: [SOW-012]
 package_objective_refs: [OBJ-001, OBJ-002]
 ---
@@ -14,15 +14,32 @@ package_objective_refs: [OBJ-001, OBJ-002]
 This Scope of Work is the production contract for `DEL-02-02` — "Decision
 register/packet parser" — in `PKG-02` File-Truth Parsers of the PEC v2 build.
 It covers project scope item `SOW-012` in service of package objectives
-`OBJ-001` and `OBJ-002`.
+`OBJ-001` and `OBJ-002`. It brings the deliverable's earlier contract (SHA-256
+`5f20b1c48f4f…db6e`) current as a whole; AX-012 records what changed.
 
 The accepted basis is `execution/_Decomposition/SOFTWARE_DECOMP.md`
-**revision 1.2** (`current_basis`, SCA-002 successor; commit `3623b958b`). The
-deliverable-local `_REFERENCES.md` still names "revision 1.1, accepted working
-surface"; that phrase is superseded provenance left by a deferred pointer sweep
-(SCA-002 `Handoff_State.md` §6), and `_CONTEXT.md`'s own provenance line records
-revision 1.1 as "superseded by revision 1.2 (`current_basis`, SCA-002
-successor)". This contract cites revision 1.2.
+**revision 1.6** (`current_basis`, SCA-006 successor), accepted by the owner at
+SCA-006 checkpoint group 3 on 2026-09-26. The frontmatter pin
+`189f205ff02df4111b33c20be441ce06e65ada7a` is the checkpoint-3 acceptance
+commit, an ancestor of `origin/main` `125cfacc1`. At the pin
+`SOFTWARE_DECOMP.md` has SHA-256 `9374c21fb87b…8eb1`, `Deliverables.csv`
+`94ee5d182ae9…9805`, `ScopeLedger.csv` `1d24a4b86f05…916e` and
+`ContextBudgetQA.csv` `93b0bb075a0e…4c7c`, the decomposition, ledger and
+deliverable values `_Decomposition/_LATEST.md` records, and `docs/PRD.md` v2.4
+has SHA-256 `ae49b8065698…3fbe`. This contract was authored against revision
+1.2 (SCA-002 successor, accepted 2026-07-25 under `D-PEC-64`) at commit
+`3e5291138`, kept here as its dated basis; its former frontmatter pin
+`3623b958b` does not resolve in this repository. The deliverable-local
+`_REFERENCES.md` and `_CONTEXT.md` carry their own revision pins; this contract
+asserts nothing about their present text.
+
+**Observation commit.** The pin binds the accepted decomposition bytes only.
+Unless a claim names another commit, every statement below about the state of a
+file, record, lifecycle or decision is an observation at `origin/main`
+`125cfacc1`. There `SOFTWARE_DECOMP.md`, the three registers and the PRD are
+byte-identical to the pin, so every decomposition passage, register cell and
+PRD passage quoted below reads the same at both commits. A statement about this
+contract's authoring refers to commit `3e5291138`.
 
 **The defining property of this deliverable.** `SOW-012` and the register
 description of `DEL-02-02` both state the boundary in their own text: row
@@ -46,6 +63,11 @@ SCA-002 applied rather than superseded. The Gate 3 record states it this way:
 >
 > **Recommended — AFFIRM** `[OBJ-001, OBJ-002]` for all eight: it applies the
 > accepted §3 rationale rather than superseding it.
+
+At revision 1.6 the §3 mapping note reads "Parser items (SOW-011..017, SOW-095,
+SOW-096) underlie OBJ-001/OBJ-002 through the record tier (SOW-001), the
+derivation SCA-002 carried into the ledger at revision 1.2"; the two parser
+items SCA-005 added (`DL-20`) leave this deliverable's attribution unchanged.
 
 Two alternatives were defined precisely and neither was adopted: **N1** (the
 seven parsers map to `OBJ-001`; `SOW-001` keeps both) and **N2** (all eight map
@@ -78,14 +100,28 @@ comparison — it does not.
 >
 > (`DecisionRef` empty; `OpenIssue` `FALSE`; `Notes` `Content-minimal (C6)`.)
 
-- **CLM-002** — The ledger `SourceRef` names two PRD loci, and both are cited here. The first is `PEC-RCN-002` (PRD §9.2), whose text is:
+- **CLM-002** — The ledger `SourceRef` names two PRD v2.4 loci, and both are cited here. The first is `PEC-RCN-002` (PRD §9.2), whose text, as SCA-005 re-expressed it in PRD v2.3 and unchanged in v2.4, is:
 
-> The reconciler shall ingest, at minimum: `_STATUS.md` (declared parser
-> dialect), decision registers and packets, `LOOP_RECEIPTS.md` (per-loop
-> grammar; the D-APP-57 contract where a ledger has adopted it),
-> `WORK_GRAPH.json` / `STATUS.json` / `RUNTIME_SUMMARY.json`, dependency
-> registers, workplans/LOOP_INIT, and per-project `_harness/adapter.yaml` as
-> the feed manifest.
+> The reconciler shall ingest, per the closed, PEC-versioned feed profile
+> declared on each loop-registry row (§16.3; PEC's reading hypothesis, never
+> the loop's truth), at minimum: `_STATUS.md` (declared parser dialect);
+> decision registers and packets (row identity and status only); receipts —
+> `LOOP_RECEIPTS.md` ledgers (per-loop grammar; the `receipt-contract-v2`
+> marker where a ledger carries it; live or declared historical per profile)
+> and central `execution/_Coordination/AgentRuns/<RunID>/RECEIPT.md`; run
+> evidence — deliverable `MEMORY.md` run-index entries as RunRecord join
+> evidence, with `STATUS.json` / `RUNTIME_SUMMARY.json` as declared historical
+> grammar or current evidence per profile; dependency registers
+> (`Dependencies.csv`; `WORK_GRAPH.json` as declared historical grammar); work
+> graphs `execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md`
+> (content-minimal; integration ref by default, local branch refs opt-in and
+> labelled unintegrated; cited PR numbers resolved to local merge commits by
+> read-only plumbing, reported when unresolved locally, never guessed); and
+> `LOOP_INIT.md` loop identity, entrypoint and procedure SHA only (workplans as
+> declared historical grammar). Per-project `_harness/adapter.yaml` is a
+> parity-peer input only, read to compare PEC's declared census population with
+> the harness `status_glob` (divergence is a DriftFinding); it is not the feed
+> manifest.
 
   The second is PRD §7.1, "Record tier (reconciled from file truth; citable with sources)", whose `DecisionRow` row states the entity's purpose:
 
@@ -101,17 +137,17 @@ comparison — it does not.
 - **OUT-001** — A decision register/packet parser in the PEC service core: it reads decision registers and decision packets under a declared grammar and emits, per register row, that row's identity and status — decision ID, packet path, anchor, state — with the provenance needed to cite it, and nothing of the row's prose.
 - **OUT-002** — A fixture test suite covering the parser against valid, prose-heavy, heterogeneous, malformed, unreadable, and absent register and packet fixtures, implementing the verification methods declared in this contract.
 
-- **CLM-005** — The seven-way split of `PEC-RCN-002` into `SOW-011..017` is decision-log entry `DL-4` (2026-07-24): "PEC-RCN-002's enumerated feed list is split into seven scope items (SOW-011..017), one per feed kind", because "Each feed is a separately testable parser with its own grammar; a single 'ingest everything' item is not atomic". The other six feed grammars belong to `DEL-02-01` (`_STATUS.md`), `DEL-02-03` (receipts ledgers), `DEL-02-04` (run-evidence JSON), `DEL-02-05` (dependency registers), `DEL-02-06` (workplans/LOOP_INIT), and `DEL-02-07` (the `adapter.yaml` feed manifest). This deliverable defines the decision-feed grammar only, and takes no position on any other feed's grammar.
-- **CLM-006** — The `PKG-02` package charter (decomposition §4) is "Read-side grammars over governed files: `_STATUS.md` dialect, decision registers/packets, receipts ledgers, run-evidence JSON, dependency registers, workplans/LOOP_INIT, `adapter.yaml` manifests", with "Writing anything; interpretation beyond declared grammars" recorded as explicitly out of package scope.
-- **CLM-007** — This deliverable has exactly one accepted `EXECUTION` upstream edge, `[E-P04]`, held as register row `DEP-02-02-003` of the deliverable-local `Dependencies.csv` (v3.1). Attributing each value to its actual column: `DependencyClass` `EXECUTION`, `Direction` `UPSTREAM`, `DependencyType` `PREREQUISITE`, `TargetType` `DELIVERABLE`, `TargetPackageID` `PKG-01`, `TargetDeliverableID` `DEL-01-01`, `TargetName` "Record-tier schema & entity model", `Statement` "Parser emits DecisionRow entities", `EvidenceFile` `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md`, `SourceRef` and `EvidenceQuote` both "§3 mapping notes (as E-P03)", `Explicitness` `IMPLICIT`, `RequiredMaturity` `INITIALIZED`, `ProposedMaturity` `TBD`, `SatisfactionStatus` `PENDING`, `Confidence` `MEDIUM`, `Origin` `EXTRACTED`, `Status` `ACTIVE`, `Notes` "PROPOSAL; Flag=none; EdgeID=E-P04". The remaining two rows in that register are the `ANCHOR` rows `DEP-02-02-001` (package-local to `PKG-02`) and `DEP-02-02-002` (the `SOW-012` requirement trace).
-- **CLM-008** — `DEL-01-01` is at lifecycle state `INITIALIZED`, which is the maturity `[E-P04]` requires. `INITIALIZED` means its **contract** is the reliable input: its accepted `ScopeOfWork.md` exists, and no schema, entity model, or code does. Nothing in this contract asserts that any upstream artifact exists or has been built. The obligations this deliverable's output typing binds to are these, quoted from that contract's Epistemology section:
+- **CLM-005** — The seven-way split of `PEC-RCN-002` into `SOW-011..017` is decision-log entry `DL-4` (2026-07-24): "PEC-RCN-002's enumerated feed list is split into seven scope items (SOW-011..017), one per feed kind", because "Each feed is a separately testable parser with its own grammar" and a single ingest-everything item would not be atomic. SCA-005 (`DL-20`) added two further feed kinds, `SOW-095` and `SOW-096`, each carrying the ledger note "New feed kind under SCA-005 (DL-4, DL-20)". The other eight feed grammars belong to `DEL-02-01` (`_STATUS.md`), `DEL-02-03` (receipts: `LOOP_RECEIPTS.md` ledgers and central `RECEIPT.md`), `DEL-02-04` (run-evidence JSON), `DEL-02-05` (dependency registers), `DEL-02-06` (`LOOP_INIT.md` identity, with workplans as a declared historical grammar), `DEL-02-07` (`adapter.yaml` as a parity-peer input, no longer the feed manifest), `DEL-02-08` (work graphs), and `DEL-02-09` (the `MEMORY.md` run index). This deliverable defines the decision-feed grammar only, and takes no position on any other feed's grammar.
+- **CLM-006** — The `PKG-02` package charter (decomposition §4) is "Read-side grammars over governed files: `_STATUS.md` dialect, decision registers/packets, receipts (ledgers and central `RECEIPT.md`), Markdown work graphs, the MEMORY run index and `LOOP_INIT.md` identity as first-class feeds; run-evidence JSON, workplans and App/Piping ledgers as declared historical grammars; dependency registers; `adapter.yaml` as a parity-peer input", with "Writing anything; interpretation beyond declared grammars" recorded as explicitly out of package scope.
+- **CLM-007** — This deliverable has exactly one accepted `EXECUTION` upstream edge, `[E-P04]`, held as register row `DEP-02-02-003` of the deliverable-local `Dependencies.csv` (v3.1). Attributing each value to its actual column: `DependencyClass` `EXECUTION`, `Direction` `UPSTREAM`, `DependencyType` `PREREQUISITE`, `TargetType` `DELIVERABLE`, `TargetPackageID` `PKG-01`, `TargetDeliverableID` `DEL-01-01`, `TargetName` "Record-tier schema & entity model", `Statement` "Parser emits DecisionRow entities", `EvidenceFile` `execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md`, `SourceRef` naming that contract's `DEL-01-01/CLM-012`, `EvidenceQuote` the opening of that claim ("The acts that consume this model are owned by other deliverables and are cited here, never discharged"), `Explicitness` `IMPLICIT`, `RequiredMaturity` `INITIALIZED`, `ProposedMaturity` `TBD`, `SatisfactionStatus` `PENDING`, `Confidence` `MEDIUM`, `Origin` `EXTRACTED`, `Status` `ACTIVE`, `Notes` "PROPOSAL; Flag=none; EdgeID=E-P04". The remaining two rows in that register are the `ANCHOR` rows `DEP-02-02-001` (package-local to `PKG-02`) and `DEP-02-02-002` (the `SOW-012` requirement trace). At this contract's authoring (`3e5291138`) the row's `EvidenceFile` was the DAG gate exhibit and its `SourceRef` and `EvidenceQuote` both read "§3 mapping notes (as E-P03)"; the `D-PEC-65` register evidence repair of 2026-07-26 (`1c50d4da6`) replaced those three cells.
+- **CLM-008** — `DEL-01-01` is at lifecycle state `INITIALIZED`, which is the maturity `[E-P04]` requires. `INITIALIZED` means its **contract** is the reliable input: its `ScopeOfWork.md` exists — the `D-PEC-100` postimage, SHA-256 `14be02f5fd5b…8b88` — and no schema, entity model, or code does. Nothing in this contract asserts that any upstream artifact exists or has been built. The obligations this deliverable's output typing binds to are these, quoted from that contract's Epistemology section:
 
-> - **REQ-001** — The schema and entity model shall define exactly the fourteen
+> - **REQ-001** — The schema and entity model shall define exactly the sixteen
 >   record-tier entity types named in CLM-005 — Loop, Workplan, Step, Gate,
 >   Receipt, DecisionRow, Fence, Package, Deliverable, DependencyEdge,
->   RunRecord, CandidateBrief, OrientationSnapshot, DriftFinding — with none
->   added and none dropped, and each type shall carry a recorded trace to its
->   `PRD.md` §7.1 row and stated purpose (CLM-006).
+>   RunRecord, CandidateBrief, OrientationSnapshot, DriftFinding, WorkGraph,
+>   WorkNode — with none added and none dropped, and each type shall carry a
+>   recorded trace to its `PRD.md` §7.1 row and stated purpose (CLM-006).
 > - **REQ-003** — Every record-tier entity type shall carry provenance
 >   sufficient for a per-claim citation to its live source — file path, anchor,
 >   and/or SHA, per `PEC-ORI-004` — because §7.1 defines the tier as "citable
@@ -120,25 +156,32 @@ comparison — it does not.
 >   (`PEC-K-10`: "Paths, counts, SHAs, states, hashes — never file or diff
 >   content"). DecisionRow shall carry register-row identity and status only —
 >   decision ID, packet path, anchor, state — and shall have no field capable of
->   holding the row's prose. Enforcement at the ingest boundary is `DEL-01-03`'s
->   guard under `SOW-056`; this requirement binds the shape of the schema so
->   that the guard has nothing to admit into.
+>   holding the row's prose; no WorkGraph or WorkNode field shall be capable of
+>   holding graph prose, and no RunRecord field a run description. Enforcement
+>   at the ingest boundary is `DEL-01-03`'s guard under `SOW-056` (CLM-012);
+>   this requirement binds the shape of the schema so that the guard has
+>   nothing to admit into.
 >
-> (`DEL-01-01/ScopeOfWork.md`; ID-shaped text inside this quotation is upstream
+> (`DEL-01-01/ScopeOfWork.md` at `125cfacc1`; ID-shaped text inside this quotation is upstream
 > source context, not a local definition or reference. The bracketed ellipsis
 > marks an elision of that requirement's closing sentence, which assigns the
 > citation-attaching act to another deliverable.)
 
-  The upstream contract's `AC-006` states the same boundary as an acceptance criterion, including that "a fixture carrying file content, diff hunks, and register-row prose cannot be expressed in the model". The relation is therefore complementary and not duplicative: upstream binds the *shape* of the entity so prose is inexpressible; this deliverable binds the *parse* so prose is never extracted in the first place.
-- **CLM-009** — The one declared downstream consumer is `DEL-03-01` (Full-rebuild reconciler (one command)) via `[E-P20]`, whose gate-exhibit evidence reads "PEC-RCN-002 feed list (DL-4)" and whose statement reads "Full rebuild ingests decision registers/packets". That edge is informational here; it lives in the consumer's register and imposes no obligation on this deliverable beyond the outputs declared above.
-- **CLM-010** — Phase staging, quantified over the deliverables this contract names in its own voice — that is, outside the quoted upstream text of CLM-008 — and checked against the `PhaseHint` column of `Deliverables.csv`: `DEL-02-02` itself and `DEL-01-01`, `DEL-01-03`, `DEL-01-05`, `DEL-01-06`, `DEL-02-01`, `DEL-02-03`..`DEL-02-07`, `DEL-03-01`, `DEL-04-03`, `DEL-04-05`, `DEL-10-02`, `DEL-10-03` all carry `P1`; `DEL-05-02` and `DEL-09-03` carry `P2`. The CLM-008 quotation additionally names `DEL-01-03`, which is `P1`. No claim in this contract stages any of these deliverables into a different phase, and no deliverable named here as a consumer precedes this deliverable's phase.
-- **CLM-011** — Observed corpus condition, recorded as observation and not as specification. Two decision registers exist in this checkout and their grammars differ. `projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md` declares itself a "Non-governing tracking surface" that "confers no authority", states a packet-location convention "`execution/_Coordination/_DECISIONS/D-PEC-XX_<slug>.md`" and an explicit row-state vocabulary — "`NOT_PREPARED` -> `AWAITING_RULING` (packet drafted) -> `RULED` (pointer to the human record)" — over a table whose columns are `ID | Decision | Blocks | State | Packet | Ruling record`; 57 `D-PEC-*` packet files sit beside it. `_DomainEngines/_DECISIONS/_REGISTER.md` uses the columns `ID | Decision | My recommendation | HumanRuling | Unblocks`, has no separate state column, and expresses ruling state inside the prose `HumanRuling` cell (for example "**RULED: keep both (7 tokens)**"); 23 `D-T0-*` packet files sit beside it. These files are the corpus the parser will meet; they are not a contract, and the grammar this deliverable declares is a production choice bounded by TBD-002 and CON-002.
-- **CLM-012** — The deliverable is at lifecycle state `OPEN` with no implementation present. Every requirement, acceptance criterion, and verification method below states a contract on future production; none asserts that anything has been built.
+  `DEL-01-01/AC-006` states the same boundary as an acceptance criterion, including that "a fixture carrying file content, diff hunks, register-row prose, work-graph outcome text and a `MEMORY.md` run description cannot be expressed in the model". The relation is therefore complementary and not duplicative: upstream binds the *shape* of the entity so prose is inexpressible; this deliverable binds the *parse* so prose is never extracted in the first place.
+- **CLM-009** — Two downstream edges are declared. `DEL-03-01` (Full-rebuild reconciler (one command)) consumes this deliverable via `[E-P20]`, whose gate-exhibit evidence reads "PEC-RCN-002 feed list (DL-4)" and whose statement reads "Full rebuild ingests decision registers/packets"; its register row `DEP-03-01-009` now quotes `PEC-RCN-002`'s "decision registers and packets (row identity and status only)", its evidence refreshed under `D-PEC-95`. `DEL-10-13` (Reliance-advertisement gate) tests it via `[E-P93]`, register row `DEP-10-13-008`, seeded under `D-PEC-101`, whose statement reads "The reliance-advertisement gate composes the DEL-02-02 parser fixture suite". At this contract's authoring `[E-P20]` was the only downstream edge. Both edges are informational here; they live in the consumers' registers and impose no obligation on this deliverable beyond the outputs declared above.
+- **CLM-010** — Phase staging, quantified over the deliverables this contract names in its own voice — that is, outside the quoted upstream text of CLM-008 and CLM-013 — and checked against the `PhaseHint` column of `Deliverables.csv`: `DEL-02-02` itself and `DEL-01-01`, `DEL-01-03`, `DEL-01-05`, `DEL-01-06`, `DEL-02-01`, `DEL-02-03`..`DEL-02-09`, `DEL-03-01`, `DEL-04-03`, `DEL-04-05`, `DEL-10-02`, `DEL-10-03`, `DEL-10-13` all carry `P1`; `DEL-05-02` and `DEL-09-03` carry `P2`. The CLM-008 quotation additionally names `DEL-01-03`, and the CLM-013 quotation names `DEL-01-03`, `DEL-02-01`, `DEL-02-08` and `DEL-02-09`, all `P1`. No claim in this contract stages any of these deliverables into a different phase, and no deliverable named here as a consumer precedes this deliverable's phase.
+- **CLM-011** — Observed corpus condition, recorded as observation and not as specification. Two of the checkout's decision registers bear on PEC's reading, and their grammars differ. `projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md` declares itself a "Non-governing tracking surface" that "confers no authority", states a packet-location convention "`execution/_Coordination/_DECISIONS/D-PEC-XX_<slug>.md`" and an explicit row-state vocabulary — "`NOT_PREPARED` -> `AWAITING_RULING` (packet drafted) -> `RULED` (pointer to the human record)" — over a table whose columns are `ID | Decision | Blocks | State | Packet | Ruling record`. At `125cfacc1` that table has 97 `D-PEC-*` rows: 72 carry a declared token in `State` (70 `RULED`, 2 `NOT_PREPARED`), and 25 carry compound values outside the declared vocabulary, for example `RULED A / EFFECTIVE ON MERGE` and `RULED K4+C / K1 / V / EFFECTIVE ON MERGE`; one row escapes a pipe inside a cell (`\|`). Beside it sit 114 `D-PEC-*` entries, 110 files and 4 directories. `_DomainEngines/_DECISIONS/_REGISTER.md` uses the columns `ID | Decision | My recommendation | HumanRuling | Unblocks`, has no separate state column, and expresses ruling state inside the prose `HumanRuling` cell (for example "**RULED: keep both (7 tokens)**"); 29 `D-T0-*` packet files sit beside it. At this contract's authoring (`3e5291138`) the PEC table had 61 rows, each carrying a declared token, beside 57 `D-PEC-*` packet files, and 23 `D-T0-*` packet files sat beside the tier-0 register. These files are the corpus the parser will meet; they are not a contract, and the grammar this deliverable declares is a production choice bounded by TBD-002 and CON-002.
+- **CLM-012** — The deliverable is at lifecycle state `INITIALIZED` with no implementation present: no file under `v2/src/pec_v2/` names DecisionRow. Every requirement, acceptance criterion, and verification method below states a contract on future production; none asserts that anything has been built.
+- **CLM-013** — SCA-005 `Propagation_Plan.md` §B4 classes the prior contract `STALE_REVIEW_REQUIRED (quotation)` with the cause "PEC-RCN-002 quotation only", marks both its unresolvable `@3623b958b` pin and its false revision-1.1 claim, and records a carry-forward for the parser contracts:
 
-- **TBD-001** — `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` §5 conventions per `DL-13`; `_CONTEXT.md`).
+> Carry-forward for the parser SOWs (DEL-02-01, DEL-02-08, DEL-02-09): the DEL-01-03 content-minimal guard admits only `OPEN`..`ISSUED` as STATE values (true before and after D-PEC-87/89/91), so `RETIRED`, graph node states and run tokens are CON-001 cases those SOWs must address.
+
+  ID-shaped text inside this quotation is upstream source context, not a local definition or reference; the constraint it cites is `DEL-01-03/CON-001`. The carry-forward names three other parsers, not this one; its premise, the guard's admitted classes, bears equally on the values this parser emits (CON-003). The guard source produced under `DEL-01-03` (`v2/src/pec_v2/core/content_minimal_guard.py`, SHA-256 `740a4a741221…19ee9`; `DEL-01-03` is `IN_PROGRESS`) admits five field classes (path, count, SHA, state, hash) and a state set of `OPEN`, `INITIALIZED`, `SEMANTIC_READY`, `IN_PROGRESS`, `CHECKING` and `ISSUED`; its record carries a record ID and a source path beside fields that each hold one value of one of those classes.
+
+- **TBD-001** — `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` §5 conventions per `DL-13`).
 - **TBD-002** — The decision-feed grammar this parser declares — which register table shapes and packet structures it recognises, how it locates a row, and how it maps a row to the four `PRD.md` §7.1 identity/status elements — is fixed by no accepted source. It is chosen during production within REQ-002, CLM-006, and CON-001.
 - **TBD-003** — What constitutes the "anchor" of a decision row is named by `PRD.md` §7.1 and `PEC-ORI-004` but is not defined by any accepted source at the level of a concrete locator. Its concrete form is a production choice within REQ-005.
-- **TBD-004** — Which decision registers and packets are read, and for which loop or project, is not settled by this contract: the feed manifest is `DEL-02-07`'s under `SOW-017` and the loop registry is `DEL-01-06`'s under `SOW-094`. This deliverable parses the files it is given and enumerates no corpus of its own.
+- **TBD-004** — Which decision registers and packets are read, and for which loop or project, is not settled by this contract. Under `PEC-RCN-002` the feeds are declared by the feed profile on each loop-registry row; the registry and its feed-profile declarations are `DEL-01-06`'s under `SOW-077` and `SOW-094`, and `adapter.yaml`, which `DEL-02-07` reads under `SOW-017`, is no longer the feed manifest. The registry (`v2/config/loops.json`, schema version 2) has one row, `pec`, whose live `shared-dev-loop` profile lists `decision-registers` among its surfaces, and its schema states that "Path conventions and grammars for each profile live in PEC's adapters." This deliverable parses the files it is given and enumerates no corpus of its own.
 
 ## Completion and Reliance Basis — Epistemology
 
@@ -169,6 +212,7 @@ this section asserts that a parser, a fixture, or a test exists.
 
 - **CON-001** — Parser depth is an undecided owner question and this deliverable is the only work it touches. `PRD.md` §16.1 asks "Whether decision registers gain light structure at source (machine-parse aids) or remain prose parsed best-effort"; the decomposition carries it as TBD item `SOW-075` and open issue `OI-001`, dispositioned "§16 ruling", with the `SOW-075` note recording the assessment "Assessed (not PRD-stated): affects SOW-012 parser depth only; both paths buildable". `SOW-012`'s own `OpenIssue` cell reads `FALSE` (CLM-001), as every parser row's does; that cell is not this contract's warrant for the assessment, and neither fact is offered as the cause of the other. What the assessment states is that the scope item is buildable under either outcome — which is not the same as its being free of the question. REQ-009 binds production to the both-paths posture. Nothing in this contract resolves `OI-001`, and no production choice made here may be read as settling it.
 - **CON-002** — The accepted sources name "decision registers and packets" as a feed but define no grammar for them, and the observed corpus is heterogeneous in exactly the way that matters: one register carries an explicit `State` column with a declared vocabulary, the other carries ruling state only inside a prose cell (CLM-011). Extracting status from the second without extracting its prose is the substantive difficulty of this deliverable, and no accepted source states how far a declared grammar must reach to cover it. This contract records the gap as TBD-002 and REQ-003's closing sentence rather than choosing a coverage boundary; if production requires a resolution that is not derivable from an accepted source, that is a scope-change question, not a production decision.
+- **CON-003** — **Guard admission.** The state values this parser will meet are outside the guard's admitted state set (CLM-013): the PEC register's declared `NOT_PREPARED`, `AWAITING_RULING` and `RULED`, its compound `State` values (CLM-011), and the ruling state that the tier-0 register carries only inside its `HumanRuling` cell. A decision ID carried as a field value is none of the five admitted classes, and whether an anchor is a path depends on its concrete form (TBD-003). These are `DEL-01-03/CON-001` cases. Their typing reaches the record-tier model: `DEL-01-01/REQ-017` types identifiers carried as field values, decision identifiers among them, as their own kind and forbids coercing them, while `DEL-01-01/CON-003`, which gathers the values outside the guard's classes, does not name decision-register state tokens. No requirement here licenses mapping a decision state onto a lifecycle state or another admitted class, encoding it to pass the guard, or widening the guard, and REQ-003 still bars emitting the prose around it. How the store admits these values is decided under `DEL-01-03` and `DEL-01-01` through their own packets; this contract edits neither contract and resolves nothing here.
 
 ## Production and Verification Method — Praxeology
 
@@ -197,21 +241,22 @@ reshapes the record-tier entity model it emits into.
 - **AX-001** — `PEC-K-10` content-minimal and constraint `C6` are the reason this deliverable exists in the shape it does. A decision register is almost entirely authored prose; a parser over it is one keystroke away from becoming a content pump. The posture is therefore stated as a property of the parse — what is never extracted — rather than as a filter applied to a richer intermediate, and the strongest available form is a record with nowhere to put prose. The complementary schema-side inexpressibility is the upstream model's (CLM-008) and the ingest-boundary guard is `DEL-01-03`'s under `SOW-056`; neither is discharged here.
 - **AX-002** — `PEC-K-02` files govern: the decision register and its packets are authored project truth. The `PKG-02` charter allows reading them and forbids writing anything, and the PEC register's own header records that it "confers no authority". PEC's projection of a row is never citable over the row itself, and no output of this parser is a ruling, an adoption, or a direction. `PEC-GAT-004` ("PEC shall provide no write path that records adoption, ruling, or direction") and `PEC-DSH-003`'s "link-only, source-linked (no restatement of authored text; PEC-K-10)" are the same discipline enforced at surfaces other deliverables own.
 - **AX-003** — `PEC-K-01` graceful absence governs: no governed act may require a PEC read or write. A register PEC cannot parse is a stated coverage limitation (REQ-006), never a blocked act and never a silent gap; `PEC-K-07` makes reconciliation the guaranteed path and puts the honesty obligation on coverage, not on completeness of parse.
-- **AX-004** — `DL-4` is the decision that makes this deliverable atomic: one feed kind, one separately testable unit, one declared grammar. Absorbing a sibling feed grammar (`DEL-02-01`, `DEL-02-03`..`DEL-02-07`), the entity model it emits into (`DEL-01-01`), the reconciler that consumes it (`DEL-03-01`), the slate and register views built over decision rows (`DEL-05-02`, `DEL-09-03`), or the limitation-honesty surface (`DEL-04-05`) would undo that decision.
+- **AX-004** — `DL-4` is the decision that makes this deliverable atomic: one feed kind, one separately testable unit, one declared grammar. Absorbing a sibling feed grammar (`DEL-02-01`, `DEL-02-03`..`DEL-02-09`), the entity model it emits into (`DEL-01-01`), the reconciler that consumes it (`DEL-03-01`), the slate and register views built over decision rows (`DEL-05-02`, `DEL-09-03`), or the limitation-honesty surface (`DEL-04-05`) would undo that decision.
 - **AX-005** — The edges `[E-P04]` (upstream, `DEL-01-01` → `DEL-02-02`) and `[E-P20]` (downstream, `DEL-02-02` → `DEL-03-01`) are `PROPOSAL` stratum and are accepted: `D-PEC-62` §1(4) accepted the candidate DAG v0.2 exhibit "all strata as presented", read in that packet as carrying the exhibit's flags as flags, so what remains recorded-but-unresolved is the specific annotated set (`E-A11`, `E-P69`/`E-N02`, `E-N13`/`E-N18`, the `C-02` direction, the `C-08` standing-node set) — none of which touches `[E-P04]` or `[E-P20]`, both of which carry an empty `Flag` column in the exhibit. `C-10` `STRATUM_RULE` ends "strata are provenance not authority": stratum records how an edge was derived, not whether it has been accepted, and citation does not convert `PROPOSAL` to `DECLARED`.
 - **AX-006** — Edge direction is a constraint on this contract, not a licence. `RequiredMaturity` `INITIALIZED` on `[E-P04]` means the upstream *contract* is the reliable input, not any upstream artifact; consuming it imposes no obligation on `DEL-01-01`, and being consumed by `DEL-03-01` neither expands nor transfers scope in either direction. The enforcement and test duties adjacent to this deliverable are cited and discharged nowhere here: the ingest-boundary content-minimal guard is `DEL-01-03`'s, standing zero-dependency and locality enforcement is `DEL-01-05`'s, the kill test is `DEL-10-02`'s, and `DEL-10-03`'s no-ruling-write verification is a tested property of the API's write surface under `SOW-025` — a different object from this deliverable's parsing posture, which concerns what is read rather than what may be written.
 - **AX-007** — `C12` governs the open owner decisions: "where one materially affects architecture the affected work is fenced or flagged, never guessed". `OI-001` materially affects this deliverable and nothing else (CON-001), so it is flagged here and fenced by REQ-009 rather than pre-empted by a production choice. TBD-002, TBD-003, and TBD-004 stay marked for the same reason.
 - **AX-008** — The objective attribution to `OBJ-001` and `OBJ-002` is the SCA-002 Q2 AFFIRM ruling applying the accepted §3 derivation. This contract does not reinterpret `SOW-012`, does not restate the warrant as direct, mints no owner-confirmation criterion for a question already ruled, and records the unadopted N1/N2 alternatives so a later reader sees what was decided rather than inferring a strength the record does not carry.
-- **AX-009** — The accepted basis is `SOFTWARE_DECOMP.md` revision 1.2 at commit `3623b958b`, accepted through SCA-002 under `D-PEC-64`. The revision 1.1 phrase in `_REFERENCES.md` is superseded provenance from a deferred pointer sweep, not a competing authority.
+- **AX-009** — The accepted basis is `SOFTWARE_DECOMP.md` revision 1.6, accepted at SCA-006 checkpoint group 3 and pinned at commit `189f205ff02df4111b33c20be441ce06e65ada7a`. Revision 1.2, accepted through SCA-002 under `D-PEC-64`, is this contract's dated authoring basis, not a competing authority. The deliverable-local `_REFERENCES.md` and `_CONTEXT.md` carry their own revision pins; this contract asserts nothing about their present text.
 - **AX-010** — `C-04` `PHASE_PRECEDENCE` and `C-10` `STRATUM_RULE` are register-wide, non-gating constraints recorded in `_DEPENDENCIES.md`. Blocker output under the `FULL_GRAPH` mode at threshold `INITIALIZED` is advisory visibility only and is never work assignment.
-- **AX-011** — This contract is lifecycle-neutral. `_STATUS.md` remains the sole lifecycle authority and is untouched by the run that authored this document; the deliverable is at `OPEN` and nothing has been built.
+- **AX-011** — This contract is lifecycle-neutral. `_STATUS.md` remains the sole lifecycle authority and is untouched by the run that authored this document; the deliverable is at `INITIALIZED` and nothing has been built.
+- **AX-012** — Currency provenance. This contract is the prior contract (SHA-256 `5f20b1c48f4f383a07240e04bdf524e8b2443af37cb745c549f939cd6bb8db6e`) brought current as a whole under the S1 Scope of Work currency packet (provisional `D-PEC-104`), authored under `MODE=INIT` discipline against revision 1.6 and PRD v2.4 (SCA-005 `Propagation_Plan.md` §B4: `STALE_REVIEW_REQUIRED (quotation)`). What changed: the frontmatter pin, which named the unresolvable `3623b958b`, and the basis statement (AX-009); the observation-commit paragraph; the false statement that `_REFERENCES.md` still names revision 1.1, replaced by the ruled `D-PEC-99` wording; the `PEC-RCN-002` quotation, re-quoted from PRD v2.4 in place of the PRD v2.1 text (CLM-002); the `PKG-02` charter and the current §3 mapping note (CLM-006, the objective warrant); the `DL-4` quotation, which had altered the log's inner quotation marks (CLM-005); the `DEL-01-01` quotations, brought to the `D-PEC-100` postimage in place of the text at `9cf863697`, including the sixteen record-tier types and `DEL-01-01/AC-006` (CLM-008); and the stale state claims, now observations at `125cfacc1`: the sibling feeds after SCA-005 (CLM-005, CLM-010, AX-004), the repaired dependency evidence (CLM-007), the second downstream edge (CLM-009), the register corpus (CLM-011), the lifecycle state (CLM-012, AX-011) and the feed-declaration owners (TBD-004). The parser carry-forward is recorded as CLM-013 and CON-003. No ID is retired, and every earlier ID is kept with its meaning. New: CLM-013, CON-003 and AX-012. CLM-011 no longer says that only two decision registers exist in this checkout (at `125cfacc1` the tree also holds, among others, `projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md` and `projects/chirality-piping/execution/_Coordination/_DECISIONS/_REGISTER.md`); it names the two that bear on PEC's reading (manager repair after verdict 02). The references to `_CONTEXT.md` text that the earlier contract carried were removed to match the ruled wording (manager repair after verdicts 02 and 03).
 
 ## Output and Evaluation Matrix
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-012 OBJ-001 OBJ-002 | REQ-001, REQ-002, CLM-001, CLM-002, CLM-005, TBD-002, TBD-003 | AC-001 | VER-001 | Grammar documentation, the valid register and packet fixtures, and parser output showing the four identity/status elements per row plus the undeclared-field invariance result |
-| OUT-001 | SOW-012 OBJ-001 OBJ-002 | REQ-003, CLM-011, CON-002, AX-001 | AC-002 | VER-002 | The sentinel-prose fixture, the full emitted payload searched against every sentinel, and the emitted record's field inventory showing no free-text-capable field |
+| OUT-001 | SOW-012 OBJ-001 OBJ-002 | REQ-003, CLM-011, CLM-013, CON-002, CON-003, AX-001 | AC-002 | VER-002 | The sentinel-prose fixture, the full emitted payload searched against every sentinel, and the emitted record's field inventory showing no free-text-capable field |
 | OUT-001 | SOW-012 OBJ-001 OBJ-002 | REQ-004, CLM-007, CLM-008 | AC-003 | VER-003 | Type-binding inspection record showing emitted records as upstream DecisionRow instances and no locally defined record-tier type |
 | OUT-001 | SOW-012 OBJ-001 OBJ-002 | REQ-005, CLM-009, TBD-004 | AC-004 | VER-004 | Per-row provenance resolution records and a re-run transcript showing row-for-row reproduction over unchanged sources |
 | OUT-001 | SOW-012 OBJ-001 OBJ-002 | REQ-006, AX-003 | AC-005 | VER-005 | Per-case transcripts for absent, unreadable, malformed, and out-of-grammar register and packet fixtures, each naming the file and the fault |
@@ -219,4 +264,4 @@ reshapes the record-tier entity model it emits into.
 | OUT-001 | SOW-012 OBJ-001 OBJ-002 | REQ-008 | AC-007 | VER-007 | Dependency-manifest and import-graph inspection records, plus the DEL-01-05 enforcement result once that deliverable is available |
 | OUT-001 | SOW-012 OBJ-001 OBJ-002 | REQ-009, CON-001, AX-007 | AC-008 | VER-008 | The today-shaped prose-structured register fixture with its parser output, and the recorded extension-surface review stating grammar-extension-or-rewrite without selecting an OI-001 outcome |
 | OUT-002 | SOW-012 OBJ-001 OBJ-002 | REQ-010, CLM-012 | AC-009 | VER-009 | PKG-02 test-run output mapping each executed test to its declared verification method |
-| OUT-001 | SOW-012 OBJ-001 OBJ-002 | CLM-003, CLM-004, CLM-010, AX-004, AX-006, AX-008 | AC-010 | HUMAN_REVIEW: REVIEW gate confirms traceability to SOW-012 and to OBJ-001/OBJ-002 as ruled at SCA-002 Gate 3 Q2, confirms the indirect OBJ-002 leg is stated no more strongly than that record states it given the unadopted N1 narrowing evidence, and confirms no sibling or cross-package scope absorption | Review record citing the scope-ledger row, the Gate 3 Q2 ruling, and the sibling and cross-package deliverable boundaries |
+| OUT-001 | SOW-012 OBJ-001 OBJ-002 | CLM-003, CLM-004, CLM-010, AX-004, AX-006, AX-008, AX-012 | AC-010 | HUMAN_REVIEW: REVIEW gate confirms traceability to SOW-012 and to OBJ-001/OBJ-002 as ruled at SCA-002 Gate 3 Q2, confirms the indirect OBJ-002 leg is stated no more strongly than that record states it given the unadopted N1 narrowing evidence, and confirms no sibling or cross-package scope absorption | Review record citing the scope-ledger row, the Gate 3 Q2 ruling, and the sibling and cross-package deliverable boundaries |
