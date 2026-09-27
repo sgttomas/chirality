@@ -35,6 +35,9 @@ TRANSCRIPT = f"execution/_Coordination/AgentRuns/{RUN_ID}/CHAT_TRANSCRIPTION.md"
 RUN_HEAD = f"### {TODAY} SCA-APP-012 incremental setup refresh (UPDATE)"
 BASIS = "63e5de1f2f19c3a1dab073babbadfbfcc6199e70"
 OLDER = {"DEL-05-03", "DEL-06-01", "DEL-06-02", "DEL-09-04"}
+# Rows this run changed only in `LastSeen` that carry the pre-existing EVQ-006 finding (validator report, 84 rows).
+# No other row this run changed carries it, so every other index keeps the plain statement.
+EVQ006_LASTSEEN = {"DEL-05-03": "DEP-05-03-001", "DEL-06-01": "DEP-06-01-001"}
 
 # Deliverable-specific observations from the scan of text added since the previous extraction.
 EXTRA = {
@@ -160,8 +163,11 @@ def run_notes(d, info, rows):
             "- [INFO] EVQ-006 (report-only, `validate_decomposition_registers.py --families EVQ,DRB`): the current validator "
             "resolves `EvidenceFile` under its allowed bases, which do not include the repository-relative "
             "`projects/chirality-app-dev/...` form some App rows use; it reports 84 such rows project-wide. This run changed no "
-            "`EvidenceFile`, so the count is unchanged and no row this run changed carries the finding; no EVQ-003, EVQ-004 or "
-            "DRB-006 finding."]
+            "`EvidenceFile`, so the count is unchanged "
+            + (f"and no row whose evidence fields this run changed carries the finding (one `LastSeen`-only row, "
+               f"{EVQ006_LASTSEEN[d]}, carries the pre-existing finding)" if d in EVQ006_LASTSEEN
+               else "and no row this run changed carries the finding")
+            + "; no EVQ-003, EVQ-004 or DRB-006 finding."]
     return out
 
 

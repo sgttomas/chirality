@@ -41,14 +41,15 @@ the incremental plan on 2026-09-27 (`CHAT_TRANSCRIPTION.md`).
 Of the 315 ACTIVE rows, 310 were re-seen and got `LastSeen=2026-09-27`. 266
 of them already carried that date from the SCA-APP-011 run, so their bytes are
 unchanged; the other 44 are the rows of DEL-05-03 (13), DEL-06-01 (11),
-DEL-06-02 (11) and DEL-09-04 (9). The remaining five rows are below.
+DEL-06-02 (11) and DEL-09-04 (9). The five rows not counted above, plus DX-04,
+are below.
 
 | Action | Rows | Expected outcome |
 |---|---|---|
 | Retired | DEP-02-03-009 (DEL-02-03 → DEL-08-03) | DX-01 (group 1 R-b) |
-| Retired | DEP-02-03-008 (DEL-02-03 ← DEL-07-05), confirmed by the owner | DX-07 |
+| Retired | DEP-02-03-008 (DEL-02-03 → DEL-07-05), confirmed by the owner | DX-07 |
 | Re-evidenced in place | DEP-02-03-004 (→ REF-003): quote from the restated CLM-003 row, line 63 | DX-02 |
-| Re-evidenced in place | DEP-02-03-007 (← DEL-07-04): quote from the restated DEL-02-03-REQ-010, line 153; Statement without the transition-control wording | DX-06 |
+| Re-evidenced in place | DEP-02-03-007 (DEL-02-03 → DEL-07-04): quote from the restated DEL-02-03-REQ-010, line 153; Statement without the transition-control wording | DX-06 |
 | Restated in place | DEP-08-03-007 (→ REF-003): `TargetName` "docs/SPEC.md Section 17.2 deliverable scan API" | DX-03 |
 | Unchanged | DEP-08-02-013 | DX-04 does not apply (P-keep) |
 
@@ -97,8 +98,10 @@ DEL-06-02 (11) and DEL-09-04 (9). The remaining five rows are below.
 - **EVQ/DRB check** (report-only): EVQ-006 only, 84 rows project-wide,
   unchanged. The current validator does not resolve the repository-relative
   `projects/chirality-app-dev/...` `EvidenceFile` form some App rows use. This
-  run changed no `EvidenceFile`, and none of the rows it changed carries the
-  finding. There is no EVQ-003, EVQ-004 or DRB-006 finding.
+  run changed no `EvidenceFile`, and no row whose evidence fields this run
+  changed carries the finding (two `LastSeen`-only rows, DEP-05-03-001 and
+  DEP-06-01-001, carry the pre-existing finding). There is no EVQ-003, EVQ-004
+  or DRB-006 finding.
 - **Graph after extraction** (analyzer, SCOPE ALL): 54 nodes, 102 edges,
   0 SCC, 0 orphans, 7 isolates (the same seven as before).
   - DEP-02-03-009 and DEP-02-03-008 each removed one distinct edge

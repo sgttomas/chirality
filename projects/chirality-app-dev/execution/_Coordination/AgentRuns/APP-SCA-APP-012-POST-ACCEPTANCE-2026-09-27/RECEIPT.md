@@ -34,7 +34,7 @@ Typed by the owner in chat on 2026-09-27 (verbatim; `CHAT_TRANSCRIPTION.md`):
 | Setup 5.7 | `setup_report/SCAN_REPORT.md`; `SETUP_RUN_RECORD.md`; `SETUP_LOG.md` (COMPLETE) | 53 unblocked, 0 blocked, 0 held for a cycle; retired DEL-09-07 listed apart |
 | TM-APP-051 | The row-maintenance record and the one `REGISTER.csv` row above | Recorded; `taskmgmt validate` PASS before and after; federation rerun after the write unchanged |
 | `audit-scope-closure` | `_Evaluation/ScopeClosureAudit/ScopeClosure_SCA-APP-012_2026-09-27_2240/` (first SCA-APP-012 snapshot); `_LATEST.md` SCA-APP-012 row (method step 5) | `CLOSED`, 0 findings. All 24 actions (80 edits) verified; supersession 14/14 and the map check clean (exit 0, 0 findings, byte-for-byte); 9/9 reruns COMPLETED; DX-01 to DX-07 verified (`DX_Verification.csv`); retired-surface screen 0 hits (its control on the extraction basis finds DEP-02-03-004 and DEP-08-03-007) |
-| MEMORY | One setup row in each of the eight modified deliverables, in each file's existing `## Runs` table or dated list | Links this receipt |
+| MEMORY | One setup row in each of the 24 deliverables (8 modified + 16 FULL_GRAPH neighbours), in each file's existing `## Runs` table or dated list; DEL-06-01, DEL-06-02 and DEL-09-04 had none and gained the canonical `## Runs` table | Links this receipt. Rows name what changed: an index refresh everywhere, plus `LastSeen` register bytes only in DEL-05-03, DEL-06-01, DEL-06-02 and DEL-09-04 and the DX rows in DEL-02-03 and DEL-08-03 |
 
 **Also written earlier in this run** (stage 1, reviewed at `d0da7590c` and
 `63e5de1f2`):
@@ -79,7 +79,9 @@ Typed by the owner in chat on 2026-09-27 (verbatim; `CHAT_TRANSCRIPTION.md`):
 
 ## Checks
 
-These ran against `origin/main` on the final commit:
+These first ran at `3af60841e` with `origin/main` as the base. The candidate
+now includes the merge of `origin/main` `31a90f3e6` (merge commit
+`a2d6b0641`); they were re-run there, against base `31a90f3e6`, and pass:
 - this ledger's validator;
 - Root G0–G4;
 - conflict markers and run-record leaks;
@@ -88,7 +90,10 @@ These ran against `origin/main` on the final commit:
 - `run_affected_tests.py`;
 - export freshness.
 
-The results are in the hand-off and in the loop receipt.
+The review follow-up commit on `a2d6b0641` re-ran this ledger's validator,
+Root G0–G4, conflict markers, run-record leaks, the register validator
+(EVQ-006 84, unchanged) and `git diff --check`; all pass. The results are in
+the hand-off and in the loop receipt.
 
 ## Limits
 
@@ -97,4 +102,4 @@ The results are in the hand-off and in the loop receipt.
   `_ScopeChange/_LATEST.md`.
 - **Pointers.** Only the ScopeClosureAudit per-amendment row moved, as that
   method directs.
-- **Nothing is pushed or merged by this run. No release.**
+- **No merge and no release by this run; the branch is pushed for review.**
