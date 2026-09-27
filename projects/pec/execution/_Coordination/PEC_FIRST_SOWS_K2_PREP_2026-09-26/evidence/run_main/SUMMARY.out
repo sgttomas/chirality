@@ -1,4 +1,4 @@
-basis commit: 68b5759d9e412e07aa2cd46f54b13f33336ec6bc
+basis commit: 7c171b862056d9c4c51c7a36a4866279ccdb2dd6
 python: Python 3.13.7
 PASS reliance preflight: ALLOW x7
 PASS harness and receipts exit 0 (pre)

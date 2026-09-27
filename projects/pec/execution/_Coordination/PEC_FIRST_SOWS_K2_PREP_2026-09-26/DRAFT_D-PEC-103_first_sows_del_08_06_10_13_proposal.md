@@ -332,7 +332,7 @@ Run from the repository root with `PYTHONDONTWRITEBYTECODE=1`, on the act branch
 | 6. State claims | `python3 <run root>/verify_k2_state_claims.py --gitdir . --prep <run root>` | `RESULT PASS 482/482` |
 | 7. Cited IDs and old S2 text | `check_cited_ids.py --commit 125cfacc1`; `scan_old_s2_text.py --prior ce934ac33 --current 125cfacc1` | `RESULT PASS 0/0`; `stale=0` |
 | 8. Lifecycle preserved (A) | `git diff --name-status origin/main...HEAD -- '**/_STATUS.md'` | empty under A; under S exactly the two tabled postimages |
-| 9. Strict registers (D-GOV-48) | `python3 tools/validation/validate_decomposition_registers.py --strict projects/pec/execution`, before and after | exit code and output **identical** to the pre-act run (at `947075c9a` + branch: exit 1, 0 errors, 26 pre-existing `XRG-013` warnings, owner-deferred) |
+| 9. Strict registers (D-GOV-48) | `python3 tools/validation/validate_decomposition_registers.py --strict projects/pec/execution`, before and after | exit code and output **identical** to the pre-act run (at `e548d4cfa` + branch: exit 1, 0 errors, 26 pre-existing `XRG-013` warnings, owner-deferred) |
 | 10. Closure and every-PR checks | `analyze_dep_closure.py projects/pec/execution`; `harness.py self-check`; `validate_pec_loop_receipts.py --repo-root .` | harness and receipts exit 0; closure summary non-empty with no cycle or bidirectional pair; each output identical before and after A (and after C8) (all asserted by the runner) |
 | 11. C8 (if selected) | `apply_k2_c8.py --check-only`, then apply | exit 0; write set exactly the one `_DEPENDENCIES.md`; row 9 and 10 outputs unchanged |
 | 12. Containment | `git diff --name-status origin/main...HEAD` | the two created contracts; S's two `_STATUS.md`, M's two `MEMORY.md` and C8's `_DEPENDENCIES.md` only if selected; the run root and HELP_HUMAN's records under `execution/_Coordination/**`; nothing else |
@@ -440,36 +440,48 @@ Existing reliance-hold, dependency, lifecycle and release boundaries survive unc
 
 Everything ran on `git archive` exports in `mktemp -d` directories under the session scratchpad, never on a checkout. Interpreter: Python 3.13.7 (CPython); local date 2026-09-26.
 
-The final run is `evidence/run_main/SUMMARY.out`, from `run_k2_checks.sh` on the branch head `6608f56a5`, which merges `origin/main` `947075c9a`. Every raw output is beside it:
+The final run is `evidence/run_main/SUMMARY.out`, from `run_k2_checks.sh` on the branch head `7c171b862`, which merges `origin/main` `e548d4cfa`. Every raw output is beside it:
 
 ```text
-basis commit: 6608f56a51cf5b6e66543f02019d15b8845bc587
+basis commit: 7c171b862056d9c4c51c7a36a4866279ccdb2dd6
 python: Python 3.13.7
 PASS reliance preflight: ALLOW x7
+PASS harness and receipts exit 0 (pre)
+PASS closure summary non-empty, no cycles, no bidirectional pairs (pre)
 PASS act A: check-only 0, apply 0, rerun refuses 1
 PASS containment: 2 new files, both ScopeOfWork.md
 PASS validate DEL-08-06
 PASS checklist DEL-08-06 (rerun byte-identical)
 PASS boundary DEL-08-06 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
+PASS boundary DEL-08-06: 0 NOT_CHECKABLE
+PASS checklist DEL-08-06: 17 items = 17 AC
+checklist DEL-08-06 sha256 a8e63dc9918ee2e287d6ca2b7c70966fbe0f22ca5e1b0e55d76c94db9e66d34f
 PASS validate DEL-10-13
 PASS checklist DEL-10-13 (rerun byte-identical)
 PASS boundary DEL-10-13 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
-PASS quotes: RESULT PASS 133/133 (INFO DEL-08-06 DEP rows citing this contract: 0 INFO DEL-10-13 DEP rows citing this contract: 0 )
-PASS state claims: RESULT PASS 479/479
+PASS boundary DEL-10-13: 0 NOT_CHECKABLE
+PASS checklist DEL-10-13: 19 items = 19 AC
+checklist DEL-10-13 sha256 e3d43d16c21d8530b8b4886bc6343576d9564abf99824d100f4826bc45649107
+PASS quotes: RESULT PASS 137/137 (INFO DEL-08-06 DEP rows citing this contract: 0 INFO DEL-10-13 DEP rows citing this contract: 0 )
+PASS state claims: RESULT PASS 482/482
 PASS cited IDs: RESULT PASS 0/0
 PASS old S2 text: RESULT PASS stale=0 current=43
+PASS harness and receipts exit 0 (postA)
+PASS closure summary non-empty, no cycles, no bidirectional pairs (postA)
 PASS strict identical pre/postA, export root normalized
 PASS harness identical pre/postA, export root normalized
 PASS receipts identical pre/postA, export root normalized
 PASS closure_summary identical pre/postA, export root normalized
 PASS add-on C8: check-only 0, apply 0, rerun refuses 1
 PASS containment after C8: 2 new contracts + 1 modified _DEPENDENCIES.md
+PASS harness and receipts exit 0 (postC8)
+PASS closure summary non-empty, no cycles, no bidirectional pairs (postC8)
 PASS strict identical pre/postC8, export root normalized
 PASS harness identical pre/postC8, export root normalized
 PASS receipts identical pre/postC8, export root normalized
 PASS closure_summary identical pre/postC8, export root normalized
 PASS whitespace
-PASS fault injection: RESULT PASS 15/15
+PASS fault injection: RESULT PASS 19/19
 OVERALL PASS
 ```
 
