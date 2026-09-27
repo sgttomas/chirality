@@ -15,6 +15,10 @@
       "cwd": ".",
       "command": ["python3", "-m", "unittest", "discover", "-s", "v2/tests/storage", "-p", "test_*.py"]
     },
+    "v2-parsers": {
+      "cwd": ".",
+      "command": ["python3", "-m", "unittest", "discover", "-s", "v2/tests/parsers", "-p", "test_*.py"]
+    },
     "v2-core-posture": {
       "cwd": ".",
       "command": ["python3", "v2/tools/check_service_core_posture.py", "--config", "v2/config/service_core_posture.json", "--workflow", "software-workflow.json"]
@@ -41,6 +45,10 @@
     {
       "paths": ["v2/src/pec_v2/core/ports/store.py", "v2/src/pec_v2/core/content_minimal_guard.py", "v2/src/pec_v2/adapters/storage/__init__.py", "v2/src/pec_v2/adapters/storage/sqlite_store.py", "v2/tests/storage/**", "v2/docs/STORE_LIFECYCLE_AND_GUARD.md", ".gitignore", "software-workflow.json", "v2/src/pec_v2/**"],
       "checks": ["v2-store-guard"]
+    },
+    {
+      "paths": ["v2/tests/parsers/**", "software-workflow.json"],
+      "checks": ["v2-parsers"]
     },
     {
       "paths": ["execution/**", "docs/**", "AGENTS.md"],
