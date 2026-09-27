@@ -120,7 +120,7 @@ Verdict PASS WITH NOTES; nothing blocking. Dispositions:
   - "Grant and records" is labelled as HELP_HUMAN interpretation and states that the owner named no write targets.
   - Verification and rollback clauses are added.
   - The presentation's "MAJOR is the conservative reading" is restored.
-- **6 (`_LATEST.md` ordering): repaired.** The pointer now says the preflights ran after the record writes, which matches the Decision_Logs and `MANIFEST.md`. No file pins the pointer's hash.
+- **6 (`_LATEST.md` ordering): repaired.** The first repair said the preflights ran "after the record writes". Review 02 (N2) showed that the order was mixed. The pointer now reads "reproduced exactly before any write; … preflights returned `ALLOW` (order disclosed in the run manifest)". No file pins the pointer's hash.
 - **7 (absolute paths): recorded, no change**, as for PR #1023 note 7.
 
 The repairs and this file follow the reviewed head. They need a backcheck before merge.

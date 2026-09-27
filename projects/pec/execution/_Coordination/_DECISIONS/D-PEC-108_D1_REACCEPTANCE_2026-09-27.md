@@ -57,7 +57,7 @@ DEL-00-03's custom checklist item CU-001 is retired as history and not carried f
 ## Scope and limits
 
 This decision:
-- accepts these exact bytes only. There is no ISSUED, Gate 5, lifecycle, P1 or production act. *HELP_HUMAN interpretation:* following the RV1 return's owner-decision draft (`returns/RV1A_D1_REVIEW.md`), it also imposes this architecture on no other loop. That narrows the act and adds nothing to it;
+- accepts these exact bytes only. There is no ISSUED, Gate 5, lifecycle or production act. *HELP_HUMAN interpretation:* following the RV1 return's owner-decision draft (`../AgentRuns/HELP-HUMAN-PEC-20260927-RV1-INTAKE/returns/RV1A_D1_REVIEW.md`), there is also no P1 act, and this architecture is imposed on no other loop. These narrow the act and add nothing to it;
 - makes no C-05 act. The C-05 closure recorded under `D-PEC-72` relied on the earlier acceptances and stays as recorded. The optional C-05 line was not taken;
 - leaves both deliverables `CHECKING`. Nothing here prompts about CHECKING;
 - writes no `ScopeOfWork.md`, artifact, `_STATUS.md`, `v2/**`, PRD, decomposition, register, dependency, context or reference file;
@@ -84,4 +84,4 @@ Everything publishes through the undertaking's final PR under the standing Git a
   - only the RV1 rows' `HumanDisposition` and `Status` change in the CSVs;
   - the strict-register, harness and loop-receipt outputs match `origin/main`;
   - an independent review covers the actual head.
-- **Rollback:** before merge, drop the recording commits. After merge, revert the final PR's merge commit, which restores the RV1 rows to `TBD / OPEN`, the prior `_LATEST.md` and the `MEMORY.md` bytes. This record would then stand as the owner's decision, not yet recorded.
+- **Rollback:** before merge, drop the recording commits. After merge, restore only the recording paths to their pre-PR bytes and keep this record and its register row. Those paths are both `_REVIEW.md`, both `Review_Findings.csv` (the RV1 rows go back to `TBD / OPEN`), both acceptance snapshots, `_LATEST.md` and both `MEMORY.md`. The owner's decision then stands, not yet recorded. A full revert of the merge commit would also remove this record, and the decision would need to be recorded again.
