@@ -1,2 +1,2 @@
-{"status": "PASS", "output": "/private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/x1pchk.J0Xi5v/post/registered_post.json", "checks": ["v2-parsers", "v2-core-posture", "v2-api-contract", "v2-loop-registry", "v2-store-guard", "harness-self-check"]}
+{"status": "PASS", "output": "/private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/x1pchk.4jn3ZQ/post/registered_post.json", "checks": ["v2-parsers", "v2-core-posture", "v2-api-contract", "v2-loop-registry", "v2-store-guard", "harness-self-check"]}
 exit=0
