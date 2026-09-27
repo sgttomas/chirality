@@ -1,0 +1,210 @@
+[
+ {
+  "deliverable": "DEL-02-01",
+  "lifecycle": "IN_PROGRESS",
+  "scope_of_work_sha256": "5c3e9156b82d8e7a70eaaf3bfc9d5a43a9e4a26e8505d48e5d18cf1fec6f5fd9",
+  "status_sha256": "56f5d07683631ea5822a0a041b1e6a876f10a74ed8848935fbb3c77b2dd93435",
+  "scope_of_work_unchanged": true,
+  "status_unchanged": true,
+  "validate_rc": 0,
+  "validate": {
+   "format": "SOW_V1",
+   "issues": [],
+   "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/ScopeOfWork.md",
+   "valid": true
+  },
+  "checklist_rc": 0,
+  "checklist_repeat_identical": true,
+  "checklist_items": 1,
+  "boundary_owner_rc": 0,
+  "boundary_owner_summary": {
+   "status": "NOT_APPLICABLE",
+   "requirements_checked": 0,
+   "findings_by_category": [
+    "NOT_APPLICABLE"
+   ]
+  }
+ },
+ {
+  "deliverable": "DEL-02-02",
+  "lifecycle": "IN_PROGRESS",
+  "scope_of_work_sha256": "2fd0a4f1ffacccd3d3a26f581e6baec1ce618e06136c9e0f4c33de7122908a71",
+  "status_sha256": "b8b706625f1c8c9721b8bfc54c27821a1091549b90004cd5aeb5bae380857daa",
+  "scope_of_work_unchanged": true,
+  "status_unchanged": true,
+  "validate_rc": 0,
+  "validate": {
+   "format": "SOW_V1",
+   "issues": [],
+   "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/ScopeOfWork.md",
+   "valid": true
+  },
+  "checklist_rc": 0,
+  "checklist_repeat_identical": true,
+  "checklist_items": 1,
+  "boundary_owner_rc": 0,
+  "boundary_owner_summary": {
+   "status": "NOT_APPLICABLE",
+   "requirements_checked": 0,
+   "findings_by_category": [
+    "NOT_APPLICABLE"
+   ]
+  }
+ },
+ {
+  "deliverable": "DEL-02-03",
+  "lifecycle": "IN_PROGRESS",
+  "scope_of_work_sha256": "ac34b8dccb03f02db626fde1bdfeaa4af80933a9cb203c6f7d0b26afdf54cc91",
+  "status_sha256": "c6132084f55624a28bcb5658b042a22154fb7b80d5bf44b982f7ea384ff8ed53",
+  "scope_of_work_unchanged": true,
+  "status_unchanged": true,
+  "validate_rc": 0,
+  "validate": {
+   "format": "SOW_V1",
+   "issues": [],
+   "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md",
+   "valid": true
+  },
+  "checklist_rc": 0,
+  "checklist_repeat_identical": true,
+  "checklist_items": 1,
+  "boundary_owner_rc": 0,
+  "boundary_owner_summary": {
+   "status": "NOT_APPLICABLE",
+   "requirements_checked": 0,
+   "findings_by_category": [
+    "NOT_APPLICABLE"
+   ]
+  }
+ },
+ {
+  "deliverable": "DEL-06-03",
+  "lifecycle": "IN_PROGRESS",
+  "scope_of_work_sha256": "1f752c38a90018ca25f7ce23e49c6e6bef2b49d1a5d54684fef120525def4e1d",
+  "status_sha256": "270ebc848425ac320d0c72f06dd1cdb0e65c86c1c20b9aa768d435fffdff8798",
+  "scope_of_work_unchanged": true,
+  "status_unchanged": true,
+  "validate_rc": 0,
+  "validate": {
+   "format": "SOW_V1",
+   "issues": [],
+   "target": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/ScopeOfWork.md",
+   "valid": true
+  },
+  "checklist_rc": 0,
+  "checklist_repeat_identical": true,
+  "checklist_items": 2,
+  "boundary_owner_rc": 0,
+  "boundary_owner_summary": {
+   "status": "NOT_APPLICABLE",
+   "requirements_checked": 0,
+   "findings_by_category": [
+    "NOT_APPLICABLE"
+   ]
+  }
+ },
+ {
+  "deliverable": "DEL-07-02",
+  "lifecycle": "IN_PROGRESS",
+  "scope_of_work_sha256": "51a2bb76b4085ee76bcfa2c38068c0b48f3ade423fc95ad73d2ef659c1a68b0f",
+  "status_sha256": "23fee8e46f915b516f668995e3050cb9e310c130909ae4a5e39f365de75bd7e4",
+  "scope_of_work_unchanged": true,
+  "status_unchanged": true,
+  "validate_rc": 0,
+  "validate": {
+   "format": "SOW_V1",
+   "issues": [],
+   "target": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-02_Execution_Root_Scaffolding_from_Decomposition/ScopeOfWork.md",
+   "valid": true
+  },
+  "checklist_rc": 0,
+  "checklist_repeat_identical": true,
+  "checklist_items": 1,
+  "boundary_owner_rc": 0,
+  "boundary_owner_summary": {
+   "status": "NOT_APPLICABLE",
+   "requirements_checked": 0,
+   "findings_by_category": [
+    "NOT_APPLICABLE"
+   ]
+  }
+ },
+ {
+  "deliverable": "DEL-07-03",
+  "lifecycle": "IN_PROGRESS",
+  "scope_of_work_sha256": "ca5f99ac4e660b379c4b90440b2dd9d220b22c72c52ed668ef7242b86fb93dcd",
+  "status_sha256": "01b3bb94ffc346fc2b7dd8b304641b8e75ffba3f255fae44eda418a69a874981",
+  "scope_of_work_unchanged": true,
+  "status_unchanged": true,
+  "validate_rc": 0,
+  "validate": {
+   "format": "SOW_V1",
+   "issues": [],
+   "target": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/ScopeOfWork.md",
+   "valid": true
+  },
+  "checklist_rc": 0,
+  "checklist_repeat_identical": true,
+  "checklist_items": 1,
+  "boundary_owner_rc": 0,
+  "boundary_owner_summary": {
+   "status": "NOT_APPLICABLE",
+   "requirements_checked": 0,
+   "findings_by_category": [
+    "NOT_APPLICABLE"
+   ]
+  }
+ },
+ {
+  "deliverable": "DEL-08-02",
+  "lifecycle": "IN_PROGRESS",
+  "scope_of_work_sha256": "b5e9faa703cd06721babff80db0921ea363d5aa4f757d5e68298c4fb1c4ebab9",
+  "status_sha256": "afe911057cf3d8086b7ad6f758b6937cd89f5d67f6cacc0833b5a85cca2cf380",
+  "scope_of_work_unchanged": true,
+  "status_unchanged": true,
+  "validate_rc": 0,
+  "validate": {
+   "format": "SOW_V1",
+   "issues": [],
+   "target": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-02_Persona_Alias_and_Agent_Matrix_Routing_Contract/ScopeOfWork.md",
+   "valid": true
+  },
+  "checklist_rc": 0,
+  "checklist_repeat_identical": true,
+  "checklist_items": 1,
+  "boundary_owner_rc": 0,
+  "boundary_owner_summary": {
+   "status": "NOT_APPLICABLE",
+   "requirements_checked": 0,
+   "findings_by_category": [
+    "NOT_APPLICABLE"
+   ]
+  }
+ },
+ {
+  "deliverable": "DEL-08-03",
+  "lifecycle": "IN_PROGRESS",
+  "scope_of_work_sha256": "c8918801ff2bf0846556fbd055fab90d9dbb0260a3ab44be3ec3db93b10dfb03",
+  "status_sha256": "00fca38507561ab1fb7204e77cb6acb16ee8fbe9f7b3baed9290b12bf9b07f1c",
+  "scope_of_work_unchanged": true,
+  "status_unchanged": true,
+  "validate_rc": 0,
+  "validate": {
+   "format": "SOW_V1",
+   "issues": [],
+   "target": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/ScopeOfWork.md",
+   "valid": true
+  },
+  "checklist_rc": 0,
+  "checklist_repeat_identical": true,
+  "checklist_items": 1,
+  "boundary_owner_rc": 0,
+  "boundary_owner_summary": {
+   "status": "NOT_APPLICABLE",
+   "requirements_checked": 0,
+   "findings_by_category": [
+    "NOT_APPLICABLE"
+   ]
+  }
+ }
+]
