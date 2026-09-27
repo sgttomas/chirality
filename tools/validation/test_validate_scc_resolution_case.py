@@ -286,3 +286,12 @@ def test_differently_cased_dag_refused(tmp_path):
     case.mkdir(parents=True)
     errors = vscc.validate_case(case)
     assert any("named exactly _DAG/cases/" in e for e in errors), errors
+
+
+def test_symlink_above_the_project_is_not_a_route(tmp_path):
+    real_parent = tmp_path / "real"
+    case = real_parent / "proj" / "execution" / "_DAG" / "cases" / "SCC-CASE-001"
+    case.mkdir(parents=True)
+    (tmp_path / "linked").symlink_to(real_parent, target_is_directory=True)
+    errors = vscc.validate_case(tmp_path / "linked" / "proj" / "execution" / "_DAG" / "cases" / "SCC-CASE-001")
+    assert not any("symbolic link" in e for e in errors), errors

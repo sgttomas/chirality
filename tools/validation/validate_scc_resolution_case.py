@@ -183,9 +183,16 @@ def dag_path_errors(lexical: Path, resolved: Path) -> list[str]:
                 f"path names {found.name!r}; the case home is the folder named exactly _DAG/cases/ (D-GOV-49)"
             )
             break
-    if (dag_like_ancestor(lexical) is None) != (dag_like_ancestor(resolved) is None) or (
-        dag_like_ancestor(lexical) is not None and lexical != resolved
-    ):
+    lexical_dag = dag_like_ancestor(lexical)
+    linked = False
+    if lexical_dag is not None:
+        # Only links at or below _DAG/ matter; a symlinked folder above the
+        # project (a home directory, a mount point) is not a route around it.
+        below = [lexical_dag, *[p for p in lexical.parents if lexical_dag in p.parents], lexical]
+        linked = any(part.is_symlink() for part in below)
+    elif dag_like_ancestor(resolved) is not None:
+        linked = True
+    if linked:
         errors.append(
             "case path reaches _DAG/ through a symbolic link; a case must be a real folder at "
             "_DAG/cases/SCC-CASE-NNN/ (D-GOV-49)"
