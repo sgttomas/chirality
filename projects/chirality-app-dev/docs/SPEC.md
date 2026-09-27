@@ -235,9 +235,38 @@ Rules:
 - Transitions to `CHECKING` or `ISSUED` require approval SHA evidence.
 - `CHECKING → IN_PROGRESS` also requires approval SHA evidence and a `ruling` naming the human ruling record: a non-empty file inside the project root other than the deliverable's own `_STATUS.md`. The history entry records the ruling and SHA, and the reversal removes the `**Checking Approval SHA:**` field; the next `CHECKING` entry writes a new one.
 - Caller metadata cannot set the lifecycle fields (`Current State`, `Last Updated`, `History`) or the approval SHA fields, which only the transition writes from a validated approval SHA. Metadata keys are printable ASCII without `*`, `#` or `:`, and metadata values, history notes and rulings cannot contain line breaks, including Unicode line and paragraph separators. The actor is recorded on one line.
+- `Authorization Basis`, `Accepted Basis SHA` and `Accepted ScopeOfWork SHA-256` are gate evidence. Caller metadata may set them only on a transition whose actor is HUMAN (or its USER/OPERATOR aliases); for any other actor the transition is rejected (`INVALID_METADATA`). Labels are matched in normalized form, as for the approval SHA fields: lower-cased, with every character other than the letters `a`–`z` and the digits `0`–`9` removed. Every other metadata key remains settable by any authorized actor (owner decision D2, 2026-09-26).
 - `IN_PROGRESS → CHECKING` and `CHECKING → ISSUED` accept an optional `ruling` under the same path checks; when one is supplied, the history entry records it with the SHA. Other transitions reject a `ruling`.
 - These checks are format, location and content checks, not proof of a human act. The actor is asserted by the caller. The App does not verify that the ruling file is committed or that the approval SHA names a real commit. Any caller able to write files in the project can therefore satisfy them. The ruling and SHA are recorded evidence of the authorization, and the human remains accountable for it.
-- `ISSUED → IN_PROGRESS` occurs only through the governed scope-change process. It is authorized only by an ACCEPTED amendment (checkpoint group 3 accepted) whose accepted action register names that deliverable with action `MODIFY`, or `RECLASSIFY` where the reclassification changes the deliverable's scope (repo-root `docs/SPEC.md` §3.3; D-GOV-50; the `scope-change` workflow). The status-transition tools do not perform that process or yet check that amendment record, and they reject the transition until that check is implemented.
+- `ISSUED → IN_PROGRESS` occurs only through the governed scope-change process. It is authorized only by an ACCEPTED amendment (checkpoint group 3 accepted) whose accepted action register names that deliverable with action `MODIFY`, or `RECLASSIFY` where the reclassification changes the deliverable's scope (repo-root `docs/SPEC.md` §3.3; D-GOV-50; D-GOV-51; the `scope-change` workflow). The status-transition tools do not perform that process. They admit the reopening only when all of these hold, and otherwise reject it:
+  - the actor is HUMAN (or its USER/OPERATOR aliases);
+  - a format-valid approval SHA is supplied;
+  - an `amendment` (amendment ID, or its snapshot or group-3 decision path) passes the amendment check. Without an `amendment` the move stays `BACKWARD_TRANSITION`; a `ruling` is rejected, because the accepted amendment is the authorizing record.
+- The amendment check (`frontend/src/lib/lifecycle/amendment-reopen.ts`) mirrors the working-tree mode of the Root checker `tools/validation/check_amendment_reopen.py`, with the same admission rules and refusal codes:
+  - The scope-change root is `<execution root>/_ScopeChange`, the execution root being the deliverable's outermost ancestor folder named `execution`. An adapter manifest (`_harness/adapter.yaml`) found by walking up from the deliverable must imply the same execution root. A `_ScopeChange/` inside a package or deliverable folder is never used.
+  - Group 3 is accepted. A decision folder named `{ID}_GROUP-3_[AMENDMENT-K_]YYYY-MM-DD[_N]` under `checkpoint_snapshots/` holds `ACCEPTED_MANIFEST.csv` and a `DECISION.md`. That file's first non-blank line is `# {ID} checkpoint group 3 — accepted`: a dash (`—`, `–` or `-`), then `accepted`, followed by whitespace, `.`, `,`, `;` or the end of the line. Candidate folders with other names do not count, and the latest decision folder is read first.
+  - The action register is bound by SHA-256 in the governing group-2 `ACCEPTED_MANIFEST.csv`, and its bytes are unchanged. The governing manifest is the latest group-2 decision folder (highest `AMENDMENT-K`, then date, then `_N`) that binds an `Amendment_Actions*.csv` row, so a revised group-2 acceptance supersedes an earlier binding. Among several such rows, the register is the one whose `Role` is exactly `action register` or `exact final action register`, optionally followed by a parenthesized note.
+  - Register rows naming the deliverable have `AmendmentID` equal to the amendment or blank. None is `REMOVE` (`DELIVERABLE_REMOVED`). One is `MODIFY`, or `RECLASSIFY` with `ScopeChanging` `YES`. A legacy register without the `ScopeChanging` column admits `MODIFY` and refuses `RECLASSIFY`; the human then records that reopening directly. Values are not stripped: stray whitespace in a relevant column name or value is `REGISTER_SCHEMA`.
+  - The deliverable's `_STATUS.md` history does not already record `reopened from ISSUED; amendment: {ID}` (`AMENDMENT_ALREADY_USED`): one tool-recorded reopening per accepted amendment.
+  - A refusal is reported as `AMENDMENT_NOT_ADMITTED` and carries the checker's code. So is a decision that does not name the requested amendment and the deliverable whose `_STATUS.md` is transitioned. An unreadable record, or one over 5 MiB, is `AMENDMENT_CHECK_ERROR`; of a group-3 `DECISION.md` only the first 64 KiB, up to the last complete line, is read. Records are resolved after symbolic links, inside the Git work-tree top level that holds the working root (found from the filesystem; the working root itself when there is none), and inside the scope-change root. The App also requires that scope-change root to lie inside the working root.
+  - A parity test compares the App check with the Root checker's working-tree decisions on shared fixtures, and on the real PEC, Piping, Runtime and App amendment records present in the checkout.
+- The admitted reopening's history entry records the amendment ID and group-3 snapshot, the register row (path, `ActionSeq`, action), the register SHA-256 and the approval SHA. Existing approval fields are left as history, as `write_status.sh` leaves them.
+- A transition edits `_STATUS.md` in place. It owns only these parts:
+  - the values of the first `**Current State:**` and `**Last Updated:**` lines;
+  - the metadata fields it sets, updates or removes among the field lines above `## History`;
+  - the one history line it appends at the end of the `## History` section, as a table row when the history is a table.
+
+  Every other byte is kept, in order and with its line endings: existing history lines (including ones the parser does not read, such as an actor containing `)`), sections after `## History`, and lines appended below them. A transition that would still drop a recorded `reopened from ISSUED; amendment: <ID>` marker is refused (`HISTORY_NOT_PRESERVED`). Before this rule the writer rebuilt the file from its parsed form, dropping unread history lines and trailing sections.
+
+  The written content is parsed again before it is saved. Unless it reads as the target state, with the transition date as `Last Updated` and exactly one more history entry, the transition is refused (`INVALID_STATUS_FORMAT`) and the file is left unchanged. The writer splits lines only at LF and CRLF, while the parser also treats a lone CR, U+2028 and U+2029 as line ends; this check catches a file where the two would read different lines.
+- Known limits of the reopening check. The App runs no git process, so it makes none of the Root checker's anchored at-commit checks:
+  - that the approval SHA is a reachable commit (`APPROVAL_SHA_UNREACHABLE`);
+  - that it is an ancestor of `HEAD` (`APPROVAL_SHA_NOT_ANCESTOR`);
+  - that the amendment records are read from that commit (`--at-commit`).
+
+  The App reads the working-tree records, so uncommitted edits to them are not detected, and its decision is unanchored. `tools/scaffolding/write_status.sh` uses only the at-commit mode and is the anchored check. The actor remains caller-asserted, as for the other human gates.
+
+  The status file is read, the amendment check runs asynchronously, and the file is then rewritten, all without a lock. A concurrent write to `_STATUS.md` inside that window can be lost, as for every App transition.
 - SDK/MCP status-transition tools MUST enforce these rules.
 
 ### 4.4 Lifecycle Regimes and CHECKING Entry Conditions
@@ -390,13 +419,77 @@ only while it is current with the local evidence (repo-root SPEC §5.4). A
 project has no DAG built from its files. The App project has no
 `execution/_DAG/`, so its blockers follow the no-accepted-DAG row.
 
-App dependency reads (the `Dependencies.csv` rows and the
-`activeUpstreamBlockerCandidates` count) take structured rows only from
-`Dependencies.csv` and infer no rows from `_DEPENDENCIES.md`. They are register
-evidence, not a blocker judgment: they do not read declarations held only in
-the markdown, so they do not implement the union rule above, and a zero count
-does not mean a deliverable is unblocked. Computing blockers from the recorded
-register is an App follow-up.
+App dependency reads (the working-root dependencies API, the MCP `deps_read`
+tool and the workbench and pipeline contract panels) compute blockers from the
+recorded register (`frontend/src/lib/dependencies/recorded-register.ts`). They
+follow the Root reference tools `tools/coordination/dependency_evidence.py` and
+the project mode of `tools/coordination/build_dev001_blocker_queue.py`, and
+parity fixtures check that both give the same result on the same files:
+
+- The read covers the execution root that holds the deliverable
+  (`{EXECUTION_ROOT}/PKG-*/1_Working|2_Checking|3_Issued/DEL-*`, and
+  `CAT-*`/`KTY-*`), and only when that root resolves inside the project root.
+  The execution root is found as the reopening check (§4.3) and the Root
+  checker `tools/validation/check_amendment_reopen.py` find it, not from the
+  shape of the deliverable path: it is the deliverable's outermost ancestor
+  folder named `execution` below the canonical project root, and an adapter
+  manifest (`_harness/adapter.yaml`) found walking up from the deliverable to
+  the project root must imply the same folder. The canonical deliverable
+  folder must sit exactly at `<execution root>/PKG-*/<lifecycle folder>/DEL-*`
+  (or `CAT-*`/`KTY-*`). Otherwise the deliverable's own register is still
+  read, and the judgment is `NOT_ASSESSED`, also a warning, with reason
+  `EXECUTION_ROOT_NOT_RESOLVED` (no `execution` ancestor, or an adapter
+  manifest that implies another root), `DELIVERABLE_OUTSIDE_EXECUTION_ROOT`
+  (a root resolves, but the deliverable is not at that position under it) or
+  `EXECUTION_ROOT_OUTSIDE_PROJECT_ROOT`. A deliverable named at the real path
+  behind a linked package folder is therefore not judged over a root guessed
+  from its path. The Root tools take the execution root as an argument
+  (`--execution-root`); the parity fixtures name it the same way. Every file
+  and folder it reads or lists is first resolved with `realpath`,
+  and it is read only when its canonical path lies inside the canonical project
+  root. A symbolic link whose target stays inside the project root is read as
+  its target, as the Root tools read it. A file or folder that leaves the
+  project root through a link, at any level, is not read and is reported as a
+  warning, and so are a file larger than 5 MiB and a symbolic-link loop. A read
+  that refused anything gives `NOT_ASSESSED` rather than a verdict on
+  incomplete evidence. Symbolic-link unit and package folders are skipped when
+  the units are inventoried. A deliverable requested through a linked package,
+  lifecycle or unit folder therefore gets `NOT_ASSESSED`
+  (`SYMLINKED_UNIT_PATH`, also a warning), since its canonical folder may lie
+  under another execution root. It
+  reads the declared sections of each `_DEPENDENCIES.md`, including the legacy
+  headings above, together with each `Dependencies.csv`. A declared entry and an
+  ACTIVE row with the same `Direction` and target count once. Where they disagree
+  on required maturity, the declaration governs and the disagreement is
+  reported. A declaration whose only matching row is RETIRED is also a reported
+  disagreement, and it still governs as a synthesized `Origin=DECLARED` row.
+- Without an accepted project DAG, each consumer-to-supplier arc is judged by
+  its supplier. `DOWNSTREAM` rows are reversed, so a supplier's row counts as the
+  consumer's upstream arc. The supplier's `_STATUS.md` state must have reached
+  the arc's required maturity. A declared maturity governs, then the rows'
+  maturity. When neither states one, the default maturity threshold recorded in
+  `_COORDINATION.md` applies, or `INITIALIZED` when the record names none. Arcs
+  in a cycle are held and non-gating. A `NOT_TRACKED` deliverable gets no
+  verdict.
+- When `execution/_DAG/_LATEST.md` names an accepted version, deliverables whose
+  local evidence is current get blockers from that version's edges. A
+  deliverable at either end of an added or removed arc, or added to or removed
+  from the inventory, is `DAG_PENDING` with its reasons and no verdict. A pointer
+  that does not resolve gives no verdict.
+
+The read keeps the raw `Dependencies.csv` rows as register evidence. It adds a
+`recordedRegister` field with the union rows, the synthesized declared rows,
+disagreements, unread declaration lines and the blocker judgment. The judgment
+gives the state (`BLOCKED`, `UNBLOCKED`, `DAG_PENDING`, `NOT_TRACKED` or
+`NOT_ASSESSED` with its reason), each upstream arc with its required maturity
+and supplier state, held suppliers and DAG-pending reasons, and the refused
+reads are added to the read's warnings. The
+`activeUpstreamBlockerCandidates` count carries the number of blocking
+suppliers when there is a verdict. Without a recorded register it falls back to
+the CSV blocker-subset count, which remains evidence only. Under `DECLARED` the
+absence of a blocker is still not a complete readiness judgment, and the panels
+state this caveat beside the verdict. The Runtime-owned
+`deps_read` descriptor text still describes the CSV-only read.
 
 `_COORDINATION.md` (repo-root SPEC §13) records the project's coordination
 representation once, together with its tracking mode. Under `SCHEDULE_FIRST`

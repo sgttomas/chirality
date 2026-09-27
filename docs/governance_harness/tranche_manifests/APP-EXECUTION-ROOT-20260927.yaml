@@ -1,0 +1,64 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: APP-EXECUTION-ROOT-20260927
+title: App recorded-register read resolves the execution root instead of inferring it from the path shape
+date: '2026-09-27'
+basis: e548d4cfada4d2105de6231516dc6e5fc4bd4689
+# Full coverage: every path this tranche changes is declared. Only the manifest
+# itself lies on the Root instruction surface; the App SPEC is the App loop's
+# instruction-bearing contract; the rest are the product source, tests, run
+# records and regenerated public-export records that carry the change and are
+# declared for completeness.
+instruction_surface_paths:
+  - projects/chirality-app-dev/docs/SPEC.md
+  - docs/governance_harness/tranche_manifests/APP-EXECUTION-ROOT-20260927.yaml
+  - projects/chirality-app-dev/frontend/src/lib/dependencies/recorded-register.ts
+  - projects/chirality-app-dev/frontend/src/lib/lifecycle/amendment-reopen.ts
+  - projects/chirality-app-dev/frontend/src/__tests__/lib/recorded-register-parity.test.ts
+  - projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-read-mcp.test.ts
+  - projects/chirality-app-dev/frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts
+  - projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-05_Dependencies_csv_v3_1_Reader_Writer_and_Linter/MEMORY.md
+  - projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP-RECORDED-REGISTER-2026-09-26/RECEIPT.md
+  - projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP-EXECUTION-ROOT-2026-09-27/RECEIPT.md
+  - projects/chirality-app-dev/loop/LOOP_RECEIPTS.md
+  - exports/chirality-app/export-manifest.csv
+  - exports/chirality-app/export-report.md
+m2_gate:
+  authorization: >-
+    Ryan Tufts, 2026-09-27, Claude Code conversation, was asked "Fix for the
+    symlink target path: make the App use the project's actual execution root
+    (outermost execution/ folder, checked against the adapter manifest)
+    instead of guessing it from the path shape. Proceed?" and selected "Yes,
+    as proposed (Recommended)", which said "Deliverables not at <execution
+    root>/PKG-*/<lifecycle>/DEL-* get NOT_ASSESSED with a reason. This
+    matches the Root reopening check's rule." This tranche implements it in
+    the App recorded-register read through the execution-root function the
+    App reopening check already uses, and states the rule in App SPEC §5.2.
+    Transcription is recorded in
+    projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP-EXECUTION-ROOT-2026-09-27/RECEIPT.md.
+  authorized_by: Ryan Tufts
+  authorization_date: '2026-09-27'
+  integration_owner: >-
+    Claude Code parent session integrating the worktree candidate, under the
+    standing Git authorization of 2026-09-12
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: none-required
+  routed_to: []
+  rationale: >-
+    The change is inside App-owned surfaces: the App SPEC §5.2 paragraph on
+    the App's own dependency reads, App frontend source and tests, and App
+    run records. It adopts for the App dependency read the execution-root
+    rule the Root checker tools/validation/check_amendment_reopen.py and the
+    App reopening check already apply; no Root instruction, role, skill,
+    workflow or tool changes, and the Root reference tools are read, not
+    edited. The Root dependency tools keep taking the execution root as an
+    argument, so their parity with the App is unaffected. No other loop pins
+    the App SPEC. The App authority corpus already reported drift for the App
+    SPEC before this change; that drift is retained, not repinned.
+scope_limits:
+  - App SPEC §5.2 adds the execution-root rule for App dependency reads; no other SPEC section changes.
+  - The reopening check's behaviour, refusal codes and messages are unchanged; its execution-root step is exported for reuse.
+  - SYMLINKED_UNIT_PATH and the read containment are unchanged; the parity fixtures and their expected results are unchanged.
+  - The Workbench and Pipeline forms and the HTTP route sources are not changed here.
+  - No lifecycle transition, dependency acceptance, DAG acceptance, authority-corpus repin, Runtime change, release or issuance.

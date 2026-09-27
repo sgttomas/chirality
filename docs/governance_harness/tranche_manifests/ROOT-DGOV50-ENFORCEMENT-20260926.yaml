@@ -1,0 +1,83 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-DGOV50-ENFORCEMENT-20260926
+title: D-GOV-50 tool enforcement in write_status.sh and the ScopeChanging register column (D-GOV-51)
+date: '2026-09-26'
+basis: dfb089b8abae48ee699117c5bc167301963b2ab5
+instruction_surface_paths:
+  - docs/SPEC.md
+  - docs/governance_harness/_DECISIONS/D-GOV-51_dgov50_tool_enforcement_and_scope_changing_column.md
+  - docs/governance_harness/_DECISIONS/_REGISTER.md
+  - docs/governance_harness/tranche_manifests/ROOT-DGOV50-ENFORCEMENT-20260926.yaml
+  - tools/REGISTRY.md
+  - tools/practitioner_harness/README.md
+  - tools/practitioner_harness/test_write_status_guard.py
+  - tools/scaffolding/write_status.sh
+  - tools/validation/check_amendment_reopen.py
+  - tools/validation/test_check_amendment_reopen.py
+  - tools/validation/test_workflow_catalog.py
+  - workflows/project-setup/resources/method.md
+  - workflows/scope-change/WORKFLOW.md
+  - workflows/scope-change/resources/contract.md
+  - workflows/scope-change/resources/method.md
+m2_gate:
+  authorization: >-
+    The repository owner directed on 2026-09-26, in the Claude Code
+    conversation, "D1 and D2 as recommended, D3 (a), and D4 yes proceed that
+    way. Your work plan is approved." The approved wave-2 plan enforces
+    D-GOV-50 (reopening an ISSUED deliverable under an accepted amendment) in
+    the Root tool. D1 as recommended adds a ScopeChanging column (YES/NO) to
+    the scope-change accepted action register, recorded at checkpoint-group-2
+    acceptance; the tools admit ISSUED -> IN_PROGRESS when the register names
+    the deliverable with MODIFY, or RECLASSIFY with ScopeChanging YES; for a
+    register without the column (legacy) the tool refuses RECLASSIFY and the
+    human records that reopening directly, while MODIFY is still admitted.
+    Applied here as: a deterministic checker
+    tools/validation/check_amendment_reopen.py (group-3 decision snapshot
+    recording acceptance; register bound by SHA-256 in the governing group-2
+    ACCEPTED_MANIFEST.csv and unchanged; a qualifying DELIVERABLE row and no
+    REMOVE of the deliverable; one tool-recorded reopening per amendment;
+    containment inside the scope-change root of the deliverable's execution
+    root), with an at-commit mode that reads every record from one commit
+    through git; write_status.sh admitting ISSUED -> IN_PROGRESS only for a
+    HUMAN actor with --approval-sha (an ancestor of HEAD) and a new
+    --amendment argument that passes the checker at that commit, recording
+    the amendment and approval SHA in history, every other refusal unchanged;
+    the scope-change contract and method, SPEC section 3.3 and project-setup
+    Phase 5.5 aligned; and decision record D-GOV-51. Independent review of
+    the first candidate of PR #968 found that the approval SHA bound no
+    content; the at-commit mode and the related review fixes were added in
+    the same pull request before merge.
+  authorized_by: Ryan Tufts (repository owner sgttomas, current Claude Code conversation)
+  authorization_date: '2026-09-26'
+  integration_owner: >-
+    Claude Code parent session integrating the worktree candidate under the
+    standing Git authorization of 2026-09-12
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_DGOV50_ENFORCEMENT.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_DGOV50_ENFORCEMENT.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_DGOV50_ENFORCEMENT.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-26_DGOV50_ENFORCEMENT.md
+  rationale: >-
+    App, Runtime, Piping and PEC use scope-change, project-setup and
+    write_status.sh and follow the SPEC lifecycle table. The App notice states
+    that its lifecycle transition.ts is unchanged here and will mirror the
+    checker's interface and refusal codes in a following App pull request,
+    and records as a known limit that the App mirror cannot read git, so it
+    checks the working-tree records unanchored.
+    PEC is being redeveloped and the owner is deferring action there; its
+    notice is for the record and requests no action.
+scope_limits:
+  - SPEC changes only in section 3.3 (transition row and the reopening rule, now naming the ScopeChanging column and the tool check); TYPES and section 3.4 are unchanged.
+  - The D-GOV-50 rule is unchanged in substance; D-GOV-51 makes RECLASSIFY's scope condition a recorded register field and replaces the deferred-enforcement wording with the actual check and its limits.
+  - write_status.sh changes only the ISSUED -> IN_PROGRESS branch and adds the --amendment argument (a usage error on any other transition); every other refusal, including the human-ruled CHECKING -> IN_PROGRESS reversal, is unchanged. Reopening requires --approval-sha on every root, including roots whose adapter declares no approval-SHA schema.
+  - The checker reads recorded structure and hashes only; write_status.sh runs it only in at-commit mode, where every record is read from the approval commit (an ancestor of HEAD). The approval SHA fixes which records are read; it does not establish the genuineness of the human act or that it took place at that commit. The checker does not interpret a decision beyond its first-line heading, and grants nothing (K-AUTH-1). Its working-tree mode is unanchored and for inspection only.
+  - The once-per-amendment check reads the tool's own _STATUS.md history line; a human may still record a further reopening directly.
+  - projects/chirality-app-dev, including its frontend transition.ts, is not changed; the App mirrors the checker in its own pull request.
+  - Accepted SCA snapshots, registers and _STATUS.md records are not rewritten; registers without ScopeChanging remain valid as legacy registers.
+  - In the decisions register the D-GOV-51 row is added and D-GOV-50's publication SHA (6b48b6f26ed3e9ef60fde1c7d2289843bd1aea25, merge of PR #955) is recorded under K-AUTH-2 with a pointer to D-GOV-51; other rows are unchanged, and D-GOV-51's own publication SHA is left for the next register touch.
+  - The alignment manual does not render the changed text and is unchanged; workflows/index.json regenerates unchanged.
+  - No release is granted.

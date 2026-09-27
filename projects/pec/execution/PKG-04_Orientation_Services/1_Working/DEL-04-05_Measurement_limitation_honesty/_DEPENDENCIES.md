@@ -13,6 +13,10 @@ Register storage is deliverable-local by owner ruling (no central register).
 | DEL-04-03 (Citation & freshness stamping) | PROPOSAL | CONSUMES |  | E-N17 |
 | DEL-04-01 (Loop orientation return) | PROPOSAL | CONSUMES |  | E-P36 |
 
+## Downstream (informational; consumers of this deliverable)
+
+- DEL-10-13 (Reliance-advertisement gate) — TESTS [E-P90]
+
 ## Non-gating constraints and register-wide rules
 
 - **C-03 (PACKAGE_LEVEL)** — Every PKG-03/04/05 deliverable depends on DEL-01-01 directly or transitively

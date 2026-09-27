@@ -1,0 +1,9 @@
+NOT_CHECKABLE: projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md REQ-003: per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method
+NOT_CHECKABLE: projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md REQ-004: per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method
+NOT_CHECKABLE: projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md REQ-005: per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method
+NOT_CHECKABLE: projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md REQ-007: per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method
+NOT_CHECKABLE: projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md REQ-015: per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method
+NOT_CHECKABLE: projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md REQ-016: per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method
+
+Contracts: 1 (0 out-of-grammar) | boundary requirements checked: 1 | per-act exclusions for skill QA: 6 | boundary requirements citing no claim: 0 | contracts failing: 0
+exit=0

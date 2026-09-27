@@ -1,0 +1,280 @@
+{
+  "currency": {
+    "addedArcs": [
+      [
+        "DEL-08-03",
+        "DEL-08-04"
+      ]
+    ],
+    "addedDeliverables": [
+      "DEL-08-04"
+    ],
+    "dagPending": {
+      "DEL-08-03": [
+        "arc added: DEL-08-03 -> DEL-08-04"
+      ],
+      "DEL-08-04": [
+        "arc added: DEL-08-03 -> DEL-08-04",
+        "deliverable not in DAG-002"
+      ],
+      "DEL-08-06": [
+        "deliverable of DAG-002 not found locally"
+      ]
+    },
+    "dagPendingCount": 3,
+    "removedArcs": [],
+    "removedDeliverables": [
+      "DEL-08-06"
+    ],
+    "result": "DEPARTURE"
+  },
+  "defaultMaturity": {
+    "source": "COORDINATION_RECORD",
+    "value": "INITIALIZED"
+  },
+  "queue": {
+    "acceptedDagVersion": "DAG-002",
+    "blockedCount": 1,
+    "blockerSource": "ACCEPTED_DAG:DAG-002",
+    "dagPendingCount": 3,
+    "declaredDisagreements": [],
+    "declaredOnlyCount": 1,
+    "gatingArcCount": 1,
+    "heldArcCount": 0,
+    "notTrackedCount": 0,
+    "queueRows": [
+      {
+        "ActiveUpstreamCount": "1",
+        "BlockerState": "BLOCKED",
+        "BlockingEdgeIDs": "E-101",
+        "BlockingUpstreamCount": "1",
+        "BlockingUpstreamDeliverables": "DEL-08-02",
+        "DagPendingReasons": "",
+        "DeliverableID": "DEL-08-01",
+        "DeliverableName": "Intake",
+        "EvidenceCommit": "",
+        "HeldEdgeIDs": "",
+        "ImplementationEvidenceState": "",
+        "LifecycleState": "INITIALIZED",
+        "PackageID": "PKG-08",
+        "SatisfiedUpstreamCount": "0",
+        "TrackingMode": "UNKNOWN"
+      },
+      {
+        "ActiveUpstreamCount": "0",
+        "BlockerState": "UNBLOCKED",
+        "BlockingEdgeIDs": "",
+        "BlockingUpstreamCount": "0",
+        "BlockingUpstreamDeliverables": "",
+        "DagPendingReasons": "",
+        "DeliverableID": "DEL-08-02",
+        "DeliverableName": "Queue",
+        "EvidenceCommit": "",
+        "HeldEdgeIDs": "",
+        "ImplementationEvidenceState": "",
+        "LifecycleState": "OPEN",
+        "PackageID": "PKG-08",
+        "SatisfiedUpstreamCount": "0",
+        "TrackingMode": "UNKNOWN"
+      },
+      {
+        "ActiveUpstreamCount": "0",
+        "BlockerState": "DAG_PENDING",
+        "BlockingEdgeIDs": "",
+        "BlockingUpstreamCount": "",
+        "BlockingUpstreamDeliverables": "",
+        "DagPendingReasons": "arc added: DEL-08-03 -> DEL-08-04",
+        "DeliverableID": "DEL-08-03",
+        "DeliverableName": "Worker",
+        "EvidenceCommit": "",
+        "HeldEdgeIDs": "",
+        "ImplementationEvidenceState": "",
+        "LifecycleState": "OPEN",
+        "PackageID": "PKG-08",
+        "SatisfiedUpstreamCount": "0",
+        "TrackingMode": "DECLARED"
+      },
+      {
+        "ActiveUpstreamCount": "0",
+        "BlockerState": "DAG_PENDING",
+        "BlockingEdgeIDs": "",
+        "BlockingUpstreamCount": "",
+        "BlockingUpstreamDeliverables": "",
+        "DagPendingReasons": "arc added: DEL-08-03 -> DEL-08-04; deliverable not in DAG-002",
+        "DeliverableID": "DEL-08-04",
+        "DeliverableName": "Audit",
+        "EvidenceCommit": "",
+        "HeldEdgeIDs": "",
+        "ImplementationEvidenceState": "",
+        "LifecycleState": "ISSUED",
+        "PackageID": "PKG-08",
+        "SatisfiedUpstreamCount": "0",
+        "TrackingMode": "UNKNOWN"
+      },
+      {
+        "ActiveUpstreamCount": "0",
+        "BlockerState": "DAG_PENDING",
+        "BlockingEdgeIDs": "",
+        "BlockingUpstreamCount": "",
+        "BlockingUpstreamDeliverables": "",
+        "DagPendingReasons": "deliverable of DAG-002 not found locally",
+        "DeliverableID": "DEL-08-06",
+        "DeliverableName": "Retired Feed",
+        "EvidenceCommit": "",
+        "HeldEdgeIDs": "",
+        "ImplementationEvidenceState": "",
+        "LifecycleState": "UNKNOWN",
+        "PackageID": "PKG-08",
+        "SatisfiedUpstreamCount": "0",
+        "TrackingMode": "UNKNOWN"
+      }
+    ],
+    "unblockedCount": 1
+  },
+  "registers": {
+    "DEL-08-01": {
+      "csvPresent": true,
+      "declarationsPresent": false,
+      "declaredOnly": [],
+      "deliverableId": "DEL-08-01",
+      "disagreements": [],
+      "entries": [],
+      "mode": "UNKNOWN",
+      "rows": [
+        {
+          "AnchorType": "NOT_APPLICABLE",
+          "Confidence": "HIGH",
+          "DependencyClass": "EXECUTION",
+          "DependencyID": "DEP-08-01-001",
+          "DependencyType": "PREREQUISITE",
+          "Direction": "UPSTREAM",
+          "EvidenceFile": "_CONTEXT.md",
+          "EvidenceQuote": "fixture",
+          "Explicitness": "EXPLICIT",
+          "FirstSeen": "2026-09-26",
+          "FromDeliverableID": "DEL-08-01",
+          "FromDeliverableName": "",
+          "FromPackageID": "PKG-08",
+          "LastSeen": "2026-09-26",
+          "Notes": "",
+          "Origin": "EXTRACTED",
+          "ProposedMaturity": "",
+          "RegisterSchemaVersion": "v3.1",
+          "RequiredMaturity": "INITIALIZED",
+          "SatisfactionStatus": "TBD",
+          "SourceRef": "_CONTEXT.md",
+          "Statement": "DEL-08-01 upstream DEL-08-02",
+          "Status": "ACTIVE",
+          "TargetDeliverableID": "DEL-08-02",
+          "TargetLocation": "",
+          "TargetName": "",
+          "TargetPackageID": "PKG-08",
+          "TargetRefID": "",
+          "TargetType": "DELIVERABLE"
+        }
+      ],
+      "unread": []
+    },
+    "DEL-08-02": {
+      "csvPresent": true,
+      "declarationsPresent": false,
+      "declaredOnly": [],
+      "deliverableId": "DEL-08-02",
+      "disagreements": [],
+      "entries": [],
+      "mode": "UNKNOWN",
+      "rows": [
+        {
+          "AnchorType": "NOT_APPLICABLE",
+          "Confidence": "HIGH",
+          "DependencyClass": "EXECUTION",
+          "DependencyID": "DEP-08-02-001",
+          "DependencyType": "PREREQUISITE",
+          "Direction": "UPSTREAM",
+          "EvidenceFile": "_CONTEXT.md",
+          "EvidenceQuote": "fixture",
+          "Explicitness": "EXPLICIT",
+          "FirstSeen": "2026-09-26",
+          "FromDeliverableID": "DEL-08-02",
+          "FromDeliverableName": "",
+          "FromPackageID": "PKG-08",
+          "LastSeen": "2026-09-26",
+          "Notes": "",
+          "Origin": "EXTRACTED",
+          "ProposedMaturity": "",
+          "RegisterSchemaVersion": "v3.1",
+          "RequiredMaturity": "INITIALIZED",
+          "SatisfactionStatus": "TBD",
+          "SourceRef": "_CONTEXT.md",
+          "Statement": "DEL-08-02 upstream DEL-08-03",
+          "Status": "ACTIVE",
+          "TargetDeliverableID": "DEL-08-03",
+          "TargetLocation": "",
+          "TargetName": "",
+          "TargetPackageID": "PKG-08",
+          "TargetRefID": "",
+          "TargetType": "DELIVERABLE"
+        }
+      ],
+      "unread": []
+    },
+    "DEL-08-03": {
+      "csvPresent": false,
+      "declarationsPresent": true,
+      "declaredOnly": [
+        {
+          "AnchorType": "NOT_APPLICABLE",
+          "Confidence": "HIGH",
+          "DependencyClass": "EXECUTION",
+          "DependencyID": "DECLARED-DEL-08-03-001",
+          "DependencyType": "PREREQUISITE",
+          "Direction": "UPSTREAM",
+          "EvidenceFile": "_DEPENDENCIES.md",
+          "EvidenceQuote": "DEL-08-04 Audit — Reason: audit hooks",
+          "Explicitness": "EXPLICIT",
+          "FromDeliverableID": "DEL-08-03",
+          "Notes": "declared_only=_DEPENDENCIES.md; type_from=section_heading",
+          "Origin": "DECLARED",
+          "RegisterSchemaVersion": "v3.1",
+          "RequiredMaturity": "ISSUED",
+          "SatisfactionStatus": "TBD",
+          "SourceRef": "_DEPENDENCIES.md ## Declared Upstream (I need these before I can proceed)",
+          "Statement": "audit hooks",
+          "Status": "ACTIVE",
+          "TargetDeliverableID": "DEL-08-04",
+          "TargetLocation": "TBD",
+          "TargetName": "Audit",
+          "TargetType": "DELIVERABLE"
+        }
+      ],
+      "deliverableId": "DEL-08-03",
+      "disagreements": [],
+      "entries": [
+        {
+          "direction": "UPSTREAM",
+          "heading": "## Declared Upstream (I need these before I can proceed)",
+          "location": "TBD",
+          "raw": "DEL-08-04 Audit — Reason: audit hooks",
+          "reason": "audit hooks",
+          "requiredMaturity": "ISSUED",
+          "targetId": "DEL-08-04",
+          "targetName": "Audit"
+        }
+      ],
+      "mode": "DECLARED",
+      "rows": [],
+      "unread": []
+    },
+    "DEL-08-04": {
+      "csvPresent": false,
+      "declarationsPresent": false,
+      "declaredOnly": [],
+      "deliverableId": "DEL-08-04",
+      "disagreements": [],
+      "entries": [],
+      "mode": "UNKNOWN",
+      "rows": [],
+      "unread": []
+    }
+  }
+}

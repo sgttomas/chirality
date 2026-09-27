@@ -9,6 +9,7 @@ import {
   statusTransitionTool
 } from '../../lib/harness/mcp/read-tools';
 import { replayHarnessEvents } from '../../lib/harness/session-events';
+import { writeAmendmentRecords } from './amendment-records-fixture';
 
 const INITIALIZED_STATUS_DOCUMENT = `# Status: DEL-05-03 Lifecycle State Handling
 
@@ -308,6 +309,74 @@ describe('Chirality mutating MCP tools', () => {
       )
     ).rejects.toMatchObject({ code: 'BACKWARD_TRANSITION' });
     await expect(readFile(statusPath, 'utf8')).resolves.toBe(issued);
+  });
+
+  it('reopens ISSUED -> IN_PROGRESS through the MCP tool only with a HUMAN actor and an admitted amendment', async () => {
+    const issued = IN_PROGRESS_STATUS_DOCUMENT.replace(
+      '**Current State:** IN_PROGRESS',
+      '**Current State:** ISSUED'
+    ).concat('- 2026-02-25 - State set to ISSUED (HUMAN)\n');
+    // The amendment check reads <execution root>/_ScopeChange.
+    const execution = path.join(fixture.projectRoot, 'execution');
+    const deliverablePath = path.join(execution, 'PKG-05_Lifecycle', '1_Working', 'DEL-05-03_Lifecycle');
+    await mkdir(deliverablePath, { recursive: true });
+    const statusPath = path.join(deliverablePath, '_STATUS.md');
+    await writeFile(statusPath, issued, 'utf8');
+    await writeAmendmentRecords({
+      scopeChangeRoot: path.join(execution, '_ScopeChange'),
+      manifestBase: fixture.projectRoot,
+      rows: [
+        { AmendmentID: 'SCA-001', ActionSeq: '1', ActionType: 'MODIFY', EntityType: 'DELIVERABLE', EntityID: 'DEL-05-03', ScopeChanging: 'NO' }
+      ]
+    });
+    const context = { projectRoot: fixture.projectRoot, sessionId, mode: 'workspaceWrite' as const };
+    const base = {
+      deliverablePath,
+      targetState: 'IN_PROGRESS',
+      date: '2026-02-26',
+      approvalSha: 'abc1234'
+    };
+
+    for (const [args, code] of [
+      [{ ...base, actor: 'WORKING_ITEMS', amendment: 'SCA-001' }, 'UNAUTHORIZED_ACTOR'],
+      [{ ...base, actor: 'HUMAN', amendment: 'SCA-002' }, 'AMENDMENT_NOT_ADMITTED'],
+      [{ ...base, actor: 'HUMAN' }, 'BACKWARD_TRANSITION']
+    ] as const) {
+      await expect(statusTransitionTool(context, args)).rejects.toMatchObject({ code });
+      await expect(readFile(statusPath, 'utf8')).resolves.toBe(issued);
+    }
+
+    const result = parseJsonToolResult<{ transition: { from: string; to: string } }>(
+      await statusTransitionTool(context, { ...base, actor: 'HUMAN', amendment: 'SCA-001' })
+    );
+    expect(result.transition).toMatchObject({ from: 'ISSUED', to: 'IN_PROGRESS' });
+    await expect(readFile(statusPath, 'utf8')).resolves.toContain(
+      '[reopened from ISSUED; amendment: SCA-001 (execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); ' +
+        'action: execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv ActionSeq 1 MODIFY;'
+    );
+  });
+
+  it('refuses gate-evidence metadata from an agent actor through the MCP tool', async () => {
+    const statusPath = path.join(fixture.deliverablePath, '_STATUS.md');
+    const before = await readFile(statusPath, 'utf8');
+    const context = { projectRoot: fixture.projectRoot, sessionId, mode: 'workspaceWrite' as const };
+    const base = { deliverablePath: fixture.deliverablePath, targetState: 'IN_PROGRESS', date: '2026-02-26' };
+
+    await expect(
+      statusTransitionTool(context, {
+        ...base,
+        actor: 'WORKING_ITEMS',
+        metadata: { 'Authorization Basis': 'agent-asserted ruling' }
+      })
+    ).rejects.toMatchObject({ code: 'INVALID_METADATA' });
+    await expect(readFile(statusPath, 'utf8')).resolves.toBe(before);
+
+    await statusTransitionTool(context, {
+      ...base,
+      actor: 'HUMAN',
+      metadata: { 'Authorization Basis': 'owner ruling D-001' }
+    });
+    await expect(readFile(statusPath, 'utf8')).resolves.toContain('**Authorization Basis:** owner ruling D-001');
   });
 
   it('writes Dependencies.csv through v3.1 writer semantics without event row payloads', async () => {
