@@ -1,0 +1,4 @@
+strict: IDENTICAL to pre-act baseline (exit=1)
+harness: IDENTICAL to pre-act baseline (exit=0)
+receipts: IDENTICAL to pre-act baseline (exit=0)
+dep_quote_currency: IDENTICAL to pre-act baseline (exit=0)

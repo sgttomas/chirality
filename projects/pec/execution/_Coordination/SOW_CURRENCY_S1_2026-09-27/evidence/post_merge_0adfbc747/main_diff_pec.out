@@ -1,0 +1,11 @@
+$ git diff --name-status 16010b4ca 0adfbc7476df33521883ce1573781237cd24d384 -- projects/pec
+M	projects/pec/docs/STATUS.md
+A	projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/returns/REVIEW_PR1006_01.md
+A	projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/returns/REVIEW_PR1006_02.md
+M	projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md
+A	projects/pec/execution/_Coordination/_DECISIONS/D-PEC-105_RULING_2026-09-27.md
+A	projects/pec/execution/_Coordination/_DECISIONS/D-PEC-105_d1_premise_amendment_proposal_2026-09-26.md
+A	projects/pec/execution/_Coordination/_DECISIONS/D-PEC-106_RULING_2026-09-27.md
+A	projects/pec/execution/_Coordination/_DECISIONS/D-PEC-106_x1_parser_fixture_suites_proposal_2026-09-26.md
+M	projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md
+exit=0

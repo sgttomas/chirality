@@ -1,0 +1,13 @@
+# 2026-09-27T17:24:18Z (date -u); cwd repo root; TMPDIR=session scratchpad
+$ zsh projects/pec/execution/_Coordination/SOW_CURRENCY_S1_2026-09-27/negative_controls.sh /Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-d104-act 16010b4ca projects/pec/execution/_Coordination/SOW_CURRENCY_S1_2026-09-27
+PASS control caught: DEL-03-02 Part B REM-016 replacement string altered
+PASS control caught: DEL-02-02 PRD PEC-RCN-002 quotation altered by one character
+PASS control caught: DEL-01-04 sha256 claim with a wrong value
+PASS control caught: DEL-03-01 CON-005 definition removed while siblings cite it
+PASS control caught: DEL-03-01 OUT-001 changed under DEL-03-02's sibling quotation
+PASS control caught: a candidate differs from its tabled postimage (apply --check-only)
+PASS control caught: S4 postimages not applied (DEL-04-01/DEL-04-03 pins): apply --check-only refuses for exactly those two pins
+PASS control caught: DEL-01-04 matrix row removed (validator)
+PASS control caught: DEL-01-04 matrix row removed (checklist refuses, no artifact)
+RESULT PASS
+exit=0
