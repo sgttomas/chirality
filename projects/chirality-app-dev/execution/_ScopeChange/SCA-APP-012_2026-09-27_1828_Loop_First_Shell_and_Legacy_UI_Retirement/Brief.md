@@ -1,6 +1,6 @@
 # SCA-APP-012 Brief — Retire the Loop-First Shell and the Remaining Legacy UI
 
-**Status:** `PROPOSED` — checkpoint-group-1 package, awaiting the owner's act. Nothing here is accepted.
+**Status:** `CHECKPOINT_GROUP_1_ACCEPTED` — the owner accepted checkpoint group 1 on 2026-09-27 ("Accept SCA-APP-012 group 1: R-b, W-b, P-keep (keeping the two pages, as recommended), defaults."; `../checkpoint_snapshots/SCA-APP-012_GROUP-1_2026-09-27/`), binding revision 4 of this brief at SHA-256 `3924974af3cd4ffe81169b6f8654657e9e880181d8a217747158255ad8c56d49` (the bytes before this status line changed). Checkpoint group 2 is in preparation (`Propagation_Plan.md`); nothing is applied.
 **Date:** `2026-09-27` (folder time `1828` is UTC)
 **Requested by:** Ryan Tufts (repository owner `sgttomas`), in the Claude Code conversation of 2026-09-27, relayed by the coordinating session
 **Prepared by:** WORKING_ITEMS, bounded Claude Code subagent, working in an isolated worktree
