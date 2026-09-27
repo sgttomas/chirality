@@ -2,48 +2,35 @@ import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import { WorkspaceSidebar } from '../../components/shell/workspace-sidebar';
-import { SidebarRightLoopLayout } from '../../components/shell/sidebar-right-loop-layout';
 
-describe('WorkspaceSidebar tertiary tabs', () => {
-  it('renders Portal, Workbench, and Pipeline as sidebar tabs when provided', () => {
+describe('WorkspaceSidebar default tabs', () => {
+  it('renders exactly the eight default tabs with the active tab selected and no Portal, Workbench or Pipeline tab', () => {
     const html = renderToStaticMarkup(
       createElement(WorkspaceSidebar, {
-        activeTab: 'workbench',
-        onTabChange: () => {},
-        pipelineTab: createElement('div', null, 'Pipeline tertiary form'),
-        portalTab: createElement('div', null, 'Portal matrix'),
-        workbenchTab: createElement('div', null, 'Workbench tertiary form')
+        activeTab: 'workflow',
+        onTabChange: () => {}
       })
     );
 
-    expect(html).toContain('role="tab"');
-    expect(html).toContain('Portal');
-    expect(html).toContain('Workbench');
-    expect(html).toContain('Pipeline');
-    expect(html).toContain('Workbench tertiary form');
-    expect(html).not.toContain('Pipeline tertiary form');
-  });
+    const tabs = [...html.matchAll(/<button[^>]*role="tab"[^>]*>([^<]*)<\/button>/g)].map((match) => ({
+      label: match[1],
+      selected: /aria-selected="true"/.test(match[0])
+    }));
 
-  it('keeps the primary loop content mounted while a tertiary tab owns the right sidebar', () => {
-    const html = renderToStaticMarkup(
-      createElement(
-        SidebarRightLoopLayout,
-        {
-          defaultSidebarTab: 'pipeline',
-          children: createElement('div', null, 'Mounted live loop'),
-          pipelineTab: createElement('div', null, 'Pipeline tertiary form'),
-          portalTab: createElement('div', null, 'Portal matrix'),
-          workbenchTab: createElement('div', null, 'Workbench tertiary form')
-        }
-      )
-    );
-
-    expect(html).toContain('loop-grid');
-    expect(html).toContain('loop-main');
-    expect(html).toContain('loop-sidebar');
-    expect(html).toContain('Mounted live loop');
-    expect(html).toContain('Collapse');
-    expect(html).toContain('Pipeline tertiary form');
-    expect(html).not.toContain('Workbench tertiary form');
+    expect(tabs.map((tab) => tab.label)).toEqual([
+      'Files',
+      'Sessions',
+      'Transcript',
+      'Tools',
+      'Subagents',
+      'Document',
+      'Workflow',
+      'Tool Kit'
+    ]);
+    expect(tabs.filter((tab) => tab.selected).map((tab) => tab.label)).toEqual(['Workflow']);
+    expect(html.match(/role="tab"/g)).toHaveLength(8);
+    for (const retired of ['Portal', 'Workbench', 'Pipeline']) {
+      expect(tabs.some((tab) => tab.label === retired)).toBe(false);
+    }
   });
 });

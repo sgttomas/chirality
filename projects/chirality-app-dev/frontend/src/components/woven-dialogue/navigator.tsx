@@ -21,7 +21,7 @@ type OrganizationPatch = Pick<WovenWorkspaceState, 'chatTitles' | 'chatPins' | '
 export type NavigatorFolderNotice = { kind: 'indexed' | 'unavailable'; message: string };
 
 type NavigatorProps = {
-  footerSlot?: React.ReactNode; onNewChat?: () => void; activeSurface: WovenSurface; legacyHref: string;
+  footerSlot?: React.ReactNode; onNewChat?: () => void; activeSurface: WovenSurface;
   onOpenSurface: (surface: WovenSurface) => void; sessions?: readonly SessionRecord[]; sessionSurfaces?: WovenSessionSurfaceMap;
   liveSessionId?: string; selectedSessionId?: string; selectionDisabled?: boolean; sessionsLoading?: boolean;
   sessionsError?: string | null; onSelectSession?: (sessionId: string) => void;
@@ -114,9 +114,8 @@ function SessionRow({ entry, live, selected, disabled, onSelectSession, onOpenMe
 
 const EMPTY_FOLDER_NOTICES: Readonly<Record<string, NavigatorFolderNotice>> = {};
 
-export function Navigator({ activeSurface, footerSlot, onNewChat, legacyHref, onOpenSurface, sessions = EMPTY_SESSIONS, sessionSurfaces = EMPTY_SESSION_SURFACES, liveSessionId, selectedSessionId, selectionDisabled = false, sessionsLoading = false, sessionsError = null, onSelectSession, chatTitles = EMPTY_CHAT_TITLES, chatPins = EMPTY_CHAT_IDS, chatArchived = EMPTY_CHAT_IDS, chatDeleted = EMPTY_CHAT_IDS, chatGroups = EMPTY_CHAT_GROUPS, groupsCollapsed = EMPTY_CHAT_IDS, firstOperatorMessages = EMPTY_CHAT_TITLES, referenceDay = '1970-01-01', searchEpoch = '', focusSearchRequest = 0, onModalStateChange, onOrganizationChange, searchMessages, currentRoot = null, folderOrder = EMPTY_CHAT_IDS, foldersCollapsed = EMPTY_CHAT_IDS, folderNotices = EMPTY_FOLDER_NOTICES, onLocateFolder, onForgetFolder, needsAnswerSessionIds = EMPTY_CHAT_IDS, onNeedsAnswer }: NavigatorProps): JSX.Element {
+export function Navigator({ activeSurface, footerSlot, onNewChat, onOpenSurface, sessions = EMPTY_SESSIONS, sessionSurfaces = EMPTY_SESSION_SURFACES, liveSessionId, selectedSessionId, selectionDisabled = false, sessionsLoading = false, sessionsError = null, onSelectSession, chatTitles = EMPTY_CHAT_TITLES, chatPins = EMPTY_CHAT_IDS, chatArchived = EMPTY_CHAT_IDS, chatDeleted = EMPTY_CHAT_IDS, chatGroups = EMPTY_CHAT_GROUPS, groupsCollapsed = EMPTY_CHAT_IDS, firstOperatorMessages = EMPTY_CHAT_TITLES, referenceDay = '1970-01-01', searchEpoch = '', focusSearchRequest = 0, onModalStateChange, onOrganizationChange, searchMessages, currentRoot = null, folderOrder = EMPTY_CHAT_IDS, foldersCollapsed = EMPTY_CHAT_IDS, folderNotices = EMPTY_FOLDER_NOTICES, onLocateFolder, onForgetFolder, needsAnswerSessionIds = EMPTY_CHAT_IDS, onNeedsAnswer }: NavigatorProps): JSX.Element {
   void sessionSurfaces;
-  void legacyHref;
   const [query, setQuery] = React.useState(''); const [messageMatchIds, setMessageMatchIds] = React.useState<string[]>([]); const [messageSearchPending, setMessageSearchPending] = React.useState(false);
   const [menuSessionId, setMenuSessionId] = React.useState<string | null>(null); const [dialog, setDialog] = React.useState<'rename' | 'new-group' | 'delete' | null>(null); const [dialogValue, setDialogValue] = React.useState('');
   const [visibility, setVisibility] = React.useState<'active' | 'archived' | 'deleted'>('active');

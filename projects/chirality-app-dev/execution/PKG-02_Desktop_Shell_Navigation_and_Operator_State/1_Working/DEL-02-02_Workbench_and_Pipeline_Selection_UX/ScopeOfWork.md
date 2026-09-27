@@ -116,6 +116,8 @@ and query compatibility tests.
 5. Presentation only: DEL-08-02 owns routing and guarded selection, DEL-08-03 dispatch semantics (no active-shell consumer), DEL-08-04 role and delegation semantics, DEL-08-05 child records, DEL-05-04 replay and projection, DEL-06-03 the `propose` tool, DEL-07-03 the workflow file contract.
 6. If implementation review finds cross-domain churn between the coordination and workflow views, a split is proposed before the envelope widens (row split trigger).
 
+SCA-APP-012 record (no obligation changes): the unmounted flat-file workflow list `frontend/src/components/woven-dialogue/workflows-view.tsx` and `workflow-detail.tsx`, their test `woven-workflows.test.tsx`, and its read route `GET /api/working-root/workflow` are retired; the live Workflows view (`method-library-view.tsx`) carries obligation 3, and flat `.chirality/workflows/*.md` files stay readable as ordinary documents through the Files view.
+
 ### Seating and rulings
 
 Remaining items seated under D-APP-108 (2026-09-04): DEL-02-02-V3-03,
@@ -430,7 +432,7 @@ The original nine-row/UPD evidence describes the earlier Workbench/Pipeline impl
 
 ### CLM-028 — Conflict Table (for human ruling)
 
-Current source-state observations are in `_REFERENCES.md`; prior MATCH results are historical. Exact TYPES §4 route/query compatibility, descendant-card provenance versus the recorded owner removal direction, and workflow/roadmap/proposal presentation versus current method-library/draft registration remain bounded source-alignment questions. Current four-role applicability is settled; no generic Agent 2 direct entry or absent UI implies human authority. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
+Current source-state observations are in `_REFERENCES.md`; prior MATCH results are historical. Exact TYPES §4 route/query compatibility, descendant-card provenance versus the recorded owner removal direction, and workflow/roadmap/proposal presentation versus current method-library/draft registration (the flat-file workflow list is retired by SCA-APP-012) remain bounded source-alignment questions. Current four-role applicability is settled; no generic Agent 2 direct entry or absent UI implies human authority. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
 
 ## Output and Evaluation Matrix
 
