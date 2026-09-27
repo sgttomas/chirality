@@ -19,31 +19,35 @@ Current extracted downstream rows: `DEP-08-02-012`, `DEP-08-02-013`. These are e
 
 ## Extracted Dependency Register
 
-`Dependencies.csv` was created in v3.1 format with 13 ACTIVE extracted rows.
+Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated sections elsewhere in this file keep the counts of their dates.
 
-| Count | Class | Type | Status | Notes |
-|---:|---|---|---|---|
-| 6 | ANCHOR | OTHER | ACTIVE | One parent package anchor plus five trace anchors to SOW/objective identifiers. |
-| 5 | EXECUTION | PREREQUISITE | ACTIVE | Document prerequisites grounded in deliverable-local source summaries and `_REFERENCES.md`. |
-| 2 | EXECUTION | INTERFACE | ACTIVE | Explicit interface boundaries with DEL-04-04 and DEL-08-03. |
+| Count Type | Count |
+|---|---:|
+| Total rows | 13 |
+| ACTIVE rows | 13 |
+| RETIRED rows | 0 |
+| ACTIVE ANCHOR rows | 6 |
+| ACTIVE EXECUTION rows | 7 |
+| ACTIVE parent anchors (`IMPLEMENTS_NODE`) | 1 |
+| ACTIVE Origin=DECLARED rows | 0 |
 
 ### Compact Register
 
-| DependencyID | Class | Type | Direction | TargetType | Target | Status |
+| DependencyID | Class | Direction | Type | Target | Status | SatisfactionStatus |
 |---|---|---|---|---|---|---|
-| DEP-08-02-001 | ANCHOR | OTHER | UPSTREAM | PACKAGE | PKG-08 Agent Suite, Pipeline Dispatch, and Subagent Governance | ACTIVE |
-| DEP-08-02-002 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-005 Matrix rendering and routing | ACTIVE |
-| DEP-08-02-003 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-006 Workbench context | ACTIVE |
-| DEP-08-02-004 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-017 Persona resolution and prompt composition | ACTIVE |
-| DEP-08-02-005 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | OBJ-001 Governed local desktop harness objective | ACTIVE |
-| DEP-08-02-006 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | OBJ-007 Agent-suite integrity objective | ACTIVE |
-| DEP-08-02-007 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-004 docs/TYPES.md | ACTIVE |
-| DEP-08-02-008 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-006 docs/PRD.md | ACTIVE |
-| DEP-08-02-009 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-003 docs/SPEC.md | ACTIVE |
-| DEP-08-02-010 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-002 docs/CONTRACT.md | ACTIVE |
-| DEP-08-02-011 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-001 docs/DIRECTIVE.md | ACTIVE |
-| DEP-08-02-012 | EXECUTION | INTERFACE | DOWNSTREAM | DELIVERABLE | DEL-04-04 PersonaComposer from Instruction Root | ACTIVE |
-| DEP-08-02-013 | EXECUTION | INTERFACE | DOWNSTREAM | DELIVERABLE | DEL-08-03 Pipeline Category and Task Scope Dispatch | ACTIVE |
+| DEP-08-02-001 | ANCHOR | UPSTREAM | OTHER | PKG-08 | ACTIVE | SATISFIED |
+| DEP-08-02-002 | ANCHOR | UPSTREAM | OTHER | SOW-005 | ACTIVE | SATISFIED |
+| DEP-08-02-003 | ANCHOR | UPSTREAM | OTHER | SOW-006 | ACTIVE | SATISFIED |
+| DEP-08-02-004 | ANCHOR | UPSTREAM | OTHER | SOW-017 | ACTIVE | SATISFIED |
+| DEP-08-02-005 | ANCHOR | UPSTREAM | OTHER | OBJ-001 | ACTIVE | SATISFIED |
+| DEP-08-02-006 | ANCHOR | UPSTREAM | OTHER | OBJ-007 | ACTIVE | SATISFIED |
+| DEP-08-02-007 | EXECUTION | UPSTREAM | PREREQUISITE | REF-004 | ACTIVE | PENDING |
+| DEP-08-02-008 | EXECUTION | UPSTREAM | PREREQUISITE | REF-006 | ACTIVE | PENDING |
+| DEP-08-02-009 | EXECUTION | UPSTREAM | PREREQUISITE | REF-003 | ACTIVE | PENDING |
+| DEP-08-02-010 | EXECUTION | UPSTREAM | PREREQUISITE | REF-002 | ACTIVE | PENDING |
+| DEP-08-02-011 | EXECUTION | UPSTREAM | PREREQUISITE | REF-001 | ACTIVE | PENDING |
+| DEP-08-02-012 | EXECUTION | DOWNSTREAM | INTERFACE | DEL-04-04 | ACTIVE | TBD |
+| DEP-08-02-013 | EXECUTION | DOWNSTREAM | INTERFACE | DEL-08-03 | ACTIVE | TBD |
 
 ## Run Notes
 
@@ -59,25 +63,46 @@ Current extracted downstream rows: `DEP-08-02-012`, `DEP-08-02-013`. These are e
 - Non-emitted edge note: shared SOW ownership with DEL-02-01 and DEL-02-02 was not converted into execution edges because the allowed source documents do not state a concrete handoff or interface contract to those deliverables.
 - Non-emitted edge note: REF-005 `docs/PLAN.md` and REF-007 `AGENT_SOFTWARE_DECOMP.md` were not emitted as dependency rows because evidence only identifies them as context/method references, not execution prerequisites for this deliverable.
 
+### 2026-09-27 SCA-APP-011 incremental setup refresh (UPDATE)
+
+- Run: `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`, `project-setup` INCREMENTAL Phase 5.6 (FULL_GRAPH) dispatch of `bundled:chirality-root/dependency-extract`, run directly by WORKING_ITEMS after the owner confirmed the SCA-APP-011 incremental plan on 2026-09-27 (verbatim in `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/CHAT_TRANSCRIPTION.md`). Role: FULL_GRAPH neighbour of the SCA-APP-011 MODIFY set.
+- Runtime overrides: `SCOPE=DEL-08-02`; `RUN_ROOT=projects/chirality-app-dev/execution`; `DECOMPOSITION_PATH=projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=NONE`; `SOURCE_DOCS=AUTO` (`ScopeOfWork.md`, `_CONTEXT.md`, `_REFERENCES.md`, `_STATUS.md`); `ANCHOR_DOC=ScopeOfWork.md`; `EXECUTION_DOC_ORDER=ScopeOfWork.md, _CONTEXT.md`.
+- Decomposition authority: FOUND, SHA-256 `cf6e56ebb1474d30a45dd3973dcb449d8aab30a84d731649336091afd2321876` (as amended by SCA-APP-011).
+- Source-preservation gate: `ScopeOfWork.md` `2a9dc258d8e79627b8fb36ed7dc72dc8ea0b22b396b80260942289fe6389c607`; `_CONTEXT.md` `2b21d30cf974a1c3c416d7e3208a8a5ce2454f5d4b237d879d0fe090f2950e29`; `_REFERENCES.md` `19169ef712856d0dba1fda0c0f7081df59efe713637fb6cf51fc74f84cb79d8b`; `_STATUS.md` `afe911057cf3d8086b7ad6f758b6937cd89f5d67f6cacc0833b5a85cca2cf380`; read-only and unchanged by this run.
+- Pre-images: `Dependencies.csv` `26837466f07ac9798c9f63e9058b68ca3eb6ebe0293b6a124d4ba483289519a6`, `_DEPENDENCIES.md` `3f0bffa71dc9877caed6f07fd57d3b052a6549258d8e5b192cb7b5477790e5bc`.
+- Method: every existing ACTIVE row was re-checked against its cited current source (quote found verbatim, and not only inside a `[RETIRED` clause or a clause SCA-APP-011 declared history). Text added to the sources since the previous extraction (2026-09-22) was scanned for new explicit cross-deliverable relationships. Unchanged source text yields the rows already recorded.
+- Results: re-seen 11 (`LastSeen=2026-09-27`); restated in place 2; kept with a note 0; retired 0; added 0; held with `[WARNING] EVIDENCE_SOURCE_RETIRED` 0. No row deleted; every existing `DependencyID` preserved; `Status=CANDIDATE` not emitted.
+  - RESTATED DEP-08-02-003 (ANCHOR UPSTREAM OTHER -> SOW-006) DX-13; see the row `Notes`.
+  - RESTATED DEP-08-02-005 (ANCHOR UPSTREAM OTHER -> OBJ-001) DX-14; see the row `Notes`.
+- Declared entries: none (the declared sections carry no SPEC §5.2 entry). Mirror rows added 0, refreshed 0, retired 0; entries skipped 0.
+- Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` row (1).
+- Function 5 checks (`execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/dep_extract/FUNCTION5_CHECKS.json`): `validate_dependencies_schema.py` PASS; `DependencyID` unique; every enum value written by this run VALID (`validate_enum.py`); ID format PASS for `FromDeliverableID`, `FromPackageID` and every `DependencyID` (`validate_id_format.sh`; the PROJECT_ID_FORMAT_PROFILE warning of earlier runs no longer reproduces); index counts match `Dependencies.csv`.
+- [INFO] EVQ-006 (report-only, `validate_decomposition_registers.py --families EVQ,DRB`): the validator resolves `EvidenceFile` from the project root, so it reports every App register row whose `EvidenceFile` is deliverable- or repository-relative. This is a project-wide pre-existing convention finding, not a defect introduced here; no EVQ-003, EVQ-004 or DRB-006 finding.
+
 ## Run History
 
 | Timestamp | Mode | Strictness | Decomposition | Validator | ACTIVE Rows | Warnings |
 |---|---|---|---|---|---:|---|
 | 2026-06-21T05:00:00-0600 | ADQ-12 | CONSERVATIVE | D-APP-38 current authority corpus, loop-first alias contract, and implementation-path evidence applied | PASS: focused PKG-08 tests | 13 | none |
 | 2026-05-20T20:54:44-0600 | UPDATE | CONSERVATIVE | v3.2 found | PASS: 29 columns, 13 rows | 13 | superseded PRD_HASH_MISMATCH; superseded implementation-path TBDs |
+| 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`) | UPDATE | CONSERVATIVE | FOUND `cf6e56ebb147…` (SCA-APP-011 amended) | — | ACTIVE=13 (ANCHOR=6; EXECUTION=7) | none |
 
 ## Lifecycle Summary
 
-Current descriptive counts from unchanged `Dependencies.csv` (2026-09-22); this projection does not change satisfaction or maturity.
+Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`), from `Dependencies.csv`; counts cover all rows (ACTIVE and RETIRED). This projection changes no satisfaction or maturity.
 
-| Field | Count |
-|---|---:|
-| ACTIVE | 13 |
-| RequiredMaturity=SEMANTIC_READY | 13 |
-| ProposedMaturity=TBD | 13 |
-| SatisfactionStatus=PENDING | 5 |
-| SatisfactionStatus=SATISFIED | 6 |
-| SatisfactionStatus=TBD | 2 |
+| Dimension | Value | Count |
+|---|---|---:|
+| Status | ACTIVE | 13 |
+| SatisfactionStatus | PENDING | 5 |
+| SatisfactionStatus | SATISFIED | 6 |
+| SatisfactionStatus | TBD | 2 |
+| RequiredMaturity | SEMANTIC_READY | 13 |
+| DependencyClass | ANCHOR | 6 |
+| DependencyClass | EXECUTION | 7 |
+| DependencyType | INTERFACE | 2 |
+| DependencyType | OTHER | 6 |
+| DependencyType | PREREQUISITE | 5 |
 
 ## Current record interpretation — 2026-09-22
 
