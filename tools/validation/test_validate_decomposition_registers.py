@@ -862,6 +862,113 @@ def test_evidence_file_must_be_a_relative_regular_file(tmp_path: Path) -> None:
     assert report["row_class_metrics"]["ANCHOR"]["evidence_file_resolved"] == 1
 
 
+def _evidence_fixture(tmp_path: Path, rows: list[dict[str, str]]) -> tuple[Path, Path]:
+    """A workspace plus a separate instruction root, so no live corpus is read."""
+    execution_root = build_workspace(
+        tmp_path / "project",
+        registers={"PKG-01_Core/1_Working/DEL-01-01_Record_tier": rows},
+    )
+    deliverable = execution_root / "PKG-01_Core/1_Working/DEL-01-01_Record_tier"
+    (deliverable / "ScopeOfWork.md").write_text("scope\n", encoding="utf-8")
+    (deliverable / "_run_records").mkdir()
+    (deliverable / "_run_records" / "RUN.md").write_text("run\n", encoding="utf-8")
+    instruction_root = tmp_path / "checkout"
+    (instruction_root / "workflows" / "dependency-extract").mkdir(parents=True)
+    (instruction_root / "workflows" / "dependency-extract" / "WORKFLOW.md").write_text(
+        "workflow\n", encoding="utf-8"
+    )
+    return execution_root, instruction_root
+
+
+def test_evidence_file_resolves_in_each_allowed_form(tmp_path: Path) -> None:
+    """SPEC §6.5 filename, §0.2.4 working-root and instruction-root references."""
+    execution_root, instruction_root = _evidence_fixture(
+        tmp_path,
+        [
+            anchor_row("001", EvidenceFile="ScopeOfWork.md"),            # deliverable
+            anchor_row("002", EvidenceFile="_run_records/RUN.md"),       # deliverable
+            anchor_row("003"),                                           # working root
+            anchor_row("004", EvidenceFile="workflows/dependency-extract/WORKFLOW.md"),
+            anchor_row("005", EvidenceFile="../../../_Decomposition/Deliverables.csv"),
+        ],
+    )
+    report = vdr.run(execution_root, families=("EVQ",), instruction_root=instruction_root)
+
+    assert codes(report) == {}
+    assert report["row_class_metrics"]["ANCHOR"]["evidence_file_resolved"] == 5
+    assert report["evidence_file_resolution_forms"] == {
+        "deliverable": 3, "working_root": 1, "instruction_root": 1,
+    }
+    assert report["instruction_root"] == str(instruction_root)
+
+
+def test_evidence_file_missing_in_every_form_is_reported(tmp_path: Path) -> None:
+    """A truly missing file is still EVQ-006, naming every base it was tried in."""
+    execution_root, instruction_root = _evidence_fixture(
+        tmp_path,
+        [
+            anchor_row("001", EvidenceFile="Procedure.md"),
+            anchor_row("002", EvidenceFile="execution/_Decomposition/NoSuchFile.csv"),
+            anchor_row("003", EvidenceFile="workflows/no-such-workflow/WORKFLOW.md"),
+            anchor_row("004", EvidenceFile="ScopeOfWork.md"),
+        ],
+    )
+    report = vdr.run(execution_root, families=("EVQ",), instruction_root=instruction_root)
+
+    assert codes(report) == {"EVQ-006": 3}
+    assert ids_for(report, "EVQ-006") == ["DEP-01-01-001", "DEP-01-01-002", "DEP-01-01-003"]
+    detail = report["findings"][0]["detail"]
+    assert "does not resolve under any allowed base" in detail
+    for form in ("deliverable ", "working_root ", "instruction_root "):
+        assert form in detail
+    assert report["evidence_file_resolution_forms"]["deliverable"] == 1
+
+
+def test_evidence_file_cannot_escape_through_any_base(tmp_path: Path) -> None:
+    """`..` that leaves both anchors is not followed, even if the file exists."""
+    (tmp_path / "outside.md").write_text("outside\n", encoding="utf-8")
+    execution_root, instruction_root = _evidence_fixture(
+        tmp_path,
+        [
+            anchor_row("001", EvidenceFile="../outside.md"),
+            anchor_row("002", EvidenceFile="../../../../../../outside.md"),
+            anchor_row("003"),
+        ],
+    )
+    report = vdr.run(execution_root, families=("EVQ",), instruction_root=instruction_root)
+
+    assert codes(report) == {"EVQ-006": 2}
+    details = [f["detail"] for f in report["findings"]]
+    assert any("leaves the working root and the instruction root" in d for d in details)
+
+
+def test_default_instruction_root_is_the_checkout_holding_the_tool(tmp_path: Path) -> None:
+    execution_root = build_workspace(tmp_path)
+    report = vdr.run(execution_root, families=("EVQ",))
+    assert report["instruction_root"] == str(VALIDATION_DIR.parent.parent)
+
+
+def test_cli_instruction_root_option(tmp_path: Path) -> None:
+    execution_root, instruction_root = _evidence_fixture(
+        tmp_path,
+        [anchor_row("001", EvidenceFile="workflows/dependency-extract/WORKFLOW.md")],
+    )
+    resolved = subprocess.run(
+        [sys.executable, str(TOOL), str(execution_root), "--families", "EVQ",
+         "--instruction-root", str(instruction_root)],
+        capture_output=True, text=True,
+    )
+    assert resolved.returncode == 0, resolved.stdout + resolved.stderr
+    assert "instruction-root-relative 1" in resolved.stdout
+
+    bad = subprocess.run(
+        [sys.executable, str(TOOL), str(execution_root),
+         "--instruction-root", str(tmp_path / "nope")],
+        capture_output=True, text=True,
+    )
+    assert bad.returncode == 2
+
+
 def test_locus_quote_duplication_detail_is_direction_neutral(tmp_path: Path) -> None:
     """R-09: live hits run both ways; the message must not assert one direction."""
     execution_root = build_workspace(

@@ -1,0 +1,10 @@
+# EVQ-006 resolves EvidenceFile in each allowed form
+
+Owner-directed Root tranche `ROOT-EVIDENCEFILE-RESOLUTION-20260927` (manifest `docs/governance_harness/tranche_manifests/ROOT-EVIDENCEFILE-RESOLUTION-20260927.yaml`) changes `tools/validation/validate_decomposition_registers.py`, which every loop that checks decomposition registers runs:
+- **`EVQ-006` now tries three bases and fires only when none names a regular file.** The validator used to resolve `EvidenceFile` only from the project root (the parent of the execution root). Root SPEC §6.5 calls the cell "the source document filename", and `dependency-extract` writes `EvidenceFile=_DEPENDENCIES.md`, so a bare filename relative to the deliverable folder is a valid form. SPEC §0.2.4 adds working-root references and instruction-root references. The validator now tries the deliverable folder, then the working root (`--evidence-root`), then the instruction root (new `--instruction-root`, default: the checkout holding the tool).
+- **Still findings.** Absolute paths, paths that leave both roots, directories and files that exist in no form. The JSON report gains `instruction_root` and `evidence_file_resolution_forms`.
+- **Unchanged.** Every other check, its severity and the exit codes. No register was edited.
+
+The owner's direction, 2026-09-27: "You can take care of those remaining items now.  Include the items with the "other owners".  You can make changes as necessary."
+
+App-specific: `EVQ-006` falls from 644 to 23. Of the resolved cells, 559 are deliverable-relative, 13 working-root-relative and 62 instruction-root-relative (61 checkout-relative `projects/chirality-app-dev/...` paths and one `workflows/dependency-extract/...` path). The 23 remaining are all `RETIRED` rows whose `EvidenceFile` names a four-document-kit file (`Procedure.md`, `Specification.md`, `Datasheet.md`, `Guidance.md`) that is no longer in the deliverable folder. The files really are missing, so the findings stay. The exit code is still 1. This loop decides its own adoption; this source tranche grants no release.
