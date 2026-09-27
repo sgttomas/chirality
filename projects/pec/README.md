@@ -52,8 +52,9 @@ recorded derivative state as incomplete only for TM-PEC-023, which was closed `R
 `D-PEC-95` on 2026-09-25. Lifecycle census (2026-09-27, 68 deliverables): 28 `OPEN` / 27
 `INITIALIZED` / 4 `CHECKING` / 5 `IN_PROGRESS` / 4 `RETIRED`, none `ISSUED`. DEL-01-03 is
 `IN_PROGRESS` with the `D-PEC-85` store/guard slice produced; DEL-01-05 is
-`IN_PROGRESS` after the `D-PEC-84` L reversal; no artifact acceptance or
-promotion follows from either. The three DEL-01-03 read-only evidence
+`IN_PROGRESS` after the `D-PEC-84` L reversal; DEL-02-03, DEL-02-08 and
+DEL-02-09 are `IN_PROGRESS` since the `D-PEC-106` P1 fixture act
+(2026-09-27); no artifact acceptance or promotion follows from any of them. The three DEL-01-03 read-only evidence
 inquiries are reported, and the owner ruled `D-PEC-87` on 2026-09-24: one
 correction slice on seven existing files, the three inquiry rows to be
 ticked, and review of the corrected bytes. The slice merged on 2026-09-24
