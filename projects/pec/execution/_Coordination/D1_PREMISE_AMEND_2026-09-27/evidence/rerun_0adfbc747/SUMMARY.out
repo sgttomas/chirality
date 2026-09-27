@@ -1,0 +1,39 @@
+basis commit: 0adfbc7476df33521883ce1573781237cd24d384; observation: 6c6cc1b00
+python: Python 3.13.7
+apply_d1p.py sha256: 952a7512fd74e1b77f2f6b948d3cf46c876448ee1dee5370759f627236399d4d
+PASS apply_d1p.py equals a fresh rendering at its basis f0a6159c9 (template, targets.json, candidates)
+PASS render_candidates check: every target's candidate equals its ledger rendering (RESULT PASS fails=0)
+PASS act mode A: check-only 0 (CHECK preflight passed), apply 0, rerun refuses 1
+PASS containment mode A: exactly the 3 target file(s) differ from PRE (3 differing, nothing created or removed)
+PASS act mode AP: check-only 0 (CHECK preflight passed), apply 0, rerun refuses 1
+PASS containment mode AP: exactly the 4 target file(s) differ from PRE (4 differing, nothing created or removed)
+PASS validate mode A DEL-00-03_SOW: PASS format=SOW_V1
+PASS checklist mode A DEL-00-03_SOW: exit 0, rerun byte-identical (sha256 a3bc80a0db9a)
+PASS boundary mode A DEL-00-03_SOW: exit 0, no UNRESOLVED_OWNER/UNDEFINED_CLAIM (0 NOT_CHECKABLE line(s) for hand resolution)
+PASS validate mode AP DEL-00-03_SOW: PASS format=SOW_V1
+PASS checklist mode AP DEL-00-03_SOW: exit 0, rerun byte-identical (sha256 a3bc80a0db9a)
+PASS boundary mode AP DEL-00-03_SOW: exit 0, no UNRESOLVED_OWNER/UNDEFINED_CLAIM (0 NOT_CHECKABLE line(s) for hand resolution)
+INFO checklist diff PRE -> post DEL-00-03_SOW: 2 changed text line(s) (checklist_diff_DEL-00-03_SOW.patch)
+PASS validate mode AP DEL-00-01_SOW: PASS format=SOW_V1
+PASS checklist mode AP DEL-00-01_SOW: exit 0, rerun byte-identical (sha256 6e99f93c37c7)
+PASS boundary mode AP DEL-00-01_SOW: exit 0, no UNRESOLVED_OWNER/UNDEFINED_CLAIM (0 NOT_CHECKABLE line(s) for hand resolution)
+INFO checklist diff PRE -> post DEL-00-01_SOW: 0 changed text line(s) (checklist_diff_DEL-00-01_SOW.patch)
+PASS quotes: RESULT PASS 74/74
+PASS state claims: RESULT PASS 126/126
+PASS strict identical before/after mode A, export root normalized ( ERROR findings: 0; WARNING findings: 26;exit=1)
+PASS harness identical before/after mode A, export root normalized (exit=0)
+PASS receipts identical before/after mode A, export root normalized (exit=0)
+PASS strict identical before/after mode AP, export root normalized ( ERROR findings: 0; WARNING findings: 26;exit=1)
+PASS harness identical before/after mode AP, export root normalized (exit=0)
+PASS receipts identical before/after mode AP, export root normalized (exit=0)
+PASS dependency quote currency identical before/after mode A (SUMMARY active_execution_quotes_verbatim 127/127; TARGET-cited active rows: 0)
+PASS dependency quote currency identical before/after mode AP (SUMMARY active_execution_quotes_verbatim 127/127; TARGET-cited active rows: 0)
+INFO external-quote scan (informational): SUMMARY files_scanned=6677 stale=99 anchor=2213 kept=45801 history-stale=0 history-anchor=30 history-kept=0
+PASS whitespace: no trailing blanks, tabs or CR; final newline (4 candidates)
+INFO diff_DEL-00-03_SPEC.diff.txt (group A; trailing whitespace stripped, review aid only): +49 -29 lines
+INFO diff_DEL-00-03_SOW.diff.txt (group A; trailing whitespace stripped, review aid only): +20 -17 lines
+INFO diff_DEL-00-01_ADR.diff.txt (group A; trailing whitespace stripped, review aid only): +31 -16 lines
+INFO diff_DEL-00-01_SOW.diff.txt (group P; trailing whitespace stripped, review aid only): +3 -2 lines
+PASS fault injection: RESULT PASS 24/24
+PASS evidence whitespace: 0 file(s) with trailing whitespace or a blank line at EOF
+OVERALL PASS
