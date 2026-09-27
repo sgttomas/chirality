@@ -7369,3 +7369,14 @@
   - Checks: this ledger's validator, Root G0–G4, conflict-marker and run-record-leak checks, the workflow index check, `git diff --check`, the dependency schema and register validators, and export freshness, as recorded in the hand-off.
   - Model-Attribution: Claude Code WORKING_ITEMS subagent for the parent session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
   - Gate-Outcome: `EXECUTED` — review fixes applied; scope closure stays CLOSED_WITH_OBSERVATIONS on rebound evidence. Owner-shaped: the ESR-1 retire candidates, HGD-1 and HGD-3. No scope or lifecycle change; no release.
+
+- **2026-09-27 — Receipt 276** (SCA-APP-011 ESR-1 closed: the owner's ruling retires the four retire candidates).
+  - Receipt-ID: `Receipt-276`
+  - Examined-Through: `1485271da95ee18f647d43594fb51587a29a7a15`
+  - Parent-Receipt: `Receipt-275`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING; the owner typed on 2026-09-27, verbatim: "ESR-1: retire DEP-02-02-021, DEP-02-04-015, DEP-02-04-016 and DEP-02-01-014." Transcribed in the run folder `CHAT_TRANSCRIPTION_ESR-1_2026-09-27.md`, a separate file because `CHAT_TRANSCRIPTION.md` is hash-bound by the APP-R058 record.
+  - Pointers: `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/CHAT_TRANSCRIPTION_ESR-1_2026-09-27.md`; run receipt `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` (with `SETUP_RUN_RECORD.md` and `DEPENDENCY_EXTRACT_RESULTS.md`); the `Dependencies.csv` and `_DEPENDENCIES.md` of DEL-02-02, DEL-02-04 and DEL-02-01; `execution/_Evaluation/DepClosure/CLOSURE_SCA_APP_011_ESR1_RULING_2026-09-27_1739/`; `execution/_Evaluation/ScopeClosureAudit/ScopeClosure_SCA-APP-011_2026-09-27_1740/` (supersedes the 1726 snapshot, which is unchanged).
+  - Stale-Map-Delta: Receipt-275 lists the ESR-1 retire candidates as owner-shaped; they are now retired, with Status RETIRED, SatisfactionStatus NOT_APPLICABLE and the ruling quoted in Notes. The dependency graph loses four edges against the 1725 closure, and DEL-01-03 becomes isolated. The DepClosure and DecompCoverage `_LATEST.md` pointers are not moved (manager's call).
+  - Checks: this ledger's validator, Root G0–G4, conflict-marker and run-record-leak checks, the workflow index check, `git diff --check`, the dependency schema and register validators, and export freshness, as recorded in the hand-off.
+  - Model-Attribution: Claude Code WORKING_ITEMS subagent for the parent session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
+  - Gate-Outcome: `EXECUTED` — ESR-1 closed by the owner's ruling; the dependency closure has no cycles; scope closure stays CLOSED_WITH_OBSERVATIONS (the DEL-02-03-REQ-009 residual). Still owner-shaped: HGD-1 and HGD-3. No scope or lifecycle change; no release.

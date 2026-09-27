@@ -54,3 +54,9 @@ DEL-02-02-V3-03 had no known product residual and required owner merge, reviewed
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
 
 - 2026-09-22 — D-APP-132 current continuation: `execution/_Coordination/_DECISIONS/D-APP-132_RULING_P01_AND_AGENT0_DISPOSITIONS_2026-09-22.md` and `execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/CURRENT_RESIDUAL_DISPOSITIONS.csv` govern the listed follow-up keys; earlier references to these decisions as awaiting this reconciliation's owner choice are historical. D116/117 optional enhancement preparation closed/not adopted here; future adoption gates remain. Obsolete D119 candidate withdrawn without reducing existing organisation obligations. No lifecycle, dependency acceptance or product completion.
+
+## Runs
+
+| Run ID / date | Work in this deliverable | Result and source links |
+|---|---|---|
+| `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27` / 2026-09-27 | ESR-1 owner ruling (2026-09-27, "ESR-1: retire DEP-02-02-021, DEP-02-04-015, DEP-02-04-016 and DEP-02-01-014."): DEP-02-02-021 retired in this register; ESR-1 closed | Registers updated; receipt `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` |
