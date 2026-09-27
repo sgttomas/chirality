@@ -37,7 +37,7 @@ Copied byte for byte from `../PEC_X1_FIXTURES_PREP_2026-09-26/` and checked agai
 ## Records and evidence written here
 
 - `MANIFEST.md`, `VALIDATION.md`, `HANDOFF_STATE.md`, `VERIFIER_VERDICT_01.md`, `VERIFIER_VERDICT_02.md`, `SHA256SUMS` (every other run-root file).
-- `evidence/`: row 0–9 outputs (`row*.out`, `row3_registered.json`), `pre_act_checks_c5d852c4a/`, `rerun_after_merge_0adfbc747/`, `fanin_hold_rely_for_production.out`, and the small read-only aids written for this run (`deps_read.py`, `check_addon_L_slots.py`, `check_bytes_hygiene.py`, `rerun_after_merge_0adfbc747/act_pins_and_targets.py`), plus `hold_targets.txt` and `bound_copy.sums`.
+- `evidence/`: row 0–9 outputs (`row*.out`, `row3_registered.json`; final rows 7–9 in `row7_lifecycle_final.out`, `row8_containment_final.out`, `row9_diff_check.out`), `pre_act_checks_c5d852c4a/`, `rerun_after_merge_0adfbc747/`, `fanin_hold_rely_for_production.out`, and the small read-only aids written for this run (`deps_read.py`, `check_addon_L_slots.py`, `check_bytes_hygiene.py`, `rerun_after_merge_0adfbc747/act_pins_and_targets.py`), plus `hold_targets.txt` and `bound_copy.sums`.
 - Two outputs were whitespace-normalized after their first commit; raw captures are at `2886540c0` (`evidence/row1_basis.out`) and `3f1e1a4d7` (`evidence/row1a_addon_L.out`). See `VALIDATION.md`.
 
 ## Product and lifecycle writes (outside this run root)

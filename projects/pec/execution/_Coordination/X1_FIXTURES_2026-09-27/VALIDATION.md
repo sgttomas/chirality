@@ -29,9 +29,9 @@ Finite verification of the proposal (`D-PEC-106_x1_parser_fixture_suites_proposa
 | 4 | Selection | `select_affected_checks.py software-workflow.json <35 changed paths>` | the six checks of row 3 | `evidence/row4_select_affected.out` |
 | 5 | Bindings and pins | `verify_x1p_bindings.py <repo> HEAD <candidates>`; `report_x1p_pins.py <repo> HEAD <manifest>` | `RESULT PASS 442/442`; `RESULT PASS 19/19` | `evidence/row5_*` |
 | 6 | Every-PR and registers | strict registers, harness self-check, receipts validator, before (HEAD `c5d852c4a`, before L) and after the act | identical: strict exit 1 with 0 errors and 26 `XRG-013` warnings; harness exit 0; receipts exit 0 | `evidence/row6_*` |
-| 7 | Lifecycle | `git diff --name-status origin/main...HEAD -- '**/_STATUS.md'` | exactly the three tabled `_STATUS.md` (A + L) | `evidence/row7_lifecycle.out` (final rerun at the final head) |
-| 8 | Containment | `git diff --name-status origin/main...HEAD` | the 34 creates; `software-workflow.json`; the three `_STATUS.md`; the run root; the brief copy and the return under `AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/`; nothing else | `evidence/row8_containment.out` (final rerun at the final head) |
-| 9 | Whitespace | `git diff --check origin/main...HEAD` | clean at the final head | `evidence/row9_diff_check.out` (final) |
+| 7 | Lifecycle | `git diff --name-status origin/main...HEAD -- '**/_STATUS.md'` | exactly the three tabled `_STATUS.md` (A + L) | `evidence/row7_lifecycle_final.out` (at the head carrying verdict 02 and the return, against the then-current `origin/main`); intermediate capture `evidence/row7_lifecycle.out` (at `7ff6eb7bb`, against `c5d852c4a`) |
+| 8 | Containment | `git diff --name-status origin/main...HEAD` | the 34 creates; `software-workflow.json`; the three `_STATUS.md`; the run root; the brief copy and the return under `AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/`; nothing else | `evidence/row8_containment_final.out` (same head as row 7 final); intermediate capture `evidence/row8_containment.out` (at `7ff6eb7bb`, against `c5d852c4a`) |
+| 9 | Whitespace | `git diff --check origin/main...HEAD` | clean | `evidence/row9_diff_check.out` (same head as row 7 final); two earlier failed attempts below |
 | Fan-in | Holds, reliance | `pec_reliance_hold.py --operation rely-for-production` on the same 41 targets, before fan-in of the verifier's verdict | ALLOW, exit 0, 41/41 | `evidence/fanin_hold_rely_for_production.out` |
 
 ## Rerun after `origin/main` moved
@@ -46,14 +46,14 @@ Finite verification of the proposal (`D-PEC-106_x1_parser_fixture_suites_proposa
 
 ## Independent verification
 
-`VERIFIER_VERDICT_01.md`: fresh read-only `pec-reviewer` applying `software-code-review` (`ee085d58…8bca`) to head `f4ab6c307`. **PASS WITH NOTES**; three non-blocking evidence-recording findings, dispositioned in that file. Backcheck: `VERIFIER_VERDICT_02.md`.
+`VERIFIER_VERDICT_01.md`: fresh read-only `pec-reviewer` applying `software-code-review` (`ee085d58…8bca`) to head `f4ab6c307`. **PASS WITH NOTES**; three non-blocking evidence-recording findings, dispositioned in that file. Backcheck: `VERIFIER_VERDICT_02.md` at head `04a333f73`, **PASS WITH NOTES** (final row 7/8/9 captures then pending; one inferred HEAD stated as fact; one observation), dispositioned in that file.
 
 ## Evidence-handling notes (verdict 01 findings 1–3)
 
 - **Whitespace normalization after commit.** `git diff --check` flagged trailing whitespace inside two captured outputs. Only trailing whitespace was removed, in commit `f657822b2`:
   - `evidence/row1_basis.out`: raw capture at `2886540c0` (`86476cb8…5b3a`), normalized `4bc0e8ce…8a89` (the register-row line lost one trailing blank).
   - `evidence/row1a_addon_L.out`: raw capture at `3f1e1a4d7` (`eebeb32c…5ca5925`), normalized `7597dafa…0906`. Blank unified-diff context lines `" "` became `""`, so the captured diff text is no longer patch-applicable. The binding add-on L evidence is the postimage hashes and `row1a_addon_L_slots.out`, which is unchanged.
-- **Row 9 attempts.** Attempt 1 (17:46:19 UTC, HEAD `7ff6eb7bb`, exit 2) flagged those two files; it is kept as `evidence/row9_diff_check_attempt1.out`, restored from `f657822b2`, with each trailing-whitespace run replaced by a visible marker. Attempt 2 (17:46:34 UTC, HEAD `f657822b2`, exit 2) flagged the whitespace inside attempt 1's own captured output; it is kept as `evidence/row9_diff_check_attempt2.out` (marked the same way). The final clean capture is `evidence/row9_diff_check.out`.
+- **Row 9 attempts.** Attempt 1 (17:46:19 UTC, exit 2; HEAD inferred as `7ff6eb7bb` from its commit time, since the capture has no HEAD line) flagged those two files; it is kept as `evidence/row9_diff_check_attempt1.out`, restored from `f657822b2`, with each trailing-whitespace run replaced by a visible marker. Attempt 2 (17:46:34 UTC, HEAD `f657822b2`, exit 2) flagged the whitespace inside attempt 1's own captured output; it is kept as `evidence/row9_diff_check_attempt2.out` (marked the same way). The final clean capture is `evidence/row9_diff_check.out`.
 - **Composite command.** The last line of `evidence/row1_basis.out` was produced by `git log -1 --format='%H %s %P' c5d852c4a`; the echoed label reads `--format='%H %s'` and omits `%P`. The file is not rewritten.
 
 No check was weakened, skipped or re-pinned.

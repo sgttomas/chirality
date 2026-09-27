@@ -7,9 +7,9 @@
 - Finite-verification row 1 passed at `origin/main` `c5d852c4a` (basis, preimages, dependencies, `dispatch-for-production` ALLOW 41/41, check-only, pins 19/19, full prep suite OVERALL PASS).
 - Add-on L ran at actual production start: DEL-02-03, DEL-02-08 and DEL-02-09 `INITIALIZED → IN_PROGRESS`, slot rule 3/3, committed as `3f1e1a4d7` before the act.
 - The act ran once, exit 0 (`26b27b2b0`). **The D-PEC-106 act grant is consumed.** No rolled-back or refused run occurred, so no rerun was needed or made.
-- Rows 2–9 pass (see `VALIDATION.md`); reruns after merging `origin/main` `0adfbc747` pass.
+- Rows 2–9 pass (see `VALIDATION.md`; rows 7–9 final captures at the head carrying verdict 02 and the return); reruns after merging `origin/main` `0adfbc747` pass.
 - `rely-for-production` ALLOW 41/41 before fan-in.
-- Verifier: `VERIFIER_VERDICT_01.md` PASS WITH NOTES (three non-blocking evidence-recording findings, dispositioned); `VERIFIER_VERDICT_02.md` is the backcheck.
+- Verifier: `VERIFIER_VERDICT_01.md` PASS WITH NOTES (three non-blocking evidence-recording findings, dispositioned); backcheck `VERIFIER_VERDICT_02.md` PASS WITH NOTES (final captures then pending, one wording point; dispositioned). Nothing blocking.
 
 ## Not done here, by design
 
