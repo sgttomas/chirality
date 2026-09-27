@@ -1,0 +1,32 @@
+$ date -u
+Sun Sep 27 17:36:07 UTC 2026
+$ git --version; python3 --version; which python3
+git version 2.54.0 (Apple Git-157)
+Python 3.13.7
+/Library/Frameworks/Python.framework/Versions/3.13/bin/python3
+$ git rev-parse --is-shallow-repository
+false
+$ git config --get extensions.partialclone (expect unset)
+exit=1
+$ git config --get remote.origin.partialclonefilter (expect unset)
+exit=1
+$ git config --get remote.origin.promisor (expect unset)
+exit=1
+$ git rev-parse --git-common-dir
+/Users/ryan/ai-env/projects/chirality/.git
+$ git branch --show-current; git rev-parse HEAD origin/main
+claude/pec-d106-x1-fixtures-act
+c5d852c4a95a478f34d9e4e4375d603e08245e25
+c5d852c4a95a478f34d9e4e4375d603e08245e25
+$ git merge-base --is-ancestor c5d852c4a origin/main
+exit=0
+$ git log -1 --format='%H %s' origin/main
+c5d852c4a95a478f34d9e4e4375d603e08245e25 Merge pull request #1006 from sgttomas/claude/pec-d105-ruling
+$ git show origin/main:projects/pec/execution/_Coordination/_DECISIONS/D-PEC-106_RULING_2026-09-27.md | shasum -a 256
+5161630bd14ce1aee6de89913145534e88a4546d487219aa490f9438880596fe  -
+$ git show origin/main:.../D-PEC-106_x1_parser_fixture_suites_proposal_2026-09-26.md | shasum -a 256
+677b59f6b1ae19b911e6e07aecfa4df0f39a380fb3ab806903da87c8fa18d279  -
+$ git show origin/main:.../_REGISTER.md | grep '^| D-PEC-106 ' | grep -o 'RULED[^|]*'
+RULED A / FX-PEC-0 AND THRESHOLDS CONFIRMED / L / M / EFFECTIVE ON MERGE
+$ git log --oneline -1 --format='%H %s' c5d852c4a
+c5d852c4a95a478f34d9e4e4375d603e08245e25 Merge pull request #1006 from sgttomas/claude/pec-d105-ruling 16010b4ca9ab6c00247593177e1a8defa97a3ab6 0a7a4bdd162fb69ccc8c6217cdb43730def730b0
