@@ -383,3 +383,119 @@ def test_canonical_output_keeps_only_active_local_declared_rows(tmp_path: Path) 
     summary, ids = run(canonical=False)
     assert ids == ["DAG-001-E0001", "DEP-01-01-001", "DEP-01-01-002", "DEP-01-01-003"]
     assert summary["written"][0]["SetAsideDeclaredRows"] == []
+
+
+def assert_diff_check_clean(text: str) -> None:
+    """What `git diff --check` reports: trailing whitespace, and a blank line at end of file."""
+    assert text.endswith("\n") and not text.endswith("\n\n"), repr(text[-40:])
+    for number, line in enumerate(text.split("\n"), start=1):
+        assert line == line.rstrip(" \t"), f"trailing whitespace on line {number}: {line!r}"
+
+
+ENDS_IN_RUN_HISTORY = (
+    "# Dependencies: DEL-01-01 Project governance baseline\n\n"
+    + HUMAN_MODE
+    + HUMAN_UPSTREAM
+    + HUMAN_DOWNSTREAM
+    + "## Extracted Dependency Register\n- **Status:** NOT_RUN_YET\n\n---\n\n"
+    + "## Lifecycle Summary\n- (placeholder)\n\n---\n\n"
+    + "## Run Notes\n- Earlier extraction warning kept by the tool.\n\n"
+    + "## Run History\n- 2026-09-01 dependency-extract run\n"
+)
+
+
+def test_file_ending_in_run_history_has_no_blank_line_at_eof_across_dates() -> None:
+    first = refresh(ENDS_IN_RUN_HISTORY, generated="2026-09-26")
+    assert_diff_check_clean(first)
+    assert first.endswith("\n- 2026-09-26 — `materialize_local_dependencies.py --refresh-pointers`: synchronized from "
+                          "`DAG-001`; 1 rows (1 ACTIVE, 0 CANDIDATE).\n")
+    # Only the end of file differs from the text before the fix; the separators are unchanged.
+    assert "- Earlier extraction warning kept by the tool.\n\n## Run History\n" in first
+    assert "| SatisfactionStatus=UNKNOWN | 1 |\n\n---\n\n## Run Notes\n" in first
+    assert refresh(first, generated="2026-09-26") == first
+
+    later = refresh(first, generated="2026-09-27")
+    assert_diff_check_clean(later)
+    assert later.startswith(first.replace("- **Run date:** 2026-09-26", "- **Run date:** 2026-09-27"))
+    assert later.endswith("synchronized from `DAG-001`; 1 rows (1 ACTIVE, 0 CANDIDATE).\n- 2026-09-27 — "
+                          "`materialize_local_dependencies.py --refresh-pointers`: synchronized from `DAG-001`; "
+                          "1 rows (1 ACTIVE, 0 CANDIDATE).\n")
+    assert refresh(later, generated="2026-09-27") == later
+
+
+def test_blank_line_left_at_eof_by_an_earlier_run_is_dropped() -> None:
+    clean = refresh(ENDS_IN_RUN_HISTORY, generated="2026-09-26")
+    # An earlier revision of the tool left a blank line after Run History.
+    assert refresh(clean + "\n", generated="2026-09-26") == clean
+    later = refresh(clean + "\n\n", generated="2026-09-27")
+    assert_diff_check_clean(later)
+    assert later == refresh(clean, generated="2026-09-27")
+    # A last line without its newline gets one, and the next entry starts on its own line.
+    unterminated = refresh(clean[:-1], generated="2026-09-27")
+    assert unterminated == later
+
+
+def test_inserted_sections_keep_separators_and_end_the_file_cleanly() -> None:
+    # Run Notes and Run History are missing: both are inserted, the last at end of file.
+    existing = (
+        "# Dependencies: DEL-01-01 Project governance baseline\n\n"
+        + HUMAN_MODE
+        + HUMAN_UPSTREAM
+        + HUMAN_DOWNSTREAM
+        + "## Extracted Dependency Register\n- **Status:** NOT_RUN_YET\n\n---\n\n"
+        + "## Lifecycle Summary\n- (placeholder)\n"
+    )
+    refreshed = refresh(existing, generated="2026-09-26")
+    assert_diff_check_clean(refreshed)
+    assert "| SatisfactionStatus=UNKNOWN | 1 |\n\n## Run Notes\n- `Dependencies.csv`" in refreshed
+    assert "`TBD` there means the human has not yet recorded them.\n\n## Run History\n- 2026-09-26 — " in refreshed
+    assert refresh(refreshed, generated="2026-09-26") == refreshed
+    later = refresh(refreshed, generated="2026-09-27")
+    assert_diff_check_clean(later)
+    assert later.count("`materialize_local_dependencies.py --refresh-pointers`: synchronized from") == 2
+
+    # A section inserted before an existing one keeps the blank separator before that section.
+    middle = (
+        "# Dependencies: DEL-01-01 Project governance baseline\n\n"
+        + HUMAN_MODE
+        + HUMAN_UPSTREAM
+        + HUMAN_DOWNSTREAM
+        + "## Extracted Dependency Register\n- **Status:** NOT_RUN_YET\n\n---\n\n"
+        + "## Run Notes\n- kept note\n\n"
+        + "## Run History\n- 2026-09-01 dependency-extract run\n\n"
+        + "## Downstream Handoff Notes\n- handoff text\n"
+    )
+    refreshed = refresh(middle, generated="2026-09-26")
+    assert_diff_check_clean(refreshed)
+    assert "| SatisfactionStatus=UNKNOWN | 1 |\n\n## Run Notes\n- kept note\n\n## Run History\n" in refreshed
+    assert "(1 ACTIVE, 0 CANDIDATE).\n\n## Downstream Handoff Notes\n- handoff text\n" in refreshed
+    assert refreshed.endswith("## Downstream Handoff Notes\n- handoff text\n")
+
+    # A missing file is created from the skeleton and also ends cleanly.
+    created = refresh(None)
+    assert_diff_check_clean(created)
+    assert_diff_check_clean(refresh(created, generated="2026-09-27"))
+
+
+def test_materializer_writes_files_that_pass_diff_check(tmp_path: Path) -> None:
+    execution_root = tmp_path / "execution"
+    unit = execution_root / "PKG-01" / "1_Working" / "DEL-01-01_Project governance baseline"
+    unit.mkdir(parents=True)
+    nodes_path = tmp_path / "DeliverableNodes.csv"
+    edges_path = tmp_path / "DependencyEdges.csv"
+    write_csv(nodes_path, [node("DEL-01-01", "PKG-01", "Project governance baseline", unit)], NODE_COLUMNS)
+    write_csv(edges_path, [edge("DAG-001-E0001", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-02")], REQUIRED_COLUMNS)
+    pointer = unit / "_DEPENDENCIES.md"
+    pointer.write_text(ENDS_IN_RUN_HISTORY, encoding="utf-8")
+
+    for day in ("2026-09-26", "2026-09-26", "2026-09-27"):
+        materialize_local_dependencies(
+            edges_path=edges_path,
+            nodes_path=nodes_path,
+            execution_root=execution_root,
+            refresh_pointers=True,
+            generated_date=day,
+            source_label="DAG-001",
+        )
+        assert_diff_check_clean(pointer.read_text(encoding="utf-8"))
+        assert_diff_check_clean((unit / "Dependencies.csv").read_text(encoding="utf-8"))
