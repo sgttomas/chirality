@@ -31,8 +31,8 @@ project-setup), from the bundled `workflows/project-setup/`
 | 5.2–5.3 | Scaffold and initialize added entities | — | Nothing to do: no ADD |
 | 5.4 | Record retirements | — | Nothing to do: no REMOVE |
 | 5.5 | `scope-of-work` `MODE=VERIFY` for DEL-02-02, DEL-02-03, DEL-03-03, DEL-07-01, DEL-07-02, DEL-07-04, DEL-07-05, DEL-08-03, DEL-09-03 | `SOW_V1` at `IN_PROGRESS`; the group-2 write boundary (W-a) named each `ScopeOfWork.md`, so VERIFY only; `STATUS_POLICY: NO_STATUS_TOUCH` | PASS for all nine. Valid, 0 issues; checklists deterministic; contracts and `_STATUS.md` unchanged; nothing changes scope or lifecycle (`setup_verify/`) |
-| 5.6 | `dependency-extract` for the 9 plus the 16 neighbours | `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=NONE`; decomposition SHA-256 `cf6e56eb…1876`; one deliverable per pass; run directly by WORKING_ITEMS | 25 registers and indexes written. 311 rows re-seen, 7 retired, 6 restated, 1 kept with a note, 1 added, 12 held (ESR-1). HGD-2 closed. Function 5 checks pass (`DEPENDENCY_EXTRACT_RESULTS.md`, `dep_extract/`) |
-| 5.6 | `audit-dep-closure` over the accepted inventory | SCOPE ALL rules with exemptions DEL-00-01, DEL-00-02 (CONTROL) and DEL-09-07 (RETIRED); `UPDATE_LATEST_POINTER=false` | 51 current units PASS, 107 edges, 0 SCC. No SCC to route (`_Evaluation/DepClosure/CLOSURE_SCA_APP_011_POST_EXTRACTION_2026-09-27_1656/`) |
+| 5.6 | `dependency-extract` for the 9 plus the 16 neighbours | `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=NONE`; decomposition SHA-256 `cf6e56eb…1876`; one deliverable per pass; run directly by WORKING_ITEMS | 25 registers and indexes written. 311 rows re-seen, 7 retired, 6 restated, 1 kept with a note, 1 added. After review, 8 of the 12 rows whose evidence source was retired on 2026-09-23 were re-evidenced to current sources; 4 are ESR-1 retire candidates. HGD-2 closed. Function 5 checks pass (`DEPENDENCY_EXTRACT_RESULTS.md`, `dep_extract/`) |
+| 5.6 | `audit-dep-closure` over the accepted inventory | SCOPE ALL rules with exemptions DEL-00-01, DEL-00-02 (CONTROL) and DEL-09-07 (RETIRED); `UPDATE_LATEST_POINTER=false` | 51 current units PASS, 107 edges, 0 SCC. No SCC to route (`_Evaluation/DepClosure/CLOSURE_SCA_APP_011_POST_EXTRACTION_2026-09-27_1656/`; rebound after the ESR-1 re-evidence in `CLOSURE_SCA_APP_011_ESR1_REEVIDENCE_2026-09-27_1725/`, same topology) |
 | 5.6 | `project-dag` currency audit | — | Not applicable: no accepted project DAG (`_DAG/_LATEST.md` absent) |
 | 5.7 | Scan and report (Phase 3.1/3.2) | FULL_GRAPH advisory from the recorded register | 53 IN_PROGRESS and 1 OPEN (retired DEL-09-07). 53 unblocked, 0 blocked, 0 held for a cycle (`setup_report/SCAN_REPORT.md`) |
 
@@ -47,7 +47,8 @@ project-setup), from the bundled `workflows/project-setup/`
 - **Registers.** `Dependencies.csv` and `_DEPENDENCIES.md` of the 25
   deliverables named above.
 - **Closure evidence.**
-  `execution/_Evaluation/DepClosure/CLOSURE_SCA_APP_011_POST_EXTRACTION_2026-09-27_1656/`.
+  `execution/_Evaluation/DepClosure/CLOSURE_SCA_APP_011_POST_EXTRACTION_2026-09-27_1656/` and
+  `CLOSURE_SCA_APP_011_ESR1_REEVIDENCE_2026-09-27_1725/`.
 - **Skipped, with nothing to do:** scaffolding, retirement records, and
   `_STATUS.md` history lines.
 - **Not written:**
@@ -71,8 +72,8 @@ Incremental setup for SCA-APP-011:
   9 modified deliverables. Their owner is the semantic-lensing pipeline (Phase
   2.3–2.4). They are rerun only if the owner selects it.
 - **Decisions pending:**
-  - ESR-1: 12 held dependency rows whose evidence source was retired on
-    2026-09-23;
+  - ESR-1: four retire candidates (DEP-02-02-021, DEP-02-04-015, DEP-02-04-016,
+    DEP-02-01-014); the other eight held rows were re-evidenced;
   - HGD-1;
   - HGD-3, whose premise has changed;
   - the manager's call on the DepClosure and DecompCoverage observation
@@ -81,3 +82,22 @@ Incremental setup for SCA-APP-011:
   `RECEIPT.md`).
 
 The accepted amendment snapshot stays immutable.
+
+## Why COMPLETE stands
+
+- **Every planned stage ran.** The plan the owner confirmed (Phase 5.1) had no
+  scaffold and no retirement. It had nine VERIFY routes, dependency extraction
+  and closure for 25 deliverables under FULL_GRAPH, and the scan and report.
+  Each of these ran to its end.
+- **ESR-1 is not an SCA-APP-011 item.**
+  - Its rows lost their evidence when the owner-directed 2026-09-23 finite Task
+    Management account retired the `_STATUS.md` `## Remaining` sections. That
+    was before this amendment.
+  - That accepted instrument preserved the rows.
+  - The extraction re-evidenced every row a current source states. The four it
+    could not re-evidence stay ACTIVE as recorded and are proposed to the owner
+    as retire candidates.
+  - No stage of the SCA-APP-011 plan is left waiting on that decision, and the
+    scope-closure audit checks no ESR-1 row.
+- **Open owner items.** ESR-1, HGD-1 and HGD-3 are owner decisions outside the
+  plan, and they do not keep the amendment in the Function 5 queue.

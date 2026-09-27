@@ -7358,3 +7358,14 @@
   - Checks: this ledger's validator, Root G0–G4, conflict-marker and run-record-leak checks, the workflow index check, `git diff --check` and export freshness, as recorded in the hand-off.
   - Model-Attribution: Claude Code WORKING_ITEMS subagent for the parent session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
   - Gate-Outcome: `EXECUTED` — the owner's four decisions are applied; incremental setup is COMPLETE; scope closure is CLOSED_WITH_OBSERVATIONS (the DEL-02-03-REQ-009 residual). Still owner-shaped: ESR-1 (held rows whose evidence source was retired), HGD-1 and HGD-3. No scope or lifecycle change; no release.
+
+- **2026-09-27 — Receipt 275** (SCA-APP-011 review fixes: ESR-1 re-evidenced and reduced to retire candidates; indexes, MEMORY and export check corrected).
+  - Receipt-ID: `Receipt-275`
+  - Examined-Through: `1d590949182aff0f161d75b1504ba624c4664baa`
+  - Parent-Receipt: `Receipt-274`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING; no new owner direction. The coordinating session relayed the pre-merge review of `0ca5ffcca..1d5909491` (one blocking finding on the ESR-1 basis, five non-blocking).
+  - Pointers: run receipt `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` and `DEPENDENCY_EXTRACT_RESULTS.md` (ESR-1 per row); `execution/_Evaluation/DepClosure/CLOSURE_SCA_APP_011_ESR1_REEVIDENCE_2026-09-27_1725/`; `execution/_Evaluation/ScopeClosureAudit/ScopeClosure_SCA-APP-011_2026-09-27_1726/`.
+  - Stale-Map-Delta: Receipt-274 and the earlier run receipt treat all held rows as one owner package and attribute "adds no prerequisite" to the 2026-09-23 closeout. The phrase is from each affected register's current-source note and supports keeping the rows. Only four rows now need the owner's decision; the rest are re-evidenced.
+  - Checks: this ledger's validator, Root G0–G4, conflict-marker and run-record-leak checks, the workflow index check, `git diff --check`, the dependency schema and register validators, and export freshness, as recorded in the hand-off.
+  - Model-Attribution: Claude Code WORKING_ITEMS subagent for the parent session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
+  - Gate-Outcome: `EXECUTED` — review fixes applied; scope closure stays CLOSED_WITH_OBSERVATIONS on rebound evidence. Owner-shaped: the ESR-1 retire candidates, HGD-1 and HGD-3. No scope or lifecycle change; no release.
