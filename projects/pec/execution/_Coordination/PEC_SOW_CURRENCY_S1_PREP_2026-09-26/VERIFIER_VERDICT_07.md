@@ -30,7 +30,7 @@ P-1 (verdict 05 present), P-2 (`shasum -c SHA256SUMS` exit 0; exactly the 149 tr
 - **R3-2 — accepted, repaired.** Both occurrences now read `53ba3be3…de53`.
 - **R3-3 — accepted, repaired.** The Part B landing table now describes the added clause, the warrant sentence and the rewording exactly.
 - **R3-4 — accepted, repaired.** Claims MR03 (`_REFERENCES.md` at `ea6b4b5d0` contains "revision 1.3, accepted `current_basis`; SCA-003 successor") and MR04 (`_CONTEXT.md` at `ea6b4b5d0` contains "superseded by revision 1.2") added; `verify_s1p_state_claims.py --only DEL-10-10` PASS 109/109; full run 897/897 (OVERALL PASS at `4b930819c`). The candidate bytes are unchanged.
-- **R3-5 — done at this commit.** This verdict is saved, the return is written under `AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/returns/S1P_SOW_CURRENCY_PROPOSAL.md`, and `SHA256SUMS` is regenerated.
+- **R3-5 — partly done at the round-3 commit (`1d85874c1`).** This verdict was saved and `SHA256SUMS` regenerated there; the return under `AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/returns/S1P_SOW_CURRENCY_PROPOSAL.md` was **not** written at that commit, although this disposition first said so (corrected after verdict 08, R4-3); it is written in the final commit.
 - **R3-6 — accepted, repaired.** Question 4 now names the acceptance packet `e3d6f2ae…b596` and says that DEL-01-05 `_REVIEW.md` binds the SOW.
 - **R3-7 — reported to the caller**; outside every directory this instance created; not deleted.
 - The two repaired wording errors go to a fresh round-4 reviewer (`VERIFIER_VERDICT_08.md`).

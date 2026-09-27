@@ -1,4 +1,4 @@
-basis commit: 4b930819cd6630d5b4eb422dbb7054d731f2267c
+basis commit: 7004eaeda35699cbc1d22e26fe305dd95175d58d
 python: Python 3.13.7
 PASS act: check-only 0, apply 0, rerun refuses 1
 PASS containment: 12 differing files, all ScopeOfWork.md
