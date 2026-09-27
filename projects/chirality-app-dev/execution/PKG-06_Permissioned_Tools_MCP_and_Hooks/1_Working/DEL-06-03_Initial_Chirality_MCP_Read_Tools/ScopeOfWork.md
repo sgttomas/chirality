@@ -361,7 +361,7 @@ Named verification: Verify actual registration/call reach, read-only/path constr
 
 > ###### Scaffold Boundary Rationale
 >
-> Scaffold preview belongs in this read-tool slice only as a non-mutating planning surface. `docs/SPEC.md` Section 14.2 classifies `mcp__chirality__scaffold` as gated, while `docs/PLAN.md` R2 sequences read and preview capability before write/edit/bash expansion. The practical boundary is therefore: allow a deterministic preview of intended scaffold effects, deny or defer filesystem mutation, and move any write-capable scaffold execution to the later governed write/path-hook surface.
+> Scaffold preview belongs in this read-tool slice only as a non-mutating planning surface. `docs/SPEC.md` Section 14.2 classifies `mcp__chirality__scaffold` as gated, while `docs/PLAN.md` R2 sequences read and preview capability before write/edit/bash expansion. The practical boundary is therefore: allow a deterministic preview of intended scaffold effects, deny or defer filesystem mutation, and plan no write-capable scaffold tool: on the owner's direction of 2026-09-27 ("Scaffolding through the agent is enough."), execution roots are scaffolded by the agent through the Root `project-setup` workflow, and no App-side scaffold entry is planned (SCA-APP-012).
 >
 
 ### CLM-032 — Examples

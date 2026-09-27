@@ -658,52 +658,6 @@ button:disabled {
   transform: translateX(-50%);
 }
 
-/* Loop-first / direct-chat surface (`/chat`, D-APP-23): the live loop is the
-   primary pane and the multi-view sidebar sits on the right. */
-.loop-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(56px, 360px);
-  gap: 0.75rem;
-  min-height: 66vh;
-  align-items: stretch;
-}
-
-.loop-grid--sidebar-collapsed {
-  grid-template-columns: minmax(0, 1fr) 56px;
-}
-
-.loop-main {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  gap: 0.6rem;
-}
-
-.loop-persona-bar {
-  display: flex;
-  align-items: flex-end;
-  gap: 0.75rem;
-  padding: 0.5rem 0.1rem 0.65rem;
-  border: 0;
-  border-bottom: 1px solid var(--rule);
-  border-radius: 0;
-  background: transparent;
-}
-
-.loop-chat-host {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-}
-
-.loop-chat-host > .panel {
-  width: 100%;
-}
-
-.loop-sidebar {
-  min-width: 0;
-}
-
 .persona-picker {
   display: flex;
   flex-direction: column;
@@ -723,28 +677,6 @@ button:disabled {
 
 .persona-picker-error {
   color: var(--danger);
-  font-size: 0.78rem;
-}
-
-.portal-matrix-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.portal-matrix-heading {
-  min-width: 0;
-}
-
-.portal-start-session {
-  white-space: nowrap;
-}
-
-.portal-launch-notice {
-  margin: 0;
-  color: var(--ink-soft);
   font-size: 0.78rem;
 }
 
@@ -1402,162 +1334,8 @@ button:disabled {
   font-size: 0.72rem;
 }
 
-.portal-matrix header h3,
 .workbench-card h3 {
   margin: 0;
-}
-
-.portal-matrix header p {
-  color: var(--ink-soft);
-  margin: 0.45rem 0 0;
-}
-
-.matrix-grid {
-  margin-top: 0.95rem;
-  display: grid;
-  grid-template-columns: 140px repeat(4, minmax(0, 1fr));
-  gap: 0.45rem;
-}
-
-.matrix-header-cell {
-  border-radius: 10px;
-  border: 1px solid var(--rule);
-  background: var(--ground);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  padding: 0.5rem 0.45rem;
-  text-align: center;
-}
-
-.matrix-row-group {
-  display: contents;
-}
-
-.matrix-row-label {
-  border-radius: 10px;
-  border: 1px solid var(--rule);
-  background: var(--ground);
-  font-size: 0.82rem;
-  font-weight: 700;
-  padding: 0.56rem 0.5rem;
-  text-align: center;
-}
-
-.matrix-cell {
-  border-radius: 8px;
-  border: 1px solid var(--rule);
-  background: var(--ground);
-  color: var(--ink);
-  min-height: 58px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.18rem;
-}
-
-.matrix-cell small {
-  color: var(--ink-faint);
-  font-size: 0.68rem;
-}
-
-.matrix-cell:hover {
-  border-color: var(--accent);
-}
-
-.matrix-cell:disabled,
-.portal-start-session:disabled,
-.portal-deliverable-row:disabled {
-  cursor: not-allowed;
-  opacity: 0.58;
-  transform: none;
-}
-
-.portal-matrix--sidebar .portal-matrix-header {
-  flex-direction: column;
-  align-items: stretch;
-}
-
-.portal-matrix--sidebar .portal-start-session {
-  width: 100%;
-}
-
-.portal-matrix--sidebar .matrix-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-}
-
-.portal-matrix--sidebar .matrix-header-cell {
-  display: none;
-}
-
-.portal-matrix--sidebar .matrix-row-group {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.4rem;
-}
-
-.portal-matrix--sidebar .matrix-row-label {
-  grid-column: 1 / -1;
-  text-align: left;
-}
-
-.portal-matrix--sidebar .matrix-cell {
-  min-height: 52px;
-  padding: 0.45rem 0.35rem;
-}
-
-.portal-matrix--sidebar .portal-deliverable-grid {
-  grid-template-columns: minmax(0, 1fr);
-}
-
-.portal-deliverables {
-  margin-top: 0.95rem;
-  border-top: 1px dashed var(--rule);
-  padding-top: 0.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-}
-
-.portal-deliverables header h4 {
-  margin: 0;
-}
-
-.portal-deliverables header p {
-  margin: 0.3rem 0 0;
-  color: var(--ink-soft);
-  font-size: 0.86rem;
-}
-
-.portal-deliverable-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.45rem;
-}
-
-.portal-deliverable-row {
-  border: 1px solid var(--rule);
-  border-radius: 10px;
-  background: var(--ground);
-  text-align: left;
-  padding: 0.45rem 0.55rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.portal-deliverable-key {
-  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
-  font-size: 0.75rem;
-  color: var(--ink-soft);
-}
-
-.portal-deliverable-name {
-  color: var(--ink);
-  font-size: 0.86rem;
 }
 
 .workbench-card {
@@ -1665,17 +1443,6 @@ button:disabled {
     display: none;
   }
 
-  .loop-grid,
-  .loop-grid--sidebar-collapsed {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .loop-main,
-  .loop-sidebar {
-    min-width: 0;
-  }
-
-  .loop-persona-bar,
   .chat-input-row,
   .chat-attachment-header {
     flex-wrap: wrap;
@@ -1687,23 +1454,6 @@ button:disabled {
   .working-root-controls input {
     min-width: 0;
     width: 100%;
-  }
-
-  .portal-deliverable-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .matrix-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .matrix-header-cell:nth-child(1),
-  .matrix-header-cell:nth-child(2),
-  .matrix-header-cell:nth-child(3),
-  .matrix-header-cell:nth-child(4),
-  .matrix-header-cell:nth-child(5),
-  .matrix-row-label {
-    display: none;
   }
 
   .workbench-card dl {

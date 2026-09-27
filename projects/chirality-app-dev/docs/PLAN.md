@@ -6,6 +6,7 @@
 **Applies to:** Chirality App vNext development and release planning
 **Amended:** Amended under D-GOV-43 (A2), 2026-09-12: the D-APP-73 shared-runtime order and SCA-APP-003 effects are read with the application-owned Runtime service; residency steps retired
 **Amended (SCA-APP-011):** owner direction 2026-09-27: baseline, compatibility and §13 entries record the retired forms and routes
+**Amended (SCA-APP-012):** owner direction 2026-09-27: baseline, compatibility and §13 entries record the retired loop-first UI, `/api/working-root/scope` and `/api/working-root/workflow`
 
 This document captures the strategic development roadmap for Chirality App. It summarizes the accepted baseline, records the controlling runtime direction, identifies sequencing rationale, and defines the near-term implementation path.
 
@@ -34,7 +35,7 @@ The active vNext development source is the app-development workspace (`chirality
 The issued baseline already provides substantial product scaffolding:
 
 - Electron/Next.js desktop shell.
-- Live loop-first PORTAL, matrix, toolkit, file-tree, and replay surfaces; these remain the compatibility baseline while the owner-selected Woven Dialogue target is implemented and validated. SCA-APP-011 retired the WORKBENCH and PIPELINE forms.
+- The Woven Dialogue shell with toolkit, file-tree, and replay surfaces is the live baseline on `/`, `/chat`, `/workbench` and `/pipeline` (since 2026-09-09). SCA-APP-011 retired the WORKBENCH and PIPELINE forms; SCA-APP-012 retired the loop-first PORTAL and matrix shell.
 - Working-root selection and validation.
 - Harness session create/boot/list/get/delete APIs.
 - Turn SSE route with session-level active-turn locking.
@@ -116,8 +117,9 @@ The implementation must preserve the mounted primary live dialogue, explicit
 next-turn context, source/provenance/currency labels, exact recorded
 parentage, isolated read-only replay, current browser-facing SSE behavior,
 public route/API/query shapes (apart from the four routes SCA-APP-011
-retired), provider composition, security boundaries, and the loop-first UI
-through the compatibility period.
+retired and `/api/working-root/scope` and `/api/working-root/workflow`,
+retired by SCA-APP-012), provider composition and security boundaries
+through the compatibility period. SCA-APP-012 retired the loop-first UI.
 
 The historical R0/R1 sequence below remains strategic history. The D-APP-73
 shared-runtime execution order in §13.1 is read with D-GOV-43 (A2): the App
@@ -184,7 +186,7 @@ Acceptance:
 - Reliance-boundary register covers P0 audit, permission, path, transcript, settings, and human-gate semantics.
 - SDK messages map to stable UI/runtime events.
 - Terminal success, failure, interruption, and cancellation persist.
-- Route shapes and SSE event names are unchanged (SCA-APP-011 later retired `/api/harness/scaffold` and the three deliverable routes).
+- Route shapes and SSE event names are unchanged (SCA-APP-011 later retired `/api/harness/scaffold` and the three deliverable routes, and SCA-APP-012 `/api/working-root/scope` and `/api/working-root/workflow`).
 - Settings isolation test passes.
 - SDK session ID and transcript/store linkage persist.
 - No new user-visible local tool capability is enabled beyond current surface.
@@ -391,7 +393,7 @@ R1 packaging checks must prove:
 - Work/Agents displays only admitted project/runtime records with visible source class/reference, status basis, currency, and exact recorded relationships.
 - Conversational prose is not silently converted into work; runtime completion is not deliverable acceptance.
 - Selected-session replay is clearly labelled, read-only, and isolated from primary dialogue draft, context, permissions, interruption, and interaction authority.
-- Existing routes, queries, aliases/matrix behavior, APIs, SSE, provider composition, and old UI remain compatible until a separate owner retirement decision.
+- Existing routes, queries, aliases/matrix behavior, APIs (apart from the routes SCA-APP-011 and SCA-APP-012 retired), SSE, and provider composition remain compatible until a separate owner retirement decision; SCA-APP-012 is that decision for the old loop-first UI.
 - Tool-heavy turns remain readable.
 - Permission decisions are visible without overwhelming users.
 - No UI or packaging implies Chirality is Claude Code or an Anthropic product.
@@ -507,6 +509,7 @@ This plan remains acceptable only if:
 | `SCA-APP-003` | 2026-07-22 | Promotes the executable harness to root `runtime/`, then adds one shared daemon, authenticated Unix-socket client/CLI, explicit local-model residency, the app-dev Agent 1 → local Agent 2 pilot, PEC client migration, and public generic-runtime export. Read with D-GOV-43 (A2, 2026-09-12): the shared daemon becomes the App-owned Runtime service child; residency and the Pi/oMLX pilot are retired; CLI and PEC compatibility with the socket API is unverified. |
 | `SCA-APP-004` | 2026-07-23 | Selects Woven Dialogue with a Work/Agents Coordination Panel; preserves runtime/API/SSE/security/history and compatibility while adding provenance-labelled informational projection, explicit context/artifact anchors, and strict primary-dialogue/read-only-replay separation. |
 | `SCA-APP-011` | 2026-09-27 | Retires the obsolete Workbench and Pipeline forms and their tests, the deliverable status, status-transition and dependency HTTP routes with their client fetch functions, and `POST /api/harness/scaffold` with its client function; keeps the lifecycle, dependency and scaffold libraries; rescopes DEL-02-02 without retiring it. |
+| `SCA-APP-012` | 2026-09-27 | Retires the loop-first compatibility UI (its shells, role-directory panel, discarded `legacy` prop and `?legacy=1` link, and the `lib/portal` matrix helpers), `DeliverablesProvider`, `GET /api/working-root/scope`, the unmounted flat-file workflow view with `GET /api/working-root/workflow`, and DEL-02-03-REQ-009; keeps the `/workbench` and `/pipeline` URLs as unlisted entries into the dialogue shell; records that no App-side scaffold entry is planned. |
 
 ### 13.1 D-APP-73 execution order
 
@@ -536,7 +539,8 @@ local models, and production PEC use remain later governed milestones.
    singletons, drafts/toolkit/layout state, and packaged Desktop startup.
 2. Add the Woven Dialogue shell behind a reversible compatibility selection
    while keeping the provider composition and primary dialogue controller
-   singular.
+   singular. (History: the selection was removed on 2026-09-09, commit
+   `9b005c23a`, and SCA-APP-012 retired the loop-first side.)
 3. Add provenance-bearing inline/focused artifact presentation and explicit
    next-turn context references without treating visible material as model
    context.
@@ -557,9 +561,9 @@ local models, and production PEC use remain later governed milestones.
    security, build, premerge, instruction-root, and packaged Desktop
    validation, followed by independent semantic-boundary review.
 
-The existing loop-first UI remains the compatibility implementation after
-this sequence until parity evidence is accepted and the owner separately
-authorizes retirement. SCA-APP-004 does not authorize runtime/API expansion,
+After this sequence the existing loop-first UI remained the compatibility
+implementation until the owner separately authorized retirement; SCA-APP-012
+records that authorization. SCA-APP-004 does not authorize runtime/API expansion,
 arbitrary graphs, multiple-child execution, scheduling, direct child
 messaging, global AgentRun discovery, automatic intent summarization, or model
 routing/residency control.
