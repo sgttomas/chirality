@@ -42,7 +42,7 @@ OVERALL PASS (on the plain tree: the `D-PEC-102` act has landed, so the S4 overl
 
 ## Verdicts
 
-`VERIFIER_VERDICT_01..12.md` in the prep folder (reviewer returns with manager dispositions). Round 8 (`VERIFIER_VERDICT_12.md`) is **PASS WITH NOTES with nothing blocking**; its text notes are repaired. Round 9 (`VERIFIER_VERDICT_13.md`) checks the finalization after the `D-PEC-102` act landed. The final verdict state is given in the manager's hand-back. No verdict records a ruling.
+`VERIFIER_VERDICT_01..12.md` in the prep folder (reviewer returns with manager dispositions). Round 8 (`VERIFIER_VERDICT_12.md`) is **PASS WITH NOTES with nothing blocking**; its text notes are repaired. Round 9 (`VERIFIER_VERDICT_13.md`), the finalization after the `D-PEC-102` act landed, is **PASS WITH NOTES with nothing blocking**; its text notes are repaired. The final verdict state is given in the manager's hand-back. No verdict records a ruling.
 
 ## Owner questions (in the draft)
 

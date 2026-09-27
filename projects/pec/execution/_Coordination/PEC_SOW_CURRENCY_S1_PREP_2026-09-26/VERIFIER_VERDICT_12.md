@@ -23,6 +23,6 @@ Confirmed (as returned): the register at `78e74f590` (`e167f532…e4bf`; D-PEC-1
 - **R8-2 — accepted, repaired** ("the `D-PEC-102` postimages").
 - **R8-3 — `run_s1p_checks.sh` comment repaired (aid hash updated in the draft); `apply_s1p.py` comment left as is** so the bound script hash (`26b677a7…625f`) stays bound; it is a comment only.
 - **R8-4 — accepted, repaired** (the return's bullet now matches the ruled state).
-- **R8-5 — done before hand-back.**
+- **R8-5 — to be done before hand-back** (first written "done before hand-back"; corrected after verdict 13, R9-2: the scratch export was still used for the final runs and is deleted after them).
 - **R8-6 — noted.** The draft cites `78e74f590`; `c26677c8a` changes nothing S1 depends on. HELP_HUMAN merges or refreshes at publication; the act's preflight re-verifies every pin on its own basis.
 - Nothing blocks. These are text notes; no further review round was run for them. The final runner and control outputs at `78e74f590` are in `evidence/`.
