@@ -7402,3 +7402,14 @@
   - Checks: this ledger's validator, Root G0–G4, conflict-marker and run-record-leak checks, the workflow index check, `git diff --check` and export freshness, as recorded in the hand-off.
   - Model-Attribution: Claude Code TASK-type subagent for the coordinating session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
   - Gate-Outcome: `AWAITING_OWNER` — recommended: invert DEP-02-01-006 (HGD-1); close HGD-3 without emitting; resolve DEP-02-01-012 to DEL-05-03 (FC-1); close FC-2 and FC-3 without emitting. Result: 104 edges, 0 SCC, no blocker verdict change. No dependency, lifecycle, scope or pointer write; no release.
+
+- **2026-09-27 — Receipt 279** (HGD-1, HGD-3 and FC-1 to FC-3: the owner's ruling applied to the DEL-02-01 register).
+  - Receipt-ID: `Receipt-279`
+  - Examined-Through: `adc8bdae18b2e1e48dcf01a304cc055d2cbf84e0`
+  - Parent-Receipt: `Receipt-278`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING; the owner typed on 2026-09-27, verbatim: "HGD-1: invert DEP-02-01-006 to UPSTREAM INTERFACE; HGD-3: close without emitting; FC-1: resolve DEP-02-01-012 to DEL-05-03; FC-2 and FC-3: close without emitting." Transcribed in `execution/_Coordination/AgentRuns/APP-HGD-1-3-RECOMMENDATION-2026-09-27/CHAT_TRANSCRIPTION_HGD_2026-09-27.md`.
+  - Pointers: run receipt `execution/_Coordination/AgentRuns/APP-HGD-1-3-RECOMMENDATION-2026-09-27/RECEIPT.md` (row diffs, `dep_extract/`); DEL-02-01 `Dependencies.csv` and `_DEPENDENCIES.md`; `execution/_Evaluation/DepClosure/CLOSURE_HGD_FC_RULING_2026-09-27_1923/`; `MEMORY.md` rows in DEL-02-01, DEL-08-02 and DEL-05-03.
+  - Stale-Map-Delta: Receipt-278 records HGD-1, HGD-3 and FC-1 to FC-3 as awaiting the owner; all five are now closed. The DepClosure `_LATEST.md` pointer still names the 1739 snapshot; moving it to the 1923 snapshot is proposed to the manager.
+  - Checks: this ledger's validator, the dependency schema and register validators (EVQ-006 unchanged), Root G0–G4, conflict-marker and run-record-leak checks, the workflow index check, `git diff --check`, `run_affected_tests.py` and export freshness, as recorded in the hand-off.
+  - Model-Attribution: Claude Code TASK-type subagent for the coordinating session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
+  - Gate-Outcome: `EXECUTED` — `dependency-extract` UPDATE on DEL-02-01: DEP-02-01-006 inverted to UPSTREAM INTERFACE; DEP-02-01-012 resolved to DEL-05-03 (IMPLICIT/MEDIUM); HGD-3, FC-2 and FC-3 closed without a row. Closure: 104 edges, 0 SCC; no blocker verdict change. No scope or lifecycle change; no release.

@@ -1,6 +1,8 @@
 # HGD-1, HGD-3 and the fenced candidates FC-1 to FC-3: recommendations for the owner
 
-Status: **proposal only.** No register has been written. Each ruling below is yours to make.
+Status: **ruled and applied.** On 2026-09-27 the owner adopted the proposed reply below word for word
+([CHAT_TRANSCRIPTION_HGD_2026-09-27.md](CHAT_TRANSCRIPTION_HGD_2026-09-27.md)). The ruling is applied to the DEL-02-01
+register; see [RECEIPT.md](RECEIPT.md). The rest of this document is the proposal as it was presented.
 
 Basis: `origin/main` `0adfbc7476df33521883ce1573781237cd24d384`, after PR #1009. The candidate was rebased onto
 `8bbd022b98140e2128b6132bf661786ee3a8d108` (PR #1011), which changes only `projects/chirality-app-v4`;

@@ -19,3 +19,9 @@
 D-APP-131 lift (b), D-GOV-43/A2, D-APP-127 and applicable D-APP-132 dispositions applied to the current claim blocks. Earlier dated decisions, checks and lifecycle/approval evidence remain historical. App clients and diagnostics conform to Runtime-owned secret hygiene. Generic run-logger implementation belongs to Runtime under SCA-APP-005; the App owns its presentation/transport sinks and conformance evidence.
 
 Current unfinished delivery: Deliver structural secret protection at every live sink and preserve metadata; verify the complete synthetic-secret matrix and record the still-unknown external transcript/withheld behavior. Closed event schema v2 and retired daemon acceptance are not prerequisites. See `_STATUS.md` Remaining and the W04_06 current row derivative; no new product test, native outcome, issuance or release is claimed.
+
+## Runs
+
+| Run ID / date | Work in this deliverable | Result and source links |
+|---|---|---|
+| `APP-HGD-1-3-RECOMMENDATION-2026-09-27` / 2026-09-27 | Neighbour of the owner's FC-1 ruling: DEL-02-01's DEP-02-01-012 now names this deliverable as the owner of the redaction helper that derived chat titles pass (IMPLICIT/MEDIUM). No file of this deliverable changed | DEL-02-01 register updated; receipt `execution/_Coordination/AgentRuns/APP-HGD-1-3-RECOMMENDATION-2026-09-27/RECEIPT.md` |
