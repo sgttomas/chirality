@@ -1,0 +1,17 @@
+[
+  {
+    "findings": [
+      {
+        "category": "NOT_APPLICABLE",
+        "detail": "no REQ-NNN definitions; contract is outside the SOW_V1 requirement grammar",
+        "owners": [],
+        "requirement_id": "-"
+      }
+    ],
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md",
+    "requirements_checked": 0,
+    "requirements_not_checkable": 0,
+    "requirements_without_cited_claim": 0,
+    "status": "NOT_APPLICABLE"
+  }
+]

@@ -22,7 +22,7 @@ See the current formal `Dependencies.csv` rows whose Direction is DOWNSTREAM. No
 
 ## Current Extracted Dependency Summary — 2026-09-22
 
-Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated sections elsewhere in this file keep the counts of their dates.
+Current as of 2026-09-27 (`APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27`). Dated sections elsewhere in this file keep the counts of their dates.
 
 | Count Type | Count |
 |---|---:|
@@ -96,6 +96,20 @@ Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated s
 - ESR-1 re-evidence: DEP-02-04-017, DEP-02-04-018, DEP-02-04-019 cited the former `_STATUS.md` `## Remaining` section, retired on 2026-09-23. Each is re-anchored in place to a current accepted source that states the dependency: the owner ruling record D-APP-110 (its SD-003 decompose names the row) or the decomposition Scope Ledger allocation (IMPLICIT, MEDIUM). The D-APP-110 record lies outside the workflow's default read boundary and was read because it is the accepted ruling that names these rows. No edge, target, status or satisfaction changed.
 - ESR-1 CLOSED 2026-09-27: DEP-02-04-015, DEP-02-04-016 were held as retire candidates (no current source; preserved by the accepted 2026-09-23 instrument) and are now RETIRED by the owner's ruling in chat on 2026-09-27 (verbatim, transcription `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/CHAT_TRANSCRIPTION_ESR-1_2026-09-27.md`): "ESR-1: retire DEP-02-02-021, DEP-02-04-015, DEP-02-04-016 and DEP-02-01-014."
 
+### 2026-09-27 SCA-APP-012 incremental setup refresh (UPDATE)
+
+- Run: `APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27`, `project-setup` INCREMENTAL Phase 5.6 (FULL_GRAPH) dispatch of `bundled:chirality-root/dependency-extract`, run directly by WORKING_ITEMS after the owner confirmed the SCA-APP-012 incremental plan on 2026-09-27 (verbatim in `execution/_Coordination/AgentRuns/APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27/CHAT_TRANSCRIPTION.md`). Role: FULL_GRAPH neighbour of the SCA-APP-012 MODIFY set.
+- Runtime overrides: `SCOPE=DEL-02-04`; `RUN_ROOT=projects/chirality-app-dev/execution`; `DECOMPOSITION_PATH=projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=NONE`; `SOURCE_DOCS=AUTO` (`ScopeOfWork.md`, `_CONTEXT.md`, `_REFERENCES.md`, `_STATUS.md`); `ANCHOR_DOC=ScopeOfWork.md`; `EXECUTION_DOC_ORDER=ScopeOfWork.md, _CONTEXT.md`.
+- Decomposition authority: FOUND, SHA-256 `6ac7811824201b7abaf2fdd4b6d208cd2d3c92c56126d2a4aa34114fad29a577` (as amended by SCA-APP-012).
+- Source-preservation gate: `ScopeOfWork.md` `c9ca9a88b55342346026e5d2084e87b251be60113f9230172bcaeebe4628e7c5`; `_CONTEXT.md` `4bace1787763133087a75466b4cda5cb0eeadbbc8ba70040190708b25fc50dc6`; `_REFERENCES.md` `e53106bf8b5000618f45b74217c79d1f1b938272954f15032184ce8c77dd7bc6`; `_STATUS.md` `eae207cc0192856b9bc328ce8a00d00f54b33240725959d2f716015d6a2a704b`; read-only and unchanged by this run.
+- Pre-images: `Dependencies.csv` `2d13fd9df680fbfd8819855c6445bb5d3295c8724294885097e9743f8c6178ae`, `_DEPENDENCIES.md` `e0aa9c8301d0b019c60ecc1dc756864326d50faf3346656d3c39da86591b8ec4`.
+- Method: every existing ACTIVE row was re-checked against its cited current source (quote found verbatim, and not only inside a `[RETIRED` clause). Previous extraction: 2026-09-27, `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`; no source text changed since; that text was scanned for new explicit cross-deliverable relationships. Unchanged source text yields the rows already recorded.
+- Results: re-seen 19 (`LastSeen=2026-09-27`); restated in place 0; retired 0; added 0. No row deleted; every existing `DependencyID` preserved; `Status=CANDIDATE` not emitted.
+- Declared entries: none (the declared sections carry no SPEC §5.2 entry). Mirror rows added 0, refreshed 0, retired 0; entries skipped 0.
+- Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` row (1).
+- Function 5 checks (`execution/_Coordination/AgentRuns/APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27/dep_extract/FUNCTION5_CHECKS.json`): `validate_dependencies_schema.py` PASS; `DependencyID` unique; every enum value written by this run VALID (`validate_enum.py`); ID format PASS for `FromDeliverableID`, `FromPackageID` and every `DependencyID` (`validate_id_format.sh`); index counts match `Dependencies.csv`.
+- [INFO] EVQ-006 (report-only, `validate_decomposition_registers.py --families EVQ,DRB`): the current validator resolves `EvidenceFile` under its allowed bases, which do not include the repository-relative `projects/chirality-app-dev/...` form some App rows use; it reports 84 such rows project-wide. This run changed no `EvidenceFile`, so the count is unchanged and no row this run changed carries the finding; no EVQ-003, EVQ-004 or DRB-006 finding.
+
 ## Run Notes - 2026-09-05 SCA-APP-010 dependency closure (DEP-005, DEP-006)
 
 - Run: `TASK + dependency-extract`, instance `N1-TASK-DEL-02-04` of `execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/` (report-only preview first; these bytes reach the carrier only as the reviewed post-image authorized by SCA-APP-010 `FUTURE_WRITE_SET.csv` rows DEP-005 and DEP-006 after owner acceptance of the WORKING_ITEMS alignment).
@@ -159,10 +173,11 @@ Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated s
 | 2026-09-05T08:02-0600 (D-APP-109 emission) | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` found at pinned identity `c7c05169` (content commit `dbd812a5`) | PROJECT_ID_FORMAT_PROFILE; INSTRUCTION_ROOT_DECLARED_BY_BRIEF; CYCLE_PARTICIPATING x5 (DEP-02-04-015..019 emitted under D-APP-109, non-gating until the SCC is resolved) | 21 |
 | 2026-09-05T10:12-0600 (D-APP-110 decompose) | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` found at pinned identity `c7c05169` (content commit `dbd812a5`) | PROJECT_ID_FORMAT_PROFILE; INSTRUCTION_ROOT_DECLARED_BY_BRIEF; DECOMPOSE x3 (DEP-02-04-017, -018, -019 re-targeted to the DOCUMENT contract DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 under D-APP-110 SD-003, SD-006, SD-004); RESOLVED x2 (DEP-02-04-015, -016 Notes only) | 21 |
 | 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`) | UPDATE | CONSERVATIVE | FOUND `cf6e56ebb147…` (SCA-APP-011 amended) | none | ACTIVE=19 (ANCHOR=6; EXECUTION=13) |
+| 2026-09-27 (`APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27`) | UPDATE | CONSERVATIVE | FOUND `6ac781182420…` (SCA-APP-012 amended) | none | ACTIVE=19 (ANCHOR=6; EXECUTION=13) |
 
 ## Lifecycle Summary
 
-Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`), from `Dependencies.csv`; counts cover all rows (ACTIVE and RETIRED). This projection changes no satisfaction or maturity.
+Current as of 2026-09-27 (`APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27`), from `Dependencies.csv`; counts cover all rows (ACTIVE and RETIRED). This projection changes no satisfaction or maturity.
 
 | Dimension | Value | Count |
 |---|---|---:|
