@@ -139,3 +139,4 @@ Scratch directory, kept for rerun (nothing else touched): `/private/tmp/claude-5
 | NOTE 3 (QA-21 rows REQ-004, REQ-020) | Repaired: "(CLM-009 named, not cited)" |
 | NOTE 4 (check commit) | Repaired: the draft is re-anchored to `origin/main` `b990b0c90` |
 | NOTE 5 (verdict 02 cross-reference) | Repaired: verdict 02's disposition now says "verdict 05" |
+| (transcription note) | The report's "`3152effc…e449`" is the reviewer's typo [sic: the hash bound at `cf23df7df` ends `…ce449`, as verdict 04 states]; the report text is kept verbatim |

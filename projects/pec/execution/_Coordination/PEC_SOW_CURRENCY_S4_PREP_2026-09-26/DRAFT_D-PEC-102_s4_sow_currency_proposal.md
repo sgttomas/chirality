@@ -1,6 +1,6 @@
 # D-PEC-102 — Scope of Work currency for the S4 set (DEL-04-01, DEL-04-02, DEL-08-01, DEL-08-03, DEL-08-04, DEL-04-03, DEL-03-04, DEL-10-03) — proposal
 
-Status: **DRAFT PROPOSAL / AWAITING_RULING**. **The number D-PEC-102 is provisional.** At `origin/main` `b990b0c90` the decision register has no D-PEC-102 row, and two other next-wave packets are being prepared in parallel. The number becomes final only when HELP_HUMAN publishes this packet in `_DECISIONS/` with its register row and moves that row to `AWAITING_RULING`.
+Status: **DRAFT PROPOSAL / AWAITING_RULING**. **The number D-PEC-102 is provisional.** At `origin/main` `4b930819c` the decision register has no D-PEC-102 row, and two other next-wave packets are being prepared in parallel. The number becomes final only when HELP_HUMAN publishes this packet in `_DECISIONS/` with its register row and moves that row to `AWAITING_RULING`.
 
 Prepared by WORKING_ITEMS (Type 1) under HELP_HUMAN (undertaking `HELP-HUMAN-PEC-20260925-POST-SCA005`, work-graph node S4) for the PEC loop, 2026-09-26 (session date). Brief: `briefs/S4P_SOW_CURRENCY_PROPOSAL.md` (SHA-256 `d00a739afc1f4bc03bd5bd9862fb104d880c22ccce6859dbe85c7e588802dc67`), plus HELP_HUMAN's relayed resume directions (quoted under Provenance). No earlier direction approves this file. It performs no production act: no tracked production file was edited, and every check ran on `git archive` exports. Suggested filing name: `execution/_Coordination/_DECISIONS/D-PEC-102_s4_sow_currency_proposal_2026-09-26.md`.
 
@@ -43,12 +43,13 @@ The act it asks for is bounded: **replace eight existing `ScopeOfWork.md` files 
 - **Fence.** `projects/pec/AGENTS.md` (`df9196d152a01afe59b388111ae0a14381b4ad74f280e95f9c44a1eaee925eb8`) §"Write Scopes And Fences": every write under `projects/pec` outside `execution/_Coordination/**`, `AGENTS.md` and the STATUS pointer needs an owner-ruled D-PEC packet naming exact paths, acts, verification and rollback. No earlier ruling opens the eight targets.
 - **Source state.**
   - **Observation commit `125cfacc1`** (`125cfacc10f664685cb91802a9166b1041f42a25`, the PR #979 merge). This was `origin/main` when preparation began. Each candidate says that every unanchored state claim is an observation there, and every quotation and state claim in the verifier inputs is read at a named commit, `125cfacc1` or earlier.
-  - **Frontmatter pin `189f205ff02df4111b33c20be441ce06e65ada7a`** (SCA-006 checkpoint-3 acceptance, PR #954), an ancestor of `origin/main`. The decomposition, `Deliverables.csv`, `ScopeLedger.csv`, `ContextBudgetQA.csv` and `docs/PRD.md` are byte-identical at the pin, at `125cfacc1` and at `b990b0c90`.
-  - **Checked again at `origin/main` `b990b0c909e88176c1afcf82ca24623ba8172a40`** (PR #988 merge) after `git fetch`. Since `125cfacc1`, `projects/pec` changed only in:
+  - **Frontmatter pin `189f205ff02df4111b33c20be441ce06e65ada7a`** (SCA-006 checkpoint-3 acceptance, PR #954), an ancestor of `origin/main`. The decomposition, `Deliverables.csv`, `ScopeLedger.csv`, `ContextBudgetQA.csv` and `docs/PRD.md` are byte-identical at the pin, at `125cfacc1` and at `4b930819c`.
+  - **Checked again at `origin/main` `4b930819cd6630d5b4eb422dbb7054d731f2267c`** (PR #987 merge) after `git fetch`. Since `125cfacc1`, `projects/pec` changed only in:
     - PR #981: the undertaking `WORK_GRAPH.md` and the review transcriptions `REVIEW_PR981_0{1,2,3}.md`;
-    - PR #982: the undertaking `WORK_GRAPH.md` again, the retirement undertaking's `WORK_GRAPH.md`, its central `RECEIPT.md`, `REVIEW_PR982_0{1,2}.md` and `docs/STATUS.md`.
+    - PR #982: the undertaking `WORK_GRAPH.md` again, the retirement undertaking's `WORK_GRAPH.md`, its central `RECEIPT.md`, `REVIEW_PR982_0{1,2}.md` and `docs/STATUS.md`;
+    - PR #987: the K2 preparation folder `PEC_FIRST_SOWS_K2_PREP_2026-09-26/` and `briefs/K2P_FIRST_SOWS_PROPOSAL.md`, `returns/K2P_FIRST_SOWS_PROPOSAL.md`, `returns/REVIEW_PR987_0{1,2,3}.md`.
 
-    PRs #973 and #984 changed Piping files only; PR #985 changed Root tools, exports and workflows; PR #988 changed App files, exports and one Root tranche manifest. Every preimage and all 19 pinned files hash the same at `125cfacc1` and `b990b0c90`. The act script rendered at each commit is byte-identical, apart from its one comment line naming the commit.
+    PRs #973 and #984 changed Piping files only; PR #985 changed Root tools, exports and workflows; PR #988 changed App files, exports and one Root tranche manifest; PR #987 added only the K2 preparation folder and its AgentRuns brief, return and review transcriptions. Every preimage and all 19 pinned files hash the same at `125cfacc1` and `4b930819c`. The act script rendered at each commit is byte-identical, apart from its one comment line naming the commit.
 - **Holds.** `execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv` (`f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc`) has a header and no rows. `execution/_Scripts/pec_reliance_hold.py` (`b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e`) was run from `projects/pec` of a `125cfacc1` export with `--operation exact-correction-preparation` on all 24 possible targets (eight `ScopeOfWork.md`, eight `_STATUS.md`, eight `MEMORY.md`): `ALLOW`, exit 0, ×24 (`evidence/reliance_hold_preflight.out`).
 
 ## Method
@@ -76,22 +77,24 @@ The act it asks for is bounded: **replace eight existing `ScopeOfWork.md` files 
 - **Actors.**
   - Eight Type 2 TASK drafters, one per deliverable, in one authoring round.
   - WORKING_ITEMS reconciled the eight and made the wording corrections listed under "Cross-candidate coherence". It also bound the act, extended the check aids (a multiplicity rule in the quote verifier, external-citation and heuristic scans) and ran the checks.
-  - Fresh read-only `pec-reviewer` TASKs, one per verdict, ran `MODE=VERIFY` and the packet review (`VERIFIER_VERDICT_01.md` onward): verdicts 01–03 on all eight candidates and the packet (two FAIL, one blocking finding each, both repaired; one PASS WITH NOTES), verdicts 04–05 re-verifying the repairs (PASS WITH NOTES, nothing blocking), and verdict 06 on the final bytes.
+  - Fresh read-only `pec-reviewer` TASKs, one per verdict, ran `MODE=VERIFY` and the packet review (`VERIFIER_VERDICT_01.md` onward): verdicts 01–03 on all eight candidates and the packet (two FAIL, one blocking finding each, both repaired; one PASS WITH NOTES), verdicts 04–05 re-verifying the repairs (PASS WITH NOTES, nothing blocking), and verdict 06 on the final bytes (PASS WITH NOTES; its one non-blocking finding, the DEL-04-01 exact-byte acceptance disclosure, is repaired in this draft and checked in verdict 07).
   - Models: Opus 5.5 (`claude-opus-5-5`) at `high` for every actor, per the brief.
-- **Tools** (`tools/scope_of_work/`, unchanged at `b990b0c90`): `validate_scope_of_work.py` `f0f10590…fecfe`, `derive_review_checklist.py` `bfb64dc9…0109`, `check_boundary_owner_resolution.py` `22ef57e0…ae16a`, `common.py` `61a34722…0389`.
+- **Tools** (`tools/scope_of_work/`, unchanged at `4b930819c`): `validate_scope_of_work.py` `f0f10590…fecfe`, `derive_review_checklist.py` `bfb64dc9…0109`, `check_boundary_owner_resolution.py` `22ef57e0…ae16a`, `common.py` `61a34722…0389`.
 
 ## What preparation found
 
 ### Scope and lifecycle
 
 - **Eight deliverables, exactly the checkpoint-2 set.** DEL-00-03 is not touched here; it is `CHECKING` and goes through D1.
-- **Lifecycle: all eight are `INITIALIZED`** at `125cfacc1` and at `b990b0c90`; each `_STATUS.md` was read. None is `CHECKING` or `ISSUED`.
+- **Lifecycle: all eight are `INITIALIZED`** at `125cfacc1` and at `4b930819c`; each `_STATUS.md` was read. None is `CHECKING` or `ISSUED`.
 - **What the method does to `_STATUS.md`: nothing.** `WORKFLOW.md` says: "Do not modify `_STATUS.md`, lifecycle state, underscore control files, …". `resources/checks.md` item 3 requires "`_STATUS.md` is byte-identical and its lifecycle state is unchanged".
   - The standard (§8) defines `INITIALIZED` as the selected production contract existing and validating. Each postimage validates, so the condition that made each deliverable `INITIALIZED` still holds after the act.
   - **No transition is proposed.** The act script refuses to run if any `_STATUS.md` differs from its pinned bytes.
 - **DEL-04-01's review evidence (disclosed).** DEL-04-01's folder holds `_REVIEW.md` and `Review_Findings.csv`: an owner-opened `PEER_REVIEW` of 2026-08-09, gates 1–4 complete, Gate 5 not entered, with RF-001 and RF-002 `RESOLVED` by a bounded repair to the prior contract (`6f4e8c66…30ae`).
-  - That review evidence concerns the prior bytes. After this act it describes a superseded contract, and it is not evidence about the postimage. The repaired content of those findings (CLM-008's evidence cells, CLM-009's upstream state) stays true in the postimage (re-checked at `125cfacc1`).
-  - This packet claims, changes and prompts no review state. `_REVIEW.md` and `Review_Findings.csv` are not written.
+  - **The record also carries an owner exact-byte acceptance of the prior contract.** It states that "The owner has now performed the explicit `ACCEPT_EXACT_BYTES` act for `ScopeOfWork.md` SHA-256 `6f4e8c66a5712ba73e5000f1eafbfd5dd821bb4c339a23d77aa46b5b558830ae`", records the closure state `ARTIFACT_ACCEPTANCE_COMPLETE / GATE_5_UNENTERED / INITIALIZED`, and says: "Any SOW byte change invalidates this acceptance and requires a new checklist derivation and REVIEW rerun." (`_REVIEW.md`, "Exact-byte acceptance and remaining gates".)
+  - **Ruling A therefore supersedes an owner-accepted contract.** On the record's own terms, the acceptance of the prior bytes lapses when the act lands. The postimage stands `INITIALIZED` (it validates), with no artifact acceptance until a later review, which this packet neither opens nor prompts. Among the eight deliverables, a search of `projects/pec` for the preimage hashes together with `ACCEPT_EXACT_BYTES` found such a record only for DEL-04-01.
+  - The review evidence concerns the prior bytes. After this act it describes a superseded contract, and it is not evidence about the postimage. The repaired content of those findings (CLM-008's evidence cells, CLM-009's upstream state) stays true in the postimage (re-checked at `125cfacc1`).
+  - This packet writes no review file and makes no acceptance claim. `_REVIEW.md` and `Review_Findings.csv` are not written; the recorded acceptance of the prior bytes lapses on its own terms.
   - Whether a later review of the new contract is wanted is an ordinary later steer; nothing here opens or closes one.
 
 ### The candidates
@@ -248,7 +251,7 @@ What each pass changes, in brief (the contracts and their provenance `AX-*` are 
   - DEL-08-03 `CON-005`/`CON-006`: response set; who confirms numeric budgets at Phase 1.
   - DEL-08-04 `CON-007`/`CON-008`.
   - DEL-04-02 `CON-008` and DEL-10-03 `CON-004`: no dependency edge from DEL-08-06; to K2 or a dependency packet.
-- **Relation to K2 and the tier-0 act.** Several `CON` items name DEL-08-06's or DEL-10-13's first Scope of Work (graph node K2) as a place they may resolve. This packet writes nothing for K2 and cites those deliverables only by register row. No tool is declared or invoked, and the SCA-006 §B6 tier-0 profile act stays a precondition before any agent tool-call tool is declared.
+- **Relation to K2 and the tier-0 act.** Several `CON` items name DEL-08-06's or DEL-10-13's first Scope of Work (graph node K2) as a place they may resolve. This packet writes nothing for K2 and cites those deliverables only by register row. No tool is declared or invoked, and the SCA-006 §B6 tier-0 profile act stays a precondition before any agent tool-call tool is declared. The K2 proposal (provisional `D-PEC-103`; its preparation merged in PR #987, `4b930819c`) cites no S4 local ID and reads the S4 preimages only as hash-anchored observations at `125cfacc1`, so landing this act breaks nothing in K2.
 - **Other records.** The eight `_CONTEXT.md`/`_REFERENCES.md` already name revision 1.6 (`D-PEC-101` K4). The `D-PEC-99` exhibit's Part A currency notes cite prior-contract line numbers; the exhibit is not edited, by rule. No ID is retired, so every Part A linked-ID list still resolves.
 
 ## Options
@@ -285,7 +288,7 @@ After this ruling and its register row are merged and observed on fetched `origi
 
 The postimages are the exact candidate files, copied byte for byte into the run root as `candidates/…`. They have no date slot.
 
-Read-only files the act re-verifies and never writes (SHA-256 at `125cfacc1`, equal at `b990b0c90`; the first five also equal at the pin `189f205ff`):
+Read-only files the act re-verifies and never writes (SHA-256 at `125cfacc1`, equal at `4b930819c`; the first five also equal at the pin `189f205ff`):
 
 - `projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md` `9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1`
 - `projects/pec/execution/_Decomposition/Deliverables.csv` `94ee5d182ae99092324505a72bf2f3b0581f85c0bae6c693214cfef709179805`
@@ -309,7 +312,7 @@ Read-only files the act re-verifies and never writes (SHA-256 at `125cfacc1`, eq
 
 ### Add-on M — MEMORY files (only if question 4 selects it)
 
-None of the eight folders has a `MEMORY.md` at `125cfacc1` or at `b990b0c90`. At the undertaking's closeout (graph node M1), WORKING_ITEMS creates, under `PKG-…/1_Working/<DEL folder>/`, eight files. Each is `docs/templates/MEMORY_TEMPLATE.md` (`5a9564f4663b000cdf0175bf4f0262001001bc50c719912499df2527d01c6a5a`) with `{{DEL-ID}}` replaced and exactly one `## Runs` row.
+None of the eight folders has a `MEMORY.md` at `125cfacc1` or at `4b930819c`. At the undertaking's closeout (graph node M1), WORKING_ITEMS creates, under `PKG-…/1_Working/<DEL folder>/`, eight files. Each is `docs/templates/MEMORY_TEMPLATE.md` (`5a9564f4663b000cdf0175bf4f0262001001bc50c719912499df2527d01c6a5a`) with `{{DEL-ID}}` replaced and exactly one `## Runs` row.
 
 | Deliverable | Path | Preimage | Act |
 |---|---|---|---|
@@ -381,7 +384,7 @@ Run from the repository root with `PYTHONDONTWRITEBYTECODE=1`, on the act branch
 | 6. State claims | `python3 <run root>/verify_s4p_state_claims.py --gitdir . --prep <run root>` | `RESULT PASS 1144/1144` (reads the named commits; independent of the working tree) |
 | 7. Sibling and external IDs | `python3 <run root>/check_sibling_ids.py <run root> .` | `RESULT PASS 57/57` |
 | 8. Lifecycle preserved | `git diff --name-status origin/main...HEAD -- '**/_STATUS.md' '**/_REVIEW.md' '**/Review_Findings.csv'` | empty |
-| 9. Registers and quote currency | `python3 tools/validation/validate_decomposition_registers.py --strict projects/pec/execution`, and `check_quote_currency.py`, before and after | outputs **identical** to the pre-act run. At `b990b0c90` strict gives exit 1, 0 errors, 26 `XRG-013` warnings (owner-deferred under D-GOV-48), and quote currency is 127/127. A new finding or a changed count fails |
+| 9. Registers and quote currency | `python3 tools/validation/validate_decomposition_registers.py --strict projects/pec/execution`, and `check_quote_currency.py`, before and after | outputs **identical** to the pre-act run. At `4b930819c` strict gives exit 1, 0 errors, 26 `XRG-013` warnings (owner-deferred under D-GOV-48), and quote currency is 127/127. A new finding or a changed count fails |
 | 10. Every-PR checks | `harness.py self-check`; `validate_pec_loop_receipts.py --repo-root .` | exit 0 each; output identical before and after |
 | 11. Containment | `git diff --name-status origin/main...HEAD` | the eight modified contracts; M's files if selected; the run root and HELP_HUMAN's records under `execution/_Coordination/**` (and `docs/STATUS.md` under `D-PEC-88`); nothing else |
 | 12. Whitespace | `git diff --check origin/main...HEAD` | clean |
@@ -457,7 +460,7 @@ Existing reliance-hold, dependency, lifecycle and release boundaries survive unc
 
 ## Questions only the owner can answer
 
-1. **A, amend or defer.** Recommendation: **A**, the eight exact replacements in one act, authored under `INIT` discipline and verified by `MODE=VERIFY`, as described under Method.
+1. **A, amend or defer.** Recommendation: **A**, the eight exact replacements in one act, authored under `INIT` discipline and verified by `MODE=VERIFY`, as described under Method. Ruling A lets the owner's 2026-08-09 exact-byte acceptance of DEL-04-01's prior contract lapse on the review record's own terms (see "Scope and lifecycle"). No review is opened, and nothing here asks about a lifecycle transition.
 2. **Part B reading.** Confirm that the ruling on this packet does the following:
    - places DEL-04-01-REM-001 and REM-002 into the DEL-04-01 contract verbatim, with their gates **still binding**: production stays gated on a separate exact owner-ruled DEL-04-01 production packet, WORKING_ITEMS activation and a current reliance preflight;
    - is the owner's acceptance of the exact documentary wording of DEL-04-02-REM-002 and DEL-04-03-REM-002 at their named loci **only**, as tabled;
@@ -474,10 +477,10 @@ Existing reliance-hold, dependency, lifecycle and release boundaries survive unc
 
 ## Preparation evidence
 
-Everything ran on `git archive` exports in the session scratchpad, never on a checkout. Interpreter: Python 3.13.7 (CPython); local date 2026-09-26. The final run (`evidence/run_main/SUMMARY.out`, from `run_s4p_checks.sh` at `b990b0c90`; every raw output is beside it):
+Everything ran on `git archive` exports in the session scratchpad, never on a checkout. Interpreter: Python 3.13.7 (CPython); local date 2026-09-26. The final run (`evidence/run_main/SUMMARY.out`, from `run_s4p_checks.sh` at `4b930819c`; every raw output is beside it):
 
 ```text
-basis commit: b990b0c909e88176c1afcf82ca24623ba8172a40
+basis commit: 4b930819cd6630d5b4eb422dbb7054d731f2267c
 python: Python 3.13.7
 PASS act: check-only 0, apply 0, rerun refuses 1
 PASS containment: 8 differing files, all ScopeOfWork.md
@@ -527,7 +530,7 @@ Preparation artifacts (all in this prep folder; hashes in `SHA256SUMS`):
 - `evidence/` (every check output, the reliance preflight, the checklists and the negative controls);
 - `VERIFIER_VERDICT_01.md` onward (the preparation verdicts, with dispositions).
 
-Basis at `125cfacc1` (equal at `b990b0c90` unless noted):
+Basis at `125cfacc1` (equal at `4b930819c` unless noted):
 
 | Source | SHA-256 |
 |---|---|
