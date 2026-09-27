@@ -1,4 +1,4 @@
-basis commit: 4087a4f8c500a84b85dc9e8652b632550ab21a5a
+basis commit: 78e74f590d6010a52565d250288290b3305a2942
 python: Python 3.13.7
 S4 overlay from 91a2e8407f27d03be0ad1c1a862f3c51b613196f (simulated S4 act on both exports where not yet applied): DEL-04-01_Loop_orientation_return=overlaid DEL-04-03_Citation_freshness_stamping=overlaid
 PASS act: check-only 0, apply 0, rerun refuses 1
@@ -40,7 +40,7 @@ PASS validate DEL-10-10
 PASS checklist DEL-10-10 (rerun byte-identical)
 PASS boundary DEL-10-10 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
 PASS quotes: RESULT PASS 884/884
-PASS state claims: RESULT PASS 904/904
+PASS state claims: RESULT PASS 905/905
 PASS qualified IDs: RESULT PASS 44/44
 PASS dependency quote currency (pre): RESULT PASS 127/127
 PASS dependency quote currency (post): RESULT PASS 127/127

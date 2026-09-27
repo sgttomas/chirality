@@ -1,14 +1,14 @@
-=== DEL-01-03 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.ahES33/post/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md
+=== DEL-01-03 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.pRYSDx/post/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md
 L78 SELF: 'is the PEC database of `PEC-K-02`: gitignored and safe to delete, holding a record tier that is regenerated from sources by one command and a presence tier that'
 L80 OTHER-SOW DEL-08-01: 'and the ledger note'
 L85 SELF: 'without naming a technology, and PRD §7.3 carries'
 L141 SELF: 'Settles exactly one case'
 L141 SELF: 'settles one case explicitly'
 --- DEL-01-03 counts {'UPSTREAM': 29, 'SELF': 4, 'OTHER-SOW': 1}
-=== DEL-01-04 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.ahES33/post/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md
+=== DEL-01-04 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.pRYSDx/post/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md
 L70 SELF: 'is an execution of the reconciler (`DEL-03-01`, `SOW-010`/`SOW-021`, P1) and'
 --- DEL-01-04 counts {'UPSTREAM': 17, 'SELF': 1}
-=== DEL-01-05 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.ahES33/post/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md
+=== DEL-01-05 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.pRYSDx/post/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md
 L81 OTHER-SOW DEL-10-03: "). The row's own `Notes` field reads"
 L81 SELF: '. At `D-PEC-62` §1.4 the owner accepted the DAG candidate'
 L81 SELF: ", and that packet reads the acceptance as taking the exhibit's flags as flags: the `C-08` standing-node set is one of the enumerated annotations that"
@@ -16,7 +16,7 @@ L81 SELF: '. What is settled is therefore the arithmetic exclusion — `C-08` is
 L84 SELF: "description). At this contract's authoring the requirement read"
 L84 SELF: '(PRD v2.2, commit `11a494e9a`); that referent is superseded. The runtime-ownership referent is `D-GOV-43` topology A2, which `projects/pec/AGENTS.md` §Shared Ru'
 --- DEL-01-05 counts {'UPSTREAM': 29, 'OTHER-SOW': 1, 'SELF': 5}
-=== DEL-02-01 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.ahES33/post/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/ScopeOfWork.md
+=== DEL-02-01 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.pRYSDx/post/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/ScopeOfWork.md
 L101 SELF: '``SOW-011,IN,Parse `_STATUS.md` files under a declared parser dialect,PEC-RCN-002,PKG-02,DEL-02-01,OBJ-001;OBJ-002,,FALSE,Feed split per DL-4`` (`DecisionRef` e'
 L101 SELF: '``SOW-011,IN,Parse `_STATUS.md` files under a declared parser dialect,PEC-RCN-002,PKG-02,DEL-02-01,OBJ-001;OBJ-002,,FALSE,Feed split per DL-4`` (`DecisionRef` e'
 L157 SELF: "- REQ-002 — The three compound §7.1 rows shall be decomposed exactly as the register records, each type carrying its row's purpose (CLM-006): ... (b) Package / "
@@ -49,7 +49,7 @@ L213 SELF: 'in the same entity purpose only as'
 L213 SELF: ", and no profile of the ruled vocabulary declares such a field or surface (CLM-014); PEC's own lifecycle files carry no `## Remaining` section (CLM-013). `PEC-K"
 L213 SELF: ", and §7.1's own DecisionRow row applies that rule to authored register prose in terms —"
 --- DEL-02-01 counts {'UPSTREAM': 60, 'SELF': 22, 'OTHER-SOW': 9}
-=== DEL-02-02 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.ahES33/post/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md
+=== DEL-02-02 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.pRYSDx/post/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md
 L99 SELF: '``SOW-012,IN,Parse decision registers and decision packets (row identity and status only — never row prose),"PEC-RCN-002, §7.1",PKG-02,DEL-02-02,OBJ-001;OBJ-002'
 L99 SELF: '``SOW-012,IN,Parse decision registers and decision packets (row identity and status only — never row prose),"PEC-RCN-002, §7.1",PKG-02,DEL-02-02,OBJ-001;OBJ-002'
 L99 SELF: '`Notes` `Content-minimal (C6)`.)'
@@ -68,7 +68,7 @@ L145 SELF: "The bracketed ellipsis marks an elision of that requirement's closin
 L170 OTHER-SOW DEL-01-01: 'a fixture carrying file content, diff hunks, register-row prose, work-graph outcome text and a `MEMORY.md` run description cannot be expressed in the model'
 L213 SELF: ', with the `SOW-075` note recording the assessment'
 --- DEL-02-02 counts {'UPSTREAM': 51, 'SELF': 8, 'OTHER-SOW': 9}
-=== DEL-03-01 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.ahES33/post/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/ScopeOfWork.md
+=== DEL-03-01 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.pRYSDx/post/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/ScopeOfWork.md
 L50 OTHER-SOW DEL-03-03: '`SOW-001, 003, 011..017, 021, 025, 040, 042, 052, 053, 054, 056, 088, 089, 094` (`Brief.md`, action-register row `A001`, target cell description. ID-shaped text'
 L50 OTHER-SOW DEL-03-03: '`SOW-001, 003, 011..017, 021, 025, 040, 042, 052, 053, 054, 056, 088, 089, 094` (`Brief.md`, action-register row `A001`, target cell description.'
 L50 OTHER-SOW DEL-02-04: 'ID-shaped text inside this quotation is upstream source context, not a local definition or reference.)'
@@ -196,7 +196,7 @@ L455 OTHER-SOW DEL-03-04: ', while every upstream feed unit is contractually obl
 L455 OTHER-SOW DEL-10-02: "is a claim about the command's reach rather than its coverage. This contract takes neither reading as settled: REQ-001 obliges the command to reach every regist"
 L455 OTHER-SOW DEL-03-04: 'without stating the bound, which `PEC-SVC-003` records as'
 --- DEL-03-01 counts {'OTHER-SOW': 77, 'SELF': 47, 'UPSTREAM': 95, 'S2-STALE': 2}
-=== DEL-03-02 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.ahES33/post/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/ScopeOfWork.md
+=== DEL-03-02 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.pRYSDx/post/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/ScopeOfWork.md
 L51 OTHER-SOW DEL-03-06: '`ScopeLedger.csv` `ObjectiveIDs` — 20 IN rows (`SOW-001, 003, 011..017, 021, 025, 040, 042, 052, 053, 054, 056, 088, 089, 094`) (`Brief.md`, action-register row'
 L51 OTHER-SOW DEL-03-06: '`ScopeLedger.csv` `ObjectiveIDs` — 20 IN rows (`SOW-001, 003, 011..017, 021, 025, 040, 042, 052, 053, 054, 056, 088, 089, 094`) (`Brief.md`, action-register row'
 L51 OTHER-SOW DEL-02-04: 'ID-shaped text inside this quotation is upstream source context, not a local definition or reference.)'
@@ -256,7 +256,7 @@ L231 SELF: "and `PEC-RCN-003`'s"
 L292 OTHER-SOW DEL-03-06: "`SOW-021`'s second limb permits writes to \\"
 L292 OTHER-SOW DEL-03-01: ', and the gap this contract carries is instance-level, not class-level.'
 --- DEL-03-02 counts {'OTHER-SOW': 45, 'SELF': 13, 'UPSTREAM': 44}
-=== DEL-03-03 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.ahES33/post/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/ScopeOfWork.md
+=== DEL-03-03 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.pRYSDx/post/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/ScopeOfWork.md
 L50 OTHER-SOW DEL-03-01: '`SOW-001, 003, 011..017, 021, 025, 040, 042, 052, 053, 054, 056, 088, 089, 094` (`Brief.md`, action-register row `A001`, target cell description. ID-shaped text'
 L50 OTHER-SOW DEL-03-01: '`SOW-001, 003, 011..017, 021, 025, 040, 042, 052, 053, 054, 056, 088, 089, 094` (`Brief.md`, action-register row `A001`, target cell description.'
 L50 OTHER-SOW DEL-02-04: 'ID-shaped text inside this quotation is upstream source context, not a local definition or reference.)'
@@ -330,7 +330,7 @@ L299 SELF: '— and indexes workplans'
 L299 SELF: ", and the applied `D-PEC-96` registry lists PEC's `loop-receipts-ledger` and `agentruns-json` profiles as historical and `shared-dev-loop` as live (`v2/config/l"
 L343 SELF: 'here is what changed'
 --- DEL-03-03 counts {'OTHER-SOW': 50, 'SELF': 22, 'UPSTREAM': 73}
-=== DEL-03-06 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.ahES33/post/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/ScopeOfWork.md
+=== DEL-03-06 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.pRYSDx/post/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/ScopeOfWork.md
 L36 OTHER-SOW DEL-03-02: '`ScopeLedger.csv` `ObjectiveIDs` — 20 IN rows (`SOW-001, 003, 011..017, 021, 025, 040, 042, 052, 053, 054, 056, 088, 089, 094`) (`Brief.md`, action-register row'
 L36 OTHER-SOW DEL-03-02: '`ScopeLedger.csv` `ObjectiveIDs` — 20 IN rows (`SOW-001, 003, 011..017, 021, 025, 040, 042, 052, 053, 054, 056, 088, 089, 094`) (`Brief.md`, action-register row'
 L36 OTHER-SOW DEL-02-04: 'ID-shaped text inside this quotation is upstream source context, not a local definition or reference.)'
@@ -450,7 +450,7 @@ L470 SELF: 'the rebuild takes N minutes'
 L476 SELF: "as accepting the exhibit's flags as flags, so what remains recorded-but-unresolved is the specific annotated set — `E-A11` (AMBIGUOUS_BASIS), `E-P69`/`E-N02` (P"
 L476 SELF: '; citation does not convert `PROPOSAL` to `DECLARED`. That both edges additionally carry an empty `BasisCitation` in the exhibit and, at authoring, an empty `Ev'
 --- DEL-03-06 counts {'OTHER-SOW': 71, 'SELF': 47, 'UPSTREAM': 74}
-=== DEL-04-05 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.ahES33/post/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/ScopeOfWork.md
+=== DEL-04-05 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.pRYSDx/post/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/ScopeOfWork.md
 L43 SELF: '`ScopeLedger.csv` `ObjectiveIDs` — 20 IN rows (`SOW-001, 003, 011..017, 021, 025, 040, 042, 052, 053, 054, 056, 088, 089, 094`) (`Brief.md`, action-register row'
 L43 SELF: '`ScopeLedger.csv` `ObjectiveIDs` — 20 IN rows (`SOW-001, 003, 011..017, 021, 025, 040, 042, 052, 053, 054, 056, 088, 089, 094`) (`Brief.md`, action-register row'
 L43 OTHER-SOW DEL-04-01: "the `..` ranges are the source's own notation, not an elision."
@@ -556,7 +556,7 @@ L248 OTHER-SOW DEL-04-03: 'against the affected claim or field'
 L249 OTHER-SOW DEL-03-01: 'absent, unreadable, malformed, stale, or grammar-unrecognized'
 L301 SELF: 'row (CLM-007, CON-001); the quotations and paraphrases of the `DEL-02-03` contract, brought current to that contract as rebuilt under `D-PEC-100` (CLM-011, CLM-'
 --- DEL-04-05 counts {'SELF': 37, 'OTHER-SOW': 67, 'UPSTREAM': 67}
-=== DEL-10-02 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.ahES33/post/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/ScopeOfWork.md
+=== DEL-10-02 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.pRYSDx/post/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/ScopeOfWork.md
 L48 OTHER-SOW DEL-03-04: 'Author this contract as a STANDING assertion — a continuously re-runnable verification, not a one-shot artifact.'
 L48 OTHER-SOW DEL-03-04: 'Author this contract as a STANDING assertion — a continuously re-runnable verification, not a one-shot artifact.'
 L70 SELF: '``` OLD col4: SOW-010, SOW-055; bound by C1/C2 across all items NEW col4: SOW-010, SOW-021, SOW-025, SOW-052..056, SOW-088; bound by C1/C2 across all items OLD '
@@ -650,9 +650,8 @@ L304 OTHER-SOW DEL-01-03: 'an explicit delete operation'
 L310 SELF: 'no accepted source names a CI system for the PEC v2 build'
 L311 OTHER-SOW DEL-03-01: 'counts as a full rebuild'
 L399 OTHER-SOW DEL-03-01: 'every profile-declared feed'
-L399 OTHER-SOW DEL-03-04: 'every manifest-named feed'
---- DEL-10-02 counts {'OTHER-SOW': 62, 'SELF': 32, 'UPSTREAM': 70}
-=== DEL-10-10 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.ahES33/post/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/ScopeOfWork.md
+--- DEL-10-02 counts {'OTHER-SOW': 61, 'SELF': 32, 'UPSTREAM': 71}
+=== DEL-10-10 /private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-pec-project-assessment-6106d5/978bf4ac-7408-4c14-9b91-74754c7e380f/scratchpad/s1p.Bm2q/s1pchk.pRYSDx/post/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/ScopeOfWork.md
 L54 OTHER-SOW DEL-03-04: 'Author this contract as a STANDING assertion — a continuously re-runnable verification, not a one-shot artifact.'
 L54 OTHER-SOW DEL-03-04: 'Author this contract as a STANDING assertion — a continuously re-runnable verification, not a one-shot artifact.'
 L134 SELF: '`SOW-064,IN,"Directed bootstrap: P1 first ingests PEC v2\'s accepted full dependency DAG as its initial file-native coordination state; later DAG nodes consume o'

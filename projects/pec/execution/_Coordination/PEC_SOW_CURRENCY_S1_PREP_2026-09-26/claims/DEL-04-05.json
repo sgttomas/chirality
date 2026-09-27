@@ -764,6 +764,14 @@
    "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Impact_Assessment.md",
    "value": "| DEL-04-05 | NOT_AFFECTED |",
    "candidate_text": "SCA-006 classes it `NOT_AFFECTED`"
+  },
+  {
+   "id": "MR90",
+   "commit": "78e74f590",
+   "kind": "contains",
+   "path": "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+   "value": "RULED A / PART B AND 3a, 3b CONFIRMED / M / EFFECTIVE ON MERGE",
+   "candidate_text": "S4 Scope of Work currency packet (`D-PEC-102`)"
   }
  ]
 }

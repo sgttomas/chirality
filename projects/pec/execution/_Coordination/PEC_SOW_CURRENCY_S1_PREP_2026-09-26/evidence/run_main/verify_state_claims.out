@@ -709,6 +709,7 @@ PASS DEL-04-05 S78 count_glob 125cfacc1: [git=yes; candidate=yes]
 PASS DEL-04-05 S79 count_glob 125cfacc1: [git=yes; candidate=yes]
 PASS DEL-04-05 S80 contains 125cfacc1:projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md [git=yes; candidate=yes]
 PASS DEL-04-05 S81 contains 125cfacc1:projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Impact_Assessment.md [git=yes; candidate=yes]
+PASS DEL-04-05 MR90 contains 78e74f590:projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md [git=yes; candidate=yes]
 PASS DEL-10-02 S01 ancestor 189f205ff: [git=yes; candidate=yes]
 PASS DEL-10-02 S02 sha256 189f205ff:projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md [git=yes; candidate=yes]
 PASS DEL-10-02 S03 sha256 189f205ff:projects/pec/execution/_Decomposition/Deliverables.csv [git=yes; candidate=yes]
@@ -902,4 +903,4 @@ PASS DEL-10-10 S106 not_contains 125cfacc1:projects/pec/v2/config/loops.schema.j
 PASS DEL-10-10 MR01 not_contains ea6b4b5d0:projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_CONTEXT.md [git=yes; candidate=yes]
 PASS DEL-10-10 MR03 contains ea6b4b5d0:projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_REFERENCES.md [git=yes; candidate=yes]
 PASS DEL-10-10 MR04 contains ea6b4b5d0:projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_CONTEXT.md [git=yes; candidate=yes]
-RESULT PASS 904/904
+RESULT PASS 905/905

@@ -67,7 +67,7 @@ TARGETS = {
          "f9c3a057717292e7ccd6def6e0496f69ad6c5100457b15cd17b37477adff8bd4"),
     E + "PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/ScopeOfWork.md":
         ("933c012cf16bb161b0ac1acdbf3caeaac408fa441b6e175b8fc2e7d8b265a579",
-         "925fb53b6a9852cc8de3173cc5a4a31333123ffdcd3b4cca57e11432ffcdd5c9"),
+         "9c2ede6ceff643b09a380fcbecb649c953783ed25ca044f35bc6376fd49309db"),
     E + "PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/ScopeOfWork.md":
         ("99730e4e85ce4920d676d9fd62d26c193d5fd714ea0592c15462f37a62011a82",
          "f5590cf55b19f3170cb04e65340e076e672d5d54d8f1e98385372d1dd8f3436e"),
