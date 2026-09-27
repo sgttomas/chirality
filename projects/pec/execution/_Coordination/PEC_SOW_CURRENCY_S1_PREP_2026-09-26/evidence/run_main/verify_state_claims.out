@@ -300,6 +300,8 @@ PASS DEL-02-02 S60 contains 5d2770350:projects/pec/docs/PRD.md [git=yes; candida
 PASS DEL-02-02 S61 contains 5d2770350:projects/pec/docs/PRD.md [git=yes; candidate=yes]
 PASS DEL-02-02 S62 contains 3e5291138:projects/pec/docs/PRD.md [git=yes; candidate=yes]
 PASS DEL-02-02 S63 contains 3e5291138:projects/pec/docs/PRD.md [git=yes; candidate=yes]
+PASS DEL-02-02 MR01 exists 125cfacc1:projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md [git=yes; candidate=yes]
+PASS DEL-02-02 MR02 exists 125cfacc1:projects/chirality-piping/execution/_Coordination/_DECISIONS/_REGISTER.md [git=yes; candidate=yes]
 PASS DEL-03-01 S01 sha256 125cfacc1:projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/ScopeOfWork.md [git=yes; candidate=yes]
 PASS DEL-03-01 S02 sha256_prefix 125cfacc1:projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/ScopeOfWork.md [git=yes; candidate=yes]
 PASS DEL-03-01 S03 ancestor 189f205ff02df4111b33c20be441ce06e65ada7a: [git=yes; candidate=yes]
@@ -732,7 +734,6 @@ PASS DEL-10-02 S29 contains 125cfacc1:projects/pec/execution/_Decomposition/SOFT
 PASS DEL-10-02 S30 not_contains c9e5cd87d:projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md [git=yes; candidate=yes]
 PASS DEL-10-02 S31 contains c9e5cd87d:projects/pec/execution/_Decomposition/_LATEST.md [git=yes; candidate=yes]
 PASS DEL-10-02 S32 csv_cell 125cfacc1:projects/pec/execution/_Decomposition/Deliverables.csv [git=yes; candidate=yes]
-PASS DEL-10-02 S33 contains 125cfacc1:projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_CONTEXT.md [git=yes; candidate=yes]
 PASS DEL-10-02 S34 csv_cell 125cfacc1:projects/pec/execution/_Decomposition/Deliverables.csv [git=yes; candidate=yes]
 PASS DEL-10-02 S35 contains 125cfacc1:projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_CONTEXT.md [git=yes; candidate=yes]
 PASS DEL-10-02 S36 contains 125cfacc1:projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_DEPENDENCIES.md [git=yes; candidate=yes]
@@ -891,4 +892,4 @@ PASS DEL-10-10 S103 contains 125cfacc1:projects/pec/execution/_Coordination/Work
 PASS DEL-10-10 S104 contains 125cfacc1:projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_RULING_2026-09-26.md [git=yes; candidate=yes]
 PASS DEL-10-10 S105 not_contains 125cfacc1:projects/pec/v2/config/loops.schema.json [git=yes; candidate=yes]
 PASS DEL-10-10 S106 not_contains 125cfacc1:projects/pec/v2/config/loops.schema.json [git=yes; candidate=yes]
-RESULT PASS 893/893
+RESULT PASS 894/894

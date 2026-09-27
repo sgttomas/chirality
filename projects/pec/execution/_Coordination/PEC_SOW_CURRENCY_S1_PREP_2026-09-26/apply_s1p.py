@@ -40,25 +40,25 @@ E = "projects/pec/execution/"
 TARGETS = {
     E + "PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md":
         ("986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341",
-         "e8a9b78ad5e367fb31f95ecf5506beeea3200e2d680839309c17f2d0c9a22f86"),
+         "65c7f4086f8a053c41219c4966dd062a3821d43927c24fffe29f4e9046d2a367"),
     E + "PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md":
         ("4dd777f8f30cf5483d3c33bd002359e7266f8e411e74ba8655e2afc5aa367e62",
          "16ac1cd956c90f0e757c9ce54c4e6645eea50e6d46d69b26f8052ad0484cca41"),
     E + "PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md":
         ("53ba3be304151a35775eb9e117c28f1b7564a19f4dd5076869a7f73994e5de53",
-         "4511e4aac19168c316e079ab40f72f0234c2f54eb1762f8a528c7a171ddb6d02"),
+         "a0a73eb5537b92d3a21ca8b01c0fc824b1cfb16823299dd3f3464e38a66784bf"),
     E + "PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/ScopeOfWork.md":
         ("5d286ec97f4c262be9e106537e3b7527e9756b6dd5bf0f1beb8259e1ca114440",
-         "c8da559dbbdb73b4c355cd0c9e15d357dbbe215ab16c3481c8459b40432fd6aa"),
+         "82caf28a3757089ec07cd9a21ef70f97840fda7b92f1017236ce5062fdf55872"),
     E + "PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md":
         ("5f20b1c48f4f383a07240e04bdf524e8b2443af37cb745c549f939cd6bb8db6e",
-         "ea8b5c58d9e94673eb7bbe3834075eead63dc7fb28101cec0c59797dca04ac32"),
+         "84e55e58e6632845f7462970180c052ebec5fc677072a4bd883f871a002ffa86"),
     E + "PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/ScopeOfWork.md":
         ("564955235aeab60f169e6377dd9d5bb5fbe2a88a8cc66094e17f6f83987792d2",
          "5b71d3583b2e661564acf889c0a0d6fef93ce24302f29845c3cda0a367ae8276"),
     E + "PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/ScopeOfWork.md":
         ("d1335c01c54686427d6a04658a43ce9e5c4abe2e446e0acf4d1e87df3a7785b5",
-         "d993f340d267f5d46fa483d6ba10a62c779c01e8cc999b854a05c4aa2f86448b"),
+         "d823d55d9e714ac3142c02ee5d599d7167e0836c89c1abee7c513b072073a3d0"),
     E + "PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/ScopeOfWork.md":
         ("5ce8ab72425ab417c90c3e64a152912a7e39b243f3905e65477dbfd91a40eaa7",
          "c2b88cb65c71bf017fc42c85e164470f0ea86696bd100ed0157d4c2a53f79526"),
@@ -67,13 +67,13 @@ TARGETS = {
          "f9c3a057717292e7ccd6def6e0496f69ad6c5100457b15cd17b37477adff8bd4"),
     E + "PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/ScopeOfWork.md":
         ("933c012cf16bb161b0ac1acdbf3caeaac408fa441b6e175b8fc2e7d8b265a579",
-         "a6316c63ce7bb1006d189172325fb174cbeb890336ad4307ffe9c73d68c83d54"),
+         "88029fead86c1f3f36c98c065f3f283370bd772e16c4dd9aeda2a8193595eafd"),
     E + "PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/ScopeOfWork.md":
         ("99730e4e85ce4920d676d9fd62d26c193d5fd714ea0592c15462f37a62011a82",
-         "c04eeb4ec67827c4004a012ce7b2e9c584a7df37d17a2ea6117c79236ccdf1be"),
+         "f5590cf55b19f3170cb04e65340e076e672d5d54d8f1e98385372d1dd8f3436e"),
     E + "PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/ScopeOfWork.md":
         ("640f23711f93ec7e987742ed5ed998bea04c681f14bff06bdf2e35a669fcbd5e",
-         "d6943cc60bd78f8bb81feb9bdc5f2451a02470663d31be145679d923929644de"),
+         "15c10a56c21bf35e18d93b46d47f5f91e2d079872c1fc644aae89704bd0135f4"),
 }
 # Read-only files the act re-verifies (values at origin/main 125cfacc1).
 PINNED = {

@@ -12,7 +12,7 @@
         "document": "ScopeOfWork.md",
         "line": 100,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "e8a9b78ad5e367fb31f95ecf5506beeea3200e2d680839309c17f2d0c9a22f86"
+        "sha256": "65c7f4086f8a053c41219c4966dd062a3821d43927c24fffe29f4e9046d2a367"
       },
       "text": "The store path is Git-ignored: with a populated store present, `git check-ignore` resolves every store artifact to a checked-in ignore rule and `git status` reports no tracked or untracked store artifact in the hosting checkout.",
       "verification": [
@@ -37,7 +37,7 @@
         "document": "ScopeOfWork.md",
         "line": 101,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "e8a9b78ad5e367fb31f95ecf5506beeea3200e2d680839309c17f2d0c9a22f86"
+        "sha256": "65c7f4086f8a053c41219c4966dd062a3821d43927c24fffe29f4e9046d2a367"
       },
       "text": "With the store deleted — both while PEC is stopped and while it is running — the next start recreates a valid empty store without manual repair, and no operator step, migration, or repair command is needed to reach that state. Whether deletion blocks a governed act is the system-level property `DEL-10-02` tests from outside under `SOW-055` (CLM-010); it is not asserted, exercised, or discharged here.",
       "verification": [
@@ -62,7 +62,7 @@
         "document": "ScopeOfWork.md",
         "line": 102,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "e8a9b78ad5e367fb31f95ecf5506beeea3200e2d680839309c17f2d0c9a22f86"
+        "sha256": "65c7f4086f8a053c41219c4966dd062a3821d43927c24fffe29f4e9046d2a367"
       },
       "text": "Every store write path routes through the declared ingest boundary; inspection of the store module's write surface finds no persistence call that reaches the store without passing the guard.",
       "verification": [
@@ -87,7 +87,7 @@
         "document": "ScopeOfWork.md",
         "line": 103,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "e8a9b78ad5e367fb31f95ecf5506beeea3200e2d680839309c17f2d0c9a22f86"
+        "sha256": "65c7f4086f8a053c41219c4966dd062a3821d43927c24fffe29f4e9046d2a367"
       },
       "text": "A fixture corpus carrying file content, diff hunks, and register-row prose is rejected at ingest, and inspection of every persisted field afterwards finds no file or diff content residue anywhere in the store.",
       "verification": [
@@ -112,7 +112,7 @@
         "document": "ScopeOfWork.md",
         "line": 104,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "e8a9b78ad5e367fb31f95ecf5506beeea3200e2d680839309c17f2d0c9a22f86"
+        "sha256": "65c7f4086f8a053c41219c4966dd062a3821d43927c24fffe29f4e9046d2a367"
       },
       "text": "Each rejection is explicit and names the offending record and field; input records are accounted for as accepted or rejected with no unreported difference, and no ingest silently drops, truncates, or substitutes.",
       "verification": [
@@ -137,7 +137,7 @@
         "document": "ScopeOfWork.md",
         "line": 105,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "e8a9b78ad5e367fb31f95ecf5506beeea3200e2d680839309c17f2d0c9a22f86"
+        "sha256": "65c7f4086f8a053c41219c4966dd062a3821d43927c24fffe29f4e9046d2a367"
       },
       "text": "Reconciler-shaped, presence-shaped, and event-shaped ingest exhibit identical rejection behavior against the same fixtures, and adding an ingest path of a new shape requires no new content check.",
       "verification": [
@@ -163,7 +163,7 @@
         "document": "ScopeOfWork.md",
         "line": 106,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "e8a9b78ad5e367fb31f95ecf5506beeea3200e2d680839309c17f2d0c9a22f86"
+        "sha256": "65c7f4086f8a053c41219c4966dd062a3821d43927c24fffe29f4e9046d2a367"
       },
       "text": "The lifecycle module and the guard add no third-party runtime dependency and make no network call, leaving the DEL-01-05 zero-dependency and locality assertion intact.",
       "verification": [
@@ -188,7 +188,7 @@
         "document": "ScopeOfWork.md",
         "line": 107,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "e8a9b78ad5e367fb31f95ecf5506beeea3200e2d680839309c17f2d0c9a22f86"
+        "sha256": "65c7f4086f8a053c41219c4966dd062a3821d43927c24fffe29f4e9046d2a367"
       },
       "text": "The consumer-facing store interface exposes no store path or storage-engine detail in its signature, so that changing either changes no consumer deliverable.",
       "verification": [
@@ -213,7 +213,7 @@
         "document": "ScopeOfWork.md",
         "line": 108,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "e8a9b78ad5e367fb31f95ecf5506beeea3200e2d680839309c17f2d0c9a22f86"
+        "sha256": "65c7f4086f8a053c41219c4966dd062a3821d43927c24fffe29f4e9046d2a367"
       },
       "text": "The guard's admissibility rule is documented field class by field class, and each documented decision either cites an accepted source or is marked as an open question routed under CON-001; no field class is admitted without a recorded decision.",
       "verification": [
@@ -238,7 +238,7 @@
         "document": "ScopeOfWork.md",
         "line": 109,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "e8a9b78ad5e367fb31f95ecf5506beeea3200e2d680839309c17f2d0c9a22f86"
+        "sha256": "65c7f4086f8a053c41219c4966dd062a3821d43927c24fffe29f4e9046d2a367"
       },
       "text": "The automated test suite implements VER-001 through VER-008, executes in the service-core test run, passes, and introduces no acceptance criterion absent from this contract.",
       "verification": [
@@ -261,7 +261,7 @@
     "migration_authority": null,
     "package_id": "PKG-01",
     "schema": "chirality-deliverable-sow/v1",
-    "sha256": "e8a9b78ad5e367fb31f95ecf5506beeea3200e2d680839309c17f2d0c9a22f86"
+    "sha256": "65c7f4086f8a053c41219c4966dd062a3821d43927c24fffe29f4e9046d2a367"
   },
   "tool_version": "1"
 }

@@ -45,24 +45,24 @@ The act it asks for is bounded: **replace twelve existing `ScopeOfWork.md` files
   - Every prior contract hash equals its SCA-005 §B4 prefix (none changed since checkpoint 1).
 - **Lifecycle: ten are `INITIALIZED`, DEL-01-03 and DEL-01-05 are `IN_PROGRESS`** at `125cfacc1` (each `_STATUS.md` read). None is `CHECKING` or `ISSUED`.
 - **What the method does to `_STATUS.md`: nothing.** `WORKFLOW.md`: "Do not modify `_STATUS.md`, lifecycle state, underscore control files, …"; `resources/checks.md` item 3. Each postimage validates, so the condition behind `INITIALIZED` still holds, and the two `IN_PROGRESS` deliverables stay `IN_PROGRESS`. **No transition is proposed**; the act script refuses to run if any `_STATUS.md` differs from its pinned bytes.
-- **Produced artifacts (DEL-01-03, DEL-01-05): verification basis unchanged.** Every `REQ`, `AC` and `VER` line of both candidates is byte-identical to the prior contract (diff; verdict 01), so the produced artifacts and their recorded evidence were checked against exactly the requirements, criteria and methods the postimages carry. `DEL-01-03/REQ-003` is byte-identical and `DEL-01-03/CON-001` keeps its subject. Items that would change the verification basis are carried as open items, not changes: DEL-01-05 `REQ-007` still reads "follows the pending `C-08` confirmation recorded at CON-002" although the `D-PEC-77` G-A confirmations are on file (resolving it would change a requirement the artifacts were checked against); DEL-01-05's new `AX-009` is not added to a verified matrix row; and DEL-01-03 `CON-001` now quotes the SCA-005 §B4 parser carry-forward naming the out-of-class values other contracts route to it, while `AC-009` and `VER-008` are unchanged (verdict 01 judges whether that wording touches the basis; see Verification).
+- **Produced artifacts (DEL-01-03, DEL-01-05): verification basis unchanged.** Every `REQ`, `AC` and `VER` line of both candidates is byte-identical to the prior contract (diff; verdict 01), so the produced artifacts and their recorded evidence were checked against exactly the requirements, criteria and methods the postimages carry. `DEL-01-03/REQ-003` is byte-identical and `DEL-01-03/CON-001` keeps its subject. Items that would change the verification basis are carried as open items, not changes: DEL-01-05 `REQ-007` still reads "follows the pending `C-08` confirmation recorded at CON-002" although the `D-PEC-77` G-A confirmations are on file (resolving it would change a requirement the artifacts were checked against); DEL-01-05's new `AX-009` is not added to a verified matrix row; and DEL-01-05 `CON-002`'s kept clause on what is open (a later exact-artifact owner confirmation, per `D-PEC-77`) and its Praxeology phrase "the future enforcement must satisfy" are left as they were (verdict 01, V3-2 and V3-3). DEL-01-03 `CON-001` now also quotes the SCA-005 §B4 parser carry-forward naming the out-of-class values other contracts route to it; verdict 01 found this keeps its meaning and leaves the basis unchanged (no admitted field class is added, so the decisions `AC-009` and `VER-008` check are the same, and the produced guard and its design note already route rejected STATE values to `CON-001`), and DEL-01-03 `AX-007` says so.
 
 ### The candidates
 
 | Deliverable | Lifecycle | Prior contract | Postimage | Lines | Defined IDs | Retired IDs | New IDs | Checklist items | Quotes / claims checked |
 |---|---|---|---|---|---|---|---|---|---|
-| DEL-01-03 | `IN_PROGRESS` | `986ef15532cd…6341` | `e8a9b78ad5e3…2f86` | 141→156 | OUT 3, CLM 10, REQ 10, AC 10, VER 9, AX 7, TBD 2, CON 1 | none | AX-007 | 10 | 40 / 47 |
+| DEL-01-03 | `IN_PROGRESS` | `986ef15532cd…6341` | `65c7f4086f8a…a367` | 141→156 | OUT 3, CLM 10, REQ 10, AC 10, VER 9, AX 7, TBD 2, CON 1 | none | AX-007 | 10 | 40 / 47 |
 | DEL-01-04 | `INITIALIZED` | `4dd777f8f30c…7e62` | `16ac1cd956c9…ca41` | 125→139 | OUT 3, CLM 9, REQ 8, AC 7, VER 7, AX 6, TBD 3, CON 1 | none | AX-006 | 7 | 25 / 46 |
-| DEL-01-05 | `IN_PROGRESS` | `53ba3be30415…de53` | `4511e4aac191…6d02` | 161→180 | OUT 3, CLM 10, REQ 12, AC 11, VER 9, AX 9, TBD 5, CON 2 | none | AX-009 | 11 | 40 / 57 |
-| DEL-02-01 | `INITIALIZED` | `5d286ec97f4c…4440` | `c8da559dbbdb…d6aa` | 260→311 | OUT 2, CLM 15, REQ 13, AC 13, VER 12, AX 13, TBD 4, CON 6 | none | CLM-014, CLM-015, CON-004..006, AX-013 | 13 | 95 / 89 |
-| DEL-02-02 | `INITIALIZED` | `5f20b1c48f4f…db6e` | `ea8b5c58d9e9…ac32` | 222→267 | OUT 2, CLM 13, REQ 10, AC 10, VER 9, AX 12, TBD 4, CON 3 | none | CLM-013, CON-003, AX-012 | 10 | 71 / 63 |
+| DEL-01-05 | `IN_PROGRESS` | `53ba3be30415…de53` | `a0a73eb5537b…84bf` | 161→180 | OUT 3, CLM 10, REQ 12, AC 11, VER 9, AX 9, TBD 5, CON 2 | none | AX-009 | 11 | 40 / 57 |
+| DEL-02-01 | `INITIALIZED` | `5d286ec97f4c…4440` | `82caf28a3757…5872` | 260→311 | OUT 2, CLM 15, REQ 13, AC 13, VER 12, AX 13, TBD 4, CON 6 | none | CLM-014, CLM-015, CON-004..006, AX-013 | 13 | 95 / 89 |
+| DEL-02-02 | `INITIALIZED` | `5f20b1c48f4f…db6e` | `84e55e58e663…fa86` | 222→267 | OUT 2, CLM 13, REQ 10, AC 10, VER 9, AX 12, TBD 4, CON 3 | none | CLM-013, CON-003, AX-012 | 10 | 71 / 65 |
 | DEL-03-01 | `INITIALIZED` | `564955235aea…92d2` | `5b71d3583b2e…8276` | 486→536 | OUT 2, CLM 22, REQ 16, AC 17, VER 16, AX 14, TBD 4, CON 5 | TBD-005 | AX-014 | 17 | 143 / 147 |
-| DEL-03-02 | `INITIALIZED` | `d1335c01c546…85b5` | `d993f340d267…448b` | 367→386 | OUT 2, CLM 15, REQ 14, AC 15, VER 14, AX 13, TBD 5, CON 4 | none | AX-013 | 15 | 74 / 81 |
+| DEL-03-02 | `INITIALIZED` | `d1335c01c546…85b5` | `d823d55d9e71…a3d0` | 367→386 | OUT 2, CLM 15, REQ 14, AC 15, VER 14, AX 13, TBD 5, CON 4 | none | AX-013 | 15 | 74 / 81 |
 | DEL-03-03 | `INITIALIZED` | `5ce8ab72425a…eaa7` | `c2b88cb65c71…9526` | 346→380 | OUT 2, CLM 15, REQ 17, AC 18, VER 17, AX 13, TBD 5, CON 7 | none | CLM-015, TBD-005, REQ-015..017, AC-016..018, VER-015..017, CON-006, CON-007, AX-013 | 18 | 100 / 71 |
 | DEL-03-06 | `INITIALIZED` | `90de9c2d93d8…c97e` | `f9c3a0577172…8bd4` | 533→533 | OUT 2, CLM 20, REQ 14, AC 16, VER 13, AX 12, TBD 5, CON 6 | none | none | 16 | 16 / 27 |
-| DEL-04-05 | `INITIALIZED` | `933c012cf16b…a579` | `a6316c63ce7b…3d54` | 322→332 | OUT 2, CLM 17, REQ 14, AC 15, VER 14, AX 12, TBD 4, CON 4 | none | AX-012 | 15 | 100 / 74 |
-| DEL-10-02 | `INITIALIZED` | `99730e4e85ce…1a82` | `c04eeb4ec678…f1be` | 407→423 | OUT 2, CLM 14, REQ 14, AC 13, VER 12, AX 13, TBD 5, CON 4 | none | CLM-014, AX-013 | 13 | 85 / 85 |
-| DEL-10-10 | `INITIALIZED` | `640f23711f93…bd5e` | `d6943cc60bd7…44de` | 466→506 | OUT 1, CLM 21, REQ 14, AC 16, VER 14, AX 12, TBD 5, CON 6 | none | CLM-021, CON-006, AX-012 | 16 | 95 / 106 |
+| DEL-04-05 | `INITIALIZED` | `933c012cf16b…a579` | `88029fead86c…eafd` | 322→332 | OUT 2, CLM 17, REQ 14, AC 15, VER 14, AX 12, TBD 4, CON 4 | none | AX-012 | 15 | 100 / 74 |
+| DEL-10-02 | `INITIALIZED` | `99730e4e85ce…1a82` | `f5590cf55b19…436e` | 407→423 | OUT 2, CLM 14, REQ 14, AC 13, VER 12, AX 13, TBD 5, CON 4 | none | CLM-014, AX-013 | 13 | 85 / 84 |
+| DEL-10-10 | `INITIALIZED` | `640f23711f93…bd5e` | `15c10a56c21b…35f4` | 466→506 | OUT 1, CLM 21, REQ 14, AC 16, VER 14, AX 12, TBD 5, CON 6 | none | CLM-021, CON-006, AX-012 | 16 | 95 / 106 |
 
 Quotes / claims are the checks each verifier run counts per deliverable (quote entries plus the forbidden-phrase and observation-commit checks; commit-anchored claims). What each currency revision changes, in brief (each candidate's currency-provenance `AX` entry and diff are the full account):
 
@@ -120,18 +120,18 @@ After this ruling and its register row are merged and observed on fetched `origi
 
 | Deliverable | Path | Preimage SHA-256 | Postimage SHA-256 |
 |---|---|---|---|
-| DEL-01-03 | `PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md` | `986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341` | `e8a9b78ad5e367fb31f95ecf5506beeea3200e2d680839309c17f2d0c9a22f86` |
+| DEL-01-03 | `PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md` | `986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341` | `65c7f4086f8a053c41219c4966dd062a3821d43927c24fffe29f4e9046d2a367` |
 | DEL-01-04 | `PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md` | `4dd777f8f30cf5483d3c33bd002359e7266f8e411e74ba8655e2afc5aa367e62` | `16ac1cd956c90f0e757c9ce54c4e6645eea50e6d46d69b26f8052ad0484cca41` |
-| DEL-01-05 | `PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md` | `53ba3be304151a35775eb9e117c28f1b7564a19f4dd5076869a7f73994e5de53` | `4511e4aac19168c316e079ab40f72f0234c2f54eb1762f8a528c7a171ddb6d02` |
-| DEL-02-01 | `PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/ScopeOfWork.md` | `5d286ec97f4c262be9e106537e3b7527e9756b6dd5bf0f1beb8259e1ca114440` | `c8da559dbbdb73b4c355cd0c9e15d357dbbe215ab16c3481c8459b40432fd6aa` |
-| DEL-02-02 | `PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md` | `5f20b1c48f4f383a07240e04bdf524e8b2443af37cb745c549f939cd6bb8db6e` | `ea8b5c58d9e94673eb7bbe3834075eead63dc7fb28101cec0c59797dca04ac32` |
+| DEL-01-05 | `PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md` | `53ba3be304151a35775eb9e117c28f1b7564a19f4dd5076869a7f73994e5de53` | `a0a73eb5537b92d3a21ca8b01c0fc824b1cfb16823299dd3f3464e38a66784bf` |
+| DEL-02-01 | `PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/ScopeOfWork.md` | `5d286ec97f4c262be9e106537e3b7527e9756b6dd5bf0f1beb8259e1ca114440` | `82caf28a3757089ec07cd9a21ef70f97840fda7b92f1017236ce5062fdf55872` |
+| DEL-02-02 | `PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md` | `5f20b1c48f4f383a07240e04bdf524e8b2443af37cb745c549f939cd6bb8db6e` | `84e55e58e6632845f7462970180c052ebec5fc677072a4bd883f871a002ffa86` |
 | DEL-03-01 | `PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/ScopeOfWork.md` | `564955235aeab60f169e6377dd9d5bb5fbe2a88a8cc66094e17f6f83987792d2` | `5b71d3583b2e661564acf889c0a0d6fef93ce24302f29845c3cda0a367ae8276` |
-| DEL-03-02 | `PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/ScopeOfWork.md` | `d1335c01c54686427d6a04658a43ce9e5c4abe2e446e0acf4d1e87df3a7785b5` | `d993f340d267f5d46fa483d6ba10a62c779c01e8cc999b854a05c4aa2f86448b` |
+| DEL-03-02 | `PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/ScopeOfWork.md` | `d1335c01c54686427d6a04658a43ce9e5c4abe2e446e0acf4d1e87df3a7785b5` | `d823d55d9e714ac3142c02ee5d599d7167e0836c89c1abee7c513b072073a3d0` |
 | DEL-03-03 | `PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/ScopeOfWork.md` | `5ce8ab72425ab417c90c3e64a152912a7e39b243f3905e65477dbfd91a40eaa7` | `c2b88cb65c71bf017fc42c85e164470f0ea86696bd100ed0157d4c2a53f79526` |
 | DEL-03-06 | `PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/ScopeOfWork.md` | `90de9c2d93d8350805410753a21f19c5cf141e48c3e94ffc8096621b3a42c97e` | `f9c3a057717292e7ccd6def6e0496f69ad6c5100457b15cd17b37477adff8bd4` |
-| DEL-04-05 | `PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/ScopeOfWork.md` | `933c012cf16bb161b0ac1acdbf3caeaac408fa441b6e175b8fc2e7d8b265a579` | `a6316c63ce7bb1006d189172325fb174cbeb890336ad4307ffe9c73d68c83d54` |
-| DEL-10-02 | `PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/ScopeOfWork.md` | `99730e4e85ce4920d676d9fd62d26c193d5fd714ea0592c15462f37a62011a82` | `c04eeb4ec67827c4004a012ce7b2e9c584a7df37d17a2ea6117c79236ccdf1be` |
-| DEL-10-10 | `PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/ScopeOfWork.md` | `640f23711f93ec7e987742ed5ed998bea04c681f14bff06bdf2e35a669fcbd5e` | `d6943cc60bd78f8bb81feb9bdc5f2451a02470663d31be145679d923929644de` |
+| DEL-04-05 | `PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/ScopeOfWork.md` | `933c012cf16bb161b0ac1acdbf3caeaac408fa441b6e175b8fc2e7d8b265a579` | `88029fead86c1f3f36c98c065f3f283370bd772e16c4dd9aeda2a8193595eafd` |
+| DEL-10-02 | `PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/ScopeOfWork.md` | `99730e4e85ce4920d676d9fd62d26c193d5fd714ea0592c15462f37a62011a82` | `f5590cf55b19f3170cb04e65340e076e672d5d54d8f1e98385372d1dd8f3436e` |
+| DEL-10-10 | `PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/ScopeOfWork.md` | `640f23711f93ec7e987742ed5ed998bea04c681f14bff06bdf2e35a669fcbd5e` | `15c10a56c21bf35e18d93b46d47f5f91e2d079872c1fc644aae89704bd0135f4` |
 
 The postimages are the exact candidate files, copied byte for byte into the run root as `candidates/…`. They have no date slot.
 
@@ -156,7 +156,7 @@ The slots `{D}`, `{PR}` and the link targets are fixed at closeout; the verifier
 
 ## Generation method (binding)
 
-The twelve postimages come from one run of `apply_s1p.py`, **SHA-256 `98a40962abdc7b9ea289649827c4f03a885c6e558bbacb568819919fd1da2f30`**. It is stdlib-only Python on the `D-PEC-100` `apply_s2p.py` pattern, prepared with CPython 3.13.7, and is copied byte for byte into the run root with the twelve candidate files:
+The twelve postimages come from one run of `apply_s1p.py`, **SHA-256 `41d1e5f89de94b573e4103cb73cac26ffb8a260eea8b640bc652ea650f6c090e`**. It is stdlib-only Python on the `D-PEC-100` `apply_s2p.py` pattern, prepared with CPython 3.13.7, and is copied byte for byte into the run root with the twelve candidate files:
 
 ```text
 PYTHONDONTWRITEBYTECODE=1 python3 projects/pec/execution/_Coordination/SOW_CURRENCY_S1_{D}/apply_s1p.py --repo <REPO_ROOT> --candidates projects/pec/execution/_Coordination/SOW_CURRENCY_S1_{D}/candidates [--check-only]
@@ -194,7 +194,7 @@ Run from the repository root with `PYTHONDONTWRITEBYTECODE=1`, on the act branch
 | 3. Checklist | `derive_review_checklist.py --output <run root>/checklist_<DEL>.json <DEL folder>`, each twice | exit 0; reruns byte-identical; each equal to the prepared checklist (hashes under Preparation evidence) |
 | 4. Boundary owners (QA 21) | `check_boundary_owner_resolution.py --json … --show-not-checkable <DEL folder>/ScopeOfWork.md` ×12 | exit 0; no `UNRESOLVED_OWNER` or `UNDEFINED_CLAIM`; every `NOT_CHECKABLE` clause resolved by hand as tabled below |
 | 5. Quote fidelity | `verify_s1p_quotes.py --tree . --gitdir . --prep <run root> --observation 125cfacc1 --obs-exempt DEL-03-06` | `RESULT PASS 884/884` (both sides). Tree quotations carry `"commit": "125cfacc1"` or an older commit and are read there; only quotations of an S1 sibling read the act tree |
-| 6. State claims | `verify_s1p_state_claims.py --gitdir . --prep <run root>` | `RESULT PASS 893/893` |
+| 6. State claims | `verify_s1p_state_claims.py --gitdir . --prep <run root>` | `RESULT PASS 894/894` |
 | 7. Qualified IDs | `check_qualified_ids.py --prep <run root> --gitdir . --observation 125cfacc1` | `RESULT PASS 44/44` |
 | 8. Dependency quote currency | `check_dep_quote_currency.py .`, before and after | `RESULT PASS 127/127` each |
 | 9. Lifecycle preserved | `git diff --name-status origin/main...HEAD -- '**/_STATUS.md'` | empty |
@@ -277,7 +277,7 @@ PASS act: check-only 0, apply 0, rerun refuses 1
 PASS containment: 12 differing files, all ScopeOfWork.md
 PASS validate / checklist (rerun byte-identical) / boundary ×12
 PASS quotes: RESULT PASS 884/884
-PASS state claims: RESULT PASS 893/893
+PASS state claims: RESULT PASS 894/894
 PASS qualified IDs: RESULT PASS 44/44
 PASS dependency quote currency (pre): RESULT PASS 127/127
 PASS dependency quote currency (post): RESULT PASS 127/127
@@ -294,7 +294,7 @@ The two informational S2-STALE hits are both in DEL-03-01 and neither is a quota
 
 Negative controls (`evidence/negative_controls.out`, scratch copies): an altered DEL-03-02 Part B replacement string, a one-character change to DEL-02-02's PEC-RCN-002 quotation, a wrong hash in a DEL-01-04 claim, a removed DEL-03-01 `CON-005` definition that siblings cite, a changed DEL-03-01 `OUT-001` under DEL-03-02's sibling quotation, a candidate differing from its tabled postimage, and a removed DEL-01-04 matrix row (validator fails; checklist refuses with no artifact) — each is caught.
 
-Checklists (`evidence/run_main/checklist_<DEL>.json`): DEL-01-03 `c7b6c0dc…b847`; DEL-01-04 `ab1efb30…1b22`; DEL-01-05 `64130b19…4645`; DEL-02-01 `82b26b35…f078`; DEL-02-02 `f8e1a297…94bf`; DEL-03-01 `9f683083…6db1`; DEL-03-02 `0f3bd8f7…835d`; DEL-03-03 `e7e76f9b…cfe8`; DEL-03-06 `e0bcdb5e…fc46`; DEL-04-05 `66210419…ea26`; DEL-10-02 `84c327b1…2d27`; DEL-10-10 `3924df7e…4a1f`.
+Checklists (`evidence/run_main/checklist_<DEL>.json`): DEL-01-03 `e3fe784b…6a95`; DEL-01-04 `ab1efb30…1b22`; DEL-01-05 `a7d58cbd…f164`; DEL-02-01 `691455d0…545a`; DEL-02-02 `78336479…fc07`; DEL-03-01 `9f683083…6db1`; DEL-03-02 `3a1f8098…35e2`; DEL-03-03 `e7e76f9b…cfe8`; DEL-03-06 `e0bcdb5e…fc46`; DEL-04-05 `04e72e08…920f`; DEL-10-02 `9f038cda…cb9b`; DEL-10-10 `d3fe09a3…eeea`.
 
 Preparation artifacts (all in this prep folder; hashes in `SHA256SUMS`): `candidates/…/ScopeOfWork.md` ×12; `quotes/DEL-*.json` ×12 and `claims/DEL-*.json` ×12; the bound script and the aids above; `briefs/` (drafter and verifier briefs); `evidence/`; `VERIFIER_VERDICT_01.md` onward.
 

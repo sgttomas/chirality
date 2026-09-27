@@ -12,7 +12,7 @@
         "document": "ScopeOfWork.md",
         "line": 238,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "c8da559dbbdb73b4c355cd0c9e15d357dbbe215ab16c3481c8459b40432fd6aa"
+        "sha256": "82caf28a3757089ec07cd9a21ef70f97840fda7b92f1017236ce5062fdf55872"
       },
       "text": "The declared dialect is documented construct by construct; the parser over a conforming fixture yields exactly the entities that fixture declares; and altering a construct the dialect does not declare changes nothing in its output.",
       "verification": [
@@ -37,7 +37,7 @@
         "document": "ScopeOfWork.md",
         "line": 239,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "c8da559dbbdb73b4c355cd0c9e15d357dbbe215ab16c3481c8459b40432fd6aa"
+        "sha256": "82caf28a3757089ec07cd9a21ef70f97840fda7b92f1017236ce5062fdf55872"
       },
       "text": "The file-admission rule is stated in the dialect documentation; a fixture tree containing both governed lifecycle files and fixture copies of lifecycle files is partitioned by that stated rule and by nothing implicit; the parser reads a loop's lifecycle files only where that loop's declared feed profile selects the `status-lifecycle` surface, reads nothing and reports the absent declaration otherwise; and it declares no loop, feed profile or surface of its own.",
       "verification": [
@@ -62,7 +62,7 @@
         "document": "ScopeOfWork.md",
         "line": 240,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "c8da559dbbdb73b4c355cd0c9e15d357dbbe215ab16c3481c8459b40432fd6aa"
+        "sha256": "82caf28a3757089ec07cd9a21ef70f97840fda7b92f1017236ce5062fdf55872"
       },
       "text": "The emitted entity set for a fixture corpus contains only Package and Deliverable entities typed as the upstream contract obliges, with no other record-tier type emitted and no type defined in this deliverable.",
       "verification": [
@@ -87,7 +87,7 @@
         "document": "ScopeOfWork.md",
         "line": 241,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "c8da559dbbdb73b4c355cd0c9e15d357dbbe215ab16c3481c8459b40432fd6aa"
+        "sha256": "82caf28a3757089ec07cd9a21ef70f97840fda7b92f1017236ce5062fdf55872"
       },
       "text": "Every emitted entity carries citation provenance, and for a sample of each type the recorded provenance resolves to a live file source by path, anchor, and/or SHA.",
       "verification": [
@@ -112,7 +112,7 @@
         "document": "ScopeOfWork.md",
         "line": 242,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "c8da559dbbdb73b4c355cd0c9e15d357dbbe215ab16c3481c8459b40432fd6aa"
+        "sha256": "82caf28a3757089ec07cd9a21ef70f97840fda7b92f1017236ce5062fdf55872"
       },
       "text": "The state token in each emitted entity is byte-equal to the token the fixture declares; a fixture carrying a token outside the recognized vocabulary yields an explicit limitation rather than any substituted, defaulted, or inferred state; and no emitted state derives from Git or from any file other than the one cited.",
       "verification": [
@@ -137,7 +137,7 @@
         "document": "ScopeOfWork.md",
         "line": 243,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "c8da559dbbdb73b4c355cd0c9e15d357dbbe215ab16c3481c8459b40432fd6aa"
+        "sha256": "82caf28a3757089ec07cd9a21ef70f97840fda7b92f1017236ce5062fdf55872"
       },
       "text": "The dated transition history and last-updated date are present in the emitted entity wherever the fixture carries them; no emitted field holds a computed age, an age classification, or any value that changes when the same fixture is parsed at a different time.",
       "verification": [
@@ -162,7 +162,7 @@
         "document": "ScopeOfWork.md",
         "line": 244,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "c8da559dbbdb73b4c355cd0c9e15d357dbbe215ab16c3481c8459b40432fd6aa"
+        "sha256": "82caf28a3757089ec07cd9a21ef70f97840fda7b92f1017236ce5062fdf55872"
       },
       "text": "For a fixture carrying a `## Remaining`-style section of authored prose, under a feed profile that declares no remaining-items field, the parser reads nothing from that section and emits no remaining-items value; and a fixture carrying file content, diff hunks, and remaining-item prose cannot be expressed in the emitted payload.",
       "verification": [
@@ -187,7 +187,7 @@
         "document": "ScopeOfWork.md",
         "line": 245,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "c8da559dbbdb73b4c355cd0c9e15d357dbbe215ab16c3481c8459b40432fd6aa"
+        "sha256": "82caf28a3757089ec07cd9a21ef70f97840fda7b92f1017236ce5062fdf55872"
       },
       "text": "For absent, unreadable, dialect-non-conforming, and ambiguous fixtures, the parser returns an explicit limitation naming the file and the fault, and never a silently omitted, empty, partial, or defaulted entity in its place.",
       "verification": [
@@ -212,7 +212,7 @@
         "document": "ScopeOfWork.md",
         "line": 246,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "c8da559dbbdb73b4c355cd0c9e15d357dbbe215ab16c3481c8459b40432fd6aa"
+        "sha256": "82caf28a3757089ec07cd9a21ef70f97840fda7b92f1017236ce5062fdf55872"
       },
       "text": "A parser run over a fixture corpus leaves that corpus byte-identical, and the module contains no write, create, or delete call against any source path.",
       "verification": [
@@ -237,7 +237,7 @@
         "document": "ScopeOfWork.md",
         "line": 247,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "c8da559dbbdb73b4c355cd0c9e15d357dbbe215ab16c3481c8459b40432fd6aa"
+        "sha256": "82caf28a3757089ec07cd9a21ef70f97840fda7b92f1017236ce5062fdf55872"
       },
       "text": "Two runs over identical input bytes, in different environments and traversal orders, produce identical entities and identical limitations.",
       "verification": [
@@ -262,7 +262,7 @@
         "document": "ScopeOfWork.md",
         "line": 248,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "c8da559dbbdb73b4c355cd0c9e15d357dbbe215ab16c3481c8459b40432fd6aa"
+        "sha256": "82caf28a3757089ec07cd9a21ef70f97840fda7b92f1017236ce5062fdf55872"
       },
       "text": "The parser and its fixtures add no third-party runtime dependency and make no network call, leaving the `DEL-01-05` zero-dependency and locality assertion intact.",
       "verification": [
@@ -287,7 +287,7 @@
         "document": "ScopeOfWork.md",
         "line": 249,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "c8da559dbbdb73b4c355cd0c9e15d357dbbe215ab16c3481c8459b40432fd6aa"
+        "sha256": "82caf28a3757089ec07cd9a21ef70f97840fda7b92f1017236ce5062fdf55872"
       },
       "text": "The fixture test suite implements VER-001 through VER-011, executes in the `PKG-02` test run, passes, and introduces no acceptance criterion absent from this contract.",
       "verification": [
@@ -312,7 +312,7 @@
         "document": "ScopeOfWork.md",
         "line": 250,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "c8da559dbbdb73b4c355cd0c9e15d357dbbe215ab16c3481c8459b40432fd6aa"
+        "sha256": "82caf28a3757089ec07cd9a21ef70f97840fda7b92f1017236ce5062fdf55872"
       },
       "text": "The REVIEW gate confirms that no sibling `PKG-02` feed grammar or parity-peer reading, upstream `PKG-01` type definition or loop-registry declaration, `PKG-03` reconciliation act, `PKG-04` serving act, `PKG-09` view or pressure rule, or `PKG-10` standing-test or gate-composition duty has been absorbed, and that CON-001 through CON-006 remain recorded as open questions rather than settled by the delivered implementation.",
       "verification": [
@@ -331,7 +331,7 @@
     "migration_authority": null,
     "package_id": "PKG-02",
     "schema": "chirality-deliverable-sow/v1",
-    "sha256": "c8da559dbbdb73b4c355cd0c9e15d357dbbe215ab16c3481c8459b40432fd6aa"
+    "sha256": "82caf28a3757089ec07cd9a21ef70f97840fda7b92f1017236ce5062fdf55872"
   },
   "tool_version": "1"
 }

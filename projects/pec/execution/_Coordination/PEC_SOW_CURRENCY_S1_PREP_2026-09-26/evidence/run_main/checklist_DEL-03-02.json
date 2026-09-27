@@ -12,7 +12,7 @@
         "document": "ScopeOfWork.md",
         "line": 257,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d993f340d267f5d46fa483d6ba10a62c779c01e8cc999b854a05c4aa2f86448b"
+        "sha256": "d823d55d9e714ac3142c02ee5d599d7167e0836c89c1abee7c513b072073a3d0"
       },
       "text": "For a fixture corpus with a known commit history, a reconcile run from a recorded baseline re-derives exactly the record-tier facts the changed paths account for and re-derives nothing attributable only to unchanged paths; and for a delta that names a source, that source is re-derived.",
       "verification": [
@@ -37,7 +37,7 @@
         "document": "ScopeOfWork.md",
         "line": 258,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d993f340d267f5d46fa483d6ba10a62c779c01e8cc999b854a05c4aa2f86448b"
+        "sha256": "d823d55d9e714ac3142c02ee5d599d7167e0836c89c1abee7c513b072073a3d0"
       },
       "text": "A reconcile run against a fixture repository leaves the repository's Git state byte-identical — same HEAD, refs, index, stash, worktree list, and configuration — and this deliverable's source contains no Git write operation of any kind.",
       "verification": [
@@ -62,7 +62,7 @@
         "document": "ScopeOfWork.md",
         "line": 259,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d993f340d267f5d46fa483d6ba10a62c779c01e8cc999b854a05c4aa2f86448b"
+        "sha256": "d823d55d9e714ac3142c02ee5d599d7167e0836c89c1abee7c513b072073a3d0"
       },
       "text": "For a content-dense fixture corpus whose delta spans long prose bodies, quoted authored text, and diff-shaped content, inspection of everything the engine retains, presents to the store, and writes into a declared view finds no file content and no diff content — only paths, counts, identifiers, states, SHAs, and hashes.",
       "verification": [
@@ -87,7 +87,7 @@
         "document": "ScopeOfWork.md",
         "line": 260,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d993f340d267f5d46fa483d6ba10a62c779c01e8cc999b854a05c4aa2f86448b"
+        "sha256": "d823d55d9e714ac3142c02ee5d599d7167e0836c89c1abee7c513b072073a3d0"
       },
       "text": "After a completed reconcile the baseline record names the commit SHA that run examined through; after a run that did not complete over its selected sources the baseline is unchanged; and with no baseline recorded the engine takes the full-rebuild path and then records a baseline, with no baseline value derived from store contents anywhere in this deliverable's source.",
       "verification": [
@@ -112,7 +112,7 @@
         "document": "ScopeOfWork.md",
         "line": 261,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d993f340d267f5d46fa483d6ba10a62c779c01e8cc999b854a05c4aa2f86448b"
+        "sha256": "d823d55d9e714ac3142c02ee5d599d7167e0836c89c1abee7c513b072073a3d0"
       },
       "text": "For each fixture change class exercised, the record tier produced by an incremental reconcile is identical to the record tier produced by a full rebuild over the same end commit state; and for a seeded change class the engine cannot resolve, the run takes the full-rebuild path and no partial result is presented as reconciled.",
       "verification": [
@@ -137,7 +137,7 @@
         "document": "ScopeOfWork.md",
         "line": 262,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d993f340d267f5d46fa483d6ba10a62c779c01e8cc999b854a05c4aa2f86448b"
+        "sha256": "d823d55d9e714ac3142c02ee5d599d7167e0836c89c1abee7c513b072073a3d0"
       },
       "text": "This deliverable's source contains no rebuild implementation, no second rebuild command, no registry read of its own, no feed grammar definition, and no direct feed-file parse; the full-rebuild path and the loop set are reached only through the upstream entry point.",
       "verification": [
@@ -162,7 +162,7 @@
         "document": "ScopeOfWork.md",
         "line": 263,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d993f340d267f5d46fa483d6ba10a62c779c01e8cc999b854a05c4aa2f86448b"
+        "sha256": "d823d55d9e714ac3142c02ee5d599d7167e0836c89c1abee7c513b072073a3d0"
       },
       "text": "A reconcile over a fixture corpus leaves that corpus byte-identical and touches no path outside the store and the views the upstream entry point declares; every store write in this deliverable's source reaches the store through the upstream ingest boundary; the module contains no write, create, or delete call against any source file, governed file, register, or lifecycle file; and it declares no generated view of its own.",
       "verification": [
@@ -187,7 +187,7 @@
         "document": "ScopeOfWork.md",
         "line": 264,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d993f340d267f5d46fa483d6ba10a62c779c01e8cc999b854a05c4aa2f86448b"
+        "sha256": "d823d55d9e714ac3142c02ee5d599d7167e0836c89c1abee7c513b072073a3d0"
       },
       "text": "For fixture corpora in which a selected feed is absent, unreadable, malformed, stale, and grammar-unrecognized in turn, the reconcile result carries the reported limitation naming the loop and the feed, no such result presents that feed as read, and the baseline is not advanced past the unexamined source.",
       "verification": [
@@ -212,7 +212,7 @@
         "document": "ScopeOfWork.md",
         "line": 265,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d993f340d267f5d46fa483d6ba10a62c779c01e8cc999b854a05c4aa2f86448b"
+        "sha256": "d823d55d9e714ac3142c02ee5d599d7167e0836c89c1abee7c513b072073a3d0"
       },
       "text": "Two reconciles from the same baseline over the same end commit state produce identical record tiers; a reconcile over an empty delta changes no record-tier fact and leaves the baseline SHA unchanged.",
       "verification": [
@@ -237,7 +237,7 @@
         "document": "ScopeOfWork.md",
         "line": 266,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d993f340d267f5d46fa483d6ba10a62c779c01e8cc999b854a05c4aa2f86448b"
+        "sha256": "d823d55d9e714ac3142c02ee5d599d7167e0836c89c1abee7c513b072073a3d0"
       },
       "text": "Every record-tier fact an incremental reconcile writes traces to a file source reached through the upstream path; inspection finds no stream, event, presence-tier, or otherwise non-source input contributing to any record-tier fact; and a reconcile over a fixture corpus carrying presence-shaped input produces no presence-tier record.",
       "verification": [
@@ -262,7 +262,7 @@
         "document": "ScopeOfWork.md",
         "line": 267,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d993f340d267f5d46fa483d6ba10a62c779c01e8cc999b854a05c4aa2f86448b"
+        "sha256": "d823d55d9e714ac3142c02ee5d599d7167e0836c89c1abee7c513b072073a3d0"
       },
       "text": "The module contains no drift-classification path, no parity-diff path, no stream-loss recovery path, no performance measurement or bound assertion, no stamping or citation-attachment path, no caller-supplied-SHA delta query surface, no presence or worktree scan, and no kill-test execution; and no test in this deliverable asserts a criterion belonging to any of them.",
       "verification": [
@@ -287,7 +287,7 @@
         "document": "ScopeOfWork.md",
         "line": 268,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d993f340d267f5d46fa483d6ba10a62c779c01e8cc999b854a05c4aa2f86448b"
+        "sha256": "d823d55d9e714ac3142c02ee5d599d7167e0836c89c1abee7c513b072073a3d0"
       },
       "text": "Every record-tier fact written is an instance of an entity type the upstream contract obliges; no record-tier or presence-tier type is defined in this deliverable's source; and no element of this deliverable asserts or requires that an upstream schema, store, parser, registry, or reconciler artifact exists.",
       "verification": [
@@ -312,7 +312,7 @@
         "document": "ScopeOfWork.md",
         "line": 269,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d993f340d267f5d46fa483d6ba10a62c779c01e8cc999b854a05c4aa2f86448b"
+        "sha256": "d823d55d9e714ac3142c02ee5d599d7167e0836c89c1abee7c513b072073a3d0"
       },
       "text": "The engine and its tests add no third-party runtime dependency and make no network call, leaving the standing zero-dependency and locality assertion intact.",
       "verification": [
@@ -337,7 +337,7 @@
         "document": "ScopeOfWork.md",
         "line": 270,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d993f340d267f5d46fa483d6ba10a62c779c01e8cc999b854a05c4aa2f86448b"
+        "sha256": "d823d55d9e714ac3142c02ee5d599d7167e0836c89c1abee7c513b072073a3d0"
       },
       "text": "The test suite implements VER-001 through VER-013, executes in the `PKG-03` test run, passes, and introduces no acceptance criterion absent from this contract.",
       "verification": [
@@ -362,7 +362,7 @@
         "document": "ScopeOfWork.md",
         "line": 271,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d993f340d267f5d46fa483d6ba10a62c779c01e8cc999b854a05c4aa2f86448b"
+        "sha256": "d823d55d9e714ac3142c02ee5d599d7167e0836c89c1abee7c513b072073a3d0"
       },
       "text": "The REVIEW gate confirms this contract's traceability to `SOW-018` and `OBJ-002`; confirms that the mapping is stated as register-direct and pre-SCA-002, at the strength the record carries and no more; and confirms that no `PKG-01`, `PKG-02`, sibling `PKG-03`, `PKG-04`, `PKG-06`, `PKG-07`, or `PKG-10` scope has been absorbed.",
       "verification": [
@@ -381,7 +381,7 @@
     "migration_authority": null,
     "package_id": "PKG-03",
     "schema": "chirality-deliverable-sow/v1",
-    "sha256": "d993f340d267f5d46fa483d6ba10a62c779c01e8cc999b854a05c4aa2f86448b"
+    "sha256": "d823d55d9e714ac3142c02ee5d599d7167e0836c89c1abee7c513b072073a3d0"
   },
   "tool_version": "1"
 }

@@ -12,7 +12,7 @@
         "document": "ScopeOfWork.md",
         "line": 392,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d6943cc60bd78f8bb81feb9bdc5f2451a02470663d31be145679d923929644de"
+        "sha256": "15c10a56c21bf35e18d93b46d47f5f91e2d079872c1fc644aae89704bd0135f4"
       },
       "text": "The record identifies the accepted dependency-DAG basis it ingested, the loop that DAG describes, and where in the progression the ingestion occurred, and each is resolvable to its live source.",
       "verification": [
@@ -37,7 +37,7 @@
         "document": "ScopeOfWork.md",
         "line": 393,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d6943cc60bd78f8bb81feb9bdc5f2451a02470663d31be145679d923929644de"
+        "sha256": "15c10a56c21bf35e18d93b46d47f5f91e2d079872c1fc644aae89704bd0135f4"
       },
       "text": "Every capability cutover in the record names the capability, the predecessor whose acceptance it relied on, and that acceptance's evidence; no cutover entry relies on a capability its own node was creating; and the record contains no cutover authorization, assignment, sequencing instruction, or withholding.",
       "verification": [
@@ -62,7 +62,7 @@
         "document": "ScopeOfWork.md",
         "line": 394,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d6943cc60bd78f8bb81feb9bdc5f2451a02470663d31be145679d923929644de"
+        "sha256": "15c10a56c21bf35e18d93b46d47f5f91e2d079872c1fc644aae89704bd0135f4"
       },
       "text": "Every friction observation in the record is attributed to the occasion observed and to supporting evidence, and no observation is recorded without both.",
       "verification": [
@@ -87,7 +87,7 @@
         "document": "ScopeOfWork.md",
         "line": 395,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d6943cc60bd78f8bb81feb9bdc5f2451a02470663d31be145679d923929644de"
+        "sha256": "15c10a56c21bf35e18d93b46d47f5f91e2d079872c1fc644aae89704bd0135f4"
       },
       "text": "The record contains proposed, rejected, and unnecessary function dispositions with their bases; removing a disposition because it produced no work is detectable as a gap against the record's own prior state.",
       "verification": [
@@ -112,7 +112,7 @@
         "document": "ScopeOfWork.md",
         "line": 396,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d6943cc60bd78f8bb81feb9bdc5f2451a02470663d31be145679d923929644de"
+        "sha256": "15c10a56c21bf35e18d93b46d47f5f91e2d079872c1fc644aae89704bd0135f4"
       },
       "text": "For the occasions the record covers, it evidences that governed work proceeded without requiring a PEC read or write, rather than asserting fallback operability once and generally.",
       "verification": [
@@ -137,7 +137,7 @@
         "document": "ScopeOfWork.md",
         "line": 397,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d6943cc60bd78f8bb81feb9bdc5f2451a02470663d31be145679d923929644de"
+        "sha256": "15c10a56c21bf35e18d93b46d47f5f91e2d079872c1fc644aae89704bd0135f4"
       },
       "text": "Every observation that led anywhere carries its route and that route's state; and no statement in the record presents an observation as granting authority, expanding scope, or changing accepted state.",
       "verification": [
@@ -162,7 +162,7 @@
         "document": "ScopeOfWork.md",
         "line": 398,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d6943cc60bd78f8bb81feb9bdc5f2451a02470663d31be145679d923929644de"
+        "sha256": "15c10a56c21bf35e18d93b46d47f5f91e2d079872c1fc644aae89704bd0135f4"
       },
       "text": "The record has no terminal or \"complete\" state: it remains appendable and re-runnable, each entry is scoped to the progression state it observed, and no entry or check result is expressible as completion of this deliverable.",
       "verification": [
@@ -187,7 +187,7 @@
         "document": "ScopeOfWork.md",
         "line": 399,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d6943cc60bd78f8bb81feb9bdc5f2451a02470663d31be145679d923929644de"
+        "sha256": "15c10a56c21bf35e18d93b46d47f5f91e2d079872c1fc644aae89704bd0135f4"
       },
       "text": "The record carries its declared maintenance-and-rerun statement as a component, naming where it lives, what appends to it, and at what occasions it is re-run; and that statement matches the record's actual location and maintenance.",
       "verification": [
@@ -212,7 +212,7 @@
         "document": "ScopeOfWork.md",
         "line": 400,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d6943cc60bd78f8bb81feb9bdc5f2451a02470663d31be145679d923929644de"
+        "sha256": "15c10a56c21bf35e18d93b46d47f5f91e2d079872c1fc644aae89704bd0135f4"
       },
       "text": "All six named facets are present within one cohesive record; no facet is delivered as a separate artifact.",
       "verification": [
@@ -237,7 +237,7 @@
         "document": "ScopeOfWork.md",
         "line": 401,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d6943cc60bd78f8bb81feb9bdc5f2451a02470663d31be145679d923929644de"
+        "sha256": "15c10a56c21bf35e18d93b46d47f5f91e2d079872c1fc644aae89704bd0135f4"
       },
       "text": "The record states the generality obligation, states that the structurally different loop is named by no accepted source, and states whether validation against such a loop has occurred; and no part of the record presents self-ingestion evidence as generality evidence.",
       "verification": [
@@ -262,7 +262,7 @@
         "document": "ScopeOfWork.md",
         "line": 402,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d6943cc60bd78f8bb81feb9bdc5f2451a02470663d31be145679d923929644de"
+        "sha256": "15c10a56c21bf35e18d93b46d47f5f91e2d079872c1fc644aae89704bd0135f4"
       },
       "text": "Inspection finds no grammar definition, register or work-graph parsing, registry-row or feed-profile change, rebuild, reconcile, drift-classification, parity-diff, kill-test, no-ruling-write, rebuild-bound, edge-materialization, blocker-computation, or scaffolding act performed by this deliverable, and no write by it to any register, decomposition, ledger, decision, or lifecycle file.",
       "verification": [
@@ -287,7 +287,7 @@
         "document": "ScopeOfWork.md",
         "line": 403,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d6943cc60bd78f8bb81feb9bdc5f2451a02470663d31be145679d923929644de"
+        "sha256": "15c10a56c21bf35e18d93b46d47f5f91e2d079872c1fc644aae89704bd0135f4"
       },
       "text": "No element of the record asserts or requires that an upstream parser, reconciler, store, or rebuilt record tier exists; the record carries the upstream \"in full\" conditioning and the unsettled generated-view instance set as the upstream contracts state them; and any upstream-reported feed limitation appears in the DAG-ingestion evidence.",
       "verification": [
@@ -312,7 +312,7 @@
         "document": "ScopeOfWork.md",
         "line": 404,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d6943cc60bd78f8bb81feb9bdc5f2451a02470663d31be145679d923929644de"
+        "sha256": "15c10a56c21bf35e18d93b46d47f5f91e2d079872c1fc644aae89704bd0135f4"
       },
       "text": "For a release candidate on which the required progression evidence is absent, and for one on which the standing assertion fails, the mechanism returns an explicit blocking verdict rather than a pass, a skip, or an absent result.",
       "verification": [
@@ -337,7 +337,7 @@
         "document": "ScopeOfWork.md",
         "line": 405,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d6943cc60bd78f8bb81feb9bdc5f2451a02470663d31be145679d923929644de"
+        "sha256": "15c10a56c21bf35e18d93b46d47f5f91e2d079872c1fc644aae89704bd0135f4"
       },
       "text": "Each of VER-001 through VER-013 has a corresponding executed check recorded against the record, and no check asserts a criterion absent from this contract.",
       "verification": [
@@ -362,7 +362,7 @@
         "document": "ScopeOfWork.md",
         "line": 406,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d6943cc60bd78f8bb81feb9bdc5f2451a02470663d31be145679d923929644de"
+        "sha256": "15c10a56c21bf35e18d93b46d47f5f91e2d079872c1fc644aae89704bd0135f4"
       },
       "text": "An accountable owner confirms, or declines to confirm, that the validation delivered under this contract carries release-gating authority — that its blocking verdict blocks a release candidate — given that `C-08`'s standing-node classification carries \"owner confirmation requested\" in its own `Notes` and was accepted at `D-PEC-62` §1(4) as a recorded-but-unresolved, non-gating annotation (CLM-008, CON-001). A decline leaves the mechanism's verdicts advisory and invalidates no other criterion in this contract; the standing framing of the contract stands either way, because it is how the contract is written rather than a claim about the validation's force.",
       "verification": [
@@ -383,7 +383,7 @@
         "document": "ScopeOfWork.md",
         "line": 407,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "d6943cc60bd78f8bb81feb9bdc5f2451a02470663d31be145679d923929644de"
+        "sha256": "15c10a56c21bf35e18d93b46d47f5f91e2d079872c1fc644aae89704bd0135f4"
       },
       "text": "The REVIEW gate confirms this contract's traceability to `SOW-064` and `OBJ-006` as a register-direct mapping carried from `SCA-001` and untouched by `SCA-002`; confirms that no `PKG-02`, `PKG-03`, sibling `PKG-10`, or `PROJECT_SETUP` scope has been absorbed; and confirms that the record holds no authority over cutover order, scope, or amendment.",
       "verification": [
@@ -402,7 +402,7 @@
     "migration_authority": null,
     "package_id": "PKG-10",
     "schema": "chirality-deliverable-sow/v1",
-    "sha256": "d6943cc60bd78f8bb81feb9bdc5f2451a02470663d31be145679d923929644de"
+    "sha256": "15c10a56c21bf35e18d93b46d47f5f91e2d079872c1fc644aae89704bd0135f4"
   },
   "tool_version": "1"
 }

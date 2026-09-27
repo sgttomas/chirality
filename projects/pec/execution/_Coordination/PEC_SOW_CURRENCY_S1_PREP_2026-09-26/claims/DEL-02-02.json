@@ -579,6 +579,22 @@
    "path": "projects/pec/docs/PRD.md",
    "value": "`_harness/adapter.yaml` as the feed manifest",
    "candidate_text": "in place of the PRD v2.1 text"
+  },
+  {
+   "id": "MR01",
+   "commit": "125cfacc1",
+   "kind": "exists",
+   "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+   "value": null,
+   "candidate_text": "`projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md`"
+  },
+  {
+   "id": "MR02",
+   "commit": "125cfacc1",
+   "kind": "exists",
+   "path": "projects/chirality-piping/execution/_Coordination/_DECISIONS/_REGISTER.md",
+   "value": null,
+   "candidate_text": "`projects/chirality-piping/execution/_Coordination/_DECISIONS/_REGISTER.md`"
   }
  ]
 }
