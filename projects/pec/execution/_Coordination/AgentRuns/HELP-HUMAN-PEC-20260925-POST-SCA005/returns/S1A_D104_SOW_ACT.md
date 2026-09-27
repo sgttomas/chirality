@@ -69,10 +69,10 @@ Records (under `projects/pec/execution/_Coordination/`):
 | Path | SHA-256 |
 |---|---|
 | `SOW_CURRENCY_S1_2026-09-27/MANIFEST.md` | `3d88ed9d4d5db71198c73eee1f045fda8ed0800803f60c2fba1164fe1706b7c3` |
-| `SOW_CURRENCY_S1_2026-09-27/VALIDATION.md` | `b9756dccafba404a66c4cc982b00ba33113b2716c1a21209216e4e3cb570a4e3` |
+| `SOW_CURRENCY_S1_2026-09-27/VALIDATION.md` | `73b32e8c41b4fc6fd8e47bab5e42b0cb3c465e7f7065df49837a1ee2d624537a` (after the PR #1010 review-01 repair; originally `b9756dcc…a4e3`) |
 | `SOW_CURRENCY_S1_2026-09-27/HANDOFF_STATE.md` | `53c640c60c6df739b24388b9cdf975cdd8f78c5904c575f79080aa195544516f` |
 | `SOW_CURRENCY_S1_2026-09-27/VERIFIER_VERDICT_01.md` | `5dab70b3c7b1725127777b14dd7f37b320e3208ff91b47ce3f039ba1e6361c5f` |
-| `SOW_CURRENCY_S1_2026-09-27/SHA256SUMS` (334 entries: every run-root file except itself) | `7f3efc6c4564fc36e7f434d66417c612acb229297f3c1068512c27181d04cbae` |
+| `SOW_CURRENCY_S1_2026-09-27/SHA256SUMS` (334 entries: every run-root file except itself) | `6dde9d7824133f77c179eda50b431d5c24a86839f840b2596d21b0cc45eb4db7` (after the PR #1010 review-01 repair; originally `7f3efc6c…cbae`) |
 | `SOW_CURRENCY_S1_2026-09-27/apply_s1p.py` (bound copy) | `26b677a70d5d51041f0d49dd34e9a09685120f136071e906d7ff702719f1625f` |
 | `AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/briefs/S1A_D104_SOW_ACT.md` | `b60d21dba14d0a6805b74a611eab057d6318f952e31f8c934247b237d590296a` |
 | `AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/returns/S1A_D104_SOW_ACT.md` (this file) | given in the hand-back |
