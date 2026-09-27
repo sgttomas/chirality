@@ -141,8 +141,10 @@ def main() -> int:
     pre = json.load(open(PRE, encoding="utf-8"))
     ref = json.load(open(REFRESH, encoding="utf-8"))
     post["method"] = ("Deterministic post-change baseline for the group-3 CANDIDATE, produced by the accepted group-1 "
-                      "builder (Evidence/Group1/build_pre_change_baseline.py) with only the output name, run label and "
-                      "basis commit substituted (Evidence/Group3/build_post_change_coverage.py). A full audit-decomp "
+                      "builder (Evidence/Group1/build_pre_change_baseline.py) with four substitutions made in memory "
+                      "(Evidence/Group3/build_post_change_coverage.py): the output name, the run label, the basis "
+                      "commit, and the legacy CSS token set, which starts from the accepted baseline's tokens because "
+                      "the code change deletes the legacy components the builder reads. A full audit-decomp "
                       "TASK run was not dispatched from this bounded session; the same registered tools as the "
                       "pre-change baseline were run on the candidate.")
     post["candidate"] = {

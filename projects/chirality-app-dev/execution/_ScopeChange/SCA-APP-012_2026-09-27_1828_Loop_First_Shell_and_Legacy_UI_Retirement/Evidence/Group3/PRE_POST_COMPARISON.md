@@ -2,7 +2,7 @@
 
 - Pre (accepted): `Pre_Change_Coverage.json`, basis `adc8bdae1`.
 - Pre (refresh): `Evidence/Group3/PRE_CHANGE_REFRESH.json`, basis `dad463311` (the group-2 snapshot commit, before the candidate).
-- Post: `Post_Change_Coverage.json`, basis `30e8495ec` (the committed candidate).
+- Post: `Post_Change_Coverage.json`, basis `550d58989` (the committed candidate).
 
 "Basis moved" compares the refresh with the accepted baseline (main's changes, G1B-01). "Amendment effect" compares the candidate with the refresh.
 

@@ -135,7 +135,7 @@ from 1,882 to 1,864 rows.
 | Topology, coverage, lifecycle, closure | Unchanged by the amendment: 10/52/84/10; ledger 78/5/1; 53 `IN_PROGRESS`, 1 `OPEN`; 54 nodes, 104 edges, 0 SCCs; `EVQ-006` ×36 only (§3) |
 | Removed code references | None left in product, tests, Electron or scripts for the retired routes, provider, shells, helpers, view, `legacyHref` or the old copy; `scanProjectScopes` and `/workbench`, `/pipeline` remain as intended (§3) |
 | Supersession map | 85 rows (63 prior + 22), 0 findings; `--check-map` clean; LF line endings |
-| Group-3 finalize path | 18/18 on a scratch copy (`Evidence/Group3/check_group3_finalize.py`) |
+| Group-3 finalize path | 22/22 on scratch copies, including the committed-decision git gate (`Evidence/Group3/check_group3_finalize.py`) |
 | TypeScript | `tsc` 0; Electron typecheck 0 (code agent) |
 | Full Vitest | 2,560 passed; only the known uid-0 `harness-attachment-resolver` failure (code agent) |
 | Build | `npm run build` passes; the two retired API routes are absent from the route table, and `/workbench` and `/pipeline` remain (code agent) |
@@ -147,10 +147,12 @@ from 1,882 to 1,864 rows.
 
 - The independent review of the integrated revision (scope text and code
   together, Q-a).
-- CI on the PR. The PR branch sits on current `origin/main`, which is
-  `5ae22926e`; from `974bf7da4` main changed only `projects/pec/**` and
-  `projects/chirality-piping/**`, outside every App path, the write boundary
-  and the code-change categories. CI runs when the PR is opened and is a
+- CI on the PR. The PR branch sits on current `origin/main`, which moves
+  often; at the time of writing it is `2dc6f513a`. From `974bf7da4` to
+  `2dc6f513a`, main changed only `projects/pec/**` and
+  `projects/chirality-piping/**` (through `5ae22926e`, then Piping commits
+  only), outside every App path, the write boundary and the code-change
+  categories, and the merge is clean. CI runs when the PR is opened and is a
   merge gate after your acceptance.
 - The premerge harness gate (`harness:validate:premerge`) needs a running
   harness server and Codex and could not run in the code agent's environment;
@@ -188,7 +190,7 @@ later PEC and Piping commits.
 | 1–2. Apply | `build_amendment_preview.py --check`, then `--candidate` on the repository tree, both with every `GIT_*` variable removed from the environment (`Decision_Log.md` G2-NOTE-2, N10). 79 edits written; each file matches its candidate hash | commit `8a3230d5e` |
 | Code change | App loop, `Propagation_Plan.md` §4 (commits `85f206dae`, `8df9c3f78`, `c47b74fd5`) | run receipt, Receipt-280, tranche manifest |
 | 5. Supersession | `accumulate_supersession_map.py` over the SCA-APP-011 map and the delta: 85 rows, 0 findings; normalized to LF; a second run with `--check-map` against the written map: 0 findings | `Supersession_Map.csv`, `Evidence/Group3/Supersession_Findings.csv` |
-| 5. Post-change baseline | The accepted group-1 builder rerun on the integrated revision (commit `30e8495ec`, the integrated tree plus its validation report) | `Post_Change_Coverage.json`, `Evidence/Group3/PRE_POST_COMPARISON.md` |
+| 5. Post-change baseline | The accepted group-1 builder rerun on the integrated tree at commit `550d58989`, whose App tree is that of `c47b74fd5`; rerun after the review to correct the recorded `method` text (the first run was at `30e8495ec`, with identical results) | `Post_Change_Coverage.json`, `Evidence/Group3/PRE_POST_COMPARISON.md` |
 | 5. Validation | `validate_candidate.py --accepted-commit dad463311 --integrated --code-record …/APP-RETIRE-LOOP-FIRST-UI-2026-09-27 --code-record …/APP-RETIRE-LOOP-FIRST-UI-20260927.yaml` at `c47b74fd5`: PASS | `Evidence/Group3/CANDIDATE_VALIDATION.md` |
 | Acceptance-conditional list | Seven items with exact post-images and the finalize path | `Evidence/Group3/ACCEPTANCE_CONDITIONAL_EDITS.csv`, `LATEST_POSTIMAGE.md`, `STATUS_RECORDS_POSTIMAGE.md`, `HANDOFF_STATE_POSTIMAGE.md`, `group3_finalize.py`, `check_group3_finalize.py` |
 
@@ -212,10 +214,17 @@ group-3 tools do not share its weakness:
   the current directory to be the work-tree top, and stops on any git error;
 - `build_post_change_coverage.py` removes `GIT_*` before running the builder
   and resolves HEAD with a git call that must succeed;
-- `group3_finalize.py` makes no git call; its gate is the committed group-3
-  decision folder, the owner's act quoted verbatim in it, and the group-2
-  pointer. `check_group3_finalize.py` runs it with `GIT_DIR=/nonexistent` to
-  show that no git environment changes its result.
+- `group3_finalize.py` gates on the group-3 `DECISION.md` being committed:
+  ROOT must be the top of a git work tree, the file tracked, and without
+  changes against HEAD. Those three read-only git calls run with `GIT_*`
+  removed and refuse on any git error. The gate also needs the owner's act
+  quoted verbatim in the decision and the group-2 pointer.
+  `check_group3_finalize.py` runs it with `GIT_DIR=/nonexistent` in a fresh
+  scratch repository and covers the untracked, modified, committed and
+  not-a-repository cases.
+- No group-3 tool checks for a `.git` in an ancestor of its root; the
+  work-tree-top and fail-closed checks above are the guard
+  (`Decision_Log.md` G2-NOTE-3).
 
 ## 3. Pre-change vs post-change
 
@@ -363,9 +372,10 @@ Integration branch on `origin/main` `974bf7da4`:
 | `65ecc03e5`, `23b622da8` | Group-3 evidence and presentation (scope-text candidate) |
 | `85f206dae`, `8df9c3f78`, `c47b74fd5` | Code, records, export |
 | `30e8495ec` | Candidate validation on the integrated revision |
-| the commit carrying this file | Post-change coverage on the integrated revision, this presentation and `Handoff_State.md` |
+| `a12759dba`, `550d58989` | Post-change coverage on the integrated revision, this presentation and `Handoff_State.md` |
+| the commit carrying this row | Fixes from the independent group-3 review (N1–N4) |
 
-### Root and repository checks (at `a12759dba`, base `974bf7da4`)
+### Root and repository checks (after the review fixes, base `974bf7da4`)
 
 | Check | Result |
 |---|---|
@@ -375,8 +385,8 @@ Integration branch on `origin/main` `974bf7da4`:
 | `build_workflow_index.py --check` | PASS (78 methods) |
 | `git diff --check` (base `974bf7da4`) | PASS |
 | `exports/chirality-app/export_public.py`, run twice | No tracked change; staging removed |
-| `validate_candidate.py --integrated` (at `c47b74fd5`) | PASS |
-| `check_group3_finalize.py` | 18/18 PASS |
+| `validate_candidate.py --integrated` | PASS at `c47b74fd5` (the committed report) and again at `550d58989` after the review (report to a scratch file; the committed one restored) |
+| `check_group3_finalize.py` | 22/22 PASS |
 | `group3_finalize.py --check` | OK |
 
 The group-2 `build_amendment_preview.py --check` is a pre-candidate check: on
@@ -384,24 +394,22 @@ the written candidate it reports every file as drifted from its preimage, by
 design. Its group-3 counterpart is `validate_candidate.py` check 1 (12/12
 candidate hashes).
 
-The commit that adds this table changes only `RUN_SUMMARY.md`.
-
 ## Evidence basis
 
 | Artifact | SHA-256 |
 |---|---|
 | `Supersession_Map.csv` | `83e5e25fec5dbedee83d184d4b831082169d5a7c46346cd7f3f3a18e45c73eaf` |
-| `Post_Change_Coverage.json` | `75931b24bba5196ce641094890dfa2b88df064927875683579c3accdd95a6496` |
+| `Post_Change_Coverage.json` | `ba56a2229294de1a81207f6330b6bad522572fd6f030d3659d8dc198f22e56a2` |
 | `Handoff_State.md` | `5730efb09753ea793768440907be848ff831b559eaebadf35983535bb13a7928` |
-| `Evidence/Group3/ACCEPTANCE_CONDITIONAL_EDITS.csv` | `cabb96565607e394d656d29e72d4f4b18055a10e12c9b1ae670688f09c1165bb` |
+| `Evidence/Group3/ACCEPTANCE_CONDITIONAL_EDITS.csv` | `8f6ec8c85a80c3f4eafd2743ec1e6e22a41aa1b08cfc744e6cd5510ad8e6868d` |
 | `Evidence/Group3/CANDIDATE_VALIDATION.md` | `672c90e40612998d56b33c41f2b4c7418a0a3be187d196ac6cdc7d3e3f62986f` |
 | `Evidence/Group3/validate_candidate.py` | `cd6666281f9c412ebcf4c969e7fe384ce25cd38a35319c1284c9a7bdc8c18a67` |
-| `Evidence/Group3/build_post_change_coverage.py` | `01432c40ea338b170d99e4b599ef0cc49c67cd66dce1873dd6a4536e5f1efec9` |
+| `Evidence/Group3/build_post_change_coverage.py` | `f009d67347bcc84d958bdce711f91402c804283ca511e8181b743d5a3f85442d` |
 | `Evidence/Group3/PRE_CHANGE_REFRESH.json` | `220ecfbaf56cf2f99c27503c86b8207db367264e8d4696caddd2b41cd7d83e91` |
-| `Evidence/Group3/PRE_POST_COMPARISON.md` | `e8467bdcde4b7ca3ba49c7f5d080b45bf3f647edabdfa6318e1305dcafb8841c` |
+| `Evidence/Group3/PRE_POST_COMPARISON.md` | `a10b9cc6e16eccc89777bac143a4a8e2b464211e8b4467ec719c4046c8797a7d` |
 | `Evidence/Group3/Supersession_Findings.csv` | `d288096f20845863777a4b5d0956be5c7783577857e3148e6d174200b74eb8b4` |
-| `Evidence/Group3/group3_finalize.py` | `6e519e52b978a8d1388969a908a782ffa7f7bb32fe83b426ae625cc8fa24c412` |
-| `Evidence/Group3/check_group3_finalize.py` | `5258b204f68af90965c3f4263c5d6982decbbea4d616f48d22976d5c767e2632` |
+| `Evidence/Group3/group3_finalize.py` | `8cefd8bf7ab06d6ec83b9ae8515b6266121624665fdf4332d2df4aee7a18c967` |
+| `Evidence/Group3/check_group3_finalize.py` | `d477deca181bf42ecfe8fdc890ff7b0ccfcc70aa6e601a615d41dad549394ee2` |
 | `Evidence/Group3/LATEST_POSTIMAGE.md` | `dc893e66b594446f5099848dad09cc79866e2e5b1f934bc50883bc0e0af2803d` |
 | `Evidence/Group3/STATUS_RECORDS_POSTIMAGE.md` | `1807f8d19f3a0381c64115f2940e23b0651ecd491baeea46e457f0d2efb3e59c` |
 | `Evidence/Group3/HANDOFF_STATE_POSTIMAGE.md` | `ea902c05b03f8b4ea273d951d487fa1e09b6fc6938b79eaef28436ef3dbd8f29` |

@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
-"""Exercise group3_finalize.py in a scratch copy outside every git work tree.
+"""Exercise group3_finalize.py in scratch copies outside this checkout.
 
 Run from the repository root on the group-3 candidate. It copies the 12
 candidate files, `_LATEST.md`, `Brief.md`, `Decision_Log.md`,
-`Handoff_State.md` and the group-2 pointer (never `.git`) into a temporary
-root, then checks the refusals (no decision, draft heading, wrong date, owner
-act not verbatim, bad UTC stamp, missing group-2 pointer, a file that is not
-the reviewed candidate), a dry run that writes nothing, one finalize with a
-test decision whose outputs are compared byte for byte with the templates,
-that nothing else changed, that a rerun is refused, and that this checkout is
-unchanged. It also prints the date-only post-image hashes for a given
+`Handoff_State.md` and the group-2 pointer (never this checkout's `.git`) into
+a temporary folder outside every git work tree, makes that copy a fresh git
+repository with one commit (git run with `GIT_*` removed), then checks the
+refusals (no decision, draft heading, decision untracked, wrong date, owner
+act not verbatim, bad UTC stamp, decision modified after its commit, a copy
+that is not a git work tree, missing group-2 pointer, a file that is not the
+reviewed candidate), that a committed decision passes the gate, a dry run that
+writes nothing, one finalize with a test decision whose outputs are compared
+byte for byte with the templates, that nothing else changed, that a rerun is
+refused, and that this checkout is unchanged. It also prints the date-only post-image hashes for a given
 --expect-date (default 2026-09-27). Exit 1 on any FAIL.
 """
 import argparse, csv, hashlib, importlib.util, os, shutil, subprocess, sys, tempfile
@@ -33,11 +36,20 @@ def h(p):
     return hashlib.sha256(open(p, "rb").read()).hexdigest()
 
 
+CLEAN = {k: v for k, v in os.environ.items() if not k.startswith("GIT_")}
+
+
 def run(root, *a):
+    # GIT_DIR points nowhere: the tool must strip it and still answer for ROOT.
     p = subprocess.run([sys.executable, G3, *a, "--root", root], capture_output=True, text=True, env=dict(os.environ, GIT_DIR="/nonexistent"))
     print("$ group3_finalize.py", " ".join(x if len(x) < 50 else x[:47] + "..." for x in a), "-> rc", p.returncode)
     print("   " + (p.stdout + p.stderr).strip()[-600:].replace("\n", "\n   "))
-    return p.returncode, p.stdout
+    return p.returncode, p.stdout + p.stderr
+
+
+def git(root, *a):
+    return subprocess.run(["git", "-C", root, "-c", "user.name=check", "-c", "user.email=check@example.invalid",
+                           "-c", "commit.gpgsign=false", *a], capture_output=True, text=True, env=CLEAN, check=True)
 
 
 def decision(root, date, heading, act=ACT):
@@ -53,26 +65,45 @@ def main():
     before = {f: h(f) for f in FILES}
     base = tempfile.mkdtemp(prefix="sca012-g3-")
     root = os.path.join(base, "scratch")
-    for f in FILES:
-        d = os.path.join(root, f)
-        os.makedirs(os.path.dirname(d), exist_ok=True)
-        shutil.copy(f, d)
+    plain = os.path.join(base, "not-a-repo")
+    for r in (root, plain):
+        for f in FILES:
+            d = os.path.join(r, f)
+            os.makedirs(os.path.dirname(d), exist_ok=True)
+            shutil.copy(f, d)
     date, utc = "2099-01-02", "20990102T000000Z"
     res = {}
     try:
         res["scratch root outside every git work tree"] = subprocess.run(
-            ["git", "-C", root, "rev-parse", "--is-inside-work-tree"], capture_output=True, text=True,
-            env={k: v for k, v in os.environ.items() if not k.startswith("GIT_")}).returncode != 0
+            ["git", "-C", base, "rev-parse", "--is-inside-work-tree"], capture_output=True, text=True,
+            env=CLEAN).returncode != 0
+        git(root, "init", "-q")
+        git(root, "add", "-A")
+        git(root, "commit", "-q", "-m", "scratch candidate")
         res["refused: no decision"] = run(root, "--date", date, "--owner-act", ACT, "--utc", utc)[0] == 3
         decision(root, date, "# SCA-APP-012 checkpoint group 3 — draft")
         res["refused: draft heading"] = run(root, "--date", date, "--owner-act", ACT, "--utc", utc)[0] == 3
         decision(root, date, "# SCA-APP-012 checkpoint group 3 — accepted (test)")
+        rc, out = run(root, "--date", date, "--owner-act", ACT, "--utc", utc)
+        res["refused: decision untracked"] = rc == 3 and "is not tracked by git" in out
         res["refused: date differs from the decision folder"] = run(root, "--date", "2099-01-03", "--owner-act", ACT, "--utc", utc)[0] == 3
         res["refused: owner act not verbatim"] = run(root, "--date", date, "--owner-act", ACT + ".", "--utc", utc)[0] == 3
         res["refused: bad UTC stamp"] = run(root, "--date", date, "--owner-act", ACT, "--utc", "today")[0] == 3
+        dec_rel = f"{SC}/checkpoint_snapshots/SCA-APP-012_GROUP-3_{date}/DECISION.md"
+        git(root, "add", "--", dec_rel)
+        git(root, "commit", "-q", "-m", "group-3 decision (test)")
+        with open(os.path.join(root, dec_rel), "a") as fh:
+            fh.write("edited after the commit\n")
+        rc, out = run(root, "--date", date, "--owner-act", ACT, "--utc", utc)
+        res["refused: decision modified after its commit"] = rc == 3 and "changes not committed" in out
+        git(root, "checkout", "--", dec_rel)
+        decision(plain, date, "# SCA-APP-012 checkpoint group 3 — accepted (test)")
+        rc, out = run(plain, "--date", date, "--owner-act", ACT, "--utc", utc)
+        res["refused: root is not a git work tree"] = rc == 3 and "git error" in out
         p2 = os.path.join(root, g3.POINTER2)
         os.rename(p2, p2 + ".off")
-        res["refused: group-2 pointer absent"] = run(root, "--date", date, "--owner-act", ACT, "--utc", utc)[0] == 3
+        rc, out = run(root, "--date", date, "--owner-act", ACT, "--utc", utc)
+        res["refused: group-2 pointer absent"] = rc == 3 and "is absent" in out
         os.rename(p2 + ".off", p2)
         spec_path = os.path.join(root, rows[1]["File"])
         orig = open(spec_path, encoding="utf-8").read()
@@ -81,6 +112,7 @@ def main():
         open(spec_path, "w", encoding="utf-8").write(orig)
         snap = {f: h(os.path.join(root, f)) for f in FILES}
         rc, out = run(root, "--date", date, "--owner-act", ACT, "--utc", utc, "--dry-run")
+        res["committed decision passes the gate"] = rc == 0 and "refused" not in out
         res["dry run writes nothing"] = rc == 0 and {f: h(os.path.join(root, f)) for f in FILES} == snap
         rc, out = run(root, "--date", date, "--owner-act", ACT, "--utc", utc)
         res["finalize ok"] = rc == 0

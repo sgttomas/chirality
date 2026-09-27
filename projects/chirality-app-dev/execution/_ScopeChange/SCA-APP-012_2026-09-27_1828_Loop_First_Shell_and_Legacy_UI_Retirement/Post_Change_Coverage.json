@@ -1,8 +1,8 @@
 {
   "run_label": "SCA_APP_012_GROUP3_POSTCHANGE_CANDIDATE",
   "decomp_variant": "SOFTWARE",
-  "method": "Deterministic post-change baseline for the group-3 CANDIDATE, produced by the accepted group-1 builder (Evidence/Group1/build_pre_change_baseline.py) with only the output name, run label and basis commit substituted (Evidence/Group3/build_post_change_coverage.py). A full audit-decomp TASK run was not dispatched from this bounded session; the same registered tools as the pre-change baseline were run on the candidate.",
-  "basis_commit": "30e8495ecfdf430e796cb1c4495a6675e0afd2fa",
+  "method": "Deterministic post-change baseline for the group-3 CANDIDATE, produced by the accepted group-1 builder (Evidence/Group1/build_pre_change_baseline.py) with four substitutions made in memory (Evidence/Group3/build_post_change_coverage.py): the output name, the run label, the basis commit, and the legacy CSS token set, which starts from the accepted baseline's tokens because the code change deletes the legacy components the builder reads. A full audit-decomp TASK run was not dispatched from this bounded session; the same registered tools as the pre-change baseline were run on the candidate.",
+  "basis_commit": "550d589899d1764207f729f399508f1b367dd8f6",
   "governed_inputs_identical_to_basis": true,
   "decomposition_path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
   "decomposition_sha256": "929267727acbfd276359319877c0d3e4dc8eea9202ac5b0173d482b7a2fad4e0",
@@ -2333,7 +2333,7 @@
   "candidate": {
     "state": "CANDIDATE (not accepted; _LATEST.md unchanged)",
     "builder_sha256": "1136d9d8eba59ecc6abac42d5656f96ee379ca04371fc5b717c3efbbc7a41a88",
-    "wrapper_sha256": "01432c40ea338b170d99e4b599ef0cc49c67cd66dce1873dd6a4536e5f1efec9",
+    "wrapper_sha256": "f009d67347bcc84d958bdce711f91402c804283ca511e8181b743d5a3f85442d",
     "pre_change_coverage_sha256": "c470779a3d25c9e911248322d2b1785aa0895c1666cdb7311aacb980017cc0b2",
     "pre_change_refresh_sha256": "220ecfbaf56cf2f99c27503c86b8207db367264e8d4696caddd2b41cd7d83e91",
     "acceptance_conditional_withheld": [

@@ -2,7 +2,7 @@
 """SCA-APP-012 group-3 finalize path: apply the acceptance-conditional edits exactly.
 
 Run from the repository root, after checkpoint group 3 is accepted and its
-decision folder is committed:
+decision folder is committed (the tool checks that it is):
 
     group3_finalize.py --date YYYY-MM-DD --owner-act TEXT --utc STAMP
                        [--root DIR] [--dry-run]
@@ -15,6 +15,11 @@ The finalize mode refuses (exit 3) unless all of these hold in ROOT:
     `_ScopeChange/checkpoint_snapshots/SCA-APP-012_GROUP-3_{date}/DECISION.md`
     exists, its first line starts `# SCA-APP-012 checkpoint group 3 — accepted`,
     and it contains the line `> {owner act}` verbatim;
+  - that DECISION.md is committed: ROOT is the top of a git work tree, the file
+    is tracked (`git ls-files --error-unmatch`), and it has no staged or
+    unstaged change against HEAD (`git diff --quiet HEAD --`). Every git call
+    runs with all `GIT_*` variables removed from the environment, and any git
+    error, including "not a git repository", refuses;
   - `_ScopeChange/SCA-APP-012_GROUP-2_AUTHORIZED.md` exists;
   - --utc is a `YYYYMMDDTHHMMSSZ` stamp (the `_PostAcceptanceValidation/`
     record's suffix).
@@ -35,8 +40,10 @@ Then it writes, and nothing else:
 It prints every written file's SHA-256; --dry-run prints them and writes
 nothing. A rerun is refused because the before-states no longer hold.
 
-This tool makes no git call, so no git environment can open its gate; the
-gate is the committed group-3 decision folder and the group-2 pointer in ROOT.
+Its only git calls are the three read-only checks above, made with `GIT_*`
+removed and failing closed, so no git environment can open its gate; the gate
+is the committed group-3 decision folder, the owner's act quoted verbatim in
+it, and the group-2 pointer in ROOT.
 It does not write the decision folder, the `_PostAcceptanceValidation/` record
 or any code, and it does not merge.
 """
@@ -48,6 +55,7 @@ import hashlib
 import importlib.util
 import os
 import re
+import subprocess
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -98,6 +106,33 @@ def load(name: str, path: str):
 def read(root: str, rel: str) -> str | None:
     p = os.path.join(root, rel)
     return open(p, encoding="utf-8").read() if os.path.isfile(p) else None
+
+
+CLEAN_ENV = {k: v for k, v in os.environ.items() if not k.startswith("GIT_")}
+
+
+def decision_uncommitted(root: str, rel: str) -> str | None:
+    """Why DECISION.md at REL is not committed in ROOT, or None when it is.
+
+    Any git error refuses, including "not a git repository".
+    """
+    def git(*args: str) -> subprocess.CompletedProcess:
+        return subprocess.run(["git", "-C", root, *args], capture_output=True, text=True, env=CLEAN_ENV)
+
+    top = git("rev-parse", "--show-toplevel")
+    if top.returncode != 0:
+        return f"git error in {root}: {top.stderr.strip() or top.returncode}"
+    if os.path.realpath(top.stdout.strip()) != os.path.realpath(root):
+        return f"{root} is not the top of its git work tree ({top.stdout.strip()})"
+    tracked = git("ls-files", "--error-unmatch", "--", rel)
+    if tracked.returncode != 0:
+        return f"{rel} is not tracked by git (commit the decision folder first): {tracked.stderr.strip()}"
+    diff = git("diff", "--quiet", "HEAD", "--", rel)
+    if diff.returncode == 1:
+        return f"{rel} has changes not committed to HEAD"
+    if diff.returncode != 0:
+        return f"git error checking {rel}: {diff.stderr.strip() or diff.returncode}"
+    return None
 
 
 def fill(text: str, date: str, act: str = "", utc: str = "") -> str:
@@ -217,6 +252,10 @@ def main() -> int:
         return 3
     if not act or f"> {act}" not in text.split("\n"):
         print("refused: --owner-act must equal a `> ` quoted line of that DECISION.md, verbatim", file=sys.stderr)
+        return 3
+    why = decision_uncommitted(root, dec)
+    if why:
+        print(f"refused: {why}", file=sys.stderr)
         return 3
     if not os.path.isfile(os.path.join(root, POINTER2)):
         print(f"refused: {POINTER2} is absent", file=sys.stderr)
