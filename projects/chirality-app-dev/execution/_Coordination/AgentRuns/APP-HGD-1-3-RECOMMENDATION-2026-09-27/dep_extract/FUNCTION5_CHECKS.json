@@ -1,0 +1,81 @@
+{
+ "compact_register_matches_csv": true,
+ "enum_pairs": {
+  "ANCHOR_TYPE=NOT_APPLICABLE": {
+   "rc": 0,
+   "result": "VALID: NOT_APPLICABLE is a valid ANCHOR_TYPE"
+  },
+  "CONFIDENCE=MEDIUM": {
+   "rc": 0,
+   "result": "VALID: MEDIUM is a valid CONFIDENCE"
+  },
+  "DEPENDENCY_CLASS=EXECUTION": {
+   "rc": 0,
+   "result": "VALID: EXECUTION is a valid DEPENDENCY_CLASS"
+  },
+  "DEPENDENCY_TYPE=INTERFACE": {
+   "rc": 0,
+   "result": "VALID: INTERFACE is a valid DEPENDENCY_TYPE"
+  },
+  "DIRECTION=UPSTREAM": {
+   "rc": 0,
+   "result": "VALID: UPSTREAM is a valid DIRECTION"
+  },
+  "EXPLICITNESS=EXPLICIT": {
+   "rc": 0,
+   "result": "VALID: EXPLICIT is a valid EXPLICITNESS"
+  },
+  "EXPLICITNESS=IMPLICIT": {
+   "rc": 0,
+   "result": "VALID: IMPLICIT is a valid EXPLICITNESS"
+  },
+  "ORIGIN=EXTRACTED": {
+   "rc": 0,
+   "result": "VALID: EXTRACTED is a valid ORIGIN"
+  },
+  "SATISFACTION_STATUS=TBD": {
+   "rc": 0,
+   "result": "VALID: TBD is a valid SATISFACTION_STATUS"
+  },
+  "STATUS=ACTIVE": {
+   "rc": 0,
+   "result": "VALID: ACTIVE is a valid STATUS"
+  },
+  "TARGET_TYPE=DELIVERABLE": {
+   "rc": 0,
+   "result": "VALID: DELIVERABLE is a valid TARGET_TYPE"
+  }
+ },
+ "id_format": {
+  "checked": 18,
+  "failures": []
+ },
+ "index_counts": {
+  "csv_active": 11,
+  "index_active": 11,
+  "match": true
+ },
+ "parent_anchor_active_implements_node": 1,
+ "row_diffs_fields": {
+  "DEP-02-01-006": [
+   "DependencyType",
+   "Direction",
+   "Notes"
+  ],
+  "DEP-02-01-012": [
+   "Explicitness",
+   "Notes",
+   "TargetDeliverableID",
+   "TargetLocation",
+   "TargetName",
+   "TargetPackageID",
+   "TargetRefID",
+   "TargetType"
+  ]
+ },
+ "schema": {
+  "rc": 0,
+  "result": "VALID: projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 14"
+ },
+ "uniqueness": true
+}

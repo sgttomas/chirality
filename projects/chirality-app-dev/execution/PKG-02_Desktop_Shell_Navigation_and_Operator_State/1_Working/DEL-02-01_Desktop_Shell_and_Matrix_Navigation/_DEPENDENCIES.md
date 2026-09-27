@@ -22,7 +22,7 @@ See the current formal `Dependencies.csv` rows whose Direction is DOWNSTREAM. No
 
 ## Current Extracted Dependency Summary — 2026-09-22
 
-Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated sections elsewhere in this file keep the counts of their dates.
+Current as of 2026-09-27 (`APP-HGD-1-3-RECOMMENDATION-2026-09-27`). Dated sections elsewhere in this file keep the counts of their dates.
 
 | Count Type | Count |
 |---|---:|
@@ -43,13 +43,13 @@ Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated s
 | DEP-02-01-003 | ANCHOR | UPSTREAM | OTHER | SOW-005 | ACTIVE | NOT_APPLICABLE |
 | DEP-02-01-004 | ANCHOR | UPSTREAM | OTHER | OBJ-001 | ACTIVE | NOT_APPLICABLE |
 | DEP-02-01-005 | EXECUTION | UPSTREAM | PREREQUISITE | TBD | ACTIVE | TBD |
-| DEP-02-01-006 | EXECUTION | DOWNSTREAM | HANDOVER | DEL-08-02 | ACTIVE | TBD |
+| DEP-02-01-006 | EXECUTION | UPSTREAM | INTERFACE | DEL-08-02 | ACTIVE | TBD |
 | DEP-02-01-007 | EXECUTION | DOWNSTREAM | INTERFACE | DEL-02-02 | RETIRED | NOT_APPLICABLE |
 | DEP-02-01-008 | EXECUTION | DOWNSTREAM | INTERFACE | DEL-08-03 | RETIRED | NOT_APPLICABLE |
 | DEP-02-01-009 | EXECUTION | UPSTREAM | INTERFACE | DEL-07-01 | ACTIVE | TBD |
 | DEP-02-01-010 | EXECUTION | UPSTREAM | INTERFACE | DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 | ACTIVE | TBD |
 | DEP-02-01-011 | EXECUTION | UPSTREAM | INTERFACE | Runtime-owned current session record and project identity | ACTIVE | PENDING |
-| DEP-02-01-012 | EXECUTION | UPSTREAM | INTERFACE | TBD | ACTIVE | TBD |
+| DEP-02-01-012 | EXECUTION | UPSTREAM | INTERFACE | DEL-05-03 | ACTIVE | TBD |
 | DEP-02-01-013 | EXECUTION | DOWNSTREAM | HANDOVER | DEL-09-04 | ACTIVE | TBD |
 | DEP-02-01-014 | EXECUTION | UPSTREAM | CONSTRAINT | DEL-01-03 | RETIRED | NOT_APPLICABLE |
 
@@ -93,14 +93,18 @@ Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated s
 - Pass 1 (ANCHOR): parent anchor DEP-02-01-001 preserved and refreshed to the applied PKG-02 label (L280). Trace anchors DEP-02-01-002 (SOW-001), DEP-02-01-003 (SOW-005), and DEP-02-01-004 (OBJ-001) preserved with applied labels (L404, L408, L262). The applied carrier row L307 carries only SOW-001 and SOW-005; SOW-081 to SOW-084 are not on this carrier, so no anchor was added and no anchor was retired. The existing `TargetType=REQUIREMENT` convention for the objective anchor is preserved.
 - Pass 2 (EXECUTION): DEP-02-01-005 to DEP-02-01-008 re-evidenced from the retired legacy kit (`Procedure.md`, `Guidance.md`) to live `ScopeOfWork.md#CLM-018` and `#CLM-027`, `LastSeen=2026-09-05`; five rows added (DEP-02-01-009 and DEP-02-01-011 to DEP-02-01-014) from amended SOW-002/SOW-008/SOW-010, the applied row prose, and the owner-seated Remaining items; the ID DEP-02-01-010 is reserved for a held proposal (see the amendment v1.1 bullets below) and is not emitted. No row retired; every `DependencyID` preserved; `Status=CANDIDATE` not emitted; `FromDeliverableName` refreshed to the applied name on every row.
 - Fence F1 (SCC-001 membership): PASS for the emitted rows; simulation S0 keeps SCC-001 at its nine nodes and DEL-02-01 outside it. Candidates not emitted: FC-1 redaction helper resolved to DEL-05-03; FC-2 session-record binding resolved to DEL-03-02; FC-3 account-row host interface to DEL-02-05 and the DEL-02-05-V3-05 gate. Each would merge DEL-02-01, DEL-04-02, DEL-04-04, and DEL-08-02 into a thirteen-node SCC because every SCC-001 member already reaches DEL-02-01 through DEP-02-01-006 (DEL-04-04 to DEL-08-02 to DEL-02-01).
+  - 2026-09-27 (`APP-HGD-1-3-RECOMMENDATION-2026-09-27`): FC-1 resolved into DEP-02-01-012 (target DEL-05-03, IMPLICIT/MEDIUM); FC-2 and FC-3 closed without a row. SCC-001 no longer exists (resolved by D-APP-110 SD-001). Owner ruling in chat, 2026-09-27 (verbatim, transcription execution/_Coordination/AgentRuns/APP-HGD-1-3-RECOMMENDATION-2026-09-27/CHAT_TRANSCRIPTION_HGD_2026-09-27.md): "HGD-1: invert DEP-02-01-006 to UPSTREAM INTERFACE; HGD-3: close without emitting; FC-1: resolve DEP-02-01-012 to DEL-05-03; FC-2 and FC-3: close without emitting."
 - Fence F2 (Root path): NONE. Root-owned targets are `EXTERNAL` with `TargetLocation=TBD`; `frontend/**` implementation paths named by CLM-021 and the seated write loci are not placed in `TargetLocation`.
 - Fence F3 (permitted effect): NONE. No row was derived from SCC ordering, schedule, or keep-aligned statements; the Electron/D-APP-98 IPC constraint and the SOW-002 DEL-02-03 touchpoint split were not emitted.
 - NEEDS_HUMAN_GRAPH_DECISION: HGD-1 DEP-02-01-006 direction (recorded DOWNSTREAM HANDOVER versus UPSTREAM INTERFACE per reverse view L408 and CLM-015; inverting removes all SCC-001 reachability into DEL-02-01, simulation S1). HGD-2 DEP-02-01-007 and DEP-02-01-008 retire-or-keep after SCA-APP-010 retired Workbench and Pipeline presentation from the active shell (DEC-025; L171, L177, L308, L370, L410). HGD-3 the DEL-02-01-V3-01 prerequisite on DEL-02-02-V3-03 (woven route): emitting it with DEP-02-02-005 and DEP-02-01-007 present creates a new four-node SCC {DEL-02-01, DEL-02-02, DEL-08-02, DEL-08-03} (simulation S2); held non-gating and not emitted; resolution options decompose / invert / merge / cut per `docs/CYCLE_DRIVEN_RESOLUTION.md`.
   - 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`): HGD-2 CLOSED. DEP-02-01-007 RETIRED as accepted with SCA-APP-011 (Impact_Assessment.md group 1; Propagation_Plan.md section 8 item 2, group 2). DEP-02-01-008 RETIRED by the owner's ruling in chat on 2026-09-27 (verbatim, transcription `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/CHAT_TRANSCRIPTION.md`): "Confirm baseline SCA-APP-010 (accepted up to 2026-09-07) and the SCA-APP-011 incremental plan under FULL_GRAPH; HGD-2: retire DEP-02-01-008; APP-R058: option 1." HGD-3 is not decided. Its premise has changed: with DEP-02-02-005 and DEP-02-01-007 both RETIRED, emitting the DEL-02-01-V3-01 prerequisite on DEL-02-02-V3-03 would no longer close the four-node SCC {DEL-02-01, DEL-02-02, DEL-08-02, DEL-08-03} that simulation S2 showed. HGD-3 stays open for its owner. (Its seated items now live in the 2026-09-23 receiving clauses.)
+  - 2026-09-27 (`APP-HGD-1-3-RECOMMENDATION-2026-09-27`): HGD-1 CLOSED: DEP-02-01-006 inverted to UPSTREAM INTERFACE on DEL-08-02. HGD-3 CLOSED without emitting a row. Owner ruling in chat, 2026-09-27 (verbatim, transcription execution/_Coordination/AgentRuns/APP-HGD-1-3-RECOMMENDATION-2026-09-27/CHAT_TRANSCRIPTION_HGD_2026-09-27.md): "HGD-1: invert DEP-02-01-006 to UPSTREAM INTERFACE; HGD-3: close without emitting; FC-1: resolve DEP-02-01-012 to DEL-05-03; FC-2 and FC-3: close without emitting."
 - [WARNING] PROJECT_ID_FORMAT_PROFILE: the generic `validate_id_format.sh` three-digit profile rejects the accepted App two-digit identities (`DEL-02-01`, `PKG-02`, `DEP-02-01-NNN`, `SOW-NNN`); no ID was changed.
 - [WARNING] UNKNOWN_IMPLEMENTATION_WORKSPACE: DEP-02-01-005 keeps `TargetType=UNKNOWN`, `TargetLocation=TBD`.
 - [WARNING] TARGET_UNRESOLVED: DEP-02-01-012 keeps `TargetType=UNKNOWN` because the only explicit resolution (DEL-05-03) is fenced by F1.
+  - RESOLVED 2026-09-27 (`APP-HGD-1-3-RECOMMENDATION-2026-09-27`): DEP-02-01-012 now targets DEL-05-03 by the owner's FC-1 ruling.
 - [INFO] SCC_EXPOSURE: DEL-02-01 has no path into SCC-001, but all nine SCC-001 members reach DEL-02-01 through DEP-02-01-006; any UPSTREAM row into SCC-001 or into a node that reaches it makes DEL-02-01 a member.
+  - Superseded 2026-09-27 (`APP-HGD-1-3-RECOMMENDATION-2026-09-27`): SCC-001 was resolved by D-APP-110, and DEP-02-01-006 is now UPSTREAM, so no path runs from DEL-08-02 to DEL-02-01.
 - Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` row.
 - Schema validation: PASS (`validate_dependencies_schema.py`: 29 columns, 14 data rows). Enum validation: 25 distinct (enum, value) pairs VALID. Evidence: every ACTIVE row resolves to a live heading or claim ID.
 - Graph check disclosure: reachability and SCC simulations reused the functions of `tools/coordination/analyze_dep_closure.py` from the session scratchpad (read-only; not a skill-allowlisted tool; no repository write).
@@ -143,6 +147,19 @@ Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated s
 - [INFO] EVQ-006 (report-only, `validate_decomposition_registers.py --families EVQ,DRB`): the validator resolves `EvidenceFile` from the project root, so it reports every App register row whose `EvidenceFile` is deliverable- or repository-relative. This is a project-wide pre-existing convention finding, not a defect introduced here; no EVQ-003, EVQ-004 or DRB-006 finding.
 - ESR-1 CLOSED 2026-09-27: DEP-02-01-014 was held as retire candidates (no current source; preserved by the accepted 2026-09-23 instrument) and are now RETIRED by the owner's ruling in chat on 2026-09-27 (verbatim, transcription `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/CHAT_TRANSCRIPTION_ESR-1_2026-09-27.md`): "ESR-1: retire DEP-02-02-021, DEP-02-04-015, DEP-02-04-016 and DEP-02-01-014."
 
+### 2026-09-27 owner ruling on HGD-1, HGD-3 and FC-1 to FC-3 applied (UPDATE)
+
+- Run: `APP-HGD-1-3-RECOMMENDATION-2026-09-27`, `bundled:chirality-root/dependency-extract` in apply mode, run directly by a TASK-type executor for the coordinating session after the owner's ruling. Owner ruling in chat, 2026-09-27 (verbatim, transcription execution/_Coordination/AgentRuns/APP-HGD-1-3-RECOMMENDATION-2026-09-27/CHAT_TRANSCRIPTION_HGD_2026-09-27.md): "HGD-1: invert DEP-02-01-006 to UPSTREAM INTERFACE; HGD-3: close without emitting; FC-1: resolve DEP-02-01-012 to DEL-05-03; FC-2 and FC-3: close without emitting."
+- Runtime overrides: `SCOPE=DEL-02-01`; `RUN_ROOT=projects/chirality-app-dev/execution`; `DECOMPOSITION_PATH=projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `ApplyEdits=true`. No extraction from prose: the run applies the ruled field values of `execution/_Coordination/AgentRuns/APP-HGD-1-3-RECOMMENDATION-2026-09-27/RECOMMENDATION.md`, in the form of the ESR-1 application.
+- Pre-images: `Dependencies.csv` `3baf26609735bd519d7c0aaf4dd86a6a214e6701ef678fd8acbc0e4ad4d8411d`, `_DEPENDENCIES.md` `d2ffed6866a654ea9dd32ffb28b3270dbb629d7c1368e4caf20adcff882c55fd`.
+- Source-preservation gate: `ScopeOfWork.md` `e6b9bdd6ee8529af0d0577645f6cfb74f3b21d67e60c3764a24dca08fa521caf`; `_CONTEXT.md` `6eee3b506875d763e39f7fab868c5e0f91382aa13d438da29b1c4fddc1177db7`; `_REFERENCES.md` `f7e6038f40417c8f1399938f1451e223a2d616a2b5f0b72ece25505edae1f742`; `_STATUS.md` `56f5d07683631ea5822a0a041b1e6a876f10a74ed8848935fbb3c77b2dd93435`; read-only and unchanged.
+- INVERTED DEP-02-01-006 (EXECUTION DOWNSTREAM HANDOVER -> DEL-08-02 becomes EXECUTION UPSTREAM INTERFACE on DEL-08-02). HGD-1 CLOSED; see the row `Notes`.
+- TARGET RESOLVED DEP-02-01-012 (EXECUTION UPSTREAM INTERFACE, UNKNOWN TBD -> DELIVERABLE DEL-05-03; Explicitness EXPLICIT -> IMPLICIT; Confidence MEDIUM unchanged). FC-1 CLOSED; see the row `Notes`.
+- CLOSED WITHOUT A ROW: HGD-3 (the DEL-02-01-V3-01 prerequisite on DEL-02-02-V3-03), FC-2 (DEL-03-02) and FC-3 (DEL-02-05). No row added, retired or deleted; every other row byte-identical; `Status=CANDIDATE` not emitted.
+- Graph: APP-HGD-1-3-RECOMMENDATION-2026-09-27 scenario S1+FC1 predicts 104 edges and 0 SCC; the post-apply closure snapshot records the observed result (see the run receipt).
+- Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` row (1).
+- Function 5 checks (`execution/_Coordination/AgentRuns/APP-HGD-1-3-RECOMMENDATION-2026-09-27/dep_extract/FUNCTION5_CHECKS.json`): schema, `DependencyID` uniqueness, the enum values of the two changed rows, ID format and index counts.
+
 ## Run History
 
 | Timestamp | Mode | Strictness | Decomposition Path | Decomposition Status | Warnings | ACTIVE Counts |
@@ -152,10 +169,11 @@ Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated s
 | 2026-09-05T07:58-0600 (D-APP-109 emission) | UPDATE | CONSERVATIVE | `projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | FOUND at pinned identity `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61` (`dbd812a52d5ed0cb3ed173f3aaaa68703a914291`) | PROJECT_ID_FORMAT_PROFILE; UNKNOWN_IMPLEMENTATION_WORKSPACE; TARGET_UNRESOLVED; NEEDS_HUMAN_GRAPH_DECISION HGD-1..HGD-3 (unchanged); FENCE_F1_CANDIDATES FC-1..FC-3 (unchanged); CYCLE_PARTICIPATING DEP-02-01-010 (H-001 emitted under D-APP-109; non-gating pending SCC resolution by a recorded move) | ANCHOR=4; EXECUTION=10; TOTAL=14 |
 | 2026-09-05T10:14-0600 (D-APP-110 decompose) | UPDATE | CONSERVATIVE | `projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | FOUND at pinned identity `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61` (`dbd812a52d5ed0cb3ed173f3aaaa68703a914291`) | PROJECT_ID_FORMAT_PROFILE; UNKNOWN_IMPLEMENTATION_WORKSPACE; TARGET_UNRESOLVED; NEEDS_HUMAN_GRAPH_DECISION HGD-1..HGD-3 (unchanged); FENCE_F1_CANDIDATES FC-1..FC-3 (unchanged); DECOMPOSED DEP-02-01-010 (SD-002 under D-APP-110; DOCUMENT target DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1; no cycle-participating row remains) | ANCHOR=4; EXECUTION=10; TOTAL=14 |
 | 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`) | UPDATE | CONSERVATIVE | `projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | FOUND `cf6e56ebb147…` (SCA-APP-011 amended) | none | ACTIVE=11 (ANCHOR=4; EXECUTION=7) |
+| 2026-09-27 (`APP-HGD-1-3-RECOMMENDATION-2026-09-27`) | UPDATE | CONSERVATIVE | `projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | FOUND (unchanged) | none | ACTIVE=11 (ANCHOR=4; EXECUTION=7) |
 
 ## Lifecycle Summary
 
-Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`), from `Dependencies.csv`; counts cover all rows (ACTIVE and RETIRED). This projection changes no satisfaction or maturity.
+Current as of 2026-09-27 (`APP-HGD-1-3-RECOMMENDATION-2026-09-27`), from `Dependencies.csv`; counts cover all rows (ACTIVE and RETIRED). This projection changes no satisfaction or maturity.
 
 | Dimension | Value | Count |
 |---|---|---:|
@@ -168,8 +186,8 @@ Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`), from `D
 | DependencyClass | ANCHOR | 4 |
 | DependencyClass | EXECUTION | 10 |
 | DependencyType | CONSTRAINT | 1 |
-| DependencyType | HANDOVER | 2 |
-| DependencyType | INTERFACE | 6 |
+| DependencyType | HANDOVER | 1 |
+| DependencyType | INTERFACE | 7 |
 | DependencyType | OTHER | 4 |
 | DependencyType | PREREQUISITE | 1 |
 
@@ -178,10 +196,10 @@ Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`), from `D
 - Consumer: `RECONCILIATION`.
 - Reconcile one parent anchor, three trace anchors, four legacy-kit rows re-evidenced to live `ScopeOfWork.md` claims (DEP-02-01-005 to 008), and six added rows (DEP-02-01-009 to 014); zero retired rows. DEP-02-01-010 (emitted under D-APP-109 from held proposal H-001) is decomposed under D-APP-110 (SD-002): its target is the DOCUMENT contract DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 at DEL-02-04 `ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)`, and the deliverable relation to DEL-02-04 is preserved in its `Notes` as evidence.
 - This carrier no longer holds a cycle-participating row: under D-APP-110 the strict active deliverable execution graph is acyclic, and every row in this register gates per its `SatisfactionStatus` exactly like every other strict edge (DEP-02-01-010 at `TBD`). The seated items' own Depends lines and named gates remain the executable ordering for LOOP_INIT Step 1.
-- Owner rulings still open (2026-09-27): HGD-1 (DEP-02-01-006 direction) and HGD-3 (DEL-02-02-V3-03 prerequisite, held non-gating, not emitted; its premise changed as recorded below). Fenced candidates FC-1 to FC-3 stay out of the register unless separately ruled.
+- HGD-1, HGD-3 and FC-1 to FC-3 CLOSED 2026-09-27 by the owner's ruling "HGD-1: invert DEP-02-01-006 to UPSTREAM INTERFACE; HGD-3: close without emitting; FC-1: resolve DEP-02-01-012 to DEL-05-03; FC-2 and FC-3: close without emitting." (transcription `execution/_Coordination/AgentRuns/APP-HGD-1-3-RECOMMENDATION-2026-09-27/CHAT_TRANSCRIPTION_HGD_2026-09-27.md`): DEP-02-01-006 is UPSTREAM INTERFACE on DEL-08-02; DEP-02-01-012 targets DEL-05-03 (IMPLICIT/MEDIUM); no row was emitted for HGD-3, FC-2 or FC-3. No owner graph ruling remains open for this register.
 - HGD-2 CLOSED 2026-09-27: DEP-02-01-007 RETIRED (accepted with SCA-APP-011) and DEP-02-01-008 RETIRED by the owner's ruling "Confirm baseline SCA-APP-010 (accepted up to 2026-09-07) and the SCA-APP-011 incremental plan under FULL_GRAPH; HGD-2: retire DEP-02-01-008; APP-R058: option 1." (transcription `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/CHAT_TRANSCRIPTION.md`).
-- Reconcile with the DEL-02-02 register: its reverse row DEP-02-02-005 and this register's DEP-02-01-007, the matrix-era pair HGD-2 and HGD-3 turned on, are both RETIRED as of 2026-09-27. HGD-3's four-node SCC concern no longer arises from them; HGD-3 itself is not decided. The DEL-02-04 reciprocal DEP-02-04-017 (D-APP-110 SD-003) is unchanged in topology and is re-evidenced to the D-APP-110 ruling record (ESR-1). ESR-1 is CLOSED: its four retire candidates, including this register's DEP-02-01-014, were retired by the owner's ruling of 2026-09-27.
-- SCC picture: DEL-02-01 is outside any SCC after the D-APP-110 decompose (strict graph acyclic; no row retired, cut, merged, or inverted; no decomposition topology changed); the fresh AUDIT_DEP_CLOSURE snapshot (amendment v1.3 node N16) is the authoritative post-move record, and its acceptance as the loop's DepClosure pointer remains a separate owner act.
+- Reconcile with the DEL-02-02 register: its reverse row DEP-02-02-005 and this register's DEP-02-01-007, the matrix-era pair HGD-2 and HGD-3 turned on, are both RETIRED as of 2026-09-27. HGD-3's four-node SCC concern no longer arises from them; HGD-3 was closed without emitting on 2026-09-27. The DEL-02-04 reciprocal DEP-02-04-017 (D-APP-110 SD-003) is unchanged in topology and is re-evidenced to the D-APP-110 ruling record (ESR-1). ESR-1 is CLOSED: its four retire candidates, including this register's DEP-02-01-014, were retired by the owner's ruling of 2026-09-27.
+- SCC picture: DEL-02-01 is outside any SCC after the D-APP-110 decompose (strict graph acyclic; no row retired, cut, merged, or inverted; no decomposition topology changed); the fresh AUDIT_DEP_CLOSURE snapshot (amendment v1.3 node N16) is the authoritative post-move record, and its acceptance as the loop's DepClosure pointer remains a separate owner act. After the 2026-09-27 HGD-1 inversion and FC-1 resolution DEL-02-01 remains outside any SCC; the post-apply closure snapshot is named in the run receipt.
 
 ## Current dependency refresh — 2026-09-22
 
