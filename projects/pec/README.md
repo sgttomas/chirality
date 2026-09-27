@@ -30,11 +30,13 @@ owner-selected full DAG, scaffolded 11 packages / 64 deliverables (66 after
 `D-PEC-93` added DEL-02-08 and DEL-02-09, and 68 after `D-PEC-101` added
 DEL-08-06 and DEL-10-13), and completed the SCA-004
 metadata-alignment subset (all context provenance blocks and reference packets
-were current for revision 1.4; the `D-PEC-95` act of 2026-09-25 moved all 66
-contexts and 66 references to revision 1.5, three contexts also carrying
-the SCA-006 revision-1.6 clause; the `D-PEC-101` act of 2026-09-26 re-pinned
-the remaining 63 contexts and all 66 references to revision 1.6 / PRD v2.4
-and created the DEL-08-06 and DEL-10-13 folders), and DEL-01-06 carries the non-gating
+were current for revision 1.4; after the `D-PEC-95` act of 2026-09-25 all 66
+contexts and 66 references named revision 1.5 (the act re-pinned 42 contexts
+and 64 references; the others were already at 1.5); SCA-006 then gave three
+contexts (DEL-04-03, DEL-08-01, DEL-08-03) the revision-1.6 clause, and the
+`D-PEC-101` act of 2026-09-26 re-pinned the remaining 63 contexts and all 66
+references to revision 1.6 / PRD v2.4 and created the DEL-08-06 and DEL-10-13
+folders, so all 68 contexts and 68 references now name revision 1.6), and DEL-01-06 carries the non-gating
 SOW-077 requirement anchor. Thirty-six ScopeOfWork contracts exist: the thirty-two
 Phase 2.2 contracts, and the first contracts for DEL-02-08 and DEL-02-09
 (`D-PEC-98`) and for DEL-08-06 and DEL-10-13 (`D-PEC-103`). DEL-01-06's accepted revision-1.4 production contract
