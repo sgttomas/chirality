@@ -14,11 +14,11 @@
         "test_*.py"
       ],
       "cwd": "projects/pec",
-      "duration_seconds": 2.003,
+      "duration_seconds": 2.21,
       "exit_code": 0,
       "id": "v2-parsers",
       "status": "PASS",
-      "stderr": "..........\n----------------------------------------------------------------------\nRan 10 tests in 1.939s\n\nOK\n",
+      "stderr": "..........\n----------------------------------------------------------------------\nRan 10 tests in 2.138s\n\nOK\n",
       "stdout": "",
       "timeout_seconds": 600.0
     },
@@ -32,7 +32,7 @@
         "software-workflow.json"
       ],
       "cwd": "projects/pec",
-      "duration_seconds": 0.055,
+      "duration_seconds": 0.061,
       "exit_code": 0,
       "id": "v2-core-posture",
       "status": "PASS",
@@ -52,7 +52,7 @@
         "test_*.py"
       ],
       "cwd": "projects/pec",
-      "duration_seconds": 0.041,
+      "duration_seconds": 0.043,
       "exit_code": 0,
       "id": "v2-api-contract",
       "status": "PASS",
@@ -72,11 +72,11 @@
         "test_*.py"
       ],
       "cwd": "projects/pec",
-      "duration_seconds": 0.12,
+      "duration_seconds": 0.138,
       "exit_code": 0,
       "id": "v2-loop-registry",
       "status": "PASS",
-      "stderr": "...................\n----------------------------------------------------------------------\nRan 19 tests in 0.022s\n\nOK\n",
+      "stderr": "...................\n----------------------------------------------------------------------\nRan 19 tests in 0.023s\n\nOK\n",
       "stdout": "",
       "timeout_seconds": 600.0
     },
@@ -92,11 +92,11 @@
         "test_*.py"
       ],
       "cwd": "projects/pec",
-      "duration_seconds": 2.368,
+      "duration_seconds": 2.967,
       "exit_code": 0,
       "id": "v2-store-guard",
       "status": "PASS",
-      "stderr": ".............\n----------------------------------------------------------------------\nRan 13 tests in 2.272s\n\nOK\n",
+      "stderr": ".............\n----------------------------------------------------------------------\nRan 13 tests in 2.863s\n\nOK\n",
       "stdout": "",
       "timeout_seconds": 600.0
     },
@@ -107,7 +107,7 @@
         "self-check"
       ],
       "cwd": ".",
-      "duration_seconds": 26.911,
+      "duration_seconds": 28.618,
       "exit_code": 0,
       "id": "harness-self-check",
       "status": "PASS",
