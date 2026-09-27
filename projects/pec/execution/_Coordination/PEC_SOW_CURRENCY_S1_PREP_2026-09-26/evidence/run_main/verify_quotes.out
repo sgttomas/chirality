@@ -670,13 +670,13 @@ PASS DEL-04-05 Q52 [63 chars; candidate=yes; source=yes] projects/pec/execution/
 PASS DEL-04-05 Q53 [307 chars; candidate=yes; source=yes] projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md@125cfacc1
 PASS DEL-04-05 Q54 [497 chars; candidate=yes; source=yes] projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md@125cfacc1
 PASS DEL-04-05 Q55 [706 chars; candidate=yes; source=yes] projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md@125cfacc1
-PASS DEL-04-05 Q56 [1316 chars; candidate=yes; source=yes] projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md@125cfacc1
+PASS DEL-04-05 Q56 [1804 chars; candidate=yes; source=yes] projects/pec/execution/_Coordination/PEC_SOW_CURRENCY_S4_PREP_2026-09-26/candidates/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md@91a2e8407f27d03be0ad1c1a862f3c51b613196f
 PASS DEL-04-05 Q57 [51 chars; candidate=yes; source=yes] projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md@125cfacc1
 PASS DEL-04-05 Q58 [77 chars; candidate=yes; source=yes] projects/pec/docs/PRD.md@125cfacc1
 PASS DEL-04-05 Q59 [27 chars; candidate=yes; source=yes] projects/pec/docs/PRD.md@125cfacc1
-PASS DEL-04-05 Q60 [469 chars; candidate=yes; source=yes] projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md@125cfacc1
+PASS DEL-04-05 Q60 [491 chars; candidate=yes; source=yes] projects/pec/execution/_Coordination/PEC_SOW_CURRENCY_S4_PREP_2026-09-26/candidates/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md@91a2e8407f27d03be0ad1c1a862f3c51b613196f
 PASS DEL-04-05 Q61 [827 chars; candidate=yes; source=yes] projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md@125cfacc1
-PASS DEL-04-05 Q62 [1123 chars; candidate=yes; source=yes] projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md@125cfacc1
+PASS DEL-04-05 Q62 [1125 chars; candidate=yes; source=yes] projects/pec/execution/_Coordination/PEC_SOW_CURRENCY_S4_PREP_2026-09-26/candidates/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md@91a2e8407f27d03be0ad1c1a862f3c51b613196f
 PASS DEL-04-05 Q63 [55 chars; candidate=yes; source=yes] projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_DEPENDENCIES.md@125cfacc1
 PASS DEL-04-05 Q64 [84 chars; candidate=yes; source=yes] projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/Dependencies.csv@125cfacc1
 PASS DEL-04-05 Q65 [69 chars; candidate=yes; source=yes] projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/Dependencies.csv@125cfacc1
@@ -690,7 +690,7 @@ PASS DEL-04-05 Q72 [64 chars; candidate=yes; source=yes] projects/pec/docs/PRD.m
 PASS DEL-04-05 Q73 [75 chars; candidate=yes; source=yes] projects/pec/docs/PRD.md@125cfacc1
 PASS DEL-04-05 Q74 [48 chars; candidate=yes; source=yes] projects/pec/docs/PRD.md@125cfacc1
 PASS DEL-04-05 Q75 [92 chars; candidate=yes; source=yes] projects/pec/docs/PRD.md@125cfacc1
-PASS DEL-04-05 Q76 [20 chars; candidate=yes; source=yes] projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md@125cfacc1
+PASS DEL-04-05 Q76 [19 chars; candidate=yes; source=yes] projects/pec/execution/_Coordination/PEC_SOW_CURRENCY_S4_PREP_2026-09-26/candidates/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md@91a2e8407f27d03be0ad1c1a862f3c51b613196f
 PASS DEL-04-05 Q77 [21 chars; candidate=yes; source=yes] projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md@125cfacc1
 PASS DEL-04-05 Q78 [84 chars; candidate=yes; source=yes] projects/pec/v2/config/loops.schema.json@125cfacc1
 PASS DEL-04-05 Q79 [118 chars; candidate=yes; source=yes] projects/pec/docs/PRD.md@125cfacc1

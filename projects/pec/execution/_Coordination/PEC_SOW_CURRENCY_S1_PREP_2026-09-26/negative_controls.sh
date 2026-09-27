@@ -7,6 +7,11 @@ REPO=$1; C=$2; PREP=${3:A}
 export PYTHONDONTWRITEBYTECODE=1
 T=$(mktemp -d "${TMPDIR:-/tmp}/s1pneg.XXXXXX")
 git -C "$REPO" archive "$C" | tar -x -C "$T" --one-top-level=tree 2>/dev/null || { mkdir -p "$T/tree"; git -C "$REPO" archive "$C" | tar -x -C "$T/tree"; }
+S4C=${S4_COMMIT:-91a2e8407f27d03be0ad1c1a862f3c51b613196f}   # simulate the S4 act (S1 lands after S4)
+for t in projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md \
+         projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md; do
+  git -C "$REPO" show "$S4C:projects/pec/execution/_Coordination/PEC_SOW_CURRENCY_S4_PREP_2026-09-26/candidates/$t" > "$T/tree/$t"
+done
 fresh() { rm -rf "$T/p"; cp -R "$PREP" "$T/p"; rm -rf "$T/post"; cp -R "$T/tree" "$T/post"; (cd "$T/p/candidates" && find . -name ScopeOfWork.md | while read f; do cp "$f" "$T/post/$f"; done); }
 cand() { print -r -- $(ls "$T"/p/candidates/projects/pec/execution/PKG-*/1_Working/$1_*/ScopeOfWork.md); }
 q() { python3 "$T/p/verify_s1p_quotes.py" --tree "$T/post" --gitdir "$REPO" --prep "$T/p" --observation 125cfacc1 --obs-exempt DEL-03-06 --only $1 > "$T/out" 2>&1; }
@@ -38,9 +43,14 @@ fresh; f=$(cand DEL-03-01); python3 - "$f" <<'P'
 import sys; p=sys.argv[1]; s=open(p).read(); a="A full-rebuild reconciler entry point in the PEC service core"; assert a in s; open(p,"w").write(s.replace(a,"A full-rebuild reconciler entry point in PEC",1))
 P
 cp "$f" "$T/post/${f#$T/p/candidates/}"; q DEL-03-02; ok $? "DEL-03-01 OUT-001 changed under DEL-03-02's sibling quotation"
-# 6. a candidate byte changed: the bound act refuses at preflight
-fresh; f=$(cand DEL-10-10); print >> "$f"; rm -rf "$T/act"; cp -R "$T/tree" "$T/act"
+# 6. a candidate byte changed: the bound act refuses at preflight (the unmodified candidates pass check-only on the same tree)
+fresh; rm -rf "$T/act"; cp -R "$T/tree" "$T/act"
+python3 "$T/p/apply_s1p.py" --repo "$T/act" --candidates "$T/p/candidates" --check-only > "$T/out" 2>&1 || { print "FAIL control baseline: unmodified candidates do not pass check-only"; bad=1; }
+f=$(cand DEL-10-10); print >> "$f"
 python3 "$T/p/apply_s1p.py" --repo "$T/act" --candidates "$T/p/candidates" --check-only > "$T/out" 2>&1; ok $? "a candidate differs from its tabled postimage (apply --check-only)"
+# 6b. the S4 postimages absent (S4 not yet applied): the bound act refuses at preflight
+fresh; rm -rf "$T/act"; mkdir -p "$T/act"; git -C "$REPO" archive "$C" | tar -x -C "$T/act"
+python3 "$T/p/apply_s1p.py" --repo "$T/act" --candidates "$T/p/candidates" --check-only > "$T/out" 2>&1; ok $? "S4 postimages not applied (DEL-04-01/DEL-04-03 pins): apply --check-only refuses"
 # 7. a matrix row removed: the validator fails and the checklist refuses with no artifact
 fresh; f=$(cand DEL-01-04); python3 - "$f" <<'P'
 import sys; p=sys.argv[1]; L=open(p).read().splitlines(True); i=max(k for k,l in enumerate(L) if l.startswith("| OUT-")); del L[i]; open(p,"w").write("".join(L))

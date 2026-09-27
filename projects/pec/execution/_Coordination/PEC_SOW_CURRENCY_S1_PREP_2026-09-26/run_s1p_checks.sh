@@ -19,11 +19,21 @@ SHA=$(git -C "$REPO" rev-parse "$C^{commit}")
 for d in "$PRE" "$POST"; do
   git -C "$d" init -q && print -r -- "$OBJ" > "$d/.git/objects/info/alternates" && git -C "$d" update-ref HEAD "$SHA"
 done
+# S1 lands after S4 (provisional D-PEC-102): simulate the S4 act on both exports by writing the two
+# S4 postimages the S1 act pins (DEL-04-01, DEL-04-03), read from the S4 preparation branch commit.
+# Overwriting is idempotent once the S4 act is on the basis commit. Override the commit with S4_COMMIT.
+S4C=${S4_COMMIT:-91a2e8407f27d03be0ad1c1a862f3c51b613196f}
+S4P=projects/pec/execution/_Coordination/PEC_SOW_CURRENCY_S4_PREP_2026-09-26/candidates/
+for t in projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md \
+         projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md; do
+  for d in "$PRE" "$POST"; do git -C "$REPO" show "$S4C:$S4P$t" > "$d/$t"; done
+done
 fail=0
 note() { print -r -- "$1" | tee -a "$OUT/SUMMARY.out"; }
 : > "$OUT/SUMMARY.out"
 note "basis commit: $(git -C "$REPO" rev-parse "$C")"
 note "python: $(python3 --version 2>&1)"
+note "S4 overlay: DEL-04-01 and DEL-04-03 set to their S4 postimages from $S4C (simulated S4 act on both exports)"
 
 # 1. before-state every-PR and register checks
 (cd "$PRE" && python3 tools/validation/validate_decomposition_registers.py --strict projects/pec/execution > "$OUT/strict_pre.out" 2>&1; print "exit=$?" >> "$OUT/strict_pre.out")

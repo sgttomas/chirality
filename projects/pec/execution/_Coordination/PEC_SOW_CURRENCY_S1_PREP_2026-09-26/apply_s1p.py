@@ -67,7 +67,7 @@ TARGETS = {
          "f9c3a057717292e7ccd6def6e0496f69ad6c5100457b15cd17b37477adff8bd4"),
     E + "PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/ScopeOfWork.md":
         ("933c012cf16bb161b0ac1acdbf3caeaac408fa441b6e175b8fc2e7d8b265a579",
-         "88029fead86c1f3f36c98c065f3f283370bd772e16c4dd9aeda2a8193595eafd"),
+         "925fb53b6a9852cc8de3173cc5a4a31333123ffdcd3b4cca57e11432ffcdd5c9"),
     E + "PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/ScopeOfWork.md":
         ("99730e4e85ce4920d676d9fd62d26c193d5fd714ea0592c15462f37a62011a82",
          "f5590cf55b19f3170cb04e65340e076e672d5d54d8f1e98385372d1dd8f3436e"),
@@ -95,6 +95,11 @@ PINNED = {
         "df9196d152a01afe59b388111ae0a14381b4ad74f280e95f9c44a1eaee925eb8",
     E + "_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md":
         "69b646f8481fe39a12b811d8078ed14a4c49622d9a8ab566d87f83683044f45e",
+    # S4 postimages (provisional D-PEC-102) that DEL-04-05 quotes; the act refuses before S4 lands
+    E + "PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md":
+        "98a3a3ec227380db2dd030c9c1ca31535d67071a44a3b79508ab4566b32771a0",
+    E + "PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md":
+        "10819cb2ea90c7663a51bfc400d44e50a0d688325935d30472c8f29e3f087e18",
     E + "PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md":
         "76e76eee155679c3b15b65b2f136a0efd6d79034d033553edcc130f4b5ab709c",
     E + "PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/_STATUS.md":

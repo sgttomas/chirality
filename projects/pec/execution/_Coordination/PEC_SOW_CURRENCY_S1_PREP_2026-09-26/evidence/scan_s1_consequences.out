@@ -1,6 +1,5 @@
 KEPT DEL-01-01 quotes DEL-03-02: 'Every PKG-03/04/05 deliverable depends on DEL-01-01 directly or transitively'
 KEPT DEL-01-05 quotes DEL-10-02: 'excluded from one-shot COMPLETE/UNBLOCKED arithmetic; they gate releases not successors'
-KEPT DEL-01-05 quotes DEL-03-06: 'DEL-01-05, DEL-03-04, DEL-10-02, DEL-10-03, DEL-10-10'
 KEPT DEL-01-05 quotes DEL-10-02: 'The deliverable-local `_DEPENDENCIES.md` compresses this to'
 KEPT DEL-01-05 quotes DEL-10-10: 'what is open is whether a blocking verdict binds a release candidate or is advisory.'
 KEPT DEL-02-01 quotes DEL-02-02: '- **REQ-003** — Every record-tier entity type shall carry provenance sufficient for a per-claim citation to its live source — file path, anc'
@@ -51,7 +50,6 @@ KEPT DEL-03-04 quotes DEL-01-05: 'excluded from one-shot COMPLETE/UNBLOCKED arit
 KEPT DEL-03-04 quotes DEL-02-01: 'this deliverable makes the limitation available to that consumer.'
 STALE DEL-03-04 quotes DEL-03-01: 'REQ-001 obliges the command to reach every registered loop and every manifest-named feed, and REQ-009 obliges every gap to be carried throug'
 KEPT DEL-03-04 quotes DEL-03-01: ', Type `BACKEND_FEATURE_SLICE`, Context Envelope `M`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `AnticipatedArtifacts`'
-KEPT DEL-03-04 quotes DEL-01-05: 'DEL-01-05, DEL-03-04, DEL-10-02, DEL-10-03, DEL-10-10'
 KEPT DEL-03-04 quotes DEL-01-05: '. The deliverable-local `_DEPENDENCIES.md` compresses this to'
 KEPT DEL-03-04 quotes DEL-03-02: 'Every PKG-03/04/05 deliverable depends on DEL-01-01 directly or transitively'
 KEPT DEL-03-04 quotes DEL-03-01: 'labeled generated artifacts (reports, briefs, evidence records) under declared generated paths'
@@ -73,7 +71,6 @@ KEPT DEL-03-06 quotes DEL-03-02: 'rebuild or incremental performance measurement
 KEPT DEL-03-06 quotes DEL-03-02: 'Every PKG-03/04/05 deliverable depends on DEL-01-01 directly or transitively'
 KEPT DEL-03-06 quotes DEL-03-02: 'Deliverable-level entry edges (E-P10..13) are PROPOSAL; validator proves transitive closure 13/13'
 KEPT DEL-03-06 quotes DEL-03-02: 'C-03 transitive closure: 13/13 PKG-03/04/05 members reachable from DEL-01-01'
-KEPT DEL-03-06 quotes DEL-01-05: 'DEL-01-05, DEL-03-04, DEL-10-02, DEL-10-03, DEL-10-10'
 KEPT DEL-03-06 quotes DEL-03-01: 'Ingest is best-effort; reconciliation is guaranteed. Streams optimize freshness; the reconciler over file truth is the source of every recor'
 KEPT DEL-03-06 quotes DEL-02-01: 'Register-wide constraint `C-10` `STRATUM_RULE` ends'
 KEPT DEL-03-06 quotes DEL-02-01: 'citation does not convert `PROPOSAL` to `DECLARED`.'
@@ -116,12 +113,12 @@ KEPT DEL-04-03 quotes DEL-04-05: 'DEL-00-03, DEL-01-01, DEL-02-01..07, DEL-04-01
 KEPT DEL-04-03 quotes DEL-04-05: 'all four lines quoted in full, none elided.'
 KEPT DEL-04-03 quotes DEL-02-01: '- **REQ-003** — Every record-tier entity type shall carry provenance sufficient for a per-claim citation to its live source — file path, anc'
 KEPT DEL-04-03 quotes DEL-03-01: 'all three records quoted in full, none elided.'
-KEPT DEL-04-03 quotes DEL-04-05: '(`DEL-04-01/ScopeOfWork.md`, Epistemology section;'
+STALE DEL-04-03 quotes DEL-04-05: '(`DEL-04-01/ScopeOfWork.md`, Epistemology section;'
 KEPT DEL-04-03 quotes DEL-04-05: "the doubled quotation marks are the source's own CSV escaping."
 KEPT DEL-04-03 quotes DEL-03-01: ', Type `BACKEND_FEATURE_SLICE`, Context Envelope `M`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `AnticipatedArtifacts`'
 STALE DEL-04-03 quotes DEL-03-03: ', `EvidenceFile` `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md`, `Explicitness` `IMPLICIT`, `RequiredMaturity` `INITIAL'
 STALE DEL-04-03 quotes DEL-04-05: 'That is a register-hygiene observation of the class `OI-013` records —'
-KEPT DEL-04-03 quotes DEL-04-05: "carries two undefined terms. No accepted source defines what constitutes a *feed* for stamping purposes: the nearest is `PEC-RCN-002`'s mini"
+STALE DEL-04-03 quotes DEL-04-05: "carries two undefined terms. No accepted source defines what constitutes a *feed* for stamping purposes: the nearest is `PEC-RCN-002`'s mini"
 KEPT DEL-04-05 quotes DEL-02-01: 'this deliverable makes the limitation available to that consumer.'
 KEPT DEL-04-05 quotes DEL-03-01: 'all three records quoted in full, none elided.'
 KEPT DEL-04-05 quotes DEL-03-01: 'both records quoted in full, neither elided.'
@@ -133,7 +130,7 @@ KEPT DEL-08-03 quotes DEL-04-05: 'DEL-00-03, DEL-01-01, DEL-02-01..07, DEL-04-01
 KEPT DEL-08-03 quotes DEL-04-05: "The `..` ranges are the source's own notation."
 KEPT DEL-08-03 quotes DEL-03-03: 'all four records quoted in full, none elided.'
 KEPT DEL-08-03 quotes DEL-03-01: 'all three records quoted in full, none elided.'
-KEPT DEL-08-03 quotes DEL-04-05: '(`DEL-04-03/ScopeOfWork.md`, Epistemology section;'
+STALE DEL-08-03 quotes DEL-04-05: '(`DEL-04-03/ScopeOfWork.md`, Epistemology section;'
 KEPT DEL-08-03 quotes DEL-04-05: 'hard-vs-soft classification is a Phase 1.3 owner ruling'
 KEPT DEL-08-04 quotes DEL-04-05: 'DEL-00-03, DEL-01-01, DEL-02-01..07, DEL-04-01..05, DEL-08-01..04, DEL-10-01, DEL-10-04 ``` (`Amendment_Preview.md`, action `A003b`, "Line 3'
 KEPT DEL-08-04 quotes DEL-04-05: "The `..` ranges are the source's own notation."
@@ -152,11 +149,9 @@ KEPT DEL-10-02 quotes DEL-01-03: '- **REQ-002** — The store shall be safe to d
 KEPT DEL-10-02 quotes DEL-01-03: "- **CLM-010** — The system-level kill test is not this deliverable's scope."
 KEPT DEL-10-02 quotes DEL-02-01: 'this deliverable makes the limitation available to that consumer.'
 KEPT DEL-10-02 quotes DEL-03-01: '`DEL-10-02` is the tester and this deliverable is the tested surface;'
-KEPT DEL-10-02 quotes DEL-01-05: 'DEL-01-05, DEL-03-04, DEL-10-02, DEL-10-03, DEL-10-10'
 KEPT DEL-10-02 quotes DEL-10-10: 'At `D-PEC-62` §1(4) the owner accepted the DAG candidate'
 KEPT DEL-10-02 quotes DEL-01-05: 'The deliverable-local `_DEPENDENCIES.md` compresses this to'
 KEPT DEL-10-03 quotes DEL-10-02: 'Author this contract as a STANDING assertion — a continuously re-runnable verification, not a one-shot artifact.'
-KEPT DEL-10-03 quotes DEL-01-05: 'DEL-01-05, DEL-03-04, DEL-10-02, DEL-10-03, DEL-10-10'
 KEPT DEL-10-03 quotes DEL-10-02: 'it is the sibling row `DEL-10-02` that carries'
 KEPT DEL-10-03 quotes DEL-10-02: "at `D-PEC-62` §1(4), which that packet reads as taking the exhibit's flags as flags;"
 KEPT DEL-10-03 quotes DEL-10-02: ', and `_DEPENDENCIES.md` records that blocker output is'
@@ -166,7 +161,6 @@ KEPT DEL-10-10 quotes DEL-02-01: 'this deliverable makes the limitation availabl
 KEPT DEL-10-10 quotes DEL-03-01: '- **CON-005** — `SOW-010` requires the record tier be rebuildable "in full", while every upstream feed unit is contractually obliged to repo'
 KEPT DEL-10-10 quotes DEL-03-01: '- **CON-001** — `SOW-021`\'s second limb permits writes to "generated views", and the gap this contract carries is **instance-level, not clas'
 KEPT DEL-10-10 quotes DEL-10-02: 'DEL-10-10 is the bootstrap progression record itself'
-KEPT DEL-10-10 quotes DEL-01-05: 'DEL-01-05, DEL-03-04, DEL-10-02, DEL-10-03, DEL-10-10'
 KEPT DEL-10-10 quotes DEL-01-05: 'The deliverable-local `_DEPENDENCIES.md` compresses this to'
 KEPT DEL-10-10 quotes DEL-01-05: 'that phrase is accurate as to the arithmetic exclusion and overstates the rest, and this contract cites the `D-PEC-62` text over the local p'
 KEPT DEL-10-10 quotes DEL-02-01: 'recorded as observation and not as specification'
@@ -174,6 +168,5 @@ KEPT DEL-10-10 quotes DEL-04-05: 'advisory visibility only — never work assign
 KEPT DEL-10-11 quotes DEL-01-05: 'excluded from one-shot COMPLETE/UNBLOCKED arithmetic;'
 KEPT DEL-10-11 quotes DEL-03-01: 'all three records quoted in full, none elided.'
 KEPT DEL-10-11 quotes DEL-01-05: 'The mechanism this contract requires is designed to block and its verdicts are unambiguous;'
-KEPT DEL-10-11 quotes DEL-01-05: 'DEL-01-05, DEL-03-04, DEL-10-02, DEL-10-03, DEL-10-10'
 KEPT DEL-10-11 quotes DEL-03-03: 'presented, exported, or counted as practitioner-harness parity output'
-SUMMARY stale=14 kept=164
+SUMMARY stale=17 kept=154

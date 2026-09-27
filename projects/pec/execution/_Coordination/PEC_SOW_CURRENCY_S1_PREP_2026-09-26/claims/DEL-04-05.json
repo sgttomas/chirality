@@ -551,18 +551,74 @@
    "kind": "contains",
    "path": "projects/pec/docs/PRD.md",
    "value": "Per-project `_harness/adapter.yaml` is a parity-peer input only",
-   "candidate_text": "The ingest list inside that quotation no longer reads so in PRD v2.4"
+   "candidate_text": "The quoted record reads the PRD v2.4 feed model"
   },
   {
    "id": "S59",
-   "commit": "125cfacc1",
+   "commit": "91a2e8407f27d03be0ad1c1a862f3c51b613196f",
    "kind": "contains",
-   "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md",
-   "value": "and per-project `_harness/adapter.yaml` as the feed manifest",
-   "candidate_text": "The ingest list inside that quotation no longer reads so in PRD v2.4"
+   "path": "projects/pec/execution/_Coordination/PEC_SOW_CURRENCY_S4_PREP_2026-09-26/candidates/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md",
+   "value": "The accepted feed model now fixes where feeds come from, but not what the stamp or the envelope counts as one feed.",
+   "candidate_text": "it states that this model fixes where feeds come from and not what counts as one feed"
   },
   {
    "id": "S60",
+   "commit": "91a2e8407f27d03be0ad1c1a862f3c51b613196f",
+   "kind": "sha256",
+   "path": "projects/pec/execution/_Coordination/PEC_SOW_CURRENCY_S4_PREP_2026-09-26/candidates/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md",
+   "value": "10819cb2ea90c7663a51bfc400d44e50a0d688325935d30472c8f29e3f087e18",
+   "candidate_text": "SHA-256 `10819cb2ea90…7e18`, at commit `91a2e8407`"
+  },
+  {
+   "id": "S61",
+   "commit": "91a2e8407f27d03be0ad1c1a862f3c51b613196f",
+   "kind": "sha256",
+   "path": "projects/pec/execution/_Coordination/PEC_SOW_CURRENCY_S4_PREP_2026-09-26/candidates/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md",
+   "value": "98a3a3ec227380db2dd030c9c1ca31535d67071a44a3b79508ab4566b32771a0",
+   "candidate_text": "SHA-256 `98a3a3ec2273…71a0`, at commit `91a2e8407`"
+  },
+  {
+   "id": "S62",
+   "commit": "91a2e8407f27d03be0ad1c1a862f3c51b613196f",
+   "kind": "contains",
+   "path": "projects/pec/execution/_Coordination/PEC_SOW_CURRENCY_S4_PREP_2026-09-26/candidates/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md",
+   "value": "a return carrying all seven components enumerated at `SOW-004` and `PEC-ORI-001`",
+   "candidate_text": "seven components, no eighth added"
+  },
+  {
+   "id": "S63",
+   "commit": "91a2e8407f27d03be0ad1c1a862f3c51b613196f",
+   "kind": "contains",
+   "path": "projects/pec/execution/_Coordination/PEC_SOW_CURRENCY_S4_PREP_2026-09-26/candidates/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md",
+   "value": "no eighth component shall be added",
+   "candidate_text": "the seven components of the per-loop orientation return and the \"no eighth component\" rule"
+  },
+  {
+   "id": "S64",
+   "commit": "91a2e8407f27d03be0ad1c1a862f3c51b613196f",
+   "kind": "contains",
+   "path": "projects/pec/execution/_Coordination/PEC_SOW_CURRENCY_S4_PREP_2026-09-26/candidates/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md",
+   "value": "no eighth component shall be added",
+   "candidate_text": "The composing contract fixes the return at seven components and forbids an eighth"
+  },
+  {
+   "id": "S65",
+   "commit": "91a2e8407f27d03be0ad1c1a862f3c51b613196f",
+   "kind": "contains",
+   "path": "projects/pec/execution/_Coordination/PEC_SOW_CURRENCY_S4_PREP_2026-09-26/candidates/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md",
+   "value": "and no fourth stamp field added",
+   "candidate_text": "the three stamp fields and the \"no fourth stamp field\" rule"
+  },
+  {
+   "id": "S66",
+   "commit": "125cfacc1",
+   "kind": "not_contains",
+   "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md",
+   "value": "no eighth component",
+   "candidate_text": "This contract lands after that packet"
+  },
+  {
+   "id": "S67",
    "commit": "125cfacc1",
    "kind": "contains",
    "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_DEPENDENCIES.md",
@@ -570,7 +626,7 @@
    "candidate_text": "`_DEPENDENCIES.md` carries the downstream line"
   },
   {
-   "id": "S61",
+   "id": "S68",
    "commit": "345266081^",
    "kind": "not_contains",
    "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_DEPENDENCIES.md",
@@ -578,7 +634,7 @@
    "candidate_text": "added under `D-PEC-101` Part K1 (commit `345266081`)"
   },
   {
-   "id": "S62",
+   "id": "S69",
    "commit": "345266081",
    "kind": "contains",
    "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_DEPENDENCIES.md",
@@ -586,7 +642,7 @@
    "candidate_text": "added under `D-PEC-101` Part K1 (commit `345266081`)"
   },
   {
-   "id": "S63",
+   "id": "S70",
    "commit": "345266081",
    "kind": "ancestor",
    "path": null,
@@ -594,7 +650,7 @@
    "candidate_text": "added under `D-PEC-101` Part K1 (commit `345266081`)"
   },
   {
-   "id": "S64",
+   "id": "S71",
    "commit": "125cfacc1",
    "kind": "csv_cell",
    "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/Dependencies.csv",
@@ -607,7 +663,7 @@
    "candidate_text": "it mirrors register row `DEP-10-13-005` in `DEL-10-13`'s own `Dependencies.csv`"
   },
   {
-   "id": "S65",
+   "id": "S72",
    "commit": "125cfacc1",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -620,7 +676,7 @@
    "candidate_text": "Its one recorded consumer, `DEL-10-13`, is `P1` (CLM-014)."
   },
   {
-   "id": "S66",
+   "id": "S73",
    "commit": "125cfacc1",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
@@ -633,7 +689,7 @@
    "candidate_text": "Composing that gate is `DEL-10-13`'s act under `SOW-100`"
   },
   {
-   "id": "S67",
+   "id": "S74",
    "commit": "125cfacc1",
    "kind": "not_contains",
    "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv",
@@ -641,7 +697,7 @@
    "candidate_text": "no edge exists between these two deliverables in either direction"
   },
   {
-   "id": "S68",
+   "id": "S75",
    "commit": "125cfacc1",
    "kind": "csv_cell",
    "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
@@ -654,7 +710,7 @@
    "candidate_text": "under per-loop grammars and marking per-field unavailability is `DEL-02-03` (`SOW-013`, `PEC-RCN-002`)"
   },
   {
-   "id": "S69",
+   "id": "S76",
    "commit": "125cfacc1",
    "kind": "contains",
    "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_STATUS.md",
@@ -662,7 +718,7 @@
    "candidate_text": "The deliverable is at lifecycle state `INITIALIZED` with no implementation present"
   },
   {
-   "id": "S70",
+   "id": "S77",
    "commit": "125cfacc1",
    "kind": "contains",
    "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_STATUS.md",
@@ -670,7 +726,7 @@
    "candidate_text": "the deliverable is at `INITIALIZED` and nothing has been built"
   },
   {
-   "id": "S71",
+   "id": "S78",
    "commit": "125cfacc1",
    "kind": "count_glob",
    "path": null,
@@ -682,7 +738,7 @@
    "candidate_text": "no file under `projects/pec/v2/` cites `SOW-009` or `PEC-ORI-006`"
   },
   {
-   "id": "S72",
+   "id": "S79",
    "commit": "125cfacc1",
    "kind": "count_glob",
    "path": null,
@@ -694,7 +750,7 @@
    "candidate_text": "no file under `projects/pec/v2/` cites `SOW-009` or `PEC-ORI-006`"
   },
   {
-   "id": "S73",
+   "id": "S80",
    "commit": "125cfacc1",
    "kind": "contains",
    "path": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
@@ -702,7 +758,7 @@
    "candidate_text": "SCA-005 classes the deliverable `STALE_REVIEW_REQUIRED`"
   },
   {
-   "id": "S74",
+   "id": "S81",
    "commit": "125cfacc1",
    "kind": "contains",
    "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Impact_Assessment.md",

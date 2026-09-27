@@ -454,10 +454,10 @@
   },
   {
    "id": "Q56",
-   "text": "- **CON-003** — \"Per-feed freshness\" carries two undefined terms. No accepted source defines what constitutes a *feed* for stamping purposes: the nearest is `PEC-RCN-002`'s minimum ingest list — \"`_STATUS.md` (declared parser dialect), decision registers and packets, `LOOP_RECEIPTS.md` (per-loop grammar; the D-APP-57 contract where a ledger has adopted it), `WORK_GRAPH.json` / `STATUS.json` / `RUNTIME_SUMMARY.json`, dependency registers, workplans/LOOP_INIT, and per-project `_harness/adapter.yaml` as the feed manifest\" — which names what is ingested and designates a manifest, without stating that the stamp's feed set is that list, the manifest's contents, or the feeds actually read for a given response. And no accepted source defines what *freshness* is measured as: a last-read timestamp, an age, the feed's own SHA, or a staleness classification. `PEC-K-04` fixes only that the consumer detects staleness structurally from what the stamp carries. This contract requires the freshness value to be one the record tier carries rather than one computed here (REQ-005), requires the feed set and the freshness source to be declared (REQ-014), and requires an uncarried value to be stated as unknown rather than guessed (REQ-005, REQ-008); it selects no definition, and none may be inferred from this document.",
-   "source": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md",
-   "commit": "125cfacc1",
-   "where": "CLM-012 (DEL-04-03/CON-003; its embedded ingest list is not PRD v2.4 text, as CLM-012 states)"
+   "text": "- **CON-003** — The per-feed freshness of `PEC-ORI-003`, and since SCA-006 the per-feed coverage of `PEC-ORI-007`, carry undefined terms. The accepted feed model now fixes where feeds come from, but not what the stamp or the envelope counts as one feed. Under PRD v2.4 the reconciler ingests per the closed, PEC-versioned feed profile declared on each loop-registry row, `_harness/adapter.yaml` is no longer a feed manifest, and the ruled `D-PEC-96` registry closes the profiles at three, each covering named, pairwise-disjoint surfaces (CLM-022). No accepted source states whether the per-feed grain is a declared profile, a surface a profile covers, a feed kind such as the one Receipt feed kind of two grammar generations, or each file read for a response, nor whether the feed set is every profile declared for the loops a response covers or only what was read for it. No accepted source defines what *freshness* is measured as — a last-read timestamp, an age, the feed's own SHA, or a staleness classification — or what *coverage* is measured as — a population count against a declared census, a parse-success count, or a covered-or-not mark. `PEC-K-04` fixes only that the consumer detects staleness structurally from what the stamp carries. This contract requires freshness and coverage values to be carried rather than computed here (REQ-005, REQ-018), requires the feed set, the freshness source, and the coverage source to be declared (REQ-014, REQ-023), and requires an uncarried value to be stated as unknown rather than guessed (REQ-005, REQ-008, REQ-018); it selects no definition, and none may be inferred from this document. The grain is declared, and reviewed, in the derivation record at production within those requirements, unless the owner fixes it first by a later PEC scope change.",
+   "source": "projects/pec/execution/_Coordination/PEC_SOW_CURRENCY_S4_PREP_2026-09-26/candidates/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md",
+   "commit": "91a2e8407f27d03be0ad1c1a862f3c51b613196f",
+   "where": "CLM-012 (DEL-04-03/CON-003 as the S4 packet states it)"
   },
   {
    "id": "Q57",
@@ -482,10 +482,10 @@
   },
   {
    "id": "Q60",
-   "text": "- **REQ-001** — The builder shall compose, for a named loop, a return carrying all six components enumerated at `SOW-004` and `PEC-ORI-001` (CLM-001, CLM-002): the newest applicable receipt, the examined-through SHA, gate states, owner directions of record, open tranches and candidate briefs, and parked lanes each with the owner action that would unpark it. No component shall be dropped, merged away, or silently substituted, and no seventh component shall be added.",
-   "source": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md",
-   "commit": "125cfacc1",
-   "where": "CLM-013 (DEL-04-01/REQ-001)"
+   "text": "- **REQ-001** — The builder shall compose, for a named loop, a return carrying all seven components enumerated at `SOW-004` and `PEC-ORI-001` (CLM-001, CLM-002): the newest applicable receipt, the examined-through SHA, gate states, owner directions of record, open tranches and candidate briefs, parked lanes each with the owner action that would unpark it, and terminal completion. No component shall be dropped, merged away, or silently substituted, and no eighth component shall be added.",
+   "source": "projects/pec/execution/_Coordination/PEC_SOW_CURRENCY_S4_PREP_2026-09-26/candidates/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md",
+   "commit": "91a2e8407f27d03be0ad1c1a862f3c51b613196f",
+   "where": "CLM-013 (DEL-04-01/REQ-001 as the S4 packet states it)"
   },
   {
    "id": "Q61",
@@ -496,10 +496,10 @@
   },
   {
    "id": "Q62",
-   "text": "- **CON-004** — No accepted source states what a per-loop orientation return *is* when the record tier has never been reconciled for that loop, or when the loop is unknown. `SOW-004` says \"Serve per-loop orientation\" and the reconciler contract asserts no standing populated state (CLM-012). The invariants nevertheless fix the posture rather than leaving it open: `PEC-K-01` graceful absence (\"No governed act may require a PEC read or write. Deleting PEC blocks nothing.\"), `PRD.md` §7.3 coverage honesty (\"a figure the records don't support is absent and said to be absent\"), and `PEC-K-08` explainability (\"Every status, verdict, and warning carries rule ID, threshold, and contributing cited sources. Drill-down never dead-ends\") together forbid a fabricated or partially guessed return. REQ-006 states that obligation as a checkable requirement. What remains genuinely unsettled is the *shape* of the honest answer — an empty return carrying six stated absences, a single stated absence for the loop, or a distinguishable not-found condition — which is a production choice bounded by REQ-006 and not a scope question.",
-   "source": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md",
-   "commit": "125cfacc1",
-   "where": "CLM-013 (DEL-04-01/CON-004)"
+   "text": "- **CON-004** — No accepted source states what a per-loop orientation return *is* when the record tier has never been reconciled for that loop, or when the loop is unknown. `SOW-004` says \"Serve per-loop orientation\" and the reconciler contract asserts no standing populated state (CLM-012). The invariants nevertheless fix the posture rather than leaving it open: `PEC-K-01` graceful absence (\"No governed act may require a PEC read or write. Deleting PEC blocks nothing.\"), `PRD.md` §7.3 coverage honesty (\"a figure the records don't support is absent and said to be absent\"), and `PEC-K-08` explainability (\"Every status, verdict, and warning carries rule ID, threshold, and contributing cited sources. Drill-down never dead-ends\") together forbid a fabricated or partially guessed return. REQ-006 states that obligation as a checkable requirement. What remains genuinely unsettled is the *shape* of the honest answer — an empty return carrying seven stated absences, a single stated absence for the loop, or a distinguishable not-found condition — which is a production choice bounded by REQ-006 and not a scope question.",
+   "source": "projects/pec/execution/_Coordination/PEC_SOW_CURRENCY_S4_PREP_2026-09-26/candidates/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md",
+   "commit": "91a2e8407f27d03be0ad1c1a862f3c51b613196f",
+   "where": "CLM-013 (DEL-04-01/CON-004 as the S4 packet states it)"
   },
   {
    "id": "Q63",
@@ -610,10 +610,10 @@
   },
   {
    "id": "Q76",
-   "text": "no seventh component",
-   "source": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md",
-   "commit": "125cfacc1",
-   "where": "REQ-013 (DEL-04-01 rule)"
+   "text": "no eighth component",
+   "source": "projects/pec/execution/_Coordination/PEC_SOW_CURRENCY_S4_PREP_2026-09-26/candidates/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md",
+   "commit": "91a2e8407f27d03be0ad1c1a862f3c51b613196f",
+   "where": "REQ-013 (DEL-04-01 rule as the S4 packet states it)"
   },
   {
    "id": "Q77",

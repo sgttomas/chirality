@@ -1,6 +1,6 @@
 # VERIFIER VERDICT 06 — S1 (provisional D-PEC-104), round 2: packet review
 
-Reviewer: fresh read-only `pec-reviewer` TASK (Opus 5.5, `claude-opus-5-5`, high), packet-review launch prompt (form and rules of the parent brief `9718ab73…9b17`; the `D-PEC-100` precedent), 2026-09-26. Reviewed: PR #986 head `ad0adc45a`, draft `768584e40ea3104dc4cf07036390ce5472985a2fda37b27cdde9efedb4be8bc7`. The reviewer's return is transcribed below (command list condensed), followed by the manager's dispositions.
+Reviewer: fresh read-only `pec-reviewer` TASK (Opus 5.5, `claude-opus-5-5`, high), packet-review launch prompt (form and rules of the parent brief `9718ab73…9f17`; the `D-PEC-100` precedent), 2026-09-26. Reviewed: PR #986 head `ad0adc45a`, draft `768584e40ea3104dc4cf07036390ce5472985a2fda37b27cdde9efedb4be8bc7`. The reviewer's return is transcribed below (command list condensed), followed by the manager's dispositions.
 
 ## Verdict (as returned): **FAIL** — 4 BLOCKING, 7 NOTE
 

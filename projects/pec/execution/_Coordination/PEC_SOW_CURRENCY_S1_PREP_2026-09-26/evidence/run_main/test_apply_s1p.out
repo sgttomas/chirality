@@ -97,7 +97,7 @@ WRITE projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Re
 WRITE projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/ScopeOfWork.md
 WRITE projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/ScopeOfWork.md
 WRITE projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/ScopeOfWork.md
-CHECK targets 12/12 byte-exact; write set = grant (0 created, 12 modified, 0 removed under projects/pec outside the run root); pinned 33/33 unchanged
+CHECK targets 12/12 byte-exact; write set = grant (0 created, 12 modified, 0 removed under projects/pec outside the run root); pinned 35/35 unchanged
 FAIL target does not hold its preimage (already applied or changed): projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md
 FAIL target does not hold its preimage (already applied or changed): projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md
 FAIL target does not hold its preimage (already applied or changed): projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md
@@ -136,7 +136,7 @@ WRITE projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Re
 WRITE projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/ScopeOfWork.md
 WRITE projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/ScopeOfWork.md
 WRITE projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/ScopeOfWork.md
-CHECK targets 12/12 byte-exact; write set = grant (0 created, 12 modified, 0 removed under projects/pec outside the run root); pinned 33/33 unchanged
+CHECK targets 12/12 byte-exact; write set = grant (0 created, 12 modified, 0 removed under projects/pec outside the run root); pinned 35/35 unchanged
 PASS run-root evidence written during the act is outside the inventory: apply succeeds
 FAIL script directory projects/pec/tools/x is inside projects/pec but is not a run root (projects/pec/execution/_Coordination/SOW_CURRENCY_S1_*); run the bound copy from its run root or from outside the repository
 preflight failed; nothing written
