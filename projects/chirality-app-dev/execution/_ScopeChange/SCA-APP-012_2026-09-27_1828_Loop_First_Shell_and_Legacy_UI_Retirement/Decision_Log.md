@@ -11,7 +11,7 @@ that checkpoint. This log only indexes it.
 | DIR-2 | 2026-09-27 | Owner direction (pre-intake) | "Scaffolding through the agent is enough." | Authority for the Runtime scaffold-API retirement (PR #1012) and for set S (`Brief.md`) | — |
 | G1-ACCEPT | 2026-09-27 | Checkpoint group 1 | "Accept SCA-APP-012 group 1: R-b, W-b, P-keep (keeping the two pages, as recommended), defaults." | BASE + S + R-b + W-b + P-keep; defaults L-lib, S-tool, E; KG-033 acknowledgment unchanged; 24 register rows at group 2. P-keep departs from the approved proposal; the owner had the "One departure from what you approved" section and, as the coordinating session reports, its explanation of each recommendation | `checkpoint_snapshots/SCA-APP-012_GROUP-1_2026-09-27/` |
 | G2-ACCEPT | 2026-09-27 | Checkpoint group 2 | "Accept SCA-APP-012 group 2: T-a, Q-a." | T-a; Q-a; exact amendment (80 edits, 12 files; E26 acceptance-conditional); register of 24 rows; 22 supersession rows; revision-2 corrections N1–N9. The coordinating session reports that the act was given while its confirmation review of `4c572475f..a4295f9ed` was still running (G2-NOTE-1) | `checkpoint_snapshots/SCA-APP-012_GROUP-2_2026-09-27/` |
-| G3 | — | Checkpoint group 3 | Awaiting owner: the candidate poststate and `RUN_SUMMARY.md` (presentation at top), reviewed jointly with the code candidate (Q-a) | — | — |
+| G3-ACCEPT | 2026-09-27 | Checkpoint group 3 | "I accept SCA-APP-012 checkpoint group 3" | Audited poststate accepted with the code candidate (Q-a); E26, `_LATEST.md` and these records applied by `Evidence/Group3/group3_finalize.py` as listed in `Evidence/Group3/ACCEPTANCE_CONDITIONAL_EDITS.csv` | `checkpoint_snapshots/SCA-APP-012_GROUP-3_2026-09-27/` |
 
 ## Notes on accepted records (not owner acts)
 
