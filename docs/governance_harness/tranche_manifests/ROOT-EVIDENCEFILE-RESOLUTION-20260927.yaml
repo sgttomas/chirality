@@ -1,0 +1,63 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-EVIDENCEFILE-RESOLUTION-20260927
+title: EVQ-006 resolves EvidenceFile deliverable- and working-root-relative, and instruction-root-relative on the instruction surface
+date: '2026-09-27'
+basis: 8bbd022b98140e2128b6132bf661786ee3a8d108
+instruction_surface_paths:
+  - "tools/validation/validate_decomposition_registers.py"
+  - "tools/validation/test_validate_decomposition_registers.py"
+  - "tools/REGISTRY.md"
+  - "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-27_EVIDENCEFILE_RESOLUTION.md"
+  - "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-27_EVIDENCEFILE_RESOLUTION.md"
+  - "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-27_EVIDENCEFILE_RESOLUTION.md"
+  - "projects/pec/execution/_Coordination/NOTICE_2026-09-27_EVIDENCEFILE_RESOLUTION.md"
+  - "docs/governance_harness/tranche_manifests/ROOT-EVIDENCEFILE-RESOLUTION-20260927.yaml"
+  - "exports/chirality-app/export-manifest.csv"
+  - "exports/chirality-app/export-report.md"
+m2_gate:
+  authorization: >-
+    The owner wrote in the Claude Code conversation on 2026-09-27, verbatim:
+    "You can take care of those remaining items now.  Include the items with
+    the "other owners".  You can make changes as necessary." The remaining
+    items included the App's EVQ-006 findings from this validator (about 644),
+    attributed to EvidenceFile paths being resolved from a different base than
+    the App's Dependencies.csv rows use. Root SPEC section 6.4 describes
+    EvidenceFile as the source document and section 6.5 as "the source
+    document filename", without a base; dependency-extract and the declared-row
+    writers emit EvidenceFile=_DEPENDENCIES.md (deliverable-relative); SPEC
+    section 0.2.4 anchors working-root references WORKING_ROOT-relative and
+    instruction-surface references (agents/, workflows/, tools/, root docs/,
+    AGENTS.md) INSTRUCTION_ROOT-relative. The validator tried only the working
+    root. It now tries the deliverable folder and the working root, and the
+    instruction root only for those instruction-surface entries, and reports
+    EVQ-006 only when none names a regular file. Following review of the
+    first candidate, checkout-relative paths to project material stay EVQ-006,
+    and the instruction root honours CHIRALITY_INSTRUCTION_ROOT (SPEC section
+    0.2.1).
+  authorized_by: Ryan Tufts (repository owner sgttomas, Claude Code conversation)
+  authorization_date: '2026-09-27'
+  integration_owner: >-
+    The Claude Code parent session integrating this candidate under the standing Git authorization of 2026-09-12; the authoring worktree commits locally and does not push, open or merge the PR.
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+  - "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-27_EVIDENCEFILE_RESOLUTION.md"
+  - "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-27_EVIDENCEFILE_RESOLUTION.md"
+  - "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-27_EVIDENCEFILE_RESOLUTION.md"
+  - "projects/pec/execution/_Coordination/NOTICE_2026-09-27_EVIDENCEFILE_RESOLUTION.md"
+  rationale: >-
+    The validator is shared by every loop that checks decomposition registers,
+    so App, Runtime, Piping and PEC each receive a short notice with their own
+    before/after EVQ-006 counts: App 644 to 84, Runtime 54 to 54, Piping 701
+    to 504, PEC 0 to 0. Every remaining EVQ-006 names a file that exists in no
+    allowed form: a missing file, a nonconforming checkout-relative path (61
+    App and 54 Runtime cells, left for each loop's next dependency-extract
+    run), or (Piping only) a cell listing several files. PEC's notice is
+    informational only: PEC is being redeveloped and the owner defers action
+    there. chirality-app-v4 has no dependency registers and gets no notice.
+scope_limits:
+  - Only EVQ-006 changes: it tries the deliverable folder and the working root, then the instruction root for instruction-surface paths only. Checkout-relative paths to project material, paths leaving the working root, absolute paths, directories and files that exist in no form remain EVQ-006 errors. Every other check, severity and exit code is unchanged; before/after reports on every project agree on every non-EVQ-006 finding.
+  - --instruction-root is additive (default CHIRALITY_INSTRUCTION_ROOT, else the checkout holding the tool); --evidence-root keeps its default and now names the working-root base.
+  - No project register, SPEC, TYPES, workflow or index is edited; workflows/index.json is unchanged. No release.
