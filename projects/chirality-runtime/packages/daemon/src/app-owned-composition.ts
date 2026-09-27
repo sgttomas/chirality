@@ -223,7 +223,7 @@ export async function startAppOwnedRuntime(rawConfig: AppOwnedRuntimeConfig, opt
     }
   };
   const credentials = { async get() { return undefined; }, async status() { return { configured: false as const }; }, set: offline, remove: offline };
-  const service = new RuntimeService(projects, sessions, engines, residency, new TurnCoordinator(projects, sessions, engines, residency, new RuntimeAttachmentResolver()), auth, credentials, undefined, undefined, createDelegatedPermissionBroker(delegated), defaultSessionPolicy, nativePlan, { nativeProjectDiscovery: true, ...(config.productInstructionsPath === undefined ? {} : { productInstructionsPath: config.productInstructionsPath }) });
+  const service = new RuntimeService(projects, sessions, engines, residency, new TurnCoordinator(projects, sessions, engines, residency, new RuntimeAttachmentResolver()), auth, credentials, undefined, createDelegatedPermissionBroker(delegated), defaultSessionPolicy, nativePlan, { nativeProjectDiscovery: true, ...(config.productInstructionsPath === undefined ? {} : { productInstructionsPath: config.productInstructionsPath }) });
   const turnRegistry = new TurnRegistry(service, { sessions, logger });
   const daemon = new RuntimeDaemon({ socketPath: config.socketPath, runtimeDirectory: config.runtimeDirectory, service, turnRegistry, requests: delegated, delegated, hostedBootstrap, applicationTools, applicationToolHostClientId: APP_HOST_CLIENT_ID, logger });
 

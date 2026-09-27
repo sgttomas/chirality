@@ -103,7 +103,6 @@ function createRuntime(root: string) {
     credentials,
     undefined,
     undefined,
-    undefined,
     {
       async resolve() {
         return {

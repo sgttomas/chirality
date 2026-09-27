@@ -31,8 +31,6 @@ import {
   type RuntimeSseFrame,
   type RuntimeSessionBootRequest,
   type RuntimeSessionRecord,
-  type ScaffoldRequest,
-  type ScaffoldResponse,
   type SessionDeleteResponse,
   type SessionBootResponse,
   type SessionReplayResponse,
@@ -608,18 +606,6 @@ export class RuntimeClient {
       signal
     });
     return response.agents;
-  }
-
-  scaffold(
-    projectId: string,
-    request: ScaffoldRequest,
-    signal?: AbortSignal
-  ): Promise<ScaffoldResponse["scaffold"]> {
-    return this.requestJson<ScaffoldResponse>(RUNTIME_ROUTES.scaffold(projectId), {
-      method: "POST",
-      body: request,
-      signal
-    }).then((response) => response.scaffold);
   }
 
   runAgent1(
