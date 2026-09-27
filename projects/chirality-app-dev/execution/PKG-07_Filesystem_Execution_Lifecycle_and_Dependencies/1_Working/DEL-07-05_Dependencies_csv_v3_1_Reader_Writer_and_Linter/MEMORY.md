@@ -3,6 +3,8 @@
 ## Runs
 
 - 2026-09-27 — `APP-REMOVE-LEGACY-FORMS-2026-09-27` (SCA-APP-011 code change; checkpoint-group-3 candidate, lands with the SCA-APP-011 scope text after group-3 acceptance): removes the dependency route and `fetchDeliverableDependencies`. The dependency read, write, recorded-register, write-failure and symlink cases move to `frontend/src/__tests__/lib/deliverable-contracts.test.ts` and call the library directly. No lifecycle change. Evidence: [receipt](../../../_Coordination/AgentRuns/APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md); amendment `execution/_ScopeChange/SCA-APP-011_2026-09-27_0155_Workbench_Pipeline_Forms_and_Deliverable_Routes_Retirement/`.
+- 2026-09-27 — SCA-APP-011 checkpoint group 3 accepted (`execution/_ScopeChange/checkpoint_snapshots/SCA-APP-011_GROUP-3_2026-09-27/`); landed in PR #995 (`78e74f590`). Run receipts: `execution/_Coordination/AgentRuns/APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md` (the change) and `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` (this post-acceptance follow-up).
+- 2026-09-27 — `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27` (SCA-APP-011 incremental setup; owner confirmed the baseline and plan on 2026-09-27): `scope-of-work` VERIFY passed; `dependency-extract` UPDATE: 23 rows re-seen; restated DEP-07-05-015, DEP-07-05-025. Receipt: `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md`.
 - 2026-09-26 — `APP-RECORDED-REGISTER-2026-09-26` (follow-up FU5): the new
   `frontend/src/lib/dependencies/recorded-register.ts` reads the recorded
   register, the union of the `_DEPENDENCIES.md` declared sections (legacy

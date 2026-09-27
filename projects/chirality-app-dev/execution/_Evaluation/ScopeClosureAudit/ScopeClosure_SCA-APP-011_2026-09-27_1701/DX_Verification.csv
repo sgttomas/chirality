@@ -1,0 +1,17 @@
+OutcomeID,DependencyID,Check,Result
+DX-01,DEP-02-02-005,"Row DEP-02-02-005 exists with Status=RETIRED; no ACTIVE row in DEL-02-02/Dependencies.csv carries the same Direction, TargetDeliverableID and retired-surface statement",VERIFIED
+DX-02,DEP-02-02-006,"Row DEP-02-02-006 exists with Status=RETIRED; no ACTIVE row in DEL-02-02/Dependencies.csv carries the same Direction, TargetDeliverableID and retired-surface statement",VERIFIED
+DX-03,DEP-02-02-007,"Row DEP-02-02-007 exists with Status=RETIRED; no ACTIVE row in DEL-02-02/Dependencies.csv carries the same Direction, TargetDeliverableID and retired-surface statement",VERIFIED
+DX-04,DEP-02-02-008,"Row DEP-02-02-008 exists with Status=RETIRED; no ACTIVE row in DEL-02-02/Dependencies.csv carries the same Direction, TargetDeliverableID and retired-surface statement",VERIFIED
+DX-05,DEP-02-02-009,"Row DEP-02-02-009 exists with Status=RETIRED; no ACTIVE row in DEL-02-02/Dependencies.csv carries the same Direction, TargetDeliverableID and retired-surface statement",VERIFIED
+DX-06,DEP-02-01-007,Row DEP-02-01-007 exists with Status=RETIRED and its Notes cite SCA-APP-011,VERIFIED
+DX-07,DEP-02-01-008,"(a) Status=RETIRED with Notes citing the HGD-2 ruling; or (b) Status=ACTIVE, Statement contains 'compatibility-only' and '/pipeline', and Notes cite the HGD-2 ruling",VERIFIED
+DX-08,DEP-07-05-025,TargetLocation contains 'frontend/src/lib/workspace/deliverable-contracts.ts' and does not contain '/api/working-root/deliverable/dependencies'; TargetName does not contain 'API',VERIFIED
+DX-09,DEP-07-05-025,Statement contains 'library' and does not contain 'API',VERIFIED
+DX-10,DEP-07-05-025,SourceRef names CLM-011 (not CLM-021); EvidenceQuote is a substring of DEL-07-05 ScopeOfWork.md line 188; EvidenceQuote does not contain '/api/working-root/deliverable/dependencies' or '[RETIRED',VERIFIED
+DX-11,DEP-08-03-010,TargetName contains 'Task-scope selection' (any case) and does not contain 'Pipeline selector',VERIFIED
+DX-12,DEP-08-03-010,Statement contains 'task-scope selection' and does not contain 'pipeline selector'; SourceRef names CLM-025,VERIFIED
+DX-13,DEP-08-02-003,TargetName and Statement contain neither 'Workbench' nor 'WORKBENCH'; TargetRefID=SOW-006; TargetLocation does not end '#L382',VERIFIED
+DX-14,DEP-08-02-005,Statement contains neither 'WORKBENCH' nor 'PIPELINE'; TargetRefID=OBJ-001; TargetLocation does not end '#L238',VERIFIED
+DX-15,DEP-02-03-009,Status=ACTIVE; TargetDeliverableID=DEL-08-03; Notes mention E80 or CLM-029 and REQ-009,VERIFIED
+DX-16,(all registers),The post-extraction audit-scope-closure retired-surface screen returns no ACTIVE row other than DEP-02-01-008 under option (b),VERIFIED
