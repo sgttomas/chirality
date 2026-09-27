@@ -1,0 +1,5 @@
+=== DEL-01-04 projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md
+L32 SELF: 'measured in system behavior, not human behavior'
+L57 SELF: 'is an execution of the reconciler (`DEL-03-01`, `SOW-010`/`SOW-021`, P1) and'
+L58 SELF: "SOW-085 note: 'grounded in SOW-057 self-observability'"
+--- DEL-01-04 counts {'UPSTREAM': 14, 'SELF': 3}
