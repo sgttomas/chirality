@@ -74,8 +74,8 @@ See [RECOMMENDATION.md](RECOMMENDATION.md). The proposed reply is:
   - `REACHABILITY.json`, `BASIS_CHECK.json`, `INPUT_HASHES.json`;
   - `runs/<scenario>/`;
   - `MANIFEST.sha256`.
-- The loop ledger entry in `loop/LOOP_RECEIPTS.md`: Receipt-277 on this branch. A parallel housekeeping receipt
-  also takes 277 and merges first, so this entry is resequenced at integration to Receipt-278 with parent Receipt-277.
+- The loop ledger entry in `loop/LOOP_RECEIPTS.md`: Receipt-278, with parent Receipt-277 (the housekeeping
+  pointer-move receipt of PR #1013).
 
 ## Checks
 
