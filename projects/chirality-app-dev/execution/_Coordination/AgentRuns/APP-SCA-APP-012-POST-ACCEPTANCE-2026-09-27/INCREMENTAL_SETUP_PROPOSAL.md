@@ -1,5 +1,7 @@
 # SCA-APP-012 — `project-setup` INCREMENTAL: incremental plan (PROPOSAL, awaiting the owner)
 
+> **2026-09-27 — decided and executed.** The owner confirmed this plan under FULL_GRAPH (`CHAT_TRANSCRIPTION.md`). Setup ran and is COMPLETE (`SETUP_RUN_RECORD.md`). The text below is the proposal as reviewed and is kept unchanged.
+
 **Status: PROPOSAL. Nothing in this proposal is written.**
 
 `project-setup` Function 5 (bundled `workflows/project-setup/`,

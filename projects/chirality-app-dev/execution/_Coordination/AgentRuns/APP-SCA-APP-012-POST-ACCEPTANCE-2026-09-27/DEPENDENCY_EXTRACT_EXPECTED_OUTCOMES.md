@@ -1,5 +1,7 @@
 # SCA-APP-012 — dependency-extract: expected outcomes
 
+> **2026-09-27 — run.** The owner confirmed the plan and DX-07 ("DEP-02-03-008: retire"; `CHAT_TRANSCRIPTION.md`). The extraction ran (`DEPENDENCY_EXTRACT_RESULTS.md`), and the post-setup scope-closure audit verified DX-01 to DX-07. The text below is the reviewed expectation and is kept unchanged.
+
 **Status: not run.** No `Dependencies.csv` or `_DEPENDENCIES.md` is written.
 
 ## What this file is
