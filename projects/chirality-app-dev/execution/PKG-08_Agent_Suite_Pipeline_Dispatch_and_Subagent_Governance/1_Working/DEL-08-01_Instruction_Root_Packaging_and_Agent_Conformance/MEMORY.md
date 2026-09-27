@@ -19,3 +19,4 @@ D-APP-131/132 and D-GOV-43/D-APP-127 now govern the current ScopeOfWork and Rema
 | Run ID / date | Work in this deliverable | Result and source links |
 |---|---|---|
 | `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27` / 2026-09-27 | SCA-APP-011 incremental setup (owner confirmed the baseline and plan on 2026-09-27): `dependency-extract` UPDATE as a FULL_GRAPH neighbour: 18 rows re-seen; re-evidenced (ESR-1) DEP-08-01-018, DEP-08-01-019 | Registers updated; receipt `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` |
+| `APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27` / 2026-09-27 | SCA-APP-012 incremental setup (owner confirmed the plan on 2026-09-27): `dependency-extract` UPDATE as a FULL_GRAPH neighbour: 20 rows re-seen, no other change | Index refreshed (register bytes unchanged; rows already LastSeen 2026-09-27); receipt `execution/_Coordination/AgentRuns/APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` |

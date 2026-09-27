@@ -17,3 +17,9 @@
 D-APP-131 lift (b), D-GOV-43/A2, D-APP-127 and applicable D-APP-132 dispositions applied to the current claim blocks. Earlier dated decisions, checks and lifecycle/approval evidence remain historical. App approval UI and permission evidence conform to Runtime server requests and the user-selected Codex policy. The Claude permission overlay and fixed modes are compatibility evidence.
 
 Current unfinished delivery: Complete live permission/request identity and deny-non-execution witnesses; repair any actor/SHA gate enforcement gaps on served application APIs and verify native descendant policy/scope evidence without weakening domain controls. See `_STATUS.md` Remaining and the W04_06 current row derivative; no new product test, native outcome, issuance or release is claimed.
+
+## Runs
+
+| Run ID / date | Work in this deliverable | Result and source links |
+|---|---|---|
+| `APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27` / 2026-09-27 | SCA-APP-012 incremental setup (owner confirmed the plan on 2026-09-27): `dependency-extract` UPDATE as a FULL_GRAPH neighbour: 11 rows re-seen (`LastSeen` moved to 2026-09-27), no other change | Register (`LastSeen` only) and index updated; receipt `execution/_Coordination/AgentRuns/APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` |

@@ -1,0 +1,8 @@
+OutcomeID,DependencyID,Check,Result
+DX-01,DEP-02-03-009,Row DEP-02-03-009 exists with Status=RETIRED and SatisfactionStatus=NOT_APPLICABLE; Notes contain 'SCA-APP-012'; no ACTIVE row in any register joins DEL-02-03 and DEL-08-03 for routing or preselection,VERIFIED
+DX-02,DEP-02-03-004,EvidenceQuote does not contain '/api/working-root/scope' and is a verbatim span of DEL-02-03 ScopeOfWork.md; Notes cite SCA-APP-012 and keep the prior quote,VERIFIED
+DX-03,DEP-08-03-007,TargetName does not contain 'working-root scope API'; DEL-08-03 _DEPENDENCIES.md current run notes do not report SOURCE_ENDPOINT_LABEL_CONFLICT (the DEL-08-03 ScopeOfWork.md no longer names /api/working-root/scope),VERIFIED
+DX-04,DEP-08-02-013,Row unchanged except LastSeen,VERIFIED
+DX-05,(all registers),"Screen of TargetName, Statement, EvidenceQuote, SourceRef, TargetLocation and EvidenceFile of every ACTIVE row (Notes excluded); expected 0 hits. Pre-extraction screen: 2 hits, DEP-02-03-004 (DX-02) and DEP-08-03-007 (DX-03)",VERIFIED
+DX-06,DEP-02-03-007,EvidenceQuote is a verbatim span of the restated REQ-010 row; Notes keep the prior quote and cite SCA-APP-012,VERIFIED
+DX-07,DEP-02-03-008,Row DEP-02-03-008 exists with Status=RETIRED; Notes cite SCA-APP-012,VERIFIED
