@@ -8,7 +8,7 @@ Ryan Tufts, 2026-09-26, verbatim: "Why am I seeing `remaining-items` appearing? 
 
 ## Result
 
-- **Account (RR1, PR #951, `d67fdc31b`).** 92 items in 57 deliverable `## Remaining` sections, keyed and disposed with evidence: `../../_TaskManagement/TM_PEC_REMAINING_RETIREMENT_2026-09-26/`.
+- **Account (RR1, PR #951, `d67fdc31b`).** 92 keys — 89 live items in 57 deliverable `## Remaining` sections plus the 3 items of the never-applied frozen DEL-01-05 carrier — keyed and disposed with evidence: `../../_TaskManagement/TM_PEC_REMAINING_RETIREMENT_2026-09-26/`.
 - **Ruling (RR2, PR #954, `189f205ff`).** `D-PEC-99` option A with question 1 (a); proposal published unchanged; register row `D-PEC-99`.
 - **Act (RR3, PR #957, `22502e059`).** One generator run removed all 57 sections (each `_STATUS.md` gained one History line); `projects/pec/AGENTS.md` (`df9196d1…25eb8`) states that `_STATUS.md` files carry lifecycle and history only and that no Remaining section or entry is added; the decision-owned exhibit `../../_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md`; tranche manifest `PEC-REMAINING-RETIREMENT-20260926`; notices to Root and Runtime. Run root `../../REMAINING_RETIREMENT_D-PEC-99_2026-09-26/`.
 - **Dispositions (`FINAL_ROW_ACCOUNT.csv`).** 71 unselected `D-PEC-83` E evidence inquiries in exhibit Part A; 12 Scope of Work carry-forwards in Part B (S1 4, S2 4, S4 4 of `HELP-HUMAN-PEC-20260925-POST-SCA005`); 9 closed on record; no Task Management row.
@@ -17,7 +17,12 @@ Ryan Tufts, 2026-09-26, verbatim: "Why am I seeing `remaining-items` appearing? 
 ## Checks
 
 - Act: `verify_d99.py` closure PASS before and after; strict registers, SOW validation, manifest G4, entrypoints, harness and receipts as the proposal required; verifier verdicts 01 and 02 PASS WITH NOTES; PR reviews 01–03 (`../HELP-HUMAN-PEC-20260925-POST-SCA005/returns/REVIEW_PR957_0{1,2,3}.md`).
-- Closeout (C1, 2026-09-26, at `origin/main` `947075c9a`): 68 deliverable `_STATUS.md`, none with a `## Remaining` heading (including the two added later by `D-PEC-101`); `projects/pec/AGENTS.md` still `df9196d1…`; the exhibit and `FINAL_ROW_ACCOUNT.csv` present (92 rows: Part A 71, Part B 12, closed 9); DEL-02-07's contract carries the four S2 items; `loop/`, `init/` and `README.md` name no Remaining surface. A supported no-change result; no warranted edit.
+- STATUS/README changes made under `D-PEC-88` for this undertaking (PRs #954 and #957) are listed in the POST-SCA005 work graph's D-PEC-88 trace (its "`D-PEC-99` act PR (#957)" and ruling-PR lines); this PR's STATUS refresh is added there.
+- Closeout (C1, 2026-09-26, at `origin/main` `947075c9a`): 68 deliverable `_STATUS.md`, none with a `## Remaining` heading (including the two added later by `D-PEC-101`); `projects/pec/AGENTS.md` still `df9196d1…`; the exhibit and `FINAL_ROW_ACCOUNT.csv` present (92 rows: Part A 71, Part B 12, closed 9); DEL-02-07's contract carries the four S2 items; `loop/LOOP_INIT.md`, `init/` and `README.md` name no live Remaining surface (the closed `loop/LOOP_RECEIPTS.md` names Remaining carriers historically); `docs/STATUS.md` was compared, and its retirement bullet is refreshed under `D-PEC-88` to record S2's absorption. No other warranted edit.
+
+## Final PR
+
+[sgttomas/chirality#982](https://github.com/sgttomas/chirality/pull/982), from branch `claude/pec-rr-closeout`. Its description is this receipt's result, checks and limits.
 
 ## Limits
 

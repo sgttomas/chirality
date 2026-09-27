@@ -152,9 +152,9 @@ The dependencies are acyclic, and the named inputs, not this listing, decide whe
 - **Checked basis:** `origin/main` `125cfacc1`, after PR #979 (the `D-PEC-100` act) and PR #976 (`ce934ac33`, the `D-PEC-101` act).
 - **Next work:**
   - Prepare the K2, S1, S4, D1 and X1 packets; S1 and S4 absorb the `D-PEC-99` Part B items named in their rows and the quotations of old S2 text. Each fenced packet comes to the owner to rule on.
-  - The retirement undertaking's closeout (its graph's C1 / M1 / F1) is in its final PR.
+  - The retirement undertaking's closeout (its graph's C1 / M1 / F1) is in its final PR, #982.
   - Carry to a later packet: the DEL-02-08/09 contract-wording items and the DEL-02-07 `CLM-011` count above.
-- **Local or unmerged work:** the retirement undertaking's final PR.
+- **Local or unmerged work:** PR #982 (the retirement undertaking's final PR).
 - **Active operations and ownership:** none running. Handed back: the R3 (B6), G1 act (G2), S3 drafter, RR1, RR3, S3A, S2P, K14P, K14A and S2A managers. Their briefs are under `AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/briefs/`; the returns are under that run's `returns/`, except RR1's, which is `AgentRuns/HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT/returns/RR1_REMAINING_RETIREMENT_ACCOUNT.md`. Scratch helpers named in earlier returns are not in the repository.
 - **Graph maintainer:** HELP_HUMAN.
 - **Earlier run:** `HELP-HUMAN-PEC-20260923-SCA005`, under PEC's former loop; its `RUN.md` is history. The owner's CHECKING reservation for DEL-01-03 stands, and nothing here prompts for it.
@@ -217,3 +217,4 @@ The dependencies are acyclic, and the named inputs, not this listing, decide whe
   - `D-PEC-100` act PR (#979), HELP_HUMAN commit: `docs/STATUS.md` open list records the S2 rebuild done; the two `D-PEC-101` wording fixes carried from PR #976 review 02 (the 63-plus-3 context account; the audit pointer); `README.md` unchanged.
   - `D-PEC-100` act PR review-01 repair: `docs/STATUS.md` D-PEC-101 re-pin count ("the remaining 63 contexts and all 66 references").
   - Post-S2 graph update: no `docs/STATUS.md` or `README.md` change.
+  - Retirement closeout PR (#982), HELP_HUMAN commit: the `docs/STATUS.md` retirement bullet records S2's absorption of its carry-forwards and names the retirement receipt.
