@@ -12,6 +12,13 @@
   Parity fixtures check it against the Root tools. No lifecycle change and no
   dependency acceptance. Evidence:
   [receipt](../../../_Coordination/AgentRuns/APP-RECORDED-REGISTER-2026-09-26/RECEIPT.md).
+- 2026-09-27 — `APP-EXECUTION-ROOT-2026-09-27`: a deliverable's recorded-register
+  read now takes its execution root from the outermost `execution/` folder,
+  checked against the adapter manifest, as the reopening checks do, instead of
+  from the path shape. A deliverable not exactly at
+  `<execution root>/PKG-*/<lifecycle folder>/DEL-*` gets `NOT_ASSESSED` with a
+  warning. No lifecycle change and no dependency acceptance. Evidence:
+  [receipt](../../../_Coordination/AgentRuns/APP-EXECUTION-ROOT-2026-09-27/RECEIPT.md).
 
 ## Decisions And Evidence
 

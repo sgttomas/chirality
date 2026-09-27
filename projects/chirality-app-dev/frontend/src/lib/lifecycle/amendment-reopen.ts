@@ -28,7 +28,8 @@
  * The scope-change root is `<execution root>/_ScopeChange`, the execution root
  * being the deliverable's outermost ancestor folder named `execution`; an
  * adapter manifest (`_harness/adapter.yaml`) above the deliverable must imply
- * the same execution root.
+ * the same execution root. `resolveExecutionRoot` carries that rule and is
+ * shared with the App's recorded-register read.
  *
  * The Root checker's at-commit mode (`--at-commit`: records read from the
  * approval commit through git; the commit must be reachable and an ancestor of
@@ -849,19 +850,44 @@ async function normalizeDeliverable(deliverable: string, cwd: string): Promise<[
   return [deliverableId, null];
 }
 
+/** Where a deliverable's execution root is, or why it could not be resolved. */
+export type ExecutionRootResolution =
+  | {
+      resolved: true;
+      /** Project-relative POSIX path of the execution root. */
+      executionRoot: string;
+    }
+  | {
+      resolved: false;
+      /** No `execution` ancestor, or an adapter manifest that implies another root. */
+      problem: 'NOT_IN_EXECUTION_FOLDER' | 'ADAPTER_MANIFEST_DISAGREES';
+      reason: string;
+    };
+
 /**
- * `_execution_root`: the deliverable's outermost `execution` ancestor, which an
- * adapter manifest found by walking up must imply too.
+ * The Root checker's `_execution_root`, shared with the App's recorded-register
+ * read (`dependencies/recorded-register.ts`): the deliverable's outermost
+ * ancestor folder named `execution` below the project root. An adapter
+ * manifest (`_harness/adapter.yaml`) found by walking up from the deliverable
+ * to the project root must imply the same root (the manifest's folder when it
+ * is named `execution`, else its `execution/` child).
+ *
+ * Both paths must be canonical (`realpath`) absolute POSIX paths, with
+ * `deliverableReal` inside `proj`.
  */
-async function executionRoot(deliverableReal: string, proj: string): Promise<string> {
+export async function resolveExecutionRoot(
+  deliverableReal: string,
+  proj: string
+): Promise<ExecutionRootResolution> {
   const relative = relativeTo(deliverableReal, proj);
   const parts = relative === '.' ? [] : relative.split('/');
   const index = parts.slice(0, -1).indexOf('execution');
   if (index < 0) {
-    throw new Refusal(
-      'SCOPE_CHANGE_ROOT_NOT_FOUND',
-      `${relative} is not inside an execution/ folder; pass --scope-change-root`
-    );
+    return {
+      resolved: false,
+      problem: 'NOT_IN_EXECUTION_FOLDER',
+      reason: `${relative} is not inside an execution/ folder`
+    };
   }
   const execRel = parts.slice(0, index + 1).join('/');
   let current = deliverableReal;
@@ -870,21 +896,38 @@ async function executionRoot(deliverableReal: string, proj: string): Promise<str
     if (await pyIsFile(adapter)) {
       const implied = pyName(current) === 'execution' ? current : pyJoin(current, 'execution');
       if (implied !== pyJoin(proj, execRel)) {
-        throw new Refusal(
-          'SCOPE_CHANGE_ROOT_NOT_FOUND',
-          `adapter manifest ${relativeTo(adapter, proj)} implies execution root ` +
+        return {
+          resolved: false,
+          problem: 'ADAPTER_MANIFEST_DISAGREES',
+          reason:
+            `adapter manifest ${relativeTo(adapter, proj)} implies execution root ` +
             `${isInside(implied, proj) ? relativeTo(implied, proj) : implied}, ` +
             `but the deliverable's execution root is ${execRel}`
-        );
+        };
       }
       break;
     }
-    if (current === proj) {
+    // The second test only guards a caller that broke the precondition.
+    if (current === proj || current === pyParent(current)) {
       break;
     }
     current = pyParent(current);
   }
-  return execRel;
+  return { resolved: true, executionRoot: execRel };
+}
+
+/** `_execution_root` as the checker applies it: an unresolved root refuses the reopening. */
+async function executionRoot(deliverableReal: string, proj: string): Promise<string> {
+  const resolution = await resolveExecutionRoot(deliverableReal, proj);
+  if (!resolution.resolved) {
+    throw new Refusal(
+      'SCOPE_CHANGE_ROOT_NOT_FOUND',
+      resolution.problem === 'NOT_IN_EXECUTION_FOLDER'
+        ? `${resolution.reason}; pass --scope-change-root`
+        : resolution.reason
+    );
+  }
+  return resolution.executionRoot;
 }
 
 async function resolveAmendment(
