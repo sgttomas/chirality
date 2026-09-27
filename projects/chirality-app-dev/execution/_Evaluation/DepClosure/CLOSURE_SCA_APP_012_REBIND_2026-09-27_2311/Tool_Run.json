@@ -1,0 +1,557 @@
+{
+ "schema": "app-dep-closure-tool-run/v1",
+ "analyzer": "tools/coordination/analyze_dep_closure.py",
+ "analyzer_sha256": "2b8de3cbd2439ba1234aadf10e07348c4e2d30dd73da66cd0d88774e417a9adc",
+ "runs": [
+  {
+   "label": "CURRENT51",
+   "argv": [
+    "python3",
+    "tools/coordination/analyze_dep_closure.py",
+    "projects/chirality-app-dev/execution",
+    "--output-dir",
+    "projects/chirality-app-dev/execution/_Evaluation/DepClosure/CLOSURE_SCA_APP_012_REBIND_2026-09-27_2311/Evidence",
+    "--scope",
+    "DEL-01-01",
+    "DEL-01-02",
+    "DEL-01-03",
+    "DEL-01-04",
+    "DEL-02-01",
+    "DEL-02-02",
+    "DEL-02-03",
+    "DEL-02-04",
+    "DEL-02-05",
+    "DEL-03-01",
+    "DEL-03-02",
+    "DEL-03-03",
+    "DEL-03-04",
+    "DEL-04-01",
+    "DEL-04-02",
+    "DEL-04-03",
+    "DEL-04-04",
+    "DEL-04-05",
+    "DEL-05-01",
+    "DEL-05-02",
+    "DEL-05-03",
+    "DEL-05-04",
+    "DEL-05-05",
+    "DEL-06-01",
+    "DEL-06-02",
+    "DEL-06-03",
+    "DEL-06-04",
+    "DEL-06-05",
+    "DEL-06-06",
+    "DEL-07-01",
+    "DEL-07-02",
+    "DEL-07-03",
+    "DEL-07-04",
+    "DEL-07-05",
+    "DEL-07-06",
+    "DEL-08-01",
+    "DEL-08-02",
+    "DEL-08-03",
+    "DEL-08-04",
+    "DEL-08-05",
+    "DEL-09-01",
+    "DEL-09-02",
+    "DEL-09-03",
+    "DEL-09-04",
+    "DEL-09-05",
+    "DEL-09-06",
+    "DEL-10-01",
+    "DEL-10-02",
+    "DEL-10-03",
+    "DEL-10-04",
+    "DEL-10-05",
+    "--filter-active-only",
+    "true",
+    "--normalize-ids",
+    "true",
+    "--dependency-class",
+    "EXECUTION",
+    "--target-type",
+    "DELIVERABLE",
+    "--hub-threshold",
+    "20",
+    "--max-cycles",
+    "10000",
+    "--include-declared",
+    "true",
+    "--prior-summary",
+    "projects/chirality-app-dev/execution/_Evaluation/DepClosure/CLOSURE_SCA_APP_012_POST_EXTRACTION_2026-09-27_2234/Evidence/closure_summary.json"
+   ],
+   "exit_code": 0,
+   "run_status": "COMPLETE",
+   "subject_status": "PASS"
+  },
+  {
+   "label": "ALL",
+   "argv": [
+    "python3",
+    "tools/coordination/analyze_dep_closure.py",
+    "projects/chirality-app-dev/execution",
+    "--output-dir",
+    "projects/chirality-app-dev/execution/_Evaluation/DepClosure/CLOSURE_SCA_APP_012_REBIND_2026-09-27_2311/Evidence/ALL",
+    "--scope",
+    "ALL",
+    "--filter-active-only",
+    "true",
+    "--normalize-ids",
+    "true",
+    "--dependency-class",
+    "EXECUTION",
+    "--target-type",
+    "DELIVERABLE",
+    "--hub-threshold",
+    "20",
+    "--max-cycles",
+    "10000",
+    "--include-declared",
+    "true",
+    "--prior-summary",
+    "projects/chirality-app-dev/execution/_Evaluation/DepClosure/CLOSURE_SCA_APP_012_POST_EXTRACTION_2026-09-27_2234/Evidence/ALL/closure_summary.json"
+   ],
+   "exit_code": 0,
+   "run_status": "COMPLETE",
+   "subject_status": "FAIL"
+  }
+ ],
+ "prior_summaries": {
+  "CURRENT51": [
+   "projects/chirality-app-dev/execution/_Evaluation/DepClosure/CLOSURE_SCA_APP_012_POST_EXTRACTION_2026-09-27_2234/Evidence/closure_summary.json",
+   "5fce72b52601d237aab34a4c986dc4755e4abc263d7dfd5d9b834fa8d15f15a8"
+  ],
+  "ALL": [
+   "projects/chirality-app-dev/execution/_Evaluation/DepClosure/CLOSURE_SCA_APP_012_POST_EXTRACTION_2026-09-27_2234/Evidence/ALL/closure_summary.json",
+   "1eb1df97ec1339f55ee9c11e67b3ffaf3df9f31c85a2d7013b5339147c430790"
+  ]
+ },
+ "accepted_dag": "none (_DAG/_LATEST.md absent)",
+ "input_hashes_stable": true,
+ "accepted_input_basis": [
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-01_SCC-002_PKG-10_Policy_Proposal_Closure/_DEPENDENCIES.md",
+   "sha256": "80ab150bba95a13211bd74fe8392582e01d6d23c0293a096f8f33e4241e33c30"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/_DEPENDENCIES.md",
+   "sha256": "984a05562ad20b3ff08c5d34456da50dc2e4ddbf992099b0c89efd7b5f421232"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth/Dependencies.csv",
+   "sha256": "690e2e6e42732243297d1eb005b9ee49bad4e3a485cce5e5df8be4436cf20501"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth/_DEPENDENCIES.md",
+   "sha256": "85d68d9b29fba5b1ea72fb8028a02a12d8ff46f1d6a9dbef0b604e050f61ee08"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-02_Reliance_Boundary_Register/Dependencies.csv",
+   "sha256": "6b521c08616dfb50749c1b74ebd053cdc63c6c4e4d4fd68a47e1fe02bdb570a1"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-02_Reliance_Boundary_Register/_DEPENDENCIES.md",
+   "sha256": "6091cdf5db50e94259ba1316317db02cba8f787e9a47f9ecdade479279b6397a"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-03_Product_Identity_and_Professional_Boundary_Copy/Dependencies.csv",
+   "sha256": "e517bdae1696b5484eeaa12786087fc3e63b0fa1bebcee366a4c8e314fbd0e6d"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-03_Product_Identity_and_Professional_Boundary_Copy/_DEPENDENCIES.md",
+   "sha256": "ddd2de642c635a8f122c979eb7facd21f2fa8ad9715e6932d7b6135822069b00"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-04_Scope_Boundary_and_Retired_Scope_Register/Dependencies.csv",
+   "sha256": "3676293c8e11bd9d512899d5a38f6c450bcde5f4b5b7535f86efc8892746a6a3"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-04_Scope_Boundary_and_Retired_Scope_Register/_DEPENDENCIES.md",
+   "sha256": "4403302370a134f3cae241292219783010df25cf8c7ba1964aa70ac9cae239fe"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/Dependencies.csv",
+   "sha256": "de142db3d40b6101bf0b1423f06fe4ad0fa35146cf7edd517bcf049dae92be30"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_DEPENDENCIES.md",
+   "sha256": "75c2f5aca301da276f1757a729e0d9f45d54d2e4964af4a5d38b064fdf97affb"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/Dependencies.csv",
+   "sha256": "a02b2e7373b687d7c5a45dd67d80e518e989494779b834c5d876a29ae3620bea"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_DEPENDENCIES.md",
+   "sha256": "b1e06d105eab9085f40ceeccf781c4864cb8e7010d917a53825f0a162aca47b8"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/Dependencies.csv",
+   "sha256": "697a40867afd8f08602166f4c4be18e1860880d178a6bf0deac878fdb3b1e82a"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/_DEPENDENCIES.md",
+   "sha256": "63c3126d711fe0a49bec97474225f7d8ee95b416af3636e645323cf7d28460d3"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/Dependencies.csv",
+   "sha256": "2d13fd9df680fbfd8819855c6445bb5d3295c8724294885097e9743f8c6178ae"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_DEPENDENCIES.md",
+   "sha256": "13e457c15001da8617dbd8fb212b2ddc6e106b29dc21f57ea7815f8640790ea0"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/Dependencies.csv",
+   "sha256": "998cb8bdb1e3091d685478e17df00e068a2c6f2c2afce82d3048cb6a9ff091db"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_DEPENDENCIES.md",
+   "sha256": "1c221527bbb9312fd5eb816b0ffb421202fb55eddf47e1831824a401c8fa9817"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/Dependencies.csv",
+   "sha256": "a5e8580510e8e583531cfc5128df95ea41348c0d30234e6370c500a616b8582c"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_DEPENDENCIES.md",
+   "sha256": "eeb27ac946ea7ac3c783b85e2a41b93fc3a37d3e01a9cde7d595d16fec50ed98"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/Dependencies.csv",
+   "sha256": "91051f08fa0811cf9687e586e825bc0a5dd896c1371ea4170975dfa53dc0dd58"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/_DEPENDENCIES.md",
+   "sha256": "8ff081b0c69af09d717eab98f372bbb409a2da9d284eb912c9ae8be7ff8475c3"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/Dependencies.csv",
+   "sha256": "d18d54370cce72a2e286902f0a9abb82b5ee210875723b23161cc68381932f6c"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/_DEPENDENCIES.md",
+   "sha256": "67f8e4f4a5c7d6ae29f0b28cb9c6baa779a218b6334ec9b59c54ea8582b5a396"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-04_Interrupt_Cancel_and_Terminal_Outcome_Handling/Dependencies.csv",
+   "sha256": "730b9d9cb32cac61ee7ef9bf90ebe26a8c544c8e3a186ba01a70413cfff0ab7c"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-04_Interrupt_Cancel_and_Terminal_Outcome_Handling/_DEPENDENCIES.md",
+   "sha256": "20d6983eef235628c6d17383334a81219417c7a1ee087a76b5f2070a7f051ae7"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-01_SDK_Probe_and_Version_Pinned_Adoption_Decision/Dependencies.csv",
+   "sha256": "b30c873978adb36c8ee106af85ba6a40b11cd80597eda38ad3a1408cd995ebf8"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-01_SDK_Probe_and_Version_Pinned_Adoption_Decision/_DEPENDENCIES.md",
+   "sha256": "b37458eb62277291929912342dec77b9cb070bee84e8df33782ae0a3a0a72631"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-02_SdkOptionsBuilder_and_Settings_Isolation/Dependencies.csv",
+   "sha256": "b4a16c893bb2f390fd26946a34eed822d91a84db66ddb8219f32da24c6457548"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-02_SdkOptionsBuilder_and_Settings_Isolation/_DEPENDENCIES.md",
+   "sha256": "945c03806e9cc0389ae7a60b61bd6cf5a42e81a5f278e432e23f9c9f89291588"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-03_SdkMessageMapper_and_Provider_Neutral_Translation/Dependencies.csv",
+   "sha256": "8e179c9bd8199554cfc924ffe1dbb7b281c9a591843617ffcaf99dce500c03df"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-03_SdkMessageMapper_and_Provider_Neutral_Translation/_DEPENDENCIES.md",
+   "sha256": "ed5b96e9ead37e4e5935d5b5a10120371358461ab74b06c6f4210d2197311a6a"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root/Dependencies.csv",
+   "sha256": "304c619a22a63dc38c7d0751562aca36747f664a0ececd95feb8cd90ef01c401"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root/_DEPENDENCIES.md",
+   "sha256": "915337caa078c25815d6f186712674d20c997fb73eb57da0ef631bdd2c2b90bb"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-05_Anthropic_Provider_Key_Base_URL_and_Network_Bridge/Dependencies.csv",
+   "sha256": "2a9ecb918f311bf67de9eaaa7c7232da49c24112bd4418a41e512ad44401264a"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-05_Anthropic_Provider_Key_Base_URL_and_Network_Bridge/_DEPENDENCIES.md",
+   "sha256": "84d6e8d6904062a95ea0c82a8a46412c41b5ccfdced1ce9caaf9e2f7ee13b456"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/Dependencies.csv",
+   "sha256": "503bed92b9f42945b3aeb4d3aaf6f7f592032f9bb8b4a9bddaa91f592cb3a7db"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/_DEPENDENCIES.md",
+   "sha256": "3ac99dae3e8d4ef6e0187e046e8eda30f652aa0cf9279a6821fe4348684ec6c4"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/Dependencies.csv",
+   "sha256": "e1df75374428661e8f709b57dbf58dc541132d675b42d9b0c3cbc5023b538d38"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/_DEPENDENCIES.md",
+   "sha256": "bc00cbaaaef3ea758fdf1fa11c8cc72f455f90474f6a0a760a6c87365381525e"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-03_Redacted_RunLogger_and_Secret_Hygiene/Dependencies.csv",
+   "sha256": "e102a1cf9685540ea9e4e7c3c306670d3865ae52b1d437ece0275c801431842e"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-03_Redacted_RunLogger_and_Secret_Hygiene/_DEPENDENCIES.md",
+   "sha256": "ac6a1aae72abe3729495162210df0ba4f246250402918d16514b09c9102d0987"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/Dependencies.csv",
+   "sha256": "98e31faae7997501ad192650e78e8b42f2cb385870b4784b584ae7793d4a3ecd"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/_DEPENDENCIES.md",
+   "sha256": "434db33dadb18e7eef01a34636848dc960a11cca5b5af71c07fc0fddf87978fa"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/Dependencies.csv",
+   "sha256": "ba2d7c78eb29dcc8281563825d02ed0e49c597c5a5175621771a1eeda9c60526"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/_DEPENDENCIES.md",
+   "sha256": "8895039046eb3baea2fa3dd5d32ddd989c435a2d199b6bdd76f71e74abc3bad2"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-01_ChiralityPermissionOverlay_and_Mode_Mapping/Dependencies.csv",
+   "sha256": "e05037fc4a3c8a42858237a90290ccf19979e9f175ed1b9bbacfac420968ccf3"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-01_ChiralityPermissionOverlay_and_Mode_Mapping/_DEPENDENCIES.md",
+   "sha256": "551c642ac6788f1de70a4f5478b1272563c310ca2bb0cd62018767fa9b8d5cc2"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/Dependencies.csv",
+   "sha256": "56a1977ceaf16d33ce4ec0459ad9527cc9b84213a02e2719cf2c551c74b964c7"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/_DEPENDENCIES.md",
+   "sha256": "e99f71c9230b3cf1c8634e65985748e7ccb590a2bc6cc2e4c593ccd7e53758a6"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/Dependencies.csv",
+   "sha256": "b389796253114be868ce92b2cc7871883ed150c74bc7e1b44b8b720ea4a72d03"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/_DEPENDENCIES.md",
+   "sha256": "edf3394c58fca3b2d82fb6e1f95abd630467386d132105bded27027e827e3d7a"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/Dependencies.csv",
+   "sha256": "2f5d1cca1bbf363171857834ca241ac626ba92b1f8ec8f4a426a122ca8ccf7c3"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/_DEPENDENCIES.md",
+   "sha256": "eddf8da1936dbceae7f7da526a0a58ea6c7a532482653a429e53fc3ae9e9d066"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-05_Bash_Governance_and_Timeout_Policy/Dependencies.csv",
+   "sha256": "6b40b90c706ddfc9a6b86062e3c8b9d32846618527a9400b64b30a964c13c597"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-05_Bash_Governance_and_Timeout_Policy/_DEPENDENCIES.md",
+   "sha256": "43ba127e689e58cb38eab65a0886d9837289681efa85cfd1da2154f1baf3d5a9"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/Dependencies.csv",
+   "sha256": "f1ea61e0fcea3fc6cb76c3c2d78bc7c7861efcc229166fa9c73449ca184aea3c"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/_DEPENDENCIES.md",
+   "sha256": "a719b08ec66361c3de5639ad7de24fb78db437531565832862a6f8f7f73eeef6"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/Dependencies.csv",
+   "sha256": "a98c4a5fa9242d5e44392fea64e00ea97a6ccb50ababe8114cf67d73d4ccd0b6"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/_DEPENDENCIES.md",
+   "sha256": "5cf3284695654de0a36194516069f01726e9a75b5a48bc0b455d2d3cb30e3ae9"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-02_Execution_Root_Scaffolding_from_Decomposition/Dependencies.csv",
+   "sha256": "2779b2f74f45bf5c138a8a6af977366fc051f86ed9bc331c0882c2ded9b4151a"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-02_Execution_Root_Scaffolding_from_Decomposition/_DEPENDENCIES.md",
+   "sha256": "978ce70a4f54a5ecdad8ef37942c9e11f085b5fbc2a48067b50c16178a2abe34"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/Dependencies.csv",
+   "sha256": "93e6cdc5db9932df7ad4b8edc25ea2def11ebd05c6b53ea7ee2b6375f961a778"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/_DEPENDENCIES.md",
+   "sha256": "6b8559a10ce31f765f3704fe54898833679575edc48e935aaef7ab4b728f1e14"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-04_Status_Transition_API_and_MCP_Tool/Dependencies.csv",
+   "sha256": "73487e9ca0ab79b724a2770b95a97ea45899fc5c53df9f41a8dabcfd31a573df"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-04_Status_Transition_API_and_MCP_Tool/_DEPENDENCIES.md",
+   "sha256": "c7579900fb645a6b5d66d871ac522bac3e7b78934f599afe2febf5bc3011a323"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-05_Dependencies_csv_v3_1_Reader_Writer_and_Linter/Dependencies.csv",
+   "sha256": "5e0455ca13f2f325cc92471bd3fe19a4e7a282ffdf024fde7a212697aebdbdb6"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-05_Dependencies_csv_v3_1_Reader_Writer_and_Linter/_DEPENDENCIES.md",
+   "sha256": "52ab38e73390a2de82b4f5b975f0c160acee8393d6e3f8b7bffac708e0a83f83"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-06_Reference_Hash_and_Snapshot_Conventions/Dependencies.csv",
+   "sha256": "7be6ece2c26a5d3c403632bf80401fd24dbeae2c97fb40a0f5462b0ed3977c6e"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-06_Reference_Hash_and_Snapshot_Conventions/_DEPENDENCIES.md",
+   "sha256": "cbad092aaeeed35855970188b321c5f4bfe9158f6285e39c8b73ed3b36d58cf3"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/Dependencies.csv",
+   "sha256": "b406f9c903bb4d6d7d3639ba04b6ea2191393919d7e28155b3a06bfdf93a6255"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/_DEPENDENCIES.md",
+   "sha256": "5fa2722069b70b96d13943c1a273f46dabb6a1393a1f2a2b009b0cb22551be51"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-02_Persona_Alias_and_Agent_Matrix_Routing_Contract/Dependencies.csv",
+   "sha256": "3e9d9df14f6ee143c294d76f37d6921d0a3e44c8c359c4e09f833bedc559c47a"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-02_Persona_Alias_and_Agent_Matrix_Routing_Contract/_DEPENDENCIES.md",
+   "sha256": "1b757ca062a63c8f33f5418675735c8347ccfcde9af253ef8e1013c5f89c260f"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/Dependencies.csv",
+   "sha256": "79168d23b989cecc4cf858ec6dfb78dcba794e1e7c6b51b9081dc9109742ba20"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/_DEPENDENCIES.md",
+   "sha256": "f5337e68d90ff1ce731eff15c07e21bfd18b46be12e6e7ad82bd03f92508d558"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/Dependencies.csv",
+   "sha256": "890edcc6981de065055d8e22f6921508bbb31dcc3d3ea8acb77b84308346a270"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_DEPENDENCIES.md",
+   "sha256": "4ce3adda2650513c5648e19689c2c502416cb100a4bff4af9fd90a7fb426046f"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts/Dependencies.csv",
+   "sha256": "57fce51e1d4d0bc6e09b58d640842648c0ef461eef8e5b65feaa2117f7ca0238"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts/_DEPENDENCIES.md",
+   "sha256": "93aeb9d7355be480abbb8699a045c73bcdb6da631be31ca0607d8d06f0a2e268"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-01_Section_8_Harness_Validation_Preservation/Dependencies.csv",
+   "sha256": "a0af6990432ed2eccb91a1442bf9f6822d6d07d885164d84750443a81472dba1"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-01_Section_8_Harness_Validation_Preservation/_DEPENDENCIES.md",
+   "sha256": "543471a2c143d0e9e4fa34addfc41d5028d78a9affad7e52435827d3caf33899"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-02_Section_9_Runtime_Validation_Additions/Dependencies.csv",
+   "sha256": "6ea8736b17d06f532ea5f665b2562fa1c5fe4cfd3404d322520ba58dd96d746c"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-02_Section_9_Runtime_Validation_Additions/_DEPENDENCIES.md",
+   "sha256": "752084bd875f8c21c8ce90d96b4d916d758ee1f07ebd6f15dc16fbe4dced0279"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-03_Unit_and_Integration_Test_Expansion/Dependencies.csv",
+   "sha256": "324af81d80cd713a4c5ed7850c09033bedbc8c44fd2d72ccca6009a5427f5365"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-03_Unit_and_Integration_Test_Expansion/_DEPENDENCIES.md",
+   "sha256": "ccba1add31b50402fbe55b9488221cac6f071a5f126384efb7b52ac662221387"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/Dependencies.csv",
+   "sha256": "1922926034807472b9ad4b4c94ed836020777873470237923524f90c4f1f658a"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_DEPENDENCIES.md",
+   "sha256": "092846db918b99dcd02df55c769945eaf79f2ed49240fa4770b4138872b188ca"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/Dependencies.csv",
+   "sha256": "5b6feba4790a5f1aa52f159f2bda9e2a14fd54a2cc944d2f435c09d14dca0c5e"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/_DEPENDENCIES.md",
+   "sha256": "b9b8e0176eca9095f63f355b68ebfeaa6afcce86d836764c6127d6688f7dcb34"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Dependencies.csv",
+   "sha256": "5c4c5921a125e12bcba6a5c2f0ab39e37874e1e0381f0578c8466a045c04ecdf"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/_DEPENDENCIES.md",
+   "sha256": "a7421eeb96806095fc3ea02bd15736a72e67187775537385b7b79fb77455ce1f"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback/Dependencies.csv",
+   "sha256": "f0ae999cafe9c9df89384e49f68d58a83e9439f5549c63f54928dd6855e6ee75"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback/_DEPENDENCIES.md",
+   "sha256": "ba88a5d823b902c4180d2905f3801db2868b2be82ae27e6a98273f3ff1a709fa"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-01_DomainEngineProfile_Contract_Draft/Dependencies.csv",
+   "sha256": "5b8c11069cb024f64421da3bea76e7b36b3f9fa2f0726caae82b1d4dc4d0403b"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-01_DomainEngineProfile_Contract_Draft/_DEPENDENCIES.md",
+   "sha256": "31d0127c4ec2e266c1907f756a2fd579175cba2da68e010a25e76cb03ef4427b"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-02_Protected_Path_and_Proposal_Path_Policy/Dependencies.csv",
+   "sha256": "4be41eef6b48786c722838a517b0ff250f0f98420d7f6ed4e9e37cd9e213533c"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-02_Protected_Path_and_Proposal_Path_Policy/_DEPENDENCIES.md",
+   "sha256": "59827164d6bc7c8f35eb270e37dce93d278dd8c7db57c94959648a4fbc304c9f"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-03_OperationProposal_Record_and_Human_Gate_Workflow/Dependencies.csv",
+   "sha256": "fa1d5b428ace1efbacf11d3c99884be7c0ecadda77635df5a443f9777fbc2ac1"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-03_OperationProposal_Record_and_Human_Gate_Workflow/_DEPENDENCIES.md",
+   "sha256": "a7d2e56a64a92b9057928058fa39deefa9a8e357d943645bee89c4d7bebbfe17"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture/Dependencies.csv",
+   "sha256": "79543394a1f0c9f153de6dcfb041b741fac7bb70fe198816b4d5e294f1f1732a"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture/_DEPENDENCIES.md",
+   "sha256": "469e9b4b584575414fc3c7a4fe100045fd63abcd76214a4fb8c8559e740a69d5"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-05_Domain_Boundary_Notices_and_Solver_Truth_Separation/Dependencies.csv",
+   "sha256": "c4e6adef08f8fc87d682df0894935c204d1a71e05914e2fd880526a9322987a6"
+  },
+  {
+   "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-05_Domain_Boundary_Notices_and_Solver_Truth_Separation/_DEPENDENCIES.md",
+   "sha256": "1c124c0139b9b58dff2c091ce50639154416c9f4a60ddf0e52325d42a8223912"
+  }
+ ]
+}

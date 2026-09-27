@@ -36,6 +36,18 @@ Typed by the owner in chat on 2026-09-27 (verbatim; `CHAT_TRANSCRIPTION.md`):
 | `audit-scope-closure` | `_Evaluation/ScopeClosureAudit/ScopeClosure_SCA-APP-012_2026-09-27_2240/` (first SCA-APP-012 snapshot); `_LATEST.md` SCA-APP-012 row (method step 5) | `CLOSED`, 0 findings. All 24 actions (80 edits) verified; supersession 14/14 and the map check clean (exit 0, 0 findings, byte-for-byte); 9/9 reruns COMPLETED; DX-01 to DX-07 verified (`DX_Verification.csv`); retired-surface screen 0 hits (its control on the extraction basis finds DEP-02-03-004 and DEP-08-03-007) |
 | MEMORY | One setup row in each of the 24 deliverables (8 modified + 16 FULL_GRAPH neighbours), in each file's existing `## Runs` table or dated list; DEL-06-01, DEL-06-02 and DEL-09-04 had none and gained the canonical `## Runs` table | Links this receipt. Rows name what changed: an index refresh everywhere, plus `LastSeen` register bytes only in DEL-05-03, DEL-06-01, DEL-06-02 and DEL-09-04 and the DX rows in DEL-02-03 and DEL-08-03 |
 
+**Closure evidence rebound after review.** The review fix N2 (`ed2afdd37`)
+reworded the EVQ-006 note line in the DEL-05-03 and DEL-06-01
+`_DEPENDENCIES.md` indexes, which the 2234 and 2240 snapshots hash. As in the
+SCA-APP-011 precedent (`d08b589ea`), new snapshots bind the current bytes and
+the earlier ones are left unchanged:
+- `_Evaluation/DepClosure/CLOSURE_SCA_APP_012_REBIND_2026-09-27_2311/`: 51
+  current units PASS; ALL 54 nodes, 102 edges, 0 SCC, 7 isolates; every
+  analyzer delta against 2234 is zero;
+- `_Evaluation/ScopeClosureAudit/ScopeClosure_SCA-APP-012_2026-09-27_2312/`:
+  `CLOSED`, 0 findings, supersedes 2240 (`SUPERSESSION_NOTE.md`); the
+  `_LATEST.md` SCA-APP-012 row now points to it.
+
 **Also written earlier in this run** (stage 1, reviewed at `d0da7590c` and
 `63e5de1f2`):
 - `INCREMENTAL_SETUP_PROPOSAL.md`, `DEPENDENCY_EXTRACT_EXPECTED_OUTCOMES.md`
@@ -70,7 +82,8 @@ Typed by the owner in chat on 2026-09-27 (verbatim; `CHAT_TRANSCRIPTION.md`):
    - `_Evaluation/DepClosure/_LATEST.md` still names
      `CLOSURE_SCA_APP_011_ESR1_RULING_2026-09-27_1739`; the newer
      `CLOSURE_HGD_FC_RULING_2026-09-27_1923` and
-     `CLOSURE_SCA_APP_012_POST_EXTRACTION_2026-09-27_2234` are unpointed;
+     `CLOSURE_SCA_APP_012_POST_EXTRACTION_2026-09-27_2234` and its rebind
+     `CLOSURE_SCA_APP_012_REBIND_2026-09-27_2311` are unpointed;
    - `_Evaluation/DecompCoverage/_LATEST.md` still names
      `COV_SCA_APP_011_POST_ACCEPTANCE_2026-09-27_0500`;
      `COV_SCA_APP_012_POST_ACCEPTANCE_2026-09-27_2200` has 0 blockers.
@@ -92,8 +105,10 @@ now includes the merge of `origin/main` `31a90f3e6` (merge commit
 
 The review follow-up commit on `a2d6b0641` re-ran this ledger's validator,
 Root G0–G4, conflict markers, run-record leaks, the register validator
-(EVQ-006 84, unchanged) and `git diff --check`; all pass. The results are in
-the hand-off and in the loop receipt.
+(EVQ-006 84, unchanged) and `git diff --check`; all pass. The rebind commit
+after it re-ran the same set, and reran each new snapshot's script: both
+reproduce byte-for-byte. The results are in the hand-off and in the loop
+receipt.
 
 ## Limits
 
