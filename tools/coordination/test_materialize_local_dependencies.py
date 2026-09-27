@@ -499,3 +499,14 @@ def test_materializer_writes_files_that_pass_diff_check(tmp_path: Path) -> None:
         )
         assert_diff_check_clean(pointer.read_text(encoding="utf-8"))
         assert_diff_check_clean((unit / "Dependencies.csv").read_text(encoding="utf-8"))
+
+
+def test_unterminated_run_history_heading_is_not_joined_to_the_entry() -> None:
+    base = refresh(None)
+    cut = base.index("## Run History")
+    unterminated = base[:cut] + "## Run History"
+    first = refresh(unterminated, generated="2026-09-27")
+    assert "## Run History\n" in first
+    assert "## Run History-" not in first
+    assert first.endswith("\n") and not first.endswith("\n\n")
+    assert refresh(first, generated="2026-09-27") == first

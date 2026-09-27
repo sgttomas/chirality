@@ -446,8 +446,9 @@ def refresh_dependencies_text(
 
     A missing or blank file starts from the §5.2 skeleton. In an existing file,
     human-owned sections, unrecognized sections and Downstream Handoff Notes
-    keep their text unchanged; only a blank separator line may be added after
-    one when a missing section is inserted next to it. A missing human-owned section is added as a TBD
+    keep their text unchanged, except that blank lines at end of file are
+    dropped; only a blank separator line may be added after one when a missing
+    section is inserted next to it. A missing human-owned section is added as a TBD
     placeholder and never filled. Agent-owned sections are refreshed under the
     heading the file already uses, and missing ones are added under their §5.2
     heading in §5.2 order. Refreshing twice with the same inputs is a no-op.
@@ -456,6 +457,10 @@ def refresh_dependencies_text(
     """
     if existing is None or not existing.strip():
         existing = skeleton_text(node.get("DeliverableID", "").strip(), node.get("DeliverableName", "").strip())
+    if not existing.endswith("\n"):
+        # An unterminated last line (even a bare heading) must not be joined to
+        # text appended after it.
+        existing += "\n"
     sections = split_sections(existing)
 
     has_register = any(section.key == REGISTER for section in sections)

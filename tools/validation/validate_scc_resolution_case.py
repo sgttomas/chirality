@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import os
 import re
 import sys
 from pathlib import Path
@@ -158,6 +159,40 @@ def dag_root(case_path: Path) -> Path | None:
     return None
 
 
+def dag_like_ancestor(path: Path) -> Path | None:
+    """The first folder in `path` whose name is `_DAG` in any letter case, or None."""
+    for parent in [path, *path.parents]:
+        if parent.name.casefold() == "_dag":
+            return parent
+    return None
+
+
+def dag_path_errors(lexical: Path, resolved: Path) -> list[str]:
+    """Refuse reaching a `_DAG/` location through a symlink or a differently cased name.
+
+    The home is the real folder `_DAG/cases/SCC-CASE-NNN/`. A path that passes
+    through a symbolic link into or out of `_DAG/`, or that names `_DAG` in
+    another letter case (which a case-insensitive file system would resolve to
+    the real folder), would otherwise escape the placement checks.
+    """
+    errors: list[str] = []
+    for path in (lexical, resolved):
+        found = dag_like_ancestor(path)
+        if found is not None and found.name != "_DAG":
+            errors.append(
+                f"path names {found.name!r}; the case home is the folder named exactly _DAG/cases/ (D-GOV-49)"
+            )
+            break
+    if (dag_like_ancestor(lexical) is None) != (dag_like_ancestor(resolved) is None) or (
+        dag_like_ancestor(lexical) is not None and lexical != resolved
+    ):
+        errors.append(
+            "case path reaches _DAG/ through a symbolic link; a case must be a real folder at "
+            "_DAG/cases/SCC-CASE-NNN/ (D-GOV-49)"
+        )
+    return errors
+
+
 def dag_cases_root(case_path: Path) -> Path | None:
     """The `_DAG/cases/` folder containing (or equal to) `case_path`, or None."""
     for parent in [case_path, *case_path.parents]:
@@ -245,9 +280,11 @@ def require_columns(
 
 def validate_case(case_path: Path) -> list[str]:
     errors: list[str] = []
+    lexical = Path(os.path.abspath(case_path))
     case_path = case_path.resolve()
     if not case_path.is_dir():
         return [f"case path is not a directory: {case_path}"]
+    errors.extend(dag_path_errors(lexical, case_path))
 
     cases_root = dag_cases_root(case_path)
     dag = dag_root(case_path)

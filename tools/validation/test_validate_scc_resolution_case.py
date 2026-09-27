@@ -259,3 +259,30 @@ def test_cli_reports_dag_case(tmp_path: Path, monkeypatch: pytest.MonkeyPatch, c
     (case.parent / "_run_records").mkdir()
     assert vscc.main() == 1
     assert "FAIL: SCC resolution case validation" in capsys.readouterr().out
+
+
+def test_symlinked_case_into_dag_refused(tmp_path):
+    execution = tmp_path / "proj" / "execution"
+    real = execution / "elsewhere" / "SCC-CASE-001"
+    real.mkdir(parents=True)
+    (execution / "_DAG").mkdir()
+    (execution / "_DAG" / "SCC-CASE-001").symlink_to(real, target_is_directory=True)
+    errors = vscc.validate_case(execution / "_DAG" / "SCC-CASE-001")
+    assert any("through a symbolic link" in e for e in errors), errors
+
+
+def test_symlinked_dag_folder_refused(tmp_path):
+    execution = tmp_path / "proj" / "execution"
+    real_dag = tmp_path / "outside" / "_DAGREAL"
+    (real_dag / "cases" / "SCC-CASE-001").mkdir(parents=True)
+    execution.mkdir(parents=True)
+    (execution / "_DAG").symlink_to(real_dag, target_is_directory=True)
+    errors = vscc.validate_case(execution / "_DAG" / "cases" / "SCC-CASE-001")
+    assert any("through a symbolic link" in e for e in errors), errors
+
+
+def test_differently_cased_dag_refused(tmp_path):
+    case = tmp_path / "proj" / "execution" / "_dag" / "cases" / "SCC-CASE-001"
+    case.mkdir(parents=True)
+    errors = vscc.validate_case(case)
+    assert any("named exactly _DAG/cases/" in e for e in errors), errors
