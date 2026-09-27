@@ -46,7 +46,7 @@ TARGETS = {
          "16ac1cd956c90f0e757c9ce54c4e6645eea50e6d46d69b26f8052ad0484cca41"),
     E + "PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md":
         ("53ba3be304151a35775eb9e117c28f1b7564a19f4dd5076869a7f73994e5de53",
-         "a0a73eb5537b92d3a21ca8b01c0fc824b1cfb16823299dd3f3464e38a66784bf"),
+         "347f73c7969cc777027110f101faec6ad40c728e17e095aa2270f268498798bb"),
     E + "PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/ScopeOfWork.md":
         ("5d286ec97f4c262be9e106537e3b7527e9756b6dd5bf0f1beb8259e1ca114440",
          "82caf28a3757089ec07cd9a21ef70f97840fda7b92f1017236ce5062fdf55872"),

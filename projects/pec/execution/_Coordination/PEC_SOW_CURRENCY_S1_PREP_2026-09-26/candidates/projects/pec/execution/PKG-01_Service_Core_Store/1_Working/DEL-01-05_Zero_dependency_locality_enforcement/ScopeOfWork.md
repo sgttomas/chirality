@@ -15,7 +15,7 @@ This Scope of Work is the production contract for `DEL-01-05` — "Zero-dependen
 & locality enforcement" — in `PKG-01` Service Core & Store of the PEC v2 build.
 It covers project scope items `SOW-052` and `SOW-053` in service of package
 objective `OBJ-005`. It brings the deliverable's earlier contract (SHA-256
-`53ba3be30415…5e53`) current as a whole; AX-009 records what changed.
+`53ba3be30415…de53`) current as a whole; AX-009 records what changed.
 
 The accepted basis is `execution/_Decomposition/SOFTWARE_DECOMP.md`
 **revision 1.6** (`current_basis`, SCA-006 successor), accepted by the owner at

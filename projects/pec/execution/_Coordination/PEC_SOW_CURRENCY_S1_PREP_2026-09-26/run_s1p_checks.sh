@@ -21,7 +21,7 @@ for d in "$PRE" "$POST"; do
 done
 # S1 lands after S4 (provisional D-PEC-102): simulate the S4 act on both exports by writing the two
 # S4 postimages the S1 act pins (DEL-04-01, DEL-04-03), read from the S4 preparation branch commit.
-# Overwriting is idempotent once the S4 act is on the basis commit. Override the commit with S4_COMMIT.
+# Once the S4 act is on the basis commit the check reports a no-op. Override the S4 commit with S4_COMMIT.
 S4C=${S4_COMMIT:-91a2e8407f27d03be0ad1c1a862f3c51b613196f}
 S4P=projects/pec/execution/_Coordination/PEC_SOW_CURRENCY_S4_PREP_2026-09-26/candidates/
 # The basis must hold either the S4 preimage (S4 not yet applied: overlay) or exactly the S4 postimage
@@ -35,7 +35,7 @@ for t in projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_
   if [[ $have == $post ]]; then OVL="$OVL ${${t:h}:t}=already-S4-postimage(no-op)"
   elif [[ $have == $pre ]]; then OVL="$OVL ${${t:h}:t}=overlaid"
     for d in "$PRE" "$POST"; do git -C "$REPO" show "$S4C:$S4P$t" > "$d/$t"; done
-  else print -r -- "STOP: $t holds neither its S4 preimage nor its S4 postimage on $C; re-prepare DEL-04-05 and the pins"; exit 3; fi
+  else print -r -- "STOP: $t holds neither its S4 preimage nor its S4 postimage on $C; re-prepare DEL-04-05 and the pins" | tee "$OUT/SUMMARY.out"; rm -rf "$T"; exit 3; fi
 done
 fail=0
 note() { print -r -- "$1" | tee -a "$OUT/SUMMARY.out"; }

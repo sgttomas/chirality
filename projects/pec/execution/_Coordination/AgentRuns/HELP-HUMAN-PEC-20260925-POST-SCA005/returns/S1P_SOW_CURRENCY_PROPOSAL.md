@@ -6,8 +6,8 @@ WORKING_ITEMS (Type 1) under HELP_HUMAN, undertaking `HELP-HUMAN-PEC-20260925-PO
 
 - **PR:** https://github.com/sgttomas/chirality/pull/986 (branch `claude/pec-s1-sow-currency-proposal`; merges `origin/main` `4087a4f8c`). Not merged.
 - **Draft:** `execution/_Coordination/PEC_SOW_CURRENCY_S1_PREP_2026-09-26/DRAFT_D-PEC-104_s1_sow_currency_proposal.md` (hash in `SHA256SUMS`; filing name suggested in its header).
-- **Bound act script:** `apply_s1p.py` `66279ff098e33938437d0b78eff1f6cb8e49bb90d850f859b0013cabc87d7149`.
-- **Candidates (postimages):** DEL-01-03 `65c7f4086f8a…a367`, DEL-01-04 `16ac1cd956c9…ca41`, DEL-01-05 `a0a73eb5537b…84bf`, DEL-02-01 `82caf28a3757…5872`, DEL-02-02 `84e55e58e663…fa86`, DEL-03-01 `5b71d3583b2e…8276`, DEL-03-02 `d823d55d9e71…a3d0`, DEL-03-03 `c2b88cb65c71…9526`, DEL-03-06 `f9c3a0577172…8bd4`, DEL-04-05 `925fb53b6a98…d5c9`, DEL-10-02 `f5590cf55b19…436e`, DEL-10-10 `813839a080d7…37c8` (full values in the draft's grant table and `apply_s1p.py`).
+- **Bound act script:** `apply_s1p.py` `e766bc217a42f57753bd6238d683acaa72096447c398b7da9509c559fb62d650`.
+- **Candidates (postimages):** DEL-01-03 `65c7f4086f8a…a367`, DEL-01-04 `16ac1cd956c9…ca41`, DEL-01-05 `347f73c7969c…98bb`, DEL-02-01 `82caf28a3757…5872`, DEL-02-02 `84e55e58e663…fa86`, DEL-03-01 `5b71d3583b2e…8276`, DEL-03-02 `d823d55d9e71…a3d0`, DEL-03-03 `c2b88cb65c71…9526`, DEL-03-06 `f9c3a0577172…8bd4`, DEL-04-05 `925fb53b6a98…d5c9`, DEL-10-02 `f5590cf55b19…436e`, DEL-10-10 `813839a080d7…37c8` (full values in the draft's grant table and `apply_s1p.py`).
 
 ## Recommended option
 
@@ -42,7 +42,7 @@ OVERALL PASS (with the S4 act simulated on both exports): act check-only 0 / app
 
 ## Verdicts
 
-`VERIFIER_VERDICT_01..10.md` in the prep folder (reviewer returns with manager dispositions); the round-7 check of the round-6 repairs is `VERIFIER_VERDICT_11.md`. The final verdict state is given in the manager's hand-back. No verdict records a ruling.
+`VERIFIER_VERDICT_01..11.md` in the prep folder (reviewer returns with manager dispositions); the round-8 check of the round-7 repairs is `VERIFIER_VERDICT_12.md`. The final verdict state is given in the manager's hand-back. No verdict records a ruling.
 
 ## Owner questions (in the draft)
 

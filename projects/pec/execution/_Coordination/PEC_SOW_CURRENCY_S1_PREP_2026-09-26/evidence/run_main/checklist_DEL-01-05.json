@@ -12,7 +12,7 @@
         "document": "ScopeOfWork.md",
         "line": 115,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a0a73eb5537b92d3a21ca8b01c0fc824b1cfb16823299dd3f3464e38a66784bf"
+        "sha256": "347f73c7969cc777027110f101faec6ad40c728e17e095aa2270f268498798bb"
       },
       "text": "On a service-core state whose runtime dependency surface is entirely workspace-internal the dependency assertion passes, and on any state that introduces a third-party runtime dependency it fails and names both the offending dependency and the importing module.",
       "verification": [
@@ -37,7 +37,7 @@
         "document": "ScopeOfWork.md",
         "line": 116,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a0a73eb5537b92d3a21ca8b01c0fc824b1cfb16823299dd3f3464e38a66784bf"
+        "sha256": "347f73c7969cc777027110f101faec6ad40c728e17e095aa2270f268498798bb"
       },
       "text": "The check's admitted set is enumerated in its own configuration, contains only workspace-internal runtime contracts packages, and admits no entry that `PEC-SVC-001` does not permit; adding an entry is a visible configuration change, not an inferred default.",
       "verification": [
@@ -62,7 +62,7 @@
         "document": "ScopeOfWork.md",
         "line": 117,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a0a73eb5537b92d3a21ca8b01c0fc824b1cfb16823299dd3f3464e38a66784bf"
+        "sha256": "347f73c7969cc777027110f101faec6ad40c728e17e095aa2270f268498798bb"
       },
       "text": "On a service-core state that initiates or configures external network egress the locality assertion fails and names the call site or configuration entry, and on a state using only local transport consistent with `PEC-API-001` it passes; no fixture outcome changes according to whether a loopback listener is later permitted.",
       "verification": [
@@ -88,7 +88,7 @@
         "document": "ScopeOfWork.md",
         "line": 118,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a0a73eb5537b92d3a21ca8b01c0fc824b1cfb16823299dd3f3464e38a66784bf"
+        "sha256": "347f73c7969cc777027110f101faec6ad40c728e17e095aa2270f268498798bb"
       },
       "text": "Both assertions execute on every change to the service core and on every release candidate, each execution bound to the exact state it evaluated, and no earlier passing run is presented as evidence for a later state.",
       "verification": [
@@ -114,7 +114,7 @@
         "document": "ScopeOfWork.md",
         "line": 119,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a0a73eb5537b92d3a21ca8b01c0fc824b1cfb16823299dd3f3464e38a66784bf"
+        "sha256": "347f73c7969cc777027110f101faec6ad40c728e17e095aa2270f268498798bb"
       },
       "text": "On a release candidate whose assertions fail, and on one against which either assertion was not executed, the mechanism returns an explicit blocking verdict, demonstrated on a candidate deliberately constructed to violate each rule and on a candidate for which the check was withheld. Whether that verdict binds the release is CON-002 and AC-011, not this criterion.",
       "verification": [
@@ -140,7 +140,7 @@
         "document": "ScopeOfWork.md",
         "line": 120,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a0a73eb5537b92d3a21ca8b01c0fc824b1cfb16823299dd3f3464e38a66784bf"
+        "sha256": "347f73c7969cc777027110f101faec6ad40c728e17e095aa2270f268498798bb"
       },
       "text": "Each assertion, when given an unresolvable manifest, an unreadable surface, or a failing tool invocation, reports failure; no such condition yields a pass, a skip, or an empty successful result.",
       "verification": [
@@ -166,7 +166,7 @@
         "document": "ScopeOfWork.md",
         "line": 121,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a0a73eb5537b92d3a21ca8b01c0fc824b1cfb16823299dd3f3464e38a66784bf"
+        "sha256": "347f73c7969cc777027110f101faec6ad40c728e17e095aa2270f268498798bb"
       },
       "text": "The registration remains armed without further action: disabling, removing, or bypassing either assertion is a visible change to the gate configuration and produces a reported gate failure rather than a silent no-op.",
       "verification": [
@@ -192,7 +192,7 @@
         "document": "ScopeOfWork.md",
         "line": 122,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a0a73eb5537b92d3a21ca8b01c0fc824b1cfb16823299dd3f3464e38a66784bf"
+        "sha256": "347f73c7969cc777027110f101faec6ad40c728e17e095aa2270f268498798bb"
       },
       "text": "The enforcement mechanism adds no third-party runtime dependency to the service core, makes no network call, and leaves service-core source and dependency manifests unmodified across a full run.",
       "verification": [
@@ -217,7 +217,7 @@
         "document": "ScopeOfWork.md",
         "line": 123,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a0a73eb5537b92d3a21ca8b01c0fc824b1cfb16823299dd3f3464e38a66784bf"
+        "sha256": "347f73c7969cc777027110f101faec6ad40c728e17e095aa2270f268498798bb"
       },
       "text": "The posture note contains every element required by REQ-010, states the operative definitions recorded under REQ-009, and asserts no completion of the enforcement obligation.",
       "verification": [
@@ -242,7 +242,7 @@
         "document": "ScopeOfWork.md",
         "line": 124,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a0a73eb5537b92d3a21ca8b01c0fc824b1cfb16823299dd3f3464e38a66784bf"
+        "sha256": "347f73c7969cc777027110f101faec6ad40c728e17e095aa2270f268498798bb"
       },
       "text": "An accountable owner confirms that neither the posture note nor either assertion resolves, pre-empts, or forecloses `OI-009` / `SOW-083`, and that the enforcement makes no governed act depend on PEC-held state.",
       "verification": [
@@ -263,7 +263,7 @@
         "document": "ScopeOfWork.md",
         "line": 125,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "a0a73eb5537b92d3a21ca8b01c0fc824b1cfb16823299dd3f3464e38a66784bf"
+        "sha256": "347f73c7969cc777027110f101faec6ad40c728e17e095aa2270f268498798bb"
       },
       "text": "An accountable owner confirms, or declines to confirm, that the enforcement delivered under this contract carries release-gating authority — that its blocking verdict blocks a release candidate — given that `C-08`'s standing-node classification carries \"owner confirmation requested\" and was accepted at `D-PEC-62` §1.4 as a recorded-but-unresolved, non-gating annotation (CLM-006, CON-002). A decline leaves the mechanism's verdicts advisory and invalidates no other criterion in this contract; the standing framing of the contract stands either way, because it is how the contract is written rather than a claim about the gate's force.",
       "verification": [
@@ -282,7 +282,7 @@
     "migration_authority": null,
     "package_id": "PKG-01",
     "schema": "chirality-deliverable-sow/v1",
-    "sha256": "a0a73eb5537b92d3a21ca8b01c0fc824b1cfb16823299dd3f3464e38a66784bf"
+    "sha256": "347f73c7969cc777027110f101faec6ad40c728e17e095aa2270f268498798bb"
   },
   "tool_version": "1"
 }
