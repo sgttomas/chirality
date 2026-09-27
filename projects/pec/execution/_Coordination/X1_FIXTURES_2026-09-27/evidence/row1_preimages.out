@@ -1,0 +1,23 @@
+$ date -u
+Sun Sep 27 17:36:53 UTC 2026
+$ shasum -a 256 tools/scaffolding/write_status.sh (expect 0bf835f54f4bb9a78a51d0b56392a8686d1f255f06d3c2bcaf7e8665f77bece3)
+0bf835f54f4bb9a78a51d0b56392a8686d1f255f06d3c2bcaf7e8665f77bece3  tools/scaffolding/write_status.sh
+$ shasum -a 256 the three _STATUS.md (expect 6f94c04f79b678082b0407f93ec9c898d988c2693c0d1e19791f5cff985cf06f / 4341d6b2e192b3ada04a5897de94245639980d0d2048b2b8cb3202771dfe04fe / e67be5871d8cd0f2a02e96c76418d5e161be5d17c7e5e44c7577bf829e171056)
+6f94c04f79b678082b0407f93ec9c898d988c2693c0d1e19791f5cff985cf06f  projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_STATUS.md
+4341d6b2e192b3ada04a5897de94245639980d0d2048b2b8cb3202771dfe04fe  projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_STATUS.md
+e67be5871d8cd0f2a02e96c76418d5e161be5d17c7e5e44c7577bf829e171056  projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_STATUS.md
+$ grep Current State
+projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_STATUS.md:**Current State:** INITIALIZED
+projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_STATUS.md:**Current State:** INITIALIZED
+projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_STATUS.md:**Current State:** INITIALIZED
+$ ls MEMORY.md (expect absent)
+(eval):10: no matches found: projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-0[389]_*/MEMORY.md
+exit=1
+$ test -e projects/pec/v2/tests/parsers (expect absent)
+exit=1
+$ shasum -a 256 projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv projects/pec/execution/_Scripts/pec_reliance_hold.py docs/SPEC.md
+f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc  projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv
+b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e  projects/pec/execution/_Scripts/pec_reliance_hold.py
+feb5e79c0b60b5156ea9ad2b00e32e338ab42c4351da0b0cbca6f30df5f3109e  docs/SPEC.md
+$ cat ACTIVE_RELIANCE_HOLDS.csv
+HoldID,Status,TargetPath,TargetClauses,ProhibitedActs,AllowedActs,Authority,ReleaseRule
