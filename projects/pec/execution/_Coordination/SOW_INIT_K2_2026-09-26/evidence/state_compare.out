@@ -8,3 +8,8 @@ IDENTICAL harness pre/postC8
 IDENTICAL receipts pre/postC8
 IDENTICAL closure stdout pre/postC8 (command echo line, which names the per-tag output dir, excluded)
 IDENTICAL closure_summary pre/postC8
+IDENTICAL strict pre/final
+IDENTICAL harness pre/final
+IDENTICAL receipts pre/final
+IDENTICAL closure stdout pre/final (command echo line excluded)
+IDENTICAL closure_summary pre/final
