@@ -1,0 +1,6 @@
+$ date -u
+Sun Sep 27 17:44:45 UTC 2026
+$ python3 projects/pec/execution/_Coordination/X1_FIXTURES_2026-09-27/verify_x1p_bindings.py /Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-d106-act HEAD projects/pec/execution/_Coordination/X1_FIXTURES_2026-09-27/candidates   (HEAD 26b27b2b0655c084fbe8b665b38264fcefba363b)
+defined IDs: DEL-02-03=108, DEL-02-08=106, DEL-02-09=90
+RESULT PASS 442/442
+exit=0
