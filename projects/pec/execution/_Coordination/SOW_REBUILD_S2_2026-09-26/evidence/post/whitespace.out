@@ -1,0 +1,2 @@
+$ (cwd repo root, HEAD 23e065e4f) git diff --check origin/main...HEAD
+exit=0
