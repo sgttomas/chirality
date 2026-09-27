@@ -374,10 +374,10 @@ Current owner gates (2026-09-27; none is accepted or inferred here):
   (`execution/_Coordination/_TaskManagement/TM_PEC_CLOSEOUT_POST_SCA005_2026-09-27/INTAKE.md`).
   On 2026-09-27 the owner disposed of them (`D-PEC-107`):
   - CAND-01 (b): each deliverable's own production or currency packet absorbs its items;
-  - CAND-02 promoted, to be resolved in the next PEC scope change, which also takes up a per-project consumer-contract design item;
+  - CAND-02 promoted, to be resolved in the next PEC scope change (HELP_HUMAN attaches the per-project consumer-contract design item from the K3 discussion to it);
   - CAND-03 promoted and routed to Root;
   - RV1 authorized;
-  - K3 moved to a PEC Task Management row, triggered by a DEL-08-06 production packet.
+  - K3 to be tracked as a PEC Task Management row (recorded by TM1), triggered by a DEL-08-06 production packet.
 
   Production is left to a separate session. The owner also declared this state a
   **freeze point**, the basis for a later ground-up reassessment alongside the
