@@ -75,7 +75,7 @@ TARGETS = {
         ("640f23711f93ec7e987742ed5ed998bea04c681f14bff06bdf2e35a669fcbd5e",
          "813839a080d7e245a0174959bc4f67be265cfabfd5b2177f83cb6fdc934737c8"),
 }
-# Read-only files the act re-verifies (values at origin/main 125cfacc1).
+# Read-only files the act re-verifies (values at origin/main 125cfacc1, except the two S4 postimages marked below).
 PINNED = {
     E + "_Decomposition/SOFTWARE_DECOMP.md":
         "9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1",

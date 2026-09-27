@@ -22,7 +22,7 @@ Commands (as returned): `git fetch` 0; `merge-base --is-ancestor 7004eaeda HEAD`
 
 - **R5-1 — accepted, repaired.** The draft now names three changed files the candidates quote or cite at `125cfacc1` — `tools/REGISTRY.md` (#985), this undertaking's `WORK_GRAPH.md` (#981, #982, #989) and `_REGISTER.md` (21 state claims and 10 quotations; #989) — and states that every quoted or claimed string is still present at `7004eaeda`.
 - **R5-2, R5-7 — accepted, repaired.** The return is rewritten at the final commit with the correct DEL-03-02 abbreviation (`…a3d0`) and says the scratch export is deleted after the last check run (it is deleted before hand-back).
-- **R5-3 — accepted, repaired.** The draft now attributes `ACCEPT_EXACT_BYTES` to `_REVIEW.md` L38–41 and the quoted phrase to L192–194, and says `Review_Findings.csv` names the hash as the repaired successor.
+- **R5-3 — accepted, repaired.** The draft now attributes `ACCEPT_EXACT_BYTES` to `_REVIEW.md` L38–41 and the quoted phrase to L194–195 (corrected after verdict 10, R6-2; first written as L192–194), and says `Review_Findings.csv` names the hash as the repaired successor.
 - **R5-4 — accepted, repaired.** Provenance now records both round-4/5 relays (the REVIEW-record disclosure; the S4 ordering items) and says "relayed directions".
 - **R5-5 — accepted, repaired** (verdicts 06 and 08 now read `…9f17`).
 - **R5-6 — accepted, repaired.**

@@ -169,4 +169,6 @@ KEPT DEL-10-11 quotes DEL-01-05: 'excluded from one-shot COMPLETE/UNBLOCKED arit
 KEPT DEL-10-11 quotes DEL-03-01: 'all three records quoted in full, none elided.'
 KEPT DEL-10-11 quotes DEL-01-05: 'The mechanism this contract requires is designed to block and its verdicts are unambiguous;'
 KEPT DEL-10-11 quotes DEL-03-03: 'presented, exported, or counted as practitioner-harness parity output'
-SUMMARY stale=17 kept=154
+KEPT DEL-10-13 quotes DEL-01-05: 'excluded from one-shot COMPLETE/UNBLOCKED arithmetic;'
+KEPT DEL-10-13 quotes DEL-10-02: "The `C-08` `STANDING_NODES` classification's *force* is unconfirmed."
+SUMMARY stale=17 kept=156

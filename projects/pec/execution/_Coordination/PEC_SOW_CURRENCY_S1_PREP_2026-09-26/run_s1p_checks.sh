@@ -24,16 +24,25 @@ done
 # Overwriting is idempotent once the S4 act is on the basis commit. Override the commit with S4_COMMIT.
 S4C=${S4_COMMIT:-91a2e8407f27d03be0ad1c1a862f3c51b613196f}
 S4P=projects/pec/execution/_Coordination/PEC_SOW_CURRENCY_S4_PREP_2026-09-26/candidates/
+# The basis must hold either the S4 preimage (S4 not yet applied: overlay) or exactly the S4 postimage
+# (S4 applied: the overlay changes nothing); anything else (for example an amended S4) stops the run.
+OVL=""
 for t in projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md \
          projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md; do
-  for d in "$PRE" "$POST"; do git -C "$REPO" show "$S4C:$S4P$t" > "$d/$t"; done
+  post=$(git -C "$REPO" show "$S4C:$S4P$t" | shasum -a 256 | cut -c1-64)
+  have=$(shasum -a 256 < "$PRE/$t" | cut -c1-64)
+  pre=$(git -C "$REPO" show "125cfacc1:$t" | shasum -a 256 | cut -c1-64)
+  if [[ $have == $post ]]; then OVL="$OVL ${${t:h}:t}=already-S4-postimage(no-op)"
+  elif [[ $have == $pre ]]; then OVL="$OVL ${${t:h}:t}=overlaid"
+    for d in "$PRE" "$POST"; do git -C "$REPO" show "$S4C:$S4P$t" > "$d/$t"; done
+  else print -r -- "STOP: $t holds neither its S4 preimage nor its S4 postimage on $C; re-prepare DEL-04-05 and the pins"; exit 3; fi
 done
 fail=0
 note() { print -r -- "$1" | tee -a "$OUT/SUMMARY.out"; }
 : > "$OUT/SUMMARY.out"
 note "basis commit: $(git -C "$REPO" rev-parse "$C")"
 note "python: $(python3 --version 2>&1)"
-note "S4 overlay: DEL-04-01 and DEL-04-03 set to their S4 postimages from $S4C (simulated S4 act on both exports)"
+note "S4 overlay from $S4C (simulated S4 act on both exports where not yet applied):$OVL"
 
 # 1. before-state every-PR and register checks
 (cd "$PRE" && python3 tools/validation/validate_decomposition_registers.py --strict projects/pec/execution > "$OUT/strict_pre.out" 2>&1; print "exit=$?" >> "$OUT/strict_pre.out")

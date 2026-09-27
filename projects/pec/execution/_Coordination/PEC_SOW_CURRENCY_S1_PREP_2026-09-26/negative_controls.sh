@@ -50,7 +50,8 @@ f=$(cand DEL-10-10); print >> "$f"
 python3 "$T/p/apply_s1p.py" --repo "$T/act" --candidates "$T/p/candidates" --check-only > "$T/out" 2>&1; ok $? "a candidate differs from its tabled postimage (apply --check-only)"
 # 6b. the S4 postimages absent (S4 not yet applied): the bound act refuses at preflight
 fresh; rm -rf "$T/act"; mkdir -p "$T/act"; git -C "$REPO" archive "$C" | tar -x -C "$T/act"
-python3 "$T/p/apply_s1p.py" --repo "$T/act" --candidates "$T/p/candidates" --check-only > "$T/out" 2>&1; ok $? "S4 postimages not applied (DEL-04-01/DEL-04-03 pins): apply --check-only refuses"
+python3 "$T/p/apply_s1p.py" --repo "$T/act" --candidates "$T/p/candidates" --check-only > "$T/out" 2>&1; r=$?; [[ $(grep -c "pinned hash mismatch: projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-0[13]_" "$T/out") -eq 2 ]] || r=0
+ok $r "S4 postimages not applied (DEL-04-01/DEL-04-03 pins): apply --check-only refuses for exactly those two pins"
 # 7. a matrix row removed: the validator fails and the checklist refuses with no artifact
 fresh; f=$(cand DEL-01-04); python3 - "$f" <<'P'
 import sys; p=sys.argv[1]; L=open(p).read().splitlines(True); i=max(k for k,l in enumerate(L) if l.startswith("| OUT-")); del L[i]; open(p,"w").write("".join(L))
