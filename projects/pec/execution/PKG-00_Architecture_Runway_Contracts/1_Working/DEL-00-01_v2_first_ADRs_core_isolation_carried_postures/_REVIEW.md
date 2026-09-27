@@ -18,7 +18,7 @@
 
 > ACC: option 1; accept all findings as is; re-accept DEL-00-01 and DEL-00-03 exact bytes; retire CU-001
 
-The ruling answers HELP_HUMAN's presentation of this review's outcome. Its ruling record is `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-108_D1_REACCEPTANCE_2026-09-27.md`, which HELP_HUMAN writes in the same PR as this record. This record applies the ruling's DEL-00-01 parts; "Exact-byte acceptance and remaining gates" below records them. The RV1 sections that follow are kept verbatim as recorded at review time, except the review stage line above. Where they say that the owner's acceptance has not been given or that a disposition is `TBD`, that section records the current state.
+The ruling answers HELP_HUMAN's presentation of this review's outcome. Its ruling record is `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-108_D1_REACCEPTANCE_2026-09-27.md`, which HELP_HUMAN writes in the same PR as this record. This record applies the ruling's DEL-00-01 parts; "Exact-byte acceptance and remaining gates" below records them. The RV1 sections that follow are kept verbatim as recorded at review time, except the review stage line above. Where they say that the owner's acceptance has not been given, that a disposition is `TBD`, or that AC-007 is unsatisfied, the section "Exact-byte acceptance and remaining gates" records the current state.
 
 ### Authority
 

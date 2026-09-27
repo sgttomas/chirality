@@ -37,7 +37,8 @@ ruling's DEL-00-03 parts; "Exact-byte acceptance and remaining gates" below
 records them. The RV1 sections that follow are kept verbatim as recorded at
 review time, except the review stage line above. Where they say that the
 owner's acceptance has not been given, that a disposition is `TBD`, or that
-AC-011 is unsatisfied, that section records the current state.
+AC-011 is unsatisfied, the section "Exact-byte acceptance and remaining
+gates" records the current state.
 
 ## Authority
 
