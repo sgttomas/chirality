@@ -1,0 +1,237 @@
+{
+  "item_count": 9,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 162,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b8c021f581448d1ff5413938563d40b015672aefede15ed97da9dd9b92865e01"
+      },
+      "text": "The delivered service binds a Unix domain socket as its default listener, is reachable only through that local socket, and binds no network-reachable listener; the socket path and permissions chosen during production are recorded, and remain TBD-003 in this contract.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-08-01-VER-001",
+          "source_line": 190,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Start the delivered service and enumerate its bound listeners; confirm a Unix domain socket listener exists and is the default, confirm no TCP or otherwise network-reachable listener is bound, and record the socket path and its filesystem permissions."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-01-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 163,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b8c021f581448d1ff5413938563d40b015672aefede15ed97da9dd9b92865e01"
+      },
+      "text": "Every operation served over the socket is preceded by a token resolution that yields exactly one access class; a request with an absent, unresolvable, or invalid token is refused, with no operation served and no partial or default-scoped result returned.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-08-01-VER-002",
+          "source_line": 191,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Exercise the access path with a token for each of owner, harness, agent, and admin and confirm each resolves to exactly one class; then exercise it with absent, malformed, unresolvable, and invalid tokens and confirm each is refused with no operation served and no partial or default-scoped result."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-01-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 164,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b8c021f581448d1ff5413938563d40b015672aefede15ed97da9dd9b92865e01"
+      },
+      "text": "The delivered access-class set is exactly owner, harness, agent, and admin; no identifier from the retired v1.0 12-role ontology or the retired prototype 14-role RBAC set appears in the delivered code, configuration, or fixtures.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-08-01-VER-003",
+          "source_line": 192,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the delivered source, configuration, and fixtures for identifiers belonging to the retired v1.0 12-role ontology or the retired prototype 14-role RBAC set, and confirm the delivered access-class set is exactly owner, harness, agent, and admin."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-01-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 165,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b8c021f581448d1ff5413938563d40b015672aefede15ed97da9dd9b92865e01"
+      },
+      "text": "The token mechanism is reachable only through a declared internal seam, such that replacing it with another PEC-local token mechanism changes no socket-server and no access-class decision code; CON-001 remains open and no delivered artifact may be read as settling it.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-08-01-VER-004",
+          "source_line": 193,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the module boundary between the token mechanism and the socket-and-access-class core: confirm the mechanism is reached only through the declared seam interface, and confirm by substituting a stub mechanism through that seam that no socket-server or access-class decision code changes."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-01-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 166,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b8c021f581448d1ff5413938563d40b015672aefede15ed97da9dd9b92865e01"
+      },
+      "text": "No loopback or other TCP listener is delivered, and no delivered artifact presumes the outcome of `SOW-083` / `OI-009`; CON-002 remains open.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-08-01-VER-001",
+          "source_line": 190,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Start the delivered service and enumerate its bound listeners; confirm a Unix domain socket listener exists and is the default, confirm no TCP or otherwise network-reachable listener is bound, and record the socket path and its filesystem permissions."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-003"
+      ],
+      "qualified_id": "DEL-08-01-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 167,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b8c021f581448d1ff5413938563d40b015672aefede15ed97da9dd9b92865e01"
+      },
+      "text": "The automated test suite implements VER-001 through VER-004 and VER-006, executes in the service test run, passes, and introduces no acceptance criterion absent from this contract.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-08-01-VER-005",
+          "source_line": 194,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the service test suite and confirm that each of VER-001 through VER-004 and VER-006 has a corresponding executing automated test, that the suite passes, and that no test asserts a criterion absent from this contract."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-01-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 168,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b8c021f581448d1ff5413938563d40b015672aefede15ed97da9dd9b92865e01"
+      },
+      "text": "The delivered artifacts trace to `SOW-003`, `SOW-040`, and `OBJ-001` and introduce no scope beyond those two ledger rows; in particular they do not absorb the schema, response-format, latency, or subscription scope held by the sibling deliverables named in CLM-005, or the scope CLM-010 assigns elsewhere; no delivered artifact presents an access-class grant as operational reliance or as authority; and the operation-to-access-class mapping applied during production is recorded against TBD-004 rather than asserted as accepted scope.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "REVIEW gate confirms traceability to SOW-003, SOW-040, and OBJ-001, confirms no absorption of sibling PKG-08 scope or of the scope CLM-010 assigns elsewhere, confirms no access-class grant is presented as operational reliance or authority, and confirms CON-001, CON-002 and CON-003 are left open"
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-01-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 169,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b8c021f581448d1ff5413938563d40b015672aefede15ed97da9dd9b92865e01"
+      },
+      "text": "For an `agent`-class token, every event-ingest, presence-report or admin operation the delivered service serves, and every operation it serves that writes, is refused with no operation served, no state changed, and no partial or default-scoped result; every operation served to that class is a read; and the exercised operation list and its classification are recorded against TBD-004, with CON-003 left open.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-08-01-VER-006",
+          "source_line": 195,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Enumerate every operation the delivered service serves and exercise each with an `agent`-class token; confirm that each event-ingest, presence-report or admin operation, and each operation that writes, is refused with no operation served, no state changed, and no partial or default-scoped result, and that each operation served is a read; record the enumerated list and its classification against TBD-004."
+        }
+      ]
+    },
+    {
+      "id": "AC-009",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-01-AC-009",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 170,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b8c021f581448d1ff5413938563d40b015672aefede15ed97da9dd9b92865e01"
+      },
+      "text": "The delivered artifacts perform none of the acts REQ-009 excludes, and where they meet an adjacent act they reach it only through the interface its owner in CLM-005 or CLM-010 provides.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-08-01-VER-007",
+          "source_line": 196,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the delivered source, configuration, and tests for any act REQ-009 excludes, confirm none is present, and confirm that each adjacent act the artifacts meet is reached only through its owner's interface."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-08-01",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-08",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "b8c021f581448d1ff5413938563d40b015672aefede15ed97da9dd9b92865e01"
+  },
+  "tool_version": "1"
+}
