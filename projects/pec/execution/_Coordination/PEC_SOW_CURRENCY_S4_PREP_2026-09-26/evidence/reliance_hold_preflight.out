@@ -1,0 +1,76 @@
+# reliance-hold preflight, operation exact-correction-preparation, run from projects/pec of a git archive export of origin/main 125cfacc10f664685cb91802a9166b1041f42a25 (export root shown as <export>)
+# register f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc  execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv
+# script b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e  execution/_Scripts/pec_reliance_hold.py
+# Python 3.13.7
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_STATUS.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/MEMORY.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/ScopeOfWork.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_STATUS.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/MEMORY.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/ScopeOfWork.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_STATUS.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/MEMORY.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/ScopeOfWork.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_STATUS.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/MEMORY.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/ScopeOfWork.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_STATUS.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/MEMORY.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_STATUS.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/MEMORY.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/ScopeOfWork.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_STATUS.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/MEMORY.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/ScopeOfWork.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/_STATUS.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
+$ python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/MEMORY.md --operation exact-correction-preparation
+{"operation": "exact-correction-preparation", "status": "ALLOW"}
+exit=0
