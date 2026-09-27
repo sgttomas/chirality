@@ -9,7 +9,7 @@
 **Context root:** `projects/chirality-app-dev/execution`
 **Decomposition:** `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`
 **Allow renumbering:** `false`
-**Basis commit:** `0adfbc7476df33521883ce1573781237cd24d384` (`origin/main`, merge of PR #1009)
+**Basis commit:** `0adfbc7476df33521883ce1573781237cd24d384` (`origin/main`, merge of PR #1009). The package commits were then rebased onto `ec81ef2c728e5ae4854894e5321dfc693902a8ef` (merge of PR #1010, after PR #1011). Those merges change only `projects/chirality-app-v4/` and `projects/pec/`, so every input named below is byte-identical at both commits. The builder reports `governed_inputs_identical_to_basis: true` on the rebased tree and reproduces `Pre_Change_Coverage.json` byte for byte.
 **Stage:** checkpoint-group-1 preparation only (intake, validation and impact). This package writes no decomposition, register, PRD, SPEC, PLAN, Scope of Work, `_CONTEXT.md`, `_STATUS.md`, dependency register, pointer, decision snapshot, `DECISION.md`, `SCA-APP-012_GROUP-1_AUTHORIZED.md` or `_LATEST.md` byte, and no code.
 **Precedent:** SCA-APP-011 (PRs #995 and #1009). Its group-1 `Impact_Assessment.md` (choice B) and `Intake_Actions.csv` rows 28–32 assessed this legacy-shell removal as set L, which the owner excluded from SCA-APP-011 ("Exclude it (Recommended)"). This run reuses that analysis, re-verified at the basis, and follows the same package layout and the `checkpoint_snapshots/` decision-snapshot layout.
 

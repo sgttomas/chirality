@@ -137,7 +137,7 @@ the recommended selections:
 No scope item goes OUT and no objective loses support. The main costs are:
 
 - **Test re-homing in the code change.** The code change deletes or edits
-  about 12 test files. One case in `pkg08-compatibility-boundaries.test.ts`
+  11 test files. One case in `pkg08-compatibility-boundaries.test.ts`
   (the matrix-helper round trip) is dropped, not ported. The unknown-parameter
   duty it seemed to cover was never verified against the live shell, and
   DEL-08-02 keeps that duty open (§3.3).
@@ -145,16 +145,16 @@ No scope item goes OUT and no objective loses support. The main costs are:
   four PLAN passages and D-APP-74 keep "the loop-first UI", "the existing UI"
   or "current UI" until separate owner acceptance. This amendment is that
   acceptance and must say so (Rows 10, 12, 13).
-- **Text alignment** across seven Scopes of Work, and dependency
-  re-extraction for DEL-02-03 and its neighbours (§10).
+- **Text alignment** across six Scopes of Work (seven under R-a, eight with
+  P-x), and dependency re-extraction for DEL-02-03 and its neighbours (§10).
 
 ## 2. Evidence basis
 
 | Evidence | SHA-256 / result |
 |---|---|
-| `Brief.md` (this snapshot) | written with this assessment; hash recorded at the group-1 decision snapshot |
+| `Brief.md` (this snapshot) | `d540c607be74de674e629072cf6a7938d01bb7bb4677a31f3fad2159cd9b9b27` |
 | `Intake_Actions.csv` (this snapshot) | `8c5a3e6d1f2a0d0d30434bceb998217bdec94e82c4ac411559079947ee7fdff2`; 29 rows, all `PROPOSED` |
-| `Pre_Change_Coverage.json` (this snapshot) | `4504d70e2cb213b44651fb0c8a8f34c593f1a49088c4f01eec5b65fbe90018cb`; two runs byte-identical |
+| `Pre_Change_Coverage.json` (this snapshot) | `4504d70e2cb213b44651fb0c8a8f34c593f1a49088c4f01eec5b65fbe90018cb`; byte-identical across runs at `0adfbc747` and after the rebase onto `ec81ef2c7` |
 | `Evidence/Group1/build_pre_change_baseline.py` | `e7abdab1612037e67551df3d810e892f4e6adca9fa214cbdb7d5b6fceb1dbe7b` |
 | Reused audit `COV_SCA_APP_011_POST_ACCEPTANCE_2026-09-27_0500` | 122/122 recorded inputs byte-identical at this basis; `WARNINGS`, 0 blockers |
 | Decomposition / companion register / `_LATEST.md` | `cf6e56eb…d2321876` / `918e475a…a942c` / `904c1bd6…c42c04e3` (full values in `Brief.md`) |
