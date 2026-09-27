@@ -1,0 +1,327 @@
+{
+  "item_count": 11,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-00-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 109,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "3e4f0efc775849b11ae5bdfa851e0d3c125804db87d70f55aac9bc7c77e65741"
+      },
+      "text": "The SPEC markdown exists at the packet-recorded path, that path is recorded in this deliverable's packet before the artifact is treated as consumable, and the change set that produced it touches no path outside `PKG-00`.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-00-03-VER-007",
+          "source_line": 140,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Path and write-scope check: the packet-recorded docs path exists and holds the SPEC markdown, the path is recorded in the packet, and the production change set is confined to `PKG-00`."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-00-03-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 110,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "3e4f0efc775849b11ae5bdfa851e0d3c125804db87d70f55aac9bc7c77e65741"
+      },
+      "text": "Every package, deliverable, objective, and scope item named in the seed resolves to a row of the accepted registers at the bound basis; the seed introduces none that is absent from that basis, and any scoped subset of the 11 packages or 64 deliverables it carries is stated as a subset with its reason.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-00-03-VER-001",
+          "source_line": 134,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Document inspection of the published seed against the `SOW-089` ledger row, the `SOFTWARE_DECOMP.md` §5 `PKG-00` row, the `Deliverables.csv` description and envelope note, and REQ-001, REQ-002, REQ-006, REQ-012."
+        },
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-00-03-VER-002",
+          "source_line": 135,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Register cross-check: enumerate every `PKG-*`, `DEL-*`, `OBJ-*`, and `SOW-*` token in the seed and resolve each against `Deliverables.csv`, `ScopeLedger.csv`, and `SOFTWARE_DECOMP.md` §3/§4/§5 at the bound basis; report every unresolved or non-register token, and report any subset of the 11 packages or 64 deliverables that is carried without a stated reason."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-00-03-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 111,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "3e4f0efc775849b11ae5bdfa851e0d3c125804db87d70f55aac9bc7c77e65741"
+      },
+      "text": "Every specification claim in the seed carries a citation that resolves to a `PRD.md` v2.2 requirement or invariant identifier or to an accepted decomposition identifier; a citation-resolution pass finds no unresolvable, invented, or retired-family identifier presented as live.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-00-03-VER-002",
+          "source_line": 135,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Register cross-check: enumerate every `PKG-*`, `DEL-*`, `OBJ-*`, and `SOW-*` token in the seed and resolve each against `Deliverables.csv`, `ScopeLedger.csv`, and `SOFTWARE_DECOMP.md` §3/§4/§5 at the bound basis; report every unresolved or non-register token, and report any subset of the 11 packages or 64 deliverables that is carried without a stated reason."
+        },
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-00-03-VER-003",
+          "source_line": 136,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Citation-resolution check: every `PEC-K-*` and `PEC-{ORI,RCN,GAT,PRS,STR,API,DSH,SVC}-NNN` token in the seed resolves to a locatable requirement or invariant in `projects/pec/docs/PRD.md`, and no retired v1.0 or v0.4 identifier family appears as a live v2 identifier."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-00-03-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 112,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "3e4f0efc775849b11ae5bdfa851e0d3c125804db87d70f55aac9bc7c77e65741"
+      },
+      "text": "The seed states the accepted basis revision and commit in its own text, and that statement equals the basis bound in this contract's frontmatter or a later accepted successor named as such.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-00-03-VER-004",
+          "source_line": 137,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Basis-binding check: the revision and commit stated in the seed equal the basis bound in this contract's frontmatter, or a named accepted successor, verified against `SOFTWARE_DECOMP.md` front matter and the Git commit object."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-00-03-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 113,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "3e4f0efc775849b11ae5bdfa851e0d3c125804db87d70f55aac9bc7c77e65741"
+      },
+      "text": "The seed contains no requirement, invariant, objective, package, deliverable, or scope item that is absent from the accepted basis, and no v1.0 or v0.4 identifier family is used for a v2 identifier.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-00-03-VER-001",
+          "source_line": 134,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Document inspection of the published seed against the `SOW-089` ledger row, the `SOFTWARE_DECOMP.md` §5 `PKG-00` row, the `Deliverables.csv` description and envelope note, and REQ-001, REQ-002, REQ-006, REQ-012."
+        },
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-00-03-VER-002",
+          "source_line": 135,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Register cross-check: enumerate every `PKG-*`, `DEL-*`, `OBJ-*`, and `SOW-*` token in the seed and resolve each against `Deliverables.csv`, `ScopeLedger.csv`, and `SOFTWARE_DECOMP.md` §3/§4/§5 at the bound basis; report every unresolved or non-register token, and report any subset of the 11 packages or 64 deliverables that is carried without a stated reason."
+        },
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-00-03-VER-003",
+          "source_line": 136,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Citation-resolution check: every `PEC-K-*` and `PEC-{ORI,RCN,GAT,PRS,STR,API,DSH,SVC}-NNN` token in the seed resolves to a locatable requirement or invariant in `projects/pec/docs/PRD.md`, and no retired v1.0 or v0.4 identifier family appears as a live v2 identifier."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-00-03-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 114,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "3e4f0efc775849b11ae5bdfa851e0d3c125804db87d70f55aac9bc7c77e65741"
+      },
+      "text": "Wherever the seed references the archived baseline `SPEC.md`, `TRACEABILITY.md`, `PILOT.md`, or `ADR-001..014`, the reference is marked historical, and none of them is cited as live authority.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-00-03-VER-003",
+          "source_line": 136,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Citation-resolution check: every `PEC-K-*` and `PEC-{ORI,RCN,GAT,PRS,STR,API,DSH,SVC}-NNN` token in the seed resolves to a locatable requirement or invariant in `projects/pec/docs/PRD.md`, and no retired v1.0 or v0.4 identifier family appears as a live v2 identifier."
+        },
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-00-03-VER-005",
+          "source_line": 138,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Archived-baseline check: every reference in the seed to `projects/pec/docs/.archive/SPEC.md`, `TRACEABILITY.md`, `PILOT.md`, or `ADR-001..014` carries a historical marker, and none is cited as live authority."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-003"
+      ],
+      "qualified_id": "DEL-00-03-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 115,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "3e4f0efc775849b11ae5bdfa851e0d3c125804db87d70f55aac9bc7c77e65741"
+      },
+      "text": "The seed's own text states that it was seeded before P1 from the accepted basis, that it is amended per phase under governed updates, and what it does not acquire between amendments.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-00-03-VER-001",
+          "source_line": 134,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Document inspection of the published seed against the `SOW-089` ledger row, the `SOFTWARE_DECOMP.md` §5 `PKG-00` row, the `Deliverables.csv` description and envelope note, and REQ-001, REQ-002, REQ-006, REQ-012."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-00-03-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 116,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "3e4f0efc775849b11ae5bdfa851e0d3c125804db87d70f55aac9bc7c77e65741"
+      },
+      "text": "After publication, the accepted decomposition shows `OI-003` resolved by D-PEC-78 O-A and SCA-004; `OI-001`, `OI-002`, `OI-004`..`OI-009`, `OI-012`, and `OI-013` retain their accepted dispositions, and the remaining §16-derived `TBD` scope items remain `TBD`.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-00-03-VER-006",
+          "source_line": 139,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Open-issue cross-check against the accepted decomposition, confirming `OI-003` is resolved by D-PEC-78 O-A and SCA-004, the accepted dispositions of `OI-001`, `OI-002`, `OI-004`..`OI-009`, `OI-012`, and `OI-013` are unchanged, and the remaining §16-derived `TBD` scope items are still `TBD`."
+        }
+      ]
+    },
+    {
+      "id": "AC-009",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-00-03-AC-009",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 117,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "3e4f0efc775849b11ae5bdfa851e0d3c125804db87d70f55aac9bc7c77e65741"
+      },
+      "text": "The seed is complete before any P1 node starts, it declares no dependency on a P1 or later deliverable, and it asserts no consumer obligation on any deliverable the accepted text does not name.",
+      "verification": [
+        {
+          "id": "VER-009",
+          "kind": "VER",
+          "qualified_id": "DEL-00-03-VER-009",
+          "source_line": 142,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Pre-P1 obligation and consumer check: confirm the seed is complete and published before any P1 node starts, that it declares no dependency on a P1 or later deliverable, and that it names no consumer the accepted text does not name (`C-05`, `C-06`)."
+        }
+      ]
+    },
+    {
+      "id": "AC-010",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-00-03-AC-010",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 118,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "3e4f0efc775849b11ae5bdfa851e0d3c125804db87d70f55aac9bc7c77e65741"
+      },
+      "text": "Terminology in the seed conforms to the accepted vocabulary map, and every use of \"package\" is disambiguated in the sense §9 requires.",
+      "verification": [
+        {
+          "id": "VER-008",
+          "kind": "VER",
+          "qualified_id": "DEL-00-03-VER-008",
+          "source_line": 141,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Vocabulary conformance inspection of the seed against `SOFTWARE_DECOMP.md` §9, with explicit attention to every occurrence of \"package\"."
+        }
+      ]
+    },
+    {
+      "id": "AC-011",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-00-03-AC-011",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 119,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "3e4f0efc775849b11ae5bdfa851e0d3c125804db87d70f55aac9bc7c77e65741"
+      },
+      "text": "An accountable owner confirms that the published seed is the v2 SPEC of record born from the accepted decomposition, and confirms that the seed's single-objective attribution to `OBJ-001` remains acceptable given the recorded LOW-confidence qualification and the unadopted alternatives.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "accountable owner confirmation that the published seed is the v2 SPEC of record born from the accepted decomposition, and that the SCA-002 LOW-confidence single-objective attribution to OBJ-001 stands"
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-00-03",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-00",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "3e4f0efc775849b11ae5bdfa851e0d3c125804db87d70f55aac9bc7c77e65741"
+  },
+  "tool_version": "1"
+}

@@ -1,0 +1,22 @@
+# Preconditions, cwd repo root, 2026-09-27T17:36:33Z (date -u)
+$ git fetch origin; git rev-parse origin/main HEAD
+c5d852c4a95a478f34d9e4e4375d603e08245e25
+c5d852c4a95a478f34d9e4e4375d603e08245e25
+$ git merge-base --is-ancestor c5d852c4a origin/main
+exit=0
+$ git log -1 --format="%H %s" origin/main
+c5d852c4a95a478f34d9e4e4375d603e08245e25 Merge pull request #1006 from sgttomas/claude/pec-d105-ruling
+$ git log --format="%h %s" -1 -- (ruling record)
+41797cda3 pec: PR #1006 review 01 — transcribe; RV1 carried beyond the undertaking; notice triage; D-PEC-106 base drift; S1 state; wording repairs
+$ shasum -a 256 (ruling, proposal, register, prep SHA256SUMS, prep bound script)
+401c2419ba26c8a43610d8416663e745a80d8061363d5abb73459dea931bd0ef  projects/pec/execution/_Coordination/_DECISIONS/D-PEC-105_RULING_2026-09-27.md
+077610057791063e2308d932cf08a7ac44cd02793fe60925c744d969fd6ba89f  projects/pec/execution/_Coordination/_DECISIONS/D-PEC-105_d1_premise_amendment_proposal_2026-09-26.md
+5b7657292facd19762bb64454ee379a5c3ab0511c60b7d489a5b11ca8daa3766  projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md
+4641f5916fa7b5a99ac1a66735cd9f640ddacc121ed2f0ddb90dd6c56ec61d6b  projects/pec/execution/_Coordination/PEC_D1_PREMISE_PREP_2026-09-26/SHA256SUMS
+952a7512fd74e1b77f2f6b948d3cf46c876448ee1dee5370759f627236399d4d  projects/pec/execution/_Coordination/PEC_D1_PREMISE_PREP_2026-09-26/apply_d1p.py
+$ awk -F"|" (register row D-PEC-105: ID and state cells, trimmed)
+D-PEC-105 :: RULED A + P / RR1 / 4a, 4b CONFIRMED / M / EFFECTIVE ON MERGE
+$ shasum -a 256 -c (prep SHA256SUMS, all entries), cwd prep folder
+entries=102 ok=102 exit=0
+$ find (prep files not listed in SHA256SUMS, excluding SHA256SUMS)
+unlisted-check exit=0

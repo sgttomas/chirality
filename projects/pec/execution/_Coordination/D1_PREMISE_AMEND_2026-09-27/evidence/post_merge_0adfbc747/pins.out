@@ -1,0 +1,25 @@
+# 2026-09-27T18:04:07Z (date -u); cwd repo root; HEAD 8d85a9b6eed168040d723f073e7542bdeeafa639; origin/main 0adfbc7476df33521883ce1573781237cd24d384
+$ python3 -c 'import importlib.util,hashlib,sys;s=importlib.util.spec_from_file_location("a","projects/pec/execution/_Coordination/D1_PREMISE_AMEND_2026-09-27/apply_d1p.py");m=importlib.util.module_from_spec(s);s.loader.exec_module(m);r=[(p,h==hashlib.sha256(open(p,"rb").read()).hexdigest()) for p,h in m.PINNED.items()];t=[(p,v[3]==hashlib.sha256(open(p,"rb").read()).hexdigest()) for p,v in m.TARGETS.items()];[print(("OK " if ok else "MISMATCH ")+p) for p,ok in r];[print(("POST-OK " if ok else "POST-MISMATCH ")+p) for p,ok in t];sys.exit(0 if all(ok for _,ok in r+t) else 1)'
+OK projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md
+OK projects/pec/execution/_Decomposition/Deliverables.csv
+OK projects/pec/execution/_Decomposition/ScopeLedger.csv
+OK projects/pec/execution/_Decomposition/ContextBudgetQA.csv
+OK projects/pec/docs/PRD.md
+OK projects/pec/AGENTS.md
+OK projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_STATUS.md
+OK projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_REVIEW.md
+OK projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/Review_Findings.csv
+OK projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/Dependencies.csv
+OK projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_CONTEXT.md
+OK projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_REFERENCES.md
+OK projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_STATUS.md
+OK projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_REVIEW.md
+OK projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/Review_Findings.csv
+OK projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/Dependencies.csv
+OK projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_CONTEXT.md
+OK projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_REFERENCES.md
+POST-OK projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md
+POST-OK projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md
+POST-OK projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md
+POST-OK projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md
+exit=0

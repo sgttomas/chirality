@@ -283,7 +283,14 @@ Current owner gates (2026-09-27; none is accepted or inferred here):
     premise-only, with the DEL-00-03 contract rebound to revision 1.6) A + P
     + M on 2026-09-27, choosing a later REVIEW and owner re-acceptance (RR1:
     intent only, needing its own authorization);
-    the lapsed acceptances are recorded when its act lands. The owner ruled
+    done: its act applied the four premise-only replacements (both
+    deliverables stay `CHECKING`; run root
+    `execution/_Coordination/D1_PREMISE_AMEND_2026-09-27/`). The owner's
+    exact-byte acceptances of the DEL-00-03 SOW and SPEC (2026-08-09) and
+    the DEL-00-01 ADR (AC-007) have lapsed; AC-011 and AC-007 are
+    unsatisfied for the new bytes until a later owner act, and the RR1
+    re-review is carried to the next undertaking. The two `MEMORY.md` files
+    follow at closeout. The owner ruled
     the X1 P1 fixture packet `D-PEC-106` (34 fixture files and the
     `v2-parsers` check; no parser code) A + L + M on 2026-09-27: at X1
     production start DEL-02-03, DEL-02-08 and DEL-02-09 move to
@@ -293,7 +300,8 @@ Current owner gates (2026-09-27; none is accepted or inferred here):
     both deliverables `INITIALIZED` (run root
     `execution/_Coordination/SOW_INIT_D98_2026-09-26/`); their `MEMORY.md`
     files come at the undertaking's closeout;
-  - DEL-00-01/00-03 derivative review;
+  - DEL-00-01/00-03 derivative review: premise-only amendment done under
+    `D-PEC-105` (above); its re-review (RR1) is open;
   - done: the loop registry source packet, `D-PEC-96`. The owner ruled revision 4
     (option A, PEC's row migrated to `shared-dev-loop`) on 2026-09-26, and its
     act merged the same day as PR #950
@@ -332,9 +340,9 @@ Current owner gates (2026-09-27; none is accepted or inferred here):
     independently verified, DEL-10-13 classified by the owner as a C-08
     standing node, and both deliverables `INITIALIZED` (run root
     `execution/_Coordination/SOW_INIT_K2_2026-09-26/`); their `MEMORY.md`
-    files follow at the undertaking's closeout. Still open from
-    Lane B: the DEL-00-03 SPEC premise, the tier-0 profile entry (K3) and
-    the API schema fields.
+    files follow at the undertaking's closeout. The DEL-00-03 SPEC premise
+    is done under `D-PEC-105` (above). Still open from Lane B: the tier-0
+    profile entry (K3) and the API schema fields.
   - Retiring the 57 `## Remaining` sections, as App and Piping did: the owner
     opened it on 2026-09-26 as undertaking
     `HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT`. Its census and decision

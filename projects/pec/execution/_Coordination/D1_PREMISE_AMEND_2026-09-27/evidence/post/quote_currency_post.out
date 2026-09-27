@@ -1,0 +1,6 @@
+# 2026-09-27T17:39:16Z (date -u); cwd repo root; HEAD 7c250e370015b118a4fabea5abe34e13e190e419
+$ python3 projects/pec/execution/_Coordination/D1_PREMISE_AMEND_2026-09-27/check_quote_currency.py --tree . --prep projects/pec/execution/_Coordination/D1_PREMISE_AMEND_2026-09-27
+SUMMARY active_execution_quotes_verbatim 127/127
+INFO active_all_classes_quotes_verbatim 127/265
+TARGET-cited active rows: 0
+exit=0
