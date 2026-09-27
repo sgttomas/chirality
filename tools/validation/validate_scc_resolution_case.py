@@ -267,7 +267,7 @@ def dag_home_conflict_errors(execution_root: Path) -> list[str]:
     cases_root = execution_root / "_DAG" / "cases"
     if not cases_root.is_dir():
         return []
-    held = sorted(child.name for child in cases_root.iterdir() if child.is_dir())
+    held = sorted(child.name for child in cases_root.iterdir() if child.is_dir() and not child.is_symlink())
     if held:
         return [
             f"project also holds SCC cases in the _DAG/cases/ home ({'; '.join(held)}); each project uses one case home"
