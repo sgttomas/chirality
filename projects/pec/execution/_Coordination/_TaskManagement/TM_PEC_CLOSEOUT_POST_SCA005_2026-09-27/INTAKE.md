@@ -1,8 +1,8 @@
 # PEC Task Management — bounded intake — closeout of HELP-HUMAN-PEC-20260925-POST-SCA005 — 2026-09-27
 
 **Status:** OWNER DISPOSED 2026-09-27 (`D-PEC-107`); see "Owner disposition" below.
-At preparation (PR #1014) the status was: CANDIDATES AWAITING OWNER DISPOSITION. No register row exists for any
-candidate below; nothing here is a promotion, disposition, priority, assignment,
+At preparation (PR #1014) the status was: CANDIDATES AWAITING OWNER DISPOSITION. No register row existed for any
+candidate below, and nothing in the prepared sections was a promotion, disposition, priority, assignment,
 approval or lifecycle effect (K-TM-3/K-TM-5). Promotion, disposition and external
 assignment are the owner's acts.
 
@@ -170,11 +170,11 @@ manager of node TM1 of `HELP-HUMAN-PEC-20260927-RV1-INTAKE` (brief
 `../../AgentRuns/HELP-HUMAN-PEC-20260927-RV1-INTAKE/briefs/TM1_INTAKE_DISPOSITIONS.md`).
 The interpretations applied are the ones `D-PEC-107` records.
 
-| Candidate | Register row | Owner-ruled result |
+| Candidate | Register row | Result (the owner's direction as `D-PEC-107` records and interprets it) |
 |---|---|---|
 | `CAND-PEC-2026-09-27-01` | None (not promoted) | **Disposition (b).** Each residual contract item is absorbed by its own deliverable's first production or currency packet. The PKG-02 items go with the first parser packet. The DEL-00-01 and DEL-00-03 items go with RV1: they are inputs to that REVIEW, and any correction needs an owner-ruled packet. During the `D-PEC-107` freeze, any correction a RV1 finding calls for is recorded only and not prepared. No SOW-currency packet is allocated, and no register row is opened per item. The candidate's item list above stays the reference those packets use. This disposition schedules no packet: production packets are decided in a different session (`D-PEC-107`, Production). |
-| `CAND-PEC-2026-09-27-02` | `TM-PEC-026` (`OPEN`) | **Promoted.** It resolves in the next PEC scope change, bundling the listed decomposition and PRD wording, plus an instruction-tranche item for the `AGENTS.md` sentence. The row also carries the per-project consumer-contract design consideration (`D-PEC-107`). It is a consideration for the ground-up reassessment under the freeze point, not scheduled work. SCA-007 is not opened. |
-| `CAND-PEC-2026-09-27-03` | `TM-PEC-027` (`ELEVATED`, to Root) | **Promoted and routed to Root.** The notice is `execution/_Coordination/NOTICE_2026-09-27_PEC_HOSTED_CI_V2_CHECKS.md` (repository root; SHA-256 `14dcfe1371fdc6a0dd2e6bfdf1031da5b30fef6b8625c31628710cb3d2cea172`). It asks Root to consider hosted CI for PEC v2's registered checks with a full-history checkout. Root decides its own intake. |
+| `CAND-PEC-2026-09-27-02` | `TM-PEC-026` (`OPEN`) | **Promoted.** It resolves in the next PEC scope change, bundling the listed decomposition and PRD wording, plus an instruction-tranche item for the `AGENTS.md` sentence. The row also carries the per-project consumer-contract design consideration (attaching it to this row is HELP_HUMAN's choice, `D-PEC-107`). It is a consideration for the ground-up reassessment under the freeze point, not scheduled work. SCA-007 is not opened. |
+| `CAND-PEC-2026-09-27-03` | `TM-PEC-027` (`ELEVATED`, to Root; the status reading is WORKING_ITEMS's, see the row's Notes) | **Promoted and routed to Root.** The notice is `execution/_Coordination/NOTICE_2026-09-27_PEC_HOSTED_CI_V2_CHECKS.md` (repository root; SHA-256 `62f20ec8fad12d93990df82f522d8515bac139621b977e5886f9beac1b4f4a58`). It asks Root to consider hosted CI for PEC v2's registered checks with a full-history checkout. Root decides its own intake. |
 
 Not an intake candidate:
 
@@ -195,6 +195,6 @@ the central receipt should link it.
 After the 2026-09-27 disposition, `REGISTER.csv` gains `TM-PEC-026`, `TM-PEC-027` and
 `TM-PEC-028`, and `REGISTER_CLOSED.csv` is unchanged. From here the register is the
 maintained disposition record for the promoted rows. This intake stays their source,
-and it is the only record of the CAND-01 disposition. No candidate awaits disposition.
+and it is the only Task Management record of the CAND-01 disposition. No candidate awaits disposition.
 
 - DEL-01-06 `MEMORY.md` `D-PEC-96` row: kept as merged in PR #1014 (owner: "keep D-PEC-96 row"); no change.

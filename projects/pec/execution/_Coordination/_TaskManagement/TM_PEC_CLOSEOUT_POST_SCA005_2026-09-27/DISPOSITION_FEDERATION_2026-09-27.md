@@ -9,7 +9,7 @@ worktree, CPython 3.13.7, with `PYTHONDONTWRITEBYTECODE=1`. Tool
 `tools/taskmgmt/taskmgmt.py` SHA-256
 `9c5cdc562053b2cc2eeb6674b750d95cb7fa47971eb07acee010a404c221d101`.
 
-Command, run before and after the register write (`--out` names differ):
+Command, run before the register write; the run after it used `--out …/TM1_RV1_INTAKE_2026-09-27/federation_post.json`:
 
 ```text
 python3 tools/taskmgmt/taskmgmt.py federation \
@@ -19,7 +19,7 @@ python3 tools/taskmgmt/taskmgmt.py federation \
 
 Both runs exited 0. The output directory was verified Git-ignored first
 (`.gitignore:95`). The projections are derived, not authority, and are not
-committed. Their SHA-256 values are `1cf6a25c…a6f5` (before) and `8d89637f…edb1` (after).
+committed. Their SHA-256 values are `1cf6a25c…a6f5` (before) and `08db6136…c8a` (after; rerun after the review-01 Notes repair to `TM-PEC-028`, which the first after-run, `8d89637f…edb1`, predates, with the same counts).
 
 | Run | Coverage | Findings | Classes | PEC position |
 |---|---|---:|---|---|

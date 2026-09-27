@@ -26,10 +26,13 @@ If Root opens a row, it may cite `TM-PEC-027` and this notice.
 - `.github/workflows/pec-tests.yml` (SHA-256
   `337611cef97e0c691f5a3cb305b804aef6f5300b7337a3ad23dd2b53689f5a7d`). Its only
   product job, `pec` (L48–82), runs `npm test` in `projects/pec` (L80–82).
-  That script runs the workspace suites of `core`, `server`, `web` and
-  `agent-sidecar` (`projects/pec/package.json` L7–11 and L21, SHA-256
-  `a20d06cbbd95b5b20a7b1355b91fdefe7bed5280c858838300257e5115065b39`). Those
-  workspaces are PEC's frozen reference corpus (`projects/pec/AGENTS.md`,
+  That script runs the workspace suites of `core`, `server` and
+  `agent-sidecar` only (`projects/pec/package.json` L21, SHA-256
+  `a20d06cbbd95b5b20a7b1355b91fdefe7bed5280c858838300257e5115065b39`, runs
+  `projects/pec/tools/run-workspace-tests.ts`, whose `WORKSPACES` at L17 lists
+  those three; SHA-256
+  `ba5306cb181758c6277515b898df7cbcb0ea9648f685b370ecd740ff26511d01`). Those
+  workspaces are part of PEC's frozen reference corpus (`projects/pec/AGENTS.md`,
   "Frozen Reference Corpus"). The job's checkout (L55–63) is sparse and
   blob-filtered and sets no `fetch-depth`, so it fetches a single commit.
 - `tools/hosted-ci-routing.json` (SHA-256
