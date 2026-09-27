@@ -33,12 +33,15 @@ owner selected "Scope-change amendment (Recommended)".
   `d7f96a8be345841d0fda6b3b20b217416dcecf7133334556637592b0030e3545`) and
   pointer `SCA-APP-011_GROUP-1_AUTHORIZED.md`. It accepted BASE, DQ-R, S-c,
   D restate, set L excluded, E no change, M-a and the scaffold library kept.
-- Checkpoint group 2, accepted by the owner (W-a, Q-a, with the revision-2
-  corrections and register row 29), as relayed by the coordinating session.
-  Its decision snapshot `checkpoint_snapshots/SCA-APP-011_GROUP-2_<date>/` and
-  pointer `SCA-APP-011_GROUP-2_AUTHORIZED.md` are written by the scope-change
-  side; they were not yet present in the package tree this candidate read
-  (`b0295688c`).
+- Checkpoint group 2, accepted by the owner on 2026-09-27 ("Accept SCA-APP-011
+  group 2: W-a, Q-a, with the revision-2 corrections and row 29."): snapshot
+  `checkpoint_snapshots/SCA-APP-011_GROUP-2_2026-09-27/` (`DECISION.md`
+  SHA-256 `0b1a2b24f8b60a8d86694f34c35a2c4918308c99f0e1d58afad3ae289c4673eb`,
+  `ACCEPTED_MANIFEST.csv` SHA-256
+  `ef3129871c9d8971d5c47e36a5c2973bf24366c847b58daad73ec5adaf261c7e`) and
+  pointer `SCA-APP-011_GROUP-2_AUTHORIZED.md`. This candidate was built from the
+  package tree at `b0295688c`, before that snapshot was written; the snapshot
+  binds the same group-2 files by hash.
 - Code specification: `Propagation_Plan.md` §4, revision 2 at `b0295688c`
   (SHA-256 `c0a548dd5e357a7b7199e54fc4fc43d217a9c2268c36134530f822b05c78b1f2`).
   The exact scope text is `Amendment_Preview.md` (SHA-256
@@ -225,8 +228,9 @@ merge gates.
 
 - Group 3 of SCA-APP-011 is not accepted. The candidate lands only with the
   scope-text candidate, in one PR, after that acceptance.
-- The group-2 decision snapshot was not in the package tree read; this receipt
-  names its expected location. Bind its exact folder when it is written.
+- The group-2 decision snapshot was not in the package tree this candidate
+  read; its folder and hashes were bound afterwards, in the group-3 integration
+  (see the group-2 entry under Basis).
 - No build or packaged run. The removed forms were not mounted in the live App,
   and no live UI called the removed routes or the scaffold proxy.
 - The Runtime keeps its scaffold API. The informational Runtime notice

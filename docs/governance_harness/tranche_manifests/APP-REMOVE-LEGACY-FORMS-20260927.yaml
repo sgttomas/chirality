@@ -67,7 +67,11 @@ m2_gate:
     (projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-011_2026-09-27_0155_Workbench_Pipeline_Forms_and_Deliverable_Routes_Retirement/):
     checkpoint group 1 accepted
     (checkpoint_snapshots/SCA-APP-011_GROUP-1_2026-09-27/), checkpoint group 2
-    accepted as relayed by the coordinating session, and Propagation_Plan.md
+    accepted (checkpoint_snapshots/SCA-APP-011_GROUP-2_2026-09-27/, DECISION.md
+    SHA-256 0b1a2b24f8b60a8d86694f34c35a2c4918308c99f0e1d58afad3ae289c4673eb,
+    ACCEPTED_MANIFEST.csv SHA-256
+    ef3129871c9d8971d5c47e36a5c2973bf24366c847b58daad73ec5adaf261c7e),
+    and Propagation_Plan.md
     section 4 specifying this code change. This tranche is the code candidate
     for checkpoint group 3, which the owner has not yet accepted; it merges
     only with the SCA-APP-011 scope text, in one PR, after that acceptance.

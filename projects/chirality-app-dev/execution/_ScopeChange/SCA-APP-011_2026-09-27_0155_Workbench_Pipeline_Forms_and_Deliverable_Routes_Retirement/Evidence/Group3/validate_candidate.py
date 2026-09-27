@@ -3,18 +3,27 @@
 
 Run from the repository root:
 
-    python3 <SCA folder>/Evidence/Group3/validate_candidate.py --accepted-commit C2 --candidate-commit C3
+    python3 <SCA folder>/Evidence/Group3/validate_candidate.py --accepted-commit C2 [--head REV]
 
-C2 is the commit that recorded the accepted group-2 snapshot; C3 is the commit
-that wrote the candidate scope text. The script checks the tree as it stands
-(which must be C3's scope text) and writes Evidence/Group3/CANDIDATE_VALIDATION.md:
+C2 is the commit that recorded the accepted group-2 snapshot; REV (default
+HEAD) is the integrated candidate revision (scope text plus the code change).
+The script checks the working tree, which must hold REV's content, and writes
+Evidence/Group3/CANDIDATE_VALIDATION.md:
 
-  1. every file in PREIMAGE_POSTIMAGE.csv has its recorded candidate hash;
-  2. every non-conditional edit's `new` text is present and its `old` text is
-     absent (unless `old` is contained in `new`); E47 is not applied and no
-     `{APPLICATION_DATE}` literal is in any written file;
-  3. write containment: the files changed between C2 and C3 are exactly the 16
-     files of the accepted write boundary;
+  1. every file in PREIMAGE_POSTIMAGE.csv has its expected group-3 candidate
+     hash (group3_corrections.py: the group-2 candidate hash, a basis-refreshed
+     hash, or a corrected hash); each basis refresh is re-derived by applying
+     the accepted edits to the file at the refresh's basis commit;
+  2. every non-conditional edit's `new` text (with any group-3 correction
+     applied) is present and its `old` text is absent (unless `old` is contained
+     in `new`); E47 is not applied and no `{APPLICATION_DATE}` literal is in any
+     written file;
+  3. write containment against the integrated revision: among scope-text paths
+     (App docs, the decomposition, every ScopeOfWork.md and _CONTEXT.md), the
+     paths changed between C2 and REV are exactly the 16 files of the accepted
+     write boundary; every other changed path belongs to the code-change
+     categories of Propagation_Plan.md section 4 or to the SCA folder; no
+     _STATUS.md, Dependencies.csv, _LATEST.md or companion register changed;
   4. tools/scope_of_work/validate_scope_of_work.py passes on each written
      Scope of Work;
   5. across every deliverable ScopeOfWork.md and _CONTEXT.md, no line names a
@@ -59,27 +68,49 @@ def pipes(line: str) -> int:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--accepted-commit", required=True)
-    ap.add_argument("--candidate-commit", required=True)
+    ap.add_argument("--head", default="HEAD")
     args = ap.parse_args()
     spec = importlib.util.spec_from_file_location("amendment_edits", os.path.join(G2, "amendment_edits.py"))
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     edits = mod.EDITS
+    spec3 = importlib.util.spec_from_file_location("group3_corrections", os.path.join(HERE, "group3_corrections.py"))
+    g3 = importlib.util.module_from_spec(spec3)
+    spec3.loader.exec_module(g3)
+    _, expected = g3.expected_hashes()
     rows = list(csv.DictReader(open(os.path.join(G2, "PREIMAGE_POSTIMAGE.csv"), newline="", encoding="utf-8")))
     files = [r["File"] for r in rows]
     failures: list[str] = []
     out = ["# SCA-APP-011 group-3 candidate validation\n\n",
-           f"Accepted group-2 commit `{args.accepted_commit}`; candidate commit `{args.candidate_commit}`. "
+           f"Accepted group-2 commit `{args.accepted_commit}`; integrated candidate revision `{args.head}`. "
            "Read-only; the tree is not modified.\n\n"]
 
     # 1. candidate hashes
     ok = 0
     for r in rows:
-        if sha(r["File"]) == r["CandidateSHA256"]:
+        if sha(r["File"]) == expected[r["File"]]:
             ok += 1
         else:
             failures.append(f"candidate hash mismatch: {r['File']}")
-    out.append(f"1. Candidate hashes: {ok}/{len(rows)} files match `PREIMAGE_POSTIMAGE.csv`.\n")
+    spec_b = importlib.util.spec_from_file_location("build_amendment_preview", os.path.join(G2, "build_amendment_preview.py"))
+    b = importlib.util.module_from_spec(spec_b)
+    spec_b.loader.exec_module(b)
+    rederived = 0
+    for rf in g3.BASIS_REFRESH:
+        base = subprocess.run(["git", "show", f"{rf['basis_commit']}:{rf['file']}"], capture_output=True,
+                              check=True).stdout.decode("utf-8")
+        errs: list = []
+        fixed = [e for e in edits if e["file"] == rf["file"] and not e.get("conditional")]
+        cand, _ = b.apply_edits(base, fixed, None, errs, rf["file"], base)
+        good = (not errs and hashlib.sha256(base.encode()).hexdigest() == rf["basis_preimage_sha256"]
+                and hashlib.sha256(cand.encode()).hexdigest() == rf["group3_candidate_sha256"])
+        rederived += good
+        if not good:
+            failures.append(f"{rf['id']}: accepted edits do not re-derive the refreshed candidate for {rf['file']}")
+    out.append(f"1. Candidate hashes: {ok}/{len(rows)} files match their expected group-3 candidate hash "
+               f"({len(rows) - len(g3.BASIS_REFRESH) - len(g3.CORRECTIONS)} group-2 hash, "
+               f"{len(g3.BASIS_REFRESH)} basis refresh, {len(g3.CORRECTIONS)} correction); basis refreshes "
+               f"re-derived from their basis commit with the accepted edits: {rederived}/{len(g3.BASIS_REFRESH)}.\n")
 
     # 2. edits present, E47 withheld, no slot literal
     present = 0
@@ -89,7 +120,11 @@ def main() -> int:
             if e["old"] not in text:
                 failures.append(f"{e['id']}: acceptance-conditional old text is not present (applied early?)")
             continue
-        if e["new"] in text and (e["old"] in e["new"] or e["old"] not in text):
+        new = e["new"]
+        for c in g3.CORRECTIONS:
+            if c["file"] == e["file"] and c["old"] in new:
+                new = new.replace(c["old"], c["new"], 1)
+        if new in text and (e["old"] in new or e["old"] not in text):
             present += 1
         else:
             failures.append(f"{e['id']}: new text absent or old text still present in {e['file']}")
@@ -99,14 +134,38 @@ def main() -> int:
     out.append(f"2. Non-conditional edits present: {present}/{len(edits) - len(cond)}; acceptance-conditional "
                f"edits withheld: {', '.join(cond)}; files carrying a `{SLOT}` literal: {len(slot_files)}.\n")
 
-    # 3. write containment
-    changed = subprocess.run(["git", "diff", "--name-only", args.accepted_commit, args.candidate_commit],
+    # 3. write containment against the integrated revision
+    changed = subprocess.run(["git", "diff", "--name-only", args.accepted_commit, args.head],
                              capture_output=True, text=True, check=True).stdout.split()
-    extra = sorted(set(changed) - set(files))
-    missing = sorted(set(files) - set(changed))
-    failures += [f"outside write boundary: {p}" for p in extra] + [f"not written: {p}" for p in missing]
-    out.append(f"3. Write containment: {len(changed)} files changed between the commits; outside the accepted "
-               f"write boundary: {len(extra)}; boundary files not written: {len(missing)}.\n")
+    app = "projects/chirality-app-dev/"
+    scope_rx = re.compile(re.escape(app) + r"(docs/[^/]+\.md|execution/_Decomposition/.*|"
+                          r"execution/PKG-[^/]+/[^/]+/DEL-[^/]+/(ScopeOfWork|_CONTEXT)\.md)$")
+    code_rx = re.compile(r"^(" + re.escape(app) + r"frontend/src/.*|"
+                         + re.escape(app) + r"execution/PKG-[^/]+/[^/]+/DEL-[^/]+/MEMORY\.md|"
+                         + re.escape(app) + r"execution/PKG-03_[^/]+/1_Working/DEL-03-03_[^/]+/RouteAdapterTestIndex\.md|"
+                         + re.escape(app) + r"execution/_Coordination/AgentRuns/APP-REMOVE-LEGACY-FORMS-2026-09-27/.*|"
+                         + re.escape(app) + r"execution/_Coordination/AgentRuns/APP-TRANSITION-FORMS-2026-09-26/RECEIPT\.md|"
+                         + re.escape(app) + r"execution/_Coordination/WorkGraphs/app-lifecycle-deps-2026-09-26/WORK_GRAPH\.md|"
+                         + re.escape(app) + r"loop/LOOP_RECEIPTS\.md|"
+                         r"docs/governance_harness/tranche_manifests/APP-REMOVE-LEGACY-FORMS-20260927\.yaml|"
+                         r"exports/chirality-app/.*|"
+                         + re.escape(os.path.relpath(SNAP)) + r"/.*)$")
+    protected_rx = re.compile(r"(/_STATUS\.md|/Dependencies\.csv|_ScopeChange/_LATEST\.md|"
+                              r"contract_invariant_coverage_register\.csv)$")
+    scope_changed = [p for p in changed if scope_rx.match(p)]
+    extra = sorted(set(scope_changed) - set(files))
+    missing = sorted(set(files) - set(scope_changed))
+    protected = sorted(p for p in changed if protected_rx.search(p))
+    other = sorted(p for p in changed if not scope_rx.match(p) and not code_rx.match(p))
+    failures += [f"scope text outside write boundary: {p}" for p in extra]
+    failures += [f"not written: {p}" for p in missing]
+    failures += [f"protected path changed: {p}" for p in protected]
+    failures += [f"path outside the code-change categories: {p}" for p in other]
+    n_code = len([p for p in changed if code_rx.match(p)])
+    out.append(f"3. Write containment (`{args.accepted_commit}..{args.head}`): {len(changed)} paths changed; scope-text "
+               f"paths {len(scope_changed)} (outside the accepted boundary: {len(extra)}; boundary files not written: "
+               f"{len(missing)}); code-change and SCA-folder paths {n_code}; protected paths changed: {len(protected)}; "
+               f"paths in no permitted category: {len(other)}.\n")
 
     # 4. SOW validator
     out.append("4. `validate_scope_of_work.py` on each written Scope of Work:\n\n| Deliverable folder | Exit |\n|---|---|\n")
