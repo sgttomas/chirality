@@ -268,7 +268,11 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     the owner's 2026-08-09 exact-byte acceptance of DEL-04-01's prior
     contract lapsed; run root
     `execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/`); the eight
-    `MEMORY.md` files follow at closeout. Open: S1. Done: the first SOWs for DEL-02-08/09
+    `MEMORY.md` files follow at closeout. The owner ruled the S1 currency
+    packet `D-PEC-104` (twelve contracts; DEL-01-03 and DEL-01-05
+    currency-only) A + M on 2026-09-27; its act is next. The D1 premise
+    packet (DEL-00-01 ADRs, DEL-00-03 SPEC) and the X1 P1 fixture packet
+    are prepared and await the owner's rulings. Done: the first SOWs for DEL-02-08/09
     (`D-PEC-98` A + S + M, ruled 2026-09-26): both contracts written,
     re-pinned to revision 1.6, validated and independently verified, and
     both deliverables `INITIALIZED` (run root
