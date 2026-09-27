@@ -286,7 +286,7 @@ The postimage (`addons/C8/…/_DEPENDENCIES.md`) inserts exactly this line after
 
 ## Generation method (binding)
 
-The A bytes come from one run of `apply_k2.py`, **SHA-256 `7d99f3ffb8fab442434b2cbe6a8b0af732c6c9e3d38f88a08821ba04f793563d`**. The C8 bytes, if selected, come from one run of `apply_k2_c8.py`, **SHA-256 `3fd1e53bc8519f60446a98ac4c751900d70490d5a0f52b3fa408754827d823d4`**. Both are stdlib-only Python, prepared with CPython 3.13.7. They are copied byte for byte into the run root with the candidate files and the C8 postimage:
+The A bytes come from one run of `apply_k2.py`, **SHA-256 `b10461fa3928b3dd9439ee318c85e7181cc4a4fc2bfd016acf437c7fdbcc257a`**. The C8 bytes, if selected, come from one run of `apply_k2_c8.py`, **SHA-256 `093130c8f009e3c4178ba5d86ac6ea6f47bf3e178ac366b64968124f901c84e9`**. Both are stdlib-only Python, prepared with CPython 3.13.7. They are copied byte for byte into the run root with the candidate files and the C8 postimage:
 
 ```text
 PYTHONDONTWRITEBYTECODE=1 python3 projects/pec/execution/_Coordination/SOW_INIT_K2_{D}/apply_k2.py --repo <REPO_ROOT> --candidates projects/pec/execution/_Coordination/SOW_INIT_K2_{D}/candidates [--check-only]
@@ -326,7 +326,7 @@ Run from the repository root with `PYTHONDONTWRITEBYTECODE=1`, on the act branch
 |---|---|---|
 | 1. Preconditions | ruling and register row on fetched `origin/main`; `apply_k2.py --check-only`; `pec_reliance_hold.py --operation dispatch-for-production` on each target before dispatch and `rely-for-production` before fan-in | pins as tabled; `CHECK preflight passed`; `ALLOW` everywhere; on any pin mismatch, stop and route to the owner (no re-pin is pre-authorized) |
 | 2. Contract validity | `python3 tools/scope_of_work/validate_scope_of_work.py <DEL folder>` ×2 | `PASS format=SOW_V1` ×2 |
-| 3. Checklist | `python3 tools/scope_of_work/derive_review_checklist.py --output <run root>/checklist_<DEL>.json <DEL folder>`, each twice | exit 0; 17 and 19 items, one per AC (the runner asserts the count); reruns byte-identical; equal to the prepared `a8e63dc9…d34f` and `e3d43d16…9107` |
+| 3. Checklist | `python3 tools/scope_of_work/derive_review_checklist.py --output <run root>/checklist_<DEL>.json <DEL folder>`, each twice | exit 0; 17 and 19 items, one per AC (the runner asserts the count); reruns byte-identical; equal to the prepared `2227dbeb…9641` and `8e07ff3e…ba30` |
 | 4. Boundary owners (QA 21) | `python3 tools/scope_of_work/check_boundary_owner_resolution.py --json <run root>/boundary_<DEL>.json --show-not-checkable <DEL folder>/ScopeOfWork.md` ×2 | exit 0; 1 requirement checked and 0 failing each; 0 `NOT_CHECKABLE` (asserted by the runner); the non-deliverable owners resolved by hand as tabled below |
 | 5. Quote fidelity | `python3 <run root>/verify_k2_quotes.py --tree . --gitdir . --prep <run root> --observation 125cfacc1` | `RESULT PASS 137/137` (both sides; tree quotations read at `125cfacc1`; 0 dependency rows cite either contract) |
 | 6. State claims | `python3 <run root>/verify_k2_state_claims.py --gitdir . --prep <run root>` | `RESULT PASS 482/482` |
@@ -447,10 +447,10 @@ Existing reliance-hold, dependency, lifecycle and release boundaries survive unc
 
 Everything ran on `git archive` exports in `mktemp -d` directories under the session scratchpad, never on a checkout. Interpreter: Python 3.13.7 (CPython); local date 2026-09-26.
 
-The final run is `evidence/run_main/SUMMARY.out`, from `run_k2_checks.sh` on the branch head `7c171b862`, which merges `origin/main` `e548d4cfa`. Every raw output is beside it:
+The final run is `evidence/run_main/SUMMARY.out`, from `run_k2_checks.sh` on the branch head `f096c465c`, which merges `origin/main` `e548d4cfa`. Every raw output is beside it:
 
 ```text
-basis commit: 7c171b862056d9c4c51c7a36a4866279ccdb2dd6
+basis commit: f096c465c2fa0e4725e3fbcdab1705de09846cd3
 python: Python 3.13.7
 PASS reliance preflight: ALLOW x7
 PASS harness and receipts exit 0 (pre)
@@ -462,13 +462,13 @@ PASS checklist DEL-08-06 (rerun byte-identical)
 PASS boundary DEL-08-06 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
 PASS boundary DEL-08-06: 0 NOT_CHECKABLE
 PASS checklist DEL-08-06: 17 items = 17 AC
-checklist DEL-08-06 sha256 a8e63dc9918ee2e287d6ca2b7c70966fbe0f22ca5e1b0e55d76c94db9e66d34f
+checklist DEL-08-06 sha256 2227dbeb85fa807763bdd4a7b899fd8f406586a2f49533e3ece6c660bd659641
 PASS validate DEL-10-13
 PASS checklist DEL-10-13 (rerun byte-identical)
 PASS boundary DEL-10-13 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
 PASS boundary DEL-10-13: 0 NOT_CHECKABLE
 PASS checklist DEL-10-13: 19 items = 19 AC
-checklist DEL-10-13 sha256 e3d43d16c21d8530b8b4886bc6343576d9564abf99824d100f4826bc45649107
+checklist DEL-10-13 sha256 8e07ff3ef26e8b413109e8bd71204e28eb2ae15b77b4e6dc851900db63bcba30
 PASS quotes: RESULT PASS 137/137 (INFO DEL-08-06 DEP rows citing this contract: 0 INFO DEL-10-13 DEP rows citing this contract: 0 )
 PASS state claims: RESULT PASS 482/482
 PASS cited IDs: RESULT PASS 0/0

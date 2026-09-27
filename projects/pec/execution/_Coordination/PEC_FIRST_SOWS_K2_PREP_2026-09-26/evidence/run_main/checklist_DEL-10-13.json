@@ -12,7 +12,7 @@
         "document": "ScopeOfWork.md",
         "line": 156,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d"
+        "sha256": "c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633"
       },
       "text": "For a candidate and declared scope the harness evaluates exactly the five named conditions, each recorded under its own name; no other condition appears; and evidence that covers less than the declared scope yields a not-passed outcome naming the uncovered part.",
       "verification": [
@@ -37,7 +37,7 @@
         "document": "ScopeOfWork.md",
         "line": 157,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d"
+        "sha256": "c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633"
       },
       "text": "A parity result with no difference passes; one whose every difference carries a recorded disposition passes; one with any difference lacking a recorded disposition fails; and the harness writes no difference, finding or disposition and returns no judgement of an explanation.",
       "verification": [
@@ -62,7 +62,7 @@
         "document": "ScopeOfWork.md",
         "line": 158,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d"
+        "sha256": "c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633"
       },
       "text": "Evidence in which every seeded unparseable and stale case yields an explicit limitation passes; evidence with any silently omitted case, or lacking either seeded kind, fails; the record names the cases evaluated; and the harness contains no seeding path unless TBD-006, as fixed, assigns seeding to this deliverable.",
       "verification": [
@@ -87,7 +87,7 @@
         "document": "ScopeOfWork.md",
         "line": 159,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d"
+        "sha256": "c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633"
       },
       "text": "Evidence covering every response surface in scope, with the pin, per-feed coverage and freshness and per-claim trust tier on each covered response, and with the file-fallback signal wherever PEC was absent, degraded or failing its own checks, passes; a response lacking an element it must carry, or an in-scope surface without evidence, fails; evidence with no absent, degraded or failing case fails; and the file-fallback signal is not required of a covered response issued while PEC is healthy.",
       "verification": [
@@ -112,7 +112,7 @@
         "document": "ScopeOfWork.md",
         "line": 160,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d"
+        "sha256": "c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633"
       },
       "text": "The suites composed are exactly those of the `PKG-02` deliverables named by `ACTIVE` `EXECUTION` rows of this deliverable's `Dependencies.csv` at the candidate's commit, each listed with its row; a suite not run against the candidate, or failing, fails the condition; and adding or retiring such a row changes the composed set with no change to the harness.",
       "verification": [
@@ -137,7 +137,7 @@
         "document": "ScopeOfWork.md",
         "line": 161,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d"
+        "sha256": "c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633"
       },
       "text": "Only an explicit passing kill-test verdict for the exact candidate passes; a blocking verdict, a verdict for another candidate, and a kill test not executed for that candidate each fail.",
       "verification": [
@@ -162,7 +162,7 @@
         "document": "ScopeOfWork.md",
         "line": 162,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d"
+        "sha256": "c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633"
       },
       "text": "The harness source contains no parity, limitation, envelope, parsing or kill-test logic and no import of, or read from, another deliverable's internal modules, state or store; every evidence item enters through an exposed interface or a recorded result.",
       "verification": [
@@ -187,7 +187,7 @@
         "document": "ScopeOfWork.md",
         "line": 163,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d"
+        "sha256": "c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633"
       },
       "text": "Evidence bound to another candidate, or unbound, is treated as absent; a passed record for one candidate is not accepted for another; and each evaluation yields its own record for its own candidate.",
       "verification": [
@@ -212,7 +212,7 @@
         "document": "ScopeOfWork.md",
         "line": 164,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d"
+        "sha256": "c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633"
       },
       "text": "Each condition carries exactly one of the three outcomes and the verdict follows the all-five rule; absent evidence, an unimplemented mechanism, an unreadable item and a harness error each yield not passed or not evaluated; and no summary or rendering shows a non-passing outcome as passed.",
       "verification": [
@@ -237,7 +237,7 @@
         "document": "ScopeOfWork.md",
         "line": 165,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d"
+        "sha256": "c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633"
       },
       "text": "Every record carries the fields REQ-010 names, and no field holds file content, diff content or prose copied from the evidence.",
       "verification": [
@@ -262,7 +262,7 @@
         "document": "ScopeOfWork.md",
         "line": 166,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d"
+        "sha256": "c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633"
       },
       "text": "Two evaluations over identical evidence, candidate, scope and harness version yield identical outcomes and verdicts.",
       "verification": [
@@ -287,7 +287,7 @@
         "document": "ScopeOfWork.md",
         "line": 167,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d"
+        "sha256": "c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633"
       },
       "text": "Every record declares itself evidence for a release act and contains no advertising statement and no claim of authority, acceptance, release, ruling, lifecycle transition or merge opinion.",
       "verification": [
@@ -312,7 +312,7 @@
         "document": "ScopeOfWork.md",
         "line": 168,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d"
+        "sha256": "c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633"
       },
       "text": "The harness runs against a named candidate and scope without modification; an invocation lacking either yields an explicit not-evaluated record; and the harness contains no release, tag, publish, advertisement or pipeline-creation path.",
       "verification": [
@@ -337,7 +337,7 @@
         "document": "ScopeOfWork.md",
         "line": 169,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d"
+        "sha256": "c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633"
       },
       "text": "The harness contains no path that requires, pushes, injects or schedules consumption by any consumer; no PRD §12 phase exit test is edited or restated by it; and gate verdicts and phase exit verdicts are kept distinct in its records.",
       "verification": [
@@ -362,7 +362,7 @@
         "document": "ScopeOfWork.md",
         "line": 170,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d"
+        "sha256": "c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633"
       },
       "text": "The harness performs none of the excluded acts of REQ-015.",
       "verification": [
@@ -387,7 +387,7 @@
         "document": "ScopeOfWork.md",
         "line": 171,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d"
+        "sha256": "c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633"
       },
       "text": "The harness contains no path that writes a `C-08` classification, a `Dependencies.csv` row or a lifecycle state.",
       "verification": [
@@ -412,7 +412,7 @@
         "document": "ScopeOfWork.md",
         "line": 172,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d"
+        "sha256": "c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633"
       },
       "text": "A harness run leaves every composed evidence item and every governed file byte-identical, and its only writes are gate records at the TBD-004 location.",
       "verification": [
@@ -437,9 +437,9 @@
         "document": "ScopeOfWork.md",
         "line": 173,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d"
+        "sha256": "c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633"
       },
-      "text": "The test suite implements VER-001 through VER-017, executes in the `PKG-10` test run, passes, and introduces no acceptance criterion absent from this contract; every record produced from synthetic evidence is labelled synthetic and none is presented as a real candidate's gate record.",
+      "text": "The test suite implements each of VER-001 through VER-017 by an executing test or review record, executes in the `PKG-10` test run, passes, and introduces no acceptance criterion absent from this contract; every record produced from synthetic evidence is labelled synthetic and none is presented as a real candidate's gate record.",
       "verification": [
         {
           "id": "VER-018",
@@ -447,7 +447,7 @@
           "qualified_id": "DEL-10-13-VER-018",
           "source_line": 214,
           "source_section": "Production and Verification Method — Praxeology",
-          "text": "Run the `PKG-10` test suite and confirm that each of VER-001 through VER-017 has a corresponding executing test, that no test asserts a criterion absent from this contract, and that every record produced from synthetic evidence carries the synthetic label and is not presented as a real candidate's gate record."
+          "text": "Run the `PKG-10` test suite and confirm that each of VER-001 through VER-017 has a corresponding executing test or review record, that no test asserts a criterion absent from this contract, and that every record produced from synthetic evidence carries the synthetic label and is not presented as a real candidate's gate record."
         }
       ]
     },
@@ -462,7 +462,7 @@
         "document": "ScopeOfWork.md",
         "line": 174,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d"
+        "sha256": "c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633"
       },
       "text": "The review gate confirms this contract's traceability to `SOW-100` and to `OBJ-001` as an instrument entered under `DL-21`, stated no more strongly than the §3 instrument mapping; confirms that no behaviour under test (`DEL-03-04`, `DEL-04-03`, `DEL-04-05`, `DEL-10-02`, the `PKG-02` parsers), the parity metric (`DEL-10-11`) or the tool-call surface (`DEL-08-06`) has been absorbed and that none of their acceptance criteria is discharged here; confirms that no requirement depends on how the `C-08` question of CON-001 is answered or on whether `DEL-02-07` is added under CON-002; and confirms that no release, advertisement or acceptance act is attributed to this deliverable.",
       "verification": [
@@ -481,7 +481,7 @@
     "migration_authority": null,
     "package_id": "PKG-10",
     "schema": "chirality-deliverable-sow/v1",
-    "sha256": "02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d"
+    "sha256": "c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633"
   },
   "tool_version": "1"
 }

@@ -1,4 +1,4 @@
-basis commit: 7c171b862056d9c4c51c7a36a4866279ccdb2dd6
+basis commit: f096c465c2fa0e4725e3fbcdab1705de09846cd3
 python: Python 3.13.7
 PASS reliance preflight: ALLOW x7
 PASS harness and receipts exit 0 (pre)
@@ -10,13 +10,13 @@ PASS checklist DEL-08-06 (rerun byte-identical)
 PASS boundary DEL-08-06 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
 PASS boundary DEL-08-06: 0 NOT_CHECKABLE
 PASS checklist DEL-08-06: 17 items = 17 AC
-checklist DEL-08-06 sha256 a8e63dc9918ee2e287d6ca2b7c70966fbe0f22ca5e1b0e55d76c94db9e66d34f
+checklist DEL-08-06 sha256 2227dbeb85fa807763bdd4a7b899fd8f406586a2f49533e3ece6c660bd659641
 PASS validate DEL-10-13
 PASS checklist DEL-10-13 (rerun byte-identical)
 PASS boundary DEL-10-13 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
 PASS boundary DEL-10-13: 0 NOT_CHECKABLE
 PASS checklist DEL-10-13: 19 items = 19 AC
-checklist DEL-10-13 sha256 e3d43d16c21d8530b8b4886bc6343576d9564abf99824d100f4826bc45649107
+checklist DEL-10-13 sha256 8e07ff3ef26e8b413109e8bd71204e28eb2ae15b77b4e6dc851900db63bcba30
 PASS quotes: RESULT PASS 137/137 (INFO DEL-08-06 DEP rows citing this contract: 0 INFO DEL-10-13 DEP rows citing this contract: 0 )
 PASS state claims: RESULT PASS 482/482
 PASS cited IDs: RESULT PASS 0/0
