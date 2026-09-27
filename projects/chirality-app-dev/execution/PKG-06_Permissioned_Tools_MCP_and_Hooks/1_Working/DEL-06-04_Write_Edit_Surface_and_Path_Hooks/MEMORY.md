@@ -15,3 +15,7 @@
 D-APP-131 lift (b), D-GOV-43/A2, D-APP-127 and applicable D-APP-132 dispositions applied to the current claim blocks. Earlier dated decisions, checks and lifecycle/approval evidence remain historical. Preserve governed application write/edit controls and honestly verify native Codex enforcement under the selected policy. Legacy App write tools/hooks do not establish native-tool containment.
 
 Current unfinished delivery: Close live fileChange/denial/provenance and child-scope witnesses; repair current App mutation-path enforcement where deficient, preserving ordinary instruction integrity. Evidence must show conditional host behavior rather than an invented all-process guarantee. See `_STATUS.md` Remaining and the W04_06 current row derivative; no new product test, native outcome, issuance or release is claimed.
+
+## 2026-09-27 — SCA-APP-011 incremental setup (dependency neighbour)
+
+- `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27` (SCA-APP-011 incremental setup; owner confirmed the baseline and plan on 2026-09-27): `dependency-extract` UPDATE as a FULL_GRAPH neighbour: 9 rows re-seen. Receipt: `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md`.

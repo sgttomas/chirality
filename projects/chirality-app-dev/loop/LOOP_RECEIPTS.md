@@ -7347,3 +7347,14 @@
   - Checks: this ledger's validator, Root G0–G4, conflict-marker and run-record-leak checks, the workflow index check, `git diff --check` and export freshness, as recorded in the hand-off.
   - Model-Attribution: Claude Code WORKING_ITEMS subagent for the parent session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
   - Gate-Outcome: `AWAITING_OWNER` — incremental setup waits on the owner's baseline and plan confirmations and the HGD-2 ruling on DEP-02-01-008; APP-R058 waits on its owner. Audits unchanged in verdict (scope closure OPEN before setup). No dependency, lifecycle or scope write; no release.
+
+- **2026-09-27 — Receipt 274** (SCA-APP-011 owner decisions applied: incremental setup complete, HGD-2 closed, APP-R058 recorded, scope closure closed with observations).
+  - Receipt-ID: `Receipt-274`
+  - Examined-Through: `0ca5ffcca2c2044b2d5e79201de9741b80b31585`
+  - Parent-Receipt: `Receipt-273`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING; the owner typed on 2026-09-27, verbatim: "Confirm baseline SCA-APP-010 (accepted up to 2026-09-07) and the SCA-APP-011 incremental plan under FULL_GRAPH; HGD-2: retire DEP-02-01-008; APP-R058: option 1." Transcribed in the run folder `CHAT_TRANSCRIPTION.md`.
+  - Pointers: run receipt `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` (with `SETUP_RUN_RECORD.md` and `DEPENDENCY_EXTRACT_RESULTS.md`); `execution/_Coordination/SETUP_LOG.md`; `execution/_Evaluation/DepClosure/CLOSURE_SCA_APP_011_POST_EXTRACTION_2026-09-27_1656/`; `execution/_Evaluation/ScopeClosureAudit/ScopeClosure_SCA-APP-011_2026-09-27_1701/`; `execution/_Coordination/_TaskManagement/ROW_MAINTENANCE_APP-R058_SCA-APP-011_CLOSURE_2026-09-27.md`.
+  - Stale-Map-Delta: Receipt-273 counts the review's non-blocking findings as "nine"; the correct number is 11. Receipt-272 and Receipt-273 describe setup, extraction and APP-R058 as held; all three are now applied. The DepClosure and DecompCoverage `_LATEST.md` pointers are not moved (manager's call).
+  - Checks: this ledger's validator, Root G0–G4, conflict-marker and run-record-leak checks, the workflow index check, `git diff --check` and export freshness, as recorded in the hand-off.
+  - Model-Attribution: Claude Code WORKING_ITEMS subagent for the parent session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
+  - Gate-Outcome: `EXECUTED` — the owner's four decisions are applied; incremental setup is COMPLETE; scope closure is CLOSED_WITH_OBSERVATIONS (the DEL-02-03-REQ-009 residual). Still owner-shaped: ESR-1 (held rows whose evidence source was retired), HGD-1 and HGD-3. No scope or lifecycle change; no release.

@@ -17,3 +17,7 @@ D-APP-131 applies D-GOV-43/D-APP-127 to the current SoW source blocks and Remain
 - 2026-09-05 - D-APP-109 dependency closure and context alignment: `Dependencies.csv` is current with the applied row L318; rows noted `CYCLE_PARTICIPATING` are non-gating until their SCC is resolved by a recorded move, so read the seated items' `Depends` lines and gates, not those rows, for executable ordering; `_CONTEXT.md` traceability and artifacts equal the applied row; read `_STATUS.md` with this file before any write; nothing here is authority.
 
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
+
+## 2026-09-27 — SCA-APP-011 incremental setup (dependency neighbour)
+
+- `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27` (SCA-APP-011 incremental setup; owner confirmed the baseline and plan on 2026-09-27): `dependency-extract` UPDATE as a FULL_GRAPH neighbour: 15 rows re-seen. Receipt: `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md`.

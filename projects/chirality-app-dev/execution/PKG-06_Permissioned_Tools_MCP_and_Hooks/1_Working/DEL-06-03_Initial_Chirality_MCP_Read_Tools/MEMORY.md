@@ -19,3 +19,7 @@
 D-APP-131 lift (b), D-GOV-43/A2, D-APP-127 and applicable D-APP-132 dispositions applied to the current claim blocks. Earlier dated decisions, checks and lifecycle/approval evidence remain historical. Expose accepted deterministic Chirality read operations through the current Runtime application-tool interface, with descriptor ownership in DEL-06-02 and handler/composition ownership here. The old in-process SDK MCP assembly remains compatibility evidence.
 
 Current unfinished delivery: Connect and verify accepted read operations on the live application-tool path; retain missing/malformed status and dependency fixtures. Deliver propose schema/tuple/roster/policy/plan validation, once-per-chat behavior and proposal.offered after the named UI trigger prerequisite. See `_STATUS.md` Remaining and the W04_06 current row derivative; no new product test, native outcome, issuance or release is claimed.
+
+## 2026-09-27 — SCA-APP-011 incremental setup (dependency neighbour)
+
+- `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27` (SCA-APP-011 incremental setup; owner confirmed the baseline and plan on 2026-09-27): `dependency-extract` UPDATE as a FULL_GRAPH neighbour: 15 rows re-seen. Receipt: `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md`.

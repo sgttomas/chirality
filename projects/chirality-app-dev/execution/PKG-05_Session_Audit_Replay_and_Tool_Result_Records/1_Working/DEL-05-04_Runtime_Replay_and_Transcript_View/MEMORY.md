@@ -55,3 +55,7 @@
 D-APP-131 lift (b), D-GOV-43/A2, D-APP-127 and applicable D-APP-132 dispositions applied to the current claim blocks. Earlier dated decisions, checks and lifecycle/approval evidence remain historical. Provide a labelled read-only replay projection from Runtime canonical records alongside the primary dialogue. Explicit native continuation is permitted by D-GOV-43 item 5 and must remain distinct from viewing history.
 
 Current unfinished delivery: Complete live malformed-tail/redaction witnesses and replay-versus-explicit-continuation isolation checks; verify account/policy compatibility, fresh fallback, no in-flight reattachment and right-panel presentation against the current candidate. See `_STATUS.md` Remaining and the W04_06 current row derivative; no new product test, native outcome, issuance or release is claimed.
+
+## 2026-09-27 — SCA-APP-011 incremental setup (dependency neighbour)
+
+- `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27` (SCA-APP-011 incremental setup; owner confirmed the baseline and plan on 2026-09-27): `dependency-extract` UPDATE as a FULL_GRAPH neighbour: 9 rows re-seen. Receipt: `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md`.

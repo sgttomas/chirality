@@ -18,3 +18,7 @@
 D-APP-131 lift (b), D-GOV-43/A2, D-APP-127 and applicable D-APP-132 dispositions applied to the current claim blocks. Earlier dated decisions, checks and lifecycle/approval evidence remain historical. Consume the Runtime-owned extensible HarnessEvent stream and its canonical append-only audit mirror; preserve proposal-interaction audit/replay meaning under SOW-082.
 
 Current unfinished delivery: Implement and verify structural redaction and large-payload handling on live Runtime sinks; add malformed-tail/version/terminal fixtures and verify proposal-interaction replay with the actual SOW-082 producer. Preserve missing spike and native results. See `_STATUS.md` Remaining and the W04_06 current row derivative; no new product test, native outcome, issuance or release is claimed.
+
+## 2026-09-27 — SCA-APP-011 incremental setup (dependency neighbour)
+
+- `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27` (SCA-APP-011 incremental setup; owner confirmed the baseline and plan on 2026-09-27): `dependency-extract` UPDATE as a FULL_GRAPH neighbour: 13 rows re-seen. Receipt: `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md`.

@@ -53,3 +53,7 @@ The parent successor inspected the retained post-turn dark 960 and light 1440 im
 This closes only the bounded D123 projection for publication preparation. The live `DEL-02-04-V3-01` Remaining text, lifecycle, Checking Approval SHA, dependencies, full T5 scope, and merge-with-review removal condition remain unchanged. If later exact-candidate login proof is sought, it requires a new A1 stage and fresh owner execution; that proof consequence is not an added Git-publication prerequisite. See `_run_records/D123_FACTUAL_PARTIAL_CLOSEOUT_2026-09-07.md` and `execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/`.
 
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
+
+## 2026-09-27 — SCA-APP-011 incremental setup (dependency neighbour)
+
+- `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27` (SCA-APP-011 incremental setup; owner confirmed the baseline and plan on 2026-09-27): `dependency-extract` UPDATE as a FULL_GRAPH neighbour: 16 rows re-seen; held (ESR-1) DEP-02-04-015, DEP-02-04-016, DEP-02-04-017, DEP-02-04-018, DEP-02-04-019. Receipt: `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md`.
