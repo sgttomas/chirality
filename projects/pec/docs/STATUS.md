@@ -270,10 +270,11 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     `execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/`); the eight
     `MEMORY.md` files follow at closeout. The owner ruled the S1 currency
     packet `D-PEC-104` (twelve contracts; DEL-01-03 and DEL-01-05
-    currency-only) A + M on 2026-09-27; its act is next. The owner ruled the D1 premise packet `D-PEC-105`
+    currency-only) A + M on 2026-09-27; its act is in progress. The owner ruled the D1 premise packet `D-PEC-105`
     (DEL-00-01 ADRs and contract, DEL-00-03 SPEC and contract;
     premise-only, with the DEL-00-03 contract rebound to revision 1.6) A + P
-    + M on 2026-09-27, with a later REVIEW and owner re-acceptance (RR1);
+    + M on 2026-09-27, choosing a later REVIEW and owner re-acceptance (RR1:
+    intent only, needing its own authorization);
     the lapsed acceptances are recorded when its act lands. The owner ruled
     the X1 P1 fixture packet `D-PEC-106` (34 fixture files and the
     `v2-parsers` check; no parser code) A + L + M on 2026-09-27: at X1
