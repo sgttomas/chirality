@@ -32,11 +32,13 @@ Modes:
       Group-3 preparation, after group-2 acceptance (method.md, checkpoint group
       3 preparation, steps 1-2). Recheck every preimage hash against the CSV,
       write the candidate poststate (no acceptance-conditional edit is applied),
-      and verify every written file against the CSV candidate hash. Without
-      --root, or with a --root that resolves to this repository, it writes the
-      repository tree and requires the group-2 authority pointer
-      `_ScopeChange/SCA-APP-012_GROUP-2_AUTHORIZED.md`; with --root naming a
-      scratch copy it writes that copy and needs no pointer.
+      and verify every written file against the CSV candidate hash. The root
+      (default: the current directory) must exist. If it lies inside any git
+      work tree (`git -C ROOT rev-parse --is-inside-work-tree`), whether this
+      checkout or another one, the write is refused unless that root holds the
+      group-2 authority pointer `_ScopeChange/SCA-APP-012_GROUP-2_AUTHORIZED.md`.
+      Only a scratch copy outside every git work tree is written without the
+      pointer.
 
   build_amendment_preview.py --finalize --date YYYY-MM-DD --group3-decision PATH [--root DIR]
       After group-3 acceptance only. PATH must be
@@ -56,6 +58,7 @@ import hashlib
 import importlib.util
 import os
 import re
+import subprocess
 import sys
 from collections import OrderedDict
 
@@ -69,7 +72,6 @@ GROUP2_POINTER = f"{SCOPE_CHANGE}/SCA-APP-012_GROUP-2_AUTHORIZED.md"
 GROUP3_DECISION = re.compile(
     re.escape(SCOPE_CHANGE) + r"/checkpoint_snapshots/SCA-APP-012_GROUP-3_(\d{4}-\d{2}-\d{2})/DECISION\.md")
 GROUP3_HEADING = re.compile(r"^# SCA-APP-012 checkpoint group 3 — accepted[ .,;…]")
-REPO_TOP = os.path.realpath(os.path.join(SNAP, *[".."] * (len(SCOPE_CHANGE.split("/")) + 1)))
 REGISTER = os.path.join(SNAP, "Amendment_Actions.csv")
 REGISTER_FIELDS = ["AmendmentID", "ActionSeq", "ActionType", "EntityType", "EntityID", "Description",
                    "AffectedFiles", "DownstreamReruns", "SupersessionBindingPresent", "ScopeChanging"]
@@ -219,6 +221,27 @@ def register_errors() -> list:
     return bad
 
 
+def inside_git_work_tree(root: str) -> bool:
+    """True when ROOT lies inside any git work tree (this checkout or another)."""
+    probe = subprocess.run(["git", "-C", root, "rev-parse", "--is-inside-work-tree"],
+                           capture_output=True, text=True)
+    return probe.returncode == 0 and probe.stdout.strip() == "true"
+
+
+def candidate_refusal(root: str) -> str | None:
+    """Reason to refuse writing the candidate into ROOT, or None when allowed.
+
+    A root inside any git work tree needs the group-2 authority pointer in that
+    root; only a scratch copy outside every git work tree is written without it.
+    """
+    if not os.path.isdir(root):
+        return f"--root {root} is not a directory"
+    if inside_git_work_tree(root) and not os.path.isfile(os.path.join(root, GROUP2_POINTER)):
+        return (f"{root} is inside a git work tree and {GROUP2_POINTER} is absent there "
+                "(group 2 not accepted); use a scratch copy outside every git work tree")
+    return None
+
+
 def write_files(root: str, texts: dict):
     for path, text in texts.items():
         with open(os.path.join(root, path), "w", encoding="utf-8") as fh:
@@ -267,8 +290,9 @@ def main() -> int:
         return 1 if bad else 0
 
     if args.candidate:
-        if os.path.realpath(root) == REPO_TOP and not os.path.isfile(os.path.join(REPO_TOP, GROUP2_POINTER)):
-            print(f"refused: {GROUP2_POINTER} is absent (group 2 not accepted)", file=sys.stderr)
+        refusal = candidate_refusal(root)
+        if refusal:
+            print(f"refused: {refusal}", file=sys.stderr)
             return 3
         rec = recorded_rows()
         results, errors = plan(edits, None, root)

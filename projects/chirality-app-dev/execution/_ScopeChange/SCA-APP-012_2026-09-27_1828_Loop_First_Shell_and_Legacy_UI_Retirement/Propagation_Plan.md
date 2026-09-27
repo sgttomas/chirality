@@ -5,16 +5,18 @@ decomp_variant: SOFTWARE
 checkpoint_group: 2
 created: 2026-09-27
 status: awaiting_checkpoint_2_acceptance
-revision: 1
-basis_commit: 830913331
+revision: 2 (independent review of 4c572475f: N1-N9)
+basis_commit: 830913331 (package basis; branch rebased onto 974bf7da4, which changed only PEC files)
 accepted_group1_snapshot: execution/_ScopeChange/checkpoint_snapshots/SCA-APP-012_GROUP-1_2026-09-27/
 workflow: scope-change (bundled)
 ---
 
 # SCA-APP-012 — Checkpoint group 2: exact amendment and propagation plan
 
-> **Status: PROPOSED, awaiting the owner's checkpoint-group-2 act.** Nothing
-> here is applied. This plan consumes the accepted group-1 snapshot
+> **Status: PROPOSED, revision 2, awaiting the owner's checkpoint-group-2
+> act.** Revision 2 applies the independent review of `4c572475f` (no blocking
+> finding; nine corrections, §12). Nothing here is applied. This plan consumes
+> the accepted group-1 snapshot
 > `checkpoint_snapshots/SCA-APP-012_GROUP-1_2026-09-27/`
 > (`DECISION.md` SHA-256 `0bc055869d3b29f6fc719ad8eb376f580073eaabafd5f75faa1978d10cbc6abe`,
 > `ACCEPTED_MANIFEST.csv` SHA-256 `86b0f7cb87ba45c8a0655088864905e20467ed60442a13f4f267ed27a4387056`).
@@ -156,7 +158,7 @@ prepare group 3.
 | Accepted impact assessment | `Impact_Assessment.md` revision 4, SHA-256 `894d04e598b20269e24bf6169ca97cfa2e3af8ffbcc9febeb203938920bd3225` |
 | Accepted intake | `Intake_Actions.csv` revision 4, SHA-256 `d2ae9c44e78457c7767b699390df5109d5d1f00ff1ccc7e751db4b9d0f9ec4c9`; rows 1–22 and 26–27 |
 | Preimages | Every edited file's SHA-256 is recorded in `Evidence/Group2/PREIMAGE_POSTIMAGE.csv`. All equal the hashes in the accepted `Brief.md` (for example decomposition `cf6e56eb…d2321876`, PRD `95245121…1249997`, SPEC `5a6fcf15…946e017f`, PLAN `e5e3045b…c093`) |
-| Package basis | `origin/main` `830913331` (basis refresh G1B-01; `Decision_Log.md`) |
+| Package basis | `origin/main` `830913331` (basis refresh G1B-01; `Decision_Log.md`). The branch was then rebased onto `974bf7da4` (PR #1014), which changed only PEC files: no App file, no edited file and no hashed input moved (`Decision_Log.md` G1-NOTE-1) |
 | Active pointer | `_LATEST.md` → SCA-APP-011 (SHA-256 `904c1bd6…62185637`); group-3 posture `ACCEPTED_PREDECESSOR` |
 
 ## 2. Write boundary (T-a)
@@ -223,8 +225,10 @@ edit except E26) and the final hash where it does not depend on the date
   from what the edit data produces, if `Amendment_Preview.md` differs from
   the rendering of the edit data, or if `Amendment_Actions.csv` breaks its
   schema;
-- `--candidate`: group-3 preparation (§6 step 3); refused on the repository
-  tree without `SCA-APP-012_GROUP-2_AUTHORIZED.md`;
+- `--candidate`: group-3 preparation (§6 step 3). It refuses any root inside a
+  git work tree (this checkout, another checkout, or a directory inside one)
+  unless that root holds `SCA-APP-012_GROUP-2_AUTHORIZED.md`; only a scratch
+  copy outside every git work tree is written without the pointer;
 - `--finalize`: after group-3 acceptance only; refused without an accepted
   `SCA-APP-012_GROUP-3_{date}/DECISION.md` of the same date (§6).
 
@@ -277,17 +281,18 @@ earlier candidate) and must end in exactly this state. Paths are under
 | `components/woven-dialogue/woven-dialogue-shell.tsx` (L384-388), `components/woven-dialogue/navigator.tsx` (L119), `components/shell/shell-frame.tsx` (L56) | Remove `legacyHref` and the `?legacy=1` link it built |
 | `app/layout.tsx` | Remove the `DeliverablesProvider` import and mount (L7, L104-108). Restate the metadata description ("PORTAL, PIPELINE, and WORKBENCH shell for local agent execution", L59) to describe the dialogue shell |
 | `app/page.tsx`, `app/chat/page.tsx`, `app/workbench/page.tsx`, `app/pipeline/page.tsx` | Restate the Suspense fallbacks ("Loading live loop portal...", "Loading direct chat...", "Loading workbench...", "Loading pipeline...") to neutral loading copy |
-| `lib/shell/loop-first.ts` | Remove `buildPortalPersonaHref` and `buildDirectChatHref`, and any constant left without a product user; keep `CHAT_SECTION` (`chat-panel.tsx` uses it) |
+| `lib/shell/loop-first.ts` | Remove `buildPortalPersonaHref`, `buildDirectChatHref`, `PORTAL_ROUTE` and `CHAT_ROUTE` (no product user outside the retired shells); keep `CHAT_SECTION` (`chat-panel.tsx` uses it) |
 | `components/shell/persona-picker.tsx` | Remove the `buildHref` prop (its only caller was `portal-loop-shell.tsx`) |
-| `components/shell/workspace-sidebar.tsx` | Remove the `portalTab`/`workbenchTab`/`pipelineTab` props and tab constants (`AppShell`, used by `not-found.tsx`, passes none). Keep persisted-state parsing tolerant of the `'workbench' \| 'pipeline'` surface and sidebar tab values (SPEC §17.8) |
+| `components/shell/workspace-sidebar.tsx` | Remove the `portalTab`/`workbenchTab`/`pipelineTab` props, the `PORTAL_TAB`/`WORKBENCH_TAB`/`PIPELINE_TAB` constants, their panel branches, and the `'portal' \| 'workbench' \| 'pipeline'` members of `SidebarTabId`. `AppShell` (used by `not-found.tsx`) passes none of these props and holds the sidebar tab in `useState` (default `'files'`); the sidebar tab is not persisted, so no stored value needs tolerant parsing |
+| `lib/woven-dialogue/woven-workspace-state.ts` | No change. Its persisted `WovenWorkspaceSurface` keeps the `'workbench' \| 'pipeline'` members and tolerant parsing (SPEC §17.8), because the two page routes stay (P-keep) |
 | `app/globals.css` | Remove the 11 legacy-only class tokens (`loop-chat-host`, `loop-grid`, `loop-grid--sidebar-collapsed`, `loop-main`, `loop-persona-bar`, `loop-sidebar`, `portal-launch-notice`, `portal-matrix`, `portal-matrix--sidebar`, `portal-matrix-header`, `portal-matrix-heading`) and the 11 dead selector families (`matrix-grid`, `matrix-cell`, `matrix-header-cell`, `matrix-row-group`, `matrix-row-label`, `portal-start-session`, `portal-deliverables`, `portal-deliverable-grid`, `portal-deliverable-row`, `portal-deliverable-name`, `portal-deliverable-key`). Keep `shell-pane*` (`AppShell` uses it) |
 | `components/woven-dialogue/workflows.module.css` | Remove the 8 classes only the retired view used (`caption`, `file`, `foot`, `list`, `markdown`, `notice`, `provenance`, `view`); keep `header` and `tabs` (`right-panel.tsx`) |
-| `__tests__/lib/persona-resolution.test.ts` | Add ported case 1 of `agent-matrix-cells.test.ts`: TASK is not a direct-entry role and HELP_HUMAN is the new-chat default, read from `CHIRALITY_ROLES` (`@chirality/runtime-contracts`) |
+| `__tests__/lib/persona-resolution.test.ts` | Add ported case 1 of `agent-matrix-cells.test.ts`: TASK is not a direct-entry role and HELP_HUMAN is the new-chat default, read from `CHIRALITY_ROLES` (`@chirality/runtime-contracts`). Add a DEL-08-02-REQ-004 case: the historical `RECONCILING` label and the TYPES §4 matrix labels (rows `NORMATIVE`, `OPERATIVE`, `EVALUATIVE`; columns `GUIDING`, `APPLYING`, `JUDGING`, `REVIEWING`) each resolve to `HELP_HUMAN` and none is a key of `PERSONA_ALIASES`. `resolvePersona` accepts only the three direct-entry roles and the `HELP`/`AGENTS` aliases, so every other label falls back to the default; the existing negative case covers only `TASK`, `ORCHESTRATE`, `RESEARCH` and `CHANGE` |
 | `__tests__/lib/pkg08-compatibility-boundaries.test.ts` | Keep the role-boundary case (read the three direct-entry roles from `CHIRALITY_ROLES`) and the dispatch case; drop the matrix-helper round trip |
-| `__tests__/components/workspace-sidebar.test.ts` | Drop the `SidebarRightLoopLayout` and tertiary-tab cases; keep any `WorkspaceSidebar` case `AppShell` still needs |
+| `__tests__/components/workspace-sidebar.test.ts` | Both current cases exercise only the retired props or `SidebarRightLoopLayout`; dropping them would leave an empty suite, which vitest fails. Replace them with one default-tabs case for what `AppShell` renders: `WorkspaceSidebar` with `activeTab: 'workflow'` renders exactly the eight tabs Files, Sessions, Transcript, Tools, Subagents, Document, Workflow and Tool Kit as `role="tab"`, marks Workflow selected, and renders no Portal, Workbench or Pipeline tab. Rename the `describe` label accordingly |
 | `__tests__/components/woven-dialogue-route.test.tsx` | Drop the `legacy` prop cases; keep the surface cases |
 | `__tests__/components/loop-tertiary-routes.test.ts` | Keep the file and its two cases (`/workbench` and `/pipeline` open the dialogue shell); rename its `describe` label, which names `LoopTertiaryShell` |
-| `__tests__/lib/loop-first.test.ts` | Keep the `CHAT_SECTION` case; drop the removed-helper cases |
+| `__tests__/lib/loop-first.test.ts` | Trim case 1 (L12-14) to the `CHAT_SECTION` assertion only, since `PORTAL_ROUTE` and `CHAT_ROUTE` are removed, and update its import; drop cases 2-4 (`buildDirectChatHref`, `buildPortalPersonaHref`) |
 | `__tests__/components/woven-dialogue-shell.test.tsx` | Delete the "preserves the legacy compatibility link with the current query string" case (L433-440) and the `legacyHref` in its `ShellFrame` mock |
 | `__tests__/components/woven-dialogue-navigator.test.tsx`, `__tests__/components/historical-chat-reveal.test.tsx` | Drop the `legacyHref` prop |
 
@@ -381,8 +386,9 @@ Group-3 preparation, in order:
 2. Run `build_amendment_preview.py --check`. No drift is allowed; if main has
    changed an edited file outside every edit, record a basis refresh with the
    new preimage and candidate hashes, as SCA-APP-011 did (G3B-01).
-3. Write the candidate: `build_amendment_preview.py --candidate`. It needs
-   the group-2 pointer `SCA-APP-012_GROUP-2_AUTHORIZED.md`, rechecks every
+3. Write the candidate: `build_amendment_preview.py --candidate`. In this
+   checkout, or any other git work tree, it needs the group-2 pointer
+   `SCA-APP-012_GROUP-2_AUTHORIZED.md` in that root. It rechecks every
    preimage hash, writes every edit except E26, and verifies each written file
    against its recorded candidate hash.
 4. Generate `Supersession_Map.csv` (accumulator) and `Post_Change_Coverage.json`
@@ -462,22 +468,23 @@ hold, and a MEMORY entry through the loop closeout.
 
 ## 9. Validation performed for this package
 
-Run at `830913331` plus this package (no scope file, code or accepted group-1
-record changed).
+Run on the revision-2 package tree at `974bf7da4` (the package basis `830913331`
+plus PR #1014, which changed only PEC files). No scope file, code or accepted
+group-1 record changed.
 
 | Check | Result |
 |---|---|
 | `build_amendment_preview.py` | 80 edits in 12 files. Every `old` passage occurs exactly once, in sequence; candidate and final images dry-run |
 | `build_amendment_preview.py --check` | OK: all 12 preimages match `PREIMAGE_POSTIMAGE.csv`; the CSV equals what the edit data produces; `Amendment_Preview.md` equals the rendering of the edit data; `Amendment_Actions.csv` passes the schema check (10 contract columns, no surrounding whitespace, sequential `ActionSeq`, YES/NO flags). A test append to the preview made it FAIL, as intended |
-| `check_candidate_mode.py` (scratch copy) | 12/12 PASS: repository-tree `--candidate` refused without the group-2 pointer (tree unchanged); scratch `--candidate` wrote 12 files, each matching its candidate hash, with E26 not applied and DEC-027 present; rerun refused on preimage drift; `--finalize` refused for a draft heading, a date that differs from the decision folder and a wrong path; one `--finalize` with a test decision filled E26 only; rerun refused; repository tree unchanged |
+| `check_candidate_mode.py` (scratch copies) | 22/22 PASS. The scratch root is outside every git work tree. `--candidate` is refused, and nothing is written, for this checkout (default root, `--root` naming it, `--root REPO/.`, a directory inside it), for another git checkout without the group-2 pointer (a `git init` scratch copy), and for a missing root. The other git checkout with a test pointer is written and matches every candidate hash. The scratch `--candidate` wrote 12 files, each matching its candidate hash, with E26 not applied and DEC-027 present; a rerun is refused on preimage drift. `--finalize` is refused for a draft heading, a date that differs from the decision folder and a wrong path; one `--finalize` with a test decision fills E26 only; a rerun is refused. This checkout is unchanged |
 | `validate_postimage.py` | PASS (`Evidence/Group2/POSTIMAGE_VALIDATION.md`): 17 edited table rows keep their column count; all 8 edited Scopes of Work validate (exit 0 before and after); every edited unit naming a retired item carries an SCA-APP-012 marker; all 19 retired items are named with a marker; the two retired routes are gone from the PRD §9.2 and SPEC §17.2 tables; every register row has edits or is carried; the sweep of 114 files (every deliverable `ScopeOfWork.md` and `_CONTEXT.md`, the decomposition, PRD, SPEC, PLAN, DIRECTIVE and TYPES) finds 0 uncovered mentions after the edits (39 before), with 3 listed historical passages |
-| `accumulate_supersession_map.py` dry run | 85 rows, 0 findings |
+| `accumulate_supersession_map.py` dry run | 85 rows, 0 findings. A second run with `--check-map` against the first output: 0 findings, exit 0 (deterministic) |
 | Group-1 baseline builder rerun (at `830913331`) | Differs from the accepted `Pre_Change_Coverage.json` only in the three G1B-01 values; the accepted file was restored unchanged (SHA-256 `c470779a…0cc0b2`) |
 | Root G0–G3 (`validate_root_materialization_fence.py`, `validate_root_harness_adapter.py`, `validate_root_surface_ownership.py`, `validate_root_work_graph_dispatch.py`) | G0, G1, G2 and G3 PASS |
-| G4 (`validate_instruction_tranche_manifest.py --base 830913331 --head HEAD --added-manifests-only`) | Exit 0; 0 changed paths on the instruction surface |
-| `validate_conflict_markers.py`, `validate_run_record_leaks.py` (base `830913331`) | PASS; PASS (0 run-record files, 0 possible credentials) |
+| G4 (`validate_instruction_tranche_manifest.py --base 974bf7da4 --head HEAD --added-manifests-only`) | Exit 0; 0 changed paths on the instruction surface |
+| `validate_conflict_markers.py`, `validate_run_record_leaks.py` (base `974bf7da4`) | PASS; PASS (0 run-record files, 0 possible credentials) |
 | `build_workflow_index.py --check` | PASS (78 methods) |
-| `git diff --check` (base `830913331`) | PASS |
+| `git diff --check` (base `974bf7da4`) | PASS |
 | `exports/chirality-app/export_public.py`, run twice | No tracked change (export projection fresh); staging removed |
 
 ## 10. State fields and derivative surfaces
@@ -496,7 +503,7 @@ record changed).
 |---|---|---|
 | `_Evaluation/DecompCoverage` | STALE_REBUILD_REQUIRED | audit-decomp |
 | `_Evaluation/ScopeClosureAudit` | STALE_REBUILD_REQUIRED | audit-scope-closure |
-| `_Reconciliation/DepClosure` | STALE_REBUILD_REQUIRED | analyze_dep_closure |
+| `_Evaluation/DepClosure` | STALE_REBUILD_REQUIRED | analyze_dep_closure |
 | DEL-02-03 and DEL-08-03 dependency registers | STALE_REBUILD_REQUIRED | dependency-extract (DX-01 to DX-03, DX-05) |
 | `exports/chirality-app` | STALE_REBUILD_REQUIRED | export tooling, with the code change |
 | Companion register | NO_CHANGE (E) | — |
@@ -513,16 +520,34 @@ record changed).
 - The 49 other product modules without a product importer (Impact Assessment
   §10.3) are not legacy loop-first UI and are not proposed.
 
+## 12. Revision 2: independent review of `4c572475f`
+
+The review found no blocking issue. Its nine corrections are applied:
+
+| # | Correction | Where |
+|---|---|---|
+| N1 | DEL-08-02-REQ-004 verification (E14) names the negative-alias test in `persona-resolution.test.ts`, which covered only TASK, ORCHESTRATE, RESEARCH and CHANGE. The code specification now adds a case for `RECONCILING` and the TYPES §4 matrix labels; E14 is unchanged | §4 |
+| N2 | `workspace-sidebar.test.ts` would become an empty suite. It is replaced by one default-tabs case for what `AppShell` renders | §4 |
+| N3 | The `'portal' \| 'workbench' \| 'pipeline'` members of `SidebarTabId` are removed; the sidebar tab is not persisted. Tolerant parsing applies to the persisted `WovenWorkspaceSurface`, which is unchanged | §4 |
+| N4 | `PORTAL_ROUTE` and `CHAT_ROUTE` are removed, and case 1 of `loop-first.test.ts` is trimmed to `CHAT_SECTION` | §4 |
+| N5 | `--candidate` now refuses any root inside a git work tree without the group-2 pointer, not only this checkout; `check_candidate_mode.py` tests it | §3, §6, §9; `Evidence/Group2/build_amendment_preview.py`, `check_candidate_mode.py` |
+| N6 | The group-1 snapshot cites commits that are no longer ancestors after the rebase. The snapshot is immutable (method.md), so `Decision_Log.md` G1-NOTE-1 records the current commit; the manifest's content hashes are unchanged | `Decision_Log.md` |
+| N7 | The rebase onto `974bf7da4` (PEC files only) is noted here and in `Decision_Log.md` G1-NOTE-1 | front matter, §1, §9 |
+| N8 | The dependency-closure surface is `_Evaluation/DepClosure` | §10 |
+| N9 | E05 now says which DEL-02-03 verification rows change (REQ-009, REQ-010, REQ-013) instead of "the verification hooks are unchanged" | `Amendment_Preview.md` E05 |
+
+Only E05 changes in the exact text; the edit count, files, register and supersession delta are unchanged.
+
 ## Evidence basis for this package
 
 | Artifact | SHA-256 |
 |---|---|
 | `Amendment_Actions.csv` | `a9ff78f2be8356b7727d7bb853bd758a55cb6a976b42dc2fc8dc1d1365e114ad` |
 | `Supersession_Delta.csv` | `f6239eaef9777bd13af88cfb32ac69cc6ff04ef09d7bcda10bb126f2525de899` |
-| `Amendment_Preview.md` | `a83f330dc551efb09d3e581c302c37c66436684c7d5ca0fa4a85405ae71ff3a0` |
-| `Evidence/Group2/amendment_edits.py` | `8871874f8dbeb1ae004cb06e449c0bd1c9b08d25d47950fc65b9c80a55d0e056` |
-| `Evidence/Group2/build_amendment_preview.py` | `1ba11863bdecea4237c8732842a5f47d277718e8ecef5a6d05c7eca29eaa6505` |
+| `Amendment_Preview.md` | `bb6c0b44ec91e00cd8afced23081a3e9eea27cd9be374946736583feaa281ce9` |
+| `Evidence/Group2/amendment_edits.py` | `a7595b05a4bbf74460a0929e72d4bc0a893dae67dec6e5503481ce457559687a` |
+| `Evidence/Group2/build_amendment_preview.py` | `0d5995343332d0169b062d91217f51b9cdf98fa45ad4769876465cca1c9ece85` |
 | `Evidence/Group2/validate_postimage.py` | `f6a2de1cc57e785c44b5a73abeb42699715c4b278c14a15003bfdfd50ffba76b` |
-| `Evidence/Group2/check_candidate_mode.py` | `eae95be0c1e0d1239470fa952fb5e6878bbc2dc4717e11788d2f4296bd28bad0` |
-| `Evidence/Group2/PREIMAGE_POSTIMAGE.csv` | `490e0ef9224ae920f406e6f218c8eae7d1753d17298b40271ec06b142a6e8d77` |
+| `Evidence/Group2/check_candidate_mode.py` | `74fe97782378e10863aaaf33f3dad61391585e859efe46b4665cd249c3a99291` |
+| `Evidence/Group2/PREIMAGE_POSTIMAGE.csv` | `76d26f6725c8010c5918d65e1330d979c96bfab3abfebb4f5b3f315485fcc70c` |
 | `Evidence/Group2/POSTIMAGE_VALIDATION.md` | `8ac9784a2a08129c3e1e89e47a36fd8b2731b688a09c21e96f4131276fa9ab26` |

@@ -102,7 +102,7 @@ SCA-APP-012 (owner direction 2026-09-27; DEC-027) retires `GET /api/working-root
 - The scope-scan surface this UI consumes is `/api/project/deliverables`, as DEL-08-03-REQ-010 already states. The scan library `scanProjectScopes` stays for the retained `scope_scan` tool contract (SPEC §14.2), and `frontend/src/lib/workspace/task-scope.ts` stays as a library.
 - DEL-02-03-REQ-009 is retired, with its verification row and the D-APP-56 R4-P29 launcher confirmation (CLM-015). No deliverable summary widget routes to a dispatch intent. DEL-08-03 keeps the TASK scope semantics (PRD FR-012, SOW-007); any later deliverable-row entry to a dispatch intent needs its own amendment.
 - DEL-02-03-REQ-010 is restated: deliverable summaries present lifecycle status read-only from `/api/project/deliverables` and carry no transition control. Transitions go through the lifecycle library (PRD FR-052 to FR-057). Dependency snapshots have no browser API (SCA-APP-011) and are read through the dependency library and tool contracts.
-- The other requirements, SOW-002 and SOW-003, OBJ-001 and OBJ-006, and the verification hooks are unchanged.
+- The CLM-011 verification rows change with their requirements: DEL-02-03-REQ-009's is retired, DEL-02-03-REQ-010's is restated, and DEL-02-03-REQ-013's no longer names route identity. The other requirements and verification rows, SOW-002 and SOW-003, OBJ-001 and OBJ-006, and the named verification hook files are unchanged.
 
 ## Deliverable Definition — Ontology
 ```

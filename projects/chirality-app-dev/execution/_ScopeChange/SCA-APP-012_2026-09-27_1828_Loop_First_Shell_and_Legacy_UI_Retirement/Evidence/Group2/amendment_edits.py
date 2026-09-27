@@ -99,8 +99,10 @@ EDITS = [
              "`/api/project/deliverables` and carry no transition control. Transitions go through the lifecycle "
              "library (PRD FR-052 to FR-057). Dependency snapshots have no browser API (SCA-APP-011) and are read "
              "through the dependency library and tool contracts.\n"
-             "- The other requirements, SOW-002 and SOW-003, OBJ-001 and OBJ-006, and the verification hooks are "
-             "unchanged.\n\n"
+             "- The CLM-011 verification rows change with their requirements: DEL-02-03-REQ-009's is retired, "
+             "DEL-02-03-REQ-010's is restated, and DEL-02-03-REQ-013's no longer names route identity. The other "
+             "requirements and verification rows, SOW-002 and SOW-003, OBJ-001 and OBJ-006, and the named "
+             "verification hook files are unchanged.\n\n"
              + ONTOLOGY)),
     # ---------------------------------------------------------------- Row 3 DEL-02-03-REQ-010
     dict(id="E06", seq=3, file=SOW0203,
