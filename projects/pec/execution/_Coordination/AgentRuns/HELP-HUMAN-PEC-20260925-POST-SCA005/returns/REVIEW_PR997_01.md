@@ -76,7 +76,9 @@ Verdict PASS WITH NOTES; nothing blocking. HELP_HUMAN sent every finding and not
 - **NB-1:** the stored diffs are now `.diff.txt` files stripped of trailing whitespace. A runner row now fails on any trailing whitespace, and check 12 is worded to match.
 - **NB-2:** the variant is restated as REVIEW-before-merge. The act runs on the branch, then REVIEW and acceptance happen there, and only then does the branch merge. A REVIEW before the act would need a re-rendered script, which is not granted.
 - **NB-3:** reading 4(a) is stated plainly as going beyond SCA-006 §B4's premise-only scope, at L7 and in question 4(a). AX-009 is tempered.
-- **NB-4:** posture 3 is narrowed to the premise's own elements, and add-on P's CLM-005 and REQ-004 are aligned with it. All four candidates were re-rendered, re-hashed and re-verified.
-- **Notes 1–9:** applied as the manager's return describes. The re-review options are renamed RR1–RR3.
+- **NB-4:** posture 3 is narrowed to the premise's own elements, and add-on P's CLM-005 and REQ-004 are aligned with it. The three changed candidates were re-rendered, re-hashed and re-verified; the SPEC is unchanged.
+- **Notes 1–10:** applied as the manager's return describes, or needing no repair. Note 11: HELP_HUMAN removed the child's `/var/folders/…/T/prd.md` (byte-identical to the repository PRD) on 2026-09-26. The re-review options are renamed RR1–RR3.
 
 The repair head needs a fresh HELP_HUMAN review before merge.
+
+*Correction after review 02 (NB-b):* the disposition first said "All four candidates" and "Notes 1–9"; it now says three changed candidates and covers notes 10 and 11. The report above is unchanged.
