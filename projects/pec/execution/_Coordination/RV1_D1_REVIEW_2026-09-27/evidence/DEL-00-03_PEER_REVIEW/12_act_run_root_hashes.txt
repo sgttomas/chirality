@@ -1,0 +1,20 @@
+cwd: {REPO_ROOT} (repository root; branch claude/pec-rv1-d1-review, HEAD a1735cc3b)
+interpreter: python3 (CPython 3.13.7, as reported by python3 --version); shell bash
+env: TMPDIR=<review scratch dir>, PYTHONDONTWRITEBYTECODE=1
+command: cd projects/pec/execution/_Coordination/D1_PREMISE_AMEND_2026-09-27 && shasum -a 256 HANDOFF_STATE.md VALIDATION.md MANIFEST.md premise/DEL-00-03_SPEC.json premise/DEL-00-03_SOW.json checklist_DEL-00-03_SOW.json candidates/* 2>/dev/null; ls candidates; grep -E "premise/DEL-00-03|candidates/.*DEL-00-03|checklist_DEL-00-03" SHA256SUMS; shasum -a 256 -c SHA256SUMS 2>&1 | grep -c ": OK"; shasum -a 256 -c SHA256SUMS 2>&1 | grep -v ": OK" | head
+---- output ----
+a893885a90e1686fde5f3e0324e617ad3697e56a887ddc3566448ccbc71b8c20  HANDOFF_STATE.md
+91ec7ea375df93b0e827a0df1d35b68932170ed725a2e35cb81d573cdb4a418c  VALIDATION.md
+46103b7e5e800a559070ea62acb810a62424d7a8f6c051474c643254f79d24db  MANIFEST.md
+ae073f5aca332f499768983e122a38b8944486cf8410fff556c6ae0d181caef6  premise/DEL-00-03_SPEC.json
+e3c3a22973808cb061e2c74f4ffafb0c20fb91411c4e1429abe1e42e39d6c7ca  premise/DEL-00-03_SOW.json
+a3bc80a0db9a1917aa54337f62cd2057ce154bdc792f3802d982012f667121b1  checklist_DEL-00-03_SOW.json
+projects
+0fed4ecb771ccef8f8575dd08420e13792629cd7ac9d14f720423eba6c2ae843  candidates/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md
+f84c067bf8388cbd348541dd821af040cee4e84fb34fe4e3e3ab473acdd5f617  candidates/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md
+a3bc80a0db9a1917aa54337f62cd2057ce154bdc792f3802d982012f667121b1  checklist_DEL-00-03_SOW.json
+8b8587fa96edcaa6e5b0541f630e8fe85b5cb34a0f773d3ebf0e9d7c70bbed99  evidence/post/checklist_DEL-00-03_SOW.out
+e3c3a22973808cb061e2c74f4ffafb0c20fb91411c4e1429abe1e42e39d6c7ca  premise/DEL-00-03_SOW.json
+ae073f5aca332f499768983e122a38b8944486cf8410fff556c6ae0d181caef6  premise/DEL-00-03_SPEC.json
+213
+---- exit code: 0 ----

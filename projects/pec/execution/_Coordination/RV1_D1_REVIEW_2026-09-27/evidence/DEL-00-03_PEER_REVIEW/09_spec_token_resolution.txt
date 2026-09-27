@@ -1,0 +1,19 @@
+cwd: {REPO_ROOT} (repository root; branch claude/pec-rv1-d1-review, HEAD a1735cc3b)
+interpreter: python3 (CPython 3.13.7, as reported by python3 --version); shell bash
+env: TMPDIR=<review scratch dir>, PYTHONDONTWRITEBYTECODE=1
+command: python3 $TMPDIR/work/tokens.py
+---- output ----
+PRD requirement row IDs: 49 {'ORI': 7, 'RCN': 6, 'GAT': 4, 'PRS': 7, 'STR': 5, 'API': 7, 'DSH': 7, 'SVC': 6}
+PRD PEC-K table rows: 11 ['PEC-K-01', 'PEC-K-02', 'PEC-K-03', 'PEC-K-04', 'PEC-K-05', 'PEC-K-06', 'PEC-K-07', 'PEC-K-08', 'PEC-K-09', 'PEC-K-10', 'PEC-K-11']
+SPEC tokens (with ranges expanded): 225 unresolved: []
+SPEC SOW tokens: 80
+Ledger items not named in SPEC: 20 ['SOW-070', 'SOW-071', 'SOW-072', 'SOW-073', 'SOW-074', 'SOW-075', 'SOW-076', 'SOW-077', 'SOW-078', 'SOW-079', 'SOW-080', 'SOW-081', 'SOW-082', 'SOW-083', 'SOW-086', 'SOW-087', 'SOW-090', 'SOW-091', 'SOW-092', 'SOW-094']
+Orientation: PRD ids PEC-ORI-001..PEC-ORI-007 exist=True count_in_PRD=7; SPEC scope 7 items; ledger items citing PEC-ORI: ['SOW-004', 'SOW-005', 'SOW-006', 'SOW-007', 'SOW-008', 'SOW-009', 'SOW-097', 'SOW-100']; in SPEC not citing family: []; citing family but not in SPEC: ['SOW-100']
+Reconciliation: PRD ids PEC-RCN-001..PEC-RCN-006 exist=True count_in_PRD=6; SPEC scope 14 items; ledger items citing PEC-RCN: ['SOW-010', 'SOW-011', 'SOW-012', 'SOW-013', 'SOW-014', 'SOW-015', 'SOW-016', 'SOW-017', 'SOW-018', 'SOW-019', 'SOW-020', 'SOW-021', 'SOW-095', 'SOW-096', 'SOW-100']; in SPEC not citing family: []; citing family but not in SPEC: ['SOW-100']
+Gate/slate: PRD ids PEC-GAT-001..PEC-GAT-004 exist=True count_in_PRD=4; SPEC scope 4 items; ledger items citing PEC-GAT: ['SOW-022', 'SOW-023', 'SOW-024', 'SOW-025']; in SPEC not citing family: []; citing family but not in SPEC: []
+Presence: PRD ids PEC-PRS-001..PEC-PRS-007 exist=True count_in_PRD=7; SPEC scope 7 items; ledger items citing PEC-PRS: ['SOW-026', 'SOW-027', 'SOW-028', 'SOW-029', 'SOW-030', 'SOW-031', 'SOW-032']; in SPEC not citing family: []; citing family but not in SPEC: []
+Streams: PRD ids PEC-STR-001..PEC-STR-005 exist=True count_in_PRD=5; SPEC scope 7 items; ledger items citing PEC-STR: ['SOW-033', 'SOW-034', 'SOW-035', 'SOW-036', 'SOW-037', 'SOW-038', 'SOW-039', 'SOW-074']; in SPEC not citing family: []; citing family but not in SPEC: ['SOW-074']
+API: PRD ids PEC-API-001..PEC-API-007 exist=True count_in_PRD=7; SPEC scope 8 items; ledger items citing PEC-API: ['SOW-040', 'SOW-041', 'SOW-042', 'SOW-043', 'SOW-044', 'SOW-098', 'SOW-099']; in SPEC not citing family: ['SOW-003']; citing family but not in SPEC: []
+Dashboards: PRD ids PEC-DSH-001..PEC-DSH-007 exist=True count_in_PRD=7; SPEC scope 7 items; ledger items citing PEC-DSH: ['SOW-045', 'SOW-046', 'SOW-047', 'SOW-048', 'SOW-049', 'SOW-050', 'SOW-051', 'SOW-094']; in SPEC not citing family: []; citing family but not in SPEC: ['SOW-094']
+Service: PRD ids PEC-SVC-001..PEC-SVC-006 exist=True count_in_PRD=6; SPEC scope 6 items; ledger items citing PEC-SVC: ['SOW-052', 'SOW-053', 'SOW-054', 'SOW-055', 'SOW-056', 'SOW-057']; in SPEC not citing family: []; citing family but not in SPEC: []
+---- exit code: 0 ----
