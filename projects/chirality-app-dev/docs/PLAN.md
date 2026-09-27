@@ -5,6 +5,7 @@
 **Product:** Chirality desktop harness and bundled agent operating system
 **Applies to:** Chirality App vNext development and release planning
 **Amended:** Amended under D-GOV-43 (A2), 2026-09-12: the D-APP-73 shared-runtime order and SCA-APP-003 effects are read with the application-owned Runtime service; residency steps retired
+**Amended (SCA-APP-011):** owner direction 2026-09-27: baseline, compatibility and §13 entries record the retired forms and routes
 
 This document captures the strategic development roadmap for Chirality App. It summarizes the accepted baseline, records the controlling runtime direction, identifies sequencing rationale, and defines the near-term implementation path.
 
@@ -33,7 +34,7 @@ The active vNext development source is the app-development workspace (`chirality
 The issued baseline already provides substantial product scaffolding:
 
 - Electron/Next.js desktop shell.
-- Live loop-first PORTAL, WORKBENCH, PIPELINE, matrix, toolkit, file-tree, and replay surfaces; these remain the compatibility baseline while the owner-selected Woven Dialogue target is implemented and validated.
+- Live loop-first PORTAL, matrix, toolkit, file-tree, and replay surfaces; these remain the compatibility baseline while the owner-selected Woven Dialogue target is implemented and validated. SCA-APP-011 retired the WORKBENCH and PIPELINE forms.
 - Working-root selection and validation.
 - Harness session create/boot/list/get/delete APIs.
 - Turn SSE route with session-level active-turn locking.
@@ -41,8 +42,8 @@ The issued baseline already provides substantial product scaffolding:
 - Interrupt support.
 - Attachment resolver with file type, symlink, per-file, and total-byte controls.
 - API key storage/resolution and Anthropic network policy.
-- Execution-root scaffolding.
-- Deliverable status and dependency APIs.
+- Execution-root scaffolding library (`frontend/src/lib/harness/scaffold.ts`); SCA-APP-011 retired its App HTTP entry, and execution roots are scaffolded through the Root `project-setup` workflow and its packaged tools.
+- Deliverable status and dependency library (`frontend/src/lib/workspace/deliverable-contracts.ts`); SCA-APP-011 retired its HTTP routes.
 - Subagent governance evaluation and fail-closed delegation behavior.
 - Harness validation scripts and CI premerge summary artifacts.
 - Instruction-root integrity verification.
@@ -114,8 +115,9 @@ implementation tranche:
 The implementation must preserve the mounted primary live dialogue, explicit
 next-turn context, source/provenance/currency labels, exact recorded
 parentage, isolated read-only replay, current browser-facing SSE behavior,
-public route/API/query shapes, provider composition, security boundaries, and
-the loop-first UI through the compatibility period.
+public route/API/query shapes (apart from the four routes SCA-APP-011
+retired), provider composition, security boundaries, and the loop-first UI
+through the compatibility period.
 
 The historical R0/R1 sequence below remains strategic history. The D-APP-73
 shared-runtime execution order in §13.1 is read with D-GOV-43 (A2): the App
@@ -182,7 +184,7 @@ Acceptance:
 - Reliance-boundary register covers P0 audit, permission, path, transcript, settings, and human-gate semantics.
 - SDK messages map to stable UI/runtime events.
 - Terminal success, failure, interruption, and cancellation persist.
-- Route shapes and SSE event names are unchanged.
+- Route shapes and SSE event names are unchanged (SCA-APP-011 later retired `/api/harness/scaffold` and the three deliverable routes).
 - Settings isolation test passes.
 - SDK session ID and transcript/store linkage persist.
 - No new user-visible local tool capability is enabled beyond current surface.
@@ -504,6 +506,7 @@ This plan remains acceptable only if:
 | `SCA-APP-002` | 2026-07-21 | Authorizes the bounded Pi `0.80.10` / authenticated loopback oMLX second-engine tranche, subject to Electron `43.1.1` prerequisite proof (Electron authority since superseded by D-APP-98: `43.2.0`), provider-neutral contracts, fail-closed conformance/security validation, and a governed read-only Agent 2 child milestone. |
 | `SCA-APP-003` | 2026-07-22 | Promotes the executable harness to root `runtime/`, then adds one shared daemon, authenticated Unix-socket client/CLI, explicit local-model residency, the app-dev Agent 1 → local Agent 2 pilot, PEC client migration, and public generic-runtime export. Read with D-GOV-43 (A2, 2026-09-12): the shared daemon becomes the App-owned Runtime service child; residency and the Pi/oMLX pilot are retired; CLI and PEC compatibility with the socket API is unverified. |
 | `SCA-APP-004` | 2026-07-23 | Selects Woven Dialogue with a Work/Agents Coordination Panel; preserves runtime/API/SSE/security/history and compatibility while adding provenance-labelled informational projection, explicit context/artifact anchors, and strict primary-dialogue/read-only-replay separation. |
+| `SCA-APP-011` | 2026-09-27 | Retires the obsolete Workbench and Pipeline forms and their tests, the deliverable status, status-transition and dependency HTTP routes with their client fetch functions, and `POST /api/harness/scaffold` with its client function; keeps the lifecycle, dependency and scaffold libraries; rescopes DEL-02-02 without retiring it. |
 
 ### 13.1 D-APP-73 execution order
 
@@ -543,7 +546,8 @@ local models, and production PEC use remain later governed milestones.
 5. Add the Agents projection over recorded sessions, exact canonical
    parentage, attribution, and selected-session read-only replay without
    global AgentRun discovery or runtime expansion.
-6. Re-host Workbench, Pipeline, toolkit, working-root, credential, runtime,
+6. Re-host Workbench, Pipeline (both later retired by SCA-APP-011), toolkit,
+   working-root, credential, runtime,
    and settings surfaces while preserving their existing semantic and
    security owners.
 7. Apply versioned, non-destructive, rollback-safe local-state migration and

@@ -2,6 +2,7 @@
 
 ## Runs
 
+- 2026-09-27 — `APP-REMOVE-LEGACY-FORMS-2026-09-27` (SCA-APP-011 code change; checkpoint-group-3 candidate, lands with the SCA-APP-011 scope text after group-3 acceptance): removes the dependency route and `fetchDeliverableDependencies`. The dependency read, write, recorded-register, write-failure and symlink cases move to `frontend/src/__tests__/lib/deliverable-contracts.test.ts` and call the library directly. No lifecycle change. Evidence: [receipt](../../../_Coordination/AgentRuns/APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md); amendment `execution/_ScopeChange/SCA-APP-011_2026-09-27_0155_Workbench_Pipeline_Forms_and_Deliverable_Routes_Retirement/`.
 - 2026-09-26 — `APP-RECORDED-REGISTER-2026-09-26` (follow-up FU5): the new
   `frontend/src/lib/dependencies/recorded-register.ts` reads the recorded
   register, the union of the `_DEPENDENCIES.md` declared sections (legacy
@@ -12,6 +13,13 @@
   Parity fixtures check it against the Root tools. No lifecycle change and no
   dependency acceptance. Evidence:
   [receipt](../../../_Coordination/AgentRuns/APP-RECORDED-REGISTER-2026-09-26/RECEIPT.md).
+- 2026-09-27 — `APP-EXECUTION-ROOT-2026-09-27`: a deliverable's recorded-register
+  read now takes its execution root from the outermost `execution/` folder,
+  checked against the adapter manifest, as the reopening checks do, instead of
+  from the path shape. A deliverable not exactly at
+  `<execution root>/PKG-*/<lifecycle folder>/DEL-*` gets `NOT_ASSESSED` with a
+  warning. No lifecycle change and no dependency acceptance. Evidence:
+  [receipt](../../../_Coordination/AgentRuns/APP-EXECUTION-ROOT-2026-09-27/RECEIPT.md).
 
 ## Decisions And Evidence
 

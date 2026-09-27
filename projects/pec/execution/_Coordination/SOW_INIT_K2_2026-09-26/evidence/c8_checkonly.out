@@ -1,0 +1,4 @@
+$ PYTHONDONTWRITEBYTECODE=1 python3 projects/pec/execution/_Coordination/SOW_INIT_K2_2026-09-26/apply_k2_c8.py --repo /Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-d103-act --candidates projects/pec/execution/_Coordination/SOW_INIT_K2_2026-09-26/addons/C8 --check-only   (cwd: repository root)
+RENDER projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_DEPENDENCIES.md
+CHECK preflight passed; planned write set 1 modify, 0 creates, 0 removes; nothing written
+exit=0

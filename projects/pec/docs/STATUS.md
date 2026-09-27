@@ -43,12 +43,15 @@ DEL-01-05 to `CHECKING`; the 2026-09-07 `D-PEC-84` L ruling then reversed
 DEL-01-05 `CHECKING → IN_PROGRESS` for the bounded scanner repair completed
 under `D-PEC-84` S-A (Receipts 174–175). That reversal accepts no repaired
 artifact; DEL-01-05 is `IN_PROGRESS`. **D-PEC-75 remains ruled O-A for
-DEL-01-06.** Its accepted revision-1.4 production contract is SHA-256
-`5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8`.
-The current SELF_CHECK snapshot
+DEL-01-06.** Its accepted revision-1.4 production contract was SHA-256
+`5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8`; the
+`D-PEC-100` act (2026-09-26) replaced it with the revision-1.6 contract
+`2053fb65abc24b75c2526a78aa4bd4b64a1e6ead11dd7ac2d5131cd736eb177e`, which
+no REVIEW has accepted.
+The latest SELF_CHECK snapshot
 `execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-04_1113/` records
 AC-001 through AC-006 `PASS`, RF-001 `RESOLVED` with exact VER-005 evidence,
-and RF-002 `REVISE / RESOLVED`: the accepted successor maps SOW-077 and SOW-094
+and RF-002 `REVISE / RESOLVED`: the accepted revision-1.4 successor maps SOW-077 and SOW-094
 to DEL-01-06 and records OI-003 resolved by D-PEC-78 O-A. DEL-01-06 remains
 `INITIALIZED` under HOLD; no product/source artifact, next P1 node, release, or
 professional reliance is authorized. D-T0-27 remains `ADOPTED / READ_ONLY`
@@ -124,8 +127,9 @@ permissions are enforced; hosted CI still runs no v2 Python check.
 **Lifecycle census** (recounted 2026-09-26 from the 68 deliverable
 `_STATUS.md` files, after SCA-005's retirements, the `D-PEC-93` setup of
 DEL-02-08 and DEL-02-09, their `D-PEC-98` add-on S step to `INITIALIZED`,
-and the `D-PEC-101` setup of DEL-08-06 and DEL-10-13 at `OPEN`): 30 `OPEN` /
-28 `INITIALIZED` / 4 `CHECKING`
+the `D-PEC-101` setup of DEL-08-06 and DEL-10-13 at `OPEN`, and their
+`D-PEC-103` add-on S step to `INITIALIZED`): 28 `OPEN` /
+30 `INITIALIZED` / 4 `CHECKING`
 (DEL-00-01, DEL-00-03, DEL-08-02, DEL-10-01) / 2 `IN_PROGRESS` (DEL-01-03,
 DEL-01-05) / 4 `RETIRED` (DEL-06-04, DEL-07-02, DEL-07-04, DEL-07-05). No
 deliverable is `ISSUED`.
@@ -255,7 +259,10 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     lifecycle change; DEL-02-07 carries the four `D-PEC-99` Part B items
     with their gates; run root
     `execution/_Coordination/SOW_REBUILD_S2_2026-09-26/`). Open: S1 and S4,
-    which absorb the quotations of old S2 text in 13 contracts. Done: the first SOWs for DEL-02-08/09
+    which absorb the quotations of old S2 text in 13 contracts. The owner
+    ruled the S4 currency packet `D-PEC-102` (eight contracts: DEL-04-01,
+    DEL-04-02, DEL-04-03, DEL-08-01, DEL-08-03, DEL-08-04, DEL-03-04,
+    DEL-10-03) A + M on 2026-09-26; its act is next. Done: the first SOWs for DEL-02-08/09
     (`D-PEC-98` A + S + M, ruled 2026-09-26): both contracts written,
     re-pinned to revision 1.6, validated and independently verified, and
     both deliverables `INITIALIZED` (run root
@@ -295,9 +302,14 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     v2.4, and re-audited: `COV_D101_POSTSETUP_2026-09-26_1651`, 0 blockers,
     coverage 100 %, now named by `_Evaluation/DecompCoverage/_LATEST.md`
     (run root `execution/_Coordination/REV16_CURRENCY_SETUP_D101_2026-09-26/`).
-    Still open from Lane B: first SOWs for the two new deliverables (K2),
-    the DEL-00-03 SPEC premise, the tier-0 profile entry (K3) and the API
-    schema fields.
+    Done: the first SOWs for the two new deliverables (K2; `D-PEC-103`
+    A + S + M + C8, ruled 2026-09-26): both contracts written and
+    independently verified, DEL-10-13 classified by the owner as a C-08
+    standing node, and both deliverables `INITIALIZED` (run root
+    `execution/_Coordination/SOW_INIT_K2_2026-09-26/`); their `MEMORY.md`
+    files follow at the undertaking's closeout. Still open from
+    Lane B: the DEL-00-03 SPEC premise, the tier-0 profile entry (K3) and
+    the API schema fields.
   - Retiring the 57 `## Remaining` sections, as App and Piping did: the owner
     opened it on 2026-09-26 as undertaking
     `HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT`. Its census and decision

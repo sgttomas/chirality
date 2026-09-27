@@ -210,7 +210,7 @@ dependency-acceptance, product, or release act is implied.
 > | REQ-07-01-008 | Hook failures for write, shell, domain, and subagent actions MUST fail closed when they are part of path or instruction-root enforcement. | `docs/CONTRACT.md` K-HOOK-1 |
 > | REQ-07-01-009 | Path containment and instruction-root protection MUST be implemented in runtime code, hooks, and policy helpers, not only prompt text. | `docs/DIRECTIVE.md` Section 2.9; `docs/PRD.md` Section 3 |
 > | REQ-07-01-010 | Tests MUST cover valid and invalid working roots, instruction-root-contained roots, outside-project tool paths, instruction-root write attempts, and symlink write attempts. | `docs/PRD.md` FR-003, FR-050, FR-051, FR-095, FR-097 |
-> | REQ-07-01-011 | ASSUMPTION: The implementation should expose the validation behavior through `/api/working-root/validate` and reuse the same normalized root for tree, scan, chat session, scaffold, and contract APIs. | `docs/PRD.md` Section 7.1; `docs/SPEC.md` API endpoints table |
+> | REQ-07-01-011 | ASSUMPTION: The implementation should expose the validation behavior through `/api/working-root/validate` and reuse the same normalized root for tree, scan, chat session, and document views (SCA-APP-011 retired the scaffold and deliverable contract routes). | `docs/PRD.md` Section 7.1; `docs/SPEC.md` API endpoints table |
 >
 
 ### CLM-012 — Standards
@@ -317,7 +317,7 @@ dependency-acceptance, product, or release act is implied.
 >    - Source: `docs/PRD.md` Section 7.1; `docs/SPEC.md` Section 1.2.
 >
 > 4. Normalize and bind the accepted project root.
->    - Store the accepted root as the active `projectRoot` for file tree, scope scan, chat session, scaffold, and contract APIs.
+>    - Store the accepted root as the active `projectRoot` for file tree, scope scan, chat session, and document views (SCA-APP-011 retired the scaffold and deliverable contract routes).
 >    - ASSUMPTION: downstream API reuse should consume the same normalized root object or equivalent canonical string.
 >    - Source: `docs/PRD.md` Section 7.1.
 >
@@ -437,7 +437,7 @@ dependency-acceptance, product, or release act is implied.
 >
 > | Principle | Guidance | Source |
 > |---|---|---|
-> | Validate before use | Treat working-root validation as a gate before file tree, scan, chat session, scaffold, and contract APIs consume the root. | `docs/PRD.md` Section 7.1 |
+> | Validate before use | Treat working-root validation as a gate before file tree, scan, chat session, and document views consume the root (SCA-APP-011 retired the scaffold and deliverable contract routes). | `docs/PRD.md` Section 7.1 |
 > | Deny beats allow | A path-containment or instruction-root denial must override permissive SDK modes, user prompts, persona text, or tool availability. | `docs/PRD.md` Section 3; `docs/CONTRACT.md` K-PERM-1 |
 > | Code owns the boundary | Prompts may explain safety posture, but enforcement belongs in runtime code, path helpers, hooks, and policy checks. | `docs/DIRECTIVE.md` Section 2.9; `docs/PRD.md` Section 3 |
 > | Separate read policy from write policy | Instruction-root reads may be governed by explicit policy, but ordinary writes under the instruction root are blocked. | `docs/PRD.md` FR-051; `docs/SPEC.md` Section 1.1 |

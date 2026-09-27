@@ -1,0 +1,5 @@
+$ PYTHONDONTWRITEBYTECODE=1 python3 projects/pec/execution/_Coordination/SOW_INIT_K2_2026-09-26/apply_k2_c8.py --repo /Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-d103-act --candidates projects/pec/execution/_Coordination/SOW_INIT_K2_2026-09-26/addons/C8   (cwd: repository root)
+PLAN projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_DEPENDENCIES.md
+WRITE projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_DEPENDENCIES.md
+CHECK target byte-exact; write set = grant (0 created, 1 modified, 0 removed under projects/pec outside the run root); pinned 3/3 unchanged
+exit=0
