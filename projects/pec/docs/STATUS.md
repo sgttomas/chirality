@@ -306,8 +306,10 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     replaced the `AGENTS.md` paragraph (run root
     `execution/_Coordination/REMAINING_RETIREMENT_D-PEC-99_2026-09-26/`).
     Still open from it: the 71 unselected evidence inquiries stay in the
-    exhibit until steering selects one, and the 12 Scope of Work
-    carry-forwards are absorbed by the S1, S2 and S4 SOW-currency packets.
+    exhibit until steering selects one; S2 absorbed its four Scope of Work
+    carry-forwards (`D-PEC-100`, PR #979), and S1 and S4 absorb the other
+    eight. The undertaking's receipt is
+    `execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT/RECEIPT.md`.
 
   These are organized in the work graph
   `execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md`.
