@@ -31,7 +31,7 @@
 5. **No release process exists for PEC v2** (DEL-10-13 CON-004): before any reliance-advertising release, the owner may name who performs the release and advertisement act.
 6. **DEL-10-02's C-08 wording** ("unconfirmed" against `D-PEC-62`) belongs to S1; the DEL-10-13 contract relies on neither reading.
 7. **Later-revision notes (no change now; bytes are ruled).** Verifier Note 2: bind REQ-016's lifecycle owner and owner-ruled-packet owner in a claim REQ-016 cites (and the proposal's QA 21 row for DEL-08-06 REQ-015 lists CLM-002, which resolves through CLM-012). Verifier Note 4: DEL-08-06 AC-005/VER-005 do not name "unreachable" as its own case; production tests may add it.
-8. **Base movement.** If `origin/main` moves again before merge, re-fetch, merge (no rebase), and rerun `verify_k2_quotes.py` and `verify_k2_state_claims.py`; stop and report if a pinned file or quoted locus changed. At `3e861f53c` nothing pinned or quoted had changed.
+8. **Base movement.** If `origin/main` moves again before merge, re-fetch, merge (no rebase), and rerun `verify_k2_quotes.py` and `verify_k2_state_claims.py`; stop and report if a pinned file or quoted locus changed. At `3e861f53c` and at `7004eaeda` (both merged in) nothing pinned or quoted had changed.
 
 ## Rollback
 

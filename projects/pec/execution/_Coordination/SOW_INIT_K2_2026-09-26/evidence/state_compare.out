@@ -13,3 +13,8 @@ IDENTICAL harness pre/final
 IDENTICAL receipts pre/final
 IDENTICAL closure stdout pre/final (command echo line excluded)
 IDENTICAL closure_summary pre/final
+IDENTICAL strict pre/final2
+IDENTICAL harness pre/final2
+IDENTICAL receipts pre/final2
+IDENTICAL closure stdout pre/final2 (command echo line excluded)
+IDENTICAL closure_summary pre/final2

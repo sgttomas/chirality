@@ -1,6 +1,6 @@
 # VALIDATION — D-PEC-103 act (SOW_INIT_K2_2026-09-26)
 
-The proposal's "Finite verification" table, run in the act worktree from the repository root with `PYTHONDONTWRITEBYTECODE=1` (CPython 3.13.7). Each command, its exit code and its output are in `evidence/` (file named in the last column). "Base" is fetched `origin/main` `d385b6a19` until the merge of `3e861f53c`, after which it is `3e861f53c`.
+The proposal's "Finite verification" table, run in the act worktree from the repository root with `PYTHONDONTWRITEBYTECODE=1` (CPython 3.13.7). Each command, its exit code and its output are in `evidence/` (file named in the last column). "Base" is fetched `origin/main`: `d385b6a19` at the act, then `3e861f53c` and finally `7004eaeda`, each merged in without a rebase.
 
 | # | Check | Result | Evidence |
 |---|---|---|---|
@@ -30,6 +30,8 @@ The proposal's "Finite verification" table, run in the act worktree from the rep
 ## Base movement
 
 During the act `origin/main` moved from `d385b6a19` to `3e861f53c` (PR #983). `git diff --stat d385b6a19 3e861f53c -- projects/pec _DomainEngines tools workflows docs AGENTS.md agents` is empty: only Piping files changed, and no pinned file or quoted locus. The base was merged into the branch (`c0d4098ca`, no rebase), and the quote and state-claim verifiers, cited IDs, old-S2 scan, validators, checklists, strict registers, harness, receipts and closure were rerun at that head with the results above.
+
+After PR #992 was opened, `origin/main` moved again, to `7004eaeda` (PR #991). Again `git diff --name-only 3e861f53c 7004eaeda -- projects/pec _DomainEngines tools workflows docs AGENTS.md agents` is empty: Piping only. It was merged as `c4ae46f6e` (no rebase). At that head the quote verifier (`RESULT PASS 137/137`), the state-claim verifier (`RESULT PASS 482/482`) and both validators (`PASS format=SOW_V1`) passed again; containment and `git diff --check` were unchanged (`evidence/rebase2_7004eaeda.out`). Strict registers, harness, receipts and closure were identical to the pre-act run (`*_final2.*`, `state_compare.out`).
 
 ## Independent verification
 
