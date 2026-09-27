@@ -34,7 +34,7 @@ PRE = "5087e581b00557cac9c245c543d0a690ed2a9fc992a96d8e60769f8a44baeb63"
 POST = "609aa807710feef11bf8506324cb2a79996f3d6ce5a6eb623ec9516e3ac65693"
 # _STATUS.md is deliberately not pinned: add-on S, if selected, may already have run.
 PINNED = {
-    D13 + "ScopeOfWork.md": "02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d",  # option A's postimage: C8 runs after A
+    D13 + "ScopeOfWork.md": "c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633",  # option A's postimage: C8 runs after A
     D13 + "Dependencies.csv": "334b9edcf1af9334ccae91136cc88e6b4cdc2abf075a3db1a1d5b2c50e7a6e7a",
     E + "_Decomposition/Deliverables.csv": "94ee5d182ae99092324505a72bf2f3b0581f85c0bae6c693214cfef709179805",
 }

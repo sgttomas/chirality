@@ -36,8 +36,8 @@ D86 = E + "PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/"
 D13 = E + "PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/"
 # target -> postimage SHA-256 (preimage: absent)
 TARGETS = {
-    D86 + "ScopeOfWork.md": "120b61c098bee2d24761cb90be731beedbafe8cbb30b8a611ce16d5ba54f632d",
-    D13 + "ScopeOfWork.md": "02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d",
+    D86 + "ScopeOfWork.md": "aecc513161c1e8a5a984dc2f7878b79783170adc1042fb91e816dc649ef50826",
+    D13 + "ScopeOfWork.md": "c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633",
 }
 # Read-only files the act re-verifies (values at origin/main 125cfacc1; the first
 # five equal at the pin 189f205ff).

@@ -1,6 +1,6 @@
 # D-PEC-103 — First Scope of Work contracts for DEL-08-06 (agent tool-call query surface) and DEL-10-13 (reliance-advertisement gate) — proposal
 
-Status: **DRAFT PROPOSAL / AWAITING_RULING**. **The number D-PEC-103 is provisional.** It becomes final only when HELP_HUMAN publishes this packet in `_DECISIONS/` with its register row. At `origin/main` `947075c9a` the register's last row is `D-PEC-101`.
+Status: **DRAFT PROPOSAL / AWAITING_RULING**. **The number D-PEC-103 is provisional.** It becomes final only when HELP_HUMAN publishes this packet in `_DECISIONS/` with its register row. At `origin/main` `947075c9a` and `e548d4cfa` the register's last row is `D-PEC-101`.
 
 Prepared by WORKING_ITEMS (Type 1) under HELP_HUMAN for the PEC loop, 2026-09-26 (session date):
 - undertaking `HELP-HUMAN-PEC-20260925-POST-SCA005`, work-graph node K2;
@@ -90,7 +90,7 @@ One bound script does this in one run, with no lifecycle change.
 | Outputs | tool definitions over the read API; the `agent` access-class binding; tests (the register's three-part artifact list) | the gate harness; the gate record (the register's "Gate harness + gate record") |
 | Checklist items | 17 | 19 |
 | Quotes / claims checked | 61 quotes (+2 file checks) / 148 claims | 72 quotes (+2 file checks) / 334 claims |
-| Size / SHA-256 | 249 lines, `120b61c098bee2d24761cb90be731beedbafe8cbb30b8a611ce16d5ba54f632d` | 253 lines, `02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d` |
+| Size / SHA-256 | 249 lines, `aecc513161c1e8a5a984dc2f7878b79783170adc1042fb91e816dc649ef50826` | 253 lines, `c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633` |
 
 Both follow the form of the most recent first contracts (`DEL-02-08`, `DEL-02-09`):
 - the same frontmatter keys and the six required headings;
@@ -137,7 +137,7 @@ Both follow the form of the most recent first contracts (`DEL-02-08`, `DEL-02-09
 | 08-06 CON-003 | Dependency coverage: the `agent` class also admits deltas, gate verdicts, decision-slate and presence reads, which have no edges; `D-PEC-101` finding 3 left the DEL-04-03 edge as an amend | the dependency-register owning workflow |
 | 08-06 CON-004 | Whether gate-verdict, decision-slate and presence responses carry the reliance envelope | under DEL-04-03, DEL-08-03 and the API schema |
 | 10-13 CON-001 | The C-08 standing-node classification: "not made at `125cfacc1`"; every requirement holds under either answer | owner classification (question 4, add-on C8) or a later instrument |
-| 10-13 CON-002 | Whether DEL-02-07's suite is among "the PKG-02 parser fixture suites" (`D-PEC-101` finding 2). REQ-005 composes what the ACTIVE rows name at evaluation time, so it holds either way | an owner-ruled dependency-register amend |
+| 10-13 CON-002 | Whether DEL-02-07's suite is among "the PKG-02 parser fixture suites" (`D-PEC-101` finding 2). REQ-005 composes what the ACTIVE rows name at the commit of the candidate under evaluation, so it holds either way | an owner-ruled dependency-register amend |
 | 10-13 CON-003 | The contracts of DEL-03-04, DEL-04-03, DEL-04-05 and DEL-10-02 predate the gate; DEL-04-03's lacks SOW-097. Missing evidence counts as not passed | S4 and S1; ordering is the graph's and owner's |
 | 10-13 CON-004 | No accepted release process for PEC v2, and no defined act of "advertising". The contract's reading that release and advertisement are the owner's acts is labelled an interpretation | owner, before any reliance-advertising release |
 | 10-13 TBD-006 | Who produces the seeded-feed evidence (seeds the feeds and runs the coverage statements) and the seeded-case set. The register attributes the coverage-honesty evidence to DEL-04-05 but assigns the seeding to no one; the harness seeds nothing unless this TBD, once fixed, assigns it | production packet or owner |
@@ -185,7 +185,7 @@ Neither candidate names DEL-08-02, DEL-08-04 or DEL-10-03 other than by delivera
 
 ## Options
 
-- **A — write the two exact contracts, no lifecycle change (recommended).** One act on **2 product paths**, both created. Nothing is modified or removed. No `_STATUS.md`, register, context, reference, dependency or `MEMORY.md` file is touched. Add-ons S, M and C8 are independent of one another.
+- **A — write the two exact contracts, no lifecycle change (recommended).** One act on **2 product paths**, both created. Nothing is modified or removed. No `_STATUS.md`, register, context, reference, dependency or `MEMORY.md` file is touched. Add-ons S, M and C8 are independently selectable (C8 runs after A and not concurrently with S; see its section).
 - **A + S** — as A; then, outside the scope-of-work run, the `OPEN → INITIALIZED` status act on both deliverables (2 modified paths), on the `D-PEC-63` §3.2 / `D-PEC-98` pattern.
 - **A + M** (combinable) — as A, plus two new `MEMORY.md` files at the undertaking's closeout (2 created paths).
 - **A + C8** (combinable) — as A, plus the owner's C-08 classification of DEL-10-13, recorded in its `_DEPENDENCIES.md` (1 modified path, human-owned section).
@@ -204,8 +204,8 @@ After this ruling and its register row are merged and observed on fetched `origi
 
 | Item | Path | Preimage | Postimage SHA-256 |
 |---|---|---|---|
-| A | `PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/ScopeOfWork.md` | absent (new file) | `120b61c098bee2d24761cb90be731beedbafe8cbb30b8a611ce16d5ba54f632d` |
-| A | `PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/ScopeOfWork.md` | absent (new file) | `02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d` |
+| A | `PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/ScopeOfWork.md` | absent (new file) | `aecc513161c1e8a5a984dc2f7878b79783170adc1042fb91e816dc649ef50826` |
+| A | `PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/ScopeOfWork.md` | absent (new file) | `c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633` |
 | S (if selected) | `PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_STATUS.md` | `73e21846186b3ab46d4d11042ecb2bb00d0c69a0d7b4fa70734c75e65a892511` | `75366b6b8a0050c520ab583be927da3960d21df0b8cd3011668b2047db89a127` (`{D}` = 2026-09-26) |
 | S (if selected) | `PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_STATUS.md` | `c7a5705d7203a26f525317e85fa068d29cfeb49b8686eab1b5cd3e782e22543b` | `3771d5262b8f9044a3dbed81af0032a155ec12e876ec90c1f8253a8e5237e567` (`{D}` = 2026-09-26) |
 | M (if selected) | `PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/MEMORY.md` | absent (new file) | template instance with slots (below) |
@@ -345,7 +345,7 @@ QA 21 hand resolution (exclusions whose owners are not deliverables; the tool ch
 | Contract | Requirement → owners | Cited claim |
 |---|---|---|
 | DEL-08-06 | REQ-014 → 23 deliverable owners (tool-checked) | CLM-011 |
-| DEL-08-06 | REQ-015 → token mechanism: the §16.6 owner ruling; profile entry: the tier-0 owner; enabling: the consumer; advertising reliance: the human release act after the §12 gate; API schema fields: the later D-PEC source packet (§B8) | CLM-012, CLM-013, CLM-002 |
+| DEL-08-06 | REQ-015 → token mechanism: the §16.6 owner ruling; profile entry: the tier-0 owner; enabling: the consumer; advertising reliance: the separate owner act after the §12 gate (the `pec.yaml` human gate, CLM-013); API schema fields: the later D-PEC source packet (§B8) | CLM-012, CLM-013, CLM-002 |
 | DEL-10-13 | REQ-015 → deliverable owners (tool-checked) | CLM-009 |
 | DEL-10-13 | REQ-013 → release, tagging, publishing and advertisement acts: the human owner (labelled interpretation) | CLM-010 |
 | DEL-10-13 | REQ-016 → C-08 classification: the owner; register amends: an owner-ruled packet; lifecycle: `_STATUS.md` | CLM-012, CLM-013, CLM-016 |
@@ -370,12 +370,19 @@ The method's independent verification is a separate `MODE=VERIFY` run, read-only
 
 | Verdict | Scope | Result | Outcome |
 |---|---|---|---|
-| `VERIFIER_VERDICT_01.md` | `MODE=VERIFY`, DEL-08-06 (`31d0aa6e…d036`) | FAILED: 1 blocking (B-1, failure behaviour contradicted pass-through), 3 non-blocking, 7 notes | all repaired by the author; candidate now `120b61c0…632d` |
-| `VERIFIER_VERDICT_02.md` | `MODE=VERIFY`, DEL-10-13 (`23f6505e…f182`) | PASS WITH NOTES: 4 non-blocking, 7 notes | all repaired by the author; candidate now `02fc0c16…3a1d` |
+| `VERIFIER_VERDICT_01.md` | `MODE=VERIFY`, DEL-08-06 (`31d0aa6e…d036`) | FAILED: 1 blocking (B-1, failure behaviour contradicted pass-through), 3 non-blocking, 7 notes | actionable findings repaired by the author (N-4, N-6, N-7 recorded); candidate then `120b61c0…632d` |
+| `VERIFIER_VERDICT_02.md` | `MODE=VERIFY`, DEL-10-13 (`23f6505e…f182`) | PASS WITH NOTES: 4 non-blocking, 7 notes | all repaired by the author; candidate then `02fc0c16…3a1d` |
 | `VERIFIER_VERDICT_03.md` | packet review (draft, scripts, tests, hashes, containment) | PASS WITH NOTES: 2 non-blocking, 9 notes | all repaired or recorded |
-| `VERIFIER_VERDICT_04.md` | fresh backcheck of every repair, on the final head | see that file | see that file |
+| `VERIFIER_VERDICT_04.md` | fresh backcheck of every repair (at `196074cdf`) | PASS WITH NOTES: nothing blocks; 4 non-blocking, 12 notes | WORKING_ITEMS made the wording repairs itself (one phrase each, disclosed below); candidates now `aecc5131…0826` and `c7743ee2…6633`; note 7 recorded |
+| `VERIFIER_VERDICT_05.md` | fresh backcheck of the post-verdict-04 edits, on the final head | see that file | see that file |
 
 Each verdict file carries the reviewer's report and the manager's dispositions. The verifiers reviewed and did not repair.
+
+**Manager wording repairs after verdict 04 (disclosed).** WORKING_ITEMS changed these phrases itself, each by an exact one-occurrence replacement:
+- DEL-08-06: CON-003 "admits a tool definition"; REQ-005 adds "(a refusal the service returns is not an API response to the query)" and cites CON-004 alone; CLM-012 labels the release-gate reading "as an interpretation and not a ruling".
+- DEL-10-13: TBD-006 adds that assigning seeding to this deliverable would need a revision of this contract, because REQ-017 limits its writes to its own gate records; TBD-007 "beyond the minimum REQ-004 sets"; AC-018 and VER-018 "executing test or review record"; the AC-004 matrix row lists the degraded-without-signal and no-degraded-case evidence.
+
+The quote and claim files did not need to change.
 
 ## Administrative grant
 
