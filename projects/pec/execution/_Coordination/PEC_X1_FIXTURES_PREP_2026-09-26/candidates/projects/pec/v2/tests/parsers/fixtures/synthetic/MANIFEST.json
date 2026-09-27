@@ -442,7 +442,7 @@
       "id": "SYN-RCP-05",
       "case": "unreadable-file",
       "files": [],
-      "construction": "At test time, copy receipts/marker_carrying_ledger_entry.md to the ledger path of a loop that declares the receipt-ledger surface, then remove read permission from the copy.",
+      "construction": "At test time, copy receipts/marker_carrying_ledger_entry.md to the ledger path of a loop that declares the receipt-ledger surface and make it unreadable: remove read permission where permissions are enforced; where they are not (for example when tests run as root), place a directory or a dangling symbolic link at that path instead.",
       "expect": {
         "limitation": "unreadable-file",
         "receipts_emitted": 0,
@@ -482,6 +482,7 @@
       "files": [
         "receipts/receipt_folder_diverges_from_cursor.md"
       ],
+      "construction": "At test time, place receipts/receipt_folder_diverges_from_cursor.md as the RECEIPT.md of an AgentRuns folder named SYN-RUN-RCP-FOLDER-0702, so the folder name differs from the cursor Receipt-ID SYN-RUN-RCP-CURSOR-0701.",
       "expect": {
         "cursor_receipt_id": "SYN-RUN-RCP-CURSOR-0701",
         "placement_folder": "SYN-RUN-RCP-FOLDER-0702",

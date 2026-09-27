@@ -31,7 +31,7 @@ The act it asks for is bounded: **create 34 new files under `projects/pec/v2/tes
 
 - **Targets.** Source and test files under `projects/pec/v2/**` plus the check registry `software-workflow.json`. No `ScopeOfWork.md`, `_STATUS.md` (outside add-on L), `MEMORY.md` (outside add-on M), register, dependency, context, decomposition or `docs/**` file.
 - **Lifecycle.** DEL-02-03 (`_STATUS.md` `6f94c04f…f06f`), DEL-02-08 (`4341d6b2…4fe`) and DEL-02-09 (`e67be587…1056`) are all **`INITIALIZED`** at `6c6cc1b00`. None is `CHECKING` or `ISSUED`, so nothing stops the packet.
-- **What the method implies.** Committing fixture suites that the three contracts name as outputs (DEL-02-08 OUT-002/OUT-003, DEL-02-09 OUT-002, DEL-02-03 OUT-003) is production work in those deliverables. Root `docs/SPEC.md` §3.3 (`feb5e79c…109e`) lists `INITIALIZED → IN_PROGRESS` for WORKING_ITEMS "when semantic step is skipped", and `IN_PROGRESS` as the state in which "Human or WORKING_ITEMS begins work". So the method implies the production-start transition for all three. It is **not** assumed: option A changes no `_STATUS.md`, and the transition is offered as **add-on L** (question 4), on the `D-PEC-85` pattern (a production-start `INITIALIZED → IN_PROGRESS` at actual start, after fresh checks).
+- **What the method implies.** Committing fixture suites that the three contracts name as outputs (DEL-02-08 OUT-002/OUT-003, DEL-02-09 OUT-002, DEL-02-03 OUT-003) is production work in those deliverables. Root `docs/SPEC.md` (`feb5e79c…109e`) §3.2 gives `IN_PROGRESS` the entry "Human or WORKING_ITEMS begins work", and §3.3 lists `INITIALIZED → IN_PROGRESS` for WORKING_ITEMS "when semantic step is skipped". So the method implies the production-start transition for all three. It is **not** assumed: option A changes no `_STATUS.md`, and the transition is offered as **add-on L** (question 4), on the `D-PEC-85` pattern (a production-start `INITIALIZED → IN_PROGRESS` at actual start, after fresh checks).
 - **Dependency rows.** Each deliverable has one ACTIVE `PREREQUISITE` row on DEL-01-01 (`DEP-02-03-003`, `DEP-02-08-003`, `DEP-02-09-003`) at `SatisfactionStatus` `PENDING`. Under `projects/pec/AGENTS.md` §"Selection and decisions" such a row blocks work only when the work needs its target. The fixtures need no record-tier type: the goldens are expectations, not typed output (below). Parser production (each OUT-001) does need it; that is the later packets' concern.
 
 ### Smallest honest scope: why no golden states parser output
@@ -39,28 +39,30 @@ The act it asks for is bounded: **create 34 new files under `projects/pec/v2/tes
 The brief says the parsers are later packets and asks for the smallest honest scope if a fixture cannot be meaningful without parser code. A golden that stated the full expected parser output would have to fix choices the three contracts leave to production: which tables are node tables and how the identity bullet is recognized (DEL-02-08 TBD-002), PR syntaxes and resolution method (TBD-003), SHA representation (TBD-007), receipt constructs and cursor recognition (DEL-02-03 TBD-002, TBD-004, TBD-007), row, bullet and heading grammars (DEL-02-09 TBD-002, TBD-005), and the output shape, which the record-tier contract types (DEL-01-01). DEL-02-08 REQ-003 and DEL-02-03 REQ-002 also require the grammar to be declared before code exists. So **no golden here states parser output**. Instead each golden expectation is one of two tiers:
 
 - **`fixed`** — the contract itself fixes the expectation for this case, so any conforming parser must produce it. Examples: DEL-02-08 AC-005 (terminal node `F1` declared `ACTIVE` while its PR is merged, with no completion, liveness or lag claim); AC-006 (declared identity, never the folder); DEL-02-03 AC-017 (Receipt-ID from the cursor field; FC-2 and FC-3 absences are coverage limits, never nonconformance); DEL-02-09 AC-004 (a dated heading carrying only decision identifiers or parenthesized prose tokens yields run-ID-unavailable).
-- **`observed`** — a content-minimal value that occurs in the pinned blob and that a declared grammar may or may not yield. If the parser yields the fact, its value must equal this one; if the declared grammar cannot yield it, the parser must mark it unavailable (DEL-02-08 REQ-009, DEL-02-03 REQ-004, DEL-02-09 REQ-007).
+- **`observed`** — a content-minimal value that occurs in the pinned blob and that a declared grammar may or may not yield; if the declared grammar cannot yield it, the parser must mark it unavailable (DEL-02-08 REQ-009, DEL-02-03 REQ-004, DEL-02-09 REQ-007).
+
+In both tiers every `source` value is **the token exactly as cited in the blob**, not a parser value. A parser that yields the fact yields the value its declared representation maps from that token. For example, a relative link becomes a normalized repository-relative path (DEL-02-09 REQ-003); a date takes the grammar's form (REQ-005); and a receipt token or a Parent-Receipt such as `none` takes whatever representation DEL-02-03 TBD-007 settles. So the goldens fix which cited token a fact comes from, not how it is represented. The tier fixes only whether yielding it is obligatory. `expect` holds two kinds of entry. Fixture-local outcome labels (such as `form`, `generation`, `derived_claims`, or a synthetic `limitation`) name the outcome the contract requires in plain words; they are not an output vocabulary, and each parser packet maps them to its output. Fixture descriptors (`anchor_line`, the 1-based line of the construct in the blob, and `equals_folder`) locate or describe the case and are never parser output. The test module's docstring states this, and the grounding test checks every `anchor_line` against its source values.
 
 Facts that depend on a grammar choice are left out and listed for the parser packets: node lists, node counts, per-state counts and non-terminal node states; DEL bindings, SHAs and paths in graph cells; `Owner-Direction`/`Model-Attribution` presence; which ledger entries the marker governs; Examined-Through ancestry (DEL-02-03 TBD-008); MEMORY entry and row counts, non-run dated headings, and code-span paths as link targets. The synthetic manifest follows the same rule: the drafter removed 33 grammar-dependent expectations (mostly counts) at the manager's direction and kept only counts the case fixes by construction (for example `nodes_emitted: 0` for a graph with no table).
 
-What the X1 tests can then check without any parser is the fixture itself: every pin resolves through read-only plumbing and is on integrated history; every class's tree shape holds at its pin; every golden `source` value occurs in its pinned blob; every golden is content-minimal; no source is copied into PEC's tree; the synthetic set covers every contract minimum; every record binds a REQ, an AC and a VER. These implement **the fixture-side part** of DEL-02-03 VER-017, DEL-02-08 VER-016/VER-017 and DEL-02-09 VER-014. The golden tests that run each parser over these fixtures, and every other VER, belong to the parser packets. No AC is claimed as met by X1.
+What the X1 tests can then check without any parser is the fixture itself: every pin resolves through read-only plumbing and is on integrated history; every class's tree shape holds at its pin; every golden `source` value occurs in its pinned blob; every golden is content-minimal; no source is copied into PEC's tree; the synthetic set covers every contract minimum; every record binds a REQ, an AC and a VER. These implement **only the fixture-side part** of the VER items `TEST_TO_VERIFICATION` names: DEL-02-03 VER-016/VER-017, DEL-02-08 VER-016/VER-017 and DEL-02-09 VER-014. The mapping test (DEL-02-03 VER-013, DEL-02-08 VER-020, DEL-02-09 VER-016) implements only the mapping mechanism, since those items require a test for every VER and the parser tests do not exist yet. DEL-02-03 VER-017's clause on the absence of any `## Remaining` read is met by inspection of the module's file access, not by a scanning test, in keeping with the carried constraint. The golden tests that run each parser over these fixtures, and every other VER, belong to the parser packets. No AC is claimed as met by X1.
 
 ### The candidates
 
 | Group | Files | What they are |
 |---|---|---|
 | Registration | `software-workflow.json` (modified) | New check `v2-parsers` (`python3 -m unittest discover -s v2/tests/parsers -p test_*.py`, cwd `.`) and path rule `["v2/tests/parsers/**", "software-workflow.json"] → v2-parsers`. Nothing else changes; the `v2-core-posture` rule the posture checker asserts is byte-identical. |
-| Test module | `v2/tests/parsers/test_parser_fixture_integrity.py` | Ten stdlib-only tests with an exact `TEST_TO_VERIFICATION` map (the `test_store_lifecycle.py` pattern). One Git call site, allowlisted to `cat-file`, `ls-tree`, `rev-parse`, `merge-base` and `config --get`, run with `GIT_NO_LAZY_FETCH=1`, `GIT_NO_REPLACE_OBJECTS=1`, `GIT_TERMINAL_PROMPT=0`, `GIT_OPTIONAL_LOCKS=0`. No write call (checked by an AST test). |
+| Test module | `v2/tests/parsers/test_parser_fixture_integrity.py` | Ten stdlib-only tests with an exact `TEST_TO_VERIFICATION` map (the `test_store_lifecycle.py` pattern). One Git call site, allowlisted to `version`, `cat-file`, `ls-tree`, `rev-parse`, `merge-base` and `config --get`, run with `GIT_NO_LAZY_FETCH=1`, `GIT_NO_REPLACE_OBJECTS=1`, `GIT_TERMINAL_PROMPT=0`, `GIT_OPTIONAL_LOCKS=0`. Before the first object read it requires Git 2.44 or later, a non-shallow clone and no partial-clone filter. An AST test finds no write, file-creating, copying, permission-changing or process-spawning call other than the one `subprocess.run`. |
 | Pinned fixtures | `fixtures/pinned/MANIFEST.json`; `fixtures/pinned/goldens/{FC-1,FC-2,FC-3,FX-PEC-0}.json` | 2 template pins, 17 source pins, 3 tree records, 65 expectations (30 `fixed`, 35 `observed`). |
 | Synthetic fixtures | `fixtures/synthetic/MANIFEST.json`; 27 Markdown files under `fixtures/synthetic/{work_graph,memory,receipts}/` | 24 cases, 21 file-backed and 3 constructed at test time. |
 
 Layout choices this packet makes, since it is the first PKG-02 test packet: the suite root is `v2/tests/parsers/` (as `v2/tests/config/` and `v2/tests/storage/` hold theirs), fixtures sit under it (the `v2/tests/config/fixtures/` pattern), and the parser packets add their tests to the same `v2-parsers` check. No synthetic file uses a canonical feed name (`WORK_GRAPH.md`, `MEMORY.md`, `RECEIPT.md`, `LOOP_RECEIPTS.md`), because other tools and name-based discovery glob those names (SCA-005 risk R-09); the parser tests copy them into place at test time.
 
-**Golden format and threshold (fixes DEL-02-08 TBD-006, DEL-02-03 TBD-006 and DEL-02-09 TBD-007).** The contracts leave the golden format, the pinned MEMORY blobs and "the length threshold for the no-source-text assertion" to this packet. Proposed, subject to question 3:
+**Golden format and threshold.** DEL-02-03 TBD-006 and DEL-02-09 TBD-007 leave the golden format, the pinned blobs and the length threshold for the no-source-text assertion to "their own packet", which DEL-02-03 names as graph node X1. DEL-02-08 TBD-006 says only that they are "fixed by no accepted source", and quotes the design note's "a small length threshold". This packet proposes to settle all three for the fixture suites, subject to question 3:
 
 - Golden format: the schemas `pec-v2-parser-fixtures-pinned/v1`, `pec-v2-parser-fixtures-golden/v1` and `pec-v2-parser-fixtures-synthetic/v1` that the test module enforces. Golden strings are single tokens (no whitespace, no URL, at most 200 characters); `source` strings, PR numbers, SHAs and dates are checked against the blob with word boundaries.
-- `source_run_words = 3`: a golden, and later a parser output, may hold no run of three or more consecutive whitespace-separated words that also occurs in a pinned source blob. This is the no-source-text assertion; PEC-K-10 values (identifiers, paths, SHAs, counts, states) are single tokens and never trip it.
-- `copy_run_words = 8`: no fixture file may hold an eight-word run that occurs in a pinned source blob unless the run also occurs in a shared template (the `work-graph-template.md` and `MEMORY_TEMPLATE.md` pins). Fresh fixtures may reuse template structure; the synthetic drafter's wider check over all 300 feed-named blobs at `d61981ee2` and `6c6cc1b00` found no overlap.
+- **No-source-text threshold: two words** (`source_run_words = 3`). The contracts forbid "a run of source text above the threshold". Here a run of three or more consecutive whitespace-separated words shared with a pinned source blob is above it. In plain terms: an output may repeat single words and two-word fragments of a source file, never a three-word stretch. PEC-K-10 values (identifiers, paths, SHAs, counts, states) are single tokens and never trip it. For the goldens themselves the enforced rule is stronger: every golden string is one whitespace-free token, so the run check cannot fire on them. It is kept in the policy for the parser packets to apply to parser output.
+- **No-copied-text threshold: seven words** (`copy_run_words = 8`). No fixture file may share an eight-word stretch with a pinned source blob, unless the same stretch occurs in a shared template (the `work-graph-template.md` and `MEMORY_TEMPLATE.md` pins). In plain terms: fresh fixtures may reuse the templates' headings and table headers, but no sentence from another loop's files. The synthetic drafter's wider check over all 300 feed-named blobs at `d61981ee2` and `6c6cc1b00` found no overlap; verdict 01's reviewer found none at eight words against every `.md` outside `projects/pec`.
 
 ### Fixture inventory with its bindings
 
@@ -85,11 +87,11 @@ Pins (full ids in `fixtures/pinned/MANIFEST.json`; all resolve, all equal, all u
 
 DEL-10-04's blob is one object at `d61981ee2` carrying the FC-1 run as a `## Runs` bullet and the FC-2 run as a dated section; it is pinned once, under FC-2, as the real mixed-form instance (DEL-02-09 TBD-005). Tree records: FC-1's AgentRuns run folder holds `RECEIPT.md`; FC-2's holds `EVIDENCE.md` and no `RECEIPT.md`; the App AgentRuns folder holds neither `APP-REPLAY-BOUNDARY-2026-09-23` nor `replay-session-boundary-2026-09-23`. Each binds DEL-02-03 REQ-016/-017, AC-017/-018, VER-016/-017.
 
-Bindings by requirement (the full per-expectation lists are in the goldens; `verify_x1p_bindings.py` found all 424 binding references defined in the contracts at `6c6cc1b00`):
+Bindings by requirement (the full per-expectation lists are in the goldens; `verify_x1p_bindings.py` found all 433 binding references defined in the contracts at `6c6cc1b00`):
 
 | Deliverable | Pinned expectations bind | Synthetic cases bind |
 |---|---|---|
-| DEL-02-08 | REQ-005/AC-005/VER-005 (F1 `ACTIVE` ×4 graphs); REQ-006/AC-006/VER-006 (declared identity; FC-2, FC-3 ≠ folder); REQ-008/AC-008/VER-008 (final PR #876, #873, #868 → local merge commit, `observed`); REQ-010/AC-010/VER-010 (FC-3 em-dash node suffix not emitted); REQ-016/AC-016/VER-016 (the pinned suites) | REQ-004/-006/-007/-008/-009/-010/-015/-017 with their AC and VER (SYN-WG-01..08) |
+| DEL-02-08 | REQ-005/AC-005/VER-005 (F1 `ACTIVE`, ×3 graphs: FC-1, FC-2, FC-3); REQ-006/AC-006/VER-006 (declared identity; FC-2, FC-3 ≠ folder); REQ-008/AC-008/VER-008 (final PR #876, #873, #868 → local merge commit, `observed`); REQ-010/AC-010/VER-010 (FC-3 em-dash node suffix not emitted); REQ-016/AC-016/VER-016 (the pinned suites; bound on the three FC identity expectations) | REQ-004/-006/-007/-008/-009/-010/-015/-017 with their AC and VER (SYN-WG-01..08) |
 | DEL-02-09 | REQ-001/AC-001/VER-001 (FC-2 partial coverage; DEL-01-06 zero rows); REQ-002/-003/-004/-005 with AC/VER (form, token, links, date); REQ-004/AC-004/VER-004/CON-004 (run-ID-unavailable, fixed); REQ-007/TBD-005 (DEL-10-04 mixed); REQ-014/AC-014/VER-014 | REQ-001..005/-007/-008/-014 with AC/VER, TBD-005 (SYN-MEM-01..08) |
 | DEL-02-03 | REQ-003/AC-003/VER-003 (marker, Receipt-197 fields, `observed`); REQ-004/-007 (central receipt best-effort; Gate-Outcome presence only); REQ-014/AC-015/VER-014 (EVIDENCE.md never a receipt; declared surfaces); REQ-015/AC-016/VER-015 (historical label, silence not staleness); REQ-016/AC-017/VER-016 (cursor Receipt-ID; coverage limits); REQ-017/AC-018/VER-017 | REQ-003/-004/-007/-014/-016/-017 with AC/VER (SYN-RCP-01..08) |
 
@@ -102,10 +104,11 @@ Synthetic cases: DEL-02-08 REQ-017's six (missing and duplicated identity, unrec
 - **FX-PEC-0 is PEC's own shared-development-loop surfaces and its closed historical ledger**, pinned at the observation commit `6c6cc1b00`: the registry row, the ledger, the undertaking graph and the two `MEMORY.md` files tabled above. It is the only fixture that exercises the real registry: `pec` is the only registered loop, declaring `shared-dev-loop` `live` and `loop-receipts-ledger` `historical`.
 - It pins no `_STATUS.md`, declares or relies on no profile or surface that reads `## Remaining` sections, and names no `remaining-items` surface. No manifest key, golden, synthetic file or test names them or scans for them. PEC's former `remaining-loop` undertaking profile is not a source. The retirement undertaking's graph and receipt are left out, so that no FX-PEC-0 id or value carries that undertaking's name.
 - Pinned PEC blobs mention the retired sections in their own prose. No expectation touches that prose, and PEC-K-10 keeps it out of any output.
-- Preparation checked the candidate bytes once for the word (case-insensitive, `evidence/run_main/hygiene.out`): absent. That check is a preparation step on this packet's own bytes; nothing committed repeats it.
+- Preparation checked this packet's own candidate bytes for the word, case-insensitively: absent (`evidence/run_main/hygiene.out`). The check lives in the preparation aid `run_x1p_checks.sh`, which is this packet's rerun method. No product file, fixture, test or registered check scans for the word, and nothing in PEC's feed or test surface will. If the owner's direction to scan for none extends to preparation aids, the aid's single line can be dropped without changing any candidate.
 - It departs from §B7 in one respect that the owner rules on: §B7 pinned every fixture at `d61981ee2`, where PEC had no shared-loop surfaces, only the retired shape. FC-1, FC-2 and FC-3 stay pinned at `d61981ee2` as §B7 and the contracts (DEL-02-08 AC-016, DEL-02-09 REQ-014, DEL-02-03 REQ-017) require.
 - None of the three contracts requires FX-PEC-0 (DEL-02-08 CON-004, DEL-02-09 CLM-013, DEL-02-03 CON-007). DEL-02-03 CON-007 leaves "whether PEC's closed ledger is exercised as a historical-grammar fixture" to this packet. FX-PEC-0 is therefore supplementary real-corpus evidence bound to requirements the contracts already state; it adds no output. Directed self-ingest remains DEL-10-10's (SOW-064).
-- One expectation was retiered at integration: the PEC graph's identity bullet uses the bold spelling `- **Stable run identity:**`, and DEL-02-08 TBD-002 leaves recognition of that spelling to the grammar, so its identity value is `observed`, not `fixed`.
+- One expectation was retiered at integration: the PEC graph's identity bullet uses the bold spelling `- **Stable run identity:**`, and DEL-02-08 TBD-002 leaves recognition of that spelling to the grammar, so its identity value is `observed`, not `fixed`. One fact was renamed after verdict 01: the ledger expectation on Receipt-197 is `post-marker-entry-cursor-fields`, because which entries the marker governs is a grammar choice (DEL-02-03 REQ-003, TBD-002).
+- FX-PEC-0 records bind DEL-02-08 and DEL-02-09 requirements (identity, coverage limit, run-ID-unavailable, dates) even though their CON-004 and CLM-013 add no FX-PEC-0 output. Those contracts' VER-016 and VER-014 speak of pins at `d61981ee2`. FX-PEC-0 adds real-corpus instances of requirements they already state and changes no pin they name. Question 2 covers this explicitly.
 
 ### R-05 re-read against the revision-4 vocabulary
 
@@ -125,7 +128,7 @@ Reading at `6c6cc1b00`:
 | DEL-02-08 CLM-013 still calls `c9e5cd87d` "the decomposition pin" (now `189f205ff`) | None. The synthetic graphs follow the template at `6c6cc1b00`, whose six state tokens are unchanged since `c9e5cd87d`. |
 | The re-pinned observation clause does not list the `AnticipatedArtifacts` and DL-4 loci | None for bytes. The fixture set is grounded in DEL-02-08's `AnticipatedArtifacts` cell (three fixture classes plus synthetic), found verbatim by the `D-PEC-98` verifier. |
 | DEL-02-08 L29–31 / DEL-02-09 L30–32 "…did not exist at `c9e5cd87d`" | None. |
-| "`_CONTEXT.md` and `_REFERENCES.md` name revision 1.5 and PRD v2.3" (DEL-02-08 L44, DEL-02-09 L43); since `D-PEC-101` both name revision 1.6 | None. |
+| The sentence that "`_CONTEXT.md` and `_REFERENCES.md` name revision 1.5 and PRD v2.3" (DEL-02-08 L44, DEL-02-09 L43) is true of the two file types together, not of each one (disclosed in the `D-PEC-98` ruling). At `6c6cc1b00`, after `D-PEC-101`, each `_CONTEXT.md` names revisions 1.5 and 1.6 and each `_REFERENCES.md` names 1.6 | None. |
 | (Also carried) DEL-02-08/09 still quote the prior DEL-01-01 `REQ-006` text, anchored to its old hash (`D-PEC-100` downstream consequence), and their CON-001 says DEL-01-01 does not yet type WorkGraph/WorkNode or MEMORY-sourced RunRecord evidence; the rebuilt DEL-01-01 now does | None for bytes: no golden depends on record-tier typing. It matters to the parser packets' AC-014/AC-012 review. |
 | (Also carried) DEL-02-08 TBD-004 and DEL-02-09 TBD-003 still say the profile identifiers arrive with a DEL-01-06 rebuild; the rebuilt DEL-01-06 contract and applied registry now fix them | **Bears on FX-PEC-0.** The registry expectations are bound to DEL-02-03 only, whose contract relies on those identifiers (CLM-018). No DEL-02-08/09 expectation relies on a profile identifier or asserts discovery through the registry. A later DEL-02-08/09 revision could add those bindings. |
 
@@ -143,9 +146,9 @@ Reading at `6c6cc1b00`:
 ### Pinned-reference verification
 
 - **Resolution.** `report_x1p_pins.py` at `6c6cc1b00` (`evidence/run_main/pins.md`): 19/19 pins resolve. Each commit is an ancestor of the observation commit, and each `(commit, path)` resolves to the tabled blob. Every blob is also byte-unchanged at the same path at `6c6cc1b00`, so there is no drift today. `d61981ee2` is `d61981ee2b9e36c82c6cdd28d4f3c12d3d32a69b` (PR #881 merge), an ancestor of `origin/main`. The FC-1/2/3 blob prefixes match Impact Assessment §9.3 (`ae942d99…`, `23623e2c…`, `e471421c…`, `76e618a5…`, `d25cae61…`).
-- **Goldens against blobs.** `test_golden_source_values_are_grounded_in_their_pinned_blobs` checks every `source` value against its blob with word boundaries (PR numbers as `#N` or `/pull/N`). Each `local_merge_commit` is a merge commit integrated at its pin: #876 `0b276a7f…`, #873 `c56ae4a2…`, #868 `10b672ca…`. The drafter's fact table gives the blob line numbers (drafter return, saved with the verdicts). Negative control: a changed value fails.
+- **Goldens against blobs.** `test_golden_source_values_are_grounded_in_their_pinned_blobs` checks every `source` value against its blob with word boundaries (PR numbers as `#N` or `/pull/N`). Each `local_merge_commit` is a merge commit integrated at its pin: #876 `0b276a7f…`, #873 `c56ae4a2…`, #868 `10b672ca…`. The same test checks that each merge commit's subject names the cited PR (a fixture sanity check, not the parser's resolution method, which DEL-02-08 TBD-003 leaves open). It also checks that each `anchor_line` lies in the blob with a source value at or just after it. The pinned drafter's fact table gives the blob line numbers (`evidence/drafter_returns/PINNED_DRAFTER_RETURN.md`), and verdict 01's reviewer rechecked all 70 source values and 16 anchor lines by hand. Negative controls: a changed value, a moved anchor and another PR's merge commit each fail.
 - **If a pinned commit becomes unreachable.** Four cases:
-  - **Shallow clone or partial clone.** The suite checks first. `rev-parse --is-shallow-repository` must be `false` and `config --get extensions.partialclone` must be unset. With lazy fetching disabled, a missing blob fails rather than touching the network (REQ-019/-015/-012).
+  - **Old Git, shallow clone or partial clone.** Before the first object read in any test, the suite requires `git version` 2.44 or later (earlier Git ignores `GIT_NO_LAZY_FETCH`), `rev-parse --is-shallow-repository` `false`, and `config --get extensions.partialclone` unset. With lazy fetching disabled, a missing blob fails rather than touching the network (DEL-02-08 REQ-019, DEL-02-09 REQ-015, DEL-02-03 REQ-012).
   - **Commit or blob missing from the object store.** The failing test names the pin and says: `PIN UNREACHABLE <id> (<commit>:<path>): <cause>. The fixture suite needs a full, non-shallow clone without a partial-clone filter. If the commit is gone from the canonical repository, the fixture must be re-pinned by a new owner-ruled packet; nothing re-pins automatically.`
   - **Commit no longer an ancestor of `HEAD`** (a history rewrite). The same message.
   - **In every case** nothing is skipped, and neither goldens nor pins change automatically.
@@ -164,20 +167,21 @@ PASS containment: software-workflow.json modified; new directory v2/tests/parser
 INFO affected checks: harness-self-check v2-api-contract v2-core-posture v2-loop-registry v2-parsers v2-store-guard
 PASS registered checks after the act: v2-parsers exit=0 v2-core-posture exit=0 v2-api-contract exit=0 v2-loop-registry exit=0 v2-store-guard exit=0 harness-self-check exit=0
 PASS v2-parsers verbose: 10 tests ok
-PASS bindings: RESULT PASS 424/424
+PASS bindings: RESULT PASS 433/433
 PASS pins: RESULT PASS 19/19
+PASS draft claims and quotes (two-sided): RESULT PASS 66/66
 PASS strict identical before/after, export root normalized (exit=1)
 PASS harness identical before/after, export root normalized (exit=0)
 PASS receipts identical before/after, export root normalized (exit=0)
 PASS candidate hygiene and carried-constraint word absent
 PASS fault injection: RESULT PASS 11/11
-PASS negative controls: RESULT PASS 14/14
+PASS negative controls: RESULT PASS 16/16
 OVERALL PASS
 ```
 
 - **Strict registers** (D-GOV-48): exit 1 before and after, 0 errors and 26 pre-existing `XRG-013` warnings (owner-deferred), identical output.
 - **`v2-core-posture`**: `core_tree_sha256` `dd7e1dda…6e5a` unchanged; `workflow_sha256` moves from `8ec9ba6d…8a8b` to `d55fff77…bbd`; verdict PASS.
-- **Negative controls** (`negative_controls_x1p.py`): each of 13 single mutations makes its named test fail and the unmutated copy passes. The mutations are a wrong blob id; a false `RECEIPT.md` presence; `tree_absent` on an existing folder; an ungrounded golden value; a three-word source run in a golden; a copied 12-word run in a synthetic file; a whole pinned blob copied in; a required case removed; an unlisted synthetic file; an expectation without a VER; a partial clone; a shallow clone; a test missing from the verification map.
+- **Negative controls** (`negative_controls_x1p.py`): the unmutated copy passes, and each of 15 single mutations makes its named test fail. The mutations are: a wrong blob id; a false `RECEIPT.md` presence; `tree_absent` on an existing folder; an ungrounded golden value; whitespace-separated source text in a golden (caught by the single-token rule); a copied 12-word run in a synthetic file; a whole pinned blob copied in; a required case removed; an unlisted synthetic file; an expectation without a VER; an `anchor_line` moved away from its values; another PR's merge commit; a partial clone; a shallow clone; and a test missing from the verification map. An old Git (below 2.44) could not be simulated on this host; the version gate is read from `git version`.
 - **Fault injection** (`test_apply_x1p.py`), 11 cases. Rename failure, unexpected modified file, extra file, temporary hash mismatch and a write failure after the modify each exit 1 and restore the tree exactly: created files and directories removed, modify restored. A changed pinned file, a modified target not at its preimage and an already-present new directory are each refused at preflight. Check-only writes nothing; apply succeeds; a second run refuses. Run-root evidence written during the act is tolerated, and a bound copy outside a run root is refused.
 
 ## Options
@@ -196,13 +200,13 @@ After this ruling and its register row are merged and observed on fetched `origi
 | Path | Preimage SHA-256 | Postimage SHA-256 |
 |---|---|---|
 | `projects/pec/software-workflow.json` | `8ec9ba6dcba7ea6b935923f5b4d846b2a9ac3f3d5cc43f5e160abe0971058a8b` | `d55fff77a1d216a7b1ab78b16e3ff3f2747fb3b542a2b269367ec3afa83e0bbd` |
-| `projects/pec/v2/tests/parsers/test_parser_fixture_integrity.py` | — | `1ec0a7902c95907439d3579e2eed4308922b92ed1798cbc1eb2b42dc99d65bd3` |
+| `projects/pec/v2/tests/parsers/test_parser_fixture_integrity.py` | — | `70fc24b49aa6681ccbd6c03fbed37149b854a85be373ce23043812d9d5103203` |
 | `projects/pec/v2/tests/parsers/fixtures/pinned/MANIFEST.json` | — | `0a07807081840f55c581c36264bec76b254d1c956574c0806a014140a423a5a9` |
-| `projects/pec/v2/tests/parsers/fixtures/pinned/goldens/FC-1.json` | — | `3e93a8d7d4b6350a2268ec091d6796db1dcdf488d5025a2d18a6adb0d674d68e` |
-| `projects/pec/v2/tests/parsers/fixtures/pinned/goldens/FC-2.json` | — | `19c9a6e8fc1b55efeefa7537cfc46ff508344b34d993a613aaf3812da4fe4770` |
-| `projects/pec/v2/tests/parsers/fixtures/pinned/goldens/FC-3.json` | — | `a23725af786c9da96faf8c3b971b0ae0b4ed06c7ceb10132e6b93e81ac8efb25` |
-| `projects/pec/v2/tests/parsers/fixtures/pinned/goldens/FX-PEC-0.json` | — | `ea38966446ce5b3eb4d4ff9f4841ac96fc7b9dfa5cfb98967ac724131c43a6b1` |
-| `projects/pec/v2/tests/parsers/fixtures/synthetic/MANIFEST.json` | — | `7c9ba70561584b6a29934554fb645eb62cf6b830282b387d617b7977c84e1849` |
+| `projects/pec/v2/tests/parsers/fixtures/pinned/goldens/FC-1.json` | — | `8379b7d6bf650c7e3864449edb691e79fafd6966ce2f789c07c866cdcdcc4922` |
+| `projects/pec/v2/tests/parsers/fixtures/pinned/goldens/FC-2.json` | — | `1af4cfa4520da4fbaaf7c57924da3f733611b915c3f0dac36a3f88a7b300d860` |
+| `projects/pec/v2/tests/parsers/fixtures/pinned/goldens/FC-3.json` | — | `a02fc9722fedd1545215f9999be05eb4593417c649f304915d29bd6f403c39f7` |
+| `projects/pec/v2/tests/parsers/fixtures/pinned/goldens/FX-PEC-0.json` | — | `4adf49757bfe6e71cd07d3397fe6260acee184efabdc294b83442c4b0b1e7b5a` |
+| `projects/pec/v2/tests/parsers/fixtures/synthetic/MANIFEST.json` | — | `60b467d4a414db60fd55ef563464fcc12a3f54e74a9a5ea11560d30d846a0c8f` |
 | `…/synthetic/memory/entry_without_readable_run_token.md` | — | `38243567f072606fe5214a0e86223a32bf6c62bbe7de7a3205e2a10f7c4313cc` |
 | `…/synthetic/memory/file_without_run_index_entry.md` | — | `21891babb92e21a16637b7851a1ec1ce91e9145974baf8903788f5b0553fbf41` |
 | `…/synthetic/memory/links_in_each_form_bullet.md` | — | `29972401929b3e3bd0c83691cb001be5f7b50dbb720e49627e5cec9aaaaa39cc` |
@@ -243,25 +247,29 @@ Read-only files the act re-verifies and never writes (SHA-256 at `6c6cc1b00`):
 - `projects/pec/v2/config/loops.json` `fd342b4f29edf3bece24a8d785b4a03d1a60158e62227753e4e1fa03529f53d7`
 - `projects/pec/v2/config/loops.schema.json` `104ed64820b7a1fa6f24249cb6817653b8a624f43c52ea181ae4fd5d510cb143`
 - `projects/pec/v2/config/service_core_posture.json` and `projects/pec/v2/tools/check_service_core_posture.py` (hashes in `apply_x1p.py`)
-- the three `ScopeOfWork.md` (DEL-02-03 `c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b`, DEL-02-08 `2319661b3225aa8c48ca4a82423e0459e806373fccb67985c4c7536a843fdd26`, DEL-02-09 `eab18e17a41f9ca979a932cc0dc2ba4dea590340e4e3a8a404ffd5f3013b6f5e`) and the three `_STATUS.md` (`6f94c04f79b678082b0407f93ec9c898d988c2693c0d1e19791f5cff985cf06f`, `4341d6b2e192b3ada04a5897de94245639980d0d2048b2b8cb3202771dfe04fe`, `e67be5871d8cd0f2a02e96c76418d5e161be5d17c7e5e44c7577bf829e171056`).
+- the three `ScopeOfWork.md` (DEL-02-03 `c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b`, DEL-02-08 `2319661b3225aa8c48ca4a82423e0459e806373fccb67985c4c7536a843fdd26`, DEL-02-09 `eab18e17a41f9ca979a932cc0dc2ba4dea590340e4e3a8a404ffd5f3013b6f5e`).
 
-The act re-verifies the three `_STATUS.md` before writing. If add-on L is selected, its transition runs **after** the act script and verifier (below), so the pin holds during the act.
+The three `_STATUS.md` are not pinned by the act script, because add-on L, if selected, runs just before it. Their state is checked instead by finite-verification rows 1 and 7. Preimages at `6c6cc1b00`: DEL-02-03 `6f94c04f79b678082b0407f93ec9c898d988c2693c0d1e19791f5cff985cf06f`, DEL-02-08 `4341d6b2e192b3ada04a5897de94245639980d0d2048b2b8cb3202771dfe04fe`, DEL-02-09 `e67be5871d8cd0f2a02e96c76418d5e161be5d17c7e5e44c7577bf829e171056`. The act's write-set inventory still guarantees that the act itself writes none of them.
 
 ### Add-on L — production-start lifecycle transition (only if question 4 selects it)
 
-At actual production start of X1 — after the act has run, the registered checks have passed and the verifier has passed — WORKING_ITEMS runs, from the repository root:
+At actual production start of X1, WORKING_ITEMS runs the three commands below from the repository root. This happens after the ruling is observed on `origin/main`, after the fresh preimage, dependency and `dispatch-for-production` hold checks of finite-verification row 1 have passed (including this add-on's three targets), and immediately before the act script. This follows the `D-PEC-85` ruling, under which the transition "occurs when production actually starts, after fresh source, preimage, dependency and exact-operation hold checks". `{D}` is the act date.
 
 ```text
-zsh tools/scaffolding/write_status.sh "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars" IN_PROGRESS "WORKING_ITEMS+production-start"
-zsh tools/scaffolding/write_status.sh "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser" IN_PROGRESS "WORKING_ITEMS+production-start"
-zsh tools/scaffolding/write_status.sh "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser" IN_PROGRESS "WORKING_ITEMS+production-start"
+zsh tools/scaffolding/write_status.sh "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars" IN_PROGRESS "WORKING_ITEMS at actual D-PEC-106 X1 production start; semantic step skipped under Root docs/SPEC.md §3.3; ruling, preflights and act evidence in execution/_Coordination/X1_FIXTURES_{D}/"
+zsh tools/scaffolding/write_status.sh "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser" IN_PROGRESS "WORKING_ITEMS at actual D-PEC-106 X1 production start; semantic step skipped under Root docs/SPEC.md §3.3; ruling, preflights and act evidence in execution/_Coordination/X1_FIXTURES_{D}/"
+zsh tools/scaffolding/write_status.sh "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser" IN_PROGRESS "WORKING_ITEMS at actual D-PEC-106 X1 production start; semantic step skipped under Root docs/SPEC.md §3.3; ruling, preflights and act evidence in execution/_Coordination/X1_FIXTURES_{D}/"
 ```
 
 - **Tool.** `tools/scaffolding/write_status.sh` `0bf835f54f4bb9a78a51d0b56392a8686d1f255f06d3c2bcaf7e8665f77bece3` at `6c6cc1b00`. Recompute before use and stop on mismatch.
-- **Preimages.** The three `_STATUS.md` hashes above.
-- **Postimages.** Each file changes in exactly three ways: `**Current State:** INITIALIZED` becomes `**Current State:** IN_PROGRESS`; `**Last Updated:**` takes the act date `{D}`; and one History line is appended, `- {D} — State set to IN_PROGRESS (WORKING_ITEMS+production-start)`.
-- **Prototype.** A run on an export with `{D}` = `2026-09-26` produced `935f8885…9c43`, `17d60ae2…2abe` and `24a20b34…208e`, exit 0 ×3. The verifier checks that no other byte departs from the preimage.
-- **Meaning.** The transition records the semantic-step skip that `docs/SPEC.md` §3.3 allows and implies no acceptance, CHECKING or ISSUED. Downstream edges that require `INITIALIZED` (`DEP-03-01-010/-015/-016`, `DEP-04-05-003`) remain satisfied as maturity.
+- **Preimages.** The three `_STATUS.md` hashes above. If any differs, stop and route the exact discrepancy.
+- **Postimages.** Each file changes in exactly three ways:
+  - `**Current State:** INITIALIZED` becomes `**Current State:** IN_PROGRESS`;
+  - `**Last Updated:**` takes `{D}`;
+  - one History line is appended: `- {D} — State set to IN_PROGRESS (WORKING_ITEMS at actual D-PEC-106 X1 production start; semantic step skipped under Root docs/SPEC.md §3.3; ruling, preflights and act evidence in execution/_Coordination/X1_FIXTURES_{D}/)`.
+- **Prototype.** A run on an export with `{D}` = `2026-09-26` produced `35ba885f…34b7`, `012e905d…ce60` and `ffe81899…edb8`, exit 0 ×3. The verifier checks that no other byte departs from the preimage.
+- **Meaning.** The transition records the semantic-step skip that `docs/SPEC.md` §3.3 allows and implies no acceptance, CHECKING or ISSUED. Seven ACTIVE `PREREQUISITE` rows name these deliverables as targets with `RequiredMaturity` `INITIALIZED`, all at `SatisfactionStatus` `PENDING`: `DEP-03-01-010`, `-015` and `-016`; `DEP-04-05-003`; and `DEP-10-13-009`, `-013` and `-014`. `IN_PROGRESS` meets the `INITIALIZED` maturity those rows require. No row's `SatisfactionStatus` is written; that stays with the owning dependency workflow.
+- **If the act then fails.** The act rolls back on its own, and the three deliverables stay `IN_PROGRESS` with the history line truthful: production started. The run records the failure. If the owner then directs a walk-back, it is the file revert described under Rollback.
 - **Without L.** The three deliverables stay `INITIALIZED` while fixtures they own exist in the tree. The graph records that as an open lifecycle consequence, and the first parser packet raises it again.
 
 ### Add-on M — MEMORY rows (only if question 5 selects it)
@@ -281,7 +289,7 @@ The verifier checks that no other byte departs from the file as the earlier add-
 
 ## Generation method (binding)
 
-The act is one run of `apply_x1p.py`, **SHA-256 `815957272cf3474d5ac9efd1a03ae518a636ec7f28b3f5e593abae91aceffe0e`**. It is stdlib-only Python, prepared with CPython 3.13.7, generated by `build_apply_x1p.py` from `apply_x1p.template.py`, and copied byte for byte into the run root with the candidates:
+The act is one run of `apply_x1p.py`, **SHA-256 `ee731005e91adb90cadd62684e01cad7591c8120df27f662ab8c9bd24e213cb4`**. It is stdlib-only Python, prepared with CPython 3.13.7, generated by `build_apply_x1p.py` from `apply_x1p.template.py`, and copied byte for byte into the run root with the candidates:
 
 ```text
 PYTHONDONTWRITEBYTECODE=1 python3 projects/pec/execution/_Coordination/X1_FIXTURES_{D}/apply_x1p.py --repo <REPO_ROOT> --candidates projects/pec/execution/_Coordination/X1_FIXTURES_{D}/candidates [--check-only]
@@ -294,7 +302,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 projects/pec/execution/_Coordination/X1_FIXTUR
   - `software-workflow.json` does not hold its preimage;
   - a created target or the new directory exists;
   - a temporary sibling exists;
-  - a pinned file differs;
+  - one of the twelve pinned read-only files differs;
   - the script's directory is inside `projects/pec` but outside a run root (`projects/pec/execution/_Coordination/X1_FIXTURES_*`).
 - **Write.** Each postimage is written to `<path>.x1ptmp`, hash-checked and renamed into place, creating parent directories as needed.
   - On any failure after the first write, the script rolls back and exits 1. The failures covered are an I/O error, a hash mismatch, a write-set mismatch and a changed pinned file.
@@ -308,12 +316,13 @@ The check aids are not bound:
 | Aid | SHA-256 | Role |
 |---|---|---|
 | `test_apply_x1p.py` | `c194c7a2577c229c3200b8e91dd0334a4768610cdd781c2894aed860a3548c57` | fault injection, 11 cases |
-| `build_apply_x1p.py` / `apply_x1p.template.py` | `ef4478ca…3357` / `99cd6c9b…a80e` | regenerate the act script from the candidates at a commit |
-| `run_x1p_checks.sh` | `48d6a456a5cf448341e2526421e4167ccd27e16dd8b1dd1e6ac932331c127953` | every preparation check on pre/post exports (the rerun method) |
+| `build_apply_x1p.py` / `apply_x1p.template.py` | `b30e0caf…8e91` / `99cd6c9b…a80e` | regenerate the act script from the candidates at a commit |
+| `run_x1p_checks.sh` | `cbac0398ceaa0057b41c9dc21bcbc6b4203c58a345882f83aa6edb053de93eaf` | every preparation check on pre/post exports (the rerun method) |
 | `run_fixture_suite.sh` | `7c7559f0d203770580e768da80c910cbca1b2bfd0df124ea87041554d9e2ee02` | the candidate suite against a borrowed-object scratch repository |
 | `verify_x1p_bindings.py` | `039e4f56aa7d68a3dc3c237e3ccb41449300da43f8d4c107c8277da4733ca135` | every binding defined in its contract at a commit |
 | `report_x1p_pins.py` | `1177a02015569d4205ecd637f5ed39ebd7595d29abd3a789031279f0f76d1e61` | pinned-reference table and drift |
-| `negative_controls_x1p.py` / `.sh` | `e476c8b1…6c` / `06f8fec3…5ee` | 13 mutations plus the unmutated control |
+| `verify_x1p_claims.py` (inputs `claims/hash_claims.json`, `claims/quotes.json`) | `2fdb5ed0c2937f8215cf3ef5f6378bb8ea5d00374eff0e8c6037203f01cf5ee9` | two-sided state-claim check of every abbreviated hash the draft prints, and two-sided check of its load-bearing quotations |
+| `negative_controls_x1p.py` / `.sh` | `4629acba…07e7` / `06f8fec3…5ee` | 15 mutations plus the unmutated control |
 
 ## Finite verification
 
@@ -321,13 +330,14 @@ Run with `PYTHONDONTWRITEBYTECODE=1`, an explicit Python 3.10 or later (record t
 
 | Check | Command | Required result |
 |---|---|---|
-| 1. Preconditions | ruling and register row on fetched `origin/main`; `apply_x1p.py --check-only`; `pec_reliance_hold.py --operation dispatch-for-production` on each of the 35 targets before dispatch, and `--operation rely-for-production` before fan-in | pins as tabled; `CHECK preflight passed`; `ALLOW` everywhere; on any mismatch stop and route to the owner (no re-pin is pre-authorized) |
+| 1. Preconditions | ruling and register row on fetched `origin/main`; `apply_x1p.py --check-only`; the three `_STATUS.md` at their tabled preimages; `pec_reliance_hold.py --operation dispatch-for-production` before dispatch and `--operation rely-for-production` before fan-in, on each of the 35 targets and, where selected, add-on L's three `_STATUS.md` and add-on M's three `MEMORY.md` | pins and preimages as tabled; `CHECK preflight passed`; `ALLOW` everywhere; on any mismatch stop and route to the owner (no re-pin is pre-authorized) |
+| 1a. Add-on L (if selected) | the three `write_status.sh` commands, immediately before row 2 | exit 0 ×3; postimages as the slot rule states |
 | 2. Act | `apply_x1p.py` | exit 0; closing `CHECK targets 35/35 byte-exact; write set = grant (34 created, 1 modified, 0 removed …)` |
 | 3. Registered checks | from `projects/pec`: `v2-parsers`, `v2-core-posture`, `v2-api-contract`, `v2-loop-registry`, `v2-store-guard`, and `harness-self-check` (cwd `../..`), via `tools/software_workflow/run_registered_checks.py` or their registered commands | exit 0 each; `v2-parsers` lists the ten tests of `TEST_TO_VERIFICATION`; posture `core_tree_sha256` unchanged |
 | 4. Selection | `select_affected_checks.py software-workflow.json <changed paths>` | the six checks of row 3 |
-| 5. Bindings and pins | `verify_x1p_bindings.py <repo> HEAD <run root>/candidates`; `report_x1p_pins.py <repo> HEAD <manifest>` | `RESULT PASS 424/424`; `RESULT PASS 19/19` |
+| 5. Bindings and pins | `verify_x1p_bindings.py <repo> HEAD <run root>/candidates`; `report_x1p_pins.py <repo> HEAD <manifest>` | `RESULT PASS 433/433`; `RESULT PASS 19/19` |
 | 6. Every-PR and registers | `harness.py self-check`; `validate_pec_loop_receipts.py --repo-root .`; `validate_decomposition_registers.py --strict projects/pec/execution`, before and after | outputs identical before and after (at `6c6cc1b00`: strict exit 1 with 0 errors and 26 `XRG-013` warnings; harness and receipts exit 0) |
-| 7. Lifecycle | `git diff --name-status origin/main...HEAD -- '**/_STATUS.md'` | empty (unless add-on L ran, then exactly the three tabled files) |
+| 7. Lifecycle | `git diff --name-status origin/main...HEAD -- '**/_STATUS.md'` | empty under A; exactly the three tabled files under A + L |
 | 8. Containment | `git diff --name-status origin/main...HEAD` | the 35 paths; the run root and HELP_HUMAN's records under `execution/_Coordination/**`; L's and M's files if selected; nothing else |
 | 9. Whitespace | `git diff --check origin/main...HEAD` | clean |
 
@@ -339,7 +349,7 @@ A fresh read-only TASK that authored nothing applies `software-code-review` to t
 
 1. **Basis.** The ruling and register row are on `origin/main`, the run-root script hashes as bound and the pins match.
 2. **Byte identity.** The written files equal the tabled postimages.
-3. **Test and fixture review.** Every golden `fixed` expectation is fixed by the contract text it binds. Every `observed` value occurs in its blob and leaves the grammar choice open. No golden or synthetic `expect` pre-empts a TBD or CON. The synthetic cases meet the contract minimums without copied text. The Git helper is read-only and fails closed on shallow and partial clones.
+3. **Test and fixture review.** Every golden `source` value is an as-cited token, and no value representation is fixed. Every golden `fixed` expectation is fixed by the contract text it binds. Every `observed` value occurs in its blob and leaves the grammar choice open. No golden or synthetic `expect` pre-empts a TBD or CON. The synthetic cases meet the contract minimums without copied text. The Git helper is read-only and fails closed on shallow and partial clones.
 4. **FX-PEC-0.** It is as ruled (question 2). No manifest key, golden, synthetic file or test names or scans for the retired sections.
 5. **Containment and lifecycle.** As rows 7–8 above.
 
@@ -373,9 +383,9 @@ This proposal, and any ruling selecting A, an add-on or an amendment, grants non
 - any register, dependency, context, reference, decomposition, `_ScopeChange/**`, PRD, `AGENTS.md`, `docs/**` or foreign-project write;
 - any lifecycle change other than add-on L's single `INITIALIZED → IN_PROGRESS` per deliverable, and none under A;
 - `CHECKING`, `ISSUED`, artifact acceptance or a REVIEW gate act;
-- a resolution of any TBD or CON item, other than the golden format, pinned blobs and threshold that DEL-02-08 TBD-006, DEL-02-03 TBD-006 and DEL-02-09 TBD-007 assign to this packet;
+- a resolution of any TBD or CON item, other than the golden format, pinned blobs and thresholds for the fixture suites. DEL-02-03 TBD-006 and DEL-02-09 TBD-007 assign those to this packet; for DEL-02-08 TBD-006 this packet proposes the same settlement, subject to question 3. No value representation is settled: DEL-02-03 TBD-007, DEL-02-08 TBD-007 and the grammars' normalization stay open, because golden values are as-cited tokens;
 - a hosted-CI or Root change (F-5/X-2), or any re-pin: a pin that becomes unreachable is re-pinned only by a new owner-ruled packet;
-- any reading, writing or scanning of `## Remaining` sections or a `remaining-items` surface;
+- any reading, writing or scanning of `## Remaining` sections or a `remaining-items` surface by any product file, fixture, test or registered check (the one preparation check of this packet's own bytes is disclosed under FX-PEC-0);
 - selection of the `D-PEC-99` Part A inquiry DEL-02-03-REM-001, or an edit of the exhibit.
 
 Existing reliance-hold, dependency, lifecycle and release boundaries survive unchanged.
@@ -383,8 +393,12 @@ Existing reliance-hold, dependency, lifecycle and release boundaries survive unc
 ## Questions only the owner can answer
 
 1. **A, amend or defer.** Recommendation: **A**, the 35 exact paths in one act, with no parser code and no lifecycle change.
-2. **FX-PEC-0 redefinition.** Confirm FX-PEC-0 as PEC's own shared-loop surfaces and closed historical ledger, pinned at `6c6cc1b00` rather than §B7's `d61981ee2`. It reads no retired section, uses no retired profile, and leaves out the retirement undertaking. Recommendation: **confirm**. Without an answer, the tabled bytes apply.
-3. **Golden scope and threshold.** Confirm that the goldens record only contract-fixed and observed facts, with grammar-dependent facts left to each parser packet. Confirm the thresholds: 3 words for the no-source-text assertion (golden and, later, parser output) and 8 words, net of shared-template text, for the no-copied-text check. Recommendation: **confirm**.
+2. **FX-PEC-0 redefinition.** FX-PEC-0 becomes a fixture of PEC's own current files: its registry row, its closed receipt ledger, its undertaking graph and two `MEMORY.md` files. It is pinned at today's commit `6c6cc1b00` instead of §B7's `d61981ee2`, when PEC had none of these. It reads no retired section, uses no retired profile, and leaves out the retirement undertaking. It also gives DEL-02-08 and DEL-02-09 real-corpus examples, although their contracts do not ask for an FX-PEC-0 output. Recommendation: **confirm**. Selecting A adopts this FX-PEC-0; to drop it, choose Amend.
+3. **What the goldens record, and the two thresholds.** Each golden records, for each pinned file, the facts its contract fixes and the values a parser may pick up, as cited in the file. It records nothing that depends on how a later parser chooses to read the file, and no parser output format. The thresholds:
+   - Parser output (and each golden) may share single words and two-word fragments with a source file, never three words in a row.
+   - A fixture file may share template headings with another loop's file, never an eight-word stretch of its text.
+
+   Recommendation: **confirm** both.
 4. **Add-on L — production start.** Record `INITIALIZED → IN_PROGRESS` for DEL-02-03, DEL-02-08 and DEL-02-09 at actual X1 production start, as tabled, or leave them `INITIALIZED`. The method implies the transition, since committing contract-named fixture outputs is production work. `D-PEC-85` is the precedent. It is your decision, and this packet does not assume it.
 5. **Add-on M — MEMORY rows.** Add one row to each of the three `MEMORY.md` files at closeout, as tabled, or record the run only in the graph and central receipt. `projects/pec/AGENTS.md` allows either.
 6. **Model steer.** Keep the defaults above, or state others.
@@ -395,9 +409,9 @@ Everything ran on `git archive` exports in the session scratchpad, never on a ch
 
 - `candidates/projects/pec/…` (the 35 postimages);
 - `apply_x1p.py` (bound), `apply_x1p.template.py`, `build_apply_x1p.py`, `test_apply_x1p.py`;
-- `run_x1p_checks.sh`, `run_fixture_suite.sh`, `verify_x1p_bindings.py`, `report_x1p_pins.py`, `negative_controls_x1p.py` and `.sh`;
+- `run_x1p_checks.sh`, `run_fixture_suite.sh`, `verify_x1p_bindings.py`, `report_x1p_pins.py`, `verify_x1p_claims.py` with `claims/`, `negative_controls_x1p.py` and `.sh`;
 - `DRAFTER_BRIEF_PINNED.md`, `DRAFTER_BRIEF_SYNTHETIC.md` and `drafting_stub/` (the drafters' inputs);
-- `evidence/` (`run_main/` with every check output, `reliance_hold_preflight.out`, and the drafter returns);
+- `evidence/` (`run_main/` with every check output, `reliance_hold_preflight.out`, `addon_L_prototype.out`, and `drafter_returns/`);
 - `VERIFIER_VERDICT_NN.md` (the preparation verdicts, with dispositions).
 
 Basis at `6c6cc1b00`:
@@ -407,12 +421,12 @@ Basis at `6c6cc1b00`:
 | Root `AGENTS.md` / `agents/AGENT_WORKING_ITEMS.md` / `projects/pec/AGENTS.md` | `c8ce87ef…1dffd` / `9ae4bea2…9665` / `df9196d1…5eb8` |
 | `_Decomposition/SOFTWARE_DECOMP.md` / `Deliverables.csv` / `ScopeLedger.csv` / `ContextBudgetQA.csv` / `_LATEST.md` | `9374c21f…8eb1` / `94ee5d18…9805` / `1d24a4b8…916e` / `93b0bb07…4c7c` / `768ae4c4…a771` |
 | `docs/PRD.md` (v2.4) / Root `docs/SPEC.md` | `ae49b806…3fbe` / `feb5e79c…109e` |
-| SCA-005 `Propagation_Plan.md` / `Impact_Assessment.md` / `FEED_MODEL_V2_DESIGN_NOTE.md` | `50cd0b1d…1350` / `0bcbe9bd…39bf` / `4b9ccb9f…2d12` |
+| SCA-005 `Propagation_Plan.md` / `Impact_Assessment.md` / `FEED_MODEL_V2_DESIGN_NOTE.md` | `50cd0b1d…1350` / `0bcbe9bd…39bf` / `4b9ccb9f…12da` |
 | Work graph / `_REGISTER.md` | `1ec5719f…51ad8` / `fe2cc825…45ea` |
 | `D-PEC-96` ruling / revision 4 / amend direction | `852057f0…399e` / `4506597b…180e` / `c506732e…d3b2` |
 | `D-PEC-99` ruling / exhibit; `D-PEC-98` ruling; `D-PEC-100` ruling | `3e34403a…c989` / `69b646f8…f45e`; `039dc7e2…8361`; `13690e20…729b` |
 | DEL-02-03 / DEL-02-08 / DEL-02-09 `ScopeOfWork.md` | `c8bb9f1b…294b` / `2319661b…dd26` / `eab18e17…6f5e` |
 | `loops.json` / `loops.schema.json` / `write_status.sh` | `fd342b4f…53d7` / `104ed648…b143` / `0bf835f5…ece3` |
-| `software-test-planning` / `software-code-review` / `construct-local-work-graph` / profile / catalog | `8f36adc7…fdcfd` / `ee085d58…8bca` / `fa04e134…a4c9` / `9cc54bfb…c5b3` / `2bfa2c5f…fdb3` |
+| `software-test-planning` / `software-code-review` / `construct-local-work-graph` / profile / catalog | `8f36adc7…dfcd` / `ee085d58…8bca` / `fa04e134…a4c9` / `9cc54bfb…c5b3` / `2bfa2c5f…afb3` |
 
 Attribution: prepared by WORKING_ITEMS (Type 1) under HELP_HUMAN, node X1 of `HELP-HUMAN-PEC-20260925-POST-SCA005`, with two TASK drafters and fresh read-only reviewers as described under Method. The host reports the serving model as Opus 5.5 (`claude-opus-5-5`). The roles and the `high` reasoning effort are instruction-asserted.

@@ -66,10 +66,10 @@
       ]
     },
     {
-      "id": "FX-PEC-0.ledger.marker-governed-entry",
+      "id": "FX-PEC-0.ledger.post-marker-entry",
       "pin": "FX-PEC-0.ledger",
       "tier": "observed",
-      "fact": "marker-governed-entry-fields",
+      "fact": "post-marker-entry-cursor-fields",
       "source": {
         "receipt_id": "Receipt-197",
         "examined_through_sha": "eb56e108377c102ded295a39abcf91986da247aa",

@@ -73,6 +73,9 @@ note "$( [[ $rb -eq 0 ]] && print PASS || print FAIL ) bindings: $(tail -1 "$OUT
 python3 "$PREP/report_x1p_pins.py" "$REPO" "$C" "$PREP/candidates/projects/pec/v2/tests/parsers/fixtures/pinned/MANIFEST.json" > "$OUT/pins.md" 2>&1; rp=$?
 note "$( [[ $rp -eq 0 ]] && print PASS || print FAIL ) pins: $(tail -1 "$OUT/pins.md")"; [[ $rp -eq 0 ]] || fail=1
 
+python3 "$PREP/verify_x1p_claims.py" "$REPO" "$PREP" > "$OUT/verify_claims.out" 2>&1; rq=$?
+note "$( [[ $rq -eq 0 ]] && print PASS || print FAIL ) draft claims and quotes (two-sided): $(tail -1 "$OUT/verify_claims.out")"; [[ $rq -eq 0 ]] || fail=1
+
 # 6. after-state registers and every-PR checks identical to before
 (cd "$POST" && python3 tools/validation/validate_decomposition_registers.py --strict projects/pec/execution > "$OUT/strict_post.out" 2>&1; print "exit=$?" >> "$OUT/strict_post.out")
 (cd "$POST" && python3 tools/practitioner_harness/harness.py self-check > "$OUT/harness_post.out" 2>&1; print "exit=$?" >> "$OUT/harness_post.out")

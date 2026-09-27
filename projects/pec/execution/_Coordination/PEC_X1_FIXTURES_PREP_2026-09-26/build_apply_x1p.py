@@ -18,7 +18,7 @@ PIN = [E + "_Decomposition/SOFTWARE_DECOMP.md", E + "_Decomposition/Deliverables
        "projects/pec/v2/config/loops.json", "projects/pec/v2/config/loops.schema.json",
        "projects/pec/v2/config/service_core_posture.json", "projects/pec/v2/tools/check_service_core_posture.py"]
 for d in ("DEL-02-03_Receipts_ledger_parser_per_loop_grammars", "DEL-02-08_Work_graph_parser", "DEL-02-09_MEMORY_run_index_parser"):
-    PIN += [W + d + "/ScopeOfWork.md", W + d + "/_STATUS.md"]
+    PIN += [W + d + "/ScopeOfWork.md"]  # _STATUS.md is not pinned: add-on L, if selected, runs before the act
 targets = {}
 for f in sorted(p for p in cand.rglob("*") if p.is_file()):
     rel = f.relative_to(cand).as_posix()

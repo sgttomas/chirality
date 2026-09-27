@@ -1,15 +1,37 @@
 """Fixture-side integrity tests for the PKG-02 parser fixture suites.
 
 These tests check the fixtures themselves, not any parser: no parser exists
-yet. They implement the fixture-side part of DEL-02-03 VER-017, DEL-02-08
-VER-016 and VER-017, and DEL-02-09 VER-014. Later parser packets add the golden
-tests that run each parser over these fixtures and apply the same
-no-source-text assertion to the parser output.
+yet. Each test implements only the fixture-side part of the verification items
+TEST_TO_VERIFICATION names; the mapping test checks the mapping mechanism only.
+Later parser packets add the golden tests that run each parser over these
+fixtures and apply the no-source-text assertion to the parser output.
 
-Pinned fixtures are read only through read-only Git plumbing (cat-file,
-ls-tree, rev-parse, merge-base and config --get), with lazy fetching and
-replacement objects disabled. A pin that cannot be resolved fails the suite;
-nothing is skipped and nothing is re-pinned.
+Golden expectations. Every "source" value is the token exactly as cited in the
+pinned blob. The tier says whether a conforming parser must yield the fact
+("fixed": the contract text the expectation binds fixes it for this case) or
+may yield it ("observed": the declared grammar decides). A parser that yields
+a fact yields the value its declared representation maps from the cited token
+(for example a normalized repository-relative path for a relative link, or its
+own form for a date, a receipt token or "none"), or marks the fact unavailable.
+"expect" holds fixture-local outcome labels, which are not an output schema,
+and fixture descriptors: "anchor_line" (1-based line of the construct in the
+blob) and "equals_folder" (the cited identity equals its folder name) locate
+or describe the case and are never parser output fields.
+
+Thresholds. A run of words is a sequence of whitespace-separated tokens. The
+no-source-text threshold is policy.source_run_words - 1 words: a run of
+source_run_words or more words shared with a pinned source blob is above it.
+For goldens the enforced form of that rule is stronger: every golden string is
+a single whitespace-free token. The no-copied-text threshold is
+policy.copy_run_words - 1 words, net of runs that also occur in a shared
+template.
+
+Pinned fixtures are read only through read-only Git plumbing (version,
+cat-file, ls-tree, rev-parse, merge-base and config --get), with lazy fetching
+and replacement objects disabled, and only after the repository is shown to be
+a full clone under a Git that honours GIT_NO_LAZY_FETCH (2.44 or later). A pin
+that cannot be resolved fails the suite; nothing is skipped and nothing is
+re-pinned.
 """
 
 from __future__ import annotations
@@ -33,7 +55,8 @@ PINNED_SCHEMA = "pec-v2-parser-fixtures-pinned/v1"
 GOLDEN_SCHEMA = "pec-v2-parser-fixtures-golden/v1"
 SYNTHETIC_SCHEMA = "pec-v2-parser-fixtures-synthetic/v1"
 
-GIT_ALLOWED = ("cat-file", "ls-tree", "rev-parse", "merge-base", "config")
+GIT_ALLOWED = ("version", "cat-file", "ls-tree", "rev-parse", "merge-base", "config")
+MIN_GIT = (2, 44)
 GIT_ENV = {
     "GIT_NO_LAZY_FETCH": "1",
     "GIT_NO_REPLACE_OBJECTS": "1",
@@ -95,7 +118,11 @@ REQUIRED_SYNTHETIC_CASES = {
     ),
 }
 
-WRITE_CALLS = {"write_text", "write_bytes", "unlink", "rmtree", "remove", "rename", "replace", "mkdir", "system", "Popen"}
+WRITE_CALLS = {
+    "write_text", "write_bytes", "unlink", "rmtree", "remove", "rename", "replace", "mkdir", "makedirs",
+    "system", "Popen", "dump", "copy", "copy2", "copyfile", "copytree", "move", "chmod", "symlink",
+    "link", "truncate", "touch", "mkstemp", "mkdtemp", "NamedTemporaryFile", "TemporaryDirectory",
+}
 
 
 class GitError(AssertionError):
@@ -189,16 +216,25 @@ class ParserFixtureIntegrityTests(unittest.TestCase):
         cls.synthetic = load_json(SYNTHETIC / "MANIFEST.json")
         cls.goldens = {path.stem: load_json(path) for path in sorted((PINNED / "goldens").glob("*.json"))}
         cls.blob_cache = {}
+        cls.repository_checked = False
 
     # -- helpers -------------------------------------------------------------
 
     def assert_repository_can_hold_pins(self) -> None:
+        """Fail closed before any object read: an old Git, a shallow clone or a partial clone."""
+        version = re.search(r"(\d+)\.(\d+)", git("version").stdout.decode())
+        self.assertIsNotNone(version, "git version unreadable")
+        self.assertGreaterEqual((int(version.group(1)), int(version.group(2))), MIN_GIT,
+                                "git older than 2.44 ignores GIT_NO_LAZY_FETCH")
         shallow = git("rev-parse", "--is-shallow-repository").stdout.decode().strip()
         self.assertEqual(shallow, "false", "shallow clone: pinned fixtures cannot be resolved")
         partial = git("config", "--get", "extensions.partialclone", check=False)
         self.assertNotEqual(partial.returncode, 0, "partial clone: pinned blobs may be absent and lazy fetching is disabled")
 
     def blob(self, entry: dict) -> bytes:
+        if not type(self).repository_checked:
+            self.assert_repository_can_hold_pins()
+            type(self).repository_checked = True
         if entry["blob"] not in self.blob_cache:
             result = git("cat-file", "blob", entry["blob"], check=False)
             if result.returncode != 0:
@@ -363,6 +399,20 @@ class ParserFixtureIntegrityTests(unittest.TestCase):
                     self.assertGreaterEqual(len(parents), 2, "not a merge commit")
                     ancestor = git("merge-base", "--is-ancestor", commit, pins[expectation["pin"]]["commit"], check=False)
                     self.assertEqual(ancestor.returncode, 0, "merge is not integrated at the pinned commit")
+                    # Fixture sanity check only; it is not the parser's resolution method (DEL-02-08 TBD-003).
+                    pr = next(v for k, v in expectation["source"].items() if type(v) is int and (k == "pr" or k.endswith("_pr")))
+                    message = git("cat-file", "commit", commit).stdout.decode("utf-8", "replace").split("\n\n", 1)[-1]
+                    self.assertRegex(message.splitlines()[0], rf"^Merge pull request #{pr} from ", "merge does not carry the cited PR")
+            anchor = expectation.get("expect", {}).get("anchor_line")
+            if anchor is not None:
+                with self.subTest(expectation=expectation["id"], key="anchor_line"):
+                    lines = data.decode("utf-8", "replace").split("\n")
+                    self.assertIs(type(anchor), int)
+                    self.assertTrue(1 <= anchor <= len(lines), "anchor_line outside the blob")
+                    window = "\n".join(lines[anchor - 1 : anchor + 3])
+                    values = [v for v in expectation.get("source", {}).values() if type(v) is str]
+                    if values:
+                        self.assertTrue(any(v in window for v in values), "no source value at or just after anchor_line")
 
     def test_goldens_are_content_minimal_and_hold_no_source_text_run(self) -> None:
         width = self.pinned["policy"]["source_run_words"]
@@ -452,16 +502,24 @@ class ParserFixtureIntegrityTests(unittest.TestCase):
         tree = ast.parse(Path(__file__).read_text(encoding="utf-8"))
         subprocess_calls, writes = [], []
         for node in ast.walk(tree):
+            if isinstance(node, ast.ImportFrom) and node.module in ("subprocess", "os", "shutil", "tempfile"):
+                writes.append(f"from {node.module} import")
+            if isinstance(node, ast.Import) and any(alias.name in ("shutil", "tempfile") for alias in node.names):
+                writes.append("import shutil/tempfile")
             if not isinstance(node, ast.Call):
                 continue
             func = node.func
-            if isinstance(func, ast.Attribute):
-                if isinstance(func.value, ast.Name) and func.value.id == "subprocess":
-                    subprocess_calls.append(func.attr)
-                if func.attr in WRITE_CALLS:
-                    writes.append(func.attr)
-            if isinstance(func, ast.Name) and func.id == "open":
-                writes.append("open")
+            name = func.attr if isinstance(func, ast.Attribute) else func.id if isinstance(func, ast.Name) else ""
+            if isinstance(func, ast.Attribute) and isinstance(func.value, ast.Name) and func.value.id == "subprocess":
+                subprocess_calls.append(func.attr)
+            if name in WRITE_CALLS:
+                writes.append(name)
+            if name == "open":
+                os_open = isinstance(func, ast.Attribute) and isinstance(func.value, ast.Name) and func.value.id == "os"
+                modes = [arg.value for arg in node.args if isinstance(arg, ast.Constant) and isinstance(arg.value, str)]
+                modes += [kw.value.value for kw in node.keywords if kw.arg == "mode" and isinstance(kw.value, ast.Constant)]
+                if os_open or any(set(str(mode)) & set("wax+") for mode in modes):
+                    writes.append("open")
         self.assertEqual(subprocess_calls, ["run"], "one subprocess call site, inside git()")
         self.assertEqual(writes, [], "the fixture suite writes nothing")
 

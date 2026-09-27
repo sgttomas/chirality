@@ -51,6 +51,16 @@ def m_bind(d):
     def f(o):
         e = o["expectations"][0]; e["binds"] = [b for b in e["binds"] if "/VER-" not in b]
     jedit(F(d) / "pinned/goldens/FC-2.json", f)
+def m_anchor(d):
+    def f(o):
+        e = next(e for e in o["expectations"] if "anchor_line" in e.get("expect", {}) and e.get("source"))
+        e["expect"]["anchor_line"] = 1
+    jedit(F(d) / "pinned/goldens/FC-2.json", f)
+def m_merge(d):
+    def f(o):
+        e = next(e for e in o["expectations"] if "local_merge_commit" in e.get("expect", {}))
+        e["expect"]["local_merge_commit"] = "2ea7725230c5c370a5b008138d4486ed427b3bd2"  # the PR #866 merge, not #868
+    jedit(F(d) / "pinned/goldens/FC-3.json", f)
 def m_partial(d): subprocess.run(["git", "-C", str(d), "config", "extensions.partialclone", "origin"], check=True)
 def m_shallow(d): (d / ".git/shallow").write_text(SHA + "\n")
 def m_mapping(d):
@@ -61,12 +71,14 @@ CONTROLS = [
     ("FC-2 claims RECEIPT.md present", m_tree, "test_tree_expectations_hold_at_their_pinned_commits"),
     ("tree_absent on an existing folder", m_tree_absent, "test_tree_expectations_hold_at_their_pinned_commits"),
     ("golden source value absent from its blob", m_ground, "test_golden_source_values_are_grounded_in_their_pinned_blobs"),
-    ("golden holds a three-word source run", m_prose, "test_goldens_are_content_minimal_and_hold_no_source_text_run"),
+    ("golden holds whitespace-separated source text (single-token rule)", m_prose, "test_goldens_are_content_minimal_and_hold_no_source_text_run"),
     ("synthetic file carries a copied 12-word run", m_copy, "test_no_fixture_source_is_copied_into_the_tree"),
     ("pinned blob copied into the tree", m_blobcopy, "test_no_fixture_source_is_copied_into_the_tree"),
     ("required synthetic case removed", m_case, "test_synthetic_cases_cover_the_contract_minimums"),
     ("unlisted synthetic file", m_unlisted, "test_synthetic_cases_cover_the_contract_minimums"),
     ("expectation without a VER binding", m_bind, "test_every_record_binds_a_requirement_criterion_and_verification"),
+    ("anchor_line away from its source values", m_anchor, "test_golden_source_values_are_grounded_in_their_pinned_blobs"),
+    ("local_merge_commit of another PR", m_merge, "test_golden_source_values_are_grounded_in_their_pinned_blobs"),
     ("partial-clone repository", m_partial, "test_pins_resolve_by_read_only_plumbing_on_integrated_history"),
     ("shallow repository", m_shallow, "test_pins_resolve_by_read_only_plumbing_on_integrated_history"),
     ("test missing from the verification map", m_mapping, "test_loaded_suite_has_exact_verification_mapping"),

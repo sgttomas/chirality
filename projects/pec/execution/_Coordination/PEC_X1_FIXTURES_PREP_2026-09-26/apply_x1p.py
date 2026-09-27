@@ -46,19 +46,19 @@ TARGETS = {
          '0a07807081840f55c581c36264bec76b254d1c956574c0806a014140a423a5a9'),
     'projects/pec/v2/tests/parsers/fixtures/pinned/goldens/FC-1.json':
         (None,
-         '3e93a8d7d4b6350a2268ec091d6796db1dcdf488d5025a2d18a6adb0d674d68e'),
+         '8379b7d6bf650c7e3864449edb691e79fafd6966ce2f789c07c866cdcdcc4922'),
     'projects/pec/v2/tests/parsers/fixtures/pinned/goldens/FC-2.json':
         (None,
-         '19c9a6e8fc1b55efeefa7537cfc46ff508344b34d993a613aaf3812da4fe4770'),
+         '1af4cfa4520da4fbaaf7c57924da3f733611b915c3f0dac36a3f88a7b300d860'),
     'projects/pec/v2/tests/parsers/fixtures/pinned/goldens/FC-3.json':
         (None,
-         'a23725af786c9da96faf8c3b971b0ae0b4ed06c7ceb10132e6b93e81ac8efb25'),
+         'a02fc9722fedd1545215f9999be05eb4593417c649f304915d29bd6f403c39f7'),
     'projects/pec/v2/tests/parsers/fixtures/pinned/goldens/FX-PEC-0.json':
         (None,
-         'ea38966446ce5b3eb4d4ff9f4841ac96fc7b9dfa5cfb98967ac724131c43a6b1'),
+         '4adf49757bfe6e71cd07d3397fe6260acee184efabdc294b83442c4b0b1e7b5a'),
     'projects/pec/v2/tests/parsers/fixtures/synthetic/MANIFEST.json':
         (None,
-         '7c9ba70561584b6a29934554fb645eb62cf6b830282b387d617b7977c84e1849'),
+         '60b467d4a414db60fd55ef563464fcc12a3f54e74a9a5ea11560d30d846a0c8f'),
     'projects/pec/v2/tests/parsers/fixtures/synthetic/memory/entry_without_readable_run_token.md':
         (None,
          '38243567f072606fe5214a0e86223a32bf6c62bbe7de7a3205e2a10f7c4313cc'),
@@ -142,7 +142,7 @@ TARGETS = {
          '03bf235275cad181cdfc131a63c439896658b5651871831c59c4ade00f65075f'),
     'projects/pec/v2/tests/parsers/test_parser_fixture_integrity.py':
         (None,
-         '1ec0a7902c95907439d3579e2eed4308922b92ed1798cbc1eb2b42dc99d65bd3'),
+         '70fc24b49aa6681ccbd6c03fbed37149b854a85be373ce23043812d9d5103203'),
 }
 # The one directory the act creates; it must be absent before the act.
 NEW_DIR = "projects/pec/v2/tests/parsers"
@@ -168,16 +168,10 @@ PINNED = {
         '03be20a5d54551d7c01e1ce2ef1c36c4f2435c1a66809116dd4555cef0588f89',
     'projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/ScopeOfWork.md':
         'c8bb9f1bb64d1772aff1be7ab9ef67e3e873bf708074639aa6096ec5ae7b294b',
-    'projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_STATUS.md':
-        '6f94c04f79b678082b0407f93ec9c898d988c2693c0d1e19791f5cff985cf06f',
     'projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md':
         '2319661b3225aa8c48ca4a82423e0459e806373fccb67985c4c7536a843fdd26',
-    'projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_STATUS.md':
-        '4341d6b2e192b3ada04a5897de94245639980d0d2048b2b8cb3202771dfe04fe',
     'projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md':
         'eab18e17a41f9ca979a932cc0dc2ba4dea590340e4e3a8a404ffd5f3013b6f5e',
-    'projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_STATUS.md':
-        'e67be5871d8cd0f2a02e96c76418d5e161be5d17c7e5e44c7577bf829e171056',
 }
 TMP_SUFFIX = ".x1ptmp"
 
