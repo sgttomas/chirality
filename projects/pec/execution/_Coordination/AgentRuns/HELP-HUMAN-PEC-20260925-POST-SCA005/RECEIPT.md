@@ -79,7 +79,7 @@ Intake `../../_TaskManagement/TM_PEC_CLOSEOUT_POST_SCA005_2026-09-27/INTAKE.md` 
   - `SOW_INIT_K2_2026-09-26/HANDOFF_STATE.md`;
   - `X1_FIXTURES_2026-09-27/HANDOFF_STATE.md`;
   - the `D-PEC-100` proposal's register list.
-- **Lapsed acceptances:** each deliverable's exact-byte `_REVIEW.md` binding records the prior bytes. A REVIEW against the new bytes precedes any re-acceptance, and any CHECKING or ISSUED step. RV1 covers the D1 pair; for the others the graph records that any new review waits for those deliverables' production.
+- **Lapsed acceptances:** each deliverable's exact-byte `_REVIEW.md` binding records the prior bytes. A REVIEW against the new bytes precedes any re-acceptance and any ISSUED step. RV1 covers the D1 pair; for the `D-PEC-100` pair (DEL-02-07, DEL-01-06) the graph records that any new review waits for those deliverables' production; DEL-04-01 and DEL-03-01 have no scheduled re-review.
 
 ## Final PR
 
