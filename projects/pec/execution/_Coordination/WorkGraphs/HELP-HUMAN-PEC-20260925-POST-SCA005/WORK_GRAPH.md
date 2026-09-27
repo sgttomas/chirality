@@ -73,7 +73,7 @@ Saved at `projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-2026092
 | I1 `AGENTS.md` residual corrections | `projects/pec/AGENTS.md` (HELPS_HUMANS) | Instruction tranche with manifest | Validators pass; notice | COMPLETE — carried in R3's instruction tranche (Q-CP2-1 (a)) and accepted with checkpoint 3 |
 | RS1 Owner decision: open a separate undertaking to retire the `## Remaining` sections? | A decision record only. The retirement itself is not in this undertaking: `projects/pec/AGENTS.md` makes it a separate owner-directed undertaking, as App and Piping did (HELP_HUMAN records) | The owner's 2026-09-26 direction ("There must not be any of those going forward") bears on it, but did not open it | Decision recorded; if opened, the new undertaking's graph is named | COMPLETE — the owner decided "open RS1" on 2026-09-26, and ruled the retirement packet `D-PEC-99` A the same day (`_DECISIONS/D-PEC-99_RULING_2026-09-26.md`); the act merged as PR #957 (`22502e059`). The separate undertaking is `HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT`, with its graph at `WorkGraphs/HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT/WORK_GRAPH.md` |
 | C1 Bounded closeout | Affected deliverables and records (HELP_HUMAN) | All substantive PRs merged | `bounded-reconciliation` comparisons; warranted edits | PLANNED |
-| M1 Record the run | Central `RECEIPT.md` (HELP_HUMAN); MEMORY files and rows named by the governing packets, written by the actor each packet names (`D-PEC-98` add-on M: WORKING_ITEMS creates the DEL-02-08/09 `MEMORY.md`; `D-PEC-100` add-on M: WORKING_ITEMS creates `MEMORY.md` for DEL-01-01 and DEL-02-03..07 and adds one row to DEL-01-06's, after the `D-PEC-96` row) | C1 | Receipt and rows written | PLANNED |
+| M1 Record the run | Central `RECEIPT.md` (HELP_HUMAN); MEMORY files and rows named by the governing packets, written by the actor each packet names (`D-PEC-98` add-on M: WORKING_ITEMS creates the DEL-02-08/09 `MEMORY.md`; `D-PEC-100` add-on M: WORKING_ITEMS creates `MEMORY.md` for DEL-01-01 and DEL-02-03..07 and adds one row to DEL-01-06's, after the `D-PEC-96` row; `D-PEC-103` add-on M: WORKING_ITEMS creates `MEMORY.md` for DEL-08-06 and DEL-10-13) | C1 | Receipt and rows written | PLANNED |
 | F1 Final PR | Integrated undertaking (HELP_HUMAN) | M1 and all checks | Final PR merged | PLANNED |
 
 **Order.**
@@ -81,7 +81,8 @@ Saved at `projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-2026092
 - Done since the rulings: the retirement act (`D-PEC-99`), merged as PR #957 (`22502e059`), and the S3 act (`D-PEC-98`), merged as PR #958 (`aca930622`). Add-on M (the DEL-02-08/09 `MEMORY.md` files) is written at M1.
 - Done: the `D-PEC-101` act (K1 then K4 with C, add-on V), merged as PR #976 (`ce934ac33`), with the owner-authorized Notes (a) replacement applied after the verifier passed K1.
 - Done: the S2 act (`D-PEC-100`), merged as PR #979 (`125cfacc1`).
-- Ready now: packet preparation for K2 (first SOWs for DEL-08-06 and DEL-10-13), since K1 is done, and for X1 (P1 fixture suites), since S2 and S3 are done.
+- Done: the K2 packet (`D-PEC-103`), merged as PR #987 (`4b930819c`) and ruled A + S + M + C8 on 2026-09-26. Next: its act.
+- Ready now: packet preparation for X1 (P1 fixture suites), since S2 and S3 are done.
 - Ready now: packet preparation for S1, S4 and D1. Ordering: S2 has landed, so the S1 and S4 packets absorb the quotations of old S2 text in 13 of the 15 contracts (the other two, DEL-02-08/09, belong to a later DEL-02-08/09 revision). S2 absorbed its `D-PEC-99` exhibit Part B items (PR #979); the S1 and S4 packets absorb theirs.
 - K2 after K1; K3 after K2.
 - After S2 and S3: X1.
@@ -155,7 +156,7 @@ The dependencies are acyclic, and the named inputs, not this listing, decide whe
   - Prepare the S1, S4, D1 and X1 packets; S1 and S4 absorb the `D-PEC-99` Part B items named in their rows and the quotations of old S2 text. Each fenced packet comes to the owner to rule on. S4 is `D-PEC-102` (number reserved) and S1 is provisionally `D-PEC-104`, whose draft is PR #986.
   - The retirement undertaking is closed (PR #982). At the next touch of its graph, its C1 wording should read "bounded closeout with one D-PEC-88 STATUS refresh" (PR #982 review 02, N1).
   - Carry to a later packet: the DEL-02-08/09 contract-wording items and the DEL-02-07 `CLM-011` count above.
-- **Local or unmerged work:** this ruling PR; PR #986 (S1 draft packet).
+- **Local or unmerged work:** this ruling PR; PR #986 (S1 draft packet); branch `claude/pec-s4-sow-currency-proposal` (S4 packet in preparation, no PR yet).
 - **Active operations and ownership:** the S4P and S1P managers are preparing their packets; their briefs are committed on their packet branches (`claude/pec-s4-sow-currency-proposal`, `claude/pec-s1-sow-currency-proposal`). Handed back: the K2P manager (return `returns/K2P_FIRST_SOWS_PROPOSAL.md`), and the R3 (B6), G1 act (G2), S3 drafter, RR1, RR3, S3A, S2P, K14P, K14A and S2A managers. Their briefs are under `AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/briefs/`; the returns are under that run's `returns/`, except RR1's, which is `AgentRuns/HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT/returns/RR1_REMAINING_RETIREMENT_ACCOUNT.md`. Scratch helpers named in earlier returns are not in the repository.
 - **Graph maintainer:** HELP_HUMAN.
 - **Earlier run:** `HELP-HUMAN-PEC-20260923-SCA005`, under PEC's former loop; its `RUN.md` is history. The owner's CHECKING reservation for DEL-01-03 stands, and nothing here prompts for it.
