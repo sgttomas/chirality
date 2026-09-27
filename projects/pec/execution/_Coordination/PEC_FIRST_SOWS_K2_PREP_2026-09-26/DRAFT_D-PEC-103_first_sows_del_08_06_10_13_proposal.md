@@ -140,7 +140,7 @@ Both follow the form of the most recent first contracts (`DEL-02-08`, `DEL-02-09
 | 10-13 CON-002 | Whether DEL-02-07's suite is among "the PKG-02 parser fixture suites" (`D-PEC-101` finding 2). REQ-005 composes what the ACTIVE rows name at the commit of the candidate under evaluation, so it holds either way | an owner-ruled dependency-register amend |
 | 10-13 CON-003 | The contracts of DEL-03-04, DEL-04-03, DEL-04-05 and DEL-10-02 predate the gate; DEL-04-03's lacks SOW-097. Missing evidence counts as not passed | S4 and S1; ordering is the graph's and owner's |
 | 10-13 CON-004 | No accepted release process for PEC v2, and no defined act of "advertising". The contract's reading that release and advertisement are the owner's acts is labelled an interpretation | owner, before any reliance-advertising release |
-| 10-13 TBD-006 | Who produces the seeded-feed evidence (seeds the feeds and runs the coverage statements) and the seeded-case set. The register attributes the coverage-honesty evidence to DEL-04-05 but assigns the seeding to no one; the harness seeds nothing unless this TBD, once fixed, assigns it | production packet or owner |
+| 10-13 TBD-006 | Who produces the seeded-feed evidence (seeds the feeds and runs the coverage statements) and the seeded-case set. The register attributes the coverage-honesty evidence to DEL-04-05 but assigns the seeding to no one; the harness seeds nothing unless this TBD, once fixed, assigns it (assigning it to this deliverable needs a revision of the contract, since REQ-017 limits its writes) | production packet or owner |
 | TBD (others) | ResponsibleParty; tool-definition representation; operation mapping; numeric budgets (Phase 1); fallback representation without a response (08-06). Release-candidate identity and scope; evidence-access method; gate-record form and location; DriftFinding-disposition owner; "every response" extent (10-13) | production within the REQs, or the named owner |
 
 ### Qualified IDs cited from contracts under parallel revision (for the S4 and S1 packets)
@@ -373,12 +373,12 @@ The method's independent verification is a separate `MODE=VERIFY` run, read-only
 | `VERIFIER_VERDICT_01.md` | `MODE=VERIFY`, DEL-08-06 (`31d0aa6e…d036`) | FAILED: 1 blocking (B-1, failure behaviour contradicted pass-through), 3 non-blocking, 7 notes | actionable findings repaired by the author (N-4, N-6, N-7 recorded); candidate then `120b61c0…632d` |
 | `VERIFIER_VERDICT_02.md` | `MODE=VERIFY`, DEL-10-13 (`23f6505e…f182`) | PASS WITH NOTES: 4 non-blocking, 7 notes | all repaired by the author; candidate then `02fc0c16…3a1d` |
 | `VERIFIER_VERDICT_03.md` | packet review (draft, scripts, tests, hashes, containment) | PASS WITH NOTES: 2 non-blocking, 9 notes | all repaired or recorded |
-| `VERIFIER_VERDICT_04.md` | fresh backcheck of every repair (at `196074cdf`) | PASS WITH NOTES: nothing blocks; 4 non-blocking, 12 notes | WORKING_ITEMS made the wording repairs itself (one phrase each, disclosed below); candidates now `aecc5131…0826` and `c7743ee2…6633`; note 7 recorded |
-| `VERIFIER_VERDICT_05.md` | fresh backcheck of the post-verdict-04 edits, on the final head | see that file | see that file |
+| `VERIFIER_VERDICT_04.md` | fresh backcheck of every repair (at `196074cdf`) | PASS WITH NOTES: nothing blocks; 4 non-blocking, 12 notes | WORKING_ITEMS made the wording repairs itself (exact replacements, disclosed below); candidates now `aecc5131…0826` and `c7743ee2…6633`; note 7 recorded |
+| `VERIFIER_VERDICT_05.md` | fresh backcheck of the post-verdict-04 edits (at `d087bf0a8`) | PASS WITH NOTES: nothing blocks in either candidate; 2 non-blocking record items, 4 notes | record items repaired (verdict 02 disposition corrected; `SHA256SUMS` generated at the final head); draft notes applied; no candidate byte changed after it |
 
 Each verdict file carries the reviewer's report and the manager's dispositions. The verifiers reviewed and did not repair.
 
-**Manager wording repairs after verdict 04 (disclosed).** WORKING_ITEMS changed these phrases itself, each by an exact one-occurrence replacement:
+**Manager wording repairs after verdict 04 (disclosed).** WORKING_ITEMS made these edits itself, as exact replacements, each listed below:
 - DEL-08-06: CON-003 "admits a tool definition"; REQ-005 adds "(a refusal the service returns is not an API response to the query)" and cites CON-004 alone; CLM-012 labels the release-gate reading "as an interpretation and not a ruling".
 - DEL-10-13: TBD-006 adds that assigning seeding to this deliverable would need a revision of this contract, because REQ-017 limits its writes to its own gate records; TBD-007 "beyond the minimum REQ-004 sets"; AC-018 and VER-018 "executing test or review record"; the AC-004 matrix row lists the degraded-without-signal and no-degraded-case evidence.
 

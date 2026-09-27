@@ -140,7 +140,7 @@ Pin facts S02–S11 recomputed and matching: `SOFTWARE_DECOMP.md` `9374c21f…8e
 
 ## Dispositions (WORKING_ITEMS)
 
-The DEL-10-13 drafter (the author) repaired the candidate and its quote and claim files. The candidate went from `23f6505e…f182` to `02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d` (253 lines; ID counts unchanged; no ID added, removed or renumbered). Quotes: 72 (Q71, Q72 appended; Q46 text replaced in place). Claims: 334 (S333, S334 appended).
+The DEL-10-13 drafter (the author) repaired the candidate and its quote and claim files. The candidate went from `23f6505e…f182` to `02fc0c16b1f4f4d2d70b93752160c3a15bc7b8aa242d96baaac6782fd7c83a1d` (253 lines; ID counts unchanged; no ID added, removed or renumbered). Quotes: 72 (Q71, Q72 appended; Q48 text replaced in place). Claims: 334 (S333, S334 appended).
 
 | Finding | Disposition |
 |---|---|

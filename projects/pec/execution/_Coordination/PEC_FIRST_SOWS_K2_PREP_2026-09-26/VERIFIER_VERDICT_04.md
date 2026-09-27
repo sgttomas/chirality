@@ -111,7 +111,7 @@ I reviewed branch `claude/pec-k2-first-sows-proposal` at `196074cdf` in `/Users/
 
 ## Dispositions (WORKING_ITEMS)
 
-Nothing blocks. WORKING_ITEMS made the wording repairs below itself: exact one-phrase replacements, each asserted to occur once, disclosed in the proposal and backchecked in verdict 05. The candidates are now DEL-08-06 `aecc513161c1e8a5a984dc2f7878b79783170adc1042fb91e816dc649ef50826` (249 lines) and DEL-10-13 `c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633` (253 lines); both act scripts are rebound. The quote and claim files are unchanged: quotes 137/137, claims 482/482, cited IDs 0/0 and old-S2 stale=0 rerun clean.
+Nothing blocks. WORKING_ITEMS made the wording repairs below itself: exact replacements, each asserted to occur once, disclosed in the proposal and backchecked in verdict 05. The candidates are now DEL-08-06 `aecc513161c1e8a5a984dc2f7878b79783170adc1042fb91e816dc649ef50826` (249 lines) and DEL-10-13 `c7743ee2ab7d795577d08c57d748fa704d3cc58ad55df7eea77bc95fb1b56633` (253 lines); both act scripts are rebound. The quote and claim files are unchanged: quotes 137/137, claims 482/482, cited IDs 0/0 and old-S2 stale=0 rerun clean.
 
 | Finding | Disposition |
 |---|---|
