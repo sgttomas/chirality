@@ -1,0 +1,142 @@
+{
+  "deliverable": "DEL-03-06",
+  "quotes": [
+    {
+      "id": "Q01",
+      "text": "`EvidenceFile` `docs/PRD.md`, `SourceRef` \"PRD.md §10 requirement PEC-SVC-003\",",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
+      "commit": "125cfacc1",
+      "where": "Part B DEL-03-06-REM-004 locus L220 (CLM-009 shared-values list; string added)"
+    },
+    {
+      "id": "Q02",
+      "text": "and, at authoring, an empty `EvidenceQuote` with a \"location TBD\" `SourceRef` in the register, since repaired under `D-PEC-65` to quote `PEC-SVC-003` (CLM-009)",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
+      "commit": "125cfacc1",
+      "where": "Part B DEL-03-06-REM-004 locus L476 (AX-009 replacement string)"
+    },
+    {
+      "id": "Q03",
+      "text": "Full rebuild of the current corpus completes within a bound confirmed at Phase 1 (target: minutes)",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
+      "commit": "125cfacc1",
+      "where": "Part B DEL-03-06-REM-004 locus L222-225 (CLM-009 table, DEP-03-06-003 EvidenceQuote column value)"
+    },
+    {
+      "id": "Q04",
+      "text": "incremental reconcile within seconds",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
+      "commit": "125cfacc1",
+      "where": "Part B DEL-03-06-REM-004 locus L222-225 (CLM-009 table, DEP-03-06-004 EvidenceQuote column value)"
+    },
+    {
+      "id": "Q05",
+      "text": "Full rebuild of the current corpus completes within a bound confirmed at Phase 1 (target: minutes)",
+      "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-03-06-003",
+      "column": "EvidenceQuote",
+      "commit": "125cfacc1",
+      "where": "CLM-009 table, DEP-03-06-003 EvidenceQuote (Part B re-verification)"
+    },
+    {
+      "id": "Q06",
+      "text": "incremental reconcile within seconds",
+      "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-03-06-004",
+      "column": "EvidenceQuote",
+      "commit": "125cfacc1",
+      "where": "CLM-009 table, DEP-03-06-004 EvidenceQuote (Part B re-verification)"
+    },
+    {
+      "id": "Q07",
+      "text": "Full rebuild of the current corpus completes within a bound confirmed at Phase 1 (target: minutes)",
+      "source": "projects/pec/docs/PRD.md",
+      "commit": "125cfacc1",
+      "where": "CLM-009 table, DEP-03-06-003 EvidenceQuote is a verbatim substring of its EvidenceFile docs/PRD.md v2.4 PEC-SVC-003 row (gen_d95 quote-currency check)"
+    },
+    {
+      "id": "Q08",
+      "text": "incremental reconcile within seconds",
+      "source": "projects/pec/docs/PRD.md",
+      "commit": "125cfacc1",
+      "where": "CLM-009 table, DEP-03-06-004 EvidenceQuote is a verbatim substring of its EvidenceFile docs/PRD.md v2.4 PEC-SVC-003 row (gen_d95 quote-currency check)"
+    },
+    {
+      "id": "Q09",
+      "text": "PRD.md §10 requirement PEC-SVC-003",
+      "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-03-06-003",
+      "column": "SourceRef",
+      "commit": "125cfacc1",
+      "where": "CLM-009 shared values, SourceRef (DEP-03-06-003)"
+    },
+    {
+      "id": "Q10",
+      "text": "PRD.md §10 requirement PEC-SVC-003",
+      "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-03-06-004",
+      "column": "SourceRef",
+      "commit": "125cfacc1",
+      "where": "CLM-009 shared values, SourceRef (DEP-03-06-004)"
+    },
+    {
+      "id": "Q11",
+      "text": "execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+      "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-03-06-003",
+      "column": "EvidenceFile",
+      "commit": "fb6442f47",
+      "where": "CLM-009 register-hygiene paragraph (dated history: EvidenceFile at this contract's 2026-07-25 authoring, DEP-03-06-003)"
+    },
+    {
+      "id": "Q12",
+      "text": "execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+      "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-03-06-004",
+      "column": "EvidenceFile",
+      "commit": "fb6442f47",
+      "where": "CLM-009 register-hygiene paragraph (dated history: EvidenceFile at authoring, DEP-03-06-004)"
+    },
+    {
+      "id": "Q13",
+      "text": "location TBD",
+      "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-03-06-003",
+      "column": "SourceRef",
+      "commit": "fb6442f47",
+      "where": "CLM-009 register-hygiene paragraph and AX-009 (dated history: SourceRef at authoring, DEP-03-06-003)"
+    },
+    {
+      "id": "Q14",
+      "text": "location TBD",
+      "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/Dependencies.csv",
+      "kind": "csv_cell",
+      "key_column": "DependencyID",
+      "key": "DEP-03-06-004",
+      "column": "SourceRef",
+      "commit": "fb6442f47",
+      "where": "CLM-009 register-hygiene paragraph and AX-009 (dated history: SourceRef at authoring, DEP-03-06-004)"
+    },
+    {
+      "id": "Q15",
+      "text": "No durable register validator exists: the coverage/coupling assertions ran in a session-local generator, which is not part of this package and enforces nothing after acceptance",
+      "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "commit": "125cfacc1",
+      "where": "CLM-009 register-hygiene paragraph, OI-013 Issue cell (kept sentence, re-verified)"
+    }
+  ]
+}
