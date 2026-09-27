@@ -10,6 +10,7 @@
 **Decomposition:** `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`
 **Allow renumbering:** `false`
 **Basis commit:** `0adfbc7476df33521883ce1573781237cd24d384` (`origin/main`, merge of PR #1009). The package commits were then rebased onto `ec81ef2c728e5ae4854894e5321dfc693902a8ef` (merge of PR #1010, after PR #1011). Those merges change only `projects/chirality-app-v4/` and `projects/pec/`, so every input named below is byte-identical at both commits. The builder reports `governed_inputs_identical_to_basis: true` on the rebased tree and reproduces `Pre_Change_Coverage.json` byte for byte.
+**Revision:** 2 (folds in the additional conflicts found at the basis, at the coordinator's request; adds choice W)
 **Stage:** checkpoint-group-1 preparation only (intake, validation and impact). This package writes no decomposition, register, PRD, SPEC, PLAN, Scope of Work, `_CONTEXT.md`, `_STATUS.md`, dependency register, pointer, decision snapshot, `DECISION.md`, `SCA-APP-012_GROUP-1_AUTHORIZED.md` or `_LATEST.md` byte, and no code.
 **Precedent:** SCA-APP-011 (PRs #995 and #1009). Its group-1 `Impact_Assessment.md` (choice B) and `Intake_Actions.csv` rows 28–32 assessed this legacy-shell removal as set L, which the owner excluded from SCA-APP-011 ("Exclude it (Recommended)"). This run reuses that analysis, re-verified at the basis, and follows the same package layout and the `checkpoint_snapshots/` decision-snapshot layout.
 
@@ -35,7 +36,12 @@ These are the owner's direction and route selection. They are not the group-1 ac
 | Intent | Source | Parsed as |
 |---|---|---|
 | Delete the loop-first shell (`loop-shell`, `portal-loop-shell`, `loop-tertiary-shell`, `sidebar-right-loop-layout`, `tertiary-sidebar-tabs`), the role-directory panel `portal/agent-matrix`, the discarded `legacy` prop, and the tests and CSS used only by them | Direction 1; proposal item 1 | Supersede PRD KG-033, §6.4 and D-APP-74 L97-99/L107 for the loop-first UI. MODIFY DEL-02-01 and the PRD, SPEC, PLAN and decomposition clauses that keep "the loop-first UI" as a compatibility surface |
-| Also delete the discarded `?legacy=1` link (`legacyHref`) | Found at the basis; same dead thread | Code only; closes the KG-033 "mock-only `[data-legacy]` test contract" residual |
+| Also delete the discarded `?legacy=1` link (`legacyHref`) and its only test | Found at the basis; same dead thread (revision 2: coordinator's item 2) | Code only (Row 18); closes the KG-033 "mock-only `[data-legacy]` test contract" residual |
+| Correct the PRD, SPEC and PLAN text that still calls the loop-first shell live or keeps it as the compatibility implementation | Found at the basis (revision 2: coordinator's item 1) | MODIFY PRD §6.3, FR-001, §12.1 (Row 12), SPEC §17.9 (Row 15), PLAN §1, §6.5, §13.2 (Row 17) |
+| Restate DEL-02-03-REQ-010, which cites the retired FR-010 | Found at the basis (revision 2: item 3) | MODIFY DEL-02-03 (Row 3), the same under either R answer |
+| Record the expected dependency re-extraction outcomes and the Task Management note | Found at the basis (revision 2: items 5 and 6) | DEP-02-03-004 and DEP-08-03-007 (Rows 20–21, DX-02 and DX-03); TM-APP-051 (Row 22) |
+| Restate the app layout metadata string | Found at the basis (revision 2: item 7) | Code only (Row 19) |
+| Decide the unmounted flat-file workflow view (`workflows-view.tsx`, `workflow-detail.tsx`) | Found at the basis (revision 2: item 8) | Owner choice W (remove with its read route, remove the view only, or leave) |
 | Delete `lib/portal/agent-matrix-launch.ts` and `agent-matrix-cells.ts` | Proposal item 1 (launch); cells found at the basis | MODIFY DEL-08-02 verification hooks; TYPES §4 alias and route/query semantics stay |
 | Delete `DeliverablesProvider` | Proposal item 2 | Code only, under DEL-02-03; no consumer |
 | Delete `GET /api/working-root/scope` | Proposal item 3 | MODIFY DEL-02-03, DEL-07-03, PRD §9.2, SPEC §17.2, the decomposition hard constraint and the route-preservation carve-outs; keep `scanProjectScopes` and the `scope_scan` tool contract |
@@ -81,6 +87,7 @@ These are the owner's direction and route selection. They are not the group-1 ac
 | `frontend/src/app/api/working-root/scope/route.ts` | `cc251a77a61ca8534c71eb6630ec4652657fa5c3d26c90a1796c48761b1a7c3b` | The route |
 | `frontend/src/components/shell/chat-panel.tsx` | `eef3e49f11a6f4c9fefb077c9b852e854bab973fa03fd69acbe1bd41b831fae1` | L194-208 `resolveMode` maps `/workbench` and `/pipeline` |
 | `frontend/electron/main.ts` / `frontend/scripts/run-packaged-security-proof.mjs` / `frontend/src/__tests__/contract-pins.manifest.ts` | `747bd71dd6a827445bbcf9bd400811c066926115b19ffbb55ec006965a99793c` / `5585d6a471661bf1984448b9f5b75c47509f2388707ad9d546cdab93783ee5de` / `df42a6f398cf65978ca73510a402db1adb750122c785b265f8a5347870d2208e` | The four page routes are probed and pinned (choice P) |
+| `frontend/src/components/woven-dialogue/workflows-view.tsx` / `workflow-detail.tsx` / `app/api/working-root/workflow/route.ts` / `components/woven-dialogue/right-panel.tsx` | `0f47a87cbd1e3bda048fd99d6a64568e96e377de326d86c46022829a5fd9ddd2` / `4488d3a4e29526d505979077e09548b7a1f18920e6ce7e54b0ad65abc4246330` / `f206a554686f2da2459db7892296029272745329e23056156c33b297054c15df` / `59d88d5c77b597ee35f64ac80a3e3e8911a7eaae87e504feb1a384e984e1da7f` | Choice W: the unmounted flat-file view, its detail and read route; the live Workflows tab (`MethodLibraryView`, L14, L190) |
 | `tools/query/scan_next_amendment_id.sh` | `2310630d2888858d35d6415001d7374e4e0bef821107da5750f73337816d9bdb` | Amendment-ID helper |
 
 Semantic section binding (by heading text, decomposition at basis): Change Register = `12. Decision Log / Change Log` (L613; Change Log L644); Unit Ledger = `9. Scope Ledger` (L403); Objectives = `6. Objectives` (L263); Primary Partitions = `7. Packages` (L280); Secondary Entities = `8. Deliverables` (L297); Vocabulary Map = `4. Vocabulary Map` (L121); SSOW = `5. SSOW` (L172); Open Issues = `11. Open Issues` (L598); Coverage Basis = `10. Coverage and Telemetry` (L496). Additional sections touched: `3. Intake Summary` Hard Constraints (L96, L102) and `13. Downstream Execution Notes` (L664). All bindings resolved; none by position.
@@ -89,36 +96,39 @@ Semantic section binding (by heading text, decomposition at basis): Change Regis
 
 ## Parsed action envelope
 
-The machine-readable intake is `Intake_Actions.csv`: 29 rows, every row `Status = PROPOSED`, with `SupersessionBindingPresent` and `ScopeChanging` filled. It is intake evidence only. The accepted register will be a separate `Amendment_Actions.csv` at checkpoint group 2 and will carry only the sets the owner selects.
+The machine-readable intake is `Intake_Actions.csv`: 41 rows (revision 2; revision 1 had 29), every row `Status = PROPOSED`, with `SupersessionBindingPresent` and `ScopeChanging` filled. It is intake evidence only. The accepted register will be a separate `Amendment_Actions.csv` at checkpoint group 2 and will carry only the sets the owner selects.
 
 | Set | Rows | Meaning |
 |---|---|---|
-| BASE | 1–13 | Owner-directed: the loop-first shell, legacy prop and link, role-directory panel and portal helpers (DEL-02-01, DEL-08-02); `DeliverablesProvider` and `/api/working-root/scope` (DEL-02-03, DEL-07-03); SOW-001 notes, hard constraint, §13 note, DEC-027, telemetry; PRD, SPEC and PLAN |
-| S | 14–16 | Owner-directed scaffold decision: DEL-07-02, DEL-06-03 CLM-031, SPEC §14.2 and PRD goal 17 / §6.1 wording. True whether or not the Runtime scaffold-API retirement has merged |
-| R-b | 17–18 | Recommended answer to choice R: retire DEL-02-03-REQ-009; DEP-02-03-009 retired at re-extraction |
-| R-a | 19–22 | Alternative: restate REQ-009 as task-scope preselection; DEL-08-03, SOW-007 and PRD §7.5 admit it as a declared consumer; DEP-02-03-009 restated |
+| BASE | 1–22 | Owner-directed: the loop-first shell, role-directory panel and portal helpers (DEL-02-01, DEL-08-02); `DeliverablesProvider`, `/api/working-root/scope` and REQ-010 (DEL-02-03, DEL-07-03); SOW-001 notes, hard constraint, §13 note, DEC-027, telemetry; PRD, SPEC and PLAN, including the text that still calls the loop-first shell live; the `?legacy=1` link and the layout metadata (code); the DEP-02-03-004 and DEP-08-03-007 re-extraction outcomes; the TM-APP-051 note |
+| S | 23–25 | Owner-directed scaffold decision: DEL-07-02, DEL-06-03 CLM-031, SPEC §14.2 and PRD goal 17 / §6.1 wording. True whether or not the Runtime scaffold-API retirement has merged |
+| R-b | 26–27 | Recommended answer to choice R: retire DEL-02-03-REQ-009; DEP-02-03-009 retired at re-extraction |
+| R-a | 28–31 | Alternative: restate REQ-009 as task-scope preselection; DEL-08-03, SOW-007 and PRD §7.5 admit it as a declared consumer; DEP-02-03-009 restated |
+| W-b | 32–33 | Recommended answer to choice W: delete the unmounted flat-file workflow view, its detail and its only-called read route `GET /api/working-root/workflow`; DEL-02-02 note and hard-constraint exception |
+| W-a | 34 | Alternative: delete the view and detail only; the read route stays with no caller |
+| W-c | — | Alternative: leave them. No register row |
 | P-keep | — | Recommended answer to choice P: keep `/workbench` and `/pipeline` as URL compatibility. Code only; no register row |
-| P-x | 23–29 | Alternative: redirect (P-r) or remove (P-d) the two pages; DEL-02-01, DEL-08-02, DEL-02-02, SOW-001/SOW-005, PRD, SPEC/DIRECTIVE/TYPES and the hard constraint |
+| P-x | 35–41 | Alternative: redirect (P-r) or remove (P-d) the two pages; DEL-02-01, DEL-08-02, DEL-02-02, SOW-001/SOW-005, PRD, SPEC/DIRECTIVE/TYPES and the hard constraint |
 
-Counts: BASE 12 MODIFY + 1 ADD; S 3 MODIFY; R-b 2 MODIFY; R-a 4 MODIFY; P-x 7 MODIFY. With the recommended selections (BASE, S, R-b, P-keep) the group-2 register would hold 18 rows: 17 MODIFY and 1 ADD. No REMOVE, RECLASSIFY, MERGE, SPLIT, package change or renumbering under any selection.
+Counts: BASE 21 MODIFY + 1 ADD; S 3 MODIFY; R-b 2 MODIFY; R-a 4 MODIFY; W-b 2 MODIFY; W-a 1 MODIFY; P-x 7 MODIFY. With the recommended selections (BASE, S, R-b, W-b, P-keep) the group-2 register would hold 29 rows: 28 MODIFY and 1 ADD. No REMOVE, RECLASSIFY, MERGE, SPLIT, package change or renumbering under any selection.
 
 ## Validation
 
-- **Entities exist and are active.** Every named entity exists at the basis: DEL-02-01, DEL-02-02, DEL-02-03, DEL-06-03, DEL-07-02, DEL-07-03, DEL-08-02, DEL-08-03 (decomposition rows L312, L313, L314, L353, L363, L364, L374, L375; folders with `_CONTEXT.md`, `_STATUS.md` and `ScopeOfWork.md`). Also SOW-001, SOW-003, SOW-005, SOW-007, SOW-024, OBJ-001, OBJ-006 and OBJ-007, and the dependency rows DEP-02-03-009 and DEP-08-02-013. None is retired.
+- **Entities exist and are active.** Every named entity exists at the basis: DEL-02-01, DEL-02-02, DEL-02-03, DEL-06-03, DEL-07-02, DEL-07-03, DEL-08-02, DEL-08-03 (decomposition rows L312, L313, L314, L353, L363, L364, L374, L375; folders with `_CONTEXT.md`, `_STATUS.md` and `ScopeOfWork.md`). Also SOW-001, SOW-003, SOW-005, SOW-007, SOW-024, SOW-081, OBJ-001, OBJ-006 and OBJ-007, the dependency rows DEP-02-03-004, DEP-02-03-009, DEP-08-02-013 and DEP-08-03-007, and Task Management row TM-APP-051. None is retired.
 - **New ID.** `DEC-027` does not collide (highest `DEC-026`, L642).
 - **Parent closure.** No REMOVE, RECLASSIFY, MERGE or SPLIT; no package or deliverable is retired or added. The parent-closure rule is not engaged.
 - **Lifecycle.** All affected deliverables are `IN_PROGRESS`. The App has no `ISSUED` and no `CHECKING` deliverable (53 `IN_PROGRESS`, 1 `OPEN` = retired DEL-09-07). No reopening is authorized or needed.
 - **Package discipline.** No deliverable crosses a package boundary; no envelope changes.
 - **Contract-level flags.**
-  - Row 6 and, under P-x, row 29 change a decomposition hard constraint (browser-facing route stability).
-  - Rows 10 and 12 change PRD and SPEC clauses that require "separate owner acceptance" or "a separate owner retirement decision". The owner's acceptance of this amendment is recorded as that decision.
-  - Under P-x, row 28 changes the App DIRECTIVE.
+  - Row 7 and, under W-b and P-x, rows 33 and 41 change a decomposition hard constraint (browser-facing route stability).
+  - Rows 11, 15 and 17 change PRD, SPEC and PLAN clauses that require "separate owner acceptance" or "a separate owner retirement decision". The owner's acceptance of this amendment is recorded as that decision.
+  - Under P-x, row 40 changes the App DIRECTIVE.
 - **Fences.** No provider, network, release, issuance, domain-engine or Root-owned semantic change. No MCP tool, Runtime tool descriptor or Runtime source changes under this amendment. The Runtime scaffold-API retirement is the Runtime loop's own change.
-- **Supersession.** Rows with `SupersessionBindingPresent = YES` need `Supersession_Delta.csv` bindings at group 2. The superseded facts are D-APP-74 L97-99 and L107, D-APP-108 Q3 (P-x only), the SCA-APP-011 DEL-07-02 follow-up text, and the D-APP-56 R4-P29 ownership confirmation (R-b); see Impact Assessment §16.
+- **Supersession.** Rows with `SupersessionBindingPresent = YES` need `Supersession_Delta.csv` bindings at group 2. The superseded facts are D-APP-74 L97-99 and L107, D-APP-108 Q3 (P-x only), the SCA-APP-011 DEL-07-02 follow-up text, and the D-APP-56 R4-P29 ownership confirmation (R-b); see Impact Assessment §18.
 
 ## Pre-change baseline
 
-`Pre_Change_Coverage.json` is built by `Evidence/Group1/build_pre_change_baseline.py`. The builder is read-only and reproducible from the repository root; two consecutive runs gave byte-identical output (`4504d70e…0018cb`).
+`Pre_Change_Coverage.json` is built by `Evidence/Group1/build_pre_change_baseline.py`. The builder is read-only and reproducible from the repository root; two consecutive runs of revision 2 gave byte-identical output (`e676e10d…1b31e9`). Revision 1 of the builder produced `4504d70e…0018cb`; revision 2 adds the choice-W and layout-metadata code references.
 
 It reuses the latest full `audit-decomp` run, `COV_SCA_APP_011_POST_ACCEPTANCE_2026-09-27_0500`, because all 122 of its recorded inputs are byte-identical to this basis (method step 5). It adds:
 
@@ -141,11 +151,11 @@ It reuses the latest full `audit-decomp` run, `COV_SCA_APP_011_POST_ACCEPTANCE_2
 ## Explicit exclusions
 
 - Any change to `deliverable-contracts.ts`, `lib/lifecycle`, `lib/dependencies`, `lib/pipeline/pipeline-dispatch-contract.ts`, `lib/workspace/task-scope.ts`, `lib/workspace/filesystem.ts` (`scanProjectScopes`, `scanProjectDeliverables`), the MCP tools or the Runtime tool descriptors.
-- `/api/project/deliverables`, `/api/working-root/{validate,tree,file,deliverable/content,workflow,workflow-drafts}` and all `/api/harness/*` routes.
+- `/api/project/deliverables`, `/api/working-root/{validate,tree,file,deliverable/content,workflow-drafts}` and all `/api/harness/*` routes. `GET /api/working-root/workflow` stays unless the owner chooses W-b.
 - The `/` and `/chat` page URLs, and the `/workbench` and `/pipeline` URLs unless the owner chooses P-x.
 - TYPES §4 legacy matrix vocabulary, persona aliases and the route/query compatibility semantics keyed with DEL-08-02 (their open TYPES §4 alignment stays with DEL-08-02).
 - The versioned local-state schema. `WovenWorkspaceSurface` keeps `'workbench' | 'pipeline'` values, and existing keys stay readable (SPEC §17.8).
-- The Work projection, `workflows-view.tsx` and the retained SDK-path modules that have no product importer at the basis. They are recorded as an observation (Impact Assessment §9.3) and are not proposed.
+- The Work projection and the retained SDK-path modules that have no product importer at the basis. They are recorded as an observation (Impact Assessment §10.3) and are not proposed. `workflows-view.tsx` and `workflow-detail.tsx` are owner choice W.
 - The Runtime scaffold API and every other Runtime-owned surface: the Runtime loop owns them; its retirement change is pending.
 - CONTRACT invariant text and the companion register.
 - Any lifecycle transition, release, publication, `_LATEST.md` movement, or closure of other open SCA-APP-011 work.

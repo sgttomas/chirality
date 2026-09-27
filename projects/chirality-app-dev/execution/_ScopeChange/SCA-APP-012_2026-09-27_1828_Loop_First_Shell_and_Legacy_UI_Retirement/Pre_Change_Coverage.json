@@ -582,6 +582,22 @@
     ],
     "unreachable_at_basis_in_scope": [
       {
+        "module": "src/components/woven-dialogue/workflow-detail.tsx",
+        "product_importers": [
+          "src/components/woven-dialogue/workflows-view.tsx"
+        ],
+        "test_importers": [
+          "src/__tests__/components/woven-workflows.test.tsx"
+        ]
+      },
+      {
+        "module": "src/components/woven-dialogue/workflows-view.tsx",
+        "product_importers": [],
+        "test_importers": [
+          "src/__tests__/components/woven-workflows.test.tsx"
+        ]
+      },
+      {
         "module": "src/lib/portal/agent-matrix-cells.ts",
         "product_importers": [],
         "test_importers": [
@@ -598,11 +614,9 @@
         ]
       }
     ],
-    "unreachable_at_basis_other_count": 51,
+    "unreachable_at_basis_other_count": 49,
     "unreachable_at_basis_other": [
       "src/components/woven-dialogue/work-projection.tsx",
-      "src/components/woven-dialogue/workflow-detail.tsx",
-      "src/components/woven-dialogue/workflows-view.tsx",
       "src/lib/consent/consent-ux-fixtures.ts",
       "src/lib/consent/fake-hosted-engine-consent-port.ts",
       "src/lib/harness/agent-runtime-contract.ts",
@@ -953,6 +967,63 @@
         "packages/contracts/src/protocol.ts",
         "packages/core/src/runtime-service.ts"
       ]
+    },
+    "/api/working-root/workflow?": {
+      "product": [
+        "src/components/woven-dialogue/workflows-view.tsx"
+      ],
+      "tests": [
+        "src/__tests__/api/working-root-workflow.test.ts"
+      ],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "WorkflowsView": {
+      "product": [
+        "src/components/woven-dialogue/workflows-view.tsx"
+      ],
+      "tests": [
+        "src/__tests__/components/woven-workflows.test.tsx"
+      ],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "WorkflowDetail": {
+      "product": [
+        "src/components/woven-dialogue/workflow-detail.tsx",
+        "src/components/woven-dialogue/workflows-view.tsx"
+      ],
+      "tests": [
+        "src/__tests__/components/woven-workflows.test.tsx"
+      ],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "workflow-read-contract": {
+      "product": [
+        "src/app/api/working-root/workflow/workflow-store.ts",
+        "src/components/woven-dialogue/workflow-detail.tsx",
+        "src/components/woven-dialogue/workflows-view.tsx"
+      ],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "workflow-store": {
+      "product": [
+        "src/app/api/working-root/workflow/route.ts"
+      ],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "PORTAL, PIPELINE, and WORKBENCH": {
+      "product": [
+        "src/app/layout.tsx"
+      ],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
     }
   },
   "legacy_css_tokens": {

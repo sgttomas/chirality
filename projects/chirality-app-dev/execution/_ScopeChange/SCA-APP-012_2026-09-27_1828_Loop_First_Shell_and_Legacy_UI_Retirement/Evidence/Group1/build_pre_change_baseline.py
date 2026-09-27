@@ -22,6 +22,11 @@ scaffold entry, and every App or Runtime source that names the Runtime
 scaffold port or its types. The Runtime retirement of that API is a separate,
 pending change; the scan reports the basis only.
 
+Revision 2 (same basis) also reports the flat-file workflow view and its read
+route (choice W) and the layout metadata string among the code references,
+and lists the workflow view among the in-scope modules without a product
+importer.
+
 Inputs (read-only):
   - projects/chirality-app-dev/execution/_Decomposition/*.md, *.csv
   - projects/chirality-app-dev/execution/_ScopeChange/_LATEST.md
@@ -78,6 +83,10 @@ DEP_IDS = ["DEP-02-03-009", "DEP-02-03-004", "DEP-08-02-013", "DEP-08-03-007", "
 LEGACY_SHELLS = [f"{SRC}/components/shell/{n}" for n in
                  ("loop-shell.tsx", "portal-loop-shell.tsx", "loop-tertiary-shell.tsx")]
 DELIVERABLES_PROVIDER = f"{SRC}/components/workspace/deliverables-provider.tsx"
+# Modules already without a product importer at the basis that this amendment addresses
+# (the portal helpers, and the flat-file workflow view of choice W).
+IN_SCOPE_UNREACHED = ("src/lib/portal/", "src/components/woven-dialogue/workflows-view.tsx",
+                      "src/components/woven-dialogue/workflow-detail.tsx")
 PAGE_DIRS = [f"{SRC}/app/workbench/", f"{SRC}/app/pipeline/"]
 
 TEXT_PATTERNS = {
@@ -90,6 +99,7 @@ TEXT_PATTERNS = {
     "page_routes": r"(?<![A-Za-z])/workbench\b|(?<![A-Za-z])/pipeline\b|PORTAL/WORKBENCH/PIPELINE",
     "req_009": r"DEL-02-03-REQ-009|DEL-02-03 REQ-009|DEP-02-03-009",
     "route_query_compat": r"DEP-08-02-013|route/query",
+    "workflow_read_route": r"/api/working-root/workflow(?![-\w])|workflows-view|WorkflowsView|workflow-detail",
     "scaffold_entry": r"ProjectScaffoldPort|scaffold entry|write-capable scaffold|mcp__chirality__scaffold|"
                       r"/v1/projects/\{id\}/scaffold|RuntimeService\.scaffold",
 }
@@ -100,6 +110,8 @@ CODE_PATTERNS = [
     "createTertiarySidebarTabs", "SidebarRightLoopLayout", "LoopTertiaryShell", "PortalLoopShell", "LoopShell",
     "pipelineTab", "workbenchTab", "portalTab", "RENDERER_SECURITY_PROBE_ROUTES", "PACKAGED_RENDERER_ROUTES",
     "ProjectScaffoldPort", "ScaffoldExecutionRootRequest", "ScaffoldExecutionRootResponse",
+    "/api/working-root/workflow?", "WorkflowsView", "WorkflowDetail", "workflow-read-contract", "workflow-store",
+    "PORTAL, PIPELINE, and WORKBENCH",
 ]
 EXTS = (".ts", ".tsx", ".js", ".mjs")
 IMPORT_RX = re.compile(
@@ -237,10 +249,10 @@ def reachability(files: list[str]) -> dict:
         "S3_additionally_only_via_workbench_pipeline_pages": delta(s2, s3),
         "unreachable_at_basis_in_scope": [
             {"module": rel(m), **importers(m)} for m in unreached
-            if rel(m).startswith("src/lib/portal/")
+            if rel(m).startswith(IN_SCOPE_UNREACHED)
         ],
-        "unreachable_at_basis_other_count": len([m for m in unreached if not rel(m).startswith("src/lib/portal/")]),
-        "unreachable_at_basis_other": [rel(m) for m in unreached if not rel(m).startswith("src/lib/portal/")],
+        "unreachable_at_basis_other_count": len([m for m in unreached if not rel(m).startswith(IN_SCOPE_UNREACHED)]),
+        "unreachable_at_basis_other": [rel(m) for m in unreached if not rel(m).startswith(IN_SCOPE_UNREACHED)],
     }
 
 
