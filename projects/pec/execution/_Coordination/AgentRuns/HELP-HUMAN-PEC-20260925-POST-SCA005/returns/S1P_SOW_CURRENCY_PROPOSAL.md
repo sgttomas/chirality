@@ -11,7 +11,7 @@ WORKING_ITEMS (Type 1) under HELP_HUMAN, undertaking `HELP-HUMAN-PEC-20260925-PO
 
 ## Recommended option
 
-**A** — the twelve exact replacements in one act, no lifecycle change, **after the `D-PEC-102` act, which landed as PR #998 (`f0a6159c9`)** (DEL-04-05 quotes the S4 postimages of DEL-04-01 and DEL-04-03; the act pins them and refuses before S4); add-on M (MEMORY records at closeout: eleven created, one section appended to DEL-01-03's) offered separately. **A supersedes an owner-accepted contract without opening a review** (DEL-03-01; question 1 note, question 4).
+**A** — the twelve exact replacements in one act, no lifecycle change, **after the `D-PEC-102` act, which landed as PR #998 (`f0a6159c9`)** (DEL-04-05 quotes the S4 postimages of DEL-04-01 and DEL-04-03; the act pins them and refuses before S4); add-on M (MEMORY records at closeout: eleven created, one section appended to DEL-01-03's) offered separately. **A supersedes two owner-accepted contracts without opening a review** (DEL-03-01, whose `_REVIEW.md` acceptance lapses on its own terms; DEL-01-05, accepted as production contract under `D-PEC-77` on 2026-08-03, no lapse clause, REQ/AC/VER byte-identical so the verification basis is unchanged; question 1 note, question 4). No comparable acceptance exists for the other ten.
 
 ## Lifecycle answer
 
@@ -33,7 +33,7 @@ Replacement strings byte-exact; each item's gate respected (its loci only; other
 - **Dependency anchors:** no ACTIVE `Dependencies.csv` row cites an S1 contract; corpus-wide dependency quote currency 127/127 before and after.
 - **Externally cited IDs kept:** `DEL-01-03/CON-001` (subject kept), `DEL-01-03/REQ-003` (byte-identical), `DEL-02-01/REQ-002` (admission-rule sentence byte-identical).
 - **S2 quotation currency:** of the `D-PEC-100` fifteen, nine are S1 targets; eight brought current, DEL-03-06 has none (heuristic false positive); four are S4's; DEL-02-08/09 a later revision.
-- **Consequences disclosed:** DEL-03-06's other stale text and two of its sibling quotations made non-verbatim by this act (correction-only scope); DEL-03-04 (S4) quotes DEL-03-01 `CON-005`; DEL-02-07 `CON-003`'s premise about DEL-02-01; REVIEW records of DEL-03-01 (acceptance lapses under its own terms) and DEL-01-05 (SOW binding no longer current); only these two targets carry `_REVIEW.md` or `Review_Findings.csv`.
+- **Consequences disclosed:** DEL-03-06's other stale text and two of its sibling quotations made non-verbatim by this act (correction-only scope); DEL-03-04 (S4) quotes DEL-03-01 `CON-005`; DEL-02-07 `CON-003`'s premise about DEL-02-01; owner acceptances of the current contract bytes of DEL-03-01 (`_REVIEW.md`; lapses under its own terms) and DEL-01-05 (`D-PEC-77`, 2026-08-03; no lapse clause); DEL-10-13 `CLM-007`/`CON-003` partly overtaken for DEL-04-05 and DEL-10-02; the routed DEL-10-02 `C-08` wording kept (disposition in the draft's findings); DEL-03-06 L229's "supplies no evidence" sentence left.
 - **Ordering after S4:** DEL-04-05's quotations of DEL-04-01 `REQ-001`/`CON-004` and DEL-04-03 `CON-003` are rebased on the S4 postimages at `91a2e8407` (option (a) of HELP_HUMAN's relay); the `D-PEC-102` act landed exactly these postimages (`f0a6159c9`); the order is met.
 
 ## Check results (on `git archive` exports at `origin/main` `f0a6159c9`, observation `125cfacc1`)
@@ -42,11 +42,11 @@ OVERALL PASS (on the plain tree: the `D-PEC-102` act has landed, so the S4 overl
 
 ## Verdicts
 
-`VERIFIER_VERDICT_01..12.md` in the prep folder (reviewer returns with manager dispositions). Round 8 (`VERIFIER_VERDICT_12.md`) is **PASS WITH NOTES with nothing blocking**; its text notes are repaired. Round 9 (`VERIFIER_VERDICT_13.md`), the finalization after the `D-PEC-102` act landed, is **PASS WITH NOTES with nothing blocking**; its text notes are repaired. The final verdict state is given in the manager's hand-back. No verdict records a ruling.
+`VERIFIER_VERDICT_01..12.md` in the prep folder (reviewer returns with manager dispositions). Round 8 (`VERIFIER_VERDICT_12.md`) is **PASS WITH NOTES with nothing blocking**; its text notes are repaired. Round 9 (`VERIFIER_VERDICT_13.md`), the finalization after the `D-PEC-102` act landed, is **PASS WITH NOTES with nothing blocking**. HELP_HUMAN's independent PR review at `8bdf8f697` then failed the draft on an undisclosed DEL-01-05 contract acceptance and an undispositioned DEL-10-02 wording; both are repaired (text only), and round 10 (`VERIFIER_VERDICT_14.md`) checks the repairs. The final verdict state is given in the manager's hand-back. No verdict records a ruling.
 
 ## Owner questions (in the draft)
 
-1. A, amend or defer (A recommended, after the `D-PEC-102` act; note: supersedes DEL-03-01's owner-accepted contract without opening a review). 2. Part B reading (confirm). 3. DEL-03-06 correction-only (keep). 4. Earlier REVIEW acceptances of DEL-03-01 and DEL-01-05 stay as history; no REVIEW file written (confirm). 5. Add-on M (recommended). 6. Model steer.
+1. A, amend or defer (A recommended, after the `D-PEC-102` act; note: supersedes the owner-accepted contracts of DEL-03-01 and DEL-01-05 without opening a review). 2. Part B reading (confirm). 3. DEL-03-06 correction-only (keep). 4. The earlier owner acceptances of DEL-03-01 and DEL-01-05 (including DEL-01-05's `D-PEC-77` contract acceptance) stay as history; no REVIEW file written (confirm). 5. Add-on M (recommended). 6. Model steer.
 
 ## For the caller
 
