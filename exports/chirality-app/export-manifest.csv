@@ -397,7 +397,7 @@ desktop/src/__tests__/lib/pkg08-compatibility-boundaries.test.ts,1838,3d5f647849
 desktop/src/__tests__/lib/plan-executions.test.ts,3861,f50290dffa1215d992249a41778decf4dc9c008e0841aeeb273e89df5430b0a5
 desktop/src/__tests__/lib/plan-export-dialog.test.ts,3021,f5a9224c921127d964d13d678b7550869f2f56d0de607996c78bf71c01b2e973
 desktop/src/__tests__/lib/recorded-agent-hierarchy.test.ts,4073,dabf78dc57fa255bd96ac020592e9f9b26ff3d7ac37836b817504ffb9105fe5c
-desktop/src/__tests__/lib/recorded-register-parity.test.ts,31842,1b9a89f05c41e8dea6fc934753e1979381d86d460271be88ac69eecdd5d2800d
+desktop/src/__tests__/lib/recorded-register-parity.test.ts,32249,643f03fee8a486f6cb16381ddaad7cc0e1c632afc130019f94664763124b815e
 desktop/src/__tests__/lib/redaction-path-matrix.test.ts,3398,cb386af8beda2b0158734b2f63e7faad4cd29321761058dff274c19a162295d5
 desktop/src/__tests__/lib/run-logger.test.ts,3743,9ce9ec664f91670923add2a63925df927471ea067da3c212c899695b7323d390
 desktop/src/__tests__/lib/runtime-daemon-harness-port.test.ts,59111,65252b9b8be980e4ec17c71a1ce54469a39309c8772b4c2c1c059c4d1b6a57c4
@@ -589,7 +589,7 @@ desktop/src/lib/consent/fake-hosted-engine-consent-port.ts,13466,9d43b0fdf38ab63
 desktop/src/lib/consent/hosted-engine-consent-port.ts,14209,2caeff6a7a3f2aefa1ce4a167a734214f7ac916746e8c34d26b03c15f8ff006d
 desktop/src/lib/credential-storage-state.ts,1581,b9a9e171ae8de26845d1868fe03510e3f4b8737a177460538127ba7376441e43
 desktop/src/lib/dependencies/csv-utils.ts,1713,5e5e3f727e78934f540c8a10366e4c9f63277715ca6c60bece5cc131be09df77
-desktop/src/lib/dependencies/recorded-register.ts,65442,e1b50bb05271dd96208a787a7b1feb46db4a3e9e53a413a9a627ab129e8e2c07
+desktop/src/lib/dependencies/recorded-register.ts,65439,e328d42aaf113e498222ab8580dcf84524fac6bd75211a85f37347e7ef360fdc
 desktop/src/lib/dependencies/register-reader.ts,4089,63e54980cba8acb21ff163a0ef0a952ffe0ea333760dd3a90ce43a1a5feec504
 desktop/src/lib/dependencies/register-writer.ts,13903,b14be869ce17de370e85d222185b8e2cfac848b5d1606178f4dd41e80ae3f747
 desktop/src/lib/dependencies/schema.ts,6350,a6a5bc29f70226ebc6e6e951bb5a025e27b5c9a985e734a941bf04c2d219f8da

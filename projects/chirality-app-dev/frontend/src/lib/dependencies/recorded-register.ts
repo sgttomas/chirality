@@ -1649,7 +1649,6 @@ async function locateExecutionRoot(
   const shown = (target: string): string => path.relative(projectRoot, target) || '.';
 
   let executionRoot: string;
-  let canonicalRoot: string;
   if (explicitRoot !== undefined) {
     const contained = isWithin(scope.root, explicitRoot) ? await containedPath(scope, explicitRoot) : null;
     if (contained === null) {
@@ -1658,18 +1657,18 @@ async function locateExecutionRoot(
           'EXECUTION_ROOT_OUTSIDE_PROJECT_ROOT: the execution root holding this deliverable is outside projectRoot'
       };
     }
-    executionRoot = explicitRoot;
-    canonicalRoot = contained;
+    // Canonical, as `deliverable` is, so an aliased root still matches it.
+    executionRoot = contained;
   } else {
     const resolution = await resolveExecutionRoot(deliverable, projectRoot);
     if (!resolution.resolved) {
       return { notAssessedReason: `EXECUTION_ROOT_NOT_RESOLVED: ${resolution.reason}; no verdict is given` };
     }
-    executionRoot = canonicalRoot = path.join(projectRoot, resolution.executionRoot);
+    executionRoot = path.join(projectRoot, resolution.executionRoot);
   }
-  if (executionRootForDeliverable(deliverable) !== canonicalRoot) {
+  if (executionRootForDeliverable(deliverable) !== executionRoot) {
     return {
-      notAssessedReason: `DELIVERABLE_OUTSIDE_EXECUTION_ROOT: ${shown(deliverable)} is not at {EXECUTION_ROOT}/PKG-*/<lifecycle folder>/DEL-* for the execution root ${shown(canonicalRoot)}; no verdict is given`
+      notAssessedReason: `DELIVERABLE_OUTSIDE_EXECUTION_ROOT: ${shown(deliverable)} is not at {EXECUTION_ROOT}/PKG-*/<lifecycle folder>/DEL-* for the execution root ${shown(executionRoot)}; no verdict is given`
     };
   }
   return { executionRoot };

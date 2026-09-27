@@ -566,6 +566,15 @@ describe('recorded register reads resolve the execution root', () => {
     });
     expect(direct.blockers.blockerState).not.toBe('NOT_ASSESSED');
     expect(aliased.blockers).toEqual(direct.blockers);
+
+    // So does an execution root named through the alias.
+    const named = await readDeliverableRecordedRegister({
+      deliverablePath: path.join(alias, 'execution', 'PKG-02_Data', '1_Working', 'DEL-02-01_Consumer'),
+      containmentRoot: alias,
+      executionRoot: path.join(alias, 'execution')
+    });
+    expect(named.blockers).toEqual(direct.blockers);
+    expect(named.executionRoot).toBe(root);
   });
 
   it('gives no verdict when an adapter manifest implies another execution root', async () => {

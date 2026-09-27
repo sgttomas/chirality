@@ -140,3 +140,7 @@ the run.
   inventory, so a direct call through an aliased (symlinked) project path keeps
   its verdict. The requested path is still used as given to detect a linked
   unit folder. A regression test covers the alias.
+- An `executionRoot` named explicitly (the parity fixtures' input; no App or
+  MCP caller passes it) is likewise used in its canonical form, so a root named
+  through an aliased containment root keeps the verdict. The alias test covers
+  it and fails without the change.
