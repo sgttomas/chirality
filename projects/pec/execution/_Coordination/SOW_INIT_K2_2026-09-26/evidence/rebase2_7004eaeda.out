@@ -1,0 +1,28 @@
+# base movement 2: origin/main 3e861f53c -> 7004eaeda35699cbc1d22e26fe305dd95175d58d (PR #991); merged as c4ae46f6ef44067d1bffa036fcb37cb7cc5704f2 (no rebase)
+$ git diff --name-only 3e861f53c 7004eaeda35699cbc1d22e26fe305dd95175d58d -- projects/pec _DomainEngines tools workflows docs AGENTS.md agents
+exit=0 (empty list = no pinned file or quoted locus changed)
+$ python3 projects/pec/execution/_Coordination/SOW_INIT_K2_2026-09-26/verify_k2_quotes.py --tree . --gitdir . --prep projects/pec/execution/_Coordination/SOW_INIT_K2_2026-09-26 --observation 125cfacc1   (cwd: repository root)
+PASS DEL-10-13 FORBID phrase 'at the basis' absent
+PASS DEL-10-13 OBS observation commit 125cfacc1 named
+RESULT PASS 137/137
+exit=0
+$ python3 projects/pec/execution/_Coordination/SOW_INIT_K2_2026-09-26/verify_k2_state_claims.py --gitdir . --prep projects/pec/execution/_Coordination/SOW_INIT_K2_2026-09-26   (cwd: repository root)
+PASS DEL-10-13 S333 contains 125cfacc1:projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/ScopeOfWork.md [git=yes; candidate=yes]
+PASS DEL-10-13 S334 not_contains 125cfacc1:projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_CONTEXT.md [git=yes; candidate=yes]
+RESULT PASS 482/482
+exit=0
+$ python3 tools/scope_of_work/validate_scope_of_work.py projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface   (cwd: repository root)
+PASS format=SOW_V1 target=projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface
+exit=0
+$ python3 tools/scope_of_work/validate_scope_of_work.py projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate   (cwd: repository root)
+PASS format=SOW_V1 target=projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate
+exit=0
+$ git diff --name-status origin/main...HEAD (outside the run root)
+A	projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/ScopeOfWork.md
+M	projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/_STATUS.md
+A	projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/ScopeOfWork.md
+M	projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_DEPENDENCIES.md
+M	projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/_STATUS.md
+A	projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/briefs/K2A_D103_SOW_ACT.md
+$ git diff --check origin/main...HEAD
+exit=0
