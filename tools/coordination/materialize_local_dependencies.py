@@ -19,6 +19,16 @@ counted.
 Where the aggregate carries a row with the same DependencyID, the local
 declared row is kept and the difference is reported.
 
+A rewrite is not a currency check. Where a project's local registers are the
+source its accepted DAG was built from (docs/SPEC.md §5.4, D-GOV-49), a
+default-mode run can rewrite files whose arcs already match that version: the
+output takes the aggregate header, orders rows by DependencyID, takes every
+non-declared row (Notes included) from the aggregate, and leaves out aggregate
+rows whose Status is RETIRED, so a local RETIRED row is dropped unless it is a
+declared row kept as above. Check
+currency with analyze_dep_closure.py (its accepted_dag comparison), and
+rewrite a register only where the project's records call for it.
+
 With --refresh-pointers, each deliverable's _DEPENDENCIES.md is refreshed in
 place under the docs/SPEC.md §5.2 schema: the tool writes the agent-owned
 Extracted Dependency Register (with the authority-boundary statements) and
