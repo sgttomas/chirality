@@ -6,6 +6,7 @@
 **Applies to:** Chirality App vNext filesystem, APIs, runtime, packaged app, and validation
 **Amended:** Amended under D-GOV-43 (A2), 2026-09-12: the browser event contract, harness-port and SSE clauses, release verification and §25 shared runtime revised to the application-owned Runtime service; residency subsections retired to history
 **Amended (SCA-APP-011):** owner direction 2026-09-27: §17.1-17.2 retire the three deliverable routes and `/api/harness/scaffold`; §17.3 drops the Workbench and Pipeline forms; §5.2 dependency-read wording
+**Amended (SCA-APP-012):** owner direction 2026-09-27: §17.2 retires `/api/working-root/scope`; §17.9 records the loop-first UI retirement; §14.2 narrows `mcp__chirality__scaffold` to the read-only preview
 
 This document is the authoritative specification for Chirality App physical structures, file formats, schemas, runtime mechanics, session storage, validation surfaces, and layout conventions.
 
@@ -996,7 +997,7 @@ Chirality-specific deterministic operations use `mcp__chirality__*` names.
 | `mcp__chirality__deps_read` | Read and validate `Dependencies.csv`. | Read. |
 | `mcp__chirality__deps_write` | Append/update dependency rows preserving v3.1 schema. | Write, gated. |
 | `mcp__chirality__scope_scan` | Run bounded workspace scope scan. | Read. |
-| `mcp__chirality__scaffold` | Wrap scaffold service or dry-run preview. | Gated. |
+| `mcp__chirality__scaffold` | Read-only scaffold preview (dry run); no write-capable scaffold tool is planned (SCA-APP-012). | Gated. |
 
 ### 14.3 Tool Surface Rules
 
@@ -1123,8 +1124,11 @@ Existing route shapes remain stable during adapter adoption and TurnEngine extra
 |---|---|---|
 | `/api/working-root/validate` | POST | Validate and normalize working root. |
 | `/api/working-root/tree` | GET | Return bounded file tree. |
-| `/api/working-root/scope` | GET | Scan deliverables and knowledge types. |
 | `/api/project/deliverables` | GET | Return deliverables plus knowledge decomposition metadata. |
+
+SCA-APP-012 retired `/api/working-root/scope`. `/api/project/deliverables`
+is the scope-scan surface, and the scan library `scanProjectScopes` stays for
+the retained `scope_scan` tool contract (§14.2).
 
 SCA-APP-011 retired `/api/working-root/deliverable/status`,
 `/api/working-root/deliverable/status/transition` and
@@ -1277,13 +1281,14 @@ guards remain compatible even though the target shell does not require a
 fixed matrix.
 
 Browser API shapes in §17.1-17.2 (apart from the four routes SCA-APP-011
-retired), the event representation in §11 as revised
+retired and `/api/working-root/scope`, retired by SCA-APP-012), the event representation in §11 as revised
 under D-GOV-43, credential handling, network policy, Runtime service
 ownership (D-GOV-43 A2), session storage, permission policy, child
 capability, and runtime contracts remain unchanged by this information
-architecture. The existing loop-first UI remains a compatibility
-implementation until parity evidence and a separate owner retirement decision
-exist.
+architecture. The loop-first UI, formerly kept as a compatibility
+implementation until a separate owner retirement decision, is retired by
+SCA-APP-012, which is that decision; `/`, `/chat`, `/pipeline` and
+`/workbench` render the dialogue shell.
 
 ### 17.10 Projection Validation
 

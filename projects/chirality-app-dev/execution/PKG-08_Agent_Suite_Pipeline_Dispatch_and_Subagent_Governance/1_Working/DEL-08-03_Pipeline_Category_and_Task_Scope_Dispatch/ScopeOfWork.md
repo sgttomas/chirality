@@ -121,7 +121,7 @@ SCA-APP-011 (owner direction 2026-09-27; DEC-026) retires the Pipeline form code
 > | TASK scope requirement | Scope mode is `DELIVERABLES` or `KNOWLEDGE_TYPES`; target deliverable is required for knowledge-type mode. | `docs/PRD.md` FR-012 |
 > | Dynamic reset | Root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets clear invalid selection state. | `docs/PRD.md` FR-013 |
 > | Knowledge bucket detection | Datasheet, Specification, Guidance, and Procedure are supported as first-class knowledge buckets. | `docs/PRD.md` FR-049 |
-> | Working-root scope API | `/api/project/deliverables` scans deliverables and knowledge types for the active root. | `docs/SPEC.md` Section 17.2; D-APP-56 R4-P21 |
+> | Deliverable scan API | `/api/project/deliverables` scans deliverables and knowledge types for the active root. | `docs/SPEC.md` Section 17.2; D-APP-56 R4-P21 |
 > | Presentation ownership | DEL-02-02 presents re-hosted Workbench/Pipeline and Coordination Panel consumers; DEL-08-03 remains semantic dispatch owner. | SCA-APP-004 semantic ownership partition |
 > | Work projection boundary | A Work-panel item may display an explicitly recorded dispatch/task basis with provenance and currency, but conversational prose is never silently converted into a plan/task and runtime completion is not project acceptance. | SCA-APP-004 coordination-projection invariant |
 > | Child-record boundary | DEL-08-05 remains the unchanged owner of child-run parentage, assignment, return, and artifact records. | SCA-APP-004 no-change set |
