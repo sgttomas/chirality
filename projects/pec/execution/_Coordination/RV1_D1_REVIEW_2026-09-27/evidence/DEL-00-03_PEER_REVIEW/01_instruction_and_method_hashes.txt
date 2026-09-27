@@ -1,0 +1,23 @@
+cwd: {REPO_ROOT} (repository root; branch claude/pec-rv1-d1-review, HEAD a1735cc3b)
+interpreter: python3 (CPython 3.13.7, as reported by python3 --version); shell bash
+env: TMPDIR=<review scratch dir>, PYTHONDONTWRITEBYTECODE=1
+command: shasum -a 256 AGENTS.md projects/pec/AGENTS.md agents/AGENT_TASK.md projects/pec/execution/_Coordination/RV1_D1_REVIEW_2026-09-27/briefs/COMMON_REVIEW_TASK.md projects/pec/execution/_Coordination/RV1_D1_REVIEW_2026-09-27/briefs/RV1_PEER_REVIEW_DEL-00-03.md projects/pec/execution/_Coordination/_DECISIONS/D-PEC-107_OWNER_DIRECTION_2026-09-27.md projects/pec/execution/_Coordination/_DECISIONS/D-PEC-105_RULING_2026-09-27.md projects/pec/execution/_Coordination/_DECISIONS/D-PEC-105_d1_premise_amendment_proposal_2026-09-26.md projects/pec/execution/_Coordination/_TaskManagement/TM_PEC_CLOSEOUT_POST_SCA005_2026-09-27/INTAKE.md projects/pec/execution/_Coordination/RV1_D1_REVIEW_2026-09-27/evidence/reliance_hold_preflight.out projects/pec/execution/_Coordination/RV1_D1_REVIEW_2026-09-27/checklists/checklist_DEL-00-03.json; for f in WORKFLOW.md execution.json resources/contract.md resources/method.md; do printf "%s  2f825f180:workflows/review/%s\n" $(git show 2f825f180:workflows/review/$f | shasum -a 256 | cut -d" " -f1) $f; done; ls projects/pec/execution/AgentRuns/HELP-HUMAN-PEC-20260927-RV1-INTAKE/briefs/ 2>&1; shasum -a 256 projects/pec/execution/AgentRuns/HELP-HUMAN-PEC-20260927-RV1-INTAKE/briefs/RV1A_D1_REVIEW.md 2>&1
+---- output ----
+c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd  AGENTS.md
+df9196d152a01afe59b388111ae0a14381b4ad74f280e95f9c44a1eaee925eb8  projects/pec/AGENTS.md
+1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7  agents/AGENT_TASK.md
+3b48557d34885976a7fadf6dfc27b9b93cf5b77485fb8e1f9adc63b0da5e3cd6  projects/pec/execution/_Coordination/RV1_D1_REVIEW_2026-09-27/briefs/COMMON_REVIEW_TASK.md
+55a3d25d169feb2ba1ddb2b43b3632c0b4629af383867c9cad8b80f3f914db52  projects/pec/execution/_Coordination/RV1_D1_REVIEW_2026-09-27/briefs/RV1_PEER_REVIEW_DEL-00-03.md
+403a0497ae65c413f844b656daf6b3f5a58f99ffd65012dfd42b078430def346  projects/pec/execution/_Coordination/_DECISIONS/D-PEC-107_OWNER_DIRECTION_2026-09-27.md
+401c2419ba26c8a43610d8416663e745a80d8061363d5abb73459dea931bd0ef  projects/pec/execution/_Coordination/_DECISIONS/D-PEC-105_RULING_2026-09-27.md
+077610057791063e2308d932cf08a7ac44cd02793fe60925c744d969fd6ba89f  projects/pec/execution/_Coordination/_DECISIONS/D-PEC-105_d1_premise_amendment_proposal_2026-09-26.md
+e2ccf3e33b6636c46afe3fe68eff586f22141b405364bcb6b6eeefd63077818a  projects/pec/execution/_Coordination/_TaskManagement/TM_PEC_CLOSEOUT_POST_SCA005_2026-09-27/INTAKE.md
+bd27f9d2373e7d7108b343ce6a031739e375edd8543ebc24c0d999631277d0e2  projects/pec/execution/_Coordination/RV1_D1_REVIEW_2026-09-27/evidence/reliance_hold_preflight.out
+a3bc80a0db9a1917aa54337f62cd2057ce154bdc792f3802d982012f667121b1  projects/pec/execution/_Coordination/RV1_D1_REVIEW_2026-09-27/checklists/checklist_DEL-00-03.json
+f8a8f240a034395dd1d069799449215eca29ce14887a20653f1cec9a674906bc  2f825f180:workflows/review/WORKFLOW.md
+d1c668ae85f9f5a0edf2ecb312a449e21aa9101f99da9997fc4a7805677074df  2f825f180:workflows/review/execution.json
+d3d7eb27993068fbdf4ea3b06c78a19106ff4d145f149d5cf50040756144b328  2f825f180:workflows/review/resources/contract.md
+63c8a3959cd6286f95acf30ae87e42a5dd99d951b2ae2ab3ec6212a81f930daa  2f825f180:workflows/review/resources/method.md
+ls: projects/pec/execution/AgentRuns/HELP-HUMAN-PEC-20260927-RV1-INTAKE/briefs/: No such file or directory
+shasum: projects/pec/execution/AgentRuns/HELP-HUMAN-PEC-20260927-RV1-INTAKE/briefs/RV1A_D1_REVIEW.md: No such file or directory
+---- exit code: 1 ----

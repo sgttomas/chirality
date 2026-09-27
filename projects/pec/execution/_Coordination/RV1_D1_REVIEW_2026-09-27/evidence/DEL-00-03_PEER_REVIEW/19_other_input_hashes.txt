@@ -1,0 +1,33 @@
+cwd: {REPO_ROOT} (repository root; branch claude/pec-rv1-d1-review, HEAD a1735cc3b)
+interpreter: python3 (CPython 3.13.7, as reported by python3 --version); shell bash
+env: TMPDIR=<review scratch dir>, PYTHONDONTWRITEBYTECODE=1
+command: X=projects/pec/execution; git rev-parse HEAD; git branch --show-current; shasum -a 256 $X/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260927-RV1-INTAKE/briefs/RV1A_D1_REVIEW.md $X/_Coordination/TM-PEC-014_SPEC_CURRENCY_2026-08-09/REVISION_01_RF-002_RF-003_2026-08-09/OWNER_CUSTOM_CU-001.json $X/_Coordination/ACTIVE_RELIANCE_HOLDS.csv $X/_Scripts/pec_reliance_hold.py $X/_Coordination/RV1_D1_REVIEW_2026-09-27/checklists/checklist_DEL-00-01.json $X/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md $X/_ScopeChange/SCA-006_2025-09-25_1912/Propagation_Plan.md $X/_ScopeChange/SCA-006_2026-09-25_1912/Propagation_Plan.md $X/_ScopeChange/SCA-002_2026-07-25_1042/Amendment_Preview.md $X/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md $X/_Coordination/_DECISIONS/D-PEC-72_p1_entry_foundation_slice.md tools/scope_of_work/derive_review_checklist.py tools/scope_of_work/validate_scope_of_work.py tools/validation/validate_decomposition_registers.py 2>&1; for d in $X/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2136 $X/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2156; do shasum -a 256 $d/*.md; done; shasum -a 256 $X/_Evaluation/Reviews/_LATEST.md
+---- output ----
+a1735cc3b237413cf0dcb5396d54828a5c16c3a1
+claude/pec-rv1-d1-review
+3212458cbeabd09d5590c5a9efc694f087f3c4b8b35c38909ef2ccd478ad5d32  projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260927-RV1-INTAKE/briefs/RV1A_D1_REVIEW.md
+36ec35f3869f02e935c21b62a767309c8763afbd97ff5f13e515da6e44507dc3  projects/pec/execution/_Coordination/TM-PEC-014_SPEC_CURRENCY_2026-08-09/REVISION_01_RF-002_RF-003_2026-08-09/OWNER_CUSTOM_CU-001.json
+f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc  projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv
+b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e  projects/pec/execution/_Scripts/pec_reliance_hold.py
+6e99f93c37c761b140c60d870ab0048bae814427d65143a60364f36896bb8cf9  projects/pec/execution/_Coordination/RV1_D1_REVIEW_2026-09-27/checklists/checklist_DEL-00-01.json
+50cd0b1d91ea25cc8ecba28ce649278b376fb952feec09e007a26ca5bbf91350  projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md
+shasum: projects/pec/execution/_ScopeChange/SCA-006_2025-09-25_1912/Propagation_Plan.md: No such file or directory
+f95d00d154610d44a37d4aeabfae3fff29aac6c0a0c016bb1241810ebc87d7d8  projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Propagation_Plan.md
+7e9b2a681047b2e9dff2987398664439936201eb0c95787fb53438206e0344fa  projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Amendment_Preview.md
+2ba540e3cd3a565b4f44f7494ea42a2dc128ce458dbf7a17714dbe847d3e7fdd  projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md
+513f768c71d87e309980ec273014eb0213055490098c9eb30b234776c5dbaae8  projects/pec/execution/_Coordination/_DECISIONS/D-PEC-72_p1_entry_foundation_slice.md
+bfb64dc9509d0cdf042e5304675e40238e7c56cd0174ab31f5adfaf41cef0109  tools/scope_of_work/derive_review_checklist.py
+f0f10590538b5aab788c120a0993a66addba6e106b352959fe11ee97511fecfe  tools/scope_of_work/validate_scope_of_work.py
+5442049efb41762d102448a8a64332950e4c08acfdf85d84722fef04223126f5  tools/validation/validate_decomposition_registers.py
+e3c4748a6e601acc3aa6f6600d0d18d9734757e6c04d3e6cab3cfd325f266c89  projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2136/Brief.md
+1d1499c69bf1383a1a29420d9eabaed8489f8511590dce0d36de5bbf25dd727c  projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2136/Decision_Log.md
+50c8d4e4dbd59a29d3a3b69f4aa8f59ea6a3074d1184eb33918f008bdeaa4b6e  projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2136/QA_Report.md
+832ca460c8cb128529d2868dec769845eda2d8ad7443b7e71e9e2e5eb4666410  projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2136/RUN_SUMMARY.md
+577190b78d1bbb50e46757275411ecc7d757bb950dd106e61edd322d21b4b72e  projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2136/Review_Summary.md
+5eb78eb83bbc109e2820761f1e48856fc1afd1e1085ce88609c5fc3d48ebbe7d  projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2156/Brief.md
+17385317540b90e4826e23f61b127aaf533b3699f37ecbe930f79c495dc51567  projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2156/Decision_Log.md
+5d14c5ce1dbc21a9405b8be15f5b2749159e3a9f944cb3af1187a7cf12f8508e  projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2156/QA_Report.md
+e470eef97d63e05271ba1817431ba2938f8b6c3374d3283d370e5a76e6bf682d  projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2156/RUN_SUMMARY.md
+d02969276b6a470e1207e4d15073a1f7c184076f956dff52d03fe3f4332ec8cb  projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2156/Review_Summary.md
+1b04c0bdf971eac46d077f27e0825f46c2100056e5461ddcf17d7c69abe03bdf  projects/pec/execution/_Evaluation/Reviews/_LATEST.md
+---- exit code: 0 ----
