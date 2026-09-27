@@ -1,0 +1,36 @@
+{
+  "checks": [
+    "harness-self-check",
+    "v2-api-contract",
+    "v2-core-posture",
+    "v2-loop-registry",
+    "v2-parsers",
+    "v2-store-guard"
+  ],
+  "paths": [
+    "software-workflow.json",
+    "v2/tests/parsers/test_parser_fixture_integrity.py",
+    "v2/tests/parsers/fixtures/pinned/MANIFEST.json"
+  ],
+  "reasons": {
+    "v2-api-contract": [
+      "software-workflow.json"
+    ],
+    "v2-core-posture": [
+      "software-workflow.json"
+    ],
+    "v2-loop-registry": [
+      "software-workflow.json"
+    ],
+    "v2-parsers": [
+      "software-workflow.json",
+      "v2/tests/parsers/fixtures/pinned/MANIFEST.json",
+      "v2/tests/parsers/test_parser_fixture_integrity.py"
+    ],
+    "v2-store-guard": [
+      "software-workflow.json"
+    ]
+  },
+  "schema": "chirality-affected-checks/v1"
+}
+exit=0
