@@ -39,7 +39,7 @@ E = "projects/pec/execution/"
 TARGETS = {
     E + "PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md":
         ("6f4e8c66a5712ba73e5000f1eafbfd5dd821bb4c339a23d77aa46b5b558830ae",
-         "dc5ce6431f62bd2709130e26d3924e2c0702defab1b600a9d136157f17a1490a"),
+         "98a3a3ec227380db2dd030c9c1ca31535d67071a44a3b79508ab4566b32771a0"),
     E + "PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/ScopeOfWork.md":
         ("a2b50f870aa30fb45e06b1f4cf1b300ff522a19490066c1e2d898b9022c0e65a",
          "bcd69f503acf308e2ef7e73cc722efd61b59710877a5561624260aad71736b11"),
@@ -48,7 +48,7 @@ TARGETS = {
          "b8c021f581448d1ff5413938563d40b015672aefede15ed97da9dd9b92865e01"),
     E + "PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/ScopeOfWork.md":
         ("013c615a0c91d7d2545d7dfc0faecfe509b0c7409f450fdefd01125d2aef3138",
-         "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"),
+         "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"),
     E + "PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/ScopeOfWork.md":
         ("6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b",
          "16d731a51556cb644220c2c532696d8d0144972e20576db29495e200a775404c"),

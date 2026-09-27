@@ -12,7 +12,7 @@
         "document": "ScopeOfWork.md",
         "line": 322,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"
+        "sha256": "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"
       },
       "text": "For fixture composed orientation responses, every citation, every stamp field, every reliance-envelope element, and every stated absence present in the composed response is present in the serialized envelope instance — or, where the response is paginated or continued, in the sequence of its pages or segments — with its value unaltered, byte for byte where the value is a string; the serialized output contains no claim, citation, stamp field, reliance-envelope element, or value absent from the composed response other than the format-level fields declared under REQ-012; and the round-trip inventory of carried elements matches the composed response's inventory exactly in both directions.",
       "verification": [
@@ -37,7 +37,7 @@
         "document": "ScopeOfWork.md",
         "line": 323,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"
+        "sha256": "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"
       },
       "text": "The delivered specification defines a per-claim citation carriage in which file path, anchor, and SHA are each individually addressable by a machine consumer; for fixture responses spanning every claim class the fixture contains, and for fixtures presenting claims at more than one granularity, every claim's citation is carried with its constituents individually recoverable; and neither the specification nor the serializer imposes a count ceiling on citations or exempts any claim class.",
       "verification": [
@@ -62,7 +62,7 @@
         "document": "ScopeOfWork.md",
         "line": 324,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"
+        "sha256": "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"
       },
       "text": "The delivered specification defines a response-stamp carriage providing for the examined-through SHA, the generation time, and per-feed freshness, with freshness carried as one entry per feed; for a fixture whose composed response reports multiple feeds, the serialized instance carries one freshness entry per reported feed and no aggregate substitute; and the specification fixes no representation for the examined-through SHA field beyond carrying the value the composed response presents.",
       "verification": [
@@ -87,7 +87,7 @@
         "document": "ScopeOfWork.md",
         "line": 325,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"
+        "sha256": "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"
       },
       "text": "Every envelope instance produced in a fixture run resolves, from the artifact alone, the schema version its shapes belong to; the specification defines no schema and no version identifier scheme of its own, naming instead the version owned upstream; and a check run over a seeded successor envelope shape passes a purely additive successor and fails a successor that removes a published element or changes a published element's meaning.",
       "verification": [
@@ -112,7 +112,7 @@
         "document": "ScopeOfWork.md",
         "line": 326,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"
+        "sha256": "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"
       },
       "text": "Fixture envelope instances parse deterministically under the declared machine-first reading with no human-oriented layout, prose framing, or presentation markup; the specification's field set contains no field whose stated purpose is human display; and the declared reading of machine-first form is present in the format declaration record and is not presented as fixed by an accepted source.",
       "verification": [
@@ -137,7 +137,7 @@
         "document": "ScopeOfWork.md",
         "line": 327,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"
+        "sha256": "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"
       },
       "text": "The format declaration record states the operative reading of compactness, the rule applied to field naming, structure, and repetition, and the conformance evidence; fixture envelope instances conform to that stated rule; no compactness threshold is presented as derived from an accepted source, and the size bound is referred to the declared budgets of REQ-014 rather than to the compactness rule; and no fixture case exists in which applying the compactness rule drops a citation, a stamp field, a reliance-envelope element, or a stated absence.",
       "verification": [
@@ -162,7 +162,7 @@
         "document": "ScopeOfWork.md",
         "line": 328,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"
+        "sha256": "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"
       },
       "text": "For a content-dense fixture corpus carrying long prose bodies, authored ruling text, and diff-shaped content, inspection of every field of every serialized envelope instance finds no file content and no diff content, and no carried citation reproduces, excerpts, summarizes, or paraphrases the text it locates; and no citation in any fixture instance resolves to a PEC artifact, store record, or generated view.",
       "verification": [
@@ -187,7 +187,7 @@
         "document": "ScopeOfWork.md",
         "line": 329,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"
+        "sha256": "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"
       },
       "text": "For a fixture carrying presence-tier records alongside the record tier, no value in any citation position of a serialized instance derives from or resolves to a presence-tier record; this deliverable's source contains no citation-, stamp-, or freshness-value synthesis, derivation, inference, default, reformatting, or recomputation path, and no trust-tier classification path; and every value in a fixture instance is traceable to the identical value in the composed response.",
       "verification": [
@@ -212,7 +212,7 @@
         "document": "ScopeOfWork.md",
         "line": 330,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"
+        "sha256": "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"
       },
       "text": "For fixture composed responses carrying an unresolvable citation, an uncarried stamp field, and an unknown per-feed freshness value, each stated absence is carried in the serialized instance and is distinguishable by a consumer from a real value; no affected claim or field is omitted; no default or empty value is substituted; and this deliverable's source contains no limitation-rendering path and no limitation semantics of its own.",
       "verification": [
@@ -237,7 +237,7 @@
         "document": "ScopeOfWork.md",
         "line": 331,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"
+        "sha256": "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"
       },
       "text": "This deliverable's source and call graph contain no orientation-composition path, no delta-since-SHA path, no citation-production or response-stamping path, no scope-parameterization path, no limitation-rendering path, no schema definition or version-scheme path, no socket binding, token check, or access-class path, no latency budget, measurement, or assertion, no subscription path, no dashboard-rendering or drill-down-resolution path, no record-tier entity or provenance definition, no presence-store TTL or guard path, and no dependency or egress enforcement path; and no test in this deliverable asserts a criterion belonging to any of them.",
       "verification": [
@@ -262,7 +262,7 @@
         "document": "ScopeOfWork.md",
         "line": 332,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"
+        "sha256": "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"
       },
       "text": "This deliverable and its tests add no third-party runtime dependency and make no network call, leaving the `DEL-01-05` zero-dependency and locality assertion intact and undischarged here.",
       "verification": [
@@ -287,7 +287,7 @@
         "document": "ScopeOfWork.md",
         "line": 333,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"
+        "sha256": "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"
       },
       "text": "The format declaration record — the component of OUT-001 required by REQ-012 — states the compactness reading and rule, the machine-first reading, the selected wire representation with its reason, the full field set with each field traced to its requiring source or marked a production addition, the schema-version binding, the size budgets with their metric, values or pending-confirmation statement, and suitability evidence, the pagination or continuation mechanism and the truncation statement, the response set, any declared access-class or consumer-path variation with its source, and the three accommodations for the upstream open readings; every field, rule, and budget exercised in a fixture run is traceable to a declaration in that record; and no upstream open reading is presented as resolved.",
       "verification": [
@@ -312,7 +312,7 @@
         "document": "ScopeOfWork.md",
         "line": 334,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"
+        "sha256": "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"
       },
       "text": "The test suite implements VER-001 through VER-012 and VER-014 through VER-020, executes in the `PKG-08` test run, passes or records a pending result where a verification cannot execute because a counterpart artifact or record does not exist, and introduces no acceptance criterion absent from this contract.",
       "verification": [
@@ -337,7 +337,7 @@
         "document": "ScopeOfWork.md",
         "line": 335,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"
+        "sha256": "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"
       },
       "text": "The REVIEW gate confirms this contract's traceability to `SOW-043`, `SOW-098`, and `OBJ-001`; confirms both objective mappings are stated as register-direct — `SOW-043` pre-SCA-002 and `SOW-098` from its SCA-006 creation — with no confidence label the record does not carry and no owner-confirmation criterion attached to either; confirms both upstream edges and the three downstream relations are stated at their recorded strata; confirms the two register observations of the prior contract are recorded as history rather than as present state; confirms the seven unresolved records CON-001 through CON-007 are carried rather than decided, and that no numeric budget is stated; confirms that operational reliance is stated as available only from a release that has passed the §12 gate and that no requirement is built around verify-before-rely; and confirms that no `PKG-01`, `PKG-04`, `PKG-06`, sibling `PKG-08`, `PKG-09`, or `PKG-10` scope has been absorbed.",
       "verification": [
@@ -358,7 +358,7 @@
         "document": "ScopeOfWork.md",
         "line": 336,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"
+        "sha256": "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"
       },
       "text": "The specification declares, for each response it formats, a size budget, its metric, and its measurement rule; for fixture instances the measured size is checkable against the declared budget from the instance and the specification alone; no numeric budget is presented as accepted before a record of its Phase 1 confirmation exists; and no budget is stated as or derived from the latency budget.",
       "verification": [
@@ -383,7 +383,7 @@
         "document": "ScopeOfWork.md",
         "line": 337,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"
+        "sha256": "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"
       },
       "text": "For a fixture composed response exceeding a declared budget, the serialized output is a sequence of pages or continuation segments, each within budget, from which the complete composed response is recovered with no element missing; each further page or segment is returned only on a consumer request, and this deliverable's source contains no push, scheduling, or polling path for one; the page or continuation state in every instance carries no file or diff content; and no claim is separated from its citation, trust tier, or stated absence across a boundary.",
       "verification": [
@@ -408,7 +408,7 @@
         "document": "ScopeOfWork.md",
         "line": 338,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"
+        "sha256": "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"
       },
       "text": "For the same fixture, every page or segment carries the three stamp fields and the reliance envelope's response-level elements in full; no citation, stamp field, stated limitation, or reliance-envelope element of the composed response is missing from the recovered sequence; and for a fixture whose response-level elements differ between pages or segments, each carries its own.",
       "verification": [
@@ -433,7 +433,7 @@
         "document": "ScopeOfWork.md",
         "line": 339,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"
+        "sha256": "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"
       },
       "text": "Every partial fixture instance carries a machine-readable truncation statement saying that it is partial and how the remainder is obtained, with no content reproduced; every complete instance is distinguishable from a partial one; and a consumer can distinguish the truncation statement from a stated absence and from a measurement limitation.",
       "verification": [
@@ -458,7 +458,7 @@
         "document": "ScopeOfWork.md",
         "line": 340,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"
+        "sha256": "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"
       },
       "text": "Fixture responses returned through each consumer path the fixture models carry the same element set and follow the same budget, pagination, continuation, and truncation rules, except for variations the declaration record states with their accepted source; and this deliverable's source contains no tool definition.",
       "verification": [
@@ -483,7 +483,7 @@
         "document": "ScopeOfWork.md",
         "line": 341,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"
+        "sha256": "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"
       },
       "text": "This deliverable's source and call graph contain no tool definition or tool-call packaging path, no `agent` access-class or credential path, no reliance-envelope declaration path, and no reliance-advertisement gate path; and no test in this deliverable asserts a criterion belonging to any of them.",
       "verification": [
@@ -508,7 +508,7 @@
         "document": "ScopeOfWork.md",
         "line": 342,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"
+        "sha256": "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"
       },
       "text": "The delivered specification defines a reliance-envelope carriage in which the pin, per-feed coverage and freshness with stated limitations, per-claim trust tier, and the file-fallback signal are each individually addressable; for fixture composed responses presenting each element, including a presence-tier claim with its stated heartbeat age and a response presenting the file-fallback signal, each element is carried with its value unaltered; and the specification does not settle the identity of an envelope element with a stamp field beyond what the composed response presents.",
       "verification": [
@@ -531,7 +531,7 @@
     "migration_authority": null,
     "package_id": "PKG-08",
     "schema": "chirality-deliverable-sow/v1",
-    "sha256": "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"
+    "sha256": "d4bb8ffa475a7165a00f4d383a210f3d232dd16af3a971b87d9c1bad77cf81bf"
   },
   "tool_version": "1"
 }

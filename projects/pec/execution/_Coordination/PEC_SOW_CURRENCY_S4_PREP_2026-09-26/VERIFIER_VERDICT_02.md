@@ -185,7 +185,7 @@ Scratch directory (kept for rerun; nothing else touched): `/private/tmp/claude-5
 
 | Finding | Disposition |
 |---|---|
-| BLOCKING 1 (DEL-08-03 CON-007 routing) | Repaired with the suggested sentence; the draft's reconciliation paragraph now names `DEL-04-03/CON-005` and says the owner-reserved part stays with the owner. Re-hashed, act script re-rendered, checks rerun; re-verified in verdict 04 |
+| BLOCKING 1 (DEL-08-03 CON-007 routing) | Repaired with the suggested sentence; the draft's reconciliation paragraph now names `DEL-04-03/CON-005` and says the owner-reserved part stays with the owner. Re-hashed, act script re-rendered, checks rerun; re-verified in verdict 05 |
 | NON-BLOCKING 2 (DEL-08-03 REQ-018) | Repaired: "one format for the responses it applies to (CON-005), applied identically whatever consumer path carries it"; the access-class clause is dropped from REQ-018, AC-019, VER-018 and the matrix row |
 | NON-BLOCKING 3 (DEL-08-04 component entity sourcing) | Repaired: `DEL-04-01/CON-001` added to CLM-007 and CON-004 |
 | NOTE 4 (case-sensitive string absence) | Repaired: "(case-sensitive)" added to DEL-08-03 CLM-011 |
