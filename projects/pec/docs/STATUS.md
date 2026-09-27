@@ -259,7 +259,10 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     lifecycle change; DEL-02-07 carries the four `D-PEC-99` Part B items
     with their gates; run root
     `execution/_Coordination/SOW_REBUILD_S2_2026-09-26/`). Open: S1 and S4,
-    which absorb the quotations of old S2 text in 13 contracts. Done: the first SOWs for DEL-02-08/09
+    which absorb the quotations of old S2 text in 13 contracts. The owner
+    ruled the S4 currency packet `D-PEC-102` (eight contracts: DEL-04-01,
+    DEL-04-02, DEL-04-03, DEL-08-01, DEL-08-03, DEL-08-04, DEL-03-04,
+    DEL-10-03) A + M on 2026-09-26; its act is next. Done: the first SOWs for DEL-02-08/09
     (`D-PEC-98` A + S + M, ruled 2026-09-26): both contracts written,
     re-pinned to revision 1.6, validated and independently verified, and
     both deliverables `INITIALIZED` (run root
