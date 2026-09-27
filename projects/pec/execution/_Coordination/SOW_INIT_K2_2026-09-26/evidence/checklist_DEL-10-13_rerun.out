@@ -1,0 +1,2 @@
+$ python3 tools/scope_of_work/derive_review_checklist.py --output <scratchpad>/k2a/checklist_DEL-10-13.rerun.json projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate
+exit=0
