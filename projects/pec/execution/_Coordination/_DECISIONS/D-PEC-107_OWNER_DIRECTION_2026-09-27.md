@@ -50,3 +50,18 @@ This section names what `D-PEC-105` RR1 says "the later authorization names": th
   - No write to a `ScopeOfWork.md` or artifact. A correction the REVIEW finds needs its own owner-ruled packet before re-acceptance.
   - No acceptance: the owner's `ACCEPT_EXACT_BYTES` of the reviewed hashes follows as a separate owner act. It carries the confirmations the prior acts carried (DEL-00-01 AC-007; DEL-00-03 AC-011), and HELP_HUMAN presents it once the REVIEW has merged.
 - **Models:** Opus 5.5 (`claude-opus-5-5`) at high reasoning, per the owner's standing steer.
+
+## Freeze point (owner direction, same day, verbatim)
+
+HELP_HUMAN had listed further work that could run in parallel. That list was a consumer-contract options note, preparing the next PEC scope change (SCA-007) on request, and what it would not start. The owner replied:
+
+> I don't want to proceed with the scope change right now.  I'm re-writing the App PRD and along with it the entire governance framework of Chirality.  I want to have this as a freeze point where important decision have been made and a large undertaking is complete.  This work you're proposing now is meant just to be put in the record so that it can be considered when everything undergoes a reassessment from the ground up.
+
+**Resolution (HELP_HUMAN interpretation).**
+- **The freeze point.** PEC's state at the merge of `HELP-HUMAN-PEC-20260925-POST-SCA005` (final PR #1014, `974bf7da4`) is a freeze point: important decisions are made and a large undertaking is complete. It is the basis for a later ground-up reassessment, alongside the owner's rewrite of the App PRD and of Chirality's governance framework.
+- **No scope change now.** SCA-007 is not opened. The promoted CAND-02 row records it, together with the per-project consumer-contract design item, as a consideration for that reassessment. It is not scheduled work.
+- **Proposals recorded only.** The consumer-contract options note and the other parallel proposals are recorded here as considerations only. They are not prepared:
+  - a per-project contract with PEC: what each project takes from PEC and on what terms, as the counterpart of each loop's feed-profile row, with who writes each side and how it relates to the PRD §12 reliance gate;
+  - the next PEC scope change, bundling CAND-02;
+  - re-review of DEL-04-01 and DEL-03-01, whose acceptances lapsed with no re-review scheduled.
+- **Already-directed items still proceed.** TM1 records the owner's intake dispositions and the K3 row, which puts the decisions on the record. RV1 is the owner's explicit "Proceed with RV-1". Both are bounded: they record, and RV1 reviews bytes already merged. Neither changes the frozen product or opens new design. The owner may hold RV1 as part of the freeze. It has not started when this record is written, because it waits for this record to merge.

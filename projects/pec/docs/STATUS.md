@@ -379,7 +379,12 @@ Current owner gates (2026-09-27; none is accepted or inferred here):
   - RV1 authorized;
   - K3 moved to a PEC Task Management row, triggered by a DEL-08-06 production packet.
 
-  Production is left to a separate session. The follow-on undertaking is
+  Production is left to a separate session. The owner also declared this state a
+  **freeze point**, the basis for a later ground-up reassessment alongside the
+  rewrite of the App PRD and of Chirality's governance framework. No scope
+  change is opened now, and further proposals are recorded only (`D-PEC-107`
+  §Freeze point). The follow-on undertaking, which holds only the directed
+  Task Management recording and RV1, is
   `execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260927-RV1-INTAKE/WORK_GRAPH.md`.
 - **Other lifecycle and P1 acts:** DEL-01-05 repaired-artifact acceptance,
   DEL-01-06 Gate 5 (HOLD at `INITIALIZED`), DEL-08-02 short of `ISSUED`, and

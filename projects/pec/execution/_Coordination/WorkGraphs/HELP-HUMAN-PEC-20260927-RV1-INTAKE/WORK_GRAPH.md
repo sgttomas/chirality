@@ -12,6 +12,7 @@ This graph lives at `projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-
   - K3 is tracked as a PEC Task Management row;
   - the RV1 REVIEW of the `D-PEC-105` bytes is done and brought to the owner for re-acceptance.
 - **Carried in:** from `HELP-HUMAN-PEC-20260925-POST-SCA005` (its [receipt](../../AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/RECEIPT.md) names both): RV1, and K3, which leaves the graph as a Task Management row.
+- **Freeze point:** by the owner's direction (`D-PEC-107` §Freeze point), PEC's state after PR #1014 is a freeze point for a later ground-up reassessment. No scope change is opened. The consumer-contract design, the next PEC scope change and re-reviews of DEL-04-01 and DEL-03-01 are recorded as considerations only. This graph holds only the directed, bounded TM1 and RV1 work, and the owner may hold RV1 as part of the freeze.
 - **Left out:** production. By owner direction, production happens in a different session. This graph prepares a production packet only if one becomes a dependency of something necessary here.
 - **Completion:** every node below is COMPLETE, or CARRIED (named in the central receipt with its next home), or the owner has explicitly removed it. The closeout, the receipt and the MEMORY rows are done, and the final PR is merged.
 
@@ -40,4 +41,4 @@ This graph lives at `projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-
 
 - 2026-09-27, owner, verbatim: see `D-PEC-107`. The owner's earlier question on K3 ("The tool's exact shape will be negotiated with each app?" … "There should be a contract with PEC from each project.  PEC determines what it publishes.  The design of PEC is my responsibility.") informed the recommendation the owner took.
 - STATUS/README changes made under `D-PEC-88` in this undertaking:
-  - Direction PR: `docs/STATUS.md` records the new undertaking, the intake dispositions, RV1 authorized and K3's new home; `README.md` unchanged.
+  - Direction PR: `docs/STATUS.md` records the new undertaking, the intake dispositions, RV1 authorized, K3's new home and the freeze point; `README.md` unchanged.
