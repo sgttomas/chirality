@@ -1,6 +1,7 @@
 # MEMORY - DEL-08-03
 
 - 2026-07-12 — D-APP-56 consolidated R5 decision application recorded for DEL-08-03; governed kit wording/ruling state updated without lifecycle transition. Original D-APP-55 run evidence remains immutable.
+- 2026-09-27 — `APP-REMOVE-LEGACY-FORMS-2026-09-27` (owner direction): `pipeline-surface.tsx` and its tests were removed; CLM-005/CLM-006 evidence sentences record it. Dispatch semantics, `task-scope.ts` and their tests are unchanged; the "code retained" obligation text awaits its owning route (see the receipt). No lifecycle change. Evidence: [receipt](../../../_Coordination/AgentRuns/APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md).
 
 ## Decisions And Evidence
 

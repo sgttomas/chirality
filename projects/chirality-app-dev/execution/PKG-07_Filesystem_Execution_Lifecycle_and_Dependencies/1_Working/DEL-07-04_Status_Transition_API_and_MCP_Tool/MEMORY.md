@@ -2,6 +2,12 @@
 
 ## Runs
 
+- 2026-09-27 — `APP-REMOVE-LEGACY-FORMS-2026-09-27` (owner direction): the
+  Workbench and Pipeline forms and their gate inputs were removed; work-graph FU3
+  is withdrawn and its D-APP-36 item closed as moot. CLM-003 drops the removed
+  form test from its hooks and names the MCP tool test. The transition API, MCP
+  tools and lifecycle modules are unchanged. No lifecycle change. Evidence:
+  [receipt](../../../_Coordination/AgentRuns/APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md).
 - 2026-09-26 — `APP-TRANSITION-FORMS-2026-09-26` (work-graph FU3, FU4):
   the Workbench and Pipeline transition forms offer the `CHECKING -> IN_PROGRESS`
   reversal (required `ruling`) and the `ISSUED -> IN_PROGRESS` reopening

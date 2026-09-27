@@ -3,6 +3,14 @@
 Derivative account. The [work graph](../../WorkGraphs/app-lifecycle-deps-2026-09-26/WORK_GRAPH.md)
 (rows FU3 and FU4) carries execution, and the sources below keep their authority.
 
+> **Note, 2026-09-27.** The Workbench and Pipeline forms were withdrawn and
+> removed on 2026-09-27 by owner direction, in run
+> [`APP-REMOVE-LEGACY-FORMS-2026-09-27`](../APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md).
+> Work-graph FU3 is withdrawn and its D-APP-36 item closed as moot. This receipt
+> and its `render/` evidence stay as the historical record. `render/render_forms.tsx`
+> imports the removed components, so it reruns only at a commit that has them,
+> such as `9cf863697`.
+
 ## Owner direction
 
 CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING. Ryan Tufts, 2026-09-26, Claude Code

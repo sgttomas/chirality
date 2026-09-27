@@ -7293,6 +7293,17 @@
   - Model-Attribution: Claude Code TASK-type subagent for the parent session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
   - Gate-Outcome: `EXECUTED` — the Workbench and Pipeline forms take the `ruling` for the `CHECKING -> IN_PROGRESS` reversal (required) and the forward gates (optional) and the `amendment` for the `ISSUED -> IN_PROGRESS` reopening (required), send only the inputs shown, show refusals with the checker code and say the actor is caller-asserted. D-APP-36 component render tests and a static browser layout check are recorded; the forms are unmounted in the live App, so the D-APP-36 item stays open for the App loop. A transition whose written file would not read as the target state, date and one new history entry is refused (`INVALID_STATUS_FORMAT`). DEL-07-04 CLM-003/CLM-008 describe the implemented App SPEC §4.3 gates. No lifecycle change, repin or release.
 
+- **2026-09-27 — Receipt 269** (Workbench and Pipeline forms removed by owner direction; work-graph FU3 withdrawn).
+  - Receipt-ID: `Receipt-269`
+  - Examined-Through: `947075c9a2164ab3f047c2019ce2d82719f25de7`
+  - Parent-Receipt: `Receipt-268`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING; Ryan Tufts, 2026-09-27: "We don't need to carry the Workbench or Pipeline forms any longer. They are obsolete." The relayed scope is in the run receipt.
+  - Pointers: `execution/_Coordination/AgentRuns/APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md`; `execution/_Coordination/WorkGraphs/app-lifecycle-deps-2026-09-26/WORK_GRAPH.md` (FU3, FU4); manifest `../../docs/governance_harness/tranche_manifests/APP-REMOVE-LEGACY-FORMS-20260927.yaml`.
+  - Stale-Map-Delta: pre-existing authority-corpus drift (including the App SPEC) retained without repinning.
+  - Checks: typecheck, full Vitest, the Root validators, export regeneration and the APP-HOLD dispatch check and scan, as recorded in the run receipt and hand-off; the known uid-0 attachment-resolver failure is the only full-suite failure. Independent review and actual-candidate CI remain merge gates.
+  - Model-Attribution: Claude Code TASK-type subagent for the parent session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
+  - Gate-Outcome: `EXECUTED` — `WorkbenchSurface`, `PipelineSurface`, `LifecycleGateFields`, their tests, form-only CSS and form-only client helpers removed; the deliverable API routes, client fetch functions, `deliverable-contracts.ts`, lifecycle and dependency modules and MCP tools kept. App SPEC §5.2 and §17.3, work-graph FU3 (withdrawn, D-APP-36 item moot) and the DEL-07-04, DEL-02-02 and DEL-08-03 verification hooks updated. Accepted scope text in DEL-02-02, DEL-08-03, the v3.2 decomposition and PRD §8.2 still requires the forms' code or tests; the run receipt holds merge until the owner chooses the owning route. No lifecycle change, repin or release.
+
 - **2026-09-27 — Receipt 270** (App recorded-register read resolves the execution root instead of inferring it from the path shape).
   - Receipt-ID: `Receipt-270`
   - Examined-Through: `e548d4cfada4d2105de6231516dc6e5fc4bd4689`
