@@ -1,0 +1,6 @@
+$ date -u
+Sun Sep 27 18:06:01 UTC 2026
+cwd projects/pec; HEAD 0040299f6111001d1ac34940ce51cb32acc6b0bb
+$ PYTHONDONTWRITEBYTECODE=1 python3 ../../tools/software_workflow/run_registered_checks.py software-workflow.json --check v2-parsers --check v2-core-posture --check v2-api-contract --check v2-loop-registry --check v2-store-guard --check harness-self-check --output projects/pec/execution/_Coordination/X1_FIXTURES_2026-09-27/evidence/rerun_after_merge_0adfbc747/registered.json
+{"status": "PASS", "output": "/Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-d106-act/projects/pec/execution/_Coordination/X1_FIXTURES_2026-09-27/evidence/rerun_after_merge_0adfbc747/registered.json", "checks": ["v2-parsers", "v2-core-posture", "v2-api-contract", "v2-loop-registry", "v2-store-guard", "harness-self-check"]}
+exit=0
