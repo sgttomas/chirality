@@ -10,7 +10,7 @@ read 2026-09-27T17:36Z onward.
 | Actor | Role | Mechanism | Model (host-reported) | Scope |
 |---|---|---|---|---|
 | Manager | WORKING_ITEMS (Type 1) under HELP_HUMAN. Owning discipline as the proposal records it: the bounded candidate edit and its deterministic checks from the 2026-08-09 route (the edit itself was made at preparation; this run only applies the bound bytes), and `Workflow: chirality-root:bundled:workflow:scope-of-work` `MODE=VERIFY` for the two contracts (run by the verifier) | Claude Code subagent (`pec-manager`) launched by HELP_HUMAN; own git worktree `.claude/worktrees/pec-d105-act` on branch `claude/pec-d105-d1-premise-act` from fresh `origin/main` `c5d852c4a` | `claude-opus-5-5` (high effort per the owner's "defaults"; instruction-asserted) | run root, act, verification, records, PR, return |
-| Verifier | TASK (Type 2), fresh read-only `pec-reviewer`: basis, byte identity, `MODE=VERIFY` on both contracts, premise-only discipline on every hunk, readings 4(a) and 4(b), posture 3 and add-on P agreement, coherence, finite verification reproduced, containment, the manager's write-set decision | harness-native descendant (Agent tool, `subagent_type=pec-reviewer`, `model=opus`, `run_in_background=false`), agent id `a0ca92e7a661911d8` | `claude-opus-5-5` (host-reported by the verifier) | read-only; own `mktemp -d` under the session scratchpad (`d105ver.zpaexX`) with `TMPDIR` set to it, deleted at the end; returned the `VERIFIER_VERDICT_01.md` text, saved by the manager |
+| Verifier | TASK (Type 2), fresh read-only `pec-reviewer`: basis, byte identity, `MODE=VERIFY` on both contracts, premise-only discipline on every hunk, readings 4(a) and 4(b), posture 3 and add-on P agreement, coherence, finite verification reproduced, containment, the manager's write-set decision | harness-native descendant (Agent tool, `subagent_type=pec-reviewer`, `model=opus`, `run_in_background=false`), agent id `a0ca92e7a661911d8` | `claude-opus-5-5` (host-reported by the verifier) | read-only; own `mktemp -d` under the session scratchpad (`d105ver.zpaexX`) with `TMPDIR` set to it, deleted at the end; returned the `VERIFIER_VERDICT_01.md` text, saved by the manager. Resumed once by the manager (`SendMessage` to the same agent id) for the records backcheck, with a fresh scratch directory (`d105ver2.TAk7TR`, deleted at the end); returned `VERIFIER_VERDICT_02.md` |
 
 Enforcement limits: role identity and write boundaries are instruction-asserted; the
 host enforces only its own permissions. The verifier read the manager's worktree in
@@ -87,8 +87,10 @@ the proposal (verdict 01, item 9).
 | `bc974d340` | `VERIFIER_VERDICT_01.md`, rely preflight before fan-in of the verdict |
 | `8d85a9b6e` | no-rebase merge of `origin/main` `0adfbc747` (PR #1009; `projects/chirality-app-dev/**` only, 312 paths) |
 | `6718b29f9` | post-merge rechecks at `0adfbc747` |
+| `70c4a1bca` | run-root records and `SHA256SUMS` (verdict 01 NB-1 repaired) |
 
-Then the run-root records and the return. PR #1007.
+Then `VERIFIER_VERDICT_02.md` (backcheck of `70c4a1bca`), its rely preflight, the
+verdict 02 record repairs, the regenerated `SHA256SUMS` and the return. PR #1007.
 
 ## Product writes (the act)
 
@@ -134,13 +136,16 @@ written. Add-on M waits for closeout node M1.
   (`7cebb458ce89b226d9b2b30f71413785596f912bdb9245fd0d397085de40fb9a`; the verifier's
   `SubagentHandback` text as the host subagent transcript stores it, SHA-256
   `d9b295c2c191590829d14ee174b46b49a53d3fc8ac995bf8cfb19ab8ba183ee3`, plus one final
-  newline; no other change).
+  newline; no other change) and `VERIFIER_VERDICT_02.md`
+  (`fac72693fa4a926dc91b6e29b6f3fe6c55cd6acbaf6db33f62f3698a9813fef5`; the handback
+  text, SHA-256 `9b008f58e032b81ff898467e4988f580f3607386827607c9cf551250162fb61c`, plus
+  one final newline; no other change).
 - `SHA256SUMS`: every run-root file except itself.
 
 ## Scratch and footprint
 
 Scratch lived under the session scratchpad (`d1a.4VVrfj/`: the environment helper,
-the rerun consoles before copying, the extracted verdict text, the drafted records,
+the rerun consoles before copying, the extracted verdict texts, the drafted records,
 the PR body and `tmp/` as `TMPDIR` for the check aids, which delete their own `mktemp`
 directories; one `git archive` export of `0adfbc747` for the post-merge
 `--check-only`, deleted after use). Nothing was written to `/tmp` or `/var/folders`.

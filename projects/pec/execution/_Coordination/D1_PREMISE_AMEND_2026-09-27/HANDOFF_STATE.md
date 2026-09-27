@@ -14,7 +14,9 @@ Undertaking `HELP-HUMAN-PEC-20260925-POST-SCA005`, work-graph node D1 (the act),
   verification passed (`VALIDATION.md`), and so did the post-merge rechecks at
   `0adfbc747`. The independent verifier returned PASS WITH NOTES
   (`VERIFIER_VERDICT_01.md`), with nothing blocking; its one non-blocking record
-  finding is repaired in `MANIFEST.md`.
+  finding is repaired in `MANIFEST.md`. Its backcheck of the records
+  (`VERIFIER_VERDICT_02.md`) is PASS WITH NOTES, nothing blocking; its findings are
+  repaired in these records (`VALIDATION.md`, "Independent verifier").
 - **Published:** branch `claude/pec-d105-d1-premise-act`, PR #1007
   (https://github.com/sgttomas/chirality/pull/1007) against `main`. **Not merged**
   (the brief reserves merge).
@@ -65,9 +67,12 @@ Undertaking `HELP-HUMAN-PEC-20260925-POST-SCA005`, work-graph node D1 (the act),
    `PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/` and
    `…/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/`. Build each from
    `docs/templates/MEMORY_TEMPLATE.md` (`5a9564f4…6a5a`) with `{{DEL-ID}}` replaced and
-   exactly the one `## Runs` row the proposal tables. The `{PR}` slot is this act's PR
-   (#1007). `{D}` is the closeout date. The two link targets are the central receipt
-   and the D-PEC-105 ruling record.
+   exactly the one `## Runs` row the proposal tables. The slots `{D}`, `{PR}` and the
+   two link targets (the central receipt and the D-PEC-105 ruling record) are fixed at
+   closeout (proposal "Add-on M"). The manager's reading, for HELP_HUMAN to confirm at
+   M1 (verdict 02 NB-1): `{PR}` is this act's PR (#1007); `{D}` is not settled by the
+   proposal, which elsewhere uses `{D}` for the act date (`D1_PREMISE_AMEND_{D}`, here
+   2026-09-27), so either the act date or the closeout date is a choice to record.
 6. **Disclosed downstream consequences (proposal "External anchors and downstream
    consequences"), unchanged and for their own packets:**
    - DEL-01-01 `ScopeOfWork.md` CLM-009 anchors ADR `f63ecc27…5db5` and DEL-00-01
@@ -76,9 +81,12 @@ Undertaking `HELP-HUMAN-PEC-20260925-POST-SCA005`, work-graph node D1 (the act),
      `/AC-005` stay byte-identical.
    - DEL-01-05 TBD-005's "accepted `ADR-PEC-V2-001`" describes the prior bytes until RR1
      completes.
-   - Historical records quoting changed text (the scan lists 99 STALE lines at the
-     current base, all history) are not edited; SCA-005/006 line references refer to
-     the accepted preimages.
+   - Historical records quoting changed text are not edited; SCA-005/006 line
+     references refer to the accepted preimages. The scan lists 99 STALE lines at the
+     current base: 86 in history records, and 13 scanner artefacts matching other
+     contracts' `@11a494e9a` frontmatter text (six in the S4 prep folder, six in the S4
+     run root, one in the live DEL-08-01 contract), as the proposal describes
+     (verdict 02 Note 1).
 7. **Other findings for later (proposal "Other findings", not changed here):** the
    DEL-00-01 SOW authoring-time lifecycle wording and SCA-004-era currency wording
    (named in AX-008); `ScopeLedger.csv` / `SOFTWARE_DECOMP.md` SOW-067 "Daemon owns

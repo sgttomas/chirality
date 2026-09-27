@@ -6,9 +6,15 @@ Run root `projects/pec/execution/_Coordination/D1_PREMISE_AMEND_2026-09-27/`, br
 `7c250e370`, verified candidate `c58a6b535`. All commands ran from the repository root
 of the act worktree (the reliance preflight from `projects/pec`), with
 `PYTHONDONTWRITEBYTECODE=1`, `TMPDIR` in the session scratchpad outside the
-repository, and Python 3.13.7 (CPython). Each output file starts with a `date -u` /
-HEAD header and the command line and ends with `exit=<code>`. The row-2–12 commands
-are in `evidence/post/verify_rows_2_12.zsh`.
+repository, and Python 3.13.7 (CPython). Each command output the manager recorded
+directly (under `evidence/`, `evidence/post/` and `evidence/post_merge_0adfbc747/`)
+starts with a `date -u` / HEAD header and the command line and ends with
+`exit=<code>`; the runner's own outputs under `evidence/rerun_*/` and
+`evidence/negative_controls/`, the copy check's `.sha256` list and the summary files
+(`post/HEADER.out`, `post/checklist_compare.out`, `post/boundary_summary.out`,
+`post/before_after_identity.out`, `post_merge_0adfbc747/before_after_identity.out`)
+follow their own formats (verdict 02 Note 3). The row-2–12 commands are in
+`evidence/post/verify_rows_2_12.zsh`.
 
 ## Finite verification (proposal table, checks 1–12)
 
@@ -21,6 +27,7 @@ are in `evidence/post/verify_rows_2_12.zsh`.
 | — | The act (17:38:17Z) | same, without `--check-only`, once | exit 0, `CHECK mode A+P; targets 4/4 byte-exact; write set = grant (0 created, 4 modified, 0 removed under projects/pec outside the run root); held at preimage 0/0; pinned 18/18 unchanged` | `evidence/apply_run.out` |
 | 1 | Reliance preflight, before fan-in of the act (17:38:29Z, before commit `7c250e370` at 17:38:30Z) | `pec_reliance_hold.py --operation rely-for-production` ×4 | `ALLOW`, exit 0 ×4 | `evidence/reliance_rely.out` |
 | 1 | Reliance preflight, before fan-in of the verdict (18:03:31Z, before commit `bc974d340`) | `pec_reliance_hold.py --operation rely-for-production` ×4 | `ALLOW`, exit 0 ×4 | `evidence/reliance_rely_verdict.out` |
+| 1 | Reliance preflight, before fan-in of verdict 02 (18:19:42Z, before its commit) | `pec_reliance_hold.py --operation rely-for-production` ×4 | `ALLOW`, exit 0 ×4 | `evidence/reliance_rely_verdict02.out` |
 | 2 | Ledger rendering and byte identity | `render_candidates.py --gitdir . --prep <run root>`; each target compared with its run-root candidate and tabled postimage | `RESULT PASS fails=0`; 4/4 targets equal their candidates and postimages | `evidence/post/render_candidates.out`, `evidence/post/byte_identity.out` |
 | 3 | Contract validity | `validate_scope_of_work.py <DEL folder>` for DEL-00-03 and DEL-00-01 | `PASS format=SOW_V1` ×2, exit 0 | `evidence/post/validate_<KEY>.out` |
 | 4 | Checklist | `derive_review_checklist.py --output <run root>/checklist_<KEY>.json <DEL folder>`, twice | exit 0 ×4; reruns byte-identical; DEL-00-03 `a3bc80a0db9a1917aa54337f62cd2057ce154bdc792f3802d982012f667121b1`, DEL-00-01 `6e99f93c37c761b140c60d870ab0048bae814427d65143a60364f36896bb8cf9`, each equal to the prepared hash | `checklist_<KEY>.json`, `evidence/post/checklist_*.out`, `evidence/post/checklist_compare.out` |
@@ -58,8 +65,8 @@ proposal, 3 in `returns/D1P_PREMISE_PROPOSAL.md` and 1 in `returns/REVIEW_PR997_
 - `negative_controls.sh {REPO_ROOT} c5d852c4a {RUN_ROOT} {RUN_ROOT}/evidence/negative_controls`:
   all six controls tripped after passing on undamaged copies,
   `RESULT PASS negative controls 6/6` (`evidence/negative_controls_console.out`).
-- Rows 2–12 on the act tree: `evidence/post/verify_rows_2_12.zsh`. Its first line sets
-  `W` to this act's worktree path, and several outputs record that absolute `--repo`
+- Rows 2–12 on the act tree: `evidence/post/verify_rows_2_12.zsh`. Its line 5 sets
+  `W` to this act's worktree path (verdict 02 Note 2), and several outputs record that absolute `--repo`
   path (verdict 01 Note 1). To rerun from another checkout, set `W` to that checkout's
   `{REPO_ROOT}` (`git rev-parse --show-toplevel`) on a commit that holds the
   postimages; `{RUN_ROOT}` is `{REPO_ROOT}/projects/pec/execution/_Coordination/D1_PREMISE_AMEND_2026-09-27`.
@@ -93,6 +100,30 @@ Dispositions:
   ledger and the proposal): **recorded**; the contract bytes are ruled exact.
 - **Note 4** (the uniform ADR note names SCA-005 and SCA-006 although every ADR hunk is
   an SCA-005 cause): **recorded**; by design and not false (proposal L110).
+
+`VERIFIER_VERDICT_02.md` (the same read-only verifier, resumed; backcheck of the
+records at head `70c4a1bca`): **PASS WITH NOTES**, no blocking finding. The NB-1
+repair, the records' accuracy against the evidence and commits, the verdict 01 file,
+the merge and post-merge evidence, `origin/main` currency (`0adfbc747` by
+`git ls-remote`), the run-root `SHA256SUMS`, containment, whitespace and unchanged
+product bytes since `c58a6b535` all PASS. Dispositions:
+
+- **NB-1** (`HANDOFF_STATE.md` filled the add-on M `{PR}` and `{D}` slots the proposal
+  leaves to closeout): **repaired**; item 5 now states the slots are fixed at closeout
+  and labels `{PR}` = #1007 as the manager's reading and `{D}` as a choice (the proposal
+  elsewhere uses `{D}` for the act date) for HELP_HUMAN to confirm at M1.
+- **Note 1** (not all 99 STALE lines are history; 13 are scanner artefacts):
+  **repaired** in `HANDOFF_STATE.md` item 6.
+- **Note 2** (the rerun script's `W` is on line 5, not line 1): **repaired** above.
+- **Note 3** (the output-format sentence was too broad): **repaired** in the preamble.
+- **Note 4** (the return was not yet written): **acted on**; the return is written at
+  `AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/returns/D1A_D105_PREMISE_ACT.md` with
+  containment and whitespace rerun at the final head. It lies outside the run root and
+  is not covered by the run-root `SHA256SUMS`; its hash is given in the PR record.
+
+The records edits after verdict 02 are confined to these dispositions, the verdict 02
+entries in `MANIFEST.md` and here, and the regenerated `SHA256SUMS`; they are not
+separately re-verified.
 
 ## Base drift and post-merge rechecks at `0adfbc747` (`evidence/post_merge_0adfbc747/`)
 
