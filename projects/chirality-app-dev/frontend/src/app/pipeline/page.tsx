@@ -3,7 +3,7 @@ import PipelineClient from './pipeline-client';
 
 export default function PipelinePage(): JSX.Element {
   return (
-    <Suspense fallback={<main className="shell">Loading pipeline...</main>}>
+    <Suspense fallback={<main className="shell">Loading...</main>}>
       <PipelineClient />
     </Suspense>
   );

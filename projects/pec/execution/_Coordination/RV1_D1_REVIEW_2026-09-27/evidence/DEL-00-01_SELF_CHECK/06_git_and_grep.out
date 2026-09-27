@@ -1,0 +1,88 @@
+# cwd: {REPO_ROOT} ; read-only git and grep; PYTHONDONTWRITEBYTECODE=1
+$ git log --format='%h %ad %s' --date=short -- projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md
+7c250e370 2026-09-27 pec: D-PEC-105 act — apply_d1p.py --with-addon-p (four premise-only replacements), rely preflight
+87272dde8 2026-08-01 feat(pec): complete D-PEC-72 candidate evidence
+5942c5033 2026-08-01 docs(pec): produce P1 foundation architecture artifacts
+exit=0
+$ git log --format='%h %ad %s' --date=short -- projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md | head -5
+7c250e370 2026-09-27 pec: D-PEC-105 act — apply_d1p.py --with-addon-p (four premise-only replacements), rely preflight
+ea6b4b5d0 2026-07-28 docs: reconcile PEC v2.2 ScopeOfWork corpus
+e305b5139 2026-07-27 docs: apply D-PEC-67 L-A2 correction
+41a8d88b4 2026-07-26 pec(D-PEC-66): E-N13 declined, DEL-10-10 REQ-011 repaired, 21 QA-item-20 rows dispositioned
+4d78223cb 2026-07-25 pec(D-PEC-63): batch B1 complete — 9 DAG-root SOW contracts INITIALIZED
+$ git merge-base --is-ancestor 7c250e370 HEAD
+exit=0
+$ git show 7c250e370^:<path> | shasum -a 256   (pre-act preimages)
+f63ecc2725b26e0e78be993a7902ad5b901cdfbb2e7921a19fc3442c9d785db5  7c250e370^:projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md
+4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740  7c250e370^:projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md
+$ git show --name-status --format='%h %s' 5942c5033   (original ADR production commit)
+5942c5033 docs(pec): produce P1 foundation architecture artifacts
+
+A	projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_run_records/D-PEC-72_CANDIDATE_VALIDATION.md
+A	projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md
+A	projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_run_records/D-PEC-72_CANDIDATE_VALIDATION.md
+A	projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md
+$ git show --name-status --format='%h %s' 7c250e370   (D-PEC-105 act commit)
+7c250e370 pec: D-PEC-105 act — apply_d1p.py --with-addon-p (four premise-only replacements), rely preflight
+
+M	projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md
+M	projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md
+M	projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md
+M	projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md
+A	projects/pec/execution/_Coordination/D1_PREMISE_AMEND_2026-09-27/evidence/apply_run.out
+A	projects/pec/execution/_Coordination/D1_PREMISE_AMEND_2026-09-27/evidence/reliance_rely.out
+$ git show 5942c5033:projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md | sed -n '/^### Context/,/^### Decision/p' | head -24   (Context section as first produced)
+### Context
+
+PEC v2 is a deterministic coordination-plane service whose record tier is a
+rebuildable projection of governed file truth and whose presence tier is
+operational and disposable. The PRD requires graceful absence, file-native
+authority, best-effort ingest with guaranteed reconciliation, explainable
+derivations, content-minimal data, and a zero-third-party-dependency service
+core (`PEC-K-01`, `PEC-K-02`, `PEC-K-07`, `PEC-K-08`, `PEC-K-10`,
+`PEC-SVC-001`; `SOW-052`, `SOW-055`, `SOW-056`).
+
+The accepted Gate-4 basis records two conforming isolation styles. It also
+records a package grain congruent with hexagonal isolation: core behavior in
+PKG-03/04/05 with PKG-01 entities; driven edges in PKG-02/06 and the store;
+driving edges in PKG-07/08/09. The entity-schema/core versus
+store-persistence/adapter seam inside PKG-01 is the boundary that must remain
+explicit (`SOFTWARE_DECOMP.md` OI-012; `DEL-00-01` CLM-006 and REQ-006).
+
+D-PEC-72's owner ruling selected O-B after recording the intended architectural
+reason: independently replaceable applications should communicate through
+typed contracts. That broader intent is rationale here; this PEC decision has
+normative effect only inside the PEC v2 boundary.
+
+### Decision
+### Context
+$ grep -n 'AC-002' projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_run_records/D-PEC-72_CANDIDATE_VALIDATION.md
+33:| AC-002 | PASS | Context carries PEC-K-07, PEC-K-02, PEC-SVC-001, the accepted package grain, adapter-level open-decision posture, functional-core alternative, and the PKG-01 seam; no new product invariant/service rule is asserted. |
+$ grep -n 'artifacts/v2/ADRs.md' projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_run_records/D-PEC-72_PKG-00_ACTIVATION.md projects/pec/execution/_Coordination/_DECISIONS/D-PEC-72_p1_entry_foundation_slice.md
+projects/pec/execution/_Coordination/_DECISIONS/D-PEC-72_p1_entry_foundation_slice.md:111:- future target: projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md
+projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_run_records/D-PEC-72_PKG-00_ACTIVATION.md:33:- `DEL-00-01.../artifacts/v2/ADRs.md`
+$ grep -n '^## ADR-002\|^### ADR-014' projects/pec/docs/.archive/adr/ADR.md
+16:## ADR-002 TypeScript end-to-end; Node 24 native TS; zero server runtime deps
+201:### ADR-014 — Shared runtime agent ownership (2026-07-22)
+$ grep -n 'OI-012 |\|^| OBJ-005\|^| C13 \|^| C7 ' projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md | cut -c1-200
+129:| C7 | Zero third-party runtime dependencies in the service core (workspace-internal contracts packages permitted) | PEC-SVC-001 (carries ADR-002) |
+135:| C13 | No second execution loop; sessions, delegation and turn admission are owned per application by its application-owned Runtime service (one private Runtime per application; D-GOV-43 A2), whi
+351:| OBJ-005 | Everything PEC holds can be deleted at any moment without blocking any governed act | §3.5 | SOW-010, SOW-021, SOW-025, SOW-052..056, SOW-088; bound by C1/C2 across all items | DEL-00
+673:| OI-012 | SOW-088, PKG-00 | Core isolation style — ports-and-adapters (hexagonal) vs functional-core/imperative-shell — is undecided. Recorded basis from the Gate 4 exchange: the PRD's invari
+$ grep -n 'ADR-002, ADR-014' projects/pec/docs/PRD.md
+496:| SPEC / TRACEABILITY / PILOT / ADR-001..014 | Historical baseline retained under `docs/.archive/` with existing disclaimers; v2 SPEC is born from the decomposition; live postures (ADR-002, ADR-014) re-cited in v2's first ADRs. |
+$ grep -n 'client seam carries as a concept' projects/pec/AGENTS.md
+175:(behavior 7) survive unchanged**. The client seam carries as a concept,
+$ grep -n 'K-RUNTIME-1\*\*\|K-RESIDENCY-1\*\*' docs/CONTRACT.md | cut -c1-260
+168:| **K-RUNTIME-1** | The Chirality App starts, owns, and stops one simplified Runtime service as a child process, and that service is the exclusive owner of the stock, version-pinned `codex app-server` child together with sessions, delegation, tools, turn l
+172:| **K-RESIDENCY-1** | Retired from the live contract by D-GOV-43 item 13 (local models deferred; residency requirements retired with the daemon). The prior text is preserved in git history and in §3. | Retired |
+225:| **K-RESIDENCY-1** | D-GOV-43 item 13 (ruled 2026-09-11; applied by the A2 application tranche) | The daemon manages at most one primary local LLM. Activation is explicit, drains rather than interrupts active Pi work, never unloads unknown helper models,
+$ python3 (csv.DictReader over projects/pec/execution/PKG-*/1_Working/*/Dependencies.csv; rows naming DEL-00-01)
+DependencyID,FromDeliverableID,DependencyClass,Direction,DependencyType,TargetDeliverableID,SatisfactionStatus,Origin,Status,Notes
+DEP-00-01-001,DEL-00-01,ANCHOR,UPSTREAM,OTHER,,SATISFIED,DECLARED,ACTIVE,Tree anchor seeded under D-PEC-62
+DEP-00-01-002,DEL-00-01,ANCHOR,UPSTREAM,OTHER,,SATISFIED,DECLARED,ACTIVE,Tree anchor seeded under D-PEC-62
+DEP-00-02-003,DEL-00-02,EXECUTION,UPSTREAM,PREREQUISITE,DEL-00-01,PENDING,EXTRACTED,ACTIVE,PROPOSAL; Flag=LOW_CONFIDENCE; EdgeID=E-N18
+DEP-01-01-003,DEL-01-01,EXECUTION,UPSTREAM,PREREQUISITE,DEL-00-01,PENDING,EXTRACTED,ACTIVE,PROPOSAL; Flag=none; EdgeID=E-P01
+$ grep -n 'accepted `ADR-PEC-V2-001`\|f63ecc2725b2' projects/pec/execution/PKG-01_*/1_Working/DEL-01-05_*/ScopeOfWork.md projects/pec/execution/PKG-01_*/1_Working/DEL-01-01_*/ScopeOfWork.md | cut -c1-220
+projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md:103:- **CLM-009** — At `aca930622` the `DEL-00-01` `_STATUS.md` reads `CHECKING`, and its folder holds
+projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md:90:- **TBD-005** — Resolved for this contract: D-PEC-72 O-B and accepted `ADR-PEC-V2-001` resolve

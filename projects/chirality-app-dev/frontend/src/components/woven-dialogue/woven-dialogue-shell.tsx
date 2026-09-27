@@ -381,12 +381,6 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
     );
   }, [sessions]);
 
-  const legacyHref = useMemo(() => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set('legacy', '1');
-    return `${pathname}?${params.toString()}`;
-  }, [pathname, searchParams]);
-
   const updateWorkspaceState = useCallback(
     (patch: Partial<WovenWorkspaceState>): void => {
       setWorkspaceState((current) => ({ ...current, ...patch }));
@@ -816,7 +810,6 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
       variant="workspace"
       folderLocked={binding.locked || streaming || folderSelectionPending}
       onFolderSelectionPending={setFolderSelectionPending}
-      legacyHref={legacyHref}
       onOpenSettings={() => { restoreExpanded(); updateWorkspaceState({ rightPanelView: 'settings', coordinationCollapsed: false }); }}
       renderWorkspaceContent={({ reconnectControl, settingsControl, settingsView }) => (
       <section ref={workspaceRef} className={`woven-workspace woven-t3-workspace${stacked ? ' is-stacked' : ''}`} style={style} data-woven-surface="dialogue">
@@ -895,7 +888,6 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
               footerSlot={settingsControl}
               onNewChat={() => { if (!streaming && !folderSelectionPending) setNewChatRequest(value => value + 1); }}
               activeSurface="dialogue"
-              legacyHref={legacyHref}
               sessions={navigatorSessions}
               sessionSurfaces={workspaceState.sessionSurfaces}
               liveSessionId={primarySessionId}

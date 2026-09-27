@@ -54,7 +54,7 @@ or automatic intent inference.
 1. Preserve `/`, `/chat`, `/workbench`, and `/pipeline`, current deep-link
    intent, known query parameters, and unknown-parameter preservation during
    the compatibility period.
-2. Keep the existing loop-first and matrix UI reachable until separately
+2. [RETIRED — SCA-APP-012] Keep the existing loop-first and matrix UI reachable until separately
    retired; the target shell does not require the matrix to remain its fixed
    primary gateway.
 3. Keep the primary dialogue mounted across navigation, artifact focus,
@@ -105,7 +105,7 @@ account row host; route/query and compatibility tests.
 2. The composer context line shows folder, agent, permissions, delegation, and rung from recorded state; a chat may have no folder and says so.
 3. Folder selection is live only before a chat's first message and fixed thereafter; invalid or instruction-root-contained paths are refused by DEL-07-01's validation with the refusal visible (Q9: native picker, macOS recent documents, Reveal in Finder, folder drop).
 4. Chat organisation acts on local convenience state owned by DEL-02-04 only; deleting a chat hides it locally and never mutates the runtime session record (Q1); derived titles pass the redaction helper (Q6).
-5. Existing routes, queries, aliases, and the loop-first UI remain compatibility surfaces; the retired Workbench and Pipeline routes stay reachable by URL and unlisted (Q3).
+5. Existing routes, queries, and aliases remain compatibility surfaces; the loop-first UI is retired by SCA-APP-012; the retired Workbench and Pipeline routes stay reachable by URL and unlisted (Q3).
 6. The pop-out panel window is not in scope (Q5); the account row is hosted here and its presentation is DEL-02-05's.
 7. The visual shell uses the Stone palette and left-panel wordmark with measured text/control contrast; verify current composer-context copy for folder, active role, permissions, delegation and rung against D-GOV-43/D-APP-127 and the four-role contract. The older target-spec §10 role/consent labels do not supersede that contract.
 8. The navigator lists sessions across registered known roots with each chat's folder and derives the active provider root from the session's registered project identity. `knownRoots` is local convenience state, not a new Runtime root field.
@@ -118,6 +118,15 @@ Q1, Q3, Q5, Q6, Q9. Alignment writes WI-001, WI-002, WI-003, WI-004, WI-005
 performed in run `APP_SCA_APP_010_SEATING_2026-09-04`; dependency writes
 DEP-001, DEP-002 were performed under D-APP-109/D-APP-110 on 2026-09-05; the extracted register now exists. No lifecycle, Checking Approval SHA,
 dependency-acceptance, product, or release act is implied.
+
+## SCA-APP-012 Current Contract (Controlling)
+
+SCA-APP-012 (owner direction 2026-09-27; DEC-027) is the separate owner decision that retires the loop-first compatibility UI. Where any earlier section or clause in this document keeps the loop-first UI, the matrix UI or the `?legacy=1` link reachable or as a compatibility surface, this section controls; the earlier text remains dated history and is not deleted.
+
+- Retired: the loop-first shell (`frontend/src/components/shell/loop-shell.tsx`, `portal-loop-shell.tsx`, `loop-tertiary-shell.tsx`, `sidebar-right-loop-layout.tsx` and `tertiary-sidebar-tabs.tsx`), the role-directory panel `frontend/src/components/portal/agent-matrix.tsx`, the discarded `legacy` prop of `WovenDialogueRoute`, and the discarded `?legacy=1` link (`legacyHref`) with its only test. None of them has rendered since 2026-09-09 (commit `9b005c23a`).
+- `/`, `/chat`, `/workbench` and `/pipeline` keep rendering the dialogue shell; `/workbench` and `/pipeline` stay reachable by URL and unlisted (D-APP-108 Q3). Existing routes, known query parameters, unknown-parameter preservation and aliases remain compatibility surfaces; `?legacy=1` is an ordinary unknown query parameter.
+- Obligation 2 of the SCA-APP-004 section is retired, and obligation 5 of the SCA-APP-010 section is restated there. The TYPES §4 route/query compatibility question stays keyed with DEL-08-02, unchanged.
+- Verification hooks: the hooks named in this document stay. `frontend/src/__tests__/components/woven-dialogue-route.test.tsx` covers the route surfaces without a `legacy` prop, and `frontend/src/__tests__/components/loop-tertiary-routes.test.ts` checks that `/workbench` and `/pipeline` open the dialogue shell.
 
 ## Deliverable Definition — Ontology
 

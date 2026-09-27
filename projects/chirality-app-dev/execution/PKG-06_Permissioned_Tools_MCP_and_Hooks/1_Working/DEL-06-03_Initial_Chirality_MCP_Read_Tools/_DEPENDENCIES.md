@@ -73,9 +73,23 @@ remain extraction history and no longer describe the active source-state posture
 - Function 5 checks (`execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/dep_extract/FUNCTION5_CHECKS.json`): `validate_dependencies_schema.py` PASS; `DependencyID` unique; every enum value written by this run VALID (`validate_enum.py`); ID format PASS for `FromDeliverableID`, `FromPackageID` and every `DependencyID` (`validate_id_format.sh`; the PROJECT_ID_FORMAT_PROFILE warning of earlier runs no longer reproduces); index counts match `Dependencies.csv`.
 - [INFO] EVQ-006 (report-only, `validate_decomposition_registers.py --families EVQ,DRB`): the validator resolves `EvidenceFile` from the project root, so it reports every App register row whose `EvidenceFile` is deliverable- or repository-relative. This is a project-wide pre-existing convention finding, not a defect introduced here; no EVQ-003, EVQ-004 or DRB-006 finding.
 
+### 2026-09-27 SCA-APP-012 incremental setup refresh (UPDATE)
+
+- Run: `APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27`, `project-setup` INCREMENTAL Phase 5.6 (FULL_GRAPH) dispatch of `bundled:chirality-root/dependency-extract`, run directly by WORKING_ITEMS after the owner confirmed the SCA-APP-012 incremental plan on 2026-09-27 (verbatim in `execution/_Coordination/AgentRuns/APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27/CHAT_TRANSCRIPTION.md`). Role: SCA-APP-012 MODIFY deliverable.
+- Runtime overrides: `SCOPE=DEL-06-03`; `RUN_ROOT=projects/chirality-app-dev/execution`; `DECOMPOSITION_PATH=projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=NONE`; `SOURCE_DOCS=AUTO` (`ScopeOfWork.md`, `_CONTEXT.md`, `_REFERENCES.md`, `_STATUS.md`); `ANCHOR_DOC=ScopeOfWork.md`; `EXECUTION_DOC_ORDER=ScopeOfWork.md, _CONTEXT.md`.
+- Decomposition authority: FOUND, SHA-256 `6ac7811824201b7abaf2fdd4b6d208cd2d3c92c56126d2a4aa34114fad29a577` (as amended by SCA-APP-012).
+- Source-preservation gate: `ScopeOfWork.md` `1f752c38a90018ca25f7ce23e49c6e6bef2b49d1a5d54684fef120525def4e1d`; `_CONTEXT.md` `e1f10b0c3236b620ba37e38899b9bebe000a6c37bfa611f6fec224f2d1053fff`; `_REFERENCES.md` `83ac93d93cc91e32faabc61b741b33d1f5d4f295459405c5591cfc21576e899a`; `_STATUS.md` `270ebc848425ac320d0c72f06dd1cdb0e65c86c1c20b9aa768d435fffdff8798`; read-only and unchanged by this run.
+- Pre-images: `Dependencies.csv` `b389796253114be868ce92b2cc7871883ed150c74bc7e1b44b8b720ea4a72d03`, `_DEPENDENCIES.md` `6ce3e4530d92674b44e79bda630c8449e0e6eb48b192847a6bd4b7a8f9fdc934`.
+- Method: every existing ACTIVE row was re-checked against its cited current source (quote found verbatim, and not only inside a `[RETIRED` clause). Previous extraction: 2026-09-27, `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`; the accepted SCA-APP-012 scope text is the text added since; that text was scanned for new explicit cross-deliverable relationships. Unchanged source text yields the rows already recorded.
+- Results: re-seen 15 (`LastSeen=2026-09-27`); restated in place 0; retired 0; added 0. No row deleted; every existing `DependencyID` preserved; `Status=CANDIDATE` not emitted.
+- Declared entries: none (the declared sections carry no SPEC §5.2 entry). Mirror rows added 0, refreshed 0, retired 0; entries skipped 0.
+- Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` row (1).
+- Function 5 checks (`execution/_Coordination/AgentRuns/APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27/dep_extract/FUNCTION5_CHECKS.json`): `validate_dependencies_schema.py` PASS; `DependencyID` unique; every enum value written by this run VALID (`validate_enum.py`); ID format PASS for `FromDeliverableID`, `FromPackageID` and every `DependencyID` (`validate_id_format.sh`); index counts match `Dependencies.csv`.
+- [INFO] EVQ-006 (report-only, `validate_decomposition_registers.py --families EVQ,DRB`): the current validator resolves `EvidenceFile` under its allowed bases, which do not include the repository-relative `projects/chirality-app-dev/...` form some App rows use; it reports 84 such rows project-wide. This run changed no `EvidenceFile`, so the count is unchanged and no row this run changed carries the finding; no EVQ-003, EVQ-004 or DRB-006 finding.
+
 ## Extracted Dependency Register
 
-Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated sections elsewhere in this file keep the counts of their dates.
+Current as of 2026-09-27 (`APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27`). Dated sections elsewhere in this file keep the counts of their dates.
 
 | Count Type | Count |
 |---|---:|
@@ -112,7 +126,7 @@ Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated s
 
 ## Lifecycle Summary
 
-Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`), from `Dependencies.csv`; counts cover all rows (ACTIVE and RETIRED). This projection changes no satisfaction or maturity.
+Current as of 2026-09-27 (`APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27`), from `Dependencies.csv`; counts cover all rows (ACTIVE and RETIRED). This projection changes no satisfaction or maturity.
 
 | Dimension | Value | Count |
 |---|---|---:|
@@ -138,6 +152,7 @@ Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`), from `D
 - 2026-09-05T07:57-0600 (D-APP-109 emission) - `TASK + dependency-extract` apply (`ApplyEdits=true`; instance `N9-TASK-DEL-06-03`; owner ruling D-APP-109 accepting the held edges of `HELD_EDGE_PROPOSALS.csv`; the 05:15 reviewed write of the v1.1 post-image by `N3-TASK-DEL-06-03` is the pre-image); mode `UPDATE`; strictness `CONSERVATIVE`; consumer context `RECONCILIATION`; decomposition found at the pinned identity `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61`; warnings: PROJECT_ID_FORMAT_PROFILE, TARGET_UNRESOLVED (DEP-06-03-008, -009, -015), CYCLE_PARTICIPATING (DEP-06-03-014 inside the new two-node SCC DEL-06-03/DEL-08-01 with DEP-08-01-018; non-gating pending a recorded move); NEEDS_HUMAN_GRAPH_DECISION x2 carried unchanged (H-1 DEL-06-02 cycle; DEP-06-03-008 resolution to DEL-07-04); 18 ACTIVE rows (17 preserved byte-identical, 1 emitted DEP-06-03-014 at its numeric position, 0 retired, 0 held).
 - 2026-09-05T10:15-0600 (D-APP-110 decompose) - `TASK + dependency-extract` apply (`ApplyEdits=true`; instance `N14-TASK-DEL-06-03`; owner ruling D-APP-110 directing the decompose move, workbook `SCC_DECOMPOSE_RULINGS.csv` row SD-007; the 07:57 D-APP-109 emission by `N9-TASK-DEL-06-03` is the pre-image); mode `UPDATE`; strictness `CONSERVATIVE`; consumer context `RECONCILIATION`; decomposition found at the pinned identity `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61`; warnings: PROJECT_ID_FORMAT_PROFILE, TARGET_UNRESOLVED (DEP-06-03-008, -009, -015); CYCLE_PARTICIPATING cleared (DEP-06-03-014 re-targeted to the DOCUMENT contract DEL-08-01-PROPOSAL_TRIGGER_CLAUSES; the two-node SCC DEL-06-03/DEL-08-01 is decomposed); NEEDS_HUMAN_GRAPH_DECISION x2 carried unchanged (H-1 DEL-06-02 cycle; DEP-06-03-008 resolution to DEL-07-04); 18 ACTIVE rows (17 preserved byte-identical, 1 re-targeted DEP-06-03-014 in place, 0 added, 0 retired, 0 held).
 - 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`): `dependency-extract`, `MODE=UPDATE`, `STRICTNESS=CONSERVATIVE`, `CONSUMER_CONTEXT=NONE`; decomposition found, SHA-256 `cf6e56ebb147…` (SCA-APP-011 amended); warnings: none; ACTIVE=15 (ANCHOR=7, EXECUTION=8); RETIRED=3.
+- 2026-09-27 (`APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27`): `dependency-extract`, `MODE=UPDATE`, `STRICTNESS=CONSERVATIVE`, `CONSUMER_CONTEXT=NONE`; decomposition found, SHA-256 `6ac781182420…` (SCA-APP-012 amended); warnings: none; ACTIVE=15 (ANCHOR=7, EXECUTION=8); RETIRED=3.
 
 ## D-APP-56 R5 P45 dated register history (2026-07-12)
 

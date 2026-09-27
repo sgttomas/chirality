@@ -1,0 +1,442 @@
+{
+ "schema": {
+  "DEL-02-01": {
+   "rc": 0,
+   "result": "  Data rows: 14"
+  },
+  "DEL-02-02": {
+   "rc": 0,
+   "result": "  Data rows: 22"
+  },
+  "DEL-02-03": {
+   "rc": 0,
+   "result": "  Data rows: 9"
+  },
+  "DEL-06-03": {
+   "rc": 0,
+   "result": "  Data rows: 18"
+  },
+  "DEL-07-02": {
+   "rc": 0,
+   "result": "  Data rows: 7"
+  },
+  "DEL-07-03": {
+   "rc": 0,
+   "result": "  Data rows: 14"
+  },
+  "DEL-08-02": {
+   "rc": 0,
+   "result": "  Data rows: 13"
+  },
+  "DEL-08-03": {
+   "rc": 0,
+   "result": "  Data rows: 10"
+  },
+  "DEL-02-04": {
+   "rc": 0,
+   "result": "  Data rows: 21"
+  },
+  "DEL-02-05": {
+   "rc": 0,
+   "result": "  Data rows: 15"
+  },
+  "DEL-04-04": {
+   "rc": 0,
+   "result": "  Data rows: 14"
+  },
+  "DEL-05-02": {
+   "rc": 0,
+   "result": "  Data rows: 16"
+  },
+  "DEL-05-03": {
+   "rc": 0,
+   "result": "  Data rows: 14"
+  },
+  "DEL-05-04": {
+   "rc": 0,
+   "result": "  Data rows: 9"
+  },
+  "DEL-06-01": {
+   "rc": 0,
+   "result": "  Data rows: 14"
+  },
+  "DEL-06-02": {
+   "rc": 0,
+   "result": "  Data rows: 11"
+  },
+  "DEL-07-01": {
+   "rc": 0,
+   "result": "  Data rows: 12"
+  },
+  "DEL-07-04": {
+   "rc": 0,
+   "result": "  Data rows: 9"
+  },
+  "DEL-07-05": {
+   "rc": 0,
+   "result": "  Data rows: 26"
+  },
+  "DEL-08-01": {
+   "rc": 0,
+   "result": "  Data rows: 21"
+  },
+  "DEL-08-04": {
+   "rc": 0,
+   "result": "  Data rows: 14"
+  },
+  "DEL-08-05": {
+   "rc": 0,
+   "result": "  Data rows: 11"
+  },
+  "DEL-09-02": {
+   "rc": 0,
+   "result": "  Data rows: 25"
+  },
+  "DEL-09-04": {
+   "rc": 0,
+   "result": "  Data rows: 9"
+  }
+ },
+ "enum_pairs": {
+  "ANCHOR_TYPE=NOT_APPLICABLE": {
+   "rc": 0,
+   "result": "VALID: NOT_APPLICABLE is a valid ANCHOR_TYPE"
+  },
+  "CONFIDENCE=HIGH": {
+   "rc": 0,
+   "result": "VALID: HIGH is a valid CONFIDENCE"
+  },
+  "CONFIDENCE=MEDIUM": {
+   "rc": 0,
+   "result": "VALID: MEDIUM is a valid CONFIDENCE"
+  },
+  "DEPENDENCY_CLASS=EXECUTION": {
+   "rc": 0,
+   "result": "VALID: EXECUTION is a valid DEPENDENCY_CLASS"
+  },
+  "DEPENDENCY_TYPE=INTERFACE": {
+   "rc": 0,
+   "result": "VALID: INTERFACE is a valid DEPENDENCY_TYPE"
+  },
+  "DIRECTION=DOWNSTREAM": {
+   "rc": 0,
+   "result": "VALID: DOWNSTREAM is a valid DIRECTION"
+  },
+  "DIRECTION=UPSTREAM": {
+   "rc": 0,
+   "result": "VALID: UPSTREAM is a valid DIRECTION"
+  },
+  "EXPLICITNESS=EXPLICIT": {
+   "rc": 0,
+   "result": "VALID: EXPLICIT is a valid EXPLICITNESS"
+  },
+  "ORIGIN=EXTRACTED": {
+   "rc": 0,
+   "result": "VALID: EXTRACTED is a valid ORIGIN"
+  },
+  "SATISFACTION_STATUS=NOT_APPLICABLE": {
+   "rc": 0,
+   "result": "VALID: NOT_APPLICABLE is a valid SATISFACTION_STATUS"
+  },
+  "SATISFACTION_STATUS=TBD": {
+   "rc": 0,
+   "result": "VALID: TBD is a valid SATISFACTION_STATUS"
+  },
+  "STATUS=ACTIVE": {
+   "rc": 0,
+   "result": "VALID: ACTIVE is a valid STATUS"
+  },
+  "STATUS=RETIRED": {
+   "rc": 0,
+   "result": "VALID: RETIRED is a valid STATUS"
+  },
+  "TARGET_TYPE=DELIVERABLE": {
+   "rc": 0,
+   "result": "VALID: DELIVERABLE is a valid TARGET_TYPE"
+  },
+  "TARGET_TYPE=DOCUMENT": {
+   "rc": 0,
+   "result": "VALID: DOCUMENT is a valid TARGET_TYPE"
+  }
+ },
+ "id_format": {
+  "DEL-02-01": {
+   "checked": 16,
+   "failures": []
+  },
+  "DEL-02-02": {
+   "checked": 24,
+   "failures": []
+  },
+  "DEL-02-03": {
+   "checked": 11,
+   "failures": []
+  },
+  "DEL-06-03": {
+   "checked": 20,
+   "failures": []
+  },
+  "DEL-07-02": {
+   "checked": 9,
+   "failures": []
+  },
+  "DEL-07-03": {
+   "checked": 16,
+   "failures": []
+  },
+  "DEL-08-02": {
+   "checked": 15,
+   "failures": []
+  },
+  "DEL-08-03": {
+   "checked": 12,
+   "failures": []
+  },
+  "DEL-02-04": {
+   "checked": 23,
+   "failures": []
+  },
+  "DEL-02-05": {
+   "checked": 17,
+   "failures": []
+  },
+  "DEL-04-04": {
+   "checked": 16,
+   "failures": []
+  },
+  "DEL-05-02": {
+   "checked": 18,
+   "failures": []
+  },
+  "DEL-05-03": {
+   "checked": 16,
+   "failures": []
+  },
+  "DEL-05-04": {
+   "checked": 11,
+   "failures": []
+  },
+  "DEL-06-01": {
+   "checked": 16,
+   "failures": []
+  },
+  "DEL-06-02": {
+   "checked": 13,
+   "failures": []
+  },
+  "DEL-07-01": {
+   "checked": 14,
+   "failures": []
+  },
+  "DEL-07-04": {
+   "checked": 11,
+   "failures": []
+  },
+  "DEL-07-05": {
+   "checked": 28,
+   "failures": []
+  },
+  "DEL-08-01": {
+   "checked": 23,
+   "failures": []
+  },
+  "DEL-08-04": {
+   "checked": 16,
+   "failures": []
+  },
+  "DEL-08-05": {
+   "checked": 13,
+   "failures": []
+  },
+  "DEL-09-02": {
+   "checked": 27,
+   "failures": []
+  },
+  "DEL-09-04": {
+   "checked": 11,
+   "failures": []
+  }
+ },
+ "uniqueness": {
+  "DEL-02-01": true,
+  "DEL-02-02": true,
+  "DEL-02-03": true,
+  "DEL-06-03": true,
+  "DEL-07-02": true,
+  "DEL-07-03": true,
+  "DEL-08-02": true,
+  "DEL-08-03": true,
+  "DEL-02-04": true,
+  "DEL-02-05": true,
+  "DEL-04-04": true,
+  "DEL-05-02": true,
+  "DEL-05-03": true,
+  "DEL-05-04": true,
+  "DEL-06-01": true,
+  "DEL-06-02": true,
+  "DEL-07-01": true,
+  "DEL-07-04": true,
+  "DEL-07-05": true,
+  "DEL-08-01": true,
+  "DEL-08-04": true,
+  "DEL-08-05": true,
+  "DEL-09-02": true,
+  "DEL-09-04": true
+ },
+ "parent_anchor": {
+  "DEL-02-01": 1,
+  "DEL-02-02": 1,
+  "DEL-02-03": 1,
+  "DEL-06-03": 1,
+  "DEL-07-02": 1,
+  "DEL-07-03": 1,
+  "DEL-08-02": 1,
+  "DEL-08-03": 1,
+  "DEL-02-04": 1,
+  "DEL-02-05": 1,
+  "DEL-04-04": 1,
+  "DEL-05-02": 1,
+  "DEL-05-03": 1,
+  "DEL-05-04": 1,
+  "DEL-06-01": 1,
+  "DEL-06-02": 1,
+  "DEL-07-01": 1,
+  "DEL-07-04": 1,
+  "DEL-07-05": 1,
+  "DEL-08-01": 1,
+  "DEL-08-04": 1,
+  "DEL-08-05": 1,
+  "DEL-09-02": 1,
+  "DEL-09-04": 1
+ },
+ "index_counts": {
+  "DEL-02-01": {
+   "index_active": 11,
+   "csv_active": 11,
+   "match": true
+  },
+  "DEL-02-02": {
+   "index_active": 14,
+   "csv_active": 14,
+   "match": true
+  },
+  "DEL-02-03": {
+   "index_active": 7,
+   "csv_active": 7,
+   "match": true
+  },
+  "DEL-06-03": {
+   "index_active": 15,
+   "csv_active": 15,
+   "match": true
+  },
+  "DEL-07-02": {
+   "index_active": 7,
+   "csv_active": 7,
+   "match": true
+  },
+  "DEL-07-03": {
+   "index_active": 14,
+   "csv_active": 14,
+   "match": true
+  },
+  "DEL-08-02": {
+   "index_active": 13,
+   "csv_active": 13,
+   "match": true
+  },
+  "DEL-08-03": {
+   "index_active": 10,
+   "csv_active": 10,
+   "match": true
+  },
+  "DEL-02-04": {
+   "index_active": 19,
+   "csv_active": 19,
+   "match": true
+  },
+  "DEL-02-05": {
+   "index_active": 12,
+   "csv_active": 12,
+   "match": true
+  },
+  "DEL-04-04": {
+   "index_active": 13,
+   "csv_active": 13,
+   "match": true
+  },
+  "DEL-05-02": {
+   "index_active": 13,
+   "csv_active": 13,
+   "match": true
+  },
+  "DEL-05-03": {
+   "index_active": 13,
+   "csv_active": 13,
+   "match": true
+  },
+  "DEL-05-04": {
+   "index_active": 9,
+   "csv_active": 9,
+   "match": true
+  },
+  "DEL-06-01": {
+   "index_active": 11,
+   "csv_active": 11,
+   "match": true
+  },
+  "DEL-06-02": {
+   "index_active": 11,
+   "csv_active": 11,
+   "match": true
+  },
+  "DEL-07-01": {
+   "index_active": 11,
+   "csv_active": 11,
+   "match": true
+  },
+  "DEL-07-04": {
+   "index_active": 8,
+   "csv_active": 8,
+   "match": true
+  },
+  "DEL-07-05": {
+   "index_active": 25,
+   "csv_active": 25,
+   "match": true
+  },
+  "DEL-08-01": {
+   "index_active": 20,
+   "csv_active": 20,
+   "match": true
+  },
+  "DEL-08-04": {
+   "index_active": 12,
+   "csv_active": 12,
+   "match": true
+  },
+  "DEL-08-05": {
+   "index_active": 11,
+   "csv_active": 11,
+   "match": true
+  },
+  "DEL-09-02": {
+   "index_active": 25,
+   "csv_active": 25,
+   "match": true
+  },
+  "DEL-09-04": {
+   "index_active": 9,
+   "csv_active": 9,
+   "match": true
+  }
+ },
+ "evq_drb": {
+  "rc": 1,
+  "codes": {
+   "EVQ-006": 84,
+   "findings:": 2
+  },
+  "in_scope_changed_rows": []
+ }
+}

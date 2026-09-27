@@ -12,6 +12,8 @@
 
 **Amended (SCA-APP-011):** owner direction 2026-09-27: the Workbench and Pipeline forms, the three deliverable routes and `/api/harness/scaffold` retired; Journeys 7.3 and 7.5, FR-010 to FR-013 and §9.1-9.2 revised; route-preservation clauses carry the exception
 
+**Amended (SCA-APP-012):** owner direction 2026-09-27: the loop-first compatibility UI, `/api/working-root/scope` and `/api/working-root/workflow` retired; §3.1, §6.1, §6.3, §6.4, §7.2, §8.13, §9.2, FR-001, FR-007, FR-119, §12.1, §14 and KG-033 revised; the scaffold tool reads as the read-only preview
+
 ## Current Codex-only MVP release basis
 
 For the current MVP release, Codex is the sole model engine. Claude/Anthropic and Pi/oMLX descriptions, default-provider rules and engine-specific proof records below describe compatibility history; they do not require shipping or enabling those engines, and their historical qualification does not establish Codex qualification. Existing conversation history remains readable without reactivating unavailable providers or inheriting their authority.
@@ -152,7 +154,7 @@ Revised product direction:
 14. Compose real prompt/system context from instruction-root governance, active persona, project-root boundaries, mode policy, and configured tool surface.
 15. Configure adapter options deterministically: model, cwd, permission mode, allowed/disallowed tools, hooks, MCP servers, subagents, session ID/resume, settings isolation, and system prompt.
 16. Implement a Chirality capability policy / permission overlay using adapter permission modes, explicit hard-deny precedence, `disallowedTools`, hooks, and `canUseTool`; never treat `allowedTools` alone as a restriction boundary.
-17. Prefer in-process Chirality MCP tools for `_STATUS.md`, `Dependencies.csv`, scope scan, scaffold, and future deterministic Chirality adapters.
+17. Prefer in-process Chirality MCP tools for `_STATUS.md`, `Dependencies.csv`, scope scan, scaffold preview, and future deterministic Chirality adapters.
 18. Keep the canonical Chirality audit mirror under `.chirality/sessions/<id>/` even when the SDK writes or mirrors its own richer transcripts.
 19. Store SDK session linkage (`sdkSessionId`, project key, transcript location or store key) in Chirality session metadata.
 20. Treat SDK subagents as governed runtime entities with Chirality identity, parent-child linkage, restricted capabilities, and stored output artifacts.
@@ -160,7 +162,7 @@ Revised product direction:
 22. Use OpenPipeStress, if adopted, as the first concrete Domain Engine Profile fixture rather than as Chirality core behavior.
 23. Present recorded plans/tasks, sessions, status, parentage, returns, approvals, models, and workflow activity only from admitted sources with visible provenance, status basis, currency, and exact recorded references.
 24. Preserve a strict interaction boundary between the mounted primary live dialogue and any selected-session read-only replay lens.
-25. Preserve legacy routes, query parameters, aliases, matrix behavior, API/SSE contracts, provider composition, and the existing loop-first UI through a compatibility period. SCA-APP-011 records the owner's separate retirement of `/api/working-root/deliverable/status`, `/api/working-root/deliverable/status/transition`, `/api/working-root/deliverable/dependencies` and `/api/harness/scaffold`.
+25. Preserve legacy routes, query parameters, aliases, matrix behavior, API/SSE contracts, and provider composition through a compatibility period. SCA-APP-011 records the owner's separate retirement of `/api/working-root/deliverable/status`, `/api/working-root/deliverable/status/transition`, `/api/working-root/deliverable/dependencies` and `/api/harness/scaffold`. SCA-APP-012 records the owner's separate retirement of the loop-first compatibility UI, `/api/working-root/scope` and `/api/working-root/workflow`.
 
 ### 3.2 Non-Goals
 
@@ -320,13 +322,13 @@ New provider-adapter harness-runtime scope:
 - Configure `settingSources: []` for shipped builds unless a governed exception is accepted. Development may enable `['project']` only through explicit environment configuration. `user` and `local` setting sources are out of shipped scope.
 - Configure first-adapter SDK built-in tools through deterministic allowed/disallowed tool lists, permission mode, hooks, and `canUseTool`. The PRD must never rely on `allowedTools` alone as a restriction boundary.
 - Implement a Chirality capability policy / permission overlay using adapter `permissionMode`, explicit hard-deny precedence, `disallowedTools`, `canUseTool`, and `PreToolUse` hooks.
-- Register Chirality-specific deterministic tools as in-process SDK MCP servers, initially for status read/transition, dependency CSV read/write, scope scan, and scaffold.
+- Register Chirality-specific deterministic tools as in-process SDK MCP servers, initially for status read/transition, dependency CSV read/write, scope scan, and scaffold preview.
 - Implement Chirality hooks as SDK hook callbacks: path containment, instruction-root write protection, symlink rejection, write budget, provenance append, compaction boundary recording, stop/finalization, and subagent governance.
 - Configure Type 2 task subagents through SDK `agents` definitions generated from `agents/AGENT_*.md`, with restricted tool lists and a fail-closed `Agent` tool gate through `evaluateSubagentGovernance`.
 - Store `sdkSessionId` and SDK transcript linkage in Chirality `session.json` and resume with explicit `resume` rather than ambiguous `continue`.
 - Prefer SDK transcript placement or mirroring under the working root / parent project folders by using `sessionStore`, `CLAUDE_CONFIG_DIR`, or both where empirically reliable. If unavoidable, treat default `~/.claude/projects/...` transcripts as secondary SDK state cross-referenced from Chirality metadata, not project truth.
 - Preserve the browser-facing `UIEvent` and SSE event names during the runtime pivot.
-- Preserve `/`, `/chat`, `/pipeline`, and `/workbench`, existing/unknown query parameters, legacy aliases/matrix behavior, browser API shapes (apart from the four routes SCA-APP-011 retired), and the loop-first implementation through the Woven Dialogue compatibility period.
+- Preserve `/`, `/chat`, `/pipeline`, and `/workbench`, existing/unknown query parameters, legacy aliases/matrix behavior, browser API shapes (apart from the four routes SCA-APP-011 retired and the two SCA-APP-012 retired, `/api/working-root/scope` and `/api/working-root/workflow`) through the Woven Dialogue compatibility period; SCA-APP-012 retires the loop-first implementation.
 - Maintain the default loopback plus Anthropic outbound network policy and add only authenticated `127.0.0.1` oMLX for the D-APP-72 bounded child path; any other non-Anthropic provider, MCP, redirect, or tool network access requires explicit future implementation scope.
 - Add Electron packaging checks for the SDK-spawned Claude Code subprocess, native/bundled binaries, `asarUnpack` requirements, code-signing implications, and API-key environment handling.
 
@@ -352,7 +354,7 @@ The current concrete release target remains:
 
 The reviewed frontend implementation already includes:
 
-- A loop-first, chat-dominant compatibility shell across `/`, `/chat`, `/pipeline`, and `/workbench`; it is the live baseline, not the selected permanent target architecture.
+- The Woven Dialogue shell across `/`, `/chat`, `/pipeline`, and `/workbench`; it has been the live baseline since 2026-09-09. The earlier loop-first, chat-dominant compatibility shell is retired by SCA-APP-012.
 - Session create/boot/list/get/delete APIs.
 - Turn SSE route with session-level active-turn locking.
 - Stub and Anthropic provider mode selection.
@@ -380,7 +382,7 @@ The reviewed frontend implementation already includes:
 - Shipped `bypassPermissions` operation.
 - Remote MCP, plugins, remote execution, marketplace extension, or shell-network expansion before local SDK governance is reliable.
 - Domain-engine integration as a shipping feature unless a separate amendment activates it.
-- Deleting or retiring the loop-first compatibility UI or any existing route before Woven Dialogue parity, accessibility, migration, performance, runtime regression, packaged Desktop proof, and separate owner acceptance. SCA-APP-011 is the separate owner acceptance for the four routes it retires.
+- Deleting or retiring the loop-first compatibility UI or any existing route before Woven Dialogue parity, accessibility, migration, performance, runtime regression, packaged Desktop proof, and separate owner acceptance. SCA-APP-011 is the separate owner acceptance for the four routes it retires. SCA-APP-012 is the separate owner acceptance for retiring the loop-first compatibility UI, `/api/working-root/scope` and `/api/working-root/workflow`; the loop-first UI had not rendered since 2026-09-09, and the packaged Desktop evidence for the dialogue shell stays open under KG-033.
 - Global AgentRun discovery, arbitrary orchestration graphs, multiple-child coordination, scheduling, direct child messaging, automatic intent summarization, or model-routing/residency control in the Coordination Panel.
 
 ## 7. User Journeys
@@ -410,8 +412,9 @@ Acceptance:
 5. Selecting a recorded session may load a clearly labelled, read-only replay
    lens in the main region; the primary dialogue remains mounted and a
    persistent action returns to it.
-6. Legacy route/query/alias/matrix launches remain available through the
-   compatibility period.
+6. Legacy route/query/alias launches remain available through the
+   compatibility period; the matrix survives as the TYPES §4 route/query/alias
+   vocabulary and the persona resolver, not as a launch surface (SCA-APP-012).
 
 Acceptance:
 
@@ -593,7 +596,7 @@ Priority:
 
 | ID | Priority | Requirement | Acceptance |
 |---|---:|---|---|
-| FR-001 | P0 | The app shall provide a Woven Dialogue shell with one mounted primary human–agent transcript/composer, provenance-bearing inline/focused artifacts, a Navigator, a right Work/Agents Coordination Panel, and an Activity Shelf. | Shared intent is not a stored UI object; existing routes and the loop-first UI remain compatibility surfaces until separately retired. |
+| FR-001 | P0 | The app shall provide a Woven Dialogue shell with one mounted primary human–agent transcript/composer, provenance-bearing inline/focused artifacts, a Navigator, a right Work/Agents Coordination Panel, and an Activity Shelf. | Shared intent is not a stored UI object; existing routes remain compatibility surfaces until separately retired; the loop-first UI is retired by SCA-APP-012. |
 | FR-002 | P0 | The app shall expose working-root selection globally. | User can type a path, choose folder in Electron, apply, and clear root. |
 | FR-003 | P0 | The app shall validate working roots before use. | Non-absolute, missing, inaccessible, non-directory, or instruction-root-contained paths fail with typed errors. |
 | FR-004 | P0 | The app shall show a file tree for the selected working root. | Tree API skips `.git`, `.next`, `node_modules`, `dist`, `dist-electron`, and `out`; depth is bounded; inaccessible directories mark truncation. |
@@ -604,7 +607,7 @@ Priority:
 
 | ID | Priority | Requirement | Acceptance |
 |---|---:|---|---|
-| FR-007 | P0 | The target shell shall preserve semantic persona/agent/session routing and canonical aliases without requiring a fixed matrix presentation. | Legacy 3x4 matrix, route/query mappings, unavailable-persona behavior, and deep links remain compatible. |
+| FR-007 | P0 | The target shell shall preserve semantic persona/agent/session routing and canonical aliases without requiring a fixed matrix presentation. | Route/query mappings, aliases, unavailable-persona behavior, and deep links remain compatible; the 3x4 matrix is presentation history and survives as TYPES §4 vocabulary, not as a launch surface (SCA-APP-012). |
 | FR-008 | P0 | Dialogue/session selection shall preserve the mounted primary dialogue and guard incompatible changes during an active turn. | A recorded-session selection opens only a labelled read-only replay lens; it does not resume, switch, merge with, or mutate the primary session. |
 | FR-009 | P0 | The Work/Agents Coordination Panel shall present active dialogue/persona context, explicitly recorded work, recorded sessions, and evidence-conditional canonical parentage. | Every structured work item shows source class/reference, status basis, currency, and recorded responsible/related references; missing or conflicting facts remain absent, unknown, or provenance-labelled. |
 | FR-010 | P1 | [RETIRED — SCA-APP-011] WORKBENCH shall consume deliverable contract APIs for read-only checks and permitted lifecycle transitions. | Retired with the Workbench form and the deliverable routes; lifecycle and dependency behavior is FR-052 to FR-057. |
@@ -772,12 +775,12 @@ Later categories:
 | FR-084 | P0 | Max-turn guards shall stop runaway loops. | SDK `maxTurns` is set from resolved Chirality options and terminal max-turn errors are persisted. |
 | FR-085 | P1 | Tool results shall appear in SSE and persisted runtime events. | UI sees compact progress/results; JSONL stores rich result metadata and artifact paths. |
 | FR-086 | P1 | Concurrency behavior may rely on the SDK only after event ordering is testable. | Chirality replay remains deterministic even if the SDK executes safe tool activity concurrently. |
-| FR-119 | P0 | Chirality-specific deterministic operations shall be exposed as in-process SDK MCP tools. | Status read/transition, dependency CSV read/write, scope scan, and scaffold use `createSdkMcpServer()`/`tool()` or equivalent SDK APIs and pass through Chirality hooks and redaction. |
+| FR-119 | P0 | Chirality-specific deterministic operations shall be exposed as in-process SDK MCP tools. | Status read/transition, dependency CSV read/write, scope scan, and scaffold preview use `createSdkMcpServer()`/`tool()` or equivalent SDK APIs and pass through Chirality hooks and redaction. |
 
 Initial first-adapter tool sequence:
 
 1. SDK read tools and Chirality read MCP tools.
-2. Chirality status/dependency/scope/scaffold MCP tools.
+2. Chirality status/dependency/scope/scaffold-preview MCP tools.
 3. SDK `Write`/`Edit` plus Chirality write MCP tools after write hooks and permission policy land.
 4. SDK `Bash` only after timeout, result storage, hook, interrupt, and audit behavior pass validation.
 5. Remote MCP, tool search, and plugins only after local/in-process tool governance matures.
@@ -880,8 +883,9 @@ Compatibility requirement:
 |---|---|---|
 | `/api/working-root/validate` | POST | Validate and normalize a working root. |
 | `/api/working-root/tree` | GET | Return bounded file tree for the selected root. |
-| `/api/working-root/scope` | GET | Scan deliverables and knowledge-type directories. |
 | `/api/project/deliverables` | GET | Return deliverables plus knowledge decomposition metadata. |
+
+SCA-APP-012 retired `/api/working-root/scope`. `/api/project/deliverables` is the scope-scan surface, and the scan library stays for the retained `scope_scan` tool contract.
 
 SCA-APP-011 retired `/api/working-root/deliverable/status`, `/api/working-root/deliverable/status/transition` and `/api/working-root/deliverable/dependencies`. Lifecycle status read and transition and dependency read and write are served by the library in `frontend/src/lib/workspace/deliverable-contracts.ts` and by the Chirality tool contracts `status_read`, `status_transition`, `deps_read` and `deps_write` that wrap it. Those tools run only on the retained SDK path today: live exposure of the read tools `status_read` and `deps_read` through the Runtime application-tool interface is DEL-06-03's open work, and `status_transition` and `deps_write` remain retained, governed operations with no live registration; any live registration of them is governed by DEL-06-04-REQ-010.
 
@@ -1260,7 +1264,7 @@ This PRD remains acceptable only if:
 - the Work/Agents Coordination Panel remains a rebuildable informational projection over admitted sources, with visible source class/reference, status basis, currency, and exact recorded relationships;
 - conversational prose is not silently converted into plans/tasks, runtime completion is not deliverable acceptance, and missing/stale/conflicting/unrecorded facts remain absent or unknown;
 - selected-session replay remains clearly labelled, observational, and read-only while the primary live dialogue stays mounted with isolated draft, attachment, context, permission, interruption, and interaction state;
-- legacy routes, known and unknown query parameters, aliases/matrix behavior, browser APIs, SSE names/order, provider composition, security boundaries, and the existing UI remain compatible until separately retired;
+- legacy routes, known and unknown query parameters, aliases/matrix behavior, browser APIs (apart from the routes retired by SCA-APP-011 and SCA-APP-012), SSE names/order, provider composition, and security boundaries remain compatible until separately retired; the loop-first UI is retired by SCA-APP-012;
 - the first implementation slice remains first-adapter adoption plus `TurnEngine`, adapter option mapping, provider/SDK message mapping, session event log, run logger, prompt composer, settings isolation, and the runtime-engine boundary contract;
 - provider/SDK adapters remain replaceable behind Chirality-owned contracts and conformance tests;
 - no local write/bash/subagent/domain capability is exposed before permission, hooks, result storage, and event logging pass validation;
@@ -1671,7 +1675,7 @@ Acceptance:
 17. Work/Agents displays no synthesized plans/tasks, inferred parentage, panel-authored approval, or conflated runtime/project lifecycle status.
 18. Selecting a recorded session loads a provenance-labelled read-only replay lens and returning restores the unchanged mounted primary dialogue and its draft/context.
 19. Artifact focus returns to its dialogue anchor; visible artifacts are never included in next-turn model context without explicit reference selection.
-20. Existing routes, queries, APIs, SSE, provider composition, runtime ownership, security controls, and the loop-first compatibility UI pass regression and packaged Desktop checks before any retirement decision. The four routes retired by SCA-APP-011 had no live caller besides the retired forms, and `/api/harness/scaffold` returned ENGINE_UNAVAILABLE in the shipped composition.
+20. Existing routes, queries, APIs, SSE, provider composition, runtime ownership, security controls, and the loop-first compatibility UI pass regression and packaged Desktop checks before any retirement decision. The four routes retired by SCA-APP-011 had no live caller besides the retired forms, and `/api/harness/scaffold` returned ENGINE_UNAVAILABLE in the shipped composition. SCA-APP-012 retired the loop-first compatibility UI, which had not rendered since 2026-09-09, and `/api/working-root/scope` and `/api/working-root/workflow`, which had no caller; the packaged Desktop evidence for the dialogue shell stays open under KG-033.
 
 ---
 
@@ -1711,7 +1715,7 @@ Acceptance:
 | KG-030 | Runtime platform dependency | Provider/SDK pricing, packaging, terms, tool behavior, permission behavior, storage behavior, or session format may change upstream. | Pin versions, run adapter probes and conformance tests on upgrade, and preserve a governed fallback/custom-runtime path. |
 | KG-031 | Reliance-boundary ambiguity | Product-critical boundaries could be accidentally delegated to provider/SDK defaults, prompt text, or noncanonical transcripts. | P0 R0/R1 deliverable: reliance-boundary register with enforcement-surface ownership and tests. |
 | KG-032 | Engine adapter lock-in | If public APIs or internal event schemas become provider/SDK-shaped, replacement becomes impractical even if governance later requires it. | Keep `AgentEnginePort`, `HarnessEvent`, `UIEvent`, session storage, and permission decisions product-owned; reject provider/SDK-shaped leakage in conformance tests. |
-| KG-033 | Woven Dialogue implementation drift | The Woven Dialogue shell is now the default UI for `/`, `/chat`, `/workbench`, and `/pipeline`, carrying the owner-approved calm-editorial light-first design system, with inline/focused artifact and Work/Agents projections implemented and independently evidenced. The residual gap is narrowed to packaged Desktop evidence for the redesigned shell plus named deliverable-local residuals: a true runtime-connectivity status indicator, the packaged application icon (DEL-09-04), replay transcript-item rendering against a real daemon session, the mock-only `[data-legacy]` test contract, and recorded navigator presentation divergences. | Close the named residuals and record packaged Desktop evidence through the six affected deliverable records; keep compatibility, accessibility, migration, and projection-truth evidence current on further presentation change; do not retire the existing legacy loop-first UI without a separate owner decision. |
+| KG-033 | Woven Dialogue implementation drift | The Woven Dialogue shell is now the default UI for `/`, `/chat`, `/workbench`, and `/pipeline`, carrying the owner-approved calm-editorial light-first design system, with inline/focused artifact and Work/Agents projections implemented and independently evidenced. The residual gap is narrowed to packaged Desktop evidence for the redesigned shell plus named deliverable-local residuals: a true runtime-connectivity status indicator, the packaged application icon (DEL-09-04), replay transcript-item rendering against a real daemon session, and recorded navigator presentation divergences; the mock-only `[data-legacy]` test contract closes with the `legacy` prop (SCA-APP-012). | Close the named residuals and record packaged Desktop evidence through the six affected deliverable records; keep compatibility, accessibility, migration, and projection-truth evidence current on further presentation change; SCA-APP-012 is the separate owner decision that retired the legacy loop-first UI. |
 | KG-034 | Coordination projection completeness | Current browser/runtime contracts do not expose global AgentRun discovery, structured plan-file content, arbitrary graphs, scheduling, or complete cross-client live activity. | Present only admitted project/session/replay evidence with explicit empty/stale/unknown states; defer runtime/API expansion to a future governed scope change. |
 
 ## 16. Execution Package Traceability Summary

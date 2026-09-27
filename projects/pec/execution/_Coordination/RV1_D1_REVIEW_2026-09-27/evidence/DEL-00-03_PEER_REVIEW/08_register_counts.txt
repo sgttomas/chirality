@@ -1,0 +1,50 @@
+cwd: {REPO_ROOT} (repository root; branch claude/pec-rv1-d1-review, HEAD a1735cc3b)
+interpreter: python3 (CPython 3.13.7, as reported by python3 --version); shell bash
+env: TMPDIR=<review scratch dir>, PYTHONDONTWRITEBYTECODE=1
+command: python3 $TMPDIR/work/counts.py
+---- output ----
+ScopeLedger rows 100 {'IN': 74, 'OUT': 18, 'TBD': 8}
+ScopeItem ID range SOW-001 .. SOW-083 unique 100
+SOW-029 OUT   PEC-PRS-004 | Maintain live parent→child hierarchy edges from daemon and hook feeds
+SOW-035 OUT   PEC-STR-003 | Implement the runtime-daemon SSE subscriber bridge, declared and attributable
+SOW-037 OUT   PEC-STR-003 | Implement the cmux socket adapter as an optional, declared and attributable enricher
+SOW-087 OUT   §13, D-PEC-56 | Reimplement the shared-runtime client seam concept against v2 entities
+SOW-077 IN PKG-01 DEL-01-06 §16.3, D-PEC-78 | Maintain the PEC-owned long-term service registry naming the loop locators PEC serves through the strict, vers
+SOW-089 IN PKG-00 DEL-00-03 §13 | Author the v2 SPEC from the accepted decomposition
+SOW-095 IN PKG-02 DEL-02-08 PEC-RCN-002 (PRD v2.3), §7.1 WorkGraph/WorkNode | Parse `execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md` content-minimally (declared run-identit
+SOW-096 IN PKG-02 DEL-02-09 PEC-RCN-002 (PRD v2.3), §7.1 RunRecord | Parse deliverable `MEMORY.md` run-index entries (run-ID tokens, dates, link targets) in the template `## Runs`
+SOW-097 IN PKG-04 DEL-04-03 PEC-ORI-007 | Declare the reliance envelope on every orientation response: pin (examined-through SHA), per-feed coverage and
+SOW-098 IN PKG-08 DEL-08-03 PEC-API-006 | Bound responses by declared size budgets met by pagination or continuation; state any truncation; never drop c
+SOW-099 IN PKG-08 DEL-08-06 PEC-API-007, §8 | Offer a read-only query interface for agent tool calls over the versioned API under the agent access class; en
+SOW-100 IN PKG-10 DEL-10-13 §12, PEC-RCN-005, PEC-ORI-006, PEC-ORI-007 | Maintain the reliance-advertisement gate: before any release advertises operational reliance, prove harness pa
+SOW-065 OUT   §4.2 | System-of-record function; PEC output citable as authority
+SOW-069 OUT   §4.2, §15 | Replacing the practitioner harness; opening or directing its cache half
+SOW-084 IN PKG-10 DEL-10-09 §11.3 | Measure collision incidents: write-scope/branch conflicts discovered at Git time rather than surfaced in advan
+SOW-085 IN PKG-10 DEL-10-05 §12 P2, §11 | Log owner use or non-use of PEC orientation and dashboard surfaces sufficient to evaluate the §12 P2-B uptake
+SOW-093 IN PKG-10 DEL-10-11 §11.5 | Report parity DriftFindings per reconcile as the §11 parity metric
+SOW-064 IN PKG-10 DEL-10-10 PRD v2.2 §12, D-PEC-61, D-PEC-68 | Directed bootstrap: P1 first ingests PEC v2's accepted full dependency DAG as its initial file-native coordina
+SOW-025 IN PKG-10 DEL-10-03 PEC-GAT-004 | Verify, as a tested property of the API surface, that no write path records adoption, ruling, or direction
+SOW-055 IN PKG-10 DEL-10-02 PEC-SVC-004, §11.6 | Maintain the kill test — delete the store, run representative governed workflows, nothing blocks — as a standi
+SOW-058 IN PKG-10 DEL-10-01 §11.1, §2 | Measure the Step-0 cost baseline (LLM tokens per loop-iteration orientation) before P1 begins; this re-tests t
+SOW-003 IN PKG-08 DEL-08-01 §8 | Implement token-scoped access with four access classes: owner, harness, agent (read-only query for tool calls)
+TBD items ['SOW-075', 'SOW-076', 'SOW-078', 'SOW-079', 'SOW-080', 'SOW-081', 'SOW-082', 'SOW-083']
+OUT items ['SOW-029', 'SOW-035', 'SOW-037', 'SOW-087', 'SOW-065', 'SOW-066', 'SOW-067', 'SOW-068', 'SOW-069', 'SOW-070', 'SOW-071', 'SOW-072', 'SOW-073', 'SOW-074', 'SOW-086', 'SOW-090', 'SOW-091', 'SOW-092']
+Deliverables rows 68
+PKG-00 3 DEL-00-01 .. DEL-00-03
+PKG-01 6 DEL-01-01 .. DEL-01-06
+PKG-02 9 DEL-02-01 .. DEL-02-09
+PKG-03 6 DEL-03-01 .. DEL-03-06
+PKG-04 5 DEL-04-01 .. DEL-04-05
+PKG-05 2 DEL-05-01 .. DEL-05-02
+PKG-06 6 DEL-06-01 .. DEL-06-06
+PKG-07 5 DEL-07-01 .. DEL-07-05
+PKG-08 6 DEL-08-01 .. DEL-08-06
+PKG-09 7 DEL-09-01 .. DEL-09-07
+PKG-10 13 DEL-10-01 .. DEL-10-13
+rows mentioning retire: ['DEL-06-04', 'DEL-07-02', 'DEL-07-04', 'DEL-07-05']
+DEL-00-03 | v2 SPEC seed | DOC_UPDATE | pre-P1 | SOW-089 | The v2 SPEC born from this decomposition: seeded before P1 from the accepted packages/deliverables, amended per phase under governed updates. | M because the seed derives structure from an accepted basis (46 requirements / 64 deliverables) rather than inventing co
+DEL-06-04 | Live hierarchy edges | BACKEND_FEATURE_SLICE | P4 |  | [RETIRED — SCA-005] Retired because SOW-029 is deferred OUT under R1 (trigger T-RT). Original description: Parent-to-child session edges from daemon and hook fe | Retired row retained for register integrity; excluded from active envelope counts (SCA-005).
+DEL-07-02 | Daemon SSE subscriber bridge | BACKEND_FEATURE_SLICE | P4 |  | [RETIRED — SCA-005] Retired because SOW-035 is deferred OUT under R1 (trigger T-RT). Original description: Declared, attributable subscriber over the runtime da | Retired row retained for register integrity; excluded from active envelope counts (SCA-005).
+DEL-07-04 | cmux socket adapter (optional) | BACKEND_FEATURE_SLICE | P4 |  | [RETIRED — SCA-005] Retired because SOW-037 is deferred OUT by the owner's 2026-09-24 cmux deferral. Original description: Optional declared enricher over the c | Retired row retained for register integrity; excluded from active envelope counts (SCA-005).
+DEL-07-05 | Shared-runtime client seam (v2) | BACKEND_FEATURE_SLICE | P3 |  | [RETIRED — SCA-005] Retired because SOW-087 is deferred OUT under R1 (trigger T-RT). Original description: The D-PEC-56 client-seam concept reimplemented agains | M is provisional: the seam's artifact shape follows the D-PEC-56 concept, not a PEC-*-NNN requirement; re-envelope at WO
+---- exit code: 0 ----
