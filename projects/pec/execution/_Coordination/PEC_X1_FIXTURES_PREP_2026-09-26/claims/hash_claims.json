@@ -1,0 +1,272 @@
+[
+ {
+  "abbrev": "039dc7e2…8361",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-98_RULING_2026-09-26.md"
+ },
+ {
+  "abbrev": "0bcbe9bd…39bf",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Impact_Assessment.md"
+ },
+ {
+  "abbrev": "0bf835f5…ece3",
+  "commit": "6c6cc1b00",
+  "path": "tools/scaffolding/write_status.sh"
+ },
+ {
+  "abbrev": "104ed648…b143",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/v2/config/loops.schema.json"
+ },
+ {
+  "abbrev": "13690e20…729b",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-100_RULING_2026-09-26.md"
+ },
+ {
+  "abbrev": "1d24a4b8…916e",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv"
+ },
+ {
+  "abbrev": "1ec5719f…51ad8",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md"
+ },
+ {
+  "abbrev": "2319661b…dd26",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/ScopeOfWork.md"
+ },
+ {
+  "abbrev": "2bfa2c5f…afb3",
+  "commit": "6c6cc1b00",
+  "path": "workflows/index.json"
+ },
+ {
+  "abbrev": "39c4331e…e25b",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-100_s2_sow_rebuild_proposal_2026-09-26.md"
+ },
+ {
+  "abbrev": "3e34403a…c989",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_RULING_2026-09-26.md"
+ },
+ {
+  "abbrev": "4341d6b2…4fe",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_STATUS.md"
+ },
+ {
+  "abbrev": "4506597b…180e",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_registry_schema_v2_feed_profiles_proposal_2026-09-25.md"
+ },
+ {
+  "abbrev": "4b9ccb9f…12da",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Coordination/SCA-005_PREP_2026-09-23/FEED_MODEL_V2_DESIGN_NOTE.md"
+ },
+ {
+  "abbrev": "50cd0b1d…1350",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md"
+ },
+ {
+  "abbrev": "5c044b09…13ec",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-91_del_01_03_count_domain_encoding_residual_proposal_2026-09-25.md"
+ },
+ {
+  "abbrev": "69b646f8…f45e",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md"
+ },
+ {
+  "abbrev": "6f94c04f…f06f",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_STATUS.md"
+ },
+ {
+  "abbrev": "7389826d…7def",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-85_P1_STORE_GUARD_PROPOSAL_2026-09-07.md"
+ },
+ {
+  "abbrev": "768ae4c4…a771",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Decomposition/_LATEST.md"
+ },
+ {
+  "abbrev": "852057f0…399e",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_RULING_2026-09-26.md"
+ },
+ {
+  "abbrev": "8ec9ba6d…8a8b",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/software-workflow.json"
+ },
+ {
+  "abbrev": "8f36adc7…dfcd",
+  "commit": "6c6cc1b00",
+  "path": "workflows/software-test-planning/WORKFLOW.md"
+ },
+ {
+  "abbrev": "92b6f1a2…3e40",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-98_first_sows_del_02_08_02_09_proposal_2026-09-26.md"
+ },
+ {
+  "abbrev": "9374c21f…8eb1",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md"
+ },
+ {
+  "abbrev": "93b0bb07…4c7c",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Decomposition/ContextBudgetQA.csv"
+ },
+ {
+  "abbrev": "94ee5d18…9805",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Decomposition/Deliverables.csv"
+ },
+ {
+  "abbrev": "962a7879…8a73",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-89_del_01_03_exact_type_closure_proposal_2026-09-24.md"
+ },
+ {
+  "abbrev": "9ae4bea2…9665",
+  "commit": "6c6cc1b00",
+  "path": "agents/AGENT_WORKING_ITEMS.md"
+ },
+ {
+  "abbrev": "9cc54bfb…c5b3",
+  "commit": "6c6cc1b00",
+  "path": "docs/SOFTWARE_WORKFLOW_PROFILE.md"
+ },
+ {
+  "abbrev": "ae49b806…3fbe",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/docs/PRD.md"
+ },
+ {
+  "abbrev": "b6814e90…5a6b",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-94_owner_direction_loop_migration_2026-09-25.md"
+ },
+ {
+  "abbrev": "ba3d3e64…4569",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-87_del_01_03_store_guard_correction_proposal_2026-09-24.md"
+ },
+ {
+  "abbrev": "c506732e…d3b2",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-96_AMEND_DIRECTION_2026-09-26.md"
+ },
+ {
+  "abbrev": "c8bb9f1b…294b",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/ScopeOfWork.md"
+ },
+ {
+  "abbrev": "c8ce87ef…1dffd",
+  "commit": "6c6cc1b00",
+  "path": "AGENTS.md"
+ },
+ {
+  "abbrev": "df9196d1…5eb8",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/AGENTS.md"
+ },
+ {
+  "abbrev": "e67be587…1056",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_STATUS.md"
+ },
+ {
+  "abbrev": "eab18e17…6f5e",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/ScopeOfWork.md"
+ },
+ {
+  "abbrev": "ee085d58…8bca",
+  "commit": "6c6cc1b00",
+  "path": ".agents/skills/software-code-review/SKILL.md"
+ },
+ {
+  "abbrev": "fa04e134…a4c9",
+  "commit": "6c6cc1b00",
+  "path": "workflows/construct-local-work-graph/WORKFLOW.md"
+ },
+ {
+  "abbrev": "fd342b4f…53d7",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/v2/config/loops.json"
+ },
+ {
+  "abbrev": "fe2cc825…45ea",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md"
+ },
+ {
+  "abbrev": "feb5e79c…109e",
+  "commit": "6c6cc1b00",
+  "path": "docs/SPEC.md"
+ },
+ {
+  "abbrev": "d55fff77…bbd",
+  "commit": "prep",
+  "path": "candidates/projects/pec/software-workflow.json"
+ },
+ {
+  "abbrev": "99cd6c9b…a80e",
+  "commit": "prep",
+  "path": "apply_x1p.template.py"
+ },
+ {
+  "abbrev": "b30e0caf…8e91",
+  "commit": "prep",
+  "path": "build_apply_x1p.py"
+ },
+ {
+  "abbrev": "06f8fec3…5ee",
+  "commit": "prep",
+  "path": "negative_controls_x1p.sh"
+ },
+ {
+  "abbrev": "012e905d…ce60",
+  "commit": "evidence",
+  "path": "evidence/addon_L_prototype.out"
+ },
+ {
+  "abbrev": "35ba885f…34b7",
+  "commit": "evidence",
+  "path": "evidence/addon_L_prototype.out"
+ },
+ {
+  "abbrev": "ffe81899…edb8",
+  "commit": "evidence",
+  "path": "evidence/addon_L_prototype.out"
+ },
+ {
+  "abbrev": "dd7e1dda…6e5a",
+  "commit": "evidence",
+  "path": "evidence/run_main/posture_pre.out"
+ },
+ {
+  "abbrev": "5a9ccf10…5c1a",
+  "commit": "prep",
+  "path": "negative_controls_x1p.py"
+ },
+ {
+  "abbrev": "67167dc5…4851",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-85_RULING_2026-09-08.md"
+ }
+]

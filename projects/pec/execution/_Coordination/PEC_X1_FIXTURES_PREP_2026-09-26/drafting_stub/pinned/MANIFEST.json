@@ -1,0 +1,120 @@
+{
+  "schema": "pec-v2-parser-fixtures-pinned/v1",
+  "policy": {
+    "source_run_words": 3,
+    "copy_run_words": 8
+  },
+  "templates": [
+    {
+      "id": "TPL.work-graph",
+      "commit": "6c6cc1b00dd5cc2bf77a5a262d0ac593fc96e240",
+      "path": "workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "blob": "91f10bfbe62c6442d6d56646f93f06f8bd7d9e1c"
+    },
+    {
+      "id": "TPL.memory",
+      "commit": "6c6cc1b00dd5cc2bf77a5a262d0ac593fc96e240",
+      "path": "docs/templates/MEMORY_TEMPLATE.md",
+      "blob": "0aebc32f72530576471c3bf6deff2aedbcbd6b7d"
+    }
+  ],
+  "pins": [
+    {
+      "id": "STUB.p0",
+      "fixture": "STUB",
+      "project": "x",
+      "kind": "stub",
+      "commit": "d61981ee2b9e36c82c6cdd28d4f3c12d3d32a69b",
+      "path": "projects/chirality-piping/execution/_Coordination/WorkGraphs/PIPING_LINTER_SCOPE_20260923/WORK_GRAPH.md",
+      "blob": "ae942d99c7e0f698291c5d8ace95f65390df061d",
+      "serves": [
+        "DEL-02-08"
+      ]
+    },
+    {
+      "id": "STUB.p1",
+      "fixture": "STUB",
+      "project": "x",
+      "kind": "stub",
+      "commit": "d61981ee2b9e36c82c6cdd28d4f3c12d3d32a69b",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/PIPING_LINTER_SCOPE_20260923/RECEIPT.md",
+      "blob": "23623e2cf846bc4673603c9b7991ecf10e026825",
+      "serves": [
+        "DEL-02-08"
+      ]
+    },
+    {
+      "id": "STUB.p2",
+      "fixture": "STUB",
+      "project": "x",
+      "kind": "stub",
+      "commit": "d61981ee2b9e36c82c6cdd28d4f3c12d3d32a69b",
+      "path": "projects/chirality-piping/execution/_Coordination/WorkGraphs/dec025-clean-base-repair-2026-09-23/WORK_GRAPH.md",
+      "blob": "e471421ce8ad094d5cf7b49ed95bad39bf0ae3d7",
+      "serves": [
+        "DEL-02-08"
+      ]
+    },
+    {
+      "id": "STUB.p3",
+      "fixture": "STUB",
+      "project": "x",
+      "kind": "stub",
+      "commit": "d61981ee2b9e36c82c6cdd28d4f3c12d3d32a69b",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/PIP-DEC025-BASELINE-2026-09-23/EVIDENCE.md",
+      "blob": "76e618a5a5c137b4f51bf63016a3b3a9997fb76a",
+      "serves": [
+        "DEL-02-08"
+      ]
+    },
+    {
+      "id": "STUB.p4",
+      "fixture": "STUB",
+      "project": "x",
+      "kind": "stub",
+      "commit": "d61981ee2b9e36c82c6cdd28d4f3c12d3d32a69b",
+      "path": "projects/chirality-app-dev/execution/_Coordination/WorkGraphs/replay-session-boundary-2026-09-23/WORK_GRAPH.md",
+      "blob": "d25cae6130a7139d077c2e3bf848ea9aa70bae1f",
+      "serves": [
+        "DEL-02-08"
+      ]
+    },
+    {
+      "id": "STUB.p5",
+      "fixture": "STUB",
+      "project": "x",
+      "kind": "stub",
+      "commit": "6c6cc1b00dd5cc2bf77a5a262d0ac593fc96e240",
+      "path": "projects/pec/loop/LOOP_RECEIPTS.md",
+      "blob": "ea6f32ccc081d517cfc822d48ed0181db42a5b67",
+      "serves": [
+        "DEL-02-08"
+      ]
+    },
+    {
+      "id": "STUB.p6",
+      "fixture": "STUB",
+      "project": "x",
+      "kind": "stub",
+      "commit": "6c6cc1b00dd5cc2bf77a5a262d0ac593fc96e240",
+      "path": "projects/pec/execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260925-POST-SCA005/WORK_GRAPH.md",
+      "blob": "bf0b0c6262914b98ece3beb711b518821defc0db",
+      "serves": [
+        "DEL-02-08"
+      ]
+    },
+    {
+      "id": "STUB.p7",
+      "fixture": "STUB",
+      "project": "x",
+      "kind": "stub",
+      "commit": "6c6cc1b00dd5cc2bf77a5a262d0ac593fc96e240",
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/MEMORY.md",
+      "blob": "497bb00428d589094b2e97c04b1636394b506706",
+      "serves": [
+        "DEL-02-08"
+      ]
+    }
+  ],
+  "trees": []
+}
