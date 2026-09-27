@@ -1,6 +1,6 @@
 # SCA-APP-011 Brief — Retire the Workbench and Pipeline Forms and the Deliverable HTTP Routes
 
-**Status:** `CHECKPOINT_GROUP_1_CANDIDATE` (revision 2, adds choice S-c) — awaiting the owner's checkpoint-group-1 act. The owner has stated selections for choices A, B, D and S (below); they are not a checkpoint acceptance. Nothing here is accepted.
+**Status:** `CHECKPOINT_GROUP_1_ACCEPTED` — the owner accepted checkpoint group 1 on revision 2 on 2026-09-27 ("I accept SCA-APP-011 checkpoint group 1"); see `../checkpoint_snapshots/SCA-APP-011_GROUP-1_2026-09-27/`. Group 2 is in preparation. Nothing is applied.
 **Date:** `2026-09-27` (folder time `0155` is UTC)
 **Requested by:** Ryan Tufts (repository owner `sgttomas`), in the Claude Code conversation of 2026-09-27
 **Prepared by:** WORKING_ITEMS, bounded Claude Code subagent, working in an isolated worktree
@@ -145,3 +145,5 @@ Counts: BASE 18 MODIFY + 1 ADD; DQ-R 1 MODIFY; DQ-X 1 REMOVE, 1 ADD (X-a) or 1 M
 - CONTRACT invariant text and the companion register's enforcement-surface wording (no change proposed; see Impact Assessment §5.6).
 - The legacy loop-first shell (set L) unless the owner includes it.
 - Any lifecycle transition, release, publication, `_LATEST.md` movement, or closure of other open SCA work.
+
+**Owner response (group 1):** Accepted on 2026-09-27: "I accept SCA-APP-011 checkpoint group 1". The accepted selection is BASE + DQ-R + S-c, with D restate, L excluded, E no change, M-a and the scaffold library kept. See `Decision_Log.md` G1-ACCEPT and the group-1 decision snapshot.
