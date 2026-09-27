@@ -2,6 +2,16 @@
 
 Manager: WORKING_ITEMS (Type 1) under HELP_HUMAN, undertaking `HELP-HUMAN-PEC-20260925-POST-SCA005`, node D1. Brief `briefs/D1P_PREMISE_PROPOSAL.md` (`d1cdf4e3104d38a08e8bef8c3641070d942ec9ad2744bddeb9cadfb482cbc1f1`, copied unchanged) with `COMMON.md` (`51b70e46f1049696c456be1d4ab7b4b236e3cbfc6fa3a667ed0426035510b311`, session scratchpad); both hashes verified before reading. Model: Opus 5.5 (`claude-opus-5-5`), high, for the manager and every child (instruction-asserted). Preparation only: no production file was written; every check ran on `git archive` exports.
 
+## Supersession note (2026-09-27, PR #997 review round)
+
+The sections below were written at `4141b6428` and are kept as that return. HELP_HUMAN's independent review of PR #997 at `26c38d6ce` (PASS WITH NOTES) led to repairs verified by `VERIFIER_VERDICT_06.md` (PASS WITH NOTES). Where they differ, these current values supersede the values below:
+
+- Candidates: DEL-00-03 SPEC `f84c067bf8388cbd348541dd821af040cee4e84fb34fe4e3e3ab473acdd5f617` (unchanged, 207 lines); DEL-00-03 SOW `0fed4ecb771ccef8f8575dd08420e13792629cd7ac9d14f720423eba6c2ae843` (172 lines; AX-009 tempered); DEL-00-01 ADRs `ad6bab7ee00779e0cff5900d74d986e5e05c66b7dc469f5ddd9b224ecc65c49e` (182 lines; posture 3 names only the premise's own elements, no `codex app-server` child); add-on P `3757632b507d1f5a5668ccefb99d87b9e2a30a9e6bd38d7349e9f4721c5da647` (152 lines; CLM-005/REQ-004 carry credentials custody and model-residency retirement, as posture 3 does).
+- Act script `apply_d1p.py` `952a7512fd74e1b77f2f6b948d3cf46c876448ee1dee5370759f627236399d4d`, rendered at basis `f0a6159c9` (a `6c6cc1b00` rendering differs only in its comment line). Checklists: DEL-00-03 `a3bc80a0db9a1917aa54337f62cd2057ce154bdc792f3802d982012f667121b1`, DEL-00-01 `6e99f93c37c761b140c60d870ab0048bae814427d65143a60364f36896bb8cf9`. Runner `run_d1p_checks.sh` `80714ae4a69a8178d7726f095657e8c4297b8babbe9ed86933c2deacd8b0ed8e` (stores whitespace-clean `diff_<KEY>.diff.txt`).
+- Checks at `origin/main` `f0a6159c9` (observation `6c6cc1b00`): OVERALL PASS; quotes 74/74; state claims 126/126; fault injection 24/24; evidence whitespace 0; negative controls 6/6; `git diff --check origin/main...HEAD` clean. External-quote scan: 82 STALE = 69 in history records + 13 scanner artefacts.
+- The re-review options are named RR1–RR3; the variant is "REVIEW-before-merge" (act on the branch, then REVIEW and acceptance on that branch under a separate authorization, then merge); reading 4(a) is stated as beyond premise-only scope.
+- The draft hash and final head are in the manager's final hand-back for this round.
+
 ## Publication
 
 - **PR #997** (`https://github.com/sgttomas/chirality/pull/997`), base `main`, branch `claude/pec-d1-premise-proposal`, not merged. Head: see the final commit of this return on the branch (the draft and evidence are final at `4141b6428`). GitHub reported `mergeable: MERGEABLE`, `mergeStateStatus: BLOCKED` (checks pending / review required); no "Update the PR base" failure was seen.
