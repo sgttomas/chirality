@@ -22,27 +22,7 @@ See the current formal `Dependencies.csv` rows whose Direction is DOWNSTREAM. No
 
 ## Current Extracted Dependency Summary — 2026-09-22
 
-Total rows: 15. ACTIVE: 15. RETIRED: 0. RETIRED: 0.
-
-| DependencyID | Class | Type | Direction | Target | Status | SatisfactionStatus |
-|---|---|---|---|---|---|---|
-| DEP-03-02-001 | ANCHOR | OTHER | UPSTREAM | PKG-03 | ACTIVE | PENDING |
-| DEP-03-02-002 | ANCHOR | OTHER | UPSTREAM | SOW-009 | ACTIVE | PENDING |
-| DEP-03-02-003 | ANCHOR | OTHER | UPSTREAM | SOW-010 | ACTIVE | PENDING |
-| DEP-03-02-004 | ANCHOR | OTHER | UPSTREAM | SOW-011 | ACTIVE | PENDING |
-| DEP-03-02-005 | ANCHOR | OTHER | UPSTREAM | SOW-038 | ACTIVE | PENDING |
-| DEP-03-02-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-01 | ACTIVE | PENDING |
-| DEP-03-02-007 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-02 | ACTIVE | PENDING |
-| DEP-03-02-008 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-03-03 | ACTIVE | PENDING |
-| DEP-03-02-009 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-03-04 | ACTIVE | PENDING |
-| DEP-03-02-010 | EXECUTION | ENABLES | DOWNSTREAM | DEL-09-03 | ACTIVE | PENDING |
-| DEP-03-02-011 | ANCHOR | OTHER | UPSTREAM | SOW-083 | ACTIVE | PENDING |
-| DEP-03-02-012 | ANCHOR | OTHER | UPSTREAM | OBJ-002 | ACTIVE | PENDING |
-| DEP-03-02-013 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-08-04 | ACTIVE | PENDING |
-| DEP-03-02-014 | EXECUTION | CONSTRAINT | UPSTREAM | Current per-chat delegation policy storage/interface (exact allocation unresolved) | ACTIVE | PENDING |
-| DEP-03-02-015 | EXECUTION | INTERFACE | UPSTREAM | Application-owned Runtime session lifecycle and active-turn invariant | ACTIVE | PENDING |
-
-This is a read-only summary of formal rows. D-GOV-43/D-APP-127 adapt current Runtime ownership and retire daemon proof subjects; formal row amendments, satisfaction changes and basis pins retain their owning process. Earlier notes below remain historical and do not override this current summary.
+Superseded on 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`): the current register summary is under `## Extracted Dependency Register` below. The dated table of this section is kept in git history.
 
 ## Run Notes
 
@@ -73,52 +53,69 @@ This is a read-only summary of formal rows. D-GOV-43/D-APP-127 adapt current Run
 - 2026-09-05 D-APP-109 emission run (owner ruling `execution/_Coordination/_DECISIONS/D-APP-109_RULING_SCA_APP_010_HELD_EDGES_AND_CONTEXT_ALIGNMENT_2026-09-05.md`; run `APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05` amendment v1.2, instance `N9-TASK-DEL-03-02`; `ApplyEdits: true`) used MODE=UPDATE, STRICTNESS=CONSERVATIVE, CONSUMER_CONTEXT=RECONCILIATION. Decomposition authority `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` found at the pinned identity (SHA-256 `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61`). Sources: `HELD_EDGE_PROPOSALS.csv` H-015 and `instances/N1-TASK-DEL-03-02/PREVIEW.md` held-proposal section (row content as captured), the decomposition L253 (evidence quote re-verified in live bytes) and L371 (DEL-08-04 row; `TargetLocation` pointer), and this register's own rows for every convention. No new extraction from prose; no existing row changed; no row retired. Wrote DEP-03-02-013 at its numeric position (register now runs 001..015). The edge is cycle-participating and non-gating: with the other D-APP-109 rows it enlarges SCC-001; no decompose, invert, merge, or cut is recorded by this run; a fresh AUDIT_DEP_CLOSURE run records the new SCC picture. `TargetLocation` keeps this register's `path:<line>` form (the sealed brief's `#L<n>` example is not the carrier convention). No `[WARNING] FLOATING_NODE`, `[WARNING] AMBIGUOUS_ANCHOR`, or `[WARNING] MISSING_DECOMPOSITION`; PROJECT_ID_FORMAT_PROFILE and TBD_IMPLEMENTATION_PATHS remain as recorded above.
 - 2026-09-05 D-APP-110 decompose run (owner ruling `execution/_Coordination/_DECISIONS/D-APP-110_RULING_SCA_APP_010_SCC_DECOMPOSE_2026-09-05.md`; run `APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05` amendment v1.3, instance `N14-TASK-DEL-03-02`; `ApplyEdits: true`) used MODE=UPDATE, STRICTNESS=CONSERVATIVE, CONSUMER_CONTEXT=RECONCILIATION. Decomposition authority `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` found at the pinned identity (SHA-256 `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61`). This carrier holds no `SCC_DECOMPOSE_RULINGS.csv` row: no row here was re-targeted and no DOCUMENT target was introduced (the seven re-targeted rows SD-001 to SD-007 are in DEL-04-05, DEL-02-01, DEL-02-04, DEL-02-02, and DEL-06-03). RESOLVED under D-APP-110: the `Notes` of DEP-03-02-013, the one D-APP-109 row this carrier holds, was updated from "non-gating until resolved" to "resolved by decompose under D-APP-110"; the row is a strict edge of the acyclic approved graph and gates per its SatisfactionStatus (PENDING). No other field on that row and no other row changed; no row added or retired; every count is unchanged (15 ACTIVE). No `[WARNING] FLOATING_NODE`, `[WARNING] AMBIGUOUS_ANCHOR`, or `[WARNING] MISSING_DECOMPOSITION`; PROJECT_ID_FORMAT_PROFILE and TBD_IMPLEMENTATION_PATHS remain as recorded above.
 
+### 2026-09-27 SCA-APP-011 incremental setup refresh (UPDATE)
+
+- Run: `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`, `project-setup` INCREMENTAL Phase 5.6 (FULL_GRAPH) dispatch of `bundled:chirality-root/dependency-extract`, run directly by WORKING_ITEMS after the owner confirmed the SCA-APP-011 incremental plan on 2026-09-27 (verbatim in `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/CHAT_TRANSCRIPTION.md`). Role: FULL_GRAPH neighbour of the SCA-APP-011 MODIFY set.
+- Runtime overrides: `SCOPE=DEL-03-02`; `RUN_ROOT=projects/chirality-app-dev/execution`; `DECOMPOSITION_PATH=projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=NONE`; `SOURCE_DOCS=AUTO` (`ScopeOfWork.md`, `_CONTEXT.md`, `_REFERENCES.md`, `_STATUS.md`); `ANCHOR_DOC=ScopeOfWork.md`; `EXECUTION_DOC_ORDER=ScopeOfWork.md, _CONTEXT.md`.
+- Decomposition authority: FOUND, SHA-256 `cf6e56ebb1474d30a45dd3973dcb449d8aab30a84d731649336091afd2321876` (as amended by SCA-APP-011).
+- Source-preservation gate: `ScopeOfWork.md` `1686d59e3d212f75a17dc8d7cd278f674705ddf5216ccb2e184ea6f781d47066`; `_CONTEXT.md` `8206f7ede579ce87ed1c2c6b4dacb5732e9c635ea08073c637cb944e1348c8d4`; `_REFERENCES.md` `d45ee01853178f58ecf72718d8ef805be41a7f9528d069b006043f65af83dccb`; `_STATUS.md` `11c373ce9c0a7128699536dddd22e2ed5144067bf1acec1f25d1e27b1d37e083`; read-only and unchanged by this run.
+- Pre-images: `Dependencies.csv` `4413ed35e9d182ef90848f16be04b6882f94020f6d94d22a394d179231735c02`, `_DEPENDENCIES.md` `19e11b887130e7b1d9c848f61d2d98395f753d7e9ea07329ca64c77da9fe3488`.
+- Method: every existing ACTIVE row was re-checked against its cited current source (quote found verbatim, and not only inside a `[RETIRED` clause or a clause SCA-APP-011 declared history). Text added to the sources since the previous extraction (2026-09-22) was scanned for new explicit cross-deliverable relationships. Unchanged source text yields the rows already recorded.
+- Results: re-seen 15 (`LastSeen=2026-09-27`); restated in place 0; kept with a note 0; retired 0; added 0; held with `[WARNING] EVIDENCE_SOURCE_RETIRED` 0. No row deleted; every existing `DependencyID` preserved; `Status=CANDIDATE` not emitted.
+- Declared entries: none (the declared sections carry no SPEC §5.2 entry). Mirror rows added 0, refreshed 0, retired 0; entries skipped 0.
+- Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` row (1).
+- Function 5 checks (`execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/dep_extract/FUNCTION5_CHECKS.json`): `validate_dependencies_schema.py` PASS; `DependencyID` unique; every enum value written by this run VALID (`validate_enum.py`); ID format PASS for `FromDeliverableID`, `FromPackageID` and every `DependencyID` (`validate_id_format.sh`; the PROJECT_ID_FORMAT_PROFILE warning of earlier runs no longer reproduces); index counts match `Dependencies.csv`.
+- [INFO] EVQ-006 (report-only, `validate_decomposition_registers.py --families EVQ,DRB`): the validator resolves `EvidenceFile` from the project root, so it reports every App register row whose `EvidenceFile` is deliverable- or repository-relative. This is a project-wide pre-existing convention finding, not a defect introduced here; no EVQ-003, EVQ-004 or DRB-006 finding.
+
 ## Extracted Dependency Register
 
-Structured register: `Dependencies.csv` v3.1
+Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated sections elsewhere in this file keep the counts of their dates.
 
-| Metric | Count |
+| Count Type | Count |
 |---|---:|
 | Total rows | 15 |
 | ACTIVE rows | 15 |
 | RETIRED rows | 0 |
-| ANCHOR rows | 7 |
-| EXECUTION rows | 8 |
-| DECLARED rows | 0 |
-| EXTRACTED rows | 15 |
+| ACTIVE ANCHOR rows | 7 |
+| ACTIVE EXECUTION rows | 8 |
+| ACTIVE parent anchors (`IMPLEMENTS_NODE`) | 1 |
+| ACTIVE Origin=DECLARED rows | 0 |
 
-| DependencyID | Class | Direction | Type | Target | Status |
-|---|---|---|---|---|---|
-| DEP-03-02-001 | ANCHOR | UPSTREAM | OTHER | PKG-03 Runtime Engine Contract and Turn Lifecycle | ACTIVE |
-| DEP-03-02-002 | ANCHOR | UPSTREAM | OTHER | SOW-009 Session CRUD | ACTIVE |
-| DEP-03-02-003 | ANCHOR | UPSTREAM | OTHER | SOW-010 Session boot-request binding including per-chat delegation policy | ACTIVE |
-| DEP-03-02-004 | ANCHOR | UPSTREAM | OTHER | SOW-011 SSE turn stream and session locking | ACTIVE |
-| DEP-03-02-005 | ANCHOR | UPSTREAM | OTHER | SOW-038 Thin TurnEngine and route extraction | ACTIVE |
-| DEP-03-02-006 | EXECUTION | UPSTREAM | INTERFACE | DEL-03-01 AgentEnginePort and Engine Conformance Suite | ACTIVE |
-| DEP-03-02-007 | EXECUTION | UPSTREAM | INTERFACE | DEL-05-02 HarnessEvent Schema and Append-Only JSONL | ACTIVE |
-| DEP-03-02-008 | EXECUTION | DOWNSTREAM | INTERFACE | DEL-03-03 Harness API and SSE Compatibility Adapter | ACTIVE |
-| DEP-03-02-009 | EXECUTION | DOWNSTREAM | INTERFACE | DEL-03-04 Interrupt Cancel and Terminal Outcome Handling | ACTIVE |
-| DEP-03-02-010 | EXECUTION | DOWNSTREAM | ENABLES | DEL-09-03 Unit and Integration Test Expansion | ACTIVE |
-| DEP-03-02-011 | ANCHOR | UPSTREAM | OTHER | SOW-083 Per-chat delegation policy carried with the session | ACTIVE |
-| DEP-03-02-012 | ANCHOR | UPSTREAM | OTHER | OBJ-002 App-client conformance to Root-owned runtime contracts (TargetType UNKNOWN) | ACTIVE |
-| DEP-03-02-013 | EXECUTION | DOWNSTREAM | INTERFACE | DEL-08-04 Type 2 Subagent Governance Bridge (D-APP-109 H-015; SCC resolved by decompose under D-APP-110; strict edge) | ACTIVE |
-| DEP-03-02-014 | EXECUTION | UPSTREAM | CONSTRAINT | EXTERNAL Root DEL-02-11 delegation-policy session-record field (location TBD) | ACTIVE |
-| DEP-03-02-015 | EXECUTION | UPSTREAM | INTERFACE | EXTERNAL Root-owned daemon session lifecycle and one-active-turn lock (location TBD) | ACTIVE |
+### Compact Register
+
+| DependencyID | Class | Direction | Type | Target | Status | SatisfactionStatus |
+|---|---|---|---|---|---|---|
+| DEP-03-02-001 | ANCHOR | UPSTREAM | OTHER | PKG-03 | ACTIVE | PENDING |
+| DEP-03-02-002 | ANCHOR | UPSTREAM | OTHER | SOW-009 | ACTIVE | PENDING |
+| DEP-03-02-003 | ANCHOR | UPSTREAM | OTHER | SOW-010 | ACTIVE | PENDING |
+| DEP-03-02-004 | ANCHOR | UPSTREAM | OTHER | SOW-011 | ACTIVE | PENDING |
+| DEP-03-02-005 | ANCHOR | UPSTREAM | OTHER | SOW-038 | ACTIVE | PENDING |
+| DEP-03-02-006 | EXECUTION | UPSTREAM | INTERFACE | DEL-03-01 | ACTIVE | PENDING |
+| DEP-03-02-007 | EXECUTION | UPSTREAM | INTERFACE | DEL-05-02 | ACTIVE | PENDING |
+| DEP-03-02-008 | EXECUTION | DOWNSTREAM | INTERFACE | DEL-03-03 | ACTIVE | PENDING |
+| DEP-03-02-009 | EXECUTION | DOWNSTREAM | INTERFACE | DEL-03-04 | ACTIVE | PENDING |
+| DEP-03-02-010 | EXECUTION | DOWNSTREAM | ENABLES | DEL-09-03 | ACTIVE | PENDING |
+| DEP-03-02-011 | ANCHOR | UPSTREAM | OTHER | SOW-083 | ACTIVE | PENDING |
+| DEP-03-02-012 | ANCHOR | UPSTREAM | OTHER | OBJ-002 | ACTIVE | PENDING |
+| DEP-03-02-013 | EXECUTION | DOWNSTREAM | INTERFACE | DEL-08-04 | ACTIVE | PENDING |
+| DEP-03-02-014 | EXECUTION | UPSTREAM | CONSTRAINT | Current per-chat delegation policy storage/interface (exact … | ACTIVE | PENDING |
+| DEP-03-02-015 | EXECUTION | UPSTREAM | INTERFACE | Application-owned Runtime session lifecycle and active-turn … | ACTIVE | PENDING |
 
 ## Lifecycle Summary
 
-| Field | Count |
-|---|---:|
-| ACTIVE | 15 |
-| RETIRED | 0 |
-| SatisfactionStatus=PENDING | 10 |
-| SatisfactionStatus=SATISFIED | 5 |
-| SatisfactionStatus=TBD | 0 |
-| ProposedMaturity=TBD | 10 |
+Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`), from `Dependencies.csv`; counts cover all rows (ACTIVE and RETIRED). This projection changes no satisfaction or maturity.
 
-No `[WARNING] FLOATING_NODE` condition: one ACTIVE `ANCHOR` / `IMPLEMENTS_NODE` row exists.
-
-No `[WARNING] AMBIGUOUS_ANCHOR` condition: exactly one ACTIVE `ANCHOR` / `IMPLEMENTS_NODE` row exists.
+| Dimension | Value | Count |
+|---|---|---:|
+| Status | ACTIVE | 15 |
+| SatisfactionStatus | PENDING | 15 |
+| RequiredMaturity | SEMANTIC_READY | 15 |
+| DependencyClass | ANCHOR | 7 |
+| DependencyClass | EXECUTION | 8 |
+| DependencyType | CONSTRAINT | 1 |
+| DependencyType | ENABLES | 1 |
+| DependencyType | INTERFACE | 6 |
+| DependencyType | OTHER | 7 |
 
 ## Run History
 
@@ -129,6 +126,7 @@ No `[WARNING] AMBIGUOUS_ANCHOR` condition: exactly one ACTIVE `ANCHOR` / `IMPLEM
 | 2026-09-05 | UPDATE | CONSERVATIVE | found at the pinned identity `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61` (content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291`; SCA-APP-010 Gate 5 applied; report-only preview, rerun under brief amendment v1.1) | 14 | PROJECT_ID_FORMAT_PROFILE; TBD_IMPLEMENTATION_PATHS; HELD DEP-03-02-013 (H-015, pending owner ruling); NEEDS_HUMAN_GRAPH_DECISION for DEP-03-02-007/008/009 resolved by amendment v1.1 section B |
 | 2026-06-21 03:00 | ADQ-05 | CONSERVATIVE | D-APP-38 current authority corpus and D-APP-40 runtime taxonomy applied | 10 | TBD_IMPLEMENTATION_PATHS; ID_FORMAT_TOOL_MISMATCH |
 | 2026-05-20 19:30 | UPDATE | CONSERVATIVE | available: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | 10 | superseded source-state warning; TBD_IMPLEMENTATION_PATHS; ID_FORMAT_TOOL_MISMATCH |
+| 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`) | UPDATE | CONSERVATIVE | FOUND `cf6e56ebb147…` (SCA-APP-011 amended) | ACTIVE=15 (ANCHOR=7; EXECUTION=8) | none |
 
 ## D-APP-56 R5 P45 current register summary (2026-07-12)
 

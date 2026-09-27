@@ -1,0 +1,521 @@
+{
+ "schema": {
+  "DEL-02-02": {
+   "rc": 0,
+   "result": "  Data rows: 22"
+  },
+  "DEL-02-03": {
+   "rc": 0,
+   "result": "  Data rows: 9"
+  },
+  "DEL-03-03": {
+   "rc": 0,
+   "result": "  Data rows: 11"
+  },
+  "DEL-07-01": {
+   "rc": 0,
+   "result": "  Data rows: 12"
+  },
+  "DEL-07-02": {
+   "rc": 0,
+   "result": "  Data rows: 7"
+  },
+  "DEL-07-04": {
+   "rc": 0,
+   "result": "  Data rows: 9"
+  },
+  "DEL-07-05": {
+   "rc": 0,
+   "result": "  Data rows: 26"
+  },
+  "DEL-08-03": {
+   "rc": 0,
+   "result": "  Data rows: 10"
+  },
+  "DEL-09-03": {
+   "rc": 0,
+   "result": "  Data rows: 13"
+  },
+  "DEL-02-01": {
+   "rc": 0,
+   "result": "  Data rows: 14"
+  },
+  "DEL-02-04": {
+   "rc": 0,
+   "result": "  Data rows: 21"
+  },
+  "DEL-02-05": {
+   "rc": 0,
+   "result": "  Data rows: 15"
+  },
+  "DEL-03-02": {
+   "rc": 0,
+   "result": "  Data rows: 15"
+  },
+  "DEL-03-04": {
+   "rc": 0,
+   "result": "  Data rows: 10"
+  },
+  "DEL-04-04": {
+   "rc": 0,
+   "result": "  Data rows: 14"
+  },
+  "DEL-05-02": {
+   "rc": 0,
+   "result": "  Data rows: 16"
+  },
+  "DEL-05-04": {
+   "rc": 0,
+   "result": "  Data rows: 9"
+  },
+  "DEL-06-03": {
+   "rc": 0,
+   "result": "  Data rows: 18"
+  },
+  "DEL-06-04": {
+   "rc": 0,
+   "result": "  Data rows: 10"
+  },
+  "DEL-07-03": {
+   "rc": 0,
+   "result": "  Data rows: 14"
+  },
+  "DEL-08-01": {
+   "rc": 0,
+   "result": "  Data rows: 21"
+  },
+  "DEL-08-02": {
+   "rc": 0,
+   "result": "  Data rows: 13"
+  },
+  "DEL-08-04": {
+   "rc": 0,
+   "result": "  Data rows: 14"
+  },
+  "DEL-08-05": {
+   "rc": 0,
+   "result": "  Data rows: 11"
+  },
+  "DEL-09-02": {
+   "rc": 0,
+   "result": "  Data rows: 25"
+  }
+ },
+ "enum_pairs": {
+  "ANCHOR_TYPE=NOT_APPLICABLE": {
+   "rc": 0,
+   "result": "VALID: NOT_APPLICABLE is a valid ANCHOR_TYPE"
+  },
+  "ANCHOR_TYPE=TRACES_TO_REQUIREMENT": {
+   "rc": 0,
+   "result": "VALID: TRACES_TO_REQUIREMENT is a valid ANCHOR_TYPE"
+  },
+  "CONFIDENCE=HIGH": {
+   "rc": 0,
+   "result": "VALID: HIGH is a valid CONFIDENCE"
+  },
+  "CONFIDENCE=MEDIUM": {
+   "rc": 0,
+   "result": "VALID: MEDIUM is a valid CONFIDENCE"
+  },
+  "DEPENDENCY_CLASS=ANCHOR": {
+   "rc": 0,
+   "result": "VALID: ANCHOR is a valid DEPENDENCY_CLASS"
+  },
+  "DEPENDENCY_CLASS=EXECUTION": {
+   "rc": 0,
+   "result": "VALID: EXECUTION is a valid DEPENDENCY_CLASS"
+  },
+  "DEPENDENCY_TYPE=CONSTRAINT": {
+   "rc": 0,
+   "result": "VALID: CONSTRAINT is a valid DEPENDENCY_TYPE"
+  },
+  "DEPENDENCY_TYPE=HANDOVER": {
+   "rc": 0,
+   "result": "VALID: HANDOVER is a valid DEPENDENCY_TYPE"
+  },
+  "DEPENDENCY_TYPE=INTERFACE": {
+   "rc": 0,
+   "result": "VALID: INTERFACE is a valid DEPENDENCY_TYPE"
+  },
+  "DEPENDENCY_TYPE=OTHER": {
+   "rc": 0,
+   "result": "VALID: OTHER is a valid DEPENDENCY_TYPE"
+  },
+  "DEPENDENCY_TYPE=PREREQUISITE": {
+   "rc": 0,
+   "result": "VALID: PREREQUISITE is a valid DEPENDENCY_TYPE"
+  },
+  "DIRECTION=DOWNSTREAM": {
+   "rc": 0,
+   "result": "VALID: DOWNSTREAM is a valid DIRECTION"
+  },
+  "DIRECTION=UPSTREAM": {
+   "rc": 0,
+   "result": "VALID: UPSTREAM is a valid DIRECTION"
+  },
+  "EXPLICITNESS=EXPLICIT": {
+   "rc": 0,
+   "result": "VALID: EXPLICIT is a valid EXPLICITNESS"
+  },
+  "EXPLICITNESS=IMPLICIT": {
+   "rc": 0,
+   "result": "VALID: IMPLICIT is a valid EXPLICITNESS"
+  },
+  "ORIGIN=EXTRACTED": {
+   "rc": 0,
+   "result": "VALID: EXTRACTED is a valid ORIGIN"
+  },
+  "SATISFACTION_STATUS=NOT_APPLICABLE": {
+   "rc": 0,
+   "result": "VALID: NOT_APPLICABLE is a valid SATISFACTION_STATUS"
+  },
+  "SATISFACTION_STATUS=PENDING": {
+   "rc": 0,
+   "result": "VALID: PENDING is a valid SATISFACTION_STATUS"
+  },
+  "SATISFACTION_STATUS=SATISFIED": {
+   "rc": 0,
+   "result": "VALID: SATISFIED is a valid SATISFACTION_STATUS"
+  },
+  "SATISFACTION_STATUS=TBD": {
+   "rc": 0,
+   "result": "VALID: TBD is a valid SATISFACTION_STATUS"
+  },
+  "STATUS=ACTIVE": {
+   "rc": 0,
+   "result": "VALID: ACTIVE is a valid STATUS"
+  },
+  "STATUS=RETIRED": {
+   "rc": 0,
+   "result": "VALID: RETIRED is a valid STATUS"
+  },
+  "TARGET_TYPE=DELIVERABLE": {
+   "rc": 0,
+   "result": "VALID: DELIVERABLE is a valid TARGET_TYPE"
+  },
+  "TARGET_TYPE=DOCUMENT": {
+   "rc": 0,
+   "result": "VALID: DOCUMENT is a valid TARGET_TYPE"
+  },
+  "TARGET_TYPE=REQUIREMENT": {
+   "rc": 0,
+   "result": "VALID: REQUIREMENT is a valid TARGET_TYPE"
+  },
+  "TARGET_TYPE=UNKNOWN": {
+   "rc": 0,
+   "result": "VALID: UNKNOWN is a valid TARGET_TYPE"
+  }
+ },
+ "id_format": {
+  "DEL-02-02": {
+   "checked": 24,
+   "failures": []
+  },
+  "DEL-02-03": {
+   "checked": 11,
+   "failures": []
+  },
+  "DEL-03-03": {
+   "checked": 13,
+   "failures": []
+  },
+  "DEL-07-01": {
+   "checked": 14,
+   "failures": []
+  },
+  "DEL-07-02": {
+   "checked": 9,
+   "failures": []
+  },
+  "DEL-07-04": {
+   "checked": 11,
+   "failures": []
+  },
+  "DEL-07-05": {
+   "checked": 28,
+   "failures": []
+  },
+  "DEL-08-03": {
+   "checked": 12,
+   "failures": []
+  },
+  "DEL-09-03": {
+   "checked": 15,
+   "failures": []
+  },
+  "DEL-02-01": {
+   "checked": 16,
+   "failures": []
+  },
+  "DEL-02-04": {
+   "checked": 23,
+   "failures": []
+  },
+  "DEL-02-05": {
+   "checked": 17,
+   "failures": []
+  },
+  "DEL-03-02": {
+   "checked": 17,
+   "failures": []
+  },
+  "DEL-03-04": {
+   "checked": 12,
+   "failures": []
+  },
+  "DEL-04-04": {
+   "checked": 16,
+   "failures": []
+  },
+  "DEL-05-02": {
+   "checked": 18,
+   "failures": []
+  },
+  "DEL-05-04": {
+   "checked": 11,
+   "failures": []
+  },
+  "DEL-06-03": {
+   "checked": 20,
+   "failures": []
+  },
+  "DEL-06-04": {
+   "checked": 12,
+   "failures": []
+  },
+  "DEL-07-03": {
+   "checked": 16,
+   "failures": []
+  },
+  "DEL-08-01": {
+   "checked": 23,
+   "failures": []
+  },
+  "DEL-08-02": {
+   "checked": 15,
+   "failures": []
+  },
+  "DEL-08-04": {
+   "checked": 16,
+   "failures": []
+  },
+  "DEL-08-05": {
+   "checked": 13,
+   "failures": []
+  },
+  "DEL-09-02": {
+   "checked": 27,
+   "failures": []
+  }
+ },
+ "uniqueness": {
+  "DEL-02-02": true,
+  "DEL-02-03": true,
+  "DEL-03-03": true,
+  "DEL-07-01": true,
+  "DEL-07-02": true,
+  "DEL-07-04": true,
+  "DEL-07-05": true,
+  "DEL-08-03": true,
+  "DEL-09-03": true,
+  "DEL-02-01": true,
+  "DEL-02-04": true,
+  "DEL-02-05": true,
+  "DEL-03-02": true,
+  "DEL-03-04": true,
+  "DEL-04-04": true,
+  "DEL-05-02": true,
+  "DEL-05-04": true,
+  "DEL-06-03": true,
+  "DEL-06-04": true,
+  "DEL-07-03": true,
+  "DEL-08-01": true,
+  "DEL-08-02": true,
+  "DEL-08-04": true,
+  "DEL-08-05": true,
+  "DEL-09-02": true
+ },
+ "parent_anchor": {
+  "DEL-02-02": 1,
+  "DEL-02-03": 1,
+  "DEL-03-03": 1,
+  "DEL-07-01": 1,
+  "DEL-07-02": 1,
+  "DEL-07-04": 1,
+  "DEL-07-05": 1,
+  "DEL-08-03": 1,
+  "DEL-09-03": 1,
+  "DEL-02-01": 1,
+  "DEL-02-04": 1,
+  "DEL-02-05": 1,
+  "DEL-03-02": 1,
+  "DEL-03-04": 1,
+  "DEL-04-04": 1,
+  "DEL-05-02": 1,
+  "DEL-05-04": 1,
+  "DEL-06-03": 1,
+  "DEL-06-04": 1,
+  "DEL-07-03": 1,
+  "DEL-08-01": 1,
+  "DEL-08-02": 1,
+  "DEL-08-04": 1,
+  "DEL-08-05": 1,
+  "DEL-09-02": 1
+ },
+ "index_counts": {
+  "DEL-02-02": {
+   "index_active": 14,
+   "csv_active": 14,
+   "match": true
+  },
+  "DEL-02-03": {
+   "index_active": 9,
+   "csv_active": 9,
+   "match": true
+  },
+  "DEL-03-03": {
+   "index_active": 10,
+   "csv_active": 10,
+   "match": true
+  },
+  "DEL-07-01": {
+   "index_active": 11,
+   "csv_active": 11,
+   "match": true
+  },
+  "DEL-07-02": {
+   "index_active": 7,
+   "csv_active": 7,
+   "match": true
+  },
+  "DEL-07-04": {
+   "index_active": 8,
+   "csv_active": 8,
+   "match": true
+  },
+  "DEL-07-05": {
+   "index_active": 25,
+   "csv_active": 25,
+   "match": true
+  },
+  "DEL-08-03": {
+   "index_active": 10,
+   "csv_active": 10,
+   "match": true
+  },
+  "DEL-09-03": {
+   "index_active": 13,
+   "csv_active": 13,
+   "match": true
+  },
+  "DEL-02-01": {
+   "index_active": 11,
+   "csv_active": 11,
+   "match": true
+  },
+  "DEL-02-04": {
+   "index_active": 19,
+   "csv_active": 19,
+   "match": true
+  },
+  "DEL-02-05": {
+   "index_active": 12,
+   "csv_active": 12,
+   "match": true
+  },
+  "DEL-03-02": {
+   "index_active": 15,
+   "csv_active": 15,
+   "match": true
+  },
+  "DEL-03-04": {
+   "index_active": 9,
+   "csv_active": 9,
+   "match": true
+  },
+  "DEL-04-04": {
+   "index_active": 13,
+   "csv_active": 13,
+   "match": true
+  },
+  "DEL-05-02": {
+   "index_active": 13,
+   "csv_active": 13,
+   "match": true
+  },
+  "DEL-05-04": {
+   "index_active": 9,
+   "csv_active": 9,
+   "match": true
+  },
+  "DEL-06-03": {
+   "index_active": 15,
+   "csv_active": 15,
+   "match": true
+  },
+  "DEL-06-04": {
+   "index_active": 9,
+   "csv_active": 9,
+   "match": true
+  },
+  "DEL-07-03": {
+   "index_active": 14,
+   "csv_active": 14,
+   "match": true
+  },
+  "DEL-08-01": {
+   "index_active": 20,
+   "csv_active": 20,
+   "match": true
+  },
+  "DEL-08-02": {
+   "index_active": 13,
+   "csv_active": 13,
+   "match": true
+  },
+  "DEL-08-04": {
+   "index_active": 12,
+   "csv_active": 12,
+   "match": true
+  },
+  "DEL-08-05": {
+   "index_active": 11,
+   "csv_active": 11,
+   "match": true
+  },
+  "DEL-09-02": {
+   "index_active": 25,
+   "csv_active": 25,
+   "match": true
+  }
+ },
+ "evq_drb": {
+  "rc": 1,
+  "codes": {
+   "EVQ-006": 644,
+   "findings:": 2
+  },
+  "in_scope_changed_rows": [
+   "  ERROR EVQ-006 PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/Dependencies.csv:8 [DEP-02-01-007] \u2014 EvidenceFile does not resolve under projects/chirality-app-dev: 'ScopeOfWork.md'",
+   "  ERROR EVQ-006 PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/Dependencies.csv:9 [DEP-02-01-008] \u2014 EvidenceFile does not resolve under projects/chirality-app-dev: 'ScopeOfWork.md'",
+   "  ERROR EVQ-006 PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/Dependencies.csv:14 [DEP-02-01-013] \u2014 EvidenceFile does not resolve under projects/chirality-app-dev: 'ScopeOfWork.md'",
+   "  ERROR EVQ-006 PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/Dependencies.csv:15 [DEP-02-01-014] \u2014 EvidenceFile does not resolve under projects/chirality-app-dev: 'projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_STATUS.md'",
+   "  ERROR EVQ-006 PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/Dependencies.csv:6 [DEP-02-02-005] \u2014 EvidenceFile does not resolve under projects/chirality-app-dev: 'ScopeOfWork.md'",
+   "  ERROR EVQ-006 PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/Dependencies.csv:7 [DEP-02-02-006] \u2014 EvidenceFile does not resolve under projects/chirality-app-dev: 'ScopeOfWork.md'",
+   "  ERROR EVQ-006 PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/Dependencies.csv:8 [DEP-02-02-007] \u2014 EvidenceFile does not resolve under projects/chirality-app-dev: 'ScopeOfWork.md'",
+   "  ERROR EVQ-006 PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/Dependencies.csv:9 [DEP-02-02-008] \u2014 EvidenceFile does not resolve under projects/chirality-app-dev: 'ScopeOfWork.md'",
+   "  ERROR EVQ-006 PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/Dependencies.csv:10 [DEP-02-02-009] \u2014 EvidenceFile does not resolve under projects/chirality-app-dev: 'ScopeOfWork.md'",
+   "  ERROR EVQ-006 PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/Dependencies.csv:22 [DEP-02-02-021] \u2014 EvidenceFile does not resolve under projects/chirality-app-dev: '_STATUS.md'",
+   "  ERROR EVQ-006 PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/Dependencies.csv:10 [DEP-02-03-009] \u2014 EvidenceFile does not resolve under projects/chirality-app-dev: 'ScopeOfWork.md'",
+   "  ERROR EVQ-006 PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/Dependencies.csv:16 [DEP-02-04-015] \u2014 EvidenceFile does not resolve under projects/chirality-app-dev: 'projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_STATUS.md'",
+   "  ERROR EVQ-006 PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/Dependencies.csv:17 [DEP-02-04-016] \u2014 EvidenceFile does not resolve under projects/chirality-app-dev: '_STATUS.md'",
+   "  ERROR EVQ-006 PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-04_Status_Transition_API_and_MCP_Tool/Dependencies.csv:10 [DEP-07-04-009] \u2014 EvidenceFile does not resolve under projects/chirality-app-dev: 'ScopeOfWork.md'",
+   "  ERROR EVQ-006 PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-05_Dependencies_csv_v3_1_Reader_Writer_and_Linter/Dependencies.csv:16 [DEP-07-05-015] \u2014 EvidenceFile does not resolve under projects/chirality-app-dev: 'ScopeOfWork.md'",
+   "  ERROR EVQ-006 PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-05_Dependencies_csv_v3_1_Reader_Writer_and_Linter/Dependencies.csv:26 [DEP-07-05-025] \u2014 EvidenceFile does not resolve under projects/chirality-app-dev: 'ScopeOfWork.md'",
+   "  ERROR EVQ-006 PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-02_Persona_Alias_and_Agent_Matrix_Routing_Contract/Dependencies.csv:4 [DEP-08-02-003] \u2014 EvidenceFile does not resolve under projects/chirality-app-dev: 'ScopeOfWork.md'",
+   "  ERROR EVQ-006 PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-02_Persona_Alias_and_Agent_Matrix_Routing_Contract/Dependencies.csv:6 [DEP-08-02-005] \u2014 EvidenceFile does not resolve under projects/chirality-app-dev: 'ScopeOfWork.md'",
+   "  ERROR EVQ-006 PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/Dependencies.csv:11 [DEP-08-03-010] \u2014 EvidenceFile does not resolve under projects/chirality-app-dev: 'ScopeOfWork.md'"
+  ]
+ }
+}

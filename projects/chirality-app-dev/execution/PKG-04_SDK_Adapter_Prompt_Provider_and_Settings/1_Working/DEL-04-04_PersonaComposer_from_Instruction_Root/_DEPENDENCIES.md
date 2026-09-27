@@ -22,26 +22,36 @@ Current extracted downstream rows are recorded in `Dependencies.csv`; preserve t
 
 ## Extracted Dependency Register
 
-Descriptive mirror of current `Dependencies.csv`; no formal field is changed.
+Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated sections elsewhere in this file keep the counts of their dates.
 
-| DependencyID | Class | Direction | Type | Target | Status | Satisfaction |
+| Count Type | Count |
+|---|---:|
+| Total rows | 14 |
+| ACTIVE rows | 13 |
+| RETIRED rows | 1 |
+| ACTIVE ANCHOR rows | 7 |
+| ACTIVE EXECUTION rows | 6 |
+| ACTIVE parent anchors (`IMPLEMENTS_NODE`) | 1 |
+| ACTIVE Origin=DECLARED rows | 0 |
+
+### Compact Register
+
+| DependencyID | Class | Direction | Type | Target | Status | SatisfactionStatus |
 |---|---|---|---|---|---|---|
-| DEP-04-04-001 | ANCHOR | OTHER | UPSTREAM | PKG-04 | ACTIVE | NOT_APPLICABLE |
-| DEP-04-04-002 | ANCHOR | OTHER | UPSTREAM | SOW-017 | ACTIVE | NOT_APPLICABLE |
-| DEP-04-04-003 | ANCHOR | OTHER | UPSTREAM | SOW-030 | ACTIVE | NOT_APPLICABLE |
-| DEP-04-04-004 | EXECUTION | INTERFACE | UPSTREAM | DEL-04-02 | RETIRED | NOT_APPLICABLE |
-| DEP-04-04-005 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-08-01 | ACTIVE | TBD |
-| DEP-04-04-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-08-02 | ACTIVE | TBD |
-| DEP-04-04-007 | EXECUTION | CONSTRAINT | UPSTREAM | docs/PRD.md | ACTIVE | SATISFIED |
-| DEP-04-04-008 | EXECUTION | HANDOVER | DOWNSTREAM | Runtime boundary boot/session fingerprint integration | ACTIVE | TBD |
-| DEP-04-04-009 | ANCHOR | OTHER | UPSTREAM | SOW-081 | ACTIVE | NOT_APPLICABLE |
-| DEP-04-04-010 | ANCHOR | OTHER | UPSTREAM | SOW-084 | ACTIVE | NOT_APPLICABLE |
-| DEP-04-04-011 | ANCHOR | OTHER | UPSTREAM | OBJ-004 | ACTIVE | NOT_APPLICABLE |
-| DEP-04-04-012 | ANCHOR | OTHER | UPSTREAM | OBJ-007 | ACTIVE | NOT_APPLICABLE |
-| DEP-04-04-013 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-03 | ACTIVE | PENDING |
-| DEP-04-04-014 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-01 | ACTIVE | PENDING |
-
-Counts: ACTIVE=13, RETIRED=1; satisfaction NOT_APPLICABLE=8, PENDING=2, SATISFIED=1, TBD=3.
+| DEP-04-04-001 | ANCHOR | UPSTREAM | OTHER | PKG-04 | ACTIVE | NOT_APPLICABLE |
+| DEP-04-04-002 | ANCHOR | UPSTREAM | OTHER | SOW-017 | ACTIVE | NOT_APPLICABLE |
+| DEP-04-04-003 | ANCHOR | UPSTREAM | OTHER | SOW-030 | ACTIVE | NOT_APPLICABLE |
+| DEP-04-04-004 | EXECUTION | UPSTREAM | INTERFACE | DEL-04-02 | RETIRED | NOT_APPLICABLE |
+| DEP-04-04-005 | EXECUTION | UPSTREAM | PREREQUISITE | DEL-08-01 | ACTIVE | TBD |
+| DEP-04-04-006 | EXECUTION | UPSTREAM | INTERFACE | DEL-08-02 | ACTIVE | TBD |
+| DEP-04-04-007 | EXECUTION | UPSTREAM | CONSTRAINT | docs/PRD.md | ACTIVE | SATISFIED |
+| DEP-04-04-008 | EXECUTION | DOWNSTREAM | HANDOVER | Runtime boundary boot/session fingerprint integration | ACTIVE | TBD |
+| DEP-04-04-009 | ANCHOR | UPSTREAM | OTHER | SOW-081 | ACTIVE | NOT_APPLICABLE |
+| DEP-04-04-010 | ANCHOR | UPSTREAM | OTHER | SOW-084 | ACTIVE | NOT_APPLICABLE |
+| DEP-04-04-011 | ANCHOR | UPSTREAM | OTHER | OBJ-004 | ACTIVE | NOT_APPLICABLE |
+| DEP-04-04-012 | ANCHOR | UPSTREAM | OTHER | OBJ-007 | ACTIVE | NOT_APPLICABLE |
+| DEP-04-04-013 | EXECUTION | UPSTREAM | INTERFACE | DEL-07-03 | ACTIVE | PENDING |
+| DEP-04-04-014 | EXECUTION | UPSTREAM | INTERFACE | DEL-07-01 | ACTIVE | PENDING |
 
 ## Run Notes
 
@@ -58,6 +68,20 @@ Counts: ACTIVE=13, RETIRED=1; satisfaction NOT_APPLICABLE=8, PENDING=2, SATISFIE
 - [WARNING] PRD_HASH_MISMATCH: `_REFERENCES.md` records `docs/PRD.md` as `HASH_MISMATCH`; PRD-only details remain constrained until accepted snapshot confirmation.
 - [WARNING] UNKNOWN_TARGET: runtime boundary boot/session fingerprint integration is explicit, but the local evidence does not name a stable consuming deliverable/interface; target preserved as `UNKNOWN` / `TBD`.
 - No downstream handoff section was added because `CONSUMER_CONTEXT=NONE`.
+
+### 2026-09-27 SCA-APP-011 incremental setup refresh (UPDATE)
+
+- Run: `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`, `project-setup` INCREMENTAL Phase 5.6 (FULL_GRAPH) dispatch of `bundled:chirality-root/dependency-extract`, run directly by WORKING_ITEMS after the owner confirmed the SCA-APP-011 incremental plan on 2026-09-27 (verbatim in `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/CHAT_TRANSCRIPTION.md`). Role: FULL_GRAPH neighbour of the SCA-APP-011 MODIFY set.
+- Runtime overrides: `SCOPE=DEL-04-04`; `RUN_ROOT=projects/chirality-app-dev/execution`; `DECOMPOSITION_PATH=projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=NONE`; `SOURCE_DOCS=AUTO` (`ScopeOfWork.md`, `_CONTEXT.md`, `_REFERENCES.md`, `_STATUS.md`); `ANCHOR_DOC=ScopeOfWork.md`; `EXECUTION_DOC_ORDER=ScopeOfWork.md, _CONTEXT.md`.
+- Decomposition authority: FOUND, SHA-256 `cf6e56ebb1474d30a45dd3973dcb449d8aab30a84d731649336091afd2321876` (as amended by SCA-APP-011).
+- Source-preservation gate: `ScopeOfWork.md` `6802477a19044ba536440fe8ecfed62623f6af73a3ea7ab72f2feee7a10a2b54`; `_CONTEXT.md` `9f401fcfeabf20892dbe02ad8cf71b2ead42b1b2800511198a3c3c3898dd3b67`; `_REFERENCES.md` `d62da0edb57cd91706f6d9c1a197bb79019328874b6042278a39e679b0bdd941`; `_STATUS.md` `312d309918a46ea4ee645d824f3999893c55b8e01281f64b9cf09f2d12310555`; read-only and unchanged by this run.
+- Pre-images: `Dependencies.csv` `5203de4e3b3c268283c3a593aef884b4e18d50ccb3d7212220d0b74f0aa2e8ab`, `_DEPENDENCIES.md` `170ee896faa8568c7962e742bb3d70bd526447e599cd6869063f4f628e5a0a09`.
+- Method: every existing ACTIVE row was re-checked against its cited current source (quote found verbatim, and not only inside a `[RETIRED` clause or a clause SCA-APP-011 declared history). Text added to the sources since the previous extraction (2026-09-22) was scanned for new explicit cross-deliverable relationships. Unchanged source text yields the rows already recorded.
+- Results: re-seen 13 (`LastSeen=2026-09-27`); restated in place 0; kept with a note 0; retired 0; added 0; held with `[WARNING] EVIDENCE_SOURCE_RETIRED` 0. No row deleted; every existing `DependencyID` preserved; `Status=CANDIDATE` not emitted.
+- Declared entries: none (the declared sections carry no SPEC §5.2 entry). Mirror rows added 0, refreshed 0, retired 0; entries skipped 0.
+- Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` row (1).
+- Function 5 checks (`execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/dep_extract/FUNCTION5_CHECKS.json`): `validate_dependencies_schema.py` PASS; `DependencyID` unique; every enum value written by this run VALID (`validate_enum.py`); ID format PASS for `FromDeliverableID`, `FromPackageID` and every `DependencyID` (`validate_id_format.sh`; the PROJECT_ID_FORMAT_PROFILE warning of earlier runs no longer reproduces); index counts match `Dependencies.csv`.
+- [INFO] EVQ-006 (report-only, `validate_decomposition_registers.py --families EVQ,DRB`): the validator resolves `EvidenceFile` from the project root, so it reports every App register row whose `EvidenceFile` is deliverable- or repository-relative. This is a project-wide pre-existing convention finding, not a defect introduced here; no EVQ-003, EVQ-004 or DRB-006 finding.
 
 ## Run Notes - 2026-09-05 SCA-APP-010 dependency closure (report-only preview)
 
@@ -83,20 +107,28 @@ Counts: ACTIVE=13, RETIRED=1; satisfaction NOT_APPLICABLE=8, PENDING=2, SATISFIE
 |---|---|---|---|---:|---:|---|
 | 2026-05-20T19:35:58-0600 | UPDATE | CONSERVATIVE | `Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` found | 3 | 5 | PRD_HASH_MISMATCH; UNKNOWN_TARGET |
 | 2026-09-05T00:37:34-0600 | UPDATE | CONSERVATIVE | `Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` found at pinned identity `c7c05169...771e61` (commit `dbd812a5`) | 7 | 6 | PROJECT_ID_FORMAT_PROFILE; UNKNOWN_TARGET; INSTRUCTION_ROOT_ENV; NEEDS_HUMAN_GRAPH_DECISION (DEP-04-04-004) |
+| 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`) | UPDATE | CONSERVATIVE | FOUND `cf6e56ebb147…` (SCA-APP-011 amended) | ACTIVE=13 (ANCHOR=7; EXECUTION=6) | ACTIVE=13 (ANCHOR=7; EXECUTION=6) | none |
 
 ## Lifecycle Summary
 
-| Status | Count |
-|---|---:|
-| ACTIVE | 13 |
-| RETIRED | 1 |
+Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`), from `Dependencies.csv`; counts cover all rows (ACTIVE and RETIRED). This projection changes no satisfaction or maturity.
 
-| SatisfactionStatus | Count |
-|---|---:|
-| NOT_APPLICABLE | 8 |
-| PENDING | 2 |
-| SATISFIED | 1 |
-| TBD | 3 |
+| Dimension | Value | Count |
+|---|---|---:|
+| Status | ACTIVE | 13 |
+| Status | RETIRED | 1 |
+| SatisfactionStatus | NOT_APPLICABLE | 8 |
+| SatisfactionStatus | PENDING | 2 |
+| SatisfactionStatus | SATISFIED | 1 |
+| SatisfactionStatus | TBD | 3 |
+| RequiredMaturity | SEMANTIC_READY | 14 |
+| DependencyClass | ANCHOR | 7 |
+| DependencyClass | EXECUTION | 7 |
+| DependencyType | CONSTRAINT | 1 |
+| DependencyType | HANDOVER | 1 |
+| DependencyType | INTERFACE | 4 |
+| DependencyType | OTHER | 7 |
+| DependencyType | PREREQUISITE | 1 |
 
 ## Downstream Handoff Notes
 
