@@ -7325,3 +7325,91 @@
   - Checks: post-acceptance validation PASS; this ledger's validator, Root G0–G4 and export regeneration, as recorded in the post-acceptance record and hand-off. PR CI remains a merge gate.
   - Model-Attribution: Claude Code WORKING_ITEMS subagent for the parent session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
   - Gate-Outcome: `EXECUTED` — SCA-APP-011 accepted and active: E47 applied, `_LATEST.md` moved from SCA-APP-010, Runtime notice sent, status records and post-acceptance record written, exactly per `Evidence/Group3/ACCEPTANCE_CONDITIONAL_EDITS.csv`. Closure `OPEN_PENDING_DERIVATIVE_CLOSURE`: `project-setup` INCREMENTAL, `dependency-extract`, `audit-decomp` and `audit-scope-closure` remain. No lifecycle change, repin or release.
+
+- **2026-09-27 — Receipt 272** (SCA-APP-011 post-acceptance follow-ups: audits run; incremental setup, dependency writes and APP-R058 held for the owner).
+  - Receipt-ID: `Receipt-272`
+  - Examined-Through: `78e74f590d6010a52565d250288290b3305a2942`
+  - Parent-Receipt: `Receipt-271`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING; no new owner direction in this run. The handoffs are those SCA-APP-011's accepted records name (`Propagation_Plan.md` §7–§8, `Handoff_State.md`), relayed by the coordinating session after PR #995 merged.
+  - Pointers: run receipt `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` (with the setup, dependency and APP-R058 proposals); `execution/_Evaluation/DecompCoverage/COV_SCA_APP_011_POST_ACCEPTANCE_2026-09-27_0500/`; `execution/_Evaluation/ScopeClosureAudit/ScopeClosure_SCA-APP-011_2026-09-27_0505/`; nine deliverable `MEMORY.md` rows.
+  - Stale-Map-Delta: DecompCoverage and ScopeClosureAudit `_LATEST.md` pointers not moved; `_COORDINATION.md` records no dependency tracking mode (the registers record FULL_GRAPH).
+  - Checks: this ledger's validator, Root G0–G4, conflict-marker and run-record-leak checks, the workflow index check, `git diff --check` and export regeneration, as recorded in the hand-off.
+  - Model-Attribution: Claude Code WORKING_ITEMS subagent for the parent session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
+  - Gate-Outcome: `AWAITING_OWNER` — audit-decomp WARNINGS with no blocker and unchanged topology; audit-scope-closure OPEN (every register action verified; setup, re-extraction and the stale dependency rows open); `project-setup` INCREMENTAL (its baseline and plan gates), dependency-extract (with HGD-2) and APP-R058 prepared as proposals, not applied. No dependency, lifecycle, scope or pointer write; no release.
+
+- **2026-09-27 — Receipt 273** (SCA-APP-011 post-acceptance follow-ups, review revision: owner package reframed to the setup gates and HGD-2).
+  - Receipt-ID: `Receipt-273`
+  - Examined-Through: `54d96f2a640acb9cdf16e4f10269549f60040179`
+  - Parent-Receipt: `Receipt-272`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING; no new owner direction. The coordinating session relayed an independent review of `54d96f2a6` (one blocking finding on the dependency framing, nine non-blocking).
+  - Pointers: run receipt `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md`; `DEPENDENCY_EXTRACT_EXPECTED_OUTCOMES.md` (replaces the dependency proposal); `execution/_Evaluation/ScopeClosureAudit/_LATEST.md` (a row for SCA-APP-011 added).
+  - Stale-Map-Delta: Receipt-272 describes dependency-extract as a proposal awaiting approval. The workflow runs straight through, so the run record now lists expected outcomes. Retiring DEP-02-01-007 was already accepted at groups 1 and 2, and only DEP-02-01-008 remains under HGD-2.
+  - Checks: this ledger's validator, Root G0–G4, conflict-marker and run-record-leak checks, the workflow index check, `git diff --check` and export freshness, as recorded in the hand-off.
+  - Model-Attribution: Claude Code WORKING_ITEMS subagent for the parent session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
+  - Gate-Outcome: `AWAITING_OWNER` — incremental setup waits on the owner's baseline and plan confirmations and the HGD-2 ruling on DEP-02-01-008; APP-R058 waits on its owner. Audits unchanged in verdict (scope closure OPEN before setup). No dependency, lifecycle or scope write; no release.
+
+- **2026-09-27 — Receipt 274** (SCA-APP-011 owner decisions applied: incremental setup complete, HGD-2 closed, APP-R058 recorded, scope closure closed with observations).
+  - Receipt-ID: `Receipt-274`
+  - Examined-Through: `0ca5ffcca2c2044b2d5e79201de9741b80b31585`
+  - Parent-Receipt: `Receipt-273`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING; the owner typed on 2026-09-27, verbatim: "Confirm baseline SCA-APP-010 (accepted up to 2026-09-07) and the SCA-APP-011 incremental plan under FULL_GRAPH; HGD-2: retire DEP-02-01-008; APP-R058: option 1." Transcribed in the run folder `CHAT_TRANSCRIPTION.md`.
+  - Pointers: run receipt `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` (with `SETUP_RUN_RECORD.md` and `DEPENDENCY_EXTRACT_RESULTS.md`); `execution/_Coordination/SETUP_LOG.md`; `execution/_Evaluation/DepClosure/CLOSURE_SCA_APP_011_POST_EXTRACTION_2026-09-27_1656/`; `execution/_Evaluation/ScopeClosureAudit/ScopeClosure_SCA-APP-011_2026-09-27_1701/`; `execution/_Coordination/_TaskManagement/ROW_MAINTENANCE_APP-R058_SCA-APP-011_CLOSURE_2026-09-27.md`.
+  - Stale-Map-Delta: Receipt-273 counts the review's non-blocking findings as "nine"; the correct number is 11. Receipt-272 and Receipt-273 describe setup, extraction and APP-R058 as held; all three are now applied. The DepClosure and DecompCoverage `_LATEST.md` pointers are not moved (manager's call).
+  - Checks: this ledger's validator, Root G0–G4, conflict-marker and run-record-leak checks, the workflow index check, `git diff --check` and export freshness, as recorded in the hand-off.
+  - Model-Attribution: Claude Code WORKING_ITEMS subagent for the parent session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
+  - Gate-Outcome: `EXECUTED` — the owner's four decisions are applied; incremental setup is COMPLETE; scope closure is CLOSED_WITH_OBSERVATIONS (the DEL-02-03-REQ-009 residual). Still owner-shaped: ESR-1 (held rows whose evidence source was retired), HGD-1 and HGD-3. No scope or lifecycle change; no release.
+
+- **2026-09-27 — Receipt 275** (SCA-APP-011 review fixes: ESR-1 re-evidenced and reduced to retire candidates; indexes, MEMORY and export check corrected).
+  - Receipt-ID: `Receipt-275`
+  - Examined-Through: `1d590949182aff0f161d75b1504ba624c4664baa`
+  - Parent-Receipt: `Receipt-274`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING; no new owner direction. The coordinating session relayed the pre-merge review of `0ca5ffcca..1d5909491` (one blocking finding on the ESR-1 basis, five non-blocking).
+  - Pointers: run receipt `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` and `DEPENDENCY_EXTRACT_RESULTS.md` (ESR-1 per row); `execution/_Evaluation/DepClosure/CLOSURE_SCA_APP_011_ESR1_REEVIDENCE_2026-09-27_1725/`; `execution/_Evaluation/ScopeClosureAudit/ScopeClosure_SCA-APP-011_2026-09-27_1726/`.
+  - Stale-Map-Delta: Receipt-274 and the earlier run receipt treat all held rows as one owner package and attribute "adds no prerequisite" to the 2026-09-23 closeout. The phrase is from each affected register's current-source note and supports keeping the rows. Only four rows now need the owner's decision; the rest are re-evidenced.
+  - Checks: this ledger's validator, Root G0–G4, conflict-marker and run-record-leak checks, the workflow index check, `git diff --check`, the dependency schema and register validators, and export freshness, as recorded in the hand-off.
+  - Model-Attribution: Claude Code WORKING_ITEMS subagent for the parent session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
+  - Gate-Outcome: `EXECUTED` — review fixes applied; scope closure stays CLOSED_WITH_OBSERVATIONS on rebound evidence. Owner-shaped: the ESR-1 retire candidates, HGD-1 and HGD-3. No scope or lifecycle change; no release.
+
+- **2026-09-27 — Receipt 276** (SCA-APP-011 ESR-1 closed: the owner's ruling retires the four retire candidates).
+  - Receipt-ID: `Receipt-276`
+  - Examined-Through: `1485271da95ee18f647d43594fb51587a29a7a15`
+  - Parent-Receipt: `Receipt-275`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING; the owner typed on 2026-09-27, verbatim: "ESR-1: retire DEP-02-02-021, DEP-02-04-015, DEP-02-04-016 and DEP-02-01-014." Transcribed in the run folder `CHAT_TRANSCRIPTION_ESR-1_2026-09-27.md`, a separate file because `CHAT_TRANSCRIPTION.md` is hash-bound by the APP-R058 record.
+  - Pointers: `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/CHAT_TRANSCRIPTION_ESR-1_2026-09-27.md`; run receipt `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` (with `SETUP_RUN_RECORD.md` and `DEPENDENCY_EXTRACT_RESULTS.md`); the `Dependencies.csv` and `_DEPENDENCIES.md` of DEL-02-02, DEL-02-04 and DEL-02-01; `execution/_Evaluation/DepClosure/CLOSURE_SCA_APP_011_ESR1_RULING_2026-09-27_1739/`; `execution/_Evaluation/ScopeClosureAudit/ScopeClosure_SCA-APP-011_2026-09-27_1740/` (supersedes the 1726 snapshot, which is unchanged).
+  - Stale-Map-Delta: Receipt-275 lists the ESR-1 retire candidates as owner-shaped; they are now retired, with Status RETIRED, SatisfactionStatus NOT_APPLICABLE and the ruling quoted in Notes. The dependency graph loses four edges against the 1725 closure, and DEL-01-03 becomes isolated. The DepClosure and DecompCoverage `_LATEST.md` pointers are not moved (manager's call).
+  - Checks: this ledger's validator, Root G0–G4, conflict-marker and run-record-leak checks, the workflow index check, `git diff --check`, the dependency schema and register validators, and export freshness, as recorded in the hand-off.
+  - Model-Attribution: Claude Code WORKING_ITEMS subagent for the parent session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
+  - Gate-Outcome: `EXECUTED` — ESR-1 closed by the owner's ruling; the dependency closure has no cycles; scope closure stays CLOSED_WITH_OBSERVATIONS (the DEL-02-03-REQ-009 residual). Still owner-shaped: HGD-1 and HGD-3. No scope or lifecycle change; no release.
+
+- **2026-09-27 — Receipt 277** (SCA-APP-011 observation pointers moved: DepClosure to the ESR-1 ruling closure, DecompCoverage to the post-acceptance coverage run).
+  - Receipt-ID: `Receipt-277`
+  - Examined-Through: `8bbd022b98140e2128b6132bf661786ee3a8d108`
+  - Parent-Receipt: `Receipt-276`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING; the owner wrote on 2026-09-27, verbatim: "You can take care of those remaining items now.  Include the items with the "other owners".  You can make changes as necessary." The coordinating session read the remaining items as including these two pointer moves (the manager's call per Receipts 274 and 276) and the Root EVQ-006 validator fix.
+  - Pointers: `execution/_Evaluation/DepClosure/_LATEST.md` → `CLOSURE_SCA_APP_011_ESR1_RULING_2026-09-27_1739/`; `execution/_Evaluation/DecompCoverage/_LATEST.md` → `COV_SCA_APP_011_POST_ACCEPTANCE_2026-09-27_0500/`; this loop's notice of the Root EVQ-006 validator change `execution/_Coordination/NOTICE_2026-09-27_EVIDENCEFILE_RESOLUTION.md` (manifest `../../docs/governance_harness/tranche_manifests/ROOT-EVIDENCEFILE-RESOLUTION-20260927.yaml`).
+  - Stale-Map-Delta: Receipts 274 and 276 and §4 of run receipt `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` say these two pointers are not moved; they now name the snapshots above. The 2026-09-22 closure and coverage snapshots are dated history.
+  - Checks: both snapshots' `MANIFEST.sha256` verify; the DepClosure `Tool_Run.json` input basis and the DecompCoverage `INPUT_MANIFEST.sha256` match the examined tree; the coverage run reports 0 blockers; this ledger's validator, Root G0–G4 and the hand-off checks, as recorded in the hand-off.
+  - Model-Attribution: Claude Code TASK-type subagent for the parent session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
+  - Gate-Outcome: `EXECUTED` — both observation pointers written in the two-line format of `update_latest_pointer.sh`. For `audit-dep-closure`, whose contract moves the pointer only when the brief sets `UPDATE_LATEST_POINTER=true`, the run brief set it to false and proposed the move; the owner's direction above serves as the manager's brief for this move. For `audit-decomp`, the run reports 0 blockers. An observation pointer records no acceptance of a closure or coverage result as a project basis: the accepted pointer `execution/_Reconciliation/DepClosure/_LATEST.md` (D-APP-111) is deliberately unchanged, because acceptance is an owner act. No register, scope or lifecycle change; no release.
+
+- **2026-09-27 — Receipt 278** (HGD-1, HGD-3 and FC-1 to FC-3: graph simulations rerun on the current graph; recommendations prepared for the owner).
+  - Receipt-ID: `Receipt-278`
+  - Examined-Through: `0adfbc7476df33521883ce1573781237cd24d384`
+  - Parent-Receipt: `Receipt-277`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING; the owner typed on 2026-09-27, verbatim, as relayed by the coordinating session: "You can take care of those remaining items now.  Include the items with the "other owners".  You can make changes as necessary." For HGD-1 and HGD-3 the coordinating session had undertaken to rerun the simulations and bring a recommendation for each; the rulings stay with the owner.
+  - Pointers: run receipt `execution/_Coordination/AgentRuns/APP-HGD-1-3-RECOMMENDATION-2026-09-27/RECEIPT.md`; `RECOMMENDATION.md` (decisions and the exact proposed owner reply); `Evidence/` (scenarios, script, results, manifest); basis snapshot `execution/_Evaluation/DepClosure/CLOSURE_SCA_APP_011_ESR1_RULING_2026-09-27_1739/`.
+  - Stale-Map-Delta: DEL-02-01 `_DEPENDENCIES.md` L99 and `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` L61–63 say HGD-3's four-node cycle no longer arises. That is true, but emitting the row on the current graph still forms an 11-node SCC, through DEP-02-02-020 and DEP-02-01-006 as recorded. The SCC-001 fence on FC-1 to FC-3 is moot as written (SCC-001 resolved by D-APP-110 SD-001), but FC-2 and FC-3 still form cycles. This entry takes 278 after the housekeeping Receipt-277 (PR #1013).
+  - Checks: this ledger's validator, Root G0–G4, conflict-marker and run-record-leak checks, the workflow index check, `git diff --check` and export freshness, as recorded in the hand-off.
+  - Model-Attribution: Claude Code TASK-type subagent for the coordinating session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
+  - Gate-Outcome: `AWAITING_OWNER` — recommended: invert DEP-02-01-006 (HGD-1); close HGD-3 without emitting; resolve DEP-02-01-012 to DEL-05-03 (FC-1); close FC-2 and FC-3 without emitting. Result: 104 edges, 0 SCC, no blocker verdict change. No dependency, lifecycle, scope or pointer write; no release.
+
+- **2026-09-27 — Receipt 279** (HGD-1, HGD-3 and FC-1 to FC-3: the owner's ruling applied to the DEL-02-01 register).
+  - Receipt-ID: `Receipt-279`
+  - Examined-Through: `adc8bdae18b2e1e48dcf01a304cc055d2cbf84e0`
+  - Parent-Receipt: `Receipt-278`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING; the owner typed on 2026-09-27, verbatim: "HGD-1: invert DEP-02-01-006 to UPSTREAM INTERFACE; HGD-3: close without emitting; FC-1: resolve DEP-02-01-012 to DEL-05-03; FC-2 and FC-3: close without emitting." Transcribed in `execution/_Coordination/AgentRuns/APP-HGD-1-3-RECOMMENDATION-2026-09-27/CHAT_TRANSCRIPTION_HGD_2026-09-27.md`.
+  - Pointers: run receipt `execution/_Coordination/AgentRuns/APP-HGD-1-3-RECOMMENDATION-2026-09-27/RECEIPT.md` (row diffs, `dep_extract/`); DEL-02-01 `Dependencies.csv` and `_DEPENDENCIES.md`; `execution/_Evaluation/DepClosure/CLOSURE_HGD_FC_RULING_2026-09-27_1923/`; `MEMORY.md` rows in DEL-02-01, DEL-08-02 and DEL-05-03.
+  - Stale-Map-Delta: Receipt-278 records HGD-1, HGD-3 and FC-1 to FC-3 as awaiting the owner; all five are now closed. The DepClosure `_LATEST.md` pointer still names the 1739 snapshot; moving it to the 1923 snapshot is proposed to the manager.
+  - Checks: this ledger's validator, the dependency schema and register validators (EVQ-006 unchanged), Root G0–G4, conflict-marker and run-record-leak checks, the workflow index check, `git diff --check`, `run_affected_tests.py` and export freshness, as recorded in the hand-off.
+  - Model-Attribution: Claude Code TASK-type subagent for the coordinating session; model identifier withheld at the dispatching session's instruction; commit session trailer identifies the run.
+  - Gate-Outcome: `EXECUTED` — `dependency-extract` UPDATE on DEL-02-01: DEP-02-01-006 inverted to UPSTREAM INTERFACE; DEP-02-01-012 resolved to DEL-05-03 (IMPLICIT/MEDIUM); HGD-3, FC-2 and FC-3 closed without a row. Closure: 104 edges, 0 SCC; no blocker verdict change. No scope or lifecycle change; no release.

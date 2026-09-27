@@ -1,0 +1,6 @@
+$ date -u
+Sun Sep 27 18:07:27 UTC 2026
+Before: run_x1p_checks/{strict,harness,receipts}_pre.out on a git archive export of origin/main 0adfbc747 (pre-act). After: {strict,harness,receipts}_head.out at merged HEAD 0040299f6111001d1ac34940ce51cb32acc6b0bb. Root paths normalized to <root> before comparison.
+PASS strict identical before/after, root normalized (exit=1)
+PASS harness identical before/after, root normalized (exit=0)
+PASS receipts identical before/after, root normalized (exit=0)

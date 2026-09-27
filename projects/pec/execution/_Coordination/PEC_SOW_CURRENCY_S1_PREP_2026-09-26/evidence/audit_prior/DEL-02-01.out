@@ -1,0 +1,25 @@
+=== DEL-02-01 projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/ScopeOfWork.md
+L85 SELF: '``SOW-011,IN,Parse `_STATUS.md` files under a declared parser dialect,PEC-RCN-002,PKG-02,DEL-02-01,OBJ-001;OBJ-002,,FALSE,Feed split per DL-4`` (`DecisionRef` e'
+L85 SELF: '``SOW-011,IN,Parse `_STATUS.md` files under a declared parser dialect,PEC-RCN-002,PKG-02,DEL-02-01,OBJ-001;OBJ-002,,FALSE,Feed split per DL-4`` (`DecisionRef` e'
+L127 SELF: '- REQ-002 — The two compound `PRD.md` §7.1 rows shall be decomposed exactly as the register records: Workplan / Step / Gate as three distinct types carrying the'
+L127 S2-STALE DEL-01-01: '- REQ-002 — The two compound `PRD.md` §7.1 rows shall be decomposed exactly as the register records:'
+L127 S2-STALE DEL-01-01: "Workplan / Step / Gate as three distinct types carrying the standing plan's protocol steps, owner gates, and gate state;"
+L127 S2-STALE DEL-01-01: 'Package / Deliverable as two distinct types carrying the lifecycle census (`OPEN`→`ISSUED`), stuck-age, and remaining items.'
+L127 OTHER-SOW DEL-01-01: '- REQ-003 — Every record-tier entity type shall carry provenance sufficient for a per-claim citation to its live source — file path, anchor, and/or SHA, per `PE'
+L127 OTHER-SOW DEL-01-01: '- REQ-005 — Every record-tier entity shall be fully regenerable from file sources.'
+L127 S2-STALE DEL-02-04: 'No record-tier field may hold state that cannot be reproduced by rebuilding from the same sources, per `PEC-K-02` ...'
+L127 OTHER-SOW DEL-01-01: '- REQ-007 — No field of any type shall admit file content or diff content (`PEC-K-10`:'
+L127 OTHER-SOW DEL-01-01: '"Paths, counts, SHAs, states, hashes — never file or diff content").'
+L127 OTHER-SOW DEL-03-01: '(`DEL-01-01/ScopeOfWork.md`, Epistemology section;'
+L127 SELF: 'the `REQ-003`, `REQ-005`, and `REQ-007` quotations are elided at the ellipses — `REQ-003` and `REQ-007` at their closing sentences, `REQ-005` both mid-sentence '
+L127 OTHER-SOW DEL-02-06: 'ID-shaped text inside this quotation is upstream source context, not a local definition or reference:'
+L127 SELF: "this contract's own `REQ-002`, `REQ-003`, `REQ-005`, and `REQ-007` are separate and differently worded.)"
+L119 OTHER-SOW DEL-02-02: "Each feed is a separately testable parser with its own grammar; a single 'ingest everything' item is not atomic"
+L124 OTHER-SOW DEL-02-02: ', `Explicitness` `IMPLICIT`, `RequiredMaturity` `INITIALIZED`, `ProposedMaturity` `TBD`, `SatisfactionStatus` `PENDING`, `Confidence` `MEDIUM`, `Origin` `EXTRAC'
+L165 SELF: 'inside the purpose of the Package / Deliverable entity that this feed populates, and the upstream contract carries that phrase forward (CLM-007). But `PEC-DSH-0'
+L165 SELF: 'to `SOW-051`, covered by `DEL-09-07` at `PhaseHint` `P2`, and `PEC-DSH-002` assigns the census'
+L166 SELF: 'in the same entity purpose, and 169 of the 234 governed files carry an authored `Remaining` prose section (CLM-013). `PEC-K-10` states'
+L166 SELF: ", and §7.1's own DecisionRow row applies that rule to authored register prose in terms —"
+L166 SELF: '. Whether a remaining-item statement is'
+L233 SELF: 'rulings and lifecycle state ... file-native'
+--- DEL-02-01 counts {'UPSTREAM': 48, 'SELF': 11, 'S2-STALE': 4, 'OTHER-SOW': 8}

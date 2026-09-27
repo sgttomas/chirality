@@ -1,0 +1,4 @@
+strict: IDENTICAL (exit=1)
+harness: IDENTICAL (exit=0)
+receipts: IDENTICAL (exit=0)
+dep_quote_currency: IDENTICAL (exit=0)

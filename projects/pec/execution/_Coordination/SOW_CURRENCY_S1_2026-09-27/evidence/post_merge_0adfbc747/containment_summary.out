@@ -1,0 +1,5 @@
+$ git diff --name-status origin/main...HEAD | awk '{p=$2; c=(p ~ /^projects\/pec\/execution\/_Coordination\/SOW_CURRENCY_S1_2026-09-27\//)?"run-root":(p ~ /ScopeOfWork.md$/)?"contract-"$1:p; print c}' | sort | uniq -c
+  12 contract-M
+   1 projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/briefs/S1A_D104_SOW_ACT.md
+ 234 run-root
+exit=0

@@ -30,7 +30,6 @@ import {
   type PermissionDecisionRequest,
   type ProjectRegistrationRequest,
   type RuntimeErrorBody,
-  type ScaffoldRequest,
   type RuntimeSessionBootRequest,
   type SessionTurnRequest,
   type ResolveSelectedContextRequest,
@@ -580,13 +579,6 @@ export class RuntimeDaemon {
         if (segments.length === 5 && segments[3] === "methods" && method === "GET") {
           await this.authorize(request, "sessions:read", projectId);
           return this.json(response, 200, await this.options.service.inspectMethod(projectId, segments[4]!));
-        }
-        if (segments.length === 4 && segments[3] === "scaffold" && method === "POST") {
-          await this.authorize(request, "sessions:write", projectId);
-          const body = await this.body<ScaffoldRequest>(request);
-          return this.json(response, 200, {
-            scaffold: await this.options.service.scaffold(projectId, body)
-          });
         }
         if (segments.length === 4 && segments[3] === "runs" && method === "POST") {
           await this.authorize(request, "sessions:write", projectId);

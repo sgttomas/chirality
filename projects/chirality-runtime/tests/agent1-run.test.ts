@@ -184,7 +184,6 @@ async function setup(
       async set() {},
       async remove() {}
     },
-    undefined,
     coordinator
   );
   return {

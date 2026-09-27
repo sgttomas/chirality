@@ -33,3 +33,10 @@
 ## Record closeout — 2026-09-22
 
 D-APP-131/132 and D-GOV-43/D-APP-127 now govern the current ScopeOfWork and Remaining interpretation. Earlier SDK/daemon, four-file, matrix/default-role, source-MATCH and pre-release planning statements remain dated history. Current work, owning surface, checks and gates are in `_STATUS.md`; the W07_10_ROWS.csv derivative accounts for original residual keys. No lifecycle/approval-SHA refresh, product completion, new native result, or release is asserted.
+
+## Runs
+
+| Run ID / date | Work in this deliverable | Result and source links |
+|---|---|---|
+| `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27` / 2026-09-27 | SCA-APP-011 incremental setup (owner confirmed the baseline and plan on 2026-09-27): `dependency-extract` UPDATE as a FULL_GRAPH neighbour: 11 rows re-seen; restated DEP-08-02-003, DEP-08-02-005 | Registers updated; receipt `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` |
+| `APP-HGD-1-3-RECOMMENDATION-2026-09-27` / 2026-09-27 | Neighbour of the owner's HGD-1 ruling: DEL-02-01's DEP-02-01-006 now records DEL-02-01 as consumer of this deliverable's routing contract (UPSTREAM INTERFACE). No register or scope file of this deliverable changed | DEL-02-01 register updated; receipt `execution/_Coordination/AgentRuns/APP-HGD-1-3-RECOMMENDATION-2026-09-27/RECEIPT.md` |

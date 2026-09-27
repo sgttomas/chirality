@@ -1,0 +1,2 @@
+PASS format=SOW_V1 target=projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement
+exit=0

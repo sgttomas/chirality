@@ -205,9 +205,11 @@
     Both `_LATEST.md` pointers name revision 1.6 and SCA-006, and the audit
     pointer names `COV_SCA006_POSTCHANGE_2026-09-26_0051`. This item
     supersedes item 14's present-tense statements of revision 1.5 as
-    `current_basis`. SCA-006's Lane B work (new DEL-08-06 and DEL-10-13
-    folders, dependency work, SOW currency, the revision-1.6 re-pin) is
-    separately gated and planned in the same work graph. The Notes line below
+    `current_basis`. SCA-006's Lane B work was separately gated and
+    planned in the same work graph: the folders, dependency work and re-pin
+    landed under `D-PEC-101` (PR #976) and the SOW currency under
+    `D-PEC-100`/`102`/`103`/`104` (PRs #979, #998, #992, #1010); the tier-0
+    profile entry (K3) and the API schema fields remain. The Notes line below
     is human-owned and is left unchanged. No source, lifecycle, release, or
     reliance act is inferred.
 

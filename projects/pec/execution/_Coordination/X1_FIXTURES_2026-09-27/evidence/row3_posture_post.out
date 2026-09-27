@@ -1,0 +1,20 @@
+$ date -u
+Sun Sep 27 17:44:31 UTC 2026
+$ python3 v2/tools/check_service_core_posture.py --config v2/config/service_core_posture.json --workflow software-workflow.json  (cwd projects/pec, after act)
+{
+  "assertions": {
+    "dependency": "PASS",
+    "locality": "PASS",
+    "registration": "PASS"
+  },
+  "evaluated": {
+    "config_sha256": "20d64ff38122fa2f7b4bbe6478e42450ce6f9c8b03dc91c90b5095393ef309ed",
+    "core_tree_sha256": "dd7e1ddaddb269525e45699158e31e5a9ce6d252dab27b14ce59c5b2ad9e6e5a",
+    "workflow_sha256": "d55fff77a1d216a7b1ab78b16e3ff3f2747fb3b542a2b269367ec3afa83e0bbd"
+  },
+  "findings": [],
+  "release_force": "PEC_RELEASE_BLOCKING",
+  "schema_version": 1,
+  "verdict": "PASS"
+}
+exit=0

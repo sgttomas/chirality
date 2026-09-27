@@ -1,0 +1,4 @@
+$ shasum -a 256 projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md; git diff --name-status origin/main...HEAD -- projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping
+98a3a3ec227380db2dd030c9c1ca31535d67071a44a3b79508ab4566b32771a0  projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md
+10819cb2ea90c7663a51bfc400d44e50a0d688325935d30472c8f29e3f087e18  projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md
+exit=0

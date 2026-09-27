@@ -1,0 +1,2 @@
+$ python3 tools/scope_of_work/derive_review_checklist.py --output projects/pec/execution/_Coordination/SOW_CURRENCY_S1_2026-09-27/checklist_DEL-10-02.json projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate
+exit=0

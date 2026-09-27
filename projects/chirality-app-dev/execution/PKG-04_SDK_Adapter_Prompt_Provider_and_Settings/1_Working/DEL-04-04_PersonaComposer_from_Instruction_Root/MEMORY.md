@@ -18,3 +18,9 @@
 D-APP-131 lift (b), D-GOV-43/A2, D-APP-127 and applicable D-APP-132 dispositions applied to the current claim blocks. Earlier dated decisions, checks and lifecycle/approval evidence remain historical. Compose additive instruction context for the four current roles through Runtime instruction-basis capture and Codex developerInstructions, preserving Codex base instructions and native user/project discovery. App owns composition/integration; Root owns generic Runtime instruction semantics.
 
 Current unfinished delivery: Complete live organisation-layer composition/pin verification, delimited roadmap injection and source/content identity coverage; resolve and verify the App/Runtime interface with DEL-07-01/07-03. No renewed D-APP-119 proposal vote is needed. See `_STATUS.md` Remaining and the W04_06 current row derivative; no new product test, native outcome, issuance or release is claimed.
+
+## Runs
+
+| Run ID / date | Work in this deliverable | Result and source links |
+|---|---|---|
+| `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27` / 2026-09-27 | SCA-APP-011 incremental setup (owner confirmed the baseline and plan on 2026-09-27): `dependency-extract` UPDATE as a FULL_GRAPH neighbour: 13 rows re-seen | Registers updated; receipt `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` |

@@ -17,12 +17,15 @@ import subprocess
 import sys
 from pathlib import Path
 
+import pytest
+
 VALIDATION_DIR = Path(__file__).resolve().parent
 
 import validate_decomposition_registers as vdr  # noqa: E402
 from validate_dependencies_schema import REQUIRED_COLUMNS  # noqa: E402
 
 TOOL = VALIDATION_DIR / "validate_decomposition_registers.py"
+INSTRUCTION_ROOT_ENV = "CHIRALITY_INSTRUCTION_ROOT"  # SPEC §0.2.1
 
 DELIVERABLE_COLUMNS = [
     "DeliverableID", "PackageID", "Name", "Description", "Type", "ResponsibleParty",
@@ -178,6 +181,19 @@ def build_workspace(
     for relative, rows in registers.items():
         write_csv(execution_root / relative / "Dependencies.csv", REQUIRED_COLUMNS, rows)
     return execution_root
+
+
+@pytest.fixture(autouse=True)
+def _no_instruction_root_env(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Keep a caller's CHIRALITY_INSTRUCTION_ROOT out of every test."""
+    monkeypatch.delenv(INSTRUCTION_ROOT_ENV, raising=False)
+
+
+def empty_instruction_root(tmp_path: Path) -> Path:
+    """An instruction root with no surface, so EVQ tests never read the checkout."""
+    root = tmp_path / "empty_checkout"
+    root.mkdir(exist_ok=True)
+    return root
 
 
 def codes(report: dict) -> dict[str, int]:
@@ -350,7 +366,8 @@ def test_evidence_file_coverage_and_resolution_are_distinct_metrics(tmp_path: Pa
             ]
         },
     )
-    report = vdr.run(execution_root, families=("EVQ",))
+    report = vdr.run(execution_root, families=("EVQ",),
+                     instruction_root=empty_instruction_root(tmp_path))
 
     assert codes(report) == {"EVQ-005": 1, "EVQ-006": 1}
     metrics = report["row_class_metrics"]["ANCHOR"]
@@ -853,13 +870,239 @@ def test_evidence_file_must_be_a_relative_regular_file(tmp_path: Path) -> None:
             ]
         },
     )
-    report = vdr.run(execution_root, families=("EVQ",))
+    report = vdr.run(execution_root, families=("EVQ",),
+                     instruction_root=empty_instruction_root(tmp_path))
 
     assert codes(report) == {"EVQ-006": 2}
     details = " ".join(f["detail"] for f in report["findings"])
     assert "is a directory, not a file" in details
     assert "absolute path" in details
     assert report["row_class_metrics"]["ANCHOR"]["evidence_file_resolved"] == 1
+
+
+def _evidence_fixture(tmp_path: Path, rows: list[dict[str, str]]) -> tuple[Path, Path]:
+    """A workspace plus a separate instruction root, so no live corpus is read."""
+    execution_root = build_workspace(
+        tmp_path / "project",
+        registers={"PKG-01_Core/1_Working/DEL-01-01_Record_tier": rows},
+    )
+    deliverable = execution_root / "PKG-01_Core/1_Working/DEL-01-01_Record_tier"
+    (deliverable / "ScopeOfWork.md").write_text("scope\n", encoding="utf-8")
+    (deliverable / "_run_records").mkdir()
+    (deliverable / "_run_records" / "RUN.md").write_text("run\n", encoding="utf-8")
+    instruction_root = tmp_path / "checkout"
+    (instruction_root / "workflows" / "dependency-extract").mkdir(parents=True)
+    (instruction_root / "workflows" / "dependency-extract" / "WORKFLOW.md").write_text(
+        "workflow\n", encoding="utf-8"
+    )
+    # Checkout-relative material that is not on the instruction surface.
+    (instruction_root / "projects" / "demo" / "docs").mkdir(parents=True)
+    (instruction_root / "projects" / "demo" / "docs" / "SPEC.md").write_text(
+        "spec\n", encoding="utf-8"
+    )
+    (instruction_root / "execution" / "_ScopeChange").mkdir(parents=True)
+    (instruction_root / "execution" / "_ScopeChange" / "PLAN.csv").write_text(
+        "plan\n", encoding="utf-8"
+    )
+    return execution_root, instruction_root
+
+
+def test_evidence_file_resolves_in_each_allowed_form(tmp_path: Path) -> None:
+    """SPEC §6.5 filename, §0.2.4 working-root and instruction-root references."""
+    execution_root, instruction_root = _evidence_fixture(
+        tmp_path,
+        [
+            anchor_row("001", EvidenceFile="ScopeOfWork.md"),            # deliverable
+            anchor_row("002", EvidenceFile="_run_records/RUN.md"),       # deliverable
+            anchor_row("003"),                                           # working root
+            anchor_row("004", EvidenceFile="workflows/dependency-extract/WORKFLOW.md"),
+            anchor_row("005", EvidenceFile="../../../_Decomposition/Deliverables.csv"),
+        ],
+    )
+    report = vdr.run(execution_root, families=("EVQ",), instruction_root=instruction_root)
+
+    assert codes(report) == {}
+    assert report["row_class_metrics"]["ANCHOR"]["evidence_file_resolved"] == 5
+    assert report["evidence_file_resolution_forms"] == {
+        "deliverable": 3, "working_root": 1, "instruction_root": 1,
+    }
+    assert report["instruction_root"] == str(instruction_root)
+
+
+def test_evidence_file_missing_in_every_form_is_reported(tmp_path: Path) -> None:
+    """A truly missing file is still EVQ-006, naming every base it was tried in."""
+    execution_root, instruction_root = _evidence_fixture(
+        tmp_path,
+        [
+            anchor_row("001", EvidenceFile="Procedure.md"),
+            anchor_row("002", EvidenceFile="execution/_Decomposition/NoSuchFile.csv"),
+            anchor_row("003", EvidenceFile="workflows/no-such-workflow/WORKFLOW.md"),
+            anchor_row("004", EvidenceFile="ScopeOfWork.md"),
+        ],
+    )
+    report = vdr.run(execution_root, families=("EVQ",), instruction_root=instruction_root)
+
+    assert codes(report) == {"EVQ-006": 3}
+    assert ids_for(report, "EVQ-006") == ["DEP-01-01-001", "DEP-01-01-002", "DEP-01-01-003"]
+    detail = report["findings"][0]["detail"]
+    assert "does not resolve under any allowed base" in detail
+    for form in ("deliverable ", "working_root ", "instruction_root "):
+        assert form in detail
+    assert report["evidence_file_resolution_forms"]["deliverable"] == 1
+
+
+def test_evidence_file_cannot_escape_through_any_base(tmp_path: Path) -> None:
+    """`..` that leaves both anchors is not followed, even if the file exists."""
+    (tmp_path / "outside.md").write_text("outside\n", encoding="utf-8")
+    execution_root, instruction_root = _evidence_fixture(
+        tmp_path,
+        [
+            anchor_row("001", EvidenceFile="../outside.md"),
+            anchor_row("002", EvidenceFile="../../../../../../outside.md"),
+            anchor_row("003"),
+        ],
+    )
+    report = vdr.run(execution_root, families=("EVQ",), instruction_root=instruction_root)
+
+    assert codes(report) == {"EVQ-006": 2}
+    details = [f["detail"] for f in report["findings"]]
+    assert any("leaves the working root and is not on the instruction surface" in d
+               for d in details)
+
+
+def test_instruction_root_form_is_limited_to_the_instruction_surface(tmp_path: Path) -> None:
+    """SPEC §0.2.4: only agents/, workflows/, tools/, root docs/ and AGENTS.md.
+
+    Checkout-relative paths to project material, or to Root execution records,
+    must not resolve through the instruction root; they belong to a working root.
+    """
+    execution_root, instruction_root = _evidence_fixture(
+        tmp_path,
+        [
+            anchor_row("001", EvidenceFile="projects/demo/docs/SPEC.md"),
+            anchor_row("002", EvidenceFile="execution/_ScopeChange/PLAN.csv"),
+            anchor_row("003", EvidenceFile="workflows/../projects/demo/docs/SPEC.md"),
+            anchor_row("004", EvidenceFile="AGENTS.md"),
+            anchor_row("005", EvidenceFile="docs/SPEC.md"),
+            anchor_row("006", EvidenceFile="agents/AGENT_TASK.md"),
+            anchor_row("007", EvidenceFile="tools/REGISTRY.md"),
+            anchor_row("008", EvidenceFile="workflows/dependency-extract/WORKFLOW.md"),
+        ],
+    )
+    for relative in ("AGENTS.md", "docs/SPEC.md", "agents/AGENT_TASK.md", "tools/REGISTRY.md"):
+        target = instruction_root / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text("surface\n", encoding="utf-8")
+    report = vdr.run(execution_root, families=("EVQ",), instruction_root=instruction_root)
+
+    assert ids_for(report, "EVQ-006") == ["DEP-01-01-001", "DEP-01-01-002", "DEP-01-01-003"]
+    assert report["evidence_file_resolution_forms"]["instruction_root"] == 5
+
+
+def test_directory_is_not_evidence_in_any_form(tmp_path: Path) -> None:
+    execution_root, instruction_root = _evidence_fixture(
+        tmp_path,
+        [
+            anchor_row("001", EvidenceFile="_run_records"),                 # form 1
+            anchor_row("002", EvidenceFile="workflows/dependency-extract"),  # form 3
+        ],
+    )
+    report = vdr.run(execution_root, families=("EVQ",), instruction_root=instruction_root)
+
+    assert codes(report) == {"EVQ-006": 2}
+    assert all("is a directory, not a file" in f["detail"] for f in report["findings"])
+
+
+def test_resolution_order_is_deliverable_then_working_root_then_instruction_root(
+    tmp_path: Path,
+) -> None:
+    """Pins the order, including the documented fall-through of a bare name."""
+    execution_root, instruction_root = _evidence_fixture(
+        tmp_path,
+        [
+            anchor_row("001", EvidenceFile="README.md"),     # deliverable and project
+            anchor_row("002", EvidenceFile="NOTES.md"),      # project only
+            anchor_row("003", EvidenceFile="docs/SPEC.md"),  # project and checkout
+        ],
+    )
+    project = execution_root.parent
+    deliverable = execution_root / "PKG-01_Core/1_Working/DEL-01-01_Record_tier"
+    (deliverable / "README.md").write_text("deliverable\n", encoding="utf-8")
+    (project / "README.md").write_text("project\n", encoding="utf-8")
+    (project / "NOTES.md").write_text("project\n", encoding="utf-8")
+    (project / "docs").mkdir()
+    (project / "docs" / "SPEC.md").write_text("project\n", encoding="utf-8")
+    (instruction_root / "docs").mkdir()
+    (instruction_root / "docs" / "SPEC.md").write_text("root\n", encoding="utf-8")
+
+    report = vdr.run(execution_root, families=("EVQ",), instruction_root=instruction_root)
+
+    assert codes(report) == {}
+    assert report["evidence_file_resolution_forms"] == {
+        "deliverable": 1, "working_root": 2, "instruction_root": 0,
+    }
+    assert report["evidence_file_multi_form"] == 2
+    assert vdr.resolve_evidence_file(
+        "README.md", deliverable, project, instruction_root
+    )[0] == "deliverable"
+    assert vdr.resolve_evidence_file(
+        "NOTES.md", deliverable, project, instruction_root
+    )[0] == "working_root"
+    assert vdr.resolve_evidence_file(
+        "docs/SPEC.md", deliverable, project, instruction_root
+    )[2] == ["working_root", "instruction_root"]
+
+
+def test_instruction_root_environment_variable(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """SPEC §0.2.1: CHIRALITY_INSTRUCTION_ROOT before the tool's own checkout."""
+    execution_root, instruction_root = _evidence_fixture(
+        tmp_path,
+        [anchor_row("001", EvidenceFile="workflows/dependency-extract/WORKFLOW.md")],
+    )
+    monkeypatch.setenv(INSTRUCTION_ROOT_ENV, str(instruction_root))
+    report = vdr.run(execution_root, families=("EVQ",))
+    assert report["instruction_root"] == str(instruction_root)
+    assert report["instruction_root_source"] == INSTRUCTION_ROOT_ENV
+    assert codes(report) == {}
+
+    other = empty_instruction_root(tmp_path)
+    overridden = vdr.run(execution_root, families=("EVQ",), instruction_root=other)
+    assert overridden["instruction_root_source"] == "argument"
+    assert codes(overridden) == {"EVQ-006": 1}
+
+    monkeypatch.setenv(INSTRUCTION_ROOT_ENV, str(tmp_path / "missing"))
+    with pytest.raises(vdr.OperationalError):
+        vdr.run(execution_root, families=("EVQ",))
+
+
+def test_default_instruction_root_is_the_checkout_holding_the_tool(tmp_path: Path) -> None:
+    execution_root = build_workspace(tmp_path)
+    report = vdr.run(execution_root, families=("EVQ",))
+    assert report["instruction_root"] == str(VALIDATION_DIR.parent.parent)
+    assert report["instruction_root_source"] == "tool checkout"
+
+
+def test_cli_instruction_root_option(tmp_path: Path) -> None:
+    execution_root, instruction_root = _evidence_fixture(
+        tmp_path,
+        [anchor_row("001", EvidenceFile="workflows/dependency-extract/WORKFLOW.md")],
+    )
+    resolved = subprocess.run(
+        [sys.executable, str(TOOL), str(execution_root), "--families", "EVQ",
+         "--instruction-root", str(instruction_root)],
+        capture_output=True, text=True,
+    )
+    assert resolved.returncode == 0, resolved.stdout + resolved.stderr
+    assert "instruction-root-relative 1" in resolved.stdout
+
+    bad = subprocess.run(
+        [sys.executable, str(TOOL), str(execution_root),
+         "--instruction-root", str(tmp_path / "nope")],
+        capture_output=True, text=True,
+    )
+    assert bad.returncode == 2
 
 
 def test_locus_quote_duplication_detail_is_direction_neutral(tmp_path: Path) -> None:

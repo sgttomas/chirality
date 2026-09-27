@@ -1,0 +1,18 @@
+$ date -u
+Sun Sep 27 17:46:19 UTC 2026
+$ git diff --check origin/main...HEAD
+projects/pec/execution/_Coordination/X1_FIXTURES_2026-09-27/evidence/row1_basis.out:30: trailing whitespace.
++RULED A / FX-PEC-0 AND THRESHOLDS CONFIRMED / L / M / EFFECTIVE ON MERGE [trailing whitespace shown by git diff --check]
+projects/pec/execution/_Coordination/X1_FIXTURES_2026-09-27/evidence/row1a_addon_L.out:24: trailing whitespace.
++ [trailing whitespace shown by git diff --check]
+projects/pec/execution/_Coordination/X1_FIXTURES_2026-09-27/evidence/row1a_addon_L.out:29: trailing whitespace.
++ [trailing whitespace shown by git diff --check]
+projects/pec/execution/_Coordination/X1_FIXTURES_2026-09-27/evidence/row1a_addon_L.out:41: trailing whitespace.
++ [trailing whitespace shown by git diff --check]
+projects/pec/execution/_Coordination/X1_FIXTURES_2026-09-27/evidence/row1a_addon_L.out:46: trailing whitespace.
++ [trailing whitespace shown by git diff --check]
+projects/pec/execution/_Coordination/X1_FIXTURES_2026-09-27/evidence/row1a_addon_L.out:57: trailing whitespace.
++ [trailing whitespace shown by git diff --check]
+projects/pec/execution/_Coordination/X1_FIXTURES_2026-09-27/evidence/row1a_addon_L.out:62: trailing whitespace.
++ [trailing whitespace shown by git diff --check]
+exit=2
