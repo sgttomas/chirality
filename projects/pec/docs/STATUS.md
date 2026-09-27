@@ -124,14 +124,15 @@ one sentence in `v2/docs/STORE_LIFECYCLE_AND_GUARD.md` (lines 122–123) is broa
 granted edit; the read-only-checkout test runs only where directory
 permissions are enforced; hosted CI still runs no v2 Python check.
 
-**Lifecycle census** (recounted 2026-09-26 from the 68 deliverable
+**Lifecycle census** (recounted 2026-09-27 from the 68 deliverable
 `_STATUS.md` files, after SCA-005's retirements, the `D-PEC-93` setup of
 DEL-02-08 and DEL-02-09, their `D-PEC-98` add-on S step to `INITIALIZED`,
 the `D-PEC-101` setup of DEL-08-06 and DEL-10-13 at `OPEN`, and their
-`D-PEC-103` add-on S step to `INITIALIZED`): 28 `OPEN` /
-30 `INITIALIZED` / 4 `CHECKING`
-(DEL-00-01, DEL-00-03, DEL-08-02, DEL-10-01) / 2 `IN_PROGRESS` (DEL-01-03,
-DEL-01-05) / 4 `RETIRED` (DEL-06-04, DEL-07-02, DEL-07-04, DEL-07-05). No
+`D-PEC-103` add-on S step to `INITIALIZED`, and the `D-PEC-106` add-on L
+step of DEL-02-03, DEL-02-08 and DEL-02-09 to `IN_PROGRESS`): 28 `OPEN` /
+27 `INITIALIZED` / 4 `CHECKING`
+(DEL-00-01, DEL-00-03, DEL-08-02, DEL-10-01) / 5 `IN_PROGRESS` (DEL-01-03,
+DEL-01-05, DEL-02-03, DEL-02-08, DEL-02-09) / 4 `RETIRED` (DEL-06-04, DEL-07-02, DEL-07-04, DEL-07-05). No
 deliverable is `ISSUED`.
 
 **Loop:** PEC runs the shared development loop under `D-PEC-94` (2026-09-25):
@@ -276,10 +277,14 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     + M on 2026-09-27, choosing a later REVIEW and owner re-acceptance (RR1:
     intent only, needing its own authorization);
     the lapsed acceptances are recorded when its act lands. The owner ruled
-    the X1 P1 fixture packet `D-PEC-106` (34 fixture files and the
-    `v2-parsers` check; no parser code) A + L + M on 2026-09-27: at X1
-    production start DEL-02-03, DEL-02-08 and DEL-02-09 move to
-    `IN_PROGRESS`. Done: the first SOWs for DEL-02-08/09
+    the X1 P1 fixture packet `D-PEC-106` (34 new files under
+    `v2/tests/parsers/`: a fixture-integrity test module, a pinned manifest,
+    four goldens and the synthetic set; plus the `v2-parsers` check; no
+    parser code) A + L + M on 2026-09-27. Done: DEL-02-03, DEL-02-08 and
+    DEL-02-09 moved to `IN_PROGRESS` at production start, and the act
+    committed the fixtures and the check (run root
+    `execution/_Coordination/X1_FIXTURES_2026-09-27/`); the `MEMORY.md` rows
+    follow at closeout. Done: the first SOWs for DEL-02-08/09
     (`D-PEC-98` A + S + M, ruled 2026-09-26): both contracts written,
     re-pinned to revision 1.6, validated and independently verified, and
     both deliverables `INITIALIZED` (run root
