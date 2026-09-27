@@ -48,9 +48,12 @@ PRIOR_AUDIT = (
     "COV_SCA_APP_010_POST_RECORD_RECON_2026-09-22_2026-09-22_1513"
 )
 AFFECTED = [
-    "DEL-02-01", "DEL-02-02", "DEL-02-03", "DEL-05-01", "DEL-07-04",
-    "DEL-07-05", "DEL-08-02", "DEL-08-03", "DEL-09-03",
+    "DEL-02-01", "DEL-02-02", "DEL-02-03", "DEL-03-03", "DEL-05-01", "DEL-07-02",
+    "DEL-07-04", "DEL-07-05", "DEL-08-02", "DEL-08-03", "DEL-09-03",
 ]
+SCAFFOLD_DELIVERABLE = "DEL-07-02"
+FRONTEND_SRC = f"{APP}/frontend/src"
+SCAFFOLD_PATTERNS = ("/api/harness/scaffold", "scaffoldHarnessExecutionRoot", "scaffoldExecutionRoot(")
 TARGET = "DEL-02-02"
 
 
@@ -195,6 +198,35 @@ def main() -> int:
         cur = sha256(p) if os.path.isfile(p) else "MISSING"
         prior_inputs.append({"path": p, "prior": h, "current": cur, "identical": cur == h})
 
+    # Choice S-c: scaffold route, its client function and the scaffold scope items.
+    refs = {pat: {"product": [], "tests": []} for pat in SCAFFOLD_PATTERNS}
+    for path in sorted(glob.glob(f"{FRONTEND_SRC}/**/*.ts", recursive=True) + glob.glob(f"{FRONTEND_SRC}/**/*.tsx", recursive=True)):
+        text = open(path, encoding="utf-8").read()
+        for pat in SCAFFOLD_PATTERNS:
+            if pat in text:
+                refs[pat]["tests" if "/__tests__/" in path else "product"].append(os.path.relpath(path, FRONTEND_SRC))
+    scaffold_items = {s: ledger_map[s] for s in ("SOW-024", "SOW-025")}
+    scaffold_deps = []
+    for reg in sorted(glob.glob(f"{EXEC}/PKG-*/1_Working/DEL-*/Dependencies.csv")):
+        for r in csv.DictReader(open(reg, newline="", encoding="utf-8")):
+            blob = " ".join(v or "" for v in r.values())
+            if SCAFFOLD_DELIVERABLE in (r.get("FromDeliverableID"), r.get("TargetDeliverableID")) or "harness/scaffold" in blob:
+                scaffold_deps.append({"DependencyID": r["DependencyID"], "From": r["FromDeliverableID"],
+                                      "Target": r["TargetDeliverableID"] or r["TargetRefID"], "Status": r.get("Status", ""),
+                                      "names_scaffold_route": "harness/scaffold" in blob})
+    scaffold = {
+        "deliverable": SCAFFOLD_DELIVERABLE,
+        "decomposition_name": del_by_id[SCAFFOLD_DELIVERABLE][1],
+        "covers_scope_items": del_scope[SCAFFOLD_DELIVERABLE],
+        "supports_objectives": del_obj[SCAFFOLD_DELIVERABLE],
+        "scope_items_in_ledger": scaffold_items,
+        "objective_other_active_supporters": {o: len([d for d, objs in del_obj.items()
+                                                       if o in objs and d != SCAFFOLD_DELIVERABLE and d not in retired])
+                                              for o in del_obj[SCAFFOLD_DELIVERABLE]},
+        "dependency_rows": scaffold_deps,
+        "frontend_references": refs,
+    }
+
     envelopes = Counter(r[8] for r in deliverables)
     baseline = {
         "run_label": "SCA_APP_011_GROUP1_PRECHANGE",
@@ -235,6 +267,7 @@ def main() -> int:
             "objectives": target_objectives,
             "dependency_rows_touching": dep_rows,
         },
+        "scaffold_route_choice_s_c": scaffold,
         "prior_full_audit": {"path": PRIOR_AUDIT, "inputs": prior_inputs,
                              "reuse": "Not reused as the baseline: instruction, workflow and pointer inputs differ. "
                                       "Decomposition and companion register are byte-identical."},

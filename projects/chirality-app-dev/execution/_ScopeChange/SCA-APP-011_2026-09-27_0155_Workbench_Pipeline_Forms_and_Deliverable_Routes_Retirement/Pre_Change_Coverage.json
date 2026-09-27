@@ -2,7 +2,7 @@
   "run_label": "SCA_APP_011_GROUP1_PRECHANGE",
   "decomp_variant": "SOFTWARE",
   "method": "Synthesized deterministic baseline from the authoritative decomposition plus registered structure, dependency-closure and register tools (scope-change method step 5). A full audit-decomp TASK run was not dispatched; the latest full audit is referenced below and its decomposition and companion-register inputs are byte-identical to this basis.",
-  "basis_commit": "e548d4cfada4d2105de6231516dc6e5fc4bd4689",
+  "basis_commit": "5843c0b8c9d283ba7c6683ddb2a342d7288f6142",
   "decomposition_path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
   "decomposition_sha256": "9261ce30f933a0b72364a5af09c8aeed9208372774959864ff24a805126ea8a6",
   "companion_register_path": "projects/chirality-app-dev/execution/_Decomposition/contract_invariant_coverage_register.csv",
@@ -53,7 +53,9 @@
     "DEL-02-01": "IN_PROGRESS",
     "DEL-02-02": "IN_PROGRESS",
     "DEL-02-03": "IN_PROGRESS",
+    "DEL-03-03": "IN_PROGRESS",
     "DEL-05-01": "IN_PROGRESS",
+    "DEL-07-02": "IN_PROGRESS",
     "DEL-07-04": "IN_PROGRESS",
     "DEL-07-05": "IN_PROGRESS",
     "DEL-08-02": "IN_PROGRESS",
@@ -384,6 +386,123 @@
         "SatisfactionStatus": "PENDING"
       }
     ]
+  },
+  "scaffold_route_choice_s_c": {
+    "deliverable": "DEL-07-02",
+    "decomposition_name": "Execution Root Scaffolding from Decomposition",
+    "covers_scope_items": [
+      "SOW-024",
+      "SOW-025"
+    ],
+    "supports_objectives": [
+      "OBJ-006"
+    ],
+    "scope_items_in_ledger": {
+      "SOW-024": {
+        "status": "IN",
+        "package": "PKG-07",
+        "deliverables": [
+          "DEL-07-02"
+        ],
+        "objectives": [
+          "OBJ-006"
+        ]
+      },
+      "SOW-025": {
+        "status": "IN",
+        "package": "PKG-07",
+        "deliverables": [
+          "DEL-07-02"
+        ],
+        "objectives": [
+          "OBJ-006"
+        ]
+      }
+    },
+    "objective_other_active_supporters": {
+      "OBJ-006": 9
+    },
+    "dependency_rows": [
+      {
+        "DependencyID": "DEP-07-02-001",
+        "From": "DEL-07-02",
+        "Target": "PKG-07",
+        "Status": "ACTIVE",
+        "names_scaffold_route": false
+      },
+      {
+        "DependencyID": "DEP-07-02-002",
+        "From": "DEL-07-02",
+        "Target": "SOW-024",
+        "Status": "ACTIVE",
+        "names_scaffold_route": false
+      },
+      {
+        "DependencyID": "DEP-07-02-003",
+        "From": "DEL-07-02",
+        "Target": "SOW-025",
+        "Status": "ACTIVE",
+        "names_scaffold_route": false
+      },
+      {
+        "DependencyID": "DEP-07-02-004",
+        "From": "DEL-07-02",
+        "Target": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+        "Status": "ACTIVE",
+        "names_scaffold_route": false
+      },
+      {
+        "DependencyID": "DEP-07-02-005",
+        "From": "DEL-07-02",
+        "Target": "DEL-07-01",
+        "Status": "ACTIVE",
+        "names_scaffold_route": false
+      },
+      {
+        "DependencyID": "DEP-07-02-006",
+        "From": "DEL-07-02",
+        "Target": "REF-002",
+        "Status": "ACTIVE",
+        "names_scaffold_route": false
+      },
+      {
+        "DependencyID": "DEP-07-02-007",
+        "From": "DEL-07-02",
+        "Target": "_REFERENCES.md",
+        "Status": "ACTIVE",
+        "names_scaffold_route": false
+      }
+    ],
+    "frontend_references": {
+      "/api/harness/scaffold": {
+        "product": [
+          "components/pipeline/pipeline-surface.tsx",
+          "lib/harness/client.ts"
+        ],
+        "tests": [
+          "__tests__/api/harness/scaffold-route.test.ts",
+          "__tests__/lib/harness-client.test.ts"
+        ]
+      },
+      "scaffoldHarnessExecutionRoot": {
+        "product": [
+          "components/pipeline/pipeline-surface.tsx",
+          "lib/harness/client.ts"
+        ],
+        "tests": [
+          "__tests__/lib/harness-client.test.ts"
+        ]
+      },
+      "scaffoldExecutionRoot(": {
+        "product": [
+          "lib/harness/scaffold.ts"
+        ],
+        "tests": [
+          "__tests__/api/harness/fake-daemon-harness-port.ts",
+          "__tests__/lib/harness-scaffold.test.ts"
+        ]
+      }
+    }
   },
   "prior_full_audit": {
     "path": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SCA_APP_010_POST_RECORD_RECON_2026-09-22_2026-09-22_1513",

@@ -1,6 +1,6 @@
 # SCA-APP-011 Brief — Retire the Workbench and Pipeline Forms and the Deliverable HTTP Routes
 
-**Status:** `CHECKPOINT_GROUP_1_CANDIDATE` — awaiting the owner's checkpoint-group-1 act. Nothing here is accepted.
+**Status:** `CHECKPOINT_GROUP_1_CANDIDATE` (revision 2, adds choice S-c) — awaiting the owner's checkpoint-group-1 act. The owner has stated selections for choices A, B, D and S (below); they are not a checkpoint acceptance. Nothing here is accepted.
 **Date:** `2026-09-27` (folder time `0155` is UTC)
 **Requested by:** Ryan Tufts (repository owner `sgttomas`), in the Claude Code conversation of 2026-09-27
 **Prepared by:** WORKING_ITEMS, bounded Claude Code subagent, working in an isolated worktree
@@ -23,6 +23,19 @@ Given on 2026-09-27 in the Claude Code conversation.
 
 These are the owner's direction and route selection. They are not the group-1 acceptance, which is a separate act on this package.
 
+## Owner's stated selections (verbatim; not a checkpoint acceptance)
+
+Given on 2026-09-27 through the AskUserQuestion tool in the Claude Code conversation, relayed by the coordinating session. They answer the choices of the first candidate package (`5843c0b8c9d283ba7c6683ddb2a342d7288f6142`). They are recorded here for the eventual group-1 decision snapshot. They are not the group-1 acceptance, which is still to come.
+
+| Choice | Question (as asked) | Answer (verbatim) | Set |
+|---|---|---|---|
+| A | "How should DEL-02-02 be treated?" | "Rescope it (Recommended)" | DQ-R |
+| B | "Should the amendment also delete the old loop-first shell?" | "Exclude it (Recommended)" | L excluded |
+| D | "What should happen to PRD FR-011/FR-012, Journey 7.5 and success metric 7 (the Pipeline controls)?" | "Restate them (Recommended)" | restate |
+| S | "The Pipeline form was the only UI caller of POST /api/harness/scaffold ... What should happen to it?" | "Remove the route too" | S-c |
+
+Choice C was informational and was not asked. Choice E was not asked; the package keeps its "no change" recommendation for confirmation together with S-c. The first package said S-c needed a separate SOW-024/DEL-07-02 assessment. That assessment is now in `Impact_Assessment.md` §17, with its rows in `Intake_Actions.csv` rows 33–40.
+
 ## Parsed intent
 
 | Intent | Source | Parsed as |
@@ -31,7 +44,8 @@ These are the owner's direction and route selection. They are not the group-1 ac
 | Delete `GET /api/working-root/deliverable/status`, `POST …/status/transition`, `GET/PUT …/dependencies` and the client fetch functions `fetchDeliverableStatus`, `transitionDeliverableStatus` (client copy) and `fetchDeliverableDependencies` | Direction 2 | MODIFY DEL-07-04, DEL-07-05 and DEL-09-03 and the App SPEC so the library and MCP tools are the named interface |
 | Keep `deliverable-contracts.ts`, `lib/lifecycle`, `lib/dependencies` and the MCP tools (`status_transition`, `deps_read`, `deps_write`) | Direction 2 | Not touched |
 | Change accepted scope through SCA-APP-011, then merge the code removal | Direction 3 | This amendment; the code change waits for group-3 acceptance |
-| "Retire DEL-02-02" | Direction 3 option text | Offered as set DQ-X; see the premise correction below |
+| "Retire DEL-02-02" | Direction 3 option text | Offered as set DQ-X; see the premise correction below. The owner's stated answer to choice A is DQ-R |
+| Remove `POST /api/harness/scaffold` too | Stated answer to choice S | Set S-c: MODIFY DEL-07-02 and DEL-03-03 and the PRD, SPEC, PLAN and decomposition route clauses; the scaffold library stays |
 
 ## Premise correction the owner must see
 
@@ -79,16 +93,17 @@ Semantic section binding (by heading text, decomposition at basis): Change Regis
 
 ## Parsed action envelope
 
-The machine-readable intake is `Intake_Actions.csv` (32 rows, every row `Status = PROPOSED`, `ScopeChanging` filled). It is intake evidence only; the accepted register will be a separate `Amendment_Actions.csv` at checkpoint group 2 and will carry only the sets the owner selects.
+The machine-readable intake is `Intake_Actions.csv` (40 rows, every row `Status = PROPOSED`, `ScopeChanging` filled). It is intake evidence only; the accepted register will be a separate `Amendment_Actions.csv` at checkpoint group 2 and will carry only the sets the owner selects.
 
 | Set | Rows | Meaning |
 |---|---|---|
 | BASE | 1–19 | Owner-directed changes that apply under either DEL-02-02 treatment: DEL-07-04, DEL-07-05, DEL-09-03, DEL-08-03, DEL-02-03, SOW-001 and SOW-007 notes, decomposition hard constraint and section 13 note, DEC-026, telemetry, PRD, SPEC and PLAN |
 | DQ-R | 20 | Recommended: MODIFY DEL-02-02 (keep the right-panel scope, delete the Workbench/Pipeline clauses) |
 | DQ-X | 21–27 | Alternative: REMOVE DEL-02-02 and re-home its scope, with sub-choice X-a (ADD DEL-02-06, row 22) or X-b (MODIFY DEL-02-01, row 23) |
-| L | 28–32 | Optional legacy loop-first shell removal. **Excluded unless the owner includes it.** |
+| L | 28–32 | Optional legacy loop-first shell removal. **Excluded** (stated selection B) |
+| S-c | 33–40 | Remove `POST /api/harness/scaffold` and its client function: MODIFY DEL-07-02 and DEL-03-03; PRD §9.1, Journey 7.3 and route-preservation clauses; SPEC §17.1; PLAN; decomposition hard constraint (stated selection S) |
 
-Counts: BASE 18 MODIFY + 1 ADD; DQ-R 1 MODIFY; DQ-X 1 REMOVE, 1 ADD (X-a) or 1 MODIFY (X-b), 5 MODIFY; L 5 MODIFY. No RECLASSIFY, MERGE, SPLIT, package change or renumbering.
+Counts: BASE 18 MODIFY + 1 ADD; DQ-R 1 MODIFY; DQ-X 1 REMOVE, 1 ADD (X-a) or 1 MODIFY (X-b), 5 MODIFY; L 5 MODIFY; S-c 8 MODIFY. With the stated selections (BASE, DQ-R, S-c) the group-2 register would hold 28 rows: 27 MODIFY and 1 ADD. No RECLASSIFY, MERGE, SPLIT, package change or renumbering.
 
 ## Validation
 
@@ -116,10 +131,15 @@ Counts: BASE 18 MODIFY + 1 ADD; DQ-R 1 MODIFY; DQ-X 1 REMOVE, 1 ADD (X-a) or 1 M
 | Dependency closure | 54 nodes, 111 edges, 0 SCCs, no accepted DAG; 2 schema-invalid (the two control folders have no register) |
 | Register validator | SCH and DRB clean; XRG skipped (no `Deliverables.csv`/`ScopeLedger.csv` in the App); 592 EVQ-006 (deliverable-relative `EvidenceFile` paths; carried convention) |
 
+**Revision 2 rerun.** The builder now also records the scaffold scope items, DEL-07-02's dependency rows and the frontend references for choice S-c. It was rerun at `5843c0b8c9d283ba7c6683ddb2a342d7288f6142`, whose governed inputs are byte-identical to the original basis `e548d4cf…` (only this SCA folder was added). Its structural results are unchanged: 54 nodes, 111 edges and 0 SCCs; 54/54 SOW_V1; register findings EVQ-006 only.
+
 ## Explicit exclusions
 
 - Any change to `deliverable-contracts.ts`, `lib/lifecycle`, `lib/dependencies`, the MCP tools or the Runtime tool descriptors.
-- `/api/working-root/deliverable/content` (its caller is the document viewer) and `/api/harness/scaffold` (see owner choice S).
+- `/api/working-root/deliverable/content` (its caller is the document viewer). `/api/harness/scaffold` is excluded only if the owner does not confirm S-c.
+- The App scaffold library `frontend/src/lib/harness/scaffold.ts` (`scaffoldExecutionRoot`, `previewScaffoldExecutionRoot`) and its tests, under every set.
+- The Runtime-owned scaffold API (`POST /v1/projects/{id}/scaffold`, `RuntimeClient.scaffold`, `RuntimeService.scaffold`, `ProjectScaffoldPort`). The Runtime loop decides on it after an informational notice.
+- `/api/working-root/scope` and `/api/project/deliverables`. The first also loses its only UI caller (the Workbench form); this is recorded as a residual, not proposed.
 - The `/`, `/chat`, `/workbench` and `/pipeline` page URLs (D-APP-108 Q3 stands). They remain reachable under every set.
 - The Work projection (stays unmounted, unchanged).
 - CONTRACT invariant text and the companion register's enforcement-surface wording (no change proposed; see Impact Assessment §5.6).
