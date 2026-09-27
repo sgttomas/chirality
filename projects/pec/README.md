@@ -22,7 +22,7 @@ rows `D-PEC-67`, v2.2 `D-PEC-68`. **New here? Read
 
 ## State
 
-Early P1 implementation (present-current as of 2026-09-26, `D-PEC-86` §3
+Early P1 implementation (present-current as of 2026-09-27, `D-PEC-86` §3
 I-5 and `D-PEC-88`). Decomposition revision 1.6 is the accepted current basis after
 `SCA-006` (owner checkpoint-3 acceptance 2026-09-26); before it, revision 1.5
 after `SCA-005` and revision 1.4 after `SCA-004` under `D-PEC-78` O-A. PROJECT_SETUP has materialized the
@@ -49,11 +49,12 @@ eleven-contract reconciliation remains historical under `D-PEC-69`, and
 `PEC-HOLD-001` was released by `D-PEC-70`. The SCA-004 closeout
 (`execution/_Coordination/PEC_CURRENCY_REPAIR_CLOSEOUT_2026-08-09/HANDOFF_STATE.md`)
 recorded derivative state as incomplete only for TM-PEC-023, which was closed `RESOLVED_BY_DECISION` under
-`D-PEC-95` on 2026-09-25. Lifecycle census (2026-09-26, 68 deliverables): 28 `OPEN` / 30
-`INITIALIZED` / 4 `CHECKING` / 2 `IN_PROGRESS` / 4 `RETIRED`, none `ISSUED`. DEL-01-03 is
+`D-PEC-95` on 2026-09-25. Lifecycle census (2026-09-27, 68 deliverables): 28 `OPEN` / 27
+`INITIALIZED` / 4 `CHECKING` / 5 `IN_PROGRESS` / 4 `RETIRED`, none `ISSUED`. DEL-01-03 is
 `IN_PROGRESS` with the `D-PEC-85` store/guard slice produced; DEL-01-05 is
-`IN_PROGRESS` after the `D-PEC-84` L reversal; no artifact acceptance or
-promotion follows from either. The three DEL-01-03 read-only evidence
+`IN_PROGRESS` after the `D-PEC-84` L reversal; DEL-02-03, DEL-02-08 and
+DEL-02-09 are `IN_PROGRESS` since the `D-PEC-106` P1 fixture act
+(2026-09-27); no artifact acceptance or promotion follows from any of them. The three DEL-01-03 read-only evidence
 inquiries are reported, and the owner ruled `D-PEC-87` on 2026-09-24: one
 correction slice on seven existing files, the three inquiry rows to be
 ticked, and review of the corrected bytes. The slice merged on 2026-09-24

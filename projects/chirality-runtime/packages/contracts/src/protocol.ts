@@ -1,7 +1,6 @@
 import type { EngineSelection, HarnessOpts } from "./harness/types.js";
 import type {
   HarnessEvent,
-  ScaffoldExecutionRootResponse,
   TranscriptView,
   UIEvent
 } from "./harness/index.js";
@@ -80,7 +79,6 @@ export const RUNTIME_ROUTES = {
   nativePlanClarificationReply: (projectId: string, sessionId: string) =>
     `${RUNTIME_ROUTES.nativePlanClarifications(projectId, sessionId)}/reply`,
   agents: (projectId: string) => `/v1/projects/${encodeURIComponent(projectId)}/agents`,
-  scaffold: (projectId: string) => `/v1/projects/${encodeURIComponent(projectId)}/scaffold`,
   runs: (projectId: string) => `/v1/projects/${encodeURIComponent(projectId)}/runs`,
   models: "/v1/models",
   modelActivate: (modelId: string) => `/v1/models/${encodeURIComponent(modelId)}/activate`,
@@ -249,8 +247,6 @@ export interface AgentDefinitionSummary {
   class?: string;
 }
 
-export type ScaffoldRequest = import("./harness/types.js").ScaffoldExecutionRootRequest;
-
 export interface HealthResponse {
   apiVersion: typeof RUNTIME_API_VERSION;
   status: "ok";
@@ -312,10 +308,6 @@ export interface PermissionDecisionResponse {
 
 export interface AgentsResponse {
   agents: readonly AgentDefinitionSummary[];
-}
-
-export interface ScaffoldResponse {
-  scaffold: ScaffoldExecutionRootResponse;
 }
 
 export interface ModelsResponse {

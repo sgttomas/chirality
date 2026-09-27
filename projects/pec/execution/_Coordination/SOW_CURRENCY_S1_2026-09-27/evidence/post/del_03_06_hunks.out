@@ -1,0 +1,6 @@
+$ git diff -U0 origin/main...HEAD -- projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/ScopeOfWork.md | grep '^@@'
+@@ -220 +220 @@ components each of them declares as part of itself.
+@@ -222,4 +222,4 @@ components each of them declares as part of itself.
+@@ -229 +229 @@ components each of them declares as part of itself.
+@@ -476 +476 @@ over. Tests implement the verification methods below and create no scope.
+exit=0

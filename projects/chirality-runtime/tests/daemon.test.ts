@@ -271,7 +271,6 @@ async function fixture(
     turns,
     auth,
     credentials,
-    undefined,
     runner,
     permissions
   );

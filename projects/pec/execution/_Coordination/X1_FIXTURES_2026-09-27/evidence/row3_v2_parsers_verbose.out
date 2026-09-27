@@ -1,0 +1,19 @@
+$ date -u
+Sun Sep 27 17:44:29 UTC 2026
+$ PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s v2/tests/parsers -p 'test_*.py' -v   (cwd projects/pec)
+test_every_record_binds_a_requirement_criterion_and_verification (test_parser_fixture_integrity.ParserFixtureIntegrityTests.test_every_record_binds_a_requirement_criterion_and_verification) ... ok
+test_git_access_is_read_only_and_allowlisted (test_parser_fixture_integrity.ParserFixtureIntegrityTests.test_git_access_is_read_only_and_allowlisted) ... ok
+test_golden_source_values_are_grounded_in_their_pinned_blobs (test_parser_fixture_integrity.ParserFixtureIntegrityTests.test_golden_source_values_are_grounded_in_their_pinned_blobs) ... ok
+test_goldens_are_content_minimal_and_hold_no_source_text_run (test_parser_fixture_integrity.ParserFixtureIntegrityTests.test_goldens_are_content_minimal_and_hold_no_source_text_run) ... ok
+test_loaded_suite_has_exact_verification_mapping (test_parser_fixture_integrity.ParserFixtureIntegrityTests.test_loaded_suite_has_exact_verification_mapping) ... ok
+test_manifests_and_goldens_are_well_formed (test_parser_fixture_integrity.ParserFixtureIntegrityTests.test_manifests_and_goldens_are_well_formed) ... ok
+test_no_fixture_source_is_copied_into_the_tree (test_parser_fixture_integrity.ParserFixtureIntegrityTests.test_no_fixture_source_is_copied_into_the_tree) ... ok
+test_pins_resolve_by_read_only_plumbing_on_integrated_history (test_parser_fixture_integrity.ParserFixtureIntegrityTests.test_pins_resolve_by_read_only_plumbing_on_integrated_history) ... ok
+test_synthetic_cases_cover_the_contract_minimums (test_parser_fixture_integrity.ParserFixtureIntegrityTests.test_synthetic_cases_cover_the_contract_minimums) ... ok
+test_tree_expectations_hold_at_their_pinned_commits (test_parser_fixture_integrity.ParserFixtureIntegrityTests.test_tree_expectations_hold_at_their_pinned_commits) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 1.880s
+
+OK
+exit=0

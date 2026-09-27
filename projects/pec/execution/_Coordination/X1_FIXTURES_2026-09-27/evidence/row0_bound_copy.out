@@ -1,0 +1,52 @@
+$ date -u
+Sun Sep 27 17:36:07 UTC 2026
+$ (cd projects/pec/execution/_Coordination/X1_FIXTURES_2026-09-27 && shasum -a 256 -c evidence/bound_copy.sums)
+apply_x1p.py: OK
+apply_x1p.template.py: OK
+build_apply_x1p.py: OK
+candidates/projects/pec/software-workflow.json: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/pinned/MANIFEST.json: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/pinned/goldens/FC-1.json: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/pinned/goldens/FC-2.json: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/pinned/goldens/FC-3.json: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/pinned/goldens/FX-PEC-0.json: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/MANIFEST.json: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/memory/entry_without_readable_run_token.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/memory/file_without_run_index_entry.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/memory/links_in_each_form_bullet.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/memory/links_in_each_form_heading.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/memory/links_in_each_form_table.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/memory/prose_in_every_position_bullet.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/memory/prose_in_every_position_heading.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/memory/prose_in_every_position_table.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/memory/runs_section_mixed_with_dated_sections.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/memory/template_table_form.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/memory/unreadable_date.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/receipts/malformed_ledger.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/receipts/marker_carrying_ledger_entry.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/receipts/prose_in_every_position_central.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/receipts/prose_in_every_position_ledger.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/receipts/prose_structured_ledger_entry.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/receipts/receipt_folder_diverges_from_cursor.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/receipts/receipt_without_examined_through.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/work_graph/duplicated_run_identity.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/work_graph/links_and_bindings.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/work_graph/missing_run_identity.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/work_graph/no_node_table.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/work_graph/prose_in_every_position.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/work_graph/two_graphs_bind_one_deliverable_a.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/work_graph/two_graphs_bind_one_deliverable_b.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/work_graph/unrecognized_state_token.md: OK
+candidates/projects/pec/v2/tests/parsers/fixtures/synthetic/work_graph/unresolved_pr_number.md: OK
+candidates/projects/pec/v2/tests/parsers/test_parser_fixture_integrity.py: OK
+negative_controls_x1p.py: OK
+negative_controls_x1p.sh: OK
+report_x1p_pins.py: OK
+run_fixture_suite.sh: OK
+run_x1p_checks.sh: OK
+test_apply_x1p.py: OK
+verify_x1p_bindings.py: OK
+exit=0
+$ (cd projects/pec/execution/_Coordination/PEC_X1_FIXTURES_PREP_2026-09-26 && shasum -a 256 -c SHA256SUMS) | summary
+112
+exit=0

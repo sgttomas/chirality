@@ -1,0 +1,4 @@
+# 2026-09-27T17:19:08Z (date -u); cwd repo root; HEAD 16010b4ca9ab6c00247593177e1a8defa97a3ab6
+$ python3 tools/validation/validate_pec_loop_receipts.py --repo-root .
+VALID /Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-d104-act/projects/pec/loop/LOOP_RECEIPTS.md: frozen through Receipt-166; versioned receipt contract satisfied
+exit=0

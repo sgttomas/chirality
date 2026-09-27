@@ -1,0 +1,552 @@
+{
+ "deliverable": "DEL-02-02",
+ "quotes": [
+  {
+   "id": "Q01",
+   "text": "Decision register/packet parser",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-02-02",
+   "column": "Name",
+   "where": "Purpose opening; CLM-004"
+  },
+  {
+   "id": "Q02",
+   "text": "### The INDIRECT-8 (`DEL-01-01` + `DEL-02-01..07`) — Q2\n\n§3's mapping notes state a positive derivation: *\"parser items (SOW-011..017)\nunderlie OBJ-001/OBJ-002 through the record tier (SOW-001).\"*\n\n**Recommended — AFFIRM** `[OBJ-001, OBJ-002]` for all eight: it applies the\naccepted §3 rationale rather than superseding it.",
+   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Amendment_Preview.md",
+   "commit": "125cfacc1",
+   "where": "Objective warrant (Gate 3 record blockquote)"
+  },
+  {
+   "id": "Q03",
+   "text": "Parser items (SOW-011..017, SOW-095, SOW-096) underlie OBJ-001/OBJ-002 through the record tier (SOW-001), the derivation SCA-002 carried into the ledger at revision 1.2",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "Objective warrant (current §3 mapping note)"
+  },
+  {
+   "id": "Q04",
+   "text": "**Evidence for narrowing, stated because it is real:** OBJ-002's register locus\nis the reconciler layer — `SOW-018` (incremental, Git-delta-keyed), `SOW-019`\n(drift classification), `SOW-006` (SHA stamping). The parsers produce facts the\nSHA comparison operates over; they do not perform it. N1 would arguably\ndescribe the system more precisely than the §3 sentence does.",
+   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Amendment_Preview.md",
+   "commit": "125cfacc1",
+   "where": "Objective warrant (narrowing evidence blockquote)"
+  },
+  {
+   "id": "Q05",
+   "text": "INDIRECT-8 breadth",
+   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Decision_Log.md",
+   "commit": "125cfacc1",
+   "where": "Objective warrant (Gate 3 Question cell)"
+  },
+  {
+   "id": "Q06",
+   "text": "**AFFIRM** `OBJ-001;OBJ-002` for all eight (not N1, not N2)",
+   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Decision_Log.md",
+   "commit": "125cfacc1",
+   "where": "Objective warrant (Gate 3 Ruling cell)"
+  },
+  {
+   "id": "Q07",
+   "text": "### Gate 3 owner ruling — APPROVED 2026-07-25",
+   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Decision_Log.md",
+   "commit": "125cfacc1",
+   "where": "Objective warrant (Gate 3 heading)"
+  },
+  {
+   "id": "Q08",
+   "text": "Owner (Ryan Tufts) in-session; relayed by Agent 0. **Every question ruled as recommended.**",
+   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Decision_Log.md",
+   "commit": "125cfacc1",
+   "where": "Objective warrant (Gate 3 paragraph)"
+  },
+  {
+   "id": "Q09",
+   "text": "SOW-012,IN,Parse decision registers and decision packets (row identity and status only — never row prose),\"PEC-RCN-002, §7.1\",PKG-02,DEL-02-02,OBJ-001;OBJ-002,,FALSE,Content-minimal (C6)",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-001 (ledger row)"
+  },
+  {
+   "id": "Q10",
+   "text": "The reconciler shall ingest, per the closed, PEC-versioned feed profile declared on each loop-registry row (§16.3; PEC's reading hypothesis, never the loop's truth), at minimum: `_STATUS.md` (declared parser dialect); decision registers and packets (row identity and status only); receipts — `LOOP_RECEIPTS.md` ledgers (per-loop grammar; the `receipt-contract-v2` marker where a ledger carries it; live or declared historical per profile) and central `execution/_Coordination/AgentRuns/<RunID>/RECEIPT.md`; run evidence — deliverable `MEMORY.md` run-index entries as RunRecord join evidence, with `STATUS.json` / `RUNTIME_SUMMARY.json` as declared historical grammar or current evidence per profile; dependency registers (`Dependencies.csv`; `WORK_GRAPH.json` as declared historical grammar); work graphs `execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md` (content-minimal; integration ref by default, local branch refs opt-in and labelled unintegrated; cited PR numbers resolved to local merge commits by read-only plumbing, reported when unresolved locally, never guessed); and `LOOP_INIT.md` loop identity, entrypoint and procedure SHA only (workplans as declared historical grammar). Per-project `_harness/adapter.yaml` is a parity-peer input only, read to compare PEC's declared census population with the harness `status_glob` (divergence is a DriftFinding); it is not the feed manifest.",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-002 (PEC-RCN-002, PRD v2.4)"
+  },
+  {
+   "id": "Q11",
+   "text": "Record tier (reconciled from file truth; citable with sources)",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-002 (§7.1 heading)"
+  },
+  {
+   "id": "Q12",
+   "text": "Register-row identity and status only (decision ID, packet path, anchor, state — never the row's prose; PEC-K-10)",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-002 (§7.1 DecisionRow row)"
+  },
+  {
+   "id": "Q13",
+   "text": "Orientation for any loop is a sub-second query with per-claim citations, not a session-length prose derivation",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-003 (OBJ-001)"
+  },
+  {
+   "id": "Q14",
+   "text": "Staleness is detected structurally by SHA comparison, never by judgment",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-003 (OBJ-002)"
+  },
+  {
+   "id": "Q15",
+   "text": "Parser + fixture tests",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-02-02",
+   "column": "AnticipatedArtifacts",
+   "where": "CLM-004"
+  },
+  {
+   "id": "Q16",
+   "text": "| DEL-02-02 | Decision register/packet parser | BACKEND_FEATURE_SLICE | M | P1 | SOW-012 |",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-004 (§5 PKG-02 table row)"
+  },
+  {
+   "id": "Q17",
+   "text": "Row identity and status extraction from decision registers and packets — never row prose (content-minimal).",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-02-02",
+   "column": "Description",
+   "where": "CLM-004"
+  },
+  {
+   "id": "Q18",
+   "text": "PEC-RCN-002's enumerated feed list is split into seven scope items (SOW-011..017), one per feed kind",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-005 (DL-4)"
+  },
+  {
+   "id": "Q19",
+   "text": "Each feed is a separately testable parser with its own grammar",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-005 (DL-4 rationale, re-quoted to the source's exact words)"
+  },
+  {
+   "id": "Q20",
+   "text": "New feed kind under SCA-005 (DL-4, DL-20)",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-095",
+   "column": "Notes",
+   "where": "CLM-005 (SOW-095 note)"
+  },
+  {
+   "id": "Q21",
+   "text": "New feed kind under SCA-005 (DL-4, DL-20)",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-096",
+   "column": "Notes",
+   "where": "CLM-005 (SOW-096 note)"
+  },
+  {
+   "id": "Q22",
+   "text": "Read-side grammars over governed files: `_STATUS.md` dialect, decision registers/packets, receipts (ledgers and central `RECEIPT.md`), Markdown work graphs, the MEMORY run index and `LOOP_INIT.md` identity as first-class feeds; run-evidence JSON, workplans and App/Piping ledgers as declared historical grammars; dependency registers; `adapter.yaml` as a parity-peer input",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-006 (PKG-02 charter)"
+  },
+  {
+   "id": "Q23",
+   "text": "Writing anything; interpretation beyond declared grammars",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-006 (PKG-02 out of scope)"
+  },
+  {
+   "id": "Q24",
+   "text": "Record-tier schema & entity model",
+   "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/Dependencies.csv",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "key_column": "DependencyID",
+   "key": "DEP-02-02-003",
+   "column": "TargetName",
+   "where": "CLM-007"
+  },
+  {
+   "id": "Q25",
+   "text": "Parser emits DecisionRow entities",
+   "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/Dependencies.csv",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "key_column": "DependencyID",
+   "key": "DEP-02-02-003",
+   "column": "Statement",
+   "where": "CLM-007"
+  },
+  {
+   "id": "Q26",
+   "text": "The acts that consume this model are owned by other deliverables and are cited here, never discharged",
+   "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/Dependencies.csv",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "key_column": "DependencyID",
+   "key": "DEP-02-02-003",
+   "column": "EvidenceQuote",
+   "where": "CLM-007"
+  },
+  {
+   "id": "Q27",
+   "text": "PROPOSAL; Flag=none; EdgeID=E-P04",
+   "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/Dependencies.csv",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "key_column": "DependencyID",
+   "key": "DEP-02-02-003",
+   "column": "Notes",
+   "where": "CLM-007"
+  },
+  {
+   "id": "Q28",
+   "text": "§3 mapping notes (as E-P03)",
+   "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/Dependencies.csv",
+   "commit": "3e5291138",
+   "kind": "csv_cell",
+   "key_column": "DependencyID",
+   "key": "DEP-02-02-003",
+   "column": "SourceRef",
+   "where": "CLM-007 (dated history, SourceRef at authoring)"
+  },
+  {
+   "id": "Q29",
+   "text": "§3 mapping notes (as E-P03)",
+   "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/Dependencies.csv",
+   "commit": "3e5291138",
+   "kind": "csv_cell",
+   "key_column": "DependencyID",
+   "key": "DEP-02-02-003",
+   "column": "EvidenceQuote",
+   "where": "CLM-007 (dated history, EvidenceQuote at authoring)"
+  },
+  {
+   "id": "Q30",
+   "text": "- **REQ-001** — The schema and entity model shall define exactly the sixteen record-tier entity types named in CLM-005 — Loop, Workplan, Step, Gate, Receipt, DecisionRow, Fence, Package, Deliverable, DependencyEdge, RunRecord, CandidateBrief, OrientationSnapshot, DriftFinding, WorkGraph, WorkNode — with none added and none dropped, and each type shall carry a recorded trace to its `PRD.md` §7.1 row and stated purpose (CLM-006).",
+   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+   "commit": "125cfacc1",
+   "where": "CLM-008 (DEL-01-01 REQ-001, D-PEC-100 postimage)"
+  },
+  {
+   "id": "Q31",
+   "text": "- **REQ-003** — Every record-tier entity type shall carry provenance sufficient for a per-claim citation to its live source — file path, anchor, and/or SHA, per `PEC-ORI-004` — because §7.1 defines the tier as \"citable with sources\".",
+   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+   "commit": "125cfacc1",
+   "where": "CLM-008 (DEL-01-01 REQ-003, first sentence)"
+  },
+  {
+   "id": "Q32",
+   "text": "- **REQ-007** — No field of any type shall admit file content or diff content (`PEC-K-10`: \"Paths, counts, SHAs, states, hashes — never file or diff content\"). DecisionRow shall carry register-row identity and status only — decision ID, packet path, anchor, state — and shall have no field capable of holding the row's prose; no WorkGraph or WorkNode field shall be capable of holding graph prose, and no RunRecord field a run description. Enforcement at the ingest boundary is `DEL-01-03`'s guard under `SOW-056` (CLM-012); this requirement binds the shape of the schema so that the guard has nothing to admit into.",
+   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+   "commit": "125cfacc1",
+   "where": "CLM-008 (DEL-01-01 REQ-007)"
+  },
+  {
+   "id": "Q33",
+   "text": "a fixture carrying file content, diff hunks, register-row prose, work-graph outcome text and a `MEMORY.md` run description cannot be expressed in the model",
+   "source": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/ScopeOfWork.md",
+   "commit": "125cfacc1",
+   "where": "CLM-008 (DEL-01-01 AC-006)"
+  },
+  {
+   "id": "Q34",
+   "text": "PEC-RCN-002 feed list (DL-4)",
+   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+   "commit": "125cfacc1",
+   "where": "CLM-009 (E-P20 gate-exhibit evidence)"
+  },
+  {
+   "id": "Q35",
+   "text": "Full rebuild ingests decision registers/packets",
+   "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "key_column": "DependencyID",
+   "key": "DEP-03-01-009",
+   "column": "Statement",
+   "where": "CLM-009"
+  },
+  {
+   "id": "Q36",
+   "text": "decision registers and packets (row identity and status only)",
+   "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "key_column": "DependencyID",
+   "key": "DEP-03-01-009",
+   "column": "EvidenceQuote",
+   "where": "CLM-009"
+  },
+  {
+   "id": "Q37",
+   "text": "The reliance-advertisement gate composes the DEL-02-02 parser fixture suite",
+   "source": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/Dependencies.csv",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "key_column": "DependencyID",
+   "key": "DEP-10-13-008",
+   "column": "Statement",
+   "where": "CLM-009"
+  },
+  {
+   "id": "Q38",
+   "text": "Non-governing tracking surface",
+   "source": "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+   "commit": "125cfacc1",
+   "where": "CLM-011"
+  },
+  {
+   "id": "Q39",
+   "text": "confers no authority",
+   "source": "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+   "commit": "125cfacc1",
+   "where": "CLM-011; AX-002"
+  },
+  {
+   "id": "Q40",
+   "text": "`execution/_Coordination/_DECISIONS/D-PEC-XX_<slug>.md`",
+   "source": "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+   "commit": "125cfacc1",
+   "where": "CLM-011 (packet location)"
+  },
+  {
+   "id": "Q41",
+   "text": "`NOT_PREPARED` -> `AWAITING_RULING` (packet drafted) -> `RULED` (pointer to the human record)",
+   "source": "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+   "commit": "125cfacc1",
+   "where": "CLM-011 (row states)"
+  },
+  {
+   "id": "Q42",
+   "text": "ID | Decision | Blocks | State | Packet | Ruling record",
+   "source": "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+   "commit": "125cfacc1",
+   "where": "CLM-011 (PEC register columns)"
+  },
+  {
+   "id": "Q43",
+   "text": "RULED A / EFFECTIVE ON MERGE",
+   "source": "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+   "commit": "125cfacc1",
+   "where": "CLM-011 (compound State value, e.g. D-PEC-89)"
+  },
+  {
+   "id": "Q44",
+   "text": "RULED K4+C / K1 / V / EFFECTIVE ON MERGE",
+   "source": "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+   "commit": "125cfacc1",
+   "where": "CLM-011 (compound State value, D-PEC-101)"
+  },
+  {
+   "id": "Q45",
+   "text": "ID | Decision | My recommendation | HumanRuling | Unblocks",
+   "source": "_DomainEngines/_DECISIONS/_REGISTER.md",
+   "commit": "125cfacc1",
+   "where": "CLM-011 (tier-0 register columns)"
+  },
+  {
+   "id": "Q46",
+   "text": "**RULED: keep both (7 tokens)**",
+   "source": "_DomainEngines/_DECISIONS/_REGISTER.md",
+   "commit": "125cfacc1",
+   "where": "CLM-011 (HumanRuling example)"
+  },
+  {
+   "id": "Q47",
+   "text": "STALE_REVIEW_REQUIRED (quotation)",
+   "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
+   "commit": "125cfacc1",
+   "where": "CLM-013 (B4 class)"
+  },
+  {
+   "id": "Q48",
+   "text": "PEC-RCN-002 quotation only",
+   "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
+   "commit": "125cfacc1",
+   "where": "CLM-013 (B4 cause)"
+  },
+  {
+   "id": "Q49",
+   "text": "Carry-forward for the parser SOWs (DEL-02-01, DEL-02-08, DEL-02-09): the DEL-01-03 content-minimal guard admits only `OPEN`..`ISSUED` as STATE values (true before and after D-PEC-87/89/91), so `RETIRED`, graph node states and run tokens are CON-001 cases those SOWs must address.",
+   "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
+   "commit": "125cfacc1",
+   "where": "CLM-013 (B4 carry-forward blockquote)"
+  },
+  {
+   "id": "Q50",
+   "text": "Path conventions and grammars for each profile live in PEC's adapters.",
+   "source": "projects/pec/v2/config/loops.schema.json",
+   "commit": "125cfacc1",
+   "where": "TBD-004"
+  },
+  {
+   "id": "Q51",
+   "text": "interpretation beyond declared grammars",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "REQ-002"
+  },
+  {
+   "id": "Q52",
+   "text": "Paths, counts, SHAs, states, hashes — never file or diff content",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "REQ-003 (PEC-K-10)"
+  },
+  {
+   "id": "Q53",
+   "text": "Content-minimal (C6)",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-012",
+   "column": "Notes",
+   "where": "REQ-003 (ledger note)"
+  },
+  {
+   "id": "Q54",
+   "text": "never row prose",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "REQ-003 (SOW-012)"
+  },
+  {
+   "id": "Q55",
+   "text": "never the row's prose",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "REQ-003 (§7.1)"
+  },
+  {
+   "id": "Q56",
+   "text": "citable with sources",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "REQ-005"
+  },
+  {
+   "id": "Q57",
+   "text": "Where a feed is unparseable or stale, the response shall state the measurement limitation explicitly; silent omission is prohibited",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "REQ-006 (PEC-ORI-006)"
+  },
+  {
+   "id": "Q58",
+   "text": "it shall never modify a source file",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "REQ-007 (PEC-RCN-004)"
+  },
+  {
+   "id": "Q59",
+   "text": "The reconciler writes only its own store and generated views",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "REQ-007 (PEC-RCN-006)"
+  },
+  {
+   "id": "Q60",
+   "text": "Writing anything",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "REQ-007 (PKG-02 out of scope)"
+  },
+  {
+   "id": "Q61",
+   "text": "fenced or flagged, never guessed",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "REQ-009 (C12)"
+  },
+  {
+   "id": "Q62",
+   "text": "Whether decision registers gain light structure at source (machine-parse aids) or remain prose parsed best-effort",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CON-001 (§16.1)"
+  },
+  {
+   "id": "Q63",
+   "text": "Assessed (not PRD-stated): affects SOW-012 parser depth only; both paths buildable",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-075",
+   "column": "Notes",
+   "where": "CON-001 (SOW-075 note)"
+  },
+  {
+   "id": "Q64",
+   "text": "decision registers and packets",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CON-002"
+  },
+  {
+   "id": "Q65",
+   "text": "PEC shall provide no write path that records adoption, ruling, or direction",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "AX-002 (PEC-GAT-004)"
+  },
+  {
+   "id": "Q66",
+   "text": "link-only, source-linked (no restatement of authored text; PEC-K-10)",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "AX-002 (PEC-DSH-003)"
+  },
+  {
+   "id": "Q67",
+   "text": "all strata as presented",
+   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-62_project_setup_scaffold_and_local_dependency_registers.md",
+   "commit": "125cfacc1",
+   "where": "AX-005 (D-PEC-62 item 4)"
+  },
+  {
+   "id": "Q68",
+   "text": "strata are provenance not authority",
+   "source": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_DEPENDENCIES.md",
+   "commit": "125cfacc1",
+   "where": "AX-005 (C-10)"
+  },
+  {
+   "id": "Q69",
+   "text": "where one materially affects architecture the affected work is fenced or flagged, never guessed",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "AX-007 (C12)"
+  }
+ ]
+}

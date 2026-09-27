@@ -1,0 +1,66 @@
+$ date -u
+Sun Sep 27 17:42:19 UTC 2026
+cwd: repo root; HEAD 2886540c0a154bdd667b84f7648266bda1c70d14; write_status.sh sha256 0bf835f54f4bb9a78a51d0b56392a8686d1f255f06d3c2bcaf7e8665f77bece3
+$ zsh tools/scaffolding/write_status.sh "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars" IN_PROGRESS "WORKING_ITEMS at actual D-PEC-106 X1 production start; semantic step skipped under Root docs/SPEC.md §3.3; ruling, preflights and act evidence in execution/_Coordination/X1_FIXTURES_2026-09-27/"
+Status: DEL-02-03 → IN_PROGRESS (by WORKING_ITEMS at actual D-PEC-106 X1 production start; semantic step skipped under Root docs/SPEC.md §3.3; ruling, preflights and act evidence in execution/_Coordination/X1_FIXTURES_2026-09-27/)
+exit=0
+$ zsh tools/scaffolding/write_status.sh "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser" IN_PROGRESS "WORKING_ITEMS at actual D-PEC-106 X1 production start; semantic step skipped under Root docs/SPEC.md §3.3; ruling, preflights and act evidence in execution/_Coordination/X1_FIXTURES_2026-09-27/"
+Status: DEL-02-08 → IN_PROGRESS (by WORKING_ITEMS at actual D-PEC-106 X1 production start; semantic step skipped under Root docs/SPEC.md §3.3; ruling, preflights and act evidence in execution/_Coordination/X1_FIXTURES_2026-09-27/)
+exit=0
+$ zsh tools/scaffolding/write_status.sh "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser" IN_PROGRESS "WORKING_ITEMS at actual D-PEC-106 X1 production start; semantic step skipped under Root docs/SPEC.md §3.3; ruling, preflights and act evidence in execution/_Coordination/X1_FIXTURES_2026-09-27/"
+Status: DEL-02-09 → IN_PROGRESS (by WORKING_ITEMS at actual D-PEC-106 X1 production start; semantic step skipped under Root docs/SPEC.md §3.3; ruling, preflights and act evidence in execution/_Coordination/X1_FIXTURES_2026-09-27/)
+exit=0
+$ shasum -a 256 postimages
+84b238d263c6272f9e4845ad7c2804cf871bd417e40b161026e0fc91bf4c9b5e  projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_STATUS.md
+bfc995867fa2c87fb7c94acaf95c64fbc42aade174ac77c5c92ace14e3451ff6  projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_STATUS.md
+50bc10f4135b49e669921ee7d733b5e2bda0c4bcf541c7b2f8fb5ce8f034372a  projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_STATUS.md
+$ git diff -- '**/_STATUS.md'
+diff --git a/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_STATUS.md b/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_STATUS.md
+index 6004aef5b..2d1966ede 100644
+--- a/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_STATUS.md
++++ b/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_STATUS.md
+@@ -1,9 +1,10 @@
+ # Status: DEL-02-03
+
+-**Current State:** INITIALIZED
+-**Last Updated:** 2026-09-26
++**Current State:** IN_PROGRESS
++**Last Updated:** 2026-09-27
+
+ ## History
+ - 2026-07-25 — State set to OPEN (PREPARATION)
+ - 2026-07-25 — State set to INITIALIZED (TASK+status-advance)
+ - 2026-09-26 — `## Remaining` section retired under D-PEC-99 by WORKING_ITEMS (PEC Remaining retirement). Its items, with their original text, are accounted for in `execution/_Coordination/_TaskManagement/TM_PEC_REMAINING_RETIREMENT_2026-09-26/`; each was moved verbatim, with its gate, or closed: DEL-02-03-REM-001 → the `D-PEC-83` E evidence-inquiry set in the D-PEC-99 exhibit (still unselected). Exhibit: `execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md`. No lifecycle change: no CHECKING, ISSUED or artifact acceptance is implied.
++- 2026-09-27 — State set to IN_PROGRESS (WORKING_ITEMS at actual D-PEC-106 X1 production start; semantic step skipped under Root docs/SPEC.md §3.3; ruling, preflights and act evidence in execution/_Coordination/X1_FIXTURES_2026-09-27/)
+diff --git a/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_STATUS.md b/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_STATUS.md
+index 4acc51767..60c80cd87 100644
+--- a/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_STATUS.md
++++ b/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-08_Work_graph_parser/_STATUS.md
+@@ -1,8 +1,9 @@
+ # Status: DEL-02-08
+
+-**Current State:** INITIALIZED
+-**Last Updated:** 2026-09-26
++**Current State:** IN_PROGRESS
++**Last Updated:** 2026-09-27
+
+ ## History
+ - 2026-09-25 — State set to OPEN (TASK+preparation)
+ - 2026-09-26 — State set to INITIALIZED (TASK+status-advance)
++- 2026-09-27 — State set to IN_PROGRESS (WORKING_ITEMS at actual D-PEC-106 X1 production start; semantic step skipped under Root docs/SPEC.md §3.3; ruling, preflights and act evidence in execution/_Coordination/X1_FIXTURES_2026-09-27/)
+diff --git a/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_STATUS.md b/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_STATUS.md
+index 9f5ef1ee4..6ce0a6cc8 100644
+--- a/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_STATUS.md
++++ b/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-09_MEMORY_run_index_parser/_STATUS.md
+@@ -1,8 +1,9 @@
+ # Status: DEL-02-09
+
+-**Current State:** INITIALIZED
+-**Last Updated:** 2026-09-26
++**Current State:** IN_PROGRESS
++**Last Updated:** 2026-09-27
+
+ ## History
+ - 2026-09-25 — State set to OPEN (TASK+preparation)
+ - 2026-09-26 — State set to INITIALIZED (TASK+status-advance)
++- 2026-09-27 — State set to IN_PROGRESS (WORKING_ITEMS at actual D-PEC-106 X1 production start; semantic step skipped under Root docs/SPEC.md §3.3; ruling, preflights and act evidence in execution/_Coordination/X1_FIXTURES_2026-09-27/)

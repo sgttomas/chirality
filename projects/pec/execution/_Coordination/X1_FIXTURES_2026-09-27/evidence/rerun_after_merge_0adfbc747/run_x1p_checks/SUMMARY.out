@@ -1,0 +1,17 @@
+basis commit: 0adfbc7476df33521883ce1573781237cd24d384
+python: Python 3.13.7; git: git version 2.54.0 (Apple Git-157)
+PASS act: check-only 0, apply 0, rerun refuses 1
+PASS containment: software-workflow.json modified; new directory v2/tests/parsers with 34 files; nothing else
+INFO affected checks: harness-self-check v2-api-contract v2-core-posture v2-loop-registry v2-parsers v2-store-guard
+PASS registered checks after the act: v2-parsers exit=0 v2-core-posture exit=0 v2-api-contract exit=0 v2-loop-registry exit=0 v2-store-guard exit=0 harness-self-check exit=0
+PASS v2-parsers verbose: 10 tests ok
+PASS bindings: RESULT PASS 442/442
+PASS pins: RESULT PASS 19/19
+PASS draft claims and quotes (two-sided): RESULT PASS 67/67
+PASS strict identical before/after, export root normalized (exit=1)
+PASS harness identical before/after, export root normalized (exit=0)
+PASS receipts identical before/after, export root normalized (exit=0)
+PASS candidate hygiene
+PASS fault injection: RESULT PASS 11/11
+PASS negative controls: RESULT PASS 20/20
+OVERALL PASS

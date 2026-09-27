@@ -1,0 +1,27 @@
+{
+ "amendmentId": "SCA-APP-011",
+ "auditDate": "2026-09-27",
+ "closureStatus": "OPEN",
+ "actionRegister": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-011_2026-09-27_0155_Workbench_Pipeline_Forms_and_Deliverable_Routes_Retirement/Amendment_Actions.csv",
+ "totalActions": 29,
+ "actionsVerified": 29,
+ "actionsDiscrepant": 0,
+ "actionsNotExecuted": 0,
+ "actionsDeferredByHuman": 0,
+ "actionsSuperseded": 0,
+ "downstreamRerunsRecommended": 13,
+ "downstreamRerunsCompleted": 3,
+ "downstreamRerunsDeferredOrNotActivated": 0,
+ "orphanedReferencesFound": 0,
+ "retiredSurfaceScreenRows": 11,
+ "contentRemediationState": "NOT_REQUIRED",
+ "ktyRemediationRows": 0,
+ "ktyRemediationRowsBlocked": 0,
+ "archiveScannerLeaks": 0,
+ "findingsBySeverity": {
+  "CRITICAL": 0,
+  "MAJOR": 16,
+  "MINOR": 5,
+  "OBSERVATION": 1
+ }
+}

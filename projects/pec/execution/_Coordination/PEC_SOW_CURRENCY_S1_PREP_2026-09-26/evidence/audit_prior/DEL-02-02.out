@@ -1,0 +1,18 @@
+=== DEL-02-02 projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/ScopeOfWork.md
+L77 SELF: '``SOW-012,IN,Parse decision registers and decision packets (row identity and status only — never row prose),"PEC-RCN-002, §7.1",PKG-02,DEL-02-02,OBJ-001;OBJ-002'
+L77 SELF: '``SOW-012,IN,Parse decision registers and decision packets (row identity and status only — never row prose),"PEC-RCN-002, §7.1",PKG-02,DEL-02-02,OBJ-001;OBJ-002'
+L77 SELF: '`Notes` `Content-minimal (C6)`.)'
+L109 SELF: '- REQ-001 — The schema and entity model shall define exactly the fourteen record-tier entity types named in CLM-005 — Loop, Workplan, Step, Gate, Receipt, Decis'
+L109 OTHER-SOW DEL-03-01: '- REQ-001 — The schema and entity model shall define exactly the fourteen record-tier entity types named in CLM-005 — Loop, Workplan, Step, Gate, Receipt, Decis'
+L109 OTHER-SOW DEL-01-01: '- REQ-003 — Every record-tier entity type shall carry provenance sufficient for a per-claim citation to its live source — file path, anchor, and/or SHA, per `PE'
+L109 SELF: '[…] - REQ-007 — No field of any type shall admit file content or diff content (`PEC-K-10`:'
+L109 OTHER-SOW DEL-01-01: '"Paths, counts, SHAs, states, hashes — never file or diff content").'
+L109 OTHER-SOW DEL-03-01: "DecisionRow shall carry register-row identity and status only — decision ID, packet path, anchor, state — and shall have no field capable of holding the row's p"
+L109 OTHER-SOW DEL-02-01: "Enforcement at the ingest boundary is `DEL-01-03`'s guard under `SOW-056`;"
+L109 OTHER-SOW DEL-01-01: 'this requirement binds the shape of the schema so that the guard has nothing to admit into.'
+L109 OTHER-SOW DEL-01-06: 'ID-shaped text inside this quotation is upstream source context, not a local definition or reference.'
+L109 SELF: "The bracketed ellipsis marks an elision of that requirement's closing sentence, which assigns the citation-attaching act to another deliverable.)"
+L104 OTHER-SOW DEL-02-01: "Each feed is a separately testable parser with its own grammar; a single 'ingest everything' item is not atomic"
+L132 S2-STALE DEL-01-01: 'a fixture carrying file content, diff hunks, and register-row prose cannot be expressed in the model'
+L170 SELF: ', with the `SOW-075` note recording the assessment'
+--- DEL-02-02 counts {'UPSTREAM': 43, 'SELF': 7, 'OTHER-SOW': 8, 'S2-STALE': 1}
