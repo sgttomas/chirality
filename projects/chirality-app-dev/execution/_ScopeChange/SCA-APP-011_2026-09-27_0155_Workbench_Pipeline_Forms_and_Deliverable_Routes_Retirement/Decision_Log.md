@@ -11,7 +11,7 @@ that checkpoint. This log only indexes it.
 | SEL-1 | 2026-09-27 | Group-1 choices (AskUserQuestion) | A "Rescope it (Recommended)"; B "Exclude it (Recommended)"; D "Restate them (Recommended)"; S "Remove the route too" | Stated selections, not a checkpoint acceptance (`Brief.md`) | — |
 | G1-ACCEPT | 2026-09-27 | Checkpoint group 1 | "I accept SCA-APP-011 checkpoint group 1" | BASE + DQ-R + S-c; D restate; L excluded; E no change; M-a; scaffold library kept | `checkpoint_snapshots/SCA-APP-011_GROUP-1_2026-09-27/` |
 | G2-ACCEPT | 2026-09-27 | Checkpoint group 2 | "Accept SCA-APP-011 group 2: W-a, Q-a, with the revision-2 corrections and row 29." | W-a; Q-a; exact amendment (127 edits, 16 files; E47 acceptance-conditional); register of 29 rows; 18 supersession rows; revision-2 corrections 1–5, including the M-a tool-owner truth correction (G1-NOTE-1); row 29 (DEL-07-01) recorded as a reopened group-1 item decided by this act | `checkpoint_snapshots/SCA-APP-011_GROUP-2_2026-09-27/` |
-| G3 | — | Checkpoint group 3 | Awaiting owner: the candidate poststate and `RUN_SUMMARY.md` (presentation at top), reviewed jointly with the code candidate (Q-a) | — | — |
+| G3-ACCEPT | 2026-09-27 | Checkpoint group 3 | "I accept SCA-APP-011 checkpoint group 3" | Audited poststate accepted with the code candidate (Q-a), including correction G3C-01 and basis refresh G3B-01; E47, `_LATEST.md`, the Runtime notice and these records applied as listed in `Evidence/Group3/ACCEPTANCE_CONDITIONAL_EDITS.csv` | `checkpoint_snapshots/SCA-APP-011_GROUP-3_2026-09-27/` |
 
 ## Notes on accepted records (not owner acts)
 

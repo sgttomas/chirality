@@ -1,93 +1,78 @@
-# SCA-APP-011 — Handoff State (group-3 CANDIDATE)
+# SCA-APP-011 — Handoff State (ACCEPTED)
 
-**State:** `CANDIDATE`. This file is not accepted and is not the active
-snapshot. `_LATEST.md` names SCA-APP-010 and stays unchanged until checkpoint
-group 3 is accepted.
+**State:** `ACCEPTED`. The owner accepted checkpoint group 3 on
+2026-09-27 ("I accept SCA-APP-011 checkpoint group 3";
+`execution/_ScopeChange/checkpoint_snapshots/SCA-APP-011_GROUP-3_2026-09-27/`).
+This folder is the active snapshot, and `_LATEST.md` names it.
 
-## Candidate and pointer posture
+## Snapshot and pointer
 
 | Item | Value |
 |---|---|
-| `CANDIDATE_SNAPSHOT` | `execution/_ScopeChange/SCA-APP-011_2026-09-27_0155_Workbench_Pipeline_Forms_and_Deliverable_Routes_Retirement/` (the only candidate path for this attempt) |
-| Pointer posture | `ACCEPTED_PREDECESSOR` |
-| `ACCEPTED_PREDECESSOR_SNAPSHOT` | `execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/` (`_LATEST.md` SHA-256 `6fdba0c96f6d1d6c2dc60c35219fb51f8a9fd9bbee9e390c5653398a742c04e3`, verified unchanged) |
-| `ACCEPTED_GROUP2_DECISION_SNAPSHOT` | `execution/_ScopeChange/checkpoint_snapshots/SCA-APP-011_GROUP-2_2026-09-27/`, pointer `SCA-APP-011_GROUP-2_AUTHORIZED.md`. Verified to bind the exact amendment, the register, `Propagation_Plan.md`, `Supersession_Delta.csv` and the prior SCA-APP-010 map by hash |
-| Expected pre-acceptance pointer state | `_LATEST.md` → SCA-APP-010 (unchanged) |
-| Artifact completeness | Present: `Brief.md`, `Intake_Actions.csv`, `Impact_Assessment.md`, `Pre_Change_Coverage.json`, `Amendment_Preview.md`, `Propagation_Plan.md`, `Amendment_Actions.csv`, `Supersession_Delta.csv`, `Supersession_Map.csv`, `Post_Change_Coverage.json`, `Decision_Log.md`, `Handoff_State.md`, `RUN_SUMMARY.md`, `Evidence/`. Not applicable to SOFTWARE: `Domain_Integrity_*`, `KTY_Remediation_Manifest.csv` |
+| Active snapshot | `execution/_ScopeChange/SCA-APP-011_2026-09-27_0155_Workbench_Pipeline_Forms_and_Deliverable_Routes_Retirement/` |
+| Pointer | `_LATEST.md` → SCA-APP-011 (from `Evidence/Group3/LATEST_POSTIMAGE.md`) |
+| Accepted predecessor | `execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/` (historical) |
+| Decision records | Group 1 `checkpoint_snapshots/SCA-APP-011_GROUP-1_2026-09-27/`; group 2 `checkpoint_snapshots/SCA-APP-011_GROUP-2_2026-09-27/`; group 3 `checkpoint_snapshots/SCA-APP-011_GROUP-3_2026-09-27/` |
+| Post-acceptance validation | `execution/_ScopeChange/_PostAcceptanceValidation/SCA-APP-011_20260927T044456Z/` |
 
-## Integrated revision
+## Authoritative truth changed
 
-Branch `claude/brave-goodall-wj3hok`: the scope text (`94befbf6c`, with
-G3C-01 applied at `3f75abfab`) plus the code change (`5ba17042b`,
-`653fdfb72`). The group-3 corrections (G3C-01, a correction of accepted text
-in the DEL-07-04 Scope of Work; G3B-01, a SPEC basis refresh with no text
-change) are in `Evidence/Group3/G3_CORRECTIONS.md` and are presented for the
-owner's group-3 act. After acceptance, `Evidence/Group3/group3_corrections.py
---finalize` applies E47. The group-2 `--finalize` is not used, because it
-would refuse the two G3 files.
-
-## Authoritative truth changed by the candidate
-
-The candidate writes the accepted scope text: 126 of 127 edits in 16 files.
+The accepted scope text: 127 edits in 16 files, including E47, applied on
+acceptance by `Evidence/Group3/group3_corrections.py --finalize`, with the
+group-3 correction G3C-01 and the SPEC basis refresh G3B-01
+(`Evidence/Group3/G3_CORRECTIONS.md`).
 - The decomposition, PRD, SPEC and PLAN.
 - Nine Scopes of Work: DEL-02-02, DEL-02-03, DEL-03-03, DEL-07-01, DEL-07-02,
   DEL-07-04, DEL-07-05, DEL-08-03 and DEL-09-03.
 - Three `_CONTEXT.md` files: DEL-02-02, DEL-07-04 and DEL-08-03.
 
-E47 is withheld until acceptance. The scope-text candidate changes no code,
-`_STATUS.md`, `Dependencies.csv` or companion register; the code change is the
-separate App-loop half of the integrated revision (above).
+The code change of `Propagation_Plan.md` §4 lands in the same PR (Q-a). No
+`_STATUS.md`, `Dependencies.csv` or companion register is changed.
 
 ## Authoritative action register
 
 `Amendment_Actions.csv`, SHA-256
 `416097312beffa47143b2993bfe17721e5c312630789a1101e6cbda688edbc22`, as
 accepted in `checkpoint_snapshots/SCA-APP-011_GROUP-2_2026-09-27/`. It has
-29 rows, and row 29 (DEL-07-01) is a reopened group-1 item decided at group 2.
-`Intake_Actions.csv` is group-1 evidence only.
+29 rows. `Intake_Actions.csv` is group-1 evidence only.
 
 ## State fields
 
 | Field | Value | Why |
 |---|---|---|
-| `DecompositionTruthState` | `INCOMPLETE` | Candidate written; E47 waits for acceptance |
-| `DerivativePackageState` | `INCOMPLETE` | Dependency registers, audits and exports not yet rerun (below) |
+| `DecompositionTruthState` | `COMPLETE` | All accepted decomposition edits applied, E47 included |
+| `DerivativePackageState` | `INCOMPLETE` | Dependency registers and the full audits are not yet rerun (below) |
 | `ContentRemediationState` | `NOT_REQUIRED` | SOFTWARE variant; no KTY content |
-| `DownstreamRerunState` | `FROZEN` | Downstream reruns start after group-3 acceptance |
+| `DownstreamRerunState` | `IN_PROGRESS` | The downstream handoffs below are open |
 | `MetadataAlignmentState` | `NOT_REQUIRED` | SOFTWARE variant |
-| `AuditState` | `WARNINGS` | Raw deterministic post-change findings, all carried unchanged from the pre-change baseline (`RUN_SUMMARY.md` §4). The independent review of `3d8ead912` found no blocking finding (`RUN_SUMMARY.md` §8) |
-| `AdjustedAuditState` | `WARNINGS` | The same carried findings; no new finding; expected consequences listed in `RUN_SUMMARY.md` §4 |
+| `AuditState` | `WARNINGS` | The carried pre-existing findings F1–F4 (`RUN_SUMMARY.md` §4); the post-acceptance validation record reruns the registered tools |
+| `AdjustedAuditState` | `WARNINGS` | The same carried findings; no new finding |
 | `ReadyForNextPhase` | `NOT_APPLICABLE` | SOFTWARE variant |
 
 ## Derivative-package state
 
 | Package | Owner | Status | Evidence | Next required action |
 |---|---|---|---|---|
-| Dependency registers (DEL-02-02 DEP-02-02-005..009; DEL-07-05 DEP-07-05-025; DEL-02-01, DEL-02-03, DEL-07-04, DEL-08-02, DEL-08-03 wording) | `dependency-extract` | STALE | `Propagation_Plan.md` §7–8 | Re-extract after acceptance, then `analyze_dep_closure.py` |
-| Code change (forms, routes, client module, scaffold route and port member, test split) | App loop, per `Propagation_Plan.md` §4 | INTEGRATED and independently reviewed (commits `5ba17042b`, `653fdfb72` on `claude/brave-goodall-wj3hok`) | run receipt `APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md`; `RUN_SUMMARY.md` | One PR after group-3 acceptance, once PR CI passes |
-| `RouteAdapterTestIndex.md` (DEL-03-03, lines 24 and 46 at basis) | App loop code change | DONE (both rows dropped) | commit `653fdfb72` | None |
-| `dcd37f9ae` records (run receipt, Receipt-269, APP-TRANSITION-FORMS note, MEMORY rows) | App loop code change | DONE; the group-2 snapshot is bound by hash (commit `3f75abfab`) | run receipt; `loop/LOOP_RECEIPTS.md` Receipt-269; tranche manifest | None |
+| Dependency registers (DEL-02-02 DEP-02-02-005..009; DEL-07-05 DEP-07-05-025; DEL-02-01, DEL-02-03, DEL-07-04, DEL-08-02, DEL-08-03 wording) | `dependency-extract` | STALE | `Propagation_Plan.md` §7–8 | Re-extract, then `analyze_dep_closure.py` |
+| Code change | App loop | LANDS WITH THE SCOPE TEXT (Q-a) | run receipt `APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md` | None after merge |
 | Task Management APP-R058 | Row owner | OPEN | `Propagation_Plan.md` §8 item 6 | Record "closed by removal under SCA-APP-011" |
-| Runtime notice | WORKING_ITEMS after acceptance | DRAFT; exact post-image prepared | `Evidence/Group3/RUNTIME_NOTICE_POSTIMAGE.md` | Send after acceptance (acceptance-conditional item 4) |
+| Runtime notice | WORKING_ITEMS | SENT | `projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-27_APP_SCA-APP-011_SCAFFOLD_API.md` | The Runtime loop decides on its scaffold API |
 
 ## Active derivative-surface state
 
 | Surface | Classification | Status | Evidence |
 |---|---|---|---|
-| `_Evaluation/DecompCoverage` | STALE_REBUILD_REQUIRED | Candidate baseline in `Post_Change_Coverage.json`; full `audit-decomp` after acceptance | `Evidence/Group3/PRE_POST_COMPARISON.md` |
-| `_Evaluation/ScopeClosureAudit` | STALE_REBUILD_REQUIRED | After incremental setup and the code change | — |
+| `_Evaluation/DecompCoverage` | STALE_REBUILD_REQUIRED | Full `audit-decomp` to run | `Post_Change_Coverage.json` |
+| `_Evaluation/ScopeClosureAudit` | STALE_REBUILD_REQUIRED | After incremental setup | — |
 | `_Reconciliation/DepClosure` | STALE_REBUILD_REQUIRED | After dependency re-extraction | — |
-| `exports/chirality-app` | REGENERATED | Regenerated in the integration branch's final commit | export tooling |
-| Companion register | NO_CHANGE (E) | Unchanged, SHA-256 `918e475a…a944` | `Post_Change_Coverage.json` |
+| `exports/chirality-app` | REGENERATED | Regenerated with the integrated candidate | export tooling |
+| Companion register | NO_CHANGE (E) | Unchanged | `Post_Change_Coverage.json` |
 
 ## Remaining blockers and human decisions
 
-- **Checkpoint group 3.** The owner accepts, amends or returns this candidate
-  together with the code candidate (Q-a). The independent review is complete
-  with no blocking finding; PR CI is still to run.
-- **No reopening.** All nine written deliverables are
-  `IN_PROGRESS`. No `ISSUED` deliverable is reopened, and no `CHECKING`
-  deliverable is held.
+- None for this amendment's acceptance. No `ISSUED` deliverable is reopened,
+  and no `CHECKING` deliverable is held; all nine written deliverables are
+  `IN_PROGRESS`.
 
 ## Closure verdict
 
@@ -95,12 +80,8 @@ accepted in `checkpoint_snapshots/SCA-APP-011_GROUP-2_2026-09-27/`. It has
 
 ## Next owning workflows
 
-1. **Group 3.** The owner's act (the independent review is complete).
-   After acceptance, apply the acceptance-conditional edits exactly
-   (`Evidence/Group3/ACCEPTANCE_CONDITIONAL_EDITS.csv`) and write the
-   `_PostAcceptanceValidation/` record.
-2. **`project-setup` in `INCREMENTAL` mode**, for the 29 MODIFY/ADD rows. It
-   scaffolds nothing, and the contracts are already written under W-a.
-3. **`dependency-extract`**, then `analyze_dep_closure.py`.
-4. **`audit-decomp`**, then `audit-scope-closure`, as the post-acceptance
+1. **`project-setup` in `INCREMENTAL` mode**, for the 29 register rows. It
+   scaffolds nothing; the contracts are already written (W-a).
+2. **`dependency-extract`**, then `analyze_dep_closure.py`.
+3. **`audit-decomp`**, then `audit-scope-closure`, as the post-acceptance
    closure check.

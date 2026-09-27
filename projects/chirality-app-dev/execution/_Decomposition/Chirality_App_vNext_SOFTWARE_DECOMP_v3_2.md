@@ -497,8 +497,8 @@ For scope-item assignment, this Scope Ledger is authoritative. Section 8 `Covers
 
 | Metric | Value |
 |---|---:|
-| Revision | v3.2 source-governed working surface amended by SCA-APP-010 |
-| Date | 2026-09-04 |
+| Revision | v3.2 source-governed working surface amended by SCA-APP-011 |
+| Date | 2026-09-27 |
 | ScopeItemCount | 84 |
 | PackageCount | 10 |
 | DeliverableCount | 52 |
