@@ -18,8 +18,6 @@ import {
   type HarnessOpts,
   type PermissionDecisionRequest,
   type ProviderCredentialPort,
-  type ScaffoldExecutionRootResponse,
-  type ScaffoldRequest,
   type SessionBootResponse,
   type SessionTurnRequest,
   type UIEvent
@@ -36,10 +34,6 @@ import { RuntimeMethodService, type TrustedNativePlanAdapterRegistry, type Produ
 export interface RuntimeCredentialStore extends ProviderCredentialPort {
   set(providerId: string, value: string): Promise<void>;
   remove(providerId: string): Promise<void>;
-}
-
-export interface ProjectScaffoldPort {
-  scaffold(projectId: string, request: ScaffoldRequest): Promise<ScaffoldExecutionRootResponse>;
 }
 
 export interface PermissionDecisionPort {
@@ -115,7 +109,6 @@ export class RuntimeService {
     readonly turns: TurnCoordinator,
     readonly auth: AuthRegistry,
     readonly credentials: RuntimeCredentialStore,
-    private readonly scaffoldPort?: ProjectScaffoldPort,
     private readonly agent1Runs?: Agent1RunPort,
     private readonly permissions?: PermissionDecisionPort,
     private readonly defaultSessionPolicy?: DefaultSessionPolicy,
@@ -614,14 +607,6 @@ export class RuntimeService {
       });
     }
     return agents.sort((left, right) => left.name.localeCompare(right.name));
-  }
-
-  async scaffold(projectId: string, request: ScaffoldRequest) {
-    await this.projects.requireAuthorized(projectId);
-    if (this.scaffoldPort === undefined) {
-      throw new RuntimeError("ENGINE_UNAVAILABLE", "Project scaffold adapter is unavailable", 501);
-    }
-    return this.scaffoldPort.scaffold(projectId, request);
   }
 
   async decidePermission(

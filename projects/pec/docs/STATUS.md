@@ -221,7 +221,7 @@ P-A.
 
 ## What's next (owner gates, in order)
 
-Current owner gates (2026-09-26; none is accepted or inferred here):
+Current owner gates (2026-09-27; none is accepted or inferred here):
 
 - **SCA-005 follow-on work (each separately gated):** SCA-005 closed for
   scope change only on 2026-09-25
@@ -254,13 +254,14 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
   `_COORDINATION.md` records them as superseded for current state.
 
   Open:
-  - SOW currency (S1, S2, S4). The owner ruled the S2 rebuild `D-PEC-100`
+  - SOW currency (S1, S2, S4): all three acts done (below); open only their
+    `MEMORY.md` records at closeout. The owner ruled the S2 rebuild `D-PEC-100`
     (seven contracts: DEL-01-01, DEL-01-06, DEL-02-03..07) on 2026-09-26.
     Done: its act replaced the seven contracts with the ruled bytes (no
     lifecycle change; DEL-02-07 carries the four `D-PEC-99` Part B items
     with their gates; run root
     `execution/_Coordination/SOW_REBUILD_S2_2026-09-26/`). The quotations of
-    old S2 text in 13 contracts go to S4 (done, below) and S1 (open). The owner
+    old S2 text in 13 contracts went to S4 and S1 (both done, below). The owner
     ruled the S4 currency packet `D-PEC-102` (eight contracts: DEL-04-01,
     DEL-04-02, DEL-04-03, DEL-08-01, DEL-08-03, DEL-08-04, DEL-03-04,
     DEL-10-03) A + M on 2026-09-26. Done: its act replaced the eight contracts
@@ -271,12 +272,26 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     `execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/`); the eight
     `MEMORY.md` files follow at closeout. The owner ruled the S1 currency
     packet `D-PEC-104` (twelve contracts; DEL-01-03 and DEL-01-05
-    currency-only) A + M on 2026-09-27; its act is in progress. The owner ruled the D1 premise packet `D-PEC-105`
+    currency-only) A + M on 2026-09-27. Done: its act replaced the twelve
+    contracts with the ruled bytes (no lifecycle change; DEL-01-03 and
+    DEL-01-05 requirement, acceptance and verification lines unchanged; the
+    owner's DEL-03-01 exact-byte acceptance lapsed, and the `D-PEC-77`
+    DEL-01-05 acceptance and the separate 2026-08-03 exact-artifact
+    acceptance are history; run root
+    `execution/_Coordination/SOW_CURRENCY_S1_2026-09-27/`); the `MEMORY.md`
+    records follow at closeout. The owner ruled the D1 premise packet `D-PEC-105`
     (DEL-00-01 ADRs and contract, DEL-00-03 SPEC and contract;
     premise-only, with the DEL-00-03 contract rebound to revision 1.6) A + P
     + M on 2026-09-27, choosing a later REVIEW and owner re-acceptance (RR1:
     intent only, needing its own authorization);
-    the lapsed acceptances are recorded when its act lands. The owner ruled
+    done: its act applied the four premise-only replacements (both
+    deliverables stay `CHECKING`; run root
+    `execution/_Coordination/D1_PREMISE_AMEND_2026-09-27/`). The owner's
+    exact-byte acceptances of the DEL-00-03 SOW and SPEC (2026-08-09) and
+    the DEL-00-01 ADR (AC-007) have lapsed; AC-011 and AC-007 are
+    unsatisfied for the new bytes until a later owner act, and the RR1
+    re-review is carried to the next undertaking. The two `MEMORY.md` files
+    follow at closeout. The owner ruled
     the X1 P1 fixture packet `D-PEC-106` (34 new files under
     `v2/tests/parsers/`: a fixture-integrity test module, a pinned manifest,
     four goldens and the synthetic set; plus the `v2-parsers` check; no
@@ -291,7 +306,8 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     `D-PEC-106`; run root
     `execution/_Coordination/SOW_INIT_D98_2026-09-26/`); their `MEMORY.md`
     files come at the undertaking's closeout;
-  - DEL-00-01/00-03 derivative review;
+  - DEL-00-01/00-03 derivative review: premise-only amendment done under
+    `D-PEC-105` (above); its re-review (RR1) is open;
   - done: the loop registry source packet, `D-PEC-96`. The owner ruled revision 4
     (option A, PEC's row migrated to `shared-dev-loop`) on 2026-09-26, and its
     act merged the same day as PR #950
@@ -331,9 +347,9 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     independently verified, DEL-10-13 classified by the owner as a C-08
     standing node, and both deliverables `INITIALIZED` (run root
     `execution/_Coordination/SOW_INIT_K2_2026-09-26/`); their `MEMORY.md`
-    files follow at the undertaking's closeout. Still open from
-    Lane B: the DEL-00-03 SPEC premise, the tier-0 profile entry (K3) and
-    the API schema fields.
+    files follow at the undertaking's closeout. The DEL-00-03 SPEC premise
+    is done under `D-PEC-105` (above). Still open from Lane B: the tier-0
+    profile entry (K3) and the API schema fields.
   - Retiring the 57 `## Remaining` sections, as App and Piping did: the owner
     opened it on 2026-09-26 as undertaking
     `HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT`. Its census and decision
@@ -344,7 +360,7 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     Still open from it: the 71 unselected evidence inquiries stay in the
     exhibit until steering selects one; S2 absorbed its four Scope of Work
     carry-forwards (`D-PEC-100`, PR #979), S4 absorbed its four
-    (`D-PEC-102`, PR #998), and S1 absorbs the other four. The undertaking's receipt is
+    (`D-PEC-102`, PR #998), and S1 the other four (`D-PEC-104`, PR #1010). The undertaking's receipt is
     `execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT/RECEIPT.md`.
 
   These are organized in the work graph

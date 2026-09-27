@@ -96,7 +96,7 @@ async function exerciseRuntimeSuccessor(actual: AgentEnginePort): Promise<void> 
     new TurnCoordinator(projects, sessions, engines, residency),
     new AuthRegistry(runtimeRoot),
     { async get() { return undefined; }, async status() { return { configured: false }; }, async set() {}, async remove() {} },
-    undefined, undefined, undefined,
+    undefined, undefined,
     { async resolve() { return { role: 'agent0' as const, engineSelection: {
       adapterId: actual.descriptor.adapterId, providerId: actual.descriptor.providerId, model: 'controlled'
     } }; } }
@@ -168,7 +168,7 @@ describe('RuntimeService to production App successor preparation', () => {
       new TurnCoordinator(projects, sessions, engines, residency),
       new AuthRegistry(runtimeRoot),
       { async get() { return undefined; }, async status() { return { configured: false }; }, async set() {}, async remove() {} },
-      undefined, undefined, undefined,
+      undefined, undefined,
       { async resolve() { return { role: 'agent0' as const, engineSelection: { adapterId: 'stub', providerId: 'stub', model: 'controlled' } }; } }
     );
     await service.registerProject(manifestPath, 'test', 'app-production-boot-contract');

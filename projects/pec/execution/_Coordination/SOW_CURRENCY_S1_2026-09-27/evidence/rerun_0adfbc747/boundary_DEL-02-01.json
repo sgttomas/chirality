@@ -1,0 +1,61 @@
+[
+  {
+    "findings": [
+      {
+        "category": "NOT_CHECKABLE",
+        "detail": "per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method",
+        "owners": [
+          "DEL-01-06",
+          "DEL-02-07"
+        ],
+        "requirement_id": "REQ-002"
+      },
+      {
+        "category": "NOT_CHECKABLE",
+        "detail": "per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method",
+        "owners": [
+          "DEL-01-01"
+        ],
+        "requirement_id": "REQ-003"
+      },
+      {
+        "category": "NOT_CHECKABLE",
+        "detail": "per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method",
+        "owners": [
+          "DEL-04-03"
+        ],
+        "requirement_id": "REQ-005"
+      },
+      {
+        "category": "NOT_CHECKABLE",
+        "detail": "per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method",
+        "owners": [
+          "DEL-01-01",
+          "DEL-01-03",
+          "DEL-01-05",
+          "DEL-01-06",
+          "DEL-02-02",
+          "DEL-02-06",
+          "DEL-02-07",
+          "DEL-02-08",
+          "DEL-02-09",
+          "DEL-03-01",
+          "DEL-03-03",
+          "DEL-04-03",
+          "DEL-04-05",
+          "DEL-09-02",
+          "DEL-09-07",
+          "DEL-10-02",
+          "DEL-10-03",
+          "DEL-10-13"
+        ],
+        "requirement_id": "REQ-012"
+      }
+    ],
+    "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/ScopeOfWork.md",
+    "requirements_checked": 0,
+    "requirements_not_checkable": 4,
+    "requirements_without_cited_claim": 0,
+    "status": "OK"
+  }
+]

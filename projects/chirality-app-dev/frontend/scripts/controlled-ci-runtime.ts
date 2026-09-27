@@ -122,7 +122,6 @@ export async function startControlledCiRuntime(options: ControlledCiRuntimeOptio
     },
     undefined,
     undefined,
-    undefined,
     {
       async resolve(input) {
         return {
