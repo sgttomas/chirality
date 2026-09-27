@@ -1,6 +1,6 @@
 schema: instruction-tranche-manifest/v1
 tranche_id: PIPING-DEP-MATERIALIZATION-NOTE-20260927
-title: Materializer keeps local RETIRED rows in a rewrite; docs say a rewrite is not a currency check (Piping DAG-011 rerun finding)
+title: Materializer retires rather than deletes local rows in a rewrite and reports replaced ones; docs say a rewrite is not a currency check (Piping DAG-011 rerun finding)
 date: '2026-09-27'
 basis: 0adfbc7476df33521883ce1573781237cd24d384
 instruction_surface_paths:
@@ -10,6 +10,10 @@ instruction_surface_paths:
   - "docs/governance_harness/tranche_manifests/PIPING-DEP-MATERIALIZATION-NOTE-20260927.yaml"
   - "exports/chirality-app/export-manifest.csv"
   - "exports/chirality-app/export-report.md"
+  - "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md"
+  - "projects/pec/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md"
+  - "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md"
+  - "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md"
 m2_gate:
   authorization: >-
     Ryan Tufts directed in the Claude Code conversation on 2026-09-27: "You
@@ -21,8 +25,12 @@ m2_gate:
     drift. Under the same direction it then directed the materializer fix:
     a whole-file rewrite, in default and --canonical-output mode, must keep
     the local RETIRED rows it dropped, because rows are retired, never
-    deleted (docs/SPEC.md section 5; dependency-extract). It also directed
-    tests and matching docs. This manifest records the gate and grants no
+    deleted (docs/SPEC.md section 6.6; dependency-extract). After independent
+    review it directed that a local row the aggregate carries as RETIRED be
+    written as the aggregate's RETIRED row, that the remaining replacement of
+    a local row the aggregate lacks be reported, that Status case be handled
+    consistently, and that the four 2026-09-26 dependency follow-up notices
+    receive a dated update. This manifest records the gate and grants no
     authority (K-AUTH-1).
   authorized_by: Ryan Tufts (repository owner sgttomas, Claude Code conversation)
   authorization_date: '2026-09-27'
@@ -31,25 +39,40 @@ m2_gate:
   merge_gate: owner-authorized-pr
   self_merge: true
 m6_notice:
-  disposition: none-required
-  routed_to: []
+  disposition: routed
+  routed_to:
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-26_DEPENDENCY_FOLLOWUPS.md
   rationale: >-
-    The fix only keeps rows that a rewrite used to delete: local RETIRED rows
-    in both modes, and declared RETIRED rows with --canonical-output. It
-    changes no rule; it brings the tool into line with the existing rule that
-    rows are never deleted. Aggregate row content, header selection, aggregate
-    row order and Notes handling are unchanged. No caller relies on the drop:
-    apart from its tests, its only importer is dependency_evidence.py, which
-    uses only its _DEPENDENCIES.md section parser and heading keys; PEC records that it does not use the tool
-    (D-PEC-62). Piping, the only loop that runs it, records the change in the
+    The four loops that received the 2026-09-26 dependency follow-up notice
+    each get a dated "Update (2026-09-27)" section appended to it, following
+    the ROOT-FOLLOWUPS-WAVE1-20260926 erratum precedent; the original text is
+    unchanged. The update states the new behaviour in both modes, that
+    Piping's DEL-13-04 RETIRED declared rows are now kept, and that no action
+    is required; PEC's is for the record only under D-PEC-62. The change
+    brings the tool into line with the existing rule that rows are never
+    deleted. No caller relies on the old drop: apart from its tests, the
+    tool's only importer is dependency_evidence.py, which uses only its
+    _DEPENDENCIES.md section parser and heading keys, and PEC does not use
+    the tool. Piping, the only loop that runs it, records the change in the
     same candidate
-    (projects/chirality-piping/execution/_Coordination/COORDINATION_RESPONSE_2026-09-27_DEPENDENCY_MATERIALIZATION.md);
-    over Piping's 98 registers the fixed tool keeps all 83 retired rows and
-    both modes give byte-identical output. The 2026-09-26 dependency
-    follow-up notices describe the earlier canonical-mode set-aside of
-    RETIRED declared rows as history; tools/REGISTRY.md and the docstring
-    state the current behaviour.
+    (projects/chirality-piping/execution/_Coordination/COORDINATION_RESPONSE_2026-09-27_DEPENDENCY_MATERIALIZATION.md).
+    Over Piping's 98 registers the fixed tool keeps all 83 retired rows,
+    writes no aggregate RETIRED row in place of a local one, drops no row,
+    and both modes give byte-identical output.
 scope_limits:
-  - The materializer also keeps local RETIRED rows and, with --canonical-output, declared RETIRED rows; it adds PreservedRetiredRows to the JSON summary and one console line. Nothing else in its output changes.
-  - The generated _DEPENDENCIES.md register text is unchanged.
+  - >-
+    Dependencies.csv rewrite. Each local non-declared row whose DependencyID the output does not carry is kept if RETIRED,
+    written as the aggregate's RETIRED row if the aggregate has one, and otherwise replaced (left out) and listed as
+    DroppedLocalRows; --canonical-output keeps declared ACTIVE and RETIRED rows. Status is compared trimmed and
+    case-insensitively for these decisions.
+  - >-
+    Exceptions to "nothing else changes": a local column carried only by a kept RETIRED row stays in the output header;
+    with --refresh-pointers the generated row counts include the kept and aggregate-RETIRED rows; and a local row the
+    aggregate carries as RETIRED is now written as that RETIRED row instead of being left out. Aggregate row content,
+    header selection otherwise, aggregate row order and Notes handling are unchanged.
+  - The JSON summary adds PreservedRetiredRows, RetiredFromAggregateRows and DroppedLocalRows, and the console adds three lines.
+  - The generated _DEPENDENCIES.md register wording is unchanged; the App scaffold copies it byte for byte.
   - No Piping register, DAG version, pointer or scope changes; no release.

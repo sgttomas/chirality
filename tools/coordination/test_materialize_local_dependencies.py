@@ -488,6 +488,121 @@ def test_retired_row_also_in_the_aggregate_is_written_once(tmp_path: Path) -> No
         assert summary["written"][0]["PreservedRetiredRows"] == 1
 
 
+def test_local_row_the_aggregate_retired_is_written_as_the_aggregate_retired_row(tmp_path: Path) -> None:
+    execution_root = tmp_path / "execution"
+    unit = execution_root / "PKG-01" / "1_Working" / "DEL-01-01_Project governance baseline"
+    unit.mkdir(parents=True)
+    nodes_path = tmp_path / "DeliverableNodes.csv"
+    edges_path = tmp_path / "DependencyEdges.csv"
+    write_csv(nodes_path, [node("DEL-01-01", "PKG-01", "Project governance baseline", unit)], NODE_COLUMNS)
+    aggregate_retired = edge("DAG-001-E0002", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-03", status="RETIRED")
+    aggregate_retired.update(Notes="retired by the accepted DAG")
+    write_csv(edges_path, [
+        edge("DAG-001-E0001", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-02"),
+        aggregate_retired,
+    ], REQUIRED_COLUMNS)
+    local_active = edge("DAG-001-E0002", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-03")
+    local_active.update(Origin="EXTRACTED", Notes="still active locally")
+
+    for canonical in (False, True):
+        write_csv(unit / "Dependencies.csv", [local_active], REQUIRED_COLUMNS)
+        summary = materialize_local_dependencies(
+            edges_path=edges_path,
+            nodes_path=nodes_path,
+            execution_root=execution_root,
+            generated_date="2026-09-27",
+            source_label="DAG-001",
+            canonical_output=canonical,
+        )
+        _header, rows = read_rows(unit / "Dependencies.csv")
+        # The row is retired, not deleted: the aggregate's RETIRED row is written.
+        assert [row["DependencyID"] for row in rows] == ["DAG-001-E0001", "DAG-001-E0002"]
+        assert rows[1] == aggregate_retired
+        item = summary["written"][0]
+        assert item["RetiredFromAggregateRows"] == ["DAG-001-E0002"]
+        assert item["DroppedLocalRows"] == []
+        assert summary["total_retired_from_aggregate_rows"] == 1
+        assert "Local rows written as the aggregate's RETIRED row: 1" in render_console(summary)
+
+
+def test_local_row_the_aggregate_lacks_is_replaced_and_reported(tmp_path: Path) -> None:
+    execution_root = tmp_path / "execution"
+    unit = execution_root / "PKG-01" / "1_Working" / "DEL-01-01_Project governance baseline"
+    unit.mkdir(parents=True)
+    nodes_path = tmp_path / "DeliverableNodes.csv"
+    edges_path = tmp_path / "DependencyEdges.csv"
+    write_csv(nodes_path, [node("DEL-01-01", "PKG-01", "Project governance baseline", unit)], NODE_COLUMNS)
+    write_csv(edges_path, [edge("DAG-001-E0001", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-02")], REQUIRED_COLUMNS)
+    replaced = edge("DAG-001-E0001", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-02")
+    replaced.update(Origin="EXTRACTED", Notes="local copy of an aggregate row")
+    missing_b = edge("DEP-01-01-009", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-09")
+    missing_b.update(Origin="EXTRACTED")
+    missing_a = edge("DEP-01-01-008", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-08")
+    missing_a.update(Origin="EXTRACTED")
+    write_csv(unit / "Dependencies.csv", [missing_b, replaced, missing_a], REQUIRED_COLUMNS)
+
+    summary = materialize_local_dependencies(
+        edges_path=edges_path,
+        nodes_path=nodes_path,
+        execution_root=execution_root,
+        generated_date="2026-09-27",
+        source_label="DAG-001",
+    )
+
+    _header, rows = read_rows(unit / "Dependencies.csv")
+    # The accepted DAG is authoritative for extracted rows: the rows it lacks are
+    # replaced (left out) as before, and now listed. A row it carries is replaced
+    # by its content and is not listed as dropped.
+    assert [row["DependencyID"] for row in rows] == ["DAG-001-E0001"]
+    assert rows[0]["Notes"] != "local copy of an aggregate row"
+    item = summary["written"][0]
+    assert item["DroppedLocalRows"] == ["DEP-01-01-008", "DEP-01-01-009"]
+    assert summary["total_dropped_local_rows"] == 2
+    assert "Local rows dropped (replaced by the aggregate, which omits them): 2" in render_console(summary)
+
+
+def test_status_is_compared_case_insensitively_and_kept_as_written(tmp_path: Path) -> None:
+    execution_root = tmp_path / "execution"
+    unit = execution_root / "PKG-01" / "1_Working" / "DEL-01-01_Project governance baseline"
+    unit.mkdir(parents=True)
+    nodes_path = tmp_path / "DeliverableNodes.csv"
+    edges_path = tmp_path / "DependencyEdges.csv"
+    write_csv(nodes_path, [node("DEL-01-01", "PKG-01", "Project governance baseline", unit)], NODE_COLUMNS)
+    aggregate_retired = edge("DAG-001-E0004", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-05", status="retired")
+    write_csv(edges_path, [
+        edge("DAG-001-E0001", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-02"),
+        aggregate_retired,
+    ], REQUIRED_COLUMNS)
+    extracted = edge("DAG-001-E0002", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-03", status="retired")
+    extracted.update(Origin="EXTRACTED")
+    declared = edge("DEP-01-01-003", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-04", status=" Retired ")
+    declared.update(Origin="DECLARED")
+    local_active = edge("DAG-001-E0004", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-05", status="active")
+    local_active.update(Origin="EXTRACTED")
+
+    for canonical in (False, True):
+        write_csv(unit / "Dependencies.csv", [extracted, declared, local_active], REQUIRED_COLUMNS)
+        summary = materialize_local_dependencies(
+            edges_path=edges_path,
+            nodes_path=nodes_path,
+            execution_root=execution_root,
+            generated_date="2026-09-27",
+            source_label="DAG-001",
+            canonical_output=canonical,
+        )
+        _header, rows = read_rows(unit / "Dependencies.csv")
+        by_id = {row["DependencyID"]: row for row in rows}
+        assert sorted(by_id) == ["DAG-001-E0001", "DAG-001-E0002", "DAG-001-E0004", "DEP-01-01-003"]
+        # Kept rows keep their own spelling.
+        assert by_id["DAG-001-E0002"]["Status"] == "retired"
+        assert by_id["DEP-01-01-003"]["Status"] == " Retired "
+        assert by_id["DAG-001-E0004"] == aggregate_retired
+        item = summary["written"][0]
+        assert item["PreservedRetiredRows"] == 1
+        assert item["SetAsideDeclaredRows"] == []
+        assert item["RetiredFromAggregateRows"] == ["DAG-001-E0004"]
+
+
 def assert_diff_check_clean(text: str) -> None:
     """What `git diff --check` reports: trailing whitespace, and a blank line at end of file."""
     assert text.endswith("\n") and not text.endswith("\n\n"), repr(text[-40:])
