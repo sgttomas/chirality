@@ -22,34 +22,7 @@ See the current formal `Dependencies.csv` rows whose Direction is DOWNSTREAM. No
 
 ## Current Extracted Dependency Summary — 2026-09-22
 
-Total rows: 22. ACTIVE: 21, RETIRED: 1.
-
-| DependencyID | Class | Type | Direction | Target | Status | SatisfactionStatus |
-|---|---|---|---|---|---|---|
-| DEP-02-02-001 | ANCHOR | OTHER | UPSTREAM | PKG-02 | ACTIVE | TBD |
-| DEP-02-02-002 | ANCHOR | OTHER | UPSTREAM | SOW-006 | ACTIVE | TBD |
-| DEP-02-02-003 | ANCHOR | OTHER | UPSTREAM | SOW-007 | RETIRED | TBD |
-| DEP-02-02-004 | ANCHOR | OTHER | UPSTREAM | OBJ-001 | ACTIVE | TBD |
-| DEP-02-02-005 | EXECUTION | INTERFACE | UPSTREAM | DEL-02-01 | ACTIVE | TBD |
-| DEP-02-02-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-02-03 | ACTIVE | TBD |
-| DEP-02-02-007 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-04 | ACTIVE | TBD |
-| DEP-02-02-008 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-05 | ACTIVE | TBD |
-| DEP-02-02-009 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-08-03 | ACTIVE | TBD |
-| DEP-02-02-010 | ANCHOR | OTHER | UPSTREAM | SOW-081 | ACTIVE | TBD |
-| DEP-02-02-011 | ANCHOR | OTHER | UPSTREAM | SOW-082 | ACTIVE | TBD |
-| DEP-02-02-012 | ANCHOR | OTHER | UPSTREAM | OBJ-007 | ACTIVE | TBD |
-| DEP-02-02-013 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-03 | ACTIVE | PENDING |
-| DEP-02-02-014 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-03 | ACTIVE | PENDING |
-| DEP-02-02-015 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-02 | ACTIVE | PENDING |
-| DEP-02-02-016 | EXECUTION | CONSTRAINT | UPSTREAM | ROOT-PROPOSAL-EVENT-ACCEPTANCE | RETIRED | PENDING |
-| DEP-02-02-017 | EXECUTION | INTERFACE | UPSTREAM | DEL-08-05 | ACTIVE | PENDING |
-| DEP-02-02-018 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-04 | ACTIVE | TBD |
-| DEP-02-02-019 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-08-04 | ACTIVE | PENDING |
-| DEP-02-02-020 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-08-02 | ACTIVE | TBD |
-| DEP-02-02-021 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-02-03 | ACTIVE | SATISFIED |
-| DEP-02-02-022 | EXECUTION | INTERFACE | UPSTREAM | DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 | ACTIVE | PENDING |
-
-This is a read-only summary of formal rows. D-GOV-43/D-APP-127 adapt current Runtime ownership and retire daemon proof subjects; formal row amendments, satisfaction changes and basis pins retain their owning process. Earlier notes below remain historical and do not override this current summary.
+Superseded on 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`): the current register summary is under `## Extracted Dependency Register` below. The dated table of this section is kept in git history.
 
 ## Run Notes
 
@@ -63,6 +36,29 @@ This is a read-only summary of formal rows. D-GOV-43/D-APP-127 adapt current Run
 - [WARNING] SOW_007_OWNER_OVERLAP: `_CONTEXT.md` and the deliverable ledger list SOW-007 under DEL-02-02, while the scope ledger marks PKG-08 / DEL-08-03 as primary owner for Pipeline selectors. Rows preserve this as conflict/TBD rather than resolving it.
 - No `[WARNING] FLOATING_NODE`: one ACTIVE `IMPLEMENTS_NODE` anchor is present.
 - No `[WARNING] AMBIGUOUS_ANCHOR`: exactly one ACTIVE `IMPLEMENTS_NODE` anchor is present.
+
+### 2026-09-27 SCA-APP-011 incremental setup refresh (UPDATE)
+
+- Run: `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`, `project-setup` INCREMENTAL Phase 5.6 (FULL_GRAPH) dispatch of `bundled:chirality-root/dependency-extract`, run directly by WORKING_ITEMS after the owner confirmed the SCA-APP-011 incremental plan on 2026-09-27 (verbatim in `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/CHAT_TRANSCRIPTION.md`). Role: SCA-APP-011 MODIFY deliverable.
+- Runtime overrides: `SCOPE=DEL-02-02`; `RUN_ROOT=projects/chirality-app-dev/execution`; `DECOMPOSITION_PATH=projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=NONE`; `SOURCE_DOCS=AUTO` (`ScopeOfWork.md`, `_CONTEXT.md`, `_REFERENCES.md`, `_STATUS.md`); `ANCHOR_DOC=ScopeOfWork.md`; `EXECUTION_DOC_ORDER=ScopeOfWork.md, _CONTEXT.md`.
+- Decomposition authority: FOUND, SHA-256 `cf6e56ebb1474d30a45dd3973dcb449d8aab30a84d731649336091afd2321876` (as amended by SCA-APP-011).
+- Source-preservation gate: `ScopeOfWork.md` `6cb61fe4fd0c1b6678c6f6655c2350439e9dec335cd8c3879183b4494c555582`; `_CONTEXT.md` `5cf78966a568cea0238de37ac8ec37e0ef44f01bb02eaae9d5086f66f6ee5d28`; `_REFERENCES.md` `14952d205dc7b30daf8b6cc662a3583031c5b610caa9b2f2261f222a2ae63aff`; `_STATUS.md` `b8b706625f1c8c9721b8bfc54c27821a1091549b90004cd5aeb5bae380857daa`; read-only and unchanged by this run.
+- Pre-images: `Dependencies.csv` `19c2d69e37550feee87ca885b7b3dda6ca073606fa7ea530391a55026389db0b`, `_DEPENDENCIES.md` `43424bcece77c23a7c60ffb1ebaad17dc805a2ca7c17a726ac10bfb8c7b29161`.
+- Method: every existing ACTIVE row was re-checked against its cited current source (quote found verbatim, and not only inside a `[RETIRED` clause or a clause SCA-APP-011 declared history). Text added to the sources since the previous extraction (2026-09-22) was scanned for new explicit cross-deliverable relationships. Unchanged source text yields the rows already recorded.
+- Results: re-seen 13 (`LastSeen=2026-09-27`); restated in place 1; kept with a note 0; retired 5; added 0; held with `[WARNING] EVIDENCE_SOURCE_RETIRED` 1. No row deleted; every existing `DependencyID` preserved; `Status=CANDIDATE` not emitted.
+  - RETIRED DEP-02-02-005 (EXECUTION UPSTREAM INTERFACE -> DEL-02-01) DX-01; see the row `Notes`.
+  - RETIRED DEP-02-02-006 (EXECUTION UPSTREAM INTERFACE -> DEL-02-03) DX-02; see the row `Notes`.
+  - RETIRED DEP-02-02-007 (EXECUTION UPSTREAM INTERFACE -> DEL-07-04) DX-03; see the row `Notes`.
+  - RETIRED DEP-02-02-008 (EXECUTION UPSTREAM INTERFACE -> DEL-07-05) DX-04; see the row `Notes`.
+  - RETIRED DEP-02-02-009 (EXECUTION UPSTREAM CONSTRAINT -> DEL-08-03) DX-05; see the row `Notes`.
+  - RE-EVIDENCED DEP-02-02-022 (EXECUTION UPSTREAM INTERFACE -> DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1) ESR-1 (re-evidenced); see the row `Notes`.
+  - HELD DEP-02-02-021 (EXECUTION UPSTREAM PREREQUISITE -> DEL-02-03) ESR-1 (retire candidate); see the row `Notes`.
+- Declared entries: none (the declared sections carry no SPEC §5.2 entry). Mirror rows added 0, refreshed 0, retired 0; entries skipped 0.
+- Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` row (1).
+- Function 5 checks (`execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/dep_extract/FUNCTION5_CHECKS.json`): `validate_dependencies_schema.py` PASS; `DependencyID` unique; every enum value written by this run VALID (`validate_enum.py`); ID format PASS for `FromDeliverableID`, `FromPackageID` and every `DependencyID` (`validate_id_format.sh`; the PROJECT_ID_FORMAT_PROFILE warning of earlier runs no longer reproduces); index counts match `Dependencies.csv`.
+- [INFO] EVQ-006 (report-only, `validate_decomposition_registers.py --families EVQ,DRB`): the validator resolves `EvidenceFile` from the project root, so it reports every App register row whose `EvidenceFile` is deliverable- or repository-relative. This is a project-wide pre-existing convention finding, not a defect introduced here; no EVQ-003, EVQ-004 or DRB-006 finding.
+- ESR-1 re-evidence: DEP-02-02-022 cited the former `_STATUS.md` `## Remaining` section, retired on 2026-09-23. Each is re-anchored in place to a current accepted source that states the dependency: the owner ruling record D-APP-110 (its SD-003 decompose names the row) or the decomposition Scope Ledger allocation (IMPLICIT, MEDIUM). The D-APP-110 record lies outside the workflow's default read boundary and was read because it is the accepted ruling that names these rows. No edge, target, status or satisfaction changed.
+- [WARNING] EVIDENCE_SOURCE_RETIRED: DEP-02-02-021 cites the former `_STATUS.md` `## Remaining` section, retired by the owner-directed 2026-09-23 finite Task Management account. That accepted instrument preserved the rows (FINAL_CLOSEOUT.md: 'the accepted Dependencies.csv rows and source quotes remain unchanged'; the current-source note at the top of this file directs gating to `Dependencies.csv`) and takes precedence over the workflow's own unseen-row retirement, so they stay ACTIVE with `LastSeen` unchanged. No current source states them; they are retire candidates proposed to the owner (ESR-1 in `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/DEPENDENCY_EXTRACT_RESULTS.md`).
 
 ## Run Notes - 2026-09-05 SCA-APP-010 dependency closure (UPDATE)
 
@@ -164,28 +160,6 @@ Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated s
 | DEP-02-02-021 | EXECUTION | UPSTREAM | PREREQUISITE | DEL-02-03 | ACTIVE | SATISFIED |
 | DEP-02-02-022 | EXECUTION | UPSTREAM | INTERFACE | DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 | ACTIVE | PENDING |
 
-## Run Notes - 2026-09-27 SCA-APP-011 incremental setup refresh (UPDATE)
-
-- Run: `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`, `project-setup` INCREMENTAL Phase 5.6 (FULL_GRAPH) dispatch of `bundled:chirality-root/dependency-extract`, run directly by WORKING_ITEMS after the owner confirmed the SCA-APP-011 incremental plan on 2026-09-27 (verbatim in `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/CHAT_TRANSCRIPTION.md`). Role: SCA-APP-011 MODIFY deliverable.
-- Runtime overrides: `SCOPE=DEL-02-02`; `RUN_ROOT=projects/chirality-app-dev/execution`; `DECOMPOSITION_PATH=projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=NONE`; `SOURCE_DOCS=AUTO` (`ScopeOfWork.md`, `_CONTEXT.md`, `_REFERENCES.md`, `_STATUS.md`); `ANCHOR_DOC=ScopeOfWork.md`; `EXECUTION_DOC_ORDER=ScopeOfWork.md, _CONTEXT.md`.
-- Decomposition authority: FOUND, SHA-256 `cf6e56ebb1474d30a45dd3973dcb449d8aab30a84d731649336091afd2321876` (as amended by SCA-APP-011).
-- Source-preservation gate: `ScopeOfWork.md` `6cb61fe4fd0c1b6678c6f6655c2350439e9dec335cd8c3879183b4494c555582`; `_CONTEXT.md` `5cf78966a568cea0238de37ac8ec37e0ef44f01bb02eaae9d5086f66f6ee5d28`; `_REFERENCES.md` `14952d205dc7b30daf8b6cc662a3583031c5b610caa9b2f2261f222a2ae63aff`; `_STATUS.md` `b8b706625f1c8c9721b8bfc54c27821a1091549b90004cd5aeb5bae380857daa`; read-only and unchanged by this run.
-- Pre-images: `Dependencies.csv` `19c2d69e37550feee87ca885b7b3dda6ca073606fa7ea530391a55026389db0b`, `_DEPENDENCIES.md` `43424bcece77c23a7c60ffb1ebaad17dc805a2ca7c17a726ac10bfb8c7b29161`.
-- Method: every existing ACTIVE row was re-checked against its cited current source (quote found verbatim, and not only inside a `[RETIRED` clause or a clause SCA-APP-011 declared history). Text added to the sources since the previous extraction (2026-09-22) was scanned for new explicit cross-deliverable relationships. Unchanged source text yields the rows already recorded.
-- Results: re-seen 13 (`LastSeen=2026-09-27`); restated in place 0; kept with a note 0; retired 5; added 0; held with `[WARNING] EVIDENCE_SOURCE_RETIRED` 2. No row deleted; every existing `DependencyID` preserved; `Status=CANDIDATE` not emitted.
-  - RETIRED DEP-02-02-005 (EXECUTION UPSTREAM INTERFACE -> DEL-02-01) DX-01; see the row `Notes`.
-  - RETIRED DEP-02-02-006 (EXECUTION UPSTREAM INTERFACE -> DEL-02-03) DX-02; see the row `Notes`.
-  - RETIRED DEP-02-02-007 (EXECUTION UPSTREAM INTERFACE -> DEL-07-04) DX-03; see the row `Notes`.
-  - RETIRED DEP-02-02-008 (EXECUTION UPSTREAM INTERFACE -> DEL-07-05) DX-04; see the row `Notes`.
-  - RETIRED DEP-02-02-009 (EXECUTION UPSTREAM CONSTRAINT -> DEL-08-03) DX-05; see the row `Notes`.
-  - HELD DEP-02-02-021 (EXECUTION UPSTREAM PREREQUISITE -> DEL-02-03) (beyond DX); see the row `Notes`.
-  - HELD DEP-02-02-022 (EXECUTION UPSTREAM INTERFACE -> DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1) (beyond DX); see the row `Notes`.
-- Declared entries: none (the declared sections carry no SPEC §5.2 entry). Mirror rows added 0, refreshed 0, retired 0; entries skipped 0.
-- Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` row (1).
-- Function 5 checks (`execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/dep_extract/FUNCTION5_CHECKS.json`): `validate_dependencies_schema.py` PASS; `DependencyID` unique; every enum value written by this run VALID (`validate_enum.py`); ID format PASS for `FromDeliverableID`, `FromPackageID` and every `DependencyID` (`validate_id_format.sh`; the PROJECT_ID_FORMAT_PROFILE warning of earlier runs no longer reproduces); index counts match `Dependencies.csv`.
-- [INFO] EVQ-006 (report-only, `validate_decomposition_registers.py --families EVQ,DRB`): the validator resolves `EvidenceFile` from the project root, so it reports every App register row whose `EvidenceFile` is deliverable- or repository-relative. This is a project-wide pre-existing convention finding, not a defect introduced here; no EVQ-003, EVQ-004 or DRB-006 finding.
-- [WARNING] EVIDENCE_SOURCE_RETIRED: DEP-02-02-021, DEP-02-02-022 cite the former `_STATUS.md` `## Remaining` section, retired by the owner-directed 2026-09-23 finite Task Management account, which kept the accepted rows unchanged. The current ScopeOfWork.md does not restate the relationship; held ACTIVE with `LastSeen` unchanged, and retire-or-re-evidence is proposed to the owner (ESR-1 in `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/DEPENDENCY_EXTRACT_RESULTS.md`).
-
 ## Run History
 
 | Timestamp | Mode | Strictness | Decomposition Status | Active Rows | Warnings |
@@ -194,7 +168,7 @@ Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated s
 | 2026-09-05T01:05:00-0600 | UPDATE | CONSERVATIVE | found at pinned identity `c7c05169` (commit `dbd812a5`) | 15 | CONTEXT_SOW_007_RESIDUE; V3_01_ROLE_ENTRY_SEATING_CONFLICT; PROJECT_ID_FORMAT_PROFILE; six proposals held under amendment v1.1 (H-002 to H-007) |
 | 2026-09-05T07:59-0600 (D-APP-109 emission) | UPDATE | CONSERVATIVE | found at pinned identity `c7c05169` (commit `dbd812a5`) | 21 | CONTEXT_SOW_007_RESIDUE (carried; `_CONTEXT.md` not read, concurrent N8 write); V3_01_ROLE_ENTRY_SEATING_CONFLICT (carried); PROJECT_ID_FORMAT_PROFILE; CYCLE_PARTICIPATING_ROWS: six rows emitted under D-APP-109 (H-002 to H-007) inside the enlarged SCC-001, non-gating until resolved by a recorded move |
 | 2026-09-05T10:15-0600 (D-APP-110 decompose) | UPDATE | CONSERVATIVE | found at pinned identity `c7c05169` (commit `dbd812a5`) | 21 | CONTEXT_SOW_007_RESIDUE (carried; `_CONTEXT.md` not read); V3_01_ROLE_ENTRY_SEATING_CONFLICT (carried); PROJECT_ID_FORMAT_PROFILE; no cycle-participating row remains (SD-005 decomposed DEP-02-02-022 to a DOCUMENT contract; five D-APP-109 rows marked RESOLVED) |
-| 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`) | UPDATE | CONSERVATIVE | FOUND `cf6e56ebb147…` (SCA-APP-011 amended) | ACTIVE=15 (ANCHOR=6; EXECUTION=9) | EVIDENCE_SOURCE_RETIRED DEP-02-02-021,DEP-02-02-022 |
+| 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`) | UPDATE | CONSERVATIVE | FOUND `cf6e56ebb147…` (SCA-APP-011 amended) | ACTIVE=15 (ANCHOR=6; EXECUTION=9) | EVIDENCE_SOURCE_RETIRED DEP-02-02-021 |
 
 ## Lifecycle Summary
 

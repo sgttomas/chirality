@@ -25,6 +25,21 @@ Current extracted downstream rows: `DEP-08-03-010`. These are existing register 
 - ORCHESTRATOR initialized this file during PREPARATION scaffolding on 2026-05-20.
 - Do not compute blocked/available state for this deliverable until `Dependencies.csv` exists and the project-level FULL_GRAPH register has been checked for cycles.
 
+### 2026-09-27 SCA-APP-011 incremental setup refresh (UPDATE)
+
+- Run: `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`, `project-setup` INCREMENTAL Phase 5.6 (FULL_GRAPH) dispatch of `bundled:chirality-root/dependency-extract`, run directly by WORKING_ITEMS after the owner confirmed the SCA-APP-011 incremental plan on 2026-09-27 (verbatim in `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/CHAT_TRANSCRIPTION.md`). Role: SCA-APP-011 MODIFY deliverable.
+- Runtime overrides: `SCOPE=DEL-08-03`; `RUN_ROOT=projects/chirality-app-dev/execution`; `DECOMPOSITION_PATH=projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=NONE`; `SOURCE_DOCS=AUTO` (`ScopeOfWork.md`, `_CONTEXT.md`, `_REFERENCES.md`, `_STATUS.md`); `ANCHOR_DOC=ScopeOfWork.md`; `EXECUTION_DOC_ORDER=ScopeOfWork.md, _CONTEXT.md`.
+- Decomposition authority: FOUND, SHA-256 `cf6e56ebb1474d30a45dd3973dcb449d8aab30a84d731649336091afd2321876` (as amended by SCA-APP-011).
+- Source-preservation gate: `ScopeOfWork.md` `cf968ae8134e690f22d35a702666a7f704f2a16f39fdbce4549258685a2e0651`; `_CONTEXT.md` `c5e3d5f87e180fca28831f2a3d15ce16761eff0988f4ed7e2680300b315baf59`; `_REFERENCES.md` `3f0d1039ae0d28622bb095bcceab1cad871f8add3423bac7679a95bfd44bdc4d`; `_STATUS.md` `00fca38507561ab1fb7204e77cb6acb16ee8fbe9f7b3baed9290b12bf9b07f1c`; read-only and unchanged by this run.
+- Pre-images: `Dependencies.csv` `226f430b03edcd2b98f34ee754ebabb0b859e68e14396d59e22317f596276bc2`, `_DEPENDENCIES.md` `a36aa191ae28ac2af8665a0839b6752a0ef03b642bb071b9086777ac72bf1930`.
+- Method: every existing ACTIVE row was re-checked against its cited current source (quote found verbatim, and not only inside a `[RETIRED` clause or a clause SCA-APP-011 declared history). Text added to the sources since the previous extraction (2026-09-22) was scanned for new explicit cross-deliverable relationships. Unchanged source text yields the rows already recorded.
+- Results: re-seen 9 (`LastSeen=2026-09-27`); restated in place 1; kept with a note 0; retired 0; added 0; held with `[WARNING] EVIDENCE_SOURCE_RETIRED` 0. No row deleted; every existing `DependencyID` preserved; `Status=CANDIDATE` not emitted.
+  - RESTATED DEP-08-03-010 (EXECUTION DOWNSTREAM HANDOVER -> Task-scope selection, knowledge-type discovery, and disabled) DX-11,DX-12; see the row `Notes`.
+- Declared entries: none (the declared sections carry no SPEC §5.2 entry). Mirror rows added 0, refreshed 0, retired 0; entries skipped 0.
+- Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` row (1).
+- Function 5 checks (`execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/dep_extract/FUNCTION5_CHECKS.json`): `validate_dependencies_schema.py` PASS; `DependencyID` unique; every enum value written by this run VALID (`validate_enum.py`); ID format PASS for `FromDeliverableID`, `FromPackageID` and every `DependencyID` (`validate_id_format.sh`; the PROJECT_ID_FORMAT_PROFILE warning of earlier runs no longer reproduces); index counts match `Dependencies.csv`.
+- [INFO] EVQ-006 (report-only, `validate_decomposition_registers.py --families EVQ,DRB`): the validator resolves `EvidenceFile` from the project root, so it reports every App register row whose `EvidenceFile` is deliverable- or repository-relative. This is a project-wide pre-existing convention finding, not a defect introduced here; no EVQ-003, EVQ-004 or DRB-006 finding.
+
 ## Extracted Dependency Register
 
 Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated sections elsewhere in this file keep the counts of their dates.
@@ -94,21 +109,6 @@ Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated s
 - `[RESOLVED] PIPELINE_COMPONENT_COVERAGE`: ADQ-12 records Pipeline surface render coverage for category controls, disabled options, valid TASK deep links, and stale knowledge-target reset.
 - `[RESOLVED] TASK_GOVERNANCE_LINKAGE`: ADQ-12 route-state regression proves Pipeline TASK selector state is ignored as unknown runtime options rather than converted into delegated subagents.
 - `[WARNING] UNKNOWN_DOWNSTREAM_TARGET`: downstream test/record handoff is explicit, but the consumer deliverable is not identified in the allowed evidence set; target remains `UNKNOWN`/`TBD`.
-
-## Run Notes - 2026-09-27 SCA-APP-011 incremental setup refresh (UPDATE)
-
-- Run: `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`, `project-setup` INCREMENTAL Phase 5.6 (FULL_GRAPH) dispatch of `bundled:chirality-root/dependency-extract`, run directly by WORKING_ITEMS after the owner confirmed the SCA-APP-011 incremental plan on 2026-09-27 (verbatim in `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/CHAT_TRANSCRIPTION.md`). Role: SCA-APP-011 MODIFY deliverable.
-- Runtime overrides: `SCOPE=DEL-08-03`; `RUN_ROOT=projects/chirality-app-dev/execution`; `DECOMPOSITION_PATH=projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=NONE`; `SOURCE_DOCS=AUTO` (`ScopeOfWork.md`, `_CONTEXT.md`, `_REFERENCES.md`, `_STATUS.md`); `ANCHOR_DOC=ScopeOfWork.md`; `EXECUTION_DOC_ORDER=ScopeOfWork.md, _CONTEXT.md`.
-- Decomposition authority: FOUND, SHA-256 `cf6e56ebb1474d30a45dd3973dcb449d8aab30a84d731649336091afd2321876` (as amended by SCA-APP-011).
-- Source-preservation gate: `ScopeOfWork.md` `cf968ae8134e690f22d35a702666a7f704f2a16f39fdbce4549258685a2e0651`; `_CONTEXT.md` `c5e3d5f87e180fca28831f2a3d15ce16761eff0988f4ed7e2680300b315baf59`; `_REFERENCES.md` `3f0d1039ae0d28622bb095bcceab1cad871f8add3423bac7679a95bfd44bdc4d`; `_STATUS.md` `00fca38507561ab1fb7204e77cb6acb16ee8fbe9f7b3baed9290b12bf9b07f1c`; read-only and unchanged by this run.
-- Pre-images: `Dependencies.csv` `226f430b03edcd2b98f34ee754ebabb0b859e68e14396d59e22317f596276bc2`, `_DEPENDENCIES.md` `a36aa191ae28ac2af8665a0839b6752a0ef03b642bb071b9086777ac72bf1930`.
-- Method: every existing ACTIVE row was re-checked against its cited current source (quote found verbatim, and not only inside a `[RETIRED` clause or a clause SCA-APP-011 declared history). Text added to the sources since the previous extraction (2026-09-22) was scanned for new explicit cross-deliverable relationships. Unchanged source text yields the rows already recorded.
-- Results: re-seen 9 (`LastSeen=2026-09-27`); restated in place 1; kept with a note 0; retired 0; added 0; held with `[WARNING] EVIDENCE_SOURCE_RETIRED` 0. No row deleted; every existing `DependencyID` preserved; `Status=CANDIDATE` not emitted.
-  - RESTATED DEP-08-03-010 (EXECUTION DOWNSTREAM HANDOVER -> Task-scope selection, knowledge-type discovery, and disabled) DX-11,DX-12; see the row `Notes`.
-- Declared entries: none (the declared sections carry no SPEC §5.2 entry). Mirror rows added 0, refreshed 0, retired 0; entries skipped 0.
-- Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` row (1).
-- Function 5 checks (`execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/dep_extract/FUNCTION5_CHECKS.json`): `validate_dependencies_schema.py` PASS; `DependencyID` unique; every enum value written by this run VALID (`validate_enum.py`); ID format PASS for `FromDeliverableID`, `FromPackageID` and every `DependencyID` (`validate_id_format.sh`; the PROJECT_ID_FORMAT_PROFILE warning of earlier runs no longer reproduces); index counts match `Dependencies.csv`.
-- [INFO] EVQ-006 (report-only, `validate_decomposition_registers.py --families EVQ,DRB`): the validator resolves `EvidenceFile` from the project root, so it reports every App register row whose `EvidenceFile` is deliverable- or repository-relative. This is a project-wide pre-existing convention finding, not a defect introduced here; no EVQ-003, EVQ-004 or DRB-006 finding.
 
 ## Run History
 

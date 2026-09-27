@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
 """Function 4 of dependency-extract: refresh the agent-owned sections of each in-scope _DEPENDENCIES.md.
 
-Run from the repository root after apply_dependency_extract.py. Human-owned sections (Dependency
-Tracking, Declared Upstream, Declared Downstream) are never edited. For each file this:
-- replaces the body of `## Extracted Dependency Register` (added before the new Run Notes section when absent);
+Run from the repository root after apply_dependency_extract.py and apply_esr1_reevidence.py. Each file is rebuilt
+from its pre-image at the extraction's basis commit (hash-checked against EXTRACTION_LOG.json), so a rerun is
+idempotent. Human-owned sections (Dependency Tracking, Declared Upstream, Declared Downstream) are never edited.
+Following dependency-extract Function 4, each agent-owned section is refreshed under the heading the file already
+uses. For each file this:
+- replaces the body of the file's register section: `## Extracted Dependency Register`, or the legacy
+  `## Current Extracted Dependency Summary — <date>` heading the file already uses (added under the SPEC §5.2
+  heading before `## Run Notes` only when the file has neither);
 - replaces the body of `## Lifecycle Summary`;
-- adds `## Run Notes - 2026-09-27 SCA-APP-011 incremental setup refresh (UPDATE)` before `## Run History`;
-- appends one Run History table row, mapped by the file's own column headers.
+- adds `### 2026-09-27 SCA-APP-011 incremental setup refresh (UPDATE)` as a subsection at the end of the file's
+  existing `## Run Notes` section;
+- appends one Run History entry in the file's own table columns or bullet order.
 DEL-02-01 additionally records the owner's HGD-2 ruling at the dated HGD line and in its Downstream Handoff Notes.
 """
 from __future__ import annotations
@@ -30,7 +36,8 @@ DSHA = LOG["decomposition_sha256"]
 OWNER_WORDS = ("Confirm baseline SCA-APP-010 (accepted up to 2026-09-07) and the SCA-APP-011 incremental plan under "
                "FULL_GRAPH; HGD-2: retire DEP-02-01-008; APP-R058: option 1.")
 TRANSCRIPT = f"execution/_Coordination/AgentRuns/{RUN_ID}/CHAT_TRANSCRIPTION.md"
-RUN_HEAD = f"## Run Notes - {TODAY} SCA-APP-011 incremental setup refresh (UPDATE)"
+RUN_HEAD = f"### {TODAY} SCA-APP-011 incremental setup refresh (UPDATE)"
+BASIS = "0ca5ffcca2c2044b2d5e79201de9741b80b31585"
 
 
 def section_bounds(lines, heading):
@@ -104,6 +111,8 @@ def run_notes(d, info, rows):
         for did in by[kind]:
             r = next(x for x in rows if x["DependencyID"] == did)
             label = {"RETIRE": "RETIRED", "RESTATE": "RESTATED", "KEEP": "KEPT", "ADDED": "ADDED", "HOLD": "HELD"}[kind]
+            if kind == "RESTATE" and "ESR-1" in acts[did]:
+                label = "RE-EVIDENCED"
             ref = acts[did].split(" ", 1)[1] if " " in acts[did] else ""
             tgt = r["TargetDeliverableID"] or r["TargetRefID"] or r["TargetName"][:60]
             out.append(f"  - {label} {did} ({r['DependencyClass']} {r['Direction']} {r['DependencyType']} -> {tgt}) {ref}; see the row `Notes`.")
@@ -120,12 +129,21 @@ def run_notes(d, info, rows):
             "`EvidenceFile` from the project root, so it reports every App register row whose `EvidenceFile` is deliverable- or "
             "repository-relative. This is a project-wide pre-existing convention finding, not a defect introduced here; no EVQ-003, "
             "EVQ-004 or DRB-006 finding."]
+    esr = [k for k, v in acts.items() if "ESR-1 (re-evidenced)" in v]
+    if esr:
+        out.append("- ESR-1 re-evidence: " + ", ".join(esr) + " cited the former `_STATUS.md` `## Remaining` section, retired on "
+                   "2026-09-23. Each is re-anchored in place to a current accepted source that states the dependency: the owner "
+                   "ruling record D-APP-110 (its SD-003 decompose names the row) or the decomposition Scope Ledger allocation "
+                   "(IMPLICIT, MEDIUM). The D-APP-110 record lies outside the workflow's default read boundary and was read because it "
+                   "is the accepted ruling that names these rows. No edge, target, status or satisfaction changed.")
     if by["HOLD"]:
-        out.append("- [WARNING] EVIDENCE_SOURCE_RETIRED: " + ", ".join(by["HOLD"]) + (" cites" if len(by["HOLD"]) == 1 else " cite") + " the former `_STATUS.md` `## Remaining` "
-                   "section, retired by the owner-directed 2026-09-23 finite Task Management account, which kept the accepted rows "
-                   "unchanged. The current ScopeOfWork.md does not restate the relationship; held ACTIVE with `LastSeen` unchanged, and "
-                   "retire-or-re-evidence is proposed to the owner (ESR-1 in `execution/_Coordination/AgentRuns/" + RUN_ID
-                   + "/DEPENDENCY_EXTRACT_RESULTS.md`).")
+        out.append("- [WARNING] EVIDENCE_SOURCE_RETIRED: " + ", ".join(by["HOLD"]) + (" cites" if len(by["HOLD"]) == 1 else " cite")
+                   + " the former `_STATUS.md` `## Remaining` section, retired by the owner-directed 2026-09-23 finite Task "
+                   "Management account. That accepted instrument preserved the rows (FINAL_CLOSEOUT.md: 'the accepted "
+                   "Dependencies.csv rows and source quotes remain unchanged'; the current-source note at the top of this file directs "
+                   "gating to `Dependencies.csv`) and takes precedence over the workflow's own unseen-row retirement, so they stay "
+                   "ACTIVE with `LastSeen` unchanged. No current source states them; they are retire candidates proposed to the owner "
+                   "(ESR-1 in `execution/_Coordination/AgentRuns/" + RUN_ID + "/DEPENDENCY_EXTRACT_RESULTS.md`).")
     return out
 
 
@@ -162,9 +180,11 @@ def main() -> int:
         fold = info["folder"]
         mdp = fold + "/_DEPENDENCIES.md"
         rows = list(csv.DictReader(open(fold + "/Dependencies.csv", encoding="utf-8")))
-        text = open(mdp, encoding="utf-8").read()
-        if RUN_HEAD in text:
-            raise SystemExit(f"{d}: already refreshed")
+        raw = subprocess.run(["git", "show", f"{BASIS}:{mdp}"], capture_output=True).stdout
+        import hashlib
+        if hashlib.sha256(raw).hexdigest() != info["pre_sha256"]["_DEPENDENCIES.md"]:
+            raise SystemExit(f"{d}: pre-image at {BASIS} does not match EXTRACTION_LOG")
+        text = raw.decode("utf-8")
         L = text.split("\n")
         # Lifecycle Summary body
         b = section_bounds(L, "## Lifecycle Summary")
@@ -186,15 +206,27 @@ def main() -> int:
                       f"EXECUTION={sum(1 for r in act if r['DependencyClass'] == 'EXECUTION')}); RETIRED={len(rows) - len(act)}.")
             newest_first = len(dates) > 1 and dates[0] > dates[-1]
             L.insert(bl[0] if newest_first else bl[-1] + 1, bullet)
-        # Run Notes section inserted before Run History
-        b = section_bounds(L, "## Run History")
-        L[b[0]:b[0]] = run_notes(d, info, rows) + [""]
-        # Extracted Dependency Register
-        b = section_bounds(L, "## Extracted Dependency Register")
-        if b:
+        # Run Notes: a dated subsection at the end of the existing `## Run Notes` section
+        b = section_bounds(L, "## Run Notes")
+        end = b[1]
+        while end > b[0] + 1 and L[end - 1].strip() == "":
+            end -= 1
+        L[end:end] = [""] + run_notes(d, info, rows)
+        # Register section under the heading the file already uses
+        canon = any(l.strip() == "## Extracted Dependency Register" for l in L)
+        legacy = next((l.strip() for l in L if l.startswith("## Current Extracted Dependency Summary")), None)
+        if canon and legacy:
+            # Two agent-owned register sections: refresh the canonical one; the dated legacy summary keeps its heading
+            # and points to it, so the file carries one current register section (its dated table is in git history).
+            b = section_bounds(L, legacy)
+            L[b[0] + 1:b[1]] = ["", f"Superseded on {TODAY} (`{RUN_ID}`): the current register summary is under "
+                                "`## Extracted Dependency Register` below. The dated table of this section is kept in git history.", ""]
+        reg = "## Extracted Dependency Register" if canon else legacy
+        if reg:
+            b = section_bounds(L, reg)
             L[b[0] + 1:b[1]] = [""] + counts_block(rows) + [""]
         else:
-            i = next(k for k, l in enumerate(L) if l == RUN_HEAD)
+            i = next(k for k, l in enumerate(L) if l.strip() == "## Run Notes")
             L[i:i] = ["## Extracted Dependency Register", ""] + counts_block(rows) + [""]
         if d == "DEL-02-01":
             L = hgd_updates(L)

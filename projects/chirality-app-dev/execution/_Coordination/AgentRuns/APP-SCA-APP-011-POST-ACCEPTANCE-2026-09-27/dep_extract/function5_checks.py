@@ -42,7 +42,7 @@ for d, info in LOG["deliverables"].items():
             for f, e in ENUMS.items():
                 pairs.add((e, r[f]))
     md = open(info["folder"] + "/_DEPENDENCIES.md", encoding="utf-8").read()
-    m = re.search(r"\| ACTIVE rows \| (\d+) \|", md.split("## Extracted Dependency Register", 1)[1])
+    m = re.search(r"\| ACTIVE rows \| (\d+) \|", md.split("Current as of 2026-09-27", 1)[1])
     out["index_counts"][d] = {"index_active": int(m.group(1)), "csv_active": len(act), "match": int(m.group(1)) == len(act)}
 for e, v in sorted(pairs):
     rc, msg = run([sys.executable, "-B", "tools/validation/validate_enum.py", e, v])

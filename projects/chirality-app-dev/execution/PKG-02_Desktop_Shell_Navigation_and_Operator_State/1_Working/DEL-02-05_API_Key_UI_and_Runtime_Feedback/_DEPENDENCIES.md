@@ -22,27 +22,37 @@ See the current formal `Dependencies.csv` rows whose Direction is DOWNSTREAM. No
 
 ## Current Extracted Dependency Summary — 2026-09-22
 
-Total rows: 15. ACTIVE: 12. RETIRED: 3. RETIRED: 3.
+Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated sections elsewhere in this file keep the counts of their dates.
 
-| DependencyID | Class | Type | Direction | Target | Status | SatisfactionStatus |
+| Count Type | Count |
+|---|---:|
+| Total rows | 15 |
+| ACTIVE rows | 12 |
+| RETIRED rows | 3 |
+| ACTIVE ANCHOR rows | 6 |
+| ACTIVE EXECUTION rows | 6 |
+| ACTIVE parent anchors (`IMPLEMENTS_NODE`) | 1 |
+| ACTIVE Origin=DECLARED rows | 0 |
+
+### Compact Register
+
+| DependencyID | Class | Direction | Type | Target | Status | SatisfactionStatus |
 |---|---|---|---|---|---|---|
-| DEP-02-05-001 | ANCHOR | OTHER | UPSTREAM | PKG-02 | ACTIVE | TBD |
-| DEP-02-05-002 | ANCHOR | OTHER | UPSTREAM | SOW-013 | ACTIVE | TBD |
-| DEP-02-05-003 | ANCHOR | OTHER | UPSTREAM | SOW-019 | ACTIVE | TBD |
-| DEP-02-05-004 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-04-05 | RETIRED | PENDING |
-| DEP-02-05-005 | EXECUTION | INTERFACE | UPSTREAM | HARNESS-CONTRACT-ERROR-TAXONOMY | ACTIVE | SATISFIED |
-| DEP-02-05-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-03 | ACTIVE | PENDING |
-| DEP-02-05-007 | ANCHOR | OTHER | UPSTREAM | SOW-023 | ACTIVE | TBD |
-| DEP-02-05-008 | EXECUTION | INTERFACE | UPSTREAM | HostedEngineConsentPort | RETIRED | PENDING |
-| DEP-02-05-009 | EXECUTION | CONSTRAINT | UPSTREAM | Codex account login/logout and S-8 current-path verification | ACTIVE | PENDING |
-| DEP-02-05-010 | EXECUTION | ENABLES | DOWNSTREAM | DEL-09-06 | ACTIVE | PENDING |
-| DEP-02-05-011 | ANCHOR | OTHER | UPSTREAM | OBJ-001 | ACTIVE | TBD |
-| DEP-02-05-012 | ANCHOR | OTHER | UPSTREAM | OBJ-008 | ACTIVE | TBD |
-| DEP-02-05-013 | EXECUTION | CONSTRAINT | UPSTREAM | ROOT-DEL-02-09 | RETIRED | PENDING |
-| DEP-02-05-014 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-02-01 | ACTIVE | SATISFIED |
-| DEP-02-05-015 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-02-03 | ACTIVE | SATISFIED |
-
-This is a read-only summary of formal rows. D-GOV-43/D-APP-127 adapt current Runtime ownership and retire daemon proof subjects; formal row amendments, satisfaction changes and basis pins retain their owning process. Earlier notes below remain historical and do not override this current summary.
+| DEP-02-05-001 | ANCHOR | UPSTREAM | OTHER | PKG-02 | ACTIVE | TBD |
+| DEP-02-05-002 | ANCHOR | UPSTREAM | OTHER | SOW-013 | ACTIVE | TBD |
+| DEP-02-05-003 | ANCHOR | UPSTREAM | OTHER | SOW-019 | ACTIVE | TBD |
+| DEP-02-05-004 | EXECUTION | UPSTREAM | PREREQUISITE | DEL-04-05 | RETIRED | PENDING |
+| DEP-02-05-005 | EXECUTION | UPSTREAM | INTERFACE | HARNESS-CONTRACT-ERROR-TAXONOMY | ACTIVE | SATISFIED |
+| DEP-02-05-006 | EXECUTION | UPSTREAM | INTERFACE | DEL-03-03 | ACTIVE | PENDING |
+| DEP-02-05-007 | ANCHOR | UPSTREAM | OTHER | SOW-023 | ACTIVE | TBD |
+| DEP-02-05-008 | EXECUTION | UPSTREAM | INTERFACE | HostedEngineConsentPort | RETIRED | PENDING |
+| DEP-02-05-009 | EXECUTION | UPSTREAM | CONSTRAINT | Codex account login/logout and S-8 current-path verification | ACTIVE | PENDING |
+| DEP-02-05-010 | EXECUTION | DOWNSTREAM | ENABLES | DEL-09-06 | ACTIVE | PENDING |
+| DEP-02-05-011 | ANCHOR | UPSTREAM | OTHER | OBJ-001 | ACTIVE | TBD |
+| DEP-02-05-012 | ANCHOR | UPSTREAM | OTHER | OBJ-008 | ACTIVE | TBD |
+| DEP-02-05-013 | EXECUTION | UPSTREAM | CONSTRAINT | ROOT-DEL-02-09 | RETIRED | PENDING |
+| DEP-02-05-014 | EXECUTION | UPSTREAM | PREREQUISITE | DEL-02-01 | ACTIVE | SATISFIED |
+| DEP-02-05-015 | EXECUTION | UPSTREAM | PREREQUISITE | DEL-02-03 | ACTIVE | SATISFIED |
 
 ## Run Notes
 
@@ -112,41 +122,7 @@ This is a read-only summary of formal rows. D-GOV-43/D-APP-127 adapt current Run
 - Parent anchor check: PASS - exactly one ACTIVE `IMPLEMENTS_NODE` anchor.
 - Source-preservation check: scoped source documents, current v19 `_REFERENCES.md`, and the decomposition were not modified by this TASK.
 
-## Extracted Dependency Register
-
-Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated sections elsewhere in this file keep the counts of their dates.
-
-| Count Type | Count |
-|---|---:|
-| Total rows | 15 |
-| ACTIVE rows | 12 |
-| RETIRED rows | 3 |
-| ACTIVE ANCHOR rows | 6 |
-| ACTIVE EXECUTION rows | 6 |
-| ACTIVE parent anchors (`IMPLEMENTS_NODE`) | 1 |
-| ACTIVE Origin=DECLARED rows | 0 |
-
-### Compact Register
-
-| DependencyID | Class | Direction | Type | Target | Status | SatisfactionStatus |
-|---|---|---|---|---|---|---|
-| DEP-02-05-001 | ANCHOR | UPSTREAM | OTHER | PKG-02 | ACTIVE | TBD |
-| DEP-02-05-002 | ANCHOR | UPSTREAM | OTHER | SOW-013 | ACTIVE | TBD |
-| DEP-02-05-003 | ANCHOR | UPSTREAM | OTHER | SOW-019 | ACTIVE | TBD |
-| DEP-02-05-004 | EXECUTION | UPSTREAM | PREREQUISITE | DEL-04-05 | RETIRED | PENDING |
-| DEP-02-05-005 | EXECUTION | UPSTREAM | INTERFACE | HARNESS-CONTRACT-ERROR-TAXONOMY | ACTIVE | SATISFIED |
-| DEP-02-05-006 | EXECUTION | UPSTREAM | INTERFACE | DEL-03-03 | ACTIVE | PENDING |
-| DEP-02-05-007 | ANCHOR | UPSTREAM | OTHER | SOW-023 | ACTIVE | TBD |
-| DEP-02-05-008 | EXECUTION | UPSTREAM | INTERFACE | HostedEngineConsentPort | RETIRED | PENDING |
-| DEP-02-05-009 | EXECUTION | UPSTREAM | CONSTRAINT | Codex account login/logout and S-8 current-path verification | ACTIVE | PENDING |
-| DEP-02-05-010 | EXECUTION | DOWNSTREAM | ENABLES | DEL-09-06 | ACTIVE | PENDING |
-| DEP-02-05-011 | ANCHOR | UPSTREAM | OTHER | OBJ-001 | ACTIVE | TBD |
-| DEP-02-05-012 | ANCHOR | UPSTREAM | OTHER | OBJ-008 | ACTIVE | TBD |
-| DEP-02-05-013 | EXECUTION | UPSTREAM | CONSTRAINT | ROOT-DEL-02-09 | RETIRED | PENDING |
-| DEP-02-05-014 | EXECUTION | UPSTREAM | PREREQUISITE | DEL-02-01 | ACTIVE | SATISFIED |
-| DEP-02-05-015 | EXECUTION | UPSTREAM | PREREQUISITE | DEL-02-03 | ACTIVE | SATISFIED |
-
-## Run Notes - 2026-09-27 SCA-APP-011 incremental setup refresh (UPDATE)
+### 2026-09-27 SCA-APP-011 incremental setup refresh (UPDATE)
 
 - Run: `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`, `project-setup` INCREMENTAL Phase 5.6 (FULL_GRAPH) dispatch of `bundled:chirality-root/dependency-extract`, run directly by WORKING_ITEMS after the owner confirmed the SCA-APP-011 incremental plan on 2026-09-27 (verbatim in `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/CHAT_TRANSCRIPTION.md`). Role: FULL_GRAPH neighbour of the SCA-APP-011 MODIFY set.
 - Runtime overrides: `SCOPE=DEL-02-05`; `RUN_ROOT=projects/chirality-app-dev/execution`; `DECOMPOSITION_PATH=projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=NONE`; `SOURCE_DOCS=AUTO` (`ScopeOfWork.md`, `_CONTEXT.md`, `_REFERENCES.md`, `_STATUS.md`); `ANCHOR_DOC=ScopeOfWork.md`; `EXECUTION_DOC_ORDER=ScopeOfWork.md, _CONTEXT.md`.

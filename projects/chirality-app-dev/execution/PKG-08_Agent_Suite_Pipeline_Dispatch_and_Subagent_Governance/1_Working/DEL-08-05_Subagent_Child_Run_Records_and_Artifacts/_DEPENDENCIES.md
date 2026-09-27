@@ -76,7 +76,7 @@ Current as of 2026-09-27 (`APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`). Dated s
 - `[WARNING] ID_FORMAT_VALIDATOR_PROJECT_CONVENTION`: `validate_id_format.sh` requires `DEL-[0-9]{3}-[0-9]{2}` and `PKG-[0-9]{3}`, so it rejects the accepted live project identifiers `DEL-08-05`, `DEL-08-04`, and `PKG-08`. The extraction preserves those decomposition-authoritative identifiers; no alternative IDs were invented.
 - Schema validation passed: 29 required columns and 11 data rows.
 
-## Run Notes - 2026-09-27 SCA-APP-011 incremental setup refresh (UPDATE)
+### 2026-09-27 SCA-APP-011 incremental setup refresh (UPDATE)
 
 - Run: `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27`, `project-setup` INCREMENTAL Phase 5.6 (FULL_GRAPH) dispatch of `bundled:chirality-root/dependency-extract`, run directly by WORKING_ITEMS after the owner confirmed the SCA-APP-011 incremental plan on 2026-09-27 (verbatim in `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/CHAT_TRANSCRIPTION.md`). Role: FULL_GRAPH neighbour of the SCA-APP-011 MODIFY set.
 - Runtime overrides: `SCOPE=DEL-08-05`; `RUN_ROOT=projects/chirality-app-dev/execution`; `DECOMPOSITION_PATH=projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=NONE`; `SOURCE_DOCS=AUTO` (`ScopeOfWork.md`, `_CONTEXT.md`, `_REFERENCES.md`, `_STATUS.md`); `ANCHOR_DOC=ScopeOfWork.md`; `EXECUTION_DOC_ORDER=ScopeOfWork.md, _CONTEXT.md`.
