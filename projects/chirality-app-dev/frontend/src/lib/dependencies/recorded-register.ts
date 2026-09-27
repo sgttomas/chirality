@@ -40,11 +40,16 @@
  * Symbolic-link unit and package folders are skipped when the units are
  * inventoried; a deliverable requested through such a link (or a linked
  * lifecycle folder) gets `NOT_ASSESSED` with reason `SYMLINKED_UNIT_PATH`,
- * since its canonical folder may sit under another execution root.
+ * since its canonical folder may sit under another execution root. A
+ * deliverable read locates its execution root as the reopening checks do (the
+ * outermost `execution/` ancestor, checked against an adapter manifest) rather
+ * than from the folder shape; a deliverable not exactly at `<execution
+ * root>/PKG-<n>/<lifecycle folder>/DEL-<id>` gets `NOT_ASSESSED` too.
  */
 
 import { open, readdir, realpath, stat } from 'node:fs/promises';
 import path from 'node:path';
+import { resolveExecutionRoot } from '../lifecycle/amendment-reopen';
 import { parseCsv } from './csv-utils';
 
 export const LIFECYCLE_ORDER = [
@@ -1518,10 +1523,15 @@ export interface DeliverableRecordedRegister {
 }
 
 /**
- * `{EXECUTION_ROOT}` of a deliverable folder: the folder two levels above its
- * lifecycle folder (`1_Working`, `2_Checking` or `3_Issued`), whose parent is a
- * `PKG-` package (for `DEL-` units) or a `CAT-` category (for `KTY-` units).
- * Null when the path has another shape.
+ * The `{EXECUTION_ROOT}` a deliverable folder's shape implies: the folder two
+ * levels above its lifecycle folder (`1_Working`, `2_Checking` or `3_Issued`),
+ * whose parent is a `PKG-` package (for `DEL-` units) or a `CAT-` category (for
+ * `KTY-` units). Null when the path has another shape.
+ *
+ * The shape alone does not locate the execution root: a folder of this shape
+ * can sit outside any execution root (for example the target of a linked
+ * package folder). `readDeliverableRecordedRegister` resolves the root and
+ * uses this only to check that the deliverable sits exactly under it.
  */
 export function executionRootForDeliverable(deliverablePath: string): string | null {
   const folder = path.dirname(deliverablePath);
@@ -1597,15 +1607,92 @@ function splitList(value: string, separator: string): string[] {
   return value ? value.split(separator) : [];
 }
 
+/** The execution root a deliverable read is computed over, or the reason there is none. */
+type ExecutionRootLocation = { executionRoot: string } | { notAssessedReason: string };
+
+/**
+ * Locates the execution root of `deliverablePath` for a read in `scope`.
+ *
+ * Without `explicitRoot` the root is resolved as the Root and App reopening
+ * checks resolve it (`resolveExecutionRoot`): the deliverable's outermost
+ * `execution/` ancestor below the canonical project root, which an adapter
+ * manifest found walking up must agree with. With `explicitRoot` (the Root
+ * tools' `--execution-root`) that root is used and must resolve inside the
+ * project root. Either way the canonical deliverable folder must sit exactly at
+ * `<execution root>/PKG-<n>/<lifecycle folder>/DEL-<id>` (or `CAT-`/`KTY-`),
+ * comparing canonical paths.
+ */
+async function locateExecutionRoot(
+  deliverablePath: string,
+  explicitRoot: string | undefined,
+  scope: RegisterReadScope
+): Promise<ExecutionRootLocation> {
+  const projectRoot = await canonicalScopeRoot(scope);
+  let deliverable: string | null = null;
+  try {
+    deliverable = await realpath(deliverablePath);
+  } catch (error) {
+    if (!isMissing(error) && !isLinkLoop(error)) {
+      throw error;
+    }
+  }
+  if (projectRoot === null || deliverable === null) {
+    return {
+      notAssessedReason: `EXECUTION_ROOT_NOT_RESOLVED: ${projectRoot === null ? 'projectRoot' : deliverablePath} does not resolve; no verdict is given`
+    };
+  }
+  if (!isWithin(projectRoot, deliverable)) {
+    return {
+      notAssessedReason: `EXECUTION_ROOT_OUTSIDE_PROJECT_ROOT: the deliverable resolves outside projectRoot; no verdict is given`
+    };
+  }
+  const shown = (target: string): string => path.relative(projectRoot, target) || '.';
+
+  let executionRoot: string;
+  if (explicitRoot !== undefined) {
+    const contained = isWithin(scope.root, explicitRoot) ? await containedPath(scope, explicitRoot) : null;
+    if (contained === null) {
+      return {
+        notAssessedReason:
+          'EXECUTION_ROOT_OUTSIDE_PROJECT_ROOT: the execution root holding this deliverable is outside projectRoot'
+      };
+    }
+    // Canonical, as `deliverable` is, so an aliased root still matches it.
+    executionRoot = contained;
+  } else {
+    const resolution = await resolveExecutionRoot(deliverable, projectRoot);
+    if (!resolution.resolved) {
+      return { notAssessedReason: `EXECUTION_ROOT_NOT_RESOLVED: ${resolution.reason}; no verdict is given` };
+    }
+    executionRoot = path.join(projectRoot, resolution.executionRoot);
+  }
+  if (executionRootForDeliverable(deliverable) !== executionRoot) {
+    return {
+      notAssessedReason: `DELIVERABLE_OUTSIDE_EXECUTION_ROOT: ${shown(deliverable)} is not at {EXECUTION_ROOT}/PKG-*/<lifecycle folder>/DEL-* for the execution root ${shown(executionRoot)}; no verdict is given`
+    };
+  }
+  return { executionRoot };
+}
+
 /**
  * The recorded register of one deliverable and its supplier-judged blocker
  * verdict, computed over the execution root that contains it. Every read stays
  * inside the canonical `containmentRoot` (the App's project root): a file or
  * folder, or any folder on its way, that resolves outside it through a symbolic
  * link is not read and is reported in `warnings`, and so is a file over
- * `MAX_REGISTER_FILE_BYTES`. The execution root must itself resolve inside
- * `containmentRoot`; otherwise only the deliverable's own register is read and
- * no verdict is given. A read that refused any file gives no verdict either.
+ * `MAX_REGISTER_FILE_BYTES`. A read that refused any file gives no verdict.
+ *
+ * The execution root is the deliverable's outermost `execution/` ancestor below
+ * the canonical `containmentRoot`, which an adapter manifest
+ * (`_harness/adapter.yaml`) found walking up must agree with, as in the Root
+ * and App reopening checks. `executionRoot` names it explicitly instead, as the
+ * Root tools' `--execution-root` does (the parity fixtures, whose roots are not
+ * named `execution`); App reads never pass it. The canonical deliverable folder
+ * must sit exactly at `<execution root>/PKG-<n>/<lifecycle folder>/DEL-<id>`
+ * (or `CAT-`/`KTY-`). Otherwise only the deliverable's own register is read, and
+ * the judgment is `NOT_ASSESSED` with reason `EXECUTION_ROOT_NOT_RESOLVED`,
+ * `EXECUTION_ROOT_OUTSIDE_PROJECT_ROOT` or `DELIVERABLE_OUTSIDE_EXECUTION_ROOT`,
+ * also reported as a warning.
  *
  * `requestedPath` is the deliverable path as the caller asked for it, before
  * canonicalization (default: `deliverablePath`). When it reaches the
@@ -1617,20 +1704,29 @@ export async function readDeliverableRecordedRegister(input: {
   deliverablePath: string;
   requestedPath?: string;
   containmentRoot: string;
+  executionRoot?: string;
 }): Promise<DeliverableRecordedRegister> {
-  const deliverableId = unitId(input.deliverablePath);
+  // Compare canonical paths: the execution root below is resolved canonically,
+  // so a caller's alias of the same folder must not lose the verdict. The
+  // requested path stays as given so a linked unit folder is still detected.
+  const deliverablePath = await realpath(input.deliverablePath).catch(() => path.resolve(input.deliverablePath));
+  const deliverableId = unitId(deliverablePath);
   const scope = createReadScope(input.containmentRoot);
   const linkedUnit = await symlinkedUnitPath(input.requestedPath ?? input.deliverablePath);
   if (linkedUnit !== null) {
     warn(scope, linkedUnit);
   }
-  const candidateRoot = linkedUnit === null ? executionRootForDeliverable(input.deliverablePath) : null;
-  const executionRoot =
-    candidateRoot !== null &&
-    isWithin(input.containmentRoot, candidateRoot) &&
-    (await containedPath(scope, candidateRoot)) !== null
-      ? candidateRoot
-      : null;
+  let executionRoot: string | null = null;
+  let unresolvedRoot = 'EXECUTION_ROOT_NOT_RESOLVED';
+  if (linkedUnit === null) {
+    const location = await locateExecutionRoot(deliverablePath, input.executionRoot, scope);
+    if ('executionRoot' in location) {
+      executionRoot = location.executionRoot;
+    } else {
+      unresolvedRoot = location.notAssessedReason;
+      warn(scope, unresolvedRoot);
+    }
+  }
   const defaultMaturity =
     executionRoot === null
       ? parseDefaultMaturity(null)
@@ -1641,12 +1737,7 @@ export async function readDeliverableRecordedRegister(input: {
   if (linkedUnit !== null) {
     blockers = notAssessed(linkedUnit, defaultMaturity);
   } else if (executionRoot === null) {
-    blockers = notAssessed(
-      candidateRoot === null
-        ? 'EXECUTION_ROOT_NOT_RESOLVED: the deliverable is not at {EXECUTION_ROOT}/PKG-*/<lifecycle folder>/DEL-*'
-        : 'EXECUTION_ROOT_OUTSIDE_PROJECT_ROOT: the execution root holding this deliverable is outside projectRoot',
-      defaultMaturity
-    );
+    blockers = notAssessed(unresolvedRoot, defaultMaturity);
   } else {
     try {
       queue = await buildProjectBlockerQueue(executionRoot, { defaultMaturity: defaultMaturity.value, scope });
@@ -1660,8 +1751,8 @@ export async function readDeliverableRecordedRegister(input: {
   }
 
   let register = queue?.registers.get(deliverableId);
-  if (!register || register.path !== input.deliverablePath) {
-    register = await readRecordedRegister(input.deliverablePath, scope);
+  if (!register || register.path !== deliverablePath) {
+    register = await readRecordedRegister(deliverablePath, scope);
   }
   const row = queue?.queueRows.find((item) => item.DeliverableID === deliverableId);
   if (executionRoot !== null && scope.warnings.length > 0) {
@@ -1672,7 +1763,7 @@ export async function readDeliverableRecordedRegister(input: {
   } else if (
     queue !== null &&
     row !== undefined &&
-    queue.registers.get(deliverableId)?.path === input.deliverablePath
+    queue.registers.get(deliverableId)?.path === deliverablePath
   ) {
     const verdict = row.BlockerState === BLOCKED || row.BlockerState === UNBLOCKED;
     blockers = {

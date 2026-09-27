@@ -117,7 +117,7 @@ desktop/src/__tests__/api/harness/scaffold-route.test.ts,5572,06d4ee74843a5fc68f
 desktop/src/__tests__/api/harness/turn-registry-routes.test.ts,9093,980f76d5ee9842a6684d2d9efdfcaa243a40f0735d83468cbb1b6b64598e126d
 desktop/src/__tests__/api/harness/turn-route-attachments.test.ts,6165,8963e9efaaf24413f88cc819cc51fd3d4f50a6157f1cbdadf73795b8bcfde78a
 desktop/src/__tests__/api/project/deliverables-route.test.ts,10709,64523601a2a5b4cef3a178992f59c5ff81249454397f4a37e57a82e6689f4ce7
-desktop/src/__tests__/api/working-root/deliverable-contracts.test.ts,51810,74959f4bd2346a629b3d85bd3504f15c44063c771b3dca6da25c556aeec1be67
+desktop/src/__tests__/api/working-root/deliverable-contracts.test.ts,52894,27813191869b7ad599da7db78c08630340db29bb07cbf195e5012a7fe7855147
 desktop/src/__tests__/api/working-root/file-route.test.ts,16443,8fb4cf4c12b9e6c97065d2194a9122f4cc6257384ec9822289892adbd5111f63
 desktop/src/__tests__/api/working-root/tree-route.test.ts,6089,068cc0dc11f0e48fbd229bbc381d4807ea83eb97e65d812fa8ed7289d5db92d6
 desktop/src/__tests__/api/working-root/validate-route.test.ts,2703,1bfc432c5011c0fe617b0581ff9d1411cc8047cac0a56835185877b23929ca67
@@ -340,7 +340,7 @@ desktop/src/__tests__/lib/atomic-write.test.ts,1791,3737efd08042bb9bcb9c9dfb5436
 desktop/src/__tests__/lib/chat-organization.test.ts,13666,3ec20bb3c724c75e1a3a27c3a1aaac1e1986a5bec8b2fceeca9eb2fea7e53047
 desktop/src/__tests__/lib/chirality-hooks.test.ts,18170,96df9157069ac919ce208525b2a6b844a6c03918d58dfa508219d4bae0c606ae
 desktop/src/__tests__/lib/chirality-mutating-mcp.test.ts,16716,8210fd0aff7b0e104f31d9af16fefdac340fc9dd1155b8a98e85b652ed389740
-desktop/src/__tests__/lib/chirality-read-mcp.test.ts,22506,9b36ca4f96434ac815495573b2960da6111aa367fe1be8054438af121bdb870f
+desktop/src/__tests__/lib/chirality-read-mcp.test.ts,23835,be8228208c60ef956be8499f2f2eb0018be3deb0582fea1d587a5f4a4208bb5e
 desktop/src/__tests__/lib/chirality-tool-bridge.test.ts,6702,b949d1f26286ecf5f80f0c5734432025abffbbe852c85fbe6aa4d74529ef2166
 desktop/src/__tests__/lib/claude-agent-sdk-manager.test.ts,19922,e4471354c024f87f685bc9e99247069f9d17bbb84c6037032e26667f96877975
 desktop/src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts,25026,54275c0b1e5a6d707017b09d6495211cccdae45adfffc2b719e765c5a6f3eb16
@@ -397,7 +397,7 @@ desktop/src/__tests__/lib/pkg08-compatibility-boundaries.test.ts,1838,3d5f647849
 desktop/src/__tests__/lib/plan-executions.test.ts,3861,f50290dffa1215d992249a41778decf4dc9c008e0841aeeb273e89df5430b0a5
 desktop/src/__tests__/lib/plan-export-dialog.test.ts,3021,f5a9224c921127d964d13d678b7550869f2f56d0de607996c78bf71c01b2e973
 desktop/src/__tests__/lib/recorded-agent-hierarchy.test.ts,4073,dabf78dc57fa255bd96ac020592e9f9b26ff3d7ac37836b817504ffb9105fe5c
-desktop/src/__tests__/lib/recorded-register-parity.test.ts,21776,0f19e54e12e01477bb7ced33bf78f1a1e70e771001bdd373dba88a6e1cad12f2
+desktop/src/__tests__/lib/recorded-register-parity.test.ts,32249,643f03fee8a486f6cb16381ddaad7cc0e1c632afc130019f94664763124b815e
 desktop/src/__tests__/lib/redaction-path-matrix.test.ts,3398,cb386af8beda2b0158734b2f63e7faad4cd29321761058dff274c19a162295d5
 desktop/src/__tests__/lib/run-logger.test.ts,3743,9ce9ec664f91670923add2a63925df927471ea067da3c212c899695b7323d390
 desktop/src/__tests__/lib/runtime-daemon-harness-port.test.ts,59111,65252b9b8be980e4ec17c71a1ce54469a39309c8772b4c2c1c059c4d1b6a57c4
@@ -589,7 +589,7 @@ desktop/src/lib/consent/fake-hosted-engine-consent-port.ts,13466,9d43b0fdf38ab63
 desktop/src/lib/consent/hosted-engine-consent-port.ts,14209,2caeff6a7a3f2aefa1ce4a167a734214f7ac916746e8c34d26b03c15f8ff006d
 desktop/src/lib/credential-storage-state.ts,1581,b9a9e171ae8de26845d1868fe03510e3f4b8737a177460538127ba7376441e43
 desktop/src/lib/dependencies/csv-utils.ts,1713,5e5e3f727e78934f540c8a10366e4c9f63277715ca6c60bece5cc131be09df77
-desktop/src/lib/dependencies/recorded-register.ts,60991,12f79940562a2be4306a8e8e929036801c1a8628d480bb85ef68eac174180e2b
+desktop/src/lib/dependencies/recorded-register.ts,65439,e328d42aaf113e498222ab8580dcf84524fac6bd75211a85f37347e7ef360fdc
 desktop/src/lib/dependencies/register-reader.ts,4089,63e54980cba8acb21ff163a0ef0a952ffe0ea333760dd3a90ce43a1a5feec504
 desktop/src/lib/dependencies/register-writer.ts,13903,b14be869ce17de370e85d222185b8e2cfac848b5d1606178f4dd41e80ae3f747
 desktop/src/lib/dependencies/schema.ts,6350,a6a5bc29f70226ebc6e6e951bb5a025e27b5c9a985e734a941bf04c2d219f8da
@@ -657,7 +657,7 @@ desktop/src/lib/harness/turn-engine.ts,14447,20688e1e9444e19f6b503d45696c7c2b8df
 desktop/src/lib/harness/ui-attachments.ts,3152,5b9c53e32bd2afca373d197ac7c1457bae27ab20e85656dff1056129fa8d4a78
 desktop/src/lib/harness/workflow-drafts.ts,1378,1827f538c5d6944745331b0f27bed563302456e0f6dd7329bb3f2752209128a7
 desktop/src/lib/harness/workflow-feedback.ts,509,c13febd449380f76ef8e8c68d2e82bcdaf80354538a6a4ee09ca142a3c76e983
-desktop/src/lib/lifecycle/amendment-reopen.ts,54617,6e344e47387fa51a544aca2457338eb342dbec497abcdbc740dcf7183506a37d
+desktop/src/lib/lifecycle/amendment-reopen.ts,56352,42326959dba2087785cd98002a86f17d2349331c3093731f8de10cda5fa68739
 desktop/src/lib/lifecycle/status-parser.ts,6256,a8eb1388a7bbfc4fb152622480a5371d3e7ac2c743b985df4729a471d7a0f18e
 desktop/src/lib/lifecycle/status-writer.ts,11114,c8dfc524511bec4e528d91a89f1c6976a95f7204b2cc7e1979442eea7bbf57e4
 desktop/src/lib/lifecycle/transition.ts,23165,b4c6e338b543a96654a2775345b23d856dd4c9f1df9d44c160d926e8e003850c
@@ -869,6 +869,7 @@ docs/governance_harness/tranche_manifests/APP-DEL0904-PACKAGED-SDK-CI-20260820.y
 docs/governance_harness/tranche_manifests/APP-DEL0904-RUNATLOAD-CI-20260820.yaml,1583,58c608c3ea31d6e35432e5a7d9e4e2ac0c59947839d49fe6a6c02b6ced8631d9
 docs/governance_harness/tranche_manifests/APP-DEL0905-UNSIGNED-CI-20260819.yaml,1717,82c268c64d5f1043beeacb3288a3828a0a504d37962a4c044766fb2c9413825c
 docs/governance_harness/tranche_manifests/APP-DEL0906-PACKAGED-SECURITY-CI-20260820.yaml,1449,b10b6564437251083be92c7d246986fbaffc16569d23f61263b1df69756ff43f
+docs/governance_harness/tranche_manifests/APP-EXECUTION-ROOT-20260927.yaml,4224,c5733f3d0c512cebd37cc15d092ed13929d3c05c01d36b5811ebef775e950799
 docs/governance_harness/tranche_manifests/APP-JOURNEYS-CORE-WORKFLOW-20260913.yaml,2498,3b76bfebb84288f2eef91bc945d89a436c120bbebb7173133447a8aa2e8f781a
 docs/governance_harness/tranche_manifests/APP-LIFECYCLE-DEPS-ADOPTION-20260926.yaml,7383,62102e2f2e599f4a0b8c13521029c4eb2ef384bf228b854b5f792774dea7e0a9
 docs/governance_harness/tranche_manifests/APP-LOOP-INIT-GENERIC-20260904.yaml,2353,f39b7a4633f3aa7d0733eb5e3deecd4b9cb5194b8df3cc5982e1d7a6c42f4a83
