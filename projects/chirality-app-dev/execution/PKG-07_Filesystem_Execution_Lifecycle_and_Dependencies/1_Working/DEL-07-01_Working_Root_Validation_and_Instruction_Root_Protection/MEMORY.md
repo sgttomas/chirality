@@ -20,3 +20,7 @@
 ## Record closeout — 2026-09-22
 
 D-APP-131/132 and D-GOV-43/D-APP-127 now govern the current ScopeOfWork and Remaining interpretation. Earlier SDK/daemon, four-file, matrix/default-role, source-MATCH and pre-release planning statements remain dated history. Current work, owning surface, checks and gates are in `_STATUS.md`; the W07_10_ROWS.csv derivative accounts for original residual keys. No lifecycle/approval-SHA refresh, product completion, new native result, or release is asserted.
+
+## Runs
+
+- 2026-09-27 — `APP-REMOVE-LEGACY-FORMS-2026-09-27` (SCA-APP-011 code change; checkpoint-group-3 candidate, lands with the SCA-APP-011 scope text after group-3 acceptance): removes the deliverable status, dependency and scaffold routes, so they no longer consume working-root validation. The validation code is unchanged. No lifecycle change. Evidence: [receipt](../../../_Coordination/AgentRuns/APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md); amendment `execution/_ScopeChange/SCA-APP-011_2026-09-27_0155_Workbench_Pipeline_Forms_and_Deliverable_Routes_Retirement/`.

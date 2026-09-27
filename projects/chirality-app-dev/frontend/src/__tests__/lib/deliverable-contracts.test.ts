@@ -1,17 +1,30 @@
 import { lstat, mkdtemp, mkdir, readFile, rename, rm, symlink, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { serializeDependencyRegister } from '../../../lib/dependencies/register-writer';
-import { DependencyRegisterRow } from '../../../lib/dependencies/schema';
-import { writeAmendmentRecords } from '../../lib/amendment-records-fixture';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { serializeDependencyRegister } from '../../lib/dependencies/register-writer';
+import { DependencyRegisterRow } from '../../lib/dependencies/schema';
+import {
+  DeliverableStatusTransitionInput,
+  readDeliverableDependencies,
+  readDeliverableStatus,
+  transitionDeliverableStatus,
+  writeDeliverableDependencies
+} from '../../lib/workspace/deliverable-contracts';
+import { WorkspaceOperationError, WorkspaceValidationError } from '../../lib/workspace/filesystem';
+import { writeAmendmentRecords } from './amendment-records-fixture';
 
-type RouteModules = {
-  statusRoute: typeof import('../../../app/api/working-root/deliverable/status/route');
-  transitionRoute: typeof import('../../../app/api/working-root/deliverable/status/transition/route');
-  dependenciesRoute: typeof import('../../../app/api/working-root/deliverable/dependencies/route');
-  contentRoute: typeof import('../../../app/api/working-root/deliverable/content/route');
-};
+/*
+ * Library-level contract tests for deliverable status reads, lifecycle
+ * transitions and dependency-register reads and writes. SCA-APP-011 retired
+ * the working-root status, transition and dependency routes; these cases were
+ * ported from their route test and call `lib/workspace/deliverable-contracts.ts`
+ * directly. Where the route test asserted an HTTP status and error body, the
+ * port asserts the thrown workspace error's `code` and `status`, which are the
+ * values the route mapped to that status and `error.type`. The two
+ * request-body parsing rows (`INVALID_REQUEST` for a non-string `ruling` or
+ * `amendment`) retired with the routes: the library types both as strings.
+ */
 
 type FixtureContext = {
   tmpRoot: string;
@@ -20,6 +33,8 @@ type FixtureContext = {
   statusFilePath: string;
   dependenciesFilePath: string;
 };
+
+type WorkspaceError = WorkspaceValidationError | WorkspaceOperationError;
 
 const INITIAL_STATUS = `# Status: DEL-05-03 Lifecycle State Handling
 
@@ -71,31 +86,32 @@ function makeDependencyRow(
   };
 }
 
-async function importRouteModules(): Promise<RouteModules> {
-  vi.resetModules();
-  const [statusRoute, transitionRoute, dependenciesRoute, contentRoute] = await Promise.all([
-    import('../../../app/api/working-root/deliverable/status/route'),
-    import('../../../app/api/working-root/deliverable/status/transition/route'),
-    import('../../../app/api/working-root/deliverable/dependencies/route'),
-    import('../../../app/api/working-root/deliverable/content/route')
-  ]);
-  return { statusRoute, transitionRoute, dependenciesRoute, contentRoute };
+/** The workspace error a library call rejects with; fails if it resolves. */
+async function rejection(call: Promise<unknown>): Promise<WorkspaceError> {
+  let caught: unknown;
+  try {
+    await call;
+  } catch (error) {
+    caught = error;
+  }
+  expect(caught).toBeDefined();
+  expect(
+    caught instanceof WorkspaceValidationError || caught instanceof WorkspaceOperationError
+  ).toBe(true);
+  return caught as WorkspaceError;
 }
 
-function contentRequest(
-  projectRoot: string,
-  deliverablePath: string,
-  file?: string
-): Request {
-  const params = new URLSearchParams({ projectRoot, deliverablePath });
-  if (file !== undefined) {
-    params.set('file', file);
-  }
-  return new Request(`http://localhost/api/working-root/deliverable/content?${params.toString()}`);
+/** The error's code, message and details, as the retired route serialized them. */
+function refusalText(error: WorkspaceError): string {
+  return JSON.stringify({
+    type: error.code,
+    message: error.message,
+    details: error instanceof WorkspaceOperationError ? error.details : undefined
+  });
 }
 
 beforeEach(async () => {
-  const tmpRoot = await mkdtemp(path.join(os.tmpdir(), 'chirality-working-root-contracts-'));
+  const tmpRoot = await mkdtemp(path.join(os.tmpdir(), 'chirality-deliverable-contracts-'));
   const projectRoot = path.join(tmpRoot, 'project-root');
   // The recorded-register read resolves the execution root as the outermost execution/ folder.
   const deliverablePath = path.join(
@@ -129,46 +145,24 @@ afterEach(async () => {
   await rm(fixture.tmpRoot, { recursive: true, force: true });
 });
 
-describe('working-root deliverable contract routes', () => {
+describe('deliverable contract library (status, transition, dependencies)', () => {
   it('reads parsed lifecycle state from _STATUS.md', async () => {
-    const routes = await importRouteModules();
-    const response = await routes.statusRoute.GET(
-      new Request(
-        `http://localhost/api/working-root/deliverable/status?projectRoot=${encodeURIComponent(fixture.projectRoot)}&deliverablePath=${encodeURIComponent(fixture.deliverablePath)}`
-      )
-    );
+    const snapshot = await readDeliverableStatus(fixture.projectRoot, fixture.deliverablePath);
 
-    expect(response.status).toBe(200);
-    const body = (await response.json()) as {
-      status: { currentState: string };
-    };
-
-    expect(body.status.currentState).toBe('INITIALIZED');
+    expect(snapshot.status.currentState).toBe('INITIALIZED');
   });
 
   it('applies authorized lifecycle transitions and persists status changes', async () => {
-    const routes = await importRouteModules();
-    const response = await routes.transitionRoute.POST(
-      new Request('http://localhost/api/working-root/deliverable/status/transition', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          projectRoot: fixture.projectRoot,
-          deliverablePath: fixture.deliverablePath,
-          targetState: 'IN_PROGRESS',
-          actor: 'WORKING_ITEMS',
-          date: '2026-02-24'
-        })
-      })
-    );
+    const result = await transitionDeliverableStatus({
+      projectRoot: fixture.projectRoot,
+      deliverablePath: fixture.deliverablePath,
+      targetState: 'IN_PROGRESS',
+      actor: 'WORKING_ITEMS',
+      date: '2026-02-24'
+    });
 
-    expect(response.status).toBe(200);
-    const body = (await response.json()) as {
-      transition: { to: string };
-      status: { currentState: string };
-    };
-    expect(body.transition.to).toBe('IN_PROGRESS');
-    expect(body.status.currentState).toBe('IN_PROGRESS');
+    expect(result.transition.to).toBe('IN_PROGRESS');
+    expect(result.status.currentState).toBe('IN_PROGRESS');
 
     const statusFile = await readFile(fixture.statusFilePath, 'utf8');
     expect(statusFile).toContain('**Current State:** IN_PROGRESS');
@@ -176,158 +170,93 @@ describe('working-root deliverable contract routes', () => {
   });
 
   it('rejects unauthorized actor transitions with explicit error typing', async () => {
-    const routes = await importRouteModules();
-    await routes.transitionRoute.POST(
-      new Request('http://localhost/api/working-root/deliverable/status/transition', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          projectRoot: fixture.projectRoot,
-          deliverablePath: fixture.deliverablePath,
-          targetState: 'IN_PROGRESS',
-          actor: 'WORKING_ITEMS',
-          date: '2026-02-24'
-        })
-      })
-    );
-
-    const unauthorized = await routes.transitionRoute.POST(
-      new Request('http://localhost/api/working-root/deliverable/status/transition', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          projectRoot: fixture.projectRoot,
-          deliverablePath: fixture.deliverablePath,
-          targetState: 'CHECKING',
-          actor: 'WORKING_ITEMS',
-          date: '2026-02-25'
-        })
-      })
-    );
-
-    expect(unauthorized.status).toBe(400);
-    expect(await unauthorized.json()).toMatchObject({
-      error: {
-        type: 'UNAUTHORIZED_ACTOR'
-      }
+    await transitionDeliverableStatus({
+      projectRoot: fixture.projectRoot,
+      deliverablePath: fixture.deliverablePath,
+      targetState: 'IN_PROGRESS',
+      actor: 'WORKING_ITEMS',
+      date: '2026-02-24'
     });
+
+    const unauthorized = await rejection(
+      transitionDeliverableStatus({
+        projectRoot: fixture.projectRoot,
+        deliverablePath: fixture.deliverablePath,
+        targetState: 'CHECKING',
+        actor: 'WORKING_ITEMS',
+        date: '2026-02-25'
+      })
+    );
+
+    expect(unauthorized).toMatchObject({ status: 400, code: 'UNAUTHORIZED_ACTOR' });
   });
 
   it('requires approvalSha evidence for CHECKING and ISSUED transitions', async () => {
-    const routes = await importRouteModules();
-
-    await routes.transitionRoute.POST(
-      new Request('http://localhost/api/working-root/deliverable/status/transition', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          projectRoot: fixture.projectRoot,
-          deliverablePath: fixture.deliverablePath,
-          targetState: 'IN_PROGRESS',
-          actor: 'WORKING_ITEMS',
-          date: '2026-02-24'
-        })
-      })
-    );
-
-    const missingForChecking = await routes.transitionRoute.POST(
-      new Request('http://localhost/api/working-root/deliverable/status/transition', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          projectRoot: fixture.projectRoot,
-          deliverablePath: fixture.deliverablePath,
-          targetState: 'CHECKING',
-          actor: 'HUMAN',
-          date: '2026-02-25'
-        })
-      })
-    );
-
-    expect(missingForChecking.status).toBe(400);
-    expect(await missingForChecking.json()).toMatchObject({
-      error: {
-        type: 'APPROVAL_SHA_REQUIRED'
-      }
+    await transitionDeliverableStatus({
+      projectRoot: fixture.projectRoot,
+      deliverablePath: fixture.deliverablePath,
+      targetState: 'IN_PROGRESS',
+      actor: 'WORKING_ITEMS',
+      date: '2026-02-24'
     });
 
-    const toChecking = await routes.transitionRoute.POST(
-      new Request('http://localhost/api/working-root/deliverable/status/transition', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          projectRoot: fixture.projectRoot,
-          deliverablePath: fixture.deliverablePath,
-          targetState: 'CHECKING',
-          actor: 'HUMAN',
-          date: '2026-02-25',
-          approvalSha: 'abc1234'
-        })
+    const missingForChecking = await rejection(
+      transitionDeliverableStatus({
+        projectRoot: fixture.projectRoot,
+        deliverablePath: fixture.deliverablePath,
+        targetState: 'CHECKING',
+        actor: 'HUMAN',
+        date: '2026-02-25'
       })
     );
 
-    expect(toChecking.status).toBe(200);
+    expect(missingForChecking).toMatchObject({ status: 400, code: 'APPROVAL_SHA_REQUIRED' });
 
-    const missingForIssued = await routes.transitionRoute.POST(
-      new Request('http://localhost/api/working-root/deliverable/status/transition', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          projectRoot: fixture.projectRoot,
-          deliverablePath: fixture.deliverablePath,
-          targetState: 'ISSUED',
-          actor: 'HUMAN',
-          date: '2026-02-26'
-        })
-      })
-    );
-
-    expect(missingForIssued.status).toBe(400);
-    expect(await missingForIssued.json()).toMatchObject({
-      error: {
-        type: 'APPROVAL_SHA_REQUIRED'
-      }
+    const toChecking = await transitionDeliverableStatus({
+      projectRoot: fixture.projectRoot,
+      deliverablePath: fixture.deliverablePath,
+      targetState: 'CHECKING',
+      actor: 'HUMAN',
+      date: '2026-02-25',
+      approvalSha: 'abc1234'
     });
+
+    expect(toChecking.transition.to).toBe('CHECKING');
+
+    const missingForIssued = await rejection(
+      transitionDeliverableStatus({
+        projectRoot: fixture.projectRoot,
+        deliverablePath: fixture.deliverablePath,
+        targetState: 'ISSUED',
+        actor: 'HUMAN',
+        date: '2026-02-26'
+      })
+    );
+
+    expect(missingForIssued).toMatchObject({ status: 400, code: 'APPROVAL_SHA_REQUIRED' });
   });
 
   it('rejects malformed approvalSha values for human-gated transitions', async () => {
-    const routes = await importRouteModules();
-
-    await routes.transitionRoute.POST(
-      new Request('http://localhost/api/working-root/deliverable/status/transition', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          projectRoot: fixture.projectRoot,
-          deliverablePath: fixture.deliverablePath,
-          targetState: 'IN_PROGRESS',
-          actor: 'WORKING_ITEMS',
-          date: '2026-02-24'
-        })
-      })
-    );
-
-    const malformed = await routes.transitionRoute.POST(
-      new Request('http://localhost/api/working-root/deliverable/status/transition', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          projectRoot: fixture.projectRoot,
-          deliverablePath: fixture.deliverablePath,
-          targetState: 'CHECKING',
-          actor: 'HUMAN',
-          date: '2026-02-25',
-          approvalSha: 'not-a-sha'
-        })
-      })
-    );
-
-    expect(malformed.status).toBe(400);
-    expect(await malformed.json()).toMatchObject({
-      error: {
-        type: 'INVALID_APPROVAL_SHA'
-      }
+    await transitionDeliverableStatus({
+      projectRoot: fixture.projectRoot,
+      deliverablePath: fixture.deliverablePath,
+      targetState: 'IN_PROGRESS',
+      actor: 'WORKING_ITEMS',
+      date: '2026-02-24'
     });
+
+    const malformed = await rejection(
+      transitionDeliverableStatus({
+        projectRoot: fixture.projectRoot,
+        deliverablePath: fixture.deliverablePath,
+        targetState: 'CHECKING',
+        actor: 'HUMAN',
+        date: '2026-02-25',
+        approvalSha: 'not-a-sha'
+      })
+    );
+
+    expect(malformed).toMatchObject({ status: 400, code: 'INVALID_APPROVAL_SHA' });
   });
 
   describe('human-ruled CHECKING reversal', () => {
@@ -337,23 +266,16 @@ describe('working-root deliverable contract routes', () => {
       return `${INITIAL_STATUS.replace('**Current State:** INITIALIZED', `**Current State:** ${state}`)}- 2026-02-25 - State set to ${state} (HUMAN)\n`;
     }
 
-    async function postTransition(body: Record<string, unknown>): Promise<Response> {
-      const routes = await importRouteModules();
-      return routes.transitionRoute.POST(
-        new Request('http://localhost/api/working-root/deliverable/status/transition', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            projectRoot: fixture.projectRoot,
-            deliverablePath: fixture.deliverablePath,
-            targetState: 'IN_PROGRESS',
-            actor: 'HUMAN',
-            date: '2026-02-27',
-            approvalSha: 'abc1234',
-            ...body
-          })
-        })
-      );
+    function transition(overrides: Partial<DeliverableStatusTransitionInput>) {
+      return transitionDeliverableStatus({
+        projectRoot: fixture.projectRoot,
+        deliverablePath: fixture.deliverablePath,
+        targetState: 'IN_PROGRESS',
+        actor: 'HUMAN',
+        date: '2026-02-27',
+        approvalSha: 'abc1234',
+        ...overrides
+      });
     }
 
     beforeEach(async () => {
@@ -364,10 +286,9 @@ describe('working-root deliverable contract routes', () => {
     it('applies CHECKING -> IN_PROGRESS with a ruling inside projectRoot and records it', async () => {
       await writeFile(fixture.statusFilePath, statusAt('CHECKING'), 'utf8');
 
-      const response = await postTransition({ ruling: RULING_RELATIVE });
+      const result = await transition({ ruling: RULING_RELATIVE });
 
-      expect(response.status).toBe(200);
-      expect(await response.json()).toMatchObject({
+      expect(result).toMatchObject({
         transition: { from: 'CHECKING', to: 'IN_PROGRESS', actor: 'HUMAN' },
         status: { currentState: 'IN_PROGRESS' }
       });
@@ -380,16 +301,17 @@ describe('working-root deliverable contract routes', () => {
     it('records an absolute ruling path inside projectRoot as project-relative', async () => {
       await writeFile(fixture.statusFilePath, statusAt('CHECKING'), 'utf8');
 
-      const response = await postTransition({
+      await transition({
         ruling: path.join(fixture.projectRoot, RULING_RELATIVE)
       });
 
-      expect(response.status).toBe(200);
       await expect(readFile(fixture.statusFilePath, 'utf8')).resolves.toContain(
         `[reversal from CHECKING; ruling: ${RULING_RELATIVE}; approval SHA: abc1234]`
       );
     });
 
+    // The route-only row "a non-string ruling" ({ ruling: 42 } -> INVALID_REQUEST)
+    // retired with the transition route (SCA-APP-011).
     it.each([
       ['CHECKING', 'HUMAN with neither SHA nor ruling', { approvalSha: undefined }, 'APPROVAL_SHA_REQUIRED'],
       ['CHECKING', 'HUMAN with a SHA but no ruling', {}, 'RULING_REQUIRED'],
@@ -399,33 +321,30 @@ describe('working-root deliverable contract routes', () => {
       ['CHECKING', 'a directory ruling', { ruling: 'execution/_Coordination/_DECISIONS' }, 'RULING_NOT_FOUND'],
       ['CHECKING', 'the project root as ruling', { ruling: '.' }, 'RULING_OUTSIDE_PROJECT_ROOT'],
       ['CHECKING', 'a ruling outside projectRoot', { ruling: '../outside-ruling.md' }, 'RULING_OUTSIDE_PROJECT_ROOT'],
-      ['CHECKING', 'a non-string ruling', { ruling: 42 }, 'INVALID_REQUEST'],
       ['ISSUED', 'a ruling on ISSUED -> IN_PROGRESS', { ruling: RULING_RELATIVE }, 'BACKWARD_TRANSITION'],
       ['ISSUED', 'ISSUED -> CHECKING', { targetState: 'CHECKING', ruling: RULING_RELATIVE }, 'BACKWARD_TRANSITION']
-    ] as const)('denies %s reversal request with %s as %s without writing', async (state, _label, body, type) => {
+    ] as const)('denies %s reversal request with %s as %s without writing', async (state, _label, overrides, code) => {
       await writeFile(path.join(fixture.tmpRoot, 'outside-ruling.md'), '# Outside\n', 'utf8');
       const before = statusAt(state);
       await writeFile(fixture.statusFilePath, before, 'utf8');
 
-      const response = await postTransition(body);
+      const error = await rejection(transition(overrides));
 
-      expect(response.status).toBe(400);
-      expect(await response.json()).toMatchObject({ error: { type } });
+      expect(error).toMatchObject({ status: 400, code });
       await expect(readFile(fixture.statusFilePath, 'utf8')).resolves.toBe(before);
     });
 
     async function expectDeniedWithoutWrite(
-      body: Record<string, unknown>,
-      type: string,
+      overrides: Partial<DeliverableStatusTransitionInput>,
+      code: string,
       state: 'IN_PROGRESS' | 'CHECKING' = 'CHECKING'
     ): Promise<void> {
       const before = statusAt(state);
       await writeFile(fixture.statusFilePath, before, 'utf8');
 
-      const response = await postTransition(body);
+      const error = await rejection(transition(overrides));
 
-      expect(response.status).toBe(400);
-      expect(await response.json()).toMatchObject({ error: { type } });
+      expect(error).toMatchObject({ status: 400, code });
       await expect(readFile(fixture.statusFilePath, 'utf8')).resolves.toBe(before);
     }
 
@@ -461,9 +380,8 @@ describe('working-root deliverable contract routes', () => {
       await writeFile(fixture.statusFilePath, statusAt('CHECKING'), 'utf8');
       await writeFile(path.join(fixture.projectRoot, '..ruling-notes.md'), '# Ruling\n', 'utf8');
 
-      const response = await postTransition({ ruling: '..ruling-notes.md' });
+      await transition({ ruling: '..ruling-notes.md' });
 
-      expect(response.status).toBe(200);
       await expect(readFile(fixture.statusFilePath, 'utf8')).resolves.toContain(
         '[reversal from CHECKING; ruling: ..ruling-notes.md; approval SHA: abc1234]'
       );
@@ -472,9 +390,8 @@ describe('working-root deliverable contract routes', () => {
     it('accepts an optional ruling on IN_PROGRESS -> CHECKING and records it', async () => {
       await writeFile(fixture.statusFilePath, statusAt('IN_PROGRESS'), 'utf8');
 
-      const response = await postTransition({ targetState: 'CHECKING', ruling: RULING_RELATIVE });
+      await transition({ targetState: 'CHECKING', ruling: RULING_RELATIVE });
 
-      expect(response.status).toBe(200);
       const statusFile = await readFile(fixture.statusFilePath, 'utf8');
       expect(statusFile).toContain(
         `- 2026-02-27 - State set to CHECKING (HUMAN) [ruling: ${RULING_RELATIVE}; approval SHA: abc1234]`
@@ -510,14 +427,13 @@ describe('working-root deliverable contract routes', () => {
       const link = path.join(fixture.projectRoot, 'execution/_Coordination/_DECISIONS/D-LINK.md');
       await symlink(outside, link);
 
-      const response = await postTransition({
-        ruling: 'execution/_Coordination/_DECISIONS/D-LINK.md'
-      });
+      const error = await rejection(
+        transition({
+          ruling: 'execution/_Coordination/_DECISIONS/D-LINK.md'
+        })
+      );
 
-      expect(response.status).toBe(400);
-      expect(await response.json()).toMatchObject({
-        error: { type: 'RULING_OUTSIDE_PROJECT_ROOT' }
-      });
+      expect(error).toMatchObject({ status: 400, code: 'RULING_OUTSIDE_PROJECT_ROOT' });
     });
   });
 
@@ -541,41 +457,32 @@ describe('working-root deliverable contract routes', () => {
       scopeChangeRoot: string;
     };
 
-    async function postTransition(
-      body: Record<string, unknown>,
+    function transition(
+      overrides: Partial<DeliverableStatusTransitionInput>,
       target: { projectRoot: string; deliverablePath: string } = reopen
-    ): Promise<Response> {
-      const routes = await importRouteModules();
-      return routes.transitionRoute.POST(
-        new Request('http://localhost/api/working-root/deliverable/status/transition', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            projectRoot: target.projectRoot,
-            deliverablePath: target.deliverablePath,
-            targetState: 'IN_PROGRESS',
-            actor: 'HUMAN',
-            date: '2026-02-27',
-            approvalSha: 'abc1234',
-            ...body
-          })
-        })
-      );
+    ) {
+      return transitionDeliverableStatus({
+        projectRoot: target.projectRoot,
+        deliverablePath: target.deliverablePath,
+        targetState: 'IN_PROGRESS',
+        actor: 'HUMAN',
+        date: '2026-02-27',
+        approvalSha: 'abc1234',
+        ...overrides
+      });
     }
 
     async function expectDenied(
-      body: Record<string, unknown>,
-      type: string,
+      overrides: Partial<DeliverableStatusTransitionInput>,
+      code: string,
       statusFilePath = reopen.statusFilePath,
       target: { projectRoot: string; deliverablePath: string } = reopen
-    ): Promise<unknown> {
+    ): Promise<WorkspaceError> {
       const before = await readFile(statusFilePath, 'utf8');
-      const response = await postTransition(body, target);
-      expect(response.status).toBe(400);
-      const payload = (await response.json()) as { error: { type: string } };
-      expect(payload).toMatchObject({ error: { type } });
+      const error = await rejection(transition(overrides, target));
+      expect(error).toMatchObject({ status: 400, code });
       await expect(readFile(statusFilePath, 'utf8')).resolves.toBe(before);
-      return payload;
+      return error;
     }
 
     beforeEach(async () => {
@@ -599,10 +506,9 @@ describe('working-root deliverable contract routes', () => {
         rows: [MODIFY_ROW]
       });
 
-      const response = await postTransition({ amendment: 'SCA-001' });
+      const result = await transition({ amendment: 'SCA-001' });
 
-      expect(response.status).toBe(200);
-      expect(await response.json()).toMatchObject({
+      expect(result).toMatchObject({
         transition: { from: 'ISSUED', to: 'IN_PROGRESS', actor: 'HUMAN' },
         status: { currentState: 'IN_PROGRESS' }
       });
@@ -621,27 +527,28 @@ describe('working-root deliverable contract routes', () => {
         rows: [MODIFY_ROW]
       });
 
-      const response = await postTransition({
+      const result = await transition({
         amendment: path.relative(reopen.projectRoot, path.join(records.group3Dir, 'DECISION.md'))
       });
 
-      expect(response.status).toBe(200);
+      expect(result.transition).toMatchObject({ from: 'ISSUED', to: 'IN_PROGRESS' });
     });
 
+    // The route-only row "a non-string amendment" ({ amendment: 7 } -> INVALID_REQUEST)
+    // retired with the transition route (SCA-APP-011).
     it.each([
       ['no amendment', {}, 'BACKWARD_TRANSITION'],
-      ['a non-string amendment', { amendment: 7 }, 'INVALID_REQUEST'],
       ['an agent actor', { amendment: 'SCA-001', actor: 'WORKING_ITEMS' }, 'UNAUTHORIZED_ACTOR'],
       ['no approval SHA', { amendment: 'SCA-001', approvalSha: undefined }, 'APPROVAL_SHA_REQUIRED'],
       ['an unknown amendment', { amendment: 'SCA-404' }, 'AMENDMENT_NOT_ADMITTED'],
       ['an unresolvable amendment path', { amendment: 'no/such/amendment' }, 'AMENDMENT_NOT_ADMITTED']
-    ] as const)('denies a reopening with %s without writing', async (_label, body, type) => {
+    ] as const)('denies a reopening with %s without writing', async (_label, overrides, code) => {
       await writeAmendmentRecords({
         scopeChangeRoot: reopen.scopeChangeRoot,
         manifestBase: fixture.projectRoot,
         rows: [MODIFY_ROW]
       });
-      await expectDenied(body, type);
+      await expectDenied(overrides, code);
     });
 
     it.each([
@@ -673,8 +580,8 @@ describe('working-root deliverable contract routes', () => {
         manifestBase: fixture.projectRoot,
         ...records
       });
-      const payload = await expectDenied({ amendment: 'SCA-001' }, 'AMENDMENT_NOT_ADMITTED');
-      expect(JSON.stringify(payload)).toContain(refusal);
+      const error = await expectDenied({ amendment: 'SCA-001' }, 'AMENDMENT_NOT_ADMITTED');
+      expect(refusalText(error)).toContain(refusal);
     });
 
     it('refuses a second reopening under the same amendment', async () => {
@@ -683,7 +590,7 @@ describe('working-root deliverable contract routes', () => {
         manifestBase: reopen.projectRoot,
         rows: [MODIFY_ROW]
       });
-      expect((await postTransition({ amendment: 'SCA-001' })).status).toBe(200);
+      expect((await transition({ amendment: 'SCA-001' })).transition.to).toBe('IN_PROGRESS');
       const reopened = await readFile(reopen.statusFilePath, 'utf8');
       await writeFile(
         reopen.statusFilePath,
@@ -691,8 +598,8 @@ describe('working-root deliverable contract routes', () => {
         'utf8'
       );
 
-      const payload = await expectDenied({ amendment: 'SCA-001' }, 'AMENDMENT_NOT_ADMITTED');
-      expect(JSON.stringify(payload)).toContain('AMENDMENT_ALREADY_USED');
+      const error = await expectDenied({ amendment: 'SCA-001' }, 'AMENDMENT_NOT_ADMITTED');
+      expect(refusalText(error)).toContain('AMENDMENT_ALREADY_USED');
     });
 
     it('denies an amendment on the CHECKING reversal', async () => {
@@ -728,9 +635,9 @@ describe('working-root deliverable contract routes', () => {
           rows: [MODIFY_ROW]
         });
 
-        const response = await postTransition({ amendment: 'SCA-001' }, working);
+        const result = await transition({ amendment: 'SCA-001' }, working);
 
-        expect(response.status).toBe(200);
+        expect(result.transition.to).toBe('IN_PROGRESS');
         await expect(readFile(working.statusFilePath, 'utf8')).resolves.toContain(
           'amendment: SCA-001 (projects/app/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26)'
         );
@@ -750,37 +657,24 @@ describe('working-root deliverable contract routes', () => {
           rows: [MODIFY_ROW]
         });
 
-        const payload = await expectDenied({ amendment: 'SCA-001' }, 'AMENDMENT_NOT_ADMITTED', statusFilePath, {
+        const error = await expectDenied({ amendment: 'SCA-001' }, 'AMENDMENT_NOT_ADMITTED', statusFilePath, {
           projectRoot,
           deliverablePath
         });
-        expect(JSON.stringify(payload)).toContain('PATH_ESCAPE');
-        expect(JSON.stringify(payload)).toContain('outside the App working root');
+        expect(refusalText(error)).toContain('PATH_ESCAPE');
+        expect(refusalText(error)).toContain('outside the App working root');
       });
     });
   });
 
   it('reads dependency register data from Dependencies.csv', async () => {
-    const routes = await importRouteModules();
-    const response = await routes.dependenciesRoute.GET(
-      new Request(
-        `http://localhost/api/working-root/deliverable/dependencies?projectRoot=${encodeURIComponent(fixture.projectRoot)}&deliverablePath=${encodeURIComponent(fixture.deliverablePath)}`
-      )
-    );
+    const snapshot = await readDeliverableDependencies(fixture.projectRoot, fixture.deliverablePath);
 
-    expect(response.status).toBe(200);
-    const body = (await response.json()) as {
-      rows: DependencyRegisterRow[];
-      headers: string[];
-      registerPresent: boolean;
-      secondarySummaryPresent: boolean;
-    };
-
-    expect(body.registerPresent).toBe(true);
-    expect(body.secondarySummaryPresent).toBe(false);
-    expect(body.rows).toHaveLength(1);
-    expect(body.rows[0].DependencyID).toBe('DEP-05-03-001');
-    expect(body.headers).toContain('RegisterSchemaVersion');
+    expect(snapshot.registerPresent).toBe(true);
+    expect(snapshot.secondarySummaryPresent).toBe(false);
+    expect(snapshot.rows).toHaveLength(1);
+    expect(snapshot.rows[0].DependencyID).toBe('DEP-05-03-001');
+    expect(snapshot.headers).toContain('RegisterSchemaVersion');
   });
 
   it('returns explicit dependency-register absence without inferring summary rows', async () => {
@@ -792,30 +686,14 @@ describe('working-root deliverable contract routes', () => {
       'utf8'
     );
 
-    const routes = await importRouteModules();
-    const response = await routes.dependenciesRoute.GET(
-      new Request(
-        `http://localhost/api/working-root/deliverable/dependencies?projectRoot=${encodeURIComponent(fixture.projectRoot)}&deliverablePath=${encodeURIComponent(fixture.deliverablePath)}`
-      )
-    );
+    const snapshot = await readDeliverableDependencies(fixture.projectRoot, fixture.deliverablePath);
 
-    expect(response.status).toBe(200);
-    const body = (await response.json()) as {
-      deliverablePath: string;
-      rows: DependencyRegisterRow[];
-      headers: string[];
-      warnings: string[];
-      dependenciesSummaryPath?: string;
-      registerPresent: boolean;
-      secondarySummaryPresent: boolean;
-    };
-
-    expect(body.registerPresent).toBe(false);
-    expect(body.secondarySummaryPresent).toBe(true);
-    expect(body.dependenciesSummaryPath).toBe(path.join(body.deliverablePath, '_DEPENDENCIES.md'));
-    expect(body.rows).toEqual([]);
-    expect(body.headers).toEqual([]);
-    expect(body.warnings).toEqual([
+    expect(snapshot.registerPresent).toBe(false);
+    expect(snapshot.secondarySummaryPresent).toBe(true);
+    expect(snapshot.dependenciesSummaryPath).toBe(path.join(snapshot.deliverablePath, '_DEPENDENCIES.md'));
+    expect(snapshot.rows).toEqual([]);
+    expect(snapshot.headers).toEqual([]);
+    expect(snapshot.warnings).toEqual([
       'DEPENDENCY_REGISTER_NOT_FOUND: Dependencies.csv is absent; the recorded register is read from the declared sections of _DEPENDENCIES.md (recordedRegister), and no CSV rows are inferred from it.'
     ]);
   });
@@ -855,35 +733,12 @@ describe('working-root deliverable contract routes', () => {
       'utf8'
     );
 
-    const routes = await importRouteModules();
-    const response = await routes.dependenciesRoute.GET(
-      new Request(
-        `http://localhost/api/working-root/deliverable/dependencies?projectRoot=${encodeURIComponent(fixture.projectRoot)}&deliverablePath=${encodeURIComponent(fixture.deliverablePath)}`
-      )
-    );
-
-    expect(response.status).toBe(200);
-    const body = (await response.json()) as {
-      rows: DependencyRegisterRow[];
-      recordedRegister: {
-        trackingMode: string;
-        declaredOnlyRows: DependencyRegisterRow[];
-        unionRows: DependencyRegisterRow[];
-        disagreements: Array<Record<string, string>>;
-        blockers: {
-          blockerState: string;
-          blockerSource: string;
-          blockingUpstreamCount: number | null;
-          blockingUpstreamDeliverables: string[];
-          upstreamArcs: Array<{ supplier: string; requiredMaturity: string; supplierState: string }>;
-        };
-      };
-    };
+    const snapshot = await readDeliverableDependencies(fixture.projectRoot, fixture.deliverablePath);
 
     // The CSV rows stay as they are on disk: register evidence.
-    expect(body.rows).toHaveLength(1);
-    expect(body.rows[0].RequiredMaturity).toBe('IN_PROGRESS');
-    const recorded = body.recordedRegister;
+    expect(snapshot.rows).toHaveLength(1);
+    expect(snapshot.rows[0].RequiredMaturity).toBe('IN_PROGRESS');
+    const recorded = snapshot.recordedRegister!;
     expect(recorded.trackingMode).toBe('DECLARED');
     expect(recorded.unionRows.map((row) => row.DependencyID)).toEqual([
       'DEP-05-03-001',
@@ -928,28 +783,15 @@ describe('working-root deliverable contract routes', () => {
       'dir'
     );
 
-    const routes = await importRouteModules();
-    const response = await routes.dependenciesRoute.GET(
-      new Request(
-        `http://localhost/api/working-root/deliverable/dependencies?projectRoot=${encodeURIComponent(fixture.projectRoot)}&deliverablePath=${encodeURIComponent(fixture.deliverablePath)}`
-      )
-    );
+    const snapshot = await readDeliverableDependencies(fixture.projectRoot, fixture.deliverablePath);
 
-    expect(response.status).toBe(200);
-    const body = (await response.json()) as {
-      warnings: string[];
-      recordedRegister: {
-        disagreements: Array<Record<string, string>>;
-        blockers: { blockerState: string; notAssessedReason?: string; upstreamArcs: unknown[] };
-        warnings: string[];
-      };
-    };
-    expect(body.warnings).toContain(
+    expect(snapshot.warnings).toContain(
       'RECORDED_REGISTER_READ_OUTSIDE_ROOT: execution/PKG-05_Filesystem_Execution_Model/3_Issued resolves outside the read root; it was not read.'
     );
-    expect(body.recordedRegister.blockers.blockerState).toBe('NOT_ASSESSED');
-    expect(body.recordedRegister.blockers.notAssessedReason).toMatch(/^READ_REFUSED:/);
-    expect(JSON.stringify(body.recordedRegister)).not.toContain('DEL-05-09');
+    const recorded = snapshot.recordedRegister!;
+    expect(recorded.blockers.blockerState).toBe('NOT_ASSESSED');
+    expect(recorded.blockers.notAssessedReason).toMatch(/^READ_REFUSED:/);
+    expect(JSON.stringify(recorded)).not.toContain('DEL-05-09');
   });
 
   it('gives no recorded-register verdict for a deliverable reached through a linked package folder', async () => {
@@ -959,18 +801,9 @@ describe('working-root deliverable contract routes', () => {
     await rename(path.join(execution, packageName), path.join(fixture.projectRoot, 'store', packageName));
     await symlink(path.join(fixture.projectRoot, 'store', packageName), path.join(execution, packageName), 'dir');
 
-    const routes = await importRouteModules();
     const read = async (deliverablePath: string) => {
-      const response = await routes.dependenciesRoute.GET(
-        new Request(
-          `http://localhost/api/working-root/deliverable/dependencies?projectRoot=${encodeURIComponent(fixture.projectRoot)}&deliverablePath=${encodeURIComponent(deliverablePath)}`
-        )
-      );
-      expect(response.status).toBe(200);
-      return (await response.json()) as {
-        warnings: string[];
-        recordedRegister: { executionRoot: string | null; blockers: { blockerState: string; notAssessedReason?: string } };
-      };
+      const snapshot = await readDeliverableDependencies(fixture.projectRoot, deliverablePath);
+      return { warnings: snapshot.warnings, recordedRegister: snapshot.recordedRegister! };
     };
 
     const body = await read(fixture.deliverablePath);
@@ -992,7 +825,6 @@ describe('working-root deliverable contract routes', () => {
   });
 
   it('rejects symlink deliverable paths that resolve outside projectRoot', async () => {
-    const routes = await importRouteModules();
     const externalDeliverable = path.join(
       fixture.tmpRoot,
       'outside-root',
@@ -1012,81 +844,43 @@ describe('working-root deliverable contract routes', () => {
     await mkdir(path.dirname(symlinkDeliverable), { recursive: true });
     await symlink(externalDeliverable, symlinkDeliverable);
 
-    const response = await routes.statusRoute.GET(
-      new Request(
-        `http://localhost/api/working-root/deliverable/status?projectRoot=${encodeURIComponent(fixture.projectRoot)}&deliverablePath=${encodeURIComponent(symlinkDeliverable)}`
-      )
-    );
+    const error = await rejection(readDeliverableStatus(fixture.projectRoot, symlinkDeliverable));
 
-    expect(response.status).toBe(400);
-    expect(await response.json()).toMatchObject({
-      error: {
-        type: 'DELIVERABLE_PATH_OUTSIDE_PROJECT_ROOT'
-      }
-    });
+    expect(error).toMatchObject({ status: 400, code: 'DELIVERABLE_PATH_OUTSIDE_PROJECT_ROOT' });
   });
 
   it('rejects dependency writes when FromDeliverableID mismatches the host deliverable', async () => {
-    const routes = await importRouteModules();
-    const response = await routes.dependenciesRoute.PUT(
-      new Request('http://localhost/api/working-root/deliverable/dependencies', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          projectRoot: fixture.projectRoot,
-          deliverablePath: fixture.deliverablePath,
-          rows: [makeDependencyRow({ FromDeliverableID: 'DEL-99-99' })]
-        })
+    const error = await rejection(
+      writeDeliverableDependencies({
+        projectRoot: fixture.projectRoot,
+        deliverablePath: fixture.deliverablePath,
+        rows: [makeDependencyRow({ FromDeliverableID: 'DEL-99-99' })]
       })
     );
 
-    expect(response.status).toBe(400);
-    expect(await response.json()).toMatchObject({
-      error: {
-        type: 'INVALID_IDENTITY'
-      }
-    });
+    expect(error).toMatchObject({ status: 400, code: 'INVALID_IDENTITY' });
   });
 
   it('rejects invalid SatisfactionStatus jumps against prior register rows', async () => {
-    const routes = await importRouteModules();
-    const response = await routes.dependenciesRoute.PUT(
-      new Request('http://localhost/api/working-root/deliverable/dependencies', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          projectRoot: fixture.projectRoot,
-          deliverablePath: fixture.deliverablePath,
-          rows: [makeDependencyRow({ SatisfactionStatus: 'SATISFIED' })]
-        })
+    const error = await rejection(
+      writeDeliverableDependencies({
+        projectRoot: fixture.projectRoot,
+        deliverablePath: fixture.deliverablePath,
+        rows: [makeDependencyRow({ SatisfactionStatus: 'SATISFIED' })]
       })
     );
 
-    expect(response.status).toBe(400);
-    expect(await response.json()).toMatchObject({
-      error: {
-        type: 'INVALID_SATISFACTION_TRANSITION'
-      }
-    });
+    expect(error).toMatchObject({ status: 400, code: 'INVALID_SATISFACTION_TRANSITION' });
   });
 
   it('writes dependency register rows when transitions are valid', async () => {
-    const routes = await importRouteModules();
-    const response = await routes.dependenciesRoute.PUT(
-      new Request('http://localhost/api/working-root/deliverable/dependencies', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          projectRoot: fixture.projectRoot,
-          deliverablePath: fixture.deliverablePath,
-          rows: [makeDependencyRow({ SatisfactionStatus: 'IN_PROGRESS' })]
-        })
-      })
-    );
+    const snapshot = await writeDeliverableDependencies({
+      projectRoot: fixture.projectRoot,
+      deliverablePath: fixture.deliverablePath,
+      rows: [makeDependencyRow({ SatisfactionStatus: 'IN_PROGRESS' })]
+    });
 
-    expect(response.status).toBe(200);
-    const body = (await response.json()) as { rows: DependencyRegisterRow[] };
-    expect(body.rows[0].SatisfactionStatus).toBe('IN_PROGRESS');
+    expect(snapshot.rows[0].SatisfactionStatus).toBe('IN_PROGRESS');
 
     const csv = await readFile(fixture.dependenciesFilePath, 'utf8');
     expect(csv).toContain('IN_PROGRESS');
@@ -1099,25 +893,18 @@ describe('working-root deliverable contract routes', () => {
     await rm(fixture.dependenciesFilePath);
     await symlink(externalDependenciesPath, fixture.dependenciesFilePath);
 
-    const routes = await importRouteModules();
-    const response = await routes.dependenciesRoute.PUT(
-      new Request('http://localhost/api/working-root/deliverable/dependencies', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          projectRoot: fixture.projectRoot,
-          deliverablePath: fixture.deliverablePath,
-          rows: [makeDependencyRow({ SatisfactionStatus: 'IN_PROGRESS' })]
-        })
+    const error = await rejection(
+      writeDeliverableDependencies({
+        projectRoot: fixture.projectRoot,
+        deliverablePath: fixture.deliverablePath,
+        rows: [makeDependencyRow({ SatisfactionStatus: 'IN_PROGRESS' })]
       })
     );
 
-    expect(response.status).toBe(403);
-    expect(await response.json()).toMatchObject({
-      error: {
-        type: 'SYMLINK_WRITE_DENIED',
-        details: { file: 'Dependencies.csv' }
-      }
+    expect(error).toMatchObject({
+      status: 403,
+      code: 'SYMLINK_WRITE_DENIED',
+      details: { file: 'Dependencies.csv' }
     });
     expect((await lstat(fixture.dependenciesFilePath)).isSymbolicLink()).toBe(true);
     expect(await readFile(externalDependenciesPath, 'utf8')).toBe(externalBytes);
@@ -1133,174 +920,21 @@ describe('working-root deliverable contract routes', () => {
     await rm(fixture.dependenciesFilePath);
     await symlink(danglingTargetPath, fixture.dependenciesFilePath);
 
-    const routes = await importRouteModules();
-    const response = await routes.dependenciesRoute.PUT(
-      new Request('http://localhost/api/working-root/deliverable/dependencies', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          projectRoot: fixture.projectRoot,
-          deliverablePath: fixture.deliverablePath,
-          rows: [makeDependencyRow({ SatisfactionStatus: 'IN_PROGRESS' })]
-        })
+    const error = await rejection(
+      writeDeliverableDependencies({
+        projectRoot: fixture.projectRoot,
+        deliverablePath: fixture.deliverablePath,
+        rows: [makeDependencyRow({ SatisfactionStatus: 'IN_PROGRESS' })]
       })
     );
 
-    expect(response.status).toBe(403);
-    expect(await response.json()).toMatchObject({
-      error: {
-        type: 'SYMLINK_WRITE_DENIED',
-        details: { file: 'Dependencies.csv' }
-      }
+    expect(error).toMatchObject({
+      status: 403,
+      code: 'SYMLINK_WRITE_DENIED',
+      details: { file: 'Dependencies.csv' }
     });
     expect((await lstat(fixture.dependenciesFilePath)).isSymbolicLink()).toBe(true);
     await expect(readFile(danglingTargetPath, 'utf8')).rejects.toMatchObject({ code: 'ENOENT' });
     expect(await readFile(sentinelPath, 'utf8')).toBe(externalBytes);
-  });
-
-  it('serves _STATUS.md content by default when no file is requested', async () => {
-    const routes = await importRouteModules();
-    const response = await routes.contentRoute.GET(
-      contentRequest(fixture.projectRoot, fixture.deliverablePath)
-    );
-
-    expect(response.status).toBe(200);
-    const body = (await response.json()) as { content: string; file: string };
-    expect(body.file).toBe('_STATUS.md');
-    expect(body.content).toContain('**Current State:** INITIALIZED');
-  });
-
-  it('serves an explicit relative file within the deliverable', async () => {
-    await writeFile(
-      path.join(fixture.deliverablePath, 'Specification.md'),
-      '# Spec\n\nThe body of the deliverable.\n',
-      'utf8'
-    );
-    const routes = await importRouteModules();
-    const response = await routes.contentRoute.GET(
-      contentRequest(fixture.projectRoot, fixture.deliverablePath, 'Specification.md')
-    );
-
-    expect(response.status).toBe(200);
-    const body = (await response.json()) as { content: string; file: string };
-    expect(body.file).toBe('Specification.md');
-    expect(body.content).toContain('The body of the deliverable.');
-  });
-
-  it('rejects a file that traverses out of the deliverable directory', async () => {
-    const routes = await importRouteModules();
-    const response = await routes.contentRoute.GET(
-      contentRequest(fixture.projectRoot, fixture.deliverablePath, '../_STATUS.md')
-    );
-
-    expect(response.status).toBe(400);
-    expect(await response.json()).toMatchObject({
-      error: { type: 'DELIVERABLE_FILE_OUTSIDE_DELIVERABLE' }
-    });
-  });
-
-  it('rejects an absolute file path', async () => {
-    const routes = await importRouteModules();
-    const response = await routes.contentRoute.GET(
-      contentRequest(fixture.projectRoot, fixture.deliverablePath, '/etc/hosts')
-    );
-
-    expect(response.status).toBe(400);
-    expect(await response.json()).toMatchObject({
-      error: { type: 'DELIVERABLE_FILE_OUTSIDE_DELIVERABLE' }
-    });
-  });
-
-  it('returns 404 for a missing file in the deliverable', async () => {
-    const routes = await importRouteModules();
-    const response = await routes.contentRoute.GET(
-      contentRequest(fixture.projectRoot, fixture.deliverablePath, 'Datasheet.md')
-    );
-
-    expect(response.status).toBe(404);
-    expect(await response.json()).toMatchObject({
-      error: { type: 'DELIVERABLE_CONTENT_NOT_FOUND' }
-    });
-  });
-
-  it('rejects a symlinked file that resolves outside the deliverable', async () => {
-    const externalSecret = path.join(fixture.tmpRoot, 'outside-secret.md');
-    await writeFile(externalSecret, '# Secret\n\nshould never be served.\n', 'utf8');
-    const escapingLink = path.join(fixture.deliverablePath, 'escape.md');
-    await symlink(externalSecret, escapingLink);
-
-    const routes = await importRouteModules();
-    const response = await routes.contentRoute.GET(
-      contentRequest(fixture.projectRoot, fixture.deliverablePath, 'escape.md')
-    );
-
-    expect(response.status).toBe(400);
-    expect(await response.json()).toMatchObject({
-      error: { type: 'DELIVERABLE_FILE_OUTSIDE_DELIVERABLE' }
-    });
-  });
-
-  it('rejects a file reached through a symlinked directory component that escapes', async () => {
-    // The escape is via an intermediate directory symlink, not a leaf-file symlink:
-    // the post-realpath containment re-check must catch mid-path symlink resolution.
-    const externalDir = path.join(fixture.tmpRoot, 'outside-dir');
-    await mkdir(externalDir, { recursive: true });
-    await writeFile(path.join(externalDir, 'Spec.md'), '# External\n\nleaked.\n', 'utf8');
-    await symlink(externalDir, path.join(fixture.deliverablePath, 'linkdir'));
-
-    const routes = await importRouteModules();
-    const response = await routes.contentRoute.GET(
-      contentRequest(fixture.projectRoot, fixture.deliverablePath, 'linkdir/Spec.md')
-    );
-
-    expect(response.status).toBe(400);
-    expect(await response.json()).toMatchObject({
-      error: { type: 'DELIVERABLE_FILE_OUTSIDE_DELIVERABLE' }
-    });
-  });
-
-  it('serves a valid file nested in a subdirectory and reports its relative path', async () => {
-    await mkdir(path.join(fixture.deliverablePath, 'attachments'), { recursive: true });
-    await writeFile(
-      path.join(fixture.deliverablePath, 'attachments', 'diagram.md'),
-      '# Diagram\n\nnested body.\n',
-      'utf8'
-    );
-
-    const routes = await importRouteModules();
-    const response = await routes.contentRoute.GET(
-      contentRequest(fixture.projectRoot, fixture.deliverablePath, 'attachments/diagram.md')
-    );
-
-    expect(response.status).toBe(200);
-    const body = (await response.json()) as { content: string; file: string };
-    expect(body.file).toBe(path.join('attachments', 'diagram.md'));
-    expect(body.content).toContain('nested body.');
-  });
-
-  it('returns 404 when the requested file is the deliverable directory itself', async () => {
-    const routes = await importRouteModules();
-    const response = await routes.contentRoute.GET(
-      contentRequest(fixture.projectRoot, fixture.deliverablePath, '.')
-    );
-
-    expect(response.status).toBe(404);
-    expect(await response.json()).toMatchObject({
-      error: { type: 'DELIVERABLE_CONTENT_NOT_FOUND' }
-    });
-  });
-
-  it('returns 404 when the requested file is a subdirectory, not a regular file', async () => {
-    await mkdir(path.join(fixture.deliverablePath, 'subdir'), { recursive: true });
-
-    const routes = await importRouteModules();
-    const response = await routes.contentRoute.GET(
-      contentRequest(fixture.projectRoot, fixture.deliverablePath, 'subdir')
-    );
-
-    expect(response.status).toBe(404);
-    expect(await response.json()).toMatchObject({
-      error: { type: 'DELIVERABLE_CONTENT_NOT_FOUND' }
-    });
   });
 });

@@ -2,12 +2,7 @@
 
 ## Runs
 
-- 2026-09-27 — `APP-REMOVE-LEGACY-FORMS-2026-09-27` (owner direction): the
-  Workbench and Pipeline forms and their gate inputs were removed; work-graph FU3
-  is withdrawn and its D-APP-36 item closed as moot. CLM-003 drops the removed
-  form test from its hooks and names the MCP tool test. The transition API, MCP
-  tools and lifecycle modules are unchanged. No lifecycle change. Evidence:
-  [receipt](../../../_Coordination/AgentRuns/APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md).
+- 2026-09-27 — `APP-REMOVE-LEGACY-FORMS-2026-09-27` (SCA-APP-011 code change; checkpoint-group-3 candidate, lands with the SCA-APP-011 scope text after group-3 acceptance): removes the status and transition routes, the client fetch functions and the Workbench and Pipeline forms and their gate inputs (work-graph FU3 withdrawn, its D-APP-36 item moot). The library `deliverable-contracts.ts`, `lib/lifecycle` and the MCP tools stay. The route test's status and transition cases, including the `CHECKING` reversal and `ISSUED` reopening blocks, move to `frontend/src/__tests__/lib/deliverable-contracts.test.ts`; two request-body parsing rows (`INVALID_REQUEST`) retire with the routes. No lifecycle change. Evidence: [receipt](../../../_Coordination/AgentRuns/APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md); amendment `execution/_ScopeChange/SCA-APP-011_2026-09-27_0155_Workbench_Pipeline_Forms_and_Deliverable_Routes_Retirement/`.
 - 2026-09-26 — `APP-TRANSITION-FORMS-2026-09-26` (work-graph FU3, FU4):
   the Workbench and Pipeline transition forms offer the `CHECKING -> IN_PROGRESS`
   reversal (required `ruling`) and the `ISSUED -> IN_PROGRESS` reopening
