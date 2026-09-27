@@ -1,0 +1,797 @@
+{
+ "deliverable": "DEL-03-04",
+ "quotes": [
+  {
+   "id": "Q01",
+   "text": "Author this contract as a STANDING assertion — a continuously re-runnable\nverification, not a one-shot artifact.",
+   "source": "projects/pec/execution/_Coordination/WAVE_D-PEC-63/BATCH_B5_FANIN.md",
+   "commit": "125cfacc1",
+   "where": "Purpose, standing character"
+  },
+  {
+   "id": "Q02",
+   "text": "| A001 | `MODIFY` | `OBJECTIVE` | `ScopeLedger.csv` `ObjectiveIDs` — **20 IN rows** (`SOW-001, 003, 011..017, 021, 025, 040, 042, 052, 053, 054, 056, 088, 089, 094`) | Populate `ObjectiveIDs` with bare `;`-separated `OBJ-NNN` tokens, derived by the intake §4 attribution method. **Binding constraint: `SOW-021` ⊆ `{OBJ-005}`** (see F-2) | Unit Ledger (§6 + `ScopeLedger.csv`) |",
+   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Brief.md",
+   "commit": "125cfacc1",
+   "where": "Purpose, objective warrant (A001)"
+  },
+  {
+   "id": "Q03",
+   "text": "| 4v | §3 ↔ register parity | **PASS** — all six objectives MATCH (20/12/12/10/7/9); `OBJ-003` and `OBJ-006` rows untouched; §7 `ContextEnvelopeCounts` unchanged; `status` and `source_corpus` unchanged |",
+   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Decision_Log.md",
+   "commit": "125cfacc1",
+   "where": "Purpose, objective warrant (Gate 5 4v)"
+  },
+  {
+   "id": "Q04",
+   "text": "| OBJ-006 | 9 | 9 | — |",
+   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Amendment_Preview.md",
+   "commit": "125cfacc1",
+   "where": "Purpose, objective warrant"
+  },
+  {
+   "id": "Q05",
+   "text": "SOW-020,IN,Parity-diff PEC derivations against practitioner-harness output; surface discrepancies as DriftFindings resolved against live sources,PEC-RCN-005,PKG-03,DEL-03-04,OBJ-006,,FALSE,Permanent (C10)",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-001"
+  },
+  {
+   "id": "Q06",
+   "text": "Permanent (C10)",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-001, REQ-007, AX-002",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-020",
+   "column": "Notes"
+  },
+  {
+   "id": "Q07",
+   "text": "| SOW-020 | IN | Parity-diff PEC derivations against practitioner-harness output; surface discrepancies as DriftFindings resolved against live sources | PEC-RCN-005 | Permanent (C10) |",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-001"
+  },
+  {
+   "id": "Q08",
+   "text": "PEC derivations shall be parity-diffable against practitioner-harness output; discrepancies are surfaced as DriftFindings and resolved against live sources.",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-002, CLM-011"
+  },
+  {
+   "id": "Q09",
+   "text": "The reconciler shall classify drift between successive snapshots and report it; it shall never modify a source file.",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-002"
+  },
+  {
+   "id": "Q10",
+   "text": "verification creates findings, never rewrites sources — cf. PEC-RCN-004",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-002"
+  },
+  {
+   "id": "Q11",
+   "text": "The product thesis remains measurable and falsifiable: adoption, parity, defect, and collision metrics are gathered in system behavior and the §11 falsification clause stays armed",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-003"
+  },
+  {
+   "id": "Q12",
+   "text": "SOW-020, SOW-057..060, SOW-064, SOW-084, SOW-085, SOW-093",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-003"
+  },
+  {
+   "id": "Q13",
+   "text": "DEL-01-04, DEL-03-04, DEL-10-01, DEL-10-04, DEL-10-05, DEL-10-09, DEL-10-10, DEL-10-11, DEL-10-12",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-003"
+  },
+  {
+   "id": "Q14",
+   "text": "Hard constraints (identified at intake)",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-004"
+  },
+  {
+   "id": "Q15",
+   "text": "| C10 | Permanent parity-diff against the practitioner harness; PEC neither directs the harness nor opens its cache half | PEC-RCN-005, PRD §15 |",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-004"
+  },
+  {
+   "id": "Q16",
+   "text": "PEC is not (non-goals, permanent)",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-005"
+  },
+  {
+   "id": "Q17",
+   "text": "**Not the practitioner harness's replacement.** The harness remains an independent deterministic checker; PEC parity-diffs against it permanently.",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-005"
+  },
+  {
+   "id": "Q18",
+   "text": "Parity: DriftFindings against practitioner-harness output per reconcile.",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-005"
+  },
+  {
+   "id": "Q19",
+   "text": "| **P1 — One-loop reconciler** | Reconciler + orientation store + API for PEC's own build graph, read-only | Parity-diff vs harness clean or explained; rebuild-from-scratch ≤ bound; kill test passes |",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-005"
+  },
+  {
+   "id": "Q20",
+   "text": "**Standing reliance-advertisement gate.** No PEC release advertises\noperational reliance on PEC data (PEC-K-03) until its gates prove, for the\nscope it serves: parity with the practitioner harness clean, or each\ndifference explained by a recorded DriftFinding disposition (PEC-RCN-005);\ncomplete coverage statements under seeded unparseable and stale feeds\n(PEC-ORI-006); the reliance envelope on every response (PEC-ORI-007);\npassing parser fixture suites; and the kill test (PEC-K-01). The gate is\nre-proved at each release that advertises operational reliance. A release\nthat has not passed it advertises none, and consumers keep reading the\nfiles. The gate creates no consumer duty and does not change the phase exit\ntests above.",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-017"
+  },
+  {
+   "id": "Q21",
+   "text": "Maintain the reliance-advertisement gate: before any release advertises operational reliance, prove harness parity clean or explained, complete coverage statements under seeded feed failures, the reliance envelope on every response, passing parser fixture suites and the kill test",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-017",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-100",
+   "column": "ScopeItemStatement"
+  },
+  {
+   "id": "Q22",
+   "text": "Instrument (DL-6): distinct from the behaviours it tests (SOW-020, SOW-009, SOW-097, SOW-055)",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-017",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-100",
+   "column": "Notes"
+  },
+  {
+   "id": "Q23",
+   "text": "Reliance-advertisement gate",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-017, CLM-013",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-10-13",
+   "column": "Name"
+  },
+  {
+   "id": "Q24",
+   "text": "Standing gate for any release that advertises operational reliance: composes DEL-03-04 parity, DEL-04-05 coverage honesty under seeded feed failures, the DEL-04-03 reliance envelope, the PKG-02 parser fixture suites and the DEL-10-02 kill test into one gate record; re-proved at each such release.",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-017",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-10-13",
+   "column": "Description"
+  },
+  {
+   "id": "Q25",
+   "text": "| DEL-10-13 | Reliance-advertisement gate | TEST_SUITE | S | P1 | SOW-100 |",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-017"
+  },
+  {
+   "id": "Q26",
+   "text": "Parity tool + tests",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "125cfacc1",
+   "where": "Ontology intro, CLM-006",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-03-04",
+   "column": "AnticipatedArtifacts"
+  },
+  {
+   "id": "Q27",
+   "text": "Practitioner-harness parity diff",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "125cfacc1",
+   "where": "Purpose, CLM-006",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-03-04",
+   "column": "Name"
+  },
+  {
+   "id": "Q28",
+   "text": "Permanent parity diffing of PEC derivations against practitioner-harness output; discrepancies surfaced as DriftFindings resolved against live sources.",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-006",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-03-04",
+   "column": "Description"
+  },
+  {
+   "id": "Q29",
+   "text": "| DEL-03-04 | Practitioner-harness parity diff | BACKEND_FEATURE_SLICE | M | P1 | SOW-020 |",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-006"
+  },
+  {
+   "id": "Q30",
+   "text": "The guaranteed path from file truth to record tier: one-command rebuild, incremental Git-delta reconcile, drift classification, harness parity diffing, stream-loss recovery guarantee, store-only writes, rebuild performance bounds",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-007"
+  },
+  {
+   "id": "Q31",
+   "text": "SOW-010, 018, 019, 020, 021, 038, 054 (7)",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-007"
+  },
+  {
+   "id": "Q32",
+   "text": "Stream ingest mechanics (PKG-07); parsers (PKG-02)",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-007"
+  },
+  {
+   "id": "Q33",
+   "text": "C-08,STANDING_NODES,\"DEL-01-05, DEL-03-04, DEL-10-02, DEL-10-03, DEL-10-10\",\"Own text: \"\"Automated assertion\"\" / \"\"Permanent\"\" / \"\"Runs at every release\"\" / \"\"tested property\"\" / \"\"standing validation\"\"\",Standing obligations: excluded from one-shot COMPLETE/UNBLOCKED arithmetic; they gate releases not successors,R3-F9; owner confirmation requested. DEL-10-10 is the bootstrap progression record itself",
+   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+   "commit": "125cfacc1",
+   "where": "CLM-008"
+  },
+  {
+   "id": "Q34",
+   "text": "4. DAG candidate v0.2 (120 edges: 19 DECLARED / 19 DERIVED / 82 PROPOSAL;\n   10 constraint rows; 5 STANDING nodes): **accepted, all strata as\n   presented** — exhibit and basis hashes in\n   `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md`.\n   This packet reads \"as presented\" as accepting the exhibit **flags as\n   flags** — E-A11 (AMBIGUOUS_BASIS), E-P69/E-N02 (PHASE_TENSION),\n   E-N13/E-N18 (LOW_CONFIDENCE), C-02 direction, C-08 standing-node set\n   remain recorded-but-unresolved, non-gating annotations; each flag is\n   carried verbatim into the seeded rows' `Notes`. The ruling text below\n   lets the owner confirm or override this reading.",
+   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-62_project_setup_scaffold_and_local_dependency_registers.md",
+   "commit": "125cfacc1",
+   "where": "CLM-008"
+  },
+  {
+   "id": "Q35",
+   "text": "owner confirmation requested",
+   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+   "commit": "125cfacc1",
+   "where": "CLM-008, CON-001, AC-016"
+  },
+  {
+   "id": "Q36",
+   "text": "excluded from one-shot COMPLETE/UNBLOCKED arithmetic; gate releases, not successors — pending owner confirmation, constraint C-08",
+   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+   "commit": "125cfacc1",
+   "where": "CLM-008"
+  },
+  {
+   "id": "Q37",
+   "text": "pending owner confirmation",
+   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+   "commit": "125cfacc1",
+   "where": "CON-001"
+  },
+  {
+   "id": "Q38",
+   "text": "(owner-confirmed at D-PEC-62 ruling)",
+   "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_DEPENDENCIES.md",
+   "commit": "125cfacc1",
+   "where": "CLM-008"
+  },
+  {
+   "id": "Q39",
+   "text": "Governed read-mostly observation CLI over the pilot roots (adapter manifests at `projects/*/_harness/adapter.yaml`)",
+   "source": "tools/REGISTRY.md",
+   "commit": "125cfacc1",
+   "where": "CLM-009"
+  },
+  {
+   "id": "Q40",
+   "text": "Every output is a labeled generated view (D-GOV-01); all file writes contained to `_harness_generated/` only",
+   "source": "tools/REGISTRY.md",
+   "commit": "125cfacc1",
+   "where": "CLM-009 (elided at the leading ellipsis)"
+  },
+  {
+   "id": "Q41",
+   "text": "For Chirality governance state and harness projections, the only permitted\ndatabase pattern is a rebuildable, gitignored cache regenerated from files by\none command, safe to delete, never cited as authority (D-GOV-01). This rule\ndoes not reach developer tooling caches, and it does not reach engine-owned\ndomain stores (K-DOMAIN-1; D-GOV-01 scope note). No cache is implemented:\nthe Phase 5 cache precondition (query pain) was measured unmet on 2026-07-02\n(slowest command, `self-check`, ~4 s) and the cache half stays closed until\nthe owner directs otherwise.",
+   "source": "tools/practitioner_harness/README.md",
+   "commit": "125cfacc1",
+   "where": "CLM-009"
+  },
+  {
+   "id": "Q42",
+   "text": "- The practitioner harness's cache half remains closed by its own record\n  (`tools/practitioner_harness/README.md` §Cache contract): its query-pain\n  precondition was measured **unmet** on 2026-07-02 (slowest command ~4 s).\n  A `D-PEC-57`/`D-PEC-58` ruling directs the PEC product; it neither directs\n  the harness nor remeasures that precondition. §11 metric 1 re-measures\n  Step-0 cost before P1.",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-009"
+  },
+  {
+   "id": "Q43",
+   "text": "neither directs the harness nor opens its cache half",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-009, AX-005"
+  },
+  {
+   "id": "Q44",
+   "text": "| DriftFinding | A classified difference between the current reconcile and the prior snapshot, or between PEC and harness parity output |",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-010"
+  },
+  {
+   "id": "Q45",
+   "text": "CandidateBrief, OrientationSnapshot, DriftFinding, WorkGraph/WorkNode",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-010",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-001",
+   "column": "ScopeItemStatement"
+  },
+  {
+   "id": "Q46",
+   "text": "16 entity types",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-010",
+   "kind": "csv_cell",
+   "key_column": "DeliverableID",
+   "key": "DEL-01-01",
+   "column": "Description"
+  },
+  {
+   "id": "Q47",
+   "text": "Every PKG-03/04/05 deliverable depends on DEL-01-01 directly or transitively",
+   "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_DEPENDENCIES.md",
+   "commit": "125cfacc1",
+   "where": "CLM-010"
+  },
+  {
+   "id": "Q48",
+   "text": "v3.1,DEP-03-04-003,PKG-03,DEL-03-04,Practitioner-harness parity diff,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-03,DEL-03-01,DEL-03-01,Full-rebuild reconciler (one command),execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command,Parity diff runs over PEC derivations produced by reconcile,docs/PRD.md,PRD.md §9.2 requirement PEC-RCN-005,PEC derivations shall be parity-diffable against practitioner-harness output; discrepancies are surfaced as DriftFindings and resolved against live sources.,IMPLICIT,INITIALIZED,TBD,PENDING,MEDIUM,EXTRACTED,2026-07-25,2026-07-25,ACTIVE,PROPOSAL; Flag=none; EdgeID=E-P28",
+   "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/Dependencies.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-011"
+  },
+  {
+   "id": "Q49",
+   "text": "PRD.md §9.2 requirement PEC-RCN-005",
+   "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/Dependencies.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-011",
+   "kind": "csv_cell",
+   "key_column": "DependencyID",
+   "key": "DEP-03-04-003",
+   "column": "SourceRef"
+  },
+  {
+   "id": "Q50",
+   "text": "Parity diff runs over PEC derivations produced by reconcile",
+   "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/Dependencies.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-011, TBD-005",
+   "kind": "csv_cell",
+   "key_column": "DependencyID",
+   "key": "DEP-03-04-003",
+   "column": "Statement"
+  },
+  {
+   "id": "Q51",
+   "text": "E-P28,DEL-03-01,DEL-03-04,PROPOSAL,CONSUMES,,,Parity diff runs over PEC derivations produced by reconcile",
+   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+   "commit": "125cfacc1",
+   "where": "CLM-011"
+  },
+  {
+   "id": "Q52",
+   "text": "- **REQ-006** — The reconciler shall declare, in the entry point's declared-view record — a readable component of OUT-001 — every generated view it writes: what the view is, where it is located, and the fact that it is fully regenerable by a rebuild and safe to delete. An undeclared write target is prohibited. The warrant for this requirement is `D-GOV-01` Option A, which sanctions writing \"labeled generated artifacts (reports, briefs, evidence records) under declared generated paths\" and holds any such projection to being \"a rebuildable, gitignored projection: safe to delete, regenerated from files by one command, never cited as authority\" (CLM-021, CON-001): declaration under a declared path, regenerability, and safe deletion are that ruling's own properties, restated here as a checkable obligation rather than invented by this contract. What this requirement does not settle is which views this reconciler generates or where they live, which is CON-001 and TBD-003.",
+   "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/ScopeOfWork.md",
+   "commit": "125cfacc1",
+   "where": "CLM-012"
+  },
+  {
+   "id": "Q53",
+   "text": "- **REQ-009** — Where an upstream unit reports that a feed is absent, unreadable, malformed, stale, or grammar-unrecognized, the rebuild shall carry that limitation through to its result, naming the loop and the feed, and shall never present a rebuild that could not read a feed as a rebuild that read it. Silent omission is prohibited, per `PEC-ORI-006` (\"Where a feed is unparseable or stale, the response shall state the measurement limitation explicitly; silent omission is prohibited\"). Rendering such a limitation into an orientation response is `DEL-04-05`'s act under `SOW-009` (CLM-019); this deliverable makes the limitation available to that consumer.",
+   "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/ScopeOfWork.md",
+   "commit": "125cfacc1",
+   "where": "CLM-012"
+  },
+  {
+   "id": "Q54",
+   "text": "- **REQ-010** — The rebuild shall be deterministic and idempotent over its inputs: two rebuilds over the same unchanged sources shall produce the same record tier, and a rebuild over a store already rebuilt from those sources shall produce no difference. This is what makes a later difference between two reconciles a structural fact rather than a judgment (`PEC-K-04`).",
+   "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/ScopeOfWork.md",
+   "commit": "125cfacc1",
+   "where": "CLM-012"
+  },
+  {
+   "id": "Q55",
+   "text": "- **REQ-014** — The reconciler shall perform no act owned by another deliverable. In particular it shall perform no Git-delta-keyed incremental reconcile, no drift classification between snapshots, no parity diff against practitioner-harness output, no stream-loss recovery act, no rebuild-bound measurement or assertion, no examined-SHA or freshness stamping and no per-claim citation attachment onto an orientation response, no gate-precondition evaluation or slate rendering, no locality or zero-dependency enforcement act, and no kill test; each is cited to its owner in CLM-019 and none is discharged here.",
+   "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/ScopeOfWork.md",
+   "commit": "125cfacc1",
+   "where": "CLM-012"
+  },
+  {
+   "id": "Q56",
+   "text": "- **CON-005** — `SOW-010` requires the record tier be rebuildable \"in full\", while every upstream feed unit is contractually obliged to report feeds it could not read as explicit limitations (CLM-016), and `PEC-ORI-006` prohibits silent omission. No accepted source states whether a rebuild that completed with stated coverage limitations counts as a full rebuild for `SOW-010`'s purposes, or whether \"in full\" is a claim about the command's reach rather than its coverage. This contract takes neither reading as settled: REQ-001 obliges the command to reach every registered loop and every manifest-named feed, and REQ-009 obliges every gap to be carried through as a stated limitation, so that the question is visible in the result rather than answered by silence. `PRD.md` §12's `P1` exit test names \"rebuild-from-scratch ≤ bound\" without stating the bound, which `PEC-SVC-003` records as \"confirmed at Phase 1\"; that measurement is `DEL-03-06`'s under `SOW-054` (CLM-019) and this contract asserts no bound.",
+   "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/ScopeOfWork.md",
+   "commit": "125cfacc1",
+   "where": "CLM-012"
+  },
+  {
+   "id": "Q57",
+   "text": "E-A18,DEL-03-04,DEL-10-11,DECLARED,MEASURES,,\"Deliverables.csv DEL-10-11: \"\"sourced from DEL-03-04's output\"\"; SOW-093 note: \"\"Measures the output of SOW-020 (DL-14)\"\"\",Parity metric reports DEL-03-04's DriftFindings",
+   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+   "commit": "125cfacc1",
+   "where": "CLM-013"
+  },
+  {
+   "id": "Q58",
+   "text": "Report parity DriftFindings per reconcile as the §11 parity metric",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-013",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-093",
+   "column": "ScopeItemStatement"
+  },
+  {
+   "id": "Q59",
+   "text": "Measures the output of SOW-020 (DL-14); the behavior is PKG-03, the metric is PKG-10",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-013, AX-006",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-093",
+   "column": "Notes"
+  },
+  {
+   "id": "Q60",
+   "text": "The reliance-advertisement gate composes the harness parity result",
+   "source": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/Dependencies.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-013",
+   "kind": "csv_cell",
+   "key_column": "DependencyID",
+   "key": "DEP-10-13-003",
+   "column": "Statement"
+  },
+  {
+   "id": "Q61",
+   "text": "composes DEL-03-04 parity",
+   "source": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/Dependencies.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-013",
+   "kind": "csv_cell",
+   "key_column": "DependencyID",
+   "key": "DEP-10-13-003",
+   "column": "EvidenceQuote"
+  },
+  {
+   "id": "Q62",
+   "text": "DERIVED; Flag=none; EdgeID=E-P88; seeded under D-PEC-101 (SCA-006 B2)",
+   "source": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/Dependencies.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-013",
+   "kind": "csv_cell",
+   "key_column": "DependencyID",
+   "key": "DEP-10-13-003",
+   "column": "Notes"
+  },
+  {
+   "id": "Q63",
+   "text": "Run reconciliation incrementally, keyed on Git delta since the last examined SHA",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-015",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-018",
+   "column": "ScopeItemStatement"
+  },
+  {
+   "id": "Q64",
+   "text": "Classify and report drift between successive snapshots; never modify a source file",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-015",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-019",
+   "column": "ScopeItemStatement"
+  },
+  {
+   "id": "Q65",
+   "text": "the `D-PEC-83` E evidence-inquiry set in the D-PEC-99 exhibit (still unselected)",
+   "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_STATUS.md",
+   "commit": "125cfacc1",
+   "where": "CLM-016"
+  },
+  {
+   "id": "Q66",
+   "text": "at OS scale (the loops the loop registry lists, §16.3; concurrent sessions)",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "TBD-003"
+  },
+  {
+   "id": "Q67",
+   "text": "P1 parity comparable set: **(a)** self-check facts plus explained census absence; no PRD exit-test change",
+   "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Decision_Log.md",
+   "commit": "125cfacc1",
+   "where": "TBD-003"
+  },
+  {
+   "id": "Q68",
+   "text": "| Q10 | **(a), and no PRD exit-test change.** The accepted P1 exit already reads \"Parity-diff vs harness clean **or explained**\". The harness observes `projects/pec` only through `self-check` (its `OBSERVABLE_PROJECTS` excludes PEC), so the P1 parity leg is `self-check` facts plus an explained census absence; that satisfies the accepted wording. The census leg over App/Piping arrives with P2 dashboards without rewording P1. | PRD §12 P1 row; `tools/practitioner_harness/harness.py` line 103; DEL-03-04 TBD-003 |",
+   "source": "projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/CHECKPOINT1_RESOLUTION_NOTE.md",
+   "commit": "125cfacc1",
+   "where": "TBD-003"
+  },
+  {
+   "id": "Q69",
+   "text": "per reconcile",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "TBD-005",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-093",
+   "column": "ScopeItemStatement"
+  },
+  {
+   "id": "Q70",
+   "text": "parity with the practitioner harness clean, or each difference explained by a recorded DriftFinding disposition (PEC-RCN-005)",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CON-001"
+  },
+  {
+   "id": "Q71",
+   "text": "is re-proved at each release that advertises operational reliance",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CON-001"
+  },
+  {
+   "id": "Q72",
+   "text": "advertises none",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CON-001"
+  },
+  {
+   "id": "Q73",
+   "text": "does not change the phase exit tests above",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CON-001, CON-002"
+  },
+  {
+   "id": "Q74",
+   "text": "Parity-diff vs harness clean or explained",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-005, CON-001"
+  },
+  {
+   "id": "Q75",
+   "text": "for the scope it serves",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CON-001"
+  },
+  {
+   "id": "Q76",
+   "text": "or explained",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CON-002, AX-012"
+  },
+  {
+   "id": "Q77",
+   "text": "explained by a recorded DriftFinding disposition (PEC-RCN-005)",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CON-002"
+  },
+  {
+   "id": "Q78",
+   "text": "recorded DriftFinding disposition",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CON-003, AC-017 row"
+  },
+  {
+   "id": "Q79",
+   "text": "explained census absence",
+   "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Decision_Log.md",
+   "commit": "125cfacc1",
+   "where": "CON-002"
+  },
+  {
+   "id": "Q80",
+   "text": "resolved against live sources",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CON-003, AC-017 row",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-020",
+   "column": "ScopeItemStatement"
+  },
+  {
+   "id": "Q81",
+   "text": "creates findings, never rewrites sources",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CON-003"
+  },
+  {
+   "id": "Q82",
+   "text": "a citation (file path, anchor, and/or SHA) to its live source",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CON-003"
+  },
+  {
+   "id": "Q83",
+   "text": "between the current reconcile and the prior snapshot, or between PEC and harness parity output",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CON-004"
+  },
+  {
+   "id": "Q84",
+   "text": "parity DriftFindings per reconcile",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CON-004",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-093",
+   "column": "ScopeItemStatement"
+  },
+  {
+   "id": "Q85",
+   "text": "prove harness parity clean or explained",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CON-007",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-100",
+   "column": "ScopeItemStatement"
+  },
+  {
+   "id": "Q86",
+   "text": "the harness parity leg (SOW-020, DEL-03-04) still needs its `status_glob` population",
+   "source": "projects/pec/execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260923-SCA005/returns/CHECKPOINT1_RESOLUTION_NOTE.md",
+   "commit": "125cfacc1",
+   "where": "CON-007"
+  },
+  {
+   "id": "Q87",
+   "text": "Every response carries the examined-through commit SHA and per-feed freshness; consumers detect staleness structurally",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "REQ-002"
+  },
+  {
+   "id": "Q88",
+   "text": "PEC output is never citable as authority",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "REQ-004, AX-011"
+  },
+  {
+   "id": "Q89",
+   "text": "Paths, counts, SHAs, states, hashes — never file or diff content",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "REQ-006"
+  },
+  {
+   "id": "Q90",
+   "text": "Permanent parity-diff against the practitioner harness",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "REQ-007, AX-002"
+  },
+  {
+   "id": "Q91",
+   "text": "Every status, verdict, and warning carries rule ID, threshold, and contributing cited sources. Drill-down never dead-ends",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "REQ-010"
+  },
+  {
+   "id": "Q92",
+   "text": "PEC parity-diffs against it permanently",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "AX-002"
+  },
+  {
+   "id": "Q93",
+   "text": "Every output is a labeled generated view (D-GOV-01)",
+   "source": "tools/REGISTRY.md",
+   "commit": "125cfacc1",
+   "where": "AX-004"
+  },
+  {
+   "id": "Q94",
+   "text": "the behavior is PKG-03, the metric is PKG-10",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "AX-006"
+  },
+  {
+   "id": "Q95",
+   "text": "all strata as presented",
+   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-62_project_setup_scaffold_and_local_dependency_registers.md",
+   "commit": "125cfacc1",
+   "where": "AX-007"
+  },
+  {
+   "id": "Q96",
+   "text": "advisory visibility only — never work assignment",
+   "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_DEPENDENCIES.md",
+   "commit": "125cfacc1",
+   "where": "AX-007"
+  },
+  {
+   "id": "Q97",
+   "text": "strata are provenance not authority",
+   "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_DEPENDENCIES.md",
+   "commit": "125cfacc1",
+   "where": "AX-008"
+  },
+  {
+   "id": "Q98",
+   "text": "Operational reliance is available only from a PEC release that has passed the §12 reliance-advertisement gate",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "AX-011"
+  },
+  {
+   "id": "Q99",
+   "text": "the unresolvable `@3623b958b` basis pin",
+   "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
+   "commit": "125cfacc1",
+   "where": "AX-012"
+  },
+  {
+   "id": "Q100",
+   "text": "revision 1.6 (`current_basis`, SCA-006 successor)",
+   "source": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_CONTEXT.md",
+   "commit": "125cfacc1",
+   "where": "Purpose, basis"
+  }
+ ]
+}
