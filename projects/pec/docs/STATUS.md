@@ -274,8 +274,11 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     (DEL-00-01 ADRs and contract, DEL-00-03 SPEC and contract;
     premise-only, with the DEL-00-03 contract rebound to revision 1.6) A + P
     + M on 2026-09-27, with a later REVIEW and owner re-acceptance (RR1);
-    the lapsed acceptances are recorded when its act lands. The X1 P1
-    fixture packet is prepared and awaits the owner's ruling. Done: the first SOWs for DEL-02-08/09
+    the lapsed acceptances are recorded when its act lands. The owner ruled
+    the X1 P1 fixture packet `D-PEC-106` (34 fixture files and the
+    `v2-parsers` check; no parser code) A + L + M on 2026-09-27: at X1
+    production start DEL-02-03, DEL-02-08 and DEL-02-09 move to
+    `IN_PROGRESS`. Done: the first SOWs for DEL-02-08/09
     (`D-PEC-98` A + S + M, ruled 2026-09-26): both contracts written,
     re-pinned to revision 1.6, validated and independently verified, and
     both deliverables `INITIALIZED` (run root
