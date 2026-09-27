@@ -1,6 +1,6 @@
 # SCA-APP-011 pre/post coverage comparison (group-3 candidate)
 
-Pre: `Pre_Change_Coverage.json` (accepted group-1 baseline, basis `5843c0b8c`). Post: `Post_Change_Coverage.json` (candidate, basis `5ca09e2e6`).
+Pre: `Pre_Change_Coverage.json` (accepted group-1 baseline, basis `5843c0b8c`). Post: `Post_Change_Coverage.json` (candidate, basis `3f75abfab`).
 
 | Field | Equal | Pre | Post |
 |---|---|---|---|

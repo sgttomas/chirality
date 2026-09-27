@@ -15,6 +15,17 @@ group 3 is accepted.
 | Expected pre-acceptance pointer state | `_LATEST.md` → SCA-APP-010 (unchanged) |
 | Artifact completeness | Present: `Brief.md`, `Intake_Actions.csv`, `Impact_Assessment.md`, `Pre_Change_Coverage.json`, `Amendment_Preview.md`, `Propagation_Plan.md`, `Amendment_Actions.csv`, `Supersession_Delta.csv`, `Supersession_Map.csv`, `Post_Change_Coverage.json`, `Decision_Log.md`, `Handoff_State.md`, `RUN_SUMMARY.md`, `Evidence/`. Not applicable to SOFTWARE: `Domain_Integrity_*`, `KTY_Remediation_Manifest.csv` |
 
+## Integrated revision
+
+Branch `claude/brave-goodall-wj3hok`: the scope text (`94befbf6c`, with
+G3C-01 applied at `3f75abfab`) plus the code change (`5ba17042b`,
+`653fdfb72`). The group-3 corrections (G3C-01, a correction of accepted text
+in the DEL-07-04 Scope of Work; G3B-01, a SPEC basis refresh with no text
+change) are in `Evidence/Group3/G3_CORRECTIONS.md` and are presented for the
+owner's group-3 act. After acceptance, `Evidence/Group3/group3_corrections.py
+--finalize` applies E47. The group-2 `--finalize` is not used, because it
+would refuse the two G3 files.
+
 ## Authoritative truth changed by the candidate
 
 The candidate writes the accepted scope text: 126 of 127 edits in 16 files.
@@ -52,9 +63,9 @@ accepted in `checkpoint_snapshots/SCA-APP-011_GROUP-2_2026-09-27/`. It has
 | Package | Owner | Status | Evidence | Next required action |
 |---|---|---|---|---|
 | Dependency registers (DEL-02-02 DEP-02-02-005..009; DEL-07-05 DEP-07-05-025; DEL-02-01, DEL-02-03, DEL-07-04, DEL-08-02, DEL-08-03 wording) | `dependency-extract` | STALE | `Propagation_Plan.md` §7–8 | Re-extract after acceptance, then `analyze_dep_closure.py` |
-| Code change (forms, routes, client module, scaffold route and port member, test split) | App loop, per `Propagation_Plan.md` §4 | IN PREPARATION (separate branch) | — | Joint group-3 review with this candidate (Q-a) |
-| `RouteAdapterTestIndex.md` (DEL-03-03, lines 24 and 46) | App loop code change | STALE | `Propagation_Plan.md` §4 | Drop or mark the scaffold rows in the code change |
-| `dcd37f9ae` records (run receipt, Receipt-269, APP-TRANSITION-FORMS note, MEMORY rows) | App loop code change | STALE | `Propagation_Plan.md` §4 Records | Correct in the rebased code candidate |
+| Code change (forms, routes, client module, scaffold route and port member, test split) | App loop, per `Propagation_Plan.md` §4 | INTEGRATED (commits `5ba17042b`, `653fdfb72` on `claude/brave-goodall-wj3hok`) | run receipt `APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md`; `RUN_SUMMARY.md` | Joint independent review (Q-a); one PR after group-3 acceptance |
+| `RouteAdapterTestIndex.md` (DEL-03-03, lines 24 and 46 at basis) | App loop code change | DONE (both rows dropped) | commit `653fdfb72` | None |
+| `dcd37f9ae` records (run receipt, Receipt-269, APP-TRANSITION-FORMS note, MEMORY rows) | App loop code change | DONE; the group-2 snapshot is bound by hash (commit `3f75abfab`) | run receipt; `loop/LOOP_RECEIPTS.md` Receipt-269; tranche manifest | None |
 | Task Management APP-R058 | Row owner | OPEN | `Propagation_Plan.md` §8 item 6 | Record "closed by removal under SCA-APP-011" |
 | Runtime notice | WORKING_ITEMS after acceptance | DRAFT | `DRAFT_NOTICE_TO_RUNTIME.md` | Send after acceptance (acceptance-conditional item 4) |
 
@@ -65,7 +76,7 @@ accepted in `checkpoint_snapshots/SCA-APP-011_GROUP-2_2026-09-27/`. It has
 | `_Evaluation/DecompCoverage` | STALE_REBUILD_REQUIRED | Candidate baseline in `Post_Change_Coverage.json`; full `audit-decomp` after acceptance | `Evidence/Group3/PRE_POST_COMPARISON.md` |
 | `_Evaluation/ScopeClosureAudit` | STALE_REBUILD_REQUIRED | After incremental setup and the code change | — |
 | `_Reconciliation/DepClosure` | STALE_REBUILD_REQUIRED | After dependency re-extraction | — |
-| `exports/chirality-app` | STALE_REBUILD_REQUIRED | Regenerated with the code change | — |
+| `exports/chirality-app` | REGENERATED | Regenerated in the integration branch's final commit | export tooling |
 | Companion register | NO_CHANGE (E) | Unchanged, SHA-256 `918e475a…a944` | `Post_Change_Coverage.json` |
 
 ## Remaining blockers and human decisions

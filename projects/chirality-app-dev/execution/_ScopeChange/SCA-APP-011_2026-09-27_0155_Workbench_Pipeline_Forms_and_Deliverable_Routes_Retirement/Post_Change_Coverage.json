@@ -2,7 +2,7 @@
   "run_label": "SCA_APP_011_GROUP3_POSTCHANGE_CANDIDATE",
   "decomp_variant": "SOFTWARE",
   "method": "Synthesized deterministic post-change baseline for the group-3 CANDIDATE, produced by the accepted group-1 builder (Evidence/Group1/build_pre_change_baseline.py) with only the output name, run label and DEL-07-01 substituted (Evidence/Group3/build_post_change_coverage.py). A full audit-decomp TASK run was not dispatched from this bounded session; the same registered tools as the pre-change baseline were run on the candidate.",
-  "basis_commit": "5ca09e2e631feb389ca28a72723de356a9a4f662",
+  "basis_commit": "3f75abfab19e1db9ded29febc55ae6af7559731c",
   "decomposition_path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
   "decomposition_sha256": "dc1314638af4b60608a200ccbbe2fb33c53a45c509b7083338db043c9bc04459",
   "companion_register_path": "projects/chirality-app-dev/execution/_Decomposition/contract_invariant_coverage_register.csv",
@@ -476,30 +476,18 @@
     ],
     "frontend_references": {
       "/api/harness/scaffold": {
-        "product": [
-          "components/pipeline/pipeline-surface.tsx",
-          "lib/harness/client.ts"
-        ],
-        "tests": [
-          "__tests__/api/harness/scaffold-route.test.ts",
-          "__tests__/lib/harness-client.test.ts"
-        ]
+        "product": [],
+        "tests": []
       },
       "scaffoldHarnessExecutionRoot": {
-        "product": [
-          "components/pipeline/pipeline-surface.tsx",
-          "lib/harness/client.ts"
-        ],
-        "tests": [
-          "__tests__/lib/harness-client.test.ts"
-        ]
+        "product": [],
+        "tests": []
       },
       "scaffoldExecutionRoot(": {
         "product": [
           "lib/harness/scaffold.ts"
         ],
         "tests": [
-          "__tests__/api/harness/fake-daemon-harness-port.ts",
           "__tests__/lib/harness-scaffold.test.ts"
         ]
       }

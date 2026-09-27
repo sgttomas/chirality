@@ -3,73 +3,147 @@ amendment_id: SCA-APP-011
 doc_kind: scope_change.run_summary
 decomp_variant: SOFTWARE
 checkpoint_group: 3
-status: CANDIDATE_awaiting_independent_review_and_code_integration
+status: CANDIDATE_ready_for_independent_review
 created: 2026-09-27
-candidate_commit: 5ca09e2e6
+branch: claude/brave-goodall-wj3hok
+integrated_scope_and_code_commit: 3f75abfab
 accepted_group2_snapshot: execution/_ScopeChange/checkpoint_snapshots/SCA-APP-011_GROUP-2_2026-09-27/
 pointer_posture: ACCEPTED_PREDECESSOR (SCA-APP-010)
 ---
 
 # SCA-APP-011 — Checkpoint group 3: audited poststate (CANDIDATE)
 
-> **Status: CANDIDATE. This is not yet ready for your decision.** Two things
-> are missing before this package asks for your group-3 act:
-> - the rebased code change (being built on a separate branch, per
->   `Propagation_Plan.md` §4);
-> - an independent review of the scope text and the code together (Q-a).
->
-> Everything below is the scope-text half. `_LATEST.md` still names SCA-APP-010.
+> **Status: CANDIDATE, ready for independent review.** It is not yet ready
+> for your decision. The scope text and the code change are integrated on one
+> branch. An independent reviewer who did not author either half must review
+> them together first (Q-a). `_LATEST.md` still names SCA-APP-010. Nothing is
+> merged.
 
 ---
 
 ## Checkpoint group 3 — what you will be asked to decide
 
-### What accepting group 3 will do
+### What accepting group 3 authorizes
 
-1. **Make SCA-APP-011 the active amendment.** The scope text below becomes
-   current, and `_LATEST.md` moves to this snapshot.
-2. **Apply the one date-dependent edit, E47.** It sets the decomposition's
-   Coverage and Telemetry `Revision` and `Date`, filled with the acceptance
-   date.
-3. **Land the scope text and the code change together** in one change (Q-a).
-4. **Send the informational notice to the Runtime loop** about its scaffold
-   API.
+In this order, exactly as listed in `Evidence/Group3/ACCEPTANCE_CONDITIONAL_EDITS.csv`:
+
+1. **Decision folder.** `checkpoint_snapshots/SCA-APP-011_GROUP-3_{date}/`,
+   recording your act. It is committed first.
+2. **E47.** `Evidence/Group3/group3_corrections.py --finalize` sets the
+   decomposition's Coverage and Telemetry `Revision` and `Date` to the
+   acceptance date. It first rechecks all 16 candidate hashes and changes
+   nothing else.
+3. **`_LATEST.md`.** It moves from SCA-APP-010 to this snapshot, from the
+   prepared `Evidence/Group3/LATEST_POSTIMAGE.md`.
+4. **Runtime notice.** The informational notice about the Runtime's scaffold
+   API is sent to the Runtime loop.
+5. **Status records.** The `Brief.md` status line, the `Decision_Log.md` G3
+   row and `Handoff_State.md` are updated, and a post-acceptance validation
+   record is written.
+6. **Merge.** One PR lands the scope text and the code change together (Q-a),
+   once CI and the review have no blocking finding.
+7. **Post-acceptance handoffs**, which are not part of the act:
+   `project-setup` in `INCREMENTAL` mode; `dependency-extract` then
+   `analyze_dep_closure`; `audit-decomp`; and `audit-scope-closure` after the
+   setup and the code change.
 
 It authorizes no lifecycle change, dependency-register write or release.
 
-### What changed (candidate, written at `5ca09e2e6`)
+### Two corrections you are asked to accept with group 3
 
-- **126 of the 127 accepted edits are written**, in 16 files:
-  - the decomposition, PRD, SPEC and PLAN;
-  - nine Scopes of Work;
-  - three `_CONTEXT.md` files.
-- **Every file is byte-identical** to the hash recorded at your group-2
-  acceptance.
-- **Nothing outside the accepted write boundary changed.**
-- **E47 is withheld.** It waits for your group-3 act.
+These follow the same "reopen only what is affected" rule used for the M-a
+correction at group 2. Details are in `Evidence/Group3/G3_CORRECTIONS.md`.
 
-### What the checks found
+- **G3C-01, a correction to accepted text.** The DEL-07-04 Scope of Work
+  (line 24, accepted edit E13) said each ported HTTP expectation is restated
+  as the library's `WorkspaceValidationError` code and status. The code
+  throws `WorkspaceOperationError` for most refusals (gates, rulings,
+  amendments, dependency writes) and `WorkspaceValidationError` only for path
+  validation. The candidate now says "the thrown workspace error's code and
+  status (`WorkspaceOperationError` for most refusals,
+  `WorkspaceValidationError` for path validation)". Nothing else in the
+  hook, or in any other file, changes. I scanned the other 15 files and every
+  path and identifier in the accepted text against the code; nothing else is
+  contradicted.
+- **G3B-01, a basis refresh (no text change).** Main changed one App SPEC
+  paragraph on the recorded-register read (Receipt-270) after group 2. The
+  change is outside every SCA-APP-011 edit. The accepted SPEC edits reapply
+  unchanged; only the SPEC file's hashes move.
+
+### What changed
+
+**Scope text** (commits `94befbf6c` and `3f75abfab`):
+- 126 of the 127 accepted edits are written, in 16 files: the decomposition,
+  the PRD, SPEC and PLAN, nine Scopes of Work and three `_CONTEXT.md` files.
+- E47 is withheld.
+- G3C-01 is applied, and G3B-01 is accounted for.
+
+**Code** (commits `5ba17042b` and `653fdfb72`, App loop):
+
+| Change | Files (under `frontend/src/`) |
+|---|---|
+| Forms removed | `components/workbench/workbench-surface.tsx`, `components/pipeline/pipeline-surface.tsx`, `components/pipeline/lifecycle-gate-fields.tsx` and their three tests; form-only CSS in `app/globals.css`; the two tabs in `components/shell/tertiary-sidebar-tabs.tsx` |
+| Deliverable routes removed | `app/api/working-root/deliverable/status/route.ts`, `…/status/transition/route.ts`, `…/dependencies/route.ts` (`…/content/route.ts` stays) |
+| Client module removed | `lib/workspace/deliverable-api.ts` and `__tests__/lib/workspace-deliverable-api.test.ts` |
+| Scaffold route removed | `app/api/harness/scaffold/route.ts` and its test; `scaffoldHarnessExecutionRoot` in `lib/harness/client.ts` |
+| App scaffold proxy removed | `scaffold` on `DaemonHarnessPort` and `RuntimeDaemonHarnessPort`, their test stubs |
+| Route test split | `__tests__/lib/deliverable-contracts.test.ts` (new) and `__tests__/api/working-root/deliverable-content-route.test.ts` (renamed remainder) |
+| Kept | the content route, `deliverable-contracts.ts`, `lib/lifecycle`, `lib/dependencies`, the scaffold library, `lib/harness/mcp`, `task-scope.ts`, `pipeline-dispatch-contract.ts`, the loop-first shell, the `/workbench` and `/pipeline` URLs |
+
+Across 27 frontend files, 486 lines were added and 5,366 removed against
+main. The records are:
+- the run receipt `execution/_Coordination/AgentRuns/APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md`;
+- Receipt-269;
+- the tranche manifest;
+- MEMORY rows for the nine deliverables;
+- `RouteAdapterTestIndex.md`, which drops its two scaffold rows.
+
+The export is regenerated in the last commit.
+
+**Test port.** The port yields 55 library tests and 10 content-route tests.
+The old route test had 57 executed status, transition and dependency tests.
+Only two `it.each` rows were dropped:
+- `{ ruling: 42 }` and `{ amendment: 7 }`, both of which expected
+  `INVALID_REQUEST`;
+- they test request-body parsing, and the library's `string` typing rejects
+  them at compile time.
+
+Every other case keeps its name, fixtures and assertions.
+
+**The ported tests really exercise the gates.** The code agent broke each
+gate temporarily and reran the library test:
+
+| Gate broken | Failures |
+|---|---|
+| The ruling requirement | 1 |
+| Ruling containment | 4 |
+| An agent actor allowed to reverse | 1 |
+| The amendment check on reopening | 9 |
+
+Every file was restored afterwards.
+
+### Checks
 
 | Check | Result |
 |---|---|
-| Candidate hashes | 16/16 match `Evidence/Group2/PREIMAGE_POSTIMAGE.csv` |
-| Edits present | 126/126; E47 withheld; no `{APPLICATION_DATE}` literal in any file |
-| Write containment | Exactly the 16 accepted files changed |
-| Scope of Work validator | 9/9 pass |
-| Retired-route sweep | 108 contracts and contexts; 0 uncovered lines |
-| Topology and coverage | Unchanged: 10 packages, 52 deliverables, 84 scope items, 10 objectives; no orphan scope item or objective |
-| Lifecycle | Unchanged: 53 `IN_PROGRESS`, 1 `OPEN`; no `ISSUED` |
-| Dependency closure | Unchanged: 54 nodes, 111 edges, 0 SCCs |
-| Register validator | Unchanged: `EVQ-006` ×592 only (the carried deliverable-relative evidence-path convention) |
-| Supersession map | 63 rows, 0 findings; reproducible (`--check-map`) |
-| `AuditState` (raw) / `AdjustedAuditState` | `WARNINGS` / `WARNINGS`. Every tool finding was present before the change. No new finding |
+| Candidate hashes | 16/16 match their expected group-3 hash: 14 at the group-2 hash, 1 basis refresh re-derived from `4087a4f8c`, 1 correction |
+| Edits present | 126/126; E47 withheld; no `{APPLICATION_DATE}` literal |
+| Write containment (`e7f6daee1..3f75abfab`) | 70 paths. Scope text is exactly the 16 accepted files. The other 54 fall in §4's code-change categories or the SCA folder. No `_STATUS.md`, `Dependencies.csv`, `_LATEST.md` or companion-register change |
+| Scope of Work validator; retired-route sweep | 9/9 pass; 108 contracts and contexts, 0 uncovered lines |
+| Topology, coverage, lifecycle, closure | Unchanged from the pre-change baseline: 10/52/84/10; 53 `IN_PROGRESS`, 1 `OPEN`; 54 nodes, 111 edges, 0 SCCs; `EVQ-006` ×592 only. No code reference to the retired routes, client function or forms remains |
+| Supersession map | 63 rows, 0 findings |
+| Group-3 finalize path | 15/15 on a scratch copy (`Evidence/Group3/check_group3_finalize.py`) |
+| TypeScript (both configs) | 0 errors on the integrated tree |
+| Focused Vitest | 12 files, 440 tests pass, including the 55 + 10 ported tests |
+| Full Vitest (code agent, same code) | 2590 passed; the known uid-0 `harness-attachment-resolver` failure is the only failure |
+| Root validators | G0–G4, receipts, agent instructions, workflow metadata, instruction entrypoints, conflict markers, run-record leaks, workflow index and `git diff --check`: see §8 |
+| `AuditState` (raw) / `AdjustedAuditState` | `WARNINGS` / `WARNINGS`. Every tool finding was present before the change; there are 0 new findings |
 
-### Still to come before your decision
+### Still needed before your decision
 
-- The code candidate's commit, and its test and typecheck results.
-- The independent review of both halves.
-
-The coordinator will present them with this package.
+- The independent review of the integrated revision, from a reviewer who is
+  not an author.
+- Actual-candidate CI on the PR.
 
 ---
 
@@ -81,116 +155,114 @@ SCA-APP-011 retires the following:
   their client fetch functions;
 - `POST /api/harness/scaffold`, with its client function and App port member.
 
-It rescopes DEL-02-02 and names the lifecycle, dependency and scaffold
+It also rescopes DEL-02-02. It names the lifecycle, dependency and scaffold
 libraries as the interfaces. The owner accepted group 1 and group 2 on
-2026-09-27 (`checkpoint_snapshots/SCA-APP-011_GROUP-1_2026-09-27/`,
-`checkpoint_snapshots/SCA-APP-011_GROUP-2_2026-09-27/`).
+2026-09-27.
+
+**Commit identities.** The owner reviewed the group-2 package at `b0295688c`.
+It now sits on this branch as `524151c9c`, cherry-picked with identical
+content. The group-2 snapshot, candidate text and evidence commits are
+`e7f6daee1`, `94befbf6c` and `1cb9ecc56`; they were `ad38c93c6`, `5ca09e2e6`
+and `fc875d873` before the move.
 
 ## 2. Actions taken (group-3 preparation)
 
 | Step (method.md) | Action | Evidence |
 |---|---|---|
-| Consume group 2 | Resolved `SCA-APP-011_GROUP-2_AUTHORIZED.md`. Verified that its manifest binds the exact amendment, the register, the plan, the delta and the prior map, and that all 12 hashes match | `checkpoint_snapshots/SCA-APP-011_GROUP-2_2026-09-27/ACCEPTED_MANIFEST.csv` |
-| Pointer posture | `ACCEPTED_PREDECESSOR`: `_LATEST.md` names SCA-APP-010 (`6fdba0c9…42c04e3`), unchanged | `Handoff_State.md` |
-| Drift check | `build_amendment_preview.py --check`: OK (16 files, 127 edits). `validate_postimage.py` on the preimages: PASS (group-2 evidence regenerated byte-identical) | `Evidence/Group2/POSTIMAGE_VALIDATION.md` |
-| 1–2. Apply | `build_amendment_preview.py --candidate` wrote 126 edits; 16/16 `candidate OK` | commit `5ca09e2e6` |
-| 5. Supersession | `accumulate_supersession_map.py --prior-map SCA-APP-010/Supersession_Map.csv --delta Supersession_Delta.csv`: 63 rows (45 prior + 18 new), 0 findings; line endings normalized to LF like the SCA-APP-010 map, and `--check-map` against the normalized file still reports 0 findings | `Supersession_Map.csv`, `Evidence/Group3/Supersession_Findings.csv` |
-| 5. Post-change baseline | Accepted group-1 builder rerun on the candidate. It runs `audit_structure.py`, `analyze_dep_closure.py` and `validate_decomposition_registers.py` | `Post_Change_Coverage.json`, `Evidence/Group3/PRE_POST_COMPARISON.md` |
-| 5. Validation | `validate_candidate.py`: PASS | `Evidence/Group3/CANDIDATE_VALIDATION.md` |
+| Consume group 2 | `SCA-APP-011_GROUP-2_AUTHORIZED.md` resolved; the manifest's 12 hashes verified | `checkpoint_snapshots/SCA-APP-011_GROUP-2_2026-09-27/ACCEPTED_MANIFEST.csv` |
+| Pointer posture | `ACCEPTED_PREDECESSOR`; `_LATEST.md` (`6fdba0c9…42c04e3`) unchanged | `Handoff_State.md` |
+| 1–2. Apply | `build_amendment_preview.py --candidate` wrote 126 edits (commit `94befbf6c`); G3C-01 applied with `group3_corrections.py --apply` (commit `3f75abfab`) | `Evidence/Group3/G3_CORRECTIONS.md` |
+| Code change | App loop, `Propagation_Plan.md` §4 (commits `5ba17042b`, `653fdfb72`); code-side records now bind the group-2 snapshot | run receipt, Receipt-269, tranche manifest |
+| 5. Supersession | `accumulate_supersession_map.py` over the SCA-APP-010 map and the delta: 63 rows, 0 findings; LF line endings, `--check-map` clean | `Supersession_Map.csv`, `Evidence/Group3/Supersession_Findings.csv` |
+| 5. Post-change baseline | The accepted group-1 builder rerun on the integrated tree at `3f75abfab` | `Post_Change_Coverage.json`, `Evidence/Group3/PRE_POST_COMPARISON.md` |
+| 5. Validation | `validate_candidate.py --accepted-commit e7f6daee1 --head 3f75abfab`: PASS | `Evidence/Group3/CANDIDATE_VALIDATION.md` |
 | Acceptance-conditional list | Six items, exact | `Evidence/Group3/ACCEPTANCE_CONDITIONAL_EDITS.csv`, `Evidence/Group3/LATEST_POSTIMAGE.md` |
 
 **Disclosure.** A full `audit-decomp` TASK run was not dispatched from this
-bounded session. The post-change baseline reruns the same registered
-deterministic tools as the accepted pre-change baseline, through the accepted
-group-1 builder. Only three things are substituted: the output name, the run
-label, and DEL-07-01 added to the affected list. `Propagation_Plan.md` §6 step 6
-allows this equivalent. A full `audit-decomp` is a post-acceptance handoff.
+bounded session. The post-change baseline reruns the same registered tools as
+the accepted pre-change baseline (`Propagation_Plan.md` §6 step 6). A full
+`audit-decomp` is a post-acceptance handoff.
 
-**Independent review.** Not yet run. Method.md step 5 requires a separate
-instance that did not author or apply the candidate. Under Q-a it covers this
-candidate together with the code candidate.
+**Disclosed deviations from §4** (records only; see `G3_CORRECTIONS.md`):
+- §4's line numbers are against the basis, and the ported route test is the
+  version after Receipt-270;
+- `loop/LOOP_RECEIPTS.md` also conflicted in the rebase. Receipt-269 sits
+  before 270 with parent 268;
+- the two `RouteAdapterTestIndex.md` rows were dropped (the preview's option);
+- DEP-07-05-025 in `DEL-07-05/Dependencies.csv` still names the dependency
+  route, which the §8 `dependency-extract` handoff owns.
 
 ## 3. Pre-change vs post-change
 
 The full comparison is in `Evidence/Group3/PRE_POST_COMPARISON.md`. Every field
-is equal, except these, which differ as intended:
-- `decomposition_sha256` changes from `9261ce30…` to `dc131463…` (the accepted
-  candidate hash);
-- `affected_lifecycle` gains the DEL-07-01 key (row 29), which is
-  `IN_PROGRESS`.
+is equal, except two that differ as intended:
+- `decomposition_sha256`, which moves to `dc131463…`;
+- `affected_lifecycle`, which gains the DEL-07-01 key (`IN_PROGRESS`).
 
-- **No coverage regression:** there is no `REMOVE` action, and no scope item
-  or objective is left without a deliverable.
-- **No new orphan:** forward coverage is 52/52. The reverse view is unchanged,
-  with DEL-00-01 and DEL-00-02 undeclared as before.
-- **No parent-partition change:** no package or deliverable moved, so no
-  child row or mapping is left dangling.
-- **SOFTWARE design rules:** checked explicitly. Package flatness is unchanged
-  (no package change), the Scope Ledger has 84 rows with the same
-  IN/OUT/TBD split (78/5/1), and the context envelopes are unchanged
+The scaffold-route references in the frontend are now none, where before they
+were the Pipeline form, the client and their tests.
+
+- **Coverage.** There is no coverage regression, no new orphan and no
+  parent-partition change.
+- **SOFTWARE design rules.** These were checked explicitly. Package flatness
+  and the Scope Ledger (84 rows, 78/5/1) are unchanged, as are the envelopes
   (L 2, M 41, S 9). DEL-02-02 keeps its ID, name, type and envelope.
-- **Stable IDs:** preserved, and no retired ID is reused.
-- **Change record:** DEC-026 and the Change Log line are present in the
-  decomposition.
+- **IDs and change record.** Stable IDs are preserved, and no retired ID is
+  reused. DEC-026 and the Change Log line are present.
 
 ## 4. Finding classification
 
 | # | Finding | Source | Pre | Post | Class |
 |---|---|---|---|---|---|
-| F1 | `EVQ-006` ×592 (deliverable-relative `EvidenceFile` paths) | `validate_decomposition_registers.py` | 592 | 592 | Carried, pre-existing; not new |
-| F2 | "partition directory contract is incomplete" | `audit_structure.py` | yes | yes | Carried, pre-existing; not new |
-| F3 | "required tool roots are missing" | `audit_structure.py` | yes | yes | Carried, pre-existing; not new |
-| F4 | Closure `subject_status` FAIL (2 schema-invalid registers, 2 production units without a node) | `analyze_dep_closure.py` | yes | yes | Carried, pre-existing; not new |
-| X1 | Code still carries the retired forms, routes, client module and scaffold route and member. The hooks name `__tests__/lib/deliverable-contracts.test.ts`, which does not exist yet | candidate review | — | yes | `EXPECTED_CONSEQUENCE`: group-2 Q-a (code reviewed jointly and landed with the text) |
-| X2 | Dependency rows DEP-02-02-005..009 and DEP-07-05-025 still name the retired forms or route | candidate review | — | yes | `EXPECTED_CONSEQUENCE`: group 2, `Propagation_Plan.md` §8 item 2 (no dependency register is written by this amendment) |
-| X3 | Coverage and Telemetry still reads "amended by SCA-APP-010 / 2026-09-04" | candidate review | — | yes | `EXPECTED_CONSEQUENCE`: group 2, §6 (E47 acceptance-conditional) |
-| X4 | `RouteAdapterTestIndex.md` lines 24 and 46 still list the scaffold route | candidate review | — | yes | `EXPECTED_CONSEQUENCE`: group 2, §4 (code change owns it) |
-| X5 | `dcd37f9ae` receipts and MEMORY rows say the routes are kept | candidate review | — | yes | `EXPECTED_CONSEQUENCE`: group 2, §4 Records |
-| X6 | Task Management APP-R058 open; `exports/chirality-app` stale; `_LATEST.md` on SCA-APP-010 | candidate review | — | yes | `EXPECTED_CONSEQUENCE`: group 2, §8 items 6 and 8; method.md pointer rule |
+| F1 | `EVQ-006` ×592 (deliverable-relative `EvidenceFile` paths) | `validate_decomposition_registers.py` | 592 | 592 | Carried, pre-existing |
+| F2 | "partition directory contract is incomplete" | `audit_structure.py` | yes | yes | Carried, pre-existing |
+| F3 | "required tool roots are missing" | `audit_structure.py` | yes | yes | Carried, pre-existing |
+| F4 | Closure `subject_status` FAIL (2 schema-invalid registers, 2 units without a node) | `analyze_dep_closure.py` | yes | yes | Carried, pre-existing |
+| X2 | DEP-02-02-005..009 and DEP-07-05-025 still name the retired forms or route | candidate review | — | yes | `EXPECTED_CONSEQUENCE`: group 2, `Propagation_Plan.md` §8 item 2 |
+| X3 | Coverage and Telemetry still reads "amended by SCA-APP-010 / 2026-09-04" | candidate review | — | yes | `EXPECTED_CONSEQUENCE`: group 2, §6 (E47) |
+| X6 | Task Management APP-R058 open; `_LATEST.md` on SCA-APP-010 | candidate review | — | yes | `EXPECTED_CONSEQUENCE`: group 2, §8 item 6; the method.md pointer rule |
 
-- **Raw `AuditState`:** `WARNINGS` (F1–F4 plus X1–X6).
-- **`AdjustedAuditState`:** `WARNINGS` (F1–F4, which are carried and
-  pre-existing).
+Three earlier expected consequences are now resolved by the integrated code
+change:
+- X1: the code still carried the retired items;
+- X4: `RouteAdapterTestIndex.md` still listed the scaffold route;
+- X5: the `dcd37f9ae` records said the routes were kept.
+
+The export, which was X6's other part, is regenerated in the last commit.
+
+- **Raw `AuditState`:** `WARNINGS`.
+- **`AdjustedAuditState`:** `WARNINGS` (F1–F4, carried).
 - **New findings:** 0.
 
 ## 5. Acceptance-conditional edits (exact list)
 
 See `Evidence/Group3/ACCEPTANCE_CONDITIONAL_EDITS.csv`. None is applied
-before acceptance.
+before acceptance, and any edit not on the list returns to the owner.
 
-1. **Group-3 decision folder.** Write
-   `checkpoint_snapshots/SCA-APP-011_GROUP-3_{date}/`, with its `DECISION.md`
-   headed `# SCA-APP-011 checkpoint group 3 — accepted …`. Commit it first.
+1. **Decision folder.** Write `checkpoint_snapshots/SCA-APP-011_GROUP-3_{date}/`
+   (`DECISION.md` headed `# SCA-APP-011 checkpoint group 3 — accepted …`) and
+   commit it first.
 2. **E47.** Run
-   `build_amendment_preview.py --finalize --date {date} --group3-decision …/SCA-APP-011_GROUP-3_{date}/DECISION.md`.
-   It refuses unless every file still has its candidate hash and the date
-   matches the folder.
-3. **`_LATEST.md`.** Replace it with `Evidence/Group3/LATEST_POSTIMAGE.md`
-   (`03fb208d…786ba0`), with both `{APPLICATION_DATE}` occurrences set to
-   `{date}`. The before hash is `6fdba0c9…42c04e3`.
+   `group3_corrections.py --finalize --date {date} --group3-decision …/SCA-APP-011_GROUP-3_{date}/DECISION.md`.
+   Do not use the group-2 `--finalize`, which refuses the two G3 files.
+3. **`_LATEST.md`.** Replace it with `LATEST_POSTIMAGE.md` (`03fb208d…786ba0`),
+   with both `{APPLICATION_DATE}` occurrences set to `{date}`. The before hash
+   is `6fdba0c9…42c04e3`.
 4. **Runtime notice.** Copy it to
    `projects/chirality-runtime/execution/_Coordination/NOTICE_{date}_APP_SCA-APP-011_SCAFFOLD_API.md`,
    without the draft header.
-5. **SCA status records.** Update the `Brief.md` status line, the
-   `Decision_Log.md` G3 row and `Handoff_State.md`, recording the act.
-6. **Post-acceptance record.** Write
-   `_PostAcceptanceValidation/SCA-APP-011_{UTC}/`: compare items 2–4 with this
-   list and rerun the three registered tools.
-
-Any edit not on this list returns to the owner.
+5. **Status records.** Update the `Brief.md` status line, the
+   `Decision_Log.md` G3 row and `Handoff_State.md`.
+6. **Post-acceptance record.** Write `_PostAcceptanceValidation/SCA-APP-011_{UTC}/`.
 
 ## 6. Recommended downstream reruns (not executed)
 
-1. **`project-setup` in `INCREMENTAL` mode**, for the register rows. It
-   scaffolds nothing, and the contracts are already written (W-a).
-2. **`dependency-extract`** for:
-   - DEL-02-02, DEL-02-01, DEL-02-03, DEL-07-04, DEL-07-05, DEL-08-02 and
-     DEL-08-03;
-   - then `analyze_dep_closure.py`.
-3. **`audit-decomp`** (full), then **`audit-scope-closure`** after the setup
-   and the code change.
-4. **Task Management APP-R058** disposition by the row owner.
-5. **Export regeneration** with the code change.
+1. **`project-setup` in `INCREMENTAL` mode.** It scaffolds nothing; the
+   contracts are already written (W-a).
+2. **`dependency-extract`** for DEL-02-02, DEL-02-01, DEL-02-03, DEL-07-04,
+   DEL-07-05, DEL-08-02 and DEL-08-03, then `analyze_dep_closure.py`.
+3. **`audit-decomp`** (full), then **`audit-scope-closure`**.
+4. **Task Management APP-R058** disposition, by the row owner.
 
 ## 7. Handoff state
 
@@ -211,26 +283,42 @@ See `Handoff_State.md`.
 
 ## 8. Repository-change evidence
 
-- `ad38c93c6`: group-2 decision snapshot and pointer.
-- `5ca09e2e6`: candidate scope text (16 files).
-- The commit that adds this summary adds the group-3 evidence: the SCA
-  `Handoff_State.md`, `RUN_SUMMARY.md`, `Supersession_Map.csv`,
-  `Post_Change_Coverage.json` and `Evidence/Group3/`.
+Branch `claude/brave-goodall-wj3hok`, on `origin/main` `4087a4f8c`:
 
-None of these commits is pushed. Under Q-a the code change joins them for the
-joint review and a single landing after acceptance.
+| Commits | Content |
+|---|---|
+| `a11b81e93` … `524151c9c` | Group-1 and group-2 packages and acceptances |
+| `e7f6daee1` | Group-2 snapshot |
+| `94befbf6c`, `1cb9ecc56` | Candidate text and evidence |
+| `5ba17042b`, `653fdfb72` | Code |
+| `3f75abfab` | G3C-01, G3B-01, the group-3 finalize path and code-record binding |
+
+This presentation's evidence commit and the export commit follow.
+
+Validators run on the integrated tree:
+- Root G0–G3; G4 `validate_instruction_tranche_manifest.py --base origin/main --head HEAD --added-manifests-only`;
+- `validate_app_dev_loop_receipts.py`, `validate_agent_instructions.py`,
+  `validate_workflow_metadata.py` and `validate_instruction_entrypoints.py`;
+- `validate_conflict_markers.py` and `validate_run_record_leaks.py` against
+  `origin/main`;
+- `build_workflow_index.py --check` and `git diff --check`.
+
+The results are reported with the final commit.
 
 ## Evidence basis
 
 | Artifact | SHA-256 |
 |---|---|
 | `Supersession_Map.csv` | `9847a4d0d05b65bfbf8d431ba0fb3c24662d73c2574f186e7c259413aa6e65d6` |
-| `Post_Change_Coverage.json` | `89c8f086d41876e31759c67f929f190e8eba04dc45ac6f8da8616be8f699343a` |
-| `Handoff_State.md` | `7007922e81f66909690bd1ed3379018410b5479228c475ed33ef4537b932af1d` |
-| `Evidence/Group3/ACCEPTANCE_CONDITIONAL_EDITS.csv` | `febd5e7190535e51074f12d6e39a2c7fb2f574fbfcdb574dcde2ec0c5ce9e77b` |
-| `Evidence/Group3/CANDIDATE_VALIDATION.md` | `bd7bd9554aeec5d56cab246e1834dea70ac7e0fe635849571fe9cc8c05ecfbce` |
+| `Post_Change_Coverage.json` | `f62b84a38cc633f6c8f475f92f3025b65b189393ef93f1b0d8a643746feb2f81` |
+| `Handoff_State.md` | `505cda2b20123ffda9cb6b1e1a6478e3a182b265397c9b8f0718580a2309762b` |
+| `Evidence/Group3/ACCEPTANCE_CONDITIONAL_EDITS.csv` | `59a5cf95fa12eee5c2d2579e8549d17f78bd23fad5e997d1908e345970d8665f` |
+| `Evidence/Group3/CANDIDATE_VALIDATION.md` | `65a776300073bf692e5d13c5a555e4d857fa3704b4cfe13e404c9cb325e61547` |
+| `Evidence/Group3/G3_CORRECTIONS.md` | `69fb4edd3b3961a0ef28d29d7ec80eb2094b6539722d6a41a104033527ab5265` |
+| `Evidence/Group3/group3_corrections.py` | `ecd97bfba72aa70e189ec9af48674068980246cd8835ccc155055619a25b4071` |
+| `Evidence/Group3/check_group3_finalize.py` | `034819f64efe018cfc66c65489100aa658261bea92af27ed3f99836e17155d02` |
 | `Evidence/Group3/LATEST_POSTIMAGE.md` | `03fb208dbf0fac87e66c30fab9ca848bd2795f41c2152188528d5c9fca786ba0` |
-| `Evidence/Group3/PRE_POST_COMPARISON.md` | `a71cd1c4255e67e60855e4bbd577b7fb9cfa2e40a876e3d61ac0c68532130be0` |
+| `Evidence/Group3/PRE_POST_COMPARISON.md` | `c430a3c2a00730a6d61907b359fbc4ca7879cef7037b0e280771628747276702` |
 | `Evidence/Group3/Supersession_Findings.csv` | `d288096f20845863777a4b5d0956be5c7783577857e3148e6d174200b74eb8b4` |
 | `Evidence/Group3/build_post_change_coverage.py` | `e96a59f7502df3ee52bb472ad8e3849133b53b5a4f68fe7544c35837fc308ff8` |
-| `Evidence/Group3/validate_candidate.py` | `baf74bc9dfb41b35a31c98ae2d1baadca71d91d47d6bfb0b99224cf174a5e88d` |
+| `Evidence/Group3/validate_candidate.py` | `b06114ce38d69d636d7361a18bcb417264c5ff924b480ae99624b9d23a1dd265` |
