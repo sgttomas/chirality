@@ -1,0 +1,40 @@
+basis commit: 68b5759d9e412e07aa2cd46f54b13f33336ec6bc
+python: Python 3.13.7
+PASS reliance preflight: ALLOW x7
+PASS harness and receipts exit 0 (pre)
+PASS closure summary non-empty, no cycles, no bidirectional pairs (pre)
+PASS act A: check-only 0, apply 0, rerun refuses 1
+PASS containment: 2 new files, both ScopeOfWork.md
+PASS validate DEL-08-06
+PASS checklist DEL-08-06 (rerun byte-identical)
+PASS boundary DEL-08-06 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
+PASS boundary DEL-08-06: 0 NOT_CHECKABLE
+PASS checklist DEL-08-06: 17 items = 17 AC
+checklist DEL-08-06 sha256 a8e63dc9918ee2e287d6ca2b7c70966fbe0f22ca5e1b0e55d76c94db9e66d34f
+PASS validate DEL-10-13
+PASS checklist DEL-10-13 (rerun byte-identical)
+PASS boundary DEL-10-13 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
+PASS boundary DEL-10-13: 0 NOT_CHECKABLE
+PASS checklist DEL-10-13: 19 items = 19 AC
+checklist DEL-10-13 sha256 e3d43d16c21d8530b8b4886bc6343576d9564abf99824d100f4826bc45649107
+PASS quotes: RESULT PASS 137/137 (INFO DEL-08-06 DEP rows citing this contract: 0 INFO DEL-10-13 DEP rows citing this contract: 0 )
+PASS state claims: RESULT PASS 482/482
+PASS cited IDs: RESULT PASS 0/0
+PASS old S2 text: RESULT PASS stale=0 current=43
+PASS harness and receipts exit 0 (postA)
+PASS closure summary non-empty, no cycles, no bidirectional pairs (postA)
+PASS strict identical pre/postA, export root normalized
+PASS harness identical pre/postA, export root normalized
+PASS receipts identical pre/postA, export root normalized
+PASS closure_summary identical pre/postA, export root normalized
+PASS add-on C8: check-only 0, apply 0, rerun refuses 1
+PASS containment after C8: 2 new contracts + 1 modified _DEPENDENCIES.md
+PASS harness and receipts exit 0 (postC8)
+PASS closure summary non-empty, no cycles, no bidirectional pairs (postC8)
+PASS strict identical pre/postC8, export root normalized
+PASS harness identical pre/postC8, export root normalized
+PASS receipts identical pre/postC8, export root normalized
+PASS closure_summary identical pre/postC8, export root normalized
+PASS whitespace
+PASS fault injection: RESULT PASS 19/19
+OVERALL PASS
