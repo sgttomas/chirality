@@ -97,12 +97,6 @@ vi.mock('../../components/shell/file-tree-panel', () => ({
 vi.mock('../../components/shell/document-view', () => ({
   DocumentView: () => <div data-document-view="mounted" />
 }));
-vi.mock('../../components/workbench/workbench-surface', () => ({
-  WorkbenchSurface: () => <div data-workbench-surface="mounted" />
-}));
-vi.mock('../../components/pipeline/pipeline-surface', () => ({
-  PipelineSurface: () => <div data-pipeline-surface="mounted" />
-}));
 vi.mock('../../components/woven-dialogue/coordination-panel', () => ({
   CoordinationPanel: ({ sessionsError, replaySlot }: { sessionsError: string | null; replaySlot?: React.ReactNode }) => (
     <div data-coordination-panel="mounted" data-sessions-error={sessionsError ?? ''}>{replaySlot}</div>

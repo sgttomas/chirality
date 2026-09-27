@@ -6,7 +6,6 @@ import {
   listDirectChatPersonas,
   listHarnessSessions,
   replaySessionEvents,
-  scaffoldHarnessExecutionRoot,
   streamHarnessTurn
 } from '../../lib/harness/client';
 
@@ -243,52 +242,6 @@ describe('harness client helpers', () => {
         marker: 'TURN_SDK_FAIL_TEST'
       }
     });
-  });
-
-  it('scaffolds execution roots through scaffold route', async () => {
-    const fetchMock = vi.mocked(fetch);
-    fetchMock.mockResolvedValueOnce(
-      jsonResponse({
-        executionRoot: '/tmp/execution',
-        decompositionPath: '/tmp/decomposition.md',
-        copiedDecompositionPath: '/tmp/execution/_Decomposition/decomposition.md',
-        projectName: 'Example',
-        coordinationMode: 'DEPENDENCY_TRACKED',
-        packageCount: 1,
-        deliverableCount: 1,
-        created: {
-          directories: ['/tmp/execution/_Coordination'],
-          files: ['/tmp/execution/INIT.md']
-        },
-        layoutValidation: {
-          valid: true,
-          executionRoot: {
-            path: '/tmp/execution',
-            valid: true,
-            missing: []
-          },
-          packages: [],
-          deliverables: []
-        },
-        preparationCompatibility: {
-          ready: true,
-          deliverablesChecked: 1,
-          issueCount: 0,
-          deliverables: []
-        }
-      })
-    );
-
-    const result = await scaffoldHarnessExecutionRoot({
-      executionRoot: '/tmp/execution',
-      decompositionPath: '/tmp/decomposition.md'
-    });
-
-    expect(result.layoutValidation.valid).toBe(true);
-    expect(result.preparationCompatibility.ready).toBe(true);
-    const [input, init] = fetchMock.mock.calls[0] as [string, RequestInit];
-    expect(input).toBe('/api/harness/scaffold');
-    expect(init.method).toBe('POST');
   });
 
   it('lists direct-chat personas through the Type-0/Type-1 filtered route', async () => {
