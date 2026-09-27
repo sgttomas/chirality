@@ -1,0 +1,46 @@
+# cwd: {REPO_ROOT} ; interpreter: python3 (Python 3.13.7); PYTHONDONTWRITEBYTECODE=1
+# prior SOW obtained with: git show 7c250e370^:projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md > $TMPDIR/pre/ScopeOfWork.md (7c250e370 = D-PEC-105 act commit)
+$ shasum -a 256 $TMPDIR/work/prior/DEL-00-01/ScopeOfWork.md
+4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740  ScopeOfWork.md
+$ python3 tools/scope_of_work/derive_review_checklist.py --output $TMPDIR/work/checklist_DEL-00-01_prior.json $TMPDIR/work/prior/DEL-00-01/ScopeOfWork.md
+exit=0
+bb815439562b97e81c00bfdc3f07746af22e2fe1be958694f20c6696c7c13b84  checklist_DEL-00-01_prior.json
+$ diff checklist_DEL-00-01_prior.json checklist_DEL-00-01_run1.json
+15c15
+<         "sha256": "4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740"
+---
+>         "sha256": "3757632b507d1f5a5668ccefb99d87b9e2a30a9e6bd38d7349e9f4721c5da647"
+40c40
+<         "sha256": "4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740"
+---
+>         "sha256": "3757632b507d1f5a5668ccefb99d87b9e2a30a9e6bd38d7349e9f4721c5da647"
+65c65
+<         "sha256": "4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740"
+---
+>         "sha256": "3757632b507d1f5a5668ccefb99d87b9e2a30a9e6bd38d7349e9f4721c5da647"
+90c90
+<         "sha256": "4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740"
+---
+>         "sha256": "3757632b507d1f5a5668ccefb99d87b9e2a30a9e6bd38d7349e9f4721c5da647"
+123c123
+<         "sha256": "4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740"
+---
+>         "sha256": "3757632b507d1f5a5668ccefb99d87b9e2a30a9e6bd38d7349e9f4721c5da647"
+148c148
+<         "sha256": "4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740"
+---
+>         "sha256": "3757632b507d1f5a5668ccefb99d87b9e2a30a9e6bd38d7349e9f4721c5da647"
+173c173
+<         "sha256": "4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740"
+---
+>         "sha256": "3757632b507d1f5a5668ccefb99d87b9e2a30a9e6bd38d7349e9f4721c5da647"
+192c192
+<     "sha256": "4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740"
+---
+>     "sha256": "3757632b507d1f5a5668ccefb99d87b9e2a30a9e6bd38d7349e9f4721c5da647"
+exit=1
+$ python3 (items compared excluding source sha256)
+identical apart from source sha256: True
+prior source sha256: 4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740
+current source sha256: 3757632b507d1f5a5668ccefb99d87b9e2a30a9e6bd38d7349e9f4721c5da647
+exit=0
