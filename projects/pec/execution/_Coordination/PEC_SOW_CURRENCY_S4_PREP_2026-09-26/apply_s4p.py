@@ -39,28 +39,28 @@ E = "projects/pec/execution/"
 TARGETS = {
     E + "PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md":
         ("6f4e8c66a5712ba73e5000f1eafbfd5dd821bb4c339a23d77aa46b5b558830ae",
-         "13fa50fead2bba13ec4c7d8dba8a1e8cac0a95e60a29725205b5e11e823b7ee8"),
+         "dc5ce6431f62bd2709130e26d3924e2c0702defab1b600a9d136157f17a1490a"),
     E + "PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/ScopeOfWork.md":
         ("a2b50f870aa30fb45e06b1f4cf1b300ff522a19490066c1e2d898b9022c0e65a",
-         "8445deaeb4546f1a05101ea955faa574dcd1ed53c120028bc73cde8712efb19d"),
+         "bcd69f503acf308e2ef7e73cc722efd61b59710877a5561624260aad71736b11"),
     E + "PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/ScopeOfWork.md":
         ("8ac1dc050efbd22530700d140a57944d0f82f48bcb2f9994bee4cddd588a3d76",
-         "310dbb20e393a2aca47601f0dce413d3acbbd3eb532ea0ad47831b57d58b398c"),
+         "b8c021f581448d1ff5413938563d40b015672aefede15ed97da9dd9b92865e01"),
     E + "PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/ScopeOfWork.md":
         ("013c615a0c91d7d2545d7dfc0faecfe509b0c7409f450fdefd01125d2aef3138",
-         "2031526ef7e3000882d3731afa6de13e97ad1704e61cc17ff9ef5bd51ae9be23"),
+         "da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5"),
     E + "PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/ScopeOfWork.md":
         ("6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b",
-         "35af0e22fe6254fb9ebae2a34e12e1e0ecf78ad451155cec07fdc1002d36600e"),
+         "16d731a51556cb644220c2c532696d8d0144972e20576db29495e200a775404c"),
     E + "PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md":
         ("6ec7432bf8cfe86cc973c50b8c2a24a0305c55c7a64522d0c47778050e59ec6d",
-         "bce89565795b809c3a9255f210900ef198f2007af294e56a8d0c13e62c62750f"),
+         "10819cb2ea90c7663a51bfc400d44e50a0d688325935d30472c8f29e3f087e18"),
     E + "PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/ScopeOfWork.md":
         ("e007f5307fce88fd7e31957bb4676f35d83bc971de3e0278e3dae906bd8e4e02",
          "5f7bd434694c8a87bba512ba74a8b8f2dee4f5e2a0ab10e5a50c234e432b196f"),
     E + "PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/ScopeOfWork.md":
         ("cbcabbde6882baf5330e90cdd6e1cf4a9d9aa1da076643a27f84ff4cb7696ff8",
-         "a9319e289a3381be4dc5fe1aacc3f7397550e12edcbdf1c5fdaa1011b171ef26"),
+         "e0df75bdcbdeaa2ecd0c320a3c36082c7c47551f2f514392856c761a96b99865"),
 }
 # Read-only files the act re-verifies (values at origin/main 125cfacc1).
 PINNED = {

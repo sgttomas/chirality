@@ -12,7 +12,7 @@
         "document": "ScopeOfWork.md",
         "line": 310,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "35af0e22fe6254fb9ebae2a34e12e1e0ecf78ad451155cec07fdc1002d36600e"
+        "sha256": "16d731a51556cb644220c2c532696d8d0144972e20576db29495e200a775404c"
       },
       "text": "Every measurement set the suite produces reports a p95 statistic evaluated against ≤100 ms; the suite's source and the budget record contain no restatement of that figure as a target, goal, or aspiration and no substituted threshold; and where an additional statistic is reported it is labelled additional and does not appear in place of the p95.",
       "verification": [
@@ -37,7 +37,7 @@
         "document": "ScopeOfWork.md",
         "line": 311,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "35af0e22fe6254fb9ebae2a34e12e1e0ecf78ad451155cec07fdc1002d36600e"
+        "sha256": "16d731a51556cb644220c2c532696d8d0144972e20576db29495e200a775404c"
       },
       "text": "Every measurement in the budget record carries a corpus identity naming the loop or loops, the commit state, and the size counts, sufficient for a second party to identify the corpus without further instruction; no measurement appears without one; and no statement in either output treats \"the current corpus\" as denoting a fixed corpus.",
       "verification": [
@@ -62,7 +62,7 @@
         "document": "ScopeOfWork.md",
         "line": 312,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "35af0e22fe6254fb9ebae2a34e12e1e0ecf78ad451155cec07fdc1002d36600e"
+        "sha256": "16d731a51556cb644220c2c532696d8d0144972e20576db29495e200a775404c"
       },
       "text": "Every measurement in the budget record carries a declared boundary and vantage; every measurement over a paginated or continued response states whether one response or the whole sequence was timed, and every measurement of reads made through the agent tool-call packaging is declared as such; the record contains no reported figure computed across measurements taken at different boundaries or vantages; and no measurement taken at one boundary is stated as satisfying the bound at another.",
       "verification": [
@@ -87,7 +87,7 @@
         "document": "ScopeOfWork.md",
         "line": 313,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "35af0e22fe6254fb9ebae2a34e12e1e0ecf78ad451155cec07fdc1002d36600e"
+        "sha256": "16d731a51556cb644220c2c532696d8d0144972e20576db29495e200a775404c"
       },
       "text": "Every measurement in the budget record carries the composition state of the returns it timed, naming the components for which an absence or limitation was stated where any was; measurements over fully composed returns and over absence-bearing returns are recorded separately and no figure aggregates across them; and neither output contains a statement resolving the upstream questions of what \"an orientation read\" contains in those cases.",
       "verification": [
@@ -112,7 +112,7 @@
         "document": "ScopeOfWork.md",
         "line": 314,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "35af0e22fe6254fb9ebae2a34e12e1e0ecf78ad451155cec07fdc1002d36600e"
+        "sha256": "16d731a51556cb644220c2c532696d8d0144972e20576db29495e200a775404c"
       },
       "text": "Every measurement in the budget record carries its environment, cold-or-warm state, concurrency, access class, repetition count, sample population, observation window, and reported statistic; no percentile appears without the sample it was computed over; and no single unrepeated timing is recorded as a measurement.",
       "verification": [
@@ -137,7 +137,7 @@
         "document": "ScopeOfWork.md",
         "line": 315,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "35af0e22fe6254fb9ebae2a34e12e1e0ecf78ad451155cec07fdc1002d36600e"
+        "sha256": "16d731a51556cb644220c2c532696d8d0144972e20576db29495e200a775404c"
       },
       "text": "Every stand-in used in a measurement run is identified as a stand-in at its use site and enumerated in the budget record; every result obtained against a stand-in is labelled a stand-in result and appears nowhere as a measurement of the real surface; this deliverable's source and fixtures contain no assumption that an upstream builder, serializer, socket server, token mechanism, record tier, or corpus artifact exists; and no stand-in fixes an upstream invocation surface, framing, field set, or mechanism.",
       "verification": [
@@ -162,7 +162,7 @@
         "document": "ScopeOfWork.md",
         "line": 316,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "35af0e22fe6254fb9ebae2a34e12e1e0ecf78ad451155cec07fdc1002d36600e"
+        "sha256": "16d731a51556cb644220c2c532696d8d0144972e20576db29495e200a775404c"
       },
       "text": "This deliverable's source and call graph contain no orientation-composition or component-selection path, no record-tier entity or selection-rule definition, no citation, response-stamp, or reliance-envelope path, no response-envelope or serialization path, no compactness or machine-first reading, no size metric, threshold, or response-size budget, no pagination or continuation path, no schema definition or version path, no socket binding, token mechanism, access-class, or wire-framing path, no agent tool-call surface path, no subscription path, no dashboard-rendering or drill-down path, no rebuild, incremental-reconcile, or drift-classification path, no rebuild or incremental duration measurement, no defect-rate, adoption, parity, or token-cost measurement, and no reliance-advertisement gate record; and no test in this deliverable asserts a criterion belonging to any of them.",
       "verification": [
@@ -187,7 +187,7 @@
         "document": "ScopeOfWork.md",
         "line": 317,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "35af0e22fe6254fb9ebae2a34e12e1e0ecf78ad451155cec07fdc1002d36600e"
+        "sha256": "16d731a51556cb644220c2c532696d8d0144972e20576db29495e200a775404c"
       },
       "text": "Neither output contains a statement that resolves, narrows, or presupposes the outcome of an unresolved record carried in an upstream contract — in particular the receipt applicability and ordering question, the shape of an unreconciled return, the compactness metric, the token mechanism, and the transport question; and each such record that this contract's own measurements touch is cited in the budget record as carried rather than closed.",
       "verification": [
@@ -212,7 +212,7 @@
         "document": "ScopeOfWork.md",
         "line": 318,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "35af0e22fe6254fb9ebae2a34e12e1e0ecf78ad451155cec07fdc1002d36600e"
+        "sha256": "16d731a51556cb644220c2c532696d8d0144972e20576db29495e200a775404c"
       },
       "text": "Neither output states a token cost, a before-versus-after cost comparison, or a query-pain re-test result; neither is presented as the Step-0 baseline or its substitute; and the production record states this deliverable's sequencing against the recorded pre-P1 obligation rather than against a ruling made here.",
       "verification": [
@@ -237,7 +237,7 @@
         "document": "ScopeOfWork.md",
         "line": 319,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "35af0e22fe6254fb9ebae2a34e12e1e0ecf78ad451155cec07fdc1002d36600e"
+        "sha256": "16d731a51556cb644220c2c532696d8d0144972e20576db29495e200a775404c"
       },
       "text": "The budget record's disposition field is present for every measurement set and states at-or-under, exceeded, or not-taken with the conditions and conditioning carried; the record contains no statement confirming, amending, relaxing, or waiving the bound on this deliverable's own authority; and for a seeded exceeding measurement the record states the exceedance as measured, with the bound, corpus, boundary, and conditions unchanged from those declared before the run.",
       "verification": [
@@ -262,7 +262,7 @@
         "document": "ScopeOfWork.md",
         "line": 320,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "35af0e22fe6254fb9ebae2a34e12e1e0ecf78ad451155cec07fdc1002d36600e"
+        "sha256": "16d731a51556cb644220c2c532696d8d0144972e20576db29495e200a775404c"
       },
       "text": "A measurement run leaves the measured corpus byte-identical and the captured inventory of this deliverable's own filesystem writes resolves entirely to its test workspace and the budget record; this deliverable's source contains no write, create, or delete call against any source file, governed file, register, or lifecycle file; and no write performed by a measured surface appears in this deliverable's declared write set.",
       "verification": [
@@ -287,7 +287,7 @@
         "document": "ScopeOfWork.md",
         "line": 321,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "35af0e22fe6254fb9ebae2a34e12e1e0ecf78ad451155cec07fdc1002d36600e"
+        "sha256": "16d731a51556cb644220c2c532696d8d0144972e20576db29495e200a775404c"
       },
       "text": "For a content-dense measurement corpus carrying long prose bodies, authored ruling text, and diff-shaped content, field-by-field inspection of everything the suite captures, retains, and writes into the budget record finds only paths, counts, identifiers, states, SHAs, hashes, and durations, and no file or diff content.",
       "verification": [
@@ -312,7 +312,7 @@
         "document": "ScopeOfWork.md",
         "line": 322,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "35af0e22fe6254fb9ebae2a34e12e1e0ecf78ad451155cec07fdc1002d36600e"
+        "sha256": "16d731a51556cb644220c2c532696d8d0144972e20576db29495e200a775404c"
       },
       "text": "The budget record exists at the packet-recorded path, that path is recorded before the record is treated as consumable, the production change set touches no path outside `PKG-08`, and the suite and record add no third-party runtime dependency and make no network call, leaving the `DEL-01-05` zero-dependency and locality assertion intact and undischarged here.",
       "verification": [
@@ -337,7 +337,7 @@
         "document": "ScopeOfWork.md",
         "line": 323,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "35af0e22fe6254fb9ebae2a34e12e1e0ecf78ad451155cec07fdc1002d36600e"
+        "sha256": "16d731a51556cb644220c2c532696d8d0144972e20576db29495e200a775404c"
       },
       "text": "The test suite implements VER-001 through VER-013, executes in the `PKG-08` test run, passes or records a pending result where a verification cannot execute because a measured surface does not exist, and introduces no acceptance criterion absent from this contract.",
       "verification": [
@@ -362,7 +362,7 @@
         "document": "ScopeOfWork.md",
         "line": 324,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "35af0e22fe6254fb9ebae2a34e12e1e0ecf78ad451155cec07fdc1002d36600e"
+        "sha256": "16d731a51556cb644220c2c532696d8d0144972e20576db29495e200a775404c"
       },
       "text": "An accountable owner records what act, gate, or consequence attaches to a measurement that exceeds the stated bound — including whether this deliverable's suite is a one-shot `P1` measurement or a standing check — or records that none is owed and that the budget record stands as measurement only.",
       "verification": [
@@ -383,7 +383,7 @@
         "document": "ScopeOfWork.md",
         "line": 325,
         "section": "Completion and Reliance Basis — Epistemology",
-        "sha256": "35af0e22fe6254fb9ebae2a34e12e1e0ecf78ad451155cec07fdc1002d36600e"
+        "sha256": "16d731a51556cb644220c2c532696d8d0144972e20576db29495e200a775404c"
       },
       "text": "The REVIEW gate confirms this contract's traceability to `SOW-041` and `OBJ-001`; confirms the objective mapping is stated as register-direct and pre-SCA-002 with no confidence label the record does not carry and no owner-confirmation criterion attached to it; confirms `[E-A28]` is stated at its `DECLARED` stratum and `[E-N12]`, `[E-P51]`, and `[E-P52]` at their `PROPOSAL` stratum; confirms the `D-PEC-65` repair of the register's evidence columns is recorded at CLM-004 as the register's act and not this contract's; confirms S4 sibling contracts are cited by qualified ID and not quoted; confirms operational reliance is stated as available only from a release that has passed the §12 reliance-advertisement gate, with nothing rebuilt around verify-before-rely; confirms CON-001 through CON-008 are carried rather than decided; and confirms that no `PKG-03`, `PKG-04`, `PKG-09`, `PKG-10`, or sibling `PKG-08` scope has been absorbed.",
       "verification": [
@@ -402,7 +402,7 @@
     "migration_authority": null,
     "package_id": "PKG-08",
     "schema": "chirality-deliverable-sow/v1",
-    "sha256": "35af0e22fe6254fb9ebae2a34e12e1e0ecf78ad451155cec07fdc1002d36600e"
+    "sha256": "16d731a51556cb644220c2c532696d8d0144972e20576db29495e200a775404c"
   },
   "tool_version": "1"
 }

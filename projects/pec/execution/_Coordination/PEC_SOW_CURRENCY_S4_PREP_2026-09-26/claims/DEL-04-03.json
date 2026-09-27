@@ -1605,6 +1605,38 @@
    "path": "projects/pec/docs/PRD.md",
    "value": "per-project `_harness/adapter.yaml` as the feed manifest",
    "candidate_text": "the `PEC-RCN-002` text CON-003 quoted changed in PRD v2.3"
+  },
+  {
+   "id": "S151",
+   "commit": "fb6442f47",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md",
+   "value": "**revision 1.2** (`current_basis`, SCA-002 successor",
+   "candidate_text": "Its first version, of 2026-07-25 at `fb6442f47`, cited revision 1.2"
+  },
+  {
+   "id": "S152",
+   "commit": "ea6b4b5d0",
+   "kind": "sha256",
+   "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md",
+   "value": "6ec7432bf8cfe86cc973c50b8c2a24a0305c55c7a64522d0c47778050e59ec6d",
+   "candidate_text": "the revision-1.3 bytes are its 2026-07-28 reconciliation at `ea6b4b5d0`"
+  },
+  {
+   "id": "S153",
+   "commit": "11a494e9a",
+   "kind": "ancestor",
+   "path": null,
+   "value": "ea6b4b5d0",
+   "candidate_text": "the revision-1.3 bytes are its 2026-07-28 reconciliation at `ea6b4b5d0`"
+  },
+  {
+   "id": "S154",
+   "commit": "ea6b4b5d0",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md",
+   "value": "**revision 1.3** (`current_basis`, SCA-003 successor",
+   "candidate_text": "the revision-1.3 bytes are its 2026-07-28 reconciliation"
   }
  ]
 }

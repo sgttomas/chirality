@@ -39,8 +39,9 @@ reads the same at both commits.
 **Standing character (load-bearing), and what authorizes it.** Everything below
 is written as a contract on a *continuing* verification: there is no state in
 which this deliverable's assertion is finished, and a passing run is evidence
-for the API state it evaluated and for no later state. That framing is directed
-by this run's brief under `D-PEC-63`, whose directing sentence reads, verbatim:
+for the API state it evaluated and for no later state. That framing was directed
+on 2026-07-25 by the brief of the run that authored this deliverable's first
+contract under `D-PEC-63`, whose directing sentence reads, verbatim:
 
 > Author this contract as a STANDING assertion — a continuously re-runnable
 > verification, not a one-shot artifact.

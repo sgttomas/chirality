@@ -1,6 +1,6 @@
 # D-PEC-102 — Scope of Work currency for the S4 set (DEL-04-01, DEL-04-02, DEL-08-01, DEL-08-03, DEL-08-04, DEL-04-03, DEL-03-04, DEL-10-03) — proposal
 
-Status: **DRAFT PROPOSAL / AWAITING_RULING**. **The number D-PEC-102 is provisional.** At `origin/main` `3488a236a` the decision register has no D-PEC-102 row, and two other next-wave packets are being prepared in parallel. The number becomes final only when HELP_HUMAN publishes this packet in `_DECISIONS/` with its register row and moves that row to `AWAITING_RULING`.
+Status: **DRAFT PROPOSAL / AWAITING_RULING**. **The number D-PEC-102 is provisional.** At `origin/main` `e548d4cfa` the decision register has no D-PEC-102 row, and two other next-wave packets are being prepared in parallel. The number becomes final only when HELP_HUMAN publishes this packet in `_DECISIONS/` with its register row and moves that row to `AWAITING_RULING`.
 
 Prepared by WORKING_ITEMS (Type 1) under HELP_HUMAN (undertaking `HELP-HUMAN-PEC-20260925-POST-SCA005`, work-graph node S4) for the PEC loop, 2026-09-26 (session date). Brief: `briefs/S4P_SOW_CURRENCY_PROPOSAL.md` (SHA-256 `d00a739afc1f4bc03bd5bd9862fb104d880c22ccce6859dbe85c7e588802dc67`), plus HELP_HUMAN's relayed resume directions (quoted under Provenance). No earlier direction approves this file. It performs no production act: no tracked production file was edited, and every check ran on `git archive` exports. Suggested filing name: `execution/_Coordination/_DECISIONS/D-PEC-102_s4_sow_currency_proposal_2026-09-26.md`.
 
@@ -43,18 +43,18 @@ The act it asks for is bounded: **replace eight existing `ScopeOfWork.md` files 
 - **Fence.** `projects/pec/AGENTS.md` (`df9196d152a01afe59b388111ae0a14381b4ad74f280e95f9c44a1eaee925eb8`) §"Write Scopes And Fences": every write under `projects/pec` outside `execution/_Coordination/**`, `AGENTS.md` and the STATUS pointer needs an owner-ruled D-PEC packet naming exact paths, acts, verification and rollback. No earlier ruling opens the eight targets.
 - **Source state.**
   - **Observation commit `125cfacc1`** (`125cfacc10f664685cb91802a9166b1041f42a25`, the PR #979 merge). This was `origin/main` when preparation began. Each candidate says that every unanchored state claim is an observation there, and every quotation and state claim in the verifier inputs is read at a named commit, `125cfacc1` or earlier.
-  - **Frontmatter pin `189f205ff02df4111b33c20be441ce06e65ada7a`** (SCA-006 checkpoint-3 acceptance, PR #954), an ancestor of `origin/main`. The decomposition, `Deliverables.csv`, `ScopeLedger.csv`, `ContextBudgetQA.csv` and `docs/PRD.md` are byte-identical at the pin, at `125cfacc1` and at `3488a236a`.
-  - **Checked again at `origin/main` `3488a236af293762ef47b0101a4c209845f372e7`** (PR #973 merge) after `git fetch`. Since `125cfacc1`, `projects/pec` changed only in:
+  - **Frontmatter pin `189f205ff02df4111b33c20be441ce06e65ada7a`** (SCA-006 checkpoint-3 acceptance, PR #954), an ancestor of `origin/main`. The decomposition, `Deliverables.csv`, `ScopeLedger.csv`, `ContextBudgetQA.csv` and `docs/PRD.md` are byte-identical at the pin, at `125cfacc1` and at `e548d4cfa`.
+  - **Checked again at `origin/main` `e548d4cfada4d2105de6231516dc6e5fc4bd4689`** (PR #984 merge) after `git fetch`. Since `125cfacc1`, `projects/pec` changed only in:
     - PR #981: the undertaking `WORK_GRAPH.md` and the review transcriptions `REVIEW_PR981_0{1,2,3}.md`;
-    - PR #982: the retirement undertaking's `WORK_GRAPH.md`, its central `RECEIPT.md` and `REVIEW_PR982_0{1,2}.md`.
+    - PR #982: the retirement undertaking's `WORK_GRAPH.md`, its central `RECEIPT.md`, `REVIEW_PR982_0{1,2}.md` and `docs/STATUS.md`.
 
-    Every preimage and all 19 pinned files hash the same at both commits. The act script rendered at each commit is byte-identical, apart from its one comment line naming the commit.
+    PRs #973 and #984 changed Piping files only. Every preimage and all 19 pinned files hash the same at `125cfacc1` and `e548d4cfa`. The act script rendered at each commit is byte-identical, apart from its one comment line naming the commit.
 - **Holds.** `execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv` (`f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc`) has a header and no rows. `execution/_Scripts/pec_reliance_hold.py` (`b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e`) was run from `projects/pec` of a `125cfacc1` export with `--operation exact-correction-preparation` on all 24 possible targets (eight `ScopeOfWork.md`, eight `_STATUS.md`, eight `MEMORY.md`): `ALLOW`, exit 0, ×24 (`evidence/reliance_hold_preflight.out`).
 
 ## Method
 
 - **Workflow.** `chirality-root:bundled:workflow:scope-of-work`, resolved from `workflows/index.json` (`2bfa2c5faae1081c55ce95fd3d81c00b1d87ba1f51d0bc13e03c8fcb6ccdafb3`). Precedence is project → user → bundled; no project or user workflow of that name exists.
-  - Files: `WORKFLOW.md` `84dadde4c573b1d3d9ecd65e1e1be12efee1a95299b4115806c02e9c9cdebc2b`, `execution.json` `4ad8b7eb…a26d`, `resources/brief.md` `1696cd9a…92bc`, `resources/checks.md` `44ab41ac…f188`, `resources/tools.md` `fbd07771…6cc5`. `resources/representation-migration.md` (`698957a5…3e3c3`) was not loaded; it covers conversion only.
+  - Files: `WORKFLOW.md` `84dadde4c573b1d3d9ecd65e1e1be12efee1a95299b4115806c02e9c9cdebc2b`, `execution.json` `4ad8b7eb…a26d`, `resources/brief.md` `1696cd9a…92bc`, `resources/checks.md` `44ab41ac…f188`, `resources/tools.md` `fbd07771…5cc7`. `resources/representation-migration.md` (`698957a5…3e3c3`) was not loaded; it covers conversion only.
   - Standard: `docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md` `26c8254aaf2e2894e7d32096ec1e0d71b3ad881c1445094945031be19741433c`.
   - These are the same files the `D-PEC-100` preparation recorded.
 - **How the currency pass is made (the `D-PEC-100` practice).**
@@ -78,14 +78,14 @@ The act it asks for is bounded: **replace eight existing `ScopeOfWork.md` files 
   - WORKING_ITEMS reconciled the eight and made the wording corrections listed under "Cross-candidate coherence". It also bound the act, extended the check aids (a multiplicity rule in the quote verifier, external-citation and heuristic scans) and ran the checks.
   - Fresh read-only `pec-reviewer` TASKs ran `MODE=VERIFY` and the packet review (`VERIFIER_VERDICT_01.md` onward).
   - Models: Opus 5.5 (`claude-opus-5-5`) at `high` for every actor, per the brief.
-- **Tools** (`tools/scope_of_work/`, unchanged at `3488a236a`): `validate_scope_of_work.py` `f0f10590…fecfe`, `derive_review_checklist.py` `bfb64dc9…0109`, `check_boundary_owner_resolution.py` `22ef57e0…ae16a`, `common.py` `61a34722…0389`.
+- **Tools** (`tools/scope_of_work/`, unchanged at `e548d4cfa`): `validate_scope_of_work.py` `f0f10590…fecfe`, `derive_review_checklist.py` `bfb64dc9…0109`, `check_boundary_owner_resolution.py` `22ef57e0…ae16a`, `common.py` `61a34722…0389`.
 
 ## What preparation found
 
 ### Scope and lifecycle
 
 - **Eight deliverables, exactly the checkpoint-2 set.** DEL-00-03 is not touched here; it is `CHECKING` and goes through D1.
-- **Lifecycle: all eight are `INITIALIZED`** at `125cfacc1` and at `3488a236a`; each `_STATUS.md` was read. None is `CHECKING` or `ISSUED`.
+- **Lifecycle: all eight are `INITIALIZED`** at `125cfacc1` and at `e548d4cfa`; each `_STATUS.md` was read. None is `CHECKING` or `ISSUED`.
 - **What the method does to `_STATUS.md`: nothing.** `WORKFLOW.md` says: "Do not modify `_STATUS.md`, lifecycle state, underscore control files, …". `resources/checks.md` item 3 requires "`_STATUS.md` is byte-identical and its lifecycle state is unchanged".
   - The standard (§8) defines `INITIALIZED` as the selected production contract existing and validating. Each postimage validates, so the condition that made each deliverable `INITIALIZED` still holds after the act.
   - **No transition is proposed.** The act script refuses to run if any `_STATUS.md` differs from its pinned bytes.
@@ -98,14 +98,14 @@ The act it asks for is bounded: **replace eight existing `ScopeOfWork.md` files 
 
 | Deliverable | Classes (SCA-005 / SCA-006) | Prior contract | Postimage | Lines | Defined IDs | Retired | Checklist items | Quotes / claims |
 |---|---|---|---|---|---|---|---|---|
-| DEL-04-01 | rebuild / AFFECTED (fixed member) | `6f4e8c66a571…30ae` | `13fa50fead2b…7ee8` | 510 | OUT 2, CLM 23, REQ 18, AC 19, VER 18, AX 15, TBD 5, CON 8 | none | 19 | 148 / 202 |
-| DEL-04-02 | current / AFFECTED → review | `a2b50f870aa3…e65a` | `8445deaeb454…b19d` | 446 | OUT 2, CLM 18, REQ 15, AC 16, VER 15, AX 15, TBD 4, CON 8 | none | 16 | 99 / 158 |
-| DEL-08-01 | review / AFFECTED → rebuild | `8ac1dc050efb…3d76` | `310dbb20e393…398c` | 227 | OUT 3, CLM 11, REQ 9, AC 9, VER 7, AX 10, TBD 4, CON 3 | none | 9 | 32 / 161 |
-| DEL-08-03 | review (quotation) / AFFECTED → rebuild | `013c615a0c91…3138` | `2031526ef7e3…be23` | 462 | OUT 3, CLM 14, REQ 20, AC 21, VER 20, AX 13, TBD 6, CON 7 | none | 21 | 94 / 135 |
-| DEL-08-04 | review (quotation) / AFFECTED (quotation) | `6d1ec1ad9796…222b` | `35af0e22fe62…600e` | 442 | OUT 2, CLM 17, REQ 13, AC 16, VER 14, AX 14, TBD 4, CON 8 | none | 16 | 73 / 74 |
-| DEL-04-03 | review / AFFECTED → rebuild (new obligation) | `6ec7432bf8cf…ec6d` | `bce89565795b…750f` | 442 | OUT 2, CLM 22, REQ 23, AC 23, VER 22, AX 13, TBD 5, CON 6 | none | 23 | 96 / 149 |
+| DEL-04-01 | rebuild / AFFECTED (fixed member) | `6f4e8c66a571…30ae` | `dc5ce6431f62…490a` | 510 | OUT 2, CLM 23, REQ 18, AC 19, VER 18, AX 15, TBD 5, CON 8 | none | 19 | 148 / 202 |
+| DEL-04-02 | current / AFFECTED → review | `a2b50f870aa3…e65a` | `bcd69f503acf…6b11` | 446 | OUT 2, CLM 18, REQ 15, AC 16, VER 15, AX 15, TBD 4, CON 8 | none | 16 | 99 / 158 |
+| DEL-08-01 | review / AFFECTED → rebuild | `8ac1dc050efb…3d76` | `b8c021f58144…5e01` | 227 | OUT 3, CLM 11, REQ 9, AC 9, VER 7, AX 10, TBD 4, CON 3 | none | 9 | 32 / 161 |
+| DEL-08-03 | review (quotation) / AFFECTED → rebuild | `013c615a0c91…3138` | `da5b70dfbf05…31b5` | 462 | OUT 3, CLM 14, REQ 20, AC 21, VER 20, AX 13, TBD 6, CON 7 | none | 21 | 94 / 135 |
+| DEL-08-04 | review (quotation) / AFFECTED (quotation) | `6d1ec1ad9796…222b` | `16d731a51556…404c` | 442 | OUT 2, CLM 17, REQ 13, AC 16, VER 14, AX 14, TBD 4, CON 8 | none | 16 | 73 / 74 |
+| DEL-04-03 | review / AFFECTED → rebuild (new obligation) | `6ec7432bf8cf…ec6d` | `10819cb2ea90…7e18` | 443 | OUT 2, CLM 22, REQ 23, AC 23, VER 22, AX 13, TBD 5, CON 6 | none | 23 | 96 / 153 |
 | DEL-03-04 | review / AFFECTED (review level) | `e007f5307fce…4e02` | `5f7bd434694c…196f` | 423 | OUT 2, CLM 17, REQ 16, AC 19, VER 16, AX 12, TBD 5, CON 7 | none | 19 | 100 / 133 |
-| DEL-10-03 | housekeeping / AFFECTED (review level) | `cbcabbde6882…6ff8` | `a9319e289a33…ef26` | 462 | OUT 1, CLM 16, REQ 15, AC 12, VER 10, AX 12, TBD 5, CON 4 | none | 12 | 78 / 126 |
+| DEL-10-03 | housekeeping / AFFECTED (review level) | `cbcabbde6882…6ff8` | `e0df75bdcbde…9865` | 463 | OUT 1, CLM 16, REQ 15, AC 12, VER 10, AX 12, TBD 5, CON 4 | none | 12 | 78 / 128 |
 
 What each pass changes, in brief (the contracts and their provenance `AX-*` are the full account):
 
@@ -172,8 +172,8 @@ What each pass changes, in brief (the contracts and their provenance `AX-*` are 
 | DEL-04-01-REM-001 | production obligation | DEL-04-01 subsection "### Carried production obligations (D-PEC-99 exhibit Part B)" L273. `CLM-020` L275; gates-still-bind statement L277; the "S4 packet clause" paragraph verbatim L281; Gate line verbatim L283; own-voice mapping L285 | OUT-001, REQ-001, REQ-004, REQ-005, REQ-006, REQ-008, REQ-009, REQ-010, REQ-011, REQ-012, CLM-002, CLM-015, TBD-004 |
 | DEL-04-01-REM-002 | production obligation | clause verbatim L289; Gate line verbatim L291; mapping L293. The three added verification sentences verbatim in the Praxeology opening, L421–425 | OUT-002, REQ-015, AC-015, VER-013, VER-015 |
 | (both) | trace required by the clauses | trace table L297–344: every prior `REQ-001..REQ-015`, `AC-001..AC-016` and `VER-001..VER-015` (46 rows) maps to the same kept ID, with what changed. No removal is claimed, so no owner ruling removing one is needed | — |
-| DEL-04-02-REM-002 | documentary correction (5 parts) | (1) opening L19, verbatim, followed by own-voice qualifying sentences L20–23; (2) `CLM-008` L172; (3) `CLM-008` L174; (4) `AX-010` L381; (5) `AC-016` L307 and the matrix row L446. The E-P33 exhibit quotation and the `[E-P26]` sentence are unchanged. `AX-014` (L385) names the item absorbed and quotes its Gate line (L389) | opening, CLM-008, AX-010, AC-016, AX-014 |
-| DEL-04-03-REM-002 | documentary correction (3 parts) | (1) opening L20 verbatim, with the qualifying sentence L21; (2) both `CLM-010` replacements L212; (3) `AX-010` L382. The E-P34 exhibit block (prior L170–178) is unchanged at L214–222. `AX-013` quotes the Gate line (L387) | opening, CLM-010, AX-010, AX-013, AC-015 |
+| DEL-04-02-REM-002 | documentary correction (5 parts) | (1) opening L19, verbatim, followed by own-voice qualifying sentences L20–24; (2) `CLM-008` L172; (3) `CLM-008` L174; (4) `AX-010` L381; (5) `AC-016` L307 and the matrix row L446. The E-P33 exhibit quotation and the `[E-P26]` sentence are unchanged. `AX-014` (L385) names the item absorbed and quotes its Gate line (L389) | opening, CLM-008, AX-010, AC-016, AX-014 |
+| DEL-04-03-REM-002 | documentary correction (3 parts) | (1) opening L20 verbatim, with own-voice qualifying sentences L21–25; (2) both `CLM-010` replacements L213; (3) `AX-010` L383. The E-P34 exhibit block (prior L170–178) is unchanged at L215–223. `AX-013` quotes the Gate line (L388) | opening, CLM-010, AX-010, AX-013, AC-015 |
 
 - **Verification of the landing.** The quote verifier checks each carried paragraph, each Gate line and each replacement text against the exhibit at `125cfacc1` (both sides). It requires two occurrences of the two identical DEL-04-01 Gate lines (the `MULT` rule), so one copy cannot satisfy both.
 - **Gates.**
@@ -183,22 +183,32 @@ What each pass changes, in brief (the contracts and their provenance `AX-*` are 
   - The DEP-04-02-003 and DEP-04-03-004 cells: `docs/PRD.md`; `PEC-RCN-003` / `PEC-ORI-003` with their full quotations; repaired under `D-PEC-65` at `1c50d4da6`.
   - PEC-RCN-003 and PEC-ORI-003 are unchanged in PRD v2.4.
   - Revision 1.6 is `current_basis`. Revision 1.3 was accepted 2026-07-28 at merge `11a494e9a`.
-- **One imprecision, disclosed rather than edited.** Correction (1) for DEL-04-02 says the contract "was authored against revision 1.3". Its first bytes (`fb6442f47`, 2026-07-25) cited revision 1.2, and the revision-1.3 bytes are the 2026-07-28 reconciliation at `ea6b4b5d0`. The candidate keeps the exhibit text verbatim and adds a qualifying sentence backed by claims.
+- **One imprecision, disclosed rather than edited.** Correction (1) for DEL-04-02 and for DEL-04-03 says each contract "was authored against revision 1.3". The first bytes of each (`fb6442f47`, 2026-07-25) cited revision 1.2, and the revision-1.3 bytes are the 2026-07-28 reconciliation at `ea6b4b5d0`. Each candidate keeps the exhibit text verbatim and adds qualifying sentences backed by claims.
 
 ### Cross-candidate coherence and external anchors
 
-- **Siblings cite postimages.** Every qualified citation of one S4 deliverable's ID in another S4 candidate, and every qualified citation of an S4 ID from a contract outside S4, resolves to an ID defined in the postimage: `check_sibling_ids.py` gives `RESULT PASS 54/54` (sibling and external). No candidate quotes a sibling's text or contains a sibling's postimage hash.
+- **Siblings cite postimages.** Every qualified citation of one S4 deliverable's ID in another S4 candidate, and every qualified citation of an S4 ID from a contract outside S4, resolves to an ID defined in the postimage: `check_sibling_ids.py` gives `RESULT PASS 57/57` (sibling and external). No candidate quotes a sibling's text or contains a sibling's postimage hash.
   - External citations checked:
     - `DEL-04-01/REQ-001` and `/REQ-006` (from DEL-04-05);
     - `DEL-04-03/REQ-001`, `/REQ-008` and `/CON-003` (from DEL-04-05);
     - `DEL-03-04/CON-004` (from DEL-01-01 and DEL-02-07).
-- **Manager reconciliation (WORKING_ITEMS wording corrections after the drafters returned; each is in the round-1 → final diff):**
+- **Manager reconciliation and repairs (WORKING_ITEMS wording corrections after the drafters returned and after verdicts 01–03; each is in the round-1 → final diff):**
   - DEL-04-03 `CLM-011` no longer says DEL-04-01 "counts six components at `125cfacc1`". It cites the postimage's `DEL-04-01/REQ-001`, terminal completion included. Claim S125 was withdrawn and S026 re-anchored.
-  - Four `CON` items that said they "resolve in the [sibling] contract" now say what the sibling postimage obliges and route the remainder to that sibling's production declaration:
-    - DEL-04-01 `CON-008`: `DEL-04-03/REQ-016`..`/REQ-020`, `/TBD-005`, `/REQ-023`, and `DEL-08-03/CON-007`;
+  - Four `CON` items that said they "resolve in the [sibling] contract" now say what the sibling postimage obliges and route the remainder to that sibling's production declaration, except where the sibling reserves a question for the owner:
+    - DEL-04-01 `CON-008`: `DEL-04-03/REQ-016`..`/REQ-020`, `/TBD-005`, `/REQ-023`, and `DEL-08-03/CON-007`; whether a stated absence or limitation is a fallback condition is `DEL-04-03/CON-005`, left to the owner;
     - DEL-04-02 `CON-006`: `DEL-04-03/REQ-016`, `/REQ-017`, `/TBD-005`, `/REQ-023`;
-    - DEL-04-02 `CON-007`: `DEL-08-03/REQ-015`, `/TBD-005`, `/CON-006`;
-    - DEL-08-03 `CON-007`: `DEL-04-03/TBD-005`, `/REQ-023`.
+    - DEL-04-02 `CON-007`: `DEL-08-03/REQ-015`, `/TBD-005`, `/CON-006`; a declaration that needs a continuation position conflicts with DEL-04-02 `REQ-010`, and the contract is then revised under its own packet;
+    - DEL-08-03 `CON-007`: its first two questions to `DEL-04-03/TBD-005` and `/REQ-023`; whether PEC's absence has a response-borne form is `DEL-04-03/CON-005`, left to the owner.
+  - After verdicts 01–03:
+    - DEL-04-02 says **seven** `PEC-ORI-001` components in `CLM-015`, `REQ-011`, `AC-011` and `AX-008`;
+    - DEL-04-03 adds the revision-1.2 first-bytes sentence;
+    - DEL-04-01 `AX-014` says how siblings are cited;
+    - DEL-08-03 `REQ-018` (with `AC-019`, `VER-018` and the matrix row) is one format for the responses it applies to, uniform across consumer paths, with no access-class clause;
+    - DEL-08-03 `CLM-011` says the string search is case-sensitive;
+    - DEL-08-03 `REQ-011` and DEL-08-04 `REQ-012` cite their owner claims;
+    - DEL-08-04 `CLM-007` and `CON-004` add `DEL-04-01/CON-001`;
+    - DEL-08-01 `CON-003` says a decided read list binds only through a revision of `REQ-008`/`AC-008`;
+    - DEL-10-03's framing sentence no longer says "this run's brief".
 - **Interfaces the eight now state consistently:**
   - access classes owner, harness, agent, admin, with `agent` read-only (DEL-08-01 `REQ-003`, `REQ-008`);
   - the reliance envelope declared by DEL-04-03 (SOW-097), carried by DEL-08-03's format, tested by DEL-10-13;
@@ -207,8 +217,8 @@ What each pass changes, in brief (the contracts and their provenance `AX-*` are 
   - the §12 gate record DEL-10-13's;
   - DEL-04-01's seven-component return.
 - **Dependency quotes.** The three ACTIVE rows whose `EvidenceFile` is an S4 contract keep their `EvidenceQuote` as a raw substring of the postimage: DEP-08-04-004 in DEL-08-03 `OUT-002`; DEP-08-04-006 and DEP-08-05-005 in DEL-08-01 `OUT-001`. No register is written.
-- **S2 quotation currency.** The heuristic scan (`scan_s2_quotes.py`, prior S2 bytes at `ce934ac33`) finds **no** stale quotation of old S2 text in the postimages (`stale=0`; two kept spans of DEL-01-01 text the postimage still carries). Against the preimages it finds two: DEL-04-01's "fourteen record-tier entity types" and DEL-08-04's PRD §7.1 "D-APP-57 contract" text. The drafters also searched their own contracts beyond the scan.
-  - Of the 13 contracts outside S2 that `D-PEC-100` said quote old S2 text, **DEL-04-01, DEL-04-02, DEL-08-04 and DEL-10-03 are S4 members and are brought current here**. DEL-10-03's flagged span was a scanner artefact; it is the deliverable's own `_DEPENDENCIES.md` text.
+- **S2 quotation currency.** The heuristic scan (`scan_s2_quotes.py`, prior S2 bytes at `ce934ac33`) finds **no** stale quotation of old S2 text in the postimages (`stale=0`; two kept spans of DEL-01-01 text the postimage still carries). Against the preimages it finds two: DEL-04-01's quotation of the prior DEL-01-01 `REQ-008` (per-loop field availability, now per grammar) and DEL-08-04's PRD §7.1 "D-APP-57 contract" text. DEL-04-01 also quoted DEL-01-01's prior "fourteen record-tier entity types". The drafters also searched their own contracts beyond the scan.
+  - Of the fifteen contracts outside S2 that `D-PEC-100` said quote old S2 text (thirteen, plus DEL-02-08/09), **DEL-04-01, DEL-04-02, DEL-08-04 and DEL-10-03 are S4 members and are brought current here**. DEL-10-03's flagged span was a scanner artefact (the deliverable's own `_DEPENDENCIES.md` text), and so were DEL-04-02's two flags (its own CLM text and a register cell restated by the `D-PEC-65` correction).
   - The others belong to S1 or a later packet.
 
 ### Consequences outside this packet (disclosed; nothing here writes them)
@@ -218,8 +228,8 @@ What each pass changes, in brief (the contracts and their provenance `AX-*` are 
   | Quoting contract (owner node) | Quotation | Why it goes stale |
   |---|---|---|
   | DEL-04-05 `CLM-013` (S1, prepared in parallel) | DEL-04-01 `REQ-001` and `CON-004` quoted in full; its own consequence text "six components, no seventh added" and its `CON-003` | `REQ-001` now carries seven components (terminal completion, per revision-1.6 SOW-004 and PEC-ORI-001) and "no eighth"; `CON-004` says "seven stated absences". DEL-04-01 `REQ-006` is byte-identical |
-  | DEL-04-05 `CLM-012` (S1) | DEL-04-03 `CON-003` quoted in full | `CON-003` quoted v2.2-era PEC-RCN-002 text ("`_harness/adapter.yaml` as the feed manifest"), false under PRD v2.4, and is re-derived. DEL-04-03 `REQ-001`, `REQ-005` and `REQ-008` are byte-identical |
-  | DEL-10-11 `CLM-013`/`CLM-014` (no current node: SCA-005 `current`, SCA-006 NOT_AFFECTED) | DEL-03-04 `CON-001` and `CON-005` quoted in full | `CON-001` is an SCA-006 locus restated against the §12 gate. `CON-005` said DEL-01-05 "records the toolchain as undetermined", which is false (`DEL-01-05/TBD-003..005`). DEL-10-11's other quotations (`REQ-003`, `REQ-007`, `REQ-013`, `CON-004`, `TBD-005`) stay verbatim |
+  | DEL-04-05 `CLM-012` (S1); DEL-04-05 `CON-003` | DEL-04-03 `CON-003` quoted in full; DEL-04-05's own premise that neither the composing nor the stamping contract states where a response-level limitation statement lives | `CON-003` quoted v2.2-era PEC-RCN-002 text ("`_harness/adapter.yaml` as the feed manifest"), false under PRD v2.4, and is re-derived. The premise may go partly stale: the new DEL-04-03 `REQ-018` has the envelope carry, per feed, whether a limitation is stated. DEL-04-03 `REQ-001`, `REQ-005` and `REQ-008` are byte-identical |
+  | DEL-10-11 `CLM-014` (no current node: SCA-005 `current`, SCA-006 NOT_AFFECTED; suggested for the work graph as a later DEL-10-11 currency item) | DEL-03-04 `CON-001` and `CON-005` quoted in full | `CON-001` is an SCA-006 locus restated against the §12 gate. `CON-005` said DEL-01-05 "records the toolchain as undetermined", which is false (`DEL-01-05/TBD-003..005`). DEL-10-11's other quotations of DEL-03-04 (`REQ-003`, `REQ-007`, `REQ-013` in `CLM-013`; `CON-004`, `TBD-005`) stay verbatim |
 
   - Kept, no consequence: DEL-10-02 `CLM-012`'s quotations of DEL-10-03 `REQ-007` and `OUT-001`, which are byte-identical. (DEL-10-02 already renders `OUT-001`'s double quotes as single quotes, a pre-existing inexactness.)
   - Within S4, DEL-08-04's and DEL-04-03's prior quotations of DEL-08-01, DEL-08-03 and DEL-04-01 are replaced in their own postimages by qualified citations, so they land together.
@@ -264,18 +274,18 @@ After this ruling and its register row are merged and observed on fetched `origi
 
 | Deliverable | Path | Preimage SHA-256 | Postimage SHA-256 |
 |---|---|---|---|
-| DEL-04-01 | `PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md` | `6f4e8c66a5712ba73e5000f1eafbfd5dd821bb4c339a23d77aa46b5b558830ae` | `13fa50fead2bba13ec4c7d8dba8a1e8cac0a95e60a29725205b5e11e823b7ee8` |
-| DEL-04-02 | `PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/ScopeOfWork.md` | `a2b50f870aa30fb45e06b1f4cf1b300ff522a19490066c1e2d898b9022c0e65a` | `8445deaeb4546f1a05101ea955faa574dcd1ed53c120028bc73cde8712efb19d` |
-| DEL-08-01 | `PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/ScopeOfWork.md` | `8ac1dc050efbd22530700d140a57944d0f82f48bcb2f9994bee4cddd588a3d76` | `310dbb20e393a2aca47601f0dce413d3acbbd3eb532ea0ad47831b57d58b398c` |
-| DEL-08-03 | `PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/ScopeOfWork.md` | `013c615a0c91d7d2545d7dfc0faecfe509b0c7409f450fdefd01125d2aef3138` | `2031526ef7e3000882d3731afa6de13e97ad1704e61cc17ff9ef5bd51ae9be23` |
-| DEL-08-04 | `PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/ScopeOfWork.md` | `6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b` | `35af0e22fe6254fb9ebae2a34e12e1e0ecf78ad451155cec07fdc1002d36600e` |
-| DEL-04-03 | `PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md` | `6ec7432bf8cfe86cc973c50b8c2a24a0305c55c7a64522d0c47778050e59ec6d` | `bce89565795b809c3a9255f210900ef198f2007af294e56a8d0c13e62c62750f` |
+| DEL-04-01 | `PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/ScopeOfWork.md` | `6f4e8c66a5712ba73e5000f1eafbfd5dd821bb4c339a23d77aa46b5b558830ae` | `dc5ce6431f62bd2709130e26d3924e2c0702defab1b600a9d136157f17a1490a` |
+| DEL-04-02 | `PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/ScopeOfWork.md` | `a2b50f870aa30fb45e06b1f4cf1b300ff522a19490066c1e2d898b9022c0e65a` | `bcd69f503acf308e2ef7e73cc722efd61b59710877a5561624260aad71736b11` |
+| DEL-08-01 | `PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/ScopeOfWork.md` | `8ac1dc050efbd22530700d140a57944d0f82f48bcb2f9994bee4cddd588a3d76` | `b8c021f581448d1ff5413938563d40b015672aefede15ed97da9dd9b92865e01` |
+| DEL-08-03 | `PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/ScopeOfWork.md` | `013c615a0c91d7d2545d7dfc0faecfe509b0c7409f450fdefd01125d2aef3138` | `da5b70dfbf05b071b7e973fa5c912a8530413c4c3c40ca3ecd478f67ca8e31b5` |
+| DEL-08-04 | `PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/ScopeOfWork.md` | `6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b` | `16d731a51556cb644220c2c532696d8d0144972e20576db29495e200a775404c` |
+| DEL-04-03 | `PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md` | `6ec7432bf8cfe86cc973c50b8c2a24a0305c55c7a64522d0c47778050e59ec6d` | `10819cb2ea90c7663a51bfc400d44e50a0d688325935d30472c8f29e3f087e18` |
 | DEL-03-04 | `PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/ScopeOfWork.md` | `e007f5307fce88fd7e31957bb4676f35d83bc971de3e0278e3dae906bd8e4e02` | `5f7bd434694c8a87bba512ba74a8b8f2dee4f5e2a0ab10e5a50c234e432b196f` |
-| DEL-10-03 | `PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/ScopeOfWork.md` | `cbcabbde6882baf5330e90cdd6e1cf4a9d9aa1da076643a27f84ff4cb7696ff8` | `a9319e289a3381be4dc5fe1aacc3f7397550e12edcbdf1c5fdaa1011b171ef26` |
+| DEL-10-03 | `PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/ScopeOfWork.md` | `cbcabbde6882baf5330e90cdd6e1cf4a9d9aa1da076643a27f84ff4cb7696ff8` | `e0df75bdcbdeaa2ecd0c320a3c36082c7c47551f2f514392856c761a96b99865` |
 
 The postimages are the exact candidate files, copied byte for byte into the run root as `candidates/…`. They have no date slot.
 
-Read-only files the act re-verifies and never writes (SHA-256 at `125cfacc1`, equal at `3488a236a`; the first five also equal at the pin `189f205ff`):
+Read-only files the act re-verifies and never writes (SHA-256 at `125cfacc1`, equal at `e548d4cfa`; the first five also equal at the pin `189f205ff`):
 
 - `projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md` `9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1`
 - `projects/pec/execution/_Decomposition/Deliverables.csv` `94ee5d182ae99092324505a72bf2f3b0581f85c0bae6c693214cfef709179805`
@@ -299,7 +309,7 @@ Read-only files the act re-verifies and never writes (SHA-256 at `125cfacc1`, eq
 
 ### Add-on M — MEMORY files (only if question 4 selects it)
 
-None of the eight folders has a `MEMORY.md` at `125cfacc1` or at `3488a236a`. At the undertaking's closeout (graph node M1), WORKING_ITEMS creates, under `PKG-…/1_Working/<DEL folder>/`, eight files. Each is `docs/templates/MEMORY_TEMPLATE.md` (`5a9564f4663b000cdf0175bf4f0262001001bc50c719912499df2527d01c6a5a`) with `{{DEL-ID}}` replaced and exactly one `## Runs` row.
+None of the eight folders has a `MEMORY.md` at `125cfacc1` or at `e548d4cfa`. At the undertaking's closeout (graph node M1), WORKING_ITEMS creates, under `PKG-…/1_Working/<DEL folder>/`, eight files. Each is `docs/templates/MEMORY_TEMPLATE.md` (`5a9564f4663b000cdf0175bf4f0262001001bc50c719912499df2527d01c6a5a`) with `{{DEL-ID}}` replaced and exactly one `## Runs` row.
 
 | Deliverable | Path | Preimage | Act |
 |---|---|---|---|
@@ -322,7 +332,7 @@ The slots `{D}`, `{PR}` and the two link targets are fixed at closeout (and "D-P
 
 ## Generation method (binding)
 
-The eight postimages come from one run of `apply_s4p.py`, **SHA-256 `29a905c7c8db6a6a01d272e63d0516a698a6aaeca0b6a01e465860770f52e640`**. It is stdlib-only Python, prepared with CPython 3.13.7, rendered by `build_apply_s4p.py` from `apply_s4p.template.py` (the `D-PEC-100` script with the targets, pins, temporary suffix `.s4ptmp` and run-root prefix changed). It is copied byte for byte into the run root with the eight candidate files:
+The eight postimages come from one run of `apply_s4p.py`, **SHA-256 `3152effced678fd3b2d716e06e308bd961def6a1788df88db071570cbd7ce449`**. It is stdlib-only Python, prepared with CPython 3.13.7, rendered by `build_apply_s4p.py` from `apply_s4p.template.py` (the `D-PEC-100` script with the targets, pins, temporary suffix `.s4ptmp` and run-root prefix changed). It is copied byte for byte into the run root with the eight candidate files:
 
 ```text
 PYTHONDONTWRITEBYTECODE=1 python3 projects/pec/execution/_Coordination/SOW_CURRENCY_S4_{D}/apply_s4p.py --repo <REPO_ROOT> --candidates projects/pec/execution/_Coordination/SOW_CURRENCY_S4_{D}/candidates [--check-only]
@@ -368,25 +378,25 @@ Run from the repository root with `PYTHONDONTWRITEBYTECODE=1`, on the act branch
 | 3. Checklist | `python3 tools/scope_of_work/derive_review_checklist.py --output <run root>/checklist_<DEL>.json <DEL folder>`, each twice | exit 0; reruns byte-identical; each equal to the prepared checklist (hashes under Preparation evidence) |
 | 4. Boundary owners (QA 21) | `python3 tools/scope_of_work/check_boundary_owner_resolution.py --json <run root>/boundary_<DEL>.json --show-not-checkable <DEL folder>/ScopeOfWork.md` ×8 | exit 0; no `UNRESOLVED_OWNER` or `UNDEFINED_CLAIM`; every `NOT_CHECKABLE` clause resolved by hand as tabled below |
 | 5. Quote fidelity | `python3 <run root>/verify_s4p_quotes.py --tree . --gitdir . --prep <run root> --observation 125cfacc1` | `RESULT PASS 740/740`. Every quotation carries a `commit` and is read there, so later edits to other files cannot fail this row |
-| 6. State claims | `python3 <run root>/verify_s4p_state_claims.py --gitdir . --prep <run root>` | `RESULT PASS 1138/1138` (reads the named commits; independent of the working tree) |
-| 7. Sibling and external IDs | `python3 <run root>/check_sibling_ids.py <run root> .` | `RESULT PASS 54/54` |
+| 6. State claims | `python3 <run root>/verify_s4p_state_claims.py --gitdir . --prep <run root>` | `RESULT PASS 1144/1144` (reads the named commits; independent of the working tree) |
+| 7. Sibling and external IDs | `python3 <run root>/check_sibling_ids.py <run root> .` | `RESULT PASS 57/57` |
 | 8. Lifecycle preserved | `git diff --name-status origin/main...HEAD -- '**/_STATUS.md' '**/_REVIEW.md' '**/Review_Findings.csv'` | empty |
-| 9. Registers and quote currency | `python3 tools/validation/validate_decomposition_registers.py --strict projects/pec/execution`, and `check_quote_currency.py`, before and after | outputs **identical** to the pre-act run. At `3488a236a` strict gives exit 1, 0 errors, 26 `XRG-013` warnings (owner-deferred under D-GOV-48), and quote currency is 127/127. A new finding or a changed count fails |
+| 9. Registers and quote currency | `python3 tools/validation/validate_decomposition_registers.py --strict projects/pec/execution`, and `check_quote_currency.py`, before and after | outputs **identical** to the pre-act run. At `e548d4cfa` strict gives exit 1, 0 errors, 26 `XRG-013` warnings (owner-deferred under D-GOV-48), and quote currency is 127/127. A new finding or a changed count fails |
 | 10. Every-PR checks | `harness.py self-check`; `validate_pec_loop_receipts.py --repo-root .` | exit 0 each; output identical before and after |
 | 11. Containment | `git diff --name-status origin/main...HEAD` | the eight modified contracts; M's files if selected; the run root and HELP_HUMAN's records under `execution/_Coordination/**` (and `docs/STATUS.md` under `D-PEC-88`); nothing else |
 | 12. Whitespace | `git diff --check origin/main...HEAD` | clean |
 
 Re-audit: not recommended. The act changes no decomposition truth, register or topology.
 
-QA 21 hand resolution. These are the per-act clauses the tool reports as `NOT_CHECKABLE`. In each case the owner is named in a claim the requirement cites.
+QA 21 hand resolution. These are the per-act clauses the tool reports as `NOT_CHECKABLE`. The claims in parentheses name the owner; where the requirement itself does not cite that claim, the row says so (verdict 01 F4). Those gaps are carried from the prior contracts, and the owner is still named in the contract.
 
 | Contract | Requirement → owner (claim) |
 |---|---|
-| DEL-04-01 | REQ-003 → `DEL-03-01` (CLM-012, CLM-015); REQ-005 → `DEL-04-03` (CLM-011, CLM-015); REQ-006 → `DEL-04-05` (CLM-012, CLM-015); REQ-011 → `DEL-08-06`, `DEL-08-03` (CLM-015); REQ-018 → `DEL-04-03`, `DEL-10-13` (CLM-015, CLM-023). The tool checks REQ-012 |
-| DEL-04-02 | REQ-006 → `DEL-04-05`; REQ-007 → `DEL-04-03`; REQ-008 → `DEL-01-01`, `DEL-03-01`, `DEL-03-02` (CLM-011, CLM-015; feed grammar reaches PKG-02 via CLM-006, as in the prior contract); REQ-010 → `DEL-08-01`, `DEL-08-02`, `DEL-08-03`, `DEL-08-05`, `DEL-08-06` (CLM-015, CLM-012), PKG-09 (CLM-006) |
+| DEL-04-01 | REQ-003 → `DEL-03-01` (CLM-012, cited); its excluded feed-grammar act → `DEL-02-01`..`DEL-02-09` (named in CLM-015, which REQ-003 does not cite); REQ-005 → `DEL-04-03` (CLM-011, CLM-015); REQ-006 → `DEL-04-05` (CLM-012, CLM-015); REQ-011 → `DEL-08-06`, `DEL-08-03` (CLM-015); REQ-018 → `DEL-04-03`, `DEL-10-13` (CLM-023, cited). The tool checks REQ-012 |
+| DEL-04-02 | REQ-006 → `DEL-04-05`; REQ-007 → `DEL-04-03`; REQ-008 → `DEL-01-01` (CLM-011, cited), `DEL-03-01`, `DEL-03-02` (named in CLM-015, which REQ-008 does not cite; carried byte-identical from the prior contract), feed grammar reaching PKG-02 via CLM-006; REQ-010 → `DEL-08-01`, `DEL-08-02`, `DEL-08-03`, `DEL-08-05`, `DEL-08-06` (CLM-015, CLM-012), PKG-09 (CLM-006) |
 | DEL-08-01 | none reported. The tool checks REQ-009 (owners in CLM-005, CLM-010); the tier-0 profile act is named in CLM-010 as SCA-006 §B6's, not a deliverable's |
-| DEL-08-03 | REQ-004 → `DEL-08-02` (CLM-006, CLM-009); REQ-008 → `DEL-04-03`, `DEL-06-05`; REQ-009 → `DEL-04-05`; REQ-011 → `DEL-01-05` (text unchanged from the prior contract); REQ-017 → `DEL-04-05`; REQ-018 → `DEL-08-06`; REQ-020 → `DEL-04-03` (CLM-007, CLM-009). The tool checks REQ-010 and REQ-019 |
-| DEL-08-04 | REQ-012 → `DEL-01-05` (CLM-011). The tool checks REQ-007; its per-act owners are all in CLM-011 |
+| DEL-08-03 | REQ-004 → `DEL-08-02` (CLM-006, CLM-009); REQ-008 → `DEL-04-03`, `DEL-06-05`; REQ-009 → `DEL-04-05`; REQ-011 → `DEL-01-05` (CLM-009, now cited); REQ-017 → `DEL-04-05`; REQ-018 → `DEL-08-06`; REQ-020 → `DEL-04-03` (CLM-007, CLM-009). The tool checks REQ-010 and REQ-019 |
+| DEL-08-04 | REQ-012 → `DEL-01-05` (CLM-011, now cited). The tool checks REQ-007; its per-act owners are all in CLM-011 |
 | DEL-04-03 | REQ-006 → `DEL-06-05` (CLM-014, CLM-016); REQ-008 → `DEL-04-05` (CLM-016); REQ-021 → `DEL-10-13` (CLM-021, CLM-020). The tool checks REQ-010 and REQ-022 |
 | DEL-03-04 | REQ-003 → `DEL-01-01` (CLM-010); REQ-008 → `DEL-10-13` (CLM-017, CLM-015). The tool checks REQ-013 and REQ-016 |
 | DEL-10-03 | REQ-013 is not an exclusion: it names `DEL-08-01` as owner of the credential mechanism (CLM-008, CLM-016). The tool checks REQ-015 |
@@ -464,17 +474,17 @@ Existing reliance-hold, dependency, lifecycle and release boundaries survive unc
 
 ## Preparation evidence
 
-Everything ran on `git archive` exports in the session scratchpad, never on a checkout. Interpreter: Python 3.13.7 (CPython); local date 2026-09-26. The final run (`evidence/run_main/SUMMARY.out`, from `run_s4p_checks.sh` at `3488a236a`; every raw output is beside it):
+Everything ran on `git archive` exports in the session scratchpad, never on a checkout. Interpreter: Python 3.13.7 (CPython); local date 2026-09-26. The final run (`evidence/run_main/SUMMARY.out`, from `run_s4p_checks.sh` at `e548d4cfa`; every raw output is beside it):
 
 ```text
-basis commit: 3488a236af293762ef47b0101a4c209845f372e7
+basis commit: e548d4cfada4d2105de6231516dc6e5fc4bd4689
 python: Python 3.13.7
 PASS act: check-only 0, apply 0, rerun refuses 1
 PASS containment: 8 differing files, all ScopeOfWork.md
 PASS validate / checklist (rerun byte-identical) / boundary (no UNRESOLVED_OWNER/UNDEFINED_CLAIM) — for each of the eight
 PASS quotes: RESULT PASS 740/740
-PASS state claims: RESULT PASS 1138/1138
-PASS sibling and external IDs: RESULT PASS 54/54
+PASS state claims: RESULT PASS 1144/1144
+PASS sibling and external IDs: RESULT PASS 57/57
 INFO consequence scan (informational): SUMMARY stale=13 kept=25
 PASS S2 quotation currency (heuristic scan): SUMMARY stale=0 kept=2
 PASS strict identical before/after, export root normalized (exit=1)
@@ -499,14 +509,14 @@ Negative controls (`evidence/negative_controls.out`, scratch copies), each of wh
 
 Checklists (`evidence/run_main/checklist_<DEL>.json`):
 
-- DEL-04-01 `809e6f0078a0c48e2f2010e6fdfda4476b62b2c7d57b8582e6785f7044ef0d9d`
-- DEL-04-02 `5135e20966e75007320efa3c614cd3bd784fcb8b1c4feef7531069a2d0e3ba0b`
-- DEL-08-01 `11dbb85692998f8b06f3067932a698a8999b210288e6fbbf54854d1842af741a`
-- DEL-08-03 `6398cceb49003a8113ea9d3db5a581ba4ed76bc4b1a7b1514ec896fd550f0b98`
-- DEL-08-04 `8c9c464f03261e138adadddbc55397efd68b549fa7fa575fadced688a75866b1`
-- DEL-04-03 `564a559c031f8cae2157700213a7e1583df51b6c198a4afafba5be7368fab540`
+- DEL-04-01 `c908966216ea6a1c7c0f598e0aac6e75c93269f5a7453d42e31e6b2b2750dcc9`
+- DEL-04-02 `4b0399562616101e31181bc22fa0656c9c9c5e57388e8c779f792b533e009fa7`
+- DEL-08-01 `2b5beadb0edaf471a25706ac4c4022aa83ab598bfeb1b216c3a6bf42bc7e50b4`
+- DEL-08-03 `a6d3c537206012cfdd659f39c84b97d450d0ea991bbda325f75805fc1719ec7b`
+- DEL-08-04 `afe85efd4dd03949737c8f2d4edd9b2da08b853ceaecad562242d58ceb7b61c1`
+- DEL-04-03 `85f0d3bcb133687e7ad0d721e1e5980b4a56adff21c286e9b265b7fa9c000e0c`
 - DEL-03-04 `1a86fa421c0d79bb8c0a080979d4e4f1bbde3c3beed95b832244fcc86d0dbeda`
-- DEL-10-03 `f6db15bfed170721a8232eed90a2fe51a05adb9441b72c25416de249b0afc242`
+- DEL-10-03 `24272d5dc8fd2907fc1b87259b449623d6015bdaf6a02936c2c7ec1f34a060fd`
 
 Preparation artifacts (all in this prep folder; hashes in `SHA256SUMS`):
 
@@ -517,7 +527,7 @@ Preparation artifacts (all in this prep folder; hashes in `SHA256SUMS`):
 - `evidence/` (every check output, the reliance preflight, the checklists and the negative controls);
 - `VERIFIER_VERDICT_01.md` onward (the preparation verdicts, with dispositions).
 
-Basis at `125cfacc1` (equal at `3488a236a` unless noted):
+Basis at `125cfacc1` (equal at `e548d4cfa` unless noted):
 
 | Source | SHA-256 |
 |---|---|

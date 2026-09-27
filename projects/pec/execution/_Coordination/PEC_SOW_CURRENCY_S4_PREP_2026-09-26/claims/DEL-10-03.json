@@ -1216,6 +1216,22 @@
    "path": "projects/pec/AGENTS.md",
    "value": "Operational reliance is distinct from the reliance-hold control (§Active Reliance Holds) and from professional reliance.",
    "candidate_text": "distinct from the reliance-hold control and from professional reliance (`projects/pec/AGENTS.md`)"
+  },
+  {
+   "id": "S-FIRST-CONTRACT",
+   "commit": "774317e30",
+   "kind": "exists",
+   "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/ScopeOfWork.md",
+   "value": null,
+   "candidate_text": "the brief of the run that authored this deliverable's first"
+  },
+  {
+   "id": "S-FIRST-CONTRACT-2",
+   "commit": "774317e30^",
+   "kind": "absent",
+   "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/ScopeOfWork.md",
+   "value": null,
+   "candidate_text": "on 2026-07-25 by the brief of the run"
   }
  ]
 }

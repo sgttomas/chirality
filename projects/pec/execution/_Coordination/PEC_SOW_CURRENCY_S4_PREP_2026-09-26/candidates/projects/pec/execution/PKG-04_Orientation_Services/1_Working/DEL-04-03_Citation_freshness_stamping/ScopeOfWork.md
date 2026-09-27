@@ -21,7 +21,8 @@ The accepted basis is `execution/_Decomposition/SOFTWARE_DECOMP.md` **revision 1
 This contract is the revision-1.3 contract brought current to revision 1.6,
 with the new `SOW-097` obligation, under the S4 Scope of Work currency packet (provisional
 `D-PEC-102`, not yet ruled), and the frontmatter pin binds revision 1.6
-(AX-013). The pin `189f205ff02df4111b33c20be441ce06e65ada7a` is the SCA-006
+(AX-013). Its first version, of 2026-07-25 at `fb6442f47`, cited revision 1.2;
+the revision-1.3 bytes are its 2026-07-28 reconciliation at `ea6b4b5d0`. The pin `189f205ff02df4111b33c20be441ce06e65ada7a` is the SCA-006
 checkpoint-3 acceptance commit, an ancestor of `origin/main`. At that commit
 `SOFTWARE_DECOMP.md` has SHA-256 `9374c21fb87b…8eb1`, `Deliverables.csv`
 `94ee5d182ae9…9805`, `ScopeLedger.csv` `1d24a4b86f05…916e` and

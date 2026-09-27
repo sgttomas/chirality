@@ -640,6 +640,10 @@ PASS DEL-04-03 S147 contains 125cfacc1:projects/pec/execution/_Decomposition/SOF
 PASS DEL-04-03 S148 contains 125cfacc1:projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md [git=yes; candidate=yes]
 PASS DEL-04-03 S149 contains 125cfacc1:projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Propagation_Plan.md [git=yes; candidate=yes]
 PASS DEL-04-03 S150 not_contains 125cfacc1:projects/pec/docs/PRD.md [git=yes; candidate=yes]
+PASS DEL-04-03 S151 contains fb6442f47:projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md [git=yes; candidate=yes]
+PASS DEL-04-03 S152 sha256 ea6b4b5d0:projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md [git=yes; candidate=yes]
+PASS DEL-04-03 S153 ancestor 11a494e9a: [git=yes; candidate=yes]
+PASS DEL-04-03 S154 contains ea6b4b5d0:projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md [git=yes; candidate=yes]
 PASS DEL-08-01 S01 ancestor 189f205ff: [git=yes; candidate=yes]
 PASS DEL-08-01 S02 sha256 189f205ff:projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md [git=yes; candidate=yes]
 PASS DEL-08-01 S03 sha256 189f205ff:projects/pec/execution/_Decomposition/Deliverables.csv [git=yes; candidate=yes]
@@ -1136,4 +1140,6 @@ PASS DEL-10-03 S123 csv_cell 125cfacc1:projects/pec/execution/PKG-10_Validation_
 PASS DEL-10-03 S124 csv_cell 125cfacc1:projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/Dependencies.csv [git=yes; candidate=yes]
 PASS DEL-10-03 S125 contains 125cfacc1:projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Amendment_Actions_CP2.csv [git=yes; candidate=yes]
 PASS DEL-10-03 S126 contains 125cfacc1:projects/pec/AGENTS.md [git=yes; candidate=yes]
-RESULT PASS 1138/1138
+PASS DEL-10-03 S-FIRST-CONTRACT exists 774317e30:projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/ScopeOfWork.md [git=yes; candidate=yes]
+PASS DEL-10-03 S-FIRST-CONTRACT-2 absent 774317e30^:projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/ScopeOfWork.md [git=yes; candidate=yes]
+RESULT PASS 1144/1144
