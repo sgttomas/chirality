@@ -2,14 +2,17 @@
 """Negative controls for the candidate fixture suite: each control applies one mutation to a
 scratch copy and requires the named test to fail (and the unmutated copy to pass).
 Usage: negative_controls_x1p.py <repo> <commit> <prep dir>
-Writes only inside a fresh tempfile.mkdtemp() directory under $TMPDIR, removed at the end."""
+Writes only inside a fresh tempfile.mkdtemp() directory under $TMPDIR (or, when unset, under
+.scratch/ beside this script), removed at the end."""
 import json, os, re, shutil, subprocess, sys, tempfile
 from pathlib import Path
 repo, commit, prep = Path(sys.argv[1]).resolve(), sys.argv[2], Path(sys.argv[3]).resolve()
 SRC = prep / "candidates/projects/pec/v2/tests/parsers"
 OBJ = Path(subprocess.check_output(["git", "-C", str(repo), "rev-parse", "--path-format=absolute", "--git-common-dir"]).decode().strip()) / "objects"
 SHA = subprocess.check_output(["git", "-C", str(repo), "rev-parse", commit + "^{commit}"]).decode().strip()
-root = Path(tempfile.mkdtemp(prefix="x1pneg."))
+_scratch = Path(os.environ.get("TMPDIR") or Path(__file__).resolve().parent / ".scratch")  # never /tmp
+_scratch.mkdir(parents=True, exist_ok=True)
+root = Path(tempfile.mkdtemp(prefix="x1pneg.", dir=_scratch))
 def scratch(name):
     d = root / name; (d / "projects/pec/v2/tests").mkdir(parents=True)
     subprocess.run(["git", "-C", str(d), "init", "-q"], check=True)

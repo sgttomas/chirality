@@ -10,7 +10,7 @@ test_synthetic_cases_cover_the_contract_minimums (test_parser_fixture_integrity.
 test_tree_expectations_hold_at_their_pinned_commits (test_parser_fixture_integrity.ParserFixtureIntegrityTests.test_tree_expectations_hold_at_their_pinned_commits) ... ok
 
 ----------------------------------------------------------------------
-Ran 10 tests in 1.759s
+Ran 10 tests in 1.862s
 
 OK
 exit=0

@@ -1,6 +1,6 @@
 # X1P return — P1 parser fixture suites packet (provisional D-PEC-106), WORKING_ITEMS preparation
 
-- **Brief.** `briefs/X1P_FIXTURES_PROPOSAL.md` (`1cefcc48d5f9ac7f94e20a539bcc75ce45008c496b1651da0bd7f7585be1bbac`), with `COMMON.md` (`51b70e46f1049696c456be1d4ab7b4b236e3cbfc6fa3a667ed0426035510b311`, scratchpad `acts2/`). Both hashes were verified before any work; X1P overrides COMMON where they conflict.
+- **Brief.** `briefs/X1P_FIXTURES_PROPOSAL.md` (`1cefcc48d5f9ac7f94e20a539bcc75ce45008c496b1651da0bd7f7585be1bbac`), with `COMMON.md` (`51b70e46f1049696c456be1d4ab7b4b236e3cbfc6fa3a667ed0426035510b311`, committed unchanged as `briefs/COMMON_PREP_RULES_2026-09-26.md`). Both hashes were verified before any work; X1P overrides COMMON where they conflict.
 - **Role and instruction sources** (SHA-256 at `6c6cc1b00`): Root `AGENTS.md` `c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd`; `projects/pec/AGENTS.md` `df9196d152a01afe59b388111ae0a14381b4ad74f280e95f9c44a1eaee925eb8`; `agents/AGENT_WORKING_ITEMS.md` `9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665`. The other method and basis sources, with hashes, are in the draft's Method and Preparation evidence sections.
 - **Worktree and branch.** `/Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-x1-fixtures-prep`, branch `claude/pec-x1-fixtures-proposal`, created from fresh `origin/main` `6c6cc1b00`. No shared worktree was modified or checked out.
 - **PR.** https://github.com/sgttomas/chirality/pull/996 (against `main`; not merged). The PR head is the commit that adds this return, on top of content base `6e5622c24`. The caller's handback names the exact head.
@@ -91,7 +91,7 @@ The draft settles the golden format, pinned blobs and thresholds that DEL-02-03 
 
 ## Pinned-reference verification
 
-- `report_x1p_pins.py`: 19/19 pins resolve. Each commit is an ancestor, each blob is equal, and each is unchanged at `6c6cc1b00` and at `origin/main` `f0a6159c9`.
+- `report_x1p_pins.py`: 19/19 pins resolve. Each commit is an ancestor and each blob is equal at its pinned commit. All are unchanged at their paths at `6c6cc1b00`. At `origin/main` `f0a6159c9`, 18 are unchanged; the `FX-PEC-0.graph` path holds `8e32fc0fd`, not the pinned `bf0b0c626`, which is informational because the pin is by blob.
 - Every golden `source` value occurs in its blob (word-bounded). Each anchor sits on its construct, `equals_folder` agrees with the pin path, and each merge commit carries the cited PR (#876 `0b276a7f`, #873 `c56ae4a2`, #868 `10b672ca`).
 - **Unreachable pin.** The suite fails closed and never skips or re-pins, in four cases:
   - Git older than 2.44;
@@ -108,7 +108,7 @@ FX-PEC-0 is PEC's own shared-development-loop surfaces and its closed historical
 
 - It pins no `_STATUS.md`, uses no retired profile or surface, and leaves out the retirement undertaking.
 - No candidate file names or scans for the retired sections.
-- The one preparation check of the packet's own bytes is disclosed.
+- Nothing in the packet scans for them, including the preparation aids (the earlier aid scan was removed at HELP_HUMAN's PR review).
 - It is supplementary: none of the three contracts requires it (DEL-02-08 CON-004, DEL-02-09 CLM-013, DEL-02-03 CON-007).
 
 It also gives DEL-02-08/09 real-corpus instances. Some of these presuppose PEC's registry declaration of the run index, and question 2 discloses that.

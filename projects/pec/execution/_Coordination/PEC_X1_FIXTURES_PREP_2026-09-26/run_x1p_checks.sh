@@ -6,7 +6,9 @@ set -u
 REPO=$1; C=$2; PREP=${3:A}; OUT=${4:A}
 export PYTHONDONTWRITEBYTECODE=1
 mkdir -p "$OUT"
-T=$(mktemp -d "${TMPDIR:-/tmp}/x1pchk.XXXXXX")
+# Scratch goes under $TMPDIR, or, when it is unset, under .scratch/ beside this script (the prep or run root).
+SCRATCH=${TMPDIR:-${0:A:h}/.scratch}; mkdir -p "$SCRATCH"
+T=$(mktemp -d "$SCRATCH/x1pchk.XXXXXX")
 PRE=$T/pre; POST=$T/post; mkdir -p "$PRE" "$POST"
 git -C "$REPO" archive "$C" | tar -x -C "$PRE"
 git -C "$REPO" archive "$C" | tar -x -C "$POST"
@@ -63,7 +65,7 @@ for r in res:
     bad += rc != 0
 print("ALL_ZERO" if not bad and res else "NONZERO")
 PY
-grep -q '^ALL_ZERO$' "$OUT/registered_post.summary" && note "PASS registered checks after the act: $(grep -v ALL_ZERO "$OUT/registered_post.summary" | tr '\n' ' ')" || { note "FAIL registered checks: $(cat "$OUT/registered_post.summary" | tr '\n' ' ')"; fail=1; }
+grep -q '^ALL_ZERO$' "$OUT/registered_post.summary" && note "PASS registered checks after the act: $(grep -v ALL_ZERO "$OUT/registered_post.summary" | paste -sd ' ' -)" || { note "FAIL registered checks: $(paste -sd ' ' - < "$OUT/registered_post.summary")"; fail=1; }
 (cd "$POST/projects/pec" && python3 -m unittest discover -s v2/tests/parsers -p 'test_*.py' -v > "$OUT/v2_parsers_verbose.out" 2>&1; print "exit=$?" >> "$OUT/v2_parsers_verbose.out")
 grep -q '^exit=0$' "$OUT/v2_parsers_verbose.out" && note "PASS v2-parsers verbose: $(grep -c ' ... ok$' "$OUT/v2_parsers_verbose.out") tests ok" || { note "FAIL v2-parsers verbose"; fail=1; }
 
@@ -86,8 +88,7 @@ for k in strict harness receipts; do
 done
 
 # 7. candidate hygiene: UTF-8 with U+2014 as the only non-ASCII character; LF; no tabs or
-#    trailing blanks; final newline. Plus the carried FX-PEC-0 constraint, checked once on the
-#    candidate bytes at preparation (no committed test scans for it).
+#    trailing blanks; final newline.
 python3 - "$PREP/candidates" > "$OUT/hygiene.out" 2>&1 <<'PY'
 import sys, pathlib
 bad = 0
@@ -100,18 +101,17 @@ for p in sorted(pathlib.Path(sys.argv[1]).rglob("*")):
     if b"\t" in b: probs.append("tab")
     if any(l.endswith(" ") for l in t.split("\n")): probs.append("trailing blank")
     if not b.endswith(b"\n"): probs.append("no final newline")
-    if "remaining" in t.lower(): probs.append("carried-constraint word present")
     if probs: bad += 1; print(p, probs)
 print("RESULT", "PASS" if not bad else "FAIL")
 PY
-grep -q 'RESULT PASS' "$OUT/hygiene.out" && note "PASS candidate hygiene and carried-constraint word absent" || { note "FAIL hygiene"; fail=1; }
+grep -q 'RESULT PASS' "$OUT/hygiene.out" && note "PASS candidate hygiene" || { note "FAIL hygiene"; fail=1; }
 
 # 8. fault injection on a fresh export
-python3 "$PREP/test_apply_x1p.py" "$PRE" "$PREP/candidates" > "$OUT/test_apply_x1p.out" 2>&1; rt=$?
+TMPDIR="$SCRATCH" python3 "$PREP/test_apply_x1p.py" "$PRE" "$PREP/candidates" > "$OUT/test_apply_x1p.out" 2>&1; rt=$?
 note "$( [[ $rt -eq 0 ]] && print PASS || print FAIL ) fault injection: $(tail -1 "$OUT/test_apply_x1p.out")"; [[ $rt -eq 0 ]] || fail=1
 
 # 9. negative controls of the fixture suite
-zsh "$PREP/negative_controls_x1p.sh" "$REPO" "$C" "$PREP" > "$OUT/negative_controls.out" 2>&1; rn=$?
+TMPDIR="$SCRATCH" zsh "$PREP/negative_controls_x1p.sh" "$REPO" "$C" "$PREP" > "$OUT/negative_controls.out" 2>&1; rn=$?
 note "$( [[ $rn -eq 0 ]] && print PASS || print FAIL ) negative controls: $(tail -1 "$OUT/negative_controls.out")"; [[ $rn -eq 0 ]] || fail=1
 
 rm -rf "$T"

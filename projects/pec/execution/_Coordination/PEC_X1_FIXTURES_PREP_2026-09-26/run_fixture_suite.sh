@@ -3,10 +3,12 @@
 # store borrows the source repository's objects (alternates), with HEAD at <commit>.
 # Usage: run_fixture_suite.sh <repo> <commit> <parsers dir> [unittest args...]
 # <parsers dir> holds test_parser_fixture_integrity.py and fixtures/. Nothing is
-# written outside a fresh mktemp -d directory under $TMPDIR, which is removed.
+# written outside a fresh mktemp -d directory under $TMPDIR (or, when unset, under
+# .scratch/ beside this script), which is removed.
 set -u
 REPO=$1; C=$2; SRC=${3:A}; shift 3
-T=$(mktemp -d "${TMPDIR:-/tmp}/x1pfix.XXXXXX")
+SCRATCH=${TMPDIR:-${0:A:h}/.scratch}; mkdir -p "$SCRATCH"   # never /tmp: fall back beside this script
+T=$(mktemp -d "$SCRATCH/x1pfix.XXXXXX")
 OBJ=$(cd "$REPO" && cd "$(git rev-parse --git-common-dir)" && pwd)/objects
 SHA=$(git -C "$REPO" rev-parse "$C^{commit}")
 git -C "$T" init -q && print -r -- "$OBJ" > "$T/.git/objects/info/alternates" && git -C "$T" update-ref HEAD "$SHA"

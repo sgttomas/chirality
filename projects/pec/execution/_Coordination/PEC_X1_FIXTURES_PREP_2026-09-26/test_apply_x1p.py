@@ -27,8 +27,10 @@ def run(repo, *extra, mod=None):
     with mock.patch.object(sys, "argv", ["apply_x1p.py", "--repo", str(repo), "--candidates", str(cand), *extra]):
         return mod.main()
 results = []
+SCRATCH = Path(os.environ.get("TMPDIR") or Path(__file__).resolve().parent / ".scratch")  # never /tmp
+SCRATCH.mkdir(parents=True, exist_ok=True)
 def case(name, fn):
-    with tempfile.TemporaryDirectory() as td:
+    with tempfile.TemporaryDirectory(dir=SCRATCH) as td:
         repo = Path(td) / "r"; shutil.copytree(base / "projects/pec", repo / "projects/pec")
         before = snapshot(repo)
         ok = fn(repo, before); results.append((ok, name)); print(("PASS " if ok else "FAIL ") + name)

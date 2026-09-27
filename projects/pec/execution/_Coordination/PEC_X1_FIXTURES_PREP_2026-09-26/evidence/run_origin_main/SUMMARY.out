@@ -1,4 +1,4 @@
-basis commit: 6c6cc1b00dd5cc2bf77a5a262d0ac593fc96e240
+basis commit: f0a6159c9440557d18a728416166cc1e3e0c862d
 python: Python 3.13.7; git: git version 2.54.0 (Apple Git-157)
 PASS act: check-only 0, apply 0, rerun refuses 1
 PASS containment: software-workflow.json modified; new directory v2/tests/parsers with 34 files; nothing else
