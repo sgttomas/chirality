@@ -153,10 +153,9 @@ runtime-ownership / optional-client / human-only-act boundary (`SOW-088`;
    boundaries to an old PEC project-adapter service. That allocation is not a
    PEC v2 requirement and is not re-adopted here.
 3. **The surviving live boundary is independent of ADR-014:** for each App
-   instance, the application-owned Runtime service owns the stock
-   `codex app-server` child together with sessions, delegation, tools, turn
-   locks, and interruption; credentials are custodied by Codex, and
-   local-model residency is retired (`D-GOV-43` A2, superseding `D-GOV-20`
+   instance, the application-owned Runtime service owns sessions, delegation,
+   tools, turn locks, and interruption; credentials are custodied by Codex,
+   and local-model residency is retired (`D-GOV-43` A2, superseding `D-GOV-20`
    items 2–4 on that path; Root `docs/CONTRACT.md` K-RUNTIME-1); PEC is an
    optional client and starts no second execution loop; adoption, ruling,
    acceptance, rejection, force, and other human-only acts remain

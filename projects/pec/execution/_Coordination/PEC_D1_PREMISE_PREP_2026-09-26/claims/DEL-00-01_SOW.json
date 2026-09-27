@@ -117,6 +117,22 @@
    "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md",
    "value": "Status: DECIDED by D-PEC-72 O-B",
    "candidate_text": "written before the D-PEC-72 ADR existed"
+  },
+  {
+   "id": "S25",
+   "commit": "6c6cc1b00",
+   "kind": "contains",
+   "path": "docs/CONTRACT.md",
+   "value": "Credentials are custodied by Codex within Chirality's effective Codex home",
+   "candidate_text": "credentials custodied by Codex and local-model residency retired"
+  },
+  {
+   "id": "S26",
+   "commit": "6c6cc1b00",
+   "kind": "contains",
+   "path": "docs/DIRECTIVE.md",
+   "value": "The per-user daemon, its LaunchAgent, and local-model residency are retired.",
+   "candidate_text": "local-model residency is retired"
   }
  ]
 }

@@ -95,7 +95,7 @@ for M in A AP; do
     pf $? "boundary mode $M $k: exit 0, no UNRESOLVED_OWNER/UNDEFINED_CLAIM ($(grep -c NOT_CHECKABLE "$OUT/boundary_${M}_$k.out") NOT_CHECKABLE line(s) for hand resolution)"
     if [[ $M == AP ]]; then  # informational: the preimage checklist and its diff, for reviewers
       (cd "$PRE" && python3 tools/scope_of_work/derive_review_checklist.py --output "$OUT/checklist_PRE_$k.json" "$d" > /dev/null 2>&1)
-      diff -u -L "checklist_PRE_$k.json" -L "checklist_${M}_$k.json" "$OUT/checklist_PRE_$k.json" "$OUT/checklist_${M}_$k.json" > "$OUT/checklist_diff_$k.patch"
+      diff -u -L "checklist_PRE_$k.json" -L "checklist_${M}_$k.json" "$OUT/checklist_PRE_$k.json" "$OUT/checklist_${M}_$k.json" | sed 's/[[:space:]]*$//' > "$OUT/checklist_diff_$k.patch"
       note "INFO checklist diff PRE -> post $k: $(grep -c '^[-+] *"text"' "$OUT/checklist_diff_$k.patch") changed text line(s) (checklist_diff_$k.patch)"
     fi
   done
@@ -148,13 +148,21 @@ done > "$OUT/whitespace.out" 2>&1
 
 # 10. unified diffs preimage -> postimage, for reviewers
 print -r -- "$TL" | while read -r k g kind p; do
-  diff -u -L "a/$p" -L "b/$p" "$PRE/$p" "$PREP/candidates/$p" > "$OUT/diff_$k.patch"
-  note "INFO diff_$k.patch (group $g): +$(tail -n +3 "$OUT/diff_$k.patch" | grep -c '^+') -$(tail -n +3 "$OUT/diff_$k.patch" | grep -c '^-') lines"
+  # Review aid, not an applicable patch: trailing whitespace is stripped from every line
+  # (blank context lines of a unified diff are a single space) so the stored evidence
+  # passes `git diff --check`.
+  diff -u -L "a/$p" -L "b/$p" "$PRE/$p" "$PREP/candidates/$p" | sed 's/[[:space:]]*$//' > "$OUT/diff_$k.diff.txt"
+  note "INFO diff_$k.diff.txt (group $g; trailing whitespace stripped, review aid only): +$(tail -n +3 "$OUT/diff_$k.diff.txt" | grep -c '^+') -$(tail -n +3 "$OUT/diff_$k.diff.txt" | grep -c '^-') lines"
 done
 
 # 11. fault injection on fresh copies of the PRE export
 python3 "$PREP/test_apply_d1p.py" "$PRE" "$PREP/candidates" --script "$PREP/apply_d1p.py" > "$OUT/test_apply_d1p.out" 2>&1
 pf $? "fault injection: $(tail -1 "$OUT/test_apply_d1p.out")"
+
+# 12. stored evidence carries no trailing whitespace (so `git diff --check` passes on it;
+# SUMMARY.out itself is written after this check and is checked by the same rule at commit)
+grep -rlE '[[:space:]]+$' "$OUT" > "$T/ws_evidence.lst" 2>/dev/null
+[[ ! -s "$T/ws_evidence.lst" ]]; pf $? "evidence whitespace: $(wc -l < "$T/ws_evidence.lst" | tr -d ' ') file(s) with trailing whitespace"
 
 note "OVERALL $( [[ $fail -eq 0 ]] && print PASS || print FAIL )"
 exit $fail

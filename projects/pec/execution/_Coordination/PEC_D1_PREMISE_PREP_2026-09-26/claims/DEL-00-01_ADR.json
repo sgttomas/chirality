@@ -93,7 +93,7 @@
    "kind": "contains",
    "path": "docs/CONTRACT.md",
    "value": "that service is the exclusive owner of the stock, version-pinned `codex app-server` child together with sessions, delegation, tools, turn locks, and interruption for that App instance",
-   "candidate_text": "`codex app-server` child together with sessions, delegation, tools, turn locks, and interruption"
+   "candidate_text": "Runtime service owns sessions, delegation, tools, turn locks, and interruption"
   },
   {
    "id": "S11",

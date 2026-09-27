@@ -55,18 +55,18 @@ TARGETS = {
     E + "PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md":
         ("A", "DEL-00-03_SOW",
          "3e4f0efc775849b11ae5bdfa851e0d3c125804db87d70f55aac9bc7c77e65741",
-         "a6b57d3f918931fe500559845a5d5beddfadbe75e797c8631c51f4abecd38156"),
+         "0fed4ecb771ccef8f8575dd08420e13792629cd7ac9d14f720423eba6c2ae843"),
     E + "PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md":
         ("A", "DEL-00-01_ADR",
          "f63ecc2725b26e0e78be993a7902ad5b901cdfbb2e7921a19fc3442c9d785db5",
-         "9e6961ac0b1722e9df3496d46aed730f42fa5e037ec45c6598d290b04cff8387"),
+         "ad6bab7ee00779e0cff5900d74d986e5e05c66b7dc469f5ddd9b224ecc65c49e"),
     E + "PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md":
         ("P", "DEL-00-01_SOW",
          "4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740",
-         "f5090fb36fd739bc5db01ad08d0d53400854b46e78a53cc18dede77629fdf43f"),
+         "3757632b507d1f5a5668ccefb99d87b9e2a30a9e6bd38d7349e9f4721c5da647"),
 }
 # Read-only files the act re-verifies before and after the write.
-# Rendered by build_apply_d1p.py at basis commit 6c6cc1b00dd5cc2bf77a5a262d0ac593fc96e240 (6c6cc1b00); PINNED values and preimages read there.
+# Rendered by build_apply_d1p.py at basis commit f0a6159c9440557d18a728416166cc1e3e0c862d (f0a6159c9); PINNED values and preimages read there.
 PINNED = {
     E + "_Decomposition/SOFTWARE_DECOMP.md":
         "9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1",
