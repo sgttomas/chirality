@@ -258,11 +258,17 @@ Current owner gates (2026-09-26; none is accepted or inferred here):
     Done: its act replaced the seven contracts with the ruled bytes (no
     lifecycle change; DEL-02-07 carries the four `D-PEC-99` Part B items
     with their gates; run root
-    `execution/_Coordination/SOW_REBUILD_S2_2026-09-26/`). Open: S1 and S4,
-    which absorb the quotations of old S2 text in 13 contracts. The owner
+    `execution/_Coordination/SOW_REBUILD_S2_2026-09-26/`). S1 and S4
+    absorb the quotations of old S2 text in 13 contracts. The owner
     ruled the S4 currency packet `D-PEC-102` (eight contracts: DEL-04-01,
     DEL-04-02, DEL-04-03, DEL-08-01, DEL-08-03, DEL-08-04, DEL-03-04,
-    DEL-10-03) A + M on 2026-09-26; its act is next. Done: the first SOWs for DEL-02-08/09
+    DEL-10-03) A + M on 2026-09-26. Done: its act replaced the eight contracts
+    with the ruled bytes (no lifecycle change; DEL-04-01 carries its two
+    `D-PEC-99` Part B production obligations with their gates still binding;
+    the owner's 2026-08-09 exact-byte acceptance of DEL-04-01's prior
+    contract lapsed; run root
+    `execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/`); the eight
+    `MEMORY.md` files follow at closeout. Open: S1. Done: the first SOWs for DEL-02-08/09
     (`D-PEC-98` A + S + M, ruled 2026-09-26): both contracts written,
     re-pinned to revision 1.6, validated and independently verified, and
     both deliverables `INITIALIZED` (run root
