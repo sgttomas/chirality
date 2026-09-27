@@ -38,7 +38,7 @@ Ryan Tufts, 2026-09-25 (`D-PEC-94`), verbatim: "You can continue with all the op
   - an in-run independent verifier;
   - one or more fresh HELP_HUMAN PR reviews, transcribed under [`returns/`](returns/) as `REVIEW_PR*.md`;
   - required CI.
-- Strict registers stayed at 0 errors throughout. Each act recorded its own before-and-after comparison. `D-PEC-95` ended at 0 warnings. `D-PEC-101` moved the result from 26 `XRG-013` plus 2 `DRB-008` to 26 `XRG-013` (68 registers, 285 rows). Every later act kept the 26 `XRG-013` identical (D-GOV-48 deferred). The harness self-check and the receipts validator passed.
+- Strict registers stayed at 0 errors throughout. Each act recorded its own before-and-after comparison. `D-PEC-95` ended at 0 warnings. `D-PEC-101` moved the result from 26 `XRG-013` plus 2 `DRB-008` to 26 `XRG-013` (68 registers, 285 rows). Every later act kept the 26 `XRG-013` identical (D-GOV-48 deferred). `D-PEC-100` (S2) recorded its comparison on a base from before `D-PEC-101`, so it still showed the 2 `DRB-008`. The harness self-check and the receipts validator passed.
 - **Closeout C1** ([account](../../CLOSEOUT_POST_SCA005_2026-09-27/C1_ACCOUNT.md)):
   - a supported no-change result for every deliverable-local record of the 33 touched deliverables;
   - 127/127 active execution dependency quotes verbatim;
@@ -79,7 +79,7 @@ Intake `../../_TaskManagement/TM_PEC_CLOSEOUT_POST_SCA005_2026-09-27/INTAKE.md` 
   - `SOW_INIT_K2_2026-09-26/HANDOFF_STATE.md`;
   - `X1_FIXTURES_2026-09-27/HANDOFF_STATE.md`;
   - the `D-PEC-100` proposal's register list.
-- **Lapsed acceptances:** each deliverable's exact-byte `_REVIEW.md` binding records the prior bytes. An ordinary REVIEW is required before any of them advances, and RV1 covers the D1 pair.
+- **Lapsed acceptances:** each deliverable's exact-byte `_REVIEW.md` binding records the prior bytes. A REVIEW against the new bytes precedes any re-acceptance, and any CHECKING or ISSUED step. RV1 covers the D1 pair; for the others the graph records that any new review waits for those deliverables' production.
 
 ## Final PR
 
@@ -87,7 +87,7 @@ Intake `../../_TaskManagement/TM_PEC_CLOSEOUT_POST_SCA005_2026-09-27/INTAKE.md` 
 
 ## Limits
 
-- The only lifecycle changes were ruled ones. `D-PEC-101` K1 created DEL-08-06 and DEL-10-13 at `OPEN`. The add-ons `D-PEC-98` S and `D-PEC-103` S moved them `OPEN → INITIALIZED`, and `D-PEC-106` L moved three deliverables `INITIALIZED → IN_PROGRESS`.
+- The only lifecycle changes were ruled ones. `D-PEC-101` K1 created DEL-08-06 and DEL-10-13 at `OPEN`. `D-PEC-98` S moved DEL-02-08 and DEL-02-09 `OPEN → INITIALIZED`, and `D-PEC-103` S moved DEL-08-06 and DEL-10-13 the same way. `D-PEC-106` L then moved DEL-02-03, DEL-02-08 and DEL-02-09 `INITIALIZED → IN_PROGRESS`.
 - No CHECKING, ISSUED, artifact acceptance or REVIEW act, and nothing prompted about CHECKING.
 - No readiness, release or reliance claim. Operational reliance still begins only at a release that passes the PRD §12 gate.
 - No Task Management promotion or disposition. The three intake candidates are the owner's to dispose.
