@@ -154,7 +154,7 @@ This Scope of Work defines `DEL-09-03` in service of project scope [SOW-011, SOW
 > | Verification Item | Required Evidence |
 > |---|---|
 > | Unit tests | Jest or equivalent unit tests for TurnEngine, event replay, attachment resolver, status parser, dependency parser/writer/linter, permission overlay, and hook behavior. |
-> | API tests | `/api/harness/turn`, `/api/harness/interrupt`, `/api/working-root/deliverable/status`, and `/api/working-root/deliverable/dependencies` route tests where implemented. |
+> | API tests | `/api/harness/turn` and `/api/harness/interrupt` route tests where implemented. Status and dependency behavior is tested at the library (`frontend/src/__tests__/lib/deliverable-contracts.test.ts`); SCA-APP-011 retired the status and dependency routes. |
 > | Integration tests | Accepted-turn-before-execution, interrupt cancellation, SSE compatibility, denied write under `dontAsk`, denied Bash, and governed allowed-write paths when those phases are available. |
 > | Regression fixtures | Files and runtime records for malformed JSONL, symlinks, budget-sized attachments, invalid dependency rows, invalid status transitions, unknown tools, and denied permission cases. |
 > | Command gate | `npm run test` from `frontend/` remains passing when dependencies and required instruction-root assets are present. Source: `docs/PRD.md` Section 12.2; `docs/CONTRACT.md` K-VALIDATE-1. |
