@@ -348,6 +348,6 @@ Other registers:
   `cycles_sample.csv`, `blocker_queue.csv`, `blocker_queue_stdout.txt`.
 - `Evidence/MANIFEST.sha256`: hashes of all of the above.
 
-Rerun from the repository root:
+Rerun from the repository root at commit `e25a9498d` (the commit before the ruling was applied) (the registers the simulation was built on; after the ruling was applied, its basis check fails by design and the script rewrites `Evidence/runs/` before stopping):
 `python3 projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP-HGD-1-3-RECOMMENDATION-2026-09-27/Evidence/simulate_hgd.py`.
 Afterwards, `sha256sum -c` against `Evidence/MANIFEST.sha256` from inside `Evidence/` should pass.

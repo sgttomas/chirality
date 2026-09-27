@@ -24,4 +24,4 @@ Current unfinished delivery: Deliver structural secret protection at every live 
 
 | Run ID / date | Work in this deliverable | Result and source links |
 |---|---|---|
-| `APP-HGD-1-3-RECOMMENDATION-2026-09-27` / 2026-09-27 | Neighbour of the owner's FC-1 ruling: DEL-02-01's DEP-02-01-012 now names this deliverable as the owner of the redaction helper that derived chat titles pass (IMPLICIT/MEDIUM). No file of this deliverable changed | DEL-02-01 register updated; receipt `execution/_Coordination/AgentRuns/APP-HGD-1-3-RECOMMENDATION-2026-09-27/RECEIPT.md` |
+| `APP-HGD-1-3-RECOMMENDATION-2026-09-27` / 2026-09-27 | Neighbour of the owner's FC-1 ruling: DEL-02-01's DEP-02-01-012 now names this deliverable as the owner of the redaction helper that derived chat titles pass (IMPLICIT/MEDIUM). No register or scope file of this deliverable changed | DEL-02-01 register updated; receipt `execution/_Coordination/AgentRuns/APP-HGD-1-3-RECOMMENDATION-2026-09-27/RECEIPT.md` |

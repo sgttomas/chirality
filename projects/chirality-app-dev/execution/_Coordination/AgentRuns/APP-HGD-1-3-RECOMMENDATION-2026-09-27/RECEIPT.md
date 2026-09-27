@@ -85,7 +85,7 @@ Unchanged:
 
 `_DEPENDENCIES.md`: pre-image `d2ffed68…`, post-image `14257f5036c791de3a6a16e50c61de4f4e12a110d511eb1f70b6e041f7caea7c`.
 The human-owned sections are unchanged. The Function 4 refresh made these changes:
-- the summary counts and Compact Register (006 is UPSTREAM / INTERFACE; 012 targets DEL-05-03);
+- the summary's "Current as of" line (its counts are unchanged) and the Compact Register (006 is UPSTREAM / INTERFACE; 012 targets DEL-05-03);
 - the Lifecycle Summary (HANDOVER 1, INTERFACE 7);
 - dated closure bullets at the HGD line, the F1 fence line, the TARGET_UNRESOLVED warning and the SCC_EXPOSURE note;
 - the L181 open-rulings sentence, replaced by the dated ruling line;
