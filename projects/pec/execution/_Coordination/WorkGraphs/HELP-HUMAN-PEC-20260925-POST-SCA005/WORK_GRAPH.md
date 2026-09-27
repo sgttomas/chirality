@@ -152,9 +152,9 @@ The dependencies are acyclic, and the named inputs, not this listing, decide whe
 - **Checked basis:** `origin/main` `125cfacc1`, after PR #979 (the `D-PEC-100` act) and PR #976 (`ce934ac33`, the `D-PEC-101` act).
 - **Next work:**
   - Prepare the K2, S1, S4, D1 and X1 packets; S1 and S4 absorb the `D-PEC-99` Part B items named in their rows and the quotations of old S2 text. Each fenced packet comes to the owner to rule on.
-  - The retirement undertaking's closeout (its graph's C1 / M1 / F1).
+  - The retirement undertaking's closeout (its graph's C1 / M1 / F1) is in its final PR.
   - Carry to a later packet: the DEL-02-08/09 contract-wording items and the DEL-02-07 `CLM-011` count above.
-- **Local or unmerged work:** this graph update.
+- **Local or unmerged work:** the retirement undertaking's final PR.
 - **Active operations and ownership:** none running. Handed back: the R3 (B6), G1 act (G2), S3 drafter, RR1, RR3, S3A, S2P, K14P, K14A and S2A managers. Their briefs are under `AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/briefs/`; the returns are under that run's `returns/`, except RR1's, which is `AgentRuns/HELP-HUMAN-PEC-20260926-REMAINING-RETIREMENT/returns/RR1_REMAINING_RETIREMENT_ACCOUNT.md`. Scratch helpers named in earlier returns are not in the repository.
 - **Graph maintainer:** HELP_HUMAN.
 - **Earlier run:** `HELP-HUMAN-PEC-20260923-SCA005`, under PEC's former loop; its `RUN.md` is history. The owner's CHECKING reservation for DEL-01-03 stands, and nothing here prompts for it.
