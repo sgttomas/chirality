@@ -20,7 +20,9 @@ EVQ  Evidence-cell quality: locus/quote confusion and empty-evidence rows,
 XRG  Cross-register consistency: Deliverables.csv <-> ScopeLedger.csv <->
      ContextBudgetQA.csv, and the ledger's Package home (every scope item has
      one PackageID, per D-GOV-48: missing on an IN item is an error, missing on
-     an OUT or TBD item is a warning).
+     an OUT or TBD item is a warning). A linked deliverable may sit in another
+     Package as a supporting contribution; XRG-004 warns only when the home
+     Package holds none of the item's linked deliverables.
 DRB  Dependency-register binding: Dependencies.csv <-> Deliverables.csv and
      the owning deliverable folder.
 
@@ -34,7 +36,10 @@ These are four different measurements. Do not collapse them into one number.
 
 Scan boundary
 -------------
-Deliverable-local registers are discovered under
+The companion registers (`Deliverables.csv`, `ScopeLedger.csv`,
+`ContextBudgetQA.csv`) are read from `<EXECUTION_ROOT>/_Decomposition/`, or
+from `--registers-dir` for a project that keeps them elsewhere (for example
+`docs/_Registers/`). Deliverable-local registers are discovered under
 `<EXECUTION_ROOT>/PKG-*/{1_Working,2_Checking,3_Issued}/DEL-*/Dependencies.csv`.
 `0_References` is excluded (reference material, not deliverables), as is any
 register held outside a package lifecycle folder. `EvidenceFile` is resolved as
@@ -57,7 +62,8 @@ substantively-reasoned exception — never that the defects were papered over.
 Usage
 -----
     python3 tools/validation/validate_decomposition_registers.py <EXECUTION_ROOT> \
-        [--json OUT.json] [--strict] [--max-per-code N] [--families SCH,EVQ,XRG,DRB]
+        [--json OUT.json] [--strict] [--max-per-code N] [--families SCH,EVQ,XRG,DRB] \
+        [--registers-dir DIR]
     python3 tools/validation/validate_decomposition_registers.py --list-checks
 
 Exit codes
@@ -103,7 +109,7 @@ CHECKS: dict[str, tuple[str, str, str]] = {
     "XRG-001": ("XRG", ERROR, "ScopeLedger DeliverableIDs names a deliverable absent from Deliverables.csv"),
     "XRG-002": ("XRG", ERROR, "Deliverables CoversScopeItems names a scope item absent from ScopeLedger.csv"),
     "XRG-003": ("XRG", ERROR, "Scope-coverage link is non-reciprocal between ScopeLedger.csv and Deliverables.csv"),
-    "XRG-004": ("XRG", ERROR, "PackageID disagrees between ScopeLedger.csv and Deliverables.csv for a linked deliverable"),
+    "XRG-004": ("XRG", WARNING, "Ledger item's home Package holds none of its linked deliverables (supporting deliverables in other Packages are allowed)"),
     "XRG-005": ("XRG", ERROR, "Scope item's ObjectiveIDs are not propagated to the covering deliverable's SupportsObjectives"),
     "XRG-006": ("XRG", WARNING, "IN-scope ledger item has no DeliverableIDs"),
     "XRG-007": ("XRG", ERROR, "Non-IN ledger item carries DeliverableIDs"),
@@ -625,6 +631,7 @@ def check_cross_register(
                             f"{paths['deliverables']} belongs to", row_id=item_id)
                 )
 
+        linked_packages: list[str] = []
         for deliverable_id in linked:
             record = deliverables.get(deliverable_id)
             if record is None:
@@ -642,14 +649,8 @@ def check_cross_register(
                             f"CoversScopeItems does not name {item_id}", row_id=item_id)
                 )
             record_pkg = (record.get("PackageID") or "").strip()
-            # With several homes, XRG-014 already reports the item; compare
-            # only a single home so the same defect is not repeated per link.
-            if len(homes) == 1 and record_pkg and homes[0] != record_pkg:
-                findings.append(
-                    Finding("XRG-004", paths["ledger"],
-                            f"{item_id} declares PackageID {homes[0]!r} but {deliverable_id} "
-                            f"is in {record_pkg!r}", row_id=item_id)
-                )
+            if record_pkg:
+                linked_packages.append(record_pkg)
             supports = split_list(record.get("SupportsObjectives"))
             for objective in objectives:
                 if objective not in supports:
@@ -658,6 +659,20 @@ def check_cross_register(
                                 f"{item_id} maps to {objective}, but covering deliverable "
                                 f"{deliverable_id} does not support it", row_id=item_id)
                     )
+        # Home versus linked deliverables (D-GOV-48; management manual v7:
+        # "Several Deliverables may contribute to an included obligation,
+        # including supporting contributions from another Package"). A linked
+        # deliverable in another Package is a supporting contribution, not a
+        # defect. Warn once per item only when the home Package holds none of
+        # the item's linked deliverables. With several homes, XRG-014 already
+        # reports the item, so only a single home is compared.
+        if len(homes) == 1 and linked_packages and homes[0] not in linked_packages:
+            findings.append(
+                Finding("XRG-004", paths["ledger"],
+                        f"{item_id} declares home PackageID {homes[0]!r}, but none of its "
+                        f"linked deliverables is in that Package (they are in "
+                        f"{', '.join(sorted(set(linked_packages)))})", row_id=item_id)
+            )
 
     ledger_index = {(row.get("ScopeItemID") or "").strip(): row for row in ledger}
     for deliverable_id, record in deliverables.items():
@@ -711,18 +726,27 @@ def run(
     execution_root: Path,
     families: tuple[str, ...] = FAMILIES,
     evidence_root: Path | None = None,
+    registers_dir: Path | None = None,
 ) -> dict:
-    """Execute the selected check families. Returns a machine-readable report."""
+    """Execute the selected check families. Returns a machine-readable report.
+
+    `registers_dir` names the folder holding the companion registers when it is
+    not `<execution_root>/_Decomposition`.
+    """
     execution_root = Path(execution_root)
     if not execution_root.is_dir():
         raise OperationalError(f"EXECUTION_ROOT is not a directory: {execution_root}")
+    if registers_dir is not None and not Path(registers_dir).is_dir():
+        raise OperationalError(f"--registers-dir is not a directory: {registers_dir}")
     evidence_root = Path(evidence_root) if evidence_root else execution_root.parent
 
     findings: list[Finding] = []
     skipped: list[str] = []
     counters: dict = {"by_class": {}}
 
-    decomposition = execution_root / "_Decomposition"
+    decomposition = Path(registers_dir) if registers_dir is not None else (
+        execution_root / "_Decomposition"
+    )
     deliverables_path = decomposition / "Deliverables.csv"
     ledger_path = decomposition / "ScopeLedger.csv"
     context_qa_path = decomposition / "ContextBudgetQA.csv"
@@ -811,6 +835,7 @@ def run(
         "tool": "validate_decomposition_registers.py",
         "execution_root": str(execution_root),
         "evidence_root": str(evidence_root),
+        "registers_dir": str(decomposition),
         "families": list(families),
         "registers_scanned": len(registers),
         "dependency_rows": total_rows,
@@ -888,6 +913,9 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
                         help=f"Comma-separated subset of {','.join(FAMILIES)}")
     parser.add_argument("--evidence-root", help="Base for resolving EvidenceFile "
                                                 "(default: parent of EXECUTION_ROOT)")
+    parser.add_argument("--registers-dir",
+                        help="Folder holding Deliverables.csv, ScopeLedger.csv and "
+                             "ContextBudgetQA.csv (default: EXECUTION_ROOT/_Decomposition)")
     parser.add_argument("--strict", action="store_true",
                         help="Exit 1 on WARNING findings as well as ERROR")
     parser.add_argument("--max-per-code", type=int, default=20,
@@ -921,6 +949,7 @@ def main(argv: list[str]) -> int:
             Path(args.execution_root),
             families=families,
             evidence_root=Path(args.evidence_root) if args.evidence_root else None,
+            registers_dir=Path(args.registers_dir) if args.registers_dir else None,
         )
     except OperationalError as exc:
         print(f"ERROR: {exc}", file=sys.stderr)

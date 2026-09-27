@@ -1,9 +1,10 @@
-import { lstat, mkdtemp, mkdir, readFile, rm, symlink, writeFile } from 'node:fs/promises';
+import { lstat, mkdtemp, mkdir, readFile, rename, rm, symlink, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { serializeDependencyRegister } from '../../../lib/dependencies/register-writer';
 import { DependencyRegisterRow } from '../../../lib/dependencies/schema';
+import { writeAmendmentRecords } from '../../lib/amendment-records-fixture';
 
 type RouteModules = {
   statusRoute: typeof import('../../../app/api/working-root/deliverable/status/route');
@@ -518,6 +519,245 @@ describe('working-root deliverable contract routes', () => {
     });
   });
 
+  describe('reopening ISSUED -> IN_PROGRESS under an accepted amendment', () => {
+    const ISSUED = `${INITIAL_STATUS.replace('**Current State:** INITIALIZED', '**Current State:** ISSUED')}- 2026-02-25 - State set to ISSUED (HUMAN)\n`;
+    const MODIFY_ROW = {
+      AmendmentID: 'SCA-001',
+      ActionSeq: '3',
+      ActionType: 'MODIFY',
+      EntityType: 'DELIVERABLE',
+      EntityID: 'DEL-05-03',
+      ScopeChanging: 'NO'
+    };
+
+    // The amendment check reads <execution root>/_ScopeChange, so the reopened
+    // deliverable lives under an execution/ folder of the working root.
+    let reopen: {
+      projectRoot: string;
+      deliverablePath: string;
+      statusFilePath: string;
+      scopeChangeRoot: string;
+    };
+
+    async function postTransition(
+      body: Record<string, unknown>,
+      target: { projectRoot: string; deliverablePath: string } = reopen
+    ): Promise<Response> {
+      const routes = await importRouteModules();
+      return routes.transitionRoute.POST(
+        new Request('http://localhost/api/working-root/deliverable/status/transition', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            projectRoot: target.projectRoot,
+            deliverablePath: target.deliverablePath,
+            targetState: 'IN_PROGRESS',
+            actor: 'HUMAN',
+            date: '2026-02-27',
+            approvalSha: 'abc1234',
+            ...body
+          })
+        })
+      );
+    }
+
+    async function expectDenied(
+      body: Record<string, unknown>,
+      type: string,
+      statusFilePath = reopen.statusFilePath,
+      target: { projectRoot: string; deliverablePath: string } = reopen
+    ): Promise<unknown> {
+      const before = await readFile(statusFilePath, 'utf8');
+      const response = await postTransition(body, target);
+      expect(response.status).toBe(400);
+      const payload = (await response.json()) as { error: { type: string } };
+      expect(payload).toMatchObject({ error: { type } });
+      await expect(readFile(statusFilePath, 'utf8')).resolves.toBe(before);
+      return payload;
+    }
+
+    beforeEach(async () => {
+      const execution = path.join(fixture.projectRoot, 'execution');
+      const deliverablePath = path.join(execution, 'PKG-05_Lifecycle', '1_Working', 'DEL-05-03_Lifecycle');
+      await mkdir(deliverablePath, { recursive: true });
+      const statusFilePath = path.join(deliverablePath, '_STATUS.md');
+      await writeFile(statusFilePath, ISSUED, 'utf8');
+      reopen = {
+        projectRoot: fixture.projectRoot,
+        deliverablePath,
+        statusFilePath,
+        scopeChangeRoot: path.join(execution, '_ScopeChange')
+      };
+    });
+
+    it('admits a HUMAN reopening by amendment ID and records the amendment, row and SHAs', async () => {
+      const records = await writeAmendmentRecords({
+        scopeChangeRoot: reopen.scopeChangeRoot,
+        manifestBase: fixture.projectRoot,
+        rows: [MODIFY_ROW]
+      });
+
+      const response = await postTransition({ amendment: 'SCA-001' });
+
+      expect(response.status).toBe(200);
+      expect(await response.json()).toMatchObject({
+        transition: { from: 'ISSUED', to: 'IN_PROGRESS', actor: 'HUMAN' },
+        status: { currentState: 'IN_PROGRESS' }
+      });
+      await expect(readFile(reopen.statusFilePath, 'utf8')).resolves.toContain(
+        '- 2026-02-27 - State set to IN_PROGRESS (HUMAN) [reopened from ISSUED; ' +
+          'amendment: SCA-001 (execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26); ' +
+          'action: execution/_ScopeChange/SCA-001_2026-09-26_1200/Amendment_Actions.csv ActionSeq 3 MODIFY; ' +
+          `register SHA-256: ${records.registerSha256}; approval SHA: abc1234]`
+      );
+    });
+
+    it('admits a reopening named by its group-3 DECISION.md path', async () => {
+      const records = await writeAmendmentRecords({
+        scopeChangeRoot: reopen.scopeChangeRoot,
+        manifestBase: fixture.projectRoot,
+        rows: [MODIFY_ROW]
+      });
+
+      const response = await postTransition({
+        amendment: path.relative(reopen.projectRoot, path.join(records.group3Dir, 'DECISION.md'))
+      });
+
+      expect(response.status).toBe(200);
+    });
+
+    it.each([
+      ['no amendment', {}, 'BACKWARD_TRANSITION'],
+      ['a non-string amendment', { amendment: 7 }, 'INVALID_REQUEST'],
+      ['an agent actor', { amendment: 'SCA-001', actor: 'WORKING_ITEMS' }, 'UNAUTHORIZED_ACTOR'],
+      ['no approval SHA', { amendment: 'SCA-001', approvalSha: undefined }, 'APPROVAL_SHA_REQUIRED'],
+      ['an unknown amendment', { amendment: 'SCA-404' }, 'AMENDMENT_NOT_ADMITTED'],
+      ['an unresolvable amendment path', { amendment: 'no/such/amendment' }, 'AMENDMENT_NOT_ADMITTED']
+    ] as const)('denies a reopening with %s without writing', async (_label, body, type) => {
+      await writeAmendmentRecords({
+        scopeChangeRoot: reopen.scopeChangeRoot,
+        manifestBase: fixture.projectRoot,
+        rows: [MODIFY_ROW]
+      });
+      await expectDenied(body, type);
+    });
+
+    it.each([
+      [
+        'a legacy register naming the deliverable only by RECLASSIFY',
+        { rows: [{ ...MODIFY_ROW, ActionType: 'RECLASSIFY', ScopeChanging: undefined }], scopeColumn: false },
+        'RECLASSIFY_LEGACY_REGISTER'
+      ],
+      [
+        'a RECLASSIFY that does not change scope',
+        { rows: [{ ...MODIFY_ROW, ActionType: 'RECLASSIFY', ScopeChanging: 'NO' }] },
+        'RECLASSIFY_NOT_SCOPE_CHANGING'
+      ],
+      ['an amendment accepted only at group 2', { rows: [MODIFY_ROW], groups: ['1', '2'] as const }, 'GROUP3_NOT_ACCEPTED'],
+      ['an ADD row', { rows: [{ ...MODIFY_ROW, ActionType: 'ADD' }] }, 'ACTION_NOT_AUTHORIZING'],
+      [
+        'an amendment that also removes the deliverable',
+        { rows: [MODIFY_ROW, { ...MODIFY_ROW, ActionSeq: '4', ActionType: 'REMOVE' }] },
+        'DELIVERABLE_REMOVED'
+      ],
+      [
+        'a register row with stray whitespace',
+        { rows: [{ ...MODIFY_ROW, EntityID: 'DEL-05-03 ' }] },
+        'REGISTER_SCHEMA'
+      ]
+    ] as const)('denies a reopening under %s with the checker code', async (_label, records, refusal) => {
+      await writeAmendmentRecords({
+        scopeChangeRoot: reopen.scopeChangeRoot,
+        manifestBase: fixture.projectRoot,
+        ...records
+      });
+      const payload = await expectDenied({ amendment: 'SCA-001' }, 'AMENDMENT_NOT_ADMITTED');
+      expect(JSON.stringify(payload)).toContain(refusal);
+    });
+
+    it('refuses a second reopening under the same amendment', async () => {
+      await writeAmendmentRecords({
+        scopeChangeRoot: reopen.scopeChangeRoot,
+        manifestBase: reopen.projectRoot,
+        rows: [MODIFY_ROW]
+      });
+      expect((await postTransition({ amendment: 'SCA-001' })).status).toBe(200);
+      const reopened = await readFile(reopen.statusFilePath, 'utf8');
+      await writeFile(
+        reopen.statusFilePath,
+        `${reopened.replace('**Current State:** IN_PROGRESS', '**Current State:** ISSUED')}- 2026-02-28 - State set to ISSUED (HUMAN)\n`,
+        'utf8'
+      );
+
+      const payload = await expectDenied({ amendment: 'SCA-001' }, 'AMENDMENT_NOT_ADMITTED');
+      expect(JSON.stringify(payload)).toContain('AMENDMENT_ALREADY_USED');
+    });
+
+    it('denies an amendment on the CHECKING reversal', async () => {
+      await writeFile(
+        reopen.statusFilePath,
+        ISSUED.replace('**Current State:** ISSUED', '**Current State:** CHECKING'),
+        'utf8'
+      );
+      await mkdir(path.join(fixture.projectRoot, '_DECISIONS'), { recursive: true });
+      await writeFile(path.join(fixture.projectRoot, '_DECISIONS', 'D-001.md'), '# Ruling\n', 'utf8');
+      await expectDenied({ amendment: 'SCA-001', ruling: '_DECISIONS/D-001.md' }, 'AMENDMENT_NOT_APPLICABLE');
+    });
+
+    describe('inside a Git work tree', () => {
+      let repo: string;
+      let working: { projectRoot: string; deliverablePath: string; statusFilePath: string };
+
+      beforeEach(async () => {
+        repo = path.join(fixture.tmpRoot, 'repo');
+        const projectRoot = path.join(repo, 'projects', 'app');
+        const deliverablePath = path.join(projectRoot, 'execution', 'PKG-05_Lifecycle', '1_Working', 'DEL-05-03_Lifecycle');
+        await mkdir(path.join(repo, '.git'), { recursive: true });
+        await mkdir(deliverablePath, { recursive: true });
+        const statusFilePath = path.join(deliverablePath, '_STATUS.md');
+        await writeFile(statusFilePath, ISSUED, 'utf8');
+        working = { projectRoot, deliverablePath, statusFilePath };
+      });
+
+      it('resolves repository-relative manifest paths and records repository-relative evidence', async () => {
+        await writeAmendmentRecords({
+          scopeChangeRoot: path.join(working.projectRoot, 'execution', '_ScopeChange'),
+          manifestBase: repo,
+          rows: [MODIFY_ROW]
+        });
+
+        const response = await postTransition({ amendment: 'SCA-001' }, working);
+
+        expect(response.status).toBe(200);
+        await expect(readFile(working.statusFilePath, 'utf8')).resolves.toContain(
+          'amendment: SCA-001 (projects/app/execution/_ScopeChange/checkpoint_snapshots/SCA-001_GROUP-3_2026-09-26)'
+        );
+      });
+
+      it('refuses a scope-change root outside the working root', async () => {
+        // The outermost execution/ folder lies above this working root, so the
+        // scope-change root the Root rule selects is outside it.
+        const projectRoot = path.join(repo, 'execution', 'app');
+        const deliverablePath = path.join(projectRoot, 'execution', 'PKG-05_Lifecycle', '1_Working', 'DEL-05-03_Lifecycle');
+        await mkdir(deliverablePath, { recursive: true });
+        const statusFilePath = path.join(deliverablePath, '_STATUS.md');
+        await writeFile(statusFilePath, ISSUED, 'utf8');
+        await writeAmendmentRecords({
+          scopeChangeRoot: path.join(repo, 'execution', '_ScopeChange'),
+          manifestBase: repo,
+          rows: [MODIFY_ROW]
+        });
+
+        const payload = await expectDenied({ amendment: 'SCA-001' }, 'AMENDMENT_NOT_ADMITTED', statusFilePath, {
+          projectRoot,
+          deliverablePath
+        });
+        expect(JSON.stringify(payload)).toContain('PATH_ESCAPE');
+        expect(JSON.stringify(payload)).toContain('outside the App working root');
+      });
+    });
+  });
+
   it('reads dependency register data from Dependencies.csv', async () => {
     const routes = await importRouteModules();
     const response = await routes.dependenciesRoute.GET(
@@ -574,8 +814,159 @@ describe('working-root deliverable contract routes', () => {
     expect(body.rows).toEqual([]);
     expect(body.headers).toEqual([]);
     expect(body.warnings).toEqual([
-      'DEPENDENCY_REGISTER_NOT_FOUND: Dependencies.csv is absent; _DEPENDENCIES.md is present as a secondary summary, but no structured rows were inferred.'
+      'DEPENDENCY_REGISTER_NOT_FOUND: Dependencies.csv is absent; the recorded register is read from the declared sections of _DEPENDENCIES.md (recordedRegister), and no CSV rows are inferred from it.'
     ]);
+  });
+
+  it('computes the supplier-judged verdict from the recorded register alongside the CSV rows', async () => {
+    const supplierPath = path.join(
+      fixture.projectRoot,
+      'PKG-05_Filesystem_Execution_Model',
+      '1_Working',
+      'DEL-05-02_Execution_Root_Scaffolding'
+    );
+    await mkdir(supplierPath, { recursive: true });
+    await writeFile(
+      path.join(supplierPath, '_STATUS.md'),
+      '# Status: DEL-05-02\n\n**Current State:** INITIALIZED\n**Last Updated:** 2026-09-26\n\n## History\n',
+      'utf8'
+    );
+    await writeFile(
+      path.join(fixture.deliverablePath, '_DEPENDENCIES.md'),
+      [
+        '# Dependencies: DEL-05-03 Lifecycle State Handling',
+        '',
+        '## Dependency Tracking Mode',
+        '- **Mode:** DECLARED',
+        '',
+        '## Declared Upstream (I need these before I can proceed)',
+        '- DEL-05-02 Execution Root Scaffolding — Reason: scaffolding baseline',
+        '  - Required maturity: CHECKING',
+        '- DEL-05-01 Folder Model — Reason: declared only in the markdown',
+        '  - Required maturity: INITIALIZED',
+        '',
+        '## Declared Downstream (These need me)',
+        '- TBD',
+        ''
+      ].join('\n'),
+      'utf8'
+    );
+
+    const routes = await importRouteModules();
+    const response = await routes.dependenciesRoute.GET(
+      new Request(
+        `http://localhost/api/working-root/deliverable/dependencies?projectRoot=${encodeURIComponent(fixture.projectRoot)}&deliverablePath=${encodeURIComponent(fixture.deliverablePath)}`
+      )
+    );
+
+    expect(response.status).toBe(200);
+    const body = (await response.json()) as {
+      rows: DependencyRegisterRow[];
+      recordedRegister: {
+        trackingMode: string;
+        declaredOnlyRows: DependencyRegisterRow[];
+        unionRows: DependencyRegisterRow[];
+        disagreements: Array<Record<string, string>>;
+        blockers: {
+          blockerState: string;
+          blockerSource: string;
+          blockingUpstreamCount: number | null;
+          blockingUpstreamDeliverables: string[];
+          upstreamArcs: Array<{ supplier: string; requiredMaturity: string; supplierState: string }>;
+        };
+      };
+    };
+
+    // The CSV rows stay as they are on disk: register evidence.
+    expect(body.rows).toHaveLength(1);
+    expect(body.rows[0].RequiredMaturity).toBe('IN_PROGRESS');
+    const recorded = body.recordedRegister;
+    expect(recorded.trackingMode).toBe('DECLARED');
+    expect(recorded.unionRows.map((row) => row.DependencyID)).toEqual([
+      'DEP-05-03-001',
+      'DECLARED-DEL-05-03-001'
+    ]);
+    expect(recorded.declaredOnlyRows.map((row) => row.TargetDeliverableID)).toEqual(['DEL-05-01']);
+    expect(recorded.disagreements).toEqual([
+      expect.objectContaining({ DependencyID: 'DEP-05-03-001', Declared: 'CHECKING', Csv: 'IN_PROGRESS' })
+    ]);
+    expect(recorded.blockers.blockerState).toBe('BLOCKED');
+    expect(recorded.blockers.blockerSource).toBe('RECORDED_REGISTER');
+    expect(recorded.blockers.blockingUpstreamCount).toBe(2);
+    expect(recorded.blockers.upstreamArcs).toEqual([
+      expect.objectContaining({ supplier: 'DEL-05-01', requiredMaturity: 'INITIALIZED', supplierState: 'UNKNOWN' }),
+      expect.objectContaining({ supplier: 'DEL-05-02', requiredMaturity: 'CHECKING', supplierState: 'INITIALIZED' })
+    ]);
+  });
+
+  it('does not read recorded-register evidence through a lifecycle folder linked outside projectRoot', async () => {
+    const outsideIssued = path.join(fixture.tmpRoot, 'outside-issued');
+    const secretPath = path.join(outsideIssued, 'DEL-05-09_Secret');
+    await mkdir(secretPath, { recursive: true });
+    await writeFile(
+      path.join(secretPath, 'Dependencies.csv'),
+      serializeDependencyRegister(
+        [
+          makeDependencyRow({
+            DependencyID: 'DEP-05-09-001',
+            FromDeliverableID: 'DEL-05-09',
+            Direction: 'DOWNSTREAM',
+            TargetDeliverableID: 'DEL-05-03',
+            RequiredMaturity: 'ISSUED'
+          })
+        ],
+        { hostDeliverableId: 'DEL-05-09' }
+      ).csv,
+      'utf8'
+    );
+    await symlink(outsideIssued, path.join(fixture.projectRoot, 'PKG-05_Filesystem_Execution_Model', '3_Issued'), 'dir');
+
+    const routes = await importRouteModules();
+    const response = await routes.dependenciesRoute.GET(
+      new Request(
+        `http://localhost/api/working-root/deliverable/dependencies?projectRoot=${encodeURIComponent(fixture.projectRoot)}&deliverablePath=${encodeURIComponent(fixture.deliverablePath)}`
+      )
+    );
+
+    expect(response.status).toBe(200);
+    const body = (await response.json()) as {
+      warnings: string[];
+      recordedRegister: {
+        disagreements: Array<Record<string, string>>;
+        blockers: { blockerState: string; notAssessedReason?: string; upstreamArcs: unknown[] };
+        warnings: string[];
+      };
+    };
+    expect(body.warnings).toContain(
+      'RECORDED_REGISTER_READ_OUTSIDE_ROOT: PKG-05_Filesystem_Execution_Model/3_Issued resolves outside the read root; it was not read.'
+    );
+    expect(body.recordedRegister.blockers.blockerState).toBe('NOT_ASSESSED');
+    expect(body.recordedRegister.blockers.notAssessedReason).toMatch(/^READ_REFUSED:/);
+    expect(JSON.stringify(body.recordedRegister)).not.toContain('DEL-05-09');
+  });
+
+  it('gives no recorded-register verdict for a deliverable reached through a linked package folder', async () => {
+    const packageName = 'PKG-05_Filesystem_Execution_Model';
+    await mkdir(path.join(fixture.projectRoot, 'store'));
+    await rename(path.join(fixture.projectRoot, packageName), path.join(fixture.projectRoot, 'store', packageName));
+    await symlink(path.join(fixture.projectRoot, 'store', packageName), path.join(fixture.projectRoot, packageName), 'dir');
+
+    const routes = await importRouteModules();
+    const response = await routes.dependenciesRoute.GET(
+      new Request(
+        `http://localhost/api/working-root/deliverable/dependencies?projectRoot=${encodeURIComponent(fixture.projectRoot)}&deliverablePath=${encodeURIComponent(fixture.deliverablePath)}`
+      )
+    );
+
+    expect(response.status).toBe(200);
+    const body = (await response.json()) as {
+      warnings: string[];
+      recordedRegister: { executionRoot: string | null; blockers: { blockerState: string; notAssessedReason?: string } };
+    };
+    expect(body.recordedRegister.executionRoot).toBeNull();
+    expect(body.recordedRegister.blockers.blockerState).toBe('NOT_ASSESSED');
+    expect(body.recordedRegister.blockers.notAssessedReason).toMatch(/^SYMLINKED_UNIT_PATH: /);
+    expect(body.warnings).toContain(`RECORDED_REGISTER_${body.recordedRegister.blockers.notAssessedReason}`);
   });
 
   it('rejects symlink deliverable paths that resolve outside projectRoot', async () => {

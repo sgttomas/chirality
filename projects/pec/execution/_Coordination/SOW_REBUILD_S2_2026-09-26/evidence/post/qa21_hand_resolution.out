@@ -1,0 +1,16 @@
+# QA 21 hand resolution aid (manager's script, scratchpad qa21.py sha256 4c7549918a25e4e5db4f7b79cdbdd4c2888092a7459f2d1895120d49cec1e11f); checks that each NOT_CHECKABLE requirement's text names the tabled owner and the cited claim names it too
+PASS DEL-01-01 REQ-003 -> DEL-04-03 | owner in REQ text: True | owner in cited CLM-012: True | REQ block chars 412 CLM block chars 1733
+PASS DEL-01-01 REQ-004 -> DEL-03-02 | owner in REQ text: True | owner in cited CLM-012: True | REQ block chars 525 CLM block chars 1733
+PASS DEL-01-01 REQ-004 -> DEL-03-03 | owner in REQ text: True | owner in cited CLM-012: True | REQ block chars 525 CLM block chars 1733
+PASS DEL-01-01 REQ-005 -> DEL-03-01 | owner in REQ text: True | owner in cited CLM-012: True | REQ block chars 353 CLM block chars 1733
+PASS DEL-01-01 REQ-007 -> DEL-01-03 | owner in REQ text: True | owner in cited CLM-012: True | REQ block chars 616 CLM block chars 1733
+PASS DEL-01-01 REQ-015 -> DEL-04-05 | owner in REQ text: True | owner in cited CLM-012: True | REQ block chars 489 CLM block chars 1733
+PASS DEL-01-01 REQ-016 -> DEL-01-06 | owner in REQ text: True | owner in cited CLM-012: True | REQ block chars 444 CLM block chars 1733
+PASS DEL-02-06 REQ-004 -> DEL-04-01 | owner in REQ text: True | owner in cited CLM-011,CLM-012: True | REQ block chars 778 CLM block chars 3646
+PASS DEL-02-06 REQ-006 -> DEL-04-03 | owner in REQ text: True | owner in cited CLM-011: True | REQ block chars 401 CLM block chars 2068
+PASS DEL-02-06 REQ-009 -> DEL-01-03 | owner in REQ text: True | owner in cited CLM-011: True | REQ block chars 814 CLM block chars 2068
+PASS DEL-02-06 REQ-010 -> DEL-03-01 | owner in REQ text: True | owner in cited CLM-011: True | REQ block chars 343 CLM block chars 2068
+PASS DEL-02-07 REQ-004 -> DEL-04-05 | owner in REQ text: True | owner in cited CLM-014: True | REQ block chars 600 CLM block chars 1778
+PASS DEL-02-07 REQ-006 -> DEL-01-03 | owner in REQ text: True | owner in cited CLM-014: True | REQ block chars 499 CLM block chars 1778
+RESULT PASS
+exit=0

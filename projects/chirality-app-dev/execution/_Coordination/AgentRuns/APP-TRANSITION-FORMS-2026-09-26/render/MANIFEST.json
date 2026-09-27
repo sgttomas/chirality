@@ -1,0 +1,84 @@
+{
+  "purpose": "Browser layout check of the Workbench and Pipeline lifecycle transition forms (FU3). Static render of the form components with the App stylesheet; the App was not started.",
+  "working_directory": "projects/chirality-app-dev",
+  "environment": {
+    "node": "v22.22.2",
+    "esbuild": "frontend/node_modules/.bin/esbuild (frontend lockfile)",
+    "browser": "Chromium 141.0.7390.37 headless (/opt/pw-browsers/chromium-1194/chrome-linux/chrome)",
+    "note": "Headless Chromium lays out at least 500 CSS px wide, so 500 px is the narrow (single-column, <= 860 px) width; 1000 px gives the two-column grid. IBM Plex fonts (next/font/local) are not loaded; system fallback fonts render."
+  },
+  "commands": [
+    "NODE_PATH=frontend/node_modules frontend/node_modules/.bin/esbuild execution/_Coordination/AgentRuns/APP-TRANSITION-FORMS-2026-09-26/render/render_forms.tsx --bundle --platform=node --format=cjs --jsx=automatic --log-level=warning --outfile=<tmp>/render_forms.cjs",
+    "node <tmp>/render_forms.cjs <tmp>",
+    "chrome --headless --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=<W>,<H> --screenshot=<png> file://<tmp>/<scenario>.html"
+  ],
+  "exit_status": {
+    "esbuild": 0,
+    "node": 0,
+    "chrome": 0
+  },
+  "inputs_sha256": {
+    "execution/_Coordination/AgentRuns/APP-TRANSITION-FORMS-2026-09-26/render/render_forms.tsx": "c2ad7e4c100f00ac947ef75b95a82d165d2d1472a9f095aba7d570c223e45274",
+    "frontend/src/app/globals.css": "9e64f273531b066bbf073fdabc868668e2b7b478ee70350caa89d876e7af9c5e",
+    "frontend/src/components/pipeline/lifecycle-gate-fields.tsx": "291beb761e91cd56e3fe0056e1fbf352aafdea5d50e84642660294d06c882ce5",
+    "frontend/src/components/pipeline/pipeline-surface.tsx": "995d23c4eff5ead317017648e34af57427b1f6c36d5275eb2ab8c438d93be116",
+    "frontend/src/components/workbench/workbench-surface.tsx": "a8936ba6c1d3cf9d34e636eb3515537fe72626502d8df0118e73b230ae1b425b",
+    "frontend/src/lib/workspace/deliverable-api.ts": "7d07da98951f7a98c09589d808f48c9b8aab59e93845523d0d16b7f20112c931"
+  },
+  "rendered_html_sha256": {
+    "pipeline-forward-issued-optional-ruling.html": "4021e9be66f4b8275d8e0169fad37b1a28c8b55f1981f45c561882fc1d22bc8d",
+    "pipeline-reversal-empty.html": "b1920f8b6eb9b0e422c7e7ccb7b6e2a0ef151e4df7e09d79201e0855be9fb74c",
+    "workbench-reopen-refused.html": "1ad5149df43b6f79e7bbb959d31bc2fd7773f08141a490fc840ef5e94c82fbf3",
+    "workbench-reversal-filled.html": "fe646d73a9798296b40c67982c6230bb03936e4294e6b541eb971a3b6bcc92af"
+  },
+  "screenshots": [
+    {
+      "file": "png/pipeline-forward-issued-optional-ruling-1000.png",
+      "window_size": "1000,560",
+      "sha256": "334c1747e60d5cf58df3c9eccea7a95ba8ca986374302a299a99983a3b3e453c",
+      "bytes": 41274
+    },
+    {
+      "file": "png/pipeline-forward-issued-optional-ruling-500.png",
+      "window_size": "500,900",
+      "sha256": "25f9be1d9677bd4a8abb6efac78179d7f763dbec3ebc6934214302b9c17f4a6c",
+      "bytes": 41529
+    },
+    {
+      "file": "png/pipeline-reversal-empty-1000.png",
+      "window_size": "1000,560",
+      "sha256": "4fedc56e69eccbfa76006b094c9104ee5e8deb3533ea46b90b76defbafd8c7a9",
+      "bytes": 54359
+    },
+    {
+      "file": "png/pipeline-reversal-empty-500.png",
+      "window_size": "500,900",
+      "sha256": "81147886608457b0d53e078f3782102cbfec84ae9814fd3dee63bdd4346da195",
+      "bytes": 53133
+    },
+    {
+      "file": "png/workbench-reopen-refused-1000.png",
+      "window_size": "1000,620",
+      "sha256": "870a518c3b10f290735da35cacf9dc2de5b551d2968bb896a097cda736c0d219",
+      "bytes": 73764
+    },
+    {
+      "file": "png/workbench-reopen-refused-500.png",
+      "window_size": "500,900",
+      "sha256": "14fe126419f4896247ca5242710188f44dc446bd0b7f4c446c389834b5333dab",
+      "bytes": 68637
+    },
+    {
+      "file": "png/workbench-reversal-filled-1000.png",
+      "window_size": "1000,560",
+      "sha256": "e25208f5d663c6937271bfe179d75e2f0d26654d6db254c9ded2574cee89eed3",
+      "bytes": 52549
+    },
+    {
+      "file": "png/workbench-reversal-filled-500.png",
+      "window_size": "500,900",
+      "sha256": "9b42de643cfd6c1e83e8bdf14e7374371e7f2852ebbbabe92ede9321facff157",
+      "bytes": 52442
+    }
+  ]
+}

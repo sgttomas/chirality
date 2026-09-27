@@ -1,3 +1,4 @@
+import type { DeliverableRecordedRegister } from '../dependencies/recorded-register';
 import type { DependencyRegisterRow } from '../dependencies/schema';
 import type { LifecycleState, ParsedStatusDocument } from '../lifecycle/status-parser';
 
@@ -95,8 +96,11 @@ export interface DeliverableDependenciesSnapshot {
   registerPresent: boolean;
   secondarySummaryPresent: boolean;
   headers: string[];
+  /** Raw Dependencies.csv rows: register evidence, not a blocker judgment. */
   rows: DependencyRegisterRow[];
   warnings: string[];
+  /** The recorded register and supplier-judged blocker verdict (App SPEC §5.2). */
+  recordedRegister?: DeliverableRecordedRegister;
 }
 
 export interface DeliverableStatusTransitionInput {
@@ -108,13 +112,34 @@ export interface DeliverableStatusTransitionInput {
   metadata?: Record<string, string>;
   approvalSha?: string;
   ruling?: string;
+  /** Accepted scope-change amendment (ID or path) authorizing ISSUED -> IN_PROGRESS. */
+  amendment?: string;
 }
 
 export interface DependencyRowSummary {
+  /** Dependencies.csv rows. */
   totalRows: number;
   activeRows: number;
+  /**
+   * With a recorded register that gives a verdict: the number of upstream
+   * suppliers blocking the deliverable (repo-root SPEC §5.3–§5.4). Without one:
+   * the CSV blocker-subset row count, which is register evidence only.
+   */
   activeUpstreamBlockerCandidates: number;
   bySatisfaction: Record<string, number>;
+  /** CSV blocker-subset rows (`isExecutionBlockerSubsetRow`), whatever the verdict. */
+  csvBlockerSubsetRows: number;
+  /** `CSV_EVIDENCE` when no recorded register was read. */
+  blockerState: DeliverableRecordedRegister['blockers']['blockerState'] | 'CSV_EVIDENCE';
+  blockingUpstreamDeliverables: string[];
+  dagPending: boolean;
+  dagPendingReasons: string[];
+  disagreementCount: number;
+  declaredOnlyRows: number;
+  /** The deliverable's tracking mode from `_DEPENDENCIES.md`, or null when no recorded register was read. */
+  trackingMode: string | null;
+  /** Why no verdict was given, when the state is `NOT_ASSESSED`. */
+  notAssessedReason: string | null;
 }
 
 export function workspaceApiErrorMessage(error: unknown): string {
@@ -139,6 +164,122 @@ export function nextLifecycleTargets(currentState: LifecycleState): LifecycleSta
 
 export function requiresApprovalShaForTarget(targetState: string | undefined): boolean {
   return HUMAN_GATE_TARGETS.has((targetState ?? '').trim().toUpperCase());
+}
+
+/**
+ * The human-authorized backward moves the transition API admits (App SPEC §4.3):
+ * the human-ruled reversal out of `CHECKING` and the reopening of `ISSUED` under
+ * an accepted amendment. Both return to `IN_PROGRESS`.
+ */
+const HUMAN_BACKWARD_TARGETS: Partial<Record<LifecycleState, LifecycleState[]>> = {
+  CHECKING: ['IN_PROGRESS'],
+  ISSUED: ['IN_PROGRESS']
+};
+
+/** Forward targets followed by the human-authorized reversal or reopening, if any. */
+export function lifecycleTransitionTargets(currentState: LifecycleState): LifecycleState[] {
+  return [...nextLifecycleTargets(currentState), ...(HUMAN_BACKWARD_TARGETS[currentState] ?? [])];
+}
+
+export type LifecycleTransitionKind = 'forward' | 'ruled-reversal' | 'amendment-reopen';
+
+export type LifecycleEvidenceField = 'required' | 'optional' | 'none';
+
+export interface LifecycleTransitionEvidence {
+  kind: LifecycleTransitionKind;
+  /** Human gates take an approval SHA and only a HUMAN actor. */
+  humanGate: boolean;
+  approvalSha: Exclude<LifecycleEvidenceField, 'none'>;
+  ruling: LifecycleEvidenceField;
+  amendment: Exclude<LifecycleEvidenceField, 'optional'>;
+}
+
+function normalizeState(value: string | undefined): string {
+  return (value ?? '').trim().toUpperCase();
+}
+
+/**
+ * The evidence the transition API requires or accepts for `from -> to`, so the
+ * forms can show the right inputs. The API remains the enforcing check.
+ */
+export function lifecycleTransitionEvidence(
+  from: string | undefined,
+  to: string | undefined
+): LifecycleTransitionEvidence {
+  const source = normalizeState(from);
+  const target = normalizeState(to);
+  if (target === 'IN_PROGRESS' && source === 'CHECKING') {
+    return { kind: 'ruled-reversal', humanGate: true, approvalSha: 'required', ruling: 'required', amendment: 'none' };
+  }
+  if (target === 'IN_PROGRESS' && source === 'ISSUED') {
+    return { kind: 'amendment-reopen', humanGate: true, approvalSha: 'required', ruling: 'none', amendment: 'required' };
+  }
+  if (requiresApprovalShaForTarget(target)) {
+    return { kind: 'forward', humanGate: true, approvalSha: 'required', ruling: 'optional', amendment: 'none' };
+  }
+  return { kind: 'forward', humanGate: false, approvalSha: 'optional', ruling: 'none', amendment: 'none' };
+}
+
+/** Option label for a transition target, naming the reversal or reopening. */
+export function lifecycleTransitionTargetLabel(from: string | undefined, to: string): string {
+  const { kind } = lifecycleTransitionEvidence(from, to);
+  if (kind === 'ruled-reversal') {
+    return `${to} (ruled reversal)`;
+  }
+  if (kind === 'amendment-reopen') {
+    return `${to} (amendment reopening)`;
+  }
+  return to;
+}
+
+const TRANSITION_REFUSAL_HINTS: Record<string, string> = {
+  APPROVAL_SHA_REQUIRED: 'Enter the approval commit SHA.',
+  INVALID_APPROVAL_SHA: 'The approval SHA must be 7 to 64 hexadecimal characters.',
+  RULING_REQUIRED:
+    "Name the human ruling record: a non-empty file inside the project, other than this deliverable's _STATUS.md.",
+  INVALID_RULING_REFERENCE:
+    "Name the human ruling record: a non-empty file inside the project, other than this deliverable's _STATUS.md.",
+  RULING_NOT_APPLICABLE: 'Only CHECKING, ISSUED and the CHECKING -> IN_PROGRESS reversal take a ruling.',
+  AMENDMENT_NOT_APPLICABLE: 'Only the ISSUED -> IN_PROGRESS reopening takes an amendment.',
+  INVALID_AMENDMENT_REFERENCE: 'Give the amendment ID, or its snapshot or group-3 decision path, on one line.',
+  AMENDMENT_NOT_ADMITTED: 'The amendment record check refused the reopening.',
+  AMENDMENT_CHECK_ERROR: 'An amendment record could not be read.',
+  HISTORY_NOT_PRESERVED: 'The transition would have dropped a recorded reopening from the history.',
+  INVALID_STATUS_FORMAT: '_STATUS.md has a line break or layout the transition cannot edit safely.',
+  BACKWARD_TRANSITION: 'Only the human-ruled reversal and the reopening under an accepted amendment go back.'
+};
+
+function refusalCodeOf(details: unknown): string | undefined {
+  if (typeof details !== 'object' || details === null) {
+    return undefined;
+  }
+  const refusalCode = (details as { refusalCode?: unknown }).refusalCode;
+  return typeof refusalCode === 'string' && refusalCode ? refusalCode : undefined;
+}
+
+/**
+ * Error text for a refused lifecycle transition: the API code and message, the
+ * amendment checker's own code where the API reports one, and a short hint.
+ * Every listed code is a refusal before `_STATUS.md` is written.
+ */
+export function lifecycleTransitionErrorMessage(error: unknown): string {
+  if (!(error instanceof WorkspaceApiClientError)) {
+    return workspaceApiErrorMessage(error);
+  }
+
+  const hint = TRANSITION_REFUSAL_HINTS[error.code];
+  const refusalCode = refusalCodeOf(error.details);
+  let head = `${error.code}: ${error.message}`;
+  if (refusalCode) {
+    const prefix = `${refusalCode}: `;
+    const reason = error.message.startsWith(prefix) ? error.message.slice(prefix.length) : error.message;
+    head = `${error.code} (checker code ${refusalCode}): ${reason}`;
+  }
+  if (!hint) {
+    return head;
+  }
+  const separator = /[.!?]$/.test(head) ? ' ' : '. ';
+  return `${head}${separator}${hint} _STATUS.md was not changed.`;
 }
 
 export function canAgentTransitionLifecycle(agent: string | undefined): boolean {
@@ -184,10 +325,13 @@ export function isExecutionBlockerSubsetRow(row: DependencyRegisterRow): boolean
   return !hasUnresolvedAssumptionGate(row.Notes);
 }
 
-export function summarizeDependencyRows(rows: DependencyRegisterRow[]): DependencyRowSummary {
+export function summarizeDependencyRows(
+  rows: DependencyRegisterRow[],
+  recordedRegister?: DeliverableRecordedRegister
+): DependencyRowSummary {
   const bySatisfaction: Record<string, number> = {};
   let activeRows = 0;
-  let activeUpstreamBlockerCandidates = 0;
+  let csvBlockerSubsetRows = 0;
 
   for (const row of rows) {
     const normalizedStatus = (row.Status ?? '').trim().toUpperCase();
@@ -200,16 +344,91 @@ export function summarizeDependencyRows(rows: DependencyRegisterRow[]): Dependen
     }
 
     if (isExecutionBlockerSubsetRow(row)) {
-      activeUpstreamBlockerCandidates += 1;
+      csvBlockerSubsetRows += 1;
     }
   }
 
+  const blockers = recordedRegister?.blockers;
   return {
     totalRows: rows.length,
     activeRows,
-    activeUpstreamBlockerCandidates,
-    bySatisfaction
+    activeUpstreamBlockerCandidates: blockers
+      ? blockers.blockingUpstreamCount ?? 0
+      : csvBlockerSubsetRows,
+    bySatisfaction,
+    csvBlockerSubsetRows,
+    blockerState: blockers?.blockerState ?? 'CSV_EVIDENCE',
+    blockingUpstreamDeliverables: blockers?.blockingUpstreamDeliverables ?? [],
+    dagPending: blockers?.dagPending ?? false,
+    dagPendingReasons: blockers?.dagPendingReasons ?? [],
+    disagreementCount: recordedRegister?.disagreements.length ?? 0,
+    declaredOnlyRows: recordedRegister?.declaredOnlyRows.length ?? 0,
+    trackingMode: recordedRegister?.trackingMode ?? null,
+    notAssessedReason: blockers?.notAssessedReason ?? null
   };
+}
+
+/** Shown when no dependency summary has been read. */
+export const NO_METRIC = '—';
+
+/** The reason code of a `NOT_ASSESSED` judgment (the text before its first colon). */
+function notAssessedCode(reason: string | null): string | null {
+  if (!reason) {
+    return null;
+  }
+  const separator = reason.indexOf(':');
+  return (separator < 0 ? reason : reason.slice(0, separator)).trim() || null;
+}
+
+/**
+ * Display text for the blocking-upstream metric: the count with its verdict,
+ * or the reason no verdict is given (a zero count alone would read as
+ * unblocked). A dash when nothing has been read.
+ */
+export function formatBlockingUpstreamMetric(summary: DependencyRowSummary | null): string {
+  if (!summary) {
+    return NO_METRIC;
+  }
+  switch (summary.blockerState) {
+    case 'BLOCKED':
+    case 'UNBLOCKED':
+      return `${summary.activeUpstreamBlockerCandidates} (${summary.blockerState})`;
+    case 'DAG_PENDING':
+      return 'DAG pending (no verdict)';
+    case 'NOT_TRACKED':
+      return 'Not tracked (no verdict)';
+    case 'NOT_ASSESSED': {
+      const code = notAssessedCode(summary.notAssessedReason);
+      return code ? `Not assessed (${code})` : 'Not assessed (no verdict)';
+    }
+    default:
+      return `${summary.activeUpstreamBlockerCandidates} CSV rows (evidence only)`;
+  }
+}
+
+/** Root SPEC §5.3: under DECLARED the recorded edges are a partial, human-curated view. */
+export const DECLARED_READINESS_CAVEAT =
+  'DECLARED tracking: the recorded register holds only the critical dependencies, so no recorded blocker is not a complete readiness judgment (SPEC §5.3).';
+
+/**
+ * A note to show under the blocking-upstream metric, or null: the full reason
+ * a judgment was not assessed, or the SPEC §5.3 caveat when the deliverable's
+ * tracking mode is `DECLARED` and a verdict is given.
+ */
+export function formatBlockingUpstreamNote(summary: DependencyRowSummary | null): string | null {
+  if (!summary) {
+    return null;
+  }
+  if (summary.blockerState === 'NOT_ASSESSED') {
+    return `Not assessed: ${summary.notAssessedReason ?? 'no reason was recorded'}.`;
+  }
+  if (
+    summary.trackingMode === 'DECLARED' &&
+    (summary.blockerState === 'BLOCKED' || summary.blockerState === 'UNBLOCKED')
+  ) {
+    return DECLARED_READINESS_CAVEAT;
+  }
+  return null;
 }
 
 export async function fetchDeliverableStatus(

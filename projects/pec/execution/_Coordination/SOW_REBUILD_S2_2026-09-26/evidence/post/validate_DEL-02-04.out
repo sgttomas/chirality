@@ -1,0 +1,3 @@
+$ (cwd repo root, HEAD 23e065e4f) python3 tools/scope_of_work/validate_scope_of_work.py projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser
+PASS format=SOW_V1 target=projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser
+exit=0

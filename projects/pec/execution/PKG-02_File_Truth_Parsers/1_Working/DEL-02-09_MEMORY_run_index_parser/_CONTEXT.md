@@ -28,6 +28,7 @@ Parser + fixture tests (table, bullet and dated-heading forms)
 
 Scaffolded under `D-PEC-93` (2026-09-25) from accepted decomposition
 `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.5 (`current_basis`,
-SCA-005 successor; deliverable added by A-20). Fields templated
+SCA-005 successor; deliverable added by A-20),
+then by revision 1.6 (`current_basis`, SCA-006 successor). Fields templated
 deterministically from `Deliverables.csv`; this file restates register truth
 and is not an independent authority.

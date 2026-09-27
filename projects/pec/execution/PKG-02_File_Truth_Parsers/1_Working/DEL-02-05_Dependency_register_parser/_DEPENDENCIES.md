@@ -15,6 +15,7 @@ Register storage is deliverable-local by owner ruling (no central register).
 
 - DEL-03-01 (Full-rebuild reconciler (one command)) — CONSUMES [E-P23]
 - DEL-10-10 (Directed bootstrap self-ingest validation) — CONSUMES [E-P73]
+- DEL-10-13 (Reliance-advertisement gate) — TESTS [E-P96]
 
 ## Non-gating constraints and register-wide rules
 
