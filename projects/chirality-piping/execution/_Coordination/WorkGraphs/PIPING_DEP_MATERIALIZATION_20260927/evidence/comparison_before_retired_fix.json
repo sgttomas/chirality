@@ -9,7 +9,6 @@
       "Rows materialized: total=1486 active=1486 candidate=0",
       "Local Origin=DECLARED rows preserved: 183",
       "Local Origin=DECLARED rows set aside by status (--canonical-output only): 0",
-      "Local RETIRED rows preserved: 83",
       "DeclaredIdCollisions: 9",
       "Canonical output: False canonical_findings=0",
       "Pointer refresh: True",
@@ -39,10 +38,12 @@
       "changed": 93,
       "header_adds_extension_columns": 92,
       "notes_gain_aggregate_legacy_suffix": 49,
-      "row_order": 71
+      "row_dropped_EXTRACTED_RETIRED": 31,
+      "row_order": 68
     },
     "rows_by_kind": {
-      "notes_gain_aggregate_legacy_suffix": 480
+      "notes_gain_aggregate_legacy_suffix": 480,
+      "row_dropped_EXTRACTED_RETIRED": 83
     },
     "unchanged_files": [
       "DEL-04-07",
@@ -53,9 +54,14 @@
     ],
     "examples": {
       "notes_gain_aggregate_legacy_suffix": [
+        "DEL-03-02:SEMREF-2026-06-16-DEL-03-02-A002",
         "DEL-03-02:SEMREF-2026-06-16-DEL-03-02-A001",
-        "DEL-03-02:SEMREF-2026-06-16-DEL-03-02-A003",
-        "DEL-03-02:SEMREF-2026-06-16-DEL-03-02-A002"
+        "DEL-03-02:SEMREF-2026-06-16-DEL-03-02-A003"
+      ],
+      "row_dropped_EXTRACTED_RETIRED": [
+        "DEL-01-04:DAG-002-E0392",
+        "DEL-02-04:DAG-002-E0395",
+        "DEL-02-04:DAG-002-E0396"
       ]
     }
   },
@@ -66,9 +72,8 @@
       "Skipped PKG-00 deliverables: 8",
       "Missing execution paths: 0",
       "Rows materialized: total=1486 active=1486 candidate=0",
-      "Local Origin=DECLARED rows preserved: 183",
-      "Local Origin=DECLARED rows set aside by status (--canonical-output only): 0",
-      "Local RETIRED rows preserved: 83",
+      "Local Origin=DECLARED rows preserved: 181",
+      "Local Origin=DECLARED rows set aside by status (--canonical-output only): 2",
       "DeclaredIdCollisions: 9",
       "Canonical output: True canonical_findings=0",
       "Pointer refresh: True",
@@ -93,15 +98,24 @@
         "DAG-002-E0381"
       ]
     },
-    "set_aside_declared_rows": {},
+    "set_aside_declared_rows": {
+      "DEL-13-04": [
+        "DEL-13-04-D001",
+        "DEL-13-04-D002"
+      ]
+    },
     "changed_files_by_kind": {
       "changed": 93,
       "header_adds_extension_columns": 92,
       "notes_gain_aggregate_legacy_suffix": 49,
-      "row_order": 71
+      "row_dropped_DECLARED_RETIRED": 1,
+      "row_dropped_EXTRACTED_RETIRED": 31,
+      "row_order": 68
     },
     "rows_by_kind": {
-      "notes_gain_aggregate_legacy_suffix": 480
+      "notes_gain_aggregate_legacy_suffix": 480,
+      "row_dropped_DECLARED_RETIRED": 2,
+      "row_dropped_EXTRACTED_RETIRED": 83
     },
     "unchanged_files": [
       "DEL-04-07",
@@ -112,9 +126,18 @@
     ],
     "examples": {
       "notes_gain_aggregate_legacy_suffix": [
+        "DEL-03-02:SEMREF-2026-06-16-DEL-03-02-A002",
         "DEL-03-02:SEMREF-2026-06-16-DEL-03-02-A001",
-        "DEL-03-02:SEMREF-2026-06-16-DEL-03-02-A003",
-        "DEL-03-02:SEMREF-2026-06-16-DEL-03-02-A002"
+        "DEL-03-02:SEMREF-2026-06-16-DEL-03-02-A003"
+      ],
+      "row_dropped_DECLARED_RETIRED": [
+        "DEL-13-04:DEL-13-04-D001",
+        "DEL-13-04:DEL-13-04-D002"
+      ],
+      "row_dropped_EXTRACTED_RETIRED": [
+        "DEL-01-04:DAG-002-E0392",
+        "DEL-02-04:DAG-002-E0395",
+        "DEL-02-04:DAG-002-E0396"
       ]
     }
   },

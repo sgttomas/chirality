@@ -1,10 +1,11 @@
 schema: instruction-tranche-manifest/v1
 tranche_id: PIPING-DEP-MATERIALIZATION-NOTE-20260927
-title: Materializer docs say a rewrite is not a currency check (Piping DAG-011 rerun finding)
+title: Materializer keeps local RETIRED rows in a rewrite; docs say a rewrite is not a currency check (Piping DAG-011 rerun finding)
 date: '2026-09-27'
 basis: 0adfbc7476df33521883ce1573781237cd24d384
 instruction_surface_paths:
   - "tools/coordination/materialize_local_dependencies.py"
+  - "tools/coordination/test_materialize_local_dependencies.py"
   - "tools/REGISTRY.md"
   - "docs/governance_harness/tranche_manifests/PIPING-DEP-MATERIALIZATION-NOTE-20260927.yaml"
   - "exports/chirality-app/export-manifest.csv"
@@ -17,7 +18,12 @@ m2_gate:
     session relayed, as one of those items, the open Piping decision on the
     PR #985 review finding. It allowed a short note in the materializer docs
     or REGISTRY so that a future default-mode comparison is not mistaken for
-    drift. This manifest records the gate and grants no authority (K-AUTH-1).
+    drift. Under the same direction it then directed the materializer fix:
+    a whole-file rewrite, in default and --canonical-output mode, must keep
+    the local RETIRED rows it dropped, because rows are retired, never
+    deleted (docs/SPEC.md section 5; dependency-extract). It also directed
+    tests and matching docs. This manifest records the gate and grants no
+    authority (K-AUTH-1).
   authorized_by: Ryan Tufts (repository owner sgttomas, Claude Code conversation)
   authorization_date: '2026-09-27'
   integration_owner: >-
@@ -28,13 +34,22 @@ m6_notice:
   disposition: none-required
   routed_to: []
   rationale: >-
-    Documentation only. The materializer's behaviour, arguments and output are
-    unchanged. The note describes existing behaviour: the output header, row
-    order, aggregate Notes, and RETIRED aggregate rows left out. It points to
-    the existing accepted_dag comparison for currency. The one affected loop,
-    Piping, records its disposition in the same candidate
-    (projects/chirality-piping/execution/_Coordination/COORDINATION_RESPONSE_2026-09-27_DEPENDENCY_MATERIALIZATION.md).
-    No rule changes, so no other loop needs a notice.
+    The fix only keeps rows that a rewrite used to delete: local RETIRED rows
+    in both modes, and declared RETIRED rows with --canonical-output. It
+    changes no rule; it brings the tool into line with the existing rule that
+    rows are never deleted. Aggregate row content, header selection, aggregate
+    row order and Notes handling are unchanged. No caller relies on the drop:
+    apart from its tests, its only importer is dependency_evidence.py, which
+    uses only its _DEPENDENCIES.md section parser and heading keys; PEC records that it does not use the tool
+    (D-PEC-62). Piping, the only loop that runs it, records the change in the
+    same candidate
+    (projects/chirality-piping/execution/_Coordination/COORDINATION_RESPONSE_2026-09-27_DEPENDENCY_MATERIALIZATION.md);
+    over Piping's 98 registers the fixed tool keeps all 83 retired rows and
+    both modes give byte-identical output. The 2026-09-26 dependency
+    follow-up notices describe the earlier canonical-mode set-aside of
+    RETIRED declared rows as history; tools/REGISTRY.md and the docstring
+    state the current behaviour.
 scope_limits:
-  - Docstring and tools/REGISTRY.md text only; no code path, test or CLI change.
+  - The materializer also keeps local RETIRED rows and, with --canonical-output, declared RETIRED rows; it adds PreservedRetiredRows to the JSON summary and one console line. Nothing else in its output changes.
+  - The generated _DEPENDENCIES.md register text is unchanged.
   - No Piping register, DAG version, pointer or scope changes; no release.

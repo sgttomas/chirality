@@ -13,20 +13,25 @@ aggregate. The kept rows are written under the output header, so column order,
 quoting and empty cells for columns they lacked follow that header. By
 default every local declared row is kept whatever its Status, including a
 RETIRED mirror of a withdrawn declaration, which dependency-extract never
-deletes. With --canonical-output only ACTIVE declared rows are kept, so the
-register holds only canonical ACTIVE rows; the others are set aside and
-counted.
+deletes. With --canonical-output only declared rows with a canonical v3.1
+Status (ACTIVE or RETIRED) are kept; the others, such as CANDIDATE rows, are
+set aside and counted.
 Where the aggregate carries a row with the same DependencyID, the local
 declared row is kept and the difference is reported.
+
+Rows are retired, never deleted (docs/SPEC.md §5). In both modes a rewrite
+also keeps every other local row whose Status is RETIRED, with its field
+values unchanged, unless the output already carries its DependencyID from the
+aggregate or a kept declared row. The aggregate's own RETIRED rows are still
+not materialized, so a RETIRED row is written once. All written rows are
+sorted by DependencyID.
 
 A rewrite is not a currency check. Where a project's local registers are the
 source its accepted DAG was built from (docs/SPEC.md §5.4, D-GOV-49), a
 default-mode run can rewrite files whose arcs already match that version: the
-output takes the aggregate header, orders rows by DependencyID, takes every
-non-declared row (Notes included) from the aggregate, and leaves out aggregate
-rows whose Status is RETIRED, so a local RETIRED row is dropped unless it is a
-declared row kept as above. Check
-currency with analyze_dep_closure.py (its accepted_dag comparison), and
+output takes the aggregate header, orders rows by DependencyID, and takes
+every non-declared, non-RETIRED row (Notes included) from the aggregate.
+Check currency with analyze_dep_closure.py (its accepted_dag comparison), and
 rewrite a register only where the project's records call for it.
 
 With --refresh-pointers, each deliverable's _DEPENDENCIES.md is refreshed in
@@ -57,8 +62,12 @@ from pathlib import Path
 from audit_dag import ACTIVE, CANDIDATE, PKG_00, read_csv_rows, validate_canonical_rows
 
 
+RETIRED = "RETIRED"
 MATERIALIZED_STATUSES = {ACTIVE, CANDIDATE}
 CANONICAL_MATERIALIZED_STATUSES = {ACTIVE}
+# Local declared rows kept by --canonical-output: the canonical v3.1 statuses.
+# Rows are retired, never deleted (docs/SPEC.md §5), so RETIRED is kept.
+CANONICAL_DECLARED_STATUSES = {ACTIVE, RETIRED}
 DECLARED_ORIGIN = "DECLARED"
 
 
@@ -80,17 +89,23 @@ def merge_declared_rows(
     local_header: list[str],
     local_rows: list[dict[str, str]],
     statuses: set[str] | frozenset[str] | None = None,
-) -> tuple[list[str], list[dict[str, str]], list[dict[str, str]], list[str], list[dict[str, str]]]:
-    """Keep the local register's `Origin=DECLARED` rows in a rewrite from the aggregate.
+) -> tuple[
+    list[str], list[dict[str, str]], list[dict[str, str]], list[str], list[dict[str, str]], list[dict[str, str]]
+]:
+    """Keep the local register's `Origin=DECLARED` and `RETIRED` rows in a rewrite from the aggregate.
 
     With `statuses` None (the default mode) every declared row is kept,
-    whatever its `Status`. With a status set (`--canonical-output`: ACTIVE),
-    only declared rows whose `Status` is in it are kept and the others are set
-    aside. Returns the output header
-    (the aggregate header plus any local columns the kept rows need), the rows
-    to write, the kept declared rows, the DependencyIDs where an aggregate row
-    with different content was set aside for the local declared row with the
-    same ID, and the declared rows set aside by status.
+    whatever its `Status`. With a status set (`--canonical-output`: ACTIVE and
+    RETIRED), only declared rows whose `Status` is in it are kept and the others
+    are set aside. In both modes every other local row whose `Status` is
+    RETIRED is kept unchanged unless the output already carries its
+    DependencyID (from the aggregate or a kept declared row): rows are retired,
+    never deleted. Returns the output header (the aggregate header plus any
+    local columns the kept rows need), the rows to write, sorted by
+    DependencyID, the kept declared rows, the DependencyIDs where an aggregate
+    row with different content was set aside for the local declared row with
+    the same ID, the declared rows set aside by status, and the kept
+    non-declared RETIRED rows.
     """
     all_declared = [row for row in local_rows if row.get("Origin", "").strip() == DECLARED_ORIGIN]
     if statuses is None:
@@ -98,8 +113,6 @@ def merge_declared_rows(
     else:
         declared = [row for row in all_declared if row.get("Status", "").strip() in statuses]
         set_aside = [row for row in all_declared if row.get("Status", "").strip() not in statuses]
-    if not declared:
-        return header, rows, [], [], set_aside
     by_id = {row.get("DependencyID", "").strip(): row for row in declared}
     collisions: list[str] = []
     kept_aggregate: list[dict[str, str]] = []
@@ -109,9 +122,21 @@ def merge_declared_rows(
             kept_aggregate.append(row)
         elif any(row.get(column, "") != local.get(column, "") for column in header if column in local_header):
             collisions.append(row.get("DependencyID", "").strip())
+    written_ids = {row.get("DependencyID", "").strip() for row in kept_aggregate + declared}
+    retired: list[dict[str, str]] = []
+    for row in local_rows:
+        if row.get("Origin", "").strip() == DECLARED_ORIGIN or row.get("Status", "").strip() != RETIRED:
+            continue
+        dependency_id = row.get("DependencyID", "").strip()
+        if dependency_id in written_ids:
+            continue
+        written_ids.add(dependency_id)
+        retired.append(row)
+    if not declared and not retired:
+        return header, rows, [], [], set_aside, []
     extra = [column for column in local_header if column not in header]
-    merged = sorted(kept_aggregate + declared, key=sort_key)
-    return header + extra, merged, declared, sorted(collisions), set_aside
+    merged = sorted(kept_aggregate + declared + retired, key=sort_key)
+    return header + extra, merged, declared, sorted(collisions), set_aside, retired
 
 
 def write_dependency_csv(path: Path, header: list[str], rows: list[dict[str, str]], dry_run: bool) -> None:
@@ -595,8 +620,8 @@ def materialize_local_dependencies(
         pointer_path = execution_path / "_DEPENDENCIES.md"
 
         local_header, local_rows = read_local_register(csv_path)
-        out_header, out_rows, kept_declared, collisions, set_aside = merge_declared_rows(
-            header, rows, local_header, local_rows, CANONICAL_MATERIALIZED_STATUSES if canonical_output else None
+        out_header, out_rows, kept_declared, collisions, set_aside, kept_retired = merge_declared_rows(
+            header, rows, local_header, local_rows, CANONICAL_DECLARED_STATUSES if canonical_output else None
         )
         write_dependency_csv(csv_path, out_header, out_rows, dry_run=dry_run)
         pointer_action = ""
@@ -630,6 +655,7 @@ def materialize_local_dependencies(
             "ActiveRows": active_count,
             "CandidateRows": candidate_count,
             "PreservedDeclaredRows": len(kept_declared),
+            "PreservedRetiredRows": len(kept_retired),
             "SetAsideDeclaredRows": [row.get("DependencyID", "").strip() for row in set_aside],
             "DeclaredIdCollisions": collisions,
         })
@@ -639,6 +665,7 @@ def materialize_local_dependencies(
     total_candidate_rows = sum(int(item["CandidateRows"]) for item in written)
     total_preserved_declared = sum(int(item["PreservedDeclaredRows"]) for item in written)
     total_set_aside_declared = sum(len(item["SetAsideDeclaredRows"]) for item in written)  # type: ignore[arg-type]
+    total_preserved_retired = sum(int(item["PreservedRetiredRows"]) for item in written)
     total_collisions = sum(len(item["DeclaredIdCollisions"]) for item in written)  # type: ignore[arg-type]
 
     return {
@@ -660,6 +687,7 @@ def materialize_local_dependencies(
         "total_candidate_rows": total_candidate_rows,
         "total_preserved_declared_rows": total_preserved_declared,
         "total_set_aside_declared_rows": total_set_aside_declared,
+        "total_preserved_retired_rows": total_preserved_retired,
         "total_declared_id_collisions": total_collisions,
         "written": written,
         "skipped_pkg00_count": len(skipped_pkg00),
@@ -682,6 +710,7 @@ def render_console(summary: dict[str, object]) -> str:
         f"Rows materialized: total={summary['total_rows']} active={summary['total_active_rows']} candidate={summary['total_candidate_rows']}",
         f"Local Origin=DECLARED rows preserved: {summary['total_preserved_declared_rows']}",
         f"Local Origin=DECLARED rows set aside by status (--canonical-output only): {summary['total_set_aside_declared_rows']}",
+        f"Local RETIRED rows preserved: {summary['total_preserved_retired_rows']}",
         f"DeclaredIdCollisions: {summary['total_declared_id_collisions']}",
         f"Canonical output: {summary['canonical_output']} canonical_findings={summary['canonical_finding_count']}",
         f"Pointer refresh: {summary['refresh_pointers']}",
@@ -694,7 +723,8 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
             "Materialize local Dependencies.csv mirrors from an aggregate DAG. Local Origin=DECLARED rows are kept "
-            "with their field values unchanged, whatever their Status (ACTIVE only with --canonical-output)."
+            "with their field values unchanged, whatever their Status (ACTIVE or RETIRED only with "
+            "--canonical-output), and other local RETIRED rows are kept unless the output already carries their ID."
         )
     )
     parser.add_argument(
@@ -718,8 +748,8 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         "--canonical-output",
         action="store_true",
         help=(
-            "Materialize only canonical ACTIVE rows, from the aggregate and among the kept local Origin=DECLARED "
-            "rows (other declared rows are set aside and listed), and report canonical validation findings."
+            "Materialize only canonical ACTIVE rows from the aggregate, keep local Origin=DECLARED rows only when "
+            "ACTIVE or RETIRED (other declared rows are set aside and listed), and report canonical validation findings."
         ),
     )
     parser.add_argument("--dry-run", action="store_true")

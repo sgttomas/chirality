@@ -347,7 +347,7 @@ def test_materializer_keeps_local_declared_rows_when_rewriting_csv(tmp_path: Pat
     assert (unit / "Dependencies.csv").read_bytes() == before
 
 
-def test_canonical_output_keeps_only_active_local_declared_rows(tmp_path: Path) -> None:
+def test_canonical_output_keeps_active_and_retired_local_declared_rows(tmp_path: Path) -> None:
     execution_root = tmp_path / "execution"
     unit = execution_root / "PKG-01" / "1_Working" / "DEL-01-01_Project governance baseline"
     unit.mkdir(parents=True)
@@ -361,9 +361,13 @@ def test_canonical_output_keeps_only_active_local_declared_rows(tmp_path: Path) 
     candidate.update(Origin="DECLARED")
     retired = edge("DEP-01-01-003", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-05", status="RETIRED")
     retired.update(Origin="DECLARED")
-    local = [active, candidate, retired]
+    extracted_retired = edge("DEP-01-01-004", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-06", status="RETIRED")
+    extracted_retired.update(Origin="EXTRACTED", Notes="retired locally")
+    extracted_candidate = edge("DEP-01-01-005", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-07", status="CANDIDATE")
+    extracted_candidate.update(Origin="EXTRACTED")
+    local = [active, candidate, retired, extracted_retired, extracted_candidate]
 
-    def run(canonical: bool) -> tuple[dict[str, object], list[str]]:
+    def run(canonical: bool) -> tuple[dict[str, object], dict[str, dict[str, str]]]:
         write_csv(unit / "Dependencies.csv", local, REQUIRED_COLUMNS)
         summary = materialize_local_dependencies(
             edges_path=edges_path,
@@ -373,16 +377,115 @@ def test_canonical_output_keeps_only_active_local_declared_rows(tmp_path: Path) 
             source_label="DAG-001",
             canonical_output=canonical,
         )
-        return summary, sorted(row["DependencyID"] for row in read_rows(unit / "Dependencies.csv")[1])
+        return summary, {row["DependencyID"]: row for row in read_rows(unit / "Dependencies.csv")[1]}
 
-    summary, ids = run(canonical=True)
-    assert ids == ["DAG-001-E0001", "DEP-01-01-001"]
-    assert summary["written"][0]["SetAsideDeclaredRows"] == ["DEP-01-01-002", "DEP-01-01-003"]
+    # Canonical output keeps the canonical v3.1 statuses. ACTIVE and RETIRED rows
+    # are kept, since rows are retired and never deleted; CANDIDATE rows stay out.
+    summary, by_id = run(canonical=True)
+    assert sorted(by_id) == ["DAG-001-E0001", "DEP-01-01-001", "DEP-01-01-003", "DEP-01-01-004"]
+    assert by_id["DEP-01-01-003"] == retired
+    assert by_id["DEP-01-01-004"] == extracted_retired
+    item = summary["written"][0]
+    assert item["SetAsideDeclaredRows"] == ["DEP-01-01-002"]
+    assert item["PreservedDeclaredRows"] == 2
+    assert item["PreservedRetiredRows"] == 1
+    assert summary["total_preserved_retired_rows"] == 1
 
-    # The default mode keeps every local declared row, whatever its Status.
-    summary, ids = run(canonical=False)
-    assert ids == ["DAG-001-E0001", "DEP-01-01-001", "DEP-01-01-002", "DEP-01-01-003"]
+    # The default mode keeps every local declared row whatever its Status, and
+    # every local RETIRED row; a non-declared local CANDIDATE row is replaced.
+    summary, by_id = run(canonical=False)
+    assert sorted(by_id) == ["DAG-001-E0001", "DEP-01-01-001", "DEP-01-01-002", "DEP-01-01-003", "DEP-01-01-004"]
     assert summary["written"][0]["SetAsideDeclaredRows"] == []
+    assert summary["written"][0]["PreservedRetiredRows"] == 1
+
+
+def test_rewrite_keeps_a_local_retired_row_the_aggregate_lacks(tmp_path: Path) -> None:
+    execution_root = tmp_path / "execution"
+    unit = execution_root / "PKG-01" / "1_Working" / "DEL-01-01_Project governance baseline"
+    unit.mkdir(parents=True)
+    nodes_path = tmp_path / "DeliverableNodes.csv"
+    edges_path = tmp_path / "DependencyEdges.csv"
+    write_csv(nodes_path, [node("DEL-01-01", "PKG-01", "Project governance baseline", unit)], NODE_COLUMNS)
+    write_csv(edges_path, [
+        edge("DAG-001-E0001", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-02"),
+        edge("DAG-001-E0003", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-04"),
+    ], REQUIRED_COLUMNS)
+    retired = edge("DAG-001-E0002", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-03", status="RETIRED")
+    retired.update(Origin="EXTRACTED", Notes="no longer found in source text", LocalExtension="kept")
+    stale = edge("DEP-01-01-009", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-09")
+    stale.update(Origin="EXTRACTED", LocalExtension="")
+    columns = REQUIRED_COLUMNS + ["LocalExtension"]
+
+    def run(canonical: bool) -> dict[str, object]:
+        return materialize_local_dependencies(
+            edges_path=edges_path,
+            nodes_path=nodes_path,
+            execution_root=execution_root,
+            generated_date="2026-09-26",
+            source_label="DAG-001",
+            canonical_output=canonical,
+        )
+
+    for canonical in (False, True):
+        write_csv(unit / "Dependencies.csv", [stale, retired], columns)
+        summary = run(canonical)
+        header, rows = read_rows(unit / "Dependencies.csv")
+        # The kept row's own columns stay in the output header.
+        assert header == columns
+        # Rows are sorted by DependencyID. The retired row keeps every field value;
+        # the stale non-declared ACTIVE row is still replaced from the aggregate.
+        assert [row["DependencyID"] for row in rows] == ["DAG-001-E0001", "DAG-001-E0002", "DAG-001-E0003"]
+        assert rows[1] == {column: retired.get(column, "") for column in header}
+        assert summary["written"][0]["PreservedRetiredRows"] == 1
+        assert "Local RETIRED rows preserved: 1" in render_console(summary)
+        before = (unit / "Dependencies.csv").read_bytes()
+        run(canonical)
+        assert (unit / "Dependencies.csv").read_bytes() == before
+
+
+def test_retired_row_also_in_the_aggregate_is_written_once(tmp_path: Path) -> None:
+    execution_root = tmp_path / "execution"
+    unit = execution_root / "PKG-01" / "1_Working" / "DEL-01-01_Project governance baseline"
+    unit.mkdir(parents=True)
+    nodes_path = tmp_path / "DeliverableNodes.csv"
+    edges_path = tmp_path / "DependencyEdges.csv"
+    write_csv(nodes_path, [node("DEL-01-01", "PKG-01", "Project governance baseline", unit)], NODE_COLUMNS)
+    aggregate_retired = edge("DAG-001-E0002", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-03", status="RETIRED")
+    aggregate_retired.update(Notes="retired; aggregate annotation")
+    aggregate_active = edge("DAG-001-E0003", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-04")
+    aggregate_active.update(Notes="aggregate carries this row as ACTIVE")
+    write_csv(edges_path, [
+        edge("DAG-001-E0001", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-02"),
+        aggregate_retired,
+        aggregate_active,
+    ], REQUIRED_COLUMNS)
+    local_retired = edge("DAG-001-E0002", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-03", status="RETIRED")
+    local_retired.update(Origin="EXTRACTED", Notes="retired")
+    local_retired_but_active_in_aggregate = edge(
+        "DAG-001-E0003", "PKG-01", "DEL-01-01", "PKG-01", "DEL-01-04", status="RETIRED"
+    )
+    local_retired_but_active_in_aggregate.update(Origin="EXTRACTED", Notes="retired locally")
+
+    for canonical in (False, True):
+        write_csv(unit / "Dependencies.csv", [local_retired, local_retired_but_active_in_aggregate], REQUIRED_COLUMNS)
+        summary = materialize_local_dependencies(
+            edges_path=edges_path,
+            nodes_path=nodes_path,
+            execution_root=execution_root,
+            generated_date="2026-09-26",
+            source_label="DAG-001",
+            canonical_output=canonical,
+        )
+        _header, rows = read_rows(unit / "Dependencies.csv")
+        assert [row["DependencyID"] for row in rows] == ["DAG-001-E0001", "DAG-001-E0002", "DAG-001-E0003"]
+        by_id = {row["DependencyID"]: row for row in rows}
+        # The aggregate's RETIRED row is not materialized, so the local copy is
+        # kept unchanged, once.
+        assert by_id["DAG-001-E0002"] == local_retired
+        # Where the aggregate materializes the ID, its row is written as before
+        # and the local RETIRED copy is not added.
+        assert by_id["DAG-001-E0003"] == aggregate_active
+        assert summary["written"][0]["PreservedRetiredRows"] == 1
 
 
 def assert_diff_check_clean(text: str) -> None:
