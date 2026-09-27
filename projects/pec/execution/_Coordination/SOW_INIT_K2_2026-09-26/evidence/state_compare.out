@@ -1,0 +1,10 @@
+IDENTICAL strict pre/postA
+IDENTICAL harness pre/postA
+IDENTICAL receipts pre/postA
+IDENTICAL closure stdout pre/postA (command echo line, which names the per-tag output dir, excluded)
+IDENTICAL closure_summary pre/postA
+IDENTICAL strict pre/postC8
+IDENTICAL harness pre/postC8
+IDENTICAL receipts pre/postC8
+IDENTICAL closure stdout pre/postC8 (command echo line, which names the per-tag output dir, excluded)
+IDENTICAL closure_summary pre/postC8

@@ -4,6 +4,7 @@
 - **Mode:** FULL_GRAPH
 - **Register:** the declared sections of this file together with Dependencies.csv (schema v3.1) when present (docs/SPEC.md §5.3)
 - **Notes:** `execution/_Coordination/_COORDINATION.md` (coordination representation FULL_GRAPH; RequiredMaturity threshold `INITIALIZED`, owner-ruled Phase 1.3). Register storage is deliverable-local by owner ruling (no central register). Blocker output is advisory visibility only — never work assignment.
+- **Standing obligation (constraint C-08):** STANDING node — it gates releases, not successors, and is excluded from one-shot COMPLETE/UNBLOCKED arithmetic (owner-classified under `D-PEC-103`).
 
 ---
 
