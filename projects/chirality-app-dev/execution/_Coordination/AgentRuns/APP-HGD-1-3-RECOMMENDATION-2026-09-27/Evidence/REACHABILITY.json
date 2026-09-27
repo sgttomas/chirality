@@ -1,0 +1,91 @@
+{
+ "BASE": {
+  "DEL-02-01_in_arcs": {
+   "DEL-02-05->DEL-02-01": [
+    "DEP-02-05-014"
+   ],
+   "DEL-08-02->DEL-02-01": [
+    "DEP-02-01-006"
+   ],
+   "DEL-09-04->DEL-02-01": [
+    "DEP-02-01-013"
+   ]
+  },
+  "DEL-02-01_out_arcs": {
+   "DEL-02-01->DEL-07-01": [
+    "DEP-02-01-009"
+   ]
+  },
+  "from_DEL-02-01": {
+   "DEL-02-02": null,
+   "DEL-02-05": null,
+   "DEL-03-02": null,
+   "DEL-05-03": null,
+   "DEL-08-02": null
+  },
+  "to_DEL-02-01": {
+   "DEL-02-02": [
+    "DEL-02-02",
+    "DEL-08-02",
+    "DEL-02-01"
+   ],
+   "DEL-02-05": [
+    "DEL-02-05",
+    "DEL-02-01"
+   ],
+   "DEL-03-02": [
+    "DEL-03-02",
+    "DEL-05-02",
+    "DEL-04-03",
+    "DEL-04-02",
+    "DEL-04-04",
+    "DEL-08-02",
+    "DEL-02-01"
+   ],
+   "DEL-05-03": null,
+   "DEL-08-02": [
+    "DEL-08-02",
+    "DEL-02-01"
+   ]
+  }
+ },
+ "S1": {
+  "DEL-02-01_in_arcs": {
+   "DEL-02-05->DEL-02-01": [
+    "DEP-02-05-014"
+   ],
+   "DEL-09-04->DEL-02-01": [
+    "DEP-02-01-013"
+   ]
+  },
+  "DEL-02-01_out_arcs": {
+   "DEL-02-01->DEL-07-01": [
+    "DEP-02-01-009"
+   ],
+   "DEL-02-01->DEL-08-02": [
+    "DEP-02-01-006"
+   ]
+  },
+  "from_DEL-02-01": {
+   "DEL-02-02": null,
+   "DEL-02-05": null,
+   "DEL-03-02": null,
+   "DEL-05-03": null,
+   "DEL-08-02": [
+    "DEL-02-01",
+    "DEL-08-02"
+   ]
+  },
+  "to_DEL-02-01": {
+   "DEL-02-02": null,
+   "DEL-02-05": [
+    "DEL-02-05",
+    "DEL-02-01"
+   ],
+   "DEL-03-02": null,
+   "DEL-05-03": null,
+   "DEL-08-02": null
+  }
+ },
+ "convention": "consumer->supplier (UPSTREAM rows as written; DOWNSTREAM rows reversed), as analyze_dep_closure.py and build_dev001_blocker_queue.py read them"
+}

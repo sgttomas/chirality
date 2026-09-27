@@ -1,0 +1,4358 @@
+{
+ "BASE": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 0,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 103,
+   "held_arc_count": 0,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "PASS",
+  "edges_added_vs_base": {},
+  "edges_removed_vs_base": {},
+  "graph_edges": 103,
+  "moves": [],
+  "queue_row_changes_vs_base": {},
+  "rows_touched": [],
+  "scc_count": 0,
+  "scc_sizes": [],
+  "sccs": [],
+  "scenario": "BASE",
+  "subject_status": "PASS"
+ },
+ "C1_S2_WITH_2026-09-05_PAIR": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 1,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 89,
+   "held_arc_count": 16,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-02": [
+    "DEP-02-01-015"
+   ],
+   "DEL-02-02->DEL-02-01": [
+    "DEP-02-01-007",
+    "DEP-02-02-005"
+   ]
+  },
+  "edges_removed_vs_base": {},
+  "graph_edges": 105,
+  "moves": [
+   "S2",
+   "R_DEP_02_02_005",
+   "R_DEP_02_01_007"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-02-02"
+    ]
+   },
+   "DEL-02-02": {
+    "ActiveUpstreamCount": [
+     "7",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-02->DEL-02-01;DEL-02-02->DEL-05-02;DEL-02-02->DEL-05-04;DEL-02-02->DEL-08-02;DEL-02-02->DEL-08-04;DEL-02-02->DEL-08-05"
+    ]
+   },
+   "DEL-03-02": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-02->DEL-05-02"
+    ]
+   },
+   "DEL-04-02": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-02->DEL-04-04"
+    ]
+   },
+   "DEL-04-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-03->DEL-04-02"
+    ]
+   },
+   "DEL-04-04": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-04->DEL-08-02"
+    ]
+   },
+   "DEL-05-02": {
+    "ActiveUpstreamCount": [
+     "6",
+     "5"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-02->DEL-04-03"
+    ]
+   },
+   "DEL-05-04": {
+    "ActiveUpstreamCount": [
+     "5",
+     "4"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-04->DEL-05-02"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-02->DEL-02-01"
+    ]
+   },
+   "DEL-08-04": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-04->DEL-03-02"
+    ]
+   },
+   "DEL-08-05": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-05->DEL-08-04"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-015",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-007",
+    "after": {
+     "Status": "ACTIVE"
+    },
+    "before": {
+     "Status": "RETIRED"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-02-005",
+    "after": {
+     "Status": "ACTIVE"
+    },
+    "before": {
+     "Status": "RETIRED"
+    },
+    "op": "update"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   11
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-02-02;DEL-03-02;DEL-04-02;DEL-04-03;DEL-04-04;DEL-05-02;DEL-05-04;DEL-08-02;DEL-08-04;DEL-08-05",
+    "SCC_ID": "SCC-001",
+    "Size": "11"
+   }
+  ],
+  "scenario": "C1_S2_WITH_2026-09-05_PAIR",
+  "subject_status": "FAIL"
+ },
+ "C2_PAIR_ONLY": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 0,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 104,
+   "held_arc_count": 0,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "PASS",
+  "edges_added_vs_base": {
+   "DEL-02-02->DEL-02-01": [
+    "DEP-02-01-007",
+    "DEP-02-02-005"
+   ]
+  },
+  "edges_removed_vs_base": {},
+  "graph_edges": 104,
+  "moves": [
+   "R_DEP_02_02_005",
+   "R_DEP_02_01_007"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-02": {
+    "ActiveUpstreamCount": [
+     "7",
+     "8"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-007",
+    "after": {
+     "Status": "ACTIVE"
+    },
+    "before": {
+     "Status": "RETIRED"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-02-005",
+    "after": {
+     "Status": "ACTIVE"
+    },
+    "before": {
+     "Status": "RETIRED"
+    },
+    "op": "update"
+   }
+  ],
+  "scc_count": 0,
+  "scc_sizes": [],
+  "sccs": [],
+  "scenario": "C2_PAIR_ONLY",
+  "subject_status": "PASS"
+ },
+ "C3_UNDO_SD-001": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 0,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 91,
+   "held_arc_count": 13,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-04-05->DEL-02-05": [
+    "DEP-04-05-010"
+   ]
+  },
+  "edges_removed_vs_base": {},
+  "graph_edges": 104,
+  "moves": [
+   "R_DEP_04_05_010"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-05": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-05->DEL-03-03"
+    ]
+   },
+   "DEL-03-02": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-02->DEL-05-02"
+    ]
+   },
+   "DEL-03-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-03->DEL-03-02;DEL-03-03->DEL-03-04"
+    ]
+   },
+   "DEL-03-04": {
+    "ActiveUpstreamCount": [
+     "3",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-04->DEL-03-02;DEL-03-04->DEL-05-02"
+    ]
+   },
+   "DEL-04-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-03->DEL-04-05"
+    ]
+   },
+   "DEL-04-05": {
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-05->DEL-02-05"
+    ]
+   },
+   "DEL-05-02": {
+    "ActiveUpstreamCount": [
+     "6",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-02->DEL-04-03;DEL-05-02->DEL-05-03;DEL-05-02->DEL-05-05"
+    ]
+   },
+   "DEL-05-03": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-03->DEL-04-05"
+    ]
+   },
+   "DEL-05-05": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-05->DEL-05-03"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-04-05-010",
+    "after": {
+     "TargetDeliverableID": "DEL-02-05",
+     "TargetPackageID": "PKG-02",
+     "TargetRefID": "DEL-02-05",
+     "TargetType": "DELIVERABLE"
+    },
+    "before": {
+     "TargetDeliverableID": "",
+     "TargetPackageID": "",
+     "TargetRefID": "DEL-02-05-KEY_STATUS_CONTRACT",
+     "TargetType": "DOCUMENT"
+    },
+    "op": "update"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   9
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-05;DEL-03-02;DEL-03-03;DEL-03-04;DEL-04-03;DEL-04-05;DEL-05-02;DEL-05-03;DEL-05-05",
+    "SCC_ID": "SCC-001",
+    "Size": "9"
+   }
+  ],
+  "scenario": "C3_UNDO_SD-001",
+  "subject_status": "FAIL"
+ },
+ "FC1": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 0,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 104,
+   "held_arc_count": 0,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "PASS",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-05-03": [
+    "DEP-02-01-012"
+   ]
+  },
+  "edges_removed_vs_base": {},
+  "graph_edges": 104,
+  "moves": [
+   "FC1"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "2"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-012",
+    "after": {
+     "TargetDeliverableID": "DEL-05-03",
+     "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+     "TargetName": "Redacted RunLogger and Secret Hygiene",
+     "TargetPackageID": "PKG-05",
+     "TargetRefID": "DEL-05-03",
+     "TargetType": "DELIVERABLE"
+    },
+    "before": {
+     "TargetDeliverableID": "",
+     "TargetLocation": "TBD",
+     "TargetName": "Existing redaction helper under frontend/src/lib/harness/** (derived chat titles, Q6)",
+     "TargetPackageID": "",
+     "TargetRefID": "TBD",
+     "TargetType": "UNKNOWN"
+    },
+    "op": "update"
+   }
+  ],
+  "scc_count": 0,
+  "scc_sizes": [],
+  "sccs": [],
+  "scenario": "FC1",
+  "subject_status": "PASS"
+ },
+ "FC1+FC2": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 0,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 98,
+   "held_arc_count": 7,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-03-02": [
+    "DEP-02-01-016"
+   ],
+   "DEL-02-01->DEL-05-03": [
+    "DEP-02-01-012"
+   ]
+  },
+  "edges_removed_vs_base": {},
+  "graph_edges": 105,
+  "moves": [
+   "FC1",
+   "FC2"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-03-02"
+    ]
+   },
+   "DEL-03-02": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-02->DEL-05-02"
+    ]
+   },
+   "DEL-04-02": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-02->DEL-04-04"
+    ]
+   },
+   "DEL-04-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-03->DEL-04-02"
+    ]
+   },
+   "DEL-04-04": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-04->DEL-08-02"
+    ]
+   },
+   "DEL-05-02": {
+    "ActiveUpstreamCount": [
+     "6",
+     "5"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-02->DEL-04-03"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-02->DEL-02-01"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-012",
+    "after": {
+     "TargetDeliverableID": "DEL-05-03",
+     "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+     "TargetName": "Redacted RunLogger and Secret Hygiene",
+     "TargetPackageID": "PKG-05",
+     "TargetRefID": "DEL-05-03",
+     "TargetType": "DELIVERABLE"
+    },
+    "before": {
+     "TargetDeliverableID": "",
+     "TargetLocation": "TBD",
+     "TargetName": "Existing redaction helper under frontend/src/lib/harness/** (derived chat titles, Q6)",
+     "TargetPackageID": "",
+     "TargetRefID": "TBD",
+     "TargetType": "UNKNOWN"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-016",
+    "op": "add"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   7
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-03-02;DEL-04-02;DEL-04-03;DEL-04-04;DEL-05-02;DEL-08-02",
+    "SCC_ID": "SCC-001",
+    "Size": "7"
+   }
+  ],
+  "scenario": "FC1+FC2",
+  "subject_status": "FAIL"
+ },
+ "FC1+FC2+FC3": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 1,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 92,
+   "held_arc_count": 14,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-05": [
+    "DEP-02-01-017"
+   ],
+   "DEL-02-01->DEL-03-02": [
+    "DEP-02-01-016"
+   ],
+   "DEL-02-01->DEL-05-03": [
+    "DEP-02-01-012"
+   ]
+  },
+  "edges_removed_vs_base": {},
+  "graph_edges": 106,
+  "moves": [
+   "FC1",
+   "FC2",
+   "FC3"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-02-05;DEL-02-01->DEL-03-02"
+    ]
+   },
+   "DEL-02-05": {
+    "ActiveUpstreamCount": [
+     "3",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-05->DEL-02-01;DEL-02-05->DEL-03-03"
+    ]
+   },
+   "DEL-03-02": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-02->DEL-05-02"
+    ]
+   },
+   "DEL-03-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-03->DEL-03-02;DEL-03-03->DEL-03-04"
+    ]
+   },
+   "DEL-03-04": {
+    "ActiveUpstreamCount": [
+     "3",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-04->DEL-03-02;DEL-03-04->DEL-05-02"
+    ]
+   },
+   "DEL-04-02": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-02->DEL-04-04"
+    ]
+   },
+   "DEL-04-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-03->DEL-04-02"
+    ]
+   },
+   "DEL-04-04": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-04->DEL-08-02"
+    ]
+   },
+   "DEL-05-02": {
+    "ActiveUpstreamCount": [
+     "6",
+     "5"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-02->DEL-04-03"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-02->DEL-02-01"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-012",
+    "after": {
+     "TargetDeliverableID": "DEL-05-03",
+     "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+     "TargetName": "Redacted RunLogger and Secret Hygiene",
+     "TargetPackageID": "PKG-05",
+     "TargetRefID": "DEL-05-03",
+     "TargetType": "DELIVERABLE"
+    },
+    "before": {
+     "TargetDeliverableID": "",
+     "TargetLocation": "TBD",
+     "TargetName": "Existing redaction helper under frontend/src/lib/harness/** (derived chat titles, Q6)",
+     "TargetPackageID": "",
+     "TargetRefID": "TBD",
+     "TargetType": "UNKNOWN"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-016",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-017",
+    "op": "add"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   10
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-02-05;DEL-03-02;DEL-03-03;DEL-03-04;DEL-04-02;DEL-04-03;DEL-04-04;DEL-05-02;DEL-08-02",
+    "SCC_ID": "SCC-001",
+    "Size": "10"
+   }
+  ],
+  "scenario": "FC1+FC2+FC3",
+  "subject_status": "FAIL"
+ },
+ "FC1+FC3": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 1,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 92,
+   "held_arc_count": 13,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-05": [
+    "DEP-02-01-017"
+   ],
+   "DEL-02-01->DEL-05-03": [
+    "DEP-02-01-012"
+   ]
+  },
+  "edges_removed_vs_base": {},
+  "graph_edges": 105,
+  "moves": [
+   "FC1",
+   "FC3"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-02-05"
+    ]
+   },
+   "DEL-02-05": {
+    "ActiveUpstreamCount": [
+     "3",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-05->DEL-02-01;DEL-02-05->DEL-03-03"
+    ]
+   },
+   "DEL-03-02": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-02->DEL-05-02"
+    ]
+   },
+   "DEL-03-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-03->DEL-03-02;DEL-03-03->DEL-03-04"
+    ]
+   },
+   "DEL-03-04": {
+    "ActiveUpstreamCount": [
+     "3",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-04->DEL-03-02;DEL-03-04->DEL-05-02"
+    ]
+   },
+   "DEL-04-02": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-02->DEL-04-04"
+    ]
+   },
+   "DEL-04-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-03->DEL-04-02"
+    ]
+   },
+   "DEL-04-04": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-04->DEL-08-02"
+    ]
+   },
+   "DEL-05-02": {
+    "ActiveUpstreamCount": [
+     "6",
+     "5"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-02->DEL-04-03"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-02->DEL-02-01"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-012",
+    "after": {
+     "TargetDeliverableID": "DEL-05-03",
+     "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+     "TargetName": "Redacted RunLogger and Secret Hygiene",
+     "TargetPackageID": "PKG-05",
+     "TargetRefID": "DEL-05-03",
+     "TargetType": "DELIVERABLE"
+    },
+    "before": {
+     "TargetDeliverableID": "",
+     "TargetLocation": "TBD",
+     "TargetName": "Existing redaction helper under frontend/src/lib/harness/** (derived chat titles, Q6)",
+     "TargetPackageID": "",
+     "TargetRefID": "TBD",
+     "TargetType": "UNKNOWN"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-017",
+    "op": "add"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   10
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-02-05;DEL-03-02;DEL-03-03;DEL-03-04;DEL-04-02;DEL-04-03;DEL-04-04;DEL-05-02;DEL-08-02",
+    "SCC_ID": "SCC-001",
+    "Size": "10"
+   }
+  ],
+  "scenario": "FC1+FC3",
+  "subject_status": "FAIL"
+ },
+ "FC2": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 0,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 97,
+   "held_arc_count": 7,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-03-02": [
+    "DEP-02-01-016"
+   ]
+  },
+  "edges_removed_vs_base": {},
+  "graph_edges": 104,
+  "moves": [
+   "FC2"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-03-02"
+    ]
+   },
+   "DEL-03-02": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-02->DEL-05-02"
+    ]
+   },
+   "DEL-04-02": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-02->DEL-04-04"
+    ]
+   },
+   "DEL-04-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-03->DEL-04-02"
+    ]
+   },
+   "DEL-04-04": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-04->DEL-08-02"
+    ]
+   },
+   "DEL-05-02": {
+    "ActiveUpstreamCount": [
+     "6",
+     "5"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-02->DEL-04-03"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-02->DEL-02-01"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-016",
+    "op": "add"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   7
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-03-02;DEL-04-02;DEL-04-03;DEL-04-04;DEL-05-02;DEL-08-02",
+    "SCC_ID": "SCC-001",
+    "Size": "7"
+   }
+  ],
+  "scenario": "FC2",
+  "subject_status": "FAIL"
+ },
+ "FC2+FC3": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 1,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 91,
+   "held_arc_count": 14,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-05": [
+    "DEP-02-01-017"
+   ],
+   "DEL-02-01->DEL-03-02": [
+    "DEP-02-01-016"
+   ]
+  },
+  "edges_removed_vs_base": {},
+  "graph_edges": 105,
+  "moves": [
+   "FC2",
+   "FC3"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-02-05;DEL-02-01->DEL-03-02"
+    ]
+   },
+   "DEL-02-05": {
+    "ActiveUpstreamCount": [
+     "3",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-05->DEL-02-01;DEL-02-05->DEL-03-03"
+    ]
+   },
+   "DEL-03-02": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-02->DEL-05-02"
+    ]
+   },
+   "DEL-03-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-03->DEL-03-02;DEL-03-03->DEL-03-04"
+    ]
+   },
+   "DEL-03-04": {
+    "ActiveUpstreamCount": [
+     "3",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-04->DEL-03-02;DEL-03-04->DEL-05-02"
+    ]
+   },
+   "DEL-04-02": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-02->DEL-04-04"
+    ]
+   },
+   "DEL-04-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-03->DEL-04-02"
+    ]
+   },
+   "DEL-04-04": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-04->DEL-08-02"
+    ]
+   },
+   "DEL-05-02": {
+    "ActiveUpstreamCount": [
+     "6",
+     "5"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-02->DEL-04-03"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-02->DEL-02-01"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-016",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-017",
+    "op": "add"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   10
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-02-05;DEL-03-02;DEL-03-03;DEL-03-04;DEL-04-02;DEL-04-03;DEL-04-04;DEL-05-02;DEL-08-02",
+    "SCC_ID": "SCC-001",
+    "Size": "10"
+   }
+  ],
+  "scenario": "FC2+FC3",
+  "subject_status": "FAIL"
+ },
+ "FC3": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 1,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 91,
+   "held_arc_count": 13,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-05": [
+    "DEP-02-01-017"
+   ]
+  },
+  "edges_removed_vs_base": {},
+  "graph_edges": 104,
+  "moves": [
+   "FC3"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-02-05"
+    ]
+   },
+   "DEL-02-05": {
+    "ActiveUpstreamCount": [
+     "3",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-05->DEL-02-01;DEL-02-05->DEL-03-03"
+    ]
+   },
+   "DEL-03-02": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-02->DEL-05-02"
+    ]
+   },
+   "DEL-03-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-03->DEL-03-02;DEL-03-03->DEL-03-04"
+    ]
+   },
+   "DEL-03-04": {
+    "ActiveUpstreamCount": [
+     "3",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-04->DEL-03-02;DEL-03-04->DEL-05-02"
+    ]
+   },
+   "DEL-04-02": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-02->DEL-04-04"
+    ]
+   },
+   "DEL-04-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-03->DEL-04-02"
+    ]
+   },
+   "DEL-04-04": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-04->DEL-08-02"
+    ]
+   },
+   "DEL-05-02": {
+    "ActiveUpstreamCount": [
+     "6",
+     "5"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-02->DEL-04-03"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-02->DEL-02-01"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-017",
+    "op": "add"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   10
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-02-05;DEL-03-02;DEL-03-03;DEL-03-04;DEL-04-02;DEL-04-03;DEL-04-04;DEL-05-02;DEL-08-02",
+    "SCC_ID": "SCC-001",
+    "Size": "10"
+   }
+  ],
+  "scenario": "FC3",
+  "subject_status": "FAIL"
+ },
+ "S1": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 0,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 103,
+   "held_arc_count": 0,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "PASS",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-08-02": [
+    "DEP-02-01-006"
+   ]
+  },
+  "edges_removed_vs_base": {
+   "DEL-08-02->DEL-02-01": [
+    "DEP-02-01-006"
+   ]
+  },
+  "graph_edges": 103,
+  "moves": [
+   "S1"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "2"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-006",
+    "after": {
+     "DependencyType": "INTERFACE",
+     "Direction": "UPSTREAM"
+    },
+    "before": {
+     "DependencyType": "HANDOVER",
+     "Direction": "DOWNSTREAM"
+    },
+    "op": "update"
+   }
+  ],
+  "scc_count": 0,
+  "scc_sizes": [],
+  "sccs": [],
+  "scenario": "S1",
+  "subject_status": "PASS"
+ },
+ "S1+FC1": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 0,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 104,
+   "held_arc_count": 0,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "PASS",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-05-03": [
+    "DEP-02-01-012"
+   ],
+   "DEL-02-01->DEL-08-02": [
+    "DEP-02-01-006"
+   ]
+  },
+  "edges_removed_vs_base": {
+   "DEL-08-02->DEL-02-01": [
+    "DEP-02-01-006"
+   ]
+  },
+  "graph_edges": 104,
+  "moves": [
+   "S1",
+   "FC1"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "3"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-006",
+    "after": {
+     "DependencyType": "INTERFACE",
+     "Direction": "UPSTREAM"
+    },
+    "before": {
+     "DependencyType": "HANDOVER",
+     "Direction": "DOWNSTREAM"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-012",
+    "after": {
+     "TargetDeliverableID": "DEL-05-03",
+     "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+     "TargetName": "Redacted RunLogger and Secret Hygiene",
+     "TargetPackageID": "PKG-05",
+     "TargetRefID": "DEL-05-03",
+     "TargetType": "DELIVERABLE"
+    },
+    "before": {
+     "TargetDeliverableID": "",
+     "TargetLocation": "TBD",
+     "TargetName": "Existing redaction helper under frontend/src/lib/harness/** (derived chat titles, Q6)",
+     "TargetPackageID": "",
+     "TargetRefID": "TBD",
+     "TargetType": "UNKNOWN"
+    },
+    "op": "update"
+   }
+  ],
+  "scc_count": 0,
+  "scc_sizes": [],
+  "sccs": [],
+  "scenario": "S1+FC1",
+  "subject_status": "PASS"
+ },
+ "S1+FC1+FC2": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 0,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 105,
+   "held_arc_count": 0,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "PASS",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-03-02": [
+    "DEP-02-01-016"
+   ],
+   "DEL-02-01->DEL-05-03": [
+    "DEP-02-01-012"
+   ],
+   "DEL-02-01->DEL-08-02": [
+    "DEP-02-01-006"
+   ]
+  },
+  "edges_removed_vs_base": {
+   "DEL-08-02->DEL-02-01": [
+    "DEP-02-01-006"
+   ]
+  },
+  "graph_edges": 105,
+  "moves": [
+   "S1",
+   "FC1",
+   "FC2"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "4"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-006",
+    "after": {
+     "DependencyType": "INTERFACE",
+     "Direction": "UPSTREAM"
+    },
+    "before": {
+     "DependencyType": "HANDOVER",
+     "Direction": "DOWNSTREAM"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-012",
+    "after": {
+     "TargetDeliverableID": "DEL-05-03",
+     "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+     "TargetName": "Redacted RunLogger and Secret Hygiene",
+     "TargetPackageID": "PKG-05",
+     "TargetRefID": "DEL-05-03",
+     "TargetType": "DELIVERABLE"
+    },
+    "before": {
+     "TargetDeliverableID": "",
+     "TargetLocation": "TBD",
+     "TargetName": "Existing redaction helper under frontend/src/lib/harness/** (derived chat titles, Q6)",
+     "TargetPackageID": "",
+     "TargetRefID": "TBD",
+     "TargetType": "UNKNOWN"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-016",
+    "op": "add"
+   }
+  ],
+  "scc_count": 0,
+  "scc_sizes": [],
+  "sccs": [],
+  "scenario": "S1+FC1+FC2",
+  "subject_status": "PASS"
+ },
+ "S1+FC1+FC2+FC3": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 1,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 104,
+   "held_arc_count": 2,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-05": [
+    "DEP-02-01-017"
+   ],
+   "DEL-02-01->DEL-03-02": [
+    "DEP-02-01-016"
+   ],
+   "DEL-02-01->DEL-05-03": [
+    "DEP-02-01-012"
+   ],
+   "DEL-02-01->DEL-08-02": [
+    "DEP-02-01-006"
+   ]
+  },
+  "edges_removed_vs_base": {
+   "DEL-08-02->DEL-02-01": [
+    "DEP-02-01-006"
+   ]
+  },
+  "graph_edges": 106,
+  "moves": [
+   "S1",
+   "FC1",
+   "FC2",
+   "FC3"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "4"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-02-05"
+    ]
+   },
+   "DEL-02-05": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-05->DEL-02-01"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-006",
+    "after": {
+     "DependencyType": "INTERFACE",
+     "Direction": "UPSTREAM"
+    },
+    "before": {
+     "DependencyType": "HANDOVER",
+     "Direction": "DOWNSTREAM"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-012",
+    "after": {
+     "TargetDeliverableID": "DEL-05-03",
+     "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+     "TargetName": "Redacted RunLogger and Secret Hygiene",
+     "TargetPackageID": "PKG-05",
+     "TargetRefID": "DEL-05-03",
+     "TargetType": "DELIVERABLE"
+    },
+    "before": {
+     "TargetDeliverableID": "",
+     "TargetLocation": "TBD",
+     "TargetName": "Existing redaction helper under frontend/src/lib/harness/** (derived chat titles, Q6)",
+     "TargetPackageID": "",
+     "TargetRefID": "TBD",
+     "TargetType": "UNKNOWN"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-016",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-017",
+    "op": "add"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   2
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-02-05",
+    "SCC_ID": "SCC-001",
+    "Size": "2"
+   }
+  ],
+  "scenario": "S1+FC1+FC2+FC3",
+  "subject_status": "FAIL"
+ },
+ "S1+FC1+FC3": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 1,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 103,
+   "held_arc_count": 2,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-05": [
+    "DEP-02-01-017"
+   ],
+   "DEL-02-01->DEL-05-03": [
+    "DEP-02-01-012"
+   ],
+   "DEL-02-01->DEL-08-02": [
+    "DEP-02-01-006"
+   ]
+  },
+  "edges_removed_vs_base": {
+   "DEL-08-02->DEL-02-01": [
+    "DEP-02-01-006"
+   ]
+  },
+  "graph_edges": 105,
+  "moves": [
+   "S1",
+   "FC1",
+   "FC3"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-02-05"
+    ]
+   },
+   "DEL-02-05": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-05->DEL-02-01"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-006",
+    "after": {
+     "DependencyType": "INTERFACE",
+     "Direction": "UPSTREAM"
+    },
+    "before": {
+     "DependencyType": "HANDOVER",
+     "Direction": "DOWNSTREAM"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-012",
+    "after": {
+     "TargetDeliverableID": "DEL-05-03",
+     "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+     "TargetName": "Redacted RunLogger and Secret Hygiene",
+     "TargetPackageID": "PKG-05",
+     "TargetRefID": "DEL-05-03",
+     "TargetType": "DELIVERABLE"
+    },
+    "before": {
+     "TargetDeliverableID": "",
+     "TargetLocation": "TBD",
+     "TargetName": "Existing redaction helper under frontend/src/lib/harness/** (derived chat titles, Q6)",
+     "TargetPackageID": "",
+     "TargetRefID": "TBD",
+     "TargetType": "UNKNOWN"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-017",
+    "op": "add"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   2
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-02-05",
+    "SCC_ID": "SCC-001",
+    "Size": "2"
+   }
+  ],
+  "scenario": "S1+FC1+FC3",
+  "subject_status": "FAIL"
+ },
+ "S1+FC2": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 0,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 104,
+   "held_arc_count": 0,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "PASS",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-03-02": [
+    "DEP-02-01-016"
+   ],
+   "DEL-02-01->DEL-08-02": [
+    "DEP-02-01-006"
+   ]
+  },
+  "edges_removed_vs_base": {
+   "DEL-08-02->DEL-02-01": [
+    "DEP-02-01-006"
+   ]
+  },
+  "graph_edges": 104,
+  "moves": [
+   "S1",
+   "FC2"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "3"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-006",
+    "after": {
+     "DependencyType": "INTERFACE",
+     "Direction": "UPSTREAM"
+    },
+    "before": {
+     "DependencyType": "HANDOVER",
+     "Direction": "DOWNSTREAM"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-016",
+    "op": "add"
+   }
+  ],
+  "scc_count": 0,
+  "scc_sizes": [],
+  "sccs": [],
+  "scenario": "S1+FC2",
+  "subject_status": "PASS"
+ },
+ "S1+FC2+FC3": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 1,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 103,
+   "held_arc_count": 2,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-05": [
+    "DEP-02-01-017"
+   ],
+   "DEL-02-01->DEL-03-02": [
+    "DEP-02-01-016"
+   ],
+   "DEL-02-01->DEL-08-02": [
+    "DEP-02-01-006"
+   ]
+  },
+  "edges_removed_vs_base": {
+   "DEL-08-02->DEL-02-01": [
+    "DEP-02-01-006"
+   ]
+  },
+  "graph_edges": 105,
+  "moves": [
+   "S1",
+   "FC2",
+   "FC3"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-02-05"
+    ]
+   },
+   "DEL-02-05": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-05->DEL-02-01"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-006",
+    "after": {
+     "DependencyType": "INTERFACE",
+     "Direction": "UPSTREAM"
+    },
+    "before": {
+     "DependencyType": "HANDOVER",
+     "Direction": "DOWNSTREAM"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-016",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-017",
+    "op": "add"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   2
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-02-05",
+    "SCC_ID": "SCC-001",
+    "Size": "2"
+   }
+  ],
+  "scenario": "S1+FC2+FC3",
+  "subject_status": "FAIL"
+ },
+ "S1+FC3": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 1,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 102,
+   "held_arc_count": 2,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-05": [
+    "DEP-02-01-017"
+   ],
+   "DEL-02-01->DEL-08-02": [
+    "DEP-02-01-006"
+   ]
+  },
+  "edges_removed_vs_base": {
+   "DEL-08-02->DEL-02-01": [
+    "DEP-02-01-006"
+   ]
+  },
+  "graph_edges": 104,
+  "moves": [
+   "S1",
+   "FC3"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-02-05"
+    ]
+   },
+   "DEL-02-05": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-05->DEL-02-01"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-006",
+    "after": {
+     "DependencyType": "INTERFACE",
+     "Direction": "UPSTREAM"
+    },
+    "before": {
+     "DependencyType": "HANDOVER",
+     "Direction": "DOWNSTREAM"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-017",
+    "op": "add"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   2
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-02-05",
+    "SCC_ID": "SCC-001",
+    "Size": "2"
+   }
+  ],
+  "scenario": "S1+FC3",
+  "subject_status": "FAIL"
+ },
+ "S1+S2": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 0,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 104,
+   "held_arc_count": 0,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "PASS",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-02": [
+    "DEP-02-01-015"
+   ],
+   "DEL-02-01->DEL-08-02": [
+    "DEP-02-01-006"
+   ]
+  },
+  "edges_removed_vs_base": {
+   "DEL-08-02->DEL-02-01": [
+    "DEP-02-01-006"
+   ]
+  },
+  "graph_edges": 104,
+  "moves": [
+   "S1",
+   "S2"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "3"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-006",
+    "after": {
+     "DependencyType": "INTERFACE",
+     "Direction": "UPSTREAM"
+    },
+    "before": {
+     "DependencyType": "HANDOVER",
+     "Direction": "DOWNSTREAM"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-015",
+    "op": "add"
+   }
+  ],
+  "scc_count": 0,
+  "scc_sizes": [],
+  "sccs": [],
+  "scenario": "S1+S2",
+  "subject_status": "PASS"
+ },
+ "S1+S2+FC1": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 0,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 105,
+   "held_arc_count": 0,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "PASS",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-02": [
+    "DEP-02-01-015"
+   ],
+   "DEL-02-01->DEL-05-03": [
+    "DEP-02-01-012"
+   ],
+   "DEL-02-01->DEL-08-02": [
+    "DEP-02-01-006"
+   ]
+  },
+  "edges_removed_vs_base": {
+   "DEL-08-02->DEL-02-01": [
+    "DEP-02-01-006"
+   ]
+  },
+  "graph_edges": 105,
+  "moves": [
+   "S1",
+   "S2",
+   "FC1"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "4"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-006",
+    "after": {
+     "DependencyType": "INTERFACE",
+     "Direction": "UPSTREAM"
+    },
+    "before": {
+     "DependencyType": "HANDOVER",
+     "Direction": "DOWNSTREAM"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-015",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-012",
+    "after": {
+     "TargetDeliverableID": "DEL-05-03",
+     "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+     "TargetName": "Redacted RunLogger and Secret Hygiene",
+     "TargetPackageID": "PKG-05",
+     "TargetRefID": "DEL-05-03",
+     "TargetType": "DELIVERABLE"
+    },
+    "before": {
+     "TargetDeliverableID": "",
+     "TargetLocation": "TBD",
+     "TargetName": "Existing redaction helper under frontend/src/lib/harness/** (derived chat titles, Q6)",
+     "TargetPackageID": "",
+     "TargetRefID": "TBD",
+     "TargetType": "UNKNOWN"
+    },
+    "op": "update"
+   }
+  ],
+  "scc_count": 0,
+  "scc_sizes": [],
+  "sccs": [],
+  "scenario": "S1+S2+FC1",
+  "subject_status": "PASS"
+ },
+ "S1+S2+FC1+FC2": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 0,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 106,
+   "held_arc_count": 0,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "PASS",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-02": [
+    "DEP-02-01-015"
+   ],
+   "DEL-02-01->DEL-03-02": [
+    "DEP-02-01-016"
+   ],
+   "DEL-02-01->DEL-05-03": [
+    "DEP-02-01-012"
+   ],
+   "DEL-02-01->DEL-08-02": [
+    "DEP-02-01-006"
+   ]
+  },
+  "edges_removed_vs_base": {
+   "DEL-08-02->DEL-02-01": [
+    "DEP-02-01-006"
+   ]
+  },
+  "graph_edges": 106,
+  "moves": [
+   "S1",
+   "S2",
+   "FC1",
+   "FC2"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "5"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-006",
+    "after": {
+     "DependencyType": "INTERFACE",
+     "Direction": "UPSTREAM"
+    },
+    "before": {
+     "DependencyType": "HANDOVER",
+     "Direction": "DOWNSTREAM"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-015",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-012",
+    "after": {
+     "TargetDeliverableID": "DEL-05-03",
+     "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+     "TargetName": "Redacted RunLogger and Secret Hygiene",
+     "TargetPackageID": "PKG-05",
+     "TargetRefID": "DEL-05-03",
+     "TargetType": "DELIVERABLE"
+    },
+    "before": {
+     "TargetDeliverableID": "",
+     "TargetLocation": "TBD",
+     "TargetName": "Existing redaction helper under frontend/src/lib/harness/** (derived chat titles, Q6)",
+     "TargetPackageID": "",
+     "TargetRefID": "TBD",
+     "TargetType": "UNKNOWN"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-016",
+    "op": "add"
+   }
+  ],
+  "scc_count": 0,
+  "scc_sizes": [],
+  "sccs": [],
+  "scenario": "S1+S2+FC1+FC2",
+  "subject_status": "PASS"
+ },
+ "S1+S2+FC1+FC2+FC3": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 1,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 105,
+   "held_arc_count": 2,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-02": [
+    "DEP-02-01-015"
+   ],
+   "DEL-02-01->DEL-02-05": [
+    "DEP-02-01-017"
+   ],
+   "DEL-02-01->DEL-03-02": [
+    "DEP-02-01-016"
+   ],
+   "DEL-02-01->DEL-05-03": [
+    "DEP-02-01-012"
+   ],
+   "DEL-02-01->DEL-08-02": [
+    "DEP-02-01-006"
+   ]
+  },
+  "edges_removed_vs_base": {
+   "DEL-08-02->DEL-02-01": [
+    "DEP-02-01-006"
+   ]
+  },
+  "graph_edges": 107,
+  "moves": [
+   "S1",
+   "S2",
+   "FC1",
+   "FC2",
+   "FC3"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "5"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-02-05"
+    ]
+   },
+   "DEL-02-05": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-05->DEL-02-01"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-006",
+    "after": {
+     "DependencyType": "INTERFACE",
+     "Direction": "UPSTREAM"
+    },
+    "before": {
+     "DependencyType": "HANDOVER",
+     "Direction": "DOWNSTREAM"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-015",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-012",
+    "after": {
+     "TargetDeliverableID": "DEL-05-03",
+     "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+     "TargetName": "Redacted RunLogger and Secret Hygiene",
+     "TargetPackageID": "PKG-05",
+     "TargetRefID": "DEL-05-03",
+     "TargetType": "DELIVERABLE"
+    },
+    "before": {
+     "TargetDeliverableID": "",
+     "TargetLocation": "TBD",
+     "TargetName": "Existing redaction helper under frontend/src/lib/harness/** (derived chat titles, Q6)",
+     "TargetPackageID": "",
+     "TargetRefID": "TBD",
+     "TargetType": "UNKNOWN"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-016",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-017",
+    "op": "add"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   2
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-02-05",
+    "SCC_ID": "SCC-001",
+    "Size": "2"
+   }
+  ],
+  "scenario": "S1+S2+FC1+FC2+FC3",
+  "subject_status": "FAIL"
+ },
+ "S1+S2+FC1+FC3": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 1,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 104,
+   "held_arc_count": 2,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-02": [
+    "DEP-02-01-015"
+   ],
+   "DEL-02-01->DEL-02-05": [
+    "DEP-02-01-017"
+   ],
+   "DEL-02-01->DEL-05-03": [
+    "DEP-02-01-012"
+   ],
+   "DEL-02-01->DEL-08-02": [
+    "DEP-02-01-006"
+   ]
+  },
+  "edges_removed_vs_base": {
+   "DEL-08-02->DEL-02-01": [
+    "DEP-02-01-006"
+   ]
+  },
+  "graph_edges": 106,
+  "moves": [
+   "S1",
+   "S2",
+   "FC1",
+   "FC3"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "4"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-02-05"
+    ]
+   },
+   "DEL-02-05": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-05->DEL-02-01"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-006",
+    "after": {
+     "DependencyType": "INTERFACE",
+     "Direction": "UPSTREAM"
+    },
+    "before": {
+     "DependencyType": "HANDOVER",
+     "Direction": "DOWNSTREAM"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-015",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-012",
+    "after": {
+     "TargetDeliverableID": "DEL-05-03",
+     "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+     "TargetName": "Redacted RunLogger and Secret Hygiene",
+     "TargetPackageID": "PKG-05",
+     "TargetRefID": "DEL-05-03",
+     "TargetType": "DELIVERABLE"
+    },
+    "before": {
+     "TargetDeliverableID": "",
+     "TargetLocation": "TBD",
+     "TargetName": "Existing redaction helper under frontend/src/lib/harness/** (derived chat titles, Q6)",
+     "TargetPackageID": "",
+     "TargetRefID": "TBD",
+     "TargetType": "UNKNOWN"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-017",
+    "op": "add"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   2
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-02-05",
+    "SCC_ID": "SCC-001",
+    "Size": "2"
+   }
+  ],
+  "scenario": "S1+S2+FC1+FC3",
+  "subject_status": "FAIL"
+ },
+ "S1+S2+FC2": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 0,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 105,
+   "held_arc_count": 0,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "PASS",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-02": [
+    "DEP-02-01-015"
+   ],
+   "DEL-02-01->DEL-03-02": [
+    "DEP-02-01-016"
+   ],
+   "DEL-02-01->DEL-08-02": [
+    "DEP-02-01-006"
+   ]
+  },
+  "edges_removed_vs_base": {
+   "DEL-08-02->DEL-02-01": [
+    "DEP-02-01-006"
+   ]
+  },
+  "graph_edges": 105,
+  "moves": [
+   "S1",
+   "S2",
+   "FC2"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "4"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-006",
+    "after": {
+     "DependencyType": "INTERFACE",
+     "Direction": "UPSTREAM"
+    },
+    "before": {
+     "DependencyType": "HANDOVER",
+     "Direction": "DOWNSTREAM"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-015",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-016",
+    "op": "add"
+   }
+  ],
+  "scc_count": 0,
+  "scc_sizes": [],
+  "sccs": [],
+  "scenario": "S1+S2+FC2",
+  "subject_status": "PASS"
+ },
+ "S1+S2+FC2+FC3": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 1,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 104,
+   "held_arc_count": 2,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-02": [
+    "DEP-02-01-015"
+   ],
+   "DEL-02-01->DEL-02-05": [
+    "DEP-02-01-017"
+   ],
+   "DEL-02-01->DEL-03-02": [
+    "DEP-02-01-016"
+   ],
+   "DEL-02-01->DEL-08-02": [
+    "DEP-02-01-006"
+   ]
+  },
+  "edges_removed_vs_base": {
+   "DEL-08-02->DEL-02-01": [
+    "DEP-02-01-006"
+   ]
+  },
+  "graph_edges": 106,
+  "moves": [
+   "S1",
+   "S2",
+   "FC2",
+   "FC3"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "4"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-02-05"
+    ]
+   },
+   "DEL-02-05": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-05->DEL-02-01"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-006",
+    "after": {
+     "DependencyType": "INTERFACE",
+     "Direction": "UPSTREAM"
+    },
+    "before": {
+     "DependencyType": "HANDOVER",
+     "Direction": "DOWNSTREAM"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-015",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-016",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-017",
+    "op": "add"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   2
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-02-05",
+    "SCC_ID": "SCC-001",
+    "Size": "2"
+   }
+  ],
+  "scenario": "S1+S2+FC2+FC3",
+  "subject_status": "FAIL"
+ },
+ "S1+S2+FC3": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 1,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 103,
+   "held_arc_count": 2,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-02": [
+    "DEP-02-01-015"
+   ],
+   "DEL-02-01->DEL-02-05": [
+    "DEP-02-01-017"
+   ],
+   "DEL-02-01->DEL-08-02": [
+    "DEP-02-01-006"
+   ]
+  },
+  "edges_removed_vs_base": {
+   "DEL-08-02->DEL-02-01": [
+    "DEP-02-01-006"
+   ]
+  },
+  "graph_edges": 105,
+  "moves": [
+   "S1",
+   "S2",
+   "FC3"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-02-05"
+    ]
+   },
+   "DEL-02-05": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-05->DEL-02-01"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-006",
+    "after": {
+     "DependencyType": "INTERFACE",
+     "Direction": "UPSTREAM"
+    },
+    "before": {
+     "DependencyType": "HANDOVER",
+     "Direction": "DOWNSTREAM"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-015",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-017",
+    "op": "add"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   2
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-02-05",
+    "SCC_ID": "SCC-001",
+    "Size": "2"
+   }
+  ],
+  "scenario": "S1+S2+FC3",
+  "subject_status": "FAIL"
+ },
+ "S2": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 0,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 89,
+   "held_arc_count": 15,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-02": [
+    "DEP-02-01-015"
+   ]
+  },
+  "edges_removed_vs_base": {},
+  "graph_edges": 104,
+  "moves": [
+   "S2"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-02-02"
+    ]
+   },
+   "DEL-02-02": {
+    "ActiveUpstreamCount": [
+     "7",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-02->DEL-05-02;DEL-02-02->DEL-05-04;DEL-02-02->DEL-08-02;DEL-02-02->DEL-08-04;DEL-02-02->DEL-08-05"
+    ]
+   },
+   "DEL-03-02": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-02->DEL-05-02"
+    ]
+   },
+   "DEL-04-02": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-02->DEL-04-04"
+    ]
+   },
+   "DEL-04-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-03->DEL-04-02"
+    ]
+   },
+   "DEL-04-04": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-04->DEL-08-02"
+    ]
+   },
+   "DEL-05-02": {
+    "ActiveUpstreamCount": [
+     "6",
+     "5"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-02->DEL-04-03"
+    ]
+   },
+   "DEL-05-04": {
+    "ActiveUpstreamCount": [
+     "5",
+     "4"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-04->DEL-05-02"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-02->DEL-02-01"
+    ]
+   },
+   "DEL-08-04": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-04->DEL-03-02"
+    ]
+   },
+   "DEL-08-05": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-05->DEL-08-04"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-015",
+    "op": "add"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   11
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-02-02;DEL-03-02;DEL-04-02;DEL-04-03;DEL-04-04;DEL-05-02;DEL-05-04;DEL-08-02;DEL-08-04;DEL-08-05",
+    "SCC_ID": "SCC-001",
+    "Size": "11"
+   }
+  ],
+  "scenario": "S2",
+  "subject_status": "FAIL"
+ },
+ "S2+FC1": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 0,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 90,
+   "held_arc_count": 15,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-02": [
+    "DEP-02-01-015"
+   ],
+   "DEL-02-01->DEL-05-03": [
+    "DEP-02-01-012"
+   ]
+  },
+  "edges_removed_vs_base": {},
+  "graph_edges": 105,
+  "moves": [
+   "S2",
+   "FC1"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-02-02"
+    ]
+   },
+   "DEL-02-02": {
+    "ActiveUpstreamCount": [
+     "7",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-02->DEL-05-02;DEL-02-02->DEL-05-04;DEL-02-02->DEL-08-02;DEL-02-02->DEL-08-04;DEL-02-02->DEL-08-05"
+    ]
+   },
+   "DEL-03-02": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-02->DEL-05-02"
+    ]
+   },
+   "DEL-04-02": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-02->DEL-04-04"
+    ]
+   },
+   "DEL-04-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-03->DEL-04-02"
+    ]
+   },
+   "DEL-04-04": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-04->DEL-08-02"
+    ]
+   },
+   "DEL-05-02": {
+    "ActiveUpstreamCount": [
+     "6",
+     "5"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-02->DEL-04-03"
+    ]
+   },
+   "DEL-05-04": {
+    "ActiveUpstreamCount": [
+     "5",
+     "4"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-04->DEL-05-02"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-02->DEL-02-01"
+    ]
+   },
+   "DEL-08-04": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-04->DEL-03-02"
+    ]
+   },
+   "DEL-08-05": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-05->DEL-08-04"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-015",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-012",
+    "after": {
+     "TargetDeliverableID": "DEL-05-03",
+     "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+     "TargetName": "Redacted RunLogger and Secret Hygiene",
+     "TargetPackageID": "PKG-05",
+     "TargetRefID": "DEL-05-03",
+     "TargetType": "DELIVERABLE"
+    },
+    "before": {
+     "TargetDeliverableID": "",
+     "TargetLocation": "TBD",
+     "TargetName": "Existing redaction helper under frontend/src/lib/harness/** (derived chat titles, Q6)",
+     "TargetPackageID": "",
+     "TargetRefID": "TBD",
+     "TargetType": "UNKNOWN"
+    },
+    "op": "update"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   11
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-02-02;DEL-03-02;DEL-04-02;DEL-04-03;DEL-04-04;DEL-05-02;DEL-05-04;DEL-08-02;DEL-08-04;DEL-08-05",
+    "SCC_ID": "SCC-001",
+    "Size": "11"
+   }
+  ],
+  "scenario": "S2+FC1",
+  "subject_status": "FAIL"
+ },
+ "S2+FC1+FC2": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 0,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 90,
+   "held_arc_count": 16,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-02": [
+    "DEP-02-01-015"
+   ],
+   "DEL-02-01->DEL-03-02": [
+    "DEP-02-01-016"
+   ],
+   "DEL-02-01->DEL-05-03": [
+    "DEP-02-01-012"
+   ]
+  },
+  "edges_removed_vs_base": {},
+  "graph_edges": 106,
+  "moves": [
+   "S2",
+   "FC1",
+   "FC2"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-02-02;DEL-02-01->DEL-03-02"
+    ]
+   },
+   "DEL-02-02": {
+    "ActiveUpstreamCount": [
+     "7",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-02->DEL-05-02;DEL-02-02->DEL-05-04;DEL-02-02->DEL-08-02;DEL-02-02->DEL-08-04;DEL-02-02->DEL-08-05"
+    ]
+   },
+   "DEL-03-02": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-02->DEL-05-02"
+    ]
+   },
+   "DEL-04-02": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-02->DEL-04-04"
+    ]
+   },
+   "DEL-04-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-03->DEL-04-02"
+    ]
+   },
+   "DEL-04-04": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-04->DEL-08-02"
+    ]
+   },
+   "DEL-05-02": {
+    "ActiveUpstreamCount": [
+     "6",
+     "5"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-02->DEL-04-03"
+    ]
+   },
+   "DEL-05-04": {
+    "ActiveUpstreamCount": [
+     "5",
+     "4"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-04->DEL-05-02"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-02->DEL-02-01"
+    ]
+   },
+   "DEL-08-04": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-04->DEL-03-02"
+    ]
+   },
+   "DEL-08-05": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-05->DEL-08-04"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-015",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-012",
+    "after": {
+     "TargetDeliverableID": "DEL-05-03",
+     "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+     "TargetName": "Redacted RunLogger and Secret Hygiene",
+     "TargetPackageID": "PKG-05",
+     "TargetRefID": "DEL-05-03",
+     "TargetType": "DELIVERABLE"
+    },
+    "before": {
+     "TargetDeliverableID": "",
+     "TargetLocation": "TBD",
+     "TargetName": "Existing redaction helper under frontend/src/lib/harness/** (derived chat titles, Q6)",
+     "TargetPackageID": "",
+     "TargetRefID": "TBD",
+     "TargetType": "UNKNOWN"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-016",
+    "op": "add"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   11
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-02-02;DEL-03-02;DEL-04-02;DEL-04-03;DEL-04-04;DEL-05-02;DEL-05-04;DEL-08-02;DEL-08-04;DEL-08-05",
+    "SCC_ID": "SCC-001",
+    "Size": "11"
+   }
+  ],
+  "scenario": "S2+FC1+FC2",
+  "subject_status": "FAIL"
+ },
+ "S2+FC1+FC2+FC3": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 1,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 84,
+   "held_arc_count": 23,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-02": [
+    "DEP-02-01-015"
+   ],
+   "DEL-02-01->DEL-02-05": [
+    "DEP-02-01-017"
+   ],
+   "DEL-02-01->DEL-03-02": [
+    "DEP-02-01-016"
+   ],
+   "DEL-02-01->DEL-05-03": [
+    "DEP-02-01-012"
+   ]
+  },
+  "edges_removed_vs_base": {},
+  "graph_edges": 107,
+  "moves": [
+   "S2",
+   "FC1",
+   "FC2",
+   "FC3"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-02-02;DEL-02-01->DEL-02-05;DEL-02-01->DEL-03-02"
+    ]
+   },
+   "DEL-02-02": {
+    "ActiveUpstreamCount": [
+     "7",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-02->DEL-05-02;DEL-02-02->DEL-05-04;DEL-02-02->DEL-08-02;DEL-02-02->DEL-08-04;DEL-02-02->DEL-08-05"
+    ]
+   },
+   "DEL-02-05": {
+    "ActiveUpstreamCount": [
+     "3",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-05->DEL-02-01;DEL-02-05->DEL-03-03"
+    ]
+   },
+   "DEL-03-02": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-02->DEL-05-02"
+    ]
+   },
+   "DEL-03-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-03->DEL-03-02;DEL-03-03->DEL-03-04"
+    ]
+   },
+   "DEL-03-04": {
+    "ActiveUpstreamCount": [
+     "3",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-04->DEL-03-02;DEL-03-04->DEL-05-02"
+    ]
+   },
+   "DEL-04-02": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-02->DEL-04-04"
+    ]
+   },
+   "DEL-04-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-03->DEL-04-02"
+    ]
+   },
+   "DEL-04-04": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-04->DEL-08-02"
+    ]
+   },
+   "DEL-05-02": {
+    "ActiveUpstreamCount": [
+     "6",
+     "5"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-02->DEL-04-03"
+    ]
+   },
+   "DEL-05-04": {
+    "ActiveUpstreamCount": [
+     "5",
+     "4"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-04->DEL-05-02"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-02->DEL-02-01"
+    ]
+   },
+   "DEL-08-04": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-04->DEL-03-02"
+    ]
+   },
+   "DEL-08-05": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-05->DEL-08-04"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-015",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-012",
+    "after": {
+     "TargetDeliverableID": "DEL-05-03",
+     "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+     "TargetName": "Redacted RunLogger and Secret Hygiene",
+     "TargetPackageID": "PKG-05",
+     "TargetRefID": "DEL-05-03",
+     "TargetType": "DELIVERABLE"
+    },
+    "before": {
+     "TargetDeliverableID": "",
+     "TargetLocation": "TBD",
+     "TargetName": "Existing redaction helper under frontend/src/lib/harness/** (derived chat titles, Q6)",
+     "TargetPackageID": "",
+     "TargetRefID": "TBD",
+     "TargetType": "UNKNOWN"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-016",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-017",
+    "op": "add"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   14
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-02-02;DEL-02-05;DEL-03-02;DEL-03-03;DEL-03-04;DEL-04-02;DEL-04-03;DEL-04-04;DEL-05-02;DEL-05-04;DEL-08-02;DEL-08-04;DEL-08-05",
+    "SCC_ID": "SCC-001",
+    "Size": "14"
+   }
+  ],
+  "scenario": "S2+FC1+FC2+FC3",
+  "subject_status": "FAIL"
+ },
+ "S2+FC1+FC3": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 1,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 84,
+   "held_arc_count": 22,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-02": [
+    "DEP-02-01-015"
+   ],
+   "DEL-02-01->DEL-02-05": [
+    "DEP-02-01-017"
+   ],
+   "DEL-02-01->DEL-05-03": [
+    "DEP-02-01-012"
+   ]
+  },
+  "edges_removed_vs_base": {},
+  "graph_edges": 106,
+  "moves": [
+   "S2",
+   "FC1",
+   "FC3"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "ActiveUpstreamCount": [
+     "1",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-02-02;DEL-02-01->DEL-02-05"
+    ]
+   },
+   "DEL-02-02": {
+    "ActiveUpstreamCount": [
+     "7",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-02->DEL-05-02;DEL-02-02->DEL-05-04;DEL-02-02->DEL-08-02;DEL-02-02->DEL-08-04;DEL-02-02->DEL-08-05"
+    ]
+   },
+   "DEL-02-05": {
+    "ActiveUpstreamCount": [
+     "3",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-05->DEL-02-01;DEL-02-05->DEL-03-03"
+    ]
+   },
+   "DEL-03-02": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-02->DEL-05-02"
+    ]
+   },
+   "DEL-03-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-03->DEL-03-02;DEL-03-03->DEL-03-04"
+    ]
+   },
+   "DEL-03-04": {
+    "ActiveUpstreamCount": [
+     "3",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-04->DEL-03-02;DEL-03-04->DEL-05-02"
+    ]
+   },
+   "DEL-04-02": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-02->DEL-04-04"
+    ]
+   },
+   "DEL-04-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-03->DEL-04-02"
+    ]
+   },
+   "DEL-04-04": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-04->DEL-08-02"
+    ]
+   },
+   "DEL-05-02": {
+    "ActiveUpstreamCount": [
+     "6",
+     "5"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-02->DEL-04-03"
+    ]
+   },
+   "DEL-05-04": {
+    "ActiveUpstreamCount": [
+     "5",
+     "4"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-04->DEL-05-02"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-02->DEL-02-01"
+    ]
+   },
+   "DEL-08-04": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-04->DEL-03-02"
+    ]
+   },
+   "DEL-08-05": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-05->DEL-08-04"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-015",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-012",
+    "after": {
+     "TargetDeliverableID": "DEL-05-03",
+     "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+     "TargetName": "Redacted RunLogger and Secret Hygiene",
+     "TargetPackageID": "PKG-05",
+     "TargetRefID": "DEL-05-03",
+     "TargetType": "DELIVERABLE"
+    },
+    "before": {
+     "TargetDeliverableID": "",
+     "TargetLocation": "TBD",
+     "TargetName": "Existing redaction helper under frontend/src/lib/harness/** (derived chat titles, Q6)",
+     "TargetPackageID": "",
+     "TargetRefID": "TBD",
+     "TargetType": "UNKNOWN"
+    },
+    "op": "update"
+   },
+   {
+    "DependencyID": "DEP-02-01-017",
+    "op": "add"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   14
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-02-02;DEL-02-05;DEL-03-02;DEL-03-03;DEL-03-04;DEL-04-02;DEL-04-03;DEL-04-04;DEL-05-02;DEL-05-04;DEL-08-02;DEL-08-04;DEL-08-05",
+    "SCC_ID": "SCC-001",
+    "Size": "14"
+   }
+  ],
+  "scenario": "S2+FC1+FC3",
+  "subject_status": "FAIL"
+ },
+ "S2+FC2": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 0,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 89,
+   "held_arc_count": 16,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-02": [
+    "DEP-02-01-015"
+   ],
+   "DEL-02-01->DEL-03-02": [
+    "DEP-02-01-016"
+   ]
+  },
+  "edges_removed_vs_base": {},
+  "graph_edges": 105,
+  "moves": [
+   "S2",
+   "FC2"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-02-02;DEL-02-01->DEL-03-02"
+    ]
+   },
+   "DEL-02-02": {
+    "ActiveUpstreamCount": [
+     "7",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-02->DEL-05-02;DEL-02-02->DEL-05-04;DEL-02-02->DEL-08-02;DEL-02-02->DEL-08-04;DEL-02-02->DEL-08-05"
+    ]
+   },
+   "DEL-03-02": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-02->DEL-05-02"
+    ]
+   },
+   "DEL-04-02": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-02->DEL-04-04"
+    ]
+   },
+   "DEL-04-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-03->DEL-04-02"
+    ]
+   },
+   "DEL-04-04": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-04->DEL-08-02"
+    ]
+   },
+   "DEL-05-02": {
+    "ActiveUpstreamCount": [
+     "6",
+     "5"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-02->DEL-04-03"
+    ]
+   },
+   "DEL-05-04": {
+    "ActiveUpstreamCount": [
+     "5",
+     "4"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-04->DEL-05-02"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-02->DEL-02-01"
+    ]
+   },
+   "DEL-08-04": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-04->DEL-03-02"
+    ]
+   },
+   "DEL-08-05": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-05->DEL-08-04"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-015",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-016",
+    "op": "add"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   11
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-02-02;DEL-03-02;DEL-04-02;DEL-04-03;DEL-04-04;DEL-05-02;DEL-05-04;DEL-08-02;DEL-08-04;DEL-08-05",
+    "SCC_ID": "SCC-001",
+    "Size": "11"
+   }
+  ],
+  "scenario": "S2+FC2",
+  "subject_status": "FAIL"
+ },
+ "S2+FC2+FC3": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 1,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 83,
+   "held_arc_count": 23,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-02": [
+    "DEP-02-01-015"
+   ],
+   "DEL-02-01->DEL-02-05": [
+    "DEP-02-01-017"
+   ],
+   "DEL-02-01->DEL-03-02": [
+    "DEP-02-01-016"
+   ]
+  },
+  "edges_removed_vs_base": {},
+  "graph_edges": 106,
+  "moves": [
+   "S2",
+   "FC2",
+   "FC3"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-02-02;DEL-02-01->DEL-02-05;DEL-02-01->DEL-03-02"
+    ]
+   },
+   "DEL-02-02": {
+    "ActiveUpstreamCount": [
+     "7",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-02->DEL-05-02;DEL-02-02->DEL-05-04;DEL-02-02->DEL-08-02;DEL-02-02->DEL-08-04;DEL-02-02->DEL-08-05"
+    ]
+   },
+   "DEL-02-05": {
+    "ActiveUpstreamCount": [
+     "3",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-05->DEL-02-01;DEL-02-05->DEL-03-03"
+    ]
+   },
+   "DEL-03-02": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-02->DEL-05-02"
+    ]
+   },
+   "DEL-03-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-03->DEL-03-02;DEL-03-03->DEL-03-04"
+    ]
+   },
+   "DEL-03-04": {
+    "ActiveUpstreamCount": [
+     "3",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-04->DEL-03-02;DEL-03-04->DEL-05-02"
+    ]
+   },
+   "DEL-04-02": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-02->DEL-04-04"
+    ]
+   },
+   "DEL-04-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-03->DEL-04-02"
+    ]
+   },
+   "DEL-04-04": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-04->DEL-08-02"
+    ]
+   },
+   "DEL-05-02": {
+    "ActiveUpstreamCount": [
+     "6",
+     "5"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-02->DEL-04-03"
+    ]
+   },
+   "DEL-05-04": {
+    "ActiveUpstreamCount": [
+     "5",
+     "4"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-04->DEL-05-02"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-02->DEL-02-01"
+    ]
+   },
+   "DEL-08-04": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-04->DEL-03-02"
+    ]
+   },
+   "DEL-08-05": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-05->DEL-08-04"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-015",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-016",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-017",
+    "op": "add"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   14
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-02-02;DEL-02-05;DEL-03-02;DEL-03-03;DEL-03-04;DEL-04-02;DEL-04-03;DEL-04-04;DEL-05-02;DEL-05-04;DEL-08-02;DEL-08-04;DEL-08-05",
+    "SCC_ID": "SCC-001",
+    "Size": "14"
+   }
+  ],
+  "scenario": "S2+FC2+FC3",
+  "subject_status": "FAIL"
+ },
+ "S2+FC3": {
+  "analyzer_exit": 0,
+  "bidirectional_pair_count": 1,
+  "blocker_counts": {
+   "blocked_count": 0,
+   "gating_arc_count": 83,
+   "held_arc_count": 22,
+   "not_tracked_count": 1,
+   "unblocked_count": 53
+  },
+  "blocker_verdict_changes_vs_base": {},
+  "circular_dependencies": "BLOCKER",
+  "edges_added_vs_base": {
+   "DEL-02-01->DEL-02-02": [
+    "DEP-02-01-015"
+   ],
+   "DEL-02-01->DEL-02-05": [
+    "DEP-02-01-017"
+   ]
+  },
+  "edges_removed_vs_base": {},
+  "graph_edges": 105,
+  "moves": [
+   "S2",
+   "FC3"
+  ],
+  "queue_row_changes_vs_base": {
+   "DEL-02-01": {
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-01->DEL-02-02;DEL-02-01->DEL-02-05"
+    ]
+   },
+   "DEL-02-02": {
+    "ActiveUpstreamCount": [
+     "7",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-02->DEL-05-02;DEL-02-02->DEL-05-04;DEL-02-02->DEL-08-02;DEL-02-02->DEL-08-04;DEL-02-02->DEL-08-05"
+    ]
+   },
+   "DEL-02-05": {
+    "ActiveUpstreamCount": [
+     "3",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-02-05->DEL-02-01;DEL-02-05->DEL-03-03"
+    ]
+   },
+   "DEL-03-02": {
+    "ActiveUpstreamCount": [
+     "3",
+     "2"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-02->DEL-05-02"
+    ]
+   },
+   "DEL-03-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-03->DEL-03-02;DEL-03-03->DEL-03-04"
+    ]
+   },
+   "DEL-03-04": {
+    "ActiveUpstreamCount": [
+     "3",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-03-04->DEL-03-02;DEL-03-04->DEL-05-02"
+    ]
+   },
+   "DEL-04-02": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-02->DEL-04-04"
+    ]
+   },
+   "DEL-04-03": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-03->DEL-04-02"
+    ]
+   },
+   "DEL-04-04": {
+    "ActiveUpstreamCount": [
+     "4",
+     "3"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-04-04->DEL-08-02"
+    ]
+   },
+   "DEL-05-02": {
+    "ActiveUpstreamCount": [
+     "6",
+     "5"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-02->DEL-04-03"
+    ]
+   },
+   "DEL-05-04": {
+    "ActiveUpstreamCount": [
+     "5",
+     "4"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-05-04->DEL-05-02"
+    ]
+   },
+   "DEL-08-02": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-02->DEL-02-01"
+    ]
+   },
+   "DEL-08-04": {
+    "ActiveUpstreamCount": [
+     "2",
+     "1"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-04->DEL-03-02"
+    ]
+   },
+   "DEL-08-05": {
+    "ActiveUpstreamCount": [
+     "1",
+     "0"
+    ],
+    "HeldEdgeIDs": [
+     "",
+     "DEL-08-05->DEL-08-04"
+    ]
+   }
+  },
+  "rows_touched": [
+   {
+    "DependencyID": "DEP-02-01-015",
+    "op": "add"
+   },
+   {
+    "DependencyID": "DEP-02-01-017",
+    "op": "add"
+   }
+  ],
+  "scc_count": 1,
+  "scc_sizes": [
+   14
+  ],
+  "sccs": [
+   {
+    "Nodes": "DEL-02-01;DEL-02-02;DEL-02-05;DEL-03-02;DEL-03-03;DEL-03-04;DEL-04-02;DEL-04-03;DEL-04-04;DEL-05-02;DEL-05-04;DEL-08-02;DEL-08-04;DEL-08-05",
+    "SCC_ID": "SCC-001",
+    "Size": "14"
+   }
+  ],
+  "scenario": "S2+FC3",
+  "subject_status": "FAIL"
+ }
+}
