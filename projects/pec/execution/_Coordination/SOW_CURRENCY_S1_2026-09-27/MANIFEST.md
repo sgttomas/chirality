@@ -141,3 +141,12 @@ extracted handback text) and `s1a_hold.zsh` (the reliance-preflight wrapper), wi
 directories, and the recheck's `s1a_main_export.*` export was removed by its script.
 Nothing was written to `/tmp` or `/var/folders`. No repository file outside the brief's
 write boundary was written.
+
+One slip, inside the run root: at 18:01:41Z, while checking whether `origin/main`
+`0adfbc747` touched an S1 target or pin, the manager imported the run-root
+`apply_s1p.py` in a shell without `PYTHONDONTWRITEBYTECODE=1`, which created
+`__pycache__/apply_s1p.cpython-313.pyc` beside it. The file is Git-ignored and was never
+committed; it appeared after the act and after the verifier's run, touched nothing the
+act or its checks read, and was listed by mistake in the first run-root `SHA256SUMS`
+(commit `463e298a8`). The manager removed the cache directory and regenerated
+`SHA256SUMS` without it.
