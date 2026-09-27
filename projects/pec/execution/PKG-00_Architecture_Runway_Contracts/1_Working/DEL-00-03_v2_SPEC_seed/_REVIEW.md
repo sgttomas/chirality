@@ -346,11 +346,15 @@ Nothing here performs, implies or presumes that acceptance.
 
 **C-05 consequence (recorded; no prompt).** `D-PEC-72` "Closure outcome"
 and its register row record the owner's closure of `C-05 PRE_P1_OBLIGATION`
-on the exact accepted fan-in, with AC-011 satisfied at the then-accepted
-hashes; later P1 slices (from `D-PEC-74`) cite that closure. That
-acceptance has lapsed. This review does not decide whether the lapse bears
-on the recorded closure (see the AC-009 note). The owner's exact-byte act
-would restore AC-011 at the new hashes.
+on the exact accepted fan-in at `411cbe6ce`, with AC-011 satisfied at the
+2026-08-01 bytes (SPEC `8b25a0d1f7ec7451ed3d19839904ee0c5f9a69b94df50f2122d9065c59a02315`,
+SOW `0e2cfad8fcb377381042fd63c7e73002ad93037bffd17b7a3b9eb58889469f54`);
+later P1 slices (from `D-PEC-74`) cite that closure. The 2026-08-09 currency
+repair superseded those bytes, and the owner's 2026-08-09 re-acceptance of
+SOW `3e4f0efc…5741` and SPEC `cc9f4754…1bae` made no C-05 act; that
+re-acceptance has now lapsed under `D-PEC-105`. This review does not decide
+whether these changes bear on the recorded closure (see the AC-009 note).
+The owner's exact-byte act would restore AC-011 at the new hashes.
 
 ## Freeze-point limit
 
@@ -373,9 +377,10 @@ ever adopts it. Nothing here prompts about `CHECKING`.
 
 Root `docs/SPEC.md` §3.4 (`feb5e79c…109e`) also states that in `CHECKING`
 "reversal to `IN_PROGRESS` is the only edit path" and that "A failed formal
-check returns through the prescribed reversal"; the same section keeps
-earlier pinned criteria applicable until the owning loop adopts the
-replacement. The `D-PEC-105` act amended this `CHECKING` deliverable in place
+check returns through the prescribed reversal"; the same section adds that
+"Earlier pinned Remaining-based entry criteria retain their applicability
+until the owning loop adopts this replacement", which concerns entry
+criteria only. The `D-PEC-105` act amended this `CHECKING` deliverable in place
 under an owner-ruled packet (the 2026-08-09 practice), and any correction
 packet a `REVISE` disposition calls for would be of the same kind. This
 tension is recorded as a consequence for the owner's reserved decision; it

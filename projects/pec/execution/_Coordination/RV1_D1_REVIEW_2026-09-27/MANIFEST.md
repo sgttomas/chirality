@@ -10,7 +10,11 @@
   instruction-asserted.
 - **Branch / base:** `claude/pec-rv1-d1-review`, cut from fetched
   `origin/main` `acc7d3cc7f5183152752c35995c73ad34673011b` (PR #1018 merge,
-  `D-PEC-107`).
+  `D-PEC-107`); later merged with `origin/main`
+  `d39daf5485379434dc5998b7e7a2e8d4ac5e25f9` (merge `2a4140ca2`, for PR base
+  currency after CI's base check; that range changes no `projects/pec`,
+  `docs/SPEC.md`, `AGENTS.md`, `agents/`, `workflows/review/` or used tool
+  file).
 - **Date:** 2026-09-27.
 
 ## Authority and instruction sources (SHA-256 as read)
@@ -155,9 +159,12 @@ only), script `b1712e4b…d0e`; each of the four targets with
 | DEL-00-03 (`PEER_REVIEW`) | 0 | 0 new (RF-001..003 historical, resolved) | 2 open (RF-004, RF-005) | 5 open (RF-006..RF-010) | AC-011 unsatisfied — READY FOR OWNER DECISION |
 
 **C-05.** `D-PEC-72` records the owner's closure of `C-05` on the exact
-accepted fan-in, with AC-007 and AC-011 satisfied at the prior hashes. Those
-acceptances have lapsed; this review does not decide whether the lapse bears
-on the recorded closure.
+accepted fan-in at `411cbe6ce`: DEL-00-01 AC-007 at ADR `f63ecc27…5db5`
+(the acceptance that has now lapsed), and DEL-00-03 AC-011 at the 2026-08-01
+bytes (SPEC `8b25a0d1…2315`, SOW `0e2cfad8…9f54`), which the 2026-08-09
+currency repair superseded; the 2026-08-09 DEL-00-03 re-acceptance (now
+lapsed) made no C-05 act. This review does not decide whether these changes
+bear on the recorded closure.
 
 CU-001 (DEL-00-03) is not carried as an active item; it is kept as history
 (its revision-1.4 totals no longer describe the rebound bytes, and an agent
@@ -171,6 +178,11 @@ owner-ruled correction packet before re-acceptance.
 One fresh read-only `pec-reviewer` (Opus 5.5, Agent tool, harness-native
 descendant) verified the candidate at `d6ed711f6`: **PASS WITH NOTES**, no
 blocking finding (`VERIFIER_VERDICT_01.md`, with the manager's dispositions).
+Its backcheck of the repairs (`VERIFIER_VERDICT_02.md`, on `0a0408e9c`) is
+also PASS WITH NOTES with no blocking finding; its two wording findings (the
+DEL-00-03 C-05 basis; the SPEC §3.4 entry-criteria carve-out) were repaired
+in text and its pending item (`SHA256SUMS`, return, verdict 02) is supplied
+in the final commit.
 Repairs made after it, in text only (no reviewed byte, checklist, finding
 count or severity changed):
 
@@ -196,10 +208,12 @@ count or severity changed):
 Listed with their SHA-256 in `SHA256SUMS` beside this file (paths relative
 to `projects/pec/execution/`; `SHA256SUMS` itself excluded).
 
-## Checks (candidate against `origin/main` `acc7d3cc7`)
+## Checks (candidate against `origin/main`)
 
-Baselines were run in a clean detached worktree at `acc7d3cc7` (removed
-afterwards); candidates in this worktree. Outputs are in `evidence/checks/`
+Baselines were run in clean detached worktrees at `origin/main` (removed
+afterwards); candidates in this worktree. Before the base merge the
+candidate matched `acc7d3cc7`; after it, the final candidate was rerun
+against `d39daf548`. Outputs are in `evidence/checks/`
 (the receipt validator's absolute root is written as `{REPO_ROOT}`).
 
 | Check | `origin/main` | Candidate |
