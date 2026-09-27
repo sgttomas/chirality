@@ -32,9 +32,9 @@
   - The bridge paragraphs now name the acceptance section, and DEL-00-01's adds the AC-007 case.
   - The DEL-00-01 MEMORY row now says "first acceptance of the contract".
 - **Notes 4–5:** no repair needed. Note 4 is the preflight order disclosed above. Note 5: RF-001 is now formally `RESOLVED`, so the method's MAJOR precondition for ISSUED is formally met, though no Gate 5 act follows.
-- **Backcheck:** the same reviewer's backcheck of `a1a95aa01` had not arrived at hand-back.
+- **Backcheck:** the same reviewer's backcheck of `a1a95aa01` had not arrived at hand-back. It arrived after hand-back: **PASS** for the whole candidate `31a90f3e6..a1a95aa01`, with no blocking findings. Notes 1–3 are confirmed repaired, the repair diff touched nothing else, the three validators still match the evidence outputs, `git diff --check` is clean, and `SHA256SUMS` passes.
 
 ## For the caller
 
 - Add `D-PEC-108_D1_REACCEPTANCE_2026-09-27.md`, its register row, the central `RECEIPT.md`, the graph completion and STATUS. The MEMORY links to the receipt and the ruling record resolve once those files exist.
-- Get the backcheck verdict and wait for CI on the final head before merging.
+- Wait for CI on the final head before merging. The backcheck is PASS (see Review).
