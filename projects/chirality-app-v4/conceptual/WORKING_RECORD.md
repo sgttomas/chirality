@@ -155,6 +155,37 @@ Notes on the returns:
     `docs/HOST_INTEGRATION.md`, `docs/EXAMINATION.md`,
     `docs/OPERATING_METHOD.md`), completing draft 1 of the seed set, and
     corrected one gendered pronoun for the owner in the examination draft.
+21. The owner handed the remaining work (revision, review, merge) to another
+    session on 2026-09-26. This session's work ends at commit `54eb7d1bc`
+    plus this entry: everything is pushed on branch
+    `claude/chirality-app-v4-architecture-9f35c4`, not merged, with no pull
+    request; the branch merges cleanly with `origin/main` as of this entry.
+
+## Handoff to the next session
+
+- **Take the whole folder, not only `docs/`.** The five drafts cite
+  `conceptual/DECISIONS.md` (the owner's directions and decisions, D-01…D-20,
+  quoted exactly), the analyses, `foundation/thesis/` and the run record.
+  Build on this branch or merge it.
+- **Read in this order:** `README.md`; `conceptual/DECISIONS.md`;
+  `conceptual/SEED_SET_PLAN.md` (§3: the drafting defaults still pending);
+  `docs/`; then this record's open work.
+- **Before presenting for acceptance:** obtain the owner's answers to the
+  pending items (Q-01, Q-04 two points, Q-07, Q-08 scope, Q-11 three
+  questions); walk `docs/EXAMINATION.md` through the set; obtain independent
+  review of the assembled candidate by a Codex reviewer, or Claude on a
+  different model (D-13). The drafts here and any revisions by another Claude
+  session are the same model family; neither is independent review.
+- **Protected:** `foundation/thesis/` must stay byte-identical —
+  `git rev-parse HEAD:projects/chirality-app-v4/foundation/thesis` must equal
+  `47fc49e96c2931ba18090f1a82d56a49f230b3ee`. The Git-ignored archives and the
+  read-only clone at `/Users/ryan/ai-env/archives/chirality-2026-09-25/` are
+  read only (`reference/archives/ARCHIVES.md`).
+- **Do not run** the withdrawn HX-01 brief (D-16).
+- **Practicalities:** the repository is public; a pull request touching
+  `projects/chirality-app-v4/` selects the full App and PEC CI suites because
+  no routing rule covers the path; the Agent User Manual changed on `main`
+  after the investigation revision (see `docs/OPERATING_METHOD.md` V4-OPS-11).
 
 ## Current position
 
