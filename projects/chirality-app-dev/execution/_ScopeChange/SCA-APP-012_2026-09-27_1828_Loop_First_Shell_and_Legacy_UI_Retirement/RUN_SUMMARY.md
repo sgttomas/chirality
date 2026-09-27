@@ -298,7 +298,20 @@ Branch `worktree-agent-ac8845f197e7cf998`, on `origin/main` `974bf7da4`:
 | `8a3230d5e` | Scope-text candidate |
 | the commit carrying this file | Group-3 evidence and this presentation |
 
-{ROOT_CHECKS}
+### Root and repository checks (at `65ecc03e5`, base `origin/main` `974bf7da4`)
+
+| Check | Result |
+|---|---|
+| G0, G1, G2, G3 (`validate_root_materialization_fence.py`, `validate_root_harness_adapter.py`, `validate_root_surface_ownership.py`, `validate_root_work_graph_dispatch.py`) | PASS |
+| G4 (`validate_instruction_tranche_manifest.py --base 974bf7da4 --head HEAD --added-manifests-only`) | Exit 0; 0 changed paths on the instruction surface |
+| `validate_conflict_markers.py`, `validate_run_record_leaks.py` (base `974bf7da4`) | PASS; PASS (0 run-record files) |
+| `build_workflow_index.py --check` | PASS (78 methods) |
+| `git diff --check` (base `974bf7da4`) | PASS |
+| `exports/chirality-app/export_public.py`, run twice | No tracked change; staging removed |
+| `build_amendment_preview.py --check` (clean environment) | OK before the candidate was written |
+| `group3_finalize.py --check` | OK |
+
+The commit that adds this table changes only `RUN_SUMMARY.md`.
 
 ## Evidence basis
 
