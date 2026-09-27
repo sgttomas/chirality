@@ -10,7 +10,7 @@ vi.mock('../../components/woven-dialogue/woven-dialogue-shell', async () => {
   };
 });
 
-describe('LoopTertiaryShell route clients', () => {
+describe('Workbench and Pipeline route clients', () => {
   it('opens the Workbench deep link in the continuing conversation', async () => {
     const { default: WorkbenchClient } = await import('../../app/workbench/workbench-client');
     const html = renderToStaticMarkup(createElement(WorkbenchClient));

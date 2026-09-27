@@ -67,8 +67,8 @@ vi.mock('../../components/workspace/harness-events-provider', () => ({
   useHarnessStreaming: () => shellState.streaming
 }));
 vi.mock('../../components/shell/shell-frame', () => ({
-  ShellFrame: ({ children, title, renderWorkspaceContent, onOpenSettings, legacyHref }: { children?: React.ReactNode; title: string; onOpenSettings?: () => void; legacyHref?: string; renderWorkspaceContent?: (controls: object) => React.ReactNode }) => (
-    <div data-shell-frame={title}>{renderWorkspaceContent ? renderWorkspaceContent({ settingsControl: <><button data-account-control="true" onClick={onOpenSettings}>Account settings</button><a href={legacyHref}>Legacy window</a></>, settingsView: <div data-settings-view="true">Settings controls</div> }) : children}</div>
+  ShellFrame: ({ children, title, renderWorkspaceContent, onOpenSettings }: { children?: React.ReactNode; title: string; onOpenSettings?: () => void; renderWorkspaceContent?: (controls: object) => React.ReactNode }) => (
+    <div data-shell-frame={title}>{renderWorkspaceContent ? renderWorkspaceContent({ settingsControl: <button data-account-control="true" onClick={onOpenSettings}>Account settings</button>, settingsView: <div data-settings-view="true">Settings controls</div> }) : children}</div>
   )
 }));
 vi.mock('../../components/shell/chat-panel', () => ({
@@ -428,15 +428,6 @@ describe('WovenDialogueShell composition', () => {
     expect(saved()).toMatchObject({ coordinationCollapsed: true, rightPanelExpanded: false, navigatorCollapsed: false }); assertPrimary();
     click('Open Coordination'); expect(saved().rightPanelView).toBe('files'); assertPrimary();
     act(() => tree.unmount());
-  });
-
-  it('preserves the legacy compatibility link with the current query string', () => {
-    shellState.pathname = '/workbench';
-    shellState.query = 'agent=CHANGE';
-
-    const html = renderToStaticMarkup(<WovenDialogueShell defaultSurface="workbench" />);
-
-    expect(html).toContain('href="/workbench?agent=CHANGE&amp;legacy=1"');
   });
 
   it('persists a redacted live title and rejects an older recorded-title completion', async () => {

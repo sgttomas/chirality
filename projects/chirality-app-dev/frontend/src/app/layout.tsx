@@ -4,7 +4,6 @@ import { headers } from 'next/headers';
 import './globals.css';
 import { WorkspaceProvider } from '../components/workspace/workspace-provider';
 import { ToolkitProvider } from '../components/workspace/toolkit-provider';
-import { DeliverablesProvider } from '../components/workspace/deliverables-provider';
 import { HarnessEventsProvider } from '../components/workspace/harness-events-provider';
 import { RuntimeConnectivityProvider } from '../components/shell/runtime-connectivity-provider';
 import { AppUpdateProvider } from '../components/shell/app-update-provider';
@@ -56,7 +55,7 @@ const THEME_BOOTSTRAP_SCRIPT = `(function(){var d=document.documentElement;var t
 
 export const metadata: Metadata = {
   title: 'Chirality',
-  description: 'PORTAL, PIPELINE, and WORKBENCH shell for local agent execution'
+  description: 'Dialogue shell for local agent execution'
 };
 
 const CSP_HEADER = 'content-security-policy';
@@ -101,11 +100,9 @@ export default async function RootLayout({
         <RuntimeConnectivityProvider>
           <AppUpdateProvider>
           <WorkspaceProvider>
-            <DeliverablesProvider>
-              <ToolkitProvider>
-                <HarnessEventsProvider>{children}</HarnessEventsProvider>
-              </ToolkitProvider>
-            </DeliverablesProvider>
+            <ToolkitProvider>
+              <HarnessEventsProvider>{children}</HarnessEventsProvider>
+            </ToolkitProvider>
           </WorkspaceProvider>
           </AppUpdateProvider>
         </RuntimeConnectivityProvider>

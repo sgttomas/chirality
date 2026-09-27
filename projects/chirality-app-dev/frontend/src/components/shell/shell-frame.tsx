@@ -53,7 +53,6 @@ type ShellFrameProps = {
   renderWorkspaceContent?: (controls: { reconnectControl: ReactNode; settingsControl: ReactNode; settingsView: ReactNode }) => ReactNode;
   variant?: 'default' | 'workspace';
   onOpenSettings?: () => void;
-  legacyHref?: string;
 };
 
 /**
