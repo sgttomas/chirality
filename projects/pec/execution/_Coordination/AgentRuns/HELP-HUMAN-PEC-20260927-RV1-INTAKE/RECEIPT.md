@@ -15,7 +15,7 @@ Ryan Tufts, 2026-09-27, verbatim:
 - **Task Management (TM1, PR #1021, `56f7d4602`).**
   - CAND-01 disposition (b).
   - TM-PEC-026 (CAND-02, OPEN), which now also holds the consumer-contract design item.
-  - TM-PEC-027 (CAND-03, ELEVATED to Root) and the notice `../../NOTICE_2026-09-27_PEC_HOSTED_CI_V2_CHECKS.md`.
+  - TM-PEC-027 (CAND-03, ELEVATED to Root) and the notice `../../../../../../execution/_Coordination/NOTICE_2026-09-27_PEC_HOSTED_CI_V2_CHECKS.md` (Root).
   - TM-PEC-028 (K3, DEFERRED until a DEL-08-06 production packet).
   - The MEMORY grant supplement.
 - **REVIEW (RV1, PR #1023, `31a90f3e6`).** Run folder `../../RV1_D1_REVIEW_2026-09-27/`; bundled `review` pinned at `2f825f180`.
@@ -37,8 +37,12 @@ Ryan Tufts, 2026-09-27, verbatim:
 - **Closeout (C1)**, at `origin/main` `31a90f3e6`, compared the undertaking's records against their sources:
   - graph, TM rows, notice, both review records and MEMORY rows;
   - `docs/STATUS.md` (refreshed under `D-PEC-88`) and `README.md` (no warranted change).
-  - It found one wording error in the MEMORY-grant supplement (PR #1021 review 03, Q1), corrected here rather than in its bytes, because `../../RV1_ACCEPTANCE_RECORD_2026-09-27/MANIFEST.md` pins them. The supplement describes `D-PEC-96_AMEND_DIRECTION_2026-09-26.md` as a record "where a later owner direction on a ruling gets its own record". It should read "where a later owner direction gets its own record": that precedent records a later owner direction, not one on a ruling.
-- **In this PR:** strict registers, harness self-check, loop receipts, `taskmgmt validate` and `git diff --check` give output identical to the basis. Reliance-hold preflight: 22 runs, all `ALLOW`. Evidence in `../../RV1_ACCEPTANCE_RECORD_2026-09-27/evidence/`. ACCCLOSE review 01 (manager-dispatched): PASS WITH NOTES, with notes 1–3 repaired in `a1a95aa01`.
+  - It carried one wording error in the MEMORY-grant supplement, found by PR #1021 review 03 (Q1). The correction is made here, not in the supplement's bytes. The supplement is a merged owner-direction record, and the convention it cites keeps a merged record unedited. `../../RV1_ACCEPTANCE_RECORD_2026-09-27/MANIFEST.md`, written in this PR, also pins its hash. This changes review 03's intended in-place edit into an erratum. The supplement describes `D-PEC-96_AMEND_DIRECTION_2026-09-26.md` as a record "where a later owner direction on a ruling gets its own record". It should read "where a later owner direction gets its own record": that precedent records a later owner direction, not one on a ruling.
+- **In this PR:**
+  - Strict registers, the harness self-check and loop receipts give output identical to the basis; the evidence is in `../../RV1_ACCEPTANCE_RECORD_2026-09-27/evidence/`.
+  - The reliance-hold preflight ran 22 times, all `ALLOW`, with evidence in the same folder.
+  - HELP_HUMAN and PR review 01 also ran `taskmgmt validate` (PASS, 12 rows, register unchanged) and `git diff --check` (clean). No evidence file was saved for these two.
+  - ACCCLOSE review 01, dispatched by the manager, was PASS WITH NOTES. Notes 1–3 were repaired in `a1a95aa01`, and its backcheck was PASS.
 
 ## Final PR
 

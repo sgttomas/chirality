@@ -10,7 +10,7 @@ HELP_HUMAN's preceding presentation offered exactly this string as the reply tha
 - that the RV1 REVIEW merged as PR #1023 (`31a90f3e6`), after two independent reviews with nothing blocking and green CI (`AgentRuns/HELP-HUMAN-PEC-20260927-RV1-INTAKE/returns/REVIEW_PR1023_0{1,2}.md`);
 - that `D-PEC-105` corrected premises in four files, which let the owner's earlier exact-byte acceptances of them lapse, and that neither deliverable changes status (both stay `CHECKING`);
 - DEL-00-03 (peer review): AC-001 to AC-010 pass, with no CRITICAL or MAJOR finding. There are two MINOR findings proposed for revision (RF-004, "Not a Git actor" missing from the SPEC's non-goals; RF-005, an unresolvable commit citation) and five observations. CU-001 still asserts revision-1.4 totals;
-- DEL-00-01 (self-check): RF-001, MAJOR. AC-002 is only partly met, because the ADR's Context omits the "§16 open decisions are adapter-level" element and the functional-core element appears only later in the ADR. The decision itself is unaffected, and the independent reviewer read the severity as MINOR under the method's definitions. "The severity call is yours." There are also three MINOR findings proposed for revision and one observation;
+- DEL-00-01 (self-check): RF-001, MAJOR. AC-002 is only partly met, because the ADR's Context omits the "§16 open decisions are adapter-level" element and the functional-core element appears only later in the ADR. The decision itself is unaffected, and the independent reviewer read the severity as MINOR under the method's definitions, while MAJOR is the conservative reading. "The severity call is yours." There are also three MINOR findings proposed for revision and one observation;
 - three options:
   - **1**, accept every finding as-is and re-accept both deliverables' exact bytes (recommended);
   - **2**, revise the flagged findings, with the corrections recorded, not prepared, under the freeze;
@@ -57,13 +57,15 @@ DEL-00-03's custom checklist item CU-001 is retired as history and not carried f
 ## Scope and limits
 
 This decision:
-- accepts these exact bytes only. There is no ISSUED, Gate 5, lifecycle, P1 or production act, and no architecture is imposed on another loop;
+- accepts these exact bytes only. There is no ISSUED, Gate 5, lifecycle, P1 or production act. *HELP_HUMAN interpretation:* following the RV1 return's owner-decision draft (`returns/RV1A_D1_REVIEW.md`), it also imposes this architecture on no other loop. That narrows the act and adds nothing to it;
 - makes no C-05 act. The C-05 closure recorded under `D-PEC-72` relied on the earlier acceptances and stays as recorded. The optional C-05 line was not taken;
 - leaves both deliverables `CHECKING`. Nothing here prompts about CHECKING;
 - writes no `ScopeOfWork.md`, artifact, `_STATUS.md`, `v2/**`, PRD, decomposition, register, dependency, context or reference file;
 - makes no readiness, release or reliance claim.
 
-## Grant and records
+## Grant and records (HELP_HUMAN interpretation)
+
+The owner's words name no write targets. The writes below are the review method's ordinary Gate 4 recording of an exact-byte acceptance, and they are no wider than the owner's act.
 
 With this record and its register row, one WORKING_ITEMS instance may record the decision:
 - in each deliverable's `_REVIEW.md` and `Review_Findings.csv`, setting the RV1 rows' `HumanDisposition` to `ACCEPT_AS_IS` and, because the pinned method (`2f825f180`, Gate 4 step 2) sets it for a final disposition, `Status` to `RESOLVED`, keeping prior bytes;
@@ -76,3 +78,10 @@ The same closeout PR also writes:
 - the central receipt, the work-graph completion, and `docs/STATUS.md` under `D-PEC-88`.
 
 Everything publishes through the undertaking's final PR under the standing Git authorization of 2026-09-12.
+
+- **Verification:**
+  - the four hashes reproduce at the PR head;
+  - only the RV1 rows' `HumanDisposition` and `Status` change in the CSVs;
+  - the strict-register, harness and loop-receipt outputs match `origin/main`;
+  - an independent review covers the actual head.
+- **Rollback:** before merge, drop the recording commits. After merge, revert the final PR's merge commit, which restores the RV1 rows to `TBD / OPEN`, the prior `_LATEST.md` and the `MEMORY.md` bytes. This record would then stand as the owner's decision, not yet recorded.

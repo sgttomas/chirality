@@ -7,8 +7,8 @@ This immutable post-ruling snapshot records the owner's `ACCEPT_EXACT_BYTES`
 of 2026-09-27 ("ACC: option 1; accept all findings as is; re-accept DEL-00-01
 and DEL-00-03 exact bytes; retire CU-001"; ruling record `D-PEC-108`) for
 DEL-00-03 `ScopeOfWork.md` SHA-256 `0fed4ecb771c…` and `artifacts/v2/SPEC.md`
-SHA-256 `f84c067bf838…`, both reproduced exactly after their PEC `promote`
-preflights returned `ALLOW`. AC-011 is satisfied for these bytes;
+SHA-256 `f84c067bf838…`, both reproduced exactly; their PEC `promote`
+preflights, run after the record writes, returned `ALLOW`. AC-011 is satisfied for these bytes;
 RF-004..RF-010 are `ACCEPT_AS_IS / RESOLVED`, RF-001..RF-003 remain
 `REVISE / RESOLVED`, and CU-001 is retired as history. The companion
 DEL-00-01 snapshot is `REV_DEL-00-01_2026-09-27_1655` (ADR `ad6bab7ee007…`
