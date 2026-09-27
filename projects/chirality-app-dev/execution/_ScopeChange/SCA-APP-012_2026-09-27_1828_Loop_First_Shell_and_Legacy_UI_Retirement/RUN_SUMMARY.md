@@ -365,7 +365,26 @@ Integration branch on `origin/main` `974bf7da4`:
 | `30e8495ec` | Candidate validation on the integrated revision |
 | the commit carrying this file | Post-change coverage on the integrated revision, this presentation and `Handoff_State.md` |
 
-{ROOT_CHECKS}
+### Root and repository checks (at `a12759dba`, base `974bf7da4`)
+
+| Check | Result |
+|---|---|
+| G0, G1, G2, G3 (`validate_root_materialization_fence.py`, `validate_root_harness_adapter.py`, `validate_root_surface_ownership.py`, `validate_root_work_graph_dispatch.py`) | PASS |
+| G4 (`validate_instruction_tranche_manifest.py --base 974bf7da4 --head HEAD --added-manifests-only`) | Exit 0; 107 changed paths, 1 on the instruction surface, checked against the added tranche manifest `APP-RETIRE-LOOP-FIRST-UI-20260927.yaml` |
+| `validate_conflict_markers.py`, `validate_run_record_leaks.py` (base `974bf7da4`) | PASS; PASS (1 run-record file, 0 possible credentials) |
+| `build_workflow_index.py --check` | PASS (78 methods) |
+| `git diff --check` (base `974bf7da4`) | PASS |
+| `exports/chirality-app/export_public.py`, run twice | No tracked change; staging removed |
+| `validate_candidate.py --integrated` (at `c47b74fd5`) | PASS |
+| `check_group3_finalize.py` | 18/18 PASS |
+| `group3_finalize.py --check` | OK |
+
+The group-2 `build_amendment_preview.py --check` is a pre-candidate check: on
+the written candidate it reports every file as drifted from its preimage, by
+design. Its group-3 counterpart is `validate_candidate.py` check 1 (12/12
+candidate hashes).
+
+The commit that adds this table changes only `RUN_SUMMARY.md`.
 
 ## Evidence basis
 
