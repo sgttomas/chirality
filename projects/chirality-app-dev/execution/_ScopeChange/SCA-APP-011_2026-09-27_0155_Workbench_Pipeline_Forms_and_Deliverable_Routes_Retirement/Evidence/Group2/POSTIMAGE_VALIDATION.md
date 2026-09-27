@@ -15,7 +15,9 @@ Dry run with `{APPLICATION_DATE}` = `2099-01-01` (placeholder). Nothing in the t
 | `DEL-02-02_Workbench_and_Pipeline_Selection_UX` | 0 | 0 |
 | `DEL-07-02_Execution_Root_Scaffolding_from_Decomposition` | 0 | 0 |
 | `DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter` | 0 | 0 |
+| `DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection` | 0 | 0 |
 
 3. Edited paragraphs naming a retired route, form, client module or route test without an SCA-APP-011 marker: 0.
+4. Deliverable contracts and contexts swept: 108; lines naming a retired route or scaffold-route obligation with no SCA-APP-011 marker or controlling section: 0.
 
 Result: PASS

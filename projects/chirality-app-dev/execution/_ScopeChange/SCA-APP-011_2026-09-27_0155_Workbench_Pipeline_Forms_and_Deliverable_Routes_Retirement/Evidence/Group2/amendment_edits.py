@@ -3,11 +3,14 @@
 Each edit replaces one exact `old` substring (which must occur exactly once in
 the file as it stands after the earlier edits to the same file) with `new`.
 `seq` is the `ActionSeq` of `Amendment_Actions.csv`. `{APPLICATION_DATE}` is
-the only acceptance-conditional slot; it is filled with the date in the
-heading of the group-3 `DECISION.md` (YYYY-MM-DD) and nowhere else.
+the only acceptance-conditional slot. The group-3 candidate carries it
+literally; after group-3 acceptance it is filled with the date of the group-3
+decision folder `SCA-APP-011_GROUP-3_{YYYY-MM-DD}` and nowhere else.
 
-Paths are repository-relative. Nothing here is applied before checkpoint
-group 3 is accepted.
+Paths are repository-relative. The edits are written into the working tree
+only by `build_amendment_preview.py --candidate` during checkpoint-group-3
+preparation, after checkpoint group 2 is accepted (method.md, checkpoint group
+3 preparation, step 1).
 """
 
 APP = "projects/chirality-app-dev"
@@ -25,18 +28,31 @@ DEL0202 = f"{P2}/DEL-02-02_Workbench_and_Pipeline_Selection_UX"
 DEL0203 = f"{P2}/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI"
 DEL0303 = f"{P3}/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter"
 DEL0702 = f"{P7}/DEL-07-02_Execution_Root_Scaffolding_from_Decomposition"
+DEL0701 = f"{P7}/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection"
 DEL0704 = f"{P7}/DEL-07-04_Status_Transition_API_and_MCP_Tool"
 DEL0705 = f"{P7}/DEL-07-05_Dependencies_csv_v3_1_Reader_Writer_and_Linter"
 DEL0803 = f"{P8}/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch"
 DEL0903 = f"{P9}/DEL-09-03_Unit_and_Integration_Test_Expansion"
 
 ONTOLOGY = "## Deliverable Definition — Ontology\n"
-TOOLS_M_A = (
-    "The Chirality tool contracts that wrap this library (SPEC §14.2) run only on "
-    "the retained SDK path today; their exposure through the Runtime "
-    "application-tool interface is DEL-06-03's open work. On the Codex path an "
-    "agent uses the Root tools (for example `tools/scaffolding/write_status.sh` "
-    "and the dependency workflows) or edits the governed files directly."
+TOOLS_STATUS = (
+    "The Chirality tool contracts that wrap this library (SPEC §14.2) run only on the "
+    "retained SDK path today. Live exposure of the read tool `status_read` through the "
+    "Runtime application-tool interface is DEL-06-03's open work; `status_transition` "
+    "remains a retained, governed operation with no live registration, and any live "
+    "registration is governed by DEL-06-04-REQ-010. On the Codex path an actor records a "
+    "lifecycle transition with the Root tool `tools/scaffolding/write_status.sh`, or edits "
+    "`_STATUS.md` directly within the actor authority of Root `docs/SPEC.md` §3.3."
+)
+TOOLS_DEPS = (
+    "The Chirality tool contracts that wrap this library (SPEC §14.2) run only on the "
+    "retained SDK path today. Live exposure of the read tool `deps_read` through the "
+    "Runtime application-tool interface is DEL-06-03's open work; `deps_write` remains a "
+    "retained, governed operation with no live registration, and any live registration is "
+    "governed by DEL-06-04-REQ-010. On the Codex path an agent maintains dependency "
+    "registers through the Root dependency workflows (for example `dependency-extract`), or "
+    "edits them directly within the authority Root `docs/SPEC.md` §5 gives the declaring or "
+    "extracting actor."
 )
 
 EDITS = [
@@ -88,13 +104,15 @@ EDITS = [
              "Pipeline forms, this section controls; the earlier clauses remain dated history and are not deleted.\n\n"
              "- The status read and transition interface is the library: `readDeliverableStatus` and "
              "`transitionDeliverableStatus` in `frontend/src/lib/workspace/deliverable-contracts.ts`, over "
-             "`frontend/src/lib/lifecycle/`. " + TOOLS_M_A + "\n"
+             "`frontend/src/lib/lifecycle/`. " + TOOLS_STATUS + "\n"
              "- DEL-07-04-REQ-007 and DEL-07-04-REQ-008 are retired. The other requirements are unchanged.\n"
              "- Verification hooks: `frontend/src/__tests__/lib/lifecycle-status.test.ts`, "
              "`frontend/src/__tests__/lib/amendment-reopen-parity.test.ts` and "
              "`frontend/src/__tests__/lib/deliverable-contracts.test.ts`. The last carries, against the library, "
              "every status read, transition, human-ruled `CHECKING -> IN_PROGRESS` reversal and "
-             "`ISSUED -> IN_PROGRESS` reopening case formerly in the route test "
+             "`ISSUED -> IN_PROGRESS` reopening case formerly in the route test, except the cases that only "
+             "exercised request-body parsing (`INVALID_REQUEST`, including the `ruling: 42` and `amendment: 7` "
+             "table rows), which retire with the route; the route test was "
              "`frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts` (retired by SCA-APP-011), with each HTTP status "
              "expectation restated as the library's `WorkspaceValidationError` code and status. "
              "`frontend/src/__tests__/lib/chirality-mutating-mcp.test.ts` remains retained tool-contract evidence.\n\n"
@@ -128,11 +146,15 @@ EDITS = [
              "clauses remain dated history.\n\n"
              "- The dependency read and write interface is the library: `readDeliverableDependencies` and "
              "`writeDeliverableDependencies` in `frontend/src/lib/workspace/deliverable-contracts.ts`, over "
-             "`frontend/src/lib/dependencies/`. " + TOOLS_M_A + "\n"
+             "`frontend/src/lib/dependencies/`. " + TOOLS_DEPS + "\n"
              "- REQ-DEL-07-05-013 is restated to the library. Its verification is "
              "`frontend/src/__tests__/lib/deliverable-contracts.test.ts`, which carries the dependency read, write, "
-             "recorded-register, write-failure and symlink cases formerly in the route test.\n\n"
+             "recorded-register, write-failure and symlink cases formerly in the route test, except the "
+             "request-body parsing cases (`INVALID_REQUEST`), which retire with the route.\n\n"
              + ONTOLOGY)),
+    dict(id="E114", seq=2, file=f"{DEL0705}/ScopeOfWork.md",
+         old="The evidence modules are `frontend/src/lib/dependencies/` and the dependency API route;",
+         new="The evidence modules are `frontend/src/lib/dependencies/` and `frontend/src/lib/workspace/deliverable-contracts.ts` (SCA-APP-011 retired the dependency API route);"),
     # ---------------------------------------------------------------- Row 3 DEL-09-03
     dict(id="E21", seq=3, file=f"{DEL0903}/ScopeOfWork.md",
          old="> | API tests | `/api/harness/turn`, `/api/harness/interrupt`, `/api/working-root/deliverable/status`, and `/api/working-root/deliverable/dependencies` route tests where implemented. |",
@@ -227,21 +249,24 @@ EDITS = [
     # ---------------------------------------------------------------- Row 8 section 13 note
     dict(id="E44", seq=8, file=D,
          old="proposals are human acts; the organisation layer is instruction root, not working root.\n",
-         new="proposals are human acts; the organisation layer is instruction root, not working root.\n- SCA-APP-011 retires the Workbench and Pipeline forms and their tests, the deliverable status, status-transition and dependency HTTP routes with their client fetch functions, and `/api/harness/scaffold` with its client function; the Work projection stays unmounted. The lifecycle, dependency and scaffold libraries remain, and the Chirality tool contracts that wrap them await live Runtime exposure under DEL-06-03.\n"),
+         new="proposals are human acts; the organisation layer is instruction root, not working root.\n- SCA-APP-011 retires the Workbench and Pipeline forms and their tests, the deliverable status, status-transition and dependency HTTP routes with their client fetch functions, and `/api/harness/scaffold` with its client function; the Work projection stays unmounted. The lifecycle, dependency and scaffold libraries remain. Live Runtime exposure of the read tool contracts is DEL-06-03's open work; `status_transition` and `deps_write` stay retained, governed operations, and any live registration of them is governed by DEL-06-04-REQ-010.\n"),
     # ---------------------------------------------------------------- Row 9 DEC-026 and Change Log
     dict(id="E45", seq=9, file=D,
          old="and ruled Q14's organisation-layer default. Root retains login-home, event-schema, and session-record semantics (OI-008); the direct shell items are owner-seated Remaining work, not decomposition scope. |\n",
          new="and ruled Q14's organisation-layer default. Root retains login-home, event-schema, and session-record semantics (OI-008); the direct shell items are owner-seated Remaining work, not decomposition scope. |\n"
-             "| DEC-026 | 2026-09-27 | SCA-APP-011 retires the obsolete Workbench and Pipeline forms and their tests, the deliverable status, status-transition and dependency HTTP routes and their client fetch functions, and `POST /api/harness/scaffold` with its client function; it rescopes DEL-02-02 to its right-panel scope and names the lifecycle, dependency and scaffold libraries as the interfaces, without changing topology, scope-item mappings, context envelopes, lifecycle, or dependencies. | Ryan Tufts directed the retirement on 2026-09-27 and accepted SCA-APP-011 at its three checkpoints (DQ-R; set L excluded; D restate; S-c; E no change; M-a; scaffold library kept). The Chirality tool contracts remain retained SDK-path interfaces pending DEL-06-03; the Runtime-owned scaffold API is the Runtime loop's decision. |\n"),
+             "| DEC-026 | 2026-09-27 | SCA-APP-011 retires the obsolete Workbench and Pipeline forms and their tests, the deliverable status, status-transition and dependency HTTP routes and their client fetch functions, and `POST /api/harness/scaffold` with its client function; it rescopes DEL-02-02 to its right-panel scope and names the lifecycle, dependency and scaffold libraries as the interfaces, without changing topology, scope-item mappings, context envelopes or lifecycle; it writes no dependency register (dependency re-extraction is a downstream handoff). | Ryan Tufts directed the retirement on 2026-09-27; the owner's SCA-APP-011 checkpoint decisions (DQ-R; set L excluded; D restate; S-c; E no change; M-a; scaffold library kept) are recorded in its checkpoint snapshots. The Chirality tool contracts remain retained SDK-path interfaces: live exposure of the read tools is DEL-06-03's open work, and the write operations stay governed by DEL-06-04-REQ-010; the Runtime-owned scaffold API is the Runtime loop's decision. |\n"),
     dict(id="E46", seq=9, file=D,
          old="changing the Scope Ledger from 80 to 84 rows without changing package/deliverable topology, lifecycle, dependencies, estimates, schedule, implementation authority, or release authority.\n",
          new="changing the Scope Ledger from 80 to 84 rows without changing package/deliverable topology, lifecycle, dependencies, estimates, schedule, implementation authority, or release authority.\n"
-             "- 2026-09-27: SCA-APP-011 retired the Workbench and Pipeline forms, the three deliverable HTTP routes and `/api/harness/scaffold`, rescoped DEL-02-02, and named the lifecycle, dependency and scaffold libraries as the interfaces, without changing package/deliverable topology, scope-item mappings, lifecycle, dependencies, estimates, schedule, implementation authority, or release authority.\n"),
+             "- 2026-09-27: SCA-APP-011 retired the Workbench and Pipeline forms, the three deliverable HTTP routes and `/api/harness/scaffold`, rescoped DEL-02-02, and named the lifecycle, dependency and scaffold libraries as the interfaces, without changing package/deliverable topology, scope-item mappings, lifecycle, dependency registers (re-extraction is downstream), estimates, schedule, implementation authority, or release authority.\n"),
     # ---------------------------------------------------------------- Row 10 telemetry
     dict(id="E47", seq=10, file=D,
          old="| Revision | v3.2 source-governed working surface amended by SCA-APP-010 |\n| Date | 2026-09-04 |\n",
          new="| Revision | v3.2 source-governed working surface amended by SCA-APP-011 |\n| Date | {APPLICATION_DATE} |\n",
          conditional=True),
+    dict(id="E115", seq=10, file=D,
+         old="Only the affected open-issue scope counts are reduced by this retirement.",
+         new="Only the affected open-issue scope counts are reduced by the DEL-09-07 retirement."),
     # ---------------------------------------------------------------- Row 11 PRD 8.2
     dict(id="E48", seq=11, file=PRD,
          old="### 8.2 Dialogue Routing, Work/Agents Coordination, Workbench, and Pipeline\n",
@@ -261,7 +286,7 @@ EDITS = [
     # ---------------------------------------------------------------- Row 12 PRD 9.2
     dict(id="E53", seq=12, file=PRD,
          old="| `/api/working-root/deliverable/status` | GET | Read `_STATUS.md` snapshot for a deliverable. |\n| `/api/working-root/deliverable/status/transition` | POST | Apply an allowed lifecycle transition. |\n| `/api/working-root/deliverable/dependencies` | GET/PUT | Read/write `Dependencies.csv` snapshot rows. |\n\n### 9.3 SSE Event Contract",
-         new="\nSCA-APP-011 retired `/api/working-root/deliverable/status`, `/api/working-root/deliverable/status/transition` and `/api/working-root/deliverable/dependencies`. Lifecycle status read and transition and dependency read and write are served by the library in `frontend/src/lib/workspace/deliverable-contracts.ts` and by the Chirality tool contracts `status_read`, `status_transition`, `deps_read` and `deps_write` that wrap it. Those tools run only on the retained SDK path today; their exposure through the Runtime application-tool interface is DEL-06-03's open work.\n\n### 9.3 SSE Event Contract"),
+         new="\nSCA-APP-011 retired `/api/working-root/deliverable/status`, `/api/working-root/deliverable/status/transition` and `/api/working-root/deliverable/dependencies`. Lifecycle status read and transition and dependency read and write are served by the library in `frontend/src/lib/workspace/deliverable-contracts.ts` and by the Chirality tool contracts `status_read`, `status_transition`, `deps_read` and `deps_write` that wrap it. Those tools run only on the retained SDK path today: live exposure of the read tools `status_read` and `deps_read` through the Runtime application-tool interface is DEL-06-03's open work, and `status_transition` and `deps_write` remain retained, governed operations with no live registration; any live registration of them is governed by DEL-06-04-REQ-010.\n\n### 9.3 SSE Event Contract"),
     # ---------------------------------------------------------------- Row 13 PRD route preservation (with Row 28)
     dict(id="E54", seq=13, file=PRD,
          old="25. Preserve legacy routes, query parameters, aliases, matrix behavior, API/SSE contracts, provider composition, and the existing loop-first UI through a compatibility period.",
@@ -303,13 +328,16 @@ EDITS = [
     dict(id="E66", seq=14, file=PRD,
          old="legacy matrix compatibility, presentation-neutral Pipeline dispatch, Type 2 subagent governance and child records |",
          new="legacy matrix compatibility, presentation-neutral dispatch semantics, Type 2 subagent governance and child records |"),
+    dict(id="E116", seq=14, file=PRD,
+         old="- Deliverable status and dependency contract APIs.\n",
+         new="- Deliverable status and dependency contract library; SCA-APP-011 retired their HTTP routes.\n"),
     dict(id="E67", seq=14, file=PRD,
          old="**Amended:** Amended under D-GOV-43 (A2), 2026-09-12: daemon, admission, supplier, harness-port and SSE clauses revised to the application-owned Runtime service; Section 17 re-expressed; residency pilot retired\n",
          new="**Amended:** Amended under D-GOV-43 (A2), 2026-09-12: daemon, admission, supplier, harness-port and SSE clauses revised to the application-owned Runtime service; Section 17 re-expressed; residency pilot retired\n\n**Amended (SCA-APP-011):** owner direction 2026-09-27: the Workbench and Pipeline forms, the three deliverable routes and `/api/harness/scaffold` retired; Journeys 7.3 and 7.5, FR-010 to FR-013 and §9.1-9.2 revised; route-preservation clauses carry the exception\n"),
     # ---------------------------------------------------------------- Row 15 SPEC 17.2 and 17.9 (with Row 25)
     dict(id="E68", seq=15, file=SPEC,
          old="| `/api/working-root/deliverable/status` | GET | Read `_STATUS.md` snapshot. |\n| `/api/working-root/deliverable/status/transition` | POST | Apply allowed lifecycle transition. |\n| `/api/working-root/deliverable/dependencies` | GET/PUT | Read/write `Dependencies.csv`. |\n\n### 17.3 Woven Dialogue Physical UI Contract",
-         new="\nSCA-APP-011 retired `/api/working-root/deliverable/status`,\n`/api/working-root/deliverable/status/transition` and\n`/api/working-root/deliverable/dependencies`. Lifecycle status read and\ntransition and dependency read and write are served by `readDeliverableStatus`,\n`transitionDeliverableStatus`, `readDeliverableDependencies` and\n`writeDeliverableDependencies` in `frontend/src/lib/workspace/deliverable-contracts.ts`\nand by the Chirality tool contracts `status_read`, `status_transition`,\n`deps_read` and `deps_write` (§14.2) that wrap them. Those tools run only on\nthe retained SDK path today; their exposure through the Runtime\napplication-tool interface is DEL-06-03's open work.\n`/api/working-root/deliverable/content` is unaffected.\n\n### 17.3 Woven Dialogue Physical UI Contract"),
+         new="\nSCA-APP-011 retired `/api/working-root/deliverable/status`,\n`/api/working-root/deliverable/status/transition` and\n`/api/working-root/deliverable/dependencies`. Lifecycle status read and\ntransition and dependency read and write are served by `readDeliverableStatus`,\n`transitionDeliverableStatus`, `readDeliverableDependencies` and\n`writeDeliverableDependencies` in `frontend/src/lib/workspace/deliverable-contracts.ts`\nand by the Chirality tool contracts `status_read`, `status_transition`,\n`deps_read` and `deps_write` (§14.2) that wrap them. Those tools run only on\nthe retained SDK path today. Live exposure of the read tools `status_read` and\n`deps_read` through the Runtime application-tool interface is DEL-06-03's\nopen work; `status_transition` and `deps_write` remain retained, governed\noperations with no live registration, and any live registration of them is\ngoverned by DEL-06-04-REQ-010. `/api/working-root/deliverable/content` is\nunaffected.\n\n### 17.3 Woven Dialogue Physical UI Contract"),
     dict(id="E69", seq=15, file=SPEC,
          old="Browser API shapes in §17.1-17.2, the event representation",
          new="Browser API shapes in §17.1-17.2 (apart from the four routes SCA-APP-011\nretired), the event representation"),
@@ -343,6 +371,9 @@ EDITS = [
     dict(id="E78", seq=18, file=PLAN,
          old="and strict primary-dialogue/read-only-replay separation. |\n",
          new="and strict primary-dialogue/read-only-replay separation. |\n| `SCA-APP-011` | 2026-09-27 | Retires the obsolete Workbench and Pipeline forms and their tests, the deliverable status, status-transition and dependency HTTP routes with their client fetch functions, and `POST /api/harness/scaffold` with its client function; keeps the lifecycle, dependency and scaffold libraries; rescopes DEL-02-02 without retiring it. |\n"),
+    dict(id="E117", seq=18, file=PLAN,
+         old="6. Re-host Workbench, Pipeline, toolkit, working-root, credential, runtime,\n",
+         new="6. Re-host Workbench, Pipeline (both later retired by SCA-APP-011), toolkit,\n   working-root, credential, runtime,\n"),
     dict(id="E79", seq=18, file=PLAN,
          old="**Amended:** Amended under D-GOV-43 (A2), 2026-09-12: the D-APP-73 shared-runtime order and SCA-APP-003 effects are read with the application-owned Runtime service; residency steps retired\n",
          new="**Amended:** Amended under D-GOV-43 (A2), 2026-09-12: the D-APP-73 shared-runtime order and SCA-APP-003 effects are read with the application-owned Runtime service; residency steps retired\n**Amended (SCA-APP-011):** owner direction 2026-09-27: baseline, compatibility and §13 entries record the retired forms and routes\n"),
@@ -452,10 +483,17 @@ EDITS = [
              "scaffold API (`/v1/projects/{id}/scaffold`, `ProjectScaffoldPort`) is Runtime-owned; the Runtime loop "
              "receives an informational notice with this amendment and decides on it.\n"
              "- Follow-up (recorded, not scheduled): any later App-side scaffold entry, such as a Runtime "
-             "application tool under DEL-06-03 or a composed `ProjectScaffoldPort`, needs its own amendment and "
+             "application tool (a read-only preview under DEL-06-03; any write-capable scaffold registration under "
+             "DEL-06-04-REQ-010) or a composed `ProjectScaffoldPort`, needs its own amendment and "
              "should default to `<project>/execution`, as `project-setup` does. The retained library accepts any "
              "execution root contained in the project.\n\n"
              + ONTOLOGY)),
+    dict(id="E118", seq=21, file=f"{DEL0702}/ScopeOfWork.md",
+         old="Verification: `frontend/src/__tests__/lib/harness-scaffold.test.ts` and `frontend/src/__tests__/api/harness/scaffold-route.test.ts` against the actual application-owned Runtime composition.",
+         new="Verification: `frontend/src/__tests__/lib/harness-scaffold.test.ts`; the route test `scaffold-route.test.ts` is retired with the route (SCA-APP-011)."),
+    dict(id="E119", seq=21, file=f"{DEL0702}/ScopeOfWork.md",
+         old="The live Runtime composition does not currently supply ProjectScaffoldPort, so route-level 501 behavior remains a delivery gap; retained service tests do not establish live creation.",
+         new="The live Runtime composition does not supply ProjectScaffoldPort. SCA-APP-011 retired the App route that returned 501, so no App route-level delivery gap remains; retained service tests do not establish live creation."),
     # ---------------------------------------------------------------- Row 22 DEL-03-03 (S-c)
     dict(id="E103", seq=22, file=D,
          old="| Keep `/api/harness/*` shapes and browser SSE event names stable while runtime policy moves behind services. |",
@@ -468,10 +506,33 @@ EDITS = [
          new=(
              "## SCA-APP-011 Current Contract (Controlling)\n\n"
              "SCA-APP-011 (owner direction 2026-09-27; DEC-026) retires `POST /api/harness/scaffold` and its client "
-             "function `scaffoldHarnessExecutionRoot`. It is no longer a supported route, and the route compatibility "
-             "obligations in this document do not cover it. Every other `/api/harness/*` route and the browser SSE "
-             "event names are unchanged.\n\n"
+             "function `scaffoldHarnessExecutionRoot`. Where any earlier clause in this document names that route, its "
+             "route test or its scaffold composition, this section controls; the earlier clauses remain dated history "
+             "and are not deleted.\n\n"
+             "- The route is no longer supported, and the route compatibility obligations in this document do not "
+             "cover it. Every other `/api/harness/*` route and the browser SSE event names are unchanged.\n"
+             "- The P-15 scaffold-composition residual (CLM-005), the open scaffold composition gap (CLM-008), the "
+             "CLM-017 step to identify the uncomposed scaffold operation, the CLM-020 record of unsupported scaffold "
+             "composition and the scaffold-composition delivery task in CLM-027 are closed by removal, consistent "
+             "with DEL-07-02's APP-R058 closure.\n"
+             "- `RouteAdapterTestIndex.md` drops its `scaffold-route.test.ts` and `/api/harness/scaffold` entries in "
+             "the SCA-APP-011 code change.\n\n"
              + ONTOLOGY)),
+    dict(id="E120", seq=22, file=f"{DEL0303}/ScopeOfWork.md",
+         old="the live scaffold route's missing composition remains a P-15 residual,",
+         new="the live scaffold route's missing composition was a P-15 residual, closed by removal under SCA-APP-011,"),
+    dict(id="E121", seq=22, file=f"{DEL0303}/ScopeOfWork.md",
+         old="Exact fixture capture and the scaffold composition gap remain open delivery tasks.",
+         new="Exact fixture capture remains an open delivery task; the scaffold composition gap is closed by removal (SCA-APP-011)."),
+    dict(id="E122", seq=22, file=f"{DEL0303}/ScopeOfWork.md",
+         old="6. Update the route-to-fixture index and UI-event docs; identify the still-uncomposed scaffold operation explicitly.",
+         new="6. Update the route-to-fixture index and UI-event docs; the scaffold route is retired (SCA-APP-011), so no scaffold operation is indexed."),
+    dict(id="E123", seq=22, file=f"{DEL0303}/ScopeOfWork.md",
+         old="Record unsupported scaffold composition separately.",
+         new="The scaffold route is retired (SCA-APP-011); no scaffold composition record is required."),
+    dict(id="E124", seq=22, file=f"{DEL0303}/ScopeOfWork.md",
+         old="Current route/SSE fixture capture, redaction verification and scaffold composition remain delivery tasks;",
+         new="Current route/SSE fixture capture and redaction verification remain delivery tasks (scaffold composition is closed by removal under SCA-APP-011);"),
     # ---------------------------------------------------------------- Row 23 PRD 9.1 (S-c)
     dict(id="E106", seq=23, file=PRD,
          old="| `/api/harness/scaffold` | POST | Scaffold execution root from decomposition markdown. |\n\nCompatibility requirement:\n\n- Existing `/api/harness/*` route shapes remain stable; under D-GOV-43",
@@ -481,8 +542,8 @@ EDITS = [
          old="4. App stores the selected root as local UI state and uses it for file tree, scan, chat session, scaffold, and contract APIs.",
          new="4. App stores the selected root as local UI state and uses it for file tree, scan, chat session, and document views."),
     dict(id="E108", seq=24, file=PRD,
-         old="1. User selects a working root.\n2. User opens PIPELINE.\n3. User enters a decomposition markdown path and coordination mode.\n4. App calls `POST /api/harness/scaffold`.\n5. Runtime parses package/deliverable tables, creates tool roots, copies decomposition, writes `INIT.md`, writes `_Coordination/_COORDINATION.md`, creates packages and deliverable folders, and returns validation summaries.\n",
-         new="1. User selects a working root.\n2. User asks an agent in the chat to run the `project-setup` workflow (for example WORKING_ITEMS, `INITIAL` mode) with a decomposition markdown path and coordination mode.\n3. The agent scaffolds into `<project>/execution` with the packaged Root scaffolding tools (`scaffold_tool_root.sh`, `scaffold_package.sh`, `scaffold_deliverable.sh`, `write_status.sh`) under the user's approval and sandbox policy, and stops at the workflow's human scaffold gate.\n4. The workflow creates tool roots, copies the decomposition, writes `INIT.md` and `_Coordination/_COORDINATION.md`, creates package and deliverable folders, and reports validation summaries.\n\nSCA-APP-011 retired the App HTTP entry `POST /api/harness/scaffold` and its Pipeline form. The App scaffold library (`frontend/src/lib/harness/scaffold.ts`) remains, without an App UI or HTTP entry.\n"),
+         old="1. User selects a working root.\n2. User opens PIPELINE.\n3. User enters a decomposition markdown path and coordination mode.\n4. App calls `POST /api/harness/scaffold`.\n5. Runtime parses package/deliverable tables, creates tool roots, copies decomposition, writes `INIT.md`, writes `_Coordination/_COORDINATION.md`, creates packages and deliverable folders, and returns validation summaries.\n\nAcceptance:\n\n- Scaffolding is idempotent for existing directories/files.\n- Failures are fail-fast and include stage, target path, and created paths for recovery.\n- PREPARATION compatibility is reported before the user proceeds.\n",
+         new="1. User selects a working root.\n2. User asks an agent in the chat to run the `project-setup` workflow in `INITIAL` mode (for example as WORKING_ITEMS), naming the decomposition document.\n3. Human gates come first. The agent ingests the decomposition and asks the human to confirm it is the one to use. It then asks the human to confirm the coordination representation and the dependency tracking mode; the choices are recorded in the human-owned `_Coordination/_COORDINATION.md` (the agent bootstraps only the `_Coordination` tool root to hold it).\n4. Only after those confirmations does the agent scaffold into `<project>/execution`, under the user's approval and sandbox policy. It ensures the `_Coordination`, `_Decomposition` and `_Sources` tool roots with `scaffold_tool_root.sh`, creates package and deliverable folders with `scaffold_package.sh` and `scaffold_deliverable.sh`, writes each new `_STATUS.md` stub as `OPEN`, and validates each new folder with `check_min_viable_fileset.sh`.\n5. The workflow reports the created packages and deliverables at its scaffolding gate before any document drafting.\n\nSCA-APP-011 retired the App HTTP entry `POST /api/harness/scaffold` and its Pipeline form. The App scaffold library (`frontend/src/lib/harness/scaffold.ts`) remains, without an App UI or HTTP entry.\n\nAcceptance:\n\n- The human confirms the decomposition, the coordination representation and the dependency tracking mode before any package or deliverable folder is created.\n- Scaffolding keeps existing work: existing files are never overwritten, and only files created by that run are populated.\n- Each new deliverable folder passes the minimum viable fileset check, and created paths are reported for review and recovery.\n"),
     dict(id="E109", seq=24, file=PRD,
          old="2. A decomposition markdown can be used to scaffold a SPEC-conformant execution root without manual folder creation.",
          new="2. A decomposition markdown can be used to scaffold a SPEC-conformant execution root without manual folder creation, through the `project-setup` workflow and its packaged scaffolding tools (Journey 7.3)."),
@@ -502,6 +563,19 @@ EDITS = [
          new="- Route shapes and SSE event names are unchanged (SCA-APP-011 later retired `/api/harness/scaffold` and the three deliverable routes).\n"),
     # Row 27 (hard constraint, scaffold) and Row 28 (PRD route preservation, scaffold) are carried by
     # E43 and E54-E57, whose text names `/api/harness/scaffold` together with the three deliverable routes.
+]
+
+EDITS += [
+    # ---------------------------------------------------------------- Row 29 DEL-07-01 (group-2 addition)
+    dict(id="E125", seq=29, file=f"{DEL0701}/ScopeOfWork.md",
+         old="reuse the same normalized root for tree, scan, chat session, scaffold, and contract APIs.",
+         new="reuse the same normalized root for tree, scan, chat session, and document views (SCA-APP-011 retired the scaffold and deliverable contract routes)."),
+    dict(id="E126", seq=29, file=f"{DEL0701}/ScopeOfWork.md",
+         old="for file tree, scope scan, chat session, scaffold, and contract APIs.",
+         new="for file tree, scope scan, chat session, and document views (SCA-APP-011 retired the scaffold and deliverable contract routes)."),
+    dict(id="E127", seq=29, file=f"{DEL0701}/ScopeOfWork.md",
+         old="before file tree, scan, chat session, scaffold, and contract APIs consume the root.",
+         new="before file tree, scan, chat session, and document views consume the root (SCA-APP-011 retired the scaffold and deliverable contract routes)."),
 ]
 
 # Register rows whose text is carried by an edit listed under another row.

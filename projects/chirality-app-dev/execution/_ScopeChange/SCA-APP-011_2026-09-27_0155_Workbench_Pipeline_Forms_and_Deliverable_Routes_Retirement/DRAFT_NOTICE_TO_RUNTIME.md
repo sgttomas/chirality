@@ -4,7 +4,7 @@
 of SCA-APP-011 is accepted. At that point it is copied, without the draft
 header, to `projects/chirality-runtime/execution/_Coordination/NOTICE_{APPLICATION_DATE}_APP_SCA-APP-011_SCAFFOLD_API.md`.
 Runtime keeps its inbound notices at `execution/_Coordination/NOTICE_*.md`.
-**From:** App loop, SCA-APP-011 (owner Ryan Tufts, direction and acceptance 2026-09-27)
+**From:** App loop, SCA-APP-011 (owner Ryan Tufts; direction 2026-09-27; sent only once checkpoint group 3 is accepted, and the sent copy cites the group-3 decision snapshot)
 **Kind:** informational. It asks for no action and grants nothing.
 
 ## What changed in the App
@@ -36,9 +36,13 @@ scaffolded through the Root `project-setup` workflow and the packaged
   (`packages/contracts/src/harness/types.ts`) are no longer used by the App.
 - The `scaffold_preview` tool descriptor is unchanged. The App's retained
   `scaffold_preview` implementation is unchanged.
-- The App still uses the `deps_read`, `status_transition` and `deps_write`
-  descriptors. SCA-APP-011 also retires the App's three deliverable HTTP
-  routes, which Runtime never called.
+- The `status_read`, `deps_read`, `status_transition` and `deps_write`
+  descriptors are unchanged. The App uses them only on its retained SDK path
+  (`frontend/src/lib/harness/mcp/read-tools.ts`); none is registered on the
+  live Codex path. Live exposure of the read tools is the App's DEL-06-03 open
+  work, and any live registration of `status_transition` or `deps_write` is
+  governed by the App's DEL-06-04-REQ-010. SCA-APP-011 also retires the App's
+  three deliverable HTTP routes, which Runtime never called.
 
 ## Decision left to the Runtime loop
 

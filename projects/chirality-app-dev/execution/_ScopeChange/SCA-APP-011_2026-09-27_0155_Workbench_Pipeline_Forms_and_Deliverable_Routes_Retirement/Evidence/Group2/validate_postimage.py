@@ -9,7 +9,12 @@ a temporary copy of the affected deliverable folders and documents, with
   2. every edited ScopeOfWork.md still validates under
      tools/scope_of_work/validate_scope_of_work.py;
   3. no edit leaves the retired route or form paths in a sentence that does not
-     also carry an SCA-APP-011 marker (on the edited lines only).
+     also carry an SCA-APP-011 marker (on the edited lines only);
+  4. across every deliverable ScopeOfWork.md and _CONTEXT.md under
+     PKG-*/1_Working (postimage where edited, current bytes otherwise), no line
+     names a retired route, client function, route test or scaffold-route
+     obligation unless the line carries an SCA-APP-011 marker or the file
+     carries an SCA-APP-011 section that states it controls.
 
 It writes Evidence/Group2/POSTIMAGE_VALIDATION.md and never modifies the tree.
 """
@@ -21,6 +26,7 @@ import re
 import shutil
 import subprocess
 import sys
+import glob
 import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -98,6 +104,28 @@ def main() -> int:
     for u in unmarked:
         lines.append(f"   - {u}\n")
     failures += [f"unmarked retired reference {u}" for u in unmarked]
+
+    # 4. repository-wide sweep of deliverable contracts and contexts
+    obligation = re.compile(r"/api/working-root/deliverable/(status|dependencies)|/api/harness/scaffold|"
+                            r"scaffoldHarnessExecutionRoot|deliverable-api\.ts|scaffold-route\.test|"
+                            r"deliverable-contracts\.test\.ts|scaffold, and contract APIs|"
+                            r"dependency API route|status API route|scaffold (operation|composition)")
+    controls = re.compile(r"SCA-APP-011[^\n]*\n(?:[^\n]*\n){0,12}?[^\n]*this section controls", re.I)
+    swept, uncovered = 0, []
+    pattern = "projects/chirality-app-dev/execution/PKG-*/1_Working/DEL-*/"
+    for path in sorted(glob.glob(pattern + "ScopeOfWork.md") + glob.glob(pattern + "_CONTEXT.md")):
+        swept += 1
+        text = results[path]["post"] if path in results else open(path, encoding="utf-8").read()
+        if controls.search(text) or "this section controls" in text and "SCA-APP-011" in text:
+            continue
+        for n, ln in enumerate(text.split("\n"), 1):
+            if obligation.search(ln) and "SCA-APP-011" not in ln:
+                uncovered.append(f"{path}:{n}: {ln.strip()[:140]}")
+    lines.append(f"4. Deliverable contracts and contexts swept: {swept}; lines naming a retired route or "
+                 f"scaffold-route obligation with no SCA-APP-011 marker or controlling section: {len(uncovered)}.\n")
+    for u in uncovered:
+        lines.append(f"   - {u}\n")
+    failures += [f"uncovered retired obligation {u}" for u in uncovered]
 
     lines.append(f"\nResult: {'PASS' if not failures else 'FAIL'}\n")
     for f in failures:
