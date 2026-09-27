@@ -1,0 +1,479 @@
+{
+  "item_count": 19,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-04-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 325,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5f7bd434694c8a87bba512ba74a8b8f2dee4f5e2a0ab10e5a50c234e432b196f"
+      },
+      "text": "Over a fixture pair in which PEC derivations and harness output agree, the tool reports agreement; over fixture pairs seeded with a difference of each supported kind, it reports a discrepancy for each; and inspection confirms no pair is reported as agreeing that the tool did not actually compare.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-03-04-VER-001",
+          "source_line": 361,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the comparison against a fixture pair constructed to agree and against fixture pairs seeded with a difference of each supported kind; assert agreement on the former and a reported discrepancy on each of the latter; instrument the comparison to record which pairs were actually compared and assert no agreement is reported for an uncompared pair."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-04-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 326,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5f7bd434694c8a87bba512ba74a8b8f2dee4f5e2a0ab10e5a50c234e432b196f"
+      },
+      "text": "Every result carries the examined-through SHA of both compared sides; a fixture pair whose two sides are drawn from different source states is reported as an unequal-basis condition and is reported as neither agreement nor discrepancy.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-03-04-VER-002",
+          "source_line": 362,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "State-binding exercise: run the comparison over a matched-SHA fixture pair and over a deliberately mismatched-SHA pair; assert the examined SHA of both sides appears on every result, and that the mismatched pair yields an unequal-basis condition rather than agreement or a discrepancy."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-04-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 327,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5f7bd434694c8a87bba512ba74a8b8f2dee4f5e2a0ab10e5a50c234e432b196f"
+      },
+      "text": "Every discrepancy appears as a DriftFinding instance carrying the compared PEC derivation, the compared harness output, the examined SHA, and the equivalence rule; and this deliverable's source contains no record-tier entity type definition and no field added to the upstream type.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-03-04-VER-003",
+          "source_line": 363,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Finding-shape inspection: for each seeded discrepancy, inspect the emitted DriftFinding for the compared PEC derivation, the compared harness output, the examined SHA, and the equivalence rule; and search this deliverable's source for record-tier entity type definitions and for fields added to the upstream type, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-04-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 328,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5f7bd434694c8a87bba512ba74a8b8f2dee4f5e2a0ab10e5a50c234e432b196f"
+      },
+      "text": "Every DriftFinding carries at least one live-source citation resolvable to a file path, anchor, and/or SHA; no finding's outcome changes when the two sides are transposed; and inspection of the tool's outputs finds no adoption, ruling, disposition, or closure record for any finding.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-03-04-VER-004",
+          "source_line": 364,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Resolution-basis exercise: assert every emitted finding carries a resolvable live-source citation; transpose the two sides of each fixture pair and assert the finding set is unchanged; and inspect the tool's outputs and write surface for any adoption, ruling, disposition, or closure record, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-04-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 329,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5f7bd434694c8a87bba512ba74a8b8f2dee4f5e2a0ab10e5a50c234e432b196f"
+      },
+      "text": "A full run over a fixture corpus leaves the source tree, the governed files, and the harness's own files, configuration, and `_harness_generated/` area byte-identical; no write, create, or delete call in this deliverable's source targets a source, governed, register, or lifecycle file or any harness path; and no cache is created, enabled, or configured for the harness.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-03-04-VER-005",
+          "source_line": 365,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Read-only boundary exercise: hash the fixture source tree, the governed files, and the harness's own files, configuration, and `_harness_generated/` area before and after a full run and assert byte-identity; capture every filesystem write performed during the run and assert each resolves to the store or a declared output; inspect the source for any harness configuration, cache creation, or harness-directing call, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-04-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 330,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5f7bd434694c8a87bba512ba74a8b8f2dee4f5e2a0ab10e5a50c234e432b196f"
+      },
+      "text": "For a content-dense fixture pair carrying long prose bodies, quoted authored text, and diff-shaped differences, inspection field by field of every DriftFinding and every result finds no file content and no diff content — only paths, counts, identifiers, states, SHAs, and hashes.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-03-04-VER-006",
+          "source_line": 366,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Content-minimal inspection: run the comparison over a content-dense fixture pair and dump every field of every DriftFinding and every result, asserting field by field that none carries file or diff content."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-04-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 331,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5f7bd434694c8a87bba512ba74a8b8f2dee4f5e2a0ab10e5a50c234e432b196f"
+      },
+      "text": "The comparison executes on every reconcile and on every release candidate in a fixture sequence, each execution bound to the exact state it compared, and no earlier parity-clean result is presented as evidence for a later state; disabling or removing the standing comparison is a visible configuration change reported as a missing comparison rather than a silent no-op.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-03-04-VER-007",
+          "source_line": 367,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Standing-registration inspection: run the comparison across a fixture sequence of reconciles and at least one release candidate; assert an execution exists for each state, that each execution is bound to the state it compared, and that no result is reused across states; then, in a scratch state, disable and remove the registration and assert the missing comparison is reported rather than silently skipped."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-04-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 332,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5f7bd434694c8a87bba512ba74a8b8f2dee4f5e2a0ab10e5a50c234e432b196f"
+      },
+      "text": "On a release candidate carrying an outstanding discrepancy, and on one against which the comparison was withheld or could not complete, the mechanism returns an explicit blocking verdict. Whether that verdict binds the release is CON-001 and AC-016, not this criterion; and no output of the mechanism records or accepts an explanation of a discrepancy.",
+      "verification": [
+        {
+          "id": "VER-008",
+          "kind": "VER",
+          "qualified_id": "DEL-03-04-VER-008",
+          "source_line": 368,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Blocking-verdict demonstration: submit a release candidate carrying an outstanding discrepancy, one against which the comparison was withheld, and one on which the comparison could not complete; assert an explicit blocking verdict in every case; and inspect the outputs for any record that accepts or stores an explanation of a discrepancy, asserting none. The method demonstrates the mechanism's verdict, not the release process's obligation to honour it (CON-001)."
+        }
+      ]
+    },
+    {
+      "id": "AC-009",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-04-AC-009",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 333,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5f7bd434694c8a87bba512ba74a8b8f2dee4f5e2a0ab10e5a50c234e432b196f"
+      },
+      "text": "For fixture cases in which a derivation is outside the declared comparable set, a harness output is unavailable, a comparison cannot be performed, and the upstream rebuild reported its own coverage limitations, the result names the affected derivation and the reason in each case, and no such run is presented as parity-clean.",
+      "verification": [
+        {
+          "id": "VER-009",
+          "kind": "VER",
+          "qualified_id": "DEL-03-04-VER-009",
+          "source_line": 369,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Limitation carry-through: run the comparison over fixture cases in which a derivation is outside the declared comparable set, a harness output is unavailable, the comparison cannot be performed, and the upstream rebuild's result carries its own stated coverage limitations; assert per case that the affected derivation and the reason are named on the result and that no such run reports parity-clean."
+        }
+      ]
+    },
+    {
+      "id": "AC-010",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-04-AC-010",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 334,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5f7bd434694c8a87bba512ba74a8b8f2dee4f5e2a0ab10e5a50c234e432b196f"
+      },
+      "text": "Every verdict and every finding produced over the fixture set carries its rule, its equivalence rule, and its contributing cited sources, and each cited source resolves.",
+      "verification": [
+        {
+          "id": "VER-010",
+          "kind": "VER",
+          "qualified_id": "DEL-03-04-VER-010",
+          "source_line": 370,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Explainability inspection: for every verdict and finding produced over the fixture set, assert the presence of its rule, its equivalence rule, and its contributing cited sources, and resolve each citation to its named source."
+        }
+      ]
+    },
+    {
+      "id": "AC-011",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-04-AC-011",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 335,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5f7bd434694c8a87bba512ba74a8b8f2dee4f5e2a0ab10e5a50c234e432b196f"
+      },
+      "text": "Two runs over the same unchanged PEC derivations and the same unchanged harness output produce identical verdicts and identical finding sets.",
+      "verification": [
+        {
+          "id": "VER-011",
+          "kind": "VER",
+          "qualified_id": "DEL-03-04-VER-011",
+          "source_line": 371,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Determinism: run the comparison twice over the same unchanged PEC derivations and the same unchanged harness output and assert identical verdicts and identical finding sets."
+        }
+      ]
+    },
+    {
+      "id": "AC-012",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-04-AC-012",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 336,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5f7bd434694c8a87bba512ba74a8b8f2dee4f5e2a0ab10e5a50c234e432b196f"
+      },
+      "text": "The declared comparison record enumerates the comparable-surface set and the equivalence rule; the set actually compared during a run equals the declared set; a derivation outside it is reported as outside the comparison rather than as agreeing; and no comparison absent from the record is performed.",
+      "verification": [
+        {
+          "id": "VER-012",
+          "kind": "VER",
+          "qualified_id": "DEL-03-04-VER-012",
+          "source_line": 372,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Declared-comparison exercise: read the declared comparison record (the component of OUT-001 required by REQ-012), compare it against the set actually compared during a run and assert set equality; point the tool at a derivation outside the declared set and assert it is reported as outside the comparison; and attempt an undeclared comparison and assert it is refused."
+        }
+      ]
+    },
+    {
+      "id": "AC-013",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-04-AC-013",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 337,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5f7bd434694c8a87bba512ba74a8b8f2dee4f5e2a0ab10e5a50c234e432b196f"
+      },
+      "text": "This deliverable's source and call graph contain no reconcile path, no successive-snapshot drift-classification path, no metric or threshold computation presented as the §11 parity metric, no harness build or configuration path, no stamping or citation-attachment path onto an orientation response, and no kill-test, locality-enforcement, or no-ruling-write execution; and no test in this deliverable asserts a criterion belonging to any of them.",
+      "verification": [
+        {
+          "id": "VER-013",
+          "kind": "VER",
+          "qualified_id": "DEL-03-04-VER-013",
+          "source_line": 373,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Boundary inspection: inspect the module's call graph and source for reconcile, successive-snapshot drift-classification, metric-computation, harness-build or harness-configuration, stamping or citation-attachment, kill-test, locality-enforcement, and no-ruling-write paths, asserting each absent; review this deliverable's tests for any criterion belonging to another deliverable, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-014",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-04-AC-014",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 338,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5f7bd434694c8a87bba512ba74a8b8f2dee4f5e2a0ab10e5a50c234e432b196f"
+      },
+      "text": "The tool and its tests add no third-party runtime dependency to the service core and make no external network call, leaving the `DEL-01-05` zero-dependency and locality assertions intact; and with the harness absent, refusing, or erroring, the run reports the limitation explicitly, blocks no reconcile, and blocks no governed act.",
+      "verification": [
+        {
+          "id": "VER-014",
+          "kind": "VER",
+          "qualified_id": "DEL-03-04-VER-014",
+          "source_line": 374,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Dependency, egress, and absence exercise: inspect the `PKG-03` dependency manifest and this module's import graph for third-party runtime dependencies and external network calls, asserting none; run the comparison with the harness absent, with it refusing (operational refusal), and with it erroring, asserting per case an explicit reported limitation, no parity-clean verdict, and an unblocked reconcile; and re-run the `DEL-01-05` zero-dependency and locality enforcement once that deliverable is available, without discharging it here."
+        }
+      ]
+    },
+    {
+      "id": "AC-015",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-03-04-AC-015",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 339,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5f7bd434694c8a87bba512ba74a8b8f2dee4f5e2a0ab10e5a50c234e432b196f"
+      },
+      "text": "The parity test suite implements VER-001 through VER-014 and VER-016, executes in the `PKG-03` test run, passes, and introduces no acceptance criterion absent from this contract.",
+      "verification": [
+        {
+          "id": "VER-015",
+          "kind": "VER",
+          "qualified_id": "DEL-03-04-VER-015",
+          "source_line": 375,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the `PKG-03` test suite and confirm that each of VER-001 through VER-014 and VER-016 has a corresponding executing automated test and that no test asserts a criterion absent from this contract."
+        }
+      ]
+    },
+    {
+      "id": "AC-016",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-04-AC-016",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 340,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5f7bd434694c8a87bba512ba74a8b8f2dee4f5e2a0ab10e5a50c234e432b196f"
+      },
+      "text": "An accountable owner confirms, or declines to confirm, that the parity gate delivered under this contract carries release-gating authority — that its blocking verdict blocks a release candidate — given that `C-08`'s standing-node classification carries \"owner confirmation requested\" in its own `Notes` and was accepted at `D-PEC-62` §1 item 4 as a recorded-but-unresolved, non-gating annotation, and given that `PRD.md` §12's `P1` exit test names parity without conferring authority on this mechanism (CLM-005, CLM-008, CON-001). The confirmation concerns the reach of this mechanism's verdict beyond the one consequence PRD v2.4 §12 already fixes — that a release advertises operational reliance only after the reliance-advertisement gate, composed by `DEL-10-13`, proves parity clean or explained (CLM-017) — and neither a confirmation nor a decline alters that gate. A decline leaves the mechanism's verdicts advisory outside that gate and invalidates no other criterion in this contract; the standing framing of the contract stands either way, because it is what the register says and how the contract is written rather than a claim about the gate's force.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "accountable owner confirmation or declination that the parity gate carries release-gating authority beyond the PRD v2.4 §12 reliance-advertisement gate, given C-08's \"owner confirmation requested\" note, D-PEC-62 §1 item 4's acceptance of the standing-node set as a recorded-but-unresolved non-gating annotation, the PRD §12 P1 exit test's silence on this mechanism's authority, and the §12 gate's statement that it does not change the phase exit tests"
+        }
+      ]
+    },
+    {
+      "id": "AC-017",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-04-AC-017",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 341,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5f7bd434694c8a87bba512ba74a8b8f2dee4f5e2a0ab10e5a50c234e432b196f"
+      },
+      "text": "An accountable owner confirms that nothing delivered under this contract defines, produces, or adjudicates an \"explanation\" of a parity discrepancy, a DriftFinding disposition, or a closure of a finding, that resolution is carried only as a live-source citation, and that the tool neither directs the practitioner harness nor opens its cache half; and states whether the closure question — who resolves a surfaced discrepancy, and what record that resolution takes — is owed elsewhere (CON-002, CON-003, CON-005).",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "accountable owner confirmation that no explanation, DriftFinding disposition, or closure of a parity discrepancy is defined, produced, or adjudicated here, that resolution is carried only as a live-source citation, and that the harness is neither directed nor its cache half opened — and a statement of where the closure question is owed"
+        }
+      ]
+    },
+    {
+      "id": "AC-018",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-04-AC-018",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 342,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5f7bd434694c8a87bba512ba74a8b8f2dee4f5e2a0ab10e5a50c234e432b196f"
+      },
+      "text": "This deliverable's source and call graph contain no path that composes, evaluates, or records a reliance-advertisement gate result, no reliance-envelope declaration onto an orientation response, and no read of a `_harness/adapter.yaml` manifest or comparison of a declared census population with the harness `status_glob`; and no test in this deliverable asserts a criterion belonging to `DEL-10-13`, `DEL-04-03`, or `DEL-02-07`.",
+      "verification": [
+        {
+          "id": "VER-016",
+          "kind": "VER",
+          "qualified_id": "DEL-03-04-VER-016",
+          "source_line": 376,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Boundary inspection for the neighbours SCA-005 and SCA-006 added: inspect the module's call graph and source for any gate-composition, gate-evaluation, or gate-record path, any reliance-envelope declaration onto an orientation response, and any read of a `_harness/adapter.yaml` manifest or comparison of a declared census population with the harness `status_glob`, asserting each absent; review this deliverable's tests for any criterion belonging to `DEL-10-13`, `DEL-04-03`, or `DEL-02-07`, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-019",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-04-AC-019",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 343,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5f7bd434694c8a87bba512ba74a8b8f2dee4f5e2a0ab10e5a50c234e432b196f"
+      },
+      "text": "The review gate confirms this contract's traceability to `SOW-020` and `OBJ-006` at the register-direct, pre-`SCA-002` strength stated in the objective warrant and no more strongly; confirms that no reconcile, drift-classification, metric, gate-composition, reliance-envelope, parity-peer manifest, harness or schema scope has been absorbed; and confirms that CON-001 through CON-007 remain recorded rather than resolved by production.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "review gate confirms traceability to SOW-020 and OBJ-006 at the register-direct, pre-SCA-002 strength and no more strongly, confirms no reconcile, drift-classification, metric, gate-composition, reliance-envelope, parity-peer manifest, harness or schema scope absorption, and confirms CON-001 through CON-007 remain open records"
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-03-04",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-03",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "5f7bd434694c8a87bba512ba74a8b8f2dee4f5e2a0ab10e5a50c234e432b196f"
+  },
+  "tool_version": "1"
+}

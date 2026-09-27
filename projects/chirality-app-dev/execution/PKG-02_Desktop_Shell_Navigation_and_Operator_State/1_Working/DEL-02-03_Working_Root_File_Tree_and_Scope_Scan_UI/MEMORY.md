@@ -22,3 +22,7 @@ The right Files/document/control composition now follows the approved shell dire
 Fresh full source review and final source checks are recorded in `_run_records/SHELL_CONVERGENCE_V5_2026-09-06.md`. Actual premerge 503/CI obligation, method-specific native residuals and Walkthrough gaps remain explicit. No Remaining, dependency, lifecycle or owner acceptance change; read live `_STATUS.md` before any successor work.
 
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
+
+## Runs
+
+- 2026-09-27 — `APP-REMOVE-LEGACY-FORMS-2026-09-27` (SCA-APP-011 code change; checkpoint-group-3 candidate, lands with the SCA-APP-011 scope text after group-3 acceptance): removes the working-root status, transition and dependency routes, which SCA-APP-011 drops from DEL-02-03's text. The file tree, scope scan and the content route used by the document viewer are unchanged. No lifecycle change. Evidence: [receipt](../../../_Coordination/AgentRuns/APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md); amendment `execution/_ScopeChange/SCA-APP-011_2026-09-27_0155_Workbench_Pipeline_Forms_and_Deliverable_Routes_Retirement/`.

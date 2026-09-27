@@ -1,0 +1,2 @@
+$ python3 tools/scope_of_work/derive_review_checklist.py --output projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/evidence/post/checklist_rerun_DEL-08-01.json projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access
+exit=0

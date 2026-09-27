@@ -1,0 +1,712 @@
+{
+ "deliverable": "DEL-08-04",
+ "claims": [
+  {
+   "id": "S01",
+   "commit": "189f205ff",
+   "kind": "sha256",
+   "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "value": "9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1",
+   "candidate_text": "`9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1`"
+  },
+  {
+   "id": "S02",
+   "commit": "125cfacc1",
+   "kind": "sha256",
+   "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "value": "9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1",
+   "candidate_text": "`9374c21fb87b02e5f842af9407caf65690d73f3067f86ce6c7dba0a3a7908eb1`"
+  },
+  {
+   "id": "S03",
+   "commit": "189f205ff",
+   "kind": "sha256",
+   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "value": "94ee5d182ae99092324505a72bf2f3b0581f85c0bae6c693214cfef709179805",
+   "candidate_text": "`94ee5d182ae99092324505a72bf2f3b0581f85c0bae6c693214cfef709179805`"
+  },
+  {
+   "id": "S04",
+   "commit": "125cfacc1",
+   "kind": "sha256",
+   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "value": "94ee5d182ae99092324505a72bf2f3b0581f85c0bae6c693214cfef709179805",
+   "candidate_text": "`94ee5d182ae99092324505a72bf2f3b0581f85c0bae6c693214cfef709179805`"
+  },
+  {
+   "id": "S05",
+   "commit": "189f205ff",
+   "kind": "sha256",
+   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "value": "1d24a4b86f05dc6fd57028c08e202d33f9f317b148821f9c61246c6e91ee916e",
+   "candidate_text": "`1d24a4b86f05dc6fd57028c08e202d33f9f317b148821f9c61246c6e91ee916e`"
+  },
+  {
+   "id": "S06",
+   "commit": "125cfacc1",
+   "kind": "sha256",
+   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "value": "1d24a4b86f05dc6fd57028c08e202d33f9f317b148821f9c61246c6e91ee916e",
+   "candidate_text": "`1d24a4b86f05dc6fd57028c08e202d33f9f317b148821f9c61246c6e91ee916e`"
+  },
+  {
+   "id": "S07",
+   "commit": "189f205ff",
+   "kind": "sha256",
+   "path": "projects/pec/execution/_Decomposition/ContextBudgetQA.csv",
+   "value": "93b0bb075a0e83d3219e6293303c3feaa432e693e7255569d4e522ea42434c7c",
+   "candidate_text": "`93b0bb075a0e83d3219e6293303c3feaa432e693e7255569d4e522ea42434c7c`"
+  },
+  {
+   "id": "S08",
+   "commit": "125cfacc1",
+   "kind": "sha256",
+   "path": "projects/pec/execution/_Decomposition/ContextBudgetQA.csv",
+   "value": "93b0bb075a0e83d3219e6293303c3feaa432e693e7255569d4e522ea42434c7c",
+   "candidate_text": "`93b0bb075a0e83d3219e6293303c3feaa432e693e7255569d4e522ea42434c7c`"
+  },
+  {
+   "id": "S09",
+   "commit": "189f205ff",
+   "kind": "sha256",
+   "path": "projects/pec/docs/PRD.md",
+   "value": "ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe",
+   "candidate_text": "`ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe`"
+  },
+  {
+   "id": "S10",
+   "commit": "125cfacc1",
+   "kind": "sha256",
+   "path": "projects/pec/docs/PRD.md",
+   "value": "ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe",
+   "candidate_text": "`ae49b8065698f003001b2183f550b814cded5cd5ea06f940b81dd5c287483fbe`"
+  },
+  {
+   "id": "S11",
+   "commit": "189f205ff",
+   "kind": "ancestor",
+   "path": null,
+   "value": "125cfacc1",
+   "candidate_text": "commit, an ancestor of `origin/main`"
+  },
+  {
+   "id": "S12",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_CONTEXT.md",
+   "value": "then by revision 1.6 (`current_basis`, SCA-006 successor).",
+   "candidate_text": "`_CONTEXT.md` retains the supersession trace from revision 1.1"
+  },
+  {
+   "id": "S13",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_CONTEXT.md",
+   "value": "revision 1.1 (SCA-001",
+   "candidate_text": "through revision 1.6."
+  },
+  {
+   "id": "S14",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_REFERENCES.md",
+   "value": "(revision 1.6, accepted `current_basis`; SCA-006 successor)",
+   "candidate_text": "`_REFERENCES.md` name revision 1.6 and PRD v2.4 there"
+  },
+  {
+   "id": "S15",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_REFERENCES.md",
+   "value": "`docs/PRD.md` v2.4",
+   "candidate_text": "name revision 1.6 and PRD v2.4 there"
+  },
+  {
+   "id": "S16",
+   "commit": "ce934ac33",
+   "kind": "ancestor",
+   "path": null,
+   "value": "125cfacc1",
+   "candidate_text": "(act merged as PR #976, `ce934ac33`, an ancestor of"
+  },
+  {
+   "id": "S17",
+   "commit": "11a494e9a",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "value": {
+    "key_column": "ScopeItemID",
+    "key": "SOW-041",
+    "column": "ObjectiveIDs",
+    "equals": "OBJ-001"
+   },
+   "candidate_text": "`ObjectiveIDs` cell read `OBJ-001` at the revision-1.3 pin `11a494e9a`"
+  },
+  {
+   "id": "S18",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "value": {
+    "key_column": "ScopeItemID",
+    "key": "SOW-041",
+    "column": "ObjectiveIDs",
+    "equals": "OBJ-001"
+   },
+   "candidate_text": "reads the same at `125cfacc1`"
+  },
+  {
+   "id": "S19",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "value": {
+    "key_column": "DeliverableID",
+    "key": "DEL-08-04",
+    "column": "SupportsObjectives",
+    "equals": "OBJ-001"
+   },
+   "candidate_text": "`SupportsObjectives` cell also reads `OBJ-001`"
+  },
+  {
+   "id": "S20",
+   "commit": "11a494e9a",
+   "kind": "contains",
+   "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "value": "SSE subscription | SOW-003, 040..044 (6) | Dashboard rendering (PKG-09) |",
+   "candidate_text": "The charter's last two items entered at revision 1.6"
+  },
+  {
+   "id": "S21",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "value": "DEP-08-04-006",
+   "candidate_text": "holds six rows at `RegisterSchemaVersion` `v3.1`"
+  },
+  {
+   "id": "S22",
+   "commit": "125cfacc1",
+   "kind": "not_contains",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "value": "DEP-08-04-007",
+   "candidate_text": "holds six rows at `RegisterSchemaVersion` `v3.1`"
+  },
+  {
+   "id": "S23",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-08-04-003",
+    "column": "EvidenceFile",
+    "equals": "execution/_Decomposition/SOFTWARE_DECOMP.md"
+   },
+   "candidate_text": "`execution/_Decomposition/SOFTWARE_DECOMP.md`"
+  },
+  {
+   "id": "S24",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-08-04-004",
+    "column": "EvidenceFile",
+    "equals": "execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/ScopeOfWork.md"
+   },
+   "candidate_text": "the `DEL-08-03` `ScopeOfWork.md`"
+  },
+  {
+   "id": "S25",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-08-04-005",
+    "column": "EvidenceFile",
+    "equals": "docs/PRD.md"
+   },
+   "candidate_text": "`docs/PRD.md`"
+  },
+  {
+   "id": "S26",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-08-04-006",
+    "column": "EvidenceFile",
+    "equals": "execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/ScopeOfWork.md"
+   },
+   "candidate_text": "the `DEL-08-01` `ScopeOfWork.md`"
+  },
+  {
+   "id": "S27",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-08-04-005",
+    "column": "LastSeen",
+    "equals": "2026-09-25"
+   },
+   "candidate_text": "`2026-09-25`"
+  },
+  {
+   "id": "S28",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-08-04-003",
+    "column": "Explicitness",
+    "equals": "EXPLICIT"
+   },
+   "candidate_text": "`EXPLICIT` / `HIGH` / `DECLARED`"
+  },
+  {
+   "id": "S29",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-08-04-004",
+    "column": "Origin",
+    "equals": "EXTRACTED"
+   },
+   "candidate_text": "`IMPLICIT` / `MEDIUM` / `EXTRACTED`"
+  },
+  {
+   "id": "S30",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-08-04-006",
+    "column": "SatisfactionStatus",
+    "equals": "PENDING"
+   },
+   "candidate_text": "`SatisfactionStatus` `PENDING`"
+  },
+  {
+   "id": "S31",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-08-04-003",
+    "column": "RequiredMaturity",
+    "equals": "INITIALIZED"
+   },
+   "candidate_text": "`RequiredMaturity` `INITIALIZED`"
+  },
+  {
+   "id": "S32",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "value": {
+    "key_column": "DependencyID",
+    "key": "DEP-08-04-001",
+    "column": "SatisfactionStatus",
+    "equals": "SATISFIED"
+   },
+   "candidate_text": "both `SatisfactionStatus` `SATISFIED`"
+  },
+  {
+   "id": "S33",
+   "commit": "3660288a5",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "value": "location TBD",
+   "candidate_text": "the placeholder `SourceRef` \"location TBD\""
+  },
+  {
+   "id": "S34",
+   "commit": "1c50d4da6",
+   "kind": "ancestor",
+   "path": null,
+   "value": "125cfacc1",
+   "candidate_text": "commit `1c50d4da6`, an ancestor of `125cfacc1`"
+  },
+  {
+   "id": "S35",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+   "value": "**EXECUTED 2026-07-25/26**",
+   "candidate_text": "executed 2026-07-25/26"
+  },
+  {
+   "id": "S36",
+   "commit": "abfd0897b",
+   "kind": "ancestor",
+   "path": null,
+   "value": "125cfacc1",
+   "candidate_text": "(act PR #924, `abfd0897b`)"
+  },
+  {
+   "id": "S37",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "value": "1 tooling follow-on: OI-013",
+   "candidate_text": "`OI-013` itself remains open in `SOFTWARE_DECOMP.md` §10"
+  },
+  {
+   "id": "S38",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-62_project_setup_scaffold_and_local_dependency_registers.md",
+   "value": "**Status:** RULED 2026-07-25 — owner selected \"RULED as drafted\"",
+   "candidate_text": "the packet's status line records that the owner selected \"RULED as drafted\""
+  },
+  {
+   "id": "S39",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+   "value": "16 execution edges",
+   "candidate_text": "`D-PEC-101` Part K1 added 16 execution edges"
+  },
+  {
+   "id": "S40",
+   "commit": "125cfacc1",
+   "kind": "count_glob",
+   "path": null,
+   "value": {
+    "pattern": "projects/pec/execution/PKG-*/1_Working/*/Dependencies.csv",
+    "count": 1,
+    "contains": "DEL-08-04"
+   },
+   "candidate_text": "no `Dependencies.csv` other than this deliverable's own names `DEL-08-04`"
+  },
+  {
+   "id": "S41",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/_STATUS.md",
+   "value": "**Current State:** CHECKING",
+   "candidate_text": "is at lifecycle state `CHECKING` at `125cfacc1`"
+  },
+  {
+   "id": "S42",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/_STATUS.md",
+   "value": "2026-08-01 — State set to CHECKING",
+   "candidate_text": "records the move to `CHECKING` on 2026-08-01"
+  },
+  {
+   "id": "S43",
+   "commit": "125cfacc1",
+   "kind": "exists",
+   "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/artifacts/STEP0_COST_BASELINE.md",
+   "value": null,
+   "candidate_text": "`STEP0_COST_BASELINE.md`"
+  },
+  {
+   "id": "S44",
+   "commit": "125cfacc1",
+   "kind": "exists",
+   "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/artifacts/STEP0_COST_BASELINE_METHOD.md",
+   "value": null,
+   "candidate_text": "`STEP0_COST_BASELINE_METHOD.md`"
+  },
+  {
+   "id": "S45",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_STATUS.md",
+   "value": "**Current State:** INITIALIZED",
+   "candidate_text": "That deliverable is at `INITIALIZED` — contract, not artifact — and its contract is rebuilt in the same S4 packet as this one"
+  },
+  {
+   "id": "S46",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_STATUS.md",
+   "value": "**Current State:** INITIALIZED",
+   "candidate_text": "`DEL-08-03`'s serializer sits on the path this deliverable times. That deliverable is at `INITIALIZED`"
+  },
+  {
+   "id": "S47",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_STATUS.md",
+   "value": "**Current State:** INITIALIZED",
+   "candidate_text": "is `DEL-08-01`'s. That deliverable is at `INITIALIZED`"
+  },
+  {
+   "id": "S48",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "value": {
+    "key_column": "ScopeItemID",
+    "key": "SOW-098",
+    "column": "DeliverableIDs",
+    "equals": "DEL-08-03"
+   },
+   "candidate_text": "enters its coverage from `PEC-API-006`"
+  },
+  {
+   "id": "S49",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "value": {
+    "key_column": "DeliverableID",
+    "key": "DEL-08-03",
+    "column": "CoversScopeItems",
+    "equals": "SOW-043;SOW-098"
+   },
+   "candidate_text": "are `DEL-08-03` (`SOW-043`, `PEC-API-004`; `SOW-098`, `PEC-API-006`)"
+  },
+  {
+   "id": "S50",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "value": {
+    "key_column": "ScopeItemID",
+    "key": "SOW-099",
+    "column": "DeliverableIDs",
+    "equals": "DEL-08-06"
+   },
+   "candidate_text": "is `DEL-08-06` (`SOW-099`, `PEC-API-007`, `P3`)"
+  },
+  {
+   "id": "S51",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "value": {
+    "key_column": "ScopeItemID",
+    "key": "SOW-097",
+    "column": "DeliverableIDs",
+    "equals": "DEL-04-03"
+   },
+   "candidate_text": "`DEL-04-03` (`SOW-006`, `SOW-007`, `SOW-097`"
+  },
+  {
+   "id": "S52",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "value": {
+    "key_column": "ScopeItemID",
+    "key": "SOW-100",
+    "column": "DeliverableIDs",
+    "equals": "DEL-10-13"
+   },
+   "candidate_text": "is `DEL-10-13` (`SOW-100`)"
+  },
+  {
+   "id": "S53",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "value": {
+    "key_column": "DeliverableID",
+    "key": "DEL-08-06",
+    "column": "PhaseHint",
+    "equals": "P3"
+   },
+   "candidate_text": "`P3` (`DEL-08-06`, `DEL-09-05`, `DEL-10-12`)"
+  },
+  {
+   "id": "S54",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "value": {
+    "key_column": "DeliverableID",
+    "key": "DEL-10-13",
+    "column": "PhaseHint",
+    "equals": "P1"
+   },
+   "candidate_text": "`DEL-10-11`, `DEL-10-13`), `P2`"
+  },
+  {
+   "id": "S55",
+   "commit": "125cfacc1",
+   "kind": "csv_cell",
+   "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "value": {
+    "key_column": "DeliverableID",
+    "key": "DEL-10-01",
+    "column": "PhaseHint",
+    "equals": "pre-P1"
+   },
+   "candidate_text": "`DEL-10-01` at `pre-P1`"
+  },
+  {
+   "id": "S56",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "value": "the open choice also covers credentials for the agent access class",
+   "candidate_text": "the `OI-006` row of `SOFTWARE_DECOMP.md` §10 now covers those credentials too"
+  },
+  {
+   "id": "S57",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_STATUS.md",
+   "value": "**Current State:** INITIALIZED",
+   "candidate_text": "\"**Current State:** INITIALIZED\""
+  },
+  {
+   "id": "S58",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_STATUS.md",
+   "value": "`## Remaining` section retired under D-PEC-99 by WORKING_ITEMS",
+   "candidate_text": "The `_STATUS.md` carries no `## Remaining` section: `D-PEC-99` retired it"
+  },
+  {
+   "id": "S59",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_STATUS.md",
+   "value": "DEL-08-04-REM-001 → the `D-PEC-83` E evidence-inquiry set in the D-PEC-99 exhibit (still unselected)",
+   "candidate_text": "its former item `DEL-08-04-REM-001`, an evidence-only inquiry, is held with its gate, unselected"
+  },
+  {
+   "id": "S60",
+   "commit": "125cfacc1",
+   "kind": "count_glob",
+   "path": null,
+   "value": {
+    "pattern": "projects/pec/v2/*latency*",
+    "count": 0
+   },
+   "candidate_text": "no path under `projects/pec/v2/` names latency or orientation"
+  },
+  {
+   "id": "S61",
+   "commit": "125cfacc1",
+   "kind": "count_glob",
+   "path": null,
+   "value": {
+    "pattern": "projects/pec/v2/*orientation*",
+    "count": 0
+   },
+   "candidate_text": "no path under `projects/pec/v2/` names latency or orientation"
+  },
+  {
+   "id": "S62",
+   "commit": "125cfacc1",
+   "kind": "sha256",
+   "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
+   "value": "69b646f8481fe39a12b811d8078ed14a4c49622d9a8ab566d87f83683044f45e",
+   "candidate_text": "`69b646f8481fe39a12b811d8078ed14a4c49622d9a8ab566d87f83683044f45e`"
+  },
+  {
+   "id": "S63",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md",
+   "value": "### DEL-08-04-REM-001 (DEL-08-04, INITIALIZED)",
+   "candidate_text": "in Part A of the `D-PEC-99` exhibit"
+  },
+  {
+   "id": "S64",
+   "commit": "125cfacc1",
+   "kind": "sha256",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/ScopeOfWork.md",
+   "value": "6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b",
+   "candidate_text": "(SHA-256 `6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b`)"
+  },
+  {
+   "id": "S65",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/ScopeOfWork.md",
+   "value": "SOFTWARE_DECOMP.md@11a494e9a",
+   "candidate_text": "(revision-1.3 basis, pin `11a494e9a`)"
+  },
+  {
+   "id": "S66",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
+   "value": "| DEL-08-04 | INITIALIZED | `6d1ec1ad9796…` | inherits DEL-04-01/08-01 refresh | `STALE_REVIEW_REQUIRED (quotation)` |  |  |",
+   "candidate_text": "with the cause \"inherits DEL-04-01/08-01 refresh\" and neither the unresolvable-pin nor the false-revision-1.1 housekeeping marked for it"
+  },
+  {
+   "id": "S67",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Impact_Assessment.md",
+   "value": "| DEL-08-04 | **AFFECTED** (DQ-a) | CLM-011 L288",
+   "candidate_text": "classes it affected under the direct-query option DQ-a"
+  },
+  {
+   "id": "S68",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/_ScopeChange/SCA-006_2026-09-25_1912/Propagation_Plan.md",
+   "value": "| DEL-08-04 | INITIALIZED | `6d1ec1ad9796…` | `STALE_REVIEW_REQUIRED (quotation)` | CLM-011 L288 \"three token-scoped access classes\" | `STALE_REVIEW_REQUIRED (quotation)` | S4 |",
+   "candidate_text": "records the combined class `STALE_REVIEW_REQUIRED (quotation)` and places the contract in work-graph node S4"
+  },
+  {
+   "id": "S69",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/ScopeOfWork.md",
+   "value": "the app-dev ledger carries the D-APP-57 contract",
+   "candidate_text": "its quotation of a `DEL-04-01` record carried `PRD.md` §7.1 receipt text"
+  },
+  {
+   "id": "S70",
+   "commit": "125cfacc1",
+   "kind": "not_contains",
+   "path": "projects/pec/docs/PRD.md",
+   "value": "the app-dev ledger carries the D-APP-57 contract",
+   "candidate_text": "receipt text that PRD v2.4 no longer contains"
+  },
+  {
+   "id": "S71",
+   "commit": "11a494e9a",
+   "kind": "contains",
+   "path": "projects/pec/docs/PRD.md",
+   "value": "| PEC-API-002 | Orientation reads shall complete in ≤100 ms at p95 against the current corpus (latency-sensitive pull path; any session-start use requires a separately adopted consumer duty). |",
+   "candidate_text": "reads in full"
+  },
+  {
+   "id": "S72",
+   "commit": "11a494e9a",
+   "kind": "contains",
+   "path": "projects/pec/docs/PRD.md",
+   "value": "| **P1 — One-loop reconciler** | Reconciler + orientation store + API for PEC's own build graph, read-only | Parity-diff vs harness clean or explained; rebuild-from-scratch ≤ bound; kill test passes |",
+   "candidate_text": "SCA-006 left the `P1` row unedited"
+  },
+  {
+   "id": "S73",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/docs/PRD.md",
+   "value": "| **P1 — One-loop reconciler** | Reconciler + orientation store + API for PEC's own build graph, read-only | Parity-diff vs harness clean or explained; rebuild-from-scratch ≤ bound; kill test passes |",
+   "candidate_text": "SCA-006 left the `P1` row unedited"
+  },
+  {
+   "id": "S74",
+   "commit": "125cfacc1",
+   "kind": "contains",
+   "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "value": "EdgeID=E-A28",
+   "candidate_text": "`[E-A28]`"
+  }
+ ]
+}
