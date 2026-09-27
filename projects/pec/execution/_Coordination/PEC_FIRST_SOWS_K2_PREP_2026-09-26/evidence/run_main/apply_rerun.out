@@ -1,0 +1,4 @@
+FAIL target or temporary already exists: projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/ScopeOfWork.md
+FAIL target or temporary already exists: projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/ScopeOfWork.md
+preflight failed; nothing written
+exit=1
