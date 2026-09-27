@@ -1,0 +1,529 @@
+{
+ "deliverable": "DEL-08-04",
+ "quotes": [
+  {
+   "id": "Q01",
+   "text": "| A001 | `MODIFY` | `OBJECTIVE` | `ScopeLedger.csv` `ObjectiveIDs` — **20 IN rows** (`SOW-001, 003, 011..017, 021, 025, 040, 042, 052, 053, 054, 056, 088, 089, 094`) | Populate `ObjectiveIDs` with bare `;`-separated `OBJ-NNN` tokens, derived by the intake §4 attribution method. **Binding constraint: `SOW-021` ⊆ `{OBJ-005}`** (see F-2) | Unit Ledger (§6 + `ScopeLedger.csv`) |",
+   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Brief.md",
+   "commit": "125cfacc1",
+   "where": "objective warrant, A001"
+  },
+  {
+   "id": "Q02",
+   "text": "| A002 | `MODIFY` | `DELIVERABLE` | `Deliverables.csv` `SupportsObjectives` — **17 deliverable rows** (`DEL-00-01, 00-03, 01-01, 01-03, 01-05, 01-06, 02-01..07, 03-06, 08-01, 08-02, 10-03`) | Populate `SupportsObjectives` so the §3 union invariant holds file-wide | Secondary Entities (§5 + `Deliverables.csv`) |",
+   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Brief.md",
+   "commit": "125cfacc1",
+   "where": "objective warrant, A002"
+  },
+  {
+   "id": "Q03",
+   "text": "OLD col4: SOW-004..009, SOW-041, SOW-043; instruments: SOW-058, SOW-059\nNEW col4: SOW-001, SOW-003, SOW-004..009, SOW-011..017, SOW-040..043, SOW-089; instruments: SOW-058, SOW-059\nOLD col5: DEL-04-01..05, DEL-08-03, DEL-08-04, DEL-10-01, DEL-10-04\nNEW col5: DEL-00-03, DEL-01-01, DEL-02-01..07, DEL-04-01..05, DEL-08-01..04, DEL-10-01, DEL-10-04",
+   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Amendment_Preview.md",
+   "commit": "125cfacc1",
+   "where": "objective warrant, A003b"
+  },
+  {
+   "id": "Q04",
+   "text": "| D-15 | Four **register precedents** measured and used as attribution anchors | `SOW-010`→`OBJ-005` (rebuild/store cluster), ~~`SOW-055`/`DEL-10-02`→`OBJ-005`~~ **withdrawn by C-18 as tautological** — `SOW-055` restates OBJ-005 nearly verbatim and selects nothing for `SOW-025`, `DEL-08-03/04`→`OBJ-001` (PKG-08 transport), `SOW-018/019`→`OBJ-002` (reconciler layer). Anchoring to accepted register facts beats inventing a fresh rationale per row. |",
+   "source": "projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Decision_Log.md",
+   "commit": "125cfacc1",
+   "where": "objective warrant, D-15"
+  },
+  {
+   "id": "Q05",
+   "text": "DEL-08-04,PKG-08,Orientation latency budget (p95 ≤ 100 ms),Perf tests holding orientation reads at or under 100 ms p95 against the current corpus.,TEST_SUITE,TBD,Latency tests + budget record,SOW-041,OBJ-001,S,,P1",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-001"
+  },
+  {
+   "id": "Q06",
+   "text": "| DEL-08-04 | Orientation latency budget (p95 ≤ 100 ms) | TEST_SUITE | S | P1 | SOW-041 |",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-001"
+  },
+  {
+   "id": "Q07",
+   "text": "assignment happens at WORKING_ITEMS activation, not here",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-001"
+  },
+  {
+   "id": "Q08",
+   "text": "SOW-041,IN,Complete orientation reads in ≤100 ms at p95 against the current corpus,PEC-API-002,PKG-08,DEL-08-04,OBJ-001,,FALSE,Latency-sensitive pull path; any session-start use requires separately adopted consumer authority",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-002"
+  },
+  {
+   "id": "Q09",
+   "text": "| PEC-API-002 | Orientation reads shall complete in ≤100 ms at p95 against the current corpus (latency-sensitive pull path; any session-start use requires a separately adopted consumer duty). |",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-002"
+  },
+  {
+   "id": "Q10",
+   "text": "| C9 | Orientation reads ≤100 ms p95; full rebuild within a bound confirmed at P1; incremental reconcile within seconds | PEC-API-002, PEC-SVC-003 |",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-002"
+  },
+  {
+   "id": "Q11",
+   "text": "confirmed at Phase 1 (target: minutes)",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-002, CON-006"
+  },
+  {
+   "id": "Q12",
+   "text": "| OBJ-001 | Orientation for any loop is a sub-second query with per-claim citations, not a session-length prose derivation | §3.1 | SOW-001, SOW-003..009, SOW-011..017, SOW-038, SOW-040..044, SOW-089, SOW-095..099; instruments: SOW-058, SOW-059, SOW-063, SOW-100 | DEL-00-03, DEL-01-01, DEL-02-01..09, DEL-03-05, DEL-04-01..05, DEL-08-01..06, DEL-10-01, DEL-10-04, DEL-10-08, DEL-10-13 |",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-003"
+  },
+  {
+   "id": "Q13",
+   "text": "| PKG-08 | API & Access | The machine-consumer surface: Unix-socket binding, token-scoped access classes, p95 latency, versioned additive schema, compact citation-bearing responses, SSE subscription, response-size budgets, and the agent tool-call query surface | SOW-003, 040..044, 098, 099 (8) | Dashboard rendering (PKG-09) |",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-003"
+  },
+  {
+   "id": "Q14",
+   "text": "Latency tests + budget record",
+   "source": "projects/pec/execution/_Decomposition/Deliverables.csv",
+   "commit": "125cfacc1",
+   "where": "Outputs"
+  },
+  {
+   "id": "Q15",
+   "text": "Declared pre-P1 sequencing against SOW-041",
+   "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-004 table"
+  },
+  {
+   "id": "Q16",
+   "text": "§2.1 SSOW row SOW-058 Notes",
+   "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-004 table"
+  },
+  {
+   "id": "Q17",
+   "text": "Sequencing obligation, pre-P1; baselines SOW-004/041",
+   "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-004 table"
+  },
+  {
+   "id": "Q18",
+   "text": "DECLARED; Flag=none; EdgeID=E-A28",
+   "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-004 table"
+  },
+  {
+   "id": "Q19",
+   "text": "R3-F4: serializer sits on the measured p95 latency path",
+   "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-004 table"
+  },
+  {
+   "id": "Q20",
+   "text": "Ontology section OUT-002",
+   "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-004 table"
+  },
+  {
+   "id": "Q21",
+   "text": "PROPOSAL; Flag=none; EdgeID=E-N12",
+   "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-004 table"
+  },
+  {
+   "id": "Q22",
+   "text": "Latency budget tests orientation reads",
+   "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-004 table"
+  },
+  {
+   "id": "Q23",
+   "text": "PRD.md §9.6 requirement PEC-API-002",
+   "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-004 table"
+  },
+  {
+   "id": "Q24",
+   "text": "Evidence refreshed under D-PEC-95 (PRD v2.2 PEC-API-002 wording, D-PEC-68; stale before SCA-005); PROPOSAL; Flag=none; EdgeID=E-P51",
+   "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-004 table"
+  },
+  {
+   "id": "Q25",
+   "text": "Latency measured through the API surface",
+   "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-004 table"
+  },
+  {
+   "id": "Q26",
+   "text": "Ontology section OUT-001",
+   "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-004 table"
+  },
+  {
+   "id": "Q27",
+   "text": "PROPOSAL; Flag=none; EdgeID=E-P52",
+   "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-004 table"
+  },
+  {
+   "id": "Q28",
+   "text": "Sequencing obligation, pre-P1; baselines SOW-004/041",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-004 strata (SOW-058 Notes)",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-058",
+   "column": "Notes"
+  },
+  {
+   "id": "Q29",
+   "text": "DECLARED = both endpoints ID-named with a dependency-bearing verb (consumes/renders/tests/measures/sourced-from/lands-with/grounded-in/stated-in/baselines)",
+   "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_DEPENDENCIES.md",
+   "commit": "125cfacc1",
+   "where": "CLM-004 strata"
+  },
+  {
+   "id": "Q30",
+   "text": "accepted, all strata as presented",
+   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-62_project_setup_scaffold_and_local_dependency_registers.md",
+   "commit": "125cfacc1",
+   "where": "CLM-004, AX-010",
+   "strip_emphasis": true
+  },
+  {
+   "id": "Q31",
+   "text": "All strata require owner acceptance; strata are provenance not authority",
+   "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_DEPENDENCIES.md",
+   "commit": "125cfacc1",
+   "where": "CLM-004, CLM-015, AX-010"
+  },
+  {
+   "id": "Q32",
+   "text": "E-A28,DEL-10-01,DEL-08-04,DECLARED,SEQUENCING,,\"SOW-058 note: \"\"baselines SOW-004/041\"\"\",Declared pre-P1 sequencing against SOW-041",
+   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+   "commit": "125cfacc1",
+   "where": "CLM-004 exhibit rows"
+  },
+  {
+   "id": "Q33",
+   "text": "E-P51,DEL-04-01,DEL-08-04,PROPOSAL,TESTS,,,Latency budget tests orientation reads",
+   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+   "commit": "125cfacc1",
+   "where": "CLM-004 exhibit rows"
+  },
+  {
+   "id": "Q34",
+   "text": "E-P52,DEL-08-01,DEL-08-04,PROPOSAL,TESTS,,,Latency measured through the API surface",
+   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+   "commit": "125cfacc1",
+   "where": "CLM-004 exhibit rows"
+  },
+  {
+   "id": "Q35",
+   "text": "E-N12,DEL-08-03,DEL-08-04,PROPOSAL,TESTS,,,R3-F4: serializer sits on the measured p95 latency path",
+   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+   "commit": "125cfacc1",
+   "where": "CLM-004 exhibit rows"
+  },
+  {
+   "id": "Q36",
+   "text": "location TBD",
+   "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+   "commit": "3660288a5",
+   "where": "CLM-004 history (seeded rows)"
+  },
+  {
+   "id": "Q37",
+   "text": "No durable register validator exists: the coverage/coupling assertions ran in a session-local generator, which is not part of this package and enforces nothing after acceptance",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-004"
+  },
+  {
+   "id": "Q38",
+   "text": "Standing obligations: excluded from one-shot COMPLETE/UNBLOCKED arithmetic; they gate releases not successors",
+   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+   "commit": "125cfacc1",
+   "where": "CLM-005"
+  },
+  {
+   "id": "Q39",
+   "text": "recorded-but-unresolved, non-gating annotations",
+   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-62_project_setup_scaffold_and_local_dependency_registers.md",
+   "commit": "125cfacc1",
+   "where": "CLM-005"
+  },
+  {
+   "id": "Q40",
+   "text": "RULED as drafted",
+   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-62_project_setup_scaffold_and_local_dependency_registers.md",
+   "commit": "125cfacc1",
+   "where": "CLM-005"
+  },
+  {
+   "id": "Q41",
+   "text": "including the C-08 standing-node exclusion from one-shot blocker arithmetic",
+   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-62_project_setup_scaffold_and_local_dependency_registers.md",
+   "commit": "125cfacc1",
+   "where": "CLM-005"
+  },
+  {
+   "id": "Q42",
+   "text": "- **REQ-010** — Both outputs shall be complete and consumable before any P1 node starts, satisfying the `PRE_P1_OBLIGATION` constraint, and shall be consumable by `DEL-04-01` and `DEL-08-04` as their declared sequencing predecessor (`CLM-010`, `CLM-011`, `CLM-012`).",
+   "source": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/ScopeOfWork.md",
+   "commit": "125cfacc1",
+   "where": "CLM-006"
+  },
+  {
+   "id": "Q43",
+   "text": "- **REQ-008** — Neither output shall create scope, requirements, or acceptance criteria for the behaviors it measures; those remain with their home packages (`CLM-009`). The measurement instrument records what is observed, and its own method, only.",
+   "source": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/ScopeOfWork.md",
+   "commit": "125cfacc1",
+   "where": "CLM-006"
+  },
+  {
+   "id": "Q44",
+   "text": "- **AX-002** — `OBJ-001` governs the subject: the metric exists to test whether orientation becomes a sub-second cited query rather than a session-length prose derivation. What is measured before P1 is therefore the cost of the derivation PRD §2 describes, not the cost of any PEC capability, which does not yet exist at `pre-P1`.",
+   "source": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/ScopeOfWork.md",
+   "commit": "125cfacc1",
+   "where": "CLM-006"
+  },
+  {
+   "id": "Q45",
+   "text": "- **AX-004** — The instrument never becomes the behavior. DL-6 and `PKG-10`'s declared exclusion keep the behaviors under test in their home packages; a measurement artifact that starts specifying `DEL-04-01` or `DEL-08-04` has left this deliverable's scope.",
+   "source": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/ScopeOfWork.md",
+   "commit": "125cfacc1",
+   "where": "CLM-006"
+  },
+  {
+   "id": "Q46",
+   "text": "All three complete before any P1 node starts",
+   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+   "commit": "125cfacc1",
+   "where": "CLM-006"
+  },
+  {
+   "id": "Q47",
+   "text": "E-A27/E-A28 carry the two ID-named baseline targets as edges",
+   "source": "projects/pec/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md",
+   "commit": "125cfacc1",
+   "where": "CLM-006"
+  },
+  {
+   "id": "Q48",
+   "text": "Bound responses by declared size budgets met by pagination or continuation; state any truncation; never drop citations, stamps or stated limitations",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-008",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-098",
+   "column": "ScopeItemStatement"
+  },
+  {
+   "id": "Q49",
+   "text": "Numeric budgets are confirmed at Phase 1.",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-008"
+  },
+  {
+   "id": "Q50",
+   "text": "distinct from the latency budget (SOW-041)",
+   "source": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-008",
+   "kind": "csv_cell",
+   "key_column": "ScopeItemID",
+   "key": "SOW-098",
+   "column": "Notes"
+  },
+  {
+   "id": "Q51",
+   "text": "response budget",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-008"
+  },
+  {
+   "id": "Q52",
+   "text": "A declared bound on response size met by pagination or continuation, with stated truncation (PEC-API-006, SOW-098); distinct from the latency budget (PEC-API-002)",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-008"
+  },
+  {
+   "id": "Q53",
+   "text": "access classes are owner, harness, agent, and admin",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-009"
+  },
+  {
+   "id": "Q54",
+   "text": "including credentials for the `agent` class, is the open §16.6 decision",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-009"
+  },
+  {
+   "id": "Q55",
+   "text": "≤100 ms p95 orientation reads",
+   "source": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+   "commit": "125cfacc1",
+   "where": "CLM-010"
+  },
+  {
+   "id": "Q56",
+   "text": "Parity-diff vs harness clean or explained; rebuild-from-scratch ≤ bound; kill test passes",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-010"
+  },
+  {
+   "id": "Q57",
+   "text": "creates no consumer duty and does not change the phase exit tests above",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-010"
+  },
+  {
+   "id": "Q58",
+   "text": "DEL-08-04,PKG-08,S,LOW,None,",
+   "source": "projects/pec/execution/_Decomposition/ContextBudgetQA.csv",
+   "commit": "125cfacc1",
+   "where": "CLM-013"
+  },
+  {
+   "id": "Q59",
+   "text": "**Current State:** INITIALIZED",
+   "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_STATUS.md",
+   "commit": "125cfacc1",
+   "where": "CLM-014"
+  },
+  {
+   "id": "Q60",
+   "text": "Release-strategy ordering; hard-vs-soft classification is a Phase 1.3 owner ruling",
+   "source": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_DEPENDENCIES.md",
+   "commit": "125cfacc1",
+   "where": "CLM-015"
+  },
+  {
+   "id": "Q61",
+   "text": "Operational reliance is available only from a PEC release that has passed the §12 reliance-advertisement gate.",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-016"
+  },
+  {
+   "id": "Q62",
+   "text": "operational reliance is not authority",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CLM-016"
+  },
+  {
+   "id": "Q63",
+   "text": "inherits DEL-04-01/08-01 refresh",
+   "source": "projects/pec/execution/_ScopeChange/SCA-005_2026-09-23_2139/Propagation_Plan.md",
+   "commit": "125cfacc1",
+   "where": "CLM-017"
+  },
+  {
+   "id": "Q64",
+   "text": "the current corpus",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "REQ-002, AC-002, CON-001, VER-002"
+  },
+  {
+   "id": "Q65",
+   "text": "**Content-minimal.** Paths, counts, SHAs, states, hashes — never file or diff content.",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "REQ-011"
+  },
+  {
+   "id": "Q66",
+   "text": "the first loop the P1 reconciler ingests is **its own build**",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CON-001"
+  },
+  {
+   "id": "Q67",
+   "text": "shall complete in ≤100 ms at p95",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CON-003, CON-007"
+  },
+  {
+   "id": "Q68",
+   "text": "confirmed at Phase 1",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CON-006"
+  },
+  {
+   "id": "Q69",
+   "text": "bounded by declared size budgets suited to agent consumers and met by pagination or continuation",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CON-007"
+  },
+  {
+   "id": "Q70",
+   "text": "a read-only query interface packaged for agent tool calls, over the same versioned API and responses",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "CON-008"
+  },
+  {
+   "id": "Q71",
+   "text": "Every status, verdict, and warning carries rule ID, threshold, and contributing cited sources. Drill-down never dead-ends",
+   "source": "projects/pec/docs/PRD.md",
+   "commit": "125cfacc1",
+   "where": "AX-003"
+  },
+  {
+   "id": "Q72",
+   "text": "not the cost of any PEC capability, which does not yet exist at `pre-P1`",
+   "source": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/ScopeOfWork.md",
+   "commit": "125cfacc1",
+   "where": "AX-009"
+  },
+  {
+   "id": "Q73",
+   "text": "as presented",
+   "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-62_project_setup_scaffold_and_local_dependency_registers.md",
+   "commit": "125cfacc1",
+   "where": "AX-010"
+  }
+ ]
+}

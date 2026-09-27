@@ -599,25 +599,6 @@ export class RuntimeDaemonHarnessPort implements DaemonHarnessPort {
     });
   }
 
-  async scaffold(
-    request: Parameters<DaemonHarnessPort['scaffold']>[0],
-    options?: DaemonRequestOptions
-  ): ReturnType<DaemonHarnessPort['scaffold']> {
-    return mapped(async () => {
-      const project = await this.requireConfiguredProject(options?.signal);
-      for (const candidate of [request.executionRoot, request.decompositionPath]) {
-        if (!containsPath(project.canonicalRoot, candidate)) {
-          throw new RuntimeError(
-            'PROJECT_NOT_FOUND',
-            'The requested path is outside the configured app-dev project',
-            404
-          );
-        }
-      }
-      return this.client.scaffold(this.projectId, request, options?.signal);
-    });
-  }
-
   /**
    * The Runtime owns the turn; this object is only an observer of it. A
    * cancelled observer closes its own subscription and nothing else: the turn

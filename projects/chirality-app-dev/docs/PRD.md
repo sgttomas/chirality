@@ -10,6 +10,8 @@
 
 **Amended:** Amended under D-GOV-43 (A2), 2026-09-12: daemon, admission, supplier, harness-port and SSE clauses revised to the application-owned Runtime service; Section 17 re-expressed; residency pilot retired
 
+**Amended (SCA-APP-011):** owner direction 2026-09-27: the Workbench and Pipeline forms, the three deliverable routes and `/api/harness/scaffold` retired; Journeys 7.3 and 7.5, FR-010 to FR-013 and §9.1-9.2 revised; route-preservation clauses carry the exception
+
 ## Current Codex-only MVP release basis
 
 For the current MVP release, Codex is the sole model engine. Claude/Anthropic and Pi/oMLX descriptions, default-provider rules and engine-specific proof records below describe compatibility history; they do not require shipping or enabling those engines, and their historical qualification does not establish Codex qualification. Existing conversation history remains readable without reactivating unavailable providers or inheriting their authority.
@@ -137,7 +139,7 @@ Revised product direction:
 1. Provide a local desktop application that runs agent workflows against a selected working root without requiring an external database.
 2. Preserve strict separation between bundled instruction root and mutable working root.
 3. Make agent work auditable through plain files, git diffs, lifecycle files, dependency registers, immutable snapshots, and runtime session events.
-4. Provide a Woven Dialogue shell in which the mounted human–agent transcript and composer are primary, provenance-bearing artifacts can be inspected inline or in focused views, and Workbench/Pipeline remain governed contextual surfaces.
+4. Provide a Woven Dialogue shell in which the mounted human–agent transcript and composer are primary, provenance-bearing artifacts can be inspected inline or in focused views. SCA-APP-011 retired the Workbench and Pipeline forms.
 5. Support streaming chat turns with session persistence, runtime options, interrupts, multimodal attachments, and current Anthropic provider integration.
 6. Enforce safety and governance boundaries: human authority at gates, no automated issuance, no hidden project memory, fail-closed subagent delegation, and explicit outbound network policy.
 7. Provide deterministic tools and validation workflows for scaffolding, schema checks, dependency closure, harness runtime validation, and release packaging.
@@ -158,7 +160,7 @@ Revised product direction:
 22. Use OpenPipeStress, if adopted, as the first concrete Domain Engine Profile fixture rather than as Chirality core behavior.
 23. Present recorded plans/tasks, sessions, status, parentage, returns, approvals, models, and workflow activity only from admitted sources with visible provenance, status basis, currency, and exact recorded references.
 24. Preserve a strict interaction boundary between the mounted primary live dialogue and any selected-session read-only replay lens.
-25. Preserve legacy routes, query parameters, aliases, matrix behavior, API/SSE contracts, provider composition, and the existing loop-first UI through a compatibility period.
+25. Preserve legacy routes, query parameters, aliases, matrix behavior, API/SSE contracts, provider composition, and the existing loop-first UI through a compatibility period. SCA-APP-011 records the owner's separate retirement of `/api/working-root/deliverable/status`, `/api/working-root/deliverable/status/transition`, `/api/working-root/deliverable/dependencies` and `/api/harness/scaffold`.
 
 ### 3.2 Non-Goals
 
@@ -286,7 +288,7 @@ Current product scope:
 
 - Desktop shell built with Next.js and Electron.
 - Working-root selection, validation, file tree browsing, and deliverable scanning.
-- Woven Dialogue GUI for human–agent collaboration, provenance-bearing inline/focused artifacts, and contextual Workbench/Pipeline work.
+- Woven Dialogue GUI for human–agent collaboration and provenance-bearing inline/focused artifacts.
 - Work/Agents Coordination Panel over explicitly recorded work, canonical session records/parentage, and selected-session replay.
 - Versioned non-authoritative workspace state for dialogue drafts, explicit context references, artifact anchors, selected replay references, panel state, and rollback-safe layout migration.
 - Session lifecycle APIs and turn execution via SSE.
@@ -295,7 +297,7 @@ Current product scope:
 - Server-side attachment resolution for supported file types.
 - Operator Toolkit for per-turn runtime options and local presets.
 - Execution-root scaffolding from decomposition markdown.
-- Deliverable status and dependency contract APIs.
+- Deliverable status and dependency contract library; SCA-APP-011 retired their HTTP routes.
 - Lifecycle transition enforcement for `_STATUS.md`.
 - Dependency register read/write support for `Dependencies.csv` v3.1.
 - Subagent governance evaluation and fail-closed delegation behavior.
@@ -324,7 +326,7 @@ New provider-adapter harness-runtime scope:
 - Store `sdkSessionId` and SDK transcript linkage in Chirality `session.json` and resume with explicit `resume` rather than ambiguous `continue`.
 - Prefer SDK transcript placement or mirroring under the working root / parent project folders by using `sessionStore`, `CLAUDE_CONFIG_DIR`, or both where empirically reliable. If unavoidable, treat default `~/.claude/projects/...` transcripts as secondary SDK state cross-referenced from Chirality metadata, not project truth.
 - Preserve the browser-facing `UIEvent` and SSE event names during the runtime pivot.
-- Preserve `/`, `/chat`, `/pipeline`, and `/workbench`, existing/unknown query parameters, legacy aliases/matrix behavior, browser API shapes, and the loop-first implementation through the Woven Dialogue compatibility period.
+- Preserve `/`, `/chat`, `/pipeline`, and `/workbench`, existing/unknown query parameters, legacy aliases/matrix behavior, browser API shapes (apart from the four routes SCA-APP-011 retired), and the loop-first implementation through the Woven Dialogue compatibility period.
 - Maintain the default loopback plus Anthropic outbound network policy and add only authenticated `127.0.0.1` oMLX for the D-APP-72 bounded child path; any other non-Anthropic provider, MCP, redirect, or tool network access requires explicit future implementation scope.
 - Add Electron packaging checks for the SDK-spawned Claude Code subprocess, native/bundled binaries, `asarUnpack` requirements, code-signing implications, and API-key environment handling.
 
@@ -378,7 +380,7 @@ The reviewed frontend implementation already includes:
 - Shipped `bypassPermissions` operation.
 - Remote MCP, plugins, remote execution, marketplace extension, or shell-network expansion before local SDK governance is reliable.
 - Domain-engine integration as a shipping feature unless a separate amendment activates it.
-- Deleting or retiring the loop-first compatibility UI or any existing route before Woven Dialogue parity, accessibility, migration, performance, runtime regression, packaged Desktop proof, and separate owner acceptance.
+- Deleting or retiring the loop-first compatibility UI or any existing route before Woven Dialogue parity, accessibility, migration, performance, runtime regression, packaged Desktop proof, and separate owner acceptance. SCA-APP-011 is the separate owner acceptance for the four routes it retires.
 - Global AgentRun discovery, arbitrary orchestration graphs, multiple-child coordination, scheduling, direct child messaging, automatic intent summarization, or model-routing/residency control in the Coordination Panel.
 
 ## 7. User Journeys
@@ -388,7 +390,7 @@ The reviewed frontend implementation already includes:
 1. User opens Chirality.
 2. User enters an absolute path or chooses a folder via native Electron directory picker.
 3. App validates that the path exists, is a directory, is readable/writable, and is not inside the instruction root.
-4. App stores the selected root as local UI state and uses it for file tree, scan, chat session, scaffold, and contract APIs.
+4. App stores the selected root as local UI state and uses it for file tree, scan, chat session, and document views.
 
 Acceptance:
 
@@ -421,26 +423,28 @@ Acceptance:
 - Replay is observational and read-only; it cannot mutate or inherit primary
   dialogue state.
 - Existing aliases, guarded selection, matrix/query behavior, and deep links remain compatible.
-- Disabled or unsupported variants remain visible as coming soon rather than silently disappearing.
+- Unsupported dispatch variants remain declared as disabled in the DEL-08-03 dispatch contract and are refused rather than silently dropped.
 
 ### 7.3 Scaffold an Execution Root
 
 1. User selects a working root.
-2. User opens PIPELINE.
-3. User enters a decomposition markdown path and coordination mode.
-4. App calls `POST /api/harness/scaffold`.
-5. Runtime parses package/deliverable tables, creates tool roots, copies decomposition, writes `INIT.md`, writes `_Coordination/_COORDINATION.md`, creates packages and deliverable folders, and returns validation summaries.
+2. User asks an agent in the chat to run the `project-setup` workflow in `INITIAL` mode (for example as WORKING_ITEMS), naming the decomposition document.
+3. Human gates come first. The agent ingests the decomposition and asks the human to confirm it is the one to use. It then asks the human to confirm the coordination representation and the dependency tracking mode; the choices are recorded in the human-owned `_Coordination/_COORDINATION.md` (the agent bootstraps only the `_Coordination` tool root to hold it).
+4. Only after those confirmations does the agent scaffold into `<project>/execution`, under the user's approval and sandbox policy. It ensures the `_Coordination`, `_Decomposition` and `_Sources` tool roots with `scaffold_tool_root.sh`, creates package and deliverable folders with `scaffold_package.sh` and `scaffold_deliverable.sh`, writes each new `_STATUS.md` stub as `OPEN`, and validates each new folder with `check_min_viable_fileset.sh`.
+5. The workflow reports the created packages and deliverables at its scaffolding gate before any document drafting.
+
+SCA-APP-011 retired the App HTTP entry `POST /api/harness/scaffold` and its Pipeline form. The App scaffold library (`frontend/src/lib/harness/scaffold.ts`) remains, without an App UI or HTTP entry.
 
 Acceptance:
 
-- Scaffolding is idempotent for existing directories/files.
-- Failures are fail-fast and include stage, target path, and created paths for recovery.
-- PREPARATION compatibility is reported before the user proceeds.
+- The human confirms the decomposition, the coordination representation and the dependency tracking mode before any package or deliverable folder is created.
+- Scaffolding keeps existing work: existing files are never overwritten, and only files created by that run are populated.
+- Each new deliverable folder passes the minimum viable fileset check, and created paths are reported for review and recovery.
 
 ### 7.4 Run a Primary Dialogue Persona Session
 
-1. User enters Woven Dialogue directly or through a compatible WORKBENCH/persona deep link.
-2. The dialogue resolves persona aliases to instruction-file names while Workbench may appear as a contextual work view.
+1. User enters Woven Dialogue directly or through a compatible persona deep link, including the `/workbench` URL.
+2. The dialogue resolves persona aliases to instruction-file names.
 3. User sends a prompt with optional runtime options and attachments.
 4. App creates/boots a harness session if needed.
 5. Runtime persists `turn.accepted` before calling the model.
@@ -450,26 +454,27 @@ Acceptance:
 Acceptance:
 
 - Session identity is preserved across turns for the same root/persona/mode.
-- Inline/focused artifacts, Work/Agents selection, and Workbench/Pipeline presentation do not unmount or replace the primary live dialogue.
+- Inline/focused artifacts and Work/Agents selection do not unmount or replace the primary live dialogue.
 - Explicit next-turn context references remain distinct from merely visible material.
 - Runtime errors preserve the draft and attachments for retry.
 - Interrupt returns a terminal `process:exit` event and updates UI state.
 - Persisted runtime events can reconstruct accepted turns, assistant deltas, terminal outcome, and interruption status.
 
-### 7.5 Run an Operative Pipeline Intent
+### 7.5 Express an Operative Dispatch Intent
 
-1. User opens the contextual PIPELINE surface from Woven Dialogue or a compatible `/pipeline` deep link.
-2. User selects one of `DECOMP`, `PREP`, `TASK`, or `AUDIT`.
-3. User selects a category-specific agent or lane.
-4. For `TASK`, user selects scope mode and dynamic scope from the working root.
-5. User inspects deliverable status/dependency contract snapshots and may apply allowed lifecycle transitions.
+SCA-APP-011 retired the Pipeline form; no App surface presents this journey. It states the DEL-08-03 dispatch semantics that any later consumer, or a compatible `/pipeline` deep link, must honor.
+
+1. An operative intent names one of `DECOMP`, `PREP`, `TASK`, or `AUDIT`.
+2. The intent names a category-specific agent or lane.
+3. For `TASK`, the intent names a scope mode and a dynamic scope from the working root.
+4. Lifecycle status and dependency snapshots are read, and allowed lifecycle transitions applied, through the lifecycle and dependency library (FR-052 to FR-057), not through a UI form.
 
 Acceptance:
 
 - Deliverable selections reset when the project root or scan results become stale.
-- `KNOWLEDGE_TYPES` mode is shown only when a knowledge decomposition marker is detected.
+- `KNOWLEDGE_TYPES` mode is admitted only when a knowledge decomposition marker is detected.
 - Lifecycle transitions enforce authorized actors and approval SHA requirements for human gate states.
-- Pipeline presentation does not convert conversational prose into a plan/task or transfer dispatch authority to the Coordination Panel.
+- A dispatch intent does not convert conversational prose into a plan/task or transfer dispatch authority to the Coordination Panel.
 - DECOMP/PREP/TASK/AUDIT semantics, disabled options, task-scope queries, and deep links remain unchanged.
 
 ### 7.6 Attach Files to a Turn
@@ -595,17 +600,17 @@ Priority:
 | FR-005 | P1 | The shell shall support professional resizable/collapsible Navigator, Dialogue, Coordination, artifact-focus, and Activity Shelf layouts with versioned local state. | Drag and keyboard resize work; focus and return anchors are preserved; migration retains prior layout state non-destructively for rollback. |
 | FR-006 | P1 | The UI shall preserve a calm, professional, dense-but-readable interface. | UI polish acceptance from `docs/ui/UI_POLISH_EXECUTION_PLAN.md` remains applicable; no regression in harness behavior. |
 
-### 8.2 Dialogue Routing, Work/Agents Coordination, Workbench, and Pipeline
+### 8.2 Dialogue Routing, Work/Agents Coordination, and Dispatch Semantics
 
 | ID | Priority | Requirement | Acceptance |
 |---|---:|---|---|
 | FR-007 | P0 | The target shell shall preserve semantic persona/agent/session routing and canonical aliases without requiring a fixed matrix presentation. | Legacy 3x4 matrix, route/query mappings, unavailable-persona behavior, and deep links remain compatible. |
 | FR-008 | P0 | Dialogue/session selection shall preserve the mounted primary dialogue and guard incompatible changes during an active turn. | A recorded-session selection opens only a labelled read-only replay lens; it does not resume, switch, merge with, or mutate the primary session. |
 | FR-009 | P0 | The Work/Agents Coordination Panel shall present active dialogue/persona context, explicitly recorded work, recorded sessions, and evidence-conditional canonical parentage. | Every structured work item shows source class/reference, status basis, currency, and recorded responsible/related references; missing or conflicting facts remain absent, unknown, or provenance-labelled. |
-| FR-010 | P1 | WORKBENCH shall consume deliverable contract APIs for read-only checks and permitted lifecycle transitions. | Status/dependency summaries load for selected deliverables; transition controls are disabled for unsupported agents. |
-| FR-011 | P0 | Contextual PIPELINE shall expose presentation-neutral `DECOMP`, `PREP`, `TASK`, and `AUDIT` category controls. | Each category retains documented semantics; unsupported options are visible and disabled, and Coordination presentation does not become dispatch authority. |
-| FR-012 | P0 | PIPELINE `TASK` shall retain split selectors for task agent and scope. | Scope mode remains `DELIVERABLES` or `KNOWLEDGE_TYPES`; target deliverable is required for knowledge-type mode; conversational prose is not inferred as a task. |
-| FR-013 | P1 | Dynamic scope and projected Work state shall disclose stale, conflicting, empty, and unknown selections. | Root changes, removed deliverables, disabled knowledge markers, stale knowledge targets, missing sources, and source conflicts reset or visibly qualify invalid projection state. |
+| FR-010 | P1 | [RETIRED — SCA-APP-011] WORKBENCH shall consume deliverable contract APIs for read-only checks and permitted lifecycle transitions. | Retired with the Workbench form and the deliverable routes; lifecycle and dependency behavior is FR-052 to FR-057. |
+| FR-011 | P0 | Presentation-neutral dispatch semantics shall define the `DECOMP`, `PREP`, `TASK`, and `AUDIT` categories (DEL-08-03); no Pipeline form presents them (SCA-APP-011). | Each category retains documented semantics; unsupported options are declared disabled and refused, and Coordination presentation does not become dispatch authority. |
+| FR-012 | P0 | A `TASK` dispatch intent shall keep task agent and scope as separate fields. | Scope mode remains `DELIVERABLES` or `KNOWLEDGE_TYPES`; target deliverable is required for knowledge-type mode; conversational prose is not inferred as a task. |
+| FR-013 | P1 | Dynamic task scope and projected Work state shall disclose stale, conflicting, empty, and unknown selections. | Root changes, removed deliverables, disabled knowledge markers, stale knowledge targets, missing sources, and source conflicts reset or visibly qualify invalid projection state. |
 
 ### 8.3 Harness Sessions and Turns
 
@@ -861,11 +866,12 @@ The thesis and bigger-picture documents describe domain-engine integration, incl
 | `/api/harness/session/[id]` | GET/DELETE | Retrieve or delete a session. |
 | `/api/harness/turn` | POST | Execute a turn and stream UI events over SSE. |
 | `/api/harness/interrupt` | POST | Interrupt active turn for a session. |
-| `/api/harness/scaffold` | POST | Scaffold execution root from decomposition markdown. |
+
+SCA-APP-011 retired `POST /api/harness/scaffold` (Journey 7.3).
 
 Compatibility requirement:
 
-- Existing `/api/harness/*` route shapes remain stable; under D-GOV-43 (A2) the routes are thin loopback adapters over the Runtime service's socket API.
+- Existing `/api/harness/*` route shapes remain stable, except `/api/harness/scaffold`, retired by SCA-APP-011; under D-GOV-43 (A2) the routes are thin loopback adapters over the Runtime service's socket API.
 - Runtime implementation stays behind route boundaries; the browser stream carries the D-GOV-43 event representation of Section 9.3 while persisted events expand.
 
 ### 9.2 Workspace APIs
@@ -876,9 +882,8 @@ Compatibility requirement:
 | `/api/working-root/tree` | GET | Return bounded file tree for the selected root. |
 | `/api/working-root/scope` | GET | Scan deliverables and knowledge-type directories. |
 | `/api/project/deliverables` | GET | Return deliverables plus knowledge decomposition metadata. |
-| `/api/working-root/deliverable/status` | GET | Read `_STATUS.md` snapshot for a deliverable. |
-| `/api/working-root/deliverable/status/transition` | POST | Apply an allowed lifecycle transition. |
-| `/api/working-root/deliverable/dependencies` | GET/PUT | Read/write `Dependencies.csv` snapshot rows. |
+
+SCA-APP-011 retired `/api/working-root/deliverable/status`, `/api/working-root/deliverable/status/transition` and `/api/working-root/deliverable/dependencies`. Lifecycle status read and transition and dependency read and write are served by the library in `frontend/src/lib/workspace/deliverable-contracts.ts` and by the Chirality tool contracts `status_read`, `status_transition`, `deps_read` and `deps_write` that wrap it. Those tools run only on the retained SDK path today: live exposure of the read tools `status_read` and `deps_read` through the Runtime application-tool interface is DEL-06-03's open work, and `status_transition` and `deps_write` remain retained, governed operations with no live registration; any live registration of them is governed by DEL-06-04-REQ-010.
 
 ### 9.3 SSE Event Contract
 
@@ -1648,12 +1653,12 @@ Acceptance:
 ## 14. Success Metrics
 
 1. A first-time operator can select a working root, enter Woven Dialogue, inspect a provenance-bearing deliverable artifact, and start a primary dialogue turn within one app session.
-2. A decomposition markdown can be used to scaffold a SPEC-conformant execution root without manual folder creation.
+2. A decomposition markdown can be used to scaffold a SPEC-conformant execution root without manual folder creation, through the `project-setup` workflow and its packaged scaffolding tools (Journey 7.3).
 3. A deliverable can be scanned, inspected, and transitioned according to lifecycle rules with approval SHA enforcement for human gate states.
 4. Harness premerge validation passes in CI and produces a stable summary artifact.
 5. Desktop DMG builds locally and passes instruction-root integrity checks.
 6. No API key or project truth is written outside its approved storage zone.
-7. Unsupported PIPELINE variants remain visible as disabled options, preserving operator awareness of roadmap scope, while deep links and dispatch semantics remain unchanged.
+7. Unsupported dispatch variants remain declared as disabled options in the DEL-08-03 dispatch contract and are refused, while deep links and dispatch semantics remain unchanged.
 8. A killed or interrupted turn leaves a replayable accepted-turn record.
 9. A read-file model tool request completes through the SDK loop with Chirality permission and event records.
 10. Denied write/bash actions do not execute and produce auditable permission events.
@@ -1666,7 +1671,7 @@ Acceptance:
 17. Work/Agents displays no synthesized plans/tasks, inferred parentage, panel-authored approval, or conflated runtime/project lifecycle status.
 18. Selecting a recorded session loads a provenance-labelled read-only replay lens and returning restores the unchanged mounted primary dialogue and its draft/context.
 19. Artifact focus returns to its dialogue anchor; visible artifacts are never included in next-turn model context without explicit reference selection.
-20. Existing routes, queries, APIs, SSE, provider composition, runtime ownership, security controls, and the loop-first compatibility UI pass regression and packaged Desktop checks before any retirement decision.
+20. Existing routes, queries, APIs, SSE, provider composition, runtime ownership, security controls, and the loop-first compatibility UI pass regression and packaged Desktop checks before any retirement decision. The four routes retired by SCA-APP-011 had no live caller besides the retired forms, and `/api/harness/scaffold` returned ENGINE_UNAVAILABLE in the shipped composition.
 
 ---
 
@@ -1735,13 +1740,13 @@ The active decomposition partitions scope into these 10 flat work-domain package
 | Package | Product Area | PRD Coverage |
 |---|---|---|
 | PKG-01 Product Governance and Reliance Boundaries | Product intent, invariants, professional boundary, reliance-boundary ownership, out-of-scope discipline | Goals 6, 9-11, 18, 21-22; PRD Sections 3.2, 5, 6.4, 8.16, 12.1, 15 |
-| PKG-02 Woven Dialogue Shell, Navigation, and Operator State | Primary dialogue, inline/focused artifacts, Navigator, Work/Agents Coordination Panel, Activity Shelf, re-hosted WORKBENCH/PIPELINE/toolkit/settings, compatibility navigation, local UI state | Goals 4 and 23-25; FR-001 through FR-013, FR-041 through FR-044, FR-076; Journeys 7.2, 7.4, 7.5 |
+| PKG-02 Woven Dialogue Shell, Navigation, and Operator State | Primary dialogue, inline/focused artifacts, Navigator, Work/Agents Coordination Panel, Activity Shelf, re-hosted toolkit/settings, compatibility navigation, local UI state (SCA-APP-011 retired the WORKBENCH/PIPELINE forms) | Goals 4 and 23-25; FR-001 through FR-013, FR-041 through FR-044, FR-076; Journeys 7.2, 7.4, 7.5 |
 | PKG-03 Runtime Engine Contract and Turn Lifecycle | App-side Runtime service child ownership and client integration, request binding, route/SSE transport per Section 9.3, interrupt/cancel presentation, and Root-runtime conformance evidence | FR-014 through FR-035, FR-070 through FR-077, FR-116, FR-122 through FR-128 |
 | PKG-04 SDK Adapter, Prompt, Provider, and Settings | App project-input composition, effective Codex home and Codex-custodied sign-in participation, provider/settings compatibility, and conformance evidence | FR-021 through FR-035, FR-070 through FR-083, FR-116 through FR-121, NFR-028 through NFR-031 |
 | PKG-05 Session Audit, Replay, and Tool Result Records | App consumption/replay/projection of Root-owned canonical sessions/events, App-side redaction, accepted project artifacts, and conformance evidence | FR-071 through FR-077, FR-083, FR-098 through FR-100, data/session requirements |
 | PKG-06 Permissioned Tools, MCP, and Hooks | App/project permission policy, human approvals, project-specific deterministic tools/hooks, client presentation, and Root-runtime conformance | FR-078 through FR-100, FR-119 through FR-121 |
 | PKG-07 Filesystem Execution, Lifecycle, and Dependencies | Working-root truth, execution-root scaffolding, deliverable files, `_STATUS.md`, `Dependencies.csv`, snapshots | FR-045 through FR-057, filesystem/data requirements, Chirality MCP filesystem tools |
-| PKG-08 Agent Suite, Pipeline Dispatch, and Subagent Governance | Agent instruction conformance, persona/agent/session aliases and guarded routing, legacy matrix compatibility, presentation-neutral Pipeline dispatch, Type 2 subagent governance and child records | FR-007 through FR-013, FR-026, FR-058 through FR-063, FR-101, FR-102, subagent governance requirements |
+| PKG-08 Agent Suite, Pipeline Dispatch, and Subagent Governance | Agent instruction conformance, persona/agent/session aliases and guarded routing, legacy matrix compatibility, presentation-neutral dispatch semantics, Type 2 subagent governance and child records | FR-007 through FR-013, FR-026, FR-058 through FR-063, FR-101, FR-102, subagent governance requirements |
 | PKG-09 Validation, Packaging, Security, and Release | Required checks, CI, Section 8/9 validation, network/key security, macOS DMG packaging | FR-064 through FR-069, validation plan, security/privacy NFRs, release verification |
 | PKG-10 Domain Engine Future Boundary | Generic profiles, protected paths, operation proposals, OpenPipeStress fixture posture | FR-106 through FR-115, KG-016 through KG-020, future amendment scope |
 

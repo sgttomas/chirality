@@ -1,0 +1,42 @@
+$ TMPDIR=<session scratchpad>/s4a/tmp zsh projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/run_s4p_checks.sh /Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-d102-act 4c2a7768f projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26 projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/evidence/rerun_4c2a7768f   # 2026-09-27T04:55:50Z
+basis commit: 4c2a7768ff43ef2d3590a37a28e53c519de744d9
+python: Python 3.13.7
+PASS act: check-only 0, apply 0, rerun refuses 1
+PASS containment: 8 differing files, all ScopeOfWork.md
+PASS validate DEL-04-01
+PASS checklist DEL-04-01 (rerun byte-identical)
+PASS boundary DEL-04-01 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
+PASS validate DEL-04-02
+PASS checklist DEL-04-02 (rerun byte-identical)
+PASS boundary DEL-04-02 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
+PASS validate DEL-08-01
+PASS checklist DEL-08-01 (rerun byte-identical)
+PASS boundary DEL-08-01 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
+PASS validate DEL-08-03
+PASS checklist DEL-08-03 (rerun byte-identical)
+PASS boundary DEL-08-03 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
+PASS validate DEL-08-04
+PASS checklist DEL-08-04 (rerun byte-identical)
+PASS boundary DEL-08-04 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
+PASS validate DEL-04-03
+PASS checklist DEL-04-03 (rerun byte-identical)
+PASS boundary DEL-04-03 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
+PASS validate DEL-03-04
+PASS checklist DEL-03-04 (rerun byte-identical)
+PASS boundary DEL-03-04 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
+PASS validate DEL-10-03
+PASS checklist DEL-10-03 (rerun byte-identical)
+PASS boundary DEL-10-03 (no UNRESOLVED_OWNER/UNDEFINED_CLAIM)
+PASS quotes: RESULT PASS 740/740
+PASS state claims: RESULT PASS 1144/1144
+PASS sibling and external IDs: RESULT PASS 57/57
+INFO consequence scan (informational): SUMMARY stale=13 kept=26
+PASS S2 quotation currency (heuristic scan): SUMMARY stale=0 kept=2
+PASS strict identical before/after, export root normalized (exit=1)
+PASS harness identical before/after, export root normalized (exit=0)
+PASS receipts identical before/after, export root normalized (exit=0)
+PASS dependency quote currency identical before/after (SUMMARY active_execution_quotes_verbatim 127/127)
+PASS whitespace
+PASS fault injection: RESULT PASS 9/9
+OVERALL PASS
+exit=0
