@@ -31,6 +31,11 @@ importer.
 Revision 3 moves the basis to e1af32fc4 (after PR #1012) and records the App
 notice NOTICE_2026-09-27_RUNTIME_SCAFFOLD_API_RETIRED.md by hash.
 
+Revision 4 moves the basis to adc8bdae1 (after PR #1013, which changes the
+register validator's EvidenceFile resolution), checks further legacy CSS
+selector families and the page Suspense fallback copy, and scans for the
+matrix-guard clauses that deleting the portal helpers touches.
+
 Inputs (read-only):
   - projects/chirality-app-dev/execution/_Decomposition/*.md, *.csv
   - projects/chirality-app-dev/execution/_ScopeChange/_LATEST.md
@@ -62,7 +67,7 @@ SNAP_REL = (
     "projects/chirality-app-dev/execution/_ScopeChange/"
     "SCA-APP-012_2026-09-27_1828_Loop_First_Shell_and_Legacy_UI_Retirement"
 )
-BASIS_COMMIT = "e1af32fc438e4448ff7d9bfbd6387c28647b7adf"
+BASIS_COMMIT = "adc8bdae18b2e1e48dcf01a304cc055d2cbf84e0"
 APP = "projects/chirality-app-dev"
 EXEC = f"{APP}/execution"
 DOCS = f"{APP}/docs"
@@ -104,6 +109,7 @@ TEXT_PATTERNS = {
     "page_routes": r"(?<![A-Za-z])/workbench\b|(?<![A-Za-z])/pipeline\b|PORTAL/WORKBENCH/PIPELINE",
     "req_009": r"DEL-02-03-REQ-009|DEL-02-03 REQ-009|DEP-02-03-009",
     "route_query_compat": r"DEP-08-02-013|route/query",
+    "matrix_guard": r"launch guards|matrix guard|matrix launches|3x4 matrix|matrix behavio",
     "workflow_read_route": r"/api/working-root/workflow(?![-\w])|workflows-view|WorkflowsView|workflow-detail",
     "scaffold_entry": r"ProjectScaffoldPort|scaffold entry|write-capable scaffold|mcp__chirality__scaffold|"
                       r"/v1/projects/\{id\}/scaffold|RuntimeService\.scaffold",
@@ -117,6 +123,14 @@ CODE_PATTERNS = [
     "ProjectScaffoldPort", "ScaffoldExecutionRootRequest", "ScaffoldExecutionRootResponse",
     "/api/working-root/workflow?", "WorkflowsView", "WorkflowDetail", "workflow-read-contract", "workflow-store",
     "PORTAL, PIPELINE, and WORKBENCH",
+    "Loading live loop portal", "Loading workbench", "Loading pipeline", "Loading direct chat",
+    "guardRecordedSessionSelection", "open legacy interface",
+]
+# Global selector families checked for any product user besides app/globals.css.
+DEAD_CSS_CANDIDATES = [
+    "matrix-grid", "matrix-cell", "matrix-header-cell", "matrix-row-group", "matrix-row-label",
+    "portal-start-session", "portal-deliverables", "portal-deliverable-grid", "portal-deliverable-row",
+    "portal-deliverable-name", "portal-deliverable-key",
 ]
 EXTS = (".ts", ".tsx", ".js", ".mjs")
 IMPORT_RX = re.compile(
@@ -304,6 +318,18 @@ def legacy_css(files: list[str]) -> dict:
     return out
 
 
+def dead_css_candidates(files: list[str]) -> dict:
+    """Each candidate selector: product modules (outside globals.css) that name it, and its selector count."""
+    css = read(f"{SRC}/app/globals.css")
+    prod = {f: read(f) for f in files if not is_test(f) and f.startswith(SRC + "/")}
+    out = {}
+    for tok in DEAD_CSS_CANDIDATES:
+        rx = re.compile(r"(?<![A-Za-z0-9_-])" + re.escape(tok) + r"(?![A-Za-z0-9_-])")
+        out[tok] = {"product_users": sorted(os.path.relpath(f, FRONTEND) for f, t in prod.items() if rx.search(t)),
+                    "globals_css_selector_hits": len(re.findall(r"\." + re.escape(tok) + r"(?![A-Za-z0-9_-])", css))}
+    return out
+
+
 def text_scan(paths: list[str]) -> dict:
     out = {}
     compiled = {k: re.compile(v) for k, v in TEXT_PATTERNS.items()}
@@ -410,8 +436,8 @@ def main() -> int:
             "exit": rc, "skipped": v.get("skipped"), "registers_scanned": v.get("registers_scanned"),
             "dependency_rows": v.get("dependency_rows"), "findings_by_code": v.get("findings_by_code"),
             "error_count": v.get("error_count"), "warning_count": v.get("warning_count"),
-            "note": "XRG is skipped because the App carries no Deliverables.csv/ScopeLedger.csv; EVQ-006 reflects "
-                    "deliverable-relative EvidenceFile paths (carried convention)."}
+            "note": "XRG is skipped because the App carries no Deliverables.csv/ScopeLedger.csv. EVQ-006 counts "
+                    "EvidenceFile cells that resolve in none of the forms the validator tries at this basis (PR #1013)."}
     tool = json.loads(json.dumps(tool, sort_keys=True).replace(root + "/", "").replace(root, "."))
 
     # Reused full audit: its recorded inputs must be byte-identical to the current tree.
@@ -481,6 +507,7 @@ def main() -> int:
         "frontend_reachability": reachability(files),
         "frontend_references": code_references(files),
         "legacy_css_tokens": legacy_css(files),
+        "dead_css_candidates": dead_css_candidates(files),
         "scope_text_hits": text_scan(scope_texts),
         "tools": tool,
     }

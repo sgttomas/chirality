@@ -2,7 +2,7 @@
   "run_label": "SCA_APP_012_GROUP1_PRECHANGE",
   "decomp_variant": "SOFTWARE",
   "method": "Pre-change baseline under scope-change method step 5. The latest full audit-decomp run is reused because every one of its recorded inputs is byte-identical to this basis; it is complemented by the registered structure, dependency-closure and register tools, a static import-reachability analysis of the frontend, and a line-level scan of the scope and governance texts.",
-  "basis_commit": "e1af32fc438e4448ff7d9bfbd6387c28647b7adf",
+  "basis_commit": "adc8bdae18b2e1e48dcf01a304cc055d2cbf84e0",
   "governed_inputs_identical_to_basis": true,
   "decomposition_path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
   "decomposition_sha256": "cf6e56ebb1474d30a45dd3973dcb449d8aab30a84d731649336091afd2321876",
@@ -1017,6 +1017,58 @@
       "tests": [],
       "electron_scripts": [],
       "runtime": []
+    },
+    "Loading live loop portal": {
+      "product": [
+        "src/app/page.tsx"
+      ],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "Loading workbench": {
+      "product": [
+        "src/app/workbench/page.tsx"
+      ],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "Loading pipeline": {
+      "product": [
+        "src/app/pipeline/page.tsx"
+      ],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "Loading direct chat": {
+      "product": [
+        "src/app/chat/page.tsx"
+      ],
+      "tests": [],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "guardRecordedSessionSelection": {
+      "product": [
+        "src/components/woven-dialogue/right-panel.tsx",
+        "src/components/woven-dialogue/woven-dialogue-shell.tsx",
+        "src/lib/woven-dialogue/guarded-session-selection.ts"
+      ],
+      "tests": [
+        "src/__tests__/lib/guarded-session-selection.test.ts"
+      ],
+      "electron_scripts": [],
+      "runtime": []
+    },
+    "open legacy interface": {
+      "product": [],
+      "tests": [],
+      "electron_scripts": [
+        "electron/renderer-window-policy.ts"
+      ],
+      "runtime": []
     }
   },
   "legacy_css_tokens": {
@@ -1236,6 +1288,52 @@
       "globals_css_selector_hits": 3
     }
   },
+  "dead_css_candidates": {
+    "matrix-grid": {
+      "product_users": [],
+      "globals_css_selector_hits": 3
+    },
+    "matrix-cell": {
+      "product_users": [],
+      "globals_css_selector_hits": 5
+    },
+    "matrix-header-cell": {
+      "product_users": [],
+      "globals_css_selector_hits": 7
+    },
+    "matrix-row-group": {
+      "product_users": [],
+      "globals_css_selector_hits": 2
+    },
+    "matrix-row-label": {
+      "product_users": [],
+      "globals_css_selector_hits": 3
+    },
+    "portal-start-session": {
+      "product_users": [],
+      "globals_css_selector_hits": 3
+    },
+    "portal-deliverables": {
+      "product_users": [],
+      "globals_css_selector_hits": 3
+    },
+    "portal-deliverable-grid": {
+      "product_users": [],
+      "globals_css_selector_hits": 3
+    },
+    "portal-deliverable-row": {
+      "product_users": [],
+      "globals_css_selector_hits": 2
+    },
+    "portal-deliverable-name": {
+      "product_users": [],
+      "globals_css_selector_hits": 1
+    },
+    "portal-deliverable-key": {
+      "product_users": [],
+      "globals_css_selector_hits": 1
+    }
+  },
   "scope_text_hits": {
     "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md": [
       {
@@ -1257,6 +1355,7 @@
         "line": 374,
         "tags": [
           "agent_matrix_ui",
+          "matrix_guard",
           "route_query_compat"
         ],
         "text": "| DEL-08-02 | Persona Alias, Agent/Session Routing, and Legacy Matrix Compatibility Contract | TBD | UX_UI_SLICE | Keep UI aliases, canonical agent names, persona resolution, guarded dialogue/session selection, route/que"
@@ -1303,7 +1402,8 @@
         "line": 163,
         "tags": [
           "agent_matrix_ui",
-          "loop_first"
+          "loop_first",
+          "matrix_guard"
         ],
         "text": "25. Preserve legacy routes, query parameters, aliases, matrix behavior, API/SSE contracts, provider composition, and the existing loop-first UI through a compatibility period. SCA-APP-011 records the owner's separate ret"
       },
@@ -1312,6 +1412,7 @@
         "tags": [
           "agent_matrix_ui",
           "loop_first",
+          "matrix_guard",
           "page_routes"
         ],
         "text": "- Preserve `/`, `/chat`, `/pipeline`, and `/workbench`, existing/unknown query parameters, legacy aliases/matrix behavior, browser API shapes (apart from the four routes SCA-APP-011 retired), and the loop-first implement"
@@ -1334,6 +1435,7 @@
       {
         "line": 413,
         "tags": [
+          "matrix_guard",
           "route_query_compat"
         ],
         "text": "6. Legacy route/query/alias/matrix launches remain available through the"
@@ -1363,6 +1465,7 @@
         "line": 607,
         "tags": [
           "agent_matrix_ui",
+          "matrix_guard",
           "route_query_compat"
         ],
         "text": "| FR-007 | P0 | The target shell shall preserve semantic persona/agent/session routing and canonical aliases without requiring a fixed matrix presentation. | Legacy 3x4 matrix, route/query mappings, unavailable-persona b"
@@ -1378,7 +1481,8 @@
         "line": 1263,
         "tags": [
           "agent_matrix_ui",
-          "legacy_prop_or_link"
+          "legacy_prop_or_link",
+          "matrix_guard"
         ],
         "text": "- legacy routes, known and unknown query parameters, aliases/matrix behavior, browser APIs, SSE names/order, provider composition, security boundaries, and the existing UI remain compatible until separately retired;"
       },
@@ -1448,7 +1552,8 @@
         "line": 394,
         "tags": [
           "agent_matrix_ui",
-          "legacy_prop_or_link"
+          "legacy_prop_or_link",
+          "matrix_guard"
         ],
         "text": "- Existing routes, queries, aliases/matrix behavior, APIs, SSE, provider composition, and old UI remain compatible until a separate owner retirement decision."
       },
@@ -1495,6 +1600,7 @@
         "line": 234,
         "tags": [
           "agent_matrix_ui",
+          "matrix_guard",
           "page_routes"
         ],
         "text": "- semantic persona, agent, session, Workbench, and Pipeline routing while preserving legacy PORTAL/WORKBENCH/PIPELINE routes, queries, aliases, and matrix behavior through a compatibility period;"
@@ -1935,6 +2041,7 @@
         "line": 49,
         "tags": [
           "agent_matrix_ui",
+          "matrix_guard",
           "route_query_compat"
         ],
         "text": "> | Scope summary | Keep UI aliases, canonical agent names, persona resolution, guarded dialogue/session selection, route/query mappings, and legacy matrix behavior consistent. | `_CONTEXT.md`; decomposition entry DEL-08"
@@ -1964,6 +2071,7 @@
         "line": 120,
         "tags": [
           "agent_matrix_ui",
+          "matrix_guard",
           "route_query_compat"
         ],
         "text": "> selection, legacy route/query/matrix behavior, and persona resolution"
@@ -1978,14 +2086,16 @@
       {
         "line": 154,
         "tags": [
-          "loop_first"
+          "loop_first",
+          "matrix_guard"
         ],
         "text": "> | DEL-08-02-REQ-003 | TASK and historical Type 2 labels MUST NOT become direct-entry roles through aliases. | D-APP-28 loop-first routing; D-APP-24 Type 0/1 direct-chat guard; `docs/TYPES.md` Type 2 vocabulary | Negati"
       },
       {
         "line": 155,
         "tags": [
-          "loop_first"
+          "loop_first",
+          "matrix_guard"
         ],
         "text": "> | DEL-08-02-REQ-004 | Historical RECONCILING and matrix labels MUST remain replay metadata and MUST NOT create execution roles. | D-APP-28 loop-first routing; D-APP-24 Type 0/1 direct-chat guard; `docs/TYPES.md` matrix"
       },
@@ -2053,6 +2163,7 @@
         "line": 29,
         "tags": [
           "agent_matrix_ui",
+          "matrix_guard",
           "route_query_compat"
         ],
         "text": "dialogue/session selection, route/query mappings, and legacy matrix behavior"
@@ -2133,12 +2244,12 @@
     },
     "validate_decomposition_registers": {
       "dependency_rows": 657,
-      "error_count": 595,
+      "error_count": 36,
       "exit": 1,
       "findings_by_code": {
-        "EVQ-006": 595
+        "EVQ-006": 36
       },
-      "note": "XRG is skipped because the App carries no Deliverables.csv/ScopeLedger.csv; EVQ-006 reflects deliverable-relative EvidenceFile paths (carried convention).",
+      "note": "XRG is skipped because the App carries no Deliverables.csv/ScopeLedger.csv. EVQ-006 counts EvidenceFile cells that resolve in none of the forms the validator tries at this basis (PR #1013).",
       "registers_scanned": 52,
       "skipped": [
         "XRG family (Deliverables.csv and/or ScopeLedger.csv absent)"

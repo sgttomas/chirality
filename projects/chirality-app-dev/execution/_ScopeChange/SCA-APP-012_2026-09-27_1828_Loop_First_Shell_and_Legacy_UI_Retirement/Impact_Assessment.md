@@ -5,8 +5,8 @@ decomp_variant: SOFTWARE
 checkpoint_group: 1
 created: 2026-09-27
 status: awaiting_checkpoint_1_acceptance
-revision: 3 (revision 2 folded in the additional conflicts and added choice W; revision 3 moves the basis past PR #1012)
-basis_commit: e1af32fc438e4448ff7d9bfbd6387c28647b7adf
+revision: 4 (answers the independent review of 647fbf919; basis moved past PR #1013)
+basis_commit: adc8bdae18b2e1e48dcf01a304cc055d2cbf84e0
 workflow: scope-change (bundled)
 ---
 
@@ -22,11 +22,13 @@ workflow: scope-change (bundled)
 
 Abbreviations:
 - **Row n** is row `ActionSeq = n` of `Intake_Actions.csv` in this snapshot
-  (revision 2; the rows were renumbered from revision 1).
+  (revision 4; the rows were renumbered from revisions 2 and 3).
 - **Lnnn** is a line of the named file at the basis commit.
 - **SOW** is the deliverable's `ScopeOfWork.md`.
 - **D** is the App decomposition `Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`.
 - **Baseline** is `Pre_Change_Coverage.json` in this snapshot.
+- **DX-n** is an expected outcome for the post-acceptance dependency
+  re-extraction (§11).
 
 ---
 
@@ -52,20 +54,41 @@ left. Nothing the user can reach today is lost:
   `workflow-detail.tsx` have had no product importer since the same
   2026-09-09 commit; the live Workflows tab renders the method library.
 - **No App-side scaffold entry is planned**, following your direction
-  "Scaffolding through the agent is enough." Scaffolding stays with the agent
-  and the Root `project-setup` workflow.
+  "Scaffolding through the agent is enough." The Runtime loop already retired
+  its scaffold API (PR #1012, merge commit `49bbc9787`); this amendment aligns
+  the App texts.
 
 Topology is unchanged: 10 packages, 52 deliverables, 84 scope items and 10
 objectives. No deliverable is added or retired, and no scope item or
 objective loses its only carrier. No deliverable is `ISSUED`, so no reopening
 is involved.
 
+### One departure from what you approved
+
+The proposal you approved listed the **`/workbench` and `/pipeline` pages
+for retirement**. This package recommends keeping them (P-keep, below),
+which departs from that proposal. The reasons:
+
+- both URLs are enumerated by the Electron renderer-security probe
+  (`electron/main.ts` L647) and the packaged security proof
+  (`scripts/run-packaged-security-proof.mjs` L49), and pinned by
+  `contract-pins.manifest.ts` (L260, L384), so retiring them needs a new
+  packaged renderer-security native witness under DEL-09-06;
+- `chat-panel.tsx` keys the session mode, drafts and session reuse on them
+  (L195-208, L472-505), so retiring them strands existing drafts and
+  auto-resume behind those URLs;
+- D-APP-108 Q3 ruled them "reachable, unlisted", with no 404.
+
+Under P-keep, only their dead `legacy` element goes; the two URLs keep opening
+the dialogue shell. If you want the pages gone as approved, choose P-r or
+P-d; the independent reviewer prefers **P-r** (redirect to `/`) of the two.
+
 ### What accepting group 1 authorizes
 
 Accepting group 1 accepts the proposed change and its impact as the basis for
 drafting group 2:
 
-1. **BASE (Rows 1–22), owner-directed.**
+1. **BASE (Rows 1–18), owner-directed.**
    - Retire the loop-first compatibility UI: the shells, the role-directory
      panel, the discarded `legacy` prop, the `?legacy=1` link and its only
      test, and `lib/portal/agent-matrix-{launch,cells}.ts`.
@@ -75,19 +98,17 @@ drafting group 2:
      that still calls the loop-first shell live or the compatibility
      implementation.
    - Restate DEL-02-03-REQ-010 (it cites the retired FR-010), the DEL-07-03
-     scope-route mentions and the layout metadata string.
-   - Record the expected dependency re-extraction outcomes (DX-02, DX-03) and a
-     Task Management note for TM-APP-051.
-2. **S (Rows 23–25), owner-directed.** Restate DEL-07-02, DEL-06-03 CLM-031,
-   SPEC §14.2 and PRD goal 17 / §6.1: scaffolding is done by the agent through
-   Root `project-setup`, and no App-side scaffold entry is planned. The
-   Runtime loop already retired `ProjectScaffoldPort` and the rest of its
-   scaffold API in PR #1012 (merge commit `49bbc9787`); these rows align the
-   App texts with it.
+     scope-route mentions and the DEL-08-03 API label.
+2. **S (Rows 19–21), owner-directed.** Restate DEL-07-02, DEL-06-03 CLM-031,
+   SPEC §14.2 and PRD goal 17, §6.1, FR-119 and §8.13: scaffolding is done by
+   the agent through Root `project-setup`; no App-side scaffold entry, and no
+   write-capable scaffold tool, is planned.
 3. **Your answers to choices R, W and P below**, and the defaults listed
    after them unless you say otherwise.
 4. **Group 2 drafting.** I prepare the exact text, `Amendment_Actions.csv`,
-   `Supersession_Delta.csv` and the propagation plan for checkpoint group 2.
+   `Supersession_Delta.csv`, and the propagation plan with the expected
+   dependency outcomes (DX-01 to DX-05), the TM-APP-051 handoff and the code
+   specification.
 
 **One point to acknowledge.** PRD §6.4 lists preconditions for retiring the
 loop-first UI: parity, accessibility, migration, performance, runtime
@@ -105,29 +126,37 @@ SCA-APP-011.
 
 | # | Choice | Options | Recommendation |
 |---|---|---|---|
-| **R** | **DEL-02-03-REQ-009** ("Deliverable summary widgets shall support routing to PIPELINE `TASK*` with a deliverable preselected", SOW L143, verification L181) and **DEP-02-03-009** | **R-b (Rows 26–27):** retire REQ-009 as history, remove the routing wording that only it carried, and retire DEP-02-03-009 at dependency re-extraction. **R-a (Rows 28–31):** restate REQ-009 as task-scope preselection under the DEL-08-03 dispatch contract. DEL-08-03, SOW-007 and PRD §7.5 then name it as a declared consumer, and DEP-02-03-009 stays `ACTIVE`, restated. | **R-b.** No deliverable summary widget exists in the live shell (DEL-02-03 CLM-012). The dispatch contract has no product consumer. R-a would add a presentation obligation for a widget nobody has planned, and SOW-007, DEL-08-03 and PRD §7.5 each say that any such consumer needs its own amendment, so R-a must edit three more carriers. R-b leaves DEL-08-03's TASK-scope semantics (FR-012, SOW-007) intact and removes the DX-15 tension (§6). |
-| **W** | **The unmounted flat-file workflow view** (`workflows-view.tsx`, `workflow-detail.tsx`, DEL-02-02) and its read route `GET /api/working-root/workflow` | **W-b (Rows 32–33):** delete the view, its detail, their test, and the read route with its store, contract and test; add the route to the hard-constraint exception. **W-a (Row 34):** delete the view and detail only; the read route stays with no caller. **W-c:** leave everything. | **W-b.** Neither file has a product importer; the live Workflows tab renders `method-library-view.tsx`. The view only listed flat `.chirality/workflows/*.md` files read-only; those files stay readable through the Files view. The read route's only caller is the view, so W-a would leave a new dead route behind. No DEL-02-02 scope changes: no clause names these files, and obligation 3 (L114) is carried by the method library (§8). |
-| **P** | **`/workbench` and `/pipeline` page routes** | **P-keep:** keep both URLs as unlisted URL-compatibility entries into the dialogue shell; only their `legacy` element is deleted. **P-r (Rows 35–41):** redirect both to `/`, keeping the query string. **P-d (Rows 35–41):** delete both (404). | **P-keep.** Both URLs are pinned by the Electron renderer-security probe (`electron/main.ts` L647), by the packaged security proof (`scripts/run-packaged-security-proof.mjs` L49) and by their contract pins. P-r and P-d need a new packaged renderer-security native witness (DEL-09-06). The URLs also select the `WORKBENCH`/`PIPELINE` session mode and draft keys in `chat-panel.tsx` (L194-208, L472-505), so P-r and P-d would strand existing drafts and auto-resume behind those URLs. P-d reverses D-APP-108 Q3 ("no 404"). P-keep changes no scope text beyond BASE (§7). |
+| **R** | **DEL-02-03-REQ-009** ("Deliverable summary widgets shall support routing to PIPELINE `TASK*` with a deliverable preselected", SOW L143, verification L181) and **DEP-02-03-009** | **R-b (Row 22):** retire REQ-009 as history and remove the routing wording that only it carried; DEP-02-03-009 is retired at re-extraction (DX-01). **R-a (Rows 23–25):** restate REQ-009 as task-scope preselection under the DEL-08-03 dispatch contract; DEL-08-03, SOW-007 and PRD §7.5 then name it as a declared consumer, and DEP-02-03-009 stays `ACTIVE`, restated. | **R-b.** No deliverable summary widget exists in the live shell (DEL-02-03 CLM-012). The dispatch contract has no product consumer. R-a would add a presentation obligation for a widget nobody has planned, and SOW-007, DEL-08-03 and PRD §7.5 each say any such consumer needs its own amendment, so R-a must edit three more carriers. R-b leaves DEL-08-03's TASK-scope semantics (FR-012, SOW-007) intact and removes the DX-15 tension (§6). |
+| **W** | **The unmounted flat-file workflow view** (`workflows-view.tsx`, `workflow-detail.tsx`, DEL-02-02) and its read route `GET /api/working-root/workflow` | **W-b (Rows 26–27):** delete the view, its detail, their test, and the read route with its store, contract and test; add the route to every API-preservation clause the scope route joins. **W-a (Row 28):** delete the view and detail only; the read route stays with no caller. **W-c:** leave everything. | **W-b.** Neither file has a product importer; the live Workflows tab renders `method-library-view.tsx`. The view only listed flat `.chirality/workflows/*.md` files read-only; those files stay readable through the Files view. The read route's only caller is the view, so W-a would leave a new dead route behind. No DEL-02-02 scope changes (§8). |
+| **P** | **`/workbench` and `/pipeline` page routes** (listed for retirement in the approved proposal) | **P-r (Rows 29–35):** redirect both to `/`, keeping the query string; carries out the proposal. **P-d (Rows 29–35):** delete both (404); carries out the proposal. **P-keep:** keep both URLs as unlisted URL-compatibility entries into the dialogue shell; only their `legacy` element is deleted. | **P-keep, as a departure from the approved proposal** (see above): the probe, proof and pins need a new native witness, the chat-panel mode and drafts depend on the URLs, and D-APP-108 Q3 stands. If you prefer to carry out the proposal, the reviewer prefers P-r over P-d. P-keep changes no scope text beyond BASE (§7). |
 
 Defaults, applied unless you say otherwise:
 
 - **L-lib: delete both portal helpers** (`agent-matrix-launch.ts` and
-  `agent-matrix-cells.ts`). Neither has a product importer. The
-  unknown-query-parameter duty stays with DEL-08-02, to be verified against
-  the live shell route.
-- **S-tool: narrow SPEC §14.2 `mcp__chirality__scaffold` and PRD goal 17 /
-  §6.1 to the read-only preview** (Row 25). FR-119, the §8.13 sequence, PLAN
-  R2 and TYPES §8.4 stay unchanged.
+  `agent-matrix-cells.ts`). Neither has a product importer. This departs from
+  SCA-APP-011 set L row 29, which would have kept them. The alias and guard
+  semantics stay where the product already implements them, and every clause
+  that names those helpers has a disposition (§3.4).
+- **S-tool: narrow SPEC §14.2 `mcp__chirality__scaffold` and PRD goal 17,
+  §6.1, FR-119 and §8.13 to the read-only scaffold preview** (Row 21). PRD
+  L1513 and PLAN R2 already say preview; TYPES §8.4 is tool-name vocabulary.
 - **E: no change** to CONTRACT or companion-register wording.
 
-With the recommended answers (R-b, W-b, P-keep), group 2 carries 29 register
-rows: 28 MODIFY and 1 ADD (Rows 1–27 and 32–33).
+**Group-2 register size.** With the recommended answers (R-b, W-b, P-keep)
+group 2 carries **24 rows: 23 MODIFY and 1 ADD** (Rows 1–22 and 26–27).
+Choosing P-r or P-d instead of P-keep makes it 31 rows. The dependency
+outcomes, the TM-APP-051 note and the code items are not register rows; they
+go to the propagation plan and the code specification, as in SCA-APP-011.
 
 ### Suggested reply
 
 A short answer is enough, for example:
 
-> "Accept SCA-APP-012 group 1: R-b, W-b, P-keep, defaults."
+> "Accept SCA-APP-012 group 1: R-b, W-b, P-keep (keeping the two pages, as recommended), defaults."
+
+Or, to retire the pages as proposed:
+
+> "Accept SCA-APP-012 group 1: R-b, W-b, P-r, defaults."
 
 I then record your words verbatim in the group-1 decision snapshot and
 prepare group 2.
@@ -142,39 +171,41 @@ the recommended selections:
 - 0 ADD or REMOVE deliverables;
 - 1 ADD Decision Log row (DEC-027);
 - MODIFY on DEL-02-01, DEL-02-02 (a note, W-b), DEL-02-03 (three rows: scope
-  route, REQ-010, and REQ-009 under R-b), DEL-06-03, DEL-07-02, DEL-07-03 and
-  DEL-08-02;
-- MODIFY on the SOW-001 notes, the hard constraint, the §13 note, telemetry,
-  the PRD (three rows), the SPEC (two rows) and the PLAN (two rows);
-- two code-only rows (the `?legacy=1` link, the layout metadata);
-- three dependency re-extraction outcomes (DX-01 to DX-03), carried out by
-  dependency-extract, and one Task Management note, written by that loop.
+  route, REQ-010, and REQ-009 under R-b), DEL-06-03, DEL-07-02, DEL-07-03,
+  DEL-08-02 and DEL-08-03 (a label);
+- MODIFY on the SOW-001 notes, the hard constraint (twice under W-b), the §13
+  note, telemetry, the PRD (three rows), the SPEC (two rows), the PLAN (two
+  rows) and the scaffold-tool wording;
+- outside the register: five expected dependency re-extraction outcomes
+  (DX-01 to DX-05), one Task Management handoff and the code specification.
 
 No scope item goes OUT and no objective loses support. The main costs are:
 
 - **Test re-homing in the code change.** The code change deletes or edits
-  13 test files (§3.3). One case in `pkg08-compatibility-boundaries.test.ts`
-  (the matrix-helper round trip) is dropped, not ported. The unknown-parameter
-  duty it seemed to cover was never verified against the live shell, and
-  DEL-08-02 keeps that duty open.
-- **Compatibility clauses.** Eight PRD clauses, two SPEC §17.9 sentences,
-  five PLAN passages and D-APP-74 keep "the loop-first UI", "the existing UI"
-  or "current UI" until separate owner acceptance, or still describe it as
-  live. This amendment is that acceptance and says so (Rows 11, 12, 15, 16,
-  17).
-- **Text alignment** across seven Scopes of Work (eight under R-a), and dependency re-extraction for DEL-02-03, DEL-08-03 and their
-  neighbours (§11).
+  14 test files and adds one test (§3.3). One case in
+  `pkg08-compatibility-boundaries.test.ts` (the matrix-helper round trip) is
+  dropped, not ported. The unknown-parameter duty it seemed to cover was never
+  verified against the live shell, and DEL-08-02 keeps that duty open.
+- **Compatibility clauses.** Ten PRD clauses, two SPEC §17.9 sentences, six
+  PLAN passages and D-APP-74 keep "the loop-first UI", "the existing UI",
+  "current UI" or a matrix launch surface until separate owner acceptance, or
+  still describe them as live. This amendment is that acceptance and says so
+  (Rows 12–18).
+- **Text alignment** across eight Scopes of Work (the same eight under R-a), and
+  dependency re-extraction for DEL-02-03, DEL-08-03 and their neighbours
+  (§11).
 
 ## 2. Evidence basis
 
 | Evidence | SHA-256 / result |
 |---|---|
-| `Brief.md` (this snapshot, revision 3) | `d7cae385b97057407458104a47922281fd3e5acaa985bb096caf013650a5db72` (revision 1: `d540c607…9b9b27`; revision 2: `688725ec…bb8df`) |
-| `Intake_Actions.csv` (this snapshot, revision 3) | `b109be9e3f04b033b035b9783d6f77f5aa66e1215213df0d05e00fbe607f9610`; 41 rows, all `PROPOSED` (revision 1: `8c5a3e6d…fdff2`, 29 rows; revision 2: `1acab7da…a7e916`) |
-| `Pre_Change_Coverage.json` (this snapshot, revision 3) | `4e03a9d6b4ce083ef35bf5465db41bb3151cb05e538cfe59d0144ee883d69880`; two runs byte-identical at `e1af32fc4` (revision 1: `4504d70e…0018cb`; revision 2: `e676e10d…1b31e9`) |
-| `Evidence/Group1/build_pre_change_baseline.py` (revision 3) | `8522ed1df1a29423f723d7231e12ebef8bb56f75053bd467ac819c00b6894e32` (revision 1: `e7abdab1…dbe7b`; revision 2: `dc6313b8…29736e`) |
-| `execution/_Coordination/NOTICE_2026-09-27_RUNTIME_SCAFFOLD_API_RETIRED.md` | `5be3999622b233fe326081485ec92a38f5bbd38e43989a4b3652db1c334916ab`; the Runtime loop's notice of the scaffold-API retirement (PR #1012) |
+| `Brief.md` (this snapshot, revision 4) | `3924974af3cd4ffe81169b6f8654657e9e880181d8a217747158255ad8c56d49` |
+| `Intake_Actions.csv` (this snapshot, revision 4) | `d2ae9c44e78457c7767b699390df5109d5d1f00ff1ccc7e751db4b9d0f9ec4c9`; 35 rows, all `PROPOSED` (revision 1: 29 rows; revisions 2 and 3: 41 rows) |
+| `Pre_Change_Coverage.json` (this snapshot, revision 4) | `c470779a3d25c9e911248322d2b1785aa0895c1666cdb7311aacb980017cc0b2`; two runs byte-identical at `adc8bdae1` (earlier: `4504d70e…`, `e676e10d…`, `4e03a9d6…`) |
+| `Evidence/Group1/build_pre_change_baseline.py` (revision 4) | `1136d9d8eba59ecc6abac42d5656f96ee379ca04371fc5b717c3efbbc7a41a88` |
 | Reused audit `COV_SCA_APP_011_POST_ACCEPTANCE_2026-09-27_0500` | 122/122 recorded inputs byte-identical at this basis; `WARNINGS`, 0 blockers |
+| Register validator at this basis | exit 1 on 36 `EVQ-006` only, under the EvidenceFile resolution of PR #1013 (revisions 1–3 counted 595 under the older resolution) |
+| `execution/_Coordination/NOTICE_2026-09-27_RUNTIME_SCAFFOLD_API_RETIRED.md` | `5be3999622b233fe326081485ec92a38f5bbd38e43989a4b3652db1c334916ab`; the Runtime loop's notice of the scaffold-API retirement (PR #1012) |
 | Decomposition / companion register / `_LATEST.md` | `cf6e56eb…d2321876` / `918e475a…a942c` / `904c1bd6…c42c04e3` (full values in `Brief.md`) |
 | Other inputs | as listed with full SHA-256 in `Brief.md` |
 
@@ -205,13 +236,17 @@ product modules, of which 211 are reachable (Baseline
 
 `GET /api/working-root/workflow` (`app/api/working-root/workflow/route.ts`,
 with `workflow-store.ts` and `workflow-read-contract.ts`) is a root, so it
-counts as reachable, but its only fetch caller is `workflows-view.tsx`;
-its test is `__tests__/api/working-root-workflow.test.ts` (Baseline
+counts as reachable, but its only fetch caller is `workflows-view.tsx`; its
+test is `__tests__/api/working-root-workflow.test.ts` (Baseline
 `frontend_references` for `/api/working-root/workflow?`).
+
+`lib/woven-dialogue/operator-projection.ts` declares its own local
+`DIRECT_ENTRY_ROLE_IDS` constant; it does not import `agent-matrix-cells.ts`
+and is unaffected.
 
 ### 3.2 Other dead threads found
 
-- **`?legacy=1` link (Row 18).** `woven-dialogue-shell.tsx` L384-388 builds
+- **`?legacy=1` link.** `woven-dialogue-shell.tsx` L384-388 builds
   `legacyHref` and passes it on. `Navigator` discards it (`void legacyHref`,
   `navigator.tsx` L119), and `ShellFrame` never destructures it
   (`shell-frame.tsx` L56 declares it). The only test of the link, "preserves
@@ -227,25 +262,38 @@ its test is `__tests__/api/working-root-workflow.test.ts` (Baseline
   - the `PersonaPicker` `buildHref` prop;
   - the `WorkspaceSidebar` `portalTab`/`workbenchTab`/`pipelineTab` props and
     tab constants (`AppShell`, used by `not-found.tsx`, passes none).
-- **Legacy-only CSS.** Eleven class tokens in `app/globals.css` have no other
-  product user: `loop-chat-host`, `loop-grid`, `loop-grid--sidebar-collapsed`,
-  `loop-main`, `loop-persona-bar`, `loop-sidebar`, `portal-launch-notice`,
-  `portal-matrix`, `portal-matrix--sidebar`, `portal-matrix-header` and
-  `portal-matrix-heading` (Baseline `legacy_css_tokens`). `shell-pane*` stays,
-  because `AppShell` uses it.
-- **Copy (Row 19).** The metadata description in `app/layout.tsx` reads
-  "PORTAL, PIPELINE, and WORKBENCH shell for local agent execution". No scope
-  text or test names the string.
+- **Legacy CSS**, all in `app/globals.css`, verified by the builder against
+  every product module:
+  - eleven class tokens used only by the legacy components:
+    `loop-chat-host`, `loop-grid`, `loop-grid--sidebar-collapsed`,
+    `loop-main`, `loop-persona-bar`, `loop-sidebar`, `portal-launch-notice`,
+    `portal-matrix`, `portal-matrix--sidebar`, `portal-matrix-header` and
+    `portal-matrix-heading` (Baseline `legacy_css_tokens`);
+  - eleven selector families that no product module uses at all:
+    `matrix-grid`, `matrix-cell`, `matrix-header-cell`, `matrix-row-group`,
+    `matrix-row-label`, `portal-start-session`, `portal-deliverables`,
+    `portal-deliverable-grid`, `portal-deliverable-row`,
+    `portal-deliverable-name` and `portal-deliverable-key` (Baseline
+    `dead_css_candidates`: 0 product users each; 33 selector occurrences).
+  - `shell-pane*` stays, because `AppShell` uses it.
+- **Copy.** The metadata description in `app/layout.tsx` reads "PORTAL,
+  PIPELINE, and WORKBENCH shell for local agent execution". The page Suspense
+  fallbacks read "Loading live loop portal..." (`app/page.tsx`), "Loading
+  direct chat..." (`app/chat/page.tsx`), "Loading workbench..." and "Loading
+  pipeline..." (the two pages, under P-keep). No scope text or test names these
+  strings.
 
 ### 3.3 Tests the code change must handle
 
 | Test | Action |
 |---|---|
-| `components/agent-matrix-panel.test.ts`, `lib/agent-matrix-launch.test.ts`, `lib/agent-matrix-cells.test.ts` | Delete with their modules |
+| `components/agent-matrix-panel.test.ts`, `lib/agent-matrix-launch.test.ts` | Delete with their modules |
+| `lib/agent-matrix-cells.test.ts` | Port case 1 (the live `CHIRALITY_ROLES` registry: TASK is not direct-entry; HELP_HUMAN is the new-chat default) into `lib/persona-resolution.test.ts`; drop case 2 (`isRoleSelectionBlocked`, an identity helper with no product caller); delete the file |
+| `lib/pkg08-compatibility-boundaries.test.ts` | Keep the role-boundary case, reading the three direct-entry roles from `CHIRALITY_ROLES`, and the dispatch case; drop the matrix-helper round trip. DEL-08-02, DEL-08-03 and DEL-08-05 keep naming this file |
+| New role-picker guard test | Assert that the role picker in `chat-panel.tsx` (L2124, `PersonaPicker compact disabled={isRunning}`) is disabled while a turn runs. No test covers it today; the removed `isRoleSelectionBlocked` test was the only guard test, and it tested an unused helper |
 | `components/workspace-sidebar.test.ts` | Drop the `SidebarRightLoopLayout` and tertiary-tab cases; keep any `WorkspaceSidebar` case `AppShell` still needs |
 | `components/woven-dialogue-route.test.tsx` | Drop the `legacy` prop cases; keep the surface cases |
 | `components/loop-tertiary-routes.test.ts` | Under P-keep, retarget to a page-route test that `/workbench` and `/pipeline` open the dialogue shell. Under P-x, replace with a redirect or 404 test |
-| `lib/pkg08-compatibility-boundaries.test.ts` | Keep the role-boundary case (on `CHIRALITY_ROLES`) and the dispatch case; drop the matrix-helper round trip. DEL-08-02, DEL-08-03 and DEL-08-05 keep naming this file |
 | `lib/loop-first.test.ts` | Keep the `CHAT_SECTION` case; drop the removed-helper cases |
 | `components/woven-dialogue-shell.test.tsx` | Delete the "legacy compatibility link" case (L433-440) and the `legacyHref` in its `ShellFrame` mock |
 | `components/woven-dialogue-navigator.test.tsx`, `components/historical-chat-reveal.test.tsx` | Drop the `legacyHref` prop |
@@ -253,7 +301,39 @@ its test is `__tests__/api/working-root-workflow.test.ts` (Baseline
 | `api/working-root-workflow.test.ts` (W-b) | Delete with the read route |
 
 No test weakens a protected check. The dropped cases test code that no
-product path reaches.
+product path reaches; the one real guard left untested gains a test.
+
+### 3.4 L-lib: where the matrix alias and guard semantics live, clause by clause
+
+SCA-APP-011's set L row 29 would have kept "alias, route/query and
+matrix-launch semantics under `frontend/src/lib` and their tests". The L-lib
+default departs from that for the two `lib/portal` helpers. Neither has a
+product importer. The semantics they illustrated already live elsewhere:
+
+| Semantic | Lives in | Tested by |
+|---|---|---|
+| Aliases resolve to the three direct-entry roles; retired labels and TASK map to HELP_HUMAN | `lib/shell/persona-resolution.ts` (`resolvePersona`) | `lib/persona-resolution.test.ts` |
+| TASK is not direct-entry; HELP_HUMAN is the new-chat default | `@chirality/runtime-contracts` `CHIRALITY_ROLES` | ported case 1 of `agent-matrix-cells.test.ts` (§3.3) |
+| Recorded-session selection is blocked while a live turn runs | `lib/woven-dialogue/guarded-session-selection.ts` (used by `right-panel.tsx` and `woven-dialogue-shell.tsx`) | `lib/guarded-session-selection.test.ts` ("blocks replay selection while a live turn is active") |
+| Role selection pauses while a turn runs | `chat-panel.tsx` L2124 (`PersonaPicker … disabled={isRunning}`) | new test (§3.3) |
+| Matrix target merged into the loop-shell URL | nowhere; there is no matrix to launch from since 2026-09-09 | — (retired) |
+| Unknown query parameters round-trip | the live dialogue-shell route (Next preserves the query; the shell reads only `agent`) | open DEL-08-02 obligation, unchanged |
+
+Keeping one guard helper was considered: `isRoleSelectionBlocked(streaming)`
+returns its argument and no product code calls it, so keeping it would keep a
+test of dead code while the live picker guard stays untested. The
+recommendation is to delete it and add the picker test.
+
+Clause dispositions:
+
+| Clause | Text | Disposition |
+|---|---|---|
+| SPEC §17.9 L1275-1277 | "Legacy matrix aliases and launch guards remain compatible even though the target shell does not require a fixed matrix." | NO_CHANGE: still true. The aliases are `resolvePersona`; the launch guards are the mid-turn selection guards above |
+| PRD §7.2 step 6 L413 | "Legacy route/query/alias/matrix launches remain available through the compatibility period." | Row 13: restated to route/query/alias launches; the matrix survives as TYPES §4 vocabulary, not as a launch surface |
+| PRD FR-007 acceptance L607 | "Legacy 3x4 matrix, route/query mappings, unavailable-persona behavior, and deep links remain compatible." | Row 13: restated the same way; the 3x4 matrix has been dated presentation history since SCA-APP-010 (DEL-02-01 REQ-004) |
+| App DIRECTIVE §4.1 L234 | "… preserving legacy PORTAL/WORKBENCH/PIPELINE routes, queries, aliases, and matrix behavior through a compatibility period" | NO_CHANGE under P-keep: routes, queries and aliases survive, and "matrix behavior" reads as the TYPES §4 alias/query vocabulary and the resolver. DIRECTIVE is contract-level and changes only under P-x (Row 34) |
+| DEL-08-02 SOW L154-155 (REQ-003/004 verification: "Negative alias resolver unit test and matrix guard test") | | Row 5: verification names `persona-resolution.test.ts` and the ported registry case |
+| DEL-08-02 SOW L86-87 construction-table hooks | name `agent-matrix-cells.test.ts` and the pkg08 matrix-helper case | Row 5 |
 
 ## 4. Impact by action
 
@@ -263,40 +343,44 @@ product path reaches.
 | 2 | BASE | DEL-02-03 (scope route, `DeliverablesProvider`) | SOW CLM-003 L54 | same |
 | 3 | BASE | DEL-02-03-REQ-010 | SOW L144, L182 | same |
 | 4 | BASE | DEL-07-03 | SOW L185, L255, L403 | project-setup INCREMENTAL |
-| 5 | BASE | DEL-08-02 | SOW L86-87 hooks, L165, L204, L260 | project-setup INCREMENTAL; dependency-extract |
-| 6 | BASE | SOW-001 | D L176, L409 | audit-decomp |
-| 7 | BASE | Hard constraint | D L102 | audit-decomp |
-| 8, 9, 10 | BASE | §13 note, DEC-027, telemetry | D after L675; after L642 and L660; L500-501 | audit-decomp |
-| 11 | BASE | PRD, loop-first decision clauses | `docs/PRD.md` L163, L329, L383, L1674, L1714 | audit-scope-closure |
-| 12 | BASE | PRD, live-shell text | L355 (§6.3), L596 (FR-001), L1263 (§12.1) | audit-scope-closure |
-| 13 | BASE | PRD, scope route | L883 and the carve-outs L163, L329, L383, L1674 | audit-scope-closure |
-| 14 | BASE | SPEC, scope route | `docs/SPEC.md` L1126 (§17.2), L1279 (§17.9) | audit-scope-closure |
-| 15 | BASE | SPEC, loop-first sentence | L1284-1286 (§17.9) | audit-scope-closure |
-| 16 | BASE | PLAN §3 and §13 entry | `docs/PLAN.md` L118-120; new §13 entry | audit-scope-closure |
-| 17 | BASE | PLAN, live-shell text | L37 (§1), L394 (§6.5), L537 and L560 (§13.2) | audit-scope-closure |
-| 18 | BASE | Code: `?legacy=1` link | `woven-dialogue-shell.tsx`, `navigator.tsx`, `shell-frame.tsx` and three tests | App code change |
-| 19 | BASE | Code: layout metadata | `app/layout.tsx` | App code change |
-| 20, 21 | BASE | DEP-02-03-004, DEP-08-03-007 | DEL-02-03 and DEL-08-03 `Dependencies.csv`, `_DEPENDENCIES.md` | dependency-extract; `analyze_dep_closure` |
-| 22 | BASE | TM-APP-051 | `_Coordination/_TaskManagement/REGISTER.csv` | Task Management loop |
-| 23 | S | DEL-07-02 | SOW L24, L25, L229 (L477 stays history) | project-setup INCREMENTAL |
-| 24 | S | DEL-06-03 | SOW CLM-031 L364 | project-setup INCREMENTAL |
-| 25 | S | SPEC §14.2, PRD | `docs/SPEC.md` L999; `docs/PRD.md` L155, L323 | audit-scope-closure |
-| 26 | R-b | DEL-02-03-REQ-009 | SOW L81, L116, L143, L147, L181, L185, L216, L287, L297, L317, L350 | project-setup INCREMENTAL; dependency-extract |
-| 27 | R-b | DEP-02-03-009 (DX-01) | DEL-02-03 `Dependencies.csv`, `_DEPENDENCIES.md` | dependency-extract; `analyze_dep_closure` |
-| 28–31 | R-a | DEL-02-03, DEL-08-03, SOW-007, PRD §7.5, DEP-02-03-009 | SOW L143, L181, L216; DEL-08-03 SOW L65, D L375, `_CONTEXT.md` L33; D L182, L415; PRD L465 | project-setup INCREMENTAL; dependency-extract |
-| 32 | W-b | DEL-02-02 | SCA-APP-010 section (one-line record), L433 alignment note; code: view, detail, read route, store, contract, tests | project-setup INCREMENTAL; App code change |
-| 33 | W-b | Hard constraint, PRD carve-outs | D L102; PRD L383, L1674 | audit-decomp; audit-scope-closure |
-| 34 | W-a | DEL-02-02 | SCA-APP-010 section (residual note); code: view and detail | project-setup INCREMENTAL; App code change |
-| 35–41 | P-x | DEL-02-01, DEL-08-02, DEL-02-02, SOW-001/005, PRD, SPEC/DIRECTIVE/TYPES, hard constraint | DEL-02-01 SOW L54, L108, L205, L212; DEL-08-02 SOW and DEP-08-02-013; DEL-02-02 SOW L112; D L102, L176, L180, L409, L413; PRD L329, L446, L465, L1263, L1674, L1714; SPEC L1272; DIRECTIVE L234; TYPES L142-143 | project-setup INCREMENTAL; dependency-extract; packaged renderer-security re-evidence (DEL-09-06) |
+| 5 | BASE | DEL-08-02 | SOW L86-87 hooks, L154-155, L165, L204, L260 | project-setup INCREMENTAL; dependency-extract |
+| 6 | BASE | DEL-08-03 label | SOW L124 | project-setup INCREMENTAL |
+| 7 | BASE | SOW-001 | D L176, L409 | audit-decomp |
+| 8 | BASE | Hard constraint | D L102 | audit-decomp |
+| 9, 10, 11 | BASE | §13 note, DEC-027, telemetry | D after L675; after L642 and L660; L500-501 | audit-decomp |
+| 12 | BASE | PRD, loop-first decision clauses | `docs/PRD.md` L163, L329, L383, L1674, L1714 | audit-scope-closure |
+| 13 | BASE | PRD, live-shell and matrix-launch text | L355 (§6.3), L413 (§7.2), L596 (FR-001), L607 (FR-007), L1263 (§12.1) | audit-scope-closure |
+| 14 | BASE | PRD, scope route | L883 and the carve-outs L163, L329, L383, L1674 | audit-scope-closure |
+| 15 | BASE | SPEC, scope route | `docs/SPEC.md` L1126 (§17.2), L1279 (§17.9) | audit-scope-closure |
+| 16 | BASE | SPEC, loop-first sentence | L1284-1286 (§17.9) | audit-scope-closure |
+| 17 | BASE | PLAN §3, R1 acceptance and §13 entry | `docs/PLAN.md` L118-120, L187; new §13 entry | audit-scope-closure |
+| 18 | BASE | PLAN, live-shell text | L37 (§1), L394 (§6.5), L537 and L560 (§13.2) | audit-scope-closure |
+| 19 | S | DEL-07-02 | SOW L24, L25, L229 (L477 stays history) | project-setup INCREMENTAL |
+| 20 | S | DEL-06-03 | SOW CLM-031 L364 | project-setup INCREMENTAL |
+| 21 | S | SPEC §14.2, PRD | `docs/SPEC.md` L999; `docs/PRD.md` L155, L323, L775, L780 | audit-scope-closure |
+| 22 | R-b | DEL-02-03-REQ-009 | SOW L81, L116, L143, L147, L181, L185, L216, L287, L297, L317, L350 | project-setup INCREMENTAL; dependency-extract |
+| 23–25 | R-a | DEL-02-03, DEL-08-03, SOW-007, PRD §7.5 | SOW L143, L181, L216; DEL-08-03 SOW L65, D L375, `_CONTEXT.md` L33; D L182, L415; PRD L465 | project-setup INCREMENTAL; dependency-extract |
+| 26 | W-b | DEL-02-02 | SCA-APP-010 section (one-line record), L433 alignment note | project-setup INCREMENTAL |
+| 27 | W-b | Read-route carve-outs | D L102; PRD L163, L329, L383, L1263, L1674; PLAN L118-120, L187, L394 | audit-decomp; audit-scope-closure |
+| 28 | W-a | DEL-02-02 | SCA-APP-010 section (residual note) | project-setup INCREMENTAL |
+| 29–35 | P-x | DEL-02-01, DEL-08-02, DEL-02-02, SOW-001/005, PRD, SPEC/DIRECTIVE/TYPES, hard constraint | DEL-02-01 SOW L54, L108, L205, L212; DEL-08-02 SOW; DEL-02-02 SOW L112; D L102, L176, L180, L409, L413; PRD L329, L446, L465, L1263, L1674, L1714; SPEC L1272; DIRECTIVE L234; TYPES L142-143 | project-setup INCREMENTAL; dependency-extract (DX-04); packaged renderer-security re-evidence (DEL-09-06) |
+| — | handoff | DEP-02-03-009, DEP-02-03-004, DEP-08-03-007, DEP-08-02-013, all registers | DX-01 to DX-05 (§11) | dependency-extract; `analyze_dep_closure` |
+| — | handoff | TM-APP-051 | Task Management `REGISTER.csv` (§13) | Task Management loop |
+| — | code | App frontend | code specification (§15) | App code change after group 3 |
+
+Every register row's `AffectedFiles` names only files this amendment would
+write (decomposition, PRD, SPEC, PLAN, and the named Scopes of Work); the
+dependency registers, the Task Management register and the code are not
+written by this workflow (contract L43, L377).
 
 ## 5. Coverage
 
 | Entity | Current carriers | Effect | Only carrier lost? | OUT? |
 |---|---|---|---|---|
-| SOW-001 (dialogue-centred shell) | DEL-02-01 | Notes drop "the loop-first UI" as a compatibility surface (Row 6) | No | No |
+| SOW-001 (dialogue-centred shell) | DEL-02-01 | Notes drop "the loop-first UI" as a compatibility surface (Row 7) | No | No |
 | SOW-002 (per-chat folder) | DEL-07-01, DEL-02-03 | None | No | No |
 | SOW-003 (file tree and scope scans) | DEL-02-03 | The scope scan stays: the scan library and `/api/project/deliverables` (deliverables and knowledge types) remain; only the uncalled `/api/working-root/scope` goes | No | No |
-| SOW-005 (routing, aliases, legacy route/query compatibility) | DEL-02-01, DEL-08-02 | Unchanged under P-keep; route/query semantics stay with DEL-08-02 | No | No |
+| SOW-005 (routing, aliases, legacy route/query compatibility) | DEL-02-01, DEL-08-02 | Unchanged under P-keep; alias and guard semantics stay in the product (§3.4) | No | No |
 | SOW-007 (dispatch semantics) | DEL-08-03 | Unchanged under R-b; notes gain a declared consumer under R-a | No | No |
 | SOW-024 / SOW-025 (scaffolding) | DEL-07-02 | Unchanged; the scaffold library and `scaffold_preview` stay | No | No |
 | SOW-081 (governed workflows and the Workflows view) | DEL-07-03, DEL-02-02, DEL-04-04 | Unchanged under every W answer: the live Workflows view is `method-library-view.tsx` | No | No |
@@ -316,7 +400,7 @@ history, not moved:
 | DEL-02-03-REQ-010 (read-only status/dependency snapshots; source FR-010) | Restated to read-only status from `/api/project/deliverables`, no transition control (Row 3) |
 | PRD KG-033 remediation clause and the `[data-legacy]` residual | Closed by this amendment's owner decision and the legacy-prop removal |
 | DEL-06-03 CLM-031 (write-capable scaffold on the later write surface) | Restated: no write-capable App scaffold tool is planned |
-| DEL-07-02 follow-up (a later App-side entry, such as a composed `ProjectScaffoldPort`) | Restated: no App-side entry is planned |
+| DEL-07-02 follow-up (a later App-side entry, such as a composed `ProjectScaffoldPort`) | Restated: no App-side entry is planned; the port was retired in PR #1012 |
 
 ## 6. Choice R — DEL-02-03-REQ-009 and DEP-02-03-009
 
@@ -335,7 +419,7 @@ history, not moved:
   `task-scope.ts` loses its only one when `DeliverablesProvider` goes
   (§3.1 S2).
 
-**R-b (recommended), Rows 26–27.**
+**R-b (recommended), Row 22.**
 - Retire REQ-009 and its verification row as `[RETIRED — SCA-APP-012]`
   history, and mark CLM-015 as history.
 - Remove the routing wording that only REQ-009 carried: CLM-005 L81, CLM-008
@@ -348,7 +432,7 @@ history, not moved:
   placed the portal deliverable-rows launcher inside REQ-009. That launcher
   no longer exists.
 
-**R-a, Rows 28–31.**
+**R-a, Rows 23–25.**
 - Restate REQ-009 as optional task-scope preselection: a deliverable row
   carries its stable key into a `TASK` dispatch intent under the DEL-08-03
   contract.
@@ -381,6 +465,11 @@ transition-control clause leave DEL-02-03.
 
 ## 7. Choice P — `/workbench` and `/pipeline`
 
+**The approved proposal listed both pages for retirement.** P-r and P-d carry
+that out. P-keep is a recommended departure from it, for the reasons below;
+the owner decides. If the pages are to go, the independent reviewer prefers
+P-r (redirect) to P-d (404).
+
 **What exists at the basis.**
 - `app/workbench/` and `app/pipeline/` each hold a `page.tsx` and a client
   that renders `WovenDialogueRoute` with a `LoopTertiaryShell` `legacy`
@@ -399,20 +488,21 @@ transition-control clause leave DEL-02-03.
   read by the live shell.
 - Route/query compatibility is keyed with DEL-08-02 through DEP-08-02-013 and
   DEL-02-01 REQ-002, REQ-009 and REQ-011.
+- D-APP-108 Q3 (L48) ruled the two URLs "reachable, unlisted", with no 404.
 
-| Effect | P-keep (recommended) | P-r redirect to `/` | P-d delete (404) |
+| Effect | P-keep (recommended departure) | P-r redirect to `/` (reviewer's preference if retiring) | P-d delete (404) |
 |---|---|---|---|
+| Relation to the approved proposal | Departs from it | Carries it out | Carries it out |
 | Code | Page clients render the shell without a `legacy` element | Two pages become redirects that keep the query string | Two page directories deleted |
 | Existing bookmarks | Open the dialogue shell, as today | Open `/` | 404 (`not-found.tsx`) |
 | `WORKBENCH`/`PIPELINE` drafts and session reuse | Unchanged | Not reached through these URLs (records kept) | Same as P-r |
 | Electron probe, packaged proof, contract pins | Unchanged | Route lists and pins change; new packaged renderer-security native witness (DEL-09-06) | Same |
 | D-APP-108 Q3 | Stands | Superseded | Superseded, and reversed ("no 404") |
-| Scope rows | none beyond BASE | Rows 35–41 | Rows 35–41 |
+| Scope rows | none beyond BASE | Rows 29–35 | Rows 29–35 |
 | DEP-08-02-013 | Unchanged | Retired or restated at re-extraction (DX-04) | Same |
 
-P-keep satisfies the direction to retire dead UI. The two page files stop
-carrying dead code. What is left is a URL-compatibility behavior that is
-live, tested and pinned.
+Under P-keep the two page files stop carrying dead code. What is left is a
+URL-compatibility behavior that is live, tested and pinned.
 
 ## 8. Choice W — the unmounted flat-file workflow view
 
@@ -446,25 +536,40 @@ live, tested and pinned.
   `method-library-view.tsx` carries it; the removed view never did.
 - SOW-081 (D L256, L489) keeps "old flat files" as "compatibility history".
   Flat files stay ordinary documents, readable through the Files view
-  (`/api/working-root/file`), which the Root and App `AGENTS.md` also say
-  ("Old flat project workflow Markdown files remain ordinary documents and
-  historical navigation targets").
+  (`/api/working-root/file`). The App `AGENTS.md` says the same (L65-66: "Old
+  flat project workflow Markdown files remain ordinary documents and
+  historical navigation targets"); the Root `AGENTS.md` does not address flat
+  files.
 - DEL-02-02 L433 lists "workflow/roadmap/proposal presentation versus current
   method-library/draft registration" as an open alignment question; removing
   the flat view narrows it and is recorded there.
 
-So removing them **does not change DEL-02-02's accepted scope**, and Rows 32
-and 34 are `ScopeChanging` `NO`. Only W-b touches a governance clause: the
-read route is a browser-facing route under the decomposition hard constraint
-(D L102) and the PRD "any existing route" clauses (§6.4 L383, §14 metric 20
-L1674), so Row 33 adds it to those exceptions. It is in neither the PRD §9.2
-nor the SPEC §17.2 table.
+So removing them **does not change DEL-02-02's accepted scope**, and Rows 26
+and 28 are `ScopeChanging` `NO`.
+
+**W-b carriers (Row 27).** The read route is a browser-facing route, so W-b
+must add it to every API-preservation clause that the scope route joins:
+
+| Clause | Line | Also carries the scope route in |
+|---|---|---|
+| Decomposition Section 3 hard constraint | D L102 | Row 8 |
+| PRD §3.1 goal 25 | L163 | Rows 12, 14 |
+| PRD §6.1 (browser API shapes, apart from the retired routes) | L329 | Rows 12, 14 |
+| PRD §6.4 (any existing route) | L383 | Rows 12, 14 |
+| PRD §12.1 (browser APIs remain compatible) | L1263 | Row 13 |
+| PRD §14 metric 20 | L1674 | Rows 12, 14 |
+| PLAN §3 (public route/API/query shapes) | L118-120 | Row 17 |
+| PLAN R1 acceptance ("Route shapes … unchanged") | L187 | Row 17 |
+| PLAN §6.5 (existing routes, APIs … remain compatible) | L394 | Row 18 |
+
+The route is in neither the PRD §9.2 nor the SPEC §17.2 table, so no table
+row changes, and SPEC §17.9 covers only the §17.1-17.2 tables.
 
 | Effect | W-b (recommended) | W-a | W-c |
 |---|---|---|---|
 | Code | Delete view, detail, read route, store, contract, two tests, view-only CSS | Delete view, detail, one test | None |
 | Dead code left | None | `GET /api/working-root/workflow` and its test, with no caller | Both files, the route and their tests |
-| Scope rows | 32 (DEL-02-02 note), 33 (hard constraint, PRD carve-outs) | 34 (DEL-02-02 residual note) | None |
+| Scope rows | 26 (DEL-02-02 note), 27 (carve-outs) | 28 (DEL-02-02 residual note) | None |
 | Supersession | D-APP-74 L97-99 for the read route | None | None |
 
 ## 9. Item S — no App-side scaffold entry
@@ -476,25 +581,27 @@ retire the unused project-scaffold API"; Runtime Receipt 5). It removed
 `ProjectScaffoldPort`, `RuntimeService.scaffold`, the daemon route
 `POST /v1/projects/{projectId}/scaffold`, `RuntimeClient.scaffold`, and the
 scaffold request, response and `ScaffoldExecutionRoot*` types. Its notice to
-the App, `execution/_Coordination/NOTICE_2026-09-27_RUNTIME_SCAFFOLD_API_RETIRED.md`, says the
-App scaffold library and `scaffold_preview` are unaffected, and that
+the App, `execution/_Coordination/NOTICE_2026-09-27_RUNTIME_SCAFFOLD_API_RETIRED.md`,
+says the App scaffold library and `scaffold_preview` are unaffected, and that
 DEL-07-02's follow-up still names "a composed `ProjectScaffoldPort`", which
-no longer exists. Rows 23–25 answer that point.
+no longer exists. Rows 19–21 answer that point.
 
-**App scope text that names a future App-side scaffold entry** (Baseline
-`scope_text_hits`, tag `scaffold_entry`):
+**App scope text that names a future App-side scaffold entry or a scaffold
+write tool** (Baseline `scope_text_hits`, tag `scaffold_entry`):
 
 | Text | Line | Row | Treatment |
 |---|---|---|---|
-| DEL-07-02 SOW | L24 (the Runtime API is Runtime-owned; the Runtime loop decides) | 23 | Restated to the owner's decision; the Runtime loop retired the API in PR #1012 |
-| DEL-07-02 SOW | L25 (follow-up: an App-side entry such as a Runtime application tool or a composed `ProjectScaffoldPort`, defaulting to `<project>/execution`) | 23 | Restated: no App-side entry is planned; the agent scaffolds through `project-setup` into `<project>/execution` |
-| DEL-07-02 SOW | L229 (the live composition lacks its `ProjectScaffoldPort`) | 23 | Restated |
+| DEL-07-02 SOW | L24 (the Runtime API is Runtime-owned; the Runtime loop decides) | 19 | Restated to the owner's decision; the Runtime loop retired the API in PR #1012 |
+| DEL-07-02 SOW | L25 (follow-up: an App-side entry such as a Runtime application tool or a composed `ProjectScaffoldPort`, defaulting to `<project>/execution`) | 19 | Restated: no App-side entry is planned; the agent scaffolds through `project-setup` into `<project>/execution` |
+| DEL-07-02 SOW | L229 (the live composition lacks its `ProjectScaffoldPort`) | 19 | Restated |
 | DEL-07-02 SOW | L477 (APP-R058, closed) | — | History; unchanged |
-| DEL-06-03 SOW | L364 (CLM-031: write-capable scaffold moves to the later write surface) | 24 | Restated: preview stays read-only; no write-capable App scaffold tool is planned |
+| DEL-06-03 SOW | L364 (CLM-031: write-capable scaffold moves to the later write surface) | 20 | Restated: preview stays read-only; no write-capable App scaffold tool is planned |
 | DEL-06-03 SOW | L378, L410 | — | Preview row and Pass-3 disposition; unchanged |
-| SPEC §14.2 | L999 (`mcp__chirality__scaffold`, wrap scaffold service or preview, gated) | 25 | Narrowed to the read-only preview (default S-tool) |
-| PRD §3.1 goal 17, §6.1 | L155, L323 (scaffold among the in-process tools) | 25 | Read as scaffold preview |
-| PRD FR-119, §8.13 sequence, L1513; PLAN R2 L204; TYPES §8.4 L482 | — | — | NO_CHANGE: the retained SDK-path record, preview wording already, or tool-name vocabulary |
+| SPEC §14.2 | L999 (`mcp__chirality__scaffold`, wrap scaffold service or preview, gated) | 21 | Narrowed to the read-only preview |
+| PRD §3.1 goal 17, §6.1 | L155, L323 (scaffold among the in-process tools) | 21 | Read as scaffold preview |
+| PRD FR-119 acceptance, §8.13 first-adapter sequence | L775 ("… scope scan, and scaffold use `createSdkMcpServer()` …"), L780 ("Chirality status/dependency/scope/scaffold MCP tools") | 21 | Read as scaffold preview, the same as goal 17 and §6.1. Revision 3 left these two unchanged as the retained SDK-path record; the review found that inconsistent, so all four are now treated the same way |
+| PRD L1513; PLAN R2 L204 | — | — | NO_CHANGE: already preview/dry-run |
+| TYPES §8.4 L482 | `mcp__chirality__scaffold` | — | NO_CHANGE: tool-name vocabulary; the name stays for the preview tool |
 | DEL-06-04-REQ-010, PRD §7.3, PLAN §1 L45, DEL-03-03 | — | — | Already consistent (agent path; preview read-only) |
 | `_ScopeChange/_LATEST.md` L37 ("the Runtime loop's decision on its scaffold API") | — | — | Pointer text; not edited here. That SCA-APP-011 item is now decided (PR #1012); at SCA-APP-012 group 3 the new pointer records it as closed by the Runtime loop |
 
@@ -502,7 +609,7 @@ no longer exists. Rows 23–25 answer that point.
 names `ProjectScaffoldPort` or `ScaffoldExecutionRoot{Request,Response}`
 (Baseline `frontend_references`). The App scaffold library declares its own
 types. The App construction sites of `RuntimeService` were updated inside
-PR #1012 itself. Rows 23–25 therefore change App scope text only: they record
+PR #1012 itself. Rows 19–21 therefore change App scope text only: they record
 that no App-side scaffold entry is planned, and that the composed-port route
 the DEL-07-02 follow-up named is gone. Any later App scaffold entry would need
 a Runtime amendment as well as an App one, as the notice says.
@@ -519,26 +626,29 @@ a Runtime amendment as well as an App one, as the notice says.
 | `/api/working-root/scope`: callers | None in App, Electron, scripts or Runtime; no test. Wraps `scanProjectScopes`, which also backs `scope_scan` (`read-tools.ts` L736-751, retained SDK path) | Baseline `frontend_references` |
 | `/workbench`, `/pipeline` resolve; `chat-panel.tsx` maps both | Yes (L195-208) | §7 |
 | DEL-02-03 REQ-009 still stated at L143 and L181 | Yes; also CLM-015 L216 | §6 |
-| Route-preservation clauses: PRD §3.1 goal 25, §6.1, §6.4, §14 metric 20; PLAN §3; SPEC §17.9; D L102; D-APP-74 L97-99, L107 | Yes: PRD L163, L329, L383, L1674; PLAN L118-120; SPEC L1279, L1284-1286; D L102; D-APP-74 L97-99, L107 | Rows 7, 11, 13–16 |
+| Route-preservation clauses: PRD §3.1 goal 25, §6.1, §6.4, §14 metric 20; PLAN §3; SPEC §17.9; D L102; D-APP-74 L97-99, L107 | Yes: PRD L163, L329, L383, L1674; PLAN L118-120 (and R1 L187); SPEC L1279, L1284-1286; D L102; D-APP-74 L97-99, L107 | Rows 8, 12, 14–17 |
 
-### 10.2 Conflicts found beyond the list, now folded in (revision 2)
+### 10.2 Conflicts found beyond the list, folded in
 
-| # | Conflict | Evidence at basis | Row(s) | Treatment |
+| # | Conflict | Evidence at basis | Where handled | Treatment |
 |---|---|---|---|---|
-| 1 | Texts still call the loop-first shell live, or keep it as the compatibility implementation | PRD §6.3 L355 ("the live baseline"), FR-001 acceptance L596, §12.1 L1263; SPEC §17.9 L1284-1286; PLAN §1 L37, §6.5 L394, §13.2 L537 ("a reversible compatibility selection", removed on 2026-09-09) and L560 | 12, 15, 17 (with 11 and 16) | Restated: the dialogue shell is the live baseline; the loop-first UI is retired by this amendment, which is the separate owner decision these clauses wait for; PLAN §13.2 keeps its historical order with an annotation |
-| 2 | The `?legacy=1` link is built and discarded; its only test passes through a mock | §3.2 | 18 | Code removal with its test |
-| 3 | DEL-02-03-REQ-010 cites FR-010, retired by SCA-APP-011 | SOW L144, L182 | 3 | Restated, the same under either R answer (§6) |
-| 4 | DEL-07-03 names `/api/working-root/scope` as a scanner-output consumer | SOW L185, L255, L403 | 4 | Restated to `/api/project/deliverables`; the route's retirement recorded |
-| 5 | DEP-02-03-004 and DEP-08-03-007 quote or label the scope route | Registers; DEL-08-03 `_DEPENDENCIES.md` L91 `SOURCE_ENDPOINT_LABEL_CONFLICT` | 20, 21 | Expected re-extraction outcomes DX-02, DX-03 (§11) |
-| 6 | TM-APP-051 (APP-R024) covers the same consumers | Task Management `REGISTER.csv` | 22 | Disposition note after group 3 (§13) |
-| 7 | App layout metadata "PORTAL, PIPELINE, and WORKBENCH shell" | `app/layout.tsx` | 19 | Code tidy |
-| 8 | `workflows-view.tsx` and `workflow-detail.tsx` have no product importer | §8 | 32–34 | Owner choice W |
+| 1 | Texts still call the loop-first shell live, or keep it as the compatibility implementation | PRD §6.3 L355, FR-001 L596, §12.1 L1263; SPEC §17.9 L1284-1286; PLAN §1 L37, §6.5 L394, §13.2 L537 ("a reversible compatibility selection", removed on 2026-09-09) and L560 | Rows 13, 16, 18 (with 12 and 17) | Restated: the dialogue shell is the live baseline; the loop-first UI is retired by this amendment, which is the separate owner decision these clauses wait for; PLAN §13.2 keeps its historical order with an annotation |
+| 2 | The `?legacy=1` link is built and discarded; its only test passes through a mock | §3.2 | Code specification §15, under DEL-02-01 (Row 1) | Code removal with its test |
+| 3 | DEL-02-03-REQ-010 cites FR-010, retired by SCA-APP-011 | SOW L144, L182 | Row 3 | Restated, the same under either R answer (§6) |
+| 4 | DEL-07-03 names `/api/working-root/scope` as a scanner-output consumer | SOW L185, L255, L403 | Row 4 | Restated to `/api/project/deliverables`; the route's retirement recorded |
+| 5 | DEP-02-03-004 and DEP-08-03-007 quote or label the scope route | Registers; DEL-08-03 `_DEPENDENCIES.md` L91 `SOURCE_ENDPOINT_LABEL_CONFLICT` | DX-02, DX-03 (§11) | Expected re-extraction outcomes for the propagation plan |
+| 6 | TM-APP-051 (APP-R024) covers the same consumers | Task Management `REGISTER.csv` | §13 | Handoff note for the propagation plan |
+| 7 | App layout metadata and the page Suspense fallbacks name retired surfaces | `app/layout.tsx`; the four `page.tsx` fallbacks | Code specification §15 | Copy tidy |
+| 8 | `workflows-view.tsx` and `workflow-detail.tsx` have no product importer | §8 | Rows 26–28 | Owner choice W |
+| 9 | DEL-08-03 SOW L124 labels `/api/project/deliverables` "Working-root scope API" | SOW L124 | Row 6 | Label restated to "Deliverable scan API"; endpoint and semantics unchanged |
+| 10 | PRD §7.2 step 6 (L413) and FR-007 (L607) keep matrix launches and the 3x4 matrix compatible | §3.4 | Row 13 | Restated to route/query/alias launches and the TYPES §4 vocabulary |
+| 11 | `electron/renderer-window-policy.ts` L13-14 comment describes the navigator's "open legacy interface" link | File is a D-APP-121 frozen source identity (`e2d63d32…`) | §15 | NO_CHANGE (§15) |
 
-Also found and already covered in revision 1: DEL-06-03 CLM-031 and SPEC
-§14.2 / PRD goal 17 against direction 2 (Rows 24–25); the page routes probed
-and pinned by the Electron and packaged-security code (§7); `task-scope.ts`
-becoming test-only when `DeliverablesProvider` goes (§3.1 S2, consistent with
-DEL-08-03, recorded and not a change).
+Also covered: DEL-06-03 CLM-031 and SPEC §14.2 / PRD goal 17, §6.1, FR-119,
+§8.13 against direction 2 (Rows 20–21); the page routes probed and pinned by
+the Electron and packaged-security code (§7); `task-scope.ts` becoming
+test-only when `DeliverablesProvider` goes (§3.1 S2, consistent with DEL-08-03,
+recorded and not a change).
 
 ### 10.3 Observations, not proposed
 
@@ -560,18 +670,19 @@ None is legacy loop-first UI and none is proposed here.
 (Baseline `tools.analyze_dep_closure`). There is no accepted DAG version to
 mark stale.
 
-**Expected outcomes for the post-acceptance dependency re-extraction**, in
-the form SCA-APP-011 used (`DEPENDENCY_EXTRACT_EXPECTED_OUTCOMES.md`). The
-extraction writes them; this workflow does not. At group 2 they become a
-checkable expected-outcome file for that run.
+**Expected outcomes for the post-acceptance dependency re-extraction.** These
+are not register rows: this workflow does not write `Dependencies.csv`
+(contract L43). The group-2 propagation plan carries them as a checkable
+expected-outcome file for the extraction run, as SCA-APP-011 did with
+`DEPENDENCY_EXTRACT_EXPECTED_OUTCOMES.md`.
 
-| DX | Row | Register row | Expected outcome | Check |
+| DX | Applies under | Register row | Expected outcome | Check |
 |---|---|---|---|---|
-| DX-01 | 27 (R-b) / 31 (R-a) | DEP-02-03-009 (DEL-02-03 → DEL-08-03, INTERFACE, routing/preselection; `ACTIVE`, DX-15 tension) | R-b: `Status=RETIRED`, `SatisfactionStatus=NOT_APPLICABLE`, prior values in Notes, cites SCA-APP-012. R-a: `ACTIVE`, restated to the task-scope preselection interface; tension note cleared | Field values; ID kept; no row deleted |
-| DX-02 | 20 | DEP-02-03-004 (DEL-02-03 → REF-003 SPEC §17.2 workspace API contract, `ACTIVE`) | `ACTIVE`; relationship unchanged; `EvidenceQuote` taken from the restated CLM-003 and no longer contains `/api/working-root/scope`; prior quote in Notes | `EvidenceQuote` has no `/api/working-root/scope`; Notes cite SCA-APP-012 |
-| DX-03 | 21 | DEP-08-03-007 (DEL-08-03 → REF-003, TargetName "docs/SPEC.md Section 17.2 working-root scope API", `ACTIVE`) | `ACTIVE`; `TargetName` names the `/api/project/deliverables` scope-scan surface; prior label in Notes | `TargetName` has no "working-root scope API"; DEL-08-03 `_DEPENDENCIES.md` no longer reports `SOURCE_ENDPOINT_LABEL_CONFLICT` |
-| DX-04 | 36 (P-x only) | DEP-08-02-013 (DEL-08-02 → DEL-08-03, row-level OPERATIVE → PIPELINE routing) | Retired or restated | Only under P-r or P-d |
-| DX-05 | — | All registers | No `ACTIVE` row names `/api/working-root/scope`, the loop-first shell modules, `DeliverablesProvider`, `ProjectScaffoldPort` or (W-b) `/api/working-root/workflow` | Screen, as SCA-APP-011's DX-16 |
+| DX-01 | R-b / R-a | DEP-02-03-009 (DEL-02-03 → DEL-08-03, INTERFACE, routing/preselection; `ACTIVE`, DX-15 tension) | R-b: `Status=RETIRED`, `SatisfactionStatus=NOT_APPLICABLE`, prior values in Notes, cites SCA-APP-012. R-a: `ACTIVE`, restated to the task-scope preselection interface; tension note cleared | Field values; ID kept; no row deleted |
+| DX-02 | all | DEP-02-03-004 (DEL-02-03 → REF-003 SPEC §17.2 workspace API contract, `ACTIVE`) | `ACTIVE`; relationship unchanged; `EvidenceQuote` taken from the restated CLM-003 and no longer contains `/api/working-root/scope`; prior quote in Notes | `EvidenceQuote` has no `/api/working-root/scope`; Notes cite SCA-APP-012 |
+| DX-03 | all | DEP-08-03-007 (DEL-08-03 → REF-003, TargetName "docs/SPEC.md Section 17.2 working-root scope API", `ACTIVE`) | `ACTIVE`; `TargetName` names the `/api/project/deliverables` scan surface; prior label in Notes | `TargetName` has no "working-root scope API"; DEL-08-03 `_DEPENDENCIES.md` no longer reports `SOURCE_ENDPOINT_LABEL_CONFLICT` |
+| DX-04 | P-x only | DEP-08-02-013 (DEL-08-02 → DEL-08-03, row-level OPERATIVE → PIPELINE routing) | Retired or restated | Only under P-r or P-d |
+| DX-05 | all | All registers | No `ACTIVE` row names `/api/working-root/scope`, the loop-first shell modules, `DeliverablesProvider`, `ProjectScaffoldPort` or (W-b) `/api/working-root/workflow` | Screen, as SCA-APP-011's DX-16 |
 
 Other rows: DEP-02-01-006 and DEP-02-02-020 (legacy compatibility semantics
 owned by DEL-08-02) are unchanged under P-keep and refreshed under P-x. No
@@ -587,17 +698,17 @@ and no new edge is proposed, so no cycle can form.
 | App frontend | The code change after group 3 (§15) |
 | MCP tools (`read-tools.ts`) | None: `scope_scan` and `scaffold_preview` call their libraries directly |
 | Runtime (`projects/chirality-runtime`) | None from this amendment: no reference to `/api/working-root/scope` or `/api/working-root/workflow`. Its scaffold API is already retired (PR #1012, §9); no further notice is needed beyond the one it sent |
-| Electron and packaged security proof | None under P-keep; route lists, pins and native witness under P-x |
-| Task Management | TM-APP-051 disposition note after group 3 (§13) |
+| Electron and packaged security proof | None under P-keep; route lists, pins and native witness under P-x. `renderer-window-policy.ts` stays frozen (§15) |
+| Task Management | TM-APP-051 handoff after group 3 (§13) |
 | `exports/chirality-app` projection | Lists the deleted files; regenerated with the code change |
 | Historical run records, secret-scan and review hash files, tranche manifests | Mention paths; historical, not rewritten |
 | Piping, PEC, Root `tools/` | No reference found |
 
-## 13. Task Management note for the propagation plan (after group 3)
+## 13. Task Management handoff for the propagation plan (after group 3)
 
-Row 22 records the Task Management consequence. The group-2
-`Propagation_Plan.md` will carry it as a downstream item for the Task
-Management loop, which owns `REGISTER.csv`; this workflow does not write it.
+This is not a register row: the Task Management loop owns `REGISTER.csv`, and
+this workflow does not write it. The group-2 `Propagation_Plan.md` carries it
+as a downstream handoff, as SCA-APP-011 did for APP-R058.
 
 **TM-APP-051** ("Assign scope scan and route consumers", `DEFERRED`,
 `AssociatedWith` APP-R024; DEL-02-03; SCA-APP-010) asks for DEL-02-03's
@@ -621,31 +732,60 @@ by this amendment.
 affected deliverables are `IN_PROGRESS`, so no reopening is authorized or
 needed. `ScopeChanging` is recorded on every row regardless.
 
-## 15. The code change (after group 3; not in this package)
+## 15. The code specification (after group 3; not in this package)
 
-1. Delete the six S1 modules and the two `lib/portal` modules. Remove the
-   `legacy` prop from `WovenDialogueRoute` and its four callers. Delete
-   `deliverables-provider.tsx` and its layout mount, and
-   `app/api/working-root/scope/route.ts`.
-2. Remove the `?legacy=1` thread (Row 18) and restate the layout metadata
-   string (Row 19).
-3. Under W-b, delete `workflows-view.tsx`, `workflow-detail.tsx`,
+As in SCA-APP-011, the code change is specified here and carried by the
+group-2 propagation plan; it is not a register row. It lands only after
+group-3 acceptance, under the App loop and standing Git authority.
+
+1. **Loop-first shell (Row 1).** Delete `components/shell/loop-shell.tsx`,
+   `portal-loop-shell.tsx`, `loop-tertiary-shell.tsx`,
+   `sidebar-right-loop-layout.tsx`, `tertiary-sidebar-tabs.tsx` and
+   `components/portal/agent-matrix.tsx`. Remove the `legacy` prop from
+   `WovenDialogueRoute` and its four callers.
+2. **`?legacy=1` link (Row 1).** Remove `legacyHref` from
+   `woven-dialogue-shell.tsx` (L384-388), the `Navigator` prop (L119) and the
+   `ShellFrame` prop (L56), with the test changes in §3.3.
+3. **Portal helpers (Row 5, default L-lib).** Delete
+   `lib/portal/agent-matrix-cells.ts` and `agent-matrix-launch.ts`; port and
+   add tests as in §3.3 and §3.4.
+4. **`DeliverablesProvider` and the scope route (Row 2).** Delete
+   `components/workspace/deliverables-provider.tsx` and its mount in
+   `app/layout.tsx`, and `app/api/working-root/scope/route.ts`.
+5. **Choice W.** Under W-b, delete `workflows-view.tsx`,
+   `workflow-detail.tsx`,
    `app/api/working-root/workflow/{route,workflow-store,workflow-read-contract}.ts`
    and the view-only classes of `workflows.module.css`; under W-a, the two
    components only.
-4. Remove the §3.2 symbol residue and the eleven CSS tokens. Keep
+6. **Copy.** Restate the `app/layout.tsx` metadata description ("PORTAL,
+   PIPELINE, and WORKBENCH shell for local agent execution") to the dialogue
+   shell, and the page Suspense fallbacks ("Loading live loop portal...",
+   "Loading direct chat...", and under P-keep "Loading workbench..." and
+   "Loading pipeline...") to neutral loading copy.
+7. **Symbol residue and CSS.** Remove the §3.2 symbol residue, the eleven
+   legacy-only CSS tokens and the eleven dead selector families. Keep
    persisted-state parsing tolerant of the `'workbench' | 'pipeline'` and
    sidebar tab values (SPEC §17.8).
-5. Handle the tests as in §3.3.
-6. Under P-keep, keep both page routes; they render the shell with no legacy
-   element. Under P-x, apply the redirect or deletion and re-evidence the
-   packaged renderer security (DEL-09-06).
-7. Take the scope text from group 2, not from the code PR.
-8. Update the tranche manifest, if the App loop records one for the code
-   change, and regenerate the export projection.
-9. Rerun on the actual candidate: typecheck, the full frontend tests, the
-   build and premerge gates, and the registered checks. Product source also
-   needs the fresh read-only `software-code-review`.
+8. **Frozen file, NO_CHANGE.** `electron/renderer-window-policy.ts` L13-14
+   still describes the navigator's "open legacy interface" link as one of the
+   renderer's `target="_blank"` links. The file is a D-APP-121 frozen source
+   identity: `scripts/run-packaged-security-proof.mjs` L55 pins its SHA-256
+   (`e2d63d32423d1ef6b0a03259235676ac9cefadde00e4f067be4f13e5ed2cc3ed`, 33544
+   bytes), and the current file matches it. Editing the comment would break
+   that identity and require the D-APP-121 proof to be rerun. The comment
+   becomes a stale description of one example link; the policy it documents
+   (every `target="_blank"` link goes to the system browser) is unchanged. It
+   is left as is and should be corrected the next time the file changes under
+   D-APP-121.
+9. **Pages.** Under P-keep, keep both page routes; they render the shell with
+   no legacy element. Under P-x, apply the redirect (P-r) or deletion (P-d)
+   and re-evidence the packaged renderer security (DEL-09-06).
+10. **Scope text comes from group 2**, not from the code PR.
+11. **Records.** Update the tranche manifest, if the App loop records one for
+    the code change, and regenerate the export projection.
+12. **Checks.** Rerun on the actual candidate: typecheck, the full frontend
+    tests, the build and premerge gates, and the registered checks. Product
+    source also needs the fresh read-only `software-code-review`.
 
 ## 16. Package-role classification and derivative status
 
@@ -654,13 +794,14 @@ needed. `ScopeChanging` is recorded on every row regardless.
 | Decomposition v3.2 | Working surface | DIRECT_EDIT at application | Group-2 exact text |
 | `contract_invariant_coverage_register.csv` | Authoritative companion register | NO_CHANGE (default E) | No enforcement surface changes |
 | `docs/PRD.md`, `docs/SPEC.md`, `docs/PLAN.md` | Authoritative carriers outside the decomposition | DIRECT_EDIT only if the group-2 write boundary names them | Contract `ALLOWED_PROPAGATION_WRITES` |
-| `docs/DIRECTIVE.md`, `docs/TYPES.md` | Authoritative carriers | NO_CHANGE under P-keep; DIRECT_EDIT under P-x only if named | Same |
-| Affected `ScopeOfWork.md` (DEL-02-01, 02-02, 02-03, 06-03, 07-02, 07-03, 08-02; R-a adds 08-03) | Deliverable production contracts | Named in the group-2 boundary, or handed to `project-setup` INCREMENTAL (`scope-of-work` REVISE) | Contract non-ownership |
+| `docs/DIRECTIVE.md`, `docs/TYPES.md` | Authoritative carriers | NO_CHANGE under P-keep (§3.4); DIRECT_EDIT under P-x only if named | Same |
+| Affected `ScopeOfWork.md` (DEL-02-01, 02-02, 02-03, 06-03, 07-02, 07-03, 08-02, 08-03) | Deliverable production contracts | Named in the group-2 boundary, or handed to `project-setup` INCREMENTAL (`scope-of-work` REVISE) | Contract non-ownership |
 | DEL-08-03 `_CONTEXT.md` (R-a only) | Working surface | DIRECT_EDIT at application | Default write scope |
 | Other `_CONTEXT.md` | Working surface | NO_CHANGE (no affected wording) | Baseline `scope_text_hits` |
 | `_STATUS.md` | Working surface | NO_CHANGE (no REMOVE; no lifecycle change) | — |
-| `Dependencies.csv` / `_DEPENDENCIES.md` | Deliverable dependency evidence | RECOMPUTE by dependency-extract (DX-01 to DX-05) | §11 |
-| `_Coordination/_TaskManagement/REGISTER.csv` | Task Management record | Downstream: its loop records the TM-APP-051 note | §13 |
+| `Dependencies.csv` / `_DEPENDENCIES.md` | Deliverable dependency evidence | RECOMPUTE by dependency-extract against DX-01 to DX-05; never written by this workflow | §11 |
+| `_Coordination/_TaskManagement/REGISTER.csv` | Task Management record | Downstream handoff to its loop | §13 |
+| App frontend | Implementation, outside the canonical package | Code change after group 3 | §15 |
 | `_ScopeChange/_LATEST.md` | Snapshot / handoff artifact | Unchanged until group 3 | Pointer posture `ACCEPTED_PREDECESSOR` (SCA-APP-011) |
 | `_Evaluation/DecompCoverage`, `ScopeClosureAudit`, `DepClosure` snapshots | Derived publication artifacts | STALE_REBUILD_REQUIRED after application | audit-decomp, audit-scope-closure, `analyze_dep_closure` |
 | `exports/chirality-app` | Derived publication artifact | Regenerated with the code change | Export tooling |
@@ -690,13 +831,17 @@ needed. `ScopeChanging` is recorded on every row regardless.
 
 | Rows | Superseded authority fact | Type |
 |---|---|---|
-| 1, 6, 11, 12, 15, 17 | D-APP-74 L97-99 ("… current UI remain compatibility surfaces until separately retired") and L107 ("Old-UI retirement requires separate owner acceptance after parity, accessibility, compatibility, and packaged Desktop evidence") for the loop-first UI | SUPERSESSION |
-| 2, 7, 13, 14 | D-APP-74 L97-99 for `GET /api/working-root/scope` | SUPERSESSION |
-| 33 (W-b) | D-APP-74 L97-99 for `GET /api/working-root/workflow` | SUPERSESSION |
-| 23 | SCA-APP-011 accepted DEL-07-02 text (the Runtime loop decides on its scaffold API; follow-up App-side entry) | SUPERSESSION |
-| 26 (R-b) | D-APP-56 R4-P29 ownership confirmation in DEL-02-03 CLM-015 | SUPERSESSION |
-| 30 (R-a) | SCA-APP-010 Supersession_Map D-006 (Pipeline controls presentation retired; any re-hosting a separate amendment) | SUPPLEMENTARY_EXTENSION |
-| 35–41 (P-x) | D-APP-108 Q3 (L48: reachable, unlisted, no 404) | SUPERSESSION |
+| 1, 7, 12, 13, 16, 17, 18 | D-APP-74 L97-99 ("… current UI remain compatibility surfaces until separately retired") and L107 ("Old-UI retirement requires separate owner acceptance after parity, accessibility, compatibility, and packaged Desktop evidence") for the loop-first UI | SUPERSESSION |
+| 2, 8, 14, 15, 17 | D-APP-74 L97-99 for `GET /api/working-root/scope` | SUPERSESSION |
+| 27 (W-b) | D-APP-74 L97-99 for `GET /api/working-root/workflow` | SUPERSESSION |
+| 19 | SCA-APP-011 accepted DEL-07-02 text (the Runtime loop decides on its scaffold API; follow-up App-side entry) | SUPERSESSION |
+| 22 (R-b) | D-APP-56 R4-P29 ownership confirmation in DEL-02-03 CLM-015 | SUPERSESSION |
+| 25 (R-a) | SCA-APP-010 Supersession_Map D-006 (Pipeline controls presentation retired; any re-hosting a separate amendment) | SUPPLEMENTARY_EXTENSION |
+| 29–35 (P-x) | D-APP-108 Q3 (L48: reachable, unlisted, no 404) | SUPERSESSION |
+
+Row 17 (PLAN §3 and R1 acceptance) is new in this table in revision 4: it
+drops the loop-first UI and adds the scope route against the D-APP-74 L97-99
+compatibility fact, so it carries `SupersessionBindingPresent = YES`.
 
 The cumulative map is carried forward from SCA-APP-011 through
 `accumulate_supersession_map.py` at group 3.
@@ -737,8 +882,8 @@ missing, carried). No estimate or schedule artifact is affected.
 - `Amendment_Preview.md` with exact before/after text for every selected row.
 - `Propagation_Plan.md` with the exact write boundary, including which Scopes
   of Work and which PRD, SPEC and PLAN passages this amendment writes
-  directly, the dependency expected outcomes (DX-01 to DX-05) and the
-  TM-APP-051 note.
+  directly; the dependency expected outcomes (DX-01 to DX-05); the TM-APP-051
+  handoff; and the code specification (§15).
 - `Amendment_Actions.csv` limited to the selected sets, with `ScopeChanging`
   on every row.
 - `Supersession_Delta.csv`.
