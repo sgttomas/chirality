@@ -152,15 +152,18 @@
       "id": "FC-2.memory.DEL-00-08.no-runs-section",
       "pin": "FC-2.memory.DEL-00-08",
       "tier": "fixed",
-      "fact": "partial-coverage-not-nonconformance",
+      "fact": "no-runs-section-read-in-dated-heading-form",
       "expect": {
         "runs_section": false,
         "nonconformance": false
       },
       "binds": [
-        "DEL-02-09/REQ-001",
-        "DEL-02-09/AC-001",
-        "DEL-02-09/VER-001"
+        "DEL-02-09/REQ-002",
+        "DEL-02-09/REQ-014",
+        "DEL-02-09/AC-002",
+        "DEL-02-09/AC-014",
+        "DEL-02-09/VER-002",
+        "DEL-02-09/VER-014"
       ]
     },
     {
@@ -314,15 +317,18 @@
       "id": "FC-2.memory.DEL-12-01.no-runs-section",
       "pin": "FC-2.memory.DEL-12-01",
       "tier": "fixed",
-      "fact": "partial-coverage-not-nonconformance",
+      "fact": "no-runs-section-read-in-dated-heading-form",
       "expect": {
         "runs_section": false,
         "nonconformance": false
       },
       "binds": [
-        "DEL-02-09/REQ-001",
-        "DEL-02-09/AC-001",
-        "DEL-02-09/VER-001"
+        "DEL-02-09/REQ-002",
+        "DEL-02-09/REQ-014",
+        "DEL-02-09/AC-002",
+        "DEL-02-09/AC-014",
+        "DEL-02-09/VER-002",
+        "DEL-02-09/VER-014"
       ]
     },
     {
@@ -390,15 +396,18 @@
       "id": "FC-2.memory.DEL-17-06.no-runs-section",
       "pin": "FC-2.memory.DEL-17-06",
       "tier": "fixed",
-      "fact": "partial-coverage-not-nonconformance",
+      "fact": "no-runs-section-read-in-dated-heading-form",
       "expect": {
         "runs_section": false,
         "nonconformance": false
       },
       "binds": [
-        "DEL-02-09/REQ-001",
-        "DEL-02-09/AC-001",
-        "DEL-02-09/VER-001"
+        "DEL-02-09/REQ-002",
+        "DEL-02-09/REQ-014",
+        "DEL-02-09/AC-002",
+        "DEL-02-09/AC-014",
+        "DEL-02-09/VER-002",
+        "DEL-02-09/VER-014"
       ]
     }
   ]

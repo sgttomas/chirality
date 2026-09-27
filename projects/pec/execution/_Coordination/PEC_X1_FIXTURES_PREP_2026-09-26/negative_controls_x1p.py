@@ -17,9 +17,11 @@ def scratch(name):
     subprocess.run(["git", "-C", str(d), "update-ref", "HEAD", SHA], check=True)
     shutil.copytree(SRC, d / "projects/pec/v2/tests/parsers")
     return d
-def suite(d):
+def suite(d, path_prefix=None):
+    env = {**os.environ, "PYTHONDONTWRITEBYTECODE": "1"}
+    if path_prefix: env["PATH"] = f"{path_prefix}{os.pathsep}{env['PATH']}"
     r = subprocess.run([sys.executable, "-m", "unittest", "discover", "-s", "v2/tests/parsers", "-p", "test_*.py", "-v"],
-                       cwd=d / "projects/pec", capture_output=True, text=True, env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"})
+                       cwd=d / "projects/pec", capture_output=True, text=True, env=env)
     failed = {m.group(2) for m in re.finditer(r"^(FAIL|ERROR): (\S+)", r.stderr, re.M)}
     return r.returncode, failed
 F = lambda d: d / "projects/pec/v2/tests/parsers/fixtures"
@@ -61,6 +63,27 @@ def m_merge(d):
         e = next(e for e in o["expectations"] if "local_merge_commit" in e.get("expect", {}))
         e["expect"]["local_merge_commit"] = "2ea7725230c5c370a5b008138d4486ed427b3bd2"  # the PR #866 merge, not #868
     jedit(F(d) / "pinned/goldens/FC-3.json", f)
+def m_token_swap(d):
+    def f(o):
+        e = next(e for e in o["expectations"] if e["id"] == "FX-PEC-0.memory.DEL-01-03.h82.run-id")
+        e["source"]["parenthesized_token"] = "P1_STORE_GUARD_03"
+    jedit(F(d) / "pinned/goldens/FX-PEC-0.json", f)
+def m_form_anchor(d):
+    def f(o):
+        e = next(e for e in o["expectations"] if e["id"] == "FC-2.memory.DEL-00-08.run-entry-form")
+        e["expect"]["anchor_line"] += 1
+    jedit(F(d) / "pinned/goldens/FC-2.json", f)
+def m_folder(d):
+    def f(o):
+        e = next(e for e in o["expectations"] if "equals_folder" in e.get("expect", {}) and e["pin"] == "FC-2.graph")
+        e["expect"]["equals_folder"] = not e["expect"]["equals_folder"]
+    jedit(F(d) / "pinned/goldens/FC-2.json", f)
+def m_oldgit(d):
+    shim = d / "shim"; shim.mkdir()
+    real = shutil.which("git")
+    (shim / "git").write_text(f'#!/bin/sh\nfor a in "$@"; do [ "$a" = version ] && {{ echo "git version 2.39.5"; exit 0; }}; done\nexec "{real}" "$@"\n')
+    (shim / "git").chmod(0o755)
+    return str(shim)
 def m_partial(d): subprocess.run(["git", "-C", str(d), "config", "extensions.partialclone", "origin"], check=True)
 def m_shallow(d): (d / ".git/shallow").write_text(SHA + "\n")
 def m_mapping(d):
@@ -79,6 +102,10 @@ CONTROLS = [
     ("expectation without a VER binding", m_bind, "test_every_record_binds_a_requirement_criterion_and_verification"),
     ("anchor_line away from its source values", m_anchor, "test_golden_source_values_are_grounded_in_their_pinned_blobs"),
     ("local_merge_commit of another PR", m_merge, "test_golden_source_values_are_grounded_in_their_pinned_blobs"),
+    ("parenthesized token swapped with another heading's", m_token_swap, "test_golden_source_values_are_grounded_in_their_pinned_blobs"),
+    ("form anchor moved off its entry", m_form_anchor, "test_golden_source_values_are_grounded_in_their_pinned_blobs"),
+    ("equals_folder flipped", m_folder, "test_golden_source_values_are_grounded_in_their_pinned_blobs"),
+    ("Git older than 2.44 (PATH shim reporting 2.39.5)", m_oldgit, "test_pins_resolve_by_read_only_plumbing_on_integrated_history"),
     ("partial-clone repository", m_partial, "test_pins_resolve_by_read_only_plumbing_on_integrated_history"),
     ("shallow repository", m_shallow, "test_pins_resolve_by_read_only_plumbing_on_integrated_history"),
     ("test missing from the verification map", m_mapping, "test_loaded_suite_has_exact_verification_mapping"),
@@ -87,7 +114,7 @@ bad = 0
 rc, failed = suite(scratch("base"))
 print(f"{'PASS' if rc == 0 and not failed else 'FAIL'} unmutated suite passes (exit {rc})"); bad += rc != 0
 for i, (name, fn, test) in enumerate(CONTROLS):
-    d = scratch(f"c{i}"); fn(d); rc, failed = suite(d)
+    d = scratch(f"c{i}"); prefix = fn(d); rc, failed = suite(d, prefix if isinstance(prefix, str) else None)
     ok = rc != 0 and test in failed
     bad += not ok
     print(f"{'PASS' if ok else 'FAIL'} {name}: exit {rc}; failing tests {sorted(failed)}")

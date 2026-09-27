@@ -260,8 +260,13 @@
   "path": "evidence/run_main/posture_pre.out"
  },
  {
-  "abbrev": "4629acba…07e7",
+  "abbrev": "ba23292f…fb3c",
   "commit": "prep",
   "path": "negative_controls_x1p.py"
+ },
+ {
+  "abbrev": "67167dc5…4851",
+  "commit": "6c6cc1b00",
+  "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-85_RULING_2026-09-08.md"
  }
 ]

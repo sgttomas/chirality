@@ -49,7 +49,7 @@ TARGETS = {
          '8379b7d6bf650c7e3864449edb691e79fafd6966ce2f789c07c866cdcdcc4922'),
     'projects/pec/v2/tests/parsers/fixtures/pinned/goldens/FC-2.json':
         (None,
-         '1af4cfa4520da4fbaaf7c57924da3f733611b915c3f0dac36a3f88a7b300d860'),
+         'd4c763bfd6d5bed0343c5873aeb8ea3998e9df9e4042ace732559a6575801008'),
     'projects/pec/v2/tests/parsers/fixtures/pinned/goldens/FC-3.json':
         (None,
          'a02fc9722fedd1545215f9999be05eb4593417c649f304915d29bd6f403c39f7'),
@@ -58,7 +58,7 @@ TARGETS = {
          '4adf49757bfe6e71cd07d3397fe6260acee184efabdc294b83442c4b0b1e7b5a'),
     'projects/pec/v2/tests/parsers/fixtures/synthetic/MANIFEST.json':
         (None,
-         '60b467d4a414db60fd55ef563464fcc12a3f54e74a9a5ea11560d30d846a0c8f'),
+         '5fe8d1517000bb019beb913a5fd491d6ad002b60b96ecd8448fb49e949c8cd09'),
     'projects/pec/v2/tests/parsers/fixtures/synthetic/memory/entry_without_readable_run_token.md':
         (None,
          '38243567f072606fe5214a0e86223a32bf6c62bbe7de7a3205e2a10f7c4313cc'),
@@ -142,7 +142,7 @@ TARGETS = {
          '03bf235275cad181cdfc131a63c439896658b5651871831c59c4ade00f65075f'),
     'projects/pec/v2/tests/parsers/test_parser_fixture_integrity.py':
         (None,
-         '70fc24b49aa6681ccbd6c03fbed37149b854a85be373ce23043812d9d5103203'),
+         '47e296b93ca4c2ce024c1f2bc3abc1528ed14dbb8c678982ec5859aa1ce3b926'),
 }
 # The one directory the act creates; it must be absent before the act.
 NEW_DIR = "projects/pec/v2/tests/parsers"

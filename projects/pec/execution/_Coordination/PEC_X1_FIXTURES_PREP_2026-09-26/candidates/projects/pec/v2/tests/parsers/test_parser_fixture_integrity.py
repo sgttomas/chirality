@@ -15,8 +15,10 @@ a fact yields the value its declared representation maps from the cited token
 own form for a date, a receipt token or "none"), or marks the fact unavailable.
 "expect" holds fixture-local outcome labels, which are not an output schema,
 and fixture descriptors: "anchor_line" (1-based line of the construct in the
-blob) and "equals_folder" (the cited identity equals its folder name) locate
-or describe the case and are never parser output fields.
+blob), "equals_folder" (the cited identity equals its folder name),
+"runs_section" (the file has a Runs section) and the synthetic
+"placement_folder" locate or describe the case and are never parser output
+fields.
 
 Thresholds. A run of words is a sequence of whitespace-separated tokens. The
 no-source-text threshold is policy.source_run_words - 1 words: a run of
@@ -118,11 +120,17 @@ REQUIRED_SYNTHETIC_CASES = {
     ),
 }
 
-WRITE_CALLS = {
-    "write_text", "write_bytes", "unlink", "rmtree", "remove", "rename", "replace", "mkdir", "makedirs",
-    "system", "Popen", "dump", "copy", "copy2", "copyfile", "copytree", "move", "chmod", "symlink",
-    "link", "truncate", "touch", "mkstemp", "mkdtemp", "NamedTemporaryFile", "TemporaryDirectory",
+# Call names treated as writes, deletions, permission changes or process spawns in this module.
+PATH_WRITE_METHODS = {
+    "write_text", "write_bytes", "unlink", "rmdir", "mkdir", "touch", "chmod", "lchmod",
+    "symlink_to", "hardlink_to", "rename",
 }
+OS_WRITE_FUNCTIONS = {
+    "replace", "remove", "rename", "renames", "unlink", "rmdir", "removedirs", "mkdir", "makedirs",
+    "chmod", "chown", "symlink", "link", "truncate", "open", "system", "popen", "fork", "kill",
+    "startfile", "mkfifo", "mknod", "utime",
+}
+GUARDED_MODULES = ("subprocess", "os", "shutil", "tempfile", "pathlib", "pickle", "json")
 
 
 class GitError(AssertionError):
@@ -187,6 +195,12 @@ def is_expect_value(value) -> bool:
     if isinstance(value, list):
         return all(is_token(item) for item in value)
     return is_token(value)
+
+
+def occurs(value: str, data: bytes) -> bool:
+    """The token occurs in the bytes, bounded by characters that cannot extend it."""
+    pattern = b"(?<![" + BOUNDARY + b"])" + re.escape(value.encode("utf-8")) + b"(?![" + BOUNDARY + b"])"
+    return re.search(pattern, data) is not None
 
 
 def json_text_runs(value, width: int) -> set:
@@ -387,10 +401,10 @@ class ParserFixtureIntegrityTests(unittest.TestCase):
                     if type(value) is int:
                         self.assertTrue(key == "pr" or key.endswith("_pr"), "integer source values are PR numbers")
                         pattern = rb"(?:#|/pull/)%d(?![0-9])" % value
+                        self.assertIsNotNone(re.search(pattern, data), f"{value!r} does not occur in {expectation['pin']}")
                     else:
                         self.assertIs(type(value), str)
-                        pattern = b"(?<![" + BOUNDARY + b"])" + re.escape(value.encode("utf-8")) + b"(?![" + BOUNDARY + b"])"
-                    self.assertIsNotNone(re.search(pattern, data), f"{value!r} does not occur in {expectation['pin']}")
+                        self.assertTrue(occurs(value, data), f"{value!r} does not occur in {expectation['pin']}")
             commit = expectation.get("expect", {}).get("local_merge_commit")
             if commit is not None:
                 with self.subTest(expectation=expectation["id"], key="local_merge_commit"):
@@ -409,10 +423,25 @@ class ParserFixtureIntegrityTests(unittest.TestCase):
                     lines = data.decode("utf-8", "replace").split("\n")
                     self.assertIs(type(anchor), int)
                     self.assertTrue(1 <= anchor <= len(lines), "anchor_line outside the blob")
-                    window = "\n".join(lines[anchor - 1 : anchor + 3])
+                    window = "\n".join(lines[anchor - 1 : anchor + 3]).encode("utf-8")
                     values = [v for v in expectation.get("source", {}).values() if type(v) is str]
                     if values:
-                        self.assertTrue(any(v in window for v in values), "no source value at or just after anchor_line")
+                        # Every source string of an anchored expectation sits at or just after its anchor.
+                        for value in values:
+                            self.assertTrue(occurs(value, window), f"{value!r} not at or just after anchor_line")
+                    else:
+                        # A source-less anchored expectation (a form) must anchor on a line that itself
+                        # carries a source string of another expectation on the same pin.
+                        siblings = [v for _, other in self.expectations() if other["pin"] == expectation["pin"]
+                                    for v in other.get("source", {}).values() if type(v) is str]
+                        line = lines[anchor - 1].encode("utf-8")
+                        self.assertTrue(any(occurs(v, line) for v in siblings), "anchor_line is at no known entry")
+            if "equals_folder" in expectation.get("expect", {}):
+                with self.subTest(expectation=expectation["id"], key="equals_folder"):
+                    identities = [v for v in expectation.get("source", {}).values() if type(v) is str]
+                    self.assertEqual(len(identities), 1, "equals_folder needs exactly one identity token")
+                    folder = pins[expectation["pin"]]["path"].rsplit("/", 2)[-2]
+                    self.assertEqual(identities[0] == folder, expectation["expect"]["equals_folder"])
 
     def test_goldens_are_content_minimal_and_hold_no_source_text_run(self) -> None:
         width = self.pinned["policy"]["source_run_words"]
@@ -502,24 +531,41 @@ class ParserFixtureIntegrityTests(unittest.TestCase):
         tree = ast.parse(Path(__file__).read_text(encoding="utf-8"))
         subprocess_calls, writes = [], []
         for node in ast.walk(tree):
-            if isinstance(node, ast.ImportFrom) and node.module in ("subprocess", "os", "shutil", "tempfile"):
+            if isinstance(node, ast.Import):
+                for alias in node.names:
+                    if alias.asname and alias.name.split(".")[0] in GUARDED_MODULES:
+                        writes.append(f"import {alias.name} as {alias.asname}")
+                    if alias.name in ("shutil", "tempfile", "pickle"):
+                        writes.append(f"import {alias.name}")
+            if isinstance(node, ast.ImportFrom) and (node.module or "").split(".")[0] in ("subprocess", "os", "shutil", "tempfile"):
                 writes.append(f"from {node.module} import")
-            if isinstance(node, ast.Import) and any(alias.name in ("shutil", "tempfile") for alias in node.names):
-                writes.append("import shutil/tempfile")
             if not isinstance(node, ast.Call):
                 continue
             func = node.func
+            if isinstance(func, ast.Attribute):
+                owner = func.value.id if isinstance(func.value, ast.Name) else None
+                if owner == "subprocess":
+                    subprocess_calls.append(func.attr)
+                if owner == "os" and (func.attr in OS_WRITE_FUNCTIONS or func.attr.startswith(("exec", "spawn", "posix_spawn"))):
+                    writes.append(f"os.{func.attr}")
+                if owner == "json" and func.attr == "dump":
+                    writes.append("json.dump")
+                if func.attr in PATH_WRITE_METHODS:
+                    writes.append(func.attr)
             name = func.attr if isinstance(func, ast.Attribute) else func.id if isinstance(func, ast.Name) else ""
-            if isinstance(func, ast.Attribute) and isinstance(func.value, ast.Name) and func.value.id == "subprocess":
-                subprocess_calls.append(func.attr)
-            if name in WRITE_CALLS:
-                writes.append(name)
-            if name == "open":
-                os_open = isinstance(func, ast.Attribute) and isinstance(func.value, ast.Name) and func.value.id == "os"
-                modes = [arg.value for arg in node.args if isinstance(arg, ast.Constant) and isinstance(arg.value, str)]
-                modes += [kw.value.value for kw in node.keywords if kw.arg == "mode" and isinstance(kw.value, ast.Constant)]
-                if os_open or any(set(str(mode)) & set("wax+") for mode in modes):
-                    writes.append("open")
+            if name == "open" and not (isinstance(func, ast.Attribute) and isinstance(func.value, ast.Name) and func.value.id == "os"):
+                mode = None
+                positional = 1 if isinstance(func, ast.Name) else 0  # open(path, mode) versus path.open(mode)
+                if len(node.args) > positional:
+                    mode = node.args[positional]
+                for keyword in node.keywords:
+                    if keyword.arg == "mode":
+                        mode = keyword.value
+                if mode is not None:
+                    if not (isinstance(mode, ast.Constant) and isinstance(mode.value, str)):
+                        writes.append("open with a non-constant mode")
+                    elif set(mode.value) & set("wax+"):
+                        writes.append(f"open mode {mode.value}")
         self.assertEqual(subprocess_calls, ["run"], "one subprocess call site, inside git()")
         self.assertEqual(writes, [], "the fixture suite writes nothing")
 

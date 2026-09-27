@@ -442,7 +442,7 @@
       "id": "SYN-RCP-05",
       "case": "unreadable-file",
       "files": [],
-      "construction": "At test time, copy receipts/marker_carrying_ledger_entry.md to the ledger path of a loop that declares the receipt-ledger surface and make it unreadable: remove read permission where permissions are enforced; where they are not (for example when tests run as root), place a directory or a dangling symbolic link at that path instead.",
+      "construction": "At test time, place a copy of receipts/marker_carrying_ledger_entry.md at the ledger path of a loop that declares the receipt-ledger surface and make it unreadable through the parser's own read path: for a filesystem read, remove read permission where permissions are enforced; for a read through Git objects, a blob the object store cannot supply. Each parser packet names the method it uses; the required outcome is the explicit limitation, not a particular cause.",
       "expect": {
         "limitation": "unreadable-file",
         "receipts_emitted": 0,
