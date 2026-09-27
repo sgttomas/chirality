@@ -57,18 +57,29 @@ reported only when none of them names a regular file:
 2. working-root-relative — relative to `--evidence-root` (default: the parent
    of EXECUTION_ROOT, the project's WORKING_ROOT), per SPEC §0.2.4 for
    references to the execution root, tool roots and deliverables;
-3. instruction-root-relative — relative to `--instruction-root` (default: the
-   checkout that holds this tool), per SPEC §0.2.4 for references to
-   `workflows/`, `tools/`, root `docs/` and `AGENTS.md`. For an in-tree
-   project this is the repository root, so a checkout-relative path such as
-   `projects/<name>/docs/SPEC.md` also resolves here.
+3. instruction-root-relative — relative to the instruction root, and only for
+   the instruction-surface references SPEC §0.2.4 names: `agents/`,
+   `workflows/`, `tools/`, root `docs/` and `AGENTS.md`. The instruction root
+   is `--instruction-root`, else `CHIRALITY_INSTRUCTION_ROOT` (SPEC §0.2.1),
+   else the checkout that holds this tool.
 
-EVQ-006 tests whether the cited evidence exists, not which of these forms a
-register should prefer. Absolute paths are rejected rather than followed, as
-is any form that normalizes outside both the working root and the instruction
-root. The JSON report counts which form resolved each cell
-(`evidence_file_resolution_forms`). The schema names one source document, so
-a cell listing several files is read as one path, not split.
+Forms 1 and 2 must stay inside the working root, and form 3 inside the
+instruction surface. So a checkout-relative path to project material, such as
+`projects/<name>/docs/SPEC.md`, or a path to another project, does not
+resolve: SPEC §0.2.4 says working-root material resolves relative to the
+working root. Absolute paths are rejected rather than followed.
+
+The forms are tried in the order above and the first that names a regular file
+wins. A bare name that is missing from the deliverable folder can therefore
+fall through to a file of the same name at the working root or on the
+instruction surface: a missing deliverable `README.md` resolves to the
+project's `README.md`, and `docs/SPEC.md` resolves to the project's
+`docs/SPEC.md` before Root's. EVQ-006 tests that some cited file exists, not
+that it is the one the row meant. The JSON report counts the form that
+resolved each cell (`evidence_file_resolution_forms`) and the cells that more
+than one form resolves (`evidence_file_multi_form`). The schema names one
+source document, so a cell listing several files is read as one path, not
+split.
 
 Honest-empty waivers
 --------------------
@@ -352,34 +363,58 @@ def _within(path: Path, root: Path) -> bool:
     return True
 
 
+# SPEC §0.2.4: instruction-surface references resolve INSTRUCTION_ROOT-relative.
+INSTRUCTION_SURFACE_DIRS = ("agents", "workflows", "tools", "docs")
+INSTRUCTION_SURFACE_FILES = ("AGENTS.md",)
+
+
+def on_instruction_surface(target: Path, instruction_root: Path) -> bool:
+    """True when `target` lies under a §0.2.4 instruction-surface entry."""
+    try:
+        parts = target.relative_to(instruction_root).parts
+    except ValueError:
+        return False
+    if len(parts) == 1:
+        return parts[0] in INSTRUCTION_SURFACE_FILES
+    return len(parts) > 1 and parts[0] in INSTRUCTION_SURFACE_DIRS
+
+
 def resolve_evidence_file(
     evidence_file: str,
     deliverable_dir: Path | None,
     evidence_root: Path,
     instruction_root: Path | None,
-) -> tuple[str | None, list[Path]]:
-    """Return (form that resolves the cell to a regular file, or None; tried paths).
+) -> tuple[str | None, list[Path], list[str]]:
+    """Resolve one EvidenceFile cell.
 
-    Each base is tried in EVIDENCE_FORMS order. A candidate counts only when it
-    normalizes inside the working root or the instruction root, so `..` cannot
-    reach outside them through any base. Normalization is lexical, so a linked
-    package folder is not mistaken for an escape.
+    Returns (the first form in EVIDENCE_FORMS order that names a regular file,
+    or None; the candidate paths tried; every form that names a regular file).
+    Forms 1 and 2 count only when the candidate normalizes inside the working
+    root, and form 3 only when it lies on the instruction surface, so `..`
+    cannot reach other material through any base. Normalization is lexical, so
+    a linked package folder is not mistaken for an escape.
     """
-    anchors = [Path(os.path.normpath(evidence_root.absolute()))]
-    if instruction_root is not None:
-        anchors.append(Path(os.path.normpath(instruction_root.absolute())))
+    working_root = Path(os.path.normpath(evidence_root.absolute()))
+    surface_root = (
+        Path(os.path.normpath(instruction_root.absolute()))
+        if instruction_root is not None else None
+    )
     bases = zip(EVIDENCE_FORMS, (deliverable_dir, evidence_root, instruction_root))
     tried: list[Path] = []
+    resolved: list[str] = []
     for form, base in bases:
         if base is None:
             continue
         target = Path(os.path.normpath(base.absolute() / evidence_file))
-        if not any(_within(target, anchor) for anchor in anchors):
+        if form == "instruction_root":
+            if not on_instruction_surface(target, surface_root):
+                continue
+        elif not _within(target, working_root):
             continue
         tried.append(target)
         if target.is_file():
-            return form, tried
-    return None, tried
+            resolved.append(form)
+    return (resolved[0] if resolved else None), tried, resolved
 
 
 def check_evidence_quality(
@@ -400,6 +435,7 @@ def check_evidence_quality(
     """
     waivers = waivers or {}
     forms = counters.setdefault("forms", {form: 0 for form in EVIDENCE_FORMS})
+    counters.setdefault("multi_form", 0)
     waivers_used: set[tuple[str, str]] = set()
 
     for offset, row in enumerate(rows, start=2):
@@ -529,16 +565,19 @@ def check_evidence_quality(
                     )
                 )
             else:
-                form, tried = resolve_evidence_file(
+                form, tried, resolved = resolve_evidence_file(
                     evidence_file, deliverable_dir, evidence_root, instruction_root
                 )
                 if form is not None:
                     bucket["evidence_file_resolved"] += 1
                     forms[form] += 1
+                    if len(resolved) > 1:
+                        counters["multi_form"] += 1
                 else:
                     clean = False
                     if not tried:
-                        reason = "leaves the working root and the instruction root"
+                        reason = ("leaves the working root and is not on the "
+                                  "instruction surface")
                     elif any(target.is_dir() for target in tried):
                         reason = "is a directory, not a file"
                     else:
@@ -814,6 +853,7 @@ def check_cross_register(
 
 
 DEFAULT_INSTRUCTION_ROOT = VALIDATION_DIR.parent.parent
+INSTRUCTION_ROOT_ENV = "CHIRALITY_INSTRUCTION_ROOT"
 
 
 def run(
@@ -827,7 +867,8 @@ def run(
 
     `registers_dir` names the folder holding the companion registers when it is
     not `<execution_root>/_Decomposition`. `evidence_root` (default: the parent
-    of `execution_root`) and `instruction_root` (default: the checkout holding
+    of `execution_root`) and `instruction_root` (default: the
+    `CHIRALITY_INSTRUCTION_ROOT` environment variable, else the checkout holding
     this tool) are the working-root and instruction-root bases for
     `EvidenceFile`.
     """
@@ -837,15 +878,26 @@ def run(
     if registers_dir is not None and not Path(registers_dir).is_dir():
         raise OperationalError(f"--registers-dir is not a directory: {registers_dir}")
     evidence_root = Path(evidence_root) if evidence_root else execution_root.parent
-    if instruction_root is not None and not Path(instruction_root).is_dir():
-        raise OperationalError(f"--instruction-root is not a directory: {instruction_root}")
-    instruction_root = (
-        Path(instruction_root) if instruction_root is not None else DEFAULT_INSTRUCTION_ROOT
-    )
+    if instruction_root is not None:
+        instruction_root_source = "argument"
+    elif os.environ.get(INSTRUCTION_ROOT_ENV):
+        instruction_root = os.environ[INSTRUCTION_ROOT_ENV]
+        instruction_root_source = INSTRUCTION_ROOT_ENV
+    else:
+        instruction_root = DEFAULT_INSTRUCTION_ROOT
+        instruction_root_source = "tool checkout"
+    if not Path(instruction_root).is_dir():
+        raise OperationalError(
+            f"instruction root ({instruction_root_source}) is not a directory: "
+            f"{instruction_root}"
+        )
+    instruction_root = Path(instruction_root)
 
     findings: list[Finding] = []
     skipped: list[str] = []
-    counters: dict = {"by_class": {}, "forms": {form: 0 for form in EVIDENCE_FORMS}}
+    counters: dict = {
+        "by_class": {}, "forms": {form: 0 for form in EVIDENCE_FORMS}, "multi_form": 0,
+    }
 
     decomposition = Path(registers_dir) if registers_dir is not None else (
         execution_root / "_Decomposition"
@@ -940,6 +992,7 @@ def run(
         "execution_root": str(execution_root),
         "evidence_root": str(evidence_root),
         "instruction_root": str(instruction_root),
+        "instruction_root_source": instruction_root_source,
         "registers_dir": str(decomposition),
         "families": list(families),
         "registers_scanned": len(registers),
@@ -947,6 +1000,7 @@ def run(
         "deliverables_declared": len(deliverables),
         "row_class_metrics": counters["by_class"],
         "evidence_file_resolution_forms": dict(counters["forms"]),
+        "evidence_file_multi_form": counters["multi_form"],
         "findings_by_code": dict(sorted(by_code.items())),
         "error_count": sum(1 for f in findings if f.severity == ERROR),
         "warning_count": sum(1 for f in findings if f.severity == WARNING),
@@ -983,7 +1037,7 @@ def print_report(report: dict, max_per_code: int) -> None:
         if any(forms.values()):
             print("  EvidenceFile resolved as: " + ", ".join(
                 f"{form.replace('_', '-')}-relative {count}" for form, count in forms.items()
-            ))
+            ) + f"; {report.get('evidence_file_multi_form', 0)} resolve in more than one form")
 
     if report["findings"]:
         print("\nFindings")
@@ -1027,8 +1081,10 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
                                                 "EXECUTION_ROOT); the deliverable folder "
                                                 "and --instruction-root are also tried")
     parser.add_argument("--instruction-root",
-                        help="Instruction-root base for resolving EvidenceFile "
-                             "(default: the checkout holding this tool)")
+                        help="Instruction-root base for EvidenceFile cells on the "
+                             "SPEC §0.2.4 instruction surface (default: "
+                             "CHIRALITY_INSTRUCTION_ROOT, else the checkout "
+                             "holding this tool)")
     parser.add_argument("--registers-dir",
                         help="Folder holding Deliverables.csv, ScopeLedger.csv and "
                              "ContextBudgetQA.csv (default: EXECUTION_ROOT/_Decomposition)")
