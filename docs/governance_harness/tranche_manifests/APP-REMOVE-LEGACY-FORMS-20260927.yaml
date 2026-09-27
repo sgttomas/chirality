@@ -58,6 +58,7 @@ instruction_surface_paths:
   - projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP-TRANSITION-FORMS-2026-09-26/RECEIPT.md
   - projects/chirality-app-dev/execution/_Coordination/WorkGraphs/app-lifecycle-deps-2026-09-26/WORK_GRAPH.md
   - projects/chirality-app-dev/loop/LOOP_RECEIPTS.md
+  - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-27_APP_SCA-APP-011_SCAFFOLD_API.md
   - exports/chirality-app/export-manifest.csv
   - exports/chirality-app/export-report.md
 m2_gate:
@@ -76,30 +77,35 @@ m2_gate:
     ACCEPTED_MANIFEST.csv SHA-256
     ef3129871c9d8971d5c47e36a5c2973bf24366c847b58daad73ec5adaf261c7e),
     and Propagation_Plan.md
-    section 4 specifying this code change. This tranche is the code candidate
-    for checkpoint group 3, which the owner has not yet accepted; it merges
-    only with the SCA-APP-011 scope text, in one PR, after that acceptance.
+    section 4 specifying this code change. The owner accepted checkpoint
+    group 3 on 2026-09-27 ("I accept SCA-APP-011 checkpoint group 3";
+    checkpoint_snapshots/SCA-APP-011_GROUP-3_2026-09-27/, DECISION.md SHA-256
+    ab2af85f0528c7224c95f2e371e4b00a5e8338f17166e349fb8812fa591bc370,
+    ACCEPTED_MANIFEST.csv SHA-256
+    e076ba0525c84750fd5cc4e336a878a81c1e35e436ab7d255deab8b02df4cd90);
+    this tranche merges only with the SCA-APP-011 scope text, in one PR.
     Transcription is recorded in
     projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP-REMOVE-LEGACY-FORMS-2026-09-27/RECEIPT.md.
   authorized_by: Ryan Tufts
   authorization_date: '2026-09-27'
   integration_owner: >-
     Claude Code parent session integrating the worktree candidate, under the
-    standing Git authorization of 2026-09-12, held until the owner accepts
-    SCA-APP-011 checkpoint group 3
+    standing Git authorization of 2026-09-12, after the owner's SCA-APP-011
+    checkpoint-group-3 acceptance of 2026-09-27
   merge_gate: owner-authorized-pr
   self_merge: true
 m6_notice:
-  disposition: pending
-  routed_to: []
+  disposition: routed
+  routed_to:
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-27_APP_SCA-APP-011_SCAFFOLD_API.md
   rationale: >-
     The change removes App-owned surfaces only: App frontend source, CSS and
     tests, App run records, deliverable MEMORY rows and a DEL-03-03 working
     index. No Root instruction, role, skill, workflow or tool changes, and the
     App SPEC is not changed here. The App stops calling the Runtime's scaffold
     API; the Runtime keeps it. SCA-APP-011 drafts an informational notice to
-    the Runtime loop (DRAFT_NOTICE_TO_RUNTIME.md), sent by the scope-change
-    side after group-3 acceptance; the disposition is completed then.
+    the Runtime loop (DRAFT_NOTICE_TO_RUNTIME.md); the scope-change side sent
+    it after group-3 acceptance, at the routed path.
 scope_limits:
   - Removes WorkbenchSurface, PipelineSurface and LifecycleGateFields, their three test files, their tertiary sidebar tab entries and the form-only CSS rules. None was mounted in the live App.
   - Removes the working-root deliverable status, status/transition and dependencies routes, lib/workspace/deliverable-api.ts and its test, the POST /api/harness/scaffold route and its test, scaffoldHarnessExecutionRoot, and the scaffold member of the App DaemonHarnessPort and RuntimeDaemonHarnessPort with their test stubs.

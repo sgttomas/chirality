@@ -5,11 +5,15 @@ Derivative account of the SCA-APP-011 code change. The
 (row FU3) records the forms' withdrawal. SCA-APP-011 and the sources below
 keep their authority.
 
-**Status: checkpoint-group-3 candidate, awaiting the owner's acceptance.** This
-is the code side of SCA-APP-011. Checkpoint group 3 reviews it together with
-the SCA-APP-011 scope-text candidate. After the owner accepts group 3, one PR
-lands both (choice Q-a). It is not accepted, pushed or merged, and it must not
-merge before that acceptance.
+**Status: accepted at SCA-APP-011 checkpoint group 3 (2026-09-27).** This is
+the code side of SCA-APP-011. The owner accepted group 3 on 2026-09-27 ("I
+accept SCA-APP-011 checkpoint group 3"): decision folder
+`execution/_ScopeChange/checkpoint_snapshots/SCA-APP-011_GROUP-3_2026-09-27/`
+(`DECISION.md` SHA-256 `ab2af85f0528c7224c95f2e371e4b00a5e8338f17166e349fb8812fa591bc370`,
+`ACCEPTED_MANIFEST.csv` SHA-256
+`e076ba0525c84750fd5cc4e336a878a81c1e35e436ab7d255deab8b02df4cd90`), on the
+integrated candidate `d48c785c5`. One PR (#995) lands it with the scope text
+(choice Q-a) once CI and review have no blocking finding.
 
 ## Authority
 
@@ -47,12 +51,15 @@ owner selected "Scope-change amendment (Recommended)".
   The exact scope text is `Amendment_Preview.md` (SHA-256
   `3781bf3e548bb1497e8f74fe2cb0ecd38314aac7834a7d6a4f7d3eeb7f6a6f40`); its
   verification hooks name the test files this candidate creates.
-- Checkpoint group 3: not yet accepted. This candidate claims no group-3
-  acceptance.
+- Checkpoint group 3, accepted by the owner on 2026-09-27: decision folder
+  `checkpoint_snapshots/SCA-APP-011_GROUP-3_2026-09-27/` (`DECISION.md`
+  SHA-256 `ab2af85f0528c7224c95f2e371e4b00a5e8338f17166e349fb8812fa591bc370`,
+  `ACCEPTED_MANIFEST.csv` SHA-256
+  `e076ba0525c84750fd5cc4e336a878a81c1e35e436ab7d255deab8b02df4cd90`).
 
 SCA-APP-011 supersedes D-APP-74's route-retention clause, SCA-APP-010's "code
 retained" bindings D-006 and D-015 and SR-06's "the code stays"
-(`Supersession_Delta.csv`); those bindings take effect on group-3 acceptance.
+(`Supersession_Delta.csv`); those bindings took effect on group-3 acceptance.
 
 ## Result
 
@@ -227,15 +234,16 @@ merge gates.
 
 ## Limits
 
-- Group 3 of SCA-APP-011 is not accepted. The candidate lands only with the
-  scope-text candidate, in one PR, after that acceptance.
+- Group 3 of SCA-APP-011 is accepted. The candidate lands only with the
+  scope text, in one PR, once CI and review have no blocking finding.
 - The group-2 decision snapshot was not in the package tree this candidate
   read; its folder and hashes were bound afterwards, in the group-3 integration
   (see the group-2 entry under Basis).
 - No build or packaged run. The removed forms were not mounted in the live App,
   and no live UI called the removed routes or the scaffold proxy.
-- The Runtime keeps its scaffold API. The informational Runtime notice
-  (`DRAFT_NOTICE_TO_RUNTIME.md`) is sent by the scope-change side after group 3.
+- The Runtime keeps its scaffold API. The scope-change side sent the
+  informational Runtime notice after group-3 acceptance:
+  `projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-27_APP_SCA-APP-011_SCAFFOLD_API.md`.
 - The App authority corpus already drifted for the App SPEC; the drift is
   retained, not repinned.
 - No lifecycle transition, approval-SHA refresh, dependency-register change,
