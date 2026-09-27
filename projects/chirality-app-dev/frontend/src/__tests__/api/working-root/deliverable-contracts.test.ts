@@ -97,8 +97,10 @@ function contentRequest(
 beforeEach(async () => {
   const tmpRoot = await mkdtemp(path.join(os.tmpdir(), 'chirality-working-root-contracts-'));
   const projectRoot = path.join(tmpRoot, 'project-root');
+  // The recorded-register read resolves the execution root as the outermost execution/ folder.
   const deliverablePath = path.join(
     projectRoot,
+    'execution',
     'PKG-05_Filesystem_Execution_Model',
     '1_Working',
     'DEL-05-03_Lifecycle_State_Handling'
@@ -821,6 +823,7 @@ describe('working-root deliverable contract routes', () => {
   it('computes the supplier-judged verdict from the recorded register alongside the CSV rows', async () => {
     const supplierPath = path.join(
       fixture.projectRoot,
+      'execution',
       'PKG-05_Filesystem_Execution_Model',
       '1_Working',
       'DEL-05-02_Execution_Root_Scaffolding'
@@ -919,7 +922,11 @@ describe('working-root deliverable contract routes', () => {
       ).csv,
       'utf8'
     );
-    await symlink(outsideIssued, path.join(fixture.projectRoot, 'PKG-05_Filesystem_Execution_Model', '3_Issued'), 'dir');
+    await symlink(
+      outsideIssued,
+      path.join(fixture.projectRoot, 'execution', 'PKG-05_Filesystem_Execution_Model', '3_Issued'),
+      'dir'
+    );
 
     const routes = await importRouteModules();
     const response = await routes.dependenciesRoute.GET(
@@ -938,7 +945,7 @@ describe('working-root deliverable contract routes', () => {
       };
     };
     expect(body.warnings).toContain(
-      'RECORDED_REGISTER_READ_OUTSIDE_ROOT: PKG-05_Filesystem_Execution_Model/3_Issued resolves outside the read root; it was not read.'
+      'RECORDED_REGISTER_READ_OUTSIDE_ROOT: execution/PKG-05_Filesystem_Execution_Model/3_Issued resolves outside the read root; it was not read.'
     );
     expect(body.recordedRegister.blockers.blockerState).toBe('NOT_ASSESSED');
     expect(body.recordedRegister.blockers.notAssessedReason).toMatch(/^READ_REFUSED:/);
@@ -947,26 +954,41 @@ describe('working-root deliverable contract routes', () => {
 
   it('gives no recorded-register verdict for a deliverable reached through a linked package folder', async () => {
     const packageName = 'PKG-05_Filesystem_Execution_Model';
+    const execution = path.join(fixture.projectRoot, 'execution');
     await mkdir(path.join(fixture.projectRoot, 'store'));
-    await rename(path.join(fixture.projectRoot, packageName), path.join(fixture.projectRoot, 'store', packageName));
-    await symlink(path.join(fixture.projectRoot, 'store', packageName), path.join(fixture.projectRoot, packageName), 'dir');
+    await rename(path.join(execution, packageName), path.join(fixture.projectRoot, 'store', packageName));
+    await symlink(path.join(fixture.projectRoot, 'store', packageName), path.join(execution, packageName), 'dir');
 
     const routes = await importRouteModules();
-    const response = await routes.dependenciesRoute.GET(
-      new Request(
-        `http://localhost/api/working-root/deliverable/dependencies?projectRoot=${encodeURIComponent(fixture.projectRoot)}&deliverablePath=${encodeURIComponent(fixture.deliverablePath)}`
-      )
-    );
-
-    expect(response.status).toBe(200);
-    const body = (await response.json()) as {
-      warnings: string[];
-      recordedRegister: { executionRoot: string | null; blockers: { blockerState: string; notAssessedReason?: string } };
+    const read = async (deliverablePath: string) => {
+      const response = await routes.dependenciesRoute.GET(
+        new Request(
+          `http://localhost/api/working-root/deliverable/dependencies?projectRoot=${encodeURIComponent(fixture.projectRoot)}&deliverablePath=${encodeURIComponent(deliverablePath)}`
+        )
+      );
+      expect(response.status).toBe(200);
+      return (await response.json()) as {
+        warnings: string[];
+        recordedRegister: { executionRoot: string | null; blockers: { blockerState: string; notAssessedReason?: string } };
+      };
     };
+
+    const body = await read(fixture.deliverablePath);
     expect(body.recordedRegister.executionRoot).toBeNull();
     expect(body.recordedRegister.blockers.blockerState).toBe('NOT_ASSESSED');
     expect(body.recordedRegister.blockers.notAssessedReason).toMatch(/^SYMLINKED_UNIT_PATH: /);
     expect(body.warnings).toContain(`RECORDED_REGISTER_${body.recordedRegister.blockers.notAssessedReason}`);
+
+    // Requested at the link's target, the deliverable is outside every execution/ folder.
+    const target = await read(
+      path.join(fixture.projectRoot, 'store', packageName, '1_Working', 'DEL-05-03_Lifecycle_State_Handling')
+    );
+    expect(target.recordedRegister.executionRoot).toBeNull();
+    expect(target.recordedRegister.blockers.blockerState).toBe('NOT_ASSESSED');
+    expect(target.recordedRegister.blockers.notAssessedReason).toMatch(
+      /^EXECUTION_ROOT_NOT_RESOLVED: store\/PKG-05_Filesystem_Execution_Model\/1_Working\/DEL-05-03_Lifecycle_State_Handling is not inside an execution\/ folder/
+    );
+    expect(target.warnings).toContain(`RECORDED_REGISTER_${target.recordedRegister.blockers.notAssessedReason}`);
   });
 
   it('rejects symlink deliverable paths that resolve outside projectRoot', async () => {

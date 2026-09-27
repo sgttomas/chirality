@@ -111,6 +111,10 @@ describe('recorded register parity with the Root reference tools', () => {
   }
 });
 
+// The fixture case folders are execution roots that are not named `execution`,
+// so reads of them in place name the root explicitly, as the Root tools take
+// `--execution-root`. App reads resolve it instead; the copies under a
+// `<project>/execution/` folder further below exercise that resolution.
 describe('recorded register reads for one deliverable', () => {
   const scratch: string[] = [];
 
@@ -121,7 +125,7 @@ describe('recorded register reads for one deliverable', () => {
   it('gives the supplier-judged verdict, the arcs and the disagreements of the deliverable', async () => {
     const root = path.join(CASES, 'union-with-csv');
     const deliverablePath = path.join(root, 'PKG-02_Data', '1_Working', 'DEL-02-01_Consumer');
-    const read = await readDeliverableRecordedRegister({ deliverablePath, containmentRoot: root });
+    const read = await readDeliverableRecordedRegister({ deliverablePath, containmentRoot: root, executionRoot: root });
 
     expect(read.executionRoot).toBe(root);
     expect(read.trackingMode).toBe('FULL_GRAPH');
@@ -149,7 +153,8 @@ describe('recorded register reads for one deliverable', () => {
     const root = path.join(CASES, 'dag-departure');
     const pending = await readDeliverableRecordedRegister({
       deliverablePath: path.join(root, 'PKG-08_Flow', '1_Working', 'DEL-08-03_Worker'),
-      containmentRoot: root
+      containmentRoot: root,
+      executionRoot: root
     });
     expect(pending.blockers).toMatchObject({
       blockerState: 'DAG_PENDING',
@@ -161,7 +166,8 @@ describe('recorded register reads for one deliverable', () => {
 
     const current = await readDeliverableRecordedRegister({
       deliverablePath: path.join(root, 'PKG-08_Flow', '1_Working', 'DEL-08-01_Intake'),
-      containmentRoot: root
+      containmentRoot: root,
+      executionRoot: root
     });
     expect(current.blockers).toMatchObject({
       blockerState: 'BLOCKED',
@@ -176,7 +182,8 @@ describe('recorded register reads for one deliverable', () => {
     const deliverablePath = path.join(root, 'PKG-01_Core', '1_Working', 'DEL-01-01_Alpha');
     const read = await readDeliverableRecordedRegister({
       deliverablePath,
-      containmentRoot: path.join(root, 'PKG-01_Core')
+      containmentRoot: path.join(root, 'PKG-01_Core'),
+      executionRoot: root
     });
     expect(read.executionRoot).toBeNull();
     expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
@@ -192,13 +199,14 @@ describe('recorded register reads for one deliverable', () => {
     await expect(resolveAcceptedDag(root)).rejects.toBeInstanceOf(DagPointerError);
     const read = await readDeliverableRecordedRegister({
       deliverablePath: path.join(root, 'PKG-07_Graph', '1_Working', 'DEL-07-01_Planner'),
-      containmentRoot: root
+      containmentRoot: root,
+      executionRoot: root
     });
     expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
     expect(read.blockers.notAssessedReason).toMatch(/^DAG_POINTER_ERROR:/);
   });
 
-  it('locates the execution root only from the SPEC §2 folder shape', () => {
+  it('gives the execution root the SPEC §2 folder shape implies', () => {
     expect(executionRootForDeliverable('/p/execution/PKG-01_A/1_Working/DEL-01-01_X')).toBe('/p/execution');
     expect(executionRootForDeliverable('/p/execution/CAT-01_A/3_Issued/KTY-01-01_X')).toBe('/p/execution');
     expect(executionRootForDeliverable('/p/execution/PKG-01_A/0_References/DEL-01-01_X')).toBeNull();
@@ -233,21 +241,26 @@ describe('recorded register reads stay inside the read root', () => {
     await Promise.all(scratch.map((dir) => rm(dir, { recursive: true, force: true })));
   });
 
-  /** A copy of a fixture case at `<base>/root`, and an empty `<base>/outside`. */
-  async function copyCase(name: string): Promise<{ root: string; outside: string }> {
-    const base = await mkdtemp(path.join(os.tmpdir(), 'recorded-register-scope-'));
+  /**
+   * A copy of a fixture case as the execution root `<base>/project/execution`
+   * of the project `<base>/project`, and an empty `<base>/outside`. Reads use
+   * the project as their containment root and resolve the execution root.
+   */
+  async function copyCase(name: string): Promise<{ project: string; root: string; outside: string }> {
+    const base = await realpath(await mkdtemp(path.join(os.tmpdir(), 'recorded-register-scope-')));
     scratch.push(base);
-    const root = path.join(base, 'root');
+    const project = path.join(base, 'project');
+    const root = path.join(project, 'execution');
     const outside = path.join(base, 'outside');
     await cp(path.join(CASES, name), root, { recursive: true });
     await mkdir(outside, { recursive: true });
-    return { root, outside };
+    return { project, root, outside };
   }
 
   const status = (state: string): string => `# Status\n\n**Current State:** ${state}\n`;
 
   it('does not inventory units through a lifecycle folder linked outside the root', async () => {
-    const { root, outside } = await copyCase('union-no-csv');
+    const { project, root, outside } = await copyCase('union-no-csv');
     const secret = path.join(outside, 'DEL-01-09_Secret');
     await mkdir(secret);
     const header = (await readFile(path.join(CASES, 'dag-current', '_DAG', 'DAG-001', 'DependencyEdges.csv'), 'utf8'))
@@ -263,10 +276,10 @@ describe('recorded register reads stay inside the read root', () => {
     expect([...(await readProjectRegisters(root)).keys()]).not.toContain('DEL-01-09');
     const read = await readDeliverableRecordedRegister({
       deliverablePath: path.join(root, 'PKG-01_Core', '1_Working', 'DEL-01-01_Alpha'),
-      containmentRoot: root
+      containmentRoot: project
     });
     expect(read.warnings).toEqual([
-      'READ_OUTSIDE_ROOT: PKG-01_Core/3_Issued resolves outside the read root; it was not read.'
+      `READ_OUTSIDE_ROOT: ${path.join('execution', 'PKG-01_Core', '3_Issued')} resolves outside the read root; it was not read.`
     ]);
     expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
     expect(read.blockers.notAssessedReason).toMatch(/^READ_REFUSED:/);
@@ -274,7 +287,7 @@ describe('recorded register reads stay inside the read root', () => {
   });
 
   it('does not read the default threshold through a _Coordination folder linked outside the root', async () => {
-    const { root, outside } = await copyCase('union-no-csv');
+    const { project, root, outside } = await copyCase('union-no-csv');
     await rm(path.join(root, '_Coordination'), { recursive: true });
     await writeFile(
       path.join(outside, '_COORDINATION.md'),
@@ -286,34 +299,34 @@ describe('recorded register reads stay inside the read root', () => {
     expect(await readDefaultMaturity(root)).toEqual({ value: 'INITIALIZED', source: 'FALLBACK' });
     const read = await readDeliverableRecordedRegister({
       deliverablePath: path.join(root, 'PKG-01_Core', '1_Working', 'DEL-01-01_Alpha'),
-      containmentRoot: root
+      containmentRoot: project
     });
     expect(read.blockers.defaultMaturity).toEqual({ value: 'INITIALIZED', source: 'FALLBACK' });
     expect(read.warnings).toEqual([
-      `READ_OUTSIDE_ROOT: ${path.join('_Coordination', '_COORDINATION.md')} resolves outside the read root; it was not read.`
+      `READ_OUTSIDE_ROOT: ${path.join('execution', '_Coordination', '_COORDINATION.md')} resolves outside the read root; it was not read.`
     ]);
     expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
   });
 
   it('does not read an accepted DAG version folder linked outside the root', async () => {
-    const { root, outside } = await copyCase('dag-current');
+    const { project, root, outside } = await copyCase('dag-current');
     await rename(path.join(root, '_DAG', 'DAG-001'), path.join(outside, 'DAG-001'));
     await symlink(path.join(outside, 'DAG-001'), path.join(root, '_DAG', 'DAG-001'), 'dir');
 
     await expect(resolveAcceptedDag(root)).rejects.toBeInstanceOf(DagPointerError);
     const read = await readDeliverableRecordedRegister({
       deliverablePath: path.join(root, 'PKG-07_Graph', '1_Working', 'DEL-07-01_Planner'),
-      containmentRoot: root
+      containmentRoot: project
     });
     expect(read.warnings).toContain(
-      `READ_OUTSIDE_ROOT: ${path.join('_DAG', 'DAG-001', 'DeliverableNodes.csv')} resolves outside the read root; it was not read.`
+      `READ_OUTSIDE_ROOT: ${path.join('execution', '_DAG', 'DAG-001', 'DeliverableNodes.csv')} resolves outside the read root; it was not read.`
     );
     expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
     expect(read.blockers.acceptedDagVersion).toBeNull();
   });
 
   it('does not read a _DAG folder linked outside the root, and does not fall back silently', async () => {
-    const { root, outside } = await copyCase('dag-current');
+    const { project, root, outside } = await copyCase('dag-current');
     await rename(path.join(root, '_DAG'), path.join(outside, '_DAG'));
     await symlink(path.join(outside, '_DAG'), path.join(root, '_DAG'), 'dir');
 
@@ -324,7 +337,7 @@ describe('recorded register reads stay inside the read root', () => {
     ]);
     const read = await readDeliverableRecordedRegister({
       deliverablePath: path.join(root, 'PKG-07_Graph', '1_Working', 'DEL-07-01_Planner'),
-      containmentRoot: root
+      containmentRoot: project
     });
     expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
     expect(read.blockers.blockerSource).not.toMatch(/^ACCEPTED_DAG|^RECORDED_REGISTER/);
@@ -332,7 +345,7 @@ describe('recorded register reads stay inside the read root', () => {
   });
 
   it('reads a _LATEST.md and a Dependencies.csv linked inside the root as their targets, as the Root tools do', async () => {
-    const { root } = await copyCase('dag-current');
+    const { project, root } = await copyCase('dag-current');
     const links = path.join(root, '_Coordination', 'linked');
     await mkdir(links);
     await rename(path.join(root, '_DAG', '_LATEST.md'), path.join(links, 'LATEST.md'));
@@ -343,77 +356,227 @@ describe('recorded register reads stay inside the read root', () => {
 
     const expected = JSON.parse(await readFile(path.join(FIXTURES, 'expected', 'dag-current.json'), 'utf8'));
     expect(JSON.parse(JSON.stringify(await actual(root)))).toEqual(expected);
-    const read = await readDeliverableRecordedRegister({ deliverablePath: planner, containmentRoot: root });
+    const read = await readDeliverableRecordedRegister({ deliverablePath: planner, containmentRoot: project });
     expect(read.warnings).toEqual([]);
     expect(read.blockers.blockerSource).toBe('ACCEPTED_DAG:DAG-001');
   });
 
   it('refuses a _LATEST.md linked outside the root with a warning and no verdict', async () => {
-    const { root, outside } = await copyCase('dag-current');
+    const { project, root, outside } = await copyCase('dag-current');
     await rename(path.join(root, '_DAG', '_LATEST.md'), path.join(outside, 'LATEST.md'));
     await symlink(path.join(outside, 'LATEST.md'), path.join(root, '_DAG', '_LATEST.md'));
 
     const read = await readDeliverableRecordedRegister({
       deliverablePath: path.join(root, 'PKG-07_Graph', '1_Working', 'DEL-07-01_Planner'),
-      containmentRoot: root
+      containmentRoot: project
     });
     expect(read.warnings).toEqual([
-      `READ_OUTSIDE_ROOT: ${path.join('_DAG', '_LATEST.md')} resolves outside the read root; it was not read.`
+      `READ_OUTSIDE_ROOT: ${path.join('execution', '_DAG', '_LATEST.md')} resolves outside the read root; it was not read.`
     ]);
     expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
   });
 
   it('gives no verdict for a deliverable reached through a package folder linked inside the root', async () => {
-    const { root } = await copyCase('dag-current');
+    const { project, root } = await copyCase('dag-current');
     await mkdir(path.join(root, 'store'));
     await rename(path.join(root, 'PKG-07_Graph'), path.join(root, 'store', 'PKG-07_Graph'));
     await symlink(path.join(root, 'store', 'PKG-07_Graph'), path.join(root, 'PKG-07_Graph'), 'dir');
     const requestedPath = path.join(root, 'PKG-07_Graph', '1_Working', 'DEL-07-01_Planner');
     const deliverablePath = await realpath(requestedPath);
 
-    // The canonical folder sits under root/store, which has no _DAG: a verdict there would be silently wrong.
-    const read = await readDeliverableRecordedRegister({ deliverablePath, requestedPath, containmentRoot: root });
+    // The canonical folder sits under execution/store, which has no _DAG: a verdict there would be silently wrong.
+    const read = await readDeliverableRecordedRegister({ deliverablePath, requestedPath, containmentRoot: project });
     expect(read.executionRoot).toBeNull();
     expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
     expect(read.blockers.notAssessedReason).toMatch(/^SYMLINKED_UNIT_PATH: /);
     expect(read.warnings).toEqual([read.blockers.notAssessedReason]);
 
-    const direct = await readDeliverableRecordedRegister({ deliverablePath: requestedPath, containmentRoot: root });
+    const direct = await readDeliverableRecordedRegister({ deliverablePath: requestedPath, containmentRoot: project });
     expect(direct.blockers.notAssessedReason).toMatch(/^SYMLINKED_UNIT_PATH: /);
   });
 
   it('refuses a symbolic-link loop instead of reading it as an absent file', async () => {
-    const { root } = await copyCase('union-with-csv');
+    const { project, root } = await copyCase('union-with-csv');
     const consumer = path.join(root, 'PKG-02_Data', '1_Working', 'DEL-02-01_Consumer');
     await rm(path.join(consumer, 'Dependencies.csv'));
     await symlink('Dependencies.csv', path.join(consumer, 'Dependencies.csv'));
 
-    const read = await readDeliverableRecordedRegister({ deliverablePath: consumer, containmentRoot: root });
+    const read = await readDeliverableRecordedRegister({ deliverablePath: consumer, containmentRoot: project });
     expect(read.warnings).toEqual([
-      `LINK_LOOP: ${path.join('PKG-02_Data', '1_Working', 'DEL-02-01_Consumer', 'Dependencies.csv')} is a symbolic-link loop; it was not read.`
+      `LINK_LOOP: ${path.join('execution', 'PKG-02_Data', '1_Working', 'DEL-02-01_Consumer', 'Dependencies.csv')} is a symbolic-link loop; it was not read.`
     ]);
     expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
     expect(read.blockers.notAssessedReason).toMatch(/^READ_REFUSED:/);
   });
 
   it('reports a file over the size cap as a warning instead of reading it', async () => {
-    const { root } = await copyCase('union-with-csv');
+    const { project, root } = await copyCase('union-with-csv');
     const consumer = path.join(root, 'PKG-02_Data', '1_Working', 'DEL-02-01_Consumer');
     const csvPath = path.join(consumer, 'Dependencies.csv');
     const original = await readFile(csvPath, 'utf8');
     await writeFile(csvPath, original + ' '.repeat(MAX_REGISTER_FILE_BYTES + 1 - Buffer.byteLength(original)), 'utf8');
 
-    const read = await readDeliverableRecordedRegister({ deliverablePath: consumer, containmentRoot: root });
+    const read = await readDeliverableRecordedRegister({ deliverablePath: consumer, containmentRoot: project });
     expect(read.warnings).toEqual([
-      `FILE_TOO_LARGE: ${path.join('PKG-02_Data', '1_Working', 'DEL-02-01_Consumer', 'Dependencies.csv')} is larger than ${MAX_REGISTER_FILE_BYTES} bytes; it was not read.`
+      `FILE_TOO_LARGE: ${path.join('execution', 'PKG-02_Data', '1_Working', 'DEL-02-01_Consumer', 'Dependencies.csv')} is larger than ${MAX_REGISTER_FILE_BYTES} bytes; it was not read.`
     ]);
     expect(read.csvPresent).toBe(false);
     expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
 
     await writeFile(csvPath, original + ' '.repeat(MAX_REGISTER_FILE_BYTES - Buffer.byteLength(original)), 'utf8');
-    const atLimit = await readDeliverableRecordedRegister({ deliverablePath: consumer, containmentRoot: root });
+    const atLimit = await readDeliverableRecordedRegister({ deliverablePath: consumer, containmentRoot: project });
     expect(atLimit.warnings).toEqual([]);
     expect(atLimit.csvPresent).toBe(true);
+  });
+});
+
+describe('recorded register reads resolve the execution root', () => {
+  const scratch: string[] = [];
+
+  afterAll(async () => {
+    await Promise.all(scratch.map((dir) => rm(dir, { recursive: true, force: true })));
+  });
+
+  /** A project at `<base>/project` holding a copy of a fixture case at `<project>/<relativeRoot>`. */
+  async function project(name: string, relativeRoot: string): Promise<{ project: string; root: string }> {
+    const base = await realpath(await mkdtemp(path.join(os.tmpdir(), 'recorded-register-root-')));
+    scratch.push(base);
+    const projectRoot = path.join(base, 'project');
+    const root = path.join(projectRoot, relativeRoot);
+    await cp(path.join(CASES, name), root, { recursive: true });
+    return { project: projectRoot, root };
+  }
+
+  async function writeAdapter(folder: string): Promise<void> {
+    await mkdir(path.join(folder, '_harness'), { recursive: true });
+    await writeFile(path.join(folder, '_harness', 'adapter.yaml'), 'adapter_version: 1\n', 'utf8');
+  }
+
+  const planner = (root: string): string => path.join(root, 'PKG-07_Graph', '1_Working', 'DEL-07-01_Planner');
+
+  it('gives a deliverable under <project>/execution the same judgment as the fixture read with its root named', async () => {
+    const { project: projectRoot, root } = await project('union-with-csv', 'execution');
+    await writeAdapter(projectRoot);
+    const fixtureRoot = path.join(CASES, 'union-with-csv');
+    const named = await readDeliverableRecordedRegister({
+      deliverablePath: path.join(fixtureRoot, 'PKG-02_Data', '1_Working', 'DEL-02-01_Consumer'),
+      containmentRoot: fixtureRoot,
+      executionRoot: fixtureRoot
+    });
+
+    const read = await readDeliverableRecordedRegister({
+      deliverablePath: path.join(root, 'PKG-02_Data', '1_Working', 'DEL-02-01_Consumer'),
+      containmentRoot: projectRoot
+    });
+    expect(read.executionRoot).toBe(root);
+    expect(read.warnings).toEqual([]);
+    expect(read.blockers).toEqual(named.blockers);
+    expect(read.blockers).toMatchObject({ blockerState: 'BLOCKED', blockingUpstreamDeliverables: ['DEL-02-02', 'DEL-02-05'] });
+    expect(read.unionRows).toEqual(named.unionRows);
+    expect(read.disagreements).toEqual(named.disagreements);
+  });
+
+  it('accepts an adapter manifest inside the execution root that names it', async () => {
+    const { project: projectRoot, root } = await project('dag-current', 'execution');
+    await writeAdapter(root);
+    const read = await readDeliverableRecordedRegister({ deliverablePath: planner(root), containmentRoot: projectRoot });
+    expect(read.executionRoot).toBe(root);
+    expect(read.warnings).toEqual([]);
+    expect(read.blockers.blockerSource).toBe('ACCEPTED_DAG:DAG-001');
+  });
+
+  it('gives no verdict for a linked package requested at its target outside execution/ (FU5 review case)', async () => {
+    const { project: projectRoot, root } = await project('dag-current', 'execution');
+    await mkdir(path.join(projectRoot, 'store'));
+    await rename(path.join(root, 'PKG-07_Graph'), path.join(projectRoot, 'store', 'PKG-07_Graph'));
+    await symlink(path.join('..', 'store', 'PKG-07_Graph'), path.join(root, 'PKG-07_Graph'), 'dir');
+    const target = path.join(projectRoot, 'store', 'PKG-07_Graph', '1_Working', 'DEL-07-01_Planner');
+
+    // Inferred from the path shape, store/ would be taken for an execution root with no _DAG.
+    expect(executionRootForDeliverable(target)).toBe(path.join(projectRoot, 'store'));
+    const read = await readDeliverableRecordedRegister({ deliverablePath: target, requestedPath: target, containmentRoot: projectRoot });
+    expect(read.executionRoot).toBeNull();
+    expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
+    expect(read.blockers.blockerSource).toBe('NOT_ASSESSED');
+    expect(read.blockers.notAssessedReason).toBe(
+      `EXECUTION_ROOT_NOT_RESOLVED: ${path.join('store', 'PKG-07_Graph', '1_Working', 'DEL-07-01_Planner')} is not inside an execution/ folder; no verdict is given`
+    );
+    expect(read.warnings).toEqual([read.blockers.notAssessedReason]);
+
+    // Requested through the link, it stays a linked unit path.
+    const linked = await readDeliverableRecordedRegister({
+      deliverablePath: target,
+      requestedPath: planner(root),
+      containmentRoot: projectRoot
+    });
+    expect(linked.blockers.notAssessedReason).toMatch(/^SYMLINKED_UNIT_PATH: /);
+  });
+
+  it('gives no verdict for a linked package requested at its target inside execution/ but off the unit shape', async () => {
+    const { project: projectRoot, root } = await project('dag-current', 'execution');
+    await mkdir(path.join(root, '_store'));
+    await rename(path.join(root, 'PKG-07_Graph'), path.join(root, '_store', 'PKG-07_Graph'));
+    await symlink(path.join('_store', 'PKG-07_Graph'), path.join(root, 'PKG-07_Graph'), 'dir');
+    const target = path.join(root, '_store', 'PKG-07_Graph', '1_Working', 'DEL-07-01_Planner');
+
+    const read = await readDeliverableRecordedRegister({ deliverablePath: target, requestedPath: target, containmentRoot: projectRoot });
+    expect(read.executionRoot).toBeNull();
+    expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
+    expect(read.blockers.notAssessedReason).toBe(
+      `DELIVERABLE_OUTSIDE_EXECUTION_ROOT: ${path.join('execution', '_store', 'PKG-07_Graph', '1_Working', 'DEL-07-01_Planner')} is not at {EXECUTION_ROOT}/PKG-*/<lifecycle folder>/DEL-* for the execution root execution; no verdict is given`
+    );
+    expect(read.warnings).toEqual([read.blockers.notAssessedReason]);
+  });
+
+  it('gives no verdict for a deliverable outside any execution/ folder', async () => {
+    const { project: projectRoot, root } = await project('union-with-csv', 'work');
+    const read = await readDeliverableRecordedRegister({
+      deliverablePath: path.join(root, 'PKG-02_Data', '1_Working', 'DEL-02-01_Consumer'),
+      containmentRoot: projectRoot
+    });
+    expect(read.executionRoot).toBeNull();
+    expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
+    expect(read.blockers.notAssessedReason).toMatch(/^EXECUTION_ROOT_NOT_RESOLVED: work\/PKG-02_Data\/.* is not inside an execution\/ folder/);
+    expect(read.warnings).toEqual([read.blockers.notAssessedReason]);
+    // The deliverable's own register is still read.
+    expect(read.unionRows.map((row) => row.DependencyID)).toContain('DEP-02-01-001');
+  });
+
+  it('uses the outermost execution/ folder', async () => {
+    const { project: projectRoot, root } = await project('union-with-csv', path.join('execution', 'nested', 'execution'));
+    const read = await readDeliverableRecordedRegister({
+      deliverablePath: path.join(root, 'PKG-02_Data', '1_Working', 'DEL-02-01_Consumer'),
+      containmentRoot: projectRoot
+    });
+    expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
+    expect(read.blockers.notAssessedReason).toMatch(
+      /^DELIVERABLE_OUTSIDE_EXECUTION_ROOT: .* for the execution root execution; no verdict is given$/
+    );
+  });
+
+  it('gives no verdict when an adapter manifest implies another execution root', async () => {
+    const { project: projectRoot, root } = await project('union-with-csv', path.join('app', 'execution'));
+    await writeAdapter(projectRoot);
+    const read = await readDeliverableRecordedRegister({
+      deliverablePath: path.join(root, 'PKG-02_Data', '1_Working', 'DEL-02-01_Consumer'),
+      containmentRoot: projectRoot
+    });
+    expect(read.executionRoot).toBeNull();
+    expect(read.blockers.blockerState).toBe('NOT_ASSESSED');
+    expect(read.blockers.notAssessedReason).toBe(
+      "EXECUTION_ROOT_NOT_RESOLVED: adapter manifest _harness/adapter.yaml implies execution root execution, but the deliverable's execution root is app/execution; no verdict is given"
+    );
+    expect(read.warnings).toEqual([read.blockers.notAssessedReason]);
+
+    // The same layout with the manifest beside its execution root is judged.
+    await rm(path.join(projectRoot, '_harness'), { recursive: true });
+    await writeAdapter(path.join(projectRoot, 'app'));
+    const agreed = await readDeliverableRecordedRegister({
+      deliverablePath: path.join(root, 'PKG-02_Data', '1_Working', 'DEL-02-01_Consumer'),
+      containmentRoot: projectRoot
+    });
+    expect(agreed.executionRoot).toBe(root);
+    expect(agreed.blockers.blockerState).toBe('BLOCKED');
   });
 });
 

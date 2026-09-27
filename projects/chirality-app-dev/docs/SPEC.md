@@ -429,7 +429,22 @@ parity fixtures check that both give the same result on the same files:
 - The read covers the execution root that holds the deliverable
   (`{EXECUTION_ROOT}/PKG-*/1_Working|2_Checking|3_Issued/DEL-*`, and
   `CAT-*`/`KTY-*`), and only when that root resolves inside the project root.
-  Every file and folder it reads or lists is first resolved with `realpath`,
+  The execution root is found as the reopening check (§4.3) and the Root
+  checker `tools/validation/check_amendment_reopen.py` find it, not from the
+  shape of the deliverable path: it is the deliverable's outermost ancestor
+  folder named `execution` below the canonical project root, and an adapter
+  manifest (`_harness/adapter.yaml`) found walking up from the deliverable to
+  the project root must imply the same folder. The canonical deliverable
+  folder must sit exactly at `<execution root>/PKG-*/<lifecycle folder>/DEL-*`
+  (or `CAT-*`/`KTY-*`). Otherwise the deliverable's own register is still
+  read, and the judgment is `NOT_ASSESSED`, also a warning, with reason
+  `EXECUTION_ROOT_NOT_RESOLVED` (no `execution` ancestor, or an adapter
+  manifest that implies another root), `DELIVERABLE_OUTSIDE_EXECUTION_ROOT`
+  (a root resolves, but the deliverable is not at that position under it) or
+  `EXECUTION_ROOT_OUTSIDE_PROJECT_ROOT`. A deliverable named at the real path
+  behind a linked package folder is therefore not judged over a root guessed
+  from its path. The Root tools take the execution root as an argument
+  (`--execution-root`); the parity fixtures name it the same way. Every file and folder it reads or lists is first resolved with `realpath`,
   and it is read only when its canonical path lies inside the canonical project
   root. A symbolic link whose target stays inside the project root is read as
   its target, as the Root tools read it. A file or folder that leaves the
