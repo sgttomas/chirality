@@ -83,3 +83,5 @@ A fresh read-only `pec-reviewer` (opus, agent `a75330645dd973510`) reviewed the 
 - `TM-PEC-027` is elevated without a Root row. If Root opens one, a later PEC row-maintenance act may cite it. No Root row ID was invented.
 - Both status mappings are mine and are disclosed: `ELEVATED` for "promote to Root" and `DEFERRED` for K3's trigger. The owner may redirect either one (to `OPEN`, for example) by row maintenance.
 - Nothing prompts about CHECKING. No product, lifecycle, source, release or reliance state changed.
+
+*HELP_HUMAN note after PR #1021 reviews 01–02:* the "Final hashes" above for `REGISTER.csv` (`5141b554…`) and `INTAKE.md` (`0c455b97…`) are as at `3a96ffa1e`, before the review repairs. The review repairs changed TM-PEC-027's Notes and the intake's status disclosures, so the current bytes are at the PR's merged head.
