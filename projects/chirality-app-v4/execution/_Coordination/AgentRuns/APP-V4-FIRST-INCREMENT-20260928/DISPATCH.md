@@ -111,7 +111,58 @@ edits without a version bump and reported no new findings.
 | Node | Type | Scope | State |
 |---|---|---|---|
 | V2 | general-purpose independent reviewer | Bounded consistency check of v0.3 at `ba0b37123` → `reviews/V2.md` | RETURNED: MERGE AS v0.3 DRAFTS; 0 BLOCKING / 1 MAJOR / 13 MINOR |
-| W7 | general-purpose TASK | DEL-02-03 `Design/` (inputs pinned at `ba0b37123`) | ACTIVE |
-| W8 | general-purpose TASK (read-only `gh pr view 885` permitted) | DEL-03-03 `Design/` | ACTIVE |
+| W7 | general-purpose TASK | DEL-02-03 `Design/` (inputs pinned at `ba0b37123`) | RETURNED v0.1 (934 lines); fence verified |
+| W8 | general-purpose TASK (read-only `gh pr view 885` permitted) | DEL-03-03 `Design/` | RETURNED v0.1 (944 lines); fence verified |
 
 Wave-2 files are kept out of PR #1039, which carries Wave 1 only.
+
+PR #1039 merged 2026-09-28 as merge commit `98b1723b1b263cf3672db5fbb83b9e670773edc2` (head `1c36b6d97`).
+
+| W9 | general-purpose TASK | DEL-09-06, DEL-09-09 `Design/` (3 files) | RETURNED (461/796/391 lines); fence verified |
+
+Owner decision 2 was recorded after an interrupted session turn (auto-mode classifier outages). The owner then directed "continue, defer SWBPIPE until final review".
+
+## A1 sweep and W10 (dispatched 2026-09-28)
+
+Rulings: [R4_RESOLUTIONS.md](R4_RESOLUTIONS.md) (`f05c7e4cd`). The original
+authors were resumed; siblings read at `f05c7e4cd`.
+
+| Node | Files | State |
+|---|---|---|
+| A1-W1 | DEL-04-01 → v0.4 | RETURNED; fence verified |
+| A1-W2 | DEL-04-03, DEL-04-02 → v0.4 | RETURNED; fence verified |
+| A1-W3 | DEL-03-01, DEL-03-02 → v0.4 | RETURNED; fence verified |
+| A1-W4 | DEL-02-01 → v0.4 | RETURNED; fence verified |
+| A1-W5 | DEL-05-01, DEL-05-02 → v0.4 | RETURNED; fence verified |
+| A1-W6 | DEL-01-01 → v0.4 | RETURNED; fence verified |
+| A1-W7 | DEL-02-03 → v0.2 | RETURNED; fence verified |
+| A1-W8 | DEL-03-03 → v0.2 | RETURNED; fence verified |
+| W10 | DEL-03-04 GUIDE-v0.1 (new general-purpose TASK; inputs at `f05c7e4cd` + R4) | RETURNED (575 lines); CC-5 gap G-3 relayed to W9 author |
+| A1-W9 | DEL-09-06/09-09 W9 files → v0.2 (DECISION-2, R4, G-3 addendum) | ACTIVE |
+
+Scratchpad note: W10 found a shared scratchpad folder overwritten by a concurrent agent. It re-extracted its pinned inputs and verified their hashes. Later briefs use per-agent scratch folders.
+
+## V3, R5, V4 and C1 (2026-09-28)
+
+| Node | Result |
+|---|---|
+| V3-A / V3-B | Both MERGE AS DRAFTS: 0 BLOCKING, 10 MAJOR, 26 MINOR ([V3-A](reviews/V3-A.md), [V3-B](reviews/V3-B.md)) |
+| R5 pass (9 authors resumed) | Wave-1 files → v0.5; EXEC, ADAPTER and W9 files → v0.3; all fences verified. Integrator pass-through rulings: HP-4 and person-directed turns; multi-checkpoint precedence; App-only HS-5; SQ-02-status mapping. `d3cebd1cc` |
+| CA/RELAY E1 correction | E1 via the external channel is unsupported (EXEC MT-2). `816c917f0` |
+| GUIDE v0.2 | CC-1…CC-11 pass. `c7f5513db` |
+| V4-A / V4-B | Independent review of the final candidate `c7f5513db`: ACTIVE |
+| C1-A / C1-B / C1-C | Bounded closeout comparisons, proposing edits only: ACTIVE |
+
+Agents after W10 used private scratch folders.
+
+## V5 and R7 (2026-09-28)
+
+| Node | Result |
+|---|---|
+| V4-A / V4-B | MERGE AS DRAFTS: 0 BLOCKING, 5 MAJOR, 23 MINOR. R6 applied: `375c3970c`, `2f42fba02` |
+| C1-A / C1-B / C1-C | RETURNED; proposals only. Combined in `closeout/CLOSEOUT_ACCOUNT.md` |
+| V5 | Bounded check of R6 at `2f42fba02`: MERGE AS DRAFTS, 0 BLOCKING, 3 MAJOR, 8 MINOR ([V5](reviews/V5.md)) |
+| R7 repair | One Type 2 applied [R7](R7_RESOLUTIONS.md) in place to 12 Design files (HOSTING, P, LOOP, PANEL and SPIKE untouched), with GUIDE re-pinned last. RETURNED; fence verified |
+| R7 integrator close | Confirmed the repairer's reading of R7-3: an A5 checkpoint's derived held actions (the governed operations) take precedence over the kind (b)/(c) default, as in EXEC §3.6. Qualified PANEL §3.2 (model-supplied, R6-5) and ACT FX-39 (re-hold, R6-3), replaced RELAY's "uncommitted at repair" placeholders, and re-pinned GUIDE for PANEL, ACT and RELAY. All 16 GUIDE pins match the working tree; both DAG-001 manifests pass |
+| V6 | Bounded check of R7 at `c6f81a4f2`: MERGE AS DRAFTS, 0 BLOCKING, 0 MAJOR, 7 MINOR ([V6](reviews/V6.md)); fence verified |
+| PR-3 | [#1043](https://github.com/sgttomas/chirality/pull/1043) at `c6f81a4f2`. The first CI run failed on "Update the PR base" (the coverage planner requires `main` to be integrated), so `origin/main` was merged into the branch. `main` changed no App v4 file |
