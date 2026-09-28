@@ -57,7 +57,11 @@ a recorded WORKING_ITEMS consultation or by the human.
   non-gating; they organize co-development and receiver comparisons, not
   readiness verdicts.
 - **Owner decisions:** [OWNER_DECISIONS.md](../../AgentRuns/APP-V4-FIRST-INCREMENT-20260928/OWNER_DECISIONS.md)
-  — Option A; OI-001 five reserved acts; OI-002 App user setting / none in
+  — DECISION-2: D5 user flexibility (App conversation may send host content to
+  its selected model; destination recorded, not gated); D6 App-side holds
+  deferred to SWBPIPE SQ-02. Owner direction (chat, 2026-09-28): "continue,
+  defer SWBPIPE until final review" — relay after F1 review. DECISION-1:
+  Option A; OI-001 five reserved acts; OI-002 App user setting / none in
   hosts; OI-012 pin `0.158.0` with spike W11. Remaining open: OI-003, OI-008,
   OI-009, OI-013, OI-014, OI-018, OI-021.
 
@@ -95,22 +99,26 @@ States: PLANNED, READY, ACTIVE, BLOCKED, UNCERTAIN, COMPLETE.
 | V1 Receiver comparisons, M1 joins (V1-A policy, V1-B C/P/record, V1-C workflow/loop/panel) | Run folder `comparisons/`; read-only on Design | W1–W6 returned | Each join: version received, check performed, disagreements, absent | COMPLETE — [V1-A](../../AgentRuns/APP-V4-FIRST-INCREMENT-20260928/comparisons/V1-A.md), [V1-B](../../AgentRuns/APP-V4-FIRST-INCREMENT-20260928/comparisons/V1-B.md), [V1-C](../../AgentRuns/APP-V4-FIRST-INCREMENT-20260928/comparisons/V1-C.md): 4 BLOCKING, 37 MAJOR, 35 MINOR; 24 register findings → C1/D0 |
 | R1 Repair to v0.2 against V1 findings | Same Design folders | V1; [R1_RESOLUTIONS](../../AgentRuns/APP-V4-FIRST-INCREMENT-20260928/R1_RESOLUTIONS.md) | Findings dispositioned; affected comparisons rechecked at IR1 | COMPLETE (v0.2 × 9 files); cross-file items → [R2_CANDIDATES](../../AgentRuns/APP-V4-FIRST-INCREMENT-20260928/R2_CANDIDATES.md) |
 | P1 PR-1: graph + decision package | Graph, run folder | W0 | Folded into PR-2 (graph pushed on branch early) | COMPLETE (folded) |
-| P2 PR-2: Wave-1 definitions + comparisons + reviews | W1–W6, V1, R1, IR1, R2, R3, V2 outputs | V2 verdict MERGE (0 BLOCKING); CI green | PR merged under standing Git authority | ACTIVE — [#1039](https://github.com/sgttomas/chirality/pull/1039) ready for merge at candidate recorded in the PR |
-| W7 Workflow execution compatibility v0.1 | DEL-02-03 `Design/` | Wave-1 v0.3 at `ba0b37123` | Compatibility report, checkpoint hold, transfer trace; resolves the W7-held items | ACTIVE |
-| W8 External-agent adapter enablement account v0.1 | DEL-03-03 `Design/` | Wave-1 v0.3 at `ba0b37123` | Enablement states; policy cases; transport-neutral fixtures; MCP/CLI open-choice register | ACTIVE |
-| W9 Connected activity draft contract + relay questions; EXM-24/25 inventories | DEL-09-06, DEL-09-09 `Design/`; `_Coordination/HANDOFF_SWBPIPE_DOMAINS.md` (question section only) | W3, W4, W5, W7, W8 | Operation placeholder per OI-021; relay file ready for human | PLANNED |
-| W10 Host receiving matrix and checklist | DEL-03-04 `Design/` | W1–W9 | Every receiving-map row cites a contribution version or `UNRESOLVED` | PLANNED |
+| P2 PR-2: Wave-1 definitions + comparisons + reviews | W1–W6, V1, R1, IR1, R2, R3, V2 outputs | V2 verdict MERGE (0 BLOCKING); CI green | PR merged under standing Git authority | COMPLETE — [#1039](https://github.com/sgttomas/chirality/pull/1039) merged; CI 9 pass / 4 skipped; review V2 at `ba0b37123` (later commits were records only) |
+| W7 Workflow execution compatibility v0.1 | DEL-02-03 `Design/` | Wave-1 v0.3 at `ba0b37123` | Compatibility report, checkpoint hold, transfer trace; resolves the W7-held items | COMPLETE (v0.1) — `DEL-02-03/EXEC-v0.1`; findings F-1…F-16 → A1/C1 |
+| W8 External-agent adapter enablement account v0.1 | DEL-03-03 `Design/` | Wave-1 v0.3 at `ba0b37123` | Enablement states; policy cases; transport-neutral fixtures; MCP/CLI open-choice register | COMPLETE (v0.1) — `DEL-03-03/ADAPTER-v0.1`; 12 relay questions (XQ); findings F-1…F-12 → A1 / C1; U-X2 data boundary → owner |
+| W9 Connected activity draft contract + relay questions; EXM-24/25 inventories | DEL-09-06, DEL-09-09 `Design/`; `_Coordination/HANDOFF_SWBPIPE_DOMAINS.md` (question section only) | W3, W4, W5, W7, W8 | Operation placeholder per OI-021; relay file ready for human | COMPLETE (v0.1) — `DEL-09-06/CA-v0.1`, `DEL-09-06/RELAY-v0.1` (27 questions; PREPARED, not delivered — owner defers relay until final review), `DEL-09-09/XT-v0.1` |
+| W10 Host receiving matrix and checklist | DEL-03-04 `Design/` | W1–W9 at `f05c7e4cd` + R4 | Every receiving-map row cites a contribution version or `UNRESOLVED` | COMPLETE (v0.1) — `DEL-03-04/GUIDE-v0.1`; 10/10 rows homed; CC-5 gap → relay |
 | W11 Codex pin spike | DEL-01-01 `Design/` + generated types location | Owner decision D4 (OI-012) — given | Types generated at pin; observed protocol facts vs published claims | COMPLETE — `DEL-01-01/PIN-SPIKE-v0.1`; 18 findings into DEL-01-01 v0.2 |
-| A1 Wave-1 residual sweep (V2 MAJOR-1, m-1…m-13) | Wave-1 `Design/` files | V2 | Residuals fixed or carried with reason | PLANNED |
+| A1 Set-wide sweep under [R4](../../AgentRuns/APP-V4-FIRST-INCREMENT-20260928/R4_RESOLUTIONS.md) (V2 residuals, W7/W8/W9 findings, D5/D6) | All Design files (Wave 1 → v0.4; W7/W8 → v0.2) | V2, W7–W9, DECISION-2 | Residuals fixed or carried with reason | COMPLETE — Wave 1 → v0.4, W7/W8 → v0.2, W9 → v0.2 (`f05c7e4cd` and later) |
 | V2 Wave-1 consistency check | `reviews/V2.md` | R3 at `ba0b37123` | Verdict | COMPLETE — MERGE AS v0.3 DRAFTS |
-| V3 Receiver comparisons, Wave 2 | Run folder | W7–W10, A1 | As V1 | PLANNED |
-| IR1/IR2 Independent review | Read-only; `reviews/IR1-*.md` | P2 / P3 candidates | Findings resolved or dispositioned; R2 alignment pass | IR1 ACTIVE |
-| P3 PR-3: Wave-2 definitions | W7–W11, V2 | IR2 | PR merged | PLANNED |
-| D0 DAG currency recheck | Read-only | P3 | Manifests; any relationship change routed to project-dag | PLANNED |
-| C1 Bounded closeout (`chirality-root:bundled:workflow:bounded-reconciliation`) | Affected DEL `_REFERENCES.md`/`_STATUS.md` as authorized; CASE-002 pointer | P3 | Commitment↔result both directions | PLANNED |
-| M1 MEMORY rows | Affected `MEMORY.md` | C1 | Terse rows → receipt | PLANNED |
-| RC Central receipt | `AgentRuns/<RunID>/RECEIPT.md` | C1 | Result/checks/limits | PLANNED |
-| F1 Final PR | All | C1, M1, RC, review | Final PR merged | PLANNED |
+| V3 Final bounded consistency check (V3-A, V3-B) | `reviews/V3-*.md` | Full set at `9fc77baa3`; [R5_CANDIDATES](../../AgentRuns/APP-V4-FIRST-INCREMENT-20260928/R5_CANDIDATES.md) | Verdict | COMPLETE — both MERGE AS DRAFTS → [R5](../../AgentRuns/APP-V4-FIRST-INCREMENT-20260928/R5_RESOLUTIONS.md) applied (`d3cebd1cc`, `816c917f0`, `c7f5513db`) |
+| V4 Independent review of final candidate | `reviews/V4-*.md` | `c7f5513db` | Verdict covering the actual candidate | COMPLETE — both MERGE AS DRAFTS (0 BLOCKING) → [R6](../../AgentRuns/APP-V4-FIRST-INCREMENT-20260928/R6_RESOLUTIONS.md) applied in place (`375c3970c`, `2f42fba02`) |
+| V5 Bounded check of R6 | `reviews/V5.md` | `2f42fba02` | Verdict | COMPLETE — MERGE AS DRAFTS (0 BLOCKING, 3 MAJOR, 8 MINOR) → [R7](../../AgentRuns/APP-V4-FIRST-INCREMENT-20260928/R7_RESOLUTIONS.md) |
+| R7 In-place repair of V5 residuals | 16 Design files (not PIN_SPIKE) | V5 | Every R7 item applied; GUIDE re-pinned last | COMPLETE — 12 files by the repairer, plus the integrator's closing fixes (PANEL §3.2, ACT FX-39, RELAY placeholders, GUIDE re-pin); pins verified; D0 manifests pass. Commit `c6f81a4f2` |
+| V6 Bounded check of R7 | `reviews/V6.md` | `c6f81a4f2` | Verdict covering the actual candidate | COMPLETE — MERGE AS DRAFTS (0 BLOCKING, 0 MAJOR, 7 MINOR). m-2 fixed here (R7 commit recorded); m-1, m-3…m-7 carried as residuals to the successor route (no value or relay effect) |
+| IR1/IR2 Independent review | Read-only; `reviews/IR1-*.md` | P2 / P3 candidates | Findings resolved or dispositioned; R2 alignment pass | COMPLETE — IR1-A/B/C resolved by R2; P3 review is V4 → V5 → V6 |
+| P3 PR-3: Wave-2 definitions + R4–R7 alignment | W7–W10, A1, R5–R7, V3–V6 | V6 verdict; CI | PR merged | COMPLETE — [#1043](https://github.com/sgttomas/chirality/pull/1043) merged `df6d59e3`; CI 9 pass / 4 skipped; reviews V4 → V5 → V6 cover the candidate (after V6, only records and a `main` sync changed) |
+| D0 DAG currency recheck | Read-only | P3 | Manifests; any relationship change routed to project-dag | COMPLETE at `9fc77baa3` — both DAG-001 manifests pass; no register/SoW/decomposition/DAG byte changed. Register findings (missing mirror rows and candidate new arcs) are NOT applied → C1 proposed changes → successor route |
+| C1 Bounded closeout (`chirality-root:bundled:workflow:bounded-reconciliation`) | `closeout/C1-*.md` only. SoWs, registers and `_STATUS` are bound by the DAG-001 SOURCE_MANIFEST, so their changes are returned as **proposed** for a successor route | V3/R5 final set | Commitment↔result both directions per DEL; proposed SoW/register changes; lifecycle observation | COMPLETE — C1-A/B/C combined in [CLOSEOUT_ACCOUNT](../../AgentRuns/APP-V4-FIRST-INCREMENT-20260928/closeout/CLOSEOUT_ACCOUNT.md) (lands in F1) |
+| M1 MEMORY rows | Affected `MEMORY.md` | C1 | Terse rows → receipt | COMPLETE — 14 per-deliverable `MEMORY.md` files, one run row each |
+| RC Central receipt | `AgentRuns/<RunID>/RECEIPT.md` | C1 | Result/checks/limits | COMPLETE — [RECEIPT](../../AgentRuns/APP-V4-FIRST-INCREMENT-20260928/RECEIPT.md) |
+| F1 Final PR | All | C1, M1, RC, review | Final PR merged | ACTIVE — [#1045](https://github.com/sgttomas/chirality/pull/1045); review V7 (B-1 fixed, recheck) |
 
 **Conventions for all Design artifacts.** Each file opens with a contribution
 header: contribution ID and version (e.g. `DEL-03-01/C-v0.1`), status
@@ -127,9 +135,11 @@ policy values appear as `UNRESOLVED{OI-nnn}`, never as a permission.
 - Checked basis: `main` at `6e18505e3`; DAG-001 `MANIFEST.sha256` and
   `SOURCE_MANIFEST.sha256` both pass; no `PKG-*` change since acceptance merge
   `7535bd7e`.
-- Next work: V2 consistency check on v0.3 (`ba0b37123`); then PR #1039
-  ready → merge. W7 and W8 running in parallel; then W9 (connected activity +
-  relay) and W10 (guide), V3, PR-3.
+- Next work: F1 final PR (closeout account, MEMORY rows, receipt, handoff
+  pointer); then owner questions (relay — the owner's condition is met once
+  V7, the F1 review, returns MERGE; D6 App-side follow-up U-E23; SP-6 cost U-E4;
+  successor register/SoW/DAG-002 route; lifecycle; FX-PIPE-01 custody;
+  DEL-01-05 matters).
 - Local/unmerged work: branch `claude/chirality-app-v4-60-percent-a41fd5`
   (worktree `.claude/worktrees/test-ci-optimization-f6cacd`).
 - Active operations: see run folder `DISPATCH.md`.

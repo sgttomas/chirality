@@ -1,19 +1,19 @@
 # Host panel and shared interaction receiving contract
-- Contribution: DEL-05-02/PANEL-v0.3
+- Contribution: DEL-05-02/PANEL-v0.5
 - Status: DRAFT DEFINITION — proposed, unsupplied, not implemented, not accepted
 - Serves: OUT-001, OUT-002, OUT-003, OUT-004 (conditional state only); REQ-001–REQ-006; AC-001–AC-007; VER-001–VER-007 (all of DEL-05-02)
-- Basis: repo 6e18505e3 (accepted basis); ScopeOfWork.md sha256 5c554956e91b2d8d5056176f85717cbd0e17a2d2d2991a52ea4ff185ebfd40cb; P/docs/PRD.md §2.2 V4-HOST-01/04/05/06, §3.1 V4-EXT-01, §4.1 V4-WF-03–06, §4.5 V4-AUT-01–05, §4.7 V4-REC-01/03/05, §5 V4-CST-05, §9 OQ-02/OQ-11; P/docs/ARCHITECTURE.md §3 (V4-ARC-05, reuse candidates), §4, §5 V4-ARC-20; P/docs/HOST_INTEGRATION.md §1, V4-HI-02/04, V4-HI-10–12, V4-HI-20–25, V4-HI-30–33, V4-HI-40–42, V4-HI-70/71, §10 item 7; P/docs/EXAMINATION.md V4-EXM-01–03, V4-EXM-20–22; DECISION_BRIEF.html (sha256 02d38cb1…4c420e8) d2, d3, d5; APP-V4-CLARIFICATION-20260927/DIRECTION.md; SCC-CASE-002 Case_Datasheet M1/M4 rows; Open_Issues OI-013/014/021; External_Dependencies DEP-001; run folder OWNER_DECISIONS.md (sha256 f3f8e5f3…cf81f2e; decision `APP-V4-FIRST-INCREMENT-20260928-DECISION-1`, D2 and D3), R1_RESOLUTIONS.md (2f9c7e72…e177ec4), R2_RESOLUTIONS.md (77cfb845…cdebd088), comparisons/V1-A.md (01811533…e04c09), comparisons/V1-C.md (8d46258a…4a94a6), reviews/IR1-A.md (31b3c7f8…0b648284), reviews/IR1-B.md (70e4a4f6…2846), reviews/IR1-C.md (295e96b3…a426b9)
+- Basis: repo 6e18505e3 (accepted basis); ScopeOfWork.md sha256 5c554956e91b2d8d5056176f85717cbd0e17a2d2d2991a52ea4ff185ebfd40cb; P/docs/PRD.md §2.2 V4-HOST-01/04/05/06, §3.1 V4-EXT-01, §4.1 V4-WF-03–06, §4.5 V4-AUT-01–05, §4.7 V4-REC-01/03/05, §5 V4-CST-05, §9 OQ-02/OQ-11; P/docs/ARCHITECTURE.md §3 (V4-ARC-05, reuse candidates), §4, §5 V4-ARC-20; P/docs/HOST_INTEGRATION.md §1, V4-HI-02/04, V4-HI-10–12, V4-HI-20–25, V4-HI-30–33, V4-HI-40–42, V4-HI-70/71, §10 item 7; P/docs/EXAMINATION.md V4-EXM-01–03, V4-EXM-20–22; DECISION_BRIEF.html (sha256 02d38cb1…4c420e8) d2, d3, d5; APP-V4-CLARIFICATION-20260927/DIRECTION.md; SCC-CASE-002 Case_Datasheet M1/M4 rows; Open_Issues OI-013/014/021; External_Dependencies DEP-001; run folder OWNER_DECISIONS.md (sha256 f3f8e5f3…cf81f2e; decision `APP-V4-FIRST-INCREMENT-20260928-DECISION-1`, D2 and D3), R1_RESOLUTIONS.md (2f9c7e72…e177ec4), R2_RESOLUTIONS.md (77cfb845…cdebd088), comparisons/V1-A.md (01811533…e04c09), comparisons/V1-C.md (8d46258a…4a94a6), reviews/IR1-A.md (31b3c7f8…0b648284), reviews/IR1-B.md (70e4a4f6…2846), reviews/IR1-C.md (295e96b3…a426b9); run folder at commit `f05c7e4cd`: OWNER_DECISIONS.md (a9869129…68ad2c; adds `APP-V4-FIRST-INCREMENT-20260928-DECISION-2`, D5 and D6), R3_RESOLUTIONS.md (202d52c7…afbf), R4_RESOLUTIONS.md (50a009b2…032a24), reviews/V2.md (75ba1dff…6ef); run folder at commit `8fb51f07f`: R5_RESOLUTIONS.md (254d0b93…dd6f1), reviews/V3-A.md (f25f5af1…21d87), reviews/V3-B.md (5662fbd0…954a3)
 - Consumed inputs:
-  - **Prior version.** DEL-05-02/PANEL-v0.2, sha256 0a8a0dbe…19a700, at commit `c387730fb`.
-  - **Sibling v0.2 text read from commit `28bd00499`** (`git show`) at the joins:
-    - DEL-03-01/C-v0.2 (358182b1…6d82): §3.1, §4.1, §10;
-    - DEL-03-02/P-v0.2 (942c1a3a…8c89): §3.1, §3.3, §4.3–§4.5, §5, §9;
-    - DEL-02-01/WD-v0.2 (c25bccc5…a55c): §3.4, §4.2.4, §4.3, §6;
-    - DEL-04-01/ACT-POLICY-v0.2 (e50f1fe2…93a9): §2.3–§2.5, §4, §5, §6;
-    - DEL-04-02 (3a4e8b01…329c): §3, §4.
-  - **R2 v0.3 changes to those siblings.** Taken from R2_RESOLUTIONS, marked "per R2-n; to be confirmed at V2/IR2". This file has not read the siblings' v0.3 text.
-  - **DEL-05-01/LOOP-v0.3.** Co-drafted by this executor.
-  - **DEP-001.** Host panel/view evidence has not been received.
+  - **Prior version.** DEL-05-02/PANEL-v0.4, sha256 cb71bc4b…e84419, at commit `8fb51f07f`.
+  - **Current sibling versions at commit `8fb51f07f`** (`git show`; R5-9):
+    - DEL-02-03/EXEC-v0.2 (7f7848c0…42317af0): §3.5–§3.6, §4, §6.2 — *read* (hold-support values superseded by R5-1);
+    - DEL-03-01/C-v0.4 (e929d39d…659a08c): §10.1 (FXA-1…FXA-5, LIB-A1/A2, AF-1), §10.3, §10.4 — *read*;
+    - DEL-02-01/WD-v0.4 (e492ff63…d8e88e): §4.2.4 (R4-8 string), §4.3 — *read*; WD-EX-v0.4 (60ce307a…128ca4) E1d — *read*;
+    - DEL-03-02/P-v0.4 (0d3960a2…c5e361); DEL-04-01/ACT-POLICY-v0.4 (d6da05ab…b03b); DEL-04-02/AS-v0.4 (774728d0…f4dab); DEL-04-03/RS-v0.4 (56806b64…40199) — cited for currency;
+    - DEL-09-06/RELAY-v0.2 (48dc5a1f…41f65) §3 coverage map — *read*: Q-1 → SQ-02; Q-2 → SQ-01; Q-3 → SQ-22; Q-4 → SQ-23, SQ-10; Q-5 → SQ-21; Q-6 → SQ-18 (a); Q-7 → SQ-24; Q-8 → SQ-05 (c), (e); Q-9 → SQ-20.
+  - **Current sibling versions at `c7f5513db` (R6-4; in place):** EXEC-v0.3 889e4881…ee548e; C-v0.5 a6306bd4…be7a29 (V-GR1 present); P-v0.5 a5ee4946…cd1b7 (§3.3 per R5-2 present); WD-v0.5 32acdd27…45e7c9; WD-EX-v0.5 296875c9…4702f; ACT-POLICY-v0.5 86975a90…5380e7; AS-v0.5 c49be8bb…729e1; RS-v0.5 37bc586e…c27ea; ADAPTER-v0.3 c9195851…225cff4; HOSTING-v0.5 873e76f6…b0eaa; RELAY-v0.3 89b6b9c9…68bdd7. EXEC-v0.3 §3.6 (HS-1…HS-5; R6-1) is *read*; the rest are cited for currency. R6_RESOLUTIONS.md 8703e85a…cb841 and reviews/V4-A.md 121deafc…eab1 are *read*.
+  - **DEL-05-01/LOOP-v0.5.** Co-drafted by this executor.
+  - **DEP-001.** Host panel/view evidence has not been received. D6 (App-side holds) is deferred to SWBPIPE SQ-02.
 - Receivers: DEL-02-01 (OUT-003; REQ-005; VER-005) and DEL-05-01 (OUT-004; REQ-005; VER-007) per CASE-002 M1; W9 relay file (§8 questions); external SWBPIPE owner via App-manager preparation and human file relay (DEP-05-02-018); DEL-05-02 itself for OUT-003 (VER-002, VER-003, VER-005) and OUT-002/OUT-004 (VER-004, VER-006)
 
 ## 0. How to read this definition
@@ -26,16 +26,16 @@
 - **Semantic names only.** No wire fields, component names or types are
   selected. The same applies to persistence and placement (OI-013, OI-014).
 - **Standing labels.**
-  - **SETTLED**: accepted basis or DECISION-1, credited only with what it
-    says (R2-11).
-  - **DERIVED**, **INTEGRATION** (R-n / R2-n) and **PROPOSED** are used as
-    in LOOP-v0.3 §0.
+  - **SETTLED**: accepted basis, DECISION-1 or DECISION-2, credited only
+    with what it says (R2-11).
+  - **DERIVED**, **INTEGRATION** (R-n … R4-n) and **PROPOSED** are used as
+    in LOOP-v0.5 §0.
   - `UNRESOLVED{…}` is never a permission, a default or a pass.
 - **Act names and labels.** Canonical A1–A14 (ACT §2.1). Unqualified
   "checked" means only A4. "Approval" means only A6. Agent work is
   "examination findings". Host results read "host checks passed: ‹named
   checks›" (R-4).
-- **Fixture.** Cases cite **FX-PIPE-01** (C-v0.2 §10) identifiers:
+- **Fixture.** Cases cite **FX-PIPE-01** (C-v0.4 §10) identifiers:
   - workspace FX-W1, generation g1, run R-100, nozzles N-1/N-2, supports
     S-1…S-4, load case LC-1, Engineer A;
   - workflow `supports-adjust` (origin host, ⟨fx-root⟩, ⟨rev-3⟩);
@@ -43,12 +43,48 @@
   - timeline T1–T17 and Tg; bases B1/B2; proposals PR-1/PR-2; receipts
     RC-1…RC-3.
 
-  Per R2-21 the cases also use OP-C10 Undo, OP-C11 (*no policy basis*,
-  pending OI-021) and exposure "exposed on all three surfaces" (fixture
-  assumption). The v0.2 labels R-101/R-102, S-7…S-9 and "support-adjust" are
+  The C-v0.3 additions used here are:
+  - OP-C10 Undo, OP-C11 (*no policy basis*, pending OI-021) and OP-C12
+    (host check);
+  - T4a and T16a; S-5 (created at T12);
+  - ⟨set-1⟩ (P-03 *effective (policy default)* propose) and ⟨set-2⟩ (T15:
+    P-03 direct, scope {FX-W1; {S-4}});
+  - FXA-1…FXA-5 (FXA-1: exposed on all three surfaces; C-v0.4 renamed FA-n
+    to FXA-n, R5-9); FXA-5: ⟨rev-3⟩ declares `CP-accept` and `CP-check`;
+  - named variant **V-GR1** (R5-7): the grant-change-after-arrival run.
+  - variants V-S1, V-CP1, V-NP1, V-R1, V-X1 and V-OU1. The v0.2 labels R-101/R-102, S-7…S-9 and "support-adjust" are
   removed. Where a case needs a second workflow, it is a local label
   `L-PANEL-n`, and the case says why. Nothing selects the first connected
   operation (`UNRESOLVED{OI-021}`).
+
+## Changes from v0.4
+
+| Item | Change (section) |
+|---|---|
+| R5-1 (V3-A MAJOR-1) | §3.2 shows hold support in the **four ruled values** (*enforced by the host loop*, *enforced on the host route*, *not established*, *not enforceable*), each with its requirement-check effect. Host-panel runs are *enforced by the host loop*. The EXEC-v0.1 values are retired |
+| R5-3 (Y-2) | W-5a: the **declared** setting content always binds, and a declaration naming none is invalid unconditionally. An A8 may present the content but never changes the subject |
+| R5-7 (V3-A MAJOR-3/5) | PC-21f re-pointed to C named variant **V-GR1**; `L-PANEL-2` dropped. PC-21i: T15 before the arrival is "prior act, not counted". F-7 closed |
+| R5-9; V3-A m-3, m-4, m-8, m-12 | FA-n → FXA-n. Unsupported reason aligned to WD's string "checkpoint hold not enforceable on this surface: ‹name›". Holding library marked confirmed (EXEC §6.2). Sibling versions at `8fb51f07f` cited. The R4-n UNRESOLVED row is closed. §8 maps Q-n to RELAY-v0.2 SQ numbers |
+| R5-5 | W-5e: a lapse caused by the person's own undo re-holds like any lapse. The undo is never shown as *action during hold*. An undo never re-holds an A5 arrival |
+| R6-1 (in place) | §3.2: invalid declarations take **no value** (check *not established*). App-run checkpoints are classified by held actions (EXEC-v0.3 HS-3/HS-5). R6-3 per-value meaning of "held" is shown |
+| R6-4 (in place; V4-A m-1) | EXEC-v0.3 and the current sibling versions cited. "R5 elements not yet in sibling text" markers removed |
+| R5-4 | No PANEL text credited D5 with recording or showing the destination, so no relabel is needed (checked) |
+| R7-4 m-5 (V5 m-5 class; integrator, in place) | §3.2 *not enforceable* example "a constraint carried only as model-supplied" is qualified "once SQ-02 is answered with no host-held route (before that answer, *not established*)" (R6-5). No value changes. |
+
+## Changes from v0.3
+
+| Item | Change (section) |
+|---|---|
+| R4-2 (D6 deferred; DECISION-2); R4-8 | §3.2 shows **hold support** per declared checkpoint (EXEC §3.6 values) and the *unsupported* reason **"checkpoint hold not enforceable on this surface"**. §3.1 tool activity shows **action during hold**. The panel never claims a hold that is not enforced. App-side holds are `UNRESOLVED{D6}`. Host-loop runs hold via the loop (LOOP §2.4.4) |
+| R4-3 (EXEC §4.7) | W-5e is rewritten: "waiting — lapsed at ‹t›" before resume; after resume the **same arrival is re-held**, shown "waiting — re-held, lapsed at ‹t› after resume"; the request is re-issued for the whole scope; A5 and A12 never re-hold. The interim "performed + act-lapsed" display is withdrawn. PC-20 is repaired |
+| R4-4 (EXEC §4.9; PROPOSED) | W-5b: **no resumption** of an ended run. Later acts are shown **"after run end"** and change nothing. A continuation run shows **"continues ⟨run⟩"** and inherits nothing. An interruption is shown "interrupted", not ended. PC-21d is repaired; PC-21g added |
+| R4-5 (SP-6; PROPOSED) | W-5c: acts captured before the arrival are shown **"prior act on this subject, not counted"**; an unestablishable order is shown "act order unknown". PC-19 is repaired onto T16a; PC-19b shows T2 as a prior act |
+| R4-6 (EXEC §4.10) | W-5g and §3.6: a later A12 supersedes **only when established**. A refused A12 does not count and supersedes nothing; pending → *waiting*; lost confirmation → *unknown*. PC-21f is repaired |
+| R4-7 (EXEC §4.11) | W-5f cites WD §4.3.7 **as confirmed by DEL-02-03**, with MX-3 (*unknown*), MX-6 ("replaced by arrival n+1") and MX-8 (application error or unknown after A5 annotated) |
+| R4-9 | W-5a: the grant-setting subject is the setting named by an A8, otherwise by the declaration. A declaration naming none is shown *invalid* |
+| R4-11 | Arrival ordinal and performance ordinal shown with each current arrival (EXEC MA-2) |
+| R4-18 (V2 MAJOR-1) | PC-22 re-pointed to C **T15/⟨set-2⟩**: class **P-03**, scope {FX-W1; {S-4}}. T16 OP-C9 on S-4 is direct; OP-C4 on R-100 is outside the scope; OP-C5 on S-4 is held on U-02 |
+| R4-19 m-12, m-13; R3/R4 inputs | V2 markers closed (§7 and the UNRESOLVED last row). Fixtures cite C-v0.3. Header cites R3, R4, V2 and DECISION-2. PC-29 uses T16a |
 
 ## Changes from v0.2
 
@@ -133,7 +169,7 @@ Panel content rules (PROPOSED):
 | Aspect | Receiving requirement |
 |---|---|
 | Person does | Writes; reads; follows references; cancels a turn |
-| Panel presents | <ul><li>**Message stream** with speaker (LOOP §2.1). Completion standing: streaming, complete, truncated, interrupted, cancelled or failed.</li><li>**Tool activity** (LOOP §2.3):<ul><li>requested;</li><li>**rejected before host validation**, with the kind: unparseable/truncated, **not offered**, schema, or offer out of date;</li><li>**held at checkpoint (not dispatched)**, naming the checkpoint (IR1C-12);</li><li>dispatched;</li><li>host outcome in P §9 terms, including a **host-reported *not exposed on this surface***;</li><li>*outcome unknown*, with reporter and last observed state.</li></ul></li><li>**A8 requests**, shown only when issued, with requester, purpose and scope.</li><li>**Model setting indicator** (LOOP §5.1): local; cloud chosen, key supplied; cloud chosen, key absent; unconfigured. No key content.</li><li>**"Model request refused at boundary"**.</li></ul> |
+| Panel presents | <ul><li>**Message stream** with speaker (LOOP §2.1). Completion standing: streaming, complete, truncated, interrupted, cancelled or failed.</li><li>**Tool activity** (LOOP §2.3):<ul><li>requested;</li><li>**rejected before host validation**, with the kind: unparseable/truncated, **not offered**, schema, or offer out of date;</li><li>**held at checkpoint (not dispatched)**, naming the checkpoint (IR1C-12);</li><li>**action during hold**: a dispatch or output that the loop observed after an arrival event (e.g. a call already in flight), with its reference, never hidden (LOOP §2.4.4; R4-2);</li><li>dispatched;</li><li>host outcome in P §9 terms, including a **host-reported *not exposed on this surface***;</li><li>*outcome unknown*, with reporter and last observed state.</li></ul></li><li>**A8 requests**, shown only when issued, with requester, purpose and scope.</li><li>**Model setting indicator** (LOOP §5.1): local; cloud chosen, key supplied; cloud chosen, key absent; unconfigured. No key content.</li><li>**"Model request refused at boundary"**.</li></ul> |
 | Host objects/results | References only. Basis and standing as given (V4-HI-11/12), e.g. B1 at T3 |
 | Consumed definitions | LOOP messages, events and settings; C basis and standing; P §9; DEL-04-03 conversation reference |
 | Responsible | App/shared: this requirement. Host owner: assembly and persistence (`UNRESOLVED{OI-013}`) |
@@ -145,7 +181,7 @@ Panel content rules (PROPOSED):
 | Aspect | Receiving requirement |
 |---|---|
 | Person does | Chooses the workflow for a run; sees what it needs, where it stops, and why |
-| Panel presents | <ul><li>**Identity**: {kind, origin, source root, name, revision} + derived-from (WD §6.1). An unadapted carried workflow keeps its origin. A host adaptation is a new host-origin identity with derived-from. There is no "App-origin".</li><li>**Holding library** beside the origin for any carried workflow, so that a *project*-origin workflow held in a host library is legible. It **never takes part in identity equality**. Collision reports list the holding library with each origin (R2-20; WD §6.4 U-24; PROPOSED until W7).</li><li>**Declared checkpoints**: name; required act (A4, A5, A6, A7 or A12); reached-when; subject class; scope; **purpose**; negative path.</li><li>**Required tools**, each with its WD §4.2.4 outcome: *present*; *missing*; *not exposed on this surface*; *version mismatch*; *present, currently unavailable* (with reason); *channel not enabled*; *not established* (with reason). Each is shown with its **necessity** (required, or optional with the stated effect).</li><li>**Workflow-level states** (WD §3.4, §4.7): *declared*; *declared empty*; *requirements undeclared*; *unsupported* (with reason).</li></ul> |
+| Panel presents | <ul><li>**Identity**: {kind, origin, source root, name, revision} + derived-from (WD §6.1). An unadapted carried workflow keeps its origin. A host adaptation is a new host-origin identity with derived-from. There is no "App-origin".</li><li>**Holding library** beside the origin for any carried workflow, so that a *project*-origin workflow held in a host library is legible. It **never takes part in identity equality**. Collision reports list the holding library with each origin (R2-20; WD §6.4; **confirmed by EXEC §6.2**).</li><li>**Declared checkpoints**: name; required act (A4, A5, A6, A7 or A12); reached-when; subject class; scope; **purpose**; negative path.</li><li>**Required tools**, each with its WD §4.2.4 outcome: *present*; *missing*; *not exposed on this surface*; *version mismatch*; *present, currently unavailable* (with reason); *channel not enabled*; *not established* (with reason). Each is shown with its **necessity** (required, or optional with the stated effect).</li><li>**Workflow-level states** (WD §3.4, §4.7): *declared*; *declared empty*; *requirements undeclared*; *unsupported* (with reason, including **"checkpoint hold not enforceable on this surface: ‹name›"**, R4-8, in WD's wording).</li><li>**Hold support** per declared checkpoint and acting surface, in exactly one of the **four values ruled in R5-1**:<ul><li>*enforced by the host loop*: embedded route, the host loop holds (LOOP §2.4.4); the check passes, with holds subject to host evidence (DEP-001);</li><li>*enforced on the host route*: the host holds or refuses the operation through a host-held constraint, evidenced by SQ-02 and a candidate; the check passes;</li><li>*not established*: depends on a host answer not yet given (SQ-02) or on unagreed exposure; shown *not established*, never a pass and never "unsupported";</li><li>*not enforceable*: no mechanism on this surface in this increment (App-side held actions under D6; a constraint carried only as model-supplied, once SQ-02 is answered with no host-held route — before that answer, *not established*); the workflow is *unsupported* with the R4-8 reason.</li></ul>Invalid or not-established declarations take **no value**; they are shown invalid / not established, and the check is *not established* (EXEC-v0.3 HS-1; R6-1). An App-run checkpoint is classified by **what it must hold**: all held actions are host operations → the value follows SQ-02 (*enforced on the host route* / *not established* / *not enforceable*); any App-side held action → *not enforceable* (D6) (EXEC-v0.3 HS-3/HS-5; R6-1). What "held" means per value is shown (R6-3): *enforced by the host loop* → the run stops at its next action; *enforced on the host route* → the host refuses held host operations, and other actions are shown as *action during hold*; *not established* / *not enforceable* → nothing is stopped, and actions are shown as *action during hold*. Host-panel runs are *enforced by the host loop*. Residual limits are shown, including **action during hold**. The panel never shows a hold as enforced when it is not. App-side holds remain `UNRESOLVED{D6}`.</li></ul> |
 | Runnable rule (IR1C-13) | The panel shows the **requirement check passes** only when every reference whose necessity is *required* is *present* or *present, currently unavailable*. The latter is shown as a **run-time hold** with its reason, not as missing. Any other outcome for a required reference means the check does not pass, and the reason is shown. A workflow with *requirements undeclared* stays **selectable**, labeled "requirements undeclared — check not established". It is never labeled runnable-by-check or "no requirements". *Unsupported* is shown with its reason |
 | Host objects/results | The run is associated with the selected identity tuple (V4-HI-70) |
 | Consumed definitions | WD declaration, identity, §4.2.4 and §3.4 vocabulary; C exposure element 9; ACT act names; DEL-04-03 run record |
@@ -201,7 +237,7 @@ Rules:
 
 ### 3.5 Declared checkpoints in the panel
 
-This section consumes LOOP-v0.3 §2.4, WD §4.3 and ACT §4.
+This section consumes LOOP-v0.5 §2.4 and §2.4.4, EXEC-v0.3 §4, WD §4.3 and ACT §4.
 
 - W-5a. **Reached.**
   - Shown only when the loop reports that the reached-when condition was
@@ -218,19 +254,36 @@ This section consumes LOOP-v0.3 §2.4, WD §4.3 and ACT §4.
       examined at T4, shown with their subject content identities as read;
     - targets of the held call, shown only with reached-when kind (a)
       (R3-2);
-    - grant setting.
+    - grant setting: the **declared** setting content (classes, grant
+      values, scope). It always binds. A declaration that names none is
+      shown *invalid* before the run, unconditionally (R5-3). An A8 may
+      present that content but never changes the subject. An A12 made on
+      different content is shown as recorded and satisfying nothing at this
+      checkpoint.
+  - Each current arrival is shown with its **arrival ordinal**, and a
+    performed arrival with its **performance ordinal** (EXEC §4.1, MA-2;
+    R4-11). Earlier arrivals remain history.
   - Never inferred from stage or model text.
-- W-5b. **Dispositions.**
+- W-5b. **Dispositions, run end and continuation** (EXEC §4.9; R4-4,
+  PROPOSED).
   - The vocabulary is *waiting* · *performed* · *resolved negatively* ·
-    *lapsed* · *not reached* · *unknown*.
+    *lapsed* · *not reached* · *unknown*. Everything else is an annotation
+    (EXEC §4.3).
   - At run end:
     - *not reached* if the condition was never observed;
     - *unknown* if the observation was lost;
-    - **waiting** if the checkpoint was reached but not performed, shown with
-      the **run-ended** event and never as performed (R2-5; R2-20).
-  - An act the person performs after the run ended is shown as a recorded
-    act against the bound subject. It does not change the ended run's
-    disposition unless DEL-02-03 defines resumption.
+    - **waiting** if the arrival was reached but not performed, or was
+      re-held, shown with the **run-ended** event and never as performed
+      (R2-5; RH-7).
+  - **An ended run is never resumed.** An act the person performs after the
+    run ended is shown against the bound subject marked **"after run end"**.
+    It changes no disposition.
+  - A **continuation** is a new run shown with **"continues ⟨run⟩"**. It
+    inherits no arrival, disposition or act, and its checkpoints start *not
+    reached*.
+  - An **interruption** is shown "interrupted" (not ended). The run is
+    resumed as the same run, and recovered observations are shown with
+    their own times (EXEC RE-4, §4.12).
 - W-5c. **Clearing.**
   - *Performed* only on capturing-surface evidence of the specified kind, on
     the bound subject content.
@@ -238,6 +291,11 @@ This section consumes LOOP-v0.3 §2.4, WD §4.3 and ACT §4.
     (W-2). It never clears a checkpoint by itself.
   - Without a host capture-evidence reference (§8 Q-2), no host-content
     checkpoint can show *performed*.
+  - **Captured at or after the arrival** (SP-6; R4-5, PROPOSED). An act
+    captured before the arrival is shown **"prior act on this subject, not
+    counted"**, so the person can repeat it knowingly. An order that cannot
+    be established is shown "act order unknown", and the act does not count.
+    Alternative U-E4 stays open for the owner.
 - W-5d. **Negative decisions** (R2-5).
   - For A5 the negative is A10.
   - For A4, A6, A7 and A12 it is an **act-declined event**, captured by the
@@ -246,30 +304,59 @@ This section consumes LOOP-v0.3 §2.4, WD §4.3 and ACT §4.
     negative path, or "run stopped".
   - Stopping the work is a separate **run-ended** event. A checkpoint
     waiting at that moment stays *waiting*.
-- W-5e. **Lapse** (R2-19).
+- W-5e. **Lapse and re-hold** (R2-19; EXEC §4.7; R4-3, PROPOSED (W7)).
   - An **act-lapsed event** is always shown.
-  - Before resume, the disposition reads **"waiting — lapsed at ‹t›"**, and a
-    new act on current content is needed.
-  - After resume, the lapse is shown. Re-hold belongs to DEL-02-03.
-  - *Lapsed* appears as a standing disposition only for a checkpoint whose
-    run has ended.
-- W-5f. **Mixed item decisions at an A5 checkpoint** follow **WD §4.3.7**
-  (PROPOSED there; DEL-02-03 confirms at W7; R2-18):
-  - all bound items have A5 → *performed*;
-  - any item undecided → *waiting*;
-  - all decided, at least one A10 → *resolved negatively*, with a per-item
-    **partial** annotation.
+  - The resume point is shown as a **run-resumed** event (EXEC HD-5).
+  - **Before resume**, the disposition reads **"waiting — lapsed at ‹t›"**,
+    and a new act on current content is needed.
+  - **After resume**, while the run is live, the **same arrival is
+    re-held**. It reads **"waiting — re-held, lapsed at ‹t› after resume"**,
+    with the lapsed referents marked.
+    - The run stops at its next action; nothing done is undone.
+    - Outputs gated by this checkpoint show standing *lapsed* for the
+      affected referents.
+    - The act request is re-issued for the **whole** scope.
+  - **A5 and A12 never re-hold.**
+  - *Lapsed* appears as a standing disposition only when the lapse occurs
+    after the run has ended. If the run ends while re-held, it shows
+    *waiting* (RH-7).
+  - The v0.3 interim "performed + act-lapsed" display is withdrawn.
+  - A lapse caused by the person's own undo (OP-C10) re-holds like any other
+    lapse. The undo is never shown as *action during hold*. An undo never
+    re-holds an A5 arrival (R5-5).
+- W-5f. **Mixed item decisions at an A5 checkpoint** follow **WD §4.3.7, as
+  confirmed by DEL-02-03** (EXEC §4.11; R2-18; R4-7):
+  - all remaining bound items have A5 → *performed* over them (MX-4);
+  - any item undecided → *waiting* (MX-2);
+  - none undecided, at least one item's decision observation lost →
+    *unknown* (MX-3);
+  - all remaining items decided, at least one A10 → *resolved negatively*,
+    with a per-item **partial** annotation (MX-5).
   - Items that left without a decision (stale, A11, host refusal) are shown
     with their event.
+  - If no items remain, the arrival shows "waiting — no items remain". A new
+    arrival closes it as **"replaced by arrival n+1"** (MX-6).
+  - An item accepted and then refused stale, or meeting an application error
+    or *outcome unknown* at application, leaves the disposition unchanged.
+    It shows "accepted — not applied: …" (MX-7, MX-8).
   - A *performed* over a reduced subject is **never** shown as "all
     accepted".
   - Example: FX-PIPE-01 T11 (item 1 A5, item 2 A10) gives *resolved
     negatively (partial: item 1 accepted)*.
-- W-5g. **A12 checkpoints** (R2-7, PROPOSED).
-  - The subject is the setting content (classes, grant value, scope).
-  - A later A12 shows the earlier one **superseded**, not lapsed. A
-    checkpoint it performed stays *performed*, with the supersession shown.
-  - A refused A12 at a checkpoint is held for W7.
+- W-5g. **A12 checkpoints** (R2-7, PROPOSED; EXEC §4.10; R4-6).
+  - The subject is the setting content (classes, grant values, scope).
+  - The control's response is shown:
+    - **established** → the arrival counts (*performed*), with the A12 and
+      settings version;
+    - **pending** → *waiting*, "A12 awaiting control confirmation";
+    - **refused** → *waiting*, "A12 by ‹person› refused by control:
+      ‹reason›". The refused A12 does not count.
+    - confirmation lost → *unknown*.
+  - A later A12 supersedes an earlier one **only when established**. A
+    refused or pending A12 supersedes nothing, and the earlier setting stays
+    in force.
+  - A checkpoint the earlier A12 performed stays *performed*, with the
+    supersession shown.
 
 ### 3.6 Active autonomy grant (DEL-04-02; R-8; R2-6)
 
@@ -287,6 +374,9 @@ The grant is shown per class and scope, from DEL-04-02 §3 with R2-6 applied:
 
 - Grant changes are A12, reserved (D2e). An agent's change is shown only as
   a request (A8).
+- A refused A12 is shown as refused. It never replaces the displayed
+  effective setting, and "superseded" is shown only on an established later
+  A12 (R4-6).
 - The grant display and the checkpoint indicator never merge into a single
   "allowed" signal (DEL-04-02 §4).
 - This consumption is not in this SoW's CLM-002 or register (finding F-3 →
@@ -321,7 +411,7 @@ The grant is shown per class and scope, from DEL-04-02 §3 with R2-6 applied:
 | Act-declined event | Person (A4/A6/A7/A12 not performed) | Host act facility | "declined ‹act› — ‹subject›" | — |
 | Run-ended event | Loop or person stop | Loop | "run ended (‹cause›)" | — |
 | A8 request | Agent | Loop/record | "‹act› requested by agent", only when issued | Performance; automatic creation |
-| A12 set grant | Person (D2e) | Host | "grant set by Engineer A" (T15); "superseded by ‹act›" | An agent request |
+| A12 set grant | Person (D2e) | Host | "grant set by Engineer A" (T15, ⟨set-2⟩); "superseded by ‹act›" only for an established later A12; "refused by control: ‹reason›" | An agent request |
 | A13 external access | Person. Enable: D2e (SETTLED). Disable: INTEGRATION (R2-3) | Host/App | "external access enabled/disabled by ‹person›" | An agent request |
 
 Rules:
@@ -381,8 +471,9 @@ owner (SoW CLM-001; HI §1):
 
 ## 7. Receiving case inventory (OUT-003)
 
-All cases are **DESIGNED — UNEXECUTED**: no host candidate exists (DEP-001),
-and the sibling v0.3 elements are to be confirmed. A missing input is not a
+All cases are **DESIGNED — UNEXECUTED**: no host candidate exists (DEP-001).
+The sibling v0.3 elements were confirmed by V2; R4 elements follow
+R4_RESOLUTIONS. A missing input is not a
 pass (SoW VER-005).
 
 Accounting states (IR1-B B-m5; mapping owned by C):
@@ -425,31 +516,39 @@ Accounting states (IR1-B B-m5; mapping owned by C):
 | PC-17 | Acts | Success, queueing or receipt only | No A4–A7 presented | P, ACT | VER-003 |
 | PC-18 | Acts (positive) | T2: Engineer A marks S-2 checked via the host facility; also recorded by another recorder | Actor, recorder, recording mode, capture-evidence reference, bound ⟨S-2@r12⟩ | DEL-04-03, host capture, **actual act** (DEP-05-02-017) | VER-003 |
 | PC-18b | Acts (negative) | An agent-authored record of that A4 with no capture evidence | "Record without capture evidence"; no standing; clears nothing | DEL-04-03 | VER-003 |
-| PC-19 | Acts (positive) | T2's A4 with no preceding A5 | Presented as A4; no acceptance prerequisite | DEL-04-03, actual act | VER-003 |
-| PC-20 | Lapse | T6 (S-3 edited), then T14 (S-2 edited) | T2's A4 is unchanged after T6 and **lapsed** after T14. At a checkpoint: "waiting — lapsed at T14" before resume; after resume, lapse shown and re-hold per DEL-02-03 | DEL-04-03, host, DEL-02-03 | VER-003 |
+| PC-19 | Acts (positive) | Checkpoint A4 arriving at T16 on OP-C9's applied outcome (subject S-4); T16a: Engineer A marks S-4 checked, after the arrival, with no A5 anywhere | *Performed* by A4; no acceptance prerequisite; SP-6 holds | DEL-04-03, actual act | VER-003 |
+| PC-19b | Acts (prior) | A checkpoint arriving at T4 on "objects a named output concerns" (OP-C3 findings on S-2); T2's A4 on S-2 predates it | T2 shown "prior act on this subject, not counted"; arrival waiting (SP-6) | EXEC, DEL-04-03 | VER-003 |
+| PC-20 | Lapse | T2/T6/T14 on S-2; and the FX-PIPE-01 T16a/T17 sequence (undo lapses the A4 on S-4) | T2's A4 is unchanged after T6 and **lapsed** after T14. T16a's A4 is lapsed at T17. At a checkpoint: before resume, "waiting — lapsed at ‹t›"; after resume, "waiting — re-held, lapsed at ‹t› after resume", with the request re-issued for the whole scope; after run end, *lapsed* | DEL-04-03, host, EXEC | VER-003 |
 | PC-21 | Checkpoint | Declared A4 checkpoint, reached-when *applied* for PR-2, subject class "objects changed by a named outcome" | Reached at T12; subject = the new support from RC-1; purpose and scope shown; cleared only by host-captured A4 on that content | WD, DEL-02-03, LOOP | VER-003 |
 | PC-21b | Checkpoint | The same run stopped before T12 | *Not reached* at run end | LOOP | VER-003 |
 | PC-21c | Checkpoint | A6 checkpoint; Engineer A declines | Act-declined event; *resolved negatively*; declared path | WD, ACT | VER-003 |
-| PC-21d | Checkpoint | PC-21 reached, then the run ended without the act; Engineer A marks the new support checked afterwards | *Waiting* with the run-ended event. The later A4 is shown against the subject, and the run's disposition is unchanged | LOOP, DEL-02-03 | VER-003 |
+| PC-21d | Checkpoint | PC-21 reached, then the run ended without the act; Engineer A marks S-5 checked afterwards | *Waiting* with the run-ended event. The later A4 is shown "after run end" against S-5, and the disposition is unchanged; the run is never resumed | LOOP, EXEC | VER-003 |
+| PC-21g | Checkpoint | A new run of `supports-adjust` recording **continues ⟨run 12⟩** | Shown "continues ⟨run 12⟩". Checkpoints start *not reached*. PC-21d's post-end act is "prior act on this subject, not counted" at the new arrival | LOOP, EXEC, DEL-04-03 | VER-003 |
+| PC-21h | Checkpoint | Kind (c) checkpoint on PR-2 queued (T10); an OP-C1 read already in flight is observed afterwards | Arrival *waiting*; the read is shown **action during hold** | LOOP §2.4.4 | VER-003 |
 | PC-21e | Checkpoint | A5 checkpoint, reached-when *PR-2 queued*; T11 | *Resolved negatively*, partial: item 1 accepted (WD §4.3.7) | WD, P | VER-003 |
-| PC-21f | Checkpoint | A12 checkpoint; T15 A12 performed; a later A12 on an overlapping scope | *Performed*; then "superseded by ‹act›", not lapsed (PROPOSED) | ACT, DEL-04-02 | VER-003 |
-| PC-22 | Autonomy | T15: Engineer A sets OP-C9 direct for scope "support labels on R-100"; OP-C4 geometry stays at *effective (policy default)* propose | T16 OP-C9 applied with origin and undo. An OP-C4 change goes to the queue. Grant display per class and scope. Scope expression per C T15 in R-8 dimensions (R2-21) | P, ACT, DEL-04-02, host | VER-003 |
+| PC-21f | Checkpoint | C named variant **V-GR1** (R5-7): run of WD-EX E1d (`label-with-grant`; `CP-grant` A12; kind (a) before dispatch of OP-C9; declared content {P-03, *direct*, {FX-W1; {S-4}}}), branching from T14. The OP-C9 call on S-4 is held, `CP-grant` arrives at r15, and T15's A12 is captured after the arrival. Sub-variants: control refuses; pending; confirmation lost; later established A12 on an overlapping scope | Established → *performed*, and the held call is shown dispatched as T16. Refused → *waiting* "refused by control", earlier setting kept. Pending → *waiting*. Lost → *unknown*. Later established A12 → "superseded by ‹act›", still *performed* | ACT, AS, EXEC, C V-GR1 | VER-003 |
+| PC-21i | Checkpoint | Main timeline order: T15's A12 captured before a `CP-grant` arrival | T15 shown "prior act on this subject, not counted", though ⟨set-2⟩ is in force. The person is asked to perform A12 again (owner-visible cost, U-E4; R5-7) | EXEC SP-6 | VER-003 |
+| PC-22 | Autonomy | C T15: Engineer A performs A12 → **⟨set-2⟩**: class **P-03** (shared by OP-C4, OP-C5, OP-C9), grant value direct, scope {model/workspace FX-W1; object set {S-4}}; control confirms. Before T15, ⟨set-1⟩ (*effective (policy default)* propose) | Grant display per class and scope: *effective (person-set)*, direct, {FX-W1; {S-4}}. T16 OP-C9 on S-4 applied directly with origin and undo. An OP-C4 on R-100 is outside the scope and goes to the queue; a direct request is *not permitted*. OP-C5 on S-4 is held on U-02, so no expectation is set | P, ACT, DEL-04-02, host | VER-003 |
 | PC-23 | Policy-dependent | Operation-specific reserved addition for the first connected operation | **HELD** `UNRESOLVED{OI-021}` | Owner decision | VER-003 |
 | PC-24 | Checkpoint vs grant | A5 checkpoint on OP-C4's result; grant effective direct; agent requests direct | *Not permitted*, naming the governing checkpoint constraint; no silent proposal. **AWAITING INPUT** (R2-12; host constraint handling, §8 Q-1) | P, ACT, host | VER-003 |
 | PC-25 | Grant | Agent requests widening OP-C4; separately, Engineer A sets a change not yet confirmed | "Agent requests …" (A8), grant unchanged; "Set by you — not yet in force"; neither enables direct | DEL-04-02, host | VER-003 |
 | PC-26 | Proposal queue | Tg: restore to g2 after a proposal citing B1 | Refusal with both bases; meaning per U-C2 | C, P, host | VER-002 |
 | PC-27 | Reserved operation | Agent calls OP-C6 on S-2 | *Not permitted*, naming reserved class and policy record; A8 offered, shown only if issued; no A4 | C, ACT, host | VER-003 |
 | PC-28 | No policy basis | Agent requests OP-C11 direct; Engineer A attempts A12 widening it | *Not permitted* "no policy basis (pending OI-021)". Proposal possible, with no effect until A5 and application. A12 shown *refused — no policy basis*. **HELD** (R2-9) | ACT, DEL-04-02 | VER-003 |
-| PC-29 | Undo | T17: Engineer A undoes RC-2 via OP-C10 | "Applied, then reversed by RC-3". Acts on S-4's label content shown lapsed if any | P, host | VER-002 |
+| PC-29 | Undo | T17: Engineer A undoes RC-2 via OP-C10 (governed by P-03, R3-4) | "Applied, then reversed by RC-3". T16a's A4 on S-4 is shown lapsed (⟨S-4⟩ changed, FXA-2) | P, host | VER-002 |
 
 Present state: every case is DEFINED or AWAITING INPUT, except PC-23 and PC-28
 (HELD) and PC-24 (AWAITING INPUT on host constraint evidence).
+PC-19b, PC-20, PC-21d, PC-21f, PC-21g and PC-21i rest on EXEC-v0.3 §4, which is
+PROPOSED (W7).
 
 ## 8. Concrete questions prepared for the external host owner
 
 These are prepared for App-manager preparation and human relay (SoW CLM-005;
 DEP-05-02-018). Writing them is not delivery, agreement or adoption. W9 owns
-the relay file. They are shared with LOOP-v0.3 §13 where marked.
+the relay file. They are shared with LOOP-v0.5 §13 where marked. RELAY-v0.2
+§3 relays them as SQ-02, SQ-01, SQ-22, SQ-23/SQ-10, SQ-21, SQ-18 (a),
+SQ-24, SQ-05 (c)/(e) and SQ-20 (Q-1…Q-9 in order).
 
 - **Q-1** (LOOP Q-1; R2-12). Does your route receive and honour a
   per-request governing checkpoint constraint? Or does it evaluate its own
@@ -477,7 +576,7 @@ the relay file. They are shared with LOOP-v0.3 §13 where marked.
 ## Findings
 
 - F-1 (retained). One executor drafted both LOOP and PANEL. IR1-C J3 found no
-  hidden divergence at v0.2. The v0.3 pair needs the same independent check.
+  hidden divergence at v0.2. The v0.5 pair needs the same independent check.
 - F-2 (closed at v0.2; retained for trace). Required-tool vocabulary is
   consumed from DEL-02-01. A DEL-02-03 checker matters only under OI-014.
 - F-3 (open). §3.6 consumes DEL-04-02. DEL-04-02 is not in this SoW's
@@ -491,6 +590,10 @@ the relay file. They are shared with LOOP-v0.3 §13 where marked.
   loop never offered shows as a pre-validation rejection. IR1C-11 had
   proposed a loop-reported class-1 *not exposed*. R2-4 governs, and this file
   follows R2-4.
+- F-7 (closed by R5-7). A12-at-checkpoint cases use C named variant V-GR1.
+- F-8 (new). The host panel's hold-support display depends on the host
+  loop's actual hold behaviour. Host evidence is DEP-001, and the related
+  App-side question is SQ-02/D6.
 
 ## UNRESOLVED
 
@@ -502,12 +605,16 @@ the relay file. They are shared with LOOP-v0.3 §13 where marked.
 | DEP-001 host panel/views, act capture (Q-2), constraint handling (Q-1), treatment, list adoption | SWBPIPE outside implementation session | Before corresponding integration/examination and fallback-replacement decision | All PC unexecuted; PC-24 AWAITING INPUT |
 | DEP-05-02-017 actual human acts for positive cases | Person performing the act | When PC-07, PC-18, PC-19 and PC-21 execute | Defined only |
 | C U-C5 findings location | DEL-03-01 with host owner | Before PC-12 execution | P-1/H-3 apply to referenced rows |
-| WD §4.3.7 confirmation; resumption after run end; refused A12 at a checkpoint; re-hold after post-resume lapse; holding library (U-24) | DEL-02-03 (W7), DEL-02-01 | W7 | W-5b/e/f/g and §3.2 as PROPOSED |
+| Hold machine confirmation (EXEC-v0.3 §4, PROPOSED (W7)): re-hold, no resumption, SP-6, refused A12, MX rules | DEL-02-03, at the next integration review | Before dependent panel implementation | W-5b/c/e/f/g follow it as proposed |
+| U-E4 alternative to SP-6 (counting prior acts) | Owner | Before hold-machine implementation | W-5c follows SP-6. Owner-visible cost: PC-21i (repeat an A12 already in force; R5-7) |
+| U-03 multi-row A4 purpose after partial lapse | DEL-04-01 with Owner | At its point of need | W-5e requests the whole scope |
+| D6 App-side run holds | Owner via SWBPIPE SQ-02 (DECISION-2 deferred) | Before App-side hold implementation | The panel never claims an App hold |
 | Host evidence that application re-checks the basis (P U-P3, narrowed) | Host owner (DEP-001) | Before PC-09b execution | Display defined |
 | Which party evaluates required-tool outcomes in the host | Host owner; DEL-02-03 only under OI-014 | Before PC-05 execution | Vocabulary consumed |
 | DEL-04-02 consumption (F-3) | Register owner / SoW decision at C1 | C1 | §3.6 applied pending |
 | Consequence vocabulary | DEL-04-01 with host policy owner | Before class assignment | Classes as supplied |
-| R2-n sibling v0.3 elements (five values, constraint, resulting objects, OP-C10/C11, exposure assumption, policy-default state, act-declined name, subject classes, T15 scope) | Respective owners | V2 / IR2 | Adopted; confirm against sibling v0.3 text |
+| R2-n sibling v0.3 elements | — | — | **Confirmed by V2**. T15 re-pointed per R4-18 |
+| (closed, R6-4) Sibling elements pending | — | — | V-GR1 (C-v0.5) and the R5-1 values (EXEC-v0.3) are present at `c7f5513db`. No pending sibling element remains |
 
 ## Verification cases
 
@@ -517,8 +624,8 @@ These are designed, not run.
 |---|---|---|---|
 | VC-01 | Trace §3.1–§3.6 to V4-HOST-04/SOW-019 and to the consumed definitions (C, P, WD, ACT and AS at `28bd00499`, plus R2-n) | All four interactions, plus checkpoints and grant. Consumed definitions named with versions; missing inputs visible | VER-001 |
 | VC-02 | Review §2, §4 and PC-06/09/09b/10/10b/12–15/26/29 against V4-HI-10–25 and V4-EXM-20/21. On a candidate, observe them | H-1…H-6 each have a positive or rejection case. Stale-after-accept, resubmission and undo displays hold | VER-002 |
-| VC-03 | Review §3.3–§3.6, §5 and PC-07/07b/08/11/12b/16–25/27/28 against the HI, AUT, D2/D3 and ACT/AS versions | "Accept" wording; actor, recorder and capture evidence shown; act-declined vs run-ended; run-end *waiting*; lapse per R2-19; §4.3.7 partial annotation; supersession; policy-default state; no-policy-basis HELD; OI-021 cases held | VER-003 |
+| VC-03 | Review §3.2 (hold support), §3.3–§3.6, §5 and PC-07/07b/08/11/12b/16–25/27/28 against HI, AUT, D2/D3, ACT/AS and EXEC-v0.3 §3.6/§4 with R5-1/R6-1 | "Accept" wording; actor, recorder and capture evidence; act-declined vs run-ended; SP-6 "prior act not counted"; re-hold after resume and after the person's undo; "after run end" and continuation; MX rules; A12 supersedes only when established; declared A12 setting binds; hold support in the four R5-1 values; no-policy-basis HELD | VER-003 |
 | VC-04 | Compare §6 with the anticipated artifacts, the Clarification, V4-ARC-20 and OI-013/014 | Candidates name consumers or "not established"; none agreed; host construction external | VER-004 |
-| VC-05 | Account for PC-01…PC-29 in the §7 states | One state each; no missing input counted as a pass | VER-005 |
+| VC-05 | Account for PC-01…PC-29 (including sub-cases) in the §7 states | One state each; no missing input counted as a pass | VER-005 |
 | VC-06 | Inspect OUT-004 | Conditional; no component | VER-006 |
 | VC-07 | Review SoW REQ-006 exclusions against §3 "Responsible", §6 and §8 | Each act kept with its owner; nothing performed or claimed here | VER-007 |
