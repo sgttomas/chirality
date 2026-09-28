@@ -12,3 +12,4 @@
 | Run ID / date | Work in this deliverable | Result and source links |
 |---|---|---|
 | HELP-HUMAN-PEC-20260925-POST-SCA005 / 2026-09-27 | Premise-only amendment under D-PEC-105 (graph node D1). | [central receipt](../../../_Coordination/AgentRuns/HELP-HUMAN-PEC-20260925-POST-SCA005/RECEIPT.md); PR #1007; [D-PEC-105 ruling](../../../_Coordination/_DECISIONS/D-PEC-105_RULING_2026-09-27.md) |
+| HELP-HUMAN-PEC-20260927-RV1-INTAKE / 2026-09-27 | RV1 REVIEW (PEER_REVIEW) of the D-PEC-105 bytes, PR #1023; owner exact-byte re-acceptance of the SPEC and contract under D-PEC-108 (AC-011 satisfied; RF-004–RF-010 accepted as-is; CU-001 retired as history). Lifecycle unchanged. | [central receipt](../../../_Coordination/AgentRuns/HELP-HUMAN-PEC-20260927-RV1-INTAKE/RECEIPT.md); PR #1023; [D-PEC-108 ruling](../../../_Coordination/_DECISIONS/D-PEC-108_D1_REACCEPTANCE_2026-09-27.md) |
