@@ -896,3 +896,281 @@ Both are generalizations from a few probes that were never derived. I6 found bot
 - **sparse.rs in `product_physics/tests/s11f_site_test.rs`'s KERNEL list: approved,** under the site-table conditions. The addition is additive only, a mutant in sparse.rs is killed by the test, and it is declared as a write-set extension into product_physics **tests only**. It lands as its own hunk.
 - **The C3-detect helper** I8 removed from `sparse_direct`: if it was pre-existing code, it is restored and routed to ROOT. If it was I8's own draft, no action is needed. `IMPLEMENTATION/K1/WIP_STATE.md` records which.
 - **Handoff.** K1 moves to a local session on the owner's Mac (`HANDOFF_2026-09-28_TO_LOCAL.md`). I8 ran no cargo, and its work is committed as one WIP commit, "K1 WIP (handoff; not reviewed)", on `codex/piping-k1-20260928`. K2a finishes in the cloud session.
+
+## K2a dispositions and the axis-aligned pointer pass (ROOT, 2026-09-28; RV9's N1)
+
+These happened before this entry existed, and are recorded here so that the V1 record is complete.
+- **RV7's findings on K2a** (B1, S1–S3 and N1–N5) were answered by K2a's records-only `RETURN_ADDENDUM_1`. N2 was closed by per-site rows. The dispositions and the E2E and sweep standing for `aad23e82d` are in `IMPLEMENTATION/K2A_MERGE/RECORD.md`, "Gates".
+- **The bracketed axis-aligned pointers** in corrections 1–3 above were added in `435a26971`, as K2A_REVIEW §8.3 asked. They follow correction 3, ruling 4: cite the RETURN section, and don't restate figures.
+
+## The skew M03 pin: a tests-only follow-up before K2b (ROOT, 2026-09-28)
+
+- **The routing.** K2a's merge record routed the pin to K1's pattern-path M03 tests, with K5 as the fallback. K1 merged without it (ROOT's miss; `K1_MERGE/RECORD.md`).
+- **Pinning it now** costs little, and fixes M03's skew scope before K2b and F1b lean on M03. So it becomes its own tests-only slice, run by **I9** (`TASK_BRIEFS/I9_M03_SKEW_PIN.md`).
+- **The product evidence:** a better-conditioned skew model (G comparable to E), run on pre-K2a main `134eefc24` and on current main. If pre-K2a main published a trusted wrong value, that is a stop, and it would change K2a's product-reach statement.
+- **Gates:** those of a slice PR, with DEC-025 under the owner's Mac decision (`OWNER_DIRECTION.md`, 2026-09-28).
+
+## K2b: kernel only, and the LEF expectation restated (ROOT, 2026-09-28)
+
+- **Kernel only, like K1.**
+  - K2b adds W2's scaled evidence, the b-rule and formation-time scaling (SCALE-W) as kernel entries and options. Existing entries keep today's behaviour byte for byte at b = 0.
+  - PP's wiring and the `range_scaling:` evidence line are F1b's.
+  - So K2b changes no published byte, and **runs no both-entry gate**. The parity tests and T9 are the evidence; the gate runs at F1b.
+  - If the design cannot be met without changing an existing entry's behaviour, I10 stops and reports.
+- **The LEF expectation, for the kernel half** (resolving part of `I7_F1_IMPLEMENTATION.md` addendum 1):
+  - RF-RANGE **LEF-small never reaches formation.** `FrameElement::new` refuses it with `DegenerateAxis` at the 1e-12 m axis tolerance (verified by K1's K2a-interaction tests). The design's "LEF-small solved" is therefore unreachable and is withdrawn for K2b.
+  - K2b must instead solve, at kernel level through scaled formation and each accurate to 1e-9 against an exact reference:
+    - **LEF-large**, which reaches `local_stiffness` on the typed entry;
+    - **K2a's formation-range cases with normal geometry**: reach_zero, reach_lef, the spring-carried G = 1e-300 case (recorded for K2b's scaling to restore), and the partial-underflow case. **[Restated by "K2b: rulings on I10's checkpoint-A stop (ROOT)" below, rulings A and C.]**
+  - F1b's brief restates the product level separately before F1b spawns.
+- **A plan before code:** I10 returns a plan at checkpoint 0 for ROOT's approval (`TASK_BRIEFS/I10_K2B_IMPLEMENTATION.md`).
+
+## K2b: rulings on I10's checkpoint-0 plan (ROOT, 2026-09-28)
+
+I10 read the design, the rulings and the code at `eb52114e9`, and asked for seven decisions before writing code.
+
+1. **The parity of b: even b (E1). This amends the letter of §4.7 step 3, not its intent.**
+   - **The finding.** The gate prepares the system with power-of-two diagonal scaling. With K' = 2^b·K and f' = 2^b·f:
+     - for **even** b, the scale exponents shift by b/2 and the prepared matrix is bit-identical. So pivots, rcond, the screens, refinement, the audits and K-D5's EF are invariant, and u is bit-identical.
+     - for **odd** b, factors of √2 enter the prepared matrix. Dense Cholesky's u then differs in its last bits, and rcond can flip the √ε Sensitive screen.
+   - **Why the design's letter fails.** §4.7's promises ("every scaling is exact"; "displacements are unchanged"; "every M03 screen is componentwise-relative, so the scaled evidence is equivalent") hold only for even b. The floored midpoint of step 3 can be odd.
+   - **The rule:**
+     - let m = ⌊(b_lo + b_hi)/2⌋, floored toward −∞;
+     - b = m if m is even;
+     - otherwise m − 1 if that is ≥ b_lo;
+     - otherwise m + 1 if that is ≤ b_hi;
+     - if the window is a single odd point, refuse with the window reason.
+   - **Conditions** (standing lesson: a bound or general claim must be derived and independently checked):
+     - I10 writes the invariance derivation step by step in RETURN;
+     - K2b's independent reviewer checks it;
+     - tests pin it: forced even b gives a bitwise-equal u and an exactly unscaled report on normal models, in both representations and both modes;
+     - an "odd midpoint" mutant must be killed.
+   - `DESIGN.md` is hash-pinned and is not edited; this ruling supersedes step 3's midpoint for parity only.
+2. **The census scope: approved as proposed (F2).**
+   - Frames contribute:
+     - the exponents of E and G;
+     - the **predicted** exponent (the sum of operand exponents) of every intermediate and coefficient that K2a checks and that scales with b: E·A, G·J, k·E, (k·E)·I, and the 10 coefficients.
+   - Users, springs, curved block entries and load terms contribute exact exponents.
+   - Any subnormal census input is refused as "range: subnormal stiffness or load at formation", per step 2: its bits were lost before the kernel. This includes a frame operand (E, G, A, Iy, Iz, J, L).
+   - The census runs only after step 1 fails with a range trigger, so no case solved at b = 0 changes.
+   - Coefficients alone would admit b values that K2a's scaled intermediates still refuse (I10's L = 2^-39 example), so the intermediates stay in.
+3. **The publication rule: the design's list only (F3).** **[Amended for residual records by "K2b: rulings on I10's checkpoint-A stop (ROOT)" below, ruling B.]**
+   - Step 5's outcomes apply to the published **actions, reactions and residual records**, meaning the physical fields of residual and intended rows. For these:
+     - normal is exact;
+     - subnormal is published with its stated precision;
+     - nonzero underflow or overflow makes the case NUMERICAL_INTEGRITY_UNRESOLVED ("range: publication outside binary64"), never flushed.
+   - Other force-unit diagnostic fields, such as `contribution_rounding`, are unscaled with the same single-rounding function and published descriptively, as at b = 0. They never make a case unresolved. RETURN lists every field and its treatment.
+4. **The load-ledger scaling: L1 approved as a declared write-set extension** (`AssembledForce::force_scaled(&self, b)` in `FK/load_ledger.rs`, one method).
+   - Terms are scaled exactly: a Product scales one factor, or splits b across both, whichever stays normal.
+   - Each net is re-rounded once at scale.
+   - Nothing is pushed to a ledger.
+   - The dropped S11-G records are shown by test or scan to be unread by the kernel.
+   - It is declared in CHANGE_RECORD and RETURN.
+5. **The pins and site tests: approved as declared, additive extensions** on K1's precedent.
+   - The files are NI `s11k_tests.rs`, FK `s11_site_table.rs`, and PP `s11f_site_test.rs` (tests only).
+   - No existing row, count or disposition changes.
+   - The required mutants are each killed: a loop call to a scaled entry, plumbing outside the sibling, and a third definition.
+   - The original pins' mutants are re-run, with their kill sites in RETURN. **One that is no longer killed stops the work.**
+6. **The SA orchestrator `solve_with_force_scaling`: yes.**
+   - It makes steps 1–5 testable at kernel level, and gives F1b one entry.
+   - It must have zero product calls until F1b, pinned like K1's siblings.
+7. **The refusal types: approved.**
+   - New result and error types. There are **no new variants** in `StructuralError` or `FrameKernelError`, so PP's and diagnostics' exhaustive matches are untouched.
+   - Refusals keep the step-1 trigger, so K2a's names survive where no feasible b exists.
+   - The window text renders §4.7 step 3's template with integer exponents.
+
+**Also recorded for F1b's list (I10's note):** loads that PP forms at b = 0 from out-of-range products (for example a thermal E·A·α·ΔT) have lost bits before the kernel, and the kernel cannot restore a term that underflowed to zero. F1b must form such loads under the chosen b, or refuse them.
+
+## K3: spawn and rulings (ROOT, 2026-09-28)
+
+- **K3 is spawned** as I11, in parallel with K2b (I10), because their write sets are disjoint (`TASK_BRIEFS/I11_K3_IMPLEMENTATION.md`). A TASK drafted the brief, and ROOT reviewed it and ruled on its questions. The rulings are in the brief, under "ROOT rulings for this slice".
+- **The key scope finding.** `Wide<2>` is on the product path through K-D5, carrying the D-5 evidence line's EF values and `WideError`'s `Display`. So K3 builds its new widths **beside** `Wide<2>`, and a change to any existing `Wide<2>` result, `Debug` token or `Display` string stops the work.
+- **Evidence and gates.** K3 adds no product caller, so the evidence is T9 at 112 of 112 (Mac-only), K-D5's suites unchanged, and a `Display` pin. **The both-entry gate is not run.**
+- **K4's needs.** K4 cannot edit `wide.rs`, so K3 also supplies K4's arithmetic: widening and narrowing, TwoSum and TwoProduct, an exact-integer constructor, and per-width work counts. K4 adds the `exact_sum.rs` accessor.
+
+## K2b: rulings on I10's checkpoint-A stop (ROOT, 2026-09-28)
+
+I10 stopped at checkpoint A under ruling 1's stop clause. Two of the four restated product-reach cases were not solved. The evidence is `k2b_checkpoint_a_finding_spring_carried_and_partial_underflow_are_refused`, on `codex/piping-k2b-20260928` at `6ce4d694b`.
+
+**A. Spring-carried (G = 1e-300 Pa): it stays a named refusal. This restates the K2b LEF ruling's second bullet for this case.**
+- **The finding.** At the rule's b, formation passes K2a, but M03's contribution audit (`audit_contributions`) refuses the solve with `Range("exact radix loses represented bits")`.
+  - GJ/L is about 2^-1082 times the spring it is absorbed into. The audit's measure of that absorbed difference lies below binary64 in the equilibrated units.
+  - Force scaling preserves every ratio, so no b changes this. The limit is M03's audit, not formation range.
+- **The ruling.** K2b does not change the audit. Changing it would change b = 0 behaviour, which is outside K2b's scope and needs its own design ruling.
+  - The case remains refused, with K2a's name `GJ/L: G*J` kept as the trigger, so availability is as under K2a.
+  - K2a ruling 2's note that the case was "recorded for K2b's scaling to restore" is answered: **force scaling cannot restore it.**
+- **Routed:** W1 (K4 and F2a), whose 64-bit exponent may reach it, is to evaluate it. The case goes on K4's list.
+
+**B. Partial underflow: residual records are published descriptively, with an explicit outcome. This amends checkpoint-0 ruling 3.**
+- **The finding.** At b = 898 the solve is accurate to within 1e-9. But one intended-action residual record's physical field (about 2^-1076.5) underflows when unscaled, and ruling 3 refused the case over that record.
+- **Why refusing is wrong.**
+  - At b = 0 the kernel already publishes these physical fields descriptively, including subnormal or zero values.
+  - The gate's basis is the normalized fields and the integer exponents, and those unscale exactly under even b.
+  - Refusing an accurate result over a diagnostic record would be stricter than b = 0.
+- **The ruling:**
+  - step 5's refusal ("range: publication outside binary64") applies to published **actions and reactions**;
+  - the physical fields of residual and intended-action rows are unscaled with the same single rounding and **carry an explicit representability outcome**: normal, subnormal with its precision, or underflow or overflow, never a silent zero;
+  - they never make a case unresolved.
+- This departs from the letter of §4.7 step 5, which lists residual records. The design's intent ("never flushed") is kept, because the outcome is explicit. RETURN states the departure and K2b's reviewer checks it.
+
+**C. LEF-large: the accuracy clause, restated.**
+- LEF-large solves **bit-identically to its RF base case, times exact powers of two**, with the base case's standing:
+  - CONT is Passed and within 1e-9;
+  - CHAIN and SKEW are Sensitive, as their bases are today: flagged, not claimed accurate.
+- K2b adds no accuracy beyond the ordinary path. W1 is the route to accuracy on those bases.
+- reach_zero, reach_lef, PHYS-R4 (b = 536, against the design's "≈ 500") and partial underflow (under B) are solved and accurate, as required.
+
+## K3: rulings on I11's checkpoint-0 plan (ROOT, 2026-09-28)
+
+I11's plan keeps K3a's `Wide<2>` code untouched. `wide.rs` gains one module line, a doc pointer, one appended `WideError` variant (`OperandPrecision`) with its `Display` arm, and the allowance relabels. All new arithmetic goes in a child module. The rulings on its eight open positions:
+
+1. **Approved: the child module `retained/wide/multi.rs`,** under brief ruling 10. Its test module is declared from `multi.rs` and pointed at `FK/tests/retained_wide_k3/k3_tests.rs`. It stays a unit-test module in FK's own suite, and so in CI. Both are declared in CHANGE_RECORD.
+2. **Dead-code labels must name the real consumer.** This amends the brief's blanket "K4 API".
+   - Each allowance names the slice that will actually call the item.
+   - K4 runs at L ≥ 4, so K3a's `Wide<2>`-only items get no K4 caller:
+     - `atan_positive` is labelled "later-slice API (W1c; K3 Q6)";
+     - `Wide<2>` accessors with no known consumer are labelled "K3a API, no caller yet (reviewed at T3 close)".
+   - The T3-close list gains that review.
+3. **Approved:** `from_integer` of a zero magnitude returns +0 whatever the sign flag, following D1 §4.1.2 ("an exact zero is +0.0").
+4. **Approved:** the accumulator cross-check allows one more difference. The conversion gives `Normal(−0.0)` for an exact −0 (the Q5 convention); the accumulator never returns −0.0.
+5. **Approved:** the literal §7.3-13 and §7.3-16 analogues are kept where they are lossy (at low p), and a scaled variant, whose small term is about 2^-(p+16) of the large one, is added at every p. The fold must lose that small term.
+6. **Approved:** about 5 MB of test data, with the brief's 1,000 sample records per stream kept. The digests cover every record.
+7. **Q7 stays open until checkpoint A,** when ROOT rules on the measured debug wall times. The bit-serial ÷ and √ (64L + 2 bits, K3a's small-trust-base choice) are approved. Knuth's algorithm D is left to a later optimization with its own vectors.
+8. **For K4's brief:** the new core exists at L = 2 only in tests, so K4's p = 128 and 192 run at L = 4 (together with Q8's ceiling question).
+
+## K2a product reach: main's skew standing is now established (ROOT, 2026-09-28)
+
+K2a's `RETURN_ADDENDUM_1` §1.3 left open whether pre-K2a main refuses skew cases downstream in general. I9's product runs answer it, and RV10 reproduced them byte for byte (`IMPLEMENTATION/M03_SKEW_PIN/RETURN.md` §6; `REVIEW/M03_SKEW_PIN_REVIEW.md`). As correction 3, ruling 4 requires, the figures stay in those sections and are not restated here.
+- **Pre-K2a main (`134eefc24`) published no trusted value** on the probed skew cases: no checks_passed or numerically_eligible result.
+- **It did publish skew cases as Sensitive (untrusted)** at intermediate G/E, some wrong beyond the criterion. So refusal downstream is **not general**: main flagged these cases and did not refuse them. This matches correction 3's statement that K-D5's estimate-based demotion is what limits trusted publication.
+- **Current main refuses every probed case at formation, by name** (K2a).
+- **The claim "6EI/L² is the limiting coefficient" holds only in RV7's configuration.** RV10's S2 and the scoped §3.4 give the counterexamples. Among them is the torsion analogue of B1 (a subnormal-derived GJ/L), which K2a's `GJ/L: G*J` refusal covers on current main.
+- **Added to the T3-close list:** M03's element-entry floor is an axis-aligned argument, and its skew scope in general is a documented limitation. The skew M03 pin (PR #1038) guards it in RV7's configuration only. The item asks whether M03's bound should be made orientation-robust, or whether formation-time checks (K2a) and W1 are the accepted defence. ROOT decides at T3 close.
+
+## K3: Q7, the differential's debug cost (ROOT, 2026-09-28) — SUPERSEDED
+
+**Superseded (2026-09-28)** by "K3: Q7 reversed — the test profile is withdrawn (ROOT)" below. Its premise, that results cannot change with optimization level, is false for `powi` over compile-time constants. The text is kept as the record of the earlier ruling.
+
+- **The measurement.** I11's checkpoint A was taken on the Mac, as observations and not a performance claim. With K3's 10^6-operation streams per precision (the §4.11 minimum), FK's full debug test suite takes about 232 s, against about 6 s before. The L = 16 streams dominate: the bit-serial ÷ and √ over 1,026 steps. Hosted CI runners are slower, and the numerical job has a 45-minute budget across all 39 manifests.
+- **The ruling:** add a `[profile.test]` section to `FK/Cargo.toml` as a declared K3 change, and keep every stream at full count in the default suite. §7.4's placement is kept, with no `#[ignore]` and no reduced count.
+  - Use the smallest `opt-level` (1, else 2) that brings FK's suite to about a minute on the Mac.
+  - Set `debug-assertions = true` and `overflow-checks = true` explicitly, so that test semantics do not change.
+  - There is no lockfile change.
+- **Why the results cannot change.** Rust gives IEEE-754 binary64 semantics at every optimization level: no fast-math, no reassociation, and no FMA contraction by default. The K3 arithmetic is integer-only. FK's own bit-exact tests (K3a's vectors, the K1 parity, K-D5's and K2a's pins) prove the claim on this tree.
+- **Conditions, checked at B:**
+  - FK's full suite passes with the same test list under the new profile;
+  - K3a's and K-D5's pins are unchanged;
+  - the measured wall times at each opt-level tried are recorded;
+  - hosted CI's numerical job time on K3's PR is recorded in the merge record.
+- The design's §7.4 placement stands. K3's reviewer checks the profile change.
+
+## K2b: the b-rule's window misses the solve's range; "no third attempt" is not equivalent (ROOT, 2026-09-28)
+
+- **ROOT's framing was wrong.** At checkpoint C, ROOT asked I10 to record the "third attempt" mutant as "equivalent by construction, pending the reviewer's check". I10 derived three mechanisms that do make a refusal persist across the window: formation (census margins), ratio invariance (audit-limited cases), and subnormal-u persistence. It then **disproved** the general claim.
+  - The gate's equilibrated right-hand side, the triangular-solve intermediates and y scale by 2^(b/2). They are neither b-invariant nor covered by the census, and the midpoint rule does not centre them.
+  - **The counterexample** (a scratch probe on `8e6698282`; `IMPLEMENTATION/K2B/_run_records/retry_probe/`): an axial chain with E = 2^440, and UX loads of 2^-1010 N and 1 N.
+    - The rule chooses b = 312 and refuses the case ("range: scaled evaluation outside normal range").
+    - Forced b = 500 and 572 give Passed, within 1e-9 of the exact reference.
+  - Its reach needs a load about 1,450 binary orders below the stiffness in the same row, so realistic reach is nil. It fails safe: a named refusal, and nothing wrong is published.
+  - The standing lesson applied. The derivation was required rather than assumed, and it found the error before any ruling rested on it.
+- **Rulings:**
+  1. **K2b keeps §4.7 step 4 as designed:** one scaled evaluation, and no third attempt.
+  2. **Pin the case with a test** (tests only, added after checkpoint C), labelled a **documented limitation of the b-rule, not desired behaviour**, citing this section. It asserts:
+     - the named refusal at the rule's b, in both modes and both representations;
+     - that a forced b in the window solves it within 1e-9.
+
+     The "third attempt" mutant (a retry within the window) must then be killed behaviourally. RETURN §13.3 and the mutation table are updated.
+  3. **A design finding, on the T3-close list:** the b-rule's census omits the solve's right-hand-side and intermediate range. Candidate refinements are a per-row load-to-stiffness term in the census, or a bounded, deterministic retry. **F1b's brief must consider it** before F1b wires b into the product. No refinement lands in K2b.
+- **The even-b derivation's premise** (RETURN §4) is also recorded: every rounded operation is zero or normal at both scales. The dense Cholesky factor and the triangular solves have no range checks, so the kernel does not enforce the premise. **[Corrected by "K2b: rulings on RV11's review" below (RV11-3): the dense Cholesky, the triangular solves and the skyline LDLᵀ are range-checked at the head. What was unchecked is the reaction and member-action arithmetic, and the rounding boundary into the normal range.]** The forced-b tests pin its consequences. K2b's reviewer checks the derivation and states whether the premise's scope is adequately disclosed.
+
+## K3: Q7 reversed — the test profile is withdrawn (ROOT, 2026-09-28)
+
+- **What happened.** ROOT merged main (with the skew M03 pin) into K3 and ran FK's suite under K3's `[profile.test] opt-level = 1`. One test failed: `m03_skew_scope.rs::m03_skew_pin_rv7_cases_outcomes_and_figures` (2EI/L's exact error came out 1.1364e-13 against the pinned 1.1378e-13).
+  - The test computes the pipe's second moment from compile-time constants with `od.powi(4)`.
+  - At opt-level ≥ 1, LLVM constant-folds `powi` through the host's `pow`. At opt-level 0 it calls the runtime repeated multiplication. The two differ by an ulp, and the pinned figure moved.
+- **ROOT's premise was false.** The Q7 ruling said "Rust gives IEEE-754 binary64 semantics at every optimization level … so the results cannot change". That holds for + − × ÷ √. It does **not** hold for functions of unspecified precision, such as `powi`, when the compiler evaluates them at compile time.
+  - ROOT asserted the claim without deriving or checking it: a breach of the standing lesson on general claims. The skew pin, which was written and reviewed at opt-level 0, caught it.
+  - **The product is not affected.** Its `powi` inputs are runtime data, and T9's release-built outputs have always matched the debug-built tests.
+- **The measurement that settles it.** Hosted CI's whole "Numerical cargo suite" job (all 39 manifests) takes about 4–5.5 minutes on current main (runs 36380608240 and 36391476996), against its 45-minute budget. K3's full-count streams at opt-level 0 fit easily. The profile was never needed for CI, and it adds a class of opt-level-dependent test behaviour that FK alone would carry.
+- **The ruling:**
+  1. **K3 reverts the `[profile.test]` section** in `FK/Cargo.toml`. FK's tests build at opt-level 0, like every other crate's.
+  2. **Every stream stays at full count** in the default suite (§4.11, §7.4).
+  3. **The P1/P2 guard test stays.** It still asserts that overflow checks and debug assertions are on in FK's test build.
+  4. **The evidence is re-run at opt-level 0 on the merged tree:**
+     - FK's full suite, including the skew pin's tests;
+     - the full mutation table, with the NONE control first;
+     - the measured debug wall time.
+  5. **Hosted CI's numerical-job time** on K3's PR goes in the merge record.
+- **A lesson, recorded:** a test must not depend on how the compiler evaluates a function of unspecified precision. Tests that need exact section properties should compute them with explicit, ordered arithmetic on runtime values, or on `black_box`ed constants. This is a T3-close note on test hygiene.
+
+## K2b: rulings on RV11's review (ROOT, 2026-09-28)
+
+RV11 reviewed PR #1040 at `087b3a088`: **FAIL**, with 1 BLOCKING, 3 SHOULD-FIX and 7 NOTE findings (`REVIEW/K2B_REVIEW.md`). Its checks of the kernel-only claim (a lexer scan, and the b = 0 probe re-run at 439/439), the 13-step even-b derivation, the census and the pin, and ruling B all hold. The rulings:
+
+1. **RV11-1 (BLOCKING): reactions and member actions at scale must never publish a wrong value labelled Normal.**
+   - `SparseStiffness::force_scaled_reactions` forms K′·u at 2^b with the unchecked binary64 `multiply`, then unscales. RV11's probe F-A2 publishes reactions of 0, labelled Normal, where today's E12 gives ±1.38e-300 N.
+   - **Fix, fail-closed:** every product and partial sum of the reaction at scale is checked. A value that leaves the normal range (and is not an exact zero) refuses the reaction with the step-5 refusal. It is never published as Normal. An exact alternative (an `ExactAccumulator` sum of exact products) is acceptable if the implementer prefers it and pins it the same way.
+   - **K2b also provides F1b a kernel function for member actions at scale, built the same way,** and RETURN §15's recipe points to it. The recipe must no longer publish end shears through unchecked arithmetic.
+   - **Tests:** F-A2 and its 2^80-larger variant must be refused, or be correct with a normal outcome. They must never be a wrong Normal. Add a mutant that restores the unchecked multiply; it must be killed.
+2. **RV11-2 (SHOULD-FIX, fixed in K2b):** `exact_normal_scaling` must refuse a result that is normal only because it rounded up from the subnormal range: the scaled value must be exact. Add a test, and a mutant.
+3. **RV11-3 (SHOULD-FIX, records):** RETURN §4's premise disclosure and §6's "exact sum of K′·u" are corrected to what the code does. ROOT's own sentence at `97000ab9f` is corrected in place above.
+4. **RV11-4 (SHOULD-FIX, tests):** tests pin the census scope so that both surviving mutants are killed: `Product` recorded at e(x) alone, and curved slots left out of the census. Their effect is availability only, but ruling 2 defines the scope and a test must hold it.
+5. **Process:**
+   - I10 fixes these on the K2b branch;
+   - it re-runs the affected evidence: the targeted tests, the suites against the Mac baseline, the b = 0 probe, T9, and the mutation table's affected rows plus the new mutants;
+   - it adds a RETURN addendum;
+   - RV11 then delta-checks the fix commits.
+   - DEC-025 is re-run on the new head on a quieter host. At `087b3a088`, `App.test.tsx`'s workspace render timed out at 30 s under host load (load average above 8, with two reviewers building). K2b changes no TypeScript; the timeout is not raised, and the surface is re-run.
+
+## K4: spawn and rulings (ROOT, 2026-09-28)
+
+- **K4 (W1a, the retained-precision kernel method) is spawned as I12** from main `e7d930d49`, where K1, K3 and K2b are merged. A TASK drafted the brief (`TASK_BRIEFS/I12_K4_IMPLEMENTATION.md`); ROOT reviewed it, and the rulings on its questions Q1–Q12 are in the brief. In short:
+  - kernel only, with no gate;
+  - the multi-term exact sum in K4's own file;
+  - the `exact_sum.rs` accessor approved;
+  - the ceiling: no p + 64 residual, with the argument derived and checked;
+  - budgets: the mechanism only, with no limits, and **F2a does not merge without ROOT's limits** from K6 and V-P; **[Amended: from K6 and V-K, with V-P revisiting them after F2a. See "K4: Q5 amended" below (RV13-S3).]**
+  - a kernel `DirectionalSpring`;
+  - RCM ported into `factor.rs`;
+  - the site-table extension;
+  - the export by the first consumer;
+  - canonical encodings, hashed downstream;
+  - K3's outcome type;
+  - one slice.
+- **Design text made stale by K1, K2b and K3** [or found inconsistent within the design (RV13-N9)], recorded here as rulings. `DESIGN.md` stays hash-pinned.
+  1. §4.1.1's `wide.rs` is now `wide.rs` (K3a, L = 2) plus `wide/multi.rs` (K3, L = 4, 8 and 16). K4's p = 128 and 192 run at L = 4.
+  2. §4.1.2's "one accumulation discipline … shared with `FK/exact_sum.rs`" holds for binary64 terms only. p-bit sums use K4's primitive.
+  3. §4.1.2 item 5's projection is K3's `from_integer` plus K4's netting accessor.
+  4. §4.1.3's "RCM … shared with the binary64 sparse path" cannot be shared across crates. K4 ports it, and V-K tests the equality.
+  5. §4.1.4 with §4.1.6: there is no p + 64 residual at the 1024 ceiling (Q4).
+  6. §4.1.7's "No implementing slice ships without them" binds the product-wiring slice (F2a), per C4's measurement order. **[Amended: the limits come from K6 and V-K, which precede F2a; V-P follows F2a and revisits them. See "K4: Q5 amended" below.]**
+  7. §4.1.1's springs are extended with the kernel-only `DirectionalSpring`, for §4.10's directional kernel springs.
+  8. §5 item 7's outcomes are carried by two types, K2b's `Representability` and K3's `Binary64Outcome`. F2a unifies them, including the zero conventions.
+  9. MOD-D's export gap: the first consumer outside FK adds the `pub use`.
+  10. §4.10 and §7.1's "LEF-small … solved": the ordinary route refuses it with `DegenerateAxis` (K2b ruling). Whether W1's source admits LEF-small is V-K's question; RF-RANGE is not in K4's row.
+
+## K2b: ROOT's decisions at RV11's delta checks (ROOT, 2026-09-28; recorded late, RV13-S2)
+
+These decisions were stated in ROOT's resume messages to I10. Until RV13's review of records PR #1042 found the gap, they were recorded only in K2b's RETURN (addenda 1 and 2) and in RV11's review. They are recorded here with their original dates. Nothing in them is new.
+1. **The reaction check applies at every b, b = 0 included** (`IMPLEMENTATION/K2B/RETURN.md`, "The check applies at every b", where I10 left it "ROOT's call"; `REVIEW/K2B_REVIEW.md`, "ROOT's two decisions, against the code").
+   - Where today's E12 would flush a subnormal product at b = 0, `force_scaled_reactions` refuses. F1b may keep today's E12 at b = 0 for byte identity.
+   - RV11D-N2: the check is stricter than flushing requires, which costs availability only. **F1b's gate measures that cost.**
+2. **`force_scaled_end_actions` stays off the pin list,** covered indirectly through the pinned `ForceScale` token. **Reversed** after RV11D-N1 (the `Default::default()` evasion, `RV11D-PIN-ACTIONS-EVASION`).
+   - Both publication helpers, `force_scaled_end_actions` and `force_scaled_spring_action`, are named in `FORCE_SCALED_ENTRY_POINTS`.
+   - The pin's doc records the text-pin limit beside RV8-N4's (`RETURN.md` A2.4).
+3. **The rulings on RV11's first delta check** (ROOT's message; `RETURN.md`, addendum 2):
+   - RV11D-1: a checked spring-action helper, pinned with probe F-S and a mutant;
+   - RV11D-2: tests that kill the two surviving action mutants;
+   - N1: both helpers on the pin list (item 2's reversal);
+   - N3: the doc sentence corrected;
+   - N2: recorded, with no change.
+4. **For F1b,** in addition to `K2B_MERGE/RECORD.md`'s list: RV11D-N2 (item 1), and RV11D-N3 (no end-action variant takes load terms at scale).
+
+## K4: Q5 amended (ROOT, 2026-09-28; RV13-S3)
+
+- **The error.** The Q5 ruling said F2a does not merge without ROOT's limits, "set from the K6 and V-P measurements (C4)". But V-P follows F2a in DESIGN §6 (the V-P row, "after F1 and F2a") and in the selected order. As written, F2a could never merge.
+- **Amended (RV13's option (a)):**
+  - F2a does not merge without ROOT's per-case and per-invocation limits.
+  - ROOT sets them from K6's measurements and V-K's kernel-lane runs, both of which precede F2a, together with K4's deterministic work counts. §4.1.7 asks for "W3/W5 measurements", which this admits.
+  - V-P's product-lane measurements follow F2a, and confirm or revise the limits. A revision is its own ruling.
+- Item 6 of K4's stale-design list, and the brief's Q5 ruling (`TASK_BRIEFS/I12_K4_IMPLEMENTATION.md`), carry bracketed pointers here. K4's own scope is unaffected: it ships the mechanism only.
