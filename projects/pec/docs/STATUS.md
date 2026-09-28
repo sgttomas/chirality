@@ -286,11 +286,11 @@ Current owner gates (2026-09-27; none is accepted or inferred here):
     intent only, needing its own authorization);
     done: its act applied the four premise-only replacements (both
     deliverables stay `CHECKING`; run root
-    `execution/_Coordination/D1_PREMISE_AMEND_2026-09-27/`). The owner's
-    exact-byte acceptances of the DEL-00-03 SOW and SPEC (2026-08-09) and
-    the DEL-00-01 ADR (AC-007) have lapsed; AC-011 and AC-007 are
-    unsatisfied for the new bytes until a later owner act, and the RR1
-    re-review is carried to the next undertaking. The two `MEMORY.md` files
+    `execution/_Coordination/D1_PREMISE_AMEND_2026-09-27/`). The act let the
+    owner's exact-byte acceptances of the DEL-00-03 SOW and SPEC
+    (2026-08-09) and the DEL-00-01 ADR (AC-007) lapse. The RR1 re-review
+    (RV1, PR #1023) followed, and the owner re-accepted the reviewed bytes on
+    2026-09-27 (`D-PEC-108`, below). The two `MEMORY.md` files
     were written at closeout (PR #1014). The owner ruled
     the X1 P1 fixture packet `D-PEC-106` (34 new files under
     `v2/tests/parsers/`: a fixture-integrity test module, a pinned manifest,
@@ -306,8 +306,9 @@ Current owner gates (2026-09-27; none is accepted or inferred here):
     `D-PEC-106`; run root
     `execution/_Coordination/SOW_INIT_D98_2026-09-26/`); their `MEMORY.md`
     files were written at the undertaking's closeout (PR #1014);
-  - DEL-00-01/00-03 derivative review: premise-only amendment done under
-    `D-PEC-105` (above); its re-review (RR1) is open;
+  - done: the DEL-00-01/00-03 derivative review. That covers the premise-only
+    amendment under `D-PEC-105` (above), its re-review (RV1) and the owner's
+    exact-byte re-acceptance (`D-PEC-108`, below);
   - done: the loop registry source packet, `D-PEC-96`. The owner ruled revision 4
     (option A, PEC's row migrated to `shared-dev-loop`) on 2026-09-26, and its
     act merged the same day as PR #950
@@ -372,6 +373,41 @@ Current owner gates (2026-09-27; none is accepted or inferred here):
   after a DEL-08-06 production packet); and three Task Management intake
   candidates awaiting the owner's disposition
   (`execution/_Coordination/_TaskManagement/TM_PEC_CLOSEOUT_POST_SCA005_2026-09-27/INTAKE.md`).
+  On 2026-09-27 the owner disposed of them (`D-PEC-107`):
+  - CAND-01 (b): each deliverable's own production or currency packet absorbs its items;
+  - CAND-02 promoted, to be resolved in the next PEC scope change (HELP_HUMAN attaches the per-project consumer-contract design item from the K3 discussion to it);
+  - CAND-03 promoted and routed to Root;
+  - RV1 authorized;
+  - K3 to be tracked as a PEC Task Management row (recorded by TM1), triggered by a DEL-08-06 production packet.
+
+  Production is left to a separate session. The owner also declared this state a
+  **freeze point**, the basis for a later ground-up reassessment alongside the
+  rewrite of the App PRD and of Chirality's governance framework. No scope
+  change is opened now, and further proposals are recorded only (`D-PEC-107`
+  §Freeze point). The follow-on undertaking, which holds only the directed
+  Task Management recording and RV1, is
+  `execution/_Coordination/WorkGraphs/HELP-HUMAN-PEC-20260927-RV1-INTAKE/WORK_GRAPH.md`.
+  In it, TM1 recorded the dispositions (PR #1021):
+  - TM-PEC-026 for CAND-02, now also holding the consumer-contract design item;
+  - TM-PEC-027, elevated to Root with a coordination notice;
+  - TM-PEC-028 for K3, DEFERRED until a DEL-08-06 production packet.
+
+  RV1 reviewed the `D-PEC-105` bytes (PR #1023):
+  - DEL-00-01 `SELF_CHECK`: one MAJOR finding, RF-001 (AC-002 partly met);
+  - DEL-00-03 `PEER_REVIEW`: no CRITICAL or MAJOR finding.
+
+  On 2026-09-27 the owner decided the re-acceptance (`D-PEC-108`):
+  - every RV1 finding accepted as-is (AC-002 accepted as partly met);
+  - the exact bytes of the DEL-00-01 ADRs and contract (the contract's first
+    owner acceptance) and of the DEL-00-03 contract and SPEC re-accepted,
+    with the AC-007 and AC-011 confirmations;
+  - CU-001 retired.
+
+  Both deliverables stay `CHECKING`. The `D-PEC-72` C-05 closure stays as
+  recorded. The review's revision proposals are considerations for the
+  reassessment. The undertaking closes with its final PR, #1028 (receipt
+  `execution/_Coordination/AgentRuns/HELP-HUMAN-PEC-20260927-RV1-INTAKE/RECEIPT.md`).
+  Nothing remains open in it, and PEC rests at the freeze point.
 - **Other lifecycle and P1 acts:** DEL-01-05 repaired-artifact acceptance,
   DEL-01-06 Gate 5 (HOLD at `INITIALIZED`), DEL-08-02 short of `ISSUED`, and
   every later P1 node each need their own owner-ruled act.

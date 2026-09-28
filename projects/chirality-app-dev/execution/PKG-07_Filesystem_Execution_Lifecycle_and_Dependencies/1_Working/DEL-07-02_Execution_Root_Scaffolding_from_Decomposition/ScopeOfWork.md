@@ -21,8 +21,8 @@ SCA-APP-011 (owner direction 2026-09-27; DEC-026) retires the App HTTP scaffold 
 
 - DEL-07-02 keeps SOW-024 and SOW-025 and the scaffold library `frontend/src/lib/harness/scaffold.ts` (`scaffoldExecutionRoot`, `previewScaffoldExecutionRoot`) with `frontend/src/__tests__/lib/harness-scaffold.test.ts`. The library's parser, layout, idempotence, fail-fast and path-policy requirements are unchanged.
 - DEL-07-02-REQ-009 is retired. The App has no UI or HTTP scaffold entry. Execution roots are scaffolded by the Root `project-setup` workflow into `<project>/execution` with the packaged `tools/scaffolding` scripts, run by an agent under the user's approval and sandbox policy.
-- APP-R058 is closed by removal: no App live scaffold operation remains to repair. The Runtime's own scaffold API (`/v1/projects/{id}/scaffold`, `ProjectScaffoldPort`) is Runtime-owned; the Runtime loop receives an informational notice with this amendment and decides on it.
-- Follow-up (recorded, not scheduled): any later App-side scaffold entry, such as a Runtime application tool (a read-only preview under DEL-06-03; any write-capable scaffold registration under DEL-06-04-REQ-010) or a composed `ProjectScaffoldPort`, needs its own amendment and should default to `<project>/execution`, as `project-setup` does. The retained library accepts any execution root contained in the project.
+- APP-R058 is closed by removal: no App live scaffold operation remains to repair. The Runtime's own scaffold API (`/v1/projects/{id}/scaffold`, `ProjectScaffoldPort`) was Runtime-owned. On the owner's direction of 2026-09-27 ("Scaffolding through the agent is enough.") the Runtime loop retired it in PR #1012 (merge commit `49bbc9787238d59fe2945c8e9413206d554e56b7`; Runtime Receipt 5), as `execution/_Coordination/NOTICE_2026-09-27_RUNTIME_SCAFFOLD_API_RETIRED.md` records (SCA-APP-012).
+- [RETIRED — SCA-APP-012] The follow-up for a later App-side scaffold entry is withdrawn. No App-side scaffold entry is planned: no App UI, HTTP, application-tool or Runtime-port entry, and no write-capable scaffold tool. Execution roots are scaffolded by the agent through the Root `project-setup` workflow into `<project>/execution`. The composed `ProjectScaffoldPort` option no longer exists, so any later App scaffold entry would need a Runtime amendment as well as an App one. The retained library accepts any execution root contained in the project, and the read-only scaffold preview stays under DEL-06-03.
 
 ## Deliverable Definition — Ontology
 
@@ -162,7 +162,7 @@ SCA-APP-011 (owner direction 2026-09-27; DEC-026) retires the App HTTP scaffold 
 
 > Scaffold results must identify the requested root and decomposition, parsed package/deliverable counts, created paths, existing-layout compatibility and recoverable failure stage/path. Verification: `frontend/src/__tests__/lib/harness-scaffold.test.ts`; the route test `scaffold-route.test.ts` is retired with the route (SCA-APP-011).
 >
-> The retained result type in `frontend/src/lib/harness/scaffold.ts` supplies `executionRoot`, `packageCount`, `deliverableCount`, `created`, `layoutValidation` and `preparationCompatibility`; these are evidence of the selected contract, not unresolved naming decisions. Existing-path validation is represented by layout checks. The live Runtime composition does not supply ProjectScaffoldPort. SCA-APP-011 retired the App route that returned 501, so no App route-level delivery gap remains; retained service tests do not establish live creation.
+> The retained result type in `frontend/src/lib/harness/scaffold.ts` supplies `executionRoot`, `packageCount`, `deliverableCount`, `created`, `layoutValidation` and `preparationCompatibility`; these are evidence of the selected contract, not unresolved naming decisions. Existing-path validation is represented by layout checks. The Runtime no longer has a `ProjectScaffoldPort` (retired in PR #1012; SCA-APP-012). SCA-APP-011 retired the App route that returned 501, so no App route-level delivery gap remains; retained service tests do not establish live creation.
 
 ### CLM-011 — Standards
 
@@ -226,7 +226,7 @@ SCA-APP-011 (owner direction 2026-09-27; DEC-026) retires the App HTTP scaffold 
 > | F-002 coordination schema disposition | Already covered as a named TBD; sources require `_Coordination/_COORDINATION.md` presence and coordination vocabulary but do not provide a complete template. |
 > | F-003 idempotence disposition | Incorporated by requiring rerun tests to preserve existing file contents, not only paths. |
 > | E-001 scaffold API response disposition | Field-name decision resolved by the retained result type cited in CLM-010; live producer and verification remain open. |
-> | Existing code surface | The retained frontend scaffold service is evidence; the live App-owned Runtime composition lacks its ProjectScaffoldPort, and SCA-APP-011 retired the App route that depended on it. CLM-010 names selected contract/tests; code is not scope authority. |
+> | Existing code surface | The retained frontend scaffold service is evidence; the Runtime retired its `ProjectScaffoldPort` in PR #1012 (SCA-APP-012), and SCA-APP-011 retired the App route that depended on it. CLM-010 names selected contract/tests; code is not scope authority. |
 
 - **AC-001** — The accepted v3.2 decomposition shape produces the SPEC-conformant flat execution tree and PREPARATION fileset, preserves existing content on rerun, reports unsupported shapes and failures without guessing, and confines writes to the working root.
 

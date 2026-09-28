@@ -1,0 +1,82 @@
+{
+  "item_count": 2,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-06-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 224,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "1f752c38a90018ca25f7ce23e49c6e6bef2b49d1a5d54684fef120525def4e1d"
+      },
+      "text": "Native Codex tools follow the user-selected Codex approval and sandbox policy, passed through without an App veto. Full access is selectable and does not grant normative authority. Chirality-owned application operations retain their own authorization, path, domain-stage and evidence controls; prompts and tool-name lists are not enforcement. Preserve status_read, deps_read and scope_scan semantics, bounded workspace scans, schema/read-only/concurrency/interruption/summarization descriptors, structured unknown-name failure and safe permission/start/completion/failure evidence. _STATUS.md remains lifecycle truth; Dependencies.csv is structured dependency truth, with explicit absence or secondary prose summary when absent, never invented rows. Scaffold remains preview-only in this slice. SOW-082 propose validates the folder/role/delegation/workflow/policy tuple, plan references and once-per-chat decline, emitting proposal.offered without automatic activation.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-06-03-VER-001",
+          "source_line": 311,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Verify actual registration/call reach, read-only/path constraints, malformed/missing status, absent CSV/prose-only dependency outcomes, unknown names, descriptor metadata and proposal validation/replay. Existing legacy reader tests do not prove live application-tool exposure."
+        },
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-06-03-VER-002",
+          "source_line": 433,
+          "source_section": "Governing Values and Decisions — Axiology",
+          "text": "Verify actual registration/call reach, read-only/path constraints, malformed/missing status, absent CSV/prose-only dependency outcomes, unknown names, descriptor metadata and proposal validation/replay. Existing legacy reader tests do not prove live application-tool exposure."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-06-03-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 431,
+        "section": "Governing Values and Decisions — Axiology",
+        "sha256": "1f752c38a90018ca25f7ce23e49c6e6bef2b49d1a5d54684fef120525def4e1d"
+      },
+      "text": "Native Codex tools follow the user-selected Codex approval and sandbox policy, passed through without an App veto. Full access is selectable and does not grant normative authority. Chirality-owned application operations retain their own authorization, path, domain-stage and evidence controls; prompts and tool-name lists are not enforcement. Preserve status_read, deps_read and scope_scan semantics, bounded workspace scans, schema/read-only/concurrency/interruption/summarization descriptors, structured unknown-name failure and safe permission/start/completion/failure evidence. _STATUS.md remains lifecycle truth; Dependencies.csv is structured dependency truth, with explicit absence or secondary prose summary when absent, never invented rows. Scaffold remains preview-only in this slice. SOW-082 propose validates the folder/role/delegation/workflow/policy tuple, plan references and once-per-chat decline, emitting proposal.offered without automatic activation.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-06-03-VER-001",
+          "source_line": 311,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Verify actual registration/call reach, read-only/path constraints, malformed/missing status, absent CSV/prose-only dependency outcomes, unknown names, descriptor metadata and proposal validation/replay. Existing legacy reader tests do not prove live application-tool exposure."
+        },
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-06-03-VER-002",
+          "source_line": 433,
+          "source_section": "Governing Values and Decisions — Axiology",
+          "text": "Verify actual registration/call reach, read-only/path constraints, malformed/missing status, absent CSV/prose-only dependency outcomes, unknown names, descriptor metadata and proposal validation/replay. Existing legacy reader tests do not prove live application-tool exposure."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-06-03",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-06",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "1f752c38a90018ca25f7ce23e49c6e6bef2b49d1a5d54684fef120525def4e1d"
+  },
+  "tool_version": "1"
+}

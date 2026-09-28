@@ -18,3 +18,9 @@
 D-APP-131 lift (b), D-GOV-43/A2, D-APP-127 and applicable D-APP-132 dispositions applied to the current claim blocks. Earlier dated decisions, checks and lifecycle/approval evidence remain historical. Validate Chirality-owned application-tool descriptors/catalog/calls separately from native Codex tool policy. D-APP-132 releases P-01 CLM-005 and CLM-032; no repeat owner reservation applies.
 
 Current unfinished delivery: Supply live catalog/exposure and permuted-order witnesses, preserve domain roster/stage checks, and resolve any absent App registration through the accepted application-tool interface. P-01 wording is already released; product verification remains open. See `_STATUS.md` Remaining and the W04_06 current row derivative; no new product test, native outcome, issuance or release is claimed.
+
+## Runs
+
+| Run ID / date | Work in this deliverable | Result and source links |
+|---|---|---|
+| `APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27` / 2026-09-27 | SCA-APP-012 incremental setup (owner confirmed the plan on 2026-09-27): `dependency-extract` UPDATE as a FULL_GRAPH neighbour: 11 rows re-seen (`LastSeen` moved to 2026-09-27), no other change | Register (`LastSeen` only) and index updated; receipt `execution/_Coordination/AgentRuns/APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` |

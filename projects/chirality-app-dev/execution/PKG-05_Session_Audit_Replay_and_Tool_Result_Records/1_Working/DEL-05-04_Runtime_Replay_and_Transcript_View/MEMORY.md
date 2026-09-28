@@ -3,6 +3,7 @@
 ## Runs
 
 - 2026-09-27 — `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27` (SCA-APP-011 incremental setup; owner confirmed the baseline and plan on 2026-09-27): `dependency-extract` UPDATE as a FULL_GRAPH neighbour: 9 rows re-seen. Receipt: `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md`.
+- 2026-09-27 — `APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27` (SCA-APP-012 incremental setup; owner confirmed the plan on 2026-09-27): `dependency-extract` UPDATE as a FULL_GRAPH neighbour: 9 rows re-seen, no other change. Index refreshed (register bytes unchanged; rows already LastSeen 2026-09-27). Receipt: `execution/_Coordination/AgentRuns/APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27/RECEIPT.md`.
 - 2026-09-23 — `APP-REPLAY-BOUNDARY-2026-09-23`: selected-session replay now
   suppresses foreign instruction records while preserving selected transcript
   linkage; the bounded closeout corrected descriptive dependency counts.

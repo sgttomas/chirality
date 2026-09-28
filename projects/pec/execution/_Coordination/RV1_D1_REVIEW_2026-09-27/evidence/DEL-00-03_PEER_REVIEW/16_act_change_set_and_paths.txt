@@ -1,0 +1,23 @@
+cwd: {REPO_ROOT} (repository root; branch claude/pec-rv1-d1-review, HEAD a1735cc3b)
+interpreter: python3 (CPython 3.13.7, as reported by python3 --version); shell bash
+env: TMPDIR=<review scratch dir>, PYTHONDONTWRITEBYTECODE=1
+command: git show --stat --format="%H %ad %s" --date=iso 7c250e370 | sed -n 1,3p; echo "-- product paths changed by the act commit (outside _Coordination):"; git show --name-status --format= 7c250e370 | grep -v "_Coordination/" ; echo "-- count of _Coordination paths:"; git show --name-status --format= 7c250e370 | grep -c "_Coordination/"; echo "-- all product-tree changes to DEL-00-03 since act (to HEAD):"; git log --format="%h %s" 7c250e370..HEAD -- projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed; echo "-- docs dir listing:"; ls projects/pec/docs; echo "-- SPEC path recorded in D-PEC-72 packet:"; grep -n "artifacts/v2/SPEC.md" projects/pec/execution/_Coordination/_DECISIONS/D-PEC-72_p1_entry_foundation_slice.md | head -5
+---- output ----
+7c250e370015b118a4fabea5abe34e13e190e419 2026-09-27 11:38:30 -0600 pec: D-PEC-105 act — apply_d1p.py --with-addon-p (four premise-only replacements), rely preflight
+
+ .../ScopeOfWork.md                                 |  5 +-
+-- product paths changed by the act commit (outside _Coordination):
+M	projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md
+M	projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md
+M	projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md
+M	projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md
+-- count of _Coordination paths:
+2
+-- all product-tree changes to DEL-00-03 since act (to HEAD):
+25c5f403b pec: M1 MEMORY records for HELP-HUMAN-PEC-20260925-POST-SCA005 (add-on M of D-PEC-98/100/102/103/104/105/106); CLOSE brief
+-- docs dir listing:
+PRD.md
+STATUS.md
+-- SPEC path recorded in D-PEC-72 packet:
+112:- future target: projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md
+---- exit code: 0 ----

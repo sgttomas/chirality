@@ -22,6 +22,7 @@
   `<execution root>/PKG-*/<lifecycle folder>/DEL-*` gets `NOT_ASSESSED` with a
   warning. No lifecycle change and no dependency acceptance. Evidence:
   [receipt](../../../_Coordination/AgentRuns/APP-EXECUTION-ROOT-2026-09-27/RECEIPT.md).
+- 2026-09-27 — `APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27` (SCA-APP-012 incremental setup; owner confirmed the plan on 2026-09-27): `dependency-extract` UPDATE as a FULL_GRAPH neighbour: 25 rows re-seen, no other change. Index refreshed (register bytes unchanged; rows already LastSeen 2026-09-27). Receipt: `execution/_Coordination/AgentRuns/APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27/RECEIPT.md`.
 
 ## Decisions And Evidence
 

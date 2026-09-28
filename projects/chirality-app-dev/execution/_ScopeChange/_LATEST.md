@@ -1,40 +1,40 @@
 # Active SCOPE_CHANGE Snapshot
 
 **Status:** `OPEN_PENDING_DERIVATIVE_CLOSURE`
-**Active snapshot:** `execution/_ScopeChange/SCA-APP-011_2026-09-27_0155_Workbench_Pipeline_Forms_and_Deliverable_Routes_Retirement/`
-**Amendment label:** `SCA-APP-011 Workbench and Pipeline Forms and Deliverable Routes Retirement`
-**Accepted:** checkpoint group 3 on 2026-09-27 (`execution/_ScopeChange/checkpoint_snapshots/SCA-APP-011_GROUP-3_2026-09-27/`); groups 1 and 2 on 2026-09-27 (`execution/_ScopeChange/checkpoint_snapshots/SCA-APP-011_GROUP-1_2026-09-27/`, `execution/_ScopeChange/checkpoint_snapshots/SCA-APP-011_GROUP-2_2026-09-27/`)
-**Accepted predecessor:** `execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/`. Its pointer record, including the 2026-09-22 derivative application and the DEL-02-05 carrier-propagation addendum, is the previous revision of this file (SHA-256 `6fdba0c96f6d1d6c2dc60c35219fb51f8a9fd9bbee9e390c5653398a742c04e3`) and remains valid history
-**Post-change evidence:** `execution/_ScopeChange/SCA-APP-011_2026-09-27_0155_Workbench_Pipeline_Forms_and_Deliverable_Routes_Retirement/Post_Change_Coverage.json` and `Evidence/Group3/` — topology, coverage, lifecycle and dependency closure unchanged from the pre-change baseline; no new finding
+**Active snapshot:** `execution/_ScopeChange/SCA-APP-012_2026-09-27_1828_Loop_First_Shell_and_Legacy_UI_Retirement/`
+**Amendment label:** `SCA-APP-012 Loop-First Shell and Legacy UI Retirement`
+**Accepted:** checkpoint group 3 on 2026-09-27 (`execution/_ScopeChange/checkpoint_snapshots/SCA-APP-012_GROUP-3_2026-09-27/`); groups 1 and 2 on 2026-09-27 (`execution/_ScopeChange/checkpoint_snapshots/SCA-APP-012_GROUP-1_2026-09-27/`, `execution/_ScopeChange/checkpoint_snapshots/SCA-APP-012_GROUP-2_2026-09-27/`)
+**Accepted predecessor:** `execution/_ScopeChange/SCA-APP-011_2026-09-27_0155_Workbench_Pipeline_Forms_and_Deliverable_Routes_Retirement/`. Its pointer record is the previous revision of this file (SHA-256 `904c1bd6fc30b4293b7da78aa52268142c08d69bfe71b3ea8812c56762185637`) and remains valid history. Its post-acceptance follow-ups are recorded in `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md`. The Runtime-scaffold-API item that pointer listed is closed: the Runtime loop retired its scaffold API in PR #1012 (merge commit `49bbc9787238d59fe2945c8e9413206d554e56b7`; `execution/_Coordination/NOTICE_2026-09-27_RUNTIME_SCAFFOLD_API_RETIRED.md`)
+**Post-change evidence:** `execution/_ScopeChange/SCA-APP-012_2026-09-27_1828_Loop_First_Shell_and_Legacy_UI_Retirement/Post_Change_Coverage.json` and `Evidence/Group3/` — topology, coverage, lifecycle and dependency closure unchanged by the amendment; no new finding
 
-SCA-APP-011 applies the owner-directed retirement of the obsolete Workbench and
-Pipeline forms and their tests. It also retires three App HTTP routes and their
-client fetch functions:
-- `GET /api/working-root/deliverable/status`;
-- `POST /api/working-root/deliverable/status/transition`;
-- `GET/PUT /api/working-root/deliverable/dependencies`.
+SCA-APP-012 applies the owner-directed retirement of the loop-first
+compatibility UI, the separate owner decision that D-APP-74, PRD KG-033 and
+§6.4 and SPEC §17.9 reserved:
+- the loop, portal and tertiary shells, their sidebar layout and tab factory,
+  and the role-directory panel;
+- the discarded `legacy` prop and the `?legacy=1` link;
+- the two `lib/portal` matrix helpers.
 
-It retires `POST /api/harness/scaffold`, with its client function and App port
-member, as well.
+It also retires `DeliverablesProvider`, `GET /api/working-root/scope`, the
+unmounted flat-file workflow view with `GET /api/working-root/workflow`, and
+DEL-02-03-REQ-009.
 
-- **DEL-02-02** is rescoped to its right-panel scope.
-- **DEL-07-04 and DEL-07-05** name the lifecycle and dependency library as the
-  interface, with the Chirality tool contracts retained on the SDK path.
-  - Live exposure of the read tools is DEL-06-03's open work.
-  - `status_transition` and `deps_write` stay governed by DEL-06-04-REQ-010.
-- **DEL-07-02** keeps the scaffold library and closes APP-R058 by removal.
-- **Execution roots** are scaffolded through the Root `project-setup` workflow.
+- **`/workbench` and `/pipeline`** stay as unlisted entries into the dialogue
+  shell (D-APP-108 Q3).
+- **No App-side scaffold entry** and no write-capable scaffold tool is
+  planned; the agent scaffolds execution roots through Root `project-setup`.
+- **DEL-02-03-REQ-010** is restated: status is read-only from
+  `/api/project/deliverables`, with no transition control.
 - **Unchanged:** topology stays 10 packages, 52 deliverables, 84 scope items
   and 10 objectives. No lifecycle state or dependency register changed.
 
 This snapshot is open pending derivative closure. Each of these remains
 separately governed and open:
-- dependency re-extraction for the affected deliverables, and
-  `analyze_dep_closure`;
+- dependency re-extraction for DEL-02-03 and DEL-08-03 (DX-01, DX-02, DX-03,
+  DX-05), and `analyze_dep_closure`;
 - `project-setup` in `INCREMENTAL` mode;
 - `audit-decomp` and `audit-scope-closure`;
-- the Task Management APP-R058 disposition;
-- the Runtime loop's decision on its scaffold API.
+- the Task Management TM-APP-051 note.
 
 It makes no release, signing, notarization, publication, readiness or reliance
 claim.

@@ -24,3 +24,4 @@ Current unfinished delivery: Implement and verify structural redaction and large
 | Run ID / date | Work in this deliverable | Result and source links |
 |---|---|---|
 | `APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27` / 2026-09-27 | SCA-APP-011 incremental setup (owner confirmed the baseline and plan on 2026-09-27): `dependency-extract` UPDATE as a FULL_GRAPH neighbour: 13 rows re-seen | Registers updated; receipt `execution/_Coordination/AgentRuns/APP-SCA-APP-011-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` |
+| `APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27` / 2026-09-27 | SCA-APP-012 incremental setup (owner confirmed the plan on 2026-09-27): `dependency-extract` UPDATE as a FULL_GRAPH neighbour: 13 rows re-seen, no other change | Index refreshed (register bytes unchanged; rows already LastSeen 2026-09-27); receipt `execution/_Coordination/AgentRuns/APP-SCA-APP-012-POST-ACCEPTANCE-2026-09-27/RECEIPT.md` |
