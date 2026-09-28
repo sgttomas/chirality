@@ -518,7 +518,12 @@ fn solve_checked(
 fn class(result: &Result<StructuralSolution, StructuralError>) -> String {
     match result {
         Ok(s) => format!("{:?}", s.report.quality),
-        Err(e) => format!("{:?}", std::mem::discriminant(e)),
+        // The variant's name (the refusal kind), without its payload.
+        Err(e) => format!("{e:?}")
+            .split(|c: char| !c.is_alphanumeric())
+            .next()
+            .unwrap_or_default()
+            .to_string(),
     }
 }
 

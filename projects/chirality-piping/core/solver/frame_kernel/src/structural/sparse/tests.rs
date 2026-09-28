@@ -31,6 +31,9 @@ struct Model {
     frames: Vec<FrameElement>,
     users: Vec<UserStiffnessElement>,
     blocks: Vec<StiffnessBlock>,
+    /// Each block's formation bounds and operation counts (the
+    /// `transform_roundoff` of the element the block was formed from).
+    block_formation: Vec<TransformationRoundoff>,
     springs: Vec<(usize, f64)>,
     free: Vec<usize>,
     prescribed: Vec<(usize, f64)>,
@@ -38,6 +41,55 @@ struct Model {
 }
 
 impl Model {
+    /// The formation allowances and operation counts (n×n) in the form the
+    /// structural adapter's `AssemblyEvidence::new` records them: each
+    /// element's `transform_roundoff` bounds, its counts plus one per scatter,
+    /// one count per spring, and then `gamma(scatter count) * sum |value|` of
+    /// each entry's contributions. A skew member's global matrix is symmetric
+    /// only within these allowances (as in the product, which always supplies
+    /// them).
+    fn dense_symmetry(&self) -> (Vec<Vec<f64>>, Vec<Vec<usize>>) {
+        let n = self.node_count * 6;
+        let mut roundoff = vec![vec![0.0; n]; n];
+        let mut counts = vec![vec![0usize; n]; n];
+        let mut element = |a: usize, b: usize, evidence: &TransformationRoundoff| {
+            let map = element_dof_map(a, b);
+            for i in 0..12 {
+                for j in 0..12 {
+                    roundoff[map[i]][map[j]] += evidence.absolute_roundoff[i][j];
+                    counts[map[i]][map[j]] += evidence.operation_counts[i][j] + 1;
+                }
+            }
+        };
+        for e in &self.frames {
+            let t = e.orientation().unwrap().transformation_matrix();
+            let evidence = transform_roundoff(&e.local_stiffness().unwrap(), &t).unwrap();
+            element(e.node_i.index, e.node_j.index, &evidence);
+        }
+        for e in &self.users {
+            let t = e.orientation().unwrap().transformation_matrix();
+            let evidence = transform_roundoff(&e.local_stiffness(), &t).unwrap();
+            element(e.node_i.index, e.node_j.index, &evidence);
+        }
+        for (b, evidence) in self.blocks.iter().zip(&self.block_formation) {
+            element(b.node_i, b.node_j, evidence);
+        }
+        for &(dof, _) in &self.springs {
+            counts[dof][dof] += 1;
+        }
+        let mut magnitudes = vec![vec![0.0; n]; n];
+        let mut scatter = vec![vec![0usize; n]; n];
+        for c in self.contributions() {
+            magnitudes[c.row][c.col] += c.value.abs();
+            scatter[c.row][c.col] += 1;
+        }
+        for i in 0..n {
+            for j in 0..n {
+                roundoff[i][j] += gamma(scatter[i][j]) * magnitudes[i][j];
+            }
+        }
+        (roundoff, counts)
+    }
     fn sparse(&self) -> SparseStiffness {
         assemble_sparse_stiffness(
             self.node_count,
@@ -165,6 +217,7 @@ fn chain(members: usize, e: f64, settle: f64) -> Model {
         frames,
         users: Vec::new(),
         blocks: Vec::new(),
+        block_formation: Vec::new(),
         springs: Vec::new(),
         free: Vec::new(),
         prescribed: Vec::new(),
@@ -223,6 +276,11 @@ fn tree(e: f64) -> Model {
         node_j: 7,
         stiffness: stand_in.global_stiffness().unwrap(),
     }];
+    let block_formation = vec![transform_roundoff(
+        &stand_in.local_stiffness().unwrap(),
+        &stand_in.orientation().unwrap().transformation_matrix(),
+    )
+    .unwrap()];
     let springs = vec![
         (6 * 5 + 2, 2.0e5),
         (6 * 7 + 1, 7.5e4),
@@ -234,6 +292,7 @@ fn tree(e: f64) -> Model {
         frames,
         users,
         blocks,
+        block_formation,
         springs,
         free: Vec::new(),
         prescribed: Vec::new(),
@@ -361,8 +420,9 @@ fn k1_assembly_refusals_match_the_dense_assembly() {
     );
     assert_eq!(sparse.unwrap_err(), dense.unwrap_err());
     // A non-finite coalesced entry after the frames and users: two collinear
-    // members whose axial stiffness EA/L = 1e308 each meet at node 1.
-    let s = FrameSection::new(1e308, 1.0, 1.0, 1e-3, 1e-3, 2e-3).unwrap();
+    // members whose axial stiffness EA/L = 1e300 * 1e8 / 1 = 1e308 each meet
+    // at node 1 (every formed term is finite; 12 E I / L^3 = 1.2e298).
+    let s = FrameSection::new(1e300, 1.0, 1e8, 1e-3, 1e-3, 2e-3).unwrap();
     let frames = [
         FrameElement::new(
             node(0, [0.0; 3]),
@@ -383,13 +443,16 @@ fn k1_assembly_refusals_match_the_dense_assembly() {
     let sparse =
         assemble_sparse_stiffness(3, &frames, &[], &[], &[], &SparseAssemblyOptions::new())
             .unwrap_err();
-    assert!(matches!(
-        dense,
-        FrameKernelError::NonFiniteInput {
-            name: "assembled stiffness",
-            ..
-        }
-    ));
+    assert!(
+        matches!(
+            dense,
+            FrameKernelError::NonFiniteInput {
+                name: "assembled stiffness",
+                ..
+            }
+        ),
+        "{dense:?}"
+    );
     assert_eq!(format!("{sparse:?}"), format!("{dense:?}"));
     // A spring outside the model is refused (the dense `+=` would panic).
     assert!(matches!(
@@ -416,18 +479,55 @@ struct Pair {
     contributions: Vec<StiffnessContribution>,
     free: Vec<usize>,
     prescribed: Vec<(usize, f64)>,
+    /// The formation allowances and counts, n×n and per pattern entry.
+    roundoff: Vec<Vec<f64>>,
+    counts: Vec<Vec<usize>>,
+    sparse_roundoff: Vec<f64>,
+    sparse_counts: Vec<usize>,
 }
+
+const BASIS: &str = "K1 kernel test: the adapter's formation allowances";
 
 impl Pair {
     fn new(model: &Model) -> Self {
+        let sparse = model.sparse();
+        let (roundoff, counts) = model.dense_symmetry();
+        let pattern = sparse.pattern();
+        let per_entry = |row: usize| {
+            pattern
+                .row_range(row)
+                .map(move |k| (row, pattern.column(k)))
+        };
+        let (sparse_roundoff, sparse_counts) = (0..pattern.dimension())
+            .flat_map(per_entry)
+            .map(|(i, j)| (roundoff[i][j], counts[i][j]))
+            .unzip();
         Self {
             dense: model.dense(),
-            sparse: model.sparse(),
             force: model.force(),
             ledger: model.ledger(),
             contributions: model.contributions(),
             free: model.free.clone(),
             prescribed: model.prescribed.clone(),
+            roundoff,
+            counts,
+            sparse_roundoff,
+            sparse_counts,
+            sparse,
+        }
+    }
+    fn dense_evidence(&self) -> SymmetryEvidence<'_> {
+        SymmetryEvidence {
+            absolute_roundoff: &self.roundoff,
+            operation_counts: &self.counts,
+            basis: BASIS,
+        }
+    }
+    fn sparse_evidence(&self) -> SparseSymmetryEvidence<'_> {
+        SparseSymmetryEvidence {
+            absolute_roundoff: &self.sparse_roundoff,
+            operation_counts: &self.sparse_counts,
+            basis: BASIS,
         }
     }
     fn dense_system(&self, contributions: bool) -> StructuralSystem<'_> {
@@ -437,7 +537,7 @@ impl Pair {
             free_dofs: &self.free,
             prescribed: &self.prescribed,
             contributions: contributions.then_some(self.contributions.as_slice()),
-            symmetry: None,
+            symmetry: Some(self.dense_evidence()),
         }
     }
     fn sparse_system(&self, contributions: bool) -> SparseStructuralSystem<'_> {
@@ -447,7 +547,7 @@ impl Pair {
             &self.free,
             &self.prescribed,
             contributions.then_some(self.contributions.as_slice()),
-            None,
+            Some(self.sparse_evidence()),
         )
     }
 }
@@ -552,7 +652,7 @@ fn k1_gate_stages_are_byte_identical_for_a_fixed_order() {
                 &pair.free,
                 &pair.prescribed,
                 contributions.then_some(pair.contributions.as_slice()),
-                None,
+                Some(pair.dense_evidence()),
             );
             let st = SparseStructuralSystem::assembled(
                 &pair.sparse,
@@ -560,20 +660,49 @@ fn k1_gate_stages_are_byte_identical_for_a_fixed_order() {
                 &pair.free,
                 &pair.prescribed,
                 contributions.then_some(pair.contributions.as_slice()),
-                None,
+                Some(pair.sparse_evidence()),
             );
-            solve_both(
+            let solved = solve_both(
                 prepare_assembled_structural(&dt),
                 prepare_assembled_sparse_structural(&st),
                 &format!("{ctx} typed"),
             );
+            assert!(matches!(solved, Some(Ok(_))), "{ctx} typed: {solved:?}");
             // C3-detect (the load audit against identified terms).
             let terms = pair.ledger.terms();
-            solve_both(
+            let solved = solve_both(
                 prepare_structural_with_force_terms(&ds, terms),
                 prepare_sparse_structural_with_force_terms(&ss, terms),
                 &format!("{ctx} terms"),
             );
+            assert!(matches!(solved, Some(Ok(_))), "{ctx} terms: {solved:?}");
+            // With no formation allowances, the symmetry audit runs on exact
+            // equality: both representations give the same outcome, and for
+            // the skew chain the same first asymmetric pair.
+            let bare_dense = StructuralSystem {
+                symmetry: None,
+                ..pair.dense_system(contributions)
+            };
+            let bare_sparse = SparseStructuralSystem::new(
+                &pair.sparse,
+                &pair.force,
+                &pair.free,
+                &pair.prescribed,
+                contributions.then_some(pair.contributions.as_slice()),
+                None,
+            );
+            let bare = solve_both(
+                prepare_structural(&bare_dense),
+                prepare_sparse_structural(&bare_sparse),
+                &format!("{ctx} bare"),
+            );
+            if name.starts_with("chain") {
+                assert!(bare.is_none(), "{ctx} bare: {bare:?}");
+                assert!(matches!(
+                    prepare_sparse_structural(&bare_sparse),
+                    Err(StructuralError::Asymmetric { .. })
+                ));
+            }
         }
     }
 }
@@ -582,18 +711,23 @@ fn k1_gate_stages_are_byte_identical_for_a_fixed_order() {
 fn k1_s11k_audit_and_ks1_ks3_have_identical_outcomes_in_both_representations() {
     // A cancelling ledger at the tip (G, n, -G) solved as its folded vector:
     // the load audit flags the row in both representations identically (S11
-    // section 5.1). The typed solve with a nonzero settlement exercises KS1
-    // (exact rhs) and KS3 (exact residual numerator) on coupled rows.
-    let mut model = chain(6, 200e9, 0.004);
+    // section 5.1). The chain is unsettled here: a settlement's large K_ij u_j
+    // terms would enter the row's denominator d_i and hide the loss. The typed
+    // solve with a nonzero settlement (below) exercises KS1 (exact rhs) and
+    // KS3 (exact residual numerator) on coupled rows.
+    let mut model = chain(6, 200e9, 0.0);
     model.loads.clear();
     let tip = 6 * 6 + 1;
     let mut ledger = LoadLedger::new();
-    ledger.push("load:big", tip, 1e8);
+    // G = 1e12: the fold's loss (about 2.4e-5 N) is well above the audit's
+    // target relative to the row's d_i on this six-member chain; at G = 1e8
+    // (about 3e-9 N) it is within the target and the row is not flagged.
+    ledger.push("load:big", tip, 1e12);
     ledger.push("load:net", tip, 0.3);
-    ledger.push("load:cancel", tip, -1e8);
+    ledger.push("load:cancel", tip, -1e12);
     let force = ledger.finish(model.node_count * 6).unwrap();
-    let mut folded = vec![0.0; model.node_count * 6];
-    folded[tip] = (1e8 + 0.3) - 1e8;
+    let mut folded = vec![0.0_f64; model.node_count * 6];
+    folded[tip] = (1e12 + 0.3) - 1e12;
     assert_ne!(
         folded[tip].to_bits(),
         force.values()[tip].to_bits(),
@@ -606,7 +740,7 @@ fn k1_s11k_audit_and_ks1_ks3_have_identical_outcomes_in_both_representations() {
         free_dofs: &pair.free,
         prescribed: &pair.prescribed,
         contributions: Some(&pair.contributions),
-        symmetry: None,
+        symmetry: Some(pair.dense_evidence()),
     };
     let ss = SparseStructuralSystem::new(
         &pair.sparse,
@@ -614,7 +748,7 @@ fn k1_s11k_audit_and_ks1_ks3_have_identical_outcomes_in_both_representations() {
         &pair.free,
         &pair.prescribed,
         Some(&pair.contributions),
-        None,
+        Some(pair.sparse_evidence()),
     );
     let detected = solve_both(
         prepare_structural_with_force_terms(&ds, force.terms()),
@@ -637,13 +771,17 @@ fn k1_s11k_audit_and_ks1_ks3_have_identical_outcomes_in_both_representations() {
         )
     );
     // KS1-KS3: the typed solve with the settlement.
+    let mut settled = chain(6, 200e9, 0.004);
+    settled.loads.clear();
+    let pair = Pair::new(&settled);
+    assert!(pair.prescribed.iter().any(|&(_, g)| g != 0.0));
     let dt = StructuralSystem::assembled(
         &pair.dense,
         &force,
         &pair.free,
         &pair.prescribed,
         Some(&pair.contributions),
-        None,
+        Some(pair.dense_evidence()),
     );
     let st = SparseStructuralSystem::assembled(
         &pair.sparse,
@@ -651,7 +789,7 @@ fn k1_s11k_audit_and_ks1_ks3_have_identical_outcomes_in_both_representations() {
         &pair.free,
         &pair.prescribed,
         Some(&pair.contributions),
-        None,
+        Some(pair.sparse_evidence()),
     );
     let typed = solve_both(
         prepare_assembled_structural(&dt),
@@ -1010,10 +1148,12 @@ fn k1_negative_witness_matches_the_dense_search_and_verification() {
     // gives the dense verdict.
     let cases: Vec<Vec<Vec<f64>>> = vec![
         vec![vec![1.0, 2.0], vec![2.0, 1.0]],
+        // The pair (2, 0) is a witness across the unstored pairs (1, 0) and
+        // (2, 1): scaled, A = [[1, 0, 1.25], [0, 1, 0], [1.25, 0, 1]].
         vec![
-            vec![4.0, 0.0, 3.0],
+            vec![4.0, 0.0, 5.0],
             vec![0.0, 1.0, 0.0],
-            vec![3.0, 0.0, 2.0],
+            vec![5.0, 0.0, 4.0],
         ],
         vec![
             vec![2.0, -1.0, 0.0, 0.0],
@@ -1077,11 +1217,20 @@ fn k1_negative_witness_visits_only_pattern_pairs() {
         visited * 10 < dense_pairs,
         "visited {visited} of {dense_pairs}"
     );
-    // The dense search on the same system also finds no witness.
-    let ds = pair.dense_system(false);
+    // The dense search finds no witness either. It is run on a six-member
+    // chain: it verifies each of the n(n-1)/2 pairs in O(n^2), which on the
+    // 40-member chain above takes over a minute in a debug build.
+    let small = Pair::new(&chain(6, 200e9, 0.0));
+    let ds = small.dense_system(false);
+    let ss = small.sparse_system(false);
     assert!(negative_pair_witness(&prepare_structural(&ds).unwrap())
         .unwrap()
         .is_none());
+    assert!(
+        sparse_negative_pair_witness(&prepare_sparse_structural(&ss).unwrap())
+            .unwrap()
+            .is_none()
+    );
 }
 
 // ------------------------------------------------------------------ references
@@ -1090,7 +1239,12 @@ fn k1_negative_witness_visits_only_pattern_pairs() {
 fn class(result: &Result<StructuralSolution, StructuralError>) -> String {
     match result {
         Ok(s) => format!("{:?}", s.report.quality),
-        Err(e) => format!("{:?}", std::mem::discriminant(e)),
+        // The variant's name (the refusal kind), without its payload.
+        Err(e) => format!("{e:?}")
+            .split(|c: char| !c.is_alphanumeric())
+            .next()
+            .unwrap_or_default()
+            .to_string(),
     }
 }
 

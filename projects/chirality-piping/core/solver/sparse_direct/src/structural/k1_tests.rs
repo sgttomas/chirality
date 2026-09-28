@@ -9,8 +9,9 @@ use super::*;
 use crate::{adjacency_from_dense, adjacency_from_symmetric_entries, reverse_cuthill_mckee};
 use open_pipe_stress_frame_kernel::load_ledger::{AssembledForce, LoadLedger};
 use open_pipe_stress_frame_kernel::structural::{
-    assemble_sparse_stiffness, negative_pair_witness, FormationSource, SparseAssemblyOptions,
-    SparseStiffness, StiffnessBlock, StiffnessContribution,
+    assemble_sparse_stiffness, gamma, negative_pair_witness, transform_roundoff, FormationSource,
+    SparseAssemblyOptions, SparseStiffness, SparseSymmetryEvidence, StiffnessBlock,
+    StiffnessContribution, SymmetryEvidence, TransformationRoundoff,
 };
 use open_pipe_stress_frame_kernel::{
     assemble_global_stiffness_with_user_elements, element_dof_map, FrameElement, FrameNode,
@@ -37,6 +38,9 @@ struct Model {
     frames: Vec<FrameElement>,
     users: Vec<UserStiffnessElement>,
     blocks: Vec<StiffnessBlock>,
+    /// Each block's formation bounds and counts (`transform_roundoff` of the
+    /// element it was formed from).
+    block_formation: Vec<TransformationRoundoff>,
     springs: Vec<(usize, f64)>,
     free: Vec<usize>,
     prescribed: Vec<(usize, f64)>,
@@ -129,6 +133,67 @@ impl Model {
         }
         ledger.finish(self.node_count * 6).unwrap()
     }
+    /// The formation allowances and operation counts in the form the
+    /// structural adapter's `AssemblyEvidence::new` records them (n×n), and
+    /// the same values per pattern entry of `k`. A skew member's global
+    /// matrix is symmetric only within these allowances; the product always
+    /// supplies them.
+    fn symmetry(&self, k: &SparseStiffness) -> Symmetry {
+        let n = self.node_count * 6;
+        let mut roundoff = vec![vec![0.0; n]; n];
+        let mut counts = vec![vec![0usize; n]; n];
+        let mut element = |a: usize, b: usize, evidence: &TransformationRoundoff| {
+            let map = element_dof_map(a, b);
+            for i in 0..12 {
+                for j in 0..12 {
+                    roundoff[map[i]][map[j]] += evidence.absolute_roundoff[i][j];
+                    counts[map[i]][map[j]] += evidence.operation_counts[i][j] + 1;
+                }
+            }
+        };
+        for e in &self.frames {
+            let t = e.orientation().unwrap().transformation_matrix();
+            let evidence = transform_roundoff(&e.local_stiffness().unwrap(), &t).unwrap();
+            element(e.node_i.index, e.node_j.index, &evidence);
+        }
+        for e in &self.users {
+            let t = e.orientation().unwrap().transformation_matrix();
+            let evidence = transform_roundoff(&e.local_stiffness(), &t).unwrap();
+            element(e.node_i.index, e.node_j.index, &evidence);
+        }
+        for (b, evidence) in self.blocks.iter().zip(&self.block_formation) {
+            element(b.node_i, b.node_j, evidence);
+        }
+        for &(dof, _) in &self.springs {
+            counts[dof][dof] += 1;
+        }
+        let mut magnitudes = vec![vec![0.0; n]; n];
+        let mut scatter = vec![vec![0usize; n]; n];
+        for c in self.contributions() {
+            magnitudes[c.row][c.col] += c.value.abs();
+            scatter[c.row][c.col] += 1;
+        }
+        for i in 0..n {
+            for j in 0..n {
+                roundoff[i][j] += gamma(scatter[i][j]) * magnitudes[i][j];
+            }
+        }
+        let pattern = k.pattern();
+        let (sparse_roundoff, sparse_counts) = (0..n)
+            .flat_map(|row| {
+                pattern
+                    .row_range(row)
+                    .map(move |e| (row, pattern.column(e)))
+            })
+            .map(|(i, j)| (roundoff[i][j], counts[i][j]))
+            .unzip();
+        Symmetry {
+            roundoff,
+            counts,
+            sparse_roundoff,
+            sparse_counts,
+        }
+    }
     fn formation_source(&self) -> FormationSource {
         FormationSource {
             node_count: self.node_count,
@@ -137,6 +202,33 @@ impl Model {
             curved: Vec::new(),
             springs: self.springs.clone(),
             unavailable: Vec::new(),
+        }
+    }
+}
+
+/// A model's formation allowances, n×n and per pattern entry.
+struct Symmetry {
+    roundoff: Vec<Vec<f64>>,
+    counts: Vec<Vec<usize>>,
+    sparse_roundoff: Vec<f64>,
+    sparse_counts: Vec<usize>,
+}
+
+const BASIS: &str = "K1 sparse_direct test: the adapter's formation allowances";
+
+impl Symmetry {
+    fn dense(&self) -> SymmetryEvidence<'_> {
+        SymmetryEvidence {
+            absolute_roundoff: &self.roundoff,
+            operation_counts: &self.counts,
+            basis: BASIS,
+        }
+    }
+    fn sparse(&self) -> SparseSymmetryEvidence<'_> {
+        SparseSymmetryEvidence {
+            absolute_roundoff: &self.sparse_roundoff,
+            operation_counts: &self.sparse_counts,
+            basis: BASIS,
         }
     }
 }
@@ -177,6 +269,7 @@ fn chain(members: usize, e: f64, settle: f64) -> Model {
         frames,
         users: Vec::new(),
         blocks: Vec::new(),
+        block_formation: Vec::new(),
         springs: Vec::new(),
         free,
         prescribed,
@@ -231,6 +324,11 @@ fn tree(e: f64) -> Model {
             node_j: 7,
             stiffness: stand_in.global_stiffness().unwrap(),
         }],
+        block_formation: vec![transform_roundoff(
+            &stand_in.local_stiffness().unwrap(),
+            &stand_in.orientation().unwrap().transformation_matrix(),
+        )
+        .unwrap()],
         springs: vec![(32, 2.0e5), (43, 7.5e4), (43, 2.5e4), (23, 1.0e3)],
         free,
         prescribed,
@@ -298,13 +396,14 @@ fn k1_adjacency_order_and_profile_equal_the_dense_derived_path() {
         );
         // Prepared level: the order and the skyline the factors use.
         let force = model.force();
+        let symmetry = model.symmetry(&sparse_k);
         let ds = StructuralSystem {
             stiffness: &dense_k,
             force: &force,
             free_dofs: &model.free,
             prescribed: &model.prescribed,
             contributions: None,
-            symmetry: None,
+            symmetry: Some(symmetry.dense()),
         };
         let ss = SparseStructuralSystem::new(
             &sparse_k,
@@ -312,7 +411,7 @@ fn k1_adjacency_order_and_profile_equal_the_dense_derived_path() {
             &model.free,
             &model.prescribed,
             None,
-            None,
+            Some(symmetry.sparse()),
         );
         let dp = structural::prepare_structural(&ds).unwrap();
         let sp = structural::prepare_sparse_structural(&ss).unwrap();
@@ -417,11 +516,14 @@ fn k1_pattern_path_report_is_byte_identical_to_the_dense_derived_sparse_path() {
             let ledger = model.ledger();
             let contributions = model.contributions();
             let source = model.formation_source();
+            let symmetry = model.symmetry(&sparse_k);
             for with_contributions in [false, true] {
                 let c = with_contributions.then_some(contributions.as_slice());
                 let ctx = format!("{name} contributions={with_contributions}");
-                // Legacy vector: today's `solve_structural_sparse`.
-                let ds = StructuralSystem {
+                // With no formation allowances the symmetry audit is exact:
+                // both paths give the same outcome (for the skew chain, the
+                // same first asymmetric pair).
+                let bare_ds = StructuralSystem {
                     stiffness: &dense_k,
                     force: &force,
                     free_dofs: &model.free,
@@ -429,13 +531,35 @@ fn k1_pattern_path_report_is_byte_identical_to_the_dense_derived_sparse_path() {
                     contributions: c,
                     symmetry: None,
                 };
-                let ss = SparseStructuralSystem::new(
+                let bare_ss = SparseStructuralSystem::new(
                     &sparse_k,
                     &force,
                     &model.free,
                     &model.prescribed,
                     c,
                     None,
+                );
+                assert_eq!(
+                    format!("{:?}", solve_structural_sparse(&bare_ds)),
+                    format!("{:?}", solve_sparse_structural(&bare_ss)),
+                    "{ctx}: bare"
+                );
+                // Legacy vector: today's `solve_structural_sparse`.
+                let ds = StructuralSystem {
+                    stiffness: &dense_k,
+                    force: &force,
+                    free_dofs: &model.free,
+                    prescribed: &model.prescribed,
+                    contributions: c,
+                    symmetry: Some(symmetry.dense()),
+                };
+                let ss = SparseStructuralSystem::new(
+                    &sparse_k,
+                    &force,
+                    &model.free,
+                    &model.prescribed,
+                    c,
+                    Some(symmetry.sparse()),
                 );
                 let legacy_today = solve_structural_sparse(&ds);
                 assert!(legacy_today.is_ok(), "{ctx}: {legacy_today:?}");
@@ -472,7 +596,7 @@ fn k1_pattern_path_report_is_byte_identical_to_the_dense_derived_sparse_path() {
                     &model.free,
                     &model.prescribed,
                     c,
-                    None,
+                    Some(symmetry.dense()),
                 );
                 let st = SparseStructuralSystem::assembled(
                     &sparse_k,
@@ -480,7 +604,7 @@ fn k1_pattern_path_report_is_byte_identical_to_the_dense_derived_sparse_path() {
                     &model.free,
                     &model.prescribed,
                     c,
-                    None,
+                    Some(symmetry.sparse()),
                 );
                 assert_eq!(
                     format!(
@@ -498,7 +622,7 @@ fn k1_pattern_path_report_is_byte_identical_to_the_dense_derived_sparse_path() {
                     &model.free,
                     &model.prescribed,
                     c,
-                    None,
+                    Some(symmetry.dense()),
                 )
                 .with_formation_source(&source);
                 let st = SparseStructuralSystem::assembled(
@@ -507,7 +631,7 @@ fn k1_pattern_path_report_is_byte_identical_to_the_dense_derived_sparse_path() {
                     &model.free,
                     &model.prescribed,
                     c,
-                    None,
+                    Some(symmetry.sparse()),
                 )
                 .with_formation_source(&source);
                 assert_eq!(
@@ -659,8 +783,11 @@ fn k1_storage_counts_of_the_rf_large_chain_and_tree() {
                 let ordering = order_sparse_structural(&sp).unwrap();
                 let counts = k.storage_counts();
                 let free_lower = sp.lower_entries().count();
+                // The skyline holds every nonzero entry; an explicit zero
+                // (axis-aligned members) may lie outside it.
+                let free_lower_nonzero = sp.lower_entries().filter(|e| e.2 != 0.0).count();
                 eprintln!(
-                    "k1 storage {} {} n={n}: dofs={} stored={} lower={} free_stored={} free_lower={} profile={} half_bandwidth={} dense={}",
+                    "k1 storage {} {} n={n}: dofs={} stored={} lower={} free_stored={} free_lower={} free_lower_nonzero={} profile={} half_bandwidth={} dense={}",
                     if tree { "TREE" } else { "CHAIN" },
                     if rotated { "ROT" } else { "AX" },
                     counts.dimension,
@@ -668,11 +795,12 @@ fn k1_storage_counts_of_the_rf_large_chain_and_tree() {
                     counts.lower_entries,
                     sp.entry_count(),
                     free_lower,
+                    free_lower_nonzero,
                     ordering.profile_entry_count,
                     ordering.max_half_bandwidth,
                     counts.dense_entries,
                 );
-                assert!(ordering.profile_entry_count >= free_lower);
+                assert!(ordering.profile_entry_count >= free_lower_nonzero);
                 assert!((counts.stored_entries as u128) < counts.dense_entries);
                 // Each member couples two nodes: at most 144 entries per
                 // member plus 36 per node, independent of n² growth.
