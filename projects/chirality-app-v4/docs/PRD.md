@@ -7,7 +7,10 @@ composite identified in the [acceptance record][B-ACCEPT], not a claim that
 the human previously examined these newly consolidated bytes. Acceptance
 includes stated open matters and external dependencies; it authorizes
 proceeding with decomposition and project definition, not product implementation,
-release, or automatic resolution of unruled details.
+release, or automatic resolution of unruled details. Amended by scope-change
+amendment SCA-V4-001, accepted 2026-09-29: V4-WF-05 (phased
+checkpoints), V4-HOST-01 and V4-HOST-02 and the text that states the same
+meanings, applying owner decisions DEC-4 and DEC-5 (§0).
 
 Companion documents: [architecture](ARCHITECTURE.md),
 [host integration](HOST_INTEGRATION.md), [examination](EXAMINATION.md),
@@ -34,6 +37,7 @@ unconfirmed drafting defaults are not accepted merely by inclusion.
 | A–I | Earlier renewal directions, retained through B-HTML's quoted basis: human governance, Root's conceptual role, manuals, SoWs, thesis, PEC and research. |
 | OD-nn / D-nn | Original scoped directions/choices in `../conceptual/DECISIONS.md`, including D-19 and D-20; later direction supersedes only what it addresses. |
 | X-nn / L-nn | Historical exemplars/lessons in `../conceptual/EXEMPLARS_AND_LESSONS.md`; evidence with limits, not automatic additional requirements. |
+| DEC-4 / DEC-5 | [Owner decisions][B-DEC45] `APP-V4-SWBPIPE-INTAKE-20260928-DECISION-4`, with its clarification (phased checkpoints; model access by OAuth sign-in or an API key, with no default), and `APP-V4-SWBPIPE-INTAKE-20260928-DECISION-5`, with its confirmation (host-agent network destinations); applied by scope-change amendment SCA-V4-001. |
 
 The original handoff's pending-answer list and `SEED_SET_PLAN.md` §3 remain
 historical. An **open detail** below is carried to its point of need; it is
@@ -53,9 +57,9 @@ without silently discarding a commitment during that allocation.
 > tools; the same four agents use them to act on the application's objects
 > with the means the professional has, and the professional directs the work
 > and validates it to the degree the situation warrants. In host
-> applications the agent runs local-first, on a model server the user
-> controls. The Chirality App, for creating workflows, is the exemplar each
-> application follows.
+> applications the agent runs on a model the person chooses — a model server
+> the user controls or a cloud model — with no default. The Chirality App,
+> for creating workflows, is the exemplar each application follows.
 
 ### 1.2 Why it exists
 
@@ -105,14 +109,21 @@ embedding interface, with native sign-in (D-19; [architecture](ARCHITECTURE.md))
 ### 2.2 Host applications — Chirality inside the owner's applications
 
 Engineering design and analysis applications the owner builds, SWBPIPE first
-(OD-04). Each host embeds a simpler, local-first agent (D-18) that acts on the
-host's objects through the same operations the professional uses.
+(OD-04). Each host embeds a simpler agent (D-18), running on a local or cloud
+model the person chooses (V4-HOST-01), that acts on the host's objects through
+the same operations the professional uses.
 
-- **V4-HOST-01** A host's agent runs against a model server the user controls
-  by default; a cloud model is used only if the user chooses one and provides
-  an API key (D-18).
-- **V4-HOST-02** In local operation, a host's agent sends no data to any
-  destination other than the configured model server (D-18).
+- **V4-HOST-01** A host's agent runs on a model the person chooses: a model
+  server the user controls, or a cloud model reached by OAuth sign-in or an
+  API key. There is no default between them; they are options the person
+  chooses among (D-18; DEC-4).
+- **V4-HOST-02** A host's agent sends data only to the model service the
+  person selected and to destinations the person has allowed — in advance in
+  an allow list (by category, such as web access, MCP servers or other APIs,
+  or by named destination) or when the agent asks during its work. Nothing
+  else is contacted: no analytics, silent provider switch or background
+  download unless the person turns it on. Every destination contacted is
+  recorded and shown (D-18; DEC-5).
 - **V4-HOST-03** A host's agent can take the same actions as the human user
   of that host, within the operation/autonomy and human-act distinctions in §4.5
   (semantic parity, D-18; §4.4).
@@ -240,9 +251,17 @@ with a small declared part the product can observe (D-03).
   same-named workflow from another source.
 - **V4-WF-04** The product can check that a selected workflow's required
   tools exist in the current host and tell the person when they do not.
-- **V4-WF-05** The product holds a workflow's declared checkpoints: when a
-  run reaches one, the required human act is requested, and the run does not
-  record the act as done until the person performs it.
+- **V4-WF-05** When a run reaches a workflow's declared checkpoint, the
+  required human act is requested, and the run does not record the act as
+  done until the person performs it. Holding the checkpoint — the run waits
+  until the act is performed — is **phased to the governance layer**, not
+  withdrawn (DEC-4): in the current phase, declared checkpoints are plan
+  guidance that the person and the agents manage, and neither the App nor a
+  host's embedded loop enforces a hold, blocks a run, or reports a workflow
+  unsupported because a hold cannot be enforced. Enforced holds are applied
+  later to the workflows that need them; the declared checkpoint and the
+  definitions that enforcement needs are kept so that every such workflow can
+  be served. Reserved human acts (§4.5) are unaffected.
 - **V4-WF-06** Workflows made in the Chirality App can be carried into a host
   and adapted there; a host's own workflows can be opened and refined in the
   Chirality App.
@@ -445,7 +464,7 @@ Summarised here; specified in the companion documents.
 |---|---|---|---|---|
 | OQ-01 | Purpose/working statement | **Settled for decomposition** by the accepted composite and embedded-primary/App-exemplar direction; later material changes follow their own decision | Owner | No repeat acceptance needed |
 | OQ-02 | Exact always-reserved human acts and classifier-permission policy | Carry the known distinctions; do not implement an unruled policy as accepted | Owner with affected App/host design owners | Before the affected operation/permission contract and examination criterion are fixed |
-| OQ-03 | Domains provider owner, query/tool contract, source admission, deployment and freshness | Purpose is **settled** by U1/U3; these integration details remain open. Existing local-operation privacy constraints are not relaxed by the new capability | Provider owner TBD; App and external host receiving owners; human coordination | Allocate during project definition; resolve each interface before dependent implementation and research-context reliance |
+| OQ-03 | Domains provider owner, query/tool contract, source admission, deployment and freshness | Purpose is **settled** by U1/U3; these integration details remain open. Existing host-agent data constraints (V4-HOST-02) are not relaxed by the new capability: a Domains service is contacted only as a destination the person has allowed | Provider owner TBD; App and external host receiving owners; human coordination | Allocate during project definition; resolve each interface before dependent implementation and research-context reliance |
 | OQ-04 | Any additional essential host | Initial App/SWBPIPE direction stands; additional scope is not invented | Owner | Before adding host scope or its delivery commitment |
 | OQ-05 | Working method's concrete applicability and entry arrangement | Manuals/selected-method direction is **settled**; record exact editions, selected methods and any necessary local entry without automatically retaining the old precedence | Project-definition manager within authority; owner for consequential departures | Project definition and entry to affected work |
 | OQ-06 | Further fleet/project-management scope beyond option B | Carry option B; do not turn the full manuals into product features | Owner | Before expanding dependent scope |
@@ -498,3 +517,4 @@ acceptance position is superseded by B-ACCEPT, not erased from history.
 [B-ACCEPT]: ../execution/_Coordination/Acceptances/APP-V4-BASIS-20260926/ACCEPTANCE.md
 [B-HTML]: ../execution/_Coordination/Acceptances/APP-V4-BASIS-20260926/DECISION_BRIEF.html
 [B-OWNER]: ../execution/_Coordination/Acceptances/APP-V4-BASIS-20260926/OWNER_DIRECTIONS.md
+[B-DEC45]: ../execution/_Coordination/AgentRuns/APP-V4-SWBPIPE-INTAKE-20260928/OWNER_DECISIONS.md
