@@ -22,3 +22,23 @@
 // each with its reason (test-only, or the slice that will call it). K3's
 // `wide/multi.rs` items follow the same rule (K4 API).
 pub(crate) mod wide;
+
+// K4 (the W1a kernel method, T3 D1 §4.1; ROOT's K4 rulings): the correctly
+// rounded exact multi-term sum, the source, the ledger at p, formation and
+// assembly, the factor and its screens, recovery, combinations and the adaptive
+// schedule. K4 has no product caller (ROOT's K4 ruling Q1): F2a wires W1. Each
+// entry point without a non-test caller carries its own `#[allow(dead_code)]`
+// naming its consumer (F2a API or V-K API); the helpers they reach are live.
+pub(crate) mod adaptive;
+pub(crate) mod assemble;
+// D1 revision 5a.3 (R7 §4.1.6.1 item 6a, §4.1.6.2, §4.1.6.3): directed wide
+// rounding, the certified inverse-norm bounds and the verification.
+pub(crate) mod bound;
+pub(crate) mod combine;
+pub(crate) mod directed;
+pub(crate) mod factor;
+pub(crate) mod ledger;
+pub(crate) mod recover;
+pub(crate) mod source;
+pub(crate) mod verify;
+pub(crate) mod wide_sum;
