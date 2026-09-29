@@ -1,6 +1,6 @@
 # App v4 / SWBPIPE / Domains — interface coordination for human relay
 
-Status: **PREPARED FOR HUMAN RELAY — not delivered, acknowledged or adopted by the outside session.** This file communicates App v4 interface needs; it does not assign or perform SWBPIPE, PEC or Domains implementation. The human coordinates the sessions, as recorded in [owner direction O](Acceptances/APP-V4-BASIS-20260926/OWNER_DIRECTIONS.md).
+Status: **The consolidated questions (RELAY-v0.3, below) were relayed by the owner on 2026-09-28, per the owner's statement; answers are pending, and nothing is adopted by the outside session.** This file communicates App v4 interface needs; it does not assign or perform SWBPIPE, PEC or Domains implementation. The human coordinates the sessions, as recorded in [owner direction O](Acceptances/APP-V4-BASIS-20260926/OWNER_DIRECTIONS.md).
 
 The owner accepted HTML recommendation HTML-D05 with SWB implementation retained by its existing outside session. The intended first activity uses invented engineering material: inspect a model, propose an adjustment, request a non-mutating check, encounter an intervening edit, and recover the actual outcome/receipt. A reusable workflow carries its identity, assumptions, tool needs and human checkpoints between App and host. The useful operation, autonomy scope and candidate environment remain to be selected. This is a coordinated contract and staged examination, not a single all-or-nothing test or authorization to run a supplier experiment.
 
@@ -13,7 +13,7 @@ The owner reports SWBPIPE is still building and has not reached agent-action int
 | First activity | Define App workflow authoring/exchange and receiving interface obligations; preserve standalone core-loop work | Identify a useful supported model operation and non-mutating checking activity, with prerequisites and readiness | Before the connected increment's detailed contract and examination are fixed |
 | Domain identity and basis | Carry the host's original basis and truthful standing through the agent/tool route | State workspace/model identity, generation/revision/hash semantics and selection changes that invalidate a proposal | Before integrating an actionable host operation |
 | Capability semantics | Define shared inputs, preconditions, availability, effects, results, errors and human-act distinctions | Name canonical read/action/check operations and their existing validation/application route | Before interface conformance is claimed |
-| Autonomy and human acts | Preserve granted direct-apply versus proposal modes and attributable human acts; retain pending reserved-act/classifier matters | State what the selected SWB operation permits, how human approval/Checked/reliance differ, and how the mode is shown | Before that operation can be executed under the intended autonomy |
+| Autonomy and human acts | Preserve granted direct-apply versus proposal modes and attributable human acts; retain pending reserved-act/classifier matters | State what the selected SWB operation permits, how the person's acts differ: accepting a proposal (A5), marking checked (A4), engineering approval (A6) and professional reliance (A7), using the canonical names in DEL-04-01 ACT-POLICY, and how the mode is shown | Before that operation can be executed under the intended autonomy |
 | Application, cancellation and recovery | Preserve call identity, observed outcome and linked host receipts; do not equate transport success with acceptance | Explain stale refusal, domain deduplication, publication/undo, interrupted/unknown outcome and durable receipt behavior | Before connected recovery evidence or replacement reliance |
 | Workflow exchange | Provide reviewed source-qualified workflow identity, declared needs/checkpoints and retained revision/history | State host import/use/refinement behavior and how unavailable capabilities/checkpoints are reported | Before App↔host round-trip conformance |
 | Catalog extension | Identify what shared contracts or generation provide and what adapters still implement | Identify human-view and host-adapter work for one added operation | Before claiming all-actor availability without separate work or maintenance savings |
@@ -35,8 +35,26 @@ Please return through the human: the selected activity or alternatives, relevant
 
 - Recipient: outside-harness SWB implementation session, mediated by the human.
 - Prepared: 2026-09-26 under App v4 project definition.
-- Delivered: **not observed**.
-- Acknowledged/adopted: **not observed**.
-- Current App v4 standing: [final Group3 decomposition accepted](../_Decomposition/checkpoint_snapshots/_LATEST_ACCEPTED.md), with 11 Packages and 41 Deliverables. All 41 local ScopeOfWork contracts are independently checked and INITIALIZED. The [initial graph basis is confirmed](../_DAG/_Candidates/DAG-001/BASIS_DECISION.md); qualified graph-version and final 30% package review remain pending. This current-standing update changes none of the delivery/adoption facts above.
+- Delivered: 2026-09-28, by the owner, to the SWBPIPE session, per the owner's statement; the current question set is RELAY-v0.3 (below).
+- Acknowledged: the owner reports that the SWBPIPE agent is working on answers. Adopted: **not observed**.
+- Current App v4 standing: [final Group3 decomposition accepted](../_Decomposition/checkpoint_snapshots/_LATEST_ACCEPTED.md), with 11 Packages and 41 Deliverables. All 41 local ScopeOfWork contracts are independently checked and INITIALIZED. DAG-001 is accepted and the 30% gate is complete ([acceptance record](../_DAG/DAG-001/ACCEPTANCE_RECORD.md)). This current-standing update changes none of the delivery/adoption facts above.
 
-Basis: [accepted composite](Acceptances/APP-V4-BASIS-20260926/ACCEPTANCE.md), exact [HTML source](Acceptances/APP-V4-BASIS-20260926/DECISION_BRIEF.html) HTML-D04–HTML-D06, and owner messages J–M/O. The human may relay this file now; receipt or adoption will be recorded only when an actual return is provided.
+Basis: [accepted composite](Acceptances/APP-V4-BASIS-20260926/ACCEPTANCE.md), exact [HTML source](Acceptances/APP-V4-BASIS-20260926/DECISION_BRIEF.html) HTML-D04–HTML-D06, and owner messages J–M/O. Receipt, answers or adoption will be recorded only when an actual return is provided.
+
+## Current detailed question set (60% undertaking APP-V4-FIRST-INCREMENT-20260928)
+
+The interface questions above are superseded in detail by a consolidated,
+deduplicated set of 32 questions developed against the App/shared definitions:
+[`RELAY_QUESTIONS_SWBPIPE.md`](../PKG-09_Candidate%20examination%20and%20connected%20journeys/1_Working/DEL-09-06_Connected%20activity%20contract%20and%20workflow%20round%20trip/Design/RELAY_QUESTIONS_SWBPIPE.md)
+(DEL-09-06/RELAY-v0.3). The owner relayed it to the SWBPIPE session on
+2026-09-28 (owner's statement); answers are pending. Its top
+questions are:
+
+- SQ-01: the capture-evidence reference for the person's acts;
+- SQ-02: receipt of the governing checkpoint constraint, and host-side holds;
+- SQ-03: content identities;
+- SQ-04: the first operation (OI-021);
+- SQ-28: the enablement facility for external-agent access.
+
+Answers, commitments and adoption are recorded in that file's ledger when
+they are received. The delivery is recorded from the owner's statement.

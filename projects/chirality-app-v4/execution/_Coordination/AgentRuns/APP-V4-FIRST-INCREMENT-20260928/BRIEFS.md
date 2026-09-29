@@ -349,3 +349,229 @@ File: `Design/ADAPTER_ENABLEMENT_AND_RECEIVING.md`. Contents:
   live-control JSON CLI), cited as evidence only and not as a commitment.
 
 Receivers: DEL-09-09, DEL-03-04.
+
+## W9 — DEL-09-06 connected activity + DEL-09-09 external trace cases + consolidated relay
+
+Inputs: the Wave-1 v0.3 files at `main` (merge `98b1723b`), plus W7 and W8 at
+branch commit `HEAD` (DEL-02-03 EXECUTION_COMPATIBILITY.md, DEL-03-03
+ADAPTER_ENABLEMENT_AND_RECEIVING.md). Read them with `git show <commit>:<path>`
+and cite each commit and sha256.
+
+**Write scope:**
+- DEL-09-06 `Design/CONNECTED_ACTIVITY_CONTRACT.md`
+- DEL-09-06 `Design/RELAY_QUESTIONS_SWBPIPE.md`
+- DEL-09-09 `Design/EXTERNAL_TRACE_CASES.md`
+
+Do **not** edit `_Coordination/HANDOFF_SWBPIPE_DOMAINS.md`; closeout points it
+to the relay file.
+
+**DEL-09-06 contract (OUT-001/OUT-002/OUT-004).** A draft increment contract for
+the first connected activity:
+- inspect a model;
+- propose an adjustment;
+- request a non-mutating check;
+- meet an intervening edit;
+- recover the actual outcome and receipt.
+
+Map each step to the App/shared contributions (C, P, ACT, RS, AS, LOOP, PANEL,
+WD, EXEC, ADAPTER, HOSTING) and to the host contribution it needs. Keep the
+concrete operation, autonomy and environment `UNRESOLVED{OI-021}`; the
+supports/run adjustment on FX-PIPE-01 is a proposed fixture only. State the
+owner/check allocation, the staging without PEC or Domains, the evidence
+standing, and what the V4-EXM-14 round-trip witness will need (designed, not
+run).
+
+**Relay file.** A single, deduplicated question set for the SWBPIPE owner, for
+human relay. Consolidate:
+- LOOP §13 Q-1…Q-7;
+- PANEL §8 Q-1…Q-9;
+- ADAPTER §12 XQ-1…XQ-12;
+- ACT U-04;
+- EXEC's host items;
+- R2-20;
+- the OI-021 activity-definition questions from HANDOFF_SWBPIPE_DOMAINS.md.
+
+For each question give: ID, question, the App files and IDs that depend on it,
+why it matters, its point of need, what the App assumes meanwhile, and the
+answer form requested. Put first the questions that block positive checkpoint
+cases, namely capture-evidence reference and constraint receipt. Mark the file
+PREPARED FOR HUMAN RELAY — not delivered.
+
+**DEL-09-09 cases (OUT-001/002/003).** Designed, not-run definitions for:
+- the V4-EXM-25 external control suite (inspect → submit → engineer accepts →
+  receipt, with stale / duplicate / interruption / unknown cases);
+- the V4-EXM-24 one-new-operation three-surface trace plan and comparison
+  categories;
+- the generated-versus-adapted work account structure.
+
+Keep the OI-003 extension ruling separate: record it, never perform it. Use
+FX-PIPE-01 and the ADAPTER fixture inventory. Show every input still missing.
+
+## V3 — final bounded consistency check of the full set (two independent reviewers)
+
+Candidate: commit `9fc77baa3`, 16 Design files. List them with
+`git ls-tree -r --name-only 9fc77baa3 -- projects/chirality-app-v4/execution | grep /Design/`,
+excluding `generated/`. Rulings: R1–R4, OWNER_DECISIONS (DECISION-1 and -2).
+Use a private scratch folder: `<scratchpad>/v3-<letter>/`.
+
+For every R4 ruling, check each file it names, and any other file that touches
+the subject, against the actual text: holds / partial / fails, with file and
+section evidence. Also check:
+
+- (a) act names, the five class values, dispositions, events and carriage
+  vocabulary are consistent;
+- (b) every fixture ID cited exists in C-v0.4 §10, or is a declared local
+  `L-‹file›-n` with a reason;
+- (c) no file claims implementation, qualification, host delivery or adoption,
+  a performed human act, or relay delivery;
+- (d) D5 and D6 are applied faithfully and not over-credited;
+- (e) cross-file citations point at the current versions;
+- (f) assess each item in [R5_CANDIDATES.md](R5_CANDIDATES.md).
+
+Write only `reviews/V3-<letter>.md`. Give BLOCKING / MAJOR / MINOR residuals,
+each with the side to change, and a verdict: **MERGE AS DRAFTS** or **DO NOT
+MERGE**.
+
+- **V3-A:** DEL-04-01, 04-02, 04-03, 02-01 (plus EXAMPLES), 02-03, 05-01,
+  05-02. R5 items Y-2, Y-3, Y-4, Y-5, Y-6.
+- **V3-B:** DEL-03-01, 03-02, 03-03, 03-04, 01-01 (HOSTING, and PIN_SPIKE as
+  context), 09-06 (CA, RELAY), 09-09. R5 items Y-1, Y-7, Y-8, Y-9. Also check
+  that RELAY-v0.2 covers every host item named in the other files. For each
+  host item, confirm that its question is there and that the "App assumes
+  meanwhile" text matches the current rulings.
+
+## C1 — bounded closeout comparisons (`chirality-root:bundled:workflow:bounded-reconciliation`)
+
+**Integrated candidate:** the final Design set after R5, at the commit named in
+the dispatch message.
+
+**Boundary decision (HELP_HUMAN, recorded in the graph).** The DAG-001
+`SOURCE_MANIFEST.sha256` binds all 41 `ScopeOfWork.md`, `Dependencies.csv` and
+`_DEPENDENCIES.md` files. Editing any of them would move DAG-001 currency, and
+register additions change graph relationships, which requires project-dag
+departure. This closeout therefore **does not edit** SoWs, registers,
+`_STATUS.md`, `_CONTEXT.md` or `_REFERENCES.md`. Each warranted change to
+those files is returned as a **precise proposed change** (file, section or
+row, current text, proposed text or row, grounds), for application through the
+owning route in a successor undertaking.
+
+**Write scope:** `closeout/C1-<group>.md` in this run folder only.
+
+**Per deliverable, record:**
+
+1. **Commitment → result:** each OUT/REQ in the SoW mapped to the Design
+   section(s) that develop it at 60% level. State whether each is *developed*,
+   *partially developed* (and what remains) or *not addressed*. Distinguish
+   missing definition from obligations that only implementation, qualification
+   or a witness can meet.
+2. **Result → commitment:** anything the Design files define beyond or outside
+   the SoW, such as integration additions or new elements, with its authority
+   (R-ruling, owner decision) or flagged as unsupported.
+3. **Proposed SoW corrections:** for example, TBD entries whose open issue is
+   now ruled (DECISION-1 D2/D3, DECISION-2), text superseded by rulings
+   (canonical content hash, one-effect, "checked" wording), and gaps
+   (e.g. DEL-02-03 REQ-002 App hold under D6).
+4. **Proposed register changes:** missing mirror rows and missing arcs, from the
+   V1/IR1/V2/V3 register findings and the Design files' findings sections. Mark
+   each *mirror only* (same arc, no topology change) or *new arc* (topology
+   change; would need DAG-002).
+5. **Open items** that remain: each with its owner and point of need.
+6. **Lifecycle observation:** the actual state is INITIALIZED. Say whether
+   IN_PROGRESS would now be the truthful state. Do not change it.
+
+Do not repeat design content; cite sections.
+
+- **C1-A:** DEL-04-01, 04-02, 04-03, 02-01, 02-03.
+- **C1-B:** DEL-03-01, 03-02, 03-03, 03-04, 01-01.
+- **C1-C:** DEL-05-01, 05-02, 09-06, 09-09.
+
+## V4 — independent review of the final Wave-2 candidate
+
+**Candidate:** the commit named in the dispatch message. It includes every R5
+edit (Wave-1 files at v0.5; EXEC, ADAPTER, CA, RELAY and XT at v0.3; GUIDE at
+v0.2).
+
+**Why it is needed:** V3 reviewed the pre-R5 texts. The standing Git authority
+requires independent review that covers the actual candidate.
+
+**Scope, bounded:**
+1. Every R5 ruling, R5-1 through R5-10, checked against each file it names,
+   and against any other file that touches the subject: holds / partial /
+   fails, with file and section evidence.
+2. The integrator's pass-through rulings, each checked against the text:
+   - HP-4 and person-directed turns (EXEC §2);
+   - multi-checkpoint precedence (EXEC §3.5);
+   - App-only (HS-5);
+   - the SQ-02-status mapping (HS-3);
+   - E1 via X is unsupported (CA §2.2 and RELAY SQ-02).
+3. GUIDE-v0.2 in full. This is its first independent review.
+4. A no-over-claim sweep of all 17 Design files: no claim of implementation,
+   qualification, host delivery or adoption, a performed human act, or relay
+   delivery.
+5. The four hold-support values are the only values used anywhere.
+
+**Write scope:** `reviews/V4-<letter>.md` only. Use a private scratch folder.
+Read-only git; no network.
+
+**Verdict:** MERGE AS DRAFTS, or DO NOT MERGE with a list of BLOCKING items.
+
+- **V4-A:** DEL-04-01, 04-02, 04-03, 02-01 (plus EXAMPLES), 02-03, 05-01,
+  05-02.
+- **V4-B:** DEL-03-01, 03-02, 03-03, 03-04, 01-01, 09-06 (CA, RELAY), 09-09.
+
+## V5 — bounded independent check of the R6 application
+
+**Candidate:** the commit named in the dispatch message. **Scope:**
+
+- Every R6 ruling (R6-1 through R6-5) checked against each file it names, and
+  against any other file that states hold support, held actions, D5
+  attribution or V-GR1 values: holds / fails, with file and section evidence.
+- Check that the new WD §4.3.1 *held actions* element and EXEC §3.6 HS-1…HS-5
+  agree.
+- Recompute E1, E1c and E1d on E and on X, and V-GR1 on E and on X, from the
+  declarations. Confirm that every file states the same values and workflow
+  results.
+- Re-run a no-over-claim grep sweep across all 17 Design files.
+- Confirm RELAY-v0.3 is internally consistent and ready for the owner to relay.
+
+**Write scope:** `reviews/V5.md` only. Use a private scratch folder. Read-only
+git; no network.
+
+**Verdict:** MERGE AS DRAFTS, or DO NOT MERGE with a list of BLOCKING items.
+
+## R7 — in-place repair of the V5 residuals (one Type 2)
+
+**Basis:** candidate `2f42fba02`, [V5](reviews/V5.md) and
+[R7_RESOLUTIONS.md](R7_RESOLUTIONS.md). R1–R6 stand.
+
+**Task:** apply R7-1 through R7-4 and the carried observation in place, with
+no version bump. Record each change under an R7 ID in the file's latest
+"Changes from …" table (in the change table, not inside a verification-case
+table). Read siblings with `git show 2f42fba02:"<path>"` or from the working
+tree, and do GUIDE's re-pin (m-1) last, from the post-edit working-tree bytes.
+
+**Write scope:** the 16 Design files other than PIN_SPIKE. Use a private
+scratch folder. Read-only git only; no commits and no network.
+
+**Return:**
+
+- the files changed;
+- the R7 rows added;
+- the post-edit sha256 of each file;
+- anything R7 did not settle.
+
+## V6 — bounded independent check of R7
+
+**Candidate:** the commit named in the dispatch message.
+
+**Scope:**
+
+- Check each R7 item against its files: holds / fails.
+- Recompute E1, E1c, E1d and V-GR1 on E and on X, plus the L-WDEX-17-absent
+  row, and confirm that every file agrees.
+- Confirm RELAY is ready for the owner to relay.
+- Confirm GUIDE's pins match the candidate's bytes.
+
+**Write scope:** `reviews/V6.md` only. Read-only git; no network.
+
+**Verdict:** MERGE AS DRAFTS, or DO NOT MERGE with the BLOCKING items listed.
