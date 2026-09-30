@@ -1397,7 +1397,7 @@ I14's plan (`<wt>/scratch/i14/CHECKPOINT0_PLAN.md`, sha256 `7f50c788…`, 943 li
 A2 is committed as `e215c6007` on `codex/piping-f1b-20260928`. Every Scope §6 prediction was confirmed by a product run.
 - **(a) The admission order is approved.** Thermal/eigen, pressure thrust and exact-pressure operands are now checked before the element-primitive check. Only the reported family names change; the set of refused cases is the same.
 - **(b) Three admission checks cannot be reached in the product:** user-stiffness element, pressure thrust, and non-nodal term. They are pinned at unit level, and RETURN derives why each is unreachable.
-- **(c) Coexistence: I13's derivation is accepted, with a condition.** Exact-block cannot select a range-triggered case: its exact solve fails at `exact_radix` or at source closure, and large-magnitude triggers never reach the captured entry.
+- **(c) Coexistence: I13's derivation is accepted, with a condition.** [Superseded: RV17-1 showed that exact-block does select range-triggered cases (CX-F, CX-G), so the next sentence is false. See "F1b: rulings on RV17's review".] Exact-block cannot select a range-triggered case: its exact solve fails at `exact_radix` or at source closure, and large-magnitude triggers never reach the captured entry.
   - The candidates were tried on Mac main, and the gate base has 16 selections, none after a Range.
   - **Condition:** the derivation is written step by step in RETURN, and F1b's independent reviewer checks it (the M31b lesson). The candidate-side test stays.
 - **(d) The mixed captured invocation is pinned as observed.** It finalizes with a `partial` receipt: A `qualified`, B `unsupported` with OQ2's decline, and B's `ordinary_attempt` following W2's verdict (OQ15).
@@ -1554,3 +1554,1482 @@ These rulings were given in ROOT's message to I14 after RV14's review. They are 
   - N3 and N4 take no action;
   - N5 (main moved) is resolved by ROOT's merge of main.
 - **Erratum (RV16-N11).** The K5 merge commit `28517eaaa`'s message says "Merge main `df6d59e3c`", but its second parent is `65e2d6c2a`. RV14's delta check states the parents correctly. K5's merge record will disclose this.
+
+## K6: rulings on I15's checkpoint-0 plan (ROOT, 2026-09-28)
+
+I15's plan (`IMPLEMENTATION/K6/PLAN_CHECKPOINT0.md`, sha256 `4b4d9b27…`, 633 lines) is **approved**, with the rulings below. RV16-N4's ruling is implemented: every n² mode at 10,000 members or more, and CONT n10000 `lane-id`, is refused by name, independently in the runner and in the binary.
+
+- **N10 (the known dense timeouts at 1,000 members):** record, finish the running tier, then stop and report.
+  - I15's hypothesis, which is not yet a finding: the dense pivot screen refuses a pivot the skyline passes, and the refusal then runs the O(n⁴) dense witness.
+  - If K6's stage timings or outcome classes confirm it, the result is a **solver finding on main's dense path**, not K6's to fix. ROOT routes it. It bears on the F1b gate's part-2 timeouts at the same sizes.
+- **N11 (the slot):** B splits into separately granted slots:
+  - **B1:** everything except T3b and the ceiling run;
+  - **B2:** T3b, dense and lane-lu at 1,000 members;
+  - **B3:** the Q4 ceiling run, last and alone.
+
+  Use `--repeats 1` for the two timeout cases and for lane-lu; their memory figure is deterministic. The two-hour stop applies per slot.
+- **N7:** approved. After the host is released, `--counts-only` may run at 1,000 and 10,000 members at A1–A2, one process at a time, under a 512 MiB cap. It does O(nnz) work with no n² allocation, so it is not a "run above 100 members" under Q13.
+- **N9:** approved. Admission uses 96·n² + E_base. The claim ratio stays against F1b's bare 96·n².
+- **N8:** approved. There are two peak models, with the cap enforced on the in-place one, and ρ = max(RSS, move).
+- **N4:** confirmed. RF-LARGE's `y_reference` follows P1's rule.
+- **N5 and N19:** approved. The copies of SA's and PP's private items are pinned by test E and a mutant each.
+- **N6:** approved. After K5 merges, K6 merges main and re-runs E. If E fails on frame-only models, that is a stop.
+- **N15, the DEC-025 sandbox:** at A2, run the pytest wrapper once through the DEC-025 sweep entry, invoked as ROOT invokes it. If `ps` or `killpg` is denied, the test fails and is reported; nothing is skipped.
+- **N18:** approved. `memorystatus_level ≥ 80` before each run, and the memguard log is checked after each tier.
+- **N1–N3, N12–N14, N16, N17, N20:** approved as proposed. N14's 128×128 grid stays conditional, as the plan states.
+- **Next:** A1 (the Rust side) starts when ROOT releases the host, after F1b's gate part 2.
+
+## Records PR #1049 merged (ROOT, 2026-09-29)
+
+- **Merged:** [PR1049](https://github.com/sgttomas/chirality/pull/1049) at head `720924cbc`, merge `0256decc6`, 2026-09-29 00:09:20Z, with `--match-head-commit`.
+- **Review:** RV16's review at `04553ad05` PASSED: 0 BLOCKING, 5 SHOULD-FIX (all fixed in `adf43e1c5`), 11 NOTEs. Its delta check at `720924cbc` also PASSED, with 3 optional NOTEs.
+- **Hosted CI on the head:** 7 passed and 6 were skipped, as selected for a records-only change.
+- **RV16's delta NOTEs:**
+  - D1: the work graph is updated after merge.
+  - D2: R4:3 repeats V4's "5 NOTEs" miscount of its R3 check; the correct count is 4. R4 is not edited while V4 verifies it, and the erratum is recorded here.
+  - D3: the PR body's blank-line disclosure also covers two K5 review run records that are not scripts.
+
+## D1 revision 5a.3: rulings on V4's delta check at R4 (ROOT, 2026-09-29)
+
+- **Verdict accepted:** NOT VERIFIED, with 0 BLOCKING, 4 SHOULD-FIX (V4-U1 to U4) and 5 NOTEs (U5 to U9).
+  - V4-T1 is closed as ruled: the charge is implemented as specified, and the Lemmas, Theorem and Corollary hold step by step, apart from U5 and U8.
+  - Lemma B's count is checked against K4's Rust source, including every stage DS1 had not re-checked.
+  - No false claim was found.
+- **V4-U1: adopt the certified bound. F·est is removed from every step of the guarantee.**
+  - **The bound:** Uc = U/(1 − U·γ_m·‖|L|D|Lᵀ|‖₁), with U = ‖M(L)⁻ᵀD⁻¹M(L)⁻¹e‖_∞ taken from the verification's own LDLᵀ factor. Computed upward on nonnegative data, it bounds ‖K̃_P⁻¹‖₁ from above (derived).
+  - **Where it replaces F·est:** in the charge (t₁, t₃), in the θ check, and in W⁺ and W's own accuracy wherever they use F·est. The Hager–Higham estimate may remain only where it serves availability (screening or escalation). It never bears on honesty.
+  - **Why:** V4 demonstrated that, within the design's screens, the estimator's miss is unbounded (8.9e26 on a 12-DOF frame; 3.3e66 at p = 256), so no pinned F is a bound. Uc costs one substitution pair and one pass. On all 195 of DS1's states it is at least the exact norm and at most 0.0015·F·est, so it costs no availability there. Where it is loose, only availability is lost.
+  - **Consequence:** R5's §9 must state whether any uncertified step remains. The owner-list limitation ("the guarantee rests on Hager–Higham to F") is withdrawn once R5 is VERIFIED.
+- **V4-U2: adopt.** θ is tested per body, and the g check applies only to members in bodies that carry data. V4's two new controls must return to 128 under R5, and M20 and M23 must still be killed, on honesty if a case exists, otherwise on availability, stated as such.
+- **V4-U3: adopt.** SEEDED-SOFT joins §7 and K4's controls, and kills M22 with a false claim under the mutant. M21 and M14 still survive: R5 builds a killing case for each, or derives that another test implies each and records the guard as kept for the derivation.
+- **V4-U4: adopt.** F3's W1b obligation (§6.5) is corrected: the formed-load error is charged at its true size, with no 2^(q_W−6) under-charge, and the recovery side (E and the reaction-row count) is added.
+- **NOTEs U5 to U9: fix in R5's text.**
+  - U5: Lemma C's inequality at p = 512.
+  - U6: M14's slack arithmetic.
+  - U7: the M10 paragraph, whose error is first order.
+  - U8: θ's rounding direction, and the ∞-norm the Theorem needs where the charge uses the 1-norm.
+  - U9: the reliance wording, which changes with U1.
+- **Also for R5:** RV16-D2's miscount (R4:3 says "5 NOTEs" for V4's R3 check; there were 4).
+- **Next:** DS1 writes R5, V4 runs a delta check, and ROOT selects only after VERIFIED. K4 stays blocked until then.
+
+## F1b: gate re-run on 130445db2 accepted; the Mac is released (ROOT, 2026-09-29)
+
+- **Result: PASS** (I13; records in `<wt>/scratch/i13/gate2/`, SHA256SUMS over 3,456 files, verified by ROOT).
+- **Part 1:** 884 runs against G1's full base (`runs.jsonl` `9139140c…`); candidate `runs.jsonl` `30d99bf0…`.
+  - `gate_check` PASS: 0 trusted breach triples.
+  - C3: 832 runs, 0 differences.
+  - C1: exactly the ruled 28, with rows identical to the `948e0bb99` gate.
+  - Nothing changed outside C1 and C2.
+  - **C2: 0 sparse heap-cap aborts,** so the condition part 1 failed on `948e0bb99` now holds.
+    - The 4 CONT n10000 sparse runs now publish `MECHANICS_SOLVED`, `sensitive` and `needs_recompute`, with `SPARSE_OBSERVATION_LANE_NOT_RUN` and the lane's fields `not_observed`. Peak RSS is 4.82–5.17 GiB.
+    - The 12 dense runs get the guard's refusal. The 8 other sparse n10000 runs get named M03 refusals.
+  - Against the `948e0bb99` gate, 880 of 884 runs are identical. Only those 4 CONT runs differ.
+- **Part 2:** all 8 dense 1,000-member runs time out at 1,800 s on both sides, with no base/candidate mismatch. Each run's load is recorded, and there was one load wait. This matches K6's predicted dense-path timeouts (K6 plan, N10); K6's stage timings will show where the time goes.
+- **RV11D-N2 on CONT n10000:** reactions and end actions are equal bit for bit (AX and ROT). 8 of the 13 cases are now observed, all equal.
+- **Next for F1b:** D (CHANGE_RECORD, RETURN, records), then the PR, an independent reviewer, hosted CI with the full-SHA dispatch, DEC-025 and GEN-8.
+- **Host released** at about 02:10Z. The order of use:
+  - K5 stage 2 (I14; FK K5 tests and RV14-M5) and K6 A1 (I15) may build concurrently, each within its own 2-cargo-job limit.
+  - Quiet-host slots follow, one at a time: DEC-025 for K5, then DEC-025 for F1b, then K6's B1, B2 and B3.
+
+## D1 revision 5a.3: rulings on V4's delta check at R5 (ROOT, 2026-09-29)
+
+- **Verdict accepted:** NOT VERIFIED, with 1 BLOCKING on availability (V4-V1), 1 SHOULD-FIX (V4-V2) and 5 NOTEs (V3 to V7).
+- **Honesty is confirmed:**
+  - Lemma D is correct against K4's `factor.rs` (`81f81f24…`).
+  - In V4's stress test, Uc never fell below the exact norm in 46,315 factors where it existed.
+  - "No uncertified step remains in the honesty guarantee" holds.
+- **V4-V1: do not accept the loss. Add V4's shifted-factorization bound and take the smaller of the two.**
+  - **Why:** Uc's comparison matrix loses every sign cancellation, and on R1's own RF-LARGE frames it grows geometrically along the elimination. At 100 members, five of six models leave 128. At 1,000 members, five of six would be Unresolved at every precision, however well conditioned they are. RF-LARGE-scale frames are what the product must solve, so this loss is not acceptable.
+  - **The bound:**
+    - Factor K̃_P − σI with the same loop. If every pivot is positive, then λ_min(K̃_P) > σ′ := σ − γ_m·N_L′ − (the shift's rounding), by Weyl and Lemma D's step 1, so ‖K̃_P⁻¹‖₁ ≤ √n/σ′. Form every step with directed rounding.
+    - σ may be chosen from est; that is an availability use only.
+    - A failed shift halves σ, a bounded number of times, then falls back to Uc alone.
+    - The certified bound used is min(Uc, the shift bound), with the work charged.
+  - **R5's R1 lane is extended to RF-LARGE** at 10, 100 and 1,000 members, in K4's elimination order, within emulation limits. R6's §1 and §9 report its selections honestly.
+- **V4-V2: adopt per-body Uc and per-body shift bounds,** from the same passes. M17 and M24 then lose their kills. They are recorded as kept for the derivation, as M21 is, unless R6 builds a single-body kill.
+- **NOTEs V3 to V7: fix in R6.**
+  - V3: M21 is vacuous only for published W1a cases (DESIGN §4.2 admits nonzero support motion). Restate the scope, and drop "no other test implies it".
+  - V4: the 1 + 2^-9.5 factor is derived, not measured.
+  - V5: THETA-STUB's over-breadth in a decoupled zero-state block. Narrow θ further, or record why not.
+  - V6: an encoding rule for a Uc of 2^1024 or more in the receipt.
+  - V7: V4's own R3 count erratum.
+- **Next:** DS1 writes R6, V4 runs a delta check, and ROOT selects only after VERIFIED. K4 stays blocked until then.
+
+## K6: rulings at I15's A1 stop (ROOT, 2026-09-29)
+
+- **The stop was correct.** Test D breached the DEC-053 parity basis (1e-9 relative) on three 100-member models: CHAIN-ROT at 7.15e-8, TREE-AX at 1.45e-8 and TREE-ROT at 4.78e-8.
+  - In all three, both modes are **Sensitive**.
+  - Test E shows both vectors are SA's own results, bit for bit. Bitwise K holds and the outcome classes agree.
+  - Every Passed model is within 5.9e-11.
+  - This agrees with P1's product-level finding at the same sizes (`DETECTION/RETURN.md:242-249`).
+- **Ruling: option (a).** The DEC-053 basis is asserted where both modes are Passed. Where a mode is Sensitive, the delta is recorded and not asserted.
+  - **Why:** a Sensitive publication carries no accuracy claim at that level. The product publishes it as `needs_recompute`, and that demotion is M03's statement that the integrity checks could not confirm the result. The outcome classes must still agree in every case; that stays asserted.
+  - **Recorded as a stale-design item:** §4.8 item 3's "published quantities agree within the DEC-053 basis" is read as applying to Passed publications.
+- **Questions:**
+  1. `--counts-file` is approved: observation runs take counts from the counts-only record, checked by the model's canonical digest, with the estimates recomputed and the refusals kept.
+  2. ρ for admission uses RSS net of a process baseline, measured in the same slot by a no-op run of the binary. Admission at 1,000 members or more uses ρ measured at 100 members or more.
+  3. The CONT n10000 lane counts (675,174,982 ROT, 562,627,485 AX; F1b's 675,179,982 is the full-block form) are recorded as context. The run stays never-run.
+  4. The TREE identity-bound erratum (75n − 72) and 5, the lane-id `ledger` stage, are accepted.
+  5. The gap between product-level and kernel-level RSS (F1b's CONT n10000 at 4.8–5.2 GiB, against K6's kernel sparse estimate of about 0.38 GiB) is recorded. B1's ascent will measure the kernel side.
+- **Disclosed slip:** I15 ran `git add -N` and `git reset -q` on `H/` in the k6 worktree, two index operations its brief forbids. The net effect is nil: the index is empty and HEAD is unchanged. Recorded; no further action.
+- **Next:** A2 (the runner, its tests, the pytest wrapper, `--plan`, `--smoke`). While K5's DEC-025 sweep runs on the Mac, I15 writes code only.
+
+## K5 merged (ROOT, 2026-09-29)
+
+- **Merged:** [PR1044](https://github.com/sgttomas/chirality/pull/1044) at head `babcf5e65`, merge `1cdeae2c1`, 2026-09-29 03:18:22Z. The merge record is `IMPLEMENTATION/K5_MERGE/RECORD.md`.
+- **DEC-025 on `babcf5e65`:**
+  - the suites match the Mac baseline, except K5's added tests (FK +18, NI +13, PP +4) and the three known Mac platform failures;
+  - pytest 3023 passed;
+  - the wasm and production builds passed;
+  - vitest failed once on `App.test.tsx`'s known 30 s render timeout, and the immediate re-run passed 2822 of 2822. K5 changes no desktop file.
+- **Consequences:**
+  - F1b merges second, so it merges main and re-runs its suites, T9 and gate part 1, which is quick at about 6 minutes, before its merge.
+  - K6 merges main and re-runs test E (N6).
+
+## K6: A2 accepted; schedule approved; B1 granted (ROOT, 2026-09-29)
+
+- **A2 accepted.**
+  - H's suite passes, and the runner's 27 tests pass, including the live watchdog and the negative control.
+  - N15: the wrapper passes through the DEC-025 pytest surface's invocation, so `ps`, `pgrep` and process-group kills work in that context.
+  - `--smoke`: staged is identical to SA's entry on 84 of 84 lines. The watchdog killed its child at 136,480 KiB against a 128 MiB cap, within one poll's growth. The heap-cap abort was classified `heap_cap_abort`.
+- **Committed on the K6 branch:** A1 and A2 at `9ababe4f2`, with the records moved to the branch as for K5 and F1b. Main `1cdeae2c1`, which includes K5, is merged in at `1f354c20b`. It overlaps no K6 file.
+- **N6:** before B, re-run test E and H's full suite on `1f354c20b`. A failure of E on frame-only models is a stop.
+- **The schedule is approved** (`_run_records/a2/plan.txt`, sha256 `93cd36d5…`, 138 rows).
+  - 14 rows are refused by name.
+  - Grid 128×128 is deferred by name until ROOT rules on it after 96×96.
+  - T6 (the ceiling run) is decided at B3, by the measured ρ under the rule as written.
+- **B1 is granted:** T1 → T2 → T3a → T4 → T5.
+  - B's binary is built from `git archive 1f354c20b`, and every record carries `--source-commit`.
+  - **An added host condition** for timed runs, as the gate used: before each run, wait while the 1-minute load average is above 8, until it is below 6; record the load at start and end. Other agents are building intermittently. Memory figures are deterministic; timings carry the recorded load.
+  - Send `--project` after T2. B2 and B3 are separate grants.
+
+## F1b: rulings on RV17's review (ROOT, 2026-09-29)
+
+- **Verdict accepted:** PASS at `f183e1fa9`, with 0 BLOCKING, 4 SHOULD-FIX and 5 NOTEs (`REVIEW/F1B_REVIEW.md`). All four SHOULD-FIX findings are fixed before merge.
+- **RV17-1: A2(c) is re-ruled.**
+  - My A2(c) premise, "exact-block cannot select a range-triggered case", is **false**. CX-F and CX-G (a 1 m member, EA/L ≈ 2^16 N/m, a tip load of 3·2^-1016 or 2^-1015 N) are range-triggered, and main publishes them `MECHANICS_SOLVED` through exact-block, with a receipt.
+  - **Coexistence still holds, on a different ground.** The selected exact-block arm comes before the W2 arm, so wherever exact-block selects, F1b publishes main's bytes by construction. RV17 confirmed this on all 10 selected runs, on the recorded probe and on its own build.
+  - **Fix:** I13 corrects D10, dropping the false step 4 and resting coexistence on the ordering. I13 also adds the brief's positive coexistence test with CX-F or CX-G (F1b equals main in full-envelope sha256, on both entries and in both modes), with a mutant that moves W2 before exact-block, killed.
+- **RV17-2 and RV17-3: add the tests.**
+  - Pin the nonlinear blocked envelope in full, which kills RV17-M1 (`let linear = true;`).
+  - Add a two-spring W2 publication test, which kills RV17-M2 (every spring action taken from the first spring).
+- **RV17-4: disclose it; "within the criterion" means trusted publications only.** 8 of the 14 published C1 runs are outside R1's exact references (up to 9.7e-8, and 1.7e-5 for SKEW-LEF-large). All are Sensitive and equal main's same-family Sensitive pattern.
+  - This matches the K6 ruling: Sensitive publications carry no accuracy claim at that level, and `gate_check` counts trusted publications.
+  - I13 records it in RETURN's C1 section.
+- **NOTEs:**
+  - N1 (RV17-M4 changes only the refusal text on an input main also refuses): recorded.
+  - N2 (the lane's peak is about 16P + 24P′, while the guard estimates 24P for the identity build): recorded in RETURN. K6 measures the lane against both (Q12). The ceiling ruling will consider it; D12 is unaffected.
+  - N3 (96 B per n² is the n² coefficient, not a total-heap bound; the largest admitted model is 3.1 MB under the ceiling): recorded. K6's B3 ceiling run measures it.
+  - N4 and N5: recorded.
+- **Next:** I13 makes the fixes (tests and records), with mutants from clean archives. Then RV17 runs a delta check, followed by hosted CI with the full-SHA dispatch, DEC-025 in a quiet slot (after K6's B1) and GEN-8.
+
+## K6: B1 accepted; B2 granted (ROOT, 2026-09-29)
+
+- **B1 accepted.** Records are committed on the K6 branch at `962dd4e3b`, with the runner fixes made during the slot, each tested and disclosed.
+  - 110 of 125 rows ran, all ok. 14 were refused by name, and grid 128×128 was deferred.
+  - All 21 cross-mode pairs agree on class, and staged equals SA's entry on every run.
+  - N6 held: test E passes after K5's merge.
+- **Findings, observations only:**
+  - **Kernel sparse memory is linear in members:** the heap slope is 0.999–1.002 for CHAIN, TREE and CONT from 10 to 10,000 members. This confirms §4.8's single claim at kernel level.
+  - **F1b's dense estimate is sound in its coefficient:** heap is 1.004–1.057 × 96·n² at 100 members. B2 adds 1,000 members.
+  - **F1b's lane estimate:**
+    - for CONT, heap-move / 24·P_id is 0.66–1.33, and RSS is 1.77× at 1,000 members;
+    - for CHAIN and TREE, other buffers dominate (4.5–9.0×).
+    - This bears on RV17-N2 (the lane's peak is about 16P + 24P′) and on the lane ceiling.
+  - **The product-level gap:** CONT n10000 sparse is about 250 MiB heap in the kernel, against 4.8–5.2 GiB RSS at product level (F1b's gate). F1b's peak attribution puts most of the product's memory in result-row publication, not the solver.
+    - **The dense-scrutiny and lane ceilings therefore cannot be set from kernel figures alone.** V-P's product-level measurements are needed. Recorded for the ceiling ruling.
+- **B2 is granted (T3b):** dense and lane-lu at 1,000 members, with a projection of 1.53 h. **Grid 128×128 is admitted into B2's remainder** (E_adm × the measured ρ ≈ 1.54 GiB, within C/2; projected 3–4 min).
+  - The two known dense timeouts (N10) run once each, and their stage timings are the record N10 needs.
+  - The load-wait rule applies.
+- **B3** (the ceiling run) is decided after B2 sets ρ from CHAIN dense at 1,000 members.
+
+## K6: rulings at I15's B2 stop (Q3's premise measure) (ROOT, 2026-09-29)
+
+- **The stop was correct.** The first dense 1,000-member run (CHAIN-n01000-AX, 5 of 5 repeats, 622 s, Sensitive in both modes) confirmed Q3's premise on requested heap (3,319 MiB) and on the macOS physical footprint (3,411 MiB), both below P1's Linux 3,605 MiB. It refuted the premise on RSS (4,782 MiB, above C/2).
+  - I15's hypothesis, not tested: macOS keeps freed large blocks resident, so RSS accumulates across the stages' rising and falling heap peaks. Linux glibc unmaps large blocks, so P1's Linux `ru_maxrss` compares with the footprint, not with macOS RSS.
+- **Ruling: option (a), with a safety condition.**
+  - **Q3's premise and ρ are read on the macOS physical footprint** (`time -l` peak memory footprint; the measure macOS uses for memory pressure). It is the one comparable with P1's Linux RSS. RSS stays recorded beside it on every run.
+  - **The watchdog stays on RSS,** at C, as the conservative host guard. It is unchanged.
+  - **Added condition:** a run admitted by the footprint rule must also have a projected RSS of at most 0.8·C, where projected RSS = the footprint estimate × the largest RSS-to-footprint ratio measured in the same family and mode. Otherwise it is deferred by name.
+    - For B2's remaining dense 1,000-member runs, that is about 4.8 GiB ≤ 6.4 GiB, so admitted.
+    - For B3 at C = 16 GiB, about 8.7 GiB ≤ 12.8 GiB, so admitted, subject to B3's own grant.
+  - **Why:** the rule exists to keep runs clear of the watchdog and the host safe. The footprint is the macOS measure of memory pressure; the heap cap still bounds live heap deterministically; the RSS watchdog still bounds resident memory; and the added condition keeps expected RSS below the watchdog with margin.
+- **Recorded for the ceiling ruling.** At 1,000 members, F1b's dense estimate is exact in heap (1.005 × 96·n²) and close in footprint (1.033), but macOS RSS reaches 1.448 × 96·n².
+  - So a product run just under the provisional 6 GiB dense ceiling could show about 8.7 GiB resident on macOS.
+  - The ceiling bounds estimated heap, not resident memory. This goes to the owner's ceiling decision, with the product-level gap from B1.
+- **Other figures:**
+  - dense heap slope 1.975 over 100–1,000 members;
+  - the dense `factor` stage takes 78.7 s at 1,000 members for the Cholesky (not an N10 case).
+- **B2 resumes** under this ruling: runs 098–108, then grid 128×128. **B3** stays a separate grant.
+
+## F1b merged (ROOT, 2026-09-29)
+
+- **Merged:** [PR1052](https://github.com/sgttomas/chirality/pull/1052) at head `6fa422979`, merge `59cb20073`, 2026-09-29 05:31:23Z. The merge record is `IMPLEMENTATION/F1B_MERGE/RECORD.md`.
+- **The gates, on the final head:**
+  - RV17 PASSED, with its delta check PASSED as well;
+  - hosted CI was green, including Linux's numerical suite, the first cross-platform check of the three hash pins;
+  - the dispatch (36524065976) succeeded;
+  - DEC-025: F1b's 41 tests are the only suite change, pytest and vitest were clean, and so were the builds;
+  - the src-tauri suite: 116 of 116;
+  - GEN-8.
+- **Native witnesses: ruled as join items** (§7.5), as the brief proposed. The gate covers the product's solve path on both entries, the src-tauri suite covers the desktop's Rust side, and F1b changes no native shell or desktop file.
+- **Still provisional, for the owner:** the dense-scrutiny and observation-lane ceilings at 6 GiB. The kernel-to-product gap and macOS RSS inflation are recorded from K6; V-P's product-level runs are needed as well.
+- **Next on the facade path:** F2a, after D1 5a.3 is selected, K4 merges, and ROOT sets the budget limits from K6 and V-K.
+
+## D1 revision 5a.3: rulings on V4's delta check at R6 (ROOT, 2026-09-29)
+
+- **Verdict accepted:** NOT VERIFIED, with 0 BLOCKING, 1 SHOULD-FIX (V4-W1) and 2 NOTEs.
+- **The design is confirmed:**
+  - V4-V1 is resolved, and Lemma E is correct step by step.
+  - V4's stress test (95,142 shifted factorizations, 14,186 bounds) found no case of S below the exact norm.
+  - "No uncertified step remains" holds: the estimate only screens and chooses σ.
+  - The per-block decomposition is sound.
+  - RF-LARGE availability is confirmed independently. At 1,000 members, S/‖K̃⁻¹‖₁ is 2^7.09 to 2^7.29 against the exact binary64 norm, and S is at least the norm on all six.
+- **V4-W1: fix the evidence in R7, with no design change.**
+  - emu6 indexes the Hager–Higham estimator's vectors by elimination rank; K4 indexes them by free position.
+  - R7 re-indexes emu6 as K4 does and reruns the estimate-dependent evidence: the mutants, the sweep, the controls and the HH-FOOL figures.
+  - It corrects the HH-FOOL statements: the hidden block's miss is 2^37.8 at m40 and 2^97.8 at m100.
+  - It records M24 as kept for the derivation, unless another control kills it. K4's control list must not expect HH-SLENDER-m40 to kill M24.
+- **V4-W2:** R7 labels M27's "no selection kill at design precisions" as argued, since it rests on the estimate-based condition screen. M27's low-precision kill stands.
+- **V4-W3:** R7 states that S is polynomially loose only when the estimate is within about 8× of the norm, and that otherwise availability falls back on Uc. It also states that up to three extra factorizations are charged to the work budget, and that their cost on large models is for K6b and V-K to measure.
+- **Next:** DS1 writes R7, V4 runs a delta check, and ROOT selects only after VERIFIED.
+
+## K6: B2 accepted; the dense-path finding (N10); B3 granted (ROOT, 2026-09-29)
+
+- **B2 accepted.** Records and the B2-stop rule are committed on the K6 branch at `3799e3764`.
+  - 13 runs were measured.
+  - Every RSS stayed below its projection, at 0.61–0.97 of it.
+  - Dense heap is 1.005 × 96·n² at 1,000 members, which confirms F1b's dense-estimate coefficient.
+  - Factor time scales as n³.
+- **Finding N10, confirmed, on main's dense path, not K6's code.** This is recorded as a T3 finding.
+  - On RF-LARGE-CHAIN-n01000-ROT and TREE-n01000-AX, the dense Cholesky refuses a pivot at DOF 6001 or 6002 of 6006, after 65–86 s. The O(n⁴) dense pair witness then runs until the 1,800 s kill.
+  - The time budget is not checked inside the witness.
+  - The sparse path publishes both models as Sensitive, so dense scrutiny both disagrees in class and does not end.
+  - F1b's gate part 2 shows the same timeouts at product level, on base and candidate alike. The behaviour predates F1b.
+  - **Route:** a kernel follow-up slice, on the T3-close list, to be scheduled by ROOT. The slice bounds the dense witness, with a budget check inside it and a size limit or a cheaper witness above one, and it examines why the dense pivot screen refuses where the skyline passes, since I15's 2j + 2 screen-bound hypothesis is not proven.
+  - Until then, product users running dense scrutiny on such models wait until they cancel the background job. The solve runs as a cancellable job.
+- **B3 is granted:** K6-CEIL-CHAIN-n01364-AX dense, at C = 16 GiB with the heap cap at 15.5 GiB.
+  - It is admitted under the ruled rule: a 7.78 GiB footprint estimate, within 8 GiB, and a projected RSS of 11.29 GiB, within 12.8 GiB.
+  - It runs once, alone on the host apart from DS1's single `nice -n 19` emulator process, with the memory guard running.
+  - If the dense factor refuses and the witness runs to the timeout, the memory figures at the refusal point are still the record B3 needs.
+
+## K6: B3 accepted (ROOT, 2026-09-29)
+
+- **B3 (the Q4 ceiling run), K6-CEIL-CHAIN-n01364-AX dense, 8,190 DOFs:** ok, 5 repeats, Sensitive, with no factor refusal and no watchdog or heap-cap event. It is committed on the K6 branch.
+  - **Heap peak:** 6,459,755,398 B, which is 1.0032 × F1b's 96·n² (6,439,305,600 B) and 1.0027 × F1b's 6 GiB provisional ceiling (6,442,450,944 B).
+  - **Footprint:** 1.0078 × 96·n².
+  - **RSS:** 1.1010 × 96·n², which is 0.585 of the admission projection.
+  - **The macOS RSS excess over footprint is not a function of size.** It was 1.402 at CHAIN n1000 under load and 1.093 at the ceiling.
+- **Host context accepted.** A process outside this work (a Codex app-server job in another project folder) ran at nice 0 during B3. B3's recorded quantities are per-process and memory is deterministic, so it is accepted as disclosed. Timing is context only. ROOT did not touch the process.
+- **Recorded for the ceiling ruling (owner-facing):**
+  - At the kernel level, F1b's dense estimate is accurate to about 0.3% in heap at the ceiling. Actual resident memory on macOS runs 1.1–1.45× above it.
+  - At product level the overhead is larger (K6 B1 and F1b's attribution).
+  - The ceiling's final value is the owner's decision, with V-P's product-level measurements.
+- **Next:** C (mutants), then D (records), then review.
+
+## D1 revision 5a.3 SELECTED (ROOT, 2026-09-29)
+
+- **V4's verdict at R7: VERIFIED**, with 0 BLOCKING, 0 SHOULD-FIX and 0 NOTEs (`REV_5A3_CANDIDATE/V4_VERIFICATION.md`, "Delta check at R7").
+  - V4 reproduced DS1's claims with its own emulator, confirmed that the estimator's re-indexing matches K4's `condition`, and read all 57 hunks of the R6→R7 diff.
+- **Selected: D1 revision 5a.3**, as specified by `REV_5A3_CANDIDATE/D1_REV_5A3_SSTAR_RESOLUTION_R7.md` (sha256 `5502aef9803f05f42e93c2a05a0de495401e3f94fe92adb19fc2a0c3f80d8f42`).
+  - The governing text is R7's **§5, "The exact amended text (addendum blocks)"**, §5.1 to §5.9. It amends `DESIGN.md` revision 5a.2 at §4.1.3, §4.1.4, §4.1.6 (with the new §4.1.6.1 item 6a, §4.1.6.2 and §4.1.6.3), §4.1.9 and §5 item 1.
+  - `DESIGN.md` stays hash-pinned at 5a.2. The addendum governs where it applies, and R7's derivation sections (§2 to §4 and §6 to §10) are its warrant.
+  - The earlier candidates (the candidate and R2 to R6) and V4's intermediate verdicts are history.
+- **What the selection establishes:**
+  - W1a's honesty guarantee: every accepted precision satisfies b, derived with **no uncertified step**. The Hager–Higham estimate only screens and chooses the shift.
+  - The formation charge with the certified bound B = min(Uc, S), per block. Uc is the comparison-matrix bound (Lemma D), and S is the shifted-factorization bound (Lemma E).
+  - The Φ floor at 512, the verification estimate at W ≤ V/4, the hybrid bounded-denominator gate, and the best-state bounded test.
+  - **Owner-list update:** the earlier limitation, "the guarantee rests to a factor F on an uncertified estimate", is **withdrawn**. R4's F was replaced by the certified bounds.
+- **Open or argued, from V4's list, none of which is a step of the honesty guarantee:**
+  - **Kept for the derivation, with no kill:** M17, M21, M24, and M27 at design precision.
+  - **Availability-only kills:** M20, M23, M25, M26, M28 and M29.
+  - **Argued:** M27's no-kill claim; the θ-binding interpretation of THETA-STUB-COUPLED; LEVER2's outcome under every elimination order.
+  - **Measured, not proved:** the availability figures, and that no block is both est-fooled and Uc-loose.
+  - **Standing premises:** Lemma B's count as V4 recounted it against the Rust; Lemmas D and E tied to K4's factor loop as read; K* nonsingular per body.
+  - **Out of scope for now:** W1b until F3 meets its §6.5 obligations; the shift's cost on large models (K6b, V-K).
+- **K4's obligations, now unblocked.** K4 implements R7 §5 in Rust, within its write set (`FK/structural/retained/**`), and adds:
+  - directed wide rounding (every operation up, the one denominator down, per Lemmas D and E);
+  - the shifted-pivot variant of the factor loop;
+  - per-block bounds (Uc_c, S_c, B_c) over the free-free pattern's connected blocks;
+  - W's contributions at q_W = min(3p + 64, 1024);
+  - the charge C_q, the θ and g checks, W⁺, E, V, Φ, and the hybrid gate.
+  - **Tests:**
+    - E-UNIT, E-HEADROOM, E-ESTIMATE, E-CHARGE, E-UC and SD-G5;
+    - controls: LEVER2 at three gains, TILT-LEVER, SEEDED-COMMON, SEEDED-SOFT, CHARGE-SLENDER, HH-FOOL-m, HH-SLENDER-m40 and THETA-STUB-COUPLED, and RF-LARGE at 10 and 100 members. **HH-SLENDER-m40 must not be expected to kill M24.**
+    - mutants: those R7 §7 lists as killable, with the kept-for-derivation guards recorded as such.
+  - K4's `retained/factor.rs` is the loop Lemmas D and E were read against. Any change to its pivot or rounding logic reopens those lemmas.
+
+## K4: rulings on I12's A3-0 plan for revision 5a.3 (ROOT, 2026-09-29)
+
+I12's plan (`IMPLEMENTATION/K4/PLAN_A3_5A3.md`, sha256 `07186550…`, 784 lines, committed on the K4 branch) is **approved**, with the rulings below.
+- **The principle for every question:** where a choice bears on honesty, R7's text governs. Where it affects availability only, K4's practical form is accepted, and any difference from emu7 must be explained in RETURN.
+- `factor.rs`'s `factor()`, `pivot_passes`, `negative_pair`, `solve_scaled` and `solve` stay byte-identical, which keeps Lemmas D and E tied to the loop as read.
+
+**The questions:**
+1. **Q1:** GEN is the bit oracle, and emu7 is the selection-level cross-check. Explain every difference.
+2. **Q2:** ‖ā_q S‖₁'s stages are rounded upward, per R7 item 6. This bears on honesty, so R7 governs.
+3. **Q3:** K4's est_c rounding (block sums rounded once, then a division) is accepted. It is availability only, and RETURN states that.
+4. **Q4:** the read-only est_c observer in `condition` and the L and D read accessors are accepted as outside "pivot or rounding logic". A test pins `factor()`'s L and D bits unchanged.
+5. **Q5:** the shifted loop is a separate operation-for-operation copy, bound by the loop-parity test and K4-M35.
+6. **Q6:** best-state comparison is exact, with `ExactWideSum::add_product_of`, as recommended. A span overflow stops with `Span`, and that is recorded as an availability outcome.
+7. **Q7:** use emu7's rejection order: (a), (b), `uc`, θ, g, then (d).
+8. **Q8:** E rounding to +∞ gives a terminal `Unresolved(ResolutionScaleUnencodable)`, which F2a maps to `receipt_encoding`.
+9. **Q9:** a body with no data block has no B_b entry and θ = 0. F2a and D2 confirm this at their slices; routed.
+10. **Q10:** E-ESTIMATE's reference is GEN's exact rational solution.
+11. **Q11:** E-HEADROOM uses the P state's own ê. At a verification it is the stop rule's E.
+12. **Q12:** accepted, on one condition.
+    - A support group's E is one exact sum over all contributors of its components, rounded once, in the direction R7 §3.1 prescribes for E.
+    - RETURN must derive that this form meets every requirement R7's lemmas place on E for the group's published magnitude. It is not measured by emu7.
+    - The reviewer checks the derivation. It is honesty-relevant, because ê sets both V and the allowances.
+13. **Q13:** measure RF-LARGE-100's debug runtime at A3b. Any model over 60 s moves to an `--ignored` lane, with CHAIN-AX and TREE-AX kept in the default suite.
+14. **Q14:** pin CEIL5A3 for K4-M24 only after GEN confirms that both operands are selected and the combination is Unresolved.
+15. **Q15:** yes. Include the low-precision stress that kills M27.
+16. **Q16:** `not_covered` stays empty in K4, since F2a owns the not-covered classes. Remove the pending marker at D.
+17. **Q17:** d^b is formed lazily, only when the gate falls back. Work stays charged where it is incurred.
+18. **Q18:** confirmed. The verification pass runs only on states used as verifications, the 2p state.
+
+**Checkpoints:** A3a (the bounds and E, with no behaviour change), then A3b (the method and every control), then B, C and D.
+- **Host:** as the plan states — one cargo job, `-j 4`, `RUST_TEST_THREADS=2`, and memguard checks.
+
+## K6: rulings at C and D (ROOT, 2026-09-29; the C ruling was given in session and is recorded here)
+
+- **C's stop:** K6-M4 (the watchdog kills the child only) and K6-M26 (the resume skip counts a not_run record as measured) survived the first pass.
+  - ROOT approved I15's two tests, added to existing classes in `runner/test_k6_runner.py`: `LiveLimit.test_kills_take_the_whole_group` and `PlanAdmission.test_measured_runs_are_kept_and_not_run_records_are_run`.
+  - After the re-runs, 26 of 26 are killed (K6 branch, `014b2ae04`).
+- **D accepted:** committed on the K6 branch at `ae3320b5a`. Main `59cb20073` (F1b) is merged in at `3e90176c6`, and H's suite and test E pass there. No product byte changes (Scope 8).
+  - **Disclosed:** the observation packet was written at D, not at B, within the write set, and it regenerates byte for byte from the committed records.
+  - **Disclosed:** the provenance lock copy no longer matches `H/Cargo.lock`. Nothing reads it, and it is outside K6's write set.
+  - **A limit:** the binary's time-budget and first-repeat stops were reached by no observation and have no dedicated test. The reviewer judges whether a test is needed before merge.
+- **Next:** PR, an independent reviewer (RV18), hosted CI with the full-SHA dispatch, DEC-025 and GEN-8.
+
+## K6: rulings on RV18's review (ROOT, 2026-09-29)
+
+- **Verdict accepted:** PASS at `ae3320b5a`, with 0 BLOCKING, 4 SHOULD-FIX and 8 NOTEs (`REVIEW/K6_REVIEW.md`).
+  - RV18 verified independently that no product byte changes, that test E is strict, and that the allocator's accounting and the refusals are right.
+  - It found that the counts match its own port, the models match R1, and the packet and D's tables regenerate byte for byte.
+- **All four SHOULD-FIX findings are fixed before merge,** each killing RV18's mutant from a clean archive:
+  - **RV18-1:** a `k6_bin` test of the time-budget and first-repeat stops (RV18-M1, M2).
+  - **RV18-2:** a `k6_bin` test that the summary's heap peak equals the maximum of the stage peaks, and that stage peaks restart (RV18-M3, M4).
+  - **RV18-3:** the runner kills the observation process group in a `finally` and maps SIGTERM to a clean exit, with a no-survivor test for a SIGTERM to the runner mid-run.
+  - **RV18-4:** scrub the four machine-path lines in `_run_records/c/logs/py-K6-M5.log`, and regenerate the K6 SHA256SUMS.
+- **NOTEs fixed where cheap:**
+  - N1–N3: tests for the poll interval (M6), home-path scrubbing (M7) and the DEC-025-sweep check (M8). Also scrub `time -v`'s output file on Linux.
+  - N6: key CONT n10000's lane-id refusal on the canonical model's family and size, not its id, with a test.
+  - N7: correct CHANGE_RECORD's base (`56dd72334`). Note in RETURN that run 137's `slot` reads B1 though it ran in B2, since raw records are not edited, and that the provenance lock copy was already stale on main.
+  - N4, N5 and N8: recorded.
+- **Next:** I15 fixes, then RV18 runs a delta check, followed by hosted CI with the dispatch, DEC-025 and GEN-8.
+
+## K6 merged (ROOT, 2026-09-29)
+
+- **Merged:** [PR1053](https://github.com/sgttomas/chirality/pull/1053) at head `cd325c1fe`, merge `7ac7b1c37`, 2026-09-29 09:52:09Z. The merge record is `IMPLEMENTATION/K6_MERGE/RECORD.md`.
+- **The gates:**
+  - RV18 PASSED, with its delta check PASSED;
+  - hosted CI was green, and the dispatch (36548351414) succeeded;
+  - GEN-8 passed;
+  - DEC-025: K6's own tests are the only suite change, and pytest, vitest and the builds are clean.
+- **operation_applier's 0-test result in the sweep** was a build failure in the shared sweep target: two `serde_json` versions, the mechanism not proven. It re-ran alone on the head with a fresh target and passed 194 of 194. ROOT removed the shared target.
+  - **Procedure note for DEC-025:** start each sweep with a fresh target.
+- **Next on the kernel path:**
+  - K4 (A3b in progress);
+  - then K6b (W1 observations) and V-K;
+  - then ROOT's budget limits, F2a, and the owner's ceiling decision with V-P.
+
+## K4: rulings at A3b (ROOT, 2026-09-29)
+
+- **A3b accepted,** committed on the K4 branch at `bb7757ac5`.
+  - Every control equals GEN's outcomes, and every selected control is honest and passes G5a.
+  - RF-LARGE at 10 and 100 members is honest at 128.
+  - E-CHARGE is bit-equal to GEN on 360 states.
+  - `factor.rs` is unchanged since A3a.
+- **Outcomes that moved from 5a.2 are accepted,** as the selected design's intended behaviour:
+  1. **DIRECTIONAL-SPAN: 128 → Unresolved(Ceiling).** [Correction (I12 at B): 5a.2 selected it at **256**, not 128, so the change is 256 → Unresolved(Ceiling). 5a.2's publication was within b, checked against GEN's exact solution (worst ratio 1.5e-24; RETURN §22.3). It was not a false claim: 5a.3 withholds a correct publication, which is the availability loss accepted below.]
+     - Its springs span R³ only through 2^-52 (κ ≈ 2^104). The solve's error stays above V/4 at every precision, so 5a.3 withholds it.
+     - This is an availability loss, and it is honest.
+     - **RETURN must state whether 5a.2's 128-bit publication was within b,** checked against GEN's exact solution. If it was not, it is a false claim that 5a.3 now withholds, and it is recorded as such.
+     - DIRECTIONAL-WELL keeps the directional-spring recovery compared.
+  2. **CEIL-A and CEIL-B → Unresolved(ResolutionScaleUnencodable).** E overflows under a 2^1013-rad rigid rotation (Q8). F-1's control moves to CEIL-S (P = 2^900, ε = 2^-160).
+  3. **RIGID-UNLOADED: Unresolved → 512,** as R7 predicts.
+- **The edge case, E finite while ê = fl(L_b·E_fo) overflows:** map it to `Unresolved(ResolutionScaleUnencodable)`, the same terminal reason as an E overflow, with a unit test. Do not escalate: an infinite V can never pass. Currently it ends as `Arithmetic(NonFinite)`, which is withheld and honest, but mislabelled.
+- **Figures:** asserting at R7's two-figure rounding is accepted.
+- **RETURN §22,** the Q12 support-group E derivation and the certified-bound conditions, is noted for the reviewer.
+- **Next:**
+  - **B:** FK, SD and NI suites; the 39-manifest suites on the Mac; K4 is kernel only, so T9 and the gate are not run (K4's brief).
+  - **C:** mutants, including R7 §7's killable list and K4-M34 to M40.
+  - **D:** records.
+
+## K4: B accepted (ROOT, 2026-09-29)
+
+- **B accepted.** It is committed on the K4 branch at `8a59458a1`, with main `7ac7b1c37` (K6) merged in at `8f8023a20` and no FK overlap.
+  - The 39 manifests were run on main's piping source with K4's FK overlaid. Only frame_kernel changes: 267 → 389, K4's 122 tests. The only failures are the three known Mac ones.
+  - FK 389, SD 30 and NI 134 pass.
+  - The path and dependency scan shows no product path reaches K4's code: everything is `pub(crate)` inside a private `mod retained`. So T9 and the gate are not run.
+- **Both A3b additions are done:**
+  - DIRECTIONAL-SPAN's 5a.2 publication is shown within b, with a test;
+  - the ê-overflow edge case maps to `ResolutionScaleUnencodable`, with a unit test and a new control, EHAT-OVERFLOW.
+- **Next:** C (mutants), then D (records), then review.
+
+## K4: C accepted; the honesty predicate tightened at D (ROOT, 2026-09-29)
+
+- **C accepted.**
+  - Every killable mutant is killed: R7 §7's list, K4-M34 to M40, and K4's earlier mutants and D-series.
+  - K4-M24's CEIL5A3 kill is confirmed.
+  - The four derivation guards (R7-M17, M21, M24, and M27 at design precision) move no control. As R7 expects, each is caught at evidence or unit level.
+  - The NONE controls pass.
+- **I12's note 4: tighten the honesty predicate at D.**
+  - The controls' `compare_honest` accepts 1e-9 relative, or the absolute bound for absolute-verified rows. That is far looser than the published claim, so some mutants' false claims show only as selection changes.
+  - At D, `compare_honest` checks each selected row against the claim it publishes: its exact bound, with the binary64 publication rounding stated, where the row carries one; otherwise the stop rule's relative bound, plus the publication rounding.
+  - Then re-run the controls test, and the evidence pass for R7-M1, K4-M24 and K4-M37. Record which of their false claims are now caught as dishonest.
+  - If a selected unmutated control fails the tightened check, that is a **stop**: an honesty finding.
+- **Notes 1–3 are recorded:**
+  - REACTIONS-ONLY stays at 256 under R7-M3 in K4;
+  - K4-M12 and D13 are killed at bit level only, since the corrections repair the fold;
+  - K4-M30 now describes the design, and its inverse, K4-M30i, is killed.
+- **Next:** D.
+
+## K4: D accepted; to review (ROOT, 2026-09-29)
+
+- **D accepted.** ROOT committed it for I12 on the K4 branch at `7d8fa9c0e`; I12 made no Git write.
+  - ROOT checked the five files' sha256 against I12's return, the `_run_records/` `SHA256SUMS` (214 files; its own sha256 `f79cfe57…`), rustfmt on the three test files, and a scan of the records for machine paths and model identifiers. All pass.
+- **The tightened predicate meets the C ruling.** `compare_honest` checks each selected row against the claim it publishes, with the binary64 rounding stated (RETURN §22.9). No selected unmutated control fails it: 99 controls and 5,490 rows, the worst at 0.28 of its allowance; the recovery test's 43 models pass. So there is no stop.
+- **The evidence pass is recorded as returned:** F-2-SPOS (R7-M1) and CEIL5A3 (K4-M24) are newly caught as dishonest; all eight K4-M37 moves are caught.
+- **PRESCRIBED-TAIL and PRESCRIBED-TAIL-FREE under R7-M1: accepted as a limit of the test's binary64 expectations,** not of the method.
+  - The false b = 0 at 128 is real, as R7 counts it. Its truth, 2^-1091 N, lies below binary64's smallest subnormal, so a binary64 expectation cannot show the claim failing.
+  - The mutant is killed regardless, by its selection changes; unmutated, the case is selected at 512 and its floored b covers the truth.
+  - **Routed to the T3-close list:** expectation files that mark an exact value as nonzero (an underflow marker), so that a false b = 0 on such a row is caught directly. V-K may carry it.
+- **I12's two new arguments go to the reviewer; ROOT adopts neither as design text.**
+  1. **§6 item 4:** that θ ≤ 1/2 with the certified B forces a data-carrying block's K\* to be nonsingular, by Lemma C's Neumann step. This is I12's reading of R7's proof, not a sentence R7 states. The honesty guarantee does not rest on it: the no-data-block residue stays under R7's standing premise, "K\* nonsingular per body".
+  2. **§9 step 12:** route 1's constant under the bounded majorant, ‖Ā‖₁ ≤ 9·g_max·‖|K|_contrib‖₁, derived in the unscaled 1-norm and argued in the equilibrated norm. It is availability, not honesty, and no 1024 verification on the controls uses the bounded gate. It is recorded as one of K4's limits (RETURN §19).
+- **Next:**
+  - the PR, with hosted CI and the full-SHA dispatch;
+  - an independent reviewer (RV19), directed to RETURN §22.1, §22.2, §9 steps 10 to 12, §6 item 4 and §22.9;
+  - then DEC-025 with a fresh target, GEN-8, the merge and the merge record.
+
+## K4: rulings on RV19's review (ROOT, 2026-09-29)
+
+RV19 (`REVIEW/K4_REVIEW.md`, sha256 `d906539e…`; records `REVIEW/_run_records/k4_review/`, 47 files and `SHA256SUMS` `8b8e2beb…`) reviewed head `7d8fa9c0e`: **FAIL**, with 1 BLOCKING, 5 SHOULD-FIX and 7 NOTEs. ROOT checked RV19's records (`SHA256SUMS` passes; no machine paths) and read RV19-1's code at `adaptive.rs:1496-1544` and `:2159-2176`.
+
+- **RV19-1 (BLOCKING) is confirmed. Fix it before merge.**
+  - `scales_at`, the stop rule's S\*, skips only input-derived rows, so a row the candidate cannot publish (binary64 overflow or underflow) still enters S\*_2p. `classify_rows_floored` excludes such rows from S\*_pub, as O9 requires. The two scales can then differ by any factor, and R7 §5.2's premise, that S\*_pub is within a relative 2^-64 + 2^-52 of S\*_2p, fails. OVF-ROT-928 publishes Rz = −2^901 as `relative_verified` against an exact 0.
+  - **The fix:** apply O9 to the stop rule. `scales_at` skips every row whose candidate value has no binary64 value, so both scales are formed from the same rows. This only removes rows from S\*, which makes the stop rule stricter. It changes availability, never honesty. I12 checks every other user of `scales_at` and states the argument in RETURN.
+  - **Add OVF-ROT-928 as a control**, in GEN and `outcomes.txt`. Add the reverted fix as a mutant killed by it. OVF-ROT-900 stays honest and unchanged.
+  - RV19's probe of this fix moved no control. I12 confirms that on the full suite, the N5 streams included.
+- **RV19-6 is ruled as a design defect that K4 fixes now: D1 revision 5a.3, amendment A1.** A selected row outside its claim is BLOCKING by K4's brief, whatever its cause.
+  - **The defect.** D1 §4.1.6's revision-4 rule classes every row `absolute_verified` once S\* < 2^-988, with b = fl↑(2^-64·S\*). R7 §5.2's published-value bound, |q_pub − q\*| ≤ b·(1 + 2^-22), assumes |q| < 2^-34·S\*, which that rule does not give. The binary64 rounding of a row near S\* is then up to 2^11·b. TINY-S-995 misses its claim on seven rows, by 222 to 819 times.
+  - **The amendment.** Where 0 < S\* < 2^-988, each `absolute_verified` row carries its own bound, which includes its publication rounding:
+    - b_row = fl↑(fl↑(2^-64·S\*) + fl↑(2^-53·|q_pub|) + 2^-1074).
+    - **Derivation:** |q_pub − q\*| ≤ |q_pub − q_p| + |q_p − q\*|. Rounding to nearest gives |q_pub − q_p| ≤ 2^-53·|q_pub| + 2^-1075. The accepted candidate gives |q_p − q\*| ≤ 2^-64·S\* within the factor R7 §5.2 already carries. So |q_pub − q\*| ≤ b_row·(1 + 2^-22), or 2^-21 at 512.
+    - **Why only there.** Where S\* ≥ 2^-988, an absolute row has |q| < 2^-34·S\*, and its rounding is below 2^-23·b, as R7 §5.2 argues. So b is unchanged there, and b = 0 is unchanged at S\* = 0.
+    - **Relative rows** cannot occur where S\* < 2^-988, and where S\* ≥ 2^-988 they are normal numbers. So their claim is unchanged.
+  - **K4 implements the amendment.** GEN follows it. TINY-S-995 becomes a control, with an expectation precise enough that the unamended code fails it: a mutant reverting the amendment must be killed. Any control whose bound bits change is listed.
+  - **Routed:** D2's G5 checks b_row (D2's input list). RV19 checks the derivation and the implementation at its delta check. ROOT adopts the amendment into the design text as a ruling, because `DESIGN.md` stays hash-pinned.
+- **RV19-2 (SHOULD-FIX): fix it in K4.**
+  - `compare_honest` fails, instead of skipping, when a published row with a value has no expectation.
+  - An `Underflow` or `Overflow` row is checked against its exact value's range. **The expectation files carry a range marker** for exact values outside binary64's range: underflow (with the sign) or overflow. This is the marker ROOT routed at D, now done in K4. It is removed from the T3-close list. With it, R7-M1's false b = 0 on PRESCRIBED-TAIL and PRESCRIBED-TAIL-FREE should be caught directly; record whether it is.
+  - **The 13 selected controls without expectations** get GEN's exact expectations where GEN can compute them (HH-FOOL, HH-SLENDER-m40, N03-RX, R115-SEED3 and RF-LARGE at 10 members). Any that cannot are named, with the reason.
+  - **RF-LARGE at 100 members:** run G5a on the six frames, and `compare_honest` where exact expectations are practical. Otherwise correct RETURN §12.6, §22.8 and CHANGE_RECORD to say exactly what is checked.
+  - Every statement of the form "every selected control" must match what the tests check.
+- **RV19-3 (SHOULD-FIX): fix it in K4.** `RetainedCombination::solve` refuses operands whose stations or support groups differ, with a `CombinationReason`, and a test (RV19's t = 0.25 against 0.75 case).
+- **RV19-4 (SHOULD-FIX): fix it in K4.** Add a control with a support group carrying a directional spring, so that RV19-M6 is killed.
+- **RV19-5 (SHOULD-FIX): fix it in K4.** Add a unit test that pins ‖SĀS‖ as the larger of the 1-norm and the ∞-norm, killing RV19-M2.
+- **§6 item 4: confirmed by RV19.** ROOT adopts it as a ruling. θ_c ≤ 1/2 with the certified B_c makes a data-carrying block's K\*_c nonsingular, by Lemma C's Neumann step, under Lemma B's standing premise. A block with no data stays under R7's premise, "K\* nonsingular per body".
+- **The NOTEs:**
+  - N1 and N2 are corrected in RETURN.
+  - N6: the tests' `powi` is replaced by exact constants.
+  - N4 (the release-mode `break` in `wide_sum`): make it a returned error, if that is small; otherwise record it.
+  - N3, N5 and N7 are recorded; strengthening them is optional.
+- **After the fixes:**
+  - re-run FK's full suite and K4's suite, with the controls token-equal to GEN (with the new controls);
+  - `gen_k4_vectors.py --check`;
+  - the mutants the fixes touch, and the new ones: the reverted RV19-1 fix, the reverted amendment, RV19-M2 and RV19-M6;
+  - the evidence pass for R7-M1, K4-M24 and K4-M37 under the new checks;
+  - then RETURN addendum 1 and the records. RV19 checks the delta.
+
+## K4: rulings on RV19's delta check at a5fa0eaf7 (ROOT, 2026-09-29)
+
+- **RV19's delta check PASSES:** 0 BLOCKING, 1 SHOULD-FIX and 4 NOTEs (`REVIEW/K4_REVIEW.md`, "Delta check at a5fa0eaf7", sha256 `319701f6…`; records `REVIEW/_run_records/k4_review/delta/`, with `SHA256SUMS` now covering 80 files, `ab9f24d8…`).
+  - RV19-1 is closed on both the overflow and the underflow side.
+  - Amendment A1 is independently re-derived and implemented as ruled. Only PT-B's and PTF-B's bounds change, and TINY-S-995 kills the reverted amendment.
+  - RV19's oracle finds every selected publication honest: 120 publications (8,272 rows) and the six 100-member frames (15,378 rows).
+- **The gates on `a5fa0eaf7` are green:**
+  - hosted CI: runs 36584733672, 36584733559, 36584733590 and 36584733821;
+  - the full-SHA dispatch 36584771469 (target_base `7ac7b1c37`);
+  - DEC-025, clean;
+  - GEN-8.
+  - Since the head changes for RV19-D4, all of them re-run on the final head.
+- **RV19-D4 (SHOULD-FIX): fix it before merge.** It is a test gap, but on the fix of a BLOCKING honesty finding. Add an SD-G5-style vector on `decide` in which the candidate overflows and the verification does not, and the underflow pair. Assert that such a row sets no S\*. Show RV19's mutant RV19-D4 killed.
+- **DN2:** RETURN's "every selected … combination" must match what is tested. Either give PRECISION-RULE expectations and run it, or correct the wording.
+- **DN1, DN3 and DN4 are recorded.** They affect no check.
+
+## K4 merged (ROOT, 2026-09-29)
+
+- **Merged:** [PR1054](https://github.com/sgttomas/chirality/pull/1054) at head `5a46a6278`, merge `ab02ee3a6`, 2026-09-29 16:25:25Z. The merge record is `IMPLEMENTATION/K4_MERGE/RECORD.md`.
+- **The gates:**
+  - RV19 FAILED the first head on RV19-1, a false publication. It PASSED the fixes on its delta check and confirmed the final head with no findings;
+  - hosted CI was green, and the dispatch (36593106169) succeeded. The numerical job took 18.3 to 20.1 min;
+  - GEN-8 passed;
+  - DEC-025, with a fresh sweep target: K4's own tests are the only suite change, and pytest, vitest and the builds are clean.
+- **D1 revision 5a.3 now includes amendment A1** (the per-row b where 0 < S\* < 2^-988), by ROOT's ruling on RV19-6. `DESIGN.md` stays hash-pinned.
+- **Procedure note for DEC-025:** remove the canonical sweep summary from the sweep worktree after copying it. A leftover summary makes the next sweep see a dirty tree.
+- **Next on the kernel path:**
+  - K6b (I16) and V-K (I17), from main `ab02ee3a6`. K6b's A0 adds the `retained` export, and V-K reuses that commit;
+  - then ROOT's W1 limits, F2a, and the owner's ceiling decision with V-P.
+
+## K6b and V-K: spawn (ROOT, 2026-09-29)
+
+- **K6b is spawned as I16** (`TASK_BRIEFS/I16_K6B_IMPLEMENTATION.md`), on branch `codex/piping-k6b-20260929` in `<wt>/k6b`, from main `ab02ee3a6` (K4 merged).
+- **V-K is spawned as I17** (`TASK_BRIEFS/I17_VK_IMPLEMENTATION.md`), on branch `codex/piping-vk-20260929` in `<wt>/vk`, from the same main. ROOT cherry-picks K6b's A0 export commit onto it once that commit exists.
+- **The briefs cite K4 at `7d8fa9c0e`.** The merged head is `5a46a6278`. RETURN §16's export list is unchanged by the review fixes, apart from `CombinationReason::OperandsDiffer` (RV19-3). Re-locate every line on main.
+- **Checkpoint 0 is read and design only** for both. There is no build until ROOT approves each plan.
+
+## V-K: rulings on I17's checkpoint-0 plan (ROOT, 2026-09-29)
+
+The plan is `IMPLEMENTATION/VK/PLAN_CHECKPOINT0.md` on the V-K branch (sha256 `adaf697a…`; committed by ROOT). **It is approved, with these rulings.**
+
+- **Q1:** V-P adds `product_physics`; V-K does not.
+- **Q2:** the generated, committed cases file with R1's sha256 pinned and `--check`, is approved.
+  - Expected values are R1's decimal strings, byte for byte.
+  - Comparisons are decided exactly by an in-crate big-integer engine, with no registry dependency. The engine gets its own unit tests, including against Python's `fractions` on sampled rows, and the reviewer checks it.
+  - The 1,000- and 10,000-member models are generated on demand, with their sha256 committed.
+- **Q3:** CI runs every case up to 100 members. RF-LARGE at 1,000 and 10,000 members run as examples. Report VR's measured CI time at A1; more than 3 min added is reported.
+- **Q4:** the 14 seeded faults are approved.
+  - VK-F06, VK-F07 and VK-R28 may be killed on evidence: the outcome, attempts and selected precision against V-K's committed per-case records. These are returned evidence, which F2a publishes (O5's condition).
+  - VK-F17's extra check is approved: every `not_covered` comparison's row must be `absolute_verified`.
+  - **The selector** (`K4R/seeded.rs`, cfg-gated, reading `FK_SEEDED_FAULT` once) and its cfg-gated `mod` line count as fault sites. An unknown id panics.
+  - With the feature off and outside `cfg(test)`, the code is absent. FK's own test build must be unchanged in effect: FK's suite passes with the variable unset.
+- **Q5:** approved. V-K runs its own models, one release process each, under K6's runner, with the heap cap at C − 512 MiB.
+  - The ascent is 100 → 1,000 → 10,000. 10,000 members run only as ROOT approves, and after K6b's timed runs.
+  - A 30-minute slot per tier. V-K's scale runs record the outcome, work and time with its load, and are not a timing claim; timing is K6b's.
+- **Q6 and Q7:** approved.
+  - The one-off bit comparison against K4's `r1_cases.txt` and `r1_large.txt` is recorded. Every difference must be one of the plan's §4.4 list, explained.
+  - Bit identity is asserted for list permutations only.
+- **Q8 (the export) binds K6b's A0 as well, and extends it.** RETURN §16's list names types, but a consumer outside FK also needs:
+  - the fields of the plain-data input types, to build a source: `SourceParts`, `StraightMember`, `Spring`, `DirectionalSpring`, `Constraint`, `NodalLoad`, `Station`, `SupportGroup` and `Dof`;
+  - the fields of the output and evidence records, to read them: `Publication`, `PublishedRow`, `RetainedEvidence`, `AttemptRecord`, `StageWork`, `StorageCounts` and the other evidence types in the list;
+  - the methods `Binary64Outcome::value`, `Component::{index, from_index, ALL}` and `Dof::{global, from_global}`.
+  - **Types whose invariants matter keep private fields and public accessors:** `PrimitiveSource` (built only through `new`), `RetainedSolve`, `PrecisionState`, `CaseLimit` and `InvocationMeter`.
+  - **I16 implements A0 and I17 confirms it covers V-K's needs** before ROOT commits A0. The exact list is recorded in A0's commit message and in both RETURNs.
+  - Nothing that lets a caller supply a matrix, factor, closure or label becomes public.
+- **The conflicts:**
+  - **C1 (RF-RANGE twist and extension):** the exact power-of-two pre-scaling is approved. It must give bits identical to §4.10's formula wherever that formula's k_t and k_a are finite and normal, and a test asserts this on every such case. Record the derivation.
+  - **C2:** approved as planned. §7.3 items 5, 16, 3 and the relabelling half of 10 are not seeded in V-K, and V-K adds no cases outside R1. For each, cite K4's killing control from K4's mutation table, or record it as undiscriminated by R1.
+  - **C3:** the kill on evidence for §7.3 item 7 is approved; the design's "recovered" is recorded as inexact.
+  - **C4:** the parity items are §4.8 items 1–3, at up to 100 members.
+  - **C5:** confirmed. V-K's scale runs use R1's own rounding and are separate from K6b's.
+  - **C7:** approved. No site goes in the byte-identical `factor.rs` functions or in `bound.rs`'s shift loop. The scans run before any site is written, and a flagged site is a stop.
+  - **C8:** `hypot` is decided exactly.
+  - **C9:** compute it both ways and report.
+  - **C10:** a k = 0 spring refused by K4's source counts as RF-MECH's refusal only if the refusal names it (the `SourceError`). Record it.
+  - C11 and C12 are recorded.
+- **Next:**
+  - A1 without the export, now: the generator, the cases file, the exact engine and the parts of VR that do not call `retained`. One cargo job at `-j 4`.
+  - A1's kernel lane waits for A0. ROOT cherry-picks A0 onto the V-K branch once it is committed on K6b's.
+
+## K6b: rulings on I16's checkpoint-0 plan, and A0's export (ROOT, 2026-09-29)
+
+The plan is `IMPLEMENTATION/K6B/PLAN_CHECKPOINT0.md` on the K6b branch (sha256 `7d6b7af3…`; committed by ROOT at `c0436769f`). **It is approved, with these rulings.**
+
+- **C-1 (the flat `pub use` does not compile): the facade module is approved.** Declare `pub mod retained_api { pub use super::retained::…; }` in `FK/structural.rs`, right after the private `mod retained;`. K4's names stay as they are (`adaptive::POLICY` included), nothing new enters `structural`'s namespace, and the product scan is one grep for `retained_api`.
+- **C-2 (`PrecisionState` exposes the private `Solved`):** `PrecisionState` and `RetainedSolve::state` stay crate-private. No `#[allow(private_interfaces)]`. Neither K6b nor V-K uses them. If F2a needs the retained-state digest (§4.1.8), it asks for an accessor that exposes no private type.
+- **What A0 exports** is RETURN §16's list, as extended by "V-K: rulings on I17's checkpoint-0 plan" Q8:
+  - the fields of the plain-data input types and of the output and evidence records;
+  - the methods `Binary64Outcome::value`, `Component::{index, from_index, ALL}` and `Dof::{global, from_global}`;
+  - `Binary64Outcome`'s variants, which become public with the enum;
+  - the fields of `AttemptWork`, `WidthWork` and `SumWork` only if V-K or K6b reads them. I17 says whether V-K needs them.
+  - **Types whose invariants matter keep private fields:** `PrimitiveSource`, `RetainedSolve`, `CaseLimit` and `InvocationMeter`.
+  - Nothing that lets a caller supply a matrix, factor, closure or label becomes public.
+  - Remove the `#[allow(dead_code)] // F2a API` markers on items that are now public.
+  - **Before ROOT commits A0, I17 confirms it covers V-K's needs.** The final count of items, methods and fields goes in A0's commit message and in both RETURNs.
+- **Q1:** approved: option (a), per-precision memory from budget-truncated prefix calls through the public API, with the overshoot derived. The 512 and 1024 increments stay derived; no escalating invented model.
+- **Q2:** approved: the mode is `w1a`, with a new JSONL kind `attempt`. "Reused unchanged" means K6's existing kinds keep their schema; adding a kind is allowed.
+- **Q3:** the four tiers are approved.
+  - `CaseLimit` and `InvocationMeter` are both `u64::MAX`, recorded in each run's start line; a budget outcome is a stop.
+  - W1-T4 (10,000 members) runs only as ROOT approves, after W1-T3 has measured ρ.
+  - **W1 counts-only runs at 1,000 and 10,000 members during A2 are approved** (O(nnz), no solve, a 512 MiB cap), as for K6's N7.
+- **Q4 to Q7:** approved as planned.
+  - K6's tiers keep a frozen four-mode tuple, so K6's 138 rows are unchanged.
+  - K6b's row checks at R1's 1e-9 are not the honesty check (that is K4's and V-K's); a failure is still a stop.
+- **R1's rows in H's CI test:** `include_str!` of `K4T/r1_large.txt` is approved. The test asserts that file's sha256, so a change to it is visible.
+- **The brief-to-code conflicts are recorded:**
+  - K6's profile counts cannot stand for W1's storage;
+  - a wide value takes 8L + 16 bytes;
+  - RF-LARGE's memory is dominated by the per-member operators;
+  - swapping Iy and Iz is equivalent here;
+  - `solve_cases` gets an equality test only.
+- **Next:** A0 now. Report it as soon as it compiles and FK's suite passes; one cargo job at `-j 4`. I17 works on V-K's parts that do not call `retained`.
+
+## K6b A0 accepted; the export is on both branches (ROOT, 2026-09-29)
+
+- **A0 is accepted.** ROOT committed it in two commits on the K6b branch:
+  - `bb89e4f8f`: FK's `retained_api` export. It is visibility only: 240 `pub(crate)` → `pub` edits, 20 dead-code markers removed, and the facade block. It covers 72 items, 38 methods and 130 fields.
+  - `fdbf132d4`: H's test that the export suffices from outside FK.
+- **ROOT's checks:**
+  - every removed line in FK's diff is a `pub(crate)` or a dead-code marker, and every added line is `pub` or the facade;
+  - the eleven files' sha256 equal I16's return;
+  - I16 reports FK's full suite at 394 passed, 0 warnings, and rustfmt clean;
+  - `retained_api` is named only by `FK/structural.rs` and H's test.
+- **I17 confirmed the export covers V-K.** `Kind::{ALL, index}` stay crate-private.
+- **The export commit alone is cherry-picked onto the V-K branch** as `3018343c2`, with the same patch-id as `bb89e4f8f`. H's test stays on K6b.
+  - Whichever PR merges first carries the export to main. The other merges main, and the identical change merges cleanly.
+- **Next:** K6b's A1 (the W1 mode and the adapter), and V-K's A1 kernel lane. Each uses one cargo job.
+
+## V-K: rulings on I17's A1 stop (THIN-A and THIN-B) (ROOT, 2026-09-29)
+
+- **The stop.** RF-RANGE-THIN-A and THIN-B (R1's PHYS-R4 geometry: OD 4e-77 m, L = 1 m) end `Unresolved(Ceiling)` through W1a.
+  - The attempts: 128 is rejected by the stop rule, 256 by the stop rule, 512 by the charge test (d), and 1024 verifies with nothing above it.
+  - EA/(12EI/L³) ≈ 6.7e152, about 2^507, so no candidate at 512 bits or below can reach the stop rule's 2^-64 accuracy.
+  - K4 publishes nothing: the result is honest, but unavailable. V-K's adapter is not the cause, as I17's probe with K4's y_reference shows. Every other of V-K's 201 CI cases passes as projected.
+- **Ruling, subject to one confirmation. I17 first runs K4's generator (`K4T/gen_k4_vectors.py`, K4's bit oracle for the design) on THIN-A and THIN-B.** GEN must give the same attempt chain and outcome. If it does, this is the design's limit, not a K4 defect. If it does not, it is a K4 finding and a stop.
+- **Given that confirmation, THIN-A and THIN-B are W1a's coverage limit,** and VP-ROBUST's kernel-lane gate (§4.10) is amended as follows:
+  - V-K commits an **expected-unresolved list**, THIN-A and THIN-B with their reason, pinned like the `not_covered` list.
+  - Those cases must end honestly unresolved, with no rows published.
+  - Their comparisons are never counted as passes. They are reported as a separate count.
+  - A case that leaves or joins the list blocks the gate until ROOT reviews it.
+  - Every other case keeps §4.10's rule: an unsolved case fails.
+- **Why this is acceptable:**
+  - It is not a product regression. On the ordinary route, W2's scaling solves the PHYS-R4 geometry (K2b's rulings: "PHYS-R4 (b = 536) … solved and accurate").
+  - W1 is selected only for Sensitive and D-5-routed cases.
+  - W1's ladder tops out at a 512-bit candidate by design (R7). An intrinsic stiffness spread near 2^507 is beyond it, and W1a withholds honestly.
+- **Routed:**
+  - **To F2a and V-P:** THIN's product standing on the ordinary route, and what F2a publishes if such a case is routed to W1 and W1 ends unresolved.
+  - **To the owner's PHYS-R4 decision** (F1b's rulings): this fact is added to it.
+  - **To D1 and the T3-close list:** whether W1 should reach beyond 512 (a 1024 candidate with a 2048 verification) or treat decoupled stiffness spreads separately. It is not needed now.
+- **The three input-derived rows** (`RF-WEAK-W-AX-rho1e-12` `u.N5.UX/UY/UZ`, at a restrained node): I17's reading is confirmed. Rule 2a makes rows at restrained DOFs `input_derived`, exact prescriptions. So they are exempt from the "`not_covered` implies `absolute_verified`" check, pinned to those three.
+- **§7.3 item 5 (no escalation)** is now killable on THIN's attempt evidence. Add it to the seeded faults at A2 (VK-F05).
+- **Next, for I17:**
+  - the GEN confirmation;
+  - the expected-unresolved list and its test;
+  - A1's remaining items: §5.3's parity at up to 100 members, and Q7's recorded observations;
+  - then return A1.
+
+## K6b: A1 accepted; K4's stop-rule memory finding (ROOT, 2026-09-29)
+
+- **A1 is accepted.** ROOT committed it at `73031b134` on the K6b branch, with 18 files in H.
+  - ROOT checked the new files' sha256 against I16's return, that FK has no change beyond A0, and that no machine paths appear.
+  - The results:
+    - the `w1a` mode, with `attempt` and `prefix` records; the new kind `prefix` is allowed;
+    - the adapter's K4SRC bytes equal an independent Python writer's on 24 of 24 RF-LARGE models;
+    - the six frames at 10 and 100 members are selected at 128, and R1's predicate passes on every row;
+    - H's debug suite grows 65.3 s → 78.8 s.
+- **The finding (confirmed by ROOT at `K4R/adaptive.rs:533-590`):**
+  - K4's `ExtremeTracker` keeps every row whose 64-bit ratio approximation lies within `WINDOW_ULPS` (2^13) of the running extreme, each as two `ExactWideSum` values, about 4.3 KB, and keeps them until `decide` returns.
+  - So the stop rule's memory depends on the data: nearly every row when many ratios tie.
+  - At 100 members it adds 0.3–4.9 MB. The worst case at 10,000 members is about 3.2 GB (6.4 GB with `Vec` slack).
+  - **It affects no published value.** It matters for W1's per-case memory limit and for admission.
+- **Rulings:**
+  - **E_max keeps the worst-case tracker term.** Admission uses the upper bound derived from the code, with ρ measured.
+  - W1-T4 (10,000 members) runs only as ROOT approves, after W1-T3's prefixes at 1,000 members show how the kept count grows. The plan's W1-T4 row is superseded.
+  - **Routed: a kernel follow-up (KF1) bounds the tracker without changing any result.** For example, collapse the kept entries to their exact extreme when their count passes a threshold. It needs its own review; K4's golden work counts would change.
+    - It is paired with K6's N10 (bounding the dense witness) as the kernel follow-up slice.
+    - **ROOT's W1 memory limit is not set until KF1 lands, or until the limit accounts for the worst case explicitly.**
+- **Next:** A2: the runner's W1 tiers, `--plan`, `--smoke`, the approved counts-only runs at 1,000 and 10,000 members (no solve, 512 MiB cap) and the release projection. No W1 solve above 100 members before ROOT approves the schedule.
+
+## K6b: A2 accepted; W1-T1 to W1-T3 approved (ROOT, 2026-09-29)
+
+- **A2 is accepted.** ROOT committed it at `f4d40dd17` on the K6b branch. ROOT checked the four files' sha256 against I16's return and found no machine paths.
+  - K6's four modes are frozen, and its 138 rows are unchanged, checked field by field.
+  - The W1 tiers add 132 interleaved rows.
+  - The runner suite passes 44 of 44, and the wrapper with the DEC-050/053 pins 46 of 46.
+  - The counts-only runs cover every sealed model at up to 10,000 members, with a heap of at most 197 MB under the 512 MiB cap.
+  - The smoke selected all 21 models at 128, with 0 parity failures.
+- **The schedule is approved** (`plan.txt`, sha256 `091ee187…`), with B's binary built in release from a `git archive` of `f4d40dd17`:
+  - **W1-T1 and W1-T2 in slot K6B-S1, and W1-T3 in slot K6B-S2,** with pass-1 prefixes at 1,000 members. One observation process at a time, the quiet-host wait, the load recorded per run, and the memory guard running.
+  - **W1-T4 stays deferred.** ROOT rules on it from W1-T3's measured prefixes and tracker figures, and from KF1's status.
+  - A watchdog kill, a heap-cap abort, a budget outcome or a parity failure on an admitted run is a stop.
+- **The slot:** ROOT grants K6B-S1 and K6B-S2 now. I17 holds cargo and heavy Python until I16 reports B's runs done.
+  - An unrelated long-running external process (one core, outside this repository) keeps the load near 5. It is recorded, not waited out. Timings are observations with their load.
+
+## KF1: spawn (ROOT, 2026-09-29)
+
+- **KF1 (the stop-rule tracker bound) is spawned as I18** (`TASK_BRIEFS/I18_KF1_IMPLEMENTATION.md`), on branch `codex/piping-kf1-20260929` in `<wt>/kf1`, from main `ab02ee3a6`. [Correction: the branch was created at main `8cca91701`, PR #1055, which changes only `projects/chirality-app-v4/**`. The piping tree is the same.]
+- **Checkpoint 0 is a plan only.** Builds wait until K6b's timed slot ends.
+- **K6's N10** (bounding the dense witness, and examining the dense screen's operation count) is split out as **KF2**. It is product-reaching, so its gate is heavier, and it is briefed separately. It does not block W1's limits.
+- **Order for W1's memory limit:** KF1 merges. Then K6b merges main and measures W1-T4 (10,000 members) on the bounded tracker, subject to ROOT's W1-T4 ruling.
+
+## K6b: B's W1-T1 to W1-T3 accepted; W1-T4 approved before KF1 (ROOT, 2026-09-29)
+
+- **W1-T1 to W1-T3 are accepted.** I16 ran 108 processes, all ok, with no stop (records in `<wt>/scratch/i16/b/`, which move to `_run_records/` at D).
+  - All 42 W1 processes selected 128 and verified at 256, with every parity item true.
+  - R1's unchanged predicate passes on all 10,078 comparisons, decided exactly. The worst is 1.75e-6 of the allowance.
+  - At 1,000 members: 0.56–1.58 s per call, 0.80–1.41 ns per limb-multiply equivalent, and 86–117 MiB of heap. W1 takes 6.8–14.2 times the binary64 sparse entry's time.
+  - The stop rule costs 9–21% of the call. 5a.3's shift costs one shifted factorization, except on CONT-AX, which needs none.
+  - Heap grows with a log-log slope of 0.96–0.99.
+- **The tracker measured at 1,000 members** keeps 0–8,773 entries, at most 5.5% of its worst-case term. The kept fraction of rows does not grow with size (CONT 0.39, 0.43, 0.33 at 10, 100 and 1,000 members).
+- **W1-T4 (10,000 members) is approved now, in its own slot K6B-S3,** as scheduled: 5 repeats, prefixes in pass 1. This supersedes the order in "KF1: spawn".
+  - **Why before KF1:** it measures the unbounded tracker's actual size on RF-LARGE at 10,000 members, which KF1's review and ROOT's memory limit need.
+  - **Why it is safe:** the heap cap (7.5 GiB) is below E_max (8.6–8.9 GiB), so a worst-case tracker would end in a heap-cap abort, not strain the host. The admission rule, with ρ measured at 100 members or more (0.17–0.27), admits every row.
+  - A heap-cap abort here is recorded as a finding for KF1, not a stop of K6b.
+  - Any other stop condition still stops.
+- **After KF1 merges,** ROOT decides whether K6b re-measures a subset on the bounded tracker, for the stop rule's changed work, before the W1 limits are set.
+
+## V-K: THIN confirmed by GEN; the expected-unresolved list stands (ROOT, 2026-09-29)
+
+- **GEN confirms THIN.** K4's generator, run on THIN-A and THIN-B with its own adapter `r1_adapt` and G = E/(2(1 + ν)) stated exactly, gives K4's chain exactly:
+  - 128 rejected by the stop rule at row 7;
+  - 256 rejected by the stop rule at row 14;
+  - 512 rejected by the charge at row 14;
+  - Ceiling.
+  - The record is `IMPLEMENTATION/VK/_run_records/a1/gen_thin_confirm.*`.
+- **So THIN is W1a's design limit,** and the ruling "V-K: rulings on I17's A1 stop" takes effect. The expected-unresolved list is `VR/cases/expected_unresolved.json`: THIN-A and THIN-B, with log2 of the stiffness spread 507.67.
+- **RF-RANGE** gives 2,590 passes, 80 structural zeros, 50 expected unresolved and 0 failures.
+- **Also recorded from I17's A1 work:**
+  - §5.3's parity: K is bitwise equal between the sparse and dense paths, and the outcome class is the same, on RF-LARGE at up to 100 members and on RF-MECH.
+  - Q7's invariance observations: offsets are bit-identical, and relabelled variants differ only by the roundings that follow RCM's order.
+- **I17 resumes** its debug suite and returns A1 when K6b's slot K6B-S3 ends.
+
+## K6b: W1-T4 stopped by the binary's backstop; deferred until KF1 (ROOT, 2026-09-29)
+
+- **What happened.** Row 247 (CHAIN-n10000-AX, `w1a`, pass 1) was admitted by the runner, on E_max × measured ρ ≈ 1.7 GB. The binary then refused it, `estimate_exceeds_half_cap`: K6's backstop (`main.rs:658`) compares the raw E_max, 9.23 GB, with half the heap cap, 3.75 GiB.
+  - There was no solve: the heap peak was 3.9 MB. Nothing else in W1-T4 ran, and the memory guard logged no kill.
+  - "The binary refused a run the runner admitted" is a runner stop, and I16 stopped correctly.
+  - **The backstop worked as designed.** The miss, I16's own, was that A2 tested the runner's admission but not the backstop, for a mode whose ρ is far below 1.
+- **Ruling: option (c). W1-T4 stays deferred until KF1 merges.**
+  - The binary's backstop stays independent of the runner. Option (a), passing the runner's figure to the binary, would make the backstop trust the runner, which defeats it.
+  - Option (b), dropping the tracker term for `w1a` only, is superseded by KF1: once KF1 bounds the tracker, E_max falls to about 2.6 GiB and passes the backstop unchanged.
+  - The unbounded tracker's size at 10,000 members is no longer needed. W1-T3 measured it at 1,000 members (at most 5.5% of the worst case, with the kept fraction not growing with size), which is enough to motivate KF1. W1-T4 should measure the bounded code, which is what will ship and what the limits need.
+- **Then:**
+  - K6b's branch merges main after KF1.
+  - K6b re-runs W1-T3 (about 3 minutes; KF1 changes the stop rule's work) and runs W1-T4, on a binary rebuilt from that commit, in slots ROOT grants.
+  - Row 247's refused record is voided (renamed, with the reason), as K6 did.
+- **K6b proceeds now to C (mutants),** one cargo job. D waits for W1-T4.
+- **A new mutant for C:** the runner's admission is checked against the binary's backstop. A test asserts that, for every admitted row, the binary's own check admits it too, or the row is deferred by name. This closes I16's miss.
+
+## K6b: C's mutation table; M10's test approved (ROOT, 2026-09-29)
+
+- **C's runner change is accepted.** ROOT committed it on the K6b branch. `admission()` defers by name any row the binary's backstop would refuse, and defers a row whose counts line has no estimate for its mode.
+  - K6's 138 rows and K6b's 270-row plan are unchanged. The runner suite passes 45 of 45.
+- **The mutation table:** NONE passes, and 17 of 19 mutants are killed, M14 among them (the backstop omitted).
+  - **M3e (Iy and Iz swapped)** is equivalent, and the equivalence is derived: Iy = Iz in every section used.
+  - **M10 (the prefix limit b_j − 1)** survives. K4's budget tests fall before each segment's final work on these models, so the prefixes stop at the same place.
+- **I16's assertion is approved:** each prefix limit equals its segment's exact end. Add it to `tests/k6b_w1.rs`, and re-run NONE and M10 from clean copies; M10 must be killed.
+- **Next:** K6b waits for KF1. Then it merges main, re-runs W1-T3, runs W1-T4, and moves to D.
+
+## KF1: rulings on I18's checkpoint-0 plan (ROOT, 2026-09-29)
+
+The plan is `IMPLEMENTATION/KF1/PLAN_CHECKPOINT0.md` on the KF1 branch (sha256 `2129c337…`; committed by ROOT at `d0566126e`). **It is approved, with these rulings.**
+
+- **The design is approved:** a `BoundedExtremeTracker` with at most T = 64 lazy rows and a pruned table of evaluated entries, collapsing when full.
+  - The invariant argument is approved as the basis: bit-identical `finish` results, refusals included, for any collapse schedule.
+  - The reviewer checks it independently.
+- **Scope (I18's decision 1): KF1 bounds every `ExtremeTracker` site,** not only `rule`'s three: the pivot-margin (`adaptive.rs:999`), residual-gate (`:1236`) and fallback (`:1374`) trackers as well.
+  - **Why:** W1's memory limit must rest on a bound that does not depend on the data. Leaving about 1.5 GB of data-dependent memory at 10,000 members would defeat it.
+  - **The brief's item 3 is amended:** the work recorded in the stop rule, refinement and fallback stages may change. A tracker that today is dropped unevaluated is evaluated at a collapse, and that work is charged and budgeted where it is spent.
+  - **Nothing else may change:** every published row, class, bound, attempt role and reason, and outcome under unlimited budgets.
+  - Golden work counts are re-pinned where they move, each with its derivation.
+  - The old `ExtremeTracker` is removed if no caller remains.
+- **Many bodies (decision 2): include the shared cap across a call's trackers,** so a model with many small bodies is bounded too. State the resulting bound per call.
+- **The budget boundary (decision 3)** is accepted and recorded. No W1 limits exist yet, and ROOT sets them from the measurements after KF1.
+- **The test hook (decision 4)** is accepted only under `#[cfg(test)]`. A thread-local override of T must not exist in a non-test build.
+- **After KF1 merges,** I16 recomputes K6b's E_max from KF1's code, for all trackers, before W1-T4.
+- **Next:** checkpoint A. K6b's timed slot is over, so builds may run: one cargo job at `-j 4`.
+
+## V-K: A1 accepted (ROOT, 2026-09-29)
+
+- **A1 is accepted.** ROOT committed it at `37bff1780` on the V-K branch.
+  - ROOT checked the key files' sha256, that both `SHA256SUMS` files verify (the cases and the kernel-lane observations), that no machine paths appear, and that there is no FK change.
+  - 40 tests pass. Every one of the 201 CI cases passes, apart from THIN's two expected-unresolved cases; the `not_covered` set equals the committed list; all 506 discriminating controls fail.
+  - §5.3's parity: K is bitwise equal between the sparse and dense paths, with matching classes, at up to 100 members.
+  - VR's measured CI cost is a 3.8 s build and 37 s of tests on the Mac.
+- **RF-MECH-DISC-CHAIN100 and -SPRING (103 members) take about 300 s each in dense mode.** This is K6's N10 dense-witness cost (KF2), not a new finding. They run in the `vk_records` example, not in CI, and CI's parity stays at 100 members or fewer.
+- **Next:** A2: the seeded faults, the FK `mutation-controls` feature (VK-F05 included) and the kill matrix.
+  - **KF1 is changing `ExtremeTracker` and its call sites in `K4R/adaptive.rs` now.** Keep V-K's fault sites off the tracker code and its callers' tracker lines, so the later merge of main is mechanical.
+  - If KF1 merges first, V-K merges main and re-runs its fault matrix.
+
+## KF1: checkpoint A accepted; the S11 site-table row authorized (ROOT, 2026-09-29)
+
+- **A is accepted, pending one declared edit.**
+  - `BoundedExtremeTracker` uses T = 64, and a shared `TrackerSet` caps a call at G = 512 unevaluated rows. All seven sites are converted, and the old tracker is removed.
+  - **The differential test** against a verbatim copy of K4's tracker runs 828 streams at T = 1, 2, 3, 5 and 64, in both directions. `finish` is bit-identical, including refusals.
+  - **The model-level differential** runs 131 controls, 4 combinations and the six 100-member frames at T = ∞, 1 and 64. Everything is identical except the width-16 work.
+  - **Golden work** does not move. A new pin covers the collapsing frames.
+  - All 10 mutants are killed. `gen_k4_vectors.py --check` passes 23 of 23.
+  - **The bound:** about 2.3 MB of unevaluated rows per call in the stop rule, 275 KB for the pivot margin, 275 KB per residual-gate evaluation, and 1.1 MB for the fallback, against about 3.2 GB today at 10,000 members.
+- **The site table: authorized.** Add one declared, additive row to `FK/tests/s11_site_table.rs`, for `adaptive.rs` `offer`: 2 integer accumulations, the row count and the held capacity. It is in KF1's write set by this ruling, as K4's rows were (Q8). No existing row changes.
+- **The work findings are accepted:**
+  - At T = 64 only the six 100-member frames move, and only in the stop rule: +2.2 to +13.4 M LME, at most about +15% of the stop rule's work (about 2% of the call). [Correction (I18 at D): ROOT misread I18's figure. The measured change is +21% to +159% of the stop rule's own work, and +2.5% to +16.2% of the case's total work (KF1 `RETURN.md` §5). The choice of T is reopened below.]
+  - The remaining extra work comes from collapsed rows that a later best drops. It is bounded by one exact evaluation per row, whatever T is.
+  - Cutting it further would need the approximation lemma in the correctness basis. That is declined: the accuracy-free argument stands.
+  - T = 64 is kept.
+- **For K6b's E_max:** the fallback's per-state row list (about n_f × 4.3 KB) is not a tracker. It is proportional to the model, not the data, and I16 includes it.
+- **Next:** add the row, re-run the site-table tests and FK's full suite, then D: RETURN, CHANGE_RECORD, `_run_records/` and SHA256SUMS.
+
+## KF1: D received; T reopened and set to 512 (ROOT, 2026-09-29)
+
+- **D is received and committed,** on the KF1 branch: A at `68db15d41` and D at `d267a755b`. FK's full suite passes at 401; the site table gains the one declared row.
+- **T is reopened on the corrected figures** (see the bracketed correction in "KF1: checkpoint A accepted"). At T = 64 the six 100-member frames gain +2.5% to +16.2% of their case work. I18's probe shows 0 extra at T = 512.
+  - T never affects correctness: the invariant holds for any collapse schedule.
+  - T = 512 with G = 8T = 4096 bounds a call's unevaluated rows at about 17.6 MB, plus the fallback's 4 × 2.2 MB and the tables. That is still data-independent and small next to W1's measured heap (about 100 MB at 1,000 members).
+  - Memory is only used when the data keeps that many rows; the bound only caps it.
+- **Ruling: T = 512 and G = 8T.**
+  - The model-level differential runs at T = ∞, 1 and 512.
+  - The T = 64 collapse pin is kept through the test hook, so collapse work stays exercised at model level.
+  - Re-run the golden pins, NONE and the T-sensitive mutants (M7 no collapse, M8 shared cap ignored).
+  - Record it in RETURN and CHANGE_RECORD as addendum 1, with the work table at T = 512.
+- **The approximation lemma stays out of the correctness basis.**
+
+## V-K: A2 accepted (ROOT, 2026-09-29)
+
+- **A2 is accepted.** ROOT committed it at `c1fea8574` on the V-K branch.
+  - **The FK diff is insertions only** (186 lines). Every fault site sits behind `#[cfg(any(test, feature = "mutation-controls"))]`, and the feature is declared in FK's `Cargo.toml` with no dependency change.
+  - **The kill matrix** (`VR/observations/seeded/`, `SHA256SUMS` verifying): NONE passes 40 of 40, and all 15 faults are killed.
+    - VK-F05 and VK-F06 are killed on THIN's attempts and outcome; VK-F07 and VK-R28 on evidence, as ruled.
+    - VK-R28 raises CHAIN-n00100-AX to 512 and TREE-n00100-AX to 256, as R7 §7 predicts.
+  - The §7.3 items R1 cannot discriminate are cited to K4's killing mutants: 3 (D3), the relabelling half of 10 (D10), and 16 (D16a and D16b).
+  - FK's suite with the variable unset passes 394; the feature guard passes; K4's source scan and the S11 site table pass.
+- **Next for V-K:** C, the harness mutants. B (the scale runs at 1,000 and 10,000 members) waits for KF1's merge: V-K merges main, re-runs the kill matrix, then runs B in one slot ROOT grants.
+
+## KF1: to review (ROOT, 2026-09-29)
+
+- **Addendum 1 (T = 512) is accepted,** committed at `1854911d1`.
+  - No control or 100-member frame gains any work.
+  - The stream differential is extended to 882 runs.
+  - FK's full suite passes 401. NONE passes, and KF1-M7 and KF1-M8 are killed.
+- **The PR:** [#1056](https://github.com/sgttomas/chirality/pull/1056). The full-SHA dispatch is 36621651732 (target_base `8cca91701`). GEN-8 passes on `1854911d1`.
+- **The independent reviewer is RV20,** directed first to result equality at every site and collapse schedule, then to the memory bound, the work and the tests.
+- **After merge:**
+  - K6b merges main and recomputes E_max from KF1's code, then re-runs W1-T3 and runs W1-T4.
+  - V-K merges main, re-runs its kill matrix, and runs B.
+
+## V-K: C's harness mutants; three tests added (ROOT, 2026-09-29)
+
+- **C ran 18 harness mutants and 2 controls** (NONE, and NONE-GEN, whose regeneration is byte-identical). 15 are killed and 3 survive:
+  - **VK-H6:** max(|obs|, scale) in place of max(|exp|, scale);
+  - **VK-H9:** an absolute-range pass counted as a pass;
+  - **VK-H11:** a passing discriminating control dropped.
+- **None of the three is a harness defect.** R1's committed CI data never reaches those paths.
+  - Two tests that plan §14.1 promised were not delivered at A1: the absolute-range path on R1's five rows, and the controls test.
+  - A1's unit test for H6 does not discriminate what its comment claims.
+- **Ruling: option (a).** Add `VR/tests/engine.rs` with I17's three constructed-input tests, as drafted in `_run_records/c/proposed_tests_engine.rs.txt`:
+  - obs = 1 with exp on either side of it;
+  - R1's five sub-range rows judged as `PassAbsoluteRange`;
+  - a passing discriminating control listed as undiscriminated.
+  - Re-run only NONE, VK-H6, VK-H9 and VK-H11 from clean copies with the tests added. Adding tests cannot un-kill the other 15, so their results stand, recorded as from the first run.
+  - Commit the matrix as `VR/observations/harness/harness_matrix.jsonl`.
+- **The "data-equivalent" harness paths** (for example a failing comparison recorded as a pass) are evidenced by A2's kill matrix, whose faults show every comparison kind is live. That argument is recorded, not run as mutants.
+- **Delete `<wt>/vk-mut/c`** (2.4 GB). The records keep every hash.
+- **B still waits for KF1's merge.**
+
+## V-K: C accepted (ROOT, 2026-09-29)
+
+- **C is accepted.** ROOT committed it at `e24e911e6` on the V-K branch.
+  - All 18 harness mutants are killed, and NONE (43 of 43) and NONE-GEN pass.
+  - VK-H6, H9 and H11 are each killed by exactly its own new test in `VR/tests/engine.rs`.
+  - `observations/harness/SHA256SUMS` verifies. No machine paths appear, and the mutant copies are deleted.
+- **Next for V-K:** start D's records that do not depend on B. When KF1 merges: merge main, re-run the A2 kill matrix, run B in a slot ROOT grants, then finish D.
+
+## KF1: rulings on RV20's review (ROOT, 2026-09-29)
+
+RV20 (`REVIEW/KF1_REVIEW.md`, sha256 `d1cde558…`; records `REVIEW/_run_records/kf1_review/`) reviewed head `1854911d1`: **PASS**, with 0 BLOCKING, 1 SHOULD-FIX and 5 NOTEs.
+- **Equality:** RV20 checked RETURN §3's proof step by step and found no difference over 36,000 streams, including probes with keys unrelated to values and arbitrary collapse schedules.
+- The shared cap holds over 400 rounds. A key-only replay reproduces the work pins independently. FK's full suite passes 401.
+
+**Fix before merge, as with earlier slices' SHOULD-FIX findings:**
+- **RV20-1:** in the shared-cap test, assert per round that the bounded run's ctx16 work is at least the reference run's. This kills RV20-M4, a shared-cap collapse charged to a throwaway context.
+- **N1:** add RV20's order test, which kills M5 (`RuleTest` reordered). M1 and M2 are recorded as equivalent: every reachable refusal is `Span`. [Correction (RV20, C-N1): the evidence is narrower. Every refusal constructed so far is `Span`, and it is not proven that no other stop is reachable. M1 and M2 are equivalent on every input constructed. The equality proof does not depend on this.]
+- **N3:** restate the memory figures in RETURN.
+  - The transient peak is G + T = 4,608 rows (19.8 MB), because `Vec` growth briefly holds both buffers; a standalone tracker peaks at 1.5T.
+  - The tables' unconditional bound is at most 40 B per row kept in the window; the "one value entry" figure is practical only.
+- **N5:** RETURN §0 and the head of CHANGE_RECORD point to addendum 1 for the shipped values: T = 512, G = 4096.
+- **N2 and N4 are recorded.** M12 (fallback collapse work uncharged) is the disclosed limit; the code charges it correctly by reading. "No control gains work at T = 512" is printed, not asserted, and K6b re-measures at W1's sizes.
+
+**Then:** CI and the dispatch on the new head, DEC-025 on it (the run under way on `1854911d1` is kept as the earlier head's record), GEN-8, a delta confirmation by RV20, and the merge.
+- **RV20 confirms the final head `66adfede4`: PASS,** with no findings apart from one NOTE (C-N1, corrected above in brackets).
+  - The change touches no `src/` file.
+  - RV20-M4 and RV20-M5 are killed from clean archives.
+  - N3's figures check.
+  - SHA256SUMS verifies 42 of 42.
+
+## KF1 merged (ROOT, 2026-09-29)
+
+- **Merged:** [PR1056](https://github.com/sgttomas/chirality/pull/1056) at head `66adfede4`, merge `0f5d8c7b4`, 2026-09-29 21:34:25Z. The merge record is `IMPLEMENTATION/KF1_MERGE/RECORD.md`.
+- **The gates:**
+  - RV20 PASSED the review and confirmed the final head;
+  - hosted CI was green, and the dispatch (36628173972) succeeded;
+  - DEC-025 was clean on the final head: only frame_kernel changes, 394 → 402;
+  - GEN-8 passed.
+- **Next:**
+  - **K6b (I16):** merge main, recompute E_max from KF1's code, then re-run W1-T3 and run W1-T4 in slot K6B-S3. I17 holds cargo during the slot.
+  - **V-K (I17):** merge main, re-run the A2 kill matrix, then B in its own slot after K6b's.
+  - **Then** ROOT's W1 limits from K6, K6b, V-K and K4's work counts, and F2a.
+
+## K6b: main merged; E_max from KF1; slot K6B-S3 approved (ROOT, 2026-09-29)
+
+- **ROOT merged main `0f5d8c7b4`** (KF1) into the K6b branch as `b86081221`, and into the V-K branch as `485320e95`. There were no conflicts.
+  - [Correction: ROOT's first message asked both implementers to prepare the merge themselves. That was withdrawn before any merge ran, because a merge writes the index, which TASKs may not do. I16 disclosed a `git fetch`, which updates only remote-tracking refs.]
+- **E_max now follows KF1's bounds at every site.** ROOT committed it as `082990c8d`.
+  - It includes the pivot-margin, residual-gate and fallback sites, which were missing before KF1.
+  - At 10,000 members E_max is 2.78–2.86 GB, down from 9.2–9.5, and the binary's backstop admits all six W1-T4 models.
+  - H passes 70 of 70, the runner 45 of 45, and the wrapper with the pins 47 of 47.
+- **Slot K6B-S3 is approved,** with a fresh records folder:
+  - W1-T1 to W1-T3 re-run (about 2.5 min), which gives ρ against the new E and the ascent;
+  - then W1-T4 (about 15–17 min).
+  - The binary is a release build from a `git archive` of `082990c8d`.
+  - B's pre-KF1 records stay as they are, as the before-KF1 comparison.
+- **The slot starts when I17 finishes V-K's post-merge checks.** I16 may build the release binary now. A heap-cap abort or any other stop condition stops the tier.
+
+## K6b: slot K6B-S3 stopped at W1-T4's first row; W1 at 10,000 members ends in Span (ROOT, 2026-09-29)
+
+- **What ran.**
+  - **W1-T1 to W1-T3, re-run on the post-KF1 binary** (sha256 `4f55137b…`, from `082990c8d`, into fresh records): 108 processes, all ok, with every parity item true and every `w1a` row selected at 128.
+    - ρ_fp against the new E: 0.10–0.12 at 10 members, 0.26–0.38 at 100, and 0.38–0.40 at 1,000; the DEC-053 nine reach up to 0.48.
+    - The stop rule adds no measurable heap at 1,000 members. KF1's bounded tracker fits under the verification's earlier peak.
+  - **W1-T4, row 247 (CHAIN-n10000-AX, `w1a`),** is deterministic over 5 repeats:
+    - the 128 candidate is rejected by its verification;
+    - the 256 verification's shared build stops with `Span`, so the outcome is `Unresolved(ExactSumSpan)`;
+    - 6.84e9 LME are charged, the heap peak is 832 MiB, and the call takes about 5 s.
+    - K6b's parity item `w1_stages_equal_totals` then failed, and the runner stopped the tier correctly.
+- **(a) The parity item: K6b fixes its own check,** in H only, as I16 proposes:
+  - the stage identity is checked on completed builds only;
+  - on a failed build, the check is that the stage sum is at most the charged total, and the unstaged remainder goes on the attempt line;
+  - the outcome's per-precision shared work uses the charged totals;
+  - a test reaches the failed-build path at a small size, and a mutant is killed.
+  - **The FK side is routed to KF3.** The verification's shared build (`verify.rs:471-485`) records no stage for the partial `uc` work when `gamma_m` or `uc_bounds` stops. The charged total is right: `verify_precision` charges all of it. So the evidence's stage breakdown under-reports on this error path, and F2a will publish that evidence.
+- **(b) The availability finding is routed to KF3,** after the data below.
+  - **ROOT's reading of the code** (`bound.rs:405-420`): `uc_bounds` runs directed recurrences (`u_pass`, `nl_pass`) over the factor's profile. On a long chain the comparison-matrix bound grows geometrically, so its exact sums exceed `ExactWideSum`'s span, and the whole attempt stops.
+  - **But B = min(Uc, S) per block** (R7, Lemmas D and E), and S is an independent certified bound. Treating a Uc that cannot be formed as +∞ keeps every step certified: B = S. The attempt stops only if neither bound is available.
+  - **Honesty is unaffected:** no published value changes, only whether W1 can publish.
+  - **KF3 will:**
+    - treat a Uc (and likewise an S) that cannot be formed as unavailable, not as an attempt stop, with R7's text checked for any other reader of Uc;
+    - record the partial stage work on every error path.
+  - KF3 is briefed after W1-T4's re-run shows which of the six 10,000-member models stop, and where.
+- **(c) W1-T4:**
+  - row 247's record is kept as the stop's evidence, not voided;
+  - after (a), ROOT commits the fix and grants a slot in which all 24 W1-T4 rows run on the rebuilt binary, in a new records folder (about 10–15 minutes);
+  - after KF3 merges, W1-T4 runs once more; those are the figures ROOT's W1 limits use.
+- **D waits** for the final W1-T4.
+
+## V-K: B prepared; ExactSumSpan recorded, not a stop (ROOT, 2026-09-29)
+
+- **B's code is committed** at `64470c6ba`: `VR/src/scale.rs`, `examples/vk_scale.rs` and `runner/vk_scale_runner.py`.
+  - The small-size check passes: the records `vk_scale` emits at 10 and 100 members are byte-identical to the committed ones, and VR passes 44 of 44.
+  - The admission estimate is a cited copy of K6b's E_max on KF1's trackers, because VR cannot depend on the harness. Deduplicating it once K6b merges is recorded as a follow-up.
+- **The large model files** are generated with `gen_vk_cases.py --large` and checked against `large_models.sha256`. B's binary is a release build from a `git archive` of `64470c6ba`.
+- **ExactSumSpan in B:**
+  - an `Unresolved(ExactSumSpan)` outcome at 10,000 members is the KF3 availability finding;
+  - it is recorded with its attempts and work, and its rows are reported as a separate `unresolved_availability` count, never as passes;
+  - the tier continues;
+  - it is a named, narrow runner exception, with a test;
+  - any other unresolved reason, a covered-row failure or any other stop condition still stops;
+  - V3's final figures re-run after KF3.
+- **Order of slots:** K6b's W1-T4 re-run first (short), then V-K's B.
+
+## V-K B accepted; KF3 spawned (ROOT, 2026-09-29)
+
+- **V-K's B is accepted.** ROOT committed its records at `f5379a5d4` on the V-K branch.
+  - **V1 (100 members) and V2 (1,000):** 12 of 12 selected at 128, every row passes, and C9's floor sets are empty.
+  - **V3 (10,000):** CONT-n10000-AX is selected at 128, with 211 passes and 4 absolute-range passes out of 215. The other five end `Unresolved(ExactSumSpan)` in the 256 verification's shared build, before `uc`, recorded under the named exception. [Correction (ROOT, 2026-09-30, RV25-N4): "before `uc`" should read "before the Uc bounds complete". The shared build recorded no `uc` stage for the partial work, and KF3's diagnosis places the stop inside `uc_bounds`.]
+  - No watchdog kill, heap-cap abort or memory-guard kill occurred.
+  - W1 at 10,000 members takes 5–10 s per call and about 0.82 GB of heap, against E_max of 2.7 GB (ρ 0.32–0.37). [Correction (ROOT, 2026-09-30, RV25-S2): these GB figures are MiB divided by 1,000, the E_adm slip again. VK RETURN §14.3 gives a heap of 816.5–835.0 MiB (0.86–0.88 GB) and E_max 2,676–2,752 MiB (2.81–2.89 GB). ρ is unaffected.]
+- **KF3 is spawned as I19** (`TASK_BRIEFS/I19_KF3_IMPLEMENTATION.md`), on branch `codex/piping-kf3-20260929` in `<wt>/kf3`, from main `0f5d8c7b4`. It covers:
+  - the diagnosis of the Span;
+  - D1 revision 5a.3 **amendment A2**, which ROOT records when KF3's plan confirms the reading: a certified bound (Uc or S) that cannot be formed is +∞, so B = min over the available bounds, and the attempt stops only if a block needs a bound and none is available;
+  - partial stage work recorded on every error path.
+  - **Checkpoint 0 is diagnosis and plan only.** Builds wait until K6b's current slot ends.
+- **After KF3 merges:** K6b and V-K merge main and re-run their 10,000-member tiers. Those figures, with K6, K4's counts and the rest of K6b's and V-K's measurements, are the basis for ROOT's W1 limits.
+
+## K6b: slot K6B-S4 (b3) accepted; D now, with W1-T4 pre-KF3; V-K's PR to review (ROOT, 2026-09-29)
+
+- **b3 is accepted.** It ran 132 processes, all ok, with 0 parity failures and 0 deferrals, on the binary `20b67776…` built from `4eeb206c0`.
+  - **K6b's six 10,000-member rows agree with V-K's B.** CONT-AX is selected at 128; the other five end `Unresolved(ExactSumSpan)` in the 256 verification's `uc` stage, after bounded and wide formation. The fixed parity check passes on all of them.
+  - **CONT-AX at 10,000 members:**
+    - the call charges 8.23e9 LME, with a heap of 814 MiB and a median call of 6.09 s, 7.6 times the binary64 sparse entry;
+    - its stop rule is 2.60e9 LME, 31.5% of the call.
+  - W1's heap grows with a log-log slope of 0.92–0.98 from 10 to 10,000 members.
+  - ρ_fp is at most 0.43 against the new E, and E_adm at 10,000 members is 2.65–2.73 GiB. [Correction (I16 at D): E_adm at 10,000 members is 2,649–2,727 MiB, which is 2.59–2.66 GiB (2.78–2.86 GB). The b3 report had divided MiB by 1,000.]
+  - **A K6 observation, not a stop:** K6's own sparse estimate gives ρ_fp up to 1.75 at 10,000 members (CHAIN-AX). The excess is outside the heap: heap/E is 0.64–0.73.
+- **D proceeds now, as for V-K.** K6b's records mark W1-T4's 10,000-member figures pre-KF3.
+  - After KF3 merges, K6b merges main and re-runs W1-T4 as a records addendum, which may follow K6b's merge.
+  - ROOT's W1 limits use the post-KF3 figures.
+- **V-K's PR** [#1057](https://github.com/sgttomas/chirality/pull/1057) is open. The dispatch is 36640221444. The independent reviewer is RV21.
+
+## KF3: rulings on I19's diagnosis and plan; D1 revision 5a.3 amendment A2 (ROOT, 2026-09-29)
+
+The plan is `IMPLEMENTATION/KF3/PLAN_CHECKPOINT0.md` on the KF3 branch (sha256 `721fc2d6…`). **It is approved.**
+
+- **The diagnosis is accepted.** The five frames stop in `build_verify_shared`, then `uc_bounds`, then `u_pass`: an `add_toward` whose addends lie more than 8,128 bits apart.
+  - **U_c grows geometrically along the chain:** log2 U_c ≈ α·N + β, with α from 1.74 to 6.6 bits per member on the five frames. The true norm grows only polynomially.
+  - The first refusal is predicted between about 1,200 and 4,500 members.
+  - It is not an exponent overflow, and neither `gamma_m`, `nl_pass` nor `bounds_from` is involved.
+- **D1 revision 5a.3, amendment A2 (ROOT's ruling):**
+  - a Uc_c or S_c whose formation is refused, by `Span` or `Exponent`, is unavailable. It is treated as R7's existing "does not exist" (+∞);
+  - B_c is the minimum over the bounds that were formed;
+  - `u_pass` and `nl_pass` mark only the refused block and skip its remaining rows, and every other block runs as today;
+  - **honesty:** every step of the guarantee (Lemmas A to C, the Theorem and the Corollary) uses B_c only through B_c ≥ ‖K̃_c⁻¹‖₁. A2's B_c is the minimum of a nonempty set of formed bounds, each certified by Lemma D or E, and a refusal changes no formed value. So A2 affects availability only. The reviewer checks this against every reader in plan §3.
+  - `DESIGN.md` stays hash-pinned; the amendment is this ruling.
+- **The decisions in plan §11:**
+  1. **A block with data and no bound, after a refusal:** the attempt stops with that refusal, as today.
+  2. **A refusal stop takes precedence** over another block's `uc` rejection. The outcome is deterministic and conservative.
+  3. **The refusal evidence** goes on `AttemptRecord` (`bound_refusals`) only.
+  4. **The constructed slender chain** is approved as the CI model (a planar chain along (3,4,0), under about 200 members). Report its debug CI time, and ask if it exceeds about 60 s.
+  5. **The test-only hook that removes S** for the W2 test: reuse V-K's `seeded` module if V-K is on main first; otherwise add a `#[cfg(test)]` hook in KF3.
+  6. **The scale driver for B:** main's drivers if V-K and K6b have merged first. Otherwise, their `vk_scale` and `k6_observe` built from `git archive` copies of their branches, which is read-only.
+  7. **`wide_sum.rs`: one method, authorized,** added to KF3's write set: a full accumulator reset after a refusal, as a safeguard, with a unit test.
+  8. **No early exit or "sticky" directed add.** Token-level identity on RF-LARGE-100 is kept.
+  9. **est_c stays out of A2.**
+- **Partial stages:** all four builds (`build_shared`, `solve_case_at`, `build_verify_shared` and `verify_state`) add the charged work their stages do not record to the stage in progress, so the stages sum to the charged total on every path.
+- **Merge order with K6b** (whose test asserts `shared_stages.uc == 0` on a stopped build, and whose parity check tolerates unstaged work):
+  - **whichever of KF3 and K6b merges second** updates that test and tightens the parity check back to equality, in its own PR;
+  - if KF3 is second, `performance_harness/tests/k6b_w1.rs` and `src/k6/w1/staged.rs` join KF3's write set for that purpose only.
+- **Next:** checkpoint A. Builds may run, with one cargo job at `-j 4`; RV21 is reviewing V-K alongside.
+
+## K6b: D accepted; PR to review (ROOT, 2026-09-29)
+
+- **D is committed** on the K6b branch: `126fcb9f3` (the packet code and b3's packet) and `1123d19b9` (RETURN, CHANGE_RECORD and 1,774 run-record files, 21 MB, with oversized dumps trimmed and their sha256 kept).
+  - Both `SHA256SUMS` verify, and no machine paths appear.
+  - W1-T4 is marked pre-KF3 throughout, and the post-KF3 re-run is RETURN addendum 1.
+- **I16's corrections and notes are recorded:**
+  - E_adm at 10,000 members (bracketed above);
+  - KF1 moves the stop rule's cost from memory to work: at 1,000 members the heap increment is gone, and the work rises 1.2–2.4×;
+  - the 141 B constant in the sparse cross-check (N-4) is a note.
+- **The PR** is open, with its full-SHA dispatch. The independent reviewer is RV22.
+
+## V-K: rulings on RV21's review (ROOT, 2026-09-29)
+
+RV21 (`REVIEW/VK_REVIEW.md`, sha256 `eab89fb5…`; records `REVIEW/_run_records/vk_review/`) reviewed head `3fd1baff3`: **PASS**, with 0 BLOCKING, 2 SHOULD-FIX and 5 NOTEs.
+- **No way was found for the harness to pass a wrong answer on a covered row:**
+  - 225,405 engine vectors against RV21's own `Fraction` oracle;
+  - 129,968 wrong answers through the harness's own path, every one failed, with the exact boundary pinned to the ulp on 16,778 rows;
+  - nine whole-case probes.
+- **Also confirmed by RV21:**
+  - its independent adapter matches every committed model;
+  - the floor lists re-derive as 46, 3 and 2;
+  - FK is unchanged with the feature off, and FK's suite passes 402;
+  - A0 is visibility only;
+  - B's exception is narrow;
+  - every `SHA256SUMS` verifies.
+
+**Fix before merge:**
+- **RV21-1:** the feature guard also flags a manifest that enables VR's `seeded-faults`, which enables FK's `mutation-controls` indirectly. Use RV21's one-line fix and its self-test.
+- **RV21-2:** add RV21's two drafted tests, a wrong observation of an out-of-range row fails, and an `Overflow` row fails. They kill RV21's mutants H4 and H6.
+- **N1:** RETURN and CHANGE_RECORD are brought to the final head's counts.
+
+**Recorded, optional:**
+- **N2:** the generator's subprocess `--model` check (RV21 ran it: 191 runs).
+- **N3:** a CI check that `not_covered.json` equals the committed set.
+- **N4 and N5.**
+
+**Then:** CI and the dispatch on the new head, DEC-025 (which gains VR's manifest), GEN-8, RV21's confirmation, and the merge.
+- **RV21 confirms V-K's final head `5f0d39426`: PASS, with no new finding.**
+  - The change touches no `src/` file in FK or VR.
+  - RV21-1 is as drafted.
+  - RV21-H4 and RV21-H6 are each killed by exactly their own test, and NONE passes 47 of 47.
+  - N3's set check catches a planted duplicate.
+  - The records match the head, and every `SHA256SUMS` verifies.
+  - GEN-8 passes on `5f0d39426`.
+
+## K6b: rulings on RV22's review (ROOT, 2026-09-29)
+
+RV22 (`REVIEW/K6B_REVIEW.md`; records `REVIEW/_run_records/k6b_review/`) reviewed head `1123d19b9`: **PASS**, with 0 BLOCKING, 3 SHOULD-FIX and 7 NOTEs.
+- **No product byte changes.** A0's patch-id equals both A0 commits.
+- **The W1 mode:** RV22's K4SRC decode matches R1's models; its release `w1a` runs reproduce b3 byte for byte; the work closure has 0 discrepancies over 330 outcomes.
+- **The records:** 934 RETURN values trace to the raw JSONL with 0 mismatches; the packet regenerates; the merge `b86081221` is clean.
+
+**Fix all three SHOULD-FIX findings before merge.** ROOT's W1 limits will rest on E_max and on the stage evidence.
+- **RV22-1:** tighten `stages_equal_totals` on stopped builds to at most one side short (`own == own_total || shared == shared_total`), each short side at most its total. Report `stages_complete` as unstaged == (0, 0). Add a test with RV22's probe, the 1-LME under-record on a stop-rule stop, and kill it.
+- **RV22-2:** E_max must be an upper bound on every phase.
+  - Add the 1024 verification's live vectors (about 3n + 8n_f wide values, and `recover`'s output) and the shift's profile clone (`bound.rs:560`) to the verification phase.
+  - Add the solve-phase fallback items (`abar_q`, `evaluated`, `rhs`, `u_free`, the per-state u) under the move model.
+  - Regenerate `counts.jsonl`, and state the change in RETURN: +5.4% on CHAIN and TREE and +2.1% on CONT at 10,000 members, and 0 at 1,000 or fewer. b3's admissions are unaffected. [Correction (I16): the change at 1,000 members is +3.28% (CHAIN, TREE) and +2.33% (CONT), because under the move model the fallback's items outgrow the tracker term there; at 10 and 100 members and on the nine it is +0.04–0.22%. b3's admissions are still unaffected: 0 decisions change.]
+- **RV22-3:** add a test that recomputes every committed `counts.jsonl` line's E_max and E_sel128 from the code, and one that exercises the solve-phase terms at a size where they bind. Kill RV22-M6.
+
+**The NOTEs are recorded:** RETURN's load range, the move-model heap/E column, the adapter through K6's section formula, and the two further unstaged paths, which go to KF3. RV22-M5 (the binary's prefix parity always true) and RV22-M7 (the backstop against the RSS cap) are killed if cheap, and otherwise recorded; RV22-M2 is equivalent on single-case models.
+
+**Then:** CI and the dispatch on the new head, DEC-025, GEN-8, RV22's confirmation, and the merge.
+
+## KF3: checkpoint A accepted (ROOT, 2026-09-29)
+
+- **A is accepted.** ROOT committed it on the KF3 branch: `29c0b69e4` (the code and tests) and `a7ec4981a` (the checkpoint record).
+  - **Amendment A2 is implemented as ruled:**
+    - a refused bound marks only its block;
+    - B = min over the formed bounds;
+    - a block with data and no bound stops with the refusal, which outranks a `uc` rejection;
+    - budget stops are never refusals;
+    - refusals are recorded per block.
+  - **Partial stage work** is staged on every path of all four builds.
+  - **No control changes** outcome, row, class, bound or golden work; only the new `kf3.txt` controls move.
+  - FK's full suite passes, `gen --check` is byte-identical on every earlier file, and 11 mutants are killed.
+- **The constructed CI model is 390 members,** not under about 200. I19 found that slender sections shift log2 U_c by a constant and leave its growth rate unchanged. KF3-UC-SPAN, a chain along (−1, 12, −12) growing about 20.8 bits per member, is the smallest that refuses.
+  - On main it ends `Unresolved(ExactSumSpan)`. Under KF3 it is selected at 128 with B = S_c, and is honest against GEN on 8,983 checks, the worst at 0.969 of its allowance, with G5a passing.
+  - Its debug CI time is 38–64 s for the KF3 tests, which is accepted.
+- **B (the scale evidence) waits for V-K's merge,** which carries `retained_api` and `vk_scale` to main. ROOT then merges main into KF3, and I19 runs B with `vk_scale` built from a `git archive` of that merged head, in a slot ROOT grants.
+- **RV22's findings are closed** on the K6b branch.
+  - **RV22-1:** at most one short side on a stopped build.
+    - **I16's extension is accepted:** a stopped candidate that charged stop-rule work is held to equality. The decision runs only after its builds complete, and only that rule catches RV22's probe.
+  - **RV22-2:** E_max bounds every modelled phase. At 10,000 members it is 2.64–2.81 GiB, and b3's admissions are unchanged.
+  - **RV22-3:** tests recompute every committed line's estimate.
+  - Of the new mutants, 10 of 11 are killed. RV22-M5B, the binary's call site forced true, survives and is recorded: no binary run can produce a false prefix, and the library form (M5L) is killed.
+- **Then:** CI and the dispatch on the new head, DEC-025 after V-K's, GEN-8, RV22's confirmation, and the merge.
+
+## V-K merged (ROOT, 2026-09-30)
+
+- **Merged:** [PR1057](https://github.com/sgttomas/chirality/pull/1057) at head `5f0d39426`, merge `f8400d290`, 2026-09-30 00:26:51Z. The merge record is `IMPLEMENTATION/VK_MERGE/RECORD.md`.
+- **The gates:**
+  - RV21 PASSED the review and confirmed the final head;
+  - hosted CI was green, and the dispatch (36646861753) succeeded;
+  - DEC-025 was clean: the only change is the new `numerical_robustness` (47 tests), and frame_kernel is unchanged at 402;
+  - GEN-8 passed.
+- **FK's `retained_api` export is now on main.** K6b's identical A0 merges cleanly.
+- **Next:**
+  - ROOT merges main into KF3 and K6b;
+  - KF3's B (the scale evidence) runs with main's `vk_scale`;
+  - K6b's gates continue.
+
+## Main merged into K6b and KF3 (ROOT, 2026-09-30)
+
+- **K6b:** ROOT merged main `f8400d290` (V-K) as `597c81ba4`.
+  - The conflicts in `retained/adaptive.rs` and `verify.rs` were resolved to main's versions. K6b's FK change was exactly A0 (patch-id `b43efeb4`), and A0 is identical on main, so main's FK (A0 plus V-K's gated sites) is the merged result.
+  - K6b's FK now equals main's. The full-SHA dispatch 36650532005 runs on the new head.
+- **KF3:** ROOT started the merge of main `f8400d290`. There is one conflict hunk, in `AttemptRecord`: A0 made `verification_shared_work` and `verification_shared_built_here` public, and KF3 added `bound_refusals` beside them.
+  - **Resolution rule:** under A0's rule (the fields of evidence records are public; "V-K: rulings on I17's checkpoint-0 plan" Q8), `bound_refusals` is `pub`. `BlockRefusal`, and any type it carries, becomes `pub` and is added to the `retained_api` facade.
+  - I19 resolves the conflict markers by editing only; ROOT stages and commits the merge.
+- **KF3's write set gains, for the merge only:**
+  - `FK/src/structural.rs`'s facade lines, for `BlockRefusal`;
+  - **VR's committed records** (`VR/observations/**`), if KF3's partial-stage recording or `bound_refusals` changes them. They are regenerated with VR's own tools, only the expected fields may change, and VR's suite and kill matrix must pass. V-K's tests compare its records byte for byte, and V-K is now on main.
+- **K6b's `uc == 0` test and parity check** follow the earlier rule: whichever of KF3 and K6b merges second updates them.
+- **RV22 confirms K6b's `011911e4e`: PASS.** RV22-1, RV22-2 and RV22-3 are closed.
+  - RV22's independent itemization is at or below E_max on all 33 lines, and 0 of b3's 132 admissions change.
+  - RV22-M5B is acceptable as recorded.
+  - **Two new NOTEs, recorded:**
+    - C-N1: a stop inside the solve (`into_solve_128`) has no test, so RV22-C4 survives;
+    - C-N2: on a stopped verification build, the two builds' summed stages can hide one build's shortfall. This is within the ruling, and KF3's equality closes it.
+  - Because K6b's head is now ROOT's merge `597c81ba4`, RV22 checks that the merge adds exactly main's delta and that H passes on the merged tree.
+- **RV22's merge check of `597c81ba4`: PASS, with no findings.**
+  - Path by path over 59,471 paths, there are 0 mismatches. The first-parent diff is main's delta less A0, which both sides carry.
+  - FK equals main's byte for byte.
+  - The remerge diff covers only the two resolved conflicts, each keeping main's side.
+  - H passes 74 tests plus `k6_alloc`, and the runner 47 of 47, on a clean archive.
+
+## K6b merged (ROOT, 2026-09-30)
+
+- **Merged:** [PR1058](https://github.com/sgttomas/chirality/pull/1058) at head `597c81ba4`, merge `78f55f927`, 2026-09-30 01:08:38Z. The merge record is `IMPLEMENTATION/K6B_MERGE/RECORD.md`.
+- **The gates, on `597c81ba4`:**
+  - RV22 PASSED the review, confirmed `011911e4e`, and passed the merge check of `597c81ba4`;
+  - hosted CI was green: the four pull_request runs and the full-SHA dispatch 36650532005;
+  - DEC-025 was clean against V-K's Mac run (keyed by manifest path): the only suite change is performance_harness, 54 → 74 (K6b's tests). frame_kernel is unchanged, and the failing tests are exactly the three known Mac platform tests. pytest passed 3070 (V-K's 3062, plus K6b's 8 runner tests: `test_k6_runner.py` has 39 → 47), vitest 2822 of 2822, and both builds exited 0;
+  - GEN-8 passed.
+- **Still routed from K6b:**
+  - W1-T4 at 10,000 members re-runs after KF3 merges, as a records addendum (RETURN addendum 1);
+  - VR's cited copy of E_max is deduplicated against K6b's, with RV22-2's terms;
+  - RV22's C-N1 (no test of a stop inside the solve) stays open as a NOTE.
+
+## KF3: main merged; K6b's parity restored in KF3; B's slot granted (ROOT, 2026-09-30)
+
+- **The merge of main `f8400d290` (V-K) is committed as `c0473301e`.** I19 resolved the one conflict by editing only; ROOT staged and committed.
+  - ROOT checked that each resolved file differs from main's side only by the ruled visibility: `bound_refusals` `pub` in adaptive.rs; `BlockRefusal`, `BoundRefusal`, `RefusalKind`, `BoundPass` and `CertifiedBound` `pub` in bound.rs; and one facade line in structural.rs.
+  - I19 reports that FK (348 lib, 7 integration files, 6 doc-tests), VR (47) and H build without warnings and pass, and that VR's records regenerate byte for byte, so no VR record changes.
+- **Main `78f55f927` (K6b) is merged as `e114b23c1`,** with no conflict. K6b changes no FK file.
+- **KF3 merges second, so KF3 updates K6b's checks (the earlier rule).** KF3's write set gains:
+  - `performance_harness/src/k6/w1/staged.rs`: `stages_equal_totals` requires equality on every attempt, completed or stopped. Its doc comment says so and cites KF3. `unstaged` and `stages_complete` stay, since the attempt line records them (RV22-1). They are now always (0, 0) and true, and a test asserts that on a stopped build;
+  - `performance_harness/tests/k6b_w1.rs`: the `uc == 0` assertion on the budget-stopped build becomes the partial `uc` work KF3 records, and the relaxation tests (one short side accepted) now expect `false`. RV22's C-N2 closes here;
+  - `performance_harness/runner/**`, only if the runner encodes the relaxation.
+  - Anything else in H is a stop. H's suite (`--all-targets`, with `k6_alloc`) and the runner's suite must pass.
+- **B's slot is granted now.** No other slice is building, and ROOT's records work uses no cargo.
+  - The slot covers the H update above, then B: RF-LARGE-CHAIN-n10000-AX through W1, and the other five 10,000-member RF-LARGE frames with main's `vk_scale`, each with its outcome and, where it publishes, its honesty against R1.
+  - It ends with I19's report.
+
+## KF2: spawn (ROOT, 2026-09-30)
+
+- **KF2 (K6's N10) is spawned as I20** (`TASK_BRIEFS/I20_KF2_IMPLEMENTATION.md`), on branch `codex/piping-kf2-20260930` in `<wt>/kf2`, from main `78f55f927` (K6b merged).
+- **ROOT's reading** (for I20 to confirm or refute):
+  - the dense negative-pair witness is O(n⁴): every pair allocates an n-vector, re-validates, and scans n² entries;
+  - K1's sparse witness already evaluates a pair in O(1), in the dense order.
+  - So the dense witness can be made O(n²) with every result bit-identical, errors included. That is the slice.
+- **The dense pivot screen** (2j + 2 against the skyline's 2(i − first_i) + 2) is **diagnosed and proposed only.** Changing it changes published dense classes, so it needs ROOT's ruling, and possibly an owner-facing note.
+- **Product-reaching gates:** review, T9 (112 of 112), the both-entry gate (part 1 byte-identical; part 2's four dense N10 runs must end within 1,800 s), CI with the dispatch, DEC-025, GEN-8 and the src-tauri suite.
+- **Host:** KF3's slot B is running, so checkpoint 0 is reading only. I20's first build waits for ROOT's word.
+- **KF2 does not block W1's limits or F2a.** It is on the T3-close list.
+
+## KF3: checkpoint B accepted; two findings for D (ROOT, 2026-09-30)
+
+- **Accepted and committed on the KF3 branch as `ae831ca51`:** H's parity update and B's records.
+  - **H:** `stages_equal_totals` holds every attempt to equality. The budget-stopped build carries its partial `uc` work, the one-short-side probes expect `false` (RV22's C-N2 closed), and a new test finds nothing unstaged at every segment end and midpoint of CHAIN-n00010-AX. H's suite and the runner's 47 pass. The runner needed no change.
+  - **B:** `vk_scale` in release, from a `git archive` of `e114b23c1`, with V-K's runner unedited.
+    - V1 and V2 (12 models) are byte-identical to V-K's B, charged work included.
+    - **At 10,000 members:**
+      - CHAIN-AX, CHAIN-ROT and CONT-ROT move from `Unresolved(ExactSumSpan)` to **selected at 128**, and pass R1 on every row (103, 103, and 214 plus 1 absolute-range of 215). Uc is refused in the forward pass, so B = S_c, with one shifted factorization each. Charged work is 10.1, 12.1 and 10.4 G LME, against 6.7, 8.3 and 6.8 before KF3.
+      - CONT-AX is unchanged.
+      - **TREE-AX and TREE-ROT** move from `Unresolved(ExactSumSpan)` to `Unresolved(Ceiling)`. R7's verification estimate (b) rejects them at 128, 256 and 512, on member 1's end force at the root, and the ceiling is reached after the 1024 verification. They publish nothing, before and after, and charge 65.3 and 74.2 G LME (6.6 and 8.1 before).
+    - Every published row passes R1, and every C9 S_full set is empty.
+    - The refusals' rows match the plan's forward-pass prediction on all five frames.
+- **Finding KF3-B1: the TREE frames at 10,000 members are an availability loss of estimate (b), not of KF3.** They are honest: nothing is published.
+  - **For D:** from the existing records only, with no new heavy run, give (b)'s estimate against its threshold at the rejecting row for each precision. Classify the loss as a design limit (like THIN) or slack in (b). ROOT rules from that.
+  - **For W1's limits:** a case budget ends these cases earlier. Their charged work before `Ceiling` (65–74 G LME) is recorded.
+  - **RETURN must say plainly** that the runner summary's `fail` column for these two frames counts unpublished rows, and that no wrong value was published.
+- **Finding KF3-B2: the measured heap exceeds E_max.** [Correction (ROOT, 2026-09-30, RV25-S1): the figures below compare against VR's stale port of E_max, and like for like K6b's final formula bounds the measured peaks (see the correction in "KF3: D accepted; KF3-B1 and KF3-B2 routed"). KF3-B2 stands on the code derivation of an under-count, not on a measured excess.] TREE-AX peaks at 2,889.9 MiB against E_max 2,750 (ρ ≈ 1.05), and TREE-ROT at 2,891.5 against 2,752. The ruling on RV22-2 requires E_max to be an upper bound on every phase.
+  - **For D:** derive, with file:line, which allocations are alive at the peak, and whether pre-KF3 code on the same path holds them. There are two possibilities:
+    - a K6b omission that no earlier run reached (I19's reading: the shifted factorization's two profile copies at 1024 bits);
+    - a KF3 change in what is alive.
+  - **Routing, once derived:**
+    - a K6b omission goes to K6b's post-KF3 follow-up, which becomes a small H PR with its own review: the E_max term, `counts.jsonl` regenerated, and W1-T4 re-run;
+    - a KF3-induced term is fixed in KF3 before its PR.
+  - **Either way, ROOT's W1 limits wait for E_max to bound every phase at 10,000 members.**
+- **Next:** checkpoint D, with KF3-B1 and KF3-B2 derived.
+
+## KF2: rulings on I20's checkpoint-0 plan (ROOT, 2026-09-30)
+
+- **The plan is accepted,** and committed on the KF2 branch as `573bd3835` (`IMPLEMENTATION/KF2/PLAN_CHECKPOINT0.md`, sha256 `76337c43…`).
+- **ROOT checked the equality argument (§4) and accepts it:**
+  - **The design:** an O(1) guard per pair repeats `verify_negative_direction`'s exact arithmetic on the pair's four cells, in its order. Only a pair the guard marks as a witness is passed to the unchanged verifier, which produces the published value.
+  - **Why it holds:**
+    - validation's result is the same at every call;
+    - the direction check always passes;
+    - the verifier's nonzero cells are exactly the guard's cells, in the same order, with the same operations;
+    - so both reach the same first error or the same verdict.
+  - Zero couplings are still visited, so the equality holds for every value of the type, not only on `prepare_bound`'s invariants.
+- **The cost:** ROOT confirmed that the old witness is O(n⁴). The prediction at 6,006 DOFs is about 31 days, a lower bound. At K6's kill about 0.06% of the pairs had been searched. The new witness is predicted at about 1 s; A measures it.
+- **Q1: (a), approved.** The tests go in a new `FK/structural/kf2_witness_tests.rs`, and FKS gains one `#[cfg(test)] mod kf2_witness_tests;` line beside `s11f_tests` and `s11k_tests`.
+- **Q2: approved.** N10's two models run through H's unchanged `k6_observe`, built in release from a `git archive` of the KF2 tree. H is not edited.
+- **Q3: the screen is declined for KF2 and split out.** KF2 stays byte-identical.
+  - **What a change would alter:** I20 showed a profile-based operation count is honest, because the dense factor's entries before a row's first nonzero are exact ±0. But the change alters every dense report's bytes, since `PivotEvidence.operation_count` and `.screen` are published (PP:1106-1107): T9's 56 dense outputs, and the dense part-1 envelopes. It also changes dense classes. That is certain on the N10 pair and likely on RF-CHAIN-A and RF-CHAIN-T at n10-r1e-12; RF-SKEW-T-PIN-OFF-122 and RF-WEAK-W-L at r1e-12 are candidates.
+  - **Routed:** a separate dense-screen slice on the T3-close list, with an owner-facing note, since dense scrutiny's published standing changes. It is not scheduled yet.
+- **Q4: no budget in the witness.**
+  - **Recorded for the owner:** the dense route observes cancellation only before the solve and before publication (APP:1688-1692, :1711-1717). A cancelled dense job keeps its thread and memory until the solve returns. After KF2 the dense factor is the long step (65–188 s at 1,000 members). [Correction (ROOT, 2026-09-30, RV25-N3): 65–86 s at 1,000 members; 166–188 s at K6's 1,364-member ceiling (B3).]
+  - Routed as an observation to T6 and T9; it is not T3 scope.
+- **Q5: the site-table row is authorized:** `("FK/structural.rs", "negative_pair_witness_counted", 6, …)`, one declared, additive row.
+- **Q6: yes.** SD's suite is added at A (SD:37 and `k1_tests.rs:371` call the witness).
+- **Q7: confirmed.** The one private helper is `negative_pair_witness_counted`, holding the loop, the counts and the pair evaluation inline.
+- **Builds may start now:** one cargo job at `-j 4`, `<wt>/kf2-target`, with the memory guard running. No timed slot is held; KF3 is writing D.
+
+## KF3: D accepted; KF3-B1 and KF3-B2 routed; PR to review (ROOT, 2026-09-30)
+
+- **D is accepted, and committed on the KF3 branch as `b8c55c92e`** (records only; the code equals `ae831ca51`'s). It holds RETURN (sha256 `a582135f…`), CHANGE_RECORD (`b9fca3a6…`), `_run_records/{b,d,h,merge}/` and SHA256SUMS (115 entries, verified by ROOT).
+- **The write set is confirmed by ROOT against main:** FK's facade line (the merge ruling), `K4R/{adaptive,bound,verify,wide_sum}.rs` (`wide_sum.rs` under ruling 7), K4T's tests, GEN and `kf3.txt`, and H's `staged.rs` and `k6b_w1.rs` (the parity ruling).
+- **KF3-B1 (the TREE frames' `Ceiling`) is classified:**
+  - Estimate (b) rejects on member 1's end force at the root. Its ratio Ŵ/(2^(6−P)·ê) is independent of P, so no precision passes, as with THIN.
+  - I19's probe of R1's comb tree (AX) gives c = 64 × ratio:
+    - 20.5 at 1,000 members and 25.3 at 2,000 (both selected);
+    - 74.1 at 3,000, 64.8 at 4,000, 142.9 at 6,000 and 177.1 at 8,000.
+  - **At 3,000 and 4,000 members this is slack in (b):** R7's Corollary would still hold (c ≤ 127 at p = 128 and 256).
+  - **At 6,000 members and above, it is beyond what R7's split of λ = 2^8 leaves for (b)** while (d) keeps 60. That is a design limit of the split, and 10,000 members is taken to be the same, by extrapolation.
+  - **Routed:** a D1 design question: re-splitting λ between (b) and (d), and whether (b) can be sharpened on tree roots. It is not KF3's, and not a T3-close blocker.
+  - **Owner-facing:** W1a publishes no retained-precision result for R1's large trees at about 3,000 members and more. The binary64 route publishes them with its ordinary class, as today. This joins THIN on the owner's availability list, beside the PHYS-R4 question.
+- **KF3-B2 (heap above E_max) is a K6b omission, not KF3-induced.**
+  - Against K6b's final formula, the peak inside `nl_pass` on the shifted factor at 1024 (bound.rs:1040) exceeds E_max by 19.5 MB (AX) and 19.4 MB (ROT). [Correction (ROOT, 2026-09-30, RV25-S1): that comparison is not like for like. It sets `vk_scale`'s measured peak against K6b's E_max with `k6_observe`'s fixed term. On `vk_scale`'s own fixed term, K6b's final formula **bounds** both measured peaks, by 7.0 and 7.5 MB (KF3 RETURN §13); that fixed term is itself an estimate. KF3-B2 stands on the code derivation alone: H's pass term under-counts the 1024 shift by a net 10,799,688 B (`at`/`bt`/`ct` omitted, `work` counted after it is freed, `OPTION_EXTRA` over-counted), so E_max is not yet shown to bound that phase. On main the call is at `bound.rs:1059`. The routing to K6c is unchanged.] [Correction (ROOT, 2026-09-30, RV25-D1): the finding is stronger than this bracket says. By construction, K6b's formula does not bound this phase: taken from the code, the phase needs 3,021,565,490 B (AX) against E_max 3,010,765,802 B (KF3 RETURN §13, :440-445). Only a *measured* excess is unshown; the `vk_scale` peak stays inside E_max through slack elsewhere, not through this term.]
+    - H's pass term leaves out `at`, `bt` and `ct` (3·nf·w).
+    - It counts `work`, which is freed before `nl_pass`.
+    - It over-counts `Option<Wide>` by 8 B per entry.
+    - Net, it is short by 10,799,688 B at the 1024 shift.
+  - Pre-KF3 code holds the same allocations on the same path. KF3 only makes the path reachable (A2's shift, where Uc used to stop the attempt at 256).
+  - I19's B-time reading ("two profile copies") described VR's stale port, not K6b's formula; the correction is recorded in RETURN.
+  - **Routed to a K6b follow-up (K6c), a small H PR with its own review, after KF3 merges:**
+    - E_max's pass and shift terms corrected;
+    - the overlap of `uc_bounds`' transients checked;
+    - `counts.jsonl` regenerated;
+    - W1-T4 re-run on the post-KF3 code (RETURN addendum 1's content);
+    - **VR's stale E_max port** (`VR/src/scale.rs`, 153 MB below K6b's final formula; V-K's runner admits with it) replaced by K6b's estimate, deduplicating it.
+  - **ROOT's W1 limits wait for K6c.**
+- **T9 and the both-entry gate stay unrun for KF3.** `retained_api` is public in FK, but no product crate names it (the V-K and K6b scans). KF3's product-crate reach is unchanged; the reviewer re-runs the scan.
+- **KF3's stale doc NOTE** (`H/src/bin/k6_observe/w1.rs:6-10`) goes to K6c.
+- **The PR is opened** from `b8c55c92e`, with its full-SHA dispatch. **RV23 is the independent reviewer,** directed to:
+  - A2's honesty argument, against every reader of Uc, S and B;
+  - the partial-stage identity on all four builds;
+  - the controls' invariance;
+  - KF3-UC-SPAN's honesty against GEN;
+  - the H parity update;
+  - B's records.
+- **DEC-025 and GEN-8 run on the final head after RV23.**
+
+## K6c briefed; V-K's V3 addendum satisfied by KF3's B (ROOT, 2026-09-30)
+
+- **K6c's brief is committed:** `TASK_BRIEFS/I21_K6C_IMPLEMENTATION.md`. It covers:
+  - E_max re-derived phase by phase against the post-KF3 kernel and corrected (KF3-B2);
+  - VR's stale port deduplicated;
+  - W1-T4 re-run post-KF3, as K6b's reserved addendum 1, in `T3/IMPLEMENTATION/K6C/`, since K6b's records are hash-bound;
+  - KF3's stale-doc NOTE;
+  - RV22's C-N1 if it fits.
+- **I21 is spawned after KF3 merges.** Its base must carry KF3's kernel.
+- **V-K's routed V3 re-run** ("V-K merged", Routed) **is satisfied by KF3's B.** B ran V-K's runner and `vk_scale`, unedited, on `e114b23c1`, whose FK equals KF3's final head `b8c55c92e`'s. It covers V1 to V3, outcomes and R1 honesty (`KF3/_run_records/b/`).
+  - The E_max column in those records comes from VR's stale port. It is superseded by K6c's corrected estimate. K6c re-checks B's admission decisions against the corrected estimate; ROOT has not verified them. [Correction (ROOT, 2026-09-30, RV25-N2): as first written (`e48774292`), the previous sentence ended "…, and no admission decision there relied on it at the margin". That was an unverified claim, replaced in place 12 s later (`ffc489f52`) with no bracket. The bracket is added here.]
+- **ROOT's W1 limits wait for K6c's merge** (the corrected E_max and the post-KF3 W1-T4).
+
+## KF2: checkpoint A accepted; B granted (ROOT, 2026-09-30)
+
+- **A is accepted, and committed on the KF2 branch as `1b10121fa`.**
+  - **The code:** FKS's `negative_pair_witness` now delegates to the private `negative_pair_witness_counted`.
+    - ROOT read the diff. The guard repeats `verify_negative_direction`'s arithmetic cell for cell, in its order, and only a witness verdict builds a direction and calls the unchanged verifier.
+    - There is one test-module line (Q1) and one site-table row (Q5).
+  - **The tests:** the differential tests against verbatim reference copies (n = 2 to 100) pass, with 142 witnesses, 98 no-witness cases, and all 9 exact allowance ties found. The count tests pass, and 11 mutants are killed.
+  - **N10's two models** (6,006 DOFs, dense, through H's unchanged `k6_observe` in release):
+    - each ends in the factor's refusal (DOF 6001 and 6002, after about 66 s);
+    - the witness takes 0.94 s and 0.91 s and finds no pair;
+    - each process exits at about 203 s, where before they were killed at 1,800 s.
+  - **Suites:**
+    - FK 415 (1 ignored: the release cost test), site table 3, SD 30, NI with SA 134, and H 74 with `k6_alloc`;
+    - PP passes except the known Mac platform test `t13`, which fails identically on the base.
+- **B is granted now:** T9, the both-entry gate and the src-tauri suite, as the brief's "Gates" and F1b's (`I13_F1B_IMPLEMENTATION.md`) define them.
+  - **T9:** 112 of 112 byte-identical, plus F1b's extra corpus (16), from `git archive` copies of base `78f55f927` and candidate `1b10121fa`.
+  - **Gate part 1:** 884 runs on the candidate, **against a fresh Mac run of base `78f55f927`**, with P1's probe and the calibration's heap cap. PASS needs:
+    - every run byte-identical to the base (envelope sha256 per case, mode and entry);
+    - 0 trusted breaches;
+    - no heap-cap abort.
+    - FK has changed since F1b's gate, in paths the product does not reach, so a fresh base keeps the comparison unambiguous.
+  - **Gate part 2:** the four dense N10 runs (both entries), candidate only.
+    - Each must end within 1,800 s, with its outcome recorded. The expected outcome is the factor's refusal on both entries, since the witness finds no pair.
+    - The base's timeouts are already recorded (F1b's gate and K6's B2).
+    - The class disagreement with sparse (Sensitive) remains, and is the split-out screen slice's.
+  - **The src-tauri suite,** as F1b ran it (`F1B_MERGE/src_tauri/`).
+  - **Host:** one cargo job at `-j 4`, the memory guard running, and no timing compared. RV23 (KF3's reviewer) is building beside it, which is allowed.
+
+## KF2: checkpoint B accepted; D now (ROOT, 2026-09-30)
+
+- **B is accepted, and committed on the KF2 branch** (`_run_records/b/`, SHA256SUMS `247459f7…`, verified by ROOT). It ran on this Mac, with base main `78f55f927` and candidate `1b10121fa`, as `git archive` trees that differ only in KF2's three FK files.
+  - **T9:** 112 of 112 byte-identical, and F1b's extra corpus 16 of 16. The base also equals the platform calibration's Mac hashes.
+  - **Gate part 1: PASS against a fresh base run.**
+    - All 884 runs are identical: outcomes, exit codes, summary and full envelopes (818 each), and error text.
+    - `gate_check` finds 0 trusted breach triples on both sides, and there is no heap-cap abort or timeout.
+    - Sixteen dense runs reach the witness (FX-NP-A-ulp-* and the four r1e-12 cases). The witness finds no pair, and they are byte-identical to the base.
+    - ROOT checked the two uncommitted 606 MB `runs.jsonl` files against their recorded sha256 (base `c42981e5…`, candidate `11dfe829…`). They stay in `<wt>/scratch/i20/b/gate/`, as F1b's did.
+  - **Gate part 2:** the four dense N10 runs, both entries, end in the dense factor's refusal (`NUMERICAL_INTEGRITY_UNRESOLVED`, DOF 6001 and 6002) in 67–68 s each. They were previously killed at 1,800 s.
+  - **src-tauri:** 116 passed, as in F1b's run.
+- **D now:** RETURN, CHANGE_RECORD and SHA256SUMS. Then ROOT opens the PR with its dispatch.
+- **I20's scratch** (`<wt>/scratch/i20/b`, `<wt>/kf2-target`) is kept until KF2 merges, for its reviewer.
+
+## KF3: rulings on RV23's review (ROOT, 2026-09-30)
+
+RV23 (`REVIEW/KF3_REVIEW.md`, sha256 `96060f9e…`; records `REVIEW/_run_records/kf3_review/`) reviewed head `b8c55c92e`: **PASS**, with 0 BLOCKING, 1 SHOULD-FIX and 5 NOTEs. RV23 found no way for A2 to publish a wrong value.
+- **A2's honesty:** every reader of B goes through `certificates`/`certified`, and blocks are contiguous, so no pass reads another block's rows. RV23 built three oracles of its own:
+  - synthetic multi-block refusals, where B ≥ the exact norm and B = min over the formed bounds;
+  - 52 forced-refusal W1 runs on 16 controls;
+  - KF3-UC-SPAN in closed form.
+- **The partial-stage identity:** 0 mismatches over 3,611 W1 runs with case limits on 11 models, and over 2,011 on H's model.
+- **B:** reproduced byte for byte on CHAIN-n10000-AX and TREE-n10000-AX.
+- **Reach:** no product crate names `retained_api` or `retained`.
+- **Mutants:** 18 plus NONE, of which 15 are killed and 3 survive (RV23-N1's M4b, and the two equivalents in RV23-N4).
+
+**Rulings:**
+- **RV23-1 (SHOULD-FIX): fix it before merge.** Carry the refusals out on the error path.
+  - **The defect:** a refusal recorded in the verification's shared build (`uc_bounds`), or in `shift_schedule` (S), must reach `AttemptRecord::bound_refusals` even when a budget stop follows it in the same build. Today it is dropped after `vs?` (`adaptive.rs:3028-3030`).
+  - **The test:** RV23's probe (KF3-UC-SPAN with the case limit 1 to 100 LME short of the shared build's total) must record the refusal on the `Failed(Stop(Budget(Case)))` attempt. Add a test for each of the two sites, and a mutant for each.
+  - **No outcome, row, class, bound or work count may change;** evidence only.
+  - The claim "on every path" in the `AttemptRecord` doc, RETURN §3.1 and CHANGE_RECORD then holds as written.
+- **RV23-N1: add the test.** Precedence in `verify_state` (a refusal stop outranks `uc`) gets a test that kills M4b. It is cheap, and the rule is a ruled decision (plan §11 item 2).
+- **RETURN §12's wording** (RV23's routing check): "c is a property of the model" holds only where (b) binds. Correct it in a RETURN addendum; the routing is unchanged.
+- **RV23-N2, N3, N4 and N5 are recorded,** with no change. N5 is already routed to K6c.
+- **Then:** RV23 confirms the new head. After that come CI with the dispatch, DEC-025, GEN-8 and the merge.
+
+## KF2: D accepted; PR to review (ROOT, 2026-09-30)
+
+- **D is accepted, and committed on the KF2 branch as `f2b8c85a2`:** RETURN (`fe19dbc6…`), CHANGE_RECORD (`1457a990…`) and SHA256SUMS (`5b51af43…`, verified by ROOT). The code diff against main is exactly the three FK files.
+- **The PR is [#1060](https://github.com/sgttomas/chirality/pull/1060),** with the full-SHA dispatch 36664104717 (target_base `78f55f927`).
+- **RV24 is the independent reviewer,** directed to:
+  - the equality argument, errors included;
+  - the differential tests' coverage and the reference copies' fidelity;
+  - the mutants;
+  - B's records: T9, the gate's two parts and src-tauri;
+  - the callers' reach;
+  - the screen diagnosis, as a claim check only.
+- **Then:** CI, DEC-025 on the final head, GEN-8 and the merge.
+
+## KF2: rulings on RV24's review (ROOT, 2026-09-30)
+
+RV24 (`REVIEW/KF2_REVIEW.md`, sha256 `6785aa13…`; records `REVIEW/_run_records/kf2_review/`) reviewed head `f2b8c85a2`: **PASS**, with 0 BLOCKING, 1 SHOULD-FIX and 5 NOTEs.
+- **The equality holds.** RV24 read the code line by line against the base. Its own differential harness, whose oracle is a verbatim copy generated from the base's bytes, found 0 differences in debug and release. It covered:
+  - 24,000 corrupted systems, with errors before and after witnesses;
+  - 2,864 built systems;
+  - 134,400 steps around the verdict's crossing;
+  - skewed pairs and 29 adversarial cases.
+- **I20's reference copies are verbatim,** apart from the names and a dropped `pub`.
+- **B's records hold.** RV24 checked the uncommitted `runs.jsonl` hashes: only the time and memory fields differ over 884 records. RV24 rebuilt the probe from its own archives: a 20-run sample is byte-identical, an instrumented head matches 860 of 860 part-1 runs (10,000-member runs excluded under the host rule), and N10 CHAIN-ROT reproduces, with all 17,997,000 pairs visited.
+
+**Rulings:**
+- **RV24-1 (SHOULD-FIX): add the tests before merge. It is test-only.** Three single-edit regressions of the guard survive the committed tests and are killed only by RV24's harness:
+  - the coupling cells swapped (RV24-M1);
+  - the source cell transposed (RV24-M5);
+  - the allowance charged for four cells whatever `terms` is (RV24-M4b).
+
+  I20 adopts RV24's cases (`_run_records/kf2_review/`):
+  - the asymmetric-source error-order cases;
+  - a skewed edge scan;
+  - edge scans for 2- and 3-term pairs.
+
+  Each of the three mutants must then be killed by the committed tests. No product file other than the test file may change.
+- **RV24-N1:** the two equivalent mutants are recorded.
+- **RV24-N2:** the witness also runs on the `sparse_interactive` route (SA:2017 serves both modes), in the nonlinear loop (NI `lib.rs:1990` and `:2013`) and in SD:37. The caller list is complete and the signature unchanged. **ROOT amends the PR text to name these routes.**
+- **RV24-N3:** no T9 output reaches the witness, so T9 is an invariance check only. B's SUMMARY misstates the eight captured-entry FX-NP-A runs, which publish a recovered result, not the refusal. The correction goes in a RETURN addendum, since B's records are hash-bound.
+- **RV24-N4:** plan §7's screen claims check out. RV24's notes are carried to the split-out dense-screen slice:
+  - measure the refusing rows' pivots;
+  - enumerate class changes by running, not by prediction;
+  - treat the published `operation_count` change as a contract note.
+- **RV24-N5:** the cost reproduces (0.966 s at n = 6,006; the old search grows about ×16 per doubling). Recorded.
+- **Then:** RV24 confirms the new head, then CI, then DEC-025 on the final head, then GEN-8 and the merge. If KF3 merges first, KF2 merges main, and RV24's confirmation includes a merge check.
+
+## KF3 and KF2: review fixes committed; confirmations requested (ROOT, 2026-09-30)
+
+- **KF3 `aa83f6796`** (by I19; RV23-1 and RV23-N1):
+  - **The fix:** the caller owns the refusal slots, so a stopped build's Uc refusals and the S refusals kept when `shift_schedule` stops reach `bound_refusals`. It is evidence only.
+  - **Tests and mutants:** RV23's probe, a swept three-block S test, and the `verify_state` precedence test. Six mutants are killed, including M4b.
+  - **Suites:** FK 351 lib, 7 integration files and 6 doc-tests; `gen --check` 24 of 24.
+  - **CI:** the dispatch is 36669370536. RV23 is confirming.
+- **KF2 `1c7558df5`** (by I20; RV24-1):
+  - **The change:** RV24's cases are adopted into `kf2_witness_tests.rs`, and RV24-M1, M4b and M5 are killed from clean archives. No product file changes. FK passes 417.
+  - **I20 corrects RV24-N3's count:** 4 of the 16 witness runs (the captured-entry FX-NP-A runs) publish a recovered result, and 12 the refusal. RV24 checks this at confirmation.
+  - **CI:** the dispatch is 36669470111. RV24 is confirming.
+- **Merge order:** KF3 first, if RV23 confirms. KF2 then merges main, and RV24 adds a merge check.
+
+## KF3: RV23 confirms aa83f6796 (ROOT, 2026-09-30)
+
+- **RV23's confirmation at `aa83f6796`: PASS.** There is no new BLOCKING or SHOULD-FIX finding, and one new NOTE (`REVIEW/KF3_REVIEW.md`, "Confirmation at aa83f6796"; sha256 `0030aa39…`).
+  - **RV23-1 is closed on both sites:**
+    - the Uc probe now records `[block 0, Uc, Span, Backward, row 66]` on the budget-stopped attempt;
+    - RV23's new two-case probe shows a cached non-budget failure passing its refusal to the later case;
+    - RV23's three-block S sweep (799 case rooms) never loses, changes or invents a refusal.
+  - **M4b is killed** by the new `verify_state` precedence test.
+  - **Nothing else changed.** Every earlier probe re-runs byte-identical, apart from the refusals now recorded. FK's suite and `gen --check` pass on a clean archive, and product-crate reach is unchanged.
+- **RV23C-N1 (NOTE) is recorded, with no test now.** The cache's refusal-keeping on a non-budget failure is shown by RV23's probe, but it is not covered by I19's tests. It needs a non-budget, non-refusal stop after a refusal, and FK has no hook to force one; honesty is unaffected.
+  - **Routed:** if a fault hook for an `Arithmetic` stop is added (V-K's `mutation-controls` sites are the natural home), a two-case test goes with it.
+- **The merge path:** CI on `aa83f6796` (dispatch 36669370536), DEC-025 (running now), GEN-8, then the merge.
+
+## KF3 merged (ROOT, 2026-09-30)
+
+- **Merged:** [PR1059](https://github.com/sgttomas/chirality/pull/1059) at head `aa83f6796`, merge `dd61120ff`, 2026-09-30 05:28:58Z. The merge record is `IMPLEMENTATION/KF3_MERGE/RECORD.md`.
+- **The gates, on `aa83f6796`:**
+  - RV23 PASSED the review and confirmed the head;
+  - hosted CI was green, and the dispatch (36669370536) succeeded;
+  - DEC-025 was clean: the only changes are frame_kernel 402 → 417 and harness 74 → 75, exactly KF3's added tests;
+  - GEN-8 passed.
+- **Disclosed: ROOT merged without first checking that main had moved** (to `45ffd91d1`, PR #1061). The check made right after shows that #1061 changes only `projects/chirality-app-v4/**`, and that the merged piping, `tools/` and `.github/` trees equal the gated head's byte for byte. The gates therefore cover what merged. The lesson is added to the handoff's §7.2.
+- **Next:**
+  - KF2 has merged main `dd61120ff` as `522167ac6` (clean; `structural.rs` is main's plus exactly KF2's delta). RV24's merge check, CI and DEC-025 are running.
+  - K6c spawns after the pause, on a base that carries KF3.
+
+## KF2 merged (ROOT, 2026-09-30)
+
+- **Merged:** [PR1060](https://github.com/sgttomas/chirality/pull/1060) at head `522167ac6`, merge `7ad3a9adf`, 2026-09-30 06:08:13Z. The merge record is `IMPLEMENTATION/KF2_MERGE/RECORD.md`. ROOT checked immediately before the merge that main had not moved from `dd61120ff`.
+- **The gates:**
+  - RV24 PASSED the review, confirmed `1c7558df5`, and passed the merge check of `522167ac6` with no findings;
+  - B's T9 (112 of 112), gate part 1 (884 of 884), part 2 (four runs in 67–68 s) and src-tauri (116) pass;
+  - hosted CI was green, and the dispatch (36673660523) succeeded;
+  - DEC-025 was clean: the only change is frame_kernel 417 → 432 plus 1 ignored, exactly KF2's added tests;
+  - GEN-8 passed.
+- **Routed:** the dense-screen slice (with RV24-N4's notes), and the dense cancellation note to T6 and T9.
+
+## Records PR #1062: rulings on RV25's review (ROOT, 2026-09-30)
+
+RV25 (`REVIEW/RECORDS_PR1062_REVIEW.md`, sha256 `45b27642…`; records `REVIEW/_run_records/records_pr1062_review/`) reviewed head `b0e357985`: **PASS**, with 0 BLOCKING, 2 SHOULD-FIX and 10 NOTEs.
+- **What held:**
+  - **Scope:** 1,031 paths, all under `_Coordination/`; the remerge diff is empty.
+  - **Append-only:** one insert-only "[Superseded …]" bracket; every other change appends.
+  - **Hashes:** all 25 SHA256SUMS files verify.
+  - **Leaks:** GEN-8 passes.
+  - **The nine merge records** match GitHub and Git exactly, KF3's disclosed slip included.
+  - **Figures:** 25 sha256 prefixes and more than 90 figures match their sources.
+
+**Both SHOULD-FIX findings are fixed before merge, as for PR #1049. Each is a ROOT figure error:**
+- **RV25-S1:** KF3-B2 was stated as a measured excess of 19.5/19.4 MB over K6b's E_max. That comparison is not like for like. On `vk_scale`'s own fixed term, K6b's formula bounds both peaks by 7.0 and 7.5 MB (KF3 RETURN §13). The finding stands on the code derivation of a net 10,799,688 B under-count at the 1024 shift.
+  - **Corrected in place with brackets:** the KF3-B2 lines in "KF3: checkpoint B accepted" and "KF3: D accepted"; K6c's brief (its premise, and a like-for-like bar); the work graph's state paragraph; and the handoff §8.1. [Correction (ROOT, 2026-09-30, RV25-D2): the work graph's paragraph and handoff §8.1 are text new in this PR, and were reworded directly, not bracketed. This commit message said the same wrong thing.]
+  - `bound.rs:1040` is noted as `:1059` on main.
+- **RV25-S2:** V-K B's "0.82 GB" and "2.7 GB" were MiB/1,000. They are bracketed with VK RETURN §14.3's figures.
+
+**The NOTEs:**
+- **Fixed:**
+  - N2: a bracket at the admissions sentence, and handoff §7.2 rewritten; the count is now seven;
+  - N3: the dense factor's time, bracketed;
+  - N4: "before `uc`", bracketed;
+  - N5: the `REVIEW/_run_records/SHA256SUMS` exception added to handoff §6;
+  - N6: the handoff's THIN credit, the line count and the §1.4 list;
+  - N7: `sweep_kf2` is kept as the Mac baseline, and the handoff overrides KF2_MERGE's prune list;
+  - N8: "APP" is replaced by `P/apps/desktop/src-tauri/src/lib.rs` in the work graph and the handoff.
+- **Disclosed in the PR body:**
+  - N1: the work graph's :62 carries RV16-D1's one-clause rewording, and the rulings append starts at "K6: rulings on I15's checkpoint-0 plan";
+  - N9: whitespace in raw logs and 3 lines of `KF2_REVIEW.md`, and executable `.sh.txt` copies. The latter are already common on main, so they are left as they are.
+- **N10, recorded here:** `K5_MERGE/RECORD.md` says its baseline's piping tree equals main `b37331092`'s. It differs by 741 records-only `_Coordination/` paths, and no product or test path, so the suites are unaffected. The hash-bound record is not edited.
+- **Then:** RV25's delta check of the fix commit, then the merge.
