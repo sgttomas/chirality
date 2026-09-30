@@ -1,0 +1,19 @@
+{
+  "record_kind": "owner_direction_relay_receipt",
+  "received_from": "ROOT /root through native collaboration",
+  "date": "2026-09-30",
+  "custody": "ROOT relayed the direct owner direction; this manager does not hold a verbatim human-message/transcript hash. ROOT owns the central owner-direction record.",
+  "relayed_direction": "M5 logs cannot be supplied now; safe continuation, including recreating inputs or rerunning checks as needed, is explicitly approved. Original raw logs are unavailable-for-now, not recovered/lost and not a blocker to numerical work. Preserve committed summaries/hashes; new M3 results carry their own candidate/environment and never impersonate old logs. No protected criterion or required gate is waived.",
+  "effect_on_this_continuation": [
+    "Preserve sealed first-wave DELIVERY/ENV/I21 packets unchanged.",
+    "Original evidence recovery remains deferred without holding safe numerical source, implementation or new candidate-bound verification work.",
+    "A recreated input/new M3 run is distinctly identified and hash-bound to its own source, candidate, commands, environment and checks; no original-log recovery claim.",
+    "Guard independent review and controlled live qualification still precede workload admission.",
+    "Existing model/test criteria and required gates stay unchanged."
+  ],
+  "central_record": {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/decisions/03_OWNER_EVIDENCE_AND_A0_PREPARATION.md",
+    "sha256": "8caa9bade1e7d65640d52c4d9eb03ec18c225bc553d9991d149c1fd566f3ff1d",
+    "read_scope": "Full central record read after native relay; ROOT owns owner-direction custody and A0 grant"
+  }
+}

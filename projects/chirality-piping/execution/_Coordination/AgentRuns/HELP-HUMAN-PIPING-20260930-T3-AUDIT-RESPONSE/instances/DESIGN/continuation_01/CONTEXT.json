@@ -1,0 +1,175 @@
+{
+  "record_kind": "DESIGN_A0_continuation_context",
+  "date": "2026-09-30",
+  "checked_head": "b2acd4023557eeff2416d99aaed1f03abf7a2404",
+  "product_source": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "initial_packet_commit": "b2acd4023557eeff2416d99aaed1f03abf7a2404",
+  "initial_packet_verified_unchanged": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/INITIAL_PLAN.md",
+      "sha256": "29e2b1806601d94bfd73a1748a3cda3e5cc0cb32379793d4e7fc246541ae60de"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/A1_DIAGNOSIS_DRAFT.md",
+      "sha256": "120dbc81c01fda2cfd07bd9fb3a84f7c81b4987d991eaf51d140638154406b3d"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/CONTEXT.json",
+      "sha256": "cc62b7ac573e7c0d148d380c9eb60e35ba5521dc3243dd0bdef2a7f9704a4c58"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/RETURN.md",
+      "sha256": "20c6c9b337a705c5d9e4ecab2f54e46059f313e4f8beac58bdc18e7bbb2d2c17"
+    }
+  ],
+  "parentage": {
+    "parent": "/root",
+    "agent": "/root/design_manager",
+    "role": "HELPS_HUMANS / Agent 1",
+    "mechanism": "native collaboration followup_task/message continuation of initial agent",
+    "children_launched": [],
+    "model": "no override; exact model identifier not independently exposed"
+  },
+  "authority": {
+    "continuation_scope_summary": "Prepare a NEW sealed-draft A0 brief/finite case matrix in a continuation subfolder, preserving initial hash-bound bytes. No child/heavy slot, probe/production code, experiment or repair selection. ROOT conceptually authorizes up to three free DOFs in a later tiny cancellation extension, still one to three members and within 24 cases. Scratch/target bindings will be assigned on a later grant.",
+    "latest_parent_steering_summary": "ROOT reports I21 source-only checkpoint completed and a TASK slot free, but explicitly requires packet review and a launch grant before spawning. Rust execution still awaits guard/heavy grant. Owner permits safe new reruns/recreated inputs while original M5 logs are unavailable; new evidence does not replace old logs.",
+    "current_grants": "documentary continuation only; no child or heavy execution grant"
+  },
+  "methods": {
+    "skill": ".agents/skills/software-defect-diagnosis/SKILL.md",
+    "workflow": null,
+    "wider_full_role_reads": []
+  },
+  "reused_instructions": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "read_scope": "previous full read retained; current hash rechecked",
+      "origin": "Root instruction"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "read_scope": "previous full read retained; current hash rechecked",
+      "origin": "Piping instruction"
+    },
+    {
+      "path": "agents/AGENT_HELPS_HUMANS.md",
+      "sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e",
+      "read_scope": "previous full read retained; current hash rechecked",
+      "origin": "active role"
+    },
+    {
+      "path": ".agents/skills/software-defect-diagnosis/SKILL.md",
+      "sha256": "7e423dfd24132c33d3aa8fe6994bf17a1def966c396723f6bd72ac8d2442112b",
+      "read_scope": "previous full read retained; current hash rechecked",
+      "origin": "selected diagnosis-planning skill"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/AUDIT-REVIEW/REVIEW.md",
+      "sha256": "13a0dc689fc47ec26af93e3b4624f281a4c88345209c2653f79161b593f1befc",
+      "read_scope": "full",
+      "purpose": "independent V0 disposition and exclusions"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/RUNTIME_BINDING.json",
+      "sha256": "d552b6ffa398869b6f68c828c676af447b9c5c2426be24734ba820f67f32c3fc",
+      "read_scope": "full",
+      "purpose": "portable host binding, historical creation status"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/runtime_setup/01_native_rust/A1_SOURCE_SNAPSHOT.json",
+      "sha256": "784aafeb775b8b917ffd91ee81e0670ec792e40fcf4fdb5c6cea39de9ff39188",
+      "read_scope": "full",
+      "purpose": "library snapshot descriptor; every entry checked against Git source objects"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/runtime_setup/01_native_rust/SETUP.json",
+      "sha256": "d07433d1083c19c355c045fca517efc65c67e3911ef548457c3c52d8d9d3e039",
+      "read_scope": "1-60; complete selected top-level fields parsed; remaining installer metadata partially displayed",
+      "purpose": "later native installation record"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/adaptive.rs",
+      "sha256": "472bafb8281c7d311a81dcd5da042dd0f8db998bd81cf4902e6b55409eb5a563",
+      "read_scope": "1410-1518,1669-1810,2100-2145,2318-2376,2420-2498,2705-2758,1320-1410; keyword discovery",
+      "purpose": "residual/refinement, stop rule and public evidence",
+      "matches_product_basis": true
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/factor.rs",
+      "sha256": "e21fc61e6ae84e7c609da9f2d14c3769c4f203a9baa6bcd25025843056af22dc",
+      "read_scope": "224-465,509-597,629-677,700-770,795-811; keyword discovery",
+      "purpose": "ordering, factor, solve, screens",
+      "matches_product_basis": true
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/verify.rs",
+      "sha256": "31780a6a888decc64e2ebec2fcfbeff45c144a6f0d0169f0584d53fcccb89987",
+      "read_scope": "380-390,780-882,1000-1185; keyword discovery",
+      "purpose": "exact residual, correction, theta and W-plus/charge",
+      "matches_product_basis": true
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/assemble.rs",
+      "sha256": "057fa8a431bde050d0aa448c347dd1c92fbd4929ad6cc8ecce5837c9255d20f2",
+      "read_scope": "539-576,818-855; prior 252-299 retained",
+      "purpose": "full structural pattern and RHS projection; primitive formation from initial context",
+      "matches_product_basis": true
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/ledger.rs",
+      "sha256": "66a48fb2a49c84e8e294bb741888fc53f72edcb6b7a3a4331fdeafaa7221ac4e",
+      "read_scope": "1-125",
+      "purpose": "exact ledger and rounding boundary",
+      "matches_product_basis": true
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/wide.rs",
+      "sha256": "5d35b70d45680f769354bbc6694c78186354d235a7af29891a9b09e7b4a293ad",
+      "read_scope": "335-348",
+      "purpose": "leading-bit exponent meaning",
+      "matches_product_basis": true
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural.rs",
+      "sha256": "32dfe5971f95be3eb276fa594c5ab4b0c5ce8724b942a098f2fda1104886d9d2",
+      "read_scope": "1-45",
+      "purpose": "public retained API and private state boundary",
+      "matches_product_basis": true
+    }
+  ],
+  "snapshot_check": {
+    "entries": 36,
+    "manifest_entries_match_git_objects": true,
+    "actual_runtime_file_bytes_checked": false,
+    "limitation": "child must validate runtime snapshot bytes at launch; this check validates descriptor provenance only"
+  },
+  "execution": {
+    "writes_only": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_01/**",
+    "no_probe_or_product_code_written": true,
+    "no_build_install_or_model_run": true,
+    "no_numeric_experiment_or_oracle_executed": true,
+    "no_git_index_write": true,
+    "checks": "file hashes, initial manifest, snapshot descriptor against Git objects, document structure/whitespace/portable paths",
+    "read_retry": "One metadata read used the DESIGN directory with a repository-relative path and returned FileNotFoundError; it was retried from the repository root. No write occurred in that failed read.",
+    "setup_read_limit": "Large installation metadata display was truncated; current installation status/version and relevant fields were re-read in bounded excerpts and parsed directly.",
+    "sandbox": "shared filesystem; continuation write fence is a brief restriction, not a per-agent OS sandbox"
+  },
+  "outputs": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_01/A0_BRIEF.md",
+      "sha256": "9f69847b2c3d1fc0800c8efa60d493f79f3fdf474a029057f0ebbe073464a556"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_01/CASE_MATRIX.md",
+      "sha256": "7937a740fd84d5aca9a51c210db8d504f329dae0bb882cbd8e7e96f90907d33a"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_01/DERIVATION.md",
+      "sha256": "a21802935b8b01afa29b11683f8febc97e5c2b3622bff5e13cb2a187ed6d5093"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "kind": "delivery_guard_continuation_basis",
+  "native_agent": "/root/delivery_manager",
+  "parent": "/root",
+  "role": "WORKING_ITEMS / Agent 1",
+  "head": "b2acd4023557eeff2416d99aaed1f03abf7a2404",
+  "sealed_initial_packet_commit": "b2acd4023557eeff2416d99aaed1f03abf7a2404",
+  "initial_packet_preserved": true,
+  "scope": "new continuation manager subfolder only; root owns shared/Git; child owns explicit tool and GUARD-IMPLEMENTATION records",
+  "authorization": "ROOT native followup granted second active TASK slot released by ENV for bounded GUARD-IMPLEMENTATION; I21 continues source-only",
+  "supplied_newer_runtime_fact": "ROOT states official prebuilt 1.97.1 minimal native toolchain now installed in isolated runtime; no build/model run and no default stable change. RUNTIME_BINDING status still says directories/no install at read; setup evidence being appended by ROOT. This is supplied fact, not manager installation or probe.",
+  "inputs": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "scope": "new runtime/brief files read full; standing role/instructions retained from initial full reads; original sealed outputs checked by ROOT"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "scope": "new runtime/brief files read full; standing role/instructions retained from initial full reads; original sealed outputs checked by ROOT"
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+      "scope": "new runtime/brief files read full; standing role/instructions retained from initial full reads; original sealed outputs checked by ROOT"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/decisions/02_RUNTIME_ROUTE.md",
+      "sha256": "004f98bc4334b5d202fa9c088421b7db79ee800cd9afe8eff8fc4fdb330e108a",
+      "scope": "new runtime/brief files read full; standing role/instructions retained from initial full reads; original sealed outputs checked by ROOT"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/briefs/GUARD_IMPLEMENTATION.md",
+      "sha256": "09079fc3441de766ef4abbe463d6731741b8c0df8cbadb4ee3c13d147e66ee68",
+      "scope": "new runtime/brief files read full; standing role/instructions retained from initial full reads; original sealed outputs checked by ROOT"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/RUNTIME_BINDING.json",
+      "sha256": "d552b6ffa398869b6f68c828c676af447b9c5c2426be24734ba820f67f32c3fc",
+      "scope": "new runtime/brief files read full; standing role/instructions retained from initial full reads; original sealed outputs checked by ROOT"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/RETURN.md",
+      "sha256": "a331b349bb8adba7ff4cc72fa2858b98b17e91db618ee277c25ec08d84ec52b1",
+      "scope": "new runtime/brief files read full; standing role/instructions retained from initial full reads; original sealed outputs checked by ROOT"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/SHA256SUMS",
+      "sha256": "c8a4bc46e92a83b46f9e1b30ece7ef161a2c3e374d3badd2a61fa4dc1f529430",
+      "scope": "new runtime/brief files read full; standing role/instructions retained from initial full reads; original sealed outputs checked by ROOT"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/tools/host_guard.py",
+      "sha256": "feb0e1508fde6c764eefb85e2b72bc7a597edf86d48307fb646a80a80eac03db",
+      "scope": "Sampled source/control/metric/job interfaces at draft and final; full AST parse only, no import/execute"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/test_host_guard.py",
+      "sha256": "5e72b5d9589b345d1ef45171227b7b6a56281b7b2984e97625291112fb62b5b1",
+      "scope": "Import/test capability fence and named test coverage inspected; not executed by manager"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/RETURN.md",
+      "sha256": "79ab19582efa382537db30b35c1baf5f5d9dc58692821d49ee299a35c4cebaba",
+      "scope": "Full final return"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/PROVIDERS.md",
+      "sha256": "b76eed10d4b9a18ef850d1f60d30b8ea4c37d3b07ad65bad658c5498418f76a9",
+      "scope": "Full provider derivation"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/LIMITS.md",
+      "sha256": "fc32fbdec3e45cef424cac05177eb855c1770d4c90220c1824f52f79a38b0bec",
+      "scope": "Full operational/containment limits"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/LIVE_QUALIFICATION.md",
+      "sha256": "9ed51371da6f1716f24487b24e88baa477446f219ae95b2864e1bee69ac2c9c0",
+      "scope": "Full proposed live sequence; not executed"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/DEC025_SERIAL_PROPOSAL.md",
+      "sha256": "7025ea20786e61b94c499ab3d078ff4d3d19ed41777b7533c4a66e23b65cf8a0",
+      "scope": "Full separate driver proposal; no implementation"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/SHA256SUMS",
+      "sha256": "bea430634d4e3c597f77a33c031d58b7f2fd41379b62684df8b7e7bcf4b497d3",
+      "scope": "All 10 repository-relative entries verified"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/I21-K6C/RETURN.md",
+      "sha256": "6e882dd527d0c2e35e6befe4879406a28badb9ab0af2061e74d4107f9871aafa",
+      "scope": "Full final source-only return; 13 packet entries verified"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/decisions/03_OWNER_EVIDENCE_AND_A0_PREPARATION.md",
+      "sha256": "8caa9bade1e7d65640d52c4d9eb03ec18c225bc553d9991d149c1fd566f3ff1d",
+      "scope": "Full new central owner direction/preparation decision"
+    }
+  ]
+}

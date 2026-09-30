@@ -3,7 +3,7 @@
 ## Intent and selected route
 
 - **Stable run identity:** `HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE`.
-- **Current phase:** activated preflight. The owner directed “Proceed accordingly.”
+- **Current phase:** preflight returns received; guard qualification and A0 preparation next. The owner directed “Proceed accordingly.”
   after the plan; actual manager/TASK launches are recorded as they occur.
 - **Active role:** HELP_HUMAN, Agent 0, adopted at the owner's explicit request
   in the new conversation turn after the audit/merge handback. Earlier audit
@@ -53,7 +53,7 @@ Aliases are repository-relative unless stated otherwise:
 | DEL-04-05 — Sparse solver performance harness; its ScopeOfWork OUT-001 | K6b H estimate and the existing I21 K6c brief | Complete K6c and produce reliable work/memory observations | K0, I21, T21, V21, P21, L0 |
 | DEL-09-01 — Mechanics benchmark suite; its ScopeOfWork OUT-001 | R1/VP-ROBUST evidence, VR and its duplicated estimate | Independent oracles, admission replay and VR estimate consistency; precise maintained-path binding confirmed at B0 | V0, A0, V1, I21, T21, V21 |
 | DEL-04-07 — Product solve integration; CLM-001/004 | Product/facade owns source, diagnostic and result handoff | D2/F2a consequence assessment and downstream handback; no F2a implementation in this response | A1, D1, L0, C0 |
-| Parent T3 coordination and audit | #1064 records are merged; independent review remains outstanding | Post-merge audit review, additive errata, evidence inventory and recovery | V0, E0, N0, C0, F0 |
+| Parent T3 coordination and audit | #1064 records are merged; independent V0 review has returned | Post-merge audit review, additive errata, evidence inventory and recovery | V0, E0, N0, C0, F0 |
 
 `P/execution/_DAG/_LATEST.md` points to DAG-011. Relevant local execution
 dependency records were inspected: DEL-04-05 and DEL-09-01 name DEL-04-01 as
@@ -252,13 +252,20 @@ Independent work may continue. Never relax a protected oracle/tolerance to pass.
   response coordination branch, not merged).
 - **Graph maintainer:** HELP_HUMAN Agent 0 in this chat; managers return proposed
   state changes for one serialized integration.
-- **Active operations:** I21-K6C source-only derivation; DESIGN, DELIVERY, V0 and
-  ENV's initial checkpoints have returned. The second TASK slot is reserved for
-  GUARD-IMPLEMENTATION after its brief is sealed. Runtime directories are prepared
-  (`Run/RUNTIME_BINDING.json`); no build/model run/guard activation has started.
-- **Next safe action:** seal and dispatch the bounded guard implementation;
-  prepare the exact isolated compiler; independently review/validate the guard;
-  then seal A0 as a slot opens. K0 continues independently. Full E0 is still open.
+- **Active operations:** initial DESIGN, DELIVERY, V0 and ENV returns are sealed.
+  I21 returned its source checkpoint; full K0 acceptance remains open. The guard
+  author and DELIVERY integration checkpoint returned, with 41 pure tests; the
+  guard remains inactive and not live-qualified. All TASK slots are currently
+  free. Native Rust 1.97.1 is installed in the isolated runtime; no numerical
+  compilation or model run has occurred.
+- **Next safe action:** independently review the frozen guard/records candidate;
+  DESIGN may launch the preparation-only A0 TASK under decision 03. Controlled
+  low-memory guard qualification must precede any separately granted compile
+  or numerical run. K0 source closure may follow as a TASK slot permits.
+- **New owner evidence direction:** M5 originals are unavailable for now. Safe
+  recreated inputs and new M3 runs are authorized and must carry new provenance;
+  they do not impersonate historical logs. See decision 03. Recovery remains
+  low priority unless a discrepancy makes it necessary.
 - **Shared surfaces:** this graph and response control records belong to ROOT.
   `T3/ROOT_RULINGS_V1.md` and earlier hash-bound audit/T3 evidence remain
   read-only under the owner's existing instruction. Proposed dispositions go
@@ -274,6 +281,6 @@ Independent work may continue. Never relax a protected oracle/tolerance to pass.
 
 | Completed result | Evidence | Remaining consequence |
 |---|---|---|
-| Audit packet integrated | PR #1064, merge `3bddc2b05f6106e969c7cf43373b230845c7cc66` | Post-merge independent review still required; source/design findings not accepted by integration |
-| HELP_HUMAN role and response plan prepared | This graph and `Run/PLANNING_BASIS.json` | No execution launch, project readiness, or human acceptance is implied |
+| Audit packet integrated | PR #1064, merge `3bddc2b05f6106e969c7cf43373b230845c7cc66` | V0 independently confirms the audit with qualifications and one replay NOTE; A1 proof closure and source/design acceptance remain open |
+| HELP_HUMAN role and response plan prepared | This graph and `Run/PLANNING_BASIS.json` | Managers and bounded TASKs launched with recorded returns; no project readiness or governed acceptance is implied |
 | Host constraint corrected | Owner: M3 Air 16 GB here, M5 Max 128 GB previously. Read-only `memory_pressure -Q` reported 17,179,869,184 bytes total and 56% system-wide memory free during planning; `sysctl` query was denied by the sandbox | One snapshot is not sustained headroom or admission for a heavy run; E0 must establish the operating budget and guard |

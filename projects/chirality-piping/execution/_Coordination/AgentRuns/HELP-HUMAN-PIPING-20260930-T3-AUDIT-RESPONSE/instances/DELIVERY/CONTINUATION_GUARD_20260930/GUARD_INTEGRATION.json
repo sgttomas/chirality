@@ -1,0 +1,81 @@
+{
+  "kind": "delivery_guard_checkpoint_integration",
+  "child": "/root/delivery_manager/guard_implementation",
+  "native_return_received": true,
+  "source_sha256": "feb0e1508fde6c764eefb85e2b72bc7a597edf86d48307fb646a80a80eac03db",
+  "test_source_sha256": "5e72b5d9589b345d1ef45171227b7b6a56281b7b2984e97625291112fb62b5b1",
+  "test_log_sha256": "976d0b3ee9ed9856bb78236e553a7b8963d7762020f78528a81d38874da557c8",
+  "return_sha256": "79ab19582efa382537db30b35c1baf5f5d9dc58692821d49ee299a35c4cebaba",
+  "manifest_sha256": "bea430634d4e3c597f77a33c031d58b7f2fd41379b62684df8b7e7bcf4b497d3",
+  "checks": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/tools/host_guard.py",
+      "expected": "feb0e1508fde6c764eefb85e2b72bc7a597edf86d48307fb646a80a80eac03db",
+      "actual": "feb0e1508fde6c764eefb85e2b72bc7a597edf86d48307fb646a80a80eac03db",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/CONTEXT.json",
+      "expected": "55104d7d0a28a422995bc8ae9f5b49642acddd3fc8552b22b79279a111fa1690",
+      "actual": "55104d7d0a28a422995bc8ae9f5b49642acddd3fc8552b22b79279a111fa1690",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/DEC025_SERIAL_PROPOSAL.md",
+      "expected": "7025ea20786e61b94c499ab3d078ff4d3d19ed41777b7533c4a66e23b65cf8a0",
+      "actual": "7025ea20786e61b94c499ab3d078ff4d3d19ed41777b7533c4a66e23b65cf8a0",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/LIMITS.md",
+      "expected": "fc32fbdec3e45cef424cac05177eb855c1770d4c90220c1824f52f79a38b0bec",
+      "actual": "fc32fbdec3e45cef424cac05177eb855c1770d4c90220c1824f52f79a38b0bec",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/LIVE_QUALIFICATION.md",
+      "expected": "9ed51371da6f1716f24487b24e88baa477446f219ae95b2864e1bee69ac2c9c0",
+      "actual": "9ed51371da6f1716f24487b24e88baa477446f219ae95b2864e1bee69ac2c9c0",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/PROVIDERS.md",
+      "expected": "b76eed10d4b9a18ef850d1f60d30b8ea4c37d3b07ad65bad658c5498418f76a9",
+      "actual": "b76eed10d4b9a18ef850d1f60d30b8ea4c37d3b07ad65bad658c5498418f76a9",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/RETURN.md",
+      "expected": "79ab19582efa382537db30b35c1baf5f5d9dc58692821d49ee299a35c4cebaba",
+      "actual": "79ab19582efa382537db30b35c1baf5f5d9dc58692821d49ee299a35c4cebaba",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/VALIDATION.json",
+      "expected": "9f9399c2a29de921278ee4ceb3b27dc435c07ca69f715844a3d5df5573e0a699",
+      "actual": "9f9399c2a29de921278ee4ceb3b27dc435c07ca69f715844a3d5df5573e0a699",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/pure-tests.log",
+      "expected": "976d0b3ee9ed9856bb78236e553a7b8963d7762020f78528a81d38874da557c8",
+      "actual": "976d0b3ee9ed9856bb78236e553a7b8963d7762020f78528a81d38874da557c8",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/test_host_guard.py",
+      "expected": "5e72b5d9589b345d1ef45171227b7b6a56281b7b2984e97625291112fb62b5b1",
+      "actual": "5e72b5d9589b345d1ef45171227b7b6a56281b7b2984e97625291112fb62b5b1",
+      "matches": true
+    }
+  ],
+  "pure_test_result": "Author log: 41 tests, OK. Manager inspected import/test capability fence and test coverage; manager did not rerun or execute guard.",
+  "manager_assessment": "Ready for ROOT to freeze and route independent review; not active/live-qualified. Provider source derivation and explicit containment limits are stated.",
+  "manager_feedback": "Requested import-time/session/exit capability blockers and executable-hash regression coverage; final suite includes both. Author separately replaced in-group ps completion with SDK proc_listpids group enumeration.",
+  "remaining": [
+    "Independent review of actual frozen source/test/record revision",
+    "Controlled low-memory live ABI/provider/permission/group/signal/flock/latency validation at approved host boundary",
+    "ROOT command-specific grant after guard/runtime qualification",
+    "K6/VR separate-group adapter and full DEC-025 command-type qualification remain outside initial tool scope"
+  ]
+}

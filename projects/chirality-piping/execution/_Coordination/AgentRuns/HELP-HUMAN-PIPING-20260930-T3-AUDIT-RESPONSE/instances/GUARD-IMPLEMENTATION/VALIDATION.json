@@ -1,0 +1,10 @@
+{
+  "status": "pure_suite_pass",
+  "tests": 41,
+  "test_log_sha256": "976d0b3ee9ed9856bb78236e553a7b8963d7762020f78528a81d38874da557c8",
+  "source_sha256": "feb0e1508fde6c764eefb85e2b72bc7a597edf86d48307fb646a80a80eac03db",
+  "test_source_sha256": "5e72b5d9589b345d1ef45171227b7b6a56281b7b2984e97625291112fb62b5b1",
+  "sdk_manifest_sha256": "119110a5b322a8c5d62e915953bdd748ada30b2845fbd43950ccd30ba0651d04",
+  "live_qualification": "not executed; remains required after independent review",
+  "capability_fence": "module import and every test block fork/exec/signals/session changes/os._exit/native CDLL/socketpair/Popen/flock/live identity reads; tested adapters use in-memory fakes"
+}

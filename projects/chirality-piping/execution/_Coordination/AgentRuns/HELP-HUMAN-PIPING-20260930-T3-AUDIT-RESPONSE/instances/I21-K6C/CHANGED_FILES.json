@@ -1,0 +1,22 @@
+{
+  "all_files_new_uncommitted_at_return": true,
+  "no_other_owned_scratch_persisted": true,
+  "owned_files": [
+    "ALLOCATIONS.md",
+    "CHANGED_FILES.json",
+    "COMMANDS.md",
+    "CONTEXT.json",
+    "FORMULA.md",
+    "IMPLEMENTATION_PLAN.md",
+    "INPUTS.json",
+    "REPLAY_MEASUREMENT_A1.md",
+    "RETURN.md",
+    "SHA256SUMS",
+    "VALIDATION.json",
+    "derive_checkpoint0.py",
+    "historical_admissions.json",
+    "provisional_results.json"
+  ],
+  "source_files_changed": [],
+  "write_scope": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/I21-K6C"
+}

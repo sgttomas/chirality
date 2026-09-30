@@ -1,0 +1,627 @@
+{
+  "inputs_manifest_sha256": "6e1cc8f1b51fbba5395adced21017b1c9edc11afc25618248dd8a9ac0d71637c",
+  "limits": [
+    "Historical approval/ascent/baseline context retained; not a final-formula or M3 replay."
+  ],
+  "runs": [
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 48490166,
+        "footprint_estimate_bytes": 96980332,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 140621481,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 48490166 B x rho 2.000 <= C/2; projected RSS 140621481 B <= 0.8C",
+        "rho": 2.0,
+        "rho_rss": 2.0,
+        "rss_to_footprint": 1.45
+      },
+      "run_id": "01_RF-LARGE-CHAIN-n00100-AX_w1a",
+      "slice": "VK"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 48490166,
+        "footprint_estimate_bytes": 96980332,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 140621481,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 48490166 B x rho 2.000 <= C/2; projected RSS 140621481 B <= 0.8C",
+        "rho": 2.0,
+        "rho_rss": 2.0,
+        "rss_to_footprint": 1.45
+      },
+      "run_id": "02_RF-LARGE-CHAIN-n00100-ROT_w1a",
+      "slice": "VK"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 48499782,
+        "footprint_estimate_bytes": 96999564,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 140649367,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 48499782 B x rho 2.000 <= C/2; projected RSS 140649367 B <= 0.8C",
+        "rho": 2.0,
+        "rho_rss": 2.0,
+        "rss_to_footprint": 1.45
+      },
+      "run_id": "03_RF-LARGE-TREE-n00100-AX_w1a",
+      "slice": "VK"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 48522171,
+        "footprint_estimate_bytes": 97044342,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 140714295,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 48522171 B x rho 2.000 <= C/2; projected RSS 140714295 B <= 0.8C",
+        "rho": 2.0,
+        "rho_rss": 2.0,
+        "rss_to_footprint": 1.45
+      },
+      "run_id": "04_RF-LARGE-TREE-n00100-ROT_w1a",
+      "slice": "VK"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 47751492,
+        "footprint_estimate_bytes": 95502984,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 138479326,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 47751492 B x rho 2.000 <= C/2; projected RSS 138479326 B <= 0.8C",
+        "rho": 2.0,
+        "rho_rss": 2.0,
+        "rss_to_footprint": 1.45
+      },
+      "run_id": "05_RF-LARGE-CONT-n00100-AX_w1a",
+      "slice": "VK"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 47765820,
+        "footprint_estimate_bytes": 95531640,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 138520878,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 47765820 B x rho 2.000 <= C/2; projected RSS 138520878 B <= 0.8C",
+        "rho": 2.0,
+        "rho_rss": 2.0,
+        "rss_to_footprint": 1.45
+      },
+      "run_id": "06_RF-LARGE-CONT-n00100-ROT_w1a",
+      "slice": "VK"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 305951366,
+        "footprint_estimate_bytes": 130460648,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 142704232,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 305951366 B x rho 0.426 <= C/2; projected RSS 142704232 B <= 0.8C",
+        "rho": 0.4264097590426892,
+        "rho_rss": 0.4537767925974929,
+        "rss_to_footprint": 1.0938488742747987
+      },
+      "run_id": "07_RF-LARGE-CHAIN-n01000-AX_w1a",
+      "slice": "VK"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 305951366,
+        "footprint_estimate_bytes": 130460648,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 142704232,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 305951366 B x rho 0.426 <= C/2; projected RSS 142704232 B <= 0.8C",
+        "rho": 0.4264097590426892,
+        "rho_rss": 0.4537767925974929,
+        "rss_to_footprint": 1.0938488742747987
+      },
+      "run_id": "08_RF-LARGE-CHAIN-n01000-ROT_w1a",
+      "slice": "VK"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 306061410,
+        "footprint_estimate_bytes": 111302565,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 123948107,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 306061410 B x rho 0.364 <= C/2; projected RSS 123948107 B <= 0.8C",
+        "rho": 0.36366089225480036,
+        "rho_rss": 0.39134802933693963,
+        "rss_to_footprint": 1.1136141190361522
+      },
+      "run_id": "09_RF-LARGE-TREE-n01000-AX_w1a",
+      "slice": "VK"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 306285110,
+        "footprint_estimate_bytes": 111383916,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 124038701,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 306285110 B x rho 0.364 <= C/2; projected RSS 124038701 B <= 0.8C",
+        "rho": 0.36366089225480036,
+        "rho_rss": 0.39134802933693963,
+        "rss_to_footprint": 1.1136141190361522
+      },
+      "run_id": "10_RF-LARGE-TREE-n01000-ROT_w1a",
+      "slice": "VK"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 298528275,
+        "footprint_estimate_bytes": 122877115,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 135013020,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 298528275 B x rho 0.412 <= C/2; projected RSS 135013020 B <= 0.8C",
+        "rho": 0.41160964053375404,
+        "rho_rss": 0.4393916821693839,
+        "rss_to_footprint": 1.0987645730407445
+      },
+      "run_id": "11_RF-LARGE-CONT-n01000-AX_w1a",
+      "slice": "VK"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 298668178,
+        "footprint_estimate_bytes": 122934701,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 135076294,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 298668178 B x rho 0.412 <= C/2; projected RSS 135076294 B <= 0.8C",
+        "rho": 0.41160964053375404,
+        "rho_rss": 0.4393916821693839,
+        "rss_to_footprint": 1.0987645730407445
+      },
+      "run_id": "12_RF-LARGE-CONT-n01000-ROT_w1a",
+      "slice": "VK"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 2882802230,
+        "footprint_estimate_bytes": 1229255004,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 1344619202,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 2882802230 B x rho 0.426 <= C/2; projected RSS 1344619202 B <= 0.8C",
+        "rho": 0.4264097590426892,
+        "rho_rss": 0.4537767925974929,
+        "rss_to_footprint": 1.0938488742747987
+      },
+      "run_id": "13_RF-LARGE-CHAIN-n10000-AX_w1a",
+      "slice": "VK"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 2882802230,
+        "footprint_estimate_bytes": 1229255004,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 1344619202,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 2882802230 B x rho 0.426 <= C/2; projected RSS 1344619202 B <= 0.8C",
+        "rho": 0.4264097590426892,
+        "rho_rss": 0.4537767925974929,
+        "rss_to_footprint": 1.0938488742747987
+      },
+      "run_id": "14_RF-LARGE-CHAIN-n10000-ROT_w1a",
+      "slice": "VK"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 2883922498,
+        "footprint_estimate_bytes": 1167043362,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 1299635965,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 2883922498 B x rho 0.405 <= C/2; projected RSS 1299635965 B <= 0.8C",
+        "rho": 0.4046722349643442,
+        "rho_rss": 0.4086837913863981,
+        "rss_to_footprint": 1.1136141190361522
+      },
+      "run_id": "15_RF-LARGE-TREE-n10000-AX_w1a",
+      "slice": "VK"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 2886171220,
+        "footprint_estimate_bytes": 1167953358,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 1300649349,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 2886171220 B x rho 0.405 <= C/2; projected RSS 1300649349 B <= 0.8C",
+        "rho": 0.4046722349643442,
+        "rho_rss": 0.4086837913863981,
+        "rss_to_footprint": 1.1136141190361522
+      },
+      "run_id": "16_RF-LARGE-TREE-n10000-ROT_w1a",
+      "slice": "VK"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 2806302708,
+        "footprint_estimate_bytes": 1225249365,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 1346260595,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 2806302708 B x rho 0.437 <= C/2; projected RSS 1346260595 B <= 0.8C",
+        "rho": 0.43660627279816866,
+        "rho_rss": 0.4407200555527546,
+        "rss_to_footprint": 1.0987645730407445
+      },
+      "run_id": "17_RF-LARGE-CONT-n10000-AX_w1a",
+      "slice": "VK"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 2807703146,
+        "footprint_estimate_bytes": 1225860805,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 1346932424,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 2807703146 B x rho 0.437 <= C/2; projected RSS 1346932424 B <= 0.8C",
+        "rho": 0.43660627279816866,
+        "rho_rss": 0.4407200555527546,
+        "rss_to_footprint": 1.0987645730407445
+      },
+      "run_id": "18_RF-LARGE-CONT-n10000-ROT_w1a",
+      "slice": "VK"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 48490166,
+        "footprint_estimate_bytes": 96980332,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 140621481,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 48490166 B x rho 2.000 <= C/2; projected RSS 140621481 B <= 0.8C",
+        "rho": 2.0,
+        "rho_rss": 2.0,
+        "rss_to_footprint": 1.45
+      },
+      "run_id": "01_RF-LARGE-CHAIN-n00100-AX_w1a",
+      "slice": "KF3"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 48490166,
+        "footprint_estimate_bytes": 96980332,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 140621481,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 48490166 B x rho 2.000 <= C/2; projected RSS 140621481 B <= 0.8C",
+        "rho": 2.0,
+        "rho_rss": 2.0,
+        "rss_to_footprint": 1.45
+      },
+      "run_id": "02_RF-LARGE-CHAIN-n00100-ROT_w1a",
+      "slice": "KF3"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 48499782,
+        "footprint_estimate_bytes": 96999564,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 140649367,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 48499782 B x rho 2.000 <= C/2; projected RSS 140649367 B <= 0.8C",
+        "rho": 2.0,
+        "rho_rss": 2.0,
+        "rss_to_footprint": 1.45
+      },
+      "run_id": "03_RF-LARGE-TREE-n00100-AX_w1a",
+      "slice": "KF3"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 48522171,
+        "footprint_estimate_bytes": 97044342,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 140714295,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 48522171 B x rho 2.000 <= C/2; projected RSS 140714295 B <= 0.8C",
+        "rho": 2.0,
+        "rho_rss": 2.0,
+        "rss_to_footprint": 1.45
+      },
+      "run_id": "04_RF-LARGE-TREE-n00100-ROT_w1a",
+      "slice": "KF3"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 47751492,
+        "footprint_estimate_bytes": 95502984,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 138479326,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 47751492 B x rho 2.000 <= C/2; projected RSS 138479326 B <= 0.8C",
+        "rho": 2.0,
+        "rho_rss": 2.0,
+        "rss_to_footprint": 1.45
+      },
+      "run_id": "05_RF-LARGE-CONT-n00100-AX_w1a",
+      "slice": "KF3"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 47765820,
+        "footprint_estimate_bytes": 95531640,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 138520878,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 47765820 B x rho 2.000 <= C/2; projected RSS 138520878 B <= 0.8C",
+        "rho": 2.0,
+        "rho_rss": 2.0,
+        "rss_to_footprint": 1.45
+      },
+      "run_id": "06_RF-LARGE-CONT-n00100-ROT_w1a",
+      "slice": "KF3"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 305951366,
+        "footprint_estimate_bytes": 130873999,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 142995096,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 305951366 B x rho 0.428 <= C/2; projected RSS 142995096 B <= 0.8C",
+        "rho": 0.427760795869414,
+        "rho_rss": 0.4551283243699351,
+        "rss_to_footprint": 1.0926165469340936
+      },
+      "run_id": "07_RF-LARGE-CHAIN-n01000-AX_w1a",
+      "slice": "KF3"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 305951366,
+        "footprint_estimate_bytes": 130873999,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 142995096,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 305951366 B x rho 0.428 <= C/2; projected RSS 142995096 B <= 0.8C",
+        "rho": 0.427760795869414,
+        "rho_rss": 0.4551283243699351,
+        "rss_to_footprint": 1.0926165469340936
+      },
+      "run_id": "08_RF-LARGE-CHAIN-n01000-ROT_w1a",
+      "slice": "KF3"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 306061410,
+        "footprint_estimate_bytes": 110475656,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 122871464,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 306061410 B x rho 0.361 <= C/2; projected RSS 122871464 B <= 0.8C",
+        "rho": 0.36095911701889843,
+        "rho_rss": 0.3889844087973722,
+        "rss_to_footprint": 1.1122039798579113
+      },
+      "run_id": "09_RF-LARGE-TREE-n01000-AX_w1a",
+      "slice": "KF3"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 306285110,
+        "footprint_estimate_bytes": 110556402,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 122961270,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 306285110 B x rho 0.361 <= C/2; projected RSS 122961270 B <= 0.8C",
+        "rho": 0.36095911701889843,
+        "rho_rss": 0.3889844087973722,
+        "rss_to_footprint": 1.1122039798579113
+      },
+      "run_id": "10_RF-LARGE-TREE-n01000-ROT_w1a",
+      "slice": "KF3"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 298528275,
+        "footprint_estimate_bytes": 122979363,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 135114382,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 298528275 B x rho 0.412 <= C/2; projected RSS 135114382 B <= 0.8C",
+        "rho": 0.41195214486006937,
+        "rho_rss": 0.43973468894703366,
+        "rss_to_footprint": 1.0986752521911527
+      },
+      "run_id": "11_RF-LARGE-CONT-n01000-AX_w1a",
+      "slice": "KF3"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 298668178,
+        "footprint_estimate_bytes": 123036996,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 135177702,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 298668178 B x rho 0.412 <= C/2; projected RSS 135177702 B <= 0.8C",
+        "rho": 0.41195214486006937,
+        "rho_rss": 0.43973468894703366,
+        "rss_to_footprint": 1.0986752521911527
+      },
+      "run_id": "12_RF-LARGE-CONT-n01000-ROT_w1a",
+      "slice": "KF3"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 2882802230,
+        "footprint_estimate_bytes": 1233149776,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 1347359850,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 2882802230 B x rho 0.428 <= C/2; projected RSS 1347359850 B <= 0.8C",
+        "rho": 0.427760795869414,
+        "rho_rss": 0.4551283243699351,
+        "rss_to_footprint": 1.0926165469340936
+      },
+      "run_id": "13_RF-LARGE-CHAIN-n10000-AX_w1a",
+      "slice": "KF3"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 2882802230,
+        "footprint_estimate_bytes": 1233149776,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 1347359850,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 2882802230 B x rho 0.428 <= C/2; projected RSS 1347359850 B <= 0.8C",
+        "rho": 0.427760795869414,
+        "rho_rss": 0.4551283243699351,
+        "rss_to_footprint": 1.0926165469340936
+      },
+      "run_id": "14_RF-LARGE-CHAIN-n10000-ROT_w1a",
+      "slice": "KF3"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 2883922498,
+        "footprint_estimate_bytes": 1161952497,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 1292328191,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 2883922498 B x rho 0.403 <= C/2; projected RSS 1292328191 B <= 0.8C",
+        "rho": 0.4029069777502406,
+        "rho_rss": 0.40691853417229457,
+        "rss_to_footprint": 1.1122039798579113
+      },
+      "run_id": "15_RF-LARGE-TREE-n10000-AX_w1a",
+      "slice": "KF3"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 2886171220,
+        "footprint_estimate_bytes": 1162858523,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 1293335877,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 2886171220 B x rho 0.403 <= C/2; projected RSS 1293335877 B <= 0.8C",
+        "rho": 0.4029069777502406,
+        "rho_rss": 0.40691853417229457,
+        "rss_to_footprint": 1.1122039798579113
+      },
+      "run_id": "16_RF-LARGE-TREE-n10000-ROT_w1a",
+      "slice": "KF3"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 2806302708,
+        "footprint_estimate_bytes": 1226326980,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 1347335104,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 2806302708 B x rho 0.437 <= C/2; projected RSS 1347335104 B <= 0.8C",
+        "rho": 0.43699027085503567,
+        "rho_rss": 0.44110405360962157,
+        "rss_to_footprint": 1.0986752521911527
+      },
+      "run_id": "17_RF-LARGE-CONT-n10000-AX_w1a",
+      "slice": "KF3"
+    },
+    {
+      "all_original_fields_match": true,
+      "original": {
+        "decision": "admitted",
+        "estimate_adm_bytes": 2807703146,
+        "footprint_estimate_bytes": 1226938958,
+        "half_cap_bytes": 4294967296,
+        "projected_rss_bytes": 1348007469,
+        "projected_rss_limit_bytes": 6871947673,
+        "reason": "estimate 2807703146 B x rho 0.437 <= C/2; projected RSS 1348007469 B <= 0.8C",
+        "rho": 0.43699027085503567,
+        "rho_rss": 0.44110405360962157,
+        "rss_to_footprint": 1.0986752521911527
+      },
+      "run_id": "18_RF-LARGE-CONT-n10000-ROT_w1a",
+      "slice": "KF3"
+    }
+  ],
+  "script": {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/I21-K6C/derive_checkpoint0.py",
+    "revision": "uncommitted I21-K6C working-tree record; content-hash identified",
+    "sha256": "94e4b2f1146e8ebb78e52d386ec2f75ef51b39dcacf3d80495147f1d6955fea8"
+  },
+  "source_basis": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "status": "EXACT_HISTORICAL_ADMISSION_REPLAY"
+}

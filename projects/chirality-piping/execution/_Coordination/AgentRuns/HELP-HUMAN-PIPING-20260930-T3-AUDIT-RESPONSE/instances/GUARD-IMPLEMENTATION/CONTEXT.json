@@ -1,0 +1,299 @@
+{
+  "record_kind": "bounded_TASK_source_only_guard_checkpoint",
+  "recorded_at": "2026-09-30T17:21:16.620766+00:00",
+  "native_task_id": "/root/delivery_manager/guard_implementation",
+  "native_parent_id": "/root/delivery_manager",
+  "native_root_id": "/root",
+  "mechanism": "Codex collaboration.spawn_agent native descendant; canonical identity confirmed by collaboration.list_agents",
+  "opaque_instance_id": "not exposed to this TASK",
+  "role": "TASK / Type 2; full agents/AGENT_TASK.md supplied and loaded",
+  "model": "Inherited parent configuration; no model override; exact model not reported to TASK; no model-diversity claim",
+  "launch_commit": "b2acd4023557eeff2416d99aaed1f03abf7a2404",
+  "product_basis": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "observed_head_at_seal": "b2acd4023557eeff2416d99aaed1f03abf7a2404",
+  "repo_root_derivation": "git rev-parse --show-toplevel; durable paths are repository-relative",
+  "selected_skills": [],
+  "selected_workflows": [],
+  "wider_role_bodies_consulted": [],
+  "scope": [
+    "Run/tools/host_guard.py",
+    "Run/instances/GUARD-IMPLEMENTATION/**",
+    "own temporary scratch"
+  ],
+  "enforcement": "Per-agent write fence is instructions on a shared filesystem, not a distinct OS capability. Actual host sandbox is outer boundary.",
+  "execution_restrictions": [
+    "pure standard-library tests only, fake providers and control sinks",
+    "no live runtime/provider/monitor/guard activation or signals",
+    "no cargo/rustc build, models, install/download or settings change",
+    "no Git/index mutation or delegation"
+  ],
+  "read_basis": [
+    {
+      "origin": "AGENTS.md",
+      "sha256_at_seal": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "bytes": 14200,
+      "launch_commit_blob_sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "projects/chirality-piping/AGENTS.md",
+      "sha256_at_seal": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "bytes": 9016,
+      "launch_commit_blob_sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "agents/AGENT_TASK.md",
+      "sha256_at_seal": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "bytes": 1499,
+      "launch_commit_blob_sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/WORK_GRAPH.md",
+      "sha256_at_seal": "66c4dcef595f633e65ffdeca095b4ff79238089bd51748593cec686b3d4c5ec3",
+      "bytes": 25241,
+      "launch_commit_blob_sha256": "66c4dcef595f633e65ffdeca095b4ff79238089bd51748593cec686b3d4c5ec3",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/briefs/GUARD_IMPLEMENTATION.md",
+      "sha256_at_seal": "09079fc3441de766ef4abbe463d6731741b8c0df8cbadb4ee3c13d147e66ee68",
+      "bytes": 5714,
+      "launch_commit_blob_sha256": "09079fc3441de766ef4abbe463d6731741b8c0df8cbadb4ee3c13d147e66ee68",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/ACTIVATION.md",
+      "sha256_at_seal": "cddee0607918ef55fba99ec6d80556a0eb2c2bd40f6606876c4ba00e340b603a",
+      "bytes": 1817,
+      "launch_commit_blob_sha256": "cddee0607918ef55fba99ec6d80556a0eb2c2bd40f6606876c4ba00e340b603a",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/ROOT_HOST_OBSERVATION.json",
+      "sha256_at_seal": "052c7101f0cca323aeb234c012db37b8b5fc127a74d0128e8661a16dd3246474",
+      "bytes": 919,
+      "launch_commit_blob_sha256": "052c7101f0cca323aeb234c012db37b8b5fc127a74d0128e8661a16dd3246474",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/RUNTIME_BINDING.json",
+      "sha256_at_seal": "d552b6ffa398869b6f68c828c676af447b9c5c2426be24734ba820f67f32c3fc",
+      "bytes": 829,
+      "launch_commit_blob_sha256": "d552b6ffa398869b6f68c828c676af447b9c5c2426be24734ba820f67f32c3fc",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/decisions/02_RUNTIME_ROUTE.md",
+      "sha256_at_seal": "004f98bc4334b5d202fa9c088421b7db79ee800cd9afe8eff8fc4fdb330e108a",
+      "bytes": 2191,
+      "launch_commit_blob_sha256": "004f98bc4334b5d202fa9c088421b7db79ee800cd9afe8eff8fc4fdb330e108a",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ENV-EVIDENCE/RETURN.md",
+      "sha256_at_seal": "d769db117c308ee8b4f124c895a6fd5dc57c3c15b82830fcc3b9ea80d83425eb",
+      "bytes": 5494,
+      "launch_commit_blob_sha256": "d769db117c308ee8b4f124c895a6fd5dc57c3c15b82830fcc3b9ea80d83425eb",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ENV-EVIDENCE/RUNTIME_GUARD_PROPOSAL.md",
+      "sha256_at_seal": "344e73e6304f407d1e7d48f481f844843382d34154f485e7d2c8418603ed74bc",
+      "bytes": 17380,
+      "launch_commit_blob_sha256": "344e73e6304f407d1e7d48f481f844843382d34154f485e7d2c8418603ed74bc",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/runtime_setup/01_native_rust/SETUP.json",
+      "sha256_at_seal": "d07433d1083c19c355c045fca517efc65c67e3911ef548457c3c52d8d9d3e039",
+      "bytes": 18447,
+      "launch_commit_blob_status": "not present; read later working-tree supplement"
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ENV-EVIDENCE/READ_PROVENANCE.md",
+      "sha256_at_seal": "1562e99cb6b1bb9c2663f2e3788b83e73fc874ca15ada934a578f9d995a88322",
+      "bytes": 6969,
+      "launch_commit_blob_sha256": "1562e99cb6b1bb9c2663f2e3788b83e73fc874ca15ada934a578f9d995a88322",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ENV-EVIDENCE/CONTEXT.json",
+      "sha256_at_seal": "a3bb84bbadab4b8e7ea2d8388ee4e430b6b2dbab8db3a8b7784c2b720dc704b6",
+      "bytes": 36337,
+      "launch_commit_blob_sha256": "a3bb84bbadab4b8e7ea2d8388ee4e430b6b2dbab8db3a8b7784c2b720dc704b6",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ENV-EVIDENCE/runtime_inventory.json",
+      "sha256_at_seal": "388a6b79413de88f20037afabe3a17b1853ee8a9f9b785f58d7eb7a443b32bed",
+      "bytes": 3402,
+      "launch_commit_blob_sha256": "388a6b79413de88f20037afabe3a17b1853ee8a9f9b785f58d7eb7a443b32bed",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ENV-EVIDENCE/evidence_inventory.json",
+      "sha256_at_seal": "34be348da2a0f5661063f36448ead6b748a909d30d39c0f55ed99954c5d7f7d4",
+      "bytes": 108148,
+      "launch_commit_blob_sha256": "34be348da2a0f5661063f36448ead6b748a909d30d39c0f55ed99954c5d7f7d4",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ENV-EVIDENCE/collect_readonly.py",
+      "sha256_at_seal": "292f694eafa6e79291557c4dc9a7dbb8b4b409f89a51c40500ad79930eb25292",
+      "bytes": 5194,
+      "launch_commit_blob_sha256": "292f694eafa6e79291557c4dc9a7dbb8b4b409f89a51c40500ad79930eb25292",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/M03_SKEW_PIN_MERGE/dec025/dec025_mac.sh.txt",
+      "sha256_at_seal": "9e34865b8a3fc49bbbb45bcbd457d1a4be76bd2aec7cac764662831e11afd133",
+      "bytes": 1397,
+      "launch_commit_blob_sha256": "9e34865b8a3fc49bbbb45bcbd457d1a4be76bd2aec7cac764662831e11afd133",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K3/_run_records/checkpoint_b/suites/run_suites_nff.sh.txt",
+      "sha256_at_seal": "260708f9578860d5d1c50855dca4fc42a9c40c6530f19d6159336db17e2b22a8",
+      "bytes": 1370,
+      "launch_commit_blob_sha256": "260708f9578860d5d1c50855dca4fc42a9c40c6530f19d6159336db17e2b22a8",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/PLATFORM_CALIBRATION_MAC/suites/run_suites.sh.txt",
+      "sha256_at_seal": "a270965fab24781ac2690b923af611a0b79461783013f5195b0420f675320880",
+      "bytes": 1355,
+      "launch_commit_blob_sha256": "a270965fab24781ac2690b923af611a0b79461783013f5195b0420f675320880",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/REVIEW/_run_records/records_pr1062_review/dec025_chain.py.txt",
+      "sha256_at_seal": "d674080a0157a1a1d5e8dc217073dc954032ba89d656a44538f9360dc4bba985",
+      "bytes": 4024,
+      "launch_commit_blob_sha256": "d674080a0157a1a1d5e8dc217073dc954032ba89d656a44538f9360dc4bba985",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/suites.log",
+      "sha256_at_seal": "533efda5aff65e161fdc6e69fc690e68f0d0137e40ee2030c706f022498d06dc",
+      "bytes": 2819,
+      "launch_commit_blob_sha256": "533efda5aff65e161fdc6e69fc690e68f0d0137e40ee2030c706f022498d06dc",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "projects/chirality-piping/core/solver/performance_harness/runner/k6_runner.py",
+      "sha256_at_seal": "94f20955a6176c1859531bc2b7e1ecc5545eab4fcbc1051f95079540d01ecab1",
+      "bytes": 66453,
+      "launch_commit_blob_sha256": "94f20955a6176c1859531bc2b7e1ecc5545eab4fcbc1051f95079540d01ecab1",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "projects/chirality-piping/validation/benchmarks/numerical_robustness/runner/vk_scale_runner.py",
+      "sha256_at_seal": "7bd83d7e356f4b94712617f9ebe41731e2eed001f20cd1eb6e157d4a8b02a6de",
+      "bytes": 17655,
+      "launch_commit_blob_sha256": "7bd83d7e356f4b94712617f9ebe41731e2eed001f20cd1eb6e157d4a8b02a6de",
+      "unchanged_from_launch_commit_at_seal": true
+    },
+    {
+      "origin": "projects/chirality-piping/tools/release/run_evidence_sweep.py",
+      "sha256_at_seal": "cdb7bd4914652e6e5497f09f084d755107977dbbf58968dadfebda9f44ddcd3c",
+      "bytes": 50340,
+      "launch_commit_blob_sha256": "cdb7bd4914652e6e5497f09f084d755107977dbbf58968dadfebda9f44ddcd3c",
+      "unchanged_from_launch_commit_at_seal": true
+    }
+  ],
+  "sdk_basis": [
+    {
+      "origin": "<COMMAND_LINE_TOOLS_SDKS>/MacOSX26.5.sdk/usr/include/libproc.h",
+      "sha256": "246d87709fc6b9157ce5cf3c475656ac48e0e1ae8bbdc46cf45acd34294448cd",
+      "bytes": 7575
+    },
+    {
+      "origin": "<COMMAND_LINE_TOOLS_SDKS>/MacOSX26.5.sdk/usr/include/sys/proc_info.h",
+      "sha256": "e427fa96b348537b21552b9de71e01039410bcad2cedee5584c5e5fddafd70fc",
+      "bytes": 31262
+    },
+    {
+      "origin": "<COMMAND_LINE_TOOLS_SDKS>/MacOSX26.5.sdk/usr/include/sys/resource.h",
+      "sha256": "7d16930e6b75f11ba203238faa5580d31d48fcd4230f2b3f604aaa5fd7e86b58",
+      "bytes": 20152
+    },
+    {
+      "origin": "<COMMAND_LINE_TOOLS_SDKS>/MacOSX26.5.sdk/usr/include/sys/param.h",
+      "sha256": "10d7a9553d341c5bc0b473444802920a7ec2e6222281eeaeb61b32dfff29c4b4",
+      "bytes": 9948
+    },
+    {
+      "origin": "<COMMAND_LINE_TOOLS_SDKS>/MacOSX26.5.sdk/usr/include/sys/_types.h",
+      "sha256": "863c4f07045775002b63b7e616742d9f746e4a02da4441442d8fe1138bbd0ff9",
+      "bytes": 4133
+    },
+    {
+      "origin": "<COMMAND_LINE_TOOLS_SDKS>/MacOSX26.5.sdk/usr/include/sys/_types/_uid_t.h",
+      "sha256": "d2140a65a17943a857381757c0b73a920f35ade41dc9809437c168be457c276a",
+      "bytes": 1458
+    },
+    {
+      "origin": "<COMMAND_LINE_TOOLS_SDKS>/MacOSX26.5.sdk/usr/include/sys/proc.h",
+      "sha256": "593af71b2740ba6248995691280bcb15f8900d46b1d9868f7345084aa0692949",
+      "bytes": 11852
+    },
+    {
+      "origin": "<COMMAND_LINE_TOOLS_SDKS>/MacOSX26.5.sdk/usr/include/dispatch/source.h",
+      "sha256": "c0a3c34828c40d761b421d1b595ce1da22110410412facc531b1ac16af12d5d2",
+      "bytes": 29441
+    },
+    {
+      "origin": "<COMMAND_LINE_TOOLS_SDKS>/MacOSX26.5.sdk/usr/include/sys/event.h",
+      "sha256": "b09a4fdd9e88a5c1c9a29bded36a6f8b96b39a3054f0075a07c19da587f0e062",
+      "bytes": 17873
+    }
+  ],
+  "supporting_web_source_reads": [
+    {
+      "url": "https://raw.githubusercontent.com/apple-oss-distributions/xnu/main/libsyscall/wrappers/libproc/libproc.c",
+      "use": "proc_listpids returns bytes; proc_listpgrppids divides by sizeof(int); proc_pid_rusage argument forwarding"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/apple-oss-distributions/xnu/main/bsd/kern/kern_memorystatus_notify.c",
+      "use": "sysctl handler returns dispatch pressure flags"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/apple-oss-distributions/xnu/main/bsd/kern/kern_memorystatus.c",
+      "use": "discovery only"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/apple-oss-distributions/xnu/main/bsd/sys/kern_memorystatus.h",
+      "use": "discovery only"
+    }
+  ],
+  "web_scope_note": "Read-only primary-source inspection via web tool, no source package downloaded or executed. Remote main bytes not pinned; supporting documentation only, not host ABI evidence.",
+  "native_addenda": [
+    {
+      "from": "DELIVERY",
+      "content": "ROOT granted released second TASK slot; I21-K6C continues source-only. Native Rust1.97.1 setup is supplementary ROOT evidence; do not rewrite older RUNTIME_BINDING status."
+    },
+    {
+      "from": "DELIVERY",
+      "content": "Do not claim universal escape containment; explicitly describe unobserved double-fork/reparenting sampling limit and unsupported K6/VR separate groups."
+    },
+    {
+      "from": "DELIVERY",
+      "content": "Wrap pure module import in capability blockers including process/session mutation and os._exit. Implemented before sealing."
+    },
+    {
+      "from": "DELIVERY relaying ROOT owner direction",
+      "content": "M5 originals unavailable for now; safe recreation and new M3 reruns may continue under separate grants. Does not expand current pure-only task. Historical packets remain unchanged."
+    },
+    {
+      "from": "DELIVERY",
+      "content": "Verify executable exact-path hash requirement and add a pure schema test. Existing source check verified at lines 711-712; added fake-filesystem test for absent, mismatched and valid executable hash; no source change."
+    }
+  ],
+  "test_command": "PYTHONDONTWRITEBYTECODE=1 python3 projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/test_host_guard.py",
+  "read_search_limitations": [
+    "Some broad rg searches returned no matches or truncated display; narrower reads recovered the required SDK declarations and archived drivers. No runtime denial was inferred from search exit codes."
+  ],
+  "initial_packet_preservation": "No initial manager, ENV, audit, instruction or runtime record edited; only owned source and GUARD-IMPLEMENTATION packet written."
+}

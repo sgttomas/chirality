@@ -1,0 +1,19 @@
+{
+  "drift_rejection": {
+    "message": "working input drift: AGENTS.md",
+    "rejected": true
+  },
+  "historical_dictionary_matches": 36,
+  "known_tree_shift_delta_each": 10799688,
+  "negative_selected_margins": 0,
+  "observed_return_head": "b2acd4023557eeff2416d99aaed1f03abf7a2404",
+  "phase": "source/record only",
+  "pinned_product_inputs": 64,
+  "product_basis": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "provisional_decision_category_changes": 0,
+  "python_ast_parses": true,
+  "runtime_or_model_checks": "none",
+  "selected_heap_comparisons": 204,
+  "source_diff_paths": [],
+  "uc_overlap_1024_each": 34560000
+}

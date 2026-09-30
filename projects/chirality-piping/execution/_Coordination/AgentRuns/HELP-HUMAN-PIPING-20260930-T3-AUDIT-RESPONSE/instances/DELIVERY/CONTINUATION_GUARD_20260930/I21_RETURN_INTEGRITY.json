@@ -1,0 +1,61 @@
+{
+  "child": "/root/delivery_manager/i21_k6c",
+  "native_sealed_return_received": true,
+  "return_sha256": "6e882dd527d0c2e35e6befe4879406a28badb9ab0af2061e74d4107f9871aafa",
+  "manifest_sha256": "6a40dfe26ce2752844db4f0f8fad0f96da26a4d8174ac1fae0bc75aadff6f952",
+  "checks": [
+    {
+      "file": "ALLOCATIONS.md",
+      "match": true
+    },
+    {
+      "file": "CHANGED_FILES.json",
+      "match": true
+    },
+    {
+      "file": "COMMANDS.md",
+      "match": true
+    },
+    {
+      "file": "CONTEXT.json",
+      "match": true
+    },
+    {
+      "file": "FORMULA.md",
+      "match": true
+    },
+    {
+      "file": "IMPLEMENTATION_PLAN.md",
+      "match": true
+    },
+    {
+      "file": "INPUTS.json",
+      "match": true
+    },
+    {
+      "file": "REPLAY_MEASUREMENT_A1.md",
+      "match": true
+    },
+    {
+      "file": "RETURN.md",
+      "match": true
+    },
+    {
+      "file": "VALIDATION.json",
+      "match": true
+    },
+    {
+      "file": "derive_checkpoint0.py",
+      "match": true
+    },
+    {
+      "file": "historical_admissions.json",
+      "match": true
+    },
+    {
+      "file": "provisional_results.json",
+      "match": true
+    }
+  ],
+  "disposition": "Source-only checkpoint complete; full K0 bound acceptance open; no implementation A grant. Manager read returned RETURN and sampled allocation/formula drafts; independent formula review not performed by manager."
+}

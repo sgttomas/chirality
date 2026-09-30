@@ -1,0 +1,25 @@
+{
+  "kind": "actual_native_guard_launch",
+  "parent": "/root/delivery_manager",
+  "child": "/root/delivery_manager/guard_implementation",
+  "root": "/root",
+  "role": "TASK / Type 2",
+  "mechanism": "collaboration.spawn_agent",
+  "fork_turns": "none",
+  "model_override": null,
+  "actual_model": "inherited; exact model not exposed by native launch result",
+  "brief": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/briefs/GUARD_IMPLEMENTATION.md",
+  "brief_sha256": "09079fc3441de766ef4abbe463d6731741b8c0df8cbadb4ee3c13d147e66ee68",
+  "head": "b2acd4023557eeff2416d99aaed1f03abf7a2404",
+  "brief_present_at_launch_commit": true,
+  "committed_sha256": "09079fc3441de766ef4abbe463d6731741b8c0df8cbadb4ee3c13d147e66ee68",
+  "confirmed_launch": true,
+  "active_TASK_siblings": [
+    "/root/delivery_manager/i21_k6c"
+  ],
+  "global_active_TASK_cap": 2,
+  "scope": "host_guard.py and GUARD-IMPLEMENTATION records; pure fake-provider/control tests only",
+  "no_heavy_grant": true,
+  "scope_enforcement": "prompt-only in shared host sandbox",
+  "return": "Completed source-only checkpoint; final source/test hashes and packet integrity in GUARD_INTEGRATION.json; inactive/unqualified"
+}

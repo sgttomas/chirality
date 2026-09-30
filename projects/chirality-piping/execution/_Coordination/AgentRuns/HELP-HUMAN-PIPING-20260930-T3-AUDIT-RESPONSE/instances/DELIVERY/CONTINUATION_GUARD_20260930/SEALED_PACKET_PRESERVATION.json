@@ -1,0 +1,143 @@
+{
+  "kind": "read_only_preservation_check",
+  "initial_commit": "b2acd4023557eeff2416d99aaed1f03abf7a2404",
+  "entries": 27,
+  "all_match": true,
+  "checks": [
+    {
+      "packet": "DELIVERY",
+      "file": "B0_COMPARISON.json",
+      "match": true
+    },
+    {
+      "packet": "DELIVERY",
+      "file": "B0_CURRENCY_AND_MAPPING.md",
+      "match": true
+    },
+    {
+      "packet": "DELIVERY",
+      "file": "B0_SOURCE_DRIFT.json",
+      "match": true
+    },
+    {
+      "packet": "DELIVERY",
+      "file": "BASIS.json",
+      "match": true
+    },
+    {
+      "packet": "DELIVERY",
+      "file": "DEL0407_source_drift.diff",
+      "match": true
+    },
+    {
+      "packet": "DELIVERY",
+      "file": "ENV_EVIDENCE_BRIEF.md",
+      "match": true
+    },
+    {
+      "packet": "DELIVERY",
+      "file": "ENV_INTEGRATION.json",
+      "match": true
+    },
+    {
+      "packet": "DELIVERY",
+      "file": "ENV_LAUNCH.json",
+      "match": true
+    },
+    {
+      "packet": "DELIVERY",
+      "file": "I21_CHECKPOINT0_ADDENDUM_DRAFT.md",
+      "match": true
+    },
+    {
+      "packet": "DELIVERY",
+      "file": "I21_CHECKPOINT0_BRIEF.md",
+      "match": true
+    },
+    {
+      "packet": "DELIVERY",
+      "file": "I21_LAUNCH.json",
+      "match": true
+    },
+    {
+      "packet": "DELIVERY",
+      "file": "RETURN.md",
+      "match": true
+    },
+    {
+      "packet": "DELIVERY",
+      "file": "VALIDATION.json",
+      "match": true
+    },
+    {
+      "packet": "DELIVERY",
+      "file": "check_b0.py",
+      "match": true
+    },
+    {
+      "packet": "DELIVERY",
+      "file": "decomposition_source_drift.diff",
+      "match": true
+    },
+    {
+      "packet": "ENV-EVIDENCE",
+      "file": "CONTEXT.json",
+      "match": true
+    },
+    {
+      "packet": "ENV-EVIDENCE",
+      "file": "READ_PROVENANCE.md",
+      "match": true
+    },
+    {
+      "packet": "ENV-EVIDENCE",
+      "file": "RECOVERY_LIST.md",
+      "match": true
+    },
+    {
+      "packet": "ENV-EVIDENCE",
+      "file": "RETURN.md",
+      "match": true
+    },
+    {
+      "packet": "ENV-EVIDENCE",
+      "file": "RUNTIME_GUARD_PROPOSAL.md",
+      "match": true
+    },
+    {
+      "packet": "ENV-EVIDENCE",
+      "file": "VALIDATION.json",
+      "match": true
+    },
+    {
+      "packet": "ENV-EVIDENCE",
+      "file": "collect_readonly.py",
+      "match": true
+    },
+    {
+      "packet": "ENV-EVIDENCE",
+      "file": "evidence_inventory.json",
+      "match": true
+    },
+    {
+      "packet": "ENV-EVIDENCE",
+      "file": "inventory_evidence.py",
+      "match": true
+    },
+    {
+      "packet": "ENV-EVIDENCE",
+      "file": "observations.json",
+      "match": true
+    },
+    {
+      "packet": "ENV-EVIDENCE",
+      "file": "runtime_inventory.json",
+      "match": true
+    },
+    {
+      "packet": "ENV-EVIDENCE",
+      "file": "write_provenance.py",
+      "match": true
+    }
+  ]
+}

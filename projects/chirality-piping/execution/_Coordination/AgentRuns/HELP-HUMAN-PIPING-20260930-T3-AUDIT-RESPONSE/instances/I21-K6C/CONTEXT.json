@@ -1,0 +1,481 @@
+{
+  "brief_origin": "uncommitted sealed working-tree file; not a previously committed execution record",
+  "brief_sha256": "75d2c08f6f0c34acf0d3fb834744ba5b93354906d1fdcc81d1069620bd0e27ec",
+  "delegation": "collaboration.spawn_agent native descendant; TASK Type2; no child",
+  "git_writes": "none; no fetch/index/intent-to-add/reset/branch/commit",
+  "host": "M3 Air16GiB, owner-supplied; no direct host probe by this TASK",
+  "launch_observed_head": "86bb36d6fb88e7699df595bce1d6a31f5fbd6be5",
+  "method": "Direct sealed brief; run-specific source/record derivation, not workflow authoring",
+  "model": "Inherited configured model, no override; no separately verified model identifier exposed",
+  "native_id": "/root/delivery_manager/i21_k6c",
+  "other_full_role_bodies_loaded": [],
+  "parent": "/root/delivery_manager",
+  "parent_updates": [
+    {
+      "content": "ROOT has installed isolated exact1.97.1 native toolchain after launch; not a build/model grant. Guard implementation launched in another TASK slot; not qualification.",
+      "from": "/root/delivery_manager",
+      "kind": "informational"
+    },
+    {
+      "content": "Finish source-only checkpoint; keep full K0 bound acceptance open for unsupported capacity/layout/finish terms. Delimit to original I21 H/VR W1 fixture/schedule contracts, separate generic API possibilities; smallest next checks.",
+      "from": "/root/delivery_manager",
+      "kind": "scope clarification"
+    }
+  ],
+  "product_basis": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "read_limit": "Hashes identify full files, not a claim every semantic path was reviewed; noted range/search reads. No other full role body or reusable workflow activated.",
+  "recorded_at_utc": "2026-09-30T17:02:59.713812+00:00",
+  "repo_anchor": "Derived by git rev-parse --show-toplevel; durable paths repository-relative",
+  "role_body": "agents/AGENT_TASK.md",
+  "root": "/root",
+  "selected_skill_bodies": [],
+  "selected_workflows": [],
+  "sources": [
+    {
+      "at_product_basis": true,
+      "path": "AGENTS.md",
+      "read_scope": "full current instruction",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "at_product_basis": true,
+      "path": "agents/AGENT_TASK.md",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/AGENTS.md",
+      "read_scope": "full current instruction",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/loads/primitive_loads/Cargo.toml",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "97959fbf7124f55b39ea51a33ae1da1f1abcc9fc1b969f7d42d9ea0fcab894a0"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/curved_bend/Cargo.toml",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "49e42be72ad63f6f7c215f2fb39592d4134f37533f876b5161591c9004f1f239"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/diagnostics/Cargo.toml",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "b97f1331ea132a493008eb94d985b6afd26c8ea13476e56c1fa2a098f34244b6"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/frame_kernel/Cargo.toml",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "994d118576eb881668f3048f9b4d05f899ceb7599c1cd5f05cbe18f70172b7dc"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/exact_sum.rs",
+      "read_scope": "LIMBS/type declaration search and45-62",
+      "sha256": "3a847f8dbaa74768603c4d9693b538f1f63c2d172026ed7ab400aea3b4800f67"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/rigid_body.rs",
+      "read_scope": "1-259",
+      "sha256": "3e5b9be185428f1652775f60cbb98b9d30e08bff4ce2a9b2bb83ccf662d30a1b"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural.rs",
+      "read_scope": "retained_api10-36 and Expansion declaration/allocation search",
+      "sha256": "32dfe5971f95be3eb276fa594c5ab4b0c5ce8724b942a098f2fda1104886d9d2"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/adaptive.rs",
+      "read_scope": "1-265,395-537,625-925,1020-1845,1885-1965,1994-2089,2190-2285,2750-2769,3106-3550; allocation search over rest",
+      "sha256": "472bafb8281c7d311a81dcd5da042dd0f8db998bd81cf4902e6b55409eb5a563"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/assemble.rs",
+      "read_scope": "65-97,510-851; allocation search",
+      "sha256": "057fa8a431bde050d0aa448c347dd1c92fbd4929ad6cc8ecce5837c9255d20f2"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/bound.rs",
+      "read_scope": "1-245,265-1315; full relevant lifetime/control path",
+      "sha256": "b6e5a99386da9858af8ff95a1fb326d722523540f5c6e4b59c2bcd27130c0100"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/factor.rs",
+      "read_scope": "130-217,218-398,505-812; allocation search",
+      "sha256": "e21fc61e6ae84e7c609da9f2d14c3769c4f203a9baa6bcd25025843056af22dc"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/ledger.rs",
+      "read_scope": "80-132 and allocation search",
+      "sha256": "66a48fb2a49c84e8e294bb741888fc53f72edcb6b7a3a4331fdeafaa7221ac4e"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/recover.rs",
+      "read_scope": "allocation search,239-300; definition/layout/state encoding search",
+      "sha256": "e452e3467608a4680359a36d30b6a580d72a12b778d506ff8118646257b7d388"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/source.rs",
+      "read_scope": "321-583,629-746; allocation search",
+      "sha256": "46c85ba0d9e0c45f6d19bfd188ce8cc52e4d773b96d3b7e8d0746b78e5582ca9"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/verify.rs",
+      "read_scope": "90-1288; full relevant lifetime/control path",
+      "sha256": "31780a6a888decc64e2ebec2fcfbeff45c144a6f0d0169f0584d53fcccb89987"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/wide.rs",
+      "read_scope": "type/heap allocation search; no arithmetic theorem re-proof",
+      "sha256": "5d35b70d45680f769354bbc6694c78186354d235a7af29891a9b09e7b4a293ad"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/wide/multi.rs",
+      "read_scope": "type/heap allocation search",
+      "sha256": "76d96ee2a0d183ab8b288c41b0075b2cb2feb74016b7a3efcfa3f6eb6bb09d17"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/wide_sum.rs",
+      "read_scope": "inline-layout/allocation search",
+      "sha256": "80441f99a0fdcb4544d5b95e1012bc5bf291089ff8cebbdcdcaac437d565a188"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/sparse.rs",
+      "read_scope": "45-170",
+      "sha256": "43c1f369a2fafef0dda00503f06b602bb3f0996c1c7f5fe398dce1145d735ee6"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/linear_supports/Cargo.toml",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "db634677878b548ca51ad7b14d0532540b0471a439ac7e8d7e28a405b32e5b08"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/nonlinear_integration/Cargo.toml",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "6b6760eafdb97092345cb28aebac456cfccc9381542dcf0ec28bdcd3771587ea"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/nonlinear_supports/Cargo.toml",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "328a321c2d77b620665f449dbdb58246953299cacffcaae25bb542e7339f3b64"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/performance_harness/Cargo.lock",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "7b689c8c109f17220157d0bdb934642b06881a4f7c0f6c8154e8df5edd56572e"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/performance_harness/Cargo.toml",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "ba730845fa377a8f2b0f4d910b317a1c1bbc5000881a8a433a2ca0e10f4f7c8a"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6b/counts.jsonl",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "fab0466a846ef26b1c530a261a6f1d134fc32ba1d70f57682010877a52373c05"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6b/k6b_packet.json",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "f97ea23955428c33f86bdaa4cee565b7a8349baea82fa178f3dcb5a72e424269"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/performance_harness/runner/k6_runner.py",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "94f20955a6176c1859531bc2b7e1ecc5545eab4fcbc1051f95079540d01ecab1"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/alloc.rs",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "0bb07a2346d0fedf9411ec9e93ab427b4fc4eafbb9de01c412067e3fbe7e4ba0"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "e490e96151468e2e3e561bb42f9a43f08529db5121d1ccfce63329521559e2ec"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/k6/mod.rs",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "5535e39390e6cc5999c370c4f52887a09589c59aed63dbeffa14a2fb754b9559"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/k6/w1/adapter.rs",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "ab07b2513db32260960cac0c09e19dfe363c09e51b1af878ce97ced7ffad6da0"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/k6/w1/counts.rs",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "753d20c6a99151ff91e19d4c52d0cfebb815d52c28e297a79cdb5f7495955a3b"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/k6/w1/mod.rs",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "03d22fa3a2cfce4af231050df635d3948f4abf3c1e3a4c823f1b8c0276043262"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/k6/w1/staged.rs",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "fd3e00c06aff970c44cd147f255fe371b16729fe0a80b62b32a09bc0afddc337"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/lib.rs",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "d652a0fcea9826456bc39735fb6aa3f32fddd480429d5fff20a5883a57ce792c"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/performance_harness/tests/k6b_bin.rs",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "1747048b81031622a8ab70f4af00c2170f96962ff68590b9a1d3b96921df6f64"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/performance_harness/tests/k6b_w1.rs",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "09faf31674c432c189ac02361f5bbf01214419f0f490ac78440eed973529c100"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/core/solver/sparse_direct/Cargo.toml",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "846dc2270a785df06aaa8ad9be205e6d6bef104f58c77b6aaf4b1f8a78feef88"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/AUDIT/REPORT.md",
+      "read_scope": "full audit report",
+      "sha256": "9e57793917d96ccf665cd4833ef828f589a9e2f709b35e74435cd2453b861296"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/AUDIT/_run_records/admissions.json",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "e624c21ee9f524ae302ceeca412be27a3818751a16fde5c4f6c9f96f8ba9a12e"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/AUDIT/_run_records/audit_checks.py",
+      "read_scope": "203-298 admission/figures only; no import/execution",
+      "sha256": "9ae534ddb254fa0e65e7b557f3e04a60d9d4fd35e4819167dae1da24adaad2e7"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/AUDIT/_run_records/figures.json",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "bef09fff719212ba347fa64749c4568ab721d630c4d2a7eb060a0ff6ac50a3b1"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B/RETURN.md",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "192b88259e56a160e7277bd4ddb3e3caa2116cdba1c7e11e4511d037522bf43a"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3/RETURN.md",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "0078790cb65fe4a485a82cfc5d59bb137922d36971f967c43226cdc39e08cd84"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3/_run_records/b/counts.json",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "3b49562ae0be8772642a0c0c9083e11cb32a4297eb1e5ebc6b0232028440ad42"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3/_run_records/b/runs/records.jsonl",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "38cceadbd41c413be473b2d32a2cc9ec20ca5c99fcb43f2501c5ebe105e0c928"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3/_run_records/d/b2_emax.py",
+      "read_scope": "full read only, no import/execution",
+      "sha256": "d01320c3324526b7fa5850cf595d9436ba934878441c4519723f376ea08ef159"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK/_run_records/b/runs/records.jsonl",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "e896c63b397df5340d9ea80e50bf9baf8c9226a4009688582b85429517b43a26"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK/_run_records/b/setup/counts.jsonl",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "388da37d47e0fb6e3afdf854058efa4021c029d76d933a2396a62ea15e8dee41"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/TASK_BRIEFS/I21_K6C_IMPLEMENTATION.md",
+      "read_scope": "full original brief",
+      "sha256": "d0ae59f52fc5812b50350a8ea7b9736b5d3d61c4deecb4f1b936ec0c5a2c0b7f"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/TASK_BRIEFS/I8R_K1_RESUME.md",
+      "read_scope": "24-50 only, historical host/calibration guidance",
+      "sha256": "090844dafa56105ae9370d83c59983954f4c969fac4b8565dd3c8bac3b8691c3"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/TASK_BRIEFS/_COMMON.md",
+      "read_scope": "full historical common terms",
+      "sha256": "6bb845bfaa7cb1f6c622488dfa273d2362e39b7e1b7f63076bc82b22f02001e9"
+    },
+    {
+      "at_product_basis": false,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/ACTIVATION.md",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "cddee0607918ef55fba99ec6d80556a0eb2c2bd40f6606876c4ba00e340b603a"
+    },
+    {
+      "at_product_basis": false,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/AUDIT-REVIEW/REVIEW.md",
+      "read_scope": "full V0 report",
+      "sha256": "13a0dc689fc47ec26af93e3b4624f281a4c88345209c2653f79161b593f1befc"
+    },
+    {
+      "at_product_basis": false,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/AUDIT-REVIEW/check_admissions_figures.py",
+      "read_scope": "full read only, no import/execution",
+      "sha256": "8741c1f6fa57ad401848a879bd39729acdfe69dae4202a8da9089350e812196e"
+    },
+    {
+      "at_product_basis": false,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/B0_CURRENCY_AND_MAPPING.md",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "05cb453c2161d8bcf6b48f5a5e19e842d2df00cea9e0f153c70dbd7a6bdedd03"
+    },
+    {
+      "at_product_basis": false,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/I21_CHECKPOINT0_BRIEF.md",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "75d2c08f6f0c34acf0d3fb834744ba5b93354906d1fdcc81d1069620bd0e27ec"
+    },
+    {
+      "at_product_basis": false,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ENV-EVIDENCE/RETURN.md",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "d769db117c308ee8b4f124c895a6fd5dc57c3c15b82830fcc3b9ea80d83425eb"
+    },
+    {
+      "at_product_basis": false,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ENV-EVIDENCE/RUNTIME_GUARD_PROPOSAL.md",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "344e73e6304f407d1e7d48f481f844843382d34154f485e7d2c8418603ed74bc"
+    },
+    {
+      "at_product_basis": false,
+      "path": "projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/WORK_GRAPH.md",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "d8a8952d3807058cf83ccf2e87b28a3e3a3efdf555cbdec674db910cb0e8e757"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_robustness/Cargo.lock",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "b81994dca343ddca6eac599ed6586a6154c693ba07cfa73f731ed1af978a831b"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_robustness/Cargo.toml",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "a732e02ee75c5069a4a85e3732d317ce360c23f413573df026eee9c350c27f11"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_robustness/examples/vk_scale.rs",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "abd891ca57a6c4281ed71379b6502f70f1c212e1d96a933bf7dd5106e5b7d511"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_robustness/runner/vk_scale_runner.py",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "7bd83d7e356f4b94712617f9ebe41731e2eed001f20cd1eb6e157d4a8b02a6de"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_robustness/src/lane.rs",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "3512f36ebc9e2b947528af5babe32b92094f46894ab9be858c72330c8f8bb990"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_robustness/src/records.rs",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "6f52fcb93d7d0c355139ca584a9abd0b3c1c59dd5a6f140340a0ec0282b5841c"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_robustness/src/scale.rs",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "bd6242ff6a7ab8b7528bd483bc60e6a5ccb51b5476b08bcceaae45f725f0a40b"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_robustness/tests/feature_guard.rs",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "99d3c61885aa1e6b548b200da795be73fee7a9225390e628c903083107ff2b1b"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_robustness/tests/scale.rs",
+      "read_scope": "Full file byte-identity checked; targeted source/record/manifest inspection or required brief read as described in COMMANDS.md",
+      "sha256": "8df1d6de492de1ec8c16c47f2dc9aae22ca213757f98e89071e852f339fd1edb"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/STAGE0_MAP.md",
+      "read_scope": "1-203 historical map; output chunks plus focused completion",
+      "sha256": "398868102890b0ed3bc6b6ab67badacc0114db6107e6f809a00f66773f975829"
+    },
+    {
+      "at_product_basis": true,
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/STAGE1_PLAN.md",
+      "read_scope": "full historical plan",
+      "sha256": "f5c75dcf5bb1bb4a093696edc5f21ad13150fe832ac4d6a3a1f11ea118c476bb"
+    }
+  ],
+  "v0_review_sha256": "13a0dc689fc47ec26af93e3b4624f281a4c88345209c2653f79161b593f1befc",
+  "write_fence": "Run/instances/I21-K6C/** and own scratch; prompt-only shared filesystem, outer host sandbox enforced"
+}
