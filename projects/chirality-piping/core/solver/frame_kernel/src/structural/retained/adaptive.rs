@@ -52,59 +52,54 @@ use std::cmp::Ordering as CmpOrdering;
 use std::sync::Arc;
 
 /// Proposed method token (a placeholder for ROOT, D1 §4.1).
-pub(crate) const METHOD_TOKEN: &str = "contribution_preserving_multiprecision_v1";
+pub const METHOD_TOKEN: &str = "contribution_preserving_multiprecision_v1";
 /// Proposed policy (a placeholder for ROOT).
-pub(crate) const POLICY: &str = "M03-INTEGRITY-MP-v1";
+pub const POLICY: &str = "M03-INTEGRITY-MP-v1";
 /// The label D1 §4.1.3 gives the published condition estimate.
-pub(crate) const RCOND_LABEL: &str =
+pub const RCOND_LABEL: &str =
     "sensitivity to matrix-entry perturbation, not to authored parameters";
 /// The solve precisions: candidates 128, 256, 512; the ceiling 1024.
-pub(crate) const PRECISIONS: [u32; 4] = [128, 256, 512, 1024];
+pub const PRECISIONS: [u32; 4] = [128, 256, 512, 1024];
 /// R = 2^-34.
-pub(crate) const FLOOR_RATIO_BITS: u64 = 0x3DD0_0000_0000_0000;
+pub const FLOOR_RATIO_BITS: u64 = 0x3DD0_0000_0000_0000;
 /// k√2, the nearest double to √2 (≥ √2).
-pub(crate) const K_SQRT2_BITS: u64 = 0x3FF6_A09E_667F_3BCD;
+pub const K_SQRT2_BITS: u64 = 0x3FF6_A09E_667F_3BCD;
 /// k_{2√2} = 2·k√2.
-#[allow(dead_code)] // F2a API (per-member stress classification)
-pub(crate) const K_TWO_SQRT2_BITS: u64 = 0x4006_A09E_667F_3BCD;
+pub const K_TWO_SQRT2_BITS: u64 = 0x4006_A09E_667F_3BCD;
 
 // ------------------------------------------------------------ budgets
 
 /// The per-case work limit, in limb-multiply equivalents (required; no default).
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub(crate) struct CaseLimit(u64);
+pub struct CaseLimit(u64);
 
 impl CaseLimit {
-    #[allow(dead_code)] // F2a API (W1's caller is wired at F2a; ROOT's K4 ruling Q1)
-    pub(crate) fn new(limb_multiply_equivalents: u64) -> Self {
+    pub fn new(limb_multiply_equivalents: u64) -> Self {
         Self(limb_multiply_equivalents)
     }
-    pub(crate) fn get(self) -> u64 {
+    pub fn get(self) -> u64 {
         self.0
     }
 }
 
 /// The per-invocation work meter (required; no default).
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub(crate) struct InvocationMeter {
+pub struct InvocationMeter {
     limit: u64,
     charged: u64,
 }
 
 impl InvocationMeter {
-    #[allow(dead_code)] // F2a API
-    pub(crate) fn new(limit: u64) -> Self {
+    pub fn new(limit: u64) -> Self {
         Self { limit, charged: 0 }
     }
-    #[allow(dead_code)] // F2a API (evidence)
-    pub(crate) fn charged(&self) -> u64 {
+    pub fn charged(&self) -> u64 {
         self.charged
     }
-    #[allow(dead_code)] // F2a API (evidence)
-    pub(crate) fn limit(&self) -> u64 {
+    pub fn limit(&self) -> u64 {
         self.limit
     }
-    pub(crate) fn exhausted(&self) -> bool {
+    pub fn exhausted(&self) -> bool {
         self.charged >= self.limit
     }
     fn room(&self) -> u64 {
@@ -116,14 +111,14 @@ impl InvocationMeter {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub(crate) enum BudgetScope {
+pub enum BudgetScope {
     Case,
     Invocation,
 }
 
 /// Why an attempt stopped.
 #[derive(Debug, Clone, PartialEq)]
-pub(crate) enum AttemptStop {
+pub enum AttemptStop {
     Budget(BudgetScope),
     /// An exact sum exceeded the span limit (terminal: ROOT's ruling O4).
     Span,
@@ -268,7 +263,7 @@ pub(crate) fn next_down(x: f64) -> f64 {
 
 /// Item 5: d_a = fl(max_a − min_a), L_b = fl(√(fl(fl(fl(d_x·d_x) + fl(d_y·d_y)) +
 /// fl(d_z·d_z)))); 0 for a single node.
-pub(crate) fn body_extent(coordinates: &[[f64; 3]]) -> f64 {
+pub fn body_extent(coordinates: &[[f64; 3]]) -> f64 {
     if coordinates.is_empty() {
         return 0.0;
     }
@@ -288,7 +283,7 @@ pub(crate) fn body_extent(coordinates: &[[f64; 3]]) -> f64 {
 /// Item 6, in this order: tr = max(S_tr, fl(L_b·S_rot)); ro = max(S_rot,
 /// fl(S_tr/L_b)); fo = max(S_fo, fl(S_mo/L_b)); mo = max(S_mo, fl(L_b·S_fo)). A
 /// single-node body (L_b = 0) omits the coupled terms. `s` in `Kind` order.
-pub(crate) fn coupled_scales(s: [f64; 4], extent: f64) -> [f64; 4] {
+pub fn coupled_scales(s: [f64; 4], extent: f64) -> [f64; 4] {
     if extent == 0.0 {
         return s;
     }
@@ -302,15 +297,13 @@ pub(crate) fn coupled_scales(s: [f64; 4], extent: f64) -> [f64; 4] {
 }
 
 /// Item 7: σ_k(m) = fl(fl(fo/A) + fl(k·fl(mo/Z))).
-#[allow(dead_code)] // F2a API (per-member stress classification)
-pub(crate) fn stress_scale(fo: f64, mo: f64, area: f64, modulus: f64, k: f64) -> f64 {
+pub fn stress_scale(fo: f64, mo: f64, area: f64, modulus: f64, k: f64) -> f64 {
     fo / area + k * (mo / modulus)
 }
 
 /// Item 7: k_i = fl↑(k√2·i): the nearest, then the next up when the nearest is
 /// below the exact product (decided with an exact product).
-#[allow(dead_code)] // F2a API (per-member stress classification)
-pub(crate) fn intensified_k(i: f64) -> f64 {
+pub fn intensified_k(i: f64) -> f64 {
     let k = f64::from_bits(K_SQRT2_BITS);
     let nearest = k * i;
     let exact_above = (|| -> Option<bool> {
@@ -335,13 +328,13 @@ pub(crate) fn intensified_k(i: f64) -> f64 {
 }
 
 /// t = fl(R·S*).
-pub(crate) fn threshold(s_star: f64) -> f64 {
+pub fn threshold(s_star: f64) -> f64 {
     f64::from_bits(FLOOR_RATIO_BITS) * s_star
 }
 
 /// b = fl↑(2^-64·S*), for S* ≥ 0: exact whenever 2^-64·S* is representable,
 /// at least 2^-1074 for any 0 < S*, and 0 only at S* = 0.
-pub(crate) fn absolute_bound(s_star: f64) -> f64 {
+pub fn absolute_bound(s_star: f64) -> f64 {
     let two64 = 18_446_744_073_709_551_616.0_f64;
     let nearest = s_star / two64;
     if nearest * two64 < s_star {
@@ -353,7 +346,7 @@ pub(crate) fn absolute_bound(s_star: f64) -> f64 {
 
 /// The verified-accuracy class of a published row of a scaled kind.
 #[derive(Debug, Clone, Copy, PartialEq)]
-pub(crate) enum RowClass {
+pub enum RowClass {
     RelativeVerified,
     /// Withheld from reliance, with its absolute bound b (bits).
     AbsoluteVerified {
@@ -406,7 +399,12 @@ pub(crate) fn row_bound(value: f64, s_star: f64) -> f64 {
 /// D1 §4.1.6 item 1 on the published value: `absolute_verified` iff
 /// |q| < fl(R·S\*), and always when S\* < 2^-988, with the bound of
 /// `row_bound` (amendment A1).
-pub(crate) fn classify(value: f64, s_star: f64) -> RowClass {
+pub fn classify(value: f64, s_star: f64) -> RowClass {
+    // V-K seeded fault VK-F17 (§7.3-17): every scaled row relative_verified.
+    #[cfg(any(test, feature = "mutation-controls"))]
+    if super::seeded::active(super::seeded::Fault::F17) {
+        return RowClass::RelativeVerified;
+    }
     let small = f64::from_bits(0x0230_0000_0000_0000); // 2^-988
     if s_star < small || value.abs() < threshold(s_star) {
         RowClass::AbsoluteVerified {
@@ -539,59 +537,303 @@ fn approximate_ratio(
 /// evaluation (the approximations are within 2 ulps of the exact ratios).
 const WINDOW_ULPS: u64 = 1 << 13;
 
-/// The exact directed extreme of a stream of ratios num/den (both exact): the
-/// rows whose 64-bit approximation lies within `WINDOW_ULPS` of the running
-/// approximate extreme are kept (compared as bit patterns, integers only) and
-/// evaluated exactly at the end, so the result is the directed rounding of the
-/// true extreme.
-pub(crate) struct ExtremeTracker {
-    direction: Direction,
-    best: Option<u64>,
-    kept: Vec<(ExactWideSum, ExactWideSum, u64)>,
+/// KF1: T, the most rows one tracker holds unevaluated. At T it evaluates them
+/// (a collapse), so a tracker's memory does not depend on its rows. T = 512
+/// (ROOT's ruling "KF1: D received; T reopened and set to 512"): no result
+/// depends on T, only the work of rows collapsed and later dropped.
+pub(crate) const TRACKER_ROWS: usize = 512;
+
+/// KF1: G, the most unevaluated rows (counted by allocated capacity) the
+/// trackers of one call hold together: 8·T, so the eight trackers `rule` keeps
+/// for one body never reach it, and many small bodies are bounded as well.
+pub(crate) const TRACKER_SET_ROWS: usize = 8 * TRACKER_ROWS;
+
+#[cfg(not(test))]
+fn tracker_rows() -> usize {
+    TRACKER_ROWS
 }
 
-impl ExtremeTracker {
+/// T, or this thread's test override (KF1's model-level differential).
+#[cfg(test)]
+fn tracker_rows() -> usize {
+    tracker_hook::get().unwrap_or(TRACKER_ROWS)
+}
+
+fn tracker_set_rows() -> usize {
+    tracker_rows().saturating_mul(TRACKER_SET_ROWS / TRACKER_ROWS)
+}
+
+/// Whether key k lies within the window of the best key b (as bit patterns).
+fn in_window(k: u64, b: u64) -> bool {
+    k.abs_diff(b) <= WINDOW_ULPS
+}
+
+/// A row evaluated at a collapse: its exact directed ratio, or the refusal its
+/// exact evaluation met, with the row's place in the stream.
+#[derive(Debug, Clone)]
+enum Evaluated {
+    Ratio(f64),
+    Refused { seq: u64, stop: AttemptStop },
+}
+
+impl Evaluated {
+    /// Whether `self` decides `finish` ahead of `other`: a refusal before any
+    /// ratio, the earlier of two refusals, and the more extreme of two ratios.
+    fn beats(&self, other: &Self, direction: Direction) -> bool {
+        match (self, other) {
+            (Self::Refused { seq: a, .. }, Self::Refused { seq: b, .. }) => a < b,
+            (Self::Refused { .. }, Self::Ratio(_)) => true,
+            (Self::Ratio(_), Self::Refused { .. }) => false,
+            (Self::Ratio(a), Self::Ratio(b)) => match direction {
+                Direction::Up => a > b,
+                Direction::Down => a < b,
+            },
+        }
+    }
+}
+
+fn extreme(best: Option<f64>, value: f64, direction: Direction) -> f64 {
+    match (best, direction) {
+        (None, _) => value,
+        (Some(b), Direction::Up) => b.max(value),
+        (Some(b), Direction::Down) => b.min(value),
+    }
+}
+
+/// The exact directed extreme of a stream of ratios num/den (both exact), in
+/// memory that does not depend on the stream (KF1).
+///
+/// A row counts while its 64-bit approximation (its key, compared as a bit
+/// pattern) lies within `WINDOW_ULPS` of the running approximate extreme,
+/// exactly as K4's tracker kept it; `finish` returns the directed extreme of
+/// the exact ratios of the rows that count, or the refusal of the earliest of
+/// them whose exact evaluation refuses, bit for bit as K4's did.
+///
+/// At most T rows are held unevaluated. A collapse evaluates them exactly and
+/// keeps (key, outcome) entries, pruned to those that no entry nearer the best
+/// key (larger for Up, smaller for Down) with an outcome that decides `finish`
+/// at least as early dominates. The window removes rows by key alone, and a
+/// dominating entry's key is nearer the best, so it outlasts every row it
+/// dominates: the result is the same for any collapse schedule (KF1 plan §2).
+pub(crate) struct BoundedExtremeTracker {
+    direction: Direction,
+    limit: usize,
+    best: Option<u64>,
+    offered: u64,
+    /// Unevaluated rows: (num, den, key, place in the stream).
+    lazy: Vec<(ExactWideSum, ExactWideSum, u64, u64)>,
+    /// Evaluated entries (key, outcome), nearest the best first.
+    table: Vec<(u64, Evaluated)>,
+}
+
+impl BoundedExtremeTracker {
     pub(crate) fn new(direction: Direction) -> Self {
+        Self::with_limit(direction, tracker_rows())
+    }
+
+    pub(crate) fn with_limit(direction: Direction, limit: usize) -> Self {
         Self {
             direction,
+            limit: limit.max(1),
             best: None,
-            kept: Vec::new(),
+            offered: 0,
+            lazy: Vec::new(),
+            table: Vec::new(),
         }
     }
 
     pub(crate) fn offer(
         &mut self,
         ctx64: &mut WideContext<4>,
+        ctx16: &mut WideContext<16>,
         num: ExactWideSum,
         den: ExactWideSum,
     ) -> Result<(), AttemptStop> {
-        let approx = approximate_ratio(ctx64, &num, &den)?.to_bits();
+        let key = approximate_ratio(ctx64, &num, &den)?.to_bits();
+        let seq = self.offered;
+        self.offered += 1;
         let better = match (self.best, self.direction) {
             (None, _) => true,
-            (Some(b), Direction::Up) => approx > b,
-            (Some(b), Direction::Down) => approx < b,
+            (Some(b), Direction::Up) => key > b,
+            (Some(b), Direction::Down) => key < b,
         };
         if better {
-            self.best = Some(approx);
-            self.kept.retain(|k| k.2.abs_diff(approx) <= WINDOW_ULPS);
+            self.best = Some(key);
+            self.lazy.retain(|row| in_window(row.2, key));
+            if self.lazy.is_empty() {
+                self.lazy = Vec::new();
+            }
+            self.table.retain(|entry| in_window(entry.0, key));
         }
-        if self.best.is_some_and(|b| approx.abs_diff(b) <= WINDOW_ULPS) {
-            self.kept.push((num, den, approx));
+        if self.best.is_some_and(|b| in_window(key, b)) {
+            if self.lazy.len() >= self.limit {
+                self.collapse(ctx16);
+            }
+            self.lazy.push((num, den, key, seq));
         }
         Ok(())
     }
 
+    /// Evaluates the unevaluated rows exactly (a refusal is recorded, not
+    /// returned) and releases their memory.
+    pub(crate) fn collapse(&mut self, ctx16: &mut WideContext<16>) {
+        let lazy = std::mem::take(&mut self.lazy);
+        if lazy.is_empty() {
+            return;
+        }
+        for (num, den, key, seq) in &lazy {
+            let outcome = match directed_ratio(ctx16, num, den, self.direction) {
+                Ok(value) => Evaluated::Ratio(value),
+                Err(stop) => Evaluated::Refused { seq: *seq, stop },
+            };
+            self.table.push((*key, outcome));
+        }
+        drop(lazy);
+        self.prune();
+    }
+
+    /// Keeps the entries no other entry dominates: sorted nearest the best
+    /// first (within a key, the most decisive first), an entry stays only if it
+    /// decides `finish` ahead of every entry kept before it.
+    fn prune(&mut self) {
+        let direction = self.direction;
+        self.table.sort_by(|a, b| {
+            let by_key = match direction {
+                Direction::Up => b.0.cmp(&a.0),
+                Direction::Down => a.0.cmp(&b.0),
+            };
+            by_key.then_with(|| {
+                if a.1.beats(&b.1, direction) {
+                    CmpOrdering::Less
+                } else if b.1.beats(&a.1, direction) {
+                    CmpOrdering::Greater
+                } else {
+                    CmpOrdering::Equal
+                }
+            })
+        });
+        let mut kept: Vec<(u64, Evaluated)> = Vec::new();
+        for entry in self.table.drain(..) {
+            if kept
+                .last()
+                .is_none_or(|last| entry.1.beats(&last.1, direction))
+            {
+                kept.push(entry);
+            }
+        }
+        kept.shrink_to_fit();
+        self.table = kept;
+    }
+
     pub(crate) fn finish(self, ctx16: &mut WideContext<16>) -> Result<Option<f64>, AttemptStop> {
         let mut best: Option<f64> = None;
-        for (num, den, _) in &self.kept {
+        let mut refused: Option<(u64, AttemptStop)> = None;
+        for (_, outcome) in self.table {
+            match outcome {
+                Evaluated::Ratio(value) => best = Some(extreme(best, value, self.direction)),
+                Evaluated::Refused { seq, stop } => {
+                    if refused.as_ref().is_none_or(|r| seq < r.0) {
+                        refused = Some((seq, stop));
+                    }
+                }
+            }
+        }
+        // A refusal among the evaluated rows came before every unevaluated row.
+        if let Some((_, stop)) = refused {
+            return Err(stop);
+        }
+        for (num, den, _, _) in &self.lazy {
             let exact = directed_ratio(ctx16, num, den, self.direction)?;
-            best = Some(match (best, self.direction) {
-                (None, _) => exact,
-                (Some(b), Direction::Up) => b.max(exact),
-                (Some(b), Direction::Down) => b.min(exact),
-            });
+            best = Some(extreme(best, exact, self.direction));
         }
         Ok(best)
+    }
+
+    fn capacity(&self) -> usize {
+        self.lazy.capacity()
+    }
+
+    /// (Unevaluated rows, their allocated capacity, evaluated entries).
+    #[cfg(test)]
+    pub(crate) fn held(&self) -> (usize, usize, usize) {
+        (self.lazy.len(), self.lazy.capacity(), self.table.len())
+    }
+}
+
+/// The trackers of one call, by key, with G bounding their unevaluated rows
+/// together (counted by allocated capacity). When an offer takes them above
+/// G, every tracker holding rows collapses.
+pub(crate) struct TrackerSet<K: Ord + Copy> {
+    trackers: std::collections::BTreeMap<K, BoundedExtremeTracker>,
+    /// The trackers with allocated unevaluated rows.
+    holding: std::collections::BTreeSet<K>,
+    held: usize,
+    limit: usize,
+}
+
+impl<K: Ord + Copy> TrackerSet<K> {
+    pub(crate) fn new() -> Self {
+        Self::with_limit(tracker_set_rows())
+    }
+
+    pub(crate) fn with_limit(limit: usize) -> Self {
+        Self {
+            trackers: std::collections::BTreeMap::new(),
+            holding: std::collections::BTreeSet::new(),
+            held: 0,
+            limit,
+        }
+    }
+
+    pub(crate) fn offer(
+        &mut self,
+        key: K,
+        direction: Direction,
+        ctx64: &mut WideContext<4>,
+        ctx16: &mut WideContext<16>,
+        num: ExactWideSum,
+        den: ExactWideSum,
+    ) -> Result<(), AttemptStop> {
+        let tracker = self
+            .trackers
+            .entry(key)
+            .or_insert_with(|| BoundedExtremeTracker::new(direction));
+        let before = tracker.capacity();
+        tracker.offer(ctx64, ctx16, num, den)?;
+        let after = tracker.capacity();
+        self.held = self.held - before + after;
+        if before == 0 && after > 0 {
+            self.holding.insert(key);
+        } else if before > 0 && after == 0 {
+            self.holding.remove(&key);
+        }
+        if self.held > self.limit {
+            for k in std::mem::take(&mut self.holding) {
+                if let Some(t) = self.trackers.get_mut(&k) {
+                    t.collapse(ctx16);
+                }
+            }
+            self.held = 0;
+        }
+        Ok(())
+    }
+
+    /// The trackers in key order.
+    pub(crate) fn into_trackers(
+        self,
+    ) -> std::collections::btree_map::IntoIter<K, BoundedExtremeTracker> {
+        self.trackers.into_iter()
+    }
+
+    /// (Unevaluated rows' allocated capacity, over every tracker; G.)
+    #[cfg(test)]
+    pub(crate) fn held(&self) -> (usize, usize) {
+        (self.held, self.limit)
+    }
+
+    #[cfg(test)]
+    pub(crate) fn trackers(&self) -> impl Iterator<Item = (&K, &BoundedExtremeTracker)> {
+        self.trackers.iter()
     }
 }
 
@@ -776,31 +1018,31 @@ pub(crate) struct GroupPrep {
 
 /// Work of the shared stages at one precision.
 #[derive(Debug, Clone, Default, PartialEq, Eq)]
-pub(crate) struct StageWork {
-    pub(crate) formation: u64,
-    pub(crate) assembly: u64,
-    pub(crate) residual_formation: u64,
-    pub(crate) factor: u64,
-    pub(crate) condition: u64,
-    pub(crate) rhs: u64,
-    pub(crate) solve: u64,
-    pub(crate) refinement: u64,
-    pub(crate) recovery: u64,
-    pub(crate) stop_rule: u64,
+pub struct StageWork {
+    pub formation: u64,
+    pub assembly: u64,
+    pub residual_formation: u64,
+    pub factor: u64,
+    pub condition: u64,
+    pub rhs: u64,
+    pub solve: u64,
+    pub refinement: u64,
+    pub recovery: u64,
+    pub stop_rule: u64,
     /// D1 revision 5a.3: the gate's fallback (Ā^q and the bounded rows).
-    pub(crate) bounded_gate: u64,
+    pub bounded_gate: u64,
     /// The verification pass: E; the estimate (r, δ̂, Ŵ); the charge (r₂,
     /// the norms, ‖ā_q S‖₁, t, C and W⁺); the bounds (data flags, B_c, θ, g);
     /// the shifted factorizations.
-    pub(crate) scale: u64,
-    pub(crate) estimate: u64,
-    pub(crate) charge: u64,
-    pub(crate) bound: u64,
-    pub(crate) shift: u64,
+    pub scale: u64,
+    pub estimate: u64,
+    pub charge: u64,
+    pub bound: u64,
+    pub shift: u64,
     /// The verification's shared stages: Ā at P, K_e at q_W, the Uc passes.
-    pub(crate) bounded_formation: u64,
-    pub(crate) wide_formation: u64,
-    pub(crate) uc: u64,
+    pub bounded_formation: u64,
+    pub wide_formation: u64,
+    pub uc: u64,
 }
 
 impl StageWork {
@@ -877,7 +1119,7 @@ where
 
 /// The test that passed the residual gate (D1 revision 5a.3, R7 §4.1.4 step 3).
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub(crate) enum GateTest {
+pub enum GateTest {
     /// Every row passed with the coalesced denominator d^c.
     Coalesced,
     /// Refinement ended without the coalesced pass; the best evaluated state
@@ -996,7 +1238,7 @@ where
         gp.check(&ctx, &sum)?;
         let rcond_value = publish_value(&rcond).value().unwrap_or(0.0);
         // The pivot margin minimum, rounded downward.
-        let mut tracker = ExtremeTracker::new(Direction::Down);
+        let mut tracker = BoundedExtremeTracker::new(Direction::Down);
         for screen in &factor.screens {
             let mut num = ExactWideSum::new();
             num.add_wide_scaled(&screen.pivot, false, 1, i64::from(p))?;
@@ -1006,7 +1248,7 @@ where
             if den.is_zero() {
                 continue;
             }
-            tracker.offer(&mut ctx64, num, den)?;
+            tracker.offer(&mut ctx64, &mut ctx16, num, den)?;
         }
         let margin = tracker.finish(&mut ctx16)?.unwrap_or(f64::INFINITY);
         let t5 = lme(&ctx)
@@ -1065,6 +1307,7 @@ fn residual_rows<const L: usize, const R: usize>(
     ctx: &mut WideContext<L>,
     ctx_q: &mut WideContext<R>,
     ctx64: &mut WideContext<4>,
+    ctx16: &mut WideContext<16>,
     sum: &mut ExactWideSum,
     p: u32,
     structure: &Structure,
@@ -1072,7 +1315,7 @@ fn residual_rows<const L: usize, const R: usize>(
     ledger: &RetainedLedger,
     free: &[usize],
     u: &[Wide<L>],
-    tracker: &mut ExtremeTracker,
+    tracker: &mut BoundedExtremeTracker,
 ) -> Result<Vec<(bool, f64, Wide<L>)>, AttemptStop>
 where
     Wide<L>: SupportedWidth,
@@ -1118,7 +1361,7 @@ where
         let passes = sum.signum() >= 0;
         let ratio = approximate_ratio(ctx64, &num, &den)?;
         let rounded = r.round(ctx)?;
-        tracker.offer(ctx64, num, den)?;
+        tracker.offer(ctx64, ctx16, num, den)?;
         rows.push((passes, ratio, rounded));
     }
     Ok(rows)
@@ -1225,7 +1468,8 @@ where
         &shared.directional_q,
     )?;
     let mut worsts: Vec<Option<Option<GateRatio>>> = Vec::with_capacity(evaluated.len());
-    let mut states: Vec<Option<(bool, ExtremeTracker)>> = Vec::with_capacity(evaluated.len());
+    let mut states: Vec<Option<(bool, BoundedExtremeTracker)>> =
+        Vec::with_capacity(evaluated.len());
     for u_free in evaluated {
         let mut u = u_base.to_vec();
         for (a, &g) in free.iter().enumerate() {
@@ -1233,7 +1477,7 @@ where
         }
         let mut eligible = true;
         let mut all_pass = true;
-        let mut tracker = ExtremeTracker::new(Direction::Up);
+        let mut tracker = BoundedExtremeTracker::new(Direction::Up);
         let mut rows: Vec<(ExactWideSum, ExactWideSum, f64)> = Vec::new();
         for &i in free {
             let mut r = ExactWideSum::new();
@@ -1272,7 +1516,7 @@ where
                 break;
             }
             let approx = approximate_ratio(ctx64, &num, &den)?;
-            tracker.offer(ctx64, num.clone(), den.clone())?;
+            tracker.offer(ctx64, ctx16, num.clone(), den.clone())?;
             rows.push((num, den, approx));
         }
         if !eligible {
@@ -1371,11 +1615,12 @@ where
                 u[g] = u_free[a];
             }
             evaluated.push(u_free.clone());
-            let mut tracker = ExtremeTracker::new(Direction::Up);
+            let mut tracker = BoundedExtremeTracker::new(Direction::Up);
             let rows = residual_rows(
                 &mut ctx,
                 &mut ctx_q,
                 &mut ctx64,
+                &mut ctx16,
                 &mut sum,
                 p,
                 &group.structure,
@@ -1638,6 +1883,17 @@ where
     )
 }
 
+/// The tests of `rule` that keep a summary tracker, in R7's order.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+enum RuleTest {
+    /// (a): (|Δ| + V)/M.
+    Disagreement,
+    /// (b): Ŵ/V.
+    Estimate,
+    /// (d): C over its allowance.
+    Charge,
+}
+
 #[allow(clippy::too_many_lines)]
 fn rule<const L: usize, const M: usize>(
     layout: &[QuantityMeta],
@@ -1720,9 +1976,9 @@ where
                 *s_star
             }
         };
-        // (a)
-        let mut trackers: std::collections::BTreeMap<(u32, Kind), ExtremeTracker> =
-            std::collections::BTreeMap::new();
+        // (a). One set holds the trackers of (a), (b) and (d), by (test, body,
+        // kind), so G bounds them together (KF1).
+        let mut trackers: TrackerSet<(RuleTest, u32, Kind)> = TrackerSet::new();
         for (index, meta) in layout.iter().enumerate() {
             let q2 = &verification[index];
             let magnitude = magnitude_of(index, meta);
@@ -1759,17 +2015,21 @@ where
             if !magnitude.is_zero() {
                 let mut den = ExactWideSum::new();
                 den.add_wide(&magnitude, false)?;
-                trackers
-                    .entry((meta.body, meta.kind))
-                    .or_insert_with(|| ExtremeTracker::new(Direction::Up))
-                    .offer(&mut ctx64, difference, den)?;
+                trackers.offer(
+                    (RuleTest::Disagreement, meta.body, meta.kind),
+                    Direction::Up,
+                    &mut ctx64,
+                    &mut ctx16,
+                    difference,
+                    den,
+                )?;
             }
             if index % 64 == 63 {
                 guard.test(spent(&ctx, &ctx16, &ctx64, &sum))?;
             }
         }
         let Some(r) = report else {
-            for ((body, kind), tracker) in trackers {
+            for ((_, body, kind), tracker) in trackers.into_trackers() {
                 let worst = tracker.finish(&mut ctx16)?.unwrap_or(0.0);
                 summary.push((body, kind, worst));
             }
@@ -1777,8 +2037,6 @@ where
             return Ok(true);
         };
         // (b): Ŵ_q ≤ 2^(6−2p)·ê, with the summary Ŵ/V.
-        let mut estimate: std::collections::BTreeMap<(u32, Kind), ExtremeTracker> =
-            std::collections::BTreeMap::new();
         for (index, meta) in layout.iter().enumerate() {
             let Some(w) = &r.w[index] else { continue };
             let e = Wide::<M>::from_f64(hat(meta.body, meta.kind))?;
@@ -1794,10 +2052,14 @@ where
                 num.add_wide(w, false)?;
                 let mut den = ExactWideSum::new();
                 den.add_wide_scaled(&e, false, 1, 8 - big_p)?;
-                estimate
-                    .entry((meta.body, meta.kind))
-                    .or_insert_with(|| ExtremeTracker::new(Direction::Up))
-                    .offer(&mut ctx64, num, den)?;
+                trackers.offer(
+                    (RuleTest::Estimate, meta.body, meta.kind),
+                    Direction::Up,
+                    &mut ctx64,
+                    &mut ctx16,
+                    num,
+                    den,
+                )?;
             }
         }
         // (c): `uc`, θ, g.
@@ -1817,8 +2079,6 @@ where
             return Ok(false);
         }
         // (d): the charge.
-        let mut charge: std::collections::BTreeMap<(u32, Kind), ExtremeTracker> =
-            std::collections::BTreeMap::new();
         for (index, meta) in layout.iter().enumerate() {
             let Some(c) = &r.charge[index] else { continue };
             let mut allowance = ExactWideSum::new();
@@ -1838,26 +2098,28 @@ where
             if !allowance.is_zero() {
                 let mut num = ExactWideSum::new();
                 num.add_wide(c, false)?;
-                charge
-                    .entry((meta.body, meta.kind))
-                    .or_insert_with(|| ExtremeTracker::new(Direction::Up))
-                    .offer(&mut ctx64, num, allowance)?;
+                trackers.offer(
+                    (RuleTest::Charge, meta.body, meta.kind),
+                    Direction::Up,
+                    &mut ctx64,
+                    &mut ctx16,
+                    num,
+                    allowance,
+                )?;
             }
             if index % 64 == 63 {
                 guard.test(spent(&ctx, &ctx16, &ctx64, &sum))?;
             }
         }
-        for ((body, kind), tracker) in trackers {
+        // In (test, body, kind) order: (a)'s, then (b)'s, then (d)'s, each by
+        // (body, kind), as K4 finished its three maps.
+        for ((test, body, kind), tracker) in trackers.into_trackers() {
             let worst = tracker.finish(&mut ctx16)?.unwrap_or(0.0);
-            summary.push((body, kind, worst));
-        }
-        for ((body, kind), tracker) in estimate {
-            let worst = tracker.finish(&mut ctx16)?.unwrap_or(0.0);
-            estimate_summary.push((body, kind, worst));
-        }
-        for ((body, kind), tracker) in charge {
-            let worst = tracker.finish(&mut ctx16)?.unwrap_or(0.0);
-            charge_summary.push((body, kind, worst));
+            match test {
+                RuleTest::Disagreement => summary.push((body, kind, worst)),
+                RuleTest::Estimate => estimate_summary.push((body, kind, worst)),
+                RuleTest::Charge => charge_summary.push((body, kind, worst)),
+            }
         }
         guard.test(spent(&ctx, &ctx16, &ctx64, &sum))?;
         Ok(true)
@@ -1941,18 +2203,18 @@ pub(crate) enum VerificationState {
 
 /// A verification's report in binary64 (the attempt's evidence).
 #[derive(Debug, Clone, PartialEq)]
-pub(crate) struct VerificationSummary {
+pub struct VerificationSummary {
     /// [E_fo, E_mo] per body (uncoupled, rounded upward).
-    pub(crate) resolution: Vec<[f64; 2]>,
+    pub resolution: Vec<[f64; 2]>,
     /// Per body: the largest θ_c over its blocks with data, rounded upward (0
     /// without), and B_b rounded upward (None without a block with data).
-    pub(crate) theta: Vec<f64>,
-    pub(crate) bound: Vec<Option<f64>>,
-    pub(crate) data_blocks: usize,
-    pub(crate) shift_factorizations: u8,
-    pub(crate) uc_missing: Option<usize>,
-    pub(crate) g_max: u32,
-    pub(crate) g_violation: Option<u32>,
+    pub theta: Vec<f64>,
+    pub bound: Vec<Option<f64>>,
+    pub data_blocks: usize,
+    pub shift_factorizations: u8,
+    pub uc_missing: Option<usize>,
+    pub g_max: u32,
+    pub g_violation: Option<u32>,
 }
 
 fn summarize<const L: usize>(r: &VerificationReport<L>) -> Result<VerificationSummary, AttemptStop>
@@ -2031,14 +2293,14 @@ fn compare_states(
 // ------------------------------------------------------------ attempts and evidence
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub(crate) enum AttemptRole {
+pub enum AttemptRole {
     Candidate,
     Verification,
     VerificationThenCandidate,
 }
 
 #[derive(Debug, Clone, PartialEq)]
-pub(crate) enum AttemptReason {
+pub enum AttemptReason {
     Stop(AttemptStop),
     StopRule {
         quantity: QuantityId,
@@ -2073,7 +2335,7 @@ pub(crate) enum AttemptReason {
 }
 
 #[derive(Debug, Clone, PartialEq)]
-pub(crate) enum AttemptOutcome {
+pub enum AttemptOutcome {
     Accepted,
     Verified,
     Rejected(AttemptReason),
@@ -2084,59 +2346,59 @@ pub(crate) enum AttemptOutcome {
 
 /// Deterministic storage counts (not measurements).
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq)]
-pub(crate) struct StorageCounts {
-    pub(crate) pattern_entries: usize,
-    pub(crate) profile_entries: usize,
-    pub(crate) limbs_per_entry: usize,
+pub struct StorageCounts {
+    pub pattern_entries: usize,
+    pub profile_entries: usize,
+    pub limbs_per_entry: usize,
 }
 
 /// One solve's record (D1 §5 item 1: "the attempts list (p, outcome, reason,
 /// work)").
 #[derive(Debug, Clone, PartialEq)]
-pub(crate) struct AttemptRecord {
-    pub(crate) precision: u32,
-    pub(crate) role: AttemptRole,
-    pub(crate) outcome: AttemptOutcome,
+pub struct AttemptRecord {
+    pub precision: u32,
+    pub role: AttemptRole,
+    pub outcome: AttemptOutcome,
     /// p + 64, or p at the ceiling (ROOT's Q4).
-    pub(crate) residual_basis: u32,
-    pub(crate) corrections: u8,
+    pub residual_basis: u32,
+    pub corrections: u8,
     /// fl↓ of the minimum d_i/(64·γ_p(m_i)·c_i).
-    pub(crate) pivot_margin_min: Option<f64>,
+    pub pivot_margin_min: Option<f64>,
     /// rcond at p (nearest; model information).
-    pub(crate) rcond: Option<f64>,
+    pub rcond: Option<f64>,
     /// fl↑ of the worst |r_i|/(64·γ_p(m_i)·d_i).
-    pub(crate) residual_worst: Option<f64>,
+    pub residual_worst: Option<f64>,
     /// This case's own contexts (each recorded once).
-    pub(crate) work: AttemptWork,
-    pub(crate) k4_work: SumWork,
-    pub(crate) stages: StageWork,
+    pub work: AttemptWork,
+    pub k4_work: SumWork,
+    pub stages: StageWork,
     /// The shared stages' work at this precision (formation, assembly, residual
     /// formation, factor, condition), counted in full against the case limit.
-    pub(crate) shared_work: u64,
-    pub(crate) shared_stages: StageWork,
+    pub shared_work: u64,
+    pub shared_stages: StageWork,
     /// Whether this attempt built the shared stages (so charged them to the
     /// invocation).
-    pub(crate) shared_built_here: bool,
+    pub shared_built_here: bool,
     /// The stop-rule work charged to this attempt as a candidate (a part of
     /// `work` and `k4_work`, which hold every context and sum it charged).
-    pub(crate) stop_rule_work: u64,
-    pub(crate) storage: StorageCounts,
+    pub stop_rule_work: u64,
+    pub storage: StorageCounts,
     /// D1 revision 5a.3: the test that passed the gate.
-    pub(crate) gate: Option<GateTest>,
+    pub gate: Option<GateTest>,
     /// The verification pass on this state (a part of `work`, `k4_work` and
     /// `stages`), and its report.
-    pub(crate) verification_work: u64,
-    pub(crate) verification: Option<VerificationSummary>,
+    pub verification_work: u64,
+    pub verification: Option<VerificationSummary>,
     /// The verification's shared stages (Ā at P, K_e at q_W, the Uc passes),
     /// counted in full against the case, and against the invocation when
     /// built here.
-    pub(crate) verification_shared_work: u64,
-    pub(crate) verification_shared_built_here: bool,
+    pub verification_shared_work: u64,
+    pub verification_shared_built_here: bool,
 }
 
 /// A refusal: no rows, no escalation.
 #[derive(Debug, Clone, PartialEq)]
-pub(crate) enum Refusal {
+pub enum Refusal {
     MechanismWitnessed {
         body: u32,
         rigid_parameters: [f64; 6],
@@ -2154,7 +2416,7 @@ pub(crate) enum Refusal {
 }
 
 #[derive(Debug, Clone, PartialEq)]
-pub(crate) enum UnresolvedReason {
+pub enum UnresolvedReason {
     /// "At the ceiling … the case is unresolved."
     Ceiling,
     Budget(BudgetScope),
@@ -2179,24 +2441,23 @@ pub(crate) enum UnresolvedReason {
 
 /// A published row and its class.
 #[derive(Debug, Clone, PartialEq)]
-pub(crate) struct PublishedRow {
-    pub(crate) id: QuantityId,
-    pub(crate) kind: Kind,
-    pub(crate) body: u32,
-    pub(crate) value: Binary64Outcome,
-    pub(crate) class: RowClass,
+pub struct PublishedRow {
+    pub id: QuantityId,
+    pub kind: Kind,
+    pub body: u32,
+    pub value: Binary64Outcome,
+    pub class: RowClass,
 }
 
 #[derive(Debug, Clone, PartialEq)]
-pub(crate) struct Publication {
-    pub(crate) rows: Vec<PublishedRow>,
+pub struct Publication {
+    pub rows: Vec<PublishedRow>,
     /// S\* per (body, kind) from the published values, as bits.
-    pub(crate) body_scales: Vec<(u32, Kind, u64)>,
+    pub body_scales: Vec<(u32, Kind, u64)>,
 }
 
 /// The classification of published rows (items 1, 2a, 4–6; O9).
-#[allow(dead_code)] // F2a API and the classification tests (the schedule floors)
-pub(crate) fn classify_rows(
+pub fn classify_rows(
     layout: &[QuantityMeta],
     values: &[Binary64Outcome],
     extents: &[f64],
@@ -2207,7 +2468,7 @@ pub(crate) fn classify_rows(
 /// `classify_rows` with item 6a (D1 revision 5a.3): when the selected
 /// precision is 512, `floor` holds Φ_fo and Φ_mo per body, applied after item
 /// 6's coupling and before items 7 and 8.
-pub(crate) fn classify_rows_floored(
+pub fn classify_rows_floored(
     layout: &[QuantityMeta],
     values: &[Binary64Outcome],
     extents: &[f64],
@@ -2270,47 +2531,47 @@ pub(crate) fn classify_rows_floored(
 
 /// The evidence F2a's receipt needs (D1 §5 item 1), as kernel types.
 #[derive(Debug, Clone, PartialEq)]
-pub(crate) struct RetainedEvidence {
-    pub(crate) method: &'static str,
-    pub(crate) policy: &'static str,
-    pub(crate) attempts: Vec<AttemptRecord>,
-    pub(crate) selected_precision: u32,
-    pub(crate) verification_precision: u32,
-    pub(crate) stop_rule: Vec<(u32, Kind, f64)>,
-    pub(crate) floor_ratio_bits: u64,
-    pub(crate) body_scales: Vec<(u32, Kind, u64)>,
-    pub(crate) input_derived_dofs: Vec<Dof>,
-    pub(crate) absolute_verified: Vec<(QuantityId, u64)>,
-    pub(crate) not_covered: Vec<QuantityId>,
-    pub(crate) unpublishable: Vec<(QuantityId, Binary64Outcome)>,
-    pub(crate) pivot_margin_min: f64,
-    pub(crate) rcond: f64,
-    pub(crate) rcond_label: &'static str,
-    pub(crate) residual_worst: f64,
-    pub(crate) corrections: u8,
-    pub(crate) geometry: Vec<BodyGeometry>,
-    pub(crate) source_encoding: Vec<u8>,
-    pub(crate) ledger_encoding: Vec<u8>,
-    pub(crate) retained_state_encoding: Vec<u8>,
+pub struct RetainedEvidence {
+    pub method: &'static str,
+    pub policy: &'static str,
+    pub attempts: Vec<AttemptRecord>,
+    pub selected_precision: u32,
+    pub verification_precision: u32,
+    pub stop_rule: Vec<(u32, Kind, f64)>,
+    pub floor_ratio_bits: u64,
+    pub body_scales: Vec<(u32, Kind, u64)>,
+    pub input_derived_dofs: Vec<Dof>,
+    pub absolute_verified: Vec<(QuantityId, u64)>,
+    pub not_covered: Vec<QuantityId>,
+    pub unpublishable: Vec<(QuantityId, Binary64Outcome)>,
+    pub pivot_margin_min: f64,
+    pub rcond: f64,
+    pub rcond_label: &'static str,
+    pub residual_worst: f64,
+    pub corrections: u8,
+    pub geometry: Vec<BodyGeometry>,
+    pub source_encoding: Vec<u8>,
+    pub ledger_encoding: Vec<u8>,
+    pub retained_state_encoding: Vec<u8>,
     /// D1 revision 5a.3 (R7 §5.8): per body, E_fo and E_mo bits (uncoupled,
     /// rounded upward, finite).
-    pub(crate) resolution_scale: Vec<(u32, u64, u64)>,
+    pub resolution_scale: Vec<(u32, u64, u64)>,
     /// Per body and kind of force and moment: the worst Ŵ_q/V_q and C_q over
     /// its allowance, rounded upward.
-    pub(crate) verification_estimate: Vec<(u32, Kind, f64)>,
-    pub(crate) verification_charge: Vec<(u32, Kind, f64)>,
+    pub verification_estimate: Vec<(u32, Kind, f64)>,
+    pub verification_charge: Vec<(u32, Kind, f64)>,
     /// Per body: the largest θ_c over its blocks with data (0 without).
-    pub(crate) theta: Vec<(u32, f64)>,
+    pub theta: Vec<(u32, f64)>,
     /// Per body with a block with data: B_b's bits, rounded upward (ROOT's
     /// A3-0 ruling Q9: no entry otherwise).
-    pub(crate) certified_bound: Vec<(u32, u64)>,
+    pub certified_bound: Vec<(u32, u64)>,
     /// Φ_fo and Φ_mo bits per body when the selected precision is 512.
-    pub(crate) floor: Option<Vec<(u32, u64, u64)>>,
+    pub floor: Option<Vec<(u32, u64, u64)>>,
 }
 
 /// A selected case: bound to its source and precision (D1 §4.1.1).
 #[derive(Debug, Clone)]
-pub(crate) struct RetainedSolve {
+pub struct RetainedSolve {
     pub(crate) prep: Arc<CasePrep>,
     pub(crate) group: Arc<GroupPrep>,
     /// The group's shared stages as this solve left them (a combination of
@@ -2324,20 +2585,16 @@ pub(crate) struct RetainedSolve {
 
 impl RetainedSolve {
     /// "RetainedSolve::publish() rounds each quantity once."
-    #[allow(dead_code)] // F2a API
-    pub(crate) fn publish(&self) -> &Publication {
+    pub fn publish(&self) -> &Publication {
         &self.publication
     }
-    #[allow(dead_code)] // F2a API
-    pub(crate) fn evidence(&self) -> &RetainedEvidence {
+    pub fn evidence(&self) -> &RetainedEvidence {
         &self.evidence
     }
-    #[allow(dead_code)] // F2a API
-    pub(crate) fn source(&self) -> &PrimitiveSource {
+    pub fn source(&self) -> &PrimitiveSource {
         &self.prep.source
     }
-    #[allow(dead_code)] // F2a API
-    pub(crate) fn selected_precision(&self) -> u32 {
+    pub fn selected_precision(&self) -> u32 {
         self.selected
     }
     #[allow(dead_code)] // F2a API
@@ -2347,9 +2604,8 @@ impl RetainedSolve {
 }
 
 /// A case's outcome.
-#[allow(dead_code)] // F2a API (F2a reads the outcome's fields)
 #[derive(Debug, Clone)]
-pub(crate) enum CaseOutcome {
+pub enum CaseOutcome {
     Selected(Box<RetainedSolve>),
     Refused {
         refusal: Refusal,
@@ -2791,6 +3047,19 @@ pub(crate) fn run_schedule(
             &report,
             guard,
         );
+        // V-K seeded fault VK-F06 (§7.3-6): the candidate accepted whatever the
+        // verification's verdict (accepted on the pivot screen alone).
+        #[cfg(any(test, feature = "mutation-controls"))]
+        let decision = if super::seeded::active(super::seeded::Fault::F06)
+            && matches!(decision.result, Ok(false))
+        {
+            StopDecision {
+                result: Ok(true),
+                ..decision
+            }
+        } else {
+            decision
+        };
         {
             let record = &mut attempts[candidate_index];
             record.stop_rule_work += decision.total;
@@ -2828,6 +3097,16 @@ pub(crate) fn run_schedule(
                     &prep.layout,
                     &group,
                 ));
+                // V-K seeded fault VK-F05 (§7.3-5): no escalation after a
+                // rejected candidate.
+                #[cfg(any(test, feature = "mutation-controls"))]
+                if super::seeded::active(super::seeded::Fault::F05) {
+                    return CaseOutcome::Unresolved {
+                        reason: UnresolvedReason::Ceiling,
+                        attempts,
+                        geometry,
+                    };
+                }
                 if c + 1 < 3 {
                     attempts[v_index].role = AttemptRole::VerificationThenCandidate;
                     pending = Some((verification, v_index));
@@ -3011,8 +3290,7 @@ fn prepare_group(source: &PrimitiveSource) -> Result<GroupPrep, (Refusal, Vec<Bo
 
 /// The kernel entry: every case of an invocation (F2a API). Cases with the
 /// same stiffness identity share formation and the p-factor per precision.
-#[allow(dead_code)] // F2a API (W1's caller is wired at F2a; ROOT's K4 ruling Q1)
-pub(crate) fn solve_cases(
+pub fn solve_cases(
     sources: &[PrimitiveSource],
     case_limit: CaseLimit,
     meter: &mut InvocationMeter,
@@ -3071,8 +3349,7 @@ pub(crate) fn solve_cases(
 }
 
 /// One case (a group of one; F2a API).
-#[allow(dead_code)] // F2a API (W1's caller is wired at F2a; ROOT's K4 ruling Q1)
-pub(crate) fn solve_case(
+pub fn solve_case(
     source: PrimitiveSource,
     case_limit: CaseLimit,
     meter: &mut InvocationMeter,
@@ -3150,9 +3427,32 @@ pub(crate) mod seed {
     }
 }
 
+/// KF1's test hook: this thread's T for the trackers built on it (None: T =
+/// `TRACKER_ROWS`); G follows as 8·T. Test builds only.
+#[cfg(test)]
+pub(crate) mod tracker_hook {
+    use std::cell::Cell;
+
+    thread_local! {
+        static ROWS: Cell<Option<usize>> = const { Cell::new(None) };
+    }
+
+    pub(crate) fn set(rows: Option<usize>) {
+        ROWS.with(|r| r.set(rows));
+    }
+
+    pub(crate) fn get() -> Option<usize> {
+        ROWS.with(|r| r.get())
+    }
+}
+
 #[cfg(test)]
 #[path = "../../../tests/retained_k4/adaptive_tests.rs"]
 mod tests;
+
+#[cfg(test)]
+#[path = "../../../tests/retained_k4/kf1_tracker_tests.rs"]
+mod kf1_tracker_tests;
 
 #[cfg(test)]
 #[path = "../../../tests/retained_k4/references_tests.rs"]
