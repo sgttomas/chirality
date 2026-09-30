@@ -1,0 +1,39 @@
+{
+  "capture": "JSON transcribed exactly from successful read-only gh tool stdout; tool transcript retains original result",
+  "permission": "Initial sandbox GitHub request could not connect; approved require_escalated read-only queries succeeded",
+  "queries": [
+    {
+      "command": "gh pr view 1064 --repo sgttomas/chirality --json state,headRefOid,mergeCommit,mergedAt,reviews",
+      "result": {
+        "headRefOid": "7fd632f60ee0d4eeb0429ff4dbd2193eaeeb5d6d",
+        "mergeCommit": {
+          "oid": "3bddc2b05f6106e969c7cf43373b230845c7cc66"
+        },
+        "mergedAt": "2026-09-30T14:34:50Z",
+        "reviews": [],
+        "state": "MERGED"
+      }
+    },
+    {
+      "command": "gh pr view 1059 --repo sgttomas/chirality --json state,headRefOid,mergeCommit,mergedAt",
+      "result": {
+        "headRefOid": "aa83f67969c2f618034b856ba6e1fc13ae10762e",
+        "mergeCommit": {
+          "oid": "dd61120ff271b02bf5fcb032f264564af5e8bb09"
+        },
+        "mergedAt": "2026-09-30T05:28:58Z",
+        "state": "MERGED"
+      }
+    },
+    {
+      "command": "gh run view 36669370536 --repo sgttomas/chirality --json headSha,event,conclusion,status,workflowName",
+      "result": {
+        "conclusion": "success",
+        "event": "workflow_dispatch",
+        "headSha": "aa83f67969c2f618034b856ba6e1fc13ae10762e",
+        "status": "completed",
+        "workflowName": "Piping Desktop E2E"
+      }
+    }
+  ]
+}

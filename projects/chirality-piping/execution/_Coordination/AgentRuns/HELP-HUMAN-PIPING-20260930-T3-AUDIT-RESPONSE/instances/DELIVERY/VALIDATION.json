@@ -1,0 +1,28 @@
+{
+  "kind": "delivery_local_packet_checks",
+  "status": "PASS",
+  "files_checked": [
+    "B0_COMPARISON.json",
+    "B0_CURRENCY_AND_MAPPING.md",
+    "B0_SOURCE_DRIFT.json",
+    "BASIS.json",
+    "DEL0407_source_drift.diff",
+    "ENV_EVIDENCE_BRIEF.md",
+    "ENV_INTEGRATION.json",
+    "ENV_LAUNCH.json",
+    "I21_CHECKPOINT0_ADDENDUM_DRAFT.md",
+    "I21_CHECKPOINT0_BRIEF.md",
+    "I21_LAUNCH.json",
+    "RETURN.md",
+    "check_b0.py",
+    "decomposition_source_drift.diff"
+  ],
+  "syntax": "All JSON parses; owned Python AST parses",
+  "portability": "No literal host home/temp/tool-install paths in owned packet",
+  "whitespace": "No trailing whitespace",
+  "issues": [],
+  "B0": "58 scoped rows; no structural departure; all 24 current named-locus quotes present",
+  "ENV": "12 final child packet entries hash-verified",
+  "head": "86bb36d6fb88e7699df595bce1d6a31f5fbd6be5",
+  "limits": "No full GEN-8, DEC-025, product build/test, native runtime or guard validation; Root owns final mergeable-packet gates."
+}

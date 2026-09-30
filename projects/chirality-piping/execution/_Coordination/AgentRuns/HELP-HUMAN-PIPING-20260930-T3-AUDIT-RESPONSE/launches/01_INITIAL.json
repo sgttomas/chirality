@@ -1,0 +1,53 @@
+{
+  "record_kind": "actual_native_launch_record",
+  "date": "2026-09-30",
+  "run_id": "HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE",
+  "owner_activation": "ACTIVATION.md",
+  "launched": [
+    {
+      "native_task_name": "/root/design_manager",
+      "parent_native_task_name": "/root",
+      "role": "HELPS_HUMANS",
+      "brief": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/briefs/DESIGN.md",
+      "brief_sha256": "7d45590b0265714eefd80a2fccfc5bbe8a6db79057ccd36b7f8c2e025b65ca0e",
+      "brief_commit": "86bb36d6fb88e7699df595bce1d6a31f5fbd6be5",
+      "fork_turns": "none",
+      "model_override": null,
+      "actual_mechanism": "collaboration.spawn_agent",
+      "launch_tool_returned_task_name": true,
+      "launch_result": "dispatched; completion not yet established",
+      "scope_enforcement": "Shared host/filesystem sandbox; individual write fences are instructions, not per-agent OS restrictions"
+    },
+    {
+      "native_task_name": "/root/delivery_manager",
+      "parent_native_task_name": "/root",
+      "role": "WORKING_ITEMS",
+      "brief": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/briefs/DELIVERY.md",
+      "brief_sha256": "30784055c601edb3a0b6bee08a01487102e0e76a3bdb05dbc44f05e6fef6140d",
+      "brief_commit": "86bb36d6fb88e7699df595bce1d6a31f5fbd6be5",
+      "fork_turns": "none",
+      "model_override": null,
+      "actual_mechanism": "collaboration.spawn_agent",
+      "launch_tool_returned_task_name": true,
+      "launch_result": "dispatched; completion not yet established",
+      "scope_enforcement": "Shared host/filesystem sandbox; individual write fences are instructions, not per-agent OS restrictions"
+    },
+    {
+      "native_task_name": "/root/audit_reviewer",
+      "parent_native_task_name": "/root",
+      "role": "TASK",
+      "brief": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/briefs/AUDIT_REVIEW.md",
+      "brief_sha256": "2f08ff9a32fcbc8593378ced41dd8b00be579e58d02160067248c555f34b3f7c",
+      "brief_commit": "86bb36d6fb88e7699df595bce1d6a31f5fbd6be5",
+      "fork_turns": "none",
+      "model_override": null,
+      "actual_mechanism": "collaboration.spawn_agent",
+      "launch_tool_returned_task_name": true,
+      "launch_result": "dispatched; completion not yet established",
+      "scope_enforcement": "Shared host/filesystem sandbox; individual write fences are instructions, not per-agent OS restrictions"
+    }
+  ],
+  "delivery_child": "ENV-EVIDENCE slot granted; actual descendant record follows when DELIVERY reports launch",
+  "instruction_origins": "PLANNING_BASIS.json and each agent context manifest",
+  "prompt_record": "Canonical briefs and wrapper role/basis/host constraints supplied in the native tool-call history; this file summarizes launch metadata and does not claim to reproduce hidden supplier instructions."
+}

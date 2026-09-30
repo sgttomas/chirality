@@ -1,0 +1,87 @@
+{
+  "record_kind": "DELIVERY_ENV_integration_check",
+  "child": "/root/delivery_manager/env_evidence",
+  "native_return_received": true,
+  "child_checkpoint": "complete",
+  "E0_graph_acceptance": "open: runtime, guard qualification, admission and calibration unfulfilled",
+  "return_sha256": "d769db117c308ee8b4f124c895a6fd5dc57c3c15b82830fcc3b9ea80d83425eb",
+  "manifest_sha256": "bc3ee1fb62a9d04ed93622fd04fa6c1dda4ca378142844cb3133a56750111bab",
+  "context_sha256": "a3bb84bbadab4b8e7ea2d8388ee4e430b6b2dbab8db3a8b7784c2b720dc704b6",
+  "packet_checks": [
+    {
+      "path": "CONTEXT.json",
+      "expected": "a3bb84bbadab4b8e7ea2d8388ee4e430b6b2dbab8db3a8b7784c2b720dc704b6",
+      "actual": "a3bb84bbadab4b8e7ea2d8388ee4e430b6b2dbab8db3a8b7784c2b720dc704b6",
+      "matches": true
+    },
+    {
+      "path": "READ_PROVENANCE.md",
+      "expected": "1562e99cb6b1bb9c2663f2e3788b83e73fc874ca15ada934a578f9d995a88322",
+      "actual": "1562e99cb6b1bb9c2663f2e3788b83e73fc874ca15ada934a578f9d995a88322",
+      "matches": true
+    },
+    {
+      "path": "RECOVERY_LIST.md",
+      "expected": "2417ce73c19ac3d276232729c5b2f23d40f63580e7676d1b088398fda273c231",
+      "actual": "2417ce73c19ac3d276232729c5b2f23d40f63580e7676d1b088398fda273c231",
+      "matches": true
+    },
+    {
+      "path": "RETURN.md",
+      "expected": "d769db117c308ee8b4f124c895a6fd5dc57c3c15b82830fcc3b9ea80d83425eb",
+      "actual": "d769db117c308ee8b4f124c895a6fd5dc57c3c15b82830fcc3b9ea80d83425eb",
+      "matches": true
+    },
+    {
+      "path": "RUNTIME_GUARD_PROPOSAL.md",
+      "expected": "344e73e6304f407d1e7d48f481f844843382d34154f485e7d2c8418603ed74bc",
+      "actual": "344e73e6304f407d1e7d48f481f844843382d34154f485e7d2c8418603ed74bc",
+      "matches": true
+    },
+    {
+      "path": "VALIDATION.json",
+      "expected": "1958ee9f6a918bf64a960d770c9fc8774baf58cb58eec5158be8f5287df23ca2",
+      "actual": "1958ee9f6a918bf64a960d770c9fc8774baf58cb58eec5158be8f5287df23ca2",
+      "matches": true
+    },
+    {
+      "path": "collect_readonly.py",
+      "expected": "292f694eafa6e79291557c4dc9a7dbb8b4b409f89a51c40500ad79930eb25292",
+      "actual": "292f694eafa6e79291557c4dc9a7dbb8b4b409f89a51c40500ad79930eb25292",
+      "matches": true
+    },
+    {
+      "path": "evidence_inventory.json",
+      "expected": "34be348da2a0f5661063f36448ead6b748a909d30d39c0f55ed99954c5d7f7d4",
+      "actual": "34be348da2a0f5661063f36448ead6b748a909d30d39c0f55ed99954c5d7f7d4",
+      "matches": true
+    },
+    {
+      "path": "inventory_evidence.py",
+      "expected": "9f60312210aceda0729fa228ff28961d0bdbd96335e6ce3c99941e0b6be5a372",
+      "actual": "9f60312210aceda0729fa228ff28961d0bdbd96335e6ce3c99941e0b6be5a372",
+      "matches": true
+    },
+    {
+      "path": "observations.json",
+      "expected": "52d85d65cb5211134d5ae5f644a73ca7a0e8ddf498aa6339691b59710ba6e404",
+      "actual": "52d85d65cb5211134d5ae5f644a73ca7a0e8ddf498aa6339691b59710ba6e404",
+      "matches": true
+    },
+    {
+      "path": "runtime_inventory.json",
+      "expected": "388a6b79413de88f20037afabe3a17b1853ee8a9f9b785f58d7eb7a443b32bed",
+      "actual": "388a6b79413de88f20037afabe3a17b1853ee8a9f9b785f58d7eb7a443b32bed",
+      "matches": true
+    },
+    {
+      "path": "write_provenance.py",
+      "expected": "a1f278e76bbd627cb1d858e3ca628075c6a0ef04e0e5e01c880bcf1c7d2fb291",
+      "actual": "a1f278e76bbd627cb1d858e3ca628075c6a0ef04e0e5e01c880bcf1c7d2fb291",
+      "matches": true
+    }
+  ],
+  "manager_review": "Read final RETURN, runtime/guard proposal and recovery list; checked 12 packet hashes; requested concrete exact-version setup, portable aliases and unambiguous manifest labeling before seal",
+  "no_independent_product_run": true,
+  "limitations": "Manager packet checks do not re-witness historical suite execution or qualify proposed guard."
+}

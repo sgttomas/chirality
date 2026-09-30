@@ -1,0 +1,63 @@
+{
+  "coupling_cases": [
+    {
+      "abstract_truth_over_bound": "9/8",
+      "branch": "plain bound, published scale >= 2^-988",
+      "direction": "rotation_to_translation",
+      "extent_hex": "0x1.0000000000000p+100",
+      "magnitude_charge_alone_excludes": false,
+      "relative_scale_loss": "1/5",
+      "verification_over_published": "5/4"
+    },
+    {
+      "abstract_truth_over_bound": "9/8",
+      "branch": "plain bound, published scale >= 2^-988",
+      "direction": "translation_to_rotation",
+      "extent_hex": "0x1.0000000000000p-100",
+      "magnitude_charge_alone_excludes": false,
+      "relative_scale_loss": "1/5",
+      "verification_over_published": "5/4"
+    }
+  ],
+  "limits": [
+    "No source model or Rust execution.",
+    "Zero W_plus is stipulated; source-derived verification, force/moment and theta/g constraints are not demonstrated.",
+    "Vector magnitude charges checked algebraically with one nonzero component; no full source layout is asserted.",
+    "Large extent may be excluded by product capture; small extent has no analogous large-coordinate issue."
+  ],
+  "thresholds": [
+    {
+      "bound_hex_for_zero_row": "0x0.0000000200001p-1022",
+      "extent_exponent": 85,
+      "published_scale_hex": "0x1.0000000000000p-989",
+      "scale_loss": "1/5",
+      "small_branch": true
+    },
+    {
+      "bound_hex_for_zero_row": "0x0.0000000400000p-1022",
+      "extent_exponent": 86,
+      "published_scale_hex": "0x1.0000000000000p-988",
+      "scale_loss": "1/5",
+      "small_branch": false
+    },
+    {
+      "bound_hex_for_zero_row": "0x0.0000000800000p-1022",
+      "extent_exponent": 87,
+      "published_scale_hex": "0x1.0000000000000p-987",
+      "scale_loss": "1/5",
+      "small_branch": false
+    },
+    {
+      "bound_hex_for_zero_row": "0x0.0001000000000p-1022",
+      "extent_exponent": 100,
+      "published_scale_hex": "0x1.0000000000000p-974",
+      "scale_loss": "1/5",
+      "small_branch": false
+    }
+  ],
+  "zero_scale": {
+    "publication_zero": true,
+    "row_bound_zero": true,
+    "verification_positive": true
+  }
+}

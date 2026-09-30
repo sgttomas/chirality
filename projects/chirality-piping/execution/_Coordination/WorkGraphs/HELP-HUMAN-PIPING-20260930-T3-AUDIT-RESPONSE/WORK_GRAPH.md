@@ -102,7 +102,8 @@ not reported as model diversity.
 Use Codex native `collaboration.spawn_agent` descendants under D-GOV-35, not
 new user-owned chats. Managers may dispatch bounded TASK descendants within
 the granted slots; Type 2 agents do not delegate. A written brief and an
-executing child are recorded as different facts. No child IDs exist yet.
+executing child are recorded as different facts. Actual initial IDs and sealed
+brief hashes are in `Run/launches/01_INITIAL.json` and `02_ENV_EVIDENCE.json`.
 
 Every launch starts fresh (`fork_turns="none"`) with its complete sealed brief:
 purpose, exact base SHA, Root/project/own-role instructions, selected method
@@ -184,10 +185,10 @@ specific missing input is established.
 | ID / owner / outcome | Deliverables and write scope | Needs / why | Completion check | State |
 |---|---|---|---|---|
 | PLAN — ROOT: recoverable execution plan | New graph and `Run/PLANNING_BASIS.json` only | Current owner role/planning direction | Acyclic route, explicit owners, bounded scope and launch status | COMPLETE as a planning artifact; not execution acceptance |
-| B0 — ROOT + DELIVERY: seal response basis | Run brief/ownership/dependency records | Refresh main, existing agents/PRs, relevant DAG currency and parent holds | Exact source/instruction basis; no competing writers; deliverable mappings justified; legacy I/RV identifiers checked | ACTIVE: main/PRs and source/first-wave fences refreshed; DELIVERY completes the focused dependency check |
-| V0 — AUDIT-REVIEW: independently assess #1064 | Audit read-only; own review folder | B0 frozen audit/source basis | Each finding confirmed, narrowed or refuted; A1 arithmetic and reachability limits assessed; no retrospective claim of pre-merge review | PLANNED |
-| E0 — ENV-EVIDENCE: executable host and preserved inputs | Own runtime inventory and explicitly scoped copies | B0; M3 Air 16-GB constraint | Distinguish M5 resources from local replacements; guard and memory admission verified; toolchain/venv/targets identified; same-host baseline planned; raw evidence recovered or missing items inventoried | PLANNED; original resources belong to the earlier host |
-| K0 — I21-K6C: checkpoint-0 derivation | H/VR/FK read-only; K6c plan and evidence draft | B0, existing I21 brief | Complete live-allocation phase table, corrected formula candidate, dedup design, admission/reproduction plan and tests | PLANNED; can proceed without heavy host |
+| B0 — ROOT + DELIVERY: seal response basis | Run brief/ownership/dependency records | Refresh main, existing agents/PRs, relevant DAG currency and parent holds | Exact source/instruction basis; no competing writers; deliverable mappings justified; legacy I/RV identifiers checked | COMPLETE for bounded investigative basis: 58 rows structurally agree; source-binding/pointer/VR-accounting limits retained in DELIVERY return; no dependency promotion |
+| V0 — AUDIT-REVIEW: independently assess #1064 | Audit read-only; own review folder | B0 frozen audit/source basis | Each finding confirmed, narrowed or refuted; A1 arithmetic and reachability limits assessed; no retrospective claim of pre-merge review | COMPLETE: independent review accepted for fan-in; AUD-REV-N1 routed to N0; `Run/decisions/01_FIRST_WAVE.md` |
+| E0 — ENV-EVIDENCE: executable host and preserved inputs | Own runtime inventory and explicitly scoped copies | B0; M3 Air 16-GB constraint | Distinguish M5 resources from local replacements; guard and memory admission verified; toolchain/venv/targets identified; same-host baseline planned; raw evidence recovered or missing items inventoried | ACTIVE overall: inventory/proposal returned and checked; isolated directories prepared; exact runtime and guard qualification still open; no heavy grant |
+| K0 — I21-K6C: checkpoint-0 derivation | H/VR/FK read-only; K6c plan and evidence draft | B0, existing I21 brief | Complete live-allocation phase table, corrected formula candidate, dedup design, admission/reproduction plan and tests | ACTIVE: `/root/delivery_manager/i21_k6c`, source-only; final brief hash in DELIVERY/I21_LAUNCH.json |
 | A0 — A1-DIAGNOSIS: determine realized-input consequences | FK/proof read-only; independent probes and oracle | V0; E0 for Rust runs | Valid-source probes and independent truth; confirmed defect or explicit unclosed proof question; exact reproducer and limits | PLANNED |
 | A1 — DESIGN: propose A1 closure | Design addendum and D2 consequence draft in own run folder | V0, A0 | Complete error transfer through both coupling directions, zero scales and thresholds; remedy or proved exclusion; alternatives and tradeoffs | PLANNED |
 | V1 — DESIGN-VERIFY: verify proposed basis | Own independent proof/probe records | Frozen A1 proposal | Every material claim checked independently; failures returned with evidence | PLANNED |
@@ -251,13 +252,13 @@ Independent work may continue. Never relax a protected oracle/tolerance to pass.
   response coordination branch, not merged).
 - **Graph maintainer:** HELP_HUMAN Agent 0 in this chat; managers return proposed
   state changes for one serialized integration.
-- **Active operations:** no launched managers/TASKs, builds, measurements or
-  repair PRs from this response. Named agents and first-wave assignments above
-  are plans, not execution claims.
-- **Next safe action on execution:** refresh B0, seal manager and V0 briefs,
-  then launch V0/E0 within the two-TASK cap, followed by K0 as a slot opens.
-  Establish M3 runtime/protection and admission before heavy work; keep
-  source/proof work moving meanwhile.
+- **Active operations:** I21-K6C source-only derivation; DESIGN, DELIVERY, V0 and
+  ENV's initial checkpoints have returned. The second TASK slot is reserved for
+  GUARD-IMPLEMENTATION after its brief is sealed. Runtime directories are prepared
+  (`Run/RUNTIME_BINDING.json`); no build/model run/guard activation has started.
+- **Next safe action:** seal and dispatch the bounded guard implementation;
+  prepare the exact isolated compiler; independently review/validate the guard;
+  then seal A0 as a slot opens. K0 continues independently. Full E0 is still open.
 - **Shared surfaces:** this graph and response control records belong to ROOT.
   `T3/ROOT_RULINGS_V1.md` and earlier hash-bound audit/T3 evidence remain
   read-only under the owner's existing instruction. Proposed dispositions go

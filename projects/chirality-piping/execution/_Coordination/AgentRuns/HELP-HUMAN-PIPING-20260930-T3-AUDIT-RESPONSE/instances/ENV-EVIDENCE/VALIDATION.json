@@ -1,0 +1,23 @@
+{
+  "utc": "2026-09-30T16:39:59.948419+00:00",
+  "json_parse_pass": [
+    "CONTEXT.json",
+    "evidence_inventory.json",
+    "observations.json",
+    "runtime_inventory.json"
+  ],
+  "python_ast_parse_pass": [
+    "collect_readonly.py",
+    "inventory_evidence.py",
+    "write_provenance.py"
+  ],
+  "sealed_brief_hash_matches": true,
+  "six_merge_manifest_entries_verified": 85,
+  "kf2_checkpoint_b_manifest_entries_verified": 54,
+  "k4_pin_hashes_verified": 7,
+  "six_merge_raw_suite_log_files_found": 0,
+  "kf2_part2_raw_records_retained": 4,
+  "portable_runtime_output_scan": "passed",
+  "heavy_run_admitted": false,
+  "limitations": "Packet integrity checks only; no runtime/build/test/guard/generator or engineering validation."
+}

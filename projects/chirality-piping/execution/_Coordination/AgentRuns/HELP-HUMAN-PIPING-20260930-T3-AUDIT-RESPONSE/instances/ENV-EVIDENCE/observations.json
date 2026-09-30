@@ -1,0 +1,457 @@
+[
+  {
+    "label": "head",
+    "utc": "2026-09-30T16:27:48.054986+00:00",
+    "argv": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "environment_overrides": {
+      "RUSTUP_AUTO_INSTALL": "0",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit_code": 0,
+    "stdout": "86bb36d6fb88e7699df595bce1d6a31f5fbd6be5\n",
+    "stderr": "",
+    "stdout_raw_sha256": "c9e79054716708553cc3ec17990f3b7a240fcf8c8a67dfd94c318c22a4accd5e",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "tree",
+    "utc": "2026-09-30T16:27:48.067956+00:00",
+    "argv": [
+      "git",
+      "rev-parse",
+      "HEAD^{tree}"
+    ],
+    "environment_overrides": {
+      "RUSTUP_AUTO_INSTALL": "0",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit_code": 0,
+    "stdout": "616bee52ce7504e3a0c154d5f75efa82d46fcb3a\n",
+    "stderr": "",
+    "stdout_raw_sha256": "50d60c8e54bcc0cd9a40eab0bc91872238b42776c357d5b2c9c158b6ba4ff488",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "platform",
+    "utc": "2026-09-30T16:27:48.081904+00:00",
+    "argv": [
+      "uname",
+      "-smr"
+    ],
+    "environment_overrides": {
+      "RUSTUP_AUTO_INSTALL": "0",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit_code": 0,
+    "stdout": "Darwin 25.6.0 arm64\n",
+    "stderr": "",
+    "stdout_raw_sha256": "83e116757bf361ada87a922313265a945238521f4545fae6f59034fd27807374",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "macos",
+    "utc": "2026-09-30T16:27:48.084790+00:00",
+    "argv": [
+      "sw_vers"
+    ],
+    "environment_overrides": {
+      "RUSTUP_AUTO_INSTALL": "0",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit_code": 0,
+    "stdout": "ProductName:\t\tmacOS\nProductVersion:\t\t26.6.2\nBuildVersion:\t\t25G83\n",
+    "stderr": "",
+    "stdout_raw_sha256": "cd5d6399b3785b04ceaae75045a9ca9f80f0bbc3526eff9d0c36b170ed1ec348",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "memory_pressure",
+    "utc": "2026-09-30T16:27:48.094098+00:00",
+    "argv": [
+      "memory_pressure",
+      "-Q"
+    ],
+    "environment_overrides": {
+      "RUSTUP_AUTO_INSTALL": "0",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit_code": 0,
+    "stdout": "The system has 17179869184 (1048576 pages with a page size of 16384).\nSystem-wide memory free percentage: 68%\n",
+    "stderr": "",
+    "stdout_raw_sha256": "b1254cc9b464954c5c117735c2a982d2440e4734eed41d3e885541856f1e0673",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "vm_stat",
+    "utc": "2026-09-30T16:27:48.097764+00:00",
+    "argv": [
+      "vm_stat"
+    ],
+    "environment_overrides": {
+      "RUSTUP_AUTO_INSTALL": "0",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit_code": 0,
+    "stdout": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     4040.\nPages active:                                 341384.\nPages inactive:                               337925.\nPages speculative:                              2695.\nPages throttled:                                   0.\nPages wired down:                             173977.\nPages purgeable:                                1315.\n\"Translation faults\":                     3762267437.\nPages copy-on-write:                       244968439.\nPages zero filled:                        1476135649.\nPages reactivated:                         379290552.\nPages purged:                               54908277.\nFile-backed pages:                            120696.\nAnonymous pages:                              561308.\nPages stored in compressor:                   641483.\nPages occupied by compressor:                 137177.\nDecompressions:                            334950152.\nCompressions:                              373717272.\nPageins:                                   618844578.\nPageouts:                                    1687957.\nSwapins:                                      525109.\nSwapouts:                                     921781.\n",
+    "stderr": "",
+    "stdout_raw_sha256": "b8ff24db393f5fd61b18628d3a2a65e143b57e417cac5754bbb89de1100bc816",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "physical_memory",
+    "utc": "2026-09-30T16:27:48.101218+00:00",
+    "argv": [
+      "sysctl",
+      "-n",
+      "hw.memsize"
+    ],
+    "environment_overrides": {
+      "RUSTUP_AUTO_INSTALL": "0",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "sysctl: sysctl fmt -1 1024 1: Operation not permitted\n",
+    "stdout_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_raw_sha256": "4b48e95fc2c708e90935b4eb0c7fdbef56360fded00e57f1b083e052354d3774"
+  },
+  {
+    "label": "logical_cpus",
+    "utc": "2026-09-30T16:27:48.104283+00:00",
+    "argv": [
+      "sysctl",
+      "-n",
+      "hw.logicalcpu"
+    ],
+    "environment_overrides": {
+      "RUSTUP_AUTO_INSTALL": "0",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "sysctl: sysctl fmt -1 1024 1: Operation not permitted\n",
+    "stdout_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_raw_sha256": "4b48e95fc2c708e90935b4eb0c7fdbef56360fded00e57f1b083e052354d3774"
+  },
+  {
+    "label": "swap",
+    "utc": "2026-09-30T16:27:48.106466+00:00",
+    "argv": [
+      "sysctl",
+      "vm.swapusage"
+    ],
+    "environment_overrides": {
+      "RUSTUP_AUTO_INSTALL": "0",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "sysctl: sysctl fmt -1 1024 1: Operation not permitted\n",
+    "stdout_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_raw_sha256": "4b48e95fc2c708e90935b4eb0c7fdbef56360fded00e57f1b083e052354d3774"
+  },
+  {
+    "label": "pressure_level",
+    "utc": "2026-09-30T16:27:48.108625+00:00",
+    "argv": [
+      "sysctl",
+      "kern.memorystatus_vm_pressure_level"
+    ],
+    "environment_overrides": {
+      "RUSTUP_AUTO_INSTALL": "0",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "sysctl: sysctl fmt -1 1024 1: Operation not permitted\n",
+    "stdout_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_raw_sha256": "4b48e95fc2c708e90935b4eb0c7fdbef56360fded00e57f1b083e052354d3774"
+  },
+  {
+    "label": "disk",
+    "utc": "2026-09-30T16:27:48.110665+00:00",
+    "argv": [
+      "df",
+      "-k",
+      "<REPO_ROOT>",
+      "<TEMP_ROOT>"
+    ],
+    "environment_overrides": {
+      "RUSTUP_AUTO_INSTALL": "0",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit_code": 0,
+    "stdout": "Filesystem   1024-blocks      Used Available Capacity  iused      ifree %iused  Mounted on\n/dev/disk3s5   971350180 835067212 109122740    89% 11820537 1091227400    1%   <DATA_VOLUME>\n/dev/disk3s5   971350180 835067212 109122740    89% 11820537 1091227400    1%   <DATA_VOLUME>\n",
+    "stderr": "",
+    "stdout_raw_sha256": "d0033188fd5b293e26af088ae6c0ce10578f69d28d99a2cb88a8b1f4c61e7d53",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "own_process",
+    "utc": "2026-09-30T16:27:48.113377+00:00",
+    "argv": [
+      "ps",
+      "-p",
+      "89193",
+      "-o",
+      "pid,ppid,pgid,sess,lstart,rss,comm"
+    ],
+    "unavailable": "[Errno 1] Operation not permitted: 'ps'"
+  },
+  {
+    "label": "relevant_processes",
+    "utc": "2026-09-30T16:27:48.114983+00:00",
+    "argv": [
+      "ps",
+      "-U",
+      "501",
+      "-o",
+      "pid,ppid,pgid,sess,lstart,rss,comm"
+    ],
+    "unavailable": "[Errno 1] Operation not permitted: 'ps'"
+  },
+  {
+    "label": "toolchains",
+    "utc": "2026-09-30T16:27:48.116420+00:00",
+    "argv": [
+      "rustup",
+      "toolchain",
+      "list"
+    ],
+    "environment_overrides": {
+      "RUSTUP_AUTO_INSTALL": "0",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit_code": 0,
+    "stdout": "stable-aarch64-apple-darwin (active, default)\n",
+    "stderr": "",
+    "stdout_raw_sha256": "2b6a2aa9288e6a0cd045f0cb3c21d666e9b7986743b06dbbd2795cd242c59141",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "pinned_rustc",
+    "utc": "2026-09-30T16:27:48.226833+00:00",
+    "argv": [
+      "rustc",
+      "--version",
+      "--verbose"
+    ],
+    "environment_overrides": {
+      "RUSTUP_AUTO_INSTALL": "0",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+      "GIT_OPTIONAL_LOCKS": "0",
+      "RUSTUP_TOOLCHAIN": "1.97.1"
+    },
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "error: toolchain '1.97.1-aarch64-apple-darwin' is not installed\nhelp: run `rustup toolchain install` to install it\n",
+    "stdout_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_raw_sha256": "5358fa9f02e560a7ada4d1309cfc6ed2b920ef2891757923c0dce06a7ab766ce"
+  },
+  {
+    "label": "pinned_cargo",
+    "utc": "2026-09-30T16:27:48.235586+00:00",
+    "argv": [
+      "cargo",
+      "--version"
+    ],
+    "environment_overrides": {
+      "RUSTUP_AUTO_INSTALL": "0",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+      "GIT_OPTIONAL_LOCKS": "0",
+      "RUSTUP_TOOLCHAIN": "1.97.1"
+    },
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "error: toolchain '1.97.1-aarch64-apple-darwin' is not installed\nhelp: run `rustup toolchain install` to install it\n",
+    "stdout_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_raw_sha256": "5358fa9f02e560a7ada4d1309cfc6ed2b920ef2891757923c0dce06a7ab766ce"
+  },
+  {
+    "label": "default_rustc",
+    "utc": "2026-09-30T16:27:48.244194+00:00",
+    "argv": [
+      "rustc",
+      "--version",
+      "--verbose"
+    ],
+    "environment_overrides": {
+      "RUSTUP_AUTO_INSTALL": "0",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit_code": 0,
+    "stdout": "rustc 1.92.0 (ded5c06cf 2025-12-08)\nbinary: rustc\ncommit-hash: ded5c06cf21d2b93bffd5d884aa6e96934ee4234\ncommit-date: 2025-12-08\nhost: aarch64-apple-darwin\nrelease: 1.92.0\nLLVM version: 21.1.3\n",
+    "stderr": "",
+    "stdout_raw_sha256": "58c12481ab6ca64f223a3d873e8d32b30fdf2c200be485065372adcd9ddf23d8",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "default_cargo",
+    "utc": "2026-09-30T16:27:49.622807+00:00",
+    "argv": [
+      "cargo",
+      "--version"
+    ],
+    "environment_overrides": {
+      "RUSTUP_AUTO_INSTALL": "0",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit_code": 0,
+    "stdout": "cargo 1.92.0 (344c4567c 2025-10-21)\n",
+    "stderr": "",
+    "stdout_raw_sha256": "eb24d517cda02ee331f0f23f3da8150456969a12bcd3f07b531c45a44f67d9aa",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "installed_targets",
+    "utc": "2026-09-30T16:27:49.861038+00:00",
+    "argv": [
+      "rustup",
+      "target",
+      "list",
+      "--installed"
+    ],
+    "environment_overrides": {
+      "RUSTUP_AUTO_INSTALL": "0",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+      "GIT_OPTIONAL_LOCKS": "0",
+      "RUSTUP_TOOLCHAIN": "1.97.1"
+    },
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "error: toolchain '1.97.1-aarch64-apple-darwin' is not installed\nhelp: run `rustup toolchain install` to install it\n",
+    "stdout_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_raw_sha256": "5358fa9f02e560a7ada4d1309cfc6ed2b920ef2891757923c0dce06a7ab766ce"
+  },
+  {
+    "label": "clang",
+    "utc": "2026-09-30T16:27:49.870504+00:00",
+    "argv": [
+      "clang",
+      "--version"
+    ],
+    "environment_overrides": {
+      "RUSTUP_AUTO_INSTALL": "0",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit_code": 0,
+    "stdout": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: <CLT_ROOT>/usr/bin\n",
+    "stderr": "",
+    "stdout_raw_sha256": "f6a41663474c412322e565ec1a1aa27bcb42151b98d527dc401b7d744b9a4237",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "sdk",
+    "utc": "2026-09-30T16:27:49.978257+00:00",
+    "argv": [
+      "xcrun",
+      "--show-sdk-path"
+    ],
+    "environment_overrides": {
+      "RUSTUP_AUTO_INSTALL": "0",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit_code": 0,
+    "stdout": "<CLT_ROOT>/SDKs/MacOSX.sdk\n",
+    "stderr": "",
+    "stdout_raw_sha256": "71d2d22cf2f2d1a4606d2b131f4f1cc22ab8f2f05df7e76fb6298e428ace92e6",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "node",
+    "utc": "2026-09-30T16:27:49.991549+00:00",
+    "argv": [
+      "node",
+      "--version"
+    ],
+    "environment_overrides": {
+      "RUSTUP_AUTO_INSTALL": "0",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit_code": 0,
+    "stdout": "v24.5.0\n",
+    "stderr": "",
+    "stdout_raw_sha256": "2f30156cd7f9137514ea68d53554f583cf6541fd107dbc8ae8a19253379a735a",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "npm",
+    "utc": "2026-09-30T16:27:50.114361+00:00",
+    "argv": [
+      "npm",
+      "--version"
+    ],
+    "environment_overrides": {
+      "RUSTUP_AUTO_INSTALL": "0",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit_code": 0,
+    "stdout": "11.5.2\n",
+    "stderr": "",
+    "stdout_raw_sha256": "22dcde1dea054fc08109baec659d6e6e1a882f4e52b01bb04386229df71dc38a",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "python",
+    "utc": "2026-09-30T16:27:50.305599+00:00",
+    "argv": [
+      "python3",
+      "-B",
+      "--version"
+    ],
+    "environment_overrides": {
+      "RUSTUP_AUTO_INSTALL": "0",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit_code": 0,
+    "stdout": "Python 3.13.7\n",
+    "stderr": "",
+    "stdout_raw_sha256": "01623849c8d1730b6d859e0d292d5459342aeee8145d1eeb2813bd6cd516419a",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

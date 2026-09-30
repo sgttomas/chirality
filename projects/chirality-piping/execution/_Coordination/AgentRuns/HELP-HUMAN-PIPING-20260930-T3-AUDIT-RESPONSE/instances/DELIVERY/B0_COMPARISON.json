@@ -1,0 +1,692 @@
+{
+  "kind": "focused_B0_comparison",
+  "head": "86bb36d6fb88e7699df595bce1d6a31f5fbd6be5",
+  "graph": "DAG-011",
+  "dag_sha256": "5c056c2538026f62276a86d88aa9d95f24e262d4d7e38dcdc2f11e1705dc5c47",
+  "expected_currency_directory_exists": false,
+  "deliverables": [
+    {
+      "id": "DEL-04-01",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-01_3D frame stiffness kernel",
+      "rows": 11,
+      "dag_rows": 11,
+      "duplicate_local_ids": 0,
+      "duplicate_dag_ids": 0,
+      "only_local": [],
+      "only_dag": [],
+      "core_differences": [],
+      "dag_notes_extend_local_notes": [
+        {
+          "id": "DAG-002-E0100",
+          "field": "Notes",
+          "local": "Architecture-basis edge from SCA-001 context injection; does not mark PKG-00 as ISSUED.; Carried forward from DAG-001-E0100 into DAG-002 revision 0.5 proposal; active edge approved for coordination by execution/_DAG/DAG-002/APPROVAL_RECORD.md; not Type 2 dispatch authority by itself; refreshed by TP-DAG-004 conservative update for RECONCILIATION consumer against execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.5; edge set unchanged; legacy_anchortype=TRACES_TO_REQUIREMENT; legacy_direction=UPSTREAM; legacy_dependencytype=CONSTRAINT; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=EXTRACTED; legacy_status=ACTIVE",
+          "dag": "Architecture-basis edge from SCA-001 context injection; does not mark PKG-00 as ISSUED.; Carried forward from DAG-001-E0100 into DAG-002 revision 0.5 proposal; active edge approved for coordination by execution/_DAG/DAG-002/APPROVAL_RECORD.md; not Type 2 dispatch authority by itself; refreshed by TP-DAG-004 conservative update for RECONCILIATION consumer against execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.5; edge set unchanged; legacy_anchortype=TRACES_TO_REQUIREMENT; legacy_direction=UPSTREAM; legacy_dependencytype=CONSTRAINT; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=EXTRACTED; legacy_status=ACTIVE; legacy_anchortype=NOT_APPLICABLE"
+        },
+        {
+          "id": "DAG-002-E0101",
+          "field": "Notes",
+          "local": "Architecture-basis edge from SCA-001 context injection; does not mark PKG-00 as ISSUED.; Carried forward from DAG-001-E0101 into DAG-002 revision 0.5 proposal; active edge approved for coordination by execution/_DAG/DAG-002/APPROVAL_RECORD.md; not Type 2 dispatch authority by itself; refreshed by TP-DAG-004 conservative update for RECONCILIATION consumer against execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.5; edge set unchanged; legacy_anchortype=TRACES_TO_REQUIREMENT; legacy_direction=UPSTREAM; legacy_dependencytype=CONSTRAINT; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=EXTRACTED; legacy_status=ACTIVE",
+          "dag": "Architecture-basis edge from SCA-001 context injection; does not mark PKG-00 as ISSUED.; Carried forward from DAG-001-E0101 into DAG-002 revision 0.5 proposal; active edge approved for coordination by execution/_DAG/DAG-002/APPROVAL_RECORD.md; not Type 2 dispatch authority by itself; refreshed by TP-DAG-004 conservative update for RECONCILIATION consumer against execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.5; edge set unchanged; legacy_anchortype=TRACES_TO_REQUIREMENT; legacy_direction=UPSTREAM; legacy_dependencytype=CONSTRAINT; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=EXTRACTED; legacy_status=ACTIVE; legacy_anchortype=NOT_APPLICABLE"
+        },
+        {
+          "id": "DAG-002-E0102",
+          "field": "Notes",
+          "local": "Architecture-basis edge from SCA-001 context injection; does not mark PKG-00 as ISSUED.; Carried forward from DAG-001-E0102 into DAG-002 revision 0.5 proposal; active edge approved for coordination by execution/_DAG/DAG-002/APPROVAL_RECORD.md; not Type 2 dispatch authority by itself; refreshed by TP-DAG-004 conservative update for RECONCILIATION consumer against execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.5; edge set unchanged; legacy_anchortype=TRACES_TO_REQUIREMENT; legacy_direction=UPSTREAM; legacy_dependencytype=CONSTRAINT; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=EXTRACTED; legacy_status=ACTIVE",
+          "dag": "Architecture-basis edge from SCA-001 context injection; does not mark PKG-00 as ISSUED.; Carried forward from DAG-001-E0102 into DAG-002 revision 0.5 proposal; active edge approved for coordination by execution/_DAG/DAG-002/APPROVAL_RECORD.md; not Type 2 dispatch authority by itself; refreshed by TP-DAG-004 conservative update for RECONCILIATION consumer against execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.5; edge set unchanged; legacy_anchortype=TRACES_TO_REQUIREMENT; legacy_direction=UPSTREAM; legacy_dependencytype=CONSTRAINT; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=EXTRACTED; legacy_status=ACTIVE; legacy_anchortype=NOT_APPLICABLE"
+        },
+        {
+          "id": "DAG-002-E0103",
+          "field": "Notes",
+          "local": "Architecture-basis edge from SCA-001 context injection; does not mark PKG-00 as ISSUED.; Carried forward from DAG-001-E0103 into DAG-002 revision 0.5 proposal; active edge approved for coordination by execution/_DAG/DAG-002/APPROVAL_RECORD.md; not Type 2 dispatch authority by itself; refreshed by TP-DAG-004 conservative update for RECONCILIATION consumer against execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.5; edge set unchanged; legacy_anchortype=TRACES_TO_REQUIREMENT; legacy_direction=UPSTREAM; legacy_dependencytype=CONSTRAINT; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=EXTRACTED; legacy_status=ACTIVE",
+          "dag": "Architecture-basis edge from SCA-001 context injection; does not mark PKG-00 as ISSUED.; Carried forward from DAG-001-E0103 into DAG-002 revision 0.5 proposal; active edge approved for coordination by execution/_DAG/DAG-002/APPROVAL_RECORD.md; not Type 2 dispatch authority by itself; refreshed by TP-DAG-004 conservative update for RECONCILIATION consumer against execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.5; edge set unchanged; legacy_anchortype=TRACES_TO_REQUIREMENT; legacy_direction=UPSTREAM; legacy_dependencytype=CONSTRAINT; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=EXTRACTED; legacy_status=ACTIVE; legacy_anchortype=NOT_APPLICABLE"
+        },
+        {
+          "id": "DAG-002-E0104",
+          "field": "Notes",
+          "local": "Architecture-basis edge from SCA-001 context injection; does not mark PKG-00 as ISSUED.; Carried forward from DAG-001-E0104 into DAG-002 revision 0.5 proposal; active edge approved for coordination by execution/_DAG/DAG-002/APPROVAL_RECORD.md; not Type 2 dispatch authority by itself; refreshed by TP-DAG-004 conservative update for RECONCILIATION consumer against execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.5; edge set unchanged; legacy_anchortype=TRACES_TO_REQUIREMENT; legacy_direction=UPSTREAM; legacy_dependencytype=CONSTRAINT; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=EXTRACTED; legacy_status=ACTIVE",
+          "dag": "Architecture-basis edge from SCA-001 context injection; does not mark PKG-00 as ISSUED.; Carried forward from DAG-001-E0104 into DAG-002 revision 0.5 proposal; active edge approved for coordination by execution/_DAG/DAG-002/APPROVAL_RECORD.md; not Type 2 dispatch authority by itself; refreshed by TP-DAG-004 conservative update for RECONCILIATION consumer against execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.5; edge set unchanged; legacy_anchortype=TRACES_TO_REQUIREMENT; legacy_direction=UPSTREAM; legacy_dependencytype=CONSTRAINT; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=EXTRACTED; legacy_status=ACTIVE; legacy_anchortype=NOT_APPLICABLE"
+        },
+        {
+          "id": "DAG-002-E0429",
+          "field": "Notes",
+          "local": "DAG-001 direct dependency inferred from deliverable descriptions, anticipated artifacts, scope mapping, and package dependency shape.; Carried forward from DAG-001-E0429 into DAG-002 revision 0.5 proposal; active edge approved for coordination by execution/_DAG/DAG-002/APPROVAL_RECORD.md; not Type 2 dispatch authority by itself; edge touches targeted-review deliverable DEL-01-04 or DEL-02-01; refreshed by TP-DAG-004 conservative update for RECONCILIATION consumer against execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.5; edge set unchanged; 2026-06-05 blocker-closure ruling: canonical model/schema predecessor satisfied for lifecycle-review purposes by current frame-kernel boundary evidence and DEL-02-01 foundation maturity.; legacy_anchortype=TRACES_TO_REQUIREMENT; legacy_direction=UPSTREAM; legacy_dependencytype=PREREQUISITE; legacy_targettype=DELIVERABLE; legacy_explicitness=IMPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=EXTRACTED; legacy_status=ACTIVE",
+          "dag": "DAG-001 direct dependency inferred from deliverable descriptions, anticipated artifacts, scope mapping, and package dependency shape.; Carried forward from DAG-001-E0429 into DAG-002 revision 0.5 proposal; active edge approved for coordination by execution/_DAG/DAG-002/APPROVAL_RECORD.md; not Type 2 dispatch authority by itself; edge touches targeted-review deliverable DEL-01-04 or DEL-02-01; refreshed by TP-DAG-004 conservative update for RECONCILIATION consumer against execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.5; edge set unchanged; 2026-06-05 blocker-closure ruling: canonical model/schema predecessor satisfied for lifecycle-review purposes by current frame-kernel boundary evidence and DEL-02-01 foundation maturity.; legacy_anchortype=TRACES_TO_REQUIREMENT; legacy_direction=UPSTREAM; legacy_dependencytype=PREREQUISITE; legacy_targettype=DELIVERABLE; legacy_explicitness=IMPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=EXTRACTED; legacy_status=ACTIVE; legacy_anchortype=NOT_APPLICABLE"
+        },
+        {
+          "id": "DAG-002-E0430",
+          "field": "Notes",
+          "local": "DAG-001 direct dependency inferred from deliverable descriptions, anticipated artifacts, scope mapping, and package dependency shape.; Carried forward from DAG-001-E0430 into DAG-002 revision 0.5 proposal; active edge approved for coordination by execution/_DAG/DAG-002/APPROVAL_RECORD.md; not Type 2 dispatch authority by itself; refreshed by TP-DAG-004 conservative update for RECONCILIATION consumer against execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.5; edge set unchanged; 2026-06-05 blocker-closure ruling: unit-system predecessor satisfied for lifecycle-review purposes; conversion constants and production unit policy remain downstream TBDs.; legacy_anchortype=TRACES_TO_REQUIREMENT; legacy_direction=UPSTREAM; legacy_dependencytype=PREREQUISITE; legacy_targettype=DELIVERABLE; legacy_explicitness=IMPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=EXTRACTED; legacy_status=ACTIVE",
+          "dag": "DAG-001 direct dependency inferred from deliverable descriptions, anticipated artifacts, scope mapping, and package dependency shape.; Carried forward from DAG-001-E0430 into DAG-002 revision 0.5 proposal; active edge approved for coordination by execution/_DAG/DAG-002/APPROVAL_RECORD.md; not Type 2 dispatch authority by itself; refreshed by TP-DAG-004 conservative update for RECONCILIATION consumer against execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.5; edge set unchanged; 2026-06-05 blocker-closure ruling: unit-system predecessor satisfied for lifecycle-review purposes; conversion constants and production unit policy remain downstream TBDs.; legacy_anchortype=TRACES_TO_REQUIREMENT; legacy_direction=UPSTREAM; legacy_dependencytype=PREREQUISITE; legacy_targettype=DELIVERABLE; legacy_explicitness=IMPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=EXTRACTED; legacy_status=ACTIVE; legacy_anchortype=NOT_APPLICABLE"
+        },
+        {
+          "id": "DAG-002-E0431",
+          "field": "Notes",
+          "local": "DAG-001 direct dependency inferred from deliverable descriptions, anticipated artifacts, scope mapping, and package dependency shape.; Carried forward from DAG-001-E0431 into DAG-002 revision 0.5 proposal; active edge approved for coordination by execution/_DAG/DAG-002/APPROVAL_RECORD.md; not Type 2 dispatch authority by itself; refreshed by TP-DAG-004 conservative update for RECONCILIATION consumer against execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.5; edge set unchanged; 2026-06-05 blocker-closure ruling: code-neutral analysis boundary predecessor satisfied for lifecycle-review purposes.; legacy_anchortype=TRACES_TO_REQUIREMENT; legacy_direction=UPSTREAM; legacy_dependencytype=PREREQUISITE; legacy_targettype=DELIVERABLE; legacy_explicitness=IMPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=EXTRACTED; legacy_status=ACTIVE",
+          "dag": "DAG-001 direct dependency inferred from deliverable descriptions, anticipated artifacts, scope mapping, and package dependency shape.; Carried forward from DAG-001-E0431 into DAG-002 revision 0.5 proposal; active edge approved for coordination by execution/_DAG/DAG-002/APPROVAL_RECORD.md; not Type 2 dispatch authority by itself; refreshed by TP-DAG-004 conservative update for RECONCILIATION consumer against execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.5; edge set unchanged; 2026-06-05 blocker-closure ruling: code-neutral analysis boundary predecessor satisfied for lifecycle-review purposes.; legacy_anchortype=TRACES_TO_REQUIREMENT; legacy_direction=UPSTREAM; legacy_dependencytype=PREREQUISITE; legacy_targettype=DELIVERABLE; legacy_explicitness=IMPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=EXTRACTED; legacy_status=ACTIVE; legacy_anchortype=NOT_APPLICABLE"
+        },
+        {
+          "id": "DEL-04-01-A001",
+          "field": "Notes",
+          "local": "Parent anchor added during 2026-06-16 dependency semantic refresh from explicit local context and confirmed against SOFTWARE_DECOMP revision 0.7.",
+          "dag": "Parent anchor added during 2026-06-16 dependency semantic refresh from explicit local context and confirmed against SOFTWARE_DECOMP revision 0.7.; legacy_anchortype=IMPLEMENTS_NODE; legacy_direction=UPSTREAM; legacy_dependencytype=OTHER; legacy_targettype=WBS_NODE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=NOT_APPLICABLE; legacy_origin=EXTRACTED; legacy_status=ACTIVE"
+        },
+        {
+          "id": "DEL-04-01-A002",
+          "field": "Notes",
+          "local": "Trace anchor added during 2026-06-16 dependency semantic refresh from explicit Scope Coverage and confirmed against SOFTWARE_DECOMP revision 0.7.",
+          "dag": "Trace anchor added during 2026-06-16 dependency semantic refresh from explicit Scope Coverage and confirmed against SOFTWARE_DECOMP revision 0.7.; legacy_anchortype=TRACES_TO_REQUIREMENT; legacy_direction=UPSTREAM; legacy_dependencytype=OTHER; legacy_targettype=REQUIREMENT; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=NOT_APPLICABLE; legacy_origin=EXTRACTED; legacy_status=ACTIVE"
+        },
+        {
+          "id": "DEL-04-01-A003",
+          "field": "Notes",
+          "local": "Trace anchor added during 2026-06-16 dependency semantic refresh from explicit Scope Coverage and confirmed against SOFTWARE_DECOMP revision 0.7.",
+          "dag": "Trace anchor added during 2026-06-16 dependency semantic refresh from explicit Scope Coverage and confirmed against SOFTWARE_DECOMP revision 0.7.; legacy_anchortype=TRACES_TO_REQUIREMENT; legacy_direction=UPSTREAM; legacy_dependencytype=OTHER; legacy_targettype=REQUIREMENT; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=NOT_APPLICABLE; legacy_origin=EXTRACTED; legacy_status=ACTIVE"
+        }
+      ],
+      "nonempty_extension_fields_absent_locally": [],
+      "active_execution_satisfaction": {
+        "SATISFIED": 8
+      },
+      "unresolved_execution": [],
+      "input_hashes": [
+        {
+          "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-01_3D frame stiffness kernel/Dependencies.csv",
+          "sha256": "c9b779dd0a5a0e7af11fa905be1b146bbe7d4a76367dcb75a1f1cb7e12ae1b51"
+        },
+        {
+          "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-01_3D frame stiffness kernel/_DEPENDENCIES.md",
+          "sha256": "711ebe45bd58bbf3c55524f0df83c047ebc19ad6f8d1ffc038c769df5498db17"
+        },
+        {
+          "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-01_3D frame stiffness kernel/ScopeOfWork.md",
+          "sha256": "9b4f15fada2ad8cd5157b815ab602f479090ec1428beba882d87b8fe7b3dd373"
+        },
+        {
+          "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-01_3D frame stiffness kernel/_CONTEXT.md",
+          "sha256": "7166b271beca96f9863ddec4b9460eec3bee0d4a9057bc12a7f96381272add84"
+        }
+      ]
+    },
+    {
+      "id": "DEL-04-05",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-05_Sparse solver performance harness",
+      "rows": 9,
+      "dag_rows": 9,
+      "duplicate_local_ids": 0,
+      "duplicate_dag_ids": 0,
+      "only_local": [],
+      "only_dag": [],
+      "core_differences": [],
+      "dag_notes_extend_local_notes": [
+        {
+          "id": "DEL-04-05-A001",
+          "field": "Notes",
+          "local": "Parent anchor added during 2026-06-16 dependency semantic refresh from explicit local context and confirmed against SOFTWARE_DECOMP revision 0.7.",
+          "dag": "Parent anchor added during 2026-06-16 dependency semantic refresh from explicit local context and confirmed against SOFTWARE_DECOMP revision 0.7.; legacy_anchortype=IMPLEMENTS_NODE; legacy_direction=UPSTREAM; legacy_dependencytype=OTHER; legacy_targettype=WBS_NODE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=NOT_APPLICABLE; legacy_origin=EXTRACTED; legacy_status=ACTIVE"
+        },
+        {
+          "id": "DEL-04-05-A002",
+          "field": "Notes",
+          "local": "Trace anchor added during 2026-06-16 dependency semantic refresh from explicit Scope Coverage and confirmed against SOFTWARE_DECOMP revision 0.7.",
+          "dag": "Trace anchor added during 2026-06-16 dependency semantic refresh from explicit Scope Coverage and confirmed against SOFTWARE_DECOMP revision 0.7.; legacy_anchortype=TRACES_TO_REQUIREMENT; legacy_direction=UPSTREAM; legacy_dependencytype=OTHER; legacy_targettype=REQUIREMENT; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=NOT_APPLICABLE; legacy_origin=EXTRACTED; legacy_status=ACTIVE"
+        }
+      ],
+      "nonempty_extension_fields_absent_locally": [],
+      "active_execution_satisfaction": {
+        "SATISFIED": 5,
+        "TBD": 2
+      },
+      "unresolved_execution": [
+        {
+          "DependencyID": "DAG-002-E0444",
+          "TargetDeliverableID": "DEL-04-01",
+          "RequiredMaturity": "SEMANTIC_READY",
+          "ProposedMaturity": "SEMANTIC_READY",
+          "SatisfactionStatus": "TBD"
+        },
+        {
+          "DependencyID": "DAG-002-E0445",
+          "TargetDeliverableID": "DEL-04-06",
+          "RequiredMaturity": "SEMANTIC_READY",
+          "ProposedMaturity": "SEMANTIC_READY",
+          "SatisfactionStatus": "TBD"
+        }
+      ],
+      "input_hashes": [
+        {
+          "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-05_Sparse solver performance harness/Dependencies.csv",
+          "sha256": "338d2a60fb1aff489098dc1c9e5f35ba4f2017ae9eae8df8b6155c0baa2cd7c9"
+        },
+        {
+          "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-05_Sparse solver performance harness/_DEPENDENCIES.md",
+          "sha256": "066588cd57f96d9feed367b32200250e73e948a1277a7d04614b37e4cdc536cd"
+        },
+        {
+          "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-05_Sparse solver performance harness/ScopeOfWork.md",
+          "sha256": "a56d0bed9383d3fed3873da45d562208e8baf36a42627be8f85aa8997b9a4a79"
+        },
+        {
+          "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-05_Sparse solver performance harness/_CONTEXT.md",
+          "sha256": "cfe00139e880d3559b0f733a661c501ab519f59ab427fb4b09a54e31d8dd409f"
+        }
+      ]
+    },
+    {
+      "id": "DEL-04-07",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration",
+      "rows": 24,
+      "dag_rows": 24,
+      "duplicate_local_ids": 0,
+      "duplicate_dag_ids": 0,
+      "only_local": [],
+      "only_dag": [],
+      "core_differences": [],
+      "dag_notes_extend_local_notes": [],
+      "nonempty_extension_fields_absent_locally": [],
+      "active_execution_satisfaction": {
+        "PENDING": 16
+      },
+      "unresolved_execution": [
+        {
+          "DependencyID": "DEP-04-07-009",
+          "TargetDeliverableID": "DEL-02-01",
+          "RequiredMaturity": "SEMANTIC_READY",
+          "ProposedMaturity": "TBD",
+          "SatisfactionStatus": "PENDING"
+        },
+        {
+          "DependencyID": "DEP-04-07-010",
+          "TargetDeliverableID": "DEL-02-02",
+          "RequiredMaturity": "SEMANTIC_READY",
+          "ProposedMaturity": "TBD",
+          "SatisfactionStatus": "PENDING"
+        },
+        {
+          "DependencyID": "DEP-04-07-011",
+          "TargetDeliverableID": "DEL-02-03",
+          "RequiredMaturity": "SEMANTIC_READY",
+          "ProposedMaturity": "TBD",
+          "SatisfactionStatus": "PENDING"
+        },
+        {
+          "DependencyID": "DEP-04-07-012",
+          "TargetDeliverableID": "DEL-03-08",
+          "RequiredMaturity": "SEMANTIC_READY",
+          "ProposedMaturity": "TBD",
+          "SatisfactionStatus": "PENDING"
+        },
+        {
+          "DependencyID": "DEP-04-07-013",
+          "TargetDeliverableID": "DEL-04-01",
+          "RequiredMaturity": "SEMANTIC_READY",
+          "ProposedMaturity": "TBD",
+          "SatisfactionStatus": "PENDING"
+        },
+        {
+          "DependencyID": "DEP-04-07-014",
+          "TargetDeliverableID": "DEL-04-03",
+          "RequiredMaturity": "SEMANTIC_READY",
+          "ProposedMaturity": "TBD",
+          "SatisfactionStatus": "PENDING"
+        },
+        {
+          "DependencyID": "DEP-04-07-015",
+          "TargetDeliverableID": "DEL-04-04",
+          "RequiredMaturity": "SEMANTIC_READY",
+          "ProposedMaturity": "TBD",
+          "SatisfactionStatus": "PENDING"
+        },
+        {
+          "DependencyID": "DEP-04-07-016",
+          "TargetDeliverableID": "DEL-04-06",
+          "RequiredMaturity": "SEMANTIC_READY",
+          "ProposedMaturity": "TBD",
+          "SatisfactionStatus": "PENDING"
+        },
+        {
+          "DependencyID": "DEP-04-07-017",
+          "TargetDeliverableID": "DEL-05-01",
+          "RequiredMaturity": "SEMANTIC_READY",
+          "ProposedMaturity": "TBD",
+          "SatisfactionStatus": "PENDING"
+        },
+        {
+          "DependencyID": "DEP-04-07-018",
+          "TargetDeliverableID": "DEL-05-02",
+          "RequiredMaturity": "SEMANTIC_READY",
+          "ProposedMaturity": "TBD",
+          "SatisfactionStatus": "PENDING"
+        },
+        {
+          "DependencyID": "DEP-04-07-019",
+          "TargetDeliverableID": "DEL-05-03",
+          "RequiredMaturity": "SEMANTIC_READY",
+          "ProposedMaturity": "TBD",
+          "SatisfactionStatus": "PENDING"
+        },
+        {
+          "DependencyID": "DEP-04-07-020",
+          "TargetDeliverableID": "DEL-05-04",
+          "RequiredMaturity": "SEMANTIC_READY",
+          "ProposedMaturity": "TBD",
+          "SatisfactionStatus": "PENDING"
+        },
+        {
+          "DependencyID": "DEP-04-07-021",
+          "TargetDeliverableID": "DEL-00-02",
+          "RequiredMaturity": "SEMANTIC_READY",
+          "ProposedMaturity": "TBD",
+          "SatisfactionStatus": "PENDING"
+        },
+        {
+          "DependencyID": "DEP-04-07-022",
+          "TargetDeliverableID": "DEL-00-03",
+          "RequiredMaturity": "SEMANTIC_READY",
+          "ProposedMaturity": "TBD",
+          "SatisfactionStatus": "PENDING"
+        },
+        {
+          "DependencyID": "DEP-04-07-023",
+          "TargetDeliverableID": "DEL-00-06",
+          "RequiredMaturity": "SEMANTIC_READY",
+          "ProposedMaturity": "TBD",
+          "SatisfactionStatus": "PENDING"
+        },
+        {
+          "DependencyID": "DEP-04-07-024",
+          "TargetDeliverableID": "DEL-00-08",
+          "RequiredMaturity": "SEMANTIC_READY",
+          "ProposedMaturity": "TBD",
+          "SatisfactionStatus": "PENDING"
+        }
+      ],
+      "input_hashes": [
+        {
+          "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/Dependencies.csv",
+          "sha256": "c9c90753d0d76249b4bd4f041c22902bbf7c3062bf119ff77966a199b12ce19d"
+        },
+        {
+          "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/_DEPENDENCIES.md",
+          "sha256": "3596ac8a1921b98a53c1ccf91f3cf625fe8b109da7c42084d215131d132bba53"
+        },
+        {
+          "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+          "sha256": "e3f701345f6ce750a2ff4681443f788b8cbf80e498c781d158b74bff738c7f88"
+        },
+        {
+          "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/_CONTEXT.md",
+          "sha256": "77f00da73974d101684903a75b7f76c4320c0af052328d05879487938a5557fb"
+        }
+      ]
+    },
+    {
+      "id": "DEL-09-01",
+      "path": "projects/chirality-piping/execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-01_Mechanics benchmark suite",
+      "rows": 14,
+      "dag_rows": 14,
+      "duplicate_local_ids": 0,
+      "duplicate_dag_ids": 0,
+      "only_local": [],
+      "only_dag": [],
+      "core_differences": [],
+      "dag_notes_extend_local_notes": [
+        {
+          "id": "DAG-002-E0274",
+          "field": "Notes",
+          "local": "TP-DAG-004 local refresh preserved architecture-basis edge from context injection; local register remains evidence surface only.; legacy_anchortype=DELIVERABLE; legacy_direction=UPSTREAM; legacy_dependencytype=ARCHITECTURE_BASIS; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=CONTEXT; legacy_status=ACTIVE",
+          "dag": "TP-DAG-004 local refresh preserved architecture-basis edge from context injection; local register remains evidence surface only.; legacy_anchortype=DELIVERABLE; legacy_direction=UPSTREAM; legacy_dependencytype=ARCHITECTURE_BASIS; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=CONTEXT; legacy_status=ACTIVE; legacy_anchortype=NOT_APPLICABLE; legacy_dependencytype=PREREQUISITE; legacy_origin=EXTRACTED"
+        },
+        {
+          "id": "DAG-002-E0275",
+          "field": "Notes",
+          "local": "TP-DAG-004 local refresh preserved architecture-basis edge from context injection; local register remains evidence surface only.; legacy_anchortype=DELIVERABLE; legacy_direction=UPSTREAM; legacy_dependencytype=ARCHITECTURE_BASIS; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=CONTEXT; legacy_status=ACTIVE",
+          "dag": "TP-DAG-004 local refresh preserved architecture-basis edge from context injection; local register remains evidence surface only.; legacy_anchortype=DELIVERABLE; legacy_direction=UPSTREAM; legacy_dependencytype=ARCHITECTURE_BASIS; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=CONTEXT; legacy_status=ACTIVE; legacy_anchortype=NOT_APPLICABLE; legacy_dependencytype=PREREQUISITE; legacy_origin=EXTRACTED"
+        },
+        {
+          "id": "DAG-002-E0276",
+          "field": "Notes",
+          "local": "TP-DAG-004 local refresh preserved architecture-basis edge from context injection; local register remains evidence surface only.; legacy_anchortype=DELIVERABLE; legacy_direction=UPSTREAM; legacy_dependencytype=ARCHITECTURE_BASIS; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=CONTEXT; legacy_status=ACTIVE",
+          "dag": "TP-DAG-004 local refresh preserved architecture-basis edge from context injection; local register remains evidence surface only.; legacy_anchortype=DELIVERABLE; legacy_direction=UPSTREAM; legacy_dependencytype=ARCHITECTURE_BASIS; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=CONTEXT; legacy_status=ACTIVE; legacy_anchortype=NOT_APPLICABLE; legacy_dependencytype=PREREQUISITE; legacy_origin=EXTRACTED"
+        },
+        {
+          "id": "DAG-002-E0277",
+          "field": "Notes",
+          "local": "TP-DAG-004 local refresh preserved architecture-basis edge from context injection; local register remains evidence surface only.; legacy_anchortype=DELIVERABLE; legacy_direction=UPSTREAM; legacy_dependencytype=ARCHITECTURE_BASIS; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=CONTEXT; legacy_status=ACTIVE",
+          "dag": "TP-DAG-004 local refresh preserved architecture-basis edge from context injection; local register remains evidence surface only.; legacy_anchortype=DELIVERABLE; legacy_direction=UPSTREAM; legacy_dependencytype=ARCHITECTURE_BASIS; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=SATISFIED; legacy_origin=CONTEXT; legacy_status=ACTIVE; legacy_anchortype=NOT_APPLICABLE; legacy_dependencytype=PREREQUISITE; legacy_origin=EXTRACTED"
+        },
+        {
+          "id": "DAG-002-E0532",
+          "field": "Notes",
+          "local": "Local refresh confirmed existing predecessor from deliverable procedure; target maturity not verified from permitted read set.; legacy_anchortype=DELIVERABLE; legacy_direction=UPSTREAM; legacy_dependencytype=VALIDATION_PREDECESSOR; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=UNKNOWN; legacy_origin=DECOMPOSITION; legacy_status=ACTIVE",
+          "dag": "Local refresh confirmed existing predecessor from deliverable procedure; target maturity not verified from permitted read set.; legacy_anchortype=DELIVERABLE; legacy_direction=UPSTREAM; legacy_dependencytype=VALIDATION_PREDECESSOR; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=UNKNOWN; legacy_origin=DECOMPOSITION; legacy_status=ACTIVE; legacy_anchortype=NOT_APPLICABLE; legacy_dependencytype=PREREQUISITE; legacy_satisfactionstatus=TBD; legacy_origin=EXTRACTED"
+        },
+        {
+          "id": "DAG-002-E0533",
+          "field": "Notes",
+          "local": "Local refresh confirmed existing predecessor from deliverable procedure; target maturity not verified from permitted read set.; legacy_anchortype=DELIVERABLE; legacy_direction=UPSTREAM; legacy_dependencytype=VALIDATION_PREDECESSOR; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=UNKNOWN; legacy_origin=DECOMPOSITION; legacy_status=ACTIVE",
+          "dag": "Local refresh confirmed existing predecessor from deliverable procedure; target maturity not verified from permitted read set.; legacy_anchortype=DELIVERABLE; legacy_direction=UPSTREAM; legacy_dependencytype=VALIDATION_PREDECESSOR; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=UNKNOWN; legacy_origin=DECOMPOSITION; legacy_status=ACTIVE; legacy_anchortype=NOT_APPLICABLE; legacy_dependencytype=PREREQUISITE; legacy_satisfactionstatus=TBD; legacy_origin=EXTRACTED"
+        },
+        {
+          "id": "DEL-09-01-A001",
+          "field": "Notes",
+          "local": "Semantic refresh added explicit parent anchor from deliverable datasheet and SOFTWARE_DECOMP DEL-09-01 row.",
+          "dag": "Semantic refresh added explicit parent anchor from deliverable datasheet and SOFTWARE_DECOMP DEL-09-01 row.; legacy_anchortype=IMPLEMENTS_NODE; legacy_direction=UPSTREAM; legacy_dependencytype=OTHER; legacy_targettype=WBS_NODE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=NOT_APPLICABLE; legacy_origin=EXTRACTED; legacy_status=ACTIVE"
+        },
+        {
+          "id": "DEL-09-01-A002",
+          "field": "Notes",
+          "local": "Semantic refresh added explicit requirement trace from deliverable datasheet and SOFTWARE_DECOMP SOW-026 row.",
+          "dag": "Semantic refresh added explicit requirement trace from deliverable datasheet and SOFTWARE_DECOMP SOW-026 row.; legacy_anchortype=TRACES_TO_REQUIREMENT; legacy_direction=UPSTREAM; legacy_dependencytype=OTHER; legacy_targettype=REQUIREMENT; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=NOT_APPLICABLE; legacy_origin=EXTRACTED; legacy_status=ACTIVE"
+        },
+        {
+          "id": "DEL-09-01-A003",
+          "field": "Notes",
+          "local": "Semantic refresh added explicit objective trace from deliverable datasheet and SOFTWARE_DECOMP OBJ-008 row.",
+          "dag": "Semantic refresh added explicit objective trace from deliverable datasheet and SOFTWARE_DECOMP OBJ-008 row.; legacy_anchortype=TRACES_TO_REQUIREMENT; legacy_direction=UPSTREAM; legacy_dependencytype=OTHER; legacy_targettype=REQUIREMENT; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=NOT_APPLICABLE; legacy_origin=EXTRACTED; legacy_status=ACTIVE"
+        },
+        {
+          "id": "TP-DAG-004-DEL-09-01-E001",
+          "field": "Notes",
+          "local": "New conservative local edge from TP-DAG-004 refresh; target maturity not verified from permitted read set.; legacy_anchortype=DELIVERABLE; legacy_direction=UPSTREAM; legacy_dependencytype=UNIT_CONTRACT; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=UNKNOWN; legacy_origin=DECOMPOSITION; legacy_status=ACTIVE",
+          "dag": "New conservative local edge from TP-DAG-004 refresh; target maturity not verified from permitted read set.; legacy_anchortype=DELIVERABLE; legacy_direction=UPSTREAM; legacy_dependencytype=UNIT_CONTRACT; legacy_targettype=DELIVERABLE; legacy_explicitness=EXPLICIT; legacy_satisfactionstatus=UNKNOWN; legacy_origin=DECOMPOSITION; legacy_status=ACTIVE; legacy_anchortype=NOT_APPLICABLE; legacy_dependencytype=INTERFACE; legacy_satisfactionstatus=TBD; legacy_origin=EXTRACTED"
+        }
+      ],
+      "nonempty_extension_fields_absent_locally": [],
+      "active_execution_satisfaction": {
+        "SATISFIED": 8,
+        "TBD": 3
+      },
+      "unresolved_execution": [
+        {
+          "DependencyID": "DAG-002-E0532",
+          "TargetDeliverableID": "DEL-04-01",
+          "RequiredMaturity": "SEMANTIC_READY",
+          "ProposedMaturity": "SEMANTIC_READY",
+          "SatisfactionStatus": "TBD"
+        },
+        {
+          "DependencyID": "DAG-002-E0533",
+          "TargetDeliverableID": "DEL-04-02",
+          "RequiredMaturity": "SEMANTIC_READY",
+          "ProposedMaturity": "SEMANTIC_READY",
+          "SatisfactionStatus": "TBD"
+        },
+        {
+          "DependencyID": "TP-DAG-004-DEL-09-01-E001",
+          "TargetDeliverableID": "DEL-02-02",
+          "RequiredMaturity": "SEMANTIC_READY",
+          "ProposedMaturity": "SEMANTIC_READY",
+          "SatisfactionStatus": "TBD"
+        }
+      ],
+      "input_hashes": [
+        {
+          "path": "projects/chirality-piping/execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-01_Mechanics benchmark suite/Dependencies.csv",
+          "sha256": "28e5cd04820392fb605ba07b669195685133783450a3c314ff38a7abf743166e"
+        },
+        {
+          "path": "projects/chirality-piping/execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-01_Mechanics benchmark suite/_DEPENDENCIES.md",
+          "sha256": "0f802ff1f26128fba3097b637075118fff0ffef94faf59c30d6ba7043bc7e773"
+        },
+        {
+          "path": "projects/chirality-piping/execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-01_Mechanics benchmark suite/ScopeOfWork.md",
+          "sha256": "181b1e37201d93916f03e38e9cdb8e1082d70da5d6297af429bbb8c47d15648e"
+        },
+        {
+          "path": "projects/chirality-piping/execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-01_Mechanics benchmark suite/_CONTEXT.md",
+          "sha256": "9d068d2cf1be5ca508bf460a2a324d745cfd3ce0952b8ca944e79a0cdebaaa66"
+        }
+      ]
+    }
+  ],
+  "limits": "Structural register agreement and exact preserved binding checks only. No dependency satisfaction, deliverable readiness or fresh source-owner/consumer acceptance is established.",
+  "accepted_binding_source": {
+    "path": "projects/chirality-piping/execution/_ScopeChange/_PostAcceptanceValidation/SCA-011_20260922T173404Z/dependencies/CURRENT_SOURCE_BINDINGS.json",
+    "sha256": "cef64bad15aad0f49112d2e3168cc55e9427707acfe0aa801a4bf579b154d215"
+  },
+  "accepted_file_bindings_checked": [
+    {
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "expected": "2631a2fedc5f95723201f10c87ba66367800fd771ebbc86844f25020ca3c3150",
+      "actual": "e3f701345f6ce750a2ff4681443f788b8cbf80e498c781d158b74bff738c7f88",
+      "matches": false
+    },
+    {
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/_CONTEXT.md",
+      "expected": "77f00da73974d101684903a75b7f76c4320c0af052328d05879487938a5557fb",
+      "actual": "77f00da73974d101684903a75b7f76c4320c0af052328d05879487938a5557fb",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/_REFERENCES.md",
+      "expected": "770429b5f8cbf9ab77611d50569c660c685c9ed1e66fb0cc2f38316aa4fd1a46",
+      "actual": "770429b5f8cbf9ab77611d50569c660c685c9ed1e66fb0cc2f38316aa4fd1a46",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "expected": "c78301c67df5729d65c57963e6a915339049e3ffaa12d13961ee201445a9b984",
+      "actual": "68862517691f5be3d3c82800abfb20f3335a13c57f85d0c46ccdf0d052ab9792",
+      "matches": false
+    }
+  ],
+  "accepted_DEL0407_quotes_checked": [
+    {
+      "id": "DEP-04-07-001",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "frontmatter/deliverable_id",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-002",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "frontmatter/project_scope_refs",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-003",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "frontmatter/project_scope_refs",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-004",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "frontmatter/project_scope_refs",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-005",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "frontmatter/project_scope_refs",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-006",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "frontmatter/project_scope_refs",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-007",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "frontmatter/package_objective_refs",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-008",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "frontmatter/package_objective_refs",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-009",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "CLM-001",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-010",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "CLM-001",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-011",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "CLM-001",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-012",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "CLM-003",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-013",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "CLM-002",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-014",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "CLM-001",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-015",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "CLM-002",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-016",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "CLM-004",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-017",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "CLM-001",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-018",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "CLM-001",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-019",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "CLM-001",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-020",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "CLM-004",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-021",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "CLM-001",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-022",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "CLM-001",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-023",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "CLM-001",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    },
+    {
+      "id": "DEP-04-07-024",
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "hash_matches": false,
+      "verbatim_quote_present": true,
+      "named_locus": "CLM-001",
+      "quote_in_named_locus": true,
+      "scope": "fresh current-byte literal quote and named-locus check; historical whole-source hash drift remains disclosed"
+    }
+  ],
+  "focused_register_comparison": "NO_STRUCTURAL_DEPARTURE_FOUND"
+}

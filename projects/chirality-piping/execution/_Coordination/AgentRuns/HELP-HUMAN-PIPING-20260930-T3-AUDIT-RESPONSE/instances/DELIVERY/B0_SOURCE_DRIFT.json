@@ -1,0 +1,18 @@
+[
+  {
+    "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+    "accepted_blob_commit": "48f3481eca2b5c0c8dcea31d3f60078b5b1aa5ae",
+    "accepted_sha256": "2631a2fedc5f95723201f10c87ba66367800fd771ebbc86844f25020ca3c3150",
+    "current_sha256": "e3f701345f6ce750a2ff4681443f788b8cbf80e498c781d158b74bff738c7f88",
+    "diff": "DEL0407_source_drift.diff",
+    "changed_lines": 8
+  },
+  {
+    "path": "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md",
+    "accepted_blob_commit": "48f3481eca2b5c0c8dcea31d3f60078b5b1aa5ae",
+    "accepted_sha256": "c78301c67df5729d65c57963e6a915339049e3ffaa12d13961ee201445a9b984",
+    "current_sha256": "68862517691f5be3d3c82800abfb20f3335a13c57f85d0c46ccdf0d052ab9792",
+    "diff": "decomposition_source_drift.diff",
+    "changed_lines": 37
+  }
+]

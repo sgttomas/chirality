@@ -1,0 +1,18 @@
+{
+  "record_kind": "actual_native_descendant_launch",
+  "date": "2026-09-30",
+  "native_task_name": "/root/delivery_manager/i21_k6c",
+  "parent_native_task_name": "/root/delivery_manager",
+  "role": "TASK",
+  "mechanism": "collaboration.spawn_agent",
+  "fork_turns": "none",
+  "model_override": null,
+  "brief": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/I21_CHECKPOINT0_BRIEF.md",
+  "brief_sha256": "75d2c08f6f0c34acf0d3fb834744ba5b93354906d1fdcc81d1069620bd0e27ec",
+  "source_HEAD_at_launch": "86bb36d6fb88e7699df595bce1d6a31f5fbd6be5",
+  "product_basis": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "brief_state_at_launch": "working-tree file sealed by hash; not yet committed",
+  "grant": "checkpoint 0 source/record derivation only; no code, compilation, installation or heavy work",
+  "reported_by": "DELIVERY native return; ROOT checked sealed brief hash",
+  "slot_release": "V0 completed; ENV subsequently completed, leaving I21 as the active TASK"
+}

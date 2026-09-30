@@ -1,0 +1,292 @@
+{
+  "record_kind": "design_initial_checkpoint_context",
+  "date": "2026-09-30",
+  "run_id": "HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE",
+  "checked_head": "86bb36d6fb88e7699df595bce1d6a31f5fbd6be5",
+  "sealed_brief_commit": "86bb36d6fb88e7699df595bce1d6a31f5fbd6be5",
+  "sealed_brief_sha256": "7d45590b0265714eefd80a2fccfc5bbe8a6db79057ccd36b7f8c2e025b65ca0e",
+  "product_audit_basis": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "planning_snapshot": "5506e1f48db66f0119667c52058efa992ed14a5d",
+  "anchors": {
+    "REPO_ROOT": "<git-derived-repository-root>",
+    "WORKING_ROOT": "projects/chirality-piping",
+    "output": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN"
+  },
+  "role": {
+    "name": "HELPS_HUMANS",
+    "type": 1,
+    "assignment": "DESIGN initial checkpoint"
+  },
+  "delegation": {
+    "mechanism": "Codex native collaboration.spawn_agent descendant",
+    "parent": "/root",
+    "agent": "/root/design_manager",
+    "parent_role": "HELP_HUMAN / Agent 0",
+    "canonical_name_confirmed_by": "collaboration.list_agents",
+    "opaque_id": "not exposed to this child",
+    "fork_setting": "not independently exposed to this child; ROOT launch record owns this field",
+    "model": "no model override or independently reported model identifier in this checkpoint",
+    "children_launched": []
+  },
+  "authority": {
+    "initial_dispatch": "ROOT supplied sealed brief path/hash/commit, owner activation, M3 16-GB correction and initial-checkpoint-only fence via native task message. The sealed brief is the durable assignment body.",
+    "additional_parent_steering": {
+      "text": "Additional design question to include in your initial route: trace whether raw subnormal rounding amplified into another kind's scale can affect the relative classification threshold and downstream 1e-9 assurance, as well as the absolute bound. The current finding establishes only a proof-premise counterexample; derive rather than assume either reachability or scope. Preserve source/product distinctions and existing protected criteria. No experiments or child grant yet.",
+      "sha256_utf8": "69c717b25cbff6cd6d51938b54e89beb0cdf203966392d30fe42a5f5d883fb7d"
+    }
+  },
+  "selection": {
+    "skill": {
+      "identity": "chirality-root:project:skill:software-defect-diagnosis",
+      "origin": ".agents/skills/software-defect-diagnosis/SKILL.md",
+      "use": "shape bounded diagnosis brief; no experiment executed"
+    },
+    "workflow": null,
+    "wider_role_bodies_consulted": []
+  },
+  "host_and_enforcement": {
+    "owner_supplied_current": "M3 MacBook Air, 16 GB unified memory",
+    "owner_supplied_previous": "M5 Max MacBook Pro, 128 GB unified memory",
+    "independent_host_inventory": "not performed; E0 owns it",
+    "host_outer_boundary": "inherited workspace-write sandbox, restricted network and shared filesystem",
+    "brief_write_boundary": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/**",
+    "brief_resource_boundary": "no child/heavy grant; no experiment, build, install, product edit, old-record edit or Git/index write",
+    "limit": "per-agent fence is a brief restriction, not a separately enforced OS sandbox"
+  },
+  "execution": {
+    "read_operations": [
+      "pwd; git rev-parse; git show; git diff (graph only)",
+      "cat; sed; rg; shasum",
+      "collaboration.list_agents"
+    ],
+    "writes": [
+      "apply_patch inside DESIGN",
+      "lightweight python3 -B for documentation metadata inside DESIGN"
+    ],
+    "communication": "native collaboration.send_message to ROOT; no app chat messaging",
+    "not_executed": [
+      "Rust builds/tests",
+      "arithmetic probe/oracle",
+      "solver/model experiment",
+      "large-model search",
+      "installation",
+      "Git/index writes",
+      "product/historical-record edits",
+      "child launch"
+    ],
+    "metadata_check_retry": "First metadata pass stopped before writing on a graph-equals-HEAD assertion. Inspection identified ROOT concurrent execution-state update, recorded both hashes and retried with that expected distinction.",
+    "truncation_note": "Some broad discovery outputs were truncated; governing passages were re-read in bounded ranges. Partial ranges are not claims of full inspection."
+  },
+  "inputs": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "read_scope": "full",
+      "purpose": "Root instruction",
+      "checked_head_sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "matches_checked_head": true
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "read_scope": "full",
+      "purpose": "Piping instruction",
+      "checked_head_sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "matches_checked_head": true
+    },
+    {
+      "path": "agents/AGENT_HELPS_HUMANS.md",
+      "sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e",
+      "read_scope": "full",
+      "purpose": "active role",
+      "checked_head_sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e",
+      "matches_checked_head": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/briefs/DESIGN.md",
+      "sha256": "7d45590b0265714eefd80a2fccfc5bbe8a6db79057ccd36b7f8c2e025b65ca0e",
+      "read_scope": "full",
+      "purpose": "sealed assignment",
+      "checked_head_sha256": "7d45590b0265714eefd80a2fccfc5bbe8a6db79057ccd36b7f8c2e025b65ca0e",
+      "matches_checked_head": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/ACTIVATION.md",
+      "sha256": "cddee0607918ef55fba99ec6d80556a0eb2c2bd40f6606876c4ba00e340b603a",
+      "read_scope": "full",
+      "purpose": "owner activation",
+      "checked_head_sha256": "cddee0607918ef55fba99ec6d80556a0eb2c2bd40f6606876c4ba00e340b603a",
+      "matches_checked_head": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/PLANNING_BASIS.json",
+      "sha256": "6a3d0abd77d903155237f133e960aafa6be5e79a2248847f10c1836bf0b2d372",
+      "read_scope": "full",
+      "purpose": "historical planning basis; referenced files not automatically loaded",
+      "checked_head_sha256": "6a3d0abd77d903155237f133e960aafa6be5e79a2248847f10c1836bf0b2d372",
+      "matches_checked_head": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/WORK_GRAPH.md",
+      "sha256": "44fbccb13afc1498b53681fba50fb5ed1b02c5c38c7d4dbccd001054a78a3144",
+      "read_scope": "full across initial/bounded follow-up reads; final working diff read",
+      "purpose": "response execution graph",
+      "checked_head_sha256": "eebb20e552075be7b0859485e59d8434e32bd336252ac7d196ef49b91942581c",
+      "matches_checked_head": false,
+      "sequence_note": "Initial graph read matched launch-commit content. ROOT subsequently updated launch/execution state; current working diff inspected before return. No DESIGN write to graph."
+    },
+    {
+      "path": ".agents/skills/software-defect-diagnosis/SKILL.md",
+      "sha256": "7e423dfd24132c33d3aa8fe6994bf17a1def966c396723f6bd72ac8d2442112b",
+      "read_scope": "full",
+      "purpose": "selected diagnosis-planning skill",
+      "checked_head_sha256": "7e423dfd24132c33d3aa8fe6994bf17a1def966c396723f6bd72ac8d2442112b",
+      "matches_checked_head": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/AUDIT/REPORT.md",
+      "sha256": "9e57793917d96ccf665cd4833ef828f589a9e2f709b35e74435cd2453b861296",
+      "read_scope": "full across initial/bounded follow-up reads",
+      "purpose": "audit under independent review",
+      "checked_head_sha256": "9e57793917d96ccf665cd4833ef828f589a9e2f709b35e74435cd2453b861296",
+      "matches_checked_head": true,
+      "matches_product_audit_basis": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/AUDIT/A1_A2_REVIEW.md",
+      "sha256": "d229598e5a80c630c5e9298e45b4ed9da95aea9135eb5957eca6200d5c801c54",
+      "read_scope": "full",
+      "purpose": "audit derivation",
+      "checked_head_sha256": "d229598e5a80c630c5e9298e45b4ed9da95aea9135eb5957eca6200d5c801c54",
+      "matches_checked_head": true,
+      "matches_product_audit_basis": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/AUDIT/HANDOFF.md",
+      "sha256": "98c00345028cb395835829f2137cbe4400b0b1efaf064da76f12997edc2395a8",
+      "read_scope": "full",
+      "purpose": "audit return",
+      "checked_head_sha256": "98c00345028cb395835829f2137cbe4400b0b1efaf064da76f12997edc2395a8",
+      "matches_checked_head": true,
+      "matches_product_audit_basis": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/ROOT_RULINGS_V1.md",
+      "sha256": "444c18e09467c205b70be853045b4d68ec655241cae1b2dea518a8f7da9bf22a",
+      "read_scope": "1351-1372,1987-2045,2070-2087,2544-2580; other heading/keyword discovery only",
+      "purpose": "A1/A2 and F2a gate",
+      "checked_head_sha256": "444c18e09467c205b70be853045b4d68ec655241cae1b2dea518a8f7da9bf22a",
+      "matches_checked_head": true,
+      "matches_product_audit_basis": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/DESIGN_NUMERICS/REV_5A3_CANDIDATE/D1_REV_5A3_SSTAR_RESOLUTION_R7.md",
+      "sha256": "5502aef9803f05f42e93c2a05a0de495401e3f94fe92adb19fc2a0c3f80d8f42",
+      "read_scope": "300-390; additional 200-300 excerpts partially displayed",
+      "purpose": "R7 guarantee",
+      "checked_head_sha256": "5502aef9803f05f42e93c2a05a0de495401e3f94fe92adb19fc2a0c3f80d8f42",
+      "matches_checked_head": true,
+      "matches_product_audit_basis": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/DESIGN_NUMERICS/DESIGN.md",
+      "sha256": "fb62ef4a8282e53fd5875430e8903da80f1e0821c2dfba075dce5a97e5f27a74",
+      "read_scope": "420-455; additional 458-478 excerpts and keyword discovery",
+      "purpose": "relative threshold and stress argument, with later rulings controlling",
+      "checked_head_sha256": "fb62ef4a8282e53fd5875430e8903da80f1e0821c2dfba075dce5a97e5f27a74",
+      "matches_checked_head": true,
+      "matches_product_audit_basis": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/DESIGN_STANDING/DESIGN.md",
+      "sha256": "edc78f9c20db9848b2f4bad1250359e6ba06c2c3af053039099a147201f7b992",
+      "read_scope": "439-455,531-604,638-716,720-742; partial 743-781 excerpts and section discovery",
+      "purpose": "D2 consequences",
+      "checked_head_sha256": "edc78f9c20db9848b2f4bad1250359e6ba06c2c3af053039099a147201f7b992",
+      "matches_checked_head": true,
+      "matches_product_audit_basis": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/REVIEW/K4_REVIEW.md",
+      "sha256": "87accdff7a323be982afb3962dd72b05bb3a20ff7fad1519314f841c5e94bf07",
+      "read_scope": "439-486",
+      "purpose": "historical RV19 argument",
+      "checked_head_sha256": "87accdff7a323be982afb3962dd72b05bb3a20ff7fad1519314f841c5e94bf07",
+      "matches_checked_head": true,
+      "matches_product_audit_basis": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/HANDOFF_2026-09-30_AUDIT_PAUSE.md",
+      "sha256": "13e254bcf7210c78c071b561ba002f15ba9cfea52223ee5dfd33f2b552073f8b",
+      "read_scope": "heading/keyword discovery only",
+      "purpose": "F2a route locator",
+      "checked_head_sha256": "13e254bcf7210c78c071b561ba002f15ba9cfea52223ee5dfd33f2b552073f8b",
+      "matches_checked_head": true,
+      "matches_product_audit_basis": true
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/adaptive.rs",
+      "sha256": "472bafb8281c7d311a81dcd5da042dd0f8db998bd81cf4902e6b55409eb5a563",
+      "read_scope": "230-425,1860-1965,2020-2105,2180-2270,2500-2710; keyword discovery",
+      "purpose": "scale/publication/classification paths",
+      "checked_head_sha256": "472bafb8281c7d311a81dcd5da042dd0f8db998bd81cf4902e6b55409eb5a563",
+      "matches_checked_head": true,
+      "matches_product_audit_basis": true
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/source.rs",
+      "sha256": "46c85ba0d9e0c45f6d19bfd188ce8cc52e4d773b96d3b7e8d0746b78e5582ca9",
+      "read_scope": "1-185,340-460",
+      "purpose": "source schema/validation",
+      "checked_head_sha256": "46c85ba0d9e0c45f6d19bfd188ce8cc52e4d773b96d3b7e8d0746b78e5582ca9",
+      "matches_checked_head": true,
+      "matches_product_audit_basis": true
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/assemble.rs",
+      "sha256": "057fa8a431bde050d0aa448c347dd1c92fbd4929ad6cc8ecce5837c9255d20f2",
+      "read_scope": "252-299; keyword discovery",
+      "purpose": "axial/torsion formation",
+      "checked_head_sha256": "057fa8a431bde050d0aa448c347dd1c92fbd4929ad6cc8ecce5837c9255d20f2",
+      "matches_checked_head": true,
+      "matches_product_audit_basis": true
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/mod.rs",
+      "sha256": "78bb76773dd4fd4d799b5668f21a679f0ebf9c088ec5fff655e13a0453d6dc2a",
+      "read_scope": "full",
+      "purpose": "module organization",
+      "checked_head_sha256": "78bb76773dd4fd4d799b5668f21a679f0ebf9c088ec5fff655e13a0453d6dc2a",
+      "matches_checked_head": true,
+      "matches_product_audit_basis": true
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/tests/retained_k4/models.rs",
+      "sha256": "201506548f494b59fa877521bf531953b57e08df802a1289d506fed603db58e6",
+      "read_scope": "1-70,105-135,480-540; keyword discovery",
+      "purpose": "existing source route/claim predicate; not independent oracle",
+      "checked_head_sha256": "201506548f494b59fa877521bf531953b57e08df802a1289d506fed603db58e6",
+      "matches_checked_head": true,
+      "matches_product_audit_basis": true
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/Cargo.toml",
+      "sha256": "994d118576eb881668f3048f9b4d05f899ceb7599c1cd5f05cbe18f70172b7dc",
+      "read_scope": "full",
+      "purpose": "dependencies/features",
+      "checked_head_sha256": "994d118576eb881668f3048f9b4d05f899ceb7599c1cd5f05cbe18f70172b7dc",
+      "matches_checked_head": true,
+      "matches_product_audit_basis": true
+    }
+  ],
+  "outputs": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/INITIAL_PLAN.md",
+      "sha256": "29e2b1806601d94bfd73a1748a3cda3e5cc0cb32379793d4e7fc246541ae60de"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/A1_DIAGNOSIS_DRAFT.md",
+      "sha256": "120dbc81c01fda2cfd07bd9fb3a84f7c81b4987d991eaf51d140638154406b3d"
+    }
+  ]
+}

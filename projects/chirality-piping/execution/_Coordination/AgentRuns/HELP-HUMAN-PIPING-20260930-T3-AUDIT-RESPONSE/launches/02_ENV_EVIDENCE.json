@@ -1,0 +1,18 @@
+{
+  "record_kind": "actual_native_descendant_launch",
+  "date": "2026-09-30",
+  "native_task_name": "/root/delivery_manager/env_evidence",
+  "parent_native_task_name": "/root/delivery_manager",
+  "role": "TASK",
+  "mechanism": "collaboration.spawn_agent",
+  "fork_turns": "none",
+  "model_override": null,
+  "brief": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/ENV_EVIDENCE_BRIEF.md",
+  "brief_sha256": "8f3fa504c19e56f5b791c71ac86cfebbc6bce7935225af43b6dc49aeee6ee947",
+  "source_HEAD_at_launch": "86bb36d6fb88e7699df595bce1d6a31f5fbd6be5",
+  "brief_state_at_launch": "working-tree file sealed by hash; not yet committed",
+  "verification": "DELIVERY reported actual dispatch; ROOT live-agent inventory confirms descendant exists; brief hash checked independently",
+  "grant": "E0 read-only inventory/inert guard proposal only; no heavy work, installation, process kill or guard activation",
+  "slot_status": "Second of two TASK slots occupied",
+  "scope_enforcement": "Prompt-level fence within shared host sandbox"
+}

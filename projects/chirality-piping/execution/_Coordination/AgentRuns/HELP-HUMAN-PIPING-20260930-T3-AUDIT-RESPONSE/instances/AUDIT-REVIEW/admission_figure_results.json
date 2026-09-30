@@ -1,0 +1,285 @@
+{
+  "admissions": [
+    {
+      "rows": [
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "01_RF-LARGE-CHAIN-n00100-AX_w1a",
+          "sensitivity_rho": 2.0
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "02_RF-LARGE-CHAIN-n00100-ROT_w1a",
+          "sensitivity_rho": 2.0
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "03_RF-LARGE-TREE-n00100-AX_w1a",
+          "sensitivity_rho": 2.0
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "04_RF-LARGE-TREE-n00100-ROT_w1a",
+          "sensitivity_rho": 2.0
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "05_RF-LARGE-CONT-n00100-AX_w1a",
+          "sensitivity_rho": 2.0
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "06_RF-LARGE-CONT-n00100-ROT_w1a",
+          "sensitivity_rho": 2.0
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "07_RF-LARGE-CHAIN-n01000-AX_w1a",
+          "sensitivity_rho": 0.42458666073737905
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "08_RF-LARGE-CHAIN-n01000-ROT_w1a",
+          "sensitivity_rho": 0.42458666073737905
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "09_RF-LARGE-TREE-n01000-AX_w1a",
+          "sensitivity_rho": 0.36210709545271547
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "10_RF-LARGE-TREE-n01000-ROT_w1a",
+          "sensitivity_rho": 0.36210709545271547
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "11_RF-LARGE-CONT-n01000-AX_w1a",
+          "sensitivity_rho": 0.41016181521974143
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "12_RF-LARGE-CONT-n01000-ROT_w1a",
+          "sensitivity_rho": 0.41016181521974143
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "13_RF-LARGE-CHAIN-n10000-AX_w1a",
+          "sensitivity_rho": 0.42458666073737905
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "14_RF-LARGE-CHAIN-n10000-ROT_w1a",
+          "sensitivity_rho": 0.42458666073737905
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "15_RF-LARGE-TREE-n10000-AX_w1a",
+          "sensitivity_rho": 0.390616371215238
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "16_RF-LARGE-TREE-n10000-ROT_w1a",
+          "sensitivity_rho": 0.390616371215238
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "17_RF-LARGE-CONT-n10000-AX_w1a",
+          "sensitivity_rho": 0.42588694652739933
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "18_RF-LARGE-CONT-n10000-ROT_w1a",
+          "sensitivity_rho": 0.42588694652739933
+        }
+      ],
+      "slice": "VK"
+    },
+    {
+      "rows": [
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "01_RF-LARGE-CHAIN-n00100-AX_w1a",
+          "sensitivity_rho": 2.0
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "02_RF-LARGE-CHAIN-n00100-ROT_w1a",
+          "sensitivity_rho": 2.0
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "03_RF-LARGE-TREE-n00100-AX_w1a",
+          "sensitivity_rho": 2.0
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "04_RF-LARGE-TREE-n00100-ROT_w1a",
+          "sensitivity_rho": 2.0
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "05_RF-LARGE-CONT-n00100-AX_w1a",
+          "sensitivity_rho": 2.0
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "06_RF-LARGE-CONT-n00100-ROT_w1a",
+          "sensitivity_rho": 2.0
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "07_RF-LARGE-CHAIN-n01000-AX_w1a",
+          "sensitivity_rho": 0.42593192125880835
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "08_RF-LARGE-CHAIN-n01000-ROT_w1a",
+          "sensitivity_rho": 0.42593192125880835
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "09_RF-LARGE-TREE-n01000-AX_w1a",
+          "sensitivity_rho": 0.3594168639648791
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "10_RF-LARGE-TREE-n01000-ROT_w1a",
+          "sensitivity_rho": 0.3594168639648791
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "11_RF-LARGE-CONT-n01000-AX_w1a",
+          "sensitivity_rho": 0.41050311479673857
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "12_RF-LARGE-CONT-n01000-ROT_w1a",
+          "sensitivity_rho": 0.41050311479673857
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "13_RF-LARGE-CHAIN-n10000-AX_w1a",
+          "sensitivity_rho": 0.42593192125880835
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "14_RF-LARGE-CHAIN-n10000-ROT_w1a",
+          "sensitivity_rho": 0.42593192125880835
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "15_RF-LARGE-TREE-n10000-AX_w1a",
+          "sensitivity_rho": 0.3889124283507235
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "16_RF-LARGE-TREE-n10000-ROT_w1a",
+          "sensitivity_rho": 0.3889124283507235
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "17_RF-LARGE-CONT-n10000-AX_w1a",
+          "sensitivity_rho": 0.42626151686708647
+        },
+        {
+          "all_original_fields_match": true,
+          "all_sensitivity_fields_match": true,
+          "decision_changed": false,
+          "run_id": "18_RF-LARGE-CONT-n10000-ROT_w1a",
+          "sensitivity_rho": 0.42626151686708647
+        }
+      ],
+      "slice": "KF3"
+    }
+  ],
+  "coefficient_rows_verified": 8,
+  "limits": [
+    "Only the exercised admitted W1 branch checked; other policy branches are not certified.",
+    "Historical measurements retained unchanged under the sensitivity substitution; no final phase bound or M3 admission established."
+  ],
+  "memory": [
+    {
+      "margin_bytes": 6970722,
+      "model": "RF-LARGE-TREE-n10000-AX",
+      "shift_delta_bytes": 10799688
+    },
+    {
+      "margin_bytes": 7511329,
+      "model": "RF-LARGE-TREE-n10000-ROT",
+      "shift_delta_bytes": 10799688
+    }
+  ],
+  "scale_10000_rows_verified": 12,
+  "suite_deltas_verified": 6
+}

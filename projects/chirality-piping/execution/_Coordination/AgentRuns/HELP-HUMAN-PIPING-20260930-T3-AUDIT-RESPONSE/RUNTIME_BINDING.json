@@ -1,0 +1,16 @@
+{
+  "record_kind": "isolated_runtime_binding",
+  "run_id": "HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE",
+  "temporary_root_origin": "Python tempfile.gettempdir() on this M3 host",
+  "runtime_directory_name": "chirality-t3-response-20260930-sqaajzgk",
+  "local_marker_sha256": "a35c2f7e3720d8c3a23f2f49dd559561ed2f9ac446c0c038aee8382a411de8bd",
+  "local_binding_sha256": "ea50349f46d6398c2a79c01e09347f9832a82c9e98814ce520c99344ff57e74e",
+  "aliases": {
+    "RESPONSE_RUNTIME": "temporary_root_origin/runtime_directory_name",
+    "RESPONSE_RUSTUP_HOME": "RESPONSE_RUNTIME/rustup",
+    "RESPONSE_CARGO_HOME": "RESPONSE_RUNTIME/cargo",
+    "RESPONSE_VENV": "RESPONSE_RUNTIME/venv"
+  },
+  "status": "directories prepared; no toolchain/dependency installed; no guard active",
+  "default_toolchain_or_configuration_changed": false
+}

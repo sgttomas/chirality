@@ -1,0 +1,22 @@
+{
+  "kind": "root_read_only_host_observation",
+  "date": "2026-09-30",
+  "execution_boundary": "Approved escalated exec_command; no setting changed and no process killed",
+  "commands": [
+    "sysctl -n hw.memsize hw.logicalcpu vm.swapusage",
+    "ps -p <own-shell-pid> -o pid=,ppid=,pgid=,rss=,comm=",
+    "/usr/bin/time -l /usr/bin/true"
+  ],
+  "memory_bytes": 17179869184,
+  "logical_cpus": 8,
+  "swap_usage_report": "total = 4096.00M  used = 3118.19M  free = 977.81M  (encrypted)",
+  "own_shell_process_identity_readable": true,
+  "time_probe_max_rss_bytes": 1163264,
+  "time_probe_peak_memory_footprint_bytes": 868568,
+  "limitations": [
+    "One snapshot, not admission for a heavy run",
+    "Default sandbox denied these sysctl/ps reads; host escalation provided visibility",
+    "Existing swap use does not establish when pressure occurred; guard needs baseline and deltas"
+  ],
+  "heavy_slot_granted": false
+}

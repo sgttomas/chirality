@@ -1,0 +1,544 @@
+{
+  "record_kind": "TASK read-only environment/evidence checkpoint",
+  "utc": "2026-09-30T16:35:54.786025+00:00",
+  "native_agent_id": "/root/delivery_manager/env_evidence",
+  "canonical_task_name": "/root/delivery_manager/env_evidence",
+  "agent_id_source": "native NEW_TASK routing and collaboration.list_agents returned agent_name",
+  "additional_uuid": "not exposed by available native result",
+  "parent": "/root/delivery_manager",
+  "root": "/root",
+  "role": "TASK / Type 2",
+  "mechanism": "collaboration.spawn_agent",
+  "fresh_context": "fork_turns=none, as sealed by parent brief",
+  "model": "inherited configured model; no override requested; exact runtime model ID not exposed here",
+  "delegated_children": [],
+  "selected_workflow": null,
+  "selected_skill_body": null,
+  "wider_role_bodies_loaded": [],
+  "basis": {
+    "source_audit": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+    "planning": "5506e1f48db66f0119667c52058efa992ed14a5d",
+    "activation": "86bb36d6fb88e7699df595bce1d6a31f5fbd6be5",
+    "observed_HEAD": "86bb36d6fb88e7699df595bce1d6a31f5fbd6be5",
+    "observed_HEAD_tree": "616bee52ce7504e3a0c154d5f75efa82d46fcb3a"
+  },
+  "sealed_brief_sha256_expected": "8f3fa504c19e56f5b791c71ac86cfebbc6bce7935225af43b6dc49aeee6ee947",
+  "sealed_brief_sha256_actual": "8f3fa504c19e56f5b791c71ac86cfebbc6bce7935225af43b6dc49aeee6ee947",
+  "launch_addenda_and_supplied_observations": [
+    {
+      "from": "/root/delivery_manager",
+      "kind": "launch addendum",
+      "text": "ROOT adds E0 specifics: set RUSTUP_AUTO_INSTALL=0 even for version probes so missing pinned toolchain cannot trigger implicit download. Guard proposal should use an explicit registry of response-owned process groups with PID/start identity and separate sessions, never command-substring kills. Verify monitoring permissions and label memory readings snapshots. No activation/process kills. Record this launch addendum in context; sealed initial brief remains unchanged.",
+      "text_utf8_sha256": "5fbe1d216635281267dee1f04d5b2c98095489022dc10133e3e1860978b00bfe"
+    },
+    {
+      "from": "/root/delivery_manager",
+      "kind": "supplied ROOT observation",
+      "text": "ROOT observed approved read-only host check outside default sandbox: hw.memsize=17179869184, logicalcpu=8; vm.swapusage total=4096.00M, used=3118.19M, free=977.81M; own-shell ps exposes PID/PPID/PGID/RSS; /usr/bin/time -l exposes max RSS and peak footprint. Record explicitly as ROOT's supplied observation, not your own execution. Sandbox denial is not host absence; monitoring needs approved host boundary. Existing ~3.1 GB swap makes free% alone insufficient; guard must baseline and monitor pressure/swap without claiming old swapped pages prove current job trouble. No heavy grant.",
+      "text_utf8_sha256": "19ab8c3bfeae539d7eea6717c1e35242df0768d4bd5716e44d2aedacb1da5730"
+    },
+    {
+      "from": "/root/delivery_manager",
+      "kind": "supplied evidence pointer and network observation",
+      "text": "ROOT host evidence now at Run/ROOT_HOST_OBSERVATION.json in working tree, ROOT-owned; read/hash for your supplied observation record. ROOT also made approved read-only HEAD request to https://static.rust-lang.org/dist/channel-rust-1.97.1.toml: HTTP 200, last-modified 2026-07-16. Exact pinned distribution is available; no download/install. Provide isolated setup proposal with exact 1.97.1, never installed 1.92 substitution. Preserve distinctions between missing suite logs and four KF2 part-2 raw records.",
+      "text_utf8_sha256": "2b39b4172958cb9510b1a96b14c0d36d0c756b6313848359d575fab48e9ab8e1"
+    },
+    {
+      "from": "/root/delivery_manager",
+      "kind": "manager integration/closure direction",
+      "text": "I read current drafts for manager integration. Please fix two clarity/portability issues before sealing: RECOVERY_LIST table's 'Retained manifest count' values 39/40 are Cargo suite-manifest counts, whereas six SHA256 manifests have 85 total entries; label them distinctly. runtime_inventory.json still includes /Library/Frameworks and /opt/homebrew host-install paths: use portable aliases in committed files per original host-record convention (retain raw only in private own scratch if needed). ROOT needs a concrete isolated provisioning proposal for exact 1.97.1 (proposed RUSTUP_HOME/CARGO_HOME or installation mechanism and dependency verification; no execution), not an alternative 1.92 toolchain suggestion. Seal RETURN, CONTEXT and manifest when ready; no additional probes needed unless necessary.",
+      "text_utf8_sha256": "98871ac368703e5e54760c71c14d46c23b80089afc82fe85f0b971099c261420"
+    },
+    {
+      "from": "/root/delivery_manager",
+      "kind": "manager integration/closure direction",
+      "text": "DELIVERY B0 and I21 draft are ready. Please finish and seal the bounded E0 return now once the noted label/portability/provisioning corrections are recorded; current observations are sufficient for this checkpoint. Do not broaden inventory. Notify me of final manifest/RETURN hashes and remaining E0 acceptance conditions.",
+      "text_utf8_sha256": "38528235bbc47550ad7d67fdd0dc13e761ac43545391f3f8b4a5b8d6adfa28f3"
+    }
+  ],
+  "host_owner_statement": "M3 MacBook Air, 16 GB; original M5 Max 128-GB host and workspace unavailable here",
+  "enforcement": "Per-agent write, no-build/no-install/no-kill/no-delegation and Git fences are prompt-only on a shared filesystem. The actual default host sandbox is the enforced outer boundary. No escalation was requested/executed by this TASK. ROOT separately supplied an approved host probe.",
+  "writes": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ENV-EVIDENCE/** only",
+  "unexpected_writes_observed": null,
+  "unexpected_writes_limit": "No complete host write audit exists; own explicit writes are confined to this folder and Python bytecode was disabled. No source/Git/index mutation command was invoked. Concurrent other agents own other changes.",
+  "command_record": "observations.json; runtime_inventory.json; collect_readonly.py; inventory_evidence.py; READ_PROVENANCE.md",
+  "inputs": [
+    {
+      "origin": "repository working tree",
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "bytes": 14200,
+      "read_scope": "full body"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "bytes": 9016,
+      "read_scope": "full body"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "bytes": 1499,
+      "read_scope": "full body"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/ENV_EVIDENCE_BRIEF.md",
+      "sha256": "8f3fa504c19e56f5b791c71ac86cfebbc6bce7935225af43b6dc49aeee6ee947",
+      "bytes": 5148,
+      "read_scope": "full sealed body; exact supplied hash verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/ACTIVATION.md",
+      "sha256": "cddee0607918ef55fba99ec6d80556a0eb2c2bd40f6606876c4ba00e340b603a",
+      "bytes": 1817,
+      "read_scope": "full body"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/PLANNING_BASIS.json",
+      "sha256": "6a3d0abd77d903155237f133e960aafa6be5e79a2248847f10c1836bf0b2d372",
+      "bytes": 10448,
+      "read_scope": "full JSON; listed other-role bodies are references, not loaded"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/WORK_GRAPH.md",
+      "sha256": "44fbccb13afc1498b53681fba50fb5ed1b02c5c38c7d4dbccd001054a78a3144",
+      "bytes": 24875,
+      "read_scope": "full body through bounded chunks"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/AUDIT/HANDOFF.md",
+      "sha256": "98c00345028cb395835829f2137cbe4400b0b1efaf064da76f12997edc2395a8",
+      "bytes": 2906,
+      "read_scope": "full body"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/AUDIT/REPORT.md",
+      "sha256": "9e57793917d96ccf665cd4833ef828f589a9e2f709b35e74435cd2453b861296",
+      "bytes": 14576,
+      "read_scope": "heading/search inspection; lines 58-175 environment/replay/merge/figure limits"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/HANDOFF_2026-09-30_AUDIT_PAUSE.md",
+      "sha256": "13e254bcf7210c78c071b561ba002f15ba9cfea52223ee5dfd33f2b552073f8b",
+      "bytes": 23392,
+      "read_scope": "initial combined read output partly truncated; explicit sections 0, 5, 6, 9 and search results retained"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/OPERATING_NOTES_2026-09-30.md",
+      "sha256": "80cf81f12bb09d4b8b12b850528fcb0e3abc29a3daa86fe8dfd7cdd9c61a41a6",
+      "bytes": 18238,
+      "read_scope": "initial combined read output partly truncated; inspected source/role background, sections 4 and 8 environment/replay and available later output"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/requirements-dev.txt",
+      "sha256": "f8dfa6abb1ae5b48c157e8c92599098785d56340c1250a350187ce941cd25c47",
+      "bytes": 70,
+      "read_scope": "full body"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/package.json",
+      "sha256": "ae2274d2078a378387a82d99af3fd49d58232d62aa4c383d2511cff02bff2a63",
+      "bytes": 652,
+      "read_scope": "full JSON"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/apps/desktop/package.json",
+      "sha256": "c0e3ddd045e0ea7576a4cd01af86c4921bab7314e7b3d927b5eab11822e959fa",
+      "bytes": 1196,
+      "read_scope": "full JSON"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/package-lock.json",
+      "sha256": "0dd1616e1ef3c596d5cdaa8e56994f26127c20943bfde066f26c9f924c65d732",
+      "bytes": 127558,
+      "read_scope": "existence and hash only; no dependency install"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/core/solver/frame_kernel/tests/retained_k4/gen_k4_vectors.py",
+      "sha256": "8c8f22aa8492736624045f866f5f8b47e9b3ee4639e1d038e02fa2425b6c7aa7",
+      "bytes": 207630,
+      "read_scope": "lines 1-160 read; AST parsed only PINNED mapping, not imported/executed"
+    },
+    {
+      "origin": "repository working tree",
+      "path": ".github/workflows/piping-desktop-e2e.yml",
+      "sha256": "6d38e7420cf6a38eb2a58b5da422b82c5a141c7272aab27c3d4ed3aee6316338",
+      "bytes": 9237,
+      "read_scope": "lines 155-205 numerical CI sparse checkout"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/alloc.rs",
+      "sha256": "0bb07a2346d0fedf9411ec9e93ab427b4fc4eafbb9de01c412067e3fbe7e4ba0",
+      "bytes": 7487,
+      "read_scope": "lines 1-145 allocator/backstop model"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs",
+      "sha256": "42d82fbfb3e21c11c647f6b2f83aaa21ee6ded6617601f14790e1c282f60b77d",
+      "bytes": 40216,
+      "read_scope": "search matches and lines 480-550 cap requirement"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/RETURN.md",
+      "sha256": "891476c053a5cfbbf11858a9f8a76078b7cb7762c378e79bf72bb4b851f34e5f",
+      "bytes": 30653,
+      "read_scope": "bounded search for raw gate provenance; no full return review"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/INDEX.txt",
+      "sha256": "202e80e413cea02235b74090b42d4cca07c67810a386bff7cd74f2d2dc18e742",
+      "bytes": 1963,
+      "read_scope": "full body"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/part1/SUMMARY.txt",
+      "sha256": "d06a4ec0ca6f336ea580e534ceade605037223fd0223aaf753e052065976fd34",
+      "bytes": 2990,
+      "read_scope": "full body"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/uncommitted_sha256.txt",
+      "sha256": "56ce7075535f4e6a597b6fb9664face38ce7961bf4acb4b3db7c28dd53d2fe14",
+      "bytes": 851,
+      "read_scope": "full body"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/M03_SKEW_PIN_MERGE/dec025/dec025_mac.sh.txt",
+      "sha256": "9e34865b8a3fc49bbbb45bcbd457d1a4be76bd2aec7cac764662831e11afd133",
+      "bytes": 1397,
+      "read_scope": "full body; not executed"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/ROOT_HOST_OBSERVATION.json",
+      "sha256": "052c7101f0cca323aeb234c012db37b8b5fc127a74d0128e8661a16dd3246474",
+      "bytes": 919,
+      "read_scope": "full JSON; supplied ROOT evidence, not this TASK execution"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/RECORD.md",
+      "sha256": "791da60a6a1960090dbcc61b1cacb2eae44b9c34d30cb66b90b6dda5637d8d85",
+      "bytes": 9793,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/SHA256SUMS",
+      "sha256": "a36e9512bb64a30696ad22e89c5e8589147d4549ab021b9aab94cf41d6d00866",
+      "bytes": 1915,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/meta.txt",
+      "sha256": "cff65c6f6a765d7982666467ca29976386b3d9f815a0cb17870fca3fd13bf6b3",
+      "bytes": 170,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/suites.log",
+      "sha256": "533efda5aff65e161fdc6e69fc690e68f0d0137e40ee2030c706f022498d06dc",
+      "bytes": 2819,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/suites_vs_baseline.txt",
+      "sha256": "dff7becef02d83436da07c27a3183ce0cb74daae88ccbcda1c306f31e0d52f24",
+      "bytes": 1261,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/sweep_json_original_sha256.txt",
+      "sha256": "7ce7df7f8d65b1628cc9923434f6dcf70e70d3d2e678619a4930caad582047bc",
+      "bytes": 65,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/RECORD.md",
+      "sha256": "5b5edf9340ef2eaee22b5c6d308fd679cfa3cfc31497adb24891909de22942de",
+      "bytes": 6310,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/SHA256SUMS",
+      "sha256": "9a625dd3882600ea79171ad94a5f31f294dcab3ef76af76b49a8dc588ce37fa8",
+      "bytes": 1786,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/dec025/meta.txt",
+      "sha256": "f54145bb065aaf228b86ea0c27ca41ae130a5e6c9712612f1e31967a4c2846ce",
+      "bytes": 170,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/dec025/suites.log",
+      "sha256": "35569179d5210cfdbb5f2e6f13b69d03ceb8ffdc97a44302a923ef5916d76616",
+      "bytes": 2819,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/dec025/suites_vs_baseline.txt",
+      "sha256": "a65be18e7ebad177ebaa3bc3698b8ddfdba261484ba4b95852d5603c9f9aaeaa",
+      "bytes": 992,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/dec025/sweep_json_original_sha256.txt",
+      "sha256": "a61583a6c0337fb508b5cd909ae3dea580fde0930c672b25f9010b21d37a0f58",
+      "bytes": 65,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK_MERGE/RECORD.md",
+      "sha256": "2a339cfd4cf1e625191d34aff75e24d78179fb7920dce08243eb5cbb2d3b6e9d",
+      "bytes": 6452,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK_MERGE/SHA256SUMS",
+      "sha256": "b2d2d8ca9a6110759b57b217d9a726b503b512ab523feab9412c86700f789287",
+      "bytes": 1113,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK_MERGE/dec025/meta.txt",
+      "sha256": "cd6f33f85b9c8de88696dfb1ceb87f832a551081dd01d88b49b1eb440f66af7f",
+      "bytes": 170,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK_MERGE/dec025/suites.log",
+      "sha256": "417fc59f5a459d86a462fc4e6bba49a4532c01eff1a3bafe030726c0da3cfc86",
+      "bytes": 2904,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK_MERGE/dec025/suites_vs_baseline.txt",
+      "sha256": "a52876545a70f0d817d7c966f8e984529a110fe829039566086d5c61ffde9e2f",
+      "bytes": 1066,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK_MERGE/dec025/sweep_json_original_sha256.txt",
+      "sha256": "1afad327fb6006d09e0d9710b04f15c865cc28f7681ed9b72eff9171f01160ba",
+      "bytes": 65,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B_MERGE/RECORD.md",
+      "sha256": "ebdaae415b8a411a26f48e49200f4c217ce64c5d0517dd9de4fcf41f098e51a4",
+      "bytes": 8306,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B_MERGE/SHA256SUMS",
+      "sha256": "62813891c99234778b0cc82925230b8e7c6ea786af0132a3be8048232320ae28",
+      "bytes": 1113,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B_MERGE/dec025/meta.txt",
+      "sha256": "8ddc3ec9004609d32fc6a648203d8c3e568a956636e997732df7b67a86b3366e",
+      "bytes": 170,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B_MERGE/dec025/suites.log",
+      "sha256": "c58d25822ee6506bb583817331e7461e29e757de9cafaab8572d1f8c75ed5096",
+      "bytes": 2904,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B_MERGE/dec025/suites_vs_baseline.txt",
+      "sha256": "6e0814c4d30f04b5e53e5470d3d3cca9e37a627cbd723f581c91fbb4b9740493",
+      "bytes": 1032,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B_MERGE/dec025/sweep_json_original_sha256.txt",
+      "sha256": "e0427aac0e04839c5c281b7b19895f1918d25a31bfbc25c2c1894702d696d333",
+      "bytes": 65,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3_MERGE/RECORD.md",
+      "sha256": "563fb7324f3bb05843abd9441520d99e7366703c572769c552e4d6a07c8a00e7",
+      "bytes": 7891,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3_MERGE/SHA256SUMS",
+      "sha256": "d665c393b183c18ac469d13b56899be36dc1b40fc2f5b58b8171e0137150d960",
+      "bytes": 1113,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3_MERGE/dec025/meta.txt",
+      "sha256": "a158d95ea886d69676a02c899488a5bb7f2a055bee0a363e3d5e314cb5945e31",
+      "bytes": 170,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3_MERGE/dec025/suites.log",
+      "sha256": "72e08bff0ccb37b191f7dda7ccde94843155ce2b4ac287f1783065075153ed55",
+      "bytes": 2904,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3_MERGE/dec025/suites_vs_baseline.txt",
+      "sha256": "eaf77987194344ac81052966cc7c622c75774f77336beca3b6471205eaace170",
+      "bytes": 1148,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3_MERGE/dec025/sweep_json_original_sha256.txt",
+      "sha256": "e3c52b9f158a992b3bf76b259dc3eb4dc5919ffe7cb5375255141a216dac8448",
+      "bytes": 65,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2_MERGE/RECORD.md",
+      "sha256": "d946764e2c356420f6f9290af812f2d4fec2acde01c65b9f6ad5b13983058499",
+      "bytes": 7499,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2_MERGE/SHA256SUMS",
+      "sha256": "170392339fc66cb18ab0bbe6265ae3ae911ce0ee7ad41936385e58356daeba82",
+      "bytes": 1113,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2_MERGE/dec025/meta.txt",
+      "sha256": "0e642914a20ca777cbd3a7f3713500fdb8c3aa65f25790e7386652b96e2ea9aa",
+      "bytes": 170,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2_MERGE/dec025/suites.log",
+      "sha256": "df8e71008cdfd67e07d289b770be9cf8e72e88917049e95fc2094973348546d7",
+      "bytes": 2904,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2_MERGE/dec025/suites_vs_baseline.txt",
+      "sha256": "f9934b8d3f73280952eb56f73c9a5d6bc65f048f10b4125cf8f54b7523d2cb36",
+      "bytes": 1027,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2_MERGE/dec025/sweep_json_original_sha256.txt",
+      "sha256": "9aacdd0beddc98249dca20b52aa80f8aa714d7e985b0ff03f39ab03af065a4db",
+      "bytes": 65,
+      "read_scope": "bounded metadata/recovery inspection; complete file hashed; manifest targets mechanically verified"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/core/solver/frame_kernel/tests/retained_wide_k3/gen_wide_k3_vectors.py",
+      "sha256": "ca48d1bd65540eb3da7f30acbbdd4fa553fe03fed432f2b18afd960e2ba4da29",
+      "bytes": 38703,
+      "read_scope": "complete bytes hashed against K4 pinned digest only; no execution"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/REFERENCES/references.py",
+      "sha256": "80d473a7351e92a2a903d233b9e633aac794aeff07f3ac41e40d25a0d94fc8a8",
+      "bytes": 156914,
+      "read_scope": "complete bytes hashed against K4 pinned digest only; no execution"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/REFERENCES/references.json",
+      "sha256": "7b176dbbf2296be02d8bca19c698ee56d0d5753751150a9175e0d3ad4cf89cc9",
+      "bytes": 5831847,
+      "read_scope": "complete bytes hashed against K4 pinned digest only; no execution"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/DESIGN_NUMERICS/_run_records/floor_kinds.json",
+      "sha256": "8326561530598e1f6b69d9f174b70946e52800373b5ecab48864ae174087ae78",
+      "bytes": 25705,
+      "read_scope": "complete bytes hashed against K4 pinned digest only; no execution"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/core/solver/nonlinear_integration/src/structural_adapter/kd5_models.rs",
+      "sha256": "17a4680c83ff3e940a7dcfd908ef334c8b5a53427b6ff388dafb5888477dca23",
+      "bytes": 18337,
+      "read_scope": "complete bytes hashed against K4 pinned digest only; no execution"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/core/solver/nonlinear_integration/src/structural_adapter/k2b_models.rs",
+      "sha256": "c23eedd273ebacd4d3d324bb24e72cbe766b33d2768c8808e5f9d51674c63090",
+      "bytes": 65194,
+      "read_scope": "complete bytes hashed against K4 pinned digest only; no execution"
+    },
+    {
+      "origin": "repository working tree",
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_integrity/fixtures.json",
+      "sha256": "c061d73481d2ad137f7cef988475721681131789ec222e3e93c5ed3836b2910e",
+      "bytes": 354315,
+      "read_scope": "complete bytes hashed against K4 pinned digest only; no execution"
+    }
+  ],
+  "closure_note": "No additional host probes after manager directions. Only output clarity/portability/provisioning changes and local packet integrity checks."
+}

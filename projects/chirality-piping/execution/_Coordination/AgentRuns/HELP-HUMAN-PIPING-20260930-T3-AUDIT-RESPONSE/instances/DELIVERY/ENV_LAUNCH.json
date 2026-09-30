@@ -1,0 +1,31 @@
+{
+  "record_kind": "actual_native_delegation",
+  "parent": "/root/delivery_manager",
+  "parent_role": "WORKING_ITEMS / Agent 1",
+  "root": "/root",
+  "child": "/root/delivery_manager/env_evidence",
+  "child_role": "TASK / Type 2",
+  "mechanism": "collaboration.spawn_agent",
+  "fork_turns": "none",
+  "model_override": null,
+  "actual_model_identity": "not exposed by launch response; inherited configured model",
+  "brief": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/ENV_EVIDENCE_BRIEF.md",
+  "brief_sha256": "8f3fa504c19e56f5b791c71ac86cfebbc6bce7935225af43b6dc49aeee6ee947",
+  "basis_head": "86bb36d6fb88e7699df595bce1d6a31f5fbd6be5",
+  "launch_confirmed_by_tool": true,
+  "active_TASK_slots_granted": 1,
+  "active_TASK_slots_used": 1,
+  "fence_enforcement": "Prompt-only scope; shared filesystem and host sandbox are not per-agent OS separation",
+  "native_addenda": [
+    {
+      "from": "ROOT /root",
+      "forwarded_to_child": true,
+      "content": "Set RUSTUP_AUTO_INSTALL=0 even for version probes. Guard uses explicit response-owned PGID registry with PID/start identity and separate sessions; never substring kills. Snapshot memory readings; no activation/kills."
+    },
+    {
+      "from": "ROOT /root",
+      "forwarded_to_child": true,
+      "content": "Approved read-only host check outside default sandbox succeeded: hw.memsize 17179869184, logicalcpu 8, swap total 4096.00M/used 3118.19M/free 977.81M. Own-shell ps exposes PID/PPID/PGID/RSS; time -l exposes max RSS and peak footprint. This is ROOT supplied evidence, not ENV execution. Existing swap requires baseline/delta and pressure monitoring; no heavy grant."
+    }
+  ]
+}

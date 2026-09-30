@@ -1,0 +1,121 @@
+{
+  "utc": "2026-09-30T16:27:50.332113+00:00",
+  "python_executable": "<PYTHON_PREFIX>/bin/python3",
+  "python_version": "3.13.7",
+  "prefix": "<PYTHON_PREFIX>",
+  "base_prefix": "<PYTHON_PREFIX>",
+  "active_venv": false,
+  "relevant_packages_metadata_only": {
+    "pytest": "9.0.2",
+    "pytest-xdist": "3.8.0",
+    "numpy": "2.4.2",
+    "scipy": null,
+    "mpmath": "1.3.0",
+    "sympy": "1.14.0",
+    "jsonschema": "4.26.0",
+    "pydantic": "2.12.5",
+    "pip": "26.0.1",
+    "setuptools": "80.9.0"
+  },
+  "command_paths": {
+    "python3": "<PYTHON_PREFIX>/bin/python3",
+    "python": null,
+    "node": "<NODE_PREFIX>/bin/node",
+    "npm": "<NODE_PREFIX>/bin/npm",
+    "cargo": "<USER_HOME>/.cargo/bin/cargo",
+    "rustc": "<USER_HOME>/.cargo/bin/rustc",
+    "rustup": "<USER_HOME>/.cargo/bin/rustup",
+    "clang": "/usr/bin/clang",
+    "cc": "/usr/bin/cc",
+    "cmake": null,
+    "make": "/usr/bin/make",
+    "ninja": null,
+    "pkg-config": null,
+    "memory_pressure": "/usr/bin/memory_pressure",
+    "vm_stat": "/usr/bin/vm_stat",
+    "sysctl": "/usr/sbin/sysctl",
+    "ps": "/bin/ps",
+    "pgrep": "/usr/bin/pgrep",
+    "df": "/bin/df",
+    "xcrun": "/usr/bin/xcrun"
+  },
+  "path_checks": [
+    {
+      "path": "projects/chirality-piping/.venv",
+      "exists": false,
+      "is_dir": false
+    },
+    {
+      "path": "projects/chirality-piping/venv",
+      "exists": false,
+      "is_dir": false
+    },
+    {
+      "path": "projects/chirality-piping/node_modules",
+      "exists": false,
+      "is_dir": false
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/node_modules",
+      "exists": false,
+      "is_dir": false
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/target",
+      "exists": false,
+      "is_dir": false
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/target",
+      "exists": false,
+      "is_dir": false
+    },
+    {
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_robustness/target",
+      "exists": false,
+      "is_dir": false
+    },
+    {
+      "path": ".claude/t3",
+      "exists": false,
+      "is_dir": false
+    },
+    {
+      "path": ".claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3",
+      "exists": false,
+      "is_dir": false
+    },
+    {
+      "path": ".claude/worktrees/swbpipe-control-layer-8a41be/projects/chirality-piping/.venv",
+      "exists": false,
+      "is_dir": false
+    },
+    {
+      "path": ".venv",
+      "exists": false,
+      "is_dir": false
+    }
+  ],
+  "scope": "Exact project-owned runtime paths only; no whole-home or other-worktree scan.",
+  "supplemental_package_metadata": {
+    "coverage": {
+      "installed": "7.15.0",
+      "required": "7.15.3",
+      "match": false
+    },
+    "pyyaml": {
+      "installed": "6.0.3",
+      "required": "6.0.3",
+      "match": true
+    }
+  },
+  "path_aliases": {
+    "<REPO_ROOT>": "root derived by git rev-parse --show-toplevel",
+    "<USER_HOME>": "current user home; exact local expansion intentionally omitted",
+    "<PYTHON_PREFIX>": "observed system Python 3.13 installation prefix",
+    "<NODE_PREFIX>": "observed Node/npm installation prefix",
+    "<CLT_ROOT>": "observed Apple command-line-tools installation root",
+    "<DATA_VOLUME>": "shared data volume containing checkout and temporary storage",
+    "<TEMP_ROOT>": "system temporary root used by df probe"
+  }
+}

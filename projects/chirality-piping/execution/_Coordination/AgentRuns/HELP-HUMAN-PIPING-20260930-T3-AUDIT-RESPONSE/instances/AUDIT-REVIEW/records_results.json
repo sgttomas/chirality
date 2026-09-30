@@ -1,0 +1,74 @@
+{
+  "audit_manifest_entries": 14,
+  "basis_inputs_verified": 61,
+  "frozen_added_files": 15,
+  "historical_entries": 9088,
+  "historical_manifests": 90,
+  "limits": [
+    "Stored GitHub metadata checked internally; live sampling recorded separately.",
+    "Hashes establish byte identity, not correctness or completeness of the original experiments."
+  ],
+  "merge_folders_without_suite_logs": [
+    "K4",
+    "KF1",
+    "VK",
+    "K6B",
+    "KF3",
+    "KF2"
+  ],
+  "merges": [
+    {
+      "first_parent_equals_target": true,
+      "second_parent_matches": true,
+      "slice": "K4"
+    },
+    {
+      "first_parent_equals_target": true,
+      "second_parent_matches": true,
+      "slice": "KF1"
+    },
+    {
+      "first_parent_equals_target": true,
+      "second_parent_matches": true,
+      "slice": "VK"
+    },
+    {
+      "first_parent_equals_target": true,
+      "second_parent_matches": true,
+      "slice": "K6B"
+    },
+    {
+      "first_parent_equals_target": false,
+      "second_parent_matches": true,
+      "slice": "KF3"
+    },
+    {
+      "first_parent_equals_target": true,
+      "second_parent_matches": true,
+      "slice": "KF2"
+    }
+  ],
+  "numerical_durations_seconds": [
+    1204.0,
+    1100.0,
+    640.0,
+    1050.0,
+    1101.0,
+    1227.0,
+    1335.0,
+    1135.0,
+    1287.0,
+    1286.0,
+    1437.0,
+    1252.0
+  ],
+  "parent_base_exceptions": [
+    "DESIGN_NUMERICS/_run_records/SHA256SUMS",
+    "DESIGN_STANDING/_run_records/SHA256SUMS",
+    "REFERENCES/_run_records/SHA256SUMS",
+    "REFERENCES_ELOAD/_run_records/SHA256SUMS",
+    "REVIEW/_run_records/SHA256SUMS"
+  ],
+  "stored_ci_runs_crosschecked": 30,
+  "stored_full_dispatch_plans": 6
+}

@@ -1,0 +1,1784 @@
+{
+  "utc": "2026-09-30T16:31:04.234623+00:00",
+  "basis_head": "86bb36d6fb88e7699df595bce1d6a31f5fbd6be5",
+  "scope": "Six final merge folders (including retained earlier subfolders for hash verification); KF2 B gate and retained reviewer JSONL; seven statically parsed K4 pins. No generator/gate execution or source edits.",
+  "merges": [
+    {
+      "slice": "K4",
+      "candidate_head": "5a46a6278af3c857a52ecb9be6880990493190f8",
+      "historical_recovery_root": "<M5_T3>/scratch/sweep_k4",
+      "raw_suite_logs_here": [],
+      "suite_manifest_count": 39,
+      "retained_summary_sha256": "533efda5aff65e161fdc6e69fc690e68f0d0137e40ee2030c706f022498d06dc",
+      "retained_comparison_sha256": "dff7becef02d83436da07c27a3183ce0cb74daae88ccbcda1c306f31e0d52f24",
+      "original_unsanitized_sweep_json_sha256": "9aabdee58f688eed9f0afd11f848b7761072fd75da85943c8dbf9526620daa12",
+      "sanitized_sweep_files": [
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/SWEEP_20260929T154941Z_5a46a6278af3.json",
+          "bytes": 2310,
+          "sha256": "27460a639af9623d1de4308ca0e48e314a0a2abaee0d9fcf5787119434608ac8"
+        }
+      ],
+      "original_suite_hashes": "No individual original suites/*.log hashes found in inspected merge manifests; do not substitute sanitized summary hashes.",
+      "files": [
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/RECORD.md",
+          "bytes": 9793,
+          "sha256": "791da60a6a1960090dbcc61b1cacb2eae44b9c34d30cb66b90b6dda5637d8d85"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/SHA256SUMS",
+          "bytes": 1915,
+          "sha256": "a36e9512bb64a30696ad22e89c5e8589147d4549ab021b9aab94cf41d6d00866"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/SWEEP_20260929T154941Z_5a46a6278af3.json",
+          "bytes": 2310,
+          "sha256": "27460a639af9623d1de4308ca0e48e314a0a2abaee0d9fcf5787119434608ac8"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/desktop_production_build.log",
+          "bytes": 2079,
+          "sha256": "b8ad07709bf09a6dcf6f10fecef649ef700bf96ef91d6cb201ac02f407b24ce2"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/desktop_vitest.log",
+          "bytes": 1401196,
+          "sha256": "0ce78ecafd0f252637aac9ba4e8325ec123d5277f43f3838eb7fc530d4122dcc"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/desktop_vitest_build_wasm.log",
+          "bytes": 860,
+          "sha256": "85d626b89005643cf5fd06144ba28dd8ce88d74d1df08708270e1398eeba2f56"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/earlier_a5fa0eaf7/SWEEP_20260929T152332Z_a5fa0eaf7c26.json",
+          "bytes": 2310,
+          "sha256": "12f33352c8ee5e073237bbc53cd8a7ef4fa805da0473e811ab853db6b6f825ec"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/earlier_a5fa0eaf7/first_invocation_dirty_tree/sweep.log",
+          "bytes": 107306,
+          "sha256": "482d690bbb5331f1c1979ae50a1fcb2aa71720e2b5b00233bab19e6e2600b4dd"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/earlier_a5fa0eaf7/meta.txt",
+          "bytes": 219,
+          "sha256": "ff4de39142a2c4a92e7203af5d1076eaa9105b245cf91f76186fe6754cf457c4"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/earlier_a5fa0eaf7/suites_vs_baseline.txt",
+          "bytes": 1113,
+          "sha256": "133bbbfc07b958d03a0cfe9ba7d30d50c72ee17823ba69e2fc75517d49d45c9d"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/earlier_a5fa0eaf7/surfaces.txt",
+          "bytes": 339,
+          "sha256": "8fc75fd8ad56c0246c966200ad80ee317d0c39657e09231304d48fa4c8017c2f"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/earlier_a5fa0eaf7/sweep.log",
+          "bytes": 99835,
+          "sha256": "99ea2cbeaf17c489fcc5a454899a85b5c4ec56aeccb1f119abaed6f0012d06fe"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/earlier_a5fa0eaf7/sweep_json_original_sha256.txt",
+          "bytes": 65,
+          "sha256": "e45adaa26a035319a46286d05c269276bd23553961191997ee424bda37021d62"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/meta.txt",
+          "bytes": 170,
+          "sha256": "cff65c6f6a765d7982666467ca29976386b3d9f815a0cb17870fca3fd13bf6b3"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/python_pytest.log",
+          "bytes": 3653,
+          "sha256": "53cbd6b92d12522bece3b1ee3ca3a25766e8a0d72418ebc391aacf67e968dbeb"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/suites.log",
+          "bytes": 2819,
+          "sha256": "533efda5aff65e161fdc6e69fc690e68f0d0137e40ee2030c706f022498d06dc"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/suites_vs_baseline.txt",
+          "bytes": 1261,
+          "sha256": "dff7becef02d83436da07c27a3183ce0cb74daae88ccbcda1c306f31e0d52f24"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/surfaces.txt",
+          "bytes": 339,
+          "sha256": "1a27839bcd0553eed5faee4cb5067ae78dd168320cc2d01ac106f1b9a91df2cc"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/sweep.log",
+          "bytes": 99835,
+          "sha256": "5aab9babaa85542087a724733ecfb9b6fe951ee57ed8763eb4f88cb55e8fae40"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/dec025/sweep_json_original_sha256.txt",
+          "bytes": 65,
+          "sha256": "7ce7df7f8d65b1628cc9923434f6dcf70e70d3d2e678619a4930caad582047bc"
+        }
+      ],
+      "manifest_verification": {
+        "manifest": {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE/SHA256SUMS",
+          "bytes": 1915,
+          "sha256": "a36e9512bb64a30696ad22e89c5e8589147d4549ab021b9aab94cf41d6d00866"
+        },
+        "base": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K4_MERGE",
+        "entries": 19,
+        "all_match": true,
+        "results": [
+          {
+            "relative_path": "RECORD.md",
+            "expected_sha256": "791da60a6a1960090dbcc61b1cacb2eae44b9c34d30cb66b90b6dda5637d8d85",
+            "actual_sha256": "791da60a6a1960090dbcc61b1cacb2eae44b9c34d30cb66b90b6dda5637d8d85",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/SWEEP_20260929T154941Z_5a46a6278af3.json",
+            "expected_sha256": "27460a639af9623d1de4308ca0e48e314a0a2abaee0d9fcf5787119434608ac8",
+            "actual_sha256": "27460a639af9623d1de4308ca0e48e314a0a2abaee0d9fcf5787119434608ac8",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/desktop_production_build.log",
+            "expected_sha256": "b8ad07709bf09a6dcf6f10fecef649ef700bf96ef91d6cb201ac02f407b24ce2",
+            "actual_sha256": "b8ad07709bf09a6dcf6f10fecef649ef700bf96ef91d6cb201ac02f407b24ce2",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/desktop_vitest.log",
+            "expected_sha256": "0ce78ecafd0f252637aac9ba4e8325ec123d5277f43f3838eb7fc530d4122dcc",
+            "actual_sha256": "0ce78ecafd0f252637aac9ba4e8325ec123d5277f43f3838eb7fc530d4122dcc",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/desktop_vitest_build_wasm.log",
+            "expected_sha256": "85d626b89005643cf5fd06144ba28dd8ce88d74d1df08708270e1398eeba2f56",
+            "actual_sha256": "85d626b89005643cf5fd06144ba28dd8ce88d74d1df08708270e1398eeba2f56",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/earlier_a5fa0eaf7/SWEEP_20260929T152332Z_a5fa0eaf7c26.json",
+            "expected_sha256": "12f33352c8ee5e073237bbc53cd8a7ef4fa805da0473e811ab853db6b6f825ec",
+            "actual_sha256": "12f33352c8ee5e073237bbc53cd8a7ef4fa805da0473e811ab853db6b6f825ec",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/earlier_a5fa0eaf7/first_invocation_dirty_tree/sweep.log",
+            "expected_sha256": "482d690bbb5331f1c1979ae50a1fcb2aa71720e2b5b00233bab19e6e2600b4dd",
+            "actual_sha256": "482d690bbb5331f1c1979ae50a1fcb2aa71720e2b5b00233bab19e6e2600b4dd",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/earlier_a5fa0eaf7/meta.txt",
+            "expected_sha256": "ff4de39142a2c4a92e7203af5d1076eaa9105b245cf91f76186fe6754cf457c4",
+            "actual_sha256": "ff4de39142a2c4a92e7203af5d1076eaa9105b245cf91f76186fe6754cf457c4",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/earlier_a5fa0eaf7/suites_vs_baseline.txt",
+            "expected_sha256": "133bbbfc07b958d03a0cfe9ba7d30d50c72ee17823ba69e2fc75517d49d45c9d",
+            "actual_sha256": "133bbbfc07b958d03a0cfe9ba7d30d50c72ee17823ba69e2fc75517d49d45c9d",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/earlier_a5fa0eaf7/surfaces.txt",
+            "expected_sha256": "8fc75fd8ad56c0246c966200ad80ee317d0c39657e09231304d48fa4c8017c2f",
+            "actual_sha256": "8fc75fd8ad56c0246c966200ad80ee317d0c39657e09231304d48fa4c8017c2f",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/earlier_a5fa0eaf7/sweep.log",
+            "expected_sha256": "99ea2cbeaf17c489fcc5a454899a85b5c4ec56aeccb1f119abaed6f0012d06fe",
+            "actual_sha256": "99ea2cbeaf17c489fcc5a454899a85b5c4ec56aeccb1f119abaed6f0012d06fe",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/earlier_a5fa0eaf7/sweep_json_original_sha256.txt",
+            "expected_sha256": "e45adaa26a035319a46286d05c269276bd23553961191997ee424bda37021d62",
+            "actual_sha256": "e45adaa26a035319a46286d05c269276bd23553961191997ee424bda37021d62",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/meta.txt",
+            "expected_sha256": "cff65c6f6a765d7982666467ca29976386b3d9f815a0cb17870fca3fd13bf6b3",
+            "actual_sha256": "cff65c6f6a765d7982666467ca29976386b3d9f815a0cb17870fca3fd13bf6b3",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/python_pytest.log",
+            "expected_sha256": "53cbd6b92d12522bece3b1ee3ca3a25766e8a0d72418ebc391aacf67e968dbeb",
+            "actual_sha256": "53cbd6b92d12522bece3b1ee3ca3a25766e8a0d72418ebc391aacf67e968dbeb",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/suites.log",
+            "expected_sha256": "533efda5aff65e161fdc6e69fc690e68f0d0137e40ee2030c706f022498d06dc",
+            "actual_sha256": "533efda5aff65e161fdc6e69fc690e68f0d0137e40ee2030c706f022498d06dc",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/suites_vs_baseline.txt",
+            "expected_sha256": "dff7becef02d83436da07c27a3183ce0cb74daae88ccbcda1c306f31e0d52f24",
+            "actual_sha256": "dff7becef02d83436da07c27a3183ce0cb74daae88ccbcda1c306f31e0d52f24",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/surfaces.txt",
+            "expected_sha256": "1a27839bcd0553eed5faee4cb5067ae78dd168320cc2d01ac106f1b9a91df2cc",
+            "actual_sha256": "1a27839bcd0553eed5faee4cb5067ae78dd168320cc2d01ac106f1b9a91df2cc",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/sweep.log",
+            "expected_sha256": "5aab9babaa85542087a724733ecfb9b6fe951ee57ed8763eb4f88cb55e8fae40",
+            "actual_sha256": "5aab9babaa85542087a724733ecfb9b6fe951ee57ed8763eb4f88cb55e8fae40",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/sweep_json_original_sha256.txt",
+            "expected_sha256": "7ce7df7f8d65b1628cc9923434f6dcf70e70d3d2e678619a4930caad582047bc",
+            "actual_sha256": "7ce7df7f8d65b1628cc9923434f6dcf70e70d3d2e678619a4930caad582047bc",
+            "matches": true
+          }
+        ]
+      }
+    },
+    {
+      "slice": "KF1",
+      "candidate_head": "66adfede42de817efb5e0090342c02e3e4382f21",
+      "historical_recovery_root": "<M5_T3>/scratch/sweep_kf1",
+      "raw_suite_logs_here": [],
+      "suite_manifest_count": 39,
+      "retained_summary_sha256": "35569179d5210cfdbb5f2e6f13b69d03ceb8ffdc97a44302a923ef5916d76616",
+      "retained_comparison_sha256": "a65be18e7ebad177ebaa3bc3698b8ddfdba261484ba4b95852d5603c9f9aaeaa",
+      "original_unsanitized_sweep_json_sha256": "99d5e121222a2b0f253db6cd2fa88e51343b61f1c55e58395c70c5ab50b6b44a",
+      "sanitized_sweep_files": [
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/dec025/SWEEP_20260929T205924Z_66adfede42de.json",
+          "bytes": 2310,
+          "sha256": "51b10d66147b9b28b55987ae4acce20bb43846ce9b7b8c1dc0d0edc02e42caf9"
+        }
+      ],
+      "original_suite_hashes": "No individual original suites/*.log hashes found in inspected merge manifests; do not substitute sanitized summary hashes.",
+      "files": [
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/RECORD.md",
+          "bytes": 6310,
+          "sha256": "5b5edf9340ef2eaee22b5c6d308fd679cfa3cfc31497adb24891909de22942de"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/SHA256SUMS",
+          "bytes": 1786,
+          "sha256": "9a625dd3882600ea79171ad94a5f31f294dcab3ef76af76b49a8dc588ce37fa8"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/dec025/SWEEP_20260929T205924Z_66adfede42de.json",
+          "bytes": 2310,
+          "sha256": "51b10d66147b9b28b55987ae4acce20bb43846ce9b7b8c1dc0d0edc02e42caf9"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/dec025/desktop_production_build.log",
+          "bytes": 2079,
+          "sha256": "f44c46bb3f5ad8c16e87f2f17a3ee85dfdf3b212e1de982e5da6a9aca1b5305f"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/dec025/desktop_vitest.log",
+          "bytes": 1401196,
+          "sha256": "ccea8bf2670faecae5392224b76ef2ad73d207ffc87a62238383232cc875d3a2"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/dec025/desktop_vitest_build_wasm.log",
+          "bytes": 858,
+          "sha256": "16ef2b8ebe398e9e66b9a7124dca3d9ec28f1c9719704eb81c3e8ea21e20fb89"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/dec025/earlier_1854911d1/SWEEP_20260929T202159Z_1854911d16d7.json",
+          "bytes": 2311,
+          "sha256": "30279a398819f0ab0d7c9c9def8af533a34b3ad2ceb6832931b9780a0afd3cdc"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/dec025/earlier_1854911d1/meta.txt",
+          "bytes": 170,
+          "sha256": "5ee402f974c8d3f758794ded606c509d35a9544001d7c8d94e79c15bcef975c8"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/dec025/earlier_1854911d1/suites_vs_baseline.txt",
+          "bytes": 1028,
+          "sha256": "74565a6400846b26c5873adaa4bb3d31bfaa9e3a536774ce7a7e9af32619d73d"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/dec025/earlier_1854911d1/surfaces.txt",
+          "bytes": 339,
+          "sha256": "1ed09447f9a118a244d709bc814cf5c0e8b8a49480b62f936d2ec4f3b3c8205a"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/dec025/earlier_1854911d1/sweep.log",
+          "bytes": 106956,
+          "sha256": "059c579ba042149afb2c4204ea7cd96c2136b4d676a26895f9e691d68c1103b6"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/dec025/earlier_1854911d1/sweep_json_original_sha256.txt",
+          "bytes": 65,
+          "sha256": "28697080d2265ec13152958ffe6beee231519a5fca50a0d19c5c10790338ec1b"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/dec025/meta.txt",
+          "bytes": 170,
+          "sha256": "f54145bb065aaf228b86ea0c27ca41ae130a5e6c9712612f1e31967a4c2846ce"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/dec025/python_pytest.log",
+          "bytes": 3653,
+          "sha256": "99d24cf890f4412bda704dc9fda3ae81aa7920aa5751336012bd7c0e9845052c"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/dec025/suites.log",
+          "bytes": 2819,
+          "sha256": "35569179d5210cfdbb5f2e6f13b69d03ceb8ffdc97a44302a923ef5916d76616"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/dec025/suites_vs_baseline.txt",
+          "bytes": 992,
+          "sha256": "a65be18e7ebad177ebaa3bc3698b8ddfdba261484ba4b95852d5603c9f9aaeaa"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/dec025/surfaces.txt",
+          "bytes": 339,
+          "sha256": "5c86c0319c5fc0143affd7aeeda7f9df1ef60e13f855be848fca723ad489f1bf"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/dec025/sweep.log",
+          "bytes": 99835,
+          "sha256": "adf2c4cbd8f0fe932db53a0a647d6936353a11d74452c2db2ee88572359f55b4"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/dec025/sweep_json_original_sha256.txt",
+          "bytes": 65,
+          "sha256": "a61583a6c0337fb508b5cd909ae3dea580fde0930c672b25f9010b21d37a0f58"
+        }
+      ],
+      "manifest_verification": {
+        "manifest": {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE/SHA256SUMS",
+          "bytes": 1786,
+          "sha256": "9a625dd3882600ea79171ad94a5f31f294dcab3ef76af76b49a8dc588ce37fa8"
+        },
+        "base": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF1_MERGE",
+        "entries": 18,
+        "all_match": true,
+        "results": [
+          {
+            "relative_path": "RECORD.md",
+            "expected_sha256": "5b5edf9340ef2eaee22b5c6d308fd679cfa3cfc31497adb24891909de22942de",
+            "actual_sha256": "5b5edf9340ef2eaee22b5c6d308fd679cfa3cfc31497adb24891909de22942de",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/SWEEP_20260929T205924Z_66adfede42de.json",
+            "expected_sha256": "51b10d66147b9b28b55987ae4acce20bb43846ce9b7b8c1dc0d0edc02e42caf9",
+            "actual_sha256": "51b10d66147b9b28b55987ae4acce20bb43846ce9b7b8c1dc0d0edc02e42caf9",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/desktop_production_build.log",
+            "expected_sha256": "f44c46bb3f5ad8c16e87f2f17a3ee85dfdf3b212e1de982e5da6a9aca1b5305f",
+            "actual_sha256": "f44c46bb3f5ad8c16e87f2f17a3ee85dfdf3b212e1de982e5da6a9aca1b5305f",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/desktop_vitest.log",
+            "expected_sha256": "ccea8bf2670faecae5392224b76ef2ad73d207ffc87a62238383232cc875d3a2",
+            "actual_sha256": "ccea8bf2670faecae5392224b76ef2ad73d207ffc87a62238383232cc875d3a2",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/desktop_vitest_build_wasm.log",
+            "expected_sha256": "16ef2b8ebe398e9e66b9a7124dca3d9ec28f1c9719704eb81c3e8ea21e20fb89",
+            "actual_sha256": "16ef2b8ebe398e9e66b9a7124dca3d9ec28f1c9719704eb81c3e8ea21e20fb89",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/earlier_1854911d1/SWEEP_20260929T202159Z_1854911d16d7.json",
+            "expected_sha256": "30279a398819f0ab0d7c9c9def8af533a34b3ad2ceb6832931b9780a0afd3cdc",
+            "actual_sha256": "30279a398819f0ab0d7c9c9def8af533a34b3ad2ceb6832931b9780a0afd3cdc",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/earlier_1854911d1/meta.txt",
+            "expected_sha256": "5ee402f974c8d3f758794ded606c509d35a9544001d7c8d94e79c15bcef975c8",
+            "actual_sha256": "5ee402f974c8d3f758794ded606c509d35a9544001d7c8d94e79c15bcef975c8",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/earlier_1854911d1/suites_vs_baseline.txt",
+            "expected_sha256": "74565a6400846b26c5873adaa4bb3d31bfaa9e3a536774ce7a7e9af32619d73d",
+            "actual_sha256": "74565a6400846b26c5873adaa4bb3d31bfaa9e3a536774ce7a7e9af32619d73d",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/earlier_1854911d1/surfaces.txt",
+            "expected_sha256": "1ed09447f9a118a244d709bc814cf5c0e8b8a49480b62f936d2ec4f3b3c8205a",
+            "actual_sha256": "1ed09447f9a118a244d709bc814cf5c0e8b8a49480b62f936d2ec4f3b3c8205a",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/earlier_1854911d1/sweep.log",
+            "expected_sha256": "059c579ba042149afb2c4204ea7cd96c2136b4d676a26895f9e691d68c1103b6",
+            "actual_sha256": "059c579ba042149afb2c4204ea7cd96c2136b4d676a26895f9e691d68c1103b6",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/earlier_1854911d1/sweep_json_original_sha256.txt",
+            "expected_sha256": "28697080d2265ec13152958ffe6beee231519a5fca50a0d19c5c10790338ec1b",
+            "actual_sha256": "28697080d2265ec13152958ffe6beee231519a5fca50a0d19c5c10790338ec1b",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/meta.txt",
+            "expected_sha256": "f54145bb065aaf228b86ea0c27ca41ae130a5e6c9712612f1e31967a4c2846ce",
+            "actual_sha256": "f54145bb065aaf228b86ea0c27ca41ae130a5e6c9712612f1e31967a4c2846ce",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/python_pytest.log",
+            "expected_sha256": "99d24cf890f4412bda704dc9fda3ae81aa7920aa5751336012bd7c0e9845052c",
+            "actual_sha256": "99d24cf890f4412bda704dc9fda3ae81aa7920aa5751336012bd7c0e9845052c",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/suites.log",
+            "expected_sha256": "35569179d5210cfdbb5f2e6f13b69d03ceb8ffdc97a44302a923ef5916d76616",
+            "actual_sha256": "35569179d5210cfdbb5f2e6f13b69d03ceb8ffdc97a44302a923ef5916d76616",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/suites_vs_baseline.txt",
+            "expected_sha256": "a65be18e7ebad177ebaa3bc3698b8ddfdba261484ba4b95852d5603c9f9aaeaa",
+            "actual_sha256": "a65be18e7ebad177ebaa3bc3698b8ddfdba261484ba4b95852d5603c9f9aaeaa",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/surfaces.txt",
+            "expected_sha256": "5c86c0319c5fc0143affd7aeeda7f9df1ef60e13f855be848fca723ad489f1bf",
+            "actual_sha256": "5c86c0319c5fc0143affd7aeeda7f9df1ef60e13f855be848fca723ad489f1bf",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/sweep.log",
+            "expected_sha256": "adf2c4cbd8f0fe932db53a0a647d6936353a11d74452c2db2ee88572359f55b4",
+            "actual_sha256": "adf2c4cbd8f0fe932db53a0a647d6936353a11d74452c2db2ee88572359f55b4",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/sweep_json_original_sha256.txt",
+            "expected_sha256": "a61583a6c0337fb508b5cd909ae3dea580fde0930c672b25f9010b21d37a0f58",
+            "actual_sha256": "a61583a6c0337fb508b5cd909ae3dea580fde0930c672b25f9010b21d37a0f58",
+            "matches": true
+          }
+        ]
+      }
+    },
+    {
+      "slice": "VK",
+      "candidate_head": "5f0d394262516e4053322730506cb88dfb36a2f0",
+      "historical_recovery_root": "<M5_T3>/scratch/sweep_vk",
+      "raw_suite_logs_here": [],
+      "suite_manifest_count": 40,
+      "retained_summary_sha256": "417fc59f5a459d86a462fc4e6bba49a4532c01eff1a3bafe030726c0da3cfc86",
+      "retained_comparison_sha256": "a52876545a70f0d817d7c966f8e984529a110fe829039566086d5c61ffde9e2f",
+      "original_unsanitized_sweep_json_sha256": "8a02119f9bccae13ebd59f18c43f6dc0c4302e23dd7fec7ac238d6899d3ac869",
+      "sanitized_sweep_files": [
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK_MERGE/dec025/SWEEP_20260929T234548Z_5f0d39426251.json",
+          "bytes": 2312,
+          "sha256": "06272767d890df30566cd3c1d3691f1da7b868db3920a42fa564c0a29254c9af"
+        }
+      ],
+      "original_suite_hashes": "No individual original suites/*.log hashes found in inspected merge manifests; do not substitute sanitized summary hashes.",
+      "files": [
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK_MERGE/RECORD.md",
+          "bytes": 6452,
+          "sha256": "2a339cfd4cf1e625191d34aff75e24d78179fb7920dce08243eb5cbb2d3b6e9d"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK_MERGE/SHA256SUMS",
+          "bytes": 1113,
+          "sha256": "b2d2d8ca9a6110759b57b217d9a726b503b512ab523feab9412c86700f789287"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK_MERGE/dec025/SWEEP_20260929T234548Z_5f0d39426251.json",
+          "bytes": 2312,
+          "sha256": "06272767d890df30566cd3c1d3691f1da7b868db3920a42fa564c0a29254c9af"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK_MERGE/dec025/desktop_production_build.log",
+          "bytes": 2079,
+          "sha256": "f44c46bb3f5ad8c16e87f2f17a3ee85dfdf3b212e1de982e5da6a9aca1b5305f"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK_MERGE/dec025/desktop_vitest.log",
+          "bytes": 1401196,
+          "sha256": "d9c6e42e14169835743c229295ae053580adfa56276209be6372427a7de70389"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK_MERGE/dec025/desktop_vitest_build_wasm.log",
+          "bytes": 860,
+          "sha256": "35f866ee262dee90632243c6352b5ace546f0c6a8f8dc46938a591d68e409957"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK_MERGE/dec025/meta.txt",
+          "bytes": 170,
+          "sha256": "cd6f33f85b9c8de88696dfb1ceb87f832a551081dd01d88b49b1eb440f66af7f"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK_MERGE/dec025/python_pytest.log",
+          "bytes": 3653,
+          "sha256": "bfdfa629b077f5458f2b9e01e93a91b49f028daecdbf9a2632ec05a29b86af62"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK_MERGE/dec025/suites.log",
+          "bytes": 2904,
+          "sha256": "417fc59f5a459d86a462fc4e6bba49a4532c01eff1a3bafe030726c0da3cfc86"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK_MERGE/dec025/suites_vs_baseline.txt",
+          "bytes": 1066,
+          "sha256": "a52876545a70f0d817d7c966f8e984529a110fe829039566086d5c61ffde9e2f"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK_MERGE/dec025/surfaces.txt",
+          "bytes": 339,
+          "sha256": "3c1669fcb92dc3f3e99ceca08f50a24e4276f3c10fed5309eb21e85090c49cd4"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK_MERGE/dec025/sweep.log",
+          "bytes": 107241,
+          "sha256": "3230f9d2e60f180fefbe5cbcd58897acffbfbebe4f9a6f804f1b0a612d95c9ec"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK_MERGE/dec025/sweep_json_original_sha256.txt",
+          "bytes": 65,
+          "sha256": "1afad327fb6006d09e0d9710b04f15c865cc28f7681ed9b72eff9171f01160ba"
+        }
+      ],
+      "manifest_verification": {
+        "manifest": {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK_MERGE/SHA256SUMS",
+          "bytes": 1113,
+          "sha256": "b2d2d8ca9a6110759b57b217d9a726b503b512ab523feab9412c86700f789287"
+        },
+        "base": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/VK_MERGE",
+        "entries": 12,
+        "all_match": true,
+        "results": [
+          {
+            "relative_path": "RECORD.md",
+            "expected_sha256": "2a339cfd4cf1e625191d34aff75e24d78179fb7920dce08243eb5cbb2d3b6e9d",
+            "actual_sha256": "2a339cfd4cf1e625191d34aff75e24d78179fb7920dce08243eb5cbb2d3b6e9d",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/SWEEP_20260929T234548Z_5f0d39426251.json",
+            "expected_sha256": "06272767d890df30566cd3c1d3691f1da7b868db3920a42fa564c0a29254c9af",
+            "actual_sha256": "06272767d890df30566cd3c1d3691f1da7b868db3920a42fa564c0a29254c9af",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/desktop_production_build.log",
+            "expected_sha256": "f44c46bb3f5ad8c16e87f2f17a3ee85dfdf3b212e1de982e5da6a9aca1b5305f",
+            "actual_sha256": "f44c46bb3f5ad8c16e87f2f17a3ee85dfdf3b212e1de982e5da6a9aca1b5305f",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/desktop_vitest.log",
+            "expected_sha256": "d9c6e42e14169835743c229295ae053580adfa56276209be6372427a7de70389",
+            "actual_sha256": "d9c6e42e14169835743c229295ae053580adfa56276209be6372427a7de70389",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/desktop_vitest_build_wasm.log",
+            "expected_sha256": "35f866ee262dee90632243c6352b5ace546f0c6a8f8dc46938a591d68e409957",
+            "actual_sha256": "35f866ee262dee90632243c6352b5ace546f0c6a8f8dc46938a591d68e409957",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/meta.txt",
+            "expected_sha256": "cd6f33f85b9c8de88696dfb1ceb87f832a551081dd01d88b49b1eb440f66af7f",
+            "actual_sha256": "cd6f33f85b9c8de88696dfb1ceb87f832a551081dd01d88b49b1eb440f66af7f",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/python_pytest.log",
+            "expected_sha256": "bfdfa629b077f5458f2b9e01e93a91b49f028daecdbf9a2632ec05a29b86af62",
+            "actual_sha256": "bfdfa629b077f5458f2b9e01e93a91b49f028daecdbf9a2632ec05a29b86af62",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/suites.log",
+            "expected_sha256": "417fc59f5a459d86a462fc4e6bba49a4532c01eff1a3bafe030726c0da3cfc86",
+            "actual_sha256": "417fc59f5a459d86a462fc4e6bba49a4532c01eff1a3bafe030726c0da3cfc86",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/suites_vs_baseline.txt",
+            "expected_sha256": "a52876545a70f0d817d7c966f8e984529a110fe829039566086d5c61ffde9e2f",
+            "actual_sha256": "a52876545a70f0d817d7c966f8e984529a110fe829039566086d5c61ffde9e2f",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/surfaces.txt",
+            "expected_sha256": "3c1669fcb92dc3f3e99ceca08f50a24e4276f3c10fed5309eb21e85090c49cd4",
+            "actual_sha256": "3c1669fcb92dc3f3e99ceca08f50a24e4276f3c10fed5309eb21e85090c49cd4",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/sweep.log",
+            "expected_sha256": "3230f9d2e60f180fefbe5cbcd58897acffbfbebe4f9a6f804f1b0a612d95c9ec",
+            "actual_sha256": "3230f9d2e60f180fefbe5cbcd58897acffbfbebe4f9a6f804f1b0a612d95c9ec",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/sweep_json_original_sha256.txt",
+            "expected_sha256": "1afad327fb6006d09e0d9710b04f15c865cc28f7681ed9b72eff9171f01160ba",
+            "actual_sha256": "1afad327fb6006d09e0d9710b04f15c865cc28f7681ed9b72eff9171f01160ba",
+            "matches": true
+          }
+        ]
+      }
+    },
+    {
+      "slice": "K6B",
+      "candidate_head": "597c81ba4b3dcf9a1154ef438a3c827054a57ad9",
+      "historical_recovery_root": "<M5_T3>/scratch/sweep_k6b",
+      "raw_suite_logs_here": [],
+      "suite_manifest_count": 40,
+      "retained_summary_sha256": "c58d25822ee6506bb583817331e7461e29e757de9cafaab8572d1f8c75ed5096",
+      "retained_comparison_sha256": "6e0814c4d30f04b5e53e5470d3d3cca9e37a627cbd723f581c91fbb4b9740493",
+      "original_unsanitized_sweep_json_sha256": "4cafcf7ace2d1c58a21a4ff64ebe7e83ba5b3a000a74069f69ecaf2b6ce8b04a",
+      "sanitized_sweep_files": [
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B_MERGE/dec025/SWEEP_20260930T003007Z_597c81ba4b3d.json",
+          "bytes": 2310,
+          "sha256": "4ac782406a308241d2902f3ee871f46fdc90d68263fbd8dd49d074afd5433d65"
+        }
+      ],
+      "original_suite_hashes": "No individual original suites/*.log hashes found in inspected merge manifests; do not substitute sanitized summary hashes.",
+      "files": [
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B_MERGE/RECORD.md",
+          "bytes": 8306,
+          "sha256": "ebdaae415b8a411a26f48e49200f4c217ce64c5d0517dd9de4fcf41f098e51a4"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B_MERGE/SHA256SUMS",
+          "bytes": 1113,
+          "sha256": "62813891c99234778b0cc82925230b8e7c6ea786af0132a3be8048232320ae28"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B_MERGE/dec025/SWEEP_20260930T003007Z_597c81ba4b3d.json",
+          "bytes": 2310,
+          "sha256": "4ac782406a308241d2902f3ee871f46fdc90d68263fbd8dd49d074afd5433d65"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B_MERGE/dec025/desktop_production_build.log",
+          "bytes": 2079,
+          "sha256": "645023ced8a4f2a36416b5ec02b5553c2da339c70a542df1abc5c780aee6e315"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B_MERGE/dec025/desktop_vitest.log",
+          "bytes": 1401196,
+          "sha256": "b094bfdd207f41da73d07883f82760c9921b18fba2287251f36475c97dbb54c4"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B_MERGE/dec025/desktop_vitest_build_wasm.log",
+          "bytes": 860,
+          "sha256": "9a8801c490838be8787fa4b35cadcb6b46590dfc3487bfba90be877defecdf60"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B_MERGE/dec025/meta.txt",
+          "bytes": 170,
+          "sha256": "8ddc3ec9004609d32fc6a648203d8c3e568a956636e997732df7b67a86b3366e"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B_MERGE/dec025/python_pytest.log",
+          "bytes": 3653,
+          "sha256": "a030b86432bd46d8097bc97b04e94929d3a814a7ff6c3ddb5a3f2f919f769d08"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B_MERGE/dec025/suites.log",
+          "bytes": 2904,
+          "sha256": "c58d25822ee6506bb583817331e7461e29e757de9cafaab8572d1f8c75ed5096"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B_MERGE/dec025/suites_vs_baseline.txt",
+          "bytes": 1032,
+          "sha256": "6e0814c4d30f04b5e53e5470d3d3cca9e37a627cbd723f581c91fbb4b9740493"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B_MERGE/dec025/surfaces.txt",
+          "bytes": 339,
+          "sha256": "25cbdf6b429aa50e0db98e9f6768c05692462971b0c0708abc35e8d57c69fa15"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B_MERGE/dec025/sweep.log",
+          "bytes": 100119,
+          "sha256": "052cbed6914b5c9b712def0c72d8e62af06d1a7c097ca793773fe0073a566f2e"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B_MERGE/dec025/sweep_json_original_sha256.txt",
+          "bytes": 65,
+          "sha256": "e0427aac0e04839c5c281b7b19895f1918d25a31bfbc25c2c1894702d696d333"
+        }
+      ],
+      "manifest_verification": {
+        "manifest": {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B_MERGE/SHA256SUMS",
+          "bytes": 1113,
+          "sha256": "62813891c99234778b0cc82925230b8e7c6ea786af0132a3be8048232320ae28"
+        },
+        "base": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/K6B_MERGE",
+        "entries": 12,
+        "all_match": true,
+        "results": [
+          {
+            "relative_path": "RECORD.md",
+            "expected_sha256": "ebdaae415b8a411a26f48e49200f4c217ce64c5d0517dd9de4fcf41f098e51a4",
+            "actual_sha256": "ebdaae415b8a411a26f48e49200f4c217ce64c5d0517dd9de4fcf41f098e51a4",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/SWEEP_20260930T003007Z_597c81ba4b3d.json",
+            "expected_sha256": "4ac782406a308241d2902f3ee871f46fdc90d68263fbd8dd49d074afd5433d65",
+            "actual_sha256": "4ac782406a308241d2902f3ee871f46fdc90d68263fbd8dd49d074afd5433d65",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/desktop_production_build.log",
+            "expected_sha256": "645023ced8a4f2a36416b5ec02b5553c2da339c70a542df1abc5c780aee6e315",
+            "actual_sha256": "645023ced8a4f2a36416b5ec02b5553c2da339c70a542df1abc5c780aee6e315",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/desktop_vitest.log",
+            "expected_sha256": "b094bfdd207f41da73d07883f82760c9921b18fba2287251f36475c97dbb54c4",
+            "actual_sha256": "b094bfdd207f41da73d07883f82760c9921b18fba2287251f36475c97dbb54c4",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/desktop_vitest_build_wasm.log",
+            "expected_sha256": "9a8801c490838be8787fa4b35cadcb6b46590dfc3487bfba90be877defecdf60",
+            "actual_sha256": "9a8801c490838be8787fa4b35cadcb6b46590dfc3487bfba90be877defecdf60",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/meta.txt",
+            "expected_sha256": "8ddc3ec9004609d32fc6a648203d8c3e568a956636e997732df7b67a86b3366e",
+            "actual_sha256": "8ddc3ec9004609d32fc6a648203d8c3e568a956636e997732df7b67a86b3366e",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/python_pytest.log",
+            "expected_sha256": "a030b86432bd46d8097bc97b04e94929d3a814a7ff6c3ddb5a3f2f919f769d08",
+            "actual_sha256": "a030b86432bd46d8097bc97b04e94929d3a814a7ff6c3ddb5a3f2f919f769d08",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/suites.log",
+            "expected_sha256": "c58d25822ee6506bb583817331e7461e29e757de9cafaab8572d1f8c75ed5096",
+            "actual_sha256": "c58d25822ee6506bb583817331e7461e29e757de9cafaab8572d1f8c75ed5096",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/suites_vs_baseline.txt",
+            "expected_sha256": "6e0814c4d30f04b5e53e5470d3d3cca9e37a627cbd723f581c91fbb4b9740493",
+            "actual_sha256": "6e0814c4d30f04b5e53e5470d3d3cca9e37a627cbd723f581c91fbb4b9740493",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/surfaces.txt",
+            "expected_sha256": "25cbdf6b429aa50e0db98e9f6768c05692462971b0c0708abc35e8d57c69fa15",
+            "actual_sha256": "25cbdf6b429aa50e0db98e9f6768c05692462971b0c0708abc35e8d57c69fa15",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/sweep.log",
+            "expected_sha256": "052cbed6914b5c9b712def0c72d8e62af06d1a7c097ca793773fe0073a566f2e",
+            "actual_sha256": "052cbed6914b5c9b712def0c72d8e62af06d1a7c097ca793773fe0073a566f2e",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/sweep_json_original_sha256.txt",
+            "expected_sha256": "e0427aac0e04839c5c281b7b19895f1918d25a31bfbc25c2c1894702d696d333",
+            "actual_sha256": "e0427aac0e04839c5c281b7b19895f1918d25a31bfbc25c2c1894702d696d333",
+            "matches": true
+          }
+        ]
+      }
+    },
+    {
+      "slice": "KF3",
+      "candidate_head": "aa83f67969c2f618034b856ba6e1fc13ae10762e",
+      "historical_recovery_root": "<M5_T3>/scratch/sweep_kf3",
+      "raw_suite_logs_here": [],
+      "suite_manifest_count": 40,
+      "retained_summary_sha256": "72e08bff0ccb37b191f7dda7ccde94843155ce2b4ac287f1783065075153ed55",
+      "retained_comparison_sha256": "eaf77987194344ac81052966cc7c622c75774f77336beca3b6471205eaace170",
+      "original_unsanitized_sweep_json_sha256": "b28a88cc58623c82d036950f0ba4c52c60348e425e650c94db92c461c3723904",
+      "sanitized_sweep_files": [
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3_MERGE/dec025/SWEEP_20260930T045228Z_aa83f67969c2.json",
+          "bytes": 2312,
+          "sha256": "d57ad02a8cda81716fdfd97cf315c5d8ea5aeabb49dea4ac7ad34175b1cd6904"
+        }
+      ],
+      "original_suite_hashes": "No individual original suites/*.log hashes found in inspected merge manifests; do not substitute sanitized summary hashes.",
+      "files": [
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3_MERGE/RECORD.md",
+          "bytes": 7891,
+          "sha256": "563fb7324f3bb05843abd9441520d99e7366703c572769c552e4d6a07c8a00e7"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3_MERGE/SHA256SUMS",
+          "bytes": 1113,
+          "sha256": "d665c393b183c18ac469d13b56899be36dc1b40fc2f5b58b8171e0137150d960"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3_MERGE/dec025/SWEEP_20260930T045228Z_aa83f67969c2.json",
+          "bytes": 2312,
+          "sha256": "d57ad02a8cda81716fdfd97cf315c5d8ea5aeabb49dea4ac7ad34175b1cd6904"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3_MERGE/dec025/desktop_production_build.log",
+          "bytes": 2079,
+          "sha256": "e338b8bbd5bc9ac263ac5dbc391899a1cf8ebc03fa68c9a663e1e18db21983f4"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3_MERGE/dec025/desktop_vitest.log",
+          "bytes": 1401196,
+          "sha256": "50437942c25d220ddd63623a27c8374d40ad2d3b7ee595474e104478b2a8c68a"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3_MERGE/dec025/desktop_vitest_build_wasm.log",
+          "bytes": 1069,
+          "sha256": "0e282d8fb37198b1878572fdc1c4a572b69dce11ce60ac264b24eb5c0c44befa"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3_MERGE/dec025/meta.txt",
+          "bytes": 170,
+          "sha256": "a158d95ea886d69676a02c899488a5bb7f2a055bee0a363e3d5e314cb5945e31"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3_MERGE/dec025/python_pytest.log",
+          "bytes": 3653,
+          "sha256": "1c7da1037d5e31fc0ab6057a969d15303fe1d3e5c52571f40d144a810ce16076"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3_MERGE/dec025/suites.log",
+          "bytes": 2904,
+          "sha256": "72e08bff0ccb37b191f7dda7ccde94843155ce2b4ac287f1783065075153ed55"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3_MERGE/dec025/suites_vs_baseline.txt",
+          "bytes": 1148,
+          "sha256": "eaf77987194344ac81052966cc7c622c75774f77336beca3b6471205eaace170"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3_MERGE/dec025/surfaces.txt",
+          "bytes": 339,
+          "sha256": "0972e9086702ff29184ed1ca7963e58445efa3acee772d722da7003ef9ac0e83"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3_MERGE/dec025/sweep.log",
+          "bytes": 107240,
+          "sha256": "005fbf962cd238db514c53370e75e409c598b56369c52fdd273b4d19c236619f"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3_MERGE/dec025/sweep_json_original_sha256.txt",
+          "bytes": 65,
+          "sha256": "e3c52b9f158a992b3bf76b259dc3eb4dc5919ffe7cb5375255141a216dac8448"
+        }
+      ],
+      "manifest_verification": {
+        "manifest": {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3_MERGE/SHA256SUMS",
+          "bytes": 1113,
+          "sha256": "d665c393b183c18ac469d13b56899be36dc1b40fc2f5b58b8171e0137150d960"
+        },
+        "base": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3_MERGE",
+        "entries": 12,
+        "all_match": true,
+        "results": [
+          {
+            "relative_path": "RECORD.md",
+            "expected_sha256": "563fb7324f3bb05843abd9441520d99e7366703c572769c552e4d6a07c8a00e7",
+            "actual_sha256": "563fb7324f3bb05843abd9441520d99e7366703c572769c552e4d6a07c8a00e7",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/SWEEP_20260930T045228Z_aa83f67969c2.json",
+            "expected_sha256": "d57ad02a8cda81716fdfd97cf315c5d8ea5aeabb49dea4ac7ad34175b1cd6904",
+            "actual_sha256": "d57ad02a8cda81716fdfd97cf315c5d8ea5aeabb49dea4ac7ad34175b1cd6904",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/desktop_production_build.log",
+            "expected_sha256": "e338b8bbd5bc9ac263ac5dbc391899a1cf8ebc03fa68c9a663e1e18db21983f4",
+            "actual_sha256": "e338b8bbd5bc9ac263ac5dbc391899a1cf8ebc03fa68c9a663e1e18db21983f4",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/desktop_vitest.log",
+            "expected_sha256": "50437942c25d220ddd63623a27c8374d40ad2d3b7ee595474e104478b2a8c68a",
+            "actual_sha256": "50437942c25d220ddd63623a27c8374d40ad2d3b7ee595474e104478b2a8c68a",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/desktop_vitest_build_wasm.log",
+            "expected_sha256": "0e282d8fb37198b1878572fdc1c4a572b69dce11ce60ac264b24eb5c0c44befa",
+            "actual_sha256": "0e282d8fb37198b1878572fdc1c4a572b69dce11ce60ac264b24eb5c0c44befa",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/meta.txt",
+            "expected_sha256": "a158d95ea886d69676a02c899488a5bb7f2a055bee0a363e3d5e314cb5945e31",
+            "actual_sha256": "a158d95ea886d69676a02c899488a5bb7f2a055bee0a363e3d5e314cb5945e31",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/python_pytest.log",
+            "expected_sha256": "1c7da1037d5e31fc0ab6057a969d15303fe1d3e5c52571f40d144a810ce16076",
+            "actual_sha256": "1c7da1037d5e31fc0ab6057a969d15303fe1d3e5c52571f40d144a810ce16076",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/suites.log",
+            "expected_sha256": "72e08bff0ccb37b191f7dda7ccde94843155ce2b4ac287f1783065075153ed55",
+            "actual_sha256": "72e08bff0ccb37b191f7dda7ccde94843155ce2b4ac287f1783065075153ed55",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/suites_vs_baseline.txt",
+            "expected_sha256": "eaf77987194344ac81052966cc7c622c75774f77336beca3b6471205eaace170",
+            "actual_sha256": "eaf77987194344ac81052966cc7c622c75774f77336beca3b6471205eaace170",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/surfaces.txt",
+            "expected_sha256": "0972e9086702ff29184ed1ca7963e58445efa3acee772d722da7003ef9ac0e83",
+            "actual_sha256": "0972e9086702ff29184ed1ca7963e58445efa3acee772d722da7003ef9ac0e83",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/sweep.log",
+            "expected_sha256": "005fbf962cd238db514c53370e75e409c598b56369c52fdd273b4d19c236619f",
+            "actual_sha256": "005fbf962cd238db514c53370e75e409c598b56369c52fdd273b4d19c236619f",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/sweep_json_original_sha256.txt",
+            "expected_sha256": "e3c52b9f158a992b3bf76b259dc3eb4dc5919ffe7cb5375255141a216dac8448",
+            "actual_sha256": "e3c52b9f158a992b3bf76b259dc3eb4dc5919ffe7cb5375255141a216dac8448",
+            "matches": true
+          }
+        ]
+      }
+    },
+    {
+      "slice": "KF2",
+      "candidate_head": "522167ac62f27ad999a4416d10b95f922ff8c665",
+      "historical_recovery_root": "<M5_T3>/scratch/sweep_kf2",
+      "raw_suite_logs_here": [],
+      "suite_manifest_count": 40,
+      "retained_summary_sha256": "df8e71008cdfd67e07d289b770be9cf8e72e88917049e95fc2094973348546d7",
+      "retained_comparison_sha256": "f9934b8d3f73280952eb56f73c9a5d6bc65f048f10b4125cf8f54b7523d2cb36",
+      "original_unsanitized_sweep_json_sha256": "9b4d80026c9b3e0aede1a3f14ca910dac396a21cf975a75677e5c0f541c3e20b",
+      "sanitized_sweep_files": [
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2_MERGE/dec025/SWEEP_20260930T053007Z_522167ac62f2.json",
+          "bytes": 2312,
+          "sha256": "47a711a7b2de2e04be3d559c5409d68e81b76bfada05855a37d157ef7ae9cde4"
+        }
+      ],
+      "original_suite_hashes": "No individual original suites/*.log hashes found in inspected merge manifests; do not substitute sanitized summary hashes.",
+      "files": [
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2_MERGE/RECORD.md",
+          "bytes": 7499,
+          "sha256": "d946764e2c356420f6f9290af812f2d4fec2acde01c65b9f6ad5b13983058499"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2_MERGE/SHA256SUMS",
+          "bytes": 1113,
+          "sha256": "170392339fc66cb18ab0bbe6265ae3ae911ce0ee7ad41936385e58356daeba82"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2_MERGE/dec025/SWEEP_20260930T053007Z_522167ac62f2.json",
+          "bytes": 2312,
+          "sha256": "47a711a7b2de2e04be3d559c5409d68e81b76bfada05855a37d157ef7ae9cde4"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2_MERGE/dec025/desktop_production_build.log",
+          "bytes": 2079,
+          "sha256": "731758771219c2ba19b52177e9e68d986c0c69eef019b26fe8c227808d642639"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2_MERGE/dec025/desktop_vitest.log",
+          "bytes": 1401196,
+          "sha256": "f4670b2c02b17dd12949fd41d17bed56cff9296f427fd98c63f026d8f64bc2e6"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2_MERGE/dec025/desktop_vitest_build_wasm.log",
+          "bytes": 860,
+          "sha256": "5d7cd51cdc9b2efc153304982b019aca691cc6bb23ed46a10c1ace0c8d04e71a"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2_MERGE/dec025/meta.txt",
+          "bytes": 170,
+          "sha256": "0e642914a20ca777cbd3a7f3713500fdb8c3aa65f25790e7386652b96e2ea9aa"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2_MERGE/dec025/python_pytest.log",
+          "bytes": 3653,
+          "sha256": "e77e8eb4f46b3e5b6c473ad392d679b8feb673b0ba467c2deefe748c4d5527d4"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2_MERGE/dec025/suites.log",
+          "bytes": 2904,
+          "sha256": "df8e71008cdfd67e07d289b770be9cf8e72e88917049e95fc2094973348546d7"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2_MERGE/dec025/suites_vs_baseline.txt",
+          "bytes": 1027,
+          "sha256": "f9934b8d3f73280952eb56f73c9a5d6bc65f048f10b4125cf8f54b7523d2cb36"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2_MERGE/dec025/surfaces.txt",
+          "bytes": 339,
+          "sha256": "ce87bee3dd0cbe20010f5c5bc923abafc32fd384244a339cfe7f058436eaea6d"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2_MERGE/dec025/sweep.log",
+          "bytes": 107239,
+          "sha256": "5c09485e10fceb9a5d17bbdf04f9ffec97623ed2859e7b09c6764aba348a3f9b"
+        },
+        {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2_MERGE/dec025/sweep_json_original_sha256.txt",
+          "bytes": 65,
+          "sha256": "9aacdd0beddc98249dca20b52aa80f8aa714d7e985b0ff03f39ab03af065a4db"
+        }
+      ],
+      "manifest_verification": {
+        "manifest": {
+          "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2_MERGE/SHA256SUMS",
+          "bytes": 1113,
+          "sha256": "170392339fc66cb18ab0bbe6265ae3ae911ce0ee7ad41936385e58356daeba82"
+        },
+        "base": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2_MERGE",
+        "entries": 12,
+        "all_match": true,
+        "results": [
+          {
+            "relative_path": "RECORD.md",
+            "expected_sha256": "d946764e2c356420f6f9290af812f2d4fec2acde01c65b9f6ad5b13983058499",
+            "actual_sha256": "d946764e2c356420f6f9290af812f2d4fec2acde01c65b9f6ad5b13983058499",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/SWEEP_20260930T053007Z_522167ac62f2.json",
+            "expected_sha256": "47a711a7b2de2e04be3d559c5409d68e81b76bfada05855a37d157ef7ae9cde4",
+            "actual_sha256": "47a711a7b2de2e04be3d559c5409d68e81b76bfada05855a37d157ef7ae9cde4",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/desktop_production_build.log",
+            "expected_sha256": "731758771219c2ba19b52177e9e68d986c0c69eef019b26fe8c227808d642639",
+            "actual_sha256": "731758771219c2ba19b52177e9e68d986c0c69eef019b26fe8c227808d642639",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/desktop_vitest.log",
+            "expected_sha256": "f4670b2c02b17dd12949fd41d17bed56cff9296f427fd98c63f026d8f64bc2e6",
+            "actual_sha256": "f4670b2c02b17dd12949fd41d17bed56cff9296f427fd98c63f026d8f64bc2e6",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/desktop_vitest_build_wasm.log",
+            "expected_sha256": "5d7cd51cdc9b2efc153304982b019aca691cc6bb23ed46a10c1ace0c8d04e71a",
+            "actual_sha256": "5d7cd51cdc9b2efc153304982b019aca691cc6bb23ed46a10c1ace0c8d04e71a",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/meta.txt",
+            "expected_sha256": "0e642914a20ca777cbd3a7f3713500fdb8c3aa65f25790e7386652b96e2ea9aa",
+            "actual_sha256": "0e642914a20ca777cbd3a7f3713500fdb8c3aa65f25790e7386652b96e2ea9aa",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/python_pytest.log",
+            "expected_sha256": "e77e8eb4f46b3e5b6c473ad392d679b8feb673b0ba467c2deefe748c4d5527d4",
+            "actual_sha256": "e77e8eb4f46b3e5b6c473ad392d679b8feb673b0ba467c2deefe748c4d5527d4",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/suites.log",
+            "expected_sha256": "df8e71008cdfd67e07d289b770be9cf8e72e88917049e95fc2094973348546d7",
+            "actual_sha256": "df8e71008cdfd67e07d289b770be9cf8e72e88917049e95fc2094973348546d7",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/suites_vs_baseline.txt",
+            "expected_sha256": "f9934b8d3f73280952eb56f73c9a5d6bc65f048f10b4125cf8f54b7523d2cb36",
+            "actual_sha256": "f9934b8d3f73280952eb56f73c9a5d6bc65f048f10b4125cf8f54b7523d2cb36",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/surfaces.txt",
+            "expected_sha256": "ce87bee3dd0cbe20010f5c5bc923abafc32fd384244a339cfe7f058436eaea6d",
+            "actual_sha256": "ce87bee3dd0cbe20010f5c5bc923abafc32fd384244a339cfe7f058436eaea6d",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/sweep.log",
+            "expected_sha256": "5c09485e10fceb9a5d17bbdf04f9ffec97623ed2859e7b09c6764aba348a3f9b",
+            "actual_sha256": "5c09485e10fceb9a5d17bbdf04f9ffec97623ed2859e7b09c6764aba348a3f9b",
+            "matches": true
+          },
+          {
+            "relative_path": "dec025/sweep_json_original_sha256.txt",
+            "expected_sha256": "9aacdd0beddc98249dca20b52aa80f8aa714d7e985b0ff03f39ab03af065a4db",
+            "actual_sha256": "9aacdd0beddc98249dca20b52aa80f8aa714d7e985b0ff03f39ab03af065a4db",
+            "matches": true
+          }
+        ]
+      }
+    }
+  ],
+  "kf2": {
+    "recorded_original_hashes_source": {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/uncommitted_sha256.txt",
+      "bytes": 851,
+      "sha256": "56ce7075535f4e6a597b6fb9664face38ce7961bf4acb4b3db7c28dd53d2fe14"
+    },
+    "originals_recorded_text": "Uncommitted gate part-1 files, kept in <wt>/scratch/i20/b/gate/ (too large to commit; indexed by part1/index_*.tsv):\npart1_base/runs.jsonl  c42981e541650578a60efe48cbf346360fedbb4507b3d02365b5f5abb78e9f68  605711611 bytes, 884 records\npart1_base/full/  818 files; sha256 of the sorted per-file sha256 list: a8fb70b932978b729d5897d41ef64e8d5c2b15eba2d2dbedfb5a65fed8dceb5b\npart1_base/envelopes/  818 files; list sha256: 32005949474219ce93cedae5020d4953bbfeba483ef33461fac15d9a44b6874f\npart1_cand/runs.jsonl  11dfe8296681280e0fd4163ee3195cc16ff0f78f3ce81dff82516a520bf2ef3f  605711700 bytes, 884 records\npart1_cand/full/  818 files; sha256 of the sorted per-file sha256 list: a8fb70b932978b729d5897d41ef64e8d5c2b15eba2d2dbedfb5a65fed8dceb5b\npart1_cand/envelopes/  818 files; list sha256: 32005949474219ce93cedae5020d4953bbfeba483ef33461fac15d9a44b6874f\n",
+    "gate_files": [
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/build_probe_base.log",
+        "bytes": 8134,
+        "sha256": "6a7ceb45e0f9c5e6fba424bbe15aed23008bd5f5c30b1c83d8c58452ae524a2e"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/build_probe_cand.log",
+        "bytes": 8134,
+        "sha256": "410565e19759a07cc26b8b02855c65fa45ccee99ed6beb933aebbf18feef0596"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/gen.log",
+        "bytes": 168,
+        "sha256": "5fdce41449980221ce09a966755ae025e4dd93b568f035e6c6d1c4a5883d0763"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/gen_out_sha256_regenerated.txt",
+        "bytes": 23190,
+        "sha256": "a7795da1160508eb557863fe72fe0479abcd2f98e1ece278d5ade47acfce1248"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/part1/SUMMARY.txt",
+        "bytes": 2990,
+        "sha256": "d06a4ec0ca6f336ea580e534ceade605037223fd0223aaf753e052065976fd34"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/part1/base_driver.log",
+        "bytes": 5846,
+        "sha256": "d29c6bce818628ddc0ca90af79965aa30b0d351890a5c210f8486284c84d58c2"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/part1/base_gate_check.log",
+        "bytes": 232,
+        "sha256": "ef30ef0396218280110b28ae179f71897e3cc5f38b9ffc9d0a3ca82fc1cf92a9"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/part1/base_host_samples.tsv",
+        "bytes": 3471,
+        "sha256": "8b77f6a0c1d67c733a87c5f33da2415b8c7b99e4909eb4079e6b8c8fcae6baa3"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/part1/base_schedule.tsv",
+        "bytes": 284922,
+        "sha256": "7d429fb664e88a5afad68cb137faa42d6e8954ac8c3b57e1205ddd4985d7d9d6"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/part1/cand_driver.log",
+        "bytes": 5884,
+        "sha256": "8c818c8aba7bba587d1a902f22ddc9f2f597ec35736fa77003650e2bc60dd258"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/part1/cand_gate_check.log",
+        "bytes": 232,
+        "sha256": "ef30ef0396218280110b28ae179f71897e3cc5f38b9ffc9d0a3ca82fc1cf92a9"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/part1/cand_host_samples.tsv",
+        "bytes": 3539,
+        "sha256": "ae3ccbd916b3c070a8fa834533bea96874aad3484e9188c64d587467ba92d803"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/part1/cand_schedule.tsv",
+        "bytes": 284931,
+        "sha256": "deeca66b8c766e63603748e2572bb8747e5d2d143cf938ef3ac48b3412b2ba94"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/part1/compare_part1.log",
+        "bytes": 448,
+        "sha256": "8fc378b2d2794609d61b609097d7871363fd22d1c4d8068f5e3462f13eb2f1e5"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/part1/index_base.tsv",
+        "bytes": 223840,
+        "sha256": "2ff44ac4e5067cce184d6abdc9ecae34746273bf0f4fb79a1859ab6c6a27b52c"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/part1/index_cand.tsv",
+        "bytes": 223840,
+        "sha256": "2ff44ac4e5067cce184d6abdc9ecae34746273bf0f4fb79a1859ab6c6a27b52c"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/part1/result_part1_base.json",
+        "bytes": 157944,
+        "sha256": "1eabeed2e81cda09a2ad0ed333cac30d1b4490b2f467185ee022648b73fad37c"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/part1/result_part1_cand.json",
+        "bytes": 157944,
+        "sha256": "5f273f2d78a3b5833df09c7c711ec853719d28b6a6452bed99dcb133c3eea688"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/part2/driver.log",
+        "bytes": 811,
+        "sha256": "08ae9e23b513863aaef949f8fe2ad4ea0191768a3a89e84f9c12da750030824a"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/part2/full/RF-LARGE-CHAIN-n01000-ROT__dense_scrutiny__captured.json",
+        "bytes": 83364,
+        "sha256": "68cf1929c6767787f831b4cb56cb2090b9e4597f062791542626809b361e1fc7"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/part2/full/RF-LARGE-CHAIN-n01000-ROT__dense_scrutiny__typed.json",
+        "bytes": 82961,
+        "sha256": "cb6112105d0a2521ae5ca5632193b70f9bb99ef63e18d3a50b4dd19363557150"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/part2/full/RF-LARGE-TREE-n01000-AX__dense_scrutiny__captured.json",
+        "bytes": 241603,
+        "sha256": "7a3d32b4570986266abf284f8fe1f64d884a46eb5b7d58207bca3316b8696f42"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/part2/full/RF-LARGE-TREE-n01000-AX__dense_scrutiny__typed.json",
+        "bytes": 241200,
+        "sha256": "9384c225dc88e5285ed194647ef5ae84dc163ca5f1ffda12d5e141cc883b68cb"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/part2/outcomes.txt",
+        "bytes": 2524,
+        "sha256": "007a795622d41fd0d8190f7b47f49ad7417e3cc4df509cf2b26ab88678b30b62"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/part2/runs.jsonl",
+        "bytes": 592845,
+        "sha256": "7bc5a7815505c076d07ea6fce267d2b0b14992cbc57999cead041b7939f9e68f"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/probe_base_Cargo.toml.txt",
+        "bytes": 475,
+        "sha256": "2eb871a59ddcba7febf135b90d3674494690168baadff4ab54d957a2c46fc4f6"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/probe_cand_Cargo.toml.txt",
+        "bytes": 475,
+        "sha256": "6a795ca2e3ba8f4bd1c299333c6aec71d6b6cb9f910a8fdaa1c4b15203ede7a4"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/probe_main.rs.txt",
+        "bytes": 8246,
+        "sha256": "cd1052f7a4ac4cb8f3a13b38c899081cb2cd39f099991944157226be6939f232"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/scripts/compare.py.txt",
+        "bytes": 17958,
+        "sha256": "1c91b6c687fa1009dbbc9b28b9ee241fcfbab220d020203d003513f686c4318c"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/scripts/compare_gate_kf2.py.txt",
+        "bytes": 5836,
+        "sha256": "08e6bf45ae2de60114cf3518ef0fafd8a41d0f4b9d6465cebb6c44edf98b2c17"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/scripts/gate_check.py.txt",
+        "bytes": 3582,
+        "sha256": "8ad89fca7641d3e1d947772c2b9e24e2bf43f40a6b7e4ab3130a40f12c6ee96b"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/scripts/gate_part2_cand.py.txt",
+        "bytes": 7486,
+        "sha256": "fff8b96c256061eeba9f467d68c968ba4edf830e368f9bee6f9d90148b250f5f"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/scripts/gate_run_base_full.py.txt",
+        "bytes": 11166,
+        "sha256": "8cf952aedb600c4812a6967c75474b932495603d20592b6540283f24c03718d6"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/scripts/gen.py.txt",
+        "bytes": 28035,
+        "sha256": "c515ec63f8828addb88e82aa92bc4c5c0060764046bf9cbd6a82dfcd06909b5b"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/scripts/run.py.txt",
+        "bytes": 4235,
+        "sha256": "8d9a32a34bc0602f5ba24b72c999068ca8e6ee2c770a1cbdbc217629983816f6"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/gate/uncommitted_sha256.txt",
+        "bytes": 851,
+        "sha256": "56ce7075535f4e6a597b6fb9664face38ce7961bf4acb4b3db7c28dd53d2fe14"
+      }
+    ],
+    "checkpoint_b_manifest_verification": {
+      "manifest": {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b/SHA256SUMS",
+        "bytes": 5239,
+        "sha256": "247459f7de8570ae65d5ab0f0dc8e51c5770465df52aeb0726da1403f15350f4"
+      },
+      "base": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF2/_run_records/b",
+      "entries": 54,
+      "all_match": true,
+      "results": [
+        {
+          "relative_path": "./INDEX.txt",
+          "expected_sha256": "202e80e413cea02235b74090b42d4cca07c67810a386bff7cd74f2d2dc18e742",
+          "actual_sha256": "202e80e413cea02235b74090b42d4cca07c67810a386bff7cd74f2d2dc18e742",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/build_probe_base.log",
+          "expected_sha256": "6a7ceb45e0f9c5e6fba424bbe15aed23008bd5f5c30b1c83d8c58452ae524a2e",
+          "actual_sha256": "6a7ceb45e0f9c5e6fba424bbe15aed23008bd5f5c30b1c83d8c58452ae524a2e",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/build_probe_cand.log",
+          "expected_sha256": "410565e19759a07cc26b8b02855c65fa45ccee99ed6beb933aebbf18feef0596",
+          "actual_sha256": "410565e19759a07cc26b8b02855c65fa45ccee99ed6beb933aebbf18feef0596",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/gen.log",
+          "expected_sha256": "5fdce41449980221ce09a966755ae025e4dd93b568f035e6c6d1c4a5883d0763",
+          "actual_sha256": "5fdce41449980221ce09a966755ae025e4dd93b568f035e6c6d1c4a5883d0763",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/gen_out_sha256_regenerated.txt",
+          "expected_sha256": "a7795da1160508eb557863fe72fe0479abcd2f98e1ece278d5ade47acfce1248",
+          "actual_sha256": "a7795da1160508eb557863fe72fe0479abcd2f98e1ece278d5ade47acfce1248",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/part1/SUMMARY.txt",
+          "expected_sha256": "d06a4ec0ca6f336ea580e534ceade605037223fd0223aaf753e052065976fd34",
+          "actual_sha256": "d06a4ec0ca6f336ea580e534ceade605037223fd0223aaf753e052065976fd34",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/part1/base_driver.log",
+          "expected_sha256": "d29c6bce818628ddc0ca90af79965aa30b0d351890a5c210f8486284c84d58c2",
+          "actual_sha256": "d29c6bce818628ddc0ca90af79965aa30b0d351890a5c210f8486284c84d58c2",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/part1/base_gate_check.log",
+          "expected_sha256": "ef30ef0396218280110b28ae179f71897e3cc5f38b9ffc9d0a3ca82fc1cf92a9",
+          "actual_sha256": "ef30ef0396218280110b28ae179f71897e3cc5f38b9ffc9d0a3ca82fc1cf92a9",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/part1/base_host_samples.tsv",
+          "expected_sha256": "8b77f6a0c1d67c733a87c5f33da2415b8c7b99e4909eb4079e6b8c8fcae6baa3",
+          "actual_sha256": "8b77f6a0c1d67c733a87c5f33da2415b8c7b99e4909eb4079e6b8c8fcae6baa3",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/part1/base_schedule.tsv",
+          "expected_sha256": "7d429fb664e88a5afad68cb137faa42d6e8954ac8c3b57e1205ddd4985d7d9d6",
+          "actual_sha256": "7d429fb664e88a5afad68cb137faa42d6e8954ac8c3b57e1205ddd4985d7d9d6",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/part1/cand_driver.log",
+          "expected_sha256": "8c818c8aba7bba587d1a902f22ddc9f2f597ec35736fa77003650e2bc60dd258",
+          "actual_sha256": "8c818c8aba7bba587d1a902f22ddc9f2f597ec35736fa77003650e2bc60dd258",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/part1/cand_gate_check.log",
+          "expected_sha256": "ef30ef0396218280110b28ae179f71897e3cc5f38b9ffc9d0a3ca82fc1cf92a9",
+          "actual_sha256": "ef30ef0396218280110b28ae179f71897e3cc5f38b9ffc9d0a3ca82fc1cf92a9",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/part1/cand_host_samples.tsv",
+          "expected_sha256": "ae3ccbd916b3c070a8fa834533bea96874aad3484e9188c64d587467ba92d803",
+          "actual_sha256": "ae3ccbd916b3c070a8fa834533bea96874aad3484e9188c64d587467ba92d803",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/part1/cand_schedule.tsv",
+          "expected_sha256": "deeca66b8c766e63603748e2572bb8747e5d2d143cf938ef3ac48b3412b2ba94",
+          "actual_sha256": "deeca66b8c766e63603748e2572bb8747e5d2d143cf938ef3ac48b3412b2ba94",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/part1/compare_part1.log",
+          "expected_sha256": "8fc378b2d2794609d61b609097d7871363fd22d1c4d8068f5e3462f13eb2f1e5",
+          "actual_sha256": "8fc378b2d2794609d61b609097d7871363fd22d1c4d8068f5e3462f13eb2f1e5",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/part1/index_base.tsv",
+          "expected_sha256": "2ff44ac4e5067cce184d6abdc9ecae34746273bf0f4fb79a1859ab6c6a27b52c",
+          "actual_sha256": "2ff44ac4e5067cce184d6abdc9ecae34746273bf0f4fb79a1859ab6c6a27b52c",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/part1/index_cand.tsv",
+          "expected_sha256": "2ff44ac4e5067cce184d6abdc9ecae34746273bf0f4fb79a1859ab6c6a27b52c",
+          "actual_sha256": "2ff44ac4e5067cce184d6abdc9ecae34746273bf0f4fb79a1859ab6c6a27b52c",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/part1/result_part1_base.json",
+          "expected_sha256": "1eabeed2e81cda09a2ad0ed333cac30d1b4490b2f467185ee022648b73fad37c",
+          "actual_sha256": "1eabeed2e81cda09a2ad0ed333cac30d1b4490b2f467185ee022648b73fad37c",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/part1/result_part1_cand.json",
+          "expected_sha256": "5f273f2d78a3b5833df09c7c711ec853719d28b6a6452bed99dcb133c3eea688",
+          "actual_sha256": "5f273f2d78a3b5833df09c7c711ec853719d28b6a6452bed99dcb133c3eea688",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/part2/driver.log",
+          "expected_sha256": "08ae9e23b513863aaef949f8fe2ad4ea0191768a3a89e84f9c12da750030824a",
+          "actual_sha256": "08ae9e23b513863aaef949f8fe2ad4ea0191768a3a89e84f9c12da750030824a",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/part2/full/RF-LARGE-CHAIN-n01000-ROT__dense_scrutiny__captured.json",
+          "expected_sha256": "68cf1929c6767787f831b4cb56cb2090b9e4597f062791542626809b361e1fc7",
+          "actual_sha256": "68cf1929c6767787f831b4cb56cb2090b9e4597f062791542626809b361e1fc7",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/part2/full/RF-LARGE-CHAIN-n01000-ROT__dense_scrutiny__typed.json",
+          "expected_sha256": "cb6112105d0a2521ae5ca5632193b70f9bb99ef63e18d3a50b4dd19363557150",
+          "actual_sha256": "cb6112105d0a2521ae5ca5632193b70f9bb99ef63e18d3a50b4dd19363557150",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/part2/full/RF-LARGE-TREE-n01000-AX__dense_scrutiny__captured.json",
+          "expected_sha256": "7a3d32b4570986266abf284f8fe1f64d884a46eb5b7d58207bca3316b8696f42",
+          "actual_sha256": "7a3d32b4570986266abf284f8fe1f64d884a46eb5b7d58207bca3316b8696f42",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/part2/full/RF-LARGE-TREE-n01000-AX__dense_scrutiny__typed.json",
+          "expected_sha256": "9384c225dc88e5285ed194647ef5ae84dc163ca5f1ffda12d5e141cc883b68cb",
+          "actual_sha256": "9384c225dc88e5285ed194647ef5ae84dc163ca5f1ffda12d5e141cc883b68cb",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/part2/outcomes.txt",
+          "expected_sha256": "007a795622d41fd0d8190f7b47f49ad7417e3cc4df509cf2b26ab88678b30b62",
+          "actual_sha256": "007a795622d41fd0d8190f7b47f49ad7417e3cc4df509cf2b26ab88678b30b62",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/part2/runs.jsonl",
+          "expected_sha256": "7bc5a7815505c076d07ea6fce267d2b0b14992cbc57999cead041b7939f9e68f",
+          "actual_sha256": "7bc5a7815505c076d07ea6fce267d2b0b14992cbc57999cead041b7939f9e68f",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/probe_base_Cargo.toml.txt",
+          "expected_sha256": "2eb871a59ddcba7febf135b90d3674494690168baadff4ab54d957a2c46fc4f6",
+          "actual_sha256": "2eb871a59ddcba7febf135b90d3674494690168baadff4ab54d957a2c46fc4f6",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/probe_cand_Cargo.toml.txt",
+          "expected_sha256": "6a795ca2e3ba8f4bd1c299333c6aec71d6b6cb9f910a8fdaa1c4b15203ede7a4",
+          "actual_sha256": "6a795ca2e3ba8f4bd1c299333c6aec71d6b6cb9f910a8fdaa1c4b15203ede7a4",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/probe_main.rs.txt",
+          "expected_sha256": "cd1052f7a4ac4cb8f3a13b38c899081cb2cd39f099991944157226be6939f232",
+          "actual_sha256": "cd1052f7a4ac4cb8f3a13b38c899081cb2cd39f099991944157226be6939f232",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/scripts/compare.py.txt",
+          "expected_sha256": "1c91b6c687fa1009dbbc9b28b9ee241fcfbab220d020203d003513f686c4318c",
+          "actual_sha256": "1c91b6c687fa1009dbbc9b28b9ee241fcfbab220d020203d003513f686c4318c",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/scripts/compare_gate_kf2.py.txt",
+          "expected_sha256": "08e6bf45ae2de60114cf3518ef0fafd8a41d0f4b9d6465cebb6c44edf98b2c17",
+          "actual_sha256": "08e6bf45ae2de60114cf3518ef0fafd8a41d0f4b9d6465cebb6c44edf98b2c17",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/scripts/gate_check.py.txt",
+          "expected_sha256": "8ad89fca7641d3e1d947772c2b9e24e2bf43f40a6b7e4ab3130a40f12c6ee96b",
+          "actual_sha256": "8ad89fca7641d3e1d947772c2b9e24e2bf43f40a6b7e4ab3130a40f12c6ee96b",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/scripts/gate_part2_cand.py.txt",
+          "expected_sha256": "fff8b96c256061eeba9f467d68c968ba4edf830e368f9bee6f9d90148b250f5f",
+          "actual_sha256": "fff8b96c256061eeba9f467d68c968ba4edf830e368f9bee6f9d90148b250f5f",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/scripts/gate_run_base_full.py.txt",
+          "expected_sha256": "8cf952aedb600c4812a6967c75474b932495603d20592b6540283f24c03718d6",
+          "actual_sha256": "8cf952aedb600c4812a6967c75474b932495603d20592b6540283f24c03718d6",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/scripts/gen.py.txt",
+          "expected_sha256": "c515ec63f8828addb88e82aa92bc4c5c0060764046bf9cbd6a82dfcd06909b5b",
+          "actual_sha256": "c515ec63f8828addb88e82aa92bc4c5c0060764046bf9cbd6a82dfcd06909b5b",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/scripts/run.py.txt",
+          "expected_sha256": "8d9a32a34bc0602f5ba24b72c999068ca8e6ee2c770a1cbdbc217629983816f6",
+          "actual_sha256": "8d9a32a34bc0602f5ba24b72c999068ca8e6ee2c770a1cbdbc217629983816f6",
+          "matches": true
+        },
+        {
+          "relative_path": "./gate/uncommitted_sha256.txt",
+          "expected_sha256": "56ce7075535f4e6a597b6fb9664face38ce7961bf4acb4b3db7c28dd53d2fe14",
+          "actual_sha256": "56ce7075535f4e6a597b6fb9664face38ce7961bf4acb4b3db7c28dd53d2fe14",
+          "matches": true
+        },
+        {
+          "relative_path": "./src_tauri/meta.txt",
+          "expected_sha256": "f63e32ed364f48245f4d5c2f30b965eb46cfe755793fb9468a4b5e7c3222a6ef",
+          "actual_sha256": "f63e32ed364f48245f4d5c2f30b965eb46cfe755793fb9468a4b5e7c3222a6ef",
+          "matches": true
+        },
+        {
+          "relative_path": "./src_tauri/src_tauri_test.log",
+          "expected_sha256": "17ff029126375577a82f104065140606de320207cc1795d7f0e16b239b3b171c",
+          "actual_sha256": "17ff029126375577a82f104065140606de320207cc1795d7f0e16b239b3b171c",
+          "matches": true
+        },
+        {
+          "relative_path": "./t9/build_base.log",
+          "expected_sha256": "70efe25eb2d219e9915697da7e7e3b13a36e55120d650027bed2ca0e7f7cf943",
+          "actual_sha256": "70efe25eb2d219e9915697da7e7e3b13a36e55120d650027bed2ca0e7f7cf943",
+          "matches": true
+        },
+        {
+          "relative_path": "./t9/build_cand.log",
+          "expected_sha256": "7c3d1b98523b6e421fe571eb2c01611e6e4044849c05f06a1dc7488371ca3446",
+          "actual_sha256": "7c3d1b98523b6e421fe571eb2c01611e6e4044849c05f06a1dc7488371ca3446",
+          "matches": true
+        },
+        {
+          "relative_path": "./t9/cal_diff.txt",
+          "expected_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "matches": true
+        },
+        {
+          "relative_path": "./t9/extra_corpus_inputs_sha256.txt",
+          "expected_sha256": "5fcb6edf6fcb60f1bae10a8b30fc6dde3f6177ac44e4a2fbbaaa1b960ac671d7",
+          "actual_sha256": "5fcb6edf6fcb60f1bae10a8b30fc6dde3f6177ac44e4a2fbbaaa1b960ac671d7",
+          "matches": true
+        },
+        {
+          "relative_path": "./t9/extra_sha_base.txt",
+          "expected_sha256": "30956f4eb6fc4ad969718d3fdfd799ad476aa89040c2b66997fe6c8603ba7920",
+          "actual_sha256": "30956f4eb6fc4ad969718d3fdfd799ad476aa89040c2b66997fe6c8603ba7920",
+          "matches": true
+        },
+        {
+          "relative_path": "./t9/extra_sha_cand.txt",
+          "expected_sha256": "30956f4eb6fc4ad969718d3fdfd799ad476aa89040c2b66997fe6c8603ba7920",
+          "actual_sha256": "30956f4eb6fc4ad969718d3fdfd799ad476aa89040c2b66997fe6c8603ba7920",
+          "matches": true
+        },
+        {
+          "relative_path": "./t9/fixdiff_main.rs.txt",
+          "expected_sha256": "ec089c1d4a2a46dda689aad3ac55948cf858537ed5c986726c7accdd63cade53",
+          "actual_sha256": "ec089c1d4a2a46dda689aad3ac55948cf858537ed5c986726c7accdd63cade53",
+          "matches": true
+        },
+        {
+          "relative_path": "./t9/harness_base_Cargo.toml.txt",
+          "expected_sha256": "b98c833806d304abe68b8b8de7a4bac3fa47c47d3b4a838a39a40908f9439597",
+          "actual_sha256": "b98c833806d304abe68b8b8de7a4bac3fa47c47d3b4a838a39a40908f9439597",
+          "matches": true
+        },
+        {
+          "relative_path": "./t9/harness_cand_Cargo.toml.txt",
+          "expected_sha256": "594a202a7bd804c8a2f3004408f2c4d691ae87985f82115e9bfb6feab859d42a",
+          "actual_sha256": "594a202a7bd804c8a2f3004408f2c4d691ae87985f82115e9bfb6feab859d42a",
+          "matches": true
+        },
+        {
+          "relative_path": "./t9/run_base.log",
+          "expected_sha256": "567014ccf7301268edf967d88612f1b8cc8b04439250d412cedcf683cff589ab",
+          "actual_sha256": "567014ccf7301268edf967d88612f1b8cc8b04439250d412cedcf683cff589ab",
+          "matches": true
+        },
+        {
+          "relative_path": "./t9/run_cand.log",
+          "expected_sha256": "567014ccf7301268edf967d88612f1b8cc8b04439250d412cedcf683cff589ab",
+          "actual_sha256": "567014ccf7301268edf967d88612f1b8cc8b04439250d412cedcf683cff589ab",
+          "matches": true
+        },
+        {
+          "relative_path": "./t9/run_t9.sh.txt",
+          "expected_sha256": "2c95eb0a8445e44a1795839eec13894689e0b7bbd3a47824e7e2a3224ac208f8",
+          "actual_sha256": "2c95eb0a8445e44a1795839eec13894689e0b7bbd3a47824e7e2a3224ac208f8",
+          "matches": true
+        },
+        {
+          "relative_path": "./t9/sha_base.txt",
+          "expected_sha256": "f2dd16ae3dab17c5dda5447f155c15437c98ce6294a4ccf5ffdc782bf0c3cbd0",
+          "actual_sha256": "f2dd16ae3dab17c5dda5447f155c15437c98ce6294a4ccf5ffdc782bf0c3cbd0",
+          "matches": true
+        },
+        {
+          "relative_path": "./t9/sha_cand.txt",
+          "expected_sha256": "f2dd16ae3dab17c5dda5447f155c15437c98ce6294a4ccf5ffdc782bf0c3cbd0",
+          "actual_sha256": "f2dd16ae3dab17c5dda5447f155c15437c98ce6294a4ccf5ffdc782bf0c3cbd0",
+          "matches": true
+        },
+        {
+          "relative_path": "./t9/t9_compare.txt",
+          "expected_sha256": "189c42bc15b5c27a18d8c2c6aec2b468138d481fcee30c13bed77ca8ce2a50b4",
+          "actual_sha256": "189c42bc15b5c27a18d8c2c6aec2b468138d481fcee30c13bed77ca8ce2a50b4",
+          "matches": true
+        }
+      ]
+    },
+    "part2_raw_record_count": 4,
+    "retained_reviewer_jsonl": [
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/REVIEW/_run_records/kf2_review/gate/instr_n10_chain_rot.jsonl",
+        "bytes": 1785,
+        "sha256": "dbe22744a4bca1bb13b1d2f3df1e84a032b144166482685ee6cfae8cedc79f7c"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/REVIEW/_run_records/kf2_review/gate/instr_part1_candidate.jsonl",
+        "bytes": 357637,
+        "sha256": "412ef413903813cc3e6dbf02876217d404b6fbcc5f24531c22f09da39db15178"
+      }
+    ],
+    "part1_raw_originals_in_checked_locations": false,
+    "absence_scope": "No part1_base/runs.jsonl or part1_cand/runs.jsonl under this checkpoint-B records folder; historical M5_T3 root absent at mapped project-owned path. No whole-disk content search."
+  },
+  "k4": {
+    "generator": {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/tests/retained_k4/gen_k4_vectors.py",
+      "bytes": 207630,
+      "sha256": "8c8f22aa8492736624045f866f5f8b47e9b3ee4639e1d038e02fa2425b6c7aa7"
+    },
+    "pins": [
+      {
+        "path": "projects/chirality-piping/core/solver/frame_kernel/tests/retained_wide_k3/gen_wide_k3_vectors.py",
+        "bytes": 38703,
+        "sha256": "ca48d1bd65540eb3da7f30acbbdd4fa553fe03fed432f2b18afd960e2ba4da29",
+        "symbol": "K3_GEN",
+        "expected_sha256": "ca48d1bd65540eb3da7f30acbbdd4fa553fe03fed432f2b18afd960e2ba4da29",
+        "matches": true,
+        "requires_dated_execution_tree": false
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/REFERENCES/references.py",
+        "bytes": 156914,
+        "sha256": "80d473a7351e92a2a903d233b9e633aac794aeff07f3ac41e40d25a0d94fc8a8",
+        "symbol": "R1_PY",
+        "expected_sha256": "80d473a7351e92a2a903d233b9e633aac794aeff07f3ac41e40d25a0d94fc8a8",
+        "matches": true,
+        "requires_dated_execution_tree": true
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/REFERENCES/references.json",
+        "bytes": 5831847,
+        "sha256": "7b176dbbf2296be02d8bca19c698ee56d0d5753751150a9175e0d3ad4cf89cc9",
+        "symbol": "R1_JSON",
+        "expected_sha256": "7b176dbbf2296be02d8bca19c698ee56d0d5753751150a9175e0d3ad4cf89cc9",
+        "matches": true,
+        "requires_dated_execution_tree": true
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/DESIGN_NUMERICS/_run_records/floor_kinds.json",
+        "bytes": 25705,
+        "sha256": "8326561530598e1f6b69d9f174b70946e52800373b5ecab48864ae174087ae78",
+        "symbol": "FLOOR_JSON",
+        "expected_sha256": "8326561530598e1f6b69d9f174b70946e52800373b5ecab48864ae174087ae78",
+        "matches": true,
+        "requires_dated_execution_tree": true
+      },
+      {
+        "path": "projects/chirality-piping/core/solver/nonlinear_integration/src/structural_adapter/kd5_models.rs",
+        "bytes": 18337,
+        "sha256": "17a4680c83ff3e940a7dcfd908ef334c8b5a53427b6ff388dafb5888477dca23",
+        "symbol": "KD5_MODELS",
+        "expected_sha256": "17a4680c83ff3e940a7dcfd908ef334c8b5a53427b6ff388dafb5888477dca23",
+        "matches": true,
+        "requires_dated_execution_tree": false
+      },
+      {
+        "path": "projects/chirality-piping/core/solver/nonlinear_integration/src/structural_adapter/k2b_models.rs",
+        "bytes": 65194,
+        "sha256": "c23eedd273ebacd4d3d324bb24e72cbe766b33d2768c8808e5f9d51674c63090",
+        "symbol": "K2B_MODELS",
+        "expected_sha256": "c23eedd273ebacd4d3d324bb24e72cbe766b33d2768c8808e5f9d51674c63090",
+        "matches": true,
+        "requires_dated_execution_tree": false
+      },
+      {
+        "path": "projects/chirality-piping/validation/benchmarks/numerical_integrity/fixtures.json",
+        "bytes": 354315,
+        "sha256": "c061d73481d2ad137f7cef988475721681131789ec222e3e93c5ed3836b2910e",
+        "symbol": "NI_FIXTURES",
+        "expected_sha256": "c061d73481d2ad137f7cef988475721681131789ec222e3e93c5ed3836b2910e",
+        "matches": true,
+        "requires_dated_execution_tree": false
+      }
+    ],
+    "all_pins_match": true,
+    "generator_executed": false,
+    "sparse_checkout_source": {
+      "path": ".github/workflows/piping-desktop-e2e.yml",
+      "bytes": 9237,
+      "sha256": "6d38e7420cf6a38eb2a58b5da422b82c5a141c7272aab27c3d4ed3aee6316338"
+    }
+  }
+}
