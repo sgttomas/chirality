@@ -3,7 +3,8 @@
 ## Intent and selected route
 
 - **Stable run identity:** `HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE`.
-- **Current phase:** execution planning. No manager or TASK has been launched.
+- **Current phase:** activated preflight. The owner directed “Proceed accordingly.”
+  after the plan; actual manager/TASK launches are recorded as they occur.
 - **Active role:** HELP_HUMAN, Agent 0, adopted at the owner's explicit request
   in the new conversation turn after the audit/merge handback. Earlier audit
   history and its limitations remain part of the record.
@@ -13,10 +14,10 @@
   with 16 GB unified memory. The earlier T3 work ran on an M5 Max MacBook Pro
   with 128 GB. Tests may run here with careful resource control; the earlier
   host's concurrency, caps, timings and available scratch must not be assumed.
-- **Interpretation:** plan a bounded response to the merged T3 audit, building
-  on the recommended A1 investigation, K6c and evidence closeout. This plan
-  does not claim that implementation has started or that the whole T3 loop
-  has resumed. Activation and actual launches must be recorded as they occur.
+- **Interpretation:** execute the bounded response to the merged T3 audit,
+  building on A1 investigation, K6c and evidence closeout. Activation does not
+  claim that implementation has started or that the whole T3 loop has resumed.
+  See `Run/ACTIVATION.md` for the owner direction and initial grants.
 - **Intended result:** independently dispose of the audit findings; close A1's
   published-bound assurance with evidence; complete K6c's memory estimate,
   deduplication and measurements; prepare the W1 limit decision and a usable
@@ -175,7 +176,7 @@ Do not describe an unenforced write fence as an enforced capability restriction.
 
 ## Work
 
-All execution nodes are PLANNED. Their prerequisites express required results,
+Execution states below distinguish activation from actual dispatch. Prerequisites express required results,
 not inferred project-DAG satisfaction. A resource or decision hold is recorded
 as BLOCKED only when the corresponding execution node is activated and its
 specific missing input is established.
@@ -183,7 +184,7 @@ specific missing input is established.
 | ID / owner / outcome | Deliverables and write scope | Needs / why | Completion check | State |
 |---|---|---|---|---|
 | PLAN — ROOT: recoverable execution plan | New graph and `Run/PLANNING_BASIS.json` only | Current owner role/planning direction | Acyclic route, explicit owners, bounded scope and launch status | COMPLETE as a planning artifact; not execution acceptance |
-| B0 — ROOT + DELIVERY: seal response basis | Run brief/ownership/dependency records | Refresh main, existing agents/PRs, relevant DAG currency and parent holds | Exact source/instruction basis; no competing writers; deliverable mappings justified; legacy I/RV identifiers checked | PLANNED |
+| B0 — ROOT + DELIVERY: seal response basis | Run brief/ownership/dependency records | Refresh main, existing agents/PRs, relevant DAG currency and parent holds | Exact source/instruction basis; no competing writers; deliverable mappings justified; legacy I/RV identifiers checked | ACTIVE: main/PRs and source/first-wave fences refreshed; DELIVERY completes the focused dependency check |
 | V0 — AUDIT-REVIEW: independently assess #1064 | Audit read-only; own review folder | B0 frozen audit/source basis | Each finding confirmed, narrowed or refuted; A1 arithmetic and reachability limits assessed; no retrospective claim of pre-merge review | PLANNED |
 | E0 — ENV-EVIDENCE: executable host and preserved inputs | Own runtime inventory and explicitly scoped copies | B0; M3 Air 16-GB constraint | Distinguish M5 resources from local replacements; guard and memory admission verified; toolchain/venv/targets identified; same-host baseline planned; raw evidence recovered or missing items inventoried | PLANNED; original resources belong to the earlier host |
 | K0 — I21-K6C: checkpoint-0 derivation | H/VR/FK read-only; K6c plan and evidence draft | B0, existing I21 brief | Complete live-allocation phase table, corrected formula candidate, dedup design, admission/reproduction plan and tests | PLANNED; can proceed without heavy host |
@@ -247,7 +248,7 @@ Independent work may continue. Never relax a protected oracle/tolerance to pass.
 ## Current state and recovery
 
 - **Current graph ref:** `codex/piping-t3-audit-response-plan-20260930` (local
-  planning branch; not accepted or merged when drafted).
+  response coordination branch, not merged).
 - **Graph maintainer:** HELP_HUMAN Agent 0 in this chat; managers return proposed
   state changes for one serialized integration.
 - **Active operations:** no launched managers/TASKs, builds, measurements or
