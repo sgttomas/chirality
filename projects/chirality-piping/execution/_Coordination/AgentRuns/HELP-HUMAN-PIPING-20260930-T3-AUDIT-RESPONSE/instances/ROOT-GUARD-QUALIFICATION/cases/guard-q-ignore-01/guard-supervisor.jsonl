@@ -1,0 +1,5 @@
+{"at": 549663.286348958, "data": {"identity": {"pgid": 13629, "pid": 13629, "ruid": 501, "sid": 13629, "start_sec": 1790791124, "start_usec": 71712, "uid": 501}}, "kind": "identity", "wall_ns": 1790791124074420000}
+{"at": 549663.353664958, "data": {"pid": 13636}, "kind": "worker-launched", "wall_ns": 1790791124141735000}
+{"at": 549671.289353625, "data": {"identity": {"pgid": 13629, "pid": 13629, "ruid": 501, "sid": 13629, "start_sec": 1790791124, "start_usec": 71712, "uid": 501}, "reason": "supervisor-runtime-limit", "signal": "TERM"}, "kind": "signal-intent", "wall_ns": 1790791132077373000}
+{"at": 549671.311804083, "data": {"returncode": -15}, "kind": "worker-exit", "wall_ns": 1790791132099823000}
+{"at": 549673.290582666, "data": {"identity": {"pgid": 13629, "pid": 13629, "ruid": 501, "sid": 13629, "start_sec": 1790791124, "start_usec": 71712, "uid": 501}, "reason": "supervisor-runtime-limit", "signal": "KILL"}, "kind": "signal-intent", "wall_ns": 1790791134078589000}

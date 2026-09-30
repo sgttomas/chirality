@@ -1,0 +1,239 @@
+--- a/src/structural/retained/adaptive.rs
++++ b/src/structural/retained/adaptive.rs
+@@ -3626,0 +3627,236 @@
++
++// K0-L1 disposable-archive instrumentation only; never apply to canonical FK.
++// Compile with --cfg k0_layout_witness and emit LLVM IR; do not execute.
++#[cfg(k0_layout_witness)]
++mod k0_layout_witness {
++    use super::*;
++    use std::alloc::Layout;
++    use std::mem::{align_of, size_of};
++
++    const fn array<T>(count: usize) -> [u64; 2] {
++        match Layout::array::<T>(count) {
++            Ok(layout) => [layout.size() as u64, layout.align() as u64],
++            Err(_) => panic!("K0 array-layout overflow"),
++        }
++    }
++    // ID, type size/alignment; requested array size/alignment at capacities
++    // 0, 1, 3, 17, 512, 4096. These constants do NOT allocate or measure growth.
++    const fn row<T>(id: u64) -> [u64; 15] {
++        let a0 = array::<T>(0);
++        let a1 = array::<T>(1);
++        let a3 = array::<T>(3);
++        let a17 = array::<T>(17);
++        let a512 = array::<T>(512);
++        let a4096 = array::<T>(4096);
++        [id, size_of::<T>() as u64, align_of::<T>() as u64,
++         a0[0], a0[1], a1[0], a1[1], a3[0], a3[1],
++         a17[0], a17[1], a512[0], a512[1], a4096[0], a4096[1]]
++    }
++    #[used]
++    #[no_mangle]
++    pub static K0_LAYOUT_ABI: [u64; 4] = [1, size_of::<usize>() as u64,
++        align_of::<usize>() as u64, cfg!(target_endian = "little") as u64];
++    #[used]
++    #[no_mangle]
++    pub static K0_LAYOUT_ROWS: [[u64; 15]; 126] = [
++        row::<CasePrep>(1), // CasePrep
++        row::<GroupPrep>(2), // GroupPrep
++        row::<GroupCache>(3), // GroupCache
++        row::<RetainedSolve>(4), // RetainedSolve
++        row::<RetainedEvidence>(5), // RetainedEvidence
++        row::<AttemptRecord>(6), // AttemptRecord
++        row::<AttemptStop>(7), // AttemptStop
++        row::<VerificationSummary>(8), // VerificationSummary
++        row::<StopDecision>(9), // StopDecision
++        row::<PrecisionState>(10), // PrecisionState
++        row::<VerificationState>(11), // VerificationState
++        row::<Publication>(12), // Publication
++        row::<PublishedRow>(13), // PublishedRow
++        row::<RowClass>(14), // RowClass
++        row::<Evaluated>(15), // Evaluated
++        row::<BoundedExtremeTracker>(16), // BoundedExtremeTracker
++        row::<RuleTest>(17), // RuleTest
++        row::<StageWork>(18), // StageWork
++        row::<StorageCounts>(19), // StorageCounts
++        row::<Refusal>(20), // Refusal
++        row::<UnresolvedReason>(21), // UnresolvedReason
++        row::<PrimitiveSource>(22), // PrimitiveSource
++        row::<super::super::ledger::LedgerNet>(23), // LedgerNet
++        row::<RetainedLedger>(24), // RetainedLedger
++        row::<ExactAccumulator>(25), // ExactAccumulator
++        row::<ExactWideSum>(26), // ExactWideSum
++        row::<QuantityId>(27), // QuantityId
++        row::<QuantityMeta>(28), // QuantityMeta
++        row::<Binary64Outcome>(29), // Binary64Outcome
++        row::<BodyGeometry>(30), // BodyGeometry
++        row::<Ordering>(31), // Ordering
++        row::<Structure>(32), // Structure
++        row::<super::super::assemble::Contribution>(33), // Contribution
++        row::<FreeBlocks>(34), // FreeBlocks
++        row::<super::super::bound::BoundRefusal>(35), // BoundRefusal
++        row::<BlockRefusal>(36), // BlockRefusal
++        row::<super::super::source::StraightMember>(37), // StraightMember
++        row::<super::super::source::Constraint>(38), // Constraint
++        row::<super::super::source::NodalLoad>(39), // NodalLoad
++        row::<super::super::source::Station>(40), // Station
++        row::<super::super::source::SourceParts>(41), // SourceParts
++        row::<(ExactWideSum, ExactWideSum, u64, u64)>(42), // LazyRow
++        row::<(ExactWideSum, ExactWideSum, f64)>(43), // FallbackRow
++        row::<(u64, Evaluated)>(44), // TableEntry
++        row::<(RuleTest, u32, Kind)>(45), // TrackerKey
++        row::<TrackerSet<(RuleTest, u32, Kind)>>(46), // TrackerSet
++        row::<(u32, usize)>(47), // GeometryMapPair
++        row::<(usize, super::super::ledger::LedgerNet)>(48), // LedgerEntry
++        row::<(usize, ExactAccumulator, bool)>(49), // LedgerBuildingEntry
++        row::<(usize, Vec<(f64, f64)>)>(50), // PrescribedEntry
++        row::<(u32, Kind, f64)>(51), // SummaryRow
++        row::<(u32, Kind, u64)>(52), // BodyScaleRow
++        row::<(QuantityId, u64)>(53), // QuantityBitsRow
++        row::<(QuantityId, Binary64Outcome)>(54), // UnpublishableRow
++        row::<(u32, u64, u64)>(55), // ResolutionRow
++        row::<(u32, f64)>(56), // ThetaRow
++        row::<Vec<u8>>(57), // ByteVecHeader
++        row::<std::collections::BTreeMap<(RuleTest, u32, Kind), BoundedExtremeTracker>>(58), // TreeMapHeader
++        row::<std::collections::BTreeSet<(RuleTest, u32, Kind)>>(59), // TreeSetHeader
++        row::<std::collections::VecDeque<usize>>(60), // DequeHeader
++        row::<Wide<4>>(61), // Wide_L4
++        row::<Option<Wide<4>>>(62), // OptionWide_L4
++        row::<Vec<Wide<4>>>(63), // WideVecHeader_L4
++        row::<super::super::factor::PivotScreen<4>>(64), // PivotScreen_L4
++        row::<RetainedFactor<4>>(65), // RetainedFactor_L4
++        row::<super::super::bound::BlockBound<4>>(66), // BlockBound_L4
++        row::<super::super::bound::ShiftResult<4>>(67), // ShiftResult_L4
++        row::<super::super::bound::BlockCertificate<4>>(68), // BlockCertificate_L4
++        row::<super::super::verify::BlockNorms<4>>(69), // BlockNorms_L4
++        row::<super::super::verify::BodyReport<4>>(70), // BodyReport_L4
++        row::<VerificationReport<4>>(71), // VerificationReport_L4
++        row::<Solved<4>>(72), // Solved_L4
++        row::<Recovered<4>>(73), // Recovered_L4
++        row::<MemberOperators<4>>(74), // MemberOperators_L4
++        row::<BoundedCoefficients<4>>(75), // BoundedCoefficients_L4
++        row::<DirectionalBlock<4>>(76), // DirectionalBlock_L4
++        row::<(bool, f64, Wide<4>)>(77), // ResidualRow_L4
++        row::<Wide<8>>(78), // Wide_L8
++        row::<Option<Wide<8>>>(79), // OptionWide_L8
++        row::<Vec<Wide<8>>>(80), // WideVecHeader_L8
++        row::<super::super::factor::PivotScreen<8>>(81), // PivotScreen_L8
++        row::<RetainedFactor<8>>(82), // RetainedFactor_L8
++        row::<super::super::bound::BlockBound<8>>(83), // BlockBound_L8
++        row::<super::super::bound::ShiftResult<8>>(84), // ShiftResult_L8
++        row::<super::super::bound::BlockCertificate<8>>(85), // BlockCertificate_L8
++        row::<super::super::verify::BlockNorms<8>>(86), // BlockNorms_L8
++        row::<super::super::verify::BodyReport<8>>(87), // BodyReport_L8
++        row::<VerificationReport<8>>(88), // VerificationReport_L8
++        row::<Solved<8>>(89), // Solved_L8
++        row::<Recovered<8>>(90), // Recovered_L8
++        row::<MemberOperators<8>>(91), // MemberOperators_L8
++        row::<BoundedCoefficients<8>>(92), // BoundedCoefficients_L8
++        row::<DirectionalBlock<8>>(93), // DirectionalBlock_L8
++        row::<(bool, f64, Wide<8>)>(94), // ResidualRow_L8
++        row::<Wide<16>>(95), // Wide_L16
++        row::<Option<Wide<16>>>(96), // OptionWide_L16
++        row::<Vec<Wide<16>>>(97), // WideVecHeader_L16
++        row::<super::super::factor::PivotScreen<16>>(98), // PivotScreen_L16
++        row::<RetainedFactor<16>>(99), // RetainedFactor_L16
++        row::<super::super::bound::BlockBound<16>>(100), // BlockBound_L16
++        row::<super::super::bound::ShiftResult<16>>(101), // ShiftResult_L16
++        row::<super::super::bound::BlockCertificate<16>>(102), // BlockCertificate_L16
++        row::<super::super::verify::BlockNorms<16>>(103), // BlockNorms_L16
++        row::<super::super::verify::BodyReport<16>>(104), // BodyReport_L16
++        row::<VerificationReport<16>>(105), // VerificationReport_L16
++        row::<Solved<16>>(106), // Solved_L16
++        row::<Recovered<16>>(107), // Recovered_L16
++        row::<MemberOperators<16>>(108), // MemberOperators_L16
++        row::<BoundedCoefficients<16>>(109), // BoundedCoefficients_L16
++        row::<DirectionalBlock<16>>(110), // DirectionalBlock_L16
++        row::<(bool, f64, Wide<16>)>(111), // ResidualRow_L16
++        row::<Shared<4, 4>>(112), // Shared_L4_R4
++        row::<Slot<Shared<4, 4>>>(113), // Slot_L4_R4
++        row::<Shared<4, 8>>(114), // Shared_L4_R8
++        row::<Slot<Shared<4, 8>>>(115), // Slot_L4_R8
++        row::<Shared<8, 16>>(116), // Shared_L8_R16
++        row::<Slot<Shared<8, 16>>>(117), // Slot_L8_R16
++        row::<Shared<16, 16>>(118), // Shared_L16_R16
++        row::<Slot<Shared<16, 16>>>(119), // Slot_L16_R16
++        row::<VerifyShared<4, 8>>(120), // VerifyShared_L4_W8
++        row::<VerifySlot<VerifyShared<4, 8>>>(121), // VerifySlot_L4_W8
++        row::<VerifyShared<8, 16>>(122), // VerifyShared_L8_W16
++        row::<VerifySlot<VerifyShared<8, 16>>>(123), // VerifySlot_L8_W16
++        row::<VerifyShared<16, 16>>(124), // VerifyShared_L16_W16
++        row::<VerifySlot<VerifyShared<16, 16>>>(125), // VerifySlot_L16_W16
++        row::<crate::FrameElement>(126), // FrameElement
++    ];
++
++    // Derived from pinned alloc/sync.rs ArcInner repr(C, align(2)) and its
++    // layout helper. This is an explicit source derivation, not size_of of a
++    // mirrored private stdlib type. AtomicUsize layout is the actual target's.
++    const fn arc_layout<T>(id: u64) -> [u64; 3] {
++        let header = Layout::new::<[std::sync::atomic::AtomicUsize; 2]>();
++        match header.extend(Layout::new::<T>()) {
++            Ok((layout, _)) => {
++                let layout = layout.pad_to_align();
++                [id, layout.size() as u64, layout.align() as u64]
++            }
++            Err(_) => panic!("K0 Arc-layout overflow"),
++        }
++    }
++    #[used]
++    #[no_mangle]
++    pub static K0_ARC_DERIVED: [[u64; 3]; 15] = [
++        arc_layout::<CasePrep>(1), // CasePrep
++        arc_layout::<GroupPrep>(2), // GroupPrep
++        arc_layout::<VerificationReport<4>>(71), // VerificationReport_L4
++        arc_layout::<Solved<4>>(72), // Solved_L4
++        arc_layout::<VerificationReport<8>>(88), // VerificationReport_L8
++        arc_layout::<Solved<8>>(89), // Solved_L8
++        arc_layout::<VerificationReport<16>>(105), // VerificationReport_L16
++        arc_layout::<Solved<16>>(106), // Solved_L16
++        arc_layout::<Shared<4, 4>>(112), // Shared_L4_R4
++        arc_layout::<Shared<4, 8>>(114), // Shared_L4_R8
++        arc_layout::<Shared<8, 16>>(116), // Shared_L8_R16
++        arc_layout::<Shared<16, 16>>(118), // Shared_L16_R16
++        arc_layout::<VerifyShared<4, 8>>(120), // VerifyShared_L4_W8
++        arc_layout::<VerifyShared<8, 16>>(122), // VerifyShared_L8_W16
++        arc_layout::<VerifyShared<16, 16>>(124), // VerifyShared_L16_W16
++    ];
++
++    // Force only the four relevant BTree generic allocation paths into LLVM
++    // IR/debug metadata. These functions have no caller or executable entry;
++    // they must NEVER be run. Types and allocation constants come from the
++    // actual pinned stdlib monomorphizations, not a copied LeafNode struct.
++    #[no_mangle]
++    #[inline(never)]
++    pub fn k0_emit_tracker_nodes(
++        mut map: std::collections::BTreeMap<(RuleTest, u32, Kind), BoundedExtremeTracker>,
++        key: (RuleTest, u32, Kind), value: BoundedExtremeTracker,
++    ) -> std::collections::BTreeMap<(RuleTest, u32, Kind), BoundedExtremeTracker> {
++        map.insert(key, value);
++        map
++    }
++    #[no_mangle]
++    #[inline(never)]
++    pub fn k0_emit_holding_nodes(
++        mut set: std::collections::BTreeSet<(RuleTest, u32, Kind)>,
++        key: (RuleTest, u32, Kind),
++    ) -> std::collections::BTreeSet<(RuleTest, u32, Kind)> {
++        set.insert(key);
++        set
++    }
++    #[no_mangle]
++    #[inline(never)]
++    pub fn k0_emit_geometry_nodes(
++        mut map: std::collections::BTreeMap<u32, usize>, key: u32, value: usize,
++    ) -> std::collections::BTreeMap<u32, usize> {
++        map.insert(key, value);
++        map
++    }
++    #[no_mangle]
++    #[inline(never)]
++    pub fn k0_emit_publication_nodes(
++        mut map: std::collections::BTreeMap<QuantityId, PublishedRow>,
++        key: QuantityId, value: PublishedRow,
++    ) -> std::collections::BTreeMap<QuantityId, PublishedRow> {
++        map.insert(key, value);
++        map
++    }
++}

@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "source_basis": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "head_at_seal": "fe6ca966259d29d8d6ed2f05460400f6cb5d5de0",
+  "checks": [
+    "Owned JSON/Python syntax, whitespace and portable path scan",
+    "FK/H/VR canonical source still identical to product basis",
+    "Exact append-only patch recomputed in memory; no patch applied",
+    "126 consecutive real-type row IDs and 15 Arc-derived rows match manifest",
+    "Proposed overlay/preimage/postimage hashes match",
+    "33/33 source-cardinality/payload checks passed",
+    "Guard-v2 15-entry packet and original v1 11-entry preservation checked"
+  ],
+  "limits": [
+    "Rust overlay not compiled or executed",
+    "No live provider, guard, model, solver or allocator microprobe",
+    "K0 source-only brief not launched",
+    "No final E_max/A1 impact closure or independent source-formula review",
+    "Guard-v2 still needs independent backcheck and relevant qualification"
+  ]
+}

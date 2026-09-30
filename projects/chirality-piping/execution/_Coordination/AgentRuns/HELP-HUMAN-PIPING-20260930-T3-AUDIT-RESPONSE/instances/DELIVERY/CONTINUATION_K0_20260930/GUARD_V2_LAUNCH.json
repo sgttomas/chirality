@@ -1,0 +1,19 @@
+{
+  "kind": "actual_original_guard_author_continuation",
+  "parent": "/root/delivery_manager",
+  "child": "/root/delivery_manager/guard_implementation",
+  "mechanism": "collaboration.followup_task",
+  "model_override": null,
+  "brief": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/GUARD_V2_BRIEF.md",
+  "brief_sha256": "e191e038879f9ae93a194d28d53b3170d33e088de96034c17c430928886dc7ff",
+  "brief_state_at_resume": "sealed uncommitted working-tree file",
+  "head_at_resume": "fe6ca966259d29d8d6ed2f05460400f6cb5d5de0",
+  "authorization": "ROOT granted the slot released by GUARD-REVIEW to original author for additive GR-01/02 repair; A0 holds other TASK slot",
+  "write_scope": [
+    "Run/tools/host_guard_v2.py",
+    "Run/instances/GUARD-IMPLEMENTATION/continuation_01/**"
+  ],
+  "execution_scope": "Pure fake-file/provider/control tests only; no live/compiler/model/network/Git/delegation",
+  "status": "Original author returned sealed pure-repair packet; integrity checked; ready for independent backcheck",
+  "v1_preservation_required": true
+}

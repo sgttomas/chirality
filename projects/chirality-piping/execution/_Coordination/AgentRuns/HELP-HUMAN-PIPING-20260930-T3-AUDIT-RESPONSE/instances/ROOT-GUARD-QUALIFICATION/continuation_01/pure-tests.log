@@ -1,0 +1,10 @@
+test_absent_handles_return_for_result_persistence (__main__.CleanupTests.test_absent_handles_return_for_result_persistence) ... ok
+test_monitor_wait_failure_still_cleans_sentinel_and_returns (__main__.CleanupTests.test_monitor_wait_failure_still_cleans_sentinel_and_returns) ... ok
+test_reaped_children_are_not_signalled (__main__.CleanupTests.test_reaped_children_are_not_signalled) ... ok
+test_stopped_monitor_is_killed_and_sentinel_cleaned (__main__.CleanupTests.test_stopped_monitor_is_killed_and_sentinel_cleaned) ... ok
+test_stopped_sentinel_gets_owned_handle_fallback_and_failure_record (__main__.CleanupTests.test_stopped_sentinel_gets_owned_handle_fallback_and_failure_record) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+OK

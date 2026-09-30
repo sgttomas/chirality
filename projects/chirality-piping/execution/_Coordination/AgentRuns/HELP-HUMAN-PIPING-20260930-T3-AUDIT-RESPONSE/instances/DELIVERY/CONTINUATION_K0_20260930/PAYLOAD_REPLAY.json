@@ -1,0 +1,404 @@
+{
+  "source_counts_sha256": "fab0466a846ef26b1c530a261a6f1d134fc32ba1d70f57682010877a52373c05",
+  "models_checked": 33,
+  "result": "PASS source cardinality/payload checks",
+  "rows": [
+    {
+      "model": "RF-LARGE-CHAIN-n00010-AX",
+      "q": 263,
+      "K4SRC_id_bytes": 30,
+      "K4STF": 1160,
+      "K4LED_upper": 3382,
+      "K4RST_by_width": {
+        "4": 5188,
+        "8": 9220,
+        "16": 17284
+      }
+    },
+    {
+      "model": "RF-LARGE-CHAIN-n00010-ROT",
+      "q": 263,
+      "K4SRC_id_bytes": 30,
+      "K4STF": 1160,
+      "K4LED_upper": 3382,
+      "K4RST_by_width": {
+        "4": 5188,
+        "8": 9220,
+        "16": 17284
+      }
+    },
+    {
+      "model": "RF-LARGE-CHAIN-n00100-AX",
+      "q": 2513,
+      "K4SRC_id_bytes": 36,
+      "K4STF": 10880,
+      "K4LED_upper": 3382,
+      "K4RST_by_width": {
+        "4": 49468,
+        "8": 88060,
+        "16": 165244
+      }
+    },
+    {
+      "model": "RF-LARGE-CHAIN-n00100-ROT",
+      "q": 2513,
+      "K4SRC_id_bytes": 36,
+      "K4STF": 10880,
+      "K4LED_upper": 3382,
+      "K4RST_by_width": {
+        "4": 49468,
+        "8": 88060,
+        "16": 165244
+      }
+    },
+    {
+      "model": "RF-LARGE-CHAIN-n01000-AX",
+      "q": 25013,
+      "K4SRC_id_bytes": 42,
+      "K4STF": 108080,
+      "K4LED_upper": 3382,
+      "K4RST_by_width": {
+        "4": 492268,
+        "8": 876460,
+        "16": 1644844
+      }
+    },
+    {
+      "model": "RF-LARGE-CHAIN-n01000-ROT",
+      "q": 25013,
+      "K4SRC_id_bytes": 42,
+      "K4STF": 108080,
+      "K4LED_upper": 3382,
+      "K4RST_by_width": {
+        "4": 492268,
+        "8": 876460,
+        "16": 1644844
+      }
+    },
+    {
+      "model": "RF-LARGE-CHAIN-n10000-AX",
+      "q": 250013,
+      "K4SRC_id_bytes": 48,
+      "K4STF": 1080080,
+      "K4LED_upper": 3382,
+      "K4RST_by_width": {
+        "4": 4920268,
+        "8": 8760460,
+        "16": 16440844
+      }
+    },
+    {
+      "model": "RF-LARGE-CHAIN-n10000-ROT",
+      "q": 250013,
+      "K4SRC_id_bytes": 48,
+      "K4STF": 1080080,
+      "K4LED_upper": 3382,
+      "K4RST_by_width": {
+        "4": 4920268,
+        "8": 8760460,
+        "16": 16440844
+      }
+    },
+    {
+      "model": "RF-LARGE-TREE-n00010-AX",
+      "q": 263,
+      "K4SRC_id_bytes": 20,
+      "K4STF": 1160,
+      "K4LED_upper": 2258,
+      "K4RST_by_width": {
+        "4": 5188,
+        "8": 9220,
+        "16": 17284
+      }
+    },
+    {
+      "model": "RF-LARGE-TREE-n00010-ROT",
+      "q": 263,
+      "K4SRC_id_bytes": 60,
+      "K4STF": 1160,
+      "K4LED_upper": 6754,
+      "K4RST_by_width": {
+        "4": 5188,
+        "8": 9220,
+        "16": 17284
+      }
+    },
+    {
+      "model": "RF-LARGE-TREE-n00100-AX",
+      "q": 2513,
+      "K4SRC_id_bytes": 251,
+      "K4STF": 10880,
+      "K4LED_upper": 24176,
+      "K4RST_by_width": {
+        "4": 49468,
+        "8": 88060,
+        "16": 165244
+      }
+    },
+    {
+      "model": "RF-LARGE-TREE-n00100-ROT",
+      "q": 2513,
+      "K4SRC_id_bytes": 753,
+      "K4STF": 10880,
+      "K4LED_upper": 72508,
+      "K4RST_by_width": {
+        "4": 49468,
+        "8": 88060,
+        "16": 165244
+      }
+    },
+    {
+      "model": "RF-LARGE-TREE-n01000-AX",
+      "q": 25013,
+      "K4SRC_id_bytes": 2918,
+      "K4STF": 108080,
+      "K4LED_upper": 240546,
+      "K4RST_by_width": {
+        "4": 492268,
+        "8": 876460,
+        "16": 1644844
+      }
+    },
+    {
+      "model": "RF-LARGE-TREE-n01000-ROT",
+      "q": 25013,
+      "K4SRC_id_bytes": 8754,
+      "K4STF": 108080,
+      "K4LED_upper": 721618,
+      "K4RST_by_width": {
+        "4": 492268,
+        "8": 876460,
+        "16": 1644844
+      }
+    },
+    {
+      "model": "RF-LARGE-TREE-n10000-AX",
+      "q": 250013,
+      "K4SRC_id_bytes": 33496,
+      "K4STF": 1080080,
+      "K4LED_upper": 2408742,
+      "K4RST_by_width": {
+        "4": 4920268,
+        "8": 8760460,
+        "16": 16440844
+      }
+    },
+    {
+      "model": "RF-LARGE-TREE-n10000-ROT",
+      "q": 250013,
+      "K4SRC_id_bytes": 100488,
+      "K4STF": 1080080,
+      "K4LED_upper": 7226206,
+      "K4RST_by_width": {
+        "4": 4920268,
+        "8": 8760460,
+        "16": 16440844
+      }
+    },
+    {
+      "model": "RF-LARGE-CONT-n00010-AX",
+      "q": 278,
+      "K4SRC_id_bytes": 35,
+      "K4STF": 1235,
+      "K4LED_upper": 3944,
+      "K4RST_by_width": {
+        "4": 5188,
+        "8": 9220,
+        "16": 17284
+      }
+    },
+    {
+      "model": "RF-LARGE-CONT-n00010-ROT",
+      "q": 278,
+      "K4SRC_id_bytes": 70,
+      "K4STF": 1235,
+      "K4LED_upper": 7878,
+      "K4RST_by_width": {
+        "4": 5188,
+        "8": 9220,
+        "16": 17284
+      }
+    },
+    {
+      "model": "RF-LARGE-CONT-n00100-AX",
+      "q": 2663,
+      "K4SRC_id_bytes": 438,
+      "K4STF": 11630,
+      "K4LED_upper": 41036,
+      "K4RST_by_width": {
+        "4": 49468,
+        "8": 88060,
+        "16": 165244
+      }
+    },
+    {
+      "model": "RF-LARGE-CONT-n00100-ROT",
+      "q": 2663,
+      "K4SRC_id_bytes": 768,
+      "K4STF": 11630,
+      "K4LED_upper": 71946,
+      "K4RST_by_width": {
+        "4": 49468,
+        "8": 88060,
+        "16": 165244
+      }
+    },
+    {
+      "model": "RF-LARGE-CONT-n01000-AX",
+      "q": 26513,
+      "K4SRC_id_bytes": 5131,
+      "K4STF": 115580,
+      "K4LED_upper": 411956,
+      "K4RST_by_width": {
+        "4": 492268,
+        "8": 876460,
+        "16": 1644844
+      }
+    },
+    {
+      "model": "RF-LARGE-CONT-n01000-ROT",
+      "q": 26513,
+      "K4SRC_id_bytes": 8876,
+      "K4STF": 115580,
+      "K4LED_upper": 712626,
+      "K4RST_by_width": {
+        "4": 492268,
+        "8": 876460,
+        "16": 1644844
+      }
+    },
+    {
+      "model": "RF-LARGE-CONT-n10000-AX",
+      "q": 265013,
+      "K4SRC_id_bytes": 58664,
+      "K4STF": 1155080,
+      "K4LED_upper": 4121156,
+      "K4RST_by_width": {
+        "4": 4920268,
+        "8": 8760460,
+        "16": 16440844
+      }
+    },
+    {
+      "model": "RF-LARGE-CONT-n10000-ROT",
+      "q": 265013,
+      "K4SRC_id_bytes": 101344,
+      "K4STF": 1155080,
+      "K4LED_upper": 7119426,
+      "K4RST_by_width": {
+        "4": 4920268,
+        "8": 8760460,
+        "16": 16440844
+      }
+    },
+    {
+      "model": "DEC053:invented-cantilever-chain-8",
+      "q": 213,
+      "K4SRC_id_bytes": 5,
+      "K4STF": 944,
+      "K4LED_upper": 572,
+      "K4RST_by_width": {
+        "4": 4204,
+        "8": 7468,
+        "16": 13996
+      }
+    },
+    {
+      "model": "DEC053:invented-cantilever-chain-24",
+      "q": 613,
+      "K4SRC_id_bytes": 6,
+      "K4STF": 2672,
+      "K4LED_upper": 572,
+      "K4RST_by_width": {
+        "4": 12076,
+        "8": 21484,
+        "16": 40300
+      }
+    },
+    {
+      "model": "DEC053:invented-cantilever-chain-48",
+      "q": 1213,
+      "K4SRC_id_bytes": 6,
+      "K4STF": 5264,
+      "K4LED_upper": 572,
+      "K4RST_by_width": {
+        "4": 23884,
+        "8": 42508,
+        "16": 79756
+      }
+    },
+    {
+      "model": "DEC053:invented-grid-frame-4x3",
+      "q": 414,
+      "K4SRC_id_bytes": 5,
+      "K4STF": 1862,
+      "K4LED_upper": 572,
+      "K4RST_by_width": {
+        "4": 7156,
+        "8": 12724,
+        "16": 23860
+      }
+    },
+    {
+      "model": "DEC053:invented-grid-frame-6x8",
+      "q": 1848,
+      "K4SRC_id_bytes": 6,
+      "K4STF": 8246,
+      "K4LED_upper": 572,
+      "K4RST_by_width": {
+        "4": 32002,
+        "8": 56962,
+        "16": 106882
+      }
+    },
+    {
+      "model": "DEC053:invented-grid-frame-7x8",
+      "q": 2180,
+      "K4SRC_id_bytes": 6,
+      "K4STF": 9728,
+      "K4LED_upper": 572,
+      "K4RST_by_width": {
+        "4": 37660,
+        "8": 67036,
+        "16": 125788
+      }
+    },
+    {
+      "model": "DEC053:invented-grid-frame-5x5",
+      "q": 925,
+      "K4SRC_id_bytes": 6,
+      "K4STF": 4136,
+      "K4LED_upper": 572,
+      "K4RST_by_width": {
+        "4": 16012,
+        "8": 28492,
+        "16": 53452
+      }
+    },
+    {
+      "model": "DEC053:invented-cantilever-chain-32",
+      "q": 813,
+      "K4SRC_id_bytes": 6,
+      "K4STF": 3536,
+      "K4LED_upper": 572,
+      "K4RST_by_width": {
+        "4": 16012,
+        "8": 28492,
+        "16": 53452
+      }
+    },
+    {
+      "model": "DEC053:invented-grid-frame-5x6",
+      "q": 1122,
+      "K4SRC_id_bytes": 6,
+      "K4STF": 5012,
+      "K4LED_upper": 572,
+      "K4RST_by_width": {
+        "4": 19456,
+        "8": 34624,
+        "16": 64960
+      }
+    }
+  ],
+  "limits": "Payloads are not capacities or final E_max; no runtime/model performed."
+}

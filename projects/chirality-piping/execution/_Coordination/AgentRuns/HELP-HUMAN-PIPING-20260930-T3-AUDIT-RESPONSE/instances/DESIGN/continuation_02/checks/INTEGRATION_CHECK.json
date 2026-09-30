@@ -1,0 +1,137 @@
+{
+  "record_kind": "DESIGN_preparation_integration_check",
+  "result": "PASS for bounded preparation, not independent code/design review or runtime admission",
+  "child": "/root/design_manager/a1_diagnosis",
+  "manifest_checks": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/SHA256SUMS",
+      "sha256": "074e005899a76e8f26e2b2f021187a39331e2aca2d426856868f35467a8e5545",
+      "base": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS",
+      "entries": 16,
+      "result": "PASS"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_01/SHA256SUMS",
+      "sha256": "161082bdb24f9180b5dc04239f6a727006b3052d2b3ebadd4bb581d89189f8e8",
+      "base": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_01",
+      "entries": 3,
+      "result": "PASS"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/SHA256SUMS",
+      "sha256": "432726551a1a51a84766b24e5bf721950169ed41784821318acd3e98f4cc4945",
+      "base": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN",
+      "entries": 4,
+      "result": "PASS"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_01/SHA256SUMS",
+      "sha256": "eb668ceb447a9d6719f3c4a03a892242f44a85b0c608eb8b74dde04cddabec67",
+      "base": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_01",
+      "entries": 5,
+      "result": "PASS"
+    }
+  ],
+  "manager_pure_oracle_rerun": {
+    "command": "python3 -B Run/instances/A1-DIAGNOSIS/oracle.py self-check",
+    "exit_code": 0,
+    "matches_child_preserved_result": true,
+    "binary64_checks": 1565,
+    "cases": 24,
+    "truth_rows": 880,
+    "synthetic_comparator_checks": "PASS: honest scalar, p/P mismatch, duplicate scale/floor, missing p512 floor, unexpected range, false absolute/zero-bound/relative claims"
+  },
+  "matrix_input_hashes": "24/24 match",
+  "runtime_states": "24/24 UNRUN",
+  "authored_lock_tomllib": "exact version 4, two packages and one local dependency edge",
+  "static_review": [
+    "Public Rust imports, variants, fields and accessors compared with frozen source; no compiler validation",
+    "Oracle source reviewed for matrix/units/truth, full row layout, signed reactions/spring action, scale/class/bound checks, underflow and relative criteria",
+    "Requested comparator tightening was incorporated before child original packet seal; corrected pure checks rerun",
+    "Original child return is historical on lock permission; its continuation_01 and ROOT runtime addendum supersede that narrow limitation"
+  ],
+  "failed_read_checks_and_resolution": [
+    "An initial addendum manifest command used the parent folder and failed paths/hashes; rerunning from the declared continuation_01 base passed all three entries. No file mismatch remains.",
+    "Initial budget-document lookup used BUDGET_PLAN.md; actual BUDGET_PROPOSAL.json was then read."
+  ],
+  "unverified": [
+    "Rust compilation and lockfile Cargo compatibility",
+    "Actual PrimitiveSource validation and solver outcomes",
+    "Guard qualification/activation, headroom, cap/timeouts and heavy admission",
+    "All internal numerical hypotheses and complete proof closure"
+  ],
+  "inputs": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/RETURN.md",
+      "sha256": "f95dae59146122c0099f77f05125488db1c165abbabdf60da72ec898db47f93c"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/SHA256SUMS",
+      "sha256": "074e005899a76e8f26e2b2f021187a39331e2aca2d426856868f35467a8e5545"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/oracle.py",
+      "sha256": "35cf4b9321ebe126693e52ad96ea010bed9f280c3058d02fbae98c17275627be"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/matrix.json",
+      "sha256": "eddf44e8f491585c9954896089ad0175ae3c5a23504740b42dfb163c022eb359"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/src/main.rs",
+      "sha256": "9e054fa80fff5c2192b1bfef5ad031d24c4d9dd3ab2407b6f9df517cc74d740a"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/src/cases.rs",
+      "sha256": "b925980a3b5b3c206e9e419f6e9fd1fffdedab7feffc1173650f92ecf2ea3b8c"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/Cargo.toml",
+      "sha256": "2d98b4b273b52c0da69b64a7a70c984127d0df7b01a52a3f1b6e03a29eee1f59"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/SELF_CHECK.json",
+      "sha256": "aadd35eec1356758ccbca3f67ba384f5e49a8c99e592dc39755d7d5e3ec53659"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/STATIC_PREPARATION_CHECK.json",
+      "sha256": "e15170c22f87829cc76faff6d2207393771b102dd51d9f5a7c917442537db437"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/SNAPSHOT_VERIFICATION.json",
+      "sha256": "81634ac9d2aab1ba1f804b0e5241373839f9f20dfeab1e8c3442afc92957a21e"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/COMMAND_PLAN.md",
+      "sha256": "db9e3f1a676fcbd32ce4f368f54236e587d5381d1ef89eeb7dc40162adb14bec"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/BUDGET_PROPOSAL.json",
+      "sha256": "d3dddc0ac23a2e61e0963cbbcb55aa45be2b66dc73955a874e8c49f0469031e4"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/CAUSAL_ASSESSMENT.md",
+      "sha256": "acb70903ac3ab6e70cef69d907c02a80b539b8b31bff2ac22b4955f069afdfeb"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/CONTEXT.json",
+      "sha256": "c7b99eebccfc4c9d16957b1a61ee5c4a360d6b85bea0b75388cb56e9911a109b"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_01/RETURN.md",
+      "sha256": "1a69f68c97fb9da4d5c37100fb1e0702b9ea5a81612bf036c86497e75f4de0df"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_01/SHA256SUMS",
+      "sha256": "161082bdb24f9180b5dc04239f6a727006b3052d2b3ebadd4bb581d89189f8e8"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_01/Cargo.lock",
+      "sha256": "ca870fd55afca7aebeadd4410bb77a2a40391ac80a7ff95c36ab6b55fe66bc4d"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_01/CONTEXT.json",
+      "sha256": "9fca6509024c2168443a91020a064b34ca5020b5681585f4660ad7ddcb44961a"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "kind": "root-exact-latch-resolution",
+  "job_id": "guard-q-escape-01",
+  "at_ns": 1790791431074910000,
+  "active_sha256": "4a2dace259862fa35f7e7e990f6d52de9c77e2039106ffd0cdeb1067f9c8f4a5",
+  "observed_pids": [
+    14422,
+    14450,
+    14457,
+    14462
+  ],
+  "all_observed_original_pids_absent_or_nonrunning": true,
+  "no_live_registered_group_members": true,
+  "workload_signal_sent": false,
+  "reason": "ROOT inspected fixture return and independently rechecked exit before releasing this exact latch."
+}

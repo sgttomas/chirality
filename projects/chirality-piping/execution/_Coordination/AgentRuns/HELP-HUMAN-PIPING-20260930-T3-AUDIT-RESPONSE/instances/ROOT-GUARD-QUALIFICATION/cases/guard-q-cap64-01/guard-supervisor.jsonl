@@ -1,0 +1,5 @@
+{"at": 549754.78711675, "data": {"identity": {"pgid": 14001, "pid": 14001, "ruid": 501, "sid": 14001, "start_sec": 1790791215, "start_usec": 571781, "uid": 501}}, "kind": "identity", "wall_ns": 1790791215574593000}
+{"at": 549754.854556666, "data": {"pid": 14008}, "kind": "worker-launched", "wall_ns": 1790791215642033000}
+{"at": 549754.921483958, "data": {"identity": {"pgid": 14001, "pid": 14001, "ruid": 501, "sid": 14001, "start_sec": 1790791215, "start_usec": 571781, "uid": 501}, "reason": "rss-cap", "signal": "TERM"}, "kind": "signal-intent", "wall_ns": 1790791215708959000}
+{"at": 549754.943634583, "data": {"returncode": -15}, "kind": "worker-exit", "wall_ns": 1790791215731109000}
+{"at": 549754.987975291, "data": {"reason": "rss-cap", "returncode": -15}, "kind": "group-drained", "wall_ns": 1790791215775450000}

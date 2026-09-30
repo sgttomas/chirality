@@ -1,0 +1,5 @@
+{"at": 549915.5109695, "data": {"identity": {"pgid": 14450, "pid": 14450, "ruid": 501, "sid": 14450, "start_sec": 1790791376, "start_usec": 295236, "uid": 501}}, "kind": "identity", "wall_ns": 1790791376297401000}
+{"at": 549915.578356041, "data": {"pid": 14457}, "kind": "worker-launched", "wall_ns": 1790791376364787000}
+{"at": 549916.6940775, "data": {"identity": {"pgid": 14450, "pid": 14450, "ruid": 501, "sid": 14450, "start_sec": 1790791376, "start_usec": 295236, "uid": 501}, "reason": "monitoring-failure:Refusal:escaped-group-or-changed-uid", "signal": "TERM"}, "kind": "signal-intent", "wall_ns": 1790791377480501000}
+{"at": 549916.716311458, "data": {"returncode": -15}, "kind": "worker-exit", "wall_ns": 1790791377502735000}
+{"at": 549918.697881083, "data": {"identity": {"pgid": 14450, "pid": 14450, "ruid": 501, "sid": 14450, "start_sec": 1790791376, "start_usec": 295236, "uid": 501}, "reason": "monitoring-failure:Refusal:escaped-group-or-changed-uid", "signal": "KILL"}, "kind": "signal-intent", "wall_ns": 1790791379484293000}

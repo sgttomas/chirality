@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "python_version": "3.13.7 (v3.13.7:bcee1c32211, Aug 14 2025, 19:10:51) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "python_executable": "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+  "python_syntax": "ast.parse; no bytecode artifact",
+  "case_count": 24,
+  "truth_row_count": 880,
+  "rust_fixture_bits_match_json": true,
+  "load_ids_unique_and_terms_separate": true,
+  "all_per_case_input_json_hashes_valid": true,
+  "rust_compilation": "NOT RUN",
+  "probe_api_check": "Read-only manual check against frozen public exports/accessors; not compiler validation"
+}

@@ -1,0 +1,4 @@
+{"at": 549528.241112833, "data": {"identity": {"pgid": 13171, "pid": 13171, "ruid": 501, "sid": 13171, "start_sec": 1790790989, "start_usec": 27293, "uid": 501}}, "kind": "identity", "wall_ns": 1790790989030061000}
+{"at": 549528.308214208, "data": {"pid": 13178}, "kind": "worker-launched", "wall_ns": 1790790989097162000}
+{"at": 549531.362890833, "data": {"returncode": 0}, "kind": "worker-exit", "wall_ns": 1790790992151821000}
+{"at": 549531.364055583, "data": {"reason": null, "returncode": 0}, "kind": "group-drained", "wall_ns": 1790790992152984000}

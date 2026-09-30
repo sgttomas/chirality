@@ -1,0 +1,235 @@
+{
+  "kind": "read-only-provider-witness",
+  "guard_sha256": "feb0e1508fde6c764eefb85e2b72bc7a597edf86d48307fb646a80a80eac03db",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.13.7 (v3.13.7:bcee1c32211, Aug 14 2025, 19:10:51) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "samples": [
+    {
+      "index": 0,
+      "started": 549345.012119166,
+      "finished": 549345.027471291,
+      "identity": {
+        "pid": 11841,
+        "start_sec": 1790790805,
+        "start_usec": 679264,
+        "uid": 501,
+        "ruid": 501,
+        "pgid": 11840,
+        "sid": 11840
+      },
+      "sample": {
+        "at": 549345.012166708,
+        "total_bytes": 17179869184,
+        "available_pct": 79.0,
+        "pressure": 1,
+        "swap_used_bytes": 3522890301,
+        "swapouts": 1221287,
+        "disk_free_bytes": 108076736512,
+        "rss_bytes": 0,
+        "footprint_bytes": 0
+      },
+      "own_rss_bytes": 28164096,
+      "own_footprint_bytes": 16564656,
+      "ps_own_rss_kib": 27520
+    },
+    {
+      "index": 1,
+      "started": 549346.032580208,
+      "finished": 549346.053086458,
+      "identity": {
+        "pid": 11841,
+        "start_sec": 1790790805,
+        "start_usec": 679264,
+        "uid": 501,
+        "ruid": 501,
+        "pgid": 11840,
+        "sid": 11840
+      },
+      "sample": {
+        "at": 549346.032783416,
+        "total_bytes": 17179869184,
+        "available_pct": 79.0,
+        "pressure": 1,
+        "swap_used_bytes": 3522890301,
+        "swapouts": 1221287,
+        "disk_free_bytes": 108076666880,
+        "rss_bytes": 0,
+        "footprint_bytes": 0
+      },
+      "own_rss_bytes": 28180480,
+      "own_footprint_bytes": 16564656,
+      "ps_own_rss_kib": 27584
+    },
+    {
+      "index": 2,
+      "started": 549347.058177291,
+      "finished": 549347.082552708,
+      "identity": {
+        "pid": 11841,
+        "start_sec": 1790790805,
+        "start_usec": 679264,
+        "uid": 501,
+        "ruid": 501,
+        "pgid": 11840,
+        "sid": 11840
+      },
+      "sample": {
+        "at": 549347.05834175,
+        "total_bytes": 17179869184,
+        "available_pct": 79.0,
+        "pressure": 1,
+        "swap_used_bytes": 3522890301,
+        "swapouts": 1221287,
+        "disk_free_bytes": 108076666880,
+        "rss_bytes": 0,
+        "footprint_bytes": 0
+      },
+      "own_rss_bytes": 28246016,
+      "own_footprint_bytes": 16630192,
+      "ps_own_rss_kib": 27600
+    }
+  ],
+  "provider_trace": [
+    {
+      "kind": "provider-command",
+      "argv": [
+        "/usr/sbin/sysctl",
+        "-n",
+        "hw.memsize"
+      ],
+      "returncode": 0,
+      "raw": "17179869184\n"
+    },
+    {
+      "kind": "provider-command",
+      "argv": [
+        "/usr/sbin/sysctl",
+        "-n",
+        "kern.memorystatus_vm_pressure_level"
+      ],
+      "returncode": 0,
+      "raw": "1\n"
+    },
+    {
+      "kind": "provider-command",
+      "argv": [
+        "/usr/bin/memory_pressure",
+        "-Q"
+      ],
+      "returncode": 0,
+      "raw": "The system has 17179869184 (1048576 pages with a page size of 16384).\nSystem-wide memory free percentage: 79%\n"
+    },
+    {
+      "kind": "provider-command",
+      "argv": [
+        "/usr/sbin/sysctl",
+        "-n",
+        "vm.swapusage"
+      ],
+      "returncode": 0,
+      "raw": "total = 4096.00M  used = 3359.69M  free = 736.31M  (encrypted)\n"
+    },
+    {
+      "kind": "provider-command",
+      "argv": [
+        "/usr/bin/vm_stat"
+      ],
+      "returncode": 0,
+      "raw": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     3971.\nPages active:                                 394729.\nPages inactive:                               389145.\nPages speculative:                              5010.\nPages throttled:                                   0.\nPages wired down:                             138362.\nPages purgeable:                                3146.\n\"Translation faults\":                     3851558464.\nPages copy-on-write:                       248426094.\nPages zero filled:                        1498169189.\nPages reactivated:                         392125563.\nPages purged:                               55336771.\nFile-backed pages:                            218193.\nAnonymous pages:                              570691.\nPages stored in compressor:                   520590.\nPages occupied by compressor:                  65992.\nDecompressions:                            366551345.\nCompressions:                              407873730.\nPageins:                                   621024266.\nPageouts:                                    1696756.\nSwapins:                                      766538.\nSwapouts:                                    1221287.\n"
+    },
+    {
+      "kind": "provider-command",
+      "argv": [
+        "/usr/sbin/sysctl",
+        "-n",
+        "hw.memsize"
+      ],
+      "returncode": 0,
+      "raw": "17179869184\n"
+    },
+    {
+      "kind": "provider-command",
+      "argv": [
+        "/usr/sbin/sysctl",
+        "-n",
+        "kern.memorystatus_vm_pressure_level"
+      ],
+      "returncode": 0,
+      "raw": "1\n"
+    },
+    {
+      "kind": "provider-command",
+      "argv": [
+        "/usr/bin/memory_pressure",
+        "-Q"
+      ],
+      "returncode": 0,
+      "raw": "The system has 17179869184 (1048576 pages with a page size of 16384).\nSystem-wide memory free percentage: 79%\n"
+    },
+    {
+      "kind": "provider-command",
+      "argv": [
+        "/usr/sbin/sysctl",
+        "-n",
+        "vm.swapusage"
+      ],
+      "returncode": 0,
+      "raw": "total = 4096.00M  used = 3359.69M  free = 736.31M  (encrypted)\n"
+    },
+    {
+      "kind": "provider-command",
+      "argv": [
+        "/usr/bin/vm_stat"
+      ],
+      "returncode": 0,
+      "raw": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     4843.\nPages active:                                 394291.\nPages inactive:                               390439.\nPages speculative:                              3282.\nPages throttled:                                   0.\nPages wired down:                             138358.\nPages purgeable:                                3148.\n\"Translation faults\":                     3851594758.\nPages copy-on-write:                       248429093.\nPages zero filled:                        1498182145.\nPages reactivated:                         392125563.\nPages purged:                               55336791.\nFile-backed pages:                            215512.\nAnonymous pages:                              572501.\nPages stored in compressor:                   520587.\nPages occupied by compressor:                  65992.\nDecompressions:                            366551348.\nCompressions:                              407873730.\nPageins:                                   621024710.\nPageouts:                                    1696757.\nSwapins:                                      766538.\nSwapouts:                                    1221287.\n"
+    },
+    {
+      "kind": "provider-command",
+      "argv": [
+        "/usr/sbin/sysctl",
+        "-n",
+        "hw.memsize"
+      ],
+      "returncode": 0,
+      "raw": "17179869184\n"
+    },
+    {
+      "kind": "provider-command",
+      "argv": [
+        "/usr/sbin/sysctl",
+        "-n",
+        "kern.memorystatus_vm_pressure_level"
+      ],
+      "returncode": 0,
+      "raw": "1\n"
+    },
+    {
+      "kind": "provider-command",
+      "argv": [
+        "/usr/bin/memory_pressure",
+        "-Q"
+      ],
+      "returncode": 0,
+      "raw": "The system has 17179869184 (1048576 pages with a page size of 16384).\nSystem-wide memory free percentage: 79%\n"
+    },
+    {
+      "kind": "provider-command",
+      "argv": [
+        "/usr/sbin/sysctl",
+        "-n",
+        "vm.swapusage"
+      ],
+      "returncode": 0,
+      "raw": "total = 4096.00M  used = 3359.69M  free = 736.31M  (encrypted)\n"
+    },
+    {
+      "kind": "provider-command",
+      "argv": [
+        "/usr/bin/vm_stat"
+      ],
+      "returncode": 0,
+      "raw": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     6042.\nPages active:                                 393397.\nPages inactive:                               389947.\nPages speculative:                              3727.\nPages throttled:                                   0.\nPages wired down:                             138373.\nPages purgeable:                                3148.\n\"Translation faults\":                     3851614226.\nPages copy-on-write:                       248430903.\nPages zero filled:                        1498189155.\nPages reactivated:                         392125563.\nPages purged:                               55336791.\nFile-backed pages:                            216187.\nAnonymous pages:                              570884.\nPages stored in compressor:                   520583.\nPages occupied by compressor:                  65990.\nDecompressions:                            366551352.\nCompressions:                              407873730.\nPageins:                                   621025031.\nPageouts:                                    1696757.\nSwapins:                                      766538.\nSwapouts:                                    1221287.\n"
+    }
+  ]
+}

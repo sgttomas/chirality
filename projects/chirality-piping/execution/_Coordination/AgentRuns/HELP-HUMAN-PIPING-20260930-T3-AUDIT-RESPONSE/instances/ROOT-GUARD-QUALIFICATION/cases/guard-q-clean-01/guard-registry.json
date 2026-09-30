@@ -1,0 +1,36 @@
+{
+  "run_id": "HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE",
+  "job_id": "guard-q-clean-01",
+  "spec_sha256": "552b305405a441bc42f24c67d72f5d9de4240992efa42cd9ecdc720c282918f5",
+  "monitor": {
+    "pid": 13155,
+    "start_sec": 1790790986,
+    "start_usec": 894874,
+    "uid": 501,
+    "ruid": 501,
+    "pgid": 13152,
+    "sid": 13152
+  },
+  "supervisor": {
+    "pid": 13171,
+    "start_sec": 1790790989,
+    "start_usec": 27293,
+    "uid": 501,
+    "ruid": 501,
+    "pgid": 13171,
+    "sid": 13171
+  },
+  "channel_binding_sha256": "492318b73bceb2a129789f49dcdfda2efc6f9fdea641b3e5a1a6d4f3be4b0829",
+  "limits": {
+    "cap_bytes": 134217728,
+    "allowance_bytes": 67108864,
+    "disk_write_budget_bytes": 67108864,
+    "disk_reserve_bytes": 1073741824,
+    "max_seconds": 8
+  },
+  "candidate_sha": "fe6ca966259d29d8d6ed2f05460400f6cb5d5de0",
+  "input_hashes": {
+    "<PYTHON>": "406d73d07e33e164d986326fde00b85c2b8f4ed2c33278142c8431588fe2df14",
+    "<RESPONSE_RUNTIME>/scratch/guard-qualification/fixture.py": "d0297c6c13d47e3ecb0ef5b73769dddedddc54ace0febdcc504211fd7cad88ec"
+  }
+}

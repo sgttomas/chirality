@@ -1,0 +1,49 @@
+{
+  "kind": "isolated-runtime-source-component-setup",
+  "toolchain": "1.97.1",
+  "component": "rust-src",
+  "before_memory_free_pct": 73,
+  "returncode": 0,
+  "raw_install_log_sha256": "fd07094b4b8e1127838e068daa9904df04c952067f50f633f1b9f1ae56fdb84c",
+  "raw_install_log_alias": "<RESPONSE_RUNTIME>/logs/setup/rust-src/install.log",
+  "owner_default_unchanged": true,
+  "model_or_compile_run": false,
+  "files": [
+    {
+      "path": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/manifest-rust-src",
+      "exists": true,
+      "sha256": "9665a035b40be903ad7055916263402f577e3b83953a98571f1a83912ab0ed8d"
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/multirust-channel-manifest.toml",
+      "exists": true,
+      "sha256": "43cd9f9e489c03717461f2cdfd7ab9f331d06a726e5ac1eb33d233000157f3e3"
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/raw_vec/mod.rs",
+      "exists": true,
+      "sha256": "ed847fcc6d237a1ddf95dc54bc8a3823ae89bea125f3e45cb8bb54ae0000fff0"
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs",
+      "exists": true,
+      "sha256": "93e3f8bad8de514ccd23c84d9c036405f32cf0b24c40e11f69f012b5264ad08e"
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/collections/btree/node.rs",
+      "exists": true,
+      "sha256": "2200ca0a4fe38592c314dc7f5f40bbb160e06b6f9e4abd1eb5bc40701540ab25"
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/boxed.rs",
+      "exists": true,
+      "sha256": "31fe2ec856527253e2a78279f44b7dec14b73d9f1114a75584b031dcd6f64418"
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/sync.rs",
+      "exists": true,
+      "sha256": "768776d4a37cfeb28c71a0c6d8b2ad33332d11ceaef7e47cb01463bd71b9048a"
+    }
+  ],
+  "remaining": "Source availability is not capacity proof, private layout witness or runtime grant."
+}

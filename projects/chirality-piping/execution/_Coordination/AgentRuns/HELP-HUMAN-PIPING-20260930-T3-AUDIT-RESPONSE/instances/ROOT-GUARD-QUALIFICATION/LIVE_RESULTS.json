@@ -1,0 +1,175 @@
+[
+  {
+    "job_id": "guard-q-clean-01",
+    "mode": "clean",
+    "monitor_returncode": 0,
+    "sentinel_unchanged": true,
+    "all_final_owned_observations_nonrunning": true,
+    "sample_count": 3,
+    "sampled_rss_peak_bytes": 27213824,
+    "sampled_footprint_peak_bytes": 15155872,
+    "max_observed_sample_start_gap_seconds": 1.039716750034131,
+    "stop_reasons": [],
+    "signal_reasons": [],
+    "term_to_kill_seconds": null,
+    "request_to_term_seconds": null,
+    "group_drained_at": 549531.364055583,
+    "latch_was_preserved": false
+  },
+  {
+    "job_id": "guard-q-alloc16-01",
+    "mode": "alloc16",
+    "monitor_returncode": 0,
+    "sentinel_unchanged": true,
+    "all_final_owned_observations_nonrunning": true,
+    "sample_count": 3,
+    "sampled_rss_peak_bytes": 44105728,
+    "sampled_footprint_peak_bytes": 32047776,
+    "max_observed_sample_start_gap_seconds": 1.0692178750177845,
+    "stop_reasons": [],
+    "signal_reasons": [],
+    "term_to_kill_seconds": null,
+    "request_to_term_seconds": null,
+    "group_drained_at": 549566.537302041,
+    "latch_was_preserved": false
+  },
+  {
+    "job_id": "guard-q-sleepers-01",
+    "mode": "sleepers",
+    "monitor_returncode": 2,
+    "sentinel_unchanged": true,
+    "all_final_owned_observations_nonrunning": true,
+    "sample_count": 8,
+    "sampled_rss_peak_bytes": 45105152,
+    "sampled_footprint_peak_bytes": 23757856,
+    "max_observed_sample_start_gap_seconds": 1.0725288330577314,
+    "stop_reasons": [],
+    "signal_reasons": [
+      "supervisor-runtime-limit"
+    ],
+    "term_to_kill_seconds": null,
+    "request_to_term_seconds": null,
+    "group_drained_at": 549603.650611166,
+    "latch_was_preserved": true
+  },
+  {
+    "job_id": "guard-q-ignore-01",
+    "mode": "ignore",
+    "monitor_returncode": 2,
+    "sentinel_unchanged": true,
+    "all_final_owned_observations_nonrunning": true,
+    "sample_count": 9,
+    "sampled_rss_peak_bytes": 45137920,
+    "sampled_footprint_peak_bytes": 23774240,
+    "max_observed_sample_start_gap_seconds": 1.076498124981299,
+    "stop_reasons": [
+      "monitoring-failure:Refusal:runtime-limit"
+    ],
+    "signal_reasons": [
+      "supervisor-runtime-limit"
+    ],
+    "term_to_kill_seconds": 2.00122904102318,
+    "request_to_term_seconds": null,
+    "group_drained_at": null,
+    "latch_was_preserved": true
+  },
+  {
+    "job_id": "guard-q-cap64-01",
+    "mode": "cap64",
+    "monitor_returncode": 2,
+    "sentinel_unchanged": true,
+    "all_final_owned_observations_nonrunning": true,
+    "sample_count": 1,
+    "sampled_rss_peak_bytes": 94208000,
+    "sampled_footprint_peak_bytes": 82199272,
+    "max_observed_sample_start_gap_seconds": null,
+    "stop_reasons": [
+      "rss-cap"
+    ],
+    "signal_reasons": [
+      "rss-cap"
+    ],
+    "term_to_kill_seconds": null,
+    "request_to_term_seconds": 0.017527125077322125,
+    "group_drained_at": 549754.987975291,
+    "latch_was_preserved": true
+  },
+  {
+    "job_id": "guard-q-monitorloss-01",
+    "mode": "monitorloss",
+    "monitor_returncode": -9,
+    "sentinel_unchanged": true,
+    "all_final_owned_observations_nonrunning": true,
+    "sample_count": 1,
+    "sampled_rss_peak_bytes": 44351488,
+    "sampled_footprint_peak_bytes": 23168032,
+    "max_observed_sample_start_gap_seconds": null,
+    "stop_reasons": [],
+    "signal_reasons": [
+      "control-failure:ConnectionResetError"
+    ],
+    "term_to_kill_seconds": 2.017904540989548,
+    "request_to_term_seconds": null,
+    "group_drained_at": 549815.2156345,
+    "latch_was_preserved": true,
+    "monitor_kill_to_term_seconds": 0.010535999899730086,
+    "monitor_kill_to_group_drained_seconds": 0.03309599997010082
+  },
+  {
+    "job_id": "guard-q-escape-01",
+    "mode": "escape",
+    "monitor_returncode": 2,
+    "sentinel_unchanged": true,
+    "all_final_owned_observations_nonrunning": true,
+    "sample_count": 1,
+    "sampled_rss_peak_bytes": 42090496,
+    "sampled_footprint_peak_bytes": 21152824,
+    "max_observed_sample_start_gap_seconds": null,
+    "stop_reasons": [
+      "monitoring-failure:Refusal:escaped-group-or-changed-uid"
+    ],
+    "signal_reasons": [
+      "monitoring-failure:Refusal:escaped-group-or-changed-uid"
+    ],
+    "term_to_kill_seconds": 2.003803582978435,
+    "request_to_term_seconds": 0.020194292068481445,
+    "group_drained_at": null,
+    "latch_was_preserved": true
+  },
+  {
+    "job_id": "guard-q-monitorstall-01",
+    "mode": "monitorstall",
+    "monitor_returncode": -9,
+    "sentinel_unchanged": true,
+    "all_final_owned_observations_nonrunning": true,
+    "sample_count": 1,
+    "sampled_rss_peak_bytes": 44269568,
+    "sampled_footprint_peak_bytes": 23118880,
+    "max_observed_sample_start_gap_seconds": null,
+    "stop_reasons": [],
+    "signal_reasons": [
+      "heartbeat-loss"
+    ],
+    "term_to_kill_seconds": 2.543510959018022,
+    "request_to_term_seconds": null,
+    "group_drained_at": 549978.823315416,
+    "latch_was_preserved": true,
+    "monitor_stop_to_term_seconds": 3.024371625040658,
+    "monitor_stop_to_group_drained_seconds": 3.0483392500318587,
+    "controller_check_after_stop_seconds": 5.543831875082105,
+    "post_stall_members": [
+      {
+        "pid": 14648,
+        "state": "live"
+      },
+      {
+        "pid": 14655,
+        "state": "absent"
+      },
+      {
+        "pid": 14658,
+        "state": "absent"
+      }
+    ]
+  }
+]

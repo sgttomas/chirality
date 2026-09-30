@@ -1,0 +1,5 @@
+{"at": 549595.621908458, "data": {"identity": {"pgid": 13362, "pid": 13362, "ruid": 501, "sid": 13362, "start_sec": 1790791056, "start_usec": 407740, "uid": 501}}, "kind": "identity", "wall_ns": 1790791056410419000}
+{"at": 549595.688749875, "data": {"pid": 13369}, "kind": "worker-launched", "wall_ns": 1790791056477260000}
+{"at": 549603.627896791, "data": {"identity": {"pgid": 13362, "pid": 13362, "ruid": 501, "sid": 13362, "start_sec": 1790791056, "start_usec": 407740, "uid": 501}, "reason": "supervisor-runtime-limit", "signal": "TERM"}, "kind": "signal-intent", "wall_ns": 1790791064416356000}
+{"at": 549603.650296583, "data": {"returncode": -15}, "kind": "worker-exit", "wall_ns": 1790791064438755000}
+{"at": 549603.650611166, "data": {"reason": "supervisor-runtime-limit", "returncode": -15}, "kind": "group-drained", "wall_ns": 1790791064439070000}

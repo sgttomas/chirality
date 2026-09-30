@@ -1,0 +1,18 @@
+{
+  "kind": "actual_native_launch",
+  "parent": "/root",
+  "child": "/root/guard_reviewer",
+  "role": "TASK",
+  "mechanism": "collaboration.spawn_agent",
+  "fork_turns": "none",
+  "model_override": null,
+  "brief": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/briefs/GUARD_AND_RECORDS_REVIEW.md",
+  "brief_sha256": "a5cac03a284a6c91f40ef28742f923360d19541954db8ed8e876fa7945307b60",
+  "initial_candidate": "53a7bad25fef1e1ddfe1a9df21688279f823aaf3",
+  "integrated_candidate": "fe6ca966259d29d8d6ed2f05460400f6cb5d5de0",
+  "integrated_base": "292e123db9117e097c2dfbbecaf7a93de86c3c6b",
+  "reviewer_confirmed_diff_equivalence_sha256": "31e6c3590ba01c446133ed5861f0014b8552557a0d8eca649c043891f9e96e1c",
+  "write_scope": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-REVIEW/**",
+  "fence": "prompt-only shared filesystem; host sandbox remains outer boundary",
+  "clarification": "Read-only Git allowed; Git/index mutations forbidden. No live providers, signals, builds or model runs."
+}

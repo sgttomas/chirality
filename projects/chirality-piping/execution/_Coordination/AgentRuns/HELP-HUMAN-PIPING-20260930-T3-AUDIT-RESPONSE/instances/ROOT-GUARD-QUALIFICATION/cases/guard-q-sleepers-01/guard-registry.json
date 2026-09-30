@@ -1,0 +1,36 @@
+{
+  "run_id": "HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE",
+  "job_id": "guard-q-sleepers-01",
+  "spec_sha256": "8aa9a3670bf20fa5de4e2e883b1ed17321759ec02dbe302b9a6711f4d7eb53c7",
+  "monitor": {
+    "pid": 13346,
+    "start_sec": 1790791054,
+    "start_usec": 274911,
+    "uid": 501,
+    "ruid": 501,
+    "pgid": 13343,
+    "sid": 13343
+  },
+  "supervisor": {
+    "pid": 13362,
+    "start_sec": 1790791056,
+    "start_usec": 407740,
+    "uid": 501,
+    "ruid": 501,
+    "pgid": 13362,
+    "sid": 13362
+  },
+  "channel_binding_sha256": "bf28ce1c09a6fdcc3efe2d44c8da8762992dfb45e47c13c0d9291f5597cdd32a",
+  "limits": {
+    "cap_bytes": 134217728,
+    "allowance_bytes": 67108864,
+    "disk_write_budget_bytes": 67108864,
+    "disk_reserve_bytes": 1073741824,
+    "max_seconds": 8
+  },
+  "candidate_sha": "fe6ca966259d29d8d6ed2f05460400f6cb5d5de0",
+  "input_hashes": {
+    "<PYTHON>": "406d73d07e33e164d986326fde00b85c2b8f4ed2c33278142c8431588fe2df14",
+    "<RESPONSE_RUNTIME>/scratch/guard-qualification/fixture.py": "d0297c6c13d47e3ecb0ef5b73769dddedddc54ace0febdcc504211fd7cad88ec"
+  }
+}

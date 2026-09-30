@@ -1,0 +1,83 @@
+{
+  "live_capabilities": "blocked",
+  "fake_files_only": true,
+  "cases": [
+    {
+      "case": "proper_cargo_build",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "accepted": true,
+      "env": {
+        "RUSTUP_TOOLCHAIN": "1.97.1",
+        "RUSTUP_AUTO_INSTALL": "0",
+        "CARGO_INCREMENTAL": "0",
+        "CARGO_BUILD_JOBS": "1",
+        "RUST_TEST_THREADS": "1"
+      }
+    },
+    {
+      "case": "cargo_flags_in_workload_args",
+      "argv": [
+        "/fake/cargo",
+        "run",
+        "--jobs",
+        "8",
+        "--",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "accepted": true,
+      "env": {
+        "RUSTUP_TOOLCHAIN": "1.97.1",
+        "RUSTUP_AUTO_INSTALL": "0",
+        "CARGO_INCREMENTAL": "0",
+        "CARGO_BUILD_JOBS": "1",
+        "RUST_TEST_THREADS": "1"
+      }
+    },
+    {
+      "case": "cargo_explicit_toolchain",
+      "argv": [
+        "/fake/cargo",
+        "+stable",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "accepted": true,
+      "env": {
+        "RUSTUP_TOOLCHAIN": "1.97.1",
+        "RUSTUP_AUTO_INSTALL": "0",
+        "CARGO_INCREMENTAL": "0",
+        "CARGO_BUILD_JOBS": "1",
+        "RUST_TEST_THREADS": "1"
+      }
+    },
+    {
+      "case": "rustc_explicit_toolchain",
+      "argv": [
+        "/fake/rustc",
+        "+stable",
+        "input.rs"
+      ],
+      "accepted": true,
+      "env": {
+        "RUSTUP_TOOLCHAIN": "1.97.1",
+        "RUSTUP_AUTO_INSTALL": "0",
+        "CARGO_INCREMENTAL": "0",
+        "CARGO_BUILD_JOBS": "1",
+        "RUST_TEST_THREADS": "1"
+      }
+    }
+  ]
+}

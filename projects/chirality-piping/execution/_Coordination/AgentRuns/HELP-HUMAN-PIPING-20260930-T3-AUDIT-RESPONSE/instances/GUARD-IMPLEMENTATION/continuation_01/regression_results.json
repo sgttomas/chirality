@@ -1,0 +1,1028 @@
+{
+  "fake_files_only": true,
+  "live_capabilities": "blocked during import and cases",
+  "cases": [
+    {
+      "name": "review_proper_cargo_build",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": true,
+      "origin": "independent reviewed v1 witness",
+      "v1_observed_accept": true,
+      "accepted": true
+    },
+    {
+      "name": "review_cargo_flags_in_workload_args",
+      "argv": [
+        "/fake/cargo",
+        "run",
+        "--jobs",
+        "8",
+        "--",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "origin": "independent reviewed v1 witness",
+      "v1_observed_accept": true,
+      "accepted": false,
+      "reason": "cargo-jobs-must-be-one"
+    },
+    {
+      "name": "review_cargo_explicit_toolchain",
+      "argv": [
+        "/fake/cargo",
+        "+stable",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "origin": "independent reviewed v1 witness",
+      "v1_observed_accept": true,
+      "accepted": false,
+      "reason": "compile-incompatible-explicit-toolchain"
+    },
+    {
+      "name": "review_rustc_explicit_toolchain",
+      "argv": [
+        "/fake/rustc",
+        "+stable",
+        "input.rs"
+      ],
+      "expected_accept": false,
+      "origin": "independent reviewed v1 witness",
+      "v1_observed_accept": true,
+      "accepted": false,
+      "reason": "compile-incompatible-explicit-toolchain"
+    },
+    {
+      "name": "valid_jobs_short_attached",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j1"
+      ],
+      "expected_accept": true,
+      "origin": "additive GR-01/02 regression",
+      "accepted": true
+    },
+    {
+      "name": "valid_jobs_long_split",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "--jobs",
+        "1"
+      ],
+      "expected_accept": true,
+      "origin": "additive GR-01/02 regression",
+      "accepted": true
+    },
+    {
+      "name": "valid_jobs_long_equal",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "--jobs=1"
+      ],
+      "expected_accept": true,
+      "origin": "additive GR-01/02 regression",
+      "accepted": true
+    },
+    {
+      "name": "valid_cargo_exact_selector",
+      "argv": [
+        "/fake/cargo",
+        "+1.97.1",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": true,
+      "origin": "additive GR-01/02 regression",
+      "accepted": true
+    },
+    {
+      "name": "valid_rustc_no_selector",
+      "argv": [
+        "/fake/rustc",
+        "--edition=2021",
+        "input.rs",
+        "-o",
+        "/fake/output"
+      ],
+      "expected_accept": true,
+      "origin": "additive GR-01/02 regression",
+      "accepted": true
+    },
+    {
+      "name": "valid_rustc_exact_selector",
+      "argv": [
+        "/fake/rustc",
+        "+1.97.1",
+        "input.rs"
+      ],
+      "expected_accept": true,
+      "origin": "additive GR-01/02 regression",
+      "accepted": true
+    },
+    {
+      "name": "valid_cargo_manifest_and_target",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--manifest-path",
+        "/fake/project/Cargo.toml",
+        "--target-dir=/fake/target",
+        "--lib",
+        "--release",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": true,
+      "origin": "additive GR-01/02 regression",
+      "accepted": true
+    },
+    {
+      "name": "valid_cargo_check",
+      "argv": [
+        "/fake/cargo",
+        "check",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": true,
+      "origin": "additive GR-01/02 regression",
+      "accepted": true
+    },
+    {
+      "name": "valid_cargo_test_no_run",
+      "argv": [
+        "/fake/cargo",
+        "test",
+        "--no-run",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": true,
+      "origin": "additive GR-01/02 regression",
+      "accepted": true
+    },
+    {
+      "name": "valid_run_forwarded_workload_arguments",
+      "argv": [
+        "/fake/cargo",
+        "run",
+        "--offline",
+        "--locked",
+        "-j",
+        "1",
+        "--",
+        "model-input"
+      ],
+      "expected_accept": true,
+      "origin": "additive GR-01/02 regression",
+      "accepted": true
+    },
+    {
+      "name": "valid_cargo_rustc_layout_ir",
+      "argv": [
+        "/fake/cargo",
+        "rustc",
+        "--manifest-path",
+        "/private-fk/Cargo.toml",
+        "--lib",
+        "--target",
+        "aarch64-apple-darwin",
+        "--offline",
+        "--locked",
+        "-j",
+        "1",
+        "--",
+        "--cfg",
+        "k0_layout_witness",
+        "--check-cfg",
+        "cfg(k0_layout_witness)",
+        "--emit=llvm-ir",
+        "-C",
+        "opt-level=0",
+        "-C",
+        "codegen-units=1",
+        "-C",
+        "debuginfo=2"
+      ],
+      "expected_accept": true,
+      "origin": "additive GR-01/02 regression",
+      "accepted": true
+    },
+    {
+      "name": "forwarded_all_controls",
+      "argv": [
+        "/fake/cargo",
+        "run",
+        "--",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-missing-own-offline-locked-jobs1"
+    },
+    {
+      "name": "forwarded_offline_only",
+      "argv": [
+        "/fake/cargo",
+        "run",
+        "--locked",
+        "-j",
+        "1",
+        "--",
+        "--offline"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-missing-own-offline-locked-jobs1"
+    },
+    {
+      "name": "forwarded_locked_only",
+      "argv": [
+        "/fake/cargo",
+        "run",
+        "--offline",
+        "-j",
+        "1",
+        "--",
+        "--locked"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-missing-own-offline-locked-jobs1"
+    },
+    {
+      "name": "forwarded_jobs_only",
+      "argv": [
+        "/fake/cargo",
+        "run",
+        "--offline",
+        "--locked",
+        "--",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-missing-own-offline-locked-jobs1"
+    },
+    {
+      "name": "forwarded_rustc_controls",
+      "argv": [
+        "/fake/cargo",
+        "rustc",
+        "--",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-missing-own-offline-locked-jobs1"
+    },
+    {
+      "name": "nonserial_before_forwarded_serial",
+      "argv": [
+        "/fake/cargo",
+        "rustc",
+        "--offline",
+        "--locked",
+        "--jobs=8",
+        "--",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-jobs-must-be-one"
+    },
+    {
+      "name": "nonserial_short_split",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "8"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-jobs-must-be-one"
+    },
+    {
+      "name": "nonserial_short_attached",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j8"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-jobs-must-be-one"
+    },
+    {
+      "name": "nonserial_long_split",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "--jobs",
+        "8"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-jobs-must-be-one"
+    },
+    {
+      "name": "nonserial_long_equal",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "--jobs=8"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-jobs-must-be-one"
+    },
+    {
+      "name": "nonserial_zero",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "0"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-jobs-must-be-one"
+    },
+    {
+      "name": "nonserial_negative",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "--jobs",
+        "-1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-ambiguous-option-value"
+    },
+    {
+      "name": "nonserial_ambiguous",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "--jobs",
+        "01"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-jobs-must-be-one"
+    },
+    {
+      "name": "duplicate_jobs_same_short",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-duplicate-option:--jobs"
+    },
+    {
+      "name": "duplicate_jobs_same_attached",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1",
+        "-j1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-duplicate-option:--jobs"
+    },
+    {
+      "name": "duplicate_jobs_same_long",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1",
+        "--jobs=1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-duplicate-option:--jobs"
+    },
+    {
+      "name": "duplicate_jobs_conflicting_long",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1",
+        "--jobs",
+        "8"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-duplicate-option:--jobs"
+    },
+    {
+      "name": "duplicate_jobs_conflicting_attached",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1",
+        "-j8"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-duplicate-option:--jobs"
+    },
+    {
+      "name": "conflicting_then_canonical",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--jobs=8",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-jobs-must-be-one"
+    },
+    {
+      "name": "duplicate_or_conflicting_offline",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1",
+        "--offline"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-duplicate-option:--offline"
+    },
+    {
+      "name": "duplicate_or_conflicting_locked",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1",
+        "--locked"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-duplicate-option:--locked"
+    },
+    {
+      "name": "duplicate_or_conflicting_release_profile",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1",
+        "--release",
+        "--profile",
+        "dev"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-conflicting-options"
+    },
+    {
+      "name": "duplicate_or_conflicting_quiet_verbose",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1",
+        "--quiet",
+        "--verbose"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-conflicting-options"
+    },
+    {
+      "name": "duplicate_or_conflicting_alias_duplicate",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1",
+        "-q",
+        "--quiet"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-duplicate-option:--quiet"
+    },
+    {
+      "name": "operand_disguised_as_offline",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--target-dir",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-ambiguous-option-value"
+    },
+    {
+      "name": "attached_operand_is_not_offline",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--target-dir=--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-ambiguous-option-value"
+    },
+    {
+      "name": "offline_value_false",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline=false",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-flag-does-not-take-value"
+    },
+    {
+      "name": "missing_jobs_value",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-missing-option-value"
+    },
+    {
+      "name": "empty_jobs_value",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "--jobs="
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-ambiguous-option-value"
+    },
+    {
+      "name": "missing_manifest_value",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1",
+        "--manifest-path"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-missing-option-value"
+    },
+    {
+      "name": "unknown_config_is_not_assumed_safe",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1",
+        "--config",
+        "build.jobs=8"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-unsupported-or-ambiguous-option"
+    },
+    {
+      "name": "unsupported_subcommand",
+      "argv": [
+        "/fake/cargo",
+        "custom-alias",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-unsupported-subcommand"
+    },
+    {
+      "name": "global_option_before_subcommand",
+      "argv": [
+        "/fake/cargo",
+        "--offline",
+        "build",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-unsupported-subcommand"
+    },
+    {
+      "name": "build_forwarding_unsupported",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1",
+        "--",
+        "ignored"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-unsupported-forwarding"
+    },
+    {
+      "name": "cargo_reject_selector_+stable",
+      "argv": [
+        "/fake/cargo",
+        "+stable",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "compile-incompatible-explicit-toolchain"
+    },
+    {
+      "name": "cargo_reject_selector_+nightly",
+      "argv": [
+        "/fake/cargo",
+        "+nightly",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "compile-incompatible-explicit-toolchain"
+    },
+    {
+      "name": "cargo_reject_selector_+1.92.0",
+      "argv": [
+        "/fake/cargo",
+        "+1.92.0",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "compile-incompatible-explicit-toolchain"
+    },
+    {
+      "name": "cargo_reject_selector_+1.97.2",
+      "argv": [
+        "/fake/cargo",
+        "+1.97.2",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "compile-incompatible-explicit-toolchain"
+    },
+    {
+      "name": "cargo_reject_selector_+1.97.1-aarch64-apple-darwin",
+      "argv": [
+        "/fake/cargo",
+        "+1.97.1-aarch64-apple-darwin",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "compile-incompatible-explicit-toolchain"
+    },
+    {
+      "name": "cargo_reject_selector_+",
+      "argv": [
+        "/fake/cargo",
+        "+",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "compile-incompatible-explicit-toolchain"
+    },
+    {
+      "name": "cargo_reject_duplicate_selector",
+      "argv": [
+        "/fake/cargo",
+        "+1.97.1",
+        "+1.97.1",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-unsupported-subcommand"
+    },
+    {
+      "name": "cargo_missing_arguments",
+      "argv": [
+        "/fake/cargo",
+        "+1.97.1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "compile-missing-arguments"
+    },
+    {
+      "name": "rustc_reject_selector_+stable",
+      "argv": [
+        "/fake/rustc",
+        "+stable",
+        "input.rs"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "compile-incompatible-explicit-toolchain"
+    },
+    {
+      "name": "rustc_reject_selector_+nightly",
+      "argv": [
+        "/fake/rustc",
+        "+nightly",
+        "input.rs"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "compile-incompatible-explicit-toolchain"
+    },
+    {
+      "name": "rustc_reject_selector_+1.92.0",
+      "argv": [
+        "/fake/rustc",
+        "+1.92.0",
+        "input.rs"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "compile-incompatible-explicit-toolchain"
+    },
+    {
+      "name": "rustc_reject_selector_+1.97.2",
+      "argv": [
+        "/fake/rustc",
+        "+1.97.2",
+        "input.rs"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "compile-incompatible-explicit-toolchain"
+    },
+    {
+      "name": "rustc_reject_selector_+1.97.1-aarch64-apple-darwin",
+      "argv": [
+        "/fake/rustc",
+        "+1.97.1-aarch64-apple-darwin",
+        "input.rs"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "compile-incompatible-explicit-toolchain"
+    },
+    {
+      "name": "rustc_reject_selector_+",
+      "argv": [
+        "/fake/rustc",
+        "+",
+        "input.rs"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "compile-incompatible-explicit-toolchain"
+    },
+    {
+      "name": "rustc_reject_duplicate_selector",
+      "argv": [
+        "/fake/rustc",
+        "+1.97.1",
+        "+1.97.1",
+        "input.rs"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "rustc-ambiguous-explicit-toolchain"
+    },
+    {
+      "name": "rustc_missing_arguments",
+      "argv": [
+        "/fake/rustc",
+        "+1.97.1"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "compile-missing-arguments"
+    },
+    {
+      "name": "cargo_misplaced_selector",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1",
+        "+stable"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "cargo-unsupported-or-ambiguous-option"
+    },
+    {
+      "name": "rustc_misplaced_selector",
+      "argv": [
+        "/fake/rustc",
+        "input.rs",
+        "+stable"
+      ],
+      "expected_accept": false,
+      "origin": "additive GR-01/02 regression",
+      "accepted": false,
+      "reason": "rustc-ambiguous-explicit-toolchain"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "record_kind": "actual_native_TASK_launch",
+  "recorded_utc": "2026-09-30T17:37:38.359281+00:00",
+  "parent": "/root/design_manager",
+  "parent_role": "HELPS_HUMANS / Agent 1",
+  "root": "/root",
+  "child": "/root/design_manager/a1_diagnosis",
+  "child_role": "TASK / Type 2",
+  "mechanism": "collaboration.spawn_agent",
+  "fork_turns": "none",
+  "model_override": null,
+  "actual_model_identifier": "not independently exposed",
+  "coordination_authority_and_brief_commit": "53a7bad25fef1e1ddfe1a9df21688279f823aaf3",
+  "actual_launch_head": "fe6ca966259d29d8d6ed2f05460400f6cb5d5de0",
+  "numerical_source_commit": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "head_change_note": "ROOT reported unrelated App-v4 integration at fe6ca966259d29d8d6ed2f05460400f6cb5d5de0; frozen instructions/response source and numerical snapshot are not rebound.",
+  "launch_prompt": {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_02/LAUNCH_PROMPT.md",
+    "sha256": "97d1e193adc10f2b49492912bcadd6f8bdadc2e684210d7c12586b64d48ed0ec"
+  },
+  "native_dispatch_additions": [
+    "Read complete sealed prompt and exact brief/matrix/derivation plus decision03 addendum.",
+    "Record actual launch HEAD separately from authority and frozen numerical basis.",
+    "Prepare exact input bits, inert public-API Rust source, independent Fraction oracle/self-checks, source/feature hashes and command/budget plan.",
+    "No cargo/rustc, compilation/model execution, provider/guard activation/query, signal, installation/network, Git/index, product/snapshot edit, repair selection or child delegation.",
+    "Return sealed preparation promptly to DESIGN and end checkpoint."
+  ],
+  "execution_confirmation": {
+    "spawn_return": "/root/design_manager/a1_diagnosis",
+    "followup_tool": "collaboration.list_agents",
+    "observed_child_status": "running"
+  },
+  "slot": "exactly one A0 preparation TASK; independent guard reviewer occupies other TASK slot",
+  "write_scope": {
+    "manager": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_02/**",
+    "child_evidence": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/**",
+    "child_scratch": "<RESPONSE_RUNTIME>/scratch/a1-diagnosis/**",
+    "later_reserved_target": "<RESPONSE_RUNTIME>/targets/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/**; unused by preparation"
+  },
+  "permission_limit": "shared filesystem/host sandbox; child scopes are prompt restrictions, not separate OS capabilities",
+  "host": "owner supplied M3 MacBook Air, 16 GB",
+  "grant": "preparation and lightweight pure integer/Fraction oracle checks only; no heavy/runtime grant",
+  "inputs": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "read_scope": "previous full read; hash rechecked",
+      "purpose": "Root instruction"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "read_scope": "previous full read; hash rechecked",
+      "purpose": "Piping instruction"
+    },
+    {
+      "path": "agents/AGENT_HELPS_HUMANS.md",
+      "sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e",
+      "read_scope": "previous full read; hash rechecked",
+      "purpose": "active role"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "read_scope": "full in this continuation",
+      "purpose": "deliberate wider role consultation to seal a fresh TASK launch; manager remains HELPS_HUMANS"
+    },
+    {
+      "path": ".agents/skills/software-defect-diagnosis/SKILL.md",
+      "sha256": "7e423dfd24132c33d3aa8fe6994bf17a1def966c396723f6bd72ac8d2442112b",
+      "read_scope": "previous full read; hash rechecked",
+      "purpose": "selected diagnosis skill"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/decisions/03_OWNER_EVIDENCE_AND_A0_PREPARATION.md",
+      "sha256": "8caa9bade1e7d65640d52c4d9eb03ec18c225bc553d9991d149c1fd566f3ff1d",
+      "read_scope": "full",
+      "purpose": "active preparation-only grant"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/RUNTIME_BINDING.json",
+      "sha256": "d552b6ffa398869b6f68c828c676af447b9c5c2426be24734ba820f67f32c3fc",
+      "read_scope": "full",
+      "purpose": "runtime binding; later install state preserved separately"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_01/A0_BRIEF.md",
+      "sha256": "9f69847b2c3d1fc0800c8efa60d493f79f3fdf474a029057f0ebbe073464a556",
+      "read_scope": "earlier full authored/read; hash rechecked",
+      "purpose": "sealed child brief"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_01/CASE_MATRIX.md",
+      "sha256": "7937a740fd84d5aca9a51c210db8d504f329dae0bb882cbd8e7e96f90907d33a",
+      "read_scope": "earlier full authored/read; hash rechecked",
+      "purpose": "finite case scope"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_01/DERIVATION.md",
+      "sha256": "a21802935b8b01afa29b11683f8febc97e5c2b3622bff5e13cb2a187ed6d5093",
+      "read_scope": "earlier full authored/read; hash rechecked",
+      "purpose": "hypotheses and exclusions"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/runtime_setup/01_native_rust/A1_SOURCE_SNAPSHOT.json",
+      "sha256": "784aafeb775b8b917ffd91ee81e0670ec792e40fcf4fdb5c6cea39de9ff39188",
+      "read_scope": "earlier full descriptor read; hash rechecked",
+      "purpose": "frozen source descriptor, actual runtime bytes delegated to child"
+    }
+  ],
+  "initial_packet_policy": "initial DESIGN and continuation_01 sealed bytes are read-only; no manager writes there"
+}

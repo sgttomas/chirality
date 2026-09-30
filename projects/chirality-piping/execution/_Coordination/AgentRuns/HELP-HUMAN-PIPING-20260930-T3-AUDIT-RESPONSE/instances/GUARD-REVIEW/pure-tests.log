@@ -1,0 +1,46 @@
+test_authenticated_sequence_and_no_nonce_log (__main__.AuthenticationAndBounds.test_authenticated_sequence_and_no_nonce_log) ... ok
+test_event_log_limit_without_filesystem (__main__.AuthenticationAndBounds.test_event_log_limit_without_filesystem) ... ok
+test_sdk_declared_layout_pure_ctypes_only (__main__.AuthenticationAndBounds.test_sdk_declared_layout_pure_ctypes_only) ... ok
+test_wrong_nonce_and_oversize_rejected (__main__.AuthenticationAndBounds.test_wrong_nonce_and_oversize_rejected) ... ok
+test_executable_exact_path_hash_is_required_and_checked (__main__.JobSchema.test_executable_exact_path_hash_is_required_and_checked) ... ok
+test_disk_and_total_changes_stop (__main__.Metrics.test_disk_and_total_changes_stop) ... ok
+test_high_baseline_swap_stable_is_not_pressure (__main__.Metrics.test_high_baseline_swap_stable_is_not_pressure) ... ok
+test_invalid_nan_negative_types (__main__.Metrics.test_invalid_nan_negative_types) ... ok
+test_limits_enforce_ceiling_and_evidence_budget (__main__.Metrics.test_limits_enforce_ceiling_and_evidence_budget) ... ok
+test_new_swap_growth_and_swapouts (__main__.Metrics.test_new_swap_growth_and_swapouts) ... ok
+test_pressure_unknown_values_stop (__main__.Metrics.test_pressure_unknown_values_stop) ... ok
+test_projection_consumes_full_cap_and_allowance (__main__.Metrics.test_projection_consumes_full_cap_and_allowance) ... ok
+test_quiet_admission_requires_unchanged_swap (__main__.Metrics.test_quiet_admission_requires_unchanged_swap) ... ok
+test_rss_and_footprint_are_independent_caps (__main__.Metrics.test_rss_and_footprint_are_independent_caps) ... ok
+test_stale_future_and_exact_age (__main__.Metrics.test_stale_future_and_exact_age) ... ok
+test_stop_before_35_percent_policy_floor (__main__.Metrics.test_stop_before_35_percent_policy_floor) ... ok
+test_group_denied_short_truncated_missing_leader (__main__.NativeAdapterFakes.test_group_denied_short_truncated_missing_leader) ... ok
+test_group_empty_of_workers_requires_live_leader (__main__.NativeAdapterFakes.test_group_empty_of_workers_requires_live_leader) ... ok
+test_identity_provider_denied_or_short_fails_closed (__main__.NativeAdapterFakes.test_identity_provider_denied_or_short_fails_closed) ... ok
+test_identity_race_or_session_change_refuses (__main__.NativeAdapterFakes.test_identity_race_or_session_change_refuses) ... ok
+test_identity_uses_pid_start_uid_and_session (__main__.NativeAdapterFakes.test_identity_uses_pid_start_uid_and_session) ... ok
+test_live_group_enumeration_uses_bytes_and_preserves_sentinel (__main__.NativeAdapterFakes.test_live_group_enumeration_uses_bytes_and_preserves_sentinel) ... ok
+test_self_owner_uses_current_identity_only (__main__.NativeAdapterFakes.test_self_owner_uses_current_identity_only) ... ok
+test_changed_uid_and_session (__main__.Ownership.test_changed_uid_and_session) ... ok
+test_descendants_and_members_are_bounded (__main__.Ownership.test_descendants_and_members_are_bounded) ... ok
+test_invalid_identity (__main__.Ownership.test_invalid_identity) ... ok
+test_leader_loss_and_escaped_groups (__main__.Ownership.test_leader_loss_and_escaped_groups) ... ok
+test_reused_pid_start_mismatch_refuses (__main__.Ownership.test_reused_pid_start_mismatch_refuses) ... ok
+test_unrelated_sentinel_never_selected (__main__.Ownership.test_unrelated_sentinel_never_selected) ... ok
+test_percentage (__main__.Parsers.test_percentage) ... ok
+test_process_table (__main__.Parsers.test_process_table) ... ok
+test_swap_and_vm_stat (__main__.Parsers.test_swap_and_vm_stat) ... ok
+test_authentication_loss_never_signals (__main__.StateMachines.test_authentication_loss_never_signals) ... ok
+test_heartbeat_loss_terms_then_kills_with_grace (__main__.StateMachines.test_heartbeat_loss_terms_then_kills_with_grace) ... ok
+test_late_heartbeat_does_not_cancel_stop (__main__.StateMachines.test_late_heartbeat_does_not_cancel_stop) ... ok
+test_live_capabilities_are_blocked (__main__.StateMachines.test_live_capabilities_are_blocked) ... ok
+test_monitor_cap_crossing_stops (__main__.StateMachines.test_monitor_cap_crossing_stops) ... ok
+test_monitor_failure_requests_stop_once_through_fake_control (__main__.StateMachines.test_monitor_failure_requests_stop_once_through_fake_control) ... ok
+test_monitor_success_only_sends_heartbeat (__main__.StateMachines.test_monitor_success_only_sends_heartbeat) ... ok
+test_stale_monitoring_stops (__main__.StateMachines.test_stale_monitoring_stops) ... ok
+test_worker_resets_handlers_to_default (__main__.StateMachines.test_worker_resets_handlers_to_default) ... ok
+
+----------------------------------------------------------------------
+Ran 41 tests in 0.035s
+
+OK

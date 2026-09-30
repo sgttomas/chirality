@@ -1,0 +1,504 @@
+{
+  "task": "/root/design_manager/a1_diagnosis",
+  "role": "TASK / Type 2",
+  "parent": "/root/design_manager",
+  "parent_role": "HELPS_HUMANS / Agent 1",
+  "root": "/root",
+  "root_role": "HELP_HUMAN / Agent 0",
+  "mechanism": "collaboration.spawn_agent native descendant; canonical task name independently visible in collaboration.list_agents",
+  "fork": "fresh context per sealed launch and parent record; no history-fork role substitution",
+  "model": "inherited configuration; no independently verified model identifier exposed; no override or diversity claim",
+  "authority_coordination_commit": "53a7bad25fef1e1ddfe1a9df21688279f823aaf3",
+  "actual_head_at_launch": "fe6ca966259d29d8d6ed2f05460400f6cb5d5de0",
+  "actual_head_at_sealing": "fe6ca966259d29d8d6ed2f05460400f6cb5d5de0",
+  "frozen_numerical_source": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "selected_skill": ".agents/skills/software-defect-diagnosis/SKILL.md",
+  "selected_workflow": null,
+  "full_role_bodies_loaded": [
+    "agents/AGENT_TASK.md"
+  ],
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "read_ranges": [
+        [
+          1,
+          242
+        ]
+      ],
+      "origin": "repository current bytes; frozen seal checked where specified"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "read_ranges": [
+        [
+          1,
+          155
+        ]
+      ],
+      "origin": "repository current bytes; frozen seal checked where specified"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "read_ranges": [
+        [
+          1,
+          39
+        ]
+      ],
+      "origin": "repository current bytes; frozen seal checked where specified"
+    },
+    {
+      "path": ".agents/skills/software-defect-diagnosis/SKILL.md",
+      "sha256": "7e423dfd24132c33d3aa8fe6994bf17a1def966c396723f6bd72ac8d2442112b",
+      "read_ranges": [
+        [
+          1,
+          20
+        ]
+      ],
+      "origin": "repository current bytes; frozen seal checked where specified"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_02/LAUNCH_PROMPT.md",
+      "sha256": "97d1e193adc10f2b49492912bcadd6f8bdadc2e684210d7c12586b64d48ed0ec",
+      "read_ranges": [
+        [
+          1,
+          95
+        ]
+      ],
+      "origin": "repository current bytes; frozen seal checked where specified"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_01/A0_BRIEF.md",
+      "sha256": "9f69847b2c3d1fc0800c8efa60d493f79f3fdf474a029057f0ebbe073464a556",
+      "read_ranges": [
+        [
+          1,
+          187
+        ]
+      ],
+      "origin": "repository current bytes; frozen seal checked where specified"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_01/CASE_MATRIX.md",
+      "sha256": "7937a740fd84d5aca9a51c210db8d504f329dae0bb882cbd8e7e96f90907d33a",
+      "read_ranges": [
+        [
+          1,
+          96
+        ]
+      ],
+      "origin": "repository current bytes; frozen seal checked where specified"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_01/DERIVATION.md",
+      "sha256": "a21802935b8b01afa29b11683f8febc97e5c2b3622bff5e13cb2a187ed6d5093",
+      "read_ranges": [
+        [
+          1,
+          181
+        ]
+      ],
+      "origin": "repository current bytes; frozen seal checked where specified"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/decisions/03_OWNER_EVIDENCE_AND_A0_PREPARATION.md",
+      "sha256": "8caa9bade1e7d65640d52c4d9eb03ec18c225bc553d9991d149c1fd566f3ff1d",
+      "read_ranges": [
+        [
+          1,
+          65
+        ]
+      ],
+      "origin": "repository current bytes; frozen seal checked where specified"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/ACTIVATION.md",
+      "sha256": "cddee0607918ef55fba99ec6d80556a0eb2c2bd40f6606876c4ba00e340b603a",
+      "read_ranges": [
+        [
+          1,
+          28
+        ]
+      ],
+      "origin": "repository current bytes; frozen seal checked where specified"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/WORK_GRAPH.md",
+      "sha256": "b92722571d8ab2a9b53e6a6a2b3ee8ec98e094b0ced0b950a2cf437c70905c2c",
+      "read_ranges": [
+        [
+          1,
+          287
+        ]
+      ],
+      "origin": "repository current bytes; frozen seal checked where specified"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/AUDIT-REVIEW/REVIEW.md",
+      "sha256": "13a0dc689fc47ec26af93e3b4624f281a4c88345209c2653f79161b593f1befc",
+      "read_ranges": [
+        [
+          1,
+          255
+        ]
+      ],
+      "origin": "repository current bytes; frozen seal checked where specified"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/INITIAL_PLAN.md",
+      "sha256": "29e2b1806601d94bfd73a1748a3cda3e5cc0cb32379793d4e7fc246541ae60de",
+      "read_ranges": [
+        [
+          1,
+          170
+        ]
+      ],
+      "origin": "repository current bytes; frozen seal checked where specified"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/RUNTIME_BINDING.json",
+      "sha256": "d552b6ffa398869b6f68c828c676af447b9c5c2426be24734ba820f67f32c3fc",
+      "read_ranges": [
+        [
+          1,
+          16
+        ]
+      ],
+      "origin": "repository current bytes; frozen seal checked where specified"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/runtime_setup/01_native_rust/A1_SOURCE_SNAPSHOT.json",
+      "sha256": "784aafeb775b8b917ffd91ee81e0670ec792e40fcf4fdb5c6cea39de9ff39188",
+      "read_ranges": [
+        [
+          1,
+          159
+        ]
+      ],
+      "origin": "repository current bytes; frozen seal checked where specified"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/AUDIT/A1_A2_REVIEW.md",
+      "sha256": "d229598e5a80c630c5e9298e45b4ed9da95aea9135eb5957eca6200d5c801c54",
+      "read_ranges": [
+        [
+          1,
+          117
+        ]
+      ],
+      "origin": "repository current bytes; frozen seal checked where specified"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/ROOT_RULINGS_V1.md",
+      "sha256": "444c18e09467c205b70be853045b4d68ec655241cae1b2dea518a8f7da9bf22a",
+      "read_ranges": [
+        [
+          1990,
+          2110
+        ],
+        [
+          2544,
+          2585
+        ]
+      ],
+      "origin": "repository source/read-only; FK bytes independently matched frozen snapshot and Git object"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/DESIGN_NUMERICS/REV_5A3_CANDIDATE/D1_REV_5A3_SSTAR_RESOLUTION_R7.md",
+      "sha256": "5502aef9803f05f42e93c2a05a0de495401e3f94fe92adb19fc2a0c3f80d8f42",
+      "read_ranges": [
+        [
+          280,
+          708
+        ],
+        [
+          815,
+          850
+        ]
+      ],
+      "origin": "repository source/read-only; FK bytes independently matched frozen snapshot and Git object"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/DESIGN_NUMERICS/DESIGN.md",
+      "sha256": "fb62ef4a8282e53fd5875430e8903da80f1e0821c2dfba075dce5a97e5f27a74",
+      "read_ranges": [
+        [
+          410,
+          450
+        ]
+      ],
+      "origin": "repository source/read-only; FK bytes independently matched frozen snapshot and Git object"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/REFERENCES/README.md",
+      "sha256": "5a89bad917d36aa71e3abb7f7ac237f7ba111af33878aac7fa1568a6017cc2a9",
+      "read_ranges": [
+        [
+          1,
+          9
+        ]
+      ],
+      "origin": "repository source/read-only; FK bytes independently matched frozen snapshot and Git object"
+    },
+    {
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_robustness/README.md",
+      "sha256": "7f71e0507601bd608a4f4c2795c9f5d060806c476a7730ba87ff07b1ca4587b4",
+      "read_ranges": [
+        [
+          1,
+          32
+        ]
+      ],
+      "origin": "repository source/read-only; FK bytes independently matched frozen snapshot and Git object"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/Cargo.toml",
+      "sha256": "994d118576eb881668f3048f9b4d05f899ceb7599c1cd5f05cbe18f70172b7dc",
+      "read_ranges": [
+        [
+          1,
+          17
+        ]
+      ],
+      "origin": "repository source/read-only; FK bytes independently matched frozen snapshot and Git object"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/Cargo.lock",
+      "sha256": "7e1d8a98a542f977cfcfe8b2b0bb27be24fb91fbcf8f0b39a2e9e235574a08b9",
+      "read_ranges": [
+        [
+          1,
+          7
+        ]
+      ],
+      "origin": "repository source/read-only; FK bytes independently matched frozen snapshot and Git object"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural.rs",
+      "sha256": "32dfe5971f95be3eb276fa594c5ab4b0c5ce8724b942a098f2fda1104886d9d2",
+      "read_ranges": [
+        [
+          1,
+          100
+        ]
+      ],
+      "origin": "repository source/read-only; FK bytes independently matched frozen snapshot and Git object"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/source.rs",
+      "sha256": "46c85ba0d9e0c45f6d19bfd188ce8cc52e4d773b96d3b7e8d0746b78e5582ca9",
+      "read_ranges": [
+        [
+          1,
+          390
+        ]
+      ],
+      "origin": "repository source/read-only; FK bytes independently matched frozen snapshot and Git object"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/recover.rs",
+      "sha256": "e452e3467608a4680359a36d30b6a580d72a12b778d506ff8118646257b7d388",
+      "read_ranges": [
+        [
+          1,
+          210
+        ]
+      ],
+      "origin": "repository source/read-only; FK bytes independently matched frozen snapshot and Git object"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/assemble.rs",
+      "sha256": "057fa8a431bde050d0aa448c347dd1c92fbd4929ad6cc8ecce5837c9255d20f2",
+      "read_ranges": [
+        [
+          281,
+          297
+        ],
+        [
+          540,
+          575
+        ],
+        [
+          818,
+          850
+        ]
+      ],
+      "origin": "repository source/read-only; FK bytes independently matched frozen snapshot and Git object"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/factor.rs",
+      "sha256": "e21fc61e6ae84e7c609da9f2d14c3769c4f203a9baa6bcd25025843056af22dc",
+      "read_ranges": [
+        [
+          1,
+          75
+        ],
+        [
+          224,
+          397
+        ],
+        [
+          519,
+          620
+        ],
+        [
+          630,
+          675
+        ]
+      ],
+      "origin": "repository source/read-only; FK bytes independently matched frozen snapshot and Git object"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/wide.rs",
+      "sha256": "5d35b70d45680f769354bbc6694c78186354d235a7af29891a9b09e7b4a293ad",
+      "read_ranges": [
+        [
+          341,
+          350
+        ]
+      ],
+      "origin": "repository source/read-only; FK bytes independently matched frozen snapshot and Git object"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/wide/multi.rs",
+      "sha256": "76d96ee2a0d183ab8b288c41b0075b2cb2feb74016b7a3efcfa3f6eb6bb09d17",
+      "read_ranges": [
+        [
+          659,
+          685
+        ]
+      ],
+      "origin": "repository source/read-only; FK bytes independently matched frozen snapshot and Git object"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/verify.rs",
+      "sha256": "31780a6a888decc64e2ebec2fcfbeff45c144a6f0d0169f0584d53fcccb89987",
+      "read_ranges": [
+        [
+          1050,
+          1185
+        ]
+      ],
+      "origin": "repository source/read-only; FK bytes independently matched frozen snapshot and Git object"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/adaptive.rs",
+      "sha256": "472bafb8281c7d311a81dcd5da042dd0f8db998bd81cf4902e6b55409eb5a563",
+      "read_ranges": [
+        [
+          1,
+          240
+        ],
+        [
+          341,
+          430
+        ],
+        [
+          1413,
+          1484
+        ],
+        [
+          1744,
+          1770
+        ],
+        [
+          1904,
+          1954
+        ],
+        [
+          2105,
+          2250
+        ],
+        [
+          2326,
+          2417
+        ],
+        [
+          2524,
+          2586
+        ],
+        [
+          2598,
+          2770
+        ],
+        [
+          3500,
+          3530
+        ]
+      ],
+      "origin": "repository source/read-only; FK bytes independently matched frozen snapshot and Git object"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/runtime_setup/01_native_rust/SETUP.json",
+      "sha256": "d07433d1083c19c355c045fca517efc65c67e3911ef548457c3c52d8d9d3e039",
+      "read_ranges": [
+        [
+          1,
+          26
+        ]
+      ],
+      "json_fields_consulted": [
+        "version",
+        "checks",
+        "manifest_sha256",
+        "manifest_native_components",
+        "default_home_or_configuration_changed",
+        "native_compilation_or_model_run"
+      ],
+      "origin": "prior isolated native installation evidence; no tool invocation"
+    }
+  ],
+  "scope": {
+    "allowed_writes": [
+      "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/**",
+      "<RESPONSE_RUNTIME>/scratch/a1-diagnosis/**"
+    ],
+    "reserved_unused_target": "<RESPONSE_RUNTIME>/targets/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/**",
+    "enforcement": "Prompt-only per-child fence on a shared filesystem within host sandbox; not independently enforced per-child OS capabilities",
+    "forbidden": [
+      "delegation",
+      "Git/index writes",
+      "network/fetch",
+      "cargo/rustc invocation",
+      "compilation",
+      "model execution",
+      "live provider query",
+      "guard/provider activation",
+      "signals",
+      "installation",
+      "product or snapshot edit",
+      "repair selection"
+    ]
+  },
+  "host": "Owner-supplied M3 MacBook Air with 16 GiB; no fresh live headroom/provider query",
+  "followups": [
+    {
+      "origin": "native parent message",
+      "content": "ROOT via DESIGN: retain R7 section 6.3 lines 839-840 G5a lower-bound transfer dependency, no claim of actual check failure"
+    },
+    {
+      "origin": "native parent preliminary review",
+      "content": "Tighten comparator p/P and floor inventory, range discrepancies, and authoritative relative-denominator naming; applied with pure synthetic checks"
+    },
+    {
+      "origin": "Late ROOT integration addendum through native DESIGN message",
+      "content": "Guard requires RUSTUP_TOOLCHAIN=1.97.1 exactly. generate-lockfile does not fit compile grammar; possible authored two-package v4 lockfile remains ungranted. No lockfile creation or Cargo invocation."
+    }
+  ],
+  "unavailable": [
+    "Original M5 logs unavailable, not recreated",
+    "Compilation and full source admission",
+    "Candidate/verification selection and private per-row W-plus/t1/t3",
+    "Qualified active guard and ROOT runtime/heavy-slot grant",
+    "Final work caps/timeouts and fresh headroom",
+    "Future lockfile and binary hashes"
+  ],
+  "delegated_children": [],
+  "status": "preparation checkpoint complete; all numerical cases UNRUN"
+}

@@ -1,0 +1,15 @@
+{"at": 549815.014920416, "data": {"identity": {"pgid": 14176, "pid": 14176, "ruid": 501, "sid": 14176, "start_sec": 1790791275, "start_usec": 799319, "uid": 501}}, "kind": "identity", "wall_ns": 1790791275802005000}
+{"at": 549815.082244625, "data": {"pid": 14183}, "kind": "worker-launched", "wall_ns": 1790791275869329000}
+{"at": 549815.1930745, "data": {"identity": {"pgid": 14176, "pid": 14176, "ruid": 501, "sid": 14176, "start_sec": 1790791275, "start_usec": 799319, "uid": 501}, "reason": "control-failure:ConnectionResetError", "signal": "TERM"}, "kind": "signal-intent", "wall_ns": 1790791275980158000}
+{"at": 549815.215265083, "data": {"returncode": -15}, "kind": "worker-exit", "wall_ns": 1790791276002348000}
+{"at": 549815.2156345, "data": {"reason": "control-failure:ConnectionResetError", "returncode": -15}, "kind": "group-drained", "wall_ns": 1790791276002718000}
+{"at": 549815.433119916, "data": {"reason": "control-failure:ConnectionResetError", "returncode": -15}, "kind": "group-drained", "wall_ns": 1790791276220202000}
+{"at": 549815.653251916, "data": {"reason": "control-failure:ConnectionResetError", "returncode": -15}, "kind": "group-drained", "wall_ns": 1790791276440335000}
+{"at": 549815.873565791, "data": {"reason": "control-failure:ConnectionResetError", "returncode": -15}, "kind": "group-drained", "wall_ns": 1790791276660646000}
+{"at": 549816.093331125, "data": {"reason": "control-failure:ConnectionResetError", "returncode": -15}, "kind": "group-drained", "wall_ns": 1790791276880410000}
+{"at": 549816.309956166, "data": {"reason": "control-failure:ConnectionResetError", "returncode": -15}, "kind": "group-drained", "wall_ns": 1790791277097033000}
+{"at": 549816.530906083, "data": {"reason": "control-failure:ConnectionResetError", "returncode": -15}, "kind": "group-drained", "wall_ns": 1790791277317982000}
+{"at": 549816.751429041, "data": {"reason": "control-failure:ConnectionResetError", "returncode": -15}, "kind": "group-drained", "wall_ns": 1790791277538504000}
+{"at": 549816.973049, "data": {"reason": "control-failure:ConnectionResetError", "returncode": -15}, "kind": "group-drained", "wall_ns": 1790791277760122000}
+{"at": 549817.18932125, "data": {"reason": "control-failure:ConnectionResetError", "returncode": -15}, "kind": "group-drained", "wall_ns": 1790791277976393000}
+{"at": 549817.210979041, "data": {"identity": {"pgid": 14176, "pid": 14176, "ruid": 501, "sid": 14176, "start_sec": 1790791275, "start_usec": 799319, "uid": 501}, "reason": "control-failure:ConnectionResetError", "signal": "KILL"}, "kind": "signal-intent", "wall_ns": 1790791277998050000}

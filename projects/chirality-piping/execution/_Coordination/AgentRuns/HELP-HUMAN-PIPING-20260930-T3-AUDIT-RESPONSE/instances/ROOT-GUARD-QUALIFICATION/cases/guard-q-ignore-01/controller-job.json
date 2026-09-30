@@ -1,0 +1,28 @@
+{
+  "job_id": "guard-q-ignore-01",
+  "run_id": "HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE",
+  "candidate_sha": "fe6ca966259d29d8d6ed2f05460400f6cb5d5de0",
+  "input_hashes": {
+    "<PYTHON>": "406d73d07e33e164d986326fde00b85c2b8f4ed2c33278142c8431588fe2df14",
+    "<RESPONSE_RUNTIME>/scratch/guard-qualification/fixture.py": "d0297c6c13d47e3ecb0ef5b73769dddedddc54ace0febdcc504211fd7cad88ec"
+  },
+  "kind": "qualification",
+  "containment": "inherited-group",
+  "cwd": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-ignore-01",
+  "command": [
+    "<PYTHON>",
+    "-B",
+    "<RESPONSE_RUNTIME>/scratch/guard-qualification/fixture.py",
+    "ignore"
+  ],
+  "env": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "limits": {
+    "cap_bytes": 134217728,
+    "allowance_bytes": 67108864,
+    "disk_write_budget_bytes": 67108864,
+    "disk_reserve_bytes": 1073741824,
+    "max_seconds": 8
+  }
+}

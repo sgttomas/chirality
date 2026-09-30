@@ -1,0 +1,20 @@
+info: downloading component 'rust-src'
+info: installing component 'rust-src'
+        2.60 real         0.36 user         1.12 sys
+           151846912  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                9168  page reclaims
+                 378  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  28  messages sent
+                 833  messages received
+                   0  signals received
+                  62  voluntary context switches
+               15810  involuntary context switches
+         11834986077  instructions retired
+          4901763268  cycles elapsed
+           139821800  peak memory footprint

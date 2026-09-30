@@ -1,0 +1,1005 @@
+{
+  "job_id": "guard-q-clean-01",
+  "mode": "clean",
+  "guard_sha256": "feb0e1508fde6c764eefb85e2b72bc7a597edf86d48307fb646a80a80eac03db",
+  "controller_sha256": "f77c42f06b23ececccf618c48e244866c5349c18d01288fc0e41bb3288c12a78",
+  "job_sha256": "552b305405a441bc42f24c67d72f5d9de4240992efa42cd9ecdc720c282918f5",
+  "started": 549526.103702125,
+  "monitor_killed": false,
+  "errors": [],
+  "sentinel_before": {
+    "pid": 13154,
+    "start_sec": 1790790986,
+    "start_usec": 892724,
+    "uid": 501,
+    "ruid": 501,
+    "pgid": 13152,
+    "sid": 13152
+  },
+  "lock_probe": {
+    "returncode": 2,
+    "stdout": "",
+    "stderr": "host_guard refusal: Refusal: heavy-slot-busy\n"
+  },
+  "monitor_returncode": 0,
+  "sentinel_survived": true,
+  "sentinel_after": {
+    "pid": 13154,
+    "start_sec": 1790790986,
+    "start_usec": 892724,
+    "uid": 501,
+    "ruid": 501,
+    "pgid": 13152,
+    "sid": 13152
+  },
+  "sentinel_unchanged": true,
+  "monitor_events": [
+    {
+      "at": 549526.145411708,
+      "data": {
+        "job": {
+          "candidate_sha": "fe6ca966259d29d8d6ed2f05460400f6cb5d5de0",
+          "command": [
+            "<PYTHON>",
+            "-B",
+            "<RESPONSE_RUNTIME>/scratch/guard-qualification/fixture.py",
+            "clean"
+          ],
+          "containment": "inherited-group",
+          "cwd": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-clean-01",
+          "env": {
+            "PYTHONDONTWRITEBYTECODE": "1"
+          },
+          "input_hashes": {
+            "<PYTHON>": "406d73d07e33e164d986326fde00b85c2b8f4ed2c33278142c8431588fe2df14",
+            "<RESPONSE_RUNTIME>/scratch/guard-qualification/fixture.py": "d0297c6c13d47e3ecb0ef5b73769dddedddc54ace0febdcc504211fd7cad88ec"
+          },
+          "job_id": "guard-q-clean-01",
+          "kind": "qualification",
+          "limits": {
+            "allowance_bytes": 67108864,
+            "cap_bytes": 134217728,
+            "disk_reserve_bytes": 1073741824,
+            "disk_write_budget_bytes": 67108864,
+            "max_seconds": 8
+          },
+          "run_id": "HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE"
+        },
+        "source_sha256": "feb0e1508fde6c764eefb85e2b72bc7a597edf86d48307fb646a80a80eac03db",
+        "spec_sha256": "552b305405a441bc42f24c67d72f5d9de4240992efa42cd9ecdc720c282918f5"
+      },
+      "kind": "job",
+      "wall_ns": 1790790986934374000
+    },
+    {
+      "at": 549526.145531833,
+      "data": {
+        "identity": {
+          "pgid": 13152,
+          "pid": 13155,
+          "ruid": 501,
+          "sid": 13152,
+          "start_sec": 1790790986,
+          "start_usec": 894874,
+          "uid": 501
+        }
+      },
+      "kind": "monitor-identity",
+      "wall_ns": 1790790986934494000
+    },
+    {
+      "at": 549526.14827025,
+      "data": {
+        "argv": [
+          "/usr/sbin/sysctl",
+          "-n",
+          "hw.memsize"
+        ],
+        "raw": "17179869184\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790986937232000
+    },
+    {
+      "at": 549526.150074791,
+      "data": {
+        "argv": [
+          "/usr/sbin/sysctl",
+          "-n",
+          "kern.memorystatus_vm_pressure_level"
+        ],
+        "raw": "1\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790986939037000
+    },
+    {
+      "at": 549526.151770541,
+      "data": {
+        "argv": [
+          "/usr/bin/memory_pressure",
+          "-Q"
+        ],
+        "raw": "The system has 17179869184 (1048576 pages with a page size of 16384).\nSystem-wide memory free percentage: 79%\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790986940733000
+    },
+    {
+      "at": 549526.153480625,
+      "data": {
+        "argv": [
+          "/usr/sbin/sysctl",
+          "-n",
+          "vm.swapusage"
+        ],
+        "raw": "total = 4096.00M  used = 3359.69M  free = 736.31M  (encrypted)\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790986942443000
+    },
+    {
+      "at": 549526.155460875,
+      "data": {
+        "argv": [
+          "/usr/bin/vm_stat"
+        ],
+        "raw": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     4000.\nPages active:                                 388654.\nPages inactive:                               390495.\nPages speculative:                              8745.\nPages throttled:                                   0.\nPages wired down:                             140821.\nPages purgeable:                                3526.\n\"Translation faults\":                     3853183574.\nPages copy-on-write:                       248532032.\nPages zero filled:                        1498870578.\nPages reactivated:                         392125839.\nPages purged:                               55340579.\nFile-backed pages:                            209909.\nAnonymous pages:                              577985.\nPages stored in compressor:                   516079.\nPages occupied by compressor:                  64597.\nDecompressions:                            366554714.\nCompressions:                              407873730.\nPageins:                                   621090707.\nPageouts:                                    1697014.\nSwapins:                                      766910.\nSwapouts:                                    1221287.\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790986944423000
+    },
+    {
+      "at": 549526.155672333,
+      "data": {
+        "reason": null,
+        "sample": {
+          "at": 549526.145546916,
+          "available_pct": 79.0,
+          "disk_free_bytes": 108061331456,
+          "footprint_bytes": 0,
+          "pressure": 1,
+          "rss_bytes": 0,
+          "swap_used_bytes": 3522890301,
+          "swapouts": 1221287,
+          "total_bytes": 17179869184
+        }
+      },
+      "kind": "preflight",
+      "wall_ns": 1790790986944634000
+    },
+    {
+      "at": 549527.1763215,
+      "data": {
+        "argv": [
+          "/usr/sbin/sysctl",
+          "-n",
+          "hw.memsize"
+        ],
+        "raw": "17179869184\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790987965279000
+    },
+    {
+      "at": 549527.183691833,
+      "data": {
+        "argv": [
+          "/usr/sbin/sysctl",
+          "-n",
+          "kern.memorystatus_vm_pressure_level"
+        ],
+        "raw": "1\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790987972648000
+    },
+    {
+      "at": 549527.188454333,
+      "data": {
+        "argv": [
+          "/usr/bin/memory_pressure",
+          "-Q"
+        ],
+        "raw": "The system has 17179869184 (1048576 pages with a page size of 16384).\nSystem-wide memory free percentage: 78%\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790987977410000
+    },
+    {
+      "at": 549527.1924375,
+      "data": {
+        "argv": [
+          "/usr/sbin/sysctl",
+          "-n",
+          "vm.swapusage"
+        ],
+        "raw": "total = 4096.00M  used = 3359.69M  free = 736.31M  (encrypted)\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790987981393000
+    },
+    {
+      "at": 549527.195729,
+      "data": {
+        "argv": [
+          "/usr/bin/vm_stat"
+        ],
+        "raw": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     3904.\nPages active:                                 382441.\nPages inactive:                               390592.\nPages speculative:                              4871.\nPages throttled:                                   0.\nPages wired down:                             150987.\nPages purgeable:                                3520.\n\"Translation faults\":                     3853189326.\nPages copy-on-write:                       248532613.\nPages zero filled:                        1498876773.\nPages reactivated:                         392125839.\nPages purged:                               55340581.\nFile-backed pages:                            206299.\nAnonymous pages:                              571605.\nPages stored in compressor:                   515820.\nPages occupied by compressor:                  64527.\nDecompressions:                            366554973.\nCompressions:                              407873730.\nPageins:                                   621090994.\nPageouts:                                    1697031.\nSwapins:                                      766910.\nSwapouts:                                    1221287.\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790987984684000
+    },
+    {
+      "at": 549527.196035833,
+      "data": {
+        "reason": null,
+        "sample": {
+          "at": 549527.165801541,
+          "available_pct": 78.0,
+          "disk_free_bytes": 108061286400,
+          "footprint_bytes": 0,
+          "pressure": 1,
+          "rss_bytes": 0,
+          "swap_used_bytes": 3522890301,
+          "swapouts": 1221287,
+          "total_bytes": 17179869184
+        }
+      },
+      "kind": "preflight",
+      "wall_ns": 1790790987984991000
+    },
+    {
+      "at": 549528.216753666,
+      "data": {
+        "argv": [
+          "/usr/sbin/sysctl",
+          "-n",
+          "hw.memsize"
+        ],
+        "raw": "17179869184\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790989005704000
+    },
+    {
+      "at": 549528.225615041,
+      "data": {
+        "argv": [
+          "/usr/sbin/sysctl",
+          "-n",
+          "kern.memorystatus_vm_pressure_level"
+        ],
+        "raw": "1\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790989014564000
+    },
+    {
+      "at": 549528.230696458,
+      "data": {
+        "argv": [
+          "/usr/bin/memory_pressure",
+          "-Q"
+        ],
+        "raw": "The system has 17179869184 (1048576 pages with a page size of 16384).\nSystem-wide memory free percentage: 78%\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790989019646000
+    },
+    {
+      "at": 549528.234309791,
+      "data": {
+        "argv": [
+          "/usr/sbin/sysctl",
+          "-n",
+          "vm.swapusage"
+        ],
+        "raw": "total = 4096.00M  used = 3359.69M  free = 736.31M  (encrypted)\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790989023259000
+    },
+    {
+      "at": 549528.237517625,
+      "data": {
+        "argv": [
+          "/usr/bin/vm_stat"
+        ],
+        "raw": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     3828.\nPages active:                                 382525.\nPages inactive:                               390745.\nPages speculative:                              4640.\nPages throttled:                                   0.\nPages wired down:                             151035.\nPages purgeable:                                3514.\n\"Translation faults\":                     3853192245.\nPages copy-on-write:                       248533193.\nPages zero filled:                        1498877733.\nPages reactivated:                         392125841.\nPages purged:                               55340583.\nFile-backed pages:                            206287.\nAnonymous pages:                              571623.\nPages stored in compressor:                   515810.\nPages occupied by compressor:                  64524.\nDecompressions:                            366554983.\nCompressions:                              407873730.\nPageins:                                   621091219.\nPageouts:                                    1697031.\nSwapins:                                      766910.\nSwapouts:                                    1221287.\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790989026466000
+    },
+    {
+      "at": 549528.237805208,
+      "data": {
+        "reason": null,
+        "sample": {
+          "at": 549528.206178958,
+          "available_pct": 78.0,
+          "disk_free_bytes": 108061036544,
+          "footprint_bytes": 0,
+          "pressure": 1,
+          "rss_bytes": 0,
+          "swap_used_bytes": 3522890301,
+          "swapouts": 1221287,
+          "total_bytes": 17179869184
+        }
+      },
+      "kind": "preflight",
+      "wall_ns": 1790790989026754000
+    },
+    {
+      "at": 549528.267088625,
+      "data": {
+        "control_kind": "READY",
+        "data": {
+          "identity": {
+            "pgid": 13171,
+            "pid": 13171,
+            "ruid": 501,
+            "sid": 13171,
+            "start_sec": 1790790989,
+            "start_usec": 27293,
+            "uid": 501
+          }
+        }
+      },
+      "kind": "control-received",
+      "wall_ns": 1790790989056037000
+    },
+    {
+      "at": 549528.271911041,
+      "data": {
+        "argv": [
+          "/usr/sbin/sysctl",
+          "-n",
+          "hw.memsize"
+        ],
+        "raw": "17179869184\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790989060859000
+    },
+    {
+      "at": 549528.274988333,
+      "data": {
+        "argv": [
+          "/usr/sbin/sysctl",
+          "-n",
+          "kern.memorystatus_vm_pressure_level"
+        ],
+        "raw": "1\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790989063937000
+    },
+    {
+      "at": 549528.278081833,
+      "data": {
+        "argv": [
+          "/usr/bin/memory_pressure",
+          "-Q"
+        ],
+        "raw": "The system has 17179869184 (1048576 pages with a page size of 16384).\nSystem-wide memory free percentage: 78%\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790989067030000
+    },
+    {
+      "at": 549528.280966,
+      "data": {
+        "argv": [
+          "/usr/sbin/sysctl",
+          "-n",
+          "vm.swapusage"
+        ],
+        "raw": "total = 4096.00M  used = 3359.69M  free = 736.31M  (encrypted)\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790989069914000
+    },
+    {
+      "at": 549528.283911791,
+      "data": {
+        "argv": [
+          "/usr/bin/vm_stat"
+        ],
+        "raw": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     3843.\nPages active:                                 383299.\nPages inactive:                               390756.\nPages speculative:                              4071.\nPages throttled:                                   0.\nPages wired down:                             151047.\nPages purgeable:                                3514.\n\"Translation faults\":                     3853195476.\nPages copy-on-write:                       248534206.\nPages zero filled:                        1498877977.\nPages reactivated:                         392125845.\nPages purged:                               55340585.\nFile-backed pages:                            205735.\nAnonymous pages:                              572391.\nPages stored in compressor:                   515809.\nPages occupied by compressor:                  64523.\nDecompressions:                            366554984.\nCompressions:                              407873730.\nPageins:                                   621091246.\nPageouts:                                    1697041.\nSwapins:                                      766910.\nSwapouts:                                    1221287.\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790989072860000
+    },
+    {
+      "at": 549528.297651333,
+      "data": {
+        "argv": [
+          "/bin/ps",
+          "-axo",
+          "pid=,ppid=,pgid=,uid=,stat="
+        ],
+        "raw": "    1     0     1     0 Ss  \n  340     1   340     0 Ss  \n  342     1   342     0 Ss  \n  344     1   344     0 Rs  \n  345     1   345     0 Ss  \n  348     1   348     0 Ss  \n  352     1   352     0 Ss  \n  354     1   354     0 Ss  \n  355     1   355     0 Ss  \n  359     1   359     0 Ss  \n  363     1   363   306 Ss  \n  365     1   365     0 Ss  \n  369     1   369     0 Ss  \n  371     1   371     0 Ss  \n  372     1   372     0 Ss  \n  376     1   376     0 Ss  \n  378     1   378     0 Ss  \n  379     1   379     0 Ss  \n  380     1   380     0 Ss  \n  381     1   381     0 Ss  \n  382     1   382     0 Ss  \n  383     1   383     0 Ss  \n  384     1   384   266 Ss  \n  385     1   385   213 Ss  \n  386     1   386     0 Ss  \n  388     1   388   205 Ss  \n  389     1   389     0 Ss  \n  391     1   391     0 Ss  \n  392     1   392     0 Ss  \n  393     1   393     0 Ss  \n  395     1   395   241 Ss  \n  399     1   399     0 Ss  \n  400     1   400     0 Ss  \n  401     1   401     0 Ss  \n  405     1   405     0 Ss  \n  406     1   406     0 Ss  \n  408     1   408     0 Ss  \n  409     1   409     0 Ss  \n  410     1   410     0 Ss  \n  413     1   413    88 Ss  \n  415     1   415     0 Ss  \n  416     1   416   501 Ss  \n  418     1   418     0 Ss  \n  421     1   421     0 Ss  \n  424     1   424     0 Ss  \n  425     1   425   242 Ss  \n  429     1   429   263 Ss  \n  431     1   431     0 Ss  \n  440     1   440     0 Ss  \n  445     1   445    24 Ss  \n  446     1   446     0 Ss  \n  448     1   448     0 Ss  \n  451     1   451    65 Ss  \n  455     1   455     0 Ss  \n  457     1   457   202 S   \n  464     1   464    88 S   \n  465     1   465     0 Ss  \n  467     1   467     0 S   \n  473     1   473     0 Ss  \n  510     1   510     0 Us  \n  530     1   530   294 Ss  \n  531     1   531   262 S   \n  541     1   541     0 Ss  \n  543     1   543   262 Ss  \n  544     1   544   262 Ss  \n  548     1   548     0 Ss  \n  550     1   550   262 Ss  \n  551     1   551   262 Ss  \n  556     1   556   301 Ss  \n  558     1   558   205 S   \n  563     1   563    55 Ss  \n  571     1   571   242 S   \n  572     1   572   294 S   \n  577     1   577   270 Ss  \n  578     1   578     0 Ss  \n  579     1   579   270 Ss  \n  580     1   580   270 Ss  \n  581     1   581     0 Ss  \n  583     1   583   200 S   \n  595     1   595    89 S   \n  601     1   601     0 Ss  \n  603     1   603   501 S   \n  606     1   606   501 S   \n  607     1   607     0 Ss  \n  608     1   608   501 S   \n  614     1   614   501 S   \n  616     1   616   501 S   \n  618     1   618   501 S   \n  620     1   620   501 S   \n  622     1   622   501 S   \n  623     1   623   501 S   \n  631     1   631   501 S   \n  633     1   633   501 S   \n  634     1   634   501 S   \n  635     1   635    55 S   \n  636     1   636   501 S   \n  641     1   641   501 S   \n  645     1   645   501 S   \n  649     1   649     0 Ss  \n  650     1   650   501 S   \n  651     1   651     0 Ss  \n  652     1   652   501 S   \n  655     1   655   501 S   \n  657     1   657   501 S   \n  662     1   662   501 S   \n  667     1   667   501 S   \n  668     1   668   501 S   \n  669     1   669   501 S   \n  670     1   670   501 S   \n  672     1   672   501 S   \n  676     1   676   501 S   \n  684     1   684   501 S   \n  685     1   685   501 Ss  \n  686     1   686   501 Ss  \n  688     1   688   501 S   \n  690     1   690   441 Ss  \n  696     1   696   259 Ss  \n  699     1   699   501 S   \n  702     1   702   501 S   \n  703     1   703   501 S   \n  704     1   704   501 Ss  \n  705     1   705   501 Ss  \n  706     1   706   501 S   \n  711     1   711   501 S   \n  718     1   718   501 S   \n  720     1   720   268 Ss  \n  728     1   728   501 S   \n  729     1   729   501 S   \n  730     1   730   501 S   \n  734     1   734   501 S   \n  746     1   746     0 Ss  \n  749     1   749   501 Ss  \n  750     1   750   501 S   \n  751     1   751   501 S   \n  752     1   752   501 S   \n  753     1   753   501 Ss  \n  758     1   758   501 S   \n  761     1   761   501 S   \n  762     1   762   501 S   \n  775     1   775   501 S   \n  781     1   781   501 S   \n  784     1   784   501 S   \n  787     1   787   501 S   \n  788     1   788   501 S   \n  791     1   791   501 S   \n  793     1   793   501 S   \n  796     1   796   501 S   \n  797     1   797   501 S   \n  801     1   801   501 S   \n  849     1   849   501 S   \n  857     1   857   278 S   \n  859     1   859   501 S   \n  870     1   870   270 Ss  \n  873     1   873   501 S   \n  877     1   877    92 S   \n  891     1   891   501 SN  \n  914   788   788   501 S   \n  915     1   915   247 S   \n  918     1   918   260 S   \n  931     1   931   265 Ss  \n  950     1   950   501 S   \n  953   348   348     0 S   \n  966     1   966     0 Ss  \n 1006     1  1006   274 S   \n 1042     1  1042     0 Ss  \n 1064     1  1064     0 Ss  \n 1140     1  1140     0 Ss  \n 1146     1  1146   277 S   \n 1247     1  1247   501 Ss  \n 1353     1  1353   501 Ss  \n 1413     1  1413   501 S   \n 2003     1  2003   501 S   \n 2155     1  2155   501 S   \n 2959     1  2959   501 S   \n 3131     1  3131   501 Ss  \n 3158     1  3158   501 S   \n 3162     1  3161   501 S   \n 3163  3158  3158   501 S   \n 3165  3158  3158   501 S   \n 3187  3158  3158   501 S   \n 3191  3158  3158   501 S   \n 3193  3158  3158   501 S   \n 3194  3158  3158   501 S   \n 3205  3158  3158   501 S   \n 3241  3158  3158   501 S   \n 3242  3158  3242   501 S   \n 3243  3242  3242   501 S   \n 3406  3158  3158   501 S   \n 3407  3158  3158   501 S   \n 3460     1  3460   501 S   \n 3502  8838  3502   501 S   \n 3503  8838  3503   501 S   \n 3504  3503  3503   501 S   \n 4562     1  4562   501 S   \n 6050  8838  6050   501 S   \n 6051  8838  6051   501 S   \n 6052  6051  6051   501 S   \n 6187     1  6187   501 S   \n 7748     1  7748   501 S   \n 7749     1  7749   501 S   \n 8213     1  8213   205 S   \n 8242     1  8242   501 S   \n 8550  8838  8550   501 S   \n 8784     1  8784   501 S   \n 8790     1  8789   501 S   \n 8792     1  8791   501 S   \n 8806  8784  8784   501 S   \n 8810  8784  8784   501 S   \n 8815  8784  8784   501 S   \n 8819  8784  8784   501 S   \n 8835  8784  8784   501 S   \n 8838  8784  8784   501 S   \n 8883  8784  8784   501 S   \n 8893     1  8893   501 Ss  \n 9120  8784  8784   501 S   \n 9132  8784  8784   501 S   \n 9151  8784  8784   501 S   \n 9626     1  9626     0 Ss  \n 9627     1  9627     0 Ss  \n 9662  8838  9662   501 S   \n 9665  8838  9665   501 S   \n 9777     1  9777     0 Ss  \n 9779     1  9779   501 S   \n 9783     1  9783     0 Ss  \n 9784     1  9784     0 Ss  \n 9813     1  9813     0 Ss  \n 9814     1  9814   235 Ss  \n 9815     1  9815     0 Ss  \n 9816     1  9816     0 Ss  \n 9817     1  9817   501 S   \n 9818     1  9818   501 S   \n 9819     1  9819   501 S   \n 9820     1  9820     0 Ss  \n 9821     1  9821   501 S   \n 9822     1  9822     0 Ss  \n 9823     1  9823     0 Ss  \n 9824     1  9824   501 Ss  \n 9826     1  9826   501 S   \n 9934     1  9934     0 Ss  \n 9938     1  9938   501 S   \n 9939     1  9939   501 S   \n 9940     1  9940   501 S   \n 9941     1  9941   501 S   \n 9946  8838  9946   501 S   \n 9947  8838  9947   501 S   \n 9948  8838  9948   501 S   \n 9949  8838  9949   501 S   \n 9950  9949  9949   501 S   \n 9957     1  9957   501 S   \n 9958     1  9958     0 Ss  \n 9963     1  9963     0 Ss  \n 9968     1  9968   260 Ss  \n 9969     1  9969   260 Ss  \n10021     1 10021     0 Ss  \n10044     1 10044   503 S   \n10046     1 10046   278 Ss  \n10047     1 10047   503 SN  \n10048     1 10048   501 S   \n10049     1 10049   503 S   \n10077     1 10077   501 S   \n10081     1 10081     0 Ss  \n10083     1 10083   501 S   \n10084     1 10084   501 S   \n10096     1 10096   501 S   \n10097     1 10097   501 Ss  \n10099     1 10099   200 Ss  \n10100     1 10100     0 Ss  \n10102     1 10102   501 Ss  \n10104     1 10104     0 Ss  \n10107     1 10107   501 S   \n10108     1 10108   501 S   \n10141     1 10141     0 Ss  \n10142     1 10142   501 Ss  \n10143     1 10143     0 Ss  \n10145     1 10145   501 S   \n10146     1 10146   501 S   \n10147     1 10147     0 Ss  \n10159     1 10159     0 Ss  \n10160     1 10160   501 S   \n10161     1 10161   501 Ss  \n10162     1 10162   501 S   \n10163     1 10163   501 S   \n10198  8838 10198   501 S   \n10199  8838 10199   501 S   \n10200  8838 10200   501 S   \n10201  8838 10201   501 S   \n10202 10200 10200   501 S   \n10218     1 10218   501 Ss  \n10220     1 10220   501 Ss  \n10221     1 10221   501 S   \n10222     1 10222   501 S   \n10232     1 10232   501 S   \n10234     1 10234   501 S   \n10235     1 10235   501 S   \n10236     1 10236   501 S   \n10244     1 10244   501 S   \n10245     1 10245     0 Ss  \n10246     1 10246   501 S   \n10252     1 10252   501 S   \n10253     1 10253   501 S   \n10256     1 10256   501 Ss  \n10257     1 10257   501 Ss  \n10258     1 10258   501 Ss  \n10259     1 10259   501 Ss  \n10262     1 10262   501 S   \n10264     1 10264     0 Ss  \n10265     1 10265     0 Ss  \n10266     1 10266   501 Ss  \n10267     1 10267   501 Ss  \n10268     1 10268   501 S   \n10269     1 10269   501 Ss  \n10271     1 10271   501 S   \n10272     1 10272   501 S   \n10273     1 10273   501 S   \n10285     1 10285   501 S   \n10287     1 10287   501 Ss  \n10288     1 10288   502 S   \n10289     1 10289   502 S   \n10290     1 10290   503 S   \n10291     1 10291   502 S   \n10292     1 10292   503 S   \n10293     1 10293   503 S   \n10294     1 10294   503 S   \n10295     1 10295     0 Ss  \n10296     1 10296   502 S   \n10297     1 10297   501 Ss  \n10298     1 10298   501 Ss  \n10299     1 10299   501 Ss  \n10300     1 10300   501 Ss  \n10301     1 10301   501 S   \n10302     1 10302   240 Ss  \n10304     1 10304   501 Ss  \n10305     1 10305   501 S   \n10306     1 10306   501 Ss  \n10307     1 10307   501 S   \n10308     1 10308   501 S   \n10309     1 10309   501 Ss  \n10315     1 10315     0 Ss  \n10394     1 10394   501 S   \n10395     1 10395     0 Ss  \n10396     1 10396     0 Ss  \n10397     1 10397   501 S   \n10403     1 10403   501 S   \n10415  8838 10415   501 Ss  \n10420  8784  8784   501 S   \n10421  8784  8784   501 S   \n10428     1 10428     0 S   \n10448     1 10448   258 Ss  \n10541     1 10541     0 Ss  \n10552     1 10552     0 Ss  \n10562     1 10562     0 Ss  \n10605     1 10605   222 SNs \n10610  8784  8784   501 S   \n10611     1 10611   501 Ss  \n10612     1 10612   501 S   \n10613     1 10613   501 S   \n10671     1 10671   501 Ss  \n10672     1 10672   501 Ss  \n10674     1 10673   501 S   \n10675 10671 10671   501 S   \n10676 10671 10671   501 S   \n10677 10671 10671   501 S   \n10681     1 10681   501 S   \n10682     1 10682     0 Ss  \n10683     1 10683     0 Ss  \n10702 10671 10671   501 S   \n10732     1 10732     0 Ss  \n10733     1 10733     0 Ss  \n10737     1 10737     0 Ss  \n12852  8838 12852   501 S   \n12853  8838 12853   501 S   \n12854 12853 12853   501 S   \n13015     1 13015     0 Ss  \n13152  8838 13152   501 Ss  \n13153 13152 13152   501 S   \n13154 13153 13152   501 S   \n13155 13153 13152   501 S   \n13171 13155 13171   501 Ss  \n13177 13155 13152     0 R   \n14858     1 14858   501 S   \n17381     1 17381   501 Ss  \n17414     1 17414   501 Ss  \n22264     1 22264   262 Ss  \n22297     1 22297     0 Ss  \n22403     1 22403   501 S   \n22944     1 22944   273 S   \n27023  8784  8784   501 S   \n34072     1 34072   296 S   \n34424  8838 34424   501 S   \n34425  8838 34425   501 S   \n34426  8838 34426   501 S   \n34427  8838 34427   501 S   \n34472 34424 34424   501 S   \n37571     1 37571   501 S   \n42023     1 42023   501 S   \n44227     1 44227   502 S   \n44228     1 44228   502 S   \n45247     1 45247   501 S   \n46800     1 46800   501 S   \n51588     1 51588   501 S   \n53762     1 53762   502 SN  \n57234     1 57234   501 S   \n58682     1 58682   271 Ss  \n58695     1 58695   501 Ss  \n63797     1 63797   501 S   \n70647     1 70647   501 S   \n71510     1 71510     0 Ss  \n75174  8838 75174   501 S   \n75175  8838 75175   501 S   \n75176  8838 75176   501 S   \n75177  8838 75177   501 S   \n75218 75176 75176   501 S   \n76601     1 76601   501 S   \n76602     1 76602     0 Ss  \n76604     1 76604   501 S   \n76608     1 76608   501 S   \n76631     1 76631   501 S   \n76642     1 76642   501 S   \n76688     1 76688   501 S   \n76693     1 76693   501 S   \n76699     1 76699   501 S   \n76700     1 76700   282 Ss  \n76704     1 76704   501 S   \n76705     1 76705   501 S   \n76706     1 76706   501 S   \n76727     1 76727   501 S   \n76744     1 76744     0 Ss  \n76749     1 76749   501 S   \n76761     1 76761     0 Ss  \n76773     1 76773   205 S   \n76808     1 76808   501 S   \n76832     1 76832     0 Ss  \n76834     1 76834   501 S   \n76835     1 76835   501 S   \n76856     1 76856   501 S   \n76860     1 76860   200 Ss  \n76866     1 76866     0 Ss  \n76883     1 76883     0 Ss  \n76887     1 76887   501 S   \n76905     1 76905   501 S   \n76911     1 76911   501 S   \n76944     1 76944   501 S   \n76960     1 76960     0 Ss  \n77002     1 77002   289 Ss  \n77005     1 77005     0 Ss  \n77019     1 77019     0 Ss  \n77043     1 77043   501 S   \n77049     1 77049   501 Ss  \n77051     1 77051     0 Ss  \n77083     1 77083   265 Ss  \n77102     1 77102   501 S   \n77105     1 77105   501 S   \n77126     1 77126   501 S   \n77130     1 77130     0 Ss  \n77135     1 77135     0 Ss  \n77141     1 77141   501 S   \n77148     1 77148   501 S   \n77150     1 77150   501 S   \n77151     1 77151     0 Ss  \n77155     1 77155   501 S   \n77163     1 77163   308 Ss  \n77187     1 77187   501 S   \n83107     1 83107   501 Ss  \n83108     1 83108   501 Ss  \n87461  8838 87461   501 S   \n87462  8838 87462   501 S   \n87463  8838 87463   501 S   \n87464  8838 87464   501 S   \n87553 87463 87463   501 S   \n87835     1 87835   501 S   \n88760     1 88760   501 S   \n88895     1 88895   501 S   \n89339     1 89339   501 S   \n89835  9950  9949   501 S   \n89836  9950  9949   501 S   \n89837 89835  9949   501 S   \n89838 89836  9949   501 S   \n89839  9950  9949   501 S   \n90819     1 90819     0 Ss  \n90874     1 90874   501 Ss  \n92171  8784  8784   501 S   \n92219     1 92219   501 S   \n92222     1 92222   501 Ss  \n92230     1 92230   501 Ss  \n92232     1 92232   501 Ss  \n92298     1 92298   501 Ss  \n92350  8784  8784   501 S   \n92536     1 92536   501 Ss  \n92537     1 92537   501 Ss  \n96713     1 96713   501 S   \n98002     1 98002   202 Ss  \n98007     1 98007   202 Ss  \n98010     1 98010   202 Ss  \n 3256  3241  3256   501 Ss+ \n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790989086600000
+    },
+    {
+      "at": 549528.298966208,
+      "data": {
+        "identity": {
+          "pgid": 13171,
+          "pid": 13171,
+          "ruid": 501,
+          "sid": 13171,
+          "start_sec": 1790790989,
+          "start_usec": 27293,
+          "uid": 501
+        },
+        "reason": null,
+        "sample": {
+          "at": 549528.268145458,
+          "available_pct": 78.0,
+          "disk_free_bytes": 108061016064,
+          "footprint_bytes": 6439176,
+          "pressure": 1,
+          "rss_bytes": 9060352,
+          "swap_used_bytes": 3522890301,
+          "swapouts": 1221287,
+          "total_bytes": 17179869184
+        }
+      },
+      "kind": "prelaunch",
+      "wall_ns": 1790790989087914000
+    },
+    {
+      "at": 549528.329086458,
+      "data": {
+        "control_kind": "STARTED",
+        "data": {
+          "pid": 13178
+        }
+      },
+      "kind": "control-received",
+      "wall_ns": 1790790989118035000
+    },
+    {
+      "at": 549528.331565291,
+      "data": {
+        "argv": [
+          "/usr/sbin/sysctl",
+          "-n",
+          "hw.memsize"
+        ],
+        "raw": "17179869184\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790989120513000
+    },
+    {
+      "at": 549528.333467166,
+      "data": {
+        "argv": [
+          "/usr/sbin/sysctl",
+          "-n",
+          "kern.memorystatus_vm_pressure_level"
+        ],
+        "raw": "1\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790989122415000
+    },
+    {
+      "at": 549528.335438083,
+      "data": {
+        "argv": [
+          "/usr/bin/memory_pressure",
+          "-Q"
+        ],
+        "raw": "The system has 17179869184 (1048576 pages with a page size of 16384).\nSystem-wide memory free percentage: 78%\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790989124386000
+    },
+    {
+      "at": 549528.337342,
+      "data": {
+        "argv": [
+          "/usr/sbin/sysctl",
+          "-n",
+          "vm.swapusage"
+        ],
+        "raw": "total = 4096.00M  used = 3359.69M  free = 736.31M  (encrypted)\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790989126290000
+    },
+    {
+      "at": 549528.339278583,
+      "data": {
+        "argv": [
+          "/usr/bin/vm_stat"
+        ],
+        "raw": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     4229.\nPages active:                                 384067.\nPages inactive:                               390727.\nPages speculative:                              2653.\nPages throttled:                                   0.\nPages wired down:                             151079.\nPages purgeable:                                3516.\n\"Translation faults\":                     3853202167.\nPages copy-on-write:                       248535514.\nPages zero filled:                        1498879487.\nPages reactivated:                         392125845.\nPages purged:                               55340591.\nFile-backed pages:                            204296.\nAnonymous pages:                              573151.\nPages stored in compressor:                   515793.\nPages occupied by compressor:                  64516.\nDecompressions:                            366555000.\nCompressions:                              407873730.\nPageins:                                   621091288.\nPageouts:                                    1697041.\nSwapins:                                      766910.\nSwapouts:                                    1221287.\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790989128226000
+    },
+    {
+      "at": 549528.349136416,
+      "data": {
+        "argv": [
+          "/bin/ps",
+          "-axo",
+          "pid=,ppid=,pgid=,uid=,stat="
+        ],
+        "raw": "    1     0     1     0 Ss  \n  340     1   340     0 Ss  \n  342     1   342     0 Ss  \n  344     1   344     0 Us  \n  345     1   345     0 Ss  \n  348     1   348     0 Ss  \n  352     1   352     0 Ss  \n  354     1   354     0 Ss  \n  355     1   355     0 Ss  \n  359     1   359     0 Ss  \n  363     1   363   306 Ss  \n  365     1   365     0 Ss  \n  369     1   369     0 Ss  \n  371     1   371     0 Ss  \n  372     1   372     0 Ss  \n  376     1   376     0 Ss  \n  378     1   378     0 Ss  \n  379     1   379     0 Ss  \n  380     1   380     0 Ss  \n  381     1   381     0 Ss  \n  382     1   382     0 Ss  \n  383     1   383     0 Ss  \n  384     1   384   266 Ss  \n  385     1   385   213 Ss  \n  386     1   386     0 Ss  \n  388     1   388   205 Ss  \n  389     1   389     0 Ss  \n  391     1   391     0 Ss  \n  392     1   392     0 Ss  \n  393     1   393     0 Ss  \n  395     1   395   241 Ss  \n  399     1   399     0 Ss  \n  400     1   400     0 Ss  \n  401     1   401     0 Ss  \n  405     1   405     0 Ss  \n  406     1   406     0 Ss  \n  408     1   408     0 Ss  \n  409     1   409     0 Ss  \n  410     1   410     0 Ss  \n  413     1   413    88 Ss  \n  415     1   415     0 Ss  \n  416     1   416   501 Ss  \n  418     1   418     0 Ss  \n  421     1   421     0 Ss  \n  424     1   424     0 Ss  \n  425     1   425   242 Ss  \n  429     1   429   263 Ss  \n  431     1   431     0 Ss  \n  440     1   440     0 Ss  \n  445     1   445    24 Ss  \n  446     1   446     0 Ss  \n  448     1   448     0 Ss  \n  451     1   451    65 Ss  \n  455     1   455     0 Ss  \n  457     1   457   202 S   \n  464     1   464    88 S   \n  465     1   465     0 Ss  \n  467     1   467     0 S   \n  473     1   473     0 Ss  \n  510     1   510     0 Ss  \n  530     1   530   294 Ss  \n  531     1   531   262 S   \n  541     1   541     0 Ss  \n  543     1   543   262 Ss  \n  544     1   544   262 Ss  \n  548     1   548     0 Ss  \n  550     1   550   262 Ss  \n  551     1   551   262 Ss  \n  556     1   556   301 Ss  \n  558     1   558   205 S   \n  563     1   563    55 Ss  \n  571     1   571   242 S   \n  572     1   572   294 S   \n  577     1   577   270 Ss  \n  578     1   578     0 Ss  \n  579     1   579   270 Ss  \n  580     1   580   270 Ss  \n  581     1   581     0 Ss  \n  583     1   583   200 S   \n  595     1   595    89 S   \n  601     1   601     0 Ss  \n  603     1   603   501 S   \n  606     1   606   501 S   \n  607     1   607     0 Ss  \n  608     1   608   501 S   \n  614     1   614   501 S   \n  616     1   616   501 S   \n  618     1   618   501 S   \n  620     1   620   501 S   \n  622     1   622   501 S   \n  623     1   623   501 S   \n  631     1   631   501 S   \n  633     1   633   501 S   \n  634     1   634   501 S   \n  635     1   635    55 S   \n  636     1   636   501 S   \n  641     1   641   501 S   \n  645     1   645   501 S   \n  649     1   649     0 Ss  \n  650     1   650   501 S   \n  651     1   651     0 Ss  \n  652     1   652   501 S   \n  655     1   655   501 S   \n  657     1   657   501 S   \n  662     1   662   501 S   \n  667     1   667   501 S   \n  668     1   668   501 S   \n  669     1   669   501 S   \n  670     1   670   501 S   \n  672     1   672   501 S   \n  676     1   676   501 S   \n  684     1   684   501 S   \n  685     1   685   501 Ss  \n  686     1   686   501 Ss  \n  688     1   688   501 S   \n  690     1   690   441 Ss  \n  696     1   696   259 Ss  \n  699     1   699   501 S   \n  702     1   702   501 S   \n  703     1   703   501 S   \n  704     1   704   501 Ss  \n  705     1   705   501 Ss  \n  706     1   706   501 S   \n  711     1   711   501 S   \n  718     1   718   501 S   \n  720     1   720   268 Ss  \n  728     1   728   501 S   \n  729     1   729   501 S   \n  730     1   730   501 S   \n  734     1   734   501 S   \n  746     1   746     0 Ss  \n  749     1   749   501 Ss  \n  750     1   750   501 S   \n  751     1   751   501 S   \n  752     1   752   501 S   \n  753     1   753   501 Ss  \n  758     1   758   501 S   \n  761     1   761   501 S   \n  762     1   762   501 S   \n  775     1   775   501 S   \n  781     1   781   501 S   \n  784     1   784   501 S   \n  787     1   787   501 S   \n  788     1   788   501 S   \n  791     1   791   501 S   \n  793     1   793   501 S   \n  796     1   796   501 S   \n  797     1   797   501 S   \n  801     1   801   501 S   \n  849     1   849   501 S   \n  857     1   857   278 S   \n  859     1   859   501 S   \n  870     1   870   270 Ss  \n  873     1   873   501 S   \n  877     1   877    92 S   \n  891     1   891   501 SN  \n  914   788   788   501 S   \n  915     1   915   247 S   \n  918     1   918   260 S   \n  931     1   931   265 Ss  \n  950     1   950   501 S   \n  953   348   348     0 S   \n  966     1   966     0 Ss  \n 1006     1  1006   274 S   \n 1042     1  1042     0 Ss  \n 1064     1  1064     0 Ss  \n 1140     1  1140     0 Ss  \n 1146     1  1146   277 S   \n 1247     1  1247   501 Ss  \n 1353     1  1353   501 Ss  \n 1413     1  1413   501 S   \n 2003     1  2003   501 S   \n 2155     1  2155   501 S   \n 2959     1  2959   501 S   \n 3131     1  3131   501 Ss  \n 3158     1  3158   501 S   \n 3162     1  3161   501 S   \n 3163  3158  3158   501 S   \n 3165  3158  3158   501 S   \n 3187  3158  3158   501 S   \n 3191  3158  3158   501 S   \n 3193  3158  3158   501 S   \n 3194  3158  3158   501 S   \n 3205  3158  3158   501 S   \n 3241  3158  3158   501 S   \n 3242  3158  3242   501 S   \n 3243  3242  3242   501 S   \n 3406  3158  3158   501 S   \n 3407  3158  3158   501 S   \n 3460     1  3460   501 S   \n 3502  8838  3502   501 S   \n 3503  8838  3503   501 S   \n 3504  3503  3503   501 S   \n 4562     1  4562   501 S   \n 6050  8838  6050   501 S   \n 6051  8838  6051   501 S   \n 6052  6051  6051   501 S   \n 6187     1  6187   501 S   \n 7748     1  7748   501 S   \n 7749     1  7749   501 S   \n 8213     1  8213   205 S   \n 8242     1  8242   501 S   \n 8550  8838  8550   501 S   \n 8784     1  8784   501 S   \n 8790     1  8789   501 S   \n 8792     1  8791   501 S   \n 8806  8784  8784   501 S   \n 8810  8784  8784   501 S   \n 8815  8784  8784   501 S   \n 8819  8784  8784   501 S   \n 8835  8784  8784   501 S   \n 8838  8784  8784   501 S   \n 8883  8784  8784   501 S   \n 8893     1  8893   501 Ss  \n 9120  8784  8784   501 S   \n 9132  8784  8784   501 S   \n 9151  8784  8784   501 S   \n 9626     1  9626     0 Ss  \n 9627     1  9627     0 Ss  \n 9662  8838  9662   501 S   \n 9665  8838  9665   501 S   \n 9777     1  9777     0 Ss  \n 9779     1  9779   501 S   \n 9783     1  9783     0 Ss  \n 9784     1  9784     0 Ss  \n 9813     1  9813     0 Ss  \n 9814     1  9814   235 Ss  \n 9815     1  9815     0 Ss  \n 9816     1  9816     0 Ss  \n 9817     1  9817   501 S   \n 9818     1  9818   501 S   \n 9819     1  9819   501 S   \n 9820     1  9820     0 Ss  \n 9821     1  9821   501 S   \n 9822     1  9822     0 Ss  \n 9823     1  9823     0 Ss  \n 9824     1  9824   501 Ss  \n 9826     1  9826   501 S   \n 9934     1  9934     0 Ss  \n 9938     1  9938   501 S   \n 9939     1  9939   501 S   \n 9940     1  9940   501 S   \n 9941     1  9941   501 S   \n 9946  8838  9946   501 S   \n 9947  8838  9947   501 S   \n 9948  8838  9948   501 S   \n 9949  8838  9949   501 S   \n 9950  9949  9949   501 S   \n 9957     1  9957   501 S   \n 9958     1  9958     0 Ss  \n 9963     1  9963     0 Ss  \n 9968     1  9968   260 Ss  \n 9969     1  9969   260 Ss  \n10021     1 10021     0 Ss  \n10044     1 10044   503 S   \n10046     1 10046   278 Ss  \n10047     1 10047   503 SN  \n10048     1 10048   501 S   \n10049     1 10049   503 S   \n10077     1 10077   501 S   \n10081     1 10081     0 Ss  \n10083     1 10083   501 S   \n10084     1 10084   501 S   \n10096     1 10096   501 S   \n10097     1 10097   501 Ss  \n10099     1 10099   200 Ss  \n10100     1 10100     0 Ss  \n10102     1 10102   501 Ss  \n10104     1 10104     0 Ss  \n10107     1 10107   501 S   \n10108     1 10108   501 S   \n10141     1 10141     0 Ss  \n10142     1 10142   501 Ss  \n10143     1 10143     0 Ss  \n10145     1 10145   501 S   \n10146     1 10146   501 S   \n10147     1 10147     0 Ss  \n10159     1 10159     0 Ss  \n10160     1 10160   501 S   \n10161     1 10161   501 Ss  \n10162     1 10162   501 S   \n10163     1 10163   501 S   \n10198  8838 10198   501 S   \n10199  8838 10199   501 S   \n10200  8838 10200   501 S   \n10201  8838 10201   501 S   \n10202 10200 10200   501 S   \n10218     1 10218   501 Ss  \n10220     1 10220   501 Ss  \n10221     1 10221   501 S   \n10222     1 10222   501 S   \n10232     1 10232   501 S   \n10234     1 10234   501 S   \n10235     1 10235   501 S   \n10236     1 10236   501 S   \n10244     1 10244   501 S   \n10245     1 10245     0 Ss  \n10246     1 10246   501 S   \n10252     1 10252   501 S   \n10253     1 10253   501 S   \n10256     1 10256   501 Ss  \n10257     1 10257   501 Ss  \n10258     1 10258   501 Ss  \n10259     1 10259   501 Ss  \n10262     1 10262   501 S   \n10264     1 10264     0 Ss  \n10265     1 10265     0 Ss  \n10266     1 10266   501 Ss  \n10267     1 10267   501 Ss  \n10268     1 10268   501 S   \n10269     1 10269   501 Ss  \n10271     1 10271   501 S   \n10272     1 10272   501 S   \n10273     1 10273   501 S   \n10285     1 10285   501 S   \n10287     1 10287   501 Ss  \n10288     1 10288   502 S   \n10289     1 10289   502 S   \n10290     1 10290   503 S   \n10291     1 10291   502 S   \n10292     1 10292   503 S   \n10293     1 10293   503 S   \n10294     1 10294   503 S   \n10295     1 10295     0 Ss  \n10296     1 10296   502 S   \n10297     1 10297   501 Ss  \n10298     1 10298   501 Ss  \n10299     1 10299   501 Ss  \n10300     1 10300   501 Ss  \n10301     1 10301   501 S   \n10302     1 10302   240 Ss  \n10304     1 10304   501 Ss  \n10305     1 10305   501 S   \n10306     1 10306   501 Ss  \n10307     1 10307   501 S   \n10308     1 10308   501 S   \n10309     1 10309   501 Ss  \n10315     1 10315     0 Ss  \n10394     1 10394   501 S   \n10395     1 10395     0 Ss  \n10396     1 10396     0 Ss  \n10397     1 10397   501 S   \n10403     1 10403   501 S   \n10415  8838 10415   501 Ss  \n10420  8784  8784   501 S   \n10421  8784  8784   501 S   \n10428     1 10428     0 S   \n10448     1 10448   258 Ss  \n10541     1 10541     0 Ss  \n10552     1 10552     0 Ss  \n10562     1 10562     0 Ss  \n10605     1 10605   222 SNs \n10610  8784  8784   501 S   \n10611     1 10611   501 Ss  \n10612     1 10612   501 S   \n10613     1 10613   501 S   \n10671     1 10671   501 Ss  \n10672     1 10672   501 Ss  \n10674     1 10673   501 S   \n10675 10671 10671   501 S   \n10676 10671 10671   501 S   \n10677 10671 10671   501 S   \n10681     1 10681   501 S   \n10682     1 10682     0 Ss  \n10683     1 10683     0 Ss  \n10702 10671 10671   501 S   \n10732     1 10732     0 Ss  \n10733     1 10733     0 Ss  \n10737     1 10737     0 Ss  \n12852  8838 12852   501 S   \n12853  8838 12853   501 S   \n12854 12853 12853   501 S   \n13015     1 13015     0 Ss  \n13152  8838 13152   501 Ss  \n13153 13152 13152   501 S   \n13154 13153 13152   501 S   \n13155 13153 13152   501 S   \n13171 13155 13171   501 Ss  \n13178 13171 13171   501 S   \n13179     1 13179     0 Us  \n13180     1 13180     0 Rs  \n13186 13155 13152     0 R   \n14858     1 14858   501 S   \n17381     1 17381   501 Ss  \n17414     1 17414   501 Ss  \n22264     1 22264   262 Ss  \n22297     1 22297     0 Ss  \n22403     1 22403   501 S   \n22944     1 22944   273 S   \n27023  8784  8784   501 S   \n34072     1 34072   296 S   \n34424  8838 34424   501 S   \n34425  8838 34425   501 S   \n34426  8838 34426   501 S   \n34427  8838 34427   501 S   \n34472 34424 34424   501 S   \n37571     1 37571   501 S   \n42023     1 42023   501 S   \n44227     1 44227   502 S   \n44228     1 44228   502 S   \n45247     1 45247   501 S   \n46800     1 46800   501 S   \n51588     1 51588   501 S   \n53762     1 53762   502 SN  \n57234     1 57234   501 S   \n58682     1 58682   271 Ss  \n58695     1 58695   501 Ss  \n63797     1 63797   501 S   \n70647     1 70647   501 S   \n71510     1 71510     0 Ss  \n75174  8838 75174   501 S   \n75175  8838 75175   501 S   \n75176  8838 75176   501 S   \n75177  8838 75177   501 S   \n75218 75176 75176   501 S   \n76601     1 76601   501 S   \n76602     1 76602     0 Ss  \n76604     1 76604   501 S   \n76608     1 76608   501 S   \n76631     1 76631   501 S   \n76642     1 76642   501 S   \n76688     1 76688   501 S   \n76693     1 76693   501 S   \n76699     1 76699   501 S   \n76700     1 76700   282 Ss  \n76704     1 76704   501 S   \n76705     1 76705   501 S   \n76706     1 76706   501 S   \n76727     1 76727   501 S   \n76744     1 76744     0 Ss  \n76749     1 76749   501 S   \n76761     1 76761     0 Ss  \n76773     1 76773   205 S   \n76808     1 76808   501 S   \n76832     1 76832     0 Ss  \n76834     1 76834   501 S   \n76835     1 76835   501 S   \n76856     1 76856   501 S   \n76860     1 76860   200 Ss  \n76866     1 76866     0 Ss  \n76883     1 76883     0 Ss  \n76887     1 76887   501 S   \n76905     1 76905   501 S   \n76911     1 76911   501 S   \n76944     1 76944   501 S   \n76960     1 76960     0 Ss  \n77002     1 77002   289 Ss  \n77005     1 77005     0 Ss  \n77019     1 77019     0 Ss  \n77043     1 77043   501 S   \n77049     1 77049   501 Ss  \n77051     1 77051     0 Ss  \n77083     1 77083   265 Ss  \n77102     1 77102   501 S   \n77105     1 77105   501 S   \n77126     1 77126   501 S   \n77130     1 77130     0 Ss  \n77135     1 77135     0 Ss  \n77141     1 77141   501 S   \n77148     1 77148   501 S   \n77150     1 77150   501 S   \n77151     1 77151     0 Ss  \n77155     1 77155   501 S   \n77163     1 77163   308 Ss  \n77187     1 77187   501 S   \n83107     1 83107   501 Ss  \n83108     1 83108   501 Ss  \n87461  8838 87461   501 S   \n87462  8838 87462   501 S   \n87463  8838 87463   501 S   \n87464  8838 87464   501 S   \n87553 87463 87463   501 S   \n87835     1 87835   501 S   \n88760     1 88760   501 S   \n88895     1 88895   501 S   \n89339     1 89339   501 S   \n89835  9950  9949   501 S   \n89836  9950  9949   501 S   \n89837 89835  9949   501 S   \n89838 89836  9949   501 S   \n89839  9950  9949   501 S   \n90819     1 90819     0 Ss  \n90874     1 90874   501 Ss  \n92171  8784  8784   501 S   \n92219     1 92219   501 S   \n92222     1 92222   501 Ss  \n92230     1 92230   501 Ss  \n92232     1 92232   501 Ss  \n92298     1 92298   501 Ss  \n92350  8784  8784   501 S   \n92536     1 92536   501 Ss  \n92537     1 92537   501 Ss  \n96713     1 96713   501 S   \n98002     1 98002   202 Ss  \n98007     1 98007   202 Ss  \n98010     1 98010   202 Ss  \n 3256  3241  3256   501 Ss+ \n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790989138084000
+    },
+    {
+      "at": 549528.350322375,
+      "data": {
+        "members": [
+          {
+            "pgid": 13171,
+            "pid": 13171,
+            "ruid": 501,
+            "sid": 13171,
+            "start_sec": 1790790989,
+            "start_usec": 27293,
+            "uid": 501
+          },
+          {
+            "pgid": 13171,
+            "pid": 13178,
+            "ruid": 501,
+            "sid": 13171,
+            "start_sec": 1790790989,
+            "start_usec": 96733,
+            "uid": 501
+          }
+        ],
+        "sample": {
+          "at": 549528.329126916,
+          "available_pct": 78.0,
+          "disk_free_bytes": 108060995584,
+          "footprint_bytes": 15090336,
+          "pressure": 1,
+          "rss_bytes": 27131904,
+          "swap_used_bytes": 3522890301,
+          "swapouts": 1221287,
+          "total_bytes": 17179869184
+        }
+      },
+      "kind": "sample",
+      "wall_ns": 1790790989139270000
+    },
+    {
+      "at": 549529.366569583,
+      "data": {
+        "argv": [
+          "/usr/sbin/sysctl",
+          "-n",
+          "hw.memsize"
+        ],
+        "raw": "17179869184\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790990155511000
+    },
+    {
+      "at": 549529.368442791,
+      "data": {
+        "argv": [
+          "/usr/sbin/sysctl",
+          "-n",
+          "kern.memorystatus_vm_pressure_level"
+        ],
+        "raw": "1\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790990157384000
+    },
+    {
+      "at": 549529.370269291,
+      "data": {
+        "argv": [
+          "/usr/bin/memory_pressure",
+          "-Q"
+        ],
+        "raw": "The system has 17179869184 (1048576 pages with a page size of 16384).\nSystem-wide memory free percentage: 78%\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790990159211000
+    },
+    {
+      "at": 549529.37205975,
+      "data": {
+        "argv": [
+          "/usr/sbin/sysctl",
+          "-n",
+          "vm.swapusage"
+        ],
+        "raw": "total = 4096.00M  used = 3359.69M  free = 736.31M  (encrypted)\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790990161001000
+    },
+    {
+      "at": 549529.373805791,
+      "data": {
+        "argv": [
+          "/usr/bin/vm_stat"
+        ],
+        "raw": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     3857.\nPages active:                                 385214.\nPages inactive:                               390035.\nPages speculative:                              2779.\nPages throttled:                                   0.\nPages wired down:                             151088.\nPages purgeable:                                3513.\n\"Translation faults\":                     3853211369.\nPages copy-on-write:                       248536701.\nPages zero filled:                        1498882497.\nPages reactivated:                         392125845.\nPages purged:                               55340599.\nFile-backed pages:                            203990.\nAnonymous pages:                              574038.\nPages stored in compressor:                   515786.\nPages occupied by compressor:                  64513.\nDecompressions:                            366555007.\nCompressions:                              407873730.\nPageins:                                   621092055.\nPageouts:                                    1697071.\nSwapins:                                      766910.\nSwapouts:                                    1221287.\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790990162747000
+    },
+    {
+      "at": 549529.383012583,
+      "data": {
+        "argv": [
+          "/bin/ps",
+          "-axo",
+          "pid=,ppid=,pgid=,uid=,stat="
+        ],
+        "raw": "    1     0     1     0 Ss  \n  340     1   340     0 Ss  \n  342     1   342     0 Ss  \n  344     1   344     0 Rs  \n  345     1   345     0 Ss  \n  348     1   348     0 Ss  \n  352     1   352     0 Ss  \n  354     1   354     0 Ss  \n  355     1   355     0 Ss  \n  359     1   359     0 Ss  \n  363     1   363   306 Ss  \n  365     1   365     0 Ss  \n  369     1   369     0 Ss  \n  371     1   371     0 Ss  \n  372     1   372     0 Ss  \n  376     1   376     0 Ss  \n  378     1   378     0 Ss  \n  379     1   379     0 Ss  \n  380     1   380     0 Ss  \n  381     1   381     0 Ss  \n  382     1   382     0 Ss  \n  383     1   383     0 Ss  \n  384     1   384   266 Ss  \n  385     1   385   213 Ss  \n  386     1   386     0 Ss  \n  388     1   388   205 Ss  \n  389     1   389     0 Ss  \n  391     1   391     0 Ss  \n  392     1   392     0 Ss  \n  393     1   393     0 Ss  \n  395     1   395   241 Ss  \n  399     1   399     0 Ss  \n  400     1   400     0 Ss  \n  401     1   401     0 Ss  \n  405     1   405     0 Ss  \n  406     1   406     0 Ss  \n  408     1   408     0 Ss  \n  409     1   409     0 Ss  \n  410     1   410     0 Ss  \n  413     1   413    88 Ss  \n  415     1   415     0 Ss  \n  416     1   416   501 Ss  \n  418     1   418     0 Ss  \n  421     1   421     0 Ss  \n  424     1   424     0 Ss  \n  425     1   425   242 Ss  \n  429     1   429   263 Ss  \n  431     1   431     0 Ss  \n  440     1   440     0 Ss  \n  445     1   445    24 Ss  \n  446     1   446     0 Ss  \n  448     1   448     0 Ss  \n  451     1   451    65 Ss  \n  455     1   455     0 Ss  \n  457     1   457   202 S   \n  464     1   464    88 S   \n  465     1   465     0 Ss  \n  467     1   467     0 S   \n  473     1   473     0 Ss  \n  510     1   510     0 Ss  \n  530     1   530   294 Ss  \n  531     1   531   262 S   \n  541     1   541     0 Ss  \n  543     1   543   262 Ss  \n  544     1   544   262 Ss  \n  548     1   548     0 Ss  \n  550     1   550   262 Ss  \n  551     1   551   262 Ss  \n  556     1   556   301 Ss  \n  558     1   558   205 S   \n  563     1   563    55 Ss  \n  571     1   571   242 S   \n  572     1   572   294 S   \n  577     1   577   270 Ss  \n  578     1   578     0 Ss  \n  579     1   579   270 Ss  \n  580     1   580   270 Ss  \n  581     1   581     0 Ss  \n  583     1   583   200 S   \n  595     1   595    89 S   \n  601     1   601     0 Ss  \n  603     1   603   501 S   \n  606     1   606   501 S   \n  607     1   607     0 Ss  \n  608     1   608   501 S   \n  614     1   614   501 S   \n  616     1   616   501 S   \n  618     1   618   501 S   \n  620     1   620   501 S   \n  622     1   622   501 S   \n  623     1   623   501 S   \n  631     1   631   501 S   \n  633     1   633   501 S   \n  634     1   634   501 S   \n  635     1   635    55 S   \n  636     1   636   501 S   \n  641     1   641   501 S   \n  645     1   645   501 S   \n  649     1   649     0 Ss  \n  650     1   650   501 S   \n  651     1   651     0 Ss  \n  652     1   652   501 S   \n  655     1   655   501 S   \n  657     1   657   501 S   \n  662     1   662   501 S   \n  667     1   667   501 S   \n  668     1   668   501 S   \n  669     1   669   501 S   \n  670     1   670   501 S   \n  672     1   672   501 S   \n  676     1   676   501 S   \n  684     1   684   501 S   \n  685     1   685   501 Ss  \n  686     1   686   501 Ss  \n  688     1   688   501 S   \n  690     1   690   441 Ss  \n  696     1   696   259 Ss  \n  699     1   699   501 S   \n  702     1   702   501 S   \n  703     1   703   501 S   \n  704     1   704   501 Ss  \n  705     1   705   501 Ss  \n  706     1   706   501 S   \n  711     1   711   501 S   \n  718     1   718   501 S   \n  720     1   720   268 Ss  \n  728     1   728   501 S   \n  729     1   729   501 S   \n  730     1   730   501 S   \n  734     1   734   501 S   \n  746     1   746     0 Ss  \n  749     1   749   501 Ss  \n  750     1   750   501 S   \n  751     1   751   501 S   \n  752     1   752   501 S   \n  753     1   753   501 Ss  \n  758     1   758   501 S   \n  761     1   761   501 S   \n  762     1   762   501 S   \n  775     1   775   501 S   \n  781     1   781   501 S   \n  784     1   784   501 S   \n  787     1   787   501 S   \n  788     1   788   501 S   \n  791     1   791   501 S   \n  793     1   793   501 S   \n  796     1   796   501 S   \n  797     1   797   501 S   \n  801     1   801   501 S   \n  849     1   849   501 S   \n  857     1   857   278 S   \n  859     1   859   501 S   \n  870     1   870   270 Ss  \n  873     1   873   501 S   \n  877     1   877    92 S   \n  891     1   891   501 SN  \n  914   788   788   501 S   \n  915     1   915   247 S   \n  918     1   918   260 S   \n  931     1   931   265 Ss  \n  950     1   950   501 S   \n  953   348   348     0 S   \n  966     1   966     0 Ss  \n 1006     1  1006   274 S   \n 1042     1  1042     0 Ss  \n 1064     1  1064     0 Ss  \n 1140     1  1140     0 Ss  \n 1146     1  1146   277 S   \n 1247     1  1247   501 Ss  \n 1353     1  1353   501 Ss  \n 1413     1  1413   501 S   \n 2003     1  2003   501 S   \n 2155     1  2155   501 S   \n 2959     1  2959   501 S   \n 3131     1  3131   501 Ss  \n 3158     1  3158   501 S   \n 3162     1  3161   501 S   \n 3163  3158  3158   501 S   \n 3165  3158  3158   501 S   \n 3187  3158  3158   501 S   \n 3191  3158  3158   501 S   \n 3193  3158  3158   501 S   \n 3194  3158  3158   501 S   \n 3205  3158  3158   501 S   \n 3241  3158  3158   501 S   \n 3242  3158  3242   501 S   \n 3243  3242  3242   501 S   \n 3406  3158  3158   501 S   \n 3407  3158  3158   501 S   \n 3460     1  3460   501 S   \n 3502  8838  3502   501 S   \n 3503  8838  3503   501 S   \n 3504  3503  3503   501 S   \n 4562     1  4562   501 S   \n 6050  8838  6050   501 S   \n 6051  8838  6051   501 S   \n 6052  6051  6051   501 S   \n 6187     1  6187   501 S   \n 7748     1  7748   501 S   \n 7749     1  7749   501 S   \n 8213     1  8213   205 S   \n 8242     1  8242   501 S   \n 8550  8838  8550   501 S   \n 8784     1  8784   501 S   \n 8790     1  8789   501 S   \n 8792     1  8791   501 S   \n 8806  8784  8784   501 S   \n 8810  8784  8784   501 S   \n 8815  8784  8784   501 S   \n 8819  8784  8784   501 S   \n 8835  8784  8784   501 R   \n 8838  8784  8784   501 S   \n 8883  8784  8784   501 S   \n 8893     1  8893   501 Ss  \n 9120  8784  8784   501 S   \n 9132  8784  8784   501 S   \n 9151  8784  8784   501 S   \n 9626     1  9626     0 Ss  \n 9627     1  9627     0 Ss  \n 9662  8838  9662   501 S   \n 9665  8838  9665   501 S   \n 9777     1  9777     0 Ss  \n 9779     1  9779   501 S   \n 9783     1  9783     0 Ss  \n 9784     1  9784     0 Ss  \n 9813     1  9813     0 Ss  \n 9814     1  9814   235 Ss  \n 9815     1  9815     0 Ss  \n 9816     1  9816     0 Ss  \n 9817     1  9817   501 S   \n 9818     1  9818   501 S   \n 9819     1  9819   501 S   \n 9820     1  9820     0 Ss  \n 9821     1  9821   501 S   \n 9822     1  9822     0 Ss  \n 9823     1  9823     0 Ss  \n 9824     1  9824   501 Ss  \n 9826     1  9826   501 S   \n 9934     1  9934     0 Ss  \n 9938     1  9938   501 S   \n 9939     1  9939   501 S   \n 9940     1  9940   501 S   \n 9941     1  9941   501 S   \n 9946  8838  9946   501 S   \n 9947  8838  9947   501 S   \n 9948  8838  9948   501 S   \n 9949  8838  9949   501 S   \n 9950  9949  9949   501 S   \n 9957     1  9957   501 S   \n 9958     1  9958     0 Ss  \n 9963     1  9963     0 Ss  \n 9968     1  9968   260 Ss  \n 9969     1  9969   260 Ss  \n10021     1 10021     0 Ss  \n10044     1 10044   503 S   \n10046     1 10046   278 Ss  \n10047     1 10047   503 SN  \n10048     1 10048   501 S   \n10049     1 10049   503 S   \n10077     1 10077   501 S   \n10081     1 10081     0 Ss  \n10083     1 10083   501 S   \n10084     1 10084   501 S   \n10096     1 10096   501 S   \n10097     1 10097   501 Ss  \n10099     1 10099   200 Ss  \n10100     1 10100     0 Ss  \n10102     1 10102   501 Ss  \n10104     1 10104     0 Ss  \n10107     1 10107   501 S   \n10108     1 10108   501 S   \n10141     1 10141     0 Ss  \n10142     1 10142   501 Ss  \n10143     1 10143     0 Ss  \n10145     1 10145   501 S   \n10146     1 10146   501 S   \n10147     1 10147     0 Ss  \n10159     1 10159     0 Ss  \n10160     1 10160   501 S   \n10161     1 10161   501 Ss  \n10162     1 10162   501 S   \n10163     1 10163   501 S   \n10198  8838 10198   501 S   \n10199  8838 10199   501 S   \n10200  8838 10200   501 S   \n10201  8838 10201   501 S   \n10202 10200 10200   501 S   \n10218     1 10218   501 Ss  \n10220     1 10220   501 Ss  \n10221     1 10221   501 S   \n10222     1 10222   501 S   \n10232     1 10232   501 S   \n10234     1 10234   501 S   \n10235     1 10235   501 S   \n10236     1 10236   501 S   \n10244     1 10244   501 S   \n10245     1 10245     0 Ss  \n10246     1 10246   501 S   \n10252     1 10252   501 S   \n10253     1 10253   501 S   \n10256     1 10256   501 Ss  \n10257     1 10257   501 Ss  \n10258     1 10258   501 Ss  \n10259     1 10259   501 Ss  \n10262     1 10262   501 S   \n10264     1 10264     0 Ss  \n10265     1 10265     0 Ss  \n10266     1 10266   501 Ss  \n10267     1 10267   501 Ss  \n10268     1 10268   501 S   \n10269     1 10269   501 Ss  \n10271     1 10271   501 S   \n10272     1 10272   501 S   \n10273     1 10273   501 S   \n10285     1 10285   501 S   \n10287     1 10287   501 Ss  \n10288     1 10288   502 S   \n10289     1 10289   502 S   \n10290     1 10290   503 S   \n10291     1 10291   502 S   \n10292     1 10292   503 S   \n10293     1 10293   503 S   \n10294     1 10294   503 S   \n10295     1 10295     0 Ss  \n10296     1 10296   502 S   \n10297     1 10297   501 Ss  \n10298     1 10298   501 Ss  \n10299     1 10299   501 Ss  \n10300     1 10300   501 Ss  \n10301     1 10301   501 S   \n10302     1 10302   240 Ss  \n10304     1 10304   501 Ss  \n10305     1 10305   501 S   \n10306     1 10306   501 Ss  \n10307     1 10307   501 S   \n10308     1 10308   501 S   \n10309     1 10309   501 Ss  \n10315     1 10315     0 Ss  \n10394     1 10394   501 S   \n10395     1 10395     0 Ss  \n10396     1 10396     0 Ss  \n10397     1 10397   501 S   \n10403     1 10403   501 S   \n10415  8838 10415   501 Ss  \n10420  8784  8784   501 S   \n10421  8784  8784   501 S   \n10428     1 10428     0 S   \n10448     1 10448   258 Ss  \n10541     1 10541     0 Ss  \n10552     1 10552     0 Ss  \n10562     1 10562     0 Ss  \n10605     1 10605   222 SNs \n10610  8784  8784   501 S   \n10611     1 10611   501 Ss  \n10612     1 10612   501 S   \n10613     1 10613   501 S   \n10671     1 10671   501 Ss  \n10672     1 10672   501 Ss  \n10674     1 10673   501 S   \n10675 10671 10671   501 S   \n10676 10671 10671   501 S   \n10677 10671 10671   501 S   \n10681     1 10681   501 S   \n10682     1 10682     0 Ss  \n10683     1 10683     0 Ss  \n10702 10671 10671   501 S   \n10732     1 10732     0 Ss  \n10733     1 10733     0 Ss  \n10737     1 10737     0 Ss  \n12852  8838 12852   501 S   \n12853  8838 12853   501 S   \n12854 12853 12853   501 S   \n13015     1 13015     0 Ss  \n13152  8838 13152   501 Ss  \n13153 13152 13152   501 S   \n13154 13153 13152   501 S   \n13155 13153 13152   501 S   \n13171 13155 13171   501 Ss  \n13178 13171 13171   501 S   \n13179     1 13179     0 Ss  \n13180     1 13180     0 Ss  \n13193 13155 13152     0 R   \n14858     1 14858   501 S   \n17381     1 17381   501 Ss  \n17414     1 17414   501 Ss  \n22264     1 22264   262 Ss  \n22297     1 22297     0 Ss  \n22403     1 22403   501 S   \n22944     1 22944   273 S   \n27023  8784  8784   501 S   \n34072     1 34072   296 S   \n34424  8838 34424   501 S   \n34425  8838 34425   501 S   \n34426  8838 34426   501 S   \n34427  8838 34427   501 S   \n34472 34424 34424   501 S   \n37571     1 37571   501 S   \n42023     1 42023   501 S   \n44227     1 44227   502 S   \n44228     1 44228   502 S   \n45247     1 45247   501 S   \n46800     1 46800   501 S   \n51588     1 51588   501 S   \n53762     1 53762   502 SN  \n57234     1 57234   501 S   \n58682     1 58682   271 Ss  \n58695     1 58695   501 Ss  \n63797     1 63797   501 S   \n70647     1 70647   501 S   \n71510     1 71510     0 Ss  \n75174  8838 75174   501 S   \n75175  8838 75175   501 S   \n75176  8838 75176   501 S   \n75177  8838 75177   501 S   \n75218 75176 75176   501 S   \n76601     1 76601   501 S   \n76602     1 76602     0 Ss  \n76604     1 76604   501 S   \n76608     1 76608   501 S   \n76631     1 76631   501 S   \n76642     1 76642   501 S   \n76688     1 76688   501 S   \n76693     1 76693   501 S   \n76699     1 76699   501 S   \n76700     1 76700   282 Ss  \n76704     1 76704   501 S   \n76705     1 76705   501 S   \n76706     1 76706   501 S   \n76727     1 76727   501 S   \n76744     1 76744     0 Ss  \n76749     1 76749   501 S   \n76761     1 76761     0 Ss  \n76773     1 76773   205 S   \n76808     1 76808   501 S   \n76832     1 76832     0 Ss  \n76834     1 76834   501 S   \n76835     1 76835   501 S   \n76856     1 76856   501 S   \n76860     1 76860   200 Ss  \n76866     1 76866     0 Ss  \n76883     1 76883     0 Ss  \n76887     1 76887   501 S   \n76905     1 76905   501 S   \n76911     1 76911   501 S   \n76944     1 76944   501 S   \n76960     1 76960     0 Ss  \n77002     1 77002   289 Ss  \n77005     1 77005     0 Ss  \n77019     1 77019     0 Ss  \n77043     1 77043   501 S   \n77049     1 77049   501 Ss  \n77051     1 77051     0 Ss  \n77083     1 77083   265 Ss  \n77102     1 77102   501 S   \n77105     1 77105   501 S   \n77126     1 77126   501 S   \n77130     1 77130     0 Ss  \n77135     1 77135     0 Ss  \n77141     1 77141   501 S   \n77148     1 77148   501 S   \n77150     1 77150   501 S   \n77151     1 77151     0 Ss  \n77155     1 77155   501 S   \n77163     1 77163   308 Ss  \n77187     1 77187   501 S   \n83107     1 83107   501 Ss  \n83108     1 83108   501 Ss  \n87461  8838 87461   501 S   \n87462  8838 87462   501 S   \n87463  8838 87463   501 S   \n87464  8838 87464   501 S   \n87553 87463 87463   501 S   \n87835     1 87835   501 S   \n88760     1 88760   501 S   \n88895     1 88895   501 S   \n89339     1 89339   501 S   \n89835  9950  9949   501 S   \n89836  9950  9949   501 S   \n89837 89835  9949   501 S   \n89838 89836  9949   501 S   \n89839  9950  9949   501 S   \n90819     1 90819     0 Ss  \n90874     1 90874   501 Ss  \n92171  8784  8784   501 S   \n92219     1 92219   501 S   \n92222     1 92222   501 Ss  \n92230     1 92230   501 Ss  \n92232     1 92232   501 Ss  \n92298     1 92298   501 Ss  \n92350  8784  8784   501 S   \n92536     1 92536   501 Ss  \n92537     1 92537   501 Ss  \n96713     1 96713   501 S   \n98002     1 98002   202 Ss  \n98007     1 98007   202 Ss  \n98010     1 98010   202 Ss  \n 3256  3241  3256   501 Ss+ \n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790990171954000
+    },
+    {
+      "at": 549529.383981041,
+      "data": {
+        "members": [
+          {
+            "pgid": 13171,
+            "pid": 13171,
+            "ruid": 501,
+            "sid": 13171,
+            "start_sec": 1790790989,
+            "start_usec": 27293,
+            "uid": 501
+          },
+          {
+            "pgid": 13171,
+            "pid": 13178,
+            "ruid": 501,
+            "sid": 13171,
+            "start_sec": 1790790989,
+            "start_usec": 96733,
+            "uid": 501
+          }
+        ],
+        "sample": {
+          "at": 549529.364192416,
+          "available_pct": 78.0,
+          "disk_free_bytes": 108061122560,
+          "footprint_bytes": 15155872,
+          "pressure": 1,
+          "rss_bytes": 27213824,
+          "swap_used_bytes": 3522890301,
+          "swapouts": 1221287,
+          "total_bytes": 17179869184
+        }
+      },
+      "kind": "sample",
+      "wall_ns": 1790790990172922000
+    },
+    {
+      "at": 549530.414827916,
+      "data": {
+        "argv": [
+          "/usr/sbin/sysctl",
+          "-n",
+          "hw.memsize"
+        ],
+        "raw": "17179869184\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790991203764000
+    },
+    {
+      "at": 549530.42464525,
+      "data": {
+        "argv": [
+          "/usr/sbin/sysctl",
+          "-n",
+          "kern.memorystatus_vm_pressure_level"
+        ],
+        "raw": "1\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790991213580000
+    },
+    {
+      "at": 549530.429991291,
+      "data": {
+        "argv": [
+          "/usr/bin/memory_pressure",
+          "-Q"
+        ],
+        "raw": "The system has 17179869184 (1048576 pages with a page size of 16384).\nSystem-wide memory free percentage: 78%\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790991218926000
+    },
+    {
+      "at": 549530.433687291,
+      "data": {
+        "argv": [
+          "/usr/sbin/sysctl",
+          "-n",
+          "vm.swapusage"
+        ],
+        "raw": "total = 4096.00M  used = 3359.69M  free = 736.31M  (encrypted)\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790991222622000
+    },
+    {
+      "at": 549530.437146666,
+      "data": {
+        "argv": [
+          "/usr/bin/vm_stat"
+        ],
+        "raw": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     3985.\nPages active:                                 385429.\nPages inactive:                               389510.\nPages speculative:                              2937.\nPages throttled:                                   0.\nPages wired down:                             151060.\nPages purgeable:                                3514.\n\"Translation faults\":                     3853214977.\nPages copy-on-write:                       248537403.\nPages zero filled:                        1498884292.\nPages reactivated:                         392125845.\nPages purged:                               55340601.\nFile-backed pages:                            203540.\nAnonymous pages:                              574336.\nPages stored in compressor:                   515778.\nPages occupied by compressor:                  64509.\nDecompressions:                            366555012.\nCompressions:                              407873730.\nPageins:                                   621092302.\nPageouts:                                    1697071.\nSwapins:                                      766910.\nSwapouts:                                    1221287.\n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790991226081000
+    },
+    {
+      "at": 549530.453186666,
+      "data": {
+        "argv": [
+          "/bin/ps",
+          "-axo",
+          "pid=,ppid=,pgid=,uid=,stat="
+        ],
+        "raw": "    1     0     1     0 Ss  \n  340     1   340     0 Ss  \n  342     1   342     0 Ss  \n  344     1   344     0 Rs  \n  345     1   345     0 Ss  \n  348     1   348     0 Ss  \n  352     1   352     0 Ss  \n  354     1   354     0 Ss  \n  355     1   355     0 Ss  \n  359     1   359     0 Ss  \n  363     1   363   306 Ss  \n  365     1   365     0 Ss  \n  369     1   369     0 Ss  \n  371     1   371     0 Ss  \n  372     1   372     0 Ss  \n  376     1   376     0 Ss  \n  378     1   378     0 Ss  \n  379     1   379     0 Ss  \n  380     1   380     0 Ss  \n  381     1   381     0 Ss  \n  382     1   382     0 Ss  \n  383     1   383     0 Ss  \n  384     1   384   266 Ss  \n  385     1   385   213 Ss  \n  386     1   386     0 Ss  \n  388     1   388   205 Ss  \n  389     1   389     0 Ss  \n  391     1   391     0 Ss  \n  392     1   392     0 Ss  \n  393     1   393     0 Ss  \n  395     1   395   241 Ss  \n  399     1   399     0 Ss  \n  400     1   400     0 Ss  \n  401     1   401     0 Ss  \n  405     1   405     0 Ss  \n  406     1   406     0 Ss  \n  408     1   408     0 Ss  \n  409     1   409     0 Ss  \n  410     1   410     0 Ss  \n  413     1   413    88 Ss  \n  415     1   415     0 Ss  \n  416     1   416   501 Ss  \n  418     1   418     0 Ss  \n  421     1   421     0 Ss  \n  424     1   424     0 Ss  \n  425     1   425   242 Ss  \n  429     1   429   263 Ss  \n  431     1   431     0 Ss  \n  440     1   440     0 Ss  \n  445     1   445    24 Ss  \n  446     1   446     0 Ss  \n  448     1   448     0 Ss  \n  451     1   451    65 Ss  \n  455     1   455     0 Ss  \n  457     1   457   202 S   \n  464     1   464    88 S   \n  465     1   465     0 Ss  \n  467     1   467     0 S   \n  473     1   473     0 Ss  \n  510     1   510     0 Ss  \n  530     1   530   294 Ss  \n  531     1   531   262 S   \n  541     1   541     0 Ss  \n  543     1   543   262 Ss  \n  544     1   544   262 Ss  \n  548     1   548     0 Ss  \n  550     1   550   262 Ss  \n  551     1   551   262 Ss  \n  556     1   556   301 Ss  \n  558     1   558   205 S   \n  563     1   563    55 Ss  \n  571     1   571   242 S   \n  572     1   572   294 S   \n  577     1   577   270 Ss  \n  578     1   578     0 Ss  \n  579     1   579   270 Ss  \n  580     1   580   270 Ss  \n  581     1   581     0 Ss  \n  583     1   583   200 S   \n  595     1   595    89 S   \n  601     1   601     0 Ss  \n  603     1   603   501 S   \n  606     1   606   501 S   \n  607     1   607     0 Ss  \n  608     1   608   501 S   \n  614     1   614   501 S   \n  616     1   616   501 S   \n  618     1   618   501 S   \n  620     1   620   501 S   \n  622     1   622   501 S   \n  623     1   623   501 S   \n  631     1   631   501 S   \n  633     1   633   501 S   \n  634     1   634   501 S   \n  635     1   635    55 S   \n  636     1   636   501 S   \n  641     1   641   501 S   \n  645     1   645   501 S   \n  649     1   649     0 Ss  \n  650     1   650   501 S   \n  651     1   651     0 Ss  \n  652     1   652   501 S   \n  655     1   655   501 S   \n  657     1   657   501 S   \n  662     1   662   501 S   \n  667     1   667   501 S   \n  668     1   668   501 S   \n  669     1   669   501 S   \n  670     1   670   501 S   \n  672     1   672   501 S   \n  676     1   676   501 S   \n  684     1   684   501 S   \n  685     1   685   501 Ss  \n  686     1   686   501 Ss  \n  688     1   688   501 S   \n  690     1   690   441 Ss  \n  696     1   696   259 Ss  \n  699     1   699   501 S   \n  702     1   702   501 S   \n  703     1   703   501 S   \n  704     1   704   501 Ss  \n  705     1   705   501 Ss  \n  706     1   706   501 S   \n  711     1   711   501 S   \n  718     1   718   501 S   \n  720     1   720   268 Ss  \n  728     1   728   501 S   \n  729     1   729   501 S   \n  730     1   730   501 S   \n  734     1   734   501 S   \n  746     1   746     0 Ss  \n  749     1   749   501 Ss  \n  750     1   750   501 S   \n  751     1   751   501 S   \n  752     1   752   501 S   \n  753     1   753   501 Ss  \n  758     1   758   501 S   \n  761     1   761   501 S   \n  762     1   762   501 S   \n  775     1   775   501 S   \n  781     1   781   501 S   \n  784     1   784   501 S   \n  787     1   787   501 S   \n  788     1   788   501 S   \n  791     1   791   501 S   \n  793     1   793   501 S   \n  796     1   796   501 S   \n  797     1   797   501 S   \n  801     1   801   501 S   \n  849     1   849   501 S   \n  857     1   857   278 S   \n  859     1   859   501 S   \n  870     1   870   270 Ss  \n  873     1   873   501 S   \n  877     1   877    92 S   \n  891     1   891   501 SN  \n  914   788   788   501 S   \n  915     1   915   247 S   \n  918     1   918   260 S   \n  931     1   931   265 Ss  \n  950     1   950   501 S   \n  953   348   348     0 S   \n  966     1   966     0 Ss  \n 1006     1  1006   274 S   \n 1042     1  1042     0 Ss  \n 1064     1  1064     0 Ss  \n 1140     1  1140     0 Ss  \n 1146     1  1146   277 S   \n 1247     1  1247   501 Ss  \n 1353     1  1353   501 Ss  \n 1413     1  1413   501 S   \n 2003     1  2003   501 S   \n 2155     1  2155   501 S   \n 2959     1  2959   501 S   \n 3131     1  3131   501 Ss  \n 3158     1  3158   501 S   \n 3162     1  3161   501 S   \n 3163  3158  3158   501 S   \n 3165  3158  3158   501 S   \n 3187  3158  3158   501 S   \n 3191  3158  3158   501 S   \n 3193  3158  3158   501 S   \n 3194  3158  3158   501 S   \n 3205  3158  3158   501 S   \n 3241  3158  3158   501 S   \n 3242  3158  3242   501 S   \n 3243  3242  3242   501 S   \n 3406  3158  3158   501 S   \n 3407  3158  3158   501 S   \n 3460     1  3460   501 S   \n 3502  8838  3502   501 S   \n 3503  8838  3503   501 S   \n 3504  3503  3503   501 S   \n 4562     1  4562   501 S   \n 6050  8838  6050   501 S   \n 6051  8838  6051   501 S   \n 6052  6051  6051   501 S   \n 6187     1  6187   501 S   \n 7748     1  7748   501 S   \n 7749     1  7749   501 S   \n 8213     1  8213   205 S   \n 8242     1  8242   501 S   \n 8550  8838  8550   501 S   \n 8784     1  8784   501 S   \n 8790     1  8789   501 S   \n 8792     1  8791   501 S   \n 8806  8784  8784   501 S   \n 8810  8784  8784   501 S   \n 8815  8784  8784   501 S   \n 8819  8784  8784   501 S   \n 8835  8784  8784   501 S   \n 8838  8784  8784   501 S   \n 8883  8784  8784   501 S   \n 8893     1  8893   501 Ss  \n 9120  8784  8784   501 S   \n 9132  8784  8784   501 S   \n 9151  8784  8784   501 S   \n 9626     1  9626     0 Ss  \n 9627     1  9627     0 Ss  \n 9662  8838  9662   501 S   \n 9665  8838  9665   501 S   \n 9777     1  9777     0 Ss  \n 9779     1  9779   501 S   \n 9783     1  9783     0 Ss  \n 9784     1  9784     0 Ss  \n 9813     1  9813     0 Ss  \n 9814     1  9814   235 Ss  \n 9815     1  9815     0 Ss  \n 9816     1  9816     0 Ss  \n 9817     1  9817   501 S   \n 9818     1  9818   501 S   \n 9819     1  9819   501 S   \n 9820     1  9820     0 Ss  \n 9821     1  9821   501 S   \n 9822     1  9822     0 Ss  \n 9823     1  9823     0 Ss  \n 9824     1  9824   501 Ss  \n 9826     1  9826   501 S   \n 9934     1  9934     0 Ss  \n 9938     1  9938   501 S   \n 9939     1  9939   501 S   \n 9940     1  9940   501 S   \n 9941     1  9941   501 S   \n 9946  8838  9946   501 S   \n 9947  8838  9947   501 S   \n 9948  8838  9948   501 S   \n 9949  8838  9949   501 S   \n 9950  9949  9949   501 S   \n 9957     1  9957   501 S   \n 9958     1  9958     0 Ss  \n 9963     1  9963     0 Ss  \n 9968     1  9968   260 Ss  \n 9969     1  9969   260 Ss  \n10021     1 10021     0 Ss  \n10044     1 10044   503 S   \n10046     1 10046   278 Ss  \n10047     1 10047   503 SN  \n10048     1 10048   501 S   \n10049     1 10049   503 S   \n10077     1 10077   501 S   \n10081     1 10081     0 Ss  \n10083     1 10083   501 S   \n10084     1 10084   501 S   \n10096     1 10096   501 S   \n10097     1 10097   501 Ss  \n10099     1 10099   200 Ss  \n10100     1 10100     0 Ss  \n10102     1 10102   501 Ss  \n10104     1 10104     0 Ss  \n10107     1 10107   501 S   \n10108     1 10108   501 S   \n10141     1 10141     0 Ss  \n10142     1 10142   501 Ss  \n10143     1 10143     0 Ss  \n10145     1 10145   501 S   \n10146     1 10146   501 S   \n10147     1 10147     0 Ss  \n10159     1 10159     0 Ss  \n10160     1 10160   501 S   \n10161     1 10161   501 Ss  \n10162     1 10162   501 S   \n10163     1 10163   501 S   \n10198  8838 10198   501 S   \n10199  8838 10199   501 S   \n10200  8838 10200   501 S   \n10201  8838 10201   501 S   \n10202 10200 10200   501 S   \n10218     1 10218   501 Ss  \n10220     1 10220   501 Ss  \n10221     1 10221   501 S   \n10222     1 10222   501 S   \n10232     1 10232   501 S   \n10234     1 10234   501 S   \n10235     1 10235   501 S   \n10236     1 10236   501 S   \n10244     1 10244   501 S   \n10245     1 10245     0 Ss  \n10246     1 10246   501 S   \n10252     1 10252   501 S   \n10253     1 10253   501 S   \n10256     1 10256   501 Ss  \n10257     1 10257   501 Ss  \n10258     1 10258   501 Ss  \n10259     1 10259   501 Ss  \n10262     1 10262   501 S   \n10264     1 10264     0 Ss  \n10265     1 10265     0 Ss  \n10266     1 10266   501 Ss  \n10267     1 10267   501 Ss  \n10268     1 10268   501 S   \n10269     1 10269   501 Ss  \n10271     1 10271   501 S   \n10272     1 10272   501 S   \n10273     1 10273   501 S   \n10285     1 10285   501 S   \n10287     1 10287   501 Ss  \n10288     1 10288   502 S   \n10289     1 10289   502 S   \n10290     1 10290   503 S   \n10291     1 10291   502 S   \n10292     1 10292   503 S   \n10293     1 10293   503 S   \n10294     1 10294   503 S   \n10295     1 10295     0 Ss  \n10296     1 10296   502 S   \n10297     1 10297   501 Ss  \n10298     1 10298   501 Ss  \n10299     1 10299   501 Ss  \n10300     1 10300   501 Ss  \n10301     1 10301   501 S   \n10302     1 10302   240 Ss  \n10304     1 10304   501 Ss  \n10305     1 10305   501 S   \n10306     1 10306   501 Ss  \n10307     1 10307   501 S   \n10308     1 10308   501 S   \n10309     1 10309   501 Ss  \n10315     1 10315     0 Ss  \n10394     1 10394   501 S   \n10395     1 10395     0 Ss  \n10396     1 10396     0 Ss  \n10397     1 10397   501 S   \n10403     1 10403   501 S   \n10415  8838 10415   501 Ss  \n10420  8784  8784   501 S   \n10421  8784  8784   501 S   \n10428     1 10428     0 S   \n10448     1 10448   258 Ss  \n10541     1 10541     0 Ss  \n10552     1 10552     0 Ss  \n10562     1 10562     0 Ss  \n10605     1 10605   222 SNs \n10610  8784  8784   501 S   \n10611     1 10611   501 Ss  \n10612     1 10612   501 S   \n10613     1 10613   501 S   \n10671     1 10671   501 Ss  \n10672     1 10672   501 Ss  \n10674     1 10673   501 S   \n10675 10671 10671   501 S   \n10676 10671 10671   501 S   \n10677 10671 10671   501 S   \n10681     1 10681   501 S   \n10682     1 10682     0 Ss  \n10683     1 10683     0 Ss  \n10702 10671 10671   501 S   \n10732     1 10732     0 Ss  \n10733     1 10733     0 Ss  \n10737     1 10737     0 Ss  \n12852  8838 12852   501 S   \n12853  8838 12853   501 S   \n12854 12853 12853   501 S   \n13015     1 13015     0 Ss  \n13152  8838 13152   501 Ss  \n13153 13152 13152   501 S   \n13154 13153 13152   501 S   \n13155 13153 13152   501 S   \n13171 13155 13171   501 Ss  \n13178 13171 13171   501 S   \n13179     1 13179     0 Ss  \n13180     1 13180     0 Ss  \n13199 13155 13152     0 R   \n14858     1 14858   501 S   \n17381     1 17381   501 Ss  \n17414     1 17414   501 Ss  \n22264     1 22264   262 Ss  \n22297     1 22297     0 Ss  \n22403     1 22403   501 S   \n22944     1 22944   273 S   \n27023  8784  8784   501 S   \n34072     1 34072   296 S   \n34424  8838 34424   501 S   \n34425  8838 34425   501 S   \n34426  8838 34426   501 S   \n34427  8838 34427   501 S   \n34472 34424 34424   501 S   \n37571     1 37571   501 S   \n42023     1 42023   501 S   \n44227     1 44227   502 S   \n44228     1 44228   502 S   \n45247     1 45247   501 S   \n46800     1 46800   501 S   \n51588     1 51588   501 S   \n53762     1 53762   502 SN  \n57234     1 57234   501 S   \n58682     1 58682   271 Ss  \n58695     1 58695   501 Ss  \n63797     1 63797   501 S   \n70647     1 70647   501 S   \n71510     1 71510     0 Ss  \n75174  8838 75174   501 S   \n75175  8838 75175   501 S   \n75176  8838 75176   501 S   \n75177  8838 75177   501 S   \n75218 75176 75176   501 S   \n76601     1 76601   501 S   \n76602     1 76602     0 Ss  \n76604     1 76604   501 S   \n76608     1 76608   501 S   \n76631     1 76631   501 S   \n76642     1 76642   501 S   \n76688     1 76688   501 S   \n76693     1 76693   501 S   \n76699     1 76699   501 S   \n76700     1 76700   282 Ss  \n76704     1 76704   501 S   \n76705     1 76705   501 S   \n76706     1 76706   501 S   \n76727     1 76727   501 S   \n76744     1 76744     0 Ss  \n76749     1 76749   501 S   \n76761     1 76761     0 Ss  \n76773     1 76773   205 S   \n76808     1 76808   501 S   \n76832     1 76832     0 Ss  \n76834     1 76834   501 S   \n76835     1 76835   501 S   \n76856     1 76856   501 S   \n76860     1 76860   200 Ss  \n76866     1 76866     0 Ss  \n76883     1 76883     0 Ss  \n76887     1 76887   501 S   \n76905     1 76905   501 S   \n76911     1 76911   501 S   \n76944     1 76944   501 S   \n76960     1 76960     0 Ss  \n77002     1 77002   289 Ss  \n77005     1 77005     0 Ss  \n77019     1 77019     0 Ss  \n77043     1 77043   501 S   \n77049     1 77049   501 Ss  \n77051     1 77051     0 Ss  \n77083     1 77083   265 Ss  \n77102     1 77102   501 S   \n77105     1 77105   501 S   \n77126     1 77126   501 S   \n77130     1 77130     0 Ss  \n77135     1 77135     0 Ss  \n77141     1 77141   501 S   \n77148     1 77148   501 S   \n77150     1 77150   501 S   \n77151     1 77151     0 Ss  \n77155     1 77155   501 R   \n77163     1 77163   308 Ss  \n77187     1 77187   501 S   \n83107     1 83107   501 Ss  \n83108     1 83108   501 Ss  \n87461  8838 87461   501 S   \n87462  8838 87462   501 S   \n87463  8838 87463   501 S   \n87464  8838 87464   501 S   \n87553 87463 87463   501 S   \n87835     1 87835   501 S   \n88760     1 88760   501 S   \n88895     1 88895   501 S   \n89339     1 89339   501 S   \n89835  9950  9949   501 S   \n89836  9950  9949   501 S   \n89837 89835  9949   501 S   \n89838 89836  9949   501 S   \n89839  9950  9949   501 S   \n90819     1 90819     0 Ss  \n90874     1 90874   501 Ss  \n92171  8784  8784   501 S   \n92219     1 92219   501 S   \n92222     1 92222   501 Ss  \n92230     1 92230   501 Ss  \n92232     1 92232   501 Ss  \n92298     1 92298   501 Ss  \n92350  8784  8784   501 S   \n92536     1 92536   501 Ss  \n92537     1 92537   501 Ss  \n96713     1 96713   501 S   \n98002     1 98002   202 Ss  \n98007     1 98007   202 Ss  \n98010     1 98010   202 Ss  \n 3256  3241  3256   501 Ss+ \n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790991242121000
+    },
+    {
+      "at": 549530.454629875,
+      "data": {
+        "members": [
+          {
+            "pgid": 13171,
+            "pid": 13171,
+            "ruid": 501,
+            "sid": 13171,
+            "start_sec": 1790790989,
+            "start_usec": 27293,
+            "uid": 501
+          },
+          {
+            "pgid": 13171,
+            "pid": 13178,
+            "ruid": 501,
+            "sid": 13171,
+            "start_sec": 1790790989,
+            "start_usec": 96733,
+            "uid": 501
+          }
+        ],
+        "sample": {
+          "at": 549530.403909166,
+          "available_pct": 78.0,
+          "disk_free_bytes": 108061093888,
+          "footprint_bytes": 15155872,
+          "pressure": 1,
+          "rss_bytes": 27213824,
+          "swap_used_bytes": 3522890301,
+          "swapouts": 1221287,
+          "total_bytes": 17179869184
+        }
+      },
+      "kind": "sample",
+      "wall_ns": 1790790991243564000
+    },
+    {
+      "at": 549531.378321291,
+      "data": {
+        "control_kind": "DONE",
+        "data": {
+          "reason": null,
+          "returncode": 0
+        }
+      },
+      "kind": "control-received",
+      "wall_ns": 1790790992167251000
+    },
+    {
+      "at": 549531.410387791,
+      "data": {
+        "argv": [
+          "/bin/ps",
+          "-axo",
+          "pid=,ppid=,pgid=,uid=,stat="
+        ],
+        "raw": "    1     0     1     0 Ss  \n  340     1   340     0 Ss  \n  342     1   342     0 Ss  \n  344     1   344     0 Us  \n  345     1   345     0 Ss  \n  348     1   348     0 Ss  \n  352     1   352     0 Ss  \n  354     1   354     0 Ss  \n  355     1   355     0 Ss  \n  359     1   359     0 Ss  \n  363     1   363   306 Ss  \n  365     1   365     0 Ss  \n  369     1   369     0 Ss  \n  371     1   371     0 Ss  \n  372     1   372     0 Ss  \n  376     1   376     0 Ss  \n  378     1   378     0 Ss  \n  379     1   379     0 Ss  \n  380     1   380     0 Ss  \n  381     1   381     0 Ss  \n  382     1   382     0 Ss  \n  383     1   383     0 Ss  \n  384     1   384   266 Ss  \n  385     1   385   213 Ss  \n  386     1   386     0 Ss  \n  388     1   388   205 Ss  \n  389     1   389     0 Ss  \n  391     1   391     0 Ss  \n  392     1   392     0 Ss  \n  393     1   393     0 Ss  \n  395     1   395   241 Ss  \n  399     1   399     0 Ss  \n  400     1   400     0 Ss  \n  401     1   401     0 Ss  \n  405     1   405     0 Ss  \n  406     1   406     0 Ss  \n  408     1   408     0 Ss  \n  409     1   409     0 Ss  \n  410     1   410     0 Ss  \n  413     1   413    88 Rs  \n  415     1   415     0 Ss  \n  416     1   416   501 Ss  \n  418     1   418     0 Ss  \n  421     1   421     0 Ss  \n  424     1   424     0 Ss  \n  425     1   425   242 Ss  \n  429     1   429   263 Ss  \n  431     1   431     0 Ss  \n  440     1   440     0 Ss  \n  445     1   445    24 Ss  \n  446     1   446     0 Ss  \n  448     1   448     0 Ss  \n  451     1   451    65 Ss  \n  455     1   455     0 Ss  \n  457     1   457   202 S   \n  464     1   464    88 S   \n  465     1   465     0 Ss  \n  467     1   467     0 S   \n  473     1   473     0 Ss  \n  510     1   510     0 Ss  \n  530     1   530   294 Ss  \n  531     1   531   262 S   \n  541     1   541     0 Ss  \n  543     1   543   262 Ss  \n  544     1   544   262 Ss  \n  548     1   548     0 Ss  \n  550     1   550   262 Ss  \n  551     1   551   262 Ss  \n  556     1   556   301 Ss  \n  558     1   558   205 S   \n  563     1   563    55 Ss  \n  571     1   571   242 S   \n  572     1   572   294 S   \n  577     1   577   270 Ss  \n  578     1   578     0 Ss  \n  579     1   579   270 Ss  \n  580     1   580   270 Ss  \n  581     1   581     0 Ss  \n  583     1   583   200 S   \n  595     1   595    89 S   \n  601     1   601     0 Ss  \n  603     1   603   501 S   \n  606     1   606   501 S   \n  607     1   607     0 Ss  \n  608     1   608   501 S   \n  614     1   614   501 S   \n  616     1   616   501 S   \n  618     1   618   501 S   \n  620     1   620   501 S   \n  622     1   622   501 S   \n  623     1   623   501 S   \n  631     1   631   501 S   \n  633     1   633   501 S   \n  634     1   634   501 S   \n  635     1   635    55 S   \n  636     1   636   501 S   \n  641     1   641   501 S   \n  645     1   645   501 S   \n  649     1   649     0 Ss  \n  650     1   650   501 S   \n  651     1   651     0 Ss  \n  652     1   652   501 S   \n  655     1   655   501 S   \n  657     1   657   501 S   \n  662     1   662   501 S   \n  667     1   667   501 S   \n  668     1   668   501 S   \n  669     1   669   501 S   \n  670     1   670   501 S   \n  672     1   672   501 S   \n  676     1   676   501 S   \n  684     1   684   501 S   \n  685     1   685   501 Ss  \n  686     1   686   501 Ss  \n  688     1   688   501 S   \n  690     1   690   441 Ss  \n  696     1   696   259 Ss  \n  699     1   699   501 S   \n  702     1   702   501 S   \n  703     1   703   501 S   \n  704     1   704   501 Ss  \n  705     1   705   501 Ss  \n  706     1   706   501 S   \n  711     1   711   501 S   \n  718     1   718   501 S   \n  720     1   720   268 Ss  \n  728     1   728   501 S   \n  729     1   729   501 S   \n  730     1   730   501 S   \n  734     1   734   501 S   \n  746     1   746     0 Ss  \n  749     1   749   501 Ss  \n  750     1   750   501 S   \n  751     1   751   501 S   \n  752     1   752   501 S   \n  753     1   753   501 Ss  \n  758     1   758   501 S   \n  761     1   761   501 S   \n  762     1   762   501 S   \n  775     1   775   501 S   \n  781     1   781   501 S   \n  784     1   784   501 S   \n  787     1   787   501 S   \n  788     1   788   501 S   \n  791     1   791   501 S   \n  793     1   793   501 S   \n  796     1   796   501 S   \n  797     1   797   501 S   \n  801     1   801   501 S   \n  849     1   849   501 S   \n  857     1   857   278 S   \n  859     1   859   501 S   \n  870     1   870   270 Ss  \n  873     1   873   501 S   \n  877     1   877    92 S   \n  891     1   891   501 SN  \n  914   788   788   501 S   \n  915     1   915   247 S   \n  918     1   918   260 S   \n  931     1   931   265 Ss  \n  950     1   950   501 S   \n  953   348   348     0 S   \n  966     1   966     0 Ss  \n 1006     1  1006   274 S   \n 1042     1  1042     0 Ss  \n 1064     1  1064     0 Ss  \n 1140     1  1140     0 Ss  \n 1146     1  1146   277 S   \n 1247     1  1247   501 Ss  \n 1353     1  1353   501 Ss  \n 1413     1  1413   501 S   \n 2003     1  2003   501 S   \n 2155     1  2155   501 S   \n 2959     1  2959   501 S   \n 3131     1  3131   501 Ss  \n 3158     1  3158   501 S   \n 3162     1  3161   501 S   \n 3163  3158  3158   501 S   \n 3165  3158  3158   501 S   \n 3187  3158  3158   501 S   \n 3191  3158  3158   501 S   \n 3193  3158  3158   501 S   \n 3194  3158  3158   501 S   \n 3205  3158  3158   501 S   \n 3241  3158  3158   501 S   \n 3242  3158  3242   501 S   \n 3243  3242  3242   501 S   \n 3406  3158  3158   501 S   \n 3407  3158  3158   501 S   \n 3460     1  3460   501 S   \n 3502  8838  3502   501 S   \n 3503  8838  3503   501 S   \n 3504  3503  3503   501 S   \n 4562     1  4562   501 S   \n 6050  8838  6050   501 S   \n 6051  8838  6051   501 S   \n 6052  6051  6051   501 S   \n 6187     1  6187   501 S   \n 7748     1  7748   501 S   \n 7749     1  7749   501 S   \n 8213     1  8213   205 S   \n 8242     1  8242   501 S   \n 8550  8838  8550   501 S   \n 8784     1  8784   501 S   \n 8790     1  8789   501 S   \n 8792     1  8791   501 S   \n 8806  8784  8784   501 S   \n 8810  8784  8784   501 S   \n 8815  8784  8784   501 S   \n 8819  8784  8784   501 S   \n 8835  8784  8784   501 S   \n 8838  8784  8784   501 S   \n 8883  8784  8784   501 S   \n 8893     1  8893   501 Ss  \n 9120  8784  8784   501 S   \n 9132  8784  8784   501 S   \n 9151  8784  8784   501 S   \n 9626     1  9626     0 Ss  \n 9627     1  9627     0 Ss  \n 9662  8838  9662   501 S   \n 9665  8838  9665   501 S   \n 9777     1  9777     0 Ss  \n 9779     1  9779   501 S   \n 9783     1  9783     0 Ss  \n 9784     1  9784     0 Ss  \n 9813     1  9813     0 Ss  \n 9814     1  9814   235 Ss  \n 9815     1  9815     0 Ss  \n 9816     1  9816     0 Ss  \n 9817     1  9817   501 S   \n 9818     1  9818   501 S   \n 9819     1  9819   501 S   \n 9820     1  9820     0 Ss  \n 9821     1  9821   501 S   \n 9822     1  9822     0 Ss  \n 9823     1  9823     0 Ss  \n 9824     1  9824   501 Ss  \n 9826     1  9826   501 S   \n 9934     1  9934     0 Ss  \n 9938     1  9938   501 S   \n 9939     1  9939   501 S   \n 9940     1  9940   501 S   \n 9941     1  9941   501 S   \n 9946  8838  9946   501 S   \n 9947  8838  9947   501 S   \n 9948  8838  9948   501 S   \n 9949  8838  9949   501 S   \n 9950  9949  9949   501 S   \n 9957     1  9957   501 S   \n 9958     1  9958     0 Ss  \n 9963     1  9963     0 Ss  \n 9968     1  9968   260 Ss  \n 9969     1  9969   260 Ss  \n10021     1 10021     0 Ss  \n10044     1 10044   503 S   \n10046     1 10046   278 Ss  \n10047     1 10047   503 SN  \n10048     1 10048   501 S   \n10049     1 10049   503 S   \n10077     1 10077   501 S   \n10081     1 10081     0 Ss  \n10083     1 10083   501 S   \n10084     1 10084   501 S   \n10096     1 10096   501 S   \n10097     1 10097   501 Ss  \n10099     1 10099   200 Ss  \n10100     1 10100     0 Ss  \n10102     1 10102   501 Ss  \n10104     1 10104     0 Ss  \n10107     1 10107   501 S   \n10108     1 10108   501 S   \n10141     1 10141     0 Ss  \n10142     1 10142   501 Ss  \n10143     1 10143     0 Ss  \n10145     1 10145   501 S   \n10146     1 10146   501 S   \n10147     1 10147     0 Ss  \n10159     1 10159     0 Ss  \n10160     1 10160   501 S   \n10161     1 10161   501 Ss  \n10162     1 10162   501 S   \n10163     1 10163   501 S   \n10198  8838 10198   501 S   \n10199  8838 10199   501 S   \n10200  8838 10200   501 S   \n10201  8838 10201   501 S   \n10202 10200 10200   501 S   \n10218     1 10218   501 Ss  \n10220     1 10220   501 Ss  \n10221     1 10221   501 S   \n10222     1 10222   501 S   \n10232     1 10232   501 S   \n10234     1 10234   501 S   \n10235     1 10235   501 S   \n10236     1 10236   501 S   \n10244     1 10244   501 S   \n10245     1 10245     0 Ss  \n10246     1 10246   501 S   \n10252     1 10252   501 S   \n10253     1 10253   501 S   \n10256     1 10256   501 Ss  \n10257     1 10257   501 Ss  \n10258     1 10258   501 Ss  \n10259     1 10259   501 Ss  \n10262     1 10262   501 S   \n10264     1 10264     0 Ss  \n10265     1 10265     0 Ss  \n10266     1 10266   501 Ss  \n10267     1 10267   501 Ss  \n10268     1 10268   501 S   \n10269     1 10269   501 Ss  \n10271     1 10271   501 S   \n10272     1 10272   501 S   \n10273     1 10273   501 S   \n10285     1 10285   501 S   \n10287     1 10287   501 Ss  \n10288     1 10288   502 S   \n10289     1 10289   502 S   \n10290     1 10290   503 S   \n10291     1 10291   502 S   \n10292     1 10292   503 S   \n10293     1 10293   503 S   \n10294     1 10294   503 S   \n10295     1 10295     0 Ss  \n10296     1 10296   502 S   \n10297     1 10297   501 Ss  \n10298     1 10298   501 Ss  \n10299     1 10299   501 Ss  \n10300     1 10300   501 Ss  \n10301     1 10301   501 S   \n10302     1 10302   240 Ss  \n10304     1 10304   501 Ss  \n10305     1 10305   501 S   \n10306     1 10306   501 Ss  \n10307     1 10307   501 S   \n10308     1 10308   501 S   \n10309     1 10309   501 Ss  \n10315     1 10315     0 Ss  \n10394     1 10394   501 S   \n10395     1 10395     0 Ss  \n10396     1 10396     0 Ss  \n10397     1 10397   501 S   \n10403     1 10403   501 S   \n10415  8838 10415   501 Ss  \n10420  8784  8784   501 S   \n10421  8784  8784   501 S   \n10428     1 10428     0 S   \n10448     1 10448   258 Ss  \n10541     1 10541     0 Ss  \n10552     1 10552     0 Ss  \n10562     1 10562     0 Ss  \n10605     1 10605   222 SNs \n10610  8784  8784   501 S   \n10611     1 10611   501 Ss  \n10612     1 10612   501 S   \n10613     1 10613   501 S   \n10671     1 10671   501 Ss  \n10672     1 10672   501 Ss  \n10674     1 10673   501 S   \n10675 10671 10671   501 S   \n10676 10671 10671   501 S   \n10677 10671 10671   501 S   \n10681     1 10681   501 S   \n10682     1 10682     0 Ss  \n10683     1 10683     0 Ss  \n10702 10671 10671   501 S   \n10732     1 10732     0 Ss  \n10733     1 10733     0 Ss  \n10737     1 10737     0 Ss  \n12852  8838 12852   501 S   \n12853  8838 12853   501 S   \n12854 12853 12853   501 S   \n13015     1 13015     0 Ss  \n13152  8838 13152   501 Ss  \n13153 13152 13152   501 S   \n13154 13153 13152   501 S   \n13155 13153 13152   501 S   \n13171 13155 13171   501 Ss  \n13179     1 13179     0 Ss  \n13180     1 13180     0 Ss  \n13202 13155 13152     0 R   \n14858     1 14858   501 S   \n17381     1 17381   501 Ss  \n17414     1 17414   501 Ss  \n22264     1 22264   262 Ss  \n22297     1 22297     0 Ss  \n22403     1 22403   501 S   \n22944     1 22944   273 S   \n27023  8784  8784   501 S   \n34072     1 34072   296 S   \n34424  8838 34424   501 S   \n34425  8838 34425   501 S   \n34426  8838 34426   501 S   \n34427  8838 34427   501 S   \n34472 34424 34424   501 S   \n37571     1 37571   501 S   \n42023     1 42023   501 S   \n44227     1 44227   502 S   \n44228     1 44228   502 S   \n45247     1 45247   501 S   \n46800     1 46800   501 S   \n51588     1 51588   501 S   \n53762     1 53762   502 SN  \n57234     1 57234   501 S   \n58682     1 58682   271 Ss  \n58695     1 58695   501 Ss  \n63797     1 63797   501 S   \n70647     1 70647   501 S   \n71510     1 71510     0 Ss  \n75174  8838 75174   501 S   \n75175  8838 75175   501 S   \n75176  8838 75176   501 S   \n75177  8838 75177   501 S   \n75218 75176 75176   501 S   \n76601     1 76601   501 S   \n76602     1 76602     0 Ss  \n76604     1 76604   501 S   \n76608     1 76608   501 S   \n76631     1 76631   501 S   \n76642     1 76642   501 S   \n76688     1 76688   501 S   \n76693     1 76693   501 S   \n76699     1 76699   501 S   \n76700     1 76700   282 Ss  \n76704     1 76704   501 S   \n76705     1 76705   501 S   \n76706     1 76706   501 S   \n76727     1 76727   501 S   \n76744     1 76744     0 Ss  \n76749     1 76749   501 S   \n76761     1 76761     0 Ss  \n76773     1 76773   205 S   \n76808     1 76808   501 S   \n76832     1 76832     0 Ss  \n76834     1 76834   501 S   \n76835     1 76835   501 S   \n76856     1 76856   501 S   \n76860     1 76860   200 Ss  \n76866     1 76866     0 Ss  \n76883     1 76883     0 Ss  \n76887     1 76887   501 S   \n76905     1 76905   501 S   \n76911     1 76911   501 S   \n76944     1 76944   501 S   \n76960     1 76960     0 Ss  \n77002     1 77002   289 Ss  \n77005     1 77005     0 Ss  \n77019     1 77019     0 Ss  \n77043     1 77043   501 S   \n77049     1 77049   501 Ss  \n77051     1 77051     0 Ss  \n77083     1 77083   265 Ss  \n77102     1 77102   501 S   \n77105     1 77105   501 S   \n77126     1 77126   501 S   \n77130     1 77130     0 Ss  \n77135     1 77135     0 Ss  \n77141     1 77141   501 S   \n77148     1 77148   501 S   \n77150     1 77150   501 S   \n77151     1 77151     0 Ss  \n77155     1 77155   501 S   \n77163     1 77163   308 Ss  \n77187     1 77187   501 S   \n83107     1 83107   501 Ss  \n83108     1 83108   501 Ss  \n87461  8838 87461   501 S   \n87462  8838 87462   501 S   \n87463  8838 87463   501 S   \n87464  8838 87464   501 S   \n87553 87463 87463   501 S   \n87835     1 87835   501 S   \n88760     1 88760   501 S   \n88895     1 88895   501 S   \n89339     1 89339   501 S   \n89835  9950  9949   501 S   \n89836  9950  9949   501 S   \n89837 89835  9949   501 S   \n89838 89836  9949   501 S   \n89839  9950  9949   501 S   \n90819     1 90819     0 Ss  \n90874     1 90874   501 Ss  \n92171  8784  8784   501 S   \n92219     1 92219   501 S   \n92222     1 92222   501 Ss  \n92230     1 92230   501 Ss  \n92232     1 92232   501 Ss  \n92298     1 92298   501 Ss  \n92350  8784  8784   501 S   \n92536     1 92536   501 Ss  \n92537     1 92537   501 Ss  \n96713     1 96713   501 S   \n98002     1 98002   202 Ss  \n98007     1 98007   202 Ss  \n98010     1 98010   202 Ss  \n 3256  3241  3256   501 Ss+ \n",
+        "returncode": 0
+      },
+      "kind": "provider-command",
+      "wall_ns": 1790790992199316000
+    },
+    {
+      "at": 549531.412066416,
+      "data": {
+        "guard_healthy": true,
+        "result": 0,
+        "stop_reason": null,
+        "workload_returncode": 0
+      },
+      "kind": "result",
+      "wall_ns": 1790790992200995000
+    }
+  ],
+  "supervisor_events": [
+    {
+      "at": 549528.241112833,
+      "data": {
+        "identity": {
+          "pgid": 13171,
+          "pid": 13171,
+          "ruid": 501,
+          "sid": 13171,
+          "start_sec": 1790790989,
+          "start_usec": 27293,
+          "uid": 501
+        }
+      },
+      "kind": "identity",
+      "wall_ns": 1790790989030061000
+    },
+    {
+      "at": 549528.308214208,
+      "data": {
+        "pid": 13178
+      },
+      "kind": "worker-launched",
+      "wall_ns": 1790790989097162000
+    },
+    {
+      "at": 549531.362890833,
+      "data": {
+        "returncode": 0
+      },
+      "kind": "worker-exit",
+      "wall_ns": 1790790992151821000
+    },
+    {
+      "at": 549531.364055583,
+      "data": {
+        "reason": null,
+        "returncode": 0
+      },
+      "kind": "group-drained",
+      "wall_ns": 1790790992152984000
+    }
+  ],
+  "registry": {
+    "run_id": "HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE",
+    "job_id": "guard-q-clean-01",
+    "spec_sha256": "552b305405a441bc42f24c67d72f5d9de4240992efa42cd9ecdc720c282918f5",
+    "monitor": {
+      "pid": 13155,
+      "start_sec": 1790790986,
+      "start_usec": 894874,
+      "uid": 501,
+      "ruid": 501,
+      "pgid": 13152,
+      "sid": 13152
+    },
+    "supervisor": {
+      "pid": 13171,
+      "start_sec": 1790790989,
+      "start_usec": 27293,
+      "uid": 501,
+      "ruid": 501,
+      "pgid": 13171,
+      "sid": 13171
+    },
+    "channel_binding_sha256": "492318b73bceb2a129789f49dcdfda2efc6f9fdea641b3e5a1a6d4f3be4b0829",
+    "limits": {
+      "cap_bytes": 134217728,
+      "allowance_bytes": 67108864,
+      "disk_write_budget_bytes": 67108864,
+      "disk_reserve_bytes": 1073741824,
+      "max_seconds": 8
+    },
+    "candidate_sha": "fe6ca966259d29d8d6ed2f05460400f6cb5d5de0",
+    "input_hashes": {
+      "<PYTHON>": "406d73d07e33e164d986326fde00b85c2b8f4ed2c33278142c8431588fe2df14",
+      "<RESPONSE_RUNTIME>/scratch/guard-qualification/fixture.py": "d0297c6c13d47e3ecb0ef5b73769dddedddc54ace0febdcc504211fd7cad88ec"
+    }
+  },
+  "workload_output": "CLEAN-READY 13178\n",
+  "owned_exit_observations": [
+    {
+      "pid": 13155,
+      "original": {
+        "pid": 13155,
+        "start_sec": 1790790986,
+        "start_usec": 894874,
+        "uid": 501,
+        "ruid": 501,
+        "pgid": 13152,
+        "sid": 13152
+      },
+      "state": "absent"
+    },
+    {
+      "pid": 13171,
+      "original": {
+        "pgid": 13171,
+        "pid": 13171,
+        "ruid": 501,
+        "sid": 13171,
+        "start_sec": 1790790989,
+        "start_usec": 27293,
+        "uid": 501
+      },
+      "state": "absent"
+    },
+    {
+      "pid": 13178,
+      "original": {
+        "pgid": 13171,
+        "pid": 13178,
+        "ruid": 501,
+        "sid": 13171,
+        "start_sec": 1790790989,
+        "start_usec": 96733,
+        "uid": 501
+      },
+      "state": "absent"
+    }
+  ],
+  "active_latch_remains": false,
+  "finished": 549531.4956425
+}

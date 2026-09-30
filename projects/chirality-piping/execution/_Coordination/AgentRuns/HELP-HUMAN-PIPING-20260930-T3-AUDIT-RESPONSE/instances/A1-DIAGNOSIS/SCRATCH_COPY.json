@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "runtime_directory_name": "chirality-t3-response-20260930-sqaajzgk",
+  "runtime_relative_path": "scratch/a1-diagnosis",
+  "files": [
+    {
+      "path": "Cargo.toml",
+      "sha256": "2d98b4b273b52c0da69b64a7a70c984127d0df7b01a52a3f1b6e03a29eee1f59"
+    },
+    {
+      "path": "oracle.py",
+      "sha256": "35cf4b9321ebe126693e52ad96ea010bed9f280c3058d02fbae98c17275627be"
+    },
+    {
+      "path": "matrix.json",
+      "sha256": "eddf44e8f491585c9954896089ad0175ae3c5a23504740b42dfb163c022eb359"
+    },
+    {
+      "path": "src/main.rs",
+      "sha256": "9e054fa80fff5c2192b1bfef5ad031d24c4d9dd3ab2407b6f9df517cc74d740a"
+    },
+    {
+      "path": "src/cases.rs",
+      "sha256": "b925980a3b5b3c206e9e419f6e9fd1fffdedab7feffc1173650f92ecf2ea3b8c"
+    }
+  ],
+  "target_used": false,
+  "compiled": false
+}

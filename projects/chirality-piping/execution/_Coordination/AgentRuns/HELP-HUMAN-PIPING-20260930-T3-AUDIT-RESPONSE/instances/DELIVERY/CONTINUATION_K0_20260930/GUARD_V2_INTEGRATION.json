@@ -1,0 +1,72 @@
+{
+  "kind": "delivery_v2_return_integrity",
+  "child": "/root/delivery_manager/guard_implementation",
+  "return_sha256": "44528d0c10ddcf3bbb534a58c457605555ee88137e03bef93bd225f603a8d85a",
+  "manifest_sha256": "9fa517200ac98a895eed097fd40c61921950921796414476044f33087874053e",
+  "source_sha256": "533a6f7506da4e031d8a824a27b4e9c496f374a3af8b7e98c72da55e8bbc26b5",
+  "packet_entries": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/tools/host_guard_v2.py",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/CONTEXT.json",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/PRESERVATION_AFTER.json",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/PRESERVATION_BEFORE.json",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/RETURN.md",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/VALIDATION.json",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/compile-admission-tests.log",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/harness.py",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/host_guard_v1_to_v2.diff",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/original-against-v2.log",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/record_regressions.py",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/regression_inputs.json",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/regression_results.json",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/run_original_against_v2.py",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/test_compile_admission.py",
+      "matches": true
+    }
+  ],
+  "author_report": "41 original plus 70 additive pure tests pass; 12 valid argv cases accepted, 55 refused. Review invalid v1 cases reject on v2. No live execution.",
+  "disposition": "Ready for independent backcheck; compile admission remains ungranted pending review/live qualification",
+  "v1_preservation": "Author evidence reports 11 original entries unchanged; manager will verify sealed original manifest separately"
+}

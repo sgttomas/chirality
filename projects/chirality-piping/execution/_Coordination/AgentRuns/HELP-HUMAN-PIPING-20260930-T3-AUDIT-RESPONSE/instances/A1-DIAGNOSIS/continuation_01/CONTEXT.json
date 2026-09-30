@@ -1,0 +1,31 @@
+{
+  "status": "AUTHORED_LOCK_PREPARATION_COMPLETE_COMPILATION_UNVERIFIED",
+  "authority": "ROOT explicit grant relayed by DESIGN through native collaboration after original packet seal; supersedes only prior ungranted-lock limitation",
+  "scope": "existing A1 evidence and scratch fence only",
+  "origin": "explicitly authored recreated input, not Cargo generated",
+  "frozen_source_commit": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "original_packet_manifest_sha256": "074e005899a76e8f26e2b2f021187a39331e2aca2d426856868f35467a8e5545",
+  "original_return_sha256": "f95dae59146122c0099f77f05125488db1c165abbabdf60da72ec898db47f93c",
+  "lock_sha256": "ca870fd55afca7aebeadd4410bb77a2a40391ac80a7ff95c36ab6b55fe66bc4d",
+  "scratch_copy_equal": true,
+  "runtime_relative_path": "scratch/a1-diagnosis/Cargo.lock",
+  "rustup_toolchain_environment": "1.97.1",
+  "native_toolchain_file_hashes": [
+    {
+      "runtime_relative_path": "rustup/toolchains/1.97.1-aarch64-apple-darwin/bin/cargo",
+      "size_bytes": 31867672,
+      "sha256": "7672ead309d505577c018fff2cafb3433601f073e38cbe87359ac1f7b944bbf5",
+      "invoked": false
+    },
+    {
+      "runtime_relative_path": "rustup/toolchains/1.97.1-aarch64-apple-darwin/bin/rustc",
+      "size_bytes": 412504,
+      "sha256": "210df6794001b73ec3d453878707fa1e0bdcb63c427024a6e6574bbe5615a4da",
+      "invoked": false
+    }
+  ],
+  "check": "Python standard-library tomllib parsed version 4, exactly two packages, one dependency edge; no solver/Cargo validation",
+  "cargo_invoked": false,
+  "compiled": false,
+  "models_run": false
+}

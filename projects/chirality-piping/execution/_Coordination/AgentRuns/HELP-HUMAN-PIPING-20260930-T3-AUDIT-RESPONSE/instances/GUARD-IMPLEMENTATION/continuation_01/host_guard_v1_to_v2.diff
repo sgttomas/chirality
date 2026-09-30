@@ -1,0 +1,94 @@
+--- projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/tools/host_guard.py
++++ projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/tools/host_guard_v2.py
+@@ -674,6 +674,79 @@
+         raise Refusal('directory-not-private-owned')
+ 
+ 
++def validate_compile_argv(command):
++    """GR-01/02: narrow argv grammar, not proof of executable/toolchain identity.
++
++    The exact executable hash and pinned environment are checked by read_job.
++    A leading +1.97.1 is the only supported explicit rustup proxy selector.
++    Actual direct binaries may reject it; argv never establishes their version.
++    """
++    tool = Path(command[0]).name
++    args = command[1:]
++    if args and args[0].startswith('+'):
++        if args[0] != '+1.97.1':
++            raise Refusal('compile-incompatible-explicit-toolchain')
++        args = args[1:]
++    if not args:
++        raise Refusal('compile-missing-arguments')
++    if tool == 'rustc':
++        # Reject additional/misplaced selector-like tokens conservatively.
++        # A filename beginning '+' can instead be spelled './+filename.rs'.
++        if any(arg.startswith('+') for arg in args):
++            raise Refusal('rustc-ambiguous-explicit-toolchain')
++        return
++
++    subcommand, *controls = args
++    if subcommand not in ('build', 'check', 'test', 'run', 'rustc'):
++        raise Refusal('cargo-unsupported-subcommand')
++    if '--' in controls:
++        if subcommand not in ('test', 'run', 'rustc'):
++            raise Refusal('cargo-unsupported-forwarding')
++        # These trailing tokens belong to the program/test/compiler, not Cargo.
++        controls = controls[:controls.index('--')]
++    flags = {'--offline', '--locked', '--frozen', '--release', '--lib', '--bins',
++             '--tests', '--all-targets', '--workspace', '--all-features',
++             '--no-default-features', '--no-run', '--no-fail-fast', '--quiet',
++             '--verbose'}
++    values = {'--manifest-path', '--target-dir', '--target', '--package', '--bin',
++              '--example', '--test', '--features', '--profile', '--message-format',
++              '--color', '--exclude', '--jobs'}
++    aliases = {'-p': '--package', '-F': '--features', '-q': '--quiet',
++               '-v': '--verbose', '-j': '--jobs'}
++    seen = set()
++    index = 0
++    while index < len(controls):
++        token = controls[index]
++        option, separator, value = token.partition('=')
++        option = aliases.get(option, option)
++        if token.startswith('-j') and token != '-j':
++            option, separator, value = '--jobs', '=', token[2:]
++        if option not in flags | values:
++            raise Refusal('cargo-unsupported-or-ambiguous-option')
++        if option in seen:
++            raise Refusal('cargo-duplicate-option:' + option)
++        seen.add(option)
++        if option in flags:
++            if separator:
++                raise Refusal('cargo-flag-does-not-take-value')
++        else:
++            if not separator:
++                index += 1
++                if index >= len(controls):
++                    raise Refusal('cargo-missing-option-value')
++                value = controls[index]
++            # Do not count an operand resembling another option as a control.
++            if not value or value.startswith(('-', '+')):
++                raise Refusal('cargo-ambiguous-option-value')
++            if option == '--jobs' and value != '1':
++                raise Refusal('cargo-jobs-must-be-one')
++        index += 1
++    if not {'--offline', '--locked', '--jobs'} <= seen:
++        raise Refusal('cargo-missing-own-offline-locked-jobs1')
++    if {'--quiet', '--verbose'} <= seen or {'--release', '--profile'} <= seen:
++        raise Refusal('cargo-conflicting-options')
++
++
+ def read_job(path):
+     with open(path, 'rb') as source:
+         raw = source.read(65537)
+@@ -719,10 +792,7 @@
+                     'CARGO_INCREMENTAL': '0', 'CARGO_BUILD_JOBS': '1', 'RUST_TEST_THREADS': '1'}
+         if any(job['env'].get(k) != v for k, v in expected.items()):
+             raise Refusal('compile-environment-not-pinned-and-serial')
+-        if Path(job['command'][0]).name == 'cargo':
+-            cmd = job['command']
+-            if '--offline' not in cmd or '--locked' not in cmd or ['-j', '1'] not in [cmd[i:i+2] for i in range(len(cmd)-1)]:
+-                raise Refusal('cargo-missing-offline-locked-j1')
++        validate_compile_argv(job['command'])
+     return job, hashlib.sha256(raw).hexdigest()
+ 
+ 

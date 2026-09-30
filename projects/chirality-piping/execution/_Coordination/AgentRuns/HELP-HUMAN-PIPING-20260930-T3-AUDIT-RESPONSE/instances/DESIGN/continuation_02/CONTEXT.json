@@ -1,0 +1,64 @@
+{
+  "record_kind": "DESIGN_preparation_fan_in_context",
+  "active_role": "HELPS_HUMANS / Agent 1",
+  "actual_parent": "/root",
+  "actual_agent": "/root/design_manager",
+  "child": "/root/design_manager/a1_diagnosis",
+  "child_role": "TASK / Type 2",
+  "actual_mechanism": "one fresh collaboration.spawn_agent, fork_turns=none; native messages; child returned and ended",
+  "launch_context": "LAUNCH.json",
+  "launch_prompt": "LAUNCH_PROMPT.md",
+  "later_context": [
+    "CONSEQUENCE_CONTEXT.json",
+    "RUNTIME_PREPARATION_ADDENDUM.md"
+  ],
+  "exact_child_artifact_hashes": "checks/INTEGRATION_CHECK.json inputs",
+  "manager_source_reads": [
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/wide/multi.rs",
+      "sha256": "76d96ee2a0d183ab8b288c41b0075b2cb2feb74016b7a3efcfa3f6eb6bb09d17",
+      "read_scope": "keyword discovery,68-120,666-695"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/source.rs",
+      "sha256": "46c85ba0d9e0c45f6d19bfd188ce8cc52e4d773b96d3b7e8d0746b78e5582ca9",
+      "read_scope": "public encoding/accessor keyword discovery; prior source context retained"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/recover.rs",
+      "sha256": "e452e3467608a4680359a36d30b6a580d72a12b778d506ff8118646257b7d388",
+      "read_scope": "keyword discovery,365-405,415-466"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/adaptive.rs",
+      "sha256": "472bafb8281c7d311a81dcd5da042dd0f8db998bd81cf4902e6b55409eb5a563",
+      "read_scope": "public budget/solve keyword discovery,3500-3521; prior field definitions retained"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/Cargo.lock",
+      "sha256": "7e1d8a98a542f977cfcfe8b2b0bb27be24fb91fbcf8f0b39a2e9e235574a08b9",
+      "read_scope": "full"
+    }
+  ],
+  "manager_child_reads": {
+    "original_return": "full",
+    "lock_addendum_return_context_lock": "full",
+    "probe_main_and_manifest": "full",
+    "oracle": "1-445 across before/after tightening reads",
+    "matrix": "metadata/count/input-hash checks; not a claim of every row visually read",
+    "causal_and_command_plan": "full before sealing; final comparator changes read and final hashes checked",
+    "budget_proposal": "full",
+    "snapshot_verification": "status/inventory entries and child hash assertions; actual snapshot reread not repeated by manager"
+  },
+  "verification": "checks/INTEGRATION_CHECK.json",
+  "write_scope": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_02/**",
+  "limits": [
+    "shared filesystem brief fence, not independent OS sandbox",
+    "manager integration check is not fresh independent review",
+    "pure child-oracle rerun is not a new independently implemented oracle",
+    "no Rust/Cargo/model/provider/guard/signal/install/network/Git operation by this manager or authorized child preparation",
+    "parent-held guard/admission/caps and all numerical checks remain pending"
+  ],
+  "checked_coordination_head": "fe6ca966259d29d8d6ed2f05460400f6cb5d5de0",
+  "numerical_source": "3bddc2b05f6106e969c7cf43373b230845c7cc66"
+}

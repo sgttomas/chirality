@@ -1,0 +1,19 @@
+{
+  "actor": "/root",
+  "role": "HELP_HUMAN",
+  "mechanism": "ROOT exec_command through approved host escalation",
+  "base_candidate": "fe6ca966259d29d8d6ed2f05460400f6cb5d5de0",
+  "product_source": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "input_hashes": {
+    "AGENTS.md": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+    "agents/AGENT_HELP_HUMAN.md": "0c2fe7a3097ad26c93c0267e4da6aaf90c9264489df8dc368fad657bcac69183",
+    "projects/chirality-piping/AGENTS.md": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+    ".agents/skills/chirality-change/SKILL.md": "1a2b056263ec77e4104efdf99afe3fe76dda792334a243fb2f21c60bc9c81450",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/tools/host_guard.py": "feb0e1508fde6c764eefb85e2b72bc7a597edf86d48307fb646a80a80eac03db",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-REVIEW/REVIEW.md": "5b5ec41086242143cb24c14b6b0e30ad57fff04c001cd9e6fe1afb8cb25b7924",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/LIVE_QUALIFICATION.md": "9ed51371da6f1716f24487b24e88baa477446f219ae95b2864e1bee69ac2c9c0",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/decisions/04_GUARD_REVIEW_AND_PROVIDER_WITNESS.md": "f826d354e609568da20256460309fb62bd23130d26dd6fcee19520dd7d165ff1"
+  },
+  "model_or_compile_executed": false,
+  "scope": "Owned isolated runtime guard fixtures and this new evidence folder only; no unrelated process signalled; no historical record changed."
+}

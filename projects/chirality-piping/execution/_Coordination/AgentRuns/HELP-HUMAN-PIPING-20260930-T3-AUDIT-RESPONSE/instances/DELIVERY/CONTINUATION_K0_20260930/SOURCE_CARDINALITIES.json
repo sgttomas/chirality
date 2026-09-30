@@ -1,0 +1,868 @@
+{
+  "kind": "source_derived_payload_and_cardinality_check",
+  "source_counts": "projects/chirality-piping/core/solver/performance_harness/observations/k6b/counts.jsonl",
+  "source_counts_sha256": "fab0466a846ef26b1c530a261a6f1d134fc32ba1d70f57682010877a52373c05",
+  "source_basis": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "rows": [
+    {
+      "model": "RF-LARGE-CHAIN-n00010-AX",
+      "N": 11,
+      "m": 10,
+      "t": 10,
+      "r": 6,
+      "loads": 6,
+      "q_recorded": 263,
+      "q_from_layout": 263,
+      "q_matches": true,
+      "K4SRC_recorded": 1512,
+      "K4SRC_fixed": 1482,
+      "source_ids_total_from_record": 30,
+      "source_ids_allowed_range": [
+        24,
+        30
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 1160,
+      "ledger_general_payload_upper": 3382,
+      "retained_state_payload_bytes_by_L": {
+        "4": 5188,
+        "8": 9220,
+        "16": 17284
+      }
+    },
+    {
+      "model": "RF-LARGE-CHAIN-n00010-ROT",
+      "N": 11,
+      "m": 10,
+      "t": 10,
+      "r": 6,
+      "loads": 6,
+      "q_recorded": 263,
+      "q_from_layout": 263,
+      "q_matches": true,
+      "K4SRC_recorded": 1512,
+      "K4SRC_fixed": 1482,
+      "source_ids_total_from_record": 30,
+      "source_ids_allowed_range": [
+        24,
+        30
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 1160,
+      "ledger_general_payload_upper": 3382,
+      "retained_state_payload_bytes_by_L": {
+        "4": 5188,
+        "8": 9220,
+        "16": 17284
+      }
+    },
+    {
+      "model": "RF-LARGE-CHAIN-n00100-AX",
+      "N": 101,
+      "m": 100,
+      "t": 100,
+      "r": 6,
+      "loads": 6,
+      "q_recorded": 2513,
+      "q_from_layout": 2513,
+      "q_matches": true,
+      "K4SRC_recorded": 12678,
+      "K4SRC_fixed": 12642,
+      "source_ids_total_from_record": 36,
+      "source_ids_allowed_range": [
+        24,
+        36
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 10880,
+      "ledger_general_payload_upper": 3382,
+      "retained_state_payload_bytes_by_L": {
+        "4": 49468,
+        "8": 88060,
+        "16": 165244
+      }
+    },
+    {
+      "model": "RF-LARGE-CHAIN-n00100-ROT",
+      "N": 101,
+      "m": 100,
+      "t": 100,
+      "r": 6,
+      "loads": 6,
+      "q_recorded": 2513,
+      "q_from_layout": 2513,
+      "q_matches": true,
+      "K4SRC_recorded": 12678,
+      "K4SRC_fixed": 12642,
+      "source_ids_total_from_record": 36,
+      "source_ids_allowed_range": [
+        24,
+        36
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 10880,
+      "ledger_general_payload_upper": 3382,
+      "retained_state_payload_bytes_by_L": {
+        "4": 49468,
+        "8": 88060,
+        "16": 165244
+      }
+    },
+    {
+      "model": "RF-LARGE-CHAIN-n01000-AX",
+      "N": 1001,
+      "m": 1000,
+      "t": 1000,
+      "r": 6,
+      "loads": 6,
+      "q_recorded": 25013,
+      "q_from_layout": 25013,
+      "q_matches": true,
+      "K4SRC_recorded": 124284,
+      "K4SRC_fixed": 124242,
+      "source_ids_total_from_record": 42,
+      "source_ids_allowed_range": [
+        24,
+        42
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 108080,
+      "ledger_general_payload_upper": 3382,
+      "retained_state_payload_bytes_by_L": {
+        "4": 492268,
+        "8": 876460,
+        "16": 1644844
+      }
+    },
+    {
+      "model": "RF-LARGE-CHAIN-n01000-ROT",
+      "N": 1001,
+      "m": 1000,
+      "t": 1000,
+      "r": 6,
+      "loads": 6,
+      "q_recorded": 25013,
+      "q_from_layout": 25013,
+      "q_matches": true,
+      "K4SRC_recorded": 124284,
+      "K4SRC_fixed": 124242,
+      "source_ids_total_from_record": 42,
+      "source_ids_allowed_range": [
+        24,
+        42
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 108080,
+      "ledger_general_payload_upper": 3382,
+      "retained_state_payload_bytes_by_L": {
+        "4": 492268,
+        "8": 876460,
+        "16": 1644844
+      }
+    },
+    {
+      "model": "RF-LARGE-CHAIN-n10000-AX",
+      "N": 10001,
+      "m": 10000,
+      "t": 10000,
+      "r": 6,
+      "loads": 6,
+      "q_recorded": 250013,
+      "q_from_layout": 250013,
+      "q_matches": true,
+      "K4SRC_recorded": 1240290,
+      "K4SRC_fixed": 1240242,
+      "source_ids_total_from_record": 48,
+      "source_ids_allowed_range": [
+        24,
+        48
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 1080080,
+      "ledger_general_payload_upper": 3382,
+      "retained_state_payload_bytes_by_L": {
+        "4": 4920268,
+        "8": 8760460,
+        "16": 16440844
+      }
+    },
+    {
+      "model": "RF-LARGE-CHAIN-n10000-ROT",
+      "N": 10001,
+      "m": 10000,
+      "t": 10000,
+      "r": 6,
+      "loads": 6,
+      "q_recorded": 250013,
+      "q_from_layout": 250013,
+      "q_matches": true,
+      "K4SRC_recorded": 1240290,
+      "K4SRC_fixed": 1240242,
+      "source_ids_total_from_record": 48,
+      "source_ids_allowed_range": [
+        24,
+        48
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 1080080,
+      "ledger_general_payload_upper": 3382,
+      "retained_state_payload_bytes_by_L": {
+        "4": 4920268,
+        "8": 8760460,
+        "16": 16440844
+      }
+    },
+    {
+      "model": "RF-LARGE-TREE-n00010-AX",
+      "N": 11,
+      "m": 10,
+      "t": 10,
+      "r": 6,
+      "loads": 4,
+      "q_recorded": 263,
+      "q_from_layout": 263,
+      "q_matches": true,
+      "K4SRC_recorded": 1468,
+      "K4SRC_fixed": 1448,
+      "source_ids_total_from_record": 20,
+      "source_ids_allowed_range": [
+        16,
+        20
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 1160,
+      "ledger_general_payload_upper": 2258,
+      "retained_state_payload_bytes_by_L": {
+        "4": 5188,
+        "8": 9220,
+        "16": 17284
+      }
+    },
+    {
+      "model": "RF-LARGE-TREE-n00010-ROT",
+      "N": 11,
+      "m": 10,
+      "t": 10,
+      "r": 6,
+      "loads": 12,
+      "q_recorded": 263,
+      "q_from_layout": 263,
+      "q_matches": true,
+      "K4SRC_recorded": 1644,
+      "K4SRC_fixed": 1584,
+      "source_ids_total_from_record": 60,
+      "source_ids_allowed_range": [
+        48,
+        60
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 1160,
+      "ledger_general_payload_upper": 6754,
+      "retained_state_payload_bytes_by_L": {
+        "4": 5188,
+        "8": 9220,
+        "16": 17284
+      }
+    },
+    {
+      "model": "RF-LARGE-TREE-n00100-AX",
+      "N": 101,
+      "m": 100,
+      "t": 100,
+      "r": 6,
+      "loads": 43,
+      "q_recorded": 2513,
+      "q_from_layout": 2513,
+      "q_matches": true,
+      "K4SRC_recorded": 13522,
+      "K4SRC_fixed": 13271,
+      "source_ids_total_from_record": 251,
+      "source_ids_allowed_range": [
+        172,
+        258
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 10880,
+      "ledger_general_payload_upper": 24176,
+      "retained_state_payload_bytes_by_L": {
+        "4": 49468,
+        "8": 88060,
+        "16": 165244
+      }
+    },
+    {
+      "model": "RF-LARGE-TREE-n00100-ROT",
+      "N": 101,
+      "m": 100,
+      "t": 100,
+      "r": 6,
+      "loads": 129,
+      "q_recorded": 2513,
+      "q_from_layout": 2513,
+      "q_matches": true,
+      "K4SRC_recorded": 15486,
+      "K4SRC_fixed": 14733,
+      "source_ids_total_from_record": 753,
+      "source_ids_allowed_range": [
+        516,
+        774
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 10880,
+      "ledger_general_payload_upper": 72508,
+      "retained_state_payload_bytes_by_L": {
+        "4": 49468,
+        "8": 88060,
+        "16": 165244
+      }
+    },
+    {
+      "model": "RF-LARGE-TREE-n01000-AX",
+      "N": 1001,
+      "m": 1000,
+      "t": 1000,
+      "r": 6,
+      "loads": 428,
+      "q_recorded": 25013,
+      "q_from_layout": 25013,
+      "q_matches": true,
+      "K4SRC_recorded": 134334,
+      "K4SRC_fixed": 131416,
+      "source_ids_total_from_record": 2918,
+      "source_ids_allowed_range": [
+        1712,
+        2996
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 108080,
+      "ledger_general_payload_upper": 240546,
+      "retained_state_payload_bytes_by_L": {
+        "4": 492268,
+        "8": 876460,
+        "16": 1644844
+      }
+    },
+    {
+      "model": "RF-LARGE-TREE-n01000-ROT",
+      "N": 1001,
+      "m": 1000,
+      "t": 1000,
+      "r": 6,
+      "loads": 1284,
+      "q_recorded": 25013,
+      "q_from_layout": 25013,
+      "q_matches": true,
+      "K4SRC_recorded": 154722,
+      "K4SRC_fixed": 145968,
+      "source_ids_total_from_record": 8754,
+      "source_ids_allowed_range": [
+        5136,
+        8988
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 108080,
+      "ledger_general_payload_upper": 721618,
+      "retained_state_payload_bytes_by_L": {
+        "4": 492268,
+        "8": 876460,
+        "16": 1644844
+      }
+    },
+    {
+      "model": "RF-LARGE-TREE-n10000-AX",
+      "N": 10001,
+      "m": 10000,
+      "t": 10000,
+      "r": 6,
+      "loads": 4286,
+      "q_recorded": 250013,
+      "q_from_layout": 250013,
+      "q_matches": true,
+      "K4SRC_recorded": 1346498,
+      "K4SRC_fixed": 1313002,
+      "source_ids_total_from_record": 33496,
+      "source_ids_allowed_range": [
+        17144,
+        34288
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 1080080,
+      "ledger_general_payload_upper": 2408742,
+      "retained_state_payload_bytes_by_L": {
+        "4": 4920268,
+        "8": 8760460,
+        "16": 16440844
+      }
+    },
+    {
+      "model": "RF-LARGE-TREE-n10000-ROT",
+      "N": 10001,
+      "m": 10000,
+      "t": 10000,
+      "r": 6,
+      "loads": 12858,
+      "q_recorded": 250013,
+      "q_from_layout": 250013,
+      "q_matches": true,
+      "K4SRC_recorded": 1559214,
+      "K4SRC_fixed": 1458726,
+      "source_ids_total_from_record": 100488,
+      "source_ids_allowed_range": [
+        51432,
+        102864
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 1080080,
+      "ledger_general_payload_upper": 7226206,
+      "retained_state_payload_bytes_by_L": {
+        "4": 4920268,
+        "8": 8760460,
+        "16": 16440844
+      }
+    },
+    {
+      "model": "RF-LARGE-CONT-n00010-AX",
+      "N": 11,
+      "m": 10,
+      "t": 10,
+      "r": 21,
+      "loads": 7,
+      "q_recorded": 278,
+      "q_from_layout": 278,
+      "q_matches": true,
+      "K4SRC_recorded": 1729,
+      "K4SRC_fixed": 1694,
+      "source_ids_total_from_record": 35,
+      "source_ids_allowed_range": [
+        28,
+        35
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 1235,
+      "ledger_general_payload_upper": 3944,
+      "retained_state_payload_bytes_by_L": {
+        "4": 5188,
+        "8": 9220,
+        "16": 17284
+      }
+    },
+    {
+      "model": "RF-LARGE-CONT-n00010-ROT",
+      "N": 11,
+      "m": 10,
+      "t": 10,
+      "r": 21,
+      "loads": 14,
+      "q_recorded": 278,
+      "q_from_layout": 278,
+      "q_matches": true,
+      "K4SRC_recorded": 1883,
+      "K4SRC_fixed": 1813,
+      "source_ids_total_from_record": 70,
+      "source_ids_allowed_range": [
+        56,
+        70
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 1235,
+      "ledger_general_payload_upper": 7878,
+      "retained_state_payload_bytes_by_L": {
+        "4": 5188,
+        "8": 9220,
+        "16": 17284
+      }
+    },
+    {
+      "model": "RF-LARGE-CONT-n00100-AX",
+      "N": 101,
+      "m": 100,
+      "t": 100,
+      "r": 156,
+      "loads": 73,
+      "q_recorded": 2663,
+      "q_from_layout": 2663,
+      "q_matches": true,
+      "K4SRC_recorded": 16169,
+      "K4SRC_fixed": 15731,
+      "source_ids_total_from_record": 438,
+      "source_ids_allowed_range": [
+        292,
+        438
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 11630,
+      "ledger_general_payload_upper": 41036,
+      "retained_state_payload_bytes_by_L": {
+        "4": 49468,
+        "8": 88060,
+        "16": 165244
+      }
+    },
+    {
+      "model": "RF-LARGE-CONT-n00100-ROT",
+      "N": 101,
+      "m": 100,
+      "t": 100,
+      "r": 156,
+      "loads": 128,
+      "q_recorded": 2663,
+      "q_from_layout": 2663,
+      "q_matches": true,
+      "K4SRC_recorded": 17434,
+      "K4SRC_fixed": 16666,
+      "source_ids_total_from_record": 768,
+      "source_ids_allowed_range": [
+        512,
+        768
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 11630,
+      "ledger_general_payload_upper": 71946,
+      "retained_state_payload_bytes_by_L": {
+        "4": 49468,
+        "8": 88060,
+        "16": 165244
+      }
+    },
+    {
+      "model": "RF-LARGE-CONT-n01000-AX",
+      "N": 1001,
+      "m": 1000,
+      "t": 1000,
+      "r": 1506,
+      "loads": 733,
+      "q_recorded": 26513,
+      "q_from_layout": 26513,
+      "q_matches": true,
+      "K4SRC_recorded": 161232,
+      "K4SRC_fixed": 156101,
+      "source_ids_total_from_record": 5131,
+      "source_ids_allowed_range": [
+        2932,
+        5131
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 115580,
+      "ledger_general_payload_upper": 411956,
+      "retained_state_payload_bytes_by_L": {
+        "4": 492268,
+        "8": 876460,
+        "16": 1644844
+      }
+    },
+    {
+      "model": "RF-LARGE-CONT-n01000-ROT",
+      "N": 1001,
+      "m": 1000,
+      "t": 1000,
+      "r": 1506,
+      "loads": 1268,
+      "q_recorded": 26513,
+      "q_from_layout": 26513,
+      "q_matches": true,
+      "K4SRC_recorded": 174072,
+      "K4SRC_fixed": 165196,
+      "source_ids_total_from_record": 8876,
+      "source_ids_allowed_range": [
+        5072,
+        8876
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 115580,
+      "ledger_general_payload_upper": 712626,
+      "retained_state_payload_bytes_by_L": {
+        "4": 492268,
+        "8": 876460,
+        "16": 1644844
+      }
+    },
+    {
+      "model": "RF-LARGE-CONT-n10000-AX",
+      "N": 10001,
+      "m": 10000,
+      "t": 10000,
+      "r": 15006,
+      "loads": 7333,
+      "q_recorded": 265013,
+      "q_from_layout": 265013,
+      "q_matches": true,
+      "K4SRC_recorded": 1618465,
+      "K4SRC_fixed": 1559801,
+      "source_ids_total_from_record": 58664,
+      "source_ids_allowed_range": [
+        29332,
+        58664
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 1155080,
+      "ledger_general_payload_upper": 4121156,
+      "retained_state_payload_bytes_by_L": {
+        "4": 4920268,
+        "8": 8760460,
+        "16": 16440844
+      }
+    },
+    {
+      "model": "RF-LARGE-CONT-n10000-ROT",
+      "N": 10001,
+      "m": 10000,
+      "t": 10000,
+      "r": 15006,
+      "loads": 12668,
+      "q_recorded": 265013,
+      "q_from_layout": 265013,
+      "q_matches": true,
+      "K4SRC_recorded": 1751840,
+      "K4SRC_fixed": 1650496,
+      "source_ids_total_from_record": 101344,
+      "source_ids_allowed_range": [
+        50672,
+        101344
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 1155080,
+      "ledger_general_payload_upper": 7119426,
+      "retained_state_payload_bytes_by_L": {
+        "4": 4920268,
+        "8": 8760460,
+        "16": 16440844
+      }
+    },
+    {
+      "model": "DEC053:invented-cantilever-chain-8",
+      "N": 9,
+      "m": 8,
+      "t": 8,
+      "r": 6,
+      "loads": 1,
+      "q_recorded": 213,
+      "q_from_layout": 213,
+      "q_matches": true,
+      "K4SRC_recorded": 1154,
+      "K4SRC_fixed": 1149,
+      "source_ids_total_from_record": 5,
+      "source_ids_allowed_range": [
+        4,
+        5
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 944,
+      "ledger_general_payload_upper": 572,
+      "retained_state_payload_bytes_by_L": {
+        "4": 4204,
+        "8": 7468,
+        "16": 13996
+      }
+    },
+    {
+      "model": "DEC053:invented-cantilever-chain-24",
+      "N": 25,
+      "m": 24,
+      "t": 24,
+      "r": 6,
+      "loads": 1,
+      "q_recorded": 613,
+      "q_from_layout": 613,
+      "q_matches": true,
+      "K4SRC_recorded": 3139,
+      "K4SRC_fixed": 3133,
+      "source_ids_total_from_record": 6,
+      "source_ids_allowed_range": [
+        4,
+        6
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 2672,
+      "ledger_general_payload_upper": 572,
+      "retained_state_payload_bytes_by_L": {
+        "4": 12076,
+        "8": 21484,
+        "16": 40300
+      }
+    },
+    {
+      "model": "DEC053:invented-cantilever-chain-48",
+      "N": 49,
+      "m": 48,
+      "t": 48,
+      "r": 6,
+      "loads": 1,
+      "q_recorded": 1213,
+      "q_from_layout": 1213,
+      "q_matches": true,
+      "K4SRC_recorded": 6115,
+      "K4SRC_fixed": 6109,
+      "source_ids_total_from_record": 6,
+      "source_ids_allowed_range": [
+        4,
+        6
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 5264,
+      "ledger_general_payload_upper": 572,
+      "retained_state_payload_bytes_by_L": {
+        "4": 23884,
+        "8": 42508,
+        "16": 79756
+      }
+    },
+    {
+      "model": "DEC053:invented-grid-frame-4x3",
+      "N": 12,
+      "m": 17,
+      "t": 17,
+      "r": 24,
+      "loads": 1,
+      "q_recorded": 414,
+      "q_from_layout": 414,
+      "q_matches": true,
+      "K4SRC_recorded": 2360,
+      "K4SRC_fixed": 2355,
+      "source_ids_total_from_record": 5,
+      "source_ids_allowed_range": [
+        4,
+        5
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 1862,
+      "ledger_general_payload_upper": 572,
+      "retained_state_payload_bytes_by_L": {
+        "4": 7156,
+        "8": 12724,
+        "16": 23860
+      }
+    },
+    {
+      "model": "DEC053:invented-grid-frame-6x8",
+      "N": 48,
+      "m": 82,
+      "t": 82,
+      "r": 36,
+      "loads": 1,
+      "q_recorded": 1848,
+      "q_from_layout": 1848,
+      "q_matches": true,
+      "K4SRC_recorded": 9881,
+      "K4SRC_fixed": 9875,
+      "source_ids_total_from_record": 6,
+      "source_ids_allowed_range": [
+        4,
+        6
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 8246,
+      "ledger_general_payload_upper": 572,
+      "retained_state_payload_bytes_by_L": {
+        "4": 32002,
+        "8": 56962,
+        "16": 106882
+      }
+    },
+    {
+      "model": "DEC053:invented-grid-frame-7x8",
+      "N": 56,
+      "m": 97,
+      "t": 97,
+      "r": 42,
+      "loads": 1,
+      "q_recorded": 2180,
+      "q_from_layout": 2180,
+      "q_matches": true,
+      "K4SRC_recorded": 11651,
+      "K4SRC_fixed": 11645,
+      "source_ids_total_from_record": 6,
+      "source_ids_allowed_range": [
+        4,
+        6
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 9728,
+      "ledger_general_payload_upper": 572,
+      "retained_state_payload_bytes_by_L": {
+        "4": 37660,
+        "8": 67036,
+        "16": 125788
+      }
+    },
+    {
+      "model": "DEC053:invented-grid-frame-5x5",
+      "N": 25,
+      "m": 40,
+      "t": 40,
+      "r": 30,
+      "loads": 1,
+      "q_recorded": 925,
+      "q_from_layout": 925,
+      "q_matches": true,
+      "K4SRC_recorded": 5051,
+      "K4SRC_fixed": 5045,
+      "source_ids_total_from_record": 6,
+      "source_ids_allowed_range": [
+        4,
+        6
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 4136,
+      "ledger_general_payload_upper": 572,
+      "retained_state_payload_bytes_by_L": {
+        "4": 16012,
+        "8": 28492,
+        "16": 53452
+      }
+    },
+    {
+      "model": "DEC053:invented-cantilever-chain-32",
+      "N": 33,
+      "m": 32,
+      "t": 32,
+      "r": 6,
+      "loads": 1,
+      "q_recorded": 813,
+      "q_from_layout": 813,
+      "q_matches": true,
+      "K4SRC_recorded": 4131,
+      "K4SRC_fixed": 4125,
+      "source_ids_total_from_record": 6,
+      "source_ids_allowed_range": [
+        4,
+        6
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 3536,
+      "ledger_general_payload_upper": 572,
+      "retained_state_payload_bytes_by_L": {
+        "4": 16012,
+        "8": 28492,
+        "16": 53452
+      }
+    },
+    {
+      "model": "DEC053:invented-grid-frame-5x6",
+      "N": 30,
+      "m": 49,
+      "t": 49,
+      "r": 30,
+      "loads": 1,
+      "q_recorded": 1122,
+      "q_from_layout": 1122,
+      "q_matches": true,
+      "K4SRC_recorded": 6071,
+      "K4SRC_fixed": 6065,
+      "source_ids_total_from_record": 6,
+      "source_ids_allowed_range": [
+        4,
+        6
+      ],
+      "K4SRC_payload_within_source_bound": true,
+      "K4STF_exact_payload_bytes": 5012,
+      "ledger_general_payload_upper": 572,
+      "retained_state_payload_bytes_by_L": {
+        "4": 19456,
+        "8": 34624,
+        "16": 64960
+      }
+    }
+  ],
+  "result": "All 33 q identities and H source-id payload bounds match historical counts",
+  "limits": "Read-only stdlib arithmetic over committed records. No model constructed or source/solver/runtime run. Payload length is not allocation capacity; no E_max claim."
+}

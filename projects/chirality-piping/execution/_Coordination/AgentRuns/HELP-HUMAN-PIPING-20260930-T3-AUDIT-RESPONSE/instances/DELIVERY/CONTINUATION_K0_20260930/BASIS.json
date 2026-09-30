@@ -1,0 +1,200 @@
+{
+  "kind": "delivery_k0_continuation_basis",
+  "native_agent": "/root/delivery_manager",
+  "parent": "/root",
+  "role": "WORKING_ITEMS / Agent 1",
+  "coordination_basis": "fe6ca966259d29d8d6ed2f05460400f6cb5d5de0",
+  "seal_head": "fe6ca966259d29d8d6ed2f05460400f6cb5d5de0",
+  "source_basis": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "method": "Run-specific source closure and bounded brief design; no reusable workflow or instruction change",
+  "selected_skills": [],
+  "selected_workflows": [],
+  "write_fence": "This new continuation folder only for manager; additive guard v2 owned by its separately resumed child",
+  "K0_task_launch": "None; draft only, no slot granted",
+  "guard_v2_launch": "Original author explicitly resumed by ROOT grant, recorded separately",
+  "inputs": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "read_scope": "full new record or retained standing instruction/role basis; instruction role remains WORKING_ITEMS"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "read_scope": "full new record or retained standing instruction/role basis; instruction role remains WORKING_ITEMS"
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+      "read_scope": "full new record or retained standing instruction/role basis; instruction role remains WORKING_ITEMS"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/I21-K6C/RETURN.md",
+      "sha256": "6e882dd527d0c2e35e6befe4879406a28badb9ab0af2061e74d4107f9871aafa",
+      "read_scope": "full new record or retained standing instruction/role basis; instruction role remains WORKING_ITEMS"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/I21-K6C/ALLOCATIONS.md",
+      "sha256": "501f1aed2e3304c0c01de284a1c8937b662f8e5d629eca6ddfb0cb77406f1018",
+      "read_scope": "full new record or retained standing instruction/role basis; instruction role remains WORKING_ITEMS"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/I21-K6C/FORMULA.md",
+      "sha256": "80f6b44fa190cb2a7c64ab0416d02a341bfbec57380a8b5ff9c0066100bc0c51",
+      "read_scope": "full new record or retained standing instruction/role basis; instruction role remains WORKING_ITEMS"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/I21-K6C/IMPLEMENTATION_PLAN.md",
+      "sha256": "38d817f642a9b426333dd0c4742094e6eb25d48bda0e9c3a8dcb2dc25c69e855",
+      "read_scope": "full new record or retained standing instruction/role basis; instruction role remains WORKING_ITEMS"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/runtime_setup/02_rust_src/SETUP.json",
+      "sha256": "3532d7d68599bf72db02a8aedb40a9e54dc77d1aba5f9431e9cb4277cb45c122",
+      "read_scope": "full new record or retained standing instruction/role basis; instruction role remains WORKING_ITEMS"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/RUNTIME_BINDING.json",
+      "sha256": "d552b6ffa398869b6f68c828c676af447b9c5c2426be24734ba820f67f32c3fc",
+      "read_scope": "full new record or retained standing instruction/role basis; instruction role remains WORKING_ITEMS"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-REVIEW/REVIEW.md",
+      "sha256": "5b5ec41086242143cb24c14b6b0e30ad57fff04c001cd9e6fe1afb8cb25b7924",
+      "read_scope": "full new record or retained standing instruction/role basis; instruction role remains WORKING_ITEMS"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-REVIEW/check_compile_schema.py",
+      "sha256": "6c33b83e4f9c3d239441364d096b9b766988418a536d7e79fcec977deeec37f4",
+      "read_scope": "full new record or retained standing instruction/role basis; instruction role remains WORKING_ITEMS"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/RETURN.md",
+      "sha256": "44528d0c10ddcf3bbb534a58c457605555ee88137e03bef93bd225f603a8d85a",
+      "read_scope": "full new record or retained standing instruction/role basis; instruction role remains WORKING_ITEMS"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/Cargo.toml",
+      "sha256": "994d118576eb881668f3048f9b4d05f899ceb7599c1cd5f05cbe18f70172b7dc",
+      "read_scope": "full manifest; no dependencies/build script"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/mod.rs",
+      "sha256": "78bb76773dd4fd4d799b5668f21a679f0ebf9c088ec5fff655e13a0453d6dc2a",
+      "read_scope": "full module identity"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/adaptive.rs",
+      "sha256": "472bafb8281c7d311a81dcd5da042dd0f8db998bd81cf4902e6b55409eb5a563",
+      "read_scope": "selected tracker/case/cache/classification/summary/finalization/type declarations; actual full bytes used only to prepare append diff and hash"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/source.rs",
+      "sha256": "46c85ba0d9e0c45f6d19bfd188ce8cc52e4d773b96d3b7e8d0746b78e5582ca9",
+      "read_scope": "source adapter types and encoding lines 650-786 plus declaration searches"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/ledger.rs",
+      "sha256": "66a48fb2a49c84e8e294bb741888fc53f72edcb6b7a3a4331fdeafaa7221ac4e",
+      "read_scope": "lines 1-175 and 210-236"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/recover.rs",
+      "sha256": "e452e3467608a4680359a36d30b6a580d72a12b778d506ff8118646257b7d388",
+      "read_scope": "layout and encoding sections; type declarations"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/factor.rs",
+      "sha256": "e21fc61e6ae84e7c609da9f2d14c3769c4f203a9baa6bcd25025843056af22dc",
+      "read_scope": "geometry 1-220 and type declarations"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/verify.rs",
+      "sha256": "31780a6a888decc64e2ebec2fcfbeff45c144a6f0d0169f0584d53fcccb89987",
+      "read_scope": "shared/report declarations and referenced allocation loci"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/wide.rs",
+      "sha256": "5d35b70d45680f769354bbc6694c78186354d235a7af29891a9b09e7b4a293ad",
+      "read_scope": "Wide actual definition and type declarations"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/wide_sum.rs",
+      "sha256": "80441f99a0fdcb4544d5b95e1012bc5bf291089ff8cebbdcdcaac437d565a188",
+      "read_scope": "type declaration search"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/assemble.rs",
+      "sha256": "057fa8a431bde050d0aa448c347dd1c92fbd4929ad6cc8ecce5837c9255d20f2",
+      "read_scope": "type declaration search"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/bound.rs",
+      "sha256": "b6e5a99386da9858af8ff95a1fb326d722523540f5c6e4b59c2bcd27130c0100",
+      "read_scope": "type declaration search; initial I21 lifetime table retained"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/exact_sum.rs",
+      "sha256": "3a847f8dbaa74768603c4d9693b538f1f63c2d172026ed7ab400aea3b4800f67",
+      "read_scope": "lines 1-110 and exact accumulator limb bound"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/rigid_body.rs",
+      "sha256": "3e5b9be185428f1652775f60cbb98b9d30e08bff4ce2a9b2bb83ccf662d30a1b",
+      "read_scope": "lines 30-239 preparation/witness allocations"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/k6/w1/adapter.rs",
+      "sha256": "ab07b2513db32260960cac0c09e19dfe363c09e51b1af878ce97ced7ffad6da0",
+      "read_scope": "full adapter/source-id rules"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/k6/models.rs",
+      "sha256": "85715e1f290946805b23b63c12907630b5abcf3b051a8305a9cf6a473ba0997f",
+      "read_scope": "targeted finite fixture/loads/identity source"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/k6/mod.rs",
+      "sha256": "5535e39390e6cc5999c370c4f52887a09589c59aed63dbeffa14a2fb754b9559",
+      "read_scope": "streamed Debug digest 105-146"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs",
+      "sha256": "42d82fbfb3e21c11c647f6b2f83aaa21ee6ded6617601f14790e1c282f60b77d",
+      "read_scope": "Line formatter 55-146"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs",
+      "sha256": "e490e96151468e2e3e561bb42f9a43f08529db5121d1ccfce63329521559e2ec",
+      "read_scope": "lines 20-115 and formatting/record search"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/alloc.rs",
+      "sha256": "0bb07a2346d0fedf9411ec9e93ab427b4fc4eafbb9de01c412067e3fbe7e4ba0",
+      "read_scope": "allocation contract search and realloc 200-234"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6b/counts.jsonl",
+      "sha256": "fab0466a846ef26b1c530a261a6f1d134fc32ba1d70f57682010877a52373c05",
+      "read_scope": "all 33 JSON rows parsed for payload/cardinality arithmetic"
+    },
+    {
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_robustness/src/lane.rs",
+      "sha256": "3512f36ebc9e2b947528af5babe32b92094f46894ab9be858c72330c8f8bb990",
+      "read_scope": "lines 1-160, 190-344; outcome/record lifetime mapping"
+    },
+    {
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_robustness/src/cases.rs",
+      "sha256": "54b6ad68cb94514a18882988b293f6ff709d3b36c37ae2cc7abe2047539b1ca6",
+      "read_scope": "source_parts 470-540"
+    },
+    {
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_robustness/examples/vk_scale.rs",
+      "sha256": "abd891ca57a6c4281ed71379b6502f70f1c212e1d96a933bf7dd5106e5b7d511",
+      "read_scope": "counts/solve/report lines 360-485"
+    }
+  ],
+  "pinned_library_inputs": "RUST_SRC_INPUTS.json",
+  "commands": "Read-only Git/status/diff/hash and source searches; standard-library payload arithmetic; prepared an in-memory append diff without applying it; parsed owned Python/JSON; no provider/compiler/model/installation by manager",
+  "owner_evidence_direction": "M5 originals unavailable for now; source/new candidate-bound work proceeds, with original logs not impersonated"
+}

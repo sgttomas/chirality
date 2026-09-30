@@ -1,0 +1,754 @@
+{
+  "kind": "proposed_compile_only_private_layout_overlay",
+  "not_applied": true,
+  "not_compiled": true,
+  "source_basis": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "coordination_head": "fe6ca966259d29d8d6ed2f05460400f6cb5d5de0",
+  "target_file": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/adaptive.rs",
+  "archive_relative_target": "src/structural/retained/adaptive.rs",
+  "preimage_sha256": "472bafb8281c7d311a81dcd5da042dd0f8db998bd81cf4902e6b55409eb5a563",
+  "overlay_sha256": "3521cd420876122a137e700016e86e21361b6bd652a5375b33dfdd38b1a73044",
+  "proposed_postimage_sha256": "4ecbf18f4990941263dfb380836066932549a636b4abcd582099021711c08b1d",
+  "patch_sha256": "5ed2f0a33dbf00506e9450108a2b17bc7bf324de89760088f8f86c567c4852f6",
+  "row_columns": [
+    "id",
+    "size",
+    "align",
+    "array_0_size",
+    "array_0_align",
+    "array_1_size",
+    "array_1_align",
+    "array_3_size",
+    "array_3_align",
+    "array_17_size",
+    "array_17_align",
+    "array_512_size",
+    "array_512_align",
+    "array_4096_size",
+    "array_4096_align"
+  ],
+  "rows": [
+    {
+      "id": 1,
+      "label": "CasePrep",
+      "rust_type": "CasePrep"
+    },
+    {
+      "id": 2,
+      "label": "GroupPrep",
+      "rust_type": "GroupPrep"
+    },
+    {
+      "id": 3,
+      "label": "GroupCache",
+      "rust_type": "GroupCache"
+    },
+    {
+      "id": 4,
+      "label": "RetainedSolve",
+      "rust_type": "RetainedSolve"
+    },
+    {
+      "id": 5,
+      "label": "RetainedEvidence",
+      "rust_type": "RetainedEvidence"
+    },
+    {
+      "id": 6,
+      "label": "AttemptRecord",
+      "rust_type": "AttemptRecord"
+    },
+    {
+      "id": 7,
+      "label": "AttemptStop",
+      "rust_type": "AttemptStop"
+    },
+    {
+      "id": 8,
+      "label": "VerificationSummary",
+      "rust_type": "VerificationSummary"
+    },
+    {
+      "id": 9,
+      "label": "StopDecision",
+      "rust_type": "StopDecision"
+    },
+    {
+      "id": 10,
+      "label": "PrecisionState",
+      "rust_type": "PrecisionState"
+    },
+    {
+      "id": 11,
+      "label": "VerificationState",
+      "rust_type": "VerificationState"
+    },
+    {
+      "id": 12,
+      "label": "Publication",
+      "rust_type": "Publication"
+    },
+    {
+      "id": 13,
+      "label": "PublishedRow",
+      "rust_type": "PublishedRow"
+    },
+    {
+      "id": 14,
+      "label": "RowClass",
+      "rust_type": "RowClass"
+    },
+    {
+      "id": 15,
+      "label": "Evaluated",
+      "rust_type": "Evaluated"
+    },
+    {
+      "id": 16,
+      "label": "BoundedExtremeTracker",
+      "rust_type": "BoundedExtremeTracker"
+    },
+    {
+      "id": 17,
+      "label": "RuleTest",
+      "rust_type": "RuleTest"
+    },
+    {
+      "id": 18,
+      "label": "StageWork",
+      "rust_type": "StageWork"
+    },
+    {
+      "id": 19,
+      "label": "StorageCounts",
+      "rust_type": "StorageCounts"
+    },
+    {
+      "id": 20,
+      "label": "Refusal",
+      "rust_type": "Refusal"
+    },
+    {
+      "id": 21,
+      "label": "UnresolvedReason",
+      "rust_type": "UnresolvedReason"
+    },
+    {
+      "id": 22,
+      "label": "PrimitiveSource",
+      "rust_type": "PrimitiveSource"
+    },
+    {
+      "id": 23,
+      "label": "LedgerNet",
+      "rust_type": "super::super::ledger::LedgerNet"
+    },
+    {
+      "id": 24,
+      "label": "RetainedLedger",
+      "rust_type": "RetainedLedger"
+    },
+    {
+      "id": 25,
+      "label": "ExactAccumulator",
+      "rust_type": "ExactAccumulator"
+    },
+    {
+      "id": 26,
+      "label": "ExactWideSum",
+      "rust_type": "ExactWideSum"
+    },
+    {
+      "id": 27,
+      "label": "QuantityId",
+      "rust_type": "QuantityId"
+    },
+    {
+      "id": 28,
+      "label": "QuantityMeta",
+      "rust_type": "QuantityMeta"
+    },
+    {
+      "id": 29,
+      "label": "Binary64Outcome",
+      "rust_type": "Binary64Outcome"
+    },
+    {
+      "id": 30,
+      "label": "BodyGeometry",
+      "rust_type": "BodyGeometry"
+    },
+    {
+      "id": 31,
+      "label": "Ordering",
+      "rust_type": "Ordering"
+    },
+    {
+      "id": 32,
+      "label": "Structure",
+      "rust_type": "Structure"
+    },
+    {
+      "id": 33,
+      "label": "Contribution",
+      "rust_type": "super::super::assemble::Contribution"
+    },
+    {
+      "id": 34,
+      "label": "FreeBlocks",
+      "rust_type": "FreeBlocks"
+    },
+    {
+      "id": 35,
+      "label": "BoundRefusal",
+      "rust_type": "super::super::bound::BoundRefusal"
+    },
+    {
+      "id": 36,
+      "label": "BlockRefusal",
+      "rust_type": "BlockRefusal"
+    },
+    {
+      "id": 37,
+      "label": "StraightMember",
+      "rust_type": "super::super::source::StraightMember"
+    },
+    {
+      "id": 38,
+      "label": "Constraint",
+      "rust_type": "super::super::source::Constraint"
+    },
+    {
+      "id": 39,
+      "label": "NodalLoad",
+      "rust_type": "super::super::source::NodalLoad"
+    },
+    {
+      "id": 40,
+      "label": "Station",
+      "rust_type": "super::super::source::Station"
+    },
+    {
+      "id": 41,
+      "label": "SourceParts",
+      "rust_type": "super::super::source::SourceParts"
+    },
+    {
+      "id": 42,
+      "label": "LazyRow",
+      "rust_type": "(ExactWideSum, ExactWideSum, u64, u64)"
+    },
+    {
+      "id": 43,
+      "label": "FallbackRow",
+      "rust_type": "(ExactWideSum, ExactWideSum, f64)"
+    },
+    {
+      "id": 44,
+      "label": "TableEntry",
+      "rust_type": "(u64, Evaluated)"
+    },
+    {
+      "id": 45,
+      "label": "TrackerKey",
+      "rust_type": "(RuleTest, u32, Kind)"
+    },
+    {
+      "id": 46,
+      "label": "TrackerSet",
+      "rust_type": "TrackerSet<(RuleTest, u32, Kind)>"
+    },
+    {
+      "id": 47,
+      "label": "GeometryMapPair",
+      "rust_type": "(u32, usize)"
+    },
+    {
+      "id": 48,
+      "label": "LedgerEntry",
+      "rust_type": "(usize, super::super::ledger::LedgerNet)"
+    },
+    {
+      "id": 49,
+      "label": "LedgerBuildingEntry",
+      "rust_type": "(usize, ExactAccumulator, bool)"
+    },
+    {
+      "id": 50,
+      "label": "PrescribedEntry",
+      "rust_type": "(usize, Vec<(f64, f64)>)"
+    },
+    {
+      "id": 51,
+      "label": "SummaryRow",
+      "rust_type": "(u32, Kind, f64)"
+    },
+    {
+      "id": 52,
+      "label": "BodyScaleRow",
+      "rust_type": "(u32, Kind, u64)"
+    },
+    {
+      "id": 53,
+      "label": "QuantityBitsRow",
+      "rust_type": "(QuantityId, u64)"
+    },
+    {
+      "id": 54,
+      "label": "UnpublishableRow",
+      "rust_type": "(QuantityId, Binary64Outcome)"
+    },
+    {
+      "id": 55,
+      "label": "ResolutionRow",
+      "rust_type": "(u32, u64, u64)"
+    },
+    {
+      "id": 56,
+      "label": "ThetaRow",
+      "rust_type": "(u32, f64)"
+    },
+    {
+      "id": 57,
+      "label": "ByteVecHeader",
+      "rust_type": "Vec<u8>"
+    },
+    {
+      "id": 58,
+      "label": "TreeMapHeader",
+      "rust_type": "std::collections::BTreeMap<(RuleTest, u32, Kind), BoundedExtremeTracker>"
+    },
+    {
+      "id": 59,
+      "label": "TreeSetHeader",
+      "rust_type": "std::collections::BTreeSet<(RuleTest, u32, Kind)>"
+    },
+    {
+      "id": 60,
+      "label": "DequeHeader",
+      "rust_type": "std::collections::VecDeque<usize>"
+    },
+    {
+      "id": 61,
+      "label": "Wide_L4",
+      "rust_type": "Wide<4>"
+    },
+    {
+      "id": 62,
+      "label": "OptionWide_L4",
+      "rust_type": "Option<Wide<4>>"
+    },
+    {
+      "id": 63,
+      "label": "WideVecHeader_L4",
+      "rust_type": "Vec<Wide<4>>"
+    },
+    {
+      "id": 64,
+      "label": "PivotScreen_L4",
+      "rust_type": "super::super::factor::PivotScreen<4>"
+    },
+    {
+      "id": 65,
+      "label": "RetainedFactor_L4",
+      "rust_type": "RetainedFactor<4>"
+    },
+    {
+      "id": 66,
+      "label": "BlockBound_L4",
+      "rust_type": "super::super::bound::BlockBound<4>"
+    },
+    {
+      "id": 67,
+      "label": "ShiftResult_L4",
+      "rust_type": "super::super::bound::ShiftResult<4>"
+    },
+    {
+      "id": 68,
+      "label": "BlockCertificate_L4",
+      "rust_type": "super::super::bound::BlockCertificate<4>"
+    },
+    {
+      "id": 69,
+      "label": "BlockNorms_L4",
+      "rust_type": "super::super::verify::BlockNorms<4>"
+    },
+    {
+      "id": 70,
+      "label": "BodyReport_L4",
+      "rust_type": "super::super::verify::BodyReport<4>"
+    },
+    {
+      "id": 71,
+      "label": "VerificationReport_L4",
+      "rust_type": "VerificationReport<4>"
+    },
+    {
+      "id": 72,
+      "label": "Solved_L4",
+      "rust_type": "Solved<4>"
+    },
+    {
+      "id": 73,
+      "label": "Recovered_L4",
+      "rust_type": "Recovered<4>"
+    },
+    {
+      "id": 74,
+      "label": "MemberOperators_L4",
+      "rust_type": "MemberOperators<4>"
+    },
+    {
+      "id": 75,
+      "label": "BoundedCoefficients_L4",
+      "rust_type": "BoundedCoefficients<4>"
+    },
+    {
+      "id": 76,
+      "label": "DirectionalBlock_L4",
+      "rust_type": "DirectionalBlock<4>"
+    },
+    {
+      "id": 77,
+      "label": "ResidualRow_L4",
+      "rust_type": "(bool, f64, Wide<4>)"
+    },
+    {
+      "id": 78,
+      "label": "Wide_L8",
+      "rust_type": "Wide<8>"
+    },
+    {
+      "id": 79,
+      "label": "OptionWide_L8",
+      "rust_type": "Option<Wide<8>>"
+    },
+    {
+      "id": 80,
+      "label": "WideVecHeader_L8",
+      "rust_type": "Vec<Wide<8>>"
+    },
+    {
+      "id": 81,
+      "label": "PivotScreen_L8",
+      "rust_type": "super::super::factor::PivotScreen<8>"
+    },
+    {
+      "id": 82,
+      "label": "RetainedFactor_L8",
+      "rust_type": "RetainedFactor<8>"
+    },
+    {
+      "id": 83,
+      "label": "BlockBound_L8",
+      "rust_type": "super::super::bound::BlockBound<8>"
+    },
+    {
+      "id": 84,
+      "label": "ShiftResult_L8",
+      "rust_type": "super::super::bound::ShiftResult<8>"
+    },
+    {
+      "id": 85,
+      "label": "BlockCertificate_L8",
+      "rust_type": "super::super::bound::BlockCertificate<8>"
+    },
+    {
+      "id": 86,
+      "label": "BlockNorms_L8",
+      "rust_type": "super::super::verify::BlockNorms<8>"
+    },
+    {
+      "id": 87,
+      "label": "BodyReport_L8",
+      "rust_type": "super::super::verify::BodyReport<8>"
+    },
+    {
+      "id": 88,
+      "label": "VerificationReport_L8",
+      "rust_type": "VerificationReport<8>"
+    },
+    {
+      "id": 89,
+      "label": "Solved_L8",
+      "rust_type": "Solved<8>"
+    },
+    {
+      "id": 90,
+      "label": "Recovered_L8",
+      "rust_type": "Recovered<8>"
+    },
+    {
+      "id": 91,
+      "label": "MemberOperators_L8",
+      "rust_type": "MemberOperators<8>"
+    },
+    {
+      "id": 92,
+      "label": "BoundedCoefficients_L8",
+      "rust_type": "BoundedCoefficients<8>"
+    },
+    {
+      "id": 93,
+      "label": "DirectionalBlock_L8",
+      "rust_type": "DirectionalBlock<8>"
+    },
+    {
+      "id": 94,
+      "label": "ResidualRow_L8",
+      "rust_type": "(bool, f64, Wide<8>)"
+    },
+    {
+      "id": 95,
+      "label": "Wide_L16",
+      "rust_type": "Wide<16>"
+    },
+    {
+      "id": 96,
+      "label": "OptionWide_L16",
+      "rust_type": "Option<Wide<16>>"
+    },
+    {
+      "id": 97,
+      "label": "WideVecHeader_L16",
+      "rust_type": "Vec<Wide<16>>"
+    },
+    {
+      "id": 98,
+      "label": "PivotScreen_L16",
+      "rust_type": "super::super::factor::PivotScreen<16>"
+    },
+    {
+      "id": 99,
+      "label": "RetainedFactor_L16",
+      "rust_type": "RetainedFactor<16>"
+    },
+    {
+      "id": 100,
+      "label": "BlockBound_L16",
+      "rust_type": "super::super::bound::BlockBound<16>"
+    },
+    {
+      "id": 101,
+      "label": "ShiftResult_L16",
+      "rust_type": "super::super::bound::ShiftResult<16>"
+    },
+    {
+      "id": 102,
+      "label": "BlockCertificate_L16",
+      "rust_type": "super::super::bound::BlockCertificate<16>"
+    },
+    {
+      "id": 103,
+      "label": "BlockNorms_L16",
+      "rust_type": "super::super::verify::BlockNorms<16>"
+    },
+    {
+      "id": 104,
+      "label": "BodyReport_L16",
+      "rust_type": "super::super::verify::BodyReport<16>"
+    },
+    {
+      "id": 105,
+      "label": "VerificationReport_L16",
+      "rust_type": "VerificationReport<16>"
+    },
+    {
+      "id": 106,
+      "label": "Solved_L16",
+      "rust_type": "Solved<16>"
+    },
+    {
+      "id": 107,
+      "label": "Recovered_L16",
+      "rust_type": "Recovered<16>"
+    },
+    {
+      "id": 108,
+      "label": "MemberOperators_L16",
+      "rust_type": "MemberOperators<16>"
+    },
+    {
+      "id": 109,
+      "label": "BoundedCoefficients_L16",
+      "rust_type": "BoundedCoefficients<16>"
+    },
+    {
+      "id": 110,
+      "label": "DirectionalBlock_L16",
+      "rust_type": "DirectionalBlock<16>"
+    },
+    {
+      "id": 111,
+      "label": "ResidualRow_L16",
+      "rust_type": "(bool, f64, Wide<16>)"
+    },
+    {
+      "id": 112,
+      "label": "Shared_L4_R4",
+      "rust_type": "Shared<4, 4>"
+    },
+    {
+      "id": 113,
+      "label": "Slot_L4_R4",
+      "rust_type": "Slot<Shared<4, 4>>"
+    },
+    {
+      "id": 114,
+      "label": "Shared_L4_R8",
+      "rust_type": "Shared<4, 8>"
+    },
+    {
+      "id": 115,
+      "label": "Slot_L4_R8",
+      "rust_type": "Slot<Shared<4, 8>>"
+    },
+    {
+      "id": 116,
+      "label": "Shared_L8_R16",
+      "rust_type": "Shared<8, 16>"
+    },
+    {
+      "id": 117,
+      "label": "Slot_L8_R16",
+      "rust_type": "Slot<Shared<8, 16>>"
+    },
+    {
+      "id": 118,
+      "label": "Shared_L16_R16",
+      "rust_type": "Shared<16, 16>"
+    },
+    {
+      "id": 119,
+      "label": "Slot_L16_R16",
+      "rust_type": "Slot<Shared<16, 16>>"
+    },
+    {
+      "id": 120,
+      "label": "VerifyShared_L4_W8",
+      "rust_type": "VerifyShared<4, 8>"
+    },
+    {
+      "id": 121,
+      "label": "VerifySlot_L4_W8",
+      "rust_type": "VerifySlot<VerifyShared<4, 8>>"
+    },
+    {
+      "id": 122,
+      "label": "VerifyShared_L8_W16",
+      "rust_type": "VerifyShared<8, 16>"
+    },
+    {
+      "id": 123,
+      "label": "VerifySlot_L8_W16",
+      "rust_type": "VerifySlot<VerifyShared<8, 16>>"
+    },
+    {
+      "id": 124,
+      "label": "VerifyShared_L16_W16",
+      "rust_type": "VerifyShared<16, 16>"
+    },
+    {
+      "id": 125,
+      "label": "VerifySlot_L16_W16",
+      "rust_type": "VerifySlot<VerifyShared<16, 16>>"
+    },
+    {
+      "id": 126,
+      "label": "FrameElement",
+      "rust_type": "crate::FrameElement"
+    }
+  ],
+  "limits": [
+    "Actual FK types, not mirrored layouts",
+    "Array layouts are allocation request layouts at stated capacities, not chosen capacity or live heap evidence",
+    "BTree/VecDeque rows are wrapper headers only, not private node/buffer allocations",
+    "ArcInner private allocator layout cannot be established by sizing Arc<T> or mirroring it",
+    "No Rust source file or runtime archive was modified"
+  ],
+  "arc_source_derived_rows": [
+    {
+      "id": 1,
+      "label": "CasePrep",
+      "rust_type": "CasePrep"
+    },
+    {
+      "id": 2,
+      "label": "GroupPrep",
+      "rust_type": "GroupPrep"
+    },
+    {
+      "id": 71,
+      "label": "VerificationReport_L4",
+      "rust_type": "VerificationReport<4>"
+    },
+    {
+      "id": 72,
+      "label": "Solved_L4",
+      "rust_type": "Solved<4>"
+    },
+    {
+      "id": 88,
+      "label": "VerificationReport_L8",
+      "rust_type": "VerificationReport<8>"
+    },
+    {
+      "id": 89,
+      "label": "Solved_L8",
+      "rust_type": "Solved<8>"
+    },
+    {
+      "id": 105,
+      "label": "VerificationReport_L16",
+      "rust_type": "VerificationReport<16>"
+    },
+    {
+      "id": 106,
+      "label": "Solved_L16",
+      "rust_type": "Solved<16>"
+    },
+    {
+      "id": 112,
+      "label": "Shared_L4_R4",
+      "rust_type": "Shared<4, 4>"
+    },
+    {
+      "id": 114,
+      "label": "Shared_L4_R8",
+      "rust_type": "Shared<4, 8>"
+    },
+    {
+      "id": 116,
+      "label": "Shared_L8_R16",
+      "rust_type": "Shared<8, 16>"
+    },
+    {
+      "id": 118,
+      "label": "Shared_L16_R16",
+      "rust_type": "Shared<16, 16>"
+    },
+    {
+      "id": 120,
+      "label": "VerifyShared_L4_W8",
+      "rust_type": "VerifyShared<4, 8>"
+    },
+    {
+      "id": 122,
+      "label": "VerifyShared_L8_W16",
+      "rust_type": "VerifyShared<8, 16>"
+    },
+    {
+      "id": 124,
+      "label": "VerifyShared_L16_W16",
+      "rust_type": "VerifyShared<16, 16>"
+    }
+  ],
+  "forced_generic_emission": [
+    "BTreeMap<(RuleTest,u32,Kind),BoundedExtremeTracker>",
+    "BTreeSet<(RuleTest,u32,Kind)>",
+    "BTreeMap<u32,usize>",
+    "BTreeMap<QuantityId,PublishedRow>"
+  ],
+  "arc_limit": "Source-derived repr(C) Arc request formula verified against actual target AtomicUsize/payload layout, not direct access to stdlib private ArcInner",
+  "btree_limit": "Read actual LeafNode/InternalNode sizes and allocation layout constants from emitted IR/debug metadata; absent or ambiguous data stays unresolved; no runtime capacity/high-water observation"
+}

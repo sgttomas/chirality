@@ -187,9 +187,9 @@ specific missing input is established.
 | PLAN — ROOT: recoverable execution plan | New graph and `Run/PLANNING_BASIS.json` only | Current owner role/planning direction | Acyclic route, explicit owners, bounded scope and launch status | COMPLETE as a planning artifact; not execution acceptance |
 | B0 — ROOT + DELIVERY: seal response basis | Run brief/ownership/dependency records | Refresh main, existing agents/PRs, relevant DAG currency and parent holds | Exact source/instruction basis; no competing writers; deliverable mappings justified; legacy I/RV identifiers checked | COMPLETE for bounded investigative basis: 58 rows structurally agree; source-binding/pointer/VR-accounting limits retained in DELIVERY return; no dependency promotion |
 | V0 — AUDIT-REVIEW: independently assess #1064 | Audit read-only; own review folder | B0 frozen audit/source basis | Each finding confirmed, narrowed or refuted; A1 arithmetic and reachability limits assessed; no retrospective claim of pre-merge review | COMPLETE: independent review accepted for fan-in; AUD-REV-N1 routed to N0; `Run/decisions/01_FIRST_WAVE.md` |
-| E0 — ENV-EVIDENCE: executable host and preserved inputs | Own runtime inventory and explicitly scoped copies | B0; M3 Air 16-GB constraint | Distinguish M5 resources from local replacements; guard and memory admission verified; toolchain/venv/targets identified; same-host baseline planned; raw evidence recovered or missing items inventoried | ACTIVE overall: inventory/proposal returned and checked; isolated directories prepared; exact runtime and guard qualification still open; no heavy grant |
-| K0 — I21-K6C: checkpoint-0 derivation | H/VR/FK read-only; K6c plan and evidence draft | B0, existing I21 brief | Complete live-allocation phase table, corrected formula candidate, dedup design, admission/reproduction plan and tests | ACTIVE: `/root/delivery_manager/i21_k6c`, source-only; final brief hash in DELIVERY/I21_LAUNCH.json |
-| A0 — A1-DIAGNOSIS: determine realized-input consequences | FK/proof read-only; independent probes and oracle | V0; E0 for Rust runs | Valid-source probes and independent truth; confirmed defect or explicit unclosed proof question; exact reproducer and limits | PLANNED |
+| E0 — ENV-EVIDENCE: executable host and preserved inputs | Own runtime inventory and explicitly scoped copies | B0; M3 Air 16-GB constraint | Distinguish M5 resources from local replacements; guard and memory admission verified; toolchain/venv/targets identified; same-host baseline planned; raw evidence recovered or missing items inventoried | ACTIVE overall: native Rust 1.97.1 and pinned rust-src installed; eight small live guard fixtures completed; v2 compile-admission defects backchecked closed, live-evidence/final-candidate review pending; direct cargo/full environment still open |
+| K0 — I21-K6C: checkpoint-0 derivation | H/VR/FK read-only; K6c plan and evidence draft | B0, existing I21 brief | Complete live-allocation phase table, corrected formula candidate, dedup design, admission/reproduction plan and tests | SOURCE CHECKPOINT RETURNED: 36 admission dictionaries reproduced; K0-S1/S2/L1/V1 remain open; provisional formula not accepted |
+| A0 — A1-DIAGNOSIS: determine realized-input consequences | FK/proof read-only; independent probes and oracle | V0; E0 for Rust runs | Valid-source probes and independent truth; confirmed defect or explicit unclosed proof question; exact reproducer and limits | PREPARATION RETURNED: 24 sources/880 exact truth rows, oracle/probe and authored lock sealed; runtime grant pending; no compilation or model run |
 | A1 — DESIGN: propose A1 closure | Design addendum and D2 consequence draft in own run folder | V0, A0 | Complete error transfer through both coupling directions, zero scales and thresholds; remedy or proved exclusion; alternatives and tradeoffs | PLANNED |
 | V1 — DESIGN-VERIFY: verify proposed basis | Own independent proof/probe records | Frozen A1 proposal | Every material claim checked independently; failures returned with evidence | PLANNED |
 | D1 — ROOT / human where reserved: select warranted course | New response decision record; no old ruling rewrite | V1 and concrete consequences | In-scope decisions recorded; human decides reserved contract/scope/availability/acceptance changes; design basis explicitly selected before repair | PLANNED |
@@ -198,7 +198,7 @@ specific missing input is established.
 | I21 — I21-K6C: estimate and dedup implementation | Existing brief's H/VR/test/record fence | K0 accepted, E0; D1 impact understood and shared files assigned | Single estimate definition; corrected terms/regenerated counts; regression tests and mutants; no FK edit | PLANNED; provisional preparation can overlap I1 |
 | T21 — I21-K6C: final measurement and admission evidence | K6c records; owned target/scratch | P1 or its justified no-code disposition; final I21 tree; quiet host slot; each size admitted from M3 evidence | Final kernel phase model checked; original admissions replayed; required six sparse/W1 10,000-member cases and prefixes/repeats recorded on a host that can safely admit them; any unrun case remains open | PLANNED; M3 feasibility not established |
 | V21/P21 — K6C-REVIEW then ROOT: integrate K6c | Full frozen estimate/dedup/evidence diff | T21 | Independent phase derivation/checks; VR suite and kill matrix; applicable exact-head CI/full-SHA dispatch, DEC-025, GEN-8; merge verified | PLANNED |
-| N0 — RECORDS: close replay/process/evidence notes | New errata/inventory under own run records | V0, E0 evidence results | Five manifest bases stated; Git exceptions separated; preserved/missing raw inputs explicit; no fabricated reconstruction or immutable rewrite | PLANNED; drafts can overlap technical work |
+| N0 — RECORDS: close replay/process/evidence notes | New errata/inventory under own run records | V0, E0 evidence results | Five manifest bases stated; Git exceptions separated; preserved/missing raw inputs explicit; no fabricated reconstruction or immutable rewrite | ADDITIVE NOTE PREPARED: `Run/REPLAY_AND_PROCESS_ERRATA.md`; originals unavailable for now, safe fresh evidence authorized; independent slice review active |
 | L0 — ROOT with DELIVERY analysis: W1 limits and F2a inputs | Evidence-based limit proposal/operational decision and handback | P1, P21 final compatible basis | Limits trace to final measurements/derivation; owner-held dense/lane ceilings unchanged; F2a assurance inputs and remaining holds explicit | PLANNED |
 | C0 — DELIVERY, ROOT integrates: bounded closeout | Selected deliverable comparisons, warranted docs, one central receipt and terse MEMORY rows | Technical integrations, N0, L0 | Bounded reconciliation; conditional Task Management only for genuinely unallocated concerns; no required work hidden by transfer | PLANNED |
 | V99/F0 — FINAL-REVIEW then ROOT: final response PR | Complete records/graph/closeout diff | C0 and all reserved decisions satisfied | Fresh independent final review, applicable records CI/GEN-8, current-main check, final PR merged; parent continuation handback explicit | PLANNED |
@@ -252,16 +252,18 @@ Independent work may continue. Never relax a protected oracle/tolerance to pass.
   response coordination branch, not merged).
 - **Graph maintainer:** HELP_HUMAN Agent 0 in this chat; managers return proposed
   state changes for one serialized integration.
-- **Active operations:** initial DESIGN, DELIVERY, V0 and ENV returns are sealed.
-  I21 returned its source checkpoint; full K0 acceptance remains open. The guard
-  author and DELIVERY integration checkpoint returned, with 41 pure tests; the
-  guard remains inactive and not live-qualified. All TASK slots are currently
-  free. Native Rust 1.97.1 is installed in the isolated runtime; no numerical
-  compilation or model run has occurred.
-- **Next safe action:** independently review the frozen guard/records candidate;
-  DESIGN may launch the preparation-only A0 TASK under decision 03. Controlled
-  low-memory guard qualification must precede any separately granted compile
-  or numerical run. K0 source closure may follow as a TASK slot permits.
+- **Active operations:** A0 preparation and its authored-lock addendum returned;
+  all 24 numerical cases remain UNRUN. K0 source-closure brief and a separate
+  unapplied layout overlay are ready; full formula remains open. Guard v2's
+  compile-admission defects have been independently backchecked; live evidence
+  and the final incremental candidate remain under review. Eight small live
+  guard fixtures completed with unrelated sentinels intact and latches resolved.
+  Native Rust 1.97.1 and rust-src are isolated; no numerical compile or model run.
+- **Next safe action:** freeze/review the incremental candidate and grant one
+  serial offline locked A0 build after guard evidence review. Then B01–B16
+  individually, with an explicit C extension checkpoint. Resume K0-S1/S2
+  source closure under DELIVERY as its slot is granted; L1 remains a separate
+  instrumented-archive proposal, not an activated compile.
 - **New owner evidence direction:** M5 originals are unavailable for now. Safe
   recreated inputs and new M3 runs are authorized and must carry new provenance;
   they do not impersonate historical logs. See decision 03. Recovery remains

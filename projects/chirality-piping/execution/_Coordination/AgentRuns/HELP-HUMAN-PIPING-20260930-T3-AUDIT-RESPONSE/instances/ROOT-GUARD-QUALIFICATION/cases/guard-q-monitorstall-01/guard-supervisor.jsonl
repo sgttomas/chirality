@@ -1,0 +1,6 @@
+{"at": 549975.648610208, "data": {"identity": {"pgid": 14648, "pid": 14648, "ruid": 501, "sid": 14648, "start_sec": 1790791436, "start_usec": 432088, "uid": 501}}, "kind": "identity", "wall_ns": 1790791436434651000}
+{"at": 549975.715218041, "data": {"pid": 14655}, "kind": "worker-launched", "wall_ns": 1790791436501258000}
+{"at": 549978.799347791, "data": {"identity": {"pgid": 14648, "pid": 14648, "ruid": 501, "sid": 14648, "start_sec": 1790791436, "start_usec": 432088, "uid": 501}, "reason": "heartbeat-loss", "signal": "TERM"}, "kind": "signal-intent", "wall_ns": 1790791439585370000}
+{"at": 549978.822395625, "data": {"returncode": -15}, "kind": "worker-exit", "wall_ns": 1790791439608417000}
+{"at": 549978.823315416, "data": {"reason": "heartbeat-loss", "returncode": -15}, "kind": "group-drained", "wall_ns": 1790791439609335000}
+{"at": 549981.34285875, "data": {"identity": {"pgid": 14648, "pid": 14648, "ruid": 501, "sid": 14648, "start_sec": 1790791436, "start_usec": 432088, "uid": 501}, "reason": "heartbeat-loss", "signal": "KILL"}, "kind": "signal-intent", "wall_ns": 1790791442128863000}
