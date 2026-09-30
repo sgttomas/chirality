@@ -1,6 +1,6 @@
 # Context: DEL-02-03 Workflow execution compatibility and round-trip support
 
-Accepted basis: `projects/chirality-app-v4/execution/_Decomposition/checkpoint_snapshots/GROUP3-20260928T001055Z`; see `ACCEPTED_MANIFEST.csv` and `DECISION.md`. No production completion or external contribution is inferred.
+Accepted basis: `projects/chirality-app-v4/execution/_Decomposition/checkpoint_snapshots/GROUP3-20260928T001055Z`; see `ACCEPTED_MANIFEST.csv` and `DECISION.md`. Read it as amended by the active scope-change snapshot named in `projects/chirality-app-v4/execution/_ScopeChange/_LATEST.md`. No production completion or external contribution is inferred.
 
 ## Identity and accepted fields
 
@@ -10,10 +10,10 @@ Accepted basis: `projects/chirality-app-v4/execution/_Decomposition/checkpoint_s
 - **DeliverableID:** DEL-02-03
 - **PackageID:** PKG-02
 - **Name:** Workflow execution compatibility and round-trip support
-- **Description:** Make selected workflow requirements actionable and preserve identity and actual human checkpoints while carrying workflows between App and hosts. Interfaces: PKG-03 catalog describes available tools; PKG-04 records real content-bound acts; PKG-05 supplies host receiving boundary; DEL-09-06 owns the joined host round-trip witness and external contribution record. Verification: Missing capabilities are explicit; checkpoint requests wait regardless of direct autonomy; source revisions survive transfer/adaptation and no human act is fabricated.
+- **Description:** Make selected workflow requirements actionable and preserve identity and actual human checkpoints while carrying workflows between App and hosts. Interfaces: PKG-03 catalog describes available tools; PKG-04 records real content-bound acts; PKG-05 supplies host receiving boundary; DEL-09-06 owns the joined host round-trip witness and external contribution record. Verification: Missing capabilities are explicit; checkpoint acts are requested and recorded only when performed, regardless of direct autonomy (holds are governance phase); source revisions survive transfer/adaptation and no human act is fabricated.
 - **Type:** BACKEND_FEATURE_SLICE
 - **ResponsibleParty:** App/shared workflow-execution owner; external host owner supplies host execution
-- **AnticipatedArtifacts:** CODE: required-tool and checkpoint receiving behavior;DOC: App/host workflow transfer and adaptation contract;TEST: missing-tool, checkpoint hold and source-preserving round-trip fixtures
+- **AnticipatedArtifacts:** CODE: required-tool and checkpoint receiving behavior;DOC: App/host workflow transfer and adaptation contract;TEST: missing-tool, checkpoint recording (governance-phase hold retained) and source-preserving round-trip fixtures
 - **CoversScopeItems:** SOW-051;SOW-052;SOW-053;SOW-054;SOW-055
 - **SupportsObjectives:** OBJ-003;OBJ-005
 - **ContextEnvelope:** M

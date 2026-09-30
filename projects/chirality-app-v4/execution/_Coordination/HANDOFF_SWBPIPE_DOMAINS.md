@@ -1,6 +1,6 @@
 # App v4 / SWBPIPE / Domains — interface coordination for human relay
 
-Status: **The consolidated questions (RELAY-v0.3, below) were relayed by the owner on 2026-09-28, per the owner's statement; answers are pending, and nothing is adopted by the outside session.** This file communicates App v4 interface needs; it does not assign or perform SWBPIPE, PEC or Domains implementation. The human coordinates the sessions, as recorded in [owner direction O](Acceptances/APP-V4-BASIS-20260926/OWNER_DIRECTIONS.md).
+Status: **The consolidated questions (RELAY-v0.3, below) were relayed by the owner on 2026-09-28, per the owner's statement. SWBPIPE's answers were received on 2026-09-28 (see RELAY §4); nothing is adopted or committed by the outside session.** This file communicates App v4 interface needs; it does not assign or perform SWBPIPE, PEC or Domains implementation. The human coordinates the sessions, as recorded in [owner direction O](Acceptances/APP-V4-BASIS-20260926/OWNER_DIRECTIONS.md).
 
 The owner accepted HTML recommendation HTML-D05 with SWB implementation retained by its existing outside session. The intended first activity uses invented engineering material: inspect a model, propose an adjustment, request a non-mutating check, encounter an intervening edit, and recover the actual outcome/receipt. A reusable workflow carries its identity, assumptions, tool needs and human checkpoints between App and host. The useful operation, autonomy scope and candidate environment remain to be selected. This is a coordinated contract and staged examination, not a single all-or-nothing test or authorization to run a supplier experiment.
 
@@ -47,8 +47,23 @@ The interface questions above are superseded in detail by a consolidated,
 deduplicated set of 32 questions developed against the App/shared definitions:
 [`RELAY_QUESTIONS_SWBPIPE.md`](../PKG-09_Candidate%20examination%20and%20connected%20journeys/1_Working/DEL-09-06_Connected%20activity%20contract%20and%20workflow%20round%20trip/Design/RELAY_QUESTIONS_SWBPIPE.md)
 (DEL-09-06/RELAY-v0.3). The owner relayed it to the SWBPIPE session on
-2026-09-28 (owner's statement); answers are pending. Its top
-questions are:
+2026-09-28 (owner's statement). SWBPIPE's answers were received the same day:
+[`RELAY_ANSWERS_SWBPIPE.md`](../PKG-09_Candidate%20examination%20and%20connected%20journeys/1_Working/DEL-09-06_Connected%20activity%20contract%20and%20workflow%20round%20trip/Design/RELAY_ANSWERS_SWBPIPE.md).
+The owner deferred the host joins (DECISION-3, run APP-V4-SWBPIPE-INTAKE-20260928).
+
+**Note for SWBPIPE (owner direction, DECISION-4 D4-2).**
+
+- SWBPIPE's recorded embedded direction, the "embedded Runtime" adoption
+  (RUNTIME-ADOPT; D-58), predates App v4's D-20. The v4 direction is a minimal
+  Chirality agent loop in the host (V4-ARC-10), as defined in DEL-05-01 LOOP
+  and DEL-05-02 PANEL.
+- SWBPIPE's embedded plan should be updated to the v4 loop when UI-SUCCESSOR
+  resumes. That update is SWBPIPE's to make.
+- Under DECISION-4, workflow checkpoints are plan guidance in the current
+  phase: a host loop does not enforce holds, and reserved human acts stay with
+  the person through the host's operations.
+
+The relayed question set's top questions are:
 
 - SQ-01: the capture-evidence reference for the person's acts;
 - SQ-02: receipt of the governing checkpoint constraint, and host-side holds;

@@ -4,6 +4,60 @@
 
 CaseState: EVIDENCE_ACCUMULATING. Actual CP1 confirms initial graph basis/candidate characterization and this tracking disposition, through [BASIS_DECISION.md](../../_Candidates/DAG-001/BASIS_DECISION.md), SHA5a269b838d8e923cd4b9c4911b1128244d4854e33c0f4f1c7ab061d18b2acb60. Continuing case for the current13-member component: DEL-01-04;DEL-02-01;DEL-02-02;DEL-02-03;DEL-02-04;DEL-03-01;DEL-03-02;DEL-03-03;DEL-04-02;DEL-04-03;DEL-05-01;DEL-05-02;DEL-09-09. Originalnine-member and CASE004history are preserved. No SCC resolution, input fulfilment, product activation or30% advancement is inferred. Technical remedies remain future proposals at actual points of need.
 
+## Successor observation, 2026-09-29 (DAG-002 candidate; evidence update only)
+
+- **Matched snapshot:** `_Evaluation/DepClosure/CLOSURE_APP_V4_BASISALIGN_2026-09-29_0855`, positional **SCC-002**. Member set identical to the confirmed 13 members above: **no membership change**, so the case continues by member-set matching without a new matching ruling. Source `b585e5ebead38f8ece442c80cd3bec5be8363cf3`; frozen manifest `_DAG/_Candidates/DAG-002/SOURCE_MANIFEST.sha256`, SHA-256 `6d1021f1c78fea023c2089aa29a2bc60f5ae498f56068eeddbfa376467793250`. This is now the latest DepClosure baseline for the case.
+- **Why the account changed:** the SCA-V4-001 SoW revisions and the dependency-extract UPDATE of 18 registers (run `APP-V4-BASIS-ALIGN-20260928`, DX-1/2/3) added consumption rows between members. They realise the refreshed arc set the owner accepted at checkpoint A (DECISION-6).
+- **Internal account:** 76 source rows / 62 arcs (was 46 / 40); 16 reciprocal pairs inside the component (was 8). +30 rows: 22 rows are the representatives of **22 new held arcs**; 2 are mirrors on those arcs (DEP-04-02-019 on N-03, DEP-04-02-020 on N-04); 3 become the SR-6 representative of an existing arc (DEP-04-02-015 on DEL-04-02 → DEL-03-02, DEP-04-03-022 on DEL-04-03 → DEL-04-02, DEP-04-03-024 on DEL-04-03 → DEL-03-02); 3 are new mirrors on existing arcs (DEP-04-03-029, -030, -032).
+- **New held arcs** (consumer → supplier; all held `SCC_UNRESOLVED` in `_DAG/_Candidates/DAG-002/CandidateEdges.csv`, citing this case; labels from `DAG_PREP/ARC_ANALYSIS.md`):
+
+| Label | Arc | Representative | RequiredMaturity / Satisfaction | Mirror |
+|---|---|---|---|---|
+| N-01 | DEL-04-02 → DEL-03-01 | DEP-04-02-016 UPSTREAM INTERFACE | INITIALIZED / PENDING | — |
+| N-02 | DEL-04-02 → DEL-02-03 | DEP-04-02-017 UPSTREAM INTERFACE | INITIALIZED / PENDING | — |
+| N-03 | DEL-05-01 → DEL-04-02 | DEP-05-01-025 UPSTREAM INTERFACE | INITIALIZED / PENDING | DEP-04-02-019 |
+| N-04 | DEL-05-02 → DEL-04-02 | DEP-05-02-019 UPSTREAM PREREQUISITE | INITIALIZED / PENDING | DEP-04-02-020 |
+| N-05 | DEL-03-02 → DEL-04-02 | DEP-04-02-021 DOWNSTREAM HANDOVER | INITIALIZED / PENDING | — |
+| N-06 | DEL-03-03 → DEL-04-02 | DEP-04-02-022 DOWNSTREAM HANDOVER | INITIALIZED / PENDING | — |
+| N-07 | DEL-02-03 → DEL-04-02 | DEP-04-02-023 DOWNSTREAM HANDOVER | INITIALIZED / PENDING | — |
+| N-09 | DEL-09-09 → DEL-04-02 | DEP-09-09-022 UPSTREAM PREREQUISITE | INITIALIZED / PENDING | — |
+| N-10 | DEL-04-03 → DEL-03-01 | DEP-04-03-023 UPSTREAM INTERFACE | INITIALIZED / PENDING | — |
+| N-11 | DEL-03-01 → DEL-04-03 | DEP-03-01-031 UPSTREAM INTERFACE | INITIALIZED / PENDING | — |
+| N-13 | DEL-04-03 → DEL-02-03 | DEP-04-03-025 UPSTREAM INTERFACE | INITIALIZED / PENDING | — |
+| N-14 | DEL-04-03 → DEL-03-03 | DEP-04-03-026 UPSTREAM INTERFACE | INITIALIZED / PENDING | — |
+| N-17 | DEL-02-01 → DEL-02-03 | DEP-02-01-026 UPSTREAM INTERFACE | INITIALIZED / PENDING | — |
+| N-20 | DEL-03-03 → DEL-02-01 | DEP-02-01-027 DOWNSTREAM INTERFACE | TBD / TBD | — |
+| N-22 | DEL-02-03 → DEL-05-01 | DEP-02-03-022 UPSTREAM INTERFACE | INITIALIZED / TBD | — |
+| N-25 | DEL-05-02 → DEL-02-03 | DEP-05-02-020 UPSTREAM PREREQUISITE | INITIALIZED / PENDING | — |
+| N-26 | DEL-09-09 → DEL-02-03 | DEP-09-09-023 UPSTREAM PREREQUISITE | INITIALIZED / PENDING | — |
+| N-27 | DEL-03-03 → DEL-02-03 | DEP-03-03-014 UPSTREAM INTERFACE | INITIALIZED / PENDING | — |
+| N-B3 | DEL-03-02 → DEL-02-01 | DEP-03-02-027 UPSTREAM INTERFACE | INITIALIZED / TBD | — |
+| N-C6 | DEL-09-09 → DEL-05-01 | DEP-09-09-021 UPSTREAM PREREQUISITE | INITIALIZED / PENDING | — |
+| R8-A | DEL-04-02 → DEL-05-01 | DEP-04-02-018 UPSTREAM INTERFACE | INITIALIZED / PENDING | — |
+| R8-B | DEL-04-03 → DEL-05-01 | DEP-04-03-028 UPSTREAM INTERFACE | INITIALIZED / PENDING | — |
+
+- **Accepted-at-A arcs inside this component that no register carries:** N-18 (DEL-02-01 → DEL-03-02), N-21 (DEL-02-03 → DEL-03-02), N-24 (DEL-02-03 → DEL-03-03) and X-1 (DEL-02-03 → DEL-01-04). The SoWs state ownership, not consumption (DX-2 returns). Adding any of them would stay inside this 13-member set, so the case membership does not depend on how they are decided (checkpoint C).
+- **Withheld and guarded:** N-12 and N-B8 are absent, as the owner decided at checkpoint A. None of the SCC-enlarging arcs E-1…E-5 or reverse citations K-1…K-12 is present. The component therefore still excludes DEL-09-06, DEL-03-04 and DEL-04-01.
+- **What this does not do:** no ruling, remedy, closure, merge, satisfaction or readiness claim. The CP1-20260928 ruling carries forward unchanged. CaseState stays EVIDENCE_ACCUMULATING. The held arcs are non-gating; the work they carry waits only where it needs the named contribution at its stated maturity.
+
+## Successor observation, 2026-09-29 (DAG-003 candidate; evidence update only)
+
+- **Matched snapshot:** `_Evaluation/DepClosure/CLOSURE_APP_V4_SCA002_2026-09-29_2056`, positional **SCC-002**. Member set identical to the confirmed 13 members above: **no membership change**, so the case continues by member-set matching without a new matching ruling. Source `8cd783d8d7493fbfe663fb108449e4ceda04a00b`; frozen manifest `_DAG/_Candidates/DAG-003/SOURCE_MANIFEST.sha256`, SHA-256 `d0fc611d95ee80ba64b86ea5b0eaa1a1ba90e85e461fb18459dd8162df6a40c5`. This is now the latest DepClosure baseline for the case.
+- **Why the account changed:** the accepted scope change SCA-V4-002 (run `APP-V4-SCA002-20260929`, DECISION-2 and DECISION-3) added "consumes" sentences to the DEL-02-01 and DEL-02-03 SoWs (CLM-002) for the four arcs the owner kept at Q-4, following the predecessor's DECISION-10 option A. The `dependency-extract` UPDATE (node DX) extracted one consumer-side UPSTREAM INTERFACE row per arc. These are the four "accepted-at-A arcs inside this component that no register carries" listed in the DAG-002 observation above; every one of them is now carried by a register row.
+- **Internal account:** 80 source rows / 66 arcs (was 76 / 62); 18 reciprocal pairs inside the component (was 16). +4 rows, each the SR-6 representative of a new held arc. No mirror rows were added, and no existing arc changed its representative or layer. The 15 SCC-002 representative rows in DEL-04-02 and DEL-04-03 whose `EvidenceQuote` was re-quoted exactly (ASC-ISS-008; V12 F1) keep their arcs unchanged.
+- **New held arcs** (consumer → supplier; all held `SCC_UNRESOLVED` in `_DAG/_Candidates/DAG-003/CandidateEdges.csv`, citing this case; labels from `APP-V4-BASIS-ALIGN-20260928/DAG_PREP/ARC_ANALYSIS.md` and `APP-V4-SCA002-20260929/AMENDMENT_PACKET/ARC_EFFECT.md`):
+
+| Label | Arc | Representative | RequiredMaturity / Satisfaction | Reciprocal with |
+|---|---|---|---|---|
+| N-18 | DEL-02-01 → DEL-03-02 | DEP-02-01-029 UPSTREAM INTERFACE | INITIALIZED / PENDING | N-B3 (DEP-03-02-027): new pair |
+| N-21 | DEL-02-03 → DEL-03-02 | DEP-02-03-025 UPSTREAM INTERFACE | INITIALIZED / TBD | — |
+| N-24 | DEL-02-03 → DEL-03-03 | DEP-02-03-026 UPSTREAM INTERFACE | INITIALIZED / TBD | N-27 (DEP-03-03-014): new pair |
+| X-1 | DEL-02-03 → DEL-01-04 | DEP-02-03-027 UPSTREAM INTERFACE | INITIALIZED / TBD | — |
+
+- **What each arc carries** (ARC_EFFECT §1, from the consumer and supplier Design files as evidence only): N-18 and N-21 carry DEL-03-02's change-item content identities, per-item dispositions, all-items-decided indication, item-left events and applied-outcome object identities into DEL-02-01's subject binding and item-level decisions, and into DEL-02-03's checkpoint recording and interrupted or replayed history; N-24 carries DEL-03-03's observations of checkpoint arrivals and act records on the external channel, which DEL-02-03 records; X-1 carries DEL-01-04's App act control and person identity, narrowly for DEL-02-03's App-side positive capture fixtures (OUT-003, VER-003), which await that later undertaking. The two new reciprocal pairs join separately stated interfaces (the supplier's receipt of declared constraints or the checkpoint statement on the other side), not duplicate declarations.
+- **Withheld and guarded:** N-12 and N-B8 remain absent, as the owner decided. None of the SCC-enlarging arcs E-1…E-5 or reverse citations K-1…K-12 is present; DEL-04-01 keeps 0 suppliers; no member consumes DEL-09-06. The component therefore still excludes DEL-09-06, DEL-03-04 and DEL-04-01.
+- **What this does not do:** no ruling, remedy, closure, merge, satisfaction or readiness claim. The CP1-20260928 ruling carries forward unchanged. CaseState stays EVIDENCE_ACCUMULATING. The held arcs are non-gating; the work they carry waits only where it needs the named contribution at its stated maturity. The DAG-003 candidate is unaccepted until the owner decides checkpoint C.
+
 ## Preserved inquiry history
 
 The previously pending proposal and original source observations below are retained as history; current tracking is the confirmed account above.
