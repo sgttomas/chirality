@@ -1,0 +1,34 @@
+{
+  "control": "frozen v2",
+  "fake_native_only": true,
+  "snapshot_worker_state": "Z",
+  "fake_failure_pid": 101,
+  "historical_B02_failed_call_pid": "not recorded; not inferred",
+  "refusal": "proc-pidinfo-denied-missing-short:3",
+  "native_calls": [
+    {
+      "operation": "proc_pidinfo",
+      "pid": 100
+    },
+    {
+      "operation": "proc_pidinfo",
+      "pid": 100
+    },
+    {
+      "operation": "proc_pidinfo",
+      "pid": 100
+    },
+    {
+      "operation": "proc_pidinfo",
+      "pid": 100
+    },
+    {
+      "operation": "proc_pidinfo",
+      "pid": 101
+    }
+  ],
+  "proposed_fresh_complete_next_snapshot_pids": [
+    100
+  ],
+  "v2_queries_fresh_absence": false
+}

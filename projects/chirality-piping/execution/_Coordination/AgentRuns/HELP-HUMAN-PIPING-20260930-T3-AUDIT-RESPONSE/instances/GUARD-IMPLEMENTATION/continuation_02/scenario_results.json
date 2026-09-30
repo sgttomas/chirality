@@ -1,0 +1,1192 @@
+{
+  "claims": "deterministic fake-native observations, not live measurements",
+  "cases": [
+    {
+      "case": "B02-zombie-reaped",
+      "fake_native_only": true,
+      "outcome": "collected",
+      "output": {
+        "rss_bytes": 100,
+        "footprint_bytes": 80,
+        "live": [],
+        "identities": {
+          "100": {
+            "pid": 100,
+            "start_sec": 12000,
+            "start_usec": 50,
+            "uid": 501,
+            "ruid": 501,
+            "pgid": 100,
+            "sid": 100
+          }
+        }
+      },
+      "table_calls": 3,
+      "complete_native_pid_lists": 0,
+      "native_calls": [
+        [
+          "info",
+          100,
+          1
+        ],
+        [
+          "sid",
+          100,
+          1
+        ],
+        [
+          "info",
+          100,
+          2
+        ],
+        [
+          "sid",
+          100,
+          2
+        ],
+        [
+          "rusage",
+          100,
+          1
+        ],
+        [
+          "info",
+          100,
+          3
+        ],
+        [
+          "sid",
+          100,
+          3
+        ],
+        [
+          "info",
+          100,
+          4
+        ],
+        [
+          "sid",
+          100,
+          4
+        ],
+        [
+          "info",
+          101,
+          1
+        ],
+        [
+          "info",
+          100,
+          5
+        ],
+        [
+          "sid",
+          100,
+          5
+        ],
+        [
+          "info",
+          100,
+          6
+        ],
+        [
+          "sid",
+          100,
+          6
+        ],
+        [
+          "rusage",
+          100,
+          2
+        ],
+        [
+          "info",
+          100,
+          7
+        ],
+        [
+          "sid",
+          100,
+          7
+        ],
+        [
+          "info",
+          100,
+          8
+        ],
+        [
+          "sid",
+          100,
+          8
+        ]
+      ],
+      "events": [
+        [
+          "native-read-failure",
+          {
+            "operation": "proc-pidinfo-denied-missing-short/0",
+            "pid": 101,
+            "errno": 3,
+            "returned": 0,
+            "known_identity": null,
+            "partial_identity": null,
+            "esrch_candidate": true
+          }
+        ],
+        [
+          "group-read-failure",
+          {
+            "failure": {
+              "operation": "proc-pidinfo-denied-missing-short/0",
+              "pid": 101,
+              "errno": 3,
+              "returned": 0,
+              "known_identity": null,
+              "partial_identity": null,
+              "esrch_candidate": true
+            },
+            "known_identity": null,
+            "membership_row": {
+              "pid": 101,
+              "ppid": 100,
+              "pgid": 100,
+              "uid": 501,
+              "zombie": true
+            }
+          }
+        ],
+        [
+          "member-exit-confirmed",
+          {
+            "pid": 101,
+            "identity": null,
+            "last_membership_row": {
+              "pid": 101,
+              "ppid": 100,
+              "pgid": 100,
+              "uid": 501,
+              "zombie": true
+            },
+            "native_failure": {
+              "operation": "proc-pidinfo-denied-missing-short/0",
+              "pid": 101,
+              "errno": 3,
+              "returned": 0,
+              "known_identity": null,
+              "partial_identity": null,
+              "esrch_candidate": true
+            },
+            "absence_snapshot_started": 100.0,
+            "complete_global_absence": true,
+            "exit_status": "not-known-from-absence",
+            "resource_observation": null,
+            "measurement_state": "exited-unmeasured"
+          }
+        ],
+        [
+          "group-collection",
+          {
+            "live_members": [],
+            "zombie_present_unmeasured": [],
+            "exited_members": [
+              {
+                "pid": 101,
+                "identity": null,
+                "last_membership_row": {
+                  "pid": 101,
+                  "ppid": 100,
+                  "pgid": 100,
+                  "uid": 501,
+                  "zombie": true
+                },
+                "native_failure": {
+                  "operation": "proc-pidinfo-denied-missing-short/0",
+                  "pid": 101,
+                  "errno": 3,
+                  "returned": 0,
+                  "known_identity": null,
+                  "partial_identity": null,
+                  "esrch_candidate": true
+                },
+                "absence_snapshot_started": 100.0,
+                "complete_global_absence": true,
+                "exit_status": "not-known-from-absence",
+                "resource_observation": null,
+                "measurement_state": "exited-unmeasured"
+              }
+            ],
+            "resamples": 1,
+            "job_seen_pid_count": 2,
+            "job_departed_pid_count": 1,
+            "rss_bytes": 100,
+            "footprint_bytes": 80,
+            "metric_basis": "max-of-validated-partial-and-complete-sums-in-this-acquisition"
+          }
+        ]
+      ]
+    },
+    {
+      "case": "new-member-on-retry",
+      "fake_native_only": true,
+      "outcome": "collected",
+      "output": {
+        "rss_bytes": 800,
+        "footprint_bytes": 580,
+        "live": [
+          102
+        ],
+        "identities": {
+          "100": {
+            "pid": 100,
+            "start_sec": 12000,
+            "start_usec": 50,
+            "uid": 501,
+            "ruid": 501,
+            "pgid": 100,
+            "sid": 100
+          },
+          "102": {
+            "pid": 102,
+            "start_sec": 12000,
+            "start_usec": 61,
+            "uid": 501,
+            "ruid": 501,
+            "pgid": 100,
+            "sid": 100
+          }
+        }
+      },
+      "table_calls": 3,
+      "complete_native_pid_lists": 0,
+      "native_calls": [
+        [
+          "info",
+          100,
+          1
+        ],
+        [
+          "sid",
+          100,
+          1
+        ],
+        [
+          "info",
+          100,
+          2
+        ],
+        [
+          "sid",
+          100,
+          2
+        ],
+        [
+          "rusage",
+          100,
+          1
+        ],
+        [
+          "info",
+          100,
+          3
+        ],
+        [
+          "sid",
+          100,
+          3
+        ],
+        [
+          "info",
+          100,
+          4
+        ],
+        [
+          "sid",
+          100,
+          4
+        ],
+        [
+          "info",
+          101,
+          1
+        ],
+        [
+          "info",
+          100,
+          5
+        ],
+        [
+          "sid",
+          100,
+          5
+        ],
+        [
+          "info",
+          100,
+          6
+        ],
+        [
+          "sid",
+          100,
+          6
+        ],
+        [
+          "rusage",
+          100,
+          2
+        ],
+        [
+          "info",
+          100,
+          7
+        ],
+        [
+          "sid",
+          100,
+          7
+        ],
+        [
+          "info",
+          100,
+          8
+        ],
+        [
+          "sid",
+          100,
+          8
+        ],
+        [
+          "info",
+          102,
+          1
+        ],
+        [
+          "sid",
+          102,
+          1
+        ],
+        [
+          "info",
+          102,
+          2
+        ],
+        [
+          "sid",
+          102,
+          2
+        ],
+        [
+          "rusage",
+          102,
+          1
+        ],
+        [
+          "info",
+          102,
+          3
+        ],
+        [
+          "sid",
+          102,
+          3
+        ],
+        [
+          "info",
+          102,
+          4
+        ],
+        [
+          "sid",
+          102,
+          4
+        ]
+      ],
+      "events": [
+        [
+          "native-read-failure",
+          {
+            "operation": "proc-pidinfo-denied-missing-short/0",
+            "pid": 101,
+            "errno": 3,
+            "returned": 0,
+            "known_identity": {
+              "pid": 101,
+              "start_sec": 12000,
+              "start_usec": 60,
+              "uid": 501,
+              "ruid": 501,
+              "pgid": 100,
+              "sid": 100
+            },
+            "partial_identity": null,
+            "esrch_candidate": true
+          }
+        ],
+        [
+          "group-read-failure",
+          {
+            "failure": {
+              "operation": "proc-pidinfo-denied-missing-short/0",
+              "pid": 101,
+              "errno": 3,
+              "returned": 0,
+              "known_identity": {
+                "pid": 101,
+                "start_sec": 12000,
+                "start_usec": 60,
+                "uid": 501,
+                "ruid": 501,
+                "pgid": 100,
+                "sid": 100
+              },
+              "partial_identity": null,
+              "esrch_candidate": true
+            },
+            "known_identity": {
+              "pid": 101,
+              "start_sec": 12000,
+              "start_usec": 60,
+              "uid": 501,
+              "ruid": 501,
+              "pgid": 100,
+              "sid": 100
+            },
+            "membership_row": {
+              "pid": 101,
+              "ppid": 100,
+              "pgid": 100,
+              "uid": 501,
+              "zombie": false
+            }
+          }
+        ],
+        [
+          "member-exit-confirmed",
+          {
+            "pid": 101,
+            "identity": {
+              "pid": 101,
+              "start_sec": 12000,
+              "start_usec": 60,
+              "uid": 501,
+              "ruid": 501,
+              "pgid": 100,
+              "sid": 100
+            },
+            "last_membership_row": {
+              "pid": 101,
+              "ppid": 100,
+              "pgid": 100,
+              "uid": 501,
+              "zombie": false
+            },
+            "native_failure": {
+              "operation": "proc-pidinfo-denied-missing-short/0",
+              "pid": 101,
+              "errno": 3,
+              "returned": 0,
+              "known_identity": {
+                "pid": 101,
+                "start_sec": 12000,
+                "start_usec": 60,
+                "uid": 501,
+                "ruid": 501,
+                "pgid": 100,
+                "sid": 100
+              },
+              "partial_identity": null,
+              "esrch_candidate": true
+            },
+            "absence_snapshot_started": 100.0,
+            "complete_global_absence": true,
+            "exit_status": "not-known-from-absence",
+            "resource_observation": null,
+            "measurement_state": "exited-unmeasured"
+          }
+        ],
+        [
+          "group-collection",
+          {
+            "live_members": [
+              102
+            ],
+            "zombie_present_unmeasured": [],
+            "exited_members": [
+              {
+                "pid": 101,
+                "identity": {
+                  "pid": 101,
+                  "start_sec": 12000,
+                  "start_usec": 60,
+                  "uid": 501,
+                  "ruid": 501,
+                  "pgid": 100,
+                  "sid": 100
+                },
+                "last_membership_row": {
+                  "pid": 101,
+                  "ppid": 100,
+                  "pgid": 100,
+                  "uid": 501,
+                  "zombie": false
+                },
+                "native_failure": {
+                  "operation": "proc-pidinfo-denied-missing-short/0",
+                  "pid": 101,
+                  "errno": 3,
+                  "returned": 0,
+                  "known_identity": {
+                    "pid": 101,
+                    "start_sec": 12000,
+                    "start_usec": 60,
+                    "uid": 501,
+                    "ruid": 501,
+                    "pgid": 100,
+                    "sid": 100
+                  },
+                  "partial_identity": null,
+                  "esrch_candidate": true
+                },
+                "absence_snapshot_started": 100.0,
+                "complete_global_absence": true,
+                "exit_status": "not-known-from-absence",
+                "resource_observation": null,
+                "measurement_state": "exited-unmeasured"
+              }
+            ],
+            "resamples": 1,
+            "job_seen_pid_count": 3,
+            "job_departed_pid_count": 1,
+            "rss_bytes": 800,
+            "footprint_bytes": 580,
+            "metric_basis": "max-of-validated-partial-and-complete-sums-in-this-acquisition"
+          }
+        ]
+      ]
+    },
+    {
+      "case": "validated-partial-peak",
+      "fake_native_only": true,
+      "outcome": "collected",
+      "output": {
+        "rss_bytes": 10100,
+        "footprint_bytes": 8080,
+        "live": [],
+        "identities": {
+          "100": {
+            "pid": 100,
+            "start_sec": 12000,
+            "start_usec": 50,
+            "uid": 501,
+            "ruid": 501,
+            "pgid": 100,
+            "sid": 100
+          }
+        }
+      },
+      "table_calls": 4,
+      "complete_native_pid_lists": 0,
+      "native_calls": [
+        [
+          "info",
+          100,
+          1
+        ],
+        [
+          "sid",
+          100,
+          1
+        ],
+        [
+          "info",
+          100,
+          2
+        ],
+        [
+          "sid",
+          100,
+          2
+        ],
+        [
+          "rusage",
+          100,
+          1
+        ],
+        [
+          "info",
+          100,
+          3
+        ],
+        [
+          "sid",
+          100,
+          3
+        ],
+        [
+          "info",
+          100,
+          4
+        ],
+        [
+          "sid",
+          100,
+          4
+        ],
+        [
+          "info",
+          101,
+          1
+        ],
+        [
+          "sid",
+          101,
+          1
+        ],
+        [
+          "info",
+          101,
+          2
+        ],
+        [
+          "sid",
+          101,
+          2
+        ],
+        [
+          "rusage",
+          101,
+          1
+        ],
+        [
+          "info",
+          101,
+          3
+        ],
+        [
+          "sid",
+          101,
+          3
+        ],
+        [
+          "info",
+          101,
+          4
+        ],
+        [
+          "sid",
+          101,
+          4
+        ],
+        [
+          "info",
+          100,
+          5
+        ],
+        [
+          "sid",
+          100,
+          5
+        ],
+        [
+          "info",
+          100,
+          6
+        ],
+        [
+          "sid",
+          100,
+          6
+        ],
+        [
+          "rusage",
+          100,
+          2
+        ],
+        [
+          "info",
+          100,
+          7
+        ],
+        [
+          "sid",
+          100,
+          7
+        ],
+        [
+          "info",
+          100,
+          8
+        ],
+        [
+          "sid",
+          100,
+          8
+        ]
+      ],
+      "events": [
+        [
+          "member-exit-confirmed",
+          {
+            "pid": 101,
+            "identity": {
+              "pid": 101,
+              "start_sec": 12000,
+              "start_usec": 60,
+              "uid": 501,
+              "ruid": 501,
+              "pgid": 100,
+              "sid": 100
+            },
+            "last_membership_row": {
+              "pid": 101,
+              "ppid": 100,
+              "pgid": 100,
+              "uid": 501,
+              "zombie": false
+            },
+            "native_failure": null,
+            "absence_snapshot_started": 100.0,
+            "complete_global_absence": true,
+            "exit_status": "not-known-from-absence",
+            "resource_observation": {
+              "rss_bytes": 10000,
+              "footprint_bytes": 8000
+            },
+            "measurement_state": "measured-in-this-acquisition-before-exit"
+          }
+        ],
+        [
+          "group-collection",
+          {
+            "live_members": [],
+            "zombie_present_unmeasured": [],
+            "exited_members": [
+              {
+                "pid": 101,
+                "identity": {
+                  "pid": 101,
+                  "start_sec": 12000,
+                  "start_usec": 60,
+                  "uid": 501,
+                  "ruid": 501,
+                  "pgid": 100,
+                  "sid": 100
+                },
+                "last_membership_row": {
+                  "pid": 101,
+                  "ppid": 100,
+                  "pgid": 100,
+                  "uid": 501,
+                  "zombie": false
+                },
+                "native_failure": null,
+                "absence_snapshot_started": 100.0,
+                "complete_global_absence": true,
+                "exit_status": "not-known-from-absence",
+                "resource_observation": {
+                  "rss_bytes": 10000,
+                  "footprint_bytes": 8000
+                },
+                "measurement_state": "measured-in-this-acquisition-before-exit"
+              }
+            ],
+            "resamples": 1,
+            "job_seen_pid_count": 2,
+            "job_departed_pid_count": 1,
+            "rss_bytes": 10100,
+            "footprint_bytes": 8080,
+            "metric_basis": "max-of-validated-partial-and-complete-sums-in-this-acquisition"
+          }
+        ]
+      ]
+    },
+    {
+      "case": "partial-reuse-then-ESRCH",
+      "fake_native_only": true,
+      "outcome": "refused",
+      "reason": "partial-identity-changed-or-pid-reused",
+      "table_calls": 1,
+      "complete_native_pid_lists": 0,
+      "native_calls": [
+        [
+          "info",
+          100,
+          1
+        ],
+        [
+          "sid",
+          100,
+          1
+        ],
+        [
+          "info",
+          100,
+          2
+        ],
+        [
+          "sid",
+          100,
+          2
+        ],
+        [
+          "rusage",
+          100,
+          1
+        ],
+        [
+          "info",
+          100,
+          3
+        ],
+        [
+          "sid",
+          100,
+          3
+        ],
+        [
+          "info",
+          100,
+          4
+        ],
+        [
+          "sid",
+          100,
+          4
+        ],
+        [
+          "info",
+          101,
+          1
+        ],
+        [
+          "sid",
+          101,
+          1
+        ]
+      ],
+      "events": [
+        [
+          "native-read-failure",
+          {
+            "operation": "getsid/0",
+            "pid": 101,
+            "errno": 3,
+            "returned": null,
+            "known_identity": {
+              "pid": 101,
+              "start_sec": 12000,
+              "start_usec": 60,
+              "uid": 501,
+              "ruid": 501,
+              "pgid": 100,
+              "sid": 100
+            },
+            "partial_identity": {
+              "pid": 101,
+              "start_sec": 12001,
+              "start_usec": 60,
+              "uid": 501,
+              "ruid": 501,
+              "pgid": 100
+            },
+            "esrch_candidate": true
+          }
+        ],
+        [
+          "group-read-failure",
+          {
+            "failure": {
+              "operation": "getsid/0",
+              "pid": 101,
+              "errno": 3,
+              "returned": null,
+              "known_identity": {
+                "pid": 101,
+                "start_sec": 12000,
+                "start_usec": 60,
+                "uid": 501,
+                "ruid": 501,
+                "pgid": 100,
+                "sid": 100
+              },
+              "partial_identity": {
+                "pid": 101,
+                "start_sec": 12001,
+                "start_usec": 60,
+                "uid": 501,
+                "ruid": 501,
+                "pgid": 100
+              },
+              "esrch_candidate": true
+            },
+            "known_identity": {
+              "pid": 101,
+              "start_sec": 12000,
+              "start_usec": 60,
+              "uid": 501,
+              "ruid": 501,
+              "pgid": 100,
+              "sid": 100
+            },
+            "membership_row": {
+              "pid": 101,
+              "ppid": 100,
+              "pgid": 100,
+              "uid": 501,
+              "zombie": false
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "case": "completion-native-absence",
+      "fake_native_only": true,
+      "outcome": "collected",
+      "output": [],
+      "table_calls": 3,
+      "complete_native_pid_lists": 2,
+      "native_calls": [
+        [
+          "info",
+          100,
+          1
+        ],
+        [
+          "sid",
+          100,
+          1
+        ],
+        [
+          "info",
+          100,
+          2
+        ],
+        [
+          "sid",
+          100,
+          2
+        ],
+        [
+          "info",
+          101,
+          1
+        ],
+        [
+          "info",
+          100,
+          3
+        ],
+        [
+          "sid",
+          100,
+          3
+        ],
+        [
+          "info",
+          100,
+          4
+        ],
+        [
+          "sid",
+          100,
+          4
+        ]
+      ],
+      "events": [
+        [
+          "native-membership",
+          {
+            "flavor": 2,
+            "value": 100,
+            "pids": [
+              100,
+              101
+            ]
+          }
+        ],
+        [
+          "native-read-failure",
+          {
+            "operation": "proc-pidinfo-denied-missing-short/0",
+            "pid": 101,
+            "errno": 3,
+            "returned": 0,
+            "known_identity": {
+              "pid": 101,
+              "start_sec": 12000,
+              "start_usec": 60,
+              "uid": 501,
+              "ruid": 501,
+              "pgid": 100,
+              "sid": 100
+            },
+            "partial_identity": null,
+            "esrch_candidate": true
+          }
+        ],
+        [
+          "group-read-failure",
+          {
+            "failure": {
+              "operation": "proc-pidinfo-denied-missing-short/0",
+              "pid": 101,
+              "errno": 3,
+              "returned": 0,
+              "known_identity": {
+                "pid": 101,
+                "start_sec": 12000,
+                "start_usec": 60,
+                "uid": 501,
+                "ruid": 501,
+                "pgid": 100,
+                "sid": 100
+              },
+              "partial_identity": null,
+              "esrch_candidate": true
+            },
+            "known_identity": {
+              "pid": 101,
+              "start_sec": 12000,
+              "start_usec": 60,
+              "uid": 501,
+              "ruid": 501,
+              "pgid": 100,
+              "sid": 100
+            },
+            "membership_row": null
+          }
+        ],
+        [
+          "native-membership",
+          {
+            "flavor": 2,
+            "value": 100,
+            "pids": [
+              100
+            ]
+          }
+        ],
+        [
+          "native-membership",
+          {
+            "flavor": 1,
+            "value": 0,
+            "pids": [
+              100,
+              900
+            ]
+          }
+        ],
+        [
+          "member-exit-confirmed",
+          {
+            "pid": 101,
+            "identity": {
+              "pid": 101,
+              "start_sec": 12000,
+              "start_usec": 60,
+              "uid": 501,
+              "ruid": 501,
+              "pgid": 100,
+              "sid": 100
+            },
+            "last_membership_row": null,
+            "native_failure": {
+              "operation": "proc-pidinfo-denied-missing-short/0",
+              "pid": 101,
+              "errno": 3,
+              "returned": 0,
+              "known_identity": {
+                "pid": 101,
+                "start_sec": 12000,
+                "start_usec": 60,
+                "uid": 501,
+                "ruid": 501,
+                "pgid": 100,
+                "sid": 100
+              },
+              "partial_identity": null,
+              "esrch_candidate": true
+            },
+            "absence_snapshot_started": 100.0,
+            "complete_global_absence": true,
+            "exit_status": "not-known-from-absence",
+            "resource_observation": null,
+            "measurement_state": "exited-unmeasured"
+          }
+        ],
+        [
+          "native-membership",
+          {
+            "flavor": 2,
+            "value": 100,
+            "pids": [
+              100
+            ]
+          }
+        ],
+        [
+          "native-membership",
+          {
+            "flavor": 1,
+            "value": 0,
+            "pids": [
+              100,
+              900
+            ]
+          }
+        ],
+        [
+          "group-collection",
+          {
+            "live_members": [],
+            "zombie_present_unmeasured": [],
+            "exited_members": [
+              {
+                "pid": 101,
+                "identity": {
+                  "pid": 101,
+                  "start_sec": 12000,
+                  "start_usec": 60,
+                  "uid": 501,
+                  "ruid": 501,
+                  "pgid": 100,
+                  "sid": 100
+                },
+                "last_membership_row": null,
+                "native_failure": {
+                  "operation": "proc-pidinfo-denied-missing-short/0",
+                  "pid": 101,
+                  "errno": 3,
+                  "returned": 0,
+                  "known_identity": {
+                    "pid": 101,
+                    "start_sec": 12000,
+                    "start_usec": 60,
+                    "uid": 501,
+                    "ruid": 501,
+                    "pgid": 100,
+                    "sid": 100
+                  },
+                  "partial_identity": null,
+                  "esrch_candidate": true
+                },
+                "absence_snapshot_started": 100.0,
+                "complete_global_absence": true,
+                "exit_status": "not-known-from-absence",
+                "resource_observation": null,
+                "measurement_state": "exited-unmeasured"
+              }
+            ],
+            "resamples": 1,
+            "job_seen_pid_count": 2,
+            "job_departed_pid_count": 1,
+            "rss_bytes": 0,
+            "footprint_bytes": 0,
+            "metric_basis": "max-of-validated-partial-and-complete-sums-in-this-acquisition"
+          }
+        ]
+      ]
+    }
+  ]
+}

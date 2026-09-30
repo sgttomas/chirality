@@ -1,0 +1,125 @@
+{
+  "v2_sha256": "533a6f7506da4e031d8a824a27b4e9c496f374a3af8b7e98c72da55e8bbc26b5",
+  "v3_sha256": "b32050c72d0bbad0f69526fc98d1f28dcb1fa131115227a2169db8100d66848b",
+  "changed_existing_top_level_definitions": [
+    "MacProvider",
+    "supervisor"
+  ],
+  "added_top_level_definitions": [
+    "NativeReadFailure"
+  ],
+  "changed_MacProvider_methods": [
+    "__init__",
+    "identity",
+    "live_group",
+    "group"
+  ],
+  "added_MacProvider_methods": [
+    "_collect_group",
+    "_native_failure",
+    "_pid_list",
+    "_snapshot",
+    "_validate_partial",
+    "_within"
+  ],
+  "supervisor_change": "MacProvider receives existing supervisor event sink; no stop/signal/control changes",
+  "added_import": "errno",
+  "all_other_top_level_ast_identical": true,
+  "compile_argv_and_read_job_ast_identical_to_reviewed_v2": true,
+  "preserved_behavior_and_argv_tests": {
+    "tests": 111,
+    "exit_code": 0
+  },
+  "new_fake_native_race_tests": {
+    "tests": 39,
+    "exit_code": 0,
+    "note": "Boundary matrices additionally use unittest subtests"
+  },
+  "v2_reproduction_exit_code": 0,
+  "fake_scenario_recorder_exit_code": 0,
+  "preserved_original_entries": 78,
+  "live_operations": "none",
+  "files": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/CONTEXT.json",
+      "sha256": "83b874979caba49a50647ef8e8a9113b562211c98560dbbec8dbba0d536e82c5",
+      "bytes": 15711
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/DIAGNOSIS.md",
+      "sha256": "a06fd935e1cfe99629ec642d736067671761ea2fdaada8c559160d2bb215e7f2",
+      "bytes": 3480
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/LIVE_FAST_CHILD_PROPOSAL.md",
+      "sha256": "2368e701e5648adf6a3bc214fc3ff484f1b1fa36ac12ef187aae2e6d073b178d",
+      "bytes": 5204
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/PRESERVATION_AFTER.json",
+      "sha256": "a05fd5eb69b300cdcf89faeb865ac525fac585daeff956d67ed55934a5cda97e",
+      "bytes": 30961
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/PRESERVATION_BEFORE.json",
+      "sha256": "9fe82146672675cb67b893a0eaf1a6a8c3b6061fe94669d7131f2718e07658cc",
+      "bytes": 21323
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/RETURN.md",
+      "sha256": "1c834b4e34f6af350ad3acc6795b2b77f8f5a78275027130e954bc87722ae0d3",
+      "bytes": 7983
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/exit-race-tests.log",
+      "sha256": "aeccc645dc3fe36e8e580971966662c1f946c8173cf42608a9822810b652b1aa",
+      "bytes": 5209
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/harness.py",
+      "sha256": "bf4621ba70bc3e07bc7198c99d5db8e18ba4c2d88c5292abe75524ab2254dd56",
+      "bytes": 793
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/host_guard_v2_to_v3.diff",
+      "sha256": "114ccd5290f4c635df0a0176239d2230f81c760db30820db3b6475e7add9cd3f",
+      "bytes": 19340
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/preserved-tests.log",
+      "sha256": "6420c37a29b2aee2aea73c612c694d1ed083ed8749915797f6580e26cc748239",
+      "bytes": 13764
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/record_scenarios.py",
+      "sha256": "be8f20c262fa678658ab319660e42606e9fc46006e57143fe1a4efc9c8237ffb",
+      "bytes": 1990
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/reproduce_v2.py",
+      "sha256": "d666f2440c51dc31573b463fa22d8a86061c9be2fe1c063f139c8753592a57ed",
+      "bytes": 3165
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/run_preserved_tests.py",
+      "sha256": "f6862bf55ca95b1f595ba11be5407969eeca0aac6a297af0c5183fc382c4dc87",
+      "bytes": 530
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/scenario_results.json",
+      "sha256": "f7a3a3438337f4c1a6881339a07b1b22980e32b9cf8294c60061bfee14dd20a2",
+      "bytes": 26245
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/test_exit_races.py",
+      "sha256": "8a0c9c6fd6c7e9f1c0dd18b5d3e7f0186cda3e334d5082cf2360ceec5704ddb3",
+      "bytes": 21260
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/v2_reproduction.json",
+      "sha256": "5f9165df037a645226a02d5fe192ab29dbcfd296ad0e42962ba68d512495b218",
+      "bytes": 683
+    }
+  ],
+  "lifetime_identity_history": "At most512 seen owned PIDs including departed identities; no eviction; reject later reappearance inside or outside group when visible"
+}

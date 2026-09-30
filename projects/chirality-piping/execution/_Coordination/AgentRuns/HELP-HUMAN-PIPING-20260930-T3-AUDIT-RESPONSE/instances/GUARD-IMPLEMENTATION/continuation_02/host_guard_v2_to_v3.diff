@@ -1,0 +1,363 @@
+--- projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/tools/host_guard_v2.py
++++ projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/tools/host_guard_v3.py
+@@ -11,6 +11,7 @@
+ 
+ import argparse
+ import ctypes as C
++import errno
+ from dataclasses import asdict, dataclass
+ import fcntl
+ import hashlib
+@@ -43,6 +44,17 @@
+ 
+ class Refusal(Exception):
+     """Untrusted/absent observation, violated limit, or unsupported invocation."""
++
++
++class NativeReadFailure(Refusal):
++    """Preserve exact native failure provenance; ESRCH alone permits no skip."""
++    def __init__(self, operation, pid, error, returned, esrch_candidate, known=None, partial=None):
++        self.pid = pid
++        self.esrch_candidate = esrch_candidate
++        self.details = {'operation': operation, 'pid': pid, 'errno': error,
++                        'returned': returned, 'known_identity': known,
++                        'partial_identity': partial, 'esrch_candidate': esrch_candidate}
++        super().__init__('%s:pid=%s:errno=%s:return=%s' % (operation, pid, error, returned))
+ 
+ 
+ def finite(value, name, minimum=0):
+@@ -366,23 +378,48 @@
+         self.lib.proc_pid_rusage.restype = C.c_int
+         self.log_dir = log_dir
+         self.known = {}
++        self.seen = {}
++        self.departed = {}
++
++    def _native_failure(self, operation, pid, error, returned, failure_value, partial=None):
++        known = self.known.get(pid)
++        failure_shaped = ((returned is None and failure_value is None) or
++                          (type(returned) is int and returned == failure_value))
++        failure = NativeReadFailure(operation, pid, error, returned,
++                                    type(error) is int and error == errno.ESRCH and failure_shaped,
++                                    asdict(known) if known else None, partial)
++        if self.trace:
++            self.trace('native-read-failure', **failure.details)
++        return failure
+ 
+     def identity(self, pid):
+         first, second = BSDInfo(), BSDInfo()
+-        for obj in (first, second):
++        partial = None
++        for phase, obj in enumerate((first, second)):
+             C.set_errno(0)
+-            if self.lib.proc_pidinfo(pid, 3, 0, C.byref(obj), C.sizeof(obj)) != C.sizeof(obj):
+-                raise Refusal('proc-pidinfo-denied-missing-short:' + str(C.get_errno()))
++            returned = self.lib.proc_pidinfo(pid, 3, 0, C.byref(obj), C.sizeof(obj))
++            if returned != C.sizeof(obj):
++                raise self._native_failure('proc-pidinfo-denied-missing-short/' + str(phase),
++                                           pid, C.get_errno(), returned, 0, partial)
+             if obj is first:
+-                sid = os.getsid(pid)
++                partial = {name: int(getattr(first, name)) for name in
++                           ('pid', 'start_sec', 'start_usec', 'uid', 'ruid', 'pgid')}
++                try:
++                    sid = os.getsid(pid)
++                    partial['sid'] = sid
++                except OSError as exc:
++                    raise self._native_failure('getsid/0', pid, exc.errno, None, None, partial) from exc
+         if bytes(first) != bytes(second):
+-            # Compare stable identity fields below; counters/names can change.
+             a = (first.pid, first.start_sec, first.start_usec, first.uid, first.ruid, first.pgid)
+             b = (second.pid, second.start_sec, second.start_usec, second.uid, second.ruid, second.pgid)
+             if a != b:
+-                raise Refusal('identity-raced')
+-        if second.pid != pid or os.getsid(pid) != sid:
+-            raise Refusal('session-raced')
++                raise Refusal('identity-raced:pid=' + str(pid))
++        try:
++            after_sid = os.getsid(pid)
++        except OSError as exc:
++            raise self._native_failure('getsid/1', pid, exc.errno, None, None, partial) from exc
++        if second.pid != pid or after_sid != sid:
++            raise Refusal('session-raced:pid=' + str(pid))
+         ident = Identity(pid, second.start_sec, second.start_usec, second.uid, second.ruid, second.pgid, sid)
+         ident.validate()
+         return ident, second.status == 5
+@@ -390,51 +427,226 @@
+     def table(self, deadline):
+         return parse_rows(bounded_command(['/bin/ps', '-axo', 'pid=,ppid=,pgid=,uid=,stat='], deadline, self.trace))
+ 
++    def _pid_list(self, flavor, value, capacity):
++        buffer = (C.c_int * (capacity + 1))()
++        C.set_errno(0)
++        count = self.lib.proc_listpids(flavor, value, buffer, C.sizeof(buffer))
++        if count <= 0 or count >= C.sizeof(buffer) or count % C.sizeof(C.c_int):
++            raise Refusal('group-enumeration-denied-empty-or-truncated:flavor=%s:errno=%s:return=%s' %
++                          (flavor, C.get_errno(), count))
++        pids = list(buffer[:count // C.sizeof(C.c_int)])
++        if len(set(pids)) != len(pids) or any(pid < (0 if flavor == 1 else 1) for pid in pids):
++            raise Refusal('group-enumeration-invalid')
++        if self.trace:
++            self.trace('native-membership', flavor=flavor, value=value, pids=pids)
++        return set(pids)
++
++    @staticmethod
++    def _within(deadline):
++        now = finite(time.monotonic(), 'group-clock')
++        finite(deadline, 'group-deadline')
++        if now >= deadline:
++            raise Refusal('group-sample-timeout')
++
++    def _snapshot(self, leader, expected, deadline, native, complete=False):
++        self._within(deadline)
++        started = time.monotonic()
++        if native:
++            # Never spawn ps inside the supervisor's workload group. A complete
++            # all-PID enumeration is needed only for disappearance confirmation.
++            members = self._pid_list(2, leader.pgid, MAX_MEMBERS)
++            all_pids = self._pid_list(1, 0, 32768) if complete else None
++            rows = None
++            if leader.pid not in members or (complete and leader.pid not in all_pids):
++                raise Refusal('leader-loss')
++            if complete and any(pid in all_pids and pid not in members for pid in expected):
++                raise Refusal('known-member-present-outside-group-or-reused')
++        else:
++            rows = self.table(deadline)
++            members = select_members(rows, leader, expected)
++            if rows[leader.pid].zombie:
++                raise Refusal('leader-zombie')
++            all_pids = set(rows)
++        self._within(deadline)
++        age = time.monotonic() - started
++        if not 0 <= age <= MAX_AGE:
++            raise Refusal('stale-membership-snapshot')
++        return members, all_pids, rows, started
++
++    @staticmethod
++    def _validate_partial(partial, pid, expected, leader):
++        # A later absence cannot erase a contradiction already observed by an
++        # earlier successful native read. Missing fields remain unknown.
++        if partial is None:
++            return
++        for name, value in partial.items():
++            integer(value, 'partial-' + name, 1 if name in ('pid', 'start_sec', 'pgid', 'sid') else 0)
++            if name == 'start_usec' and value >= 1000000:
++                raise Refusal('malformed-partial-start-identity')
++            if name == 'pid' and value != pid:
++                raise Refusal('partial-pid-mismatch')
++            if name in ('uid', 'ruid', 'pgid', 'sid') and value != getattr(leader, name):
++                raise Refusal('partial-identity-UID-group-session-mismatch')
++            if expected is not None and value != getattr(expected, name):
++                raise Refusal('partial-identity-changed-or-pid-reused')
++
++    def _collect_group(self, leader, deadline, native=False, resources=True):
++        """At most two complete resamples; the caller's deadline never moves.
++
++        ESRCH is a candidate, not absence proof. Recovery needs a new complete
++        global snapshot in which that non-leader PID is absent. Recollect every
++        surviving/new member, retain bounded job-lifetime identities/tombstones,
++        and keep valid partial metric maxima from discarded collection passes.
++        """
++        deadline = min(deadline, time.monotonic() + MAX_AGE)
++        # Job-lifetime tombstones are never evicted: a confirmed departed PID
++        # cannot return as a supposedly new member in a later acquisition.
++        self.seen = getattr(self, 'seen', {})
++        self.departed = getattr(self, 'departed', {})
++        expected = dict(self.seen)
++        expected.update(self.known)
++        expected[leader.pid] = leader
++        for pid in self.departed:
++            expected.setdefault(pid, None)
++        if len(expected) > MAX_MEMBERS:
++            raise Refusal('job-seen-pid-limit')
++        self.seen.update(expected)
++        retired = set(self.departed)
++        self.group_exits = []
++        measured = {}
++        observed_rows = {}
++        peak_rss = peak_footprint = 0
++        retries = 0
++        view = self._snapshot(leader, expected, deadline, native, complete=bool(retired))
++
++        def refresh(failure=None):
++            nonlocal retries
++            retries += 1
++            if retries > 2:
++                raise Refusal('group-membership-churn-limit')
++            fresh = self._snapshot(leader, expected, deadline, native, complete=True)
++            members, all_pids, _, started = fresh
++            if retired & all_pids:
++                raise Refusal('retired-pid-reappeared-or-reused')
++            if failure and (failure.pid == leader.pid or failure.pid in all_pids):
++                raise Refusal('ESRCH-without-complete-nonleader-absence:' + str(failure.pid))
++            lost = set(expected) - all_pids - retired
++            if leader.pid in lost:
++                raise Refusal('leader-loss')
++            for pid in sorted(lost):
++                record = {'pid': pid, 'identity': asdict(expected[pid]) if expected[pid] else None,
++                          'last_membership_row': observed_rows.get(pid),
++                          'native_failure': failure.details if failure and failure.pid == pid else None,
++                          'absence_snapshot_started': started, 'complete_global_absence': True,
++                          'exit_status': 'not-known-from-absence',
++                          'resource_observation': measured.get(pid),
++                          'measurement_state': 'measured-in-this-acquisition-before-exit' if pid in measured else 'exited-unmeasured'}
++                self.group_exits.append(record)
++                self.departed[pid] = record
++                if self.trace:
++                    self.trace('member-exit-confirmed', **record)
++            retired.update(lost)
++            return fresh
++
++        while True:
++            self._within(deadline)
++            members, all_pids, rows, _ = view
++            if all_pids is not None and retired & all_pids:
++                raise Refusal('retired-pid-reappeared-or-reused')
++            if len(set(expected) | members) > MAX_MEMBERS:
++                raise Refusal('job-seen-pid-limit')
++            for pid in members:
++                expected.setdefault(pid, None)
++                self.seen.setdefault(pid, expected[pid])
++                if rows is not None:
++                    observed_rows[pid] = asdict(rows[pid])
++            if len(expected) > MAX_MEMBERS:
++                raise Refusal('too-many-members-during-resample')
++            # Previously known or newly seen members cannot vanish silently.
++            if set(expected) - retired - members:
++                view = refresh()
++                continue
++            rss = footprint = 0
++            identities = {}
++            live = []
++            zombies = []
++            failure = None
++            try:
++                for pid in sorted(members):
++                    self._within(deadline)
++                    ident, zombie = self.identity(pid)
++                    validate_member(expected.get(pid), ident, leader)
++                    expected[pid] = ident
++                    self.seen[pid] = ident
++                    if pid == leader.pid and zombie:
++                        raise Refusal('leader-zombie')
++                    if rows is not None and (rows[pid].uid != ident.uid or rows[pid].pgid != ident.pgid):
++                        raise Refusal('process-table-raced')
++                    identities[pid] = ident
++                    if zombie:
++                        zombies.append(pid)  # Identity checked; never trust table Z alone.
++                    else:
++                        if resources:
++                            usage = RUsageV0()
++                            C.set_errno(0)
++                            returned = self.lib.proc_pid_rusage(pid, 0, C.cast(C.byref(usage), C.POINTER(C.c_void_p)))
++                            if returned != 0:
++                                raise self._native_failure('proc_pid_rusage', pid, C.get_errno(), returned, -1)
++                            after, after_zombie = self.identity(pid)
++                            if after != ident or after_zombie or usage.proc_start_abstime == 0 or usage.proc_exit_abstime != 0:
++                                raise Refusal('rusage-identity-raced:pid=' + str(pid))
++                            measured[pid] = {'rss_bytes': int(usage.resident_size),
++                                             'footprint_bytes': int(usage.phys_footprint)}
++                            rss += usage.resident_size
++                            footprint += usage.phys_footprint
++                            peak_rss, peak_footprint = max(peak_rss, rss), max(peak_footprint, footprint)
++                        if pid != leader.pid:
++                            live.append(pid)
++                    self._within(deadline)
++            except NativeReadFailure as exc:
++                if self.trace:
++                    self.trace('group-read-failure', failure=exc.details,
++                               known_identity=asdict(expected[exc.pid]) if expected.get(exc.pid) else None,
++                               membership_row=observed_rows.get(exc.pid))
++                self._validate_partial(exc.details['partial_identity'], exc.pid, expected.get(exc.pid), leader)
++                if not exc.esrch_candidate or exc.pid == leader.pid:
++                    raise
++                failure = exc
++            if failure:
++                view = refresh(failure)
++                continue
++            # A final membership snapshot detects additions/losses during the
++            # pass. On change, recollect; do not drop a newly appearing member.
++            final = self._snapshot(leader, expected, deadline, native, complete=bool(retired))
++            if final[1] is not None and retired & final[1]:
++                raise Refusal('retired-pid-reappeared-or-reused')
++            if final[0] != members:
++                if len(set(expected) | final[0]) > MAX_MEMBERS:
++                    raise Refusal('job-seen-pid-limit')
++                for pid in final[0]:
++                    expected.setdefault(pid, None)
++                    self.seen.setdefault(pid, expected[pid])
++                    if final[2] is not None:
++                        observed_rows[pid] = asdict(final[2][pid])
++                view = refresh()
++                continue
++            self._within(deadline)
++            self.known = identities
++            if self.trace:
++                self.trace('group-collection', live_members=live, zombie_present_unmeasured=zombies,
++                           exited_members=self.group_exits, resamples=retries,
++                           job_seen_pid_count=len(self.seen), job_departed_pid_count=len(self.departed),
++                           rss_bytes=peak_rss, footprint_bytes=peak_footprint,
++                           metric_basis='max-of-validated-partial-and-complete-sums-in-this-acquisition')
++            return peak_rss, peak_footprint, live, identities
++
+     def live_group(self, leader):
+-        # Supervisor cleanup must not spawn ps inside the owned group. Read the
+-        # native group directly; proc_listpids returns BYTES, not PID count.
+-        buffer = (C.c_int * (MAX_MEMBERS + 1))()
+-        count = self.lib.proc_listpids(2, leader.pgid, buffer, C.sizeof(buffer))
+-        if count <= 0 or count >= C.sizeof(buffer) or count % C.sizeof(C.c_int):
+-            raise Refusal('group-enumeration-denied-empty-or-truncated')
+-        pids = list(buffer[:count // C.sizeof(C.c_int)])
+-        if leader.pid not in pids or len(set(pids)) != len(pids) or any(pid <= 0 for pid in pids):
+-            raise Refusal('group-enumeration-invalid')
+-        live = []
+-        for pid in pids:
+-            ident, zombie = self.identity(pid)
+-            validate_member(leader if pid == leader.pid else self.known.get(pid), ident, leader)
+-            if not zombie and pid != leader.pid:
+-                live.append(pid)
+-        return live
++        # Independent completion collection has one fixed short budget, not a
++        # fresh budget for each exited child. The monitor uses its own deadline.
++        return self._collect_group(leader, time.monotonic() + .5, native=True, resources=False)[2]
+ 
+     def group(self, leader, deadline):
+-        rows = self.table(deadline)
+-        selected = select_members(rows, leader, self.known)
+-        rss = footprint = 0
+-        identities = {}
+-        live_children = []
+-        for pid in sorted(selected):
+-            ident, zombie = self.identity(pid)
+-            validate_member(leader if pid == leader.pid else self.known.get(pid), ident, leader)
+-            if rows[pid].uid != ident.uid or rows[pid].pgid != ident.pgid:
+-                raise Refusal('process-table-raced')
+-            identities[pid] = ident
+-            if not zombie:
+-                usage = RUsageV0()
+-                if self.lib.proc_pid_rusage(pid, 0, C.cast(C.byref(usage), C.POINTER(C.c_void_p))) != 0:
+-                    raise Refusal('rusage-denied-or-missing:' + str(C.get_errno()))
+-                after, after_zombie = self.identity(pid)
+-                if after != ident or after_zombie or usage.proc_start_abstime == 0 or usage.proc_exit_abstime != 0:
+-                    raise Refusal('rusage-identity-raced')
+-                rss += usage.resident_size
+-                footprint += usage.phys_footprint
+-                if pid != leader.pid:
+-                    live_children.append(pid)
+-            if time.monotonic() > deadline:
+-                raise Refusal('group-sample-timeout')
+-        self.known = identities
+-        return rss, footprint, live_children, identities
++        return self._collect_group(leader, deadline)
+ 
+     def sample(self, leader=None):
+         started = time.monotonic()
+@@ -528,7 +740,7 @@
+     """Only this process signals, and only its own continuously live group."""
+     os.setsid()
+     events = Events(log_dir / 'supervisor.jsonl')
+-    provider = MacProvider(log_dir)
++    provider = MacProvider(log_dir, trace=events.emit)
+     leader, zombie = provider.identity(os.getpid())
+     if zombie or leader.pid != leader.pgid or leader.pid != leader.sid or not self_is_owner(leader):
+         raise Refusal('not-independent-supervisor-session')

@@ -1,0 +1,9 @@
+{
+  "actor": "/root HELP_HUMAN",
+  "coordination": "84843dbf9b74c4c3fdb727610998910b740a48ea",
+  "method": "Three serialized proc_listpids calls per flavor (PROC_ALL_PIDS=1, selector0; PROC_PGRP_ONLY=2, own current group), buffer32769 c_int entries; clear errno before each call; preserve returned byte count and every returned PID. One second between pairs.",
+  "binding": "Reviewed host_guard_v2 MacProvider libproc signature; v3 guard was not activated.",
+  "python_version": "3.13.7 (v3.13.7:bcee1c32211, Aug 14 2025, 19:10:51) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "outcome": "Each global list had499 PIDs including exactly one0; no duplicates, negatives, saturation or missing self. Each current group held self only.",
+  "limits": "Read-only current-host witness, not universal atomic-snapshot proof."
+}
