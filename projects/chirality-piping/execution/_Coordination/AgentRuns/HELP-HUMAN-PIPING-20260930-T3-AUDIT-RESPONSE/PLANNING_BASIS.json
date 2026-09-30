@@ -1,0 +1,196 @@
+{
+  "record_kind": "run_specific_planning_basis",
+  "run_id": "HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE",
+  "date": "2026-09-30",
+  "basis_commit": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "planning_branch": "codex/piping-t3-audit-response-plan-20260930",
+  "active_role": "HELP_HUMAN",
+  "agent_type": 0,
+  "owner_direction": "Adopt the role of agent HELP_HUMAN in the Agent 0 mode and plan out execution of work with an effective agent delegation strategy.",
+  "role_transition": {
+    "boundary": "New owner turn after completed audit and merge replies",
+    "prior_posture": "Independent auditor",
+    "history_retained": true,
+    "provider_or_model_change": false,
+    "app_configuration_change": false
+  },
+  "wider_role_consultation": {
+    "agents/AGENT_HELPS_HUMANS.md": "Deliberate consultation to define design-manager scope and handoff",
+    "agents/AGENT_WORKING_ITEMS.md": "Deliberate consultation to define implementation-manager delegation and integration",
+    "agents/AGENT_TASK.md": "Previously loaded as audit basis; retained to define bounded children"
+  },
+  "selected_workflow": {
+    "identity": "chirality-root:bundled:workflow:construct-local-work-graph",
+    "catalog": "workflows/index.json",
+    "entrypoint": "workflows/construct-local-work-graph/WORKFLOW.md",
+    "resource": "workflows/construct-local-work-graph/resources/work-graph-template.md"
+  },
+  "plan_status": "Prepared for owner inspection; no execution launched",
+  "planned_delegation_mechanism": "Codex native collaboration.spawn_agent with fresh context and sealed briefs; managers may dispatch TASK children; Type 2 never delegates",
+  "launched_agents": [],
+  "actual_enforcement": "Shared host/filesystem sandbox; planned per-child write fences are brief restrictions, not independently enforced OS capabilities",
+  "model_allocation": "Inherit configured model unless owner directs otherwise; same-model independence is not model diversity",
+  "host": {
+    "owner_supplied_current": "M3 MacBook Air, 16 GB unified memory",
+    "owner_supplied_previous": "M5 Max MacBook Pro, 128 GB unified memory",
+    "query": "memory_pressure -Q",
+    "observed_total_bytes": 17179869184,
+    "observed_system_wide_memory_free_percent": 56,
+    "observation_limit": "Single planning snapshot; not sustained availability or admission of a heavy run",
+    "other_query": "sysctl -n hw.memsize hw.logicalcpu",
+    "other_query_result": "Denied by sandbox; no CPU-count claim made",
+    "initial_resource_plan": {
+      "active_task_limit": 2,
+      "manager_limit": 2,
+      "global_heavy_process_limit": 1,
+      "cargo_jobs": 1,
+      "rust_test_threads": 1,
+      "pytest_workers": 1,
+      "initial_observation_cap_gib_at_most": 2,
+      "available_memory_reserve_percent_at_least": 35,
+      "all_caps_require_runtime_validation": true,
+      "dense_at_10000_members_or_more": "prohibited",
+      "w1_10000_tier": "conditional on same-host ascent, final derivation and current headroom"
+    }
+  },
+  "independence": "Agent 0 authored the audit; a separate fresh reviewer must review it. PR1064 integration did not supply independent review or accept a design change.",
+  "dag": {
+    "pointer": "projects/chirality-piping/execution/_DAG/_LATEST.md",
+    "pointer_names": "DAG-011",
+    "response_currency": "B0 must establish; no dependency satisfaction promoted by this plan"
+  },
+  "existing_work_checked": {
+    "main": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+    "open_piping_prs": [
+      {
+        "number": 885,
+        "scope": "Unrelated live-control work; outside response"
+      }
+    ],
+    "no_open_t3_pr_found": true,
+    "must_refresh_at_launch": true
+  },
+  "inputs": [
+    {
+      "path": ".agents/skills/chirality-change/SKILL.md",
+      "sha256": "1a2b056263ec77e4104efdf99afe3fe76dda792334a243fb2f21c60bc9c81450"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_HELPS_HUMANS.md",
+      "sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e"
+    },
+    {
+      "path": "agents/AGENT_HELP_HUMAN.md",
+      "sha256": "0c2fe7a3097ad26c93c0267e4da6aaf90c9264489df8dc368fad657bcac69183"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665"
+    },
+    {
+      "path": "docs/TYPES.md",
+      "sha256": "926105890a9f03dcadb9d101a2fdf6f91a907d6728d41c648045d13d466e4e70"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-01_3D frame stiffness kernel/Dependencies.csv",
+      "sha256": "c9b779dd0a5a0e7af11fa905be1b146bbe7d4a76367dcb75a1f1cb7e12ae1b51"
+    },
+    {
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-01_3D frame stiffness kernel/ScopeOfWork.md",
+      "sha256": "9b4f15fada2ad8cd5157b815ab602f479090ec1428beba882d87b8fe7b3dd373"
+    },
+    {
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-05_Sparse solver performance harness/Dependencies.csv",
+      "sha256": "338d2a60fb1aff489098dc1c9e5f35ba4f2017ae9eae8df8b6155c0baa2cd7c9"
+    },
+    {
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-05_Sparse solver performance harness/ScopeOfWork.md",
+      "sha256": "a56d0bed9383d3fed3873da45d562208e8baf36a42627be8f85aa8997b9a4a79"
+    },
+    {
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/Dependencies.csv",
+      "sha256": "c9c90753d0d76249b4bd4f041c22902bbf7c3062bf119ff77966a199b12ce19d"
+    },
+    {
+      "path": "projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-07_Product solve integration and nonlinear orchestration/ScopeOfWork.md",
+      "sha256": "e3f701345f6ce750a2ff4681443f788b8cbf80e498c781d158b74bff738c7f88"
+    },
+    {
+      "path": "projects/chirality-piping/execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-01_Mechanics benchmark suite/Dependencies.csv",
+      "sha256": "28e5cd04820392fb605ba07b669195685133783450a3c314ff38a7abf743166e"
+    },
+    {
+      "path": "projects/chirality-piping/execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-01_Mechanics benchmark suite/ScopeOfWork.md",
+      "sha256": "181b1e37201d93916f03e38e9cdb8e1082d70da5d6297af429bbb8c47d15648e"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/AUDIT/A1_A2_REVIEW.md",
+      "sha256": "d229598e5a80c630c5e9298e45b4ed9da95aea9135eb5957eca6200d5c801c54"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/AUDIT/HANDOFF.md",
+      "sha256": "98c00345028cb395835829f2137cbe4400b0b1efaf064da76f12997edc2395a8"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/AUDIT/REPORT.md",
+      "sha256": "9e57793917d96ccf665cd4833ef828f589a9e2f709b35e74435cd2453b861296"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/HANDOFF_2026-09-30_AUDIT_PAUSE.md",
+      "sha256": "13e254bcf7210c78c071b561ba002f15ba9cfea52223ee5dfd33f2b552073f8b"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/OPERATING_NOTES_2026-09-30.md",
+      "sha256": "80cf81f12bb09d4b8b12b850528fcb0e3abc29a3daa86fe8dfd7cdd9c61a41a6"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/ROOT_RULINGS_V1.md",
+      "sha256": "444c18e09467c205b70be853045b4d68ec655241cae1b2dea518a8f7da9bf22a"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/TASK_BRIEFS/I21_K6C_IMPLEMENTATION.md",
+      "sha256": "d0ae59f52fc5812b50350a8ea7b9736b5d3d61c4deecb4f1b936ec0c5a2c0b7f"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.md",
+      "sha256": "5987bacc8260e2bd5ebc10a08a855ec210e50bc4f0b87bd77726fa1ec7886c56"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_DAG/_LATEST.md",
+      "sha256": "ca19b39d1c0db9c10ae562750f5d5a249fa24102d06d1ef2a0d3f20dff31c344"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "path": "projects/chirality-piping/software-workflow.json",
+      "sha256": "3a6fd86bd362eed5e1fbcda05dcde961fca8ad46cb14375ce3dd79c3872e09b7"
+    },
+    {
+      "path": "workflows/construct-local-work-graph/WORKFLOW.md",
+      "sha256": "fa04e1347f8594654e81e5c097414f8b6f602560fe15267a374145f43ae3a4c9"
+    },
+    {
+      "path": "workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "sha256": "5661c6097cee51c770b8f1e6bf765c50ebc3e39c3e51df7173cbcb65e40a6fa6"
+    },
+    {
+      "path": "workflows/index.json",
+      "sha256": "2bfa2c5faae1081c55ce95fd3d81c00b1d87ba1f51d0bc13e03c8fcb6ccdafb3"
+    }
+  ],
+  "read_scope_note": "Role and selected workflow bodies were read in full. Other entries include bounded excerpts, headers, relevant dependency rows, or earlier retained context; this list is not a claim of full-corpus inspection."
+}
