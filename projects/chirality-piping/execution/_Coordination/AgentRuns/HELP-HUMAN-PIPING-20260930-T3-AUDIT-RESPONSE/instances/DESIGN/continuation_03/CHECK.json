@@ -1,0 +1,78 @@
+{
+  "record_kind": "DESIGN_compile_trial_return_check",
+  "role": "HELPS_HUMANS / Agent 1",
+  "parent": "/root",
+  "agent": "/root/design_manager",
+  "child": "/root/design_manager/a1_diagnosis",
+  "resume_record": "RESUME.json",
+  "manager_read_scope": "child RETURN, host failure/result, job spec and one-shot controller full; pre/post/context/binding parsed with 47 hash/19 old-seal lists summarized; no controller execution or current host-provider query",
+  "child_manifest": {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_02/SHA256SUMS",
+    "sha256": "4da15cde55cf01e1cd2f618a223b73d8de1b33d066e07733eeab43af784a4a22",
+    "base": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_02",
+    "entries": 10,
+    "verification": "PASS"
+  },
+  "inputs": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_02/CONTEXT.json",
+      "sha256": "fbb57be157a6ebcd21317080db229d9c121000f4194274b1b77a225ed3e002db"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_02/HOST_TOOL_FAILURE.txt",
+      "sha256": "70bc7304a4e9c5709868d009325f276503ee85b375a403ddc61b75b168ecd978"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_02/HOST_TOOL_RESULT.json",
+      "sha256": "fea27868e1d677770e73229bd3fe090e4169d6bac619a13c7c472decb7e5f1c9"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_02/JOB_SPEC.sanitized.json",
+      "sha256": "c3954b606ffa82036350a345d21cb6dcca1d20a871146c8d279b23d60fd67669"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_02/POSTCHECK.sanitized.json",
+      "sha256": "aceaaf0a830f8fe69106d6c844ffc36458d9d968274f2f8618ff77b483d03396"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_02/PRECHECK.sanitized.json",
+      "sha256": "65455a709b0a957e72f96e3e0efd88fa019187bd6cce7aeea36226a571f431cc"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_02/RAW_BINDING.json",
+      "sha256": "ab9b09e86e01b48f2696d59b8c358443497d98958da54d50f2e073ece6c49438"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_02/RETURN.md",
+      "sha256": "a82f08bc166384a21f619ff2b34b4e50c89e7068b3d94b013c532dc216e44e08"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_02/prepare_job.py",
+      "sha256": "8161578d28c02ebf4d717a9e7f75401f821c928739fef4809e770291851b7244"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_02/run_once.py",
+      "sha256": "315e1513bcef247f362aeb1e9e45cadeadc5b6fd2be3e054e4549381d0b73fa3"
+    }
+  ],
+  "result": "HOST_PERMISSION_REVIEW_TIMEOUT_BEFORE_PROCESS_CREATION",
+  "postcheck_time_utc": "2026-09-30T18:25:08.060965+00:00",
+  "dated_postcheck_summary": {
+    "pinned_inputs_reported_unchanged": 47,
+    "old_seals_reported_unchanged": 19,
+    "no_marker_job_latch_target_binary": true,
+    "guard_compiler_case_retry_preflight_counts": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "spec_static_match_to_grant": true,
+  "guard_enforcement": "not reached; host process creation refused on automatic review timeout",
+  "safety_finding": false,
+  "later_ROOT_steering": "ROOT completed clean committed 888e3888 GEN-8 then took ownership of one separately authorized retry using unchanged prepared controller/job. Child remains stopped. Dated absence facts must not be presented as current live state during ROOT retry.",
+  "manager_action_limits": "read/hash/JSON/document checks only; no build, retry, provider/signal, repair, new child or Git/index operation",
+  "scope": "packet integration only, not independent guard/candidate qualification"
+}

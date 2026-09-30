@@ -1,0 +1,9 @@
+{
+  "case": "B01",
+  "actor": "/root/design_manager/a1_diagnosis",
+  "advance_allowed": true,
+  "basis": "TASK inspected case result, all row comparisons and limits, published scales/classes/bounds, attempt/verification summaries, guard completion and unchanged inputs before allowing next B case",
+  "note": "Selected 128/256; all 37 rows honest, scale/class/bound checks pass, driver truth 5h/4 publishes h, no corrections or guard issue. Advance to B02.",
+  "case_result_sha256": "95a91df90d96288631f87d2ad8b58a24be6747cb620dbccec6a48f3f9aed448c",
+  "comparison_sha256": "c8aac8ab74e911df677b680046a9680b312247004328a7cd3250203ab0cbe9f6"
+}

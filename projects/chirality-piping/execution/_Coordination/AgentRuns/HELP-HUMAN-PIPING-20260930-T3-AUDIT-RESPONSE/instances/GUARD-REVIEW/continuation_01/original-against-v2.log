@@ -1,0 +1,48 @@
+Original test SHA256: 5e72b5d9589b345d1ef45171227b7b6a56281b7b2984e97625291112fb62b5b1
+Bound v2 source SHA256: 533a6f7506da4e031d8a824a27b4e9c496f374a3af8b7e98c72da55e8bbc26b5
+test_authenticated_sequence_and_no_nonce_log (sealed_guard_tests_against_v2.AuthenticationAndBounds.test_authenticated_sequence_and_no_nonce_log) ... ok
+test_event_log_limit_without_filesystem (sealed_guard_tests_against_v2.AuthenticationAndBounds.test_event_log_limit_without_filesystem) ... ok
+test_sdk_declared_layout_pure_ctypes_only (sealed_guard_tests_against_v2.AuthenticationAndBounds.test_sdk_declared_layout_pure_ctypes_only) ... ok
+test_wrong_nonce_and_oversize_rejected (sealed_guard_tests_against_v2.AuthenticationAndBounds.test_wrong_nonce_and_oversize_rejected) ... ok
+test_executable_exact_path_hash_is_required_and_checked (sealed_guard_tests_against_v2.JobSchema.test_executable_exact_path_hash_is_required_and_checked) ... ok
+test_disk_and_total_changes_stop (sealed_guard_tests_against_v2.Metrics.test_disk_and_total_changes_stop) ... ok
+test_high_baseline_swap_stable_is_not_pressure (sealed_guard_tests_against_v2.Metrics.test_high_baseline_swap_stable_is_not_pressure) ... ok
+test_invalid_nan_negative_types (sealed_guard_tests_against_v2.Metrics.test_invalid_nan_negative_types) ... ok
+test_limits_enforce_ceiling_and_evidence_budget (sealed_guard_tests_against_v2.Metrics.test_limits_enforce_ceiling_and_evidence_budget) ... ok
+test_new_swap_growth_and_swapouts (sealed_guard_tests_against_v2.Metrics.test_new_swap_growth_and_swapouts) ... ok
+test_pressure_unknown_values_stop (sealed_guard_tests_against_v2.Metrics.test_pressure_unknown_values_stop) ... ok
+test_projection_consumes_full_cap_and_allowance (sealed_guard_tests_against_v2.Metrics.test_projection_consumes_full_cap_and_allowance) ... ok
+test_quiet_admission_requires_unchanged_swap (sealed_guard_tests_against_v2.Metrics.test_quiet_admission_requires_unchanged_swap) ... ok
+test_rss_and_footprint_are_independent_caps (sealed_guard_tests_against_v2.Metrics.test_rss_and_footprint_are_independent_caps) ... ok
+test_stale_future_and_exact_age (sealed_guard_tests_against_v2.Metrics.test_stale_future_and_exact_age) ... ok
+test_stop_before_35_percent_policy_floor (sealed_guard_tests_against_v2.Metrics.test_stop_before_35_percent_policy_floor) ... ok
+test_group_denied_short_truncated_missing_leader (sealed_guard_tests_against_v2.NativeAdapterFakes.test_group_denied_short_truncated_missing_leader) ... ok
+test_group_empty_of_workers_requires_live_leader (sealed_guard_tests_against_v2.NativeAdapterFakes.test_group_empty_of_workers_requires_live_leader) ... ok
+test_identity_provider_denied_or_short_fails_closed (sealed_guard_tests_against_v2.NativeAdapterFakes.test_identity_provider_denied_or_short_fails_closed) ... ok
+test_identity_race_or_session_change_refuses (sealed_guard_tests_against_v2.NativeAdapterFakes.test_identity_race_or_session_change_refuses) ... ok
+test_identity_uses_pid_start_uid_and_session (sealed_guard_tests_against_v2.NativeAdapterFakes.test_identity_uses_pid_start_uid_and_session) ... ok
+test_live_group_enumeration_uses_bytes_and_preserves_sentinel (sealed_guard_tests_against_v2.NativeAdapterFakes.test_live_group_enumeration_uses_bytes_and_preserves_sentinel) ... ok
+test_self_owner_uses_current_identity_only (sealed_guard_tests_against_v2.NativeAdapterFakes.test_self_owner_uses_current_identity_only) ... ok
+test_changed_uid_and_session (sealed_guard_tests_against_v2.Ownership.test_changed_uid_and_session) ... ok
+test_descendants_and_members_are_bounded (sealed_guard_tests_against_v2.Ownership.test_descendants_and_members_are_bounded) ... ok
+test_invalid_identity (sealed_guard_tests_against_v2.Ownership.test_invalid_identity) ... ok
+test_leader_loss_and_escaped_groups (sealed_guard_tests_against_v2.Ownership.test_leader_loss_and_escaped_groups) ... ok
+test_reused_pid_start_mismatch_refuses (sealed_guard_tests_against_v2.Ownership.test_reused_pid_start_mismatch_refuses) ... ok
+test_unrelated_sentinel_never_selected (sealed_guard_tests_against_v2.Ownership.test_unrelated_sentinel_never_selected) ... ok
+test_percentage (sealed_guard_tests_against_v2.Parsers.test_percentage) ... ok
+test_process_table (sealed_guard_tests_against_v2.Parsers.test_process_table) ... ok
+test_swap_and_vm_stat (sealed_guard_tests_against_v2.Parsers.test_swap_and_vm_stat) ... ok
+test_authentication_loss_never_signals (sealed_guard_tests_against_v2.StateMachines.test_authentication_loss_never_signals) ... ok
+test_heartbeat_loss_terms_then_kills_with_grace (sealed_guard_tests_against_v2.StateMachines.test_heartbeat_loss_terms_then_kills_with_grace) ... ok
+test_late_heartbeat_does_not_cancel_stop (sealed_guard_tests_against_v2.StateMachines.test_late_heartbeat_does_not_cancel_stop) ... ok
+test_live_capabilities_are_blocked (sealed_guard_tests_against_v2.StateMachines.test_live_capabilities_are_blocked) ... ok
+test_monitor_cap_crossing_stops (sealed_guard_tests_against_v2.StateMachines.test_monitor_cap_crossing_stops) ... ok
+test_monitor_failure_requests_stop_once_through_fake_control (sealed_guard_tests_against_v2.StateMachines.test_monitor_failure_requests_stop_once_through_fake_control) ... ok
+test_monitor_success_only_sends_heartbeat (sealed_guard_tests_against_v2.StateMachines.test_monitor_success_only_sends_heartbeat) ... ok
+test_stale_monitoring_stops (sealed_guard_tests_against_v2.StateMachines.test_stale_monitoring_stops) ... ok
+test_worker_resets_handlers_to_default (sealed_guard_tests_against_v2.StateMachines.test_worker_resets_handlers_to_default) ... ok
+
+----------------------------------------------------------------------
+Ran 41 tests in 0.034s
+
+OK

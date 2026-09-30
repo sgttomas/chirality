@@ -1,0 +1,45 @@
+{
+  "case": "B01",
+  "job_id": "a1-b-b01-888e3888-20260930-01",
+  "guard_returncode": 0,
+  "guard_result": [
+    {
+      "guard_healthy": true,
+      "result": 0,
+      "stop_reason": null,
+      "workload_returncode": 0
+    }
+  ],
+  "guard_healthy": true,
+  "elapsed_seconds": 2.9637887499993667,
+  "preflight_sample_count": 3,
+  "work_sample_count": 1,
+  "sampled_rss_peak_bytes": 9715712,
+  "sampled_footprint_peak_bytes": 6996328,
+  "minimum_observed_available_pct": 73.0,
+  "active_latch_after": false,
+  "post_hashes_match": true,
+  "case_status": "Selected",
+  "selected_precisions": [
+    128,
+    256
+  ],
+  "meter": [
+    1088017,
+    100000000,
+    "false"
+  ],
+  "comparator_returncode": 0,
+  "comparison_disposition": "finite_selected_claims_pass; not universal proof closure",
+  "comparison_rows": 37,
+  "comparison_violations": [],
+  "comparison_limits": [],
+  "may_consider_next_B": true,
+  "stop_reason": null,
+  "false_claims": [],
+  "binary_sha256": "426fb26fb52e8f7781ebef8d0876ba74ba6c025ada4a66b5532423b462a9b386",
+  "oracle_sha256": "35cf4b9321ebe126693e52ad96ea010bed9f280c3058d02fbae98c17275627be",
+  "job_spec_sha256": "ea19af97f41ee4744fea6e630f23e3e69886b6bc240eaf1e37223f61312fd62f",
+  "numerical_source": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "source_json_sha256": "9cc3afaf9c546c8e008af2e6177ff7e5facbabf9a58a9d9bd1e9821bc49feace"
+}

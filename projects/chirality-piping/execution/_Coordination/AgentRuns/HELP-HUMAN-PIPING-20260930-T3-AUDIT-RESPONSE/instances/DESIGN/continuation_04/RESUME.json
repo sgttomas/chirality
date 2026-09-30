@@ -1,0 +1,146 @@
+{
+  "record_kind": "actual_native_B_tranche_resume",
+  "recorded_utc": "2026-09-30T18:35:35.299620+00:00",
+  "agent": "/root/design_manager",
+  "role": "HELPS_HUMANS / Agent 1",
+  "parent": "/root",
+  "child": "/root/design_manager/a1_diagnosis",
+  "child_role": "TASK / Type 2, unchanged",
+  "mechanism": "collaboration.followup_task resumes original child; running confirmed with list_agents",
+  "new_child": false,
+  "model_override": null,
+  "actual_model_identifier": "not independently exposed",
+  "actual_coordination_head": "888e388812f65dffce4428c96c18d2ddc8d2ae61",
+  "candidate": "888e388812f65dffce4428c96c18d2ddc8d2ae61",
+  "numerical_source": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "compile_actor": "ROOT /root HELP_HUMAN; child initial host attempt never started",
+  "build_packet_checked": {
+    "manifest": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/SHA256SUMS",
+    "manifest_sha256": "d20a8e28cf4ea4c082bd9b3f3c707526f670cc1bc0f0d5493036614fa7b2deea",
+    "entries": [
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/CARGO_FINGERPRINTS.json",
+        "sha256": "19fa4be6e8f2114e4353accb1d71ff5e6f062467a19d7f49567294eb8827ae62"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/RAW_INVENTORY.json",
+        "sha256": "69aa04ef94b9e07cfdd70b04fcc1d72adf4c31a096c119f1c9f24ea6a0b3599f"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/RESULT.json",
+        "sha256": "48536deede0c073e390807b55d5fffecec9534566bfdbca5b9c254d7aa595bb4"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/controller-CONTROLLER_RESULT.raw.json",
+        "sha256": "e15fef6cf474f87a45055f401a5a487e7be3efa94dfab0cc1bec20a765c28f65"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/controller-INVOCATION_STARTED.json",
+        "sha256": "383495df6f7ffd63ef01a05584f5b63477510698decb372a7dab04356893ec31"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/controller-POSTCHECK.raw.json",
+        "sha256": "aceaaf0a830f8fe69106d6c844ffc36458d9d968274f2f8618ff77b483d03396"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/controller-PRECHECK.raw.json",
+        "sha256": "65455a709b0a957e72f96e3e0efd88fa019187bd6cce7aeea36226a571f431cc"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/controller-guard.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/controller-guard.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/controller-job.json",
+        "sha256": "c3954b606ffa82036350a345d21cb6dcca1d20a871146c8d279b23d60fd67669"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/guard-monitor.jsonl",
+        "sha256": "a35510f318a9aefea9fff7b00f010c6c9ff4ed6a5cb5870d68ed40d76daec975"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/guard-registry.json",
+        "sha256": "c2fce15bfbf0bd7a77b79d91ae8dfb3e47289fee0b75bb31111498e15aebeacc"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/guard-supervisor.jsonl",
+        "sha256": "c472e52f326d6dd1fab4845f8dca3f85e3ab36d51a3d50e6cb93514ce3432c64"
+      },
+      {
+        "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/guard-workload.log",
+        "sha256": "77ea1f9a729d0d9c446cf998d658a922dc0c63acf612cd83919b4e579bdccdb9"
+      }
+    ],
+    "result_read": "full",
+    "workload_log_read": "full",
+    "fingerprint_record_read": "full",
+    "other_files": "manifest integrity only; no fresh independent guard review claim"
+  },
+  "inputs": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "read_scope": "grant and manager prompt full; instructions/role/skill retained with hashes rechecked; guard hash rechecked"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "read_scope": "grant and manager prompt full; instructions/role/skill retained with hashes rechecked; guard hash rechecked"
+    },
+    {
+      "path": "agents/AGENT_HELPS_HUMANS.md",
+      "sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e",
+      "read_scope": "grant and manager prompt full; instructions/role/skill retained with hashes rechecked; guard hash rechecked"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "read_scope": "grant and manager prompt full; instructions/role/skill retained with hashes rechecked; guard hash rechecked"
+    },
+    {
+      "path": ".agents/skills/software-defect-diagnosis/SKILL.md",
+      "sha256": "7e423dfd24132c33d3aa8fe6994bf17a1def966c396723f6bd72ac8d2442112b",
+      "read_scope": "grant and manager prompt full; instructions/role/skill retained with hashes rechecked; guard hash rechecked"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/decisions/06_A0_B_TRANCHE_GRANT.md",
+      "sha256": "d578ccb69d6aeb240f63e5af36499da183c6a65763e7ec3d33d374364017a5bb",
+      "read_scope": "grant and manager prompt full; instructions/role/skill retained with hashes rechecked; guard hash rechecked"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_04/RESUME_PROMPT.md",
+      "sha256": "f57a4ed812c62a765004d0b2e65dcfa2d149cee2738322e8a62e853093f7b176",
+      "read_scope": "grant and manager prompt full; instructions/role/skill retained with hashes rechecked; guard hash rechecked"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/tools/host_guard_v2.py",
+      "sha256": "533a6f7506da4e031d8a824a27b4e9c496f374a3af8b7e98c72da55e8bbc26b5",
+      "read_scope": "grant and manager prompt full; instructions/role/skill retained with hashes rechecked; guard hash rechecked"
+    }
+  ],
+  "native_dispatch_clarification": "The follow-up included a malformed abbreviated grant-hash fragment beside the correct full hash. An immediate message explicitly discarded the fragment and restated only d578ccb69d6aeb240f63e5af36499da183c6a65763e7ec3d33d374364017a5bb; sealed prompt is correct.",
+  "grant_status": "sealed-uncommitted decision06, exact hash verified",
+  "scope": "B01-B16 only, sequential individual guarded processes, review comparator before next; C and all repairs/retries held",
+  "limits": {
+    "case_and_invocation_LME": 100000000,
+    "rss_and_footprint_cap_bytes": 536870912,
+    "allowance_bytes": 134217728,
+    "timeout_seconds": 60,
+    "write_budget_bytes": 134217728,
+    "disk_reserve_bytes": 4294967296,
+    "fresh_quiet_samples_per_job": 3,
+    "projected_available_fraction_strictly_above": 0.4
+  },
+  "fences": {
+    "manager": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_04/**",
+    "child": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/** and owned runtime scratch/logs",
+    "preserve": "all sealed old files; original source/oracle/probe/lock/binary/target",
+    "enforcement": "shared filesystem prompt scope plus actual host permissions and canonical reviewed guard"
+  },
+  "heavy_slot": "child owns sole B-tranche heavy slot; other TASK I21 source-only",
+  "stop": "guard/host failure, unexpected comparator issue or false published claim; no advance, retry or repair"
+}

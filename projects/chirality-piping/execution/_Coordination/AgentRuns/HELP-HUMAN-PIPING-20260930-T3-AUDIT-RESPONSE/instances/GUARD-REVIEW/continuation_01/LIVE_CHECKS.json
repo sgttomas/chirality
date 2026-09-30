@@ -1,0 +1,1290 @@
+{
+  "manifest_count": 93,
+  "manifest_checks": [
+    {
+      "path": "CONTEXT.json",
+      "match": true
+    },
+    {
+      "path": "LIVE_RESULTS.json",
+      "match": true
+    },
+    {
+      "path": "RAW_INVENTORY.json",
+      "match": true
+    },
+    {
+      "path": "RETURN.md",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-alloc16-01/controller-controller-result.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-alloc16-01/controller-job.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-alloc16-01/controller-monitor.stderr",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-alloc16-01/controller-monitor.stdout",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-alloc16-01/guard-monitor.jsonl",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-alloc16-01/guard-registry.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-alloc16-01/guard-supervisor.jsonl",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-alloc16-01/guard-workload.log",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-cap64-01/controller-controller-result.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-cap64-01/controller-job.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-cap64-01/controller-latch-probe.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-cap64-01/controller-monitor.stderr",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-cap64-01/controller-monitor.stdout",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-cap64-01/guard-ACTIVE.resolved.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-cap64-01/guard-ROOT_LATCH_RESOLUTION.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-cap64-01/guard-monitor.jsonl",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-cap64-01/guard-registry.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-cap64-01/guard-supervisor.jsonl",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-cap64-01/guard-workload.log",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-clean-01/controller-controller-result.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-clean-01/controller-job.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-clean-01/controller-lock-probe.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-clean-01/controller-monitor.stderr",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-clean-01/controller-monitor.stdout",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-clean-01/guard-monitor.jsonl",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-clean-01/guard-registry.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-clean-01/guard-supervisor.jsonl",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-clean-01/guard-workload.log",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-escape-01/controller-controller-result.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-escape-01/controller-job.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-escape-01/controller-latch-probe.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-escape-01/controller-monitor.stderr",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-escape-01/controller-monitor.stdout",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-escape-01/guard-ACTIVE.resolved.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-escape-01/guard-ROOT_LATCH_RESOLUTION.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-escape-01/guard-monitor.jsonl",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-escape-01/guard-registry.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-escape-01/guard-supervisor.jsonl",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-escape-01/guard-workload.log",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-ignore-01/controller-controller-result.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-ignore-01/controller-job.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-ignore-01/controller-latch-probe.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-ignore-01/controller-monitor.stderr",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-ignore-01/controller-monitor.stdout",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-ignore-01/guard-ACTIVE.resolved.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-ignore-01/guard-ROOT_LATCH_RESOLUTION.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-ignore-01/guard-monitor.jsonl",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-ignore-01/guard-registry.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-ignore-01/guard-supervisor.jsonl",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-ignore-01/guard-workload.log",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-monitorloss-01/controller-controller-result.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-monitorloss-01/controller-job.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-monitorloss-01/controller-latch-probe.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-monitorloss-01/controller-monitor.stderr",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-monitorloss-01/controller-monitor.stdout",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-monitorloss-01/guard-ACTIVE.resolved.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-monitorloss-01/guard-ROOT_LATCH_RESOLUTION.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-monitorloss-01/guard-monitor.jsonl",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-monitorloss-01/guard-registry.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-monitorloss-01/guard-supervisor.jsonl",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-monitorloss-01/guard-workload.log",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-monitorstall-01/controller-controller-result.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-monitorstall-01/controller-job.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-monitorstall-01/controller-latch-probe.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-monitorstall-01/controller-monitor.stderr",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-monitorstall-01/controller-monitor.stdout",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-monitorstall-01/guard-ACTIVE.resolved.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-monitorstall-01/guard-ROOT_LATCH_RESOLUTION.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-monitorstall-01/guard-monitor.jsonl",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-monitorstall-01/guard-registry.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-monitorstall-01/guard-supervisor.jsonl",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-monitorstall-01/guard-workload.log",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-sleepers-01/controller-controller-result.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-sleepers-01/controller-job.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-sleepers-01/controller-latch-probe.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-sleepers-01/controller-monitor.stderr",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-sleepers-01/controller-monitor.stdout",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-sleepers-01/guard-ACTIVE.resolved.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-sleepers-01/guard-ROOT_LATCH_RESOLUTION.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-sleepers-01/guard-monitor.jsonl",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-sleepers-01/guard-registry.json",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-sleepers-01/guard-supervisor.jsonl",
+      "match": true
+    },
+    {
+      "path": "cases/guard-q-sleepers-01/guard-workload.log",
+      "match": true
+    },
+    {
+      "path": "fixture.py",
+      "match": true
+    },
+    {
+      "path": "provider-witness-01.json",
+      "match": true
+    },
+    {
+      "path": "provider-witness-01.stderr",
+      "match": true
+    },
+    {
+      "path": "provider_witness.py",
+      "match": true
+    },
+    {
+      "path": "qualify_case.py",
+      "match": true
+    },
+    {
+      "path": "qualify_case_v2.py",
+      "match": true
+    }
+  ],
+  "raw_file_count": 83,
+  "raw_checks": [
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-clean-01/monitor.jsonl",
+      "portable_path": "cases/guard-q-clean-01/guard-monitor.jsonl",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-clean-01/registry.json",
+      "portable_path": "cases/guard-q-clean-01/guard-registry.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-clean-01/supervisor.jsonl",
+      "portable_path": "cases/guard-q-clean-01/guard-supervisor.jsonl",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-clean-01/workload.log",
+      "portable_path": "cases/guard-q-clean-01/guard-workload.log",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-clean-01/controller-result.json",
+      "portable_path": "cases/guard-q-clean-01/controller-controller-result.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-clean-01/job.json",
+      "portable_path": "cases/guard-q-clean-01/controller-job.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-clean-01/lock-probe.json",
+      "portable_path": "cases/guard-q-clean-01/controller-lock-probe.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-clean-01/monitor.stderr",
+      "portable_path": "cases/guard-q-clean-01/controller-monitor.stderr",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-clean-01/monitor.stdout",
+      "portable_path": "cases/guard-q-clean-01/controller-monitor.stdout",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-alloc16-01/monitor.jsonl",
+      "portable_path": "cases/guard-q-alloc16-01/guard-monitor.jsonl",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-alloc16-01/registry.json",
+      "portable_path": "cases/guard-q-alloc16-01/guard-registry.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-alloc16-01/supervisor.jsonl",
+      "portable_path": "cases/guard-q-alloc16-01/guard-supervisor.jsonl",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-alloc16-01/workload.log",
+      "portable_path": "cases/guard-q-alloc16-01/guard-workload.log",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-alloc16-01/controller-result.json",
+      "portable_path": "cases/guard-q-alloc16-01/controller-controller-result.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-alloc16-01/job.json",
+      "portable_path": "cases/guard-q-alloc16-01/controller-job.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-alloc16-01/monitor.stderr",
+      "portable_path": "cases/guard-q-alloc16-01/controller-monitor.stderr",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-alloc16-01/monitor.stdout",
+      "portable_path": "cases/guard-q-alloc16-01/controller-monitor.stdout",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-sleepers-01/ACTIVE.resolved.json",
+      "portable_path": "cases/guard-q-sleepers-01/guard-ACTIVE.resolved.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-sleepers-01/ROOT_LATCH_RESOLUTION.json",
+      "portable_path": "cases/guard-q-sleepers-01/guard-ROOT_LATCH_RESOLUTION.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-sleepers-01/monitor.jsonl",
+      "portable_path": "cases/guard-q-sleepers-01/guard-monitor.jsonl",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-sleepers-01/registry.json",
+      "portable_path": "cases/guard-q-sleepers-01/guard-registry.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-sleepers-01/supervisor.jsonl",
+      "portable_path": "cases/guard-q-sleepers-01/guard-supervisor.jsonl",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-sleepers-01/workload.log",
+      "portable_path": "cases/guard-q-sleepers-01/guard-workload.log",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-sleepers-01/controller-result.json",
+      "portable_path": "cases/guard-q-sleepers-01/controller-controller-result.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-sleepers-01/job.json",
+      "portable_path": "cases/guard-q-sleepers-01/controller-job.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-sleepers-01/latch-probe.json",
+      "portable_path": "cases/guard-q-sleepers-01/controller-latch-probe.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-sleepers-01/monitor.stderr",
+      "portable_path": "cases/guard-q-sleepers-01/controller-monitor.stderr",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-sleepers-01/monitor.stdout",
+      "portable_path": "cases/guard-q-sleepers-01/controller-monitor.stdout",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-ignore-01/ACTIVE.resolved.json",
+      "portable_path": "cases/guard-q-ignore-01/guard-ACTIVE.resolved.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-ignore-01/ROOT_LATCH_RESOLUTION.json",
+      "portable_path": "cases/guard-q-ignore-01/guard-ROOT_LATCH_RESOLUTION.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-ignore-01/monitor.jsonl",
+      "portable_path": "cases/guard-q-ignore-01/guard-monitor.jsonl",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-ignore-01/registry.json",
+      "portable_path": "cases/guard-q-ignore-01/guard-registry.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-ignore-01/supervisor.jsonl",
+      "portable_path": "cases/guard-q-ignore-01/guard-supervisor.jsonl",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-ignore-01/workload.log",
+      "portable_path": "cases/guard-q-ignore-01/guard-workload.log",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-ignore-01/controller-result.json",
+      "portable_path": "cases/guard-q-ignore-01/controller-controller-result.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-ignore-01/job.json",
+      "portable_path": "cases/guard-q-ignore-01/controller-job.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-ignore-01/latch-probe.json",
+      "portable_path": "cases/guard-q-ignore-01/controller-latch-probe.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-ignore-01/monitor.stderr",
+      "portable_path": "cases/guard-q-ignore-01/controller-monitor.stderr",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-ignore-01/monitor.stdout",
+      "portable_path": "cases/guard-q-ignore-01/controller-monitor.stdout",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-cap64-01/ACTIVE.resolved.json",
+      "portable_path": "cases/guard-q-cap64-01/guard-ACTIVE.resolved.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-cap64-01/ROOT_LATCH_RESOLUTION.json",
+      "portable_path": "cases/guard-q-cap64-01/guard-ROOT_LATCH_RESOLUTION.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-cap64-01/monitor.jsonl",
+      "portable_path": "cases/guard-q-cap64-01/guard-monitor.jsonl",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-cap64-01/registry.json",
+      "portable_path": "cases/guard-q-cap64-01/guard-registry.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-cap64-01/supervisor.jsonl",
+      "portable_path": "cases/guard-q-cap64-01/guard-supervisor.jsonl",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-cap64-01/workload.log",
+      "portable_path": "cases/guard-q-cap64-01/guard-workload.log",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-cap64-01/controller-result.json",
+      "portable_path": "cases/guard-q-cap64-01/controller-controller-result.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-cap64-01/job.json",
+      "portable_path": "cases/guard-q-cap64-01/controller-job.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-cap64-01/latch-probe.json",
+      "portable_path": "cases/guard-q-cap64-01/controller-latch-probe.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-cap64-01/monitor.stderr",
+      "portable_path": "cases/guard-q-cap64-01/controller-monitor.stderr",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-cap64-01/monitor.stdout",
+      "portable_path": "cases/guard-q-cap64-01/controller-monitor.stdout",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-monitorloss-01/ACTIVE.resolved.json",
+      "portable_path": "cases/guard-q-monitorloss-01/guard-ACTIVE.resolved.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-monitorloss-01/ROOT_LATCH_RESOLUTION.json",
+      "portable_path": "cases/guard-q-monitorloss-01/guard-ROOT_LATCH_RESOLUTION.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-monitorloss-01/monitor.jsonl",
+      "portable_path": "cases/guard-q-monitorloss-01/guard-monitor.jsonl",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-monitorloss-01/registry.json",
+      "portable_path": "cases/guard-q-monitorloss-01/guard-registry.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-monitorloss-01/supervisor.jsonl",
+      "portable_path": "cases/guard-q-monitorloss-01/guard-supervisor.jsonl",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-monitorloss-01/workload.log",
+      "portable_path": "cases/guard-q-monitorloss-01/guard-workload.log",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-monitorloss-01/controller-result.json",
+      "portable_path": "cases/guard-q-monitorloss-01/controller-controller-result.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-monitorloss-01/job.json",
+      "portable_path": "cases/guard-q-monitorloss-01/controller-job.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-monitorloss-01/latch-probe.json",
+      "portable_path": "cases/guard-q-monitorloss-01/controller-latch-probe.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-monitorloss-01/monitor.stderr",
+      "portable_path": "cases/guard-q-monitorloss-01/controller-monitor.stderr",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-monitorloss-01/monitor.stdout",
+      "portable_path": "cases/guard-q-monitorloss-01/controller-monitor.stdout",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-escape-01/ACTIVE.resolved.json",
+      "portable_path": "cases/guard-q-escape-01/guard-ACTIVE.resolved.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-escape-01/ROOT_LATCH_RESOLUTION.json",
+      "portable_path": "cases/guard-q-escape-01/guard-ROOT_LATCH_RESOLUTION.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-escape-01/monitor.jsonl",
+      "portable_path": "cases/guard-q-escape-01/guard-monitor.jsonl",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-escape-01/registry.json",
+      "portable_path": "cases/guard-q-escape-01/guard-registry.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-escape-01/supervisor.jsonl",
+      "portable_path": "cases/guard-q-escape-01/guard-supervisor.jsonl",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-escape-01/workload.log",
+      "portable_path": "cases/guard-q-escape-01/guard-workload.log",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-escape-01/controller-result.json",
+      "portable_path": "cases/guard-q-escape-01/controller-controller-result.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-escape-01/job.json",
+      "portable_path": "cases/guard-q-escape-01/controller-job.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-escape-01/latch-probe.json",
+      "portable_path": "cases/guard-q-escape-01/controller-latch-probe.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-escape-01/monitor.stderr",
+      "portable_path": "cases/guard-q-escape-01/controller-monitor.stderr",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-escape-01/monitor.stdout",
+      "portable_path": "cases/guard-q-escape-01/controller-monitor.stdout",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-monitorstall-01/ACTIVE.resolved.json",
+      "portable_path": "cases/guard-q-monitorstall-01/guard-ACTIVE.resolved.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-monitorstall-01/ROOT_LATCH_RESOLUTION.json",
+      "portable_path": "cases/guard-q-monitorstall-01/guard-ROOT_LATCH_RESOLUTION.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-monitorstall-01/monitor.jsonl",
+      "portable_path": "cases/guard-q-monitorstall-01/guard-monitor.jsonl",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-monitorstall-01/registry.json",
+      "portable_path": "cases/guard-q-monitorstall-01/guard-registry.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-monitorstall-01/supervisor.jsonl",
+      "portable_path": "cases/guard-q-monitorstall-01/guard-supervisor.jsonl",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/logs/guard-q-monitorstall-01/workload.log",
+      "portable_path": "cases/guard-q-monitorstall-01/guard-workload.log",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-monitorstall-01/controller-result.json",
+      "portable_path": "cases/guard-q-monitorstall-01/controller-controller-result.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-monitorstall-01/job.json",
+      "portable_path": "cases/guard-q-monitorstall-01/controller-job.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-monitorstall-01/latch-probe.json",
+      "portable_path": "cases/guard-q-monitorstall-01/controller-latch-probe.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-monitorstall-01/monitor.stderr",
+      "portable_path": "cases/guard-q-monitorstall-01/controller-monitor.stderr",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    },
+    {
+      "alias": "<RESPONSE_RUNTIME>/scratch/guard-qualification/guard-q-monitorstall-01/monitor.stdout",
+      "portable_path": "cases/guard-q-monitorstall-01/controller-monitor.stdout",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_hash_matches": true
+    }
+  ],
+  "case_checks": [
+    {
+      "job_id": "guard-q-clean-01",
+      "checks": {
+        "event_copy_identity": true,
+        "source_hash": true,
+        "job_spec_hash": true,
+        "job_registry_agree": true,
+        "sentinel_survived_unchanged": true,
+        "sentinel_outside_group": true,
+        "no_controller_errors": true,
+        "all_final_owned_absent": true,
+        "signal_identity_matches_owned_supervisor": true,
+        "three_quiet_preflight_samples": true,
+        "stored_numbers_recompute": true,
+        "concurrent_lock_refuses": true
+      },
+      "derived": {
+        "sample_count": 3,
+        "sampled_rss_peak_bytes": 27213824,
+        "sampled_footprint_peak_bytes": 15155872,
+        "max_observed_sample_start_gap_seconds": 1.039716750034131,
+        "term_to_kill_seconds": null,
+        "group_drained_at": 549531.364055583
+      },
+      "signal_reasons": [],
+      "workload_exit_events": [
+        {
+          "at": 549531.362890833,
+          "data": {
+            "returncode": 0
+          },
+          "kind": "worker-exit",
+          "wall_ns": 1790790992151821000
+        }
+      ]
+    },
+    {
+      "job_id": "guard-q-alloc16-01",
+      "checks": {
+        "event_copy_identity": true,
+        "source_hash": true,
+        "job_spec_hash": true,
+        "job_registry_agree": true,
+        "sentinel_survived_unchanged": true,
+        "sentinel_outside_group": true,
+        "no_controller_errors": true,
+        "all_final_owned_absent": true,
+        "signal_identity_matches_owned_supervisor": true,
+        "three_quiet_preflight_samples": true,
+        "stored_numbers_recompute": true
+      },
+      "derived": {
+        "sample_count": 3,
+        "sampled_rss_peak_bytes": 44105728,
+        "sampled_footprint_peak_bytes": 32047776,
+        "max_observed_sample_start_gap_seconds": 1.0692178750177845,
+        "term_to_kill_seconds": null,
+        "group_drained_at": 549566.537302041
+      },
+      "signal_reasons": [],
+      "workload_exit_events": [
+        {
+          "at": 549566.536956708,
+          "data": {
+            "returncode": 0
+          },
+          "kind": "worker-exit",
+          "wall_ns": 1790791027325657000
+        }
+      ]
+    },
+    {
+      "job_id": "guard-q-sleepers-01",
+      "checks": {
+        "event_copy_identity": true,
+        "source_hash": true,
+        "job_spec_hash": true,
+        "job_registry_agree": true,
+        "sentinel_survived_unchanged": true,
+        "sentinel_outside_group": true,
+        "no_controller_errors": true,
+        "all_final_owned_absent": true,
+        "signal_identity_matches_owned_supervisor": true,
+        "three_quiet_preflight_samples": true,
+        "stored_numbers_recompute": true,
+        "resolved_exact_latch_hash": true,
+        "latch_refuses_new_job": true
+      },
+      "derived": {
+        "sample_count": 8,
+        "sampled_rss_peak_bytes": 45105152,
+        "sampled_footprint_peak_bytes": 23757856,
+        "max_observed_sample_start_gap_seconds": 1.0725288330577314,
+        "term_to_kill_seconds": null,
+        "group_drained_at": 549603.650611166
+      },
+      "signal_reasons": [
+        "supervisor-runtime-limit"
+      ],
+      "workload_exit_events": [
+        {
+          "at": 549603.650296583,
+          "data": {
+            "returncode": -15
+          },
+          "kind": "worker-exit",
+          "wall_ns": 1790791064438755000
+        }
+      ]
+    },
+    {
+      "job_id": "guard-q-ignore-01",
+      "checks": {
+        "event_copy_identity": true,
+        "source_hash": true,
+        "job_spec_hash": true,
+        "job_registry_agree": true,
+        "sentinel_survived_unchanged": true,
+        "sentinel_outside_group": true,
+        "no_controller_errors": true,
+        "all_final_owned_absent": true,
+        "signal_identity_matches_owned_supervisor": true,
+        "three_quiet_preflight_samples": true,
+        "stored_numbers_recompute": true,
+        "resolved_exact_latch_hash": true,
+        "latch_refuses_new_job": true
+      },
+      "derived": {
+        "sample_count": 9,
+        "sampled_rss_peak_bytes": 45137920,
+        "sampled_footprint_peak_bytes": 23774240,
+        "max_observed_sample_start_gap_seconds": 1.076498124981299,
+        "term_to_kill_seconds": 2.00122904102318,
+        "group_drained_at": null
+      },
+      "signal_reasons": [
+        "supervisor-runtime-limit"
+      ],
+      "workload_exit_events": [
+        {
+          "at": 549671.311804083,
+          "data": {
+            "returncode": -15
+          },
+          "kind": "worker-exit",
+          "wall_ns": 1790791132099823000
+        }
+      ]
+    },
+    {
+      "job_id": "guard-q-cap64-01",
+      "checks": {
+        "event_copy_identity": true,
+        "source_hash": true,
+        "job_spec_hash": true,
+        "job_registry_agree": true,
+        "sentinel_survived_unchanged": true,
+        "sentinel_outside_group": true,
+        "no_controller_errors": true,
+        "all_final_owned_absent": true,
+        "signal_identity_matches_owned_supervisor": true,
+        "three_quiet_preflight_samples": true,
+        "stored_numbers_recompute": true,
+        "resolved_exact_latch_hash": true,
+        "latch_refuses_new_job": true
+      },
+      "derived": {
+        "sample_count": 1,
+        "sampled_rss_peak_bytes": 94208000,
+        "sampled_footprint_peak_bytes": 82199272,
+        "max_observed_sample_start_gap_seconds": null,
+        "term_to_kill_seconds": null,
+        "group_drained_at": 549754.987975291,
+        "request_to_term_seconds": 0.017527125077322125
+      },
+      "signal_reasons": [
+        "rss-cap"
+      ],
+      "workload_exit_events": [
+        {
+          "at": 549754.943634583,
+          "data": {
+            "returncode": -15
+          },
+          "kind": "worker-exit",
+          "wall_ns": 1790791215731109000
+        }
+      ]
+    },
+    {
+      "job_id": "guard-q-monitorloss-01",
+      "checks": {
+        "event_copy_identity": true,
+        "source_hash": true,
+        "job_spec_hash": true,
+        "job_registry_agree": true,
+        "sentinel_survived_unchanged": true,
+        "sentinel_outside_group": true,
+        "no_controller_errors": true,
+        "all_final_owned_absent": true,
+        "signal_identity_matches_owned_supervisor": true,
+        "three_quiet_preflight_samples": true,
+        "stored_numbers_recompute": true,
+        "resolved_exact_latch_hash": true,
+        "latch_refuses_new_job": true
+      },
+      "derived": {
+        "sample_count": 1,
+        "sampled_rss_peak_bytes": 44351488,
+        "sampled_footprint_peak_bytes": 23168032,
+        "max_observed_sample_start_gap_seconds": null,
+        "term_to_kill_seconds": 2.017904540989548,
+        "group_drained_at": 549815.2156345,
+        "monitor_kill_to_term_seconds": 0.010535999899730086,
+        "monitor_kill_to_group_drained_seconds": 0.03309599997010082
+      },
+      "signal_reasons": [
+        "control-failure:ConnectionResetError"
+      ],
+      "workload_exit_events": [
+        {
+          "at": 549815.215265083,
+          "data": {
+            "returncode": -15
+          },
+          "kind": "worker-exit",
+          "wall_ns": 1790791276002348000
+        }
+      ]
+    },
+    {
+      "job_id": "guard-q-escape-01",
+      "checks": {
+        "event_copy_identity": true,
+        "source_hash": true,
+        "job_spec_hash": true,
+        "job_registry_agree": true,
+        "sentinel_survived_unchanged": true,
+        "sentinel_outside_group": true,
+        "no_controller_errors": true,
+        "all_final_owned_absent": true,
+        "signal_identity_matches_owned_supervisor": true,
+        "three_quiet_preflight_samples": true,
+        "stored_numbers_recompute": true,
+        "resolved_exact_latch_hash": true,
+        "latch_refuses_new_job": true
+      },
+      "derived": {
+        "sample_count": 1,
+        "sampled_rss_peak_bytes": 42090496,
+        "sampled_footprint_peak_bytes": 21152824,
+        "max_observed_sample_start_gap_seconds": null,
+        "term_to_kill_seconds": 2.003803582978435,
+        "group_drained_at": null,
+        "request_to_term_seconds": 0.020194292068481445
+      },
+      "signal_reasons": [
+        "monitoring-failure:Refusal:escaped-group-or-changed-uid"
+      ],
+      "workload_exit_events": [
+        {
+          "at": 549916.716311458,
+          "data": {
+            "returncode": -15
+          },
+          "kind": "worker-exit",
+          "wall_ns": 1790791377502735000
+        }
+      ]
+    },
+    {
+      "job_id": "guard-q-monitorstall-01",
+      "checks": {
+        "event_copy_identity": true,
+        "source_hash": true,
+        "job_spec_hash": true,
+        "job_registry_agree": true,
+        "sentinel_survived_unchanged": true,
+        "sentinel_outside_group": true,
+        "no_controller_errors": true,
+        "all_final_owned_absent": true,
+        "signal_identity_matches_owned_supervisor": true,
+        "three_quiet_preflight_samples": true,
+        "stored_numbers_recompute": true,
+        "resolved_exact_latch_hash": true,
+        "latch_refuses_new_job": true
+      },
+      "derived": {
+        "sample_count": 1,
+        "sampled_rss_peak_bytes": 44269568,
+        "sampled_footprint_peak_bytes": 23118880,
+        "max_observed_sample_start_gap_seconds": null,
+        "term_to_kill_seconds": 2.543510959018022,
+        "group_drained_at": 549978.823315416,
+        "monitor_kill_to_term_seconds": -2.519472916959785,
+        "monitor_kill_to_group_drained_seconds": -2.495505291968584,
+        "monitor_stop_to_term_seconds": 3.024371625040658,
+        "monitor_stop_to_group_drained_seconds": 3.0483392500318587,
+        "controller_check_after_stop_seconds": 5.543831875082105
+      },
+      "signal_reasons": [
+        "heartbeat-loss"
+      ],
+      "workload_exit_events": [
+        {
+          "at": 549978.822395625,
+          "data": {
+            "returncode": -15
+          },
+          "kind": "worker-exit",
+          "wall_ns": 1790791439608417000
+        }
+      ]
+    }
+  ],
+  "provider_checks": {
+    "source_hash": true,
+    "three_samples": true,
+    "identities_stable": true,
+    "normal_pressure": true,
+    "stable_swap": true,
+    "positive_own_metrics": true
+  },
+  "current_active_latch_present": false,
+  "fixture_sha256": "d0297c6c13d47e3ecb0ef5b73769dddedddc54ace0febdcc504211fd7cad88ec",
+  "max_observed_normal_start_gap": 1.076498124981299,
+  "all_checks_pass": true,
+  "limit": "Existing-file integrity/derivation only; no process/provider reexecution; root resolution booleans remain ROOT-reported checks."
+}

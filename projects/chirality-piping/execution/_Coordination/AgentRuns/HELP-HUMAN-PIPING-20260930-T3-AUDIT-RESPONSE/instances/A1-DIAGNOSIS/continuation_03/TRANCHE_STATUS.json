@@ -1,0 +1,156 @@
+{
+  "status": "STOPPED_PARTIAL_B_TRANCHE",
+  "cases": [
+    {
+      "case": "B01",
+      "state": "COMPLETED_GUARDED_HONEST",
+      "input_json_sha256": "9cc3afaf9c546c8e008af2e6177ff7e5facbabf9a58a9d9bd1e9821bc49feace",
+      "reason": null
+    },
+    {
+      "case": "B02",
+      "state": "GUARD_FAILURE_NUMERICAL_OUTPUT_FORENSICALLY_HONEST",
+      "input_json_sha256": "6eb0c41b76e78f451bde7d6d0399437e64c0d84420cd859a3832451a75d30f46",
+      "reason": "Guard failure; no retry or advance"
+    },
+    {
+      "case": "B03",
+      "state": "UNRUN",
+      "input_json_sha256": "7c9101178322dead1aeb50bca2b4a32d46c29f0ba71b387c696cfd86d5466df6",
+      "reason": "Guard failure; no retry or advance"
+    },
+    {
+      "case": "B04",
+      "state": "UNRUN",
+      "input_json_sha256": "96c6dd7f1cd1bf13b582a48f6b713831060195e130e5f2615e25088e66aecbe9",
+      "reason": "Guard failure; no retry or advance"
+    },
+    {
+      "case": "B05",
+      "state": "UNRUN",
+      "input_json_sha256": "853836b3528121b9b9bc5d7edbf7f044e9a713ad0f85006e9adade1fa6656097",
+      "reason": "Guard failure; no retry or advance"
+    },
+    {
+      "case": "B06",
+      "state": "UNRUN",
+      "input_json_sha256": "620123efe52d985dcb99325fc087f3db4122210bc6f5ef412cc3edbebeb2db5e",
+      "reason": "Guard failure; no retry or advance"
+    },
+    {
+      "case": "B07",
+      "state": "UNRUN",
+      "input_json_sha256": "317aed9c1518791adf40a839cd1c4a61d459401fc360e1c69d9fa937ac3e63e2",
+      "reason": "Guard failure; no retry or advance"
+    },
+    {
+      "case": "B08",
+      "state": "UNRUN",
+      "input_json_sha256": "f7875b32d2ba682f45142ab26eb25cc6f65fa7c04c23c49a5ea7aa733204dc11",
+      "reason": "Guard failure; no retry or advance"
+    },
+    {
+      "case": "B09",
+      "state": "UNRUN",
+      "input_json_sha256": "6658d51289872ad851333ee8114ce2ee6bf6e587e3e36253de942e686e7b5fb0",
+      "reason": "Guard failure; no retry or advance"
+    },
+    {
+      "case": "B10",
+      "state": "UNRUN",
+      "input_json_sha256": "503572f1a0ce3944a9953296a70216111591a86456929bc215ce87f2e10f979d",
+      "reason": "Guard failure; no retry or advance"
+    },
+    {
+      "case": "B11",
+      "state": "UNRUN",
+      "input_json_sha256": "84e65880d1bb42784f5250d3c54bc79181a7d27e1336d290624091148b72e00c",
+      "reason": "Guard failure; no retry or advance"
+    },
+    {
+      "case": "B12",
+      "state": "UNRUN",
+      "input_json_sha256": "7a5e8b9205f6cf0804c4efbd0b6d190dad93bc30a0fa0133177ba2f95e5caf69",
+      "reason": "Guard failure; no retry or advance"
+    },
+    {
+      "case": "B13",
+      "state": "UNRUN",
+      "input_json_sha256": "276bee1f16db98feb659b63677ce5ef121a772de724c113ac95479e4b394475d",
+      "reason": "Guard failure; no retry or advance"
+    },
+    {
+      "case": "B14",
+      "state": "UNRUN",
+      "input_json_sha256": "590694bf6e357d0694cfea57aaf635e91b4a3d23564220834658f8972ae4411a",
+      "reason": "Guard failure; no retry or advance"
+    },
+    {
+      "case": "B15",
+      "state": "UNRUN",
+      "input_json_sha256": "a1e97a90f188c086e607078a23321b218ffc39b32ec4dc0f9ce294584b40f94d",
+      "reason": "Guard failure; no retry or advance"
+    },
+    {
+      "case": "B16",
+      "state": "UNRUN",
+      "input_json_sha256": "bdbc1e02c3349ef32cdf12d6a4193dc86b3a1d6aa88bb822caf6be106fecf17c",
+      "reason": "Guard failure; no retry or advance"
+    },
+    {
+      "case": "C17",
+      "state": "UNRUN",
+      "input_json_sha256": "690864638ae69bd4ecf3784f0705c49bb6128c846816b971d0e3e6b1f481fb92",
+      "reason": "C extension not granted"
+    },
+    {
+      "case": "C18",
+      "state": "UNRUN",
+      "input_json_sha256": "d9d9451d9d4e52bfd582b68c7fc3880516f0fe9fde46ee27f982a358f2f2d560",
+      "reason": "C extension not granted"
+    },
+    {
+      "case": "C19",
+      "state": "UNRUN",
+      "input_json_sha256": "4a6964f72a8c91f987128894e149b26cb619158dba416873e7d6d6807c5d5c08",
+      "reason": "C extension not granted"
+    },
+    {
+      "case": "C20",
+      "state": "UNRUN",
+      "input_json_sha256": "0b574df46268dc681b1f2deb0d9b757046c6c35593446dfb7a5dd86624406f76",
+      "reason": "C extension not granted"
+    },
+    {
+      "case": "C21",
+      "state": "UNRUN",
+      "input_json_sha256": "9fe3ccbebc156f28e09d7e9fef25762d870230f2e6f0865cc3cdca315f3f0951",
+      "reason": "C extension not granted"
+    },
+    {
+      "case": "C22",
+      "state": "UNRUN",
+      "input_json_sha256": "786165509d508b4533064c954d7fa3ee58742cb3728d3dfc1f61804605a87511",
+      "reason": "C extension not granted"
+    },
+    {
+      "case": "C23",
+      "state": "UNRUN",
+      "input_json_sha256": "c751fac031b539eef7c48b9a3179ad991834f04ff1740c58ebfada08d89f675d",
+      "reason": "C extension not granted"
+    },
+    {
+      "case": "C24",
+      "state": "UNRUN",
+      "input_json_sha256": "5f703ac516327acb486d91dcfa05079a1db5a2b7f62c8f3fcc0d500bbe8540e0",
+      "reason": "C extension not granted"
+    }
+  ],
+  "clean_guarded_cases": 1,
+  "guard_failed_cases": 1,
+  "remaining_B_cases": 14,
+  "C_cases_run": 0,
+  "unrun_total": 22,
+  "remaining_B_grant": "requires ROOT direction after guard/latch disposition",
+  "C_grant": false
+}

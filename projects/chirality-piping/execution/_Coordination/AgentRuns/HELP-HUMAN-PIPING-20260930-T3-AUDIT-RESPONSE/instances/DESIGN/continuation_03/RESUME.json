@@ -1,0 +1,96 @@
+{
+  "record_kind": "actual_native_TASK_resume",
+  "recorded_utc": "2026-09-30T18:20:12.869680+00:00",
+  "parent": "/root/design_manager",
+  "parent_role": "HELPS_HUMANS / Agent 1",
+  "root": "/root",
+  "child": "/root/design_manager/a1_diagnosis",
+  "child_role": "TASK / Type 2, unchanged",
+  "mechanism": "collaboration.followup_task to original completed child",
+  "fresh_spawn": false,
+  "new_role": false,
+  "model_override": null,
+  "provider_or_model_change": false,
+  "actual_model_id": "not independently exposed",
+  "prior_status": "completed preparation",
+  "confirmed_after_resume": "running via collaboration.list_agents",
+  "actual_coordination_head": "888e388812f65dffce4428c96c18d2ddc8d2ae61",
+  "authorized_compile_candidate": "888e388812f65dffce4428c96c18d2ddc8d2ae61",
+  "frozen_numerical_source": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "grant_status": "sealed-uncommitted decision05; exact hash verified",
+  "inputs": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "read_scope": "grant and manager resume prompt full; instruction/role/skill bodies retained with current hash check; guard file hash only by manager; child must read CLI/config contract"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "read_scope": "grant and manager resume prompt full; instruction/role/skill bodies retained with current hash check; guard file hash only by manager; child must read CLI/config contract"
+    },
+    {
+      "path": "agents/AGENT_HELPS_HUMANS.md",
+      "sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e",
+      "read_scope": "grant and manager resume prompt full; instruction/role/skill bodies retained with current hash check; guard file hash only by manager; child must read CLI/config contract"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "read_scope": "grant and manager resume prompt full; instruction/role/skill bodies retained with current hash check; guard file hash only by manager; child must read CLI/config contract"
+    },
+    {
+      "path": ".agents/skills/software-defect-diagnosis/SKILL.md",
+      "sha256": "7e423dfd24132c33d3aa8fe6994bf17a1def966c396723f6bd72ac8d2442112b",
+      "read_scope": "grant and manager resume prompt full; instruction/role/skill bodies retained with current hash check; guard file hash only by manager; child must read CLI/config contract"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/decisions/05_A0_COMPILE_TRIAL_GRANT.md",
+      "sha256": "ddd05d9cd09cd7f55e8515ce3ce48a9c6a1787e94e7d451f17c45ece89a770e5",
+      "read_scope": "grant and manager resume prompt full; instruction/role/skill bodies retained with current hash check; guard file hash only by manager; child must read CLI/config contract"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/tools/host_guard_v2.py",
+      "sha256": "533a6f7506da4e031d8a824a27b4e9c496f374a3af8b7e98c72da55e8bbc26b5",
+      "read_scope": "grant and manager resume prompt full; instruction/role/skill bodies retained with current hash check; guard file hash only by manager; child must read CLI/config contract"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_03/RESUME_PROMPT.md",
+      "sha256": "a71a4718b456743a377c12470352eb449c93a3cfe3e6393b971aed111ce852cb",
+      "read_scope": "grant and manager resume prompt full; instruction/role/skill bodies retained with current hash check; guard file hash only by manager; child must read CLI/config contract"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/RETURN.md",
+      "sha256": "f95dae59146122c0099f77f05125488db1c165abbabdf60da72ec898db47f93c",
+      "read_scope": "grant and manager resume prompt full; instruction/role/skill bodies retained with current hash check; guard file hash only by manager; child must read CLI/config contract"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_01/RETURN.md",
+      "sha256": "1a69f68c97fb9da4d5c37100fb1e0702b9ea5a81612bf036c86497e75f4de0df",
+      "read_scope": "grant and manager resume prompt full; instruction/role/skill bodies retained with current hash check; guard file hash only by manager; child must read CLI/config contract"
+    }
+  ],
+  "operation": "Exactly one reviewed-guard-v2 direct native cargo build --offline --locked --manifest-path <A1_SCRATCH>/Cargo.toml --bin a1_public_probe --no-default-features -j 1",
+  "limits": {
+    "group_rss_bytes": 2147483648,
+    "group_footprint_bytes": 2147483648,
+    "allowance_bytes": 134217728,
+    "timeout_seconds": 300,
+    "write_budget_bytes": 1073741824,
+    "disk_reserve_bytes": 4294967296,
+    "fresh_quiet_preflight_samples": 3,
+    "projected_available_fraction_strictly_above": 0.4,
+    "jobs": 1,
+    "numerical_case_runs": 0,
+    "retries_or_repairs": 0
+  },
+  "heavy_slot": "solely reserved to this child build; manager remains lightweight",
+  "write_fences": {
+    "manager": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_03/**",
+    "child_new_evidence": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_02/**",
+    "child_runtime": "existing owned scratch/target; grant allows normal tool-managed isolated CARGO_HOME writes",
+    "preserved": "all sealed A0 and DESIGN files and source snapshot"
+  },
+  "enforcement": "shared filesystem sandbox plus separately enforced reviewed host guard; per-agent file fence remains prompt restriction",
+  "return_condition": "named build/admission/guard result with sealed evidence before any B grant"
+}

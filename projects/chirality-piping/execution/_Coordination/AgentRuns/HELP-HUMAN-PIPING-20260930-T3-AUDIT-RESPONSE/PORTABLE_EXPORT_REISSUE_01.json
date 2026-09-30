@@ -1,0 +1,38 @@
+{
+  "kind": "pre-first-commit-portable-export-reissue",
+  "cause": "GEN-8 caught unaliased temporary-directory ancestors in two draft exports. Installed Python path was normalized consistently too.",
+  "boundary": "No committed file or original raw output changed. Complete prior uncommitted packets and original manifests are preserved byte-for-byte in the private runtime archive. Existing return/context hashes remain historical seals before this explicitly recorded export correction.",
+  "transformation": "Only path string aliases in parsed JSON; no numeric, result, source, executable, oracle or test fact changed. Parent_n means the nth ancestor of the canonical RESPONSE_RUNTIME. Public manifests are regenerated for their portable views.",
+  "packets": [
+    {
+      "public_folder": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_02",
+      "original_archive_alias": "<RESPONSE_RUNTIME>/scratch/portability-originals-01/a0-timeout",
+      "original_manifest_sha256": "4da15cde55cf01e1cd2f618a223b73d8de1b33d066e07733eeab43af784a4a22",
+      "portable_manifest_sha256": "f9c7391d1e81638ee2f75259fa71f31d996ec55ee5c2e6b92e6719a279abcf49"
+    },
+    {
+      "public_folder": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD",
+      "original_archive_alias": "<RESPONSE_RUNTIME>/scratch/portability-originals-01/root-build",
+      "original_manifest_sha256": "d20a8e28cf4ea4c082bd9b3f3c707526f670cc1bc0f0d5493036614fa7b2deea",
+      "portable_manifest_sha256": "fe8182257165137bcd58e70eaacdbf668c707f10b7511b7b317a25c9b8c4e62e"
+    }
+  ],
+  "changed_exports": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_02/PRECHECK.sanitized.json",
+      "before_sha256": "65455a709b0a957e72f96e3e0efd88fa019187bd6cce7aeea36226a571f431cc",
+      "after_sha256": "1647792b2a7b6a0f0ea3ebbdda6efe33f53d6c7cc5182a15f7c8cdd9e9b2aec8"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/controller-CONTROLLER_RESULT.raw.json",
+      "before_sha256": "e15fef6cf474f87a45055f401a5a487e7be3efa94dfab0cc1bec20a765c28f65",
+      "after_sha256": "7d1c6ec91b7511a27f86d6db62956d532a21193da4a8f85c12945892bbc242ad"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/controller-PRECHECK.raw.json",
+      "before_sha256": "65455a709b0a957e72f96e3e0efd88fa019187bd6cce7aeea36226a571f431cc",
+      "after_sha256": "1647792b2a7b6a0f0ea3ebbdda6efe33f53d6c7cc5182a15f7c8cdd9e9b2aec8"
+    }
+  ],
+  "gen8_before": "Failed: 2 ABS_PATH_IN_UNCLASSIFIED_SURFACE findings, 34.33 seconds; retained in tool transcript."
+}

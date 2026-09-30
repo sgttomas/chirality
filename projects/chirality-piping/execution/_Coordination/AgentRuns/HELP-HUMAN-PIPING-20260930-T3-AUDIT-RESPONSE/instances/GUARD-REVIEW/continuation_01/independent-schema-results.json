@@ -1,0 +1,381 @@
+{
+  "source_sha256": "533a6f7506da4e031d8a824a27b4e9c496f374a3af8b7e98c72da55e8bbc26b5",
+  "live_capabilities": "blocked",
+  "fake_files_only": true,
+  "cases": [
+    {
+      "name": "valid build",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": true,
+      "actual_accept": true,
+      "reason": null,
+      "matches": true
+    },
+    {
+      "name": "original forwarded controls",
+      "argv": [
+        "/fake/cargo",
+        "run",
+        "--jobs",
+        "8",
+        "--",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "actual_accept": false,
+      "reason": "cargo-jobs-must-be-one",
+      "matches": true
+    },
+    {
+      "name": "original cargo selector",
+      "argv": [
+        "/fake/cargo",
+        "+stable",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "actual_accept": false,
+      "reason": "compile-incompatible-explicit-toolchain",
+      "matches": true
+    },
+    {
+      "name": "original rustc selector",
+      "argv": [
+        "/fake/rustc",
+        "+stable",
+        "input.rs"
+      ],
+      "expected_accept": false,
+      "actual_accept": false,
+      "reason": "compile-incompatible-explicit-toolchain",
+      "matches": true
+    },
+    {
+      "name": "valid canonical cargo selector",
+      "argv": [
+        "/fake/cargo",
+        "+1.97.1",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": true,
+      "actual_accept": true,
+      "reason": null,
+      "matches": true
+    },
+    {
+      "name": "valid canonical rustc selector",
+      "argv": [
+        "/fake/rustc",
+        "+1.97.1",
+        "input.rs"
+      ],
+      "expected_accept": true,
+      "actual_accept": true,
+      "reason": null,
+      "matches": true
+    },
+    {
+      "name": "duplicate same jobs",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1",
+        "--jobs=1"
+      ],
+      "expected_accept": false,
+      "actual_accept": false,
+      "reason": "cargo-duplicate-option:--jobs",
+      "matches": true
+    },
+    {
+      "name": "conflicting jobs alias",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1",
+        "-j8"
+      ],
+      "expected_accept": false,
+      "actual_accept": false,
+      "reason": "cargo-duplicate-option:--jobs",
+      "matches": true
+    },
+    {
+      "name": "jobs in compiler tail",
+      "argv": [
+        "/fake/cargo",
+        "rustc",
+        "--offline",
+        "--locked",
+        "--",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "actual_accept": false,
+      "reason": "cargo-missing-own-offline-locked-jobs1",
+      "matches": true
+    },
+    {
+      "name": "offline in program tail",
+      "argv": [
+        "/fake/cargo",
+        "run",
+        "--locked",
+        "-j",
+        "1",
+        "--",
+        "--offline"
+      ],
+      "expected_accept": false,
+      "actual_accept": false,
+      "reason": "cargo-missing-own-offline-locked-jobs1",
+      "matches": true
+    },
+    {
+      "name": "locked consumed as package operand",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--package",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "actual_accept": false,
+      "reason": "cargo-ambiguous-option-value",
+      "matches": true
+    },
+    {
+      "name": "jobs-looking feature operand",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "--features=-j1"
+      ],
+      "expected_accept": false,
+      "actual_accept": false,
+      "reason": "cargo-ambiguous-option-value",
+      "matches": true
+    },
+    {
+      "name": "wrong jobs attached",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "--jobs=01"
+      ],
+      "expected_accept": false,
+      "actual_accept": false,
+      "reason": "cargo-jobs-must-be-one",
+      "matches": true
+    },
+    {
+      "name": "valid long jobs",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "--jobs=1"
+      ],
+      "expected_accept": true,
+      "actual_accept": true,
+      "reason": null,
+      "matches": true
+    },
+    {
+      "name": "valid short jobs",
+      "argv": [
+        "/fake/cargo",
+        "check",
+        "--offline",
+        "--locked",
+        "-j1"
+      ],
+      "expected_accept": true,
+      "actual_accept": true,
+      "reason": null,
+      "matches": true
+    },
+    {
+      "name": "selector after subcommand",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "+stable",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "actual_accept": false,
+      "reason": "cargo-unsupported-or-ambiguous-option",
+      "matches": true
+    },
+    {
+      "name": "duplicate canonical selector",
+      "argv": [
+        "/fake/cargo",
+        "+1.97.1",
+        "+1.97.1",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "actual_accept": false,
+      "reason": "cargo-unsupported-subcommand",
+      "matches": true
+    },
+    {
+      "name": "native-triple selector outside grammar",
+      "argv": [
+        "/fake/cargo",
+        "+1.97.1-aarch64-apple-darwin",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1"
+      ],
+      "expected_accept": false,
+      "actual_accept": false,
+      "reason": "compile-incompatible-explicit-toolchain",
+      "matches": true
+    },
+    {
+      "name": "direct rustc path no selector",
+      "argv": [
+        "/fake/rustc",
+        "input.rs",
+        "--emit=llvm-ir"
+      ],
+      "expected_accept": true,
+      "actual_accept": true,
+      "reason": null,
+      "matches": true
+    },
+    {
+      "name": "rustc second selector",
+      "argv": [
+        "/fake/rustc",
+        "+1.97.1",
+        "+stable",
+        "input.rs"
+      ],
+      "expected_accept": false,
+      "actual_accept": false,
+      "reason": "rustc-ambiguous-explicit-toolchain",
+      "matches": true
+    },
+    {
+      "name": "cargo compiler forwarding",
+      "argv": [
+        "/fake/cargo",
+        "rustc",
+        "--manifest-path",
+        "/fake/Cargo.toml",
+        "--lib",
+        "--offline",
+        "--locked",
+        "-j",
+        "1",
+        "--",
+        "--emit=llvm-ir",
+        "-C",
+        "opt-level=0"
+      ],
+      "expected_accept": true,
+      "actual_accept": true,
+      "reason": null,
+      "matches": true
+    },
+    {
+      "name": "build forwarding outside grammar",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1",
+        "--",
+        "-C",
+        "opt-level=0"
+      ],
+      "expected_accept": false,
+      "actual_accept": false,
+      "reason": "cargo-unsupported-forwarding",
+      "matches": true
+    },
+    {
+      "name": "forwarded literal is not proxy selector",
+      "argv": [
+        "/fake/cargo",
+        "run",
+        "--offline",
+        "--locked",
+        "-j",
+        "1",
+        "--",
+        "+stable"
+      ],
+      "expected_accept": true,
+      "actual_accept": true,
+      "reason": null,
+      "matches": true
+    },
+    {
+      "name": "config override refused",
+      "argv": [
+        "/fake/cargo",
+        "build",
+        "--offline",
+        "--locked",
+        "-j",
+        "1",
+        "--config",
+        "build.jobs=8"
+      ],
+      "expected_accept": false,
+      "actual_accept": false,
+      "reason": "cargo-unsupported-or-ambiguous-option",
+      "matches": true
+    }
+  ],
+  "all_match": true
+}

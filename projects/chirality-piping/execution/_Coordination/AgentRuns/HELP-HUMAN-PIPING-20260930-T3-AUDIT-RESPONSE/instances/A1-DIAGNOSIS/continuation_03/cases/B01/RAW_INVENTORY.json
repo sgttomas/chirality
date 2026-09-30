@@ -1,0 +1,86 @@
+[
+  {
+    "runtime_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B01/INVOCATION_STARTED.json",
+    "raw_sha256": "c58555c34c5bf7cba537ad79010eaaac8063844e10bc3af896c3c52d075a2339",
+    "raw_size_bytes": 46,
+    "sanitized_file": "controller-INVOCATION_STARTED.json",
+    "sanitized_sha256": "c58555c34c5bf7cba537ad79010eaaac8063844e10bc3af896c3c52d075a2339"
+  },
+  {
+    "runtime_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B01/POSTCHECK.json",
+    "raw_sha256": "602d709b9e7f4b441e4c6cc17e00a2fc384a817ea3e81c50fe432decdb288d00",
+    "raw_size_bytes": 21855,
+    "sanitized_file": "controller-POSTCHECK.json",
+    "sanitized_sha256": "0e1cfce1b321cd008a0a578ba81d6f0be5d15a696dcb49a313b49451208c9804"
+  },
+  {
+    "runtime_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B01/PRECHECK.json",
+    "raw_sha256": "f45a40e430ab707bfd2f2631fabff4416f1c82c70380995b842d2734f1f06d17",
+    "raw_size_bytes": 26096,
+    "sanitized_file": "controller-PRECHECK.json",
+    "sanitized_sha256": "0fcaace3dc5799a0c3b107080da068a4e2a8c50e38dd06b8e220ac88c7940a5d"
+  },
+  {
+    "runtime_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B01/comparison.stderr",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_size_bytes": 0,
+    "sanitized_file": "controller-comparison.stderr",
+    "sanitized_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "runtime_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B01/comparison.stdout.json",
+    "raw_sha256": "c8aac8ab74e911df677b680046a9680b312247004328a7cd3250203ab0cbe9f6",
+    "raw_size_bytes": 13737,
+    "sanitized_file": "controller-comparison.stdout.json",
+    "sanitized_sha256": "c8aac8ab74e911df677b680046a9680b312247004328a7cd3250203ab0cbe9f6"
+  },
+  {
+    "runtime_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B01/guard.stderr",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_size_bytes": 0,
+    "sanitized_file": "controller-guard.stderr",
+    "sanitized_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "runtime_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B01/guard.stdout",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_size_bytes": 0,
+    "sanitized_file": "controller-guard.stdout",
+    "sanitized_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "runtime_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B01/job.json",
+    "raw_sha256": "ea19af97f41ee4744fea6e630f23e3e69886b6bc240eaf1e37223f61312fd62f",
+    "raw_size_bytes": 15483,
+    "sanitized_file": "controller-job.json",
+    "sanitized_sha256": "653b049327cc987b6a7d78d4a86d7ad03f978cf3a301760766910a6132d1ddbb"
+  },
+  {
+    "runtime_relative_path": "logs/a1-b-b01-888e3888-20260930-01/monitor.jsonl",
+    "raw_sha256": "3d9876a0cb2b783ff305642d9d2b1fdbb9282cdd91b5cccae280844738d8f21a",
+    "raw_size_bytes": 78817,
+    "sanitized_file": "guard-monitor.jsonl",
+    "sanitized_sha256": "a2a8c1d302a0c5cdb5667e52aa3ff71e97c023060a2e3e94f6b30a0a28b520d6"
+  },
+  {
+    "runtime_relative_path": "logs/a1-b-b01-888e3888-20260930-01/registry.json",
+    "raw_sha256": "4c80bdbafc033d98ff913b08ff561cdcc215f1c6b07d0a208e808686ffab4bf1",
+    "raw_size_bytes": 15268,
+    "sanitized_file": "guard-registry.json",
+    "sanitized_sha256": "a23846fcb47e1eeb8c654529ed78479beb0149f73c0794a52943fd0586521d73"
+  },
+  {
+    "runtime_relative_path": "logs/a1-b-b01-888e3888-20260930-01/supervisor.jsonl",
+    "raw_sha256": "b4000fa17d97a95a6aaf7d122422a55db436736dbdf38cb49223904c0f323cb7",
+    "raw_size_bytes": 556,
+    "sanitized_file": "guard-supervisor.jsonl",
+    "sanitized_sha256": "b4000fa17d97a95a6aaf7d122422a55db436736dbdf38cb49223904c0f323cb7"
+  },
+  {
+    "runtime_relative_path": "logs/a1-b-b01-888e3888-20260930-01/workload.log",
+    "raw_sha256": "f8b8781df709efdb98b17d0d689b0f5c6eb45e460dc944e45a55fac58e7e7a3e",
+    "raw_size_bytes": 13804,
+    "sanitized_file": "guard-workload.log",
+    "sanitized_sha256": "f8b8781df709efdb98b17d0d689b0f5c6eb45e460dc944e45a55fac58e7e7a3e"
+  }
+]

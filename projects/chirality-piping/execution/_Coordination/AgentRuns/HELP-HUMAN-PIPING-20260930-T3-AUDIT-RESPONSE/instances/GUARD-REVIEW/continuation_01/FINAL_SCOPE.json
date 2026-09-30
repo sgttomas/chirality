@@ -1,0 +1,1278 @@
+{
+  "base": "fe6ca966259d29d8d6ed2f05460400f6cb5d5de0",
+  "candidate": "888e388812f65dffce4428c96c18d2ddc8d2ae61",
+  "upstream_base": "292e123db9117e097c2dfbbecaf7a93de86c3c6b",
+  "incremental_diff_sha256": "b983fddcc239567f4d8d654c31d27d35fd998cdbcd0756a6277555e413275f37",
+  "full_response_diff_sha256": "df805bf7cdf63f438e36283dbbbf0bb7629d6700298a848ea5bd2f8f10e49c52",
+  "changed_file_count": 181,
+  "all_worktree_bytes_match": true,
+  "files": [
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/decisions/04_GUARD_REVIEW_AND_PROVIDER_WITNESS.md",
+      "bytes": 1859,
+      "sha256": "f826d354e609568da20256460309fb62bd23130d26dd6fcee19520dd7d165ff1",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/BUDGET_PROPOSAL.json",
+      "bytes": 1751,
+      "sha256": "d3dddc0ac23a2e61e0963cbbcb55aa45be2b66dc73955a874e8c49f0469031e4",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/CAUSAL_ASSESSMENT.md",
+      "bytes": 5310,
+      "sha256": "acb70903ac3ab6e70cef69d907c02a80b539b8b31bff2ac22b4955f069afdfeb",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/COMMAND_PLAN.md",
+      "bytes": 7981,
+      "sha256": "db9e3f1a676fcbd32ce4f368f54236e587d5381d1ef89eeb7dc40162adb14bec",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/CONTEXT.json",
+      "bytes": 17460,
+      "sha256": "c7b99eebccfc4c9d16957b1a61ee5c4a360d6b85bea0b75388cb56e9911a109b",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/Cargo.toml",
+      "bytes": 389,
+      "sha256": "2d98b4b273b52c0da69b64a7a70c984127d0df7b01a52a3f1b6e03a29eee1f59",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/RETURN.md",
+      "bytes": 7410,
+      "sha256": "f95dae59146122c0099f77f05125488db1c165abbabdf60da72ec898db47f93c",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/SCRATCH_COPY.json",
+      "bytes": 830,
+      "sha256": "5e68b569dfe99119b8e7f8168b737b800b5d19b30d80fdaf6b8c74525cf6f89d",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/SELF_CHECK.json",
+      "bytes": 2925,
+      "sha256": "aadd35eec1356758ccbca3f67ba384f5e49a8c99e592dc39755d7d5e3ec53659",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/SELF_CHECK.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/SHA256SUMS",
+      "bytes": 1323,
+      "sha256": "074e005899a76e8f26e2b2f021187a39331e2aca2d426856868f35467a8e5545",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/SNAPSHOT_VERIFICATION.json",
+      "bytes": 10626,
+      "sha256": "81634ac9d2aab1ba1f804b0e5241373839f9f20dfeab1e8c3442afc92957a21e",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/STATIC_PREPARATION_CHECK.json",
+      "bytes": 601,
+      "sha256": "e15170c22f87829cc76faff6d2207393771b102dd51d9f5a7c917442537db437",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_01/CONTEXT.json",
+      "bytes": 1581,
+      "sha256": "9fca6509024c2168443a91020a064b34ca5020b5681585f4660ad7ddcb44961a",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_01/Cargo.lock",
+      "bytes": 342,
+      "sha256": "ca870fd55afca7aebeadd4410bb77a2a40391ac80a7ff95c36ab6b55fe66bc4d",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_01/RETURN.md",
+      "bytes": 1645,
+      "sha256": "1a69f68c97fb9da4d5c37100fb1e0702b9ea5a81612bf036c86497e75f4de0df",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_01/SHA256SUMS",
+      "bytes": 232,
+      "sha256": "161082bdb24f9180b5dc04239f6a727006b3052d2b3ebadd4bb581d89189f8e8",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/matrix.json",
+      "bytes": 330335,
+      "sha256": "eddf44e8f491585c9954896089ad0175ae3c5a23504740b42dfb163c022eb359",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/oracle.py",
+      "bytes": 20302,
+      "sha256": "35cf4b9321ebe126693e52ad96ea010bed9f280c3058d02fbae98c17275627be",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/src/cases.rs",
+      "bytes": 6167,
+      "sha256": "b925980a3b5b3c206e9e419f6e9fd1fffdedab7feffc1173650f92ecf2ea3b8c",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/src/main.rs",
+      "bytes": 8875,
+      "sha256": "9e054fa80fff5c2192b1bfef5ad031d24c4d9dd3ab2407b6f9df517cc74d740a",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/verify_snapshot.py",
+      "bytes": 2626,
+      "sha256": "eb15236732ca693453c2a946e7c802467959bb3590945a114046f162163a1675",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/BASIS.json",
+      "bytes": 11705,
+      "sha256": "3f4c970d6d0bfd98cce5048fa5b7f7f1420b069bc6071d4b995f62b1ae5948f9",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/GUARD_V2_BRIEF.md",
+      "bytes": 2734,
+      "sha256": "e191e038879f9ae93a194d28d53b3170d33e088de96034c17c430928886dc7ff",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/GUARD_V2_INTEGRATION.json",
+      "bytes": 4151,
+      "sha256": "f197599f255480dd719f1b3eb5b7e018a38c6429157f367929ef3ffac94ce944",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/GUARD_V2_LAUNCH.json",
+      "bytes": 1153,
+      "sha256": "d525b7ad551dbb0515480104e6fc8072f23504d39ec7b787838c19d3a4c5f805",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/K0_L1_LAYOUT_MANIFEST.json",
+      "bytes": 16824,
+      "sha256": "517f52216b69c12975ec283df4bcaa39f20f68182de61ded0bca1f5a1ad2f5f3",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/K0_L1_LAYOUT_OVERLAY.rs.txt",
+      "bytes": 12075,
+      "sha256": "3521cd420876122a137e700016e86e21361b6bd652a5375b33dfdd38b1a73044",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/K0_L1_LAYOUT_PATCH.diff",
+      "bytes": 12419,
+      "sha256": "5ed2f0a33dbf00506e9450108a2b17bc7bf324de89760088f8f86c567c4852f6",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/K0_L1_WITNESS_PROPOSAL.md",
+      "bytes": 7329,
+      "sha256": "b4c08ae6a3be1118e13d765295fddc871c8352ba1a3697645cf8439be50213cb",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/K0_S1_S2_BRIEF.md",
+      "bytes": 7025,
+      "sha256": "3a367e2fdcc854fb2b7007c6121da800587aa1d86e01d0702be1b663b58ed53b",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/PAYLOAD_REPLAY.json",
+      "bytes": 8499,
+      "sha256": "5527bd4a4695f1c142440e9b06939cfc96a620f4e49807fcd5360deeacb90139",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/RETURN.md",
+      "bytes": 6184,
+      "sha256": "b8e73bc9807fccd2d537beb67ace7e2c406be437866cb82f5d71a67efe31ffbb",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/RUST_SRC_INPUTS.json",
+      "bytes": 6061,
+      "sha256": "05e55026da29d93d5ad677e79dbb9357fcf761db34243b40c6a4ef2e937e5754",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/SHA256SUMS",
+      "bytes": 1471,
+      "sha256": "4930257a7c1f1b4936df43e119dbddda3f969f2e93383c8f7008426a82e310c9",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/SOURCE_CARDINALITIES.json",
+      "bytes": 21778,
+      "sha256": "c4b52fe01c7c72d24ef9e777bd74f6602dbb263c8cbd6c7fd9dcea911e900838",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/SOURCE_CLOSURE.md",
+      "bytes": 11150,
+      "sha256": "a9998e89678373f59e3aacffd61fe4a1d8b7fbf363070ebbf73724d4bbfebf88",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/V1_PRESERVATION.json",
+      "bytes": 3182,
+      "sha256": "954c2d10462a35e6ae3ac1bef4a5420d3fb8a080316fb12c72d5c31469d52f61",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/VALIDATION.json",
+      "bytes": 963,
+      "sha256": "1a7afc9c141dead62f06ba4a13930d0fde234f5644dab227798ab9e28599b6d5",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/check_payloads.py",
+      "bytes": 1587,
+      "sha256": "d63c27a82731e344329667ed3a6c3377594b8ddb7e54dda0e73838f6dd9b8c91",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_02/CONSEQUENCE_CONTEXT.json",
+      "bytes": 925,
+      "sha256": "5054c87e0e659cd323bedd61345ae6978369325985626f9d5419af91a9262acd",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_02/CONSEQUENCE_NOTES.md",
+      "bytes": 2372,
+      "sha256": "2a13817d6ca44fbabc7f6341ef1876de5a211b300413b8197089f46d674e73ee",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_02/CONTEXT.json",
+      "bytes": 3321,
+      "sha256": "2b8c046b7a0cbe44ac1f9f69e1c5675412867b356cc312ecf62e47719b2f9a24",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_02/LAUNCH.json",
+      "bytes": 6477,
+      "sha256": "76401c5296ac181dbc3df280f8db357981843be0660b6b58d752b16ac98b3a63",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_02/LAUNCH_PROMPT.md",
+      "bytes": 5322,
+      "sha256": "97d1e193adc10f2b49492912bcadd6f8bdadc2e684210d7c12586b64d48ed0ec",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_02/RETURN.md",
+      "bytes": 5546,
+      "sha256": "861ea4d2efd680fd0ebfc7a92a861004f30433f753348db2e228115ad94eae72",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_02/RUNTIME_PREPARATION_ADDENDUM.md",
+      "bytes": 2204,
+      "sha256": "1d076d8c46398d331aafd46d7ab899936a72ade07cc14487aea597dc1af15165",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_02/SHA256SUMS",
+      "bytes": 893,
+      "sha256": "f708e07be9567079dad1d8b33f781eef4cf6580f7577499fd0daadd181769e82",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_02/checks/INTEGRATION_CHECK.json",
+      "bytes": 8505,
+      "sha256": "198dcac9f6e6d49f4f618cfbca51c2833218b48a622fd0fdb2f2b5bb313c86a4",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_02/checks/oracle_self_check.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_02/checks/oracle_self_check.stdout.json",
+      "bytes": 2925,
+      "sha256": "aadd35eec1356758ccbca3f67ba384f5e49a8c99e592dc39755d7d5e3ec53659",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/CONTEXT.json",
+      "bytes": 7251,
+      "sha256": "deabcaee831c6ae306fad8cf437cf6d62fdfaf3802037fb48b990d90221eaaf8",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/PRESERVATION_AFTER.json",
+      "bytes": 4217,
+      "sha256": "a49cf1e9f145e041f505ff539f1f5824c325d72461250cd399ae5403c1bb666c",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/PRESERVATION_BEFORE.json",
+      "bytes": 2820,
+      "sha256": "482b6f7cbc4da7fd97bc2cdfdf6fce564d4d09a4ee21a840b7b2224de2cf6c5b",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/RETURN.md",
+      "bytes": 6225,
+      "sha256": "44528d0c10ddcf3bbb534a58c457605555ee88137e03bef93bd225f603a8d85a",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/SHA256SUMS",
+      "bytes": 3544,
+      "sha256": "9fa517200ac98a895eed097fd40c61921950921796414476044f33087874053e",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/VALIDATION.json",
+      "bytes": 3663,
+      "sha256": "a85b7e700e424b80d4d0f7b8109da5a7dc758ea8e630161d701399c9e34b8b5f",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/compile-admission-tests.log",
+      "bytes": 6191,
+      "sha256": "ef65d23fc0954d083c9f337f90149ff4bcd434246bbf0984d7dab1f7ae8be9de",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/harness.py",
+      "bytes": 1594,
+      "sha256": "5b0cf54d22197688a4849032df608bfe154ad43012a54f8377a989ebfa647f3d",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/host_guard_v1_to_v2.diff",
+      "bytes": 4578,
+      "sha256": "83efa8fc9b6d33d3a2315a14540dafe6dbff5407cff1fd3e36ab28bebeb83f13",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/original-against-v2.log",
+      "bytes": 5677,
+      "sha256": "e655c9a56b447e79c4e9792a66bdc7e991b61c3f7f3ab1eb0cee0bee6c266ddc",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/record_regressions.py",
+      "bytes": 484,
+      "sha256": "acdf1e9af0ab2efac7d2780c0d587f5b280f3cf1dd7017e5b76c5815c3640a5f",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/regression_inputs.json",
+      "bytes": 18980,
+      "sha256": "d041977cea847dbd60c43f4637f5adb9d44853d3772599d8c7fb38de19315354",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/regression_results.json",
+      "bytes": 23548,
+      "sha256": "2b1cf6a29a5ad15ccfb6b078f9f698c68e66723e8c0f46de4fbf50eb25fdf0da",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/run_original_against_v2.py",
+      "bytes": 564,
+      "sha256": "320848fe5825222523889537688c81a8f1ae380a6713224855d54d2cd0c982eb",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_01/test_compile_admission.py",
+      "bytes": 3667,
+      "sha256": "6a03dfdcda3e843baa1879bc1c3582a6c180be12fb20abf8506c4be966f526e6",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-REVIEW/COMMANDS.md",
+      "bytes": 3673,
+      "sha256": "85affd66df99062813f501f0e51b5f53a7d5635070b0b8eed53ba7d768ad84df",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-REVIEW/CONTEXT.json",
+      "bytes": 4313,
+      "sha256": "51237e15cc4fea4053b7a2b306110a78d8730b5fe6ab96e83add35ab59958922",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-REVIEW/FROZEN_SCOPE.json",
+      "bytes": 36976,
+      "sha256": "d7d69556c7c31ec299003a85ab8ead15e4debd794302aa221b2a4a8cbe4f00ff",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-REVIEW/RECORD_CHECKS.json",
+      "bytes": 75897,
+      "sha256": "4c21f35b933100e26b58673bce2bc208b355f710e271166652cd7fd081f427a2",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-REVIEW/REVIEW.md",
+      "bytes": 13249,
+      "sha256": "5b5ec41086242143cb24c14b6b0e30ad57fff04c001cd9e6fe1afb8cb25b7924",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-REVIEW/SHA256SUMS",
+      "bytes": 759,
+      "sha256": "573e02b9fc8ef5a4d67b8a60066b01ca66c81520eb6b17268ce514b7197739fe",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-REVIEW/SUPPLEMENTARY_CHECKS.json",
+      "bytes": 21989,
+      "sha256": "5abb7c965bf35e1b2cbc02db132fd53e5e38cf86e2fd516669bfa5820301dd6e",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-REVIEW/check_compile_schema.py",
+      "bytes": 2703,
+      "sha256": "6c33b83e4f9c3d239441364d096b9b766988418a536d7e79fcec977deeec37f4",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-REVIEW/compile-schema-results.json",
+      "bytes": 1727,
+      "sha256": "bc83104b3c651de18845e781dfe62a49e62837f7654aa65f39f329e2c34082ab",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-REVIEW/pure-tests.log",
+      "bytes": 4640,
+      "sha256": "c46ac9a1fdba094bbb59df5da4ecce3833d15cdd9959f501d2f8c56742432ebc",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/CONTEXT.json",
+      "bytes": 1745,
+      "sha256": "22a4591de1a87380ef3d747aea0be29e442c96b6c5049e01c586a78443598ae9",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/LIVE_RESULTS.json",
+      "bytes": 5343,
+      "sha256": "eefe27065128b7f8ec9d604501dc37af173d36c11c4cabd7806922a050c201c6",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/RAW_INVENTORY.json",
+      "bytes": 30922,
+      "sha256": "d551707fa7d85b19c2ff0cd7e0e33487bfc437045dfe0ffe5f11dd0d670003c6",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/RETURN.md",
+      "bytes": 5461,
+      "sha256": "a245d048e61c399b5967b830d0befc8939b9c3c1cace3c72d681ca056a9bb0be",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/SHA256SUMS",
+      "bytes": 10498,
+      "sha256": "97fe0c46cd04e440d5f8f489ee1e0a7da4fc5e8fee404e5c8be630e5d751a145",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-alloc16-01/controller-controller-result.json",
+      "bytes": 108009,
+      "sha256": "a225c854fe5dedccdb54c1dc2572c82a1f5d8daa7d72eb3365b268e664239d07",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-alloc16-01/controller-job.json",
+      "bytes": 898,
+      "sha256": "1e8a6672ff0a558d291bbbc920c265834379e8e9e593660c8fda87ea79952e75",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-alloc16-01/controller-monitor.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-alloc16-01/controller-monitor.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-alloc16-01/guard-monitor.jsonl",
+      "bytes": 97341,
+      "sha256": "d538f9772af890574f83e3d23734ec58e9b8a2d4285dcf75c1a1db5eb7c02c7e",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-alloc16-01/guard-registry.json",
+      "bytes": 1088,
+      "sha256": "004dc269900ae5461704c0f2b6eb3594c8b3918fd8abf8bbd62902fa375e3b9c",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-alloc16-01/guard-supervisor.jsonl",
+      "bytes": 556,
+      "sha256": "5acc490996a004eb9fe27c2a21bcba341bb93f4cfa3d994193ec94f7c174de39",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-alloc16-01/guard-workload.log",
+      "bytes": 25,
+      "sha256": "1de628d871c46cc147430adb37d357a2556161a1ef05fb29799379789519fb1e",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-cap64-01/controller-controller-result.json",
+      "bytes": 71211,
+      "sha256": "3ab1cbf91882ccb1d0481af9fca125e728d85166db0bea15046351c3ba0909a7",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-cap64-01/controller-job.json",
+      "bytes": 891,
+      "sha256": "36bc339132400aeecaf8c269903aa8dfdf9f61c354421fe0524ee15b101e79bb",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-cap64-01/controller-latch-probe.json",
+      "bytes": 810,
+      "sha256": "9e2386d7073ad2f479102fc94993fc2ae3dbf1b751bb8706a151006fd7ddd44c",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-cap64-01/controller-monitor.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-cap64-01/controller-monitor.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-cap64-01/guard-ACTIVE.resolved.json",
+      "bytes": 147,
+      "sha256": "30b653dc2126364c9517785b5c605653879a3791df6d9bd96c00d1495aefcddd",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-cap64-01/guard-ROOT_LATCH_RESOLUTION.json",
+      "bytes": 502,
+      "sha256": "0808f1b0f952b8c6524cd89235ea51c5200179c9e996521538d6e42bbdcf7ee3",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-cap64-01/guard-monitor.jsonl",
+      "bytes": 61929,
+      "sha256": "9d9b919fd2ba3ce6448675ef01c37ec9548a667c2fa99ae0873f1f30d8dfaa78",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-cap64-01/guard-registry.json",
+      "bytes": 1085,
+      "sha256": "8b4f01884665dc8289ecf40d9a1fa3d011fce5eb214a110613d34e9945393aec",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-cap64-01/guard-supervisor.jsonl",
+      "bytes": 824,
+      "sha256": "569d03c5abc6989c7d217505cc92a88cc326fce48283c7a012e5b22634136739",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-cap64-01/guard-workload.log",
+      "bytes": 25,
+      "sha256": "ba4d1fcefab9cb6b4270f70c044afdac0a82ea72c4e3686d48cb1b30ee7b17fa",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-clean-01/controller-controller-result.json",
+      "bytes": 107599,
+      "sha256": "638c10657c447da063e6c32cd20bc2db1bbecd3fe7c94af51454a10f824d5d25",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-clean-01/controller-job.json",
+      "bytes": 892,
+      "sha256": "858f14d2ce6cc853eeb694ccb46d289870ee9d3a2e7e2253a71d694fa927f36b",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-clean-01/controller-lock-probe.json",
+      "bytes": 810,
+      "sha256": "fbdc836b8c00feacf60ae927c7a9ed794cdbe6483269d4e6b03264a09001ea66",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-clean-01/controller-monitor.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-clean-01/controller-monitor.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-clean-01/guard-monitor.jsonl",
+      "bytes": 96824,
+      "sha256": "88f54ca8e036b3ae48c5e1d5ffb9a4afdf21787baca0a66eddaddbc5f89064a4",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-clean-01/guard-registry.json",
+      "bytes": 1085,
+      "sha256": "da636a109f6b1ff3761b9e9b88bb57dd2bca9f1566f4937924787cdbc501ac70",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-clean-01/guard-supervisor.jsonl",
+      "bytes": 555,
+      "sha256": "01492e684f120224cd2b3fd726171eaf301eaa1813fe4c0a56f038c4062ab136",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-clean-01/guard-workload.log",
+      "bytes": 18,
+      "sha256": "fe6ed00d1b97968f3976c74ef4a395af91a29f6614b2c6621fb2330d9f322d96",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-escape-01/controller-controller-result.json",
+      "bytes": 74821,
+      "sha256": "bb81d50dbbd8ae2122d0252eafbc17e56f40fe1f73ae08d876b09d1dfcbf346f",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-escape-01/controller-job.json",
+      "bytes": 895,
+      "sha256": "762abe378c0f01fff2727093c9aef94ccf4c61411b9c1d605d9160b32e2f1f92",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-escape-01/controller-latch-probe.json",
+      "bytes": 814,
+      "sha256": "afbbef2e2122a151c96554a4f033357e33b216365a743a847fa14ed693174337",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-escape-01/controller-monitor.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-escape-01/controller-monitor.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-escape-01/guard-ACTIVE.resolved.json",
+      "bytes": 148,
+      "sha256": "4a2dace259862fa35f7e7e990f6d52de9c77e2039106ffd0cdeb1067f9c8f4a5",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-escape-01/guard-ROOT_LATCH_RESOLUTION.json",
+      "bytes": 514,
+      "sha256": "667060f38003c94bf071d28b2fc4e784f480e33771434a792ca9e2e0c3787845",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-escape-01/guard-monitor.jsonl",
+      "bytes": 64437,
+      "sha256": "2e846c2b794b27f809ff095b32beeaa9c8e8bec65088968bbf16f390e12aa536",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-escape-01/guard-registry.json",
+      "bytes": 1087,
+      "sha256": "a904bf3bea21a89bbbe089f85347e2a468f778f5ce0d48c666fcd81886730a20",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-escape-01/guard-supervisor.jsonl",
+      "bytes": 1045,
+      "sha256": "b0ebd8e39c12fd03d578bec33c4124eea8fa16addecdf1eafbafd1fbcddd14fb",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-escape-01/guard-workload.log",
+      "bytes": 50,
+      "sha256": "e9719593ce1648f085e7bd31c05887907cbc7792ec27bbcda9ab9623c9d4ceb6",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-ignore-01/controller-controller-result.json",
+      "bytes": 210035,
+      "sha256": "d30ce0ec1fddf62ccaf5219a9b889eda2457c1e9f2bbff33043028ce434e7e80",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-ignore-01/controller-job.json",
+      "bytes": 895,
+      "sha256": "b90ec89c6c34374dd31a66138208f8bcba8f41e9a86b9c69650dc232a5666ecd",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-ignore-01/controller-latch-probe.json",
+      "bytes": 814,
+      "sha256": "043c1fb5fcd4f14b1596dbc72085824cd16cc3eaf6b61cfeca132563d426317c",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-ignore-01/controller-monitor.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-ignore-01/controller-monitor.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-ignore-01/guard-ACTIVE.resolved.json",
+      "bytes": 148,
+      "sha256": "26a944c97daf829a30fce80213d97e230b65d64449eda5d83868c4c358015193",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-ignore-01/guard-ROOT_LATCH_RESOLUTION.json",
+      "bytes": 514,
+      "sha256": "29847469b951de37ec0fa644ed1f21b2b53e7bbacf0c3504fbb99d30f5738c06",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-ignore-01/guard-monitor.jsonl",
+      "bytes": 191639,
+      "sha256": "630c5abbfb61e780ec1742057c24c9964869ac4c277970f65a8824976ac70223",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-ignore-01/guard-registry.json",
+      "bytes": 1086,
+      "sha256": "fa816c5bcdd23748d48423d06718755c3f62336b2fac923e40791af2024a32f5",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-ignore-01/guard-supervisor.jsonl",
+      "bytes": 984,
+      "sha256": "efe388a88cab599769ddc2b015debf49310a25211a95d750d22316f1faeb9b76",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-ignore-01/guard-workload.log",
+      "bytes": 50,
+      "sha256": "f35ea0e7d3bbf049c29fe25e6b16fdc940ac0b80502ad8fb178d5baa9273e13a",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-monitorloss-01/controller-controller-result.json",
+      "bytes": 59253,
+      "sha256": "3c890342943434b20269f605fddb6b1074b251357f03b47644244aa0b54ccbba",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-monitorloss-01/controller-job.json",
+      "bytes": 907,
+      "sha256": "a5161cb4adc682b3d174b6068e70f1fb5b7034b6524ab086c674d6f892341a44",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-monitorloss-01/controller-latch-probe.json",
+      "bytes": 826,
+      "sha256": "484330703097d9f0d0d8419d7caa9abba5d47c0775a2198e4db0a4d3e60b821c",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-monitorloss-01/controller-monitor.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-monitorloss-01/controller-monitor.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-monitorloss-01/guard-ACTIVE.resolved.json",
+      "bytes": 153,
+      "sha256": "7df157ef1986d6ca68f07c8064469c212cacffaf367753c474781a38d49f95d4",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-monitorloss-01/guard-ROOT_LATCH_RESOLUTION.json",
+      "bytes": 519,
+      "sha256": "d2d9f9ad6ce1714ad91dbe814f8865bbd0dd49d7a2d1948900889f76bb40737f",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-monitorloss-01/guard-monitor.jsonl",
+      "bytes": 46283,
+      "sha256": "d2c423e6acd58d33fa90faeb7dd1a9ce6a242a3c87f418d48ba50853863ee05e",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-monitorloss-01/guard-registry.json",
+      "bytes": 1092,
+      "sha256": "ad80a2809bcbf366dca35be0b9155a650d4901a4980d231b2fa5847bda1e548e",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-monitorloss-01/guard-supervisor.jsonl",
+      "bytes": 2613,
+      "sha256": "99250f5b99bd16d4b47a88823b4bb80d8e45df3a3285f1b5be957e9f8d7fd149",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-monitorloss-01/guard-workload.log",
+      "bytes": 31,
+      "sha256": "ba68e76b654a1aba0b3e89cfe2313b955cb6f80a596415bb9da86eb819bdfddf",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-monitorstall-01/controller-controller-result.json",
+      "bytes": 57561,
+      "sha256": "572e756ef7cf81f6eb5df7f27f09a5759bc00b33c0304837b1825f53fde2797a",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-monitorstall-01/controller-job.json",
+      "bytes": 909,
+      "sha256": "5ab5bcd0217a33a7da19a087bd3420cef770828370e2371ad0aba675f9def88a",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-monitorstall-01/controller-latch-probe.json",
+      "bytes": 828,
+      "sha256": "2f4bd5a08a11a97d9cc0d18ff9703b0d673d5c11c5f43e914303b8fa4a394414",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-monitorstall-01/controller-monitor.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-monitorstall-01/controller-monitor.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-monitorstall-01/guard-ACTIVE.resolved.json",
+      "bytes": 154,
+      "sha256": "76e09308896ee55e9c4b97ef247c549368bed65ff51920246e89852584018bce",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-monitorstall-01/guard-ROOT_LATCH_RESOLUTION.json",
+      "bytes": 520,
+      "sha256": "5ccfb65c1f15734f9acfc7cbb6f1ca1647a26ed41bd77ea3dc7cafb3e3214545",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-monitorstall-01/guard-monitor.jsonl",
+      "bytes": 46337,
+      "sha256": "1fbcab044575dd5c9ec4bf075b1fb886b6f8e181f146cd63b25570202023e909",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-monitorstall-01/guard-registry.json",
+      "bytes": 1093,
+      "sha256": "770d5821621e4e660e36fed0291046ac323127853f042b7fc4288ab45a9dfb11",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-monitorstall-01/guard-supervisor.jsonl",
+      "bytes": 1105,
+      "sha256": "083e753b64b2e1a43fd63869f705bcfdd6f8e7cdbde4a840ed5f8cf3d0d21a04",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-monitorstall-01/guard-workload.log",
+      "bytes": 31,
+      "sha256": "1be35d3fe7c2797c0d30aab64a266425450e356a7ec92a3055a50509cddacb64",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-sleepers-01/controller-controller-result.json",
+      "bytes": 206348,
+      "sha256": "5273b74962901574169b3b241d658ac865a1c0f5ac760ea7ad50322826ad7e03",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-sleepers-01/controller-job.json",
+      "bytes": 901,
+      "sha256": "42232d13c1199be83c5f7b9e8ba0dbd9b4eb0be8333c9525baa7c743ab6efdfb",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-sleepers-01/controller-latch-probe.json",
+      "bytes": 820,
+      "sha256": "1cb177bd5824c4667140cdfce5673868be171bfdefd45ec3c6f905c97fc379b5",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-sleepers-01/controller-monitor.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-sleepers-01/controller-monitor.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-sleepers-01/guard-ACTIVE.resolved.json",
+      "bytes": 150,
+      "sha256": "3391182281804c8e4ad68a2356a3ab38587852d53678c994d2620b16dc522513",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-sleepers-01/guard-ROOT_LATCH_RESOLUTION.json",
+      "bytes": 516,
+      "sha256": "945eae10b9c44e0bd66719f7f0d5306ea125ae010845920ef7272163c412e32a",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-sleepers-01/guard-monitor.jsonl",
+      "bytes": 189009,
+      "sha256": "6cf91974ca473a77a04c11f34e5e8729ba060c9cfb232f05141b177b4a99872c",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-sleepers-01/guard-registry.json",
+      "bytes": 1089,
+      "sha256": "3e040176d4ad06f68ccbd352d923969311cc87395c1b41e4b70b136778137902",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-sleepers-01/guard-supervisor.jsonl",
+      "bytes": 859,
+      "sha256": "1b8ba201b0f4f7087aece0f54f13c00747f37bbb518be373db3f7764990accb1",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/cases/guard-q-sleepers-01/guard-workload.log",
+      "bytes": 31,
+      "sha256": "a544f79e5d9598142f6e90792208de846e98f45fef143232697d2cbee8043055",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/continuation_01/RETURN.md",
+      "bytes": 1585,
+      "sha256": "53477cb6c09a49e9c4ab36da7c20945a34adcda92dd97f7a9bf03b5b23e9a177",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/continuation_01/SHA256SUMS",
+      "bytes": 324,
+      "sha256": "7ea18ec0818d8584b8fe3cb83123a67b0583cafb3f8b2f3d5b6392f040539ef1",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/continuation_01/pure-tests.log",
+      "bytes": 791,
+      "sha256": "fd11351599883676b8121bd45ff4740947d2f7293a419a9cd643d070aa8eb37d",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/continuation_01/qualify_case_v3.py",
+      "bytes": 9970,
+      "sha256": "119940763e3092fa61ca397d0d647f389f03917b880bfeef6cb2a6d310203cea",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/continuation_01/test_cleanup.py",
+      "bytes": 3044,
+      "sha256": "949f062a06763aecd91d817490723aefb7f6721660269960798e213d4d3c834e",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/fixture.py",
+      "bytes": 1048,
+      "sha256": "d0297c6c13d47e3ecb0ef5b73769dddedddc54ace0febdcc504211fd7cad88ec",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/provider-witness-01.json",
+      "bytes": 9403,
+      "sha256": "2afbbe8722dfeb1a1df98c7f67a9d417f18c077603c7cd5c37b7ab4a5c29ee9f",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/provider-witness-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/provider_witness.py",
+      "bytes": 2159,
+      "sha256": "299a641d3da666b2da3e82a08fdaf2d429decf49a2fbff669acb3dcd7d9a650c",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/qualify_case.py",
+      "bytes": 8364,
+      "sha256": "f77c42f06b23ececccf618c48e244866c5349c18d01288fc0e41bb3288c12a78",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-QUALIFICATION/qualify_case_v2.py",
+      "bytes": 9156,
+      "sha256": "6ac8fab77b063a46015dd0643b22efe8e11e0abcf17be88ca0f7a4ad9d61abd9",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/launches/04_GUARD_REVIEW.json",
+      "bytes": 1121,
+      "sha256": "cc638bf6c06dbd8846ca87c988d48a511a443fb1dcf16e0007cc33a0c324aea9",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/runtime_setup/02_rust_src/SETUP.json",
+      "bytes": 2261,
+      "sha256": "3532d7d68599bf72db02a8aedb40a9e54dc77d1aba5f9431e9cb4277cb45c122",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/runtime_setup/02_rust_src/SHA256SUMS",
+      "bytes": 165,
+      "sha256": "39af27771d1d1bbb1331576ea4ee9668c04ecc9889f1d13f5061faad750f0ce0",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/runtime_setup/02_rust_src/install.sanitized.log",
+      "bytes": 854,
+      "sha256": "fd07094b4b8e1127838e068daa9904df04c952067f50f633f1b9f1ae56fdb84c",
+      "worktree_matches": true
+    },
+    {
+      "status": "A",
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/tools/host_guard_v2.py",
+      "bytes": 44220,
+      "sha256": "533a6f7506da4e031d8a824a27b4e9c496f374a3af8b7e98c72da55e8bbc26b5",
+      "worktree_matches": true
+    },
+    {
+      "status": "M",
+      "path": "projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/WORK_GRAPH.md",
+      "bytes": 26385,
+      "sha256": "6f9477895e9192ffc4132dc42e11944b851b5ac0ff600dbbf2f2ff679f0b415e",
+      "worktree_matches": true
+    }
+  ]
+}

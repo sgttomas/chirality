@@ -1,0 +1,142 @@
+test_case_00 (__main__.CommandCases.test_case_00)
+review_proper_cargo_build ... ok
+test_case_01 (__main__.CommandCases.test_case_01)
+review_cargo_flags_in_workload_args ... ok
+test_case_02 (__main__.CommandCases.test_case_02)
+review_cargo_explicit_toolchain ... ok
+test_case_03 (__main__.CommandCases.test_case_03)
+review_rustc_explicit_toolchain ... ok
+test_case_04 (__main__.CommandCases.test_case_04)
+valid_jobs_short_attached ... ok
+test_case_05 (__main__.CommandCases.test_case_05)
+valid_jobs_long_split ... ok
+test_case_06 (__main__.CommandCases.test_case_06)
+valid_jobs_long_equal ... ok
+test_case_07 (__main__.CommandCases.test_case_07)
+valid_cargo_exact_selector ... ok
+test_case_08 (__main__.CommandCases.test_case_08)
+valid_rustc_no_selector ... ok
+test_case_09 (__main__.CommandCases.test_case_09)
+valid_rustc_exact_selector ... ok
+test_case_10 (__main__.CommandCases.test_case_10)
+valid_cargo_manifest_and_target ... ok
+test_case_11 (__main__.CommandCases.test_case_11)
+valid_cargo_check ... ok
+test_case_12 (__main__.CommandCases.test_case_12)
+valid_cargo_test_no_run ... ok
+test_case_13 (__main__.CommandCases.test_case_13)
+valid_run_forwarded_workload_arguments ... ok
+test_case_14 (__main__.CommandCases.test_case_14)
+valid_cargo_rustc_layout_ir ... ok
+test_case_15 (__main__.CommandCases.test_case_15)
+forwarded_all_controls ... ok
+test_case_16 (__main__.CommandCases.test_case_16)
+forwarded_offline_only ... ok
+test_case_17 (__main__.CommandCases.test_case_17)
+forwarded_locked_only ... ok
+test_case_18 (__main__.CommandCases.test_case_18)
+forwarded_jobs_only ... ok
+test_case_19 (__main__.CommandCases.test_case_19)
+forwarded_rustc_controls ... ok
+test_case_20 (__main__.CommandCases.test_case_20)
+nonserial_before_forwarded_serial ... ok
+test_case_21 (__main__.CommandCases.test_case_21)
+nonserial_short_split ... ok
+test_case_22 (__main__.CommandCases.test_case_22)
+nonserial_short_attached ... ok
+test_case_23 (__main__.CommandCases.test_case_23)
+nonserial_long_split ... ok
+test_case_24 (__main__.CommandCases.test_case_24)
+nonserial_long_equal ... ok
+test_case_25 (__main__.CommandCases.test_case_25)
+nonserial_zero ... ok
+test_case_26 (__main__.CommandCases.test_case_26)
+nonserial_negative ... ok
+test_case_27 (__main__.CommandCases.test_case_27)
+nonserial_ambiguous ... ok
+test_case_28 (__main__.CommandCases.test_case_28)
+duplicate_jobs_same_short ... ok
+test_case_29 (__main__.CommandCases.test_case_29)
+duplicate_jobs_same_attached ... ok
+test_case_30 (__main__.CommandCases.test_case_30)
+duplicate_jobs_same_long ... ok
+test_case_31 (__main__.CommandCases.test_case_31)
+duplicate_jobs_conflicting_long ... ok
+test_case_32 (__main__.CommandCases.test_case_32)
+duplicate_jobs_conflicting_attached ... ok
+test_case_33 (__main__.CommandCases.test_case_33)
+conflicting_then_canonical ... ok
+test_case_34 (__main__.CommandCases.test_case_34)
+duplicate_or_conflicting_offline ... ok
+test_case_35 (__main__.CommandCases.test_case_35)
+duplicate_or_conflicting_locked ... ok
+test_case_36 (__main__.CommandCases.test_case_36)
+duplicate_or_conflicting_release_profile ... ok
+test_case_37 (__main__.CommandCases.test_case_37)
+duplicate_or_conflicting_quiet_verbose ... ok
+test_case_38 (__main__.CommandCases.test_case_38)
+duplicate_or_conflicting_alias_duplicate ... ok
+test_case_39 (__main__.CommandCases.test_case_39)
+operand_disguised_as_offline ... ok
+test_case_40 (__main__.CommandCases.test_case_40)
+attached_operand_is_not_offline ... ok
+test_case_41 (__main__.CommandCases.test_case_41)
+offline_value_false ... ok
+test_case_42 (__main__.CommandCases.test_case_42)
+missing_jobs_value ... ok
+test_case_43 (__main__.CommandCases.test_case_43)
+empty_jobs_value ... ok
+test_case_44 (__main__.CommandCases.test_case_44)
+missing_manifest_value ... ok
+test_case_45 (__main__.CommandCases.test_case_45)
+unknown_config_is_not_assumed_safe ... ok
+test_case_46 (__main__.CommandCases.test_case_46)
+unsupported_subcommand ... ok
+test_case_47 (__main__.CommandCases.test_case_47)
+global_option_before_subcommand ... ok
+test_case_48 (__main__.CommandCases.test_case_48)
+build_forwarding_unsupported ... ok
+test_case_49 (__main__.CommandCases.test_case_49)
+cargo_reject_selector_+stable ... ok
+test_case_50 (__main__.CommandCases.test_case_50)
+cargo_reject_selector_+nightly ... ok
+test_case_51 (__main__.CommandCases.test_case_51)
+cargo_reject_selector_+1.92.0 ... ok
+test_case_52 (__main__.CommandCases.test_case_52)
+cargo_reject_selector_+1.97.2 ... ok
+test_case_53 (__main__.CommandCases.test_case_53)
+cargo_reject_selector_+1.97.1-aarch64-apple-darwin ... ok
+test_case_54 (__main__.CommandCases.test_case_54)
+cargo_reject_selector_+ ... ok
+test_case_55 (__main__.CommandCases.test_case_55)
+cargo_reject_duplicate_selector ... ok
+test_case_56 (__main__.CommandCases.test_case_56)
+cargo_missing_arguments ... ok
+test_case_57 (__main__.CommandCases.test_case_57)
+rustc_reject_selector_+stable ... ok
+test_case_58 (__main__.CommandCases.test_case_58)
+rustc_reject_selector_+nightly ... ok
+test_case_59 (__main__.CommandCases.test_case_59)
+rustc_reject_selector_+1.92.0 ... ok
+test_case_60 (__main__.CommandCases.test_case_60)
+rustc_reject_selector_+1.97.2 ... ok
+test_case_61 (__main__.CommandCases.test_case_61)
+rustc_reject_selector_+1.97.1-aarch64-apple-darwin ... ok
+test_case_62 (__main__.CommandCases.test_case_62)
+rustc_reject_selector_+ ... ok
+test_case_63 (__main__.CommandCases.test_case_63)
+rustc_reject_duplicate_selector ... ok
+test_case_64 (__main__.CommandCases.test_case_64)
+rustc_missing_arguments ... ok
+test_case_65 (__main__.CommandCases.test_case_65)
+cargo_misplaced_selector ... ok
+test_case_66 (__main__.CommandCases.test_case_66)
+rustc_misplaced_selector ... ok
+test_environment_contract_still_required (__main__.PreservedValidation.test_environment_contract_still_required) ... ok
+test_executable_content_pin_still_required (__main__.PreservedValidation.test_executable_content_pin_still_required) ... ok
+test_original_review_witness_reproduces_on_preserved_v1 (__main__.PreservedValidation.test_original_review_witness_reproduces_on_preserved_v1) ... ok
+
+----------------------------------------------------------------------
+Ran 70 tests in 0.119s
+
+OK

@@ -1,0 +1,72 @@
+[
+  {
+    "runtime_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B02/INVOCATION_STARTED.json",
+    "raw_sha256": "d77dca41fe2041203233584e84b0077cb37be3a533ff529c446966bf5f348b9b",
+    "raw_size_bytes": 46,
+    "sanitized_file": "controller-INVOCATION_STARTED.json",
+    "sanitized_sha256": "d77dca41fe2041203233584e84b0077cb37be3a533ff529c446966bf5f348b9b"
+  },
+  {
+    "runtime_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B02/POSTCHECK.json",
+    "raw_sha256": "602d709b9e7f4b441e4c6cc17e00a2fc384a817ea3e81c50fe432decdb288d00",
+    "raw_size_bytes": 21855,
+    "sanitized_file": "controller-POSTCHECK.json",
+    "sanitized_sha256": "0e1cfce1b321cd008a0a578ba81d6f0be5d15a696dcb49a313b49451208c9804"
+  },
+  {
+    "runtime_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B02/PRECHECK.json",
+    "raw_sha256": "9fa883b675acc042a8676ef7f095b2d3942def3fd1220e3e97e1d9e35d50618f",
+    "raw_size_bytes": 26096,
+    "sanitized_file": "controller-PRECHECK.json",
+    "sanitized_sha256": "2b647516d71420c3c21ccad971334a1f83c8903aa47102ca1b90cf818ec29c72"
+  },
+  {
+    "runtime_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B02/guard.stderr",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_size_bytes": 0,
+    "sanitized_file": "controller-guard.stderr",
+    "sanitized_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "runtime_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B02/guard.stdout",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_size_bytes": 0,
+    "sanitized_file": "controller-guard.stdout",
+    "sanitized_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "runtime_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B02/job.json",
+    "raw_sha256": "60e42ab5a20d864e70d6baa09ff7c29022770552e315c798ad7370df64dea474",
+    "raw_size_bytes": 15483,
+    "sanitized_file": "controller-job.json",
+    "sanitized_sha256": "f8bffbdcd79e6a88daee6e1c0af6863eb5e6b1e3c213fc42806f9cbd823e2fd3"
+  },
+  {
+    "runtime_relative_path": "logs/a1-b-b02-888e3888-20260930-01/monitor.jsonl",
+    "raw_sha256": "90809a4a3731e9edb515280562345698ab0d633973b9fa3aa94b431c3432cc54",
+    "raw_size_bytes": 78502,
+    "sanitized_file": "guard-monitor.jsonl",
+    "sanitized_sha256": "d5d7f74264ea648d6df7bf32dcb4a96ecf8bf5a775351cbd8542b358c0196556"
+  },
+  {
+    "runtime_relative_path": "logs/a1-b-b02-888e3888-20260930-01/registry.json",
+    "raw_sha256": "f248a0ad54be81802bd91b50414e2e69417aabbe5fbe2c9b1bcd4f7a7d1e8479",
+    "raw_size_bytes": 15267,
+    "sanitized_file": "guard-registry.json",
+    "sanitized_sha256": "9f25587a170b65d0cef8ddfdce47b7451711805a6c63c03c780785496a90ca0a"
+  },
+  {
+    "runtime_relative_path": "logs/a1-b-b02-888e3888-20260930-01/supervisor.jsonl",
+    "raw_sha256": "370cba819a43ce92662cfae5286ae7a62fb0629ae725f17c2eaf48f43e8fb2eb",
+    "raw_size_bytes": 929,
+    "sanitized_file": "guard-supervisor.jsonl",
+    "sanitized_sha256": "370cba819a43ce92662cfae5286ae7a62fb0629ae725f17c2eaf48f43e8fb2eb"
+  },
+  {
+    "runtime_relative_path": "logs/a1-b-b02-888e3888-20260930-01/workload.log",
+    "raw_sha256": "a293af61d547adba0ff93fe8d3df3824340f5c9919578e177b0f9e9cddad6c19",
+    "raw_size_bytes": 15293,
+    "sanitized_file": "guard-workload.log",
+    "sanitized_sha256": "a293af61d547adba0ff93fe8d3df3824340f5c9919578e177b0f9e9cddad6c19"
+  }
+]

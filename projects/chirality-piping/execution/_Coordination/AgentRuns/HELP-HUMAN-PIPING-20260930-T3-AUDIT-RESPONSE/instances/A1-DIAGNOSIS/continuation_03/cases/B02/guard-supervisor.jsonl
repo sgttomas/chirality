@@ -1,0 +1,5 @@
+{"at": 551960.343241416, "data": {"identity": {"pgid": 25394, "pid": 25394, "ruid": 501, "sid": 25394, "start_sec": 1790793421, "start_usec": 171250, "uid": 501}}, "kind": "identity", "wall_ns": 1790793421173637000}
+{"at": 551960.410423666, "data": {"pid": 25401}, "kind": "worker-launched", "wall_ns": 1790793421240819000}
+{"at": 551960.4548745, "data": {"returncode": 0}, "kind": "worker-exit", "wall_ns": 1790793421285270000}
+{"at": 551960.475195458, "data": {"identity": {"pgid": 25394, "pid": 25394, "ruid": 501, "sid": 25394, "start_sec": 1790793421, "start_usec": 171250, "uid": 501}, "reason": "monitoring-failure:Refusal:proc-pidinfo-denied-missing-short:3", "signal": "TERM"}, "kind": "signal-intent", "wall_ns": 1790793421305591000}
+{"at": 551960.562390708, "data": {"reason": "monitoring-failure:Refusal:proc-pidinfo-denied-missing-short:3", "returncode": 0}, "kind": "group-drained", "wall_ns": 1790793421392786000}

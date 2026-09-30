@@ -1,0 +1,45 @@
+{
+  "source_sha256": "119940763e3092fa61ca397d0d647f389f03917b880bfeef6cb2a6d310203cea",
+  "fake_objects_only": true,
+  "live_operations": false,
+  "cases": [
+    {
+      "persistent_wait_error": false,
+      "actions": [
+        "monitor.poll",
+        "monitor.kill",
+        "monitor.wait",
+        "sentinel.poll",
+        "sentinel.terminate",
+        "sentinel.wait",
+        "controller-result.persisted"
+      ],
+      "errors": [
+        "simulated provider failure after SIGSTOP"
+      ],
+      "sentinel_cleanup_attempted": true,
+      "result_persisted": true
+    },
+    {
+      "persistent_wait_error": true,
+      "actions": [
+        "monitor.poll",
+        "monitor.kill",
+        "monitor.wait",
+        "monitor.poll",
+        "monitor.wait",
+        "sentinel.poll",
+        "sentinel.terminate",
+        "sentinel.wait",
+        "controller-result.persisted"
+      ],
+      "errors": [
+        "simulated provider failure after SIGSTOP",
+        "cleanup-monitor:TimeoutExpired:Command 'fake-monitor' timed out after 8 seconds",
+        "cleanup-monitor-unconfirmed:TimeoutExpired:Command 'fake-monitor' timed out after 8 seconds"
+      ],
+      "sentinel_cleanup_attempted": true,
+      "result_persisted": true
+    }
+  ]
+}

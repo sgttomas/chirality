@@ -1,0 +1,8 @@
+{
+  "runtime_directory_name": "chirality-t3-response-20260930-sqaajzgk",
+  "scratch_relative_path": "scratch/a1-diagnosis/a1-compile-888e3888-20260930-01",
+  "guard_log_relative_path": "logs/a1-compile-888e3888-20260930-01",
+  "job_id": "a1-compile-888e3888-20260930-01",
+  "raw_spec_sha256": "71d8853a4bb2b6cc9739f505dece4ad6faf746f2665f5d19e960e896fb9fba2c",
+  "raw_precheck_sha256": "ad889b4fea93d8abfbf4a714328476d8728a9ce534e01ced422e2dca4cda4c8c"
+}

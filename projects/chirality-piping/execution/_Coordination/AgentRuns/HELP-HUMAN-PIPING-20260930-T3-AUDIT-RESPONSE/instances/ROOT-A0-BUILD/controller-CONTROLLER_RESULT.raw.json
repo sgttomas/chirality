@@ -1,0 +1,19 @@
+{
+  "guard_returncode": 0,
+  "elapsed_seconds": 6.386720416950993,
+  "wall_start_ns": 1790792860693995000,
+  "wall_end_ns": 1790792867080731000,
+  "command": [
+    "<PYTHON>",
+    "<REPO_ROOT>/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/tools/host_guard_v2.py",
+    "run",
+    "--runtime-dir",
+    "<RESPONSE_RUNTIME>",
+    "--job-spec",
+    "<RESPONSE_RUNTIME>/scratch/a1-diagnosis/a1-compile-888e3888-20260930-01/job.json"
+  ],
+  "job_spec_sha256": "71d8853a4bb2b6cc9739f505dece4ad6faf746f2665f5d19e960e896fb9fba2c",
+  "active_latch_after": false,
+  "retry": false,
+  "model_run": false
+}

@@ -1,0 +1,17 @@
+{
+  "source_sha256": "6ac8fab77b063a46015dd0643b22efe8e11e0abcf17be88ca0f7a4ad9d61abd9",
+  "executed_lines": [
+    154,
+    159
+  ],
+  "fake_objects_only": true,
+  "live_operations": false,
+  "actions": [
+    "monitor.poll",
+    "monitor.terminate(TERM-pending-while-stopped)",
+    "monitor.wait"
+  ],
+  "exception": "TimeoutExpired",
+  "sentinel_cleanup_attempted": false,
+  "result_persisted": false
+}

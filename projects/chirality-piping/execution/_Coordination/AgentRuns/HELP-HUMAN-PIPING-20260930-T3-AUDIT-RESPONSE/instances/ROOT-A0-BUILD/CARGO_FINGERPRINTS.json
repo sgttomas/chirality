@@ -1,0 +1,57 @@
+[
+  {
+    "path_alias": "<RESPONSE_RUNTIME>/targets/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/debug/.fingerprint/a1_public_probe-830889f816a98965/bin-a1_public_probe.json",
+    "sha256": "6ee65e0031faaf62129f50da13816b5eea0abd2f709e2b50777b556a766f0efa",
+    "data": {
+      "rustc": 11722972603611519644,
+      "features": "[]",
+      "declared_features": "[]",
+      "target": 5513478535554972921,
+      "profile": 8887875775441740213,
+      "path": 4942398508502643691,
+      "deps": [
+        [
+          10646818785860357717,
+          "open_pipe_stress_frame_kernel",
+          false,
+          16501384246235927903
+        ]
+      ],
+      "local": [
+        {
+          "CheckDepInfo": {
+            "dep_info": "debug/.fingerprint/a1_public_probe-830889f816a98965/dep-bin-a1_public_probe",
+            "checksum": false
+          }
+        }
+      ],
+      "rustflags": [],
+      "config": 9396254390672932401,
+      "compile_kind": 0
+    }
+  },
+  {
+    "path_alias": "<RESPONSE_RUNTIME>/targets/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/debug/.fingerprint/open_pipe_stress_frame_kernel-a3ea96d3150b2b24/lib-open_pipe_stress_frame_kernel.json",
+    "sha256": "364966459d9d46465ccbb67a227e2a3a0d2d398c15c219835eb00c5bda4dfa12",
+    "data": {
+      "rustc": 11722972603611519644,
+      "features": "[]",
+      "declared_features": "[\"mutation-controls\"]",
+      "target": 10814701284944778693,
+      "profile": 8887875775441740213,
+      "path": 1121982640663139815,
+      "deps": [],
+      "local": [
+        {
+          "CheckDepInfo": {
+            "dep_info": "debug/.fingerprint/open_pipe_stress_frame_kernel-a3ea96d3150b2b24/dep-lib-open_pipe_stress_frame_kernel",
+            "checksum": false
+          }
+        }
+      ],
+      "rustflags": [],
+      "config": 9396254390672932401,
+      "compile_kind": 0
+    }
+  }
+]
