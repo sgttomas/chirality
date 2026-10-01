@@ -683,3 +683,113 @@ at anything new it labels PROPOSED); rerun every prototype; GUIDE 18/18; RELAY
 status, basis, decomposition, scope-change and DAG file unchanged; DAG-003's
 manifests pass; and that the work graph and DISPATCH are true against git.
 Verdict **MERGE AS DRAFTS** or **HOLD**; findings classed as in V19.
+
+# Closeout
+
+## C0 — the four V19b MINORs and the last GUIDE re-pin (one Type 2)
+
+Fix V19b m-1…m-4 (`reviews/V19b.md`): LOOP §3.2's run opening against a
+no-credential refusal (state when a host-loop run opens so that a
+`boundary_refusal` is recorded on an opened run, consistent with R15-1);
+GUIDE's pin-provenance text; GUIDE F-17's wording; HOSTING §6.8 "not
+exercised live" against OBS-1 (§10.1). Write fence: LOOP, GUIDE, HOSTING
+(and LOOP's or RS's schema/example only if m-1 needs it); `closeout/C0.md`.
+Rerun LOOP's and RS's prototypes; re-pin GUIDE's 18-row table last, 18/18.
+
+## C1 — bounded closeout (three Type 2, read-only on Design files)
+
+Method: `chirality-root:bundled:workflow:bounded-reconciliation`
+(`workflows/bounded-reconciliation/WORKFLOW.md`, read it whole). Same
+boundary as the first increment's closeout: DAG-003's `SOURCE_MANIFEST`
+binds every `ScopeOfWork.md`, `Dependencies.csv` and `_DEPENDENCIES.md`, so
+this closeout **applies no change** to them, or to `_STATUS.md`,
+`_CONTEXT.md` or `_REFERENCES.md`; every warranted change is a precise
+proposal (file, section or row, old → new, reason, source finding) for a
+later amendment and `dependency-extract` run.
+
+| ID | Deliverables (Design files compared at the candidate named at launch) |
+|---|---|
+| C1-A | DEL-04-01, DEL-04-02, DEL-04-03, DEL-02-01, DEL-02-03 |
+| C1-B | DEL-03-01, DEL-03-02, DEL-03-03, DEL-03-04, DEL-01-01 |
+| C1-C | DEL-05-01, DEL-05-02, DEL-09-06, DEL-09-09 |
+
+For each deliverable: commitments (ScopeOfWork OUT, REQ, AC, VER) → where the
+Design files now answer them (developed, partial, named only, absent), and
+results in the Design files → whether a commitment supports them; what the
+60% description in `loop/LOOP_INIT.md` still lacks; the register rows the
+Design files now show to be wrong, missing or stale; lifecycle observation
+(no change made). **Collect every proposed ScopeOfWork, register or basis
+item** raised in this run — the "proposed" parts of `WAVE_A/*.md`,
+`WAVE_B/*.md`, `comparisons/*.md`, `reviews/*.md` and the S1 surveys — that
+falls in your deliverables, deduplicated, each with its source; include, at
+least, the DEL-01-04 act-control obligation (DECISION-K1 K1-4), whether
+DEL-05-02's contract names the panel's destination surfaces, DEL-04-01's
+contract and DECISION-5, and DEL-09-09 REQ-001's TBD range. Write
+`closeout/C1-A.md` (or B, C). No other file.
+
+## G — items the closeout returned to the graph (one Type 2)
+
+Apply [R16_RESOLUTIONS.md](R16_RESOLUTIONS.md) R16-1…R16-3 (every item but
+the pair check). Inputs: `closeout/C1-A.md` (G-1…G-3), `C1-B.md` (its two
+graph items), `C1-C.md` (GW-1…GW-3). Write fence: the Design files and their
+schemas, examples and prototypes as the items need; RELAY metadata only
+(§0–§3 byte-identical); `DEL-01-01/Design/OBS_1_0.158.0.md` for the redaction
+only; `_Coordination/HANDOFF_SWBPIPE_DOMAINS.md` for IN-30 only;
+`closeout/G.md`. Rows "G" in each changed file's Wave B change table. Rerun
+every prototype you touch; GUIDE's input table re-pinned last, 18/18.
+
+## H — LOOP's four panel-needs gaps and current pins (one Type 2)
+
+Close LOOP's PG-1…PG-4 (`closeout/G.md`; LOOP §10.5): add the two §2.3
+rows E-8 names; an event for "run not started — no model selected" (R15-1;
+mapped to RS's cause); LOOP's answer to a panel return input; the form and
+answer of the replay request — each PROPOSED unless a ruling decides it, and
+PANEL's §3.11 rows updated to "supplied". Then bring every header pin that
+claims current bytes up to date for files changed by G (OBS_1 after its
+redaction, HANDOFF after IN-30), in HOSTING, GUIDE, LOOP, RELAY (metadata
+only, §0–§3 unchanged) and CA. Write fence: LOOP, PANEL, HOSTING, GUIDE,
+RELAY metadata, CA, and RS only if the event mapping needs a row;
+`closeout/H.md`. Rows "H" in change tables. Rerun LOOP, PANEL, RS and CA
+prototypes; GUIDE's input table re-pinned last, 18/18.
+
+## V20 — final review of the closeout candidate (two Type 2 reviewers)
+
+**Candidate:** the commit named in your launch message. Base: `d01ad98a`
+(the merge of PR-2). Read-only; write only `reviews/V20-A.md` or
+`reviews/V20-B.md`. You did not write any of this.
+
+- **V20-A — the LOOP/PANEL pair check (R16-3)** and the Design edits since
+  the base (C0, G, H). Read LOOP and PANEL whole, side by side: every event,
+  element, state and case one names for the other exists there and means the
+  same; the panel-needs list (PANEL §3.11, LOOP §10.5) is complete and
+  consistent; the destination flow (LOOP §5.3) and the panel's prompt agree;
+  R15-1 and R16-1 read the same in both. Then check the other Design edits
+  since the base (R16 in RS, AS, ACT, GUIDE; EXEC EV-3a; the OBS redaction;
+  CA, RELAY metadata) for truth and cross-file consistency, and rerun every
+  prototype in the folders they touch. GUIDE's table 18/18.
+- **V20-B — the closeout and the run records.**
+  - `closeout/CLOSEOUT_ACCOUNT.md` and `C1-A/B/C` are faithful to
+    `bounded-reconciliation`.
+  - No proposal was applied to a bound file. Recheck DAG-003's manifests and
+    the registered analyzer (command in `closeout/D0.md`).
+  - The account's counts match the C1 files.
+  - The RECEIPT is true and claims no more than the records: owner words
+    exact, PRs and merge SHAs, checks, limits. Each of the 14 MEMORY rows is
+    true for its deliverable.
+  - The work graph, DISPATCH and OWNER_DECISIONS are true against git.
+  - The HANDOFF note is true and relays nothing.
+
+Verdict **MERGE** or **HOLD**; findings classed BLOCKING (false,
+inconsistent, or claims more than decided), MAJOR, MINOR, NOTE, with
+passages quoted and a proposed fix.
+
+## V20b — recheck of the V20 repairs (one Type 2 reviewer)
+
+**Candidate:** the commit named at launch; the repairs are its diff from
+`94fa78d87c`. Read-only; write only `reviews/V20b.md`. Check that every V20-A
+and V20-B finding is closed as `closeout/RV20.md` (Design) and the
+integrator's record edits say, quoting each fixed passage; that the diff adds
+nothing false or inconsistent; rerun the LOOP, PANEL and SH-1 prototypes;
+GUIDE 18/18; RELAY §0–§3 against `74b3c73134`; no bound file changed against
+`74b3c73134`; DAG-003's manifests pass; the graph, DISPATCH and RECEIPT true
+against git. Verdict **MERGE** or **HOLD**; findings classed as in V20.
