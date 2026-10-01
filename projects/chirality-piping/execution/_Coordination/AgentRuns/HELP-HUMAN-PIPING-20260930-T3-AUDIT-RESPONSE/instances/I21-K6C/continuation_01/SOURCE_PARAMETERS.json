@@ -1,0 +1,3117 @@
+{
+  "H_rows": [
+    {
+      "B": 1,
+      "K4SRC_fnv64": "38628f28659d26e5",
+      "K4SRC_sha256": "37cf158910388530296e8cc85e746e652a8184f1489df02a5b8cf74c24cf3fa5",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 11,
+      "b": 1,
+      "canonical_model_sha256": "f9f113020c54edb2dd48f6f832a01e0ba77cbb704cc24c07f51ef88f0da05f2e",
+      "capacity_bytes": {
+        "K4LED": 192,
+        "K4RST": {
+          "16": 24576,
+          "4": 6144,
+          "8": 12288
+        },
+        "K4SRC": 1536,
+        "K4STF": 1536
+      },
+      "f": 60,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 6,
+      "m": 10,
+      "model": "RF-LARGE-CHAIN-n00010-AX",
+      "n": 66,
+      "payload_bytes": {
+        "K4LED": 166,
+        "K4RST": {
+          "16": 17284,
+          "4": 5188,
+          "8": 9220
+        },
+        "K4SRC": 1512,
+        "K4STF": 1160
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 263,
+      "r": 6,
+      "s": 534,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 1728,
+        "free_adjacency_degree_histogram": {
+          "11": 12,
+          "17": 48
+        },
+        "free_adjacency_entries": 948,
+        "full_pattern_prededup_entries": 1440,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 3,
+        "member_label_payload_bytes": 21,
+        "node_degree_histogram": {
+          "1": 2,
+          "2": 9
+        },
+        "node_label_max_bytes": 3,
+        "node_label_payload_bytes": 23,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 3456,
+        "source_id_bytes_exact": 30,
+        "source_id_format_capacity_bytes": 36,
+        "sparse_prededup_row_capacity_usize": 1920,
+        "upper_positions": 780
+      },
+      "z": 1116
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "7974323e3b6860cc",
+      "K4SRC_sha256": "1daba1e96303713191d33bd757fc4e8271a053a760ea6e733e4465a906d77f1b",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 11,
+      "b": 1,
+      "canonical_model_sha256": "1e2f00bdcba836989b389807ce1f5be2322e6406cd693d554018fbc854a07b15",
+      "capacity_bytes": {
+        "K4LED": 192,
+        "K4RST": {
+          "16": 24576,
+          "4": 6144,
+          "8": 12288
+        },
+        "K4SRC": 1536,
+        "K4STF": 1536
+      },
+      "f": 60,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 6,
+      "m": 10,
+      "model": "RF-LARGE-CHAIN-n00010-ROT",
+      "n": 66,
+      "payload_bytes": {
+        "K4LED": 166,
+        "K4RST": {
+          "16": 17284,
+          "4": 5188,
+          "8": 9220
+        },
+        "K4SRC": 1512,
+        "K4STF": 1160
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 263,
+      "r": 6,
+      "s": 534,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 1728,
+        "free_adjacency_degree_histogram": {
+          "11": 12,
+          "17": 48
+        },
+        "free_adjacency_entries": 948,
+        "full_pattern_prededup_entries": 1440,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 3,
+        "member_label_payload_bytes": 21,
+        "node_degree_histogram": {
+          "1": 2,
+          "2": 9
+        },
+        "node_label_max_bytes": 3,
+        "node_label_payload_bytes": 23,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 3456,
+        "source_id_bytes_exact": 30,
+        "source_id_format_capacity_bytes": 36,
+        "sparse_prededup_row_capacity_usize": 1920,
+        "upper_positions": 780
+      },
+      "z": 1116
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "cbbf93bdf79b1fd8",
+      "K4SRC_sha256": "4f302cf4456eabb1a45d9b52697cc5538cadc83bc453af5c895fdbfe7327cec8",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 101,
+      "b": 1,
+      "canonical_model_sha256": "791f8c541fc55f5d4666eed03af3b0bbc7dfcca2390bf6cce33fcb39da7a44f6",
+      "capacity_bytes": {
+        "K4LED": 192,
+        "K4RST": {
+          "16": 196608,
+          "4": 98304,
+          "8": 98304
+        },
+        "K4SRC": 24576,
+        "K4STF": 12288
+      },
+      "f": 600,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 6,
+      "m": 100,
+      "model": "RF-LARGE-CHAIN-n00100-AX",
+      "n": 606,
+      "payload_bytes": {
+        "K4LED": 166,
+        "K4RST": {
+          "16": 165244,
+          "4": 49468,
+          "8": 88060
+        },
+        "K4SRC": 12678,
+        "K4STF": 10880
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 2513,
+      "r": 6,
+      "s": 5664,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 19008,
+        "free_adjacency_degree_histogram": {
+          "11": 12,
+          "17": 588
+        },
+        "free_adjacency_entries": 10128,
+        "full_pattern_prededup_entries": 14400,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 4,
+        "member_label_payload_bytes": 292,
+        "node_degree_histogram": {
+          "1": 2,
+          "2": 99
+        },
+        "node_label_max_bytes": 4,
+        "node_label_payload_bytes": 294,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 38016,
+        "source_id_bytes_exact": 36,
+        "source_id_format_capacity_bytes": 36,
+        "sparse_prededup_row_capacity_usize": 19200,
+        "upper_positions": 7800
+      },
+      "z": 10836
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "6a52f7ca04eab597",
+      "K4SRC_sha256": "7879dc44be93837e81765b755dcf5f6a7ef58ebaf476063cc9909d3b467f5dbe",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 101,
+      "b": 1,
+      "canonical_model_sha256": "343c60ff63af7eced2ee7028effbb3d78f1cb5b24effa363d00b7ed791df1639",
+      "capacity_bytes": {
+        "K4LED": 192,
+        "K4RST": {
+          "16": 196608,
+          "4": 98304,
+          "8": 98304
+        },
+        "K4SRC": 24576,
+        "K4STF": 12288
+      },
+      "f": 600,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 6,
+      "m": 100,
+      "model": "RF-LARGE-CHAIN-n00100-ROT",
+      "n": 606,
+      "payload_bytes": {
+        "K4LED": 166,
+        "K4RST": {
+          "16": 165244,
+          "4": 49468,
+          "8": 88060
+        },
+        "K4SRC": 12678,
+        "K4STF": 10880
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 2513,
+      "r": 6,
+      "s": 5664,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 19008,
+        "free_adjacency_degree_histogram": {
+          "11": 12,
+          "17": 588
+        },
+        "free_adjacency_entries": 10128,
+        "full_pattern_prededup_entries": 14400,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 4,
+        "member_label_payload_bytes": 292,
+        "node_degree_histogram": {
+          "1": 2,
+          "2": 99
+        },
+        "node_label_max_bytes": 4,
+        "node_label_payload_bytes": 294,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 38016,
+        "source_id_bytes_exact": 36,
+        "source_id_format_capacity_bytes": 36,
+        "sparse_prededup_row_capacity_usize": 19200,
+        "upper_positions": 7800
+      },
+      "z": 10836
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "3de17ddafef150cd",
+      "K4SRC_sha256": "1037ecac72b674f747f7774815d8f9dafba6267d69711c9ed29e801a73df5cf3",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 1001,
+      "b": 1,
+      "canonical_model_sha256": "a825bc577245411d795a29ebe15984919974184de2d1e2cecc2046fba20cf7ae",
+      "capacity_bytes": {
+        "K4LED": 192,
+        "K4RST": {
+          "16": 3145728,
+          "4": 786432,
+          "8": 1572864
+        },
+        "K4SRC": 196608,
+        "K4STF": 196608
+      },
+      "f": 6000,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 6,
+      "m": 1000,
+      "model": "RF-LARGE-CHAIN-n01000-AX",
+      "n": 6006,
+      "payload_bytes": {
+        "K4LED": 166,
+        "K4RST": {
+          "16": 1644844,
+          "4": 492268,
+          "8": 876460
+        },
+        "K4SRC": 124284,
+        "K4STF": 108080
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 25013,
+      "r": 6,
+      "s": 56964,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 191808,
+        "free_adjacency_degree_histogram": {
+          "11": 12,
+          "17": 5988
+        },
+        "free_adjacency_entries": 101928,
+        "full_pattern_prededup_entries": 144000,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 5,
+        "member_label_payload_bytes": 3893,
+        "node_degree_histogram": {
+          "1": 2,
+          "2": 999
+        },
+        "node_label_max_bytes": 5,
+        "node_label_payload_bytes": 3895,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 383616,
+        "source_id_bytes_exact": 42,
+        "source_id_format_capacity_bytes": 72,
+        "sparse_prededup_row_capacity_usize": 192000,
+        "upper_positions": 78000
+      },
+      "z": 108036
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "d3f3a254798f494d",
+      "K4SRC_sha256": "75b635ef517cfc81c159d3cd64118106055b369d8497c6d6d589be3468af508d",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 1001,
+      "b": 1,
+      "canonical_model_sha256": "7c2646e33a3291612aa1c4801bd9d5355a41b4797e4605f63d8f6ae210ddab3f",
+      "capacity_bytes": {
+        "K4LED": 192,
+        "K4RST": {
+          "16": 3145728,
+          "4": 786432,
+          "8": 1572864
+        },
+        "K4SRC": 196608,
+        "K4STF": 196608
+      },
+      "f": 6000,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 6,
+      "m": 1000,
+      "model": "RF-LARGE-CHAIN-n01000-ROT",
+      "n": 6006,
+      "payload_bytes": {
+        "K4LED": 166,
+        "K4RST": {
+          "16": 1644844,
+          "4": 492268,
+          "8": 876460
+        },
+        "K4SRC": 124284,
+        "K4STF": 108080
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 25013,
+      "r": 6,
+      "s": 56964,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 191808,
+        "free_adjacency_degree_histogram": {
+          "11": 12,
+          "17": 5988
+        },
+        "free_adjacency_entries": 101928,
+        "full_pattern_prededup_entries": 144000,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 5,
+        "member_label_payload_bytes": 3893,
+        "node_degree_histogram": {
+          "1": 2,
+          "2": 999
+        },
+        "node_label_max_bytes": 5,
+        "node_label_payload_bytes": 3895,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 383616,
+        "source_id_bytes_exact": 42,
+        "source_id_format_capacity_bytes": 72,
+        "sparse_prededup_row_capacity_usize": 192000,
+        "upper_positions": 78000
+      },
+      "z": 108036
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "26105cd94ff45960",
+      "K4SRC_sha256": "bcbace66150926ab33cc7eb94d8e3172988c5371d90b97302aeadc9e4002a1dd",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 10001,
+      "b": 1,
+      "canonical_model_sha256": "195dd2a0f23f81c9676781af46f09530820637bbe195fd5e4fb3b8f0e761cd64",
+      "capacity_bytes": {
+        "K4LED": 192,
+        "K4RST": {
+          "16": 25165824,
+          "4": 6291456,
+          "8": 12582912
+        },
+        "K4SRC": 1572864,
+        "K4STF": 1572864
+      },
+      "f": 60000,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 6,
+      "m": 10000,
+      "model": "RF-LARGE-CHAIN-n10000-AX",
+      "n": 60006,
+      "payload_bytes": {
+        "K4LED": 166,
+        "K4RST": {
+          "16": 16440844,
+          "4": 4920268,
+          "8": 8760460
+        },
+        "K4SRC": 1240290,
+        "K4STF": 1080080
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 250013,
+      "r": 6,
+      "s": 569964,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 1919808,
+        "free_adjacency_degree_histogram": {
+          "11": 12,
+          "17": 59988
+        },
+        "free_adjacency_entries": 1019928,
+        "full_pattern_prededup_entries": 1440000,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 6,
+        "member_label_payload_bytes": 48894,
+        "node_degree_histogram": {
+          "1": 2,
+          "2": 9999
+        },
+        "node_label_max_bytes": 6,
+        "node_label_payload_bytes": 48896,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 3839616,
+        "source_id_bytes_exact": 48,
+        "source_id_format_capacity_bytes": 72,
+        "sparse_prededup_row_capacity_usize": 1920000,
+        "upper_positions": 780000
+      },
+      "z": 1080036
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "3e7aee4ee0751f1d",
+      "K4SRC_sha256": "35da22de7c18479656e4a4e1e399e7d219fe5ac06b85953ec41aac2a80a48df9",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 10001,
+      "b": 1,
+      "canonical_model_sha256": "908c083429488023e563f8bb6e374cecec89fd490c0bf4cda7445c5ee31727ef",
+      "capacity_bytes": {
+        "K4LED": 192,
+        "K4RST": {
+          "16": 25165824,
+          "4": 6291456,
+          "8": 12582912
+        },
+        "K4SRC": 1572864,
+        "K4STF": 1572864
+      },
+      "f": 60000,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 6,
+      "m": 10000,
+      "model": "RF-LARGE-CHAIN-n10000-ROT",
+      "n": 60006,
+      "payload_bytes": {
+        "K4LED": 166,
+        "K4RST": {
+          "16": 16440844,
+          "4": 4920268,
+          "8": 8760460
+        },
+        "K4SRC": 1240290,
+        "K4STF": 1080080
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 250013,
+      "r": 6,
+      "s": 569964,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 1919808,
+        "free_adjacency_degree_histogram": {
+          "11": 12,
+          "17": 59988
+        },
+        "free_adjacency_entries": 1019928,
+        "full_pattern_prededup_entries": 1440000,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 6,
+        "member_label_payload_bytes": 48894,
+        "node_degree_histogram": {
+          "1": 2,
+          "2": 9999
+        },
+        "node_label_max_bytes": 6,
+        "node_label_payload_bytes": 48896,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 3839616,
+        "source_id_bytes_exact": 48,
+        "source_id_format_capacity_bytes": 72,
+        "sparse_prededup_row_capacity_usize": 1920000,
+        "upper_positions": 780000
+      },
+      "z": 1080036
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "071a7a966786ac17",
+      "K4SRC_sha256": "76a21d43148760f2987b7058ff3146662b9adc4f7a1cc3b373d5f2201bf81a93",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 11,
+      "b": 1,
+      "canonical_model_sha256": "485a8258b5822529a982d7af566b2b3e44473503291955e77a7103c4def2ebcb",
+      "capacity_bytes": {
+        "K4LED": 192,
+        "K4RST": {
+          "16": 24576,
+          "4": 6144,
+          "8": 12288
+        },
+        "K4SRC": 1536,
+        "K4STF": 1536
+      },
+      "f": 60,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 4,
+      "m": 10,
+      "model": "RF-LARGE-TREE-n00010-AX",
+      "n": 66,
+      "payload_bytes": {
+        "K4LED": 114,
+        "K4RST": {
+          "16": 17284,
+          "4": 5188,
+          "8": 9220
+        },
+        "K4SRC": 1468,
+        "K4STF": 1160
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 263,
+      "r": 6,
+      "s": 534,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 1440,
+        "free_adjacency_degree_histogram": {
+          "11": 30,
+          "17": 12,
+          "23": 18
+        },
+        "free_adjacency_entries": 948,
+        "full_pattern_prededup_entries": 1440,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 2,
+        "member_label_payload_bytes": 20,
+        "node_degree_histogram": {
+          "1": 6,
+          "2": 1,
+          "3": 4
+        },
+        "node_label_max_bytes": 2,
+        "node_label_payload_bytes": 22,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 2880,
+        "source_id_bytes_exact": 20,
+        "source_id_format_capacity_bytes": 24,
+        "sparse_prededup_row_capacity_usize": 2304,
+        "upper_positions": 780
+      },
+      "z": 1116
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "ef7de1a6f30a5035",
+      "K4SRC_sha256": "5ce4e95f7cf1056a3fe6990297afd916975e75ba2242125ee1a7f38f8fa8eb3d",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 11,
+      "b": 1,
+      "canonical_model_sha256": "8aaa7412e9ba5b51efce78769a272bb4db9429b4857fee24e2063d52a077873a",
+      "capacity_bytes": {
+        "K4LED": 384,
+        "K4RST": {
+          "16": 24576,
+          "4": 6144,
+          "8": 12288
+        },
+        "K4SRC": 3072,
+        "K4STF": 1536
+      },
+      "f": 60,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 12,
+      "m": 10,
+      "model": "RF-LARGE-TREE-n00010-ROT",
+      "n": 66,
+      "payload_bytes": {
+        "K4LED": 322,
+        "K4RST": {
+          "16": 17284,
+          "4": 5188,
+          "8": 9220
+        },
+        "K4SRC": 1644,
+        "K4STF": 1160
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 263,
+      "r": 6,
+      "s": 534,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 1440,
+        "free_adjacency_degree_histogram": {
+          "11": 30,
+          "17": 12,
+          "23": 18
+        },
+        "free_adjacency_entries": 948,
+        "full_pattern_prededup_entries": 1440,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 2,
+        "member_label_payload_bytes": 20,
+        "node_degree_histogram": {
+          "1": 6,
+          "2": 1,
+          "3": 4
+        },
+        "node_label_max_bytes": 2,
+        "node_label_payload_bytes": 22,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 2880,
+        "source_id_bytes_exact": 60,
+        "source_id_format_capacity_bytes": 72,
+        "sparse_prededup_row_capacity_usize": 2304,
+        "upper_positions": 780
+      },
+      "z": 1116
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "2aa106345cc2149c",
+      "K4SRC_sha256": "1ee8743cb338750d9f0b6f1a2cfa170d5add97e627b4d14e3fa7a03527d8bf4e",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 101,
+      "b": 1,
+      "canonical_model_sha256": "4cf6cce6f6ef81051517381ce99b43428e73276f9dc35909e85725dd1d53e659",
+      "capacity_bytes": {
+        "K4LED": 1536,
+        "K4RST": {
+          "16": 196608,
+          "4": 98304,
+          "8": 98304
+        },
+        "K4SRC": 24576,
+        "K4STF": 12288
+      },
+      "f": 600,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 43,
+      "m": 100,
+      "model": "RF-LARGE-TREE-n00100-AX",
+      "n": 606,
+      "payload_bytes": {
+        "K4LED": 1128,
+        "K4RST": {
+          "16": 165244,
+          "4": 49468,
+          "8": 88060
+        },
+        "K4SRC": 13522,
+        "K4STF": 10880
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 2513,
+      "r": 6,
+      "s": 5664,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 14400,
+        "free_adjacency_degree_histogram": {
+          "11": 300,
+          "17": 12,
+          "23": 288
+        },
+        "free_adjacency_entries": 10128,
+        "full_pattern_prededup_entries": 14400,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 3,
+        "member_label_payload_bytes": 282,
+        "node_degree_histogram": {
+          "1": 51,
+          "2": 1,
+          "3": 49
+        },
+        "node_label_max_bytes": 3,
+        "node_label_payload_bytes": 284,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 28800,
+        "source_id_bytes_exact": 251,
+        "source_id_format_capacity_bytes": 258,
+        "sparse_prededup_row_capacity_usize": 23904,
+        "upper_positions": 7800
+      },
+      "z": 10836
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "af0750ec14a5a22b",
+      "K4SRC_sha256": "7fb0f8ae5980ae8a5fe0d5c0cd401a7369fb553bc366e6b59c449725ab551dd4",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 101,
+      "b": 1,
+      "canonical_model_sha256": "6af54c3e5cde44bfccaae62a3a647e0d053e6f621101c4e57275f0751c33dfde",
+      "capacity_bytes": {
+        "K4LED": 6144,
+        "K4RST": {
+          "16": 196608,
+          "4": 98304,
+          "8": 98304
+        },
+        "K4SRC": 24576,
+        "K4STF": 12288
+      },
+      "f": 600,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 129,
+      "m": 100,
+      "model": "RF-LARGE-TREE-n00100-ROT",
+      "n": 606,
+      "payload_bytes": {
+        "K4LED": 3364,
+        "K4RST": {
+          "16": 165244,
+          "4": 49468,
+          "8": 88060
+        },
+        "K4SRC": 15486,
+        "K4STF": 10880
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 2513,
+      "r": 6,
+      "s": 5664,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 14400,
+        "free_adjacency_degree_histogram": {
+          "11": 300,
+          "17": 12,
+          "23": 288
+        },
+        "free_adjacency_entries": 10128,
+        "full_pattern_prededup_entries": 14400,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 3,
+        "member_label_payload_bytes": 282,
+        "node_degree_histogram": {
+          "1": 51,
+          "2": 1,
+          "3": 49
+        },
+        "node_label_max_bytes": 3,
+        "node_label_payload_bytes": 284,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 28800,
+        "source_id_bytes_exact": 753,
+        "source_id_format_capacity_bytes": 774,
+        "sparse_prededup_row_capacity_usize": 23904,
+        "upper_positions": 7800
+      },
+      "z": 10836
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "6699ca2c3fc6d41e",
+      "K4SRC_sha256": "f0d211dd36e012ddad67328c387245af086361e9a78ab4d602506f83150ee155",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 1001,
+      "b": 1,
+      "canonical_model_sha256": "265d2250dc9b397705377859f79a565fdd26109291c21fb104a82a878ad8243f",
+      "capacity_bytes": {
+        "K4LED": 12288,
+        "K4RST": {
+          "16": 3145728,
+          "4": 786432,
+          "8": 1572864
+        },
+        "K4SRC": 196608,
+        "K4STF": 196608
+      },
+      "f": 6000,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 428,
+      "m": 1000,
+      "model": "RF-LARGE-TREE-n01000-AX",
+      "n": 6006,
+      "payload_bytes": {
+        "K4LED": 11138,
+        "K4RST": {
+          "16": 1644844,
+          "4": 492268,
+          "8": 876460
+        },
+        "K4SRC": 134334,
+        "K4STF": 108080
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 25013,
+      "r": 6,
+      "s": 56964,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 144000,
+        "free_adjacency_degree_histogram": {
+          "11": 3000,
+          "17": 12,
+          "23": 2988
+        },
+        "free_adjacency_entries": 101928,
+        "full_pattern_prededup_entries": 144000,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 4,
+        "member_label_payload_bytes": 3784,
+        "node_degree_histogram": {
+          "1": 501,
+          "2": 1,
+          "3": 499
+        },
+        "node_label_max_bytes": 4,
+        "node_label_payload_bytes": 3786,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 288000,
+        "source_id_bytes_exact": 2918,
+        "source_id_format_capacity_bytes": 4710,
+        "sparse_prededup_row_capacity_usize": 239904,
+        "upper_positions": 78000
+      },
+      "z": 108036
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "77b10384c718d82f",
+      "K4SRC_sha256": "1869f336d7c5e84ba307a2a9ceef2377b274f3a6ae3ba099971854159f9a21e7",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 1001,
+      "b": 1,
+      "canonical_model_sha256": "3e33a99f77849dcdaf812425b125ac17c539ee74fa9c10651ebb7af2c030f151",
+      "capacity_bytes": {
+        "K4LED": 49152,
+        "K4RST": {
+          "16": 3145728,
+          "4": 786432,
+          "8": 1572864
+        },
+        "K4SRC": 196608,
+        "K4STF": 196608
+      },
+      "f": 6000,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 1284,
+      "m": 1000,
+      "model": "RF-LARGE-TREE-n01000-ROT",
+      "n": 6006,
+      "payload_bytes": {
+        "K4LED": 33394,
+        "K4RST": {
+          "16": 1644844,
+          "4": 492268,
+          "8": 876460
+        },
+        "K4SRC": 154722,
+        "K4STF": 108080
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 25013,
+      "r": 6,
+      "s": 56964,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 144000,
+        "free_adjacency_degree_histogram": {
+          "11": 3000,
+          "17": 12,
+          "23": 2988
+        },
+        "free_adjacency_entries": 101928,
+        "full_pattern_prededup_entries": 144000,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 4,
+        "member_label_payload_bytes": 3784,
+        "node_degree_histogram": {
+          "1": 501,
+          "2": 1,
+          "3": 499
+        },
+        "node_label_max_bytes": 4,
+        "node_label_payload_bytes": 3786,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 288000,
+        "source_id_bytes_exact": 8754,
+        "source_id_format_capacity_bytes": 14130,
+        "sparse_prededup_row_capacity_usize": 239904,
+        "upper_positions": 78000
+      },
+      "z": 108036
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "58d6b01df22e8145",
+      "K4SRC_sha256": "9044db06826923214b238314562f4a6bac8a00d4518cda76482fa3aaacaeacdf",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 10001,
+      "b": 1,
+      "canonical_model_sha256": "985bca2b3fc2a61faa89a4ed3b03d72268f89a66cf04ecb889dc06157aae2743",
+      "capacity_bytes": {
+        "K4LED": 196608,
+        "K4RST": {
+          "16": 25165824,
+          "4": 6291456,
+          "8": 12582912
+        },
+        "K4SRC": 1572864,
+        "K4STF": 1572864
+      },
+      "f": 60000,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 4286,
+      "m": 10000,
+      "model": "RF-LARGE-TREE-n10000-AX",
+      "n": 60006,
+      "payload_bytes": {
+        "K4LED": 111446,
+        "K4RST": {
+          "16": 16440844,
+          "4": 4920268,
+          "8": 8760460
+        },
+        "K4SRC": 1346498,
+        "K4STF": 1080080
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 250013,
+      "r": 6,
+      "s": 569964,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 1440000,
+        "free_adjacency_degree_histogram": {
+          "11": 30000,
+          "17": 12,
+          "23": 29988
+        },
+        "free_adjacency_entries": 1019928,
+        "full_pattern_prededup_entries": 1440000,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 5,
+        "member_label_payload_bytes": 47786,
+        "node_degree_histogram": {
+          "1": 5001,
+          "2": 1,
+          "3": 4999
+        },
+        "node_label_max_bytes": 5,
+        "node_label_payload_bytes": 47788,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 2880000,
+        "source_id_bytes_exact": 33496,
+        "source_id_format_capacity_bytes": 51006,
+        "sparse_prededup_row_capacity_usize": 2399904,
+        "upper_positions": 780000
+      },
+      "z": 1080036
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "837563267802493a",
+      "K4SRC_sha256": "0649871bad70389ded600d6dccae50bcdb2ba26d7df47898f5b24d2e4c3188f1",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 10001,
+      "b": 1,
+      "canonical_model_sha256": "8f69cff7c262a6a69312dbe89252c20ead3eb3fe62ef448528bb2e572d02e7ae",
+      "capacity_bytes": {
+        "K4LED": 393216,
+        "K4RST": {
+          "16": 25165824,
+          "4": 6291456,
+          "8": 12582912
+        },
+        "K4SRC": 1572864,
+        "K4STF": 1572864
+      },
+      "f": 60000,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 12858,
+      "m": 10000,
+      "model": "RF-LARGE-TREE-n10000-ROT",
+      "n": 60006,
+      "payload_bytes": {
+        "K4LED": 334318,
+        "K4RST": {
+          "16": 16440844,
+          "4": 4920268,
+          "8": 8760460
+        },
+        "K4SRC": 1559214,
+        "K4STF": 1080080
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 250013,
+      "r": 6,
+      "s": 569964,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 1440000,
+        "free_adjacency_degree_histogram": {
+          "11": 30000,
+          "17": 12,
+          "23": 29988
+        },
+        "free_adjacency_entries": 1019928,
+        "full_pattern_prededup_entries": 1440000,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 5,
+        "member_label_payload_bytes": 47786,
+        "node_degree_histogram": {
+          "1": 5001,
+          "2": 1,
+          "3": 4999
+        },
+        "node_label_max_bytes": 5,
+        "node_label_payload_bytes": 47788,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 2880000,
+        "source_id_bytes_exact": 100488,
+        "source_id_format_capacity_bytes": 153018,
+        "sparse_prededup_row_capacity_usize": 2399904,
+        "upper_positions": 780000
+      },
+      "z": 1080036
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "681dc3c802bc1864",
+      "K4SRC_sha256": "8db420b9549e47f677b5e5d45dda91cb0337903e065576c62f564d580f4c727d",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 11,
+      "b": 1,
+      "canonical_model_sha256": "a80cf616fab5c7e855980182da7b7e84857dc15d9c0cd41e5d8f989585a49be4",
+      "capacity_bytes": {
+        "K4LED": 192,
+        "K4RST": {
+          "16": 24576,
+          "4": 6144,
+          "8": 12288
+        },
+        "K4SRC": 3072,
+        "K4STF": 1536
+      },
+      "f": 45,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 7,
+      "m": 10,
+      "model": "RF-LARGE-CONT-n00010-AX",
+      "n": 66,
+      "payload_bytes": {
+        "K4LED": 192,
+        "K4RST": {
+          "16": 17284,
+          "4": 5188,
+          "8": 9220
+        },
+        "K4SRC": 1729,
+        "K4STF": 1235
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 278,
+      "r": 21,
+      "s": 297,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 648,
+        "free_adjacency_degree_histogram": {
+          "8": 9,
+          "11": 24,
+          "14": 12
+        },
+        "free_adjacency_entries": 504,
+        "full_pattern_prededup_entries": 1440,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 2,
+        "member_label_payload_bytes": 20,
+        "node_degree_histogram": {
+          "1": 2,
+          "2": 9
+        },
+        "node_label_max_bytes": 2,
+        "node_label_payload_bytes": 22,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 1296,
+        "source_id_bytes_exact": 35,
+        "source_id_format_capacity_bytes": 42,
+        "sparse_prededup_row_capacity_usize": 1920,
+        "upper_positions": 780
+      },
+      "z": 1116
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "123d55eb180b89be",
+      "K4SRC_sha256": "61500fecdec84f93594cb502bdf5c1161e5b645be08184247cc85b3b3a5cb701",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 11,
+      "b": 1,
+      "canonical_model_sha256": "f0c6c96d0d4f2b35ded4aac90ba78e01f4f4079b4a6891f093082524cf2cd560",
+      "capacity_bytes": {
+        "K4LED": 384,
+        "K4RST": {
+          "16": 24576,
+          "4": 6144,
+          "8": 12288
+        },
+        "K4SRC": 3072,
+        "K4STF": 1536
+      },
+      "f": 45,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 14,
+      "m": 10,
+      "model": "RF-LARGE-CONT-n00010-ROT",
+      "n": 66,
+      "payload_bytes": {
+        "K4LED": 374,
+        "K4RST": {
+          "16": 17284,
+          "4": 5188,
+          "8": 9220
+        },
+        "K4SRC": 1883,
+        "K4STF": 1235
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 278,
+      "r": 21,
+      "s": 297,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 648,
+        "free_adjacency_degree_histogram": {
+          "8": 9,
+          "11": 24,
+          "14": 12
+        },
+        "free_adjacency_entries": 504,
+        "full_pattern_prededup_entries": 1440,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 2,
+        "member_label_payload_bytes": 20,
+        "node_degree_histogram": {
+          "1": 2,
+          "2": 9
+        },
+        "node_label_max_bytes": 2,
+        "node_label_payload_bytes": 22,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 1296,
+        "source_id_bytes_exact": 70,
+        "source_id_format_capacity_bytes": 84,
+        "sparse_prededup_row_capacity_usize": 1920,
+        "upper_positions": 780
+      },
+      "z": 1116
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "19b446f76216f864",
+      "K4SRC_sha256": "16b5754afe8f5057818f156f4bc97407965c80d7985416bd72928fa7e261eb63",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 101,
+      "b": 1,
+      "canonical_model_sha256": "f2c4687642a6f3afc1e489edcfd020ad28b22a2ba4ce31e7026a7fc32104391a",
+      "capacity_bytes": {
+        "K4LED": 3072,
+        "K4RST": {
+          "16": 196608,
+          "4": 98304,
+          "8": 98304
+        },
+        "K4SRC": 24576,
+        "K4STF": 12288
+      },
+      "f": 450,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 73,
+      "m": 100,
+      "model": "RF-LARGE-CONT-n00100-AX",
+      "n": 606,
+      "payload_bytes": {
+        "K4LED": 1908,
+        "K4RST": {
+          "16": 165244,
+          "4": 49468,
+          "8": 88060
+        },
+        "K4SRC": 16169,
+        "K4STF": 11630
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 2663,
+      "r": 156,
+      "s": 3132,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 7128,
+        "free_adjacency_degree_histogram": {
+          "8": 9,
+          "11": 294,
+          "14": 147
+        },
+        "free_adjacency_entries": 5364,
+        "full_pattern_prededup_entries": 14400,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 3,
+        "member_label_payload_bytes": 282,
+        "node_degree_histogram": {
+          "1": 2,
+          "2": 99
+        },
+        "node_label_max_bytes": 3,
+        "node_label_payload_bytes": 284,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 14256,
+        "source_id_bytes_exact": 438,
+        "source_id_format_capacity_bytes": 438,
+        "sparse_prededup_row_capacity_usize": 19200,
+        "upper_positions": 7800
+      },
+      "z": 10836
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "bdf8301cd80140dd",
+      "K4SRC_sha256": "cc1735e57467a922c51876c8a613141ada210165a5b30a0eb5fd124c1accb60a",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 101,
+      "b": 1,
+      "canonical_model_sha256": "c7aa0602649d2db47e4d1eaadfd1e79b3550f427c3fbed30aaa0a0ebe52c8dab",
+      "capacity_bytes": {
+        "K4LED": 6144,
+        "K4RST": {
+          "16": 196608,
+          "4": 98304,
+          "8": 98304
+        },
+        "K4SRC": 24576,
+        "K4STF": 12288
+      },
+      "f": 450,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 128,
+      "m": 100,
+      "model": "RF-LARGE-CONT-n00100-ROT",
+      "n": 606,
+      "payload_bytes": {
+        "K4LED": 3338,
+        "K4RST": {
+          "16": 165244,
+          "4": 49468,
+          "8": 88060
+        },
+        "K4SRC": 17434,
+        "K4STF": 11630
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 2663,
+      "r": 156,
+      "s": 3132,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 7128,
+        "free_adjacency_degree_histogram": {
+          "8": 9,
+          "11": 294,
+          "14": 147
+        },
+        "free_adjacency_entries": 5364,
+        "full_pattern_prededup_entries": 14400,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 3,
+        "member_label_payload_bytes": 282,
+        "node_degree_histogram": {
+          "1": 2,
+          "2": 99
+        },
+        "node_label_max_bytes": 3,
+        "node_label_payload_bytes": 284,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 14256,
+        "source_id_bytes_exact": 768,
+        "source_id_format_capacity_bytes": 768,
+        "sparse_prededup_row_capacity_usize": 19200,
+        "upper_positions": 7800
+      },
+      "z": 10836
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "b8da381f5b72ba6a",
+      "K4SRC_sha256": "58c422b903d840a9f3da9c6a540f2e50086e4f0167f4569271a9e28059e0d6ac",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 1001,
+      "b": 1,
+      "canonical_model_sha256": "1fdb93c684acfb0bbc921f167549dac2ac5ec876403da2af8d9eaa892c532751",
+      "capacity_bytes": {
+        "K4LED": 24576,
+        "K4RST": {
+          "16": 3145728,
+          "4": 786432,
+          "8": 1572864
+        },
+        "K4SRC": 196608,
+        "K4STF": 196608
+      },
+      "f": 4500,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 733,
+      "m": 1000,
+      "model": "RF-LARGE-CONT-n01000-AX",
+      "n": 6006,
+      "payload_bytes": {
+        "K4LED": 19068,
+        "K4RST": {
+          "16": 1644844,
+          "4": 492268,
+          "8": 876460
+        },
+        "K4SRC": 161232,
+        "K4STF": 115580
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 26513,
+      "r": 1506,
+      "s": 31482,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 71928,
+        "free_adjacency_degree_histogram": {
+          "8": 9,
+          "11": 2994,
+          "14": 1497
+        },
+        "free_adjacency_entries": 53964,
+        "full_pattern_prededup_entries": 144000,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 4,
+        "member_label_payload_bytes": 3784,
+        "node_degree_histogram": {
+          "1": 2,
+          "2": 999
+        },
+        "node_label_max_bytes": 4,
+        "node_label_payload_bytes": 3786,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 143856,
+        "source_id_bytes_exact": 5131,
+        "source_id_format_capacity_bytes": 8796,
+        "sparse_prededup_row_capacity_usize": 192000,
+        "upper_positions": 78000
+      },
+      "z": 108036
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "32ab2678c5d9a2e6",
+      "K4SRC_sha256": "097f576284a32b94868efc0998dad214f486ec0dbe745f28158892cceb9f843f",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 1001,
+      "b": 1,
+      "canonical_model_sha256": "38d776d9e22b791fec24c79422dda1b59ac6898c952c7fb86935d76c754efa38",
+      "capacity_bytes": {
+        "K4LED": 49152,
+        "K4RST": {
+          "16": 3145728,
+          "4": 786432,
+          "8": 1572864
+        },
+        "K4SRC": 196608,
+        "K4STF": 196608
+      },
+      "f": 4500,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 1268,
+      "m": 1000,
+      "model": "RF-LARGE-CONT-n01000-ROT",
+      "n": 6006,
+      "payload_bytes": {
+        "K4LED": 32978,
+        "K4RST": {
+          "16": 1644844,
+          "4": 492268,
+          "8": 876460
+        },
+        "K4SRC": 174072,
+        "K4STF": 115580
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 26513,
+      "r": 1506,
+      "s": 31482,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 71928,
+        "free_adjacency_degree_histogram": {
+          "8": 9,
+          "11": 2994,
+          "14": 1497
+        },
+        "free_adjacency_entries": 53964,
+        "full_pattern_prededup_entries": 144000,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 4,
+        "member_label_payload_bytes": 3784,
+        "node_degree_histogram": {
+          "1": 2,
+          "2": 999
+        },
+        "node_label_max_bytes": 4,
+        "node_label_payload_bytes": 3786,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 143856,
+        "source_id_bytes_exact": 8876,
+        "source_id_format_capacity_bytes": 15216,
+        "sparse_prededup_row_capacity_usize": 192000,
+        "upper_positions": 78000
+      },
+      "z": 108036
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "f0aa6bcb60ef9c93",
+      "K4SRC_sha256": "108d1e57f04c582feac5f81ca11754432550ef02d0de1cb822925c490e5c1298",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 10001,
+      "b": 1,
+      "canonical_model_sha256": "36518bf49b97bc54185385f7abb00f3a06c313791747be01c9470daa258a2e54",
+      "capacity_bytes": {
+        "K4LED": 196608,
+        "K4RST": {
+          "16": 25165824,
+          "4": 6291456,
+          "8": 12582912
+        },
+        "K4SRC": 3145728,
+        "K4STF": 1572864
+      },
+      "f": 45000,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 7333,
+      "m": 10000,
+      "model": "RF-LARGE-CONT-n10000-AX",
+      "n": 60006,
+      "payload_bytes": {
+        "K4LED": 190668,
+        "K4RST": {
+          "16": 16440844,
+          "4": 4920268,
+          "8": 8760460
+        },
+        "K4SRC": 1618465,
+        "K4STF": 1155080
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 265013,
+      "r": 15006,
+      "s": 314982,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 719928,
+        "free_adjacency_degree_histogram": {
+          "8": 9,
+          "11": 29994,
+          "14": 14997
+        },
+        "free_adjacency_entries": 539964,
+        "full_pattern_prededup_entries": 1440000,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 5,
+        "member_label_payload_bytes": 47786,
+        "node_degree_histogram": {
+          "1": 2,
+          "2": 9999
+        },
+        "node_label_max_bytes": 5,
+        "node_label_payload_bytes": 47788,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 1439856,
+        "source_id_bytes_exact": 58664,
+        "source_id_format_capacity_bytes": 87996,
+        "sparse_prededup_row_capacity_usize": 1920000,
+        "upper_positions": 780000
+      },
+      "z": 1080036
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "cf604712d8b218ae",
+      "K4SRC_sha256": "37a578fe098cc7cbe151ad9b89f1555250f7f5b304f3e4b38da329d50bf1c712",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 10001,
+      "b": 1,
+      "canonical_model_sha256": "8d335a6acd413fe4106378808cb4ca44081e3f03b83e49b2de34cbfd6be30696",
+      "capacity_bytes": {
+        "K4LED": 393216,
+        "K4RST": {
+          "16": 25165824,
+          "4": 6291456,
+          "8": 12582912
+        },
+        "K4SRC": 3145728,
+        "K4STF": 1572864
+      },
+      "f": 45000,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 12668,
+      "m": 10000,
+      "model": "RF-LARGE-CONT-n10000-ROT",
+      "n": 60006,
+      "payload_bytes": {
+        "K4LED": 329378,
+        "K4RST": {
+          "16": 16440844,
+          "4": 4920268,
+          "8": 8760460
+        },
+        "K4SRC": 1751840,
+        "K4STF": 1155080
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 265013,
+      "r": 15006,
+      "s": 314982,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 719928,
+        "free_adjacency_degree_histogram": {
+          "8": 9,
+          "11": 29994,
+          "14": 14997
+        },
+        "free_adjacency_entries": 539964,
+        "full_pattern_prededup_entries": 1440000,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 5,
+        "member_label_payload_bytes": 47786,
+        "node_degree_histogram": {
+          "1": 2,
+          "2": 9999
+        },
+        "node_label_max_bytes": 5,
+        "node_label_payload_bytes": 47788,
+        "origin": "Symbolic integer connectivity/zero-support rules from H models.rs; no generator executed",
+        "rcm_neighbors_prededup_capacity_usize": 1439856,
+        "source_id_bytes_exact": 101344,
+        "source_id_format_capacity_bytes": 152016,
+        "sparse_prededup_row_capacity_usize": 1920000,
+        "upper_positions": 780000
+      },
+      "z": 1080036
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "cb6dc2fec846c7ac",
+      "K4SRC_sha256": "22c2d3cfc2452858fcfb373bb0887a8798ac21e2ec0dd90ba2c241126e1d805e",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 9,
+      "b": 1,
+      "canonical_model_sha256": "cf8c10fc294cb226fddd70a132ed0bc4e536b44ec386f17a5434a38f431df126",
+      "capacity_bytes": {
+        "K4LED": 48,
+        "K4RST": {
+          "16": 24576,
+          "4": 6144,
+          "8": 12288
+        },
+        "K4SRC": 1536,
+        "K4STF": 1536
+      },
+      "f": 48,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 1,
+      "m": 8,
+      "model": "DEC053:invented-cantilever-chain-8",
+      "n": 54,
+      "payload_bytes": {
+        "K4LED": 36,
+        "K4RST": {
+          "16": 13996,
+          "4": 4204,
+          "8": 7468
+        },
+        "K4SRC": 1154,
+        "K4STF": 944
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 213,
+      "r": 6,
+      "s": 420,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 1344,
+        "free_adjacency_degree_histogram": {
+          "11": 12,
+          "17": 36
+        },
+        "free_adjacency_entries": 744,
+        "full_pattern_prededup_entries": 1152,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 2,
+        "member_label_payload_bytes": 16,
+        "node_degree_histogram": {
+          "1": 2,
+          "2": 7
+        },
+        "node_label_max_bytes": 2,
+        "node_label_payload_bytes": 18,
+        "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-cantilever-chain-8.k6model",
+        "rcm_neighbors_prededup_capacity_usize": 2688,
+        "source_id_bytes_exact": 5,
+        "source_id_format_capacity_bytes": 6,
+        "sparse_prededup_row_capacity_usize": 1536,
+        "upper_positions": 624
+      },
+      "z": 900
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "f2f77d8c87696fb4",
+      "K4SRC_sha256": "a18a354be4a8151090caa7946fd80048e6ce6534979d1d8258b7779e74d1551d",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 25,
+      "b": 1,
+      "canonical_model_sha256": "3f4ce47ab8398a0804358133a89c51196bbb7d3d1c0d7058cf7442a542f29539",
+      "capacity_bytes": {
+        "K4LED": 48,
+        "K4RST": {
+          "16": 49152,
+          "4": 12288,
+          "8": 24576
+        },
+        "K4SRC": 6144,
+        "K4STF": 3072
+      },
+      "f": 144,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 1,
+      "m": 24,
+      "model": "DEC053:invented-cantilever-chain-24",
+      "n": 150,
+      "payload_bytes": {
+        "K4LED": 36,
+        "K4RST": {
+          "16": 40300,
+          "4": 12076,
+          "8": 21484
+        },
+        "K4SRC": 3139,
+        "K4STF": 2672
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 613,
+      "r": 6,
+      "s": 1332,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 4416,
+        "free_adjacency_degree_histogram": {
+          "11": 12,
+          "17": 132
+        },
+        "free_adjacency_entries": 2376,
+        "full_pattern_prededup_entries": 3456,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 3,
+        "member_label_payload_bytes": 62,
+        "node_degree_histogram": {
+          "1": 2,
+          "2": 23
+        },
+        "node_label_max_bytes": 3,
+        "node_label_payload_bytes": 65,
+        "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-cantilever-chain-24.k6model",
+        "rcm_neighbors_prededup_capacity_usize": 8832,
+        "source_id_bytes_exact": 6,
+        "source_id_format_capacity_bytes": 6,
+        "sparse_prededup_row_capacity_usize": 4608,
+        "upper_positions": 1872
+      },
+      "z": 2628
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "f6676940490f4461",
+      "K4SRC_sha256": "7c49681be15b37f0d7661bdfcff4146583f2ff312d068a83845d4dced6234d08",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 49,
+      "b": 1,
+      "canonical_model_sha256": "036491a2046a23d1b347fd6abb6b83ad391db7cc4a968749660f1597201dab6c",
+      "capacity_bytes": {
+        "K4LED": 48,
+        "K4RST": {
+          "16": 98304,
+          "4": 24576,
+          "8": 49152
+        },
+        "K4SRC": 6144,
+        "K4STF": 6144
+      },
+      "f": 288,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 1,
+      "m": 48,
+      "model": "DEC053:invented-cantilever-chain-48",
+      "n": 294,
+      "payload_bytes": {
+        "K4LED": 36,
+        "K4RST": {
+          "16": 79756,
+          "4": 23884,
+          "8": 42508
+        },
+        "K4SRC": 6115,
+        "K4STF": 5264
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 1213,
+      "r": 6,
+      "s": 2700,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 9024,
+        "free_adjacency_degree_histogram": {
+          "11": 12,
+          "17": 276
+        },
+        "free_adjacency_entries": 4824,
+        "full_pattern_prededup_entries": 6912,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 3,
+        "member_label_payload_bytes": 134,
+        "node_degree_histogram": {
+          "1": 2,
+          "2": 47
+        },
+        "node_label_max_bytes": 3,
+        "node_label_payload_bytes": 137,
+        "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-cantilever-chain-48.k6model",
+        "rcm_neighbors_prededup_capacity_usize": 18048,
+        "source_id_bytes_exact": 6,
+        "source_id_format_capacity_bytes": 6,
+        "sparse_prededup_row_capacity_usize": 9216,
+        "upper_positions": 3744
+      },
+      "z": 5220
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "aff6b3cb85e46e5e",
+      "K4SRC_sha256": "0a05e06a40eb27f1c65a34c2613c05501da34c70e9494c48bf728eb7e34ab1f2",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 12,
+      "b": 1,
+      "canonical_model_sha256": "f38fec6f38c76112d29e7b72a5ee477c642327bc79c93ff572c62a53f5da12dd",
+      "capacity_bytes": {
+        "K4LED": 48,
+        "K4RST": {
+          "16": 24576,
+          "4": 12288,
+          "8": 24576
+        },
+        "K4SRC": 3072,
+        "K4STF": 3072
+      },
+      "f": 48,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 1,
+      "m": 17,
+      "model": "DEC053:invented-grid-frame-4x3",
+      "n": 72,
+      "payload_bytes": {
+        "K4LED": 36,
+        "K4RST": {
+          "16": 23860,
+          "4": 7156,
+          "8": 12724
+        },
+        "K4SRC": 2360,
+        "K4STF": 1862
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 414,
+      "r": 24,
+      "s": 636,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 1536,
+        "free_adjacency_degree_histogram": {
+          "17": 24,
+          "23": 24
+        },
+        "free_adjacency_entries": 960,
+        "full_pattern_prededup_entries": 2448,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 3,
+        "member_label_payload_bytes": 41,
+        "node_degree_histogram": {
+          "2": 4,
+          "3": 6,
+          "4": 2
+        },
+        "node_label_max_bytes": 3,
+        "node_label_payload_bytes": 26,
+        "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-grid-frame-4x3.k6model",
+        "rcm_neighbors_prededup_capacity_usize": 3072,
+        "source_id_bytes_exact": 5,
+        "source_id_format_capacity_bytes": 6,
+        "sparse_prededup_row_capacity_usize": 3840,
+        "upper_positions": 1326
+      },
+      "z": 1656
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "5a03c6c15cc51a92",
+      "K4SRC_sha256": "8733708561cb96d469ca3fa44c775dfa7cddefd6055fee2dc56edb410b6a150b",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 48,
+      "b": 1,
+      "canonical_model_sha256": "e0410b06ee062cfbc95100a225a1aad14d83950c96c42bbf94f6c6c907442bb3",
+      "capacity_bytes": {
+        "K4LED": 48,
+        "K4RST": {
+          "16": 196608,
+          "4": 49152,
+          "8": 98304
+        },
+        "K4SRC": 12288,
+        "K4STF": 12288
+      },
+      "f": 252,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 1,
+      "m": 82,
+      "model": "DEC053:invented-grid-frame-6x8",
+      "n": 288,
+      "payload_bytes": {
+        "K4LED": 36,
+        "K4RST": {
+          "16": 106882,
+          "4": 32002,
+          "8": 56962
+        },
+        "K4SRC": 9881,
+        "K4STF": 8246
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 1848,
+      "r": 36,
+      "s": 7758,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 8064,
+        "free_adjacency_degree_histogram": {
+          "17": 24,
+          "23": 108,
+          "29": 120
+        },
+        "free_adjacency_entries": 6372,
+        "full_pattern_prededup_entries": 11808,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 3,
+        "member_label_payload_bytes": 236,
+        "node_degree_histogram": {
+          "2": 4,
+          "3": 20,
+          "4": 24
+        },
+        "node_label_max_bytes": 3,
+        "node_label_payload_bytes": 134,
+        "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-grid-frame-6x8.k6model",
+        "rcm_neighbors_prededup_capacity_usize": 16128,
+        "source_id_bytes_exact": 6,
+        "source_id_format_capacity_bytes": 6,
+        "sparse_prededup_row_capacity_usize": 17664,
+        "upper_positions": 6396
+      },
+      "z": 7632
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "80d45f7714452a70",
+      "K4SRC_sha256": "f0ec3cbdb5caf360098f64adb85568f3c736d85ab2b57c4925172d0e22f74679",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 56,
+      "b": 1,
+      "canonical_model_sha256": "52e07a787bdf404ed3154ea3450afdadd617a3acd5cf22dc48387ff8f87002a1",
+      "capacity_bytes": {
+        "K4LED": 48,
+        "K4RST": {
+          "16": 196608,
+          "4": 49152,
+          "8": 98304
+        },
+        "K4SRC": 12288,
+        "K4STF": 12288
+      },
+      "f": 294,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 1,
+      "m": 97,
+      "model": "DEC053:invented-grid-frame-7x8",
+      "n": 336,
+      "payload_bytes": {
+        "K4LED": 36,
+        "K4RST": {
+          "16": 125788,
+          "4": 37660,
+          "8": 67036
+        },
+        "K4SRC": 11651,
+        "K4STF": 9728
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 2180,
+      "r": 42,
+      "s": 9849,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 9408,
+        "free_adjacency_degree_histogram": {
+          "17": 24,
+          "23": 120,
+          "29": 150
+        },
+        "free_adjacency_entries": 7518,
+        "full_pattern_prededup_entries": 13968,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 3,
+        "member_label_payload_bytes": 281,
+        "node_degree_histogram": {
+          "2": 4,
+          "3": 22,
+          "4": 30
+        },
+        "node_label_max_bytes": 3,
+        "node_label_payload_bytes": 158,
+        "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-grid-frame-7x8.k6model",
+        "rcm_neighbors_prededup_capacity_usize": 18816,
+        "source_id_bytes_exact": 6,
+        "source_id_format_capacity_bytes": 6,
+        "sparse_prededup_row_capacity_usize": 20736,
+        "upper_positions": 7566
+      },
+      "z": 9000
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "6443c16369008abb",
+      "K4SRC_sha256": "2a48a2fbd25029f19c8eb38294abb7dd0fdc55eb25f288973a6a8f83b847882c",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 25,
+      "b": 1,
+      "canonical_model_sha256": "da4e6fa1c0841e2eee15940fc4d0e35590e09e74978b89f439a0f8a219d2b4d9",
+      "capacity_bytes": {
+        "K4LED": 48,
+        "K4RST": {
+          "16": 98304,
+          "4": 24576,
+          "8": 49152
+        },
+        "K4SRC": 6144,
+        "K4STF": 6144
+      },
+      "f": 120,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 1,
+      "m": 40,
+      "model": "DEC053:invented-grid-frame-5x5",
+      "n": 150,
+      "payload_bytes": {
+        "K4LED": 36,
+        "K4RST": {
+          "16": 53452,
+          "4": 16012,
+          "8": 28492
+        },
+        "K4SRC": 5051,
+        "K4STF": 4136
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 925,
+      "r": 30,
+      "s": 2760,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 3840,
+        "free_adjacency_degree_histogram": {
+          "17": 24,
+          "23": 60,
+          "29": 36
+        },
+        "free_adjacency_entries": 2832,
+        "full_pattern_prededup_entries": 5760,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 3,
+        "member_label_payload_bytes": 110,
+        "node_degree_histogram": {
+          "2": 4,
+          "3": 12,
+          "4": 9
+        },
+        "node_label_max_bytes": 3,
+        "node_label_payload_bytes": 65,
+        "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-grid-frame-5x5.k6model",
+        "rcm_neighbors_prededup_capacity_usize": 7680,
+        "source_id_bytes_exact": 6,
+        "source_id_format_capacity_bytes": 6,
+        "sparse_prededup_row_capacity_usize": 8832,
+        "upper_positions": 3120
+      },
+      "z": 3780
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "5de0b9f3f65a877f",
+      "K4SRC_sha256": "6efa354cf8a785e39b95914334fd52111cc89e1324a930dea2633fdf8a857f07",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 33,
+      "b": 1,
+      "canonical_model_sha256": "09ef77ad46567ac7794082e4e85aca165b032ab545c9ffcbc7882d0e86bef062",
+      "capacity_bytes": {
+        "K4LED": 48,
+        "K4RST": {
+          "16": 98304,
+          "4": 24576,
+          "8": 49152
+        },
+        "K4SRC": 6144,
+        "K4STF": 6144
+      },
+      "f": 192,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 1,
+      "m": 32,
+      "model": "DEC053:invented-cantilever-chain-32",
+      "n": 198,
+      "payload_bytes": {
+        "K4LED": 36,
+        "K4RST": {
+          "16": 53452,
+          "4": 16012,
+          "8": 28492
+        },
+        "K4SRC": 4131,
+        "K4STF": 3536
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 813,
+      "r": 6,
+      "s": 1788,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 5952,
+        "free_adjacency_degree_histogram": {
+          "11": 12,
+          "17": 180
+        },
+        "free_adjacency_entries": 3192,
+        "full_pattern_prededup_entries": 4608,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 3,
+        "member_label_payload_bytes": 86,
+        "node_degree_histogram": {
+          "1": 2,
+          "2": 31
+        },
+        "node_label_max_bytes": 3,
+        "node_label_payload_bytes": 89,
+        "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-cantilever-chain-32.k6model",
+        "rcm_neighbors_prededup_capacity_usize": 11904,
+        "source_id_bytes_exact": 6,
+        "source_id_format_capacity_bytes": 6,
+        "sparse_prededup_row_capacity_usize": 6144,
+        "upper_positions": 2496
+      },
+      "z": 3492
+    },
+    {
+      "B": 1,
+      "K4SRC_fnv64": "d05c90a7042022da",
+      "K4SRC_sha256": "d48ba9bc20166d7d916d3374f084d256f0419fcda9308c8aa51d8935f9a60cd4",
+      "K4STF_identity": {
+        "method": "deterministic stiffness projection of sealed K4SRC under source.rs pinned function",
+        "payload_sha256": "not materialized; no invented byte hash"
+      },
+      "N": 30,
+      "b": 1,
+      "canonical_model_sha256": "349604115079bd0a06abdb58c577ac473e58b67dc635d3baaa5fb66190a6296a",
+      "capacity_bytes": {
+        "K4LED": 48,
+        "K4RST": {
+          "16": 98304,
+          "4": 24576,
+          "8": 49152
+        },
+        "K4SRC": 6144,
+        "K4STF": 6144
+      },
+      "f": 150,
+      "geometry_branch": "root has six constraints; general scratch bounded, SVD early-return not assumed for CONT/grid",
+      "l": 1,
+      "m": 49,
+      "model": "DEC053:invented-grid-frame-5x6",
+      "n": 180,
+      "payload_bytes": {
+        "K4LED": 36,
+        "K4RST": {
+          "16": 64960,
+          "4": 19456,
+          "8": 34624
+        },
+        "K4SRC": 6071,
+        "K4STF": 5012
+      },
+      "prefix_limits_max": 9,
+      "prefix_segments_max": 10,
+      "q": 1122,
+      "r": 30,
+      "s": 3765,
+      "single_case_attempts_max": 4,
+      "topology": {
+        "free_adjacency_capacity_usize": 4800,
+        "free_adjacency_degree_histogram": {
+          "17": 24,
+          "23": 72,
+          "29": 54
+        },
+        "free_adjacency_entries": 3630,
+        "full_pattern_prededup_entries": 7056,
+        "fully_fixed_node_zero": true,
+        "load_dofs_unique": true,
+        "loads_nonzero_by_fixture_construction": true,
+        "member_label_max_bytes": 3,
+        "member_label_payload_bytes": 137,
+        "node_degree_histogram": {
+          "2": 4,
+          "3": 14,
+          "4": 12
+        },
+        "node_label_max_bytes": 3,
+        "node_label_payload_bytes": 80,
+        "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-grid-frame-5x6.k6model",
+        "rcm_neighbors_prededup_capacity_usize": 9600,
+        "source_id_bytes_exact": 6,
+        "source_id_format_capacity_bytes": 6,
+        "sparse_prededup_row_capacity_usize": 10752,
+        "upper_positions": 3822
+      },
+      "z": 4608
+    }
+  ],
+  "VR_rows": [
+    {
+      "K4SRC_capacity_bytes": 1536,
+      "K4SRC_payload_bytes": 1494,
+      "K4SRC_sha256": "cf3af3702e37fa12936a9c66d400392e37e94d081afb230088c82f3d32439fce",
+      "canonical_model_presence": "embedded rf_large.jsonl model",
+      "canonical_model_sha256": null,
+      "control_count": 3,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -49,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 8751,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 57320
+      },
+      "field_string_bytes": 12127,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 15658,
+      "model": "RF-LARGE-CHAIN-n00010-AX",
+      "model_generated_or_run": false,
+      "reference_rows": 142,
+      "sample_load_uniqueness_checked": true,
+      "source_id_payload_bytes": 12
+    },
+    {
+      "K4SRC_capacity_bytes": 1536,
+      "K4SRC_payload_bytes": 1494,
+      "K4SRC_sha256": "810433b6e62c1818105465daf5ca73db4eddc449011cd2c589e834ec3da0c8de",
+      "canonical_model_presence": "embedded rf_large.jsonl model",
+      "canonical_model_sha256": null,
+      "control_count": 3,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -49,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 8751,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 57320
+      },
+      "field_string_bytes": 12859,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 16390,
+      "model": "RF-LARGE-CHAIN-n00010-ROT",
+      "model_generated_or_run": false,
+      "reference_rows": 142,
+      "sample_load_uniqueness_checked": true,
+      "source_id_payload_bytes": 12
+    },
+    {
+      "K4SRC_capacity_bytes": 1536,
+      "K4SRC_payload_bytes": 1456,
+      "K4SRC_sha256": "c013db92873935a94160b9f6f480ce450bce6e9bf05b98b127d57e390e7bc51c",
+      "canonical_model_presence": "embedded rf_large.jsonl model",
+      "canonical_model_sha256": null,
+      "control_count": 3,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -45,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 8719,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 56808
+      },
+      "field_string_bytes": 10391,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 13869,
+      "model": "RF-LARGE-TREE-n00010-AX",
+      "model_generated_or_run": false,
+      "reference_rows": 142,
+      "sample_load_uniqueness_checked": true,
+      "source_id_payload_bytes": 8
+    },
+    {
+      "K4SRC_capacity_bytes": 3072,
+      "K4SRC_payload_bytes": 1610,
+      "K4SRC_sha256": "7631dfc52749ba75944c76942243067e7697118c204fb9c7618cc40ba5153b56",
+      "canonical_model_presence": "embedded rf_large.jsonl model",
+      "canonical_model_sha256": null,
+      "control_count": 3,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -45,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 8719,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 56808
+      },
+      "field_string_bytes": 10914,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 14496,
+      "model": "RF-LARGE-TREE-n00010-ROT",
+      "model_generated_or_run": false,
+      "reference_rows": 142,
+      "sample_load_uniqueness_checked": true,
+      "source_id_payload_bytes": 26
+    },
+    {
+      "K4SRC_capacity_bytes": 3072,
+      "K4SRC_payload_bytes": 1708,
+      "K4SRC_sha256": "1fb5528b5e8567a4ae8e6a1ec4c8213760240181a418e420c4470541a633ee18",
+      "canonical_model_presence": "embedded rf_large.jsonl model",
+      "canonical_model_sha256": null,
+      "control_count": 4,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -46,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 8727,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 56824
+      },
+      "field_string_bytes": 11025,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 15054,
+      "model": "RF-LARGE-CONT-n00010-AX",
+      "model_generated_or_run": false,
+      "reference_rows": 157,
+      "sample_load_uniqueness_checked": true,
+      "source_id_payload_bytes": 14
+    },
+    {
+      "K4SRC_capacity_bytes": 3072,
+      "K4SRC_payload_bytes": 1845,
+      "K4SRC_sha256": "91659a10ae6e361f1ac386000edb567f3c11cc792cf6a931a4140c52ea6d263a",
+      "canonical_model_presence": "embedded rf_large.jsonl model",
+      "canonical_model_sha256": null,
+      "control_count": 3,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -47,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 8735,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 56936
+      },
+      "field_string_bytes": 11589,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 15634,
+      "model": "RF-LARGE-CONT-n00010-ROT",
+      "model_generated_or_run": false,
+      "reference_rows": 157,
+      "sample_load_uniqueness_checked": true,
+      "source_id_payload_bytes": 32
+    },
+    {
+      "K4SRC_capacity_bytes": 24576,
+      "K4SRC_payload_bytes": 12654,
+      "K4SRC_sha256": "ee205eaa7baadaca6fb86eca057d9ba875a848f558fdbc1106e360a3b0958991",
+      "canonical_model_presence": "embedded rf_large.jsonl model",
+      "canonical_model_sha256": null,
+      "control_count": 3,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -51,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 8767,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 57416
+      },
+      "field_string_bytes": 101436,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 129637,
+      "model": "RF-LARGE-CHAIN-n00100-AX",
+      "model_generated_or_run": false,
+      "reference_rows": 1312,
+      "sample_load_uniqueness_checked": true,
+      "source_id_payload_bytes": 12
+    },
+    {
+      "K4SRC_capacity_bytes": 24576,
+      "K4SRC_payload_bytes": 12654,
+      "K4SRC_sha256": "d458659bc905ce90f5f8c14970ef0a8be0dc2e230102daa678720027216a51e0",
+      "canonical_model_presence": "embedded rf_large.jsonl model",
+      "canonical_model_sha256": null,
+      "control_count": 3,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -51,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 8767,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 57416
+      },
+      "field_string_bytes": 101956,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 130157,
+      "model": "RF-LARGE-CHAIN-n00100-ROT",
+      "model_generated_or_run": false,
+      "reference_rows": 1312,
+      "sample_load_uniqueness_checked": true,
+      "source_id_payload_bytes": 12
+    },
+    {
+      "K4SRC_capacity_bytes": 24576,
+      "K4SRC_payload_bytes": 13390,
+      "K4SRC_sha256": "39e91477a5ef9fe0fdfbac40995d416b65d2718fc9e0a7ed8f38303a7f698489",
+      "canonical_model_presence": "embedded rf_large.jsonl model",
+      "canonical_model_sha256": null,
+      "control_count": 3,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -47,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 8735,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 56936
+      },
+      "field_string_bytes": 83307,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 111974,
+      "model": "RF-LARGE-TREE-n00100-AX",
+      "model_generated_or_run": false,
+      "reference_rows": 1312,
+      "sample_load_uniqueness_checked": true,
+      "source_id_payload_bytes": 119
+    },
+    {
+      "K4SRC_capacity_bytes": 24576,
+      "K4SRC_payload_bytes": 15139,
+      "K4SRC_sha256": "a16dd86df34a0f0da8cd65fc2be87ef80ce16e88eca77f837993bd0832ba9adc",
+      "canonical_model_presence": "embedded rf_large.jsonl model",
+      "canonical_model_sha256": null,
+      "control_count": 3,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -47,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 8735,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 56936
+      },
+      "field_string_bytes": 87799,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 117586,
+      "model": "RF-LARGE-TREE-n00100-ROT",
+      "model_generated_or_run": false,
+      "reference_rows": 1312,
+      "sample_load_uniqueness_checked": true,
+      "source_id_payload_bytes": 406
+    },
+    {
+      "K4SRC_capacity_bytes": 24576,
+      "K4SRC_payload_bytes": 15940,
+      "K4SRC_sha256": "87214694e68d950fb1f6c4c33424129baff7cb76b2dfb1ba2ae296033a7db81e",
+      "canonical_model_presence": "embedded rf_large.jsonl model",
+      "canonical_model_sha256": null,
+      "control_count": 4,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -72,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 8935,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 59484
+      },
+      "field_string_bytes": 80596,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 113355,
+      "model": "RF-LARGE-CONT-n00100-AX",
+      "model_generated_or_run": false,
+      "reference_rows": 1462,
+      "sample_load_uniqueness_checked": true,
+      "source_id_payload_bytes": 209
+    },
+    {
+      "K4SRC_capacity_bytes": 24576,
+      "K4SRC_payload_bytes": 17068,
+      "K4SRC_sha256": "dbf8d8b6de72b94462f2e78fb62a4a8486989b5dbe84d864bf450a4b1f01b96a",
+      "canonical_model_presence": "embedded rf_large.jsonl model",
+      "canonical_model_sha256": null,
+      "control_count": 3,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -57,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 8815,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 58128
+      },
+      "field_string_bytes": 89234,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 122550,
+      "model": "RF-LARGE-CONT-n00100-ROT",
+      "model_generated_or_run": false,
+      "reference_rows": 1462,
+      "sample_load_uniqueness_checked": true,
+      "source_id_payload_bytes": 402
+    },
+    {
+      "K4SRC_capacity_bytes": 196608,
+      "K4SRC_payload_bytes": 124254,
+      "K4SRC_sha256": "c001e860eacd4fae9317ad4e557a6827693981995788979be3adf6bd24fe15b0",
+      "canonical_model_presence": "external hash-bound generated model",
+      "canonical_model_sha256": "f05afa36126c1adfb2d61f35bd99e98e845ca3727b2bebf34573e116815b49a8",
+      "control_count": 3,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -53,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 8783,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 57616
+      },
+      "field_string_bytes": 8111,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 10295,
+      "model": "RF-LARGE-CHAIN-n01000-AX",
+      "model_generated_or_run": false,
+      "reference_rows": 103,
+      "sample_load_uniqueness_checked": false,
+      "source_id_payload_bytes": 12
+    },
+    {
+      "K4SRC_capacity_bytes": 196608,
+      "K4SRC_payload_bytes": 124254,
+      "K4SRC_sha256": "7266fbd824ff4694d3721ce51b67daf43c818cc9b6cbbb2af06bce9e6825659e",
+      "canonical_model_presence": "external hash-bound generated model",
+      "canonical_model_sha256": "27d23bb9770c724e6d2879012e934c233c424b16846b1b52337b0f8fac6b395f",
+      "control_count": 3,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -53,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 8783,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 57616
+      },
+      "field_string_bytes": 8841,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 11025,
+      "model": "RF-LARGE-CHAIN-n01000-ROT",
+      "model_generated_or_run": false,
+      "reference_rows": 103,
+      "sample_load_uniqueness_checked": false,
+      "source_id_payload_bytes": 12
+    },
+    {
+      "K4SRC_capacity_bytes": 196608,
+      "K4SRC_payload_bytes": 133018,
+      "K4SRC_sha256": "20ea188892316e3d21b1965ef07e0d70c81d959dc19e25a4c98c40fb1d151b40",
+      "canonical_model_presence": "external hash-bound generated model",
+      "canonical_model_sha256": "8035f34456d150de931797b44cfc9e2ba016fc8bae5d78bff1a5f918c6852115",
+      "control_count": 3,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -49,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 8751,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 57320
+      },
+      "field_string_bytes": 11344,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 14978,
+      "model": "RF-LARGE-TREE-n01000-AX",
+      "model_generated_or_run": false,
+      "reference_rows": 194,
+      "sample_load_uniqueness_checked": false,
+      "source_id_payload_bytes": 1602
+    },
+    {
+      "K4SRC_capacity_bytes": 196608,
+      "K4SRC_payload_bytes": 151278,
+      "K4SRC_sha256": "04759b177e9b40ad3228a9144d4946f62dbfea6d9087ebcfb0617fd6445b7d0d",
+      "canonical_model_presence": "external hash-bound generated model",
+      "canonical_model_sha256": "df1e956484195236b452584f3cdc450953357784bc73bafa8b6a4a036ac4777d",
+      "control_count": 3,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -49,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 8751,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 57320
+      },
+      "field_string_bytes": 11646,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 15286,
+      "model": "RF-LARGE-TREE-n01000-ROT",
+      "model_generated_or_run": false,
+      "reference_rows": 194,
+      "sample_load_uniqueness_checked": false,
+      "source_id_payload_bytes": 5310
+    },
+    {
+      "K4SRC_capacity_bytes": 196608,
+      "K4SRC_payload_bytes": 158923,
+      "K4SRC_sha256": "3e8ee160ae27dcb148fcff77bc2752c79ba02a170cead8b78bcad4dc0aec92ee",
+      "canonical_model_presence": "external hash-bound generated model",
+      "canonical_model_sha256": "32ecf3e4dc9725cf33f7374e6b075c826197a98047d9b0d0082e51bf6497bc98",
+      "control_count": 4,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -329,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 10991,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 85600
+      },
+      "field_string_bytes": 11847,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 16024,
+      "model": "RF-LARGE-CONT-n01000-AX",
+      "model_generated_or_run": false,
+      "reference_rows": 215,
+      "sample_load_uniqueness_checked": false,
+      "source_id_payload_bytes": 2822
+    },
+    {
+      "K4SRC_capacity_bytes": 196608,
+      "K4SRC_payload_bytes": 170426,
+      "K4SRC_sha256": "dd00d926bb04d42a7bd24eb1c63b60efd3f073d7530045d2634134d46e5aa0bd",
+      "canonical_model_presence": "external hash-bound generated model",
+      "canonical_model_sha256": "4f505009dde44025289b4c08731dc1c4b275403140a87f86a7a4dce75816a61d",
+      "control_count": 3,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -109,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 9231,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 63272
+      },
+      "field_string_bytes": 12453,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 16537,
+      "model": "RF-LARGE-CONT-n01000-ROT",
+      "model_generated_or_run": false,
+      "reference_rows": 215,
+      "sample_load_uniqueness_checked": false,
+      "source_id_payload_bytes": 5230
+    },
+    {
+      "K4SRC_capacity_bytes": 1572864,
+      "K4SRC_payload_bytes": 1240254,
+      "K4SRC_sha256": "d073d6660ff785616753842985d4a3316f5324119fe33c5db9333f960fc4767d",
+      "canonical_model_presence": "external hash-bound generated model",
+      "canonical_model_sha256": "239ccb63dfd1584d9056f3f2ce86d79056f9fef1c2589317797ded2e6c790d40",
+      "control_count": 3,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -55,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 8799,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 57744
+      },
+      "field_string_bytes": 8214,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 10398,
+      "model": "RF-LARGE-CHAIN-n10000-AX",
+      "model_generated_or_run": false,
+      "reference_rows": 103,
+      "sample_load_uniqueness_checked": false,
+      "source_id_payload_bytes": 12
+    },
+    {
+      "K4SRC_capacity_bytes": 1572864,
+      "K4SRC_payload_bytes": 1240254,
+      "K4SRC_sha256": "75c3e903b40b2e1dbb7f49099436df27ff00a0eab249e8a0248e719919c91112",
+      "canonical_model_presence": "external hash-bound generated model",
+      "canonical_model_sha256": "0c79de8dffe4044889be6b80a8bdbe430c88fd23800227568d900d61a580bf66",
+      "control_count": 3,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -55,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 8799,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 57744
+      },
+      "field_string_bytes": 8978,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 11162,
+      "model": "RF-LARGE-CHAIN-n10000-ROT",
+      "model_generated_or_run": false,
+      "reference_rows": 103,
+      "sample_load_uniqueness_checked": false,
+      "source_id_payload_bytes": 12
+    },
+    {
+      "K4SRC_capacity_bytes": 1572864,
+      "K4SRC_payload_bytes": 1333322,
+      "K4SRC_sha256": "964dada652548b81e1e0347b09bb09c62c43c3776ff68e56102e10b5f0172056",
+      "canonical_model_presence": "external hash-bound generated model",
+      "canonical_model_sha256": "ff4cb28dd53b7a66b4c0364b2d9af7ab7abaa67f33f4ad2e8c8d8528c37a9319",
+      "control_count": 3,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -51,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 8767,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 57416
+      },
+      "field_string_bytes": 11751,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 15385,
+      "model": "RF-LARGE-TREE-n10000-AX",
+      "model_generated_or_run": false,
+      "reference_rows": 194,
+      "sample_load_uniqueness_checked": false,
+      "source_id_payload_bytes": 20320
+    },
+    {
+      "K4SRC_capacity_bytes": 1572864,
+      "K4SRC_payload_bytes": 1524764,
+      "K4SRC_sha256": "f6086c7f8483837955751851ef1abcbfa098d4c6a9b1fd2b7ef63995e5e6dd0c",
+      "canonical_model_presence": "external hash-bound generated model",
+      "canonical_model_sha256": "2179d5d397ec15668fba52528fdd8c888dc4b51cf2db972c9d8702c199c20818",
+      "control_count": 3,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -51,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 8767,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 57416
+      },
+      "field_string_bytes": 12089,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 15723,
+      "model": "RF-LARGE-TREE-n10000-ROT",
+      "model_generated_or_run": false,
+      "reference_rows": 194,
+      "sample_load_uniqueness_checked": false,
+      "source_id_payload_bytes": 66038
+    },
+    {
+      "K4SRC_capacity_bytes": 3145728,
+      "K4SRC_payload_bytes": 1595356,
+      "K4SRC_sha256": "8dae9039e0b5721ea00dfa7b6dd59aa513fc4b1e0ae81aadaa35a7c419cb6ca3",
+      "canonical_model_presence": "external hash-bound generated model",
+      "canonical_model_sha256": "1fc2b76151557f23404b95262fe461b067a19e8254eb25cd7a14974cb82df083",
+      "control_count": 4,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -2903,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 49062,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 345392
+      },
+      "field_string_bytes": 12067,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 16244,
+      "model": "RF-LARGE-CONT-n10000-AX",
+      "model_generated_or_run": false,
+      "reference_rows": 215,
+      "sample_load_uniqueness_checked": false,
+      "source_id_payload_bytes": 35555
+    },
+    {
+      "K4SRC_capacity_bytes": 3145728,
+      "K4SRC_payload_bytes": 1715394,
+      "K4SRC_sha256": "355024e881a298db89229dd5d9c86ab977b3868b78541a4aa1fb5cb542798537",
+      "canonical_model_presence": "external hash-bound generated model",
+      "canonical_model_sha256": "c7d027f0fd5bdfb26f0a58a721e47c92dc4fb7185285e22359373a7ae4d78ff9",
+      "control_count": 3,
+      "decimal_digit_count_upper": 40,
+      "decimal_p10_max": 0,
+      "decimal_p10_min": -753,
+      "exact_comparison_scratch": {
+        "max_intermediate_significand_bits": 14662,
+        "method": "sum of fresh allocation requests of finite Exact/Nat operator DAG; excludes caller persistent data and separate diagnostic formatting",
+        "requested_allocation_volume_upper_bytes": 128424
+      },
+      "field_string_bytes": 12657,
+      "large_load_uniqueness": "RF family generator map components, no RF-CANCEL authored contribution path; general68-limb bound retained if that generator binding is not accepted",
+      "max_field_string_bytes": 64,
+      "metadata_json_payload_bytes": 16741,
+      "model": "RF-LARGE-CONT-n10000-ROT",
+      "model_generated_or_run": false,
+      "reference_rows": 215,
+      "sample_load_uniqueness_checked": false,
+      "source_id_payload_bytes": 64898
+    }
+  ],
+  "checks": {
+    "H_count": 33,
+    "H_exact_K4SRC_payloads": 33,
+    "H_root_fixed": 33,
+    "H_unique_load_sets": 33,
+    "VR_count": 24,
+    "VR_scale_count_bindings": 18
+  },
+  "coordination_head": "84843dbf9b74c4c3fdb727610998910b740a48ea",
+  "inputs": [
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6b/counts.jsonl",
+      "sha256": "fab0466a846ef26b1c530a261a6f1d134fc32ba1d70f57682010877a52373c05"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6b/sources.txt",
+      "sha256": "149e588c6ea99de946ab8f992d17c880ffef81c0f6eb0151c7ba9f58393a7ad9"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models_sha256.txt",
+      "sha256": "a4cd05eb46650b597a331db0aef03fbd91a618f3f3a43d0afad8efad04167098"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/k6/models.rs",
+      "sha256": "85715e1f290946805b23b63c12907630b5abcf3b051a8305a9cf6a473ba0997f"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/k6/w1/adapter.rs",
+      "sha256": "ab07b2513db32260960cac0c09e19dfe363c09e51b1af878ce97ced7ffad6da0"
+    },
+    {
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_robustness/cases/rf_large.jsonl",
+      "sha256": "16357afa5efeaaac3ab5798bb6f632104bec1e2dfada288f5b0936bfe6188759"
+    },
+    {
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_robustness/cases/large_models.sha256",
+      "sha256": "7a1161b83e23b746f274387e60378ba238ae23ee0da91258844fd69718aec39d"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3/_run_records/b/counts.json",
+      "sha256": "3b49562ae0be8772642a0c0c9083e11cb32a4297eb1e5ebc6b0232028440ad42"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-cantilever-chain-24.k6model",
+      "sha256": "3f4ce47ab8398a0804358133a89c51196bbb7d3d1c0d7058cf7442a542f29539"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-cantilever-chain-32.k6model",
+      "sha256": "09ef77ad46567ac7794082e4e85aca165b032ab545c9ffcbc7882d0e86bef062"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-cantilever-chain-48.k6model",
+      "sha256": "036491a2046a23d1b347fd6abb6b83ad391db7cc4a968749660f1597201dab6c"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-cantilever-chain-8.k6model",
+      "sha256": "cf8c10fc294cb226fddd70a132ed0bc4e536b44ec386f17a5434a38f431df126"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-grid-frame-4x3.k6model",
+      "sha256": "f38fec6f38c76112d29e7b72a5ee477c642327bc79c93ff572c62a53f5da12dd"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-grid-frame-5x5.k6model",
+      "sha256": "da4e6fa1c0841e2eee15940fc4d0e35590e09e74978b89f439a0f8a219d2b4d9"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-grid-frame-5x6.k6model",
+      "sha256": "349604115079bd0a06abdb58c577ac473e58b67dc635d3baaa5fb66190a6296a"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-grid-frame-6x8.k6model",
+      "sha256": "e0410b06ee062cfbc95100a225a1aad14d83950c96c42bbf94f6c6c907442bb3"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-grid-frame-7x8.k6model",
+      "sha256": "52e07a787bdf404ed3154ea3450afdadd617a3acd5cf22dc48387ff8f87002a1"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-CHAIN-n00010-AX.k6model",
+      "sha256": "f9f113020c54edb2dd48f6f832a01e0ba77cbb704cc24c07f51ef88f0da05f2e"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-CHAIN-n00010-ROT.k6model",
+      "sha256": "1e2f00bdcba836989b389807ce1f5be2322e6406cd693d554018fbc854a07b15"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-CHAIN-n00100-AX.k6model",
+      "sha256": "791f8c541fc55f5d4666eed03af3b0bbc7dfcca2390bf6cce33fcb39da7a44f6"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-CHAIN-n00100-ROT.k6model",
+      "sha256": "343c60ff63af7eced2ee7028effbb3d78f1cb5b24effa363d00b7ed791df1639"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-CONT-n00010-AX.k6model",
+      "sha256": "a80cf616fab5c7e855980182da7b7e84857dc15d9c0cd41e5d8f989585a49be4"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-CONT-n00010-ROT.k6model",
+      "sha256": "f0c6c96d0d4f2b35ded4aac90ba78e01f4f4079b4a6891f093082524cf2cd560"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-CONT-n00100-AX.k6model",
+      "sha256": "f2c4687642a6f3afc1e489edcfd020ad28b22a2ba4ce31e7026a7fc32104391a"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-CONT-n00100-ROT.k6model",
+      "sha256": "c7aa0602649d2db47e4d1eaadfd1e79b3550f427c3fbed30aaa0a0ebe52c8dab"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-TREE-n00010-AX.k6model",
+      "sha256": "485a8258b5822529a982d7af566b2b3e44473503291955e77a7103c4def2ebcb"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-TREE-n00010-ROT.k6model",
+      "sha256": "8aaa7412e9ba5b51efce78769a272bb4db9429b4857fee24e2063d52a077873a"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-TREE-n00100-AX.k6model",
+      "sha256": "4cf6cce6f6ef81051517381ce99b43428e73276f9dc35909e85725dd1d53e659"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-TREE-n00100-ROT.k6model",
+      "sha256": "6af54c3e5cde44bfccaae62a3a647e0d053e6f621101c4e57275f0751c33dfde"
+    }
+  ],
+  "kind": "new_source_parameter_analysis_not_runtime",
+  "limits": [
+    "No final E_max, model run or measured capacity/bound.",
+    "L1 private layouts remain required.",
+    "VR large-source byte hashes are retained identities, not newly regenerated bytes."
+  ],
+  "script_sha256": "0368ebc9cad8322ca92ae46d5e84883b9933446ac26feeb561b89f8691122422",
+  "source_basis": "3bddc2b05f6106e969c7cf43373b230845c7cc66"
+}

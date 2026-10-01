@@ -1,0 +1,732 @@
+{
+  "inputs": [
+    {
+      "at_product_basis": true,
+      "origin": "AGENTS.md",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "agents/AGENT_TASK.md",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/AGENTS.md",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/frame_kernel/src/exact_sum.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "3a847f8dbaa74768603c4d9693b538f1f63c2d172026ed7ab400aea3b4800f67"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/frame_kernel/src/rigid_body.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "3e5b9be185428f1652775f60cbb98b9d30e08bff4ce2a9b2bb83ccf662d30a1b"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/adaptive.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "472bafb8281c7d311a81dcd5da042dd0f8db998bd81cf4902e6b55409eb5a563"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/assemble.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "057fa8a431bde050d0aa448c347dd1c92fbd4929ad6cc8ecce5837c9255d20f2"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/bound.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "b6e5a99386da9858af8ff95a1fb326d722523540f5c6e4b59c2bcd27130c0100"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/factor.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "e21fc61e6ae84e7c609da9f2d14c3769c4f203a9baa6bcd25025843056af22dc"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/ledger.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "66a48fb2a49c84e8e294bb741888fc53f72edcb6b7a3a4331fdeafaa7221ac4e"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/recover.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "e452e3467608a4680359a36d30b6a580d72a12b778d506ff8118646257b7d388"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/source.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "46c85ba0d9e0c45f6d19bfd188ce8cc52e4d773b96d3b7e8d0746b78e5582ca9"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/verify.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "31780a6a888decc64e2ebec2fcfbeff45c144a6f0d0169f0584d53fcccb89987"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/wide.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "5d35b70d45680f769354bbc6694c78186354d235a7af29891a9b09e7b4a293ad"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/frame_kernel/src/structural/sparse.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "43c1f369a2fafef0dda00503f06b602bb3f0996c1c7f5fe398dce1145d735ee6"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/frame_kernel/src/structural.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "32dfe5971f95be3eb276fa594c5ab4b0c5ce8724b942a098f2fda1104886d9d2"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-cantilever-chain-24.k6model",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "3f4ce47ab8398a0804358133a89c51196bbb7d3d1c0d7058cf7442a542f29539"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-cantilever-chain-32.k6model",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "09ef77ad46567ac7794082e4e85aca165b032ab545c9ffcbc7882d0e86bef062"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-cantilever-chain-48.k6model",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "036491a2046a23d1b347fd6abb6b83ad391db7cc4a968749660f1597201dab6c"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-cantilever-chain-8.k6model",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "cf8c10fc294cb226fddd70a132ed0bc4e536b44ec386f17a5434a38f431df126"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-grid-frame-4x3.k6model",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "f38fec6f38c76112d29e7b72a5ee477c642327bc79c93ff572c62a53f5da12dd"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-grid-frame-5x5.k6model",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "da4e6fa1c0841e2eee15940fc4d0e35590e09e74978b89f439a0f8a219d2b4d9"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-grid-frame-5x6.k6model",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "349604115079bd0a06abdb58c577ac473e58b67dc635d3baaa5fb66190a6296a"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-grid-frame-6x8.k6model",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "e0410b06ee062cfbc95100a225a1aad14d83950c96c42bbf94f6c6c907442bb3"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/DEC053_invented-grid-frame-7x8.k6model",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "52e07a787bdf404ed3154ea3450afdadd617a3acd5cf22dc48387ff8f87002a1"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-CHAIN-n00010-AX.k6model",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "f9f113020c54edb2dd48f6f832a01e0ba77cbb704cc24c07f51ef88f0da05f2e"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-CHAIN-n00010-ROT.k6model",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "1e2f00bdcba836989b389807ce1f5be2322e6406cd693d554018fbc854a07b15"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-CHAIN-n00100-AX.k6model",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "791f8c541fc55f5d4666eed03af3b0bbc7dfcca2390bf6cce33fcb39da7a44f6"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-CHAIN-n00100-ROT.k6model",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "343c60ff63af7eced2ee7028effbb3d78f1cb5b24effa363d00b7ed791df1639"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-CONT-n00010-AX.k6model",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "a80cf616fab5c7e855980182da7b7e84857dc15d9c0cd41e5d8f989585a49be4"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-CONT-n00010-ROT.k6model",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "f0c6c96d0d4f2b35ded4aac90ba78e01f4f4079b4a6891f093082524cf2cd560"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-CONT-n00100-AX.k6model",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "f2c4687642a6f3afc1e489edcfd020ad28b22a2ba4ce31e7026a7fc32104391a"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-CONT-n00100-ROT.k6model",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "c7aa0602649d2db47e4d1eaadfd1e79b3550f427c3fbed30aaa0a0ebe52c8dab"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-TREE-n00010-AX.k6model",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "485a8258b5822529a982d7af566b2b3e44473503291955e77a7103c4def2ebcb"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-TREE-n00010-ROT.k6model",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "8aaa7412e9ba5b51efce78769a272bb4db9429b4857fee24e2063d52a077873a"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-TREE-n00100-AX.k6model",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "4cf6cce6f6ef81051517381ce99b43428e73276f9dc35909e85725dd1d53e659"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models/RF-LARGE-TREE-n00100-ROT.k6model",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "6af54c3e5cde44bfccaae62a3a647e0d053e6f621101c4e57275f0751c33dfde"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6/models_sha256.txt",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "a4cd05eb46650b597a331db0aef03fbd91a618f3f3a43d0afad8efad04167098"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6b/counts.jsonl",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "fab0466a846ef26b1c530a261a6f1d134fc32ba1d70f57682010877a52373c05"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/observations/k6b/sources.txt",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "149e588c6ea99de946ab8f992d17c880ffef81c0f6eb0151c7ba9f58393a7ad9"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/runner/k6b_sources.py",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "b56da1e3c52f04697c85897af5b246552eb250e67453236a1b929dc850925f75"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/alloc.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "0bb07a2346d0fedf9411ec9e93ab427b4fc4eafbb9de01c412067e3fbe7e4ba0"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "42d82fbfb3e21c11c647f6b2f83aaa21ee6ded6617601f14790e1c282f60b77d"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "e490e96151468e2e3e561bb42f9a43f08529db5121d1ccfce63329521559e2ec"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/src/k6/canonical.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "1988556d81b643c970a0a29238e847e68cd62cdf3cff741990c53aaf89c1a9c8"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/src/k6/mod.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "5535e39390e6cc5999c370c4f52887a09589c59aed63dbeffa14a2fb754b9559"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/src/k6/models.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "85715e1f290946805b23b63c12907630b5abcf3b051a8305a9cf6a473ba0997f"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/src/k6/w1/adapter.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "ab07b2513db32260960cac0c09e19dfe363c09e51b1af878ce97ced7ffad6da0"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/core/solver/performance_harness/src/k6/w1/staged.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "fd3e00c06aff970c44cd147f255fe371b16729fe0a80b62b32a09bc0afddc337"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/KF3/_run_records/b/counts.json",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "3b49562ae0be8772642a0c0c9083e11cb32a4297eb1e5ebc6b0232028440ad42"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/REFERENCES/references.py",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "80d473a7351e92a2a903d233b9e633aac794aeff07f3ac41e40d25a0d94fc8a8"
+    },
+    {
+      "at_product_basis": false,
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/RUNTIME_BINDING.json",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "d552b6ffa398869b6f68c828c676af447b9c5c2426be24734ba820f67f32c3fc"
+    },
+    {
+      "at_product_basis": false,
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/K0_L1_LAYOUT_MANIFEST.json",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "517f52216b69c12975ec283df4bcaa39f20f68182de61ded0bca1f5a1ad2f5f3"
+    },
+    {
+      "at_product_basis": false,
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/K0_L1_WITNESS_PROPOSAL.md",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "b4c08ae6a3be1118e13d765295fddc871c8352ba1a3697645cf8439be50213cb"
+    },
+    {
+      "at_product_basis": false,
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/K0_S1_S2_BRIEF.md",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "3a367e2fdcc854fb2b7007c6121da800587aa1d86e01d0702be1b663b58ed53b"
+    },
+    {
+      "at_product_basis": false,
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/RUST_SRC_INPUTS.json",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "05e55026da29d93d5ad677e79dbb9357fcf761db34243b40c6a4ef2e937e5754"
+    },
+    {
+      "at_product_basis": false,
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/SOURCE_CARDINALITIES.json",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "c4b52fe01c7c72d24ef9e777bd74f6602dbb263c8cbd6c7fd9dcea911e900838"
+    },
+    {
+      "at_product_basis": false,
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/SOURCE_CLOSURE.md",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "a9998e89678373f59e3aacffd61fe4a1d8b7fbf363070ebbf73724d4bbfebf88"
+    },
+    {
+      "at_product_basis": false,
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/I21-K6C/ALLOCATIONS.md",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "501f1aed2e3304c0c01de284a1c8937b662f8e5d629eca6ddfb0cb77406f1018"
+    },
+    {
+      "at_product_basis": false,
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/I21-K6C/CONTEXT.json",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "288127d1447b749c795447b4b9cdb3c40f044740bdc979ab58eb29791dcd517c"
+    },
+    {
+      "at_product_basis": false,
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/I21-K6C/FORMULA.md",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "80f6b44fa190cb2a7c64ab0416d02a341bfbec57380a8b5ff9c0066100bc0c51"
+    },
+    {
+      "at_product_basis": false,
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/I21-K6C/IMPLEMENTATION_PLAN.md",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "38d817f642a9b426333dd0c4742094e6eb25d48bda0e9c3a8dcb2dc25c69e855"
+    },
+    {
+      "at_product_basis": false,
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/I21-K6C/INPUTS.json",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "6e1cc8f1b51fbba5395adced21017b1c9edc11afc25618248dd8a9ac0d71637c"
+    },
+    {
+      "at_product_basis": false,
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/I21-K6C/REPLAY_MEASUREMENT_A1.md",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "64931f011c3befd0d6a6c7b30d16fedbfe5898e9c885b6353564d03395f88c2f"
+    },
+    {
+      "at_product_basis": false,
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/I21-K6C/RETURN.md",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "6e882dd527d0c2e35e6befe4879406a28badb9ab0af2061e74d4107f9871aafa"
+    },
+    {
+      "at_product_basis": false,
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/I21-K6C/SHA256SUMS",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "6a40dfe26ce2752844db4f0f8fad0f96da26a4d8174ac1fae0bc75aadff6f952"
+    },
+    {
+      "at_product_basis": false,
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/runtime_setup/02_rust_src/SETUP.json",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "3532d7d68599bf72db02a8aedb40a9e54dc77d1aba5f9431e9cb4277cb45c122"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/validation/benchmarks/numerical_robustness/Cargo.lock",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "b81994dca343ddca6eac599ed6586a6154c693ba07cfa73f731ed1af978a831b"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/validation/benchmarks/numerical_robustness/Cargo.toml",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "a732e02ee75c5069a4a85e3732d317ce360c23f413573df026eee9c350c27f11"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/validation/benchmarks/numerical_robustness/cases/gen_vk_cases.py",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "091388cffff0410b39856d2dce77502033063ace9a3321587e0be76a6bf99f78"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/validation/benchmarks/numerical_robustness/cases/large_models.sha256",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "7a1161b83e23b746f274387e60378ba238ae23ee0da91258844fd69718aec39d"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/validation/benchmarks/numerical_robustness/cases/rf_large.jsonl",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "16357afa5efeaaac3ab5798bb6f632104bec1e2dfada288f5b0936bfe6188759"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/validation/benchmarks/numerical_robustness/examples/vk_scale.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "abd891ca57a6c4281ed71379b6502f70f1c212e1d96a933bf7dd5106e5b7d511"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/validation/benchmarks/numerical_robustness/src/cases.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "54b6ad68cb94514a18882988b293f6ff709d3b36c37ae2cc7abe2047539b1ca6"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/validation/benchmarks/numerical_robustness/src/compare.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "54843240c5f1f3cb2894e67f05bfae84a31ef8d3e96b3d7b1895591b163680e4"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/validation/benchmarks/numerical_robustness/src/exact.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "a336e9c787dd1a2a0c99e7065c6822a398ebeed0eddb9af2e1cdae476165b855"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/validation/benchmarks/numerical_robustness/src/floor.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "882f0047fb9e3474703b7fb2fa723ffc4544066a3b0919a3cd5e42b68742f9aa"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/validation/benchmarks/numerical_robustness/src/lane.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "3512f36ebc9e2b947528af5babe32b92094f46894ab9be858c72330c8f8bb990"
+    },
+    {
+      "at_product_basis": true,
+      "origin": "projects/chirality-piping/validation/benchmarks/numerical_robustness/src/records.rs",
+      "read_scope": "targeted named functions/branches, input records, or original supplied packet; full bytes hashed (not full semantic review)",
+      "sha256": "6f52fcb93d7d0c355139ca584a9abd0b3c1c59dd5a6f140340a0ec0282b5841c"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/alloc.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "afc8eece58d63942328cab563fad1b180b50afdadc9141d40e5d98a6df90cd70"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/boxed.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "31fe2ec856527253e2a78279f44b7dec14b73d9f1114a75584b031dcd6f64418"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/collections/btree/append.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "15098cde20e056970ae44911df9dbbcd290ebb2f6cc18751b9bed9006aff54fc"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/collections/btree/fix.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "690f95d7744400ef22f3ef23947d671c838944de0b8c9cb031455fe8efd0d71c"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/collections/btree/map.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "f58ece50e59502b344616a4c7dcbb13987b5b5ef6b2c4038888ceefaac5635d1"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/collections/btree/navigate.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "930d1f8c072be5456a9aab02b6ab7f5f620151e0e280db896ef6654cb3ab53f8"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/collections/btree/node.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "2200ca0a4fe38592c314dc7f5f40bbb160e06b6f9e4abd1eb5bc40701540ab25"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/collections/vec_deque/mod.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "75b696f6b3b675b109626455104129724d4e5d59253f6aefa03eddedfa67c1d4"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/fmt.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "5787ee1ac366050193db15b5ac46d74fde2bdcc0ce096e9962b2bf39c5d49510"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/raw_vec/mod.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "ed847fcc6d237a1ddf95dc54bc8a3823ae89bea125f3e45cb8bb54ae0000fff0"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/slice.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "b1f0a5f6e3d104d6176699cf05efdfe1725095cd984fdf4422ddc3093726361c"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/string.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "68d7464cc83b0064bac9b600b72b4feb7c90eb5efc92def549b7eb586c6537ed"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/sync.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "768776d4a37cfeb28c71a0c6d8b2ad33332d11ceaef7e47cb01463bd71b9048a"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/vec/in_place_collect.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "4d3bb7a31de144bcb7470b371c5643f0739466c731f11cd7924e1fc951932c4b"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "93e3f8bad8de514ccd23c84d9c036405f32cf0b24c40e11f69f012b5264ad08e"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/vec/spec_extend.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "a0816ad0f39b947889771bf06930bf8e0c4ce794846d83863349697ec7c415ec"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/vec/spec_from_iter.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "393d1f28cfc8d28d80e142cef6b612aae9b484160969cfa0c9f97bb894534807"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/alloc/src/vec/spec_from_iter_nested.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "f3c1a06f43734a65e102b6a107e2fd5adadd7d94d9a226d6ffe1610d1e7e1466"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/fmt/float.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "f6e5450c2d50bc2451bd3e1ed8c98a6eb03ea84b79b869b6d2a38b3c23f201e9"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/fmt/mod.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "0b01f8c3ef1a7c1a75eaf468456a2fc10a608d9f9191b56e1793f8b9bfb29b23"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/iter/adapters/filter.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "c707fb3e89c559b1335d22a3cfb5185836100237090bd9ccd3aeee0cfb5ff190"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/iter/adapters/filter_map.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "07e5646442de83ae481f6d2d31d87454fa3a07e7e224a0d86a9fa41185e70775"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/iter/adapters/flatten.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "78ab8b2f86c7e58288d70aad1b3bdec0df5fa838a1b4543c0b165630866b235e"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/iter/adapters/mod.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "1ca887977e92e291f2d576743ad21d8f07268c2def688589c1efb01685c585ae"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/slice/sort/shared/smallsort.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "7ab638f2cb3f4df92d294b419ae69023bea3269b093300fe9cb59dbfcbe62b50"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/slice/sort/stable/mod.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "3f2b2d8543a1cb91c9352e041bed49949a31cbd4b1030ec1a82cca1304cb22d3"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/sync/atomic.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "9419e324d7b63d0e7a37f591930ae7171e625feaef8deb4a2787c49cc205b282"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/std/src/io/buffered/bufwriter.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "bfb94a39508dc287532f7349d08a862a37f0d7eb183c2083ab7c656d9632bad8"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/std/src/io/buffered/linewriter.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "8e903350507007a0fd812ecb4c00a151239cdf31a7f55d0575445f98edea7516"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/std/src/io/mod.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "2632ed7f256a08b4e87587aa909bb90380db1e146df033fddde3308eeee5090e"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/std/src/io/stdio.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "e302f4b2fa83f2d703e1d3211368dc01860b4a602765b62238d8303bba357879"
+    },
+    {
+      "origin": "<RESPONSE_RUNTIME>/rustup/toolchains/1.97.1-aarch64-apple-darwin/lib/rustlib/src/rust/library/std/src/sys/io/mod.rs",
+      "read_scope": "Pinned contract/targeted collection, sorting, tree, formatting or I/O source branches; original17 source pins independently verified",
+      "sha256": "a6c3fcc9355d143ec9f17f5a1b2b07179d9a1ab3738d28eb210aca9a31efc256"
+    },
+    {
+      "origin": "<OWNER_CARGO_HOME>/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151/src/macros.rs",
+      "read_scope": "Targeted macros, Value/Map clone/display/sequence serialization or sequence deserialization; full bytes authenticated against locked archive",
+      "sha256": "94dda91c847e819a95e64d655eb066dfa44ed69712064016c3fe862c34ef92e6"
+    },
+    {
+      "origin": "<OWNER_CARGO_HOME>/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151/src/map.rs",
+      "read_scope": "Targeted macros, Value/Map clone/display/sequence serialization or sequence deserialization; full bytes authenticated against locked archive",
+      "sha256": "b5a2fd1ee865e6cfd83ef2da0a2e1057f892465ac7ede8a78a11354a60526f33"
+    },
+    {
+      "origin": "<OWNER_CARGO_HOME>/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151/src/value/mod.rs",
+      "read_scope": "Targeted macros, Value/Map clone/display/sequence serialization or sequence deserialization; full bytes authenticated against locked archive",
+      "sha256": "6331d59ea362a74b6cd3d302d08114a63a73a384ff56fef737de29edea2f8d91"
+    },
+    {
+      "origin": "<OWNER_CARGO_HOME>/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151/src/value/de.rs",
+      "read_scope": "Targeted macros, Value/Map clone/display/sequence serialization or sequence deserialization; full bytes authenticated against locked archive",
+      "sha256": "ceda1bf415aafde89caa83bf275811b70d393717d4e1038e0c61822d2da02993"
+    },
+    {
+      "origin": "<OWNER_CARGO_HOME>/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151/src/value/ser.rs",
+      "read_scope": "Targeted macros, Value/Map clone/display/sequence serialization or sequence deserialization; full bytes authenticated against locked archive",
+      "sha256": "11f2b7daa1eba826d4086d5497f73729478dd7647bff77deccde5e47b0f126f2"
+    },
+    {
+      "origin": "<OWNER_CARGO_HOME>/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151/src/ser.rs",
+      "read_scope": "Targeted macros, Value/Map clone/display/sequence serialization or sequence deserialization; full bytes authenticated against locked archive",
+      "sha256": "f2b8cc0b97e30c49dbc58698fa22c14a7d56ea616cdb57b067835a59af49a75f"
+    },
+    {
+      "origin": "<OWNER_CARGO_HOME>/registry/src/index.crates.io-1949cf8c6b5b557f/serde_core-1.0.229/src/ser/mod.rs",
+      "read_scope": "Targeted macros, Value/Map clone/display/sequence serialization or sequence deserialization; full bytes authenticated against locked archive",
+      "sha256": "ec097d92c8545356961e977a4c9650361cadd1d3a243d805ae7b0e0e589ae803"
+    },
+    {
+      "origin": "<OWNER_CARGO_HOME>/registry/src/index.crates.io-1949cf8c6b5b557f/serde_core-1.0.229/src/ser/impls.rs",
+      "read_scope": "Targeted macros, Value/Map clone/display/sequence serialization or sequence deserialization; full bytes authenticated against locked archive",
+      "sha256": "5ee7efc439345e8665da0bd79bc06c02a0506e5fd0f3a4cf11af0c7197eaa643"
+    }
+  ],
+  "libraries": "Rust 1.97.1-aarch64-apple-darwin; owner cache exact locked crates only",
+  "packages": [
+    {
+      "archive_origin": "<OWNER_CARGO_HOME>/registry/cache/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.151.crate",
+      "archive_sha256": "c841b55ecdae098c80dcae9cf767f6f8a0c2cdb3416bbef72181df4d0fe73f14",
+      "cargo_checksum_json": "absent; archive used as byte authority",
+      "extracted_archive_files_compared": 89,
+      "locked_checksum_matches": true,
+      "mismatches": 0,
+      "package": "serde_json",
+      "version": "1.0.151"
+    },
+    {
+      "archive_origin": "<OWNER_CARGO_HOME>/registry/cache/index.crates.io-1949cf8c6b5b557f/serde_core-1.0.229.crate",
+      "archive_sha256": "67dca2c9c51e58a4791a4b1ed58308b39c64224d349a935ab5039aa360942a48",
+      "cargo_checksum_json": "absent; archive used as byte authority",
+      "extracted_archive_files_compared": 27,
+      "locked_checksum_matches": true,
+      "mismatches": 0,
+      "package": "serde_core",
+      "version": "1.0.229"
+    },
+    {
+      "archive_origin": "<OWNER_CARGO_HOME>/registry/cache/index.crates.io-1949cf8c6b5b557f/serde-1.0.229.crate",
+      "archive_sha256": "4148590afebada386688f18773da617792bf2ef03ffc1e4cbd2b1d45b023e0ba",
+      "cargo_checksum_json": "absent; archive used as byte authority",
+      "extracted_archive_files_compared": 33,
+      "locked_checksum_matches": true,
+      "mismatches": 0,
+      "package": "serde",
+      "version": "1.0.229"
+    },
+    {
+      "archive_origin": "<OWNER_CARGO_HOME>/registry/cache/index.crates.io-1949cf8c6b5b557f/itoa-1.0.18.crate",
+      "archive_sha256": "8f42a60cbdf9a97f5d2305f08a87dc4e09308d1276d28c869c684d7777685682",
+      "cargo_checksum_json": "absent; archive used as byte authority",
+      "extracted_archive_files_compared": 14,
+      "locked_checksum_matches": true,
+      "mismatches": 0,
+      "package": "itoa",
+      "version": "1.0.18"
+    },
+    {
+      "archive_origin": "<OWNER_CARGO_HOME>/registry/cache/index.crates.io-1949cf8c6b5b557f/zmij-1.0.23.crate",
+      "archive_sha256": "29666d0abbfad1e3dc4dcf6144730dd3a3ab225bbbdac83319345b1b44ccfc1b",
+      "cargo_checksum_json": "absent; archive used as byte authority",
+      "extracted_archive_files_compared": 17,
+      "locked_checksum_matches": true,
+      "mismatches": 0,
+      "package": "zmij",
+      "version": "1.0.23"
+    }
+  ],
+  "product_basis": "3bddc2b05f6106e969c7cf43373b230845c7cc66"
+}

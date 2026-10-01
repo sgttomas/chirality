@@ -1,0 +1,85 @@
+{
+  "all_H_body_block_pairs": [
+    [
+      1,
+      1
+    ]
+  ],
+  "bulk_tree_examples": [
+    {
+      "K": 1,
+      "internal": 0,
+      "leaves": 1
+    },
+    {
+      "K": 11,
+      "internal": 0,
+      "leaves": 1
+    },
+    {
+      "K": 12,
+      "internal": 1,
+      "leaves": 2
+    },
+    {
+      "K": 13,
+      "internal": 1,
+      "leaves": 2
+    },
+    {
+      "K": 143,
+      "internal": 1,
+      "leaves": 12
+    },
+    {
+      "K": 144,
+      "internal": 3,
+      "leaves": 13
+    },
+    {
+      "K": 145,
+      "internal": 3,
+      "leaves": 13
+    },
+    {
+      "K": 1727,
+      "internal": 13,
+      "leaves": 144
+    },
+    {
+      "K": 1728,
+      "internal": 16,
+      "leaves": 145
+    },
+    {
+      "K": 10000,
+      "internal": 77,
+      "leaves": 834
+    }
+  ],
+  "bulk_tree_source_counter_matches_formula_K1_through10000": true,
+  "coordination_head": "84843dbf9b74c4c3fdb727610998910b740a48ea",
+  "crate_archive_files_match": 180,
+  "exact_comparison_bit_upper_max": 49062,
+  "exact_comparison_dag_request_volume_upper_max": 345392,
+  "final_script_sha256": "0368ebc9cad8322ca92ae46d5e84883b9933446ac26feeb561b89f8691122422",
+  "kind": "source_arithmetic_and_identity_checks_only",
+  "later_coordination_head": "84843dbf9b74c4c3fdb727610998910b740a48ea",
+  "new_admission_replay": "none; no final E formula supplied; original N0/historical packet preserved",
+  "original_K0_manifest_entries_preserved": 13,
+  "parameter_checks": {
+    "H_count": 33,
+    "H_exact_K4SRC_payloads": 33,
+    "H_root_fixed": 33,
+    "H_unique_load_sets": 33,
+    "VR_count": 24,
+    "VR_scale_count_bindings": 18
+  },
+  "runtime/compiler/solver/provider/tests": "none",
+  "script_ast_parses": true,
+  "source_basis": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "source_diff": [],
+  "source_input_file_identities_validated_before_final_calculation": 119,
+  "source_parameters_sha256": "7c529199d82e09fe3e9b25e807cb99cfdc411e45c217671b91ba9c889f88f88c",
+  "stdlib_supplied_hashes_match": 17
+}

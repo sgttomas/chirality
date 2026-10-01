@@ -1,0 +1,96 @@
+{
+  "kind": "independent_v3_disappearance_and_records_backcheck",
+  "utc": "2026-10-01T01:30:53.966144+00:00",
+  "native_task": "/root/guard_reviewer",
+  "parent": "/root",
+  "role": "TASK / Type 2",
+  "mechanism": "native collaboration continuation of original independent reviewer",
+  "model": "inherited; no independently exposed model ID or model-diversity claim",
+  "write_scope": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-REVIEW/continuation_02/**",
+  "enforcement": "Prompt-only scope in shared filesystem; actual host sandbox is outer boundary",
+  "delegated_children": [],
+  "selected_skill": ".agents/skills/software-code-review/SKILL.md",
+  "selected_workflow": null,
+  "wider_role_bodies_loaded": [],
+  "instruction_basis": [
+    {
+      "origin": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "unchanged_from_initial_full_body_read": true
+    },
+    {
+      "origin": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "unchanged_from_initial_full_body_read": true
+    },
+    {
+      "origin": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "unchanged_from_initial_full_body_read": true
+    },
+    {
+      "origin": ".agents/skills/software-code-review/SKILL.md",
+      "sha256": "ee085d589c44f912d11a59eead8edac214f0343761d26b0d33e886a979888bca",
+      "unchanged_from_initial_full_body_read": true
+    },
+    {
+      "origin": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/briefs/GUARD_AND_RECORDS_REVIEW.md",
+      "sha256": "a5cac03a284a6c91f40ef28742f923360d19541954db8ed8e876fa7945307b60",
+      "unchanged_from_initial_full_body_read": true
+    }
+  ],
+  "initial_coordination": "84843dbf9b74c4c3fdb727610998910b740a48ea",
+  "final_candidate": "325516a7bb21492458d2c84026db709de8b1b4d9",
+  "records_delta_start": "888e388812f65dffce4428c96c18d2ddc8d2ae61",
+  "numerical_source": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "guard_v3_sha256": "b32050c72d0bbad0f69526fc98d1f28dcb1fa131115227a2169db8100d66848b",
+  "source_scope": "SOURCE_SCOPE.json",
+  "final_frozen_scope": "FINAL_SCOPE.json",
+  "earlier_record_scope": "RECORD_DELTA_84843DBF.json",
+  "parent_addenda": [
+    {
+      "kind": "assignment",
+      "content": "Review bounded v3 disappearance handling and B02/records delta. Independent fake-native cases only; no live provider/signal/workload/compiler/model/network/Git writes. Other TASK slot is source-only I21."
+    },
+    {
+      "kind": "native PID zero question",
+      "content": "ROOT asked whether complete PROC_ALL_PIDS can contain zero/kernel placeholders. Reviewer inspected SDK and fake handling; ROOT supplied a separate read-only native witness, then placed it in provider_01."
+    },
+    {
+      "kind": "native witness supplied",
+      "content": "ROOT performed three global/group pairs through reviewed v2 binding, preserving all returned PIDs/counts. Reviewer rechecked data and v3 parsing with fake binding, not live execution."
+    },
+    {
+      "kind": "record clarification",
+      "content": "Reviewer found build packet copied an earlier timeout POSTCHECK. ROOT added PROVENANCE and a fresh timestamped 47-input preservation witness without modifying the original packet or claiming backdated evidence."
+    },
+    {
+      "kind": "final freeze",
+      "content": "ROOT supplied exact candidate 325516a7 with 32 changed paths after 84843dbf; active reviewer continuation and unexecuted fixture controller excluded."
+    },
+    {
+      "kind": "post-freeze report",
+      "content": "ROOT reports first true fixture preflight refused quiet-swap-baseline-unstable before supervisor/workload launch; sentinel unchanged, no ACTIVE, no later fixture. This is not live recovery qualification. Internet restored does not alter this reviewer no-network assignment."
+    }
+  ],
+  "read_scope": "Complete executable delta/tests and bounded live plan; incident/build/B/portable-export/native-witness provenance; all scoped path/blob/manifests/structured syntax. Conditional DESIGN draft reviewed for claim/scope/decision fences, not accepted proof. No unchanged historical audit rerun.",
+  "results": [
+    "preserved-tests.log",
+    "author-exit-tests.log",
+    "independent-native-results.json",
+    "NATIVE_WITNESS_CHECKS.json",
+    "PORTABLE_REISSUE_CHECKS.json",
+    "BUILD_AND_B_EVIDENCE_CHECKS.json"
+  ],
+  "operations_not_performed": [
+    "live native provider",
+    "live guard",
+    "signals",
+    "workload/compiler/model",
+    "network",
+    "install",
+    "Git/index writes",
+    "delegation"
+  ],
+  "limits": "ROOT executes host/native tests and owns grants/merge gates. B02 remains guard-failed; native recovery and numerical continuation remain operational decisions after relevant evidence."
+}

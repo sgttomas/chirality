@@ -1,0 +1,17 @@
+{
+  "kind": "manager_integration_followup_within_existing_source_assignment",
+  "agent": "/root/delivery_manager/i21_k6c",
+  "parent": "/root/delivery_manager",
+  "mechanism": "collaboration.followup_task",
+  "confirmed_by_tool": true,
+  "new_agent": false,
+  "model_override": null,
+  "basis": "ROOT accepted S1/S2 brief; three already-assigned source composition cells remain unfinished, so manager did not declare source assignment complete",
+  "ROOT_notified": true,
+  "slot_snapshot": "Only guard_implementation TASK active before this original I21 resume; after resume global two-TASK cap maintained",
+  "brief": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_SOURCE_20260930/I21_SOURCE_FINISH_BRIEF.md",
+  "brief_sha256": "12e819b391aa8e37641b3fe9e36fed5045f40730152740c3d2ee5230c017f35a",
+  "write_fence": "New nested I21-K6C/continuation_01/source_finish_01/** plus already-owned light scratch, preserving sealed parent packet",
+  "limits": "Source-only, parameterize missing actual inputs/layouts; no provider/compiler/model/network/install/product/Git writes/delegation; no L1 or final E_max/A1 acceptance",
+  "status": "Resumed to finish H output/input-I/O, VR parse and sparse binary64-tail compositions"
+}

@@ -1,0 +1,173 @@
+[
+  {
+    "channel": "guard-monitor.jsonl",
+    "event": {
+      "at": 568470.2667115,
+      "data": {
+        "control_kind": "READY",
+        "data": {
+          "identity": {
+            "pgid": 93689,
+            "pid": 93689,
+            "ruid": 501,
+            "sid": 93689,
+            "start_sec": 1790818999,
+            "start_usec": 504597,
+            "uid": 501
+          }
+        }
+      },
+      "kind": "control-received",
+      "wall_ns": 1790818999530546000
+    }
+  },
+  {
+    "channel": "guard-monitor.jsonl",
+    "event": {
+      "at": 568470.339635125,
+      "data": {
+        "control_kind": "STARTED",
+        "data": {
+          "pid": 93697
+        }
+      },
+      "kind": "control-received",
+      "wall_ns": 1790818999603469000
+    }
+  },
+  {
+    "channel": "guard-monitor.jsonl",
+    "event": {
+      "at": 568470.364368083,
+      "data": {
+        "errno": 3,
+        "esrch_candidate": true,
+        "known_identity": null,
+        "operation": "proc-pidinfo-denied-missing-short/0",
+        "partial_identity": null,
+        "pid": 93697,
+        "returned": 0
+      },
+      "kind": "native-read-failure",
+      "wall_ns": 1790818999628201000
+    }
+  },
+  {
+    "channel": "guard-monitor.jsonl",
+    "event": {
+      "at": 568470.36439225,
+      "data": {
+        "failure": {
+          "errno": 3,
+          "esrch_candidate": true,
+          "known_identity": null,
+          "operation": "proc-pidinfo-denied-missing-short/0",
+          "partial_identity": null,
+          "pid": 93697,
+          "returned": 0
+        },
+        "known_identity": null,
+        "membership_row": {
+          "pgid": 93689,
+          "pid": 93697,
+          "ppid": 93689,
+          "uid": 501,
+          "zombie": false
+        }
+      },
+      "kind": "group-read-failure",
+      "wall_ns": 1790818999628226000
+    }
+  },
+  {
+    "channel": "guard-monitor.jsonl",
+    "event": {
+      "at": 568470.377336958,
+      "data": {
+        "reason": "monitoring-failure:Refusal:ESRCH-without-complete-nonleader-absence:93697"
+      },
+      "kind": "stop-request",
+      "wall_ns": 1790818999641170000
+    }
+  },
+  {
+    "channel": "guard-monitor.jsonl",
+    "event": {
+      "at": 568470.47365175,
+      "data": {
+        "control_kind": "DONE",
+        "data": {
+          "reason": "monitoring-failure:Refusal:ESRCH-without-complete-nonleader-absence:93697",
+          "returncode": 0
+        }
+      },
+      "kind": "control-received",
+      "wall_ns": 1790818999737484000
+    }
+  },
+  {
+    "channel": "guard-monitor.jsonl",
+    "event": {
+      "at": 568470.508965291,
+      "data": {
+        "absence_snapshot_started": 568470.492160458,
+        "complete_global_absence": true,
+        "exit_status": "not-known-from-absence",
+        "identity": null,
+        "last_membership_row": null,
+        "measurement_state": "exited-unmeasured",
+        "native_failure": null,
+        "pid": 93697,
+        "resource_observation": null
+      },
+      "kind": "member-exit-confirmed",
+      "wall_ns": 1790818999772798000
+    }
+  },
+  {
+    "channel": "guard-monitor.jsonl",
+    "event": {
+      "at": 568470.52290825,
+      "data": {
+        "guard_healthy": false,
+        "result": 2,
+        "stop_reason": "monitoring-failure:Refusal:ESRCH-without-complete-nonleader-absence:93697",
+        "workload_returncode": 0
+      },
+      "kind": "result",
+      "wall_ns": 1790818999786740000
+    }
+  },
+  {
+    "channel": "guard-supervisor.jsonl",
+    "event": {
+      "at": 568470.371311125,
+      "data": {
+        "returncode": 0
+      },
+      "kind": "worker-exit",
+      "wall_ns": 1790818999635145000
+    }
+  },
+  {
+    "channel": "guard-supervisor.jsonl",
+    "event": {
+      "at": 568470.391534125,
+      "data": {
+        "identity": {
+          "pgid": 93689,
+          "pid": 93689,
+          "ruid": 501,
+          "sid": 93689,
+          "start_sec": 1790818999,
+          "start_usec": 504597,
+          "uid": 501
+        },
+        "reason": "monitoring-failure:Refusal:ESRCH-without-complete-nonleader-absence:93697",
+        "signal": "TERM"
+      },
+      "kind": "signal-intent",
+      "wall_ns": 1790818999655367000
+    }
+  }
+]

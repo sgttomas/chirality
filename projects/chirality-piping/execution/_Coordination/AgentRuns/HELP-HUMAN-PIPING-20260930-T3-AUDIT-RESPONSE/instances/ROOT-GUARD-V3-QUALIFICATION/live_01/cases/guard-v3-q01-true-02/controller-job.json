@@ -1,0 +1,30 @@
+{
+  "job_id": "guard-v3-q01-true-02",
+  "run_id": "HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE",
+  "candidate_sha": "325516a7bb21492458d2c84026db709de8b1b4d9",
+  "input_hashes": {
+    "<REPO_ROOT>/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/tools/host_guard_v3.py": "b32050c72d0bbad0f69526fc98d1f28dcb1fa131115227a2169db8100d66848b",
+    "<REPO_ROOT>/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-V3-QUALIFICATION/live_01/fixture.py": "03f12873b6569e8f77f83e6ff7732981ffd5f0e03d60c1e32a95afe1b1b98f72",
+    "<PYTHON>.13": "406d73d07e33e164d986326fde00b85c2b8f4ed2c33278142c8431588fe2df14",
+    "/usr/bin/true": "875c7eea9c66c826091ede3cc44599311dc6818caf17f9e53d97c54c288842b2"
+  },
+  "kind": "qualification",
+  "containment": "inherited-group",
+  "cwd": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q01-true-02",
+  "command": [
+    "/usr/bin/true"
+  ],
+  "env": {
+    "PATH": "/usr/bin:/bin:/usr/sbin:/sbin",
+    "HOME": "<OWNER_HOME>",
+    "LC_ALL": "C",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "limits": {
+    "cap_bytes": 134217728,
+    "allowance_bytes": 67108864,
+    "disk_write_budget_bytes": 67108864,
+    "disk_reserve_bytes": 1073741824,
+    "max_seconds": 8
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "files": [
+    "CAPACITY_TABLE.json",
+    "COMMANDS.md",
+    "CONTEXT.json",
+    "OWNED_FILES.json",
+    "RETURN.md",
+    "SHA256SUMS",
+    "SOURCE_INPUTS.json",
+    "SOURCE_PARAMETERS.json",
+    "SOURCE_PHASES.md",
+    "VERIFICATION.json",
+    "check_source_parameters.py"
+  ],
+  "git_writes": [],
+  "old_packet_edits": [],
+  "scratch_persisted_outside_this_scope": [],
+  "source_edits": [],
+  "write_scope": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/I21-K6C/continuation_01"
+}

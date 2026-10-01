@@ -1,0 +1,45 @@
+{
+  "job_id": "guard-v3-q06-pair",
+  "mode": "pair",
+  "started": 567824.634961125,
+  "controller_sha256": "3b0a5db68a30c27888c270087c8dde1ad8899f7c59552c9ef2dc62d16a8717fa",
+  "job_spec_sha256": "fcd129a075423fd00d071598d3aaa4f016b72cb5d11649b6e344762508a99580",
+  "guard_source_sha256": "b32050c72d0bbad0f69526fc98d1f28dcb1fa131115227a2169db8100d66848b",
+  "errors": [],
+  "sentinel_before": {
+    "pid": 90670,
+    "start_sec": 1790818353,
+    "start_usec": 739189,
+    "uid": 501,
+    "ruid": 501,
+    "pgid": 90668,
+    "sid": 90668
+  },
+  "guard_returncode": 0,
+  "sentinel_after": {
+    "pid": 90670,
+    "start_sec": 1790818353,
+    "start_usec": 739189,
+    "uid": 501,
+    "ruid": 501,
+    "pgid": 90668,
+    "sid": 90668
+  },
+  "sentinel_unchanged": true,
+  "result_events": [
+    {
+      "at": 567827.026347916,
+      "data": {
+        "guard_healthy": true,
+        "result": 0,
+        "stop_reason": null,
+        "workload_returncode": 0
+      },
+      "kind": "result",
+      "wall_ns": 1790818356130248000
+    }
+  ],
+  "active_latch_after": false,
+  "healthy": true,
+  "finished": 567827.105528458
+}

@@ -3,7 +3,7 @@
 ## Intent and selected route
 
 - **Stable run identity:** `HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE`.
-- **Current phase:** preflight returns received; guard qualification and A0 preparation next. The owner directed “Proceed accordingly.”
+- **Current phase:** scope handoff published; execution stopped and numerical remediation remains open. The owner directed “Proceed accordingly.”
   after the plan; actual manager/TASK launches are recorded as they occur.
 - **Active role:** HELP_HUMAN, Agent 0, adopted at the owner's explicit request
   in the new conversation turn after the audit/merge handback. Earlier audit
@@ -188,8 +188,8 @@ specific missing input is established.
 | B0 — ROOT + DELIVERY: seal response basis | Run brief/ownership/dependency records | Refresh main, existing agents/PRs, relevant DAG currency and parent holds | Exact source/instruction basis; no competing writers; deliverable mappings justified; legacy I/RV identifiers checked | COMPLETE for bounded investigative basis: 58 rows structurally agree; source-binding/pointer/VR-accounting limits retained in DELIVERY return; no dependency promotion |
 | V0 — AUDIT-REVIEW: independently assess #1064 | Audit read-only; own review folder | B0 frozen audit/source basis | Each finding confirmed, narrowed or refuted; A1 arithmetic and reachability limits assessed; no retrospective claim of pre-merge review | COMPLETE: independent review accepted for fan-in; AUD-REV-N1 routed to N0; `Run/decisions/01_FIRST_WAVE.md` |
 | E0 — ENV-EVIDENCE: executable host and preserved inputs | Own runtime inventory and explicitly scoped copies | B0; M3 Air 16-GB constraint | Distinguish M5 resources from local replacements; guard and memory admission verified; toolchain/venv/targets identified; same-host baseline planned; raw evidence recovered or missing items inventoried | ACTIVE overall: eight small live guard fixtures and one tiny direct compile completed; v2/controller repairs independently closed; B02 exposed a zombie/reaped-child sample race and v3 source repair returned and independent backcheck is active; broader environment/command qualification remains open |
-| K0 — I21-K6C: checkpoint-0 derivation | H/VR/FK read-only; K6c plan and evidence draft | B0, existing I21 brief | Complete live-allocation phase table, corrected formula candidate, dedup design, admission/reproduction plan and tests | ACTIVE SOURCE CLOSURE: initial checkpoint returned with 36 admissions reproduced; I21 resumed for K0-S1/S2 against pinned Rust sources; L1/V1 and final formula remain open |
-| A0 — A1-DIAGNOSIS: determine realized-input consequences | FK/proof read-only; independent probes and oracle | V0; E0 for Rust runs | Valid-source probes and independent truth; confirmed defect or explicit unclosed proof question; exact reproducer and limits | PARTIAL B RETURNED: ROOT compile succeeded; B01 clean with 37 honest rows; B02 guard-failed despite honest forensic rows; B03–B16/all C remain unrun; resume awaits guard repair/qualification |
+| K0 — I21-K6C: checkpoint-0 derivation | H/VR/FK read-only; K6c plan and evidence draft | B0, existing I21 brief | Complete live-allocation phase table, corrected formula candidate, dedup design, admission/reproduction plan and tests | STOPPED SOURCE SNAPSHOT: initial checkpoint and source continuation returned; source_finish_01 remains unfinished/unsealed; L1/V1 and final formula remain open |
+| A0 — A1-DIAGNOSIS: determine realized-input consequences | FK/proof read-only; independent probes and oracle | V0; E0 for Rust runs | Valid-source probes and independent truth; confirmed defect or explicit unclosed proof question; exact reproducer and limits | STOPPED PARTIAL B: ROOT compile succeeded; B01 clean with 37 honest rows; both B02 attempts remain guard-failed despite honest forensic rows; B03–B16/all C unrun; no retry grant active |
 | A1 — DESIGN: propose A1 closure | Design addendum and D2 consequence draft in own run folder | V0, A0 | Complete error transfer through both coupling directions, zero scales and thresholds; remedy or proved exclusion; alternatives and tradeoffs | PLANNED |
 | V1 — DESIGN-VERIFY: verify proposed basis | Own independent proof/probe records | Frozen A1 proposal | Every material claim checked independently; failures returned with evidence | PLANNED |
 | D1 — ROOT / human where reserved: select warranted course | New response decision record; no old ruling rewrite | V1 and concrete consequences | In-scope decisions recorded; human decides reserved contract/scope/availability/acceptance changes; design basis explicitly selected before repair | PLANNED |
@@ -252,16 +252,20 @@ Independent work may continue. Never relax a protected oracle/tolerance to pass.
   response coordination branch, not merged).
 - **Graph maintainer:** HELP_HUMAN Agent 0 in this chat; managers return proposed
   state changes for one serialized integration.
-- **Active operations:** I21 source closure and guard v3 independent backcheck occupy the
-  two TASK slots. No heavy job is active. ROOT's one permitted host retry built
-  the A0 probe in 3.82 s after the child attempt timed out before process creation.
-  B01 completed; B02 stopped on a zombie/reaped-child identity race. Its exact
-  latch was resolved only after fresh absence/group checks; no remaining B or
-  C case ran. DESIGN is drafting closure options without a child or selection.
-- **Next safe action:** independently review and qualify the bounded guard exit
-  handling repair, then explicitly retry B02 and finish the B controls before
-  the separate C extension. I21 continues source accounting; L1 stays unapplied
-  and uncompiled. Preserve every prior refusal and sealed artifact.
+- **Scope correction after owner challenge:** ROOT stopped further experiments
+  and guard expansion. The unexecuted C17 priority and guard-v4 dispatch grants
+  are withdrawn. Remaining agents are returning existing-work checkpoints only.
+  This is ROOT's correction, not a claim that the owner accepted/cancelled the
+  numerical undertaking. See T3/AUDIT/AUDIT_RESPONSE_SCOPE_HANDOFF_2026-09-30.md.
+- **Actual state:** audit #1064 merged; response #1066 remains draft; no solver,
+  performance-harness or numerical_robustness repair has merged or been made.
+  B01 is clean, two B02 attempts are guard-failed with honest forensic outputs,
+  B03–B16/all C are unrun. Latest B02 latch was resolved after fresh absence
+  checks. v3's exit-before-reap issue and final A1/K6c work remain open.
+- **Next responsibility:** a bounded implementation assignment should own the
+  remaining host-tool defect and numerical repair work. HELP_HUMAN should align
+  scope, preserve evidence and arrange independent review; no further runtime
+  or implementation dispatch is active in this corrected scope.
 - **New owner evidence direction:** M5 originals are unavailable for now. Safe
   recreated inputs and new M3 runs are authorized and must carry new provenance;
   they do not impersonate historical logs. See decision 03. Recovery remains

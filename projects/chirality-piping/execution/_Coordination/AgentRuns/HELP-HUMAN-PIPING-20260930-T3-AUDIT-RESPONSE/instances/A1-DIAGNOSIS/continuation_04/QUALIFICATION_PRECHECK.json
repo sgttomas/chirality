@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "qualification_manifest_entries": 58,
+  "qualification_manifest_sha256": "6555fe789eba983f1365f340666189da8240f7e4a1a0cb1990edb6aef7e88728",
+  "qualification_return_sha256": "f09c1cdd48f6492a6a51bfd5f980d690b193a4e9092a13ca350dcbc18d4c9ff7",
+  "qualification_interpretation": "Six healthy fixed jobs after a distinct changing-swap preflight refusal; refusal is not a passing witness",
+  "export_reissue_sha256": "5676844226daacfd68520743a8458cbfe5015887ea4acaab5ef7c6f121444e9d",
+  "export_original_archives_and_portable_manifests_verified": true,
+  "actual_head": "325516a7bb21492458d2c84026db709de8b1b4d9",
+  "guard_sha256": "b32050c72d0bbad0f69526fc98d1f28dcb1fa131115227a2169db8100d66848b",
+  "active_latch_before": false,
+  "original_B01_not_rerun": true,
+  "original_B02_remains_guard_failed": true
+}

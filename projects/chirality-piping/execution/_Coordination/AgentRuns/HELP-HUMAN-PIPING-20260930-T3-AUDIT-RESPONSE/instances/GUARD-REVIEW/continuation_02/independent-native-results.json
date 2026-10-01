@@ -1,0 +1,2210 @@
+{
+  "source_sha256": "b32050c72d0bbad0f69526fc98d1f28dcb1fa131115227a2169db8100d66848b",
+  "fake_native_only": true,
+  "live_capabilities": "blocked",
+  "case_count": 21,
+  "results": [
+    {
+      "name": "fresh global absence; new member included",
+      "outcome": "accepted",
+      "reason": null,
+      "value": [
+        1000,
+        780,
+        [
+          4200
+        ],
+        [
+          4000,
+          4200
+        ]
+      ],
+      "calls": [
+        [
+          "table",
+          0
+        ],
+        [
+          "info",
+          4000,
+          1
+        ],
+        [
+          "sid",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          2
+        ],
+        [
+          "sid",
+          4000,
+          2
+        ],
+        [
+          "usage",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          3
+        ],
+        [
+          "sid",
+          4000,
+          3
+        ],
+        [
+          "info",
+          4000,
+          4
+        ],
+        [
+          "sid",
+          4000,
+          4
+        ],
+        [
+          "info",
+          4100,
+          1
+        ],
+        [
+          "table",
+          1
+        ],
+        [
+          "info",
+          4000,
+          5
+        ],
+        [
+          "sid",
+          4000,
+          5
+        ],
+        [
+          "info",
+          4000,
+          6
+        ],
+        [
+          "sid",
+          4000,
+          6
+        ],
+        [
+          "usage",
+          4000,
+          2
+        ],
+        [
+          "info",
+          4000,
+          7
+        ],
+        [
+          "sid",
+          4000,
+          7
+        ],
+        [
+          "info",
+          4000,
+          8
+        ],
+        [
+          "sid",
+          4000,
+          8
+        ],
+        [
+          "info",
+          4200,
+          1
+        ],
+        [
+          "sid",
+          4200,
+          1
+        ],
+        [
+          "info",
+          4200,
+          2
+        ],
+        [
+          "sid",
+          4200,
+          2
+        ],
+        [
+          "usage",
+          4200,
+          1
+        ],
+        [
+          "info",
+          4200,
+          3
+        ],
+        [
+          "sid",
+          4200,
+          3
+        ],
+        [
+          "info",
+          4200,
+          4
+        ],
+        [
+          "sid",
+          4200,
+          4
+        ],
+        [
+          "table",
+          2
+        ]
+      ],
+      "exit_records": [
+        {
+          "pid": 4100,
+          "identity": null,
+          "last_membership_row": {
+            "pid": 4100,
+            "ppid": 4000,
+            "pgid": 4000,
+            "uid": 502,
+            "zombie": false
+          },
+          "native_failure": {
+            "operation": "proc-pidinfo-denied-missing-short/0",
+            "pid": 4100,
+            "errno": 3,
+            "returned": 0,
+            "known_identity": null,
+            "partial_identity": null,
+            "esrch_candidate": true
+          },
+          "absence_snapshot_started": 100.0,
+          "complete_global_absence": true,
+          "exit_status": "not-known-from-absence",
+          "resource_observation": null,
+          "measurement_state": "exited-unmeasured"
+        }
+      ],
+      "seen": [
+        4000,
+        4100,
+        4200
+      ],
+      "departed": [
+        4100
+      ]
+    },
+    {
+      "name": "two bounded retries retain late added member",
+      "outcome": "accepted",
+      "reason": null,
+      "value": [
+        1500,
+        1230,
+        [
+          4200,
+          4300
+        ],
+        [
+          4000,
+          4200,
+          4300
+        ]
+      ],
+      "calls": [
+        [
+          "table",
+          0
+        ],
+        [
+          "info",
+          4000,
+          1
+        ],
+        [
+          "sid",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          2
+        ],
+        [
+          "sid",
+          4000,
+          2
+        ],
+        [
+          "usage",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          3
+        ],
+        [
+          "sid",
+          4000,
+          3
+        ],
+        [
+          "info",
+          4000,
+          4
+        ],
+        [
+          "sid",
+          4000,
+          4
+        ],
+        [
+          "info",
+          4100,
+          1
+        ],
+        [
+          "table",
+          1
+        ],
+        [
+          "info",
+          4000,
+          5
+        ],
+        [
+          "sid",
+          4000,
+          5
+        ],
+        [
+          "info",
+          4000,
+          6
+        ],
+        [
+          "sid",
+          4000,
+          6
+        ],
+        [
+          "usage",
+          4000,
+          2
+        ],
+        [
+          "info",
+          4000,
+          7
+        ],
+        [
+          "sid",
+          4000,
+          7
+        ],
+        [
+          "info",
+          4000,
+          8
+        ],
+        [
+          "sid",
+          4000,
+          8
+        ],
+        [
+          "info",
+          4200,
+          1
+        ],
+        [
+          "sid",
+          4200,
+          1
+        ],
+        [
+          "info",
+          4200,
+          2
+        ],
+        [
+          "sid",
+          4200,
+          2
+        ],
+        [
+          "usage",
+          4200,
+          1
+        ],
+        [
+          "info",
+          4200,
+          3
+        ],
+        [
+          "sid",
+          4200,
+          3
+        ],
+        [
+          "info",
+          4200,
+          4
+        ],
+        [
+          "sid",
+          4200,
+          4
+        ],
+        [
+          "table",
+          2
+        ],
+        [
+          "table",
+          3
+        ],
+        [
+          "info",
+          4000,
+          9
+        ],
+        [
+          "sid",
+          4000,
+          9
+        ],
+        [
+          "info",
+          4000,
+          10
+        ],
+        [
+          "sid",
+          4000,
+          10
+        ],
+        [
+          "usage",
+          4000,
+          3
+        ],
+        [
+          "info",
+          4000,
+          11
+        ],
+        [
+          "sid",
+          4000,
+          11
+        ],
+        [
+          "info",
+          4000,
+          12
+        ],
+        [
+          "sid",
+          4000,
+          12
+        ],
+        [
+          "info",
+          4200,
+          5
+        ],
+        [
+          "sid",
+          4200,
+          5
+        ],
+        [
+          "info",
+          4200,
+          6
+        ],
+        [
+          "sid",
+          4200,
+          6
+        ],
+        [
+          "usage",
+          4200,
+          2
+        ],
+        [
+          "info",
+          4200,
+          7
+        ],
+        [
+          "sid",
+          4200,
+          7
+        ],
+        [
+          "info",
+          4200,
+          8
+        ],
+        [
+          "sid",
+          4200,
+          8
+        ],
+        [
+          "info",
+          4300,
+          1
+        ],
+        [
+          "sid",
+          4300,
+          1
+        ],
+        [
+          "info",
+          4300,
+          2
+        ],
+        [
+          "sid",
+          4300,
+          2
+        ],
+        [
+          "usage",
+          4300,
+          1
+        ],
+        [
+          "info",
+          4300,
+          3
+        ],
+        [
+          "sid",
+          4300,
+          3
+        ],
+        [
+          "info",
+          4300,
+          4
+        ],
+        [
+          "sid",
+          4300,
+          4
+        ],
+        [
+          "table",
+          4
+        ]
+      ],
+      "exit_records": [
+        {
+          "pid": 4100,
+          "identity": null,
+          "last_membership_row": {
+            "pid": 4100,
+            "ppid": 4000,
+            "pgid": 4000,
+            "uid": 502,
+            "zombie": false
+          },
+          "native_failure": {
+            "operation": "proc-pidinfo-denied-missing-short/0",
+            "pid": 4100,
+            "errno": 3,
+            "returned": 0,
+            "known_identity": null,
+            "partial_identity": null,
+            "esrch_candidate": true
+          },
+          "absence_snapshot_started": 100.0,
+          "complete_global_absence": true,
+          "exit_status": "not-known-from-absence",
+          "resource_observation": null,
+          "measurement_state": "exited-unmeasured"
+        }
+      ],
+      "seen": [
+        4000,
+        4100,
+        4200,
+        4300
+      ],
+      "departed": [
+        4100
+      ]
+    },
+    {
+      "name": "native global PID zero is not an owned worker",
+      "outcome": "accepted",
+      "reason": null,
+      "value": [],
+      "calls": [
+        [
+          "list",
+          2,
+          [
+            4000,
+            4100
+          ]
+        ],
+        [
+          "info",
+          4000,
+          1
+        ],
+        [
+          "sid",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          2
+        ],
+        [
+          "sid",
+          4000,
+          2
+        ],
+        [
+          "info",
+          4100,
+          1
+        ],
+        [
+          "list",
+          2,
+          [
+            4000
+          ]
+        ],
+        [
+          "list",
+          1,
+          [
+            0,
+            4000,
+            5000
+          ]
+        ],
+        [
+          "info",
+          4000,
+          3
+        ],
+        [
+          "sid",
+          4000,
+          3
+        ],
+        [
+          "info",
+          4000,
+          4
+        ],
+        [
+          "sid",
+          4000,
+          4
+        ],
+        [
+          "list",
+          2,
+          [
+            4000
+          ]
+        ],
+        [
+          "list",
+          1,
+          [
+            0,
+            4000,
+            5000
+          ]
+        ]
+      ],
+      "exit_records": [
+        {
+          "pid": 4100,
+          "identity": null,
+          "last_membership_row": null,
+          "native_failure": {
+            "operation": "proc-pidinfo-denied-missing-short/0",
+            "pid": 4100,
+            "errno": 3,
+            "returned": 0,
+            "known_identity": null,
+            "partial_identity": null,
+            "esrch_candidate": true
+          },
+          "absence_snapshot_started": 100.0,
+          "complete_global_absence": true,
+          "exit_status": "not-known-from-absence",
+          "resource_observation": null,
+          "measurement_state": "exited-unmeasured"
+        }
+      ],
+      "seen": [
+        4000,
+        4100
+      ],
+      "departed": [
+        4100
+      ]
+    },
+    {
+      "name": "native global presence defeats group absence",
+      "outcome": "refused",
+      "reason": "known-member-present-outside-group-or-reused",
+      "value": null,
+      "calls": [
+        [
+          "list",
+          2,
+          [
+            4000,
+            4100
+          ]
+        ],
+        [
+          "info",
+          4000,
+          1
+        ],
+        [
+          "sid",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          2
+        ],
+        [
+          "sid",
+          4000,
+          2
+        ],
+        [
+          "info",
+          4100,
+          1
+        ],
+        [
+          "list",
+          2,
+          [
+            4000
+          ]
+        ],
+        [
+          "list",
+          1,
+          [
+            0,
+            4000,
+            4100,
+            5000
+          ]
+        ]
+      ],
+      "exit_records": [],
+      "seen": [
+        4000,
+        4100
+      ],
+      "departed": []
+    },
+    {
+      "name": "non-ESRCH native error 1",
+      "outcome": "refused",
+      "reason": "proc-pidinfo-denied-missing-short/0:pid=4100:errno=1:return=0",
+      "value": null,
+      "calls": [
+        [
+          "table",
+          0
+        ],
+        [
+          "info",
+          4000,
+          1
+        ],
+        [
+          "sid",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          2
+        ],
+        [
+          "sid",
+          4000,
+          2
+        ],
+        [
+          "usage",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          3
+        ],
+        [
+          "sid",
+          4000,
+          3
+        ],
+        [
+          "info",
+          4000,
+          4
+        ],
+        [
+          "sid",
+          4000,
+          4
+        ],
+        [
+          "info",
+          4100,
+          1
+        ]
+      ],
+      "exit_records": [],
+      "seen": [
+        4000,
+        4100
+      ],
+      "departed": []
+    },
+    {
+      "name": "non-ESRCH native error 5",
+      "outcome": "refused",
+      "reason": "proc-pidinfo-denied-missing-short/0:pid=4100:errno=5:return=0",
+      "value": null,
+      "calls": [
+        [
+          "table",
+          0
+        ],
+        [
+          "info",
+          4000,
+          1
+        ],
+        [
+          "sid",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          2
+        ],
+        [
+          "sid",
+          4000,
+          2
+        ],
+        [
+          "usage",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          3
+        ],
+        [
+          "sid",
+          4000,
+          3
+        ],
+        [
+          "info",
+          4000,
+          4
+        ],
+        [
+          "sid",
+          4000,
+          4
+        ],
+        [
+          "info",
+          4100,
+          1
+        ]
+      ],
+      "exit_records": [],
+      "seen": [
+        4000,
+        4100
+      ],
+      "departed": []
+    },
+    {
+      "name": "non-ESRCH native error 0",
+      "outcome": "refused",
+      "reason": "proc-pidinfo-denied-missing-short/0:pid=4100:errno=0:return=0",
+      "value": null,
+      "calls": [
+        [
+          "table",
+          0
+        ],
+        [
+          "info",
+          4000,
+          1
+        ],
+        [
+          "sid",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          2
+        ],
+        [
+          "sid",
+          4000,
+          2
+        ],
+        [
+          "usage",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          3
+        ],
+        [
+          "sid",
+          4000,
+          3
+        ],
+        [
+          "info",
+          4000,
+          4
+        ],
+        [
+          "sid",
+          4000,
+          4
+        ],
+        [
+          "info",
+          4100,
+          1
+        ]
+      ],
+      "exit_records": [],
+      "seen": [
+        4000,
+        4100
+      ],
+      "departed": []
+    },
+    {
+      "name": "short return with ESRCH is not absence",
+      "outcome": "refused",
+      "reason": "proc-pidinfo-denied-missing-short/0:pid=4100:errno=3:return=135",
+      "value": null,
+      "calls": [
+        [
+          "table",
+          0
+        ],
+        [
+          "info",
+          4000,
+          1
+        ],
+        [
+          "sid",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          2
+        ],
+        [
+          "sid",
+          4000,
+          2
+        ],
+        [
+          "usage",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          3
+        ],
+        [
+          "sid",
+          4000,
+          3
+        ],
+        [
+          "info",
+          4000,
+          4
+        ],
+        [
+          "sid",
+          4000,
+          4
+        ],
+        [
+          "info",
+          4100,
+          1
+        ]
+      ],
+      "exit_records": [],
+      "seen": [
+        4000,
+        4100
+      ],
+      "departed": []
+    },
+    {
+      "name": "partial contradiction uid",
+      "outcome": "refused",
+      "reason": "partial-identity-UID-group-session-mismatch",
+      "value": null,
+      "calls": [
+        [
+          "table",
+          0
+        ],
+        [
+          "info",
+          4000,
+          1
+        ],
+        [
+          "sid",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          2
+        ],
+        [
+          "sid",
+          4000,
+          2
+        ],
+        [
+          "usage",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          3
+        ],
+        [
+          "sid",
+          4000,
+          3
+        ],
+        [
+          "info",
+          4000,
+          4
+        ],
+        [
+          "sid",
+          4000,
+          4
+        ],
+        [
+          "info",
+          4100,
+          1
+        ],
+        [
+          "sid",
+          4100,
+          1
+        ]
+      ],
+      "exit_records": [],
+      "seen": [
+        4000,
+        4100
+      ],
+      "departed": []
+    },
+    {
+      "name": "partial contradiction ruid",
+      "outcome": "refused",
+      "reason": "partial-identity-UID-group-session-mismatch",
+      "value": null,
+      "calls": [
+        [
+          "table",
+          0
+        ],
+        [
+          "info",
+          4000,
+          1
+        ],
+        [
+          "sid",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          2
+        ],
+        [
+          "sid",
+          4000,
+          2
+        ],
+        [
+          "usage",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          3
+        ],
+        [
+          "sid",
+          4000,
+          3
+        ],
+        [
+          "info",
+          4000,
+          4
+        ],
+        [
+          "sid",
+          4000,
+          4
+        ],
+        [
+          "info",
+          4100,
+          1
+        ],
+        [
+          "sid",
+          4100,
+          1
+        ]
+      ],
+      "exit_records": [],
+      "seen": [
+        4000,
+        4100
+      ],
+      "departed": []
+    },
+    {
+      "name": "partial contradiction pgid",
+      "outcome": "refused",
+      "reason": "partial-identity-UID-group-session-mismatch",
+      "value": null,
+      "calls": [
+        [
+          "table",
+          0
+        ],
+        [
+          "info",
+          4000,
+          1
+        ],
+        [
+          "sid",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          2
+        ],
+        [
+          "sid",
+          4000,
+          2
+        ],
+        [
+          "usage",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          3
+        ],
+        [
+          "sid",
+          4000,
+          3
+        ],
+        [
+          "info",
+          4000,
+          4
+        ],
+        [
+          "sid",
+          4000,
+          4
+        ],
+        [
+          "info",
+          4100,
+          1
+        ],
+        [
+          "sid",
+          4100,
+          1
+        ]
+      ],
+      "exit_records": [],
+      "seen": [
+        4000,
+        4100
+      ],
+      "departed": []
+    },
+    {
+      "name": "partial contradiction pid",
+      "outcome": "refused",
+      "reason": "partial-pid-mismatch",
+      "value": null,
+      "calls": [
+        [
+          "table",
+          0
+        ],
+        [
+          "info",
+          4000,
+          1
+        ],
+        [
+          "sid",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          2
+        ],
+        [
+          "sid",
+          4000,
+          2
+        ],
+        [
+          "usage",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          3
+        ],
+        [
+          "sid",
+          4000,
+          3
+        ],
+        [
+          "info",
+          4000,
+          4
+        ],
+        [
+          "sid",
+          4000,
+          4
+        ],
+        [
+          "info",
+          4100,
+          1
+        ],
+        [
+          "sid",
+          4100,
+          1
+        ]
+      ],
+      "exit_records": [],
+      "seen": [
+        4000,
+        4100
+      ],
+      "departed": []
+    },
+    {
+      "name": "partial contradiction start_usec",
+      "outcome": "refused",
+      "reason": "malformed-partial-start-identity",
+      "value": null,
+      "calls": [
+        [
+          "table",
+          0
+        ],
+        [
+          "info",
+          4000,
+          1
+        ],
+        [
+          "sid",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          2
+        ],
+        [
+          "sid",
+          4000,
+          2
+        ],
+        [
+          "usage",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          3
+        ],
+        [
+          "sid",
+          4000,
+          3
+        ],
+        [
+          "info",
+          4000,
+          4
+        ],
+        [
+          "sid",
+          4000,
+          4
+        ],
+        [
+          "info",
+          4100,
+          1
+        ],
+        [
+          "sid",
+          4100,
+          1
+        ]
+      ],
+      "exit_records": [],
+      "seen": [
+        4000,
+        4100
+      ],
+      "departed": []
+    },
+    {
+      "name": "leader ESRCH never recovers",
+      "outcome": "refused",
+      "reason": "proc-pidinfo-denied-missing-short/0:pid=4000:errno=3:return=0",
+      "value": null,
+      "calls": [
+        [
+          "table",
+          0
+        ],
+        [
+          "info",
+          4000,
+          1
+        ]
+      ],
+      "exit_records": [],
+      "seen": [
+        4000,
+        4100
+      ],
+      "departed": []
+    },
+    {
+      "name": "still-present ESRCH refuses",
+      "outcome": "refused",
+      "reason": "ESRCH-without-complete-nonleader-absence:4100",
+      "value": null,
+      "calls": [
+        [
+          "table",
+          0
+        ],
+        [
+          "info",
+          4000,
+          1
+        ],
+        [
+          "sid",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          2
+        ],
+        [
+          "sid",
+          4000,
+          2
+        ],
+        [
+          "usage",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          3
+        ],
+        [
+          "sid",
+          4000,
+          3
+        ],
+        [
+          "info",
+          4000,
+          4
+        ],
+        [
+          "sid",
+          4000,
+          4
+        ],
+        [
+          "info",
+          4100,
+          1
+        ],
+        [
+          "sid",
+          4100,
+          1
+        ],
+        [
+          "info",
+          4100,
+          2
+        ],
+        [
+          "sid",
+          4100,
+          2
+        ],
+        [
+          "usage",
+          4100,
+          1
+        ],
+        [
+          "table",
+          1
+        ]
+      ],
+      "exit_records": [],
+      "seen": [
+        4000,
+        4100
+      ],
+      "departed": []
+    },
+    {
+      "name": "partial observed cap crossing survives two exits",
+      "outcome": "accepted",
+      "reason": null,
+      "value": [
+        209715300,
+        188743760,
+        [],
+        [
+          4000
+        ]
+      ],
+      "calls": [
+        [
+          "table",
+          0
+        ],
+        [
+          "info",
+          4000,
+          1
+        ],
+        [
+          "sid",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          2
+        ],
+        [
+          "sid",
+          4000,
+          2
+        ],
+        [
+          "usage",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          3
+        ],
+        [
+          "sid",
+          4000,
+          3
+        ],
+        [
+          "info",
+          4000,
+          4
+        ],
+        [
+          "sid",
+          4000,
+          4
+        ],
+        [
+          "info",
+          4100,
+          1
+        ],
+        [
+          "sid",
+          4100,
+          1
+        ],
+        [
+          "info",
+          4100,
+          2
+        ],
+        [
+          "sid",
+          4100,
+          2
+        ],
+        [
+          "usage",
+          4100,
+          1
+        ],
+        [
+          "info",
+          4100,
+          3
+        ],
+        [
+          "sid",
+          4100,
+          3
+        ],
+        [
+          "info",
+          4100,
+          4
+        ],
+        [
+          "sid",
+          4100,
+          4
+        ],
+        [
+          "info",
+          4200,
+          1
+        ],
+        [
+          "table",
+          1
+        ],
+        [
+          "info",
+          4000,
+          5
+        ],
+        [
+          "sid",
+          4000,
+          5
+        ],
+        [
+          "info",
+          4000,
+          6
+        ],
+        [
+          "sid",
+          4000,
+          6
+        ],
+        [
+          "usage",
+          4000,
+          2
+        ],
+        [
+          "info",
+          4000,
+          7
+        ],
+        [
+          "sid",
+          4000,
+          7
+        ],
+        [
+          "info",
+          4000,
+          8
+        ],
+        [
+          "sid",
+          4000,
+          8
+        ],
+        [
+          "table",
+          2
+        ]
+      ],
+      "exit_records": [
+        {
+          "pid": 4100,
+          "identity": {
+            "pid": 4100,
+            "start_sec": 10000,
+            "start_usec": 100,
+            "uid": 502,
+            "ruid": 502,
+            "pgid": 4000,
+            "sid": 4000
+          },
+          "last_membership_row": {
+            "pid": 4100,
+            "ppid": 4000,
+            "pgid": 4000,
+            "uid": 502,
+            "zombie": false
+          },
+          "native_failure": null,
+          "absence_snapshot_started": 100.0,
+          "complete_global_absence": true,
+          "exit_status": "not-known-from-absence",
+          "resource_observation": {
+            "rss_bytes": 209715200,
+            "footprint_bytes": 188743680
+          },
+          "measurement_state": "measured-in-this-acquisition-before-exit"
+        },
+        {
+          "pid": 4200,
+          "identity": null,
+          "last_membership_row": {
+            "pid": 4200,
+            "ppid": 4000,
+            "pgid": 4000,
+            "uid": 502,
+            "zombie": false
+          },
+          "native_failure": {
+            "operation": "proc-pidinfo-denied-missing-short/0",
+            "pid": 4200,
+            "errno": 3,
+            "returned": 0,
+            "known_identity": null,
+            "partial_identity": null,
+            "esrch_candidate": true
+          },
+          "absence_snapshot_started": 100.0,
+          "complete_global_absence": true,
+          "exit_status": "not-known-from-absence",
+          "resource_observation": null,
+          "measurement_state": "exited-unmeasured"
+        }
+      ],
+      "seen": [
+        4000,
+        4100,
+        4200
+      ],
+      "departed": [
+        4100,
+        4200
+      ]
+    },
+    {
+      "name": "native completion deadline shared with global query",
+      "outcome": "refused",
+      "reason": "group-sample-timeout",
+      "value": null,
+      "calls": [
+        [
+          "list",
+          2,
+          [
+            4000,
+            4100
+          ]
+        ],
+        [
+          "info",
+          4000,
+          1
+        ],
+        [
+          "sid",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          2
+        ],
+        [
+          "sid",
+          4000,
+          2
+        ],
+        [
+          "info",
+          4100,
+          1
+        ],
+        [
+          "list",
+          2,
+          [
+            4000
+          ]
+        ],
+        [
+          "list",
+          1,
+          [
+            0,
+            4000,
+            5000
+          ]
+        ]
+      ],
+      "exit_records": [],
+      "seen": [
+        4000,
+        4100
+      ],
+      "departed": []
+    },
+    {
+      "name": "unknown global shape duplicate zero",
+      "outcome": "refused",
+      "reason": "group-enumeration-invalid",
+      "value": null,
+      "calls": [
+        [
+          "list",
+          2,
+          [
+            4000,
+            4100
+          ]
+        ],
+        [
+          "info",
+          4000,
+          1
+        ],
+        [
+          "sid",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          2
+        ],
+        [
+          "sid",
+          4000,
+          2
+        ],
+        [
+          "info",
+          4100,
+          1
+        ],
+        [
+          "list",
+          2,
+          [
+            4000
+          ]
+        ],
+        [
+          "list",
+          1,
+          [
+            0,
+            0,
+            4000,
+            5000
+          ]
+        ]
+      ],
+      "exit_records": [],
+      "seen": [
+        4000,
+        4100
+      ],
+      "departed": []
+    },
+    {
+      "name": "unknown global shape negative PID",
+      "outcome": "refused",
+      "reason": "group-enumeration-invalid",
+      "value": null,
+      "calls": [
+        [
+          "list",
+          2,
+          [
+            4000,
+            4100
+          ]
+        ],
+        [
+          "info",
+          4000,
+          1
+        ],
+        [
+          "sid",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          2
+        ],
+        [
+          "sid",
+          4000,
+          2
+        ],
+        [
+          "info",
+          4100,
+          1
+        ],
+        [
+          "list",
+          2,
+          [
+            4000
+          ]
+        ],
+        [
+          "list",
+          1,
+          [
+            0,
+            -1,
+            4000,
+            5000
+          ]
+        ]
+      ],
+      "exit_records": [],
+      "seen": [
+        4000,
+        4100
+      ],
+      "departed": []
+    },
+    {
+      "name": "retire first observed worker",
+      "outcome": "accepted",
+      "reason": null,
+      "value": [
+        100,
+        80,
+        [],
+        [
+          4000
+        ]
+      ],
+      "calls": [
+        [
+          "table",
+          0
+        ],
+        [
+          "info",
+          4000,
+          1
+        ],
+        [
+          "sid",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          2
+        ],
+        [
+          "sid",
+          4000,
+          2
+        ],
+        [
+          "usage",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          3
+        ],
+        [
+          "sid",
+          4000,
+          3
+        ],
+        [
+          "info",
+          4000,
+          4
+        ],
+        [
+          "sid",
+          4000,
+          4
+        ],
+        [
+          "info",
+          4100,
+          1
+        ],
+        [
+          "table",
+          1
+        ],
+        [
+          "info",
+          4000,
+          5
+        ],
+        [
+          "sid",
+          4000,
+          5
+        ],
+        [
+          "info",
+          4000,
+          6
+        ],
+        [
+          "sid",
+          4000,
+          6
+        ],
+        [
+          "usage",
+          4000,
+          2
+        ],
+        [
+          "info",
+          4000,
+          7
+        ],
+        [
+          "sid",
+          4000,
+          7
+        ],
+        [
+          "info",
+          4000,
+          8
+        ],
+        [
+          "sid",
+          4000,
+          8
+        ],
+        [
+          "table",
+          2
+        ],
+        [
+          "table",
+          0
+        ]
+      ],
+      "exit_records": [
+        {
+          "pid": 4100,
+          "identity": null,
+          "last_membership_row": {
+            "pid": 4100,
+            "ppid": 4000,
+            "pgid": 4000,
+            "uid": 502,
+            "zombie": false
+          },
+          "native_failure": {
+            "operation": "proc-pidinfo-denied-missing-short/0",
+            "pid": 4100,
+            "errno": 3,
+            "returned": 0,
+            "known_identity": null,
+            "partial_identity": null,
+            "esrch_candidate": true
+          },
+          "absence_snapshot_started": 100.0,
+          "complete_global_absence": true,
+          "exit_status": "not-known-from-absence",
+          "resource_observation": null,
+          "measurement_state": "exited-unmeasured"
+        }
+      ],
+      "seen": [
+        4000,
+        4100
+      ],
+      "departed": [
+        4100
+      ]
+    },
+    {
+      "name": "job history prevents later PID reappearance",
+      "outcome": "refused",
+      "reason": "retired-pid-reappeared-or-reused",
+      "value": null,
+      "calls": [
+        [
+          "table",
+          0
+        ],
+        [
+          "info",
+          4000,
+          1
+        ],
+        [
+          "sid",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          2
+        ],
+        [
+          "sid",
+          4000,
+          2
+        ],
+        [
+          "usage",
+          4000,
+          1
+        ],
+        [
+          "info",
+          4000,
+          3
+        ],
+        [
+          "sid",
+          4000,
+          3
+        ],
+        [
+          "info",
+          4000,
+          4
+        ],
+        [
+          "sid",
+          4000,
+          4
+        ],
+        [
+          "info",
+          4100,
+          1
+        ],
+        [
+          "table",
+          1
+        ],
+        [
+          "info",
+          4000,
+          5
+        ],
+        [
+          "sid",
+          4000,
+          5
+        ],
+        [
+          "info",
+          4000,
+          6
+        ],
+        [
+          "sid",
+          4000,
+          6
+        ],
+        [
+          "usage",
+          4000,
+          2
+        ],
+        [
+          "info",
+          4000,
+          7
+        ],
+        [
+          "sid",
+          4000,
+          7
+        ],
+        [
+          "info",
+          4000,
+          8
+        ],
+        [
+          "sid",
+          4000,
+          8
+        ],
+        [
+          "table",
+          2
+        ],
+        [
+          "table",
+          0
+        ]
+      ],
+      "exit_records": [],
+      "seen": [
+        4000,
+        4100
+      ],
+      "departed": [
+        4100
+      ]
+    }
+  ]
+}

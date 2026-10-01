@@ -1,0 +1,7 @@
+{"at": 567826.749309166, "data": {"identity": {"pgid": 90690, "pid": 90690, "ruid": 501, "sid": 90690, "start_sec": 1790818355, "start_usec": 850808, "uid": 501}}, "kind": "identity", "wall_ns": 1790818355853216000}
+{"at": 567826.834604833, "data": {"pid": 90698}, "kind": "worker-launched", "wall_ns": 1790818355938510000}
+{"at": 567826.960479208, "data": {"returncode": 0}, "kind": "worker-exit", "wall_ns": 1790818356064382000}
+{"at": 567826.96080125, "data": {"flavor": 2, "pids": [90690], "value": 90690}, "kind": "native-membership", "wall_ns": 1790818356064704000}
+{"at": 567826.960900833, "data": {"flavor": 2, "pids": [90690], "value": 90690}, "kind": "native-membership", "wall_ns": 1790818356064803000}
+{"at": 567826.960915125, "data": {"exited_members": [], "footprint_bytes": 0, "job_departed_pid_count": 0, "job_seen_pid_count": 1, "live_members": [], "metric_basis": "max-of-validated-partial-and-complete-sums-in-this-acquisition", "resamples": 0, "rss_bytes": 0, "zombie_present_unmeasured": []}, "kind": "group-collection", "wall_ns": 1790818356064817000}
+{"at": 567826.960935791, "data": {"reason": null, "returncode": 0}, "kind": "group-drained", "wall_ns": 1790818356064838000}

@@ -1,0 +1,157 @@
+{
+  "status": "PASS",
+  "entries": 30,
+  "checks": [
+    {
+      "packet": "initial-I21",
+      "path": "ALLOCATIONS.md",
+      "matches": true
+    },
+    {
+      "packet": "initial-I21",
+      "path": "CHANGED_FILES.json",
+      "matches": true
+    },
+    {
+      "packet": "initial-I21",
+      "path": "COMMANDS.md",
+      "matches": true
+    },
+    {
+      "packet": "initial-I21",
+      "path": "CONTEXT.json",
+      "matches": true
+    },
+    {
+      "packet": "initial-I21",
+      "path": "FORMULA.md",
+      "matches": true
+    },
+    {
+      "packet": "initial-I21",
+      "path": "IMPLEMENTATION_PLAN.md",
+      "matches": true
+    },
+    {
+      "packet": "initial-I21",
+      "path": "INPUTS.json",
+      "matches": true
+    },
+    {
+      "packet": "initial-I21",
+      "path": "REPLAY_MEASUREMENT_A1.md",
+      "matches": true
+    },
+    {
+      "packet": "initial-I21",
+      "path": "RETURN.md",
+      "matches": true
+    },
+    {
+      "packet": "initial-I21",
+      "path": "VALIDATION.json",
+      "matches": true
+    },
+    {
+      "packet": "initial-I21",
+      "path": "derive_checkpoint0.py",
+      "matches": true
+    },
+    {
+      "packet": "initial-I21",
+      "path": "historical_admissions.json",
+      "matches": true
+    },
+    {
+      "packet": "initial-I21",
+      "path": "provisional_results.json",
+      "matches": true
+    },
+    {
+      "packet": "K0-manager-basis",
+      "path": "BASIS.json",
+      "matches": true
+    },
+    {
+      "packet": "K0-manager-basis",
+      "path": "GUARD_V2_BRIEF.md",
+      "matches": true
+    },
+    {
+      "packet": "K0-manager-basis",
+      "path": "GUARD_V2_INTEGRATION.json",
+      "matches": true
+    },
+    {
+      "packet": "K0-manager-basis",
+      "path": "GUARD_V2_LAUNCH.json",
+      "matches": true
+    },
+    {
+      "packet": "K0-manager-basis",
+      "path": "K0_L1_LAYOUT_MANIFEST.json",
+      "matches": true
+    },
+    {
+      "packet": "K0-manager-basis",
+      "path": "K0_L1_LAYOUT_OVERLAY.rs.txt",
+      "matches": true
+    },
+    {
+      "packet": "K0-manager-basis",
+      "path": "K0_L1_LAYOUT_PATCH.diff",
+      "matches": true
+    },
+    {
+      "packet": "K0-manager-basis",
+      "path": "K0_L1_WITNESS_PROPOSAL.md",
+      "matches": true
+    },
+    {
+      "packet": "K0-manager-basis",
+      "path": "K0_S1_S2_BRIEF.md",
+      "matches": true
+    },
+    {
+      "packet": "K0-manager-basis",
+      "path": "PAYLOAD_REPLAY.json",
+      "matches": true
+    },
+    {
+      "packet": "K0-manager-basis",
+      "path": "RETURN.md",
+      "matches": true
+    },
+    {
+      "packet": "K0-manager-basis",
+      "path": "RUST_SRC_INPUTS.json",
+      "matches": true
+    },
+    {
+      "packet": "K0-manager-basis",
+      "path": "SOURCE_CARDINALITIES.json",
+      "matches": true
+    },
+    {
+      "packet": "K0-manager-basis",
+      "path": "SOURCE_CLOSURE.md",
+      "matches": true
+    },
+    {
+      "packet": "K0-manager-basis",
+      "path": "V1_PRESERVATION.json",
+      "matches": true
+    },
+    {
+      "packet": "K0-manager-basis",
+      "path": "VALIDATION.json",
+      "matches": true
+    },
+    {
+      "packet": "K0-manager-basis",
+      "path": "check_payloads.py",
+      "matches": true
+    }
+  ],
+  "scope": "Read-only verification of supplied sealed I21 and manager-source packets, not a numerical test or acceptance"
+}

@@ -1,0 +1,1189 @@
+{
+  "additional_layout_cells": [
+    "Expansion and [Expansion;6]",
+    "Option<BoundRefusal>",
+    "(usize,Wide<L>,usize) L4/L8/L16",
+    "(usize,ShiftResult<L>) L4/L8/L16",
+    "(usize,Contribution)",
+    "Option<Option<(ExactWideSum,ExactWideSum)>>",
+    "Option<(bool,BoundedExtremeTracker)>",
+    "(Vec<u8>,Result<Arc<GroupPrep>,(Refusal,Vec<BodyGeometry>)>,GroupCache)",
+    "CaseOutcome",
+    "H named-node/member/builder tuples and Segment/prefix tuple",
+    "VR Model/Member/SpringSpec/Case/Row/Control/ControlKind/CaseRun",
+    "serde_json::Value, Number, Map<String,Value>",
+    "actual LeafNode/InternalNode<String,Value>",
+    "actual LeafNode/InternalNode<String,(f64,f64)>",
+    "actual bulk-control/scales map node types if retained in parse envelope"
+  ],
+  "kind": "source_capacity_and_phase_contract_not_Emax",
+  "limits": [
+    "No overlay materialized/applied/compiled. Existing126-row plan is a proposal, not available measurements.",
+    "Open source rows remain mandatory before full K0 acceptance; all layout rows require pinned witness.",
+    "Final A1 impact remains open."
+  ],
+  "notation": {
+    "C6": "6*2^ceil(log2(payload/6)) bytes",
+    "E": "exact requested bytes k*sizeof(T)",
+    "J": "recursive consumer Value heap with exact clone/array and bounded map nodes",
+    "M": "old+new requested bytes at active growing realloc",
+    "P": "capacity in elements for fresh push-only path; multiply by sizeof(T)",
+    "R": "actual reserve recurrence, retaining old capacity across dedup/pop/drain"
+  },
+  "proposed_L1_existing_rows": {
+    "AttemptRecord": 6,
+    "AttemptStop": 7,
+    "Binary64Outcome": 29,
+    "BlockBound_L16": 100,
+    "BlockBound_L4": 66,
+    "BlockBound_L8": 83,
+    "BlockCertificate_L16": 102,
+    "BlockCertificate_L4": 68,
+    "BlockCertificate_L8": 85,
+    "BlockNorms_L16": 103,
+    "BlockNorms_L4": 69,
+    "BlockNorms_L8": 86,
+    "BlockRefusal": 36,
+    "BodyGeometry": 30,
+    "BodyReport_L16": 104,
+    "BodyReport_L4": 70,
+    "BodyReport_L8": 87,
+    "BodyScaleRow": 52,
+    "BoundRefusal": 35,
+    "BoundedCoefficients_L16": 109,
+    "BoundedCoefficients_L4": 75,
+    "BoundedCoefficients_L8": 92,
+    "BoundedExtremeTracker": 16,
+    "ByteVecHeader": 57,
+    "CasePrep": 1,
+    "Constraint": 38,
+    "Contribution": 33,
+    "DequeHeader": 60,
+    "DirectionalBlock_L16": 110,
+    "DirectionalBlock_L4": 76,
+    "DirectionalBlock_L8": 93,
+    "Evaluated": 15,
+    "ExactAccumulator": 25,
+    "ExactWideSum": 26,
+    "FallbackRow": 43,
+    "FrameElement": 126,
+    "FreeBlocks": 34,
+    "GeometryMapPair": 47,
+    "GroupCache": 3,
+    "GroupPrep": 2,
+    "LazyRow": 42,
+    "LedgerBuildingEntry": 49,
+    "LedgerEntry": 48,
+    "LedgerNet": 23,
+    "MemberOperators_L16": 108,
+    "MemberOperators_L4": 74,
+    "MemberOperators_L8": 91,
+    "NodalLoad": 39,
+    "OptionWide_L16": 96,
+    "OptionWide_L4": 62,
+    "OptionWide_L8": 79,
+    "Ordering": 31,
+    "PivotScreen_L16": 98,
+    "PivotScreen_L4": 64,
+    "PivotScreen_L8": 81,
+    "PrecisionState": 10,
+    "PrescribedEntry": 50,
+    "PrimitiveSource": 22,
+    "Publication": 12,
+    "PublishedRow": 13,
+    "QuantityBitsRow": 53,
+    "QuantityId": 27,
+    "QuantityMeta": 28,
+    "Recovered_L16": 107,
+    "Recovered_L4": 73,
+    "Recovered_L8": 90,
+    "Refusal": 20,
+    "ResidualRow_L16": 111,
+    "ResidualRow_L4": 77,
+    "ResidualRow_L8": 94,
+    "ResolutionRow": 55,
+    "RetainedEvidence": 5,
+    "RetainedFactor_L16": 99,
+    "RetainedFactor_L4": 65,
+    "RetainedFactor_L8": 82,
+    "RetainedLedger": 24,
+    "RetainedSolve": 4,
+    "RowClass": 14,
+    "RuleTest": 17,
+    "Shared_L16_R16": 118,
+    "Shared_L4_R4": 112,
+    "Shared_L4_R8": 114,
+    "Shared_L8_R16": 116,
+    "ShiftResult_L16": 101,
+    "ShiftResult_L4": 67,
+    "ShiftResult_L8": 84,
+    "Slot_L16_R16": 119,
+    "Slot_L4_R4": 113,
+    "Slot_L4_R8": 115,
+    "Slot_L8_R16": 117,
+    "Solved_L16": 106,
+    "Solved_L4": 72,
+    "Solved_L8": 89,
+    "SourceParts": 41,
+    "StageWork": 18,
+    "Station": 40,
+    "StopDecision": 9,
+    "StorageCounts": 19,
+    "StraightMember": 37,
+    "Structure": 32,
+    "SummaryRow": 51,
+    "TableEntry": 44,
+    "ThetaRow": 56,
+    "TrackerKey": 45,
+    "TrackerSet": 46,
+    "TreeMapHeader": 58,
+    "TreeSetHeader": 59,
+    "UnpublishableRow": 54,
+    "UnresolvedReason": 21,
+    "VerificationReport_L16": 105,
+    "VerificationReport_L4": 71,
+    "VerificationReport_L8": 88,
+    "VerificationState": 11,
+    "VerificationSummary": 8,
+    "VerifyShared_L16_W16": 124,
+    "VerifyShared_L4_W8": 120,
+    "VerifyShared_L8_W16": 122,
+    "VerifySlot_L16_W16": 125,
+    "VerifySlot_L4_W8": 121,
+    "VerifySlot_L8_W16": 123,
+    "WideVecHeader_L16": 97,
+    "WideVecHeader_L4": 63,
+    "WideVecHeader_L8": 80,
+    "Wide_L16": 95,
+    "Wide_L4": 61,
+    "Wide_L8": 78
+  },
+  "rows": [
+    {
+      "allocations": [
+        "Builder points",
+        "Builder members",
+        "restraints",
+        "loads",
+        "final named nodes",
+        "final members",
+        "labels"
+      ],
+      "capacity_or_byte_expression": "Push capacities P(N),P(m),P(restraint_nodes),P(l); member destination E(m); node owned-map reuse iff same alignment/size fit; label payload totals in SOURCE_PARAMETERS",
+      "id": "S01",
+      "layout_cells": [
+        "HNodeInteger",
+        "HNodeFloat",
+        "HMemberBuilder",
+        "HMember",
+        "HRestraint",
+        "HLoad"
+      ],
+      "lifetime": "Builder member labels clone before builder drops; node labels move; source points buffer reused only on eligible route",
+      "phase": "H_model_creation",
+      "remaining_cells": [
+        "L-H-tuples"
+      ],
+      "source": [
+        "H/src/k6/models.rs:360-563"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "nodes",
+        "members",
+        "loads",
+        "stations",
+        "restraint_dofs",
+        "constraints",
+        "source-id strings"
+      ],
+      "capacity_or_byte_expression": "E(N,[f64;3])+E(m,StraightMember)+E(l,NodalLoad)+E(m,Station); temporary P(r,usize) overlaps exact E(r,Constraint); ID format cap6 or12, clone exactly len",
+      "id": "S02",
+      "layout_cells": [
+        "StraightMember",
+        "Constraint",
+        "NodalLoad",
+        "Station"
+      ],
+      "lifetime": "Original source moves into solve_case and overlaps cloned CasePrep source; dof temporary drops after collecting constraints",
+      "phase": "H_source_adapter",
+      "remaining_cells": [],
+      "source": [
+        "H/src/k6/w1/adapter.rs:40-88",
+        "H/src/k6/models.rs:99-114"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "nodes",
+        "members",
+        "constraints",
+        "loads",
+        "stations",
+        "springs",
+        "directionals",
+        "load strings"
+      ],
+      "capacity_or_byte_expression": "nodes clone E(N); remaining arrays P(count,T); source-id clones E(len); no supports; RF sp=ds=0, compatibility shapes keep their counts",
+      "id": "S03",
+      "layout_cells": [
+        "StraightMember",
+        "Constraint",
+        "NodalLoad",
+        "Station",
+        "Spring",
+        "DirectionalSpring"
+      ],
+      "lifetime": "SourceParts arrays move into source; cloned source uses exact lengths",
+      "phase": "VR_source_adapter",
+      "remaining_cells": [
+        "L-VR-springs"
+      ],
+      "source": [
+        "VR/src/cases.rs:470-533"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "constrained",
+        "parent",
+        "body_of_root",
+        "body_of_node",
+        "chord sums",
+        "stable-sort scratch"
+      ],
+      "capacity_or_byte_expression": "E(n,Option<f64>)+E(N,usize)+2E(N,u32)+E(3,ExactWideSum)+max_sort(source array lengths)",
+      "id": "S04",
+      "layout_cells": [
+        "OptionF64",
+        "ExactWideSum"
+      ],
+      "lifetime": "parent/body_of_root and chord scratch drop before constructor return; source vectors persist; source sorts sequential",
+      "phase": "source_validation",
+      "remaining_cells": [],
+      "source": [
+        "K/source.rs:321-583"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "K4SRC",
+        "K4STF",
+        "K4LED",
+        "K4RST"
+      ],
+      "capacity_or_byte_expression": "Retained C6(payload); growing move peak=1.5*C6 for payload>6; payloads exact per fixture/width in SOURCE_PARAMETERS",
+      "id": "S05",
+      "layout_cells": [
+        "u8"
+      ],
+      "lifetime": "Group stiffness, prep identity and VR lane encoding are distinct; final source clone has exact len; state/ledger newly encode",
+      "phase": "encoding",
+      "remaining_cells": [],
+      "source": [
+        "K/source.rs:652-743",
+        "K/ledger.rs:218-232",
+        "K/recover.rs:495-529"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "body nodes",
+        "local index map",
+        "coordinates",
+        "grounds",
+        "relative",
+        "SVD original and clone",
+        "candidates",
+        "exact_motions",
+        "Expansion buffers"
+      ],
+      "capacity_or_byte_expression": "G_geo in SOURCE_PHASES; 480N child bytes +288 current-node/add scratch; candidates<=2N+5; no successful witness-output Vec on fixed-root domain",
+      "id": "S06",
+      "layout_cells": [
+        "BodyGeometry",
+        "Expansion",
+        "ExpansionArray6",
+        "Leaf_u32_usize",
+        "Internal_u32_usize"
+      ],
+      "lifetime": "Whole geometry scratch before Structure; exact_motions retained across all nodes until ground check; candidate Vec consumed buffer remains",
+      "phase": "geometry",
+      "remaining_cells": [
+        "L-Expansion",
+        "L-geometry-node"
+      ],
+      "source": [
+        "K/factor.rs:130-217",
+        "FK/src/rigid_body.rs:33-239",
+        "FK/src/structural.rs:711-802"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "positions",
+        "SparsePattern outer rows",
+        "pre-dedup inner rows"
+      ],
+      "capacity_or_byte_expression": "P(78m,(usize,usize)); E(n,Vec<usize>); per node six P(12degree(v),usize), exact histogram in parameters",
+      "id": "S07",
+      "layout_cells": [
+        "UsizePair",
+        "VecHeader"
+      ],
+      "lifetime": "positions lives through Structure::new; dedup retains inner capacities",
+      "phase": "structure_positions",
+      "remaining_cells": [],
+      "source": [
+        "K/assemble.rs:548-651",
+        "FK/src/structural/sparse.rs:58-78"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "row_starts",
+        "columns",
+        "transpose",
+        "remaining owned rows"
+      ],
+      "capacity_or_byte_expression": "E(n+1,usize); columns R over each deduplicated row length, cap<=max(4,2z); E(z,usize); remaining inner row buffers and all outer headers until consumed",
+      "id": "S08",
+      "layout_cells": [
+        "usize",
+        "VecHeader"
+      ],
+      "lifetime": "columns extend owned rows; no clone of child payload; transpose created after rows consumed",
+      "phase": "structure_columns",
+      "remaining_cells": [],
+      "source": [
+        "FK/src/structural/sparse.rs:133-160"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "tagged",
+        "starts",
+        "next",
+        "items"
+      ],
+      "capacity_or_byte_expression": "P(78m,(usize,Contribution)); 2E(z+1,usize); E(78m,Contribution), plus positions and pattern",
+      "id": "S09",
+      "layout_cells": [
+        "TaggedContribution",
+        "Contribution"
+      ],
+      "lifetime": "tagged buffer remains while consumed; next drops at return",
+      "phase": "structure_tagging",
+      "remaining_cells": [
+        "L-TaggedContribution"
+      ],
+      "source": [
+        "K/assemble.rs:548-651"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "free",
+        "position",
+        "adjacency outer and inner",
+        "rank",
+        "first"
+      ],
+      "capacity_or_byte_expression": "P(f,usize)+E(n,usize)+E(f,VecHeader)+sum_a P(d_a,usize)*usize; E(f,usize) each rank/first",
+      "id": "S10",
+      "layout_cells": [
+        "VecHeader",
+        "usize"
+      ],
+      "lifetime": "adjacency held through RCM and first creation; RCM scratch gone before rank/first",
+      "phase": "ordering",
+      "remaining_cells": [],
+      "source": [
+        "K/factor.rs:359-398"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "neighbors",
+        "degrees",
+        "visited",
+        "order",
+        "sort scratch",
+        "reachable",
+        "queue",
+        "marked",
+        "component",
+        "saved last level",
+        "level",
+        "next level"
+      ],
+      "capacity_or_byte_expression": "E(f,VecHeader)+sum_a P(2d_a,usize)*usize+2E(f,usize)+E(f,bool)+max(max_a Sort(d_a,usize),4P(f,usize)*usize+f,P(f,usize)*usize)",
+      "id": "S11",
+      "layout_cells": [
+        "VecHeader",
+        "usize"
+      ],
+      "lifetime": "Sort and BFS and final traversal queue are separate maxima; VecDeque relocation uses same ring allocation",
+      "phase": "RCM",
+      "remaining_cells": [],
+      "source": [
+        "K/factor.rs:226-341",
+        "L/alloc/src/collections/vec_deque/mod.rs"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "of",
+        "positions outer",
+        "component buffers",
+        "DFS stack",
+        "body"
+      ],
+      "capacity_or_byte_expression": "E(f,u32)+P(b,VecHeader)*VecHeader+sum_c P(f_c,usize)*usize+max_c P(f_c,usize)*usize+E(b,u32)",
+      "id": "S12",
+      "layout_cells": [
+        "VecHeader",
+        "usize"
+      ],
+      "lifetime": "Earlier components persist while later component builds; stack freed each block",
+      "phase": "free_blocks",
+      "remaining_cells": [],
+      "source": [
+        "K/bound.rs:96-132"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "ledger build",
+        "ledger entries",
+        "magnitude Vecs",
+        "nonzero",
+        "prescribed outer and terms",
+        "layout",
+        "extents"
+      ],
+      "capacity_or_byte_expression": "P(l,LedgerBuildingEntry)*size+E(l,LedgerEntry)+8l+E(l,bool)+E(r,PrescribedEntry)+16r+P(q,Meta)*size+8B; general net<=68 words if uniqueness not established",
+      "id": "S13",
+      "layout_cells": [
+        "LedgerBuildingEntry",
+        "LedgerEntry",
+        "PrescribedEntry",
+        "QuantityMeta"
+      ],
+      "lifetime": "Ledger build overlaps newly netted outputs; then drops; CasePrep source clone and identity retained",
+      "phase": "CasePrep",
+      "remaining_cells": [],
+      "source": [
+        "K/ledger.rs:88-128",
+        "K/adaptive.rs:856-933"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "groups",
+        "outcomes",
+        "Arc CasePrep",
+        "Arc GroupPrep",
+        "geometry clone",
+        "attempts",
+        "states"
+      ],
+      "capacity_or_byte_expression": "P(1,GroupEntry)*size+E(1,CaseOutcome)+Arc(CasePrep)+Arc(GroupPrep)+E(B,BodyGeometry)+P(a<=4,AttemptRecord)*size+P(v<=4,PrecisionState)*size",
+      "id": "S14",
+      "layout_cells": [
+        "GroupEntry",
+        "CaseOutcome",
+        "CasePrep",
+        "GroupPrep",
+        "BodyGeometry",
+        "AttemptRecord",
+        "PrecisionState"
+      ],
+      "lifetime": "Success arcs shared; failure metadata retained through one call; groups drops after outcome creation",
+      "phase": "call_scaffolding",
+      "remaining_cells": [
+        "L-GroupEntry",
+        "L-CaseOutcome"
+      ],
+      "source": [
+        "K/adaptive.rs:3106-3289,3447-3508"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "members",
+        "directionals",
+        "K",
+        "Kq",
+        "bounded_q",
+        "factor profiles/screens",
+        "est_blocks",
+        "residual member temporary",
+        "assembly flags",
+        "factor work",
+        "condition vectors"
+      ],
+      "capacity_or_byte_expression": "Existing per-precision payload identities from original ALLOCATIONS, exact E for reserved/borrowed TrustedLen buffers; shared_build=max(residual members+z bool, factor f wides, condition five f wides+BlockRatios clone); apply P to fallible borrowed collections",
+      "id": "K01",
+      "layout_cells": [
+        "MemberOperators_L",
+        "DirectionalBlock_L",
+        "BoundedCoefficients_R",
+        "PivotScreen_L",
+        "RetainedFactor_L",
+        "Shared_L_R"
+      ],
+      "lifetime": "Residual members drop before factor; work drops before condition; all earlier precision caches retained",
+      "phase": "shared_build",
+      "remaining_cells": [],
+      "source": [
+        "K/adaptive.rs:1243-1387",
+        "K/factor.rs:505-812",
+        "K/assemble.rs:699-814"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "u",
+        "rhs",
+        "factor.solve scaled/y/output",
+        "u_free",
+        "evaluated states",
+        "residual rows",
+        "correction",
+        "trackers"
+      ],
+      "capacity_or_byte_expression": "E(n,Wide); E(f,Wide) RHS/solve_scaled; P(f,Wide) fallible collections; at most four E(f,Wide) evaluated clones and P(4,VecHeader); residual E(f,ResidualRow)",
+      "id": "K02",
+      "layout_cells": [
+        "Wide_L",
+        "ResidualRow_L",
+        "LazyRow",
+        "TableEntry",
+        "VecHeader"
+      ],
+      "lifetime": "Old u_free coexists with replacement clone; residual list/tracker remain through fallback; one correction at a time",
+      "phase": "solve/refinement",
+      "remaining_cells": [],
+      "source": [
+        "K/adaptive.rs:1412-1841",
+        "K/factor.rs:630-678"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "Abar_q",
+        "bounded member blocks",
+        "state u clone",
+        "rows",
+        "worsts",
+        "states trackers"
+      ],
+      "capacity_or_byte_expression": "E(z,Wide_R)+max(E(m,[Wide_R;144]), E(n,Wide_L)+M(P(f,FallbackRow))); E(e<=4,Option<Option<GateRatio>>)+E(e<=4,Option<(bool,Tracker)>) plus prior tracker children",
+      "id": "K03",
+      "layout_cells": [
+        "FallbackRow",
+        "WorstGateOption",
+        "FallbackTrackerOption"
+      ],
+      "lifetime": "Bounded blocks drop before row-list phase; prior tracker states persist; old row-list buffer survives into_iter until consumed",
+      "phase": "fallback",
+      "remaining_cells": [
+        "L-FallbackOptions"
+      ],
+      "source": [
+        "K/adaptive.rs:1560-1664"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "q_all",
+        "values",
+        "end_actions",
+        "spring/directional actions",
+        "reaction options"
+      ],
+      "capacity_or_byte_expression": "E(m,[Wide;6])+E(q,Wide)+E(m,[Wide;12])+E(sp,Wide)+E(ds,[Wide;3])+E(n,OptionWide)",
+      "id": "K04",
+      "layout_cells": [
+        "Wide_L",
+        "OptionWide_L"
+      ],
+      "lifetime": "Only q_all/values retained; source/support-free RF specialization does not erase compatibility shapes",
+      "phase": "recovery",
+      "remaining_cells": [],
+      "source": [
+        "K/recover.rs:239-478"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "bounded",
+        "Abar",
+        "ke_w",
+        "directional_w",
+        "uc_refused",
+        "rows_of_blocks",
+        "c at bt ct",
+        "block maxima",
+        "Uc out"
+      ],
+      "capacity_or_byte_expression": "Reserved/borrowed map E; max(bounded m*144 wides, qW temporary operators, four f wides+E(f,u32)+two b maxima); out BlockBound kept, uc_refused b slots",
+      "id": "K05",
+      "layout_cells": [
+        "BoundedCoefficients_L",
+        "BlockBound_L",
+        "OptionBoundRefusal",
+        "VerifyShared_L_W"
+      ],
+      "lifetime": "bounded remains; full member blocks and qW operators do not overlap Uc; c overlaps at/bt/ct",
+      "phase": "verification_build",
+      "remaining_cells": [
+        "L-OptionBoundRefusal"
+      ],
+      "source": [
+        "K/verify.rs:426-544",
+        "K/bound.rs:669-707"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "w_abs",
+        "terms_w/p headers",
+        "prescribed flags",
+        "u_free",
+        "r_hat",
+        "sr_row",
+        "delta",
+        "delta_full",
+        "recovered",
+        "w",
+        "sr2",
+        "sas_inf/one",
+        "sau",
+        "w_s",
+        "e_rows",
+        "a_s"
+      ],
+      "capacity_or_byte_expression": "Three n-wide and eight f-wide live vectors; two E(n,VecHeader)+two E(n,bool); RF operand inner lists empty because zero prescribed; report options E(q); helper recover/formation scratch separate max",
+      "id": "K06",
+      "layout_cells": [
+        "Wide_L",
+        "OptionWide_L",
+        "VecHeader"
+      ],
+      "lifetime": "All named lexical locals persist through shift except helper scratch; factor.solve applies P for fallible buffers",
+      "phase": "verification_pass",
+      "remaining_cells": [],
+      "source": [
+        "K/verify.rs:759-969"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "data",
+        "s_refused",
+        "start",
+        "profile",
+        "results",
+        "current",
+        "in_flight",
+        "refused",
+        "sigma",
+        "factor first/rows/shifted/failed",
+        "work OR at/bt/ct OR ct/n_l/next"
+      ],
+      "capacity_or_byte_expression": "start P(b,StartTuple); results E(k,ResultTuple); current clone E(k,StartTuple); next P(k,StartTuple); others exact E except in_flight grows by extend; max(f*Wide,3f*Wide,f*Wide+b*Wide+next)",
+      "id": "K07",
+      "layout_cells": [
+        "OptionBoundRefusal",
+        "StartTuple_L",
+        "ResultTuple_L",
+        "ShiftResult_L",
+        "OptionWide_L"
+      ],
+      "lifetime": "work dies at shifted_factor return; three factor tries sequential; current backing remains during next building; profile dies at shift_run return",
+      "phase": "shift",
+      "remaining_cells": [
+        "L-OptionBoundRefusal",
+        "L-ShiftTuples"
+      ],
+      "source": [
+        "K/bound.rs:753-1147",
+        "K/verify.rs:979-1018"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "certificates",
+        "norms",
+        "theta",
+        "body reports",
+        "charge",
+        "w_plus",
+        "resolution",
+        "report Arc"
+      ],
+      "capacity_or_byte_expression": "E(b,BlockCertificate)+E(b,BlockNorms)+E(b,OptionWide)+E(B,BodyReport)+five E(q,OptionWide)+two E(f,Wide)+E(B,[f64;2])+Arc(VerificationReport)",
+      "id": "K08",
+      "layout_cells": [
+        "BlockCertificate_L",
+        "BlockNorms_L",
+        "BodyReport_L",
+        "OptionWide_L",
+        "VerificationReport_L"
+      ],
+      "lifetime": "Start/shifts/caller refusal slots remain during report construction, then drop; report does not persist across different decision iterations",
+      "phase": "report",
+      "remaining_cells": [],
+      "source": [
+        "K/verify.rs:1019-1223",
+        "K/adaptive.rs:3068-3080"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "lazy old/new",
+        "table heaps",
+        "tracker map",
+        "holding set"
+      ],
+      "capacity_or_byte_expression": "Lazy bound 768 standalone,4608 rule-set,2816 solve trackers; table cap<=max(4,2R_j); current growth counts old+new; set/map leaf on B=1 with keys<=8",
+      "id": "T01",
+      "layout_cells": [
+        "LazyRow",
+        "TableEntry",
+        "TrackerLeaf",
+        "HoldingLeaf"
+      ],
+      "lifetime": "Current grow old buffer included; other trackers retain lazy/table allocations",
+      "phase": "tracker_offer",
+      "remaining_cells": [],
+      "source": [
+        "K/adaptive.rs:625-852"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "taken lazy",
+        "all tables",
+        "growing table old/new"
+      ],
+      "capacity_or_byte_expression": "Other lazy + taken current lazy + sum tables with one active realloc; capacity R recurrence",
+      "id": "T02",
+      "layout_cells": [
+        "LazyRow",
+        "TableEntry"
+      ],
+      "lifetime": "Taken current lazy drops before prune begins",
+      "phase": "tracker_collapse",
+      "remaining_cells": [],
+      "source": [
+        "K/adaptive.rs:687-703"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "other lazy",
+        "all table capacities",
+        "sort scratch"
+      ],
+      "capacity_or_byte_expression": "Other lazy + sum_j c_j*TableEntry + Sort(t_current,TableEntry)",
+      "id": "T03",
+      "layout_cells": [
+        "LazyRow",
+        "TableEntry"
+      ],
+      "lifetime": "Current taken lazy already dropped; stable sort finishes before kept exists",
+      "phase": "tracker_sort",
+      "remaining_cells": [],
+      "source": [
+        "K/adaptive.rs:706-722",
+        "L/alloc/src/slice.rs:854-872"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "other lazy",
+        "old table",
+        "kept new and old during growth"
+      ],
+      "capacity_or_byte_expression": "Other lazy + sum c_j*TableEntry + M(P(k<=t_j,TableEntry)); then old table+kept through shrink; no shrinking move addition",
+      "id": "T04",
+      "layout_cells": [
+        "LazyRow",
+        "TableEntry"
+      ],
+      "lifetime": "drain keeps old allocation; replacement frees old only after RHS/shrink; new cap exact kept len after successful shrink",
+      "phase": "tracker_drain/shrink",
+      "remaining_cells": [],
+      "source": [
+        "K/adaptive.rs:723-736",
+        "L/alloc/src/raw_vec/mod.rs:839-860"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "insertion nodes",
+        "bulk input vector",
+        "sort scratch",
+        "bulk right spine",
+        "cloned topology"
+      ],
+      "capacity_or_byte_expression": "Insert nodes<=1+floor((K-1)/5); empty high-water root retained. Bulk leaves=1+floor(K/12), internal=sum_(12^h<=K)[1+floor(K/12^(h+1))]; input backing persists. Clone source+same topology+new key/value heaps",
+      "id": "T05",
+      "layout_cells": [
+        "ActualLeaf_K_V",
+        "ActualInternal_K_V"
+      ],
+      "lifetime": "Insert split nodes remain; bulk right-border fix steals without allocation; drain/deallocation adds no second tree",
+      "phase": "BTree",
+      "remaining_cells": [
+        "L-BTree-nodes"
+      ],
+      "source": [
+        "L/alloc/src/collections/btree/node.rs:1058-1088,1253-1306",
+        "L/alloc/src/collections/btree/append.rs:9-65",
+        "L/alloc/src/collections/btree/map.rs:2539-2553",
+        "L/alloc/src/collections/btree/fix.rs:105-120"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "published values",
+        "raw scales",
+        "coupled scales",
+        "rows",
+        "body_scales"
+      ],
+      "capacity_or_byte_expression": "E(q,Binary64Outcome)+2E(B,[f64;4])+E(q,PublishedRow)+P(4B,BodyScaleRow)*size; nested flatmap lower3 after first element => first reserve4 then block-aligned doubling",
+      "id": "F01",
+      "layout_cells": [
+        "Binary64Outcome",
+        "PublishedRow",
+        "BodyScaleRow"
+      ],
+      "lifetime": "Report/decision/kept still live; raw/coupled scales drop on classify return",
+      "phase": "classification",
+      "remaining_cells": [],
+      "source": [
+        "K/adaptive.rs:2598-2657",
+        "L/core/src/iter/adapters/flatten.rs:534-552,695-750"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "theta",
+        "bound",
+        "resolution clone"
+      ],
+      "capacity_or_byte_expression": "E(B,f64)+E(B,Option<f64>)+E(B,[f64;2])",
+      "id": "F02",
+      "layout_cells": [
+        "OptionF64"
+      ],
+      "lifetime": "Each summary is distinct; attempts retain up to3 summaries and finish creates another",
+      "phase": "verification_summary",
+      "remaining_cells": [],
+      "source": [
+        "K/adaptive.rs:2339-2364"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "source clone",
+        "ledger/state encoding",
+        "input DOFs",
+        "absolute rows",
+        "unpublishable rows",
+        "body scales clone",
+        "summary clones",
+        "resolution/theta/certified/floor"
+      ],
+      "capacity_or_byte_expression": "E(src_len,u8)+C6(led)+C6(state)+E(r,Dof)+P(a,QuantityBitsRow)*size+P(u,UnpublishableRow)*size with a+u<=q; exact clones of body-scale/summary lengths; E(B) maps and P(certified_count<=B)",
+      "id": "F03",
+      "layout_cells": [
+        "Dof",
+        "QuantityBitsRow",
+        "UnpublishableRow",
+        "BodyScaleRow",
+        "SummaryRow",
+        "ResolutionRow",
+        "ThetaRow"
+      ],
+      "lifetime": "Each encoding growth overlaps already constructed evidence fields; publication/values/report/decision/summary/selected-record clone remain; attempts/geometry/states move",
+      "phase": "evidence",
+      "remaining_cells": [],
+      "source": [
+        "K/adaptive.rs:3295-3410"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "RetainedSolve box",
+        "moved controls",
+        "Arc references"
+      ],
+      "capacity_or_byte_expression": "BoxLayout(RetainedSolve); field buffers already counted once; success cache Arc clone no payload clone",
+      "id": "F04",
+      "layout_cells": [
+        "RetainedSolve",
+        "GroupCache"
+      ],
+      "lifetime": "Box allocation coexists with finish locals; single-case successful finish cannot contain failed verification-refusal cache",
+      "phase": "finish_box",
+      "remaining_cells": [],
+      "source": [
+        "K/adaptive.rs:3238,3295-3410"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "failed-build refusal vector",
+        "cached clone",
+        "attempt-owned original",
+        "partial summary/report"
+      ],
+      "capacity_or_byte_expression": "Filtered P(k<=b,BlockRefusal), cache exact clone E(k); pass refusal <=b extends record prior Uc <=b using R; all partial helper peaks retained",
+      "id": "F05",
+      "layout_cells": [
+        "BlockRefusal",
+        "AttemptRecord",
+        "VerificationSummary"
+      ],
+      "lifetime": "Error cache+attempt both live before groups drops; one-case W1 has no repeated error-cache revisit",
+      "phase": "refusal_unwind",
+      "remaining_cells": [],
+      "source": [
+        "K/adaptive.rs:2962-3080",
+        "K/bound.rs:1320-1359"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "last attempts",
+        "new attempts clone",
+        "current outcome",
+        "prefix limits",
+        "full and own segments"
+      ],
+      "capacity_or_byte_expression": "Old and new exact clones of <=4 records plus current; nested summary/refusal clones; <=10 segment entries,<=9 limits with labels; prefix_matches two segment lists",
+      "id": "H01",
+      "layout_cells": [
+        "AttemptRecord",
+        "HSegment",
+        "PrefixLimit"
+      ],
+      "lifetime": "Repeat outcome drops each iteration; last clone persists; limits Vec temporary lives through prefix loop",
+      "phase": "repeat/prefix_control",
+      "remaining_cells": [
+        "L-H-tuples"
+      ],
+      "source": [
+        "H/src/bin/k6_observe/main.rs:850-879,946-971",
+        "H/src/k6/w1/staged.rs:292-353"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "Line String",
+        "integer/float/key format temporaries",
+        "full reason",
+        "bounded reason",
+        "rows BufWriter",
+        "stdout LineWriter"
+      ],
+      "capacity_or_byte_expression": "Line R sequence; format retained<=max(8,2length); full reason overlaps truncated char collection; stdout1024, rows BufWriter8192 on macOS; digest streamed",
+      "id": "H02",
+      "layout_cells": [
+        "String"
+      ],
+      "lifetime": "One Line at a time; dynamic keys/numeric temp overlap append; dump buffer only on first selected repeat",
+      "phase": "binary_output",
+      "remaining_cells": [
+        "S-H-LineReasonTemplateMax",
+        "B-runtime-argv-baseline"
+      ],
+      "source": [
+        "H/src/bin/k6_observe/main.rs:55-143",
+        "H/src/bin/k6_observe/w1.rs:241-290",
+        "L/alloc/src/fmt.rs:649-659",
+        "L/std/src/io/buffered/linewriter.rs:88-90",
+        "L/std/src/sys/io/mod.rs:72"
+      ],
+      "status": "SOURCE_COMPOSITION_OPEN"
+    },
+    {
+      "allocations": [
+        "file text",
+        "JSON input Value",
+        "Case or Model output",
+        "decoded key/string payloads",
+        "parser scratch"
+      ],
+      "capacity_or_byte_expression": "JSON tree recursion J; borrowed scalar/string clones; default Map insertion bound; Model nodes/node_names P(N); other slice-map fields E(count)",
+      "id": "V01",
+      "layout_cells": [
+        "Value",
+        "VRCase",
+        "VRRow",
+        "VRControl",
+        "VRModel",
+        "VRMember",
+        "VRSpring",
+        "JsonLeaf",
+        "JsonInternal"
+      ],
+      "lifetime": "Input JSON tree/file text overlap parsed model until load returns; load_family constructs24 cases before find consumes them",
+      "phase": "VR_model_case_parse",
+      "remaining_cells": [
+        "S-VR-parse-envelope",
+        "L-VR-consumer"
+      ],
+      "source": [
+        "VR/src/cases.rs:163-331",
+        "J/src/value/ser.rs",
+        "J/src/map.rs"
+      ],
+      "status": "SOURCE_COMPOSITION_OPEN"
+    },
+    {
+      "allocations": [
+        "kernel outcome",
+        "lane encoding",
+        "published BTreeMap",
+        "floor member map",
+        "controls/failure strings",
+        "one comparison scratch",
+        "new record"
+      ],
+      "capacity_or_byte_expression": "K_p+laneEncoding+BTree_insert(q,QuantityId,PublishedRow)+diagnostic/control list buffers+max(BTree_bulk(m,String,(f64,f64))+member-name clones+comparison scratch,J(record))",
+      "id": "V02",
+      "layout_cells": [
+        "PublicationLeaf",
+        "PublicationInternal",
+        "MemberScaleLeaf",
+        "MemberScaleInternal",
+        "Value"
+      ],
+      "lifetime": "Outcome remains through case_record; floor map live only in selected branch until that branch ends, before case_record call",
+      "phase": "VR_lane",
+      "remaining_cells": [
+        "L-VR-consumer"
+      ],
+      "source": [
+        "VR/src/lane.rs:191-340",
+        "VR/src/floor.rs:149-169",
+        "VR/src/records.rs:89-130"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "decimal digits",
+        "chunk refs",
+        "Nat shifts/clones/add/sub/mul buffers"
+      ],
+      "capacity_or_byte_expression": "Per-case symbolic Exact/Nat DAG allocation-volume upper in SOURCE_PARAMETERS; max345392B across24 RF cases; excludes persistent caller objects and diagnostic formats",
+      "id": "V03",
+      "layout_cells": [
+        "u32",
+        "u64",
+        "SliceReference"
+      ],
+      "lifetime": "One row/control at a time; union of alternative finite expression DAG request volumes safely bounds live allocations; u64->u32 map allocates fresh due align mismatch",
+      "phase": "VR_comparison",
+      "remaining_cells": [],
+      "source": [
+        "VR/src/exact.rs:68-223,264-489",
+        "VR/src/compare.rs:36-79"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "run.record",
+        "record clone",
+        "json emit copies",
+        "published map",
+        "report-list copies",
+        "stdout"
+      ],
+      "capacity_or_byte_expression": "J(run.record)+J(record clone)+max(J(emit with full record),J(report fields),J(w1 fields)); recursive exact strings/array capacities and BTree map bound",
+      "id": "V04",
+      "layout_cells": [
+        "Value",
+        "JsonLeaf",
+        "JsonInternal"
+      ],
+      "lifetime": "Kernel outcome already dropped; json!(record) borrows and serializes a third tree; run drops before RCM, record persists",
+      "phase": "VR_post_lane_output",
+      "remaining_cells": [
+        "L-VR-consumer"
+      ],
+      "source": [
+        "VR/examples/vk_scale.rs:435-485",
+        "J/src/macros.rs:278-280",
+        "J/src/map.rs:395-401"
+      ],
+      "status": "SOURCE_CLOSED_LAYOUT_PARAMETER"
+    },
+    {
+      "allocations": [
+        "record",
+        "RCM arrays",
+        "binary64 sparse parity objects"
+      ],
+      "capacity_or_byte_expression": "J(record)+max(RCM envelope, existing sparse parity phase envelope); no kernel retained cache at this point",
+      "id": "V05",
+      "layout_cells": [
+        "Value",
+        "SparseConsumerTypes"
+      ],
+      "lifetime": "run dropped; record retained to function end; RCM adjacency/orders explicitly dropped before parity",
+      "phase": "VR_tail",
+      "remaining_cells": [
+        "S-VR-binary64-tail"
+      ],
+      "source": [
+        "VR/examples/vk_scale.rs:484-515"
+      ],
+      "status": "SOURCE_COMPOSITION_OPEN"
+    }
+  ],
+  "source_basis": "3bddc2b05f6106e969c7cf43373b230845c7cc66"
+}

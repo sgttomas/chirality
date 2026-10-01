@@ -1,0 +1,85 @@
+{
+  "kind": "delivery_guard_v3_packet_integrity",
+  "child": "/root/delivery_manager/guard_implementation",
+  "native_return_received": true,
+  "return_sha256": "1c834b4e34f6af350ad3acc6795b2b77f8f5a78275027130e954bc87722ae0d3",
+  "manifest_sha256": "0d08433639e8faac38b89a9569c5aa5c2001273bb9f746d65bbb231b5573f440",
+  "source_sha256": "b32050c72d0bbad0f69526fc98d1f28dcb1fa131115227a2169db8100d66848b",
+  "checks": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/tools/host_guard_v3.py",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/CONTEXT.json",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/DIAGNOSIS.md",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/LIVE_FAST_CHILD_PROPOSAL.md",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/PRESERVATION_AFTER.json",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/PRESERVATION_BEFORE.json",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/RETURN.md",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/VALIDATION.json",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/exit-race-tests.log",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/harness.py",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/host_guard_v2_to_v3.diff",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/preserved-tests.log",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/record_scenarios.py",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/reproduce_v2.py",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/run_preserved_tests.py",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/scenario_results.json",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/test_exit_races.py",
+      "matches": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/GUARD-IMPLEMENTATION/continuation_02/v2_reproduction.json",
+      "matches": true
+    }
+  ],
+  "author_results": "111 preserved plus 39 race fake-native tests pass; 78 prior files preserved",
+  "manager_scope": "Read diagnosis/source collector draft and return; integration feedback requested partial-identity contradictions and persistent bounded departed identity coverage. Manifest verified. No independent reviewer or runtime qualification claim.",
+  "disposition": "Ready for independent backcheck and later separately granted fast-child witness; original B02 remains guard-failed, no numerical retry"
+}

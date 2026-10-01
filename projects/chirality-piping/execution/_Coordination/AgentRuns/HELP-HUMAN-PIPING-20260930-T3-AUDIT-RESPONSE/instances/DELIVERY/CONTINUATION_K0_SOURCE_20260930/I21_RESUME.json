@@ -1,0 +1,22 @@
+{
+  "kind": "actual_native_original_TASK_resume",
+  "parent": "/root/delivery_manager",
+  "root": "/root",
+  "child": "/root/delivery_manager/i21_k6c",
+  "role": "TASK / Type 2",
+  "mechanism": "collaboration.followup_task",
+  "new_agent_spawned": false,
+  "history": "Original TASK context retained; new accepted brief and constraints supplied",
+  "model_override": null,
+  "model_identity": "No independently exposed runtime model ID; existing configured model retained",
+  "coordination_commit": "888e388812f65dffce4428c96c18d2ddc8d2ae61",
+  "source_basis": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "brief": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/K0_S1_S2_BRIEF.md",
+  "brief_sha256": "3a367e2fdcc854fb2b7007c6121da800587aa1d86e01d0702be1b663b58ed53b",
+  "confirmed_by_tool": true,
+  "authorizing_grant": "ROOT native followup accepting this exact brief and released reviewer TASK slot",
+  "fence": "Run/instances/I21-K6C/continuation_01/** plus own light scratch; prompt-only shared filesystem",
+  "other_active_TASK": "A0 under DESIGN; sole heavy slot for one build belongs to A0",
+  "L1_status": "ungranted and unapplied",
+  "completion": "First additive source packet returned/verified; three in-scope source compositions returned by manager for completion via same TASK. L1/final E_max/A1 remain open."
+}

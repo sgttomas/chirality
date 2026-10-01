@@ -1,0 +1,34 @@
+{
+  "kind": "root_B02_additional_evidence_forwarded",
+  "from": "ROOT native message; subsequent central record read",
+  "to": "/root/delivery_manager/guard_implementation",
+  "forwarded": true,
+  "prelaunch_ps": {
+    "at": 551960.405070208,
+    "members": [
+      25394
+    ]
+  },
+  "failing_ps": {
+    "at": 551960.457240541,
+    "rows": [
+      "25394 25362 25394 501 Ss",
+      "25401 25394 25394 501 Z"
+    ]
+  },
+  "worker_exit_at": 551960.4548745,
+  "identity_refusal_at": 551960.4583125,
+  "final_ps": {
+    "at": 551960.59698075,
+    "members": [
+      25394
+    ]
+  },
+  "interpretation": "Snapshot carried zombie/reaped worker; exact failed native call was not PID-labelled, retained as evidence limit. No blanket zombie bypass authorized.",
+  "root_disposition": "ROOT independently confirmed monitor/supervisor/worker absence and zero live group members, archived exact latch; original B02 remains guard-failed, no numerical retry",
+  "central_record": {
+    "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-B02-INCIDENT/LATCH_RESOLUTION.json",
+    "sha256": "ba11b76d4aeda35d7d06a7bb4f66ef8fb5dcf8dbcffe8f7de1a04510c5891524"
+  },
+  "manager_execution": "Read record only; no process/provider/latch action"
+}

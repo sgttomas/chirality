@@ -1,0 +1,50 @@
+{
+  "kind": "delivery_I21_source_closure_return_integrity",
+  "child": "/root/delivery_manager/i21_k6c",
+  "native_return_received": true,
+  "return_sha256": "b359e1032b9e7cd6d0bee7eca6d1e1ccf427f81ed083309497ac62a43d13a967",
+  "manifest_sha256": "21d46d81b6631e68e84dd826e6748c22b5e81049871c7af69b76dd486a34690c",
+  "entries": [
+    {
+      "path": "CAPACITY_TABLE.json",
+      "matches": true
+    },
+    {
+      "path": "COMMANDS.md",
+      "matches": true
+    },
+    {
+      "path": "CONTEXT.json",
+      "matches": true
+    },
+    {
+      "path": "OWNED_FILES.json",
+      "matches": true
+    },
+    {
+      "path": "RETURN.md",
+      "matches": true
+    },
+    {
+      "path": "SOURCE_INPUTS.json",
+      "matches": true
+    },
+    {
+      "path": "SOURCE_PARAMETERS.json",
+      "matches": true
+    },
+    {
+      "path": "SOURCE_PHASES.md",
+      "matches": true
+    },
+    {
+      "path": "VERIFICATION.json",
+      "matches": true
+    },
+    {
+      "path": "check_source_parameters.py",
+      "matches": true
+    }
+  ],
+  "disposition": "Bounded source continuation complete; full K0/final E_max remains open. Manager reading concrete extra layout and binary-envelope cells; no independent formula acceptance or runtime claim."
+}

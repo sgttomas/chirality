@@ -1,0 +1,3683 @@
+{
+  "actual_coordination": "325516a7bb21492458d2c84026db709de8b1b4d9",
+  "expected_unresolved": {
+    "bytes": 1357,
+    "file": "projects/chirality-piping/validation/benchmarks/numerical_robustness/cases/expected_unresolved.json",
+    "shape": {
+      "array_length_histogram": {
+        "2": 1
+      },
+      "key_payload_bytes": 119,
+      "longest_string_bytes": 384,
+      "maximum_depth": 3,
+      "object_key_count_histogram": {
+        "3": 1,
+        "5": 2
+      },
+      "string_payload_bytes": 1079
+    }
+  },
+  "formatting": {
+    "caveat": "Deliberately broad source-derived common envelope; duplicate/non-W1 key occurrences retained. Applies only reachable W1 scalar/reason value types, not arbitrary Display or unrelated modes.",
+    "dynamic_occurrence_multiplier": 19,
+    "dynamic_placeholder_bytes_upper": 20,
+    "f64_no_precision_text_upper": 1137,
+    "helpers_requested_upper": 27132,
+    "line_encoded_bytes_upper": 907668,
+    "line_field_occurrences": [
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "repeat",
+        "key_bytes_upper": 6,
+        "line": 283,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "stage",
+        "key_bytes_upper": 5,
+        "line": 284,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "heap_current",
+        "key_bytes_upper": 12,
+        "line": 285,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "repeat",
+        "key_bytes_upper": 6,
+        "line": 307,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "stage",
+        "key_bytes_upper": 5,
+        "line": 308,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 5,
+        "key": "ok",
+        "key_bytes_upper": 2,
+        "line": 309,
+        "method": "b",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "elapsed_ns",
+        "key_bytes_upper": 10,
+        "line": 310,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "heap_current_begin",
+        "key_bytes_upper": 18,
+        "line": 311,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "heap_current_end",
+        "key_bytes_upper": 16,
+        "line": 312,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "heap_peak",
+        "key_bytes_upper": 9,
+        "line": 313,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "heap_peak_move",
+        "key_bytes_upper": 14,
+        "line": 314,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "alloc_calls",
+        "key_bytes_upper": 11,
+        "line": 315,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 41414,
+        "key": "error",
+        "key_bytes_upper": 5,
+        "line": 316,
+        "method": "opt_s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 41414,
+        "key": "reason",
+        "key_bytes_upper": 6,
+        "line": 325,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "estimate_adm_bytes",
+        "key_bytes_upper": 18,
+        "line": 326,
+        "method": "opt_n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "heap_cap_bytes",
+        "key_bytes_upper": 14,
+        "line": 327,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "heap_peak_so_far",
+        "key_bytes_upper": 16,
+        "line": 328,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "heap_peak_move_so_far",
+        "key_bytes_upper": 21,
+        "line": 329,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "counts_source",
+        "key_bytes_upper": 13,
+        "line": 352,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "model",
+        "key_bytes_upper": 5,
+        "line": 353,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "family",
+        "key_bytes_upper": 6,
+        "line": 354,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "nodes",
+        "key_bytes_upper": 5,
+        "line": 355,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "members",
+        "key_bytes_upper": 7,
+        "line": 356,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "dofs",
+        "key_bytes_upper": 4,
+        "line": 357,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "free_dofs",
+        "key_bytes_upper": 9,
+        "line": 358,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "restrained_dofs",
+        "key_bytes_upper": 15,
+        "line": 359,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "pattern_entries",
+        "key_bytes_upper": 15,
+        "line": 360,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "lower_entries",
+        "key_bytes_upper": 13,
+        "line": 361,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "free_entries",
+        "key_bytes_upper": 12,
+        "line": 362,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "free_lower_entries",
+        "key_bytes_upper": 18,
+        "line": 363,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "free_lower_nonzero",
+        "key_bytes_upper": 18,
+        "line": 364,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "rcm_profile_entries",
+        "key_bytes_upper": 19,
+        "line": 365,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "rcm_half_bandwidth",
+        "key_bytes_upper": 18,
+        "line": 366,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "identity_profile_entries",
+        "key_bytes_upper": 24,
+        "line": 367,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "identity_half_bandwidth",
+        "key_bytes_upper": 23,
+        "line": 368,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "lane_entries",
+        "key_bytes_upper": 12,
+        "line": 369,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "lane_off_diagonal",
+        "key_bytes_upper": 17,
+        "line": 370,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "contributions",
+        "key_bytes_upper": 13,
+        "line": 371,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "dense_entries",
+        "key_bytes_upper": 13,
+        "line": 372,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 4,
+        "key": "estimate_f1b_bytes_w1a",
+        "key_bytes_upper": 22,
+        "line": 389,
+        "method": "null",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "estimate_adm_bytes_w1a",
+        "key_bytes_upper": 22,
+        "line": 390,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "estimate_w1_sel128_bytes",
+        "key_bytes_upper": 24,
+        "line": 391,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "estimate_w1_fixed_bytes",
+        "key_bytes_upper": 23,
+        "line": 392,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "estimate_w1_decide_bytes",
+        "key_bytes_upper": 24,
+        "line": 393,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 5,
+        "key": "w1_source_ok",
+        "key_bytes_upper": 12,
+        "line": 406,
+        "method": "b",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 41414,
+        "key": "w1_source_error",
+        "key_bytes_upper": 15,
+        "line": 407,
+        "method": "opt_s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "w1_nodes",
+        "key_bytes_upper": 8,
+        "line": 408,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "w1_members",
+        "key_bytes_upper": 10,
+        "line": 409,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "w1_stations",
+        "key_bytes_upper": 11,
+        "line": 410,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "w1_constraints",
+        "key_bytes_upper": 14,
+        "line": 411,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "w1_loads",
+        "key_bytes_upper": 8,
+        "line": 412,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "w1_dofs",
+        "key_bytes_upper": 7,
+        "line": 413,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "w1_free_dofs",
+        "key_bytes_upper": 12,
+        "line": 414,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "w1_bodies",
+        "key_bytes_upper": 9,
+        "line": 415,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "w1_pattern_entries",
+        "key_bytes_upper": 18,
+        "line": 416,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "w1_profile_entries",
+        "key_bytes_upper": 18,
+        "line": 417,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "w1_half_bandwidth",
+        "key_bytes_upper": 17,
+        "line": 418,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "w1_blocks",
+        "key_bytes_upper": 9,
+        "line": 419,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "w1_rows",
+        "key_bytes_upper": 7,
+        "line": 420,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "w1_source_encoding_len",
+        "key_bytes_upper": 22,
+        "line": 430,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 18,
+        "key": "w1_source_encoding_fnv64",
+        "key_bytes_upper": 24,
+        "line": 431,
+        "method": "hex",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "mode",
+        "key_bytes_upper": 4,
+        "line": 433,
+        "method": "opt_s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "size_stiffness_contribution",
+        "key_bytes_upper": 27,
+        "line": 434,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "size_contribution_rounding",
+        "key_bytes_upper": 26,
+        "line": 435,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "size_residual_row",
+        "key_bytes_upper": 17,
+        "line": 436,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "size_pivot_evidence",
+        "key_bytes_upper": 19,
+        "line": 437,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "size_frame_element",
+        "key_bytes_upper": 18,
+        "line": 438,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "size_symmetric_matrix_entry",
+        "key_bytes_upper": 27,
+        "line": 439,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "model_canonical_len",
+        "key_bytes_upper": 19,
+        "line": 440,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 18,
+        "key": "model_canonical_fnv64",
+        "key_bytes_upper": 21,
+        "line": 441,
+        "method": "hex",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "phase_elapsed_ns",
+        "key_bytes_upper": 16,
+        "line": 442,
+        "method": "opt_n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "phase_peak_heap",
+        "key_bytes_upper": 15,
+        "line": 443,
+        "method": "opt_n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "phase_peak_heap_move",
+        "key_bytes_upper": 20,
+        "line": 444,
+        "method": "opt_n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "item",
+        "key_bytes_upper": 4,
+        "line": 454,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "repeat",
+        "key_bytes_upper": 6,
+        "line": 455,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 5,
+        "key": "equal",
+        "key_bytes_upper": 5,
+        "line": 456,
+        "method": "b",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "schema",
+        "key_bytes_upper": 6,
+        "line": 517,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "pid",
+        "key_bytes_upper": 3,
+        "line": 518,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 5,
+        "key": "noop",
+        "key_bytes_upper": 4,
+        "line": 519,
+        "method": "b",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "heap_cap_bytes",
+        "key_bytes_upper": 14,
+        "line": 520,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "repeats_completed",
+        "key_bytes_upper": 17,
+        "line": 523,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 4,
+        "key": "stop_reason",
+        "key_bytes_upper": 11,
+        "line": 524,
+        "method": "null",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "heap_peak",
+        "key_bytes_upper": 9,
+        "line": 525,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "heap_peak_move",
+        "key_bytes_upper": 14,
+        "line": 526,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "schema",
+        "key_bytes_upper": 6,
+        "line": 537,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "pid",
+        "key_bytes_upper": 3,
+        "line": 538,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "model",
+        "key_bytes_upper": 5,
+        "line": 539,
+        "method": "opt_s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 5,
+        "key": "model_from_file",
+        "key_bytes_upper": 15,
+        "line": 540,
+        "method": "b",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "mode",
+        "key_bytes_upper": 4,
+        "line": 541,
+        "method": "opt_s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 5,
+        "key": "counts_only",
+        "key_bytes_upper": 11,
+        "line": 542,
+        "method": "b",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "repeats",
+        "key_bytes_upper": 7,
+        "line": 543,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "entry_repeats",
+        "key_bytes_upper": 13,
+        "line": 544,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "heap_cap_bytes",
+        "key_bytes_upper": 14,
+        "line": 545,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "time_budget_s",
+        "key_bytes_upper": 13,
+        "line": 546,
+        "method": "opt_n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "first_repeat_limit_s",
+        "key_bytes_upper": 20,
+        "line": 547,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 5,
+        "key": "allow_over_estimate",
+        "key_bytes_upper": 19,
+        "line": 548,
+        "method": "b",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "case_limit",
+        "key_bytes_upper": 10,
+        "line": 551,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "invocation_limit",
+        "key_bytes_upper": 16,
+        "line": 552,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 5,
+        "key": "w1_prefixes",
+        "key_bytes_upper": 11,
+        "line": 553,
+        "method": "b",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 5,
+        "key": "dump_published",
+        "key_bytes_upper": 14,
+        "line": 554,
+        "method": "b",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "repeats_completed",
+        "key_bytes_upper": 17,
+        "line": 651,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 4,
+        "key": "stop_reason",
+        "key_bytes_upper": 11,
+        "line": 652,
+        "method": "null",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "heap_peak",
+        "key_bytes_upper": 9,
+        "line": 653,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "heap_peak_move",
+        "key_bytes_upper": 14,
+        "line": 654,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "repeat",
+        "key_bytes_upper": 6,
+        "line": 697,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "class",
+        "key_bytes_upper": 5,
+        "line": 698,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "failed_stage",
+        "key_bytes_upper": 12,
+        "line": 699,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "detail",
+        "key_bytes_upper": 6,
+        "line": 700,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "repeat",
+        "key_bytes_upper": 6,
+        "line": 728,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "class",
+        "key_bytes_upper": 5,
+        "line": 729,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "failed_stage",
+        "key_bytes_upper": 12,
+        "line": 730,
+        "method": "opt_s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 41414,
+        "key": "factor_error",
+        "key_bytes_upper": 12,
+        "line": 731,
+        "method": "opt_s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 41414,
+        "key": "error",
+        "key_bytes_upper": 5,
+        "line": 735,
+        "method": "opt_s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 5,
+        "key": "formation_demoted",
+        "key_bytes_upper": 17,
+        "line": 739,
+        "method": "b",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 5,
+        "key": "load_fidelity_flagged",
+        "key_bytes_upper": 21,
+        "line": 746,
+        "method": "b",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "contribution_rounding_rows",
+        "key_bytes_upper": 26,
+        "line": 753,
+        "method": "opt_n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "recovery_ok",
+        "key_bytes_upper": 11,
+        "line": 761,
+        "method": "opt_n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "recovery_digest",
+        "key_bytes_upper": 15,
+        "line": 762,
+        "method": "opt_s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "solution_debug_len",
+        "key_bytes_upper": 18,
+        "line": 766,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 18,
+        "key": "solution_debug_fnv64",
+        "key_bytes_upper": 20,
+        "line": 767,
+        "method": "hex",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "ordering_profile_entries",
+        "key_bytes_upper": 24,
+        "line": 774,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "ordering_half_bandwidth",
+        "key_bytes_upper": 23,
+        "line": 775,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "entry_class",
+        "key_bytes_upper": 11,
+        "line": 782,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "entry_debug_len",
+        "key_bytes_upper": 15,
+        "line": 783,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 18,
+        "key": "entry_debug_fnv64",
+        "key_bytes_upper": 17,
+        "line": 784,
+        "method": "hex",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "entry_plain_class",
+        "key_bytes_upper": 17,
+        "line": 794,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "entry_plain_debug_len",
+        "key_bytes_upper": 21,
+        "line": 795,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 18,
+        "key": "entry_plain_debug_fnv64",
+        "key_bytes_upper": 23,
+        "line": 796,
+        "method": "hex",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "repeat",
+        "key_bytes_upper": 6,
+        "line": 812,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "class",
+        "key_bytes_upper": 5,
+        "line": 813,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "failed_stage",
+        "key_bytes_upper": 12,
+        "line": 814,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "detail",
+        "key_bytes_upper": 6,
+        "line": 815,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "repeat",
+        "key_bytes_upper": 6,
+        "line": 822,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "class",
+        "key_bytes_upper": 5,
+        "line": 823,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 41414,
+        "key": "error",
+        "key_bytes_upper": 5,
+        "line": 824,
+        "method": "opt_s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "solution_len",
+        "key_bytes_upper": 12,
+        "line": 825,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 18,
+        "key": "solution_fnv64",
+        "key_bytes_upper": 14,
+        "line": 826,
+        "method": "hex",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "original_profile_entries",
+        "key_bytes_upper": 24,
+        "line": 831,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "ordered_profile_entries",
+        "key_bytes_upper": 23,
+        "line": 832,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "original_half_bandwidth",
+        "key_bytes_upper": 23,
+        "line": 833,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "ordered_half_bandwidth",
+        "key_bytes_upper": 22,
+        "line": 834,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "lane_entries",
+        "key_bytes_upper": 12,
+        "line": 835,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "repeat",
+        "key_bytes_upper": 6,
+        "line": 855,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "class",
+        "key_bytes_upper": 5,
+        "line": 856,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 41414,
+        "key": "reason",
+        "key_bytes_upper": 6,
+        "line": 857,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "stored_entries",
+        "key_bytes_upper": 14,
+        "line": 925,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "stored_mismatches",
+        "key_bytes_upper": 17,
+        "line": 926,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "unstored_nonzero_bits",
+        "key_bytes_upper": 21,
+        "line": 927,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 41414,
+        "key": "error",
+        "key_bytes_upper": 5,
+        "line": 932,
+        "method": "opt_s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 41414,
+        "key": "dense_error",
+        "key_bytes_upper": 11,
+        "line": 933,
+        "method": "opt_s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "repeats_completed",
+        "key_bytes_upper": 17,
+        "line": 975,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 41414,
+        "key": "stop_reason",
+        "key_bytes_upper": 11,
+        "line": 976,
+        "method": "opt_s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "repeats_heap_peak",
+        "key_bytes_upper": 17,
+        "line": 977,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "repeats_heap_peak_move",
+        "key_bytes_upper": 22,
+        "line": 978,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "counts_phase_heap_peak",
+        "key_bytes_upper": 22,
+        "line": 979,
+        "method": "opt_n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "counts_phase_heap_peak_move",
+        "key_bytes_upper": 27,
+        "line": 980,
+        "method": "opt_n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "parity_phase_heap_peak",
+        "key_bytes_upper": 22,
+        "line": 981,
+        "method": "opt_n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "parity_phase_heap_peak_move",
+        "key_bytes_upper": 27,
+        "line": 982,
+        "method": "opt_n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "heap_peak",
+        "key_bytes_upper": 9,
+        "line": 983,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "heap_peak_move",
+        "key_bytes_upper": 14,
+        "line": 984,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "elapsed_ns",
+        "key_bytes_upper": 10,
+        "line": 985,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "prefix_phase_heap_peak",
+        "key_bytes_upper": 22,
+        "line": 988,
+        "method": "opt_n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "prefix_phase_heap_peak_move",
+        "key_bytes_upper": 27,
+        "line": 989,
+        "method": "opt_n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key_bytes_upper": 39,
+        "key_template": "estimate_f1b_bytes_{}",
+        "line": 375,
+        "method": "opt_n",
+        "multiplicity_upper": 19,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key_bytes_upper": 39,
+        "key_template": "estimate_adm_bytes_{}",
+        "line": 379,
+        "method": "n",
+        "multiplicity_upper": 19,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key_bytes_upper": 39,
+        "key_template": "estimate_w1_shared_{p}",
+        "line": 396,
+        "method": "n",
+        "multiplicity_upper": 19,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key_bytes_upper": 38,
+        "key_template": "estimate_w1_state_{p}",
+        "line": 397,
+        "method": "n",
+        "multiplicity_upper": 19,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key_bytes_upper": 38,
+        "key_template": "estimate_w1_solve_{p}",
+        "line": 398,
+        "method": "n",
+        "multiplicity_upper": 19,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key_bytes_upper": 39,
+        "key_template": "estimate_w1_verify_{p}",
+        "line": 402,
+        "method": "n",
+        "multiplicity_upper": 19,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key_bytes_upper": 37,
+        "key_template": "estimate_w1_pass_{p}",
+        "line": 403,
+        "method": "n",
+        "multiplicity_upper": 19,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key_bytes_upper": 39,
+        "key_template": "w1_limbs_per_entry_{p}",
+        "line": 423,
+        "method": "n",
+        "multiplicity_upper": 19,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key_bytes_upper": 37,
+        "key_template": "w1_storage_bytes_{p}",
+        "line": 424,
+        "method": "n",
+        "multiplicity_upper": 19,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key_bytes_upper": 34,
+        "key_template": "w1_wide_bytes_{limbs}",
+        "line": 427,
+        "method": "n",
+        "multiplicity_upper": 19,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "repeat",
+        "key_bytes_upper": 6,
+        "line": 77,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "class",
+        "key_bytes_upper": 5,
+        "line": 78,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "selected_precision",
+        "key_bytes_upper": 18,
+        "line": 86,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "verification_precision",
+        "key_bytes_upper": 22,
+        "line": 87,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 4,
+        "key": "reason",
+        "key_bytes_upper": 6,
+        "line": 88,
+        "method": "null",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "rows",
+        "key_bytes_upper": 4,
+        "line": 89,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "rows_relative_verified",
+        "key_bytes_upper": 22,
+        "line": 90,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "rows_absolute_verified",
+        "key_bytes_upper": 22,
+        "line": 91,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "rows_input_derived",
+        "key_bytes_upper": 18,
+        "line": 92,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "rows_unpublishable",
+        "key_bytes_upper": 18,
+        "line": 93,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "publication_debug_len",
+        "key_bytes_upper": 21,
+        "line": 94,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 18,
+        "key": "publication_fnv64",
+        "key_bytes_upper": 17,
+        "line": 95,
+        "method": "hex",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "evidence_debug_len",
+        "key_bytes_upper": 18,
+        "line": 96,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 18,
+        "key": "evidence_fnv64",
+        "key_bytes_upper": 14,
+        "line": 97,
+        "method": "hex",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 18,
+        "key": "retained_state_fnv64",
+        "key_bytes_upper": 20,
+        "line": 98,
+        "method": "hex",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 4,
+        "key": "selected_precision",
+        "key_bytes_upper": 18,
+        "line": 104,
+        "method": "null",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 4,
+        "key": "verification_precision",
+        "key_bytes_upper": 22,
+        "line": 105,
+        "method": "null",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 41414,
+        "key": "reason",
+        "key_bytes_upper": 6,
+        "line": 106,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 4,
+        "key": "selected_precision",
+        "key_bytes_upper": 18,
+        "line": 108,
+        "method": "null",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 4,
+        "key": "verification_precision",
+        "key_bytes_upper": 22,
+        "line": 109,
+        "method": "null",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 41414,
+        "key": "reason",
+        "key_bytes_upper": 6,
+        "line": 110,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "attempts",
+        "key_bytes_upper": 8,
+        "line": 113,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "meter_charged",
+        "key_bytes_upper": 13,
+        "line": 114,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 5,
+        "key": "budget_reached",
+        "key_bytes_upper": 14,
+        "line": 115,
+        "method": "b",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "repeat",
+        "key_bytes_upper": 6,
+        "line": 129,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "index",
+        "key_bytes_upper": 5,
+        "line": 130,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "precision",
+        "key_bytes_upper": 9,
+        "line": 131,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "role",
+        "key_bytes_upper": 4,
+        "line": 132,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "outcome",
+        "key_bytes_upper": 7,
+        "line": 133,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "residual_basis",
+        "key_bytes_upper": 14,
+        "line": 134,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "corrections",
+        "key_bytes_upper": 11,
+        "line": 135,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "gate",
+        "key_bytes_upper": 4,
+        "line": 136,
+        "method": "opt_s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 1137,
+        "key": "pivot_margin_min",
+        "key_bytes_upper": 16,
+        "line": 137,
+        "method": "f",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 1137,
+        "key": "rcond",
+        "key_bytes_upper": 5,
+        "line": 138,
+        "method": "f",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 1137,
+        "key": "residual_worst",
+        "key_bytes_upper": 14,
+        "line": 139,
+        "method": "f",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "storage_pattern_entries",
+        "key_bytes_upper": 23,
+        "line": 140,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "storage_profile_entries",
+        "key_bytes_upper": 23,
+        "line": 141,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "storage_limbs_per_entry",
+        "key_bytes_upper": 23,
+        "line": 142,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 5,
+        "key": "stages_complete",
+        "key_bytes_upper": 15,
+        "line": 151,
+        "method": "b",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "own_unstaged",
+        "key_bytes_upper": 12,
+        "line": 152,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "shared_unstaged",
+        "key_bytes_upper": 15,
+        "line": 153,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "own_total",
+        "key_bytes_upper": 9,
+        "line": 154,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "charged_by",
+        "key_bytes_upper": 10,
+        "line": 155,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "shared_work",
+        "key_bytes_upper": 11,
+        "line": 156,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 5,
+        "key": "shared_built_here",
+        "key_bytes_upper": 17,
+        "line": 157,
+        "method": "b",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "stop_rule_work",
+        "key_bytes_upper": 14,
+        "line": 158,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "verification_work",
+        "key_bytes_upper": 17,
+        "line": 159,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "verification_shared_work",
+        "key_bytes_upper": 24,
+        "line": 160,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 5,
+        "key": "verification_shared_built_here",
+        "key_bytes_upper": 30,
+        "line": 161,
+        "method": "b",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "verification_data_blocks",
+        "key_bytes_upper": 24,
+        "line": 165,
+        "method": "opt_n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "verification_shift_factorizations",
+        "key_bytes_upper": 33,
+        "line": 166,
+        "method": "opt_n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "verification_uc_missing",
+        "key_bytes_upper": 23,
+        "line": 170,
+        "method": "opt_n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "verification_g_max",
+        "key_bytes_upper": 18,
+        "line": 171,
+        "method": "opt_n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "verification_g_violation",
+        "key_bytes_upper": 24,
+        "line": 172,
+        "method": "opt_n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "item",
+        "key_bytes_upper": 4,
+        "line": 179,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "repeat",
+        "key_bytes_upper": 6,
+        "line": 180,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 5,
+        "key": "equal",
+        "key_bytes_upper": 5,
+        "line": 181,
+        "method": "b",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "counts_profile_entries",
+        "key_bytes_upper": 22,
+        "line": 195,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "counts_pattern_entries",
+        "key_bytes_upper": 22,
+        "line": 204,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "meter_charged",
+        "key_bytes_upper": 13,
+        "line": 225,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 18,
+        "key": "evidence_source_fnv64",
+        "key_bytes_upper": 21,
+        "line": 235,
+        "method": "hex",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "prefix",
+        "key_bytes_upper": 6,
+        "line": 265,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "through_segment",
+        "key_bytes_upper": 15,
+        "line": 266,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "case_limit",
+        "key_bytes_upper": 10,
+        "line": 267,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "class",
+        "key_bytes_upper": 5,
+        "line": 268,
+        "method": "s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 41414,
+        "key": "reason",
+        "key_bytes_upper": 6,
+        "line": 269,
+        "method": "opt_s",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "attempts",
+        "key_bytes_upper": 8,
+        "line": 270,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key": "meter_charged",
+        "key_bytes_upper": 13,
+        "line": 271,
+        "method": "n",
+        "multiplicity_upper": 1,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key_bytes_upper": 34,
+        "key_template": "work_{}_attempts",
+        "line": 118,
+        "method": "n",
+        "multiplicity_upper": 19,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key_bytes_upper": 29,
+        "key_template": "work_{}_own",
+        "line": 119,
+        "method": "n",
+        "multiplicity_upper": 19,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key_bytes_upper": 32,
+        "key_template": "work_{}_shared",
+        "line": 120,
+        "method": "n",
+        "multiplicity_upper": 19,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key_bytes_upper": 24,
+        "key_template": "own_{name}",
+        "line": 144,
+        "method": "n",
+        "multiplicity_upper": 19,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 39,
+        "key_bytes_upper": 27,
+        "key_template": "shared_{name}",
+        "line": 147,
+        "method": "n",
+        "multiplicity_upper": 19,
+        "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs"
+      },
+      {
+        "encoded_value_bytes_upper": 10418,
+        "key": "kind",
+        "key_bytes_upper": 4,
+        "multiplicity_upper": 1,
+        "path": "Line::new"
+      }
+    ],
+    "line_requested_move_upper": 2723004,
+    "reason_upper": 6902,
+    "static_literal_bytes_upper": 131,
+    "type_debug_upper": {
+      "&'static str": 788,
+      "AttemptOutcome": 143,
+      "AttemptReason": 133,
+      "AttemptRole": 25,
+      "AttemptStop": 67,
+      "BudgetScope": 10,
+      "Component": 2,
+      "Dof": 39,
+      "End": 1,
+      "FrameKernelError": 1961,
+      "Kind": 11,
+      "LedgerRefusal": 32,
+      "MemberProperty": 15,
+      "QuantityId": 61,
+      "Refusal": 6893,
+      "SourceError": 75,
+      "SumError": 19,
+      "UnresolvedReason": 66,
+      "WideError": 32,
+      "bool": 5,
+      "f64": 1137,
+      "i64": 20,
+      "u32": 10,
+      "u64": 20,
+      "u8": 3,
+      "usize": 20
+    },
+    "value_bytes_upper": 6902,
+    "variants": {
+      "AttemptOutcome": [
+        {
+          "max_debug_bytes": 8,
+          "variant": "Accepted"
+        },
+        {
+          "max_debug_bytes": 8,
+          "variant": "Verified"
+        },
+        {
+          "max_debug_bytes": 143,
+          "variant": "Rejected"
+        },
+        {
+          "max_debug_bytes": 141,
+          "variant": "Failed"
+        },
+        {
+          "max_debug_bytes": 6,
+          "variant": "Solved"
+        }
+      ],
+      "AttemptReason": [
+        {
+          "max_debug_bytes": 73,
+          "variant": "Stop"
+        },
+        {
+          "max_debug_bytes": 121,
+          "variant": "StopRule"
+        },
+        {
+          "max_debug_bytes": 18,
+          "variant": "VerificationFailed"
+        },
+        {
+          "max_debug_bytes": 133,
+          "variant": "VerificationEstimate"
+        },
+        {
+          "max_debug_bytes": 23,
+          "variant": "Uc"
+        },
+        {
+          "max_debug_bytes": 26,
+          "variant": "Theta"
+        },
+        {
+          "max_debug_bytes": 32,
+          "variant": "GValidity"
+        },
+        {
+          "max_debug_bytes": 119,
+          "variant": "Charge"
+        }
+      ],
+      "AttemptRole": [
+        {
+          "max_debug_bytes": 9,
+          "variant": "Candidate"
+        },
+        {
+          "max_debug_bytes": 12,
+          "variant": "Verification"
+        },
+        {
+          "max_debug_bytes": 25,
+          "variant": "VerificationThenCandidate"
+        }
+      ],
+      "AttemptStop": [
+        {
+          "max_debug_bytes": 18,
+          "variant": "Budget"
+        },
+        {
+          "max_debug_bytes": 4,
+          "variant": "Span"
+        },
+        {
+          "max_debug_bytes": 8,
+          "variant": "Exponent"
+        },
+        {
+          "max_debug_bytes": 44,
+          "variant": "Arithmetic"
+        },
+        {
+          "max_debug_bytes": 9,
+          "variant": "Structure"
+        },
+        {
+          "max_debug_bytes": 42,
+          "variant": "Pivot"
+        },
+        {
+          "max_debug_bytes": 49,
+          "variant": "ZeroDiagonal"
+        },
+        {
+          "max_debug_bytes": 67,
+          "variant": "NegativeEnergy"
+        },
+        {
+          "max_debug_bytes": 9,
+          "variant": "Condition"
+        },
+        {
+          "max_debug_bytes": 49,
+          "variant": "ResidualGate"
+        },
+        {
+          "max_debug_bytes": 55,
+          "variant": "ResolutionScale"
+        }
+      ],
+      "BudgetScope": [
+        {
+          "max_debug_bytes": 4,
+          "variant": "Case"
+        },
+        {
+          "max_debug_bytes": 10,
+          "variant": "Invocation"
+        }
+      ],
+      "Component": [
+        {
+          "max_debug_bytes": 2,
+          "variant": "Ux"
+        },
+        {
+          "max_debug_bytes": 2,
+          "variant": "Uy"
+        },
+        {
+          "max_debug_bytes": 2,
+          "variant": "Uz"
+        },
+        {
+          "max_debug_bytes": 2,
+          "variant": "Rx"
+        },
+        {
+          "max_debug_bytes": 2,
+          "variant": "Ry"
+        },
+        {
+          "max_debug_bytes": 2,
+          "variant": "Rz"
+        }
+      ],
+      "End": [
+        {
+          "max_debug_bytes": 1,
+          "variant": "I"
+        },
+        {
+          "max_debug_bytes": 1,
+          "variant": "J"
+        }
+      ],
+      "FrameKernelError": [
+        {
+          "max_debug_bytes": 1959,
+          "variant": "NonFiniteInput"
+        },
+        {
+          "max_debug_bytes": 1961,
+          "variant": "NonPositiveInput"
+        },
+        {
+          "max_debug_bytes": 815,
+          "variant": "DegenerateAxis"
+        },
+        {
+          "max_debug_bytes": 819,
+          "variant": "InvalidOrientation"
+        },
+        {
+          "max_debug_bytes": 87,
+          "variant": "InvalidNodeIndex"
+        },
+        {
+          "max_debug_bytes": 61,
+          "variant": "RepeatedElementNodeIndex"
+        },
+        {
+          "max_debug_bytes": 82,
+          "variant": "InvalidMatrixDimensions"
+        },
+        {
+          "max_debug_bytes": 84,
+          "variant": "InvalidVectorLength"
+        },
+        {
+          "max_debug_bytes": 51,
+          "variant": "RepeatedRestrainedDof"
+        },
+        {
+          "max_debug_bytes": 87,
+          "variant": "RestrainedDofOutOfRange"
+        },
+        {
+          "max_debug_bytes": 51,
+          "variant": "RepeatedPrescribedDof"
+        },
+        {
+          "max_debug_bytes": 87,
+          "variant": "PrescribedDofOutOfRange"
+        },
+        {
+          "max_debug_bytes": 46,
+          "variant": "SingularSystem"
+        },
+        {
+          "max_debug_bytes": 813,
+          "variant": "NumericalRange"
+        }
+      ],
+      "Kind": [
+        {
+          "max_debug_bytes": 11,
+          "variant": "Translation"
+        },
+        {
+          "max_debug_bytes": 8,
+          "variant": "Rotation"
+        },
+        {
+          "max_debug_bytes": 5,
+          "variant": "Force"
+        },
+        {
+          "max_debug_bytes": 6,
+          "variant": "Moment"
+        }
+      ],
+      "LedgerRefusal": [
+        {
+          "max_debug_bytes": 32,
+          "variant": "Accumulator"
+        }
+      ],
+      "MemberProperty": [
+        {
+          "max_debug_bytes": 14,
+          "variant": "ElasticModulus"
+        },
+        {
+          "max_debug_bytes": 12,
+          "variant": "ShearModulus"
+        },
+        {
+          "max_debug_bytes": 4,
+          "variant": "Area"
+        },
+        {
+          "max_debug_bytes": 13,
+          "variant": "SecondMomentY"
+        },
+        {
+          "max_debug_bytes": 13,
+          "variant": "SecondMomentZ"
+        },
+        {
+          "max_debug_bytes": 15,
+          "variant": "TorsionConstant"
+        },
+        {
+          "max_debug_bytes": 10,
+          "variant": "YReference"
+        }
+      ],
+      "QuantityId": [
+        {
+          "max_debug_bytes": 53,
+          "variant": "Displacement"
+        },
+        {
+          "max_debug_bytes": 33,
+          "variant": "DisplacementMagnitude"
+        },
+        {
+          "max_debug_bytes": 55,
+          "variant": "EndAction"
+        },
+        {
+          "max_debug_bytes": 52,
+          "variant": "StationAction"
+        },
+        {
+          "max_debug_bytes": 50,
+          "variant": "SpringAction"
+        },
+        {
+          "max_debug_bytes": 61,
+          "variant": "DirectionalSpringAction"
+        },
+        {
+          "max_debug_bytes": 49,
+          "variant": "Reaction"
+        },
+        {
+          "max_debug_bytes": 33,
+          "variant": "SupportForceMagnitude"
+        },
+        {
+          "max_debug_bytes": 34,
+          "variant": "SupportMomentMagnitude"
+        }
+      ],
+      "Refusal": [
+        {
+          "max_debug_bytes": 6893,
+          "variant": "MechanismWitnessed"
+        },
+        {
+          "max_debug_bytes": 851,
+          "variant": "GeometryUnavailable"
+        },
+        {
+          "max_debug_bytes": 67,
+          "variant": "NegativeEnergy"
+        },
+        {
+          "max_debug_bytes": 51,
+          "variant": "LedgerUnavailable"
+        },
+        {
+          "max_debug_bytes": 9,
+          "variant": "Structure"
+        }
+      ],
+      "SourceError": [
+        {
+          "max_debug_bytes": 7,
+          "variant": "NoNodes"
+        },
+        {
+          "max_debug_bytes": 40,
+          "variant": "NonFiniteCoordinate"
+        },
+        {
+          "max_debug_bytes": 35,
+          "variant": "NodeOutOfRange"
+        },
+        {
+          "max_debug_bytes": 36,
+          "variant": "DuplicateMemberId"
+        },
+        {
+          "max_debug_bytes": 41,
+          "variant": "RepeatedMemberNode"
+        },
+        {
+          "max_debug_bytes": 67,
+          "variant": "NonFiniteProperty"
+        },
+        {
+          "max_debug_bytes": 69,
+          "variant": "NonPositiveProperty"
+        },
+        {
+          "max_debug_bytes": 75,
+          "variant": "SubnormalDerivedPrimitive"
+        },
+        {
+          "max_debug_bytes": 33,
+          "variant": "ZeroLength"
+        },
+        {
+          "max_debug_bytes": 37,
+          "variant": "DegenerateAxis"
+        },
+        {
+          "max_debug_bytes": 36,
+          "variant": "DuplicateSpringId"
+        },
+        {
+          "max_debug_bytes": 36,
+          "variant": "NonPositiveSpring"
+        },
+        {
+          "max_debug_bytes": 32,
+          "variant": "ZeroDirection"
+        },
+        {
+          "max_debug_bytes": 37,
+          "variant": "NonFiniteDirection"
+        },
+        {
+          "max_debug_bytes": 68,
+          "variant": "DuplicateConstraint"
+        },
+        {
+          "max_debug_bytes": 63,
+          "variant": "NonFiniteValue"
+        },
+        {
+          "max_debug_bytes": 64,
+          "variant": "EmptyLoadSource"
+        },
+        {
+          "max_debug_bytes": 37,
+          "variant": "DuplicateStationId"
+        },
+        {
+          "max_debug_bytes": 57,
+          "variant": "UnknownMember"
+        },
+        {
+          "max_debug_bytes": 36,
+          "variant": "StationOutOfRange"
+        },
+        {
+          "max_debug_bytes": 37,
+          "variant": "DuplicateSupportId"
+        },
+        {
+          "max_debug_bytes": 34,
+          "variant": "SupportMismatch"
+        }
+      ],
+      "SumError": [
+        {
+          "max_debug_bytes": 9,
+          "variant": "NonFinite"
+        },
+        {
+          "max_debug_bytes": 19,
+          "variant": "AccumulatorOverflow"
+        },
+        {
+          "max_debug_bytes": 16,
+          "variant": "NonRepresentable"
+        }
+      ],
+      "UnresolvedReason": [
+        {
+          "max_debug_bytes": 7,
+          "variant": "Ceiling"
+        },
+        {
+          "max_debug_bytes": 18,
+          "variant": "Budget"
+        },
+        {
+          "max_debug_bytes": 12,
+          "variant": "ExactSumSpan"
+        },
+        {
+          "max_debug_bytes": 13,
+          "variant": "ExponentRange"
+        },
+        {
+          "max_debug_bytes": 49,
+          "variant": "ZeroDiagonal"
+        },
+        {
+          "max_debug_bytes": 44,
+          "variant": "Arithmetic"
+        },
+        {
+          "max_debug_bytes": 66,
+          "variant": "ResolutionScaleUnencodable"
+        },
+        {
+          "max_debug_bytes": 46,
+          "variant": "CertifiedBoundUnencodable"
+        }
+      ],
+      "WideError": [
+        {
+          "max_debug_bytes": 28,
+          "variant": "InvalidPrecision"
+        },
+        {
+          "max_debug_bytes": 9,
+          "variant": "NonFinite"
+        },
+        {
+          "max_debug_bytes": 13,
+          "variant": "ExponentRange"
+        },
+        {
+          "max_debug_bytes": 14,
+          "variant": "DivisionByZero"
+        },
+        {
+          "max_debug_bytes": 12,
+          "variant": "NegativeSqrt"
+        },
+        {
+          "max_debug_bytes": 13,
+          "variant": "NotNormalized"
+        },
+        {
+          "max_debug_bytes": 11,
+          "variant": "AngleDomain"
+        },
+        {
+          "max_debug_bytes": 15,
+          "variant": "ArctangentLimit"
+        },
+        {
+          "max_debug_bytes": 13,
+          "variant": "SplitOverflow"
+        },
+        {
+          "max_debug_bytes": 32,
+          "variant": "Accumulator"
+        },
+        {
+          "max_debug_bytes": 16,
+          "variant": "OperandPrecision"
+        }
+      ]
+    }
+  },
+  "inputs": [
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/source.rs",
+      "sha256": "46c85ba0d9e0c45f6d19bfd188ce8cc52e4d773b96d3b7e8d0746b78e5582ca9"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/recover.rs",
+      "sha256": "e452e3467608a4680359a36d30b6a580d72a12b778d506ff8118646257b7d388"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/adaptive.rs",
+      "sha256": "472bafb8281c7d311a81dcd5da042dd0f8db998bd81cf4902e6b55409eb5a563"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/wide.rs",
+      "sha256": "5d35b70d45680f769354bbc6694c78186354d235a7af29891a9b09e7b4a293ad"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/ledger.rs",
+      "sha256": "66a48fb2a49c84e8e294bb741888fc53f72edcb6b7a3a4331fdeafaa7221ac4e"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/exact_sum.rs",
+      "sha256": "3a847f8dbaa74768603c4d9693b538f1f63c2d172026ed7ab400aea3b4800f67"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural.rs",
+      "sha256": "32dfe5971f95be3eb276fa594c5ab4b0c5ce8724b942a098f2fda1104886d9d2"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/rigid_body.rs",
+      "sha256": "3e5b9be185428f1652775f60cbb98b9d30e08bff4ce2a9b2bb83ccf662d30a1b"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/lib.rs",
+      "sha256": "627404d6c0de08e6c681dcc876b39efc68fa04b5c155636785e2abb0f4faff0b"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/sparse.rs",
+      "sha256": "43c1f369a2fafef0dda00503f06b602bb3f0996c1c7f5fe398dce1145d735ee6"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/main.rs",
+      "sha256": "42d82fbfb3e21c11c647f6b2f83aaa21ee6ded6617601f14790e1c282f60b77d"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/bin/k6_observe/w1.rs",
+      "sha256": "e490e96151468e2e3e561bb42f9a43f08529db5121d1ccfce63329521559e2ec"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/k6/w1/staged.rs",
+      "sha256": "fd3e00c06aff970c44cd147f255fe371b16729fe0a80b62b32a09bc0afddc337"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/k6/counts.rs",
+      "sha256": "baafa84572229fa7fbf3bab5e2e8b5c8b879354928116e79e5ef70b62cc6bf53"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/k6/canonical.rs",
+      "sha256": "1988556d81b643c970a0a29238e847e68cd62cdf3cff741990c53aaf89c1a9c8"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/src/k6/w1/rows.rs",
+      "sha256": "f377fef479d3e00a16817b8df3e41e1da5502e680f7582a0ef30318351cc77e0"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/performance_harness/observations/k6b/counts.jsonl",
+      "sha256": "fab0466a846ef26b1c530a261a6f1d134fc32ba1d70f57682010877a52373c05"
+    },
+    {
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_robustness/cases/rf_large.jsonl",
+      "sha256": "16357afa5efeaaac3ab5798bb6f632104bec1e2dfada288f5b0936bfe6188759"
+    },
+    {
+      "path": "projects/chirality-piping/validation/benchmarks/numerical_robustness/cases/expected_unresolved.json",
+      "sha256": "2e5d0975a90c69e5d198d61760cc7734d42615461710da1fe226f60b4a46f2c9"
+    }
+  ],
+  "inputs_not_supplied": [
+    "future exact argv and path byte lengths",
+    "twelve large-model bytes/shapes bound by their existing hashes",
+    "L1 and consumer layout values"
+  ],
+  "kind": "source_finish_symbolic_envelope_parameters_not_Emax",
+  "product_basis": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "runtime_execution": false,
+  "script_origin": "new source_finish_01 record; not a historical script at product basis",
+  "script_sha256": "38f20ca64fd08f636507527da3737f40f9878e6c28122a4db65ebb924f41d4b4",
+  "vr_family": {
+    "bytes": 986182,
+    "cases": [
+      {
+        "controls": 3,
+        "id": "RF-LARGE-CHAIN-n00010-AX",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 3,
+            "2": 6,
+            "3": 11,
+            "4": 162,
+            "6": 2,
+            "10": 2,
+            "11": 1,
+            "13": 10,
+            "142": 1
+          },
+          "key_payload_bytes": 567,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "6": 2,
+            "7": 1,
+            "12": 1,
+            "24": 2
+          },
+          "string_payload_bytes": 11560
+        },
+        "rows": 142,
+        "strings_arrays_objects_stats": [
+          742,
+          12127,
+          198,
+          6,
+          64
+        ]
+      },
+      {
+        "controls": 3,
+        "id": "RF-LARGE-CHAIN-n00010-ROT",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 3,
+            "2": 6,
+            "3": 11,
+            "4": 162,
+            "6": 2,
+            "10": 2,
+            "11": 1,
+            "13": 10,
+            "142": 1
+          },
+          "key_payload_bytes": 601,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "6": 2,
+            "7": 1,
+            "12": 1,
+            "24": 2
+          },
+          "string_payload_bytes": 12258
+        },
+        "rows": 142,
+        "strings_arrays_objects_stats": [
+          742,
+          12859,
+          198,
+          6,
+          64
+        ]
+      },
+      {
+        "controls": 3,
+        "id": "RF-LARGE-TREE-n00010-AX",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 3,
+            "2": 6,
+            "3": 11,
+            "4": 161,
+            "6": 1,
+            "10": 2,
+            "11": 1,
+            "13": 10,
+            "142": 1
+          },
+          "key_payload_bytes": 559,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "2": 1,
+            "6": 1,
+            "7": 1,
+            "12": 1,
+            "24": 2
+          },
+          "string_payload_bytes": 9832
+        },
+        "rows": 142,
+        "strings_arrays_objects_stats": [
+          730,
+          10391,
+          196,
+          6,
+          64
+        ]
+      },
+      {
+        "controls": 3,
+        "id": "RF-LARGE-TREE-n00010-ROT",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 3,
+            "2": 6,
+            "3": 11,
+            "4": 168,
+            "6": 1,
+            "10": 2,
+            "11": 1,
+            "12": 1,
+            "13": 10,
+            "142": 1
+          },
+          "key_payload_bytes": 577,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "3": 1,
+            "6": 1,
+            "7": 1,
+            "12": 1,
+            "24": 2
+          },
+          "string_payload_bytes": 10337
+        },
+        "rows": 142,
+        "strings_arrays_objects_stats": [
+          748,
+          10914,
+          204,
+          6,
+          64
+        ]
+      },
+      {
+        "controls": 4,
+        "id": "RF-LARGE-CONT-n00010-AX",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 3,
+            "2": 21,
+            "3": 10,
+            "4": 180,
+            "7": 1,
+            "10": 2,
+            "11": 1,
+            "13": 10,
+            "21": 1,
+            "157": 1
+          },
+          "key_payload_bytes": 771,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "6": 1,
+            "7": 1,
+            "12": 1,
+            "14": 1,
+            "16": 1,
+            "24": 2
+          },
+          "string_payload_bytes": 10254
+        },
+        "rows": 157,
+        "strings_arrays_objects_stats": [
+          839,
+          11025,
+          230,
+          7,
+          64
+        ]
+      },
+      {
+        "controls": 3,
+        "id": "RF-LARGE-CONT-n00010-ROT",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 3,
+            "2": 21,
+            "3": 11,
+            "4": 185,
+            "10": 2,
+            "11": 1,
+            "13": 10,
+            "14": 1,
+            "21": 1,
+            "157": 1
+          },
+          "key_payload_bytes": 697,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "6": 1,
+            "7": 1,
+            "12": 1,
+            "21": 1,
+            "24": 2
+          },
+          "string_payload_bytes": 10892
+        },
+        "rows": 157,
+        "strings_arrays_objects_stats": [
+          833,
+          11589,
+          236,
+          6,
+          64
+        ]
+      },
+      {
+        "controls": 3,
+        "id": "RF-LARGE-CHAIN-n00100-AX",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 3,
+            "2": 6,
+            "3": 101,
+            "4": 1422,
+            "6": 2,
+            "13": 100,
+            "100": 2,
+            "101": 1,
+            "1312": 1
+          },
+          "key_payload_bytes": 597,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "6": 2,
+            "7": 1,
+            "12": 1,
+            "24": 2
+          },
+          "string_payload_bytes": 100839
+        },
+        "rows": 1312,
+        "strings_arrays_objects_stats": [
+          5602,
+          101436,
+          1638,
+          6,
+          64
+        ]
+      },
+      {
+        "controls": 3,
+        "id": "RF-LARGE-CHAIN-n00100-ROT",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 3,
+            "2": 6,
+            "3": 101,
+            "4": 1422,
+            "6": 2,
+            "13": 100,
+            "100": 2,
+            "101": 1,
+            "1312": 1
+          },
+          "key_payload_bytes": 624,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "6": 2,
+            "7": 1,
+            "12": 1,
+            "24": 2
+          },
+          "string_payload_bytes": 101332
+        },
+        "rows": 1312,
+        "strings_arrays_objects_stats": [
+          5602,
+          101956,
+          1638,
+          6,
+          64
+        ]
+      },
+      {
+        "controls": 3,
+        "id": "RF-LARGE-TREE-n00100-AX",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 3,
+            "2": 6,
+            "3": 101,
+            "4": 1459,
+            "6": 1,
+            "13": 100,
+            "43": 1,
+            "100": 2,
+            "101": 1,
+            "1312": 1
+          },
+          "key_payload_bytes": 639,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "5": 1,
+            "6": 1,
+            "7": 1,
+            "12": 1,
+            "24": 2
+          },
+          "string_payload_bytes": 82668
+        },
+        "rows": 1312,
+        "strings_arrays_objects_stats": [
+          5674,
+          83307,
+          1675,
+          6,
+          64
+        ]
+      },
+      {
+        "controls": 3,
+        "id": "RF-LARGE-TREE-n00100-ROT",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 3,
+            "2": 6,
+            "3": 101,
+            "4": 1545,
+            "6": 1,
+            "13": 100,
+            "100": 2,
+            "101": 1,
+            "129": 1,
+            "1312": 1
+          },
+          "key_payload_bytes": 621,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "6": 2,
+            "7": 1,
+            "12": 1,
+            "24": 2
+          },
+          "string_payload_bytes": 87178
+        },
+        "rows": 1312,
+        "strings_arrays_objects_stats": [
+          5848,
+          87799,
+          1761,
+          6,
+          64
+        ]
+      },
+      {
+        "controls": 4,
+        "id": "RF-LARGE-CONT-n00100-AX",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 3,
+            "2": 156,
+            "3": 100,
+            "4": 1641,
+            "13": 100,
+            "73": 1,
+            "100": 2,
+            "101": 1,
+            "156": 1,
+            "1462": 1
+          },
+          "key_payload_bytes": 983,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "6": 1,
+            "7": 1,
+            "12": 1,
+            "24": 4
+          },
+          "string_payload_bytes": 79613
+        },
+        "rows": 1462,
+        "strings_arrays_objects_stats": [
+          6272,
+          80596,
+          2006,
+          7,
+          64
+        ]
+      },
+      {
+        "controls": 3,
+        "id": "RF-LARGE-CONT-n00100-ROT",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 3,
+            "2": 156,
+            "3": 101,
+            "4": 1694,
+            "13": 100,
+            "100": 2,
+            "101": 1,
+            "128": 1,
+            "156": 1,
+            "1462": 1
+          },
+          "key_payload_bytes": 781,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "6": 1,
+            "7": 1,
+            "12": 1,
+            "24": 3
+          },
+          "string_payload_bytes": 88453
+        },
+        "rows": 1462,
+        "strings_arrays_objects_stats": [
+          6332,
+          89234,
+          2060,
+          6,
+          64
+        ]
+      },
+      {
+        "controls": 3,
+        "id": "RF-LARGE-CHAIN-n01000-AX",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 2,
+            "3": 1,
+            "4": 106,
+            "103": 1
+          },
+          "key_payload_bytes": 689,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "6": 3,
+            "15": 1,
+            "24": 2
+          },
+          "string_payload_bytes": 7422
+        },
+        "rows": 103,
+        "strings_arrays_objects_stats": [
+          468,
+          8111,
+          110,
+          6,
+          64
+        ]
+      },
+      {
+        "controls": 3,
+        "id": "RF-LARGE-CHAIN-n01000-ROT",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 2,
+            "3": 1,
+            "4": 106,
+            "103": 1
+          },
+          "key_payload_bytes": 720,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "6": 3,
+            "15": 1,
+            "24": 2
+          },
+          "string_payload_bytes": 8121
+        },
+        "rows": 103,
+        "strings_arrays_objects_stats": [
+          468,
+          8841,
+          110,
+          6,
+          64
+        ]
+      },
+      {
+        "controls": 3,
+        "id": "RF-LARGE-TREE-n01000-AX",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 2,
+            "3": 1,
+            "4": 197,
+            "194": 1
+          },
+          "key_payload_bytes": 695,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "5": 1,
+            "6": 2,
+            "15": 1,
+            "24": 2
+          },
+          "string_payload_bytes": 10649
+        },
+        "rows": 194,
+        "strings_arrays_objects_stats": [
+          739,
+          11344,
+          201,
+          6,
+          64
+        ]
+      },
+      {
+        "controls": 3,
+        "id": "RF-LARGE-TREE-n01000-ROT",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 2,
+            "3": 1,
+            "4": 197,
+            "194": 1
+          },
+          "key_payload_bytes": 703,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "6": 3,
+            "15": 1,
+            "24": 2
+          },
+          "string_payload_bytes": 10943
+        },
+        "rows": 194,
+        "strings_arrays_objects_stats": [
+          741,
+          11646,
+          201,
+          6,
+          64
+        ]
+      },
+      {
+        "controls": 4,
+        "id": "RF-LARGE-CONT-n01000-AX",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 2,
+            "4": 220,
+            "215": 1
+          },
+          "key_payload_bytes": 992,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "6": 2,
+            "15": 1,
+            "17": 1,
+            "20": 1,
+            "24": 2
+          },
+          "string_payload_bytes": 10855
+        },
+        "rows": 215,
+        "strings_arrays_objects_stats": [
+          868,
+          11847,
+          223,
+          7,
+          64
+        ]
+      },
+      {
+        "controls": 3,
+        "id": "RF-LARGE-CONT-n01000-ROT",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 2,
+            "3": 1,
+            "4": 218,
+            "215": 1
+          },
+          "key_payload_bytes": 869,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "6": 2,
+            "15": 1,
+            "24": 3
+          },
+          "string_payload_bytes": 11584
+        },
+        "rows": 215,
+        "strings_arrays_objects_stats": [
+          840,
+          12453,
+          222,
+          6,
+          64
+        ]
+      },
+      {
+        "controls": 3,
+        "id": "RF-LARGE-CHAIN-n10000-AX",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 2,
+            "3": 1,
+            "4": 106,
+            "103": 1
+          },
+          "key_payload_bytes": 727,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "6": 3,
+            "15": 1,
+            "24": 2
+          },
+          "string_payload_bytes": 7487
+        },
+        "rows": 103,
+        "strings_arrays_objects_stats": [
+          468,
+          8214,
+          110,
+          6,
+          64
+        ]
+      },
+      {
+        "controls": 3,
+        "id": "RF-LARGE-CHAIN-n10000-ROT",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 2,
+            "3": 1,
+            "4": 106,
+            "103": 1
+          },
+          "key_payload_bytes": 764,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "6": 3,
+            "15": 1,
+            "24": 2
+          },
+          "string_payload_bytes": 8214
+        },
+        "rows": 103,
+        "strings_arrays_objects_stats": [
+          468,
+          8978,
+          110,
+          6,
+          64
+        ]
+      },
+      {
+        "controls": 3,
+        "id": "RF-LARGE-TREE-n10000-AX",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 2,
+            "3": 1,
+            "4": 197,
+            "194": 1
+          },
+          "key_payload_bytes": 730,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "5": 1,
+            "6": 2,
+            "15": 1,
+            "24": 2
+          },
+          "string_payload_bytes": 11021
+        },
+        "rows": 194,
+        "strings_arrays_objects_stats": [
+          739,
+          11751,
+          201,
+          6,
+          64
+        ]
+      },
+      {
+        "controls": 3,
+        "id": "RF-LARGE-TREE-n10000-ROT",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 2,
+            "3": 1,
+            "4": 197,
+            "194": 1
+          },
+          "key_payload_bytes": 736,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "5": 1,
+            "6": 2,
+            "15": 1,
+            "24": 2
+          },
+          "string_payload_bytes": 11353
+        },
+        "rows": 194,
+        "strings_arrays_objects_stats": [
+          739,
+          12089,
+          201,
+          6,
+          64
+        ]
+      },
+      {
+        "controls": 4,
+        "id": "RF-LARGE-CONT-n10000-AX",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 2,
+            "4": 220,
+            "215": 1
+          },
+          "key_payload_bytes": 1059,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "6": 2,
+            "15": 1,
+            "17": 1,
+            "20": 1,
+            "24": 2
+          },
+          "string_payload_bytes": 11008
+        },
+        "rows": 215,
+        "strings_arrays_objects_stats": [
+          868,
+          12067,
+          223,
+          7,
+          64
+        ]
+      },
+      {
+        "controls": 3,
+        "id": "RF-LARGE-CONT-n10000-ROT",
+        "line_json_shape": {
+          "array_length_histogram": {
+            "0": 2,
+            "3": 1,
+            "4": 218,
+            "215": 1
+          },
+          "key_payload_bytes": 925,
+          "longest_string_bytes": 64,
+          "maximum_depth": 4,
+          "object_key_count_histogram": {
+            "6": 2,
+            "15": 1,
+            "24": 3
+          },
+          "string_payload_bytes": 11732
+        },
+        "rows": 215,
+        "strings_arrays_objects_stats": [
+          840,
+          12657,
+          222,
+          6,
+          64
+        ]
+      }
+    ],
+    "file": "projects/chirality-piping/validation/benchmarks/numerical_robustness/cases/rf_large.jsonl"
+  }
+}

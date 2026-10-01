@@ -1,0 +1,399 @@
+{
+  "raw_inventory_count": 33,
+  "raw_inventory_checks": [
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/RAW_INVENTORY.json",
+      "raw_relative_path": "scratch/a1-diagnosis/a1-compile-888e3888-20260930-01/CONTROLLER_RESULT.raw.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": null
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/RAW_INVENTORY.json",
+      "raw_relative_path": "scratch/a1-diagnosis/a1-compile-888e3888-20260930-01/INVOCATION_STARTED.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": null
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/RAW_INVENTORY.json",
+      "raw_relative_path": "scratch/a1-diagnosis/a1-compile-888e3888-20260930-01/POSTCHECK.raw.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": null
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/RAW_INVENTORY.json",
+      "raw_relative_path": "scratch/a1-diagnosis/a1-compile-888e3888-20260930-01/PRECHECK.raw.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": null
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/RAW_INVENTORY.json",
+      "raw_relative_path": "scratch/a1-diagnosis/a1-compile-888e3888-20260930-01/guard.stderr",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": null
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/RAW_INVENTORY.json",
+      "raw_relative_path": "scratch/a1-diagnosis/a1-compile-888e3888-20260930-01/guard.stdout",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": null
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/RAW_INVENTORY.json",
+      "raw_relative_path": "scratch/a1-diagnosis/a1-compile-888e3888-20260930-01/job.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": null
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/RAW_INVENTORY.json",
+      "raw_relative_path": "logs/a1-compile-888e3888-20260930-01/monitor.jsonl",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": null
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/RAW_INVENTORY.json",
+      "raw_relative_path": "logs/a1-compile-888e3888-20260930-01/registry.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": null
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/RAW_INVENTORY.json",
+      "raw_relative_path": "logs/a1-compile-888e3888-20260930-01/supervisor.jsonl",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": null
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/RAW_INVENTORY.json",
+      "raw_relative_path": "logs/a1-compile-888e3888-20260930-01/workload.log",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": null
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/cases/B01/RAW_INVENTORY.json",
+      "raw_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B01/INVOCATION_STARTED.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": true
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/cases/B01/RAW_INVENTORY.json",
+      "raw_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B01/POSTCHECK.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": true
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/cases/B01/RAW_INVENTORY.json",
+      "raw_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B01/PRECHECK.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": true
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/cases/B01/RAW_INVENTORY.json",
+      "raw_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B01/comparison.stderr",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": true
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/cases/B01/RAW_INVENTORY.json",
+      "raw_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B01/comparison.stdout.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": true
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/cases/B01/RAW_INVENTORY.json",
+      "raw_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B01/guard.stderr",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": true
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/cases/B01/RAW_INVENTORY.json",
+      "raw_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B01/guard.stdout",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": true
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/cases/B01/RAW_INVENTORY.json",
+      "raw_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B01/job.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": true
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/cases/B01/RAW_INVENTORY.json",
+      "raw_relative_path": "logs/a1-b-b01-888e3888-20260930-01/monitor.jsonl",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": true
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/cases/B01/RAW_INVENTORY.json",
+      "raw_relative_path": "logs/a1-b-b01-888e3888-20260930-01/registry.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": true
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/cases/B01/RAW_INVENTORY.json",
+      "raw_relative_path": "logs/a1-b-b01-888e3888-20260930-01/supervisor.jsonl",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": true
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/cases/B01/RAW_INVENTORY.json",
+      "raw_relative_path": "logs/a1-b-b01-888e3888-20260930-01/workload.log",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": true
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/cases/B02/RAW_INVENTORY.json",
+      "raw_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B02/INVOCATION_STARTED.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": true
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/cases/B02/RAW_INVENTORY.json",
+      "raw_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B02/POSTCHECK.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": true
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/cases/B02/RAW_INVENTORY.json",
+      "raw_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B02/PRECHECK.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": true
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/cases/B02/RAW_INVENTORY.json",
+      "raw_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B02/guard.stderr",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": true
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/cases/B02/RAW_INVENTORY.json",
+      "raw_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B02/guard.stdout",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": true
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/cases/B02/RAW_INVENTORY.json",
+      "raw_relative_path": "scratch/a1-diagnosis/b-tranche-20260930/B02/job.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": true
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/cases/B02/RAW_INVENTORY.json",
+      "raw_relative_path": "logs/a1-b-b02-888e3888-20260930-01/monitor.jsonl",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": true
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/cases/B02/RAW_INVENTORY.json",
+      "raw_relative_path": "logs/a1-b-b02-888e3888-20260930-01/registry.json",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": true
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/cases/B02/RAW_INVENTORY.json",
+      "raw_relative_path": "logs/a1-b-b02-888e3888-20260930-01/supervisor.jsonl",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": true
+    },
+    {
+      "inventory": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_03/cases/B02/RAW_INVENTORY.json",
+      "raw_relative_path": "logs/a1-b-b02-888e3888-20260930-01/workload.log",
+      "raw_hash_matches": true,
+      "raw_size_matches": true,
+      "portable_exists": true,
+      "portable_hash_matches": true
+    }
+  ],
+  "raw_all_pass": true,
+  "build_checks": {
+    "guard_workload_success": true,
+    "sample_count_matches": true,
+    "sampled_rss_matches": true,
+    "sampled_footprint_matches": true,
+    "binary_hash_matches": true,
+    "binary_size_matches": true,
+    "feature_fingerprints_match": true,
+    "no_enabled_features_or_rustflags": true,
+    "copied_POSTCHECK_is_historical_timeout": true
+  },
+  "B_cases": [
+    {
+      "case": "B01",
+      "selected_p_P": [
+        [
+          "128",
+          "256"
+        ]
+      ],
+      "published_row_count": 37,
+      "stored_comparison_count": 37,
+      "stored_comparison_violations": [],
+      "all_stored_claims_pass": true,
+      "guard_results": [
+        {
+          "at": 551887.008671875,
+          "data": {
+            "guard_healthy": true,
+            "result": 0,
+            "stop_reason": null,
+            "workload_returncode": 0
+          },
+          "kind": "result",
+          "wall_ns": 1790793347838933000
+        }
+      ],
+      "stop_requests": [],
+      "worker_exit_events": [
+        {
+          "at": 551886.767911166,
+          "data": {
+            "returncode": 0
+          },
+          "kind": "worker-exit",
+          "wall_ns": 1790793347598172000
+        }
+      ],
+      "workload_period_sample_count": 1,
+      "worker_table_timeline": [
+        {
+          "at": 551886.346920375,
+          "worker_row": null
+        },
+        {
+          "at": 551886.399997791,
+          "worker_row": "24887 24880 24880   501 S"
+        },
+        {
+          "at": 551887.007354583,
+          "worker_row": null
+        }
+      ]
+    },
+    {
+      "case": "B02",
+      "selected_p_P": [
+        [
+          "256",
+          "512"
+        ]
+      ],
+      "published_row_count": 37,
+      "stored_comparison_count": 37,
+      "stored_comparison_violations": [],
+      "all_stored_claims_pass": true,
+      "guard_results": [
+        {
+          "at": 551960.598573291,
+          "data": {
+            "guard_healthy": false,
+            "result": 2,
+            "stop_reason": "monitoring-failure:Refusal:proc-pidinfo-denied-missing-short:3",
+            "workload_returncode": 0
+          },
+          "kind": "result",
+          "wall_ns": 1790793421428969000
+        }
+      ],
+      "stop_requests": [
+        {
+          "at": 551960.4583125,
+          "data": {
+            "reason": "monitoring-failure:Refusal:proc-pidinfo-denied-missing-short:3"
+          },
+          "kind": "stop-request",
+          "wall_ns": 1790793421288708000
+        }
+      ],
+      "worker_exit_events": [
+        {
+          "at": 551960.4548745,
+          "data": {
+            "returncode": 0
+          },
+          "kind": "worker-exit",
+          "wall_ns": 1790793421285270000
+        }
+      ],
+      "workload_period_sample_count": 0,
+      "worker_table_timeline": [
+        {
+          "at": 551960.405070208,
+          "worker_row": null
+        },
+        {
+          "at": 551960.457240541,
+          "worker_row": "25401 25394 25394   501 Z"
+        },
+        {
+          "at": 551960.59698075,
+          "worker_row": null
+        }
+      ]
+    }
+  ],
+  "incident_latch_hash_matches": true,
+  "incident_original_PIDs_absent": true,
+  "limit": "Independent file/source/summary consistency checks; not new compiler/model/native execution or new complete mathematical certification of the supplied oracle."
+}

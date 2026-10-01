@@ -1,0 +1,62 @@
+{
+  "witness_sha256": "587578e5b3a1761e385e531197ae7ffcf9941744609abd44f61b8903ab4aa76e",
+  "guard_v3_sha256": "b32050c72d0bbad0f69526fc98d1f28dcb1fa131115227a2169db8100d66848b",
+  "records": [
+    {
+      "index": 0,
+      "flavor": 1,
+      "pid_count": 499,
+      "zero_count": 1,
+      "duplicates": 0,
+      "v3_accepts_observed_shape": true,
+      "native_elapsed_seconds": 0.00010641594417393208
+    },
+    {
+      "index": 0,
+      "flavor": 2,
+      "pid_count": 1,
+      "zero_count": 0,
+      "duplicates": 0,
+      "v3_accepts_observed_shape": true,
+      "native_elapsed_seconds": 8.25000461190939e-06
+    },
+    {
+      "index": 1,
+      "flavor": 1,
+      "pid_count": 499,
+      "zero_count": 1,
+      "duplicates": 0,
+      "v3_accepts_observed_shape": true,
+      "native_elapsed_seconds": 0.00024641596246510744
+    },
+    {
+      "index": 1,
+      "flavor": 2,
+      "pid_count": 1,
+      "zero_count": 0,
+      "duplicates": 0,
+      "v3_accepts_observed_shape": true,
+      "native_elapsed_seconds": 7.170799653977156e-05
+    },
+    {
+      "index": 2,
+      "flavor": 1,
+      "pid_count": 499,
+      "zero_count": 1,
+      "duplicates": 0,
+      "v3_accepts_observed_shape": true,
+      "native_elapsed_seconds": 0.0002924170112237334
+    },
+    {
+      "index": 2,
+      "flavor": 2,
+      "pid_count": 1,
+      "zero_count": 0,
+      "duplicates": 0,
+      "v3_accepts_observed_shape": true,
+      "native_elapsed_seconds": 0.00011170795187354088
+    }
+  ],
+  "live_execution_by": "ROOT; this reviewer only replayed retained arrays through fake binding",
+  "limit": "Successful host snapshots support current zero/count representation, not atomic enumeration or all future churn."
+}

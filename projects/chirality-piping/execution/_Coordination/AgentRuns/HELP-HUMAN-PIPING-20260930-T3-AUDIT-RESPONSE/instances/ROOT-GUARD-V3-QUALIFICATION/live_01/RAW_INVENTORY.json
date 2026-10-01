@@ -1,0 +1,373 @@
+[
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q01-true/RESULT.raw.json",
+    "raw_sha256": "b4be7ac99e5b2751fa2238255395e17c2507a4dbad818ba6f3153c2967aaab06",
+    "raw_bytes": 1094,
+    "portable_path": "cases/guard-v3-q01-true/controller-RESULT.raw.json",
+    "portable_sha256": "b4be7ac99e5b2751fa2238255395e17c2507a4dbad818ba6f3153c2967aaab06"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q01-true/job.json",
+    "raw_sha256": "c51d5f30c725dc15cfb286d6d33454c110825114ea7a35040ff2430a602009fc",
+    "raw_bytes": 1524,
+    "portable_path": "cases/guard-v3-q01-true/controller-job.json",
+    "portable_sha256": "17c71bbd5bd0c89cdd6ef0aa5c087efe2bd8b74c1c1c4a1ecdb358d3f0744476"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q01-true/stderr.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "portable_path": "cases/guard-v3-q01-true/controller-stderr.log",
+    "portable_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q01-true/stdout.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "portable_path": "cases/guard-v3-q01-true/controller-stdout.log",
+    "portable_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q01-true/monitor.jsonl",
+    "raw_sha256": "a8c870df6f4ec8577ac5ba6326195ff0434379ac33e47f52b857ebed1b623c83",
+    "raw_bytes": 7404,
+    "portable_path": "cases/guard-v3-q01-true/guard-monitor.jsonl",
+    "portable_sha256": "79e6c3f70b5dabbf95912b8fb496b03e8b3433fb347496db977a0c89c8fcc550"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q01-true-02/RESULT.raw.json",
+    "raw_sha256": "75887fa6dd32e54bc4cd3f6d62b72a6b63a788eec1233cc3fb2a835cb61c837e",
+    "raw_bytes": 1119,
+    "portable_path": "cases/guard-v3-q01-true-02/controller-RESULT.raw.json",
+    "portable_sha256": "75887fa6dd32e54bc4cd3f6d62b72a6b63a788eec1233cc3fb2a835cb61c837e"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q01-true-02/job.json",
+    "raw_sha256": "e74286c66db00263401008f71a459214b337d7e14e30ae8104b3e6483271e8fc",
+    "raw_bytes": 1530,
+    "portable_path": "cases/guard-v3-q01-true-02/controller-job.json",
+    "portable_sha256": "aaf474c3e9f747bcd07ff3121ec2d82fb8c089766c20489bd68b09ab4bce0fd8"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q01-true-02/stderr.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "portable_path": "cases/guard-v3-q01-true-02/controller-stderr.log",
+    "portable_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q01-true-02/stdout.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "portable_path": "cases/guard-v3-q01-true-02/controller-stdout.log",
+    "portable_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q01-true-02/monitor.jsonl",
+    "raw_sha256": "fc6be9117cf1231016390b413502f5ffcf05f75d3a8a3e8dba30b0932159040a",
+    "raw_bytes": 138650,
+    "portable_path": "cases/guard-v3-q01-true-02/guard-monitor.jsonl",
+    "portable_sha256": "793a3e10231300e2b355025b55191db5b7ddc5f4b67d693747cc86cd5a660403"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q01-true-02/registry.json",
+    "raw_sha256": "52fc8dbec862d111559d3e0f95ad2281a9df7f9698f632ae833763bf3a2ecf4b",
+    "raw_bytes": 1630,
+    "portable_path": "cases/guard-v3-q01-true-02/guard-registry.json",
+    "portable_sha256": "f4ed2cfcd5f9e3d90a338a4e9bb5e936f1c86dba5e58a204d2aae58e40698eaa"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q01-true-02/supervisor.jsonl",
+    "raw_sha256": "837d6344f39867f4c4aed47b70b0787de36821420d1f0d68bc488ce95d738b64",
+    "raw_bytes": 1191,
+    "portable_path": "cases/guard-v3-q01-true-02/guard-supervisor.jsonl",
+    "portable_sha256": "837d6344f39867f4c4aed47b70b0787de36821420d1f0d68bc488ce95d738b64"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q01-true-02/workload.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "portable_path": "cases/guard-v3-q01-true-02/guard-workload.log",
+    "portable_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q02-one/RESULT.raw.json",
+    "raw_sha256": "9186ded83e7d96b39f1cb3ba7c22cca39841934d39b1dd4eff3fecb44dd18e8f",
+    "raw_bytes": 1116,
+    "portable_path": "cases/guard-v3-q02-one/controller-RESULT.raw.json",
+    "portable_sha256": "9186ded83e7d96b39f1cb3ba7c22cca39841934d39b1dd4eff3fecb44dd18e8f"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q02-one/job.json",
+    "raw_sha256": "c69eccbaa478026eb916db1e66fe7eb682dfda4c6f743adae02bd60ecb727b28",
+    "raw_bytes": 1719,
+    "portable_path": "cases/guard-v3-q02-one/controller-job.json",
+    "portable_sha256": "7f01f0bcb3091ac859e966fd91fe4f88b997eb20ce4d54047aa1eff63e93c12f"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q02-one/stderr.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "portable_path": "cases/guard-v3-q02-one/controller-stderr.log",
+    "portable_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q02-one/stdout.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "portable_path": "cases/guard-v3-q02-one/controller-stdout.log",
+    "portable_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q02-one/monitor.jsonl",
+    "raw_sha256": "b3d74eb042913ceaf19e5e394678a2bc911b16bcf0ff51c44a3c2d5aa071827d",
+    "raw_bytes": 159921,
+    "portable_path": "cases/guard-v3-q02-one/guard-monitor.jsonl",
+    "portable_sha256": "a78e2d3b2363dec96673c1b94b6d2a0cfb96fa4659debd9d2b8cb5486e8692be"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q02-one/registry.json",
+    "raw_sha256": "2eb32a361487c100b682f1c642cb0a62483c2f01ad642a2e6cec7dcc72f972a4",
+    "raw_bytes": 1538,
+    "portable_path": "cases/guard-v3-q02-one/guard-registry.json",
+    "portable_sha256": "18affc2879724f1be6fe1380ad019cd06fa71c50439c893fabebc2da206e734b"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q02-one/supervisor.jsonl",
+    "raw_sha256": "049bf8be13a2b83d63304f996c57c716a81816a28cc9f41da6565291120d007e",
+    "raw_bytes": 1200,
+    "portable_path": "cases/guard-v3-q02-one/guard-supervisor.jsonl",
+    "portable_sha256": "049bf8be13a2b83d63304f996c57c716a81816a28cc9f41da6565291120d007e"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q02-one/workload.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "portable_path": "cases/guard-v3-q02-one/guard-workload.log",
+    "portable_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q03-tail/RESULT.raw.json",
+    "raw_sha256": "907c00bdfe7e2e10697aee67dbc081fecfc9a148dcf63010ed796504a985a286",
+    "raw_bytes": 1118,
+    "portable_path": "cases/guard-v3-q03-tail/controller-RESULT.raw.json",
+    "portable_sha256": "907c00bdfe7e2e10697aee67dbc081fecfc9a148dcf63010ed796504a985a286"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q03-tail/job.json",
+    "raw_sha256": "6e58b841d58bb3739fdb3aa295c31a63f2ed3776d3ed627013242d6944b5de10",
+    "raw_bytes": 1722,
+    "portable_path": "cases/guard-v3-q03-tail/controller-job.json",
+    "portable_sha256": "b5a012a688304f7be21e161629757a7dae3d8804c1e77347eb1218380c44921e"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q03-tail/stderr.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "portable_path": "cases/guard-v3-q03-tail/controller-stderr.log",
+    "portable_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q03-tail/stdout.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "portable_path": "cases/guard-v3-q03-tail/controller-stdout.log",
+    "portable_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q03-tail/monitor.jsonl",
+    "raw_sha256": "5747dfda676f5552f51418909350aa74d0d7086e7433391bdafbebc742a902e9",
+    "raw_bytes": 179331,
+    "portable_path": "cases/guard-v3-q03-tail/guard-monitor.jsonl",
+    "portable_sha256": "a7f5f1f198b4db074574a0fd0bbcca9d410af6c5c9002a8c88447c8b35ddfac3"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q03-tail/registry.json",
+    "raw_sha256": "9c2d59c16ae4d78204cce7530065829f512f5dea9457353aa1eecee4ae7e32e6",
+    "raw_bytes": 1539,
+    "portable_path": "cases/guard-v3-q03-tail/guard-registry.json",
+    "portable_sha256": "0b9ce8b9c24831fc00bd220ce5908f45da68bd75c8ac9bde2996c619f9012663"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q03-tail/supervisor.jsonl",
+    "raw_sha256": "0b70972da5fe20e7245054342cb3a6303efd2a92d49edcf8ad1ac3a60795bad9",
+    "raw_bytes": 11584,
+    "portable_path": "cases/guard-v3-q03-tail/guard-supervisor.jsonl",
+    "portable_sha256": "0b70972da5fe20e7245054342cb3a6303efd2a92d49edcf8ad1ac3a60795bad9"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q03-tail/workload.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "portable_path": "cases/guard-v3-q03-tail/guard-workload.log",
+    "portable_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q04-pair/RESULT.raw.json",
+    "raw_sha256": "08045b12d1ce9b2d11d04063a8f9354d67cad88cea22a0f4935091df03136a9e",
+    "raw_bytes": 1118,
+    "portable_path": "cases/guard-v3-q04-pair/controller-RESULT.raw.json",
+    "portable_sha256": "08045b12d1ce9b2d11d04063a8f9354d67cad88cea22a0f4935091df03136a9e"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q04-pair/job.json",
+    "raw_sha256": "80107e124f54e3b0c61b765f0edaf4181a0677a79aaee6e6871c980556e51561",
+    "raw_bytes": 1722,
+    "portable_path": "cases/guard-v3-q04-pair/controller-job.json",
+    "portable_sha256": "f783a40e5460f40609cec4bd5904090c1b2dabeeb17fbd98b2ca7f1ddf83b497"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q04-pair/stderr.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "portable_path": "cases/guard-v3-q04-pair/controller-stderr.log",
+    "portable_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q04-pair/stdout.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "portable_path": "cases/guard-v3-q04-pair/controller-stdout.log",
+    "portable_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q04-pair/monitor.jsonl",
+    "raw_sha256": "b9ddeb3b3d95dffd1d840dcd024373c81938cd50f9f7dbce93ac6686e17f104a",
+    "raw_bytes": 159521,
+    "portable_path": "cases/guard-v3-q04-pair/guard-monitor.jsonl",
+    "portable_sha256": "915154794a9dcf06b01ebae98bd734a9ff35b6687648d5a666252e4f6331f6a9"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q04-pair/registry.json",
+    "raw_sha256": "056bd8aca62d26149633c61080a3fbfcda86de618516bb2e358f3a6fe9d27145",
+    "raw_bytes": 1539,
+    "portable_path": "cases/guard-v3-q04-pair/guard-registry.json",
+    "portable_sha256": "5591808390cb7660d51b856c9777288d40526ca09f5814e4f55b6299ef0ebfbd"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q04-pair/supervisor.jsonl",
+    "raw_sha256": "e2cc46b8adcdad232c49d30a47dd9848e59768117083b75ce1781925dc201bd4",
+    "raw_bytes": 1200,
+    "portable_path": "cases/guard-v3-q04-pair/guard-supervisor.jsonl",
+    "portable_sha256": "e2cc46b8adcdad232c49d30a47dd9848e59768117083b75ce1781925dc201bd4"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q04-pair/workload.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "portable_path": "cases/guard-v3-q04-pair/guard-workload.log",
+    "portable_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q05-true/RESULT.raw.json",
+    "raw_sha256": "647f2bdb3b0c8fc1ad410aada2955909b432e4749b4b8cee460bb67eeb44ed78",
+    "raw_bytes": 1118,
+    "portable_path": "cases/guard-v3-q05-true/controller-RESULT.raw.json",
+    "portable_sha256": "647f2bdb3b0c8fc1ad410aada2955909b432e4749b4b8cee460bb67eeb44ed78"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q05-true/job.json",
+    "raw_sha256": "e4afae2c88b0f5df32248a80bcff01ec83233d01763179481911f5878eab6729",
+    "raw_bytes": 1524,
+    "portable_path": "cases/guard-v3-q05-true/controller-job.json",
+    "portable_sha256": "90cf815004c1c2a0dedb14318e0c11d60f57e136cb729aaf7446b92ccf1d0c7c"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q05-true/stderr.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "portable_path": "cases/guard-v3-q05-true/controller-stderr.log",
+    "portable_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q05-true/stdout.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "portable_path": "cases/guard-v3-q05-true/controller-stdout.log",
+    "portable_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q05-true/monitor.jsonl",
+    "raw_sha256": "bcde9dd3579001f35744677810636e8cf5c0e20619d99f0319d8b7b592a507ab",
+    "raw_bytes": 136304,
+    "portable_path": "cases/guard-v3-q05-true/guard-monitor.jsonl",
+    "portable_sha256": "c92decaa4d12b4a93a9f57691fbb4cb14543f85dc1ce7b28640039978d896f7a"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q05-true/registry.json",
+    "raw_sha256": "d93c8d6389f128851298404808487cd27746ae2f318152743e78b22e5f41ba45",
+    "raw_bytes": 1628,
+    "portable_path": "cases/guard-v3-q05-true/guard-registry.json",
+    "portable_sha256": "f74162a02c67c489c6ea32d31335ec3e4ba4e060df3ad154f8a268f6d28b2249"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q05-true/supervisor.jsonl",
+    "raw_sha256": "ef5d3e064486a65e41ed1a449c0fa66f789601dbfa57f1a05ec45daf01f2c62e",
+    "raw_bytes": 1197,
+    "portable_path": "cases/guard-v3-q05-true/guard-supervisor.jsonl",
+    "portable_sha256": "ef5d3e064486a65e41ed1a449c0fa66f789601dbfa57f1a05ec45daf01f2c62e"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q05-true/workload.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "portable_path": "cases/guard-v3-q05-true/guard-workload.log",
+    "portable_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q06-pair/RESULT.raw.json",
+    "raw_sha256": "cc30402fee6bdc0ddffa465986a81c71d0f1c0aeca43e4a7bdc95d951f222b37",
+    "raw_bytes": 1118,
+    "portable_path": "cases/guard-v3-q06-pair/controller-RESULT.raw.json",
+    "portable_sha256": "cc30402fee6bdc0ddffa465986a81c71d0f1c0aeca43e4a7bdc95d951f222b37"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q06-pair/job.json",
+    "raw_sha256": "fcd129a075423fd00d071598d3aaa4f016b72cb5d11649b6e344762508a99580",
+    "raw_bytes": 1722,
+    "portable_path": "cases/guard-v3-q06-pair/controller-job.json",
+    "portable_sha256": "27fcb043977ece7a56a723bc3bbdccaf70bb992e388de1850767425b0c279a99"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q06-pair/stderr.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "portable_path": "cases/guard-v3-q06-pair/controller-stderr.log",
+    "portable_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/scratch/guard-v3-qualification/guard-v3-q06-pair/stdout.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "portable_path": "cases/guard-v3-q06-pair/controller-stdout.log",
+    "portable_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q06-pair/monitor.jsonl",
+    "raw_sha256": "21c1e5adcd3e9c3f245fd0b7b4a6a778b1a66e5256bee5ce948931981a74483e",
+    "raw_bytes": 199576,
+    "portable_path": "cases/guard-v3-q06-pair/guard-monitor.jsonl",
+    "portable_sha256": "cee3f29de26e0cf9ec8dd7b1f8ddb2f94246985f97beda686a184ffc1ecde53c"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q06-pair/registry.json",
+    "raw_sha256": "f148d77b59c1cf955b5521f2e26cf209799aeb8e3e3fff565c4a57a8f52ded5b",
+    "raw_bytes": 1539,
+    "portable_path": "cases/guard-v3-q06-pair/guard-registry.json",
+    "portable_sha256": "18c103411c6e5f2e29e64d6e816803ff7f99794de35c1c660f23f4c2b4f65471"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q06-pair/supervisor.jsonl",
+    "raw_sha256": "ace7354dbf3a19e3e07808e9cca49f7b428866b0fe0d66eba649c24f2f26913b",
+    "raw_bytes": 1199,
+    "portable_path": "cases/guard-v3-q06-pair/guard-supervisor.jsonl",
+    "portable_sha256": "ace7354dbf3a19e3e07808e9cca49f7b428866b0fe0d66eba649c24f2f26913b"
+  },
+  {
+    "raw_alias": "<RESPONSE_RUNTIME>/logs/guard-v3-q06-pair/workload.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "portable_path": "cases/guard-v3-q06-pair/guard-workload.log",
+    "portable_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

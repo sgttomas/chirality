@@ -1,0 +1,26 @@
+{
+  "v2_sha256": "533a6f7506da4e031d8a824a27b4e9c496f374a3af8b7e98c72da55e8bbc26b5",
+  "v3_sha256": "b32050c72d0bbad0f69526fc98d1f28dcb1fa131115227a2169db8100d66848b",
+  "changed_existing_top_level_definitions": [
+    "MacProvider",
+    "supervisor"
+  ],
+  "added_top_level_definitions": [
+    "NativeReadFailure"
+  ],
+  "changed_existing_MacProvider_methods": [
+    "__init__",
+    "identity",
+    "live_group",
+    "group"
+  ],
+  "added_MacProvider_methods": [
+    "_collect_group",
+    "_native_failure",
+    "_pid_list",
+    "_snapshot",
+    "_validate_partial",
+    "_within"
+  ],
+  "compile_grammar_and_read_job_identical": true
+}

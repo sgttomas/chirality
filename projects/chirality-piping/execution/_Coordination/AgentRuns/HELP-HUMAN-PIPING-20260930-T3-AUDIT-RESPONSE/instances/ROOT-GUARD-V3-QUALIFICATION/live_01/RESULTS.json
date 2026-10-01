@@ -1,0 +1,132 @@
+[
+  {
+    "job_id": "guard-v3-q01-true",
+    "guard_returncode": 2,
+    "healthy": false,
+    "sentinel_unchanged": true,
+    "active_latch_after": false,
+    "completed_samples": 0,
+    "sampled_rss_peak": null,
+    "sampled_footprint_peak": null,
+    "native_recovery_evidence": [],
+    "confirmed_exit_count": 0,
+    "elapsed_controller_seconds": 1.2073142089648172
+  },
+  {
+    "job_id": "guard-v3-q01-true-02",
+    "guard_returncode": 0,
+    "healthy": true,
+    "sentinel_unchanged": true,
+    "active_latch_after": false,
+    "completed_samples": 1,
+    "sampled_rss_peak": 9699328,
+    "sampled_footprint_peak": 6897904,
+    "native_recovery_evidence": [],
+    "confirmed_exit_count": 0,
+    "elapsed_controller_seconds": 2.4403865420026705
+  },
+  {
+    "job_id": "guard-v3-q02-one",
+    "guard_returncode": 0,
+    "healthy": true,
+    "sentinel_unchanged": true,
+    "active_latch_after": false,
+    "completed_samples": 1,
+    "sampled_rss_peak": 44580864,
+    "sampled_footprint_peak": 23168032,
+    "native_recovery_evidence": [],
+    "confirmed_exit_count": 2,
+    "elapsed_controller_seconds": 2.4398183330195025
+  },
+  {
+    "job_id": "guard-v3-q03-tail",
+    "guard_returncode": 0,
+    "healthy": true,
+    "sentinel_unchanged": true,
+    "active_latch_after": false,
+    "completed_samples": 1,
+    "sampled_rss_peak": 27312128,
+    "sampled_footprint_peak": 15188592,
+    "native_recovery_evidence": [
+      {
+        "at": 567669.340605125,
+        "data": {
+          "errno": 3,
+          "esrch_candidate": true,
+          "known_identity": null,
+          "operation": "proc-pidinfo-denied-missing-short/0",
+          "partial_identity": null,
+          "pid": 89878,
+          "returned": 0
+        },
+        "kind": "native-read-failure",
+        "wall_ns": 1790818198448305000
+      },
+      {
+        "at": 567669.340637833,
+        "data": {
+          "failure": {
+            "errno": 3,
+            "esrch_candidate": true,
+            "known_identity": null,
+            "operation": "proc-pidinfo-denied-missing-short/0",
+            "partial_identity": null,
+            "pid": 89878,
+            "returned": 0
+          },
+          "known_identity": null,
+          "membership_row": {
+            "pgid": 89863,
+            "pid": 89878,
+            "ppid": 89863,
+            "uid": 501,
+            "zombie": true
+          }
+        },
+        "kind": "group-read-failure",
+        "wall_ns": 1790818198448338000
+      }
+    ],
+    "confirmed_exit_count": 3,
+    "elapsed_controller_seconds": 2.668701458023861
+  },
+  {
+    "job_id": "guard-v3-q04-pair",
+    "guard_returncode": 0,
+    "healthy": true,
+    "sentinel_unchanged": true,
+    "active_latch_after": false,
+    "completed_samples": 1,
+    "sampled_rss_peak": 59981824,
+    "sampled_footprint_peak": 29640096,
+    "native_recovery_evidence": [],
+    "confirmed_exit_count": 3,
+    "elapsed_controller_seconds": 2.4678748750593513
+  },
+  {
+    "job_id": "guard-v3-q05-true",
+    "guard_returncode": 0,
+    "healthy": true,
+    "sentinel_unchanged": true,
+    "active_latch_after": false,
+    "completed_samples": 1,
+    "sampled_rss_peak": 9633792,
+    "sampled_footprint_peak": 6865184,
+    "native_recovery_evidence": [],
+    "confirmed_exit_count": 0,
+    "elapsed_controller_seconds": 2.4647584999911487
+  },
+  {
+    "job_id": "guard-v3-q06-pair",
+    "guard_returncode": 0,
+    "healthy": true,
+    "sentinel_unchanged": true,
+    "active_latch_after": false,
+    "completed_samples": 1,
+    "sampled_rss_peak": 61652992,
+    "sampled_footprint_peak": 30918048,
+    "native_recovery_evidence": [],
+    "confirmed_exit_count": 3,
+    "elapsed_controller_seconds": 2.470567333046347
+  }
+]

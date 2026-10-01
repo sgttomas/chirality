@@ -1,0 +1,26 @@
+{
+  "disposition": "GUARD_FAILURE_STOP; forensic comparison does not create a healthy guarded-case pass",
+  "comparator_returncode": 0,
+  "rows": 37,
+  "violations": [],
+  "limits": [],
+  "workload_raw_sha256": "a293af61d547adba0ff93fe8d3df3824340f5c9919578e177b0f9e9cddad6c19",
+  "original_v2_B02_output_sha256": "a293af61d547adba0ff93fe8d3df3824340f5c9919578e177b0f9e9cddad6c19",
+  "output_bytes_match_original_B02": true,
+  "raw_files": [
+    {
+      "runtime_relative_path": "scratch/a1-diagnosis/b-tranche-v3-20260930/B02/forensic-comparison.stdout.json",
+      "sha256": "5ba0a1fcb4a969879308e63705fe775498cea4978aa4abb9288b43372b025bec"
+    },
+    {
+      "runtime_relative_path": "scratch/a1-diagnosis/b-tranche-v3-20260930/B02/forensic-comparison.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "runtime_relative_path": "scratch/a1-diagnosis/b-tranche-v3-20260930/B02/ACTIVE.after-B02-v3.json",
+      "sha256": "789f4567d8afd4cbe2ee1205fe04a0154ed82e735a5082d601d00a01f4435543"
+    }
+  ],
+  "latch_not_cleared": true,
+  "automatic_retry": false
+}

@@ -1,0 +1,43 @@
+{
+  "case": "B02",
+  "job_id": "a1-b-v3-b02-325516a7-20260930-01",
+  "guard_returncode": 2,
+  "guard_result": [
+    {
+      "guard_healthy": false,
+      "result": 2,
+      "stop_reason": "monitoring-failure:Refusal:ESRCH-without-complete-nonleader-absence:93697",
+      "workload_returncode": 0
+    }
+  ],
+  "guard_healthy": false,
+  "elapsed_seconds": 2.4334134170785546,
+  "preflight_sample_count": 3,
+  "work_sample_count": 0,
+  "sampled_rss_peak_bytes": 9093120,
+  "sampled_footprint_peak_bytes": 6422768,
+  "minimum_observed_available_pct": 71.0,
+  "active_latch_after": true,
+  "post_hashes_match": true,
+  "case_status": null,
+  "exited_unmeasured_pids": [
+    93697
+  ],
+  "zombie_present_unmeasured_pids": [],
+  "memory_limit": "Sampled validated group values only; exited-unmeasured members have no measured lifetime peaks, never zero memory.",
+  "selected_precisions": null,
+  "meter": null,
+  "comparator_returncode": null,
+  "comparison_disposition": null,
+  "comparison_rows": null,
+  "comparison_violations": null,
+  "comparison_limits": null,
+  "may_consider_next_B": false,
+  "stop_reason": "host_guard_or_comparator_or_input_integrity_stop",
+  "false_claims": [],
+  "binary_sha256": "426fb26fb52e8f7781ebef8d0876ba74ba6c025ada4a66b5532423b462a9b386",
+  "oracle_sha256": "35cf4b9321ebe126693e52ad96ea010bed9f280c3058d02fbae98c17275627be",
+  "job_spec_sha256": "d94c785241b3e92a2447e115abb20dd1dc3cb74b105d50753e44ca952d582f36",
+  "numerical_source": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "source_json_sha256": "6eb0c41b76e78f451bde7d6d0399437e64c0d84420cd859a3832451a75d30f46"
+}

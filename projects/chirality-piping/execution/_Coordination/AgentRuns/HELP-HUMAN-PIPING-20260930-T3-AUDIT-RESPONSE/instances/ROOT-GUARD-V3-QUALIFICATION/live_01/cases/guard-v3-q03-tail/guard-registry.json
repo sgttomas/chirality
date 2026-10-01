@@ -1,0 +1,37 @@
+{
+  "run_id": "HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE",
+  "job_id": "guard-v3-q03-tail",
+  "spec_sha256": "6e58b841d58bb3739fdb3aa295c31a63f2ed3776d3ed627013242d6944b5de10",
+  "monitor": {
+    "pid": 89846,
+    "start_sec": 1790818196,
+    "start_usec": 168652,
+    "uid": 501,
+    "ruid": 501,
+    "pgid": 89844,
+    "sid": 89844
+  },
+  "supervisor": {
+    "pid": 89863,
+    "start_sec": 1790818198,
+    "start_usec": 303225,
+    "uid": 501,
+    "ruid": 501,
+    "pgid": 89863,
+    "sid": 89863
+  },
+  "channel_binding_sha256": "a77fa90456dd856929246b9bdc3d2e1cffb3aceefaf0c4cd8cadc968b373385d",
+  "limits": {
+    "cap_bytes": 134217728,
+    "allowance_bytes": 67108864,
+    "disk_write_budget_bytes": 67108864,
+    "disk_reserve_bytes": 1073741824,
+    "max_seconds": 8
+  },
+  "candidate_sha": "325516a7bb21492458d2c84026db709de8b1b4d9",
+  "input_hashes": {
+    "<REPO_ROOT>/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/tools/host_guard_v3.py": "b32050c72d0bbad0f69526fc98d1f28dcb1fa131115227a2169db8100d66848b",
+    "<REPO_ROOT>/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-GUARD-V3-QUALIFICATION/live_01/fixture.py": "03f12873b6569e8f77f83e6ff7732981ffd5f0e03d60c1e32a95afe1b1b98f72",
+    "<PYTHON>.13": "406d73d07e33e164d986326fde00b85c2b8f4ed2c33278142c8431588fe2df14"
+  }
+}

@@ -1,0 +1,317 @@
+{
+  "input_hashes": [
+    {
+      "path": "<REPO_ROOT>/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/decisions/07_A0_B_RESUME_AFTER_GUARD_V3.md",
+      "before": "421d4005a4558041d28e9b92fda259da2944f625eb0e29a55834d46ae4084db3",
+      "after": "421d4005a4558041d28e9b92fda259da2944f625eb0e29a55834d46ae4084db3",
+      "match": true
+    },
+    {
+      "path": "<REPO_ROOT>/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DESIGN/continuation_06/RESUME_PROMPT.md",
+      "before": "4328889932f19278f2ca1a712d3952d89ee3070c5a00f1f3b85aeba21681a767",
+      "after": "4328889932f19278f2ca1a712d3952d89ee3070c5a00f1f3b85aeba21681a767",
+      "match": true
+    },
+    {
+      "path": "<REPO_ROOT>/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/tools/host_guard_v3.py",
+      "before": "b32050c72d0bbad0f69526fc98d1f28dcb1fa131115227a2169db8100d66848b",
+      "after": "b32050c72d0bbad0f69526fc98d1f28dcb1fa131115227a2169db8100d66848b",
+      "match": true
+    },
+    {
+      "path": "<REPO_ROOT>/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/oracle.py",
+      "before": "35cf4b9321ebe126693e52ad96ea010bed9f280c3058d02fbae98c17275627be",
+      "after": "35cf4b9321ebe126693e52ad96ea010bed9f280c3058d02fbae98c17275627be",
+      "match": true
+    },
+    {
+      "path": "<REPO_ROOT>/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/matrix.json",
+      "before": "eddf44e8f491585c9954896089ad0175ae3c5a23504740b42dfb163c022eb359",
+      "after": "eddf44e8f491585c9954896089ad0175ae3c5a23504740b42dfb163c022eb359",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/targets/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/debug/a1_public_probe",
+      "before": "426fb26fb52e8f7781ebef8d0876ba74ba6c025ada4a66b5532423b462a9b386",
+      "after": "426fb26fb52e8f7781ebef8d0876ba74ba6c025ada4a66b5532423b462a9b386",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/Cargo.lock",
+      "before": "7e1d8a98a542f977cfcfe8b2b0bb27be24fb91fbcf8f0b39a2e9e235574a08b9",
+      "after": "7e1d8a98a542f977cfcfe8b2b0bb27be24fb91fbcf8f0b39a2e9e235574a08b9",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/Cargo.toml",
+      "before": "994d118576eb881668f3048f9b4d05f899ceb7599c1cd5f05cbe18f70172b7dc",
+      "after": "994d118576eb881668f3048f9b4d05f899ceb7599c1cd5f05cbe18f70172b7dc",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/exact_sum/tests/k1_reference.rs",
+      "before": "e21fdbb56654ca05b5d2e8f9b9be74b987ea676522d034c691756c84fd5ab347",
+      "after": "e21fdbb56654ca05b5d2e8f9b9be74b987ea676522d034c691756c84fd5ab347",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/exact_sum/tests.rs",
+      "before": "5738a338b32a86ed3eadd9cb0565a2cbb7ef6fb630781ff170ee6feae49b2efd",
+      "after": "5738a338b32a86ed3eadd9cb0565a2cbb7ef6fb630781ff170ee6feae49b2efd",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/exact_sum.rs",
+      "before": "3a847f8dbaa74768603c4d9693b538f1f63c2d172026ed7ab400aea3b4800f67",
+      "after": "3a847f8dbaa74768603c4d9693b538f1f63c2d172026ed7ab400aea3b4800f67",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/lib.rs",
+      "before": "627404d6c0de08e6c681dcc876b39efc68fa04b5c155636785e2abb0f4faff0b",
+      "after": "627404d6c0de08e6c681dcc876b39efc68fa04b5c155636785e2abb0f4faff0b",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/load_ledger.rs",
+      "before": "8924d2822d9df02f6f8d34e1d030be1d78eb91d08d098eef307b5feebb7eb389",
+      "after": "8924d2822d9df02f6f8d34e1d030be1d78eb91d08d098eef307b5feebb7eb389",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/rigid_body.rs",
+      "before": "3e5b9be185428f1652775f60cbb98b9d30e08bff4ce2a9b2bb83ccf662d30a1b",
+      "after": "3e5b9be185428f1652775f60cbb98b9d30e08bff4ce2a9b2bb83ccf662d30a1b",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary/functionals/tests.rs",
+      "before": "5d1574025e6ca3aac412f8b9cab11bdbc5a4f8016c8384daa87ded4e4c4fc312",
+      "after": "5d1574025e6ca3aac412f8b9cab11bdbc5a4f8016c8384daa87ded4e4c4fc312",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary/functionals.rs",
+      "before": "9e378891a347d162f20fcdc32b424f4e8f0d664e61dcd6cebd4ef8c90d65c764",
+      "after": "9e378891a347d162f20fcdc32b424f4e8f0d664e61dcd6cebd4ef8c90d65c764",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary/s11k_tests.rs",
+      "before": "0d74db5a2951ad62ec9777c99f37b274522efc948286fdfa997f4d4b611f2a2f",
+      "after": "0d74db5a2951ad62ec9777c99f37b274522efc948286fdfa997f4d4b611f2a2f",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/exact_boundary.rs",
+      "before": "90ed530a04ac775acf55f81f7ac5c3b0a451c9fd9f0011b5bd4cf22b3a30f84d",
+      "after": "90ed530a04ac775acf55f81f7ac5c3b0a451c9fd9f0011b5bd4cf22b3a30f84d",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/formation_check.rs",
+      "before": "052b093c256ba186bdd0ea66c891660c0dae8a7a344fc1d132a4746afcc00ece",
+      "after": "052b093c256ba186bdd0ea66c891660c0dae8a7a344fc1d132a4746afcc00ece",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/formation_check_tests.rs",
+      "before": "f3f88ddc91e4ed744f8754685adf0acdfbc3007e23ff58ca372845af8aef321e",
+      "after": "f3f88ddc91e4ed744f8754685adf0acdfbc3007e23ff58ca372845af8aef321e",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/kf2_witness_tests.rs",
+      "before": "4a805ef758361151f837159686109aa67ad46003785a667d32e4911d8a270f29",
+      "after": "4a805ef758361151f837159686109aa67ad46003785a667d32e4911d8a270f29",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/adaptive.rs",
+      "before": "472bafb8281c7d311a81dcd5da042dd0f8db998bd81cf4902e6b55409eb5a563",
+      "after": "472bafb8281c7d311a81dcd5da042dd0f8db998bd81cf4902e6b55409eb5a563",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/assemble.rs",
+      "before": "057fa8a431bde050d0aa448c347dd1c92fbd4929ad6cc8ecce5837c9255d20f2",
+      "after": "057fa8a431bde050d0aa448c347dd1c92fbd4929ad6cc8ecce5837c9255d20f2",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/bound.rs",
+      "before": "b6e5a99386da9858af8ff95a1fb326d722523540f5c6e4b59c2bcd27130c0100",
+      "after": "b6e5a99386da9858af8ff95a1fb326d722523540f5c6e4b59c2bcd27130c0100",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/combine.rs",
+      "before": "b40ab81311a80720cc19bbbe03fccad4f4f371cc78e2b51e4eec8ab2079a32f1",
+      "after": "b40ab81311a80720cc19bbbe03fccad4f4f371cc78e2b51e4eec8ab2079a32f1",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/directed.rs",
+      "before": "8aaace7bc8fb65a8a1f60e5e6e630ee54b62bd43ed7c108a2fe193b372b74af4",
+      "after": "8aaace7bc8fb65a8a1f60e5e6e630ee54b62bd43ed7c108a2fe193b372b74af4",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/factor.rs",
+      "before": "e21fc61e6ae84e7c609da9f2d14c3769c4f203a9baa6bcd25025843056af22dc",
+      "after": "e21fc61e6ae84e7c609da9f2d14c3769c4f203a9baa6bcd25025843056af22dc",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/ledger.rs",
+      "before": "66a48fb2a49c84e8e294bb741888fc53f72edcb6b7a3a4331fdeafaa7221ac4e",
+      "after": "66a48fb2a49c84e8e294bb741888fc53f72edcb6b7a3a4331fdeafaa7221ac4e",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/mod.rs",
+      "before": "78bb76773dd4fd4d799b5668f21a679f0ebf9c088ec5fff655e13a0453d6dc2a",
+      "after": "78bb76773dd4fd4d799b5668f21a679f0ebf9c088ec5fff655e13a0453d6dc2a",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/recover.rs",
+      "before": "e452e3467608a4680359a36d30b6a580d72a12b778d506ff8118646257b7d388",
+      "after": "e452e3467608a4680359a36d30b6a580d72a12b778d506ff8118646257b7d388",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/seeded.rs",
+      "before": "ce8069a705d7dd7a0ea7a87fa82180757d804b0bd7268097cf5859f8e1a3a0f8",
+      "after": "ce8069a705d7dd7a0ea7a87fa82180757d804b0bd7268097cf5859f8e1a3a0f8",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/source.rs",
+      "before": "46c85ba0d9e0c45f6d19bfd188ce8cc52e4d773b96d3b7e8d0746b78e5582ca9",
+      "after": "46c85ba0d9e0c45f6d19bfd188ce8cc52e4d773b96d3b7e8d0746b78e5582ca9",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/verify.rs",
+      "before": "31780a6a888decc64e2ebec2fcfbeff45c144a6f0d0169f0584d53fcccb89987",
+      "after": "31780a6a888decc64e2ebec2fcfbeff45c144a6f0d0169f0584d53fcccb89987",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/wide/multi.rs",
+      "before": "76d96ee2a0d183ab8b288c41b0075b2cb2feb74016b7a3efcfa3f6eb6bb09d17",
+      "after": "76d96ee2a0d183ab8b288c41b0075b2cb2feb74016b7a3efcfa3f6eb6bb09d17",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/wide.rs",
+      "before": "5d35b70d45680f769354bbc6694c78186354d235a7af29891a9b09e7b4a293ad",
+      "after": "5d35b70d45680f769354bbc6694c78186354d235a7af29891a9b09e7b4a293ad",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/wide_sum.rs",
+      "before": "80441f99a0fdcb4544d5b95e1012bc5bf291089ff8cebbdcdcaac437d565a188",
+      "after": "80441f99a0fdcb4544d5b95e1012bc5bf291089ff8cebbdcdcaac437d565a188",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/s11f_n5_base_signature.txt",
+      "before": "00c5807dda62356b64d26391ffddd7af6e8d895e676b94053902661816480eab",
+      "after": "00c5807dda62356b64d26391ffddd7af6e8d895e676b94053902661816480eab",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/s11f_tests.rs",
+      "before": "f827b708de329c0e2af074f281cc464f4eb44baf63824db6bdb420d62ad8aaf0",
+      "after": "f827b708de329c0e2af074f281cc464f4eb44baf63824db6bdb420d62ad8aaf0",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/s11k_tests.rs",
+      "before": "b23900274b77c8d472a54e1bd024013ad73f20a440e4a34209a0c39e126c1e99",
+      "after": "b23900274b77c8d472a54e1bd024013ad73f20a440e4a34209a0c39e126c1e99",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/sparse/tests.rs",
+      "before": "e1b93a639c6751f9bb80af3e10f61d519711fb5210e9e5237167c67db590c2dc",
+      "after": "e1b93a639c6751f9bb80af3e10f61d519711fb5210e9e5237167c67db590c2dc",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural/sparse.rs",
+      "before": "43c1f369a2fafef0dda00503f06b602bb3f0996c1c7f5fe398dce1145d735ee6",
+      "after": "43c1f369a2fafef0dda00503f06b602bb3f0996c1c7f5fe398dce1145d735ee6",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/sources/a1/3bddc2b05f6106e969c7cf43373b230845c7cc66/projects/chirality-piping/core/solver/frame_kernel/src/structural.rs",
+      "before": "32dfe5971f95be3eb276fa594c5ab4b0c5ce8724b942a098f2fda1104886d9d2",
+      "after": "32dfe5971f95be3eb276fa594c5ab4b0c5ce8724b942a098f2fda1104886d9d2",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/scratch/a1-diagnosis/Cargo.toml",
+      "before": "2d98b4b273b52c0da69b64a7a70c984127d0df7b01a52a3f1b6e03a29eee1f59",
+      "after": "2d98b4b273b52c0da69b64a7a70c984127d0df7b01a52a3f1b6e03a29eee1f59",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/scratch/a1-diagnosis/src/main.rs",
+      "before": "9e054fa80fff5c2192b1bfef5ad031d24c4d9dd3ab2407b6f9df517cc74d740a",
+      "after": "9e054fa80fff5c2192b1bfef5ad031d24c4d9dd3ab2407b6f9df517cc74d740a",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/scratch/a1-diagnosis/src/cases.rs",
+      "before": "b925980a3b5b3c206e9e419f6e9fd1fffdedab7feffc1173650f92ecf2ea3b8c",
+      "after": "b925980a3b5b3c206e9e419f6e9fd1fffdedab7feffc1173650f92ecf2ea3b8c",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/scratch/a1-diagnosis/matrix.json",
+      "before": "eddf44e8f491585c9954896089ad0175ae3c5a23504740b42dfb163c022eb359",
+      "after": "eddf44e8f491585c9954896089ad0175ae3c5a23504740b42dfb163c022eb359",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/scratch/a1-diagnosis/oracle.py",
+      "before": "35cf4b9321ebe126693e52ad96ea010bed9f280c3058d02fbae98c17275627be",
+      "after": "35cf4b9321ebe126693e52ad96ea010bed9f280c3058d02fbae98c17275627be",
+      "match": true
+    },
+    {
+      "path": "<RESPONSE_RUNTIME>/scratch/a1-diagnosis/Cargo.lock",
+      "before": "ca870fd55afca7aebeadd4410bb77a2a40391ac80a7ff95c36ab6b55fe66bc4d",
+      "after": "ca870fd55afca7aebeadd4410bb77a2a40391ac80a7ff95c36ab6b55fe66bc4d",
+      "match": true
+    },
+    {
+      "path": "<REPO_ROOT>/AGENTS.md",
+      "before": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "after": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "match": true
+    },
+    {
+      "path": "<REPO_ROOT>/projects/chirality-piping/AGENTS.md",
+      "before": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "after": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "match": true
+    },
+    {
+      "path": "<REPO_ROOT>/agents/AGENT_TASK.md",
+      "before": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "after": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "match": true
+    },
+    {
+      "path": "<REPO_ROOT>/.agents/skills/software-defect-diagnosis/SKILL.md",
+      "before": "7e423dfd24132c33d3aa8fe6994bf17a1def966c396723f6bd72ac8d2442112b",
+      "after": "7e423dfd24132c33d3aa8fe6994bf17a1def966c396723f6bd72ac8d2442112b",
+      "match": true
+    }
+  ],
+  "actual_head": "325516a7bb21492458d2c84026db709de8b1b4d9"
+}

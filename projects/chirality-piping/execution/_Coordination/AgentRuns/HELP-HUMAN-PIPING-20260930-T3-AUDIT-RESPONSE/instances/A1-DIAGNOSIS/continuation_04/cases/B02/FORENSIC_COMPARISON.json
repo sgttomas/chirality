@@ -1,0 +1,782 @@
+{
+  "id": "B02",
+  "status": "Selected",
+  "selected_precision": 256,
+  "verification_precision": 512,
+  "comparisons": [
+    {
+      "key": "D:0",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "InputDerived",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "D:1",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "InputDerived",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "D:2",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "InputDerived",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "D:3",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "InputDerived",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "D:4",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "InputDerived",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "D:5",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "InputDerived",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "D:6",
+      "truth": {
+        "n": "5",
+        "e": -1076
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "1",
+        "e": -1074
+      },
+      "absolute_error": {
+        "n": "1",
+        "e": -1076
+      },
+      "bound": {
+        "n": "3",
+        "e": -1074
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "D:7",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "InputDerived",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "D:8",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "InputDerived",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "D:9",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "InputDerived",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "D:10",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "InputDerived",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "D:11",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "InputDerived",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "M:0",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "1",
+        "e": -1073
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "M:1",
+      "truth": {
+        "n": "5",
+        "e": -1076
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "1",
+        "e": -1074
+      },
+      "absolute_error": {
+        "n": "1",
+        "e": -1076
+      },
+      "bound": {
+        "n": "3",
+        "e": -1074
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "E:1:I:0",
+      "truth": {
+        "n": "-5",
+        "e": -1074
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "-5",
+        "e": -1074
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "3",
+        "e": -1074
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "E:1:I:1",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "1",
+        "e": -1073
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "E:1:I:2",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "1",
+        "e": -1073
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "E:1:I:3",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "E:1:I:4",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "E:1:I:5",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "E:1:J:0",
+      "truth": {
+        "n": "5",
+        "e": -1074
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "5",
+        "e": -1074
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "3",
+        "e": -1074
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "E:1:J:1",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "1",
+        "e": -1073
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "E:1:J:2",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "1",
+        "e": -1073
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "E:1:J:3",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "E:1:J:4",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "E:1:J:5",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "R:0",
+      "truth": {
+        "n": "-5",
+        "e": -1074
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "-5",
+        "e": -1074
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "3",
+        "e": -1074
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "R:1",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "1",
+        "e": -1073
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "R:2",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "1",
+        "e": -1073
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "R:3",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "R:4",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "R:5",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "R:7",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "1",
+        "e": -1073
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "R:8",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "1",
+        "e": -1073
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "R:9",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "R:10",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    },
+    {
+      "key": "R:11",
+      "truth": {
+        "n": "0",
+        "e": 0
+      },
+      "outcome": "Value",
+      "row_class": "AbsoluteVerified",
+      "published": {
+        "n": "0",
+        "e": 0
+      },
+      "absolute_error": {
+        "n": "0",
+        "e": 0
+      },
+      "bound": {
+        "n": "0",
+        "e": 0
+      },
+      "claim_passes": true
+    }
+  ],
+  "violations": [],
+  "limits": [],
+  "relative_claim_basis": "D1 DESIGN_NUMERICS/DESIGN.md section 4.1.6 lines 424-446: error/abs(published q); exact truth ratio separately preserved. Not the distinct R1 class-scale benchmark predicate.",
+  "disposition": "finite_selected_claims_pass; not universal proof closure"
+}

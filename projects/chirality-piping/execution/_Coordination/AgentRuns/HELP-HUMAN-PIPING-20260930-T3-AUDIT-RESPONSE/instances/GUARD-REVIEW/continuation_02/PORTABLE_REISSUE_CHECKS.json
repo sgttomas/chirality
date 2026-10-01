@@ -1,0 +1,300 @@
+{
+  "record_sha256": "5676844226daacfd68520743a8458cbfe5015887ea4acaab5ef7c6f121444e9d",
+  "packets": [
+    {
+      "public_folder": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_02",
+      "archive_alias": "<RESPONSE_RUNTIME>/scratch/portability-originals-01/a0-timeout",
+      "original_manifest_matches": true,
+      "portable_manifest_matches": true,
+      "archived_entries": [
+        {
+          "file": "CONTEXT.json",
+          "match": true
+        },
+        {
+          "file": "HOST_TOOL_FAILURE.txt",
+          "match": true
+        },
+        {
+          "file": "HOST_TOOL_RESULT.json",
+          "match": true
+        },
+        {
+          "file": "JOB_SPEC.sanitized.json",
+          "match": true
+        },
+        {
+          "file": "POSTCHECK.sanitized.json",
+          "match": true
+        },
+        {
+          "file": "PRECHECK.sanitized.json",
+          "match": true
+        },
+        {
+          "file": "RAW_BINDING.json",
+          "match": true
+        },
+        {
+          "file": "RETURN.md",
+          "match": true
+        },
+        {
+          "file": "prepare_job.py",
+          "match": true
+        },
+        {
+          "file": "run_once.py",
+          "match": true
+        }
+      ]
+    },
+    {
+      "public_folder": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD",
+      "archive_alias": "<RESPONSE_RUNTIME>/scratch/portability-originals-01/root-build",
+      "original_manifest_matches": true,
+      "portable_manifest_matches": true,
+      "archived_entries": [
+        {
+          "file": "CARGO_FINGERPRINTS.json",
+          "match": true
+        },
+        {
+          "file": "RAW_INVENTORY.json",
+          "match": true
+        },
+        {
+          "file": "RESULT.json",
+          "match": true
+        },
+        {
+          "file": "controller-CONTROLLER_RESULT.raw.json",
+          "match": true
+        },
+        {
+          "file": "controller-INVOCATION_STARTED.json",
+          "match": true
+        },
+        {
+          "file": "controller-POSTCHECK.raw.json",
+          "match": true
+        },
+        {
+          "file": "controller-PRECHECK.raw.json",
+          "match": true
+        },
+        {
+          "file": "controller-guard.stderr",
+          "match": true
+        },
+        {
+          "file": "controller-guard.stdout",
+          "match": true
+        },
+        {
+          "file": "controller-job.json",
+          "match": true
+        },
+        {
+          "file": "guard-monitor.jsonl",
+          "match": true
+        },
+        {
+          "file": "guard-registry.json",
+          "match": true
+        },
+        {
+          "file": "guard-supervisor.jsonl",
+          "match": true
+        },
+        {
+          "file": "guard-workload.log",
+          "match": true
+        }
+      ]
+    }
+  ],
+  "changes": [
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/A1-DIAGNOSIS/continuation_02/PRECHECK.sanitized.json",
+      "before_hash_matches": true,
+      "after_hash_matches": true,
+      "only_documented_path_alias_changes": true,
+      "changed_leaves": [
+        {
+          "json_path": "/configs/6/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_1>/.cargo/config",
+          "original_string_sha256": "dd844485f8ddcea5a649a61a62cf1b9339f0e73868b5c6bcaa76978d8a7d82ec"
+        },
+        {
+          "json_path": "/configs/7/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_1>/.cargo/config.toml",
+          "original_string_sha256": "b5b65a0c0bba6a20f6334eed6520bc367eb83a0a11e181bb022b5152a0e42735"
+        },
+        {
+          "json_path": "/configs/8/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_2>/.cargo/config",
+          "original_string_sha256": "c7f95e89b9c7f99c3529f197b63cb215b050f8f34c024e02d14fd263b4545d00"
+        },
+        {
+          "json_path": "/configs/9/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_2>/.cargo/config.toml",
+          "original_string_sha256": "5d2efe6d889530c73b45415c051a9b7c9a238298a387b8ee008f4dc43a72b8c9"
+        },
+        {
+          "json_path": "/configs/10/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_3>/.cargo/config",
+          "original_string_sha256": "8371b9ad4a91769f480be67d99f4f186f93944ebba37d7e2a714a2eda928a923"
+        },
+        {
+          "json_path": "/configs/11/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_3>/.cargo/config.toml",
+          "original_string_sha256": "104533937a6a2bce3e14b934aa22a100d7460daaa15276d7b29fce05ea620b5b"
+        },
+        {
+          "json_path": "/configs/12/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_4>/.cargo/config",
+          "original_string_sha256": "1e10fcb7e28d35ef233f85711d98cef57f5bd61166ef9ffe979559c66b504ef3"
+        },
+        {
+          "json_path": "/configs/13/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_4>/.cargo/config.toml",
+          "original_string_sha256": "8c1d0fda221a61d36a697b81136ba74e44d7e6c165a789dae220de69c3fc6662"
+        },
+        {
+          "json_path": "/configs/14/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_5>/.cargo/config",
+          "original_string_sha256": "10bf918ba9867f52203010f9f6d75d29b32b8f9a7accef53139f2dc16f77277f"
+        },
+        {
+          "json_path": "/configs/15/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_5>/.cargo/config.toml",
+          "original_string_sha256": "ca8d1b53a988ced89ce976959be649ff3d28d3d4313ad74ce3a6295bbb5ca85f"
+        },
+        {
+          "json_path": "/configs/16/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_6>/.cargo/config",
+          "original_string_sha256": "b48b94f5db3698d5c98ddc036b0a14d6e3e54cee51903ea504e534a7845de4dd"
+        },
+        {
+          "json_path": "/configs/17/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_6>/.cargo/config.toml",
+          "original_string_sha256": "2f223c888786af0ce3f83feb19109e427004a073bdc2ab375e3169e7ec5b57bb"
+        },
+        {
+          "json_path": "/configs/18/path",
+          "portable_value": "<FILESYSTEM_ROOT>/.cargo/config",
+          "original_string_sha256": "9f2e73c2801230e0edbec768a84df4566cb069dc26a13effb5e383c1de3f8f0a"
+        },
+        {
+          "json_path": "/configs/19/path",
+          "portable_value": "<FILESYSTEM_ROOT>/.cargo/config.toml",
+          "original_string_sha256": "70d663ddab3591b190affb7d14ad01abd9ffae6478c2a8909fa26aba930e4234"
+        },
+        {
+          "json_path": "/python_executable",
+          "portable_value": "<PYTHON>",
+          "original_string_sha256": "551fd68e30ca91e93e17c4a026561b6b886979137c5fe7e80f232fda1837785b"
+        }
+      ]
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/controller-CONTROLLER_RESULT.raw.json",
+      "before_hash_matches": true,
+      "after_hash_matches": true,
+      "only_documented_path_alias_changes": true,
+      "changed_leaves": [
+        {
+          "json_path": "/command/0",
+          "portable_value": "<PYTHON>",
+          "original_string_sha256": "551fd68e30ca91e93e17c4a026561b6b886979137c5fe7e80f232fda1837785b"
+        }
+      ]
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/ROOT-A0-BUILD/controller-PRECHECK.raw.json",
+      "before_hash_matches": true,
+      "after_hash_matches": true,
+      "only_documented_path_alias_changes": true,
+      "changed_leaves": [
+        {
+          "json_path": "/configs/6/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_1>/.cargo/config",
+          "original_string_sha256": "dd844485f8ddcea5a649a61a62cf1b9339f0e73868b5c6bcaa76978d8a7d82ec"
+        },
+        {
+          "json_path": "/configs/7/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_1>/.cargo/config.toml",
+          "original_string_sha256": "b5b65a0c0bba6a20f6334eed6520bc367eb83a0a11e181bb022b5152a0e42735"
+        },
+        {
+          "json_path": "/configs/8/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_2>/.cargo/config",
+          "original_string_sha256": "c7f95e89b9c7f99c3529f197b63cb215b050f8f34c024e02d14fd263b4545d00"
+        },
+        {
+          "json_path": "/configs/9/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_2>/.cargo/config.toml",
+          "original_string_sha256": "5d2efe6d889530c73b45415c051a9b7c9a238298a387b8ee008f4dc43a72b8c9"
+        },
+        {
+          "json_path": "/configs/10/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_3>/.cargo/config",
+          "original_string_sha256": "8371b9ad4a91769f480be67d99f4f186f93944ebba37d7e2a714a2eda928a923"
+        },
+        {
+          "json_path": "/configs/11/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_3>/.cargo/config.toml",
+          "original_string_sha256": "104533937a6a2bce3e14b934aa22a100d7460daaa15276d7b29fce05ea620b5b"
+        },
+        {
+          "json_path": "/configs/12/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_4>/.cargo/config",
+          "original_string_sha256": "1e10fcb7e28d35ef233f85711d98cef57f5bd61166ef9ffe979559c66b504ef3"
+        },
+        {
+          "json_path": "/configs/13/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_4>/.cargo/config.toml",
+          "original_string_sha256": "8c1d0fda221a61d36a697b81136ba74e44d7e6c165a789dae220de69c3fc6662"
+        },
+        {
+          "json_path": "/configs/14/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_5>/.cargo/config",
+          "original_string_sha256": "10bf918ba9867f52203010f9f6d75d29b32b8f9a7accef53139f2dc16f77277f"
+        },
+        {
+          "json_path": "/configs/15/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_5>/.cargo/config.toml",
+          "original_string_sha256": "ca8d1b53a988ced89ce976959be649ff3d28d3d4313ad74ce3a6295bbb5ca85f"
+        },
+        {
+          "json_path": "/configs/16/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_6>/.cargo/config",
+          "original_string_sha256": "b48b94f5db3698d5c98ddc036b0a14d6e3e54cee51903ea504e534a7845de4dd"
+        },
+        {
+          "json_path": "/configs/17/path",
+          "portable_value": "<RESPONSE_RUNTIME_PARENT_6>/.cargo/config.toml",
+          "original_string_sha256": "2f223c888786af0ce3f83feb19109e427004a073bdc2ab375e3169e7ec5b57bb"
+        },
+        {
+          "json_path": "/configs/18/path",
+          "portable_value": "<FILESYSTEM_ROOT>/.cargo/config",
+          "original_string_sha256": "9f2e73c2801230e0edbec768a84df4566cb069dc26a13effb5e383c1de3f8f0a"
+        },
+        {
+          "json_path": "/configs/19/path",
+          "portable_value": "<FILESYSTEM_ROOT>/.cargo/config.toml",
+          "original_string_sha256": "70d663ddab3591b190affb7d14ad01abd9ffae6478c2a8909fa26aba930e4234"
+        },
+        {
+          "json_path": "/python_executable",
+          "portable_value": "<PYTHON>",
+          "original_string_sha256": "551fd68e30ca91e93e17c4a026561b6b886979137c5fe7e80f232fda1837785b"
+        }
+      ]
+    }
+  ],
+  "no_numeric_or_result_changes": true,
+  "all_checks_pass": true
+}

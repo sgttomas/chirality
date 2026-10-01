@@ -1,0 +1,727 @@
+{
+  "additional_layout_cells": [
+    "std::ffi::OsString",
+    "std::io::error::Custom and allocated StringError wrapper request",
+    "H PrecisionWork and numeric digest tuple",
+    "FK FrameNode",
+    "FK (usize,usize,Matrix12)",
+    "FK structural::StiffnessContribution",
+    "FK structural::PivotEvidence",
+    "FK structural::ResidualRow",
+    "FK structural::ContributionRounding",
+    "SD SymmetricMatrixEntry",
+    "(usize,usize),(usize,f64,f64),(usize,f64)",
+    "actual BTreeMap<(usize,usize),(f64,usize)> leaf/internal nodes",
+    "actual BTreeSet<usize> leaf/internal nodes"
+  ],
+  "kind": "additive_source_compositions",
+  "parameter_inputs": [
+    "argv count/byte lengths and retained subset",
+    "path/join lengths",
+    "immutable file bytes/SHA256/metadata hint",
+    "JSON shape histograms or RF source-schema template",
+    "actual private/consumer/stdlib layout cells",
+    "runtime entry baseline B0",
+    "n,f,m,z,zf and degree/contribution multiplicities; s64 with source upper f(f+1)/2 if no tighter verified count"
+  ],
+  "remaining_kind": "input_and_layout_values_and_independent_validation; no intentionally unfinished helper composition",
+  "rows": [
+    {
+      "depends_on": [
+        "PARAMETERS.formatting",
+        "layout.PrecisionWork",
+        "layout.numeric_tuple"
+      ],
+      "expression": "stdout(1024)+MText(LinePayload)+FormattingHelpers+G(4,PrecisionWork)+E(2,(u64,u64))",
+      "id": "H.format",
+      "notes": "Common key-occurrence multiset covers each Line; no full Debug String for streamed digests.",
+      "source": [
+        "H/main.rs:55-143",
+        "H/w1.rs:36-201",
+        "H/staged.rs:256"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [],
+      "expression": "1024+8192+MText(16)+MText(18)+MText(16)",
+      "id": "H.row_dump",
+      "notes": "Per-row scratch, not multiplied by publication rows.",
+      "source": [
+        "H/w1/rows.rs:27-126",
+        "H/bin/w1.rs:241-255",
+        "L/std/io/buffered"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.argv",
+        "layout.OsString"
+      ],
+      "expression": "E(argc,OsString)+sum(argv_byte_lengths)",
+      "id": "IO.argv",
+      "notes": "Exact initial copies; parsing moves strings; keep retained subset after iterator drop.",
+      "source": [
+        "L/std/sys/args/unix.rs:21-61",
+        "L/std/sys/args/common.rs"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.path_bytes"
+      ],
+      "expression": "sum(Text(owned_PathBuf_lengths)) + (0 if borrowed_path_bytes<384 else borrowed_path_bytes+1)",
+      "id": "IO.path",
+      "notes": "Count actual crate_dir/cases_dir/join ownership separately; borrowed path is not another copy.",
+      "source": [
+        "L/std/sys/helpers/small_c_string.rs",
+        "L/alloc/ffi/c_str.rs:274-296"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.file_bytes",
+        "input.file_sha256",
+        "input.metadata_size=F",
+        "input.file_immutable_during_read"
+      ],
+      "expression": "F",
+      "id": "IO.read_exact",
+      "notes": "",
+      "source": [
+        "L/std/fs.rs:383-390",
+        "L/std/io/mod.rs:451-461"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.file_bytes",
+        "input.size_hint_or_zero"
+      ],
+      "expression": "retained=max(H,64,2F+64); move<=3*max(H,F+32,32)",
+      "id": "IO.read_fallback",
+      "notes": "32-byte source probe; no unknown size treated as zero data.",
+      "source": [
+        "L/std/io/mod.rs:411-519"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.path_or_token_bytes",
+        "layout.io_Custom",
+        "layout.StringError"
+      ],
+      "expression": "MText(381)+MText(template_bytes+path_or_token_bytes+404)+Box(Custom)+Box(StringError)+9",
+      "id": "IO.error",
+      "notes": "The Custom/StringError part applies to serde formatter failure; OS errno itself is inline. Sum is a conservative union of named error alternatives.",
+      "source": [
+        "L/std/sys/io/error/unix.rs:154-185",
+        "L/std/io/error.rs:723-733",
+        "J/value/mod.rs:241-244"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "IO.argv",
+        "IO.path",
+        "IO.read_exact or IO.read_fallback",
+        "input.canonical_file_shape",
+        "layout.H_model_tuples",
+        "layout.String",
+        "layout.str_reference"
+      ],
+      "expression": "ArgsRetained+IO.path+IO.read+M_H+G(6,String)+G(12,String)+F+G(8,&str)+max(MText(20),F+MText(F+18),MText(F)+6*MText(16))",
+      "id": "H.canonical_file",
+      "notes": "Includes eager ok_or(format!(...)) in take(): missing-key message up to20 bytes; cloned header line and expected-key diagnostic (line+key<=7+11 wrapper) overlap even on success. M_H fields are unchanged.",
+      "source": [
+        "H/k6/canonical.rs:31-166",
+        "H/bin/main.rs:257-264"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "H.format",
+        "IO.path",
+        "IO.read_exact or IO.read_fallback",
+        "input.counts_sha",
+        "input.max_model_id_length",
+        "input.counts_key_max"
+      ],
+      "expression": "ModelAndFrames+ArgsRetained+IO.path+IO.read(Fc)+id_len+MText(Kmax+4)+MText(39)+H.format",
+      "id": "H.counts_file",
+      "notes": "Only one parse tuple; produced integers <=39 digits. No collection of all records.",
+      "source": [
+        "H/k6/counts.rs:370-468",
+        "H/bin/main.rs:582-608"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.B0",
+        "H.format",
+        "H.row_dump",
+        "H.canonical_file",
+        "H.counts_file",
+        "parent.CAPACITY_TABLE"
+      ],
+      "expression": "B0+max(IO.argv,H.canonical_file or parent.generator,H.counts_file or parent.counts_build,OwnedCall+H.format,OwnedDump+H.row_dump,OwnedPrefix+H.format,named_IO_error_prefixes)",
+      "id": "H.binary_addition",
+      "notes": "",
+      "source": [
+        "H/bin/main.rs:471-997"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.JSON_shape",
+        "layout.Value",
+        "layout.JSON_Leaf",
+        "layout.JSON_Internal"
+      ],
+      "expression": "sum_arrays G(len,Value)+sum_objects TI(keys,String,Value)+sum_all_key_and_string_bytes",
+      "id": "JSON.parsed",
+      "notes": "",
+      "source": [
+        "J/value/de.rs:107-140",
+        "J/map.rs:23-55"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "JSON.parsed",
+        "input.JSON_shape"
+      ],
+      "expression": "JSON.parsed+max_array(0.5G(len,Value))+MA(longest_decoded_string,u8)",
+      "id": "JSON.parse_peak",
+      "notes": "One growing array plus reused deserializer scratch. Bulk extends and clear preserve non-power-of-two capacity, so scratch uses MA, not fresh push-only G. Canonical keys distinct.",
+      "source": [
+        "J/value/de.rs",
+        "J/de.rs",
+        "J/read.rs"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.JSON_shape",
+        "layout.Value",
+        "layout.JSON_Leaf",
+        "layout.JSON_Internal"
+      ],
+      "expression": "sum_arrays E(len,Value)+sum_objects TI(keys,String,Value)+sum_all_key_and_string_bytes",
+      "id": "JSON.clone",
+      "notes": "",
+      "source": [
+        "J/macros.rs:278-280",
+        "J/value/ser.rs:168-169,233-236",
+        "J/map.rs:395-401"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.model_shape",
+        "layout.VR_model_elements"
+      ],
+      "expression": "G(N,String)+G(N,[f64;3])+E(m,Member)+E(sp,SpringSpec)+E(om,String)+E(r,ConstraintTuple)+E(l,LoadTuple)+E(t,StationTuple)+all_model_string_payload_bytes",
+      "id": "VR.model",
+      "notes": "",
+      "source": [
+        "VR/cases.rs:163-221"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "VR.model"
+      ],
+      "expression": "VR.model+max(0.5G(N,String),0.5G(N,[f64;3]))",
+      "id": "VR.model_peak",
+      "notes": "",
+      "source": [
+        "VR/cases.rs:166-173"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "VR.model"
+      ],
+      "expression": "VR.model with every G changed to E; strings exact payload",
+      "id": "VR.model_clone",
+      "notes": "",
+      "source": [
+        "VR/cases.rs:101",
+        "L/alloc/slice.rs:396-460"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.map_shape",
+        "layout.StringString_Leaf",
+        "layout.StringString_Internal"
+      ],
+      "expression": "TB(k,String,String)+sum(key/value bytes)",
+      "id": "VR.string_map",
+      "notes": "",
+      "source": [
+        "VR/cases.rs:253-260",
+        "L/alloc/collections/btree/map.rs:2539-2553"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "VR.string_map",
+        "layout.String_pair"
+      ],
+      "expression": "max(E(k,(String,String))+Sort(k,(String,String)),E(k,(String,String))+TB(k,String,String))",
+      "id": "VR.string_map_work",
+      "notes": "Extra control-buffer upper on top of completed map; moved child strings counted once.",
+      "source": [
+        "L/alloc/collections/btree/map.rs:2539-2553",
+        "L/alloc/collections/btree/append.rs"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "VR.string_map",
+        "VR.model",
+        "input.case_shape",
+        "layout.Row",
+        "layout.Control"
+      ],
+      "expression": "scalar string bytes+E(R,Row)+row string bytes+E(C,Control)+control ids+sum control value maps or outcome strings+scales map+s_full optional map+E(notcovered,String)+notcovered strings+optional VR.model",
+      "id": "VR.case",
+      "notes": "",
+      "source": [
+        "VR/cases.rs:223-280"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "VR.case",
+        "VR.string_map_work",
+        "VR.model_peak"
+      ],
+      "expression": "VR.case+max(all VR.string_map_work, optional VR.model_peak-VR.model,0)",
+      "id": "VR.case_peak",
+      "notes": "",
+      "source": [
+        "VR/cases.rs:223-280"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "IO.path",
+        "IO.read_exact or IO.read_fallback",
+        "VR.case",
+        "VR.case_peak",
+        "JSON.parse_peak",
+        "layout.Case",
+        "input.family_file"
+      ],
+      "expression": "ArgsRetained+IO.path+IO.read(Ffamily)+sum C(vi)+max(MG(k,Case),G(k,Case)+max_i(JSON.parse_peak(vi)+Cpeak(vi)-C(vi)))",
+      "id": "VR.family",
+      "notes": "One JSON line tree at a time; full payload substitutes for partial prefix. find uses same family bound then leaves selected case only.",
+      "source": [
+        "VR/cases.rs:282-298"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.hash_input_bytes"
+      ],
+      "expression": "Q=64*ceil((F+9)/64); (C,M)=R over exact clone F, push1, Q-F-9 zero pushes, append8; peak=max(M,C+104)",
+      "id": "VR.hash",
+      "notes": "Message retained through hex collection. 104=old32+new64+next8 hex bytes.",
+      "source": [
+        "VR/sha256.rs:25-74"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "VR.case",
+        "IO.path",
+        "IO.read_exact or IO.read_fallback",
+        "JSON.parse_peak",
+        "VR.model_peak",
+        "VR.hash",
+        "input.large_model_SHA"
+      ],
+      "expression": "ArgsRetained+C(selected)+cloned_case_id+IO.path+IO.read(Fmodel)+JSON.parse_peak(model)+VR.model_peak(model)+VR.hash(Fmodel)+64",
+      "id": "VR.large_load",
+      "notes": "",
+      "source": [
+        "VR/cases.rs:331-335",
+        "VR/examples/vk_scale.rs:341-370"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "VR.case",
+        "VR.model_clone"
+      ],
+      "expression": "ArgsRetained+C(selected)+cloned_case_id+VR.model_clone(selected.model)",
+      "id": "VR.embedded_load",
+      "notes": "",
+      "source": [
+        "VR/examples/vk_scale.rs:347-361"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.expected_unresolved_shape",
+        "IO.path",
+        "IO.read_exact or IO.read_fallback",
+        "JSON.parse_peak"
+      ],
+      "expression": "OwnedLane+IO.path+IO.read(Fu)+JSON.parse_peak(vu)+E(u,String)+sum(name bytes); persistent=E(u,String)+sum(name bytes)",
+      "id": "VR.unresolved_once",
+      "notes": "May initialize while outcome is live; OnceLock retained thereafter.",
+      "source": [
+        "VR/cases.rs:312-325"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.B0",
+        "IO.argv",
+        "VR.family",
+        "VR.large_load",
+        "VR.embedded_load",
+        "VR.unresolved_once"
+      ],
+      "expression": "B0+max(IO.argv,VR.family,VR.large_load or VR.embedded_load,VR.unresolved_once,named_IO_error_prefixes)",
+      "id": "VR.parse_envelope",
+      "notes": "",
+      "source": [
+        "VR/examples/vk_scale.rs:329-435"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.n_f_da",
+        "layout.UsizeSet_Leaf",
+        "layout.UsizeSet_Internal",
+        "layout.SetHeader",
+        "layout.VecHeader"
+      ],
+      "expression": "n+E(n,usize)+E(f,SetHeader)+sum TI(da,usize,())+max(A(12,usize),E(f,VecHeader)+sum A(da,usize))",
+      "id": "TAIL.adjacency",
+      "notes": "",
+      "source": [
+        "VR/rcm.rs:17-56"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "parent.CAPACITY_TABLE.S11",
+        "input.f_da"
+      ],
+      "expression": "E(f,VecHeader)+sum A(2da,usize)+2E(f,usize)+f+max(max Sort(da,usize),parent.K4_BFS_bound,A(f,usize))",
+      "id": "TAIL.RCM_K4",
+      "notes": "",
+      "source": [
+        "K/factor.rs:226-341"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.f_da"
+      ],
+      "expression": "E(f,VecHeader)+sum A(2da,usize)+2E(f,usize)+f+max(max Sort(da,usize),3MA(f,usize)+3E(f,usize)+f,A(f,usize))",
+      "id": "TAIL.RCM_SD",
+      "notes": "SD clones next_level into last_level; distinguish from K4.",
+      "source": [
+        "SD/lib.rs:505-621"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "TAIL.adjacency",
+        "TAIL.RCM_K4",
+        "TAIL.RCM_SD"
+      ],
+      "expression": "max(TAIL.adjacency,AdjResult+TAIL.RCM_K4,AdjResult+E(f,usize)+TAIL.RCM_SD,AdjResult+2E(f,usize))",
+      "id": "TAIL.RCM",
+      "notes": "",
+      "source": [
+        "VR/rcm.rs:59-65",
+        "VR/examples/vk_scale.rs:488-495"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.N_m_n_f_r",
+        "layout.FrameNode",
+        "layout.FrameElement",
+        "layout.PrescribedTuple"
+      ],
+      "expression": "A(N,FrameNode)+A(m,FrameElement)+E(n,f64)+E(r,usize)+G(f,usize)+E(r,PrescribedTuple)+Sort(r,PrescribedTuple)",
+      "id": "B64.model_build",
+      "notes": "",
+      "source": [
+        "VR/parity.rs:39-99"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.m",
+        "layout.StiffnessContribution"
+      ],
+      "expression": "MG(144m,StiffnessContribution)",
+      "id": "B64.contributions",
+      "notes": "",
+      "source": [
+        "VR/parity.rs:104-129"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.z",
+        "layout.Allowance_Leaf",
+        "layout.Allowance_Internal"
+      ],
+      "expression": "2TI(z,(usize,usize),(f64,usize))",
+      "id": "B64.allowances",
+      "notes": "Matrices are inline arrays. One map is consumed into the other.",
+      "source": [
+        "VR/parity.rs:135-169"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.N_m_n_z_degrees",
+        "layout.FormedMatrixTuple",
+        "layout.UsizePair",
+        "layout.VecHeader"
+      ],
+      "expression": "E(m,FormedMatrixTuple)+E(m,UsizePair)+E(N,VecHeader)+sum_v MA(2degree_v,usize)+n+E(n,VecHeader)+sum_v 6*A(6*(degree_v+1),usize)+E(n+1,usize)+MA(z,usize)+E(z,usize)+E(z,f64)",
+      "id": "B64.assembly",
+      "notes": "Source arrays and maxima listed; grouped FlatMap uses A, not blind P.",
+      "source": [
+        "FK/structural/sparse.rs:85-160,592-696"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.n_f_zf_row_lengths",
+        "layout.UsizePair",
+        "layout.CouplingTuple",
+        "input.symmetry_basis_bytes"
+      ],
+      "expression": "4f+E(n,usize)+E(f+1,usize)+2MG(zf,usize)+MG(zf,f64)+E(f,usize)+8f+E(zf,usize)+basis_bytes+max_row(A(rowlen,UsizePair)+A(rowlen,CouplingTuple))+n+8n",
+      "id": "B64.preparation",
+      "notes": "Includes validation and negative diagonal prefixes; optional direction overcount is explicit.",
+      "source": [
+        "FK/structural/sparse.rs:1031-1100,1299-1478"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.z_te_row_lengths",
+        "layout.Expansion",
+        "layout.ContributionRounding"
+      ],
+      "expression": "2E(z,Expansion)+sum X(te)+sum X(te+1)+MG(z,ContributionRounding)+8sum(2te+1)+max_e(MG(te,f64),MG(te+1,f64))+max_row A(rowlen,UsizePair)",
+      "id": "B64.audit",
+      "notes": "",
+      "source": [
+        "FK/structural/sparse.rs:1184-1214,1521-1616"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.zf_f_s64",
+        "layout.SymmetricMatrixEntry",
+        "layout.VecHeader"
+      ],
+      "expression": "A(zf,SymmetricMatrixEntry)+Adj64+TAIL.RCM_SD+4E(f,usize)+E(f+1,usize)+MA(s64,f64)+f",
+      "id": "B64.ordering",
+      "notes": "Adj64=E(f,VecHeader)+sum A(nonzero_degree,usize); substitute structural da bounds. s64<=f(f+1)/2 without a tighter count witness.",
+      "source": [
+        "SD/structural.rs:56-76",
+        "SD/lib.rs:215-282,480-624"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.f_s64",
+        "layout.VecHeader",
+        "layout.PivotEvidence"
+      ],
+      "expression": "E(f,VecHeader)+8s64+6E(f,usize)+E(f,f64)+f+MG(f,PivotEvidence)",
+      "id": "B64.factor",
+      "notes": "Six usize vectors include caller ordering.order/first_columns, position, owned factor order/first, and loop first clone; caller order remains borrowed during factorization.",
+      "source": [
+        "FK/structural/sparse.rs:1740-1792",
+        "FK/structural.rs:1973-2027"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.f_n",
+        "layout.PivotEvidence"
+      ],
+      "expression": "E(f,PivotEvidence)+5E(f,f64)+n",
+      "id": "B64.condition",
+      "notes": "",
+      "source": [
+        "FK/structural.rs:1562-1647,2029-2054"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.f_n",
+        "layout.PivotEvidence",
+        "layout.ResidualRow"
+      ],
+      "expression": "E(f,PivotEvidence)+E(f,f64)+E(n,f64)+MG(f,ResidualRow)+MG(f,f64)+2E(f,f64)+n",
+      "id": "B64.refinement",
+      "notes": "",
+      "source": [
+        "FK/structural.rs:1667-1804"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.f_n_z_te_trow",
+        "layout.PivotEvidence",
+        "layout.ResidualRow",
+        "layout.Expansion"
+      ],
+      "expression": "E(f,PivotEvidence)+E(f,f64)+E(n,f64)+G(f,ResidualRow)+MG(f,ResidualRow)+E(z,Expansion)+sum X(te)+max(max_e MG(te,f64),Xadd(1+2trow))+n",
+      "id": "B64.intended",
+      "notes": "",
+      "source": [
+        "FK/structural.rs:917-990",
+        "FK/structural/sparse.rs:1184-1214"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.f_n_z_te",
+        "layout.ResidualRow",
+        "layout.PivotEvidence",
+        "layout.ContributionRounding"
+      ],
+      "expression": "E(f,f64)+E(n,f64)+2G(f,ResidualRow)+E(f,PivotEvidence)+E(f,i32)+E(z,ContributionRounding)+8sum(2te+1)+basis_bytes",
+      "id": "B64.report",
+      "notes": "While P and F still live; explicit kept-vector overbound covers peak return copies.",
+      "source": [
+        "FK/structural.rs:1749-1784"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "input.f_n"
+      ],
+      "expression": "E(f,f64)+E(n,f64)+n",
+      "id": "B64.witness",
+      "notes": "Failed partial factor prefix already covered; no dense matrix or persistent direction per pair.",
+      "source": [
+        "FK/structural/sparse.rs:1937-1979"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "B64.model_build",
+        "B64.contributions",
+        "B64.allowances",
+        "B64.assembly",
+        "B64.preparation",
+        "B64.audit",
+        "B64.ordering",
+        "B64.factor",
+        "B64.condition",
+        "B64.refinement",
+        "B64.intended",
+        "B64.report",
+        "B64.witness"
+      ],
+      "expression": "max(ModelBuild,Model+ContributionsBuild,Model+C+Allowances,Model+C+Allow+Assembly,B+Preparation+Audit,B+P+Ordering,B+P+Factor,B+P+F+max(Condition,Refinement,Intended,Report),B+P+Witness,B+max(Report,8n)+finite_class_text)",
+      "id": "TAIL.binary64",
+      "notes": "B,P,F are explicit kept unions defined in SOURCE_ENVELOPES. dense=false returns before every dense allocation.",
+      "source": [
+        "VR/parity.rs:204-247",
+        "SD/structural.rs:79-105"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "TAIL.RCM",
+        "TAIL.binary64",
+        "JSON.clone",
+        "input.tail_fixed_owners",
+        "TAIL.emit"
+      ],
+      "expression": "T0+max(TAIL.RCM,TAIL.binary64,tail_emit,named_error_prefixes)",
+      "id": "TAIL.complete",
+      "notes": "T0 retains record/case/model/Args/OnceLock, not kernel cache; tail_emit uses actual Value shape and streams.",
+      "source": [
+        "VR/examples/vk_scale.rs:484-515"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    },
+    {
+      "depends_on": [
+        "JSON.parsed",
+        "JSON.clone",
+        "IO.error",
+        "input.tail_payload_schema"
+      ],
+      "expression": "1024+JP(tail_payload_shape)+JP(phase_fields_shape)+JC(case_id_and_class_strings)+IO.error_if_write_fails",
+      "id": "TAIL.emit",
+      "notes": "Actual tail payload has kind/case and equal or sparse/error; four numeric phase fields merge, schema adds one key; summary uses its four declared fields. At most eight distinct keys before schema where applicable; use actual schema histogram. Display streams; no full-line text.",
+      "source": [
+        "VR/examples/vk_scale.rs:246-275,488-515"
+      ],
+      "status": "SOURCE_COMPOSED_PARAMETERIZED"
+    }
+  ],
+  "scope_limits": [
+    "No compiler/provider/runtime/model/network/install or Git mutation",
+    "L1 ungranted/unapplied; final Emax and A1 not accepted",
+    "Retain original no-large-dense and runner/binary backstop controls"
+  ],
+  "source_basis": "3bddc2b05f6106e969c7cf43373b230845c7cc66"
+}

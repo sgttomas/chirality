@@ -1,0 +1,43 @@
+{
+  "L1_overlay": "read proposal/manifest only; never materialized, patched, compiled or executed",
+  "activation": "ROOT accepted unchanged draft bytes; DELIVERY explicitly relayed activation and released-slot grant. Historical draft heading/fe6ca966 coordination remain historical, not self-authorizing.",
+  "activation_basis": "888e388812f65dffce4428c96c18d2ddc8d2ae61",
+  "brief_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/DELIVERY/CONTINUATION_K0_20260930/K0_S1_S2_BRIEF.md",
+  "brief_sha256": "3a367e2fdcc854fb2b7007c6121da800587aa1d86e01d0702be1b663b58ed53b",
+  "generated_at_utc": "2026-09-30T19:07:49.856362+00:00",
+  "instruction_hash_checks": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "unchanged": true
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "unchanged": true
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "unchanged": true
+    }
+  ],
+  "instruction_source": "Original role/instruction bodies retained; hashes rechecked unchanged",
+  "methods": "Source/record derivation directly from sealed brief; no selected skill or reusable workflow body",
+  "model": "Original inherited configured model, no override; no independent model identifier exposed",
+  "native_id": "/root/delivery_manager/i21_k6c",
+  "numerical_basis": "3bddc2b05f6106e969c7cf43373b230845c7cc66",
+  "observed_return_coordination": "84843dbf9b74c4c3fdb727610998910b740a48ea",
+  "original_packet_manifest_entries_verified": 13,
+  "parent": "/root/delivery_manager",
+  "parent_updates": [
+    "Readability clarification: separate words/numbers outside code/equations; no method/runtime scope change.",
+    "ROOT separately resumed guard author for pure v3 exit-race repair; not a grant here.",
+    "Later coordination84843dbf9b74c4c3fdb727610998910b740a48ea contains prior build/partial-B/backcheck records and excludes active K0 folders. L1 and numerical retry remain ungranted."
+  ],
+  "prohibited_work_performed": [],
+  "resume_event": "Native NEW_TASK/follow-up received on original task; no new child identity or full-history role change claimed",
+  "role": "TASK Type 2; original instance resumed, no descendants",
+  "root": "/root",
+  "write_scope": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE/instances/I21-K6C/continuation_01/** and owned light scratch only; prompt restriction, shared host filesystem"
+}
