@@ -100,3 +100,74 @@ stand as presented.
 **Effect:** every executor launched after this direction runs on Claude Opus
 5.5 (`claude-opus-5-5`) at high effort. How it is applied, and which earlier
 executors ran on Claude Fable 5.1, is recorded in [DISPATCH.md](DISPATCH.md).
+
+## Model download for OBS-1 (owner, 2026-09-30)
+
+**Custody:** the owner's answer to a structured question from HELP_HUMAN.
+
+Question (exact): "For the one live Codex turn you approved (K1-6), may I download a chat model into LM Studio? This Mac has 16 GB of memory and 103 GB free disk. Codex 0.158.0 from the earlier spike is still in the session scratch folder, so nothing else needs installing."
+
+Answer (exact option chosen): "Qwen3 4B, 2.28 GB (Recommended)" — option text: "lmstudio-community/Qwen3-4B-MLX-4bit from Hugging Face via LM Studio, Apache-2.0, trained for tool use. Fits comfortably in 16 GB. If Codex can't get a tool call out of it, I come back to you."
+
+Effect: HELP_HUMAN downloads that one model into LM Studio for OBS-1. Any other model, or the Codex sign-in, needs a new owner answer.
+
+**Recorder's correction (HELP_HUMAN, 2026-09-30).** The question said LM
+Studio held only an embedding model. That was wrong: the first `lms ls` ran
+while the LM Studio service was still starting and listed one model. A second
+listing, after the download command had failed without downloading anything
+(the shell had no `timeout` command), shows chat models already installed
+since June 2026, among them `lmstudio-community/Qwen3.5-9B-MLX-4bit` (5.98 GB).
+Nothing has been downloaded. HELP_HUMAN proposes to use that installed model
+for OBS-1, which needs no download and stays within K1-6 ("a local model in
+LM Studio first"), and to download Qwen3 4B only if the installed model cannot
+produce a tool call.
+
+## Host-loop model interface (owner, exact, 2026-09-30)
+
+**Custody:** the owner's chat message to HELP_HUMAN, after asking whether
+OpenAI's newer Responses API was relevant and receiving HELP_HUMAN's answer
+and recommendation (keep Chat Completions for the host loop; note that the
+model interface is replaceable, with Responses as the likely second option).
+
+> keep Chat Completions for the host loop as recommended.
+
+**Effect:** ARCHITECTURE V4-ARC-10 stands unchanged: a host's minimal agent
+loop uses the OpenAI-compatible Chat Completions interface with tool calls.
+No amendment. LOOP states that its model interface sits behind one boundary
+so a second interface (Responses being the likely one) can be added later
+without restructuring; this is design, not a selection. The App side is
+unaffected: stock Codex uses the Responses API to reach its model.
+
+## OBS-1 second turn on the command-line path (owner, exact, 2026-09-30)
+
+**Custody:** the owner's chat message to HELP_HUMAN, after HELP_HUMAN reported
+that OBS-1's optional Part B (a second Codex turn on the command-line path,
+which is the seam SWBPIPE uses) had been held back because K1-6 named one
+turn, and would be put to the owner with the first turn's results.
+
+> yes, run the second Codex turn on the command-line path
+
+**Effect:** OBS-1 runs Part B of `WAVE_B/OBS-1_BRIEF.md` §11 as a second turn
+on the same thread, with the same limits: the local model already installed,
+invented material only, no sign-in, no download, route R-1, no further turn.
+HELP_HUMAN relayed the decision to the running OBS-1 executor.
+
+## OBS-1 follow-up after no tool call (owner, 2026-09-30)
+
+**Custody:** the owner's answer to a structured question from HELP_HUMAN.
+
+Question (summary; full text in the session): the live turn produced no tool
+call because Codex 0.158.0 offers MCP tools to a Responses provider as a
+`namespace` tool, which LM Studio ignores; the command-line path may still
+work locally; Codex's start-up contacted chatgpt.com and github.com even with
+analytics off and no sign-in. Options: run the command-line turn locally;
+also sign in for one cloud MCP turn; stop.
+
+Answer (exact option chosen): "Run the command-line turn locally (Recommended)"
+— option text: "One fresh Codex turn on the same local model, calling the
+command-line test tool. Same limits: invented material, no sign-in, no
+download. Start-up contacts chatgpt.com and github.com again."
+
+**Effect:** node OBS-1b runs one fresh Codex turn (Part B of the OBS-1 brief,
+as a new thread's single turn) on the installed local model. No cloud turn,
+no sign-in, no download.

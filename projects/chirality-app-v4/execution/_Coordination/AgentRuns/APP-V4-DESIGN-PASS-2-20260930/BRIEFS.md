@@ -412,3 +412,274 @@ matches (recompute), GUIDE's table 18/18, RELAY §0–§3 byte-identical to
 `74b3c73134`; and that nothing outside the 16 Design files and the run folder
 changed in the repair. Verdict **MERGE AS DRAFTS** or **HOLD**; findings
 classed as in V17.
+
+# Wave B — design development
+
+## Common rules for Wave B (in addition to the common rules above)
+
+- **Binding:** R1–R11, [R12_RESOLUTIONS.md](R12_RESOLUTIONS.md), DECISION-K1
+  and the executor-model direction in OWNER_DECISIONS.md.
+- **Starting text:** the Design files as merged by PR-1 (Wave A). Read each
+  file you edit whole before editing it.
+- **What to produce:** R12-1 (data, states, sequences with failure behaviour,
+  verification) for the items your node lists. Items are the survey section 8
+  numbers; the survey gives the reasoning and locations. Check each against
+  the current text first: Wave A may already have done part of it.
+- **Prototypes (R12-3):** Python 3 standard library or `node` only; no
+  package install; no network unless your brief grants it; files under the
+  owning deliverable's `Design/prototype/`. Record the command, date and
+  output in the return file.
+- **Schemas (R12-1, R12-2):** JSON Schema 2020-12, beside the Design file,
+  with a valid and an invalid example instance. Validate them with your
+  prototype (a small standard-library validator for the subset you use is
+  enough; say which subset).
+- **Versions:** one step per file for Wave B (R12-1), with a "Changes from
+  ‹Wave A version›" table carrying the item IDs.
+- **Joins:** where your change alters what another file receives or
+  supplies, say so in the return file (file, section, what the other side
+  now needs). Do not edit files outside your fence; node V18 compares the
+  joins.
+- **Return file:** `WAVE_B/<ID>.md`: per item, what was produced and where;
+  schemas and prototypes with their validation output; join changes;
+  anything not done and why; proposed ScopeOfWork or register items; new
+  sha256 per file.
+
+## Round 1 (parallel; disjoint write fences)
+
+| ID | Write fence (Design files, plus their `Design/` schema and prototype files) | Items |
+|---|---|---|
+| B1 | DEL-02-01: WD, WD-EX (`EXAMPLES.md`) | S1-C WD 5, 6, 7, 9, 10; WD-EX 2, 3, 4; R12-10 (SP-6F uptake element; message-output element). WD 6 (harness-capability names) uses HOSTING §8's inventory as it stands and the generated schema at `…/scratchpad/codex-0.158.0/gen` if present (read-only); names are PROPOSED and scoped to pin 0.158.0. Prototype: render and parse E1, E1d, E5, E6 in the chosen carriage |
+| B2 | DEL-02-03: EXEC | S1-C EXEC 5, 6 (the reached-when table written against the native item kinds in HOSTING §8 and PIN-SPIKE; each cell that needs a live observation is marked "OBS-1 pending"), 7, 8, 9; R12-10 (recording is not a reaction; the current-phase case where an earlier act does not count) |
+| B3 | DEL-03-01 C; DEL-03-02 P; DEL-03-03 ADAPTER | S1-B C 4, 5, 6, 8; P 4, 5, 7; ADAPTER 3 (per R12-4: both paths), 4, 5, 6, 8; R12-4's simulated host specified once in C (both paths), cited by P and ADAPTER; R12-9's read-without-workspace-identity proposal. ADAPTER 7 (live spike) is not in this node |
+| B4 | DEL-04-01 ACT; DEL-04-02 AS; DEL-04-03 RS | S1-A ACT 7, 8; AS 4 (with RS), 5, 7, 8; RS 5, 6, 7, 8; R12-5 (A15 and its record kind); R12-9's two-evidence-limits proposal; R12-10 wording of "prior act not counted". The destination-grant exchange of AS 4 / RS 6 is designed here; B5 joins it to LOOP and PANEL |
+| B6 | DEL-01-01 HOSTING (not PIN_SPIKE) | S1-D HOSTING 4 (harness-capability account by capability, with standing labels), 5, 6 (a supplier double seeded from the recorded spike transcripts under `…/scratchpad/codex-0.158.0/handshake` and the file's §10, run locally for the cases it marks runnable with a double), 7 (brief for the next observation, OBS-1, written to `WAVE_B/OBS-1_BRIEF.md`) |
+| B9 | DEL-05-01 LOOP; DEL-05-02 PANEL (non-destination items) | S1-D LOOP 7, 8; R12-7; R12-8 (**network granted for this node only:** read the published Chat Completions reference and record URL, retrieval date and the four points); PANEL 5 except the destination prompt states (B5) |
+
+## Round 2 (after round 1 is integrated)
+
+| ID | Write fence | Items |
+|---|---|---|
+| B5 | LOOP, PANEL, AS, RS, ACT, C, P, ADAPTER — destination sections only, plus LOOP §4 for R12-11 | S1-D LOOP 5, PANEL 5 (destination prompt states), 7; S1-A AS 3, 7 as they touch destinations; R12-10 (refusal-recording labels; LP-5 label); R12-11 (model-interface boundary). **Network granted for this node only:** read the stateless MCP specification revision 2026-07-28 to state what evidences a stateless server (LOOP N-OPEN-5). One account of the destination flow that every file cites, with no element named on one side only |
+| B7 | DEL-09-06 CA; DEL-09-09 XT | S1-E CA 5, 6, 9 (the option sheet, R12-6); XT 5, 7; R11-9 (cite B2's case in W14-05); CA and XT cite the simulated host of B3 |
+
+## After round 2
+
+- **OBS-1** (one live Codex turn at pin 0.158.0 against a local model, per
+  K1-6): only after the owner approves the model download. Its record fills
+  the "OBS-1 pending" cells (B2, ADAPTER 7).
+- **V18** receiver comparisons, **R13** rulings, repairs, **B8** GUIDE
+  (S1-E D.8 items 5–6 and the matrix for Wave B; re-pin last), **V19**
+  review, **PR-2**.
+
+## OBS-1 — the live Codex turn (one Type 2)
+
+**Brief:** [WAVE_B/OBS-1_BRIEF.md](WAVE_B/OBS-1_BRIEF.md) (written by node
+B6), with these integrator decisions under K1-6:
+
+- Pre-flight P-5 (one direct request to the local server) is allowed: it is
+  local and uses invented text.
+- **Part C** (direct Chat Completions requests to the same local server, for
+  LOOP's fixture basis) is allowed: local, invented content, no Codex turn.
+- **Part D** (per-thread MCP configuration, no model call) is allowed.
+- **Part B** (a second Codex turn on the command-line path): first held back, then **approved by the owner** during the run ("yes, run the second Codex turn on the command-line path"; OWNER_DECISIONS) and relayed to the executor. The two lines below are the original text:
+  not run:
+  K1-6 names one turn. It is put to the owner with OBS-1's result.
+- **S-8 (no tool call):** stop and return. The executor does not download
+  anything; HELP_HUMAN decides the next step under the owner's answer.
+- Route R-1 only. If R-1 fails for a provider-form reason, stop and return
+  before trying R-2 (R-2 can trigger a model download).
+
+**Write fence:** the scratch folder `$TMPDIR/chirality-obs1-0.158.0`; one new
+record `DEL-01-01/Design/OBS_1_0.158.0.md` (redacted as the brief's §12
+says); the harness script under `DEL-01-01/Design/prototype/obs1/`; the
+return file `WAVE_B/OBS-1.md`. The spike's scratch folder is read only. No
+other repository file.
+
+## OBS-1b — the command-line turn (one Type 2)
+
+As OBS-1, with every hard limit unchanged, except: a fresh `app-server`
+process and thread; the single turn is Part B of `WAVE_B/OBS-1_BRIEF.md` §11
+(approval policy `untrusted`; the command-line test tool with `--key EX-1`
+and the local probe socket); no MCP server configured; no Part C or D. Write
+fence: the same scratch folder (a new `obs1b/` subfolder), an addendum
+section appended to `DEL-01-01/Design/OBS_1_0.158.0.md`, harness changes
+under `DEL-01-01/Design/prototype/obs1/`, and `WAVE_B/OBS-1b.md`.
+
+## V18 — receiver comparisons for the joins Wave B changed (four Type 2, read-only)
+
+**Purpose.** For each join in your cluster, compare what the supplier's
+Design file now offers with what the consumer's Design file now uses, at
+their Wave B text. Each executor writes one file, `comparisons/V18-<n>.md`.
+Read-only on every project file. The join notes in `WAVE_B/B1.md`…`B9.md`
+(section "join changes" of each) are the starting list; check each against
+the files rather than trusting it, and look for joins they missed.
+
+For each join record: supplier file, section and version; consumer file,
+section and version; the register row (`Dependencies.csv`, ACTIVE) and
+whether DAG-003 admits or holds the arc; what the consumer uses; the check
+you performed (element by element; schema against schema where both have
+one; run a prototype where it proves the point); **disagreements** (quote
+both sides; say which side is wrong if a ruling, ScopeOfWork text or
+accepted text decides it, else give options); **absent** (named on one side
+only). Class each finding BLOCKING (the two files say incompatible things
+about the same exchange), MAJOR (a consumer relies on something the supplier
+does not offer), MINOR, NOTE.
+
+| ID | Cluster |
+|---|---|
+| V18-1 | The record: RS ↔ EXEC (both checkpoint-entry schemas), RS ↔ ADAPTER (limits, observations), RS ↔ LOOP, PANEL, AS (destination elements; the AS §6 / RS §8 exchange), RS ↔ ACT (A15, policy reference), RS ↔ C, P (outcomes, evidence labels) |
+| V18-2 | The workflow: WD ↔ EXEC, WD ↔ LOOP (message-output element), WD ↔ HOSTING (capability names against capability groups), WD ↔ C, P, ACT (identity strings, outcome tokens, A15), WD-EX ↔ everyone who cites an example |
+| V18-3 | Host operations: C ↔ P ↔ ADAPTER ↔ EXEC (observations, CH cases, SH-1), ADAPTER ↔ HOSTING (native items, channel states), P ↔ LOOP, PANEL (derived proposal state, T-OPEN-1), C ↔ LOOP (catalog edition, external-contact entries) |
+| V18-4 | The integrating files: CA, XT ↔ EXEC, C (SH-1 profiles), RS, P; and the four DAG-003 arcs added by SCA-V4-002 — N-18 (DEL-02-01 → DEL-03-02), N-21 (DEL-02-03 → DEL-03-02), N-24 (DEL-02-03 → DEL-03-03), X-1 (DEL-02-03 → DEL-01-04, narrow) — each with its register row |
+
+Also apply, as a check: R13 (just written) says how two open disagreements
+are ruled; report where the files do not yet say it, as a finding for the
+repair.
+
+## RP — repairs from V18 (four Type 2, parallel, disjoint fences)
+
+**Binding:** [R14_RESOLUTIONS.md](R14_RESOLUTIONS.md), with R12, R13 and
+DECISION-K1. **Inputs:** the four comparison files in `comparisons/` (every
+finding that falls in your files, including MINOR ones; NOTEs optional),
+`WAVE_B/OBS-1.md` and `WAVE_B/OBS-1b.md` with DEL-01-01's
+`OBS_1_0.158.0.md` for R13-6.
+
+| ID | Write fence (Design files with their schemas, examples and `prototype/`) | Main items |
+|---|---|---|
+| RP-1 | RS (DEL-04-03), EXEC (DEL-02-03), ADAPTER (DEL-03-03) | R14-1, R14-2, R14-3, R14-4, R14-8 (N-21, N-24, X-1); R13 and OBS observations in these files (R14-7) |
+| RP-2 | C (DEL-03-01), P (DEL-03-02) | R14-7 in C; R14-8 N-18 (item-left events explicit in P's schema); P's outcome and citation findings; C's schema findings |
+| RP-3 | WD and WD-EX (DEL-02-01), HOSTING (DEL-01-01; not PIN_SPIKE, not OBS_1) | R14-5, R14-6, R14-8 N-18 (WD cites P-v0.8); R13-6 in HOSTING |
+| RP-4 | LOOP, PANEL (DEL-05-0x); AS, ACT (DEL-04-0x); CA (DEL-09-06, not RELAY or SWBPIPE's files); XT (DEL-09-09) | R14-7 in LOOP (R13-5, the observed column), CA, XT; LOOP §2.3 citing RS's mapping (R14-1); the comparisons' findings in these files |
+
+**Rules.** No version bump: add rows with the R14 item or finding ID to each
+file's Wave B change table. Where a fix needs another node's file, write
+your side, and state in the return what the other side must say; the
+integrator checks both sides after all four return. Rerun every prototype in
+your folders and any cross-file prototype chain you touch (for RP-1, the
+EXEC-to-RS conversion of R14-1 must show every entry valid). Return file
+`WAVE_B/RP-<n>.md`: finding → fix → location; prototype output; anything
+returned; new sha256 per file.
+
+## RX — residual sweep after the repairs (one Type 2)
+
+**Purpose.** Each of `WAVE_B/RP-1.md`…`RP-4.md` ends with what *other* files
+must now say. The four ran in parallel, so some of those items were done by
+another node and some were not. For every such item: check whether the named
+file now says it; if not, make the smallest edit that does, under R14. Also
+regenerate CA's `w14-result-record.example.valid.json` so that CA's check
+"validates and equals the regenerated W14-05 record" passes after RP-1's
+recorder change.
+
+**Write fence:** the 16 Design files and their schemas, examples and
+`prototype/` folders (not PIN_SPIKE, not OBS_1, not `prototype/obs1/`, not
+RELAY or SWBPIPE's files); return file `WAVE_B/RX.md`. No version bump; rows
+"RX" in each file's Wave B change table.
+
+**Return:** a table of every residual item (source return, target file, said
+already / fixed here / returned), the prototype reruns (every folder), and
+sha256 per changed file.
+
+## B8 — GUIDE for Wave B, final re-pin, and R15-1 (one Type 2)
+
+**Write fence:** `HOST_INTEGRATION_GUIDE.md` (GUIDE v0.4 → v0.5); for R15-1
+only, LOOP F-2 and MS-02 and RS's run-start or run-end cause element (text,
+schema, one example); return file `WAVE_B/B8.md`.
+
+**Do:** S1-E D.8 items 5–6 (refresh the receiving matrix for the Wave B
+changes in the other 16 files, naming where N-18, N-21, N-24 and X-1 now
+stand; a short "order of use" in §3 and what a reviewer does with *answered
+without evidence*); cite the record arrangement of R14-1 (RS the container,
+EXEC's entry bodies) wherever GUIDE describes the run record (R15-2); carry
+R13 and R14 where GUIDE restates them; re-pin the 18-row input table **last**,
+by script, after R15-1's edits, and show 18/18. Rerun LOOP's and RS's
+prototypes after R15-1. No other file.
+
+## V19 — independent review of the Wave B candidate (two Type 2 reviewers)
+
+**Candidate:** the commit named in your launch message. Base: `292e123d`
+(the merge of PR-1, Wave A). Read-only on project state; each reviewer writes
+one file, `reviews/V19-A.md` or `reviews/V19-B.md`. You did not write any of
+this; review it as a stranger to it.
+
+| Reviewer | Files |
+|---|---|
+| V19-A | PKG-04 (ACT, AS, RS), PKG-03 (C, P, ADAPTER), GUIDE; with their schemas, examples and prototypes |
+| V19-B | PKG-02 (WD, WD-EX, EXEC), PKG-05 (LOOP, PANEL), DEL-01-01 (HOSTING, OBS_1 and its harness), PKG-09 (CA, XT; RELAY untouched); with their schemas, examples and prototypes; and the run records (graph, OWNER_DECISIONS, DISPATCH, R12–R15, BRIEFS) |
+
+**Check, and do not take on trust:**
+
+1. **Fidelity to decisions.** Nothing claims more than the owner decided or
+   an accepted text says. Check DECISION-K1, the host-loop interface
+   direction, the download and OBS decisions, and R12–R15 against what the
+   files now state. Every new structure that no ruling or accepted text
+   decides is labelled PROPOSED.
+2. **The 60% content** (R12-1): for the items each file's change table
+   claims, the data (schemas with examples), states, sequences with failure
+   behaviour and verification are actually there and coherent.
+3. **Cross-file consistency** on the joins V18 found and R14 ruled: one
+   record container (R14-1); request identification (R14-2); vocabularies
+   (R14-3); observations (R14-4); capability groups (R14-5); `applied`
+   (R14-6); R13 applied (R14-7); the four arcs (R14-8); the destination flow
+   (LOOP §5.3) cited the same way everywhere.
+4. **Prototypes:** rerun every prototype in your folders (READMEs give the
+   commands; the SH-1 chain and `exec_to_rs.py` cross folders), and check
+   that each schema accepts its valid example and rejects its invalid one.
+   Report any whose claimed result you cannot reproduce.
+5. **Observations** (V19-B): OBS_1_0.158.0.md states only what was observed,
+   with versions and redaction (no host name, installation identifier, home
+   path or user name); the files that cite it treat it as a dated
+   observation, not qualification.
+6. **Untouched:** RELAY §0–§3 byte-identical to `74b3c73134`; PIN_SPIKE,
+   SWBPIPE's two files, every ScopeOfWork, register, status, basis,
+   decomposition, scope-change and DAG file byte-identical to `292e123d`;
+   DAG-003's two manifests pass.
+7. **Records** (V19-B): the graph, DISPATCH and OWNER_DECISIONS are true
+   against git and the owner's recorded words.
+
+**Return file:** verdict **MERGE AS DRAFTS** or **HOLD**; findings classed
+BLOCKING (false, inconsistent across files, or claims more than decided),
+MAJOR, MINOR, NOTE, with passages quoted and a proposed fix; what you checked,
+how, and what you did not check.
+
+## RQ — repairs from V19 and final GUIDE re-pin (one Type 2)
+
+**Inputs:** `reviews/V19-A.md` and `reviews/V19-B.md`: every finding in the
+Design files, all classes (NOTEs optional). The graph finding (V19-B M-1) is
+the integrator's and is done. Rulings for the findings:
+
+- **V19-B B-1 and GUIDE F-18:** R15-1 applies to PANEL as to LOOP: PC-42,
+  RI-1 and RT-d, and LOOP's §3.2 turn-table row, read "run not started — no
+  model selected" for an unconfigured model; "boundary refusal" stays only for
+  a cloud model with no credential.
+- **V19-A M-1:** the ADAPTER-to-RS label map gets an entry for every token
+  that the underscore rule does not produce (at least
+  `agent_written_configuration` → "agent-written configuration"), and a
+  prototype check runs every ADAPTER evidence-limit and outcome value through
+  the chain.
+- **V19-A, `namespace`:** where ADAPTER and GUIDE state the mechanism as
+  observed, say what was observed (LM Studio logged the `namespace` tool type
+  as unsupported; the model never saw the tool) and label the mechanism an
+  inference, as the OBS record does.
+- **V19-A, RS `$ref` resolution:** state accurately how a standard validator
+  resolves RS's references (give the schemas `$id`s that make relative
+  references resolve, or say that a loader must map them), and check it with
+  the already-installed `jsonschema` package if present (no install).
+
+**Write fence:** the 16 Design files and their schemas, examples and
+`prototype/` folders (not PIN_SPIKE, OBS_1, `prototype/obs1/`, RELAY or
+SWBPIPE's files); `WAVE_B/RQ.md`. Rows "RQ" in each file's Wave B change
+table; no version bump. **GUIDE's 18-row input table is re-pinned last**, by
+script, after every other edit, showing 18/18. Rerun every prototype.
+
+## V19b — recheck of the V19 repairs (one Type 2 reviewer)
+
+**Candidate:** the commit named in your launch message; the repairs are the
+diff from `8c575f739e` to it. Read-only; write only `reviews/V19b.md`. Check
+that every V19-A and V19-B finding is closed as `WAVE_B/RQ.md` says (quote the
+fixed passage), with the RQ brief's rulings; that the RQ diff introduced
+nothing false, inconsistent across files, or beyond the findings (look hard
+at anything new it labels PROPOSED); rerun every prototype; GUIDE 18/18; RELAY
+§0–§3, PIN_SPIKE, OBS_1, SWBPIPE's files and every ScopeOfWork, register,
+status, basis, decomposition, scope-change and DAG file unchanged; DAG-003's
+manifests pass; and that the work graph and DISPATCH are true against git.
+Verdict **MERGE AS DRAFTS** or **HOLD**; findings classed as in V19.

@@ -68,23 +68,30 @@ States: PLANNED, READY, ACTIVE, BLOCKED, UNCERTAIN, COMPLETE.
 | V17 Independent review of Wave A (V17-A, V17-B) | `reviews/V17-*.md` | A1-G | Verdict covering the candidate | COMPLETE — both HOLD at `764e599ee` (2 BLOCKING, 4 MAJOR); every finding dispositioned in [R11](../../AgentRuns/APP-V4-DESIGN-PASS-2-20260930/R11_RESOLUTIONS.md) |
 | A4 Repairs from V17 (R11-1…R11-9) | 16 Design files; `WAVE_A/A4.md` | V17 | Every finding closed or carried; pins current | COMPLETE `c896a99d9` — 66 header pins current; GUIDE 18/18; R11-9 carried to B7 |
 | V17b Recheck of the repairs | `reviews/V17b.md` | A4 | Verdict | COMPLETE — **MERGE AS DRAFTS** at `c896a99d9` (0 BLOCKING, 0 MAJOR, 2 MINOR, 6 NOTE). Carried: m-1 (LOOP MS-06, MS-20, MS-23 and §2.3 credit the recorded refusal to accepted texts) → B5 with RS R15 and PANEL §3.8; m-2 (LOOP LP-5 labels the A8 mapping SETTLED; ACT says DERIVED) → B2; notes → B5, B7, B8 |
-| P1 PR-1: Wave A | — | V17b, CI | Merged under the standing direction | ACTIVE |
+| P1 PR-1: Wave A | — | V17b, CI | Merged under the standing direction | COMPLETE — [#1065](https://github.com/sgttomas/chirality/pull/1065) merged `292e123d` (CI green; auto-merge after V17b) |
 | **Owner package** | | | | |
 | K0 Decision package draft | `DECISIONS_DRAFT.md` | S1 | Every owner-class choice from the surveys stated with options and consequences | COMPLETE `be55f3250` — 27 choices in three groups |
 | K1 Owner checkpoint: the choices that shape the design now, with recommendations | `DECISIONS_PENDING.md`; `OWNER_DECISIONS.md` | K0 | Decided, or left open at a stated point of need | COMPLETE — [DECISION-K1](../../AgentRuns/APP-V4-DESIGN-PASS-2-20260930/OWNER_DECISIONS.md): all six accepted as recommended |
-| **Wave B — design development** (briefed after Wave A; content from the surveys' section 8 and K1) | | | | |
-| B1 Declared-part carriage and schema, with a local parse/render prototype; harness-capability names | WD, WD-EX; HOSTING (capability account) | P1; K1 where it bears | Schema PROPOSED; E1, E1d, E5, E6 render and parse | PLANNED |
-| B2 Current-phase recorder, App-run reached-when table, end-to-end sequences | EXEC (with LOOP §2.4.1 and ADAPTER §7.7) | P1; R9-1 confirmed or changed at K1 | One transition table and event list for the current phase; sequences for an App run and an App → host transfer | PLANNED |
-| B3 Catalog interface and read-result model; proposal identity, observation and per-item transitions; one shared test double | C, P, ADAPTER, XT | P1 | Interface meanings stated; the double specified once and cited by the four files | PLANNED |
-| B4 Record format and writer/reader sequences; policy-class record and act lifecycle; standing components and receiver conditions; consequence vocabulary draft | RS, ACT, AS | P1; K1 where it bears | PROPOSED structures; failure behaviour per sequence | PLANNED |
-| B5 Network destinations end to end: tool subject, check position, request states, records and displays | LOOP, PANEL, AS, RS, ACT, C, P, ADAPTER | B3, B4 drafts | One account each file cites; no element named on one side only | PLANNED |
-| B6 Hosting operations and lifecycle tables; supplier double from the recorded spike transcripts; next-spike brief | HOSTING; a spike record | P1 | Runnable-with-a-double cases exercised locally, or the reason they were not | PLANNED |
-| B7 Connected activity: per-step failure behaviour, result record, current-phase sequence; trace suite order and reset; optional OI-021 option sheet | CA, XT | B2, B3 | Per CA/XT survey items | PLANNED |
-| V18 Receiver comparisons for the joins Wave B changes (incl. N-18, N-21, N-24, X-1) | `comparisons/` | B1…B7 | Per join: version received, check, disagreements, absent | PLANNED |
-| R… Repair rounds and rulings | Design files | V18 | Findings dispositioned | PLANNED |
-| B8 GUIDE matrix refresh and final re-pin | GUIDE | R… | 18/18 pins by script | PLANNED |
-| V19 Independent review of the Wave B candidate | `reviews/` | B8 | Verdict covering the candidate | PLANNED |
-| P2 PR-2: Wave B | — | V19, CI | Merged | PLANNED |
+| **Wave B — design development** (briefs: `BRIEFS.md` "Wave B"; rulings [R12](../../AgentRuns/APP-V4-DESIGN-PASS-2-20260930/R12_RESOLUTIONS.md)…[R15](../../AgentRuns/APP-V4-DESIGN-PASS-2-20260930/R15_RESOLUTIONS.md)) | | | | |
+| B1 Workflow declaration carriage and schema (fenced JSON block in `WORKFLOW.md`), prototype; harness-capability names; message-output and SP-6F elements | WD, WD-EX and their `Design/` schema and prototype files | P1; K1 | Schema PROPOSED; E1, E1d, E5, E6 render and parse | COMPLETE `5970e0a5b` — prototype 54/54 |
+| B2 Current-phase recorder, App-run reached-when table, end-to-end sequences | EXEC and its `Design/` files | P1; K1 | One transition table and event list; sequences for an App run and an App → host transfer | COMPLETE `5970e0a5b` — prototype holds |
+| B3 Catalog interface and read-result model; proposal identity, observation, per-item transitions; simulated host SH-1 (both paths) | C, P, ADAPTER and their `Design/` files | P1 | Interface meanings; SH-1 specified once and cited | COMPLETE `5970e0a5b` — SH-1 21/21; 8 schemas validate |
+| B4 Record format, writer/reader sequences; policy-class record and act lifecycle; standing components; A15; consequence vocabulary draft | RS, ACT, AS and their `Design/` files | P1; K1 | PROPOSED structures; failure behaviour per sequence | COMPLETE `5970e0a5b` — prototype 37/37 |
+| B6 Hosting capability account, operations and lifecycle tables; supplier double; OBS-1 brief | HOSTING and its `Design/` files; `WAVE_B/OBS-1_BRIEF.md` | P1 | Double-runnable cases run | COMPLETE `5970e0a5b` — double 35/35 |
+| B9 LOOP fixture basis (published reference, R12-8), R12-7, failure rows and state tables; PANEL return inputs, failure displays, test double | LOOP, PANEL and their `Design/` files | P1 | Per S1-D LOOP 7, 8; PANEL 5 | COMPLETE `5970e0a5b` — assembler 19/19; panel double 4/4 |
+| B5 Network destinations end to end (LOOP §5.3, cited by seven files); stateless-MCP evidence rule; model-interface boundary (R12-11) | Destination sections of LOOP, PANEL, AS, RS, ACT, C, P, ADAPTER | Round 1 | No element named on one side only | COMPLETE `5a8bb2368` — 0 one-sided elements by script |
+| B7 Connected activity and trace cases: failure rows, current-phase sequence, option sheet, result records, suite order, reopen table | CA, XT and their `Design/` files | B2, B3 | Rehearsals on SH-1 | COMPLETE `6e44cea80` — option sheet 0/10 steps examinable against SWBPIPE now, 9/10 on SH-1; rehearsals pass |
+| OBS-1 One live Codex turn (local model; MCP path) plus parts C and D | `OBS_1_0.158.0.md`; `prototype/obs1/`; scratch | B6 brief; owner answers | Item sequence recorded | COMPLETE `8b2888403` — no MCP tool call (`namespace` tool type ignored by LM Studio; mechanism an inference); Chat Completions points and per-thread MCP config observed; no download; no sign-in |
+| OBS-1b One live Codex turn on the command-line path (owner approved) | Same record (addendum); harness | OBS-1; owner answer | Command item sequence recorded | COMPLETE `191b8508d` — the command ran through Codex; approval and `serverRequest/resolved` observed; sandbox denied the local socket |
+| R13 Rulings on Wave B's returned questions | `R13_RESOLUTIONS.md` | Round 1–2 | — | COMPLETE `4f0bfecd7` |
+| V18 Receiver comparisons (V18-1…V18-4), including N-18, N-21, N-24, X-1 | `comparisons/` | B1…B7 | Per join: version, check, disagreements, absent | COMPLETE `ac8483633` — 58 joins; 2 BLOCKING, 16 MAJOR → R14 |
+| RP-1…RP-4 Repairs from V18 under R14 | Design files by cluster | V18; R14 | Findings closed; prototypes pass | COMPLETE `c3d5b8d84` — one record container (EXEC→RS 40/40 valid) |
+| RX Residual cross-file sweep | 16 Design files | RP | Every "other files must now say" item checked | COMPLETE `a05b46741` — 47 items: 30 said, 15 fixed, 2 → R15 |
+| B8 GUIDE for Wave B, R15-1, final re-pin | GUIDE; LOOP F-2, MS-02; RS cause | RX; R15 | 18/18 | COMPLETE `2caccef12` — GUIDE v0.5 18/18 |
+| V19 Independent review of the Wave B candidate (V19-A, V19-B) | `reviews/V19-*.md` | B8 | Verdict | COMPLETE at `2caccef12` — V19-A MERGE AS DRAFTS (0/1/7/6); V19-B HOLD (1 BLOCKING: PANEL against R15-1; 1 MAJOR: this graph stale) |
+| RQ Repairs from V19; final GUIDE re-pin | Design files; GUIDE | V19 | Findings closed; 18/18 | COMPLETE (this commit) — all BLOCKING, MAJOR and MINOR findings fixed; 18/18 |
+| V19b Recheck of the repairs | `reviews/V19b.md` | RQ | Verdict | COMPLETE — **MERGE AS DRAFTS** at `fffae1291` (0 BLOCKING, 0 MAJOR, 4 MINOR, 7 NOTE). The four MINORs (LOOP §3.2 run opening against a no-credential refusal; GUIDE pin provenance text; GUIDE F-17 wording; HOSTING §6.8 "not exercised live") are carried to the closeout node C1, which fixes them in the final PR |
+| P2 PR-2: Wave B | — | V19b, CI | Merged under the standing direction | ACTIVE |
 | **Closeout** | | | | |
 | D0 DAG-003 currency recheck | Read-only | P2 | Both manifests pass; no bound file changed | PLANNED |
 | C1 Bounded closeout (`bounded-reconciliation`): commitment ↔ result per deliverable; proposed SoW, register and basis items for a later amendment | `closeout/` | P2 | Account written; proposals not applied | PLANNED |
@@ -92,13 +99,13 @@ States: PLANNED, READY, ACTIVE, BLOCKED, UNCERTAIN, COMPLETE.
 
 ## Holds and owner-held choices
 
-- No hold on Wave A or Wave B from owner choices: DECISION-K1 decided all six.
-- **Download gate (K1-6):** before any chat model is downloaded into LM
-  Studio, HELP_HUMAN names the model, its source and its size to the owner
-  and waits for a yes. The Codex sign-in is asked for only if the local route
-  cannot produce a tool call.
-- The read-only fetch of the two published specifications is allowed (K1-6).
+- No owner hold.
+- No further live Codex turn is authorized. The approved Qwen3 4B download was
+  not used: OBS-1's failure came from the tool type, not the model, so a
+  smaller model would not change it. A cloud MCP turn would need the owner's
+  sign-in and a new owner answer.
 
 ## Next safe action
 
-PR-1 is open with the CI monitor and auto-merge on. Next: brief Wave B (B1…B7) on the merged Wave A text. Before any chat-model download for the live turn, name model, source and size to the owner (K1-6).
+PR-2 is open with the CI monitor and auto-merge on. After it merges: the
+closeout (D0, C1 including the four V19b MINORs, F).

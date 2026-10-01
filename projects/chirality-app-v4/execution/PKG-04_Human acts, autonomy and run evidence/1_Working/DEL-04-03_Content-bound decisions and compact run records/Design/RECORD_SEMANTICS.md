@@ -1,17 +1,49 @@
 # Record Semantics
-- Contribution: DEL-04-03/RS-v0.7 (supersedes RS-v0.6, last changed at `caa4334ca1` and unchanged at `3dd7c22c73`, sha256 96b1aeeb120be597c4f35eea13f6a60ce20783e555c918521aacee38c5bcf666; RS-v0.5, last changed at `c6f81a4f2` and unchanged at `94aa9181b`, sha256 2939eb092839a5d6984c984a2aedcb6308f1776276314a79fa1e8edc67c36398; RS-v0.4 sha256 56806b64b12a946e706ff236dd1c25fe27ac00877aac13b50ee8603aaf540199 at `cc58211c5`)
+- Contribution: DEL-04-03/RS-v0.8 (supersedes RS-v0.7, last changed at `c896a99d90` and unchanged at `86cafc0e1c`, sha256 1ccefbb2948d3c500b3692638a3d4e0c6c9da9a29f9b3e7ea6e8185173dbece9; RS-v0.6, last changed at `caa4334ca1` and unchanged at `3dd7c22c73`, sha256 96b1aeeb120be597c4f35eea13f6a60ce20783e555c918521aacee38c5bcf666; RS-v0.5, last changed at `c6f81a4f2` and unchanged at `94aa9181b`, sha256 2939eb092839a5d6984c984a2aedcb6308f1776276314a79fa1e8edc67c36398; RS-v0.4 sha256 56806b64b12a946e706ff236dd1c25fe27ac00877aac13b50ee8603aaf540199 at `cc58211c5`)
 - Status: DRAFT DEFINITION — proposed, unsupplied, not implemented, not accepted
 - Phase (R8-1; R9-1): in the current phase (Phase 1) declared checkpoints are **plan guidance**. The record keeps arrivals, acts and lapses as **observation**, records an act only when the person performed it, and records no hold, re-hold or hold-support value (element R8). **In force in every phase:** the act is requested; it is recorded as done only when the person performs it; the reserved acts bind. **Phased to the governance layer:** holding the run until the act (PRD V4-WF-05 and HOST_INTEGRATION V4-HI-42 as amended by SCA-V4-001; §1). Hold support, re-hold and *action during hold* are kept as the **governance-phase definition (retained)**.
-- Network destinations (R8-13; DECISION-5): element **R15** records, for a host's agent, each destination contacted (destination, category, and the grant or list entry that allowed it), each destination grant (scope, time, source) and each destination declined. An outside process is recorded with its declared destinations and, when it is not sandboxed, the evidence limit "process network not observed" (R11). V4-HOST-02 is cited from the PRD as amended by SCA-V4-001, which applies DECISION-5 (D16). R15 is within the ScopeOfWork inventory (REQ-002, CLM-002) and V4-HI-70 as amended.
-- Serves: OUT-001 and OUT-004 (definition content); OUT-002 and OUT-003 (behaviour and fixture design only — no writer, reader or fixture exists); REQ-001, REQ-002, REQ-003, REQ-004, REQ-005, REQ-006; AC-001…AC-007 via designed VER-001…VER-006
+- Network destinations (R8-13; DECISION-5): element **R15** records, for a host's agent, each destination contacted (destination, category, and the grant or list entry that allowed it), each destination grant (scope, time, source) and each destination requested; a decline and a boundary refusal are recorded too, and that recording is **PROPOSED** (R12-10: V4-HI-70 and V4-ARC-12 record destinations contacted; V4-EXM-23 reports a decline to the agent; no accepted text says a decline or refusal is recorded). An outside process is recorded with its declared destinations and, when it is not sandboxed, the evidence limit "process network not observed" (R11). V4-HOST-02 is cited from the PRD as amended by SCA-V4-001, which applies DECISION-5 (D16). R15 is within the ScopeOfWork inventory (REQ-002, CLM-002) and V4-HI-70 as amended. From v0.8 (node B5) R15's elements follow the one destination flow of DEL-05-01/LOOP-v0.8 §5.3 (DF-1…DF-10): a request carries its call, ends in one of the DF-6 states (`destination_request_closed` for *not granted* and *unanswered at end*), a refusal names its stage, a model-service contact its class local or cloud, and an MCP server its stateless evidence with the R11 limit "stateless revision declared, not verified".
+- Record format (Wave B; R12-1…R12-3): a **PROPOSED** format, `RS_RECORD.schema.json` beside this file, with valid and invalid example instances and writer and reader sequences with their failure behaviour (§13, §14), backed by a local prototype in `prototype/` that writes records and reads them back (§15). **RS format 0.1 is the only record container (R14-1):** the bodies of the checkpoint entry kinds are DEL-02-03's (EXEC-v0.6 CE-1…CE-19 in `checkpoint-record-entries.schema.json`), referenced by relative path from RS's entry kinds (§13.3), and LOOP's checkpoint events map to the same kinds (§13.3.1). Nothing in it is accepted, and no placement, path, identity algorithm or canonicalization is chosen (OI-013, OI-014; DEL-03-01 TBD-003; R12-2).
+- Serves: OUT-001 and OUT-004 (definition content; OUT-001's format PROPOSED in §13); OUT-002 and OUT-003 (behaviour and fixture design only — the writer and reader in `prototype/` are a prototype, not product code, and no fixture has run against a candidate); REQ-001, REQ-002, REQ-003, REQ-004, REQ-005, REQ-006; AC-001…AC-007 via designed VER-001…VER-006
 - Basis (re-pinned at v0.7; R9-5): the accepted basis as amended by SCA-V4-001 (`P/execution/_ScopeChange/SCA-V4-001_2026-09-28_2155/`) and SCA-V4-002 (`P/execution/_ScopeChange/SCA-V4-002_2026-09-29_1901/`), by current sha256: `P/docs/PRD.md` bb6e786f7a6c01dc5ce2f16f58e6c600989a12808ff47ce4fd87924bcc6c49bd, `P/docs/ARCHITECTURE.md` 317d5789272c5206599936fa9b4e68551b30016d226b88039f0153afa02d828c, `P/docs/HOST_INTEGRATION.md` d4331c39db7f452cd3ba72fdfa4bad540a6053931218359a93646971acb28d9f, `P/docs/EXAMINATION.md` 471798bc2f2dc0202ae40d9d5cf033a22ae41af2a0afdf58032cf37a687957d0 (of the requirement texts this file cites, V4-WF-05, V4-HI-42, V4-HI-70, V4-HOST-02, V4-EXM-22 and the ARCHITECTURE §4 host-agent properties were amended; the others are unchanged since repo `6e18505e3`, the v0.6 basis; checked with `git diff 6e18505e3 HEAD -- docs/`); ScopeOfWork.md sha256 ceecddbb67a86f744b413bb08b08c27017a82ebee8500f7600faf8d880fbaa47, as revised by SCA-V4-001 (AX-004: CLM-002, CLM-004, REQ-002, REQ-005, TBD-001) and unchanged by SCA-V4-002; owner decisions `APP-V4-SWBPIPE-INTAKE-20260928-DECISION-4` (D4-1 phased checkpoints) and `-DECISION-5` (host-agent network destinations), `OWNER_DECISIONS.md` sha256 5fd780bf90a4d51751d2c2fa632b92111a52cd0d9445a0870be9d28bcb4f40b2; owner confirmations at the SCA-V4-001 checkpoint, run `APP-V4-BASIS-ALIGN-20260928`, `OWNER_DECISIONS.md` sha256 ca8c4e50df1d7dddb41b875a4afe46eea4f1a1bf2491d255b7890d0d71cd254b (DECISION-6: the arc N-12 is not proposed and N-15 is kept; DECISION-7 accepts `AMENDMENT_PACKET/OWNER_ITEMS.md`, sha256 2b90eb4a95f458e993eed69e27533aa10e31aea980fe2ec99c9c2345e6f498ef, "as recommended": O-10, O-14, O-25); accepted graph `P/execution/_DAG/_LATEST.md` (sha256 4d381ba4e87b41a83b9d0d2dc591c4bf04eacb84df0b5c27314091cd2a992f56) → DAG-003; `P/docs/PRD.md` §2.2 V4-HOST-02, §4.1 V4-WF-05, §4.3 V4-EXE-01…03, §4.5 V4-AUT-01…05, §4.6 V4-PM-06, §4.7 V4-REC-01…05, §10; `P/docs/HOST_INTEGRATION.md` §1, V4-HI-04, V4-HI-11/12, V4-HI-20…25, V4-HI-30…33, V4-HI-40…42, V4-HI-50…52, V4-HI-70/71, §11; `P/docs/ARCHITECTURE.md` §4, V4-ARC-20; `P/docs/EXAMINATION.md` V4-EXM-21/22/31; `P/docs/OPERATING_METHOD.md` V4-OPS-30…32; `DECISION_BRIEF.html` d2, d3; `OWNER_DIRECTIONS.md` J, O; `SCC-CASE-002/Case_Datasheet.md` M1, M2, M3, M3-CP; `_Decomposition/Open_Issues.csv` OI-001/002/013/014/021; `External_Dependencies.csv` DEP-001. Run folder `APP-V4-FIRST-INCREMENT-20260928` at commit **8fb51f07f**: `OWNER_DECISIONS.md` (DECISION-1 and DECISION-2; sha256 a9869129753631b865cbbb00a138c0f497d5ac8a4b67f5746169d1f9a668ad2c); `R1_RESOLUTIONS.md` (2f9c7e72aa8362624ad830377a70077b27a27bf03871f8e87811a28e6e177ec4); `R2_RESOLUTIONS.md` (77cfb845ec305365f12218f83f332069155de5f362139b7a6fe2bf12cdebd088); `R3_RESOLUTIONS.md` (202d52c7d688382336cddb0d6c31be27969a9e667c5800b734428a090f05afbf); `R4_RESOLUTIONS.md` (50a009b2ef487bad6ef5e89b5c4493095f18f83149fcb83b00050de485032a24); `R5_RESOLUTIONS.md` (254d0b93b9959419a70c6737b07087e1db59b529adc3105a1db31f82b78dd6f1); `reviews/V2.md` (75ba1dff8a0c4fa2eb294471127147cbd19a0925daf9169b32ddc88727dde6ef); `reviews/V3-A.md` (f25f5af1177b7fe2a698bd4ef1e1caafa4c2ef25cfc73111f031e17c7cc21d87); `reviews/V3-B.md` (5662fbd09025f5ad9459861370159d606fcced76b394980199e861555a1954a3); IR1-A/B/C and V1-A/B/C as cited in RS-v0.3
-- **Current pins of this run's records (node A4 of run `APP-V4-DESIGN-PASS-2-20260930`; in place, no version bump; R11-3).** Each sha256 recomputed with `shasum -a 256` in the working tree at this pass; paths under `AgentRuns/APP-V4-DESIGN-PASS-2-20260930/`: `R9_RESOLUTIONS.md` sha256 a64e241519b7d158165a7ede0ffdd22eec0af15b6812b5300755f5f38abd59b8 (R9-1…R9-11; R9-2's second bullet as corrected by R10-1); `R10_RESOLUTIONS.md` sha256 ad3b6caa4a12660db77abc51b5c02ba70519ee46d55b40d21ee76eb3ca561796 (R10-1…R10-11); `R11_RESOLUTIONS.md` sha256 e7343b6663b6aeeb2dc506d3391f5b310088e7688d1b21e65d2ba1d8616b3615 (R11-1…R11-9, the repairs from review V17); `OWNER_DECISIONS.md` sha256 7458e9e81971676337a34280b4e8b29a7d04fce5fc202da5b9f5cf7ccd8f9ae5 (DECISION-K1). These supersede for currency the earlier pins of the same records in this header and in the change-table rows, which record the bytes read at node A1 or A3.
+- **Pins as of node A4 of this run's records (run `APP-V4-DESIGN-PASS-2-20260930`; in place, no version bump; R11-3; relabelled at RQ, V19-B n-1: later pins of the same records are in the Wave B input lines and in GUIDE's basis).** Each sha256 recomputed with `shasum -a 256` in the working tree at this pass; paths under `AgentRuns/APP-V4-DESIGN-PASS-2-20260930/`: `R9_RESOLUTIONS.md` sha256 a64e241519b7d158165a7ede0ffdd22eec0af15b6812b5300755f5f38abd59b8 (R9-1…R9-11; R9-2's second bullet as corrected by R10-1); `R10_RESOLUTIONS.md` sha256 ad3b6caa4a12660db77abc51b5c02ba70519ee46d55b40d21ee76eb3ca561796 (R10-1…R10-11); `R11_RESOLUTIONS.md` sha256 e7343b6663b6aeeb2dc506d3391f5b310088e7688d1b21e65d2ba1d8616b3615 (R11-1…R11-9, the repairs from review V17); `OWNER_DECISIONS.md` sha256 7458e9e81971676337a34280b4e8b29a7d04fce5fc202da5b9f5cf7ccd8f9ae5 (DECISION-K1). At node A4 these superseded for currency the earlier pins of the same records in this header and in the change-table rows, which record the bytes read at node A1 or A3.
+- **Consumed inputs for v0.8 (Wave B of run `APP-V4-DESIGN-PASS-2-20260930`, node B4; read from the working tree on commit `86cafc0e1c`; paths under `AgentRuns/APP-V4-DESIGN-PASS-2-20260930/` unless stated).** `BRIEFS.md` sha256 ccb4d9f036fb7ff531fffa0d309533b15cf1ebb39b0320651ed4bd5d88efc550 ("Common rules"; "Wave B — design development", row B4); `R12_RESOLUTIONS.md` sha256 95f3011b436b6faa3de098059e77eac836c165e0bb98a5ed94e28918a3a749a1 (R12-1…R12-10; binding); `R10_RESOLUTIONS.md` sha256 ad3b6caa4a12660db77abc51b5c02ba70519ee46d55b40d21ee76eb3ca561796 (R10-6); `OWNER_DECISIONS.md` sha256 1dfd5bf4619b329719136b1646030e3f871fd7ffc52dbfd12265414e515aaf15 (DECISION-K1, with the later model-download record; this supersedes for currency the pin in the node A4 line above); `SURVEY/S1-A.md` sha256 87baa03d7cbc9b0a6b8e8543d8cd80a7d71c754da80fbfdc053c8e6ef21045f6 (§3.5, §3.8 items 5–8; advice, checked against the current text). Sibling texts read for the joins, cited by label and section (R9-5): DEL-03-03/ADAPTER-v0.5 §5.6 PI-2 and PI-6, §8, §11 (the two evidence limits of R10-6); DEL-05-01/LOOP-v0.7 §2.3 and §5.1.1 (destination events); DEL-05-02/PANEL-v0.7 §3.8 ND-4; DEL-02-03/EXEC-v0.5 §2.1 PH-6, §4.5 SP-6/SP-6F, §5 CAP-1…CAP-9; DEL-02-02 ScopeOfWork REQ-002, AC-002, AC-006 (A15, R12-5). ACT-POLICY-v0.8 and AS-v0.8 were revised by this executor in the same node; §8 here and AS-v0.8 §6 are byte-identical from "**Settings-in" to the end of the section. Other Wave B executors edit other files in parallel; nothing here relies on their Wave B text.
 - Consumed inputs for v0.7 (Wave A of run `APP-V4-DESIGN-PASS-2-20260930`, node A1-A; read from the working tree on commit `3dd7c22c73`; paths under `AgentRuns/APP-V4-DESIGN-PASS-2-20260930/` unless stated): `R9_RESOLUTIONS.md` sha256 c3efe2ffa232dd9293202d4fc891eba4325afeb2e224fecdf8c1b4c5122a9d2c (R9-1…R9-11; binding); `BRIEFS.md` sha256 698d91d8217cee528812529fa353faac899b4bc1a5be5686552ad88dad6c469a ("Common rules", "A1 — alignment wave", row A1-A); `SURVEY/S1-A.md` sha256 87baa03d7cbc9b0a6b8e8543d8cd80a7d71c754da80fbfdc053c8e6ef21045f6 (advice; each item applied was checked against the current source); `AgentRuns/APP-V4-BASIS-ALIGN-20260928/DAG_PREP/ARC_ANALYSIS.md` §3.3 (the RS §10 DEL-03-02 cell). Rulings R1–R8, by file: `R1_RESOLUTIONS.md`…`R7_RESOLUTIONS.md` in `AgentRuns/APP-V4-FIRST-INCREMENT-20260928/`, and `R8_RESOLUTIONS.md` in `AgentRuns/APP-V4-SWBPIPE-INTAKE-20260928/` at its current sha256 44bc9a8df4fe73e3f41711e7d9593a065734b054400f12bb01695a30e7b30e6b; they stand except where R9 amends them (R9-2 restates R8-11 item 2 and R8-12 item 2). SWBPIPE's answers, DEL-09-06 `Design/RELAY_ANSWERS_SWBPIPE.md`, at its current sha256 afb6e063e7e5dfccf8986206f888cf1e2e1c4e7fc3430fdf86db670714fc0e74: the v0.6 pass read the state 6f01add3…61c7; three answer lines differ between the two states (in SQ-04, SQ-09 and P7; `git diff 94aa9181b HEAD`), and none is a statement this file cites; data about SWBPIPE's current state, not commitments (DECISION-3). Sibling Design files are cited by version label and section only (R9-5), and their bytes are pinned in GUIDE's input table alone; Wave A labels (R9-11): DEL-02-03/EXEC-v0.5; DEL-02-01/WD-v0.7; DEL-02-01/WD-EX-v0.7; DEL-03-01/C-v0.7; DEL-03-02/P-v0.7; DEL-03-03/ADAPTER-v0.5; DEL-03-04/GUIDE-v0.4; DEL-04-01/ACT-POLICY-v0.7; DEL-04-02/AS-v0.7; DEL-05-01/LOOP-v0.7; DEL-05-02/PANEL-v0.7; DEL-01-01/HOSTING-BOUNDARY-v0.7; DEL-01-01/PIN-SPIKE-v0.1; DEL-09-06/CA-v0.5; DEL-09-09/XT-v0.5; DEL-09-06/RELAY-v0.3. The Wave A executors edit in parallel, so the label is cited and nothing here relies on another executor's Wave A text. ACT-POLICY-v0.7 and AS-v0.7 were revised by this executor; §8 here and AS-v0.7 §6 are byte-identical from "**Settings-in" to the end of the section. The byte pins in the consumed-input lines below are true records of what each earlier pass read; they are history, not current pins.
 - Consumed inputs for the R8-13 pass: **R8-13 pass (node B1; in place, no version bump).** OWNER_DECISIONS.md sha256 5fd780bf90a4d51751d2c2fa632b92111a52cd0d9445a0870be9d28bcb4f40b2 (`APP-V4-SWBPIPE-INTAKE-20260928-DECISION-5`: V4-HOST-02, host-agent network destinations) and R8_RESOLUTIONS.md sha256 44bc9a8df4fe73e3f41711e7d9593a065734b054400f12bb01695a30e7b30e6b (R8-13) at `1528a5033`; OWNER_DECISIONS.md in its state that adds the owner's DECISION-5 confirmation (committed with this pass); BRIEFS.md sha256 3e33ba26d6deb00af466b6e9fd9ef81f641a0dfa80882837c0423c7bdf627517 ("Common rules", "A-wave"). Revised in the same pass (node B1), versions unchanged: LOOP, PANEL, ACT, AS, RS, HOSTING, C, ADAPTER and GUIDE; their byte pins are in GUIDE-v0.3's input table.
 - Consumed inputs for the R8-12 closing pass: **R8-12 closing pass (node A6; in place, no version bump).** R8_RESOLUTIONS.md sha256 d4c3423310a857af86692d17ddfdd22fa877ee20b07c46e1ee481d1cd750e7af (R8-12: items 1 and 7 applied here; item 5 confirmed). Current sibling versions after R8, as committed at `7a1508452` with A6's in-place R8-12 edits (their byte pins are in GUIDE-v0.3's input table): DEL-02-03/EXEC-v0.4; DEL-02-01/WD-v0.6; DEL-02-01/WD-EX-v0.6; DEL-03-01/C-v0.6; DEL-03-02/P-v0.6; DEL-03-03/ADAPTER-v0.4; DEL-03-04/GUIDE-v0.3; DEL-04-01/ACT-POLICY-v0.6; DEL-04-02/AS-v0.6; DEL-05-01/LOOP-v0.6; DEL-05-02/PANEL-v0.6; DEL-01-01/HOSTING-BOUNDARY-v0.6; DEL-01-01/PIN-SPIKE-v0.1; DEL-09-06/CA-v0.4; DEL-09-09/XT-v0.4; DEL-09-06/RELAY-v0.3. SWBPIPE's `RELAY_ANSWERS_SWBPIPE.md` and `FACTS_SQ01_SQ32.md` are unchanged (data about SWBPIPE's current state, not commitments; DECISION-3).
 - Consumed inputs for v0.6 (R8 pass, node A2), read with `git show` from commit `94aa9181b` (paths under `AgentRuns/APP-V4-SWBPIPE-INTAKE-20260928/` unless stated): `R8_RESOLUTIONS.md` sha256 1770c96e62caf14322811fca82ceb77eca450d3e1be8665cdbdd5550631e8d02 (R8-1…R8-7, R8-10, R8-11; binding); `INTAKE_MAP.md` (I2) sha256 3cc182955c0f3dd70efa0f1c051870229c2ccc08f36c5cf1445f2eef0dd1ea33 (rows 01.7, 02.10, 03.5, 14.4, 19.3, 21.1, 24.2, X.5; Part 2 P2.4, P2.9, P2.17 and its §2.2 RS rows; Part 3 items 2, 3, 4, 10; Part 4.9, 4.11; R8 overrides I2 where they differ); `BRIEFS.md` sha256 3e33ba26d6deb00af466b6e9fd9ef81f641a0dfa80882837c0423c7bdf627517 ("Common rules", "A-wave"); `OWNER_DECISIONS.md` sha256 a5ccab0d39bd1cab37c5556abc9bdedd5341ce76be4712706c8c9d72d623e776 (`APP-V4-SWBPIPE-INTAKE-20260928-DECISION-3`, host joins deferred; `-DECISION-4` with its clarification, D4-1 phased checkpoints). Owner files revised first in the same pass: DEL-02-03/EXEC-v0.4 sha256 d32be37797a3c367d342a2d13bbb8dd4279bc52934531d83b8c6ec8c6e7b76d4 (§2.1 PH-1…PH-10, §2.2 GV-1…GV-5, §3.5, §3.6, §4.3, §4.5 SP-4, §4.6, §4.7, §4.11 receiving notes, §7.2); DEL-02-01/WD-v0.6 sha256 fce565edfd0cee3fa4583eb292d11cce3e4121ead0cdbed31ba2fe0a52562f28 (§4.3.0 CG-1…CG-7; §4.3.1 `governed`); WD-EX-v0.6 sha256 950b70b2e3f7fdda9a98b13a63746b76936be490dd96cb6e47bbe6dc9c3eba3d. SWBPIPE's delivered answers DEL-09-06 `Design/RELAY_ANSWERS_SWBPIPE.md` (#1047) sha256 6f01add3977761e42ac6b310faf72ba4fd5455e478605deb83fefb2e4d3a61c7 (SQ-01, SQ-02, SQ-03, SQ-06, SQ-07, SQ-08, SQ-09, SQ-10, SQ-11, SQ-13, SQ-23, SQ-28; ANS §2): relayed and answered 2026-09-28; data about SWBPIPE's current state, not commitments; no host evidence, commitment or contribution received (DEP-001; DECISION-3). DEL-04-01/ACT-POLICY-v0.6 and DEL-04-02/AS-v0.6 were revised concurrently by the same executor; §8 here and AS §6 are byte-identical.
 - Consumed inputs (v0.5): DEL-04-03/RS-v0.4 (sha256 56806b64b12a946e706ff236dd1c25fe27ac00877aac13b50ee8603aaf540199, commit cc58211c5). Current sibling versions read from commit **8fb51f07f** with `git show` (not the working tree): DEL-02-03/EXEC-v0.2 `EXECUTION_COMPATIBILITY.md` sha256 7f7848c0de2fdb4dc21f5adafa97f92e179bb66c9f6b04f3434d8f2342317af0 (§2 HP-4/HP-H, §3.3 CR-14, §3.6, §4.5, §4.7, §4.9, §4.10); DEL-03-01/C-v0.4 `CATALOG_AND_READ_BASIS.md` sha256 e929d39d3ff9515702f9bfe51dfada537e1cbd165146ec0de4ccf629c659a08c (§10.1 FXA-1…FXA-5, LIB-A1/A2, AF-1; §10.3; §10.4); DEL-04-01/ACT-POLICY-v0.4 `ACT_AND_POLICY_CONTRACT.md` sha256 d6da05abe790a4374df7faf225439a01dc1be734491b499d90cf00533369b03b (§2.4); DEL-01-01/HOSTING-BOUNDARY-v0.4 `HOSTING_BOUNDARY.md` sha256 201ea32005dd2c9fb5281a376eb25eebfcb5a644d09a6d3bf5901aaf934c7e58 (§8.3); DEL-03-03/ADAPTER-v0.2 `ADAPTER_ENABLEMENT_AND_RECEIVING.md` sha256 a2905dda5782d7a48fa35ef7e26b0c1517fd3bd995e3ddbba27d2426a25674bc. R6 in-place pass (no version bump): C-v0.5 `CATALOG_AND_READ_BASIS.md` sha256 a6306bd477decad22d4405fb86ca6212fb189e4865c68dbbcba90e1335be7a29 (§10.4 V-GR1, GR-1…GR-3, GR-P/GR-R/GR-S) and DEL-02-03/EXEC-v0.3 `EXECUTION_COMPATIBILITY.md` sha256 889e48819baa21ec112c4878e4e38004dcbaa9eb3645a31c24221ac116ee548e (§3.6 HS-1…HS-5, F-24), read at commit d3cebd1cc for the R6 in-place pass; R6_RESOLUTIONS.md and reviews/V4-A.md at commit c7f5513db. The R5 elements earlier marked "per R5-n" (V-GR1, the R5-1 values, P §3.3 carriage) are now present in those sibling texts. DEL-04-02/AS-v0.5 was revised concurrently by the same executor; §8 here and its §6 are byte-identical.
 - Receivers: CASE-002 M1 — DEL-02-01 (OUT-001/002; REQ-003; VER-003), DEL-02-03 (OUT-001/002; REQ-003; VER-003), DEL-04-02 (OUT-001/002; REQ-002/004; VER-002/004), DEL-05-01 (OUT-001/004; REQ-005/007; VER-008), DEL-05-02 (OUT-001/003; REQ-001/003; VER-001/003); DEL-01-04 and DEL-02-02 are outside this undertaking (D1). CASE-002 M3 — DEL-04-02 (OUT-001/003; REQ-002/004/005; VER-002/004/005). Rebuilt from the ACTIVE register rows at v0.7 (R9-6; the table is §10.1). `Dependencies.csv` DOWNSTREAM rows: DEP-04-03-011…013 (PKG-02, PKG-03, PKG-06; package rows), -014 (DEL-04-02), -015 (DEL-09-11), -016 (external host run recording), -029 (DEL-05-01), -030 (DEL-05-02), -031 (DEL-09-06) and -032 (DEL-09-09). Declared upstream in the consumer's own register only: DEL-02-01 (DEP-02-01-019), DEL-02-03 (DEP-02-03-013), DEL-03-01 (DEP-03-01-031), DEL-03-04 (DEP-03-04-013), DEL-01-04 (DEP-01-04-012), DEL-02-02 (DEP-02-02-017), DEL-06-01 (DEP-06-01-008), DEL-06-02 (DEP-06-02-010), DEL-09-02 (DEP-09-02-019), DEL-09-05 (DEP-09-05-010) and DEL-10-03 (DEP-10-03-014). DEL-03-03 is a registered supplier (DEP-04-03-026: external dispatch entries), not a receiver. No row records satisfaction.
+
+## Changes from v0.7
+
+Wave B of run `APP-V4-DESIGN-PASS-2-20260930` (node B4): design development
+under R12-1…R12-3. Item IDs are the survey items of `SURVEY/S1-A.md` §3.8
+("RS n") and §2.8 ("AS n"), and the R12 rulings. Every new structure is
+PROPOSED unless a cited text decides it (R12-1).
+
+| Item | Change in v0.8 | Where |
+|---|---|---|
+| **RS 8** (R12-1, R12-2; U-04) | A PROPOSED record format: append-only logs of entries, one per run and writer, with the common identity elements of §3 as entry elements, one entry kind per inventory element, a format-version rule (same major: read, newer minor read limited; other major or format: refused), identities as opaque tokens with method designations, and relations known later written as their own entries. JSON Schema 2020-12 `RS_RECORD.schema.json` with three valid example logs and nine invalid entries. Placement, path, identity algorithm and canonicalization stay unselected | Header; §0; new §13 |
+| **RS 7** | Writer sequence W-0…W-3 and reader sequence R-1…R-8, each step with what fails, who reports it, what record is left and what happens next; failure cases FC-1…FC-9 (write failure, partial entry, two recorders, unknown version, correction, sequence gap, nonconformant entry, unresolvable reference, App restart); a record-state table | new §14; §3 |
+| **RS 5** | Designed here (PROPOSED representation): an act request and a destination request are record elements. New **R16 Act requests** (entry kind `act_request`), recorded where the request can be identified (ACT AP-5; EXEC PH-6; DECISION-K1 K1-1); its absence is the explicit "request not identified" on the arrival, never a defect. R15 gains **destination requested**. How an App run identifies a request stays EXEC's (node B2) | §1; §3; §4 R8, R15, R16; §4.4; §13.6 |
+| **RS 6**, **AS 4** | The §8 exchange (identical to AS-v0.8 §6) now carries a host agent's destination settings in settings-in (allow list, always-off items, in-work grants with scope and state, agent requests) and R15 in record-out (contacts, grants, requests, declines and refusals, outside processes, "destinations not observed"); the comparison covers destination settings; contacts are read from the record, not compared; an unreadable or newer record version is stated in the comparison | §8 |
+| **R12-5** | **A15 register workflow revision** is a human-act record kind: subject a workflow revision; bound content its revision identity; relation the draft it derives from; purpose "make it available in the project"; not lapse-evaluated (a changed definition is a new revision needing its own A15); a checkpoint cannot require it in this increment. U-08 closed | §0; §3; §6.1; §6.2 HA-10; §7 L-0; UNRESOLVED |
+| **R12-10** (V17-A N-4) | One wording: the record label is **"prior act not counted"**, recorded with one reason — *content no longer current*, *another act kind*, or *captured before arrival (governance-phase option)*. Other wordings ("prior act on this subject, not counted"; "prior act, not counted") are retired; the schema refuses them | §7 L-13; §13.3 |
+| **R12-10** (first bullet) | Where a destination request is declined or refused, its recording is labelled PROPOSED; no accepted text is claimed for it | Header; §4 R15; §8; §13 |
+| **R12-9**, R10-6 | The two ADAPTER evidence limits ("resubmission without prior observation"; "App-restart interruption") are placed against the writer and failure sequences (FC-9 and §14.3), and a ruling proposal with both passages is returned in `WAVE_B/B4.md` for R13. Both texts stay until then; R11 is unchanged | §10; §14.3; UNRESOLVED U-31 |
+| R12-3 | A local prototype (`prototype/`; Python 3 standard library) validates the ACT, AS and RS schemas against their examples, round-trips each example log through a writer and reader, and runs FC-1…FC-7. Command, date and result in §15 | new §15 |
+| **B5** (node B5, round 2; LOOP-v0.8 §5.3) | R15 joined to the one destination flow: *destination requested* carries the call it carries (required for scope once, ACT ND-A2); new PROPOSED element **destination request closed** (`destination_request_closed`: *not granted* with reason, or *unanswered at end* with cause; LOOP DF-6); *boundary refusal* gains its stage (model request · V-D · at contact) and category; *destination contacted* gains the model service's class local or cloud (R12-7, N-OPEN-1; B9 join 2); *outside process* gains the stateless evidence SE-1…SE-3 (LOOP DF-7), and R11 the limit "stateless revision declared, not verified". Settings-in request states follow LOOP DF-6 (pending · granted · declined · not granted · unanswered at end), identically in §8 and AS §6. Schema: one kind and four optional elements added in place in format 0.1, which the §13.4 rule would call a minor step; no 0.1 writer exists, so no version step is taken (R13 may rule). New example log `RS_RECORD.valid.host-destinations.example.jsonl` (12 entries, written by LOOP's prototype) and INV-RS-10, INV-RS-11; the host-run example's two requests now name their carried calls. Recording declines and refusals stays PROPOSED (R12-10) | Header; §4 R11, R15; §4.4; §8; §13; §13.3; §13.5; §14.1; §15; VC-30, VC-38; schema and examples |
+| Verification | VC-02 checks R1–R16. New VC-31…VC-38 (format round trip; write failure and partial entry; two recorders; versions; correction; request element; A15; destination exchange); VC-31…VC-35 ran on the prototype. VC-24 coverage extended | Verification cases |
+| **R14-1** (node RP-1, in place under R13-4; V18-1 B-1, M-3, m-4, m-7) | **One record container.** RS format 0.1 holds every checkpoint entry: DEL-02-03's CE bodies are referenced by relative path, and every CE has an RS kind. New kinds: `checkpoint_listed`, `declaration_finding`, `act_counted`, `act_not_counted`, `item_decision`, `arrival_declined`, `control_relation`, `continued_past` (the App-side annotation target), `observation_lost`, `observation_recovered`, `arrival_replaced`, `act_after_run_end`; `checkpoint_arrival`, `act_request`, `disposition_change`, `act_lapsed`, `run_resumed` and `run_ended` now reference EXEC's bodies (`disposition_change` with RS's annotations). EXEC's recording gap is RS's "record write failed", after the late entries. Shared spellings: WD §4.3.4's spaced dispositions, performance ordinal from 1, RS's structured annotations, *run owner* in `run_ended`, "replaced by next arrival". LOOP §2.3's checkpoint events mapped to the same kinds (§13.3.1). The three example logs that carry these kinds are rewritten into the referenced bodies; the prototype gains `exec_to_rs.py` and relative-path references in `minischema.py` | Header; §4 R8; §7 L-12; §13, §13.3, §13.3.1, §13.5; §14.1; §15; schema; examples; `prototype/` |
+| **R14-2** (V18-1 B-2) | An App run identifies a request only from a structured observation (EXEC-v0.6 RC-5); "agent message naming kind, subject and purpose" is dropped as a way of identifying one, and the App-run example's request becomes a supplier person-input request that names nothing. In `act_request` the act kind, subject and purpose may each be "not named by the request"; the forms add EXEC's, including the host-recorded request, and the association with the current arrival | §1; §4 R16; §13.6; schema; app-run example |
+| **R14-3** (V18-1 M-1, M-2, M-4, M-5; V18-2 M-3; V18-4 M-1) | RS adopts P-v0.8 §9 and ADAPTER-v0.6's outcomes, request kinds and evidence limits, with one token table (§5): outcomes *refused — identity conflict*, *not known to host*, *recorded state*, *not established*, *missing*, *tool execution declined*, and the loop's own *rejected before host validation* and *not dispatched: turn cancelled*; an operation entry's request kind and reason; R11 labels "basis lineage not supplied" (R13-1), "resubmission without prior observation" and "App-restart interruption" (R13-2), "host result not isolated", "dispatch recognized from compound command", "de-duplication scope exceeded", "act offered without a capture-evidence reference"; R14 *does not pass*; the workflow origin `host` with source root required. U-31 closed | §4 R2, R7, R11, R14; §5; §10; §14.3 FC-9; UNRESOLVED; schema; host-run example; INV-RS-12…15 |
+| R14-7 (R13-1, R13-2, R13-4; V18-1 m-14, n-2) | Every "until R13" is replaced by what R13 rules: R11 carries R13-1's and R13-2's labels; FC-9 is decided; format 0.1 takes these additions in place (R13-4; the B5 row's "(R13 may rule)" is answered by it) | §4 R11; §10; §14.3; UNRESOLVED U-31 |
+| V18 minor findings | V18-1 m-8 (§5: C §4.1's two destination results are recorded under R15), m-11 (boundary refusal reason "no credential"), m-12 (LOOP's E-6 event ordinal is not a record element; §13.3.1), m-13 (R5 adopts HOSTING U-27: a thread-only model report is recorded with scope *thread*); V18-4 m-6 (capture time "not supplied by host"). V18-1 m-16 is carried by AS's schema (node RP-4), §8 being identical to AS §6 | §4 R5, R15; §5; §6.1; §13.3.1; schema |
+| RX (residual sweep; RP-4 return §3; V18-1 m-10) | R15 *destination requested*: one entry per request raised; an already-allowed target raises none and is not recorded as requested | §4 R15 |
+| RX (RP-3 and RP-4 returns; V18-2 m-9) | The workflow identity's `derivedFrom` (R2, `run_opened`) is the full identity tuple of WD-v0.8 §6.1, never a string: new `$defs/workflowTuple` in RS spelling (`workflow_identity` of WD's schema). A15's `relations.derivedFrom` names a draft, not a workflow identity, and stays a reference | schema |
+| R15-1 (node B8; RX #41; in place under R13-4) | "No model chosen" is not a destination refusal: a host-loop run with no model selected is recorded as **run not started — no model selected** on the run-start element, with the loop's configuration state at start as evidence and no destination entry. Schema: optional `notStarted` {cause, evidence} on `runOpened`, allowed only for a host-loop run; `boundaryRefusal` unchanged (its *no credential* reason stays for a cloud model with no credential). New example log with that one entry | §4 R1; §13 files table; §13.3; §13.3.1; schema `runOpened`; `RS_RECORD.valid.run-not-started.example.jsonl` |
+| RQ (repairs from V19; in place, no version bump) | **V19-A M-1:** §5's token map gains `agent_written_configuration` → *agent-written configuration*, the one evidence-limit token the underscore rule did not turn into RS's label; ADAPTER's prototype now maps every outcome value, request kind and evidence limit of ADAPTER's schema through the map and validates the entries (§15). **V19-A m-1:** the §13 files row states how a standard validator resolves the relative references to EXEC's bodies (it does not, by itself; a loader must map them), checked with `jsonschema`. **V19-A m-6:** §4.4 lists the R14-1 kinds, the R14-3 labels and R15-1's `notStarted`; §14.1's run-start row names `notStarted`; VC-31 and §15 count five logs; the prototype README is updated. V19-A m-3: live citations moved to Wave B labels. V19-A n-1: the "RS 5" row reads "designed here (PROPOSED representation)". V19-A n-6: the schema's annotation branch says its two governance-phase labels are written only for governed checkpoints in the governance phase. V19-B n-1: the node-A4 pins bullet relabelled | Header; §0; §1; §4 R8; §4.4; §5; §12; §13; §14.1; §15; VC-31; `RS_RECORD.schema.json`; `prototype/README.md` |
 
 ## Changes from v0.6
 
@@ -88,16 +120,19 @@ The v0.3 → v0.4 change table is preserved in RS-v0.4 at commit `cc58211c5`.
 
 ## 0. Reading this definition
 
-- Element names are **semantic names, not wire names**. No serialization,
-  field spelling, type, file path, persistence, transport, hash or
-  canonicalization algorithm, process placement or shared-component placement
-  is selected (SoW TBD-002; OI-013; OI-014; DEL-03-01 TBD-003).
+- Element names in §1–§12 are **semantic names, not wire names**. §13
+  PROPOSES a serialization, element spellings and types for review (R12-1;
+  U-04); it is not accepted. No file path, persistence location, transport,
+  hash or canonicalization algorithm, process placement or shared-component
+  placement is selected (SoW TBD-002; OI-013; OI-014; DEL-03-01 TBD-003;
+  R12-2), and no wire field of a host or supplier is selected.
 - `⟨…⟩` is an opaque identity token. Equal tokens stand for "the designated
   identity method reports the same identity".
 - **Act names (DEL-04-01 §2.1):** A1 propose · A2 apply · A3 examine · A4 mark
   checked · A5 accept · A6 approve (engineering approval only) · A7 rely · A8
   request · A9 record · A10 reject · A11 withdraw · A12 set grant · A13 enable
-  external access · A14 answer tool permission. A9 is a recording act; A14 is
+  external access · A14 answer tool permission · **A15 register workflow
+  revision** (R12-5; ACT-POLICY-v0.8 §2.1). A9 is a recording act; A14 is
   never a human-act record (R2-8).
 - **Class values (DEL-04-01 §8.1; R2-1):** none · may apply within granted
   autonomy · proposal only · reserved to the person (SETTLED, V4-HI-02) · **no
@@ -112,7 +147,7 @@ The v0.3 → v0.4 change table is preserved in RS-v0.4 at commit `cc58211c5`.
   Host adoption is not shown (DEP-001).
 - **Grant value** (direct / propose) is what the person sets; **treatment** is
   what the host route resolves.
-- Examples are **fixture subjects** from DEL-03-01/C-v0.4 §10 (FX-PIPE-01), carried in C-v0.7 §10.
+- Examples are **fixture subjects** from DEL-03-01/C-v0.4 §10 (FX-PIPE-01), carried in C-v0.8 §10.
 
 ## 1. Settled distinctions relied on
 
@@ -136,7 +171,7 @@ The v0.3 → v0.4 change table is preserved in RS-v0.4 at commit `cc58211c5`.
 | D16 | Host content read by the App's Codex through the external channel may flow to the App conversation's selected model, cloud included; the App does not gate on the model destination. A host may restrict its own channel (DEP-001); PRD V4-HOST-02, as amended by SCA-V4-001 (which applies DECISION-5; R8-13), governs the host's embedded agent: "A host's agent sends data only to the model service the person selected and to destinations the person has allowed — in advance in an allow list (by category, such as web access, MCP servers or other APIs, or by named destination) or when the agent asks during its work. Nothing else is contacted: no analytics, silent provider switch or background download unless the person turns it on. Every destination contacted is recorded and shown (D-18; DEC-5)." Its record is R15 (ScopeOfWork REQ-002 and CLM-002; V4-HI-70 as amended). (That the App **records** the destination per turn and shows it in the channel status is **SETTLED**: ScopeOfWork REQ-002 requires "model used with its observed destination per turn", and the owner confirmed the reading, OWNER_ITEMS O-10, accepted at DECISION-7 of `APP-V4-BASIS-ALIGN-20260928`; R4-1/R5-4; R9-4) | OWNER_DECISIONS DECISION-2 D5; R5-4; PRD V4-HOST-02 (SCA-V4-001; DECISION-5); ScopeOfWork REQ-002; OWNER_ITEMS O-10 (DECISION-7) |
 
 **Phase 1 (R8-1; DECISION-4 D4-1).** Declared checkpoints are plan guidance
-(EXEC-v0.5 §2.1; WD-v0.7 §4.3.0). This format records a checkpoint's
+(EXEC-v0.6 §2.1; WD-v0.8 §4.3.0). This format records a checkpoint's
 arrivals, the acts that answer them, and act-declined, act-lapsed,
 run-resumed and run-ended events as **observation**, not enforcement. It
 records an act only when the person performed it (V4-HI-42 as amended by
@@ -146,9 +181,14 @@ hold reason. The agent carrying out the workflow asks the person for the act
 when its work reaches the checkpoint. The product's part is to record what
 it observes: the checkpoint's identity, the request where it can be
 identified, and the act only when the person performs it. A record never
-says *performed* without the act (R9-1; SETTLED by DECISION-K1 K1-1). How an App run observes an arrival and a request, and what
-the record then holds, is defined in EXEC in Wave B; no record element for
-that request is defined here. A run action after an arrival and before its act may carry the
+says *performed* without the act (R9-1; SETTLED by DECISION-K1 K1-1). The
+record element for the request is **R16** (§4; PROPOSED representation,
+§13.6): an identified request is recorded as an act request; where none can
+be identified, the arrival says "request not identified", an explicit
+absence that is never a defect. How an App run observes an arrival and
+identifies a request is EXEC's (DEL-02-03/EXEC-v0.6 §2.4.1 RC-5, §2.5: only
+from a structured observation, never from agent message text); the element
+itself is defined here. A run action after an arrival and before its act may carry the
 optional annotation "continued past ‹checkpoint› before ‹act›" (R8-1).
 App-side run holds, `UNRESOLVED{D6}`, are **closed for Phase 1** by
 DECISION-4 and re-open when the governance phase is taken up (R8-2).
@@ -171,9 +211,9 @@ host-operation checkpoints are *not enforceable* too (R8-2).
 | OF-2 | Harness session content, transcripts, agent memory, derived views, search indexes, PEC projections, A14 settlements and user-input/elicitation answers may **locate** evidence. Their assertion that an act occurred creates none. | REQ-001; D2; D15; R4-12 |
 | OF-3 | Host domain truth, receipts, hashes and origin marks stay with the host. A record holds **references** plus what is needed to resolve and compare them: reference, claimed identity, identity method designation, resolution status. Never a substitute copy. | REQ-002; D3, D4 |
 | OF-4 | Workflow definitions and accepted records remain owned by their producing deliverables; this format supplies the act and run records that refer to them. | REQ-001, REQ-005 |
-| OF-5 | A written act record is not edited to change actor, act kind, bound content, scope or purpose. A correction is a new record naming the corrected one; both remain readable. Supersession of A12/A13 (L-0) is a relation, not an edit. (Proposed; mechanism unselected.) | REQ-003, REQ-004 |
+| OF-5 | A written act record is not edited to change actor, act kind, bound content, scope or purpose. A correction is a new record naming the corrected one; both remain readable. Supersession of A12/A13 (L-0) is a relation, not an edit. (Proposed; the mechanism is PROPOSED in §14.1 W-3: a new entry of the same kind carrying *corrects* and a reason.) | REQ-003, REQ-004 |
 | OF-6 | Git history is the primary change record for the files (D13); records cite a repository revision where their own revision matters. | AX-003 |
-| OF-7 | Each record identifies its **format version** and **record kind**; a reader refuses or limits an unknown version. | OUT-001 |
+| OF-7 | Each record identifies its **format version** and **record kind**; a reader refuses or limits an unknown version (PROPOSED rule: §13.4, §14.2 R-3). | OUT-001 |
 | OF-8 | The **recorder** is always identified and is never the decision actor merely by having written the record. A person's own act captured in a surface is *direct capture* by that surface, not self-recording. | REQ-003; D10 |
 | OF-9 | App runs keep records with the user's project/workspace; host-agent runs keep records with the host project (V4-HI-70). Path and host persistence are not selected (U-05, U-06). | REQ-001, REQ-005 |
 
@@ -182,7 +222,8 @@ host-operation checkpoints are *not enforceable* too (R8-2).
 | Record kind | Authority for | Produced by |
 |---|---|---|
 | Run record | That a workflow run occurred with the identified workflow, conversation, model and destination, settings, requested operations and observed outcomes, linking host evidence | App writer (OUT-002) for App runs; host run recording (external owner, DEP-04-03-016) for host-agent runs, in the shared meaning |
-| Human-act record | That an identified person performed A4, A5, A6, A7, A10, A12 or A13, or A11 when the person is the proposer, on identified content, scope and purpose, with capture evidence (ACT §2.4). A person's own proposals (A1) and applications (A2) are R7 operation entries with author type *person*, not human-act records. An operation that **performs a reserved act** (C OP-C6/OP-C7/OP-C8; the A12/A13 controls) produces the human-act record of that act, and its R7 entry, if any, references it (R5-6) | A recorder: capturing surface, App, host facility, or an agent performing A9 |
+| Human-act record | That an identified person performed A4, A5, A6, A7, A10, A12, A13 or **A15** (register workflow revision; R12-5), or A11 when the person is the proposer, on identified content, scope and purpose, with capture evidence (ACT §2.4). A person's own proposals (A1) and applications (A2) are R7 operation entries with author type *person*, not human-act records. An operation that **performs a reserved act** (C OP-C6/OP-C7/OP-C8; the A12/A13 controls) produces the human-act record of that act, and its R7 entry, if any, references it (R5-6) | A recorder: capturing surface, App, host facility, or an agent performing A9 |
+| **Act request** (R16; PROPOSED representation, §13.6) | That an identified agent asked the person for an identified act kind on an identified subject and purpose (A8), where the request can be identified. Never the act; satisfies nothing (HA-1) | The writer observing the request (App: DEL-02-03 observation; host: the loop's "A8 request issued" event) |
 | **Act-declined event** | That a person decided **not** to perform a required A4, A6, A7 or A12 on an identified subject, with capture evidence (R2-5). Not an act of that kind; satisfies nothing that requires the act | Same recorders |
 | **Act-lapsed event** | That a performed act was observed lapsed at ‹t›, with c₀/c₁ (R2-19) | Record reader/writer on evaluation |
 | **Run-resumed event** | The resume point of an arrival: {arrival, time, first action reference} — the first run action after the arrival became *performed* or *resolved negatively* with a proceed/return path (EXEC HD-5; R4-3) | Executor (App: DEL-02-03; host: loop) |
@@ -201,6 +242,21 @@ disposition of the ended run. Continuation is a **new run** whose run record
 carries **continues ⟨run⟩**; nothing carries into it (no arrival, disposition
 or act). An interruption without a run-ended event is not a run end.
 
+**Record states (PROPOSED; RS 7; R12-1).** The state of a written entry as a
+reader finds it, not the state of what it records (lapse, supersession and
+dispositions stay as §6, §7 and R8 define them). No transition edits a
+written entry (OF-5).
+
+| State | Entered when | Left when | What a reader shows |
+|---|---|---|---|
+| **pending write** | The writer accepted the entry and has not yet written it (W-1), or a write failed (W-2) | Written → *written*; the writer ends without writing it → never in the record (the failure is reported, FC-1) | Nothing: it is not in the record. The display compares *missing in record* (§8) |
+| **written** | One complete line was appended and synced (W-1) | A later entry names it in *corrects* → *corrected* | The entry |
+| **corrected** | A later entry of the same kind names it in *corrects*, with a reason (W-3) | Never (a correction may itself be corrected) | Both entries; this one marked "corrected by ⟨entry⟩"; derived state uses the latest correction |
+| **partial** | A line was torn by an interrupted write (FC-2) | Never | "partial entry (not read)"; the bytes are kept; the writer's next open records "partial entry not recovered" |
+| **read limited** | Its format version has the known major and a newer minor (R-3) | A reader that knows that minor reads it → *written* | Known elements; unknown elements and kinds shown as present and unread |
+| **refused** | Its format name or major version is not known (R-3) | A reader that knows it | "unreadable version ‹v›"; nothing inferred from it |
+| **nonconformant** | It fails the schema or a reader rule (R-4, R-7) | A correction that conforms → the original is *corrected* | Shown with the rule it breaks; never used for a disposition or a count |
+
 ## 4. Run-record inventory
 
 Every element named in REQ-002 / SOW-186 / V4-HI-70 is present. "Required"
@@ -212,22 +268,23 @@ V4-HI-70 as amended), so they are not marked (R9-4).
 
 | # | Element (semantic) | Meaning | Supplier | Absent / unknown handling |
 |---|---|---|---|---|
-| R1 | Run identity | Stable identity of this run, distinct from conversation, proposal and operation identities; **who started it** (EXEC RE-5); **continues ⟨run⟩** where this run continues an ended one — **addition** (R4-4) | Record writer | Required; *continues* absent unless recorded |
-| R2 | Workflow identity as observed | {kind, origin, source root, name, revision} + derived-from; promised vs observed separate. Trace links as separate facts (EXEC §6.1): *listed*, *selected*, *resolved* with **revision verification** outcome (recomputed content identity equals the revision, or "revision not verified"); holding library at listed/selected/resolved, never in identity equality (EXEC §6.2, confirmed). **Transfer links** — exported, relayed, received, adapted — with transfer identity and **carriage-manifest reference**, each marked original or revised identity — **addition** (R4-11) | DEL-02-01 §6.1; DEL-02-03 §6 | "revision not verified", "relay not evidenced", "receipt not observed" stay explicit; a revised identity never inherits a link of the original |
+| R1 | Run identity | Stable identity of this run, distinct from conversation, proposal and operation identities; **who started it** (EXEC RE-5); **continues ⟨run⟩** where this run continues an ended one — **addition** (R4-4); **run not started — no model selected** (host-loop runs only): V4-HOST-01 gives the person options with no default, so a host loop with no model selected cannot start a turn; the run is recorded as not started with that cause, and its evidence is the loop's own configuration state at start (LOOP-v0.8 §3.1 F-2 (a); §5.2 MS-02, "observed absence"). No destination exists to refuse, so no R15 entry (no `boundary_refusal`) is written for it — **addition** (R15-1, DERIVED; its representation, §13.3, PROPOSED) | Record writer | Required; *continues* and *not started* absent unless recorded |
+| R2 | Workflow identity as observed | {kind, origin (*project* · *user* · *bundled* · *host*), source root (required), name, revision} + derived-from (DEL-02-01/WD-v0.8 §6.1; R14-3); promised vs observed separate. Trace links as separate facts (EXEC §6.1): *listed*, *selected*, *resolved* with **revision verification** outcome (recomputed content identity equals the revision, or "revision not verified"); holding library at listed/selected/resolved, never in identity equality (EXEC §6.2, confirmed). **Transfer links** — exported, relayed, received, adapted — with transfer identity and **carriage-manifest reference**, each marked original or revised identity — **addition** (R4-11) | DEL-02-01 §6.1; DEL-02-03 §6 | "revision not verified", "relay not evidenced", "receipt not observed" stay explicit; a revised identity never inherits a link of the original |
 | R3 | Supplied guidance identity and limits — **addition** (R-10; R2-20) | Per thread and turn, source identity and content identity (with method) of each guidance input supplied; "supplied ≠ adopted" | DEL-01-01 (App); host loop (relay) | *unknown* where not recordable |
 | R4 | Conversation reference | Reference to the harness conversation/session | Harness | Reference only — operational, not authority |
-| R5 | Model used and **model destination** | Model identity and serving endpoint class as observed, separate from configured. **Destination** (ScopeOfWork REQ-002: "model used with its observed destination per turn"; the reading was confirmed by the owner, OWNER_ITEMS O-10; R4-1, R5-4): recorded **per turn** where the supplier reports it (HOSTING §8.3) — the **requested** provider/model and the supplier-reported **effective** one kept separate, each **re-route** recorded with its turn, destination class (local model server / user-chosen cloud) from the person's provider configuration; a turn not observed is *unknown*. The **run-level value is the set** of destinations observed, never a single inferred value. A model switch or re-route starts no new run and affects no disposition. Covers host content read over the external channel. Information only — never a gate, never a permission | DEL-01-01 HOSTING §8.3; DEL-05-01; DEL-03-03 | "Requested X; effective unknown" and unobserved turns are valid |
+| R5 | Model used and **model destination** | Model identity and serving endpoint class as observed, separate from configured. **Destination** (ScopeOfWork REQ-002: "model used with its observed destination per turn"; the reading was confirmed by the owner, OWNER_ITEMS O-10; R4-1, R5-4): recorded **per turn** where the supplier reports it (HOSTING §8.3) — the **requested** provider/model and the supplier-reported **effective** one kept separate, each **re-route** recorded with its turn, destination class (local model server / user-chosen cloud) from the person's provider configuration; a turn not observed is *unknown*; a turn's effective value is recorded only from a supplier report that names that turn, and a report that names only the thread is recorded with scope *thread*, beside the turns (HOSTING U-27 adopted; V18-1 m-13). The **run-level value is the set** of destinations observed, never a single inferred value. A model switch or re-route starts no new run and affects no disposition. Covers host content read over the external channel. Information only — never a gate, never a permission | DEL-01-01 HOSTING §8.3; DEL-05-01; DEL-03-03 | "Requested X; effective unknown" and unobserved turns are valid |
 | R5a | Seat role meaning — **addition** (R-7) | The role meaning in force for the acting seat | DEL-05-01 / DEL-02-01 | *unknown* where not determinable |
 | R6 | Autonomy settings | Every settings version in force, requested or refused for the run: scope; per-class grant value and class value; display state (§8 list); requester; setting actor; A12 act reference for person-set states; policy-class record reference and default for *effective (policy default)*; establishment evidence or refusal reason | DEL-04-02 settings-in (§8); DEL-04-01 | Never shown effective without its evidence |
-| R7 | Requested operations | One entry per submission, read, examination, or loop-side refusal (§5) | Loop/adapter trace; DEL-03-01; DEL-03-02; DEL-03-03 external dispatch entries | Required per request made |
-| R8 | Checkpoints and arrivals | Per declared checkpoint: required act kind (closed list A4, A5, A6, A7, A12; outside → *invalid*; unrecognized → *not established*); **subject class** (own element, R2-17/R3-1): change items of a named proposal · named output · **objects a named output concerns** · objects changed by a named outcome · targets of the held call (kind (a) only) · grant setting; the **`governed`** flag where declared (WD-v0.7 §4.3.1; PROPOSED) — **addition** (R8-1); **hold support — governance phase (retained), governed checkpoints only; none recorded in Phase 1 (R8-1)** — on the acting surface, one of the four R5-1 values (owner EXEC §3.6): **enforced by the host loop** (embedded route; host evidence DEP-001) · **enforced on the host route** (host-held constraint, evidenced by SQ-02 and a candidate) · **not established** (awaiting a host answer or unagreed exposure; against SWBPIPE neither cause now applies, SQ-02 and SQ-11 being answered, R8-2; the workflow requirement check is *not established*, never a pass and never *unsupported*) · **not enforceable** (no mechanism on this surface; workflow *unsupported*) — **addition** (R4-2; R5-1). The value is classified by the checkpoint's **held actions** (R6-1): if every held action is a host operation (HS-3), SQ-02 answered with host-held carriage evidenced → *enforced on the host route*, unanswered → *not established*, answered with no host-held route → *not enforceable* (SWBPIPE: answered with none, 2026-09-28); if any held action is App-side (App agent turn, App tool/harness action, App file write or return step), in App runs → *not enforceable* (HS-5, D6); host loop → *enforced by the host loop*; an invalid declaration takes **no value** (HS-1; governance phase: check *not established*; Phase 1: recorded as a declaration finding, invalid with its FB code, which does not change the check, R8-11 item 3); governing checkpoint constraint issued with its carriage assurance (governance phase). **Per arrival** (EXEC §4.1): **arrival ordinal**, arrival event and its evidenced time, bound subject referents and their content identities, disposition (waiting · performed · resolved negatively · lapsed · not reached · unknown; record labels in Phase 1, where *waiting* means "reached; act not yet recorded", R8-11 item 1), **performance ordinal**, satisfying act / A10 / act-declined references, per-item decisions (A5 · A10 · undecided · left · unknown) with *partial* annotation and item-left events, annotations (lapsed at ‹t›; **waiting — re-held, lapsed at ‹t› after resume** (governance phase); **replaced by arrival n+1**; **A12 awaiting control confirmation**; **A12 refused by control: ‹reason›**; **by earlier act ‹act› at ‹t›** (L-13); **answered by ‹n› acts**, each with its referents (L-7); **prior act not counted** (an earlier act on content no longer current or of another kind, or under the governance-phase option, L-13); act order unknown (that option only); act on other content; subject absent; hold not enforceable (governance phase); **continued past ‹checkpoint› before ‹act›** (Phase 1, optional, R8-1); **after run end**), run-resumed events, act-lapsed events, run-ended event if the run ended while waiting | DEL-02-01 declares; DEL-02-03 hold machine (App); DEL-05-01 (host) | Not observed → *not reached*. Run ended while waiting → stays *waiting* with run-ended event |
-| R9 | Human acts | References to human-act records, act-declined events and act-lapsed events | §6 | None created without capture evidence |
+| R7 | Requested operations | One entry per submission, read, examination, or loop-side refusal (§5), with its request kind (ADAPTER-v0.6 §4.6 OM-2) and, for a loop-side refusal, its outcome *not offered*, *rejected before host validation* (with the parse or schema reason; LOOP §7) or *not dispatched: turn cancelled* (LOOP §2.3, F-11) (R14-3) | Loop/adapter trace; DEL-03-01; DEL-03-02; DEL-03-03 external dispatch entries | Required per request made |
+| R8 | Checkpoints and arrivals | Per declared checkpoint: required act kind (closed list A4, A5, A6, A7, A12; outside → *invalid*; unrecognized → *not established*); **subject class** (own element, R2-17/R3-1): change items of a named proposal · named output · **objects a named output concerns** · objects changed by a named outcome · targets of the held call (kind (a) only) · grant setting; the **`governed`** flag where declared (WD-v0.8 §4.3.1; PROPOSED) — **addition** (R8-1); **hold support — governance phase (retained), governed checkpoints only; none recorded in Phase 1 (R8-1)** — on the acting surface, one of the four R5-1 values (owner EXEC §3.6): **enforced by the host loop** (embedded route; host evidence DEP-001) · **enforced on the host route** (host-held constraint, evidenced by SQ-02 and a candidate) · **not established** (awaiting a host answer or unagreed exposure; against SWBPIPE neither cause now applies, SQ-02 and SQ-11 being answered, R8-2; the workflow requirement check is *not established*, never a pass and never *unsupported*) · **not enforceable** (no mechanism on this surface; workflow *unsupported*) — **addition** (R4-2; R5-1). The value is classified by the checkpoint's **held actions** (R6-1): if every held action is a host operation (HS-3), SQ-02 answered with host-held carriage evidenced → *enforced on the host route*, unanswered → *not established*, answered with no host-held route → *not enforceable* (SWBPIPE: answered with none, 2026-09-28); if any held action is App-side (App agent turn, App tool/harness action, App file write or return step), in App runs → *not enforceable* (HS-5, D6); host loop → *enforced by the host loop*; an invalid declaration takes **no value** (HS-1; governance phase: check *not established*; Phase 1: recorded as a declaration finding, invalid with its FB code, which does not change the check, R8-11 item 3); governing checkpoint constraint issued with its carriage assurance (governance phase). **Per arrival** (EXEC §4.1): **arrival ordinal**, arrival event and its evidenced time, bound subject referents and their content identities, **request observation** (R16: *request recorded* with its reference, or *request not identified* — an explicit absence, never a defect; PROPOSED, §13.6) — **addition** (RS 5), disposition (waiting · performed · resolved negatively · lapsed · not reached · unknown; record labels in Phase 1, where *waiting* means "reached; act not yet recorded", R8-11 item 1), **performance ordinal**, satisfying act / A10 / act-declined references, per-item decisions (A5 · A10 · undecided · left, with its cause · unknown; and an accepted item later not applied) with *partial* annotation and item-left events (`item_decision`), annotations (lapsed at ‹t›; **waiting — re-held, lapsed at ‹t› after resume** (governance phase); **replaced by next arrival** (arrival n+1); **A12 awaiting control confirmation**; **A12 refused by control: ‹reason›**; **by earlier act ‹act› at ‹t›** (L-13); **answered by ‹n› acts**, each with its referents (L-7); **prior act not counted**, with its reason (content no longer current · another act kind · captured before arrival (governance-phase option); the one wording, L-13, R12-10); act order unknown (that option only); act on other content; subject absent; hold not enforceable (governance phase); **continued past ‹checkpoint› before ‹act›** (Phase 1, optional, R8-1); **after run end**), run-resumed events, act-lapsed events, run-ended event if the run ended while waiting | DEL-02-01 declares; DEL-02-03 hold machine (App); DEL-05-01 (host) | Not observed → *not reached*. Run ended while waiting → stays *waiting* with run-ended event |
+| R9 | Human acts | References to human-act records (including A15, R12-5), act-declined events and act-lapsed events | §6 | None created without capture evidence |
 | R10 | Agent examination findings | References to A3 findings (e.g. C OP-C3) | Agent output | Never "host checks passed" (that is a host check, e.g. C OP-C12), never A4. Host-stored findings through a change operation are also R7 (U-14) |
-| R11 | Evidence limits | Lost acknowledgement; missing receipt; unresolvable reference; origin mismatch; omitted governing checkpoint constraint; constraint carried only model-supplied; **unverified caller identity** (R4-15); cited basis not observed; agent-written configuration; native hint mismatch (DEL-03-03); **host reachable without evidenced A13** (R8-6); **constraint not carriable on this host** (R8-10; a record fact in either phase: in the current phase it says that the expected governing constraint could not be carried and was recorded only, ADAPTER GC-4 and P §3.3; it bears on a hold-support value only in the governance phase; R10-2); **subject identities not supplied** beyond a whole-model identity (R8-4) and **failing targets not supplied** under a host's whole-model staleness scope (R8-3); **action during hold** (governance phase, governed checkpoints; in Phase 1 the optional R8-1 annotation "continued past ‹checkpoint› before ‹act›" is used instead and is not an evidence limit) — each **run** action taken while an arrival was waiting and not stopped by the hold (every run action under *not established* / *not enforceable*; under *enforced on the host route*, every action other than the refused host operations), with its reference and its **turn initiator** — *person-directed* · *agent* · *App rule* (R4-2; R6-3; R6-5; EXEC HD-4, F-24); the person's own operations (e.g. an undo) are never action during hold (R5-5); **process network not observed** for an outside process that is not sandboxed, and **destinations not observed** where the host's native layer reports none (R8-13; R15); unobserved adoption | Record writer; DEL-03-03; DEL-02-03; host native layer (R15) | Required |
+| R11 | Evidence limits | Lost acknowledgement; missing receipt; unresolvable reference; origin mismatch; omitted governing checkpoint constraint; constraint carried only model-supplied; **unverified caller identity** (R4-15); cited basis not observed; agent-written configuration; native hint mismatch (DEL-03-03); **host reachable without evidenced A13** (R8-6); **constraint not carriable on this host** (R8-10; a record fact in either phase: in the current phase it says that the expected governing constraint could not be carried and was recorded only, ADAPTER GC-4 and P §3.3; it bears on a hold-support value only in the governance phase; R10-2); **subject identities not supplied** beyond a whole-model identity (R8-4) and **failing targets not supplied** under a host's whole-model staleness scope (R8-3); **action during hold** (governance phase, governed checkpoints; in Phase 1 the optional R8-1 annotation "continued past ‹checkpoint› before ‹act›" is used instead and is not an evidence limit) — each **run** action taken while an arrival was waiting and not stopped by the hold (every run action under *not established* / *not enforceable*; under *enforced on the host route*, every action other than the refused host operations), with its reference and its **turn initiator** — *person-directed* · *agent* · *App rule* (R4-2; R6-3; R6-5; EXEC HD-4, F-24); the person's own operations (e.g. an undo) are never action during hold (R5-5); **process network not observed** for an outside process that is not sandboxed, and **destinations not observed** where the host's native layer reports none (R8-13; R15); **stateless revision declared, not verified** for an MCP server allowed on the evidence of LOOP-v0.8 §5.3 DF-7 (node B5; PROPOSED); unobserved adoption; **record write failed** (also EXEC's recording gap, CE-19; R14-1), **partial entry not recovered** and **recorders disagree** — the record's own completeness limits, written by the writer (§14.1 W-0, W-2) or found by the reader (§14.2 R-8) — **addition**, PROPOSED (RS 7); **basis lineage not supplied** for a host read the host declares carries no workspace identity or generation, citable only on that declaration (R13-1; DEL-03-01 §5.2); **resubmission without prior observation**, on the resubmission's operation entry, and **App-restart interruption**, on relaunch (R13-2; ADAPTER §5.6 PI-2, PI-6); **host result not isolated** and **dispatch recognized from compound command** (ADAPTER OM-4, OM-1); **de-duplication scope exceeded** (DEL-03-02 PM-5); **act offered without a capture-evidence reference**, written against the observation or operation entry, never as a human-act record (EXEC A-7; DEL-09-06 CAF-24; HA-1) — these seven adopted from their suppliers, PROPOSED where the supplier's text is (R14-3) | Record writer; DEL-03-03; DEL-02-03; host native layer (R15) | Required |
 | R12 | Record identity elements | §3 common elements | Record writer | Required |
 | R13 | Tool-permission settlements (A14) — **addition** (D3; R2-8) | Each tool-permission request and its settlement origin: the person via interaction; the user's own Codex mode inside the supplier; an App named-rule decline or explicit error (INTEGRATION: the App never answers affirmatively by rule) | DEL-01-01 observed facts in this undertaking; DEL-01-02 later (D1) | **Only here**. *Not applicable* in host-loop runs (D3) |
-| R14 | Compatibility-report reference — **addition** (R4-11; EXEC §3.3) | Reference to each required-tool compatibility report evaluated for the run (report identity CR-1, occasion, pass result CR-10, per-checkpoint hold support CR-9 — governance phase; in Phase 1 checkpoints are listed as guidance) | DEL-02-03 | "no report evaluated" stays explicit |
-| R15 | Network destinations of a host's agent (ScopeOfWork REQ-002 and CLM-002; V4-HI-70 and PRD V4-HOST-02 as amended by SCA-V4-001; R8-13; DECISION-5) | Host-loop runs, in any model mode. **Destination contacted**, per request: destination; category; the grant or list entry that allowed it ("model choice" for the model service and its sign-in service; "category: ‹c›"; a named entry; an in-work grant with its scope); time. **Destination grant**: scope (once · this run · always); destination or category; time; source (allow list · in-work); reference to the A12 human-act record, subclass network-destination grant (R9; ACT §2.7). **Destination declined**: destination; time; the requesting call; reference to the act-declined event of kind A12; the outcome reported to the agent, "destination not allowed by the person". **Boundary refusal**: destination and reason (not allowed · always-off item · not stateless MCP (2026-07-28)). **Outside process**: identity; declared destinations; sandboxed or not; when not sandboxed, the R11 limit **"process network not observed"**. Information and evidence only, never a permission | Host native layer and control, through DEL-05-01 events (LOOP §2.3, §5.1.1); DEL-04-01 §2.7 | Required in host-loop runs. Where the native layer reports none: "destinations not observed" (R11). *Not applicable* in App runs, whose model destination is R5; DECISION-5 does not govern the App's own Codex (HOSTING §2) |
+| R14 | Compatibility-report reference — **addition** (R4-11; EXEC §3.3) | Reference to each required-tool compatibility report evaluated for the run (report identity CR-1, occasion, pass result CR-10 — *pass* · *does not pass* · *not established*, and *unsupported* only as EXEC's reason, R14-3 — per-checkpoint hold support CR-9 — governance phase; in Phase 1 checkpoints are listed as guidance) | DEL-02-03 | "no report evaluated" stays explicit |
+| R15 | Network destinations of a host's agent (ScopeOfWork REQ-002 and CLM-002; V4-HI-70 and PRD V4-HOST-02 as amended by SCA-V4-001; R8-13; DECISION-5) | Host-loop runs, in any model mode. **Destination contacted**, per request: destination; category; the grant or list entry that allowed it ("model choice" for the model service and its sign-in service; "category: ‹c›"; a named entry; an in-work grant with its scope); time; for the model service, the class **local** or **cloud** as the person's model choice states it (R12-7; B5). **Destination grant**: scope (once · this run · always); destination or category; time; source (allow list · in-work); reference to the A12 human-act record, subclass network-destination grant (R9; ACT §2.7). **Destination requested** — **addition** (RS 5; LOOP §2.3 "Destination request issued"): requester; destination or category; purpose; scope sought; the requesting call (the call to the host's destination request entry) and the call it carries, required for scope once (B5; LOOP-v0.8 §5.3 DF-1). One entry per request **raised**: a target already allowed raises no request, so none is recorded (LOOP-v0.8 §3.2, §5.3 DF-5 Q-3; V18-1 m-10; RX). **Destination request closed** — **addition**, PROPOSED (B5; LOOP DF-6): the request; state *not granted* (reason: not grantable · grant refused by control · prompt not shown) or *unanswered at end* (cause: run ended · turn cancelled); the carried call not sent; time. **Destination declined** (recording PROPOSED, R12-10: V4-EXM-23 says the decline is reported to the agent, and no accepted text says it is recorded; the act-declined event is INTEGRATION, R2-5 and R8-13): destination; time; the requesting call; reference to the act-declined event of kind A12; the outcome reported to the agent, "destination not allowed by the person". **Boundary refusal** (recording PROPOSED, R11-5, R12-10): destination; category; stage (model request · V-D · at contact; B5, LOOP DF-4); reason (not allowed · always-off item · not stateless MCP (2026-07-28) · no credential, for a model request with no key and no sign-in, LOOP F-2, V18-1 m-11); the call, where there is one. **Outside process**: identity; declared destinations; sandboxed or not; when not sandboxed, the R11 limit **"process network not observed"**; for an MCP server, its stateless evidence (discovery lists 2026-07-28; per-request metadata only; no session identifier seen; LOOP DF-7) and the R11 limit "stateless revision declared, not verified" (B5). Information and evidence only, never a permission | Host native layer and control, through DEL-05-01 events (LOOP §2.3, §5.1.1); DEL-04-01 §2.7 | Required in host-loop runs. Where the native layer reports none: "destinations not observed" (R11). *Not applicable* in App runs, whose model destination is R5; DECISION-5 does not govern the App's own Codex (HOSTING §2) |
+| R16 | **Act requests** — **addition** (RS 5; representation PROPOSED, §13.6) | Each request an agent makes of the person for an act (A8), where it can be identified: requester; how it was identified (its form); act kind, subject and purpose as the request names them, each otherwise "not named by the request" (R14-2); scope; the arrival it serves, if any, with its association (associated with the current arrival · arrival association not established · not at a checkpoint); a reference (not a copy) to the message or event that carried it; time. At a declared checkpoint the agent's A8 is the request V4-WF-05 requires (DECISION-K1 K1-1; ACT AP-12); recording it where it can be identified is required (ACT AP-5, R11-1; EXEC PH-6). A request never satisfies anything and is never shown as the act (HA-1). Destination requests are R15 | DEL-02-03 (App: EXEC-v0.6 RC-5; the body is EXEC's CE-4); DEL-05-01 (host: "A8 request issued", LOOP §2.3); DEL-03-03 (a host-recorded request, ADAPTER CO-11; a not-permitted outcome after which an A8 is issued) | Where no request is identified, the arrival carries "request not identified" (R8); never a defect of the run |
 
 ### 4.1 Elements added in v0.4 (R4-11)
 
@@ -260,6 +317,23 @@ V4-HI-70 as amended), so they are not marked (R9-4).
 | Process network not observed; destinations not observed | R11 |
 | A12 network-destination grant records; act-declined events of kind A12 for a declined destination | R9 (§6) |
 
+### 4.4 Elements added in v0.8 (Wave B, node B4)
+
+| Element | Home | Standing |
+|---|---|---|
+| Act requests | R16 | Element required where identified (ACT AP-5; EXEC PH-6); representation PROPOSED |
+| Request observation per arrival (*request recorded* · *request not identified*) | R8 | PROPOSED |
+| Destination requested | R15 | PROPOSED element over LOOP's "Destination request issued" event |
+| Destination request closed; the carried call; boundary-refusal stage; model-service class; MCP stateless evidence (node B5, LOOP-v0.8 §5.3) | R15 | PROPOSED |
+| Stateless revision declared, not verified (node B5) | R11 | PROPOSED |
+| A15 register workflow revision | R9; §6.1 | Act kind INTEGRATION (R12-5); record elements PROPOSED |
+| Record write failed; partial entry not recovered; recorders disagree | R11 | PROPOSED |
+| Record states (pending write · written · corrected · partial · read limited · refused · nonconformant) | §3 | PROPOSED |
+| One record container: RS kinds for every EXEC CE body, by reference — `checkpoint_listed`, `declaration_finding`, `act_counted`, `act_not_counted`, `item_decision`, `arrival_declined`, `control_relation`, `continued_past`, `observation_lost`, `observation_recovered`, `arrival_replaced`, `act_after_run_end` (node RP-1) | R8; §13.3 | INTEGRATION (R14-1); representation PROPOSED |
+| Supplier outcomes, request kind and reason on operation entries; R11 labels adopted from suppliers (basis lineage not supplied; resubmission without prior observation; App-restart interruption; host result not isolated; dispatch recognized from compound command; de-duplication scope exceeded; act offered without a capture-evidence reference); R14 *does not pass* (node RP-1) | R7; R11; R14; §5 | DERIVED (R14-3, R13-1, R13-2); PROPOSED where the supplier's text is |
+| Run not started — no model selected (`run_opened` `notStarted`, host-loop runs only; node B8) | R1 | DERIVED (R15-1); representation PROPOSED |
+| "Prior act not counted" reason (content no longer current · another act kind · captured before arrival (governance-phase option)) | R8; L-13 | Wording fixed under R12-10; the reason element PROPOSED |
+
 ## 5. Operation entries and outcome evidence
 
 **Entry elements (semantic).** Operation identity and version (DEL-03-01);
@@ -287,7 +361,13 @@ objects** (R2-14); standing received; **submission ordinal**; **reverses
 whether the action was taken **during hold** (R11; governance phase) or, in Phase 1, carries the optional **continued past ‹checkpoint› before ‹act›** annotation (R8-1); for an operation that performs a reserved act, the **reference to the human-act record** it produced (R5-6).
 
 **Outcome vocabulary** is DEL-03-02 §9 and DEL-03-01 §4.1, adopted unchanged
-(R-7), with R2/R4 amendments:
+(R-7), with R2/R4 amendments. From the R14 repair it includes P-v0.8 §9's
+*refused — identity conflict* and *not known to host*, ADAPTER-v0.6's values
+and the loop's own refusals (R14-3; table below). C-v0.8 §4.1's two
+destination results ("destination not allowed"; "destination not allowed by
+the person") are recorded as R15 entries (`boundary_refusal`,
+`destination_declined`, `destination_request_closed`), not as R7 outcomes
+(V18-1 m-8):
 
 | Outcome as recorded | Minimum evidence referenced | Actor / observer | May NOT be inferred from |
 |---|---|---|---|
@@ -308,6 +388,35 @@ whether the action was taken **during hold** (R11; governance phase) or, in Phas
 | application error | Error identity; effect *none* / *partial* (receipt references) / *unknown* (→ overlay) | Host | Any unstated effect |
 | outcome unknown (overlay) | Observation gap; last observed state | The observer that lost observation | — |
 | success (operation ran) | Result reference and observed basis | Host | Any human act |
+| refused — identity conflict | A submission reused a recorded proposal identity with other content (P §3.5 PM-3) | Host | — |
+| not known to host | An observation by identity found no record within the host's de-duplication scope (P §3.5 PM-4) | Host | That the proposal never existed |
+| recorded state | A host recorded state whose items do not share one state, with its derived summary (P §4.6 DS-1; ADAPTER OM-8) | Host | A stronger state than its items (OE-5) |
+| not established / missing | App- or loop-side: the operation could not be resolved, or the edition has no entry (ADAPTER NM-2; EXEC EV-4, EV-5) | App or loop | A host outcome |
+| tool execution declined | The person's or the user's Codex tool permission declined the call; no host request (ADAPTER OM-7); the A14 settlement is R13 | App | A host outcome; any act |
+| rejected before host validation | Loop-side parse, offering or schema rejection, with the reason (truncated · interrupted · malformed · filtered · schema) (LOOP §7, F-8) | Loop | A host outcome |
+| not dispatched: turn cancelled | The person cancelled the turn before the call was dispatched (LOOP §2.3, F-11) | Loop | A host outcome |
+
+**Supplier tokens (R14-3).** ADAPTER's `external_dispatch_record` values map
+to these words once: an underscore is a space, and `applied` → *applied
+(receipt)*, `refused_invalid` → *refused — invalid*, `refused_stale` →
+*refused — stale*, `refused_not_permitted` → *not permitted*,
+`refused_identity_conflict` → *refused — identity conflict*; its
+`request_kind` values are the operation entry's **request kind** (discovery ·
+read · examination · host check · submission · observation · change call ·
+unrecognized), and its route is *proposal* for submission and observation,
+*direct* for a change call, *examination* for an examination, *read*
+otherwise; its channel *external agent* is RS's *external channel*; its
+evidence limits are the R11 labels with `app_restart_interruption` → *App-restart
+interruption*, `dedup_scope_exceeded` → *de-duplication scope exceeded*,
+`host_reachable_without_evidenced_A13` → *host reachable without evidenced
+A13* and `agent_written_configuration` → *agent-written configuration*
+(every other limit token becomes its label by the underscore rule), each
+written as an `evidence_limit` entry naming the operation entry. ADAPTER's prototype
+(`observe_map.py`) writes every SH-1 dispatch record this way and validates
+each entry against this file's schema (§15); it also maps every outcome
+value, request kind and evidence limit of ADAPTER's schema, not only those
+SH-1 emits, through the same rule and validates the resulting entries (RQ;
+V19-A M-1).
 
 Rules. **OE-1** Transport success, a tool-call return, source resolution or a
 resolvable receipt *reference* never upgrades an outcome. **OE-2** A re-draft
@@ -348,20 +457,20 @@ operations (proposals, applications, undo) are never flagged or annotated
 | Element | Meaning | Required |
 |---|---|---|
 | Act identity | Identity of this record | Yes |
-| Act kind | A4, A5, A6, A7, A10, A12, A13, or A11 when the person is the proposer (ACT §2.4). Never A1/A2 (R7 entries), A9 (carried by recording mode) or A14 (R13 only) | Yes |
-| Act class | As applicable: "reserved to the person" for A4, A6, A7, A12, A13 (D2; disabling A13 INTEGRATION) and for A5/A10 where the active autonomy requires a proposal; for acts through a catalog operation, that operation's class from the DEL-04-01 policy-class record, including *no policy basis* with reason | As applicable |
+| Act kind | A4, A5, A6, A7, A10, A12, A13, A15, or A11 when the person is the proposer (ACT §2.4). Never A1/A2 (R7 entries), A9 (carried by recording mode) or A14 (R13 only). For A12, its subclass: operation-class grant or network-destination grant (ACT §2.7) | Yes |
+| Act class | As applicable: "reserved to the person" for A4, A6, A7, A12, A13 (D2; disabling A13 INTEGRATION) and for A5/A10 where the active autonomy requires a proposal; for acts through a catalog operation, that operation's class from the DEL-04-01 policy-class record, including *no policy basis* with reason; for A15, "the person's act (V4-WF-02)" (R12-5; not a D2 reserved act) | As applicable |
 | Governing policy reference | Policy-class record and policy revision identity (DEL-04-01 §8.1); DECISION-1 for D2/D3 | With act class |
 | Decision actor | The person who performed the act. For acts the App captures, the person as the App observes them: the name the person set in the App, the operating-system account, and the Codex account when Codex reports one, marked **identity not verified** (SETTLED by DECISION-K1 K1-4; EXEC CAP-8; U-28 closed). A verified identity is a governance-phase matter | Yes |
 | Recorder | Capturing surface, App, host facility, or agent | Yes |
 | Recording mode (sub-element of A9) | *direct capture* or *faithful recording* (cites capture evidence) | Yes |
-| Bound subject | Change item(s) (A5/A10); host row/object (A4/A6/A7); App file; setting content (A12/A13) | Yes |
-| Bound content c₀ with method m₀ | A5/A10: change-item content identity; A4/A6/A7 on host content: subject content identity; App files: file content identity; A12/A13: the setting content (classes, grant values, scope) | Yes, or "not obtainable" → lapse permanently *unknown* |
+| Bound subject | Change item(s) (A5/A10); host row/object (A4/A6/A7); App file; setting content (A12/A13); a workflow revision (A15) | Yes |
+| Bound content c₀ with method m₀ | A5/A10: change-item content identity; A4/A6/A7 on host content: subject content identity; App files: file content identity; A12/A13: the setting content (classes, grant values, scope); A15: the revision identity (its content identity, with method; R12-5) | Yes, or "not obtainable" → lapse permanently *unknown* |
 | Scope | Change-item identities; row/object identities; setting scope | Yes |
 | Purpose | What the act was for; at a checkpoint, the arrival's declared purpose it answers | Yes |
 | Capture evidence references | From the capturing surface (host act facility; App interface per EXEC CAP-1…CAP-9; control surface for A12), each with resolution status. SWBPIPE exposes none (SQ-01, 2026-09-28; U-11) | At least one; without it the record is non-conformant |
 | Evidence limits | What the evidence does not show (e.g. for App-captured acts, **identity not verified**: the actor is named from the App name, the operating-system account and any Codex account reported, not from a verified identity; EXEC CAP-8; DECISION-K1 K1-4) | Yes |
-| Relations | Run, operation entry, arrival answered (if any; an earlier act counted at a later arrival is cited by it with its capture time, L-13; several acts answering one arrival each name it, L-7), workflow, decision record; for A12: **control effect** — established ⟨settings version⟩ · pending · refused ⟨reason⟩ · unconfirmed (R4-6); **superseded by ⟨act⟩** (L-0); **after run end** where captured after the run's run-ended event | As applicable; no required prior act |
-| Order | Capture time as evidenced; request relation to an arrival where the capturing surface records one | Yes |
+| Relations | Run, operation entry, arrival answered (if any; an earlier act counted at a later arrival is cited by it with its capture time, L-13; several acts answering one arrival each name it, L-7), workflow, decision record; for A12: **control effect** — established ⟨settings version⟩ · pending · refused ⟨reason⟩ · unconfirmed (R4-6); **superseded by ⟨act⟩** (L-0); **after run end** where captured after the run's run-ended event; the **act request** it answers, where recorded (R16); for A15, **derived from ⟨draft⟩**, the draft identity the revision derives from (R12-5; required for A15) | As applicable; no required prior act |
+| Order | Capture time as evidenced, or "not supplied by host" where the host records none (never a time of the App's own; R14-4; V18-4 m-6); request relation to an arrival where the capturing surface records one | Yes |
 | Lapse evaluation | Latest state with compared c₀/c₁ and m₀/m₁ (§7); derived. Not evaluated for A12/A13 | Derived |
 
 ### 6.2 Rules
@@ -391,6 +500,17 @@ operations (proposals, applications, undo) are never flagged or annotated
   host-offered faithful-record operation, if any, must not change act state,
   must cite capture evidence, never satisfies a checkpoint and takes ordinary
   policy; whether any host offers one is a relay question.
+- **HA-10 A15 register workflow revision (R12-5; DEL-02-02 REQ-002, AC-002,
+  AC-006; record elements PROPOSED).** Written only from capture evidence of
+  the person's explicit registration at the registration control
+  (DEL-02-02's, a later undertaking, D1). Bound subject: the workflow
+  revision; bound content: its revision identity with method; relation:
+  *derived from ⟨draft⟩*; purpose: "make it available in the project".
+  Draft creation, a successful trial, an agent's recommendation, a review of
+  other content or a registration of an earlier revision is not evidence of
+  it. A changed definition is a new revision and needs its own A15; an
+  earlier A15 never carries over. No checkpoint may require A15 in this
+  increment (ACT §4.1).
 
 ## 7. Content binding and lapse comparison rule
 
@@ -399,7 +519,7 @@ designation; *c₁*, *m₁* the current identity of the same subject and scope.
 
 | Step | Rule |
 |---|---|
-| L-0 | **A12/A13 are not lapse-evaluated.** A later A12 on overlapping classes and scope **that the control establishes** supersedes the earlier one; the record shows *superseded by ⟨act⟩*. A **refused** later A12 supersedes nothing: the earlier established setting stays in force. A **pending** A12 leaves an A12 arrival *waiting* ("A12 awaiting control confirmation"); a refused one leaves it *waiting* ("A12 refused by control: ‹reason›"); a lost confirmation makes it *unknown* (R4-6; EXEC §4.10). A checkpoint the earlier established A12 performed stays *performed*, with the supersession shown. Same rule for a later A13 on the same interface. |
+| L-0 | **A12/A13 are not lapse-evaluated.** A later A12 on overlapping classes and scope **that the control establishes** supersedes the earlier one; the record shows *superseded by ⟨act⟩*. A **refused** later A12 supersedes nothing: the earlier established setting stays in force. A **pending** A12 leaves an A12 arrival *waiting* ("A12 awaiting control confirmation"); a refused one leaves it *waiting* ("A12 refused by control: ‹reason›"); a lost confirmation makes it *unknown* (R4-6; EXEC §4.10). A checkpoint the earlier established A12 performed stays *performed*, with the supersession shown. Same rule for a later A13 on the same interface. **A15 is not lapse-evaluated either (R12-5; PROPOSED):** its subject is one revision, whose identity does not change; a changed definition is a new revision that needs its own A15 (DEL-02-02 AC-002), and a later A15 on another revision supersedes nothing. |
 | L-1 | Obtain c₁ for exactly the bound subject and scope from one of three sources: change-item content identity (DEL-03-02) for A5/A10; subject content identity (DEL-03-01 §5.3) for A4/A6/A7 on host content; file content identity for App files. Never the workspace generation or model revision. **Whole-model identity (R8-4; INTEGRATION):** where a host supplies only a whole-model identity, it is received as the subject content identity of every subject it covers, with the host's method designation and scope; any model change then lapses every act bound through it (over-lapse, never under), and "subject identities not supplied" is an R11 limit. The App never computes an identity itself. SWBPIPE supplies only a whole-model hash (SQ-03 (a); U-29). |
 | L-2 | Compare method designations. m₁ ≠ m₀ or comparability not shown → **unknown (incomparable)**. |
 | L-3 | c₁ not obtainable → **unknown (unavailable)**. |
@@ -411,17 +531,18 @@ designation; *c₁*, *m₁* the current identity of the same subject and scope.
 | L-9 | Host-presented lapse is linked where supplied; an App/host disagreement is shown and is an R11 limit. |
 | L-10 | Applying an accepted change item does not lapse its A5. A basis failure between A5 and application is *refused — stale* (OE-7). An undo does not lapse A5/A10 on the reversed item; acts bound to subject content the undo changes lapse under L-6. |
 | L-11 | Content returning to c₀ after an observed lapse is shown "matches c₀ again after observed lapse", keeping the lapse interval visible; effect is U-12. (SWBPIPE: the same content gives the same whole-model hash, while its DRAFT #885 revision still advances; SQ-03 (e).) |
-| L-12 | **Checkpoint effect of a lapse (R4-3; EXEC HD-5, §4.7).** The **resume point** is the arrival's run-resumed event, recorded in both phases. *Before resume* (both phases): act-lapsed event recorded; the arrival returns to **waiting**, "lapsed at ‹t›". *After resume, run live — Phase 1 (R8-1; EXEC PH-8; R8-11 item 1; R8-12 item 1):* the act-lapsed event is recorded against the affected referents and labelled **"act lapsed at ‹t›"** (nothing says *waiting*); outputs whose promised standing names this checkpoint as gating show standing **lapsed**; **no re-hold** is recorded and nothing is stopped; the person's own operation that caused it is recorded as such; a later satisfying act is recorded with the next performance ordinal. *After resume, run live — governance phase (retained), governed checkpoints*: act-lapsed event recorded; the **same** arrival (same referents) returns to **waiting**, "waiting — re-held, lapsed at ‹t› after resume" — whatever caused the lapse: a person's edit, **the person's own undo** (an R7 operation, never action during hold), or the run's own later action (R5-5); what "held" means follows the hold-support value (R6-3): under *enforced by the host loop* the run stops at its next action boundary; under *enforced on the host route* the host refuses the held host operations and every other run action is recorded as action during hold; under *not established* or *not enforceable* nothing is stopped and run actions are recorded as action during hold; nothing already done is undone; actions between resume and lapse stay recorded as taken under the earlier performance; outputs whose promised standing names this checkpoint as gating show standing **lapsed** for the affected referents; the act request is re-issued for the **whole** bound scope with lapsed referents marked; a satisfying act gives the next performance ordinal. If the run ends while re-held, the final disposition is **waiting** with the run-ended event. *After the run ended*: the disposition becomes **lapsed** per referent. **A5 and A12 never re-hold** (L-10; L-0); in particular an undo never re-holds an A5 arrival (R5-5). |
-| L-13 | **Earlier acts (SETTLED by DECISION-K1 K1-2; EXEC SP-6; U-26 closed).** In the current phase an act captured before an arrival counts toward it when it is of the required kind and the content it was made on is still current (for A12, its established setting still in force); the record cites the earlier act and its capture time ("by earlier act ‹act› at ‹t›"). An earlier act on content no longer current, or of another kind, is recorded and shown **"prior act not counted"**. This adds no order between act kinds. **Governance-phase option (retained; PROPOSED; EXEC SP-6F; formerly this rule, R4-5):** a workflow that takes up the governance phase may require the act to be captured at or after the arrival's event — by a request relation where the capturing surface records one, otherwise by evidenced times; any earlier act is then "prior act not counted", and if the order cannot be established, "act order unknown" and the act does not count. |
+| L-12 | **Checkpoint effect of a lapse (R4-3; EXEC HD-5, §4.7).** The **resume point** is the arrival's run-resumed event, recorded in both phases. *Before resume* (both phases): act-lapsed event recorded; the arrival returns to **waiting**, "lapsed at ‹t›". *After resume, run live — Phase 1 (R8-1; EXEC PH-8; R8-11 item 1; R8-12 item 1):* the act-lapsed event is recorded against the affected referents and labelled **"act lapsed at ‹t›"** (nothing says *waiting*); the disposition value stays *performed* with that annotation and the lapsed referents (EXEC RC-8; V18-1 m-7); outputs whose promised standing names this checkpoint as gating show standing **lapsed**; **no re-hold** is recorded and nothing is stopped; the person's own operation that caused it is recorded as such; a later satisfying act is recorded with the next performance ordinal. *After resume, run live — governance phase (retained), governed checkpoints*: act-lapsed event recorded; the **same** arrival (same referents) returns to **waiting**, "waiting — re-held, lapsed at ‹t› after resume" — whatever caused the lapse: a person's edit, **the person's own undo** (an R7 operation, never action during hold), or the run's own later action (R5-5); what "held" means follows the hold-support value (R6-3): under *enforced by the host loop* the run stops at its next action boundary; under *enforced on the host route* the host refuses the held host operations and every other run action is recorded as action during hold; under *not established* or *not enforceable* nothing is stopped and run actions are recorded as action during hold; nothing already done is undone; actions between resume and lapse stay recorded as taken under the earlier performance; outputs whose promised standing names this checkpoint as gating show standing **lapsed** for the affected referents; the act request is re-issued for the **whole** bound scope with lapsed referents marked; a satisfying act gives the next performance ordinal. If the run ends while re-held, the final disposition is **waiting** with the run-ended event. *After the run ended*: the disposition becomes **lapsed** per referent. **A5 and A12 never re-hold** (L-10; L-0); in particular an undo never re-holds an A5 arrival (R5-5). |
+| L-13 | **Earlier acts (SETTLED by DECISION-K1 K1-2; EXEC SP-6; U-26 closed).** In the current phase an act captured before an arrival counts toward it when it is of the required kind and the content it was made on is still current (for A12, its established setting still in force); the record cites the earlier act and its capture time ("by earlier act ‹act› at ‹t›"). An earlier act on content no longer current, or of another kind, is recorded and shown **"prior act not counted"**. This adds no order between act kinds. **One wording (R12-10; V17-A N-4):** the record label is exactly **"prior act not counted"**, recorded with one reason — *content no longer current*, *another act kind*, or *captured before arrival (governance-phase option)* — and a display may add the reason after a dash ("prior act not counted — content no longer current"). "Prior act on this subject, not counted" and "prior act, not counted" are retired wordings of the same label; the PROPOSED schema refuses them (§13.3). **Governance-phase option (retained; PROPOSED; EXEC SP-6F; formerly this rule, R4-5):** a workflow that takes up the governance phase may require the act to be captured at or after the arrival's event — by a request relation where the capturing surface records one, otherwise by evidenced times; any earlier act is then "prior act not counted", and if the order cannot be established, "act order unknown" and the act does not count. |
 
 Lapse states: not lapsed · lapsed · lapsed (subject absent) · partially
 lapsed · matches c₀ again after observed lapse · unknown (incomparable) ·
 unknown (unavailable) · not yet evaluated. For A12/A13: current · superseded.
+For A15: not lapse-evaluated (L-0).
 *Not yet evaluated* never renders as *not lapsed*.
 
 ## 8. Settings-in / record-out exchange with DEL-04-02 (CASE-002 M3)
 
-Identical in DEL-04-02/AS-v0.7 §6. A data exchange, not an ordering between
+Identical in DEL-04-02/AS-v0.8 §6. A data exchange, not an ordering between
 human acts and not a second authority.
 
 **Settings-in (DEL-04-02 → DEL-04-03 writer), per run and per change:** run
@@ -439,8 +560,29 @@ and its default value** in its place; **establishment evidence** (control
 confirmation) or refusal reason; order relative to operation entries; source
 of control (App or host).
 
+**Destination settings of a host's agent (DECISION-5; ACT §2.7; carried
+with the settings version, apart from the operation-class grants and never
+merged with them):** the model service and, for a chosen cloud model, its
+sign-in service, marked "allowed by your model choice"; each **category
+switch** (on or off) with its display state and A12 reference; each **named
+entry** with its category, its source (allow list · in-work, always), its
+A12 reference and display state; the **always-off items**, each off unless
+an A12 turned it on; each **in-work grant** with its destination or
+category, scope (once · this run · always), state (pending control
+confirmation · in force · consumed · ended with run · listed · superseded ·
+refused (reason) · unconfirmed; AS §3.1), A12 reference and the request it
+answers; and each **agent request** still open or resolved in the run, with
+the scope sought and its state (pending · granted · declined · not
+granted · unanswered at end, with its reason or cause; DEL-05-01/LOOP-v0.8
+§5.3 DF-6). *Not applicable* for the App's own Codex, whose
+model destination is R5. PROPOSED representation: DEL-04-02's
+`AS_SETTINGS_IN.schema.json`, carried in the record as the body of a
+`settings_version` entry (RS §13).
+
 **Record-out (DEL-04-03 reader → DEL-04-02), per run:** record identity and
-format version; continues ⟨run⟩ where present; recorded settings versions
+format version, and the read state of every entry that is not *written*
+(read limited · refused · partial · nonconformant; RS §3 record states);
+continues ⟨run⟩ where present; recorded settings versions
 with the fields above; per operation entry the two settings references,
 route, treatment at resolution, governing checkpoint constraint with carriage
 assurance, outcome, item dispositions with actors, receipt/origin references,
@@ -451,11 +593,19 @@ writes no undo receipt), evaluated/relied/current bases, the optional
 events with actor, recorder, recording mode, kind, act class, bound subject,
 scope, purpose, c₀/c₁ with method designations, lapse or supersession state,
 A12 control effect, *after run end* marking and capture evidence references
-with resolution status; checkpoint arrivals with subject class, the
+with resolution status; act requests (R16) and each arrival's request
+observation; checkpoint arrivals with subject class, the
 `governed` flag where declared, hold support (governance phase, governed
 checkpoints only; none in Phase 1), arrival and performance ordinals,
 disposition as a record label, annotations, run-resumed and run-ended events;
-evidence limits.
+evidence limits. For a host's agent, the **R15 entries**: destinations
+contacted, each with its category and the grant or entry that allowed it;
+destination grants with scope, time, source and A12 reference; destination
+requests with the call each carries, and how each request ended (LOOP-v0.8
+§5.3 DF-6); declines and boundary refusals (their recording PROPOSED: V4-EXM-23
+reports a decline to the agent, and no accepted text says it is recorded;
+R12-10); outside processes with their declared destinations; and the limits
+"process network not observed" and "destinations not observed".
 
 **Comparison (DEL-04-02)** per settings version: displayed vs recorded →
 *match* · *mismatch* · *missing in record* · *missing in display*. Mismatch is
@@ -464,6 +614,15 @@ authoritative for what was recorded; the control for the current grant; the
 display is derived. Neither side auto-corrects the other. A person-set state
 without an A12 reference, or an *effective (policy default)* state without a
 policy-class record reference, is a defect, not an established setting.
+Destination settings are compared the same way, entry by entry (switches,
+named entries, always-off items, in-work grants with their states); a named
+entry or an in-work grant shown in force without an A12 reference is a
+defect, not a grant. Destinations contacted are not compared: they are read
+from the record and shown by reference where they are displayed (PANEL
+ND-4). A record-out whose version is refused gives *missing in record
+(unreadable version ‹v›)* for every settings version; one read limited is
+compared on its known elements only and says "read limited". "Destinations
+not observed" is shown as that limit, never as "no destinations contacted".
 
 ## 9. Evidence references
 
@@ -480,19 +639,19 @@ states (OE-1).
 | Consumer | Consumes (meaning) | Supplies back | Held part / limit |
 |---|---|---|---|
 | DEL-02-01 | Act names; R8 subject classes and dispositions; R2 | Workflow identity; checkpoint reached-when, subject class, §4.3.7 mixed-item rule | Closed act list A4/A5/A6/A7/A12 |
-| DEL-02-03 | R8 arrivals and events; R2 transfer links; R11 action during hold; R14 | Hold machine (§4), resume point, re-hold, finality and continuation, refused-A12 effect, SP-6, compatibility reports, transfer trace, App capture requirements (CAP-1…CAP-9) | D6 (U-25; closed for Phase 1, re-opens with the governance phase); SP-6 settled by DECISION-K1 K1-2 (U-26 closed), with the governance-phase option SP-6F |
+| DEL-02-03 | The one record container (R14-1): its CE-1…CE-19 bodies are carried as RS's R8, R9, R11 and R16 kinds (§13.3); R16 act requests (identified as EXEC-v0.6 RC-5 says); R2 transfer links; R11 action during hold; R14 | Hold machine (§4), resume point, re-hold, finality and continuation, refused-A12 effect, SP-6, compatibility reports, transfer trace, App capture requirements (CAP-1…CAP-9) | D6 (U-25; closed for Phase 1, re-opens with the governance phase); SP-6 settled by DECISION-K1 K1-2 (U-26 closed), with the governance-phase option SP-6F |
 | DEL-03-01 | R7 identity/basis; c₁ for A4/A6/A7 | Subject content identity; method designation; exposure element; shared fixture §10 | Algorithm unselected |
 | DEL-03-02 | Nothing before its own work: P's outcomes are recorded under §5. No arc DEL-03-02 → DEL-04-03 is registered (N-12 was not proposed: DECISION-6 of `APP-V4-BASIS-ALIGN-20260928`; ARC_ANALYSIS §3.3) | §9 outcomes; change-item content identity; origin incl. constraint and author identity (may be unverified); resulting objects; item-left events | One-effect mechanism unselected |
-| DEL-03-03 | Nothing before its own work: these name where the adapter's evidence lands — R5 destination; R7 external entries; R9; R11; R13. No arc DEL-03-03 → DEL-04-03 is registered (N-B8 was not proposed) | External dispatch entries; model destination class; evidence limits (cited basis not observed, omitted constraint, origin mismatch, agent-written configuration, unverified identity, native hint mismatch); A14 observations | Caller identity verification (U-27). ADAPTER §11 also names two evidence limits for R11 that R11 does not list ("resubmission without prior observation"; "App-restart interruption"): not yet defined here. Both texts stay; they are carried to Wave B and decided with the record's writer and failure sequences (R10-6, node B4) |
-| DEL-04-02 | Record-out (§8) | Settings-in (§8) | Executable M3 trace needs candidate writer/reader |
-| DEL-05-01 | R3/R4/R5/R5a/R7/R8 meanings | Observer-attributed unknown; origin, seat role, grant in force, constraint per dispatch (governance phase); loop-side *not offered*; host-loop hold support (governance phase; in Phase 1 a host loop enforces no hold, EXEC PH-2); run-resumed/run-ended | — |
+| DEL-03-03 | Nothing before its own work: these name where the adapter's evidence lands — R5 destination; R7 external entries; R9; R11; R13. No arc DEL-03-03 → DEL-04-03 is registered (N-B8 was not proposed) | External dispatch entries; model destination class; evidence limits (cited basis not observed, omitted constraint, origin mismatch, agent-written configuration, unverified identity, native hint mismatch); A14 observations | Caller identity verification (U-27). The two evidence limits ADAPTER §11 names ("resubmission without prior observation"; "App-restart interruption") are R11 limits the writer records, by R13-2 (U-31 closed), with ADAPTER's other labels and outcome tokens (§5 "Supplier tokens"; R14-3) |
+| DEL-04-02 | Record-out (§8), including R15 and the read state of entries (v0.8) | Settings-in (§8), including a host agent's destination settings (v0.8; PROPOSED representation `AS_SETTINGS_IN.schema.json`) | Executable M3 trace needs a candidate writer/reader; the §15 prototype exercises the PROPOSED format only |
+| DEL-05-01 | R3/R4/R5/R5a/R7/R8/R15/R16 meanings; the §13 entry kinds its events map to (LOOP E-4: "the field mapping is DEL-04-03's"; stated in §13.3.1) | Observer-attributed unknown; origin, seat role, grant in force, constraint per dispatch (governance phase); loop-side *not offered*; host-loop hold support (governance phase; in Phase 1 a host loop enforces no hold, EXEC PH-2); run-resumed/run-ended; "A8 request issued" and "Destination request issued" events (R16, R15) | — |
 | DEL-05-02 | Act, act-declined, lapse, supersession, annotation display meanings; R15 network destinations and the R11 limit "process network not observed" (PANEL §3.8 ND-4) | — | — |
 | DEL-01-01 | R3, R5, R13 meanings | Supplied-guidance identities; per-turn requested/effective model and re-routes (HOSTING §8.3); A14 settlement origin (observed facts) | Pin 0.158.0 is definition only; whether requested and effective can differ is not observed (HOSTING U-19) |
 | DEL-09-06 | Records of actual content-bound acts and the run record (DEP-09-06-015): R2 transfer links; R7 operation entries; R8 checkpoints and arrivals; R10 findings; §6 human-act records; the §4 inventory for the return (as CA §2.3 cites them) | Joined round-trip evidence | Host links AWAITING INPUT |
 | DEL-09-09 | R7 external dispatch entries; R9 and §6 faithful act records; R11 evidence limits (XT IN-08: J-3, J-8, XC-09) | — | — |
 | PKG-06 (DEL-06-01/06-02) | Act records; actor ≠ recorder; lapse | Decision records as act subjects | Coordination recorder never becomes actor |
 | DEL-09-11 | Complete records for the week-later reconstruction (inspection replay, EXEC RP-6) | — | This format does not perform the witness |
-| DEL-01-02, DEL-01-04, DEL-02-02, DEL-02-04 | R3/R4/R7/R13; act display; review/registration; App act control | Observation evidence; role bytes; App capture control | Outside this undertaking (D1) |
+| DEL-01-02, DEL-01-04, DEL-02-02, DEL-02-04 | R3/R4/R7/R13; act display; review/registration, recorded as **A15** (R12-5; HA-10); App act control | Observation evidence; role bytes; the registration control that captures A15; App capture control | Outside this undertaking (D1) |
 | External host run recording (DEP-04-03-016; DEP-001) | §§3–9 | Receipts, origin marks, subject content identities, capture evidence and reference, lapse, per-operation settings version, constraint receipt, per-turn guidance, host holds (SQ-02; governance phase), channel restrictions on destination | Adoption unclaimed; OI-013 placement. SWBPIPE answered 2026-09-28 (relayed; no commitment or contribution, RELAY §4): no capture-evidence reference (SQ-01), no host-held route (SQ-02), whole-model identity only (SQ-03), whole-model staleness (SQ-07), session-only receipts (SQ-09), receiptless session undo (SQ-10), no A13 facility (SQ-28) |
 
 ### 10.1 Receivers and suppliers by register row (R9-6)
@@ -558,7 +717,7 @@ faithfully records evidenced acts; it performs none.
 
 ## 12. Examples (fixture subjects — invented; no act was performed)
 
-All identifiers are DEL-03-01/C-v0.4 §10 (commit 8fb51f07f; carried in C-v0.7 §10): FX-PIPE-01,
+All identifiers are DEL-03-01/C-v0.4 §10 (commit 8fb51f07f; carried in C-v0.8 §10): FX-PIPE-01,
 FX-W1, g1, run R-100 (fixture run 12, conversation K-7), supports S-1…S-4 and
 S-5 (created at T12), Engineer A, workflow `supports-adjust` (origin *host*,
 ⟨fx-root⟩, ⟨rev-3⟩, declaring `CP-accept` and `CP-check` per FXA-5), bases
@@ -717,12 +876,329 @@ named MCP entry M-1 (stateless 2026-07-28), not sandboxed, declaring D-1.
   record (network-destination grant), an R15 grant (once, time, in-work)
   and one R15 contact.
 - A later request for A-2 is declined → an act-declined event (A12) and
-  an R15 decline, "destination not allowed by the person".
+  an R15 decline, "destination not allowed by the person" (its recording
+  PROPOSED, R12-10).
 - M-1 is started → an R15 outside process with declared D-1, and the R11
   limit "process network not observed".
 
 No operation-class grant changes (R6), and no act is recorded beyond the
 two acts of the person.
+
+## 13. Record format — PROPOSED (RS 8; R12-1, R12-2; U-04)
+
+**Standing.** PROPOSED by DEL-04-03 in Wave B. Nothing here is accepted. The
+format is written as a schema with conformance fixtures, which every
+placement option needs (R12-2); no placement, path, persistence location,
+identity algorithm or canonicalization is chosen (OI-013, OI-014, U-05,
+U-16; DEL-03-01 TBD-003). Element spellings are Chirality's own; no wire
+field of a host or supplier is selected.
+
+| File (beside this one) | What it is |
+|---|---|
+| `RS_RECORD.schema.json` | JSON Schema 2020-12, `$id` `urn:chirality:app-v4:del-04-03:rs-record:0.1`: one record entry, its common header and one body per kind. A `settings_version` body is DEL-04-02's `AS_SETTINGS_IN.schema.json` (`urn:chirality:app-v4:del-04-02:settings-in:0.1`), referenced by `$id`. The checkpoint bodies are DEL-02-03's `checkpoint-record-entries.schema.json` `$defs`, referenced by relative path from this folder (`../../../../PKG-02_…/DEL-02-03_…/Design/checkpoint-record-entries.schema.json#/$defs/…`, percent-encoded; R14-1). A JSON Schema 2020-12 validator resolves a relative `$ref` against the base URI that `$id` sets, not against the file's location; against this file's URN `$id` the reference stays the bare relative path, which a standard validator cannot retrieve by itself, and registering EXEC's schema under its own `$id` (`chirality:del-02-03/…`) does not help, since the reference names the path, not that `$id`. A loader must therefore map the reference: a retrieval rule that resolves it against this schema file's directory (the prototype's `minischema.py` has one), or EXEC's schema registered under that relative path. Checked at RQ with the `jsonschema` package (4.26.0, `referencing` 0.37.0; already installed): with the four schemas registered by `$id` only, the reference is *Unresolvable*; with either mapping, the five valid logs (56 entries) validate, and with the retrieval rule the 15 invalid entries are rejected (V19-A m-1). The reference form stays PROPOSED with placement (OI-014) |
+| `RS_RECORD.valid.host-run.example.jsonl` | 20 entries: a host-loop run (E13's destinations with an in-work grant, a decline, an unsandboxed process and a refusal; `CP-L4` with the agent's request and the person's A4) |
+| `RS_RECORD.valid.app-run.example.jsonl` | 20 entries: an App run over X (E10 (i)–(iv) in the current phase: an earlier act counted for S-2, the request (a supplier person-input request naming no kind, subject or purpose; R14-2), a faithful record of the A4 on S-3, the joint answer, resume, lapse "act lapsed at T6", a correction; R3, R10, R13, R14 entries) |
+| `RS_RECORD.valid.act-log.example.jsonl` | 3 entries outside any run: an A15 registration, an App-file A4 on AF-1 and its lapse |
+| `RS_RECORD.valid.host-destinations.example.jsonl` (node B5) | 12 entries of host-loop run E-14, written by DEL-05-01's `prototype/destination_flow.py` (LOOP-v0.8 §5.3): a model-service contact with class *cloud*; a V-D refusal; a request carrying its call, granted once, and the contact; an MCP server with stateless evidence and both limits; a legacy-answering server refused; a request ended *unanswered at end* by a turn cancel |
+| `RS_RECORD.valid.run-not-started.example.jsonl` (node B8; R15-1) | 1 entry: host-loop run E-15 opened with `notStarted` {cause *no model selected*; evidence *loop configuration state at start*} and nothing after it — no turn, no destination entry, no `run_ended` |
+| `RS_RECORD.invalid.examples.json` | 15 entries that must fail, each with its reason (INV-RS-10, INV-RS-11 added by node B5; INV-RS-12…15 by the R14 repair: origin *host-supplied*, a request identified from agent message text, an underscored disposition, a workflow identity without source root) |
+
+### 13.1 Unit of storage
+
+| Option | Unit | For | Against |
+|---|---|---|---|
+| **S-A (PROPOSED)** | One append-only log per run and writer, one entry per line (JSON Lines, UTF-8, each line ended by a line feed), plus one act log per writer for acts captured outside any run | A written entry is never rewritten (OF-5); a torn write damages at most the last line; each writer's order is its own; an ordinary text file that version control can diff (OF-6, D13) | A run view joins several logs; the reader merges them |
+| S-B | One document per run, rewritten at each change | One file to read | Rewrites earlier content; a failed rewrite can lose the whole run record; conflicts with OF-5 |
+| S-C | One file per entry | No torn lines | Many files; order needs a separate index |
+| S-D | One log per workspace for all runs | One stream | Runs contend for one file; large files |
+
+A **writer** is the component that appends: the App writer (App runs, acts
+the App interface captures, an App agent's faithful records) and the host's
+run recording (host-loop runs; DEP-04-03-016). A **recorder** (RS §3; OF-8)
+is who recorded the fact an entry states; one writer may append entries of
+several recorders (for a host-loop run: the loop, the native layer, the
+control and the act facility, as the loop's events report them, LOOP §2.3).
+Where the host facility and the App each record the same act (E2), they
+write to their own logs; the reader joins them (§14.2 R-8).
+
+### 13.2 Entry header (the common identity elements of §3)
+
+| §3 element | Entry element | PROPOSED form |
+|---|---|---|
+| Record identity | `recordId` | Opaque token `rec:…`, minted by the writer, unique across its logs; how it is minted is unselected |
+| Record kind | `kind` | One of the kinds in §13.3 |
+| Format version | `format`, `formatVersion` | `chirality.rs.record`, "major.minor" (§13.4) |
+| Recorder identity | `recorder` | {role, identity}; role ∈ App writer · App interface (capturing surface) · host facility · host control · host loop · host native layer · agent. A faithful record the App writes from a host read over X (ADAPTER §7.6, recorder "the App") has role *App writer*; an App agent's own A9 has role *agent* (V18-1 m-9) |
+| Recording context | `context` | {surface App or host; host identity} |
+| Written-at order | `seq`, `writtenAt` | `seq` counts 1, 2, 3… per log and is taken only by a successful write; `writtenAt` is the writer's clock (representation unselected). Order across logs is only as evidenced |
+| — | `observedAt` | The time of the observed event where it differs from the write (a late write, FC-1) |
+| Corrects (optional) | `corrects`, `correctionReason` | Both or neither |
+| Run | `runId` | Opaque `run:…`; absent in an act log |
+
+### 13.3 Entry kinds
+
+| Inventory element | Entry kind(s) |
+|---|---|
+| R1, R2, R4, R5a; declared checkpoints listed as guidance | `run_opened`; for a host-loop run that never reaches its first turn, with `notStarted` {cause *no model selected*; evidence *loop configuration state at start*} (R15-1; PROPOSED representation) |
+| R3 | `supplied_guidance` |
+| R5 | `model_turn` (per turn: requested, effective, re-route, destination class) |
+| R6 | `settings_version` (body: DEL-04-02's settings-in, §8) |
+| R7 | `operation_entry` (format 0.1 carries the core of §5: operation, author type and identity with *verified*, channel, route, outcome, settings at route and at application, proposal, related evidence, human-act reference, *reverses*, observer, last observed state, *continued past*; the other §5 elements are carried as evidence references until a later minor version) |
+| R8 | `checkpoint_listed`, `declaration_finding`, `checkpoint_arrival`, `act_counted`, `act_not_counted`, `item_decision`, `arrival_declined`, `control_relation`, `continued_past`, `observation_lost`, `observation_recovered`, `arrival_replaced`, `act_after_run_end`, `disposition_change` (annotations, among them **"prior act not counted"** with its reason, the only accepted spelling), `run_resumed`, `run_ended` — each body is EXEC's CE body (table below; R14-1) |
+| R9, §6 | `human_act` (A4, A5, A6, A7, A10, A11, A12 with subclass, A13, A15), `act_declined`, `act_lapsed` (EXEC's CE-10 body, with the lapse state; for an act outside a run, without arrival) |
+| R10 | `examination_findings` |
+| R11 | `evidence_limit` (EXEC's CE-19 is its "record write failed" form) |
+| R12 | the entry header (§13.2) |
+| R13 | `tool_permission_settlement` |
+| R14 | `compatibility_report_ref` |
+| R15 | `destination_requested`, `destination_grant`, `destination_contacted`, `destination_declined` and `boundary_refusal` (both PROPOSED recording, R12-10), `destination_request_closed` (PROPOSED element, node B5), `outside_process` |
+| R16 | `act_request` (EXEC's CE-4 body) |
+
+**EXEC's checkpoint bodies (R14-1; INTEGRATION).** RS format 0.1 is the only
+container. DEL-02-03's `checkpoint-record-entries.schema.json` defines the
+bodies of CE-1…CE-19 and no container; RS's kinds reference them by relative
+path, as `settings_version` references DEL-04-02's settings-in. Every CE has a
+kind; none is without one:
+
+| EXEC CE | Body (`$defs`) | RS kind | Inventory |
+|---|---|---|---|
+| CE-1 checkpoint listed | `checkpointListed` | `checkpoint_listed` | R8 |
+| CE-2 declaration finding | `declarationFinding` | `declaration_finding` | R8 |
+| CE-3 arrival | `checkpointArrival` | `checkpoint_arrival` | R8 |
+| CE-4 request observed | `actRequest` | `act_request` | R16 |
+| CE-5 act counted | `actCounted` | `act_counted` | R8 |
+| CE-6 act not counted | `actNotCounted` | `act_not_counted` | R8 |
+| CE-7 A5 per-item decision | `itemDecision` | `item_decision` | R8 |
+| CE-8 act declined (at an arrival) | `arrivalDeclined` (cites the `act_declined` record) | `arrival_declined` | R8, R9 |
+| CE-9 A12 control relation | `controlRelation` | `control_relation` | R8 |
+| CE-10 act lapsed | `actLapsed` | `act_lapsed` | R9 |
+| CE-11 run resumed | `runResumed` | `run_resumed` | R8 |
+| CE-12 continued past | `continuedPast` | `continued_past` (App-side run actions; a host operation carries it on its `operation_entry`) | R8 |
+| CE-13 observation lost | `observationLost` | `observation_lost` | R8 |
+| CE-14 observation recovered | `observationRecovered` | `observation_recovered` | R8 |
+| CE-15 arrival replaced | `arrivalReplaced` | `arrival_replaced` | R8 |
+| CE-16 act after run end | `actAfterRunEnd` | `act_after_run_end` | R8 |
+| CE-17 run ended | `runEnded` | `run_ended` | R8 |
+| CE-18 disposition label | `dispositionChange`, with RS's `annotation` objects | `disposition_change` | R8 |
+| CE-19 recording gap | `recordWriteFailed` (a constrained R11 body) | `evidence_limit` "record write failed", written after the late entries (§14.1 W-2) | R11 |
+
+Shared spellings: dispositions in WD §4.3.4's words, spaced; the
+performance ordinal from 1, absent before the first performance;
+annotations as RS's structured objects; `run_ended` stopped by *the person*,
+*run owner* or *observed end*. The disposition's annotations are derived
+labels of the `act_counted`, `act_not_counted` and `act_lapsed` entries and
+agree with them (EXEC RC-10).
+
+#### 13.3.1 LOOP §2.3's checkpoint events (R14-1)
+
+A host's loop writes the same kinds (LOOP E-4: "the field mapping is
+DEL-04-03's"):
+
+| LOOP §2.3 event | RS kind |
+|---|---|
+| Checkpoint reached | `checkpoint_arrival` (event source *loop event*) |
+| Checkpoint disposition changed | `disposition_change` |
+| A8 request issued | `act_request` (form *host-loop A8 event*) |
+| Human act observed | `human_act` (the capturing surface's record); and, at an arrival, `act_counted` or `act_not_counted` |
+| Proposal decision relayed | `human_act` (A5, A10, A11); `item_decision` |
+| Item left subject | `item_decision` (*left*, with its cause) |
+| Act-declined event | `act_declined`; at an arrival, `arrival_declined` |
+| Act lapsed | `act_lapsed` |
+| Act superseded; grant change observed | `settings_version` (the control effect; §13.4); at an A12 arrival, `control_relation` |
+| Run-resumed event | `run_resumed` |
+| Continued past ‹checkpoint› before ‹act› | `operation_entry` *continued past* for a host operation; `continued_past` otherwise |
+| Run interrupted / observation recovered | `observation_lost` / `observation_recovered` |
+| Run ended | `run_ended` |
+| Tool call rejected (unparseable, truncated, schema); tool call not dispatched: turn cancelled; tool call rejected: not offered | `operation_entry`, outcome *rejected before host validation* with the reason, *not dispatched: turn cancelled*, or *not offered* (§5) |
+| Model request refused at boundary | `boundary_refusal` (stage *model request*; reason, including *no credential*) |
+| Run not started — no model selected (LOOP F-2 (a); R15-1) | `run_opened` with `notStarted`. No `boundary_refusal` or other R15 entry (no destination exists to refuse), no `model_turn` and no `run_ended`, because the run never started; the person's later start, after choosing a model, is a new run (PROPOSED) |
+| Destination events | the R15 kinds (§4 R15) |
+
+LOOP's E-6 **event ordinal** orders delivery to the panel and is not a
+record element in format 0.1; each log's own order is `seq`. "A record write
+is complete" (LOOP F-10) is W-1: one complete line appended and synced
+(V18-1 m-12).
+
+### 13.4 Identities, versions and relations written later
+
+- **Content identities** are {method, value, scope}; *method* is the
+  designation that L-2 compares, never an algorithm this format chooses. "Not
+  obtainable" is its own form with a reason (L-3).
+- **Version rule (OF-7).** Same major and a known or older minor: read. Same
+  major and a newer minor: **read limited** — known elements are used,
+  unknown elements and kinds are shown as present and unread, and nothing is
+  inferred from them. Another major, or another format name: **refused**,
+  "unreadable version ‹v›". A minor step adds optional elements or kinds; a
+  major step changes a meaning or removes or requires an element. A log may
+  carry more than one minor version after an upgrade; each entry states its
+  own.
+- **Relations known later are their own entries**, since nothing written is
+  edited: an A12's control effect by the next `settings_version` naming it
+  (its establishment or refusal); supersession derived by the reader from
+  established settings versions (L-0); lapse by `act_lapsed`; a disposition
+  by `disposition_change`; a correction by an entry naming it in *corrects*.
+
+### 13.5 What the schema refuses and what the reader checks
+
+The schema refuses, among other things: an act without capture evidence; A14
+as a human-act record; an A15 without *derived from*; an A12 without its
+subclass; an in-work destination grant without scope and request; a
+correction without a reason; a decline reported in other words than
+"destination not allowed by the person"; a destination request with scope
+once that carries no call, and a closed request without its reason or
+cause (node B5); any not-counted wording other than
+"prior act not counted" with a reason; a disposition outside WD §4.3.4's six
+spaced words, or a performance ordinal below 1; a request identified from
+agent message text; a workflow origin other than *project*, *user*,
+*bundled* or *host*, or no source root (R14-1, R14-2, R14-3); a person-set settings version without
+an A12 reference. The reader checks what the schema subset cannot express
+(§14.2 R-5…R-8): sequence gaps; a correction that changes the kind; a
+recorder named as the decision actor (HA-2); an unsandboxed outside process
+without "process network not observed"; a contact naming an in-work grant
+that is not in the record; records of one capture that disagree.
+
+### 13.6 Requests as record elements (RS 5)
+
+**Decided here (PROPOSED representation):** an agent's request for a
+person's act is a record element, **R16** (`act_request`), and a host
+agent's destination request is an R15 element (`destination_requested`).
+
+- **Why.** ACT AP-5 (R11-1) and EXEC PH-6 require the record to hold "the
+  request where it can be identified", and DECISION-K1 K1-1 has the product
+  record what it observes. Without an element, that requirement had no
+  home (survey §3.5).
+- **Identified by** (PROPOSED values; R14-2): a supplier person-input
+  request; an MCP elicitation (requester "not established (MCP server or
+  agent)"); a request the host records and a read over X returns (ADAPTER
+  CO-11); the host loop's "A8 request issued" event (LOOP §2.3); an A8 the
+  agent issues after a *not permitted* outcome offered one (R2-4). An App run
+  never identifies a request from agent message text (EXEC-v0.6 RC-5); the
+  answer to a request is never act evidence (EXEC CAP-6). Act kind, subject
+  and purpose are recorded as the request names them as structured
+  elements, each otherwise "not named by the request"; nothing is taken from
+  the arrival. A request is associated with an arrival only when exactly one
+  is current.
+- **Absent.** Where no request is identified, the arrival's request
+  observation is "request not identified". That is an explicit absence, not
+  a defect: the agent may have asked in words the App could not identify.
+- **Never the act.** A request satisfies nothing, is never shown as the act,
+  and creates no A12 (HA-1, HA-5). Under the governance-phase option SP-6F a
+  recorded request relation is what orders an act after an arrival (L-13).
+
+## 14. Writer and reader sequences, with failure behaviour (RS 7; PROPOSED)
+
+### 14.1 Writer
+
+**What is written when.**
+
+| Observed event | Entry | Supplier |
+|---|---|---|
+| Run start | `run_opened`, then `settings_version` (settings-in); for a host-loop run with no model selected, `run_opened` with `notStarted` and nothing more (R15-1; §13.3.1) | Executor (App: DEL-02-03; host: DEL-05-01); DEL-04-02 |
+| Each settings change, agent request for a setting, control report | `settings_version` | DEL-04-02 settings-in |
+| Each turn's model, and supplied guidance | `model_turn`, `supplied_guidance` | DEL-01-01 (App); host loop |
+| Each operation request, read, examination or loop-side refusal | `operation_entry`; `examination_findings` | DEL-03-01, DEL-03-02, DEL-03-03, DEL-05-01 |
+| Tool-permission settlement (App runs) | `tool_permission_settlement` | DEL-01-01 observed facts |
+| Checkpoint listed; declaration finding (run start) | `checkpoint_listed`; `declaration_finding` | DEL-02-03 (App); DEL-05-01 (host) |
+| Checkpoint reached | `checkpoint_arrival` (request observation as then known) | DEL-02-03 (App); DEL-05-01 (host) |
+| An act counted or not counted at an arrival; a per-item decision; an act-declined event, a control relation or an act after run end at an arrival; an arrival replaced | `act_counted`; `act_not_counted`; `item_decision`; `arrival_declined`; `control_relation`; `act_after_run_end`; `arrival_replaced` | DEL-02-03 (App; on X from ADAPTER's observations); DEL-05-01 (host) |
+| Observation lost or recovered | `observation_lost`; `observation_recovered` | DEL-02-03 (App); DEL-05-01 (host) |
+| An App-side run action after an arrival and before its act | `continued_past` (optional) | DEL-02-03 |
+| Request identified | `act_request` (R16); `destination_requested` (R15) | DEL-02-03; DEL-05-01 |
+| Act captured | `human_act` (direct capture by the capturing surface; faithful recording by another recorder citing the same capture evidence) | App interface (EXEC CAP-3); host facility or control; App agent (A9) |
+| Decline captured | `act_declined` (and, for a destination, `destination_declined`, PROPOSED) | Capturing surface |
+| A destination request ends not granted, or unanswered at the run's end or the turn's cancel (LOOP-v0.8 §5.3 DF-6) | `destination_request_closed` (PROPOSED) | DEL-05-01 (host loop or control) |
+| Disposition changes; resume point; run end | `disposition_change`; `run_resumed`; `run_ended` | Executor |
+| Bound content observed changed | `act_lapsed` | Writer on evaluation (§14.2 R-8) |
+| Destination contacted, granted, refused; outside process started | `destination_contacted` (written before sending; not sent if it cannot be written, LOOP F-4), `destination_grant`, `boundary_refusal` (PROPOSED recording; with its stage), `outside_process` (with stateless evidence for an MCP server) | Host native layer and control, through DEL-05-01 |
+| A limit observed | `evidence_limit` | The observer |
+
+| Step | What happens | What can fail | Who reports it | Record left | What happens next |
+|---|---|---|---|---|---|
+| **W-0 Open** | Opens the log for (run, writer); takes the next `seq` after the last entry; if the last line is unterminated, terminates it (never truncates or edits) and appends "partial entry not recovered" | The log cannot be read or written | The writer, to its caller (the App or host run recording) | Nothing new | Entries are held as *pending write* (W-2); the display compares *missing in record* (§8) |
+| **W-1 Append** | Completes the header, validates the entry against the schema, then writes one line in one write and syncs it; `seq` advances only on success | (a) The entry is nonconformant. (b) The write fails | (a) and (b): the writer, to its caller, naming the entry | (a) Nothing: a nonconformant entry is never written as a best effort. (b) Nothing yet | (a) The caller corrects its input or records the limit it can. (b) W-2 |
+| **W-2 Late write** | At the next append or retry, writes the pending entries in their order, then an `evidence_limit` "record write failed" naming them; each keeps its `observedAt` | The writer stops before the pending entries are written | The caller already holds the failure report | The entries are not in the record | The display shows *missing in record*; a later run cannot back-fill them |
+| **W-3 Correct** | Appends a new entry of the same kind naming the corrected one in `corrects`, with a reason | A correction of another kind, or without a reason | Schema (reason) and reader (kind), §13.5 | The correction is nonconformant and changes nothing | The corrected entry stays readable, marked "corrected by ⟨entry⟩" |
+
+### 14.2 Reader
+
+| Step | What happens | Failure and what the reader shows |
+|---|---|---|
+| **R-1 Collect** | Gathers every log naming the run, and the act logs holding acts the run cites (where the logs live is OI-014's, U-05) | A cited act not found: "unresolvable reference" (§9), never *performed* |
+| **R-2 Parse** | One entry per line | A torn last line: "partial entry at end (not read)"; any other unreadable line: "unreadable line ‹n›" |
+| **R-3 Version** | §13.4 rule | Newer minor: *read limited*; another major or format: *refused* |
+| **R-4 Schema** | Validates each entry | *nonconformant*, with the rule; never used for a disposition or count |
+| **R-5 Sequence** | Checks `seq` per log | Duplicates or a gap: "entries missing (sequence gap ‹a›..‹b›)" |
+| **R-6 Corrections** | Builds "corrected by" | A correction of another kind: nonconformant |
+| **R-7 Reader rules** | HA-2; outside-process limit; grant references | Each breach: nonconformant, with the rule |
+| **R-8 Assemble** | Groups act records by capture evidence (one act, however many records; direct capture governs, HA-7); latest disposition per arrival; each A12's control effect from the latest settings version naming it; lapse: c₁ is obtained for the record-out, so lapse is evaluated on read as well as on the writer's events — until c₁ is obtained the state is *not yet evaluated* (never *not lapsed*); resolution status at read for every evidence reference (§9) | Records of one capture that disagree on kind, subject or content: "recorders disagree", and the act is shown only as far as they agree; the reader writes nothing (a lapse found on read is written by the writer, if one is running, as `act_lapsed`) |
+
+### 14.3 Failure cases
+
+| Case | Situation | Behaviour | Record left | Prototype |
+|---|---|---|---|---|
+| FC-1 | A write fails | Reported to the caller; the entry is held and written later in order, followed by "record write failed" | Complete, with the delay stated | Ran |
+| FC-2 | An interrupted write tears the last line | Reader: "partial entry at end"; writer on reopen: terminates it and records "partial entry not recovered" | The torn bytes are kept, unread | Ran |
+| FC-3 | Two recorders record one act (E2: host facility and App faithful record) | One act; direct capture governs; a disagreement is "recorders disagree" | Both records | Ran |
+| FC-4 | An entry of an unknown version | Newer minor: read limited. Other major or format: refused | Unchanged | Ran |
+| FC-5 | A correction | Both readable; derived state uses the correction; kind cannot change | Both | Ran |
+| FC-6 | An entry is lost outside the writer | "entries missing (sequence gap)" | As found | Ran |
+| FC-7 | A nonconformant entry is offered, or found | The writer refuses to write it; the reader flags one it finds | Nothing written; or the entry flagged | Ran |
+| FC-8 | A referenced source becomes unresolvable after the write (e.g. SWBPIPE's receipts are session-only, SQ-09) | Resolution status at read "unresolvable"; what was recorded stays as recorded — a disposition already *performed* is not recomputed to *waiting* — and the record-out states the limit | Unchanged | Designed, not run |
+| FC-9 | The App restarts during a run with a submission in flight (ADAPTER PI-6), or the agent resubmits without first observing by identity (ADAPTER PI-2) | The in-flight submission stays *outcome unknown*, observer App (W-0 on relaunch opens the same run log; an interruption is not a run end, EXEC §4.12). Both conditions are R11 limits the writer records (R13-2): "resubmission without prior observation" on the resubmission's operation entry, "App-restart interruption" on relaunch; deriving them at read time is not adopted | The submission's entry, *outcome unknown*, observer App, and the limit entries | Designed, not run |
+
+## 15. Local prototype (R12-3)
+
+`prototype/` holds a prototype, not product code (its README says so):
+`minischema.py` (a JSON Schema 2020-12 validator for a declared keyword
+subset; any other keyword fails the schema load), `record_store.py` (the W-0…W-3
+writer and R-1…R-8 reader) and `run_prototype.py`. Python 3 standard
+library only; nothing installed; no network.
+
+- **Command** (2026-09-30, Python 3.13.7, macOS): `python3 -B
+  run_prototype.py "$TMPDIR/b4-proto"` in `prototype/`.
+- **Observed result:** the three schemas (ACT, AS, RS) loaded under the
+  subset check; every valid example validated and every invalid example
+  failed for its stated reason (ACT 1 + 3, AS 2 + 3, RS 3 logs + 9 entries);
+  each valid RS log written through the writer and read back gave identical
+  entries and identical bytes (20, 20 and 3 entries); FC-1…FC-7 held as
+  §14.3 states. 37 checks passed, none failed; exit status 0. The console
+  output is recorded in `WAVE_B/B4.md`.
+- **Node B5 rerun** (2026-09-30, same command with `"$TMPDIR/b5-rsproto2"`):
+  the fourth valid log `RS_RECORD.valid.host-destinations.example.jsonl`
+  (12 entries) validated and round-tripped with identical entries and
+  bytes; INV-RS-10 and INV-RS-11 failed for their stated reasons; every
+  earlier check held; "RESULT: all expectations held". The log itself was
+  produced by DEL-05-01's `prototype/destination_flow.py --emit`, which
+  also validates each entry it writes (LOOP-v0.8 §5.3 DF-10).
+- **R14 repair rerun** (2026-09-30, `python3 -B run_prototype.py "$TMPDIR/rp1/rsproto"`):
+  the schema now references EXEC's CE bodies by relative path, which
+  `minischema.py` resolves against the referring schema file's directory;
+  the four valid logs (20, 20, 3 and 12 entries) validated and round-tripped
+  with identical bytes; INV-RS-1…INV-RS-15 failed for their stated reasons;
+  FC-1…FC-7 held. `exec_to_rs.py` (also run by `run_prototype.py`) checked
+  that all 19 CE bodies have an RS kind that references them, wrote EXEC's
+  valid example (12 recorder outputs, CH-7 then CH-8) through the writer as
+  RS entries — **12 of 12 valid, none refused, none without a kind** — and
+  then EXEC's CH-20, CH-31 (i), CH-31 (ii) and CH-10 outputs with one sample
+  of each remaining CE kind: 40 of 40 valid. ADAPTER's `observe_map.py`
+  wrote its 34 SH-1 dispatch records as 43 RS entries (operation entries and
+  R11 limits), all valid against this schema (R14-3). "RESULT: all
+  expectations held".
+- **R15-1 (node B8) and RQ reruns** (2026-09-30, `python3 -B run_prototype.py "$TMPDIR/…"`):
+  five valid logs — act log 3, App run 20, host destinations 12, host run
+  20 and run not started 1 entries — validated and round-tripped with
+  identical entries and bytes; INV-RS-1…INV-RS-15 failed for their stated
+  reasons; FC-1…FC-7 held; the R14-1 block gave 19 of 19 CE bodies with a
+  kind, 12 of 12 and 40 of 40 entries valid: 51 PASS, 0 FAIL, "RESULT: all
+  expectations held". At RQ, ADAPTER's `observe_map.py` also mapped every
+  outcome value (21), request kind (8) and evidence limit (18) of its schema
+  through §5's token map: 48 of 48 RS entries valid (V19-A M-1). A standard
+  validator (`jsonschema` 4.26.0, not part of the prototype) gave the same
+  results once given a retrieval rule for the relative references (§13 files
+  table; V19-A m-1). Output recorded in `WAVE_B/RQ.md`.
+- **Not shown:** FC-8 and FC-9; any placement; any identity algorithm;
+  concurrency between two writers on one log (S-A gives each writer its own
+  log); a candidate writer or reader.
 
 ## UNRESOLVED
 
@@ -730,11 +1206,11 @@ two acts of the person.
 |---|---|---|---|
 | U-01 Operation-specific reserved additions `OI-021` | Owner via outside SWB session and App/shared owner | Before connected-activity SoW and execution | Class may be *no policy basis (pending OI-021)*; fixtures held |
 | U-02 Consequence vocabulary | DEL-04-01 with host policy owner | Before class assignment in DEL-03-01 | Scope dimension "consequence" is a slot; OP-C5 on S-4 under ⟨set-2⟩ held |
-| U-04 Serialization, field names, identity algorithms, record-identity form, carriage-manifest representation | DEL-04-03 with DEL-03-01 (TBD-003) and DEL-02-01 | Before OUT-001 CONFIG and writer implementation | L-2 depends on method designations only |
+| U-04 Serialization, field names, identity algorithms, record-identity form, carriage-manifest representation | DEL-04-03 with DEL-03-01 (TBD-003) and DEL-02-01 | Before OUT-001 CONFIG and writer implementation | **v0.8:** serialization, element spellings, unit of storage, record-identity form (opaque token) and version rule PROPOSED in §13, for review; identity algorithms and the carriage-manifest representation stay open. L-2 depends on method designations only |
 | U-05 App record location | DEL-04-03 with OI-014 owners | Before writer implementation | "Ordinary files" only |
 | U-06 Host persistence/placement `OI-013` | Shared contract owner with SWB implementation owner | Before shared/host implementation boundary contracts | Host recording follows meaning only |
 | U-07 *Closed (DECISION-K1 K1-3, 2026-09-30).* Purpose of a multi-row A4 after partial lapse | The owner (decided) | — | **Settled:** the act keeps its purpose for unchanged rows; a new act on the changed rows alone answers together with it (L-7; EXEC §4.7 JA-1) |
-| U-08 Workflow review/registration as act kind | DEL-04-01 with DEL-02-02 (later, D1) | DEL-02-02 definition | Not recorded here |
+| U-08 *Closed (R12-5, 2026-09-30).* Workflow review/registration as act kind | The integrator (R12-5); the registration control stays DEL-02-02's (later, D1) | — | **A15 register workflow revision** is a human-act record kind (§6.1, HA-10); a checkpoint cannot require it in this increment |
 | U-09 Host evidence that application re-checks the basis after acceptance | Host owner (DEP-001) | Before connected integration | OE-7 records both entries |
 | U-11 Host capture requirement per act kind; capture-evidence reference. SQ-01 answered 2026-09-28: SWBPIPE exposes none; its Apply receipt names no person or time and is session-only | SWBPIPE owner decision (PB-TBD-002 acceptance-record storage; DEL-16-03 actor identity; ANS §2); host owner generally (DEP-001) | Before host act-recording integration | No host-content arrival reaches *performed* without it |
 | U-12 Content returning to c₀ after observed lapse | Host owner (U-C2) with DEL-04-03 | Before lapse display criteria are fixed | L-11 keeps lapse visible. SWBPIPE: same content ⇒ same whole-model hash; DRAFT #885 revision still advances (SQ-03 (e)) |
@@ -751,15 +1227,17 @@ two acts of the person.
 | U-29 Per-subject content identity (V4-HI-32) not met by SWBPIPE, which supplies only a whole-model identity (SQ-03; R8-4; EXEC U-E25) | SWBPIPE (PB-TBD-002 / DEL-16-03); owner notice | Before host act-binding integration | L-1 receives the whole-model identity for every covered subject: over-lapse, never under-lapse; resulting objects beyond target ids *not supplied* |
 | U-30 DECISION-5 points settled by the owner's DECISION-5 confirmation (2026-09-28: the "MCP V2" reading confirmed; the person-only grant not objected to and stands) (closed for those points) (the person-only grant; the reading of "MCP V2"); the host's native destination report (DEP-001) (R8-13) | The owner; host owner (DEP-001) | Before R15 writer implementation; before host-loop destination cases execute | R15 defined as recorded; without a native report, "destinations not observed" (R11) |
 
-Closed in v0.7, node A3 (DECISION-K1): U-07 (K1-3), U-26 (K1-2), U-28 (K1-4). Closed in v0.6: none (U-25 closed for Phase 1 only). Closed in v0.5: none. Closed in v0.4: U-17 (R4-6; EXEC §4.10), U-18 (EXEC §4.11 confirmed), U-22
+| U-31 *Closed (R13-2; R14 repair).* ADAPTER's two evidence limits "resubmission without prior observation" and "App-restart interruption" | The integrator (decided, R13-2) | — | Both are R11 limits the writer records (§4 R11; §14.3 FC-9) |
+
+Closed in the R14 repair (node RP-1, in place): U-31 (R13-2). Closed in v0.8, node B4: U-08 (R12-5). Closed in v0.7, node A3 (DECISION-K1): U-07 (K1-3), U-26 (K1-2), U-28 (K1-4). Closed in v0.6: none (U-25 closed for Phase 1 only). Closed in v0.5: none. Closed in v0.4: U-17 (R4-6; EXEC §4.10), U-18 (EXEC §4.11 confirmed), U-22
 (EXEC §6.2 confirmed), U-23 (R4-4), U-24 (R4-3). Earlier: U-03, U-10, U-13.
 
-## Verification cases (designed, not run)
+## Verification cases (designed; VC-31…VC-35 ran on the local prototype only, not on a candidate)
 
 | Case | Input (fixture subject) | Expected result | Serves |
 |---|---|---|---|
 | VC-01 Authority | E1; transcript and derived view claim an A5 on PR-2 item 2 | Only ⟨act:1⟩/⟨act:2⟩; the claim creates no act | VER-001 (AC-001) |
-| VC-02 Inventory completeness | E1 run (App) and a host-loop run | R1–R15 each value, explicit absence, or *not applicable* with reason (R13 in a host-loop run; R15 in an App run) | VER-001 (AC-002) |
+| VC-02 Inventory completeness | E1 run (App) and a host-loop run | R1–R16 each value, explicit absence, or *not applicable* with reason (R13 in a host-loop run; R15 in an App run; R16 absent only as "request not identified" on the arrival) | VER-001 (AC-002) |
 | VC-03 Link not copy | E1 with RC-1 | Reference, claimed identity, method, resolution status only | VER-001 (AC-002) |
 | VC-04 Faithful recording | E2 | A4, recorder App agent, faithful recording, capture evidence cited | VER-002 (AC-003) |
 | VC-05 Fabrication negatives | E3 (a)–(g) | No act records; (d) R11; (e) R13 only; (f) no automatic A8; (g) not act evidence | VER-002 (AC-003) |
@@ -785,6 +1263,15 @@ Closed in v0.7, node A3 (DECISION-K1): U-07 (K1-3), U-26 (K1-2), U-28 (K1-4). Cl
 | VC-27 Reserved-act operation and App file | E1 OP-C7/OP-C8; an App-captured A4 on C AF-1 (⟨AF-1@f1⟩, then edited to ⟨AF-1@f2⟩) | Human-act records produced by the reserved-act operation and referenced from R7; AF-1 act bound by file content identity lapses on edit | VER-002 (AC-003) |
 | VC-28 Hold-support values (governance phase) | E10 (App-side held actions; host-operation-only variant), read as governed; a host-loop run; an invalid declaration | Only the four R5-1 values, recorded only for governed checkpoints in the governance phase; classified by held actions (R6-1); *not established* never a pass or *unsupported*; *not enforceable* → *unsupported*; host-operation-only over SWBPIPE's X → *not enforceable* (R8-2); invalid declaration takes no value; no retired value | VER-005 (AC-006) |
 | VC-29 Phase-1 record semantics (R8-1) | E6, E7, E10 (Phase-1 parts); an agent-written A4 claim without capture evidence; a checkpoint declared `governed` | No hold, re-hold or hold-support value recorded; no *unsupported* for a hold reason; acts recorded only from capture evidence of the person's performance (the agent's claim creates none); arrivals and acts recorded as observation, with dispositions as record labels; "continued past ‹checkpoint› before ‹act›" optional and never an R11 limit; lapse recorded; the `governed` flag recorded and changing nothing in Phase 1; an invalid declaration recorded as a declaration finding only | VER-002 (AC-003) |
-| VC-30 Network destinations (R8-13) | E13; a variant with no native destination report; an agent-written allow-list entry | Every contact carries destination, category and allowing grant or entry; grants carry scope, time, source and an A12 reference; the decline carries the act-declined reference and "destination not allowed by the person"; the unsandboxed process carries "process network not observed"; without a native report, "destinations not observed"; the agent-written entry creates no grant and no act | VER-001 (AC-002) |
-| VC-24 Coverage inventory | VC-01…VC-23 and VC-26…VC-30 against AC-001…AC-005 | Each AC has ≥1 positive and ≥1 negative case; held/AWAITING INPUT never counted as pass; distinct from DEL-09-11 | VER-005 (AC-006) |
+| VC-30 Network destinations (R8-13) | E13; a variant with no native destination report; an agent-written allow-list entry | Every contact carries destination, category and allowing grant or entry; grants carry scope, time, source and an A12 reference; the decline carries the act-declined reference and "destination not allowed by the person"; the unsandboxed process carries "process network not observed"; without a native report, "destinations not observed"; the agent-written entry creates no grant and no act. From v0.8 (node B5): the host-destinations log (E-14) and LOOP MS-24…MS-27: a request carries its call; a closed request its state with reason or cause; a refusal its stage; a model-service contact its class; an MCP server its stateless evidence and the limit "stateless revision declared, not verified". Ran on LOOP's prototype (not a candidate) | VER-001 (AC-002) |
+| VC-31 Format round trip (RS 8) | The five valid example logs of §13 (three at node B4; the host-destinations log added at B5, the run-not-started log at B8), through the prototype writer and reader (§15) | Each validates; written and read back, entries and bytes are identical. **Ran 2026-09-30 on the prototype: held** (not a candidate result) | VER-001 (AC-002) |
+| VC-32 Write failure and torn entry (RS 7) | FC-1, FC-2 | Failure reported to the caller; the entry written late in order with "record write failed"; no sequence gap; a torn line kept unread, terminated on reopen and recorded as "partial entry not recovered". **Ran on the prototype: held** | VER-001 (AC-002) |
+| VC-33 Two recorders (RS 7; E2) | FC-3 | One act counted once; direct capture governs; a disagreement gives "recorders disagree". **Ran on the prototype: held** | VER-002 (AC-003) |
+| VC-34 Unknown version (OF-7) | FC-4 | Newer minor read limited; other major or format refused; nothing inferred. **Ran on the prototype: held** | VER-001 (AC-002) |
+| VC-35 Correction (OF-5) | FC-5; INV-RS-7 | Both readable; "corrected by"; a correction without a reason or of another kind is nonconformant. **Ran on the prototype: held** | VER-003 (AC-004) |
+| VC-36 Request element (RS 5) | The two example runs (a request recorded, then answered); an arrival with no identified request; an act record whose only evidence is the request; INV-RS-13 | R16 recorded with its reference, with kind, subject or purpose "not named by the request" where the request names none (R14-2); "request not identified" is an absence, not a defect; a request identified from agent message text is refused; a request never satisfies an arrival | VER-002 (AC-003) |
+| VC-37 A15 (R12-5) | The act-log example; INV-RS-3; a changed definition registered under an earlier A15 | A15 bound to the revision identity with *derived from*; without *derived from* nonconformant; the earlier A15 does not carry to the new revision; not lapse-evaluated | VER-002 (AC-003) |
+| VC-38 Destination exchange (RS 6, AS 4) | E13; the host-run example; its settings version | Settings-in carries switches, named entries, always-off items, in-work grants and requests with the LOOP-v0.8 §5.3 DF-6 states; record-out carries the R15 entries; declines and refusals recorded as PROPOSED; contacts read by reference, not compared; "destinations not observed" never shown as none contacted | VER-001 (AC-002) |
+| VC-39 One container (R14-1) | EXEC's valid example and CH runs, through `exec_to_rs.py`; INV-RS-14 | Every recorder output becomes a valid RS entry of an RS kind whose body references EXEC's; none without a kind; an underscored disposition is refused. **Ran on the prototype: 12 of 12 and 40 of 40 valid** | VER-001 (AC-002) |
+| VC-24 Coverage inventory | VC-01…VC-23 and VC-26…VC-39 against AC-001…AC-005 | Each AC has ≥1 positive and ≥1 negative case; held/AWAITING INPUT never counted as pass; distinct from DEL-09-11 | VER-005 (AC-006) |
 | VC-25 Owner trace | §10, §11, UNRESOLVED | Each REQ-005 consumer and REQ-006 excluded act traced; D2/D3/D5/D6 cited only for what they say; no delivery/adoption asserted | VER-006 (AC-007) |

@@ -1,0 +1,123 @@
+[
+  {
+    "case": "INV-EXEC-1",
+    "reason": "disposition 'held' is not one of WD §4.3.4's six (PH-6)",
+    "instance": {
+      "kind": "disposition_change",
+      "observedAt": "T14b",
+      "body": {
+        "arrival": {
+          "checkpoint": "CP-check",
+          "arrivalOrdinal": 1
+        },
+        "disposition": "held",
+        "annotations": []
+      }
+    }
+  },
+  {
+    "case": "INV-EXEC-2",
+    "reason": "performance ordinal starts at 1 (R14-1)",
+    "instance": {
+      "kind": "disposition_change",
+      "observedAt": "T14b",
+      "body": {
+        "arrival": {
+          "checkpoint": "CP-check",
+          "arrivalOrdinal": 1
+        },
+        "disposition": "waiting",
+        "annotations": [],
+        "performanceOrdinal": 0
+      }
+    }
+  },
+  {
+    "case": "INV-EXEC-3",
+    "reason": "underscored disposition spelling (R14-1: WD §4.3.4's spaced words)",
+    "instance": {
+      "kind": "disposition_change",
+      "observedAt": "T14b",
+      "body": {
+        "arrival": {
+          "checkpoint": "CP-check",
+          "arrivalOrdinal": 1
+        },
+        "disposition": "not_reached",
+        "annotations": []
+      }
+    }
+  },
+  {
+    "case": "INV-EXEC-4",
+    "reason": "act_counted without the act it counts",
+    "instance": {
+      "kind": "act_counted",
+      "observedAt": "T14d",
+      "body": {
+        "arrival": {
+          "checkpoint": "CP-check",
+          "arrivalOrdinal": 1
+        },
+        "relation": "after arrival",
+        "referents": [
+          "S-5",
+          "R-100",
+          "S-3"
+        ]
+      }
+    }
+  },
+  {
+    "case": "INV-EXEC-5",
+    "reason": "a request identified from agent message text (RC-5; R14-2)",
+    "instance": {
+      "kind": "act_request",
+      "observedAt": "T14c",
+      "body": {
+        "requester": {
+          "kind": "agent"
+        },
+        "form": "agent message naming kind, subject and purpose",
+        "actKind": "not named by the request",
+        "subject": "not named by the request",
+        "purpose": "not named by the request",
+        "association": "associated with the current arrival",
+        "evidence": {
+          "kind": "conversation item",
+          "ref": "req:ask-checked-mark",
+          "resolutionAtWrite": "resolved"
+        },
+        "time": "T14c",
+        "arrival": {
+          "checkpoint": "CP-check",
+          "arrivalOrdinal": 1
+        }
+      }
+    }
+  },
+  {
+    "case": "INV-EXEC-6",
+    "reason": "no 'action during hold' body in the current phase (PH-2)",
+    "instance": {
+      "kind": "action_during_hold",
+      "observedAt": "T99",
+      "body": {
+        "actionRef": "item:x"
+      }
+    }
+  },
+  {
+    "case": "INV-EXEC-7",
+    "reason": "run_ended spelling 'run_owner' (R14-1: 'run owner')",
+    "instance": {
+      "kind": "run_ended",
+      "observedAt": "T99",
+      "body": {
+        "stoppedBy": "run_owner",
+        "cause": "x",
+        "waitingArrivals": []
+      }
+    }
+  }
+]
