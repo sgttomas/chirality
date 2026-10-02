@@ -5206,3 +5206,20 @@ warrant respectively; fresh independent review precedes reliance. No maintained
 implementation or runtime is authorized. Use minimal source origins/revisions;
 RV45's already sealed full source copies remain historical evidence, but future
 packets should not duplicate tracked trees without a concrete recovery need.
+
+## F2a checked-work specification selected; concrete API closure required (ROOT, 2026-10-02 UTC)
+
+ROOT read RV46 REVIEW in full and verified its fourteen-payload inventory/seal
+chain, seal8147543ca34326e15d88b1232f2eb41e0f50b3090f8f7883a881335e645e9c50.
+Accept I34's E/O/I/OI algebra, status-versus-price discipline and independently
+checked pre-mutation carry lemma as the checked-evidence design basis. Select
+this direction over continuing the incomplete global cumulative static proof.
+The local I29 lemmas remain valid conditional evidence and scalar inputs.
+
+This does not lift C1's exactness blocker: the concrete ownership/API/error/reset
+and caller coverage, source implementation, scalar admission, layout/profile and
+qualification are still required before this alternative can supply exactness.
+No code, new price, byte bound or silently changed legacy observation is authorized.
+Release I34_F2A_WORK_EXACTNESS_API_02 to choose and fully trace those finite APIs
+and exact maintained manifest for RV46 backcheck. No further abstract framework
+or open-ended proof programme is requested.
