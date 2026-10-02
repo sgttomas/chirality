@@ -55,8 +55,8 @@ stop thresholds with recorded overshoot, not hard time/memory/RSS maxima.
 Memory remains a conditional technical target with RV40-N1's explicit F2a
 composition, preallocation guard, W1-only refusal and deployment boundaries.
 
-ROOT next commissions bounded F2a/S-G1 checkpoint0 planning against the selected
-work policy and RV40-N1 memory design obligation. The missing product memory mechanism and caller/lifetime
+Bounded F2a/S-G1 derivations are executing against the selected work policy and
+RV40-N1 memory design obligation. The missing product memory mechanism and caller/lifetime
 composition cannot be supplied by H's observation allocator. F2a cannot rely on
 an unqualified memory or publication contract. Then S-I, F2b per domain and F3,
 with actual producer/reader/gate and V-P obligations. Owner-held6GiB dense/observation
@@ -94,6 +94,8 @@ the stated briefs; it creates no realized solver/publication claim. Full memory
 P1–P5 waits for frozen interfaces from these packets. ROOT receives, reads and
 verifies inventories/write sets before preservation; independent review precedes
 any implementation reliance. Stable runtime policy identities remain unreserved.
+RV41 routing backcheck and fresh RV42/RV43 review briefs are prepared at2e852654;
+these briefs are not executing reviewers. Dispatch follows each frozen return.
 
 Plans remain revisable, not accepted proofs/identities/byte policies or code grants.
 ROOT's cross-plan questions include additional ordinary work before admission,
