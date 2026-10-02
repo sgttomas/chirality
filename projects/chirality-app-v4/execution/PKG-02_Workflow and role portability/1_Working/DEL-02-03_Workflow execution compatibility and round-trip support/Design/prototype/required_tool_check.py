@@ -17,7 +17,7 @@ OUTCOME_BLOCKS = {"missing", "not_exposed_on_this_surface", "version_mismatch",
                   "channel_not_enabled"}
 
 
-# EV-3 presence rule and EV-3a readings at pin 0.158.0 (EXEC-v0.6 §3.4; PROPOSED;
+# EV-3 presence rule and EV-3a readings at pin 0.158.0 (EXEC-v0.7 §3.4; PROPOSED;
 # active per group from node G, R16-3). The signals are HOSTING-BOUNDARY-v0.8
 # §8.4's; `signals` is the App's reading for the thread, or None (not read).
 APP_CODEX_PIN = "App Codex 0.158.0"
@@ -38,8 +38,28 @@ def _web(s):
 
 
 def _delegation(s):
-    ts = s.get("thread_start")
-    return None if ts is None or "multiAgentMode" not in ts else True
+    # EXEC-v0.7 EV-3a, reading order of R21-1 (repair node RV21-B; V21-B M-1), with
+    # NPTD-v0.2 §7.1 as the reference: `Model.multiAgentVersion` from model/list,
+    # the effective configuration's `features.multi_agent` from config/read (no
+    # `features` unless set, OBS-2 O-8), `namespaceTools` from
+    # modelProvider/capabilities/read. Each "missing" reading wins over a signal not
+    # read; any of the three not read (or null) then gives "not established".
+    # The v0.6 signal `multiAgentMode` is "@deprecated Ignored" at 0.158.0 and is not read.
+    ver = s.get("model_multi_agent_version")          # None: null, or model/list not read
+    cfg = s.get("effective_config")                   # None: config/read not read
+    caps = s.get("provider_capabilities")             # None: capabilities not read
+    if ver == "disabled":
+        return ("missing", "this model declares no multi-agent runtime (multiAgentVersion disabled)")
+    if cfg is not None and ((cfg.get("features") or {}).get("multi_agent") is False):
+        return ("missing", "delegation is turned off in the Codex configuration (features.multi_agent = false)")
+    if caps is not None and caps.get("namespaceTools") is False:
+        return ("missing", "this provider does not accept the namespace tools delegation travels in "
+                           "(namespaceTools false; OBS-2 O-4, through an adapter)")
+    if ver is None or cfg is None or caps is None or "namespaceTools" not in caps:
+        return None                                   # a signal not read: not established
+    if ver in ("v1", "v2") and caps["namespaceTools"] is True:
+        return True
+    return ("not_established", "multiAgentVersion %r is outside the 0.158.0 enum" % (ver,))
 
 
 def _mcp(s):
@@ -92,6 +112,8 @@ def harness_presence(name, harness, signals):
     if reading is None:
         return "not_established", "presence rule inactive for %s: %s" % (group, inactive)
     value = None if signals is None else reading(signals)
+    if isinstance(value, tuple):                    # a reading that states its own outcome and reason
+        return value
     if value is None:
         return "not_established", "availability signal of %s not read" % group
     if value == "limit":
