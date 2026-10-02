@@ -46,8 +46,8 @@ transcriptions retain their explicit provenance limits.
 
 ## Next decision and work
 
-Four bounded author TASKs and fresh RV44 source-first review are active;
-RV41/RV42/RV43 have returned and are stopped.
+I29 counter analysis, fresh I33 source-action bridge, RV43 C2 review and RV44
+independent counter review are active. I30/I31 and RV41/RV42 are stopped.
 No maintained implementation or build/solver/runtime is granted.
 The existing host guard remains. NUM has merged main after K6c. I29/w1_limits_preparation_01 proposes options from current data;
 REVIEW_RV40/w1_limits_01 independently passes the prospective basis. ROOT has read
@@ -103,7 +103,7 @@ ROOT dispositions are in the latest append-only ROOT_RULINGS_V1 sections.
   No identity/schema/runtime policy names beyond existing selected policy are
   reserved by the drafts. Full producer/three-reader/native qualification follows.
 
-## Active bounded follow-ups
+## Follow-up returns and active work
 
 ROOT released the next finite source/math work at545c0795ba. Briefs for I30/I31/I32
 are at84d5c5ecd4; the independent counter-bound component brief is at1be560b92a.
@@ -125,8 +125,34 @@ reading I29's answer, then compares ROOT's frozen author revision within the sam
 total time box. Fresh TASK-role context, same no-runtime/no-Git/index/API/delegation
 fence; this is independent source/math review, not a complete admission proof.
 
-All times2026-10-02. Time boxes are maxima; return early when the finite scope is
-complete. No abstract check is realized solver/publication or availability evidence.
+I30 native_reply_03 and I31 source_geometry_b1c returned early and were preserved
+at a4e21279b9 after complete ROOT readings/inventory checks. RV41 native backcheck
+at6c2e5c5a36 and RV42 B1C backcheck at7a45f14b46 passed at their finite scopes;
+ROOT accepted those control/operand bases at6f64b65710. RV41-B1 and RV42-1's
+warrant/operand-construction cells are closed. Full native aggregate/error bounds,
+q_K/q_G source-action bridge, implementation and memory remain open.
+
+I32 C2 returned at20:32:06 and is preserved at0440ea0777 after ROOT read all prose
+and verified eight payloads/exact nine-file scope. RV43 reviews it in
+REVIEW_RV43/f2a_wire_c2_03: receipt20:36:18, new-check cutoff21:01:18,
+hard return21:11:18. C2 is unaccepted; actual combinations/pre-source refusals
+and complete mapping consistency must be checked, not inferred from enum counts.
+
+Fresh direct native TASK I33 owns I33/f2a_source_action_bridge_01 under the brief
+and ruling at6f64b65710. Receipt20:39:01, new-analysis cutoff21:29:01,
+hard return21:39:01. It answers one finite source/math bridge-feasibility question,
+with source main49034a940f and reviewed B1/B1C. No altered operator/SourceParts,
+public truth, tolerance or implementation is granted; a fresh independent design
+review follows. Existing author/reviewer histories are preserved separately.
+
+RV44 froze its source derivation before I29 exposure; ROOT read it and verified
+e431fc0bb02e724aa1315b366f80fe8df260b6579869d245c500fe69a21ca4b5.
+It has a partial source/count argument and is waiting for the frozen I29 return,
+not independently extending to an unassigned full theorem. No no-wrap proof is
+accepted from these partial results.
+
+All times2026-10-02. The original I30/I31/I32 deadline rows above are completed
+assignments; I29 remains active. Time boxes are maxima; return early when complete. No abstract check is realized solver/publication or availability evidence.
 ROOT receives/reads/verifies and preserves each return, then independent backchecks
 or a fresh arithmetic/source reviewer precede reliance. Full aggregate memory/cost
 P1–P5 waits for concrete interfaces; the I29 component can derive symbolic kernel
