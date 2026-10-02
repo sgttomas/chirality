@@ -1,5 +1,11 @@
 # I35 integration-02 return — owner-pause checkpoint
 
+## RV50-INT02-1 repair-03 (2026-10-02)
+
+The sole required integration-accounting finding is corrected in the revisable contract. B64U now uses a concrete private spent-return conversion seam that captures its **actual producing SumWork/status on every exit**, while the legacy wrapper preserves the same numerical algorithm/results. The facade consumes that record once before finite-result extraction; original numeric errors and joined accounting state survive together. Early overflow and MAX-successor infinity retain their distinct actual work prefixes. The 1152 safety bound is never spent work; no rerun reconstructs counts. Source/caller/test seams and abstract custody controls are explicit in LOOPS_AND_STORAGE §1a and `_run_records/b64u_repair_03`.
+
+The original raw controls/origins/EXECUTION and review bytes are unchanged; Git retains original integration basis2fc3e8f71df2. NEXT_CODE_AND_WITNESS §0 and I39's two-helper plan are unchanged. This is a narrow prose/manifest/control correction, not Rust code, a new tariff/permit, resource qualification or availability acceptance. Return for RV50 same-reviewer backcheck; the original stopped checkpoint below remains historical.
+
 **The bounded consolidation is prepared and stopped at the owner's graceful pause.** No reviewer or code work is dispatched. The packet is ready for RV50 backcheck when the owner resumes; it is not an implementation acceptance or a completed memory/work-policy qualification.
 
 `INTEGRATION.md` consolidates exact and ordinary material/source construction, exact admitted-K products, I33's full bridge, ordinary represented/source hulls, B1/B2 streaming recipes, unchanged raw/SI predicates and separate actual midpoint/magnitude/SIF/headline checks. It preserves all public values, classes, scales, bounds, source promises and existing row-retirement/combination restrictions.

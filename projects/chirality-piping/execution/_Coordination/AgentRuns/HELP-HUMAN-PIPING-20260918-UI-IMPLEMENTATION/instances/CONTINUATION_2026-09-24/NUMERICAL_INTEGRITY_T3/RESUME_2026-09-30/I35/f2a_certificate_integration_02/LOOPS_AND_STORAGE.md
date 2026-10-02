@@ -4,7 +4,7 @@ The earlier A=`8192*(...)+4*(...)` and U=`2^21*(D+C)+A` remain historical reserv
 
 ## 1. Scalar entries and I34 checked APIs
 
-Each entry owns a fresh p=1024 WideContext and ExactWideSum, captures/merges their work on *every* return, and discards the value on refusal. There are no cross-entry cumulative local counters or accumulator clones. The destination facade meter uses the selected I34 `checked_lme`, checked merge and `WorkTotal`/`WorkStatus` transitions; no numeric legacy getter is imported as exact evidence. The existing source algorithms supply the actual WidthWork/SumWork counts, not the following upper reservations.
+DA/DS/DM/DD/DQ/R4 own a fresh p=1024 WideContext and ExactWideSum; EC owns its fresh sum. B64U owns only the actual fresh sum inside the spent-return conversion seam in §1a; it has no WideContext operation. Each captures/merges the actual producing owners on *every* return and discards the value on refusal. There are no cross-entry cumulative local counters or accumulator clones. The destination facade meter uses the selected I34 `checked_lme`, checked merge and `WorkTotal`/`WorkStatus` transitions; no numeric legacy getter is imported as exact evidence. The existing source algorithms supply the actual WidthWork/SumWork counts, not the following upper reservations.
 
 | Entry | Finite operation grammar | Fresh numeric work upper / carry fact |
 |---|---|---|
@@ -14,13 +14,32 @@ Each entry owns a fresh p=1024 WideContext and ExactWideSum, captures/merges the
 | DQ | nearest sqrt; exact q*q−a; at most one step | 1026 root iterations, 17 active limbs; Sqrt=1, TwoProduct=1, Round<=1; SumWork<=2922 |
 | R4 | four saved exact binary64-product terms; initial sign check on lower pass; round_toward; at most one step | **7 lifetime raw inserts, 5 simultaneously live before clear**, <=2 sign observations and <=2 Round. term<=1038, shift<=1792, net<=768, rounded<=256: SumWork<=3854. Span<=4199 before clear, <=1025 at step. |
 | EC | fresh exact final comparison, <=5 direct/scaled terms | <=5 live, no rounded core call; SumWork<=2218 |
-| B64U | existing binary64_up on one exact Wide value | RN binary64 conversion; fresh exact x−candidate sign; at most one bit successor, no loop; fresh sum <=1152 per I34's selected helper proof |
+| B64U | new narrow binary64_up_spent seam around the unchanged binary64_up algorithm | RN binary64 conversion; actual fresh exact x−candidate sum/sign; at most one bit successor, no loop. Returns actual SumWork/status. <=1152 is a local safety upper only, never a spent charge. |
 
 All rows preserve range/span/zero/sign rules from arithmetic_01/RV50. R4 is the explicit extension to the earlier five-insertion grammar. Its five live terms still give magnitude <5*2^8128<2^8131; its stronger actual source span is 4199. Seven insertions over the helper's *lifetime* do not mean seven simultaneously live terms. Positivity is the exact numerator sign, not rounded output or endpoint positivity. The four-term sum is rebuilt for its second direction, never cloned or cleared into an unrecorded fresh counter.
 
 I34 changes signum/is_zero/make_absolute/net to fallible observations; every use here propagates `?`. Its pre-mutation prospective charge checks, pending base charge, checked carry/index containment, poisoned-value discipline and state-preserving full reset apply unchanged. Numeric Span/Exponent aborts this facade certificate rather than retrying a block. WorkAccounting cannot be swallowed as Span/Exponent or converted through `.ok()`/default zero. Collect both context and sum status before dropping either; an otherwise successful value with non-E work is unusable. Preserve the original numeric refusal alongside accounting state when both occur. No reset restores exact evidence.
 
 The primitive arrays/loops remain the reviewed fixed ones (16x16 product, 32-limb double buffers, 1025 div and 1026 sqrt steps, <=128 carry tail, 8128-bit span). I34 adds checked transitions inside those loops; their actual candidate correspondence is a prerequisite, since I37 is not a stable source input. We do not assert a machine-instruction or wall-time bound from their source-level counts.
+
+## 1a. RV50-INT02-1 correction: B64U exports its producing owner
+
+Select **spent return**, not an outer unused accumulator. Add to the later full-integration `directed.rs` seam (not I39's §0 two-helper scope):
+
+    binary64_up_spent<const L>(x: &Wide<L>) -> Binary64UpSpent
+    Binary64UpSpent { result: Result<f64, AttemptStop>, sums: SumWork }
+
+Both fields and construction stay private to the retained conversion integration. A consuming `into_parts` is available only to the actual facade collector and legacy numerical wrapper; no public constructor or serialized arithmetic record is added. SumWork includes the selected I34 status. B64U has no WideContext call, so its WidthWork contribution is exact zero, not an invented rounded-operation count. The existing `binary64_up(x)->Result<f64,AttemptStop>` becomes a thin **legacy numerical projection of this one execution**. It retains the current nonnegative precondition, result/error/zero/infinity behavior and numerical operation order; it remains the legacy historically unpriced route. No new charge is silently installed in its callers.
+
+Implementation structure: preserve the same to_binary64 match. A nearest Overflow returns `Ok(+infinity)` plus fresh exact-zero SumWork, with no sum created or numeric sum event. Otherwise create one fresh sum, then evaluate the existing two additions and fallible sign inside a local Result-producing closure. `?` may leave that closure, **never the enclosing function before capture**. On either Ok or Err, read `sum.work()` from this same owner, place the unchanged numeric Result and that actual work/status into Binary64UpSpent, then drop the sum. No clone, replay, inferred-count reconstruction, theoretical charge or second sum is used. On zero, the two zero additions/sign are still executed as the current algorithm does; their actual returned zero/prefix counts, not a guessed shortcut, are captured.
+
+The full facade's B64U entry consumes its one entry permit before calling the seam once. It merges returned SumWork into its checked facade sum owner, joins returned work status **and any WorkAccounting fault in result**, and only then extracts success. Collection has no early `?` capable of dropping result/work before both have been observed. Non-E or a merge failure blocks success; a simultaneous original numeric error is retained alongside the joined status. A first/second-add or sign refusal therefore exports exactly the actual committed prefix and flags. Rejected prospective work is not fabricated as spent. The caller subsequently checks that a numeric successful result is finite: both early overflow and MAX-successor infinity become the existing finite-scale/range refusal **after** collection. The legacy wrapper continues returning infinity as before.
+
+The SIF operational-k call chain is concrete: DM forms the exact k_sqrt2*i product and collects its own actual entry work; B64U then calls binary64_up_spent on that product and collects the conversion work once; positive finite k is used by the unchanged four-operation stress-scale expression. A failed DM never dispatches B64U. B64U's numerical return never by itself proves its work was collected. Typed facade error/receipt paths retain both entries' spent prefixes.
+
+Count correspondence: one B64U entry and one value conversion per attempted SIF-k conversion; on non-Overflow, at most two raw-add attempts and one exact sign observation, plus zero or one scalar successor. WidthWork=0; actual SumWork is what the producing owner exports. Early Overflow has no sum events; MAX-successor infinity has the two-add/sign prefix. Preserve both in controls. The <=1152 SumWork upper proves only local safety; it is neither an equality nor a tariff. No conversion retry or B64U cache is introduced. The seam's spent record moves the existing work fields into caller custody; actual return/header liveness is included in C_ctl, with no new endpoint or limb array and no claimed Rust layout.
+
+Required later source/tests: `directed.rs` spent struct/core/legacy wrapper; `product_certificate.rs` B64U collector and SIF caller; existing `FK/tests/retained_k4/directed_tests.rs` or a separate narrowly registered B64U test module for legacy parity, actual exported counters/status, every numerical branch and injected refusal-prefix custody. Do not edit I39's `directed/certificate.rs` or its helper tests for this repair. The same-file integration hunk is serialized by ROOT. Abstract repair controls are in `_run_records/b64u_repair_03`; actual Rust collection/parity remains a later code witness.
 
 ## 2. Numeric count vector, without hiding B2 in 47q
 
@@ -53,7 +72,7 @@ AS is the number of source action-interval constructions when operands are not c
 | Represented Z in F3 | 0 | 0 | 0 | 2mOrd | 0 | verify circular axis identity; two hull comparisons/member |
 | Final raw truth interval | 0 | 0 | 2qMM | 2(qKN+qMPa) | 0 | SI/rad identity otherwise |
 | Final Hn/HU | 0 | 4qV | 0 | 0 | 0 | two max comparisons/row |
-| SIF operational k_i | 0 | 0 | qS | 0 | 0 | qS B64U, exact input product |
+| SIF operational k_i | 0 | 0 | qS | 0 | 0 | qS B64U spent-return entries, exact input product; collect actual returned sum work |
 
 Multiply common and route-specific builder rows by **three**. Sum columns with checked nonnegative integer arithmetic. The exact-profile builder is 58 entries; base/point 54; interpolation 68 directed calls+4 R4=72. The material-replacement count agrees with I36's +42m interpolation common upper, but the route-separated table avoids charging base/point as if interpolation occurred. This replaces the old single 47q B1 reserve for integration; B2 and its extra action inputs are now explicit.
 

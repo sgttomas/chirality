@@ -1,24 +1,24 @@
 {
   "files": [
     {
-      "bytes": 16713,
+      "bytes": 17005,
       "path": "INTEGRATION.md",
-      "sha256": "aa4a5875fa0b9dc865d2a76d1bb8cf4c10103c49e07a3dc5eb9fcb5d23693f95"
+      "sha256": "c89823df47facb5906a612a5f030fdf368faf60ad67ce4168f1b88ccb853c486"
     },
     {
-      "bytes": 24354,
+      "bytes": 29239,
       "path": "LOOPS_AND_STORAGE.md",
-      "sha256": "f8d4dcd3acafab9d46c08c69b8f5478973b17254f75c838a570a2ff481c78b93"
+      "sha256": "42ad49fb4d81b3e6f60beaf3a6c6ff16643183b1f2e573a957938d6d051ac22a"
     },
     {
-      "bytes": 17570,
+      "bytes": 18904,
       "path": "NEXT_CODE_AND_WITNESS.md",
-      "sha256": "e0601b84aae9ab565663760660e94b7ce10e8ff385ba0a1d77d16b3e43e4fa41"
+      "sha256": "80fef7e943512dfcf4ae7597baf21e57bf1b902f3757de6556f8648a27f1d6c9"
     },
     {
-      "bytes": 4188,
+      "bytes": 5384,
       "path": "RETURN.md",
-      "sha256": "9b822d64c8f59f5cde06fe85039a1e164e4152fcd2f32c15ac6a03eed9d555ea"
+      "sha256": "9fbddc5a0278095331268344b1c97ed36e48f7c3efbae2fe8141aa73d9b473c5"
     },
     {
       "bytes": 1714,
@@ -36,14 +36,29 @@
       "sha256": "cb075178b47872d53004c5ccb5abb4eaa1da86c66b760d6ca2d8ff72062c7c05"
     },
     {
+      "bytes": 4748,
+      "path": "_run_records/b64u_repair_03/CORRECTION.json",
+      "sha256": "e361513565604773519ca71e1e2a3a7b76f7e719099db50e76b8b05913017c7d"
+    },
+    {
+      "bytes": 2632,
+      "path": "_run_records/b64u_repair_03/checks.json",
+      "sha256": "81dcbb2d3252c3befe9c43dcc1ba07ca03661defcb7586ad19b788cd8766d3fc"
+    },
+    {
+      "bytes": 5432,
+      "path": "_run_records/b64u_repair_03/checks.py",
+      "sha256": "4b547d7439847aaa7251a41e7329e78adcae818ccaaa04ce2ed8916c20655399"
+    },
+    {
       "bytes": 5206,
       "path": "_run_records/integration_controls.py",
       "sha256": "baa814dd15ce75ef39e565968a67e45f67619842b732136d9eb724d1fe543e5c"
     }
   ],
-  "kind": "informational owned-packet inventory; no acceptance seal",
-  "payload_count": 8,
+  "kind": "informational owned-packet inventory; repair-03, no acceptance seal",
+  "payload_count": 11,
   "root": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I35/f2a_certificate_integration_02",
   "self_excluded": "INVENTORY.json",
-  "state": "owner-pause checkpoint; no review/code dispatch"
+  "state": "RV50-INT02-1 spent-return correction prepared; original raw and section0 preserved"
 }
