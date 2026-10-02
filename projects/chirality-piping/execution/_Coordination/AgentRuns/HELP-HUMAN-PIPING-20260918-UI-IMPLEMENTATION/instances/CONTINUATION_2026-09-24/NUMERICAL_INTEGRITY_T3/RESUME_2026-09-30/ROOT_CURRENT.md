@@ -1,149 +1,63 @@
 # T3 current checkpoint
 
-ROOT / HELP_HUMAN execution state, 2026-10-02 UTC. This is a revisable
-recovery index, not a new instruction, accepted numerical result or release.
-The owner resumed after the graceful halt. Continue under the standing bounded
-delegation/Git/host rules and append-only ROOT_RULINGS_V1.md.
+ROOT / HELP_HUMAN execution state,2026-10-02 UTC. This is a revisable recovery
+index, not a new numerical guarantee or release. The owner resumed and directed
+continued bounded delegation; current standing Git/host/append-only rules apply.
 
-## Closed and integrated
+## Closed and merged
 
 A1 PR1070 is merged at3a0251874d6ab38008173a22ef09d651a0f20d9e. AUD-T3-01 is
-closed on the corrected retained publication route; its defective old proof and
-audit history remain intact. F2a still waits for K6c, ROOT W1 limits and its own
-adoption. PR1066 remains closed and unmerged; its head is historical input only.
-The owner caught and stopped that response run's scope drift.
+closed on the corrected retained publication route; the old proof remains defective
+history. PR1066 is closed/unmerged; the owner caught and stopped that run's drift.
 
-## K6c: source and evidence, not yet merged
+K6c PR1071 merged at49034a940f3f8cd3f3da4d4cbc839943b808063d, source
+9994462204231fb92073e17eb09775756bec22f3,2026-10-02T17:46:27Z. Its maintained
+source is81c038; later candidate changes were records. Complete H/VR source,
+mutation, artifact, admission, finite T1–T4 and adopted comparison obligations
+are accepted at their stated conditional profiles and metric windows.
+Canonical return: T3/IMPLEMENTATION/K6C; merge/gates: IMPLEMENTATION/K6C_MERGE.
+Fresh source review: REVIEW_RV39/final_slice_01; exact-head gate confirmation:
+REVIEW_RV39/final_gates_02. All required gates passed at standing scope before merge.
 
-Maintained source is frozen at81c03849033f3ce745668f581f446530789397b8. Later
-commits carry records only. All canonical result packets below live on branch
-codex/piping-k6c-20260930 in its k6c worktree; the numerics branch carries ROOT
-rulings, briefs, graph and owner checkpoints. Do not mistake an absent packet
-in numerics for missing evidence on the K6c branch.
+The initial Mac gate attempt failed after ROOT added a global CARGO_TARGET_DIR
+that mixed fail-fast/full-sweep artifacts. The existing target separation was
+restored and the full corrected run completed; no source/dependency/criterion
+change. Failed logs and target remain preserved. The corrected Mac has only the
+three known platform failures; hosted Linux is clean. Dynamic swap is qualified
+by later operating notes; no zero-swap claim is made. Post-stop/GEN8 command
+transcriptions retain their explicit provenance limits.
 
-- Complete estimate mutation programme: REVIEW_RV35/mutant_programme_02.
-- Historical admission/heap replay, with explicit conditional historical VR
-  launch limits: REVIEW_RV34/historical_replay_01.
-- Ordinary H/VR source/build/request correspondence:
-  REVIEW_RV36/ordinary_artifacts_01, FINAL_SHA256SUMS.
-- V-K semantic coverage: REVIEW_RV37/vk_semantics_01 and02. The RF-WEAK summary
-  correction is additive and confirmed; sealed author evidence is unchanged.
-- Small-tier ordinary input/count/context acquisition: I26/input_qualification_04
-  and REVIEW_RV36/input_qualification_03, then I26/t1_inputs_05 and ROOT raw-field
-  checks. All fifteen finite T1 contexts are qualified; these counts-only records
-  supply no normal solve, admission, performance or rho result.
+## Qualifications carried forward
 
-## Latest completed blocks
+- T1's missed live checks remain historical; finite retrospective observations
+  were independently verified and accepted. Default survivors=[] are not scans.
+- T2's base RETURN needs its OUTCOME_CORRECTION; no raw result was changed.
+- Historical VR argv/path/artifact gaps remain reference-launch qualifications.
+  Current ordinary image correspondence does not backdate them.
+- Reached512/1024 work/storage and whole-call heap windows are supplied;
+  precision-isolated/internal-phase heap peaks are unavailable.
+- All eight T4 RSS projection misses inform later W1 policy. Empirical projection
+  is not an upper guarantee; matched requested/moving H windows are distinct.
+- Owner-approved KF3 comparison is complete at its five-clause scope. Full historic
+  published-value equality remains unestablished. F17 was separately approved.
+- Full new outputs and previous journal prefixes are preserved. Historical packet
+  relocation is indexed by verification/k6c_record_placement_01/_run_records/
+  RELOCATION.json; old consumers use their original frozen tree/recovered layout.
 
-I27's full mechanical V-K matrix D is independently closed by
-REVIEW_RV37/vk_mechanical_03. Runtime and review are stopped. Fresh composite
-source review REVIEW_RV38/composite_source_01 is accepted at source scope with
-no actionable maintained-source finding; later measurements/gates need coverage.
+## Next decision and work
 
-The previous bounded blocks returned. The latest accepted measurement, W1-T3,
-is documented through
-REVIEW_RV34/t3_measurements_05. Actual1000-member inputs, admissions, all matched
-H windows and the required prefixes are independently verified. Raw preservation:
-MEASUREMENTS/W1_T3/_run_records/delta_records.tar.gz, preserving earlier prefixes.
-The owner subsequently approved the scoped comparison and directed continuation.
-The separately granted T4 normal/comparison block has now returned its runtime
-slot; sealed evidence and independent review are the next acceptance boundary.
+All TASKs and runtime are stopped; the existing host guard remains. NUM has merged
+main after K6c. I29/w1_limits_preparation_01 proposes options from current data;
+REVIEW_RV40/w1_limits_01 independently passes the prospective basis. ROOT has read
+both complete reports and verified their inventories/seals. Work thresholds are
+selection-ready after K6c merge; no policy has yet been enacted by this index.
+Memory remains a conditional technical target with RV40-N1's explicit F2a
+composition, preallocation guard, W1-only refusal and deployment boundaries.
 
-W1-T1 finite observations are accepted through REVIEW_RV34/t1_measurements_02
-and t1_disposition_03. Required external live checks did not occur; complete
-independent retrospective checks pass. Keep that failure and narrow cleanup/time
-credit visible. Immutable raw snapshot: MEASUREMENTS/W1_T1/_run_records/records.tar.gz.
-
-W1-T2 is accepted through REVIEW_RV34/t2_measurements_04. Its base RETURN's sparse
-All12 Passed cell is wrong: OUTCOME_CORRECTION must accompany it. Actual12 sparse
-runs are8 Sensitive and4 Passed; all12 W1 select128/verify256. Raw outcomes were
-already correct. The T3 outcome table independently agrees with its own same
-class counts. Process classificationok does not mean numerical Passed.
-Baseline/progress observations retain their actual limited timing. Immutable T2
-raw delta: MEASUREMENTS/W1_T2/_run_records/delta_records.tar.gz.
-
-## Current closeout
-
-RV34 T4 and fresh RV39 final-slice reviews are complete, verified and accepted at
-scope. RV39 final_slice_01 seals16 payloads under
-b881aef306b4e79414a89923264b0c5266205e93dfd2beea512c88a7061b883f and covers
-cd98b0e903c9c4ebdeff8292f53467b0723f6ea1. No actionable finding remains. I28's D
-return is frozen under IMPLEMENTATION/K6C/SHA256SUMS; original at-return metadata
-is preserved. All TASKs have returned and stopped.
-
-ROOT now owns the exact-head gate slot: existing GEN-8, fresh-target Mac DEC-025,
-hosted CI and the full-SHA dispatch, followed by independent final metadata/gate
-confirmation and immediate unchanged-main/head check. No numerical rerun or
-new host tool is authorized. K6c remains unmerged until those gates pass.
-Maintained source remains81c038; final review/source/ruling bases remain separate
-from actual gate execution. Gate progress is in ROOT's existing scratch record;
-post-merge custody goes into IMPLEMENTATION/K6C_MERGE with its ruling/graph update.
-
-Finite T4 acceptance retains per-attempt512/1024 work/storage and whole-call heap
-windows, with precision-isolated peaks unavailable. All eight RSS projection
-misses must inform later W1 policy; projection is not an upper guarantee. Full
-new output custody and prior journal prefixes remain preserved. Historical VR,
-T1 monitoring and T2 correction qualifications remain at their owning reports.
-
-Historical placement is complete under verification/k6c_record_placement_01/
-_run_records/RELOCATION.json. Original bytes/manifests/modes verify; old locations
-are navigation and historical consumers replay their frozen original tree/layout.
-No raw evidence or build target was pruned. The prior sweep target/worktree output
-were preserved and the existing sweep checkout is clean for the final candidate.
-
-## Live gate and prospective preparation checkpoint
-
-The PR candidate is frozen at9994462204231fb92073e17eb09775756bec22f3,
-PR1071, full-SHA dispatch37034799536 against main3a025187. GEN-8 passed on that
-exact head. Gate progress/custody is under the existing scratch/k6c_final_20261002
-record. The initial Mac attempt was stopped after a self_weight_wasm compile
-failure from mixed serde_json artifacts. ROOT had added a global CARGO_TARGET_DIR
-prefix, causing fail-fast and full-sweep passes to share target artifacts contrary
-to the recorded invocation. An isolated locked test passed; ROOT restored the
-existing driver target separation and preserved the failed logs/target. The
-corrected full sweep started16:43:27 UTC; that formerly failing crate now passes.
-Full Rust and later surfaces/hosted checks still determine gate acceptance.
-No source, lockfile, criterion, script or host tool was changed. Later operating
-notes already qualify the old no-swap shorthand: dynamic swap exists; current
-memory95% available and sampled swap counters were stable, guard with no kills.
-
-I29 returned its eight-file revisable W1 decision basis at17:05:57 UTC; ROOT read
-the full RETURN/options and verified the informational inventory, committing it
-at8fada07f2c975cd20e52856a3d4fb589b05767e5. Its recommendation is a proposal only.
-Fresh RV40 now independently reviews source/arithmetic/authority/memory boundaries:
-receipt17:10:18 UTC, new-check cutoff17:45:18, return17:50:18. Owns only
-R/REVIEW_RV40/w1_limits_01 on NUM, with no runtime/build/source/Git/API writes.
-No W1 limit is selected/enacted before K6c merge. This prospective work remains
-outside the frozen PR candidate. ROOT owns the gate lane; RV39 will separately
-confirm final metadata/gates after they finish.
-
-## Remaining path and holds
-
-W1-T1/W1-T2/W1-T3 finite observations are accepted. The owner comparison
-amendment is now approved under OWNER_CHECKPOINTS/K6C_PUBLISHED_ROWS_ADOPTION_2026-10-02.md.
-Its original proposal remains historical. Actual scoped comparison and independent
-review are now accepted; all unchanged final merge gates remain.
-The workstream is active. No new owner prompt is needed for that same decision.
-The original runner enumerates catalogue metadata before filtering a tier and
-does not itself reject a failed tier no-op or enforce full seed correspondence
-on each prepass. These inherited execution limits are disclosed in the latest
-ROOT ruling. The explicit tier grants account for inherited catalogue work and
-require actual baseline validation, repeated field checks, provisional results
-and truthful stops/monitoring limits. This index itself supplies no authority
-and grants no source repair or new host tool.
-
-Fresh W1-T1/T2/T3 chronology/calibration and required T3 prefixes are established.
-T4 input/readiness evidence is accepted; the normal/comparison runtime has stopped.
-Author custody and actual result/comparison review are accepted; final closure remains.
-Preserve all numeric admission holds and the VR largest-size backstop; do not force a deferred run. Final D/review are accepted. Full-SHA hosted CI, exact-final-head Mac DEC-025 and
-GEN-8 remain outstanding. K6c is not complete and no PR is ready to merge.
-
-The approved comparison preserves available KF3 fields, unchanged R1 and other
-numerical controls, full new output custody and independent review. Complete
-historic value equality remains unclaimed. The separate F17 amendment was already
-approved. Additional baseline work is driven by a concrete unresolved question.
-
-After K6c: ROOT W1 limits, F2a, S-I, F2b per domain and F3. Existing owner-held
-ceilings, PHYS-R4 availability, observation framing, KF3-B1 and KF2 dense-screen
-choices remain at their owning records. Preserve raw evidence; do not prune.
-
+ROOT next selects work thresholds under amended Q5 and commissions bounded F2a/
+S-G1 checkpoint0 planning. The missing product memory mechanism and caller/lifetime
+composition cannot be supplied by H's observation allocator. F2a cannot rely on
+an unqualified memory or publication contract. Then S-I, F2b per domain and F3,
+with actual producer/reader/gate and V-P obligations. Owner-held6GiB dense/observation
+ceilings, PHYS-R4/availability, observation framing, KF3-B1 and KF2 dense screen
+remain at their owning records. T3 remains active and incomplete.

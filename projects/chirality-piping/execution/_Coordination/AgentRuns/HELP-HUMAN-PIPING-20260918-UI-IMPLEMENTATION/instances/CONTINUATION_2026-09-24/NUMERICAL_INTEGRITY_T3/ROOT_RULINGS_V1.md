@@ -4905,3 +4905,31 @@ matched heap envelopes, deterministic work and wall time distinct. Owner-reserve
 product choices and F2a's future caller/reader qualification remain separate.
 The native TASK writes only its NUM record, under the stated finite bound, and
 returns without implementation. No change enters the frozen K6c PR candidate.
+
+
+## K6c merged (ROOT, 2026-10-02 UTC)
+
+PR1071 merged source9994462204231fb92073e17eb09775756bec22f3 into
+main3a0251874d6ab38008173a22ef09d651a0f20d9e at17:46:27Z, merge
+49034a940f3f8cd3f3da4d4cbc839943b808063d. ROOT verified both Git parents,
+then merged main into NUM by a merge commit. IMPLEMENTATION/K6C_MERGE/RECORD.md
+and its sealed gate custody bind the exact reviews, executions and merge checks.
+RV39's final metadata/gate confirmation has no unresolved actionable finding.
+
+Accept K6c's corrected conditional H/VR phase accounting, deduplication, caller/
+input binding, qualified historical recheck and finite post-KF3 W1-T4/addendum
+obligations as closed. All source/layout/artifact/input/metric premises remain.
+This does not establish universal private-layout/whole-process RSS bounds, exact
+historic VR launches, precision-isolated heap peaks, full historic value equality
+or product-facade memory enforcement. Eight RSS projection misses remain input
+to W1 policy. Protected criteria, solver semantics and other K6 formulas stand.
+
+Every required final gate covered the merging head; the standing Mac comparison
+retains its three platform failures. ROOT's initial target-sharing invocation
+error and corrected full rerun are preserved, with no source/criterion repair
+claimed. No raw evidence or target was pruned.
+
+The work graph moves to ROOT W1 limits and F2a/S-G1 preparation. I29's prospective
+options and fresh RV40 review are read and preserved; no limit is selected merely
+by this merge. F2a/engineering/release and the owner's separate product choices
+remain open.
