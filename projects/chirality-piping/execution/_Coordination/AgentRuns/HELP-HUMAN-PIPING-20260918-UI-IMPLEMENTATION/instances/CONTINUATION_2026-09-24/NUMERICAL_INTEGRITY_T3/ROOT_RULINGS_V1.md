@@ -5286,3 +5286,31 @@ Remaining coefficient evidence correction, arithmetic/ordinary/B2 integration,
 facade cost policy and complete memory/caller work proceed separately. The owner
 was explicitly told T3 remains substantially incomplete; design proofs are not
 delivered product behavior.
+
+## Fixed arithmetic selected; ordinary evidence correction remains narrow (ROOT, 2026-10-02 UTC)
+
+ROOT read RV50 REVIEW in full and verified its thirteen payloads/exact scope,
+preserved at125464d513; manifest
+04434d7a38f59858686f9b510cd24d18fe57af293a6b6141d23dd93a93b0e0e0.
+Select I35 at2034c050d6 as the private fixed arithmetic design: existing Wide<16>
+at1024, existing directed/exact-sum machinery, the bounded directed sqrt and
+closed small-bound RU64 method, with original public predicates unchanged.
+This is not a complete resource bound. A/U coefficients, callback/loop coverage,
+logical-versus-actual storage and all ordinary/B2/work-status integration remain
+explicit. No new facade price or allowance is selected by this arithmetic choice.
+
+ROOT read RV47's coefficient REVIEW in full and verified eight payloads, preserved
+atdfd7a07711; manifest
+6792a5c339edc9272cdc5cad3a9e82dc651ca3102570c3fc682a83b5e6d7226a.
+Its conditional interpolation/coefficient/hull argument is confirmed. Accept
+RV47-C1 as a required evidence correction: the control rounds CK although the
+written theorem correctly requires the exact product of admitted primitives.
+Release I36_F2A_EXACT_K_CONTROL_REPAIR_03 in fresh correction records; preserve
+the original script/output. Do not credit that defective control until backcheck.
+This is not a demonstrated product error or a change to the theorem/predicates.
+
+For checkpoint A, prioritize the coherent checked-work kernel, actual terminal/
+meter custody and scoped H/VR gates. Complete C2 origin inventories may remain
+a named incomplete boundary at the bounded return, never invented evidence.
+The full F2a objective remains; this ordering clarification does not reduce the
+final source/reader/guard/qualification requirements.
