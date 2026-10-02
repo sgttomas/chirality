@@ -1,0 +1,41 @@
+{
+  "status": "informational, revisable; not acceptance",
+  "self_excluded": "_run_records/WRITE_INVENTORY.json",
+  "files": [
+    {
+      "path": "ENVELOPE.md",
+      "bytes": 22015,
+      "sha256": "b8ee363d1f1e7df58ece6642491ba214b765a4c0d8389162673f294f78a4f173"
+    },
+    {
+      "path": "OWNER_LEDGER.md",
+      "bytes": 8426,
+      "sha256": "4032fdecc3dcbf51cad5d624466ac7626cc709cdd82bc1d3e6685b1a0175c430"
+    },
+    {
+      "path": "RETURN.md",
+      "bytes": 3096,
+      "sha256": "eddf0e96b683d9294e2120cb0024fdfdcf87a8e36cd43c43dc0861d83259e0eb"
+    },
+    {
+      "path": "_run_records/CHECKS.json",
+      "bytes": 2763,
+      "sha256": "69d4fba4e638fca0cca3bd017c03ad86cb3709d8e426c9752bab3118487c5e1e"
+    },
+    {
+      "path": "_run_records/ORIGINS.json",
+      "bytes": 11012,
+      "sha256": "a94db605ee6ce792ed417ad40c2ddd9420f1894864234343915820b5ebacd88f"
+    },
+    {
+      "path": "_run_records/SESSION.json",
+      "bytes": 2324,
+      "sha256": "7729ec92d9a4e5bdf2dc657952c02e11c8b67e6b7a162f35dd8d88ac493e21a1"
+    },
+    {
+      "path": "_run_records/owner_graph_checks.py",
+      "bytes": 5636,
+      "sha256": "155d5bf26fec78f4492153d09a599d612d6e968c8d7f4fa36d07837fed91c257"
+    }
+  ]
+}

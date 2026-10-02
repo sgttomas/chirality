@@ -1,0 +1,49 @@
+{
+  "files": [
+    {
+      "bytes": 16713,
+      "path": "INTEGRATION.md",
+      "sha256": "aa4a5875fa0b9dc865d2a76d1bb8cf4c10103c49e07a3dc5eb9fcb5d23693f95"
+    },
+    {
+      "bytes": 24354,
+      "path": "LOOPS_AND_STORAGE.md",
+      "sha256": "f8d4dcd3acafab9d46c08c69b8f5478973b17254f75c838a570a2ff481c78b93"
+    },
+    {
+      "bytes": 17570,
+      "path": "NEXT_CODE_AND_WITNESS.md",
+      "sha256": "e0601b84aae9ab565663760660e94b7ce10e8ff385ba0a1d77d16b3e43e4fa41"
+    },
+    {
+      "bytes": 4188,
+      "path": "RETURN.md",
+      "sha256": "9b822d64c8f59f5cde06fe85039a1e164e4152fcd2f32c15ac6a03eed9d555ea"
+    },
+    {
+      "bytes": 1714,
+      "path": "_run_records/CONTROLS.json",
+      "sha256": "d37a31282183081658153e5f75d638c67dd153d0ec8ff49e7bdb4559d5550f49"
+    },
+    {
+      "bytes": 2304,
+      "path": "_run_records/EXECUTION.json",
+      "sha256": "282d31aef714886a5fcadf29187aa2e381975c8e54c4a4cf64a052ae394e401a"
+    },
+    {
+      "bytes": 12321,
+      "path": "_run_records/ORIGINS.json",
+      "sha256": "cb075178b47872d53004c5ccb5abb4eaa1da86c66b760d6ca2d8ff72062c7c05"
+    },
+    {
+      "bytes": 5206,
+      "path": "_run_records/integration_controls.py",
+      "sha256": "baa814dd15ce75ef39e565968a67e45f67619842b732136d9eb724d1fe543e5c"
+    }
+  ],
+  "kind": "informational owned-packet inventory; no acceptance seal",
+  "payload_count": 8,
+  "root": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I35/f2a_certificate_integration_02",
+  "self_excluded": "INVENTORY.json",
+  "state": "owner-pause checkpoint; no review/code dispatch"
+}
