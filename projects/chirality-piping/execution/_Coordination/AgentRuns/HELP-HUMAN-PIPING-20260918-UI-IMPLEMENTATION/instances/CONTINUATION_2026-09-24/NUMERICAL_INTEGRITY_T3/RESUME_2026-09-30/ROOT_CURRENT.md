@@ -107,12 +107,15 @@ No source, lockfile, criterion, script or host tool was changed. Later operating
 notes already qualify the old no-swap shorthand: dynamic swap exists; current
 memory95% available and sampled swap counters were stable, guard with no kills.
 
-I29 is the sole active TASK, preparing W1-limit options from the reviewed evidence
-without selecting/enacting a policy before K6c merges. Brief I29_W1_LIMITS_PREPARATION_01
-is on NUM only and outside the frozen PR candidate. Receipt16:46:50 UTC, new
-analysis cutoff17:21:50, return17:26:50. Owns R/I29/w1_limits_preparation_01 only;
-no runtime/build/source/Git work. ROOT owns the gate lane. RV39 has returned; it
-will receive a separate finite metadata/gate confirmation after gates finish.
+I29 returned its eight-file revisable W1 decision basis at17:05:57 UTC; ROOT read
+the full RETURN/options and verified the informational inventory, committing it
+at8fada07f2c975cd20e52856a3d4fb589b05767e5. Its recommendation is a proposal only.
+Fresh RV40 now independently reviews source/arithmetic/authority/memory boundaries:
+receipt17:10:18 UTC, new-check cutoff17:45:18, return17:50:18. Owns only
+R/REVIEW_RV40/w1_limits_01 on NUM, with no runtime/build/source/Git/API writes.
+No W1 limit is selected/enacted before K6c merge. This prospective work remains
+outside the frozen PR candidate. ROOT owns the gate lane; RV39 will separately
+confirm final metadata/gates after they finish.
 
 ## Remaining path and holds
 
