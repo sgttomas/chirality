@@ -91,6 +91,29 @@ are navigation and historical consumers replay their frozen original tree/layout
 No raw evidence or build target was pruned. The prior sweep target/worktree output
 were preserved and the existing sweep checkout is clean for the final candidate.
 
+## Live gate and prospective preparation checkpoint
+
+The PR candidate is frozen at9994462204231fb92073e17eb09775756bec22f3,
+PR1071, full-SHA dispatch37034799536 against main3a025187. GEN-8 passed on that
+exact head. Gate progress/custody is under the existing scratch/k6c_final_20261002
+record. The initial Mac attempt was stopped after a self_weight_wasm compile
+failure from mixed serde_json artifacts. ROOT had added a global CARGO_TARGET_DIR
+prefix, causing fail-fast and full-sweep passes to share target artifacts contrary
+to the recorded invocation. An isolated locked test passed; ROOT restored the
+existing driver target separation and preserved the failed logs/target. The
+corrected full sweep started16:43:27 UTC; that formerly failing crate now passes.
+Full Rust and later surfaces/hosted checks still determine gate acceptance.
+No source, lockfile, criterion, script or host tool was changed. Later operating
+notes already qualify the old no-swap shorthand: dynamic swap exists; current
+memory95% available and sampled swap counters were stable, guard with no kills.
+
+I29 is the sole active TASK, preparing W1-limit options from the reviewed evidence
+without selecting/enacting a policy before K6c merges. Brief I29_W1_LIMITS_PREPARATION_01
+is on NUM only and outside the frozen PR candidate. Receipt16:46:50 UTC, new
+analysis cutoff17:21:50, return17:26:50. Owns R/I29/w1_limits_preparation_01 only;
+no runtime/build/source/Git work. ROOT owns the gate lane. RV39 has returned; it
+will receive a separate finite metadata/gate confirmation after gates finish.
+
 ## Remaining path and holds
 
 W1-T1/W1-T2/W1-T3 finite observations are accepted. The owner comparison

@@ -4892,3 +4892,16 @@ Only after those exact-head gates and the immediate unchanged-main/head check
 may ROOT merge under standing Git authority. Complete K6c disposition is then
 recorded with the merge record, ruling and graph in the same pass. W1 limits and
 F2a are subsequent work; their decisions are not inferred from this D acceptance.
+
+
+## W1 decision preparation while K6c gates run (ROOT, 2026-10-02 UTC)
+
+Release I29_W1_LIMITS_PREPARATION_01 on the already reviewed frozen K6c numerical
+evidence, as prospective read-only preparation only. No W1 limit is selected or
+enacted before K6c merges; the standing order is unchanged. A compact source/
+evidence-grounded options return will let ROOT decide after the gates, with
+fresh independent review of any proposed rule. Keep empirical RSS projections,
+matched heap envelopes, deterministic work and wall time distinct. Owner-reserved
+product choices and F2a's future caller/reader qualification remain separate.
+The native TASK writes only its NUM record, under the stated finite bound, and
+returns without implementation. No change enters the frozen K6c PR candidate.
