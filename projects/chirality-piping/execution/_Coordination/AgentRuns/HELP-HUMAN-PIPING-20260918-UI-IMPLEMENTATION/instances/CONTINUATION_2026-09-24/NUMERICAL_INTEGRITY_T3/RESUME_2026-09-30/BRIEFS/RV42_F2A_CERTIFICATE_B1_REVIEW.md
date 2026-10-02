@@ -2,8 +2,12 @@
 
 Fresh native TASK under ROOT; no delegation, Git/index/API writes or maintained
 edits. Read Root/TASK/project instructions and software-code-review skill. The
-ROOT dispatch supplies the frozen I31 packet revision and actual receipt time;
-this brief alone does not start execution. Source basis is main49034a940f.
+ROOT dispatch supplies actual receipt time; this brief alone does not start
+execution. Source basis is main49034a940f. Stage0 independently derives the finite
+source/operand formulas from accepted instruments and maintained sources without
+reading I31's packet or arithmetic. Freeze a short SOURCE_DERIVATION.md first and
+notify ROOT. Stage1 starts only after ROOT supplies the frozen I31 packet revision.
+Both stages share the total time box below; no automatic extension is granted.
 Own only R/REVIEW_RV42/f2a_certificate_b1_01. Sixty minutes total; stop new
 analysis after50 minutes and return by60. No compiler, solver, model run, runtime
 probe or host tooling. Bounded standard-library exact arithmetic is permitted.

@@ -2,8 +2,12 @@
 
 Fresh native TASK under ROOT; no delegation, Git/index/API writes or maintained
 edits. Read Root/TASK/project instructions and software-code-review skill. ROOT
-dispatch supplies the frozen I32 revision and receipt time; do not start from this
-brief alone. Source basis main49034a940f. Own only R/REVIEW_RV43/f2a_wire_c1_01.
+dispatch supplies receipt time; do not start from this brief alone. Stage0 derives
+the source-based charge/terminal/combination rules independently without reading
+I32's packet or arithmetic. Freeze a short SOURCE_DERIVATION.md and notify ROOT.
+Stage1 starts only after ROOT supplies the frozen I32 revision. Both stages share
+the total time box below. Source basis main49034a940f.
+Own only R/REVIEW_RV43/f2a_wire_c1_01.
 Forty-five minutes total; stop new analysis after35 minutes and return by45.
 Read-only source plus bounded integer/JSON arithmetic on immutable records only;
 no compiler, solver, model run, runtime probe or host tooling.
