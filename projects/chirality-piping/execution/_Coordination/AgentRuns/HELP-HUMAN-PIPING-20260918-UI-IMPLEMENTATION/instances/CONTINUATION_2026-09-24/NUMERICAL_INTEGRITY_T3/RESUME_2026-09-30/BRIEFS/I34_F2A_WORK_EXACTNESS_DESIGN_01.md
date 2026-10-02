@@ -26,6 +26,9 @@ work as an exact count or a proved saturated lower bound. Explain precisely how
 this option can replace the *unprovided* global no-wrap assumption for exact
 receipts, and which pre-execution count/index/scalar guards remain necessary.
 Work status alone cannot repair already-wrapped 6n/index/residual/r*r inputs.
+Preserve the raw accumulator carry/headroom invariant as well: detect/stop before
+a counter or term-count loss can permit arithmetic data corruption, not merely
+decline a receipt after the numeric value has already been compromised.
 
 Inspect all actual affected families; enumerate a bounded source/consumer/test
 manifest with layout/ownership consequences for K6c/H/VR profiles and F2a memory.
