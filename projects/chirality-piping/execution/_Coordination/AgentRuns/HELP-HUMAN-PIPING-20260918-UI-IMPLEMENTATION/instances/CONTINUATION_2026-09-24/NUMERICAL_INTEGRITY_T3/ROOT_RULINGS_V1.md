@@ -3078,3 +3078,1817 @@ RV26 (`REVIEW/RECORDS_PR1063_REVIEW.md`, sha256 `60813369…`; records `REVIEW/_
   - D2 to D4 are also fixed, in the notes and in the handoff's inventory line, which is new in this PR. The notes gain the next free numbers and a reviewer-prompt shape, since no reviewer prompt has been committed since RV13.
   - Then RV26's short confirmation, and the merge.
 - **RV26's confirmation at `2a6f87562`: PASS,** with two optional NOTEs, C1 and C2. Both are fixed in the notes: C1 cites the M03 and K3 merge records' own justification of their sweep carry-over, and C2 corrects "RV19" to "RV14". RV26 confirms the fix, then the merge.
+
+## Records PR #1063 merged (ROOT, 2026-09-30)
+
+- **Merged:** [PR1063](https://github.com/sgttomas/chirality/pull/1063) at head `a2768ce49`, merge `74b3c7313`, 2026-09-30 12:48:09Z, with `--match-head-commit`. ROOT checked immediately before the merge that main had not moved from `490b75bd9`.
+- **Review:**
+  - RV26's review at `21e2285e3`: PASS, with 2 SHOULD-FIX (fixed) and 10 NOTEs;
+  - its delta check at `95bb2e700`: PASS, with D1 fixed and D2–D4;
+  - its confirmations at `2a6f87562` and `a2768ce49`: PASS, with C1 and C2 fixed.
+  - RV26's last confirmation section is committed here, after the merge.
+- **Hosted CI:** 7 passed and 6 were skipped, as selected for a records-only change. GEN-8 passed at each head.
+- **Main now carries `OPERATING_NOTES_2026-09-30.md`** beside the handoff. T3 stays paused for the owner's audit.
+
+
+## Audit accepted; bounded numerical recovery authorized (ROOT, 2026-09-30)
+
+The owner reviewed ROOT's verification and recommendation, asked for the work-graph
+account and Agent 0 orchestration plan, then directed: "Proceed accordingly."
+The accepted plan and initial briefs are in RESUME_2026-09-30/. These are execution
+briefs, not reusable instructions or acceptance of a new numerical design.
+
+- **AUD-T3-01: accepted as SHOULD-FIX; open.** Subnormal row rounding before
+  multiplication by L or division by L refutes the scale-transfer premise.
+  ROOT reran the arithmetic and checked it by hand (verification/arithmetic.json).
+  No unmutated false solver publication is established by the audit or preserved
+  B01/B02 evidence. Such a witness makes this BLOCKING.
+- **Explicit reliance hold:** F2a must not rely on the published-bound guarantee
+  until the complete coupling argument, realized-source/control investigation and
+  independently reviewed correction or proved exclusion close the finding.
+  An amendment by ruling receives independent design-level re-derivation before
+  reliance; the original A1 ruling does not discharge the missing premise.
+- **Owner-selected direction:** bounded diagnosis and a conservative valid
+  publication guarantee, with named refusal wherever it cannot be established.
+  Extreme-model solvability is not the objective. No physical cutoff, new bound
+  formula, D2 contract or availability change is selected here. Concrete changes
+  to the published contract or supported domain return to the owner.
+- **A2:** the audit and post-merge review sustain its conditional minimum-of-
+  formed-certified-bounds argument. This is not universal runtime qualification,
+  A1 closure or a memory-bound proof.
+- **AUD-T3-02: adopt the replay erratum.** Original SHA256SUMS use their containing
+  directory except REVIEW, DESIGN_NUMERICS, DESIGN_STANDING, REFERENCES and
+  REFERENCES_ELOAD: each _run_records/SHA256SUMS uses its named parent.
+  Preserve the original manifests.
+- **AUD-T3-03: adopt the exception ledger.** S11-K, K2b and K6 disclosed
+  intent-to-add/reset pairs; K6b disclosed fetch; S11-K's separate fast-forward
+  was expressly authorized by its fix brief. Reported nil net effect does not
+  establish no transient write or complete command-history compliance. ROOT
+  owns every current Git/index mutation, including fetch and staging.
+- **AUD-T3-04: accepted NOTE; preservation open.** Original Mac suite logs and
+  KF2 gate JSONL are available; ROOT matched the latter to their original hash
+  record. Preserve originals and sanitized recoverable copies before pruning.
+  Local availability alone is not completed custody. K4's dated-generator-input
+  and sparse-checkout limitation remains disclosed; no tooling repair is granted.
+- **AUD-REV-N1: adopt input binding.** A script's constant BASE is not proof of
+  its working inputs. ROOT's verification identifies the actual checkout, original
+  script and principal input hashes, matched before replay. Preserve historical
+  audit files and label changed-input analyses as new evidence.
+- **PR #1064:** merged at 3bddc2b05f6106e969c7cf43373b230845c7cc66 before independent
+  review. The later Response/instances/AUDIT-REVIEW/REVIEW.md at
+  520d7dfb790bcedabc03e92b9692884ce295be54 confirms the defect, qualified as to
+  reachability, with no blocking or SHOULD-FIX review finding. Its timing does
+  not become pre-merge coverage or a future review waiver.
+- **PR #1066 disposition authorized:** close unmerged, retain its branch and head
+  520d7dfb790bcedabc03e92b9692884ce295be54. Its records are incomplete inputs,
+  not numerical remediation or accepted design. Record actual closure after
+  success. No guard development is carried forward.
+- **Attribution correction:** the owner identified the supporting-tool drift and
+  stopped the response. Its "ROOT's scope correction" wording must not obscure
+  the owner's intervention. Old hash-bound records stay unchanged.
+- **K6c remains required:** original I21 brief, full phase derivation, H/VR
+  deduplication, final admissions and W1-T4 against the settled kernel. Sensitivity
+  replay is not E_max proof; unsealed source_finish_01 is input only.
+  ROOT's W1 limits wait for closure.
+
+Response means the HELP-HUMAN-PIPING-20260930-T3-AUDIT-RESPONSE run under the
+project coordination AgentRuns directory. Its REPLAY_AND_PROCESS_ERRATA.md
+supplies the adopted errata with original evidence pointers.
+
+ROOT retains Git, rulings, graph and host scheduling. A fresh WORKING_ITEMS manager
+integrates I22/I21; the independent oracle and fresh reviewers report to ROOT.
+TASKs make no Git/index writes or delegations. Initial grants are source-only;
+actual parentage and scope are recorded at dispatch. Use the existing M5 guard.
+A tooling blocker returns to ROOT and the owner.
+
+After A1/K6c and W1 limits: F2a/S-G1, S-I, S-J where required, F2b per domain,
+F3/S-G2/S-E1, V-P and join, plus T3-close obligations. Owner choices on ceilings,
+PHYS-R4/availability, observation framing, KF3-B1 and KF2 dense screen stay open.
+Every PR, records included, retains exact-final-head gates and fresh independent
+review under the owner's current resumption direction.
+
+## PR #1066 closed unmerged (ROOT, 2026-09-30)
+
+ROOT closed PR #1066 under the owner's accepted disposition. GitHub reports CLOSED,
+closedAt 2026-10-01T04:44:25Z, with head
+520d7dfb790bcedabc03e92b9692884ce295be54. A fresh git ls-remote confirms the
+response branch still points to that head. Nothing was merged or deleted.
+Its numerical results, conditional designs, guard and unfinished K6c packet
+retain the limits stated in the preceding ruling and scope handoff.
+
+## Resumption dispatch and raw-evidence return (ROOT, 2026-09-30)
+
+The native WORKING_ITEMS recovery manager /root/t3_recovery_manager and its
+fresh I22/I21 TASKs are running source-only checkpoint work. ROOT's independent
+oracle /root/a1_exact_oracle was stopped after it disclosed premature expected-
+answer exposure; its only return is provenance, not an accepted oracle result.
+A fresh /root/a1_oracle_fresh excludes old expected-answer/output records until
+its independent derivation is frozen. DISPATCH.json and DISPATCH_UPDATES.jsonl
+record parentage, supplied bases and scopes. No Rust experiment has been granted. [Correction (ROOT, 2026-09-30, RV27-S1): this describes the initial source-only dispatch. The later BRIEFS/I22_G0_BUILD.md in this records candidate authorizes one probe build only; no solver case or numerical acceptance is granted here.]
+
+The preservation TASK returned a sealed packet in RESUME_2026-09-30/evidence.
+ROOT verified its seal and file hashes and independently restored both compressed
+gate files to their original recorded hashes (ROOT_EVIDENCE_CHECK.json).
+The evidence README gives inventory, final-head bindings, transformations and
+restore instructions. ROOT accepts the existing-policy size warnings for the
+two canonical gate gzip copies; no storage tool or policy is changed.
+This prepares Git recovery of sanitized logs and original gate bytes; independent
+records review and remote integration remain pending. The original raw scratch
+and current Mac baseline stay intact; no pruning is authorized. The generator-
+input/sparse-checkout limitation remains separately disclosed.
+
+The manager disclosed uncertainty about optional index stat-cache refresh from
+its initial read-only git status commands. No explicit mutation was reported;
+the record does not assert a complete no-write history. Subsequent delegated
+Git reads require GIT_OPTIONAL_LOCKS=0. No index repair or historical rewrite
+is authorized by this clarification.
+
+- **Evidence location correction (same ROOT integration):** GEN-8 detected the
+  literal scan patterns in the returned COMMANDS.md as an unclassified active
+  surface. The complete sealed packet was relocated byte-for-byte to
+  RESUME_2026-09-30/_run_records/aud_t3_04/. EVIDENCE_RELOCATION.json maps its
+  original return prefix to the current one; the original seal is unchanged.
+  No test, checker or sealed evidence text was edited. The first GEN-8 failure
+  remains recorded; rerun is required before the records candidate merges.
+
+
+## Records resumption: RV27-S1 corrected (ROOT, 2026-09-30)
+
+RV27 independently reviewed candidate 90b6bcbbf64b13975211038bf3f33bb87273e646.
+Its REVIEW.md is SHA256 8bb6773bfb27f2e11a3b4f2a2dd1e740cc92fcb8f1a74fcc4ca0792a619658f6,
+under REVIEW/RESUME_RECORDS_RV27 on numerics. Its sole SHOULD-FIX, RV27-S1,
+is corrected here: the current graph identifies initial source-only dispatch
+and the later included G0 build-only authorization. The dispatch ruling retains
+its historical words with an explicit correction bracket. This frozen records
+slice contains no solver-case grant or numerical acceptance. ROOT verified
+RV27's seal; the same reviewer must confirm this correction before merge.
+
+## AUD-T3-01 escalated to BLOCKING: C17 source witness (ROOT, 2026-09-30)
+
+ROOT read the unchanged C17 raw output, rehashed it and the G0 binary, checked
+the independently frozen exact truth and recomputed the interval inequality.
+The independent oracle TASK separately confirmed it without changing its frozen
+truth or comparator. I22/c_01 and oracle_fresh/addendum_02_C17 preserve the result.
+
+C17 is an admitted unmutated PrimitiveSource selected at p128/P256. D:0 and M:0
+publish +0, AbsoluteVerified with bound bits 0000001000000000. Exact primitive
+force balance gives 9*2^-1041 in model length units; b=2^-1038, so error/b=9/8.
+Even b*(1+2^-22) is too small: the exact qualified ratio is 4718592/4194305.
+These are two false kernel row publications, not merely a proof counterexample.
+
+Raw stdout SHA256: 841167ed887a71b0e2a904647e1f217758fad304baaaf0d669f5c47035dc797a.
+Binary SHA256: bcbe897204ec702b99529d25e6d0213d0132af5e6086e0397fae3a8f8ef8a08f.
+Source: 3bddc2b05f6106e969c7cf43373b230845c7cc66, FK-identical to d01ad98...
+The run uses the unchanged probe, no seeded feature, and the G2 fixed limits.
+The source-level comparator and independent derivation are in the A1 worktree's
+RESUME_2026-09-30 records; ROOT is preserving them as their own pinned Git basis.
+
+AUD-T3-01 is BLOCKING under the audit's existing escalation rule. F2a reliance
+remains held. C18-C24 are unrun; the C sequence stopped after this first witness,
+with no repeat, source repair or new search. The corrected post-read path error
+does not change any solver output. B remains honest within its recorded coverage.
+
+No product/native false publication is established. The literal C17 numeric
+transport is excluded by the current product magnitude profile; equivalent
+product/unit exclusion is not proved. This qualification does not excuse a
+false publication by the admitted kernel API.
+
+A fresh HELPS_HUMANS design assignment now independently derives a warranted
+correction and its contract/availability effects. A fresh design reviewer must
+re-derive it before reliance. No new bound, cutoff or implementation is selected
+by this escalation. K6c stays unaccepted and tied to the settled A1 kernel.
+
+- **Durable C17 basis:** complete diagnostic/oracle/manager packets are committed
+  and pushed on the retained A1 branch at a6b40d2d036acac556e28f28f5b482a4adb39333.
+  RESUME_2026-09-30/C17_EVIDENCE_BINDING.json pins paths, raw/binary hashes,
+  manifests, scope and restore method. The records PR now incorporates the
+  blocking escalation before merge; earlier review confirmations cover their
+  named historical candidates only. A fresh design agent is executing the
+  committed bounded brief; no repair or design alternative is accepted.
+
+## A1 certificate correction selected for bounded implementation (ROOT, 2026-10-01)
+
+ROOT selects the sealed independent design and additive correction, after
+RV28's independent re-derivation and VERIFIED backcheck. Source-qualified
+identities/hashes are in RESUME_2026-09-30/BRIEFS/I22_IMPLEMENTATION_A.md.
+RV28-1 is closed at specification level; its conversion-work note remains an
+implementation/review obligation. This satisfies independent design checking
+before reliance; it does not accept unimplemented code.
+
+The selected correction certifies H=|actual published x-verification v|+E using
+the complete existing R7 error formulas and prerequisites. Absolute rows require
+H<=the unchanged b. Relative rows require the public decimal predicate and both
+the exact and current binary64 tighter allowances. An uncertifiable candidate
+escalates or refuses by name. Existing scale/class/bound bits and source domain
+are not widened. [Correction (ROOT, 2026-10-01): the unchanged
+quantity is the construction at the same selected candidate/floor, not equality
+of old and new output bits. Escalation can activate the existing p512 floor and
+change scales/bounds. ROOT_REPAIRED_B_FIELD_COMPARISON.json under
+RESUME_2026-09-30/verification binds that effect to the old/new raw hashes;
+values/ranges/classes remain equal for these B cases. No new public formula or
+source-domain cutoff is selected.] Private upward binary64 radii accompany the identical certified
+publication; they are not a new public receipt radius. The addendum pins SI
+normalization/binding and later facade obligations.
+
+This bare-b choice implements the owner's already accepted conservative-refusal
+direction. Qualified intervals, outward public bounds/scales, input cutoffs and
+reversal of protected availability remain unselected decisions. No fresh owner
+approval is created for faithful implementation of this choice.
+
+ROOT reserves M03-INTEGRITY-MP-v2 in the current kernel policy mechanism, keeping
+the method token. Historical v1 records are not retroactively certified.
+F2a/D2 recognition, final-row/unit/derived certification and runtime qualification
+remain required before product reliance.
+
+I22 may author only the four maintained files in the committed A grant, with
+additive evidence. No build/test/solver/mutant or snapshot refresh is yet granted.
+The source branch now carries current main at 0ce33d7e89a306cfc01f3ce29f421f4dbd02e716.
+ROOT will verify the core diff/hashes, commission a fresh source reviewer and
+run every required gate on the actual candidate before merge. A1 is still
+BLOCKING, K6c unaccepted and F2a held.
+
+
+## Audit resumption records merged (ROOT, 2026-10-01)
+
+PR1068 merged at 2026-10-01T06:38:11Z as
+546e05a159a58f5ceffe1d315373bc2f31982ea8, exact candidate
+729e80b5c2a33b278623a850d9c75c25372b688c. ROOT checked main a38617d
+immediately before the guarded merge. RV27's final independent confirmation,
+full-SHA CI, exact-head Mac DEC-025 comparison (including the disclosed isolated
+missing-suite recovery), and GEN-8 are recorded in
+IMPLEMENTATION/RESUME_RECORDS_MERGE/RECORD.md. No numerical repair is accepted.
+AUD-T3-01 remains BLOCKING, F2a held and K6c unaccepted. Original raw evidence
+remains preserved; no pruning is authorized. The owner stopped the response drift.
+
+## A1 first compile: bounded matcher repair (ROOT, 2026-10-01)
+
+The B compile stopped before tests on two new-test type-inference errors and
+one exhaustive existing test matcher. ROOT grants only the diagnostic
+PublicationEnclosure arm in FK/tests/retained_k4/method_tests.rs as a fifth
+maintained path, plus explicit Wide::<4> in the new tests. Existing expected
+tokens/fixtures/assertions remain protected. The committed B compile addendum
+sets the exact scope; this is no availability or numerical acceptance.
+
+## A1 compiled-source checkpoint and reach (ROOT, 2026-10-01)
+
+ROOT froze the exact compiler repair at dd1f70d8ba85b19f7d948bca6ee08a44bbb12ae1.
+I22 implementation_b_fix_01 records the preceding successful focused tests on
+3cf296e plus that exact patch; they are not falsely rebound to a later launch.
+Full numerical/runtime/mutant acceptance is still pending. The C brief grants
+finite source-control and new-test work, plus RV29's independent fixed-head FK
+suite. No old expected outcome or protected availability is changed.
+
+The actual caller trace, independently checked in RV29 candidate_01, reaches
+H/validation only. The legacy product solver uses unchanged retained arithmetic
+and seeded hooks, not the changed adaptive route. Accordingly T9/both-entry
+are not triggered by this slice alone; all other standing exact-candidate gates
+remain. Reassess if the source/write set gains product reach.
+
+## Independent ledger span correction (ROOT, 2026-10-01)
+
+RV29's candidate ledger understated the successful b=2 algebra route's aggregate
+max_span_bits by one. ROOT and the manager independently checked the frozen
+source: the comparison term span is 1-(-1074)+1=1076, while H alone spans1075.
+The priced work and budgets do not change. The original sealed ledger stays
+unchanged; RV29 provides an additive correction. The C span brief permits only
+the warranted new-test expectation/rationale repair before the next bounded
+run. This is no production defect closure or blanket permission to rebaseline.
+
+## A1 S11 inventory: declare the added integer site (ROOT, 2026-10-01)
+
+The full fixed-head FK suite found one source-inventory mismatch in addition
+to the two legacy work-golden assertions. ROOT and RV29 classified the added
+run_schedule c+=1 as the existing integer precision-schedule index advancing
+after certificate rejection. The exact S11 inventory row may change5 to6 with
+that annotation; all scanner rules/other rows remain. The dedicated committed
+brief bounds the edit/check and same-reviewer backcheck. No floating summation
+site or protected numerical criterion is excused.
+
+## A1 checkpoint D: preserve old work oracles and close test gaps (ROOT, 2026-10-01)
+
+The complete source-run/review evidence now warrants the exact test-only D grant
+in RESUME_2026-09-30/BRIEFS/A1_CHECKPOINT_D.md. I22 may isolate the new certificate
+component in the two named existing work-golden tests while keeping every old
+numerical literal and unrelated criterion. This supersedes the earlier optional
+evidence-patch-only step; the actual diff and same-reviewer backcheck remain
+required. The independently checked relative-control fixture is accepted as
+unit-level arithmetic truth, not a source-model result. No production change,
+old fixture rewrite, new public formula or availability relaxation is selected.
+A1 and K6c retain their separate closure boundaries under the owner's sequence.
+
+## A1 VR records: include certificate work (ROOT, 2026-10-01)
+
+The unchanged kernel-lane generator on immutable40129 produces only the five
+accounting-field deltas documented in RESUME_2026-09-30/verification/
+vr_record_refresh_01/FIELD_DIFF.json on A1. ROOT checked all field comparisons
+and charge closure. Accuracy, outcomes, precision, classes, controls and
+not-covered expectations stay fixed; invariance/parity records are identical.
+The ten generated family JSONs and kernel_lane/SHA256SUMS may be refreshed to
+include the new certificate work. No other observation or criterion is granted.
+The failed preflight and original hashes remain evidence. Same-reviewer
+backcheck and an affected-suite rerun are required; this is not A1 closure.
+
+## A1 historical fault mappings selected for bounded replay (ROOT, 2026-10-01)
+
+ROOT read I23's exact patches and RV29 protected_06. The precise selected subset
+and runtime fences are in RESUME_2026-09-30/BRIEFS/A1_G1_PROTECTED.md. Reconstructed
+A2 patches retain original IDs without claiming missing original bytes. D4u's
+current underflow-only variant preserves both old overflow assertions and must
+reach the old underflow criterion. This selects a faithful finite discriminator,
+not a weakened expectation or an executed kill.
+
+The historically optional RV23C-N1 cache probe remains optional: independent
+source comparison confirms its failure path unchanged. R7 derivation/retired
+and RV23-N4 reachable-path qualifications remain their sourced dispositions.
+All other unreviewed or masked mappings remain open; the new certificate's mere
+refusal is not evidence that an intended old numerical assertion was exercised.
+No design contract, availability claim or A1 closure is accepted here.
+
+## G1 host-tool stop; owner direction required (ROOT, 2026-10-01)
+
+G1 passed all selected unmutated baselines, then stopped before any mutant
+execution. The existing system patch command reported a system temporary-file
+permission error while returning exit0. The mandatory postimage check found
+the original source unchanged and prevented continuation. Exact command, raw
+hashes and expected/actual source hashes are in
+RESUME_2026-09-30/I22/protected_g1/runtime_01 on A1. No kill or survivor is claimed.
+
+The owner's explicit instruction to stop and report tool blockers governs.
+No TMPDIR or permission change, retry, alternative patch mechanism or host-tool
+development was performed. ROOT requested direction for a bounded trial of
+the existing apply_patch tool on the already frozen G01 patch, with no host
+configuration change. That question is pending; no approval is assumed.
+Further experiment work is held. Existing source-only returns and evidence
+preservation may finish, with no new host jobs.
+
+E1/E2's new-publication variants have independent RV29 runtime confirmation,
+and the full FK and H/VR preflights passed. This is not A1 merge acceptance:
+historical fault work and final-head gates remain, draft PR1070 stays unmerged,
+F2a is held, and K6c has no accepted complete E_max.
+
+## Owner resumption and bounded patch retry succeeded (ROOT, 2026-10-01)
+
+The owner directed: “Please resume and carry on as you intended.” ROOT stated
+and acted on this as authorization for the previously requested ten-minute
+existing-apply_patch retry. G01's exact frozen postimage, intended Phi assertion
+failure and both untouched controls passed their required checks; evidence is
+RESUME_2026-09-30/verification/tool_resume_01 on A1. No host configuration,
+permission, environment or tool development occurred. Prior failed evidence
+remains sealed. The operational hold is lifted prospectively for bounded work;
+A1 remains BLOCKING pending final verification/merge, F2a held, K6c unaccepted.
+
+## K6c narrow layout bindings independently checked (ROOT, 2026-10-01)
+
+ROOT read I21 layout08_run and RV30 layout08_03/backcheck_run and verified
+their seals. The actual three kernel node-request pairs and five named type
+size/alignment facts are usable in the conditional kernel ledger on their
+exact immutable40129/Rust1.97.1/aarch64 release basis. RV30 independently checked
+the complete raw samples, source/build/binary and no-extra-allocation/drop
+conditions. Source_07's queue recurrence is also independently checked.
+
+This is deliberately narrow: no private node alignment is inferred, the
+process subtraction baseline is not an allowance, and no complete E_max,
+admission or W1 acceptance follows. C1/C2/O2/W1 remain open. No allocator,
+observer, guard, dependency or maintained code was changed. Later final-source
+reconciliation and full-bound review remain required before reliance.
+
+## K6c H caller composition reviewed conditionally (ROOT, 2026-10-01)
+
+ROOT read I21 source_10 and RV30 h_caller_05 and verified both seals. The
+finite application-owner composition, grammar and sample-edge distinctions
+are usable as conditional terms. RV30 found no blocking defect in that scope.
+Adopt its N1 geometry-leaf narrowing and N2 registered-allocator boundary:
+the remaining floating-format premise does not require a general geometry
+error audit, and private Thread layouts are not a K6 requested-byte obligation.
+The original source_10 packet remains unchanged; the review is additive.
+
+H-R0 is only surviving registered owners and later reached growth on the finite
+main-thread path; H-R1 is the selected stdout mutex child; H-R2 is the directly
+reached byte-write/flush path and dropped errors; H-F0 is finite default-f64
+Debug. Planned path/model inputs and checked final implementation remain to
+bind. These are precise open premises, not free estimator inputs or measured
+allowances. No full E_max, prelaunch admission, W1 or F2a acceptance follows.
+VR's finite caller composition continues separately under its source-only brief.
+
+The source_10 and h_caller_05 records cited here are on the separately preserved
+K6c branch at `79ab5428470ca747a484ea145ea979e5bb965c96`, under
+RESUME_2026-09-30/I21/source_10 and source_review_RV30/h_caller_05.
+Their presence on that branch is not a merged K6c implementation.
+
+## A1 completed verification subsets and exact-tail correction (ROOT, 2026-10-01)
+
+ROOT read and verified RV29 g1_final_12, g2_runtime_13 and g4_runtime_14.
+Those selected subsets are closed with their precise assertion/control and
+source/build qualifications. Counts and exceptions remain at their REVIEW
+sections; the extra G01 baseline and all uncredited operational attempts are
+preserved. This is not complete historical coverage or A1 acceptance.
+
+G3's R09/R10 whole-loop attempts stopped at earlier corpus rows and receive
+no credit for the explicitly required witnesses. Their original controls were
+subsequently run under separate grants. The additive diagnostics retain the
+same rows, original upper expectations, production faults and original test
+prefix. RV29 tail_sources_15 corrected both I23's and its own earlier prediction
+arithmetic because ExactWideSum.used includes spare zero limbs. Correction11
+and tail_correction_16 preserve those errors and change only the predicted
+fault behavior/eligibility: R09 yields +8p0 directly; R10 yields Z+.
+No protected unmutated expectation, criterion or original corpus changed.
+
+The original G3 window was closed at its quiescent R14 boundary. ROOT selected
+the bounded reuse of existing source checks before Cargo, retaining postchecks,
+then independently reviewed that exact helper delta and preparation seals.
+Each remaining copy still needs its own manager-issued conditional release
+and an immediate hard source/binding check before build. Sequential semantic
+inspection, controls and stop rules remain. No new host guard/tool was built.
+Fresh runtime grants are in A1_TAIL_RUNTIME_AND_G3_REMAINDER.md; old deadlines
+remain historical, and no automatic extension is granted.
+
+## K6c direct-path proof and artifact request facts (ROOT, 2026-10-01)
+
+ROOT read source13, metric_design_02, I23 private_request_artifacts_08 and
+RV30 h_request_bindings_10. H12-F1's public Mutex/Once forwarding gap is closed
+by the additive source proof. The two allocation arguments are usable only on
+the review's exact layout08 executable basis: the named pal mutex and first
+ThreadInfo registry leaf. See h_request_bindings_10 RETURN sections1–2 for
+values, units, source attribution and native instruction evidence. They were
+not inferred from the observed startup baseline or a mirror type.
+
+The library archive-reader incompatibility was preserved and that lookup
+stopped; the separately authorized existing executable supplied the evidence.
+No runtime witness, library rebuild or tool replacement occurred. Final-H
+specialization/build correspondence remains mandatory; this does not supply
+a final-H or whole-process E_max bound. The direct witness proposal remains
+unrun and unselected because existing executable evidence was available.
+
+VR caller identities/schema conclusions remain conditional on their stated
+construction/configuration premises. RV30 vr_caller_07 and serde_binding_08
+plus external_inputs_06 supply the checked source, package-byte and input
+bindings without a fresh canonical replay. V-EXACT derivation is separately
+under review. Complete caller composition, checked implementation, final A1,
+admission replay and measurements remain open; W1/F2a are not released.
+These K6c packets are preserved at branch commit
+8d80dbdb326514e167ccf16b8e173bd91c7441f4 under RESUME_2026-09-30.
+
+
+## A1 named-witness continuity and K6c finite callers (ROOT, 2026-10-01)
+
+ROOT read RV29 g3_prefix_tail_17 and the later preemption_18/r33_source_19
+reviews. G3's prefix and corrected tail diagnostics are independently closed
+as recorded in g3_prefix_tail_17; original earlier-case failures retain no
+named-witness credit. Runtime04's R33 failure occurs on N01 before its named
+N05/N06 witness, and remains uncredited. ROOT's runtime05 disposition permits
+its unchanged original control and the remaining original schedule while an
+additive N05/p128 diagnostic preserves the same helper and fixed oracle.
+The exact conditional runtime grant is BRIEFS/A1_R33_NAMED_RUNTIME.md.
+R51's source-only contingency is not an observed failure and stays unrun if
+its original test qualifies. No numerical criterion or source expectation is
+weakened; A1 remains open and F2a held until complete verification and merge.
+
+ROOT read I21 source14 and RV30 finite_callers_12 and verified their seals.
+The fixed-input floor inequalities and finite-from_f64 premise on the actual
+vk_scale caller roster are usable conditional facts, with scope and figures
+at finite_callers_12/RETURN.md sections “Actual basis and integer input check”
+and “Actual observation routes and remaining138 rows”. The broader lane's
+selected-numerator obligations remain open. A separate bounded numerical
+consequence derivation has been assigned; finite tags and old passing runs
+are not substitutes. No whole-process E_max or admission is accepted.
+
+The K6c proposal and review are preserved on its branch at
+4ee34724be3d4895016ba7ce9909f5e31a4770be. K6C's maintained adaptive.rs still
+matches its own older committed KF3 source (Git blob5448ca262ab0346c138052e39b9a205b82739842),
+with no working-tree modification. Its difference from the explicitly frozen
+A1 basis is the not-yet-integrated A1 correction, not an unexpected source edit.
+RV30 correctly reviewed the separately preserved full-hash-matched40129 bytes.
+Final A1/build reconciliation remains required before implementation reliance.
+
+
+## R46 historical-filter correction (ROOT, 2026-10-01)
+
+ROOT read the original K4 review D.4, its RV19-D2 delta log and current source,
+then I23 r46_diagnosis_14 and RV29 r46_diagnosis_22. The frozen fault is correct,
+active and non-equivalent. ROOT's recovered focused-filter selection was wrong:
+that focused unit test also passed in the historical run. The actual historical
+kill was the unchanged classification-vector test's set19 equality. Restore
+that existing discriminator under BRIEFS/A1_R46_MAPPING_DISPOSITION.md; no new
+input, source, expected value or test is selected. The original survivor and
+RV29's earlier mapping endorsement remain sealed; the diagnosis supersedes
+only that endorsement. No kill is credited until the corrected run and controls
+are independently checked. This is a recovery-mapping error, not evidence of
+a new production accuracy defect. R33's separate named diagnostic may proceed
+under its bounded grant; final G3/V-K/A1 acceptance remains open.
+
+## K6c bounded numerator consequence and sparse correction (ROOT, 2026-10-01)
+
+ROOT read the complete selected-numerator derivation and RV28's independent
+selected_numerators_01/REVIEW.md, then verified both seals. Accept the bounded
+source consequence on its exact fixed roster, immutable40129 source and inherited
+accepted R7 premises. The review's sections “Full retained T/R implication” and
+“Actual J-end recovery and rounded quotient” supply the warrant; “Every-row
+result” supplies the exact arithmetic and figure basis. No successful selection
+is promised. This closes the named remaining observation-finiteness premise;
+changed inputs, recovery, row mapping or gates require reassessment.
+
+ROOT also read sparse_13, metric_design_07_sparse_correction and RV30's
+sparse_correction_14 return and verified their seals. SP13-F1 is closed by the
+additive HFactor validation-owner correction. Reuse the original sparse proposal
+only together with that correction and its review. The review demonstrates no
+fixed-roster or composed-envelope undercount; its remaining private-node,
+profile, formatting/runtime and final-build cells remain open.
+
+These records are preserved on K6c at a900bcc69bbbc949214ff0be23bc073941332089.
+They grant no complete E_max, implementation, admission, W1 or F2a acceptance.
+ROOT selected one bounded canonical K0 assembly after the active serializer
+review, through H's existing library and distinct H/VR caller terms. No contract
+alternative from metric_design_06_closure_assessment is selected. The assembly
+must expose exact residual cells and their numerical impact before any further
+proof work is commissioned; BRIEFS/I21_K0_CANONICAL_ASSEMBLY.md governs.
+
+
+## G3 execution complete; portable evidence placement (ROOT, 2026-10-01)
+
+ROOT read and verified the runtime06 child/manager returns. Every remaining
+G3 registration now has its required runtime evidence; independent aggregate
+review is still pending. The earlier R33 and R09/R10 wrong-witness attempts
+and focused R46 survivor retain no credit. Runtime06 preserves the original
+window and ROOT's explicit prospective bounded continuation; no automatic
+extension is inferred. R51's original named witness qualified, so its prepared
+contingency remains unrun. V-K proceeds under its separate conditional grant.
+
+The hosted interim head4972f4ef failed GEN-8 on machine-path provenance in
+unclassified review JSON. ROOT read the failure, existing classifier and prior
+relocation precedent; I23 independently diagnosed the records-placement cause.
+Thirteen complete sealed review packets moved into source_review_RV29/
+_run_records with every payload and manifest byte unchanged, recorded in
+R/REVIEW_EVIDENCE_RELOCATION_2026-10-01.json on A1 at9ef9508dea.
+[Correction to physical-path references in earlier records: apply that ledger's
+old/new packet-prefix map for current replay. Pinned historical commits retain
+original locations; internal packet-relative manifests remain unchanged.]
+No checker, policy, source, oracle or numerical criterion changed. The unchanged
+check passes on clean9ef9508dea; verification/gen8_portability_04 preserves the
+result. Final-head GEN-8 and all other merge gates remain required.
+
+ROOT read RV30 serializer_15 and verified its seal. Its finite schema/owner
+recurrences are usable only with the named unresolved terms and the review's
+refusal-argument/Phase.fields clarifications. The single K0 assembly actually
+started17:51:15 UTC with a fixed18:21:15 end; manager/k0_assembly_16 records the
+native dispatch. No further proof programme, estimator implementation, contract
+alternative, E_max, admission or W1 acceptance is granted by that assignment.
+
+
+## G3 independently closed (ROOT, 2026-10-01)
+
+ROOT read g3_final_25/REVIEW.md and verified the whole-packet seal
+ ea44ed6892482a455382ed9337697e92a3d553baa6c270bf014d66f24022ae08.
+Accept its bounded G3 closure, including the exact registration/control
+reconciliation, corrected historical R46 mapping, original qualified R51 and
+both R52 predicates. Figures and qualifications are at its registration table
+and full-command reconciliation; prior wrong-witness failures and the focused
+survivor remain uncredited. RV29 also independently verified the complete
+byte/mode/blob-preserving evidence relocation. The records are committed on
+A1 at ab2d4ce9522d317a2310ca5545a719a8f8423367.
+
+V-K remains active under its own bounded grant. This ruling supplies no final
+A1, F2a, E_max or W1 acceptance; exact-candidate review and all final gates remain.
+
+
+## Session-limit recovery checkpoint (ROOT, 2026-10-01)
+
+The owner warned of an imminent session limit. ROOT is preserving the ongoing
+authorized work and quiescent handbacks; this is not completion or a new owner-
+approval hold. RESUME_2026-09-30/SESSION_LIMIT_HANDOFF_2026-10-01.md records exact
+source/evidence reuse, branch/host recovery, open F03 contribution attribution,
+remaining V-K/final A1 gates and unreviewed K6c proposals. No new experiment is
+launched by this checkpoint. All prior numerical and acceptance holds remain.
+
+ROOT read and verified RV29 vk_f01_runtime_28. Accept its separate release F01
+numerical-unavailability witness within the stated scope; original debugP09
+remains unqualified. P10's later control and F02 evidence await their own review.
+F03's complete two-family observation restores controls but returns an explicit
+contribution-attribution gap; it receives no fault credit at this checkpoint.
+No generic Ceiling, Pivot location or seed name substitutes for its criterion.
+
+K6c's latest prefix, formatting and eight artifact-specific node-pair returns
+are preserved as proposals awaiting independent review. No complete E_max,
+checkpoint0, implementation, admission, W1 or F2a acceptance is granted.
+
+
+## Owner resumed T3; F02 and actual VR node facts (ROOT, 2026-10-01)
+
+The owner explicitly directed “You may resume now.” ROOT verified the saved
+M5/guard/process/Git state and restored bounded native work. Main546e05a was
+already an ancestor of numerics, so no redundant merge commit or rebase was
+created. RESUME_2026-09-30/RESUME_2026-10-01_1934.json binds entry checks and
+supplied instruction origins. Old runtime deadlines remain historical; new
+source/review grants are in the resumption briefs.
+
+ROOT read and verified RV29 vk_mid_30. Accept F02's exact registered value
+witness and P10/P12 controls within that review's scope. Its full F03 provenance,
+controls and sequences are verified, but the source/soft-root consequence still
+awaits independent review; P09/P13 retain unqualified status. The original
+criterion does not impose an unrecorded universal reconstruction of every private
+omitted term, nor permit a generic failure/enum to replace the named warrant.
+
+ROOT read and verified RV30 vr_nodes_17. The eight actual leaf/internal pairs
+are usable only on their separately bound release/debug artifact bases; see
+its result table and “Build provenance and remaining limits” for units and
+qualifications. Real source representation and typed allocation argument flows
+supply those facts, not mirror layouts or equal-size type substitutions. Final
+ordinary-production vk_scale correspondence and actual populations remain open.
+The prefix and formatting proposals remain under independent review, with no
+complete E_max, checkpoint0, implementation or admission acceptance.
+
+
+## F03 attribution closed; honest runtime-plan supersession (ROOT, 2026-10-01)
+
+ROOT read the complete designer source consequence and RV29
+vk_f03_attribution_31/REVIEW.md, verified the seals and accepted its separate
+release F03 outcome witness for BOTH registered families. Exact root-minimum
+and material-decrease checks, CHAIN formed Rayleigh argument, SKEW linkage,
+zero/tie qualifications and full runtime/control basis are at those sources.
+The original whole-mutant criterion does not require a root-only counterfactual
+or disclosure of every private omitted term. It still requires the proved
+material soft-root link; generic Ceiling/Pivot/seed labels were not substituted.
+
+P09/P13 remain unqualified debug attempts. Supersede P15 explicitly as UNRUN:
+its RF-SKEW registration is covered by the independently qualified release
+witness. P14 retains its actual debug rf_chain returned-control role. P16 runs
+as a fresh debug rf_skew NONE baseline, never a return for unrun P15. Then
+P17–P53 retain original order, predicates and controls under the fresh bounded
+BRIEFS/A1_VK_REMAINDER_03.md grant. All old schedule/evidence bytes remain.
+This does not close the remaining V-K matrix or final A1 gates.
+
+## Prefix receiver correction and wrapped-error facts (ROOT, 2026-10-01)
+
+ROOT read RV28's full prefix review, the additive correction09 and its same-
+reviewer backcheck. [Correction (ROOT, 2026-10-01): the full backcheck read and
+ROOT payload-seal verification occurred at19:55:57 UTC, immediately after the
+original19:55:40 entry; that entry initially relied on the reviewer's sealed
+handback summary. The subsequent full check agrees, with no changed verdict.]
+RV28-PREFIX-1 is closed at source-design level: the fresh
+free-DOF receiver and layout construction/growth coexist at the stated Counts
+initializer edges, and all receiver temporaries die before the cut. Reuse
+packet08 only with correction09 and the backcheck. The existing successful
+single-main entry proof supplies its pre-args registered peak; final VR
+correspondence and stated failed-startup/foreign/panic interfaces stay explicit.
+
+ROOT read RV30 format_stream_18 and wrapped_errors_19 and verified their seals.
+The finite formatter/hash/stream topology and the three actual request facts
+are usable only within their reviewed source/artifact scopes. The conditional
+wrapped-error substitution and units are in wrapped_errors_19's “Direct caller
+and topology distinction”; it is not a process peak or final vk_scale fact.
+Static-message pools remain under separate independent review. Complete K0/H/VR
+numbers, checked implementation, final-build binding, admission and W1 remain
+unaccepted; the next H numeric task is source arithmetic, not a new tool.
+
+
+## V-K F17 criterion gap and conditional numeric candidates (ROOT, 2026-10-01)
+
+ROOT read the full runtime05 child/manager returns and RV29 vk_completed_34
+review, verified every manifest payload, and preserved them in A1 commit
+1453a780bd. Accept only the reviewed P14/P16/P20–P26 scope and its distinctions:
+P16 is a fresh baseline; P20 restores F04; F08/F10/F13 reach their registered
+bitwise, canonical-byte and numerical predicates with actual returned controls.
+All source figures and qualifications remain at that review's table.
+
+Runtime05/RETURN.md records P28's successful original RF-WEAK return and P29's
+missing RF-SKEW CLASS witness. Preserve the stop: P30–P53 are unrun. Neither
+Ceiling nor FLOOR differences qualify for F17's protected CLASS criterion.
+A source diagnosis and a separately reviewed, bounded existing-record diagnostic
+are being prepared. They grant no acceptance amendment. Any measured conflict
+requiring a protected-criterion change returns to the owner under project
+AGENTS.md, Software checks. A1 acceptance/merge and F2a reliance remain held.
+
+ROOT read manager/h_numeric_19/RETURN.md and the VR caller candidate's full
+RETURN, SUMMARY and METHOD_AND_JOIN. Their source-arithmetic candidates are
+preserved, not accepted E_max: H is under RV30 independent review; VR is under
+RV28 review with five explicit kernel joins still outstanding. Numeric maxima,
+units and conditional artifact/owner qualifications are at those source tables.
+The binary half-heap check and calibrated runner admission are separate; no
+chronological admission, required measurement or final production correspondence
+is inferred. No supporting tool development is authorized.
+
+Resumption check at20:38:18 UTC: actual M5 Max,18 cores,137438953472 bytes,
+existing guard5387, no cargo/rustc process. Fresh origin/main remains546e05a159.
+The remote PR1070 interim head2e1adc4015 has passing completed checks; that is
+not final-head review/dispatch/DEC-025/GEN-8 closure. Maintained A1 code remains
+at the reviewed40129 basis. ROOT retains all Git/index authority.
+
+
+## Conditional H arithmetic verified; VR phase corrections pending (ROOT, 2026-10-01)
+
+ROOT read and verified the full RV30 h_numeric_23/RETURN.md and h_summary_24
+backcheck, with the additive h_numeric_summary_correction_01. Accept the H
+numeric19 source/owner/arithmetic candidate conditionally on its stated ordinary-
+production source/type/library/request-site/entry assumptions. H23-F1 and H23-N1
+are closed. Exact byte figures and comparison bases are at h_numeric_23's
+“Numerical result and historical boundary”; the MiB display is truncated and
+not an outward-rounded upper. Actual Python floating products and both integer
+conversions govern the projected-RSS summary, not an exact-real replacement.
+
+This closes the conditional H arithmetic review only. Final artifact/profile
+correspondence, maintained checked estimator, same-binary validation, corrected
+chronological admission/ascent/RSS replay and W1-T4 measurements remain. No
+complete E_max, K6c checkpoint0, run admission, W1 limit or F2a acceptance follows.
+
+ROOT read and verified RV28 vr_numbers_06/REVIEW.md. Its two SHOULD-FIX findings
+remain pending a bounded additive correction and same-reviewer backcheck:
+retained failures during expected-list initialization and persistent typed LIST
+during nonselected diagnostics. The review's “Exact numerical consequence”
+proves both repairs are dominated by the existing common-outcome maximum on
+the fixed roster; that does not make the original named phase addends complete.
+The VR kernel join stays unreleased until those corrections are verified.
+
+
+## Corrected VR caller interfaces accepted for bounded join (ROOT, 2026-10-01)
+
+ROOT read the full metric_design_11_vr_correction/CORRECTION.md and RV28
+vr_correction_07/BACKCHECK.md, verified their seals and all payloads, and accepts
+the original caller candidate only together with the authenticated overlay.
+RV28-VRNUM-1/-2 are closed. The corrected interfaces retain prior failure owners
+and the initialized typed LIST at the reviewed phases; the common-outcome
+maximum is unchanged on the fixed roster. Exact replacements, units and limits
+are in that backcheck. This grants no implicit kernel value or complete E_max.
+
+Release BRIEFS/I21_VR_KERNEL_JOIN.md for one bounded numeric composition and
+like-for-like historical peak comparison. Ordinary-production correspondence,
+checked implementation/deduplication, admission replay and required measurements
+remain. A1's F17 owner-decision hold is unchanged and independently managed.
+
+
+## Owner adopted the scoped F17 validation amendment (ROOT, 2026-10-01)
+
+The owner answered “Approve the scoped F17 amendment (Recommended)” to the
+explicit question recorded in RESUME_2026-09-30/OWNER_DECISION_F17_2026-10-01.md:
+accept independently verified certificate rejection when A1 prevents publication,
+preserve normal accuracy/class checks and reachable CLASS witnesses, and permit
+the same rule for RF-CANCEL only after its own controlled run and independent
+review. This is an actual owner decision, not inferred from elapsed time.
+
+Adopt the exact independently reviewed scope in RV29
+vk_f17_runtime_36/OWNER_DECISION_TEXT.md (review seal
+a779da2a62c1fce29c0005e6e945ce785f1f76ea6e56d0b1303436bc5c284070;
+A1 evidence commit80c35e37466435e408268eb19e037e56f5a787cf).
+ROOT read the full review/proposal, verified every payload and accepts the
+controlled RF-SKEW release result as certificate prevention after standing R7,
+within its exact source/case/control scope. P30's actual debug return is closed.
+P29 remains permanently unqualified with zero CLASS credit. The protected twist
+rows were not observed: an earlier different force row prevented whole-case
+publication. No per-row class witness is invented.
+
+The original unmutated correspondence/exception lists, references, tolerances,
+class checks and stored records remain. Actual CLASS evidence remains required
+on registered not-covered comparisons outside prescribed exceptions wherever
+publication reaches them. Only source-linked PublicRelative, SharperExact or
+SharperBinary64 rejection in the reviewed relative branch after R7 can qualify
+the alternative. Generic Ceiling, FLOOR/work/record drift, missing publication,
+AbsoluteBound, malformed/terminal/budget/arithmetic/verification failure or
+another fault receives no substitute credit. Unexplained attribution/control
+failure remains a hold. Any changed source/corpus reopens affected warrants.
+
+The same rule is prospective only for the remaining originally registered
+F17 RF-CANCEL family on this unchanged A1 source. It grants no unrun credit,
+no certificate bypass and no other fault amendment. ROOT separately releases
+the prepared remaining original schedule. Complete V-K/A1, final-head gates,
+merge, E_max, W1 and F2a acceptance remain open.
+
+
+## RF-CANCEL F17 prevention qualified; remaining V-K resumed (ROOT, 2026-10-01)
+
+ROOT read the complete RV29 vk_f17_cancel_37/REVIEW.md, verified its seal
+2201dba8973e050e1da1e4dfd0049332ae494d51ecc5353a73c3eb546c7431ee
+and every payload, and accepts its separate controlled RF-CANCEL observation
+under the owner's already adopted F17-only certificate-prevention rule. The
+report's “Actual release observation” and “Protected quantity distinctions”
+state the exact case/attempt figures and what was and was not observed.
+This applies the existing owner decision, without another amendment.
+
+P31 remains permanently unqualified with zero CLASS credit. P32's actual debug
+return is closed. The earlier different displacement row prevented whole-case
+publication; no protected displacement/station class, H or later predicate was
+observed. Normal frozen records and all original correspondence checks restore.
+Together with the earlier qualified RF-WEAK CLASS witness and RF-SKEW prevention,
+the registered F17 routes have their scoped dispositions and controls. No other
+fault criterion is changed and no final V-K/A1 acceptance follows.
+
+Close the stopped runtime06 and diagnostic windows. Release the remaining
+original P33-P53 schedule only under BRIEFS/A1_VK_REMAINDER_07.md's fresh bound.
+Final full candidate review and exact-head CI/dispatch/DEC-025/GEN-8 still apply;
+AUD-T3-01 and F2a reliance remain held until actual A1 closure.
+
+
+## Conditional VR composition and reference-profile interface (ROOT, 2026-10-01)
+
+ROOT read the complete RV30 vr_join_25/RETURN.md, verified all payloads and
+accepts the fixed-roster VR source/owner/numeric composition conditionally on
+its stated profile, input and launch premises. The report's “Numerical and
+historical result” supplies exact figures, units, comparison windows and
+artifact qualifications. No observed peak supplies an arithmetic term. This
+completes the conditional H/VR numeric candidates for their selected rosters,
+not final E_max, implementation, artifact qualification or admission replay.
+
+ROOT also read and verified the full metric_design_12_profile_binding proposal
+and independent RV28 profile_binding_08 review. Select named immutable
+ReferenceKernel/H/VRProfile premises with the existing external exact archive/
+build/launch qualification. The earlier Verified-current-build factory was an
+unaccepted sketch, not an adopted universal direct-CLI refusal policy. This
+selection changes no protected test, ordinary CLI/CI behavior, admission
+predicate, metric/window or solver contract and introduces no host tool.
+Reference identities index conditional premises; they do not attest a current
+executable or transfer M5/debug/seeded facts to Linux or ordinary production.
+Unknown/mismatched artifacts receive no qualified reliance or measurement grant
+at the external gate. No automatic in-process enforcement is claimed.
+
+Implementation must keep each fact bundle and kernel/caller composition
+coherent, reject missing/invalid descriptors rather than fill them with zero,
+and preserve all existing executable, allocator and public-type checks.
+ROOT's source read confirms VR's original scale test requires storage identities
+and estimate ordering on its complete factored CI roster. Before implementation
+release, a bounded adapter compatibility check will establish how the full
+existing interface obtains its required descriptors without silently extending
+the fixed-roster proof, keeping a stale estimate port or weakening that test.
+The remaining qualification, checked implementation, admission and measurement
+obligations are unchanged; no K0 implementation release is implied here.
+
+## Required S1 survivor in the remaining A1 matrix (ROOT, 2026-10-01)
+
+ROOT read and verified runtime07 child/manager returns. P33's exact VK-S1
+rf_finite test survived and supplies no registered numerical witness. P34-P53
+are unrun. The old runtime window is closed; no automatic retry, alternate
+filter or later call follows. The F17 decision supplies no S1 substitute.
+I23 has a bounded source-only diagnosis under the selected software-defect-
+diagnosis skill; its return and independent review precede further action.
+A1 acceptance/merge and F2a reliance remain held. No production fault is inferred
+merely from the surviving test.
+
+
+## S1 source mapping corrected, original numerical criterion retained (ROOT, 2026-10-01)
+
+ROOT read and verified I23 diagnosis21 and RV29 vk_s1_mapping_38. The observed
+P33 survivor is explained by the empty spring arrays in RF-FINITE, which make
+the S1 site unreachable. The original maintained register required directional-
+spring VALUE evidence and ran the broad suite; our later frozen A1 mapping
+introduced the incorrect rf_finite restriction. Prior preparation/review missed
+that source reach. Preserve that attribution and the original records.
+
+Accept the independently reviewed source-ready correction to the existing
+rf_skew test, which supplies a loaded nonunit direction and unchanged numerical
+oracles. The review's source and exact fixture checks establish eligibility,
+not a runtime kill. This changes no protected numerical criterion and imports
+none of the F17 amendment. P33 remains an unqualified survivor. The separate
+BRIEFS/A1_VK_S1_RETARGET.md grant permits only its actual P34 return and controlled
+replacement triplet; later calls and A1 acceptance remain held pending results.
+
+
+## S1 corrected VALUE witness qualified (ROOT, 2026-10-01)
+
+ROOT read the complete RV29 vk_s1_result_39/REVIEW.md and verified seal
+baee8b1fceccaad51c7ee7a322df4dabc096328ccb9ac6f459b6a95b54f3f6d5
+and every payload. Accept the separately controlled rf_skew S1 observation
+under its unchanged original numerical VALUE criterion. The report's “Every
+witness checked” supplies exact counts, case/key/reference attribution and
+source linkage. P34 and both new normal controls restore every original check.
+
+P33 remains a zero-credit survivor caused by our earlier spring-free mapping;
+no source/test/oracle/criterion or frozen historical record changed. No F17 or
+nonpublication substitute is used. Close the S1 retarget window and release
+only original P35-P53 under the fresh BRIEFS/A1_VK_REMAINDER_08.md grant.
+Complete V-K/A1 and all final-head gates remain open.
+
+
+## Complete-context API and five-field contract selected (ROOT, 2026-10-01)
+
+ROOT read the full metric_design_13_api_contract contract and independent RV28
+api_contract_09 review, verified all seals/payloads, and selects this conditional
+interface design. Capture checked source facts before the existing source drop;
+obtain input-history facts while the existing raw/typed owners are available;
+keep coherent immutable reference profiles and external executable qualification.
+The actual CLI remains RF-LARGE-only. The unchanged broader storage/order test
+uses an explicit mathematical single-family reference invocation, not an asserted
+CLI execution or bound on its load_all process.
+
+Adopt the reviewed named model/fixed/decide/full/selected128 meanings and owner-
+subset ordering proof. No +1, forced ordering, stale port, partial global value,
+missing-cell zero, fixture exclusion or unqualified current-build assertion is
+permitted. Every original test assertion and ordinary CLI/admission rule remains.
+The review's six instantiation/translation cells remain real prerequisites; this
+is not full adapter implementation or complete E_max acceptance.
+
+Commission only bounded reuse/instantiation of existing generic equations and
+fixed inputs: kernel terms on the required reference roster, each family's
+caller/input composition and result mappings, and the reach-dependent triple-key
+set premise. No new host tool or generic library proof programme is commissioned.
+Unknown concrete facts must be returned by name; code translation and any added
+allocation costs still require their own explicit later grant and review.
+
+
+## S2 mapping corrected; remaining observability limits preserved (ROOT, 2026-10-01)
+
+ROOT read the complete I23 remaining-map audit and RV29 vk_s2_mapping_40 review,
+verified every payload, and accepts source readiness of the correction to
+existing rf_finite. The review's “S2 cause and original criterion” proves the
+zero-reference sign invariance and separate spring-action branch; its cited
+unchanged finite-family references establish eligibility, not a predicted kill.
+The error was our later frozen narrowing of the original reaction/VALUE register.
+P35 remains an unqualified survivor. The failed-to-dispatch P36 preparation is
+preserved as a manager timing overrun, not a test result or host-tool defect.
+
+The fresh BRIEFS/A1_VK_S2_RETARGET.md window includes the actual P36 control and
+controlled corrected witness. No protected criterion is weakened. Remaining
+F05/F06/F07/R28 mappings have their existing specific observables; R02's schema
+does not expose the numerical estimate/charge values. Only an attributable
+existing named R7/acceptance change could qualify that current observation;
+work-only or certificate-only drift cannot. A missing witness remains a stop,
+not permission for new instrumentation or a waiver. All final A1 gates remain.
+
+
+## S2 corrected VALUE witness qualified; remaining A1 validation (ROOT, 2026-10-01)
+
+ROOT read the full RV29 vk_s2_result_41/REVIEW.md, verified all payloads and
+seal97cb6c7a3542616af3e9a86ca8e43d5e4c85e94608ae1c71fccabd5436c7bd6f,
+and accepts the corrected S2 observation under the unchanged nonzero-reaction
+VALUE criterion. The review's Actual numerical witness and Controls and history
+sections state the exact case/key/reference attribution and actual returned
+controls. P35 remains permanently zero-credit; its actual P36 return is closed.
+The expired earlier preparation remains history, not an execution or authority.
+
+Close the S2 runtime window. Release original P37-P47 only under the fresh
+BRIEFS/A1_VK_REMAINDER_09.md grant. R02's unprinted numerical-field gap remains;
+existing scalar and TREE100 tests are bounded investigation inputs, not P49
+credit or an amended criterion. P48-P53 remain held pending ROOT's next grant.
+No source, oracle, protected criterion or F17 scope changes. A1 acceptance,
+final-head gates, merge and F2a reliance remain open.
+
+The sealed caller14 and kernel_reference22 K6c instantiations have been preserved
+for independent reviews RV28 reference_callers_10 and RV30 kernel_reference_27.
+These are conditional source-arithmetic candidates; composition, result ordering,
+context/code translation, artifact qualification, admission and measurements
+remain. They do not block A1's independent completion path.
+
+
+## Conditional generic K6c components verified (ROOT, 2026-10-01)
+
+ROOT read the complete RV30 kernel_reference_27/RETURN.md and RV28
+reference_callers_10/REVIEW.md and verified all payloads under seals
+2e0e0cf05cea3c11ea2a7b6eb4d26b0b5afb3886b0a1eae1e71bc816ecef6c82 and
+c3eadadd67f038cbb4e56a10cf9cf89a168bea8e2ae4a554646f484a5cf930b7.
+Accept their independently verified generic kernel and caller instantiations
+conditionally on the explicitly named source, input, request-profile and launch
+premises. The reports give full roster/metric figures and their scoped units;
+no measured heap supplied an arithmetic term.
+
+Reference B/b substitutions are tagged monotone population uppers, not graph
+facts. Original stored z/h and actual generic spring/load/string terms remain.
+Mathematical SingleCaseFamilyReferenceV1 and actual CLI24 retain their distinct
+input/launch/count policies; equal case names do not identify those contexts.
+No field is zeroed or forced solely to satisfy ordering. The complete result
+join, context/allocation translation, checked maintained implementation, final
+ordinary-production correspondence, admission and measurements remain open.
+These component dispositions do not accept full E_max or delay A1's own gates.
+
+
+## Remaining precision/mechanism witnesses qualified (ROOT, 2026-10-02 UTC)
+
+ROOT read the complete RV29 vk_remaining_43/REVIEW.md, verified every payload
+under sealcb1d7ce04d69db302d5d5c6b1dc26735b22d3bbb619a876f80c558e0fb2c6248,
+and accepts the scoped UNKNOWN/F05/F06/F07 semantic witnesses and their actual
+planned normal controls. The report's Scoped semantic results and Controls and
+full scope sections preserve the exact verdicts, roles, bodies and parity scope.
+Generic failure, record/work drift and the F17 alternative supply no credit.
+
+Preserve the manager's disclosed late closeout as a timing exception: the review's
+Source, artifact and raw provenance section establishes actual execution inside
+the grant and distinguishes the manager's later seal. ROOT does not retroactively
+extend the window or call the entire closeout compliant. Its child-seal timing
+was reported by ROOT, not independently reconstructed from a manifest-write stamp.
+The numerical/source/artifact evidence remains independently assessable and was
+verified. The next runtime block reserved explicit sealing time and has returned;
+R28/R02/scalar results remain pending independent review44. Final A1 gates remain.
+
+
+## Conditional K6c result composition verified (ROOT, 2026-10-02 UTC)
+
+ROOT read the complete RV30 result5_join_28/RETURN.md and verified every payload
+under seald0f850310a9519441d274b7a270bdb834162811d5bc048b880edee70da354eac.
+Accept the matching conditional reference/CLI composition and five-field ordering
+within its exact inherited input, profile, launch and metric premises. The report
+states all numerical maxima and comparison windows; they are expression bounds,
+not measurements or admission decisions. No actual graph count, unspecified
+future path allowance or current-executable qualification is inferred.
+
+The accepted kernel/caller/join review packets live on the separate K6c branch,
+currently commit60a52da9467b73d25898e01312e20d7a4c533902; their immutable manifests
+are the warrants even where another checkout does not carry the relative paths.
+ROOT merged reviewed A1 source/accounting942572 into K6c at8b6b4db5aa5ee8a3a3db149ff36b9418910bc9a3
+and verified exact maintained core/validation equality before releasing the
+bounded shared-kernel implementation. Original reference storage facts remain
+pinned to their prior origins, not rebound to refreshed A1 observations.
+
+Context16 is an unaccepted implementation proposal with named H caller binding
+and origin/failure questions; their bounded reviews are in progress. Shared-kernel
+translation does not release a partial legacy estimate or adapter. Complete
+context translation, checked implementation, final artifact/source/request/input/
+launch correspondence, admission replay and required measurements remain open.
+
+
+## Final registered R28/R02 witnesses qualified (ROOT, 2026-10-02 UTC)
+
+ROOT read the complete fresh RV31 vk_final_01/RETURN.md and verified all payloads
+under seal831cdff691167473c40c17f95d27b7a23e4a40e516aa51b85511e15a3ac1d0f0.
+Accept the original R28 and original VR TREE100 R02 semantic witnesses with their
+actual normal controls. The report's Actual results section gives the exact
+reached shift and named VerificationEstimate/acceptance transitions. No missing
+ratio, work counter, generic refusal or certificate substitute supplies credit.
+
+The separate original scalar test supplies complementary seed-site evidence only;
+its later assertions remain unexecuted and uncredited in the fault call. No FK
+TREE100 substitution is used. Other unshown Ceilings receive no invented cause or
+separate credit. All original parity records restore, including their original
+Sensitive statuses; restoration does not mean every comparison is Passed.
+
+The interrupted RV29 final44 archive-only partial has a ROOT preservation note
+and seal, not a completed reviewer verdict. RV31 is a fresh independent native
+identity; its review binds cf7841 and does not silently approve later HEADs.
+The complete V-K packets and their approved replacement/disposition history are
+ready for final-candidate reconciliation. Prior unqualified attempts, the unrun
+superseded P15, and the narrowly owner-approved F17 alternative remain distinct.
+No protected criterion is weakened and no numerical source/test/oracle changed.
+
+Freeze the final A1 candidate after integration, then require independent exact-
+candidate confirmation, full-SHA hosted dispatch/CI, clean exact-head GEN-8 and
+Mac DEC-025 comparison before merge. The source-reach check remains H/validation
+only unless the final diff establishes otherwise. AUD-T3-01 and F2a reliance stay
+held until actual closure; K6c implementation/qualification is a separate path.
+
+
+## K6c shared implementation and caller contract (ROOT, 2026-10-02 UTC)
+
+ROOT read the complete RV33 kernel_01 RETURN/REVIEW and verified its25 payloads
+under sealf50f48bfdaa4874a556b7660285ed0328bba57ee0f7bf099892ad2bdf4e7d919
+(run from packet root; manifest is under _run_records). Accept bounded kernel
+fan-in for exact4a6cb3402f95d98c6f46f702055fe4b0c5245c56 under its declared
+reference premises. The review's Independent compiled checks reports the actual
+clean-archive tests and full reference comparisons. This does not cover later
+H helper/adapter edits, current-artifact qualification or a complete admission
+estimate. Those changes need their own exact-candidate review/backcheck.
+
+ROOT also read and verified RV32 h_context_01 (seal8ca1f20ce41d85c513b2443990780983f8463a3dc24e91e80bcc3fe7a938e89f)
+and selects its reviewed H1/H2/H3 caller contract, as concretely recorded in the
+review and ROOT_CLARIFICATION. Explicit OriginalK6bPair is reference-only; actual
+normal and counts-continuation contexts carry their actual known arguments.
+Runner pre-admission must be rebound before using a numeric estimate or ratio
+denominator. The source-refused variant retains raw-input construction bounds,
+normal staged refusal and positive source-window totals; explicit zero components
+mean unexecuted kernel phases only. Actual repeat digits enter outer-prefix
+formatting. No flags, policy thresholds, stale fallback or unbounded future-path
+allowance is introduced.
+
+The implementation and review packets were relocated intact into their existing
+_run_records evidence roles; old-location pointers and the complete blob/mode
+ledger preserve custody. No source/evidence/checker bytes were changed by that
+placement correction. I21 H and I24 VR implementation grants own disjoint caller
+fences, with the narrowly notified raw-H helper extraction separately requiring
+RV33 backcheck. Complete adapters, protected tests/mutants, final ordinary-source/
+request/type/input/launch qualification, admission replay and measurements remain.
+
+
+## A1 merged; AUD-T3-01 publication correction closed (ROOT, 2026-10-02 UTC)
+
+A1 merged as PR1070 at3a0251874d6ab38008173a22ef09d651a0f20d9e from the exact
+reviewed/gated headcb13dcd9fcc8c252fa9610b1c6fef0c5b2c3c20c. ROOT fetched and
+verified unchanged main546e05a159a58f5ceffe1d315373bc2f31982ea8 immediately before
+--merge --match-head-commit. The merge's parents match both bindings.
+IMPLEMENTATION/A1_MERGE/RECORD.md carries the same-pass merge record and links
+RV31's source/records and external-gate confirmations plus preserved gate evidence.
+
+Close AUD-T3-01 for the reviewed retained publication route under the independently
+derived, owner-selected M03-INTEGRITY-MP-v2 replacement. This does not vindicate the
+old A1 proof assumption or edit the audit/counterexample history. The audit-specific
+hold on relying on that corrected published guarantee is discharged on this basis.
+F2a still waits for K6c/ROOT W1 limits and its own contract adoption/qualification;
+no product receipt, native route or engineering release is implied.
+
+K6c H and VR integration candidates have returned with author tests. ROOT full-
+diff verification, independent actual-candidate review/helper backcheck, complete
+mutation obligations, final ordinary-artifact/input/launch qualification,
+chronological admission and required measurements remain before its acceptance.
+All other T3 successors and owner decisions stay as recorded in the work graph.
+
+
+## K6c runner holds precede automatic counts binding (ROOT, 2026-10-02 UTC)
+
+The independent RV32 VR and RV33 H reviews of exact
+9086964a1fb656a76cda6d1002d8594efa636fdc identified a blocking ordering defect:
+new model-specific counts binding can occur before the existing conditional
+approval or recorded-ascent hold is evaluated. ROOT read RV33's process-free
+RUNNER_HOLD_REPRO.json and confirmed the source ordering. No actual 10,000-member
+process was run by these reproductions. Final review returns remain pending.
+
+Keep those holds before automatic model-specific counts/normal launches in
+run_tier. Existing tier noop baselines and explicit standalone counts acquisition
+retain their semantics. After nonnumeric eligibility passes, bind the actual
+launch context before numeric admission/backstop and ratio use; no stale or fake
+counts substitute is permitted. Existing named refusal, conditional approval,
+recorded-ascent semantics, thresholds, normal caps, VR counts cap and process-free
+plan behavior remain. This is a correction within the accepted caller contract,
+not a new policy or owner-held limit.
+
+ROOT grants I24 a 20-minute four-file H/VR runner-and-test repair, with additive
+I24/runner_hold_repair_02 evidence and no other maintained edits. Same RV32/RV33
+reviewers must backcheck the committed repair. They continue exact-908 review
+against their own archives while I24 edits. I21 separately receives a 45-minute
+archive-only kernel/H mutation assignment against908, with actual patches and
+NONE control under I21/kernel_mutants_26. No performance slot or final-bound
+acceptance follows from either assignment. Native tasks retain no Git/index
+write authority; ROOT integrates. A1 remains merged and its audit closure stands.
+
+
+## Owner pause after K6c runner closure and mutation stop (ROOT, 2026-10-02 UTC)
+
+The owner requested a graceful halt at the current convenient conclusion.
+All current bounded TASKs returned and stopped; no follow-on implementation,
+experiment or performance slot was granted. T3 is paused by owner direction,
+not complete. HANDOFF_2026-10-02_OWNER_PAUSE.md is the recovery entrypoint.
+
+ROOT read both complete same-reviewer backchecks and verified their payloads.
+Close RV33-H1 and RV32-V1 on10315a8167c47f43aa41402beb88ed2c70e62cf2:
+R/source_review_RV33/runner_backcheck_03 and
+R/design_review_RV32/_run_records/runner_backcheck_03. The latter was relocated
+intact into its raw evidence role; the navigation pointer and custody ledger
+preserve every sealed byte/mode. No numeric admission policy was weakened.
+Author system-Python use is disclosed; independent backchecks used the requested
+VENV. This closes the runner defects only, not complete K6c qualification.
+
+Preserve I21/kernel_mutants_26 as an incomplete required programme: its RETURN
+reports NONE passing, four numerical assertion kills and the real M05 Uc-overlap
+survivor. The archive is restored but its last compiled mutant binary remains
+diagnostic. Seven later kernel variants are unrun. No mutant survivor is waived.
+I24/vr_mutants_prep_03 is uncompiled/unexecuted preparation with two pending
+witness cells; I25/historical_replay_01 is a conditional author replay awaiting
+independent review and historical VR launch-gap disposition. Neither is accepted
+as complete E_max or a measurement/admission grant.
+
+The source/review/evidence checkpoint is K6C4be7239b9f356beee5c7e4ab2f689033fad30245;
+maintained source remains10315. ROOT verified the returned seals and preserved
+the requested interpreter note and all raw evidence. No target/baseline was
+pruned. A1 remains merged at3a0251874d6ab38008173a22ef09d651a0f20d9e, with the
+corrected retained-route AUD-T3-01 closure and broader F2a prerequisites distinct.
+
+ROOT also reconciled the graph's stale Current table cell with A1's already
+recorded merge and this pause; historical progression remains preserved. Resume
+only after owner direction, starting with the narrow M05 witness/test gap and
+then the existing K6c sequence. Standing TASK/Git/gate rules and all owner-held
+T3 choices remain in force.
+
+
+## Owner resumes after graceful halt (ROOT, 2026-10-02 UTC)
+
+The owner explicitly resumed T3 and asked ROOT to retain and improve its management
+lessons. The preceding pause is historical and revoked by that direction. No A1
+gate is reopened: GitHub confirms PR1070 merged and main remains3a0251874.
+K6C40179f1da5961cfef7edeaf7be4eb675379f79b5 is clean and pushed; its maintained
+source is10315. The M5guard is running and no Cargo/rustc/solver process was left.
+
+Previous native child sessions are absent, so fresh I26 and RV34 identities are
+dispatched directly by ROOT. I26 owns only a narrow source-valid Uc regression
+witness/test and exact NONE/M05 check; RV34 independently reviews I25's saved
+historical replay. Their scopes are disjoint; no large measurement slot or wider
+implementation/host-tool grant follows. Briefs are R/BRIEFS/I26_UC_WITNESS_01.md
+and RV34_HISTORICAL_REPLAY_01.md.
+
+Operational lessons for this run: name the claim and a decisive falsification
+check before delegation; expose individual lifetime terms that outer maxima can
+mask; keep implementation, review, artifact qualification, admission and measured
+acceptance distinct; give shared edits one owner and frozen review bases; report
+supporting work against the numerical question and its time bound; retain one
+compact recovery entrypoint with selected evidence. These are this run's execution
+practice, not an amendment to standing agent instructions or a reusable workflow.
+
+
+## Narrow VR lifetime-phase regression grant (ROOT, 2026-10-02 UTC)
+
+The saved VR preparation names two unexecuted witness gaps. ROOT commissions
+fresh I27 to distinguish phase-identity coverage from domination by later global
+maxima, and to add only source-backed local phase regressions. A narrowly
+mechanical private helper extraction in VR/src/envelope.rs is permitted if the
+existing estimator consumes it and algebra/lifetimes remain unchanged. No public
+contract, bound policy, supported input domain or protected criterion changes.
+The detailed fence and25-minute bound are R/BRIEFS/I27_VR_PHASE_WITNESSES_01.md.
+I26 retains the Cargo lane until explicit ROOT release. H/VR writes are disjoint.
+Independent review follows ROOT verification/commit before any claimed closure.
+
+
+## Historical replay verified at its declared scope (ROOT, 2026-10-02 UTC)
+
+ROOT read the complete RV34 historical_replay_01 return and verified its31
+payloads under sealec4c1328d05fc66eb16225040f3f9b2ef52df0b0186dde49e9353592633a1dba.
+Accept the independently recomposed conditional source/records replay in I25's
+packet. RV34's result table establishes all102 old dictionaries reproduced,
+all66 H decisions still admitted with actual historical H path deltas, and six
+largest-size backstop deferrals in each VR history under its reference profile.
+Its Chronology, H launch/metric and Floating-point sections establish the checked
+denominators, windows and boundary semantics. None is a new run authorization.
+
+Preserve the exact historical VR argv0/model-path/compiled-manifest and artifact
+transfer limitation. The large sparse subtotal independently establishes the
+largest-size deferrals under that bound policy; lower-size admission and VR peak
+comparisons remain reference-launch conditional. No measured excess or universal
+historic executable bound is inferred. Further broad missing-path archaeology is
+not commissioned. Final prospective ordinary-artifact/input/launch qualification
+and measurements remain mandatory before full K6c acceptance.
+
+I26's source-valid Uc witness is committed2ae028eb275684ac0aa8082e034128ff251027a4.
+I27's algebra-preserving private VR phase helpers/tests are committed in the
+combined81c03849033f3ce745668f581f446530789397b8. ROOT read their full maintained
+diffs and sealed returns and verified write sets/postimages. Both authored mutant
+results await fresh RV35 review; M05 history and I24's unexecuted preparation are
+not rewritten. No wider mutant programme or scale slot is released yet.
+
+
+## Lifetime witness gaps closed; remaining mutants released (ROOT, 2026-10-02 UTC)
+
+ROOT read the complete fresh RV35 phase_witnesses_01 return and verified its58
+payloads under seal29b74e5e480de5e3485df2111d411fb2449d94eb0d39350cda5aafd54cadb4b9.
+Accept both maintained changes on81c03849033f3ce745668f581f446530789397b8 within
+that exact conditional source-arithmetic scope. Close the Uc overlap witness gap
+and VR-SPARSE-16F-WITNESS / VR-REFUSED-FORMAT-ARGUMENT-WITNESS. The independent
+source/owner checks and execution table establish the intended local identities,
+actual normal controls and exact mutant discrimination. No source expression,
+public contract, numerical bound policy or supported input domain was weakened.
+
+H/Uc M05's original survivor remains history. VR-M02's global masking and the
+separate VR-M05 existing-phase detection remain explicit; neither is called a
+measured global undercount. These closures do not complete the wider mutation
+programme or qualify an executable/measurement.
+
+ROOT now dispatches I26 directly for the prepared30-minute remaining-kernel
+mutation brief, R/BRIEFS/I26_KERNEL_REMAINDER_02.md, on the same maintained81c038
+basis. The Cargo lane is free and reserved to that TASK; no other runtime grant
+is implied. Stop on the first survivor/normal failure or compile-only failure.
+No production/test repair is included in that archive-only assignment.
+
+
+## Remaining VR mutation execution grant (ROOT, 2026-10-02 UTC)
+
+I26 reports completed M06–M12 executions without a survivor or compile-only
+failure and has released the Cargo lane; its full sealed return still awaits
+ROOT verification and independent review. ROOT confirms no cargo/rustc process.
+Dispatch I27 for the prepared25-minute remaining VR estimate mutation block,
+R/BRIEFS/I27_VR_MUTANTS_REMAINDER_02.md, on maintained81c038. Only archive/evidence
+writes are authorized; stop rules and no criterion/source weakening remain.
+This grant is execution of required validation, not acceptance of I26's unreviewed
+return or any artifact/measurement qualification. No scale or V-K matrix slot
+is implied.
+
+
+## Estimate mutation programme closed; ordinary artifact freeze (ROOT, 2026-10-02 UTC)
+
+ROOT read the complete RV35 mutant_programme_02 return and verified its65 payloads
+under seal28cdda3eae3bb9f0bb14ed5f8d1f284afbbe05c306c48d652a3688f798bf29d4.
+Accept the complete estimate-mutation obligation at maintained81c03849033f3ce745668f581f446530789397b8:
+its disposition table accounts for12 kernel and6 VR variants with actual compiled
+intended failures, valid normal controls, source carry and separate historical
+outcomes. This is conditional identity/named-phase coverage, not a measured heap
+claim or complete E_max/current-artifact acceptance. The V-K seeded matrix is
+a separate outstanding obligation.
+
+ROOT also read I28's complete preflight plan/commands/source-binding table and
+verified its17 payloads under seal3dec8828da450103fba7ede7ab46826d186a901fd00fec9290aa27a87e8483f3.
+Select maintained81c038 as the production source freeze for the next bounded
+ordinary artifact preparation/correspondence block. Required V-K/final gates
+remain; later maintained changes reopen affected bindings.
+
+Dispatch I28 under R/BRIEFS/I28_ORDINARY_ARTIFACTS_02.md for45 minutes on the existing
+M5 guard/sole Cargo lane. Only ordinary H/VR builds, finite existing native request
+inspection and one unchanged accepted ten-type reporter are authorized. No new
+tool/reader/guard/probe, arbitrary private-layout inference, counts/model/solver
+or measurement run. Missing attribution remains a named unqualified cell. ROOT
+will independently review returned evidence before relying on a bound.
+
+
+## V-K first adapter block released (ROOT, 2026-10-02 UTC)
+
+ROOT read I27 vk_execution_plan_03 RETURN/PLAN and the exact B1/first-route
+command and criterion metadata; its seal41fe834ae3ef144754a9396a002aca17bd8defbc772002963c0a1ad5c107035c
+verifies. The unchanged original seeded sites, criterion-bearing sources and
+empty overlay list support this current-candidate execution selection.
+
+Release only block A_FIRST: fresh debug seeded adapter build on maintained81c038,
+then separate NONE/F10/NONE and NONE/UNKNOWN/NONE processes using the exact
+canonical-permutation filter. Twelve-minute total from native receipt, cutoff9.
+Expected F10 is the original canonical-array comparison; UNKNOWN must reach the
+named unknown-fault panic. Compilation, zero-test or unrelated failure is not a
+witness. Normal controls must execute and pass the complete original test.
+No retained solve,10000 construction, other group, overlay or source/criterion
+change is granted. I28 completed all compiler/reporter work and continues only
+native evidence inspection; the sole Cargo lane transfers to I27. Later B/C/D
+blocks and independent acceptance remain separate.
+
+
+## V-K debug semantic block B released (ROOT, 2026-10-02 UTC)
+
+ROOT read I27 vk_runtime_04 RETURN, verified81 payloads under seal91c7602386af0ee890296cc8634762b864f81f66b027e1602c0a4ba85e4e4132,
+and preserved its actual first-block controls. The UNKNOWN quoting discrepancy
+was an evidence-matcher transcription error: ROOT independently checked the
+unchanged seeded.rs Debug-format panic and historical P37 raw message. The fault
+was not rerun and no criterion changed; the original restoring NONE completed.
+Independent full V-K result review is still outstanding.
+
+Release I27 B2/B_DEBUG under R/BRIEFS/I27_VK_DEBUG_05.md for30 minutes, preserving
+all eight exact routes and fresh controls. ROOT has read the plan's original
+filters/criteria and historical timing fields; these are no fresh duration promise.
+Only original small-case retained solves/parity in those tests are permitted.
+No release records group, mechanical full matrix, scale job or measurement follows
+automatically. Ordinary-artifact review RV36 runs read-only on a disjoint fence.
+
+
+## Ordinary artifact correspondence accepted; V-K release block C (ROOT, 2026-10-02 UTC)
+
+ROOT read the full RV36 RETURN and additive TIME_CORRECTION, verified final95
+payloads under sealccfce99f7a5099bc6910fea41f3fa9b4e56b9763f95882d7c2bd4a65ed293fb2
+and the unchanged original92-payload seal42b7d36683f1157e8ba56473fe2f90142cb855b3ccd2d34924e22dae8b01f1e8.
+Accept I28's ordinary H/VR source/build/type/request correspondence within those
+stated premises. Direct current-image requests, carried nominal facts, four
+source-composed internal pairs, unavailable complete link map and inferred omitted
+defaults remain distinguished. The ten-type current reporter is independently
+confirmed. The timestamp correction withdraws unsampled precision; it changes no
+technical result. No complete run, input/launch, admission or measurement grant
+is implied. Those separate bindings remain required.
+
+ROOT also read I27 B_DEBUG RETURN and verified206 payloads under
+seal01ae9fd2f71ff16a96ea35979b98978b93a7cf0821cb3e19847336f8bd8c9909.
+All assigned author routes have actual restoring controls and qualified named
+witnesses; full independent V-K programme review remains outstanding. Preserve
+zero-credit extras and unexecuted later assertions.
+
+Release only B3/C_RELEASE under R/BRIEFS/I27_VK_RELEASE_06.md for30 minutes.
+The full existing family/show/parity scope, original criteria and separately
+owner-approved F17 cases remain unchanged. Historical seconds are not a current
+duration guarantee. No full mechanical matrix, scale run or maintained edit
+is included. The Cargo lane is idle and assigned only to that TASK.
+
+
+## Row139 input acquisition released; later comparison held (ROOT, 2026-10-02 UTC)
+
+ROOT read RV36 measurement_plan_02 and verified its13-payload seal9c71189cd1d3f4c341a128bc69e016bf1d03a0d3ac10e7843ff14a943769bb04.
+Accept first-step readiness only. The complete37 parsed seed fields and additional
+invariants are mandatory before any row-specific seed reliance; other models and
+automatic tiers remain unqualified. No15-field summary or runner positive-estimate
+check substitutes for full correspondence.
+
+Release I26 under R/BRIEFS/I26_INPUT_QUALIFICATION_04.md for20 minutes: existing
+quiet/guard check, exactly the same ordinary H no-op and exact row139 counts-only
+prepass, then stop before admission/solve. This is evidence acquisition on the
+reviewed artifact, not timing/calibration or a scale grant. No matrix compiler/run
+shares this quiet acquisition slot; other active work is read-only review.
+The historical full-publication comparison stays held; the owner has a concrete
+scoped proposal and has not yet answered. No dependent acceptance is assumed.
+
+
+## Current V-K semantic review and D mechanical grant (ROOT, 2026-10-02 UTC)
+
+ROOT read the complete RV37 vk_semantics_01 RETURN and verified718 payloads
+under seal4d195d574d100a98ebc06f10b97154480f28cbdf8aa80c81bdef48236354cc65.
+Accept its current fifteen-ID plus UNKNOWN semantic coverage within its stated
+source, feature, profile, controls and observed/unreached-result limits. D's
+mechanical matrix remains outstanding and supplies no substitute semantic credit.
+
+[Correction to I27/vk_runtime_05 RETURN's RF-WEAK summary: RV37 independently
+verified thirteen quantity-level CLASS mismatch lines across ten distinct
+protected case/row comparisons. Three bending-magnitude comparisons each yield
+Ry and Rz lines. The original51-comparison roster and three InputDerived
+exceptions remain unchanged. This corrects summary wording only; preserve the
+original sealed evidence.] Same-reviewer wording confirmation follows.
+
+I26 input_qualification_04 has completed its two authorized processes and
+released the quiet slot. ROOT read RETURN and COMMAND_SCOPE_ADDENDUM, verified
+the20-payload base and separate addendum seals, and committed both. The return
+reports full row139 seed/context correspondence; independent RV36 backcheck is
+commissioned before final disposition. No ordinary solve, admission, rho or
+measurement result is claimed. Other models remain unqualified.
+
+Release only I27 D under R/BRIEFS/I27_VK_MECHANICAL_07.md for45 minutes. The
+archive must include the original feature guard's complete manifest-discovery
+scope and release checker. The unchanged full runner, normal control, all
+registered IDs and UNKNOWN are required; any timeout or bad result stops the
+owned process group. No new tool, source change or scale run is granted.
+The owner historical-publication comparison question remains pending.
+
+
+## Row139 qualified; semantic wording confirmed (ROOT, 2026-10-02 UTC)
+
+ROOT read RV36 input_qualification_03 in full and verified its12 payloads
+under sealcf88a684bf31e1b48484f87d320a26006462dc9beeeb282a339bb06941e1276f.
+Accept I26's finite row139 input/count/context correspondence only. RV36's
+Independent result table establishes the complete consumed-field/invariant and
+actual-context checks; its Actual execution scope distinguishes the successful
+short process from an RSS-watchdog intervention witness. No normal solve,
+admission, rho, performance or full E_max acceptance follows. Other seeds and
+all staged measurements remain outstanding.
+
+ROOT also read RV37 vk_semantics_02 and verified its4 payloads under
+seal9cda91957521bb68f8aee48401a48084cbaa144e9c512fa07171c7c46adc554c.
+The same reviewer confirms the additive RF-WEAK correction resolves RV37-N1.
+Original sealed author evidence remains intact; no numerical rerun is needed.
+
+I26's later read-only preparation identifies fourteen remaining first-pass
+small-tier model acquisitions under the existing sealed launch manifest. It
+also identifies inherited H run_tier limits: full catalogue schedule enumeration
+occurs before tier filtering, the tier baseline is not rejected on classification,
+and the binding helper itself checks a positive estimate rather than complete
+seed correspondence. ROOT read these source paths and their base diff. Fresh
+RV38 confirms the catalogue/no-op behavior is inherited; the repaired eligibility
+contract concerns model-specific subprocesses. Complete seed correspondence
+remains an external qualification prerequisite, not a commissioned new tool.
+No automatic T1 grant or runner repair follows from this preparation. A later
+grant must explicitly account catalogue preparation, successful same-artifact
+baseline, full small-seed qualification and truthful stop/measurement boundaries.
+I27's independent mechanical work and RV38's composite source review continue.
+
+
+## Fresh composite K6c source review accepted at source scope (ROOT, 2026-10-02 UTC)
+
+ROOT read the full RV38 composite_source_01 RETURN and COVERAGE and verified
+its10 payloads under seal924bacd98904d647db9080716bf2e32fec9b3e5c9d578bf8c384d28bee46dfab.
+Accept source-review fan-in for the complete28-file maintained diff from
+main3a0251874d6ab38008173a22ef09d651a0f20d9e to81c03849033f3ce745668f581f446530789397b8,
+under the accepted conditional profiles and explicit ordinary/input qualifiers.
+Its Source assessment and Independent metadata/arithmetic checks establish the
+reviewed coverage. No actionable maintained-source finding remains in that
+review. It does not establish final measurements, complete K6c/E_max, final
+revision gates, F2a or engineering acceptance.
+
+In particular H's source/solve/prefix windows retain their own matching metrics.
+Do not compare parsing, count-acquisition, later serialization or global summary
+peaks to H's stage bound as though it were an all-process heap theorem. The
+independently reviewed inherited catalogue/no-op behavior and external full-seed
+qualification requirements stand. No runner redesign is commissioned.
+
+Process exception disclosure: RV38's Remaining scope records one initial Git
+status without optional-lock suppression; subsequent reads suppressed it. ROOT
+does not claim that initial command enforced zero optional index refresh. No
+explicit index operation or maintained delta is reported, and all maintained
+postimages match the frozen candidate. Preserve that distinction alongside the
+actual native parentage/write-fence record; do not rewrite it into a blanket
+no-Git-writes history.
+
+
+## Small-tier inputs qualified; first measurements bounded (ROOT, 2026-10-02 UTC)
+
+ROOT read I26 t1_inputs_05 RETURN and verified all93 payloads under
+seal86a3c7c98c17e68d7d65f3c3a674779674735fc6ab198440eebb321e8a801c4c.
+ROOT also independently parsed every raw acquisition with duplicate-key rejection,
+checked all37 consumed fields and20 invariants against each model's own immutable
+seed, fresh estimate fields, actual planned argv/start metadata, zero repeats,
+no dump and empty normal records. The preserved ROOT_T1_INPUT_CHECK_20261002.json
+reports these new checks. Together with independently reviewed row139, accept
+finite input correspondence for all fifteen T1 models and their bound contexts.
+No normal solve or measurement was performed by those acquisitions.
+
+Prepare original W1-T1 under R/BRIEFS/I26_T1_MEASUREMENTS_06.md. ROOT's separate
+explicit lane-release message starts its30-minute grant. This knowingly includes
+the unchanged runner's complete Python catalogue metadata enumeration; no larger
+product solve/count or tier is granted by that bookkeeping. Actual baseline
+success is externally checked before relying on its measurements; invalid
+baseline means stop and no accepted results, including any provisional process
+started before detection. Complete seed qualification precedes tier reliance,
+and every new normal/binding record is checked again. No runner patch, host
+tool, policy/tolerance change or protected-comparison waiver is commissioned.
+
+I27's mechanical matrix has returned, ROOT read its full RETURN and verified
+all80 payloads under seale032d1a49db4f92458b12e18c9644cf388f891c9007e152d92211f720a4ed8dc.
+Its runtime is stopped/reaped. RV37 independently reviews it; no full mechanical
+acceptance is inferred until that review returns. Composite source review stands.
+The owner KF3 historical-publication comparison question remains pending.
+
+
+## Full V-K mechanical matrix closed (ROOT, 2026-10-02 UTC)
+
+ROOT read the complete RV37 vk_mechanical_03 RETURN and verified its12 payloads
+under seal1d98a8a25ac596458b84e998a46cb512194243c6184df723e7e8f1f7f93d78ed.
+Accept D's complete original mechanical matrix at maintained81c038. The report's
+row table and full-log analysis establish the normal suite, registered failures,
+UNKNOWN panic, completed exits and absence of timeouts; its source/artifact and
+process paragraphs bind full scope and reap. No unresolved actionable finding
+remains. The suppressed initial-build stream remains a disclosed inference from
+unchanged runner control flow and later actual artifacts, not an invented event.
+
+D adds no semantic credit; independently accepted A/B/C witnesses and their
+normal restoration carry that separate obligation. Both V-K semantic and full
+mechanical checks are now accounted for this K6c source candidate. This closes
+neither ordinary measurements nor final K6c/gates or engineering acceptance.
+
+The first ordinary W1-T1 grant is active with I26, receipt05:36:25 UTC, runtime
+cutoff06:01:25 and return06:06:25. It has the sole quiet/timed slot under the
+existing guard. No later tier grant or owner comparison amendment is implied.
+
+
+## T1 observations accepted; missed live inspections disposition (ROOT, 2026-10-02 UTC)
+
+ROOT read RV34 t1_measurements_02 in full and verified its19 payloads under
+sealb75ff372045ddcc057637ae006c4a54f279aeb683a52ec75a34015301cbf65b5.
+Accept its independently reconstructed finite post-run T1 observations. Its
+actual-scope table, Baseline and chronological arithmetic, Complete input/context
+and window checks, and Outcome/work sections establish the qualifying data.
+These successful, source/artifact/input-bound rows may supply the existing
+recorded-ascent and eligible smaller-row calibration predicates, with the unchanged
+minimum-size rule. They establish no larger-size or whole-process heap guarantee.
+
+RV34-T1-F1 is a real P2 execution deviation: the required immediate/live external
+checks did not occur. ROOT owns the assignment and accepts this completed small
+tier's observations after complete independent retrospective validation, while
+retaining the unfulfilled process requirement. No fully compliant live-gated run
+is claimed, and no missing live evidence is backfilled. All baseline, binding,
+window and stop-trigger predicates tested on the complete retained records pass;
+there is no observed invalid baseline, mismatched input, bound breach or other
+trigger concealed by this disposition. A retry solely to manufacture a different
+supervision history is not commissioned. This is a disposition of this finite
+assignment, not a standing-loop or numerical-criterion amendment. Same-reviewer
+confirmation of the scoped disposition is required before releasing T2.
+
+Cleanup credit is limited to the source-supported wrapper waits, recorded outer
+exit/reap and actual endpoint command snapshots. Success-path survivors=[] is a
+default, not an executed group scan; the historical arrays remain untouched.
+Filesystem log times remain filesystem provenance, not sampled process endpoints.
+
+ROOT preserved all412 T1 raw files byte-exact in the immutable
+R/MEASUREMENTS/W1_T1/_run_records/records.tar.gz before any later chronological
+journal append. RV34 independently verified every manifest member. The live
+working journal may grow only under a later explicit grant, preserving its old
+prefix and the immutable snapshot; sealed author/review bytes remain unchanged.
+
+The prepared T2 brief explicitly keeps successful baselines, complete input gates,
+all numeric limits and full post-run checks. Existing tools should observe
+progress while possible; a missed external observation must be disclosed and
+results remain provisional until validated. No new guard/runner or source change
+is authorized. The owner-held KF3 T4 comparison and all later gates remain held.
+
+
+## T1 disposition confirmed; T2 released (ROOT, 2026-10-02 UTC)
+
+ROOT read RV34 t1_disposition_03 and verified its3-payload seal
+b3b562a58f2f69203256443a61ed4eb122f97c97b0d07976f98d529881623391.
+The same independent reviewer confirms RV34-T1-F1 has a truthful sufficient ROOT
+disposition for finite T1 observations, with no unsupported inference. Close its
+disposition requirement; the historical live-inspection failure remains recorded.
+The unchanged minimum-size rule still prevents these sub100-member observations
+from calibrating a target at least1000; they can support their eligible next tier.
+
+Release only the prepared I26_T2_MEASUREMENTS_07.md scope. ROOT's explicit native
+message starts its30-minute bound/cutoff25 and sole quiet/timed slot. Six named
+100-member input acquisitions must satisfy the complete map before the original
+W1-T2 tier begins; the shared journal preserves its old prefix and immutable T1
+snapshot. All numeric holds, successful baseline and complete measurement checks
+remain. No T3/T4, new tooling, source change or owner comparison amendment follows.
+
+
+## T2 accepted with corrected numerical classes; T3 released (ROOT, 2026-10-02 UTC)
+
+ROOT read the full RV34 t2_measurements_04 RETURN and verified its19-payload
+seal470ccf012178bc14fa02340203632bf3e6faaca6594d880146f487536fc6d32a.
+Accept the independently verified finite T2 observations and complete pre-tier
+input qualification, with the review's actual-scope/chronology/window limits.
+No unresolved actionable finding remains. The source and ordinary artifact are
+unchanged. The T1 journal prefix and immutable T2 delta are verified preserved.
+
+The author base RETURN's sparse All12 Passed cell is incorrect; its separately
+sealed OUTCOME_CORRECTION is mandatory with that return. RV34 independently
+confirms CHAIN/TREE contribute8 Sensitive sparse processes and CONT4 Passed;
+all12 W1 processes select128 with verification256. These are process counts over
+two passes per model, not12 distinct models. Process classificationok is not a
+claim of Passed numerical status. No raw outcome or numerical criterion changed.
+
+Actual baseline inspection occurred while the tier was active, after two normal
+rows. Per-row checks were post-run, as disclosed and allowed by this T2 grant;
+no earlier or full live-gate claim follows. Cleanup and filesystem-time credit
+remain narrow as reviewed. The successful100-member observations can supply
+existing eligible calibration/ascent predicates for larger targets, including
+Sensitive sparse observations under the unchanged process-classification rule.
+That does not reclassify numerical quality or predict any future admission.
+
+Release only I26_T3_MEASUREMENTS_08.md. ROOT's separate explicit native message
+starts its45-minute grant with40-minute runtime stop/reap cutoff. Six named1000-
+member input gates precede original W1-T3, with actual100-member calibration,
+unchanged numeric holds, complete field/window checks and exact prefix evidence.
+No T4/10000-member product construction, new tooling, source change or owner
+comparison amendment is granted. All final K6c/merge gates remain outstanding.
+
+
+## T3 measurements accepted; T4 held for owner comparison decision (ROOT, 2026-10-02 UTC)
+
+ROOT read the complete RV34 t3_measurements_05 RETURN and verified its24 payloads
+under seal57d677defe4728c36be3bba2bdb3d0b5ecf0ae4366affe4dbf48003358d8b507.
+Accept the finite ordinary1000-member observations, input/context qualification,
+calibrated admissions and exact required prefix evidence within their reviewed
+profile/window scope. The review's actual-scope, Admission/calibration, Actual
+caller/H windows and Prefix-completeness sections establish the result. No
+unresolved actionable finding remains. No matched H heap field breached its
+corresponding bound; unclaimed global/pre-reset windows stay explicit.
+
+All six cases have their required executed prefix ends, not an assumed requested
+count. The numerical classes remain12 W1 Selected128/verification256 and sparse
+8 Sensitive/4 Passed across the two passes. Current100/1000-member observations
+supply eligible earlier data under the existing policy; no T4 admission has been
+evaluated or granted. The immutable T3 delta preserves the complete prior journal
+prefix and all original raw hashes. Snapshot cleanup evidence keeps the review's
+actual-scan limits and does not turn default survivor arrays into scans.
+
+All currently commissioned implementation, execution and review blocks have
+returned. No automatic follow-on is assigned; the existing M5 guard remains.
+T3 is active at an owner-decision hold, not complete or newly owner-paused.
+The outstanding decision is R/OWNER_CHECKPOINTS/K6C_PUBLISHED_ROWS_01.md. The
+owner has not approved that scoped amendment. Original complete historical
+published-value equality remains unestablished and its protected obligation
+remains held. No10000-member input acquisition or T4 runtime is released.
+
+After that decision: separately bind/qualify the six T4 inputs and actual launch
+contexts, review the fresh baseline/admission data, and grant the unchanged
+schedule only under its existing numeric policy; never override a numeric
+deferral. Then complete the K6c return, final independent exact-candidate review,
+full-SHA hosted CI, exact-final-head Mac DEC-025 and GEN-8 before any PR merge.
+K6c is still unmerged and complete E_max acceptance remains open. ROOT W1 limits,
+F2a, S-I, F2b per domain, F3 and the other owner-held choices still follow.
+
+
+## Owner adopts scoped KF3 comparison; T4 readiness released (ROOT, 2026-10-02 UTC)
+
+The owner's actual instruction, after discussion and explicit reaffirmation of
+the scoped comparison, is “Then proceed accordingly and carry on from there.”
+Adopt R/OWNER_CHECKPOINTS/K6C_PUBLISHED_ROWS_ADOPTION_2026-10-02.md, which binds
+the unchanged proposal's five finite clauses and preserves the owner's words.
+This removes the comparison-policy hold. Full historical KF3 value equality
+remains unestablished; unchanged analytic criteria, available-field checks,
+new full-row custody and independent review now govern that finite obligation.
+All solver correctness, numeric caps, evidence and merge gates remain.
+
+[Correction to the preceding stopping rationale: ROOT had extended a comparison-
+acceptance boundary too broadly to independent measurement collection. Owner
+authority was required to replace that protected criterion; it did not require
+all otherwise authorized evidence work to stop. The historical halt remains
+recorded, without being presented as a mandatory rule.]
+
+The M5 host, existing guard and absence of compiler/solver work are reverified.
+Fetch/gh confirms unchanged main3a0251874d6ab38008173a22ef09d651a0f20d9e, merged
+A1 PR1070 and closed unmerged PR1066 at its preserved head. Source81c038 and
+clean records branches remain. Release only I26_T4_READINESS_09.md under its
+25-minute bound: exact-context input acquisitions, no-op and prospective numeric
+decisions. No normal solve or R1 process yet. Actual T4 execution requires the
+next bounded ROOT grant after readiness; no numeric deferral may be overridden.
+
+
+## Scoped comparison adoption independently confirmed (ROOT, 2026-10-02 UTC)
+
+ROOT read RV36 comparison_adoption_04 and verified its3-payload seal
+1f55f2b355db885a4985d5adbfe701e6a54512f61f45399859ba4c12ab8cbd64.
+The decision is faithfully propagated with all five obligations and no further
+permission request for that same policy choice. Actual runtime/comparison evidence
+and final gates remain. The reviewer confirms its earlier boundary concerned
+comparison closure, not all independent acquisition.
+
+ROOT also read I28 closeout_index_03's full draft and obligation map and checked
+its informational write inventory. These remain revisable drafting material,
+not accepted final D records or a new numerical claim. T4 readiness has returned
+and its raw evidence is preserved; RV34 reviews it independently before ROOT
+normal-execution disposition. I26_T4_MEASUREMENTS_10.md is prepared, not released.
+
+
+## T4 readiness accepted; original measurements and scoped comparison released (ROOT, 2026-10-02 UTC)
+
+ROOT read the complete RV34 t4_readiness_06 RETURN and verified its17-payload
+seal22f339b27f2973e80f08aa5456053400daba0e71d5fcfbfb062a7c7a49f5e423.
+Accept finite input/context/readiness evidence. The review's caller/projection
+section reproduces all prospective numeric predicates; its recipe section
+confirms unchanged wrapper/reference criteria and mandatory complete Selected-
+dump accounting. These projections are not actual future admissions or measured
+consumption. The current hold and prior journal remain untouched by readiness.
+
+Release I26_T4_MEASUREMENTS_10.md on the fixed ordinary artifact/source81c038.
+ROOT's explicit native dispatch starts60 minutes total: normal solver stop/reap
+by40 minutes, no comparator runtime after50, final return by60. This extends only
+the separately budgeted post-solver comparison/analysis time, not the normal
+execution cutoff or original per-process limits. Use the original wrapper once
+and its sole named W1-T4 hold lift, with actual fresh baseline/prepasses and all
+numeric predicates. No numeric deferral, cap or tolerance may be overridden.
+
+Only a complete valid normal tier with critical checks passing may proceed to
+the unchanged R1 comparator within the separate time bound. Account every first-
+pass outcome, require every Selected dump, preserve unavailable/unpublished cases
+without pass credit and investigate changed supported KF3 facts. Preserve full
+new outputs and all prior journal prefixes. Partial/interrupted/invalid runtime
+returns for disposition instead of silently extending or retrying. Existing
+M5 guard and sole quiet/timed lane apply; no build or new host tooling follows.
+
+Complete K6c/E_max, final comparison acceptance, exact-head final review/gates,
+W1 limits and F2a remain open. No owner decision is re-requested for the already
+approved scoped comparison.
+
+
+## Explicit final-family continuation boundary (ROOT, 2026-10-02 UTC)
+
+I26's actual15:25:58 UTC checkpoint has completed orders247–261; TREE ROT
+second W1 pass262 has completed three expected repeats and remains active.
+All available checks remain clear; the reached high-precision TREE work, not
+supporting tooling, consumed the runtime allowance. ROOT explicitly authorizes
+a bounded continuation of only original CONT orders263–270 if and only if all
+rows through262 finish validly before the original15:30:52 UTC cutoff.
+
+If that condition is met, the same unchanged wrapper may finish those remaining
+original rows without interruption, with a new hard normal stop/reap15:40:52 UTC.
+No new comparator runtime is allowed after15:50:52, and final return is16:00:52.
+This is an explicit additional10-minute final-family runtime allocation, not
+compliance with the original deadline or an automatic extension. If TREE is
+still incomplete/invalid at the original cutoff, stop there and return partial
+without R1. No retry, new model, cap/tolerance/admission/first-repeat/per-process
+watchdog change is authorized. Every existing stop condition still applies.
+The original grant and checkpoints remain unedited historical evidence.
+
+
+## T4 author custody and bounded final review (ROOT, 2026-10-02 UTC)
+
+ROOT read I26 t4_measurements_10 RETURN, verified its54-payload seal
+9d331a4f6cc9ea637fe24d42a07cf62c69cd4859d0a01f2367ab46ec44d10f84
+and committed the owned write set. MEASUREMENTS/W1_T4 preserves all new raw files
+plus the full journal, checked byte-for-byte against the author inventory and
+the prior immutable T3 prefix. This is custody, not final numerical acceptance.
+The author RETURN's scope/outcome, metric-window, TREE-work and comparison sections
+retain actual numerical classes, unavailable per-internal-precision heap peaks,
+RSS projection misses and unpublished TREE cases. The explicit final-family time
+extension and observation limits remain visible. Runtime is stopped.
+
+Dispatch RV34_T4_MEASUREMENTS_07 for independent actual measurement/comparison
+review, I28_FINAL_K6C_D_04 for revisable final D assembly, and fresh RV39_K6C_FINAL_01
+for full final source/custody/slice review. Native TASKs own disjoint records-only
+paths, use their finite briefs and return to ROOT; no runtime or Git/index writes.
+Final independent review, exact-head gates and complete K6c disposition remain.
+
+ROOT applied RV38's finite evidence-placement plan only after I26 sealed and
+released its paths, before these reviewers started. The relocation ledger binds
+all original manifests/payloads/modes and the complete archived historical packet.
+Its failed initial archive-mode check was repaired by a command-local standard
+Git archive option before deleting the original extracted packet; no Git config,
+policy, classifier or sealed evidence changed. The bounded existing-classifier
+preflight passes; actual GEN-8 remains. This closes custody placement only.
+
+
+## K6c T4 measurements and scoped comparison accepted (ROOT, 2026-10-02 UTC)
+
+ROOT read RV34 t4_measurements_07 RETURN in full and verified all31 payloads
+under seal282d49093e6ea08c7fc0a72cab150a44371a00be0b9709874014779d2ba1bfeb.
+Accept checkpointB's finite current T4 observations and the owner-adopted scoped
+KF3 comparison. The review's actual-tier table, source/context/admission section,
+matched-memory section, reached-precision/prefix section and independent comparison
+section establish the supplied original schedule and numerical checks. Complete
+new published outputs and immutable journal prefixes are preserved. Unpublished
+TREE cases receive no value-pass credit; full historic published-value equality
+and full W1/sparse value equality remain unestablished.
+
+For I21 §4 and K6B §13.5, accept the reached512/1024 evidence at its actual
+granularity: per-attempt work/storage plus measured whole-call source/solve/prefix
+requested/moving windows that span those attempts. No per-internal-phase or
+precision-isolated heap peak is supplied or inferred. This closes the finite
+post-KF3 T4 measurement obligation at that explicit scope, not a stronger
+per-precision attribution claim or a universal runtime bound.
+
+RV34's memory/policy section establishes eight empirical RSS projection misses,
+with no matching H-window breach or configured RSS-cap breach. Disposition:
+retain them as mandatory input to the next ROOT W1-limit/policy ruling. The
+empirical RSS projection must not be relied upon as an observed-consumption upper
+guarantee. This changes no current admission criterion, retrospectively changes
+no decision and provides no new runtime permission. K6c's matched heap-envelope
+claim and whole-process RSS forecasting remain distinct. No additional experiment
+is required merely to relabel the unavailable precision-isolated peaks.
+
+The review confirms the explicit CONT-only continuation condition and revised
+deadlines. Its finite monitoring/cleanup credit is accepted as stated; file-write
+timestamps and default survivor arrays are not promoted to observations they did
+not provide. Earlier T1 monitoring failure, T2 outcome correction and historical
+VR/artifact qualifications remain.
+
+ROOT read I28's complete revisable D RETURN, CHANGE_RECORD and EVIDENCE_INDEX,
+verified its informational inventory and committed the8 owned files. ROOT now
+updates only the accepted T4 reference/status and freezes D for RV39's final
+records delta. Complete K6c/E_max disposition, final independent exact-candidate
+review, hosted CI/full-SHA dispatch, exact-final-head Mac DEC-025/fresh target and
+GEN-8 remain. W1 limits wait for K6c's merge; F2a retains its own adoption/gates.
+
+
+## K6c D accepted for final gates (ROOT, 2026-10-02 UTC)
+
+ROOT read RV39 final_slice_01 RETURN in full and verified its16-payload seal
+b881aef306b4e79414a89923264b0c5266205e93dfd2beea512c88a7061b883f.
+The fresh reviewer covers the complete maintained diff and final D/records delta
+atcd98b0e903c9c4ebdeff8292f53467b0723f6ea1, with no actionable finding or open
+SHOULD-FIX. Accept checkpointD for final gates under the conditional source,
+artifact/input and metric-window premises stated in that return. Historical VR
+qualifications, precision-isolated heap unavailability and RSS projection misses
+remain explicit; no broader memory or numerical guarantee follows.
+
+ROOT freezes the candidate after adding this truthful review/disposition record.
+Run existing GEN-8, the Mac DEC-025 driver with a fresh target and preserved prior
+raw evidence, plus required hosted CI/full-SHA dispatch. Maintained source remains
+81c038. The exact reviewed-source carry and final metadata delta need confirmation
+on the actual merging revision. T9/both-entry remain inapplicable to this verified
+harness/validation-only scope. No new numerical run or host tool is commissioned.
+
+Only after those exact-head gates and the immediate unchanged-main/head check
+may ROOT merge under standing Git authority. Complete K6c disposition is then
+recorded with the merge record, ruling and graph in the same pass. W1 limits and
+F2a are subsequent work; their decisions are not inferred from this D acceptance.
