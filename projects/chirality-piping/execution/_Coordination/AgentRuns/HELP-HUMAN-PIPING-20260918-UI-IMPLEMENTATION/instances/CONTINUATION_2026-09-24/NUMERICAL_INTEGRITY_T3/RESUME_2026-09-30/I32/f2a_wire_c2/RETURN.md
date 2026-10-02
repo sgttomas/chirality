@@ -1,0 +1,13 @@
+# I32 C2 return
+
+**Finite mapping complete for RV43 review; no implementation reliance follows.** [CONTRACT_DELTA.md](CONTRACT_DELTA.md) fills C1's Reason payloads, product/source maps, unavailable-run/cache associations, failed ordinary references and terminal-evidence API choice. Corrected C1 charge algebra is unchanged.
+
+- **Reasons:** explicit typed payloads for retained attempts/stops/refusals, SourceError, Structural/Formation and W2 errors; exact textual native fields remain bounded data, never Debug-string parsing or trigger authority. The static check covers **14 enum types, 119 variants: 116 mapped and 3 explicit product exclusions**. Eight ordinary unresolved literals are preserved with the admitted/excluded distinction.
+- **Sources:** concrete case/material/node/member/spring/station/support/body/layout/term maps, ordering, uniqueness and UTF-8/count inputs. Exact-mode G is derived from its selected E/nu pair; no base-G substitution. B1 owner/case/basis/final-row association is preserved. Operational section bits do not settle RV42's geometric truth/action bridge.
+- **Origins:** call-local group and actual build records identify selected **and unavailable** runs, cached non-budget failures, uncached budget failures and invocation-exhausted starts. Combinations import only actual operand finish snapshots; later work cannot populate those snapshots retrospectively.
+- **Ordinary evidence:** capture Formation/Structural failure and W2 trigger/failure before current moves/early returns. A deferred Formation is not a successful solve. Keep existing numerical_quality schema and diagnostic-driven status; legacy-source reservations remain separate from LME.
+- **Minimal API:** choose an additive recorded execution-result path with one shared numerical core. Legacy entrypoints erase refusal traces before returning the unchanged CaseOutcome. Inspection of nine consumer files confirms this avoids required H/VR observation edits and three complete Refused-pattern changes.
+
+The upstream no-wrap admission proof remains an explicit **pre-execution implementation blocker**. This mapping, its source checks and its bounded record cardinalities are not that proof. Full memory/cost, final recipes/source-geometry bridge, native behavior and atomic producer/three-reader qualification remain separate.
+
+Source checks and actual origins are under `_run_records`; all prospective controls are unrun. Only this new C2 directory was written. No maintained schema/source/fixture, Git/index/API, compiler/solver/model/probe, host-tool or delegation action occurred. Informational inventory is revisable. Stop for RV43/ROOT review.

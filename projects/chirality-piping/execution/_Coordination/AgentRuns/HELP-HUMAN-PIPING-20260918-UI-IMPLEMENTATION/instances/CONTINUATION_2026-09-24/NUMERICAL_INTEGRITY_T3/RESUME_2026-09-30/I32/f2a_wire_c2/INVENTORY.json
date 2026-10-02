@@ -1,0 +1,45 @@
+{
+  "status": "informational revisable inventory; not acceptance/seal",
+  "files": [
+    {
+      "path": "CONTRACT_DELTA.md",
+      "bytes": 41684,
+      "sha256": "4baee6ad54b2a31e3f2431aeab57f35ff69e0e0936f5663536177e534c0f8293"
+    },
+    {
+      "path": "RETURN.md",
+      "bytes": 2653,
+      "sha256": "ebe8d55414a74d5bf6e0e1680b3fd8283fa91a2f7d5698d38efdbdf2459c3b1c"
+    },
+    {
+      "path": "_run_records/CHECK_ORIGINS.json",
+      "bytes": 3703,
+      "sha256": "bbeb6497f567e24b2bfe0b1afaf25bf39ee358f01d7cbe4a205c2bd6bd129393"
+    },
+    {
+      "path": "_run_records/COMMANDS.md",
+      "bytes": 1365,
+      "sha256": "e1e9b27999d288ea7c7943fe5924e756dc342f4a3de2267248298b468ca30464"
+    },
+    {
+      "path": "_run_records/EXECUTION.json",
+      "bytes": 2048,
+      "sha256": "f30413e6bcc258fbb8ebd5a154660b608739abbe9e1a3b7e8e58f2487ab0d21e"
+    },
+    {
+      "path": "_run_records/READ_ORIGINS.json",
+      "bytes": 8263,
+      "sha256": "a03f586dea6676bcdfd7e3c7202233b317ae8c6be5441cc6ee283725e7f40bba"
+    },
+    {
+      "path": "_run_records/SOURCE_CHECKS.json",
+      "bytes": 15193,
+      "sha256": "4602951c13bd63f0465762541c8571f35798a4302c89fe8de047457ad003b6f0"
+    },
+    {
+      "path": "_run_records/source_checks.py",
+      "bytes": 6502,
+      "sha256": "d850193f5e159b0979a2649069fa518820d5cac63196f50a757752ac341cf6c6"
+    }
+  ]
+}
