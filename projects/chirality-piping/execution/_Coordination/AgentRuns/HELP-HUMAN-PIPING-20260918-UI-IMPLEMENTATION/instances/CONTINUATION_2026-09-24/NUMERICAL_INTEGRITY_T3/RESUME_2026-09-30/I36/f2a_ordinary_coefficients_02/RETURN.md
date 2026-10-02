@@ -13,8 +13,9 @@ selected interpolation is positive. A nonpositive source result refuses this
 certificate even when the actual rounded E_hat is positive. No model-domain
 restriction, new bridge, arithmetic format, operator or output is introduced.
 The coefficient intervals below instantiate I33 uniformly, and B1/B2 can then
-form the selected private represented/source hull. Seventeen exact abstract
-control groups pass.
+form the selected private represented/source hull. The original seventeen-group checker had the exact-K
+boundary defect recorded in RV47-C1; the fresh correction_03 checker passes
+eighteen groups (see §5).
 
 P = `projects/chirality-piping`; PP = `P/core/product_physics`; FK =
 `P/core/solver/frame_kernel`; T3 =
@@ -229,7 +230,9 @@ row maps. A borrowed object alone is not proof of its source identity. No caller
 constructed loose interval record, serialized private endpoint, second source
 copy or per-member coefficient cache is required.
 
-`_run_records/exact_controls.py` passed 17 groups. It covers base/point values,
+The preserved `_run_records/exact_controls.py` historically reported 17 passing
+groups, but its rounded-CK group is not credited as exact-K evidence. The fresh
+`_run_records/correction_03/exact_controls.py` covers base/point values,
 independent G, the four-term identity, nonpositive endpoints with positive E,
 positive E_hat with exact E=0, zero/negative refusal, positive cancellation,
 G convexity, extreme abstract source spans, coefficient/delta inclusion, a
@@ -243,3 +246,38 @@ integration, actual layouts/capacities/caller overlap, code review, protected
 checks and real availability. The new finite operation and scratch inputs are
 in `DEPENDENCIES.md`. No new owner decision is needed merely to implement this
 faithful proof. Prior packets are untouched. Stop for RV47/math backcheck.
+
+## 5. RV47-C1 evidence correction (2026-10-02)
+
+RV47 at `dfd7a07711` found that the original checker wrapped all four CK
+products in `bits(...)`, rounding the products back to binary64. The theorem in
+§2 already requires the exact product of admitted primitives and is unchanged.
+The historical 17-group replay was a reproducibility check, not a correction
+or valid exact-K product witness. Original raw checker/results/origins remain
+byte-unchanged at the frozen `f5ca39a1a2` basis.
+
+ROOT authorized the narrow correction at `8ed7a1d5c5`. The fresh checker separately
+lifts each primitive operand, then multiplies the Fractions with no outer
+rounding. **All four CK values and all four corresponding endpoint delta bounds
+changed** in this control; exact before/after values are printed in
+`_run_records/correction_03/exact_controls.json`. The corrected control passes.
+
+The added rounding-sensitive control applies the same corrected constructor to
+`(1+2^-52)^2`. With the source singleton equal to RN64 of that product, exact CK
+requires `dC=2^-104`; the historical rounded-product substitution gives zero and
+fails that requirement. This is an abstract arithmetic discriminator, not a
+realized solver or admitted-product failure.
+
+The fresh run passes **18 groups**. The other 16 original groups retain their
+control statements byte-for-byte and pass. Original group order is retained,
+with the new discriminator added after the repaired group; all pre-existing
+JSON fields except group count/list are unchanged. Thirty-two named unaffected
+exact-value states were also compared. The original JSON did not serialize CK
+or its deltas; this correction explicitly reconstructs and reports them from
+the preserved checker, rather than claiming an old raw field changed.
+
+`_run_records/correction_03/CORRECTION.json` records source/repair/command/result
+hashes, comparisons, and the exact allowed write set. Informational inventory
+is updated; old raw evidence and reviews are not overwritten. Mathematical
+source promises, coefficient theorem, operation/storage dependencies, output
+predicates and qualification limits are unchanged. Stop for RV47 confirmation.

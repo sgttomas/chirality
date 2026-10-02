@@ -5286,3 +5286,204 @@ Remaining coefficient evidence correction, arithmetic/ordinary/B2 integration,
 facade cost policy and complete memory/caller work proceed separately. The owner
 was explicitly told T3 remains substantially incomplete; design proofs are not
 delivered product behavior.
+
+## Fixed arithmetic selected; ordinary evidence correction remains narrow (ROOT, 2026-10-02 UTC)
+
+ROOT read RV50 REVIEW in full and verified its thirteen payloads/exact scope,
+preserved at125464d513; manifest
+04434d7a38f59858686f9b510cd24d18fe57af293a6b6141d23dd93a93b0e0e0.
+Select I35 at2034c050d6 as the private fixed arithmetic design: existing Wide<16>
+at1024, existing directed/exact-sum machinery, the bounded directed sqrt and
+closed small-bound RU64 method, with original public predicates unchanged.
+This is not a complete resource bound. A/U coefficients, callback/loop coverage,
+logical-versus-actual storage and all ordinary/B2/work-status integration remain
+explicit. No new facade price or allowance is selected by this arithmetic choice.
+
+ROOT read RV47's coefficient REVIEW in full and verified eight payloads, preserved
+atdfd7a07711; manifest
+6792a5c339edc9272cdc5cad3a9e82dc651ca3102570c3fc682a83b5e6d7226a.
+Its conditional interpolation/coefficient/hull argument is confirmed. Accept
+RV47-C1 as a required evidence correction: the control rounds CK although the
+written theorem correctly requires the exact product of admitted primitives.
+Release I36_F2A_EXACT_K_CONTROL_REPAIR_03 in fresh correction records; preserve
+the original script/output. Do not credit that defective control until backcheck.
+This is not a demonstrated product error or a change to the theorem/predicates.
+
+For checkpoint A, prioritize the coherent checked-work kernel, actual terminal/
+meter custody and scoped H/VR gates. Complete C2 origin inventories may remain
+a named incomplete boundary at the bounded return, never invented evidence.
+The full F2a objective remains; this ordering clarification does not reduce the
+final source/reader/guard/qualification requirements.
+
+## Execution status and bounded integration follow-ups (ROOT, 2026-10-02 UTC)
+
+ROOT verified the I36 correction's ten inventoried payloads, exact replay and
+original raw/dependency preservation, and read the actual script/prose diff.
+Preserve it at 7bca4a0dfd88; same-reviewer confirmation remains required. The
+new checker lifts primitives individually before multiplication and adds a
+rounding-sensitive discriminator. It changes neither the written coefficient
+theorem nor a product source promise. Original failed evidence remains history.
+
+Release the RV47 backcheck and I35 integrated arithmetic schedule briefs at
+9fb9748897 as native TASK continuations. Their actual receipt/deadline facts are
+in ROOT_CURRENT. I35 must integrate the ordinary seven-add entry and B2/observable
+checks, expose every loop/callback/count/lifetime boundary, and distinguish
+proposed reservations from proved coverage. No facade work policy follows.
+
+I37 remains the sole maintained-code writer in its isolated checkout. ROOT
+inspected the existing claim_ratio/range_consistent test helpers and authorized
+only their fallible-signature adaptation in retained_k4/models.rs. This is not
+an oracle/tolerance/model change. Initial kernel, H and VR compile commands
+have exit 0 in the I37 packet; the evolving source is not yet reviewed or
+qualified. The work graph now distinguishes that actual implementation from
+conditional mathematical/design progress. T3 remains substantially incomplete.
+
+## RV47-C1 closed after correction-sensitive backcheck (ROOT, 2026-10-02 UTC)
+
+ROOT read the complete RV47 correction review, verified its exact seven-file
+write set and six manifest payload hashes (manifest SHA256
+911a8a19c8ea3c3a00674161807b44baa5e37e9dbed94e254803a8015d1cf8c6).
+Accept the same reviewer's confirmation of candidate 7bca4a0dfd88 and close
+RV47-C1. The independently recomputed four primitive products and delta bounds
+match the corrected exact-K construction, and the discriminator fails when
+replaced by the historical rounded-product substitution. Original evidence and
+theorem remain preserved. This closes the evidence defect only; I35 integration,
+source association, actual implementation, resource and product qualification
+remain required. No public numerical contract or availability changes.
+
+## Checked-work candidate frozen for fresh source review (ROOT, 2026-10-02 UTC)
+
+I37 returned the bounded implementation described in its RETURN, without full
+C2 origins, profile qualification or product activation. ROOT read the core diff,
+verified all 38 maintained hashes and 138 inventoried payloads, confirmed the
+exact write scope with the existing validator, and checked all twelve final B
+command records and logs. Commit fdae294643b798c1849da8b2e643085562593686
+preserves this source and packet in the isolated f2a branch. This is a review
+candidate, not acceptance or merge permission. Source remains outside NUM while
+fresh RV51 reviews it under the brief at 3e7e23babe32.
+
+I37 RETURN's final-source table records seventeen focused controls in debug and
+optimized builds plus unchanged price/oracle, partial-build, S11 and H/VR checks.
+Historical compile/test failures remain preserved. ROOT found the raw borrowed
+integer length boundary during its source read; the warranted CountRange guard
+is included and distinct from numerical/work errors. Future C2 maps and product
+3m/ordinal admission still require their own source changes and validation.
+
+The old K6c memory coefficients do not qualify changed layouts. Release the
+bounded I29 P3 ownership derivation at f6f4639d747f with actual receipt/deadline
+in ROOT_CURRENT, preserving M1 scheduling and first-occupied cache semantics.
+I35 continues the finite certificate integration contract. No host tooling,
+new numeric memory allowance, final facade pricing or wider runtime was granted.
+
+## Owner-directed graceful session pause (ROOT, 2026-10-02 UTC)
+
+The owner instructed ROOT to find a good stopping point for the session-limit
+reset, with ample preparation time, but to start no new work. Apply that hold
+immediately. Finish only useful bounded returns already in flight; do not launch
+new implementation, repairs, review assignments, test programmes or integration.
+
+RV51 has returned a sealed partial review at 54b4755d2afc. ROOT read it and
+verified its payloads/scope. It records no confirmed actionable defect, but is
+explicitly not review clearance. Existing checked-work controls passed; the
+independent harness did not compile because of its module-path setup. Independent
+discrimination and count/index dominance remain unfinished. Preserve the failure
+without labeling it a solver defect or a passing independent test. The code stays
+at fdae294643b in the clean, pushed f2a branch and is not merged into NUM/main.
+
+I38, dispatched just before the pause, stopped at startup without substantive
+source investigation or conclusions. Its two-file checkpoint and instruction
+origins are preserved in the same commit. I35 and I29 may finish only their
+current bounded packets, then stop; their new derivations will remain unreviewed
+until resumption. No code or review acceptance follows from a pause return.
+
+Origin/main was observed at a533dc2d67bcb97460b6fb64be8922b6411de2a8 after
+App-v4 PR1072. ROOT checked that the delta from the T3 baseline 49034a940f has
+only projects/chirality-app-v4 paths; Piping and its relevant instruction/skill
+bases are unchanged. No integration is attempted during this pause. Refresh
+and merge main (never rebase) at the appropriate resumed candidate boundary.
+
+## Graceful pause settled; no new work authorized (ROOT, 2026-10-02 UTC)
+
+All delegated agents are stopped/completed. ROOT's final host scan found no
+cargo/rustc process; the existing memguard PID 5387 remains running. Both owned
+checkouts were clean before the final handoff update; their code/evidence are
+preserved. No raw evidence, target or worktree was pruned and no merge occurred.
+
+I29 P3 and I35 integration-02 completed useful bounded returns before stopping.
+ROOT read their returns and verified exact inventories/scope, preserving them
+at 2fc3e8f71df2e140a0a0d50b72305be5d1c5a618. They remain unreviewed and
+unaccepted derivations; their synthetic/abstract controls do not supply an
+implemented numeric memory limit, facade tariff or product qualification.
+
+RV51's partial review and I38's startup pause remain as recorded above. I37's
+source stays frozen at fdae294643b in its pushed isolated branch. Complete the
+unfinished review and affected backchecks after resumption before reliance; no
+new implementation was started from I35's proposed helper block. The work graph
+and ROOT_CURRENT now point to HANDOFF_2026-10-02_SESSION_PAUSE.md. This is an
+owner-directed pause, not T3 completion or a new human acceptance decision.
+
+## Owner resumption and bounded review restart (ROOT, 2026-10-02 UTC)
+
+The owner explicitly said “You may resume.” The prior session pause is ended;
+its sealed handoff and partial packets remain historical. ROOT verified the
+M5 Max host, existing memguard PID5387, no cargo/rustc and clean NUM/F2A
+checkouts. Fresh fetch leaves main a533dc2d67bc; its Piping/relevant instruction
+bytes match the T3 baseline. ROOT merged it into NUM with --no-ff at d01b218e7ad.
+The isolated fdae294643b source remains frozen for RV51; no rebase or source
+change occurred. GitHub confirms PR1071 merged and no F2A PR exists.
+
+Release the new RV51 continuation, RV50 integration backcheck, fresh RV52 P3
+review and I38 native ownership continuation briefs. Each owns a new packet;
+no sealed pause record is overwritten. RV51 alone has the focused Cargo lane.
+No new helper/product source implementation, numeric resource policy or heavy
+qualification is granted by these review/investigation assignments.
+
+## Private numerical helper implementation released (ROOT, 2026-10-02 UTC)
+
+ROOT read I35 integration-02's three detailed design/manifest documents in full.
+RV50's resumed interim assessment confirms its section0 two-helper block can be
+implemented conditionally against the frozen checked API, independently of full
+product/caller/visit-policy integration. Release I39 under brief081cd0e655:
+private directed sqrt and finite small-row-bound RU64 only, actual work/error
+collection on every exit, independent exact vectors and focused tests. No larger
+integration or visit-permit policy is selected. Final fresh code review and RV51
+checked-API correspondence remain mandatory.
+
+ROOT created wt/f2a-arithmetic from fdae294643b after checking worktree/artifact
+inventory; wt/f2a stays unchanged for RV51. The shared directed.rs registration
+hunk will be integrated serially by ROOT. I39 has no Git/index/API authority.
+The lane stayed held until RV51 explicitly released it; ROOT verified no cargo/
+rustc and memguard5387 before handing over the bounded lane at23:38:41 UTC.
+
+RV50 identified a B64U custody gap: existing Result-only binary64_up returns
+no local SumWork. Its correction remains a design interface requirement; never
+book a theoretical safety bound as spent work. It does not affect the separate
+two-helper methods.
+
+[Correction 2026-10-02: ROOT's resumption-record script at52a57416 mistakenly
+wrote the graph text into the revisable ROOT_CURRENT index instead of saving
+the updated graph. The index and graph are now corrected explicitly. Source,
+sealed evidence, authority and dispatched briefs were unaffected.]
+
+## Checked-work source accepted for working-branch fan-in (ROOT, 2026-10-02 UTC)
+
+ROOT read RV51's completed RETURN and SOURCE_TRACE in full, verified its exact
+23-file packet and inventory804993c540d07ffd54c7476405e10e430a46e6a5c31a6bee157180b83a363b0d,
+and confirmed the original partial packet unchanged. Preserve the completed
+review at4d9358b550. Accept fdae294643b as the bounded checked-work prerequisite
+on the stated 64-bit source/consumer scope; no actionable findings remain.
+ROOT merged this source into NUM with --no-ff and confirmed maintained core/
+validation bytes remain exactly the reviewed candidate. This is local fan-in,
+not a main merge or full F2a/product/profile qualification.
+
+The fresh review completes its count/consumer trace and five independent raw/
+accounting controls in debug and optimized builds. Import setup failures remain
+review-harness evidence, not product regressions. Full C2, other target/profile
+qualification, closed count/error maps, memory/caller/availability and required
+final gates remain. The source stays frozen in wt/f2a for current P3 reference.
+
+ROOT also read/verified RV50's final integration review preserveddf2ba0a07d97,
+seal dc78333a9940897ce0c9066adabf9faf099a64d5977d9af8e44c7eb00c0d4941.
+Accept RV50-INT02-1 as required B64U custody correction before full integration
+reliance. I35 repair is bounded by briefaff15c8151e; same-reviewer confirmation
+will follow. The separately reviewed sqrt/small-bound helper grant remains valid.

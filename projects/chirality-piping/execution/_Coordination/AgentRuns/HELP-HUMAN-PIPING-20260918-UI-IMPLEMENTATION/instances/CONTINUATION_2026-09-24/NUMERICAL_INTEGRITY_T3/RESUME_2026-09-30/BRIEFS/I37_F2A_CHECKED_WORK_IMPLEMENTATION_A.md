@@ -38,6 +38,13 @@ producer/readers, geometric certificate or method activation in this checkpoint.
 No old K6c memory profile is claimed qualified for changed layouts. Leave historical
 profiles/records intact and report the exact new layout/profile work still needed.
 
+ROOT priority clarification after I37's initial inspection: A first produces a
+coherent compiling checked-work kernel and scoped H/VR exactness gates, with real
+CoreRun/RunWork and terminal/meter state before legacy erasure. Full C2 source/
+group/build origin inventories may remain explicitly unimplemented at this bounded
+checkpoint if necessary; invent no origin or receipt qualification. This affects
+checkpoint order only; the complete F2a/C2 objective and final gates remain.
+
 ## Exact maintained write scope
 
 P=projects/chirality-piping; FK=P/core/solver/frame_kernel;
@@ -65,6 +72,21 @@ ROOT before expansion; continue independent owned work meanwhile. No Cargo/lock,
 source geometry, reference/fixture, instruction, memory-profile or protected
 tolerance changes are granted. Read-only regression targets include the corrected
 FK/src/structural/formation_check_tests.rs and legacy retained-wide/reference tests.
+
+ROOT scope addition, 2026-10-02: FK/tests/retained_k4/models.rs is
+authorized solely to adapt existing ExactWideSum observation/mutation calls to
+the fallible signatures (including signum and make_absolute), using explicit
+success assertions. ROOT inspected the affected claim_ratio/range_consistent
+helpers before granting this. No numerical expectation, oracle, comparison,
+slack, tolerance or model change is granted. Original time box remains in force.
+
+ROOT clarification, 2026-10-02: the raw integer slice guard may add the minimal
+WideError::CountRange and SumRefusal::CountRange variants in already scoped
+files and transfer them to AttemptStop::CountRange. Check before the affected
+operation; preserve existing clean behavior. Do not mislabel a representation
+failure as Span, Exponent or WorkAccounting. Record the C2 reason-map consequence
+and actual production caller bounds. This closes a scalar precondition in the
+current grant; it does not authorize generic arithmetic or source-policy changes.
 
 ## Build/test lane and evidence
 
