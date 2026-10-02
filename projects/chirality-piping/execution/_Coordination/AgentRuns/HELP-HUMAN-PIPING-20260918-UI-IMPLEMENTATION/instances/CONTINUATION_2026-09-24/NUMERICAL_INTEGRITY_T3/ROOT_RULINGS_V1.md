@@ -5374,3 +5374,30 @@ bounded I29 P3 ownership derivation at f6f4639d747f with actual receipt/deadline
 in ROOT_CURRENT, preserving M1 scheduling and first-occupied cache semantics.
 I35 continues the finite certificate integration contract. No host tooling,
 new numeric memory allowance, final facade pricing or wider runtime was granted.
+
+## Owner-directed graceful session pause (ROOT, 2026-10-02 UTC)
+
+The owner instructed ROOT to find a good stopping point for the session-limit
+reset, with ample preparation time, but to start no new work. Apply that hold
+immediately. Finish only useful bounded returns already in flight; do not launch
+new implementation, repairs, review assignments, test programmes or integration.
+
+RV51 has returned a sealed partial review at 54b4755d2afc. ROOT read it and
+verified its payloads/scope. It records no confirmed actionable defect, but is
+explicitly not review clearance. Existing checked-work controls passed; the
+independent harness did not compile because of its module-path setup. Independent
+discrimination and count/index dominance remain unfinished. Preserve the failure
+without labeling it a solver defect or a passing independent test. The code stays
+at fdae294643b in the clean, pushed f2a branch and is not merged into NUM/main.
+
+I38, dispatched just before the pause, stopped at startup without substantive
+source investigation or conclusions. Its two-file checkpoint and instruction
+origins are preserved in the same commit. I35 and I29 may finish only their
+current bounded packets, then stop; their new derivations will remain unreviewed
+until resumption. No code or review acceptance follows from a pause return.
+
+Origin/main was observed at a533dc2d67bcb97460b6fb64be8922b6411de2a8 after
+App-v4 PR1072. ROOT checked that the delta from the T3 baseline 49034a940f has
+only projects/chirality-app-v4 paths; Piping and its relevant instruction/skill
+bases are unchanged. No integration is attempted during this pause. Refresh
+and merge main (never rebase) at the appropriate resumed candidate boundary.

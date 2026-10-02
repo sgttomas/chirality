@@ -1,5 +1,13 @@
 # T3 current checkpoint
 
+**OWNER PAUSE REQUESTED, 2026-10-02. Do not start new work.** ROOT is only
+settling the already-running I35/I29 returns and preserving the restart state.
+RV51 returned a sealed PARTIAL review (not clearance); I38 stopped at startup.
+The code candidate stays isolated and unaccepted. No implementation, repairs,
+new review assignment, runtime programme or merge resumes until the owner says so.
+Final stopped-state verification and handoff will replace this settling notice.
+
+
 ROOT / HELP_HUMAN execution state,2026-10-02 UTC. This is a revisable recovery
 index, not a new numerical guarantee or release. The owner resumed and directed
 continued bounded delegation; current standing Git/host/append-only rules apply.
