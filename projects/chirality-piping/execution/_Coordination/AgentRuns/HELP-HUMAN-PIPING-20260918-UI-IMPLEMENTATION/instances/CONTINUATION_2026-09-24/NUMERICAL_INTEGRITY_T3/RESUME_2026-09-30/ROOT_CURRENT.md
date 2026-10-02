@@ -46,8 +46,8 @@ transcriptions retain their explicit provenance limits.
 
 ## Next decision and work
 
-All TASKs and runtime are stopped; the existing host guard remains. NUM has merged
-main after K6c. I29/w1_limits_preparation_01 proposes options from current data;
+Two source-only planning TASKs are active; no build/solver/runtime is granted.
+The existing host guard remains. NUM has merged main after K6c. I29/w1_limits_preparation_01 proposes options from current data;
 REVIEW_RV40/w1_limits_01 independently passes the prospective basis. ROOT has read
 both complete reports and verified their inventories/seals. ROOT has now selected the work thresholds in W1_RESOURCE_POLICY_V1.md under
 amended Q5:20-billion LME per case/60-billion per actual invocation. They are
@@ -62,3 +62,21 @@ an unqualified memory or publication contract. Then S-I, F2b per domain and F3,
 with actual producer/reader/gate and V-P obligations. Owner-held6GiB dense/observation
 ceilings, PHYS-R4/availability, observation framing, KF3-B1 and KF2 dense screen
 remain at their owning records. T3 remains active and incomplete.
+
+## Active F2a checkpoint0 planning
+
+- Fresh I30 facade/publication/S-G1 plan: R/I30/f2a_checkpoint0_01; receipt18:05:16 UTC,
+  new-analysis cutoff18:55:16, return19:05:16. Brief I30_F2A_CHECKPOINT0_01.
+- I29 production memory-admission plan: R/I29/f2a_memory_plan_02; receipt18:05:42,
+  new-analysis cutoff18:55:42, return19:05:42. Brief I29_F2A_MEMORY_PLAN_02.
+
+Both are direct native TASKs with disjoint records-only writes on NUM. No Git/index/
+API writes, runtime/probe/build/source edits or delegation. They return compact
+revisable plans, not accepted designs. Fresh independent design re-derivation and
+ROOT/owner dispositions precede implementation. Successor identities are proposed,
+not yet reserved. The legacy typed entry has no capture custody; no typed
+reserialization or new custody API is authorized. Planners must distinguish
+faithful projections/implementation of accepted contracts from genuine public
+contract changes. Memory must include the actual qualified caller/request window,
+not a PP-only envelope mislabeled invocation-wide. All new findings remain
+source-grounded planning inputs until the complete returns are reviewed.

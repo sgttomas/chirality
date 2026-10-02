@@ -4963,3 +4963,23 @@ The work part of ROOT's W1 decision is closed. Final memory allowance/enforcemen
 and supported-machine interpretation remain distinct owning decisions. Existing
 owner-held6-GiB ceilings, PHYS-R4/availability, observation framing, KF3-B1 and KF2
 choices are not decided here. Proceed to bounded F2a/S-G1 checkpoint0 planning only.
+
+
+## F2a/S-G1 checkpoint0 planning released (ROOT, 2026-10-02 UTC)
+
+Release I30_F2A_CHECKPOINT0_01 and I29_F2A_MEMORY_PLAN_02 as independent, disjoint
+source-only planning blocks on merged main49034a940f with selected W1 work policy.
+I30 owns facade/publication/readers and identity/write-set/test proposals; I29 owns
+the complete qualified caller/memory-admission strategy and RV40-N1 disposition.
+Neither grant authorizes code, experiments, runtime, a new public contract, byte
+guard, deployment choice or typed-input reserialization. Their brief time boxes
+and return-only scopes govern. No new host tooling is commissioned.
+
+The selected facade order remains F2a atomic with S-G1, then S-I, then F2b by domain
+and F3; older D2 grouping language does not silently add S-I implementation here.
+M03-INTEGRITY-MP-v2, its private/public distinction and final-row/unit/derived
+qualification remain required. Exact-block coexistence and ordinary fallback
+standing are preserved. Genuine published-contract/product-semantics changes must
+be presented concretely to their owner after independent design review; missing
+implementation of an already accepted rule is not automatically a new permission
+question. ROOT reconciles the two plans before any implementation grant.
