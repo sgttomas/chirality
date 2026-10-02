@@ -1,0 +1,50 @@
+{
+  "status": "informational revisable inventory; not acceptance/seal",
+  "files": [
+    {
+      "path": "RETURN.md",
+      "bytes": 4540,
+      "sha256": "b214f41a79579b73a064b796aeda0ec06dcdfcd9c149808b4ca8a12e0052b21f"
+    },
+    {
+      "path": "SOURCE_COMBINATIONS.md",
+      "bytes": 21801,
+      "sha256": "b6d849326d73517c7d415c75f103d1d229408b1b5cc5892c4f313f0c2e0e11e8"
+    },
+    {
+      "path": "WIRE_CONTRACT.md",
+      "bytes": 28888,
+      "sha256": "13f744e8520f8863420355ebe75725bd6ce88f0cb75a73a7ebb6d415e9d895b4"
+    },
+    {
+      "path": "_run_records/ARITHMETIC.json",
+      "bytes": 17505,
+      "sha256": "b3b281ad2d05612609cd8e4506b9b423428f3968d0fab699f24787f71f8a5101"
+    },
+    {
+      "path": "_run_records/ARITHMETIC_ORIGINS.json",
+      "bytes": 1023,
+      "sha256": "bd17fcb6f5d6c73ec493c4381c8ec82c87185c3f21bc9c30a865f6a383fca75b"
+    },
+    {
+      "path": "_run_records/COMMANDS.md",
+      "bytes": 1642,
+      "sha256": "0fe6486565973ca5c914ffc71995655b3e0f80d0ccd08535fbad5612af5022f4"
+    },
+    {
+      "path": "_run_records/EXECUTION.json",
+      "bytes": 2740,
+      "sha256": "92720c8d5805737dcb4919de9de3e89907d5fe1e96e24c65a1692a84dd14993e"
+    },
+    {
+      "path": "_run_records/READ_ORIGINS.json",
+      "bytes": 19578,
+      "sha256": "f689c06549b6182997952a4051683eb1fbf3f2a8eeaf268c4e912104ba31678e"
+    },
+    {
+      "path": "_run_records/arithmetic.py",
+      "bytes": 6008,
+      "sha256": "29fd6d5991840b8835d610c4ce23bbc13c292f9fa3f0c3006f320f515da61ac7"
+    }
+  ]
+}
