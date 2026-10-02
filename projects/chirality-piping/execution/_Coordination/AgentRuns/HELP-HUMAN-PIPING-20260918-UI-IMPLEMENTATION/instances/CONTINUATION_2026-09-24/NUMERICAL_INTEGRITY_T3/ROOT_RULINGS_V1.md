@@ -5160,3 +5160,22 @@ metadata, and pre-source refusal without fabricated combined source or Run.
 The narrow four-path revisable-draft repair at87ded04a30 is executing; the original
 0440ea0777 return and sealed review remain unchanged. These findings allege no
 current numerical failure. Same-reviewer confirmation precedes mapping closure.
+
+## F2a C2 mapping confirmed; preparation component released (ROOT, 2026-10-02 UTC)
+
+ROOT read RV43's complete C2 correction return, verified four payloads and exact
+scope, and preserved it atf2d6470460. Its manifest is
+efad3db761afdc6dc7ab13d166d07e91f1edf87c58d4492b935bf708a3aa98ba.
+Close C2-F1/F2 at the contract/type-mapping level. Corrected C1/C2 at0017eba992
+and0a4afd6318 form the concrete source/map/call basis for component derivations,
+with subsequent reviewed work-status or recipe deltas still to reconcile before
+an atomic wire/schema freeze. Names remain unreserved; no implementation follows.
+
+Release I29_F2A_PREPARATION_COUNTS_P1 only for raw census, count safety and source/
+preparation allocation/ownership. These interfaces are now concrete enough for
+that independent component, with unresolved type/build coefficients explicit.
+This does not release the complete aggregate memory proof ahead of the source
+bridge, work-exactness design, numeric-phase, ordinary-suffix and caller facts.
+No byte allowance, RSS guarantee, new domain or source code is selected. Prepared
+objects and actual failure lifetimes must bind the later execution; no duplicate
+build is silently outside the accounting. Independent review precedes reliance.
