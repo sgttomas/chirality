@@ -5045,3 +5045,56 @@ The same reviewer backchecks the correction. This repairs a contract preconditio
 not the still-unprovided upstream arithmetic proof. Source identity/map, terminal
 evidence, final-row recipes, complete memory/caller composition and atomic reader
 qualification remain open. No maintained implementation or runtime is released.
+
+## F2a finite derivations: review dispositions and next bounded work (ROOT, 2026-10-02 UTC)
+
+ROOT read RV42 REVIEW and RV41 BACKCHECK in full and verified their complete
+seals/write sets before preservation at98ea4b9ee7. RV42's eleven-payload JSON
+seal is5b392d6b9ac81eec53ebd1a00c32ce16ccc28ab8d4abd1ef9ffec18b08552d4f;
+RV41's two-payload manifest isb48ed45c1f9b44ef2cea4e1c812905ba022277a1deb228931ad7b8ac46771698.
+The reviews establish readiness of the stated conditional algebra/control
+interfaces for further derivation, not completed F2a implementation or memory.
+
+Adopt RV42-1 as an explicit source-warrant completion. Preserve the maintained
+SOURCE_ODWALL_EXPECTATIONS reference and source-geometric exact-mode promise.
+Separate the admitted K bit-input mechanical problem, intended section functional,
+actual rounded operands/output and operational receipt scale. Do not fill the
+exact-mode A/Z/r/J cells with convenient stored-bit singletons or I_K/c as the
+whole source reference. Bounded positive geometric enclosures are faithful work;
+they do not by themselves bridge a changed mechanical operator. Any required
+q_K-to-q_G action/source bridge remains unclosed until actually established.
+The reviewed immutable view and finite B1 algebra are a conditional derivation
+basis; no source-truth reliance or proposed arithmetic-cap adoption is inferred.
+
+Accept RV41-1's guarded continuation/first-terminal/source-debit control direction
+and RV41-3's ownership/provenance wording correction. Count routing-observer
+storage even on a later exact-selected invocation; the prohibition concerns W1
+source/numeric/draft work and new W1 diagnostics, with original publication bytes.
+Legacy source WorkReport charges include existing algorithmic reservations; they
+are not measured hardware operations. Adopt RV41's explicit correction withdrawing
+its earlier inferred provisional headless document: the helper returns None at
+this source, while the later qualified-export allocation remains real.
+
+For native derivation, select a transient W1-only reply-admission direction and
+the expressly application-owned Rust window ending at guarded owned JSON-body
+transfer. Tauri-owned post-transfer queues, WebView and whole-process RSS are
+excluded, not bounded by that label. No numeric K or byte allowance is selected.
+RV41-B1 must preserve actual first-party retry/retrieval, job/generation/capture and
+cancellation state without rerunning the solver or falsely claiming a terminal
+result. Success and denied/error paths both need bounded ownership. Ordinary and
+exact-source polling remain unchanged. No terminal availability loss or new
+deployment claim is accepted. RV41 confirms this faithful new-method direction
+fits ROOT's delegated resource scope; no extra owner permission is required now.
+
+ROOT read and verified RV43's four-payload correction backcheck at16b1ba7e3f,
+manifest dac3fdb1047f4150cd824e0ac0a6b018c2eedcb1588055bef9a9f23a1a66e8fd.
+RV43-F1 is closed as a contract-wording finding at0017eba992; its actual upstream
+no-wrap proof remains an implementation blocker. The original records and
+arithmetic remain unchanged.
+
+Release the finite follow-ups at84d5c5ecd4: I31_F2A_SOURCE_GEOMETRY_B1C,
+I30_F2A_NATIVE_REPLY_COMPLETION_03 and I32_F2A_WIRE_C2, each in its disjoint owned
+packet with explicit time boxes. No maintained code/schema, solver runtime,
+host-tool work or new owner-held contract change is granted. Independent
+backchecks follow their returns. Full aggregate memory/cost proof and code wait
+for the concrete closed interfaces; no completed bound is inferred from a plan.
