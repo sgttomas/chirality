@@ -46,8 +46,8 @@ transcriptions retain their explicit provenance limits.
 
 ## Next decision and work
 
-I29 counter analysis, fresh I33 source-action bridge, RV43 C2 review and RV44
-independent counter review are active. I30/I31 and RV41/RV42 are stopped.
+I34 checked-work design, fresh RV45 bridge re-derivation and RV43 C2 correction
+backcheck are active. I29/I30/I31/I32/I33 and RV41/RV42/RV44 are stopped.
 No maintained implementation or build/solver/runtime is granted.
 The existing host guard remains. NUM has merged main after K6c. I29/w1_limits_preparation_01 proposes options from current data;
 REVIEW_RV40/w1_limits_01 independently passes the prospective basis. ROOT has read
@@ -147,12 +147,13 @@ review follows. Existing author/reviewer histories are preserved separately.
 
 RV44 froze its source derivation before I29 exposure; ROOT read it and verified
 e431fc0bb02e724aa1315b366f80fe8df260b6579869d245c500fe69a21ca4b5.
-It has a partial source/count argument and is waiting for the frozen I29 return,
-not independently extending to an unassigned full theorem. No no-wrap proof is
-accepted from these partial results.
+Its final review is preserved atbdfd7ae75c after ROOT read both full reports and
+verified twelve payloads and the inventory/seal chain. I29 partial return is at
+4c2c1e9857; local lemmas are accepted within their premises, while complete no-wrap
+admission remains unproved. Neither packet alleges current workload overflow.
 
 All times2026-10-02. The original I30/I31/I32 deadline rows above are completed
-assignments; I29 remains active. Time boxes are maxima; return early when complete. No abstract check is realized solver/publication or availability evidence.
+assignments; I29 also returned at20:43:06. Time boxes are maxima; return early when complete. No abstract check is realized solver/publication or availability evidence.
 ROOT receives/reads/verifies and preserves each return, then independent backchecks
 or a fresh arithmetic/source reviewer precede reliance. Full aggregate memory/cost
 P1–P5 waits for concrete interfaces; the I29 component can derive symbolic kernel
@@ -166,3 +167,29 @@ Native raw inspection remains separately unfinished. M1 uses upfront complete
 reservation, not a generic rollback framework. Genuine owner-held contract or
 product choices require concrete reviewed options; none is pending merely because
 these faithful proof obligations are incomplete. T3 remains active.
+
+## Latest active numerical and mapping work
+
+ROOT accepted the limited counter review and released a design of checked/sticky
+exactness at3d848df33a. I34 owns I34/f2a_work_exactness_design_01, brief atfc2bcac067:
+receipt20:52:37, new-analysis cutoff21:27:37, hard return21:37:37. It must preserve
+loss through counters/clones/deltas/caches/terminals and separately protect raw
+count/scalar/carry safety, with explicit layout/H/VR/memory consequences. No code,
+API or removal of the admission requirement is selected by this design grant.
+
+I33 returned its conditional source-action bridge at20:53:01; ROOT read RETURN/
+INTERFACE_AND_COST in full, verified six payloads/exact seven-file scope and
+preserved it at9f1ef2693d. Fresh RV45 owns REVIEW_RV45/f2a_source_bridge_01 under
+briefdabcf73ead: receipt20:56:02, new-analysis cutoff21:46:02, hard return21:56:02.
+It freezes an independent derivation from accepted source/R7/B1C before reading
+I33, then compares that frozen candidate. This is a conditional feasibility
+proposal, not accepted public-source reliance or measured availability.
+
+RV43 C2 review2200f45465 found two contract-freeze gaps: combination load provenance
+and pre-source refusal Call/Run representation. ROOT read/verified the full review.
+I32 repaired only the four authorized draft/inventory/correction paths at0a4afd6318;
+ROOT read the complete delta and verified nine revised payloads, exact scope and
+unchanged original raw evidence. Original C2 remains0440ea0777. RV43 backchecks in
+REVIEW_RV43/f2a_wire_c2_04: receipt20:57:17, cutoff21:12:17, hard return21:17:17.
+No closure is claimed before confirmation. All times2026-10-02 UTC; source remains
+main49034a940f. No compiler/solver/native runtime or maintained change has run.
