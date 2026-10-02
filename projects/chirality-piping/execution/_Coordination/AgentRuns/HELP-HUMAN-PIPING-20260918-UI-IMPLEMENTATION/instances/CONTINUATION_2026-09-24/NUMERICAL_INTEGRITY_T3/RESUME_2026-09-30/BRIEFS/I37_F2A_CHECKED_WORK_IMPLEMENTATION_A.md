@@ -80,6 +80,14 @@ success assertions. ROOT inspected the affected claim_ratio/range_consistent
 helpers before granting this. No numerical expectation, oracle, comparison,
 slack, tolerance or model change is granted. Original time box remains in force.
 
+ROOT clarification, 2026-10-02: the raw integer slice guard may add the minimal
+WideError::CountRange and SumRefusal::CountRange variants in already scoped
+files and transfer them to AttemptStop::CountRange. Check before the affected
+operation; preserve existing clean behavior. Do not mislabel a representation
+failure as Span, Exponent or WorkAccounting. Record the C2 reason-map consequence
+and actual production caller bounds. This closes a scalar precondition in the
+current grant; it does not authorize generic arithmetic or source-policy changes.
+
 ## Build/test lane and evidence
 
 M5 Max only, existing memguard must be running. One Cargo command at a time,
