@@ -46,7 +46,8 @@ transcriptions retain their explicit provenance limits.
 
 ## Next decision and work
 
-Three bounded source/math TASKs are active; no build/solver/runtime is granted.
+Three bounded author TASKs and two independent source-derivation reviewers are
+active; no build/solver/runtime is granted.
 The existing host guard remains. NUM has merged main after K6c. I29/w1_limits_preparation_01 proposes options from current data;
 REVIEW_RV40/w1_limits_01 independently passes the prospective basis. ROOT has read
 both complete reports and verified their inventories/seals. ROOT has now selected the work thresholds in W1_RESOURCE_POLICY_V1.md under
@@ -94,8 +95,21 @@ the stated briefs; it creates no realized solver/publication claim. Full memory
 P1–P5 waits for frozen interfaces from these packets. ROOT receives, reads and
 verifies inventories/write sets before preservation; independent review precedes
 any implementation reliance. Stable runtime policy identities remain unreserved.
-RV41 routing backcheck and fresh RV42/RV43 review briefs are prepared at2e852654;
-these briefs are not executing reviewers. Dispatch follows each frozen return.
+RV41 routing backcheck remains prepared, not executing. RV42/RV43 are now executing
+the amended two-stage briefs at090088926e. They first freeze their own source-based
+derivations without reading the authors' proposed answers; ROOT then supplies each
+frozen author revision for comparison. Both stages share the original total time box.
+
+| Independent native TASK / packet | Receipt UTC | New-analysis cutoff UTC | Hard return UTC |
+|---|---|---|---|
+| RV42 / REVIEW_RV42/f2a_certificate_b1_01 | 20:03:02 | 20:53:02 | 21:03:02 |
+| RV43 / REVIEW_RV43/f2a_wire_c1_01 | 20:03:17 | 20:38:17 | 20:48:17 |
+
+Their supplied contexts are fresh TASK-role contexts with the bounded briefs and
+accepted/source bases, not full ROOT conversation forks. The same no-Git/index/API,
+no delegation, no maintained edits and no-runtime fences apply. Actual origins and
+return evidence are recorded in their packets. These are independent derivations
+and reviews, not accepted implementation or qualified memory profiles.
 
 Plans remain revisable, not accepted proofs/identities/byte policies or code grants.
 ROOT's cross-plan questions include additional ordinary work before admission,
