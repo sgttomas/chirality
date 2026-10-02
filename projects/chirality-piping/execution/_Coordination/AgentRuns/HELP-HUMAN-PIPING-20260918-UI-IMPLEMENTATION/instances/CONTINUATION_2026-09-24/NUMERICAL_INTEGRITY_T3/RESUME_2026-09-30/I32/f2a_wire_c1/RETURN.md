@@ -12,6 +12,8 @@ The mixed mechanics proposal accepts immutable PreparedCaseSource or borrowed Re
 
 The wire distinguishes public selected, unavailable-before-solve and unavailable-after-kernel-Accepted. It records actual 20B/60B stop-threshold work and safe checked integers; range/saturation ambiguity falls back with labelled counts, never clipping or pretending a saturated total is exact. It proposes separate combination coverage, stable runtime policy ids, explicit hash scopes and G0–G8/carrier mapping for Rust, Python and TS. Corrected M03-INTEGRITY-MP-v2 is required, ordinary numerical_quality stays unchanged, private radii stay private, and label-only standing is refused.
 
+ROOT correction after RV43-F1: exact-charge reliance additionally requires independently established upstream no-wrap evidence bound before execution to actual admitted source/count/build limits. Small consistent returned counters, intermittent work thresholds and the provisional byte target cannot establish it. WIRE_CONTRACT §2 and the P1–P5/W09 dependencies now make that unresolved proof explicit. No maintained counter change or completed no-wrap proof is claimed; the original author return remains at885ed83a6a and RV43's sealed review is unchanged.
+
 ROOT must integrate these finite dependencies before an implementation grant:
 
 - **Routing/I30:** actual source/id/material maps, failed ordinary evidence, invocation execution order, coexistence, cache origin assignment and explicit combination fallback that preserves ordinary availability.

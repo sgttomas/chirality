@@ -5020,3 +5020,28 @@ found RV41's additional SEAL.json attestation outside its three-payload manifest
 The three hashes already verified; ROOT then checked and preserved that separate
 attestation and applied the stated RV41-3 draft correction in this follow-up commit.
 No maintained source or reviewed report was changed.]
+
+## F2a C1: upstream no-wrap premise required (ROOT, 2026-10-02 UTC)
+
+ROOT read RV43's complete RETURN/REVIEW, verified all seven payload hashes and
+manifest df6548d30f9652e1d085733c90c042f357347a5e3d0d3c0775c7bc9fd7327b5d,
+and preserved it at1da59a785d. Accept RV43-F1 as blocking exact-charge contract
+reliance: current SumWork component/aggregate additions can lose overflow history
+before later checked projection or saturating totals. No present admitted-workload
+overflow or false numerical publication is established by this source finding.
+
+ROOT corrected the revisable I32 contract, dependency/control inventory and RETURN;
+its original author revision remains885ed83a6a. Exact receipts require independently
+checked upstream no-wrap evidence bound before execution to actual admitted source,
+count and build premises, covering cumulative components, aggregates/stages,
+unguarded segments and whole attempts/invocations including failed/stopped/reused
+work. P1–P5 must discharge that arithmetic obligation explicitly. The byte target,
+20B/60B intermittent stop thresholds and small self-consistent returned counters
+are not its proof. Without the premise, decline W1 before execution and preserve
+the ordinary result. A checked/sticky-overflow counter alternative would require
+its own bounded design/source grant/review; none is authorized by this correction.
+
+The same reviewer backchecks the correction. This repairs a contract precondition,
+not the still-unprovided upstream arithmetic proof. Source identity/map, terminal
+evidence, final-row recipes, complete memory/caller composition and atomic reader
+qualification remain open. No maintained implementation or runtime is released.
