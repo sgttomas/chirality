@@ -5350,3 +5350,27 @@ replaced by the historical rounded-product substitution. Original evidence and
 theorem remain preserved. This closes the evidence defect only; I35 integration,
 source association, actual implementation, resource and product qualification
 remain required. No public numerical contract or availability changes.
+
+## Checked-work candidate frozen for fresh source review (ROOT, 2026-10-02 UTC)
+
+I37 returned the bounded implementation described in its RETURN, without full
+C2 origins, profile qualification or product activation. ROOT read the core diff,
+verified all 38 maintained hashes and 138 inventoried payloads, confirmed the
+exact write scope with the existing validator, and checked all twelve final B
+command records and logs. Commit fdae294643b798c1849da8b2e643085562593686
+preserves this source and packet in the isolated f2a branch. This is a review
+candidate, not acceptance or merge permission. Source remains outside NUM while
+fresh RV51 reviews it under the brief at 3e7e23babe32.
+
+I37 RETURN's final-source table records seventeen focused controls in debug and
+optimized builds plus unchanged price/oracle, partial-build, S11 and H/VR checks.
+Historical compile/test failures remain preserved. ROOT found the raw borrowed
+integer length boundary during its source read; the warranted CountRange guard
+is included and distinct from numerical/work errors. Future C2 maps and product
+3m/ordinal admission still require their own source changes and validation.
+
+The old K6c memory coefficients do not qualify changed layouts. Release the
+bounded I29 P3 ownership derivation at f6f4639d747f with actual receipt/deadline
+in ROOT_CURRENT, preserving M1 scheduling and first-occupied cache semantics.
+I35 continues the finite certificate integration contract. No host tooling,
+new numeric memory allowance, final facade pricing or wider runtime was granted.

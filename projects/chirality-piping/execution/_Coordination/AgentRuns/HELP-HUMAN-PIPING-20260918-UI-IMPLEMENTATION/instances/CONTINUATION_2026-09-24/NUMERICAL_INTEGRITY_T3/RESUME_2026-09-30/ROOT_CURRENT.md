@@ -61,20 +61,30 @@ recordsdfd7a07711 and merged the code grant842def35df with --no-ff. Clean dispat
 base14ff4e86dd549aa6c22804de5913e25c8ab4d20a. Use this worktree for code; NUM
 continues to own ROOT rulings, graph and independent review packets.
 
-I37 /root/i37_f2a_checked_work_code executes BRIEFS/
-I37_F2A_CHECKED_WORK_IMPLEMENTATION_A.md in f2a. Receipt2026-10-02 22:36:01 UTC;
-substantive checkpoint23:11, stop expansion23:46, hard return2026-10-03 00:06 UTC.
-Exact kernel/test/H/VR manifest is in the brief. No Git/index/API writes or
-child delegation. One Cargo command at a time,4 build jobs,2 test threads,
-isolated per-manifest targets under wt,20-minute command limits, compile and
-focused controls only. ROOT verifies actual startup, core diff, scope/hashes and
-commands, then commits; fresh implementation review follows.
+I37 returned its code checkpoint early. ROOT read the core diff, verified all
+38 maintained hashes and 138 inventoried payloads, checked exact scope with the
+existing validator, and inspected all 12 final-source command records/logs.
+The candidate is committed in f2a at fdae294643b798c1849da8b2e643085562593686;
+checkout is clean and source remains isolated from NUM pending fresh review.
+Canonical return: the f2a copy of R/I37/checked_work_a/RETURN.md. ROOT verification:
+R/verification/i37_fanin_01/_run_records/ROOT_VERIFICATION.json at a5437d5d5ffb.
+Its final checks include 17 checked-work controls in debug and optimized builds,
+clean golden/pc40/41/42/44 prices, raw oracle and H/VR record/terminal controls.
+No heavy/full gate, memory profile, full C2 origin or product qualification is claimed.
 
-The priority clarification at 247c3392ad, recorded in rulings at 8ed7a1d5c5, is: produce a coherent
-compiling checked-work kernel and scoped H/VR exactness gates. Preserve actual
-CoreRun/RunWork and terminal/meter custody before legacy erasure. Full C2 origin
-inventories may be explicitly incomplete at A's bounded return; they must never
-be fabricated or claimed qualified. All remaining C2/F2a work still follows.
+Fresh RV51 /root/rv51_checked_work_source was dispatched under
+BRIEFS/RV51_CHECKED_WORK_IMPLEMENTATION_A.md at 3e7e23babe32. Its sole runtime
+lane is focused review checks, one Cargo command with 4 jobs/2 test threads and
+20-minute command walls. No source/index/Git/API writes. Review writes only
+R/REVIEW_RV51/checked_work_a in NUM. Review receipt/timing will be recorded there.
+All source repairs return to ROOT; I37 has released its lane and no cargo/rustc
+was running at dispatch. Existing memguard remains PID 5387.
+
+Full C2 source/group/build origin inventories remain absent; CoreRun/RunWork
+and RecordedCombination now retain actual terminal work before legacy erasure.
+CountRange channels must be included in later closed wire maps. Product adapter
+3m/ordinal census preconditions and arbitrary external Dof inputs are not covered
+by the generic native source guards. Actual changed layouts require new profiles.
 
 ## Selected conditional design bases
 
@@ -111,11 +121,9 @@ prose/inventories with original Git revisions preserved.
 
 ## Immediate ROOT queue and separate remaining work
 
-1. I37 code checkpoint A is active. ROOT allowed only fallible-signature
-   adaptation in the existing retained_k4/models.rs test helper at 62e9369094
-   (date text corrected in 9fb9748897). Initial check02/check04_h/check05_vr
-   logs have exit 0; these are intermediate compile checks, not final candidate
-   qualification. Full source review and actual layout/profile updates follow.
+1. RV51 independently reviews the frozen I37 candidate above. ROOT already
+   checked scope/hashes and read the core diff; source remains unaccepted until
+   this review and any repair backchecks. Full product/profile gates follow.
 2. I36 repaired RV47-C1 at 7bca4a0dfd88. ROOT checked the actual script diff,
    replay, all payload hashes and original raw/dependency preservation. RV47's
    same-reviewer backcheck returned at 22:54:27 UTC, clear. ROOT read and verified
@@ -127,7 +135,12 @@ prose/inventories with original Git revisions preserved.
    loop/callback/count/lifetime correspondence before RV50 backcheck. Fixed
    arithmetic is selected at 8ed7a1d5c5; A/U reservations are not a proved full
    execution bound and no facade pricing has been selected.
-3. Complete remaining memory/resource components: newly reached ordinary suffix,
+3. I29 P3 aggregate kernel ownership is active under brief f6f4639d747f:
+   receipt 2026-10-02 23:00:04 UTC; checkpoint 23:15:04, cutoff 23:30:04,
+   return 23:40:04. Its exact write scope is R/I29/f2a_kernel_ownership_p3.
+   ROOT supplied frozen fdae294643b source for conditional rebind; no compilation
+   or measurements are granted, and old layout coefficients do not transfer.
+   Complete remaining memory/resource components: newly reached ordinary suffix,
    numeric/cache/returned states, publication/rollback/PP/headless/native callers,
    actual target/type/container facts and an adopted complete allowance. Symbolic
    counts or a host size factory alone do not qualify a production guard.
