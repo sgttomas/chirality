@@ -1,0 +1,25 @@
+{
+  "status": "informational, revisable inventory; not acceptance",
+  "files": [
+    {
+      "path": "EXECUTION.json",
+      "bytes": 14238,
+      "sha256": "9ae588ad47b87fe71b2cb297c2df4b8d3c7fc1530f5931e01e0728f6c532d90e"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 24221,
+      "sha256": "8b3b0c6c81c4358c2ab3a86b48c3e38e688b6b796753ecad6439f22c90d16647"
+    },
+    {
+      "path": "RETURN.md",
+      "bytes": 2023,
+      "sha256": "43f54e7f716b7a55411050a1c983913cee3799c5c2e4f5fb574727dca4d55b39"
+    },
+    {
+      "path": "SOURCE_MAP.md",
+      "bytes": 15433,
+      "sha256": "869bece8c64a7ac8cef2c2c44c3eba0dda0f38dd58005333b3499476e6dd8627"
+    }
+  ]
+}
