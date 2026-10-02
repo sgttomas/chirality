@@ -18,6 +18,8 @@ use super::wide::multi::{Binary64Outcome, SupportedWidth, WideContext};
 use super::wide::Wide;
 use super::wide_sum::ExactWideSum;
 
+mod certificate;
+
 /// The direction of a bound's rounding.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub(crate) enum Toward {
