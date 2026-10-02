@@ -5098,3 +5098,34 @@ packet with explicit time boxes. No maintained code/schema, solver runtime,
 host-tool work or new owner-held contract change is granted. Independent
 backchecks follow their returns. Full aggregate memory/cost proof and code wait
 for the concrete closed interfaces; no completed bound is inferred from a plan.
+
+## F2a operand/control backchecks accepted; source-action bridge bounded (ROOT, 2026-10-02 UTC)
+
+ROOT read the complete RV42 B1C review and RV41 native-reply backcheck, verified
+their hashes/write sets and preserved them at7a45f14b46 and6c2e5c5a36 respectively.
+RV42's six-payload JSON seal is0ff36ab87bb8270833ec150f27e9f42593e6c563ea0c20f22eb7699fe09096d5;
+RV41's two-payload manifest is060403ff3c118e401e3c14832708b6151d9111cc7987c5c2e8e65868bdb757d9.
+
+Accept B1C's finite positive source-geometry operand construction, with actual
+normalized-source binding required. RV42 independently checked the pi constants
+by a different identity, the geometry and width arguments, finite schedule and
+all author controls. RV42-1's omitted-warrant/operand-construction cell is closed.
+The proposed scratch schedule is not a measured or implementing memory proof.
+No universal recipe-fit or new LME price is selected.
+
+The kernel's declared q_K guarantee and exact-profile source response q_G remain
+distinct. B1C/RV42 establish that no-pressure displacement/rotation and derived G
+belong to the outstanding source-action/operator bridge. Operand intervals do not
+close that bridge. Release fresh I33_F2A_SOURCE_ACTION_BRIDGE_01 for one bounded
+feasibility/derivation question, preserving all operators and public truths. A
+fresh independent design re-derivation precedes reliance. No real solver defect,
+new implementation or broader bridge proof is claimed by this release.
+
+Accept the native first-party control basis at I30 native_reply_03; RV41-B1 is
+closed at this specification level. Preserve literal W1-only handling, original
+capture identity through async work, accepted/refused cancellation semantics and
+same-job retrieval. Final validation/identity checks, registration and terminal
+claim form one synchronous commit with no intervening await. Ordinary polling
+and error behavior stay unchanged. P4 still owes success/error/emergency storage,
+actual aggregate denied-request overlap and enforcement, numeric K/allowance and
+native tests. No complete native memory or runtime qualification follows.
