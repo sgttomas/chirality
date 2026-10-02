@@ -5256,3 +5256,33 @@ I29_F2A_PREPARATION_REPAIR_02. Preserve original raw evidence. The block-id poin
 is a conditional guard clarification, not a proved counterexample to the stronger
 current product guard. Same-reviewer backcheck precedes roster closure; no numeric
 memory/work/implementation qualification is inferred.
+
+## Checked-work code checkpoint A released (ROOT, 2026-10-02 UTC)
+
+ROOT read and verified the final RV46 API path confirmation and RV48 P1 repair
+confirmation, preserving them atdfd7a07711. RV46 N1 and RV48-1/2/3 are closed at
+their stated API/symbolic-count scopes. Select concrete I34 API-02 at51d8d9fc1e
+and P1 scalar/count/ownership basis atb1ebe245ec for the bounded prerequisite
+implementation. Actual memory coefficients and aggregate qualification remain open.
+
+The host is verified M5 Max with existing memguard PID5387 and no Cargo/rustc
+process. Rust/cargo report1.97.1. A fresh fetch leaves origin/main at49034a940f,
+already an ancestor of NUM. ROOT created an isolated f2a worktree and branch
+codex/piping-f2a-work-exactness-20261002 fromdfd7a07711; it was clean at creation.
+No old checkout, target or evidence was pruned. The existing guard is retained.
+
+Release I37_F2A_CHECKED_WORK_IMPLEMENTATION_A as the first maintained-code block:
+checked accounting, scalar/index safety, truthful terminal custody and affected
+H/VR readers within its exact manifest. This deliberately touches retained/**;
+new layouts require new K6c/H/VR profile correspondence before reliance or merge.
+No F2a product publication, geometric arithmetic implementation, new public bound,
+domain or source promise is activated by A. Fresh source implementation review,
+all applicable gates and full scalar/profile/caller qualification remain required.
+
+One bounded Cargo lane with4 build jobs/2 test threads is granted for compile and
+focused controls only; no heavy/gate/model-scale programme follows. The source
+implementer owns no Git/index operations. ROOT reads and commits the actual diff.
+Remaining coefficient evidence correction, arithmetic/ordinary/B2 integration,
+facade cost policy and complete memory/caller work proceed separately. The owner
+was explicitly told T3 remains substantially incomplete; design proofs are not
+delivered product behavior.
