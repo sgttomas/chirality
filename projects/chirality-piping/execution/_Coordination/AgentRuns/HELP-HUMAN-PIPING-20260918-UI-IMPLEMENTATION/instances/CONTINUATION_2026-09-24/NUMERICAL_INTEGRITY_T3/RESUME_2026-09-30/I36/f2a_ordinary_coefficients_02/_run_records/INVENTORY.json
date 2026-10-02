@@ -1,0 +1,40 @@
+{
+  "status": "informational exact payload inventory; excludes itself; not acceptance",
+  "files": [
+    {
+      "path": "DEPENDENCIES.md",
+      "bytes": 11492,
+      "sha256": "0806abb33f0478b21b3d92c5113ae3f4939d25abe62e6713afedf60dda6b91a0"
+    },
+    {
+      "path": "RETURN.md",
+      "bytes": 14277,
+      "sha256": "0233a8d8d2f618d9020a20d260e555d1532c3be5b94a3b682b5c82aa23f88094"
+    },
+    {
+      "path": "_run_records/CHECKS.json",
+      "bytes": 1551,
+      "sha256": "6d7b35b87b04d308d014fdec0378b8ee7b7f2dbc0db55be33becc8ebd925cb58"
+    },
+    {
+      "path": "_run_records/EXECUTION.json",
+      "bytes": 1930,
+      "sha256": "96ea2788114d6ae363b7ff0ec90bd87c723c24e6ea149264cf56f616711ece65"
+    },
+    {
+      "path": "_run_records/ORIGINS.json",
+      "bytes": 10448,
+      "sha256": "9e7232b07414e969bc0a462f8c1cb86b4374532c0c891a12606a15afc2565021"
+    },
+    {
+      "path": "_run_records/exact_controls.json",
+      "bytes": 1465,
+      "sha256": "02d3318f3d8c6e521e940297f95a878b6b7bc340f310e4884cb3182625407534"
+    },
+    {
+      "path": "_run_records/exact_controls.py",
+      "bytes": 7751,
+      "sha256": "69c2671a89d8b574cb72d8b2327335ef555f4e4f316b34971dbae31044984dfd"
+    }
+  ]
+}
