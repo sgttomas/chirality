@@ -5337,3 +5337,16 @@ an oracle/tolerance/model change. Initial kernel, H and VR compile commands
 have exit 0 in the I37 packet; the evolving source is not yet reviewed or
 qualified. The work graph now distinguishes that actual implementation from
 conditional mathematical/design progress. T3 remains substantially incomplete.
+
+## RV47-C1 closed after correction-sensitive backcheck (ROOT, 2026-10-02 UTC)
+
+ROOT read the complete RV47 correction review, verified its exact seven-file
+write set and six manifest payload hashes (manifest SHA256
+911a8a19c8ea3c3a00674161807b44baa5e37e9dbed94e254803a8015d1cf8c6).
+Accept the same reviewer's confirmation of candidate 7bca4a0dfd88 and close
+RV47-C1. The independently recomputed four primitive products and delta bounds
+match the corrected exact-K construction, and the discriminator fails when
+replaced by the historical rounded-product substitution. Original evidence and
+theorem remain preserved. This closes the evidence defect only; I35 integration,
+source association, actual implementation, resource and product qualification
+remain required. No public numerical contract or availability changes.

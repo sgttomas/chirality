@@ -118,8 +118,9 @@ prose/inventories with original Git revisions preserved.
    qualification. Full source review and actual layout/profile updates follow.
 2. I36 repaired RV47-C1 at 7bca4a0dfd88. ROOT checked the actual script diff,
    replay, all payload hashes and original raw/dependency preservation. RV47's
-   same-reviewer backcheck is active under the brief at 9fb9748897, receipt
-   2026-10-02 22:51:55 UTC; cutoff 23:01:55, return 23:06:55.
+   same-reviewer backcheck returned at 22:54:27 UTC, clear. ROOT read and verified
+   its exact seven-file packet and seal 911a8a19c8ea, and closed RV47-C1.
+   Original theorem/evidence and broader qualification limits remain unchanged.
    I35 integration-02 is active from 22:52:02 UTC under the same grant commit;
    checkpoint 23:12:02, cutoff 23:32:02, return 23:42:02. It consolidates B2,
    ordinary coefficients/hulls, seven-add entries, checked APIs and concrete
