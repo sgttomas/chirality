@@ -5129,3 +5129,34 @@ claim form one synchronous commit with no intervening await. Ordinary polling
 and error behavior stay unchanged. P4 still owes success/error/emergency storage,
 actual aggregate denied-request overlap and enforcement, numeric K/allowance and
 native tests. No complete native memory or runtime qualification follows.
+
+## F2a counter component disposition and checked-evidence design release (ROOT, 2026-10-02 UTC)
+
+ROOT read I29 RETURN/DERIVATION and RV44 RETURN/REVIEW in full, verified the
+author inventory and reviewer seal chain, and preserved them at4c2c1e9857 and
+bdfd7ae75c. RV44's twelve-payload seal is
+2f89ad1da9e5da9fa47b4ff43f6345708414f4bda22e2de438edc2ce1ca34823.
+Accept the reviewed local lemmas and finite usefulness arithmetic only within
+their stated premises. Full raw-owner/lifetime, transfer and R1–R8 composition
+remain unproved; no complete no-wrap admission or current-workload overflow is
+inferred. The partial proof stays useful evidence, not an implemented guard.
+
+Choose a bounded design of the explicit checked/sticky exactness alternative
+before further expansion of the global static proof. Release
+I34_F2A_WORK_EXACTNESS_DESIGN_01 atfc2bcac067. It must retain evidence loss through
+raw counters, weighted/stage/aggregate expressions, clones/deltas, caches,
+errors/terminals and invocation projection, with separate count/scalar and raw
+accumulator headroom protections. Nonoverflowing prices, values, classes and
+observations must remain unchanged. The choice is a design-investigation scope,
+not a selected API, a waiver of pre-execution safety, or a maintained-code grant.
+Layout/profile/H/VR and F2a memory consequences must be enumerated before any
+implementation; fresh independent review follows the finite return.
+
+ROOT also read RV43's full C2 review, verified its seven-payload seal
+15fd1dfc45d8e7b6aa2bceeac2fe01b378662b4ced7c5fd5652a6af9107bc1d0,
+and preserved it at2200f45465. Accept C2-F1/F2 as blockers to the finite combination
+mapping freeze: specify factored operand provenance separately from first-source
+metadata, and pre-source refusal without fabricated combined source or Run.
+The narrow four-path revisable-draft repair at87ded04a30 is executing; the original
+0440ea0777 return and sealed review remain unchanged. These findings allege no
+current numerical failure. Same-reviewer confirmation precedes mapping closure.
