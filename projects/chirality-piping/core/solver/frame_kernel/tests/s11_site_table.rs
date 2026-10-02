@@ -87,6 +87,10 @@ const SOURCES: &[Source] = &[
         name: "FK/structural/formation_check.rs",
         text: include_str!("../src/structural/formation_check.rs"),
     },
+    Source {
+        name: "FK/structural/retained/work.rs",
+        text: include_str!("../src/structural/retained/work.rs"),
+    },
     // K4 (ROOT's K4 ruling Q8, a declared extension): the W1a kernel method.
     Source {
         name: "FK/structural/retained/wide_sum.rs",
@@ -138,6 +142,10 @@ const SOURCES: &[Source] = &[
 
 /// (file, function, exact match count, disposition of each match).
 const TABLE: &[(&str, &str, usize, &str)] = &[
+    ("FK/structural/retained/wide_sum.rs", "checked_lme", 1, "integer: checked sum of raw work components"),
+    ("FK/structural/retained/wide_sum.rs", "charge", 1, "integer: actual component increment after prospective checked reservation"),
+    ("FK/structural/retained/adaptive.rs", "checked_total", 1, "integer: checked sum of stage totals"),
+    ("FK/structural/retained/adaptive.rs", "finish_terminal", 1, "integer: union of retained attempt accounting status before terminal projection"),
     // ---- FK/lib.rs
     ("FK/lib.rs", "reduced_right_hand_side", 1, "KS2: legacy row with no nonzero prescribed product; b - (+-0) is exact (keeps today's zero sign); coupled and ledger rows use the exact accumulator"),
     ("FK/lib.rs", "solve_dense", 3, "exempt: generic linear-algebra kernel (S11 section 4.3 limit 1), elimination and back substitution, no case force"),
@@ -248,13 +256,13 @@ const TABLE: &[(&str, &str, usize, &str)] = &[
     // ---- K4 (ROOT's K4 ruling Q8): the W1a kernel method. Every sum of
     // stiffness, load, residual or recovered terms is an exact expansion
     // rounded once (zero rows); the counted matches are integer counts.
-    ("FK/structural/retained/wide_sum.rs", "add_raw", 4, "integer: limb index and work counts (the exact sum itself is a limb-wise add with carry on the stack magnitudes, never a binary64 fold)"),
-    ("FK/structural/retained/wide_sum.rs", "add_scaled", 1, "integer: work count"),
-    ("FK/structural/retained/wide_sum.rs", "add_wide_scaled", 1, "integer: work count"),
-    ("FK/structural/retained/wide_sum.rs", "net", 1, "integer: work count"),
-    ("FK/structural/retained/wide_sum.rs", "round", 1, "integer: work count; the exact value is rounded once to p (from_integer)"),
+    ("FK/structural/retained/wide_sum.rs", "add_raw", 3, "integer: limb index and work counts (the exact sum itself is a limb-wise add with carry on the stack magnitudes, never a binary64 fold)"),
+    ("FK/structural/retained/wide_sum.rs", "add_scaled", 0, "integer: work count"),
+    ("FK/structural/retained/wide_sum.rs", "add_wide_scaled", 0, "integer: work count"),
+    ("FK/structural/retained/wide_sum.rs", "net", 0, "integer: work count"),
+    ("FK/structural/retained/wide_sum.rs", "round", 0, "integer: work count; the exact value is rounded once to p (from_integer)"),
     ("FK/structural/retained/wide_sum.rs", "shift_up", 1, "integer: work count"),
-    ("FK/structural/retained/wide_sum.rs", "signum", 1, "integer: work count"),
+    ("FK/structural/retained/wide_sum.rs", "signum", 0, "integer: work count"),
     ("FK/structural/retained/source.rs", "new", 1, "integer: body count"),
     ("FK/structural/retained/ledger.rs", "from_source", 0, "K4: the exact load ledger (ExactAccumulator per DOF, netted once)"),
     ("FK/structural/retained/ledger.rs", "combined", 0, "K4: the combination ledger, exact products c_i*v per term in one accumulator per DOF"),
@@ -267,11 +275,11 @@ const TABLE: &[(&str, &str, usize, &str)] = &[
     ("FK/structural/retained/factor.rs", "bfs_eccentricity", 1, "integer: level count (RCM)"),
     ("FK/structural/retained/factor.rs", "order_free", 1, "integer: profile entry count"),
     ("FK/structural/retained/recover.rs", "recover", 0, "K4: every action, reaction and magnitude one p-bit exact expansion, rounded once (reactions include the ledger exactly)"),
-    ("FK/structural/retained/adaptive.rs", "residual_rows", 1, "integer: product count m_i of the exact residual at p + 64 (the residual itself is one exact expansion)"),
+    ("FK/structural/retained/adaptive.rs", "residual_rows", 0, "integer: product count m_i of the exact residual at p + 64 (the residual itself is one exact expansion)"),
     ("FK/structural/retained/adaptive.rs", "solve_case_at", 1, "integer: correction count"),
-    ("FK/structural/retained/adaptive.rs", "run_schedule", 6, "integer: schedule index and stop-rule work counts; certificate-rejection escalation adds c += 1"),
-    ("FK/structural/retained/adaptive.rs", "add", 19, "integer: StageWork::add, stage work counts (5a.3)"),
-    ("FK/structural/retained/adaptive.rs", "bounded_fallback", 2, "integer: product count m_i; a max over the rows' 64-bit approximate ratios (a prefilter: the worst bounded ratio is compared exactly) (5a.3)"),
+    ("FK/structural/retained/adaptive.rs", "run_schedule_inner", 4, "integer: schedule index; stop-rule totals now use checked custody"),
+    ("FK/structural/retained/adaptive.rs", "add", 0, "integer: StageWork::add delegates to checked StageWork::merge"),
+    ("FK/structural/retained/adaptive.rs", "bounded_fallback", 1, "integer: product count m_i; a max over the rows' 64-bit approximate ratios (a prefilter: the worst bounded ratio is compared exactly) (5a.3)"),
     ("FK/structural/retained/adaptive.rs", "stop_rule", 0, "K4: exact differences and scales decided exactly"),
     ("FK/structural/retained/adaptive.rs", "combination", 0, "K4 (ROOT's F-1 ruling): a combination's exact ledger (products c_i*v in one accumulator per DOF) and prescribed terms"),
     ("FK/structural/retained/adaptive.rs", "prescribed_at", 0, "K4: each prescribed value one exact expansion of its terms c*v, rounded once"),
@@ -286,7 +294,7 @@ const TABLE: &[(&str, &str, usize, &str)] = &[
     ("FK/structural/retained/bound.rs", "nl_pass", 0, "K4 (5a.3): |L|D|L^T|e pass, each operation rounded upward (bounds, not load sums)"),
     ("FK/structural/retained/verify.rs", "formation_scale", 0, "K4 (5a.3): E's stages, each one exact expansion rounded once (the ledger's net enters exactly)"),
     // ---- KF1 (declared, additive; no row above changes).
-    ("FK/structural/retained/adaptive.rs", "offer", 2, "integer: a bounded tracker's row count (a refusal's place in the stream) and a tracker set's held capacity (KF1)"),
+    ("FK/structural/retained/adaptive.rs", "offer", 0, "integer: tracker sequence and capacity use checked arithmetic"),
 ];
 
 // ------------------------------------------------------------- scanner

@@ -47,3 +47,5 @@ pub(crate) mod seeded;
 pub(crate) mod source;
 pub(crate) mod verify;
 pub(crate) mod wide_sum;
+
+pub(crate) mod work;

@@ -45,7 +45,8 @@ use super::verify::{
 };
 use super::wide::multi::{AttemptWork, Binary64Outcome, SupportedWidth, WideContext};
 use super::wide::{Wide, WideError};
-use super::wide_sum::{ExactWideSum, SumRefusal, SumWork};
+use super::wide_sum::{CloneWork, ExactWideSum, SumRefusal, SumWork};
+use super::work::{WorkFault, WorkStatus, WorkStream, WorkTotal};
 use crate::exact_sum::ExactAccumulator;
 use crate::structural::StructuralError;
 use std::cmp::Ordering as CmpOrdering;
@@ -87,27 +88,33 @@ impl CaseLimit {
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct InvocationMeter {
     limit: u64,
-    charged: u64,
+    charged: WorkTotal,
 }
 
 impl InvocationMeter {
     pub fn new(limit: u64) -> Self {
-        Self { limit, charged: 0 }
+        Self {
+            limit,
+            charged: WorkTotal::zero(),
+        }
     }
     pub fn charged(&self) -> u64 {
-        self.charged
+        self.charged.legacy_saturated()
     }
     pub fn limit(&self) -> u64 {
         self.limit
     }
     pub fn exhausted(&self) -> bool {
-        self.charged >= self.limit
+        self.charged.exact().map_or(true, |v| v >= self.limit)
     }
-    fn room(&self) -> u64 {
-        self.limit.saturating_sub(self.charged)
+    pub fn checked_charged(&self) -> WorkTotal {
+        self.charged
     }
-    fn charge(&mut self, amount: u64) {
-        self.charged = self.charged.saturating_add(amount);
+    fn room(&self) -> WorkTotal {
+        self.charged.room(self.limit)
+    }
+    fn charge(&mut self, amount: WorkTotal) {
+        self.charged = self.charged.add(amount);
     }
 }
 
@@ -143,6 +150,8 @@ pub enum CertificateIssue {
 /// Why an attempt stopped.
 #[derive(Debug, Clone, PartialEq)]
 pub enum AttemptStop {
+    CountRange(&'static str),
+    WorkAccounting(WorkFault),
     Budget(BudgetScope),
     /// An exact sum exceeded the span limit (terminal: ROOT's ruling O4).
     Span,
@@ -187,6 +196,8 @@ pub enum AttemptStop {
 impl From<SumRefusal> for AttemptStop {
     fn from(refusal: SumRefusal) -> Self {
         match refusal {
+            SumRefusal::CountRange(field) => Self::CountRange(field),
+            SumRefusal::WorkAccounting(fault) => Self::WorkAccounting(fault),
             SumRefusal::Span => Self::Span,
             SumRefusal::Exponent => Self::Exponent,
             SumRefusal::NonFinite => Self::Arithmetic(WideError::NonFinite),
@@ -198,6 +209,8 @@ impl From<SumRefusal> for AttemptStop {
 impl From<WideError> for AttemptStop {
     fn from(error: WideError) -> Self {
         match error {
+            WideError::CountRange(field) => Self::CountRange(field),
+            WideError::WorkAccounting(fault) => Self::WorkAccounting(fault),
             WideError::ExponentRange => Self::Exponent,
             other => Self::Arithmetic(other),
         }
@@ -214,11 +227,11 @@ impl AttemptStop {
     }
 }
 
-pub(crate) fn lme<const L: usize>(ctx: &WideContext<L>) -> u64
+pub(crate) fn lme<const L: usize>(ctx: &WideContext<L>) -> WorkTotal
 where
     Wide<L>: SupportedWidth,
 {
-    ctx.work().limb_multiply_equivalents(L)
+    ctx.work().checked_lme(L)
 }
 
 /// A budget check point within one stage: `base` is the attempt's work in the
@@ -226,9 +239,9 @@ where
 /// are read at each check.
 #[derive(Debug, Clone, Copy)]
 pub(crate) struct StageGuard {
-    base: u64,
-    case_room: u64,
-    invocation_room: u64,
+    base: WorkTotal,
+    case_room: WorkTotal,
+    invocation_room: WorkTotal,
 }
 
 impl StageGuard {
@@ -236,9 +249,9 @@ impl StageGuard {
     #[cfg(test)]
     pub(crate) fn unlimited() -> Self {
         Self {
-            base: 0,
-            case_room: u64::MAX,
-            invocation_room: u64::MAX,
+            base: WorkTotal::zero(),
+            case_room: WorkTotal::exact_count(u64::MAX),
+            invocation_room: WorkTotal::exact_count(u64::MAX),
         }
     }
 
@@ -246,20 +259,26 @@ impl StageGuard {
     #[cfg(test)]
     pub(crate) fn with_case_room(case_room: u64) -> Self {
         Self {
-            base: 0,
-            case_room,
-            invocation_room: u64::MAX,
+            base: WorkTotal::zero(),
+            case_room: WorkTotal::exact_count(case_room),
+            invocation_room: WorkTotal::exact_count(u64::MAX),
         }
     }
 
-    pub(crate) fn with_base(self, base: u64) -> Self {
-        Self { base, ..self }
+    pub(crate) fn with_base(self, base: WorkTotal) -> Result<Self, AttemptStop> {
+        base.exact()?;
+        self.case_room.exact()?;
+        self.invocation_room.exact()?;
+        Ok(Self { base, ..self })
     }
 
-    pub(crate) fn test(&self, used: u64) -> Result<(), AttemptStop> {
-        if used > self.case_room {
+    pub(crate) fn test(&self, used: WorkTotal) -> Result<(), AttemptStop> {
+        let used = used.exact()?;
+        let case_room = self.case_room.exact()?;
+        let invocation_room = self.invocation_room.exact()?;
+        if used > case_room {
             Err(AttemptStop::Budget(BudgetScope::Case))
-        } else if used > self.invocation_room {
+        } else if used > invocation_room {
             Err(AttemptStop::Budget(BudgetScope::Invocation))
         } else {
             Ok(())
@@ -274,11 +293,7 @@ impl StageGuard {
     where
         Wide<L>: SupportedWidth,
     {
-        self.test(
-            self.base
-                .saturating_add(lme(ctx))
-                .saturating_add(sum.work().limb_multiply_equivalents()),
-        )
+        self.test(self.base.add(lme(ctx)).add(sum.work().checked_lme()))
     }
 }
 
@@ -356,7 +371,7 @@ pub fn intensified_k(i: f64) -> f64 {
         )
         .ok()?;
         sum.add_binary64(nearest, true).ok()?;
-        Some(sum.signum() > 0)
+        Some(sum.signum().ok()? > 0)
     })()
     .unwrap_or(false);
     if exact_above {
@@ -481,7 +496,7 @@ fn product_reaches(c: f64, den: &ExactWideSum, num: &ExactWideSum) -> Result<boo
         t.add_scaled(den, false, significand, lsb)?;
     }
     t.add_scaled(num, true, 1, 0)?;
-    Ok(t.signum() >= 0)
+    Ok(t.signum()? >= 0)
 }
 
 /// num/den rounded to binary64 in the given direction (num ≥ 0, den > 0, both
@@ -494,8 +509,10 @@ pub(crate) fn directed_ratio(
     den: &ExactWideSum,
     direction: Direction,
 ) -> Result<f64, AttemptStop> {
+    num.ensure_valid()?;
+    den.ensure_valid()?;
     let mut n = num.clone();
-    if n.is_zero() {
+    if n.is_zero()? {
         return Ok(0.0);
     }
     let mut d = den.clone();
@@ -537,7 +554,7 @@ pub(crate) fn directed_ratio(
                     };
                     t.add_scaled(den, true, significand, lsb)?;
                 }
-                Ok(t.signum() < 0)
+                Ok(t.signum()? < 0)
             };
             while c > 0.0 && exceeds(c)? {
                 c = next_down(c);
@@ -557,6 +574,8 @@ fn approximate_ratio(
     num: &ExactWideSum,
     den: &ExactWideSum,
 ) -> Result<f64, AttemptStop> {
+    num.ensure_valid()?;
+    den.ensure_valid()?;
     let mut n = num.clone();
     let mut d = den.clone();
     let nv = n.round(ctx)?;
@@ -694,7 +713,10 @@ impl BoundedExtremeTracker {
     ) -> Result<(), AttemptStop> {
         let key = approximate_ratio(ctx64, &num, &den)?.to_bits();
         let seq = self.offered;
-        self.offered += 1;
+        self.offered = self
+            .offered
+            .checked_add(1)
+            .ok_or(AttemptStop::CountRange("tracker sequence"))?;
         let better = match (self.best, self.direction) {
             (None, _) => true,
             (Some(b), Direction::Up) => key > b,
@@ -710,7 +732,7 @@ impl BoundedExtremeTracker {
         }
         if self.best.is_some_and(|b| in_window(key, b)) {
             if self.lazy.len() >= self.limit {
-                self.collapse(ctx16);
+                self.collapse(ctx16)?;
             }
             self.lazy.push((num, den, key, seq));
         }
@@ -719,20 +741,22 @@ impl BoundedExtremeTracker {
 
     /// Evaluates the unevaluated rows exactly (a refusal is recorded, not
     /// returned) and releases their memory.
-    pub(crate) fn collapse(&mut self, ctx16: &mut WideContext<16>) {
+    pub(crate) fn collapse(&mut self, ctx16: &mut WideContext<16>) -> Result<(), AttemptStop> {
         let lazy = std::mem::take(&mut self.lazy);
         if lazy.is_empty() {
-            return;
+            return Ok(());
         }
         for (num, den, key, seq) in &lazy {
             let outcome = match directed_ratio(ctx16, num, den, self.direction) {
                 Ok(value) => Evaluated::Ratio(value),
+                Err(stop @ AttemptStop::WorkAccounting(_)) => return Err(stop),
                 Err(stop) => Evaluated::Refused { seq: *seq, stop },
             };
             self.table.push((*key, outcome));
         }
         drop(lazy);
         self.prune();
+        Ok(())
     }
 
     /// Keeps the entries no other entry dominates: sorted nearest the best
@@ -844,7 +868,11 @@ impl<K: Ord + Copy> TrackerSet<K> {
         let before = tracker.capacity();
         tracker.offer(ctx64, ctx16, num, den)?;
         let after = tracker.capacity();
-        self.held = self.held - before + after;
+        self.held = self
+            .held
+            .checked_sub(before)
+            .and_then(|n| n.checked_add(after))
+            .ok_or(AttemptStop::CountRange("tracker capacity"))?;
         if before == 0 && after > 0 {
             self.holding.insert(key);
         } else if before > 0 && after == 0 {
@@ -853,7 +881,7 @@ impl<K: Ord + Copy> TrackerSet<K> {
         if self.held > self.limit {
             for k in std::mem::take(&mut self.holding) {
                 if let Some(t) = self.trackers.get_mut(&k) {
-                    t.collapse(ctx16);
+                    t.collapse(ctx16)?;
                 }
             }
             self.held = 0;
@@ -905,6 +933,16 @@ pub(crate) struct CasePrep {
     pub(crate) extents: Vec<f64>,
 }
 
+pub(crate) enum CombinationPreparationError {
+    Ledger(LedgerRefusal),
+    CountRange(&'static str),
+}
+impl From<LedgerRefusal> for CombinationPreparationError {
+    fn from(e: LedgerRefusal) -> Self {
+        Self::Ledger(e)
+    }
+}
+
 impl CasePrep {
     pub(crate) fn new(source: PrimitiveSource) -> Result<Self, LedgerRefusal> {
         let ledger = RetainedLedger::from_source(&source)?;
@@ -919,7 +957,32 @@ impl CasePrep {
 
     /// A combination Σ cᵢ·(case i) of case preparations that share one
     /// stiffness identity and layout (checked by the caller).
-    pub(crate) fn combination(operands: &[(f64, &CasePrep)]) -> Result<Self, LedgerRefusal> {
+    pub(crate) fn combination(
+        operands: &[(f64, &CasePrep)],
+    ) -> Result<Self, CombinationPreparationError> {
+        let fail = || CombinationPreparationError::CountRange("combination encoding");
+        u32::try_from(operands.len()).map_err(|_| fail())?;
+        let mut bytes = 10usize;
+        let mut loads = 0usize;
+        for (_, prep) in operands {
+            u32::try_from(prep.identity.len()).map_err(|_| fail())?;
+            bytes = bytes
+                .checked_add(12)
+                .and_then(|n| n.checked_add(prep.identity.len()))
+                .ok_or_else(fail)?;
+            loads = loads
+                .checked_add(prep.source.loads().len())
+                .ok_or_else(fail)?;
+        }
+        std::alloc::Layout::array::<u8>(bytes).map_err(|_| fail())?;
+        std::alloc::Layout::array::<(usize, crate::exact_sum::ExactAccumulator)>(loads)
+            .map_err(|_| fail())?;
+        let first = operands.first().ok_or_else(fail)?.1;
+        let pairs = operands
+            .len()
+            .checked_mul(first.prescribed.len())
+            .ok_or_else(fail)?;
+        std::alloc::Layout::array::<(f64, f64)>(pairs).map_err(|_| fail())?;
         let sources: Vec<(f64, &PrimitiveSource)> =
             operands.iter().map(|(c, p)| (*c, &p.source)).collect();
         let ledger = RetainedLedger::combined(&sources)?;
@@ -945,6 +1008,7 @@ impl CasePrep {
         }
         let factors = operands.iter().map(|o| o.0).collect();
         Self::with(first.clone(), ledger, prescribed, factors, identity)
+            .map_err(CombinationPreparationError::from)
     }
 
     fn with(
@@ -1060,8 +1124,9 @@ pub(crate) struct GroupPrep {
 }
 
 /// Work of the shared stages at one precision.
-#[derive(Debug, Clone, Default, PartialEq, Eq)]
+#[derive(Clone, Default, PartialEq, Eq)]
 pub struct StageWork {
+    status: WorkStatus,
     pub formation: u64,
     pub assembly: u64,
     pub residual_formation: u64,
@@ -1091,6 +1156,7 @@ pub struct StageWork {
 /// A stage of `StageWork` (T3 KF3: the stage in progress when a build stops).
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub(crate) enum Stage {
+    StopRule,
     Formation,
     Assembly,
     ResidualFormation,
@@ -1112,8 +1178,7 @@ pub(crate) enum Stage {
 }
 
 impl StageWork {
-    /// The sum of every stage (saturating).
-    pub(crate) fn total(&self) -> u64 {
+    pub fn checked_total(&self) -> WorkTotal {
         [
             self.formation,
             self.assembly,
@@ -1135,15 +1200,17 @@ impl StageWork {
             self.wide_formation,
             self.uc,
         ]
-        .iter()
-        .copied()
-        .reduce(u64::saturating_add)
-        .unwrap_or(0)
+        .into_iter()
+        .fold(WorkTotal::zero().join_status(self.status), |t, n| {
+            t.add(WorkTotal::exact_count(n))
+        })
     }
-
-    /// Adds `work` to one stage (saturating).
-    pub(crate) fn add_to(&mut self, stage: Stage, work: u64) {
-        let slot = match stage {
+    #[cfg(test)]
+    pub(crate) fn total(&self) -> u64 {
+        self.checked_total().legacy_saturated()
+    }
+    fn slot(&mut self, stage: Stage) -> &mut u64 {
+        match stage {
             Stage::Formation => &mut self.formation,
             Stage::Assembly => &mut self.assembly,
             Stage::ResidualFormation => &mut self.residual_formation,
@@ -1153,6 +1220,7 @@ impl StageWork {
             Stage::Solve => &mut self.solve,
             Stage::Refinement => &mut self.refinement,
             Stage::Recovery => &mut self.recovery,
+            Stage::StopRule => &mut self.stop_rule,
             Stage::BoundedGate => &mut self.bounded_gate,
             Stage::Scale => &mut self.scale,
             Stage::Estimate => &mut self.estimate,
@@ -1162,48 +1230,125 @@ impl StageWork {
             Stage::BoundedFormation => &mut self.bounded_formation,
             Stage::WideFormation => &mut self.wide_formation,
             Stage::Uc => &mut self.uc,
-        };
-        *slot = slot.saturating_add(work);
+        }
     }
-
-    /// T3 KF3: a build that stopped adds the work it was charged beyond its
-    /// recorded stages to the stage in progress, so that its stages sum to its
-    /// charged total on every path (ROOT's ruling on I19's plan). A completed
-    /// build adds nothing.
+    pub(crate) fn set(&mut self, stage: Stage, work: WorkTotal) -> Result<(), WorkFault> {
+        self.status = self.status.join(work.status());
+        *self.slot(stage) = work.legacy_saturated();
+        self.status = self.status.join(self.checked_total().status());
+        self.checked_total().exact().map(|_| ())
+    }
+    pub(crate) fn add_to(&mut self, stage: Stage, work: WorkTotal) -> Result<(), WorkFault> {
+        let old = WorkTotal::exact_count(*self.slot(stage));
+        self.set(stage, old.add(work))
+    }
     pub(crate) fn close_stopped<T, E>(
         &mut self,
         result: &Result<T, E>,
         current: Stage,
-        total: u64,
+        total: WorkTotal,
     ) {
+        self.status = self
+            .status
+            .join(total.status())
+            .join(self.checked_total().status());
         if result.is_err() {
-            let rest = total.saturating_sub(self.total());
-            self.add_to(current, rest);
+            let rest = total.remainder(self.checked_total());
+            self.status = self.status.join(rest.status());
+            if rest.status().is_exact() {
+                let _ = self.add_to(current, rest);
+            }
         }
     }
-
-    /// Adds another record's stages.
-    pub(crate) fn add(&mut self, o: &StageWork) {
-        self.formation += o.formation;
-        self.assembly += o.assembly;
-        self.residual_formation += o.residual_formation;
-        self.factor += o.factor;
-        self.condition += o.condition;
-        self.rhs += o.rhs;
-        self.solve += o.solve;
-        self.refinement += o.refinement;
-        self.recovery += o.recovery;
-        self.stop_rule += o.stop_rule;
-        self.bounded_gate += o.bounded_gate;
-        self.scale += o.scale;
-        self.estimate += o.estimate;
-        self.charge += o.charge;
-        self.bound += o.bound;
-        self.shift += o.shift;
-        self.bounded_formation += o.bounded_formation;
-        self.wide_formation += o.wide_formation;
-        self.uc += o.uc;
+    pub fn merge(&mut self, other: &Self) -> Result<(), WorkFault> {
+        self.status = self.status.join(other.status);
+        let _ = self.add_to(Stage::Formation, WorkTotal::exact_count(other.formation));
+        let _ = self.add_to(Stage::Assembly, WorkTotal::exact_count(other.assembly));
+        let _ = self.add_to(
+            Stage::ResidualFormation,
+            WorkTotal::exact_count(other.residual_formation),
+        );
+        let _ = self.add_to(Stage::Factor, WorkTotal::exact_count(other.factor));
+        let _ = self.add_to(Stage::Condition, WorkTotal::exact_count(other.condition));
+        let _ = self.add_to(Stage::Rhs, WorkTotal::exact_count(other.rhs));
+        let _ = self.add_to(Stage::Solve, WorkTotal::exact_count(other.solve));
+        let _ = self.add_to(Stage::Refinement, WorkTotal::exact_count(other.refinement));
+        let _ = self.add_to(Stage::Recovery, WorkTotal::exact_count(other.recovery));
+        let _ = self.add_to(Stage::StopRule, WorkTotal::exact_count(other.stop_rule));
+        let _ = self.add_to(
+            Stage::BoundedGate,
+            WorkTotal::exact_count(other.bounded_gate),
+        );
+        let _ = self.add_to(Stage::Scale, WorkTotal::exact_count(other.scale));
+        let _ = self.add_to(Stage::Estimate, WorkTotal::exact_count(other.estimate));
+        let _ = self.add_to(Stage::Charge, WorkTotal::exact_count(other.charge));
+        let _ = self.add_to(Stage::Bound, WorkTotal::exact_count(other.bound));
+        let _ = self.add_to(Stage::Shift, WorkTotal::exact_count(other.shift));
+        let _ = self.add_to(
+            Stage::BoundedFormation,
+            WorkTotal::exact_count(other.bounded_formation),
+        );
+        let _ = self.add_to(
+            Stage::WideFormation,
+            WorkTotal::exact_count(other.wide_formation),
+        );
+        let _ = self.add_to(Stage::Uc, WorkTotal::exact_count(other.uc));
+        self.checked_total().exact().map(|_| ())
     }
+    pub(crate) fn add(&mut self, other: &Self) -> Result<(), WorkFault> {
+        self.merge(other)
+    }
+}
+impl std::fmt::Debug for StageWork {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let mut d = f.debug_struct("StageWork");
+        d.field("formation", &self.formation);
+        d.field("assembly", &self.assembly);
+        d.field("residual_formation", &self.residual_formation);
+        d.field("factor", &self.factor);
+        d.field("condition", &self.condition);
+        d.field("rhs", &self.rhs);
+        d.field("solve", &self.solve);
+        d.field("refinement", &self.refinement);
+        d.field("recovery", &self.recovery);
+        d.field("stop_rule", &self.stop_rule);
+        d.field("bounded_gate", &self.bounded_gate);
+        d.field("scale", &self.scale);
+        d.field("estimate", &self.estimate);
+        d.field("charge", &self.charge);
+        d.field("bound", &self.bound);
+        d.field("shift", &self.shift);
+        d.field("bounded_formation", &self.bounded_formation);
+        d.field("wide_formation", &self.wide_formation);
+        d.field("uc", &self.uc);
+        if !self.status.is_exact() {
+            d.field("work_status", &self.status);
+        }
+        d.finish()
+    }
+}
+
+impl From<WorkFault> for AttemptStop {
+    fn from(fault: WorkFault) -> Self {
+        Self::WorkAccounting(fault)
+    }
+}
+
+pub(crate) fn finish_work<T>(
+    result: &mut Result<T, AttemptStop>,
+    total: WorkTotal,
+    stages: &StageWork,
+) -> WorkTotal {
+    let mut total = total.join_status(stages.checked_total().status());
+    if let Err(AttemptStop::WorkAccounting(fault)) = result {
+        total = total.join_status(WorkStatus::from_fault(*fault));
+    }
+    if result.is_ok() {
+        if let Err(fault) = total.exact() {
+            *result = Err(fault.into());
+        }
+    }
+    total
 }
 
 /// Formation, assembly, the p-factor and its screens at one precision, shared
@@ -1234,7 +1379,7 @@ where
     pub(crate) work: AttemptWork,
     pub(crate) sum_work: SumWork,
     pub(crate) stages: StageWork,
-    pub(crate) total: u64,
+    pub(crate) total: WorkTotal,
 }
 
 /// A case's solve at one precision.
@@ -1270,7 +1415,7 @@ struct Spent<T> {
     work: AttemptWork,
     sum_work: SumWork,
     stages: StageWork,
-    total: u64,
+    total: WorkTotal,
 }
 
 fn build_shared<const L: usize, const R: usize>(
@@ -1290,15 +1435,20 @@ where
     let mut ctx64 = WideContext::<4>::new(64).expect("supported precision");
     let mut sum = ExactWideSum::new();
     let mut stages = StageWork::default();
+    let stream = WorkStream::new();
     // T3 KF3: the stage in progress, for a stopped build's unstaged work.
     let mut current = Stage::Formation;
     let mut run = || -> Result<Shared<L, R>, AttemptStop> {
-        let t0 = lme(&ctx) + sum.work().limb_multiply_equivalents();
-        let g = guard.with_base(0);
+        let t0 = stream.snapshot(
+            lme(&ctx) + lme(&ctx_q) + lme(&ctx16) + lme(&ctx64) + sum.work().checked_lme(),
+        )?;
+        let g = guard.with_base(WorkTotal::zero())?;
         let members = form_members(&mut ctx, &mut sum, &g, source)?;
         let directional = form_directional(&mut ctx, &mut sum, source)?;
-        let t1 = lme(&ctx) + sum.work().limb_multiply_equivalents();
-        stages.formation = t1 - t0;
+        let t1 = stream.snapshot(
+            lme(&ctx) + lme(&ctx_q) + lme(&ctx16) + lme(&ctx64) + sum.work().checked_lme(),
+        )?;
+        stages.set(Stage::Formation, t1.delta_since(t0))?;
         current = Stage::Assembly;
         let k = assemble(
             &mut ctx,
@@ -1309,8 +1459,10 @@ where
             &members,
             &directional,
         )?;
-        let t2 = lme(&ctx) + sum.work().limb_multiply_equivalents();
-        stages.assembly = t2 - t1;
+        let t2 = stream.snapshot(
+            lme(&ctx) + lme(&ctx_q) + lme(&ctx16) + lme(&ctx64) + sum.work().checked_lme(),
+        )?;
+        stages.set(Stage::Assembly, t2.delta_since(t1))?;
         g.check(&ctx, &sum)?;
         current = Stage::ResidualFormation;
         // The residual system re-formed at q (the ceiling: K itself, widened),
@@ -1327,7 +1479,7 @@ where
                 directional.iter().map(|d| d.widen::<R>()).collect(),
             )
         } else {
-            let gq = guard.with_base(lme(&ctx));
+            let gq = guard.with_base(lme(&ctx))?;
             let members_q = form_members(&mut ctx_q, &mut sum, &gq, source)?;
             let directional_q = form_directional(&mut ctx_q, &mut sum, source)?;
             let k_q = assemble(
@@ -1345,10 +1497,12 @@ where
                 directional_q,
             )
         };
-        let t3 = lme(&ctx) + lme(&ctx_q) + sum.work().limb_multiply_equivalents();
-        stages.residual_formation = t3 - t2;
+        let t3 = stream.snapshot(
+            lme(&ctx) + lme(&ctx_q) + lme(&ctx16) + lme(&ctx64) + sum.work().checked_lme(),
+        )?;
+        stages.set(Stage::ResidualFormation, t3.delta_since(t2))?;
         current = Stage::Factor;
-        let gp = guard.with_base(lme(&ctx_q));
+        let gp = guard.with_base(lme(&ctx_q))?;
         let factor = super::factor::factor(
             &mut ctx,
             &mut sum,
@@ -1357,8 +1511,10 @@ where
             &k,
             &group.ordering,
         )?;
-        let t4 = lme(&ctx) + lme(&ctx_q) + sum.work().limb_multiply_equivalents();
-        stages.factor = t4 - t3;
+        let t4 = stream.snapshot(
+            lme(&ctx) + lme(&ctx_q) + lme(&ctx16) + lme(&ctx64) + sum.work().checked_lme(),
+        )?;
+        stages.set(Stage::Factor, t4.delta_since(t3))?;
         current = Stage::Condition;
         // At p ≥ 256 the screen's solves also give est_c per block (read only).
         let (rcond, est_blocks) = if p >= 256 {
@@ -1386,19 +1542,25 @@ where
             num.add_wide_scaled(&screen.pivot, false, 1, i64::from(p))?;
             num.add_wide_scaled(&screen.pivot, true, screen.operations, 0)?;
             let mut den = ExactWideSum::new();
-            den.add_wide_scaled(&screen.scale, false, 64 * screen.operations, 0)?;
-            if den.is_zero() {
+            den.add_wide_scaled(
+                &screen.scale,
+                false,
+                screen
+                    .operations
+                    .checked_mul(64)
+                    .ok_or(AttemptStop::CountRange("pivot multiplier"))?,
+                0,
+            )?;
+            if den.is_zero()? {
                 continue;
             }
             tracker.offer(&mut ctx64, &mut ctx16, num, den)?;
         }
         let margin = tracker.finish(&mut ctx16)?.unwrap_or(f64::INFINITY);
-        let t5 = lme(&ctx)
-            + lme(&ctx_q)
-            + sum.work().limb_multiply_equivalents()
-            + lme(&ctx16)
-            + lme(&ctx64);
-        stages.condition = t5 - t4;
+        let t5 = stream.snapshot(
+            lme(&ctx) + lme(&ctx_q) + lme(&ctx16) + lme(&ctx64) + sum.work().checked_lme(),
+        )?;
+        stages.set(Stage::Condition, t5.delta_since(t4))?;
         Ok(Shared {
             p,
             q,
@@ -1415,18 +1577,19 @@ where
             work: AttemptWork::default(),
             sum_work: SumWork::default(),
             stages: StageWork::default(),
-            total: 0,
+            total: WorkTotal::zero(),
         })
     };
-    let result = run();
+    let mut result = run();
     let mut work = AttemptWork::default();
     work.record(&ctx);
     work.record(&ctx_q);
     work.record(&ctx16);
     work.record(&ctx64);
     let sum_work = sum.work();
-    let total = work.limb_multiply_equivalents() + sum_work.limb_multiply_equivalents();
+    let total = work.checked_lme() + sum_work.checked_lme();
     stages.close_stopped(&result, current, total);
+    let total = finish_work(&mut result, total, &stages);
     let result = result.map(|mut shared| {
         shared.work = work;
         shared.sum_work = sum_work;
@@ -1483,25 +1646,36 @@ where
             if kij.is_zero() || uj.is_zero() {
                 continue;
             }
-            count += 1;
+            count = count
+                .checked_add(1)
+                .ok_or(AttemptStop::CountRange("residual row"))?;
             r.add_product(ctx_q, kij, &uj, true)?;
             let negative = kij.is_sign_negative() != uj.is_sign_negative();
             d.add_product(ctx_q, kij, &uj, negative)?;
         }
-        let m = 2 * count + 2;
+        let m = count
+            .checked_mul(2)
+            .and_then(|v| v.checked_add(2))
+            .ok_or(AttemptStop::CountRange("residual operations"))?;
         let mut absolute = r.clone();
-        absolute.make_absolute();
+        absolute.make_absolute()?;
         // num = |r|·(2^p − m), den = 64·m·d.
         let mut num = ExactWideSum::new();
         num.add_scaled(&absolute, false, 1, i64::from(p))?;
         num.add_scaled(&absolute, true, m, 0)?;
         let mut den = ExactWideSum::new();
-        den.add_scaled(&d, false, 64 * m, 0)?;
+        den.add_scaled(
+            &d,
+            false,
+            m.checked_mul(64)
+                .ok_or(AttemptStop::CountRange("residual multiplier"))?,
+            0,
+        )?;
         // Gate: den − num ≥ 0.
         sum.clear();
         sum.add_scaled(&den, false, 1, 0)?;
         sum.add_scaled(&num, true, 1, 0)?;
-        let passes = sum.signum() >= 0;
+        let passes = sum.signum()? >= 0;
         let ratio = approximate_ratio(ctx64, &num, &den)?;
         let rounded = r.round(ctx)?;
         tracker.offer(ctx64, ctx16, num, den)?;
@@ -1520,7 +1694,7 @@ fn cmp_ratio(
     t.add_product_of(&a.0, &mut db, false)?;
     let mut da = a.1.clone();
     t.add_product_of(&b.0, &mut da, true)?;
-    Ok(t.signum().cmp(&0))
+    Ok(t.signum()?.cmp(&0))
 }
 
 /// An exact ratio num/den (den > 0).
@@ -1536,16 +1710,22 @@ pub(crate) fn bounded_row(
     sum: &mut ExactWideSum,
 ) -> Result<(bool, GateRatio), AttemptStop> {
     let mut absolute = r;
-    absolute.make_absolute();
+    absolute.make_absolute()?;
     let mut num = ExactWideSum::new();
     num.add_scaled(&absolute, false, 1, i64::from(p))?;
     num.add_scaled(&absolute, true, m, 0)?;
     let mut den = ExactWideSum::new();
-    den.add_scaled(d, false, 64 * m, 0)?;
+    den.add_scaled(
+        d,
+        false,
+        m.checked_mul(64)
+            .ok_or(AttemptStop::CountRange("residual multiplier"))?,
+        0,
+    )?;
     sum.clear();
     sum.add_scaled(&den, false, 1, 0)?;
     sum.add_scaled(&num, true, 1, 0)?;
-    Ok((sum.signum() >= 0, (num, den)))
+    Ok((sum.signum()? >= 0, (num, den)))
 }
 
 /// The best evaluated state (ROOT's A3-0 ruling Q6): per state, None when it
@@ -1640,7 +1820,9 @@ where
                 }
                 let kij = &shared.k_q[index];
                 if !kij.is_zero() {
-                    count += 1;
+                    count = count
+                        .checked_add(1)
+                        .ok_or(AttemptStop::CountRange("residual row"))?;
                     r.add_product(ctx_q, kij, &uj, true)?;
                 }
                 let aij = &abar_q[index];
@@ -1648,13 +1830,16 @@ where
                     d.add_product(ctx_q, aij, &uj.abs(), false)?;
                 }
             }
-            let m = 2 * count + 2;
+            let m = count
+                .checked_mul(2)
+                .and_then(|v| v.checked_add(2))
+                .ok_or(AttemptStop::CountRange("residual operations"))?;
             let (passes, (mut num, mut den)) = bounded_row(r, &d, m, p, sum)?;
             all_pass &= passes;
-            if num.is_zero() {
+            if num.is_zero()? {
                 continue;
             }
-            if den.is_zero() {
+            if den.is_zero()? {
                 eligible = false;
                 break;
             }
@@ -1716,6 +1901,7 @@ where
     let mut ctx64 = WideContext::<4>::new(64).expect("supported precision");
     let mut sum = ExactWideSum::new();
     let mut stages = StageWork::default();
+    let stream = WorkStream::new();
     let source = &prep.source;
     let free = &group.ordering.free;
     // T3 KF3: the stage in progress, for a stopped solve's unstaged work.
@@ -1726,9 +1912,9 @@ where
                      ctx16: &WideContext<16>,
                      ctx64: &WideContext<4>,
                      sum: &ExactWideSum| {
-            lme(ctx) + lme(ctx_q) + lme(ctx16) + lme(ctx64) + sum.work().limb_multiply_equivalents()
+            lme(ctx) + lme(ctx_q) + lme(ctx16) + lme(ctx64) + sum.work().checked_lme()
         };
-        let t0 = total(&ctx, &ctx_q, &ctx16, &ctx64, &sum);
+        let t0 = stream.snapshot(total(&ctx, &ctx_q, &ctx16, &ctx64, &sum))?;
         // The prescribed values at p (exact for a case's binary64 values; a
         // combination's exact sum, rounded once).
         let mut u = vec![Wide::<L>::ZERO; source.dof_count()];
@@ -1743,20 +1929,20 @@ where
             free,
             &u,
         )?;
-        let t1 = total(&ctx, &ctx_q, &ctx16, &ctx64, &sum);
-        stages.rhs = t1 - t0;
+        let t1 = stream.snapshot(total(&ctx, &ctx_q, &ctx16, &ctx64, &sum))?;
+        stages.set(Stage::Rhs, t1.delta_since(t0))?;
         current = Stage::Solve;
         let mut u_free = shared.factor.solve(&mut ctx, &rhs)?;
         guard.test(total(&ctx, &ctx_q, &ctx16, &ctx64, &sum))?;
-        let t2 = total(&ctx, &ctx_q, &ctx16, &ctx64, &sum);
-        stages.solve = t2 - t1;
+        let t2 = stream.snapshot(total(&ctx, &ctx_q, &ctx16, &ctx64, &sum))?;
+        stages.set(Stage::Solve, t2.delta_since(t1))?;
         current = Stage::Refinement;
         let mut corrections = 0u8;
         let mut prior = f64::INFINITY;
         let residual_worst;
         let mut gate = GateTest::Coalesced;
         let mut evaluated: Vec<Vec<Wide<L>>> = Vec::new();
-        let mut fallback_work = 0u64;
+        let mut fallback_work = WorkTotal::zero();
         loop {
             for (a, &g) in free.iter().enumerate() {
                 u[g] = u_free[a];
@@ -1793,18 +1979,20 @@ where
             if corrections == 3 || worst >= prior {
                 // D1 revision 5a.3 (R7 §4.1.4 step 3): the bounded test on the
                 // best evaluated state (ROOT's A3-0 rulings Q6, Q17).
-                let tf = total(&ctx, &ctx_q, &ctx16, &ctx64, &sum);
+                let tf = stream.snapshot(total(&ctx, &ctx_q, &ctx16, &ctx64, &sum))?;
                 // The refinement up to the fallback, then the fallback's own
                 // stage (the same values as at t3).
-                stages.refinement = tf - t2;
+                stages.set(Stage::Refinement, tf.delta_since(t2))?;
                 current = Stage::BoundedGate;
                 let chosen = bounded_fallback(
                     &mut ctx_q, &mut ctx64, &mut ctx16, &mut sum, p, shared, prep, group, &u,
                     &evaluated, &guard,
                 )?;
                 guard.test(total(&ctx, &ctx_q, &ctx16, &ctx64, &sum))?;
-                fallback_work = total(&ctx, &ctx_q, &ctx16, &ctx64, &sum) - tf;
-                stages.bounded_gate = fallback_work;
+                fallback_work = stream
+                    .snapshot(total(&ctx, &ctx_q, &ctx16, &ctx64, &sum))?
+                    .delta_since(tf);
+                stages.set(Stage::BoundedGate, fallback_work)?;
                 current = Stage::Refinement;
                 match chosen {
                     Some((k, ratio)) => {
@@ -1834,19 +2022,19 @@ where
             }
             corrections += 1;
         }
-        let t3 = total(&ctx, &ctx_q, &ctx16, &ctx64, &sum);
-        stages.refinement = t3 - t2 - fallback_work;
-        stages.bounded_gate = fallback_work;
+        let t3 = stream.snapshot(total(&ctx, &ctx_q, &ctx16, &ctx64, &sum))?;
+        stages.set(Stage::Refinement, t3.delta_since(t2) - fallback_work)?;
+        stages.set(Stage::BoundedGate, fallback_work)?;
         current = Stage::Recovery;
         // A test-only seed of the final state (R7 §7's SEEDED controls), after
         // the gate and before recovery.
         #[cfg(test)]
         seed::apply(&mut ctx, &mut u)?;
-        let base = t3 - lme(&ctx) - sum.work().limb_multiply_equivalents();
+        let base = t3.total() - lme(&ctx) - sum.work().checked_lme();
         let recovered = recover(
             &mut ctx,
             &mut sum,
-            &guard.with_base(guard.base + base),
+            &guard.with_base(guard.base + base)?,
             source,
             &prep.layout,
             &group.structure,
@@ -1856,8 +2044,8 @@ where
             &prep.ledger,
             &u,
         )?;
-        let t4 = total(&ctx, &ctx_q, &ctx16, &ctx64, &sum);
-        stages.recovery = t4 - t3;
+        let t4 = stream.snapshot(total(&ctx, &ctx_q, &ctx16, &ctx64, &sum))?;
+        stages.set(Stage::Recovery, t4.delta_since(t3))?;
         Ok(Solved {
             p,
             u,
@@ -1867,15 +2055,16 @@ where
             gate,
         })
     };
-    let result = run();
+    let mut result = run();
     let mut work = AttemptWork::default();
     work.record(&ctx);
     work.record(&ctx_q);
     work.record(&ctx16);
     work.record(&ctx64);
     let sum_work = sum.work();
-    let total = work.limb_multiply_equivalents() + sum_work.limb_multiply_equivalents();
+    let total = work.checked_lme() + sum_work.checked_lme();
     stages.close_stopped(&result, current, total);
+    let total = finish_work(&mut result, total, &stages);
     Spent {
         result,
         work,
@@ -1908,7 +2097,7 @@ pub(crate) struct StopDecision {
     pub(crate) floor: Option<Vec<[f64; 2]>>,
     pub(crate) work: AttemptWork,
     pub(crate) sum_work: SumWork,
-    pub(crate) total: u64,
+    pub(crate) total: WorkTotal,
 }
 
 /// The test that rejected a candidate (D1 revision 5a.3, R7 §5.1 (a)–(d),
@@ -2079,7 +2268,7 @@ where
                      ctx16: &WideContext<16>,
                      ctx64: &WideContext<4>,
                      sum: &ExactWideSum| {
-            lme(ctx) + lme(ctx16) + lme(ctx64) + sum.work().limb_multiply_equivalents()
+            lme(ctx) + lme(ctx16) + lme(ctx64) + sum.work().checked_lme()
         };
         // O9 on the stop rule (ROOT's ruling on RV19-1): a row the candidate
         // cannot publish (a nonzero value that underflows binary64, or one
@@ -2140,7 +2329,7 @@ where
             let mut difference = ExactWideSum::new();
             difference.add_wide(&candidate[index], false)?;
             difference.add_wide(q2, true)?;
-            difference.make_absolute();
+            difference.make_absolute()?;
             // |Δ| + V_q.
             if let Some(r) = report {
                 match meta.kind {
@@ -2162,7 +2351,7 @@ where
             sum.clear();
             sum.add_wide_scaled(&magnitude, false, 1, -64)?;
             sum.add_scaled(&difference, true, 1, 0)?;
-            if sum.signum() < 0 {
+            if sum.signum()? < 0 {
                 first_failure = Some(index);
                 rejection = Some(Rejection::StopRule { index });
                 return Ok(false);
@@ -2198,7 +2387,7 @@ where
             sum.clear();
             sum.add_wide_scaled(&e, false, 1, 6 - big_p)?;
             sum.add_wide(w, true)?;
-            if sum.signum() < 0 {
+            if sum.signum()? < 0 {
                 rejection = Some(Rejection::VerificationEstimate { index });
                 return Ok(false);
             }
@@ -2246,11 +2435,11 @@ where
             sum.clear();
             sum.add_scaled(&allowance, false, 1, 0)?;
             sum.add_wide(c, true)?;
-            if sum.signum() < 0 {
+            if sum.signum()? < 0 {
                 rejection = Some(Rejection::Charge { index });
                 return Ok(false);
             }
-            if !allowance.is_zero() {
+            if !allowance.is_zero()? {
                 let mut num = ExactWideSum::new();
                 num.add_wide(c, false)?;
                 trackers.offer(
@@ -2279,13 +2468,14 @@ where
         guard.test(spent(&ctx, &ctx16, &ctx64, &sum))?;
         Ok(true)
     };
-    let result = run();
+    let mut result = run();
     let mut work = AttemptWork::default();
     work.record(&ctx);
     work.record(&ctx16);
     work.record(&ctx64);
     let sum_work = sum.work();
-    let total = work.limb_multiply_equivalents() + sum_work.limb_multiply_equivalents();
+    let total = work.checked_lme() + sum_work.checked_lme();
+    let total = finish_work(&mut result, total, &StageWork::default());
     StopDecision {
         result,
         first_failure,
@@ -2535,8 +2725,9 @@ pub struct StorageCounts {
 
 /// One solve's record (D1 §5 item 1: "the attempts list (p, outcome, reason,
 /// work)").
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Clone, PartialEq)]
 pub struct AttemptRecord {
+    work_status: WorkStatus,
     pub precision: u32,
     pub role: AttemptRole,
     pub outcome: AttemptOutcome,
@@ -2582,6 +2773,87 @@ pub struct AttemptRecord {
     pub bound_refusals: Vec<BlockRefusal>,
 }
 
+impl AttemptRecord {
+    pub fn work_status(&self) -> WorkStatus {
+        self.work_status
+            .join(self.work.checked_lme().status())
+            .join(self.k4_work.checked_lme().status())
+            .join(self.stages.checked_total().status())
+            .join(self.shared_stages.checked_total().status())
+    }
+    fn latch(&mut self, work: WorkTotal) {
+        self.work_status = self.work_status.join(work.status());
+    }
+    pub fn checked_own_work(&self) -> WorkTotal {
+        self.work
+            .checked_lme()
+            .add(self.k4_work.checked_lme())
+            .join_status(self.work_status())
+    }
+    pub fn checked_shared_work(&self) -> WorkTotal {
+        WorkTotal::exact_count(self.shared_work).join_status(self.work_status())
+    }
+    pub fn checked_verification_shared_work(&self) -> WorkTotal {
+        WorkTotal::exact_count(self.verification_shared_work).join_status(self.work_status())
+    }
+    pub fn checked_verification_work(&self) -> WorkTotal {
+        WorkTotal::exact_count(self.verification_work).join_status(self.work_status())
+    }
+    pub fn checked_stop_rule_work(&self) -> WorkTotal {
+        WorkTotal::exact_count(self.stop_rule_work).join_status(self.work_status())
+    }
+    pub fn checked_case_charge(&self) -> WorkTotal {
+        self.checked_own_work()
+            .add(self.checked_shared_work())
+            .add(self.checked_verification_shared_work())
+    }
+    pub fn checked_invocation_increment(&self) -> WorkTotal {
+        self.checked_own_work()
+            .add(
+                self.checked_shared_work()
+                    .mul(u64::from(self.shared_built_here)),
+            )
+            .add(
+                self.checked_verification_shared_work()
+                    .mul(u64::from(self.verification_shared_built_here)),
+            )
+    }
+}
+impl std::fmt::Debug for AttemptRecord {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let mut d = f.debug_struct("AttemptRecord");
+        d.field("precision", &self.precision);
+        d.field("role", &self.role);
+        d.field("outcome", &self.outcome);
+        d.field("residual_basis", &self.residual_basis);
+        d.field("corrections", &self.corrections);
+        d.field("pivot_margin_min", &self.pivot_margin_min);
+        d.field("rcond", &self.rcond);
+        d.field("residual_worst", &self.residual_worst);
+        d.field("work", &self.work);
+        d.field("k4_work", &self.k4_work);
+        d.field("stages", &self.stages);
+        d.field("shared_work", &self.shared_work);
+        d.field("shared_stages", &self.shared_stages);
+        d.field("shared_built_here", &self.shared_built_here);
+        d.field("stop_rule_work", &self.stop_rule_work);
+        d.field("storage", &self.storage);
+        d.field("gate", &self.gate);
+        d.field("verification_work", &self.verification_work);
+        d.field("verification", &self.verification);
+        d.field("verification_shared_work", &self.verification_shared_work);
+        d.field(
+            "verification_shared_built_here",
+            &self.verification_shared_built_here,
+        );
+        d.field("bound_refusals", &self.bound_refusals);
+        if !self.work_status().is_exact() {
+            d.field("work_status", &self.work_status());
+        }
+        d.finish()
+    }
+}
+
 /// A refusal: no rows, no escalation.
 #[derive(Debug, Clone, PartialEq)]
 pub enum Refusal {
@@ -2603,6 +2875,11 @@ pub enum Refusal {
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum UnresolvedReason {
+    CountRange(&'static str),
+    WorkAccounting {
+        fault: WorkFault,
+        prior: Option<AttemptStop>,
+    },
     /// "At the ceiling … the case is unresolved."
     Ceiling,
     Budget(BudgetScope),
@@ -2752,17 +3029,6 @@ fn finite_nonnegative(value: f64) -> Result<(), CertificateIssue> {
     }
 }
 
-/// Only newly incurred clone work is charged. max_span is evidence, not a price.
-fn sum_work_delta(after: SumWork, before: SumWork) -> SumWork {
-    SumWork {
-        term_limbs: after.term_limbs - before.term_limbs,
-        shift_limbs: after.shift_limbs - before.shift_limbs,
-        net_limbs: after.net_limbs - before.net_limbs,
-        rounded_limbs: after.rounded_limbs - before.rounded_limbs,
-        max_span_bits: after.max_span_bits,
-    }
-}
-
 /// The candidate's new work, with no shared/cache charge. Every local sum is
 /// collected even when an operation refuses. The legacy ExactAccumulator used
 /// for exact prescriptions remains outside this inherited LME instrumentation.
@@ -2781,8 +3047,8 @@ impl CertificateMeter {
         }
     }
 
-    fn total(&self) -> u64 {
-        lme(&self.ctx).saturating_add(self.sums.limb_multiply_equivalents())
+    fn total(&self) -> WorkTotal {
+        lme(&self.ctx).add(self.sums.checked_lme())
     }
 
     fn checked<T>(&self, result: Result<T, AttemptStop>) -> Result<T, AttemptStop> {
@@ -2806,14 +3072,13 @@ impl CertificateMeter {
         self.checked(result)
     }
 
-    fn clone_delta<T>(
+    fn collect_clone<T>(
         &mut self,
-        sum: &ExactWideSum,
-        before: SumWork,
-        result: Result<T, AttemptStop>,
+        operation: (Result<T, SumRefusal>, SumWork),
     ) -> Result<T, AttemptStop> {
-        self.sums.merge(&sum_work_delta(sum.work(), before));
-        self.checked(result)
+        let (result, delta) = operation;
+        self.sums.merge(&delta);
+        self.checked(result.map_err(AttemptStop::from))
     }
 
     fn reaches(
@@ -2836,7 +3101,7 @@ impl CertificateMeter {
                 scratch.add_scaled(den, false, significand, lsb)?;
             }
             scratch.add_scaled(num, true, 1, 0)?;
-            Ok(scratch.signum() >= 0)
+            Ok(scratch.signum()? >= 0)
         })();
         self.collect(&scratch, result)
     }
@@ -2844,31 +3109,22 @@ impl CertificateMeter {
     /// Accounting-aware upward H/1 conversion. Same exact correction as
     /// directed_ratio(Up); the old R7 helper and its work contract are unchanged.
     fn round_up(&mut self, num: &ExactWideSum) -> Result<f64, AttemptStop> {
-        let mut n = num.clone();
-        let before = n.work();
-        let sign = n.signum();
-        self.clone_delta(
-            &n,
-            before,
-            if sign < 0 {
-                Err(certificate_error(None, CertificateIssue::NegativeField))
-            } else {
-                Ok(())
-            },
-        )?;
+        let mut n = CloneWork::new(num);
+        let sign = self.collect_clone(n.signum())?;
+        if sign < 0 {
+            return Err(certificate_error(None, CertificateIssue::NegativeField));
+        }
         if sign == 0 {
             return Ok(0.0);
         }
-        let before = n.work();
-        let nv = n.round(&mut self.ctx).map_err(AttemptStop::from);
-        let nv = self.clone_delta(&n, before, nv)?;
+        let operation = n.round(&mut self.ctx);
+        let nv = self.collect_clone(operation)?;
         let mut den = ExactWideSum::new();
         let formed = den.add_binary64(1.0, false).map_err(AttemptStop::from);
         self.collect(&den, formed)?;
-        let mut d = den.clone();
-        let before = d.work();
-        let dv = d.round(&mut self.ctx).map_err(AttemptStop::from);
-        let dv = self.clone_delta(&d, before, dv)?;
+        let mut d = CloneWork::new(&den);
+        let operation = d.round(&mut self.ctx);
+        let dv = self.collect_clone(operation)?;
         let quotient = self.ctx.div(&nv, &dv).map_err(AttemptStop::from);
         let quotient = self.checked(quotient)?;
         let mut c = match quotient.to_binary64() {
@@ -2955,7 +3211,7 @@ where
     let formed = (|| {
         h.add_binary64(x, false)?;
         h.add_wide(v, true)?;
-        h.make_absolute();
+        h.make_absolute()?;
         match meta.kind {
             Kind::Force | Kind::Moment => {
                 h.add_wide_scaled(required_error(&report.e_rows, index)?, false, 69, -p)?;
@@ -3016,7 +3272,7 @@ fn publication_predicate(
             let mut difference = ExactWideSum::new();
             let result = (|| {
                 build(&mut difference)?;
-                Ok(difference.signum() >= 0)
+                Ok(difference.signum()? >= 0)
             })();
             let passed = meter.collect(&difference, result)?;
             Ok::<_, AttemptStop>((!passed).then_some(predicate))
@@ -3086,7 +3342,7 @@ struct PublicationSpent {
     result: Result<PublicationDecision, AttemptStop>,
     work: AttemptWork,
     sums: SumWork,
-    total: u64,
+    total: WorkTotal,
 }
 
 fn report_shape<const L: usize>(
@@ -3310,7 +3566,7 @@ fn certify_publication(
     guard: StageGuard,
 ) -> PublicationSpent {
     let mut meter = CertificateMeter::new(guard);
-    let result = (|| {
+    let mut result = (|| {
         validate_publication_pair(prep, candidate, verification, report)?;
         if (candidate.precision() == 512) != floor.is_some()
             || floor.is_some_and(|f| f.len() != prep.extents.len())
@@ -3370,8 +3626,9 @@ fn certify_publication(
     })();
     let mut work = AttemptWork::default();
     work.record(&meter.ctx);
+    let total = finish_work(&mut result, meter.total(), &StageWork::default());
     PublicationSpent {
-        total: meter.total(),
+        total,
         sums: meter.sums,
         work,
         result,
@@ -3571,11 +3828,11 @@ pub enum CaseOutcome {
 /// A cached shared build: the build, or its non-budget failure with the work
 /// it spent (counted again against every case that meets it, so each case's
 /// budget decisions equal a separate solve's).
-type Slot<S> = Option<Result<Arc<S>, (AttemptStop, u64, StageWork)>>;
+type Slot<S> = Option<Result<Arc<S>, (AttemptStop, WorkTotal, StageWork)>>;
 
 /// A cached verification shared build, as `Slot`; a failure also keeps the
 /// Uc_c refusals recorded before it (RV23-1).
-type VerifySlot<S> = Option<Result<Arc<S>, (AttemptStop, u64, StageWork, Vec<BlockRefusal>)>>;
+type VerifySlot<S> = Option<Result<Arc<S>, (AttemptStop, WorkTotal, StageWork, Vec<BlockRefusal>)>>;
 
 /// The shared stages of one stiffness identity, per precision.
 #[derive(Debug, Default, Clone)]
@@ -3594,7 +3851,53 @@ pub(crate) struct GroupCache {
 /// The work already counted against a case.
 struct CaseBudget {
     limit: u64,
-    used: u64,
+    used: WorkTotal,
+    invocation_increment: WorkTotal,
+}
+
+impl CaseBudget {
+    fn charge(&mut self, case: WorkTotal, invocation: WorkTotal, meter: &mut InvocationMeter) {
+        self.used = self.used.add(case);
+        self.invocation_increment = self.invocation_increment.add(invocation);
+        meter.charge(invocation);
+        let status = self
+            .used
+            .status()
+            .join(self.invocation_increment.status())
+            .join(meter.checked_charged().status());
+        self.used = self.used.join_status(status);
+        self.invocation_increment = self.invocation_increment.join_status(status);
+        meter.charge(WorkTotal::zero().join_status(status));
+    }
+    fn retain<T>(
+        &mut self,
+        result: Result<T, AttemptStop>,
+        record: &mut AttemptRecord,
+        meter: &mut InvocationMeter,
+    ) -> Result<T, AttemptStop> {
+        record.latch(self.used);
+        record.latch(meter.checked_charged());
+        if let Err(AttemptStop::WorkAccounting(fault)) = &result {
+            record.work_status = record.work_status.join(WorkStatus::from_fault(*fault));
+        }
+        let status = record
+            .checked_case_charge()
+            .status()
+            .join(record.checked_invocation_increment().status());
+        record.work_status = record.work_status.join(status);
+        self.charge(
+            WorkTotal::zero().join_status(status),
+            WorkTotal::zero().join_status(status),
+            meter,
+        );
+        match result {
+            Ok(v) => {
+                record.checked_case_charge().exact()?;
+                Ok(v)
+            }
+            Err(e) => Err(e),
+        }
+    }
 }
 
 /// The shared stages at p: reused from the cache, or built (and cached) here.
@@ -3607,7 +3910,12 @@ fn obtain<const L: usize, const R: usize>(
     source: &PrimitiveSource,
     group: &GroupPrep,
     guard: StageGuard,
-) -> (Result<Arc<Shared<L, R>>, AttemptStop>, u64, bool, StageWork)
+) -> (
+    Result<Arc<Shared<L, R>>, AttemptStop>,
+    WorkTotal,
+    bool,
+    StageWork,
+)
 where
     Wide<L>: SupportedWidth,
     Wide<R>: SupportedWidth,
@@ -3650,10 +3958,10 @@ fn solve_precision(
     budget: &mut CaseBudget,
     meter: &mut InvocationMeter,
 ) -> (Result<PrecisionState, AttemptStop>, AttemptRecord) {
-    let case_room = budget.limit.saturating_sub(budget.used);
+    let case_room = budget.used.room(budget.limit);
     let invocation_room = meter.room();
     let guard = StageGuard {
-        base: 0,
+        base: WorkTotal::zero(),
         case_room,
         invocation_room,
     };
@@ -3667,6 +3975,7 @@ fn solve_precision(
         },
     };
     let mut record = AttemptRecord {
+        work_status: WorkStatus::default(),
         precision: p,
         role: AttemptRole::Candidate,
         outcome: AttemptOutcome::Solved,
@@ -3694,41 +4003,65 @@ fn solve_precision(
         ($slot:expr, $L:literal, $R:literal, $q:expr, $variant:ident) => {{
             let (shared, shared_total, built, shared_stages) =
                 obtain::<$L, $R>($slot, p, $q, &prep.source, group, guard);
-            record.shared_work = shared_total;
+            record.latch(shared_total);
+            record.shared_work = shared_total.legacy_saturated();
             record.shared_built_here = built;
             record.shared_stages = shared_stages;
             // The shared work counts in full against this case; against the
             // invocation only when built here.
-            let invocation_spent = if built { shared_total } else { 0 };
-            budget.used = budget.used.saturating_add(shared_total);
-            meter.charge(invocation_spent);
+            let invocation_spent = if built {
+                shared_total
+            } else {
+                shared_total.mul(0)
+            };
+            budget.charge(shared_total, invocation_spent, meter);
+            let shared = budget.retain(shared, &mut record, meter);
             match shared {
-                Err(stop) => (Err(stop), record),
-                Ok(_) if shared_total > case_room => {
+                Err(stop) => {
+                    let result = budget.retain(Err(stop), &mut record, meter);
+                    (result, record)
+                }
+                Ok(_)
+                    if shared_total
+                        .exact()
+                        .is_ok_and(|v| case_room.exact().is_ok_and(|room| v > room)) =>
+                {
                     (Err(AttemptStop::Budget(BudgetScope::Case)), record)
                 }
                 Ok(shared) => {
                     record.pivot_margin_min = Some(shared.pivot_margin_min);
                     record.rcond = Some(shared.rcond);
                     let own_guard = StageGuard {
-                        base: 0,
+                        base: WorkTotal::zero(),
                         case_room: case_room - shared_total,
-                        invocation_room: invocation_room.saturating_sub(invocation_spent),
+                        invocation_room: invocation_spent
+                            .room(invocation_room.legacy_saturated())
+                            .join_status(invocation_room.status()),
                     };
                     let spent = solve_case_at::<$L, $R>(&shared, prep, group, own_guard);
                     record.work = spent.work;
                     record.k4_work = spent.sum_work;
                     record.stages = spent.stages;
-                    budget.used = budget.used.saturating_add(spent.total);
-                    meter.charge(spent.total);
+                    record.latch(spent.total);
+                    budget.charge(spent.total, spent.total, meter);
                     match spent.result {
                         Ok(solved) => {
                             record.corrections = solved.corrections;
                             record.residual_worst = Some(solved.residual_worst);
                             record.gate = Some(solved.gate);
-                            (Ok(PrecisionState::$variant(Arc::new(solved))), record)
+                            {
+                                let result = budget.retain(
+                                    Ok(PrecisionState::$variant(Arc::new(solved))),
+                                    &mut record,
+                                    meter,
+                                );
+                                (result, record)
+                            }
                         }
-                        Err(stop) => (Err(stop), record),
+                        Err(stop) => {
+                            let result = budget.retain(Err(stop), &mut record, meter);
+                            (result, record)
+                        }
                     }
                 }
             }
@@ -3788,7 +4121,7 @@ fn obtain_verify<const L: usize, const R: usize, const W: usize>(
     guard: StageGuard,
 ) -> (
     Result<Arc<VerifyShared<L, W>>, AttemptStop>,
-    u64,
+    WorkTotal,
     bool,
     StageWork,
     Vec<BlockRefusal>,
@@ -3844,10 +4177,10 @@ fn verify_precision(
     meter: &mut InvocationMeter,
     record: &mut AttemptRecord,
 ) -> Result<BoundVerification, AttemptStop> {
-    let case_room = budget.limit.saturating_sub(budget.used);
+    let case_room = budget.used.room(budget.limit);
     let invocation_room = meter.room();
     let guard = StageGuard {
-        base: 0,
+        base: WorkTotal::zero(),
         case_room,
         invocation_room,
     };
@@ -3859,37 +4192,42 @@ fn verify_precision(
             };
             let (vs, vs_total, built, vs_stages, vs_refusals) =
                 obtain_verify::<$L, $R, $W>($vslot, &shared, &prep.source, group, guard);
-            record.verification_shared_work = vs_total;
+            record.latch(vs_total);
+            record.verification_shared_work = vs_total.legacy_saturated();
             record.verification_shared_built_here = built;
-            record.shared_stages.add(&vs_stages);
-            let invocation_spent = if built { vs_total } else { 0 };
-            budget.used = budget.used.saturating_add(vs_total);
-            meter.charge(invocation_spent);
+            let stage_merge = record.shared_stages.add(&vs_stages);
+            let invocation_spent = if built { vs_total } else { vs_total.mul(0) };
+            budget.charge(vs_total, invocation_spent, meter);
             // RV23-1: a stopped shared build's Uc_c refusals reach the record
             // before its stop propagates.
             if vs.is_err() {
                 record.bound_refusals = vs_refusals;
             }
-            let vs = vs?;
+            let vs = budget.retain(vs, record, meter)?;
+            stage_merge?;
             // Amendment A2: the shared build's Uc_c refusals, per block.
             record.bound_refusals = block_refusals(&vs.uc, &[]);
-            if vs_total > case_room {
+            if vs_total.exact()? > case_room.exact()? {
                 return Err(AttemptStop::Budget(BudgetScope::Case));
             }
             let own_guard = StageGuard {
-                base: 0,
+                base: WorkTotal::zero(),
                 case_room: case_room - vs_total,
-                invocation_room: invocation_room.saturating_sub(invocation_spent),
+                invocation_room: invocation_spent
+                    .room(invocation_room.legacy_saturated())
+                    .join_status(invocation_room.status()),
             };
             let spent = verify_state::<$L, $R, $W>(&shared, &vs, prep, group, $solved, own_guard);
             record.work.merge(&spent.work);
             record.k4_work.merge(&spent.sum_work);
-            record.stages.add(&spent.stages);
-            record.verification_work = spent.total;
+            let stage_merge = record.stages.add(&spent.stages);
+            record.latch(spent.total);
+            record.verification_work = spent.total.legacy_saturated();
             record.bound_refusals.extend(spent.refusals.iter().copied());
-            budget.used = budget.used.saturating_add(spent.total);
-            meter.charge(spent.total);
-            let report_state = VerificationState::$variant(Arc::new(spent.result?));
+            budget.charge(spent.total, spent.total, meter);
+            let result = budget.retain(spent.result, record, meter)?;
+            stage_merge?;
+            let report_state = VerificationState::$variant(Arc::new(result));
             record.verification = Some(report_state.summary()?);
             Ok(BoundVerification {
                 prep: prep.clone(),
@@ -3908,6 +4246,11 @@ fn verify_precision(
 
 fn terminal(stop: &AttemptStop) -> Result<UnresolvedReason, Refusal> {
     match stop {
+        AttemptStop::CountRange(field) => Ok(UnresolvedReason::CountRange(field)),
+        AttemptStop::WorkAccounting(fault) => Ok(UnresolvedReason::WorkAccounting {
+            fault: *fault,
+            prior: None,
+        }),
         AttemptStop::Budget(scope) => Ok(UnresolvedReason::Budget(*scope)),
         AttemptStop::Span => Ok(UnresolvedReason::ExactSumSpan),
         AttemptStop::Exponent => Ok(UnresolvedReason::ExponentRange),
@@ -3933,7 +4276,106 @@ fn terminal(stop: &AttemptStop) -> Result<UnresolvedReason, Refusal> {
     }
 }
 
-/// The schedule of one case (module documentation).
+/// The actual work of one core run, retained before compatibility projection.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct RunWork {
+    case: WorkTotal,
+    invocation_before: WorkTotal,
+    invocation_increment: WorkTotal,
+    invocation_after: WorkTotal,
+}
+impl RunWork {
+    pub fn case(&self) -> WorkTotal {
+        self.case
+    }
+    pub fn invocation_before(&self) -> WorkTotal {
+        self.invocation_before
+    }
+    pub fn invocation_increment(&self) -> WorkTotal {
+        self.invocation_increment
+    }
+    pub fn invocation_after(&self) -> WorkTotal {
+        self.invocation_after
+    }
+}
+#[derive(Debug, Clone)]
+pub enum ExecutionOutcome {
+    Selected(Box<RetainedSolve>),
+    Refused {
+        refusal: Refusal,
+        attempts: Vec<AttemptRecord>,
+        geometry: Vec<BodyGeometry>,
+    },
+    Unresolved {
+        reason: UnresolvedReason,
+        attempts: Vec<AttemptRecord>,
+        geometry: Vec<BodyGeometry>,
+    },
+}
+impl ExecutionOutcome {
+    fn into_legacy(self) -> CaseOutcome {
+        match self {
+            Self::Selected(s) => CaseOutcome::Selected(s),
+            Self::Refused {
+                refusal, geometry, ..
+            } => CaseOutcome::Refused { refusal, geometry },
+            Self::Unresolved {
+                reason,
+                attempts,
+                geometry,
+            } => CaseOutcome::Unresolved {
+                reason,
+                attempts,
+                geometry,
+            },
+        }
+    }
+}
+pub(crate) struct CoreRun {
+    pub(crate) outcome: ExecutionOutcome,
+    pub(crate) work: RunWork,
+}
+impl CoreRun {
+    pub(crate) fn into_legacy(self) -> CaseOutcome {
+        self.outcome.into_legacy()
+    }
+}
+pub(crate) fn run_core(
+    prep: Arc<CasePrep>,
+    group: Arc<GroupPrep>,
+    cache: &mut GroupCache,
+    case_limit: CaseLimit,
+    meter: &mut InvocationMeter,
+) -> CoreRun {
+    let invocation_before = meter.checked_charged();
+    let mut budget = CaseBudget {
+        limit: case_limit.get(),
+        used: WorkTotal::zero(),
+        invocation_increment: WorkTotal::zero(),
+    };
+    let outcome = if let Some(fault) = invocation_before.status().fault() {
+        budget.used = budget.used.join_status(invocation_before.status());
+        budget.invocation_increment = budget
+            .invocation_increment
+            .join_status(invocation_before.status());
+        ExecutionOutcome::Unresolved {
+            reason: UnresolvedReason::WorkAccounting { fault, prior: None },
+            attempts: Vec::new(),
+            geometry: group.geometry.clone(),
+        }
+    } else {
+        run_schedule_inner(prep, group, cache, &mut budget, meter)
+    };
+    CoreRun {
+        outcome,
+        work: RunWork {
+            case: budget.used,
+            invocation_before,
+            invocation_increment: budget.invocation_increment,
+            invocation_after: meter.checked_charged(),
+        },
+    }
+}
 pub(crate) fn run_schedule(
     prep: Arc<CasePrep>,
     group: Arc<GroupPrep>,
@@ -3941,11 +4383,19 @@ pub(crate) fn run_schedule(
     case_limit: CaseLimit,
     meter: &mut InvocationMeter,
 ) -> CaseOutcome {
+    run_core(prep, group, cache, case_limit, meter).into_legacy()
+}
+
+/// The schedule of one case (module documentation).
+fn run_schedule_inner(
+    prep: Arc<CasePrep>,
+    group: Arc<GroupPrep>,
+    cache: &mut GroupCache,
+    budget: &mut CaseBudget,
+    meter: &mut InvocationMeter,
+) -> ExecutionOutcome {
     let geometry = group.geometry.clone();
-    let mut budget = CaseBudget {
-        limit: case_limit.get(),
-        used: 0,
-    };
+
     let mut attempts: Vec<AttemptRecord> = Vec::new();
     let mut states: Vec<PrecisionState> = Vec::new();
     // A solved verification that becomes the next candidate.
@@ -3956,7 +4406,7 @@ pub(crate) fn run_schedule(
         let (candidate, candidate_index) = match pending.take() {
             Some(state) => state,
             None => {
-                let (result, record) = solve_precision(p, &prep, &group, cache, &mut budget, meter);
+                let (result, record) = solve_precision(p, &prep, &group, cache, budget, meter);
                 attempts.push(record);
                 let index = attempts.len() - 1;
                 match result {
@@ -3967,6 +4417,9 @@ pub(crate) fn run_schedule(
                     Err(stop) => {
                         attempts[index].outcome =
                             AttemptOutcome::Failed(AttemptReason::Stop(stop.clone()));
+                        if attempts.iter().any(|a| !a.work_status().is_exact()) {
+                            return finish_terminal(&stop, attempts, geometry);
+                        }
                         if stop.escalates() {
                             c += 1;
                             continue;
@@ -3978,7 +4431,7 @@ pub(crate) fn run_schedule(
         };
         let verification_p = PRECISIONS[c + 1];
         let (result, mut record) =
-            solve_precision(verification_p, &prep, &group, cache, &mut budget, meter);
+            solve_precision(verification_p, &prep, &group, cache, budget, meter);
         record.role = AttemptRole::Verification;
         attempts.push(record);
         let v_index = attempts.len() - 1;
@@ -3992,6 +4445,9 @@ pub(crate) fn run_schedule(
                     AttemptOutcome::Rejected(AttemptReason::VerificationFailed);
                 attempts[v_index].outcome =
                     AttemptOutcome::Failed(AttemptReason::Stop(stop.clone()));
+                if attempts.iter().any(|a| !a.work_status().is_exact()) {
+                    return finish_terminal(&stop, attempts, geometry);
+                }
                 if stop.escalates() {
                     // The failed verification cannot be the next candidate.
                     c += 2;
@@ -4006,7 +4462,7 @@ pub(crate) fn run_schedule(
             &prep,
             &group,
             cache,
-            &mut budget,
+            budget,
             meter,
             &mut attempts[v_index],
         ) {
@@ -4020,8 +4476,8 @@ pub(crate) fn run_schedule(
             }
         };
         let guard = StageGuard {
-            base: 0,
-            case_room: budget.limit.saturating_sub(budget.used),
+            base: WorkTotal::zero(),
+            case_room: budget.used.room(budget.limit),
             invocation_room: meter.room(),
         };
         if let Err(stop) = validate_publication_pair(&prep, &candidate, &verification, &report) {
@@ -4052,14 +4508,21 @@ pub(crate) fn run_schedule(
         };
         {
             let record = &mut attempts[candidate_index];
-            record.stop_rule_work += decision.total;
-            record.stages.stop_rule += decision.total;
+            record.latch(decision.total);
+            let stop_work = record.checked_stop_rule_work().add(decision.total);
+            record.latch(stop_work);
+            record.stop_rule_work = stop_work.legacy_saturated();
+            let _ = record.stages.add_to(Stage::StopRule, decision.total);
             record.work.merge(&decision.work);
             record.k4_work.merge(&decision.sum_work);
         }
-        budget.used = budget.used.saturating_add(decision.total);
-        meter.charge(decision.total);
-        match decision.result {
+        budget.charge(decision.total, decision.total, meter);
+        let decision_result = budget.retain(
+            decision.result.clone(),
+            &mut attempts[candidate_index],
+            meter,
+        );
+        match decision_result {
             Err(stop) => {
                 attempts[candidate_index].outcome =
                     AttemptOutcome::Failed(AttemptReason::Stop(stop.clone()));
@@ -4067,8 +4530,8 @@ pub(crate) fn run_schedule(
             }
             Ok(true) => {
                 let publication_guard = StageGuard {
-                    base: 0,
-                    case_room: budget.limit.saturating_sub(budget.used),
+                    base: WorkTotal::zero(),
+                    case_room: budget.used.room(budget.limit),
                     invocation_room: meter.room(),
                 };
                 let certificate = certify_publication(
@@ -4080,13 +4543,16 @@ pub(crate) fn run_schedule(
                     publication_guard,
                 );
                 let record = &mut attempts[candidate_index];
-                record.stop_rule_work = record.stop_rule_work.saturating_add(certificate.total);
-                record.stages.stop_rule = record.stages.stop_rule.saturating_add(certificate.total);
+                record.latch(certificate.total);
+                let stop_work = record.checked_stop_rule_work().add(certificate.total);
+                record.latch(stop_work);
+                record.stop_rule_work = stop_work.legacy_saturated();
+                let _ = record.stages.add_to(Stage::StopRule, certificate.total);
                 record.work.merge(&certificate.work);
                 record.k4_work.merge(&certificate.sums);
-                budget.used = budget.used.saturating_add(certificate.total);
-                meter.charge(certificate.total);
-                match certificate.result {
+                budget.charge(certificate.total, certificate.total, meter);
+                let certificate_result = budget.retain(certificate.result, record, meter);
+                match certificate_result {
                     Err(stop) => {
                         attempts[candidate_index].outcome =
                             AttemptOutcome::Failed(AttemptReason::Stop(stop.clone()));
@@ -4120,7 +4586,7 @@ pub(crate) fn run_schedule(
                             });
                         #[cfg(any(test, feature = "mutation-controls"))]
                         if super::seeded::active(super::seeded::Fault::F05) {
-                            return CaseOutcome::Unresolved {
+                            return ExecutionOutcome::Unresolved {
                                 reason: UnresolvedReason::Ceiling,
                                 attempts,
                                 geometry,
@@ -4144,7 +4610,7 @@ pub(crate) fn run_schedule(
                 // rejected candidate.
                 #[cfg(any(test, feature = "mutation-controls"))]
                 if super::seeded::active(super::seeded::Fault::F05) {
-                    return CaseOutcome::Unresolved {
+                    return ExecutionOutcome::Unresolved {
                         reason: UnresolvedReason::Ceiling,
                         attempts,
                         geometry,
@@ -4158,7 +4624,7 @@ pub(crate) fn run_schedule(
             }
         }
     }
-    CaseOutcome::Unresolved {
+    ExecutionOutcome::Unresolved {
         reason: UnresolvedReason::Ceiling,
         attempts,
         geometry,
@@ -4169,14 +4635,35 @@ fn finish_terminal(
     stop: &AttemptStop,
     attempts: Vec<AttemptRecord>,
     geometry: Vec<BodyGeometry>,
-) -> CaseOutcome {
+) -> ExecutionOutcome {
+    let status = attempts.iter().fold(WorkStatus::default(), |status, a| {
+        status.join(a.checked_case_charge().status())
+    });
+    if let Some(fault) = status.fault() {
+        return ExecutionOutcome::Unresolved {
+            reason: UnresolvedReason::WorkAccounting {
+                fault,
+                prior: if matches!(stop, AttemptStop::WorkAccounting(_)) {
+                    None
+                } else {
+                    Some(stop.clone())
+                },
+            },
+            attempts,
+            geometry,
+        };
+    }
     match terminal(stop) {
-        Ok(reason) => CaseOutcome::Unresolved {
+        Ok(reason) => ExecutionOutcome::Unresolved {
             reason,
             attempts,
             geometry,
         },
-        Err(refusal) => CaseOutcome::Refused { refusal, geometry },
+        Err(refusal) => ExecutionOutcome::Refused {
+            refusal,
+            attempts,
+            geometry,
+        },
     }
 }
 
@@ -4193,7 +4680,7 @@ fn finish_selected(
     report: &VerificationState,
     certified: CertifiedPublication,
     geometry: Vec<BodyGeometry>,
-) -> CaseOutcome {
+) -> ExecutionOutcome {
     if !Arc::ptr_eq(&prep, &certified.prep) || selected.precision() != certified.precision {
         let stop = certificate_error(None, CertificateIssue::PairIdentity);
         if let Some(record) = attempts
@@ -4213,7 +4700,7 @@ fn finish_selected(
     };
     for (body, bound) in verification.bound.iter().enumerate() {
         if bound.is_some_and(|b| !b.is_finite()) {
-            return CaseOutcome::Unresolved {
+            return ExecutionOutcome::Unresolved {
                 reason: UnresolvedReason::CertifiedBoundUnencodable { body: body as u32 },
                 attempts,
                 geometry,
@@ -4294,7 +4781,7 @@ fn finish_selected(
                 .collect()
         }),
     };
-    CaseOutcome::Selected(Box::new(RetainedSolve {
+    ExecutionOutcome::Selected(Box::new(RetainedSolve {
         prep,
         group,
         cache,
@@ -4351,6 +4838,14 @@ pub fn solve_cases(
     )> = Vec::new();
     let mut out = Vec::with_capacity(sources.len());
     for source in sources {
+        if let Some(fault) = meter.checked_charged().status().fault() {
+            out.push(CaseOutcome::Unresolved {
+                reason: UnresolvedReason::WorkAccounting { fault, prior: None },
+                attempts: Vec::new(),
+                geometry: Vec::new(),
+            });
+            continue;
+        }
         if meter.exhausted() {
             out.push(CaseOutcome::Unresolved {
                 reason: UnresolvedReason::Budget(BudgetScope::Invocation),
