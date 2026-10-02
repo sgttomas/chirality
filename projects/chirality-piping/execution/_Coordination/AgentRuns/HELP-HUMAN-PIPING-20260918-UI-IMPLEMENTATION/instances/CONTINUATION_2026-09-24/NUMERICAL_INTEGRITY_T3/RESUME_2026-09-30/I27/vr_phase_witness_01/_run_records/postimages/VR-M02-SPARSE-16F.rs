@@ -1049,7 +1049,7 @@ fn adjacency(n: N, f: N, edges: N, e: i128) -> (N, N) {
 // HFactor validation: global seen[n] coexists with the caller's order[f] and
 // first_columns[f]. These retained owners count in both metrics, without growth.
 fn sparse_factor_validation(n: N, f: N) -> N {
-    n + 16 * f
+    n
 }
 fn sparse(
     mdl: &Model,
