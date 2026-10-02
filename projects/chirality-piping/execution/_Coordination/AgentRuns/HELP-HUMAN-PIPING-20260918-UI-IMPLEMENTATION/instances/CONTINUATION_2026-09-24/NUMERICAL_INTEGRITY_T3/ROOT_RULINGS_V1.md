@@ -5421,3 +5421,19 @@ unfinished review and affected backchecks after resumption before reliance; no
 new implementation was started from I35's proposed helper block. The work graph
 and ROOT_CURRENT now point to HANDOFF_2026-10-02_SESSION_PAUSE.md. This is an
 owner-directed pause, not T3 completion or a new human acceptance decision.
+
+## Owner resumption and bounded review restart (ROOT, 2026-10-02 UTC)
+
+The owner explicitly said “You may resume.” The prior session pause is ended;
+its sealed handoff and partial packets remain historical. ROOT verified the
+M5 Max host, existing memguard PID5387, no cargo/rustc and clean NUM/F2A
+checkouts. Fresh fetch leaves main a533dc2d67bc; its Piping/relevant instruction
+bytes match the T3 baseline. ROOT merged it into NUM with --no-ff at d01b218e7ad.
+The isolated fdae294643b source remains frozen for RV51; no rebase or source
+change occurred. GitHub confirms PR1071 merged and no F2A PR exists.
+
+Release the new RV51 continuation, RV50 integration backcheck, fresh RV52 P3
+review and I38 native ownership continuation briefs. Each owns a new packet;
+no sealed pause record is overwritten. RV51 alone has the focused Cargo lane.
+No new helper/product source implementation, numeric resource policy or heavy
+qualification is granted by these review/investigation assignments.
