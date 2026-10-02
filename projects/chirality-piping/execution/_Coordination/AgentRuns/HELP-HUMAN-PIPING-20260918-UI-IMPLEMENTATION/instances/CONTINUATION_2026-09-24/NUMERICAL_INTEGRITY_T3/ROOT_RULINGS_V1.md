@@ -5487,3 +5487,37 @@ seal dc78333a9940897ce0c9066adabf9faf099a64d5977d9af8e44c7eb00c0d4941.
 Accept RV50-INT02-1 as required B64U custody correction before full integration
 reliance. I35 repair is bounded by briefaff15c8151e; same-reviewer confirmation
 will follow. The separately reviewed sqrt/small-bound helper grant remains valid.
+
+## Certificate and ownership repairs closed; code continuation (ROOT, 2026-10-02 UTC)
+
+ROOT read/verified RV50 correction confirmation at1e5434d315a6 and closes
+RV50-INT02-1 at contractd2ced80f725f. Select its narrow spent-return B64U design
+with actual producing SumWork/status on every exit and unchanged legacy result
+projection. This is not implemented B64U or a selected tariff/visit allowance.
+ROOT read/verified RV52 backcheck at0a86763d473a, inventory
+02dfa48eb66a1e1bee5d8e221563e29f9e523a0cb8f1707c89008584a19b2d09,
+and closes RV52-1 atf3af1b800c77. Select the corrected symbolic P3 source-owner
+roster, including hats and its real overlap/moving term. Actual profile, C2 and
+caller additions remain required; no numeric memory guarantee follows.
+
+I39 delivered two private numerical helpers at82fc4ebdca04. ROOT read the complete
+helper/test/generator source, verified exact five-path scope/hashes and final
+command results, and preserved its original sealed packet byte-for-byte under
+_run_records/original with a relocation map. Fresh RV53 owns review and the
+focused Cargo lane; no public caller or policy was activated.
+
+Release I40 under brief14ce35dbe60d for actual native call/run/group/build/cache
+origins, preserving legacy numerical core/output and no legacy origin allocation.
+The existing f2a checkout merged reviewed NUM records/main at887b790c2a64 and
+retains fdae294 maintained bytes. Source edits were held until RV52 completed;
+that hold is now lifted. Compiler work remains held for RV53. Product/Prepared
+ordinary/serialized maps remain explicit successors to this code boundary.
+A context-owned meter is a permitted implementation of the one-invocation-owner
+requirement, with truthful increments and no reset/refund; selected registry
+identity must bind actual run/snapshot and count its retention.
+
+I38's bounded native source report at0d90e2fe470e is preserved as input for P4/P5,
+not native qualification. ROOT read its return/ledger and verified available
+source/output hashes. It identifies synchronous dispatch but supplies no adopted
+H, complete request-context or emergency/capacity bound. No host tooling or
+protocol-policy expansion is selected.

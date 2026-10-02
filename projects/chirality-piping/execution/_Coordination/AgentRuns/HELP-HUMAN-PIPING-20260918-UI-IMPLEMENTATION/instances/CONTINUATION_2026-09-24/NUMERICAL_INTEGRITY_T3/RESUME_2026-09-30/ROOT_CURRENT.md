@@ -13,29 +13,35 @@ no cargo/rustc before dispatch. NUM merged current main a533dc2d67bc with
 - RV51 is completing the partial review in new REVIEW_RV51/checked_work_a_02.
   It is CLEAR for bounded prerequisite fan-in, preserved at4d9358b550.
   Independent debug/release controls and count/consumer trace are complete. Prior partial packet remains unchanged and is not clearance.
-- RV50 reviews I35 integration-02 in new REVIEW_RV50/f2a_certificate_integration_02.
-  Its interim assessment confirms the isolated two-helper block ready for code,
-  conditionally. B64U's Result-only conversion drops local work and needs a narrow
-  design interface repair before the broader certificate relies on it.
-- Fresh RV52 reviews I29 P3 aggregate ownership. Actual strides/capacities/stack,
-  complete C2 origins/private certificate/caller terms remain open.
-- I38 resumes native denied/error reply ownership in new
-  I38/f2a_native_reply_overlap_02; no contract/policy change is selected.
-- I39 implements private directed sqrt and bounded small-row RU64 helpers in
-  wt/f2a-arithmetic, branch codex/piping-f2a-arithmetic-20261002 from fdae294.
-  Brief081cd0e655; actual receipt23:37:34 UTC, checkpoint23:57:34, cutoff00:22:34,
-  hard return2026-10-03 00:37:34 UTC. Exact source/test scope and limits in brief.
-  At23:38:41 ROOT verified no cargo/rustc after RV51 released its lane, then
-  handed the sole focused lane to I39:4jobs/2threads/per-manifest targets/20min
-  command walls. No heavy/product/sweep/native programme.
+- RV50 completed integration review and confirmed B64U correction. Original
+  reviewdf2ba0a07d97; corrected contractd2ced80f725f; backcheck1e5434d315a6.
+  The actual-work seam is accepted as design only; implementation still follows.
+- RV52 confirmed P3 hats correction at0a86763d473a againstf3af1b800c77.
+  Symbolic source-owner roster is accepted; actual profile/C2/P4 remain open.
+- I38 native source result preserved0d90e2fe470e. Poll-to-body is synchronous;
+  native dispatch/nesting H, request contexts and emergency/capacity proof remain
+  unqualified. No native allowance or availability accepted. Original packet
+  bytes live under I38/f2a_native_reply_overlap_02/_run_records/original.
+- I39 helper candidate is82fc4ebdca043c25c701d435e09b8830640fe950 in
+  wt/f2a-arithmetic, clean/pushed. ROOT read helper/tests/generator and verified
+  five maintained hashes, original seal and final command logs. Byte-preserved
+  evidence placement is explained by the packet root RETURN/RELOCATION.
+  Fresh RV53 /root/rv53_certificate_helpers reviews it under brief538297c17a;
+  sole focused Cargo lane,4jobs/2threads/per-manifest/20min command walls.
+- I40 /root/i40_kernel_origins implements kernel call/run/group/build/cache
+  origins in wt/f2a from clean887b790c2a64, maintained sourcefdae294. Brief
+ 14ce35dbe60d;75min receipt/checkpoint15/cutoff55. RV52 source hold lifted at
+ 23:55 UTC. Cargo remains held for RV53. Case batches/recorded selected
+  combinations only; Prepared ordinary/PP/maps/readers remain explicit later
+  interfaces. Raw command/host evidence stays under _run_records.
 
 ## Accepted and preserved bases
 
 A1 PR1070 and K6c PR1071 remain merged; accepted scopes/qualifications unchanged.
 Do not repeat completed gates merely to resume. RV47-C1 exact-K control defect
 is closed after correction and same-reviewer confirmation; original raw and
-theorem remain unchanged. I29 P3 and I35 integration-02 are preserved at
-2fc3e8f71df2, still under review. No visit-permit value, facade tariff or complete
+theorem remain unchanged. I29 P3 and I35 integration-02 started at2fc3e8f71df2; their narrow
+corrections/backchecks above now govern conditional component reliance. No visit-permit value, facade tariff or complete
 numeric memory allowance is selected. The kernel20B/60B LME thresholds retain
 their exact-accounting and overshoot qualifications.
 
@@ -45,5 +51,5 @@ Finish these bounded reviews, repair/backcheck confirmed findings, and qualify
 I39 helpers with a fresh reviewer. Complete C2/product source identity, concrete
 profile/caller/resource work and the first source-to-verdict witness, then the
 atomic F2a/S-G1 path and required gates. S-I/F2b/F3 and owner-held decisions
-remain. Next unused IDs: I40/RV53. No full T3 completion or product activation
+remain. Next unused IDs: I41/RV54. No full T3 completion or product activation
 is claimed. See BRIEFS, owning RETURN files and latest ROOT_RULINGS_V1.md.
