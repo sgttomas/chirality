@@ -5179,3 +5179,30 @@ bridge, work-exactness design, numeric-phase, ordinary-suffix and caller facts.
 No byte allowance, RSS guarantee, new domain or source code is selected. Prepared
 objects and actual failure lifetimes must bind the later execution; no duplicate
 build is silently outside the accounting. Independent review precedes reliance.
+
+## F2a source bridge conditionally selected; finite arithmetic and recipe completion (ROOT, 2026-10-02 UTC)
+
+ROOT read RV45 REVIEW in full, verified all forty-four payloads and the exact
+seal scope, and preserved it atd05bb825ff. Seal:
+41db4960bd930d35793fe4d17e621a353e9cd9c36a4aa5b2790c18dca8b27825.
+The independent source derivation preceded author exposure. Accept I33's sufficient
+source-action bridge at9f1ef2693d as the conditional mathematical basis for further
+F2a derivation: exact source/map/frame/load/constraint premises, R7's matching
+verification scaling and twice its upward inverse bound, data/zero-block scope,
+strict perturbation test and full action-functional change are all mandatory.
+Actual output bits, normalized coordinates, classes, scales and accuracy predicates
+remain unchanged. Refusal is certificate insufficiency, not a singularity claim.
+
+This closes conditional mathematical feasibility, not implementing association,
+finite arithmetic/storage, actual availability or F2a/public-source reliance.
+No second solve, new operator, domain or public bound is selected. Missing source
+warrants and impossible unchanged-output predicates remain explicit. Ordinary
+preview truth is not silently replaced by either the exact profile or q_K.
+
+Release the bounded follow-ups I35_F2A_CERTIFICATE_ARITHMETIC_01,
+I31_F2A_CERTIFICATE_B2 and I36_F2A_PREVIEW_TRUTH_01. Their disjoint source/math
+packets complete concrete arithmetic, nonlinear recipes and the ordinary-route
+warrant respectively; fresh independent review precedes reliance. No maintained
+implementation or runtime is authorized. Use minimal source origins/revisions;
+RV45's already sealed full source copies remain historical evidence, but future
+packets should not duplicate tracked trees without a concrete recovery need.
