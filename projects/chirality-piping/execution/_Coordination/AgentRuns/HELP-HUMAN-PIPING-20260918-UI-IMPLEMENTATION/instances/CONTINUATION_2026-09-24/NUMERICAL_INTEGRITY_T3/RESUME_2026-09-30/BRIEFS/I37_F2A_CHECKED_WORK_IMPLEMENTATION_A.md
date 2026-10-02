@@ -38,6 +38,13 @@ producer/readers, geometric certificate or method activation in this checkpoint.
 No old K6c memory profile is claimed qualified for changed layouts. Leave historical
 profiles/records intact and report the exact new layout/profile work still needed.
 
+ROOT priority clarification after I37's initial inspection: A first produces a
+coherent compiling checked-work kernel and scoped H/VR exactness gates, with real
+CoreRun/RunWork and terminal/meter state before legacy erasure. Full C2 source/
+group/build origin inventories may remain explicitly unimplemented at this bounded
+checkpoint if necessary; invent no origin or receipt qualification. This affects
+checkpoint order only; the complete F2a/C2 objective and final gates remain.
+
 ## Exact maintained write scope
 
 P=projects/chirality-piping; FK=P/core/solver/frame_kernel;
