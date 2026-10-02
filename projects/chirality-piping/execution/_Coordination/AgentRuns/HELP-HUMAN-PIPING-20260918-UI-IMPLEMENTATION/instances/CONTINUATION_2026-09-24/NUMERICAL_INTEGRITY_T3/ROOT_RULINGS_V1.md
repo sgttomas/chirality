@@ -5014,3 +5014,9 @@ Coordination correction: RV41 returned at19:14:27 UTC; ROOT spent roughly anothe
 half hour on integration analysis before acting. That was a ROOT coordination
 overrun, not reviewer lateness or additional numerical verification. The response
 is these bounded proof grants, not another open-ended analysis/tooling programme.
+
+[Correction to the preceding disposition's sequence: the initial inventory check
+found RV41's additional SEAL.json attestation outside its three-payload manifest.
+The three hashes already verified; ROOT then checked and preserved that separate
+attestation and applied the stated RV41-3 draft correction in this follow-up commit.
+No maintained source or reviewed report was changed.]

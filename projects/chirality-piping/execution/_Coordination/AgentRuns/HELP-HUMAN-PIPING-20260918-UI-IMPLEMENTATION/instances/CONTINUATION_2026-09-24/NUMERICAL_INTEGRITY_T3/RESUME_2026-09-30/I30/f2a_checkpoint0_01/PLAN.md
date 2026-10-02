@@ -150,7 +150,9 @@ only from `&RetainedSolve` using expected QuantityMeta, source identity and prec
 Expose it across the crate boundary via a narrow pub reexport, private constructors
 and no Serialize; validate every existing index/layout/body/kind/class/source check.
 Return explicit InputDerived/Unpublishable absence, never radius zero or infinity.
-The lifetime prevents using another case's radius or retaining a report. The bound
+The lifetime prevents the borrow from outliving its owned solve; it does not distinguish
+different cases by itself. Explicit identity checks and one view containing the actual
+row/value/radius association prevent cross-case mixing. No report is retained. The bound
 is producer integration data, not a new public row/receipt field or widened b.
 
 Create a complete product-row binding map keyed by final qualified row id, basis ref,
