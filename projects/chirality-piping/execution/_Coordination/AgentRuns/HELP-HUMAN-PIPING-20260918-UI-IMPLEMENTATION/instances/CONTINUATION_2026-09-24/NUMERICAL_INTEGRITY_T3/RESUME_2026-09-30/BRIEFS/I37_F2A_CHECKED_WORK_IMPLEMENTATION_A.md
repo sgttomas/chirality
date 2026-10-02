@@ -73,7 +73,7 @@ source geometry, reference/fixture, instruction, memory-profile or protected
 tolerance changes are granted. Read-only regression targets include the corrected
 FK/src/structural/formation_check_tests.rs and legacy retained-wide/reference tests.
 
-ROOT scope addition, 2026-10-02 22:52 UTC: FK/tests/retained_k4/models.rs is
+ROOT scope addition, 2026-10-02: FK/tests/retained_k4/models.rs is
 authorized solely to adapt existing ExactWideSum observation/mutation calls to
 the fallible signatures (including signum and make_absolute), using explicit
 success assertions. ROOT inspected the affected claim_ratio/range_consistent
