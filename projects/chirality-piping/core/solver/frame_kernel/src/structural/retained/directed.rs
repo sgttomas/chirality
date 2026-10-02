@@ -71,7 +71,7 @@ where
     let nearest = sum.round(ctx)?;
     sum.add_wide(&nearest, true)?;
     // The sign of (exact − nearest).
-    let side = sum.signum();
+    let side = sum.signum()?;
     sum.clear();
     let wrong = match toward {
         Toward::Up => side > 0,
@@ -156,7 +156,7 @@ where
     sum.add_product(ctx, &q, b, false)?;
     sum.add_wide(a, true)?;
     // q·b − a has the sign of q − a/b (b > 0).
-    let side = sum.signum();
+    let side = sum.signum()?;
     sum.clear();
     let wrong = match toward {
         Toward::Up => side < 0,
@@ -185,7 +185,7 @@ where
     let mut sum = ExactWideSum::new();
     sum.add_wide(x, false)?;
     sum.add_binary64(nearest, true)?;
-    if sum.signum() > 0 {
+    if sum.signum()? > 0 {
         Ok(if nearest == f64::MAX {
             f64::INFINITY
         } else {

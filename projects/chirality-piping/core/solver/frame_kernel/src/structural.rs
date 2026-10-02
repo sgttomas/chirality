@@ -12,16 +12,17 @@ pub mod retained_api {
         absolute_bound, body_extent, classify, classify_rows, classify_rows_floored,
         coupled_scales, intensified_k, solve_case, solve_cases, stress_scale, threshold,
         AttemptOutcome, AttemptReason, AttemptRecord, AttemptRole, AttemptStop, BudgetScope,
-        CaseLimit, CaseOutcome, CertificateIssue, GateTest, InvocationMeter, Publication,
-        PublicationPredicate, PublishedRow, Refusal, RetainedEvidence, RetainedSolve, RowClass,
-        StageWork, StorageCounts, UnresolvedReason, VerificationSummary, FLOOR_RATIO_BITS,
-        K_SQRT2_BITS, K_TWO_SQRT2_BITS, METHOD_TOKEN, POLICY, PRECISIONS, RCOND_LABEL,
+        CaseLimit, CaseOutcome, CertificateIssue, ExecutionOutcome, GateTest, InvocationMeter,
+        Publication, PublicationPredicate, PublishedRow, Refusal, RetainedEvidence, RetainedSolve,
+        RowClass, RunWork, StageWork, StorageCounts, UnresolvedReason, VerificationSummary,
+        FLOOR_RATIO_BITS, K_SQRT2_BITS, K_TWO_SQRT2_BITS, METHOD_TOKEN, POLICY, PRECISIONS,
+        RCOND_LABEL,
     };
     pub use super::retained::bound::{
         BlockRefusal, BoundPass, BoundRefusal, CertifiedBound, RefusalKind,
     };
     pub use super::retained::combine::{
-        CombinationOutcome, CombinationReason, RetainedCombination,
+        CombinationOutcome, CombinationReason, RecordedCombination, RetainedCombination,
     };
     pub use super::retained::factor::{reverse_cuthill_mckee, BodyGeometry};
     pub use super::retained::ledger::LedgerRefusal;
@@ -34,6 +35,7 @@ pub mod retained_api {
     pub use super::retained::wide::multi::{AttemptWork, Binary64Outcome, WidthWork};
     pub use super::retained::wide::WideError;
     pub use super::retained::wide_sum::SumWork;
+    pub use super::retained::work::{WorkFault, WorkStatus, WorkTotal};
 }
 mod sparse;
 

@@ -299,6 +299,14 @@ pub(crate) fn refusable<T>(
     pass: BoundPass,
     row: usize,
 ) -> Result<Option<T>, AttemptStop> {
+    if let Err(fault) = sum.work().checked_lme().exact() {
+        // A pre-existing numerical stop remains the terminal prior; no reset or
+        // block-local refusal may hide the unavailable accounting state.
+        return match result {
+            Err(stop) => Err(stop),
+            Ok(_) => Err(fault.into()),
+        };
+    }
     match result {
         Ok(v) => Ok(Some(v)),
         Err(stop) => {
@@ -946,10 +954,10 @@ where
 pub(crate) fn ceil_sqrt(n: usize) -> u64 {
     let n = n as u64;
     let mut r = (n as f64).sqrt() as u64;
-    while r * r > n {
+    while u128::from(r) * u128::from(r) > u128::from(n) {
         r -= 1;
     }
-    while r * r < n {
+    while u128::from(r) * u128::from(r) < u128::from(n) {
         r += 1;
     }
     r
@@ -992,7 +1000,7 @@ where
     sum.clear();
     sum.add_wide(uc, false)?;
     sum.add_wide_scaled(est, true, 2 * ceil_sqrt(n_c), 0)?;
-    let above = sum.signum() > 0;
+    let above = sum.signum()? > 0;
     sum.clear();
     Ok(above)
 }
