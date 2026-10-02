@@ -4,7 +4,7 @@ Status: **revisable planning inventory; not design acceptance or implementation 
 TASK `/root/i30_f2a_checkpoint0`, directly under ROOT HELP_HUMAN `/root`.
 Receipt 2026-10-02 18:05:16 UTC; new-analysis cutoff 18:55:16; return by 19:05:16.
 P = `projects/chirality-piping`; FK = P/core/solver/frame_kernel; PP = P/core/product_physics.
-T3 and R have the meanings in `EXECUTION.json`; source anchors below are P-relative.
+T3 and R have the meanings in `_run_records/EXECUTION.json`; source anchors below are P-relative.
 
 ## 1. Decision package and authority
 

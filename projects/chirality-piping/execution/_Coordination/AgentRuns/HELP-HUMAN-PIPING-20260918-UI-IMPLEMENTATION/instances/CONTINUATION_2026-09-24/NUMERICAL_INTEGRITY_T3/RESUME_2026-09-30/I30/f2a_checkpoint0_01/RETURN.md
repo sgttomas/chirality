@@ -26,6 +26,6 @@ the assignment; the new planning-release addendum was read and changed no mainta
 source. All proposed solver, compiler, numerical, mutation, native and product
 checks are unrun. No Git/index/API mutation, delegation or maintained edit occurred.
 
-`EXECUTION.json` records actual parentage, time bounds and origins/hashes;
+`_run_records/EXECUTION.json` records actual parentage, time bounds and origins/hashes;
 `INVENTORY.json` is an informational hash inventory of this returned revision.
 These records remain revisable and are not a new acceptance or continuation gate.
