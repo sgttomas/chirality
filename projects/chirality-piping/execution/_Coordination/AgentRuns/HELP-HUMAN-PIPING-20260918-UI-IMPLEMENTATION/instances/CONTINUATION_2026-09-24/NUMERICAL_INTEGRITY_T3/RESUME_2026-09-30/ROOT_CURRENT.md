@@ -46,8 +46,8 @@ transcriptions retain their explicit provenance limits.
 
 ## Next decision and work
 
-Independent RV41/RV42/RV43 reviewers are active. I30/I31/I32 returned and are
-stopped; no build/solver/runtime is granted.
+Four bounded author TASKs are active; RV41/RV42/RV43 have returned and are stopped.
+No maintained implementation or build/solver/runtime is granted.
 The existing host guard remains. NUM has merged main after K6c. I29/w1_limits_preparation_01 proposes options from current data;
 REVIEW_RV40/w1_limits_01 independently passes the prospective basis. ROOT has read
 both complete reports and verified their inventories/seals. ROOT has now selected the work thresholds in W1_RESOURCE_POLICY_V1.md under
@@ -64,87 +64,71 @@ with actual producer/reader/gate and V-P obligations. Owner-held6GiB dense/obser
 ceilings, PHYS-R4/availability, observation framing, KF3-B1 and KF2 dense screen
 remain at their owning records. T3 remains active and incomplete.
 
-## Active F2a derivations after checkpoint0 review
+## Reviewed F2a basis and open obligations
 
-I30 returned its facade/publication plan at18:28:49 UTC. ROOT read PLAN/SOURCE_MAP/
-RETURN, verified its informational inventory and preserved the original at
-edc939d62c0ee0658fa78b6cafbb81afb7c86244. Unchanged execution provenance was moved
-under _run_records and draft links/inventory updated at e6669820; no plan substance
-changed. I29 returned its memory plan at18:43:46, preserved after full ROOT reading/
-inventory verification at2eb72897c2b43beb3ce59e02a7e571390debd1bf.
+Initial I30 facade plan is preserved at edc939d62 (provenance placement e6669820,
+accessor wording correction6a964324); I29 memory plan at2eb72897. RV41's first
+review24a92aafa0 required guarded ordinary continuation, the full native caller
+roster and explicit provenance checks beyond Rust lifetimes.
 
-Fresh RV41 returned at19:14:27 UTC. Its sealed review is preserved at24a92aafa0;
-it permits bounded derivations, not implementation reliance. RV41-1 requires
-admission/accounting before newly reachable ordinary continuation; RV41-2 requires
-the actual native conversion/job/poll/IPC caller window. ROOT corrected RV41-3's
-accessor provenance claim in the revisable I30 plan at6a964324: lifetimes protect
-ownership, while explicit identity checks protect against cross-case mixing.
+Finite returns: I30 routing_02 at0339743803, I31 certificate_b1 at751ac56ce8 and
+I32 wire_c1 at885ed83a6a. ROOT read every substantive report and verified each
+complete inventory/write set. RV42 and RV43 independently froze source derivations
+before author exposure. Their completed reviews, and RV41's routing backcheck,
+are preserved at98ea4b9ee7 and1da59a785d. Detailed seals, source references and
+ROOT dispositions are in the latest append-only ROOT_RULINGS_V1 sections.
 
-The next briefs are committed at2fab387d13. Executing native TASKs have disjoint
-write scopes under this R; no Git/index/API writes, delegation, maintained edits,
-compiler/solver/runtime or host tooling are granted:
+- RV41-1 continuation/control and RV41-3 wording are addressed at specification
+  level. Source work includes algorithmic precharges, not measured operations.
+  Routing-observer storage is counted even if exact recovery later selects.
+- Native derivation uses a transient W1-only reply limit and an explicitly
+  application-owned Rust window through guarded JSON-body transfer. Numeric K,
+  complete success/error/request overlap and byte bounds remain open. RV41-B1
+  requires the first-party client to preserve/retrieve a busy completed job,
+  not turn the temporary refusal into terminal UI failure. Ordinary polling stays.
+  The previously inferred provisional headless document does not exist: the
+  helper returns None; later qualified export is real. RV41 records its correction.
+- RV42 confirms conditional B1 algebra and immutable row/radius association.
+  RV42-1 requires the existing exact-mode source OD/effective-wall geometry promise.
+  Keep K bit-input mechanics, intended section functional, actual rounded output
+  and operational scales distinct. Positive section enclosures do not establish
+  a q_K-to-q_G mechanical-operator/action bridge. That reliance remains open.
+- RV43-F1 contract correction at0017eba992 was backchecked CLEAR at16b1ba7e3f.
+  Exact receipts require upstream no-wrap admission; returned small consistent
+  counters, work stop thresholds and the byte target do not prove it. The actual
+  source-based arithmetic proof remains an implementation blocker.
+- Wire Reason/source-map/cache-build shapes (including unavailable runs), failed
+  ordinary evidence and the terminal-attempt preservation seam remain to close.
+  No identity/schema/runtime policy names beyond existing selected policy are
+  reserved by the drafts. Full producer/three-reader/native qualification follows.
 
-| TASK / packet | Receipt UTC | New-analysis cutoff UTC | Hard return UTC | Bounded purpose |
+## Active bounded follow-ups
+
+ROOT released the next finite source/math work at545c0795ba. Briefs for I30/I31/I32
+are at84d5c5ecd4; the independent counter-bound component brief is at1be560b92a.
+All are existing direct native TASK descendants of ROOT. Disjoint packet scopes,
+no child delegation, no Git/index/API writes, no maintained edits or host tooling.
+Read-only source and each brief's bounded standard-library arithmetic are allowed.
+
+| TASK / owned packet under this R | Receipt UTC | New-analysis cutoff UTC | Hard return UTC | Purpose |
 |---|---|---|---|---|
-| I30 / I30/f2a_routing_02 | 19:49:03 | 20:24:03 | 20:34:03 | Ordinary continuation, custody, native ownership/admission interfaces |
-| I31 / I31/f2a_certificate_b1 | 19:49:05 | 20:39:05 | 20:49:05 | Identity/unit, axial, bending and torsion certificate derivations |
-| I32 / I32/f2a_wire_c1 | 19:49:22 | 20:24:22 | 20:34:22 | Logical receipt conservation and source-based mechanics combinations |
+| I30 / I30/f2a_native_reply_03 | 20:18:59 | 20:33:59 | 20:43:59 | Specific transient first-party reply handling, ownership and tests |
+| I31 / I31/f2a_source_geometry_b1c | 20:18:42 | 20:53:42 | 21:03:42 | Positive source-geometric operands; locate action/source bridge |
+| I32 / I32/f2a_wire_c2 | 20:18:59 | 20:48:59 | 20:58:59 | Complete closed wire/map/cache/failed-attempt interfaces |
+| I29 / I29/f2a_no_wrap_bound_03 | 20:21:14 | 20:56:14 | 21:06:14 | Symbolic upstream counter bound and source-count admission |
 
-All times are2026-10-02. Independent exact design arithmetic is permitted within
-the stated briefs; it creates no realized solver/publication claim. Full memory
-P1–P5 waits for frozen interfaces from these packets. ROOT receives, reads and
-verifies inventories/write sets before preservation; independent review precedes
-any implementation reliance. Stable runtime policy identities remain unreserved.
+All times2026-10-02. Time boxes are maxima; return early when the finite scope is
+complete. No abstract check is realized solver/publication or availability evidence.
+ROOT receives/reads/verifies and preserves each return, then independent backchecks
+or a fresh arithmetic/source reviewer precede reliance. Full aggregate memory/cost
+P1–P5 waits for concrete interfaces; the I29 component can derive symbolic kernel
+count bounds independently of unfinished wire/native/section shapes.
 
-I32 returned at20:03:26 and is preserved at885ed83a6a. ROOT read RETURN,
-WIRE_CONTRACT and SOURCE_COMBINATIONS in full and verified all nine payload hashes
-and the exact ten-file scope. I31 returned at20:04:40 and is preserved at751ac56ce8;
-ROOT read RETURN/SOURCE_OPERANDS in full and verified six payload hashes and the
-exact seven-file scope. Both remain revisable proposals, not selected designs or
-implementation grants. I31 explicitly leaves T-Z/T-G and conditional T-A operand
-warrants open. I32 requires retention of terminal refused-attempt evidence and
-actual source-prepared mixed-combination interfaces; no numerical method changes
-are accepted merely by preservation.
-
-I30 returned routing_02 at20:07:14 and is preserved at0339743803. ROOT read
-RETURN/ROUTING/CALLERS_AND_TESTS in full and verified four payload hashes and the
-exact five-file scope. It proposes guarded later-case continuation, explicit
-source-work settlement and native ownership through a pinned Tauri transfer seam.
-Native reply-overlap policy, byte coefficients and precise trigger/backchecks
-remain open. RV41 is now executing its bounded backcheck, including the actual
-authority/availability boundary for the W1-only reply-refusal proposal.
-
-RV42/RV43 are executing
-the amended two-stage briefs at090088926e. They first freeze their own source-based
-derivations without reading the authors' proposed answers; ROOT then supplies each
-frozen author revision for comparison. Both stages share the original total time box.
-
-| Independent native TASK / packet | Receipt UTC | New-analysis cutoff UTC | Hard return UTC |
-|---|---|---|---|
-| RV42 / REVIEW_RV42/f2a_certificate_b1_01 | 20:03:02 | 20:53:02 | 21:03:02 |
-| RV43 / REVIEW_RV43/f2a_wire_c1_01 | 20:03:17 | 20:38:17 | 20:48:17 |
-| RV41 / REVIEW_RV41/f2a_routing_02 | 20:08:34 | 20:33:34 | 20:43:34 |
-
-Their supplied contexts are fresh TASK-role contexts with the bounded briefs and
-accepted/source bases, not full ROOT conversation forks. The same no-Git/index/API,
-no delegation, no maintained edits and no-runtime fences apply. Actual origins and
-return evidence are recorded in their packets. These are independent derivations
-and reviews, not accepted implementation or qualified memory profiles.
-RV43 froze SOURCE_DERIVATION.md at20:05:29 before author exposure; ROOT read it and
-verified hash a3cf45cdb981d2cc5ef027265934fa75d45084d1841f57c10958a1c2cde131ed.
-RV43 now compares frozen I32. RV42 froze its source derivation at20:06:24.991879
-before author exposure; ROOT read it and verified hash
-0ac48f211b94022ce7d5672f6c061317dfc0ab0a0bc36c874f7c29541e573464.
-RV42 now compares frozen I31. No mathematical or interface closure is inferred
-from these preliminary derivations before the final review returns.
-
-Plans remain revisable, not accepted proofs/identities/byte policies or code grants.
-ROOT's cross-plan questions include additional ordinary work before admission,
-actual native caller completion, final-row SI/raw coordinates, lossless logical
-attempt projection, mixed-source combinations and native unsafe-digest inspection.
-No typed reserialization, invented hash or Current upgrade is authorized. Existing
-A1 normalization/bound/display semantics remain selected. M1 uses upfront complete
-reservation, not a generic cross-crate rollback framework. All open recipe and
-allocation/profile derivations must be closed and independently checked before
-implementation reliance; genuine new contract/product/deployment choices return
-to their owner as concrete reviewed options.
+Next: reconcile these returns, then remaining SIF/hypot/span certificate and any
+necessary action/source bridge, complete memory/cost/admission and atomic F2a/S-G1
+implementation/gates. No typed reserialization, fabricated custody, relaxed
+criterion, new numerical domain, Current upgrade or ordinary availability loss.
+Native raw inspection remains separately unfinished. M1 uses upfront complete
+reservation, not a generic rollback framework. Genuine owner-held contract or
+product choices require concrete reviewed options; none is pending merely because
+these faithful proof obligations are incomplete. T3 remains active.
