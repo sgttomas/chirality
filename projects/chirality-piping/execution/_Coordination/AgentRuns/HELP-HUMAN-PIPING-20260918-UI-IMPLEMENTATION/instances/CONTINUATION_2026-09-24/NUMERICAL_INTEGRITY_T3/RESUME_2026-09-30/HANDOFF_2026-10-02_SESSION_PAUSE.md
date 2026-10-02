@@ -9,7 +9,10 @@ new dispatch, let the already drafted I29/I35 packets finish, preserved RV51's
 partial review, and stopped newly dispatched I38 at startup. Every delegated
 agent listed by the native harness is stopped/completed. ROOT verified no
 cargo/rustc process; existing memguard PID 5387 remains running. No raw evidence,
-target or worktree was pruned. No new guard or host tool was built.
+target or worktree was pruned. No new guard or host tool was built. The final full T3 process scan also found
+orphan log followers for completed I8/I11 runs (PIDs 29823/32867). ROOT verified
+their exact commands and terminated them gracefully; original logs remain.
+_run_records/owner_pause_2026-10-02/SHUTDOWN.json records that cleanup.
 
 ## Read on resumption
 
