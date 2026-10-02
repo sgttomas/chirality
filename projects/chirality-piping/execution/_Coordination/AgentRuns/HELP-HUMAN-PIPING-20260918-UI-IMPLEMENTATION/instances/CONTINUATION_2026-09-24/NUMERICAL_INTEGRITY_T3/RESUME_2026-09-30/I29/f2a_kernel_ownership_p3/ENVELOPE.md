@@ -3,7 +3,8 @@
 Status: PROPOSED; source ownership derivation, not a qualified byte profile.
 Basis: maintained main 49034a940f3f8cd3f3da4d4cbc839943b808063d and K6c
 81c03849033f3ce745668f581f446530789397b8; checked-work candidate
-fdae294643b798c1849da8b2e643085562593686 is conditionally bound, pending RV51.
+fdae294643b798c1849da8b2e643085562593686 is unchanged and RV51-cleared per ROOT.
+RV52-1 is corrected below; this documentation awaits the same RV52 backcheck.
 P1 b1ebe245ec and RV48 confirmation, corrected C2 0a4afd6318/RV43, M1 and
 I34 API 51d8d9fc1e remain the selected design basis. No code/policy changes.
 
@@ -167,7 +168,7 @@ looser than the phase maximum. Fixed numerical arrays/temporaries go in K_stack.
 | ordinary solve/refinement | u(N), rhs(F), u_free(F); evaluated outer Vec(<=4), four child snapshots F; residual rows (bool,f64,Wide)(F); residual Tracker(F); correction(F), factor-solve helper, delta(F). No multiplication by number of loop iterations. |
 | bounded fallback | abar_q(Z), temporary bounded matrices(m), one full u clone(N), ratio rows (ExactWideSum,ExactWideSum,f64)(F); up to4 stored tracker states plus active tracker, worsts<=4 inline GateRatio pairs and outer state/worst vectors; candidate ratios are fixed sum structs; chosen u_free clone overlaps prior u_free and all evaluated children. |
 | recovery | q_all([Wide;6],m) and values(Wide,Q) become Recovered; end_actions([Wide;12],m), spring_action(Wide,s), directional_action([Wide;3],d), reaction(Option<Wide>,N). Test-only seeded u not in production profile. Support-group tail appends existing values; fixed local6, no group-specific numeric heap. |
-| verification shared | Partial VS_p; bounded coefficients(L,m), uc_refused(Option<BoundRefusal>,B); wide members(W,m) and directionals(W,d) below ceiling, full-matrix formation temporary(m); block_of_row(u32,F), original Uc c(F) retained through nl_pass at/bt/ct(each F), block maxima and bounds(B). Returned failure refusals(B) overlap uc_refused until return. |
+| verification shared | Partial VS_p; bounded coefficients(L,m), uc_refused(Option<BoundRefusal>,B); wide members(W,m) and directionals(W,d) below ceiling, full-matrix formation temporary(m); block_of_row(u32,F), earlier u_pass a/c(each F) dominated by the existing four-buffer maximum below; original Uc c(F) retained through nl_pass at/bt/ct(each F), two block-max vectors u/n_l(each B), bounds(B). Returned failure refusals(B) overlap uc_refused until return. |
 | formation_scale helper | output Option<Wide>(Q), q_all([Wide;6],m), actions([Wide;12],m), spring_e(Wide,s), directional_e([Wide;3],d), reaction_e(Option<Wide>,N); no hidden source-group array. |
 | resolution helpers | top [Wide;2](b), resolution [f64;2](b), independent resolution_hat-check vector [f64;2](b); caller e_rows and w_abs remain. |
 | verification pass | w_abs(N), terms_w/terms_p outer Vec headers(N each), children total tau at W/L; prescribed_nonzero/negative bool(N each); u_free,r_hat,sr_row,delta,sr2_row,sas_inf_row,sas_one_col,sau_row each Wide<L>(F); delta_full and w_s each N; recovered q/values; e_rows,w,a_s,charge,w_plus each Option<Wide>(Q); resolution(b); data bool(B), s_refused(B), start triples(B), shifts/results(B), report block/norm/theta/body arrays; failure-refusal(B). |
@@ -175,9 +176,46 @@ looser than the phase maximum. Fixed numerical arrays/temporaries go in K_stack.
 | shifted profile/factor | ScaledProfile first(F), outer rows(F), children H, block_of_row(F); ShiftedFactor distinct first/rows clone(H), failed bool(B), shifted Option<Wide>(F); local factor work(F) drops before nl_pass. |
 | shift schedule | results(B), in_flight usize(B) high-water despite clear, refused Option<BoundRefusal>(B), current and next triples(B each), sigma Option<Wide>(B), nl at/bt/ct(F each), block maxima(B); caller start/data/s_refused stay live. Previous factor drops before retry: not three factors live. |
 | report/attempt transfer | Move report fields; transient remaining pass vectors stay until return; spent.refusals(B) coexists with record's Uc vector extended to<=2B and its moving old backing; Arc report + newly cloned Summary coexist. |
-| stop rule | skip bool(Q), scales raw/coupled [Wide;4](b each), optional floor [f64;2](b), decision summaries(4b,2b,2b); TrackerSet keys<=8b, total offers<=Q+2Q_force, Q_force<=Q. Report/state owners remain. |
+| stop rule | skip bool(Q), scales raw/coupled [Wide;4](b each), distinct rule hats [f64;2](b), optional separately allocated floor [f64;2](b), decision summaries(4b,2b,2b); TrackerSet keys<=8b, total offers<=Q+2Q_force, Q_force<=Q. Report/state owners remain. |
 | native certificate/publication | canonical layout Vec<QuantityMeta>(Q) during validations; rounded candidate Vec<Binary64Outcome>(Q); publication s/scales [f64;4](b each), rows(Q), body_scales(4b), radii(Q). Source-current fixed CloneWork/certificate sums are stack, no heap registry. |
 | selected finish | all selected output fields above; transient Summary, selected-record clone, report and decision, local cache AND cloned selected cache failure children; encoding and filter vector growth old backings. |
+
+RV52-1 repair: rule::hats is a new Vec<[f64;2]> collected from report.resolution
+(adaptive.rs:2284–2290), charged as V_rule_hats,[f64;2](b). It is distinct from
+report resolution, every Summary clone and the optional floor. The earlier
+resolution_hats result (verify.rs:794) is dropped at that standalone statement;
+it supplies no live allocation credit to rule. During rule, hats overlaps skip,
+coupled scales, the TrackerSet and accumulated summaries; at verification
+precision1024 it also overlaps separately allocated phis/floor (2293–2306).
+The hat closure reads hats in force/estimate/charge loops through2430; hats stays
+in the rule closure's scope through summary production and drops when that
+closure returns, including early exits. The report remains owned by its caller;
+floor/summaries move into StopDecision, hats does not. The raw scales_at scratch
+drops before hats construction; the table's coarse scales bound may include both
+but that surplus is not used to omit hats.
+
+At each stop-rule event e where hats is live, add its distinct token h to A(e):
+
+    R_stop(e) = R_other(e) + V_rule_hats,[f64;2](b)
+    M_stop(e) = R_other(e) + V_rule_hats,[f64;2](b)
+                + Old_other(e) + Old_rule_hats(e)
+
+Old_rule_hats(e) is the old backing still live only during a moving growth at the
+actual collect site; its maximum capacity law remains unqualified. It is zero
+at later events once that old backing is released. Hats stays in R_stop while
+other buffers grow, so its live weight also overlaps their moving terms. Do not
+replace this explicit mapping with an earlier check/floor buffer or unspecified
+surplus. No allocation-capacity coefficient or measured-byte claim is added.
+
+RV52's Uc domination mapping is explicit: u_pass has distinct a and c vectors,
+whereas nl_pass overlaps retained c with at, bt and ct. Let Vmax_Wide<L>(F)
+be the maximum bound across these actual sites, as allowed by section1. Then
+max(V_a(F)+V_c(F), V_c(F)+V_at(F)+V_bt(F)+V_ct(F)) <=4 Vmax_Wide<L>(F).
+Thus the earlier two-buffer phase is already covered by the row's four-buffer
+coarse bound; a is not an alias of c and no fifth buffer is added. The distinct
+block-max vectors u and n_l each contribute their existing B-vector term.
+Site-qualified old-backing terms still follow section2; logical counts alone
+are not a capacity proof. This is RV52's source mapping, not a new byte profile.
 
 Tracker(O): lazy tuples (2 ExactWideSum,u64,u64) have length<=min(O,T),
 table (u64,Evaluated)<=O, kept table<=O, and Sort_table(O) workspace.
@@ -245,15 +283,16 @@ clones are included. Arbitrary downstream clones belong in P4's caller contract.
 
 ## 6. Boundary and next bounded work
 
-Fully rostered at source ownership level: numeric retained S/VS/Z/report families,
+Corrected source ownership roster, pending RV52 backcheck: numeric retained S/VS/Z/report families,
 cache success aliases/failure copies, schedule attempts/states, partial build
 children, terminal native custody, native SI publication/evidence and the local
 scratch families above. This is conditional on independent review of this roster;
 not every capacity/stack profile is qualified. I37 source binding confirms inline
 work states, borrowed nonheap WorkStream/Snapshot, fixed CloneWork and real
-terminal/combination custody. RV51 repairs can invalidate type/lifetime bindings.
+terminal/combination custody. ROOT reports RV51 CLEAR on unchanged fdae294; any
+later source repair requires affected type/lifetime rebinding.
 
-MISSING: source-qualified stride/alignment/Arc/Vec/Box/BTree/sort capacity and
+MISSING after this narrow correction: source-qualified stride/alignment/Arc/Vec/Box/BTree/sort capacity and
 moving laws for final compiler/target/features; exact stack bound; finalized C2
 case/operand/origin buffer implementation; independent P3 derivation/backcheck.
 P1 remains responsible for preparation census/refusal windows and all upstream
@@ -283,7 +322,8 @@ PROPOSAL
 - Status: PROPOSED; fresh independent P3 review before reliance/implementation.
 
 NEEDS_HUMAN_RULING: none added; owner-reserved memory/deployment/product choices
-remain reserved. DEPENDENCY_NOTES: RV51, C2 binding, P1, private facade and P4.
+remain reserved. DEPENDENCY_NOTES: RV52 repair backcheck, any changed-source rebind, C2 binding,
+P1, private facade and P4.
 Independent reviewer should rederive failed-cache copy generations; clear/drop
 capacity; report moves; Uc c with nl_pass; shift retry drops; geometry children;
 conditional zero-prescription terms; finite4/3 schedule; and capacity/moving laws.

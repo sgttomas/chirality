@@ -1,6 +1,6 @@
 # Owner-to-source ledger
 
-All numeric source line references below are to frozen, unreviewed I37
+All numeric source line references below are to frozen I37 (RV51 CLEAR reported by ROOT),
 fdae294643b798c1849da8b2e643085562593686 unless marked baseline. Files are under
 projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/.
 Origins/hashes are in _run_records/ORIGINS.json. Roster is revisable, not acceptance.
@@ -12,7 +12,7 @@ Origins/hashes are in _run_records/ORIGINS.json. Roster is revisable, not accept
 | RetainedFactor helper | factor.rs:640,672,705 | scaled/x/out/unscaled outputs may overlap parent rhs/condition vectors. Return moves Vec. No profile-row clone during ordinary solve. |
 | Refinement/fallback | adaptive.rs:1765,1887 | Up to four evaluated snapshots, one current residual row buffer, nested helper and up to four retained fallback trackers; outer residual tracker also remains during fallback. |
 | Recovery | recover.rs:239,495 | q_all and values move to Recovered; end_actions/spring/directional/reaction locals drop. Option reaction stride is separately bound. K4RST is a new byte allocation. |
-| Verification shared | verify.rs:390,422; bound.rs:164,373,481 | VS Arc children; original Uc c overlaps nl_pass at/bt/ct. BlockRatios positions is a deep copy before estimates move. |
+| Verification shared | verify.rs:390,422; bound.rs:164,373,481,691–694 | VS Arc children; u_pass a/c is dominated by the existing four same-type F-buffer upper using maximum per-site law; retained c overlaps nl_pass at/bt/ct. Two distinct block-max vectors u/n_l each B remain. No fifth F buffer added. BlockRatios positions is a deep copy before estimates move. |
 | Verification pass/report | verify.rs:601,723; adaptive.rs:4171 | Report children are moved; Arc creation adds Arc allocation only, not copied vectors. Remaining pass scratch drops. Summary creates three new vector backings. |
 | Shift attempts | bound.rs:1019,1239 | ScaledProfile spans retries; current factor drops before next factor. current and next, in_flight high-water, results/refused, caller start/s_refused overlap. |
 | Tracker lazy/table/prune | adaptive.rs:680–889 | lazy may be taken while table grows; table/drain + kept coexist, sort has workspace, kept shrink may move. Fields contain changed sum/error types. |
@@ -23,6 +23,7 @@ Origins/hashes are in _run_records/ORIGINS.json. Roster is revisable, not accept
 | Cache snapshot on selection | adaptive.rs:4564–4575 | clone local/group cache value: new failed-vector children, shared success Arc refs. Header inside selected Box; source header still exists. |
 | Run geometry | adaptive.rs:4397,4671; factor.rs:60,132 | Deep clone from group including NotAssessed child vectors. Moved into terminal/evidence. Group still owns its original. |
 | Attempts and selected clone | adaptive.rs:2729,4399,4710 | At most4 record backing slots; summaries/refusals separate children. finish clone overlaps original selected record. |
+| Rule hats / optional floor | adaptive.rs:2284–2312,2337,2386,2430,2460–2490; verify.rs:794 | New rule hats Vec<[f64;2]>(b) coexists with report resolution, skip, coupled scales, trackers/summaries and optional separate phis/floor. Add V_rule_hats(b), plus actual old backing during moving collect; hats stays live during other growth. Earlier resolution_hats check result already dropped. Hats drops at rule-closure return; floor/summaries move to StopDecision. |
 | Native publication/certificate | adaptive.rs:2950,3560 | Canonical layout/rounded values are scratch. Publication rows/scales and private radii become selected owners. Fixed CloneWork is stack. |
 | Selected/evidence | adaptive.rs:3640,3680,4671 | Box plus prep/group Arc refs, cache/state children, Evidence children. No Report or StopDecision stored. |
 | CoreRun/RunWork | adaptive.rs:4281,4302,4334 | One outcome and four inline totals. Refused attempts survive before legacy projection. No invented RecordedCase source/origins yet. |
@@ -44,6 +45,12 @@ allocation measurement or production envelope. These controls verify graph
 bookkeeping distinctions, not numerical reachability of a failed-vector witness,
 actual capacities, byte coefficients, the complete source roster or a theorem.
 
+The additional _run_records/hats_repair_02/checks.py source-anchors an independent
+allocation-event control: the earlier check allocation is freed; report resolution,
+new hats and optional floor are three simultaneous distinct tokens at stop rule.
+It checks hats old/new backing overlap, hats retention during summary growth, and
+hats drop with floor/report retained. Original controls/results are unchanged.
+
 Current source alone does not prove a selected result can carry every theoretical
 combination of failed slots; including possible copies is conservative. Removing
 one requires an independently reviewed reachability invariant. No such invariant
@@ -53,8 +60,8 @@ was supplied or assumed.
 
 | Cell | Exact remaining deliverable / dependency |
 |---|---|
-| P3 source roster review | Re-derive this owner graph and active scratch roster; verify all failed partial, move/clone and lifetime edges. Not commissioned after pause. |
-| I37 final source | RV51 disposition/repairs; rebind affected source hashes/types and changed error/drop paths. Conditional current facts are not review acceptance. |
+| P3 source roster review | RV52 found missing hats (RV52-1); correction awaits same-reviewer backcheck. Review and original raw evidence remain preserved. |
+| I37 final source | ROOT reports RV51 CLEAR on unchanged fdae294. Any later source changes require affected hash/type/lifetime rebinding; no profile qualification follows. |
 | C2 source binding | Recorded case/origin arrays, Prepared operand route, selected group choice, pre-source guards and retained ordinary source owners. Bound actual container/index capacities before construction. |
 | Layout profile | Final toolchain/target/features and actual strides for changed sum/work/stage/attempt/error/cache/Shared/VS/retained/terminal types; Arc/Box alignment/control allocation. |
 | Container/stack profile | Site-specific capacity/growth/clone/shrink/collect laws, BTree node and stable-sort workspace, old/new moving overlaps; fixed numerical call-stack max. |
@@ -62,6 +69,7 @@ was supplied or assumed.
 | P4 caller | Captured-caller ordinary inputs/results and headless/post-PP finalization, serialization and export request window. No whole-process guarantee. |
 | M1 integration | One upfront reservation computed using upstream counts before allocations; ordinary behavior/standing preserved on W1 decline. No new amount or scheduling policy selected. |
 
-Pause disposition: seal this unreviewed derivation and stop. Parent explicitly
-said fresh review or implementation will wait for owner resume.
+Repair disposition: ROOT commissioned this narrow RV52-1 correction after the
+original pause return. Return for same RV52 backcheck; no wider work is authorized
+by the correction. Original pause/timing records remain historical and unchanged.
 
