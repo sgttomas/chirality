@@ -46,7 +46,7 @@ transcriptions retain their explicit provenance limits.
 
 ## Next decision and work
 
-Two source-only planning TASKs are active; no build/solver/runtime is granted.
+One independent source-only design reviewer is active; no build/solver/runtime is granted.
 The existing host guard remains. NUM has merged main after K6c. I29/w1_limits_preparation_01 proposes options from current data;
 REVIEW_RV40/w1_limits_01 independently passes the prospective basis. ROOT has read
 both complete reports and verified their inventories/seals. ROOT has now selected the work thresholds in W1_RESOURCE_POLICY_V1.md under
@@ -63,20 +63,28 @@ with actual producer/reader/gate and V-P obligations. Owner-held6GiB dense/obser
 ceilings, PHYS-R4/availability, observation framing, KF3-B1 and KF2 dense screen
 remain at their owning records. T3 remains active and incomplete.
 
-## Active F2a checkpoint0 planning
+## Active F2a checkpoint0 review
 
-- Fresh I30 facade/publication/S-G1 plan: R/I30/f2a_checkpoint0_01; receipt18:05:16 UTC,
-  new-analysis cutoff18:55:16, return19:05:16. Brief I30_F2A_CHECKPOINT0_01.
-- I29 production memory-admission plan: R/I29/f2a_memory_plan_02; receipt18:05:42,
-  new-analysis cutoff18:55:42, return19:05:42. Brief I29_F2A_MEMORY_PLAN_02.
+I30 returned its facade/publication plan at18:28:49 UTC. ROOT read PLAN/SOURCE_MAP/
+RETURN, verified its informational inventory and preserved the original at
+edc939d62c0ee0658fa78b6cafbb81afb7c86244. Unchanged execution provenance was moved
+under _run_records and draft links/inventory updated at e6669820; no plan substance
+changed. I29 returned its memory plan at18:43:46, preserved after full ROOT reading/
+inventory verification at2eb72897c2b43beb3ce59e02a7e571390debd1bf.
 
-Both are direct native TASKs with disjoint records-only writes on NUM. No Git/index/
-API writes, runtime/probe/build/source edits or delegation. They return compact
-revisable plans, not accepted designs. Fresh independent design re-derivation and
-ROOT/owner dispositions precede implementation. Successor identities are proposed,
-not yet reserved. The legacy typed entry has no capture custody; no typed
-reserialization or new custody API is authorized. Planners must distinguish
-faithful projections/implementation of accepted contracts from genuine public
-contract changes. Memory must include the actual qualified caller/request window,
-not a PP-only envelope mislabeled invocation-wide. All new findings remain
-source-grounded planning inputs until the complete returns are reviewed.
+Fresh RV41 now reviews the two plans and F2A_CP0_RECONCILIATION_01 against main49034a940f.
+Receipt19:05:11 UTC, new-check cutoff19:55:11, return20:05:11. Owns only
+R/REVIEW_RV41/f2a_checkpoint0_01; no delegation/Git/index/API writes, source edits,
+solver/test/build/probe/runtime or host tools. Brief RV41_F2A_CP0_REVIEW_01 is at
+eb0cccff4d0551fc8cb8280c889aa45d2b36374a. Authors are stopped.
+
+Plans remain revisable, not accepted proofs/identities/byte policies or code grants.
+ROOT's cross-plan questions include additional ordinary work before admission,
+actual native caller completion, final-row SI/raw coordinates, lossless logical
+attempt projection, mixed-source combinations and native unsafe-digest inspection.
+No typed reserialization, invented hash or Current upgrade is authorized. Existing
+A1 normalization/bound/display semantics remain selected. M1 uses upfront complete
+reservation, not a generic cross-crate rollback framework. All open recipe and
+allocation/profile derivations must be closed and independently checked before
+implementation reliance; genuine new contract/product/deployment choices return
+to their owner as concrete reviewed options.
