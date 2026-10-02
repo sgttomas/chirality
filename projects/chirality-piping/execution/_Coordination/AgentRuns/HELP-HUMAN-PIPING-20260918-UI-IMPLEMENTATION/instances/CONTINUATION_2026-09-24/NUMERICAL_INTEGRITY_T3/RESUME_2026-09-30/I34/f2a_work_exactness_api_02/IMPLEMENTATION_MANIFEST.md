@@ -87,8 +87,8 @@ controls are:
 - H/tests/k6b_w1.rs, k6b_export.rs, k6c_envelope.rs, k6c_h_envelope.rs;
 - VR/tests/lane.rs and VR/tests/k6c_envelope.rs.
 
-FK/tests/retained_wide/wide_tests.rs, structural/formation_check_tests.rs and
-retained_k4/references_tests.rs are read-only regression checks: shared error
+FK/tests/retained_wide/wide_tests.rs, FK/src/structural/formation_check_tests.rs and
+FK/tests/retained_k4/references_tests.rs are read-only regression checks: shared error
 compatibility and unchanged legacy Refused shape. Ordinary fixtures, trusted
 vectors, reference values, tolerances and old record bytes are not edited.
 
