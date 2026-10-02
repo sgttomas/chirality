@@ -5464,3 +5464,26 @@ two-helper methods.
 wrote the graph text into the revisable ROOT_CURRENT index instead of saving
 the updated graph. The index and graph are now corrected explicitly. Source,
 sealed evidence, authority and dispatched briefs were unaffected.]
+
+## Checked-work source accepted for working-branch fan-in (ROOT, 2026-10-02 UTC)
+
+ROOT read RV51's completed RETURN and SOURCE_TRACE in full, verified its exact
+23-file packet and inventory804993c540d07ffd54c7476405e10e430a46e6a5c31a6bee157180b83a363b0d,
+and confirmed the original partial packet unchanged. Preserve the completed
+review at4d9358b550. Accept fdae294643b as the bounded checked-work prerequisite
+on the stated 64-bit source/consumer scope; no actionable findings remain.
+ROOT merged this source into NUM with --no-ff and confirmed maintained core/
+validation bytes remain exactly the reviewed candidate. This is local fan-in,
+not a main merge or full F2a/product/profile qualification.
+
+The fresh review completes its count/consumer trace and five independent raw/
+accounting controls in debug and optimized builds. Import setup failures remain
+review-harness evidence, not product regressions. Full C2, other target/profile
+qualification, closed count/error maps, memory/caller/availability and required
+final gates remain. The source stays frozen in wt/f2a for current P3 reference.
+
+ROOT also read/verified RV50's final integration review preserveddf2ba0a07d97,
+seal dc78333a9940897ce0c9066adabf9faf099a64d5977d9af8e44c7eb00c0d4941.
+Accept RV50-INT02-1 as required B64U custody correction before full integration
+reliance. I35 repair is bounded by briefaff15c8151e; same-reviewer confirmation
+will follow. The separately reviewed sqrt/small-bound helper grant remains valid.

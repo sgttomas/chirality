@@ -9,10 +9,10 @@ no cargo/rustc before dispatch. NUM merged current main a533dc2d67bc with
 
 - I37 source is frozen, clean and pushed in wt/f2a at
   fdae294643b798c1849da8b2e643085562593686, base14ff4e86dd. ROOT read the core
-  diff and verified scope/hashes and final-source checks. It is not in NUM/main.
+  diff and verified scope/hashes and final-source checks. ROOT merged it into NUM after RV51 clearance; it remains unmerged on main.
 - RV51 is completing the partial review in new REVIEW_RV51/checked_work_a_02.
-  Its independent debug/release controls now pass; count/consumer trace remains
-  in progress. Prior partial packet remains unchanged and is not clearance.
+  It is CLEAR for bounded prerequisite fan-in, preserved at4d9358b550.
+  Independent debug/release controls and count/consumer trace are complete. Prior partial packet remains unchanged and is not clearance.
 - RV50 reviews I35 integration-02 in new REVIEW_RV50/f2a_certificate_integration_02.
   Its interim assessment confirms the isolated two-helper block ready for code,
   conditionally. B64U's Result-only conversion drops local work and needs a narrow
