@@ -1,0 +1,37 @@
+{
+  "status": "Informational revisable component inventory; not an acceptance seal",
+  "created_UTC": "2026-10-02T21:31:30.719770+00:00",
+  "self_exclusion": "WRITE_INVENTORY.json is not self-hashed",
+  "files": [
+    {
+      "path": "COUNTS_AND_OWNERSHIP.md",
+      "bytes": 22429,
+      "sha256": "6fc9a82bf4f37e56340c48430f86789fb0166f657cdc15ae53619ef5cb8c7399"
+    },
+    {
+      "path": "RETURN.md",
+      "bytes": 4760,
+      "sha256": "cc688d3b70f60f76cf354eae0d5d56ec9cc409f3de24d5f7009dd5bcd768e249"
+    },
+    {
+      "path": "_run_records/COUNT_CHECKS.json",
+      "bytes": 2995,
+      "sha256": "33f748e62cf744239284fe0fbdb504d4d3c04f463ca9a5b25b4c6a7012c7e27a"
+    },
+    {
+      "path": "_run_records/ORIGINS.json",
+      "bytes": 15015,
+      "sha256": "83fa57d735b6777d369b78c0babcd6307d3f887356d3a38378535d1ef319f63d"
+    },
+    {
+      "path": "_run_records/SESSION.json",
+      "bytes": 2218,
+      "sha256": "085539c204deeec319e93f040c8e100d1e80e398e116ee633379d339ff2eae9e"
+    },
+    {
+      "path": "_run_records/count_checks.py",
+      "bytes": 4238,
+      "sha256": "97c3a3ed06c6c7cce9a06f182232d5724b5b31b57ccd8c96bbb6498f17f842ac"
+    }
+  ]
+}
