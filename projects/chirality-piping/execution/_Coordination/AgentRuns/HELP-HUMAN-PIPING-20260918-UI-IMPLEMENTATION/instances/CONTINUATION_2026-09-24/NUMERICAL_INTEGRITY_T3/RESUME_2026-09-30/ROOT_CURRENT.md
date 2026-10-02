@@ -46,8 +46,8 @@ transcriptions retain their explicit provenance limits.
 
 ## Next decision and work
 
-Three bounded author TASKs and two independent source-derivation reviewers are
-active; no build/solver/runtime is granted.
+I30 routing and independent RV42/RV43 reviewers are active. I31/I32 returned and
+are stopped; no build/solver/runtime is granted.
 The existing host guard remains. NUM has merged main after K6c. I29/w1_limits_preparation_01 proposes options from current data;
 REVIEW_RV40/w1_limits_01 independently passes the prospective basis. ROOT has read
 both complete reports and verified their inventories/seals. ROOT has now selected the work thresholds in W1_RESOURCE_POLICY_V1.md under
@@ -95,6 +95,17 @@ the stated briefs; it creates no realized solver/publication claim. Full memory
 P1–P5 waits for frozen interfaces from these packets. ROOT receives, reads and
 verifies inventories/write sets before preservation; independent review precedes
 any implementation reliance. Stable runtime policy identities remain unreserved.
+
+I32 returned at20:03:26 and is preserved at885ed83a6a. ROOT read RETURN,
+WIRE_CONTRACT and SOURCE_COMBINATIONS in full and verified all nine payload hashes
+and the exact ten-file scope. I31 returned at20:04:40 and is preserved at751ac56ce8;
+ROOT read RETURN/SOURCE_OPERANDS in full and verified six payload hashes and the
+exact seven-file scope. Both remain revisable proposals, not selected designs or
+implementation grants. I31 explicitly leaves T-Z/T-G and conditional T-A operand
+warrants open. I32 requires retention of terminal refused-attempt evidence and
+actual source-prepared mixed-combination interfaces; no numerical method changes
+are accepted merely by preservation.
+
 RV41 routing backcheck remains prepared, not executing. RV42/RV43 are now executing
 the amended two-stage briefs at090088926e. They first freeze their own source-based
 derivations without reading the authors' proposed answers; ROOT then supplies each
@@ -110,6 +121,10 @@ accepted/source bases, not full ROOT conversation forks. The same no-Git/index/A
 no delegation, no maintained edits and no-runtime fences apply. Actual origins and
 return evidence are recorded in their packets. These are independent derivations
 and reviews, not accepted implementation or qualified memory profiles.
+RV43 froze SOURCE_DERIVATION.md at20:05:29 before author exposure; ROOT read it and
+verified hash a3cf45cdb981d2cc5ef027265934fa75d45084d1841f57c10958a1c2cde131ed.
+RV43 now compares frozen I32. RV42 has the frozen I31 revision available only after
+its own source-derivation freeze; author contents were not supplied in that message.
 
 Plans remain revisable, not accepted proofs/identities/byte policies or code grants.
 ROOT's cross-plan questions include additional ordinary work before admission,
