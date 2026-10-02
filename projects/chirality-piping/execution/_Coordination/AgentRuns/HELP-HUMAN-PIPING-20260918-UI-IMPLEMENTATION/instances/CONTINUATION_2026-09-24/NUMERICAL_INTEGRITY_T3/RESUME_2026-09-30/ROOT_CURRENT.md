@@ -49,13 +49,14 @@ transcriptions retain their explicit provenance limits.
 All TASKs and runtime are stopped; the existing host guard remains. NUM has merged
 main after K6c. I29/w1_limits_preparation_01 proposes options from current data;
 REVIEW_RV40/w1_limits_01 independently passes the prospective basis. ROOT has read
-both complete reports and verified their inventories/seals. Work thresholds are
-selection-ready after K6c merge; no policy has yet been enacted by this index.
+both complete reports and verified their inventories/seals. ROOT has now selected the work thresholds in W1_RESOURCE_POLICY_V1.md under
+amended Q5:20-billion LME per case/60-billion per actual invocation. They are
+stop thresholds with recorded overshoot, not hard time/memory/RSS maxima.
 Memory remains a conditional technical target with RV40-N1's explicit F2a
 composition, preallocation guard, W1-only refusal and deployment boundaries.
 
-ROOT next selects work thresholds under amended Q5 and commissions bounded F2a/
-S-G1 checkpoint0 planning. The missing product memory mechanism and caller/lifetime
+ROOT next commissions bounded F2a/S-G1 checkpoint0 planning against the selected
+work policy and RV40-N1 memory design obligation. The missing product memory mechanism and caller/lifetime
 composition cannot be supplied by H's observation allocator. F2a cannot rely on
 an unqualified memory or publication contract. Then S-I, F2b per domain and F3,
 with actual producer/reader/gate and V-P obligations. Owner-held6GiB dense/observation

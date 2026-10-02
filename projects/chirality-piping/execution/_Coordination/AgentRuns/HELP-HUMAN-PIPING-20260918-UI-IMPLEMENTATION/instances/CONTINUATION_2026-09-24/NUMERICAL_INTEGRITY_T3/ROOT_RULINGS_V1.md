@@ -4933,3 +4933,33 @@ The work graph moves to ROOT W1 limits and F2a/S-G1 preparation. I29's prospecti
 options and fresh RV40 review are read and preserved; no limit is selected merely
 by this merge. F2a/engineering/release and the owner's separate product choices
 remain open.
+
+
+## W1 work thresholds selected; memory adoption remains explicit (ROOT, 2026-10-02 UTC)
+
+After K6c's verified merge, select W1_RESOURCE_POLICY_V1.md under amended Q5:
+20,000,000,000 LME per case and60,000,000,000 LME per actual invocation including
+combinations. ROOT read I29's complete RETURN/options and RV40's complete review,
+verified I29's informational inventory and RV40's9-payload seal
+dcc122932ca5002fb124213249c55e1b3d48602d38965862adff27c47d7a18dd.
+The review's option table and source-semantics section independently support this
+finite work allocation and its overshoot/cache/unmetered-work qualifications.
+No protected numerical criterion, old method label or observation-run policy changes.
+
+This selects work stop thresholds, not hard operation/time/RSS maxima. Preserve
+complete actual charges and one meter per request, with shared work charged as the
+source defines. F2a must bind/test the new policy; V-P later confirms or revises it.
+No proposed-threshold runtime is falsely claimed by the arithmetic preparation.
+
+Adopt RV40-N1 as a required F2a checkpoint0 design disposition. The3.75-GiB complete
+requested/moving composition is a provisional technical target, not an enacted
+byte guard or deployment choice. F2a must establish its actual source/count/caller/
+cache/state/publication composition and qualified preallocation/refusal mechanism;
+H's allocator is not that mechanism. Refusal must preserve otherwise publishable
+ordinary results/standing under the accepted design. New product semantics or a
+published-contract change returns to its owner before implementation.
+
+The work part of ROOT's W1 decision is closed. Final memory allowance/enforcement
+and supported-machine interpretation remain distinct owning decisions. Existing
+owner-held6-GiB ceilings, PHYS-R4/availability, observation framing, KF3-B1 and KF2
+choices are not decided here. Proceed to bounded F2a/S-G1 checkpoint0 planning only.
