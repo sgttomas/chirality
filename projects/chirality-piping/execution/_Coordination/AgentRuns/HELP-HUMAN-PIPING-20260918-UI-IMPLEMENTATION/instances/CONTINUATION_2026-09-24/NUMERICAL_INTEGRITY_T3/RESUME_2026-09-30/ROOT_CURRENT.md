@@ -70,7 +70,7 @@ isolated per-manifest targets under wt,20-minute command limits, compile and
 focused controls only. ROOT verifies actual startup, core diff, scope/hashes and
 commands, then commits; fresh implementation review follows.
 
-A priority clarification is being committed with this index: produce a coherent
+The priority clarification at 247c3392ad, recorded in rulings at 8ed7a1d5c5, is: produce a coherent
 compiling checked-work kernel and scoped H/VR exactness gates. Preserve actual
 CoreRun/RunWork and terminal/meter custody before legacy erasure. Full C2 origin
 inventories may be explicitly incomplete at A's bounded return; they must never
@@ -111,16 +111,21 @@ prose/inventories with original Git revisions preserved.
 
 ## Immediate ROOT queue and separate remaining work
 
-1. Preserve final RV46 N1/RV48 P1 confirmation and RV47 coefficient review from
-   dfd7a07711 (done); record their dispositions with the code grant. Correct the
-   narrow RV47-C1 control defect without overwriting original raw evidence:
-   coefficient control currently rounds an exact K product. Written theorem is
-   sound; do not credit the defective control until same-reviewer confirmation.
-2. RV50 fixed-arithmetic review is preserved125464d513, candidate2034c050d6:
-   no actionable arithmetic defect, but A/U reservations and logical bytes are
-   not full runtime/memory proof. ROOT still must select/consolidate this with
-   reviewed B2 and I36 coefficient additions, checked-work APIs, observable row
-   checks, complete loop/callback/count/lifetime correspondence and facade policy.
+1. I37 code checkpoint A is active. ROOT allowed only fallible-signature
+   adaptation in the existing retained_k4/models.rs test helper at 62e9369094
+   (date text corrected in 9fb9748897). Initial check02/check04_h/check05_vr
+   logs have exit 0; these are intermediate compile checks, not final candidate
+   qualification. Full source review and actual layout/profile updates follow.
+2. I36 repaired RV47-C1 at 7bca4a0dfd88. ROOT checked the actual script diff,
+   replay, all payload hashes and original raw/dependency preservation. RV47's
+   same-reviewer backcheck is active under the brief at 9fb9748897, receipt
+   2026-10-02 22:51:55 UTC; cutoff 23:01:55, return 23:06:55.
+   I35 integration-02 is active from 22:52:02 UTC under the same grant commit;
+   checkpoint 23:12:02, cutoff 23:32:02, return 23:42:02. It consolidates B2,
+   ordinary coefficients/hulls, seven-add entries, checked APIs and concrete
+   loop/callback/count/lifetime correspondence before RV50 backcheck. Fixed
+   arithmetic is selected at 8ed7a1d5c5; A/U reservations are not a proved full
+   execution bound and no facade pricing has been selected.
 3. Complete remaining memory/resource components: newly reached ordinary suffix,
    numeric/cache/returned states, publication/rollback/PP/headless/native callers,
    actual target/type/container facts and an adopted complete allowance. Symbolic

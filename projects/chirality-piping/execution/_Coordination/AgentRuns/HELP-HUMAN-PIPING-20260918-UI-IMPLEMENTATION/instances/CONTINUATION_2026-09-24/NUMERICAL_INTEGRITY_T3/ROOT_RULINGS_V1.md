@@ -5314,3 +5314,26 @@ meter custody and scoped H/VR gates. Complete C2 origin inventories may remain
 a named incomplete boundary at the bounded return, never invented evidence.
 The full F2a objective remains; this ordering clarification does not reduce the
 final source/reader/guard/qualification requirements.
+
+## Execution status and bounded integration follow-ups (ROOT, 2026-10-02 UTC)
+
+ROOT verified the I36 correction's ten inventoried payloads, exact replay and
+original raw/dependency preservation, and read the actual script/prose diff.
+Preserve it at 7bca4a0dfd88; same-reviewer confirmation remains required. The
+new checker lifts primitives individually before multiplication and adds a
+rounding-sensitive discriminator. It changes neither the written coefficient
+theorem nor a product source promise. Original failed evidence remains history.
+
+Release the RV47 backcheck and I35 integrated arithmetic schedule briefs at
+9fb9748897 as native TASK continuations. Their actual receipt/deadline facts are
+in ROOT_CURRENT. I35 must integrate the ordinary seven-add entry and B2/observable
+checks, expose every loop/callback/count/lifetime boundary, and distinguish
+proposed reservations from proved coverage. No facade work policy follows.
+
+I37 remains the sole maintained-code writer in its isolated checkout. ROOT
+inspected the existing claim_ratio/range_consistent test helpers and authorized
+only their fallible-signature adaptation in retained_k4/models.rs. This is not
+an oracle/tolerance/model change. Initial kernel, H and VR compile commands
+have exit 0 in the I37 packet; the evolving source is not yet reviewed or
+qualified. The work graph now distinguishes that actual implementation from
+conditional mathematical/design progress. T3 remains substantially incomplete.
