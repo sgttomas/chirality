@@ -5437,3 +5437,30 @@ review and I38 native ownership continuation briefs. Each owns a new packet;
 no sealed pause record is overwritten. RV51 alone has the focused Cargo lane.
 No new helper/product source implementation, numeric resource policy or heavy
 qualification is granted by these review/investigation assignments.
+
+## Private numerical helper implementation released (ROOT, 2026-10-02 UTC)
+
+ROOT read I35 integration-02's three detailed design/manifest documents in full.
+RV50's resumed interim assessment confirms its section0 two-helper block can be
+implemented conditionally against the frozen checked API, independently of full
+product/caller/visit-policy integration. Release I39 under brief081cd0e655:
+private directed sqrt and finite small-row-bound RU64 only, actual work/error
+collection on every exit, independent exact vectors and focused tests. No larger
+integration or visit-permit policy is selected. Final fresh code review and RV51
+checked-API correspondence remain mandatory.
+
+ROOT created wt/f2a-arithmetic from fdae294643b after checking worktree/artifact
+inventory; wt/f2a stays unchanged for RV51. The shared directed.rs registration
+hunk will be integrated serially by ROOT. I39 has no Git/index/API authority.
+The lane stayed held until RV51 explicitly released it; ROOT verified no cargo/
+rustc and memguard5387 before handing over the bounded lane at23:38:41 UTC.
+
+RV50 identified a B64U custody gap: existing Result-only binary64_up returns
+no local SumWork. Its correction remains a design interface requirement; never
+book a theoretical safety bound as spent work. It does not affect the separate
+two-helper methods.
+
+[Correction 2026-10-02: ROOT's resumption-record script at52a57416 mistakenly
+wrote the graph text into the revisable ROOT_CURRENT index instead of saving
+the updated graph. The index and graph are now corrected explicitly. Source,
+sealed evidence, authority and dispatched briefs were unaffected.]
