@@ -1,71 +1,85 @@
-# I29 P1 — source-preparation census and ownership return
+# I29 P1 — RV48 repair return
 
-**Prepared the finite count/encoding and symbolic preparation component.**
-[COUNTS_AND_OWNERSHIP.md](COUNTS_AND_OWNERSHIP.md) contains the borrowed census,
-checked guard interface, exact encoding formulas, allocation roster and
-branch-preserving prepared-object transfer. Actual byte coefficients remain
-unbound; this is not an enacted admission rule or complete memory proof.
+**RV48-1/2/3 repairs are prepared for RV48 backcheck.** No roster acceptance,
+numeric memory allowance, full memory/work proof or implementation qualification
+is claimed. The corrected [count/ownership component](COUNTS_AND_OWNERSHIP.md)
+retains C1/C2's source, combination, Call and native branch distinctions.
 
-The component follows corrected C2:
-- Case sources retain actual maps and raw/validated multiplicities.
-- Three stations per member give Q=7n+30m+s+k+2g.
-- Combination provenance stays ordered references. Native preparation still owns
-  the first-source clone, exact combined ledger, h*k prescription pairs and
-  K4CMB identity; no rounded combined PrimitiveSource is created.
-- Operand/combined-preparation refusal owns its Call/requested operands/cause,
-  with no fabricated Source, Group, Build or Run. Later valid-source refusals
-  preserve their different actual associations.
-- Reached case preparation keeps exhaustion→group→CasePrep order; ordinary
-  PreparedCaseSource operands have no graph/cache/solve. Actual prepared graph
-  objects are reused by execution, rather than rebuilt outside the bound.
+The source repairs are explicit:
 
-The census has no free encoding/clone/layout/graph/map step. Its explicit borrowed
-cursor workspace is itself reserved before allocation, using the existing
-capture's checked encoded_len as a coarse depth/visit upper. Typed lookup work
-has finite count products. Unknown custody, count/profile or workspace fails
-before new preparation; ordinary/first-terminal behavior remains I30's.
+- **RV48-1:** combination import owns a new GroupCache. For v256/v512/v1024,
+  first occupied slot wins in authored operand order. Each chosen nonbudget
+  failed slot adds its own copied Vec<BlockRefusal> backing:
+  Delta_import=sum_j V_BlockRefusal(r_j), at most three vectors.
+  Read r_j from the actual borrowed slot before cloning; r_j≤f_origin_j follows
+  from its stopped shared-build Uc refusal inventory. Original vectors remain
+  owned in P_prev. New copies survive to actual cache Drop or execution transfer.
+  Arc-sharing successful payloads, seven origin refs and inline status size
+  cannot hide these dynamic allocations. No numerical reachability witness or
+  emptiness invariant is invented.
 
-The symbolic roster covers SourceParts and invalid construction; source/map
-copies; source/combination encodings; exact ledger and prescription expansions;
-layout/extents; rigid-body preparation, pattern/tagging, RCM and free blocks;
-registries and failure custody. It separates resident ordinary R0 from new
-ordinary suffix O_suffix. The conservative requested/moving pair counts all
-declared W1 owners and potential old/new overlap. It is not an RSS claim.
+- **RV48-2:** RCM now carries S_RCM=max_i Sort_U(degree_i) at the actual
+  sort_by_key phase while adjacency, neighbors and degrees are live.
+  degree_i≤max(F−1,0) after deduplication; sequential sorts use their maximum,
+  not sum. Before degrees exist, a qualified profile supplies an upper over
+  that range. No constructor-scratch transfer or Vec-slack absorption is assumed.
 
-Sixteen bounded standard-library integer checks pass. They exercise 3m/6n width
-edges, raw duplicate constraints versus validated counts, encoding length prefixes,
-repeated and empty operand arithmetic, safe array layout and abstract child-vector
-capacity algebra. They construct no models or native sources, select no byte
-coefficients and execute no solver. See _run_records/count_checks.py and
-COUNT_CHECKS.json.
+- The corresponding complete phase terms are H'_import=H_import+Delta_import
+  (plus any actual new heap capsule holding the cache header) and
+  H'_RCM=H_RCM+S_RCM. Apply the conditional pair R0+H'_j / R0+2H'_j.
+  The current inline/stack cache header and any future containing heap stride
+  retain their own binding obligation. Coefficients remain unbound.
 
-- PROPOSAL: Use this P1 component for independent source/count review
-  - Evidence: corrected C1/C2 and RV43 confirmation; the source/allocation table and formulas in COUNTS_AND_OWNERSHIP.md.
-  - Change: Check the borrowed census, raw/validated phase separation, encoding/index inequalities and complete listed ownership before binding coefficients or implementing preparation.
-  - Why: Makes count acquisition and invalid/combination preparation explicit while preserving source and Call identities.
-  - Risk: Unbound type/format/build terms prevent numeric admission. Future dynamic fields require a roster amendment; constants cannot hide missing owners. Numeric-phase placement of exact group counts must preserve C2 origin/precedence.
+- **RV48-3:** the fresh checker validates every scalar and list element before
+  multiplication, subtraction or summation. It rejects the review's Boolean
+  node, negative constraint and masked negative-load cases, plus every
+  validated scalar position, combination/list cases and a zero-product masking
+  case. Width/layout inputs are checked too. All51 corrected checks pass;
+  the original16 selected control records are exactly equal, including their
+  expected rejection results.
+
+The original _run_records/count_checks.py, COUNT_CHECKS.json, ORIGINS.json and
+SESSION.json remain byte-identical to original P1 at8eaca35bdc. The new checker,
+results, source/change origins and preservation record are only under
+[_run_records/correction_02](_run_records/correction_02). Reviews are unchanged.
+
+**Free-block sentinel clarification:** bound.rs:90–106 reserves u32::MAX as
+unvisited. Each new block id requires positions.len()<u32::MAX; a final
+f≤u32::MAX (or prior F≤u32::MAX) is sufficient. On a≤64-bit target the current
+stronger premise that the unreduced F*(F+1) product fits usize already implies
+that bound. Checking only the reduced triangular value would require the
+explicit sentinel premise. RV48 did not prove a counterexample to the stronger
+current guard. This is representation safety, not a new numerical domain choice.
+
+The preparation component still covers borrowed census and its own workspace,
+raw/validated counts, exact source/ledger/combination encoding lengths,
+SourceParts/PrimitiveSource/CasePrep, actual graph/order/blocks, maps/registries
+and partial failure owners. It creates no rounded combined PrimitiveSource,
+Source/Run for pre-source refusal, free allocating census or unaccounted rebuild.
+Reached case preparation keeps exhaustion→group→CasePrep order. Prepared ordinary
+operands do not acquire a graph/cache/solve.
+
+- PROPOSAL: Backcheck the repaired P1 roster and helper validation
+  - Evidence: RV48 RETURN at44a6f7d9cf; native cache/sort/block sources; correction_02/CORRECTION.json and COUNT_CHECKS.json.
+  - Change: Review the new import/sort terms, their requested/moving inclusion, copied-vector handoff and per-input validation while preserving original evidence.
+  - Why: Supplies the two omitted allocation owners and the checker correction without changing methods or byte coefficients.
+  - Risk: Actual type/capacity/sort/build/format profiles and later numeric/caller/suffix owners remain unbound. Source allocation coverage is not a numeric allowance or runtime guarantee.
   - Status: PROPOSED
 
-Independent review should verify the native encoding constants, constructor/error
-drop owners, raw child capacities after deduplication, both graph/RCM copies,
-rigid-witness expansion-term bounds, ledger netting overlap, combination first-source
-ownership and the moving-bound argument. Check that the visitor's actual iterator
-implementation is allocation-free and its encoded_len premise is source-bound.
+MISSING: RV48 backcheck; reviewed actual strides/capacity/sort/tree/Deque/Arc/
+String/format profiles; changed I34 status/type effects; exact caller R0 and
+ordinary suffix; numeric/aggregate/certificate/native-completion composition.
+Later obtain_verify and finish_selected failure-vector copies remain later
+owners, not silently covered or removed by this preparation repair.
 
-MISSING: reviewed actual strides/capacity/sort/tree/Deque/Arc/String/format profiles;
-changed I34 status/type effects; exact caller R0 and O_suffix; numeric/aggregate/
-certificate/native-completion bounds; binding of prepared handles to the eventual
-recorded API. No complete work-exactness or source-action proof follows.
+NEEDS_HUMAN_RULING: no new owner question, byte allowance, domain or code choice.
+ROOT disposition and independent backcheck precede reliance.
 
-NEEDS_HUMAN_RULING: no new owner question or numeric allowance/domain/code choice.
-ROOT review and independent component review precede reliance.
+DEPENDENCY_NOTES: Original accepted count/encoding lemmas retain their scope.
+Complete memory and work-exactness obligations remain separate. No implementation,
+runtime, Git/index/API writes, delegation or follow-up is commissioned.
 
-DEPENDENCY_NOTES: C1/C2 mapping is the reviewed derivation basis. Full memory
-remains held pending its separate source bridge, work-exactness, numeric,
-ordinary-suffix and caller cells. Neither this packet nor symbolic coefficients
-substitute for those proofs. No implementation or follow-up is commissioned.
-
-Native TASK /root/i29_w1_limits under ROOT /root. Receipt 2026-10-02 21:04:33 UTC;
-new-analysis cutoff 21:34:33; hard return 21:44:33. Only
-R/I29/f2a_preparation_counts_p1 was written. Origins/session and informational
-inventory accompany the packet; no acceptance seal or maintained change.
+Repair receipt2026-10-02 21:54:42 UTC; new-analysis cutoff22:09:42;
+hard return22:19:42. Direct native TASK /root/i29_w1_limits under ROOT /root.
+Only the three authorized revisable files and three new correction_02 files
+were written. WRITE_INVENTORY.json is informational, not an acceptance seal.

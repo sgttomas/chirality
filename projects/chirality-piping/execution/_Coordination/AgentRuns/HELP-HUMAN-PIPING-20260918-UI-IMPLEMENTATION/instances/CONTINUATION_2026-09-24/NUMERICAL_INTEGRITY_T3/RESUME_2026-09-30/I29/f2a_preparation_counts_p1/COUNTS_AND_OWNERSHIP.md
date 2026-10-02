@@ -112,6 +112,14 @@ negative counts in mathematical input tooling. Before each Rust use/cast:
 - Before unchecked profile accumulation, F(F+1)/2 fits usize; before neighbor/
   contribution construction, the checked raw uppers cover every child insertion.
   The exact returned profile is later bound to the same prepared object.
+- free_blocks uses u32::MAX as unvisited (bound.rs:90–106). Before assigning a
+  new block, positions.len()<u32::MAX; final block count f≤u32::MAX is sufficient,
+  or use the safe pre-loop upper F≤u32::MAX. Legal ids then stop at f−1, below
+  the sentinel. The current stronger premise checks the unreduced F*(F+1)
+  product in usize: on a≤64-bit target this already implies F≤u32::MAX.
+  If a later implementation checks only the reduced triangle, add the explicit
+  sentinel premise. RV48's reduced-triangle scalar witness does not satisfy the
+  stronger unreduced-product premise and is not its counterexample.
 - Later numeric/state-encoding consumers must separately check their N/Q/u32
   uses and I34 exactness/scalar premises. These preparation guards do not prove
   complete work-counter safety or permit a numeric phase.
@@ -145,6 +153,14 @@ E_requested_j=R0+H_j; E_moving_j=R0+2H_j.
 The second deliberately counts every W1 term twice: each sequential growth site's
 old backing is no larger than its final per-site bound, while sort/clone temporaries
 are already listed. This is a coarse upper, not measured moving behavior.
+For the repaired roster, H'_RCM=H_RCM+S_RCM and
+H'_import=H_import+Delta_import (plus any actual new heap capsule holding the
+cache header). Apply R0+H'_j and R0+2H'_j to those complete phase sums.
+P_prev still includes the original snapshot vectors. Sort scratch is counted at
+the RCM phase, not borrowed from the earlier constructor phase. Neither new term
+is presumed absorbed by unrelated slack or an unbound status/type coefficient.
+Before actual degrees exist, use a qualified Sort-profile upper over
+0≤degree≤max(F−1,0), rather than running RCM early to obtain sort counts.
 Concurrent source preparations require a separate aggregate composition.
 Stack workspace has its own finite expression; none becomes an RSS bound.
 
@@ -173,10 +189,11 @@ exclusive temporaries is permitted conservative slack, not claimed exact livenes
 | Body membership map / C2 §3 | V_BodyMap(b)+C_u32(n,b)+C_u32(m,b), with source.body_of_node borrowed and each node/member assigned once. Include isolated nodes. New map capacities use b≤n upper before allocation; do not infer membership from a different graph. |
 | Geometry / factor.rs:130–218; rigid_body.rs:33–246 | Retained V_BodyGeometry(b); active body node/coordinate lists≤n, Tree_local(n), grounds≤r+s. Assessment: V_Coord(n)+2V_Row6(r+s)+V_Row6(2n+7); exact witness V_Expansion6(n) with per-node child terms≤3*10+3*1, plus V_Row6(n) recovered motions and local/difference expansion scratch. Expansion.add keeps old and new term Vecs concurrently. Failed geometry may overlap original and cloned geometry/error data. |
 | Pattern/tagging / assemble.rs:539–648; structural/sparse.rs:48–160 | Let Zu=min(N²,144m+s), U=78m+s, P=144m+s. Bound V_Pair(U)+V_VecU(N)+C_U(P,N)+V_U(N+1)+2V_U(Zu)+V_Tag(U)+2V_U(Zu+1)+V_Contribution(U). This overcounts mutually exclusive row-building/tagging phases safely. Persistent result is pattern row starts/columns/transpose, starts and items; no numeric values/factor yet. |
-| Ordering/RCM / factor.rs:223–401 | Persistent source/geometry/Structure plus free/position/order/rank/first (4V_U(F)+V_U(N)); adjacency V_VecU(F)+C_U(Zu,F); RCM neighbors V_VecU(F)+C_U(2Zu,F), degrees V_U(F), visited V_bool(F). Safe temporary allowance5V_U(F)+2V_bool(F)+D_U(F) covers component/old-last/current-next BFS levels and queue. Sequential peripheral searches do not require multiplying peak storage by iteration count. |
+| Ordering/RCM / factor.rs:223–401 | Persistent source/geometry/Structure plus free/position/order/rank/first (4V_U(F)+V_U(N)); adjacency V_VecU(F)+C_U(Zu,F); RCM neighbors V_VecU(F)+C_U(2Zu,F), degrees V_U(F), visited V_bool(F). Add S_RCM=max_i Sort_U(degree_i) for factor.rs:310–317 stable sort_by_key, after deduplication while adjacency/neighbors/degrees remain live; degree_i≤max(F−1,0). Sorts are sequential: maximum, not sum; the empty F=0 maximum is0. A monotone bound Sort_U(max(F−1,0)) requires its qualified sort profile; no absorption into Vec terms is assumed. Safe temporary allowance5V_U(F)+2V_bool(F)+D_U(F) covers component/old-last/current-next BFS levels and queue. Sequential peripheral searches do not require multiplying peak storage by iteration count. |
 | Free blocks / bound.rs:84–125 | V_u32(F)+V_VecU(f)+C_U(F,f)+V_u32(f), plus stack/component temporaries2V_U(F). Components partition free positions. Actual GroupPrep owns final Structure/Ordering/geometry/blocks; Arc_GroupPrep and empty-cache/status headers need current coefficients. |
 | Case Call/group metadata / C2 §4,6 | CaseBatchCall owner/source/run-ref arrays bounded by admitted batch occurrence count; Group records≤batch source occurrences, key bytes and source-ref lists counted per call. Geometry refusal gets actual Group/preparation reason; exhausted-before-start and other branches retain true associations. Empty slots are not factor payloads; Build records are created later, not fabricated during preparation. |
-| Combination preparation / combine.rs:85–129; adaptive.rs:922–976 | Borrow operand preparations and selected snapshots in authored order. Check identity/layout/stations/supports before combining. Native clone is the first source only; exact ledger seesΣ l_i, prescriptions h*k, identity E_cmb. Reuse an actual selected GroupPrep when available; any genuinely new group takes the entire group expression above. New Group metadata is not proof a new graph exists. |
+| Combination preparation / combine.rs:85–129; adaptive.rs:922–976 | Borrow operand preparations and selected snapshots in authored order. Check identity/layout/stations/supports before combining. Native clone is the first source only; exact ledger seesΣ l_i, prescriptions h*k, identity E_cmb. Reuse an actual selected GroupPrep when available; any genuinely new group takes the entire group expression above. New Group metadata is not proof a new graph exists. The actual GroupCache::merged owner additionally deep-copies selected failed verification vectors; the explicit import row below applies. |
+| Combination cache import / adaptive.rs:3571–3591,3795–3827,4416–4438; combine.rs:114 | Construct the new GroupCache owner. For each of v256/v512/v1024, scan actual selected snapshots in authored order and select the first occupied slot (success or nonbudget failure); later occupied slots do not overwrite it. For every selected Err, read its borrowed vector length r_j and add Delta_import=sum_j V_BlockRefusal(r_j), at most three vectors. r_j≤f_origin_j follows from verify.rs:439–441,525–526 and bound.rs:1321–1332 (one Uc refusal option per originating free block). This upper is for that cache vector, not an arbitrary attempt-refusal list. The original vectors remain in P_prev; new copies belong to the new cache through its actual drop or execution transfer. Success payloads share Arc; source refs/inline status headers do not pay for copied failure backings. The current cache header is inline/stack; any new containing heap object's stride and its fixed stack/transfer storage are separately bound. |
 | Pre-source/partial failure / C2 corrected §4,6 | Preserve requested-operands/Call/typed reason and actual temporary drops; source_refs/run_refs empty and meter snapshots unchanged. No combination source/map/ledger digest, group/import/build or Run is created after operand/ledger refusal. Nonfinite factors retain private native cause and existing receipt-encoding fallback. Valid combined-source group refusal is a different later branch with true source/Run ownership. |
 
 Geometry scratch is finite at the current source: each coordinate delta has at
@@ -201,9 +218,17 @@ A case-source decline has its owned InputMap/counted constructor payload and
 typed error, but no valid source registry item. Combination Call count includes
 pre-source refusals; Source/Run count does not. Valid groups are call-local and
 first full-stiffness-equality ordered. Cache-import metadata has at most seven
-slot refs per selected operand snapshot, without cloning factors; numeric Build/
-attempt/state payloads and their later arrays are outside P1. Reserve any origin
-array actually initialized in preparation; leave later growth to its later permit.
+slot refs per selected operand snapshot, but this reference count is separate
+from the at-most-three actual failed-verification vector copies in the new cache.
+Expose an owner-bound borrowed slot census (occupied state, refusal length and
+origin block upper) before GroupCache::merged; a caller-supplied length or cloned
+vector is not that census. Success Arc sharing does not erase Err Vec ownership.
+After merging, transfer the new cache's owner and Delta_import backings into the
+execution live set, or release them only at actual Drop. Later obtain_verify
+failure copies and finish_selected cache.clone() copies belong to the later
+numeric/returned-state roster; preparation does not silently pay for or erase them.
+Numeric Build/attempt/state payloads remain outside P1. Reserve every origin
+array actually initialized here; later growth requires its later permit.
 
 The persistent registry roster also includes V_SourceRegistry(valid case+combination sources),
 V_CallRegistry(actual calls), V_GroupRegistry(actual groups), V_BasisRegistry(actual bases),
