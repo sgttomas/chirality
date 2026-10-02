@@ -5223,3 +5223,36 @@ No code, new price, byte bound or silently changed legacy observation is authori
 Release I34_F2A_WORK_EXACTNESS_API_02 to choose and fully trace those finite APIs
 and exact maintained manifest for RV46 backcheck. No further abstract framework
 or open-ended proof programme is requested.
+
+## F2a ordinary and nonlinear bases accepted; preparation corrections bounded (ROOT, 2026-10-02 UTC)
+
+ROOT read RV47 REVIEW and RV49 REVIEW in full and verified their exact payload
+scopes/seals before preservation at44a6f7d9cf. Their manifests respectively are
+dbadefd645e97be4cda9f05d034c4ec6bb1f8967eb80acbc1ac5f5b0576ef040 and
+e5f8a8c377e98e8475b01c09e61ce24949484e6d84032e878d6125ce22805608.
+Accept I36's source reconciliation and private dual-readout cover as the faithful
+ordinary design direction, conditional on the actual source association and
+positive interpolation/coefficient proof. Preserve independent selected E/G and
+the actual normalized effective-wall boundary. No exclusive q_K reinterpretation,
+E/nu substitution, new endpoint-positivity domain gate or changed reference is
+selected. Release I36_F2A_ORDINARY_COEFFICIENTS_02 to close that finite instantiation.
+
+Accept B2 at514f04a943 as the conditional nonlinear/source-span mathematical basis:
+strict unloaded W1a/source maps, correct signed endpoints and positive section
+premises, unchanged k factors and final predicates. Preserve surviving rows and
+the actual coefficient-witness midpoint/location scope; restore no retired open
+summary and add no combination maximum. D2 headlines remain result_ref aliases,
+not new all-case source-max guarantees. I35 arithmetic, code/association/resource
+and actual qualification remain open. RV49 disclosed some pure Git object reads
+without the requested optional-lock environment; no index/write-capable command
+was used in those reads. Its completion record preserves that procedural departure.
+
+ROOT read RV48 RETURN in full and verified its six payloads/exact scope, inventory
+c8d1765e972999c298e179c20710d3241feaa2bd3941396bd52e1ebb34a27309.
+Accept RV48-1/2 as preparation-roster blockers and RV48-3 as a checker correction:
+account actual failed-verification vector copies during cache import, explicit
+RCM sort workspace, and individual malformed-count rejection. Release the narrow
+I29_F2A_PREPARATION_REPAIR_02. Preserve original raw evidence. The block-id point
+is a conditional guard clarification, not a proved counterexample to the stronger
+current product guard. Same-reviewer backcheck precedes roster closure; no numeric
+memory/work/implementation qualification is inferred.
