@@ -5401,3 +5401,23 @@ App-v4 PR1072. ROOT checked that the delta from the T3 baseline 49034a940f has
 only projects/chirality-app-v4 paths; Piping and its relevant instruction/skill
 bases are unchanged. No integration is attempted during this pause. Refresh
 and merge main (never rebase) at the appropriate resumed candidate boundary.
+
+## Graceful pause settled; no new work authorized (ROOT, 2026-10-02 UTC)
+
+All delegated agents are stopped/completed. ROOT's final host scan found no
+cargo/rustc process; the existing memguard PID 5387 remains running. Both owned
+checkouts were clean before the final handoff update; their code/evidence are
+preserved. No raw evidence, target or worktree was pruned and no merge occurred.
+
+I29 P3 and I35 integration-02 completed useful bounded returns before stopping.
+ROOT read their returns and verified exact inventories/scope, preserving them
+at 2fc3e8f71df2e140a0a0d50b72305be5d1c5a618. They remain unreviewed and
+unaccepted derivations; their synthetic/abstract controls do not supply an
+implemented numeric memory limit, facade tariff or product qualification.
+
+RV51's partial review and I38's startup pause remain as recorded above. I37's
+source stays frozen at fdae294643b in its pushed isolated branch. Complete the
+unfinished review and affected backchecks after resumption before reliance; no
+new implementation was started from I35's proposed helper block. The work graph
+and ROOT_CURRENT now point to HANDOFF_2026-10-02_SESSION_PAUSE.md. This is an
+owner-directed pause, not T3 completion or a new human acceptance decision.
