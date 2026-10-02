@@ -4983,3 +4983,34 @@ standing are preserved. Genuine published-contract/product-semantics changes mus
 be presented concretely to their owner after independent design review; missing
 implementation of an already accepted rule is not automatically a new permission
 question. ROOT reconciles the two plans before any implementation grant.
+
+
+## F2a review disposition and finite derivation grants (ROOT, 2026-10-02 UTC)
+
+ROOT read RV41 REVIEW in full and verified its3-payload seal
+c9d05631d7ffaa951fd69f3f6a6831e3c24bcd2be34483f8a49a5330df54ee44.
+Accept RV41-1/2 as blockers to implementation/native qualification, not to the
+bounded derivations that repair them. RV41-3's ownership/provenance wording is
+corrected in the revisable I30 plan; the original author return remains in Git.
+No completed allocation/recipe proof is inferred from a plausible strategy.
+
+Choose M1 upfront preparation/batch/caller reservation as the derivation basis,
+with newly reachable ordinary work and a third native caller contract added. Keep
+typed calls ordinary without fabricated custody. Prefer source-based mixed
+combinations and faithful logical-candidate receipts as reviewed; no ordinary
+combination withholding, lost verification work or new public radius is selected.
+For unsafe native custody, retain a specific representability/registration refusal
+for this slice; carry raw inspection as a separate T3 obligation. Do not claim
+Current/canonical export or completed native fallback. Representable native W1
+still requires its full caller/registration witness. No owner-held deployment or
+public correctness-contract change is selected by these faithful directions.
+
+Release I30_F2A_ROUTING_DERIVATION_02, I31_F2A_CERTIFICATE_B1 and I32_F2A_WIRE_C1
+as disjoint source/math-only blocks. Each has a finite scope/time box and returns
+to ROOT. Full memory P1–P5 follows frozen interfaces, with independent derivation
+and review before code. No source implementation, runtime or new host tool follows.
+
+Coordination correction: RV41 returned at19:14:27 UTC; ROOT spent roughly another
+half hour on integration analysis before acting. That was a ROOT coordination
+overrun, not reviewer lateness or additional numerical verification. The response
+is these bounded proof grants, not another open-ended analysis/tooling programme.
