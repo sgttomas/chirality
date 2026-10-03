@@ -36,19 +36,16 @@ final joined closure remain.
 ## Running now
 
 I51's first actual prepared model selected native p=128 with verification P=256
-in both modes (FIRST_NATIVE at 10:12:54Z). Complete projection/final G5a are unrun.
-ROOT caught a premature run before C0 accounting readiness. The helper schedule
-and layout check are now supplied; a narrowly granted late observation hook will
-remove broad model/build copies. I51 must fix RV67-L1/L2 (entered state/error work
-and positive completed-observation custody), then obtain same-reviewer confirmation.
-Solver/product runs remain held; isolated capture/accounting checks are permitted.
+in both modes (FIRST_NATIVE at 10:12:54Z). Its premature-C0 sequencing miss remains
+recorded. The applied local repair now cleared RV67 at `8b7c1c2ce4`; ROOT restored
+the existing private runtime grant after checking the frozen source. I51 is
+completing the dual proof, product overlay and atomic private transfer.
 Component target: candidate/obstruction 11:15:06Z; edits stop 11:40:06Z; seal/reap
-12:00:06Z. Existing guard PID 5387 remains running.
+12:00:06Z. Existing guard PID 5387; I51 owns the sole runtime lane.
 
 ## Next
 
-Close the local accounting prerequisite, then produce and independently check
-the complete two-mode private candidate,
+Produce and independently check the complete two-mode private candidate,
 including G5a, observables, ordinary fallback and local accounting. Public receipt/
 reader/routing/resource integration and full gates follow that private milestone.
 Bulk evidence stays in scratch with committed hash/size/location manifests.

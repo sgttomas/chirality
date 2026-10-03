@@ -6717,3 +6717,32 @@ Compilation and isolated capture/accounting controls are prospectively allowed
 under the addendum, with no native or public product solve. Further solver runs
 wait for the applied C0 check and confirmed closure of RV67-L1/L2. The fifteen-minute
 repair-return box does not reset the component's original deadlines.
+
+
+## Local C0 closed and private solver tests restored (ROOT, 2026-10-03 UTC)
+
+ROOT restores the existing private solver/product test grant after the applied capture repair and local accounting boundary cleared the same independent reviewer.
+
+RV67's backcheck at `8b7c1c2ce4` closes RV67-L1/L2 and identifies no remaining
+concrete local C0 blocker in the supplied boundary. ROOT read it completely,
+verified its five payloads and seven external files, and rechecked the three
+current PP source hashes against the frozen applied boundary at `9754381f53`.
+ROOT had also read the complete applied patch, helper schedule and isolated-test
+records. The broad clone graph and bypass latch are removed; positive observation
+custody, accounting-aware comparisons and explicit new copy/capacity prefixes
+replace them. The owning backcheck states the local evidence and its limits.
+
+I51 may now apply the staged continuation onto this corrected source and resume
+only the already selected private component under the existing guard, single
+runtime lane, command caps and original deadlines. Preserve the checked C0
+changes and rerun affected controls as the full candidate changes. Neither this
+restoration nor the earlier native success accepts the unreviewed dual-proof/
+projection implementation, its resource profile or any public F2a output.
+
+The first native run's premature-C0 chronology remains explicit. The next numerical
+checkpoint is the complete actual two-mode candidate: projected raw/SI values,
+full predicates, actual final G5a, observables, work/lifetimes and independent truth
+comparison. ROOT's early source read also flagged the in-progress final-proof
+success-token invariant and newly introduced accounting for completion during
+this same component. No failed numerical verdict may yield a successful certified
+state, and no private test is counted as public publication.
