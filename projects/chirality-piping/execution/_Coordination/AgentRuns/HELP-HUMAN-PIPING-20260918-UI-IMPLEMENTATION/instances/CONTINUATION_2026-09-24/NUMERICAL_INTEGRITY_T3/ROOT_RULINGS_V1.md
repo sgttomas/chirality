@@ -6084,6 +6084,15 @@ more facade plumbing is the remedy. All public/owner-held boundaries remain.
 
 ## Selected-material component accepted and locally merged (ROOT, 2026-10-03 UTC)
 
+[Correction 2026-10-03 UTC, ROOT: the independent truth-miss/conservative
+classification cited below covered K and source-annulus with exact interpolated
+moduli. I36 also requires the source-annulus interpretation with actual resolved
+moduli. That additional comparison was not independently included. The prior
+47-row category is relative to the two checked readouts, not established for the
+complete accepted cover. Broader truth-coverage reliance is reopened pending
+separate corrected evidence and backcheck; no source-code defect or false PASS
+is established by this gap. The bounded source/custody acceptance remains distinct.]
+
 ROOT read complete fresh RV62 REVIEW/RETURN preserved at 8b2d87ca7b68 and verified
 its 59-payload seal 5824e5240417871bdb6779c2f6bab816f9a456bded71f419f9978e76322cc7bf.
 No actionable finding remains. Accept source d0daa18717f8243a7232e898c9ef9b4f4d18d9e4 at its bounded private
@@ -6106,3 +6115,32 @@ derivation. Its reported material-hull/shared-radius mechanism is not adopted
 until fresh independent review. Do not infer that native projection, more solver
 precision or changed source semantics cures it. Existing numerical/source/output
 criteria and owner-held public/availability decisions remain unchanged.
+
+
+## Material interpretation coverage reopened before refinement (ROOT, 2026-10-03 UTC)
+
+ROOT read RV64's complete one-row proof and verified its 32-payload seal, preserved
+at 62f502b80454. Its geometric inflation lower bound, the two stated point
+comparisons and algebraic native-projection equality are independently supported.
+The proof remains valid. Before selecting a tighter method, ROOT re-read I36's
+accepted source-material warrants and found the additional resolved-moduli/source-
+geometry readout missing from that point comparison and I47/RV62's truth taxonomy.
+The existing H_E/H_G cover cannot be narrowed by calling K's rounded section the
+same readout. ROOT's exact coverage challenge is preserved at 26160e94661e.
+
+For the same UX, ROOT's preliminary additional readout misses the sharper bound.
+Do not seek to admit that unchanged row by merely tightening the certificate
+until this consequence is independently checked. Preserve all original proofs,
+scripts and captures. No public source meaning, output or predicate is changed.
+I47 has a records-only all-row cover completion, actual receipt05:57:32Z,
+checkpoint06:05:32, cutoff06:15:32, return06:22:32. I49 has the narrower readout/
+planning addendum and at most one genuinely conservative UZ target, receipt
+05:57:46Z, checkpoint06:02:46, cutoff06:07:46, return06:12:46. No compiler/model/
+solver/native/source/Git/index/API or tooling work is granted to either. Same
+RV62 and RV64 independent backchecks precede closure.
+
+Process observation: ROOT spent too long exploring possible refinements before
+settling this full-cover premise. That exploration is stopped. No tighter method
+is selected or implemented; the active numerical work is the two bounded evidence
+corrections. This records ROOT's own coordination error and correction, without
+attributing it to the owner or changing any standing instruction.

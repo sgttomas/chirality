@@ -80,16 +80,32 @@ I47 and RV62 stopped; RV62 released runtime05:12:15 and sealed05:15:07. Only the
 existing guard5387 remains; no compiler lane is retained. Next is independent
 review of I49's numerical diagnosis before choosing a tighter private certificate.
 
-I49 /root/i49_conservative_predicate is an exact-arithmetic/source-only diagnosis
-under brief19703b23a89e. Actual receipt05:09:07Z; checkpoint05:17:07, cutoff05:24:07,
-return05:31:07. Owns only R/I49/conservative_predicate_01. It investigates one
-actual interpolated-loaded UX conservative refusal from the frozen candidate,
-without assuming which interval branch causes it. Determine the next numerical/
-actual-producer dependency; algebraic native projection is never an executed
-full envelope. No compiler/model/solver/native/Git/index/API/tooling/delegation,
-no changing source/values/scales/predicates and no use of RV62's runtime lane.
-The source is now independently accepted at its bounded private scope; this
-separate diagnosis still needs fresh mathematical review before reliance.
+I49 original diagnosis d368447b7b0f and fresh RV64 proof62f502b80454 are sealed,
+read and hash-verified by ROOT. The one-row geometric-inflation lower bound and
+native-projection equality stand at their stated scope. ROOT then re-read I36's
+accepted material warrants and found that the independent comparison omitted
+source geometry with actual resolved E_hat/G_hat. ROOT_CHECK at
+R/verification/material_truth_coverage_challenge_01 supplies a preliminary genuine
+UX miss for that additional required readout. Original point comparisons remain
+true for their two particular readouts; the full-cover taxonomy and refinement
+recommendation are reopened. No source/output/predicate/contract change or false
+candidate PASS is established. Tighter-method exploration is held.
+
+I47 /root/i47_selected_material is now records-only under brief26160e94661e:
+NEW NUM/R/I47/source_truth_coverage_03, complete existing required interpretation
+coverage over the same four captured cases. Receipt05:57:32Z; checkpoint06:05:32,
+cutoff06:15:32, return06:22:32. No source or runtime changes. Same RV62 backcheck
+will follow. Original 47 conservative rows are qualified relative to the two
+previously checked readouts, not yet the complete required cover.
+
+I49 /root/i49_conservative_predicate has a separate records-only addendum under
+the same brief commit, NEW NUM/R/I49/full_truth_addendum_02. Receipt05:57:46Z;
+checkpoint06:02:46, cutoff06:07:46, return06:12:46. Independently check the extra
+UX readout/consequence and at most one fully covered conservative UZ target.
+Same RV64 backcheck follows. Neither assignment may use Cargo/model/solver/native,
+source, Git/index/API, tooling or delegation. Existing guard5387 stays; compiler
+lane is unoccupied. ROOT stopped premature refinement exploration and recorded
+that coordination correction explicitly in the latest ruling.
 
 I48's bounded read-only availability comparison is preserved74e9f4049e76,
 R/I48/product_availability_01, inventory1144c14f15e1a8ab11b7939ddaa23519a667558f687865cc87c7f387da5eabd0.
