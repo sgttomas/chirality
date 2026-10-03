@@ -70,7 +70,8 @@ actual cases have the prepended modulus_basis_record and stop at row-member
 binding before final numeric/G5a work. No selected-material certificate is accepted.
 The overinclusive --lib s11 old fallback-byte failure is retained without causal
 attribution; intended site target passes. Original base outputs/oracle are unchanged.
-I47 stopped and released runtime at 04:33:07; it awaits the separate source grant.
+I47 completed the blocker assignment and released runtime at 04:33:07; its new
+source-completion assignment is active below.
 
 Fresh RV63 source/interface review is preserved at 08a4e9017de5, 12-payload seal
 9a1f143df434a5aee89d8cadb3613aae8ca91a4693d8e9edc3d81ae4415dd03e. ROOT read it
@@ -82,7 +83,14 @@ Both actual ancillary rows remain explicit and outside numerical scales/recipes;
 actual row ordinals supersede the copied base row35 assumption. No public contract,
 resolver/row producer/arithmetic, output or criterion change. Fresh RV62 brief is
 updated for the complete eventual four-file diff, not merely the original test file.
-ROOT is dispatching that separately bounded completion from the frozen blocker.
+I47 /root/i47_selected_material has actually received that separate completion
+at 04:43:36Z from clean CODE 58912a48b3fb. Checkpoint 04:53:36, first complete
+actual verdict 04:58:36, new-work cutoff 05:13:36, sealed return 05:23:36. Owns the
+four named files and NEW CODE/R/I47/selected_material_02. Sole focused lane:
+existing guard5387, 4 jobs/2 threads, absolute locked/offline manifests,20minute
+walls; separate WT/targets/i47-selected-material/{product_physics,frame_kernel}.
+No fifth-path edit, solver/row-producer/criterion change, broad check, Git/index/API,
+new tools or delegation. The original tests-only blocker stays immutable.
 
 I48's bounded read-only availability comparison is preserved74e9f4049e76,
 R/I48/product_availability_01, inventory1144c14f15e1a8ab11b7939ddaa23519a667558f687865cc87c7f387da5eabd0.

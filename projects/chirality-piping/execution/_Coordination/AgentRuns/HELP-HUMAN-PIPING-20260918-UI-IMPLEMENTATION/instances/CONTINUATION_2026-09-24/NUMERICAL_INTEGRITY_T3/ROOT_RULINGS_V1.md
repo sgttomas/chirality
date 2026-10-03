@@ -6041,3 +6041,12 @@ changes. New capture storage and work remain explicitly unqualified for public
 resources. The actual matching caller/future C2 limits remain. Fresh RV62 covers
 the eventual cumulative four-file code/test/independent-oracle diff before any
 fan-in. Original sealed evidence and actual ordinary values remain unchanged.
+
+
+I47 actual source-completion dispatch (ROOT, 2026-10-03 UTC): the separate
+four-file grant f8d1bf148464 was received at 04:43:36Z on clean CODE 58912a48b3fb.
+Checkpoint 04:53:36, first complete verdict 04:58:36, cutoff 05:13:36, final
+05:23:36. Only new selected_material_02 evidence may be written; the original
+blocker remains sealed. The existing guarded focused lane transferred after
+ROOT observed no compiler processes. Fresh RV62 implementation review remains
+required. This is an actual native TASK continuation, not just a written brief.
