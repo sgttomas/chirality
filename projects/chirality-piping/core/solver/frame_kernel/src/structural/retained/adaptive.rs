@@ -5575,3 +5575,192 @@ impl RetainedSolve {
 #[cfg(test)]
 #[path = "../../../tests/retained_k4/source_bridge_tests.rs"]
 mod source_bridge_tests;
+
+/// Private trial correction only. The source residual, not factor accuracy,
+/// establishes its usefulness. All arithmetic owners are collected on failure.
+#[derive(Debug, Clone, PartialEq)]
+pub(crate) enum SourceCorrectionError {
+    Arithmetic(AttemptStop),
+    Storage,
+    CountRange,
+    Identity,
+}
+impl From<AttemptStop> for SourceCorrectionError {
+    fn from(e: AttemptStop) -> Self {
+        Self::Arithmetic(e)
+    }
+}
+impl From<WideError> for SourceCorrectionError {
+    fn from(e: WideError) -> Self {
+        Self::Arithmetic(e.into())
+    }
+}
+#[derive(Debug, Default)]
+pub(crate) struct SourceCorrectionWork {
+    pub(crate) cast: AttemptWork,
+    pub(crate) factor: AttemptWork,
+    /// Entered cast elements and exact widening copy limbs. Core round/factor
+    /// internal visits and allocation remain unqualified auxiliary work, not
+    /// invented spent counts reconstructed from their safety upper bounds.
+    pub(crate) visits: WorkTotal,
+    pub(crate) calls: WorkTotal,
+    pub(crate) rhs_capacity: usize,
+    pub(crate) output_capacity: usize,
+    pub(crate) converted_capacity: usize,
+    #[cfg(all(test))]
+    pub(crate) actual_rhs: Vec<Wide<16>>,
+}
+impl SourceCorrectionWork {
+    pub(crate) fn status(&self) -> WorkStatus {
+        self.cast
+            .checked_lme()
+            .status()
+            .join(self.factor.checked_lme().status())
+            .join(self.visits.status())
+            .join(self.calls.status())
+    }
+    fn visit(&mut self, n: usize) -> Result<(), SourceCorrectionError> {
+        let n = u64::try_from(n).map_err(|_| SourceCorrectionError::CountRange)?;
+        self.visits = self.visits.add(WorkTotal::exact_count(n));
+        self.status().fault().map_or(Ok(()), |f| {
+            Err(SourceCorrectionError::Arithmetic(
+                AttemptStop::WorkAccounting(f),
+            ))
+        })
+    }
+}
+#[derive(Debug)]
+pub(crate) struct SourceCorrectionSpent {
+    result: Result<Vec<Wide<16>>, SourceCorrectionError>,
+    pub(crate) work: SourceCorrectionWork,
+}
+impl SourceCorrectionSpent {
+    pub(crate) fn into_parts(
+        self,
+    ) -> (
+        Result<Vec<Wide<16>>, SourceCorrectionError>,
+        SourceCorrectionWork,
+    ) {
+        let result = match self.result {
+            Err(e) => Err(e),
+            Ok(v) => match self.work.status().fault() {
+                Some(f) => Err(SourceCorrectionError::Arithmetic(
+                    AttemptStop::WorkAccounting(f),
+                )),
+                None => Ok(v),
+            },
+        };
+        (result, self.work)
+    }
+}
+fn source_correction_at<const L: usize>(
+    factor: &RetainedFactor<L>,
+    p: u32,
+    midpoint: Vec<Wide<16>>,
+    work: &mut SourceCorrectionWork,
+) -> Result<Vec<Wide<16>>, SourceCorrectionError>
+where
+    Wide<L>: SupportedWidth,
+{
+    let n = midpoint.len();
+    // These preflights do not qualify factor.rs's existing collect/vec allocations.
+    std::alloc::Layout::array::<Wide<L>>(n).map_err(|_| SourceCorrectionError::CountRange)?;
+    std::alloc::Layout::array::<Wide<16>>(n).map_err(|_| SourceCorrectionError::CountRange)?;
+    let mut rhs = Vec::new();
+    rhs.try_reserve_exact(n)
+        .map_err(|_| SourceCorrectionError::Storage)?;
+    work.rhs_capacity = rhs.capacity();
+    let mut cast = WideContext::<L>::new(p)?;
+    let cast_result = (|| -> Result<(), SourceCorrectionError> {
+        for value in &midpoint {
+            work.visit(1)?;
+            rhs.push(cast.round(value)?); // explicit RN-even to matching P
+        }
+        Ok(())
+    })();
+    work.cast.record(&cast);
+    drop(cast);
+    drop(midpoint);
+    cast_result?;
+    work.visit(0)?;
+    #[cfg(test)]
+    {
+        work.actual_rhs = rhs.iter().map(Wide::<L>::widen::<16>).collect();
+    }
+    let mut context = WideContext::<L>::new(p)?;
+    let result = source_factor_once(factor, &rhs, &mut context, work);
+    drop(context);
+    drop(rhs); // RHS no longer overlaps conversion of the retained P output.
+    let output = result?;
+    let mut converted = Vec::new();
+    converted
+        .try_reserve_exact(output.len())
+        .map_err(|_| SourceCorrectionError::Storage)?;
+    work.converted_capacity = converted.capacity();
+    for value in &output {
+        work.visit(L)?; // actual copied source limbs; widening is exact
+        converted.push(value.widen::<16>());
+    }
+    Ok(converted)
+}
+fn source_factor_once<const L: usize>(
+    factor: &RetainedFactor<L>,
+    rhs: &[Wide<L>],
+    context: &mut WideContext<L>,
+    work: &mut SourceCorrectionWork,
+) -> Result<Vec<Wide<L>>, SourceCorrectionError>
+where
+    Wide<L>: SupportedWidth,
+{
+    work.visit(0)?;
+    work.calls = work.calls.add(WorkTotal::exact_count(1));
+    work.visit(0)?;
+    let result = factor.solve_scaled(context, rhs);
+    work.factor.record(context); // same producing context, before any failure exit
+    let output = result?;
+    work.output_capacity = output.capacity();
+    work.visit(0)?;
+    Ok(output)
+}
+impl SourceBridgeView<'_> {
+    pub(crate) fn source_correction(&self, midpoint: Vec<Wide<16>>) -> SourceCorrectionSpent {
+        let mut work = SourceCorrectionWork::default();
+        let result = (|| {
+            let nf = self.group().ordering.free.len();
+            if midpoint.len() != nf {
+                return Err(SourceCorrectionError::Identity);
+            }
+            let p = self.owner.evidence.verification_precision;
+            macro_rules! apply {
+                ($slot:expr) => {{
+                    let shared = $slot
+                        .as_ref()
+                        .and_then(|v| v.as_ref().ok())
+                        .ok_or(SourceCorrectionError::Identity)?;
+                    if shared.p != p
+                        || shared.factor.first() != self.group().ordering.first
+                        || !std::ptr::eq(shared.factor.scale(), self.scales)
+                    {
+                        return Err(SourceCorrectionError::Identity);
+                    }
+                    source_correction_at(&shared.factor, p, midpoint, &mut work)
+                }};
+            }
+            match p {
+                256 => apply!(self.owner.cache.s256),
+                512 => apply!(self.owner.cache.s512),
+                1024 => apply!(self.owner.cache.s1024),
+                _ => Err(SourceCorrectionError::Identity),
+            }
+        })();
+        let result = match result {
+            Err(e) => Err(e),
+            Ok(v) => work.visit(0).map(|()| v),
+        };
+        SourceCorrectionSpent { result, work }
+    }
+}
+
+#[cfg(test)]
+#[path = "../../../tests/retained_k4/source_residual_tests.rs"]
+mod source_residual_tests;
