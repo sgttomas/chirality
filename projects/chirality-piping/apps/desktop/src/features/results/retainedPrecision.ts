@@ -619,7 +619,10 @@ function recordCoverage(cov: Obj[], record: Obj): void {
   const fail = (ok: unknown) => need(ok, 'G5a', 'SCALE_MISMATCH');
   const withData = cov.filter(e => e.has_data).length;
   fail(Number.isSafeInteger(record.data_blocks) && (record.data_blocks === 0) === (withData === 0) && record.data_blocks >= withData);
-  fail(same(record.bound.map((v: Obj) => v.body), cov.map(e => e.body)) && cov.every((e, i) => (record.bound[i].value !== null) === e.has_data));
+  // Reader parity rule: the record's resolution and theta list bodies 0..n-1 in order.
+  const ids = cov.map(e => e.body);
+  fail(same(record.resolution.map((v: Obj) => v.body), ids) && same(record.theta.map((v: Obj) => v.body), ids));
+  fail(same(record.bound.map((v: Obj) => v.body), ids) && cov.every((e, i) => (record.bound[i].value !== null) === e.has_data));
   for (const e of cov) if (!e.has_data) fail(record.theta.find((v: Obj) => v.body === e.body)?.value === ZERO);
 }
 /** Direct data facts: no free DOF forces false; a nonzero original free-DOF term forces true. */
@@ -690,6 +693,8 @@ function numericSummaries(cases: NumericCase[], b: Obj): void {
     fail(unique(sel.certified_bound.map((v: Obj) => v.body)) && sel.certified_bound.every((v: Obj) => ids.includes(v.body) && decodeBinary64(v.value) > 0));
     fail((sel.floor !== null) === (sel.precision === 512)); if (sel.floor !== null) fail(same(sel.floor.map((v: Obj) => v.body), ids));
     selectedCoverage(x, b);
+    // G5a resolution-test prerequisites (reader parity): non-empty bodies, finite normalized rows.
+    fail(bodies.every(body => body.nodes.length > 0) && x.values.every(v => Number.isFinite(v.n)));
     for (let bi = 0; bi < bodies.length; bi++) {
       fail(x.lengths[bi] >= 0 && Number.isFinite(x.lengths[bi]) && [...x.original[bi], ...x.hats[bi]].every(Number.isFinite));
       const e = [decodeBinary64(sel.resolution_scale[bi].force), decodeBinary64(sel.resolution_scale[bi].moment)], upper = x.hats[bi].map(v => v * decodeBinary64('3ff0000000001000'));
