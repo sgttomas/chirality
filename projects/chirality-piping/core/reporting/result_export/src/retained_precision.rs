@@ -15,7 +15,10 @@ const MAX_BITS: u64 = 0x7fef_ffff_ffff_ffff;
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ValidationError {
     pub gate: &'static str,
+    /// The bare failure code compared for first-failure parity.
     pub code: String,
+    /// Optional detail carried separately from the code (G7 base detail).
+    pub detail: Option<String>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -203,6 +206,7 @@ const SLOTS: [&str; 7] = ["s128", "s256", "s512", "s1024", "v256", "v512", "v102
 fn error(gate: &'static str, suffix: &str) -> ValidationError {
     ValidationError {
         gate,
+        detail: None,
         code: if suffix.starts_with("SOURCE_") {
             suffix.into()
         } else {
@@ -551,32 +555,16 @@ fn g1(source: &Value, raw: bool) -> VResult {
     }
     Ok(())
 }
-fn conversion_encoding(v: &Value) -> VResult {
-    if let Some(o) = v.as_object() {
-        if let Some(kind) = o.get("kind").and_then(Value::as_str) {
-            if matches!(kind, "normal" | "subnormal") && o.contains_key("value") {
-                let n = f(&v["value"]);
-                need(
-                    if kind == "normal" {
-                        n == 0.0 || n.abs() >= f64::MIN_POSITIVE
-                    } else {
-                        n != 0.0 && n.abs() < f64::MIN_POSITIVE
-                    },
-                    "G2",
-                    "ENCODING_MISMATCH",
-                )?;
-            }
-        }
-        for x in o.values() {
-            conversion_encoding(x)?;
-        }
+/// C3 conversion kinds (checklist P5, at G5 PRODUCT_ATTEMPT per snapshot 06a):
+/// Normal is a normal binary64 or ±0; Subnormal has nonzero subnormal bits.
+/// Underflow/overflow carry no value; their Ready rules are checked with rows.
+fn conversion_kind_ok(o: &Value) -> bool {
+    let n = f(&o["value"]);
+    match text(&o["kind"]) {
+        "normal" => n == 0.0 || n.abs() >= f64::MIN_POSITIVE,
+        "subnormal" => n != 0.0 && n.abs() < f64::MIN_POSITIVE,
+        _ => true,
     }
-    if let Some(a) = v.as_array() {
-        for x in a {
-            conversion_encoding(x)?;
-        }
-    }
-    Ok(())
 }
 fn rows_for<'a>(source: &'a Value, case: &Value) -> Vec<&'a Value> {
     list(&source["results"])
@@ -700,7 +688,13 @@ fn g3(source: &Value, inv: Option<&Value>) -> VResult {
         let mut prior = None;
         for o in list(&a["proof"]["projection_outcomes"]) {
             let idx = u(&o["row_index"]);
-            fail(idx < rows.len() as u64 && prior.is_none_or(|p| idx > p))?;
+            // C3 G3 row-index coverage (ROOT ruling): an index must name a
+            // hull-projected row of this case, ascending and unique.
+            fail(
+                idx < rows.len() as u64
+                    && prior.is_none_or(|p| idx > p)
+                    && hull_projected(rows[idx as usize]),
+            )?;
             prior = Some(idx);
         }
         // I57 s4 G3: a complete proof-owned coverage vector has exactly one entry
@@ -848,6 +842,7 @@ fn g5_native(b: &Value) -> VResult {
             let attempts = list(&r["attempts"]);
             af(records.len() <= 4 && attempts.len() <= 3)?;
             af(records.is_empty() == attempts.is_empty())?;
+            g5_schedule(r)?;
             if let Some(first) = attempts.first() {
                 af(first["precision"] == 128
                     && first["candidate_record"] == 0
@@ -964,6 +959,11 @@ fn g5_native(b: &Value) -> VResult {
                         }
                     } else {
                         wf(cache.get(&slot) == Some(&bi) && build["state"] != "budget_failure")?;
+                    }
+                    // C1: a failed build fails its requesting record with the same stop.
+                    if build["state"] != "success" {
+                        af(record["outcome"]["kind"] == "failed"
+                            && stop_of(&record["outcome"]["reason"]) == Some(&build["reason"]))?;
                     }
                     for (k, v) in build["stages"]
                         .as_object()
@@ -1146,6 +1146,13 @@ fn g5_native(b: &Value) -> VResult {
                 && charge == sum(attempts.iter().map(|a| u(&a["case_charge"])))?
                 && debit == u(&r["invocation_increment"])
                 && debit == sum(attempts.iter().map(|a| u(&a["invocation_increment"])))?)?;
+            // N10: a Run entered with the invocation meter exhausted is idle.
+            if u(&r["invocation_before"]) >= u(&b["work"]["invocation_limit"]) {
+                af(attempts.is_empty()
+                    && r["origin"]["group"].is_null()
+                    && r["kernel_terminal"]["reason"]
+                        == json!({"space":"unresolved","tag":"budget","scope":"invocation"}))?;
+            }
             current = sum([current, debit])?;
             wf(current == u(&r["invocation_after"]))?;
             if r["kernel_terminal"]["kind"] == "selected" {
@@ -1208,8 +1215,141 @@ fn g5_native(b: &Value) -> VResult {
         wf(u(&call["invocation_after"]) == current)?;
     }
     af(run_order.iter().copied().eq(0..runs.len() as u64))?;
+    // C5/N11 (C2:143): call-local groups formed at first equality of the full
+    // stiffness bytes, in first-seen order; an idle (group-null) Run forms none;
+    // a refused group preparation returns before any attempt.
+    for (call_id, call) in list(&b["calls"]).iter().enumerate() {
+        let call_groups: Vec<&Value> = list(&b["groups"])
+            .iter()
+            .filter(|g| u(&g["call"]) == call_id as u64)
+            .collect();
+        let mut order: Vec<(Value, Vec<Value>)> = Vec::new();
+        let mut of_run = Vec::new();
+        for (ri, si) in list(&call["run_refs"]).iter().zip(list(&call["source_refs"])) {
+            let (_, run) = runs
+                .get(u(ri) as usize)
+                .copied()
+                .ok_or_else(|| error("G5", "ATTEMPT_MISMATCH"))?;
+            if run["origin"]["group"].is_null() {
+                continue;
+            }
+            let key = at(&b["sources"], si, "G5", "ATTEMPT_MISMATCH")?["stiffness_sha256"].clone();
+            let gi = match order.iter().position(|(k, _)| *k == key) {
+                Some(gi) => gi,
+                None => {
+                    order.push((key, Vec::new()));
+                    order.len() - 1
+                }
+            };
+            order[gi].1.push(si.clone());
+            of_run.push((run, gi));
+        }
+        af(call_groups.len() == order.len()
+            && call_groups
+                .iter()
+                .zip(&order)
+                .all(|(g, (k, m))| g["stiffness_sha256"] == *k && list(&g["source_refs"]) == m.as_slice()))?;
+        for (run, gi) in of_run {
+            let g = call_groups[gi];
+            af(run["origin"]["group"] == g["id"])?;
+            if g["preparation"]["kind"] == "refused" {
+                af(list(&run["attempts"]).is_empty()
+                    && run["kernel_terminal"]
+                        == json!({"kind":"refused","reason":g["preparation"]["reason"]}))?;
+            }
+        }
+    }
     wf(u(&b["work"]["charged"]) == current && builds_seen.len() == list(&b["builds"]).len())?;
     Ok(())
+}
+/// The native Stop inside a Reason: a bare stop, or an attempt-space stop.
+fn stop_of(reason: &Value) -> Option<&Value> {
+    if reason["space"] == "stop" {
+        Some(reason)
+    } else if reason["space"] == "attempt" && reason["tag"] == "stop" {
+        Some(&reason["stop"])
+    } else {
+        None
+    }
+}
+fn escalating(reason: &Value) -> bool {
+    stop_of(reason).is_some_and(|s| matches!(text(&s["tag"]), "pivot" | "condition" | "residual_gate"))
+}
+/// Checklist N1-N10 schedule replay of the native ladder (FK/adaptive.rs:
+/// 4519-4766): candidates at the 128/256/512 slots; an escalating candidate
+/// failure advances one slot, an escalating failed verification solve two, a
+/// non-escalating or verification-pass failure ends the ladder, a rejected
+/// candidate hands its completed verification on while a slot remains, and
+/// leaving the loop is the Ceiling. A pre-schedule run has no records, no
+/// charge and a non-selected terminal with a reason.
+fn g5_schedule(r: &Value) -> VResult {
+    let af = |ok| need(ok, "G5", "ATTEMPT_MISMATCH");
+    let records = list(&r["records"]);
+    let attempts = list(&r["attempts"]);
+    af(records.iter().all(|x| u(&x["corrections"]) <= 3))?;
+    let terminal = &r["kernel_terminal"];
+    if attempts.is_empty() {
+        return af(records.is_empty()
+            && u(&r["case_charge"]) == 0
+            && u(&r["invocation_increment"]) == 0
+            && terminal["kind"] != "selected"
+            && !terminal["reason"].is_null());
+    }
+    let mut c = 0u32;
+    let mut ended = false;
+    for (ai, a) in attempts.iter().enumerate() {
+        af(!ended && c < 3 && u(&a["precision"]) == 128u64 << c)?;
+        let last = ai + 1 == attempts.len();
+        let v = &a["verification"];
+        match text(&a["outcome"]["kind"]) {
+            "accepted" => ended = true,
+            _ if v.is_null() => {
+                if escalating(&a["outcome"]["reason"]) {
+                    c += 1
+                } else {
+                    ended = true
+                }
+            }
+            _ if v["phase"] == "failed" => {
+                if !last && escalating(&v["reason"]) {
+                    c += 2
+                } else {
+                    ended = true
+                }
+            }
+            "rejected" => {
+                c += 1;
+                if c < 3 {
+                    af(!last && attempts[ai + 1]["origin"]["kind"] == "reused_verification")?;
+                }
+            }
+            _ => ended = true,
+        }
+    }
+    if attempts[attempts.len() - 1]["outcome"]["kind"] == "accepted" {
+        af(terminal["kind"] == "selected" && terminal["reason"].is_null())
+    } else {
+        af(matches!(text(&terminal["kind"]), "unresolved" | "refused")
+            && !terminal["reason"].is_null()
+            && (ended
+                || *terminal
+                    == json!({"kind":"unresolved","reason":{"space":"unresolved","tag":"ceiling"}})))
+    }
+}
+/// Reader-logic entry points for tests of checklist branches that have no
+/// native-faithful shared base yet. They run the same functions `validate`
+/// uses, on a partial input, and grant nothing.
+#[doc(hidden)]
+pub mod reader_logic {
+    use super::*;
+    /// The G5 schedule replay for one Run (checklist N1-N10).
+    pub fn schedule(run: &Value) -> Result<(), ValidationError> {
+        g5_schedule(run)
+    }
+    /// The G5 ordinary/source_decline pass for a whole statement (O2-O5).
+    pub fn ordinary(source: &Value) -> Result<(), ValidationError> {
+        g5_ordinary(source)
+    }
 }
 fn exact_count(v: &Value) -> Option<u64> {
     (v["kind"] == "exact").then(|| u(&v["value"]))
@@ -1345,7 +1485,9 @@ fn g5_products(source: &Value) -> VResult {
             let cv = list(&m["conversions"]);
             pf(cv.len() <= 9)?;
             for (k, v) in cv.iter().enumerate() {
-                pf(v["property"] == props[k].0 && v["endpoint"] == props[k].1)?;
+                pf(v["property"] == props[k].0
+                    && v["endpoint"] == props[k].1
+                    && conversion_kind_ok(&v["outcome"]))?;
                 if prepared {
                     let idx = if k < 8 { k / 2 } else { 4 };
                     pf(v["outcome"]["kind"] == "normal"
@@ -1469,6 +1611,9 @@ fn g5_products(source: &Value) -> VResult {
             if st["projection"] == "completed" {
                 pf(outcomes.len() == projected.len())?;
             }
+            for v in outcomes {
+                pf(conversion_kind_ok(&v["outcome"]))?;
+            }
             if a["result"]["kind"] == "ready" {
                 let rows = rows_for(source, c);
                 let expected: Vec<_> = rows
@@ -1530,6 +1675,7 @@ fn g5_products(source: &Value) -> VResult {
             pf(a["result"]["kind"] == "ready")?;
         }
         g5_coverage(a, c, s)?;
+        g5_stages(a, &pf)?;
         if c["status"] == "unavailable"
             && c["reason"]["cause"]["kind"] == "prepared_product_failure"
         {
@@ -1571,8 +1717,69 @@ fn g5_products(source: &Value) -> VResult {
             }
         }
     }
+    // P9 (C3:279-287): an unavailable result's error matches the first failed
+    // pipeline stage; runs after every attempt's association checks.
+    for a in list(&b["product_attempts"]) {
+        if a["result"]["kind"] != "unavailable" {
+            continue;
+        }
+        let st = &a["stages"];
+        if let Some(k) = STAGE8.iter().find(|k| st[**k] == "failed") {
+            let allowed: &[&str] = match *k {
+                "preparation" => &["preparation", "capture"],
+                "native" => &["native", "capture"],
+                "proof_start" | "projection" | "certificate" => &["proof"],
+                "maxima" | "aliases" => &["abandoned"],
+                _ => &["values"],
+            };
+            pf(allowed.contains(&text(&a["result"]["error"]["kind"])))?;
+        }
+    }
     for ok in pending_work {
         need(ok, "G5", "WORK_MISMATCH")?;
+    }
+    Ok(())
+}
+const STAGE8: [&str; 8] = [
+    "preparation",
+    "native",
+    "proof_start",
+    "projection",
+    "maxima",
+    "values",
+    "aliases",
+    "certificate",
+];
+/// P2/P6 (C3:196-201, 253-257; retained_receipt.rs:45-54): stages advance
+/// only through returned transitions, so after the first stage that did not
+/// complete every later pipeline stage is not_entered; observables and G5a are
+/// entered together; a source exists iff preparation completed; and the
+/// completion kind follows the stages that entered it.
+fn g5_stages(a: &Value, pf: &dyn Fn(bool) -> VResult) -> VResult {
+    let st = &a["stages"];
+    let mut seen_end = false;
+    for k in STAGE8 {
+        if seen_end {
+            pf(st[k] == "not_entered")?;
+        } else if st[k] != "completed" {
+            seen_end = true;
+        }
+    }
+    pf((st["observables"] == "not_entered") == (st["g5a"] == "not_entered"))?;
+    pf((st["preparation"] == "completed") == !a["source_ref"].is_null())?;
+    let proof = &a["proof"];
+    if !proof.is_null() {
+        let completion = text(&proof["completion"]["kind"]);
+        if st["values"] == "failed" {
+            pf(completion == "separate_failure")?;
+        } else if st["certificate"] != "not_entered"
+            || st["maxima"] == "failed"
+            || st["aliases"] != "not_entered"
+        {
+            pf(completion == "merged")?;
+        } else if st["projection"] != "completed" {
+            pf(completion == "not_entered")?;
+        }
     }
     Ok(())
 }
@@ -3055,6 +3262,28 @@ fn g8(source: &Value, inv: &Value) -> VResult {
                     .eq(0..pipes.len() as u64),
             )?;
         }
+        // F1:101-106 / checklist P7: an attempt without a constructed source
+        // still binds every retained old operational tuple's positions and
+        // selected E/G to the invocation (PreparedMember tuples are bound below).
+        if a["source_ref"].is_null() {
+            for op in old {
+                let p = pipes
+                    .get(u(&op["member"]) as usize)
+                    .ok_or_else(|| error("G8", "PREPARATION_MISMATCH"))?;
+                let mat = list(&mb["materials"])
+                    .iter()
+                    .find(|m| m["id"] == p["material"])
+                    .ok_or_else(|| error("G8", "PREPARATION_MISMATCH"))?;
+                let ni = find_node(nodes, &p["from"])?;
+                let nj = find_node(nodes, &p["to"])?;
+                let mut head = list(&node_maps[ni]["coordinates"]).to_vec();
+                head.extend_from_slice(list(&node_maps[nj]["coordinates"]));
+                head.push(mat["elastic_modulus"].clone());
+                head.push(mat["shear_modulus"].clone());
+                let inputs = list(&op["inputs"]);
+                fail(inputs.len() >= head.len() && inputs[..head.len()] == head[..])?;
+            }
+        }
         for (j, pm) in list(&a["preparation"]["members"]).iter().enumerate() {
             let mi = u(&pm["member"]) as usize;
             let p = pipes
@@ -3347,6 +3576,26 @@ fn g5_ordinary(source: &Value) -> VResult {
             )?;
             fail(work_refs.insert(wi) && u(&w["case_index"]) == i as u64)?;
         }
+        // O5 (C2:115-119; S06:51): a source_decline is an unavailable case with
+        // no source or Run, owned by this case and its material basis.
+        let decline = &c["source_decline"];
+        if !decline.is_null() {
+            let owner = &decline["input_owner"];
+            let mb = at(
+                &b["material_bases"],
+                &owner["material_basis_ref"],
+                "G5",
+                "ATTEMPT_MISMATCH",
+            )?;
+            fail(
+                c["status"] == "unavailable"
+                    && c["source_ref"].is_null()
+                    && c["run"].is_null()
+                    && u(&owner["case_index"]) == i as u64
+                    && owner["case_id"] == *cid
+                    && list(&mb["case_indices"]).iter().any(|x| u(x) == i as u64),
+            )?;
+        }
         if c["status"] == "selected" {
             fail(
                 c["selection"]["rcond_label"]
@@ -3390,7 +3639,6 @@ pub fn validate(source: &Value, actual_invocation: Option<&Value>) -> VResult<Va
     g0(source)?;
     g1(source, true)?;
     encoding(&source["retained_precision"], schema())?;
-    conversion_encoding(&source["retained_precision"])?;
     g3(source, actual_invocation)?;
     g4(source)?;
     let body = &source["retained_precision"]["body"];
@@ -3415,8 +3663,21 @@ pub fn validate(source: &Value, actual_invocation: Option<&Value>) -> VResult<Va
         }
     }
     let projected = project(source, true)?;
-    crate::semantic_contract::for_source(&projected)
-        .map_err(|code| ValidationError { gate: "G7", code })?;
+    // C1 G7 "existing base failure codes" (ROOT ruling): the bare base code is
+    // the error code and any detail is carried separately. The unchanged Rust
+    // preview base reports its evidence failures with finer codes; the base
+    // contract family for those is SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID, so
+    // the Rust code is kept as detail. Metadata failures keep their own code.
+    crate::semantic_contract::for_source_metadata(&projected).map_err(|code| ValidationError {
+        gate: "G7",
+        code,
+        detail: None,
+    })?;
+    crate::semantic_contract::for_source(&projected).map_err(|detail| ValidationError {
+        gate: "G7",
+        code: "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID".into(),
+        detail: Some(detail),
+    })?;
     if let Some(inv) = actual_invocation {
         g8(source, inv)?;
     }
@@ -3439,10 +3700,13 @@ pub fn validate_transport_metadata(source: &Value) -> VResult<Validation> {
     g0(source)?;
     g1(source, false)?;
     encoding(&source["retained_precision"], schema())?;
-    conversion_encoding(&source["retained_precision"])?;
     let projected = project(source, false)?;
     crate::semantic_contract::for_source_metadata(&projected)
-        .map_err(|code| ValidationError { gate: "G2", code })?;
+        .map_err(|code| ValidationError {
+            gate: "G2",
+            code,
+            detail: None,
+        })?;
     Ok(Validation {
         invocation_bound: false,
         numerical_eligible: false,

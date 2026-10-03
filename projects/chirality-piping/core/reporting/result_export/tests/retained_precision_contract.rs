@@ -208,9 +208,9 @@ fn snapshot_04_coverage_mutation_outcomes() {
     use std::collections::BTreeMap;
     let shared = corpus();
     let mutations = shared["mutations"].as_array().unwrap();
-    // Snapshot 05a appends 27 mutations after snapshot 04's 77 and snapshot
-    // 05b/05c a further 17 (earlier entries byte-identical).
-    assert_eq!(mutations.len(), 121);
+    // Snapshot 05a appends 27 mutations after snapshot 04's 77, snapshot
+    // 05b/05c a further 17 and 06a 30 (earlier entries byte-identical).
+    assert_eq!(mutations.len(), 151);
     let mut tally = BTreeMap::new();
     let mut matched = 0;
     for mutation in &mutations[30..77] {
@@ -330,7 +330,7 @@ fn snapshot_05b_mutation_outcomes() {
     let mutations = shared["mutations"].as_array().unwrap();
     let mut tally = BTreeMap::new();
     let mut matched = 0;
-    for mutation in &mutations[104..] {
+    for mutation in &mutations[104..121] {
         let observed = observe(&shared, mutation);
         let ok = observed == mutation["expected"];
         matched += usize::from(ok);
@@ -357,6 +357,245 @@ fn snapshot_05b_mutation_outcomes() {
     .collect();
     assert_eq!(tally, want);
     assert_eq!(matched, 17);
+}
+
+/// Snapshot-06a controls (I62 C2-1): the 30 checklist mutations after 05c's
+/// 121 (native ladder skips, cache/build/group graph, ordinary evidence,
+/// conversions, row-index coverage, G7 bare code, G8 maps and prefix binding,
+/// and C3 stage/typed checks). Prints one observed outcome per mutation.
+#[test]
+fn snapshot_06a_mutation_outcomes() {
+    use std::collections::BTreeMap;
+    let shared = corpus();
+    let mutations = shared["mutations"].as_array().unwrap();
+    let mut tally = BTreeMap::new();
+    let mut matched = 0;
+    for mutation in &mutations[121..] {
+        let observed = observe(&shared, mutation);
+        let ok = observed == mutation["expected"];
+        matched += usize::from(ok);
+        *tally
+            .entry(format!(
+                "{} {}",
+                mutation["expected"]["gate"].as_str().unwrap(),
+                mutation["expected"]["code"].as_str().unwrap()
+            ))
+            .or_insert(0) += 1;
+        println!(
+            "I63_OUTCOME_06A {}",
+            serde_json::json!({"id":mutation["id"],"base":mutation["base"],"expected":mutation["expected"],"observed":observed,"match":ok})
+        );
+    }
+    let want: BTreeMap<String, usize> = [
+        ("G2 RETAINED_PRECISION_ENCODING_MISMATCH", 1),
+        ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 3),
+        ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 10),
+        ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 10),
+        ("G5 RETAINED_PRECISION_WORK_MISMATCH", 2),
+        ("G7 SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID", 1),
+        ("G8 RETAINED_PRECISION_PREPARATION_MISMATCH", 3),
+    ]
+    .into_iter()
+    .map(|(k, n)| (k.to_string(), n))
+    .collect();
+    assert_eq!(tally, want);
+    assert_eq!(matched, 30);
+}
+
+fn attempt_mismatch(got: Result<(), rp::ValidationError>) -> bool {
+    matches!(got, Err(e) if e.gate == "G5" && e.code == "RETAINED_PRECISION_ATTEMPT_MISMATCH")
+}
+
+/// Rust reader-logic controls mirroring I62's Python-only tests for checklist
+/// N5, N6, N8 and N10, which have no native-faithful shared base yet (the
+/// Ceiling, an idle/pre-schedule Run, a verification-pass terminal). They run
+/// the same schedule replay `validate` uses, on one Run.
+#[test]
+fn schedule_replay_terminal_branches_reader_logic() {
+    use serde_json::json;
+    let shared = corpus();
+    let schedule = rp::reader_logic::schedule;
+    let run_of = |id: &str| {
+        shared["cases"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|c| c["id"] == id)
+            .unwrap()["source"]["retained_precision"]["body"]["cases"][0]["run"]
+            .clone()
+    };
+    let selected = run_of("ordinary_prepared_synthetic");
+    assert!(schedule(&selected).is_ok());
+    let ceiling = json!({"kind":"unresolved","reason":{"space":"unresolved","tag":"ceiling"}});
+    // N10: an idle (pre-schedule) Run has no records, no charge and a reasoned
+    // non-selected terminal.
+    let mut idle = selected.clone();
+    idle["records"] = json!([]);
+    idle["attempts"] = json!([]);
+    idle["case_charge"] = json!(0);
+    idle["invocation_increment"] = json!(0);
+    idle["kernel_terminal"] =
+        json!({"kind":"unresolved","reason":{"space":"unresolved","tag":"budget","scope":"invocation"}});
+    assert!(schedule(&idle).is_ok());
+    let mut bad = idle.clone();
+    bad["kernel_terminal"] = json!({"kind":"selected","reason":null});
+    assert!(attempt_mismatch(schedule(&bad)), "idle Run cannot select");
+    let mut bad = idle.clone();
+    bad["case_charge"] = json!(1);
+    assert!(attempt_mismatch(schedule(&bad)), "idle Run carries no charge");
+    // N6: a rejected p128 candidate must hand its verification to a reused p256.
+    let reason = json!({"space":"attempt","tag":"stop_rule","quantity":{"tag":"displacement","dof":{"node":1,"component":"UX"}},"body":0,"kind":"translation"});
+    let mut rejected = selected.clone();
+    rejected["attempts"][0]["outcome"] = json!({"kind":"rejected","reason":reason});
+    rejected["records"][0]["outcome"] = json!({"kind":"rejected","reason":reason});
+    rejected["records"][1]["outcome"] = json!({"kind":"solved"});
+    rejected["kernel_terminal"] = ceiling.clone();
+    assert!(attempt_mismatch(schedule(&rejected)), "rejected must continue");
+    // N5: a non-escalating verification-pass failure is terminal.
+    let stop = json!({"space":"attempt","tag":"stop","stop":{"space":"stop","tag":"structure"}});
+    let mut vfail = selected.clone();
+    let verification_failed = json!({"kind":"rejected","reason":{"space":"attempt","tag":"verification_failed"}});
+    vfail["attempts"][0]["outcome"] = verification_failed.clone();
+    vfail["records"][0]["outcome"] = verification_failed;
+    vfail["attempts"][0]["verification"] =
+        json!({"record":1,"precision":256,"phase":"failed","reason":stop});
+    vfail["records"][1]["outcome"] = json!({"kind":"failed","reason":stop});
+    vfail["kernel_terminal"] = json!({"kind":"refused","reason":{"space":"refusal","tag":"structure"}});
+    assert!(schedule(&vfail).is_ok());
+    let mut bad = vfail.clone();
+    bad["kernel_terminal"] = json!({"kind":"selected","reason":null});
+    assert!(attempt_mismatch(schedule(&bad)), "verification-pass failure cannot select");
+    // N8: the Ceiling, when the reused p512 candidate is rejected and its p1024
+    // verification only solved.
+    let mut ladder = run_of("p512_ladder_synthetic");
+    assert!(schedule(&ladder).is_ok());
+    ladder["attempts"][2]["outcome"] = json!({"kind":"rejected","reason":reason});
+    ladder["records"][2]["outcome"] = json!({"kind":"rejected","reason":reason});
+    ladder["records"][3]["outcome"] = json!({"kind":"solved"});
+    ladder["kernel_terminal"] = ceiling;
+    assert!(schedule(&ladder).is_ok());
+    let mut bad = ladder.clone();
+    bad["kernel_terminal"] = json!({"kind":"refused","reason":{"space":"refusal","tag":"structure"}});
+    assert!(attempt_mismatch(schedule(&bad)), "exhausted ladder is the Ceiling");
+}
+
+/// Rust reader-logic control mirroring I62's Python-only test for checklist O5
+/// (no native-faithful source_decline base yet).
+#[test]
+fn source_decline_relation_reader_logic() {
+    use serde_json::json;
+    let shared = corpus();
+    let fixture = shared["cases"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|c| c["id"] == "two_case_preparation_failure_synthetic")
+        .unwrap();
+    let mut source = fixture["source"].clone();
+    let decline = json!({
+        "input_owner": {"case_index": 1, "case_id": "case:unavailable-row", "material_basis_ref": 0},
+        "constructor_counts": {"nodes": 2, "members": 1, "springs": 0, "constraints": 6, "nodal_terms": 6, "stations": 3, "supports": 1, "id_utf8_bytes": 0, "directional_springs": 0},
+        "error": {"tag": "no_nodes"}
+    });
+    source["retained_precision"]["body"]["cases"][1]["source_decline"] = decline.clone();
+    assert!(rp::reader_logic::ordinary(&source).is_ok());
+    let mut wrong = decline;
+    wrong["input_owner"]["case_index"] = json!(0);
+    source["retained_precision"]["body"]["cases"][1]["source_decline"] = wrong;
+    assert!(attempt_mismatch(rp::reader_logic::ordinary(&source)));
+}
+
+/// Reader-local controls (not shared corpus) for checklist checks added in the
+/// I63 audit that no shared mutation decides first: P2 (observables and G5a
+/// enter together), P6 (a failed maxima merges its work) and P9 (an
+/// unavailable error matches the first failed stage), each on a shared
+/// must-pass base; and the G7 bare code with the Rust base code as detail.
+#[test]
+fn g5_audit_local_controls() {
+    use serde_json::json;
+    let shared = corpus();
+    let entry = |id: &str| {
+        shared["must_pass"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|m| m["id"] == id)
+            .unwrap()
+            .clone()
+    };
+    let attempt = json!(["retained_precision", "body", "product_attempts", 1]);
+    let at = |tail: Value| {
+        let mut p = attempt.as_array().unwrap().clone();
+        p.extend(tail.as_array().unwrap().iter().cloned());
+        Value::Array(p)
+    };
+    for (name, base, extra) in [
+        (
+            "P9: maxima failure reported as a proof error",
+            "maxima_abandoned",
+            vec![(
+                at(json!(["result"])),
+                json!({"kind":"unavailable","error":{"kind":"proof","cause":{"kind":"work_accounting","fault":"overflow"}}}),
+            )],
+        ),
+        (
+            "P6: failed maxima without merged completion",
+            "maxima_abandoned",
+            vec![(at(json!(["proof", "completion"])), json!({"kind":"not_entered"}))],
+        ),
+        (
+            "P2: observables entered without G5a",
+            "cert_failed_before_summary",
+            vec![
+                (at(json!(["stages", "observables"])), json!("failed")),
+                (
+                    at(json!(["proof", "checks", "observables"])),
+                    json!({"kind":"failed","error":{"kind":"observable","cause":{"kind":"accounting","event":"map_write"}}}),
+                ),
+            ],
+        ),
+    ] {
+        let mut mutation = entry(base);
+        for (path, value) in extra {
+            mutation["edits"]
+                .as_array_mut()
+                .unwrap()
+                .push(json!({"path":path,"op":"set","value":value}));
+        }
+        mutation["expected"] = json!(null);
+        assert_eq!(
+            observe(&shared, &mutation),
+            json!({"gate":"G5","code":"RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"}),
+            "{name}"
+        );
+    }
+    // G7: the bare base code is the error code; the Rust base's own code is detail.
+    let g7 = shared["mutations"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|m| m["id"] == "g7_maximum_off_enclosure")
+        .unwrap();
+    let case = shared["cases"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|c| c["id"] == g7["base"])
+        .unwrap();
+    let mut source = case["source"].clone();
+    for e in g7["edits"].as_array().unwrap() {
+        edit(&mut source, e);
+    }
+    rehash(&mut source);
+    let got = rp::validate(&source, Some(&case["invocation"])).unwrap_err();
+    assert_eq!(
+        (got.gate, got.code.as_str()),
+        ("G7", "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID")
+    );
+    assert_eq!(
+        got.detail.as_deref(),
+        Some("SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS")
+    );
 }
 
 /// Snapshot-05a shared must-pass entries: each rehashed rewrite keeps every
