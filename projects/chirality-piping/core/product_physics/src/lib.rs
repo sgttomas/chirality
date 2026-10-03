@@ -3910,6 +3910,9 @@ fn solve_load_case_observed(
             }
         }
     }
+    if let Some(observer) = product.as_deref_mut() {
+        observer.solver_observations(load_case, solver_mode, &results);
+    }
     if let Some(recovery) = &selected_source {
         displacements.copy_from_slice(recovery.displacements());
         diagnostics.push(diag(

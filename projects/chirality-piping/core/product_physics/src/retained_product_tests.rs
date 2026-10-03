@@ -1,6 +1,982 @@
 use super::retained_product::ProductCapture;
 use super::*;
 use open_pipe_stress_frame_kernel::structural::retained_api as k;
+#[test]
+fn i50_bitmap_fill_counts_and_after_reserve_exhaustion() {
+    use super::retained_product::{AdapterEvent as E, AdapterFault, CaptureError};
+    // One reserve enters allocation, capacity-record MapWrite and its actual
+    // try_reserve boundary. The owned fill adds one validation and exactly n
+    // MapWrites; no resize/bulk operation exists, including for n=0.
+    for n in [0usize, 1, 4, 3, 12] {
+        let mut o = ProductCapture::default();
+        let mut bitmap = o.support_reserve::<bool>(n, 0).unwrap();
+        o.fill_support_bitmap(&mut bitmap, n).unwrap();
+        assert_eq!(bitmap, vec![false; n]);
+        assert_eq!(
+            o.adapter.counts.get(),
+            [0, 0, 1 + n as u64, 1, 0, 0, 1, 1, 0, n as u64]
+        );
+        assert_eq!(o.support_capacity_bytes, [n, 0, 0, 0, 0, 0, 0]);
+        println!(
+            "I50_BITMAP_SUCCESS n={n} counts={:?} capacities={:?}",
+            o.adapter.counts.get(),
+            o.support_capacity_bytes
+        );
+    }
+    let request: LinearStaticPreviewRequest = serde_json::from_value(i50_named_request()).unwrap();
+    let mut diagnostics = Vec::new();
+    let built = build_model(&request.model, &request.model.materials, &mut diagnostics).unwrap();
+    let boundary = prepare_boundary(built.nodes.len(), &built.supports);
+    assert!(diagnostics.is_empty() && boundary.findings.is_empty());
+    assert_eq!(built.supports.len(), 4);
+    let mut o = ProductCapture::default();
+    let mut parts = k::SourceParts::default();
+    let mut seed = [0u64; 10];
+    seed[E::MapWrite as usize] = u64::MAX - 1;
+    o.adapter.counts.set(seed);
+    let error = o
+        .capture_supports(
+            &request.model,
+            &built,
+            &boundary.restrained_dofs,
+            &boundary.springs,
+            &mut parts,
+        )
+        .unwrap_err();
+    assert!(matches!(
+        error,
+        CaptureError::Accounting(AdapterFault::Overflow(E::MapWrite))
+    ));
+    // Four source-count checks, one fill shape check; first reserve succeeds,
+    // first element write cannot enter, and the second allocation is untouched.
+    let expected = [0, 0, u64::MAX, 5, 0, 0, 1, 1, 0, 4];
+    assert_eq!(o.adapter.counts.get(), expected);
+    assert_eq!(o.support_capacity_bytes, [4, 0, 0, 0, 0, 0, 0]);
+    assert!(
+        o.supports.is_empty()
+            && o.support_fixed.is_empty()
+            && o.spring_map.is_empty()
+            && o.source.is_none()
+    );
+    assert!(parts.supports.is_empty() && parts.springs.is_empty());
+    let again = o
+        .capture_supports(
+            &request.model,
+            &built,
+            &boundary.restrained_dofs,
+            &boundary.springs,
+            &mut parts,
+        )
+        .unwrap_err();
+    assert!(matches!(
+        again,
+        CaptureError::Accounting(AdapterFault::Overflow(E::MapWrite))
+    ));
+    assert_eq!(o.adapter.counts.get(), expected);
+    assert_eq!(o.support_capacity_bytes, [4, 0, 0, 0, 0, 0, 0]);
+    println!("I50_BITMAP_AFTER_RESERVE prefix={expected:?} first_capacity=4 second_allocations=0 committed_maps=0");
+
+    let mut o = ProductCapture::default();
+    let mut bitmap = o.support_reserve::<bool>(4, 0).unwrap();
+    let mut seeded = o.adapter.counts.get();
+    seeded[E::MapWrite as usize] = u64::MAX - 2;
+    o.adapter.counts.set(seeded);
+    assert!(matches!(
+        o.fill_support_bitmap(&mut bitmap, 4),
+        Err(CaptureError::Accounting(AdapterFault::Overflow(
+            E::MapWrite
+        )))
+    ));
+    assert_eq!(bitmap, [false, false]);
+    let expected = [0, 0, u64::MAX, 1, 0, 0, 1, 1, 0, 4];
+    assert_eq!(o.adapter.counts.get(), expected);
+    assert_eq!(o.support_capacity_bytes, [4, 0, 0, 0, 0, 0, 0]);
+    assert!(matches!(
+        o.fill_support_bitmap(&mut bitmap, 4),
+        Err(CaptureError::Accounting(AdapterFault::Overflow(
+            E::MapWrite
+        )))
+    ));
+    assert_eq!(bitmap, [false, false]);
+    assert_eq!(o.adapter.counts.get(), expected);
+    println!("I50_BITMAP_MID_FILL prefix={expected:?} written=2 reserved=4");
+
+    // Only two repeats, supplied directly to the isolated helper. The actual
+    // prepared production boundary was already unique; this is hardening.
+    let mut o = ProductCapture::default();
+    let mut parts = k::SourceParts::default();
+    let error = o
+        .capture_supports(
+            &request.model,
+            &built,
+            &[0, 0],
+            &boundary.springs,
+            &mut parts,
+        )
+        .unwrap_err();
+    assert!(matches!(error, CaptureError::Association(ref s) if s == "rigid boundary identity"));
+    assert!(o.supports.is_empty() && parts.supports.is_empty() && o.source.is_none());
+    println!("I50_TWO_REPEAT_BOUNDARY {error:?}");
+}
+
+fn i50_named_request() -> serde_json::Value {
+    serde_json::from_str(include_str!(
+        "../../../fixtures/product_preview/rf_skew_t_cant_off_122_r1e-04.request.json"
+    ))
+    .unwrap()
+}
+fn i50_dump(e: &MechanicsEnvelope, o: &ProductCapture, mode: PreviewSolverMode) {
+    let verdicts: Vec<_> = o.verdicts.iter().map(|v| serde_json::json!({
+        "row":v.row,"normalized_bits":format!("{:016x}",v.normalized_bits),"scale_bits":format!("{:016x}",v.scale_bits),
+        "class":format!("{:?}",v.class),"passed":v.passed,"failed":format!("{:?}",v.failed),"predicates":v.predicates
+    })).collect();
+    let source = o.source.as_ref().map(|s| serde_json::json!({"nodes":s.nodes(),
+        "members":s.members().iter().map(|m|serde_json::json!({"id":m.id,"nodes":[m.node_i,m.node_j],"E":m.elastic_modulus,"G":m.shear_modulus,"A":m.area,"I":m.second_moment_y,"J":m.torsion_constant,"y_reference":m.y_reference})).collect::<Vec<_>>(),
+        "springs":s.springs().iter().map(|s|serde_json::json!({"id":s.id,"node":s.dof.node,"axis":s.dof.component.index(),"k":s.stiffness})).collect::<Vec<_>>(),
+        "supports":s.supports().iter().map(|s|serde_json::json!({"id":s.id,"node":s.node,"rigid":s.restrained,"springs":s.springs})).collect::<Vec<_>>() }));
+    let native = o.native.as_ref().map(|(invocation,case)| match &case.outcome {
+        k::ExecutionOutcome::Selected(owner) => {
+            let ev=owner.evidence();
+            serde_json::json!({"calls":invocation.calls().len(),"run":case.run,"precision":owner.selected_precision(),
+                "source_encoding":ev.source_encoding,"ledger_encoding":ev.ledger_encoding,
+                "resolution":ev.resolution_scale.iter().map(|(b,f,m)|serde_json::json!([b,format!("{f:016x}"),format!("{m:016x}")])).collect::<Vec<_>>(),
+                "stop":format!("{:?}",ev.stop_rule),"estimate":format!("{:?}",ev.verification_estimate),"charge":format!("{:?}",ev.verification_charge),
+                "rows":owner.publish().rows.iter().enumerate().map(|(i,r)|serde_json::json!({"ordinal":i,"id":format!("{:?}",r.id),"kind":format!("{:?}",r.kind),"body":r.body,"value_bits":r.value.value().map(|v|format!("{:016x}",v.to_bits())),"class":format!("{:?}",r.class)})).collect::<Vec<_>>()})
+        }, other => serde_json::json!({"unavailable":format!("{other:?}")})
+    });
+    println!(
+        "I50_RECORD {}",
+        serde_json::json!({"mode":mode.as_str(),"request":i50_named_request(),"envelope":e,"source":source,"native":native,
+        "facts":o.facts.iter().map(|f|serde_json::json!({"D":f.diameter,"t":f.effective_wall,"A":f.area,"I":f.second_moment,"J":f.torsion_constant,"Z":f.section_modulus,"c":f.radius})).collect::<Vec<_>>(),
+        "verdicts":verdicts,"error":format!("{:?}",o.error),"numeric_failure":format!("{:?}",o.numeric_failure),"numeric_pass":o.numeric_pass,
+        "g5a":format!("{:?}",o.g5a_error),"observable":format!("{:?}",o.observable_error),"full_case":o.full_case_passed(),
+        "hooks":[o.normalized_calls,o.case_calls,o.final_calls],"observation_calls":o.observation_calls,"invocation_calls":o.invocation_calls,
+        "observations":o.observations.as_ref().map(|v|serde_json::json!({"case":v.case,"mode":v.mode.as_str(),"mode_bits":format!("{:016x}",v.mode_row.value_bits),"mode_basis":v.mode_row.basis,"parity_produced":v.parity_produced,"parity":v.parity.as_ref().map(|p|serde_json::json!({"bits":format!("{:016x}",p.value_bits),"basis":p.basis}))})),"observation_capacity_bytes":o.observation_capacity_bytes,"adapter":format!("{:?}",o.adapter),"work":o.work,
+        "g5a_work":format!("{:?}",o.g5a_work),"operational":format!("{:?}",o.operational),"support_capacity_bytes":o.support_capacity_bytes,"spring_map":format!("{:?}",o.spring_map)})
+    );
+}
+#[test]
+fn i50_actual_named_case_both_modes_complete_private_verdict() {
+    let mut complete = true;
+    for mode in [
+        PreviewSolverMode::SparseInteractive,
+        PreviewSolverMode::DenseScrutiny,
+    ] {
+        let raw = i50_named_request();
+        let baseline = run_linear_static_preview_value_with_mode(raw.clone(), mode).unwrap();
+        let (e, o) = observed_mode(raw, mode);
+        i50_dump(&e, &o, mode);
+        assert_eq!(
+            serde_json::to_string(&e).unwrap(),
+            serde_json::to_string(&baseline).unwrap()
+        );
+        assert_eq!(e.producer.semantic_contract_id, preview_physics::ID);
+        assert!(e.source_block_recovery.is_none());
+        assert_eq!(
+            e.numerical_quality.cases[0].solve_quality,
+            NumericalQualityStatus::Sensitive
+        );
+        assert_eq!(
+            e.results.len(),
+            if mode == PreviewSolverMode::SparseInteractive {
+                98
+            } else {
+                99
+            }
+        );
+        assert_eq!((o.normalized_calls, o.case_calls, o.final_calls), (1, 1, 1));
+        assert_eq!((o.invocation_calls, o.observation_calls), (1, 1));
+        assert_eq!(o.invocation_mode, Some(mode));
+        assert_eq!(
+            o.observations.as_ref().unwrap().parity_produced,
+            mode == PreviewSolverMode::DenseScrutiny
+        );
+        assert!(!o.request_materials);
+        complete &=
+            o.error.is_none() && o.numeric_failure.is_none() && o.verdicts.len() == e.results.len();
+        if let Some((invocation, case)) = &o.native {
+            assert_eq!(invocation.calls().len(), 1);
+            if let k::ExecutionOutcome::Selected(owner) = &case.outcome {
+                assert_eq!(owner.publish().rows.len(), 58);
+            }
+        }
+    }
+    assert!(
+        complete,
+        "actual incomplete prefixes retained in I50_RECORD"
+    );
+}
+#[test]
+fn i50_actual_support_bijections_and_accounting_prefixes() {
+    use super::retained_product::{AdapterEvent as E, AdapterFault, CaptureError};
+    let make = || {
+        let request: LinearStaticPreviewRequest =
+            serde_json::from_value(i50_named_request()).unwrap();
+        let mut diagnostics = Vec::new();
+        let built =
+            build_model(&request.model, &request.model.materials, &mut diagnostics).unwrap();
+        let boundary = prepare_boundary(built.nodes.len(), &built.supports);
+        assert!(diagnostics.is_empty() && boundary.findings.is_empty());
+        (request.model, built, boundary)
+    };
+    let fresh = |g| {
+        let mut o = ProductCapture::default();
+        let mut parts = k::SourceParts::default();
+        o.supports = o.adapter.reserve(g).unwrap();
+        parts.supports = o.adapter.reserve(g).unwrap();
+        (o, parts)
+    };
+    for name in [
+        "duplicate built",
+        "missing built",
+        "extra built",
+        "equal-k ids",
+        "node",
+        "axis",
+        "dimension",
+        "k bit",
+        "duplicate boundary",
+        "missing boundary",
+        "foreign boundary",
+        "spring rigid",
+    ] {
+        let (model, mut built, mut boundary) = make();
+        match name {
+            "duplicate built" => built.supports.push(built.supports[1].clone()),
+            "missing built" => {
+                built.supports.remove(1);
+            }
+            "extra built" => {
+                let mut b = built.supports[1].clone();
+                b.support_id = "foreign".into();
+                built.supports.push(b);
+            }
+            "equal-k ids" => {
+                let id = boundary.springs[1].support_id.clone();
+                boundary.springs[1].support_id = boundary.springs[2].support_id.clone();
+                boundary.springs[2].support_id = id;
+            }
+            "node" => boundary.springs[1].node_dof.node_index = 1,
+            "axis" => boundary.springs[1].node_dof.dof = FrameDof::Rx,
+            "dimension" => {
+                boundary.springs[1].stiffness.dimension = QuantityDimension::Displacement
+            }
+            "k bit" => boundary.springs[1].stiffness.value = f64::from_bits(1e6f64.to_bits() + 1),
+            "duplicate boundary" => boundary.springs.push(boundary.springs[1].clone()),
+            "missing boundary" => {
+                boundary.springs.pop();
+            }
+            "foreign boundary" => {
+                let mut b = boundary.springs[1].clone();
+                b.support_id = "foreign".into();
+                boundary.springs.push(b);
+            }
+            "spring rigid" => built.supports[1].family = SupportFamily::Guide,
+            _ => unreachable!(),
+        }
+        let (mut o, mut parts) = fresh(model.supports.len());
+        let e = o
+            .capture_supports(
+                &model,
+                &built,
+                &boundary.restrained_dofs,
+                &boundary.springs,
+                &mut parts,
+            )
+            .unwrap_err();
+        assert!(matches!(e, CaptureError::Association(_)), "{name}: {e:?}");
+        let expected = match name {
+            "duplicate built" => "duplicate built support",
+            "missing built" => "missing built support",
+            "extra built" | "foreign boundary" => "unconsumed built/boundary support",
+            "duplicate boundary" => "duplicate/extra support spring",
+            "missing boundary" => "missing/foreign support stiffness",
+            "spring rigid" => "support build family/axes",
+            _ => "spring source identity",
+        };
+        assert!(format!("{e:?}").contains(expected), "{name}: {e:?}");
+        println!(
+            "I50_SUPPORT_MUTATION {name} {e:?} {:?} {:?}",
+            o.adapter, o.support_capacity_bytes
+        );
+    }
+    let (model, mut built, mut boundary) = make();
+    built.supports.reverse();
+    boundary.springs.reverse();
+    let (mut o, mut parts) = fresh(model.supports.len());
+    o.capture_supports(
+        &model,
+        &built,
+        &boundary.restrained_dofs,
+        &boundary.springs,
+        &mut parts,
+    )
+    .unwrap();
+    o.check_support_maps(&parts.supports, &parts.springs, false)
+        .unwrap();
+    assert_eq!(
+        o.spring_map
+            .iter()
+            .map(|m| (m.support, m.boundary))
+            .collect::<Vec<_>>(),
+        vec![(1, 2), (2, 1), (3, 0)]
+    );
+    assert_eq!(parts.supports[1].restrained, [false; 6]);
+    let duplicate = parts.supports[1].springs[0];
+    parts.supports[1].springs.push(duplicate);
+    assert!(
+        o.check_support_maps(&parts.supports, &parts.springs, false)
+            .is_err(),
+        "duplicate before canonical dedup"
+    );
+    parts.supports[1].springs.pop();
+    let (_, actual) = observed(i50_named_request());
+    let source = actual.source.unwrap();
+    parts.nodes = source.nodes().to_vec();
+    parts.members = source.members().to_vec();
+    parts.constraints = source.constraints().to_vec();
+    parts.loads = source.loads().to_vec();
+    parts.stations = source.stations().to_vec();
+    let canonical = k::PrimitiveSource::new(parts).unwrap();
+    o.check_support_maps(canonical.supports(), canonical.springs(), true)
+        .unwrap();
+    let (mut model, mut built, boundary) = make();
+    let mut repeated = model.supports[0].clone();
+    repeated.id = "i50:duplicate-rigid".into();
+    let mut repeated_built = built.supports[0].clone();
+    repeated_built.support_id = repeated.id.clone();
+    model.supports.push(repeated);
+    built.supports.push(repeated_built);
+    let (mut o, mut parts) = fresh(model.supports.len());
+    assert!(format!(
+        "{:?}",
+        o.capture_supports(
+            &model,
+            &built,
+            &boundary.restrained_dofs,
+            &boundary.springs,
+            &mut parts
+        )
+        .unwrap_err()
+    )
+    .contains("ambiguous rigid ownership"));
+    // The public request validator may stop before this seam. A producing-map
+    // control checks that the adapter itself retains, rather than drops, zero k.
+    let (mut model, mut built, mut boundary) = make();
+    model.supports[1].stiffness.as_mut().unwrap().value.value = 0.0;
+    built.supports[1].stiffness.as_mut().unwrap().value = 0.0;
+    boundary.springs[0].stiffness.value = 0.0;
+    let (mut zero, mut parts) = fresh(model.supports.len());
+    zero.capture_supports(
+        &model,
+        &built,
+        &boundary.restrained_dofs,
+        &boundary.springs,
+        &mut parts,
+    )
+    .unwrap();
+    assert_eq!(parts.springs.len(), 3);
+    assert_eq!(parts.springs[0].stiffness, 0.0);
+    parts.nodes = source.nodes().to_vec();
+    parts.members = source.members().to_vec();
+    parts.constraints = source.constraints().to_vec();
+    parts.loads = source.loads().to_vec();
+    parts.stations = source.stations().to_vec();
+    assert!(matches!(
+        k::PrimitiveSource::new(parts),
+        Err(k::SourceError::NonPositiveSpring { id: 0 })
+    ));
+    for event in [
+        E::SourceVisit,
+        E::MapWrite,
+        E::ValidationEntry,
+        E::IdentityByteRead,
+        E::KeyProbe,
+        E::AllocationRequest,
+        E::LibraryBoundary,
+        E::RequestedCopyBytes,
+        E::RustCapacityBytes,
+    ] {
+        let (model, built, boundary) = make();
+        let (mut o, mut parts) = fresh(model.supports.len());
+        let mut counts = o.adapter.counts.get();
+        counts[event as usize] = u64::MAX;
+        o.adapter.counts.set(counts);
+        let e = o
+            .capture_supports(
+                &model,
+                &built,
+                &boundary.restrained_dofs,
+                &boundary.springs,
+                &mut parts,
+            )
+            .unwrap_err();
+        assert!(
+            matches!(e,CaptureError::Accounting(AdapterFault::Overflow(actual)) if actual==event),
+            "{event:?}: {e:?}"
+        );
+        let prefix = o.adapter.counts.get();
+        assert!(o
+            .capture_supports(
+                &model,
+                &built,
+                &boundary.restrained_dofs,
+                &boundary.springs,
+                &mut parts
+            )
+            .is_err());
+        assert_eq!(prefix, o.adapter.counts.get());
+        println!(
+            "I50_SUPPORT_PREFIX {event:?} {prefix:?} {:?}",
+            o.support_capacity_bytes
+        );
+    }
+    let mut o = ProductCapture::default();
+    assert!(matches!(
+        o.support_reserve::<u64>(usize::MAX, 0),
+        Err(CaptureError::CountRange(_))
+    ));
+    assert_eq!(o.adapter.counts.get()[E::AllocationRequest as usize], 0);
+}
+
+#[test]
+fn i50_support_coverage_native_non_aliasing_and_g5a() {
+    use super::retained_product::{G5aFailure, ScalarWork};
+    let (e, mut o) = observed(i50_named_request());
+    let (invocation, case) = o.native.take().unwrap();
+    let k::ExecutionOutcome::Selected(owner) = &case.outcome else {
+        panic!()
+    };
+    let empty = k::ProductRecipe::SupportComponent {
+        support: 0,
+        component: k::Component::Rx,
+    };
+    for name in [
+        "missing empty",
+        "duplicate empty",
+        "replace reaction",
+        "extra reaction",
+        "replace spring",
+        "wrong unit",
+        "wrong group",
+    ] {
+        let mut rows = o.bind_rows(&e, owner).unwrap();
+        let ei = rows.iter().position(|r| r.recipe == empty).unwrap();
+        let ri = rows
+            .iter()
+            .position(|r| {
+                r.recipe
+                    == k::ProductRecipe::SupportComponent {
+                        support: 0,
+                        component: k::Component::Ux,
+                    }
+            })
+            .unwrap();
+        match name {
+            "missing empty" => {
+                rows.remove(ei);
+            }
+            "duplicate empty" => {
+                let r = &rows[ei];
+                let x = k::ProductFinalRow {
+                    id: "i50:duplicate-empty",
+                    case_id: r.case_id,
+                    value: r.value,
+                    unit: r.unit,
+                    body: r.body,
+                    recipe: r.recipe,
+                };
+                rows.push(x);
+            }
+            "replace reaction" => {
+                rows[ri].recipe = k::ProductRecipe::Native(k::QuantityId::Reaction(k::Dof {
+                    node: 0,
+                    component: k::Component::Ux,
+                }))
+            }
+            "extra reaction" => {
+                let r = &rows[ri];
+                let x = k::ProductFinalRow {
+                    id: "i50:extra-native",
+                    case_id: r.case_id,
+                    value: r.value,
+                    unit: r.unit,
+                    body: r.body,
+                    recipe: k::ProductRecipe::Native(k::QuantityId::Reaction(k::Dof {
+                        node: 0,
+                        component: k::Component::Ux,
+                    })),
+                };
+                rows.push(x);
+            }
+            "replace spring" => {
+                let i = rows
+                    .iter()
+                    .position(|r| {
+                        r.recipe
+                            == k::ProductRecipe::SupportComponent {
+                                support: 1,
+                                component: k::Component::Rx,
+                            }
+                    })
+                    .unwrap();
+                rows[i].recipe = k::ProductRecipe::Native(k::QuantityId::SpringAction {
+                    spring: 0,
+                    component: k::Component::Rx,
+                });
+            }
+            "wrong unit" => rows[ei].unit = k::ProductUnit::Newton,
+            "wrong group" => {
+                rows[ei].recipe = k::ProductRecipe::SupportComponent {
+                    support: 99,
+                    component: k::Component::Rx,
+                }
+            }
+            _ => unreachable!(),
+        }
+        let spent = invocation.certify_product_case(case.run, owner, &o.facts, &rows);
+        let error = spent.failure().unwrap();
+        assert_eq!(error.category(), "association", "{name}");
+        let why = format!("{error:?}");
+        if name.starts_with("replace") || name == "missing empty" {
+            assert!(why.contains("missing support coverage"), "{name}: {why}");
+        }
+        if name == "extra reaction" {
+            assert!(why.contains("native coverage"));
+        }
+        println!("I50_COVERAGE_MUTATION {name} {why}");
+    }
+    // Isolated synthetic final value: largest empty force component must affect
+    // the FK final scale and PP G5a maximum, without changing the real witness.
+    for (entity, component, expected_scale) in
+        [("spring:N0:0", "Fx", 1e12f64), ("rigid:N0", "Mx", 1e12f64)]
+    {
+        let mut changed = e.clone();
+        let index = changed
+            .results
+            .iter()
+            .position(|r| {
+                r.entity_ref == entity
+                    && r.kind == "support_reaction_component_v2"
+                    && r.metadata.as_ref().unwrap().component == component
+            })
+            .unwrap();
+        changed.results[index].value = 1e12;
+        let rows = o.bind_rows(&changed, owner).unwrap();
+        let spent = invocation.certify_product_case(case.run, owner, &o.facts, &rows);
+        assert!(spent.failure().is_none());
+        assert_eq!(spent.verdicts()[index].scale_bits, expected_scale.to_bits());
+        assert!(!spent.verdicts()[index].passed);
+        o.verdicts = spent.verdicts().to_vec();
+        o.g5a_work = ScalarWork::default();
+        assert!(matches!(
+            o.g5a(owner, &rows),
+            Err(G5aFailure::Sanity { .. })
+        ));
+        println!(
+            "I50_LARGEST_SUPPORT {component} FK_scale={} G5a_sanity_refusal",
+            f64::from_bits(spent.verdicts()[index].scale_bits)
+        );
+    }
+    // The newly entered G5a support scans preserve typed accounting and stop
+    // before further work, including on a repeated call after the first fault.
+    let rows = o.bind_rows(&e, owner).unwrap();
+    let spent = invocation.certify_product_case(case.run, owner, &o.facts, &rows);
+    o.verdicts = spent.verdicts().to_vec();
+    for event in [
+        super::retained_product::AdapterEvent::RowVisit,
+        super::retained_product::AdapterEvent::ValidationEntry,
+    ] {
+        let before = o.adapter.counts.get();
+        let mut seeded = before;
+        seeded[event as usize] = u64::MAX;
+        o.adapter.counts.set(seeded);
+        o.g5a_work = ScalarWork::default();
+        assert!(
+            matches!(o.g5a(owner, &rows), Err(G5aFailure::Accounting(super::retained_product::AdapterFault::Overflow(actual))) if actual == event)
+        );
+        let prefix = (
+            o.adapter.counts.get(),
+            o.g5a_work.entered,
+            o.g5a_work.checks,
+        );
+        assert!(o.g5a(owner, &rows).is_err());
+        assert_eq!(
+            prefix,
+            (
+                o.adapter.counts.get(),
+                o.g5a_work.entered,
+                o.g5a_work.checks
+            )
+        );
+        println!("I50_G5A_PREFIX {event:?} {prefix:?}");
+        o.adapter.fault.set(None);
+        o.adapter.counts.set(before);
+    }
+    // A separate zero-load anchored specimen supplies zero uncoupled resolution.
+    // This synthetic sign control is not a named-case availability witness.
+    let mut raw = specimen(false);
+    let node = raw["model"]["nodes"][1]["id"].as_str().unwrap().to_owned();
+    raw["model"]["supports"].as_array_mut().unwrap().push(serde_json::json!({"id":"i50:zero-spring","node":node,"family":"spring","restraints":["UX"],"stiffness":{"dof":"UX","value":{"value":1.0,"unit":"N/m"}},"provenance":"invented isolated I50 G5a control"}));
+    let (mut e, mut o) = observed(raw);
+    let (invocation, case) = o.native.take().unwrap();
+    let k::ExecutionOutcome::Selected(owner) = &case.outcome else {
+        panic!()
+    };
+    for row in &mut e.results {
+        if row.value == 0.0 {
+            row.value = 0.0;
+        }
+    }
+    let i = e
+        .results
+        .iter()
+        .position(|r| {
+            r.entity_ref == "i50:zero-spring"
+                && r.kind == "support_reaction_component_v2"
+                && r.metadata.as_ref().unwrap().component == "Fy"
+        })
+        .unwrap();
+    e.results[i].value = -0.0;
+    let rows = o.bind_rows(&e, owner).unwrap();
+    let spent = invocation.certify_product_case(case.run, owner, &o.facts, &rows);
+    assert!(spent.failure().is_none(), "{:?}", spent.failure());
+    assert!(spent.verdicts()[i].passed);
+    assert!(matches!(
+        spent.verdicts()[i].class,
+        Some(k::RowClass::AbsoluteVerified { .. })
+    ));
+    o.verdicts = spent.verdicts().to_vec();
+    o.g5a_work = ScalarWork::default();
+    assert_eq!(o.g5a(owner, &rows), Err(G5aFailure::Zero { row: i }));
+    println!("I50_EMPTY_NEGATIVE_ZERO row={i} gate=pass g5a=zero-refusal");
+}
+
+#[test]
+fn i50_observation_custody_presence_fields_and_failure_prefixes() {
+    use super::retained_product::{AdapterEvent as E, AdapterFault, CaptureError};
+    let raw = i50_named_request();
+    let (request, capture) =
+        source_receipt::CapturedInvocation::parse(raw.clone(), PreviewSolverMode::DenseScrutiny)
+            .unwrap();
+    let case = &request.model.load_cases[0];
+    let (e, actual) = observed_mode(raw, PreviewSolverMode::DenseScrutiny);
+    assert!(actual.error.is_none());
+    let prefix: Vec<_> = e
+        .results
+        .iter()
+        .filter(|r| {
+            matches!(
+                r.kind.as_str(),
+                "linear_solver_mode_basis" | "sparse_live_path_dense_parity_relative_delta"
+            )
+        })
+        .cloned()
+        .map(|mut r| {
+            r.basis_ref = None;
+            r
+        })
+        .collect();
+    assert_eq!(prefix.len(), 2);
+    // Fresh synthetic seam owners and copies of actual immutable producing
+    // fields isolate custody failures; these are not new runtime witnesses.
+    let fresh = || {
+        let mut o = ProductCapture::default();
+        o.invocation(Some(&capture), PreviewSolverMode::DenseScrutiny);
+        o.case_id = case.id.clone();
+        o.case_calls = 1;
+        o
+    };
+    let captured = || {
+        let mut o = fresh();
+        o.solver_observations(case, PreviewSolverMode::DenseScrutiny, &prefix);
+        assert!(o.error.is_none());
+        o
+    };
+    for name in [
+        "missing mode",
+        "duplicate mode",
+        "duplicate parity",
+        "wrong mode",
+        "fallback",
+        "foreign case",
+        "foreign mode",
+    ] {
+        let mut o = fresh();
+        let mut rows = prefix.clone();
+        let mut other = case.clone();
+        let mut mode = PreviewSolverMode::DenseScrutiny;
+        match name {
+            "missing mode" => {
+                rows.remove(0);
+            }
+            "duplicate mode" => rows.push(rows[0].clone()),
+            "duplicate parity" => rows.push(rows[1].clone()),
+            "wrong mode" => rows[0].value = 1.0,
+            "fallback" => rows[0].value = 3.0,
+            "foreign case" => other.id = "foreign".into(),
+            "foreign mode" => mode = PreviewSolverMode::SparseInteractive,
+            _ => unreachable!(),
+        }
+        o.solver_observations(&other, mode, &rows);
+        assert!(o.error.is_some(), "{name}");
+        assert!(o.observations.is_none());
+        println!("I50_OBSERVATION_CAPTURE_REFUSAL {name} {:?}", o.error);
+    }
+    for name in [
+        "missing hook",
+        "duplicate hook",
+        "missing snapshot and row",
+        "missing snapshot",
+        "wrong capture mode",
+        "wrong invocation mode",
+        "wrong case",
+        "wrong count",
+        "extra final",
+        "missing final",
+        "missing final mode",
+    ] {
+        let mut o = captured();
+        let mut final_e = e.clone();
+        match name {
+            "missing hook" => {
+                o.observations = None;
+                o.observation_calls = 0;
+            }
+            "duplicate hook" => {
+                o.solver_observations(case, PreviewSolverMode::DenseScrutiny, &prefix)
+            }
+            "missing snapshot and row" => {
+                o.observations.as_mut().unwrap().parity = None;
+                final_e.results.remove(1);
+            }
+            "missing snapshot" => o.observations.as_mut().unwrap().parity = None,
+            "wrong capture mode" => {
+                o.observations.as_mut().unwrap().mode = PreviewSolverMode::SparseInteractive
+            }
+            "wrong invocation mode" => {
+                o.invocation_mode = Some(PreviewSolverMode::SparseInteractive)
+            }
+            "wrong case" => o.observations.as_mut().unwrap().case = "foreign".into(),
+            "wrong count" => o.observation_calls = 2,
+            "extra final" => final_e.results.push(final_e.results[1].clone()),
+            "missing final" => {
+                final_e.results.remove(1);
+            }
+            "missing final mode" => {
+                final_e.results.remove(0);
+            }
+            _ => unreachable!(),
+        }
+        assert!(o.bind_observations(&final_e).is_err(), "{name}");
+    }
+    for index in [0, 1] {
+        for field in [
+            "id",
+            "kind",
+            "entity",
+            "unit",
+            "component",
+            "coordinate",
+            "location",
+            "sign",
+            "source refs",
+            "case ref",
+            "ref type",
+            "missing metadata",
+            "value bit",
+            "negative",
+            "nonfinite",
+            "basis same length",
+            "basis space",
+            "basis unicode",
+        ] {
+            let o = captured();
+            let mut changed = e.clone();
+            let row = &mut changed.results[index];
+            match field {
+                "id" => row.id.push('x'),
+                "kind" => row.kind.push('x'),
+                "entity" => row.entity_ref.push('x'),
+                "unit" => row.unit.push('x'),
+                "component" => row.metadata.as_mut().unwrap().component.push('x'),
+                "coordinate" => row.metadata.as_mut().unwrap().coordinate_system.push('x'),
+                "location" => row.metadata.as_mut().unwrap().location.push('x'),
+                "sign" => row.metadata.as_mut().unwrap().sign_convention.push('x'),
+                "source refs" => row.source_result_refs.push("foreign".into()),
+                "case ref" => row.basis_ref.as_mut().unwrap().ref_id = "foreign".into(),
+                "ref type" => row.basis_ref.as_mut().unwrap().ref_type = "foreign".into(),
+                "missing metadata" => row.metadata = None,
+                "value bit" => row.value = f64::from_bits(row.value.to_bits() + 1),
+                "negative" => row.value = -1.0,
+                "nonfinite" => row.value = f64::INFINITY,
+                "basis same length" => row
+                    .metadata
+                    .as_mut()
+                    .unwrap()
+                    .basis
+                    .replace_range(0..1, "X"),
+                "basis space" => row.metadata.as_mut().unwrap().basis.push(' '),
+                "basis unicode" => row.metadata.as_mut().unwrap().basis.push('λ'),
+                _ => unreachable!(),
+            }
+            assert!(o.bind_observations(&changed).is_err(), "{index}: {field}");
+        }
+    }
+    // Explicit terminal absence represents either reviewed no-row branch. This
+    // is a synthetic boundary control, not evidence of a naturally absent run.
+    let mut absent = fresh();
+    absent.solver_observations(case, PreviewSolverMode::DenseScrutiny, &prefix[..1]);
+    assert!(!absent.observations.as_ref().unwrap().parity_produced);
+    let mut absent_final = e.clone();
+    absent_final.results.remove(1);
+    absent.bind_observations(&absent_final).unwrap();
+    assert!(absent.bind_observations(&e).is_err());
+    for zero in [0.0f64, -0.0f64] {
+        let mut o = fresh();
+        let mut rows = prefix.clone();
+        rows[1].value = zero;
+        o.solver_observations(case, PreviewSolverMode::DenseScrutiny, &rows);
+        assert!(o.error.is_none());
+        let mut final_e = e.clone();
+        final_e.results[1].value = zero;
+        o.bind_observations(&final_e).unwrap();
+        assert!(o.observations.as_ref().unwrap().parity_produced);
+        assert_eq!(
+            o.observations
+                .as_ref()
+                .unwrap()
+                .parity
+                .as_ref()
+                .unwrap()
+                .value_bits,
+            zero.to_bits()
+        );
+    }
+    let mut sparse = fresh();
+    sparse.invocation_mode = Some(PreviewSolverMode::SparseInteractive);
+    let mut rows = prefix.clone();
+    rows[0].value = 1.0;
+    sparse.solver_observations(case, PreviewSolverMode::SparseInteractive, &rows);
+    assert!(format!("{:?}", sparse.error).contains("parity mode/value"));
+    for event in [
+        E::SourceVisit,
+        E::MapWrite,
+        E::ValidationEntry,
+        E::IdentityByteRead,
+        E::KeyProbe,
+        E::AllocationRequest,
+        E::LibraryBoundary,
+        E::RequestedCopyBytes,
+        E::RustCapacityBytes,
+    ] {
+        let mut o = fresh();
+        let mut counts = o.adapter.counts.get();
+        counts[event as usize] = u64::MAX;
+        o.adapter.counts.set(counts);
+        o.solver_observations(case, PreviewSolverMode::DenseScrutiny, &prefix);
+        assert!(
+            matches!(o.error,Some(CaptureError::Accounting(AdapterFault::Overflow(actual))) if actual==event),
+            "{event:?}: {:?}",
+            o.error
+        );
+        assert!(o.observations.is_none());
+        let saved = o.adapter.counts.get();
+        let calls = o.observation_calls;
+        o.solver_observations(case, PreviewSolverMode::DenseScrutiny, &prefix);
+        assert_eq!(saved, o.adapter.counts.get());
+        assert_eq!(calls, o.observation_calls);
+        println!(
+            "I50_OBSERVATION_PREFIX {event:?} {saved:?} {:?}",
+            o.observation_capacity_bytes
+        );
+    }
+    let mut overflow = fresh();
+    overflow.observation_calls = usize::MAX;
+    overflow.solver_observations(case, PreviewSolverMode::DenseScrutiny, &prefix);
+    assert!(matches!(
+        overflow.error,
+        Some(CaptureError::CountRange("observation calls"))
+    ));
+    let mut storage = fresh();
+    storage.observation_storage_failure = Some(2);
+    storage.solver_observations(case, PreviewSolverMode::DenseScrutiny, &prefix);
+    assert!(matches!(storage.error, Some(CaptureError::Storage(_))));
+    assert!(storage.observations.is_none());
+    assert!(
+        storage.observation_capacity_bytes[0] > 0
+            && storage.observation_capacity_bytes[1] > 0
+            && storage.observation_capacity_bytes[2] == 0
+    );
+    let saved = storage.adapter.counts.get();
+    storage.solver_observations(case, PreviewSolverMode::DenseScrutiny, &prefix);
+    assert_eq!(saved, storage.adapter.counts.get());
+    println!("I50_OBSERVATION_SYNTHETIC absence_and_signed_zero_pass storage_prefix={saved:?}");
+    // Independent typed FK maximum coverage, bypassing final-id validation only
+    // for isolated synthetic descriptors; mode remains mandatory.
+    let (invocation, case) = actual.native.as_ref().unwrap();
+    let k::ExecutionOutcome::Selected(owner) = &case.outcome else {
+        panic!()
+    };
+    for name in [
+        "duplicate",
+        "unit",
+        "missing mode",
+        "parity substitutes mode",
+        "negative",
+        "negative zero",
+    ] {
+        let mut rows = actual.bind_rows(&e, owner).unwrap();
+        let p = rows
+            .iter()
+            .position(|r| r.recipe == k::ProductRecipe::DenseParityObservation)
+            .unwrap();
+        let negative = -1.0;
+        let negative_zero = -0.0;
+        match name {
+            "duplicate" => {
+                let r = &rows[p];
+                let copy = k::ProductFinalRow {
+                    id: "distinct-parity",
+                    case_id: r.case_id,
+                    value: r.value,
+                    unit: r.unit,
+                    body: r.body,
+                    recipe: r.recipe,
+                };
+                rows.push(copy);
+            }
+            "unit" => rows[p].unit = k::ProductUnit::Newton,
+            "missing mode" => {
+                let i = rows
+                    .iter()
+                    .position(|r| r.recipe == k::ProductRecipe::NonQuantity)
+                    .unwrap();
+                rows.remove(i);
+            }
+            "parity substitutes mode" => {
+                let i = rows
+                    .iter()
+                    .position(|r| r.recipe == k::ProductRecipe::NonQuantity)
+                    .unwrap();
+                rows[i].recipe = k::ProductRecipe::DenseParityObservation;
+                rows.remove(p);
+            }
+            "negative" => rows[p].value = &negative,
+            "negative zero" => rows[p].value = &negative_zero,
+            _ => unreachable!(),
+        }
+        let spent = invocation.certify_product_case(case.run, owner, &actual.facts, &rows);
+        if name == "negative zero" {
+            assert!(spent.failure().is_none());
+            assert_eq!(spent.verdicts()[p].class, None);
+            assert_eq!(spent.verdicts()[p].normalized_bits, (-0.0f64).to_bits());
+        } else {
+            assert_eq!(spent.failure().unwrap().category(), "association");
+        }
+    }
+}
+
 fn specimen(loaded: bool) -> serde_json::Value {
     let mut v: serde_json::Value = serde_json::from_str(include_str!(
         "../../../fixtures/product_preview/invented_dec092_temperature_g_request.json"
@@ -31,7 +1007,9 @@ fn specimen(loaded: bool) -> serde_json::Value {
     v
 }
 fn observed(raw: serde_json::Value) -> (MechanicsEnvelope, ProductCapture) {
-    let mode = PreviewSolverMode::SparseInteractive;
+    observed_mode(raw, PreviewSolverMode::SparseInteractive)
+}
+fn observed_mode(raw: serde_json::Value, mode: PreviewSolverMode) -> (MechanicsEnvelope, ProductCapture) {
     let (request, capture) = source_receipt::CapturedInvocation::parse(raw, mode).unwrap();
     let mut observer = ProductCapture::default();
     let e = run_linear_static_preview_observed(
@@ -1153,7 +2131,11 @@ fn i47_modulus_record_closed_binding_and_independent_presence() {
     no_mode
         .results
         .retain(|r| r.kind != "linear_solver_mode_basis");
-    let rows = o.bind_rows(&no_mode, owner).unwrap();
+    assert!(o.bind_rows(&no_mode, owner).is_err(), "completed observation custody independently requires mode");
+    // Retain the original FK missing-mode discriminator after the stricter PP
+    // boundary, by removing mode from otherwise valid typed descriptors.
+    let mut rows = o.bind_rows(&e, owner).unwrap();
+    rows.retain(|r| r.recipe != k::ProductRecipe::NonQuantity);
     let spent = invocation.certify_product_case(case.run, owner, &o.facts, &rows);
     assert_eq!(spent.failure().unwrap().category(), "association");
     // Direct typed mutations isolate the FK maximum-coverage rule from PP fixed-id refusal.

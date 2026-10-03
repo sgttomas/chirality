@@ -97,6 +97,8 @@ pub enum ProductStress {
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ProductRecipe {
     Native(QuantityId),
+    /// The identified ordinary rigid/scalar-spring support law, including empty components.
+    SupportComponent { support: u32, component: Component },
     Stress {
         member: u32,
         site: ProductSite,
@@ -108,6 +110,8 @@ pub enum ProductRecipe {
     NonQuantity,
     /// Selected-material presence record; PP owns its exact source/text binding.
     ModulusBasisRecord,
+    /// Existing dense/sparse observation, with independent ancillary coverage.
+    DenseParityObservation,
 }
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ProductUnit {
@@ -209,7 +213,8 @@ pub struct ProductCertificateSpent<'a> {
     comparisons: SumWork,
     visits: WorkTotal,
     scalar_operations: WorkTotal,
-    pub capacities: [usize; 4],
+    /// laws, native coverage, represented intervals, verdicts, derivatives, support slots, scales.
+    pub capacities: [usize; 7],
 }
 impl<'a> ProductCertificateSpent<'a> {
     fn new(rows: &'a [ProductFinalRow<'a>]) -> Self {
@@ -223,7 +228,7 @@ impl<'a> ProductCertificateSpent<'a> {
             comparisons: SumWork::default(),
             visits: WorkTotal::zero(),
             scalar_operations: WorkTotal::zero(),
-            capacities: [0; 4],
+            capacities: [0; 7],
         }
     }
     pub fn status(&self) -> WorkStatus {
@@ -438,6 +443,73 @@ fn native_index(owner: &adaptive::RetainedSolve, id: QuantityId) -> Result<usize
         .position(|r| r.id == id)
         .ok_or_else(|| bad("native row missing"))
 }
+/// Resolve only the existing zero-or-one attributed law. Native API rows remain
+/// independent: this helper does not grant them a support-component coverage slot.
+fn support_component(
+    owner: &adaptive::RetainedSolve,
+    support: u32,
+    component: Component,
+    spent: &mut ProductCertificateSpent<'_>,
+) -> Result<(usize, Option<usize>), ProductFailure> {
+    let source = owner.source();
+    let mut found = None;
+    for (i, group) in source.supports().iter().enumerate() {
+        spent.visit()?;
+        if group.id == support {
+            found = Some(i);
+            break;
+        }
+    }
+    let i = found.ok_or_else(|| bad("support group"))?;
+    let group = &source.supports()[i];
+    if !group.directional_springs.is_empty() {
+        return Err(bad("directional support law"));
+    }
+    let mut contributor = group.restrained[component.index()].then_some(QuantityId::Reaction(
+        super::super::source::Dof {
+            node: group.node,
+            component,
+        },
+    ));
+    for id in &group.springs {
+        spent.visit()?;
+        let mut spring = None;
+        for s in source.springs() {
+            spent.visit()?;
+            if s.id == *id {
+                spring = Some(s);
+                break;
+            }
+        }
+        let spring = spring.ok_or_else(|| bad("support spring"))?;
+        if spring.dof.node != group.node {
+            return Err(bad("support spring node"));
+        }
+        if spring.dof.component == component {
+            if contributor.is_some() {
+                return Err(bad("multiple support contributors"));
+            }
+            contributor = Some(QuantityId::SpringAction {
+                spring: *id,
+                component,
+            });
+        }
+    }
+    let mut index = None;
+    if let Some(id) = contributor {
+        for (j, row) in owner.publish().rows.iter().enumerate() {
+            spent.visit()?;
+            if row.id == id {
+                index = Some(j);
+                break;
+            }
+        }
+        if index.is_none() {
+            return Err(bad("support contributor missing"));
+        }
+    }
+    Ok((i, index))
+}
 fn action_id(member: u32, site: ProductSite, c: Component) -> QuantityId {
     match site {
         ProductSite::End(end) => QuantityId::EndAction {
@@ -467,7 +539,7 @@ fn action(
 }
 fn recipe(
     owner: &adaptive::RetainedSolve,
-    w: &mut NumericWork,
+    spent: &mut ProductCertificateSpent<'_>,
     values: &[Enclosure],
     r: ProductRecipe,
     section: Option<&MemberEnclosures>,
@@ -477,6 +549,11 @@ fn recipe(
     if let ProductRecipe::Native(id) = r {
         return Ok(values[native_index(owner, id)?]);
     }
+    if let ProductRecipe::SupportComponent { support, component } = r {
+        let (_, contributor) = support_component(owner, support, component, spent)?;
+        return Ok(contributor.map_or(Enclosure::point(Endpoint::ZERO), |i| values[i]));
+    }
+    let w = &mut spent.numeric;
     let member = match r {
         ProductRecipe::Stress { member, .. } | ProductRecipe::CircularMaximum { member } => member,
         _ => return Err(bad("nonquantity recipe")),
@@ -767,6 +844,17 @@ pub(crate) fn certify<'a>(
     }
     spent
 }
+fn mark_dense_parity(
+    spent: &mut ProductCertificateSpent<'_>, row: &ProductFinalRow<'_>, seen: &mut bool,
+) -> Result<(), ProductFailure> {
+    spent.visit()?;
+    if *seen || row.unit != ProductUnit::Record || row.body != 0
+        || !row.value.is_finite() || *row.value < 0.0 {
+        return Err(bad("dense parity coverage/value"));
+    }
+    *seen = true;
+    Ok(())
+}
 fn run_case(
     invocation: &RecordedInvocation,
     run: usize,
@@ -782,6 +870,7 @@ fn run_case(
         return Err(bad("member count"));
     }
     let mut laws = reserve(facts.len())?;
+    spent.capacities[0] = laws.capacity();
     for (i, f) in facts.iter().enumerate() {
         spent.visit()?;
         let m = &source.members()[i];
@@ -817,6 +906,7 @@ fn run_case(
             cause: Cause::Native(e),
         })?;
         let mut k = reserve(owner.publish().rows.len())?;
+        spent.capacities[2] = k.capacity();
         for i in 0..owner.publish().rows.len() {
             spent.visit()?;
             let (r, radius) = native.view.row(i);
@@ -834,23 +924,30 @@ fn run_case(
         spent.coverage = summary_coverage(owner, &native.view, spent)?;
         let nb = source.body_count() as usize;
         let mut scales = reserve(nb)?;
+        spent.capacities[6] = scales.capacity();
         scales.resize(nb, [0.0f64; 4]);
         let mut native_coverage = reserve(k.len())?;
+        spent.capacities[1] = native_coverage.capacity();
         native_coverage.resize(k.len(), false);
         let derivative_count = facts.len().checked_mul(21).ok_or_else(|| ProductFailure {
             cause: Cause::CountRange("derivative rows"),
         })?;
         let mut derivative_coverage = reserve(derivative_count)?;
+        spent.capacities[4] = derivative_coverage.capacity();
         derivative_coverage.resize(derivative_count, false);
         let mut nonquantity = false;
         let mut modulus_basis = false;
+        let mut dense_parity = false;
         spent.verdicts = reserve(spent.rows.len())?;
-        spent.capacities = [
-            laws.capacity(),
-            native_coverage.capacity(),
-            k.capacity(),
-            spent.verdicts.capacity(),
-        ];
+        spent.capacities[3] = spent.verdicts.capacity();
+        let support_count = source.supports().len().checked_mul(6)
+            .ok_or_else(|| ProductFailure { cause: Cause::CountRange("support rows") })?;
+        spent.visit()?; // entered support-slot allocation
+        let mut support_coverage = reserve::<bool>(support_count)?;
+        spent.capacities[5] = support_coverage.capacity();
+        support_coverage.capacity().checked_mul(std::mem::size_of::<bool>())
+            .ok_or_else(|| ProductFailure { cause: Cause::CountRange("support capacity bytes") })?;
+        for _ in 0..support_count { spent.visit()?; support_coverage.push(false); }
         let final_rows = spent.rows;
         for (i, r) in final_rows.iter().enumerate() {
             spent.visit()?;
@@ -874,11 +971,35 @@ fn run_case(
                     }
                     nonquantity = true;
                 }
+                ProductRecipe::DenseParityObservation => {
+                    mark_dense_parity(spent, r, &mut dense_parity)?;
+                }
                 ProductRecipe::ModulusBasisRecord => {
                     if modulus_basis || r.unit != ProductUnit::Record {
                         return Err(bad("modulus basis coverage"));
                     }
                     modulus_basis = true;
+                }
+                ProductRecipe::SupportComponent { support, component } => {
+                    let (si, contributor) = support_component(owner, support, component, spent)?;
+                    let group = &source.supports()[si];
+                    let slot = if component.index() < 3 { 2 } else { 3 };
+                    let unit = if slot == 2 { ProductUnit::Newton } else { ProductUnit::NewtonMetre };
+                    if source.body_of_node(group.node) != r.body || r.unit != unit {
+                        return Err(bad("support body/unit"));
+                    }
+                    let j = si.checked_mul(6).and_then(|v| v.checked_add(component.index()))
+                        .ok_or_else(|| ProductFailure { cause: Cause::CountRange("support slot") })?;
+                    spent.visit()?;
+                    if support_coverage[j] { return Err(bad("duplicate support component")); }
+                    support_coverage[j] = true;
+                    if let Some(index) = contributor {
+                        spent.visit()?;
+                        if native_coverage[index] { return Err(bad("native coverage")); }
+                        native_coverage[index] = true;
+                    }
+                    let n = spent.normalize(r.unit, *r.value)?;
+                    scales[r.body as usize][slot] = scales[r.body as usize][slot].max(n.abs());
                 }
                 ProductRecipe::Stress {
                     member,
@@ -955,6 +1076,10 @@ fn run_case(
                 }
             }
         }
+        for covered in &support_coverage {
+            spent.visit()?;
+            if !covered { return Err(bad("missing support coverage")); }
+        }
         if native_coverage.iter().any(|v| !*v)
             || derivative_coverage.iter().any(|v| !*v)
             || !nonquantity
@@ -981,7 +1106,7 @@ fn run_case(
             let recipe_id = r.recipe;
             if matches!(
                 recipe_id,
-                ProductRecipe::NonQuantity | ProductRecipe::ModulusBasisRecord
+                ProductRecipe::NonQuantity | ProductRecipe::ModulusBasisRecord | ProductRecipe::DenseParityObservation
             ) {
                 spent.verdicts.push(ProductRowVerdict {
                     row: i,
@@ -1009,6 +1134,9 @@ fn run_case(
                         nr.class == adaptive::RowClass::InputDerived,
                     )
                 }
+                ProductRecipe::SupportComponent { component, .. } => (
+                    scales[r.body as usize][if component.index() < 3 { 2 } else { 3 }], false
+                ),
                 ProductRecipe::Stress { member, .. }
                 | ProductRecipe::CircularMaximum { member } => {
                     let f = &facts[source
@@ -1060,7 +1188,7 @@ fn run_case(
             };
             let represented = recipe(
                 owner,
-                &mut spent.numeric,
+                spent,
                 &k,
                 recipe_id,
                 section.as_ref(),
@@ -1069,7 +1197,7 @@ fn run_case(
             )?;
             let geometric = recipe(
                 owner,
-                &mut spent.numeric,
+                spent,
                 &native.rows,
                 recipe_id,
                 section.as_ref(),
