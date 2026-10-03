@@ -7718,3 +7718,21 @@ The docstring correction to the Python-only old-Err test is committed on READER.
 **Python's within-G5 order now follows C3:304:** native schedule, then ordinary, then C3 association, then typed checks, then the C3 work equations, which run after every attempt's association checks.
 
 **Next:** Rust (I63) and TypeScript (I64) audit against the same 42 IDs and align to 06a. C2-2 (plan items 4, 5, 11, 14, 15 and 16) follows.
+
+## TypeScript checklist audit verified; three native readings settled against Python (ROOT, 2026-10-03 UTC)
+
+**The TypeScript audit against all 42 IDs and 06a is committed on READER as `90d61a05fc`.** ROOT's own runs: Vitest 232/232, tsc 0. The records (`I64/reader_audit_06a/`, with the ID → status table) verify.
+
+I64 reported six places where TypeScript reads the native code differently from Python. **ROOT read the native code** (`adaptive.rs` at NUM, line numbers taken from the file) **and settles three of them in TypeScript's favour:**
+- **N9.** The native solver can end on WorkAccounting after an escalating stop. Whenever any attempt's work status is not exact, the ladder calls `finish_terminal` (`:4769`) before the escalation check. `finish_terminal` returns `WorkAccounting { fault, prior: Some(stop) }` when a fault exists. So Python's requirement of the Ceiling after any escalating last stop would reject genuine receipts. Python must accept WorkAccounting there.
+- **N5.** Only WorkAccounting can end a run on an escalating stop. `terminal()` (`:4349`) maps each terminal stop to exactly one reason and is unreachable for escalating stops (`:4377`). So a non-WorkAccounting terminal must be the exact translation of a terminal stop. Python's acceptance of any non-selected terminal is too permissive, and Python aligns to TypeScript's rule.
+- **N10.** A meter fault takes precedence over exhaustion for idle runs: `WorkAccounting { prior: None }` before `Budget(Invocation)` (`:4996`). Python must accept the idle WorkAccounting case when a fault exists.
+
+**Three readings are still open, for C2-2 to settle against the contract and native code, with citations:**
+- **N17:** which scope wins when both the case and the invocation limits are exceeded. TypeScript's inherited rule is unverified.
+- **P5:** whether the conversion kind/bits check also covers preparation-member conversions, as TypeScript does.
+- **P7:** whether retained old operational tuples are bound for every attempt (TypeScript) or only for sourceless attempts (Python). The two are equivalent on the corpus.
+
+**The `prior` field is open too.** Native `WorkAccounting` carries `prior`. I64 removed it from the TypeScript terminal as absent from the wire format. C2-2 confirms against C1 and C3 whether the wire projection omits it, and the independent review checks that.
+
+**C2-2 pins all of these with shared entries:** must-pass entries for the genuine N9 and N10 native shapes (using the synthetic accounting trigger, under the standing rule) and mutations for N5's over-acceptance. Rust's audit (I63) is awaited first, so its readings are included.
