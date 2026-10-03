@@ -307,6 +307,14 @@ def test_schedule_replay_terminal_branches_reader_logic():
                 kernel_terminal={"kind": "unresolved", "reason": {"space": "unresolved", "tag": "budget", "scope": "invocation"}})
     rp._g5_schedule(idle, [], [], _fail_g5)
     _raises(lambda: rp._g5_schedule(dict(idle, kernel_terminal={"kind": "selected", "reason": None}), [], [], _fail_g5), "G5", "ATTEMPT_MISMATCH")
+    # N10 (adaptive.rs:4994-5002): with a meter fault the idle entry run is WorkAccounting, before
+    # Budget(invocation); exhaustion requires invocation_before >= the invocation limit.
+    body = deepcopy(corpus()["cases"][0]["source"]["retained_precision"]["body"])
+    entry = dict(idle, origin=dict(idle["origin"], group=None))
+    fault = {"kind": "unresolved", "reason": {"space": "unresolved", "tag": "work_accounting", "fault": "overflow"}}
+    rp._g5_schedule(dict(entry, kernel_terminal=fault), [], [], _fail_g5, body)
+    _raises(lambda: rp._g5_schedule(entry, [], [], _fail_g5, body), "G5", "ATTEMPT_MISMATCH")
+    rp._g5_schedule(dict(entry, invocation_before=body["work"]["invocation_limit"]), [], [], _fail_g5, body)
     # A rejected candidate at p128 must hand its verification to a reused p256 candidate.
     rejected = deepcopy(selected)
     reason = {"space": "attempt", "tag": "stop_rule", "quantity": {"tag": "displacement", "dof": {"node": 1, "component": "UX"}}, "body": 0, "kind": "translation"}
