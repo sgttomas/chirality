@@ -7871,3 +7871,22 @@ Then the readers align, and one fresh, complete, independent review follows.
 - **Add the tightened idle sibling** `idle_budget_not_exhausted_no_group`. It is expected at G5 ATTEMPT_MISMATCH at the exhaustion rule, and I62's probe shows it isolates the rule.
 
 **Then** I63 and I64 align to 06d, and the independent review follows.
+
+## Snapshot 06d verified; the last reader alignment before review (ROOT, 2026-10-03 UTC)
+
+**Snapshot 06d is verified,** and committed on READER as `f1ff7ebddc`.
+- **The new hashes:** corpus `d02701ed6a`, `retained_precision.py` `55736ea65a`.
+- **ROOT's diff against 06c matches I62's declarations exactly:**
+  - **cases:** two rebased (F′ and P′, both allocator refusals);
+  - **mutations:** five new (R1, R2, R3 and the tightened idle sibling), and all 173 existing ones byte-identical;
+  - **must-pass entries:** six replaced with storage causes, five retired or deferred, and `cert_failed_after_summary_accounting` renamed `cert_failed_after_summary_storage` (a `row_scales` reserve after coverage, FC:1019).
+- **The totals:** 15 cases, 178 mutations and 18 must-pass entries.
+- **ROOT's own Python run:** 221 passed. The records verify.
+
+**Accepted deviations from the C2-5 grant:**
+- **`prefix_unequal_helper_new` is retired, not replaced.** No allocator refusal exists between a helper's return and its new evaluator: every vector is reserved before the loop (PP:3168–3181). The proposed `prepared_string` site runs only for loads before the member loop.
+- **F's original trigger is corrected:** it was the per-verdict MapWrite (PP:3364), so F′ keeps the same stage shape and no derived expectation moved.
+
+**Deferred:** a faithful `prefix_helper_refused` (SectionError has no storage variant), and optional storage contexts for seven pin mutations.
+
+**Next:** I63 and I64 align to 06d (R1–R3, the replaced entries, the new mutations). Then the fresh, complete, independent review of all three readers and the shared corpus, with a joint parity run.
