@@ -777,6 +777,25 @@ impl ProductCapture {
         self.adapter.require()?;
         Ok(v)
     }
+    /// Initialize an empty reserved bitmap with a finite owned loop. The shape
+    /// guard enters once; each successful MapWrite immediately precedes one
+    /// reserved-capacity push. There is no resize/bulk-library call to charge.
+    pub(super) fn fill_support_bitmap(
+        &self,
+        bitmap: &mut Vec<bool>,
+        count: usize,
+    ) -> Result<(), CaptureError> {
+        self.adapter.require()?;
+        self.capture_entry(AdapterEvent::ValidationEntry)?;
+        if !bitmap.is_empty() || bitmap.capacity() < count {
+            return Err("support bitmap reservation".into());
+        }
+        for _ in 0..count {
+            self.capture_entry(AdapterEvent::MapWrite)?;
+            bitmap.push(false);
+        }
+        Ok(())
+    }
     pub(super) fn capture_supports(
         &mut self,
         model: &PreviewModel,
@@ -828,11 +847,11 @@ impl ProductCapture {
             .ok_or(CaptureError::CountRange("support layout quantities"))?;
         u32::try_from(q).map_err(|_| CaptureError::CountRange("support layout quantities"))?;
         let mut built_used = self.support_reserve(built.supports.len(), 0)?;
-        built_used.resize(built.supports.len(), false);
+        self.fill_support_bitmap(&mut built_used, built.supports.len())?;
         let mut spring_used = self.support_reserve(springs.len(), 1)?;
-        spring_used.resize(springs.len(), false);
+        self.fill_support_bitmap(&mut spring_used, springs.len())?;
         let mut rigid_owned = self.support_reserve(n, 2)?;
-        rigid_owned.resize(n, false);
+        self.fill_support_bitmap(&mut rigid_owned, n)?;
         self.spring_map = self.support_reserve(springs.len(), 3)?;
         parts.springs = self.support_reserve(springs.len(), 4)?;
         self.support_fixed = self.support_reserve(model.supports.len(), 6)?;
@@ -897,15 +916,20 @@ impl ProductCapture {
                     if fixed[axis] || rigid_owned[global] {
                         return Err("ambiguous rigid ownership".into());
                     }
-                    let mut hits = 0;
+                    // The producing boundary is unique; also reject a malformed
+                    // direct helper slice on its second match without counting up.
+                    let mut hit = false;
                     for &g in restrained {
                         self.capture_entry(AdapterEvent::SourceVisit)?;
                         self.capture_entry(AdapterEvent::ValidationEntry)?;
                         if g == global {
-                            hits += 1;
+                            if hit {
+                                return Err("rigid boundary identity".into());
+                            }
+                            hit = true;
                         }
                     }
-                    if hits != 1 {
+                    if !hit {
                         return Err("rigid boundary identity".into());
                     }
                     self.capture_entry(AdapterEvent::MapWrite)?;

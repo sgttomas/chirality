@@ -1,6 +1,124 @@
 use super::retained_product::ProductCapture;
 use super::*;
 use open_pipe_stress_frame_kernel::structural::retained_api as k;
+#[test]
+fn i50_bitmap_fill_counts_and_after_reserve_exhaustion() {
+    use super::retained_product::{AdapterEvent as E, AdapterFault, CaptureError};
+    // One reserve enters allocation, capacity-record MapWrite and its actual
+    // try_reserve boundary. The owned fill adds one validation and exactly n
+    // MapWrites; no resize/bulk operation exists, including for n=0.
+    for n in [0usize, 1, 4, 3, 12] {
+        let mut o = ProductCapture::default();
+        let mut bitmap = o.support_reserve::<bool>(n, 0).unwrap();
+        o.fill_support_bitmap(&mut bitmap, n).unwrap();
+        assert_eq!(bitmap, vec![false; n]);
+        assert_eq!(
+            o.adapter.counts.get(),
+            [0, 0, 1 + n as u64, 1, 0, 0, 1, 1, 0, n as u64]
+        );
+        assert_eq!(o.support_capacity_bytes, [n, 0, 0, 0, 0, 0, 0]);
+        println!(
+            "I50_BITMAP_SUCCESS n={n} counts={:?} capacities={:?}",
+            o.adapter.counts.get(),
+            o.support_capacity_bytes
+        );
+    }
+    let request: LinearStaticPreviewRequest = serde_json::from_value(i50_named_request()).unwrap();
+    let mut diagnostics = Vec::new();
+    let built = build_model(&request.model, &request.model.materials, &mut diagnostics).unwrap();
+    let boundary = prepare_boundary(built.nodes.len(), &built.supports);
+    assert!(diagnostics.is_empty() && boundary.findings.is_empty());
+    assert_eq!(built.supports.len(), 4);
+    let mut o = ProductCapture::default();
+    let mut parts = k::SourceParts::default();
+    let mut seed = [0u64; 10];
+    seed[E::MapWrite as usize] = u64::MAX - 1;
+    o.adapter.counts.set(seed);
+    let error = o
+        .capture_supports(
+            &request.model,
+            &built,
+            &boundary.restrained_dofs,
+            &boundary.springs,
+            &mut parts,
+        )
+        .unwrap_err();
+    assert!(matches!(
+        error,
+        CaptureError::Accounting(AdapterFault::Overflow(E::MapWrite))
+    ));
+    // Four source-count checks, one fill shape check; first reserve succeeds,
+    // first element write cannot enter, and the second allocation is untouched.
+    let expected = [0, 0, u64::MAX, 5, 0, 0, 1, 1, 0, 4];
+    assert_eq!(o.adapter.counts.get(), expected);
+    assert_eq!(o.support_capacity_bytes, [4, 0, 0, 0, 0, 0, 0]);
+    assert!(
+        o.supports.is_empty()
+            && o.support_fixed.is_empty()
+            && o.spring_map.is_empty()
+            && o.source.is_none()
+    );
+    assert!(parts.supports.is_empty() && parts.springs.is_empty());
+    let again = o
+        .capture_supports(
+            &request.model,
+            &built,
+            &boundary.restrained_dofs,
+            &boundary.springs,
+            &mut parts,
+        )
+        .unwrap_err();
+    assert!(matches!(
+        again,
+        CaptureError::Accounting(AdapterFault::Overflow(E::MapWrite))
+    ));
+    assert_eq!(o.adapter.counts.get(), expected);
+    assert_eq!(o.support_capacity_bytes, [4, 0, 0, 0, 0, 0, 0]);
+    println!("I50_BITMAP_AFTER_RESERVE prefix={expected:?} first_capacity=4 second_allocations=0 committed_maps=0");
+
+    let mut o = ProductCapture::default();
+    let mut bitmap = o.support_reserve::<bool>(4, 0).unwrap();
+    let mut seeded = o.adapter.counts.get();
+    seeded[E::MapWrite as usize] = u64::MAX - 2;
+    o.adapter.counts.set(seeded);
+    assert!(matches!(
+        o.fill_support_bitmap(&mut bitmap, 4),
+        Err(CaptureError::Accounting(AdapterFault::Overflow(
+            E::MapWrite
+        )))
+    ));
+    assert_eq!(bitmap, [false, false]);
+    let expected = [0, 0, u64::MAX, 1, 0, 0, 1, 1, 0, 4];
+    assert_eq!(o.adapter.counts.get(), expected);
+    assert_eq!(o.support_capacity_bytes, [4, 0, 0, 0, 0, 0, 0]);
+    assert!(matches!(
+        o.fill_support_bitmap(&mut bitmap, 4),
+        Err(CaptureError::Accounting(AdapterFault::Overflow(
+            E::MapWrite
+        )))
+    ));
+    assert_eq!(bitmap, [false, false]);
+    assert_eq!(o.adapter.counts.get(), expected);
+    println!("I50_BITMAP_MID_FILL prefix={expected:?} written=2 reserved=4");
+
+    // Only two repeats, supplied directly to the isolated helper. The actual
+    // prepared production boundary was already unique; this is hardening.
+    let mut o = ProductCapture::default();
+    let mut parts = k::SourceParts::default();
+    let error = o
+        .capture_supports(
+            &request.model,
+            &built,
+            &[0, 0],
+            &boundary.springs,
+            &mut parts,
+        )
+        .unwrap_err();
+    assert!(matches!(error, CaptureError::Association(ref s) if s == "rigid boundary identity"));
+    assert!(o.supports.is_empty() && parts.supports.is_empty() && o.source.is_none());
+    println!("I50_TWO_REPEAT_BOUNDARY {error:?}");
+}
+
 fn i50_named_request() -> serde_json::Value {
     serde_json::from_str(include_str!(
         "../../../fixtures/product_preview/rf_skew_t_cant_off_122_r1e-04.request.json"
