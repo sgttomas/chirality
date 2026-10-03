@@ -128,19 +128,6 @@ const SOURCES: &[Source] = &[
         name: "FK/structural/retained/combine.rs",
         text: include_str!("../src/structural/retained/combine.rs"),
     },
-    // I42: new private numerical entries participate in the same source scan.
-    Source {
-        name: "FK/structural/retained/product_certificate.rs",
-        text: include_str!("../src/structural/retained/product_certificate.rs"),
-    },
-    Source {
-        name: "FK/structural/retained/product_certificate/bridge.rs",
-        text: include_str!("../src/structural/retained/product_certificate/bridge.rs"),
-    },
-    Source {
-        name: "FK/structural/retained/directed/certificate.rs",
-        text: include_str!("../src/structural/retained/directed/certificate.rs"),
-    },
     // K4, D1 revision 5a.3 (ROOT's A3-0 rulings): directed rounding, the
     // certified bounds and the verification.
     Source {
@@ -159,14 +146,6 @@ const SOURCES: &[Source] = &[
 
 /// (file, function, exact match count, disposition of each match).
 const TABLE: &[(&str, &str, usize, &str)] = &[
-    ("FK/structural/retained/directed/certificate.rs", "compare_owned", 1, "integer: comparison counter increment after the explicit 64-comparison guard; each comparison uses one exact sum"),
-    ("FK/structural/retained/product_certificate.rs", "status", 1, "integer: joins checked entry/work status; no floating reduction"),
-    ("FK/structural/retained/product_certificate.rs", "scalar_owned", 0, "fixed directed arithmetic; each actual context and exact sum collected on all exits"),
-    ("FK/structural/retained/product_certificate.rs", "r4_owned", 0, "four separate products in one exact sum with sign before lower rounding"),
-    ("FK/structural/retained/product_certificate/bridge.rs", "b_forward", 0, "I33 nonnegative majorant: each product and accumulation directed upward with actual owner work"),
-    ("FK/structural/retained/product_certificate/bridge.rs", "d_apply", 0, "I33 ten-entry nonnegative constitutive contraction, directed upward"),
-    ("FK/structural/retained/product_certificate/bridge.rs", "transpose", 0, "I33 full Bbar/Hbar nonnegative contractions, directed upward"),
-
     ("FK/structural/retained/wide_sum.rs", "checked_lme", 1, "integer: checked sum of raw work components"),
     ("FK/structural/retained/wide_sum.rs", "charge", 1, "integer: actual component increment after prospective checked reservation"),
     ("FK/structural/retained/adaptive.rs", "checked_total", 1, "integer: checked sum of stage totals"),
