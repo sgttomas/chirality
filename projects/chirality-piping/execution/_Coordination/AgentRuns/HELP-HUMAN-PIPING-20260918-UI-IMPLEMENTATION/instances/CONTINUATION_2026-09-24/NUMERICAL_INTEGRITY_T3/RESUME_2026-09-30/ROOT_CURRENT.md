@@ -35,17 +35,19 @@ final joined closure remain.
 
 ## Running now
 
-I51's first actual prepared model selected native p=128 with verification P=256
-in both modes (FIRST_NATIVE at 10:12:54Z). Its premature-C0 sequencing miss remains
-recorded. The applied local repair now cleared RV67 at `8b7c1c2ce4`; ROOT restored
-the existing private runtime grant after checking the frozen source. I51 is
-completing the dual proof, product overlay and atomic private transfer.
-Component target: candidate/obstruction 11:15:06Z; edits stop 11:40:06Z; seal/reap
-12:00:06Z. Existing guard PID 5387; I51 owns the sole runtime lane.
+The prepared model is admitted at native p=128/P=256 in both modes. The complete
+candidate at CODE `430bc4f798` still refuses: seven conservative certificate rows
+per mode and the support-norm guard. RV67 independently checked all 194 point
+predicates; they pass. Final G5a passes on those rows. This is unaccepted WIP.
+ROOT has selected two reviewed corrections: seed Source from corrected K midpoints,
+and form support magnitudes from their published components while retaining every
+physical certificate. I51 receives a bounded continuation; no public case yet.
+Existing guard PID 5387 and the sole runtime lane remain available.
 
 ## Next
 
-Produce and independently check the complete two-mode private candidate,
+Run the paired corrections, then complete independent point checks, controls and
+local accounting for the two-mode private candidate,
 including G5a, observables, ordinary fallback and local accounting. Public receipt/
 reader/routing/resource integration and full gates follow that private milestone.
 Bulk evidence stays in scratch with committed hash/size/location manifests.

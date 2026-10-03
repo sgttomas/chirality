@@ -6746,3 +6746,51 @@ comparison. ROOT's early source read also flagged the in-progress final-proof
 success-token invariant and newly introduced accounting for completion during
 this same component. No failed numerical verdict may yield a successful certified
 state, and no private test is counted as public publication.
+
+
+## Actual C2 refusal preserved; paired producer corrections selected (ROOT, 2026-10-03 UTC)
+
+ROOT selects the independently checked K-seeded source center and support-component hypot formation together because the actual candidate exposed both conservative enclosure refusals and a separate support-norm inconsistency.
+
+I51 sealed the implementation refusal at 11:29:13Z. ROOT read its RETURN, C4
+limitations and full maintained core diff, verified fifteen payloads, seventy-three
+external files, eleven changed source files and the other baseline files, and
+preserved the unaccepted WIP on CODE at `430bc4f798`. It is not merged into NUM
+or main, is not a passing component, and has no public publication claim. The
+verification record is verification/i51_implementation_refusal_03.
+
+RV67's review at `73383ae6d7` independently verifies all 194 actual mechanical
+point predicates while confirming seven conservative Absolute certificate refusals
+per mode and the separate support-norm failure. Its §1 distinguishes full width,
+half-width and actual interval-distance error; that table corrects the proposal's
+loose K-width wording. The first C2 command stopped before observables/G5a; the later
+same-row diagnostic command checked them and still returned numerical refusal.
+G5a passed there. Its exact diagnostic source was recovered afterwards, with all
+ten file hashes independently matched; it was not originally archived at execution.
+ROOT read the complete review and verified its seven payloads and six bulk files.
+
+Select REVIEW §2's same-draft K midpoint initialization only for AnnularSource,
+with actual owner/DOF/unit binding, exact prescribed coordinates, fixed-precision
+midpoint arithmetic, at most one correction per lane and fresh source residual/
+radius/recovery. The existing arbitrary-finite-center theorem supplies the warrant;
+a narrower future enclosure is not assumed from the seed alone.
+
+Select REVIEW §3's support-only formation amendment: complete the authenticated
+component slots, form force/moment magnitudes with the actual two-call binary64
+hypot order, and retain independent dual physical norm certification plus the
+unchanged observable guard and all actual final scale/class/predicate checks.
+Displacement magnitudes, stresses and coefficient maxima retain their selected
+formations. Record this row-family distinction in private algorithm provenance
+and later public method/reader integration. No criterion, source interpretation,
+structural-zero exemption or availability exception is changed. The reviewer finds
+no new owner-held public-meaning choice.
+
+The two amendments must be tested together: moving the norm near its components
+without reducing the current broad source enclosure would itself fail the norm
+certificate (RV67 §1). ROOT releases one sixty-minute same-implementer continuation
+under its committed brief, with a first live result by minute fifteen, new-edit
+cutoff forty-five and seal/reap sixty. The earlier task has already sealed; these
+are explicit new clocks, not a retrospective extension. The existing worktree,
+guard, runtime caps and narrow source fence remain. Full component controls and
+local accounting are still open; independent implementation review and all public
+F2a obligations remain required.
