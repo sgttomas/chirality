@@ -6587,3 +6587,11 @@ backcheck before ROOT selection. Its actual receipt will set the forty-minute
 box. This is direct numerical milestone work, without runtime or tool development.
 Current dual-cover code remains binding. The first publishing target and the
 remaining public route, receipt, resource and full-gate obligations are unchanged.
+
+
+I51 received correction brief `42727b2af5` at 09:20:11Z, with the host/cwd/clock-only
+first tool verified by its receipt. Checkpoint is 09:30:11Z, concrete completion
+09:45:11Z, new-analysis cutoff 09:50:11Z and sealed return 10:00:11Z. No runtime
+lane is granted; the existing guard remains running and no compiler/model process
+was active at dispatch. ROOT refreshed GitHub/main during this checkpoint: main
+remains `381be775ae`, and no F2a PR is open.
