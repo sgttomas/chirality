@@ -5268,6 +5268,8 @@ pub(crate) struct SourceBridgeViewWork {
     /// unqualified auxiliary costs; this is not a complete facade visit ledger.
     pub(crate) visits: WorkTotal,
     pub(crate) f64_operations: WorkTotal,
+    pub(crate) prescribed_capacity: usize,
+    pub(crate) data_capacity: usize,
 }
 impl SourceBridgeViewWork {
     fn visit(&mut self, count: usize) -> Result<(), SourceBridgeViewIssue> {
@@ -5311,6 +5313,9 @@ impl<'a> SourceBridgeView<'a> {
     pub(crate) fn data_capacity(&self) -> usize {
         self.data.capacity()
     }
+    /// Consume only the private view; move the owned data bitmap without copying.
+    pub(crate) fn into_data(self) -> Vec<bool> { self.data }
+
     pub(crate) fn row(&self, index: usize) -> (&'a PublishedRow, Option<f64>) {
         let row = &self.owner.publication.rows[index];
         let bits = self.owner.publication_radius_bits[index];
@@ -5474,6 +5479,7 @@ impl RetainedSolve {
         std::alloc::Layout::array::<bool>(blocks.len())
             .map_err(|_| SourceBridgeViewIssue::CountRange)?;
         let mut prescribed = vec![false; n];
+        work.prescribed_capacity=prescribed.capacity();
         if self.prep.prescribed.len() != source.constraints().len() {
             return Err(CertificateIssue::PairIdentity.into());
         }
@@ -5489,6 +5495,7 @@ impl RetainedSolve {
             prescribed[*g] = c.value != 0.0;
         }
         let mut data = vec![false; blocks.len()];
+        work.data_capacity=data.capacity();
         macro_rules! checked_slot {
             ($shared:expr, $verify:expr, $state:expr) => {{
                 let shared = $shared

@@ -41,8 +41,12 @@ fn count_add(a: usize, b: usize) -> Result<usize, Error> {
 fn count_mul(a: usize, b: usize) -> Result<usize, Error> {
     a.checked_mul(b).ok_or(Error::CountRange)
 }
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub(crate) enum ReadoutLaw { AdmittedK, AnnularSource }
+
 #[derive(Debug)]
 pub(crate) struct ResidualWork {
+    pub(crate) readout_law: ReadoutLaw,
     pub(crate) numeric: NumericWork,
     pub(crate) point: AttemptWork,
     pub(crate) view: SourceBridgeViewWork,
@@ -59,10 +63,12 @@ pub(crate) struct ResidualWork {
     /// Actual vector capacities, recorded by owner. No total byte/profile claim.
     pub(crate) capacities: [(&'static str, usize); 9],
     capacity_entries: usize,
+    pub(crate) data_capacity: usize,
 }
 impl ResidualWork {
     fn new() -> Self {
         Self {
+            readout_law: ReadoutLaw::AnnularSource,
             numeric: NumericWork::new(),
             point: AttemptWork::default(),
             view: SourceBridgeViewWork::default(),
@@ -75,6 +81,7 @@ impl ResidualWork {
             h_products: WorkTotal::zero(),
             capacities: [("", 0); 9],
             capacity_entries: 0,
+            data_capacity: 0,
         }
     }
     pub(crate) fn status(&self) -> WorkStatus {
@@ -233,7 +240,7 @@ fn coefficients(
     if !std::ptr::eq(m, law.member) {
         return Err(Error::MemberOwner);
     }
-    Ok(build_member(
+    let mut coefficients = build_member(
         &MemberOperands {
             diameter: law.diameter,
             effective_wall: law.effective_wall,
@@ -249,7 +256,15 @@ fn coefficients(
             },
         },
         &mut w.numeric,
-    )?)
+    )?;
+    if w.readout_law == ReadoutLaw::AdmittedK {
+        for i in 0..4 {
+            w.visit()?;
+            coefficients.coefficients[i]=Enclosure::point(coefficients.admitted_products[i]);
+            coefficients.coefficient_differences[i]=Endpoint::ZERO;
+        }
+    }
+    Ok(coefficients)
 }
 fn member(
     view: &SourceBridgeView<'_>,
@@ -628,6 +643,33 @@ impl<'a> ResidualSpent<'a> {
         }
     }
 }
+#[derive(Debug)]
+pub(crate) struct LaneReadouts {
+    anchor: std::sync::Arc<super::final_case::ProofAnchor>,
+    law: ReadoutLaw,
+    pub(crate) rows: Vec<Enclosure>,
+    pub(crate) data: Vec<bool>,
+    pub(crate) alpha: Vec<Endpoint>,
+    pub(crate) epsilon: Vec<Endpoint>,
+}
+impl ResidualSpent<'_> {
+    pub(super) fn into_readouts(mut self, anchor:&std::sync::Arc<super::final_case::ProofAnchor>) -> (Result<LaneReadouts,Error>, ResidualWork) {
+        let result=match self.result {
+            Err(e)=>Err(e),
+            Ok(native)=>match self.work.status().fault() {
+                Some(f)=>Err(Error::Numeric(NumericError::Arithmetic(AttemptStop::WorkAccounting(f)))),
+                None=>{
+                    let checked=self.work.visit().and_then(|()| {
+                        if anchor.matches_owner(native.view.owner()){Ok(())}else{Err(Error::MemberOwner)}
+                    });
+                    checked.and_then(|()|self.work.visit()).map(|()|LaneReadouts {anchor:std::sync::Arc::clone(anchor),law:self.work.readout_law,
+                        rows:native.rows,data:native.view.into_data(),alpha:native.alpha,epsilon:native.epsilon})
+                },
+            },
+        };
+        (result,self.work)
+    }
+}
 pub(crate) fn source_residual<'a>(
     owner: &'a RetainedSolve,
     source: &'a PrimitiveSource,
@@ -635,12 +677,34 @@ pub(crate) fn source_residual<'a>(
     precision: u32,
     laws: &'a [ProposedMemberLaw<'a>],
 ) -> ResidualSpent<'a> {
+    source_residual_for_law(owner,source,identity,precision,laws,ReadoutLaw::AnnularSource)
+}
+pub(crate) fn source_residual_for_law<'a>(
+    owner:&'a RetainedSolve, source:&'a PrimitiveSource, identity:&[u8], precision:u32,
+    laws:&'a [ProposedMemberLaw<'a>], readout_law:ReadoutLaw,
+) -> ResidualSpent<'a> {
+    source_residual_inner(owner,source,identity,precision,laws,readout_law,None)
+}
+pub(super) fn source_residual_prepared<'a>(owner:&'a RetainedSolve, source:&'a PrimitiveSource,
+    identity:&[u8], precision:u32, laws:&'a [ProposedMemberLaw<'a>],
+    anchor:&std::sync::Arc<super::final_case::ProofAnchor>, seed:&LaneReadouts)->ResidualSpent<'a> {
+    source_residual_inner(owner,source,identity,precision,laws,ReadoutLaw::AnnularSource,Some((anchor,seed)))
+}
+fn source_residual_inner<'a>(owner:&'a RetainedSolve,source:&'a PrimitiveSource,identity:&[u8],precision:u32,
+    laws:&'a [ProposedMemberLaw<'a>],readout_law:ReadoutLaw,
+    seed:Option<(&std::sync::Arc<super::final_case::ProofAnchor>,&LaneReadouts)>)->ResidualSpent<'a> {
     let mut work = ResidualWork::new();
+    work.readout_law=readout_law;
     let view = owner.source_bridge_view(source, identity, precision);
     work.view = view.work;
+    work.data_capacity=work.view.data_capacity;
     let result = match view.result {
         Err(e) => Err(Error::View(e)),
-        Ok(view) => run(view, laws, &mut work),
+        Ok(view) => {
+            work.data_capacity=view.data_capacity();
+            let check=match seed {None=>Ok(()),Some((anchor,k))=>validate_seed(&view,anchor,k,&mut work)};
+            check.and_then(|()|run(view,laws,seed.map(|(_,k)|k),&mut work))
+        },
     };
     let result = match result {
         Err(e) => Err(e),
@@ -648,9 +712,27 @@ pub(crate) fn source_residual<'a>(
     };
     ResidualSpent { result, work }
 }
+pub(super) fn validate_seed(view:&SourceBridgeView<'_>,anchor:&std::sync::Arc<super::final_case::ProofAnchor>,
+    seed:&LaneReadouts,w:&mut ResidualWork)->Result<(),Error> {
+    w.visit()?;
+    if w.readout_law!=ReadoutLaw::AnnularSource || seed.law!=ReadoutLaw::AdmittedK
+        || !std::sync::Arc::ptr_eq(anchor,&seed.anchor) || !anchor.matches_owner(view.owner())
+        || seed.rows.len()!=view.owner().publish().rows.len() || seed.data.len()!=view.data().len() {return Err(Error::MemberOwner);}
+    for (a,b) in seed.data.iter().zip(view.data()) {w.visit()?;if a!=b{return Err(Error::MemberOwner);}}
+    // Endpoint has no NaN/infinity representation; every constructor checks its finite range.
+    for g in 0..view.source().dof_count() {
+        w.visit()?;
+        let (row,_)=view.row(g);
+        let expected=if g%6<3 {super::super::recover::Kind::Translation}else{super::super::recover::Kind::Rotation};
+        if row.id!=QuantityId::Displacement(Dof::from_global(g)) || row.kind!=expected
+            || seed.rows[g].lo.cmp_value(&seed.rows[g].hi)==Ordering::Greater {return Err(Error::RowIdentity(g));}
+    }
+    Ok(())
+}
 fn run<'a>(
     view: SourceBridgeView<'a>,
     laws: &'a [ProposedMemberLaw<'a>],
+    seed: Option<&LaneReadouts>,
     w: &mut ResidualWork,
 ) -> Result<ConditionalSourceResidual<'a>, Error> {
     if !view.source().directional_springs().is_empty() {
@@ -673,7 +755,15 @@ fn run<'a>(
         if row.id != QuantityId::Displacement(Dof::from_global(g)) {
             return Err(Error::RowIdentity(g));
         }
-        center[a] = lift(row.value.value().ok_or(Error::MissingRadius(g))?)?;
+        center[a] = if let Some(k)=seed {
+            w.visit()?;
+            let interval=k.rows[g];
+            let sum=w.nearest_add(interval.lo,interval.hi)?;
+            w.visit()?;
+            let midpoint=shift(&sum,-1)?;
+            w.visit()?;
+            midpoint
+        }else{lift(row.value.value().ok_or(Error::MissingRadius(g))?)?};
     }
     let mut eta = buffer(nf, Endpoint::ZERO)?;
     w.capacity("eta", eta.capacity())?;

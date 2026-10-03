@@ -4955,6 +4955,11 @@ fn solve_load_case_observed(
             }
         }
     } else { None };
+    if let Some(observer) = product.as_deref_mut() {
+        observer.prepared_case_source(source_selected, model, built, materials, load_case,
+            restrained_dofs, spring_entries, &load_application, &thermal_loads,
+            &pressure_thrust_loads);
+    }
     Ok(LoadCaseSolve {
         load_state_evidence,
         exact_case_evidence,
