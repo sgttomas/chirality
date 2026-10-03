@@ -637,8 +637,9 @@ def _g5a_coverage(body, case, source, s, need):
     need(_same(source["layout"], _canonical_layout(source, need)))
     fixed = {(c["dof"]["node"], c["dof"]["component"]) for c in source["constraints"]}
     floors = {} if s is None or s["floor"] is None else {x["body"]: x for x in s["floor"]}
+    # Reader parity rule: the record's resolution and theta list bodies 0..n-1 in order.
+    need([x["body"] for x in verification["resolution"]] == ids and [x["body"] for x in verification["theta"]] == ids)
     resolution = {x["body"]: x for x in (verification["resolution"] if s is None else s["resolution_scale"])}
-    need(sorted(resolution) == ids)
     expected = {"stop_rule": [], "verification_estimate": [], "verification_charge": []}
     for b, entry in zip(bodies, coverage):
         bi = b["body"]
@@ -646,7 +647,7 @@ def _g5a_coverage(body, case, source, s, need):
         present = [any(r["kind"] == k for r in rows) for k in names]
         non_input = [any(r["kind"] == k and not r["input_derived"] for r in rows) for k in names]
         coords = [[from_bits(v) for v in source["id_maps"]["nodes"][int(i)]["coordinates"]] for i in b["nodes"]]
-        _need(bool(coords), "G5b", "SCALE_MISMATCH")
+        need(bool(coords))
         length = _extent(coords)  # adaptive::body_extent operation order
         floor = floors.get(bi)
         floor_positive = [False, False] if floor is None else [from_bits(floor["force"]) > 0, from_bits(floor["moment"]) > 0]
@@ -685,7 +686,6 @@ def _g5a_coverage(body, case, source, s, need):
     # Parity rule 3: one record bound per body, in order, non-null iff has_data.
     need([x["body"] for x in verification["bound"]] == ids and all((x["value"] is not None) == has_data[x["body"]] for x in verification["bound"]))
     theta = {x["body"]: x["value"] for x in verification["theta"]}
-    need(sorted(theta) == ids)
     need(all(has_data[bi] or theta[bi] == "0000000000000000" for bi in ids))
     true_count = sum(1 for bi in ids if has_data[bi])
     need((verification["data_blocks"] == 0) == (true_count == 0) and verification["data_blocks"] >= true_count)
@@ -700,8 +700,14 @@ def _g5a_coverage(body, case, source, s, need):
 
 
 def _g5_numeric(body, rows_by_case):
+    """G5a, then G5b, then G5c, each across all cases in case order.
+
+    C3_DELTA s4 keeps C1's gate order G0..G8 ("within a gate ... ascending attempt
+    index; first failure wins") and C1 s6 has every reader execute G0->G8 in the same
+    order, so every case's G5a precedes any case's G5b (reader parity rule).
+    """
     classes = []
-    deferred_class_checks = []
+    states = []
     for case in body["cases"]:
         if case["status"] != "selected":
             # I57 s4: an unavailable attempt that keeps a complete vector still meets the
@@ -731,17 +737,17 @@ def _g5_numeric(body, rows_by_case):
         prescribed = {(x["node_id"], x["component"]) for x in s["input_derived_dofs"]}
         need(len(prescribed) == len(s["input_derived_dofs"]))
         actual = {(source["id_maps"]["nodes"][int(c["dof"]["node"])]["id"], c["dof"]["component"]) for c in source["constraints"]}
-        deferred_class_checks.append((prescribed == actual, "INPUT_DOF_MISMATCH"))
+        deferred_class_checks = [(prescribed == actual, "INPUT_DOF_MISMATCH")]
         values = {}; extents = {}; raw_scales = {}
         for b in bodies:
             bi = b["body"]
             coords = [[from_bits(v) for v in source["id_maps"]["nodes"][int(i)]["coordinates"]] for i in b["nodes"]]
-            _need(bool(coords), "G5b", "SCALE_MISMATCH")
+            need(bool(coords))
             extent = _extent(coords); extents[bi] = extent
             maxima = [0., 0., 0., 0.]
             for ri, row in enumerate(rows):
                 kind = _row_kind(row); rb, member = _row_body(row, source); n = _normalized(row)
-                _need(math.isfinite(n), "G5b", "SCALE_MISMATCH")
+                need(math.isfinite(n))
                 component = None
                 if row["kind"].startswith("global_nodal_displacement_"): component = "U" + row["kind"][-1].upper()
                 if row["kind"].startswith("global_nodal_rotation_"): component = "R" + row["kind"][-1].upper()
@@ -776,6 +782,8 @@ def _g5_numeric(body, rows_by_case):
                     threshold = (2.0 ** -59) * scale[k]
                     lower = 0. if total <= threshold else from_bits(section["axial_stiffness" if k == 0 else "torsional_stiffness"]) * (total - (2.0 ** -60) * scale[k])
                     need(upper[k] >= lower)
+        states.append((source, s, rows, bodies, names, values, extents, raw_scales, deferred_class_checks))
+    for source, s, rows, bodies, names, values, extents, raw_scales, deferred_class_checks in states:
         final_scales = {}
         for bi, scale in raw_scales.items():
             result = list(scale)
@@ -819,8 +827,9 @@ def _g5_numeric(body, rows_by_case):
                     absolute.append({"result_id":row["id"],"bound":bits(bound)})
             classes.append({"result_id":row["id"],"basis_ref":row["basis_ref"],"normalized_bits":bits(n),"scale_bits":None if scale is None else bits(scale),"class":classification,"bound_bits":None if bound is None else bits(bound)})
         deferred_class_checks.append((s["absolute_verified"] == absolute and s["not_covered"] == uncovered, "CLASSIFICATION_MISMATCH"))
-    for ok, code in deferred_class_checks:
-        _need(ok, "G5c", code)
+    for *_, deferred_class_checks in states:
+        for ok, code in deferred_class_checks:
+            _need(ok, "G5c", code)
     return classes
 
 
