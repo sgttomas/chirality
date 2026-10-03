@@ -7635,3 +7635,34 @@ All three readers now pass snapshot 05a: 104 mutations at their expected first g
   I62 removes all three as snapshot 05c and records why. Every other entry stays byte-identical.
 - **The native Ceiling row and the L = 0 base are deferred until the producer can emit real receipts** (the receipt transaction, resume step 4). A faithful Ceiling needs a case with genuinely different numerics, and L = 0 needs a confirmed producer admission. Synthetic attestation cannot supply either faithfully.
 - **Next:** I63 (Rust) and I64 (TypeScript) align to 05c: the 17 new mutations and the remaining must-pass entries, gate-major order across cases, record body order, and failing an empty body or non-finite normalized value at G5a.
+
+## All three readers pass snapshot 05c; coverage implemented; the reader audit is planned next (ROOT, 2026-10-03 UTC)
+
+**The selected summary-coverage design is now implemented in the shared contract and all three readers.** Each passes snapshot 05c (READER `e510266332`): 9 cases, 121 mutations at their expected first gate and code, and 16 must-pass entries. Eligibility stays closed everywhere.
+
+| Reader | Commit | ROOT's own run |
+|---|---|---|
+| Python (I62) | `e510266332` | 164 passed |
+| Rust (I63) | `3e915c0c1b` | 15/15; source unchanged since 05a |
+| TypeScript (I64) | `18ce79d74d` | Vitest 188/188, tsc 0 |
+
+The producer seam (I61) awaits RV77's confirmation of its review fixes.
+
+**The coverage work is not yet accepted.** It is accepted together with the remaining reader audit, after a fresh, complete, independent review with joint parity (resume step 3).
+
+**The remaining reader obligations** (I58, I59 and I60 RETURNs, less what 05a to 05c now cover):
+- **A shared G5 obligation set,** with exhaustive branches: native terminal, reason and reference domains; reuse, skipped-precision, refusal, cache-failure and overshoot paths; group, call and source coverage; ordinary and source_decline relationships; C3 typed error, stage and failure-prefix precedence within the gate; source-bound work, status and completion.
+- **Shared controls for:**
+  - conversions and underflow;
+  - material and unit variants (G8 named and interpolated material, project-length normalization, interpolation-alpha validity, source-specific normalization refusals);
+  - a decisive literal G7 malformed-base mutation;
+  - G8 failed-prefix association and source/map boundaries;
+  - post-helper failure;
+  - a maxima-failed, merged-before-values positive;
+  - exact final-row and native coverage.
+- **Producer-solved witnesses stay deferred:** the Ceiling, L = 0, source-construction failure and old-Err/new-Ready.
+
+**The method:**
+1. **One contract-derived G5 checklist,** so the three readers audit against a single list. I62 first writes the checklist and a snapshot-06 plan covering the families above. Each item cites its native path and contract clause, and items that need a producer-solved witness are marked deferred.
+2. **ROOT reviews the plan.** I62 then builds 06 and the Python audit, while I63 and I64 audit Rust and TypeScript against the same checklist and align to 06.
+3. **Then a fresh, complete, independent review** of all three readers and the shared corpus, with a joint parity run on 06.
