@@ -283,9 +283,11 @@ describe('review repair 07: decisions without a probe (reader-local)', () => {
     const p = RV78_PROBES.find(x => x.id === 'R2b_unsourced_old_member_noncontiguous'), { source } = await applyEntry(p);
     expect(await firstFailure(source)).toEqual(G('G3', 'COVERAGE_MISMATCH'));
   });
-  it('D1: unsourced complete old coverage is non-empty and matches the CaseSource member count', async () => {
+  it('D1 (checkpoint A): unsourced complete old coverage matches every CaseSource member count, with no emptiness rule', async () => {
+    // An empty list fails here only because a CaseSource of the same model has one member.
     const empty = await edited('two_case_preparation_failure_synthetic', s => { s.retained_precision.body.product_attempts[1].operational.old = []; });
     expect(await firstFailure(empty.source, empty.invocation)).toEqual(G('G3', 'COVERAGE_MISMATCH'));
+    // (No corpus base lacks a CaseSource, so the no-inventory branch, left to G8, is not exercised here.)
     const longer = await edited('two_case_preparation_failure_synthetic', s => { const old = s.retained_precision.body.product_attempts[1].operational.old; old.push({ ...structuredClone(old[0]), member: old.length }); });
     expect(await firstFailure(longer.source, longer.invocation)).toEqual(G('G3', 'COVERAGE_MISMATCH'));
   });
@@ -348,6 +350,30 @@ describe('review repair 07: decisions without a probe (reader-local)', () => {
     rejects(w => { w.force_scale_exponent = 0; });
     rejects(w => { w.trigger.tag = 'evaluation'; });
     rejects(w => { w.trigger.error = { tag: 'other' }; });
+  });
+  it('D6a (checkpoint A): untyped diagnostic_refs are unique and resolve, without naming the case; typed references stay strict', () => {
+    const fixture = structuredClone(corpus.cases[0]), body = fixture.source.retained_precision.body, o = body.ordinary_attempts[0];
+    const other = { ...structuredClone(fixture.source.diagnostics[0]), id: 'diagnostic:i64:model-level', affected_refs: null };
+    fixture.source.diagnostics.push(other);
+    const run = (edit: (b: any) => void) => { const b = structuredClone(body); edit(b); let e: any; try { ordinaryAttempts(b, fixture.source); } catch (x) { e = x; } return e ? { gate: e.gate, code: e.code } : 'pass'; };
+    expect(run(b => { b.ordinary_attempts[0].diagnostic_refs.push(other.id); })).toBe('pass');
+    expect(run(b => { b.ordinary_attempts[0].diagnostic_refs.push('diagnostic:i64:absent'); })).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
+    expect(run(b => { b.ordinary_attempts[0].diagnostic_refs.push(o.diagnostic_refs[0]); })).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
+    expect(run(b => { b.ordinary_attempts[0].diagnostic_refs.push(other.id); b.ordinary_attempts[0].formation.d5_diagnostic_ref = other.id; })).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
+  });
+  it('D6b (checkpoint A): a selected case\'s quality is sensitive, unresolved or failed', () => {
+    const fixture = structuredClone(corpus.cases[0]), body = fixture.source.retained_precision.body;
+    const run = (quality: string) => { const s = structuredClone(fixture.source); s.numerical_quality.cases[0].solve_quality = quality; const b = structuredClone(body); if (b.ordinary_attempts[0].initial.kind === 'report') b.ordinary_attempts[0].initial.outcome = quality; let e: any; try { ordinaryAttempts(b, s); } catch (x) { e = x; } return e ? e.code : 'pass'; };
+    for (const q of ['sensitive', 'unresolved', 'failed']) expect(run(q), q).toBe('pass');
+    for (const q of ['checks_passed', 'not_assessed']) expect(run(q), q).toBe('RETAINED_PRECISION_ATTEMPT_MISMATCH');
+  });
+  it('native class: each dangling reference reports the code of the check that follows it', async () => {
+    const build = await edited('two_case_synthetic', s => { s.retained_precision.body.cases[0].run.records[0].shared_build_ref = 99; });
+    expect(await firstFailure(build.source, build.invocation)).toEqual(G('G5', 'WORK_MISMATCH'));
+    const record = await edited('two_case_synthetic', s => { s.retained_precision.body.cases[0].run.attempts[0].candidate_record = 9; });
+    expect(await firstFailure(record.source, record.invocation)).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
+    const group = await edited('two_case_synthetic', s => { s.retained_precision.body.cases[1].run.origin.group = 9; });
+    expect(await firstFailure(group.source, group.invocation)).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
   });
   it('D6d/RV81-N2: legacy_source.work_ref is a reference check reported as ATTEMPT', () => {
     const fixture = structuredClone(corpus.cases[0]), body = fixture.source.retained_precision.body;

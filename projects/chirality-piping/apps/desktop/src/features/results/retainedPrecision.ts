@@ -232,9 +232,10 @@ function coverage(b: Obj, source: Obj, invocation?: Obj): Map<string, Obj[]> {
       // unavailable result are the G5 association (F1:97, 130-131; C3:304).
       if (a.operational.old_coverage === 'captured_prefix') fail(!pm.length && !fresh.length);
       if (a.source_ref !== null) { const s = b.sources[a.source_ref]; fail(s && same(old.map((m: Obj) => m.member), s.id_maps.members.map((m: Obj) => m.kernel_member))); }
-      // D1: unsourced complete old coverage is non-empty and matches every CaseSource's member count
-      // (one model); with no CaseSource, G8 compares it with the invocation's members.
-      else if (a.operational.old_coverage === 'complete') fail(old.length >= 1 && b.sources.every((s: Obj) => s.id_maps.members.length === old.length));
+      // D1 (checkpoint A correction): unsourced complete old coverage matches every CaseSource's member
+      // count (one model). No emptiness rule: no native rejection of an empty inventory is cited. With no
+      // CaseSource, G8 compares the list with the invocation's members.
+      else if (a.operational.old_coverage === 'complete') fail(b.sources.every((s: Obj) => s.id_maps.members.length === old.length));
       // C3 G3 row-index coverage (ruling): every index names a hull-projected row of this case,
       // strictly ascending. A valid sorted subset on Ready is the later G5 exact-set check.
       if (a.proof) { const indices = a.proof.projection_outcomes.map((x: Obj) => x.row_index), caseRows = rows.get(ids[i])!; fail(indices.every((x: number, j: number) => x < caseRows.length && !HULL_EXCLUDED.has(caseRows[x].kind) && (!j || x > indices[j - 1]))); }
@@ -355,19 +356,23 @@ export function nativeSchedule(run: Obj, source: Obj): void {
 
 /** G5 class 1 (C3:304): native schedule and origin, with native WORK. Ruling D3: a class containing an
  * ATTEMPT defect reports ATTEMPT, and reports WORK only when it has none, so native WORK predicates are
- * deferred to the end of the class. A structural crash reports WORK if a WORK defect was recorded
- * (the likely cause), otherwise ATTEMPT. @internal Exported only for reader-logic tests. */
+ * deferred to the end of the class. Every reference the class follows is resolved explicitly and fails
+ * with the code of the check that follows it (ATTEMPT lookups through `at`, build references through a
+ * deferred WORK predicate). The catch-all is only a fail-closed fallback with the class code ATTEMPT.
+ * @internal Exported only for reader-logic tests. */
 export function nativeRuns(b: Obj): void {
   const deferred: boolean[] = [];
   try { nativeClass(b, ok => { deferred.push(!!ok); }); } catch (error) {
     if (error instanceof RetainedPrecisionError) throw error;
-    throw new RetainedPrecisionError('G5', 'RETAINED_PRECISION_' + (deferred.includes(false) ? 'WORK_MISMATCH' : 'ATTEMPT_MISMATCH'));
+    throw new RetainedPrecisionError('G5', 'RETAINED_PRECISION_ATTEMPT_MISMATCH');
   }
   need(deferred.every(Boolean), 'G5', 'WORK_MISMATCH');
 }
 function nativeClass(b: Obj, work: (ok: unknown) => void): void {
   const fail = (ok: unknown, code = 'ATTEMPT_MISMATCH') => need(ok, 'G5', code);
   const checked = (n: bigint): bigint => { work(n >= 0n && n <= SAFE); return n; };
+  // A build reference is followed by WORK checks (slot, group, work, stages), so a dangling one fails WORK.
+  const buildOf = (bi: unknown): Obj | null => Number.isSafeInteger(bi) && (bi as number) >= 0 && (bi as number) < b.builds.length ? b.builds[bi as number] : null;
   const runs: Obj[] = b.cases.filter((c: Obj) => c.run).map((c: Obj) => c.run).sort((a: Obj, z: Obj) => a.id - z.id);
   fail(same(b.calls.flatMap((c: Obj) => c.run_refs), sequence(runs.length)));
   const live = new Map<number, Map<string, number>>(); const seenBuilds = new Set<number>();
@@ -416,7 +421,7 @@ function nativeClass(b: Obj, work: (ok: unknown) => void): void {
         fail(r.precision !== 1024 || r.role === 'verification');
         for (const [field, phase, flag, cost, prefix] of [['shared_build_ref', 'shared', 'shared_built_here', 'shared_lme', 's'], ['verification_shared_build_ref', 'verification_shared', 'verification_shared_built_here', 'verification_shared_lme', 'v']]) {
           const bi = r[field]; if (bi === null) { work(!w[flag] && w[cost] === 0); continue; }
-          const build = Number.isSafeInteger(bi) && bi >= 0 && bi < b.builds.length ? b.builds[bi] : null;
+          const build = buildOf(bi);
           if (!build) { work(false); continue; }
           const slot = prefix + r.precision;
           work(build.group === run.origin.group && build.slot === slot && build.work === w[cost]);
@@ -430,7 +435,7 @@ function nativeClass(b: Obj, work: (ok: unknown) => void): void {
           } else work(cache.get(slot) === bi && build.state !== 'budget_failure');
         }
         for (const stage of Object.keys(w.shared_stages)) {
-          const sharedBuild = r.shared_build_ref === null ? null : b.builds[r.shared_build_ref], verificationBuild = r.verification_shared_build_ref === null ? null : b.builds[r.verification_shared_build_ref];
+          const sharedBuild = buildOf(r.shared_build_ref), verificationBuild = buildOf(r.verification_shared_build_ref);
           const shared = sharedBuild ? uint(sharedBuild.stages[stage]) : 0n, verification = verificationBuild ? uint(verificationBuild.stages[stage]) : 0n;
           work(uint(w.shared_stages[stage]) === shared + verification);
         }
@@ -469,7 +474,7 @@ function nativeClass(b: Obj, work: (ok: unknown) => void): void {
       fail((terminal.kind === 'selected') === (terminal.reason === null));
       if (terminal.kind === 'selected') {
         const last = at(attempts, attempts.length - 1, 'G5', 'ATTEMPT_MISMATCH'); fail(last.outcome.kind === 'accepted' && last.verification !== null);
-        const cr = records[last.candidate_record], vr = records[last.verification.record];
+        const cr = at(records, last.candidate_record, 'G5', 'ATTEMPT_MISMATCH'), vr = at(records, last.verification.record, 'G5', 'ATTEMPT_MISMATCH');
         fail(vr.outcome.kind === 'verified' && last.verification.phase === 'completed' && last.verification.reason === null && vr.verification !== null);
         work(charge <= uint(b.work.case_limit) && current <= uint(b.work.invocation_limit));
         if (c.status === 'selected') {
@@ -499,8 +504,8 @@ function nativeClass(b: Obj, work: (ok: unknown) => void): void {
   b.calls.forEach((call: Obj, ci: number) => {
     const order: string[] = [], members = new Map<string, number[]>(), runGroups: [Obj, number][] = [];
     call.run_refs.forEach((ri: number, pos: number) => {
-      const run = runs[ri]; if (run.origin.group === null) return;
-      const si = call.source_refs[pos], key = b.sources[si].stiffness_sha256;
+      const run = at(runs, ri, 'G5', 'ATTEMPT_MISMATCH'); if (run.origin.group === null) return;
+      const si = call.source_refs[pos], key = at(b.sources, si, 'G5', 'ATTEMPT_MISMATCH').stiffness_sha256;
       if (!members.has(key)) { order.push(key); members.set(key, []); }
       members.get(key)!.push(si); runGroups.push([run, order.indexOf(key)]);
     });
@@ -1142,7 +1147,8 @@ export function ordinaryAttempts(b: Obj, source: Obj): void {
       const d = ds.find(d => d.id === ref); fail(d && d.affected_refs?.includes(cid) && a.diagnostic_refs.includes(ref));
     };
     fail(b.material_bases[a.material_basis_ref]?.case_indices.includes(ci));
-    fail(unique(a.diagnostic_refs)); for (const ref of a.diagnostic_refs) diagnostic(ref, cid);
+    // D6a (checkpoint A): untyped diagnostic_refs are unique and resolve; they need not name the case.
+    fail(unique(a.diagnostic_refs) && a.diagnostic_refs.every((ref: string) => ds.some(d => d.id === ref)));
     if (a.initial.kind === 'report') { diagnostic(a.initial.report_diagnostic_ref, cid, true); fail(a.diagnostic_refs.includes(a.initial.report_diagnostic_ref) && a.initial.outcome === q.solve_quality); }
     if (a.initial.kind === 'structural_failure') diagnostic(a.initial.diagnostic_ref, cid);
     if (a.w2.kind !== 'not_triggered') {
