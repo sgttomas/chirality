@@ -6439,3 +6439,59 @@ I50 continues the already selected two-mode component. The independent numerical
 review and the later frozen-code review have separate purposes; a mathematically
 real obstruction does not excuse an implementation/custody defect, and a clear
 implementation cannot turn truthful refusal into public availability.
+
+
+## Named torsion obstruction accepted at its proved scope (ROOT, 2026-10-03 UTC)
+
+ROOT accepts the independent torsion obstruction and holds the planned simple native-primary projection because it cannot satisfy the selected cover at the checked scales.
+
+RV66's complete REVIEW/RETURN is preserved at `c0c7fa9e0f`. ROOT read it and
+verified the six payloads and all manifested external files. Its “Fixed-scale
+proof, with proposed-value dependence” proves no common real SharperExact center
+and no binary64 SharperBinary64 center at the sparse scale, the scale reconstructed
+from captured dense ordinary rows, and the specified algebraic native-primary
+projection scale. Absolute classification cannot escape at those normal scales.
+The source/K separation exceeds 1.44415e-14 Pa; the exact positive margins and
+units are in that section and RESULTS.json. Proposed-value dependence is included.
+
+Accept this bounded result and the source/ledger/statics binding. The original
+dense FIRST_RUN had no verdict; its scale here is independently reconstructed,
+not an observed certificate result. The hypothetical projection is not an executed
+producer. The successful artificial large-scale scalar control expressly limits
+the claim: no arbitrary-future-scale or complete-producer impossibility, false
+K publication, false public product publication or automatic availability breach
+is established. No public truth, criterion, scale policy or replacement fixture
+is selected. Tightening an interval cannot remove the proved point separation.
+
+## Named component frozen for code review (ROOT, 2026-10-03 UTC)
+
+ROOT preserves the complete two-mode private component for independent review while keeping its numerical refusal distinct from a publishing milestone.
+
+I50 candidate `8104a4fedd` is committed and pushed on the component branch, not
+accepted or merged into NUM. ROOT read every production/test diff and RETURN,
+verified all seven maintained files, the ten-file packet and all 73 external bulk
+files (12,147,592 bytes), and checked 950 other baseline files unchanged. The
+shared fixture equals the original literal exactly; PP lib.rs changes only the
+reviewed three-line observer hook. Verification is at `59a85f6165`. Author RETURN
+“Actual result and corrected census” records complete sparse/dense verdicts,
+passing G5a/observables and numerical refusal; no public route changed.
+
+Same RV65 received frozen-code review at 07:37:48Z: checkpoint 07:52:48Z, cutoff
+08:12:48Z, sealed return 08:22:48Z. Its fresh focused runtime has passed and is
+released; source/evidence review continues against the fixed candidate. ROOT's
+local initialization-work and counter-range questions are explicitly assigned.
+An early local-accounting finding is not treated as a clear review. Any repair
+will precede bounded acceptance and receive the same reviewer's confirmation.
+
+## Decision-boundary comparison continued (ROOT, 2026-10-03 UTC)
+
+ROOT has continued I48's authority comparison so the next numerical step follows the actual owner mandate rather than an assumed permission gate.
+
+The same TASK received brief `39c1cfb2eb` at 07:40:59Z: checkpoint 07:48:59Z,
+cutoff 07:58:59Z, return 08:05:59Z. It compares adopted public promises, the
+selected sufficient private certificate, actual first-case requirements and
+ROOT's delegated correctness/formulation authority. It may recommend a concrete
+next design dependency or identify a genuinely owner-held choice, but selects
+neither. The selected cover remains binding until a replacement is independently
+derived and selected. Code acceptance, numerical obstruction and public-meaning
+decisions remain distinct; no new source law or availability exception follows.

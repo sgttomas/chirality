@@ -34,21 +34,19 @@ final joined closure remain.
 
 ## Running now
 
-Both material-coverage backchecks are clear and accepted. They establish no false
-passing predicate in the fixed captured cases; unchanged UX has a real miss and UZ
-has a conservative refusal. I50 is implementing the support component with both RV65 plan corrections and
-the independently reviewed dense-observation completion (seven files).
-Receipt: 06:40:47Z; checkpoint: 06:55:47Z; first actual named result by
-07:15:47Z; cutoff: 07:30:47Z; sealed return: 07:40:47Z. It holds the sole focused
-compiler lane on the M5 Max under existing memory guard PID 5387. Sparse has a complete refusing verdict; dense observation binding is being
-completed. RV66 independently checks the frozen torsional dual-readout finding:
-receipt 07:05:35Z, checkpoint 07:15:35Z, cutoff 07:25:35Z, seal 07:35:35Z.
-Projection remains held; frozen-code review follows. Original evidence is unchanged.
+I50's two-mode component is frozen at `8104a4fedd` on the component branch.
+RV65 is reviewing its code and evidence (return by 08:22:48Z); focused tests pass,
+but an initialization-work accounting finding remains open. Its runtime is released.
+RV66's torsion obstruction is independently checked and accepted at its fixed-scale
+and algebraic-projection scope. I48 is checking the exact next decision/authority
+boundary (return by 08:05:59Z). No public projection is selected.
+M5 Max, existing memory guard PID 5387; original evidence is preserved.
 
 ## Next
 
-Carry I50 through the component checkpoints, then have RV65 review the frozen
-diff and actual evidence. Tightening is deferred unless it advances that case.
+Close the code-review findings with I50 and the same reviewer. Use I48’s source
+warrants to choose the smallest next design dependency; a new proof needs independent
+review before reliance. The simple projection is blocked at its checked scales.
 Keep one reviewer through corrections and obtain fresh independent PR review.
 Bulk new evidence stays in scratch with committed hashes, sizes and locations.
 
