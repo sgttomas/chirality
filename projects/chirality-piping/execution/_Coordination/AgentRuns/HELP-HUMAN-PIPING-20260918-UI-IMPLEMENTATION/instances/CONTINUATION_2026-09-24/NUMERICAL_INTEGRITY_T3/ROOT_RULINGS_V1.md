@@ -7308,3 +7308,25 @@ fresh RV75 ordinary-bound review. Old deadlines and partial checkpoints are
 retained rather than reset retrospectively. The coverage gap and synthetic native
 digest placeholders are explicit. Unknown coverage cannot become an eligibility
 pass. Complete review/parity and all public/resource/native/main holds remain.
+
+
+## Corrected ordinary-memory source terms accepted at their partial scope (ROOT, 2026-10-03 UTC)
+
+ROOT accepts the corrected ordinary-memory formulas because fresh independent review has verified the combined source derivation and its explicit limits.
+
+The accepted basis is I54 ordinary_bound_02 at `71615e34b8` together with
+correction_03 at `e21e248f42`. Fresh RV75's complete combined review sealed
+at 19:16:02Z independently confirms all four corrections and the unaffected
+claim scope. This is not a claim that interrupted RV73 completed its backcheck.
+ROOT read the entire original/corrected derivation and full REVIEW, and verified
+its sealed payload/external hashes. verification/rv75_ordinary_bound owns those
+checks; RV75 REVIEW owns the arithmetic counts and numerical component values.
+
+The correction must accompany every use of the original. Stable source sorting,
+Expansion temporary/reallocation ownership, ordinary stress/status helpers and
+formation-guard bodies/maps are now included within the stated source families.
+This does not supply a complete ordinary or DirectPp total, M or fit. Final build/
+layout association, nested input capacities/construction, H_formation128, complete
+text grammar, generic deep legacy-exact, stack and whole producer/publication/
+caller composition remain genuine gaps. No further closure task is started here
+because the owner requested a graceful handoff.
