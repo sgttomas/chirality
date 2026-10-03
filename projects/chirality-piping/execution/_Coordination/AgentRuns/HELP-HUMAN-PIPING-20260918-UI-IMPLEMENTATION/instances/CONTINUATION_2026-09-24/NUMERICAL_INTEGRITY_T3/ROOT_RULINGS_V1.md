@@ -7508,3 +7508,38 @@ ROOT verified the hashes against I61's RETURN and committed the work on its own 
 3. **The extra G1/G2 guards in TypeScript** are accepted as defence in depth. The reviewer confirms they cannot change any first-failure order.
 
 This is source-level verification only. Reader acceptance still waits for snapshot 05 and an independent review.
+
+## Snapshot-05 plan approved in two parts; reader parity rules; F1a repair committed (ROOT, 2026-10-03 UTC)
+
+**The F1a repair.** It is committed on the coverage branch as `e0fc33b4f7`, after I61's coverage commit `c618675e84`, and the branch is pushed.
+- `tests/formation_check_runtime.rs` is byte-identical to main again.
+- product_physics `--lib` now fails only the known Mac test `s11g t13` (455 passed); `retained_precision_admission` 5 passed; `formation_check_runtime` 5 passed.
+- RV77 is reviewing `c618675e84` and will confirm this repair too.
+
+**I63, the Rust coverage checks, verified.**
+- `retained_precision.rs` is at `ba8a08b590` and its test file at `3b9e6f9029`; `lib.rs` is unchanged.
+- ROOT's own run: 11 passed. All 77 corpus mutations match, and eligibility stays held.
+
+**Reader parity rules** (all three readers; snapshot 05 pins each with shared mutations):
+1. **G5a rebuilds the full canonical layout from the source maps and requires equality.** This is I63's literal reading of I57 §2. A relabelled, dropped, reordered or foreign-body layout row fails at G5a with SCALE_MISMATCH in every reader.
+2. **A non-null empty coverage roster fails G3,** because I57 §1 has no empty complete vector.
+3. **The verification-record bound rule** is the one already ruled: one entry per body, in order, non-null if and only if `has_data`.
+
+**I62's snapshot-05 plan (`SNAPSHOT_05_PLAN.md`) is approved, in two parts:**
+- **C1a, first:**
+  - the six promotions, plus mutations pinning the three parity rules above;
+  - the cancelled ±x loads base, which is natively witnessed;
+  - the unavailable/failure-row template, with the complete-coverage and lane-failure rows;
+  - the failure-prefix bases (PP:3141–3249);
+  - the Python G5a direct checks for unavailable attempts, with Python aligned to the parity rules.
+- **C1b, after C1a is verified:** two bodies, two load cases, and the p512 ladder.
+
+**Scope decisions:**
+- **Absent kind** is dropped as not natively producible, and replaced by "kind present with no non-input row", as I62 proposes.
+- **L = 0** is built only if C1 confirms that the preview producer admits a node no member references. Otherwise it is deferred and recorded.
+- **Defensive-only rows** (a certificate failing before the summary; unequal helper/new prefixes) are built with the resource/accounting-fault trigger, labelled synthetic.
+- **The "must pass" undetectable variants** are shared corpus entries, so all three readers run them.
+- **Floor and ladder checks: no invented contract.**
+  - The p128 ladder start is enforced only where the existing selected contract (C1/C3 with 06/07/08) already requires it, at that contract's gate.
+  - The floor equality Φ = `phi_512(ê)` likewise. I57 adds no floor formula.
+  - If the contract does not already require one of these, readers keep consuming it as attested, and it is recorded as a candidate contract amendment for ROOT to route. C1a reports the contract citations.
