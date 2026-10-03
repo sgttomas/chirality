@@ -497,3 +497,287 @@ fn prepared_trace_actual_completed_k_and_failed_source_remain_an_entered_prefix(
     assert!(view.lanes[1].as_ref().unwrap().work.view_data_capacity>0);
     assert!(view.projection_outcomes.is_empty() && !view.completion_merged);
 }
+
+// ---------------------------------------------------------------- I61 summary coverage
+// Actual native runs of the K4 model inventory (models.txt). Each vector is the
+// proof's own summary_coverage_data on the selected owner; the trace only borrows it.
+fn i61_model(name:&str)->super::super::super::source::PrimitiveSource {
+    use super::super::super::source::*;
+    let hf=|s:&str|f64::from_bits(u64::from_str_radix(s,16).unwrap());
+    let dof=|n:&str,c:&str|Dof{node:n.parse().unwrap(),component:Component::from_index(c.parse().unwrap())};
+    let mut parts=SourceParts::default();let mut inside=false;
+    for line in include_str!("models.txt").lines() {
+        let f:Vec<&str>=line.split_whitespace().collect();
+        if f.is_empty(){continue;}
+        if f[0]=="model"{if inside{break;}inside=f[1]==name;continue;}
+        if !inside{continue;}
+        match f[0] {
+            "node"=>parts.nodes.push([hf(f[1]),hf(f[2]),hf(f[3])]),
+            "member"=>parts.members.push(StraightMember{id:f[1].parse().unwrap(),node_i:f[2].parse().unwrap(),node_j:f[3].parse().unwrap(),
+                elastic_modulus:hf(f[4]),shear_modulus:hf(f[5]),area:hf(f[6]),second_moment_y:hf(f[7]),second_moment_z:hf(f[8]),
+                torsion_constant:hf(f[9]),y_reference:[hf(f[10]),hf(f[11]),hf(f[12])]}),
+            "spring"=>parts.springs.push(Spring{id:f[1].parse().unwrap(),dof:dof(f[2],f[3]),stiffness:hf(f[4])}),
+            "constraint"=>parts.constraints.push(Constraint{dof:dof(f[1],f[2]),value:hf(f[3])}),
+            "load"=>parts.loads.push(NodalLoad{dof:dof(f[1],f[2]),value:hf(f[3]),source_id:f[4].to_string()}),
+            "expect"|"seed"|"end"=>{},
+            other=>panic!("{name}: unsupported model line {other}"),
+        }
+    }
+    assert!(inside,"{name}");PrimitiveSource::new(parts).unwrap()
+}
+fn i61_actual(name:&str)->(Box<adaptive::RetainedSolve>,Vec<ProductSummaryCoverage>) {
+    let mut meter=adaptive::InvocationMeter::new(u64::MAX);
+    let owner=match adaptive::solve_case(i61_model(name),adaptive::CaseLimit::new(u64::MAX),&mut meter) {
+        adaptive::CaseOutcome::Selected(v)=>v,other=>panic!("{name}: {other:?}")};
+    let view=owner.source_bridge_view(owner.source(),&owner.evidence().source_encoding,owner.selected_precision()).result.unwrap();
+    let mut spent=ProductCertificateSpent::new(&[]);
+    let coverage=summary_coverage_data(&owner,view.data(),&mut spent).unwrap();
+    drop(view);(owner,coverage)
+}
+fn i61_check(owner:&adaptive::RetainedSolve,coverage:Vec<ProductSummaryCoverage>)->Result<(),ProductFailure> {
+    let mut proof=ProductCertificateSpent::new(&[]);proof.coverage=coverage;
+    let mut copies=TraceCopyWork::default();
+    let trace=proof.typed_trace(&mut copies);
+    assert_eq!(trace.summary_coverage.as_ptr(),proof.coverage.as_ptr(),"borrowed proof slice, not a copy");
+    trace.check_summary_coverage(owner,&mut copies)
+}
+#[test]
+fn i61_actual_native_coverage_is_borrowed_and_all_nine_flags_rederive() {
+    // §5 controls: zero/no-data body (ALL-ZERO-BODY body 1); native p512 (SKEW-K1E-60)
+    // charge = force/moment stop; native p128/p256 charge = estimate. Actual native runs.
+    let mut seen=std::collections::BTreeSet::new();
+    for name in ["ALL-ZERO-BODY","SKEW-K1E-60","SKEW-K1E-28","SKEW6-K1E-12","TWO-SPAN","PRESCRIBED","REACTIONS-ONLY","ZERO-TORSION-345"] {
+        let (owner,coverage)=i61_actual(name);let p=owner.selected_precision();seen.insert(p);
+        assert_eq!(coverage.len(),owner.source().body_count() as usize);
+        for (i,c) in coverage.iter().enumerate() {
+            assert_eq!(c.body as usize,i);
+            if p==512 {assert_eq!(c.charge,[c.stop[2],c.stop[3]],"{name}");} else {assert_eq!(c.charge,c.estimate,"{name}");}
+        }
+        assert_eq!(owner.evidence().floor.is_some(),p==512,"{name}");
+        let mut copies=TraceCopyWork::default();
+        let mut proof=ProductCertificateSpent::new(&[]);proof.coverage=coverage.clone();
+        let before=copies.events;let trace=proof.typed_trace(&mut copies);
+        trace.check_summary_coverage(&owner,&mut copies).unwrap();
+        assert!(copies.events.exact().unwrap()>before.exact().unwrap()+3*coverage.len() as u64,"per-body projection accounted");
+        println!("I61_ACTUAL {name} p={p} floor={:?} coverage={:?} copies={:?}",owner.evidence().floor,coverage,copies);
+        if name=="ALL-ZERO-BODY" {
+            assert_eq!(p,128);assert_eq!(coverage.len(),2);
+            assert!(coverage[0].has_data);
+            assert!(!coverage[1].has_data,"the unloaded body keeps its own entry");assert_eq!(coverage[1].stop,[false;4]);
+        }
+        if name=="SKEW-K1E-60" {assert_eq!(p,512);}
+    }
+    assert!(seen.contains(&512) && seen.contains(&128));
+    println!("I61_LAYOUT ProductProofTrace={} CoverageBody={} CoverageFacts={} ProductSummaryCoverage={} coordinate={}",
+        std::mem::size_of::<ProductProofTrace<'static>>(),std::mem::size_of::<CoverageBody>(),std::mem::size_of::<CoverageFacts>(),
+        std::mem::size_of::<ProductSummaryCoverage>(),std::mem::size_of::<[f64;3]>());
+}
+#[test]
+fn i61_rederivation_refuses_partial_reordered_and_mismatched_vectors() {
+    // Synthetic tamper of actual native vectors. Every derivable bit and identity
+    // must be refused; stop/has_data are attested and are not derivable at p<512.
+    for name in ["ALL-ZERO-BODY","SKEW-K1E-60"] {
+        let (owner,coverage)=i61_actual(name);let p=owner.selected_precision();
+        i61_check(&owner,coverage.clone()).unwrap();
+        let mut dropped=coverage.clone();dropped.pop();
+        assert_eq!(i61_check(&owner,dropped).unwrap_err().category(),"association");
+        assert_eq!(i61_check(&owner,Vec::new()).unwrap_err().category(),"association","empty is null in PP, never checked complete");
+        let mut extra=coverage.clone();extra.push(*coverage.last().unwrap());
+        assert!(i61_check(&owner,extra).is_err());
+        if coverage.len()>1 {let mut swapped=coverage.clone();swapped.swap(0,1);assert!(i61_check(&owner,swapped).is_err());}
+        for b in 0..coverage.len() {
+            for bit in 0..4 {
+                let mut m=coverage.clone();
+                if bit<2 {m[b].estimate[bit]^=true;} else {m[b].charge[bit-2]^=true;}
+                assert_eq!(i61_check(&owner,m).unwrap_err().category(),"association","{name} body {b} bit {bit}");
+            }
+            let mut m=coverage.clone();m[b].body^=1;assert!(i61_check(&owner,m).is_err());
+            if p==512 {
+                for k in 2..4 {let mut m=coverage.clone();m[b].stop[k]^=true;assert!(i61_check(&owner,m).is_err(),"{name} p512 stop {k}");}
+            }
+        }
+    }
+}
+#[test]
+fn i61_synthetic_rederivation_precision_floor_extent_and_absent_kinds() {
+    // Synthetic public facts (labelled): p512 zero/positive floor, p128/p256 under
+    // the fixed 1024 proof, L=0 against L!=0, and absent kinds.
+    let facts=|present:[bool;4],extent:f64,e:[f64;2],floor:Option<[f64;2]>,precision:u32|CoverageFacts{present,
+        extent_bits:extent.to_bits(),resolution_bits:[e[0].to_bits(),e[1].to_bits()],floor_bits:floor.map(|f|[f[0].to_bits(),f[1].to_bits()]),precision};
+    let body=|stop:[bool;4],has_data:bool|CoverageBody{body:3,stop,has_data};
+    let all=[true;4];
+    // p512, actual zero floor: charge is the stop pair even where estimate differs.
+    let c=rederive_coverage(body([true,true,false,true],true),&facts(all,2.0,[1.0,0.0],Some([0.0,0.0]),512)).unwrap();
+    assert_eq!(c.estimate,[true,true]);assert_eq!(c.charge,[false,true]);assert_eq!((c.body,c.has_data),(3,true));
+    let c=rederive_coverage(body([false;4],false),&facts(all,2.0,[1.0,1.0],Some([0.0,0.0]),512)).unwrap();
+    assert_eq!(c.charge,[false,false]);assert_ne!(c.charge,c.estimate);
+    // p512, positive floor forces its present kind's stop; charge still equals stop.
+    assert!(rederive_coverage(body([false;4],false),&facts(all,2.0,[0.0,0.0],Some([1.0,0.0]),512)).is_err());
+    let c=rederive_coverage(body([false,false,true,false],false),&facts(all,2.0,[0.0,0.0],Some([1.0,0.0]),512)).unwrap();
+    assert_eq!(c.charge,[true,false]);assert_eq!(c.estimate,[false,false]);
+    // p128/p256: charge = estimate whatever the stop flags; proof precision 1024 is not an input.
+    for p in [128,256] {
+        let c=rederive_coverage(body([true;4],true),&facts(all,2.0,[0.0,1.0],None,p)).unwrap();
+        assert_eq!(c.estimate,[true,true]);assert_eq!(c.charge,c.estimate);
+        let c=rederive_coverage(body([false;4],false),&facts(all,0.0,[0.0,1.0],None,p)).unwrap();
+        assert_eq!(c.estimate,[false,true],"L=0 creates no coupling");assert_eq!(c.charge,c.estimate);
+        assert!(rederive_coverage(body([false;4],false),&facts(all,1.0,[0.0,0.0],Some([0.0,0.0]),p)).is_err(),"no floor below p512");
+    }
+    for p in [512,1024,64] {assert!(rederive_coverage(body([false;4],false),&facts(all,1.0,[0.0,0.0],None,p)).is_err());}
+    // Absent kinds: no estimate without layout presence and no stop on an absent kind.
+    let some=[true,true,false,true];
+    let c=rederive_coverage(body([true,false,false,false],true),&facts(some,2.0,[1.0,1.0],None,128)).unwrap();
+    assert_eq!(c.estimate,[false,true]);
+    assert!(rederive_coverage(body([false,false,true,false],false),&facts(some,2.0,[1.0,1.0],None,128)).is_err());
+    let c=rederive_coverage(body([false;4],false),&facts([false;4],0.0,[0.0,0.0],None,256)).unwrap();
+    assert_eq!((c.estimate,c.charge),([false;2],[false;2]));
+}
+
+// ---------------------------------------------------------------- RV77 reviewer tests (RV77-S1)
+// Adopted verbatim from REVIEW_RV77/coverage_producer_01/tests/rv77_enum.rs (body unchanged;
+// wrapped as an inline module of this test file instead of a #[path] child of final_case.rs).
+mod rv77_enum {
+// RV77 independent enumeration (reviewer-owned; not part of the candidate).
+// Included into final_case.rs only in RV77's private archive copy, as
+//   #[cfg(test)] #[path = "<scratch>/rv77_enum.rs"] mod rv77_enum;
+// The oracle is RV77's own row-level transcription of native
+// summary_coverage_data (final_case.rs at c618675e84, lines 1461-1515), written
+// from the source, not from I61's tests or rederive_coverage.
+use super::*;
+
+#[derive(Clone, Copy)]
+struct Row { kind: usize, input: bool, nonzero: bool }
+
+/// RV77 model of native summary_coverage_data for one body.
+fn native_model(body: u32, rows: &[Row], extent: f64, e: [f64; 2], floor: Option<[f64; 2]>, p: u32, has_data: bool)
+    -> ProductSummaryCoverage {
+    let mut positive = [false; 4];
+    let mut present = [false; 4];
+    for r in rows {
+        present[r.kind] = true;
+        if !r.input && r.nonzero { positive[r.kind] = true; }
+    }
+    if extent != 0.0 {
+        positive = [positive[0] || positive[1], positive[0] || positive[1], positive[2] || positive[3], positive[2] || positive[3]];
+    }
+    if let Some(f) = floor { positive[2] |= f[0] > 0.0; positive[3] |= f[1] > 0.0; }
+    let mut stop = [false; 4];
+    for r in rows { stop[r.kind] |= positive[r.kind] || r.nonzero; }
+    let mut hats = [e[0] > 0.0, e[1] > 0.0];
+    if extent != 0.0 { hats = [hats[0] || hats[1]; 2]; }
+    let estimate = [present[2] && hats[0], present[3] && hats[1]];
+    let charge = if p == 512 { [present[2] && positive[2], present[3] && positive[3]] } else { estimate };
+    ProductSummaryCoverage { body, stop, estimate, charge, has_data }
+}
+
+fn facts_of(rows: &[Row], extent: f64, e: [f64; 2], floor: Option<[f64; 2]>, p: u32) -> CoverageFacts {
+    let mut present = [false; 4];
+    for r in rows { present[r.kind] = true; }
+    CoverageFacts { present, extent_bits: extent.to_bits(), resolution_bits: [e[0].to_bits(), e[1].to_bits()],
+        floor_bits: floor.map(|f| [f[0].to_bits(), f[1].to_bits()]), precision: p }
+}
+
+/// Row types per kind: bit0 non-input zero, bit1 non-input nonzero, bit2 input zero, bit3 input nonzero.
+fn rows_of(masks: [u8; 4]) -> Vec<Row> {
+    let mut v = Vec::new();
+    for k in 0..4 {
+        for t in 0..4 {
+            if masks[k] & (1 << t) != 0 { v.push(Row { kind: k, input: t >= 2, nonzero: t % 2 == 1 }); }
+        }
+    }
+    v
+}
+
+const EXTENTS: [f64; 3] = [0.0, 2.0, 5e-324];
+const ES: [f64; 2] = [0.0, 1.0];
+fn modes() -> Vec<(u32, Option<[f64; 2]>)> {
+    let mut m = vec![(128, None), (256, None)];
+    for f in [0.0, 3.0] { for g in [0.0, 3.0] { m.push((512, Some([f, g]))); } }
+    m
+}
+
+#[test]
+fn rv77_genuine_domain_rederives_bit_for_bit_and_is_never_refused() {
+    // Genuine domain: recover::layout marks only displacement rows input-derived,
+    // so force/moment masks use only bits 0..1.
+    let (mut cases, mut p512, mut differ_est_charge) = (0u64, 0u64, 0u64);
+    for m0 in 0..16u8 { for m1 in 0..16u8 { for m2 in 0..4u8 { for m3 in 0..4u8 {
+        let rows = rows_of([m0, m1, m2, m3]);
+        for &x in &EXTENTS { for &ef in &ES { for &em in &ES { for (p, floor) in modes() { for hd in [false, true] {
+            let native = native_model(7, &rows, x, [ef, em], floor, p, hd);
+            let facts = facts_of(&rows, x, [ef, em], floor, p);
+            let payload = CoverageBody { body: 7, stop: native.stop, has_data: native.has_data };
+            let got = rederive_coverage(payload, &facts)
+                .unwrap_or_else(|e| panic!("genuine refused {:?} rows={m0},{m1},{m2},{m3} x={x} e={ef},{em} p={p} floor={floor:?}", e.category()));
+            assert_eq!(got, native, "rows={m0},{m1},{m2},{m3} x={x} e={ef},{em} p={p} floor={floor:?}");
+            // Tampering any derivable bit is detected by the equality the seam uses.
+            for bit in 0..4 {
+                let mut t = native;
+                if bit < 2 { t.estimate[bit] ^= true; } else { t.charge[bit - 2] ^= true; }
+                assert_ne!(got, t);
+            }
+            if p == 512 { p512 += 1; if native.estimate != native.charge { differ_est_charge += 1; } }
+            cases += 1;
+        }}}}}
+    }}}}
+    println!("RV77_GENUINE cases={cases} p512={p512} p512_estimate_ne_charge={differ_est_charge} refusals=0 mismatches=0");
+    assert_eq!(cases, 16 * 16 * 4 * 4 * 3 * 2 * 2 * 6 * 2);
+}
+
+#[test]
+fn rv77_full_payload_domain_matches_independent_spec() {
+    // Every compact payload (16 stop patterns x has_data) against every public-fact
+    // pattern, including invalid precision/floor pairings. RV77's spec of the
+    // candidate's contract: refuse iff (p,floor) invalid, or a stop on an absent
+    // kind, or a present force/moment kind with positive floor and no stop.
+    let mut precisions: Vec<(u32, Option<[f64; 2]>)> = modes();
+    for p in [64u32, 1024, 512] { precisions.push((p, None)); }
+    for p in [128u32, 256, 1024] { precisions.push((p, Some([0.0, 0.0]))); }
+    let (mut ok, mut refused) = (0u64, 0u64);
+    for present_mask in 0..16u8 {
+        let present = [present_mask & 1 != 0, present_mask & 2 != 0, present_mask & 4 != 0, present_mask & 8 != 0];
+        for &x in &EXTENTS { for &ef in &ES { for &em in &ES { for &(p, floor) in &precisions {
+            for stop_mask in 0..16u8 { for hd in [false, true] {
+                let stop = [stop_mask & 1 != 0, stop_mask & 2 != 0, stop_mask & 4 != 0, stop_mask & 8 != 0];
+                let facts = CoverageFacts { present, extent_bits: x.to_bits(), resolution_bits: [ef.to_bits(), em.to_bits()],
+                    floor_bits: floor.map(|f| [f[0].to_bits(), f[1].to_bits()]), precision: p };
+                let r = rederive_coverage(CoverageBody { body: 1, stop, has_data: hd }, &facts);
+                let valid_mode = matches!((p, floor), (128 | 256, None) | (512, Some(_)));
+                let absent_stop = (0..4).any(|k| stop[k] && !present[k]);
+                let floor_unforced = floor.is_some_and(|f| (0..2).any(|k| present[2 + k] && f[k] > 0.0 && !stop[2 + k]));
+                let expect_refuse = !valid_mode || absent_stop || floor_unforced;
+                match r {
+                    Err(e) => { assert!(expect_refuse, "unexpected refusal"); assert_eq!(e.category(), "association"); refused += 1; }
+                    Ok(c) => {
+                        assert!(!expect_refuse, "missing refusal p={p} floor={floor:?} present={present:?} stop={stop:?}");
+                        let mut hats = [ef > 0.0, em > 0.0];
+                        if x != 0.0 { hats = [hats[0] || hats[1]; 2]; }
+                        let estimate = [present[2] && hats[0], present[3] && hats[1]];
+                        let charge = if p == 512 { [stop[2], stop[3]] } else { estimate };
+                        assert_eq!(c, ProductSummaryCoverage { body: 1, stop, estimate, charge, has_data: hd });
+                        ok += 1;
+                    }
+                }
+            }}
+        }}}}
+    }
+    println!("RV77_PAYLOAD_SPEC accepted={ok} refused={refused}");
+}
+
+#[test]
+fn rv77_input_derived_force_moment_would_break_the_p512_identity() {
+    // Shows the coverage_facts refusal of input-derived force/moment rows is
+    // necessary: if such rows existed, native charge (present && positive) could
+    // differ from stop at p512. recover::layout never produces them.
+    let mut breaks = 0u64;
+    for m2 in 0..16u8 { for m3 in 0..16u8 {
+        let rows = rows_of([1, 1, m2, m3]);
+        for &x in &EXTENTS { for f in [[0.0, 0.0], [3.0, 0.0]] {
+            let native = native_model(0, &rows, x, [1.0, 1.0], Some(f), 512, true);
+            if native.charge != [native.stop[2], native.stop[3]] { breaks += 1; }
+        }}
+    }}
+    println!("RV77_INPUT_DERIVED_FM p512_identity_breaks={breaks}");
+    assert!(breaks > 0);
+}
+}

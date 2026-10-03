@@ -235,6 +235,95 @@ pub struct ProductProofTrace<'a> {
     pub projection_outcomes:&'a [(usize,super::super::wide::multi::Binary64Outcome)],
     pub capacities:[usize;7],pub prepared_capacity_bytes:[usize;6],pub completion_merged:bool,
     pub trace_copy_work:&'a TraceCopyWork,
+    /// I61/I57 §3: borrowed view of the proof-owned `coverage` (assigned atomically
+    /// at check_intervals). Empty means no complete vector was retained. Never the
+    /// adapter's fallible copy; no coverage is computed here.
+    pub summary_coverage:&'a [ProductSummaryCoverage],
+}
+/// I57 §1 compact per-body payload: the four native stop outcomes and has_data.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct CoverageBody { pub body:u32, pub stop:[bool;4], pub has_data:bool }
+impl CoverageBody {
+    fn of(entry:&ProductSummaryCoverage)->Self { Self{body:entry.body,stop:entry.stop,has_data:entry.has_data} }
+}
+/// I57 §2 public facts for one body: per-kind presence in the bound layout, the
+/// recomputed native extent L, the selected native verification E (force/moment),
+/// the selected native p512 floor if any, and native p. No private value.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct CoverageFacts {
+    pub present:[bool;4], pub extent_bits:u64, pub resolution_bits:[u64;2],
+    pub floor_bits:Option<[u64;2]>, pub precision:u32,
+}
+/// I57 §2: rederive estimate and charge from the compact payload and public facts.
+/// p512 charge is the force/moment stop pair; p128/p256 charge is estimate. The
+/// fixed 1024 proof/projection precision is not an input, so it can neither
+/// change p nor create a floor. Necessary public consistency is also required:
+/// a floor exists iff p == 512, an absent kind has no stop, and a positive floor
+/// forces its present force/moment stop.
+pub fn rederive_coverage(payload:CoverageBody,facts:&CoverageFacts)->Result<ProductSummaryCoverage,ProductFailure> {
+    match (facts.precision,facts.floor_bits) {
+        (128|256,None)|(512,Some(_))=>{},
+        _=>return Err(bad("coverage precision/floor")),
+    }
+    if (0..4).any(|k|payload.stop[k] && !facts.present[k]) {return Err(bad("coverage absent-kind stop"));}
+    if let Some(floor)=facts.floor_bits {
+        for k in 0..2 {
+            if facts.present[2+k] && f64::from_bits(floor[k])>0.0 && !payload.stop[2+k] {return Err(bad("coverage floor stop"));}
+        }
+    }
+    let mut hats=[f64::from_bits(facts.resolution_bits[0])>0.0,f64::from_bits(facts.resolution_bits[1])>0.0];
+    if f64::from_bits(facts.extent_bits)!=0.0 {hats=[hats[0]||hats[1];2];}
+    let estimate=[facts.present[2]&&hats[0],facts.present[3]&&hats[1]];
+    let charge=if facts.precision==512 {[payload.stop[2],payload.stop[3]]} else {estimate};
+    Ok(ProductSummaryCoverage{body:payload.body,stop:payload.stop,estimate,charge,has_data:payload.has_data})
+}
+/// Public facts from the owner's bound source layout/maps and selected native Run.
+/// L is recomputed by adaptive::body_extent over the body's nodes in ascending
+/// (native) order and must equal the bound preparation extent bit for bit.
+fn coverage_facts(owner:&adaptive::RetainedSolve,body:u32,copies:&mut TraceCopyWork)->Result<CoverageFacts,ProductFailure> {
+    copies.record::<CoverageFacts>();
+    let source=owner.source();
+    let mut present=[false;4];
+    for meta in &owner.prep.layout {
+        if meta.body!=body {continue;}
+        let kind=match meta.kind {Kind::Translation=>0,Kind::Rotation=>1,Kind::Force=>2,Kind::Moment=>3};
+        // recover::layout marks only constrained displacement/rotation rows input-derived.
+        if kind>=2 && meta.input_derived {return Err(bad("coverage input-derived force/moment layout"));}
+        present[kind]=true;
+    }
+    let count=(0..source.nodes().len()).filter(|&n|source.body_of_node(n as u32)==body).count();
+    let mut coordinates=reserve::<[f64;3]>(count)?;
+    for (n,p) in source.nodes().iter().enumerate() {
+        if source.body_of_node(n as u32)!=body {continue;}
+        copies.record::<[f64;3]>();coordinates.push(*p);
+    }
+    let extent=adaptive::body_extent(&coordinates);
+    let bound=owner.prep.extents.get(body as usize).ok_or_else(||bad("coverage extent"))?;
+    if extent.to_bits()!=bound.to_bits() {return Err(bad("coverage extent"));}
+    let e=owner.evidence().resolution_scale.iter().find(|e|e.0==body).ok_or_else(||bad("coverage resolution"))?;
+    let floor_bits=match &owner.evidence().floor {
+        None=>None,
+        Some(f)=>Some(f.iter().find(|f|f.0==body).map(|f|[f.1,f.2]).ok_or_else(||bad("coverage floor"))?),
+    };
+    Ok(CoverageFacts{present,extent_bits:extent.to_bits(),resolution_bits:[e.1,e.2],floor_bits,precision:owner.selected_precision()})
+}
+impl<'a> ProductProofTrace<'a> {
+    /// I61: encode each proof-owned entry to its compact payload, rederive all nine
+    /// flags from public facts, and compare bit for bit. A partial vector or any
+    /// mismatch is an association failure; the vector is never altered. Callers
+    /// map an empty vector to null before calling this.
+    pub fn check_summary_coverage(&self,owner:&adaptive::RetainedSolve,copies:&mut TraceCopyWork)->Result<(),ProductFailure> {
+        if self.summary_coverage.len()!=owner.source().body_count() as usize {return Err(bad("coverage body count"));}
+        for (i,entry) in self.summary_coverage.iter().enumerate() {
+            copies.record::<CoverageBody>();
+            let payload=CoverageBody::of(entry);
+            if payload.body as usize!=i {return Err(bad("coverage body order"));}
+            let facts=coverage_facts(owner,payload.body,copies)?;
+            copies.record::<ProductSummaryCoverage>();
+            if rederive_coverage(payload,&facts)?!=*entry {return Err(bad("coverage flag mismatch"));}
+        }
+        copies.status().fault().map_or(Ok(()),|f|Err(ProductFailure{cause:Cause::Accounting(f)}))
+    }
 }
 #[derive(Debug)]
 pub struct ProductCertificateSpent<'a> {
@@ -285,7 +374,8 @@ impl<'a> ProductCertificateSpent<'a> {
             numeric:self.numeric.trace(copies),comparisons_lme:self.comparisons.checked_lme(),visits:self.visits,
             scalar_operations:self.scalar_operations,projection_conversions:self.projection_conversions,
             projection_outcomes:&self.projection_outcomes,capacities:self.capacities,prepared_capacity_bytes:self.prepared_capacities,
-            completion_merged:self.completion_merged,trace_copy_work:&self.trace_copy_work}
+            completion_merged:self.completion_merged,trace_copy_work:&self.trace_copy_work,
+            summary_coverage:&self.coverage}
     }
     pub fn status(&self) -> WorkStatus {
         let mut s = self
