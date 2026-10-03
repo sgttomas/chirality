@@ -7724,9 +7724,9 @@ The docstring correction to the Python-only old-Err test is committed on READER.
 **The TypeScript audit against all 42 IDs and 06a is committed on READER as `90d61a05fc`.** ROOT's own runs: Vitest 232/232, tsc 0. The records (`I64/reader_audit_06a/`, with the ID → status table) verify.
 
 I64 reported six places where TypeScript reads the native code differently from Python. **ROOT read the native code** (`adaptive.rs` at NUM, line numbers taken from the file) **and settles three of them in TypeScript's favour:**
-- **N9.** The native solver can end on WorkAccounting after an escalating stop. Whenever any attempt's work status is not exact, the ladder calls `finish_terminal` (`:4769`) before the escalation check. `finish_terminal` returns `WorkAccounting { fault, prior: Some(stop) }` when a fault exists. So Python's requirement of the Ceiling after any escalating last stop would reject genuine receipts. Python must accept WorkAccounting there.
+- **N9.** The native solver can end on WorkAccounting after an escalating stop. Whenever any attempt's work status is not exact, the ladder calls `finish_terminal` (`:4769`) before the escalation check. `finish_terminal` returns `WorkAccounting { fault, prior: Some(stop) }` when a fault exists. So Python's requirement of the Ceiling after any escalating last stop would reject genuine receipts. Python must accept WorkAccounting there. [Correction (ROOT, 2026-10-03): this describes the native solver correctly, but misses C1:66–68. Every native work fault (Overflow, Inconsistent, Both; `work.rs`) is a checked inconsistency or a counter beyond range, which prevents successor emission and abandons finalization. So no emitted receipt can carry a WorkAccounting terminal, and readers must reject one rather than accept it. See "Snapshot 06b verified; WorkAccounting terminals cannot appear in a receipt".]
 - **N5.** Only WorkAccounting can end a run on an escalating stop. `terminal()` (`:4349`) maps each terminal stop to exactly one reason and is unreachable for escalating stops (`:4377`). So a non-WorkAccounting terminal must be the exact translation of a terminal stop. Python's acceptance of any non-selected terminal is too permissive, and Python aligns to TypeScript's rule.
-- **N10.** A meter fault takes precedence over exhaustion for idle runs: `WorkAccounting { prior: None }` before `Budget(Invocation)` (`:4996`). Python must accept the idle WorkAccounting case when a fault exists.
+- **N10.** A meter fault takes precedence over exhaustion for idle runs: `WorkAccounting { prior: None }` before `Budget(Invocation)` (`:4996`). Python must accept the idle WorkAccounting case when a fault exists. [Correction (ROOT, 2026-10-03): this describes the native solver correctly, but misses C1:66–68. Every native work fault (Overflow, Inconsistent, Both; `work.rs`) is a checked inconsistency or a counter beyond range, which prevents successor emission and abandons finalization. So no emitted receipt can carry a WorkAccounting terminal, and readers must reject one rather than accept it. See "Snapshot 06b verified; WorkAccounting terminals cannot appear in a receipt".]
 
 **Three readings are still open, for C2-2 to settle against the contract and native code, with citations:**
 - **N17:** which scope wins when both the case and the invocation limits are exceeded. TypeScript's inherited rule is unverified.
@@ -7765,3 +7765,41 @@ I64 reported six places where TypeScript reads the native code differently from 
 - shared entries pinning N5, N9, N10 and N17, and whatever the settlements decide.
 
 Then the readers align, and one fresh, complete, independent review follows.
+
+## Snapshot 06b verified; WorkAccounting terminals cannot appear in a receipt; invocation edits added to the shared format (ROOT, 2026-10-03 UTC)
+
+**Snapshot 06b is verified,** and committed on READER as `b50f2fe174` with Python's settlements.
+- **The new hashes:** corpus `e7983fc641`, `retained_precision.py` `ddf85962c3`, test file `1c14810343`.
+- **The changes to existing entries are exactly the two I62 declared:**
+  - `g7_maximum_off_enclosure` gains per-reader codes;
+  - `prefix_old_inputs_unbound` moves from the mutations to the must-pass entries, under the P7 settlement.
+- **06b adds:** three bases (two stiffness groups, interpolated material, millimetre units), 13 mutations and 7 must-pass entries. The totals are 15 cases, 163 mutations and 23 must-pass entries.
+- **ROOT's own Python run:** 215 passed. The records (SHARED_SNAPSHOT_06B, RETURN_C2_2, SHA256SUMS_C2_2) verify.
+
+**I62's settlements are accepted, each with its citation in RETURN_C2_2:**
+- **G7:** each language keeps its own base code. The base contract fixes only the `SOURCE_PREVIEW_PHYSICS_` prefix (S1_INTERFACE.md:138), and the corpus carries per-reader expectations. Rust drops its provisional remap.
+- **P5:** the conversion rule covers every conversion, including refused preparation members (C3:182–195).
+- **P7:** old inputs are bound wherever a PreparedMember exists, for every attempt. Other old entries stay producer attestations (F1:101–106; C3:155–158).
+- **O2:** Rust's stricter reference rule is correct (C2:166).
+- **`prior`:** not carried on the wire. The closed schema has `work_accounting {fault}` only (C3:261–263), pinned at G1.
+
+**A correction to ROOT's N9 and N10 rulings.** C1:66–68: "A checked inconsistency, max counter, sum beyond u64, or count beyond the safe JSON range prevents selected successor emission". An unencodable run abandons successor finalization. Every native work fault (`WorkFault`: Overflow, Inconsistent, Both) is one of these. So **no emitted receipt carries a WorkAccounting terminal, idle or not.**
+- **All readers reject a WorkAccounting terminal in a receipt** at G5 with ATTEMPT_MISMATCH, as a terminal outside the emitted domain. I62 confirms the gate and code against C1/C3 in C2-3, or reports a different citation.
+- **N5's exact-translation rule and N17 stand.** An idle run at exhaustion is Budget(Invocation). An idle run in a ready group is refused `ledger_unavailable` (I62's N10 finding).
+- **The C3 schema still lists `work_accounting {fault}`.** That is recorded as a contract tension for the independent review and a later C3 clarification: the closed type is total, but the emission rule excludes the value. This narrows what readers accept to what producers can emit, and changes no public meaning.
+
+**The shared format is extended:** mutations may also edit the invocation. Each reader's harness applies these invocation edits before validating. This lets the invocation-level G8 refusals become shared entries instead of Python-only tests: an un-normalized coordinate, missing alpha, a duplicate temperature, a strict bracket at a point.
+
+**Next:**
+1. **I62's C2-3 builds snapshot 06c:**
+   - WorkAccounting-rejection mutations, replacing the acceptance tests;
+   - the invocation-edit format and the invocation-level G8 mutations;
+   - Python aligned.
+2. **I63 and I64 align to 06c:**
+   - per-reader G7, with Rust's remap dropped;
+   - P7 narrowed;
+   - the N10 idle rules;
+   - WorkAccounting rejection;
+   - P5 and O2 where they differ;
+   - invocation edits in their harnesses.
+3. **Then the independent review.**
