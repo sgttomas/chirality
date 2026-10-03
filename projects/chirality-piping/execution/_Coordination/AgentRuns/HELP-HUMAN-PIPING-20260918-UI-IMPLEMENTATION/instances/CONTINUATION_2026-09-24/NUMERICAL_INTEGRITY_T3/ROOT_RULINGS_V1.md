@@ -7180,3 +7180,16 @@ parent npm manifests/lock match the candidate; the installed pinned WASM toolcha
 and existing Python environment are available. Real tool blockers return to ROOT.
 Public W1, profile/M selection and full F2a/main acceptance remain held.
 
+
+
+## Preparation trace integer inventory extended narrowly (ROOT, 2026-10-03 UTC)
+
+ROOT permits one explicit S11 integer-site entry because the trace now retains a bounded conversion prefix and the scanner correctly detected its new increment.
+
+I51's unchanged cargo_04 test identifies only the round-function integer site;
+the scanner controls still pass. ROOT read the actual source, inventory and raw
+failed result. BRIEFS/I51_PREPARED_TRACE_S11_ADDENDUM.md opens only the one-row
+inventory update, preserving all prior scans/assertions. The new capacity guard
+must precede the entered-conversion count, with a full-buffer refusal control.
+This is no numerical exemption or protected-criterion relaxation. The original
+clock remains and independent full-diff review must cover the new source and row.
