@@ -35,19 +35,18 @@ final joined closure remain.
 
 ## Running now
 
-I50's repaired support and observation component is accepted and merged locally
-at `7e9597bd9c`. Both named modes still numerically refuse. I51 sealed the three
-design-readiness corrections at 09:48:46Z; ROOT verified the packet and has scoped
-RV67's same-reviewer backcheck. The proposed producer remains unselected pending
-that review. No compiler/model run is active. M5 Max, guard PID 5387.
+I50's repaired support/observation component is integrated locally at `7e9597bd9c`.
+RV67 backcheck `863956b0c5` closed all three design-readiness findings. ROOT has
+selected I51's prepared-source, dual-readout and frozen-candidate design for one
+bounded private implementation in CODE at `8bbc04e8a3`. The actual new producer
+has not run. M5 Max, existing guard PID 5387; one runtime lane is reserved for I51.
 
 ## Next
 
-Close the design findings, then select a precise private implementation scope.
-The first live new-K run and complete two-mode candidate will establish whether
-the proposed projection actually advances publication. Actual residual widths,
-G5a, observables and resource/custody checks remain required. Current code remains
-binding until a reviewed replacement is selected.
+First establish actual prepared new-K admission, selected precision and resolution.
+Then produce and independently check the complete two-mode private candidate,
+including G5a, observables, ordinary fallback and local accounting. Public receipt/
+reader/routing/resource integration and full gates follow that private milestone.
 Bulk evidence stays in scratch with committed hash/size/location manifests.
 
 ## Branches and owner decisions

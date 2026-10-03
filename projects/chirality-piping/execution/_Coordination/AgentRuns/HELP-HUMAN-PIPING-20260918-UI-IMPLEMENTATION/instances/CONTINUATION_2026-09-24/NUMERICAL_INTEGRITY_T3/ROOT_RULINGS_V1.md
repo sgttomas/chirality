@@ -6618,3 +6618,50 @@ prepared new-K native solve, before the full overlay. No method, public route,
 resource profile or implementation is selected yet. RV67's backcheck is limited
 to closure of the three findings and concrete new defects, with unchanged verified
 mathematics retained as its earlier conditional result.
+
+
+## Prepared ordinary producer selected for private implementation (ROOT, 2026-10-03 UTC)
+
+ROOT selects the reviewed prepared-source and dual-readout producer for bounded private implementation because it addresses the named case's section-rounding obstruction while preserving every publication accuracy check.
+
+The selected design is I51/prepared_producer_completion_02 at `cf515e3725`,
+DESIGN.md §1–2, API.md §1–3 and FENCE.md. RV67's independent original re-derivation
+is preserved at `ec6e5080f8`; its backcheck at `863956b0c5` closes RV67-1, RV67-2
+and RV67-3. ROOT read the full BACKCHECK, checked its five payloads and external
+audit, and verified its pinned origins. The verification record preserves ROOT's
+corrected origin-loop assumption; no partial pass or commit was credited.
+
+This selects the prospective D1 process amendment for this prepared ordinary
+producer: genuine new annular section primitives; unchanged native p/P, stop and
+R7/A1 admission; separate fixed-precision final projection; direct certification
+against both required readouts of the actual final values. D1's affected product
+formation language is prospectively replaced only at the stated scope. The native
+stop list is never represented as convergence evidence for those different final
+values. Actual native p512 alone selects the existing floors. Original criteria,
+source/material meanings, scale/class rules and observable requirements remain.
+No historical design or sealed evidence is rewritten.
+
+The selected APIs use one owner-bound pair of residual results through projection
+and certification, and one frozen candidate through numeric, observable and G5a
+checks. The private transfer preserves ordinary fallback before success. The
+existing coefficient maximum is regenerated from actual candidate actions and
+prepared section data. Local size/copy/capacity and failure-work obligations are
+mandatory; they do not establish an all-in invocation debit or resource profile.
+
+ROOT grants same TASK I51 the exact twelve-path private FENCE, with the two
+narrowly conditional S11 inventory paths, through the implementation brief.
+CODE is clean at `8bbc04e8a3` after ROOT's no-ff synchronization; maintained Piping
+and applicable instruction bytes remain identical to the reviewed `c79a1c293d`
+basis. The single guarded runtime lane is available. The first live checkpoint
+must establish actual prepared new-K admission and resolution before a full
+candidate overlay. A complete private success remains a dependency of the public
+F2a milestone, not publication.
+
+Public activation still requires explicit method/formation and replay/reader
+integration, receipt/custody and invocation-wide charging, full resource/caller
+qualification, all protected availability/coexistence checks, native Current and
+the standing PR gates. This selection changes no public identity or receipt today
+and creates no new source-meaning or availability exception. The existing delegated
+correctness authority covers this technical formulation; no new owner-held choice
+was found by the independent backcheck. Actual future public-meaning changes still
+return to the owner with a reviewed concrete proposal.
