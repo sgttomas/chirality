@@ -825,8 +825,16 @@ fn zero_pair(p: u32) -> PairFixture {
         invocation_increment: WorkTotal::zero(),
     };
     let mut invocation = InvocationMeter::new(u64::MAX);
-    let (candidate, c) =
-        solve_precision(p, &prep, &group, &mut cache, &mut budget, &mut invocation);
+    let (candidate, c) = solve_precision(
+        p,
+        &prep,
+        &group,
+        &mut cache,
+        &mut budget,
+        &mut invocation,
+        None,
+        0,
+    );
     let candidate = candidate.unwrap();
     let (verification, mut v) = solve_precision(
         p * 2,
@@ -835,6 +843,8 @@ fn zero_pair(p: u32) -> PairFixture {
         &mut cache,
         &mut budget,
         &mut invocation,
+        None,
+        1,
     );
     let verification = verification.unwrap();
     v.role = AttemptRole::Verification;
@@ -846,6 +856,8 @@ fn zero_pair(p: u32) -> PairFixture {
         &mut budget,
         &mut invocation,
         &mut v,
+        None,
+        1,
     )
     .unwrap();
     PairFixture {
@@ -1462,6 +1474,8 @@ pub(super) fn replay_certificate_components(
                 &mut budget,
                 &mut setup_meter,
                 &mut record,
+                None,
+                0,
             )
             .unwrap();
             assert!(bound.state.same_state(verification));

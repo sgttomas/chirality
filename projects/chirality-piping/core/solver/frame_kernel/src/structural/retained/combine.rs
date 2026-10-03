@@ -130,36 +130,14 @@ impl RetainedCombination {
             invocation_before: before,
             invocation_after: before,
         };
-        if operands.is_empty() || operands.iter().any(|o| !o.0.is_finite()) {
-            return withheld(CombinationReason::NoOperands);
+        if let Err(reason) = validate_operands(operands) {
+            return withheld(reason);
         }
-        if operands.iter().any(|o| !o.1.prep.factors.is_empty()) {
-            return withheld(CombinationReason::NestedCombination);
-        }
-        let first = operands[0].1;
-        let identity = first.prep.source.stiffness_encoding();
-        let (stations, supports) = (first.prep.source.stations(), first.prep.source.supports());
-        if operands.iter().any(|(_, o)| {
-            o.prep.source.stiffness_encoding() != identity
-                || o.prep.layout != first.prep.layout
-                || o.prep.source.stations() != stations
-                || o.prep.source.supports() != supports
-        }) {
-            return withheld(CombinationReason::OperandsDiffer);
-        }
-        let preps: Vec<(f64, &CasePrep)> = operands
-            .iter()
-            .map(|(c, o)| (*c, o.prep.as_ref()))
-            .collect();
-        let prep = match CasePrep::combination(&preps) {
-            Ok(p) => Arc::new(p),
-            Err(CombinationPreparationError::Ledger(e)) => {
-                return withheld(CombinationReason::LedgerUnavailable(e))
-            }
-            Err(CombinationPreparationError::CountRange(field)) => {
-                return withheld(CombinationReason::CountRange(field))
-            }
+        let prep = match prepare_operands(operands) {
+            Ok(prep) => prep,
+            Err(reason) => return withheld(reason),
         };
+        let first = operands[0].1;
         let mut cache = GroupCache::merged(operands.iter().map(|o| &o.1.cache));
         let run = run_core(prep, first.group.clone(), &mut cache, case_limit, meter);
         let outcome = match run.outcome {
@@ -188,6 +166,47 @@ impl RetainedCombination {
         RecordedCombination::WithRun {
             outcome,
             work: run.work,
+        }
+    }
+}
+
+pub(crate) fn validate_operands(
+    operands: &[(f64, &RetainedSolve)],
+) -> Result<(), CombinationReason> {
+    if operands.is_empty() || operands.iter().any(|o| !o.0.is_finite()) {
+        return Err(CombinationReason::NoOperands);
+    }
+    if operands.iter().any(|o| !o.1.prep.factors.is_empty()) {
+        return Err(CombinationReason::NestedCombination);
+    }
+    let first = operands[0].1;
+    let identity = first.prep.source.stiffness_encoding();
+    let (stations, supports) = (first.prep.source.stations(), first.prep.source.supports());
+    if operands.iter().any(|(_, o)| {
+        o.prep.source.stiffness_encoding() != identity
+            || o.prep.layout != first.prep.layout
+            || o.prep.source.stations() != stations
+            || o.prep.source.supports() != supports
+    }) {
+        return Err(CombinationReason::OperandsDiffer);
+    }
+    Ok(())
+}
+
+pub(crate) fn prepare_operands(
+    operands: &[(f64, &RetainedSolve)],
+) -> Result<Arc<CasePrep>, CombinationReason> {
+    let preps: Vec<(f64, &CasePrep)> = operands
+        .iter()
+        .map(|(c, o)| (*c, o.prep.as_ref()))
+        .collect();
+    match CasePrep::combination(&preps) {
+        Ok(p) => Ok(Arc::new(p)),
+        Err(CombinationPreparationError::Ledger(e)) => {
+            return Err(CombinationReason::LedgerUnavailable(e))
+        }
+        Err(CombinationPreparationError::CountRange(field)) => {
+            return Err(CombinationReason::CountRange(field))
         }
     }
 }

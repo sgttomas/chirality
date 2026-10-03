@@ -26,6 +26,12 @@ pub mod retained_api {
     };
     pub use super::retained::factor::{reverse_cuthill_mckee, BodyGeometry};
     pub use super::retained::ledger::LedgerRefusal;
+    pub use super::retained::origins::{
+        BuildOrigin, BuildPhase, BuildState, CacheImport, CallKind, CallOrigin, CallResult,
+        CombinationStage, GroupOrigin, GroupPreparation, NativeOwner, OriginCapacity, OriginError,
+        OriginSlot, RecordBuildLinks, RecordedCase, RecordedInvocation, RecordedKernelCombination,
+        RequestedOperand, RunOrigins, RunPhase, SlotSnapshot, SourceOrigin,
+    };
     pub use super::retained::recover::{layout, End, Kind, QuantityId, QuantityMeta};
     pub use super::retained::source::{
         Component, Constraint, DirectionalSpring, Dof, MemberProperty, NodalLoad, PrimitiveSource,

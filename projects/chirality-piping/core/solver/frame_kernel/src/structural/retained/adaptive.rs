@@ -36,6 +36,7 @@ use super::factor::{
     geometry_first, order_free, BodyGeometry, GeometryRefusal, Ordering, RetainedFactor,
 };
 use super::ledger::{LedgerRefusal, RetainedLedger};
+use super::origins::{BatchRecording, OriginSlot, RunPhase, RunTrace, SlotSnapshot};
 use super::recover::{
     layout, publish_value, recover, state_encoding, Kind, QuantityId, QuantityMeta, Recovered,
 };
@@ -3957,6 +3958,8 @@ fn solve_precision(
     cache: &mut GroupCache,
     budget: &mut CaseBudget,
     meter: &mut InvocationMeter,
+    mut trace: Option<&mut RunTrace<'_>>,
+    physical_record: usize,
 ) -> (Result<PrecisionState, AttemptStop>, AttemptRecord) {
     let case_room = budget.used.room(budget.limit);
     let invocation_room = meter.room();
@@ -4003,6 +4006,16 @@ fn solve_precision(
         ($slot:expr, $L:literal, $R:literal, $q:expr, $variant:ident) => {{
             let (shared, shared_total, built, shared_stages) =
                 obtain::<$L, $R>($slot, p, $q, &prep.source, group, guard);
+            if let Some(trace) = trace.as_deref_mut() {
+                trace.requested(
+                    OriginSlot::solve(p),
+                    physical_record,
+                    built,
+                    shared.as_ref().err(),
+                    shared_total,
+                    &shared_stages,
+                );
+            }
             record.latch(shared_total);
             record.shared_work = shared_total.legacy_saturated();
             record.shared_built_here = built;
@@ -4176,6 +4189,8 @@ fn verify_precision(
     budget: &mut CaseBudget,
     meter: &mut InvocationMeter,
     record: &mut AttemptRecord,
+    mut trace: Option<&mut RunTrace<'_>>,
+    physical_record: usize,
 ) -> Result<BoundVerification, AttemptStop> {
     let case_room = budget.used.room(budget.limit);
     let invocation_room = meter.room();
@@ -4192,6 +4207,16 @@ fn verify_precision(
             };
             let (vs, vs_total, built, vs_stages, vs_refusals) =
                 obtain_verify::<$L, $R, $W>($vslot, &shared, &prep.source, group, guard);
+            if let Some(trace) = trace.as_deref_mut() {
+                trace.requested(
+                    OriginSlot::verify(state.precision()),
+                    physical_record,
+                    built,
+                    vs.as_ref().err(),
+                    vs_total,
+                    &vs_stages,
+                );
+            }
             record.latch(vs_total);
             record.verification_shared_work = vs_total.legacy_saturated();
             record.verification_shared_built_here = built;
@@ -4313,7 +4338,7 @@ pub enum ExecutionOutcome {
     },
 }
 impl ExecutionOutcome {
-    fn into_legacy(self) -> CaseOutcome {
+    pub(crate) fn into_legacy(self) -> CaseOutcome {
         match self {
             Self::Selected(s) => CaseOutcome::Selected(s),
             Self::Refused {
@@ -4336,6 +4361,18 @@ pub(crate) struct CoreRun {
     pub(crate) work: RunWork,
 }
 impl CoreRun {
+    fn idle(outcome: ExecutionOutcome, before: WorkTotal) -> Self {
+        let zero = WorkTotal::zero().join_status(before.status());
+        Self {
+            outcome,
+            work: RunWork {
+                case: zero,
+                invocation_before: before,
+                invocation_increment: zero,
+                invocation_after: before,
+            },
+        }
+    }
     pub(crate) fn into_legacy(self) -> CaseOutcome {
         self.outcome.into_legacy()
     }
@@ -4346,6 +4383,17 @@ pub(crate) fn run_core(
     cache: &mut GroupCache,
     case_limit: CaseLimit,
     meter: &mut InvocationMeter,
+) -> CoreRun {
+    run_core_with_origins(prep, group, cache, case_limit, meter, None)
+}
+
+pub(crate) fn run_core_with_origins(
+    prep: Arc<CasePrep>,
+    group: Arc<GroupPrep>,
+    cache: &mut GroupCache,
+    case_limit: CaseLimit,
+    meter: &mut InvocationMeter,
+    trace: Option<&mut RunTrace<'_>>,
 ) -> CoreRun {
     let invocation_before = meter.checked_charged();
     let mut budget = CaseBudget {
@@ -4364,7 +4412,7 @@ pub(crate) fn run_core(
             geometry: group.geometry.clone(),
         }
     } else {
-        run_schedule_inner(prep, group, cache, &mut budget, meter)
+        run_schedule_inner(prep, group, cache, &mut budget, meter, trace)
     };
     CoreRun {
         outcome,
@@ -4376,16 +4424,6 @@ pub(crate) fn run_core(
         },
     }
 }
-pub(crate) fn run_schedule(
-    prep: Arc<CasePrep>,
-    group: Arc<GroupPrep>,
-    cache: &mut GroupCache,
-    case_limit: CaseLimit,
-    meter: &mut InvocationMeter,
-) -> CaseOutcome {
-    run_core(prep, group, cache, case_limit, meter).into_legacy()
-}
-
 /// The schedule of one case (module documentation).
 fn run_schedule_inner(
     prep: Arc<CasePrep>,
@@ -4393,6 +4431,7 @@ fn run_schedule_inner(
     cache: &mut GroupCache,
     budget: &mut CaseBudget,
     meter: &mut InvocationMeter,
+    mut trace: Option<&mut RunTrace<'_>>,
 ) -> ExecutionOutcome {
     let geometry = group.geometry.clone();
 
@@ -4406,7 +4445,16 @@ fn run_schedule_inner(
         let (candidate, candidate_index) = match pending.take() {
             Some(state) => state,
             None => {
-                let (result, record) = solve_precision(p, &prep, &group, cache, budget, meter);
+                let (result, record) = solve_precision(
+                    p,
+                    &prep,
+                    &group,
+                    cache,
+                    budget,
+                    meter,
+                    trace.as_deref_mut(),
+                    attempts.len(),
+                );
                 attempts.push(record);
                 let index = attempts.len() - 1;
                 match result {
@@ -4430,8 +4478,16 @@ fn run_schedule_inner(
             }
         };
         let verification_p = PRECISIONS[c + 1];
-        let (result, mut record) =
-            solve_precision(verification_p, &prep, &group, cache, budget, meter);
+        let (result, mut record) = solve_precision(
+            verification_p,
+            &prep,
+            &group,
+            cache,
+            budget,
+            meter,
+            trace.as_deref_mut(),
+            attempts.len(),
+        );
         record.role = AttemptRole::Verification;
         attempts.push(record);
         let v_index = attempts.len() - 1;
@@ -4465,6 +4521,8 @@ fn run_schedule_inner(
             budget,
             meter,
             &mut attempts[v_index],
+            trace.as_deref_mut(),
+            v_index,
         ) {
             Ok(report) => report,
             Err(stop) => {
@@ -4831,38 +4889,64 @@ pub fn solve_cases(
     case_limit: CaseLimit,
     meter: &mut InvocationMeter,
 ) -> Vec<CaseOutcome> {
+    // Project before appending each result: legacy refuses retain no extra
+    // terminal attempts and allocate no origin inventory.
+    solve_cases_projected(
+        sources,
+        case_limit,
+        meter,
+        None,
+        Vec::with_capacity(sources.len()),
+        |run, _| run.into_legacy(),
+    )
+}
+
+pub(crate) fn solve_cases_projected<T>(
+    sources: &[PrimitiveSource],
+    case_limit: CaseLimit,
+    meter: &mut InvocationMeter,
+    mut recording: Option<BatchRecording<'_>>,
+    mut out: Vec<T>,
+    mut project: impl FnMut(CoreRun, Option<usize>) -> T,
+) -> Vec<T> {
     let mut groups: Vec<(
         Vec<u8>,
         Result<Arc<GroupPrep>, (Refusal, Vec<BodyGeometry>)>,
         GroupCache,
     )> = Vec::new();
-    let mut out = Vec::with_capacity(sources.len());
-    for source in sources {
-        if let Some(fault) = meter.checked_charged().status().fault() {
-            out.push(CaseOutcome::Unresolved {
-                reason: UnresolvedReason::WorkAccounting { fault, prior: None },
-                attempts: Vec::new(),
-                geometry: Vec::new(),
-            });
-            continue;
-        }
-        if meter.exhausted() {
-            out.push(CaseOutcome::Unresolved {
-                reason: UnresolvedReason::Budget(BudgetScope::Invocation),
-                attempts: Vec::new(),
-                geometry: Vec::new(),
-            });
+    for (position, source) in sources.iter().enumerate() {
+        let before = meter.checked_charged();
+        let early = if let Some(fault) = before.status().fault() {
+            Some(UnresolvedReason::WorkAccounting { fault, prior: None })
+        } else if meter.exhausted() {
+            Some(UnresolvedReason::Budget(BudgetScope::Invocation))
+        } else {
+            None
+        };
+        if let Some(reason) = early {
+            let run = CoreRun::idle(
+                ExecutionOutcome::Unresolved {
+                    reason,
+                    attempts: Vec::new(),
+                    geometry: Vec::new(),
+                },
+                before,
+            );
+            let id = recording
+                .as_mut()
+                .map(|r| r.finish(position, None, RunPhase::InvocationEntry, &run, None));
+            out.push(project(run, id));
             continue;
         }
         let identity = source.stiffness_encoding();
         let index = match groups.iter().position(|g| g.0 == identity) {
             Some(k) => k,
             None => {
-                groups.push((
-                    identity,
-                    prepare_group(source).map(Arc::new),
-                    GroupCache::default(),
-                ));
+                let prepared = prepare_group(source).map(Arc::new);
+                if let Some(recording) = recording.as_mut() {
+                    recording.group(position, prepared.as_ref().err().map(|e| &e.0));
+                }
+                groups.push((identity, prepared, GroupCache::default()));
                 groups.len() - 1
             }
         };
@@ -4870,24 +4954,58 @@ pub fn solve_cases(
         let group = match group {
             Ok(g) => g.clone(),
             Err((refusal, geometry)) => {
-                out.push(CaseOutcome::Refused {
-                    refusal: refusal.clone(),
-                    geometry: geometry.clone(),
+                let run = CoreRun::idle(
+                    ExecutionOutcome::Refused {
+                        refusal: refusal.clone(),
+                        attempts: Vec::new(),
+                        geometry: geometry.clone(),
+                    },
+                    before,
+                );
+                let id = recording.as_mut().map(|r| {
+                    r.finish(
+                        position,
+                        Some(index),
+                        RunPhase::GroupPreparation,
+                        &run,
+                        None,
+                    )
                 });
+                out.push(project(run, id));
                 continue;
             }
         };
         let prep = match CasePrep::new(source.clone()) {
             Ok(p) => Arc::new(p),
             Err(e) => {
-                out.push(CaseOutcome::Refused {
-                    refusal: Refusal::LedgerUnavailable(e),
-                    geometry: group.geometry.clone(),
+                let run = CoreRun::idle(
+                    ExecutionOutcome::Refused {
+                        refusal: Refusal::LedgerUnavailable(e),
+                        attempts: Vec::new(),
+                        geometry: group.geometry.clone(),
+                    },
+                    before,
+                );
+                let id = recording.as_mut().map(|r| {
+                    r.finish(
+                        position,
+                        Some(index),
+                        RunPhase::SourcePreparation,
+                        &run,
+                        None,
+                    )
                 });
+                out.push(project(run, id));
                 continue;
             }
         };
-        out.push(run_schedule(prep, group, cache, case_limit, meter));
+        let mut trace = recording.as_mut().map(|r| r.trace(index));
+        let run = run_core_with_origins(prep, group, cache, case_limit, meter, trace.as_mut());
+        let capture = trace.map(RunTrace::finish);
+        let id = recording
+            .as_mut()
+            .map(|r| r.finish(position, Some(index), RunPhase::Schedule, &run, capture));
+        out.push(project(run, id));
     }
     out
 }
@@ -4906,6 +5024,21 @@ pub fn solve_case(
 // ------------------------------------------------------------ support for combinations
 
 impl GroupCache {
+    pub(crate) fn matches_origins(&self, slots: &SlotSnapshot) -> bool {
+        let occupied = [
+            self.s128.is_some(),
+            self.s256.is_some(),
+            self.s512.is_some(),
+            self.s1024.is_some(),
+            self.v256.is_some(),
+            self.v512.is_some(),
+            self.v1024.is_some(),
+        ];
+        occupied
+            .iter()
+            .zip(slots)
+            .all(|(present, origin)| *present == origin.is_some())
+    }
     /// The first cached build (or failure) per precision among the caches of
     /// solves that share one stiffness identity.
     pub(crate) fn merged<'a>(caches: impl IntoIterator<Item = &'a GroupCache>) -> Self {

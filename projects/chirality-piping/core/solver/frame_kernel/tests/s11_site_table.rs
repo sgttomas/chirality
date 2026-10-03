@@ -91,6 +91,10 @@ const SOURCES: &[Source] = &[
         name: "FK/structural/retained/work.rs",
         text: include_str!("../src/structural/retained/work.rs"),
     },
+    Source {
+        name: "FK/structural/retained/origins.rs",
+        text: include_str!("../src/structural/retained/origins.rs"),
+    },
     // K4 (ROOT's K4 ruling Q8, a declared extension): the W1a kernel method.
     Source {
         name: "FK/structural/retained/wide_sum.rs",
