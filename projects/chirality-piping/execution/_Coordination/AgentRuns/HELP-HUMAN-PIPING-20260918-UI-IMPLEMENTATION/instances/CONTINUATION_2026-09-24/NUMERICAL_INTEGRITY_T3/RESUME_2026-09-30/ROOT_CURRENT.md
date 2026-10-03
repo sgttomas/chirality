@@ -26,8 +26,8 @@ with exact maintained correspondence. R/verification/i44_fanin_01 holds ROOT
 checks and LOCAL_MERGE. Native p128/P256 evidence and full predicates are reviewed;
 higher-P actual witnesses, profiles/auxiliary costs/PP custody remain open.
 
-I45 source52842022cc49d0c9dd8d0760e727963d29015842 is frozen, clean and
-pushed in wt/f2a. ROOT read the complete core/adapter/tests and metadata repair,
+I45 original review base52842022cc49d0c9dd8d0760e727963d29015842 remains
+preserved and pushed. Its repaired successor is the current CODE head below. ROOT read the complete core/adapter/tests and metadata repair,
 verified the exact ten-path fence and all98 sealed payloads, and matched the
 repaired PP source-bound checks plus explicitly unaffected FK/ordinary coverage.
 Seal ef1b7f2f69c5b7ff0c81e943018ebe3dd078437842b5618c1df2907c3c2b7f1e;
@@ -44,17 +44,25 @@ fixed solver-mode sign convention. Actual W0/W1 numeric predicates and complete
 G5a independently agree in both builds; this does not waive the binding gaps.
 RV60 released runtime04:03:05 and sealed04:03:21, with source unchanged.
 
-I45 /root/i45_product_vertical now repairs only PP/src/retained_product.rs and
-PP/src/retained_product_tests.rs in CODE from52842022cc49, plus new
-CODE/R/I45/product_vertical_repair_03. Briefed0dbbc0671d. Actual receipt04:04:44Z;
-checkpoint04:14:44, cutoff04:24:44, return04:34:44. Same reviewer backcheck follows
-ROOT freeze/commit; old candidate/evidence remains immutable. The foreign raw
-capture probe is an explicit current internal-caller/future C2 limit, not a new
-repair mandate: the actual observed(raw) callsite forwards its matching pair.
-Sole focused PP lane uses existing guard5387,4jobs/2threads, absolute locked/
-offline manifest,20minute wall and WT/targets/i45-product-vertical/product_physics.
-No heavy/UI/sweep/install/tooling/pruning or other source/Git/index/API writes.
-ROOT verification of the original candidate is R/verification/i45_freeze_01.
+I45's repair is frozen at 28ac57891cd5786e8f84d28f54aa7f1581f69402 in CODE.
+ROOT read the full two-file diff and verified all 28 sealed payloads, matching
+source-bound PP checks, all 586 untouched core files and the original 98 payloads.
+Packet: CODE/R/I45/product_vertical_repair_03; seal
+140318fec18e51287b65491abde7960bc75d3af17a1b150d7bb30ab75b1c3f63.
+The actual requests/source/ordinary rows/numeric/G5a/native results remain unchanged.
+No other source or criterion changed. I45 sealed 04:15:17 and released runtime
+04:14:10; it is stopped. ROOT checks: R/verification/i45_repair_freeze_02.
+
+Same RV60 reviewer now backchecks F1/F2 at that frozen candidate. Actual receipt
+04:16:32Z; checkpoint 04:26:32, cutoff 04:36:32, return 04:41:32. Owns only new
+R/REVIEW_RV60/product_vertical_repair_02 evidence and external overlay
+WT/scratch/rv60-product-vertical-repair. Preserved controls are reconstructed
+byte-for-byte; old packets are read-only. Sole focused PP lane: guard5387,
+4 jobs/2 threads, absolute locked/offline manifest, 20-minute walls and external
+WT/targets/rv60-product-vertical-repair/product_physics. No broad/runtime/tooling
+expansion. No bounded fan-in until both findings are independently closed.
+The internal arbitrary request/capture-pair and dynamic basis-text limits remain;
+this repair creates no raw-identity token or completed C2 custody.
 
 I46's original diagnosis is preserved330dc2e405de, with original sealed packet
 byte-relocated under R/I46/product_refusal_01/_run_records/original. It separates

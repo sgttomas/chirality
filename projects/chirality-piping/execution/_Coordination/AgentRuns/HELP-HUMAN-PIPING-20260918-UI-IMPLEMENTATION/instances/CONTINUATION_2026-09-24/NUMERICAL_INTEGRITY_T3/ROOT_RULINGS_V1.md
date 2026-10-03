@@ -5961,3 +5961,14 @@ and PHYS-R4 remain distinct. A complete actual projected specimen and an actual
 required-success public input/route are different witnesses. No new contract or
 availability ruling is needed for I47's already prepared selected-material test
 step after current repair/backcheck; public changes retain their owning decisions.
+
+
+RV60 repair freeze/backcheck (ROOT, 2026-10-03 UTC): ROOT read the complete
+two-file repair and verified its 28 payloads, final source-bound PP checks, 586
+untouched core files and the original 98 I45 payloads. Candidate
+28ac57891cd5786e8f84d28f54aa7f1581f69402 is frozen; no acceptance yet. I45
+released runtime at 04:14:10 and sealed at 04:15:17. Same RV60 reviewer received
+the unchanged-control backcheck at 04:16:32Z, checkpoint 04:26:32, cutoff 04:36:32,
+return 04:41:32. New owned evidence is R/REVIEW_RV60/product_vertical_repair_02;
+new external overlay and separate PP target preserve all earlier records.
+Only the focused lane transferred after ROOT's no-compiler/live-guard check.
