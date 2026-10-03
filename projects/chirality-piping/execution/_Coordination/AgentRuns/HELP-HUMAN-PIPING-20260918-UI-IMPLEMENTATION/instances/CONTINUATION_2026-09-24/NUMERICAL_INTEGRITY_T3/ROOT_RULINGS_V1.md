@@ -6007,3 +6007,37 @@ selective TASK context. The one maintained test-file fence and actual selected-
 material witness are in brief f737a96abc83; the runtime lane transferred only
 after the empty compiler/live guard scan. R/verification/i47_dispatch_01 records
 the local join/dispatch. No new source/output/predicate or availability policy.
+
+
+## Selected-material ancillary completion selected (ROOT, 2026-10-03 UTC)
+
+I47's tests-only first actual executions found the missing modulus_basis_record
+binding before any final certificate or G5a ran. ROOT read the complete new test
+diff and blocker return, verified the 57-payload seal, exact one-file scope,
+source-bound expected failed regressions and preserved original test prefix, and
+committed the unaccepted blocker at CODE 58912a48b3fb. It is not merged into NUM.
+The packet remains a failed required-witness result, not a numerical-predicate
+refusal or selected-material qualification. The overinclusive --lib s11 run and
+its old fallback-byte failure remain disclosed; the intended site target's pass
+does not erase it or establish causation. No broad baseline or old-test repair
+is granted. ROOT also identified the copied unexecuted row35 expectation as
+inapplicable after the actual prepended ancillary row.
+
+ROOT read RV63's complete independent interface review, preserved at 08a4e9017de5,
+and verified its 12-payload seal 9a1f143df434a5aee89d8cadb3613aae8ca91a4693d8e9edc3d81ae4415dd03e.
+Select its full sufficient rule before implementation reliance. Expected selected
+status comes from the actual case independently of optional capture presence.
+Selected requires one successful aggregate source-text capture and one final
+modulus row; base requires neither. Capturing only per-material success is
+insufficient. Keep actual case/selection association, full producer-defined
+metadata and dynamic text equality, mandatory solver-mode coverage, and a distinct
+at-most-one typed modulus recipe that contributes no mechanical scale/class.
+Derive row associations and failure ordinals from the actual roster.
+
+Authorize the exact four-file completion in brief f8d1bf148464. The retained/**
+touch is the private enum/coverage/nonmechanical-verdict seam only; no numerical
+publication arithmetic, resolver rule, public output or D2 published contract
+changes. New capture storage and work remain explicitly unqualified for public
+resources. The actual matching caller/future C2 limits remain. Fresh RV62 covers
+the eventual cumulative four-file code/test/independent-oracle diff before any
+fan-in. Original sealed evidence and actual ordinary values remain unchanged.

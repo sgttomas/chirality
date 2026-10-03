@@ -63,17 +63,26 @@ product publication. Conditional finite refusal remains authorized; protected
 availability and any public contract change remain separate owner boundaries.
 I46/RV61 stopped; no runtime retained. See the latest ROOT ruling for disposition.
 
-I47 /root/i47_selected_material is actually dispatched under brief f737a96abc83
-from clean CODE 0215e471d293cd2d6e7f3f177913a216ab73a988 (no-ff accepted NUM join;
-maintained source 28ac57891cd5). It implements only PP/src/retained_product_tests.rs
-and new CODE/R/I47/selected_material_01, following selected I35 §3's actual point/
-interpolation complete private witness. Actual receipt 04:24:03Z; checkpoint 04:34:03, first actual witness 04:44:03,
-new-work cutoff 04:54:03, sealed return 05:09:03.
-No production/source-contract changes. Sole focused PP lane: existing guard5387,
-4 jobs/2 threads, absolute locked/offline manifest,20minute command wall, external
-WT/targets/i47-selected-material/product_physics. No broad/heavy/UI/sweep/install/
-tooling/pruning or Git/index/API/delegation. Fresh review follows the source freeze.
-R/verification/i47_dispatch_01 records the exact join and actual dispatch.
+I47's tests-only blocker is sealed and committed in CODE at
+58912a48b3fbdff75540649d04014025772d2749, from 0215e471d293. Only the test file
+changed, append-only; 57 payloads and source-bound failed checks verify. All four
+actual cases have the prepended modulus_basis_record and stop at row-member
+binding before final numeric/G5a work. No selected-material certificate is accepted.
+The overinclusive --lib s11 old fallback-byte failure is retained without causal
+attribution; intended site target passes. Original base outputs/oracle are unchanged.
+I47 stopped and released runtime at 04:33:07; it awaits the separate source grant.
+
+Fresh RV63 source/interface review is preserved at 08a4e9017de5, 12-payload seal
+9a1f143df434a5aee89d8cadb3613aae8ca91a4693d8e9edc3d81ae4415dd03e. ROOT read it
+and selects its complete binding/coverage rule in the latest ruling. Four-file
+implementation grant f8d1bf148464: PP lib successful aggregate hook, private adapter,
+existing test file and FK final_case typed ancillary coverage only. Independent
+selected-case expectation must not be replaced by optional capture presence.
+Both actual ancillary rows remain explicit and outside numerical scales/recipes;
+actual row ordinals supersede the copied base row35 assumption. No public contract,
+resolver/row producer/arithmetic, output or criterion change. Fresh RV62 brief is
+updated for the complete eventual four-file diff, not merely the original test file.
+ROOT is dispatching that separately bounded completion from the frozen blocker.
 
 I48's bounded read-only availability comparison is preserved74e9f4049e76,
 R/I48/product_availability_01, inventory1144c14f15e1a8ab11b7939ddaa23519a667558f687865cc87c7f387da5eabd0.
@@ -112,6 +121,6 @@ emergency bounds remain unqualified. Old K6c layouts do not qualify new owners.
 Then S-I/F2b/F3 and owner-held decisions remain. No complete memory allowance,
 facade tariff, visit permit or product availability is selected by these packets.
 
-Next unallocated IDs after active I47/completed I48 and prepared RV62: I49/RV63. ROOT owns source/record integration,
+Next unallocated IDs after I47/I48 and prepared RV62/completed RV63: I49/RV64. ROOT owns source/record integration,
 repair assignment, independent review, gates and owner checkpoints. Rulings are
 append-only; frozen raw evidence is never edited.
