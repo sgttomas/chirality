@@ -7010,3 +7010,47 @@ terms or the exact external/decision prerequisite, not another generic platform
 investigation. No numeric H, memory allowance, finite-use restriction, ordinary
 behavior change, Wry patch or host tooling is selected. I51 keeps the native
 interface explicitly unqualified while completing the producer composition.
+
+
+## Corrected caller interface accepted; first publication stays the next milestone (ROOT, 2026-10-03 UTC)
+
+ROOT accepts the corrected conditional caller interface so producer accounting preserves resident ownership without turning a reply boundary into a false release.
+
+The accepted input is I53 first_party_profile_02 at `6d9ec9092c` together with
+correction_03 at `d85300e1d7`. RV70's complete continuation review and same-reviewer
+backcheck sealed at 13:36:28Z close P2 RV70-P02-1. ROOT read both, read the full
+author addendum, and verified every sealed payload. The owning record is
+verification/rv70_profile_02. Logical call/envelope facts retain their explicit
+units and source limits in the review; they are not native population measurements.
+
+Upstream producer/resident ownership U includes the stored result and lease until
+actual last-owner Drop. Compose it with the separate caller allocation account only
+at actual overlap; do not add the resident result twice or release it at final
+poll, registration or UI detachment. Original request/context, ordinary response
+and W1 response allocations have distinct owners. Reservations bind actual native
+invocations/jobs, not an assumed one worker per logical UI start.
+
+The finite included native-context/tail and attributable backing premise remains
+unproved, along with its capacity/build/emergency qualifications. No H, byte
+allowance, global IPC/RSS guarantee, finite-use restriction, ordinary behavior
+change or source patch is accepted. This bounded source investigation is concluded
+at its stated limit; no further vendor/host-tool work is assigned. Native activation
+still needs the explicit qualification. I51 may use the corrected conditional
+interface while deriving producer and direct/headless terms.
+
+I51's next admission checkpoint is deliberately the first generic eligible captured
+ordinary single-case publication, in both modes, through the real producer/receipt
+transaction. It is not a fixture-ID special case, full F2a C0 or a main merge. Keep
+typed ordinary handling, whole-invocation exact-block bypass, untouched fallback
+and protected controls. The current ninety-minute clock and no-code grant remain.
+ROOT sent this narrower milestone before the initial interface deadline.
+
+The source comparison also identified a later mandatory extension: selected
+prepared geometry changes stiffness, while ordinary combination operands may not
+be numerically solved on demand. C3's case-only attempt requires a selected native
+Run and cannot represent that preparation-only operand capability. Preserve this
+concrete gap for the full F2a package; do not invent hidden solves, fake readiness
+or an availability exception, and do not branch this checkpoint into combination
+design. Promised exact and source-compatible combination routes, resource/caller
+qualification, all three readers/carriers, native Current and full PR gates remain
+mandatory before the complete F2a main merge.
