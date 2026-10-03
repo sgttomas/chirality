@@ -7054,3 +7054,34 @@ or an availability exception, and do not branch this checkpoint into combination
 design. Promised exact and source-compatible combination routes, resource/caller
 qualification, all three readers/carriers, native Current and full PR gates remain
 mandatory before the complete F2a main merge.
+
+
+## Conditional admission design accepted; caller and census code checkpoint released (ROOT, 2026-10-03 UTC)
+
+ROOT accepts the reviewed admission architecture and releases its narrow first code checkpoint because caller separation and trustworthy count facts are prerequisites to an honest public admission decision.
+
+The selected design is I51/public_producer_admission_05 at `8a7ae33ec0`.
+Fresh RV71's sealed review at `19d00f9a53` closes RV71-1 and confirms the early
+ordinary overlap, terminal adapter freeze, existing canonical path, headless copy
+account and failure/count distinctions. ROOT read the complete design and review,
+verified their seals and the author's nine payloads, thirteen external files and
+thirty-seven origins. The roughly seventy-second initial checkpoint delay remains
+recorded; later checkpoints/seals held and no clock was reset.
+
+This accepts a conditional architecture, not a computable production profile,
+full F2a C0, numeric M or permission to execute public W1. Existing shared Value,
+typed and headless wrappers stay ordinary/W1-disabled. Separate explicit direct
+and headless entries prevent unchanged native callers from inheriting the shorter
+direct window. The first code grant is exactly BRIEFS/I51_ADMISSION_IMPLEMENTATION_A:
+six maintained paths for that barrier, nonallocating borrowed census, explicit
+unknown/denial/profile boundaries and meaningful ordinary-preservation controls.
+No new canonical writer, reader/table/schema installation, kernel change, native
+edit or host tooling is included. Missing qualification must remain missing.
+
+ROOT synchronized CODE with NUM by no-ff merge `90aae4e6e7`; all maintained Piping
+bytes still match `922db9dce3`, and CODE is clean. The existing M5 guard is active
+and no Cargo/rustc process was running at release. I51 alone receives the bounded
+focused-test lane in the brief. Fresh implementation review and ROOT full-diff
+verification precede local fan-in. Source/build-bound numeric profile completion
+and M selection remain necessary before the first actual public execution; this
+checkpoint cannot be presented as that publishing milestone.
