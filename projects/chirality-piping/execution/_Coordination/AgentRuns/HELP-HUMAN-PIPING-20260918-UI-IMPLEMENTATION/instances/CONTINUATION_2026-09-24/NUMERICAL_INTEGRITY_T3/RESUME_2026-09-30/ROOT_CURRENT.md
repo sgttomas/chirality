@@ -26,42 +26,46 @@ with exact maintained correspondence. R/verification/i44_fanin_01 holds ROOT
 checks and LOCAL_MERGE. Native p128/P256 evidence and full predicates are reviewed;
 higher-P actual witnesses, profiles/auxiliary costs/PP custody remain open.
 
-I45's private actual ordinary source-to-verdict implementation is being finalized
-in wt/f2a from0fdd06a73389. The actual W0/W1 inputs, complete final row roster,
-source ownership and both honest full-case refusals are captured; these are
-candidate evidence, not independent acceptance or a future W1 projection.
-Its original source freeze03:33:08 and lane release03:35:13 are historical.
-During ROOT’s resumed inspection the author caught a coherent support component/id binding gap before
-sealing. ROOT returned the sole focused lane for the narrow owned repair and
-PP debug/optimized/S11 checks. Old source/test records remain preserved; unaffected
-FK coverage will be qualified by unchanged FK hashes. No wider source or clock
-extension is granted. RV60 remains prepared, not launched; it follows the final
-freeze and ROOT source/hash/write-set check and commit.
+I45 source52842022cc49d0c9dd8d0760e727963d29015842 is frozen, clean and
+pushed in wt/f2a. ROOT read the complete core/adapter/tests and metadata repair,
+verified the exact ten-path fence and all98 sealed payloads, and matched the
+repaired PP source-bound checks plus explicitly unaffected FK/ordinary coverage.
+Seal ef1b7f2f69c5b7ff0c81e943018ebe3dd078437842b5618c1df2907c3c2b7f1e;
+final source inventory753b19858a949894c7f3123b344c28b9241a5b1d844210b2b87cd6623b6882e2.
+The self-found support component/id binding gap is fixed; original freeze records
+are preserved. Actual base-material W0/W1 complete private cases truthfully refuse;
+no public routing, projection, C2, memory or availability acceptance follows.
 
-The exact fence remains ten maintained files under FK/PP plus new
-CODE/R/I45/product_vertical_02. No NUM or frozen arithmetic source writes.
-M5/existing guard5387,4jobs/2threads, absolute locked/offline manifests,20minute
-walls and separate targets WT/targets/i45-product-vertical/{frame_kernel,
-product_physics}. Production W1 projection/routing/C2/resources remain outside it.
+Fresh RV60 /root/rv60_product_vertical now reviews that final candidate under
+briefd33541e51a77. Actual receipt03:49:13Z; checkpoint04:14:13, cutoff04:34:13,
+return04:49:13. Owns only R/REVIEW_RV60/product_vertical_01 evidence and separately
+granted WT/scratch/rv60-product-vertical runtime fixtures outside Git. Source and
+sealed inputs are read-only. Sole focused lane: existing guard5387,4jobs/2threads,
+absolute locked/offline manifests,20minute walls, separate external targets
+WT/targets/rv60-product-vertical/{frame_kernel,product_physics}. No heavy/UI/sweep,
+installs/tooling/pruning. ROOT verification is R/verification/i45_freeze_01.
 
-I46's exact refusal diagnosis is preserved at330dc2e405de, with original sealed
-packet byte-relocated under R/I46/product_refusal_01/_run_records/original.
-It distinguishes ordinary numerical errors from source/rounded-K discrepancy;
-no future projected envelope or false native q_K publication is claimed.
-Fresh RV61 /root/rv61_product_refusal is reviewing it under brief8e0971413396,
-receipt03:34:38Z, checkpoint03:44:38, cutoff03:54:38, return03:59:38. Review found
-one supporting arithmetic error: the original G5a guard used uncoupled resolution
-values. Main Rx/numeric conclusions are reported independently unchanged; the
-supporting replay is not accepted as exact. Original review sealed03:43:32; RV61-C1 remains open until the correction backcheck.
+I46's original diagnosis is preserved330dc2e405de, with original sealed packet
+byte-relocated under R/I46/product_refusal_01/_run_records/original. It separates
+ordinary numerical misses from real source/rounded-K discrepancy; no future
+projected envelope or false native q_K publication is claimed. Fresh RV61 original
+review1c16016a5239 confirms the main numerical diagnosis and permits the existing
+honest finite-refusal path; protected availability remains unqualified. Its C1
+found an uncoupled G5a supporting check, which was not accepted as exact.
 
-I46 /root/i46_product_refusal_diagnosis now has a narrow correction grant at
-2b2d2d86473d, writes only R/I46/product_refusal_correction_02, generated files
-under _run_records. Actual receipt03:43:00Z, checkpoint03:48:00, cutoff03:53:00,
-return03:58:00. No compiler/model/solver/source/Git/index/API/tooling. Preserve
-all original sealed bytes; corrected copied check uses coupled hats for guard
-and original E for zero rule, with unaffected-proof comparison and a non-unit
-control. Same RV61 backcheck precedes closure. No source/output/predicate or
-protected-availability decision is made by either packet.
+I46 correctione3e04c6344d2 is sealed at R/I46/product_refusal_correction_02,
+with ROOT's full correction/source read and14payload/seal verification. It changes
+one supporting result leaf; all other numeric/Rx/projection/scale results and
+original sealed bytes remain unchanged. RV61 has the same-reviewer backcheck at
+R/REVIEW_RV61/product_refusal_correction_02. Actual receipt03:47:40Z;
+checkpoint03:52:40, cutoff03:57:40, return04:02:40. No compiler/source/Git/index/API.
+Its reported clear result is not yet ROOT closure until the sealed return is read.
+
+I47 selected-material witness brief is prepared atf737a96abc83, not dispatched.
+It follows selected I35 §3: actual point/interpolation material through the full
+ordinary source-to-verdict path, preserving criteria/output and checking every row.
+Only PP's existing private test module plus new evidence may change, after RV60
+clearance and a clean source grant. No new material/source design or public route.
 
 RV58 discloses a separate92ea status read without optional locks disabled; no
 candidate mutation was observed. Its sealed fixture's .gitignore symlink produces
@@ -88,6 +92,6 @@ emergency bounds remain unqualified. Old K6c layouts do not qualify new owners.
 Then S-I/F2b/F3 and owner-held decisions remain. No complete memory allowance,
 facade tariff, visit permit or product availability is selected by these packets.
 
-Next unallocated IDs after I46 and allocated RV60/RV61: I47/RV62. ROOT owns source/record integration,
+Next unallocated IDs after prepared I47 and allocated RV60/RV61: I48/RV62. ROOT owns source/record integration,
 repair assignment, independent review, gates and owner checkpoints. Rulings are
 append-only; frozen raw evidence is never edited.
