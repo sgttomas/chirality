@@ -28,21 +28,25 @@ no cargo/rustc before dispatch. NUM merged current main a533dc2d67bc with
   evidence placement is explained by the packet root RETURN/RELOCATION.
   RV53 is CLEAR, preserved940b1eba9897; helpers integrated into NUM at0a9e874997.
   Full product/profile gates remain.
-- I40 delivered native kernel origins at38798e6ee477ce23bf9bd2a708a1b2e268def5b3
-  in wt/f2a, base887b790c2a64. Eight maintained paths; source and five final
-  command checks verified by ROOT at650a84a0f385. Fresh RV54 reviews in
-  REVIEW_RV54/kernel_origins_01 under brief2e9bcf447022. It owns the sole focused
-  Cargo lane; no source writes. Prepared ordinary/PP/maps/readers remain later.
-- I41 delivered private material/section coefficients and B64U spent seam at
-  60375c47472dac26b1ab77536b8e7b9fb0c44ab0 in wt/f2a-arithmetic, base8a6ed501655f.
-  Six maintained paths; source/oracle/three final command checks verified by
-  ROOT at650a84a0f385. Fresh RV55 reviews in REVIEW_RV55/member_coefficients_01
-  under briefc274947f253c. Compiler lane is held for RV54; source/exact checks
-  may proceed. No source-provenance witness/product caller/policy is activated.
+- I40 origin source38798e6ee477 and I41 coefficient source60375c47472d cleared
+  fresh RV54/RV55. Reviews preservedf2dd0dd6d4c0; combined source NUMc7252b7d496a.
+  The mod.rs join was clean. ROOT's combined source-stable origins and coefficient
+  suites both pass. No main/product/profile qualification is implied.
+- I42 /root/i42_source_bridge now implements private owner-bound retained source
+  bridge in wt/f2a-arithmetic, clean dispatch57636e987041, maintained bytesc7252b7d.
+  Brief e89bb4527a98;75min/checkpoint15/cutoff55. It owns the sole focused Cargo
+  lane with4jobs/2threads/per-manifest targets/20min walls; small real kernel
+  zero/loaded witnesses only. Exact scope and source/oracle requirements in brief.
+  Its fully-fixed-anchor no-data check is only a sufficient uniqueness warrant;
+  absent warrant must be certificate insufficiency, not singularity or zero B.
+  Native proposed source-law inputs remain conditional until actual PP binding.
+  Diagnostic native-SI predicate comparisons must distinguish loose enclosures
+  from exact-oracle out-of-bound facts. No public predicate changes.
 
-Both source checkouts are frozen/clean. Their separate mod.rs registration hunks
-will be integrated serially by ROOT after review. Raw host/command records are
-under _run_records. No helper/product full gate programme is yet released.
+I42 is the only current maintained-source writer. All earlier authors/reviewers
+have returned and released runtime. Full actual PP-builder/final-row witness
+remains next; avoid further product plumbing before the first bridge sufficiency
+observation. No heavy/product UI/sweep or final qualification programme is granted.
 
 ## Accepted and preserved bases
 
@@ -60,5 +64,5 @@ Finish these bounded reviews, repair/backcheck confirmed findings, and qualify
 I39 helpers with a fresh reviewer. Complete C2/product source identity, concrete
 profile/caller/resource work and the first source-to-verdict witness, then the
 atomic F2a/S-G1 path and required gates. S-I/F2b/F3 and owner-held decisions
-remain. Next unused IDs: I42/RV56. No full T3 completion or product activation
+remain. Next unused IDs: I43/RV56. No full T3 completion or product activation
 is claimed. See BRIEFS, owning RETURN files and latest ROOT_RULINGS_V1.md.

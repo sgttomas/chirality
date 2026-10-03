@@ -5569,3 +5569,34 @@ profile or product certificate is accepted merely because component tests pass.
 ROOT verification records are preserved at650a84a0f385. Both source checkouts
 remain frozen while fresh reviews run; each registration hunk will be integrated
 serially after findings are resolved. All product/availability/gate holds remain.
+
+## Origins and coefficients accepted for local fan-in; native bridge next (ROOT, 2026-10-03 UTC)
+
+ROOT read the complete RV54/RV55 returns, verified exact packet trees/manifests,
+and preserved both atf2dd0dd6d4c0. RV54 seal
+f413042d48405f1fa927291220f5c0f069a32e2652daabdc061978eca0b3be2f;
+RV55 seal b2eec69f69154ebc7916868b1d9e7ad05ae6a4bf22d662cce31430e8812b6400.
+Accept native origin source38798e6ee477 and coefficient/B64U source60375c47472d
+for bounded component fan-in. No actionable source findings remain. ROOT merged
+them into NUM at77d1b640400e and c7252b7d496a with --no-ff; the two module
+registrations joined cleanly. Both focused origin/coefficient suites pass on
+that unchanged combined source, with commands/hashes/raw logs under verification/
+combined_components_01. This is not a main merge, complete C2, numeric profile
+or full product/availability acceptance. RV54 removed only its disposable review
+target directories after retaining compiler facts/raw evidence/reproduction inputs.
+
+Release I42 under briefe89bb4527a98 on clean f2a-arithmetic57636e987041, which
+contains that reviewed combined source. Implement the accepted I33/RV45 full
+source-action theorem with actual owner-bound R7/A1 state and fixed arithmetic,
+and test small native zero/loaded cases against an independent exact oracle.
+A conservative fully-fixed-anchor test may establish sufficient no-data uniqueness
+for the initial component; its absence is missing warrant/certificate insufficiency,
+never a new domain rule or singularity claim. General PP source and final-row
+binding remains unfinished and may not be asserted by a scalar input record.
+
+ROOT prioritizes an early sufficiency diagnostic against unchanged native SI
+predicates wherever directly applicable. Distinguish a loose conservative
+enclosure from an exact source error that actually exceeds a bound. Neither
+outcome authorizes tolerance/source/publication changes; any required change
+gets its own re-derivation, review and owning decision. No extra product plumbing
+is commissioned while this first numerical observation is pending.
