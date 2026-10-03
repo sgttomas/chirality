@@ -19,7 +19,8 @@ The numerical candidate now passes. What stands before publication is its public
 ## Running now
 
 - I52 is making the public contract proposal concrete: definitions, closed fields, source mappings and reader controls. Draft due 13:07:04Z, complete proposal 13:27:04Z, seal 13:42:04Z.
-- Fresh RV69 independently reviews the preceding reconciliation. Assessment due 13:20:50Z, seal 13:35:50Z; it will receive the concrete continuation for confirmation.
+- RV69 cleared the initial reconciliation, with one warrant cross-reference to carry into C3. It will independently check the concrete continuation before selection.
+- I53 checks the native caller’s still-open resource-proof premise using pinned source and vendor contracts. Result due 13:37:25Z, seal 13:57:25Z. No host tool or runtime is authorized.
 - No compiler or solver job is running. The existing memory guard remains active. No host tooling work is assigned.
 
 ## Next
