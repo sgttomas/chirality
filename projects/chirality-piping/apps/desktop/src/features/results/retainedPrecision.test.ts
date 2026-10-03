@@ -100,7 +100,7 @@ describe('synthetic prepared receipt arithmetic controls, not execution evidence
   });
 });
 
-import { validateRetainedPrecision, validateRetainedPrecisionTransport, RetainedPrecisionError, phi512, eHat, stopFeasible, nativeSchedule, ordinaryAttempts, accountingRules } from './retainedPrecision';
+import { validateRetainedPrecision, validateRetainedPrecisionTransport, RetainedPrecisionError, phi512, eHat, stopFeasible, nativeSchedule, ordinaryAttempts, accountingRules, nativeRuns } from './retainedPrecision';
 import { canonicalSha256HexCheckedV1 } from '../../services/hashService';
 async function rehash(source: any) {
   const body = source.retained_precision.body;
@@ -118,7 +118,11 @@ async function rehash(source: any) {
 function applyEdits(root: any, edits: any[] | undefined): void {
   for (const edit of edits ?? []) {
     let value = root; for (const key of edit.path.slice(0, -1)) value = value[key];
-    const key = edit.path.at(-1); if (edit.op === 'remove') delete value[key]; else value[key] = structuredClone(edit.value);
+    const key = edit.path.at(-1);
+    // RV78-N5: an array removal splices (no hole); unknown operations are refused.
+    if (edit.op === 'remove') { if (Array.isArray(value)) value.splice(key, 1); else delete value[key]; }
+    else if (edit.op === 'set') value[key] = structuredClone(edit.value);
+    else throw new Error('unsupported edit op ' + edit.op);
   }
 }
 /** SHARED_SNAPSHOT_06C format_change: source edits; invocation edits on a copy of the base
@@ -128,7 +132,9 @@ async function applyEntry(m: any): Promise<{ base: any; source: any; invocation:
   applyEdits(source, m.edits);
   applyEdits(invocation, m.invocation_edits);
   if (m.invocation_edits?.length) source.retained_precision.body.invocation.value = await canonicalSha256HexCheckedV1({ domain: 'source_blocks_invocation_v1', payload: invocation });
-  if (m.rehash) await rehash(source);
+  // D11/RV78-N5: the shared format admits only rehash "all"; any other value is refused.
+  if (m.rehash !== 'all') throw new Error('unsupported rehash ' + m.rehash);
+  await rehash(source);
   return { base, source, invocation };
 }
 describe('shared synthetic prepared receipt controls, never solver execution evidence', () => {
@@ -244,6 +250,183 @@ describe('reader-logic checklist controls, not corpus or producer evidence', () 
     rejects(() => ordinaryAttempts(body, fixture.source));
     body.cases[1].source_decline = decline; body.cases[0].source_decline = { ...decline, input_owner: { ...decline.input_owner, case_index: 0, case_id: body.cases[0].basis_ref.ref_id } };
     rejects(() => ordinaryAttempts(body, fixture.source));
+  });
+});
+
+// Review repair 07 (ruling D1-D7, D13, D14): reader-local relations, not shared corpus entries.
+// RV78 probe entries (PROBES.json, review evidence; same grammar as the corpus plus post_rehash_edits).
+const RV78_PROBES: any[] = [{"id":"R1a_execution_order_swapped","base":"two_case_synthetic","edits":[{"path":["retained_precision","body","work","execution_order"],"op":"set","value":[{"kind":"case","index":1},{"kind":"case","index":0}]}],"invocation_edits":[],"post_rehash_edits":[],"rehash":"all","expected":{"gate":"G3","code":"RETAINED_PRECISION_COVERAGE_MISMATCH"}},{"id":"R1b_run_id_not_position","base":"two_case_synthetic","edits":[{"path":["retained_precision","body","cases",1,"run","id"],"op":"set","value":5},{"path":["retained_precision","body","calls",0,"run_refs"],"op":"set","value":[0,5]}],"invocation_edits":[],"post_rehash_edits":[],"rehash":"all","expected":{"gate":"G3","code":"RETAINED_PRECISION_COVERAGE_MISMATCH"}},{"id":"R2_old_members_reordered","base":"two_body_synthetic","edits":[{"path":["retained_precision","body","product_attempts",0,"operational","old"],"op":"set","value":[{"member":1,"inputs":["0000000000000000","4014000000000000","0000000000000000","3ff0000000000000","4014000000000000","0000000000000000","42474876e8000000","4231ed8ec2000000","3f6c4f3caf32fd23","3ee61aa4872838c0"],"result":{"kind":"ready","length":"3ff0000000000000","axial_stiffness":"41c4990f17e516ad","torsional_stiffness":"4128c47ead23fa80","normalization":["3ff0000000000000","0000000000000000","0000000000000000"]},"work":{"entered":0,"checks":0,"lost":false}},{"member":0,"inputs":["0000000000000000","0000000000000000","0000000000000000","3ff0000000000000","0000000000000000","0000000000000000","42474876e8000000","4231ed8ec2000000","3f6c4f3caf32fd23","3ee61aa4872838c0"],"result":{"kind":"ready","length":"3ff0000000000000","axial_stiffness":"41c4990f17e516ad","torsional_stiffness":"4128c47ead23fa80","normalization":["3ff0000000000000","0000000000000000","0000000000000000"]},"work":{"entered":0,"checks":0,"lost":false}}]}],"invocation_edits":[],"post_rehash_edits":[],"rehash":"all","expected":{"gate":"G3","code":"RETAINED_PRECISION_COVERAGE_MISMATCH"}},{"id":"R3_complete_old_short_of_source","base":"two_body_synthetic","edits":[{"path":["retained_precision","body","product_attempts",0,"operational","old"],"op":"set","value":[{"member":0,"inputs":["0000000000000000","0000000000000000","0000000000000000","3ff0000000000000","0000000000000000","0000000000000000","42474876e8000000","4231ed8ec2000000","3f6c4f3caf32fd23","3ee61aa4872838c0"],"result":{"kind":"ready","length":"3ff0000000000000","axial_stiffness":"41c4990f17e516ad","torsional_stiffness":"4128c47ead23fa80","normalization":["3ff0000000000000","0000000000000000","0000000000000000"]},"work":{"entered":0,"checks":0,"lost":false}}]}],"invocation_edits":[],"post_rehash_edits":[],"rehash":"all","expected":{"gate":"G3","code":"RETAINED_PRECISION_COVERAGE_MISMATCH"}},{"id":"R4_unavailable_source_backref_foreign","base":"two_case_facade_after_certificate_synthetic","edits":[{"path":["retained_precision","body","sources",1,"preparation","attempt_ref"],"op":"set","value":0}],"invocation_edits":[],"post_rehash_edits":[],"rehash":"all","expected":{"gate":"G5","code":"RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"}},{"id":"R5_attempt_and_source_basis_not_ordinary","base":"two_case_two_groups_synthetic","edits":[{"path":["retained_precision","body","product_attempts",1,"material_basis_ref"],"op":"set","value":0},{"path":["retained_precision","body","sources",1,"material_basis_ref"],"op":"set","value":0}],"invocation_edits":[],"post_rehash_edits":[],"rehash":"all","expected":{"gate":"G5","code":"RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"}},{"id":"R6a_native_error_with_selected_run","base":"two_case_facade_after_certificate_synthetic","edits":[{"path":["retained_precision","body","product_attempts",1,"result","error"],"op":"set","value":{"kind":"native","run_ref":1}}],"invocation_edits":[],"post_rehash_edits":[],"rehash":"all","expected":{"gate":"G5","code":"RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"}},{"id":"R8_group_call_out_of_range","base":"two_case_synthetic","edits":[{"path":["retained_precision","body","groups",0,"call"],"op":"set","value":3}],"invocation_edits":[],"post_rehash_edits":[],"rehash":"all","expected":{"gate":"G5","code":"RETAINED_PRECISION_ATTEMPT_MISMATCH"}},{"id":"T1_escalating_failed_verification_pass_entered","base":"verification_failure_skip_synthetic","edits":[{"path":["retained_precision","body","cases",0,"run","records",1],"op":"set","value":{"index":1,"precision":256,"role":"verification","outcome":{"kind":"failed","reason":{"space":"attempt","tag":"stop","stop":{"space":"stop","tag":"condition"}}},"residual_basis":320,"corrections":0,"pivot_margin_min":null,"rcond":null,"residual_worst":null,"gate":null,"work":{"wide_lme":1,"exact_sum_lme":0,"own_lme":1,"shared_lme":4,"stop_rule_lme":0,"verification_lme":1,"verification_shared_lme":0,"own_stages":{"formation":0,"assembly":0,"residual_formation":0,"factor":0,"condition":0,"rhs":0,"solve":0,"refinement":0,"recovery":0,"stop_rule":0,"bounded_gate":0,"scale":0,"estimate":0,"charge":0,"bound":1,"shift":0,"bounded_formation":0,"wide_formation":0,"uc":0},"shared_stages":{"formation":4,"assembly":0,"residual_formation":0,"factor":0,"condition":0,"rhs":0,"solve":0,"refinement":0,"recovery":0,"stop_rule":0,"bounded_gate":0,"scale":0,"estimate":0,"charge":0,"bound":0,"shift":0,"bounded_formation":0,"wide_formation":0,"uc":0},"shared_built_here":true,"verification_shared_built_here":false},"storage":{"pattern_entries":144,"profile_entries":21,"limbs_per_entry":4},"verification":null,"bound_refusals":[],"shared_build_ref":1,"verification_shared_build_ref":null}},{"path":["retained_precision","body","cases",0,"run","attempts",0],"op":"set","value":{"precision":128,"candidate_record":0,"origin":{"kind":"fresh"},"verification":{"record":1,"precision":256,"phase":"failed","reason":{"space":"attempt","tag":"stop","stop":{"space":"stop","tag":"condition"}}},"outcome":{"kind":"rejected","reason":{"space":"attempt","tag":"verification_failed"}},"charges":[{"record":0,"part":"solve_and_verification"},{"record":0,"part":"candidate_stop"},{"record":1,"part":"solve_and_verification"}],"case_charge":9,"invocation_increment":9}},{"path":["retained_precision","body","cases",0,"run","case_charge"],"op":"set","value":37},{"path":["retained_precision","body","cases",0,"run","invocation_increment"],"op":"set","value":37},{"path":["retained_precision","body","cases",0,"run","invocation_after"],"op":"set","value":37},{"path":["retained_precision","body","calls",0,"invocation_after"],"op":"set","value":37},{"path":["retained_precision","body","work","charged"],"op":"set","value":37}],"invocation_edits":[],"post_rehash_edits":[],"rehash":"all","expected":{"gate":"G5","code":"RETAINED_PRECISION_ATTEMPT_MISMATCH"}},{"id":"T2_stop_rule_quantity_other_body","base":"p512_ladder_synthetic","edits":[{"path":["retained_precision","body","cases",0,"run","records",0,"outcome","reason","quantity"],"op":"set","value":{"tag":"displacement","dof":{"node":3,"component":"UX"}}},{"path":["retained_precision","body","cases",0,"run","attempts",0,"outcome","reason","quantity"],"op":"set","value":{"tag":"displacement","dof":{"node":3,"component":"UX"}}}],"invocation_edits":[],"post_rehash_edits":[],"rehash":"all","expected":{"gate":"G5","code":"RETAINED_PRECISION_ATTEMPT_MISMATCH"}},{"id":"T3_candidate_record_with_verification","base":"ordinary_prepared_synthetic","edits":[{"path":["retained_precision","body","cases",0,"run","records",0,"verification"],"op":"set","value":{"resolution":[{"body":0,"force":"426d1a94a2000000","moment":"426d1a94a2000000"}],"theta":[{"body":0,"value":"0000000000000000"}],"bound":[{"body":0,"value":"3ff0000000000000"}],"data_blocks":1,"shift_factorizations":0,"g_max":0,"uc_missing":null,"g_violation":null}}],"invocation_edits":[],"post_rehash_edits":[],"rehash":"all","expected":{"gate":"G5","code":"RETAINED_PRECISION_ATTEMPT_MISMATCH"}},{"id":"T4a_ordinary_diagnostic_ref_duplicate","base":"ordinary_prepared_synthetic","edits":[{"path":["retained_precision","body","ordinary_attempts",0,"diagnostic_refs"],"op":"set","value":["diagnostic:numerical-integrity:case:six-component-load","diagnostic:numerical-integrity:case:six-component-load"]}],"invocation_edits":[],"post_rehash_edits":[],"rehash":"all","expected":{"gate":"G5","code":"RETAINED_PRECISION_ATTEMPT_MISMATCH"}},{"id":"T4b_ordinary_diagnostic_ref_dangling","base":"ordinary_prepared_synthetic","edits":[{"path":["retained_precision","body","ordinary_attempts",0,"diagnostic_refs"],"op":"set","value":["diagnostic:numerical-integrity:case:six-component-load","diagnostic:rv78:absent"]}],"invocation_edits":[],"post_rehash_edits":[],"rehash":"all","expected":{"gate":"G5","code":"RETAINED_PRECISION_ATTEMPT_MISMATCH"}},{"id":"T4c_source_identity_stale_receipt_rehashed","base":"ordinary_prepared_synthetic","edits":[],"invocation_edits":[],"post_rehash_edits":[{"path":["retained_precision","body","cases",0,"source_identity_sha256"],"op":"set","value":"0000000000000000000000000000000000000000000000000000000000000000"}],"rehash":"all","expected":{"gate":"G1","code":"RETAINED_PRECISION_RECEIPT_MISMATCH"}},{"id":"T4d_ordinary_dangling_plus_adapter_fault","base":"two_case_facade_after_certificate_synthetic","edits":[{"path":["retained_precision","body","ordinary_attempts",1,"diagnostic_refs"],"op":"set","value":["diagnostic:numerical-integrity:case:unavailable-row","diagnostic:rv78:absent"]},{"path":["retained_precision","body","product_attempts",1,"adapter","fault"],"op":"set","value":{"kind":"overflow","event":"map_write"}}],"invocation_edits":[],"post_rehash_edits":[],"rehash":"all","expected":{"gate":"G5","code":"RETAINED_PRECISION_ATTEMPT_MISMATCH"}},{"id":"R2b_unsourced_old_member_noncontiguous","base":"two_case_preparation_failure_synthetic","edits":[{"path":["retained_precision","body","product_attempts",1,"operational","old",0],"op":"set","value":{"member":1,"inputs":["0000000000000000","0000000000000000","0000000000000000","3ff0000000000000","0000000000000000","0000000000000000","42474876e8000000","4231ed8ec2000000","3f6c4f3caf32fd23","3ee61aa4872838c0"],"result":{"kind":"ready","length":"3ff0000000000000","axial_stiffness":"41c4990f17e516ad","torsional_stiffness":"4128c47ead23fa80","normalization":["3ff0000000000000","0000000000000000","0000000000000000"]},"work":{"entered":0,"checks":0,"lost":false}}}],"invocation_edits":[],"post_rehash_edits":[],"rehash":"all","expected":{"gate":"G3","code":"RETAINED_PRECISION_COVERAGE_MISMATCH"}},{"id":"R3b_complete_old_longer_than_source","base":"two_body_synthetic","edits":[{"path":["retained_precision","body","product_attempts",0,"operational","old"],"op":"set","value":[{"member":0,"inputs":["0000000000000000","0000000000000000","0000000000000000","3ff0000000000000","0000000000000000","0000000000000000","42474876e8000000","4231ed8ec2000000","3f6c4f3caf32fd23","3ee61aa4872838c0"],"result":{"kind":"ready","length":"3ff0000000000000","axial_stiffness":"41c4990f17e516ad","torsional_stiffness":"4128c47ead23fa80","normalization":["3ff0000000000000","0000000000000000","0000000000000000"]},"work":{"entered":0,"checks":0,"lost":false}},{"member":1,"inputs":["0000000000000000","4014000000000000","0000000000000000","3ff0000000000000","4014000000000000","0000000000000000","42474876e8000000","4231ed8ec2000000","3f6c4f3caf32fd23","3ee61aa4872838c0"],"result":{"kind":"ready","length":"3ff0000000000000","axial_stiffness":"41c4990f17e516ad","torsional_stiffness":"4128c47ead23fa80","normalization":["3ff0000000000000","0000000000000000","0000000000000000"]},"work":{"entered":0,"checks":0,"lost":false}},{"member":2,"inputs":["0000000000000000","4014000000000000","0000000000000000","3ff0000000000000","4014000000000000","0000000000000000","42474876e8000000","4231ed8ec2000000","3f6c4f3caf32fd23","3ee61aa4872838c0"],"result":{"kind":"ready","length":"3ff0000000000000","axial_stiffness":"41c4990f17e516ad","torsional_stiffness":"4128c47ead23fa80","normalization":["3ff0000000000000","0000000000000000","0000000000000000"]},"work":{"entered":0,"checks":0,"lost":false}}]}],"invocation_edits":[],"post_rehash_edits":[],"rehash":"all","expected":{"gate":"G3","code":"RETAINED_PRECISION_COVERAGE_MISMATCH"}},{"id":"B_interpolation_target_at_lower_point_equal_point_E","base":"ordinary_prepared_interpolated_material_synthetic","edits":[{"path":["retained_precision","body","material_bases",0,"selector","kelvin"],"op":"set","value":"4072c00000000000"},{"path":["retained_precision","body","material_bases",0,"materials",0,"selection","target_kelvin"],"op":"set","value":"4072c00000000000"}],"invocation_edits":[{"path":["request","model","materials",0,"temperature_points",0,"elastic_modulus"],"op":"set","value":{"value":200000000000.0,"unit":"Pa"}},{"path":["request","model","materials",0,"temperature_points",1,"elastic_modulus"],"op":"set","value":{"value":200000000000.0,"unit":"Pa"}},{"path":["request","model","load_cases",0,"modulus_basis_temperature"],"op":"set","value":{"value":300,"unit":"K"}}],"post_rehash_edits":[],"rehash":"all","expected":{"gate":"G8","code":"RETAINED_PRECISION_PREPARATION_MISMATCH"}},{"id":"B_interpolation_target_below_range_equal_point_E","base":"ordinary_prepared_interpolated_material_synthetic","edits":[{"path":["retained_precision","body","material_bases",0,"selector","kelvin"],"op":"set","value":"4072b00000000000"},{"path":["retained_precision","body","material_bases",0,"materials",0,"selection","target_kelvin"],"op":"set","value":"4072b00000000000"}],"invocation_edits":[{"path":["request","model","materials",0,"temperature_points",0,"elastic_modulus"],"op":"set","value":{"value":200000000000.0,"unit":"Pa"}},{"path":["request","model","materials",0,"temperature_points",1,"elastic_modulus"],"op":"set","value":{"value":200000000000.0,"unit":"Pa"}},{"path":["request","model","load_cases",0,"modulus_basis_temperature"],"op":"set","value":{"value":299,"unit":"K"}}],"post_rehash_edits":[],"rehash":"all","expected":{"gate":"G8","code":"RETAINED_PRECISION_PREPARATION_MISMATCH"}},{"id":"B_interpolation_target_at_upper_point_equal_point_E","base":"ordinary_prepared_interpolated_material_synthetic","edits":[{"path":["retained_precision","body","material_bases",0,"selector","kelvin"],"op":"set","value":"4073600000000000"},{"path":["retained_precision","body","material_bases",0,"materials",0,"selection","target_kelvin"],"op":"set","value":"4073600000000000"}],"invocation_edits":[{"path":["request","model","materials",0,"temperature_points",0,"elastic_modulus"],"op":"set","value":{"value":200000000000.0,"unit":"Pa"}},{"path":["request","model","materials",0,"temperature_points",1,"elastic_modulus"],"op":"set","value":{"value":200000000000.0,"unit":"Pa"}},{"path":["request","model","load_cases",0,"modulus_basis_temperature"],"op":"set","value":{"value":310,"unit":"K"}}],"post_rehash_edits":[],"rehash":"all","expected":{"gate":"G8","code":"RETAINED_PRECISION_PREPARATION_MISMATCH"}},{"id":"B_interpolation_target_above_range_equal_point_E","base":"ordinary_prepared_interpolated_material_synthetic","edits":[{"path":["retained_precision","body","material_bases",0,"selector","kelvin"],"op":"set","value":"4073700000000000"},{"path":["retained_precision","body","material_bases",0,"materials",0,"selection","target_kelvin"],"op":"set","value":"4073700000000000"}],"invocation_edits":[{"path":["request","model","materials",0,"temperature_points",0,"elastic_modulus"],"op":"set","value":{"value":200000000000.0,"unit":"Pa"}},{"path":["request","model","materials",0,"temperature_points",1,"elastic_modulus"],"op":"set","value":{"value":200000000000.0,"unit":"Pa"}},{"path":["request","model","load_cases",0,"modulus_basis_temperature"],"op":"set","value":{"value":311,"unit":"K"}}],"post_rehash_edits":[],"rehash":"all","expected":{"gate":"G8","code":"RETAINED_PRECISION_PREPARATION_MISMATCH"}},{"id":"B_control_equal_point_E_bracketed","base":"ordinary_prepared_interpolated_material_synthetic","edits":[],"invocation_edits":[{"path":["request","model","materials",0,"temperature_points",0,"elastic_modulus"],"op":"set","value":{"value":200000000000.0,"unit":"Pa"}},{"path":["request","model","materials",0,"temperature_points",1,"elastic_modulus"],"op":"set","value":{"value":200000000000.0,"unit":"Pa"}}],"post_rehash_edits":[],"rehash":"all","expected":"pass"},{"id":"T4e_selected_case_ordinary_checks_passed","base":"ordinary_prepared_synthetic","edits":[{"path":["numerical_quality","cases",0,"solve_quality"],"op":"set","value":"checks_passed"},{"path":["retained_precision","body","ordinary_attempts",0,"initial","outcome"],"op":"set","value":"checks_passed"}],"invocation_edits":[],"post_rehash_edits":[],"rehash":"all","expected":{"gate":"G5","code":"RETAINED_PRECISION_ATTEMPT_MISMATCH"}}];
+async function rehashOuter(source: any) {
+  const { retained_precision: _, ...publication } = source, body = source.retained_precision.body;
+  body.publication_sha256 = await canonicalSha256HexCheckedV1({ domain: 'retained_precision_publication_mp_v2', payload: publication });
+  source.retained_precision.receipt_sha256 = await canonicalSha256HexCheckedV1({ domain: 'retained_precision_receipt_mp_v2', payload: body });
+}
+async function firstFailure(source: any, invocation?: any): Promise<{ gate: string; code: string } | 'pass'> {
+  try { const r = await validateRetainedPrecision(source, invocation); expect(r.numerical_eligible).toBe(false); return 'pass'; }
+  catch (e) { expect(e).toBeInstanceOf(RetainedPrecisionError); return { gate: (e as any).gate, code: (e as any).code }; }
+}
+async function edited(baseId: string, edit: (source: any, invocation: any) => void, rehashAll = true) {
+  const base = structuredClone(corpus.cases.find((c: any) => c.id === baseId)); edit(base.source, base.invocation);
+  if (rehashAll) await rehash(base.source);
+  return base;
+}
+const G = (gate: string, suffix: string) => ({ gate, code: gate === 'G0' ? suffix : 'RETAINED_PRECISION_' + suffix });
+describe('review repair 07: RV78 probe relations (reader-local)', () => {
+  for (const p of RV78_PROBES) it(p.id, async () => {
+    const { source, invocation } = await applyEntry(p);
+    if (p.post_rehash_edits.length) { applyEdits(source, p.post_rehash_edits); await rehashOuter(source); }
+    expect(await firstFailure(source, invocation)).toEqual(p.expected);
+  });
+});
+describe('review repair 07: decisions without a probe (reader-local)', () => {
+  it('D1/RV81-B1: unsourced old ids must be 0..len-1 at G3, with or without the invocation', async () => {
+    const p = RV78_PROBES.find(x => x.id === 'R2b_unsourced_old_member_noncontiguous'), { source } = await applyEntry(p);
+    expect(await firstFailure(source)).toEqual(G('G3', 'COVERAGE_MISMATCH'));
+  });
+  it('D1: unsourced complete old coverage is non-empty and matches the CaseSource member count', async () => {
+    const empty = await edited('two_case_preparation_failure_synthetic', s => { s.retained_precision.body.product_attempts[1].operational.old = []; });
+    expect(await firstFailure(empty.source, empty.invocation)).toEqual(G('G3', 'COVERAGE_MISMATCH'));
+    const longer = await edited('two_case_preparation_failure_synthetic', s => { const old = s.retained_precision.body.product_attempts[1].operational.old; old.push({ ...structuredClone(old[0]), member: old.length }); });
+    expect(await firstFailure(longer.source, longer.invocation)).toEqual(G('G3', 'COVERAGE_MISMATCH'));
+  });
+  it('D1/RV81-S1: a captured prefix with a Run is a G5 association defect, not G3', async () => {
+    const m = structuredClone(corpus.must_pass.find((x: any) => x.id === 'prefix_captured'));
+    m.edits.push({ path: ['retained_precision', 'body', 'product_attempts', 1, 'run_ref'], op: 'set', value: 0 });
+    const { source, invocation } = await applyEntry(m);
+    expect(await firstFailure(source, invocation)).toEqual(G('G5', 'PRODUCT_ATTEMPT_MISMATCH'));
+  });
+  it('D2: G0 owns the producer component/schema versions, receipt constants and thresholds; body shape waits for G1', async () => {
+    const at0 = async (edit: (s: any) => void) => { const c = structuredClone(corpus.cases[0]); edit(c.source); return firstFailure(c.source, c.invocation); };
+    expect(await at0(s => { s.producer.component_version = '0.1.0'; })).toEqual(G('G0', 'SOURCE_PRODUCER_CONTRACT_UNSUPPORTED'));
+    expect(await at0(s => { s.producer.component_name = 'other'; })).toEqual(G('G0', 'SOURCE_PRODUCER_CONTRACT_UNSUPPORTED'));
+    expect(await at0(s => { s.schema_version = '0.3.0'; })).toEqual(G('G0', 'SOURCE_PRODUCER_CONTRACT_UNSUPPORTED'));
+    expect(await at0(s => { s.retained_precision.body.canonicalization = 'other'; })).toEqual(G('G0', 'SOURCE_PRODUCER_CONTRACT_UNSUPPORTED'));
+    expect(await at0(s => { delete s.retained_precision.body.work; })).toEqual(G('G0', 'SOURCE_PRODUCER_CONTRACT_UNSUPPORTED'));
+    expect(await at0(s => { s.retained_precision.body.product_attempts = {}; })).toEqual(G('G1', 'RECEIPT_MISMATCH'));
+    expect(await at0(s => { s.retained_precision.body.product_attempts[0] = 7; })).toEqual(G('G1', 'RECEIPT_MISMATCH'));
+  });
+  it('D3: a native class with an ATTEMPT defect reports ATTEMPT even when an earlier-coded WORK defect exists', async () => {
+    const p = structuredClone(RV78_PROBES.find(x => x.id === 'R8_group_call_out_of_range'));
+    p.edits.push({ path: ['retained_precision', 'body', 'calls', 0, 'invocation_before'], op: 'set', value: 1 });
+    const { source, invocation } = await applyEntry(p);
+    expect(await firstFailure(source, invocation)).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
+    const workOnly = await edited('two_case_synthetic', s => { s.retained_precision.body.calls[0].invocation_before = 1; });
+    expect(await firstFailure(workOnly.source, workOnly.invocation)).toEqual(G('G5', 'WORK_MISMATCH'));
+  });
+  it('D4c/RV81-B2: a prepared_product_failure cause must name the case\'s own attempt', async () => {
+    for (const cause of [1, 0]) {
+      const c = await edited('two_case_preparation_failure_synthetic', s => {
+        const b = s.retained_precision.body; b.product_attempts = [b.product_attempts[0]]; b.cases[1].product_attempt_ref = null; b.cases[1].reason.cause.product_attempt_ref = cause;
+      });
+      expect(await firstFailure(c.source, c.invocation), String(cause)).toEqual(G('G5', 'PRODUCT_ATTEMPT_MISMATCH'));
+    }
+  });
+  it('D4e: run_ref is null exactly when no native call happened', async () => {
+    const c = await edited('ordinary_prepared_synthetic', s => { s.retained_precision.body.product_attempts[0].run_ref = null; });
+    expect(await firstFailure(c.source, c.invocation)).toEqual(G('G5', 'PRODUCT_ATTEMPT_MISMATCH'));
+    const p = await edited('two_case_preparation_failure_synthetic', s => { s.retained_precision.body.product_attempts[1].run_ref = 0; });
+    expect(await firstFailure(p.source, p.invocation)).toEqual(G('G5', 'PRODUCT_ATTEMPT_MISMATCH'));
+  });
+  it('D5c: rejected(verification_failed) requires a failed verification phase', () => {
+    const base = structuredClone(corpus.cases.find((c: any) => c.id === 'p512_ladder_synthetic')).source.retained_precision.body, run = base.cases[0].run;
+    run.attempts[2].outcome = run.records[2].outcome = { kind: 'rejected', reason: { space: 'attempt', tag: 'verification_failed' } };
+    run.records[3].outcome = { kind: 'solved' }; run.kernel_terminal = { kind: 'unresolved', reason: { space: 'unresolved', tag: 'ceiling' } };
+    let error: any; try { nativeSchedule(run, base.sources[base.cases[0].source_ref]); } catch (e) { error = e; }
+    expect({ gate: error?.gate, code: error?.code }).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
+  });
+  it('D5a/RV81-M04: a candidate record carrying verification work alone is an ATTEMPT defect', async () => {
+    const c = await edited('ordinary_prepared_synthetic', s => { const r = s.retained_precision.body.cases[0].run.records[0]; r.work.verification_lme = 1; });
+    expect(await firstFailure(c.source, c.invocation)).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
+  });
+  it('D6c: a published W2 needs a nonzero exponent and the initial failure\'s trigger', () => {
+    const fixture = structuredClone(corpus.cases[0]), body = fixture.source.retained_precision.body, o = body.ordinary_attempts[0];
+    const error = { tag: 'synthetic_formation_error' }, ref = o.initial.report_diagnostic_ref;
+    o.initial = { kind: 'formation_failure', error };
+    o.w2 = { kind: 'published', trigger: { tag: 'formation', error }, force_scale_exponent: 1, report_diagnostic_ref: ref };
+    ordinaryAttempts(body, fixture.source);
+    const rejects = (edit: (w: any) => void) => { const b = structuredClone(body); edit(b.ordinary_attempts[0].w2); let e: any; try { ordinaryAttempts(b, fixture.source); } catch (x) { e = x; } expect({ gate: e?.gate, code: e?.code }).toEqual(G('G5', 'ATTEMPT_MISMATCH')); };
+    rejects(w => { w.force_scale_exponent = 0; });
+    rejects(w => { w.trigger.tag = 'evaluation'; });
+    rejects(w => { w.trigger.error = { tag: 'other' }; });
+  });
+  it('D6d/RV81-N2: legacy_source.work_ref is a reference check reported as ATTEMPT', () => {
+    const fixture = structuredClone(corpus.cases[0]), body = fixture.source.retained_precision.body;
+    const run = (work: any[], ref: number) => { const b = structuredClone(body); b.legacy_source_work = work; b.ordinary_attempts[0].legacy_source.work_ref = ref; let e: any; try { ordinaryAttempts(b, fixture.source); } catch (x) { e = x; } return e ? { gate: e.gate, code: e.code } : 'pass'; };
+    expect(run([], 0)).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
+    expect(run([{ case_index: 1 }], 0)).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
+    expect(run([{ case_index: 0 }], 0)).toBe('pass');
+  });
+  it('D7: a RETAINED_PRECISION_UNAVAILABLE diagnostic naming no requested case fails G4', async () => {
+    const c = await edited('ordinary_prepared_synthetic', s => {
+      const d = structuredClone(s.diagnostics.find((x: any) => x.code === 'RETAINED_PRECISION_SELECTED'));
+      s.diagnostics.push({ ...d, id: 'diagnostic:i64:foreign-case', code: 'RETAINED_PRECISION_UNAVAILABLE', affected_refs: ['case:not-requested'] });
+    });
+    expect(await firstFailure(c.source, c.invocation)).toEqual(G('G4', 'DIAGNOSTIC_MISMATCH'));
+  });
+  it('D13/RV81-M13: a no-data body needs theta = +0 in its verification record', async () => {
+    const c = await edited('ordinary_prepared_no_data_synthetic', s => { const b = s.retained_precision.body; b.cases[0].selection.theta[0].value = '3fd0000000000000'; b.cases[0].run.records[1].verification.theta[0].value = '3fd0000000000000'; });
+    expect(await firstFailure(c.source, c.invocation)).toEqual(G('G5a', 'SCALE_MISMATCH'));
+  });
+  it('D13/RV81-M16: a p128 verification-solve failure continues at p512, so it never ends in the Ceiling', () => {
+    const base = structuredClone(corpus.cases.find((c: any) => c.id === 'verification_failure_skip_synthetic')).source.retained_precision.body, run = base.cases[0].run;
+    const truncated = { ...run, attempts: [run.attempts[0]], records: run.records.slice(0, 2), kernel_terminal: { kind: 'unresolved', reason: { space: 'unresolved', tag: 'ceiling' } } };
+    let error: any; try { nativeSchedule(truncated, base.sources[base.cases[0].source_ref]); } catch (e) { error = e; }
+    expect({ gate: error?.gate, code: error?.code }).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
+  });
+  it('D13/RV81-M08: R3 needs every fault of every work_accounting cause, including both', () => {
+    const attempt = (causes: any[], statuses: string[]) => ({ adapter: { fault: null }, causes, work: statuses.map(s => ({ sticky_status: s })) });
+    expect(accountingRules(attempt([{ kind: 'work_accounting', fault: 'both' }], ['overflow']))[2]).toBe(false);
+    expect(accountingRules(attempt([{ kind: 'work_accounting', fault: 'both' }], ['overflow', 'inconsistent']))[2]).toBe(true);
+    expect(accountingRules(attempt([{ kind: 'work_accounting', fault: 'both' }], ['both']))[2]).toBe(true);
+    expect(accountingRules(attempt([{ kind: 'work_accounting', fault: 'overflow' }, { kind: 'work_accounting', fault: 'inconsistent' }], ['overflow']))[2]).toBe(false);
+  });
+  it('D13: the absolute bound switches at S = 2^-988 on both sides', () => {
+    const value = 3, valueWord = BigInt('0x' + binary64Bits(value));
+    const at = 2 ** -988, below = decodeBinary64((BigInt('0x' + binary64Bits(at)) - 1n).toString(16).padStart(16, '0'));
+    expect(BigInt('0x' + binary64Bits(absoluteBound(value, at)))).toBe(scaledOracle(BigInt('0x' + binary64Bits(at)), 64));
+    const exact = add(add(fraction(scaledOracle(BigInt('0x' + binary64Bits(below)), 64)), fraction(scaledOracle(valueWord, 53))), fraction(1n));
+    expect(BigInt('0x' + binary64Bits(absoluteBound(value, below)))).toBe(upperWord(exact));
+  });
+  it('RV81-M07 (N17): the case scope wins when both budget limits are exceeded', () => {
+    const body = structuredClone(corpus.cases[0]).source.retained_precision.body, run = body.cases[0].run;
+    body.cases[0].status = 'unavailable'; body.work.case_limit = 10; body.work.invocation_limit = 10;
+    const withScope = (scope: string) => { const b = structuredClone(body), r = b.cases[0].run; const stop = { space: 'attempt', tag: 'stop', stop: { space: 'stop', tag: 'budget', scope } };
+      r.attempts[0].outcome = r.records[0].outcome = { kind: 'failed', reason: stop }; r.records[1].outcome = { kind: 'solved' };
+      r.kernel_terminal = { kind: 'unresolved', reason: { space: 'unresolved', tag: 'budget', scope } }; let e: any; try { nativeRuns(b); } catch (x) { e = x; } return e ? { gate: e.gate, code: e.code } : 'pass'; };
+    expect(run.case_charge).toBeGreaterThan(10);
+    expect(withScope('case')).toBe('pass');
+    expect(withScope('invocation')).toEqual(G('G5', 'WORK_MISMATCH'));
+  });
+  it('D12/N11: a refused group preparation gives a Run with its group index, no attempts and the refusal', () => {
+    const body = structuredClone(corpus.cases[0]).source.retained_precision.body, run = body.cases[0].run, refusal = { space: 'refusal', tag: 'structure' };
+    body.cases[0].status = 'unavailable'; body.groups[0].preparation = { kind: 'refused', reason: refusal }; body.builds = [];
+    Object.assign(run, { records: [], attempts: [], case_charge: 0, invocation_increment: 0, invocation_after: 0, cache_after: [], kernel_terminal: { kind: 'refused', reason: refusal } });
+    body.calls[0].invocation_after = 0; body.work.charged = 0;
+    const result = (edit: (b: any) => void) => { const b = structuredClone(body); edit(b); let e: any; try { nativeRuns(b); } catch (x) { e = x; } return e ? { gate: e.gate, code: e.code } : 'pass'; };
+    expect(run.origin.group).toBe(0);
+    expect(result(() => undefined)).toBe('pass');
+    expect(result(b => { b.cases[0].run.kernel_terminal = { kind: 'refused', reason: { space: 'refusal', tag: 'negative_energy', i: 0, j: 1 } }; })).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
+    expect(result(b => { b.cases[0].run.origin.group = null; })).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
+  });
+  it('RV81-M12: a non-null empty roster fails G3 even against an empty body inventory', async () => {
+    const c = await edited('ordinary_prepared_no_data_synthetic', s => { const b = s.retained_precision.body; b.sources[0].body_membership = []; b.product_attempts[0].proof.summary_coverage = []; });
+    expect(await firstFailure(c.source, c.invocation)).toEqual(G('G3', 'COVERAGE_MISMATCH'));
+  });
+  it('D11/RV78-N5: the harness admits only rehash "all" and splices array removals', async () => {
+    expect([...corpus.mutations, ...corpus.must_pass].every((m: any) => m.rehash === 'all')).toBe(true);
+    await expect(applyEntry({ ...corpus.mutations[0], rehash: 'receipt' })).rejects.toThrow('unsupported rehash');
+    const list = [1, 2, 3]; applyEdits({ list }, [{ path: ['list', 1], op: 'remove' }]); expect(list).toEqual([1, 3]);
+  });
+  it('D14: no non-test module imports the @internal reader exports', async () => {
+    const fs = await import('node:fs'), path = await import('node:path');
+    const root = path.resolve(__dirname, '../..'), internal = ['nativeSchedule', 'nativeRuns', 'ordinaryAttempts', 'accountingRules', 'stopFeasible', 'phi512', 'eHat'];
+    const offenders: string[] = [];
+    for (const rel of fs.readdirSync(root, { recursive: true }) as string[]) {
+      if (!/\.(ts|tsx)$/.test(rel) || /\.test\.(ts|tsx)$/.test(rel) || rel.endsWith(path.join('results', 'retainedPrecision.ts'))) continue;
+      const text = fs.readFileSync(path.join(root, rel), 'utf8');
+      for (const m of text.matchAll(/import\s*\{([^}]*)\}\s*from\s*['"][^'"]*retainedPrecision['"]/g)) if (internal.some(name => new RegExp('\\b' + name + '\\b').test(m[1]))) offenders.push(rel);
+    }
+    expect(offenders).toEqual([]);
   });
 });
 

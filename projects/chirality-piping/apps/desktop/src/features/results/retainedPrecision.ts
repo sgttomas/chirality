@@ -1,6 +1,8 @@
 import receiptSchema from '../../../../../schemas/retained_precision_mp_v2.schema.json';
 import definition from '../../../../../fixtures/results/retained_precision_prepared_ordinary_v1.json';
 import table from '../../../../../fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json';
+import tableBytes from '../../../../../fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json?raw';
+import inheritedTableBytes from '../../../../../fixtures/results/semantic_contract_v0_3_preview_physics_1.json?raw';
 import { canonicalSha256HexCheckedV1, checkedJsonText } from '../../services/hashService';
 import { loadWasmEngine } from '../../services/wasmEngine/loadWasmEngine';
 import { validatePreviewPhysicsEvidence, validatePreviewPhysicsTransportMetadata, compareCodePoints } from './previewPhysicsEvidence';
@@ -96,6 +98,7 @@ const SUMMARY_COVERAGE_COMPLETE = false;
 const COVERAGE_KEYS = ['body', 'has_data', 'stop'];
 const BASE_ID = 'openpipestress.result_semantics/0.3.0/preview-physics-1';
 const BASE_HASH = 'ae55503d44a4750714a35c423623e38cf4132099134097193024d1635bfbc88a';
+const TABLE_HASH = 'c74742ce6a936384e00986006e6a0b2e6bb11f190451e876eed9ffa11903c6a8';
 const COMPONENTS = ['UX', 'UY', 'UZ', 'RX', 'RY', 'RZ'];
 const KINDS = ['translation', 'rotation', 'force', 'moment'];
 const SLOTS = ['s128', 's256', 's512', 's1024', 'v256', 'v512', 'v1024'];
@@ -124,7 +127,6 @@ function at(a: Obj[], i: number, gate = 'G5', code = 'PRODUCT_ATTEMPT_MISMATCH')
 }
 function uint(v: number): bigint { need(Number.isSafeInteger(v) && v >= 0 && !Object.is(v, -0), 'G2', 'ENCODING_MISMATCH'); return BigInt(v); }
 function sum(a: number[]): bigint { return a.reduce((n, v) => n + uint(v), 0n); }
-function checked(n: bigint): bigint { need(n >= 0n && n <= SAFE, 'G5', 'WORK_MISMATCH'); return n; }
 function shape(v: any, spec: Obj): boolean {
   if (spec.$ref) return shape(v, SCHEMA.$defs[spec.$ref.split('/').at(-1)]);
   if (spec.oneOf) return spec.oneOf.filter((s: Obj) => shape(v, s)).length === 1;
@@ -160,15 +162,28 @@ function prepPayload(a: Obj): Obj {
   return { definition_id: a.definition_id, definition_sha256: PREPARED_DEFINITION_HASH, owner_ref: a.owner_ref, ordinary_attempt_ref: a.ordinary_attempt_ref, material_basis_ref: a.material_basis_ref,
     members: a.preparation.members.map((m: Obj) => ({ member: m.member, old_source: m.old_source, old_facts: m.old_facts, section: m.result.section })) };
 }
+const sha256Text = async (text: string): Promise<string> => {
+  const value = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text).buffer as ArrayBuffer);
+  return [...new Uint8Array(value)].map(x => x.toString(16).padStart(2, '0')).join('');
+};
+const isObj = (v: unknown): v is Obj => v !== null && typeof v === 'object' && !Array.isArray(v);
+/** G0 (ruling D2; C1 and C3 G0 rows): exactly the producer identity (contract, profile, component and
+ * schema versions), the definition and inherited-table hashes over the bound bytes, receipt_version,
+ * the policy ids, the canonicalization profile and the 20B/60B thresholds. A G0 field that is absent
+ * or mistyped fails G0; every other shape defect waits for G1, so the body is never walked here. */
 async function header(source: Obj): Promise<void> {
-  const b = source.retained_precision?.body;
-  need(source.producer?.semantic_contract_id === RETAINED_PRECISION_ID && source.formulation_basis?.profile_id === RETAINED_PRECISION_PROFILE, 'G0', 'SOURCE_PRODUCER_CONTRACT_UNSUPPORTED');
-  need(table.semantic_contract_id === RETAINED_PRECISION_ID && table.formulation_profile_id === RETAINED_PRECISION_PROFILE && table.inherited_semantic_contract_sha256 === BASE_HASH && same(table.product_formation_definitions, [{ id: PREPARED_DEFINITION_ID, sha256: PREPARED_DEFINITION_HASH }]), 'G0', 'FORMATION_MISMATCH');
-  need(await hash('retained_precision_formation_v1', definition) === PREPARED_DEFINITION_HASH, 'G0', 'FORMATION_MISMATCH');
-  if (b) {
-    for (const [k, v] of Object.entries({ receipt_version: 1, policy: 'M03-INTEGRITY-MP-v2', projection_policy: 'RP-LOGICAL-ATTEMPTS-v1', work_policy: 'W1-LME-20B-60B-v1', facade_policy: 'RP-FACADE-SI-v2', canonicalization: 'openpipestress_jcs_ijson_v1' })) need(b[k] === v, 'G0', 'SOURCE_PRODUCER_CONTRACT_UNSUPPORTED');
-    need(b.work?.case_limit === 20_000_000_000 && b.work?.invocation_limit === 60_000_000_000, 'G0', 'SOURCE_PRODUCER_CONTRACT_UNSUPPORTED');
-    for (const a of b.product_attempts ?? []) need(a.definition_id === PREPARED_DEFINITION_ID, 'G0', 'SOURCE_PRODUCER_CONTRACT_UNSUPPORTED');
+  const fail = (ok: unknown, code = 'SOURCE_PRODUCER_CONTRACT_UNSUPPORTED') => need(ok, 'G0', code);
+  const producer = isObj(source) ? source.producer : undefined;
+  fail(isObj(producer) && producer.semantic_contract_id === RETAINED_PRECISION_ID && source.formulation_basis?.profile_id === RETAINED_PRECISION_PROFILE);
+  fail(source.schema_version === '0.2.0' && producer.component_name === 'open_pipe_stress_product_physics' && producer.component_version === '0.2.0');
+  fail(table.semantic_contract_id === RETAINED_PRECISION_ID && table.formulation_profile_id === RETAINED_PRECISION_PROFILE && table.inherited_semantic_contract_sha256 === BASE_HASH && same(table.product_formation_definitions, [{ id: PREPARED_DEFINITION_ID, sha256: PREPARED_DEFINITION_HASH }]), 'FORMATION_MISMATCH');
+  fail(await hash('retained_precision_formation_v1', definition) === PREPARED_DEFINITION_HASH, 'FORMATION_MISMATCH');
+  fail(await sha256Text(tableBytes) === TABLE_HASH && await sha256Text(inheritedTableBytes) === table.inherited_semantic_contract_sha256);
+  const b = isObj(source.retained_precision) ? source.retained_precision.body : undefined;
+  if (isObj(b)) {
+    for (const [k, v] of Object.entries({ receipt_version: 1, policy: 'M03-INTEGRITY-MP-v2', projection_policy: 'RP-LOGICAL-ATTEMPTS-v1', work_policy: 'W1-LME-20B-60B-v1', facade_policy: 'RP-FACADE-SI-v2', canonicalization: 'openpipestress_jcs_ijson_v1' })) fail(b[k] === v);
+    fail(isObj(b.work) && b.work.case_limit === 20_000_000_000 && b.work.invocation_limit === 60_000_000_000);
+    if (Array.isArray(b.product_attempts)) for (const a of b.product_attempts) if (isObj(a)) fail(a.definition_id === PREPARED_DEFINITION_ID);
   }
 }
 /** I57 §1: summary_coverage is required, null or [{ body, stop: [bool;4], has_data: bool }] with no other member. */
@@ -210,9 +225,16 @@ function coverage(b: Obj, source: Obj, invocation?: Obj): Map<string, Obj[]> {
     if (c.product_attempt_ref !== null) {
       const a = b.product_attempts[c.product_attempt_ref]; fail(a.id === c.product_attempt_ref && same(a.owner_ref, { kind: 'case', index: i }) && a.ordinary_attempt_ref === i);
       const old = a.operational.old, pm = a.preparation.members, fresh = a.operational.new;
-      fail(unique(old.map((m: Obj) => m.member)) && fresh.length <= pm.length && pm.length <= old.length && same(pm.map((m: Obj) => m.member), old.slice(0, pm.length).map((m: Obj) => m.member)) && same(fresh.map((m: Obj) => m.member), pm.slice(0, fresh.length).map((m: Obj) => m.member)));
-      if (a.operational.old_coverage === 'captured_prefix') fail(!pm.length && !fresh.length && a.source_ref === null && a.run_ref === null && a.result.kind === 'unavailable');
+      // D1 (C2:98; PP:1238, 1296; F1:130): old, prepared and new member ids are exactly 0..len-1 in
+      // native order, so prepared and new are prefixes of old.
+      fail(fresh.length <= pm.length && pm.length <= old.length && [old, pm, fresh].every(list => same(list.map((m: Obj) => m.member), sequence(list.length))));
+      // D1: a captured prefix owns no prepared or new member here; its null source/run and
+      // unavailable result are the G5 association (F1:97, 130-131; C3:304).
+      if (a.operational.old_coverage === 'captured_prefix') fail(!pm.length && !fresh.length);
       if (a.source_ref !== null) { const s = b.sources[a.source_ref]; fail(s && same(old.map((m: Obj) => m.member), s.id_maps.members.map((m: Obj) => m.kernel_member))); }
+      // D1: unsourced complete old coverage is non-empty and matches every CaseSource's member count
+      // (one model); with no CaseSource, G8 compares it with the invocation's members.
+      else if (a.operational.old_coverage === 'complete') fail(old.length >= 1 && b.sources.every((s: Obj) => s.id_maps.members.length === old.length));
       // C3 G3 row-index coverage (ruling): every index names a hull-projected row of this case,
       // strictly ascending. A valid sorted subset on Ready is the later G5 exact-set check.
       if (a.proof) { const indices = a.proof.projection_outcomes.map((x: Obj) => x.row_index), caseRows = rows.get(ids[i])!; fail(indices.every((x: number, j: number) => x < caseRows.length && !HULL_EXCLUDED.has(caseRows[x].kind) && (!j || x > indices[j - 1]))); }
@@ -243,7 +265,7 @@ function diagnostics(b: Obj, source: Obj): void {
 /** The native AttemptStop carried by a failed physical/logical outcome, or null (C1:114). */
 const outcomeStop = (outcome: Obj): Obj | null => outcome?.kind === 'failed' && outcome.reason?.space === 'attempt' && outcome.reason.tag === 'stop' ? outcome.reason.stop : null;
 const INVOCATION_BUDGET = { space: 'unresolved', tag: 'budget', scope: 'invocation' };
-/** Exported only for reader-logic unit tests (checklist N5/N8/N10); not a public entry point. */
+/** @internal Exported only for reader-logic unit tests (checklist N5/N8/N10); not a public entry point. */
 export function nativeSchedule(run: Obj, source: Obj): void {
   const fail = (ok: unknown) => need(ok, 'G5', 'ATTEMPT_MISMATCH');
   const records: Obj[] = run.records, attempts: Obj[] = run.attempts;
@@ -302,6 +324,8 @@ export function nativeSchedule(run: Obj, source: Obj): void {
       }
     }
     fail(['accepted', 'rejected', 'failed'].includes(a.outcome.kind));
+    // D5c (adaptive.rs:4576-4579): rejected(verification_failed) only with a failed verification phase.
+    if (a.outcome.kind === 'rejected' && a.outcome.reason?.space === 'attempt' && a.outcome.reason.tag === 'verification_failed') fail(a.verification?.phase === 'failed');
   }
   const last = attempts.at(-1), terminal = run.kernel_terminal;
   if (!last) {
@@ -329,9 +353,21 @@ export function nativeSchedule(run: Obj, source: Obj): void {
   if (expected) fail(same(run.kernel_terminal, expected));
 }
 
-function nativeRuns(b: Obj): void {
+/** G5 class 1 (C3:304): native schedule and origin, with native WORK. Ruling D3: a class containing an
+ * ATTEMPT defect reports ATTEMPT, and reports WORK only when it has none, so native WORK predicates are
+ * deferred to the end of the class. A structural crash reports WORK if a WORK defect was recorded
+ * (the likely cause), otherwise ATTEMPT. @internal Exported only for reader-logic tests. */
+export function nativeRuns(b: Obj): void {
+  const deferred: boolean[] = [];
+  try { nativeClass(b, ok => { deferred.push(!!ok); }); } catch (error) {
+    if (error instanceof RetainedPrecisionError) throw error;
+    throw new RetainedPrecisionError('G5', 'RETAINED_PRECISION_' + (deferred.includes(false) ? 'WORK_MISMATCH' : 'ATTEMPT_MISMATCH'));
+  }
+  need(deferred.every(Boolean), 'G5', 'WORK_MISMATCH');
+}
+function nativeClass(b: Obj, work: (ok: unknown) => void): void {
   const fail = (ok: unknown, code = 'ATTEMPT_MISMATCH') => need(ok, 'G5', code);
-  const work = (ok: unknown) => fail(ok, 'WORK_MISMATCH');
+  const checked = (n: bigint): bigint => { work(n >= 0n && n <= SAFE); return n; };
   const runs: Obj[] = b.cases.filter((c: Obj) => c.run).map((c: Obj) => c.run).sort((a: Obj, z: Obj) => a.id - z.id);
   fail(same(b.calls.flatMap((c: Obj) => c.run_refs), sequence(runs.length)));
   const live = new Map<number, Map<string, number>>(); const seenBuilds = new Set<number>();
@@ -380,7 +416,9 @@ function nativeRuns(b: Obj): void {
         fail(r.precision !== 1024 || r.role === 'verification');
         for (const [field, phase, flag, cost, prefix] of [['shared_build_ref', 'shared', 'shared_built_here', 'shared_lme', 's'], ['verification_shared_build_ref', 'verification_shared', 'verification_shared_built_here', 'verification_shared_lme', 'v']]) {
           const bi = r[field]; if (bi === null) { work(!w[flag] && w[cost] === 0); continue; }
-          const build = at(b.builds, bi, 'G5', 'WORK_MISMATCH'); const slot = prefix + r.precision;
+          const build = Number.isSafeInteger(bi) && bi >= 0 && bi < b.builds.length ? b.builds[bi] : null;
+          if (!build) { work(false); continue; }
+          const slot = prefix + r.precision;
           work(build.group === run.origin.group && build.slot === slot && build.work === w[cost]);
           // C1 (adaptive.rs obtain 3984-4026): state/reason agree, and a failed build fails the
           // requesting record with the same stop, whether built here or reused from the cache.
@@ -392,8 +430,8 @@ function nativeRuns(b: Obj): void {
           } else work(cache.get(slot) === bi && build.state !== 'budget_failure');
         }
         for (const stage of Object.keys(w.shared_stages)) {
-          const shared = r.shared_build_ref === null ? 0n : uint(b.builds[r.shared_build_ref].stages[stage]);
-          const verification = r.verification_shared_build_ref === null ? 0n : uint(b.builds[r.verification_shared_build_ref].stages[stage]);
+          const sharedBuild = r.shared_build_ref === null ? null : b.builds[r.shared_build_ref], verificationBuild = r.verification_shared_build_ref === null ? null : b.builds[r.verification_shared_build_ref];
+          const shared = sharedBuild ? uint(sharedBuild.stages[stage]) : 0n, verification = verificationBuild ? uint(verificationBuild.stages[stage]) : 0n;
           work(uint(w.shared_stages[stage]) === shared + verification);
         }
       }
@@ -490,7 +528,7 @@ function objects(v: any, out: Obj[] = []): Obj[] {
  * R2: ScalarTrace.lost is set only at u64::MAX (PP:2310-2349), so it is never emittable.
  * R3: a work_accounting{fault} cause comes from its owning trace's status (FC:358-379, 1580), so the
  *     attempt's emitted unavailable-Count faults and sticky statuses must contain that fault. */
-/** Exported only for the reader-logic R1-R3 isolation test; not a public entry point. */
+/** @internal Exported only for the reader-logic R1-R3 isolation test; not a public entry point. */
 export function accountingRules(a: Obj): boolean[] {
   const objs = objects(a);
   const r1 = a.adapter.fault === null && !objs.some(o => o.kind === 'accounting' && Object.hasOwn(o, 'event'));
@@ -526,6 +564,8 @@ function productAttempts(b: Obj, rows: Map<string, Obj[]>): void {
   const workChecks: unknown[] = [];
   const fail = (ok: unknown) => need(ok, 'G5', 'PRODUCT_ATTEMPT_MISMATCH'), work = (ok: unknown) => { workChecks.push(ok); };
   const props = ['area', 'second_moment', 'polar_moment', 'section_modulus'].flatMap(p => [[p, 'lo'], [p, 'hi']]).concat([['radius', 'exact']]);
+  // D4c (S06 §1; C3:165 "resolves once"): a prepared_product_failure cause names the case's own attempt.
+  for (const c of b.cases) if (c.status === 'unavailable' && c.reason?.cause?.kind === 'prepared_product_failure') fail(c.product_attempt_ref !== null && c.product_attempt_ref === c.reason.cause.product_attempt_ref);
   for (const a of b.product_attempts) {
     const c = at(b.cases, a.owner_ref.index), s = a.source_ref === null ? null : at(b.sources, a.source_ref), pm: Obj[] = a.preparation.members, old: Obj[] = a.operational.old, fresh: Obj[] = a.operational.new;
     const stage = a.stages, p = a.proof, ready = a.result.kind === 'ready';
@@ -533,6 +573,8 @@ function productAttempts(b: Obj, rows: Map<string, Obj[]>): void {
     if (s) fail(s.owner.case_index === a.owner_ref.index && s.material_basis_ref === a.material_basis_ref && s.preparation?.attempt_ref === a.id && c.source_ref === a.source_ref);
     fail((a.run_ref === null) === !c.run); if (c.run) fail(c.run.id === a.run_ref && c.run.origin.source_ref === a.source_ref && same(c.run.origin.owner_ref, a.owner_ref));
     fail((stage.native === 'not_entered') === (a.run_ref === null));
+    // D1 captured_prefix association (F1:97, 130-131): no source, no Run, an unavailable result.
+    if (a.operational.old_coverage === 'captured_prefix') fail(a.source_ref === null && a.run_ref === null && a.result.kind === 'unavailable');
     if (a.run_ref !== null) fail(stage.native === (c.run.kernel_terminal.kind === 'selected' ? 'completed' : 'failed'));
     if (s) fail(stage.preparation === 'completed' && pm.length === s.id_maps.members.length && fresh.length === pm.length && a.operational.old_coverage === 'complete');
     if (stage.native !== 'not_entered') fail(stage.preparation === 'completed');
@@ -656,12 +698,14 @@ function component(r: Obj): string | null {
 }
 function extent(points: number[][]): number { const d = [0, 1, 2].map(j => Math.max(...points.map(p => p[j])) - Math.min(...points.map(p => p[j]))); return Math.sqrt(((d[0] * d[0]) + (d[1] * d[1])) + (d[2] * d[2])); }
 function couple(s: number[], length: number): number[] { const [tr, ro, fo, mo] = s; return length === 0 ? [...s] : [Math.max(tr, length * ro), Math.max(ro, tr / length), Math.max(fo, mo / length), Math.max(mo, length * fo)]; }
-/** verify.rs e_hat: ê_fo = max(E_fo, fl(E_mo/L)), ê_mo = max(E_mo, fl(L·E_fo)); L = 0 keeps E. */
+/** verify.rs e_hat: ê_fo = max(E_fo, fl(E_mo/L)), ê_mo = max(E_mo, fl(L·E_fo)); L = 0 keeps E.
+ * @internal Exported only for reader-logic unit tests; not a public entry point. */
 export function eHat(force: number, moment: number, extent: number): [number, number] {
   return extent === 0 ? [force, moment] : [Math.max(force, moment / extent), Math.max(moment, extent * force)];
 }
 /** verify.rs phi_512: Φ = fl↑(2^-438·ê). Take the nearest product, then adaptive::next_up
- * (zero steps to the least subnormal) when scaling back by 2^438 is below ê. */
+ * (zero steps to the least subnormal) when scaling back by 2^438 is below ê.
+ * @internal Exported only for reader-logic unit tests; not a public entry point. */
 export function phi512(hat: number): number {
   const nearest = hat * numberFromWord(0x2490000000000000n), back = numberFromWord(0x5b50000000000000n);
   if (!(nearest * back < hat)) return nearest;
@@ -714,7 +758,8 @@ function coverageFacts(s: Obj): CoverageFacts {
   return { present, nonInput, lengths, free, loaded };
 }
 /** I57 §4 Boolean feasibility: some private A over non-input-present kinds (D = false)
- * reproduces the attested stop bits under L coupling and any positive floor. */
+ * reproduces the attested stop bits under L coupling and any positive floor.
+ * @internal Exported only for reader-logic unit tests; not a public entry point. */
 export function stopFeasible(stop: boolean[], present: boolean[], nonInput: boolean[], extentNonzero: boolean, floors: boolean[][]): boolean {
   for (let mask = 0; mask < 16; mask++) {
     const A = KINDS.map((_, k) => ((mask >> k) & 1) === 1);
@@ -1084,7 +1129,7 @@ async function invocationBinding(b: Obj, source: Obj, invocation: Obj): Promise<
   }
 }
 
-/** Exported only for the reader-logic O5 unit test; not a public entry point. */
+/** @internal Exported only for the reader-logic O5/O2 unit tests; not a public entry point. */
 export function ordinaryAttempts(b: Obj, source: Obj): void {
   const fail = (ok: unknown, code = 'ATTEMPT_MISMATCH') => need(ok, 'G5', code);
   const ds: Obj[] = source.diagnostics;
@@ -1108,7 +1153,8 @@ export function ordinaryAttempts(b: Obj, source: Obj): void {
     }
     if (a.formation.load_row_finding) diagnostic(a.formation.load_row_finding.diagnostic_ref, cid);
     diagnostic(a.formation.d5_diagnostic_ref, cid); diagnostic(a.legacy_source.diagnostic_ref, cid);
-    if (a.legacy_source.work_ref !== null) { const w = at(b.legacy_source_work ?? [], a.legacy_source.work_ref, 'G5', 'WORK_MISMATCH'); fail(w.case_index === ci, 'WORK_MISMATCH'); }
+    // D6d (C2:166): legacy_source.work_ref resolves into legacy_source_work for this case; a reference check.
+    if (a.legacy_source.work_ref !== null) { const w = at(b.legacy_source_work ?? [], a.legacy_source.work_ref, 'G5', 'ATTEMPT_MISMATCH'); fail(w.case_index === ci); }
     if (c.status === 'not_required') fail(c.product_attempt_ref === null && a.initial.kind !== 'not_attempted' && q.solve_quality === 'checks_passed');
     if (c.status === 'selected') fail(c.product_attempt_ref !== null && a.initial.kind !== 'not_attempted' && ['sensitive', 'unresolved', 'failed'].includes(q.solve_quality));
     if (c.status === 'unavailable' && c.reason.cause.kind !== 'prepared_product_failure') {
