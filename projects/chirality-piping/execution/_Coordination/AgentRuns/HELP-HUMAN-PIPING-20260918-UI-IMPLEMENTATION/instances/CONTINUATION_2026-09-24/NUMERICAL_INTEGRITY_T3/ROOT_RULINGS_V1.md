@@ -7546,7 +7546,7 @@ This is source-level verification only. Reader acceptance still waits for snapsh
 
 ## Snapshot 05a verified; floor and ladder are existing contract (ROOT, 2026-10-03 UTC)
 
-**Snapshot 05a is verified.** It is committed on READER as `bd3dc16a1d`, together with the snapshot-04 schema and the Python checks.
+**Snapshot 05a is verified.** It is committed on READER as `bd3dc16a1d`, together with the snapshot-04 schema and the Python checks. [Correction (ROOT, 2026-10-03): the READER commit is `ccdfd04fd7`. ROOT wrote `bd3dc16a1d` before the commit existed; that hash names nothing.]
 
 **Verified by ROOT:**
 - **The new hashes:** corpus `159ef78c47`, `retained_precision.py` `27fc1797c2`, test file `7eab5b3793`. The schema is unchanged since snapshot 04.
