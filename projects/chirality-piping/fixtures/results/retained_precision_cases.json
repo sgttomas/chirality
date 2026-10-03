@@ -119230,7 +119230,7 @@
       }
     },
     {
-      "id": "escalating_end_requires_work_accounting",
+      "id": "ceiling_before_last_slot",
       "base": "candidate_failure_skip_synthetic",
       "edits": [
         {
@@ -121295,6 +121295,855 @@
         "gate": "G8",
         "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
       }
+    },
+    {
+      "id": "work_accounting_after_escalating_stop",
+      "base": "candidate_failure_skip_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records"
+          ],
+          "op": "set",
+          "value": [
+            {
+              "index": 0,
+              "precision": 128,
+              "role": "candidate",
+              "outcome": {
+                "kind": "failed",
+                "reason": {
+                  "space": "attempt",
+                  "tag": "stop",
+                  "stop": {
+                    "space": "stop",
+                    "tag": "pivot",
+                    "global_dof": 6
+                  }
+                }
+              },
+              "residual_basis": 192,
+              "corrections": 0,
+              "pivot_margin_min": null,
+              "rcond": null,
+              "residual_worst": null,
+              "gate": null,
+              "work": {
+                "wide_lme": 0,
+                "exact_sum_lme": 0,
+                "own_lme": 0,
+                "shared_lme": 3,
+                "stop_rule_lme": 0,
+                "verification_lme": 0,
+                "verification_shared_lme": 0,
+                "own_stages": {
+                  "formation": 0,
+                  "assembly": 0,
+                  "residual_formation": 0,
+                  "factor": 0,
+                  "condition": 0,
+                  "rhs": 0,
+                  "solve": 0,
+                  "refinement": 0,
+                  "recovery": 0,
+                  "stop_rule": 0,
+                  "bounded_gate": 0,
+                  "scale": 0,
+                  "estimate": 0,
+                  "charge": 0,
+                  "bound": 0,
+                  "shift": 0,
+                  "bounded_formation": 0,
+                  "wide_formation": 0,
+                  "uc": 0
+                },
+                "shared_stages": {
+                  "formation": 3,
+                  "assembly": 0,
+                  "residual_formation": 0,
+                  "factor": 0,
+                  "condition": 0,
+                  "rhs": 0,
+                  "solve": 0,
+                  "refinement": 0,
+                  "recovery": 0,
+                  "stop_rule": 0,
+                  "bounded_gate": 0,
+                  "scale": 0,
+                  "estimate": 0,
+                  "charge": 0,
+                  "bound": 0,
+                  "shift": 0,
+                  "bounded_formation": 0,
+                  "wide_formation": 0,
+                  "uc": 0
+                },
+                "shared_built_here": true,
+                "verification_shared_built_here": false
+              },
+              "storage": {
+                "pattern_entries": 144,
+                "profile_entries": 21,
+                "limbs_per_entry": 4
+              },
+              "verification": null,
+              "bound_refusals": [],
+              "shared_build_ref": 0,
+              "verification_shared_build_ref": null
+            }
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "attempts"
+          ],
+          "op": "set",
+          "value": [
+            {
+              "precision": 128,
+              "candidate_record": 0,
+              "origin": {
+                "kind": "fresh"
+              },
+              "verification": null,
+              "outcome": {
+                "kind": "failed",
+                "reason": {
+                  "space": "attempt",
+                  "tag": "stop",
+                  "stop": {
+                    "space": "stop",
+                    "tag": "pivot",
+                    "global_dof": 6
+                  }
+                }
+              },
+              "charges": [
+                {
+                  "record": 0,
+                  "part": "solve_and_verification"
+                },
+                {
+                  "record": 0,
+                  "part": "candidate_stop"
+                }
+              ],
+              "case_charge": 3,
+              "invocation_increment": 3
+            }
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "builds"
+          ],
+          "op": "set",
+          "value": [
+            {
+              "id": 0,
+              "group": 0,
+              "slot": "s128",
+              "origin": {
+                "call": 0,
+                "run": 0,
+                "physical_record": 0,
+                "phase": "shared"
+              },
+              "state": "nonbudget_failure",
+              "reason": {
+                "space": "stop",
+                "tag": "pivot",
+                "global_dof": 6
+              },
+              "work": 3,
+              "stages": {
+                "formation": 3,
+                "assembly": 0,
+                "residual_formation": 0,
+                "factor": 0,
+                "condition": 0,
+                "rhs": 0,
+                "solve": 0,
+                "refinement": 0,
+                "recovery": 0,
+                "stop_rule": 0,
+                "bounded_gate": 0,
+                "scale": 0,
+                "estimate": 0,
+                "charge": 0,
+                "bound": 0,
+                "shift": 0,
+                "bounded_formation": 0,
+                "wide_formation": 0,
+                "uc": 0
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "cache_after"
+          ],
+          "op": "set",
+          "value": [
+            {
+              "slot": "s128",
+              "build": 0
+            }
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "case_charge"
+          ],
+          "op": "set",
+          "value": 3
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "invocation_increment"
+          ],
+          "op": "set",
+          "value": 3
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "invocation_after"
+          ],
+          "op": "set",
+          "value": 3
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "calls",
+            0,
+            "invocation_after"
+          ],
+          "op": "set",
+          "value": 3
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "work",
+            "charged"
+          ],
+          "op": "set",
+          "value": 3
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "kernel_terminal"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "unresolved",
+            "reason": {
+              "space": "unresolved",
+              "tag": "work_accounting",
+              "fault": "overflow"
+            }
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "idle_work_accounting_run",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "records"
+          ],
+          "op": "set",
+          "value": []
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "attempts"
+          ],
+          "op": "set",
+          "value": []
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "case_charge"
+          ],
+          "op": "set",
+          "value": 0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "invocation_increment"
+          ],
+          "op": "set",
+          "value": 0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "invocation_after"
+          ],
+          "op": "set",
+          "value": 17
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "calls",
+            0,
+            "invocation_after"
+          ],
+          "op": "set",
+          "value": 17
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "work",
+            "charged"
+          ],
+          "op": "set",
+          "value": 17
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "origin",
+            "group"
+          ],
+          "op": "set",
+          "value": null
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "kernel_terminal"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "unresolved",
+            "reason": {
+              "space": "unresolved",
+              "tag": "work_accounting",
+              "fault": "overflow"
+            }
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "groups",
+            0,
+            "source_refs"
+          ],
+          "op": "set",
+          "value": [
+            0
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "cache_before"
+          ],
+          "op": "set",
+          "value": []
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "cache_after"
+          ],
+          "op": "set",
+          "value": []
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "work_accounting_at_last_slot",
+      "base": "p512_ladder_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "attempts",
+            2,
+            "outcome"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "rejected",
+            "reason": {
+              "space": "attempt",
+              "tag": "stop_rule",
+              "quantity": {
+                "tag": "displacement",
+                "dof": {
+                  "node": 1,
+                  "component": "UX"
+                }
+              },
+              "body": 0,
+              "kind": "translation"
+            }
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            2,
+            "outcome"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "rejected",
+            "reason": {
+              "space": "attempt",
+              "tag": "stop_rule",
+              "quantity": {
+                "tag": "displacement",
+                "dof": {
+                  "node": 1,
+                  "component": "UX"
+                }
+              },
+              "body": 0,
+              "kind": "translation"
+            }
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            3,
+            "outcome"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "solved"
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "kernel_terminal"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "unresolved",
+            "reason": {
+              "space": "unresolved",
+              "tag": "work_accounting",
+              "fault": "overflow"
+            }
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "mm_unnormalized_coordinate",
+      "base": "ordinary_prepared_mm_units_synthetic",
+      "edits": [],
+      "rehash": "all",
+      "expected": {
+        "gate": "G8",
+        "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+      },
+      "invocation_edits": [
+        {
+          "path": [
+            "request",
+            "model",
+            "nodes",
+            1,
+            "position",
+            "x"
+          ],
+          "op": "set",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "interpolation_missing_alpha",
+      "base": "ordinary_prepared_interpolated_material_synthetic",
+      "edits": [],
+      "rehash": "all",
+      "expected": {
+        "gate": "G8",
+        "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+      },
+      "invocation_edits": [
+        {
+          "path": [
+            "request",
+            "model",
+            "materials",
+            0,
+            "temperature_points",
+            0,
+            "thermal_expansion_coefficient"
+          ],
+          "op": "remove"
+        }
+      ]
+    },
+    {
+      "id": "interpolation_duplicate_temperature",
+      "base": "ordinary_prepared_interpolated_material_synthetic",
+      "edits": [],
+      "rehash": "all",
+      "expected": {
+        "gate": "G8",
+        "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+      },
+      "invocation_edits": [
+        {
+          "path": [
+            "request",
+            "model",
+            "materials",
+            0,
+            "temperature_points",
+            1,
+            "temperature"
+          ],
+          "op": "set",
+          "value": {
+            "value": 300,
+            "unit": "K"
+          }
+        }
+      ]
+    },
+    {
+      "id": "interpolation_target_below_range",
+      "base": "ordinary_prepared_interpolated_material_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "material_bases",
+            0,
+            "selector",
+            "kelvin"
+          ],
+          "op": "set",
+          "value": "4072b00000000000"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "material_bases",
+            0,
+            "materials",
+            0,
+            "selection",
+            "target_kelvin"
+          ],
+          "op": "set",
+          "value": "4072b00000000000"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G8",
+        "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+      },
+      "invocation_edits": [
+        {
+          "path": [
+            "request",
+            "model",
+            "load_cases",
+            0,
+            "modulus_basis_temperature"
+          ],
+          "op": "set",
+          "value": {
+            "value": 299,
+            "unit": "K"
+          }
+        }
+      ]
+    },
+    {
+      "id": "interpolation_target_at_lower_point",
+      "base": "ordinary_prepared_interpolated_material_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "material_bases",
+            0,
+            "selector",
+            "kelvin"
+          ],
+          "op": "set",
+          "value": "4072c00000000000"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "material_bases",
+            0,
+            "materials",
+            0,
+            "selection",
+            "target_kelvin"
+          ],
+          "op": "set",
+          "value": "4072c00000000000"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G8",
+        "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+      },
+      "invocation_edits": [
+        {
+          "path": [
+            "request",
+            "model",
+            "load_cases",
+            0,
+            "modulus_basis_temperature"
+          ],
+          "op": "set",
+          "value": {
+            "value": 300,
+            "unit": "K"
+          }
+        }
+      ]
+    },
+    {
+      "id": "interpolation_target_at_upper_point",
+      "base": "ordinary_prepared_interpolated_material_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "material_bases",
+            0,
+            "selector",
+            "kelvin"
+          ],
+          "op": "set",
+          "value": "4073600000000000"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "material_bases",
+            0,
+            "materials",
+            0,
+            "selection",
+            "target_kelvin"
+          ],
+          "op": "set",
+          "value": "4073600000000000"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G8",
+        "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+      },
+      "invocation_edits": [
+        {
+          "path": [
+            "request",
+            "model",
+            "load_cases",
+            0,
+            "modulus_basis_temperature"
+          ],
+          "op": "set",
+          "value": {
+            "value": 310,
+            "unit": "K"
+          }
+        }
+      ]
+    },
+    {
+      "id": "interpolation_target_above_range",
+      "base": "ordinary_prepared_interpolated_material_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "material_bases",
+            0,
+            "selector",
+            "kelvin"
+          ],
+          "op": "set",
+          "value": "4073700000000000"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "material_bases",
+            0,
+            "materials",
+            0,
+            "selection",
+            "target_kelvin"
+          ],
+          "op": "set",
+          "value": "4073700000000000"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G8",
+        "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+      },
+      "invocation_edits": [
+        {
+          "path": [
+            "request",
+            "model",
+            "load_cases",
+            0,
+            "modulus_basis_temperature"
+          ],
+          "op": "set",
+          "value": {
+            "value": 311,
+            "unit": "K"
+          }
+        }
+      ]
     }
   ],
   "must_pass": [

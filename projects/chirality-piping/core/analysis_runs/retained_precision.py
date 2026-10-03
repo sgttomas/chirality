@@ -327,6 +327,11 @@ def _g5_schedule(run, records, attempts, fail, body=None):
     """
     fail(all(int(r["corrections"]) <= 3 for r in records))
     terminal = run["kernel_terminal"]
+    # A WorkAccounting terminal exists natively only when a work status is not exact
+    # (adaptive.rs:4545, 4777, 4996); C1:66-68 forbids emitting such a run, and C2's
+    # reachable Reason map (C2:17-40) has no unresolved/work_accounting. It lies outside
+    # the emitted domain of the actual native schedule/terminal (C1:148), idle or not.
+    fail(not _is_work_accounting(terminal))
     if not attempts:
         # Pre-schedule returns (adaptive.rs:4994-5075): invocation entry with a meter fault
         # (WorkAccounting, prior None, takes precedence) or exhaustion (Budget(invocation));
@@ -335,7 +340,7 @@ def _g5_schedule(run, records, attempts, fail, body=None):
              and terminal["kind"] != "selected" and terminal["reason"] is not None)
         if run["origin"]["group"] is None:
             exhausted = body is not None and int(run["invocation_before"]) >= int(body["work"]["invocation_limit"])
-            fail(_is_work_accounting(terminal) or exhausted and terminal == {"kind": "unresolved", "reason": {"space": "unresolved", "tag": "budget", "scope": "invocation"}})
+            fail(exhausted and terminal == {"kind": "unresolved", "reason": {"space": "unresolved", "tag": "budget", "scope": "invocation"}})
         elif body is not None:
             group = _at(body["groups"], run["origin"]["group"], code="ATTEMPT_MISMATCH")
             if group["preparation"]["kind"] == "ready":
@@ -404,15 +409,14 @@ def _g5_schedule(run, records, attempts, fail, body=None):
     if attempts[-1]["outcome"]["kind"] == "accepted":
         fail(terminal["kind"] == "selected" and terminal["reason"] is None)
     elif ended:
-        # N5: a terminal stop ends on its exact terminal() translation, or on WorkAccounting
-        # when a work fault exists (finish_terminal, adaptive.rs:4769-4800).
-        fail(terminal == _terminal_of(end_stop) or _is_work_accounting(terminal))
+        # N5: a terminal stop ends on its exact terminal() translation (adaptive.rs:4349-4378).
+        fail(terminal == _terminal_of(end_stop))
     elif escalated and c < 3:
-        # N9: an escalating last stop with slots left ends only on WorkAccounting
-        # (the fault check precedes escalation, adaptive.rs:4545-4546, 4581-4582).
-        fail(_is_work_accounting(terminal))
+        # N9: an escalating last stop with slots left ends only through a work fault
+        # (adaptive.rs:4545-4546, 4581-4582), which is never emitted (C1:66-68).
+        fail(False)
     elif escalated:
-        fail(terminal == ceiling or _is_work_accounting(terminal))
+        fail(terminal == ceiling)
     else:
         fail(terminal == ceiling)  # rejected p512 candidate leaves the loop (4762-4766)
 
@@ -532,8 +536,7 @@ def _g5_native(body):
             fail(debit == run["invocation_increment"] == sum(a["invocation_increment"] for a in attempts), "WORK_MISMATCH")
             if run["invocation_before"] >= body["work"]["invocation_limit"]:
                 fail(not attempts and run["origin"]["group"] is None
-                     and (run["kernel_terminal"]["reason"] == {"space": "unresolved", "tag": "budget", "scope": "invocation"}
-                          or _is_work_accounting(run["kernel_terminal"])))
+                     and run["kernel_terminal"]["reason"] == {"space": "unresolved", "tag": "budget", "scope": "invocation"})
             budget = run["kernel_terminal"]["reason"] if run["kernel_terminal"]["kind"] == "unresolved" else None
             if isinstance(budget, dict) and budget.get("tag") == "budget" and attempts:
                 # N17: the budget test checks case room first (adaptive.rs:276-286).

@@ -77,10 +77,8 @@ def test_all_bound_entrypoints_canonicalize_accepted_zero():
         with pytest.raises(ValueError): rp.absolute_bound(value, 0.0)
         with pytest.raises(ValueError): rp.absolute_bound(0.0, value)
 
-def apply_mutation(base, mutation):
-    from copy import deepcopy
-    value = deepcopy(base)
-    for edit in mutation["edits"]:
+def _apply_edits(value, edits):
+    for edit in edits:
         parent = value
         for part in edit["path"][:-1]:
             parent = parent[part]
@@ -89,6 +87,13 @@ def apply_mutation(base, mutation):
             del parent[key]
         else:
             parent[key] = deepcopy(edit["value"])
+
+
+def apply_mutation(base, mutation):
+    value = deepcopy(base)
+    _apply_edits(value, mutation["edits"])
+    if mutation.get("_invocation_digest") is not None:
+        value["retained_precision"]["body"]["invocation"]["value"] = mutation["_invocation_digest"]
     if mutation["rehash"]:
         body = value["retained_precision"]["body"]
         if mutation["rehash"] == "all":
@@ -104,6 +109,19 @@ def apply_mutation(base, mutation):
         body["publication_sha256"] = rp._hash("retained_precision_publication_mp_v2", {k:v for k,v in value.items() if k != "retained_precision"})
         value["retained_precision"]["receipt_sha256"] = rp._hash("retained_precision_receipt_mp_v2", body)
     return value
+
+
+def apply_entry(fixture, entry):
+    """Shared-corpus entry semantics (SHARED_SNAPSHOT_06C format): (1) apply `edits` to a copy
+    of the base source; (2) apply `invocation_edits` (same edit grammar; absent means none) to a
+    copy of the base invocation; (3) when any invocation edit exists, set
+    retained_precision.body.invocation.value = H(source_blocks_invocation_v1, edited invocation);
+    (4) rehash per `rehash`; then validate the edited source against the edited invocation."""
+    invocation = deepcopy(fixture["invocation"])
+    invocation_edits = entry.get("invocation_edits") or []
+    _apply_edits(invocation, invocation_edits)
+    digest = rp._hash("source_blocks_invocation_v1", invocation) if invocation_edits else None
+    return apply_mutation(fixture["source"], dict(entry, _invocation_digest=digest)), invocation
 
 
 def test_complete_synthetic_draft_control_is_not_qualification():
@@ -126,9 +144,9 @@ def test_complete_synthetic_draft_control_is_not_qualification():
 @pytest.mark.parametrize("mutation", corpus()["mutations"], ids=lambda x:x["id"])
 def test_shared_draft_first_failure_controls(mutation):
     fixture = next(f for f in corpus()["cases"] if f["id"] == mutation["base"])
-    source = apply_mutation(fixture["source"], mutation)
+    source, invocation = apply_entry(fixture, mutation)
     with pytest.raises(rp.RetainedPrecisionError) as error:
-        rp._validate_draft(source, fixture["invocation"])
+        rp._validate_draft(source, invocation)
     assert {"gate":error.value.gate,"code":error.value.code} == mutation["expected"]
 
 
@@ -146,76 +164,6 @@ def test_old_operational_error_is_retained_independently_of_new_ready():
     result = rp._validate_draft(source, fixture["invocation"])
     assert result["classifications"] == fixture["expected_classifications"]
     assert result["numerical_eligible"] is False
-
-
-def rebind_invocation(source, invocation):
-    source["retained_precision"]["body"]["invocation"]["value"] = rp._hash("source_blocks_invocation_v1", invocation)
-    return apply_mutation(source, {"edits": [], "rehash": "all"})
-
-
-def test_project_length_units_are_normalized_before_node_binding():
-    from copy import deepcopy
-    fixture = corpus()["cases"][0]
-    source, invocation = deepcopy(fixture["source"]), deepcopy(fixture["invocation"])
-    model = invocation["request"]["model"]
-    model["project"]["units"]["length"] = "mm"
-    for node in model["nodes"]:
-        for axis in "xyz": node["position"][axis] *= 1000
-    source = rebind_invocation(source, invocation)
-    result = rp._validate_draft(source, invocation)
-    assert result["classifications"] == fixture["expected_classifications"]
-    model["nodes"][1]["position"]["x"] /= 1000
-    with pytest.raises(rp.RetainedPrecisionError) as error:
-        rp._validate_draft(rebind_invocation(source, invocation), invocation)
-    assert (error.value.gate, error.value.code) == ("G8", "RETAINED_PRECISION_PREPARATION_MISMATCH")
-
-
-def interpolated_control():
-    from copy import deepcopy
-    fixture = corpus()["cases"][0]
-    source, invocation = deepcopy(fixture["source"]), deepcopy(fixture["invocation"])
-    model = invocation["request"]["model"]
-    # The source order returns200e9; the algebraically equivalent weighted sum
-    # rounds one ulp lower. This makes the chosen binary64 operation order decisive.
-    lower, upper, fraction = 199999999999.99997, 200000000000.00012, 0.1
-    assert lower + fraction * (upper - lower) == 200e9
-    assert (1 - fraction) * lower + fraction * upper != 200e9
-    model["materials"][0]["temperature_points"] = [
-        {"id": name, "temperature": {"value": temperature, "unit": "K"},
-         "elastic_modulus": {"value": elastic, "unit": "Pa"},
-         "shear_modulus": {"value": 77e9, "unit": "Pa"},
-         "thermal_expansion_coefficient": {"value": 1e-5, "unit": "1/K"}}
-        for name, temperature, elastic in (("lo", 300, lower), ("hi", 310, upper))
-    ]
-    model["load_cases"][0]["modulus_basis_temperature"] = {"value": 301, "unit": "K"}
-    basis = source["retained_precision"]["body"]["material_bases"][0]
-    basis["selector"] = {"kind": "temperature", "kelvin": rp.bits(301.0)}
-    basis["materials"][0]["selection"] = {"kind": "interpolated", "lower_point_id": "lo", "upper_point_id": "hi", "target_kelvin": rp.bits(301.0)}
-    return rebind_invocation(source, invocation), invocation
-
-
-def test_temperature_uses_strict_bracket_and_source_operation_order():
-    source, invocation = interpolated_control()
-    assert rp._validate_draft(source, invocation)["invocation_bound"]
-    for temperature in (299, 300, 310, 311):
-        invocation["request"]["model"]["load_cases"][0]["modulus_basis_temperature"]["value"] = temperature
-        basis = source["retained_precision"]["body"]["material_bases"][0]
-        basis["selector"]["kelvin"] = rp.bits(float(temperature))
-        basis["materials"][0]["selection"]["target_kelvin"] = rp.bits(float(temperature))
-        with pytest.raises(rp.RetainedPrecisionError) as error:
-            rp._validate_draft(rebind_invocation(source, invocation), invocation)
-        assert error.value.gate == "G8"
-
-
-@pytest.mark.parametrize("change", ["missing_alpha", "duplicate_temperature"])
-def test_temperature_source_refusals_are_not_filled_from_base(change):
-    source, invocation = interpolated_control()
-    points = invocation["request"]["model"]["materials"][0]["temperature_points"]
-    if change == "missing_alpha": del points[0]["thermal_expansion_coefficient"]
-    else: points[1]["temperature"] = dict(points[0]["temperature"])
-    with pytest.raises(rp.RetainedPrecisionError) as error:
-        rp._validate_draft(rebind_invocation(source, invocation), invocation)
-    assert error.value.gate == "G8"
 
 
 def test_native_source_encoding_domain_and_load_separation():
@@ -247,7 +195,8 @@ def test_shared_publicly_consistent_attestations_must_pass(entry):
     custody/replay can catch such attested private flags."""
     fixture = next(f for f in corpus()["cases"] if f["id"] == entry["base"])
     assert entry["expected"] == "pass"
-    result = rp._validate_draft(apply_mutation(fixture["source"], entry), fixture["invocation"])
+    source, invocation = apply_entry(fixture, entry)
+    result = rp._validate_draft(source, invocation)
     assert result["classifications"] == fixture["expected_classifications"]
     assert result["numerical_eligible"] is False
 
@@ -307,12 +256,13 @@ def test_schedule_replay_terminal_branches_reader_logic():
                 kernel_terminal={"kind": "unresolved", "reason": {"space": "unresolved", "tag": "budget", "scope": "invocation"}})
     rp._g5_schedule(idle, [], [], _fail_g5)
     _raises(lambda: rp._g5_schedule(dict(idle, kernel_terminal={"kind": "selected", "reason": None}), [], [], _fail_g5), "G5", "ATTEMPT_MISMATCH")
-    # N10 (adaptive.rs:4994-5002): with a meter fault the idle entry run is WorkAccounting, before
-    # Budget(invocation); exhaustion requires invocation_before >= the invocation limit.
+    # N10 (adaptive.rs:4994-5002): exhaustion gives Budget(invocation) and requires
+    # invocation_before >= the invocation limit; a WorkAccounting idle run is never emitted
+    # (C1:66-68) and is rejected.
     body = deepcopy(corpus()["cases"][0]["source"]["retained_precision"]["body"])
     entry = dict(idle, origin=dict(idle["origin"], group=None))
     fault = {"kind": "unresolved", "reason": {"space": "unresolved", "tag": "work_accounting", "fault": "overflow"}}
-    rp._g5_schedule(dict(entry, kernel_terminal=fault), [], [], _fail_g5, body)
+    _raises(lambda: rp._g5_schedule(dict(entry, kernel_terminal=fault), [], [], _fail_g5, body), "G5", "ATTEMPT_MISMATCH")
     _raises(lambda: rp._g5_schedule(entry, [], [], _fail_g5, body), "G5", "ATTEMPT_MISMATCH")
     rp._g5_schedule(dict(entry, invocation_before=body["work"]["invocation_limit"]), [], [], _fail_g5, body)
     # A rejected candidate at p128 must hand its verification to a reused p256 candidate.
