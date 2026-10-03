@@ -10,6 +10,8 @@
 - K6c accounting and finite measurements: PR1071, merged as `49034a940f`, with its recorded qualifications. Historic value equality remains unclaimed.
 - Private prepared producer `922db9dce3` passed the named case in both modes, received RV68's complete source review and repair confirmations, and was integrated locally at `458603880a`. Independent numerical checks and focused runs are in [RV68's review](REVIEW_RV68/prepared_producer_01/REVIEW.md). This is a component result, not a main merge or public publication.
 
+- The corrected public formation contract is selected after RV69 review and repair confirmation. Its schemas, typed evidence and readers still need implementation.
+
 ## Open and next milestone
 
 **RF-SKEW-T-CANT-OFF-122-r1e-04 must publish through the captured F2a entry in both modes**, under `M03-INTEGRITY-MP-v2`, agree with its independent reference, and preserve the named refusal/coexistence controls. The typed entry keeps its accepted ordinary route; both-entry checks remain required.
@@ -18,13 +20,13 @@ The numerical candidate now passes. What stands before publication is its public
 
 ## Running now
 
-- I52's concrete public contract is sealed. RV69 independently reviews its exact definition, fields, failure mappings and reader obligations; disposition due 13:32:35Z, seal 13:47:35Z.
-- I53 returned the precise native caller lifetime-census gap. Fresh RV70 reviews the evidence and the actual scope required by the existing resource contract before any profile or correction is selected.
-- No compiler or solver job is running. The existing memory guard remains active. No host tooling work is assigned.
+- I51 joins the accepted producer, count/ownership evidence and selected contract into a concrete allocation/admission and receipt transaction design. Initial interface due 13:40:25Z; complete proposal 14:15:25Z; seal 14:50:25Z. No code or runtime is granted yet.
+- I53 completes the precise first-party native caller profile. Its unresolved context-lifetime premise stays explicit; no platform bound or host tool is being invented.
+- No compiler or solver job is running. The existing memory guard remains active.
 
 ## Next
 
-Review and select the concrete contract, then implement producer, readers and carriers as a coherent public package. Existing full invocation/resource and native requirements remain dependencies; the passing private case does not waive them. Bulk evidence remains in scratch with hash/size/location manifests.
+Independently review the concrete admission/ownership design, then implement producer, readers and carriers as a coherent public package. Existing full invocation/resource and native requirements remain dependencies; the passing private case does not waive them. Bulk evidence remains in scratch with hash/size/location manifests.
 
 ## Branches and owner decisions
 

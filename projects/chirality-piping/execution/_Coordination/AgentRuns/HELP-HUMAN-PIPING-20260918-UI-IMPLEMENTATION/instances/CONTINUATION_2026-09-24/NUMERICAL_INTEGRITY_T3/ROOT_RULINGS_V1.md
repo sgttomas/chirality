@@ -6943,3 +6943,70 @@ Each PR body will state its actual record file count and bytes with the reason.
 This is a prospective packaging plan within the owner's direction, not a new
 standing instruction or a selected repository-wide records budget. It creates
 no current archive/tooling assignment and does not interrupt the publication path.
+
+
+## Corrected prepared public contract selected (ROOT, 2026-10-03 UTC)
+
+ROOT selects the corrected prepared ordinary contract so public evidence can state the actual formation, source and work without attributing the final values to the native stop list.
+
+The selection is I52/prepared_public_contract_02 at `77bb95e4ac`, including
+DEFINITION.json and C3_DELTA.md, **together with** the corrective ADDENDUM.md at
+`7b4709bcec`. The uncorrected delta alone is not selected. RV69's complete C3
+review and same-reviewer F1 backcheck, sealed at 13:22:16Z and preserved at
+`a387fceab1`, close RV69-N1 and RV69-C3-F1. ROOT read the complete review,
+proposal/definition and correction, verified their payloads and external review
+manifest, and repeated collision/source-equality checks after refreshing main.
+Main remains `381be775ae`; no F2a PR is open.
+
+The registered definition is RP-PREPARED-ORDINARY-DUAL-v1, with its nested
+RP-PREPARED-ANNULUS-v1 preparation. Its exact raw bytes and domain hash are in
+verification/rv69_c3_selection_02/CHECKS.json and the author manifest. Reserve the
+C1/C3 identities, profiles, policy names, hash domains and failure-code spellings
+listed by that verification for this F2a realization. Existing kernel policy and
+internal method placeholder retain their meanings. These are scoped prospective
+reservations, not installed schemas/tables or public activation; final successor
+and inherited table hashes still bind the actual atomic implementation.
+
+Native p/P, stop summaries and actual-p512 floor activation remain separate from
+fixed 1024-bit preparation/proof/projection. The two physical readings, row-family
+formations, all final bounds/classes/predicates and literal base reader checks
+remain binding. D2 §4.9.10, §4.11.2 and §5 I-9 receive the scoped prospective
+warrant cross-reference in the new definition; historical bytes are untouched.
+This realizes the already selected numerical guarantee and introduces no new
+owner-held meaning, criterion, availability or interval-binding choice.
+
+Old operational records bind their actual old operands, results and work; only
+new successful records bind prepared C2 terms. Preserve old errors, separate
+entered prefixes and the actual prelude/vector transition. The added old_coverage
+stamp and typed preparation/lane/work/error/conversion seams must be implemented
+at their real boundaries. Existing cardinality checks, Debug output or expected
+control flow do not supply them. The full review owns the source-to-wire and
+trust-boundary qualifications; no unrun cross-language parity is credited.
+
+No maintained write grant follows from this ruling alone. I51 now owns one
+coherent producer admission/ownership milestone under brief `92790ca0cc`, reusing
+accepted P1/P3 and implemented private work rather than reopening numerical search.
+Its concrete composition, pre-execution permits, source/failure/copy lifetimes,
+receipt transaction and qualified build/caller terms precede a scoped implementation
+grant. Full invocation/combination and promised exact scope, all three readers/
+carriers, native Current, resource qualification and every standing PR gate remain.
+
+
+## Native caller gap accepted within its actual window (ROOT, 2026-10-03 UTC)
+
+ROOT accepts the independently checked native prerequisite result while withholding a complete native allocation claim because the included context census is still unproved.
+
+I53 at `77bb95e4ac` and fresh RV70's review preserved at `51930cf747` identify
+the exact lifetime/capacity term. ROOT read both fully and verified their sealed
+payloads. The accepted window remains application-owned Rust through guarded
+JSON-body transfer, including attributable prefix/carryover owners that overlap
+that window. Transferred output queues, unrelated jobs and framework/TS heaps
+remain excluded. Main-thread affinity and one pending JS poll do not prove the
+missing bound; arbitrary raw IPC is not automatically required scope.
+
+Continue the already selected first-party route only, through I53's bounded
+profile/ownership brief at `51930cf747`. It must produce concrete source-qualified
+terms or the exact external/decision prerequisite, not another generic platform
+investigation. No numeric H, memory allowance, finite-use restriction, ordinary
+behavior change, Wry patch or host tooling is selected. I51 keeps the native
+interface explicitly unqualified while completing the producer composition.

@@ -18,7 +18,13 @@ numeric predicates, observables and G5a. [RV68's review](REVIEW_RV68/prepared_pr
 owns its source/validation evidence and qualifications. This closes the private
 candidate milestone; no public route, receipt or all-in resource claim follows.
 
-## 2. Reconcile the public integration contract against that actual result
+## 2. Public formation contract — selected; implementation still open
+
+The concrete prepared ordinary definition/delta at `77bb95e4ac`, corrected by
+`7b4709bcec`, is selected after RV69's complete review and same-reviewer backcheck.
+[The review](REVIEW_RV69/prepared_public_contract_02/REVIEW.md) owns its exact scope.
+Typed evidence, actual old/new and failed-prefix capture, registration and all
+three readers remain implementation work. No public activation follows.
 
 The existing wire/source-map contract was reviewed at C1/C2; the
 [C2 delta](I32/f2a_wire_c2/CONTRACT_DELTA.md) is a basis, not an installed schema.
