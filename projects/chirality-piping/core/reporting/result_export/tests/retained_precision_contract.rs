@@ -115,6 +115,46 @@ fn edit(source: &mut Value, e: &Value) {
         parent[last.as_str().unwrap()] = e["value"].clone();
     }
 }
+/// The reader's own expectation: `expected_by_reader.rust` when present (the
+/// per-language G7 base code), else the shared `expected` (snapshot 06b format).
+fn expected_for(m: &Value) -> &Value {
+    m.get("expected_by_reader")
+        .and_then(|e| e.get("rust"))
+        .unwrap_or(&m["expected"])
+}
+/// Apply a shared mutation or must-pass entry exactly as SHARED_SNAPSHOT_06C
+/// `format_change` specifies: edit a copy of the base source; edit a copy of
+/// the base invocation; when invocation edits exist, bind the receipt's
+/// invocation digest to the edited invocation; then rehash per `rehash`.
+/// Returns the edited source and the invocation to validate against.
+fn apply_entry(shared: &Value, entry: &Value) -> (Value, Value) {
+    use open_pipe_stress_result_export::source_blocks::domain_hash;
+    let case = shared["cases"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|c| c["id"] == entry["base"])
+        .unwrap();
+    let mut source = case["source"].clone();
+    for e in entry["edits"].as_array().unwrap() {
+        edit(&mut source, e);
+    }
+    let mut invocation = case["invocation"].clone();
+    let invocation_edits = entry["invocation_edits"].as_array().cloned().unwrap_or_default();
+    for e in &invocation_edits {
+        edit(&mut invocation, e);
+    }
+    if !invocation_edits.is_empty() {
+        source["retained_precision"]["body"]["invocation"]["value"] =
+            domain_hash("source_blocks_invocation_v1", &invocation)
+                .unwrap()
+                .into();
+    }
+    if entry["rehash"] == "all" {
+        rehash(&mut source);
+    }
+    (source, invocation)
+}
 #[test]
 fn complete_synthetic_controls_keep_eligibility_held() {
     let shared = corpus();
@@ -170,237 +210,164 @@ fn shared_rehashed_first_failure_mutations() {
     let shared = corpus();
     let mut failures = Vec::new();
     for mutation in shared["mutations"].as_array().unwrap() {
-        let case = shared["cases"]
-            .as_array()
-            .unwrap()
-            .iter()
-            .find(|c| c["id"] == mutation["base"])
-            .unwrap();
-        let mut source = case["source"].clone();
-        for e in mutation["edits"].as_array().unwrap() {
-            edit(&mut source, e);
-        }
-        if mutation["rehash"] == "all" {
-            rehash(&mut source);
-        }
-        match rp::validate(&source, Some(&case["invocation"])) {
-            Err(e)
-                if e.gate == mutation["expected"]["gate"]
-                    && e.code == mutation["expected"]["code"] => {}
+        let (source, invocation) = apply_entry(&shared, mutation);
+        let expected = expected_for(mutation);
+        match rp::validate(&source, Some(&invocation)) {
+            Err(e) if e.gate == expected["gate"] && e.code == expected["code"] => {}
             Err(got) => failures.push(format!(
                 "{} expected {} got {got:?}",
-                mutation["id"], mutation["expected"]
+                mutation["id"], expected
             )),
             Ok(got) => failures.push(format!(
                 "{} expected {} got admitted statement (eligible={})",
-                mutation["id"], mutation["expected"], got.numerical_eligible
+                mutation["id"], expected, got.numerical_eligible
             )),
         }
     }
     assert!(failures.is_empty(), "{}", failures.join("\n"));
 }
 
-/// Snapshot-04 summary-coverage controls (I57 s4/s5): the 47 new rehashed
-/// mutations follow the 30 snapshot-03 ones. Prints one observed outcome per
-/// mutation (visible with --nocapture) and checks the expected tally.
-#[test]
-fn snapshot_04_coverage_mutation_outcomes() {
+/// Observe one slice of the shared mutations against this reader's own
+/// expectation, print one outcome per mutation (visible with --nocapture) and
+/// check the slice tally. Snapshot 06c holds 173 mutations in all.
+fn slice_outcomes(tag: &str, range: std::ops::Range<usize>, want: &[(&str, usize)]) {
     use std::collections::BTreeMap;
     let shared = corpus();
     let mutations = shared["mutations"].as_array().unwrap();
-    // Snapshot 05a appends 27 mutations after snapshot 04's 77, snapshot
-    // 05b/05c a further 17 and 06a 30 (earlier entries byte-identical).
-    assert_eq!(mutations.len(), 151);
+    assert_eq!(mutations.len(), 173);
     let mut tally = BTreeMap::new();
     let mut matched = 0;
-    for mutation in &mutations[30..77] {
-        let case = shared["cases"]
-            .as_array()
-            .unwrap()
-            .iter()
-            .find(|c| c["id"] == mutation["base"])
-            .unwrap();
-        let mut source = case["source"].clone();
-        for e in mutation["edits"].as_array().unwrap() {
-            edit(&mut source, e);
-        }
-        if mutation["rehash"] == "all" {
-            rehash(&mut source);
-        }
-        let observed = match rp::validate(&source, Some(&case["invocation"])) {
-            Err(e) => serde_json::json!({"gate":e.gate,"code":e.code}),
-            Ok(_) => serde_json::json!(null),
-        };
-        let ok = observed == mutation["expected"];
+    for mutation in &mutations[range.clone()] {
+        let observed = observe(&shared, mutation);
+        let expected = expected_for(mutation);
+        let ok = observed == *expected;
         matched += usize::from(ok);
         *tally
             .entry(format!(
                 "{} {}",
-                mutation["expected"]["gate"].as_str().unwrap(),
-                mutation["expected"]["code"].as_str().unwrap()
+                expected["gate"].as_str().unwrap(),
+                expected["code"].as_str().unwrap()
             ))
             .or_insert(0) += 1;
         println!(
-            "I63_OUTCOME {}",
-            serde_json::json!({"id":mutation["id"],"base":mutation["base"],"expected":mutation["expected"],"observed":observed,"match":ok})
+            "{tag} {}",
+            serde_json::json!({"id":mutation["id"],"base":mutation["base"],"expected":expected,"observed":observed,"match":ok})
         );
     }
-    let want: BTreeMap<String, usize> = [
-        ("G1 RETAINED_PRECISION_RECEIPT_MISMATCH", 14),
-        ("G2 RETAINED_PRECISION_ENCODING_MISMATCH", 4),
-        ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 6),
-        ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 2),
-        ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 1),
-        ("G5a RETAINED_PRECISION_SCALE_MISMATCH", 20),
-    ]
-    .into_iter()
-    .map(|(k, n)| (k.to_string(), n))
-    .collect();
-    assert_eq!(tally, want);
-    assert_eq!(matched, 47);
+    let want: BTreeMap<String, usize> = want.iter().map(|(k, n)| (k.to_string(), *n)).collect();
+    assert_eq!(tally, want, "{tag}");
+    assert_eq!(matched, range.len(), "{tag}");
 }
 
+/// Snapshot-04 summary-coverage controls (I57 s4/s5), mutations 30..77.
+#[test]
+fn snapshot_04_coverage_mutation_outcomes() {
+    slice_outcomes(
+        "I63_OUTCOME",
+        30..77,
+        &[
+            ("G1 RETAINED_PRECISION_RECEIPT_MISMATCH", 14),
+            ("G2 RETAINED_PRECISION_ENCODING_MISMATCH", 4),
+            ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 6),
+            ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 2),
+            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 1),
+            ("G5a RETAINED_PRECISION_SCALE_MISMATCH", 20),
+        ],
+    );
+}
+
+/// Snapshot-05a controls (I62 C1a), mutations 77..104.
+#[test]
+fn snapshot_05a_mutation_outcomes() {
+    slice_outcomes(
+        "I63_OUTCOME_05A",
+        77..104,
+        &[
+            ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 3),
+            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 1),
+            ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 5),
+            ("G5 RETAINED_PRECISION_WORK_MISMATCH", 2),
+            ("G5a RETAINED_PRECISION_SCALE_MISMATCH", 16),
+        ],
+    );
+}
+
+/// Snapshot-05b controls (I62 C1b, unchanged in 05c), mutations 104..121.
+#[test]
+fn snapshot_05b_mutation_outcomes() {
+    slice_outcomes(
+        "I63_OUTCOME_05B",
+        104..121,
+        &[
+            ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 2),
+            ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 1),
+            ("G5a RETAINED_PRECISION_SCALE_MISMATCH", 13),
+            ("G5b RETAINED_PRECISION_SCALE_MISMATCH", 1),
+        ],
+    );
+}
+
+/// Snapshot-06a checklist controls (I62 C2-1), mutations 121..150; 06b moved
+/// `prefix_old_inputs_unbound` to the must-pass entries (P7 settlement), and
+/// the G7 entry uses this reader's own base code (`expected_by_reader`).
+#[test]
+fn snapshot_06a_mutation_outcomes() {
+    slice_outcomes(
+        "I63_OUTCOME_06A",
+        121..150,
+        &[
+            ("G2 RETAINED_PRECISION_ENCODING_MISMATCH", 1),
+            ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 3),
+            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 10),
+            ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 10),
+            ("G5 RETAINED_PRECISION_WORK_MISMATCH", 2),
+            ("G7 SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS", 1),
+            ("G8 RETAINED_PRECISION_PREPARATION_MISMATCH", 2),
+        ],
+    );
+}
+
+/// Snapshot-06b settlements (I62 C2-2), mutations 150..163, with
+/// `ceiling_before_last_slot` under its 06c name.
+#[test]
+fn snapshot_06b_mutation_outcomes() {
+    slice_outcomes(
+        "I63_OUTCOME_06B",
+        150..163,
+        &[
+            ("G1 RETAINED_PRECISION_RECEIPT_MISMATCH", 1),
+            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 8),
+            ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 1),
+            ("G8 RETAINED_PRECISION_PREPARATION_MISMATCH", 3),
+        ],
+    );
+}
+
+/// Snapshot-06c (I62 C2-3), mutations 163..173: WorkAccounting terminals
+/// rejected, and the invocation-level G8 refusals through `invocation_edits`.
+#[test]
+fn snapshot_06c_mutation_outcomes() {
+    slice_outcomes(
+        "I63_OUTCOME_06C",
+        163..173,
+        &[
+            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 3),
+            ("G8 RETAINED_PRECISION_PREPARATION_MISMATCH", 7),
+        ],
+    );
+}
+
+
 fn observe(shared: &Value, mutation: &Value) -> Value {
-    let case = shared["cases"]
-        .as_array()
-        .unwrap()
-        .iter()
-        .find(|c| c["id"] == mutation["base"])
-        .unwrap();
-    let mut source = case["source"].clone();
-    for e in mutation["edits"].as_array().unwrap() {
-        edit(&mut source, e);
-    }
-    if mutation["rehash"] == "all" {
-        rehash(&mut source);
-    }
-    match rp::validate(&source, Some(&case["invocation"])) {
+    let (source, invocation) = apply_entry(shared, mutation);
+    match rp::validate(&source, Some(&invocation)) {
         Err(e) => serde_json::json!({"gate":e.gate,"code":e.code}),
         Ok(_) => serde_json::json!(null),
     }
 }
 
-/// Snapshot-05a controls (I62 C1a): the 27 mutations after snapshot 04's 77.
-/// Prints one observed outcome per mutation (visible with --nocapture).
-#[test]
-fn snapshot_05a_mutation_outcomes() {
-    use std::collections::BTreeMap;
-    let shared = corpus();
-    let mutations = shared["mutations"].as_array().unwrap();
-    let mut tally = BTreeMap::new();
-    let mut matched = 0;
-    for mutation in &mutations[77..104] {
-        let observed = observe(&shared, mutation);
-        let ok = observed == mutation["expected"];
-        matched += usize::from(ok);
-        *tally
-            .entry(format!(
-                "{} {}",
-                mutation["expected"]["gate"].as_str().unwrap(),
-                mutation["expected"]["code"].as_str().unwrap()
-            ))
-            .or_insert(0) += 1;
-        println!(
-            "I63_OUTCOME_05A {}",
-            serde_json::json!({"id":mutation["id"],"base":mutation["base"],"expected":mutation["expected"],"observed":observed,"match":ok})
-        );
-    }
-    let want: BTreeMap<String, usize> = [
-        ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 3),
-        ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 1),
-        ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 5),
-        ("G5 RETAINED_PRECISION_WORK_MISMATCH", 2),
-        ("G5a RETAINED_PRECISION_SCALE_MISMATCH", 16),
-    ]
-    .into_iter()
-    .map(|(k, n)| (k.to_string(), n))
-    .collect();
-    assert_eq!(tally, want);
-    assert_eq!(matched, 27);
-}
 
-/// Snapshot-05b controls (I62 C1b, unchanged in 05c): the 17 mutations after
-/// 05a's 104, on the two-body, p512-ladder and two-load-case bases, plus the
-/// cross-case gate-major and record body-order pins. Prints one observed
-/// outcome per mutation (visible with --nocapture).
-#[test]
-fn snapshot_05b_mutation_outcomes() {
-    use std::collections::BTreeMap;
-    let shared = corpus();
-    let mutations = shared["mutations"].as_array().unwrap();
-    let mut tally = BTreeMap::new();
-    let mut matched = 0;
-    for mutation in &mutations[104..121] {
-        let observed = observe(&shared, mutation);
-        let ok = observed == mutation["expected"];
-        matched += usize::from(ok);
-        *tally
-            .entry(format!(
-                "{} {}",
-                mutation["expected"]["gate"].as_str().unwrap(),
-                mutation["expected"]["code"].as_str().unwrap()
-            ))
-            .or_insert(0) += 1;
-        println!(
-            "I63_OUTCOME_05B {}",
-            serde_json::json!({"id":mutation["id"],"base":mutation["base"],"expected":mutation["expected"],"observed":observed,"match":ok})
-        );
-    }
-    let want: BTreeMap<String, usize> = [
-        ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 2),
-        ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 1),
-        ("G5a RETAINED_PRECISION_SCALE_MISMATCH", 13),
-        ("G5b RETAINED_PRECISION_SCALE_MISMATCH", 1),
-    ]
-    .into_iter()
-    .map(|(k, n)| (k.to_string(), n))
-    .collect();
-    assert_eq!(tally, want);
-    assert_eq!(matched, 17);
-}
 
-/// Snapshot-06a controls (I62 C2-1): the 30 checklist mutations after 05c's
-/// 121 (native ladder skips, cache/build/group graph, ordinary evidence,
-/// conversions, row-index coverage, G7 bare code, G8 maps and prefix binding,
-/// and C3 stage/typed checks). Prints one observed outcome per mutation.
-#[test]
-fn snapshot_06a_mutation_outcomes() {
-    use std::collections::BTreeMap;
-    let shared = corpus();
-    let mutations = shared["mutations"].as_array().unwrap();
-    let mut tally = BTreeMap::new();
-    let mut matched = 0;
-    for mutation in &mutations[121..] {
-        let observed = observe(&shared, mutation);
-        let ok = observed == mutation["expected"];
-        matched += usize::from(ok);
-        *tally
-            .entry(format!(
-                "{} {}",
-                mutation["expected"]["gate"].as_str().unwrap(),
-                mutation["expected"]["code"].as_str().unwrap()
-            ))
-            .or_insert(0) += 1;
-        println!(
-            "I63_OUTCOME_06A {}",
-            serde_json::json!({"id":mutation["id"],"base":mutation["base"],"expected":mutation["expected"],"observed":observed,"match":ok})
-        );
-    }
-    let want: BTreeMap<String, usize> = [
-        ("G2 RETAINED_PRECISION_ENCODING_MISMATCH", 1),
-        ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 3),
-        ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 10),
-        ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 10),
-        ("G5 RETAINED_PRECISION_WORK_MISMATCH", 2),
-        ("G7 SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID", 1),
-        ("G8 RETAINED_PRECISION_PREPARATION_MISMATCH", 3),
-    ]
-    .into_iter()
-    .map(|(k, n)| (k.to_string(), n))
-    .collect();
-    assert_eq!(tally, want);
-    assert_eq!(matched, 30);
-}
 
 fn attempt_mismatch(got: Result<(), rp::ValidationError>) -> bool {
     matches!(got, Err(e) if e.gate == "G5" && e.code == "RETAINED_PRECISION_ATTEMPT_MISMATCH")
@@ -443,6 +410,10 @@ fn schedule_replay_terminal_branches_reader_logic() {
     let mut bad = idle.clone();
     bad["case_charge"] = json!(1);
     assert!(attempt_mismatch(schedule(&bad)), "idle Run carries no charge");
+    // 06b/06c ruling: no WorkAccounting terminal is emitted, idle or not.
+    let mut bad = idle.clone();
+    bad["kernel_terminal"] = json!({"kind":"unresolved","reason":{"space":"unresolved","tag":"work_accounting","fault":"overflow"}});
+    assert!(attempt_mismatch(schedule(&bad)), "idle WorkAccounting is not emitted");
     // N6: a rejected p128 candidate must hand its verification to a reused p256.
     let reason = json!({"space":"attempt","tag":"stop_rule","quantity":{"tag":"displacement","dof":{"node":1,"component":"UX"}},"body":0,"kind":"translation"});
     let mut rejected = selected.clone();
@@ -477,6 +448,36 @@ fn schedule_replay_terminal_branches_reader_logic() {
     let mut bad = ladder.clone();
     bad["kernel_terminal"] = json!({"kind":"refused","reason":{"space":"refusal","tag":"structure"}});
     assert!(attempt_mismatch(schedule(&bad)), "exhausted ladder is the Ceiling");
+}
+
+/// 06c WorkAccounting rejections fail in the schedule replay itself (the
+/// emitted-terminal rule), not only through a later check on the same code:
+/// the replay alone, without the statement, rejects each WorkAccounting Run.
+#[test]
+fn work_accounting_mutations_fail_at_the_terminal_rule() {
+    let shared = corpus();
+    for id in [
+        "work_accounting_after_escalating_stop",
+        "idle_work_accounting_run",
+        "work_accounting_at_last_slot",
+    ] {
+        let mutation = shared["mutations"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|m| m["id"] == id)
+            .unwrap();
+        let (source, _) = apply_entry(&shared, mutation);
+        let runs: Vec<&Value> = source["retained_precision"]["body"]["cases"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|c| &c["run"])
+            .filter(|r| r["kernel_terminal"]["reason"]["tag"] == "work_accounting")
+            .collect();
+        assert_eq!(runs.len(), 1, "{id}");
+        assert!(attempt_mismatch(rp::reader_logic::schedule(runs[0])), "{id}");
+    }
 }
 
 /// Rust reader-logic control mirroring I62's Python-only test for checklist O5
@@ -569,7 +570,7 @@ fn g5_audit_local_controls() {
             "{name}"
         );
     }
-    // G7: the bare base code is the error code; the Rust base's own code is detail.
+    // G7: the bare base code is the error code.
     let g7 = shared["mutations"]
         .as_array()
         .unwrap()
@@ -588,13 +589,10 @@ fn g5_audit_local_controls() {
     }
     rehash(&mut source);
     let got = rp::validate(&source, Some(&case["invocation"])).unwrap_err();
+    // G7 settlement (06b): this reader's own bare base code, detail separate.
     assert_eq!(
         (got.gate, got.code.as_str()),
-        ("G7", "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID")
-    );
-    assert_eq!(
-        got.detail.as_deref(),
-        Some("SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS")
+        ("G7", "SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS")
     );
 }
 
@@ -605,8 +603,8 @@ fn g5_audit_local_controls() {
 fn shared_must_pass_entries_validate() {
     let shared = corpus();
     let entries = shared["must_pass"].as_array().unwrap();
-    // Snapshot 05c: 05a's 15 plus 05b's 4, minus the 3 retired non-native entries.
-    assert_eq!(entries.len(), 16);
+    // Snapshot 06c: 05c's 16 plus 06b's 7.
+    assert_eq!(entries.len(), 23);
     let mut failures = Vec::new();
     for entry in entries {
         assert_eq!(entry["expected"], "pass");
@@ -617,12 +615,8 @@ fn shared_must_pass_entries_validate() {
             .iter()
             .find(|c| c["id"] == entry["base"])
             .unwrap();
-        let mut source = case["source"].clone();
-        for e in entry["edits"].as_array().unwrap() {
-            edit(&mut source, e);
-        }
-        rehash(&mut source);
-        let got = match rp::validate(&source, Some(&case["invocation"])) {
+        let (source, invocation) = apply_entry(&shared, entry);
+        let got = match rp::validate(&source, Some(&invocation)) {
             Ok(got) => got,
             Err(e) => {
                 failures.push(format!("{} rejected {e:?}", entry["id"]));

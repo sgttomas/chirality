@@ -842,7 +842,7 @@ fn g5_native(b: &Value) -> VResult {
             let attempts = list(&r["attempts"]);
             af(records.len() <= 4 && attempts.len() <= 3)?;
             af(records.is_empty() == attempts.is_empty())?;
-            g5_schedule(r)?;
+            g5_schedule(r, Some(b))?;
             if let Some(first) = attempts.first() {
                 af(first["precision"] == 128
                     && first["candidate_record"] == 0
@@ -1262,6 +1262,20 @@ fn g5_native(b: &Value) -> VResult {
     wf(u(&b["work"]["charged"]) == current && builds_seen.len() == list(&b["builds"]).len())?;
     Ok(())
 }
+/// A G7 base failure: the leading `[A-Z][A-Z0-9_]*` token is the bare code;
+/// the full base text, when it says more, is carried as detail.
+fn base_error(text: String) -> ValidationError {
+    let end = text
+        .char_indices()
+        .find(|(i, c)| !(c.is_ascii_uppercase() || (*i > 0 && (c.is_ascii_digit() || *c == '_'))))
+        .map_or(text.len(), |(i, _)| i);
+    let code = text[..end].to_string();
+    ValidationError {
+        gate: "G7",
+        detail: (code != text).then_some(text),
+        code,
+    }
+}
 /// The native Stop inside a Reason: a bare stop, or an attempt-space stop.
 fn stop_of(reason: &Value) -> Option<&Value> {
     if reason["space"] == "stop" {
@@ -1282,39 +1296,70 @@ fn escalating(reason: &Value) -> bool {
 /// candidate hands its completed verification on while a slot remains, and
 /// leaving the loop is the Ceiling. A pre-schedule run has no records, no
 /// charge and a non-selected terminal with a reason.
-fn g5_schedule(r: &Value) -> VResult {
+fn g5_schedule(r: &Value, body: Option<&Value>) -> VResult {
     let af = |ok| need(ok, "G5", "ATTEMPT_MISMATCH");
     let records = list(&r["records"]);
     let attempts = list(&r["attempts"]);
     af(records.iter().all(|x| u(&x["corrections"]) <= 3))?;
     let terminal = &r["kernel_terminal"];
+    // A WorkAccounting terminal exists natively only when a work status is not
+    // exact (adaptive.rs:4545, 4777, 4996); C1:66-68 forbids emitting such a
+    // run, so it lies outside the emitted terminal domain (C1:148), idle or not.
+    af(!(terminal["kind"] == "unresolved"
+        && terminal["reason"]["space"] == "unresolved"
+        && terminal["reason"]["tag"] == "work_accounting"))?;
     if attempts.is_empty() {
-        return af(records.is_empty()
+        // Pre-schedule returns (adaptive.rs:4994-5075): invocation exhaustion
+        // (group null, Budget(invocation)); a refused group (checked with C5);
+        // a CasePrep failure in a ready group (refused LedgerUnavailable).
+        af(records.is_empty()
             && u(&r["case_charge"]) == 0
             && u(&r["invocation_increment"]) == 0
             && terminal["kind"] != "selected"
-            && !terminal["reason"].is_null());
+            && !terminal["reason"].is_null())?;
+        if let Some(b) = body {
+            if r["origin"]["group"].is_null() {
+                af(u(&r["invocation_before"]) >= u(&b["work"]["invocation_limit"])
+                    && *terminal
+                        == json!({"kind":"unresolved","reason":{"space":"unresolved","tag":"budget","scope":"invocation"}}))?;
+            } else {
+                let g = at(&b["groups"], &r["origin"]["group"], "G5", "ATTEMPT_MISMATCH")?;
+                if g["preparation"]["kind"] == "ready" {
+                    af(terminal["kind"] == "refused" && terminal["reason"]["tag"] == "ledger_unavailable")?;
+                }
+            }
+        }
+        return Ok(());
     }
     let mut c = 0u32;
     let mut ended = false;
+    let mut escalated = false;
+    let mut end_stop = Value::Null;
     for (ai, a) in attempts.iter().enumerate() {
         af(!ended && c < 3 && u(&a["precision"]) == 128u64 << c)?;
         let last = ai + 1 == attempts.len();
         let v = &a["verification"];
+        escalated = false;
         match text(&a["outcome"]["kind"]) {
             "accepted" => ended = true,
             _ if v.is_null() => {
                 if escalating(&a["outcome"]["reason"]) {
-                    c += 1
+                    c += 1;
+                    escalated = true;
                 } else {
-                    ended = true
+                    ended = true;
+                    end_stop = stop_of(&a["outcome"]["reason"]).cloned().unwrap_or(Value::Null);
                 }
             }
             _ if v["phase"] == "failed" => {
-                if !last && escalating(&v["reason"]) {
-                    c += 2
+                // A failed verification solve with an escalating stop skips two
+                // slots; a verification-pass failure is terminal (4576-4611).
+                if escalating(&v["reason"]) {
+                    c += 2;
+                    escalated = true;
                 } else {
-                    ended = true
+                    ended = true;
+                    end_stop = stop_of(&v["reason"]).cloned().unwrap_or(Value::Null);
                 }
             }
             "rejected" => {
@@ -1323,17 +1368,55 @@ fn g5_schedule(r: &Value) -> VResult {
                     af(!last && attempts[ai + 1]["origin"]["kind"] == "reused_verification")?;
                 }
             }
-            _ => ended = true,
+            _ => {
+                ended = true;
+                end_stop = stop_of(&a["outcome"]["reason"]).cloned().unwrap_or(Value::Null);
+            }
         }
     }
+    let ceiling = json!({"kind":"unresolved","reason":{"space":"unresolved","tag":"ceiling"}});
     if attempts[attempts.len() - 1]["outcome"]["kind"] == "accepted" {
         af(terminal["kind"] == "selected" && terminal["reason"].is_null())
+    } else if ended {
+        // N5: a terminal stop ends on its exact terminal() translation
+        // (adaptive.rs:4349-4378).
+        af(terminal_of(&end_stop).is_some_and(|t| *terminal == t))
+    } else if escalated && c < 3 {
+        // N9: an escalating last stop with slots left ends only through a work
+        // fault (adaptive.rs:4545-4546, 4581-4582), which is never emitted.
+        af(false)
     } else {
-        af(matches!(text(&terminal["kind"]), "unresolved" | "refused")
-            && !terminal["reason"].is_null()
-            && (ended
-                || *terminal
-                    == json!({"kind":"unresolved","reason":{"space":"unresolved","tag":"ceiling"}})))
+        // N8: leaving the loop past the last slot is the Ceiling (4762-4766).
+        af(*terminal == ceiling)
+    }
+}
+/// FK/adaptive.rs:4349-4378 terminal(): the exact kernel terminal of a
+/// terminal stop, or None for an escalating stop. The wire carries
+/// WorkAccounting as {fault} only (C3:261-263).
+fn terminal_of(stop: &Value) -> Option<Value> {
+    let tag = text(&stop["tag"]);
+    let unresolved = |name: &str, keys: &[&str]| {
+        let mut reason = json!({"space":"unresolved","tag":name});
+        for k in keys {
+            reason[*k] = stop[*k].clone();
+        }
+        Some(json!({"kind":"unresolved","reason":reason}))
+    };
+    match tag {
+        "negative_energy" => Some(
+            json!({"kind":"refused","reason":{"space":"refusal","tag":"negative_energy","i":stop["i"],"j":stop["j"]}}),
+        ),
+        "structure" => Some(json!({"kind":"refused","reason":{"space":"refusal","tag":"structure"}})),
+        "count_range" => unresolved("count_range", &["name"]),
+        "work_accounting" => unresolved("work_accounting", &["fault"]),
+        "budget" => unresolved("budget", &["scope"]),
+        "span" => unresolved("exact_sum_span", &[]),
+        "exponent" => unresolved("exponent_range", &[]),
+        "zero_diagonal" => unresolved("zero_diagonal", &["global_dof"]),
+        "arithmetic" => unresolved("arithmetic", &["error"]),
+        "resolution_scale" => unresolved("resolution_scale_unencodable", &["body", "kind"]),
+        "publication_certificate" => unresolved("publication_certificate", &["index", "issue"]),
+        _ => None,
     }
 }
 /// Reader-logic entry points for tests of checklist branches that have no
@@ -1344,7 +1427,7 @@ pub mod reader_logic {
     use super::*;
     /// The G5 schedule replay for one Run (checklist N1-N10).
     pub fn schedule(run: &Value) -> Result<(), ValidationError> {
-        g5_schedule(run)
+        g5_schedule(run, None)
     }
     /// The G5 ordinary/source_decline pass for a whole statement (O2-O5).
     pub fn ordinary(source: &Value) -> Result<(), ValidationError> {
@@ -3262,28 +3345,9 @@ fn g8(source: &Value, inv: &Value) -> VResult {
                     .eq(0..pipes.len() as u64),
             )?;
         }
-        // F1:101-106 / checklist P7: an attempt without a constructed source
-        // still binds every retained old operational tuple's positions and
-        // selected E/G to the invocation (PreparedMember tuples are bound below).
-        if a["source_ref"].is_null() {
-            for op in old {
-                let p = pipes
-                    .get(u(&op["member"]) as usize)
-                    .ok_or_else(|| error("G8", "PREPARATION_MISMATCH"))?;
-                let mat = list(&mb["materials"])
-                    .iter()
-                    .find(|m| m["id"] == p["material"])
-                    .ok_or_else(|| error("G8", "PREPARATION_MISMATCH"))?;
-                let ni = find_node(nodes, &p["from"])?;
-                let nj = find_node(nodes, &p["to"])?;
-                let mut head = list(&node_maps[ni]["coordinates"]).to_vec();
-                head.extend_from_slice(list(&node_maps[nj]["coordinates"]));
-                head.push(mat["elastic_modulus"].clone());
-                head.push(mat["shear_modulus"].clone());
-                let inputs = list(&op["inputs"]);
-                fail(inputs.len() >= head.len() && inputs[..head.len()] == head[..])?;
-            }
-        }
+        // F1:101-106 / C3:155-158 (P7 settlement, 06b): every attempt binds the
+        // old tuple of each attached PreparedMember below; unattached old entries
+        // (helpers not yet entered) remain producer attestations.
         for (j, pm) in list(&a["preparation"]["members"]).iter().enumerate() {
             let mi = u(&pm["member"]) as usize;
             let p = pipes
@@ -3663,21 +3727,10 @@ pub fn validate(source: &Value, actual_invocation: Option<&Value>) -> VResult<Va
         }
     }
     let projected = project(source, true)?;
-    // C1 G7 "existing base failure codes" (ROOT ruling): the bare base code is
-    // the error code and any detail is carried separately. The unchanged Rust
-    // preview base reports its evidence failures with finer codes; the base
-    // contract family for those is SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID, so
-    // the Rust code is kept as detail. Metadata failures keep their own code.
-    crate::semantic_contract::for_source_metadata(&projected).map_err(|code| ValidationError {
-        gate: "G7",
-        code,
-        detail: None,
-    })?;
-    crate::semantic_contract::for_source(&projected).map_err(|detail| ValidationError {
-        gate: "G7",
-        code: "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID".into(),
-        detail: Some(detail),
-    })?;
+    // C1 G7 "existing base failure codes" (06b settlement): each language
+    // reports its own unchanged base code, here the Rust base's
+    // SOURCE_PREVIEW_PHYSICS_<CODE>; any text after the code is detail.
+    crate::semantic_contract::for_source(&projected).map_err(base_error)?;
     if let Some(inv) = actual_invocation {
         g8(source, inv)?;
     }
