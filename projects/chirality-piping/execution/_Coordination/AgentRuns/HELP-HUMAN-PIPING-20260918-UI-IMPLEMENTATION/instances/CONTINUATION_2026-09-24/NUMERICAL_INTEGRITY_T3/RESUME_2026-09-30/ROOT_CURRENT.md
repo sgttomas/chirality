@@ -28,6 +28,15 @@ return02:45:41. It owns the sole focused Cargo lane:4jobs/2threads/isolated
 per-manifest targets/20minute command walls, existing guard5387. Exact source
 fence is in the brief; no factor/public API/PP changes without new explicit scope.
 Only its R/I44/source_residual_01 records and fenced private source may be written.
+Early native_debug_01 execution reports52/52 unchanged predicates for both zero
+and loaded witnesses; ROOT decoded the raw row records. This is mutable-candidate
+evidence, not final review/acceptance. The actual P256 factor was executed, not
+I43's constructed center. ROOT early review clarified separate storage/identity/
+count refusals, homogeneous work-status joins and checked result extraction.
+The first quiescent build target was preserved by rename outside the checkout;
+verification/i44_target_placement_01/RELOCATION.json records exact paths. Current
+CARGO_TARGET_DIR is WT/targets/i44-source-residual/frame_kernel. No new host tool.
+Fresh RV58 implementation-review brief is prepared, not dispatched.
 No Git/index/API/delegation. All other TASKs are stopped. No heavy/UI/sweep/tools.
 
 ## Completed and remaining
@@ -50,6 +59,6 @@ emergency bounds remain unqualified. Old K6c layouts do not qualify new owners.
 Then S-I/F2b/F3 and owner-held decisions remain. No complete memory allowance,
 facade tariff, visit permit or product availability is selected by these packets.
 
-Next unused IDs after assigned I44: I45/RV58. ROOT owns source/record integration,
+Next unallocated IDs after I44 and prepared RV58: I45/RV59. ROOT owns source/record integration,
 repair assignment, independent review, gates and owner checkpoints. Rulings are
 append-only; frozen raw evidence is never edited.
