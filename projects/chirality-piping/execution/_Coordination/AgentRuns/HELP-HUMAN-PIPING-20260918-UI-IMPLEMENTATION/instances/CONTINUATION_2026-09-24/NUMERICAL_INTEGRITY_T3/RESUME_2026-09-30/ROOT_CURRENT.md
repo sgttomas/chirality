@@ -63,33 +63,22 @@ product publication. Conditional finite refusal remains authorized; protected
 availability and any public contract change remain separate owner boundaries.
 I46/RV61 stopped; no runtime retained. See the latest ROOT ruling for disposition.
 
-I47 selected-material completion is frozen in CODE at
-d0daa18717f8243a7232e898c9ef9b4f4d18d9e4, based on preserved blocker58912a48b3fb
-and accepted production28ac57891cd5. ROOT read all four production/test changes
-and the new oracle correction, verified58payloads, source-bound checks and all57
-old blocker payloads. Original pre-I47 tests/base outputs remain unchanged.
-The changed-source inventory digest90ea1412 names CHANGED_SOURCE_INVENTORY.json;
-full core FINAL_SOURCE_INVENTORY.json has digest7e8f227d. ROOT's first check
-confused those files, then corrected its lookup before any Git mutation; original
-packet hashes were correct. R/verification/i47_completion_freeze_02 records this.
+I47 selected-material source d0daa18717f8243a7232e898c9ef9b4f4d18d9e4 is reviewed and accepted at bounded
+private scope. Fresh RV62 review8b2d87ca7b68 cleared the complete four-file change;
+ROOT verified its59payloads and full source/test/record correspondence, then
+locally merged at 21ca7af33b68ca3be833403e700640f4f02606c2. R/verification/i47_fanin_01/LOCAL_MERGE records the join.
+No main/F2a/public/resource/availability acceptance follows. All four actual cases
+still refuse; truth misses and conservative refusals remain distinguished in the
+owning I47/RV62 returns. Every actual candidate PASS has a certified truth upper
+bound inside the unchanged allowance. No private interval reconstruction follows.
 
-All four fixed point/interpolation cases now reach75 aligned private verdicts
-and G5a; all complete cases still refuse. Owning RETURN §Actual outcomes separates
-actual truth misses from conservative truth-pass/candidate-refusal. New oracle
-correction removes only an unsupported base-only 'no conservative refusals'
-assumption; every actual candidate passing predicate has a certified truth upper
-bound within the unchanged allowance (ROOT checked390/build, no ambiguities).
-Private interval reconstruction and protected availability are not claimed.
-I47 released runtime04:54:44 and sealed04:57:05; no source/runtime retained.
-
-Fresh RV62 /root/rv62_selected_material reviews the complete cumulative four-file
-change against28ac57891cd5, including preserved blocker tests and RV63's independently
-selected interface. Actual receipt05:04:23Z; checkpoint05:14:23, cutoff05:24:23,
-return05:34:23. Owns only R/REVIEW_RV62/selected_material_01 plus external overlay
-WT/scratch/rv62-selected-material. Sole focused lane: guard5387,4jobs/2threads,
-absolute locked/offline manifests,20minute walls and separate external
-WT/targets/rv62-selected-material/{product_physics,frame_kernel}. No source/Git/
-index/API/delegation, broad/heavy/UI/sweep/install/tooling/prune. No fan-in yet.
+The original tests-only blocker58912a48b3fb and overinclusive S11 failure remain
+preserved. Changed-source inventory90ea1412 and full-core inventory7e8f227d are
+separate artifacts; ROOT's corrected lookup is recorded in verification.
+Original pre-I47 tests/base outputs and sealed blocker packets are unchanged.
+I47 and RV62 stopped; RV62 released runtime05:12:15 and sealed05:15:07. Only the
+existing guard5387 remains; no compiler lane is retained. Next is independent
+review of I49's numerical diagnosis before choosing a tighter private certificate.
 
 I49 /root/i49_conservative_predicate is an exact-arithmetic/source-only diagnosis
 under brief19703b23a89e. Actual receipt05:09:07Z; checkpoint05:17:07, cutoff05:24:07,
@@ -99,8 +88,8 @@ without assuming which interval branch causes it. Determine the next numerical/
 actual-producer dependency; algebraic native projection is never an executed
 full envelope. No compiler/model/solver/native/Git/index/API/tooling/delegation,
 no changing source/values/scales/predicates and no use of RV62's runtime lane.
-I47 source remains unaccepted while RV62 reviews; captured facts are conditional
-inputs to this separate diagnosis, not implementation clearance.
+The source is now independently accepted at its bounded private scope; this
+separate diagnosis still needs fresh mathematical review before reliance.
 
 I48's bounded read-only availability comparison is preserved74e9f4049e76,
 R/I48/product_availability_01, inventory1144c14f15e1a8ab11b7939ddaa23519a667558f687865cc87c7f387da5eabd0.

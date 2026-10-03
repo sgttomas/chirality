@@ -6080,3 +6080,29 @@ predicate through exact arithmetic and pinned source only, with no compiler lane
 source change or broader numerical programme. Its purpose is to determine the
 next numerical/producer dependency rather than assume more solver precision or
 more facade plumbing is the remedy. All public/owner-held boundaries remain.
+
+
+## Selected-material component accepted and locally merged (ROOT, 2026-10-03 UTC)
+
+ROOT read complete fresh RV62 REVIEW/RETURN preserved at 8b2d87ca7b68 and verified
+its 59-payload seal 5824e5240417871bdb6779c2f6bab816f9a456bded71f419f9978e76322cc7bf.
+No actionable finding remains. Accept source d0daa18717f8243a7232e898c9ef9b4f4d18d9e4 at its bounded private
+selected-material source-to-complete-verdict scope. ROOT no-ff merged it locally
+at 21ca7af33b68ca3be833403e700640f4f02606c2; maintained core/validation trees match exactly with no source conflict.
+R/verification/i47_fanin_01/LOCAL_MERGE records the join.
+
+RV62 independently checks all actual mechanical truths, source/represented material
+semantics, raw/SI predicates, scales/classes/bounds, G5a and observables, with
+certified upper bounds for every actual candidate passing predicate. Its owning
+RETURN and REVIEW distinguish actual truth misses from conservative refusals.
+All complete cases still refuse; no private endpoint reconstruction, successful
+protected availability, public route, C2/resource qualification or main merge
+follows. The old overinclusive S11 failure and reviewer decoder-development
+failures remain historical. Cumulative raw-evidence whitespace is disclosed; no
+sealed logs or excerpts are rewritten to make a source diff check look green.
+
+The next numerical dependency is I49's separately sealed conservative-refusal
+derivation. Its reported material-hull/shared-radius mechanism is not adopted
+until fresh independent review. Do not infer that native projection, more solver
+precision or changed source semantics cures it. Existing numerical/source/output
+criteria and owner-held public/availability decisions remain unchanged.
