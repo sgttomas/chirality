@@ -476,3 +476,140 @@ fn source_bridge_joined_work_fault_blocks_success_and_keeps_numeric_reason() {
     ));
     assert!(refused.work.status().fault().is_some()); // simultaneous cause retained separately
 }
+
+#[test]
+fn source_bridge_rv56_scalar_actual_prefix_and_legacy_projection() {
+    for (value, scale) in [
+        (1.0, 1.0),
+        (f64::MAX, f64::MAX),
+        (f64::from_bits(1), 0.0),
+        (-1.0, 2.0),
+    ] {
+        let spent = sharper_binary64_spent(value, scale);
+        assert_eq!(spent.f64_operations, 5);
+        assert_eq!(
+            spent.result.unwrap().to_bits(),
+            sharper_binary64(value, scale).unwrap().to_bits()
+        );
+    }
+    for (value, scale, expected) in [
+        (f64::NAN, 1.0, CertificateIssue::NonFinite),
+        (f64::INFINITY, 1.0, CertificateIssue::NonFinite),
+        (1.0, f64::NAN, CertificateIssue::NonFinite),
+        (1.0, -0.0, CertificateIssue::NonCanonicalZero),
+        (f64::NAN, -1.0, CertificateIssue::NegativeField), // scale validation precedes x
+    ] {
+        let spent = sharper_binary64_spent(value, scale);
+        assert_eq!(spent.f64_operations, 0);
+        assert_eq!(spent.result, Err(expected));
+        assert_eq!(sharper_binary64(value, scale), Err(expected));
+    }
+}
+
+#[test]
+fn source_bridge_rv56_radius_early_zero_post_ceiling_five_and_success() {
+    let s = solved(source(true, false));
+    let index = s
+        .publication
+        .rows
+        .iter()
+        .position(|row| matches!(row.class, RowClass::RelativeVerified))
+        .unwrap();
+    assert_eq!(index, 6); // first actual relative row of the unchanged native fixture
+    let meta = s.prep.layout[index];
+    let valid = s.publication_radius_checked_spent(index, meta);
+    assert_eq!(valid.f64_operations, 5);
+    assert_eq!(valid.result, s.publication_radius_checked(index, meta));
+    let whole = s.source_bridge_view(s.source(), &s.prep.identity, s.selected);
+    assert!(whole.result.is_ok());
+    assert_eq!(whole.work.f64_operations.exact(), Ok(145));
+    let original = s.publication.clone();
+    let mut excessive = (*s).clone();
+    // RV56's unchanged corruption control: the finite radius is rejected only
+    // after the actual sharper ceiling has been produced. Not natural reach.
+    excessive.publication_radius_bits[index] = 1.0f64.to_bits();
+    let spent = excessive.publication_radius_checked_spent(index, meta);
+    assert_eq!(spent.f64_operations, 5);
+    assert_eq!(spent.result, Err(CertificateIssue::RadiusClassMismatch));
+    assert_eq!(
+        excessive.publication_radius_checked(index, meta),
+        spent.result
+    );
+    let checked = excessive.source_bridge_view(
+        excessive.source(),
+        &excessive.prep.identity,
+        excessive.selected,
+    );
+    assert!(matches!(
+        checked.result,
+        Err(SourceBridgeViewIssue::Certificate(
+            CertificateIssue::RadiusClassMismatch
+        ))
+    ));
+    assert_eq!(checked.work.f64_operations.exact(), Ok(5));
+    let input = laws(&excessive);
+    let bridge = run(&excessive, &input);
+    assert!(matches!(
+        bridge.result(),
+        Err(BridgeError::View(SourceBridgeViewIssue::Certificate(
+            CertificateIssue::RadiusClassMismatch
+        )))
+    ));
+    assert_eq!(bridge.work.view.f64_operations.exact(), Ok(5));
+    assert_eq!(excessive.publication, original);
+    println!("RV56_AUTHOR_PREFIX post_ceiling=5 successful_row=5 successful_view=145");
+    for fault in 0..7 {
+        let mut early = (*s).clone();
+        match fault {
+            0 => early.publication.rows[index].id = QuantityId::Displacement(Dof::from_global(0)),
+            1 => early.publication_radius_bits[index] = ABSENT_RADIUS_BITS,
+            2 => early.publication_radius_bits[index] = (-0.0f64).to_bits(),
+            3 => early.publication.rows[index].value = Binary64Outcome::Normal(f64::NAN),
+            4 => early.publication.body_scales[0].2 = f64::NAN.to_bits(),
+            5 => early.publication.body_scales[0].0 = u32::MAX,
+            6 => early.publication.rows.truncate(index),
+            _ => unreachable!(),
+        }
+        let spent = early.publication_radius_checked_spent(index, meta);
+        assert!(spent.result.is_err(), "fault {fault}");
+        assert_eq!(spent.f64_operations, 0, "fault {fault}");
+        assert_eq!(early.publication_radius_checked(index, meta), spent.result);
+        let checked =
+            early.source_bridge_view(early.source(), &early.prep.identity, early.selected);
+        assert!(checked.result.is_err(), "view fault {fault}");
+        assert_eq!(
+            checked.work.f64_operations.exact(),
+            Ok(0),
+            "view fault {fault}"
+        );
+    }
+}
+
+#[test]
+fn source_bridge_rv56_collect_before_propagate_keeps_simultaneous_faults() {
+    let s = solved(source(true, false));
+    let mut work = SourceBridgeViewWork {
+        visits: WorkTotal::zero(),
+        f64_operations: WorkTotal::exact_count(u64::MAX),
+    };
+    let result = s.build_source_bridge_view(s.source(), &s.prep.identity, s.selected, &mut work);
+    assert!(matches!(result, Err(SourceBridgeViewIssue::Work(_))));
+    assert!(work.f64_operations.status().fault().is_some());
+    let mut s = (*s).clone();
+    s.publication_radius_bits[6] = 1.0f64.to_bits();
+    let mut work = SourceBridgeViewWork {
+        visits: WorkTotal::zero(),
+        f64_operations: WorkTotal::exact_count(u64::MAX),
+    };
+    let result = s.build_source_bridge_view(s.source(), &s.prep.identity, s.selected, &mut work);
+    assert!(matches!(
+        result,
+        Err(SourceBridgeViewIssue::Certificate(
+            CertificateIssue::RadiusClassMismatch
+        ))
+    ));
+    assert!(work.f64_operations.status().fault().is_some());
+    println!(
+        "RV56_AUTHOR_COLLECTION numeric_cause=RadiusClassMismatch joined_accounting_fault=true"
+    );
+}

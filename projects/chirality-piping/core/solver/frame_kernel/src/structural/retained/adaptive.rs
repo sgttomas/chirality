@@ -3236,19 +3236,38 @@ where
 
 /// The protected binary64 allowance, with both branches rounded separately.
 fn sharper_binary64(x: f64, scale: f64) -> Result<f64, CertificateIssue> {
-    finite_nonnegative(scale)?;
-    if !x.is_finite() {
-        return Err(CertificateIssue::NonFinite);
+    sharper_binary64_spent(x, scale).result
+}
+
+struct SharperBinary64Spent {
+    result: Result<f64, CertificateIssue>,
+    f64_operations: u8,
+}
+
+// The count belongs to this single producing execution, including later
+// validation failure. Input refusals execute none of the five operations.
+fn sharper_binary64_spent(x: f64, scale: f64) -> SharperBinary64Spent {
+    let mut f64_operations = 0;
+    let result = (|| {
+        finite_nonnegative(scale)?;
+        if !x.is_finite() {
+            return Err(CertificateIssue::NonFinite);
+        }
+        let a0 = f64::from_bits(0x3bf0_0000_0000_0000) * x.abs().max(scale);
+        let a1 = a0 * f64::from_bits(0x3ff0_0000_8000_0000);
+        let u0 = f64::from_bits(0x3ca0_0000_0000_0000) * x.abs();
+        let u1 = u0 + f64::from_bits(1);
+        let a2 = a1 + u1;
+        f64_operations = 5; // all five nonfallible operations actually completed
+        for value in [a0, a1, u0, u1, a2] {
+            finite_nonnegative(value)?;
+        }
+        Ok(a2)
+    })();
+    SharperBinary64Spent {
+        result,
+        f64_operations,
     }
-    let a0 = f64::from_bits(0x3bf0_0000_0000_0000) * x.abs().max(scale);
-    let a1 = a0 * f64::from_bits(0x3ff0_0000_8000_0000);
-    let u0 = f64::from_bits(0x3ca0_0000_0000_0000) * x.abs();
-    let u1 = u0 + f64::from_bits(1);
-    let a2 = a1 + u1;
-    for value in [a0, a1, u0, u1, a2] {
-        finite_nonnegative(value)?;
-    }
-    Ok(a2)
 }
 
 fn publication_predicate(
@@ -3770,68 +3789,93 @@ impl RetainedSolve {
         index: usize,
         expected: QuantityMeta,
     ) -> Result<Option<SiRadius>, CertificateIssue> {
-        let row = self
-            .publication
-            .rows
-            .get(index)
-            .ok_or(CertificateIssue::Shape)?;
-        let meta = self.prep.layout.get(index).ok_or(CertificateIssue::Shape)?;
-        if *meta != expected || (row.id, row.body, row.kind) != (meta.id, meta.body, meta.kind) {
-            return Err(CertificateIssue::RowIdentity);
-        }
-        if meta.input_derived != matches!(row.class, RowClass::InputDerived)
-            || (!meta.input_derived
-                && (row.value.value().is_none() != matches!(row.class, RowClass::Unpublishable)))
-        {
-            return Err(CertificateIssue::RadiusClassMismatch);
-        }
-        let bits = self.publication_radius_bits[index];
-        match row.class {
-            RowClass::InputDerived | RowClass::Unpublishable => {
-                if bits == ABSENT_RADIUS_BITS {
-                    Ok(None)
-                } else {
-                    Err(CertificateIssue::RadiusClassMismatch)
-                }
+        self.publication_radius_checked_spent(index, expected)
+            .result
+    }
+
+    fn publication_radius_checked_spent(
+        &self,
+        index: usize,
+        expected: QuantityMeta,
+    ) -> PublicationRadiusSpent {
+        let mut f64_operations = 0;
+        let result = (|| {
+            let row = self
+                .publication
+                .rows
+                .get(index)
+                .ok_or(CertificateIssue::Shape)?;
+            let meta = self.prep.layout.get(index).ok_or(CertificateIssue::Shape)?;
+            if *meta != expected || (row.id, row.body, row.kind) != (meta.id, meta.body, meta.kind)
+            {
+                return Err(CertificateIssue::RowIdentity);
             }
-            RowClass::AbsoluteVerified { .. } | RowClass::RelativeVerified => {
-                if bits == ABSENT_RADIUS_BITS {
-                    return Err(CertificateIssue::RadiusClassMismatch);
-                }
-                finite_nonnegative(f64::from_bits(bits))?;
-                let ceiling = match row.class {
-                    RowClass::AbsoluteVerified { bound_bits } => f64::from_bits(bound_bits),
-                    RowClass::RelativeVerified => {
-                        let &(body, kind, scale_bits) = self
-                            .publication
-                            .body_scales
-                            .get(row.body as usize * 4 + row.kind.index())
-                            .ok_or(CertificateIssue::Shape)?;
-                        if (body, kind) != (row.body, row.kind) {
-                            return Err(CertificateIssue::RowIdentity);
-                        }
-                        sharper_binary64(
-                            row.value
-                                .value()
-                                .ok_or(CertificateIssue::RadiusClassMismatch)?,
-                            f64::from_bits(scale_bits),
-                        )?
+            if meta.input_derived != matches!(row.class, RowClass::InputDerived)
+                || (!meta.input_derived
+                    && (row.value.value().is_none()
+                        != matches!(row.class, RowClass::Unpublishable)))
+            {
+                return Err(CertificateIssue::RadiusClassMismatch);
+            }
+            let bits = self.publication_radius_bits[index];
+            match row.class {
+                RowClass::InputDerived | RowClass::Unpublishable => {
+                    if bits == ABSENT_RADIUS_BITS {
+                        Ok(None)
+                    } else {
+                        Err(CertificateIssue::RadiusClassMismatch)
                     }
-                    _ => unreachable!("eligible class matched above"),
-                };
-                finite_nonnegative(ceiling)?;
-                if f64::from_bits(bits) > ceiling {
-                    return Err(CertificateIssue::RadiusClassMismatch);
                 }
-                Ok(Some(SiRadius {
-                    id: row.id,
-                    body: row.body,
-                    kind: row.kind,
-                    bits,
-                }))
+                RowClass::AbsoluteVerified { .. } | RowClass::RelativeVerified => {
+                    if bits == ABSENT_RADIUS_BITS {
+                        return Err(CertificateIssue::RadiusClassMismatch);
+                    }
+                    finite_nonnegative(f64::from_bits(bits))?;
+                    let ceiling = match row.class {
+                        RowClass::AbsoluteVerified { bound_bits } => f64::from_bits(bound_bits),
+                        RowClass::RelativeVerified => {
+                            let &(body, kind, scale_bits) = self
+                                .publication
+                                .body_scales
+                                .get(row.body as usize * 4 + row.kind.index())
+                                .ok_or(CertificateIssue::Shape)?;
+                            if (body, kind) != (row.body, row.kind) {
+                                return Err(CertificateIssue::RowIdentity);
+                            }
+                            let spent = sharper_binary64_spent(
+                                row.value
+                                    .value()
+                                    .ok_or(CertificateIssue::RadiusClassMismatch)?,
+                                f64::from_bits(scale_bits),
+                            );
+                            f64_operations = spent.f64_operations;
+                            spent.result?
+                        }
+                        _ => unreachable!("eligible class matched above"),
+                    };
+                    finite_nonnegative(ceiling)?;
+                    if f64::from_bits(bits) > ceiling {
+                        return Err(CertificateIssue::RadiusClassMismatch);
+                    }
+                    Ok(Some(SiRadius {
+                        id: row.id,
+                        body: row.body,
+                        kind: row.kind,
+                        bits,
+                    }))
+                }
             }
+        })();
+        PublicationRadiusSpent {
+            result,
+            f64_operations,
         }
     }
+}
+
+struct PublicationRadiusSpent {
+    result: Result<Option<SiRadius>, CertificateIssue>,
+    f64_operations: u8,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -5408,21 +5452,22 @@ impl RetainedSolve {
         }
         for (index, meta) in self.prep.layout.iter().copied().enumerate() {
             work.visit(1)?;
-            self.publication_radius_checked(index, meta)?;
+            let spent = self.publication_radius_checked_spent(index, meta);
+            work.f64_operations = work
+                .f64_operations
+                .add(WorkTotal::exact_count(u64::from(spent.f64_operations)));
+            // Collect before either exit. Original numeric cause takes precedence
+            // over simultaneous accounting loss; both remain in the spent return.
+            spent.result?;
+            if let Some(fault) = work.f64_operations.status().fault() {
+                return Err(SourceBridgeViewIssue::Work(fault));
+            }
             if self.publication.rows[index]
                 .value
                 .value()
                 .is_some_and(|x| !x.is_finite())
             {
                 return Err(CertificateIssue::NonFinite.into());
-            }
-            if matches!(
-                self.publication.rows[index].class,
-                RowClass::RelativeVerified
-            ) {
-                // The existing helper performs all five operations after its
-                // finite input checks; those inputs cannot overflow this formula.
-                work.f64_operations = work.f64_operations.add(WorkTotal::exact_count(5));
             }
         }
         std::alloc::Layout::array::<bool>(n).map_err(|_| SourceBridgeViewIssue::CountRange)?;
