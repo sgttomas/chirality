@@ -1,0 +1,3026 @@
+//! Standalone prepared-result statement checks; never proof of producer origin.
+use open_pipe_stress_units::{canonical_unit, convert_for_dimension, unit_by_symbol, Dimension};
+use serde_json::{json, Value};
+use std::collections::{BTreeMap, BTreeSet};
+use std::sync::OnceLock;
+
+pub const CONTRACT_ID: &str = "openpipestress.result_semantics/0.3.0/preview-physics-retained-1";
+pub const PROFILE: &str = "product_preview_retained_w1a_v2";
+pub const DEFINITION_ID: &str = "RP-PREPARED-ORDINARY-DUAL-v1";
+pub const DEFINITION_HASH: &str =
+    "a7ed7ca0bf0bba6e8b821ca4befa00a0fa9541a83694be8b28ac63e39b1d0349";
+pub const METHOD: &str = "contribution_preserving_multiprecision_v1";
+const MAX_BITS: u64 = 0x7fef_ffff_ffff_ffff;
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct ValidationError {
+    pub gate: &'static str,
+    pub code: String,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum AccuracyClass {
+    RelativeVerified,
+    AbsoluteVerified { bound_bits: u64 },
+    InputDerived,
+    NonQuantity,
+    NotCovered,
+}
+#[derive(Debug, Clone, PartialEq)]
+pub struct RowClassification {
+    pub result_id: String,
+    pub basis_ref: Value,
+    pub normalized_bits: u64,
+    pub scale_bits: Option<u64>,
+    pub class: AccuracyClass,
+}
+#[derive(Debug, Clone, PartialEq)]
+pub struct Validation {
+    pub invocation_bound: bool,
+    pub numerical_eligible: bool,
+    pub publication_sha256: String,
+    pub classifications: Vec<RowClassification>,
+}
+
+fn parts(value: f64) -> Result<(u64, i32), &'static str> {
+    if !value.is_finite() || value < 0.0 {
+        return Err("nonnegative finite operand required");
+    }
+    let bits = value.to_bits() & !(1 << 63);
+    let e = (bits >> 52) as i32;
+    let m = bits & ((1 << 52) - 1);
+    Ok(if e == 0 {
+        (m, -1074)
+    } else {
+        (m | (1 << 52), e - 1075)
+    })
+}
+fn encode_quantum(mut q: u64, mut e: i32) -> Result<f64, &'static str> {
+    if q == 0 {
+        return Ok(0.0);
+    }
+    if q == 1 << 53 {
+        q >>= 1;
+        e += 1;
+    }
+    if q >= 1 << 53 {
+        return Err("rounding invariant");
+    }
+    let top = 63 - q.leading_zeros() as i32 + e;
+    if top > 1023 {
+        return Err("binary64 upper bound overflows");
+    }
+    let bits = if top < -1022 {
+        q.checked_shl((e + 1074) as u32).ok_or("shift range")?
+    } else {
+        (((top + 1023) as u64) << 52) | ((q << (53 - (64 - q.leading_zeros()))) - (1 << 52))
+    };
+    if bits > MAX_BITS {
+        return Err("binary64 upper bound overflows");
+    }
+    Ok(f64::from_bits(bits))
+}
+/// Only the product of two finite nonnegative binary64 operands: <=106 bits.
+pub fn upward_product(a: f64, b: f64) -> Result<f64, &'static str> {
+    let (ma, ea) = parts(a)?;
+    let (mb, eb) = parts(b)?;
+    let m = u128::from(ma)
+        .checked_mul(u128::from(mb))
+        .ok_or("product range")?;
+    if m == 0 {
+        return Ok(0.0);
+    }
+    let e = ea + eb;
+    let length = 128 - m.leading_zeros() as i32;
+    let quantum = (e + length - 53).max(-1074);
+    let shift = quantum - e;
+    let q = if shift >= length {
+        1
+    } else if shift > 0 {
+        (m >> shift) + u128::from(m & ((1u128 << shift) - 1) != 0)
+    } else {
+        m.checked_shl((-shift) as u32).ok_or("product shift")?
+    };
+    encode_quantum(u64::try_from(q).map_err(|_| "product quantum")?, quantum)
+}
+/// Exact three-term positive sum in minimum-subnormal units. No heap arithmetic.
+pub fn upward_small_sum(b0: f64, rounding: f64) -> Result<f64, &'static str> {
+    let mut limbs = [0u64; 33];
+    limbs[0] = 1;
+    for value in [b0, rounding] {
+        let (m, e) = parts(value)?;
+        let shift = (e + 1074) as usize;
+        let at = shift / 64;
+        let offset = shift % 64;
+        let mut carry = u128::from(m) << offset;
+        let mut i = at;
+        while carry != 0 {
+            let cell = limbs.get_mut(i).ok_or("sum capacity")?;
+            let s = u128::from(*cell) + (carry & u128::from(u64::MAX));
+            *cell = s as u64;
+            carry = (carry >> 64) + (s >> 64);
+            i += 1;
+        }
+    }
+    let last = limbs.iter().rposition(|&x| x != 0).ok_or("sum invariant")?;
+    let top = last * 64 + (63 - limbs[last].leading_zeros() as usize);
+    let discard = top.saturating_sub(52);
+    let word = discard / 64;
+    let offset = discard % 64;
+    let mut q = limbs[word] >> offset;
+    if offset != 0 && word + 1 < 33 {
+        q |= limbs[word + 1] << (64 - offset);
+    }
+    let tail = limbs[..word].iter().any(|&x| x != 0)
+        || (offset != 0 && limbs[word] & ((1u64 << offset) - 1) != 0);
+    if tail {
+        q = q.checked_add(1).ok_or("sum quantum")?;
+    }
+    encode_quantum(q, discard as i32 - 1074)
+}
+fn scaled_component(x: f64, power: i32) -> Result<f64, &'static str> {
+    if !x.is_finite() || x < 0.0 || !matches!(power, 53 | 64) {
+        return Err("scaled component input");
+    }
+    if x == 0.0 {
+        return Ok(0.0);
+    }
+    let d = f64::from_bits(((1023 + power) as u64) << 52);
+    let nearest = x / d;
+    let back = nearest * d;
+    Ok(if back < x {
+        f64::from_bits(nearest.to_bits() + 1)
+    } else {
+        nearest
+    })
+}
+/// Signed zero magnitude inputs are accepted and produce canonical positive zero.
+/// Negative-zero wire scales remain forbidden by G2.
+pub fn absolute_bound(value: f64, scale: f64) -> Result<f64, &'static str> {
+    if !value.is_finite() || !scale.is_finite() || scale < 0.0 {
+        return Err("bound input");
+    }
+    let b0 = scaled_component(scale, 64)?;
+    if scale > 0.0 && scale < f64::from_bits(0x0230_0000_0000_0000) {
+        upward_small_sum(b0, scaled_component(value.abs(), 53)?)
+    } else {
+        Ok(b0)
+    }
+}
+
+type VResult<T = ()> = Result<T, ValidationError>;
+const SAFE: u64 = (1u64 << 53) - 1;
+const NAMES: [&str; 4] = ["translation", "rotation", "force", "moment"];
+const DOFS: [&str; 6] = ["UX", "UY", "UZ", "RX", "RY", "RZ"];
+const SLOTS: [&str; 7] = ["s128", "s256", "s512", "s1024", "v256", "v512", "v1024"];
+fn error(gate: &'static str, suffix: &str) -> ValidationError {
+    ValidationError {
+        gate,
+        code: if suffix.starts_with("SOURCE_") {
+            suffix.into()
+        } else {
+            format!("RETAINED_PRECISION_{suffix}")
+        },
+    }
+}
+fn need(ok: bool, gate: &'static str, suffix: &str) -> VResult {
+    if ok {
+        Ok(())
+    } else {
+        Err(error(gate, suffix))
+    }
+}
+fn list(v: &Value) -> &[Value] {
+    v.as_array().map(Vec::as_slice).unwrap_or(&[])
+}
+fn text(v: &Value) -> &str {
+    v.as_str().unwrap_or("")
+}
+fn uint(v: &Value) -> Option<u64> {
+    let n = v.as_f64()?;
+    if n.is_finite()
+        && n >= 0.0
+        && n <= SAFE as f64
+        && n.fract() == 0.0
+        && !(n == 0.0 && n.is_sign_negative())
+    {
+        Some(n as u64)
+    } else {
+        None
+    }
+}
+fn u(v: &Value) -> u64 {
+    uint(v).unwrap_or(u64::MAX)
+}
+fn at<'a>(a: &'a Value, i: &Value, gate: &'static str, code: &str) -> VResult<&'a Value> {
+    uint(i)
+        .and_then(|i| usize::try_from(i).ok())
+        .and_then(|i| a.as_array()?.get(i))
+        .ok_or_else(|| error(gate, code))
+}
+fn raw_bits(v: &Value) -> Option<u64> {
+    let t = v.as_str()?;
+    if t.len() != 16
+        || !t
+            .bytes()
+            .all(|x| x.is_ascii_digit() || (b'a'..=b'f').contains(&x))
+    {
+        return None;
+    }
+    let b = u64::from_str_radix(t, 16).ok()?;
+    f64::from_bits(b).is_finite().then_some(b)
+}
+fn f(v: &Value) -> f64 {
+    raw_bits(v).map(f64::from_bits).unwrap_or(f64::NAN)
+}
+fn bits(v: f64) -> Value {
+    json!(format!("{:016x}", v.to_bits()))
+}
+fn sum(values: impl IntoIterator<Item = u64>) -> VResult<u64> {
+    values.into_iter().try_fold(0u64, |a, b| {
+        a.checked_add(b)
+            .filter(|n| *n <= SAFE)
+            .ok_or_else(|| error("G5", "WORK_MISMATCH"))
+    })
+}
+fn hash(domain: &str, v: &Value, gate: &'static str, code: &str) -> VResult<String> {
+    crate::source_blocks::domain_hash(domain, v).map_err(|_| error(gate, code))
+}
+fn schema() -> &'static Value {
+    static S: OnceLock<Value> = OnceLock::new();
+    S.get_or_init(|| {
+        serde_json::from_str(include_str!(
+            "../../../../schemas/retained_precision_mp_v2.schema.json"
+        ))
+        .expect("packaged retained schema")
+    })
+}
+fn definition() -> &'static Value {
+    static S: OnceLock<Value> = OnceLock::new();
+    S.get_or_init(|| {
+        serde_json::from_str(include_str!(
+            "../../../../fixtures/results/retained_precision_prepared_ordinary_v1.json"
+        ))
+        .expect("packaged retained definition")
+    })
+}
+fn table() -> &'static Value {
+    static S: OnceLock<Value> = OnceLock::new();
+    S.get_or_init(|| {
+        serde_json::from_str(include_str!(
+            "../../../../fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json"
+        ))
+        .expect("packaged retained table")
+    })
+}
+fn equal(a: &Value, b: &Value) -> bool {
+    match (a, b) {
+        (Value::Number(a), Value::Number(b)) => a.as_f64() == b.as_f64(),
+        _ => a == b,
+    }
+}
+// This intentionally separates syntactic shape from canonical numeric encoding.
+// Applying a general schema validator here would move G2 errors to G1.
+fn shape(v: &Value, s: &Value) -> bool {
+    if let Some(r) = s["$ref"].as_str() {
+        return schema()
+            .pointer(r.trim_start_matches('#'))
+            .is_some_and(|s| shape(v, s));
+    }
+    if let Some(bs) = s["oneOf"].as_array() {
+        return bs.iter().filter(|s| shape(v, s)).count() == 1;
+    }
+    if let Some(c) = s.get("const") {
+        if !equal(v, c) {
+            return false;
+        }
+    }
+    if let Some(es) = s["enum"].as_array() {
+        if !es.iter().any(|e| equal(v, e)) {
+            return false;
+        }
+    }
+    match s["type"].as_str() {
+        Some("object") => v.as_object().is_some_and(|o| {
+            list(&s["required"]).iter().all(|k| o.contains_key(text(k)))
+                && o.iter()
+                    .all(|(k, v)| s["properties"].get(k).is_some_and(|s| shape(v, s)))
+        }),
+        Some("array") => v.as_array().is_some_and(|a| {
+            a.len() >= s["minItems"].as_u64().unwrap_or(0) as usize
+                && a.len() as u64 <= s["maxItems"].as_u64().unwrap_or(SAFE)
+                && a.iter().all(|v| shape(v, &s["items"]))
+        }),
+        Some("string") => v
+            .as_str()
+            .is_some_and(|v| v.chars().count() >= s["minLength"].as_u64().unwrap_or(0) as usize),
+        Some("number" | "integer") => v.is_number(),
+        Some("boolean") => v.is_boolean(),
+        Some("null") => v.is_null(),
+        None => true,
+        _ => false,
+    }
+}
+fn encoding(v: &Value, s: &Value) -> VResult {
+    if let Some(r) = s["$ref"].as_str() {
+        return encoding(
+            v,
+            schema()
+                .pointer(r.trim_start_matches('#'))
+                .ok_or_else(|| error("G2", "ENCODING_MISMATCH"))?,
+        );
+    }
+    if let Some(bs) = s["oneOf"].as_array() {
+        return encoding(
+            v,
+            bs.iter()
+                .find(|s| shape(v, s))
+                .ok_or_else(|| error("G2", "ENCODING_MISMATCH"))?,
+        );
+    }
+    let valid = match text(&s["x-rp-encoding"]) {
+        "uint" => uint(v).is_some(),
+        "i32" => v.as_f64().is_some_and(|n| {
+            n.fract() == 0.0
+                && n >= i32::MIN as f64
+                && n <= i32::MAX as f64
+                && !(n == 0.0 && n.is_sign_negative())
+        }),
+        "bits" => raw_bits(v).is_some(),
+        "nonnegative_bits" => raw_bits(v).is_some_and(|b| b >> 63 == 0),
+        "hash" => v.as_str().is_some_and(|t| {
+            t.len() == 64
+                && t.bytes()
+                    .all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b))
+        }),
+        _ => true,
+    };
+    need(valid, "G2", "ENCODING_MISMATCH")?;
+    if let Some(o) = v.as_object() {
+        for (k, v) in o {
+            if let Some(p) = s["properties"].get(k) {
+                encoding(v, p)?;
+            }
+        }
+    }
+    if s["type"] == "array" {
+        for v in list(v) {
+            encoding(v, &s["items"])?;
+        }
+    }
+    Ok(())
+}
+fn source_hash(s: &Value) -> VResult<String> {
+    let mut x = s.clone();
+    x.as_object_mut()
+        .ok_or_else(|| error("G1", "RECEIPT_MISMATCH"))?
+        .remove("index");
+    hash(
+        "retained_precision_source_mp_v2",
+        &x,
+        "G1",
+        "RECEIPT_MISMATCH",
+    )
+}
+fn preparation_payload(a: &Value) -> VResult<Value> {
+    let mut members = Vec::new();
+    for m in list(&a["preparation"]["members"]) {
+        need(m["result"]["kind"] == "prepared", "G1", "RECEIPT_MISMATCH")?;
+        members.push(json!({"member":m["member"],"old_source":m["old_source"],"old_facts":m["old_facts"],"section":m["result"]["section"]}));
+    }
+    Ok(
+        json!({"definition_id":a["definition_id"],"definition_sha256":DEFINITION_HASH,"owner_ref":a["owner_ref"],"ordinary_attempt_ref":a["ordinary_attempt_ref"],"material_basis_ref":a["material_basis_ref"],"members":members}),
+    )
+}
+fn g0(source: &Value) -> VResult {
+    need(
+        source.is_object()
+            && source["producer"]["semantic_contract_id"] == CONTRACT_ID
+            && source["formulation_basis"]["profile_id"] == PROFILE,
+        "G0",
+        "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+    )?;
+    need(
+        table()["semantic_contract_id"] == CONTRACT_ID
+            && table()["formulation_profile_id"] == PROFILE,
+        "G0",
+        "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+    )?;
+    need(
+        hash(
+            "retained_precision_formation_v1",
+            definition(),
+            "G0",
+            "FORMATION_MISMATCH",
+        )? == DEFINITION_HASH
+            && table()["product_formation_definitions"]
+                == json!([{"id":DEFINITION_ID,"sha256":DEFINITION_HASH}]),
+        "G0",
+        "FORMATION_MISMATCH",
+    )?;
+    let b = &source["retained_precision"]["body"];
+    for (key, value) in [
+        ("policy", "M03-INTEGRITY-MP-v2"),
+        ("projection_policy", "RP-LOGICAL-ATTEMPTS-v1"),
+        ("work_policy", "W1-LME-20B-60B-v1"),
+        ("facade_policy", "RP-FACADE-SI-v2"),
+        ("canonicalization", "openpipestress_jcs_ijson_v1"),
+    ] {
+        if let Some(v) = b.get(key) {
+            need(v == value, "G0", "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")?;
+        }
+    }
+    for (key, want) in [
+        ("case_limit", 20_000_000_000u64),
+        ("invocation_limit", 60_000_000_000),
+    ] {
+        if let Some(v) = b["work"].get(key) {
+            need(u(v) == want, "G0", "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")?;
+        }
+    }
+    for a in list(&b["product_attempts"]) {
+        if let Some(id) = a.get("definition_id") {
+            need(
+                id == DEFINITION_ID,
+                "G0",
+                "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+            )?;
+        }
+    }
+    Ok(())
+}
+fn g1(source: &Value, raw: bool) -> VResult {
+    let r = &source["retained_precision"];
+    need(shape(r, schema()), "G1", "RECEIPT_MISMATCH")?;
+    if raw {
+        need(
+            source["results"].is_array()
+                && list(&source["results"])
+                    .iter()
+                    .all(|r| shape(r, &schema()["$defs"]["RawRow"])),
+            "G1",
+            "RECEIPT_MISMATCH",
+        )?;
+    }
+    need(
+        hash(
+            "retained_precision_receipt_mp_v2",
+            &r["body"],
+            "G1",
+            "RECEIPT_MISMATCH",
+        )? == r["receipt_sha256"],
+        "G1",
+        "RECEIPT_MISMATCH",
+    )?;
+    if raw {
+        let mut public = source.clone();
+        public
+            .as_object_mut()
+            .ok_or_else(|| error("G1", "RECEIPT_MISMATCH"))?
+            .remove("retained_precision");
+        need(
+            hash(
+                "retained_precision_publication_mp_v2",
+                &public,
+                "G1",
+                "RECEIPT_MISMATCH",
+            )? == r["body"]["publication_sha256"],
+            "G1",
+            "RECEIPT_MISMATCH",
+        )?;
+    }
+    // Defer malformed reference encodings to G2 and owner associations to G3/G5.
+    for s in list(&r["body"]["sources"]) {
+        if !s["preparation"].is_null() {
+            if let Some(a) = uint(&s["preparation"]["attempt_ref"])
+                .and_then(|i| list(&r["body"]["product_attempts"]).get(i as usize))
+            {
+                if list(&a["preparation"]["members"])
+                    .iter()
+                    .all(|m| m["result"]["kind"] == "prepared")
+                {
+                    need(
+                        hash(
+                            "retained_precision_preparation_v1",
+                            &preparation_payload(a)?,
+                            "G1",
+                            "RECEIPT_MISMATCH",
+                        )? == s["preparation"]["sha256"],
+                        "G1",
+                        "RECEIPT_MISMATCH",
+                    )?;
+                }
+            }
+        }
+    }
+    for c in list(&r["body"]["cases"]) {
+        if let Some(h) = c.get("source_identity_sha256") {
+            if let Some(s) =
+                uint(&c["source_ref"]).and_then(|i| list(&r["body"]["sources"]).get(i as usize))
+            {
+                need(source_hash(s)? == *h, "G1", "RECEIPT_MISMATCH")?;
+            }
+        }
+    }
+    Ok(())
+}
+fn conversion_encoding(v: &Value) -> VResult {
+    if let Some(o) = v.as_object() {
+        if let Some(kind) = o.get("kind").and_then(Value::as_str) {
+            if matches!(kind, "normal" | "subnormal") && o.contains_key("value") {
+                let n = f(&v["value"]);
+                need(
+                    if kind == "normal" {
+                        n == 0.0 || n.abs() >= f64::MIN_POSITIVE
+                    } else {
+                        n != 0.0 && n.abs() < f64::MIN_POSITIVE
+                    },
+                    "G2",
+                    "ENCODING_MISMATCH",
+                )?;
+            }
+        }
+        for x in o.values() {
+            conversion_encoding(x)?;
+        }
+    }
+    if let Some(a) = v.as_array() {
+        for x in a {
+            conversion_encoding(x)?;
+        }
+    }
+    Ok(())
+}
+fn rows_for<'a>(source: &'a Value, case: &Value) -> Vec<&'a Value> {
+    list(&source["results"])
+        .iter()
+        .filter(|r| r["basis_ref"] == case["basis_ref"])
+        .collect()
+}
+fn g3(source: &Value, inv: Option<&Value>) -> VResult {
+    let b = &source["retained_precision"]["body"];
+    let cs = list(&b["cases"]);
+    let qs = list(&source["numerical_quality"]["cases"]);
+    let fail = |ok| need(ok, "G3", "COVERAGE_MISMATCH");
+    fail(!cs.is_empty() && cs.len() == qs.len() && cs.iter().any(|c| c["status"] == "selected"))?;
+    let mut ids = BTreeSet::new();
+    let mut refs = BTreeSet::new();
+    let mut runs = BTreeMap::new();
+    for (i, c) in cs.iter().enumerate() {
+        fail(
+            ids.insert(text(&c["basis_ref"]["ref_id"]))
+                && c["basis_ref"] == qs[i]["basis_ref"]
+                && c["ordinary"]["quality_binding"] == json!({"kind":"present","index":i})
+                && u(&c["ordinary"]["attempt_ref"]) == i as u64,
+        )?;
+        let o = at(
+            &b["ordinary_attempts"],
+            &json!(i),
+            "G3",
+            "COVERAGE_MISMATCH",
+        )?;
+        fail(u(&o["case_index"]) == i as u64 && o["case_id"] == c["basis_ref"]["ref_id"])?;
+        if !c["product_attempt_ref"].is_null() {
+            let ai = u(&c["product_attempt_ref"]);
+            fail(refs.insert(ai))?;
+            let a = at(
+                &b["product_attempts"],
+                &c["product_attempt_ref"],
+                "G3",
+                "COVERAGE_MISMATCH",
+            )?;
+            fail(u(&a["id"]) == ai && a["owner_ref"] == json!({"kind":"case","index":i}))?;
+        }
+        if let Some(r) = c.get("run").filter(|r| !r.is_null()) {
+            fail(
+                runs.insert(u(&r["id"]), r["origin"]["owner_ref"].clone())
+                    .is_none()
+                    && r["origin"]["owner_ref"] == json!({"kind":"case","index":i}),
+            )?;
+        }
+    }
+    fail(
+        list(&b["ordinary_attempts"]).len() == cs.len()
+            && refs
+                .into_iter()
+                .eq(0..list(&b["product_attempts"]).len() as u64),
+    )?;
+    fail(
+        runs.keys().copied().eq(0..runs.len() as u64)
+            && list(&b["work"]["execution_order"]).iter().eq(runs.values()),
+    )?;
+    if let Some(i) = inv {
+        fail(
+            list(&i["request"]["model"]["load_cases"])
+                .iter()
+                .map(|x| &x["id"])
+                .eq(cs.iter().map(|x| &x["basis_ref"]["ref_id"])),
+        )?;
+    }
+    let mut rowids = BTreeSet::new();
+    for r in list(&source["results"]) {
+        fail(
+            rowids.insert(text(&r["id"]))
+                && r["basis_ref"]["ref_type"] == "load_case"
+                && ids.contains(text(&r["basis_ref"]["ref_id"])),
+        )?;
+    }
+    for (i, a) in list(&b["product_attempts"]).iter().enumerate() {
+        fail(u(&a["id"]) == i as u64)?;
+        let old = list(&a["operational"]["old"]);
+        let pm = list(&a["preparation"]["members"]);
+        let new = list(&a["operational"]["new"]);
+        fail(new.len() <= pm.len() && pm.len() <= old.len())?;
+        let mut members = BTreeSet::new();
+        for x in old {
+            fail(members.insert(u(&x["member"])))?;
+        }
+        fail(
+            pm.iter()
+                .map(|m| &m["member"])
+                .eq(old.iter().take(pm.len()).map(|m| &m["member"]))
+                && new
+                    .iter()
+                    .map(|m| &m["member"])
+                    .eq(pm.iter().take(new.len()).map(|m| &m["member"])),
+        )?;
+        if a["operational"]["old_coverage"] == "captured_prefix" {
+            fail(
+                pm.is_empty()
+                    && new.is_empty()
+                    && a["source_ref"].is_null()
+                    && a["run_ref"].is_null()
+                    && a["result"]["kind"] == "unavailable",
+            )?;
+        }
+        if !a["source_ref"].is_null() {
+            let s = at(&b["sources"], &a["source_ref"], "G3", "COVERAGE_MISMATCH")?;
+            fail(
+                old.iter()
+                    .map(|m| &m["member"])
+                    .eq(list(&s["id_maps"]["members"])
+                        .iter()
+                        .map(|m| &m["kernel_member"])),
+            )?;
+        }
+        let c = at(
+            &b["cases"],
+            &a["owner_ref"]["index"],
+            "G3",
+            "COVERAGE_MISMATCH",
+        )?;
+        let rows = rows_for(source, c);
+        let mut prior = None;
+        for o in list(&a["proof"]["projection_outcomes"]) {
+            let idx = u(&o["row_index"]);
+            fail(idx < rows.len() as u64 && prior.is_none_or(|p| idx > p))?;
+            prior = Some(idx);
+        }
+    }
+    Ok(())
+}
+fn g4(source: &Value) -> VResult {
+    let cs = list(&source["retained_precision"]["body"]["cases"]);
+    let ds = list(&source["diagnostics"]);
+    let fail = |ok| need(ok, "G4", "DIAGNOSTIC_MISMATCH");
+    let mut ids = BTreeSet::new();
+    for d in ds {
+        fail(
+            d["id"].is_string()
+                && ids.insert(text(&d["id"]))
+                && d["code"] != "SOURCE_BLOCK_RECOVERY_SELECTED",
+        )?;
+        if matches!(
+            text(&d["code"]),
+            "RETAINED_PRECISION_SELECTED" | "RETAINED_PRECISION_UNAVAILABLE"
+        ) {
+            fail(
+                list(&d["affected_refs"]).len() == 1
+                    && cs
+                        .iter()
+                        .any(|c| d["affected_refs"][0] == c["basis_ref"]["ref_id"]),
+            )?;
+        }
+    }
+    for c in cs {
+        let id = &c["basis_ref"]["ref_id"];
+        let selected: Vec<_> = ds
+            .iter()
+            .filter(|d| {
+                d["code"] == "RETAINED_PRECISION_SELECTED" && list(&d["affected_refs"]).contains(id)
+            })
+            .collect();
+        let unavailable: Vec<_> = ds
+            .iter()
+            .filter(|d| {
+                d["code"] == "RETAINED_PRECISION_UNAVAILABLE"
+                    && list(&d["affected_refs"]).contains(id)
+            })
+            .collect();
+        fail(
+            selected.len() == usize::from(c["status"] == "selected")
+                && unavailable.len() == usize::from(c["status"] == "unavailable"),
+        )?;
+        if c["status"] == "unavailable" {
+            fail(unavailable[0]["id"] == c["diagnostic_ref"])?;
+        }
+        if c["status"] == "selected" {
+            fail(!ds.iter().any(|d| {
+                d["code"] == "SOURCE_BLOCK_RECOVERY_UNAVAILABLE"
+                    && list(&d["affected_refs"]).contains(id)
+            }))?;
+        }
+    }
+    Ok(())
+}
+fn stages_sum(v: &Value) -> VResult<u64> {
+    sum(v
+        .as_object()
+        .ok_or_else(|| error("G5", "WORK_MISMATCH"))?
+        .values()
+        .map(u))
+}
+fn g5_native(b: &Value) -> VResult {
+    let af = |ok| need(ok, "G5", "ATTEMPT_MISMATCH");
+    let wf = |ok| need(ok, "G5", "WORK_MISMATCH");
+    let mut runs: Vec<_> = list(&b["cases"])
+        .iter()
+        .filter_map(|c| c.get("run").filter(|r| !r.is_null()).map(|r| (c, r)))
+        .collect();
+    runs.sort_by_key(|(_, r)| u(&r["id"]));
+    let mut current = 0;
+    let mut run_order = Vec::new();
+    let mut builds_seen = BTreeSet::new();
+    let mut group_caches: BTreeMap<u64, BTreeMap<String, u64>> = BTreeMap::new();
+    for (i, g) in list(&b["groups"]).iter().enumerate() {
+        af(u(&g["id"]) == i as u64
+            && !list(&g["source_refs"]).is_empty()
+            && g["first_source_ref"] == g["source_refs"][0])?;
+        let call = at(&b["calls"], &g["call"], "G5", "ATTEMPT_MISMATCH")?;
+        let mut sources = BTreeSet::new();
+        for si in list(&g["source_refs"]) {
+            let s = at(&b["sources"], si, "G5", "ATTEMPT_MISMATCH")?;
+            af(sources.insert(u(si))
+                && list(&call["source_refs"]).contains(si)
+                && s["stiffness_sha256"] == g["stiffness_sha256"])?;
+        }
+        group_caches.insert(i as u64, BTreeMap::new());
+    }
+    for (i, build) in list(&b["builds"]).iter().enumerate() {
+        wf(u(&build["id"]) == i as u64 && u(&build["work"]) == stages_sum(&build["stages"])?)?;
+        af((build["state"] == "success") == build["reason"].is_null())?;
+        if build["state"] == "budget_failure" {
+            af(build["reason"]["tag"] == "budget")?;
+        } else if build["state"] == "nonbudget_failure" {
+            af(build["reason"]["tag"] != "budget")?;
+        }
+    }
+    for (call_id, call) in list(&b["calls"]).iter().enumerate() {
+        af(u(&call["id"]) == call_id as u64
+            && list(&call["run_refs"]).len() == list(&call["source_refs"]).len()
+            && list(&call["run_refs"]).len() == list(&call["owner_refs"]).len())?;
+        wf(u(&call["invocation_before"]) == current)?;
+        for (position, ri) in list(&call["run_refs"]).iter().enumerate() {
+            let (c, r) = runs
+                .get(u(ri) as usize)
+                .copied()
+                .ok_or_else(|| error("G5", "ATTEMPT_MISMATCH"))?;
+            run_order.push(u(ri));
+            let si = &call["source_refs"][position];
+            let oi = &call["owner_refs"][position];
+            af(r["origin"]
+                == json!({"call":call_id,"position":position,"group":r["origin"]["group"],"source_ref":si,"owner_ref":oi})
+                && r["origin"]["owner_ref"]["kind"] == "case"
+                && c["source_ref"] == *si)?;
+            let src = at(&b["sources"], si, "G5", "ATTEMPT_MISMATCH")?;
+            af(src["owner"]["case_index"] == oi["index"]
+                && src["owner"]["case_id"] == c["basis_ref"]["ref_id"])?;
+            let records = list(&r["records"]);
+            let attempts = list(&r["attempts"]);
+            af(records.len() <= 4 && attempts.len() <= 3)?;
+            af(records.is_empty() == attempts.is_empty())?;
+            if let Some(first) = attempts.first() {
+                af(first["precision"] == 128
+                    && first["candidate_record"] == 0
+                    && first["origin"]["kind"] == "fresh")?;
+            }
+            wf(u(&r["invocation_before"]) == current)?;
+            let gid = uint(&r["origin"]["group"]);
+            let mut cache = if let Some(gid) = gid {
+                let g = at(&b["groups"], &json!(gid), "G5", "ATTEMPT_MISMATCH")?;
+                af(u(&g["call"]) == call_id as u64 && list(&g["source_refs"]).contains(si))?;
+                if g["preparation"]["kind"] == "refused" {
+                    af(records.is_empty()
+                        && r["kernel_terminal"]["kind"] == "refused"
+                        && r["kernel_terminal"]["reason"] == g["preparation"]["reason"])?;
+                }
+                group_caches
+                    .get(&gid)
+                    .cloned()
+                    .ok_or_else(|| error("G5", "ATTEMPT_MISMATCH"))?
+            } else {
+                af(records.is_empty()
+                    && current >= u(&b["work"]["invocation_limit"])
+                    && r["kernel_terminal"]["reason"]["tag"] == "budget"
+                    && r["kernel_terminal"]["reason"]["scope"] == "invocation")?;
+                BTreeMap::new()
+            };
+            let snapshot = |cache: &BTreeMap<String, u64>| -> Value {
+                json!(SLOTS
+                    .iter()
+                    .filter_map(|slot| cache.get(*slot).map(|bi| json!({"slot":slot,"build":bi})))
+                    .collect::<Vec<_>>())
+            };
+            wf(r["cache_before"] == snapshot(&cache))?;
+            let mut amounts = Vec::new();
+            let mut prior_precision = 0;
+            for (index, record) in records.iter().enumerate() {
+                let p = u(&record["precision"]);
+                af(u(&record["index"]) == index as u64
+                    && p > prior_precision
+                    && matches!(p, 128 | 256 | 512 | 1024)
+                    && u(&record["residual_basis"]) == if p == 1024 { 1024 } else { p + 64 })?;
+                prior_precision = p;
+                af(u(&record["corrections"]) <= 3)?;
+                if record["role"] == "candidate" {
+                    af(record["verification"].is_null()
+                        && record["verification_shared_build_ref"].is_null()
+                        && matches!(
+                            text(&record["outcome"]["kind"]),
+                            "accepted" | "rejected" | "failed"
+                        ))?;
+                } else if record["role"] == "verification" {
+                    af(matches!(
+                        text(&record["outcome"]["kind"]),
+                        "verified" | "solved" | "failed"
+                    ))?;
+                }
+                af(record["storage"]["limbs_per_entry"]
+                    == json!(if p <= 256 {
+                        4
+                    } else if p == 512 {
+                        8
+                    } else {
+                        16
+                    }))?;
+                let w = &record["work"];
+                let own = sum([u(&w["wide_lme"]), u(&w["exact_sum_lme"])])?;
+                wf(own == u(&w["own_lme"]) && own == stages_sum(&w["own_stages"])?)?;
+                wf(u(&w["stop_rule_lme"]) == u(&w["own_stages"]["stop_rule"]))?;
+                // verify_state owns these five disjoint stage slots; solve and
+                // candidate comparison use the other slots (verify.rs:745–1222).
+                wf(u(&w["verification_lme"])
+                    == sum(["scale", "estimate", "charge", "bound", "shift"]
+                        .iter()
+                        .map(|key| u(&w["own_stages"][*key])))?)?;
+                wf(
+                    sum([u(&w["stop_rule_lme"]), u(&w["verification_lme"])])? <= own
+                        && stages_sum(&w["shared_stages"])?
+                            == sum([u(&w["shared_lme"]), u(&w["verification_shared_lme"])])?,
+                )?;
+                let mut shared_stages: BTreeMap<&str, u64> = BTreeMap::new();
+                for (field, phase, built, cost, slot) in [
+                    (
+                        "shared_build_ref",
+                        "shared",
+                        w["shared_built_here"] == true,
+                        u(&w["shared_lme"]),
+                        format!("s{p}"),
+                    ),
+                    (
+                        "verification_shared_build_ref",
+                        "verification_shared",
+                        w["verification_shared_built_here"] == true,
+                        u(&w["verification_shared_lme"]),
+                        format!("v{p}"),
+                    ),
+                ] {
+                    if record[field].is_null() {
+                        wf(!built && cost == 0)?;
+                        continue;
+                    }
+                    let bi = u(&record[field]);
+                    let build = at(&b["builds"], &record[field], "G5", "WORK_MISMATCH")?;
+                    wf(build["group"] == r["origin"]["group"]
+                        && build["slot"] == slot
+                        && u(&build["work"]) == cost)?;
+                    if built {
+                        wf(!cache.contains_key(&slot)
+                            && build["origin"]
+                                == json!({"call":call_id,"run":ri,"physical_record":index,"phase":phase})
+                            && builds_seen.insert(bi)
+                            && bi == builds_seen.len() as u64 - 1)?;
+                        if build["state"] != "budget_failure" {
+                            cache.insert(slot, bi);
+                        }
+                    } else {
+                        wf(cache.get(&slot) == Some(&bi) && build["state"] != "budget_failure")?;
+                    }
+                    for (k, v) in build["stages"]
+                        .as_object()
+                        .ok_or_else(|| error("G5", "WORK_MISMATCH"))?
+                    {
+                        let old = shared_stages.get(k.as_str()).copied().unwrap_or(0);
+                        shared_stages.insert(k, sum([old, u(v)])?);
+                    }
+                }
+                for (k, v) in w["shared_stages"]
+                    .as_object()
+                    .ok_or_else(|| error("G5", "WORK_MISMATCH"))?
+                {
+                    wf(u(v) == shared_stages.get(k.as_str()).copied().unwrap_or(0))?;
+                }
+                amounts.push((
+                    sum([own, u(&w["shared_lme"]), u(&w["verification_shared_lme"])])?,
+                    sum([
+                        own,
+                        if w["shared_built_here"] == true {
+                            u(&w["shared_lme"])
+                        } else {
+                            0
+                        },
+                        if w["verification_shared_built_here"] == true {
+                            u(&w["verification_shared_lme"])
+                        } else {
+                            0
+                        },
+                    ])?,
+                ));
+                if record["role"] == "verification" {
+                    wf(u(&w["stop_rule_lme"]) == 0)?;
+                }
+            }
+            wf(r["cache_after"] == snapshot(&cache))?;
+            if let Some(gid) = gid {
+                group_caches.insert(gid, cache);
+            }
+            let mut fragments = BTreeSet::new();
+            let mut previous_candidate = None;
+            for (ai, a) in attempts.iter().enumerate() {
+                let ci = u(&a["candidate_record"]);
+                let cr = records
+                    .get(ci as usize)
+                    .ok_or_else(|| error("G5", "ATTEMPT_MISMATCH"))?;
+                af(a["precision"] == cr["precision"]
+                    && a["outcome"] == cr["outcome"]
+                    && matches!(u(&a["precision"]), 128 | 256 | 512)
+                    && previous_candidate.is_none_or(|p| ci > p))?;
+                previous_candidate = Some(ci);
+                if a["origin"]["kind"] == "fresh" {
+                    af(cr["role"] == "candidate")?;
+                } else {
+                    let pi = u(&a["origin"]["attempt"]);
+                    af(pi + 1 == ai as u64 && cr["role"] == "verification_then_candidate")?;
+                    let old = &attempts[pi as usize];
+                    af(old["verification"]["record"] == a["candidate_record"]
+                        && old["verification"]["phase"] == "completed"
+                        && old["outcome"]["kind"] == "rejected")?;
+                }
+                let verification = if a["verification"].is_null() {
+                    None
+                } else {
+                    let vi = u(&a["verification"]["record"]);
+                    let vr = records
+                        .get(vi as usize)
+                        .ok_or_else(|| error("G5", "ATTEMPT_MISMATCH"))?;
+                    af(vi == ci + 1
+                        && u(&vr["precision"]) == 2 * u(&a["precision"])
+                        && vr["precision"] == a["verification"]["precision"]
+                        && matches!(
+                            text(&vr["role"]),
+                            "verification" | "verification_then_candidate"
+                        ))?;
+                    if vr["role"] == "verification_then_candidate" {
+                        af(a["verification"]["phase"] == "completed"
+                            && a["verification"]["reason"].is_null())?;
+                    } else {
+                        af((a["verification"]["phase"] == "failed")
+                            == (vr["outcome"]["kind"] == "failed"))?;
+                        if a["verification"]["phase"] == "failed" {
+                            af(a["verification"]["reason"] == vr["outcome"]["reason"])?;
+                        } else {
+                            af(a["verification"]["reason"].is_null())?;
+                        }
+                    }
+                    Some(vi)
+                };
+                if a["outcome"]["kind"] == "accepted" {
+                    af(ai + 1 == attempts.len() && verification.is_some())?;
+                }
+                if verification.is_none() {
+                    af(a["outcome"]["kind"] == "failed")?;
+                }
+                if ai + 1 < attempts.len() {
+                    let next = u(&attempts[ai + 1]["precision"]);
+                    let reason = &a["outcome"]["reason"];
+                    if a["outcome"]["kind"] == "failed" {
+                        af(verification.is_none()
+                            && attempts[ai + 1]["origin"]["kind"] == "fresh"
+                            && reason["tag"] == "stop"
+                            && matches!(
+                                text(&reason["stop"]["tag"]),
+                                "pivot" | "condition" | "residual_gate"
+                            )
+                            && next == 2 * u(&a["precision"]))?;
+                    } else if a["verification"]["phase"] == "failed" {
+                        let stop = &a["verification"]["reason"]["stop"];
+                        let vr = &records
+                            [verification.ok_or_else(|| error("G5", "ATTEMPT_MISMATCH"))? as usize];
+                        af(a["outcome"]["kind"] == "rejected"
+                            && reason["tag"] == "verification_failed"
+                            && attempts[ai + 1]["origin"]["kind"] == "fresh"
+                            && vr["verification_shared_build_ref"].is_null()
+                            && matches!(
+                                text(&stop["tag"]),
+                                "pivot" | "condition" | "residual_gate"
+                            )
+                            && next == 4 * u(&a["precision"]))?;
+                    } else {
+                        af(a["outcome"]["kind"] == "rejected"
+                            && attempts[ai + 1]["origin"]
+                                == json!({"kind":"reused_verification","attempt":ai})
+                            && next == 2 * u(&a["precision"]))?;
+                    }
+                }
+                let mut charges = Vec::new();
+                let mut debits = Vec::new();
+                for fr in list(&a["charges"]) {
+                    let index = u(&fr["record"]);
+                    let part = text(&fr["part"]);
+                    af(fragments.insert((index, part)))?;
+                    let rec = records
+                        .get(index as usize)
+                        .ok_or_else(|| error("G5", "ATTEMPT_MISMATCH"))?;
+                    let stop = u(&rec["work"]["stop_rule_lme"]);
+                    if part == "candidate_stop" {
+                        af(index == ci)?;
+                        charges.push(stop);
+                        debits.push(stop);
+                    } else {
+                        af((index == ci && cr["role"] == "candidate")
+                            || Some(index) == verification)?;
+                        charges.push(
+                            amounts[index as usize]
+                                .0
+                                .checked_sub(stop)
+                                .ok_or_else(|| error("G5", "WORK_MISMATCH"))?,
+                        );
+                        debits.push(
+                            amounts[index as usize]
+                                .1
+                                .checked_sub(stop)
+                                .ok_or_else(|| error("G5", "WORK_MISMATCH"))?,
+                        );
+                    }
+                }
+                wf(sum(charges)? == u(&a["case_charge"])
+                    && sum(debits)? == u(&a["invocation_increment"]))?;
+            }
+            let expected: BTreeSet<_> = records
+                .iter()
+                .enumerate()
+                .flat_map(|(i, r)| {
+                    if r["role"] == "verification" {
+                        vec![(i as u64, "solve_and_verification")]
+                    } else {
+                        vec![
+                            (i as u64, "solve_and_verification"),
+                            (i as u64, "candidate_stop"),
+                        ]
+                    }
+                })
+                .collect();
+            af(fragments == expected)?;
+            let charge = sum(amounts.iter().map(|p| p.0))?;
+            let debit = sum(amounts.iter().map(|p| p.1))?;
+            wf(charge == u(&r["case_charge"])
+                && charge == sum(attempts.iter().map(|a| u(&a["case_charge"])))?
+                && debit == u(&r["invocation_increment"])
+                && debit == sum(attempts.iter().map(|a| u(&a["invocation_increment"])))?)?;
+            current = sum([current, debit])?;
+            wf(current == u(&r["invocation_after"]))?;
+            if r["kernel_terminal"]["kind"] == "selected" {
+                let a = attempts
+                    .last()
+                    .ok_or_else(|| error("G5", "ATTEMPT_MISMATCH"))?;
+                let vr = at(
+                    &r["records"],
+                    &a["verification"]["record"],
+                    "G5",
+                    "ATTEMPT_MISMATCH",
+                )?;
+                let cr = at(
+                    &r["records"],
+                    &a["candidate_record"],
+                    "G5",
+                    "ATTEMPT_MISMATCH",
+                )?;
+                af(r["kernel_terminal"]["reason"].is_null()
+                    && a["outcome"]["kind"] == "accepted"
+                    && vr["outcome"]["kind"] == "verified"
+                    && a["verification"]["phase"] == "completed"
+                    && !vr["verification"].is_null())?;
+                wf(charge <= u(&b["work"]["case_limit"])
+                    && current <= u(&b["work"]["invocation_limit"]))?;
+                if c["status"] == "selected" {
+                    let s = &c["selection"];
+                    af(s["precision"] == a["precision"]
+                        && s["verification_precision"] == a["verification"]["precision"])?;
+                    for k in ["pivot_margin_min", "rcond", "residual_worst", "corrections"] {
+                        af(s[k] == cr[k])?;
+                    }
+                    af(s["resolution_scale"] == vr["verification"]["resolution"]
+                        && s["theta"] == vr["verification"]["theta"]
+                        && s["certified_bound"]
+                            == json!(list(&vr["verification"]["bound"])
+                                .iter()
+                                .filter(|x| !x["value"].is_null())
+                                .collect::<Vec<_>>()))?;
+                }
+            } else {
+                af(!r["kernel_terminal"]["reason"].is_null()
+                    && !attempts.iter().any(|a| a["outcome"]["kind"] == "accepted"))?;
+                let reason = &r["kernel_terminal"]["reason"];
+                if reason["tag"] == "budget" {
+                    let case_over = charge > u(&b["work"]["case_limit"]);
+                    let inv_over = current > u(&b["work"]["invocation_limit"]);
+                    wf(if reason["scope"] == "case" {
+                        case_over
+                    } else {
+                        !case_over
+                            && (inv_over
+                                || (records.is_empty()
+                                    && u(&r["invocation_before"])
+                                        >= u(&b["work"]["invocation_limit"])))
+                    })?;
+                }
+            }
+        }
+        wf(u(&call["invocation_after"]) == current)?;
+    }
+    af(run_order.iter().copied().eq(0..runs.len() as u64))?;
+    wf(u(&b["work"]["charged"]) == current && builds_seen.len() == list(&b["builds"]).len())?;
+    Ok(())
+}
+fn exact_count(v: &Value) -> Option<u64> {
+    (v["kind"] == "exact").then(|| u(&v["value"]))
+}
+fn exact_work(v: &Value) -> bool {
+    match v {
+        Value::Object(o) => {
+            !(v["kind"] == "unavailable" && o.contains_key("fault"))
+                && (!o.contains_key("sticky_status") || v["sticky_status"] == "exact")
+                && v["lost"] != true
+                && o.values().all(exact_work)
+        }
+        Value::Array(a) => a.iter().all(exact_work),
+        _ => true,
+    }
+}
+fn g5_products(source: &Value) -> VResult {
+    let b = &source["retained_precision"]["body"];
+    let pf = |ok| need(ok, "G5", "PRODUCT_ATTEMPT_MISMATCH");
+    // C3 association/stage/check failures precede C3 accounting failures across
+    // the ordered attempt list. Native work was already checked above.
+    let mut pending_work = Vec::new();
+    let mut wf = |ok| -> VResult {
+        pending_work.push(ok);
+        Ok(())
+    };
+    for (ai, a) in list(&b["product_attempts"]).iter().enumerate() {
+        let c = at(
+            &b["cases"],
+            &a["owner_ref"]["index"],
+            "G5",
+            "PRODUCT_ATTEMPT_MISMATCH",
+        )?;
+        let ordinary = at(
+            &b["ordinary_attempts"],
+            &a["ordinary_attempt_ref"],
+            "G5",
+            "PRODUCT_ATTEMPT_MISMATCH",
+        )?;
+        pf(c["product_attempt_ref"] == a["id"]
+            && a["ordinary_attempt_ref"] == c["ordinary"]["attempt_ref"]
+            && a["material_basis_ref"] == ordinary["material_basis_ref"])?;
+        if a["run_ref"].is_null() {
+            pf(c["run"].is_null())?;
+        } else {
+            pf(c["run"]["id"] == a["run_ref"] && a["source_ref"] == c["source_ref"])?;
+        }
+        let s = if a["source_ref"].is_null() {
+            None
+        } else {
+            let s = at(
+                &b["sources"],
+                &a["source_ref"],
+                "G5",
+                "PRODUCT_ATTEMPT_MISMATCH",
+            )?;
+            pf(s["owner"]["case_index"] == a["owner_ref"]["index"]
+                && s["material_basis_ref"] == a["material_basis_ref"]
+                && s["preparation"]["attempt_ref"] == json!(ai))?;
+            Some(s)
+        };
+        let pm = list(&a["preparation"]["members"]);
+        let old = list(&a["operational"]["old"]);
+        let new = list(&a["operational"]["new"]);
+        let st = &a["stages"];
+        let props = [
+            ("area", "lo"),
+            ("area", "hi"),
+            ("second_moment", "lo"),
+            ("second_moment", "hi"),
+            ("polar_moment", "lo"),
+            ("polar_moment", "hi"),
+            ("section_modulus", "lo"),
+            ("section_modulus", "hi"),
+            ("radius", "exact"),
+        ];
+        for (j, m) in pm.iter().enumerate() {
+            let prepared = m["result"]["kind"] == "prepared";
+            if !prepared {
+                pf(j + 1 == pm.len() && j >= new.len())?;
+            }
+            let cv = list(&m["conversions"]);
+            pf(cv.len() <= 9)?;
+            for (k, v) in cv.iter().enumerate() {
+                pf(v["property"] == props[k].0 && v["endpoint"] == props[k].1)?;
+                if prepared {
+                    let idx = if k < 8 { k / 2 } else { 4 };
+                    pf(v["outcome"]["kind"] == "normal"
+                        && v["outcome"]["value"] == m["result"]["section"][idx]
+                        && f(&v["outcome"]["value"]) >= f64::MIN_POSITIVE)?;
+                }
+            }
+            if prepared {
+                pf(cv.len() == 9)?;
+            }
+            if let Some(n) = exact_count(&m["work"]["conversions"]) {
+                wf(n == cv.len() as u64)?;
+            }
+        }
+        for (j, op) in new.iter().enumerate() {
+            pf(pm[j]["result"]["kind"] == "prepared" && op["member"] == pm[j]["member"])?;
+        }
+        let proof = &a["proof"];
+        if proof.is_null() {
+            pf(st["proof_start"] == "not_entered"
+                && [
+                    "projection",
+                    "maxima",
+                    "values",
+                    "aliases",
+                    "certificate",
+                    "observables",
+                    "g5a",
+                ]
+                .iter()
+                .all(|k| st[k] == "not_entered"))?;
+        } else {
+            pf(!a["run_ref"].is_null()
+                && c["run"]["kernel_terminal"]["kind"] == "selected"
+                && st["proof_start"] != "not_entered")?;
+            let lanes = list(&proof["lanes"]);
+            pf(lanes.len() <= 2)?;
+            for (i, lane) in lanes.iter().enumerate() {
+                pf(lane["law"] == ["admitted_k", "annular_source"][i]
+                    && (lane["state"] == "completed") == lane["error"].is_null())?;
+                if lane["state"] == "failed" {
+                    pf(i + 1 == lanes.len())?;
+                }
+                if let Some(n) = exact_count(&lane["work"]["correction"]["calls"]) {
+                    wf(n <= 1)?;
+                }
+                wf(lane["work"]["data_capacity"] == lane["work"]["view"]["data_capacity"])?;
+            }
+            if st["proof_start"] == "completed" {
+                pf(lanes.len() == 2 && lanes.iter().all(|l| l["state"] == "completed"))?;
+            }
+            if st["projection"] != "not_entered" {
+                pf(lanes.len() == 2
+                    && lanes.iter().all(|l| l["state"] == "completed")
+                    && st["proof_start"] == "completed")?;
+            }
+            for (k, prior) in [
+                ("maxima", "projection"),
+                ("values", "maxima"),
+                ("aliases", "values"),
+                ("certificate", "aliases"),
+            ] {
+                if st[k] != "not_entered" {
+                    pf(st[prior] == "completed")?;
+                }
+            }
+            for k in ["certificate", "observables", "g5a"] {
+                let check = &proof["checks"][k];
+                pf(match text(&st[k]) {
+                    "not_entered" => check["kind"] == "not_entered",
+                    "completed" => check["kind"] == "passed",
+                    "failed" => check["kind"] == "failed",
+                    _ => false,
+                })?;
+                if check["kind"] == "failed" {
+                    pf(check["error"]["kind"]
+                        == if k == "certificate" {
+                            "proof"
+                        } else if k == "observables" {
+                            "observable"
+                        } else {
+                            "g5a"
+                        })?;
+                }
+            }
+            let outcomes = list(&proof["projection_outcomes"]);
+            if let Some(n) = exact_count(&proof["projection_conversions"]) {
+                wf(n == outcomes.len() as u64)?;
+            }
+            if st["projection"] == "not_entered" {
+                pf(outcomes.is_empty())?;
+            }
+            if proof["completion"]["kind"] == "merged" {
+                // A failed maxima calculation abandons its already created
+                // builder and merges its work before complete_maxima is entered.
+                pf(st["projection"] == "completed")?;
+            }
+            if proof["completion"]["kind"] == "separate_failure" {
+                pf(a["result"]["kind"] == "unavailable"
+                    && a["result"]["error"]["kind"] == "values"
+                    && st["values"] == "failed")?;
+            }
+            if st["aliases"] != "not_entered" || st["certificate"] != "not_entered" {
+                pf(proof["completion"]["kind"] == "merged")?;
+            }
+            if st["observables"] != "not_entered" || st["g5a"] != "not_entered" {
+                pf(st["certificate"] != "not_entered")?;
+            }
+            let rows = rows_for(source, c);
+            let projected: Vec<_> = rows
+                .iter()
+                .enumerate()
+                .filter(|(_, r)| hull_projected(r))
+                .map(|(i, _)| i as u64)
+                .collect();
+            pf(outcomes.len() <= projected.len()
+                && outcomes
+                    .iter()
+                    .map(|v| u(&v["row_index"]))
+                    .eq(projected.iter().take(outcomes.len()).copied()))?;
+            if st["projection"] == "completed" {
+                pf(outcomes.len() == projected.len())?;
+            }
+            if a["result"]["kind"] == "ready" {
+                let rows = rows_for(source, c);
+                let expected: Vec<_> = rows
+                    .iter()
+                    .enumerate()
+                    .filter(|(_, r)| hull_projected(r))
+                    .map(|(i, _)| i as u64)
+                    .collect();
+                pf(outcomes.iter().map(|v| u(&v["row_index"])).eq(expected))?;
+                for v in outcomes {
+                    let row = rows[u(&v["row_index"]) as usize];
+                    let o = &v["outcome"];
+                    pf(o["kind"] != "overflow")?;
+                    let value = if o["kind"] == "underflow" {
+                        0.0
+                    } else {
+                        f(&o["value"])
+                    };
+                    pf(row["value"].as_f64().is_some_and(|v| {
+                        v.to_bits() == (if value == 0.0 { 0.0 } else { value }).to_bits()
+                    }))?;
+                }
+            }
+        }
+        if st["native"] == "completed" {
+            pf(c["run"]["kernel_terminal"]["kind"] == "selected")?;
+        }
+        if st["native"] != "not_entered" {
+            pf(!a["run_ref"].is_null() && st["preparation"] == "completed")?;
+            pf((st["native"] == "completed")
+                == (c["run"]["kernel_terminal"]["kind"] == "selected"))?;
+        } else {
+            pf(a["run_ref"].is_null())?;
+        }
+        if st["preparation"] == "completed" {
+            pf(pm.len() == old.len()
+                && new.len() == old.len()
+                && pm.iter().all(|m| m["result"]["kind"] == "prepared")
+                && s.is_some())?;
+        }
+        if a["result"]["kind"] == "ready" {
+            pf(s.is_some()
+                && pm.len() == old.len()
+                && new.len() == old.len()
+                && a["operational"]["old_coverage"] == "complete"
+                && !proof.is_null()
+                && st
+                    .as_object()
+                    .is_some_and(|o| o.values().all(|v| v == "completed"))
+                && new.iter().all(|o| o["result"]["kind"] == "ready"))?;
+            wf(exact_work(proof)
+                && pm.iter().all(|m| exact_work(&m["work"]))
+                && old.iter().chain(new).all(|o| exact_work(&o["work"]))
+                && a["adapter"]["fault"].is_null()
+                && exact_work(&a["overlay_work"])
+                && exact_work(&a["g5a_work"]))?;
+        }
+        if c["status"] == "selected" {
+            pf(a["result"]["kind"] == "ready")?;
+        }
+        if c["status"] == "unavailable"
+            && c["reason"]["cause"]["kind"] == "prepared_product_failure"
+        {
+            pf(u(&c["reason"]["cause"]["product_attempt_ref"]) == ai as u64
+                && a["result"]["kind"] == "unavailable")?;
+            let e = &a["result"]["error"];
+            let run = &c["run"];
+            let expected = match text(&e["kind"]) {
+                "preparation" => {
+                    pf(run.is_null() && st["preparation"] == "failed")?;
+                    ("source_unavailable", "preparation")
+                }
+                "capture" if run.is_null() => ("source_unavailable", "preparation"),
+                "native" | "capture" if run["kernel_terminal"]["kind"] != "selected" => {
+                    pf(!run.is_null())?;
+                    if e["kind"] == "native" {
+                        pf(e["run_ref"] == run["id"])?;
+                    }
+                    if run["kernel_terminal"]["kind"] == "unresolved" {
+                        ("kernel_unresolved", "kernel")
+                    } else {
+                        pf(run["kernel_terminal"]["kind"] == "refused")?;
+                        ("kernel_refused", "kernel")
+                    }
+                }
+                _ => {
+                    pf(run["kernel_terminal"]["kind"] == "selected")?;
+                    ("facade_certificate", "facade")
+                }
+            };
+            pf(c["reason"]["code"] == expected.0 && c["reason"]["phase"] == expected.1)?;
+            if matches!(text(&e["kind"]), "observable" | "g5a") {
+                let key = if e["kind"] == "observable" {
+                    "observables"
+                } else {
+                    "g5a"
+                };
+                pf(proof["checks"][key]["kind"] == "failed" && proof["checks"][key]["error"] == *e)?;
+            }
+        }
+    }
+    for ok in pending_work {
+        need(ok, "G5", "WORK_MISMATCH")?;
+    }
+    Ok(())
+}
+fn row_kind(r: &Value) -> &'static str {
+    let k = text(&r["kind"]);
+    let unit = text(&r["unit"]);
+    match k {
+        "linear_solver_mode_basis"
+        | "sparse_live_path_dense_parity_relative_delta"
+        | "modulus_basis_record"
+        | "combination_modulus_basis_record" => "non_quantity",
+        "pipe_lame_hoop_stress_v2"
+        | "pipe_lame_radial_stress_v2"
+        | "pipe_section_pressure_hoop_stress"
+        | "pipe_section_pressure_longitudinal_stress"
+        | "constant_effort_support_applied_load"
+        | "component_user_stress_multiplier_review"
+        | "component_user_stiffness_macro_element_review"
+        | "constant_effort_user_input_review"
+        | "spring_hanger_user_input_review"
+        | "expansion_joint_pressure_thrust_load_review" => "input_derived",
+        "global_nodal_displacement_x"
+        | "global_nodal_displacement_y"
+        | "global_nodal_displacement_z"
+        | "displacement_magnitude"
+            if matches!(unit, "m" | "mm") =>
+        {
+            "translation"
+        }
+        "global_nodal_rotation_x" | "global_nodal_rotation_y" | "global_nodal_rotation_z"
+            if unit == "rad" =>
+        {
+            "rotation"
+        }
+        "element_local_axial_force"
+        | "element_local_shear_force_y"
+        | "element_local_shear_force_z"
+        | "pipe_wall_axial_force_v2"
+        | "pipe_effective_axial_force_v2"
+        | "reaction_resultant"
+        | "support_reaction_force_magnitude_v2"
+            if matches!(unit, "N" | "kN") =>
+        {
+            "force"
+        }
+        "element_local_torsional_moment"
+        | "element_local_bending_moment_y"
+        | "element_local_bending_moment_z"
+        | "support_reaction_moment_magnitude_v2"
+            if matches!(unit, "N*m" | "kN*m") =>
+        {
+            "moment"
+        }
+        "support_reaction_component_v2" | "pipe_wall_endpoint_action_v2"
+            if matches!(unit, "N" | "kN") =>
+        {
+            "force"
+        }
+        "support_reaction_component_v2" | "pipe_wall_endpoint_action_v2"
+            if matches!(unit, "N*m" | "kN*m") =>
+        {
+            "moment"
+        }
+        "element_local_axial_normal_stress"
+        | "element_local_bending_normal_stress_y"
+        | "element_local_bending_normal_stress_z"
+        | "element_local_torsional_shear_stress"
+        | "pipe_axial_membrane_stress_v2"
+        | "pipe_elastic_normal_stress_maximum_v2"
+        | "component_equal_factor_intensified_bending_stress_v1"
+        | "open_formula_stress_summary"
+            if matches!(unit, "Pa" | "MPa") =>
+        {
+            "stress"
+        }
+        _ => "not_covered",
+    }
+}
+fn hull_projected(r: &Value) -> bool {
+    row_kind(r) != "non_quantity"
+        && !matches!(
+            text(&r["kind"]),
+            "support_reaction_force_magnitude_v2"
+                | "support_reaction_moment_magnitude_v2"
+                | "pipe_elastic_normal_stress_maximum_v2"
+        )
+}
+fn normalized(r: &Value) -> f64 {
+    let x = r["value"].as_f64().unwrap_or(f64::NAN);
+    match text(&r["unit"]) {
+        "mm" => x / 1000.0,
+        "kN" | "kN*m" => x * 1000.0,
+        "MPa" => x * 1_000_000.0,
+        _ => x,
+    }
+}
+fn component(r: &Value) -> Option<&'static str> {
+    match text(&r["kind"]) {
+        "global_nodal_displacement_x" => Some("UX"),
+        "global_nodal_displacement_y" => Some("UY"),
+        "global_nodal_displacement_z" => Some("UZ"),
+        "global_nodal_rotation_x" => Some("RX"),
+        "global_nodal_rotation_y" => Some("RY"),
+        "global_nodal_rotation_z" => Some("RZ"),
+        _ => None,
+    }
+}
+fn row_body<'a>(r: &Value, s: &'a Value) -> (Option<usize>, Option<&'a Value>) {
+    let maps = &s["id_maps"];
+    let entity = &r["entity_ref"];
+    let member = list(&maps["members"]).iter().find(|m| m["id"] == *entity);
+    let node = list(&maps["nodes"])
+        .iter()
+        .find(|n| n["id"] == *entity)
+        .map(|n| u(&n["kernel_node"]))
+        .or_else(|| member.map(|m| u(&m["node_i"])))
+        .or_else(|| {
+            list(&maps["support_ids"])
+                .iter()
+                .find(|s| s["id"] == *entity)
+                .map(|s| u(&s["node"]))
+        });
+    let body = node.and_then(|n| {
+        list(&s["body_membership"])
+            .iter()
+            .position(|b| list(&b["nodes"]).iter().any(|x| u(x) == n))
+    });
+    (body, member)
+}
+struct NumericCase<'a> {
+    case: &'a Value,
+    source: &'a Value,
+    rows: Vec<&'a Value>,
+    extents: Vec<f64>,
+    raw: Vec<[f64; 4]>,
+    final_scales: Vec<[f64; 4]>,
+    prescribed: BTreeSet<(String, String)>,
+}
+fn finite_check(v: f64, gate: &'static str) -> VResult<f64> {
+    need(v.is_finite(), gate, "SCALE_MISMATCH")?;
+    Ok(v)
+}
+fn numeric_cases(source: &Value) -> VResult<Vec<NumericCase<'_>>> {
+    let b = &source["retained_precision"]["body"];
+    let mut out = Vec::new();
+    for c in list(&b["cases"])
+        .iter()
+        .filter(|c| c["status"] == "selected")
+    {
+        let s = at(&b["sources"], &c["source_ref"], "G5a", "SCALE_MISMATCH")?;
+        let rows = rows_for(source, c);
+        let mut extents = Vec::new();
+        let mut raw = Vec::new();
+        let mut prescribed = BTreeSet::new();
+        for d in list(&s["constraints"]) {
+            let n = at(
+                &s["id_maps"]["nodes"],
+                &d["dof"]["node"],
+                "G5a",
+                "SCALE_MISMATCH",
+            )?;
+            prescribed.insert((text(&n["id"]).into(), text(&d["dof"]["component"]).into()));
+        }
+        for (bi, body) in list(&s["body_membership"]).iter().enumerate() {
+            need(
+                u(&body["body"]) == bi as u64 && !list(&body["nodes"]).is_empty(),
+                "G5a",
+                "SCALE_MISMATCH",
+            )?;
+            let mut lo = [f64::INFINITY; 3];
+            let mut hi = [f64::NEG_INFINITY; 3];
+            for ni in list(&body["nodes"]) {
+                let n = at(&s["id_maps"]["nodes"], ni, "G5a", "SCALE_MISMATCH")?;
+                for j in 0..3 {
+                    lo[j] = lo[j].min(f(&n["coordinates"][j]));
+                    hi[j] = hi[j].max(f(&n["coordinates"][j]));
+                }
+            }
+            let mut d = [0.0; 3];
+            for j in 0..3 {
+                d[j] = finite_check(hi[j] - lo[j], "G5a")?;
+            }
+            let x = finite_check(d[0] * d[0], "G5a")?;
+            let y = finite_check(d[1] * d[1], "G5a")?;
+            let xy = finite_check(x + y, "G5a")?;
+            let z = finite_check(d[2] * d[2], "G5a")?;
+            let extent = finite_check(finite_check(xy + z, "G5a")?.sqrt(), "G5a")?;
+            extents.push(extent);
+            let mut maxima = [0.0f64; 4];
+            for r in &rows {
+                let n = finite_check(normalized(r), "G5a")?;
+                let input = component(r).is_some_and(|c| {
+                    prescribed.contains(&(text(&r["entity_ref"]).into(), c.into()))
+                });
+                if row_body(r, s).0 == Some(bi) && !input {
+                    if let Some(k) = NAMES.iter().position(|k| *k == row_kind(r)) {
+                        maxima[k] = maxima[k].max(n.abs());
+                    }
+                }
+            }
+            let [tr, ro, fo, mo] = maxima;
+            let coupled = if extent == 0.0 {
+                maxima
+            } else {
+                [
+                    tr.max(finite_check(extent * ro, "G5a")?),
+                    ro.max(finite_check(tr / extent, "G5a")?),
+                    fo.max(finite_check(mo / extent, "G5a")?),
+                    mo.max(finite_check(extent * fo, "G5a")?),
+                ]
+            };
+            raw.push(coupled);
+        }
+        out.push(NumericCase {
+            case: c,
+            source: s,
+            rows,
+            extents,
+            final_scales: raw.clone(),
+            raw,
+            prescribed,
+        });
+    }
+    Ok(out)
+}
+fn g5a(cases: &[NumericCase<'_>]) -> VResult {
+    let fail = |ok| need(ok, "G5a", "SCALE_MISMATCH");
+    for c in cases {
+        let sel = &c.case["selection"];
+        let nb = c.raw.len();
+        fail(
+            u(&sel["verification_precision"]) == 2 * u(&sel["precision"])
+                && sel["floor_ratio"] == "3dd0000000000000"
+                && f(&sel["pivot_margin_min"]) > 0.0
+                && f(&sel["rcond"]) > 0.0,
+        )?;
+        for key in ["body_scales", "resolution_scale", "theta"] {
+            fail(
+                list(&sel[key])
+                    .iter()
+                    .map(|x| u(&x["body"]))
+                    .eq(0..nb as u64),
+            )?;
+        }
+        for (key, limit) in [
+            ("stop_rule", 2f64.powi(-64)),
+            ("verification_estimate", 0.25),
+            ("verification_charge", 1.0),
+        ] {
+            let mut pairs = BTreeSet::new();
+            let mut last = None;
+            for v in list(&sel[key]) {
+                let bi = u(&v["body"]);
+                let ki = NAMES
+                    .iter()
+                    .position(|k| v["kind"] == *k)
+                    .ok_or_else(|| error("G5a", "SCALE_MISMATCH"))?;
+                let pair = (bi, ki);
+                fail(
+                    bi < nb as u64
+                        && (key == "stop_rule" || ki >= 2)
+                        && pairs.insert(pair)
+                        && last.is_none_or(|p| pair > p)
+                        && f(&v["value"]) <= limit,
+                )?;
+                last = Some(pair);
+            }
+        }
+        fail(list(&sel["theta"]).iter().all(|v| f(&v["value"]) <= 0.5))?;
+        let mut bs = BTreeSet::new();
+        for v in list(&sel["certified_bound"]) {
+            fail(u(&v["body"]) < nb as u64 && bs.insert(u(&v["body"])) && f(&v["value"]) > 0.0)?;
+        }
+        fail(sel["floor"].is_null() == (u(&sel["precision"]) != 512))?;
+        if !sel["floor"].is_null() {
+            fail(
+                list(&sel["floor"])
+                    .iter()
+                    .map(|v| u(&v["body"]))
+                    .eq(0..nb as u64),
+            )?;
+        }
+        for bi in 0..nb {
+            let scale = c.raw[bi];
+            let l = c.extents[bi];
+            let e = [
+                f(&sel["resolution_scale"][bi]["force"]),
+                f(&sel["resolution_scale"][bi]["moment"]),
+            ];
+            let hat = if l == 0.0 {
+                e
+            } else {
+                [
+                    e[0].max(finite_check(e[1] / l, "G5a")?),
+                    e[1].max(finite_check(l * e[0], "G5a")?),
+                ]
+            };
+            let upper = [
+                finite_check(hat[0] * f64::from_bits(0x3ff0000000001000), "G5a")?,
+                finite_check(hat[1] * f64::from_bits(0x3ff0000000001000), "G5a")?,
+            ];
+            fail(upper[0] >= scale[2] && upper[1] >= scale[3])?;
+            for ki in 0..2 {
+                let present = list(&c.source["layout"])
+                    .iter()
+                    .any(|m| u(&m["body"]) == bi as u64 && m["kind"] == NAMES[ki + 2]);
+                let expected = present && hat[ki] > 0.0;
+                fail(
+                    list(&sel["verification_estimate"])
+                        .iter()
+                        .filter(|v| u(&v["body"]) == bi as u64 && v["kind"] == NAMES[ki + 2])
+                        .count()
+                        == usize::from(expected),
+                )?;
+                if u(&sel["precision"]) != 512 {
+                    fail(
+                        list(&sel["verification_charge"])
+                            .iter()
+                            .filter(|v| u(&v["body"]) == bi as u64 && v["kind"] == NAMES[ki + 2])
+                            .count()
+                            == usize::from(expected),
+                    )?;
+                }
+            }
+            for r in &c.rows {
+                if row_body(r, c.source).0 == Some(bi) {
+                    if let Some(k) = NAMES.iter().position(|k| *k == row_kind(r)) {
+                        if k >= 2 && e[k - 2] == 0.0 {
+                            fail(normalized(r).to_bits() == 0)?;
+                        }
+                    }
+                }
+            }
+            for member in list(&c.source["id_maps"]["members"]) {
+                if !list(&c.source["body_membership"][bi]["nodes"]).contains(&member["node_i"]) {
+                    continue;
+                }
+                let section = list(&c.source["section_terms"])
+                    .iter()
+                    .find(|s| s["member"] == member["kernel_member"])
+                    .ok_or_else(|| error("G5a", "SCALE_MISMATCH"))?;
+                for k in 0..2 {
+                    let mut endpoints = [0.0; 2];
+                    for (end, ni) in [&member["node_i"], &member["node_j"]].iter().enumerate() {
+                        let node = at(&c.source["id_maps"]["nodes"], ni, "G5a", "SCALE_MISMATCH")?;
+                        let mut xyz = [0.0; 3];
+                        for j in 0..3 {
+                            let hits: Vec<_> = c
+                                .rows
+                                .iter()
+                                .filter(|r| {
+                                    r["entity_ref"] == node["id"]
+                                        && component(r) == Some(DOFS[k * 3 + j])
+                                })
+                                .collect();
+                            fail(hits.len() == 1)?;
+                            xyz[j] = normalized(hits[0]).abs();
+                        }
+                        endpoints[end] =
+                            finite_check(finite_check(xyz[0] + xyz[1], "G5a")? + xyz[2], "G5a")?;
+                    }
+                    let total = finite_check(endpoints[0] + endpoints[1], "G5a")?;
+                    let threshold = 2f64.powi(-59) * scale[k];
+                    let lower = if total <= threshold {
+                        0.0
+                    } else {
+                        let margin = 2f64.powi(-60) * scale[k];
+                        finite_check(
+                            f(section
+                                .get(if k == 0 {
+                                    "axial_stiffness"
+                                } else {
+                                    "torsional_stiffness"
+                                })
+                                .unwrap_or(&Value::Null))
+                                * (total - margin),
+                            "G5a",
+                        )?
+                    };
+                    fail(upper[k] >= lower)?;
+                }
+            }
+        }
+    }
+    Ok(())
+}
+fn g5b(cases: &mut [NumericCase<'_>]) -> VResult {
+    let sf = |ok| need(ok, "G5b", "SCALE_MISMATCH");
+    let section = |ok| need(ok, "G5b", "SECTION_MISMATCH");
+    for c in cases {
+        let s = &c.case["selection"];
+        for bi in 0..c.raw.len() {
+            let mut sc = c.raw[bi];
+            if u(&s["precision"]) == 512 {
+                let l = c.extents[bi];
+                let e = [
+                    f(&s["resolution_scale"][bi]["force"]),
+                    f(&s["resolution_scale"][bi]["moment"]),
+                ];
+                let hats = if l == 0.0 {
+                    e
+                } else {
+                    [e[0].max(e[1] / l), e[1].max(l * e[0])]
+                };
+                for j in 0..2 {
+                    let near = hats[j] * 2f64.powi(-438);
+                    let back = near * 2f64.powi(438);
+                    let phi = if back < hats[j] {
+                        f64::from_bits(near.to_bits() + 1)
+                    } else {
+                        near
+                    };
+                    sf(s["floor"][bi][NAMES[j + 2]] == bits(phi))?;
+                    sc[j + 2] = sc[j + 2].max(phi);
+                }
+            }
+            for j in 0..4 {
+                sf(s["body_scales"][bi][NAMES[j]] == bits(sc[j]))?;
+            }
+            c.final_scales[bi] = sc;
+        }
+        section(list(&s["section_terms"]).len() == list(&c.source["section_terms"]).len())?;
+        for (left, right) in list(&s["section_terms"])
+            .iter()
+            .zip(list(&c.source["section_terms"]))
+        {
+            let member = list(&c.source["id_maps"]["members"])
+                .iter()
+                .find(|m| m["kernel_member"] == right["member"])
+                .ok_or_else(|| error("G5b", "SECTION_MISMATCH"))?;
+            section(left["member_id"] == member["id"])?;
+            for k in [
+                "area",
+                "section_modulus",
+                "length",
+                "axial_stiffness",
+                "torsional_stiffness",
+            ] {
+                section(left[k] == right[k] && f(&right[k]) > 0.0)?;
+            }
+        }
+        for row in &c.rows {
+            if row_kind(row) == "stress" {
+                row_scale(row, c)?;
+            }
+        }
+    }
+    Ok(())
+}
+fn row_scale(row: &Value, c: &NumericCase<'_>) -> VResult<Option<f64>> {
+    let kind = row_kind(row);
+    let (body, member) = row_body(row, c.source);
+    let Some(bi) = body else { return Ok(None) };
+    let sc = c
+        .final_scales
+        .get(bi)
+        .ok_or_else(|| error("G5b", "SCALE_MISMATCH"))?;
+    if let Some(k) = NAMES.iter().position(|k| *k == kind) {
+        return Ok(Some(sc[k]));
+    }
+    if kind != "stress" {
+        return Ok(None);
+    }
+    let Some(member) = member else {
+        return Ok(None);
+    };
+    let section = list(&c.source["section_terms"])
+        .iter()
+        .find(|s| s["member"] == member["kernel_member"])
+        .ok_or_else(|| error("G5b", "SECTION_MISMATCH"))?;
+    let k = match text(&row["kind"]) {
+        "pipe_elastic_normal_stress_maximum_v2" => f64::from_bits(0x4006a09e667f3bcd),
+        "open_formula_stress_summary" => 4.0,
+        "component_equal_factor_intensified_bending_stress_v1" => {
+            return Err(error("G5b", "SECTION_MISMATCH"))
+        }
+        _ => 1.0,
+    };
+    let axial = finite_check(sc[2] / f(&section["area"]), "G5b")?;
+    let bend = finite_check(sc[3] / f(&section["section_modulus"]), "G5b")?;
+    let weighted = finite_check(k * bend, "G5b")?;
+    Ok(Some(finite_check(axial + weighted, "G5b")?))
+}
+fn g5c(cases: &[NumericCase<'_>]) -> VResult<Vec<RowClassification>> {
+    let mut classes = Vec::new();
+    for c in cases {
+        let s = &c.case["selection"];
+        let actual: BTreeSet<_> = list(&s["input_derived_dofs"])
+            .iter()
+            .map(|d| {
+                (
+                    text(&d["node_id"]).to_string(),
+                    text(&d["component"]).to_string(),
+                )
+            })
+            .collect();
+        need(
+            actual == c.prescribed && actual.len() == list(&s["input_derived_dofs"]).len(),
+            "G5c",
+            "INPUT_DOF_MISMATCH",
+        )?;
+        let mut absolutes = Vec::new();
+        let mut uncovered = Vec::new();
+        for row in &c.rows {
+            let n = normalized(row);
+            let k = row_kind(row);
+            let input = component(row).is_some_and(|d| {
+                c.prescribed
+                    .contains(&(text(&row["entity_ref"]).into(), d.into()))
+            });
+            let scale = if input || matches!(k, "non_quantity" | "input_derived") {
+                None
+            } else {
+                row_scale(row, c)?
+            };
+            let class = if k == "non_quantity" {
+                AccuracyClass::NonQuantity
+            } else if input || k == "input_derived" {
+                if input {
+                    need(n.to_bits() == 0, "G5c", "INPUT_DOF_MISMATCH")?;
+                }
+                AccuracyClass::InputDerived
+            } else if let Some(sc) = scale {
+                if sc >= f64::from_bits(0x0230000000000000) && n.abs() >= 2f64.powi(-34) * sc {
+                    AccuracyClass::RelativeVerified
+                } else {
+                    let bound = absolute_bound(n, sc)
+                        .map_err(|_| error("G5c", "CLASSIFICATION_MISMATCH"))?;
+                    absolutes.push(json!({"result_id":row["id"],"bound":bits(bound)}));
+                    AccuracyClass::AbsoluteVerified {
+                        bound_bits: bound.to_bits(),
+                    }
+                }
+            } else {
+                uncovered.push(row["id"].clone());
+                AccuracyClass::NotCovered
+            };
+            classes.push(RowClassification {
+                result_id: text(&row["id"]).into(),
+                basis_ref: row["basis_ref"].clone(),
+                normalized_bits: n.to_bits(),
+                scale_bits: scale.map(f64::to_bits),
+                class,
+            });
+        }
+        need(
+            s["absolute_verified"] == json!(absolutes) && s["not_covered"] == json!(uncovered),
+            "G5c",
+            "CLASSIFICATION_MISMATCH",
+        )?;
+    }
+    Ok(classes)
+}
+fn unit_value(q: &Value, dimension: Dimension) -> VResult<f64> {
+    let value = q["value"]
+        .as_f64()
+        .ok_or_else(|| error("G8", "PREPARATION_MISMATCH"))?;
+    let from = unit_by_symbol(text(&q["unit"]), dimension)
+        .map_err(|_| error("G8", "PREPARATION_MISMATCH"))?;
+    let to = canonical_unit(dimension).ok_or_else(|| error("G8", "PREPARATION_MISMATCH"))?;
+    let n = convert_for_dimension(value, dimension, from, to)
+        .map_err(|_| error("G8", "PREPARATION_MISMATCH"))?;
+    need(
+        n.is_finite() && (dimension != Dimension::Temperature || n >= 0.0),
+        "G8",
+        "PREPARATION_MISMATCH",
+    )?;
+    Ok(n)
+}
+fn selected_material(raw: &Value, case: &Value) -> VResult<([f64; 2], Value)> {
+    let fail = |ok| need(ok, "G8", "PREPARATION_MISMATCH");
+    // All authored quantities are normalized by the producer before selection.
+    let mut points = Vec::new();
+    for p in std::iter::once(raw).chain(list(&raw["temperature_points"]).iter()) {
+        for (k, d) in [
+            ("elastic_modulus", Dimension::Stress),
+            ("shear_modulus", Dimension::Stress),
+            ("temperature", Dimension::Temperature),
+            (
+                "thermal_expansion_coefficient",
+                Dimension::ThermalExpansionCoefficient,
+            ),
+        ] {
+            if !p[k].is_null() {
+                unit_value(&p[k], d)?;
+            }
+        }
+    }
+    fail(case["modulus_basis_ref"].is_null() || case["modulus_basis_temperature"].is_null())?;
+    let pair = |p: &Value| -> VResult<[f64; 2]> {
+        let eg = [
+            unit_value(&p["elastic_modulus"], Dimension::Stress)?,
+            unit_value(&p["shear_modulus"], Dimension::Stress)?,
+        ];
+        fail(eg.iter().all(|x| *x > 0.0))?;
+        Ok(eg)
+    };
+    if !case["modulus_basis_ref"].is_null() {
+        let p = list(&raw["temperature_points"])
+            .iter()
+            .find(|p| p["id"] == case["modulus_basis_ref"])
+            .ok_or_else(|| error("G8", "PREPARATION_MISMATCH"))?;
+        return Ok((pair(p)?, json!({"kind":"named_point","point_id":p["id"]})));
+    }
+    if case["modulus_basis_temperature"].is_null() {
+        return Ok((pair(raw)?, json!({"kind":"base"})));
+    }
+    let t = unit_value(&case["modulus_basis_temperature"], Dimension::Temperature)?;
+    for p in list(&raw["temperature_points"]) {
+        if !p["temperature"].is_null() {
+            points.push((unit_value(&p["temperature"], Dimension::Temperature)?, p));
+        }
+    }
+    points.sort_by(|a, b| a.0.total_cmp(&b.0));
+    fail(!points.windows(2).any(|p| p[0].0 == p[1].0))?;
+    let bracket = points
+        .windows(2)
+        .find(|p| p[0].0 < t && t < p[1].0)
+        .ok_or_else(|| error("G8", "PREPARATION_MISMATCH"))?;
+    let (lo, hi) = (bracket[0], bracket[1]);
+    let l = pair(lo.1)?;
+    let h = pair(hi.1)?;
+    let la = unit_value(
+        &lo.1["thermal_expansion_coefficient"],
+        Dimension::ThermalExpansionCoefficient,
+    )?;
+    let ha = unit_value(
+        &hi.1["thermal_expansion_coefficient"],
+        Dimension::ThermalExpansionCoefficient,
+    )?;
+    let fraction = (t - lo.0) / (hi.0 - lo.0);
+    let eg = [
+        l[0] + fraction * (h[0] - l[0]),
+        l[1] + fraction * (h[1] - l[1]),
+    ];
+    fail(eg.iter().all(|x| x.is_finite() && *x > 0.0) && (la + fraction * (ha - la)).is_finite())?;
+    Ok((
+        eg,
+        json!({"kind":"interpolated","lower_point_id":lo.1["id"],"upper_point_id":hi.1["id"],"target_kelvin":bits(t)}),
+    ))
+}
+fn normalized_nodes(model: &Value) -> VResult<Vec<Value>> {
+    let mut out = Vec::new();
+    for (i, n) in list(&model["nodes"]).iter().enumerate() {
+        let mut xyz = Vec::new();
+        for a in ["x", "y", "z"] {
+            xyz.push(bits(unit_value(
+                &json!({"value":n["position"][a],"unit":model["project"]["units"]["length"]}),
+                Dimension::Length,
+            )?));
+        }
+        out.push(json!({"model_index":i,"kernel_node":i,"id":n["id"],"coordinates":xyz}));
+    }
+    Ok(out)
+}
+fn selector(case: &Value) -> VResult<Value> {
+    need(
+        case["modulus_basis_ref"].is_null() || case["modulus_basis_temperature"].is_null(),
+        "G8",
+        "PREPARATION_MISMATCH",
+    )?;
+    Ok(if !case["modulus_basis_ref"].is_null() {
+        json!({"kind":"named","id":case["modulus_basis_ref"]})
+    } else if !case["modulus_basis_temperature"].is_null() {
+        json!({"kind":"temperature","kelvin":bits(unit_value(&case["modulus_basis_temperature"],Dimension::Temperature)?)})
+    } else {
+        json!({"kind":"base"})
+    })
+}
+fn find_node(nodes: &[Value], id: &Value) -> VResult<usize> {
+    nodes
+        .iter()
+        .position(|n| n["id"] == *id)
+        .ok_or_else(|| error("G8", "PREPARATION_MISMATCH"))
+}
+fn dof_index(v: &Value) -> VResult<usize> {
+    DOFS.iter()
+        .position(|d| v == *d)
+        .ok_or_else(|| error("G8", "PREPARATION_MISMATCH"))
+}
+fn g8(source: &Value, inv: &Value) -> VResult {
+    let b = &source["retained_precision"]["body"];
+    let fail = |ok| need(ok, "G8", "PREPARATION_MISMATCH");
+    need(
+        inv.as_object().is_some_and(|o| {
+            o.len() == 2 && o.contains_key("request") && o.contains_key("solver_mode")
+        }) && hash(
+            "source_blocks_invocation_v1",
+            inv,
+            "G8",
+            "INVOCATION_MISMATCH",
+        )? == b["invocation"]["value"],
+        "G8",
+        "INVOCATION_MISMATCH",
+    )?;
+    let req = &inv["request"];
+    let model = &req["model"];
+    let mode = text(&inv["solver_mode"]);
+    need(
+        matches!(mode, "sparse_interactive" | "dense_scrutiny")
+            && model["project"]["id"] == source["model_ref"],
+        "G8",
+        "INVOCATION_MISMATCH",
+    )?;
+    need(
+        matches!(text(&model["schema_version"]), "0.2.0" | "0.3.0")
+            && model["pressure_contract"].is_null()
+            && list(&model["combinations"]).is_empty()
+            && list(&model["components"]).is_empty()
+            && !model
+                .as_object()
+                .is_some_and(|m| m.contains_key("reference_configurations")),
+        "G8",
+        "INVOCATION_MISMATCH",
+    )?;
+    let nodes = list(&model["nodes"]);
+    let pipes = list(&model["pipe_segments"]);
+    let supports = list(&model["supports"]);
+    let cases = list(&model["load_cases"]);
+    let materials = if list(&req["materials"]).is_empty() {
+        list(&model["materials"])
+    } else {
+        list(&req["materials"])
+    };
+    for objects in [nodes, pipes, supports, materials] {
+        let mut seen = BTreeSet::new();
+        for o in objects {
+            fail(!text(&o["id"]).is_empty() && seen.insert(text(&o["id"])))?;
+        }
+    }
+    fail(
+        !nodes.is_empty()
+            && nodes
+                .len()
+                .checked_mul(6)
+                .is_some_and(|n| n <= u32::MAX as usize)
+            && pipes
+                .len()
+                .checked_mul(3)
+                .is_some_and(|n| n <= u32::MAX as usize),
+    )?;
+    let node_maps = normalized_nodes(model)?;
+    let used: BTreeSet<_> = pipes.iter().map(|p| text(&p["material"])).collect();
+    let expected_material_indices: Vec<_> = materials
+        .iter()
+        .enumerate()
+        .filter(|(_, m)| used.contains(text(&m["id"])))
+        .map(|(i, _)| i as u64)
+        .collect();
+    fail(expected_material_indices.len() == used.len())?;
+    let mut expected_selectors: Vec<Value> = Vec::new();
+    let mut case_bases = Vec::new();
+    for (i, case) in cases.iter().enumerate() {
+        let value = selector(case)?;
+        let index = expected_selectors
+            .iter()
+            .position(|s| *s == value)
+            .unwrap_or_else(|| {
+                expected_selectors.push(value.clone());
+                expected_selectors.len() - 1
+            });
+        case_bases.push(index);
+        let o = at(
+            &b["ordinary_attempts"],
+            &json!(i),
+            "G8",
+            "PREPARATION_MISMATCH",
+        )?;
+        fail(o["requested_mode"] == mode && u(&o["material_basis_ref"]) == index as u64)?;
+        let rows = rows_for(source, &b["cases"][i]);
+        let modes: Vec<_> = rows
+            .iter()
+            .filter(|r| r["kind"] == "linear_solver_mode_basis")
+            .collect();
+        if b["cases"][i]["status"] == "selected" {
+            fail(
+                modes.len() == 1
+                    && modes[0]["value"].as_f64()
+                        == Some(if mode == "sparse_interactive" {
+                            1.0
+                        } else {
+                            2.0
+                        }),
+            )?;
+            let parity = rows
+                .iter()
+                .filter(|r| r["kind"] == "sparse_live_path_dense_parity_relative_delta")
+                .count();
+            fail(parity == usize::from(mode == "dense_scrutiny"))?;
+        }
+    }
+    fail(list(&b["material_bases"]).len() == expected_selectors.len())?;
+    for (mi, mb) in list(&b["material_bases"]).iter().enumerate() {
+        fail(
+            u(&mb["index"]) == mi as u64
+                && mb["selector"] == expected_selectors[mi]
+                && mb["case_indices"]
+                    == json!(case_bases
+                        .iter()
+                        .enumerate()
+                        .filter(|(_, b)| **b == mi)
+                        .map(|(i, _)| i)
+                        .collect::<Vec<_>>()),
+        )?;
+        let ci = case_bases
+            .iter()
+            .position(|x| *x == mi)
+            .ok_or_else(|| error("G8", "PREPARATION_MISMATCH"))?;
+        fail(
+            list(&mb["materials"])
+                .iter()
+                .map(|m| u(&m["input_index"]))
+                .eq(expected_material_indices.iter().copied()),
+        )?;
+        for m in list(&mb["materials"]) {
+            let raw = materials
+                .get(u(&m["input_index"]) as usize)
+                .ok_or_else(|| error("G8", "PREPARATION_MISMATCH"))?;
+            let (eg, selection) = selected_material(raw, &cases[ci])?;
+            fail(
+                m["id"] == raw["id"]
+                    && m["selection"] == selection
+                    && m["shear_origin"] == json!({"kind":"explicit_g"})
+                    && m["elastic_modulus"] == bits(eg[0])
+                    && m["shear_modulus"] == bits(eg[1]),
+            )?;
+        }
+    }
+    // Rebuild common topology and the rigid/global-scalar-spring boundary.
+    let mut parent: Vec<usize> = (0..nodes.len()).collect();
+    fn root(p: &[usize], mut i: usize) -> usize {
+        while p[i] != i {
+            i = p[i];
+        }
+        i
+    }
+    for p in pipes {
+        let i = find_node(nodes, &p["from"])?;
+        let j = find_node(nodes, &p["to"])?;
+        fail(i != j)?;
+        let (a, z) = (root(&parent, i), root(&parent, j));
+        parent[a.max(z)] = a.min(z);
+    }
+    let roots: BTreeSet<_> = (0..nodes.len()).map(|i| root(&parent, i)).collect();
+    let mut bodies = Vec::new();
+    for (bi, rt) in roots.into_iter().enumerate() {
+        let ns: Vec<_> = (0..nodes.len())
+            .filter(|i| root(&parent, *i) == rt)
+            .collect();
+        let ms: Vec<_> = pipes
+            .iter()
+            .enumerate()
+            .filter(|(_, p)| find_node(nodes, &p["from"]).is_ok_and(|i| ns.contains(&i)))
+            .map(|(i, _)| i)
+            .collect();
+        bodies.push(json!({"body":bi,"nodes":ns,"members":ms}));
+    }
+    let mut fixed: BTreeMap<(usize, usize), Vec<usize>> = BTreeMap::new();
+    let mut springs = Vec::new();
+    let mut support_groups = Vec::new();
+    let mut support_ids = Vec::new();
+    for (i, raw) in supports.iter().enumerate() {
+        fail(
+            raw["nonlinear"].is_null()
+                && raw["hanger"].is_null()
+                && raw["imposed_displacement"].is_null()
+                && matches!(
+                    text(&raw["family"]),
+                    "" | "anchor" | "guide" | "line_stop" | "vertical_support" | "spring"
+                ),
+        )?;
+        let n = find_node(nodes, &raw["node"])?;
+        let mut restraint = [false; 6];
+        let mut sid = Vec::new();
+        let mut seen = BTreeSet::new();
+        for d in list(&raw["restraints"]) {
+            fail(seen.insert(dof_index(d)?))?;
+        }
+        if raw["family"] == "spring" {
+            let q = &raw["stiffness"];
+            let di = dof_index(&q["dof"])?;
+            fail(seen == BTreeSet::from([di]))?;
+            let k = unit_value(
+                &q["value"],
+                if di < 3 {
+                    Dimension::LinearStiffness
+                } else {
+                    Dimension::RotationalStiffness
+                },
+            )?;
+            fail(k > 0.0)?;
+            let j = springs.len();
+            sid.push(j);
+            springs.push(json!({"boundary_index":j,"kernel_spring":j,"support_index":i,"node":n,"component":DOFS[di],"stiffness":bits(k)}));
+        } else {
+            fail(raw["stiffness"].is_null())?;
+            for di in seen {
+                restraint[di] = true;
+                fail(fixed.insert((n, di), vec![i]).is_none())?;
+            }
+        }
+        support_ids.push(json!({"model_index":i,"kernel_support":i,"id":raw["id"],"node":n}));
+        support_groups.push(
+            json!({"id":i,"node":n,"restrained":restraint,"springs":sid,"directional_springs":[]}),
+        );
+    }
+    let constraints:Vec<_>=fixed.iter().map(|((n,d),ids)|json!({"dof":{"node":n,"component":DOFS[*d]},"value":"0000000000000000","support_indices":ids})).collect();
+    let stations:Vec<_>=pipes.iter().enumerate().flat_map(|(i,_)|[("quarter_1",0.25),("midspan",0.5),("quarter_3",0.75)].into_iter().enumerate().map(move |(j,(location,fraction))|json!({"id":3*i+j,"member":i,"location":location,"fraction":bits(fraction)}))).collect();
+    for (si, s) in list(&b["sources"]).iter().enumerate() {
+        let ci = u(&s["owner"]["case_index"]) as usize;
+        let case = cases
+            .get(ci)
+            .ok_or_else(|| error("G8", "PREPARATION_MISMATCH"))?;
+        let maps = &s["id_maps"];
+        fail(
+            u(&s["index"]) == si as u64
+                && s["owner"]["kind"] == "case"
+                && s["owner"]["case_id"] == case["id"]
+                && u(&s["material_basis_ref"]) == case_bases[ci] as u64,
+        )?;
+        fail(
+            list(&case["pressure_regions"]).is_empty()
+                && case["equivalent_static"].is_null()
+                && !case
+                    .as_object()
+                    .is_some_and(|o| o.contains_key("analysis_state")),
+        )?;
+        fail(
+            maps["nodes"] == json!(node_maps)
+                && maps["support_ids"] == json!(support_ids)
+                && maps["springs"] == json!(springs)
+                && s["supports"] == json!(support_groups)
+                && s["constraints"] == json!(constraints)
+                && s["stations"] == json!(stations)
+                && s["body_membership"] == json!(bodies),
+        )?;
+        fail(
+            list(&maps["members"]).len() == pipes.len()
+                && list(&s["section_terms"]).len() == pipes.len(),
+        )?;
+        let mb = &b["material_bases"][case_bases[ci]];
+        let mut built = BTreeSet::new();
+        for (i, (m, p)) in list(&maps["members"]).iter().zip(pipes).enumerate() {
+            let section = &s["section_terms"][i];
+            fail(
+                u(&m["model_index"]) == i as u64
+                    && u(&m["kernel_member"]) == i as u64
+                    && u(&section["member"]) == i as u64
+                    && m["id"] == p["id"]
+                    && u(&m["built_pipe_index"]) < pipes.len() as u64
+                    && built.insert(u(&m["built_pipe_index"])),
+            )?;
+            fail(
+                u(&m["node_i"]) == find_node(nodes, &p["from"])? as u64
+                    && u(&m["node_j"]) == find_node(nodes, &p["to"])? as u64,
+            )?;
+            fail(
+                m["y_reference"]
+                    == json!([
+                        bits(p["y_reference"]["x"].as_f64().unwrap_or(f64::NAN)),
+                        bits(p["y_reference"]["y"].as_f64().unwrap_or(f64::NAN)),
+                        bits(p["y_reference"]["z"].as_f64().unwrap_or(f64::NAN))
+                    ]),
+            )?;
+            let mat = list(&mb["materials"])
+                .iter()
+                .find(|x| x["input_index"] == m["material_index"])
+                .ok_or_else(|| error("G8", "PREPARATION_MISMATCH"))?;
+            fail(
+                mat["id"] == p["material"]
+                    && m["E"] == mat["elastic_modulus"]
+                    && m["G"] == mat["shear_modulus"],
+            )?;
+            let d = unit_value(&p["section"]["outside_diameter"], Dimension::Length)?;
+            let wall = unit_value(&p["section"]["wall_thickness"], Dimension::Length)?;
+            let tol = if p["section"]["mill_tolerance"].is_null() {
+                0.0
+            } else {
+                unit_value(&p["section"]["mill_tolerance"], Dimension::Length)?
+            };
+            let t = wall - tol;
+            let geo = &section["geometry"];
+            fail(
+                d > 0.0
+                    && t > 0.0
+                    && t < d * 0.5
+                    && geo["route"] == "preview"
+                    && geo["normalized_od"] == bits(d)
+                    && geo["effective_wall"] == bits(t)
+                    && geo["actual_radius"] == bits(d * 0.5)
+                    && section["area"] == m["A_K"]
+                    && geo["actual_second_moment"] == m["Iy_K"]
+                    && m["Iy_K"] == m["Iz_K"]
+                    && geo["actual_polar_moment"] == m["J_K"],
+            )?;
+            for key in ["E", "G", "A_K", "Iy_K", "Iz_K", "J_K"] {
+                fail(f(&m[key]) >= f64::MIN_POSITIVE)?;
+            }
+        }
+        let mut terms = Vec::new();
+        for (i, l) in list(&case["primitive_loads"]).iter().enumerate() {
+            fail(
+                l["target"]["type"] == "node"
+                    && l["category"] != "thermal"
+                    && matches!(text(&l["dimension"]), "force" | "moment"),
+            )?;
+            let node = find_node(nodes, &l["target"]["node"])?;
+            let di = match text(&l["direction"]) {
+                "global_x" | "UX" => 0,
+                "global_y" | "UY" => 1,
+                "global_z" | "UZ" => 2,
+                "rotation_x" | "RX" => 3,
+                "rotation_y" | "RY" => 4,
+                "rotation_z" | "RZ" => 5,
+                _ => return Err(error("G8", "PREPARATION_MISMATCH")),
+            };
+            fail((di < 3) == (l["dimension"] == "force"))?;
+            let value = unit_value(
+                &l["magnitude"],
+                if di < 3 {
+                    Dimension::Force
+                } else {
+                    Dimension::Moment
+                },
+            )?;
+            terms.push(json!({"constructor_ordinal":i,"source_id":l["id"],"primitive_load_index":i,"dof":{"node":node,"component":DOFS[di]},"value":bits(value)}));
+        }
+        terms.sort_by(|a, z| {
+            (
+                u(&a["dof"]["node"]),
+                DOFS.iter().position(|d| a["dof"]["component"] == *d),
+                text(&a["source_id"]).as_bytes(),
+                text(&a["value"]),
+                u(&a["constructor_ordinal"]),
+            )
+                .cmp(&(
+                    u(&z["dof"]["node"]),
+                    DOFS.iter().position(|d| z["dof"]["component"] == *d),
+                    text(&z["source_id"]).as_bytes(),
+                    text(&z["value"]),
+                    u(&z["constructor_ordinal"]),
+                ))
+        });
+        fail(s["nodal_terms"] == json!(terms))?;
+        let body_of = |n: usize| -> VResult<usize> {
+            bodies
+                .iter()
+                .position(|b| list(&b["nodes"]).iter().any(|x| u(x) == n as u64))
+                .ok_or_else(|| error("G8", "PREPARATION_MISMATCH"))
+        };
+        let mut layout = Vec::new();
+        let mut add = |q: Value, k: &str, n: usize, input: bool| -> VResult {
+            layout.push(json!({"index":layout.len(),"quantity":q,"kind":k,"body":body_of(n)?,"input_derived":input}));
+            Ok(())
+        };
+        for n in 0..nodes.len() {
+            for (di, d) in DOFS.iter().enumerate() {
+                add(
+                    json!({"tag":"displacement","dof":{"node":n,"component":d}}),
+                    if di < 3 { "translation" } else { "rotation" },
+                    n,
+                    fixed.contains_key(&(n, di)),
+                )?;
+            }
+        }
+        for n in 0..nodes.len() {
+            add(
+                json!({"tag":"displacement_magnitude","node":n}),
+                "translation",
+                n,
+                false,
+            )?;
+        }
+        for m in list(&maps["members"]) {
+            for end in ["i", "j"] {
+                for (di, d) in DOFS.iter().enumerate() {
+                    add(
+                        json!({"tag":"end_action","member":m["kernel_member"],"end":end,"component":d}),
+                        if di < 3 { "force" } else { "moment" },
+                        u(&m["node_i"]) as usize,
+                        false,
+                    )?;
+                }
+            }
+        }
+        for st in &stations {
+            let m = &maps["members"][u(&st["member"]) as usize];
+            for (di, d) in DOFS.iter().enumerate() {
+                add(
+                    json!({"tag":"station_action","station":st["id"],"component":d}),
+                    if di < 3 { "force" } else { "moment" },
+                    u(&m["node_i"]) as usize,
+                    false,
+                )?;
+            }
+        }
+        for sp in &springs {
+            let di = dof_index(&sp["component"])?;
+            add(
+                json!({"tag":"spring_action","spring":sp["kernel_spring"],"component":sp["component"]}),
+                if di < 3 { "force" } else { "moment" },
+                u(&sp["node"]) as usize,
+                false,
+            )?;
+        }
+        for c in &constraints {
+            let d = &c["dof"];
+            let di = dof_index(&d["component"])?;
+            add(
+                json!({"tag":"reaction","dof":d}),
+                if di < 3 { "force" } else { "moment" },
+                u(&d["node"]) as usize,
+                false,
+            )?;
+        }
+        for sp in &support_groups {
+            for (k, tag) in [
+                ("force", "support_force_magnitude"),
+                ("moment", "support_moment_magnitude"),
+            ] {
+                add(
+                    json!({"tag":tag,"support":sp["id"]}),
+                    k,
+                    u(&sp["node"]) as usize,
+                    false,
+                )?;
+            }
+        }
+        fail(s["layout"] == json!(layout))?;
+        verify_native_source_hashes(s)?;
+    }
+    // Failed prefixes have no new source; their old/helper/new overlap still binds
+    // to the independently normalized request, never to invented source entries.
+    for a in list(&b["product_attempts"]) {
+        let ci = u(&a["owner_ref"]["index"]) as usize;
+        let case = cases
+            .get(ci)
+            .ok_or_else(|| error("G8", "PREPARATION_MISMATCH"))?;
+        let mb = at(
+            &b["material_bases"],
+            &a["material_basis_ref"],
+            "G8",
+            "PREPARATION_MISMATCH",
+        )?;
+        fail(a["material_basis_ref"] == json!(case_bases[ci]))?;
+        let old = list(&a["operational"]["old"]);
+        let new = list(&a["operational"]["new"]);
+        for op in old.iter().chain(new) {
+            fail(u(&op["member"]) < pipes.len() as u64)?;
+        }
+        if a["operational"]["old_coverage"] == "complete" {
+            fail(
+                old.iter()
+                    .map(|o| u(&o["member"]))
+                    .eq(0..pipes.len() as u64),
+            )?;
+        }
+        for (j, pm) in list(&a["preparation"]["members"]).iter().enumerate() {
+            let mi = u(&pm["member"]) as usize;
+            let p = pipes
+                .get(mi)
+                .ok_or_else(|| error("G8", "PREPARATION_MISMATCH"))?;
+            let mat = list(&mb["materials"])
+                .iter()
+                .find(|m| m["id"] == p["material"])
+                .ok_or_else(|| error("G8", "PREPARATION_MISMATCH"))?;
+            let os = list(&pm["old_source"]);
+            let facts = list(&pm["old_facts"]);
+            fail(
+                os[0] == mat["elastic_modulus"]
+                    && os[1] == mat["shear_modulus"]
+                    && os[2] == facts[2]
+                    && os[3] == facts[3]
+                    && os[4] == facts[3]
+                    && os[5] == facts[4],
+            )?;
+            let d = unit_value(&p["section"]["outside_diameter"], Dimension::Length)?;
+            let wall = unit_value(&p["section"]["wall_thickness"], Dimension::Length)?;
+            let tol = if p["section"]["mill_tolerance"].is_null() {
+                0.0
+            } else {
+                unit_value(&p["section"]["mill_tolerance"], Dimension::Length)?
+            };
+            fail(facts[0] == bits(d) && facts[1] == bits(wall - tol))?;
+            let ni = find_node(nodes, &p["from"])?;
+            let nj = find_node(nodes, &p["to"])?;
+            let mut positions = list(&node_maps[ni]["coordinates"]).to_vec();
+            positions.extend_from_slice(list(&node_maps[nj]["coordinates"]));
+            let mut old_inputs = positions.clone();
+            for i in [0, 1, 2, 5] {
+                old_inputs.push(os[i].clone());
+            }
+            fail(old[j]["inputs"] == json!(old_inputs))?;
+            if let Some(op) = new.get(j) {
+                let section = list(&pm["result"]["section"]);
+                fail(section.len() == 5)?;
+                let mut inputs = positions.clone();
+                inputs.extend([
+                    os[0].clone(),
+                    os[1].clone(),
+                    section[0].clone(),
+                    section[2].clone(),
+                ]);
+                fail(op["inputs"] == json!(inputs))?;
+                if !a["source_ref"].is_null() {
+                    let s = at(
+                        &b["sources"],
+                        &a["source_ref"],
+                        "G8",
+                        "PREPARATION_MISMATCH",
+                    )?;
+                    let st = &s["section_terms"][mi];
+                    let m = &s["id_maps"]["members"][mi];
+                    fail(
+                        pm["result"]["section"]
+                            == json!([
+                                st["area"],
+                                st["geometry"]["actual_second_moment"],
+                                st["geometry"]["actual_polar_moment"],
+                                st["section_modulus"],
+                                st["geometry"]["actual_radius"]
+                            ])
+                            && m["A_K"] == section[0]
+                            && m["Iy_K"] == section[1]
+                            && m["Iz_K"] == section[1]
+                            && m["J_K"] == section[2],
+                    )?;
+                    if op["result"]["kind"] == "ready" {
+                        for k in ["length", "axial_stiffness", "torsional_stiffness"] {
+                            fail(op["result"][k] == st[k])?;
+                        }
+                    }
+                }
+                if op["result"]["kind"] == "ready" {
+                    verify_new_operational(op)?;
+                }
+            }
+        }
+        let _ = case;
+    }
+    Ok(())
+}
+fn verify_new_operational(op: &Value) -> VResult {
+    let fail = |ok| need(ok, "G8", "PREPARATION_MISMATCH");
+    let x: Vec<f64> = list(&op["inputs"]).iter().map(f).collect();
+    fail(x.len() == 10 && x[6..].iter().all(|x| *x > 0.0))?;
+    let d = [x[3] - x[0], x[4] - x[1], x[5] - x[2]];
+    fail(d.iter().all(|x| x.is_finite()))?;
+    let squares = [d[0] * d[0], d[1] * d[1], d[2] * d[2]];
+    fail(squares.iter().all(|x| x.is_finite()))?;
+    let xy = squares[0] + squares[1];
+    let xyz = xy + squares[2];
+    let length = xyz.sqrt();
+    fail(xy.is_finite() && xyz.is_finite() && length.is_finite() && length > 1e-12)?;
+    let inv = 1.0 / length;
+    let normalization = d.map(|d| d * inv);
+    let axial_product = x[6] * x[8];
+    let torsional_product = x[7] * x[9];
+    let axial = axial_product / length;
+    let torsion = torsional_product / length;
+    fail(
+        [axial_product, torsional_product, axial, torsion]
+            .iter()
+            .all(|v| v.is_normal()),
+    )?;
+    fail(
+        op["result"]
+            == json!({"kind":"ready","length":bits(length),"axial_stiffness":bits(axial),"torsional_stiffness":bits(torsion),"normalization":normalization.map(bits)}),
+    )
+}
+fn verify_native_source_hashes(s: &Value) -> VResult {
+    use sha2::{Digest, Sha256};
+    fn put(out: &mut Vec<u8>, n: u64) -> VResult {
+        let n = u32::try_from(n).map_err(|_| error("G8", "PREPARATION_MISMATCH"))?;
+        out.extend(n.to_le_bytes());
+        Ok(())
+    }
+    fn val(out: &mut Vec<u8>, v: &Value) -> VResult {
+        out.extend(
+            raw_bits(v)
+                .ok_or_else(|| error("G8", "PREPARATION_MISMATCH"))?
+                .to_le_bytes(),
+        );
+        Ok(())
+    }
+    fn dof(out: &mut Vec<u8>, d: &Value) -> VResult {
+        put(out, u(&d["node"]))?;
+        out.push(dof_index(&d["component"])? as u8);
+        Ok(())
+    }
+    let maps = &s["id_maps"];
+    for (source, expected) in [(true, "kernel_source_sha256"), (false, "stiffness_sha256")] {
+        let mut out = if source {
+            b"K4SRC\x01".to_vec()
+        } else {
+            b"K4STF\x01".to_vec()
+        };
+        put(&mut out, list(&maps["nodes"]).len() as u64)?;
+        for n in list(&maps["nodes"]) {
+            for v in list(&n["coordinates"]) {
+                val(&mut out, v)?;
+            }
+        }
+        put(&mut out, list(&maps["members"]).len() as u64)?;
+        for m in list(&maps["members"]) {
+            for k in ["kernel_member", "node_i", "node_j"] {
+                put(&mut out, u(&m[k]))?;
+            }
+            for k in ["E", "G", "A_K", "Iy_K", "Iz_K", "J_K"] {
+                val(&mut out, &m[k])?;
+            }
+            for v in list(&m["y_reference"]) {
+                val(&mut out, v)?;
+            }
+        }
+        put(&mut out, list(&maps["springs"]).len() as u64)?;
+        for sp in list(&maps["springs"]) {
+            put(&mut out, u(&sp["kernel_spring"]))?;
+            dof(
+                &mut out,
+                &json!({"node":sp["node"],"component":sp["component"]}),
+            )?;
+            val(&mut out, &sp["stiffness"])?;
+        }
+        put(&mut out, 0)?;
+        put(&mut out, list(&s["constraints"]).len() as u64)?;
+        for c in list(&s["constraints"]) {
+            dof(&mut out, &c["dof"])?;
+            if source {
+                val(&mut out, &c["value"])?;
+            }
+        }
+        if source {
+            put(&mut out, list(&s["nodal_terms"]).len() as u64)?;
+            for t in list(&s["nodal_terms"]) {
+                dof(&mut out, &t["dof"])?;
+                let id = text(&t["source_id"]);
+                put(&mut out, id.len() as u64)?;
+                out.extend(id.as_bytes());
+                val(&mut out, &t["value"])?;
+            }
+            put(&mut out, list(&s["stations"]).len() as u64)?;
+            for st in list(&s["stations"]) {
+                put(&mut out, u(&st["id"]))?;
+                put(&mut out, u(&st["member"]))?;
+                val(&mut out, &st["fraction"])?;
+            }
+            put(&mut out, list(&s["supports"]).len() as u64)?;
+            for g in list(&s["supports"]) {
+                put(&mut out, u(&g["id"]))?;
+                put(&mut out, u(&g["node"]))?;
+                for r in list(&g["restrained"]) {
+                    out.push(u8::from(r == true));
+                }
+                put(&mut out, list(&g["springs"]).len() as u64)?;
+                for sp in list(&g["springs"]) {
+                    put(&mut out, u(sp))?;
+                }
+                put(&mut out, 0)?;
+            }
+        }
+        need(
+            s[expected] == format!("{:x}", Sha256::digest(&out)),
+            "G8",
+            "PREPARATION_MISMATCH",
+        )?;
+    }
+    Ok(())
+}
+fn g5_ordinary(source: &Value) -> VResult {
+    let b = &source["retained_precision"]["body"];
+    let fail = |ok| need(ok, "G5", "ATTEMPT_MISMATCH");
+    let ds = list(&source["diagnostics"]);
+    let mut work_refs = BTreeSet::new();
+    for (i, c) in list(&b["cases"]).iter().enumerate() {
+        let o = &b["ordinary_attempts"][i];
+        let cid = &c["basis_ref"]["ref_id"];
+        let quality = &source["numerical_quality"]["cases"][i];
+        let diag = |id: &Value| -> VResult<&Value> {
+            ds.iter()
+                .find(|d| d["id"] == *id && list(&d["affected_refs"]).contains(cid))
+                .ok_or_else(|| error("G5", "ATTEMPT_MISMATCH"))
+        };
+        let mut refs = BTreeSet::new();
+        for id in list(&o["diagnostic_refs"]) {
+            fail(refs.insert(text(id)))?;
+            diag(id)?;
+        }
+        for path in [
+            &o["initial"]["diagnostic_ref"],
+            &o["initial"]["report_diagnostic_ref"],
+            &o["w2"]["diagnostic_ref"],
+            &o["w2"]["report_diagnostic_ref"],
+            &o["formation"]["load_row_finding"]["diagnostic_ref"],
+            &o["formation"]["d5_diagnostic_ref"],
+            &o["legacy_source"]["diagnostic_ref"],
+        ] {
+            if !path.is_null() {
+                diag(path)?;
+                fail(refs.contains(text(path)))?;
+            }
+        }
+        if matches!(text(&c["status"]), "selected" | "not_required") {
+            fail(o["initial"]["kind"] != "not_attempted")?;
+        }
+        if c["status"] == "not_required" {
+            fail(
+                c["product_attempt_ref"].is_null()
+                    && quality["solve_quality"] == "checks_passed"
+                    && o["initial"]["kind"] == "report"
+                    && o["initial"]["outcome"] == "checks_passed"
+                    && o["w2"]["kind"] == "not_triggered",
+            )?;
+        }
+        if o["initial"]["kind"] == "report" && o["w2"]["kind"] == "not_triggered" {
+            fail(o["initial"]["outcome"] == quality["solve_quality"])?;
+        }
+        if o["w2"]["kind"] != "not_triggered" {
+            let trigger = &o["w2"]["trigger"];
+            if trigger["tag"] == "formation" {
+                fail(
+                    o["initial"]["kind"] == "formation_failure"
+                        && trigger["error"] == o["initial"]["error"],
+                )?;
+            } else {
+                fail(
+                    o["initial"]["kind"] == "structural_failure"
+                        && o["initial"]["error"]["tag"] == "range"
+                        && trigger["error"] == o["initial"]["error"],
+                )?;
+            }
+            if o["w2"]["kind"] == "published" {
+                fail(
+                    o["w2"]["force_scale_exponent"]
+                        .as_f64()
+                        .is_some_and(|n| n != 0.0),
+                )?;
+            }
+        }
+        if !o["legacy_source"]["work_ref"].is_null() {
+            let wi = u(&o["legacy_source"]["work_ref"]);
+            let w = at(
+                &b["legacy_source_work"],
+                &o["legacy_source"]["work_ref"],
+                "G5",
+                "ATTEMPT_MISMATCH",
+            )?;
+            fail(work_refs.insert(wi) && u(&w["case_index"]) == i as u64)?;
+        }
+        if c["status"] == "selected" {
+            fail(
+                c["selection"]["rcond_label"]
+                    == "sensitivity to matrix-entry perturbation, not to authored parameters"
+                    && !c["product_attempt_ref"].is_null(),
+            )?;
+        }
+    }
+    fail(work_refs.len() == list(&b["legacy_source_work"]).len())?;
+    Ok(())
+}
+fn project(source: &Value, raw: bool) -> VResult<Value> {
+    let mut projected = source.clone();
+    projected
+        .as_object_mut()
+        .ok_or_else(|| error("G7", "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"))?
+        .remove("retained_precision");
+    projected["producer"]["semantic_contract_id"] =
+        json!("openpipestress.result_semantics/0.3.0/preview-physics-1");
+    projected["formulation_basis"]["profile_id"] = json!("product_preview_mechanics_v1");
+    if raw {
+        for r in projected["results"]
+            .as_array_mut()
+            .ok_or_else(|| error("G7", "SOURCE_PREVIEW_PHYSICS_ARRAY_INVALID"))?
+        {
+            if let Some(o) = r.as_object_mut() {
+                o.remove("recovery_method");
+            }
+        }
+    }
+    Ok(projected)
+}
+// Pending selected wire completion for private native summary coverage. The
+// complete public entry still runs the ordered visible checks; this flag must
+// remain false until that dependency and the frozen shared controls are closed.
+const IMPLEMENTATION_COMPLETE: bool = false;
+/// Validate a raw successor statement against the original request/mode.
+/// Hashes bind the supplied statements; they do not establish producer origin.
+pub fn validate(source: &Value, actual_invocation: Option<&Value>) -> VResult<Validation> {
+    g0(source)?;
+    g1(source, true)?;
+    encoding(&source["retained_precision"], schema())?;
+    conversion_encoding(&source["retained_precision"])?;
+    g3(source, actual_invocation)?;
+    g4(source)?;
+    let body = &source["retained_precision"]["body"];
+    g5_native(body)?;
+    g5_ordinary(source)?;
+    g5_products(source)?;
+    let mut cases = numeric_cases(source)?;
+    g5a(&cases)?;
+    g5b(&mut cases)?;
+    let classifications = g5c(&cases)?;
+    for c in list(&body["cases"]) {
+        for row in rows_for(source, c) {
+            need(
+                if c["status"] == "selected" {
+                    row["recovery_method"] == METHOD
+                } else {
+                    row.get("recovery_method").is_none()
+                },
+                "G6",
+                "ROW_METHOD_MISMATCH",
+            )?;
+        }
+    }
+    let projected = project(source, true)?;
+    crate::semantic_contract::for_source(&projected)
+        .map_err(|code| ValidationError { gate: "G7", code })?;
+    if let Some(inv) = actual_invocation {
+        g8(source, inv)?;
+    }
+    let eligible = IMPLEMENTATION_COMPLETE
+        && actual_invocation.is_some()
+        && source["status"]["mechanics"] == "MECHANICS_SOLVED"
+        && list(&body["cases"])
+            .iter()
+            .all(|c| matches!(text(&c["status"]), "selected" | "not_required"));
+    Ok(Validation {
+        invocation_bound: actual_invocation.is_some(),
+        numerical_eligible: eligible,
+        publication_sha256: text(&body["publication_sha256"]).into(),
+        classifications,
+    })
+}
+/// Metadata-only transport checks cannot reconstitute or verify omitted raw rows.
+/// The publication digest is retained as a statement, never authenticated here.
+pub fn validate_transport_metadata(source: &Value) -> VResult<Validation> {
+    g0(source)?;
+    g1(source, false)?;
+    encoding(&source["retained_precision"], schema())?;
+    conversion_encoding(&source["retained_precision"])?;
+    let projected = project(source, false)?;
+    crate::semantic_contract::for_source_metadata(&projected)
+        .map_err(|code| ValidationError { gate: "G2", code })?;
+    Ok(Validation {
+        invocation_bound: false,
+        numerical_eligible: false,
+        publication_sha256: text(&source["retained_precision"]["body"]["publication_sha256"])
+            .into(),
+        classifications: Vec::new(),
+    })
+}

@@ -1,0 +1,882 @@
+"""Standalone prepared-result statement validation; never producer authentication.
+
+The reader has no solver, native registration, or carrier side effects. Exact
+helpers below implement only the finite binary64 decisions named by the policy.
+"""
+from __future__ import annotations
+
+import json
+import hashlib
+import math
+import re
+import struct
+from functools import lru_cache
+from copy import deepcopy
+from pathlib import Path
+from typing import Any
+
+ROOT = Path(__file__).resolve().parents[2]
+CONTRACT_ID = "openpipestress.result_semantics/0.3.0/preview-physics-retained-1"
+PROFILE = "product_preview_retained_w1a_v2"
+DEFINITION_ID = "RP-PREPARED-ORDINARY-DUAL-v1"
+DEFINITION_HASH = "a7ed7ca0bf0bba6e8b821ca4befa00a0fa9541a83694be8b28ac63e39b1d0349"
+TABLE_HASH = "c74742ce6a936384e00986006e6a0b2e6bb11f190451e876eed9ffa11903c6a8"
+METHOD = "contribution_preserving_multiprecision_v1"
+SAFE = (1 << 53) - 1
+MAX_BITS = 0x7FEFFFFFFFFFFFFF
+# This remains false until the entire standalone gate chain and shared corpus
+# have passed. Draft subchecks are not an eligibility API.
+_IMPLEMENTATION_COMPLETE = False
+
+
+class RetainedPrecisionError(ValueError):
+    def __init__(self, gate: str, code: str):
+        self.gate, self.code = gate, code
+        super().__init__(code)
+
+
+def bits(value: float) -> str:
+    return struct.pack(">d", value).hex()
+
+
+def from_bits(value: str) -> float:
+    if not isinstance(value, str) or re.fullmatch(r"[0-9a-f]{16}", value) is None:
+        raise ValueError("binary64 encoding")
+    number = struct.unpack(">d", bytes.fromhex(value))[0]
+    if not math.isfinite(number):
+        raise ValueError("nonfinite binary64")
+    return number
+
+
+def _positive_parts(value: float) -> tuple[int, int]:
+    if not math.isfinite(value) or value < 0:
+        raise ValueError("nonnegative finite operand required")
+    word = int(bits(value), 16) & ((1 << 63) - 1)
+    exponent, mantissa = word >> 52, word & ((1 << 52) - 1)
+    return (mantissa, -1074) if exponent == 0 else (mantissa | (1 << 52), exponent - 1075)
+
+
+def _ceil_dyadic(mantissa: int, exponent: int) -> float:
+    if mantissa == 0:
+        return 0.0
+    top = mantissa.bit_length() - 1 + exponent
+    quantum = max(top - 52, -1074)
+    shift = quantum - exponent
+    if shift > 0:
+        if shift >= mantissa.bit_length():
+            rounded = 1
+        else:
+            rounded, remainder = divmod(mantissa, 1 << shift)
+            rounded += bool(remainder)
+    else:
+        rounded = mantissa << -shift
+    while rounded >= 1 << 53:
+        # A rounding carry is exactly one bit; no second rounding occurs.
+        assert rounded == 1 << 53
+        rounded >>= 1
+        quantum += 1
+    top = rounded.bit_length() - 1 + quantum
+    if top > 1023:
+        raise ValueError("binary64 upper bound overflows")
+    if top < -1022:
+        word = rounded << (quantum + 1074)
+    else:
+        shift = 53 - rounded.bit_length()
+        word = ((top + 1023) << 52) | ((rounded << shift) - (1 << 52))
+    if word > MAX_BITS:
+        raise ValueError("binary64 upper bound overflows")
+    return struct.unpack(">d", word.to_bytes(8, "big"))[0]
+
+
+def upward_product(a: float, b: float) -> float:
+    ma, ea = _positive_parts(a)
+    mb, eb = _positive_parts(b)
+    return _ceil_dyadic(ma * mb, ea + eb)
+
+
+def upward_small_sum(b0: float, rounding: float) -> float:
+    """One RU64 of the exact b0 + rounding + minimum-subnormal sum."""
+    ma, ea = _positive_parts(b0)
+    mb, eb = _positive_parts(rounding)
+    return _ceil_dyadic((ma << (ea + 1074)) + (mb << (eb + 1074)) + 1, -1074)
+
+
+def _scaled_component(value: float, power: int) -> float:
+    if power not in (53, 64) or not math.isfinite(value) or value < 0:
+        raise ValueError("scaled component input")
+    if value == 0:
+        return 0.0
+    divisor = float(1 << power)
+    nearest = value / divisor
+    back = nearest * divisor
+    return math.nextafter(nearest, math.inf) if back < value else nearest
+
+
+def absolute_bound(value: float, scale: float) -> float:
+    if not math.isfinite(value) or not math.isfinite(scale) or scale < 0:
+        raise ValueError("bound input")
+    # Helpers accept either sign of zero and return canonical +0; G2 still
+    # rejects negative-zero wire scales before any numerical helper is used.
+    if scale == 0:
+        return 0.0
+    b0 = _scaled_component(scale, 64)
+    return upward_small_sum(b0, _scaled_component(abs(value), 53)) if 0 < scale < 2.0 ** -988 else b0
+
+
+def _need(ok: bool, gate: str, suffix: str):
+    if not ok:
+        raise RetainedPrecisionError(gate, suffix if suffix.startswith("SOURCE_") else "RETAINED_PRECISION_" + suffix)
+
+
+@lru_cache(maxsize=1)
+def _schema():
+    return json.loads((ROOT / "schemas/retained_precision_mp_v2.schema.json").read_text())
+
+
+def _same(a, b):
+    if isinstance(a, bool) or isinstance(b, bool):
+        return type(a) is type(b) and a == b
+    if isinstance(a, (int, float)) and isinstance(b, (int, float)):
+        return a == b
+    if type(a) is not type(b): return False
+    if isinstance(a, dict): return a.keys() == b.keys() and all(_same(v, b[k]) for k, v in a.items())
+    if isinstance(a, list): return len(a) == len(b) and all(_same(x, y) for x, y in zip(a, b))
+    return a == b
+
+
+def _shape(value, spec):
+    """Only the vocabulary in this one pinned closed receipt schema; G2 is separate."""
+    if "$ref" in spec: return _shape(value, _schema()["$defs"][spec["$ref"].split("/")[-1]])
+    if "oneOf" in spec: return sum(_shape(value, s) for s in spec["oneOf"]) == 1
+    if "const" in spec and not _same(value, spec["const"]): return False
+    if "enum" in spec and not any(_same(value, v) for v in spec["enum"]): return False
+    kind = spec.get("type")
+    if kind == "object":
+        return (type(value) is dict and set(spec["required"]) <= value.keys()
+                and value.keys() <= spec["properties"].keys()
+                and all(_shape(v, spec["properties"][k]) for k, v in value.items()))
+    if kind == "array":
+        return type(value) is list and len(value) >= spec.get("minItems", 0) and len(value) <= spec.get("maxItems", SAFE) and all(_shape(v, spec["items"]) for v in value)
+    if kind == "string": return type(value) is str and len(value) >= spec.get("minLength", 0)
+    if kind == "boolean": return type(value) is bool
+    if kind == "null": return value is None
+    if kind in ("number", "integer"): return type(value) in (int, float)
+    return True
+
+
+def _encoding(value, spec):
+    if "$ref" in spec: return _encoding(value, _schema()["$defs"][spec["$ref"].split("/")[-1]])
+    if "oneOf" in spec:
+        return _encoding(value, next(s for s in spec["oneOf"] if _shape(value, s)))
+    tag = spec.get("x-rp-encoding")
+    if tag in ("uint", "i32"):
+        _need(type(value) in (int, float) and math.isfinite(value) and int(value) == value and spec["minimum"] <= value <= spec["maximum"] and not (value == 0 and math.copysign(1, value) < 0), "G2", "ENCODING_MISMATCH")
+    if tag in ("bits", "nonnegative_bits"):
+        try: number = from_bits(value)
+        except (ValueError, OverflowError): _need(False, "G2", "ENCODING_MISMATCH")
+        if tag == "nonnegative_bits": _need(number >= 0 and value != "8000000000000000", "G2", "ENCODING_MISMATCH")
+    if tag == "hash": _need(re.fullmatch(r"[0-9a-f]{64}", value) is not None, "G2", "ENCODING_MISMATCH")
+    if spec.get("type") == "object":
+        for k, v in value.items(): _encoding(v, spec["properties"][k])
+    if spec.get("type") == "array":
+        for v in value: _encoding(v, spec["items"])
+
+
+def _hash(domain, payload):
+    from core.serialization.canonical_json.adapter import canonical_sha256_checked_v1
+    return canonical_sha256_checked_v1({"domain": domain, "payload": payload})
+
+
+def _at(items, index, gate="G5", code="PRODUCT_ATTEMPT_MISMATCH"):
+    _need(type(index) in (int, float) and int(index) == index and 0 <= index < len(items), gate, code)
+    return items[int(index)]
+
+
+def _count(record):
+    return int(record["value"]) if record["kind"] == "exact" else None
+
+
+def _exact_work(value):
+    if isinstance(value, dict):
+        if value.get("kind") == "unavailable" and "fault" in value: return False
+        if "sticky_status" in value and value["sticky_status"] != "exact": return False
+        if value.get("lost") is True: return False
+        return all(_exact_work(v) for v in value.values())
+    if isinstance(value, list): return all(_exact_work(v) for v in value)
+    return True
+
+
+def _source_hash(source):
+    return _hash("retained_precision_source_mp_v2", {k: v for k, v in source.items() if k != "index"})
+
+
+def _native_source_encoding(source, include_loads):
+    """Existing K4SRC/K4STF bytes, source.rs:778–905; no solve or exact ledger."""
+    out = bytearray(b"K4SRC\x01" if include_loads else b"K4STF\x01")
+    def uint(value):
+        if type(value) not in (int, float) or int(value) != value or not 0 <= value <= 0xffffffff:
+            raise ValueError("native u32 range")
+        out.extend(struct.pack("<I", int(value)))
+    def value(word):
+        from_bits(word)
+        out.extend(bytes.fromhex(word)[::-1])
+    def dof(record):
+        uint(record["node"])
+        out.append(COMPONENTS.index(record["component"]))
+    maps = source["id_maps"]
+    uint(len(maps["nodes"]))
+    for node in maps["nodes"]:
+        for word in node["coordinates"]: value(word)
+    uint(len(maps["members"]))
+    for member in maps["members"]:
+        for key in ("kernel_member", "node_i", "node_j"): uint(member[key])
+        for key in ("E", "G", "A_K", "Iy_K", "Iz_K", "J_K"): value(member[key])
+        for word in member["y_reference"]: value(word)
+    uint(len(maps["springs"]))
+    for spring in maps["springs"]:
+        uint(spring["kernel_spring"]); dof(spring); value(spring["stiffness"])
+    # The selected ordinary source family has no directional springs.
+    uint(0)
+    uint(len(source["constraints"]))
+    for constraint in source["constraints"]:
+        dof(constraint["dof"])
+        if include_loads: value(constraint["value"])
+    if include_loads:
+        uint(len(source["nodal_terms"]))
+        for term in source["nodal_terms"]:
+            dof(term["dof"])
+            identity = term["source_id"].encode("utf-8")
+            uint(len(identity)); out.extend(identity); value(term["value"])
+        uint(len(source["stations"]))
+        for station in source["stations"]:
+            uint(station["id"]); uint(station["member"]); value(station["fraction"])
+        uint(len(source["supports"]))
+        for support in source["supports"]:
+            uint(support["id"]); uint(support["node"])
+            out.extend(int(restrained) for restrained in support["restrained"])
+            uint(len(support["springs"]))
+            for spring in support["springs"]: uint(spring)
+            if support["directional_springs"]:
+                raise ValueError("unsupported directional spring")
+            uint(0)
+    return bytes(out)
+
+
+def _preparation_payload(a):
+    return {"definition_id": a["definition_id"], "definition_sha256": DEFINITION_HASH,
+            "owner_ref": a["owner_ref"], "ordinary_attempt_ref": a["ordinary_attempt_ref"],
+            "material_basis_ref": a["material_basis_ref"], "members": [
+                {"member": m["member"], "old_source": m["old_source"], "old_facts": m["old_facts"], "section": m["result"]["section"]}
+                for m in a["preparation"]["members"]]}
+
+
+def _g5_native(body):
+    runs = [c["run"] for c in body["cases"] if c.get("run") is not None]
+    runs.sort(key=lambda r: r["id"])
+    fail = lambda ok, code="ATTEMPT_MISMATCH": _need(ok, "G5", code)
+    fail([r["id"] for r in runs] == list(range(len(runs))))
+    fail(body["work"]["execution_order"] == [r["origin"]["owner_ref"] for r in runs])
+    current = 0
+    for call_id, call in enumerate(body["calls"]):
+        fail(call["id"] == call_id and call["invocation_before"] == current, "WORK_MISMATCH")
+        fail(len(call["run_refs"]) == len(call["source_refs"]) == len(call["owner_refs"]))
+        for position, (ri, si, oi) in enumerate(zip(call["run_refs"], call["source_refs"], call["owner_refs"])):
+            run = _at(runs, ri, code="ATTEMPT_MISMATCH")
+            fail(run["origin"] == {"call": call_id, "position": position, "group": run["origin"]["group"], "source_ref": si, "owner_ref": oi})
+            case = _at(body["cases"], oi["index"], code="ATTEMPT_MISMATCH")
+            fail(oi["kind"] == "case" and case.get("run") == run and case.get("source_ref") == si)
+            source = _at(body["sources"], si, code="ATTEMPT_MISMATCH")
+            fail(source["owner"]["case_index"] == oi["index"])
+            fail(run["invocation_before"] == current, "WORK_MISMATCH")
+            records, attempts = run["records"], run["attempts"]
+            fail(len(records) <= 4 and [r["index"] for r in records] == list(range(len(records))))
+            fail([r["precision"] for r in records] == sorted(set(r["precision"] for r in records)))
+            amounts = []
+            for r in records:
+                w = r["work"]
+                fail(r["residual_basis"] == (1024 if r["precision"] == 1024 else r["precision"] + 64))
+                fail(r["storage"]["limbs_per_entry"] == (4 if r["precision"] <= 256 else 8 if r["precision"] == 512 else 16))
+                own = int(w["wide_lme"]) + int(w["exact_sum_lme"])
+                fail(own == w["own_lme"] == sum(map(int, w["own_stages"].values())), "WORK_MISMATCH")
+                fail(w["stop_rule_lme"] == w["own_stages"]["stop_rule"], "WORK_MISMATCH")
+                fail(w["verification_lme"] == sum(w["own_stages"][k] for k in ("scale", "estimate", "charge", "bound", "shift")), "WORK_MISMATCH")
+                fail(w["stop_rule_lme"] + w["verification_lme"] <= own, "WORK_MISMATCH")
+                fail(sum(map(int, w["shared_stages"].values())) == w["shared_lme"] + w["verification_shared_lme"], "WORK_MISMATCH")
+                amounts.append((own + w["shared_lme"] + w["verification_shared_lme"], own + (w["shared_lme"] if w["shared_built_here"] else 0) + (w["verification_shared_lme"] if w["verification_shared_built_here"] else 0)))
+                shared_stages = {k: 0 for k in w["shared_stages"]}
+                for field, part, built, cost in [("shared_build_ref", "shared", w["shared_built_here"], w["shared_lme"]), ("verification_shared_build_ref", "verification_shared", w["verification_shared_built_here"], w["verification_shared_lme"])]:
+                    bi = r[field]
+                    if bi is None: fail(not built and cost == 0, "WORK_MISMATCH"); continue
+                    build = _at(body["builds"], bi, code="WORK_MISMATCH")
+                    fail(build["work"] == cost and build["group"] == run["origin"]["group"], "WORK_MISMATCH")
+                    fail(build["slot"] == ("s" if part == "shared" else "v") + str(r["precision"]), "WORK_MISMATCH")
+                    for key, count in build["stages"].items(): shared_stages[key] += count
+                    if built: fail(build["origin"] == {"call": call_id, "run": ri, "physical_record": r["index"], "phase": part}, "WORK_MISMATCH")
+                    else: fail(build["origin"]["run"] < ri or (build["origin"]["run"] == ri and build["origin"]["physical_record"] < r["index"]), "WORK_MISMATCH")
+                fail(shared_stages == w["shared_stages"], "WORK_MISMATCH")
+            fragments = []
+            for ai, attempt in enumerate(attempts):
+                cr = _at(records, attempt["candidate_record"], code="ATTEMPT_MISMATCH")
+                fail(cr["precision"] == attempt["precision"] and cr["role"] in ("candidate", "verification_then_candidate") and cr["outcome"] == attempt["outcome"])
+                if attempt["origin"]["kind"] == "reused_verification":
+                    prior = _at(attempts[:ai], attempt["origin"]["attempt"], code="ATTEMPT_MISMATCH")
+                    fail(prior["verification"] is not None and prior["verification"]["record"] == cr["index"] and cr["role"] == "verification_then_candidate")
+                else: fail(cr["role"] == "candidate")
+                verification = attempt["verification"]
+                if verification is not None:
+                    vr = _at(records, verification["record"], code="ATTEMPT_MISMATCH")
+                    fail(vr["precision"] == verification["precision"] == 2 * attempt["precision"] and vr["index"] > cr["index"] and vr["role"] in ("verification", "verification_then_candidate"))
+                    if vr["role"] == "verification_then_candidate":
+                        fail(verification["phase"] == "completed" and verification["reason"] is None)
+                    else:
+                        fail((verification["phase"] == "failed") == (vr["outcome"]["kind"] == "failed"))
+                charge = debit = 0
+                for fragment in attempt["charges"]:
+                    pair = (fragment["record"], fragment["part"]); fail(pair not in fragments); fragments.append(pair)
+                    fr = _at(records, fragment["record"], code="ATTEMPT_MISMATCH"); w = fr["work"]
+                    if fragment["part"] == "candidate_stop":
+                        fail(fragment["record"] == cr["index"])
+                        charge += w["stop_rule_lme"]; debit += w["stop_rule_lme"]
+                    else:
+                        fail(fragment["record"] == cr["index"] and cr["role"] == "candidate" or verification is not None and fragment["record"] == verification["record"])
+                        charge += amounts[int(fr["index"])][0] - w["stop_rule_lme"]
+                        debit += amounts[int(fr["index"])][1] - w["stop_rule_lme"]
+                fail(charge == attempt["case_charge"] and debit == attempt["invocation_increment"], "WORK_MISMATCH")
+            required = [(r["index"], "solve_and_verification") for r in records] + [(r["index"], "candidate_stop") for r in records if r["role"] != "verification"]
+            fail(sorted(fragments) == sorted(required))
+            for r in records:
+                if r["role"] == "verification": fail(r["work"]["stop_rule_lme"] == 0, "WORK_MISMATCH")
+            charge = sum(x[0] for x in amounts); debit = sum(x[1] for x in amounts)
+            fail(charge == run["case_charge"] == sum(a["case_charge"] for a in attempts), "WORK_MISMATCH")
+            fail(debit == run["invocation_increment"] == sum(a["invocation_increment"] for a in attempts), "WORK_MISMATCH")
+            current += debit
+            fail(current == run["invocation_after"] and current <= SAFE, "WORK_MISMATCH")
+            if run["kernel_terminal"]["kind"] == "selected":
+                fail(bool(attempts) and attempts[-1]["outcome"]["kind"] == "accepted" and attempts[-1]["verification"] is not None)
+                vr = records[int(attempts[-1]["verification"]["record"])]
+                fail(vr["outcome"]["kind"] == "verified" and attempts[-1]["verification"]["reason"] is None)
+                fail(charge <= body["work"]["case_limit"] and current <= body["work"]["invocation_limit"], "WORK_MISMATCH")
+                if case["status"] == "selected":
+                    s = case["selection"]; last = attempts[-1]
+                    fail(s["precision"] == last["precision"] and s["verification_precision"] == last["verification"]["precision"])
+                    cr = records[int(last["candidate_record"])]
+                    fail(all(s[k] == cr[k] for k in ["pivot_margin_min", "rcond", "residual_worst", "corrections"]))
+                    fail(vr["verification"] is not None)
+                    fail(s["resolution_scale"] == vr["verification"]["resolution"] and s["theta"] == vr["verification"]["theta"])
+                    fail(s["certified_bound"] == [v for v in vr["verification"]["bound"] if v["value"] is not None])
+        fail(call["invocation_after"] == current, "WORK_MISMATCH")
+    fail([r for call in body["calls"] for r in call["run_refs"]] == list(range(len(runs))))
+    fail(body["work"]["charged"] == current, "WORK_MISMATCH")
+    for i, group in enumerate(body["groups"]):
+        fail(group["id"] == i and bool(group["source_refs"]) and group["first_source_ref"] == group["source_refs"][0])
+        for si in group["source_refs"]: fail(_at(body["sources"], si)["stiffness_sha256"] == group["stiffness_sha256"])
+    for i, build in enumerate(body["builds"]):
+        fail(build["id"] == i and build["work"] == sum(map(int, build["stages"].values())), "WORK_MISMATCH")
+    for run in runs:
+        for snapshot in [run["cache_before"], run["cache_after"]]:
+            slots = [x["slot"] for x in snapshot]
+            order = ["s128", "s256", "s512", "s1024", "v256", "v512", "v1024"]
+            fail(slots == sorted(set(slots), key=order.index), "WORK_MISMATCH")
+            for entry in snapshot:
+                b = _at(body["builds"], entry["build"], code="WORK_MISMATCH")
+                fail(b["slot"] == entry["slot"] and b["state"] != "budget_failure" and b["group"] == run["origin"]["group"] and b["origin"]["run"] <= run["id"], "WORK_MISMATCH")
+
+
+def _g5_products(body, rows_by_case):
+    fail = lambda ok: _need(ok, "G5", "PRODUCT_ATTEMPT_MISMATCH")
+    wf = lambda ok: _need(ok, "G5", "WORK_MISMATCH")
+    for ai, a in enumerate(body["product_attempts"]):
+        case = _at(body["cases"], a["owner_ref"]["index"])
+        fail(a["id"] == ai and case["product_attempt_ref"] == ai and a["ordinary_attempt_ref"] == case["ordinary"]["attempt_ref"])
+        if a["run_ref"] is not None: fail(case.get("run") is not None and case["run"]["id"] == a["run_ref"] and a["source_ref"] == case["source_ref"])
+        source = None if a["source_ref"] is None else _at(body["sources"], a["source_ref"])
+        if source is not None: fail(source["owner"]["case_index"] == a["owner_ref"]["index"] and source["material_basis_ref"] == a["material_basis_ref"])
+        pm = a["preparation"]["members"]
+        old, new = a["operational"]["old"], a["operational"]["new"]
+        fail(len(new) <= len(pm) <= len(old))
+        fail([x["member"] for x in pm] == [x["member"] for x in old[:len(pm)]])
+        fail([x["member"] for x in new] == [x["member"] for x in pm[:len(new)]])
+        if a["operational"]["old_coverage"] == "captured_prefix": fail(not pm and not new and a["source_ref"] is None and a["run_ref"] is None and a["result"]["kind"] == "unavailable")
+        if source is not None and a["operational"]["old_coverage"] == "complete": fail(len(old) == len(source["id_maps"]["members"]))
+        props = [(p, side) for p in ("area", "second_moment", "polar_moment", "section_modulus") for side in ("lo", "hi")] + [("radius", "exact")]
+        for j, m in enumerate(pm):
+            ready = m["result"]["kind"] == "prepared"
+            if not ready: fail(j == len(pm) - 1 and j >= len(new))
+            conversions = m["conversions"]
+            fail([(x["property"], x["endpoint"]) for x in conversions] == props[:len(conversions)])
+            if _count(m["work"]["conversions"]) is not None: wf(_count(m["work"]["conversions"]) == len(conversions))
+            if ready:
+                fail(len(conversions) == 9)
+                for k, conversion in enumerate(conversions):
+                    outcome = conversion["outcome"]
+                    idx = k // 2 if k < 8 else 4
+                    fail(outcome["kind"] == "normal" and outcome["value"] == m["result"]["section"][idx] and from_bits(outcome["value"]) >= 2.0 ** -1022)
+        proof = a["proof"]
+        if proof is not None:
+            lanes = proof["lanes"]
+            fail([x["law"] for x in lanes] == ["admitted_k", "annular_source"][:len(lanes)])
+            fail(len(lanes) <= 2)
+            for i, lane in enumerate(lanes):
+                fail((lane["error"] is None) == (lane["state"] == "completed"))
+                if lane["state"] == "failed": fail(i == len(lanes) - 1)
+                calls = _count(lane["work"]["correction"]["calls"])
+                if calls is not None: wf(calls <= 1)
+                wf(lane["work"]["data_capacity"] == lane["work"]["view"]["data_capacity"])
+            if a["stages"]["projection"] != "not_entered": fail(len(lanes) == 2 and all(l["state"] == "completed" for l in lanes))
+            outcomes = proof["projection_outcomes"]
+            wf(_count(proof["projection_conversions"]) in (None, len(outcomes)))
+            fail([x["row_index"] for x in outcomes] == sorted(set(x["row_index"] for x in outcomes)))
+            rows = rows_by_case[case["basis_ref"]["ref_id"]]
+            for x in outcomes:
+                row = _at(rows, x["row_index"])
+                outcome = x["outcome"]
+                if outcome["kind"] == "normal": fail(from_bits(outcome["value"]) == 0 or abs(from_bits(outcome["value"])) >= 2.0 ** -1022)
+                if outcome["kind"] == "subnormal": fail(0 < abs(from_bits(outcome["value"])) < 2.0 ** -1022)
+                if a["result"]["kind"] == "ready":
+                    fail(outcome["kind"] != "overflow")
+                    value = 0.0 if outcome["kind"] == "underflow" else from_bits(outcome["value"])
+                    fail(bits(float(row["value"])) == bits(value if value != 0 else 0.0))
+        if a["result"]["kind"] == "ready":
+            fail(source is not None and a["run_ref"] is not None and case["run"]["kernel_terminal"]["kind"] == "selected")
+            fail(source["preparation"] is not None and source["preparation"]["attempt_ref"] == ai)
+            fail(all(v == "completed" for v in a["stages"].values()) and len(pm) == len(old) == len(new) and all(m["result"]["kind"] == "prepared" for m in pm))
+            fail(a["operational"]["old_coverage"] == "complete" and proof is not None and all(v["kind"] == "passed" for v in proof["checks"].values()))
+            fail(all(m["result"]["kind"] == "ready" for m in new))
+            wf(_exact_work(proof) and all(_exact_work(m["work"]) for m in pm) and a["adapter"]["fault"] is None and not a["g5a_work"]["lost"] and not a["overlay_work"]["lost"])
+            expected = [i for i,r in enumerate(rows_by_case[case["basis_ref"]["ref_id"]]) if r["kind"] not in NONQUANTITY | {"support_reaction_force_magnitude_v2","support_reaction_moment_magnitude_v2","pipe_elastic_normal_stress_maximum_v2"}]
+            fail([x["row_index"] for x in proof["projection_outcomes"]] == expected)
+        if case["status"] == "selected": fail(a["result"]["kind"] == "ready")
+        if case["status"] == "unavailable" and case["reason"]["cause"].get("kind") == "prepared_product_failure":
+            fail(case["reason"]["cause"]["product_attempt_ref"] == ai and a["result"]["kind"] == "unavailable")
+            error = a["result"]["error"]["kind"]
+            run = case.get("run")
+            if error == "preparation" or error == "capture" and run is None: expected = ("source_unavailable", "preparation")
+            elif error == "native" or error == "capture" and run["kernel_terminal"]["kind"] != "selected":
+                fail(run is not None and run["kernel_terminal"]["kind"] in ("unresolved", "refused"))
+                expected = ("kernel_" + run["kernel_terminal"]["kind"], "kernel")
+            else:
+                fail(run is not None and run["kernel_terminal"]["kind"] == "selected")
+                expected = ("facade_certificate", "facade")
+            fail((case["reason"]["code"], case["reason"]["phase"]) == expected)
+
+
+COMPONENTS = ["UX", "UY", "UZ", "RX", "RY", "RZ"]
+NONQUANTITY = {"linear_solver_mode_basis", "sparse_live_path_dense_parity_relative_delta", "modulus_basis_record", "combination_modulus_basis_record"}
+INPUT_KINDS = {"pipe_lame_hoop_stress_v2", "pipe_lame_radial_stress_v2", "pipe_section_pressure_hoop_stress", "pipe_section_pressure_longitudinal_stress", "constant_effort_support_applied_load", "component_user_stress_multiplier_review", "component_user_stiffness_macro_element_review", "constant_effort_user_input_review", "spring_hanger_user_input_review", "expansion_joint_pressure_thrust_load_review"}
+FORCE = {"element_local_axial_force", "element_local_shear_force_y", "element_local_shear_force_z", "pipe_wall_axial_force_v2", "pipe_effective_axial_force_v2", "reaction_resultant", "support_reaction_force_magnitude_v2"}
+MOMENT = {"element_local_torsional_moment", "element_local_bending_moment_y", "element_local_bending_moment_z", "support_reaction_moment_magnitude_v2"}
+STRESS = {"element_local_axial_normal_stress", "element_local_bending_normal_stress_y", "element_local_bending_normal_stress_z", "element_local_torsional_shear_stress", "pipe_axial_membrane_stress_v2", "pipe_elastic_normal_stress_maximum_v2", "component_equal_factor_intensified_bending_stress_v1", "open_formula_stress_summary"}
+
+
+def _normalized(row):
+    y, unit = float(row["value"]), row["unit"]
+    if unit == "mm": return y / 1000.0
+    if unit in ("kN", "kN*m"): return y * 1000.0
+    if unit == "MPa": return y * 1000000.0
+    return y
+
+
+def _row_kind(row):
+    k, u = row["kind"], row["unit"]
+    if k in NONQUANTITY: return "non_quantity"
+    if k in INPUT_KINDS: return "input_derived"
+    if k in {"global_nodal_displacement_x", "global_nodal_displacement_y", "global_nodal_displacement_z", "displacement_magnitude"} and u in ("m", "mm"): return "translation"
+    if k in {"global_nodal_rotation_x", "global_nodal_rotation_y", "global_nodal_rotation_z"} and u == "rad": return "rotation"
+    if k in FORCE and u in ("N", "kN"): return "force"
+    if k in MOMENT and u in ("N*m", "kN*m"): return "moment"
+    if k in ("support_reaction_component_v2", "pipe_wall_endpoint_action_v2"):
+        if u in ("N", "kN"): return "force"
+        if u in ("N*m", "kN*m"): return "moment"
+    if k in STRESS and u in ("Pa", "MPa"): return "stress"
+    return "not_covered"
+
+
+def _row_body(row, source):
+    entity = row["entity_ref"]; maps = source["id_maps"]
+    node = next((x["kernel_node"] for x in maps["nodes"] if x["id"] == entity), None)
+    member = next((x for x in maps["members"] if x["id"] == entity), None)
+    support = next((x for x in maps["support_ids"] if x["id"] == entity), None)
+    if member is not None: node = member["node_i"]
+    if support is not None: node = support["node"]
+    if node is None: return None, member
+    body = next((b["body"] for b in source["body_membership"] if node in b["nodes"]), None)
+    return body, member
+
+
+def _extent(nodes):
+    d = [max(p[j] for p in nodes) - min(p[j] for p in nodes) for j in range(3)]
+    return math.sqrt(((d[0] * d[0]) + (d[1] * d[1])) + (d[2] * d[2]))
+
+
+def _coupled(s, length):
+    tr, ro, fo, mo = s
+    return list(s) if length == 0 else [max(tr, length * ro), max(ro, tr / length), max(fo, mo / length), max(mo, length * fo)]
+
+
+def _g5_numeric(body, rows_by_case):
+    classes = []
+    deferred_class_checks = []
+    for case in body["cases"]:
+        if case["status"] != "selected": continue
+        source = body["sources"][int(case["source_ref"])]; s = case["selection"]
+        rows = rows_by_case[case["basis_ref"]["ref_id"]]
+        bodies = source["body_membership"]; names = ["translation", "rotation", "force", "moment"]
+        need = lambda ok, suffix="SCALE_MISMATCH": _need(ok, "G5a", suffix)
+        need(s["verification_precision"] == 2 * s["precision"] and s["floor_ratio"] == "3dd0000000000000")
+        need(from_bits(s["pivot_margin_min"]) > 0 and from_bits(s["rcond"]) > 0)
+        for key, kinds, limit in [("stop_rule", names, 2.0 ** -64), ("verification_estimate", ["force", "moment"], .25), ("verification_charge", ["force", "moment"], 1.)]:
+            items = s[key]
+            need([(x["body"], x["kind"]) for x in items] == [(b["body"], k) for b in bodies for k in kinds])
+            need(all(0 <= from_bits(x["value"]) <= limit for x in items))
+        for key in ["resolution_scale", "theta", "body_scales"]: need([x["body"] for x in s[key]] == [b["body"] for b in bodies])
+        need(all(0 <= from_bits(x["value"]) <= .5 for x in s["theta"]))
+        need(len({x["body"] for x in s["certified_bound"]}) == len(s["certified_bound"]) and all(x["body"] in [b["body"] for b in bodies] and from_bits(x["value"]) > 0 for x in s["certified_bound"]))
+        need((s["floor"] is not None) == (s["precision"] == 512))
+        if s["floor"] is not None: need([x["body"] for x in s["floor"]] == [b["body"] for b in bodies])
+        prescribed = {(x["node_id"], x["component"]) for x in s["input_derived_dofs"]}
+        need(len(prescribed) == len(s["input_derived_dofs"]))
+        actual = {(source["id_maps"]["nodes"][int(c["dof"]["node"])]["id"], c["dof"]["component"]) for c in source["constraints"]}
+        deferred_class_checks.append((prescribed == actual, "INPUT_DOF_MISMATCH"))
+        values = {}; extents = {}; raw_scales = {}
+        for b in bodies:
+            bi = b["body"]
+            coords = [[from_bits(v) for v in source["id_maps"]["nodes"][int(i)]["coordinates"]] for i in b["nodes"]]
+            _need(bool(coords), "G5b", "SCALE_MISMATCH")
+            extent = _extent(coords); extents[bi] = extent
+            maxima = [0., 0., 0., 0.]
+            for ri, row in enumerate(rows):
+                kind = _row_kind(row); rb, member = _row_body(row, source); n = _normalized(row)
+                _need(math.isfinite(n), "G5b", "SCALE_MISMATCH")
+                component = None
+                if row["kind"].startswith("global_nodal_displacement_"): component = "U" + row["kind"][-1].upper()
+                if row["kind"].startswith("global_nodal_rotation_"): component = "R" + row["kind"][-1].upper()
+                input_derived = component is not None and (row["entity_ref"], component) in prescribed
+                values[ri] = (kind, rb, member, n, input_derived)
+                if rb == bi and kind in names and not input_derived: maxima[names.index(kind)] = max(maxima[names.index(kind)], abs(n))
+            raw_scales[bi] = _coupled(maxima, extent)
+        # G5a resolution sanity and stiffness/displacement lower checks use the
+        # original coupled maxima, before native-p512 floors are applied.
+        for bi, scale in raw_scales.items():
+            resolution = s["resolution_scale"][int(bi)]; e = [from_bits(resolution[k]) for k in ["force", "moment"]]
+            length = extents[bi]
+            hats = e if length == 0 else [max(e[0], e[1] / length), max(e[1], length * e[0])]
+            upper = [x * float.fromhex("0x1.0000000001000p+0") for x in hats]
+            need(upper[0] >= scale[2] and upper[1] >= scale[3])
+            for ri, (kind, rb, member, n, inp) in values.items():
+                if rb == bi and kind in ("force", "moment") and e[0 if kind == "force" else 1] == 0: need(bits(n) == "0000000000000000")
+            for section in source["section_terms"]:
+                member = next(m for m in source["id_maps"]["members"] if m["kernel_member"] == section["member"])
+                if member["node_i"] not in bodies[int(bi)]["nodes"]: continue
+                for k in (0, 1):
+                    total = 0.
+                    for node in (member["node_i"], member["node_j"]):
+                        entity = source["id_maps"]["nodes"][int(node)]["id"]
+                        components = []
+                        for axis in "xyz":
+                            name = "global_nodal_" + ("displacement_" if k == 0 else "rotation_") + axis
+                            hits = [r for r in rows if r["entity_ref"] == entity and r["kind"] == name]
+                            need(len(hits) == 1); components.append(abs(_normalized(hits[0])))
+                        endpoint = (components[0] + components[1]) + components[2]
+                        total = total + endpoint
+                    threshold = (2.0 ** -59) * scale[k]
+                    lower = 0. if total <= threshold else from_bits(section["axial_stiffness" if k == 0 else "torsional_stiffness"]) * (total - (2.0 ** -60) * scale[k])
+                    need(upper[k] >= lower)
+        final_scales = {}
+        for bi, scale in raw_scales.items():
+            result = list(scale)
+            if s["precision"] == 512:
+                floor = s["floor"][int(bi)]
+                result[2] = max(result[2], from_bits(floor["force"])); result[3] = max(result[3], from_bits(floor["moment"]))
+            _need([bits(x) for x in result] == [s["body_scales"][int(bi)][k] for k in names], "G5b", "SCALE_MISMATCH")
+            final_scales[bi] = result
+        _need(len(s["section_terms"]) == len(source["section_terms"]), "G5b", "SECTION_MISMATCH")
+        for left, right in zip(s["section_terms"], source["section_terms"]):
+            member = next(m for m in source["id_maps"]["members"] if m["kernel_member"] == right["member"])
+            _need(left["member_id"] == member["id"] and all(left[k] == right[k] for k in ["area", "section_modulus", "length", "axial_stiffness", "torsional_stiffness"]), "G5b", "SECTION_MISMATCH")
+        absolute = []; uncovered = []
+        for ri, row in enumerate(rows):
+            kind, bi, member, n, inp = values[ri]; scale = None; bound = None
+            if kind == "non_quantity": classification = "non_quantity"
+            elif inp or kind == "input_derived":
+                classification = "input_derived"
+                if inp: deferred_class_checks.append((bits(n) == "0000000000000000", "INPUT_DOF_MISMATCH"))
+            elif kind == "not_covered" or bi is None:
+                classification = "not_covered"; uncovered.append(row["id"])
+            else:
+                if kind in names: scale = final_scales[bi][names.index(kind)]
+                else:
+                    if member is None:
+                        classification = "not_covered"; uncovered.append(row["id"])
+                        classes.append({"result_id":row["id"],"basis_ref":row["basis_ref"],"normalized_bits":bits(n),"scale_bits":None,"class":classification,"bound_bits":None}); continue
+                    section = next((x for x in source["section_terms"] if x["member"] == member["kernel_member"]), None)
+                    _need(section is not None, "G5b", "SECTION_MISMATCH")
+                    k = float.fromhex("0x1.6a09e667f3bcdp+1") if row["kind"] == "pipe_elastic_normal_stress_maximum_v2" else 4. if row["kind"] == "open_formula_stress_summary" else 1.
+                    if row["kind"] == "component_equal_factor_intensified_bending_stress_v1":
+                        _need(False, "G5b", "SECTION_MISMATCH")
+                    scale = (final_scales[bi][2] / from_bits(section["area"])) + (k * (final_scales[bi][3] / from_bits(section["section_modulus"])))
+                _need(math.isfinite(scale) and scale >= 0, "G5b", "SCALE_MISMATCH")
+                if scale >= 2.0 ** -988 and not abs(n) < ((2.0 ** -34) * scale): classification = "relative_verified"
+                else:
+                    classification = "absolute_verified"; bound = absolute_bound(n, scale)
+                    absolute.append({"result_id":row["id"],"bound":bits(bound)})
+            classes.append({"result_id":row["id"],"basis_ref":row["basis_ref"],"normalized_bits":bits(n),"scale_bits":None if scale is None else bits(scale),"class":classification,"bound_bits":None if bound is None else bits(bound)})
+        deferred_class_checks.append((s["absolute_verified"] == absolute and s["not_covered"] == uncovered, "CLASSIFICATION_MISMATCH"))
+    for ok, code in deferred_class_checks:
+        _need(ok, "G5c", code)
+    return classes
+
+
+def _g8(body, source, invocation):
+    need = lambda ok, code="PREPARATION_MISMATCH": _need(ok, "G8", code)
+    try: need(_hash("source_blocks_invocation_v1", invocation) == body["invocation"]["value"], "INVOCATION_MISMATCH")
+    except RetainedPrecisionError: raise
+    except (ValueError, RuntimeError): need(False, "INVOCATION_MISMATCH")
+    request = invocation["request"]; model = request["model"]
+    need(model["project"]["id"] == source["model_ref"], "INVOCATION_MISMATCH")
+    need(model.get("schema_version") in ("0.2.0", "0.3.0") and not model.get("pressure_contract") and not model.get("combinations"), "INVOCATION_MISMATCH")
+    need(not model.get("components"), "INVOCATION_MISMATCH")
+    nodes, pipes, supports = model["nodes"], model["pipe_segments"], model["supports"]
+    need(len({x["id"] for x in nodes}) == len(nodes) and len({x["id"] for x in pipes}) == len(pipes) and len({x["id"] for x in supports}) == len(supports))
+    materials = request.get("materials") or model.get("materials", [])
+    from core.units.adapter import convert_quantities_to_canonical
+    def unit(q, dimension):
+        values = convert_quantities_to_canonical([{"id":"v","value":q["value"],"unit":q["unit"],"dimension":dimension}])
+        return float(values[0]["value"])
+    def selected_material(material, case):
+        base = (unit(material["elastic_modulus"], "stress"), unit(material["shear_modulus"], "stress"))
+        need(all(math.isfinite(v) and v > 0 for v in base))
+        named, temperature = case.get("modulus_basis_ref"), case.get("modulus_basis_temperature")
+        need(named is None or temperature is None)
+        if named is None and temperature is None: return base, {"kind":"base"}
+        points = material.get("temperature_points", [])
+        if named is not None:
+            point = next(p for p in points if p["id"] == named)
+            return (unit(point["elastic_modulus"], "stress"), unit(point["shear_modulus"], "stress")), {"kind":"named_point","point_id":point["id"]}
+        t = unit(temperature, "temperature")
+        ordered = sorted([(unit(p["temperature"], "temperature"), p) for p in points if p.get("temperature") is not None], key=lambda p:p[0])
+        need(len({p[0] for p in ordered}) == len(ordered))
+        lo, hi = next((a,b) for a,b in zip(ordered,ordered[1:]) if a[0] < t < b[0])
+        ratio = (t - lo[0]) / (hi[0] - lo[0])
+        # lib.rs:9258-9333 requires all three source quantities even for the
+        # nonthermal ordinary route, then evaluates lo + f * (hi - lo).
+        need(all(p.get(k) is not None for p in (lo[1],hi[1]) for k in ("elastic_modulus","shear_modulus","thermal_expansion_coefficient")))
+        result = tuple(unit(lo[1][key], "stress") + ratio * (unit(hi[1][key], "stress") - unit(lo[1][key], "stress")) for key in ("elastic_modulus","shear_modulus"))
+        return result, {"kind":"interpolated","lower_point_id":lo[1]["id"],"upper_point_id":hi[1]["id"],"target_kelvin":bits(t)}
+    def operational(inputs):
+        x = [from_bits(v) for v in inputs]; delta = [x[i+3]-x[i] for i in range(3)]
+        length = math.sqrt(((delta[0]*delta[0])+(delta[1]*delta[1]))+(delta[2]*delta[2]))
+        need(length > 1e-12 and math.isfinite(length))
+        inverse = 1.0 / length
+        axial = (x[6]*x[8])/length; torsion = (x[7]*x[9])/length
+        need(math.isfinite(axial) and math.isfinite(torsion) and abs(axial) >= 2.0**-1022 and abs(torsion) >= 2.0**-1022)
+        return {"kind":"ready","length":bits(length),"axial_stiffness":bits(axial),"torsional_stiffness":bits(torsion),"normalization":[bits(d*inverse) for d in delta]}
+    for si, s in enumerate(body["sources"]):
+        need(s["index"] == si and s["owner"]["kind"] == "case")
+        for include_loads, field in ((True, "kernel_source_sha256"), (False, "stiffness_sha256")):
+            need(hashlib.sha256(_native_source_encoding(s, include_loads)).hexdigest() == s[field])
+        ci = int(s["owner"]["case_index"]); case = model["load_cases"][ci]
+        need(case["id"] == s["owner"]["case_id"] and not case.get("pressure_regions") and case.get("equivalent_static") is None)
+        maps = s["id_maps"]
+        need(len(maps["nodes"]) == len(nodes) and len(maps["members"]) == len(pipes) and len(maps["support_ids"]) == len(supports))
+        need(len(nodes)*6 <= 0xffffffff and len(pipes)*3 <= 0xffffffff)
+        for i, (n, raw) in enumerate(zip(maps["nodes"], nodes)):
+            coordinates = [bits(unit({"value":raw["position"][a],"unit":model["project"]["units"]["length"]},"length")) for a in "xyz"]
+            need(n["model_index"] == n["kernel_node"] == i and n["id"] == raw["id"] and n["coordinates"] == coordinates)
+        mb = _at(body["material_bases"], s["material_basis_ref"], "G8", "PREPARATION_MISMATCH")
+        selector = {"kind":"named","id":case["modulus_basis_ref"]} if case.get("modulus_basis_ref") is not None else {"kind":"temperature","kelvin":bits(unit(case["modulus_basis_temperature"],"temperature"))} if case.get("modulus_basis_temperature") is not None else {"kind":"base"}
+        need(mb["selector"] == selector and ci in mb["case_indices"])
+        used = {p["material"] for p in pipes}
+        need([m["input_index"] for m in mb["materials"]] == [i for i,m in enumerate(materials) if m["id"] in used])
+        for m in mb["materials"]:
+            raw = materials[int(m["input_index"])]; pair, selection = selected_material(raw,case)
+            need(m["id"] == raw["id"] and m["selection"] == selection and m["shear_origin"] == {"kind":"explicit_g"} and [m["elastic_modulus"],m["shear_modulus"]] == [bits(v) for v in pair])
+        need(len(s["section_terms"]) == len(pipes))
+        for i, (m, raw, section) in enumerate(zip(maps["members"],pipes,s["section_terms"])):
+            need(m["model_index"] == m["kernel_member"] == section["member"] == i and m["id"] == raw["id"])
+            need(0 <= m["built_pipe_index"] < len(pipes) and m["node_i"] != m["node_j"])
+            need(nodes[int(m["node_i"])]["id"] == raw["from"] and nodes[int(m["node_j"])]["id"] == raw["to"])
+            need(m["y_reference"] == [bits(float(raw["y_reference"][a])) for a in "xyz"])
+            mat = next(x for x in mb["materials"] if x["input_index"] == m["material_index"])
+            need(mat["id"] == raw["material"] and m["E"] == mat["elastic_modulus"] and m["G"] == mat["shear_modulus"])
+            geo=section["geometry"]; d=unit(raw["section"]["outside_diameter"],"length"); wall=unit(raw["section"]["wall_thickness"],"length")
+            tolerance=unit(raw["section"]["mill_tolerance"],"length") if raw["section"].get("mill_tolerance") is not None else 0.
+            need(geo["route"] == "preview" and geo["normalized_od"] == bits(d) and geo["effective_wall"] == bits(wall-tolerance) and 0 < wall-tolerance < d*.5)
+            need(geo["actual_radius"] == bits(d*.5) and section["area"] == m["A_K"] and geo["actual_second_moment"] == m["Iy_K"] == m["Iz_K"] and geo["actual_polar_moment"] == m["J_K"])
+            need(all(from_bits(m[k]) >= 2.0**-1022 for k in ["E","G","A_K","Iy_K","Iz_K","J_K"]) and from_bits(section["section_modulus"]) > 0)
+        need(len({m["built_pipe_index"] for m in maps["members"]}) == len(pipes))
+        # Re-derive topology, not native numerical state.
+        parent=list(range(len(nodes)))
+        def find(x):
+            while parent[x] != x: x=parent[x]
+            return x
+        for m in maps["members"]:
+            a,b=find(int(m["node_i"])),find(int(m["node_j"]));parent[max(a,b)]=min(a,b)
+        roots=sorted({find(i) for i in range(len(nodes))}); expected=[]
+        for bi,rt in enumerate(roots):
+            ns=[i for i in range(len(nodes)) if find(i)==rt]
+            expected.append({"body":bi,"nodes":ns,"members":[m["kernel_member"] for m in maps["members"] if m["node_i"] in ns]})
+        need(s["body_membership"] == expected)
+        fixed={}; expected_springs=[]; expected_supports=[]
+        for i,raw in enumerate(supports):
+            need(raw.get("nonlinear") is None and raw.get("hanger") is None and raw.get("imposed_displacement") is None and raw.get("family") in (None,"anchor","guide","line_stop","vertical_support","spring"))
+            node=next(j for j,n in enumerate(nodes) if n["id"]==raw["node"])
+            need(maps["support_ids"][i] == {"model_index":i,"kernel_support":i,"id":raw["id"],"node":node})
+            restrained=[False]*6; spring_ids=[]
+            if raw.get("family") == "spring":
+                q=raw["stiffness"]; component=q["dof"]; need(component in COMPONENTS)
+                stiffness=unit(q["value"],"linear_stiffness" if COMPONENTS.index(component)<3 else "rotational_stiffness") if isinstance(q.get("value"),dict) else unit(q,"linear_stiffness" if COMPONENTS.index(component)<3 else "rotational_stiffness")
+                need(stiffness > 0); sid=len(expected_springs);spring_ids=[sid]
+                expected_springs.append({"boundary_index":sid,"kernel_spring":sid,"support_index":i,"node":node,"component":component,"stiffness":bits(stiffness)})
+            else:
+                for c in raw["restraints"]:
+                    need(c in COMPONENTS);restrained[COMPONENTS.index(c)]=True;fixed.setdefault((node,c),[]).append(i)
+            expected_supports.append({"id":i,"node":node,"restrained":restrained,"springs":spring_ids,"directional_springs":[]})
+        need(maps["springs"] == expected_springs and s["supports"] == expected_supports)
+        constraints=[{"dof":{"node":n,"component":c},"value":"0000000000000000","support_indices":ids} for (n,c),ids in sorted(fixed.items(),key=lambda x:(x[0][0],COMPONENTS.index(x[0][1])))]
+        need(s["constraints"] == constraints)
+        stations=[{"id":3*i+j,"member":i,"location":location,"fraction":bits(fraction)} for i in range(len(pipes)) for j,(location,fraction) in enumerate(zip(["quarter_1","midspan","quarter_3"],[.25,.5,.75]))]
+        need(s["stations"] == stations)
+        terms=[];directions={**dict(zip(COMPONENTS,COMPONENTS)),**dict(zip(["global_x","global_y","global_z","rotation_x","rotation_y","rotation_z"],COMPONENTS))}
+        for i,load in enumerate(case["primitive_loads"]):
+            need(load["target"]["type"] == "node" and load.get("category") != "thermal" and load["dimension"] in ("force","moment"))
+            node=next(j for j,n in enumerate(nodes) if n["id"]==load["target"]["node"]);component=directions[load["direction"]]
+            need((COMPONENTS.index(component)<3)==(load["dimension"]=="force"))
+            terms.append({"constructor_ordinal":i,"source_id":load["id"],"primitive_load_index":i,"dof":{"node":node,"component":component},"value":bits(unit(load["magnitude"],load["dimension"]))})
+        terms.sort(key=lambda t:(t["dof"]["node"]*6+COMPONENTS.index(t["dof"]["component"]),t["source_id"].encode(),t["value"],t["constructor_ordinal"]))
+        need(s["nodal_terms"] == terms)
+        def body_of(n):return next(b["body"] for b in expected if n in b["nodes"])
+        layout=[]
+        def add(q,k,n,inp=False):layout.append({"index":len(layout),"quantity":q,"kind":k,"body":body_of(n),"input_derived":inp})
+        for n in range(len(nodes)):
+            for j,c in enumerate(COMPONENTS):add({"tag":"displacement","dof":{"node":n,"component":c}},"translation" if j<3 else "rotation",n,(n,c) in fixed)
+        for n in range(len(nodes)):add({"tag":"displacement_magnitude","node":n},"translation",n)
+        for m in maps["members"]:
+            for end in ("i","j"):
+                for j,c in enumerate(COMPONENTS):add({"tag":"end_action","member":m["kernel_member"],"end":end,"component":c},"force" if j<3 else "moment",m["node_i"])
+        for st in stations:
+            m=maps["members"][st["member"]]
+            for j,c in enumerate(COMPONENTS):add({"tag":"station_action","station":st["id"],"component":c},"force" if j<3 else "moment",m["node_i"])
+        for spring in expected_springs:add({"tag":"spring_action","spring":spring["kernel_spring"],"component":spring["component"]},"force" if COMPONENTS.index(spring["component"])<3 else "moment",spring["node"])
+        for constraint in constraints:
+            dof=constraint["dof"];add({"tag":"reaction","dof":dof},"force" if COMPONENTS.index(dof["component"])<3 else "moment",dof["node"])
+        for support in expected_supports:
+            add({"tag":"support_force_magnitude","support":support["id"]},"force",support["node"]);add({"tag":"support_moment_magnitude","support":support["id"]},"moment",support["node"])
+        need(s["layout"] == layout)
+        if s["preparation"] is not None:
+            a=body["product_attempts"][int(s["preparation"]["attempt_ref"])];need(a["source_ref"]==si and s["preparation"]["sha256"]==_hash("retained_precision_preparation_v1",_preparation_payload(a)))
+            for j,m in enumerate(a["preparation"]["members"]):
+                old=m["old_source"];f=m["old_facts"];new=m["result"]["section"];member=maps["members"][j];section=s["section_terms"][j]
+                need(old[:2]==[member["E"],member["G"]] and old[2]==f[2] and old[3]==old[4]==f[3] and old[5]==f[4])
+                need(f[:2]==[section["geometry"]["normalized_od"],section["geometry"]["effective_wall"]])
+                need(new==[section["area"],section["geometry"]["actual_second_moment"],section["geometry"]["actual_polar_moment"],section["section_modulus"],section["geometry"]["actual_radius"]])
+                positions=maps["nodes"][int(member["node_i"])]["coordinates"]+maps["nodes"][int(member["node_j"])]["coordinates"]
+                op_old=a["operational"]["old"][j];need(op_old["inputs"]==positions+[old[i] for i in (0,1,2,5)])
+                if j<len(a["operational"]["new"]):
+                    op=a["operational"]["new"][j];need(op["inputs"]==positions+old[:2]+[new[0],new[2]])
+                    if op["result"]["kind"]=="ready":
+                        need(op["result"]==operational(op["inputs"]))
+                        need(all(op["result"][k]==section[k] for k in ["length","axial_stiffness","torsional_stiffness"]))
+
+
+def validate_retained_precision(source: Any, invocation: Any = None) -> dict[str, Any]:
+    """Ordered reader under implementation; incomplete work cannot admit use."""
+    _need(_IMPLEMENTATION_COMPLETE, "G0", "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+    return _validate_draft(source, invocation)
+
+
+def _validate_draft(source: Any, invocation: Any = None) -> dict[str, Any]:
+    """Unqualified development checks; eligibility remains disabled with the API."""
+    gate="G0"
+    try:
+        _need(type(source) is dict and source.get("producer",{}).get("semantic_contract_id")==CONTRACT_ID and source.get("formulation_basis",{}).get("profile_id")==PROFILE,"G0","SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+        snapshot=deepcopy(source);invocation=deepcopy(invocation);receipt=snapshot.get("retained_precision");schema=_schema()
+        _need(snapshot.get("schema_version")=="0.2.0" and snapshot["producer"].get("component_name")=="open_pipe_stress_product_physics" and snapshot["producer"].get("component_version")=="0.2.0",gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+        definition=json.loads((ROOT/"fixtures/results/retained_precision_prepared_ordinary_v1.json").read_text())
+        _need(_hash("retained_precision_formation_v1",definition)==DEFINITION_HASH,gate,"FORMATION_MISMATCH")
+        table_bytes=(ROOT/"fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json").read_bytes()
+        table=json.loads(table_bytes)
+        inherited_bytes=(ROOT/"fixtures/results/semantic_contract_v0_3_preview_physics_1.json").read_bytes()
+        _need(hashlib.sha256(table_bytes).hexdigest()==TABLE_HASH and hashlib.sha256(inherited_bytes).hexdigest()==table["inherited_semantic_contract_sha256"],gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+        if type(receipt) is dict and type(receipt.get("body")) is dict:
+            b=receipt["body"]
+            for key,value in {"policy":"M03-INTEGRITY-MP-v2","projection_policy":"RP-LOGICAL-ATTEMPTS-v1","work_policy":"W1-LME-20B-60B-v1","facade_policy":"RP-FACADE-SI-v2"}.items():
+                _need(b.get(key)==value,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+            for attempt in b.get("product_attempts",[]) if type(b.get("product_attempts")) is list else []:
+                if type(attempt) is dict:_need(attempt.get("definition_id")==DEFINITION_ID,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+        gate="G1";_need(_shape(receipt,schema) and type(snapshot.get("results")) is list and all(_shape(r,schema["$defs"]["RawRow"]) for r in snapshot["results"]),gate,"RECEIPT_MISMATCH")
+        body=receipt["body"]
+        _need(_hash("retained_precision_receipt_mp_v2",body)==receipt["receipt_sha256"],gate,"RECEIPT_MISMATCH")
+        _need(_hash("retained_precision_publication_mp_v2",{k:v for k,v in snapshot.items() if k!="retained_precision"})==body["publication_sha256"],gate,"RECEIPT_MISMATCH")
+        # Integrity is G1. Invalid reference representation/coverage is left for
+        # G2/G3; only already-addressable records have an integrity comparison.
+        for c in body["cases"]:
+            si=c.get("source_ref")
+            if c["status"]=="selected" and type(si) is int and 0<=si<len(body["sources"]):
+                _need(c["source_identity_sha256"]==_source_hash(body["sources"][si]),gate,"RECEIPT_MISMATCH")
+        for s in body["sources"]:
+            prep=s["preparation"]
+            if prep is not None:
+                ai=prep["attempt_ref"]
+                if type(ai) is int and 0<=ai<len(body["product_attempts"]):
+                    a=body["product_attempts"][ai]
+                    if all(m["result"]["kind"]=="prepared" for m in a["preparation"]["members"]):
+                        _need(prep["sha256"]==_hash("retained_precision_preparation_v1",_preparation_payload(a)),gate,"RECEIPT_MISMATCH")
+        gate="G2";_encoding(receipt,schema)
+        gate="G3";cases=body["cases"];quality=snapshot["numerical_quality"]["cases"]
+        ids=[c["basis_ref"]["ref_id"] for c in cases]
+        _need(len(set(ids))==len(ids) and [c["basis_ref"] for c in cases]==[q["basis_ref"] for q in quality] and any(c["status"]=="selected" for c in cases),gate,"COVERAGE_MISMATCH")
+        if invocation is not None:_need(ids==[c["id"] for c in invocation["request"]["model"]["load_cases"]],gate,"COVERAGE_MISMATCH")
+        rows={cid:[] for cid in ids};seen=set()
+        for row in snapshot["results"]:
+            _need(row["id"] not in seen and row.get("basis_ref",{}).get("ref_type")=="load_case" and row["basis_ref"]["ref_id"] in rows,gate,"COVERAGE_MISMATCH")
+            seen.add(row["id"]);rows[row["basis_ref"]["ref_id"]].append(row)
+        _need(len(body["ordinary_attempts"])==len(cases),gate,"COVERAGE_MISMATCH")
+        refs=[c["product_attempt_ref"] for c in cases if c["product_attempt_ref"] is not None]
+        _need(sorted(refs)==list(range(len(body["product_attempts"]))),gate,"COVERAGE_MISMATCH")
+        for ai,a in enumerate(body["product_attempts"]):
+            _need(a["id"]==ai and a["owner_ref"]["kind"]=="case" and a["owner_ref"]["index"]<len(cases),gate,"COVERAGE_MISMATCH")
+            c=cases[int(a["owner_ref"]["index"])]
+            _need(c["product_attempt_ref"]==ai,gate,"COVERAGE_MISMATCH")
+            old,new=a["operational"]["old"],a["operational"]["new"];pm=a["preparation"]["members"]
+            _need([x["member"] for x in old]==list(range(len(old))) and [x["member"] for x in pm]==list(range(len(pm))) and [x["member"] for x in new]==list(range(len(new))) and len(new)<=len(pm)<=len(old),gate,"COVERAGE_MISMATCH")
+            if a["operational"]["old_coverage"]=="captured_prefix":_need(not pm and not new,gate,"COVERAGE_MISMATCH")
+            if a["proof"] is not None:
+                indices=[x["row_index"] for x in a["proof"]["projection_outcomes"]]
+                _need(indices==sorted(set(indices)) and all(x<len(rows[c["basis_ref"]["ref_id"]]) for x in indices),gate,"COVERAGE_MISMATCH")
+        for i,c in enumerate(cases):
+            _need(c["ordinary"]["attempt_ref"]==i and c["ordinary"]["quality_binding"]=={"kind":"present","index":i} and body["ordinary_attempts"][i]["case_index"]==i and body["ordinary_attempts"][i]["case_id"]==ids[i],gate,"COVERAGE_MISMATCH")
+        gate="G4";diags=snapshot["diagnostics"]
+        _need(len({d["id"] for d in diags})==len(diags) and not any(d["code"]=="SOURCE_BLOCK_RECOVERY_SELECTED" for d in diags),gate,"DIAGNOSTIC_MISMATCH")
+        for i,c in enumerate(cases):
+            cid=ids[i];selected=[d for d in diags if d["code"]=="RETAINED_PRECISION_SELECTED" and cid in d.get("affected_refs",[])];unavailable=[d for d in diags if d["code"]=="RETAINED_PRECISION_UNAVAILABLE" and cid in d.get("affected_refs",[])]
+            _need(len(selected)==int(c["status"]=="selected") and len(unavailable)==int(c["status"]=="unavailable") and all(d["affected_refs"]==[cid] for d in selected+unavailable),gate,"DIAGNOSTIC_MISMATCH")
+            if c["status"]=="unavailable":_need(unavailable[0]["id"]==c["diagnostic_ref"],gate,"DIAGNOSTIC_MISMATCH")
+            if c["status"]=="selected":_need(not any(d["code"]=="SOURCE_BLOCK_RECOVERY_UNAVAILABLE" and cid in d.get("affected_refs",[]) for d in diags),gate,"DIAGNOSTIC_MISMATCH")
+        gate="G5";_g5_native(body);_g5_products(body,rows)
+        for i,c in enumerate(cases):
+            ordinary=body["ordinary_attempts"][i];diagids={d["id"] for d in diags}
+            _need(all(x in diagids for x in ordinary["diagnostic_refs"]),gate,"ATTEMPT_MISMATCH")
+            _need(ordinary["initial"]["kind"]!="not_attempted" if c["status"] in ("selected","not_required") else True,gate,"ATTEMPT_MISMATCH")
+            if ordinary["initial"]["kind"]=="report":_need(ordinary["initial"]["report_diagnostic_ref"] in diagids and ordinary["initial"]["outcome"]==quality[i]["solve_quality"],gate,"ATTEMPT_MISMATCH")
+            if c["status"]=="not_required":_need(c["product_attempt_ref"] is None and quality[i]["solve_quality"]=="checks_passed",gate,"ATTEMPT_MISMATCH")
+            if c["status"]=="selected":
+                _need(c["product_attempt_ref"] is not None and c["source_identity_sha256"]==_source_hash(body["sources"][int(c["source_ref"])]),gate,"PRODUCT_ATTEMPT_MISMATCH")
+                _need(c["selection"]["rcond_label"]=="sensitivity to matrix-entry perturbation, not to authored parameters",gate,"ATTEMPT_MISMATCH")
+        gate="G5a";classes=_g5_numeric(body,rows)
+        gate="G6"
+        for c in cases:
+            for row in rows[c["basis_ref"]["ref_id"]]:_need(row.get("recovery_method")==METHOD if c["status"]=="selected" else "recovery_method" not in row,gate,"ROW_METHOD_MISMATCH")
+        gate="G7";projected=deepcopy(snapshot);del projected["retained_precision"]
+        projected["producer"]["semantic_contract_id"]="openpipestress.result_semantics/0.3.0/preview-physics-1";projected["formulation_basis"]["profile_id"]="product_preview_mechanics_v1"
+        for row in projected["results"]:row.pop("recovery_method",None)
+        from .compatibility import _source_contract
+        try:_source_contract(projected)
+        except ValueError as exc:raise RetainedPrecisionError("G7",str(exc)) from exc
+        gate="G8"
+        if invocation is not None:_g8(body,snapshot,invocation)
+        eligible=_IMPLEMENTATION_COMPLETE and invocation is not None and snapshot["status"]["mechanics"]=="MECHANICS_SOLVED" and all(c["status"] in ("selected","not_required") for c in cases)
+        return {"invocation_bound":invocation is not None,"numerical_eligible":eligible,"standing":"eligible" if eligible else "needs_recompute","publication_sha256":body["publication_sha256"],"classifications":classes}
+    except RetainedPrecisionError:raise
+    except (KeyError,IndexError,TypeError,ValueError,OverflowError,ZeroDivisionError,StopIteration) as exc:
+        code={"G0":"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED","G1":"RETAINED_PRECISION_RECEIPT_MISMATCH","G2":"RETAINED_PRECISION_ENCODING_MISMATCH","G3":"RETAINED_PRECISION_COVERAGE_MISMATCH","G4":"RETAINED_PRECISION_DIAGNOSTIC_MISMATCH","G5":"RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH","G5a":"RETAINED_PRECISION_SCALE_MISMATCH","G6":"RETAINED_PRECISION_ROW_METHOD_MISMATCH","G8":"RETAINED_PRECISION_PREPARATION_MISMATCH"}.get(gate,"SOURCE_PREVIEW_PHYSICS_INVALID")
+        raise RetainedPrecisionError(gate,code) from exc
