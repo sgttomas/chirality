@@ -22,13 +22,13 @@ The numerical candidate now passes. What stands before publication is its public
 
 ## Running now
 
-- I54’s concrete container coefficient table is sealed and preserved. Fresh RV73 reviews its source correspondence, allocation laws and generated-number parser bound before reliance. No complete profile, fit total or allowance is claimed.
-- I51 and RV72 have finished the code checkpoint and released the runtime lane. No compiler or solver job is running; the existing memory guard remains active.
+- I54’s container laws are accepted as partial source proofs after RV73 review. I54 next binds the ordinary-active/suffix memory phases; final profile/build/allowance qualification remains open.
+- I51 next implements truthful typed prepared-attempt evidence, including failed prefixes, under a bounded source grant. Only I51 holds the focused runtime lane; the existing memory guard remains active.
 - Native context-lifetime/backing qualification remains open. Its source investigation is stopped at its stated limit.
 
 ## Next
 
-Review the coefficient evidence, bind the actual numeric admission profile and allowance, then complete producer, readers and carriers as a coherent public package. Existing full invocation/resource and native requirements remain dependencies; the passing private case does not waive them. Bulk evidence remains in scratch with hash/size/location manifests.
+Complete the typed evidence and ordinary-overlap bounds, bind the actual numeric admission profile and allowance, then complete producer, readers and carriers as a coherent public package. Existing full invocation/resource and native requirements remain dependencies; the passing private case does not waive them. Bulk evidence remains in scratch with hash/size/location manifests.
 
 ## Branches and owner decisions
 

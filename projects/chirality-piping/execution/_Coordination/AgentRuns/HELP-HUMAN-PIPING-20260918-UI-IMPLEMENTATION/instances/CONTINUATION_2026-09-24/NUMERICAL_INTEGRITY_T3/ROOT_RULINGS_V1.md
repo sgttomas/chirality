@@ -7121,3 +7121,34 @@ required verified copies with originals retained, and kept the clock unchanged.
 Its final packet must disclose that placement correction. Neither a promising
 table nor a per-artifact layout observation is accepted before independent review.
 No further native/vendor investigation or new serializer is part of this work.
+
+
+## Reviewed container laws accepted; truthful trace and ordinary overlap are next (ROOT, 2026-10-03 UTC)
+
+ROOT accepts the reviewed container laws as partial source proofs because a defensible memory admission decision needs concrete allocation terms.
+
+I54's packet at `f3f6fd1f2e` is independently reviewed by fresh RV73, whose
+MANIFEST seal is `2f7bd352f7`. ROOT read the complete review and verified its
+payload and external evidence hashes/sizes; verification/rv73_direct_container_01
+owns that check. RV73's REVIEW owns the detailed numeric bounds and provenance
+qualifications. The hashbrown source correspondence is accepted as its stated
+inference. Private layouts remain observations of one artifact until final consumer
+correspondence is established. No complete profile, M, stack/error composition
+or public execution is accepted. The scratch-anchor correction, preserved original
+copies and reviewer clock-label correction remain disclosed in the sealed records.
+
+Continue with two bounded, coherent milestones: I51 implements truthful typed
+preparation/proof/operational evidence, including actual failed prefixes, for the
+selected corrected C3 contract; I54 binds ordinary-active/suffix memory phases
+that must be included before capture. The exact scopes and clocks are in
+BRIEFS/I51_PREPARED_TRACE.md and BRIEFS/I54_DIRECT_ORDINARY_BOUND.md. I51 alone has
+the focused Cargo lane; I54 reads immutable source. No production profile or
+public W1 activation follows. Neither task may build host tooling or broaden into
+native framework investigation. Fresh complete-source review precedes code fan-in.
+
+The named private numerical case already passes; the next work closes evidence
+and admission dependencies of its first public publication. Receipts/readers,
+actual profile/build/allowance qualification, full invocation/combination/exact
+scope, native Current and every standing PR gate remain. Records stay compact,
+bulk evidence stays external, and the public PR will be cut separately from main
+under the existing packaging ruling. This is no main merge or completion claim.
