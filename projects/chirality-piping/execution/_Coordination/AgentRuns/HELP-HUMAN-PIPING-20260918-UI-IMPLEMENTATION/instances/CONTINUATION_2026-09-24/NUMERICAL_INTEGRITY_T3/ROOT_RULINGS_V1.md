@@ -6167,3 +6167,105 @@ no cargo/rustc. gh reconfirms A1 PR1070 and K6c PR1071 merged at their recorded
 commits. Fetch found main381be775ae9b, App PR1073; its delta from a533dc2d67bc is
 confined to projects/chirality-app-v4. No Piping or instruction basis changed;
 ROOT will join that unrelated update at the next clean boundary.
+
+
+## Readable recovery summary and F2a branch roles (ROOT, 2026-10-03 UTC)
+
+ROOT is making the next F2a publishing milestone and branch boundaries explicit so numerical progress can be judged without reconstructing every component record.
+
+This applies the owner-supplied advice from the previous T3 ROOT prospectively.
+It changes execution planning and record presentation, not a numerical contract,
+standing gate or instruction file. Start with the short
+[ROOT_CURRENT](RESUME_2026-09-30/ROOT_CURRENT.md) and
+[glossary](RESUME_2026-09-30/GLOSSARY.md). Earlier sealed evidence and rulings remain
+historical; this summary does not replace their qualifications.
+
+**Recovery from 2026-09-30 to now:**
+
+- The audit identified a real defect in the published-scale proof. C17 supplied
+  an actual false-publication witness, ending that search. A fresh independent
+  design re-derivation preceded the correction. A1 reached main in PR1070 at
+  `3a0251874d`, after its required gates. The audit finding is closed on that route.
+- The earlier response PR1066 was closed without merging. The owner caught and
+  stopped its tooling drift. Its material remains selectively usable evidence,
+  not accepted numerical remediation. Preserved raw Mac evidence was not pruned.
+- K6c reached main in PR1071 at `49034a940f`. Its conditional accounting and
+  finite measurements retain their explicit limits. The owner-approved scoped
+  KF3 comparison does not establish historic published-value equality.
+- F2a, the retained-precision product-facade slice, is still incomplete. Reviewed
+  arithmetic, source-certificate and actual product-capture components are
+  integrated locally. Every complete private witness still refuses; none is a
+  successful public F2a publication. Correct refusal is evidence, not availability.
+- ROOT caught incomplete material-truth coverage before selecting a further
+  tightening method. The original comparisons and shared-radius proof survive
+  at their stated narrower scopes. The author corrections and same-reviewer
+  backchecks now determine the complete truth taxonomy. No public source
+  interpretation, value, predicate or allowance was changed.
+
+**Branch roles are now explicit.** `codex/piping-numerical-integrity-20260926`
+is the F2a **code integration branch**. It also retains development records, so
+it must never be submitted directly as a records-only PR. ROOT verified its
+non-execution diff against fetched main is nonempty. The component branch
+`codex/piping-f2a-work-exactness-20261002` supplies bounded reviewed changes.
+No current branch is designated a clean records-only PR branch.
+
+Any records PR will start from current main and contain only the deliberately
+selected execution-record paths. Before opening it, this command must print
+nothing, using that actual candidate branch:
+
+```sh
+git diff --stat origin/main...<records-branch> -- . ':!projects/chirality-piping/execution'
+```
+
+No local code fan-in implies main acceptance. F2a code reaches main through its
+own product PR, with independent review covering the actual candidate, hosted
+CI and full-SHA dispatch, exact-final-head Mac DEC-025, GEN-8, T9 and the both-entry
+gate. The existing immediate main-movement check and post-merge records remain.
+
+**First publishing target:** the named synthetic skew cantilever
+`RF-SKEW-T-CANT-OFF-122-r1e-04`, through the actual captured entry in both solver
+modes, publishing under `M03-INTEGRITY-MP-v2` with the unchanged strict predicates
+and independent reference agreement. The accepted typed entry has no actual
+request capture and keeps its ordinary route; its both-entry accuracy/standing
+gates remain mandatory. This target does not grant a new custody-bearing API.
+I48's RETURN table and I30's checkpoint-0 PLAN section2 provide these existing
+input and entry boundaries. Current pressure-control tests retain the named
+`NUMERICAL_INTEGRITY_UNRESOLVED` refusal and required no-pressure publication;
+no broader PHYS-R4 decision is made here.
+
+This target is planned, not demonstrated. The next component assignment begins
+by binding the actual authorable input, natural routing, complete output roster
+and numerical obstacle. If a required-publication conflict is established, bring
+reviewed options to the owner rather than redefine success. Certificate tightening
+is deferred unless it advances this target. Use one implementer through bounded
+checkpoints for the coherent component, retain its reviewer for corrections,
+and obtain fresh independent review of the final PR. No implementation grant is
+created by this planning paragraph.
+
+New evidence packaging will be proportionate: commit readable summaries, decisive
+outputs, small inputs/scripts and manifests of SHA-256, byte size and preserved
+location. Keep bulk logs/case dumps in the existing scratch/archive area unless
+an owner requirement calls for Git. Every future PR body will state committed
+record-file count and bytes with a reason. No mass evidence migration, pruning,
+archive tooling or rewrite of sealed packets is commissioned.
+
+
+## UX correction and conservative UZ witness accepted (ROOT, 2026-10-03 UTC)
+
+ROOT accepts the corrected UX diagnosis and one genuinely conservative UZ refusal, so further work cannot mistake a real accuracy miss for certificate overestimation.
+
+ROOT read the full RV64 corrective RETURN and verified its sealed payloads,
+preserved at `1c7902c73a`. The reviewed I49 addendum is at `4987f8290f`. RV64's
+sections “Existing cover and the corrected UX conclusion” and “UZ is conservative
+throughout the positive cover” independently establish the different outcomes:
+resolved-modulus/source-annulus UX genuinely misses both sharper allowances;
+actual UZ has exact zero truth throughout the full positive cover but the shared
+certificate radius forces refusal. The old inflation proof and its narrower
+point comparisons remain valid. The original tightening-only UX recommendation
+is withdrawn, without rewriting its sealed historical record.
+
+No numerical source, published value, scale, predicate or source interpretation
+changes. No private endpoint or radius was reconstructed. This accepts the
+evidence correction, not a new method, zero recognizer, public availability or
+F2a completion. RV62's separate all-row backcheck remains open. A refinement is
+selected only if its reviewed contribution advances the named publishing target.
