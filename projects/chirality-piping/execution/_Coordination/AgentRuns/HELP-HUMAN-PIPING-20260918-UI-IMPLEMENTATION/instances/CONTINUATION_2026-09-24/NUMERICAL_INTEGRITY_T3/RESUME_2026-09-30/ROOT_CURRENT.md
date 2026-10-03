@@ -22,7 +22,7 @@ The numerical candidate now passes. What stands before publication is its public
 
 ## Running now
 
-- I54 derives the source/build-bound container coefficients for the first direct memory profile. A usable table is drafted; exact provenance and numeric-parser limits are being finalized. Table due 15:38:26Z, seal 15:58:26Z; independent review precedes reliance.
+- I54’s concrete container coefficient table is sealed and preserved. Fresh RV73 reviews its source correspondence, allocation laws and generated-number parser bound before reliance. No complete profile, fit total or allowance is claimed.
 - I51 and RV72 have finished the code checkpoint and released the runtime lane. No compiler or solver job is running; the existing memory guard remains active.
 - Native context-lifetime/backing qualification remains open. Its source investigation is stopped at its stated limit.
 
