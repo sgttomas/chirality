@@ -21,6 +21,7 @@ The numerical candidate now passes. What stands before publication is its public
 ## Running now
 
 - I51 joins the accepted producer, count/ownership evidence and selected contract into a concrete allocation/admission and receipt transaction design for the first generic single-case publication. Initial interface due 13:40:25Z; complete proposal 14:15:25Z; seal 14:50:25Z. No code or runtime is granted yet.
+- Fresh RV71 reviews the frozen initial admission interface while I51 completes the proposal. Final review must cover the sealed final packet; no moving-draft acceptance.
 - The corrected first-party native caller interface is independently reviewed and accepted only conditionally. The finite native context-lifetime/backing premise remains open; that source investigation is stopped at its stated limit. No host tooling is assigned.
 - No compiler or solver job is running. The existing memory guard remains active.
 
