@@ -423,19 +423,40 @@ fn preparation_payload(a: &Value) -> VResult<Value> {
         json!({"definition_id":a["definition_id"],"definition_sha256":DEFINITION_HASH,"owner_ref":a["owner_ref"],"ordinary_attempt_ref":a["ordinary_attempt_ref"],"material_basis_ref":a["material_basis_ref"],"members":members}),
     )
 }
+/// The bound inherited preview table and this successor table, as bytes.
+const TABLE_BYTES: &[u8] = include_bytes!(
+    "../../../../fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json"
+);
+const INHERITED_TABLE_BYTES: &[u8] =
+    include_bytes!("../../../../fixtures/results/semantic_contract_v0_3_preview_physics_1.json");
+const TABLE_HASH: &str = "c74742ce6a936384e00986006e6a0b2e6bb11f190451e876eed9ffa11903c6a8";
+fn sha256_hex(bytes: &[u8]) -> String {
+    use sha2::{Digest, Sha256};
+    Sha256::digest(bytes)
+        .iter()
+        .map(|b| format!("{b:02x}"))
+        .collect()
+}
+/// D2 (C1/C3 G0 rows): exactly the producer identity (component and schema
+/// versions), the definition and inherited-table hashes over the bound
+/// bytes, `receipt_version`, the policy ids, the canonicalization profile and
+/// the 20B/60B thresholds. A G0 field that is absent or of the wrong type
+/// fails G0; every other shape defect waits for G1.
 fn g0(source: &Value) -> VResult {
-    need(
+    let unsupported = |ok| need(ok, "G0", "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED");
+    unsupported(
         source.is_object()
             && source["producer"]["semantic_contract_id"] == CONTRACT_ID
             && source["formulation_basis"]["profile_id"] == PROFILE,
-        "G0",
-        "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
     )?;
-    need(
+    unsupported(
+        source["schema_version"] == "0.2.0"
+            && source["producer"]["component_name"] == "open_pipe_stress_product_physics"
+            && source["producer"]["component_version"] == "0.2.0",
+    )?;
+    unsupported(
         table()["semantic_contract_id"] == CONTRACT_ID
             && table()["formulation_profile_id"] == PROFILE,
-        "G0",
-        "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
     )?;
     need(
         hash(
@@ -449,7 +470,12 @@ fn g0(source: &Value) -> VResult {
         "G0",
         "FORMATION_MISMATCH",
     )?;
+    unsupported(
+        sha256_hex(TABLE_BYTES) == TABLE_HASH
+            && table()["inherited_semantic_contract_sha256"] == sha256_hex(INHERITED_TABLE_BYTES),
+    )?;
     let b = &source["retained_precision"]["body"];
+    unsupported(b["receipt_version"].as_u64() == Some(1) && b["receipt_version"].is_u64())?;
     for (key, value) in [
         ("policy", "M03-INTEGRITY-MP-v2"),
         ("projection_policy", "RP-LOGICAL-ATTEMPTS-v1"),
@@ -457,25 +483,17 @@ fn g0(source: &Value) -> VResult {
         ("facade_policy", "RP-FACADE-SI-v2"),
         ("canonicalization", "openpipestress_jcs_ijson_v1"),
     ] {
-        if let Some(v) = b.get(key) {
-            need(v == value, "G0", "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")?;
-        }
+        unsupported(b[key] == value)?;
     }
     for (key, want) in [
         ("case_limit", 20_000_000_000u64),
         ("invocation_limit", 60_000_000_000),
     ] {
-        if let Some(v) = b["work"].get(key) {
-            need(u(v) == want, "G0", "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")?;
-        }
+        unsupported(b["work"][key].as_u64() == Some(want))?;
     }
     for a in list(&b["product_attempts"]) {
-        if let Some(id) = a.get("definition_id") {
-            need(
-                id == DEFINITION_ID,
-                "G0",
-                "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
-            )?;
+        if a.is_object() {
+            unsupported(a["definition_id"] == DEFINITION_ID)?;
         }
     }
     Ok(())
@@ -606,11 +624,12 @@ fn g3(source: &Value, inv: Option<&Value>) -> VResult {
             )?;
             fail(u(&a["id"]) == ai && a["owner_ref"] == json!({"kind":"case","index":i}))?;
         }
+        // D1: a Run's id is its execution-order position; the Run's own
+        // origin owner/source are G5 class-1 checks.
         if let Some(r) = c.get("run").filter(|r| !r.is_null()) {
             fail(
-                runs.insert(u(&r["id"]), r["origin"]["owner_ref"].clone())
-                    .is_none()
-                    && r["origin"]["owner_ref"] == json!({"kind":"case","index":i}),
+                runs.insert(u(&r["id"]), json!({"kind":"case","index":i}))
+                    .is_none(),
             )?;
         }
     }
@@ -645,27 +664,30 @@ fn g3(source: &Value, inv: Option<&Value>) -> VResult {
         let old = list(&a["operational"]["old"]);
         let pm = list(&a["preparation"]["members"]);
         let new = list(&a["operational"]["new"]);
-        fail(new.len() <= pm.len() && pm.len() <= old.len())?;
-        let mut members = BTreeSet::new();
-        for x in old {
-            fail(members.insert(u(&x["member"])))?;
-        }
+        // D1 (C2:98; F1:78-84, 101, 130; PP:1238, 1296): old, prepared and new
+        // member ids are exactly 0..len-1 in native order, so prepared and new
+        // are prefixes of old.
         fail(
-            pm.iter()
-                .map(|m| &m["member"])
-                .eq(old.iter().take(pm.len()).map(|m| &m["member"]))
-                && new
-                    .iter()
-                    .map(|m| &m["member"])
-                    .eq(pm.iter().take(new.len()).map(|m| &m["member"])),
+            new.len() <= pm.len()
+                && pm.len() <= old.len()
+                && old.iter().map(|m| u(&m["member"])).eq(0..old.len() as u64)
+                && pm.iter().map(|m| u(&m["member"])).eq(0..pm.len() as u64)
+                && new.iter().map(|m| u(&m["member"])).eq(0..new.len() as u64),
         )?;
+        // D1: a captured prefix has no prepared or new members (G3); its null
+        // source/run and unavailable result are C3 references (G5).
         if a["operational"]["old_coverage"] == "captured_prefix" {
+            fail(pm.is_empty() && new.is_empty())?;
+        }
+        // D1 (checkpoint-A ruling): an unsourced complete old inventory has the
+        // member count of every CaseSource in the receipt (one model); with no
+        // CaseSource, G8 compares it with the invocation. Emptiness alone is
+        // not rejected (no native rejection is cited).
+        if a["source_ref"].is_null() && a["operational"]["old_coverage"] == "complete" {
             fail(
-                pm.is_empty()
-                    && new.is_empty()
-                    && a["source_ref"].is_null()
-                    && a["run_ref"].is_null()
-                    && a["result"]["kind"] == "unavailable",
+                list(&b["sources"])
+                    .iter()
+                    .all(|s| list(&s["id_maps"]["members"]).len() == old.len()),
             )?;
         }
         if !a["source_ref"].is_null() {
@@ -785,12 +807,27 @@ fn stages_sum(v: &Value) -> VResult<u64> {
 }
 fn g5_native(b: &Value) -> VResult {
     let af = |ok| need(ok, "G5", "ATTEMPT_MISMATCH");
-    let wf = |ok| need(ok, "G5", "WORK_MISMATCH");
+    // D3 (C3:304 convention): native WORK predicates are deferred to the end
+    // of class 1, so a class containing an ATTEMPT defect reports ATTEMPT.
+    let work_ok = std::cell::Cell::new(true);
+    let wf = |ok: bool| -> VResult {
+        if !ok {
+            work_ok.set(false);
+        }
+        Ok(())
+    };
+    let tw = |r: VResult<u64>| -> u64 {
+        r.unwrap_or_else(|_| {
+            work_ok.set(false);
+            u64::MAX
+        })
+    };
     let mut runs: Vec<_> = list(&b["cases"])
         .iter()
-        .filter_map(|c| c.get("run").filter(|r| !r.is_null()).map(|r| (c, r)))
+        .enumerate()
+        .filter_map(|(ci, c)| c.get("run").filter(|r| !r.is_null()).map(|r| (ci, c, r)))
         .collect();
-    runs.sort_by_key(|(_, r)| u(&r["id"]));
+    runs.sort_by_key(|(_, _, r)| u(&r["id"]));
     let mut current = 0;
     let mut run_order = Vec::new();
     let mut builds_seen = BTreeSet::new();
@@ -810,7 +847,7 @@ fn g5_native(b: &Value) -> VResult {
         group_caches.insert(i as u64, BTreeMap::new());
     }
     for (i, build) in list(&b["builds"]).iter().enumerate() {
-        wf(u(&build["id"]) == i as u64 && u(&build["work"]) == stages_sum(&build["stages"])?)?;
+        wf(u(&build["id"]) == i as u64 && u(&build["work"]) == tw(stages_sum(&build["stages"])))?;
     }
     for (call_id, call) in list(&b["calls"]).iter().enumerate() {
         af(u(&call["id"]) == call_id as u64
@@ -818,7 +855,7 @@ fn g5_native(b: &Value) -> VResult {
             && list(&call["run_refs"]).len() == list(&call["owner_refs"]).len())?;
         wf(u(&call["invocation_before"]) == current)?;
         for (position, ri) in list(&call["run_refs"]).iter().enumerate() {
-            let (c, r) = runs
+            let (ci, c, r) = runs
                 .get(u(ri) as usize)
                 .copied()
                 .ok_or_else(|| error("G5", "ATTEMPT_MISMATCH"))?;
@@ -828,6 +865,7 @@ fn g5_native(b: &Value) -> VResult {
             af(r["origin"]
                 == json!({"call":call_id,"position":position,"group":r["origin"]["group"],"source_ref":si,"owner_ref":oi})
                 && r["origin"]["owner_ref"]["kind"] == "case"
+                && *oi == json!({"kind":"case","index":ci})
                 && c["source_ref"] == *si)?;
             let src = at(&b["sources"], si, "G5", "ATTEMPT_MISMATCH")?;
             af(src["owner"]["case_index"] == oi["index"]
@@ -881,8 +919,12 @@ fn g5_native(b: &Value) -> VResult {
                 prior_precision = p;
                 af(u(&record["corrections"]) <= 3)?;
                 if record["role"] == "candidate" {
+                    // D5a (C1:105; adaptive.rs:4076-4079, 4333): a candidate record
+                    // has no verification, no verification shared build and no
+                    // verification-pass work.
                     af(record["verification"].is_null()
                         && record["verification_shared_build_ref"].is_null()
+                        && u(&record["work"]["verification_lme"]) == 0
                         && matches!(
                             text(&record["outcome"]["kind"]),
                             "accepted" | "rejected" | "failed"
@@ -892,6 +934,24 @@ fn g5_native(b: &Value) -> VResult {
                         text(&record["outcome"]["kind"]),
                         "verified" | "solved" | "failed"
                     ))?;
+                    // D5b (adaptive.rs:4576-4611, 4377): an escalating stop on a failed
+                    // verification is a solve failure, so the verification pass never
+                    // ran: no report and no verification-pass work.
+                    if record["outcome"]["kind"] == "failed" && escalating(&record["outcome"]["reason"]) {
+                        af(record["verification"].is_null()
+                            && u(&record["work"]["verification_lme"]) == 0)?;
+                    }
+                }
+                // D5d (C2:22, :54; C1:114): a stop-rule reason names a layout row of
+                // the Run's source with the same body and kind.
+                let reason = &record["outcome"]["reason"];
+                if reason["tag"] == "stop_rule" {
+                    let layout = list(&at(&b["sources"], si, "G5", "ATTEMPT_MISMATCH")?["layout"]);
+                    af(layout.iter().any(|row| {
+                        row["quantity"] == reason["quantity"]
+                            && row["body"] == reason["body"]
+                            && row["kind"] == reason["kind"]
+                    }))?;
                 }
                 af(record["storage"]["limbs_per_entry"]
                     == json!(if p <= 256 {
@@ -902,19 +962,19 @@ fn g5_native(b: &Value) -> VResult {
                         16
                     }))?;
                 let w = &record["work"];
-                let own = sum([u(&w["wide_lme"]), u(&w["exact_sum_lme"])])?;
-                wf(own == u(&w["own_lme"]) && own == stages_sum(&w["own_stages"])?)?;
+                let own = tw(sum([u(&w["wide_lme"]), u(&w["exact_sum_lme"])]));
+                wf(own == u(&w["own_lme"]) && own == tw(stages_sum(&w["own_stages"])))?;
                 wf(u(&w["stop_rule_lme"]) == u(&w["own_stages"]["stop_rule"]))?;
                 // verify_state owns these five disjoint stage slots; solve and
                 // candidate comparison use the other slots (verify.rs:745–1222).
                 wf(u(&w["verification_lme"])
-                    == sum(["scale", "estimate", "charge", "bound", "shift"]
+                    == tw(sum(["scale", "estimate", "charge", "bound", "shift"]
                         .iter()
-                        .map(|key| u(&w["own_stages"][*key])))?)?;
+                        .map(|key| u(&w["own_stages"][*key])))))?;
                 wf(
-                    sum([u(&w["stop_rule_lme"]), u(&w["verification_lme"])])? <= own
-                        && stages_sum(&w["shared_stages"])?
-                            == sum([u(&w["shared_lme"]), u(&w["verification_shared_lme"])])?,
+                    tw(sum([u(&w["stop_rule_lme"]), u(&w["verification_lme"])])) <= own
+                        && tw(stages_sum(&w["shared_stages"]))
+                            == tw(sum([u(&w["shared_lme"]), u(&w["verification_shared_lme"])])),
                 )?;
                 let mut shared_stages: BTreeMap<&str, u64> = BTreeMap::new();
                 for (field, phase, built, cost, slot) in [
@@ -938,7 +998,12 @@ fn g5_native(b: &Value) -> VResult {
                         continue;
                     }
                     let bi = u(&record[field]);
-                    let build = at(&b["builds"], &record[field], "G5", "WORK_MISMATCH")?;
+                    // D16: a dangling build reference is WORK (C1 build
+                    // provenance), deferred to the end of class 1 (D3).
+                    let Ok(build) = at(&b["builds"], &record[field], "G5", "WORK_MISMATCH") else {
+                        work_ok.set(false);
+                        continue;
+                    };
                     wf(build["group"] == r["origin"]["group"]
                         && build["slot"] == slot
                         && u(&build["work"]) == cost)?;
@@ -966,21 +1031,29 @@ fn g5_native(b: &Value) -> VResult {
                     }
                     for (k, v) in build["stages"]
                         .as_object()
-                        .ok_or_else(|| error("G5", "WORK_MISMATCH"))?
+                        .map(|o| o.iter().collect::<Vec<_>>())
+                        .unwrap_or_else(|| {
+                            work_ok.set(false);
+                            Vec::new()
+                        })
                     {
                         let old = shared_stages.get(k.as_str()).copied().unwrap_or(0);
-                        shared_stages.insert(k, sum([old, u(v)])?);
+                        shared_stages.insert(k, tw(sum([old, u(v)])));
                     }
                 }
                 for (k, v) in w["shared_stages"]
                     .as_object()
-                    .ok_or_else(|| error("G5", "WORK_MISMATCH"))?
+                    .map(|o| o.iter().collect::<Vec<_>>())
+                    .unwrap_or_else(|| {
+                        work_ok.set(false);
+                        Vec::new()
+                    })
                 {
                     wf(u(v) == shared_stages.get(k.as_str()).copied().unwrap_or(0))?;
                 }
                 amounts.push((
-                    sum([own, u(&w["shared_lme"]), u(&w["verification_shared_lme"])])?,
-                    sum([
+                    tw(sum([own, u(&w["shared_lme"]), u(&w["verification_shared_lme"])])),
+                    tw(sum([
                         own,
                         if w["shared_built_here"] == true {
                             u(&w["shared_lme"])
@@ -992,7 +1065,7 @@ fn g5_native(b: &Value) -> VResult {
                         } else {
                             0
                         },
-                    ])?,
+                    ])),
                 ));
                 if record["role"] == "verification" {
                     wf(u(&w["stop_rule_lme"]) == 0)?;
@@ -1111,18 +1184,24 @@ fn g5_native(b: &Value) -> VResult {
                             amounts[index as usize]
                                 .0
                                 .checked_sub(stop)
-                                .ok_or_else(|| error("G5", "WORK_MISMATCH"))?,
+                                .unwrap_or_else(|| {
+                                    work_ok.set(false);
+                                    0
+                                }),
                         );
                         debits.push(
                             amounts[index as usize]
                                 .1
                                 .checked_sub(stop)
-                                .ok_or_else(|| error("G5", "WORK_MISMATCH"))?,
+                                .unwrap_or_else(|| {
+                                    work_ok.set(false);
+                                    0
+                                }),
                         );
                     }
                 }
-                wf(sum(charges)? == u(&a["case_charge"])
-                    && sum(debits)? == u(&a["invocation_increment"]))?;
+                wf(tw(sum(charges)) == u(&a["case_charge"])
+                    && tw(sum(debits)) == u(&a["invocation_increment"]))?;
             }
             let expected: BTreeSet<_> = records
                 .iter()
@@ -1139,12 +1218,12 @@ fn g5_native(b: &Value) -> VResult {
                 })
                 .collect();
             af(fragments == expected)?;
-            let charge = sum(amounts.iter().map(|p| p.0))?;
-            let debit = sum(amounts.iter().map(|p| p.1))?;
+            let charge = tw(sum(amounts.iter().map(|p| p.0)));
+            let debit = tw(sum(amounts.iter().map(|p| p.1)));
             wf(charge == u(&r["case_charge"])
-                && charge == sum(attempts.iter().map(|a| u(&a["case_charge"])))?
+                && charge == tw(sum(attempts.iter().map(|a| u(&a["case_charge"]))))
                 && debit == u(&r["invocation_increment"])
-                && debit == sum(attempts.iter().map(|a| u(&a["invocation_increment"])))?)?;
+                && debit == tw(sum(attempts.iter().map(|a| u(&a["invocation_increment"])))))?;
             // N10: a Run entered with the invocation meter exhausted is idle.
             if u(&r["invocation_before"]) >= u(&b["work"]["invocation_limit"]) {
                 af(attempts.is_empty()
@@ -1152,7 +1231,7 @@ fn g5_native(b: &Value) -> VResult {
                     && r["kernel_terminal"]["reason"]
                         == json!({"space":"unresolved","tag":"budget","scope":"invocation"}))?;
             }
-            current = sum([current, debit])?;
+            current = tw(sum([current, debit]));
             wf(current == u(&r["invocation_after"]))?;
             if r["kernel_terminal"]["kind"] == "selected" {
                 let a = attempts
@@ -1225,7 +1304,7 @@ fn g5_native(b: &Value) -> VResult {
         let mut order: Vec<(Value, Vec<Value>)> = Vec::new();
         let mut of_run = Vec::new();
         for (ri, si) in list(&call["run_refs"]).iter().zip(list(&call["source_refs"])) {
-            let (_, run) = runs
+            let (_, _, run) = runs
                 .get(u(ri) as usize)
                 .copied()
                 .ok_or_else(|| error("G5", "ATTEMPT_MISMATCH"))?;
@@ -1259,7 +1338,7 @@ fn g5_native(b: &Value) -> VResult {
         }
     }
     wf(u(&b["work"]["charged"]) == current && builds_seen.len() == list(&b["builds"]).len())?;
-    Ok(())
+    need(work_ok.get(), "G5", "WORK_MISMATCH")
 }
 /// A G7 base failure: the leading `[A-Z][A-Z0-9_]*` token is the bare code;
 /// the full base text, when it says more, is carried as detail.
@@ -1362,6 +1441,10 @@ fn g5_schedule(r: &Value, body: Option<&Value>) -> VResult {
         next_record = next_record.max(cr_i.saturating_add(1));
         let kind = text(&a["outcome"]["kind"]);
         af(matches!(kind, "accepted" | "rejected" | "failed"))?;
+        // D5c: rejected(verification_failed) requires the failed verification phase.
+        if a["outcome"]["reason"] == json!({"space":"attempt","tag":"verification_failed"}) {
+            af(!v.is_null() && v["phase"] == "failed")?;
+        }
         if !v.is_null() {
             let vi = u(&v["record"]);
             af(vi == cr_i.saturating_add(1) && vi == next_record)?;
@@ -1470,9 +1553,10 @@ fn terminal_of(stop: &Value) -> Option<Value> {
         _ => None,
     }
 }
-/// Reader-logic entry points for tests of checklist branches that have no
-/// native-faithful shared base yet. They run the same functions `validate`
-/// uses, on a partial input, and grant nothing.
+/// Internal, test-only (D14): reader-logic entry points for tests of rules
+/// that have no native-faithful shared base yet. They run the same functions
+/// `validate` uses, on a partial input, return no Validation and grant nothing.
+/// Not a public API.
 #[doc(hidden)]
 pub mod reader_logic {
     use super::*;
@@ -1483,6 +1567,18 @@ pub mod reader_logic {
     /// The G5 ordinary/source_decline pass for a whole statement (O2-O5).
     pub fn ordinary(source: &Value) -> Result<(), ValidationError> {
         g5_ordinary(source)
+    }
+    /// The schedule replay with the statement body (N10 idle rules).
+    pub fn schedule_in(run: &Value, body: &Value) -> Result<(), ValidationError> {
+        g5_schedule(run, Some(body))
+    }
+    /// R1-R3 for one product attempt.
+    pub fn accounting(attempt: &Value) -> [bool; 3] {
+        accounting_rules(attempt)
+    }
+    /// The G7 bare-code/detail split of a base failure text.
+    pub fn g7_error(text: &str) -> ValidationError {
+        base_error(text.to_string())
     }
 }
 /// Every JSON object inside `v`, `v` first (depth-first, document order).
@@ -1621,6 +1717,14 @@ fn g5_products(source: &Value) -> VResult {
         pending_work.push(ok);
         Ok(())
     };
+    // D4c (S06 section 1; C3:165): a case claiming a prepared_product_failure
+    // cause has its own product attempt, the one the cause names.
+    for c in list(&b["cases"]) {
+        if c["reason"]["cause"]["kind"] == "prepared_product_failure" {
+            pf(!c["product_attempt_ref"].is_null()
+                && c["product_attempt_ref"] == c["reason"]["cause"]["product_attempt_ref"])?;
+        }
+    }
     for (ai, a) in list(&b["product_attempts"]).iter().enumerate() {
         let c = at(
             &b["cases"],
@@ -1628,6 +1732,13 @@ fn g5_products(source: &Value) -> VResult {
             "G5",
             "PRODUCT_ATTEMPT_MISMATCH",
         )?;
+        // D1 (F1:97, 130-131; C3:304): a captured prefix has no source and no
+        // Run, and its result is unavailable (C3 references, G5).
+        if a["operational"]["old_coverage"] == "captured_prefix" {
+            pf(a["source_ref"].is_null()
+                && a["run_ref"].is_null()
+                && a["result"]["kind"] == "unavailable")?;
+        }
         let ordinary = at(
             &b["ordinary_attempts"],
             &a["ordinary_attempt_ref"],
@@ -1887,12 +1998,22 @@ fn g5_products(source: &Value) -> VResult {
                     pf(run.is_null() && st["preparation"] == "failed")?;
                     ("source_unavailable", "preparation")
                 }
-                "capture" if run.is_null() => ("source_unavailable", "preparation"),
-                "native" | "capture" if run["kernel_terminal"]["kind"] != "selected" => {
-                    pf(!run.is_null())?;
-                    if e["kind"] == "native" {
-                        pf(e["run_ref"] == run["id"])?;
+                // D4d (S06 section 1): native requires the case's own nonselected
+                // Run, and its run_ref is that Run; native with a selected Run is
+                // invalid.
+                "native" => {
+                    pf(!run.is_null()
+                        && run["kernel_terminal"]["kind"] != "selected"
+                        && e["run_ref"] == run["id"])?;
+                    if run["kernel_terminal"]["kind"] == "unresolved" {
+                        ("kernel_unresolved", "kernel")
+                    } else {
+                        pf(run["kernel_terminal"]["kind"] == "refused")?;
+                        ("kernel_refused", "kernel")
                     }
+                }
+                "capture" if run.is_null() => ("source_unavailable", "preparation"),
+                "capture" if run["kernel_terminal"]["kind"] != "selected" => {
                     if run["kernel_terminal"]["kind"] == "unresolved" {
                         ("kernel_unresolved", "kernel")
                     } else {
@@ -3690,10 +3811,12 @@ fn g5_ordinary(source: &Value) -> VResult {
                 .find(|d| d["id"] == *id && list(&d["affected_refs"]).contains(cid))
                 .ok_or_else(|| error("G5", "ATTEMPT_MISMATCH"))
         };
+        // D6a (checkpoint-A ruling): the untyped diagnostic_refs are unique and
+        // resolve; a listed diagnostic need not name the case. Typed references
+        // below must be listed and name the case (C2:166).
         let mut refs = BTreeSet::new();
         for id in list(&o["diagnostic_refs"]) {
-            fail(refs.insert(text(id)))?;
-            diag(id)?;
+            fail(refs.insert(text(id)) && ds.iter().any(|d| d["id"] == *id))?;
         }
         for path in [
             &o["initial"]["diagnostic_ref"],
@@ -3776,6 +3899,15 @@ fn g5_ordinary(source: &Value) -> VResult {
                     && list(&mb["case_indices"]).iter().any(|x| u(x) == i as u64),
             )?;
         }
+        // D6b (C1:101; C2:164; checkpoint-A ruling): a selected case's ordinary
+        // quality routes to retained precision: sensitive, unresolved or failed
+        // (not checks_passed, not not_assessed).
+        if c["status"] == "selected" {
+            fail(matches!(
+                text(&quality["solve_quality"]),
+                "sensitive" | "unresolved" | "failed"
+            ))?;
+        }
         if c["status"] == "selected" {
             fail(
                 c["selection"]["rcond_label"]
@@ -3808,10 +3940,8 @@ fn project(source: &Value, raw: bool) -> VResult<Value> {
     }
     Ok(projected)
 }
-// The I57 summary-coverage checks (G1-G5a) are implemented against shared
-// snapshot 04 only. Eligibility stays held until snapshot 05's controls
-// (multi-body, absent kind/L=0, p512 floors, second owner, failed-prefix and
-// unavailable attempts) pass and a fresh independent review accepts the reader.
+// Eligibility stays held: the reader is unaccepted until the snapshot-07 repair
+// wave (review RV78-RV81) is confirmed by the reviewers and ROOT accepts it.
 const IMPLEMENTATION_COMPLETE: bool = false;
 /// Validate a raw successor statement against the original request/mode.
 /// Hashes bind the supplied statements; they do not establish producer origin.

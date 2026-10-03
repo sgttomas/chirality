@@ -55,6 +55,10 @@ fn rehash(source: &mut Value) {
     for s in b["sources"].as_array_mut().unwrap() {
         if let Some(ai) = s["preparation"]["attempt_ref"].as_u64() {
             let a = &attempts[ai as usize];
+            // As G1: only an addressable attempt has a preparation digest.
+            if !a.is_object() {
+                continue;
+            }
             if a["preparation"]["members"]
                 .as_array()
                 .unwrap()
@@ -105,10 +109,14 @@ fn edit(source: &mut Value, e: &Value) {
     }
     let last = path.last().unwrap();
     if e["op"] == "remove" {
-        parent
-            .as_object_mut()
-            .unwrap()
-            .remove(last.as_str().unwrap());
+        if let Some(i) = last.as_u64() {
+            parent.as_array_mut().unwrap().remove(i as usize);
+        } else {
+            parent
+                .as_object_mut()
+                .unwrap()
+                .remove(last.as_str().unwrap());
+        }
     } else if let Some(i) = last.as_u64() {
         parent[i as usize] = e["value"].clone();
     } else {
@@ -150,9 +158,9 @@ fn apply_entry(shared: &Value, entry: &Value) -> (Value, Value) {
                 .unwrap()
                 .into();
     }
-    if entry["rehash"] == "all" {
-        rehash(&mut source);
-    }
+    // The shared format admits only rehash:"all" (D11).
+    assert_eq!(entry["rehash"], "all", "{}", entry["id"]);
+    rehash(&mut source);
     (source, invocation)
 }
 #[test]
@@ -257,6 +265,32 @@ fn slice_outcomes(tag: &str, range: std::ops::Range<usize>, want: &[(&str, usize
     let want: BTreeMap<String, usize> = want.iter().map(|(k, n)| (k.to_string(), *n)).collect();
     assert_eq!(tally, want, "{tag}");
     assert_eq!(matched, range.len(), "{tag}");
+}
+
+/// Snapshot-03 controls (the first 30 shared mutations), so the outcome
+/// listing covers all 178 (D15, RV78-N9).
+#[test]
+fn snapshot_03_mutation_outcomes() {
+    slice_outcomes(
+        "I63_OUTCOME_03",
+        0..30,
+        &[
+            ("G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED", 1),
+            ("G1 RETAINED_PRECISION_RECEIPT_MISMATCH", 6),
+            ("G2 RETAINED_PRECISION_ENCODING_MISMATCH", 3),
+            ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 2),
+            ("G4 RETAINED_PRECISION_DIAGNOSTIC_MISMATCH", 1),
+            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 1),
+            ("G5 RETAINED_PRECISION_WORK_MISMATCH", 4),
+            ("G5b RETAINED_PRECISION_SCALE_MISMATCH", 1),
+            ("G5b RETAINED_PRECISION_SECTION_MISMATCH", 1),
+            ("G5c RETAINED_PRECISION_CLASSIFICATION_MISMATCH", 1),
+            ("G5c RETAINED_PRECISION_INPUT_DOF_MISMATCH", 1),
+            ("G6 RETAINED_PRECISION_ROW_METHOD_MISMATCH", 3),
+            ("G8 RETAINED_PRECISION_INVOCATION_MISMATCH", 1),
+            ("G8 RETAINED_PRECISION_PREPARATION_MISMATCH", 4),
+        ],
+    );
 }
 
 /// Snapshot-04 summary-coverage controls (I57 s4/s5), mutations 30..77.
@@ -1964,4 +1998,419 @@ fn negative_zero_wire_scale_remains_g2() {
         (got.gate, got.code.as_str()),
         ("G2", "RETAINED_PRECISION_ENCODING_MISMATCH")
     );
+}
+
+// ---------------------------------------------------------------------------
+// Review repair wave 07, phase 1 (ROOT ruling "Reader review RV78-RV81",
+// D1-D15): one reader-local test per relation, built from RV78's PROBES.json
+// edits where one exists. These are not shared corpus entries.
+
+fn rb(tail: Value) -> Value {
+    let mut p = vec![Value::from("retained_precision"), Value::from("body")];
+    p.extend(tail.as_array().unwrap().iter().cloned());
+    Value::Array(p)
+}
+fn set(path: Value, value: Value) -> Value {
+    serde_json::json!({"path": path, "op": "set", "value": value})
+}
+fn remove(path: Value) -> Value {
+    serde_json::json!({"path": path, "op": "remove"})
+}
+fn base_source(shared: &Value, id: &str) -> Value {
+    shared["cases"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|c| c["id"] == id)
+        .unwrap()["source"]
+        .clone()
+}
+/// Observe a reader-local probe: `edits` on `base`, fully rehashed.
+fn probe(shared: &Value, base: &str, edits: Vec<Value>) -> Value {
+    observe(
+        shared,
+        &serde_json::json!({"id": "i63_probe", "base": base, "edits": edits, "rehash": "all"}),
+    )
+}
+fn gate(g: &str, code: &str) -> Value {
+    serde_json::json!({"gate": g, "code": code})
+}
+const COVERAGE: &str = "RETAINED_PRECISION_COVERAGE_MISMATCH";
+const ATTEMPT: &str = "RETAINED_PRECISION_ATTEMPT_MISMATCH";
+const PRODUCT: &str = "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH";
+const UNSUPPORTED: &str = "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED";
+const P_BASE: &str = "two_case_preparation_failure_synthetic";
+const F_BASE: &str = "two_case_facade_after_certificate_synthetic";
+const ORD: &str = "ordinary_prepared_synthetic";
+
+/// D1: G3 member ids, complete old inventories, captured_prefix split, run ids
+/// and execution order; Run origin owner in G5 class 1.
+#[test]
+fn d1_g3_coverage_relations() {
+    use serde_json::json;
+    let shared = corpus();
+    let p = base_source(&shared, P_BASE);
+    let old0 = p["retained_precision"]["body"]["product_attempts"][1]["operational"]["old"][0].clone();
+    let mut old1 = old0.clone();
+    old1["member"] = json!(1);
+    let cases = [
+        // RV78 R2b / RV80-S2: an unsourced old id outside 0..len (was G8).
+        ("unsourced old id 1", P_BASE, vec![set(rb(json!(["product_attempts", 1, "operational", "old", 0, "member"])), json!(1))], gate("G3", COVERAGE)),
+        // A prepared member id outside 0..len.
+        ("prepared id 1", ORD, vec![set(rb(json!(["product_attempts", 0, "preparation", "members", 0, "member"])), json!(1))], gate("G3", COVERAGE)),
+        // Unsourced complete old: empty, or a count other than the CaseSource's.
+        ("unsourced complete old longer than the model", P_BASE, vec![set(rb(json!(["product_attempts", 1, "operational", "old"])), json!([old0, old1]))], gate("G3", COVERAGE)),
+        // RV78 R3/R3b: sourced complete old against the source member map.
+        ("sourced old short of source", "two_body_synthetic", vec![remove(rb(json!(["product_attempts", 0, "operational", "old", 1])))], gate("G3", COVERAGE)),
+        // RV78 R1a/R1b: run id = execution-order position.
+        ("execution order swapped", "two_case_synthetic", vec![set(rb(json!(["work", "execution_order"])), json!([{"kind":"case","index":1},{"kind":"case","index":0}]))], gate("G3", COVERAGE)),
+        ("run id not its position", "two_case_synthetic", vec![set(rb(json!(["cases", 1, "run", "id"])), json!(5)), set(rb(json!(["calls", 0, "run_refs"])), json!([0, 5]))], gate("G3", COVERAGE)),
+        // D1: Run origin owner is G5 class 1, not G3.
+        ("run origin owner moved (G5 class 1)", "two_case_synthetic", vec![
+            set(rb(json!(["cases", 1, "run", "origin", "owner_ref"])), json!({"kind":"case","index":0})),
+            set(rb(json!(["calls", 0, "owner_refs", 1])), json!({"kind":"case","index":0})),
+        ], gate("G5", ATTEMPT)),
+    ];
+    let mut misses = Vec::new();
+    for (name, base, edits, want) in cases {
+        let got = probe(&shared, base, edits);
+        if got != want {
+            misses.push(format!("{name}: got {got} want {want}"));
+        }
+    }
+    assert!(misses.is_empty(), "{}", misses.join("\n"));
+    // D1 (checkpoint A): an empty unsourced complete old list is not a G3
+    // failure by itself; here the receipt has a one-member CaseSource, so the
+    // count comparison rejects it at G3.
+    assert_eq!(
+        probe(&shared, P_BASE, vec![set(rb(json!(["product_attempts", 1, "operational", "old"])), json!([]))]),
+        gate("G3", COVERAGE),
+        "empty list against a one-member CaseSource"
+    );
+    // D1: captured_prefix references are G5 PRODUCT_ATTEMPT, not G3.
+    let mut captured = shared["must_pass"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|m| m["id"] == "prefix_captured")
+        .unwrap()
+        .clone();
+    captured["edits"].as_array_mut().unwrap().push(set(rb(json!(["product_attempts", 1, "run_ref"])), json!(0)));
+    assert_eq!(observe(&shared, &captured), gate("G5", PRODUCT), "captured prefix with a run_ref");
+}
+
+/// D2: the G0 union; absent or wrong-typed G0 fields fail G0, other shape
+/// defects wait for G1.
+#[test]
+fn d2_g0_union() {
+    use serde_json::json;
+    let shared = corpus();
+    let mut misses = Vec::new();
+    let g0 = gate("G0", UNSUPPORTED);
+    for (name, edits) in [
+        ("canonicalization absent", vec![remove(rb(json!(["canonicalization"])))]),
+        ("policy absent", vec![remove(rb(json!(["policy"])))]),
+        ("receipt_version 2", vec![set(rb(json!(["receipt_version"])), json!(2))]),
+        ("receipt_version as text", vec![set(rb(json!(["receipt_version"])), json!("1"))]),
+        ("case_limit absent", vec![remove(rb(json!(["work", "case_limit"])))]),
+        ("invocation_limit changed", vec![set(rb(json!(["work", "invocation_limit"])), json!(60000000001u64))]),
+        ("component_version", vec![set(json!(["producer", "component_version"]), json!("0.3.0"))]),
+        ("schema_version", vec![set(json!(["schema_version"]), json!("0.3.0"))]),
+        ("definition_id absent", vec![remove(rb(json!(["product_attempts", 0, "definition_id"])))]),
+    ] {
+        let got = probe(&shared, ORD, edits);
+        if got != g0 {
+            misses.push(format!("{name}: got {got}"));
+        }
+    }
+    assert!(misses.is_empty(), "{}", misses.join("\n"));
+    // A shape defect outside the G0 union is G1.
+    assert_eq!(
+        probe(&shared, ORD, vec![set(rb(json!(["unexpected_member"])), json!(0))]),
+        gate("G1", "RETAINED_PRECISION_RECEIPT_MISMATCH")
+    );
+}
+
+/// D3: inside native class 1 an ATTEMPT defect wins over an earlier WORK one.
+#[test]
+fn d3_native_attempt_before_work() {
+    use serde_json::json;
+    let shared = corpus();
+    assert_eq!(
+        probe(&shared, ORD, vec![
+            set(rb(json!(["calls", 0, "invocation_before"])), json!(1)),
+            set(rb(json!(["cases", 0, "run", "records", 0, "corrections"])), json!(4)),
+            set(rb(json!(["cases", 0, "selection", "corrections"])), json!(4)),
+        ]),
+        gate("G5", ATTEMPT)
+    );
+    // D16: a dangling native build reference is WORK (C1 build provenance),
+    // deferred, so a class-1 ATTEMPT defect still wins.
+    let dangling = set(rb(json!(["cases", 0, "run", "records", 0, "shared_build_ref"])), json!(99));
+    assert_eq!(probe(&shared, ORD, vec![dangling.clone()]), gate("G5", "RETAINED_PRECISION_WORK_MISMATCH"));
+    assert_eq!(
+        probe(&shared, ORD, vec![
+            dangling,
+            set(rb(json!(["cases", 0, "run", "records", 0, "corrections"])), json!(4)),
+            set(rb(json!(["cases", 0, "selection", "corrections"])), json!(4)),
+        ]),
+        gate("G5", ATTEMPT)
+    );
+    // A dangling class-1 reference of an ATTEMPT check (a group's call) is ATTEMPT.
+    assert_eq!(
+        probe(&shared, "two_case_synthetic", vec![
+            set(rb(json!(["calls", 0, "invocation_before"])), json!(1)),
+            set(rb(json!(["groups", 0, "call"])), json!(3)),
+        ]),
+        gate("G5", ATTEMPT)
+    );
+    // The WORK defect alone still reports WORK at the end of class 1.
+    assert_eq!(
+        probe(&shared, ORD, vec![set(rb(json!(["calls", 0, "invocation_before"])), json!(1))]),
+        gate("G5", "RETAINED_PRECISION_WORK_MISMATCH")
+    );
+}
+
+/// D4 a-e: association relations (RV78 R4, R5, R6a; RV80 PR5).
+#[test]
+fn d4_association_relations() {
+    use serde_json::json;
+    let shared = corpus();
+    let mut misses = Vec::new();
+    let f = base_source(&shared, F_BASE);
+    let attempt0 = f["retained_precision"]["body"]["product_attempts"][0].clone();
+    for (name, base, edits) in [
+        ("D4a source back-reference foreign (R4)", F_BASE, vec![set(rb(json!(["sources", 1, "preparation", "attempt_ref"])), json!(0))]),
+        ("D4a source preparation null", F_BASE, vec![set(rb(json!(["sources", 1, "preparation"])), json!(null))]),
+        ("D4b basis not the ordinary's (R5)", "two_case_two_groups_synthetic", vec![
+            set(rb(json!(["product_attempts", 1, "material_basis_ref"])), json!(0)),
+            set(rb(json!(["sources", 1, "material_basis_ref"])), json!(0)),
+        ]),
+        ("D4c cause without its own attempt (RV81-B2)", F_BASE, vec![
+            set(rb(json!(["product_attempts"])), json!([attempt0])),
+            set(rb(json!(["cases", 1, "product_attempt_ref"])), json!(null)),
+        ]),
+        ("D4d native with a selected Run (R6a)", F_BASE, vec![set(rb(json!(["product_attempts", 1, "result", "error"])), json!({"kind":"native","run_ref":1}))]),
+        ("D4d native with a foreign run_ref (PR5)", F_BASE, vec![set(rb(json!(["product_attempts", 1, "result", "error"])), json!({"kind":"native","run_ref":0}))]),
+        ("D4e run_ref without a native call", P_BASE, vec![set(rb(json!(["product_attempts", 1, "run_ref"])), json!(0))]),
+    ] {
+        let got = probe(&shared, base, edits);
+        if got != gate("G5", PRODUCT) {
+            misses.push(format!("{name}: got {got}"));
+        }
+    }
+    assert!(misses.is_empty(), "{}", misses.join("\n"));
+}
+
+/// D5 a-e: native record relations (RV78 T1, T2, T3, R8).
+#[test]
+fn d5_native_record_relations() {
+    use serde_json::json;
+    let shared = corpus();
+    let mut misses = Vec::new();
+    let verification_failed = json!({"kind":"rejected","reason":{"space":"attempt","tag":"verification_failed"}});
+    for (name, base, edits) in [
+        ("D5a candidate with a verification (T3)", ORD, vec![set(rb(json!(["cases", 0, "run", "records", 0, "verification"])), shared["cases"][0]["source"]["retained_precision"]["body"]["cases"][0]["run"]["records"][1]["verification"].clone())]),
+        ("D5a candidate with verification-pass work", ORD, vec![set(rb(json!(["cases", 0, "run", "records", 0, "work", "verification_lme"])), json!(1))]),
+        ("D5b escalating failed verification shows a pass (T1)", "verification_failure_skip_synthetic", vec![set(rb(json!(["cases", 0, "run", "records", 1, "work", "verification_lme"])), json!(1))]),
+        ("D5c verification_failed with a completed phase", ORD, vec![
+            set(rb(json!(["cases", 0, "run", "attempts", 0, "outcome"])), verification_failed.clone()),
+            set(rb(json!(["cases", 0, "run", "records", 0, "outcome"])), verification_failed.clone()),
+        ]),
+        ("D5d stop-rule quantity of another body (T2)", "p512_ladder_synthetic", vec![
+            set(rb(json!(["cases", 0, "run", "records", 0, "outcome", "reason", "quantity"])), json!({"tag":"displacement","dof":{"node":3,"component":"UX"}})),
+            set(rb(json!(["cases", 0, "run", "attempts", 0, "outcome", "reason", "quantity"])), json!({"tag":"displacement","dof":{"node":3,"component":"UX"}})),
+        ]),
+        ("D5e group call out of range (R8)", "two_case_synthetic", vec![set(rb(json!(["groups", 0, "call"])), json!(3))]),
+    ] {
+        let got = probe(&shared, base, edits);
+        if got != gate("G5", ATTEMPT) {
+            misses.push(format!("{name}: got {got}"));
+        }
+    }
+    assert!(misses.is_empty(), "{}", misses.join("\n"));
+}
+
+/// D6b (checks_passed part), D6c, D6d and D7.
+#[test]
+fn d6_d7_ordinary_and_diagnostic_relations() {
+    use serde_json::json;
+    let shared = corpus();
+    // D6b (RV78 T4e): a selected case with checks_passed ordinary quality.
+    assert_eq!(
+        probe(&shared, ORD, vec![
+            set(json!(["numerical_quality", "cases", 0, "solve_quality"]), json!("checks_passed")),
+            set(rb(json!(["ordinary_attempts", 0, "initial", "outcome"])), json!("checks_passed")),
+        ]),
+        gate("G5", ATTEMPT)
+    );
+    // D6b (checkpoint A): not_assessed does not route to retained precision.
+    assert_eq!(
+        probe(&shared, ORD, vec![set(json!(["numerical_quality", "cases", 0, "solve_quality"]), json!("not_assessed"))]),
+        gate("G5", ATTEMPT)
+    );
+    // D6a (checkpoint A): untyped diagnostic_refs are unique and resolve; a
+    // listed diagnostic need not name the case.
+    let other = base_source(&shared, ORD)["diagnostics"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|d| {
+            !d["affected_refs"]
+                .as_array()
+                .is_some_and(|a| a.contains(&json!("case:six-component-load")))
+        })
+        .map(|d| d["id"].clone());
+    {
+        let other = other.expect("a diagnostic of another scope in the base");
+        assert_eq!(
+            probe(&shared, ORD, vec![set(rb(json!(["ordinary_attempts", 0, "diagnostic_refs"])), json!(["diagnostic:numerical-integrity:case:six-component-load", other]))]),
+            Value::Null,
+            "a listed diagnostic of another scope is admitted"
+        );
+    }
+    for (name, refs) in [
+        ("duplicate (RV78 T4a)", json!(["diagnostic:numerical-integrity:case:six-component-load", "diagnostic:numerical-integrity:case:six-component-load"])),
+        ("dangling (RV78 T4b)", json!(["diagnostic:numerical-integrity:case:six-component-load", "diagnostic:rv78:absent"])),
+    ] {
+        assert_eq!(
+            probe(&shared, ORD, vec![set(rb(json!(["ordinary_attempts", 0, "diagnostic_refs"])), refs)]),
+            gate("G5", ATTEMPT),
+            "{name}"
+        );
+    }
+    // D6c: a published W2 preserving a Formation initial failure is admitted
+    // with a nonzero exponent b and rejected with b = 0 (C2:158).
+    let trigger_error = json!({"tag":"numerical_range","name":"synthetic"});
+    let w2 = |b: i64| {
+        vec![
+            set(rb(json!(["ordinary_attempts", 0, "initial"])), json!({"kind":"formation_failure","error":trigger_error,"basis_index":0})),
+            set(rb(json!(["ordinary_attempts", 0, "w2"])), json!({"kind":"published","trigger":{"tag":"formation","error":trigger_error},"force_scale_exponent":b,"report_diagnostic_ref":"diagnostic:numerical-integrity:case:six-component-load"})),
+        ]
+    };
+    assert_eq!(probe(&shared, ORD, w2(1)), Value::Null, "W2 published, b = 1");
+    assert_eq!(probe(&shared, ORD, w2(0)), gate("G5", ATTEMPT), "W2 published, b = 0");
+    // RV78 T-4e/T4d: ordinary (class 2) precedes the deferred C3 work list.
+    assert_eq!(
+        probe(&shared, F_BASE, vec![
+            set(rb(json!(["ordinary_attempts", 1, "diagnostic_refs"])), json!(["diagnostic:numerical-integrity:case:unavailable-row", "diagnostic:rv78:absent"])),
+            set(rb(json!(["product_attempts", 1, "adapter", "fault"])), json!({"kind":"overflow","event":"allocation_request"})),
+        ]),
+        gate("G5", ATTEMPT)
+    );
+    // D6d: a legacy work_ref that does not resolve is a reference check (ATTEMPT).
+    assert_eq!(
+        probe(&shared, ORD, vec![set(rb(json!(["ordinary_attempts", 0, "legacy_source", "work_ref"])), json!(0))]),
+        gate("G5", ATTEMPT)
+    );
+    // D7: a RETAINED_PRECISION_SELECTED diagnostic naming no requested case.
+    let diagnostics = base_source(&shared, ORD)["diagnostics"].clone();
+    let i = diagnostics
+        .as_array()
+        .unwrap()
+        .iter()
+        .position(|d| d["code"] == "RETAINED_PRECISION_SELECTED")
+        .unwrap();
+    assert_eq!(
+        probe(&shared, ORD, vec![set(json!(["diagnostics", i, "affected_refs"]), json!(["case:absent"]))]),
+        gate("G4", "RETAINED_PRECISION_DIAGNOSTIC_MISMATCH")
+    );
+}
+
+/// D13 reader-local pins, and kills for RV80's surviving mutants where the
+/// rule is implemented (M07 by d1 above, M12, M13-M15 by d4 above, M08, M16,
+/// M18).
+#[test]
+fn d13_reader_local_pins_and_mutant_kills() {
+    use serde_json::json;
+    let shared = corpus();
+    // theta = +0 on a no-data body (selection and record theta both moved).
+    assert_eq!(
+        probe(&shared, "ordinary_prepared_no_data_synthetic", vec![
+            set(rb(json!(["cases", 0, "selection", "theta", 0, "value"])), json!("3fd0000000000000")),
+            set(rb(json!(["cases", 0, "run", "records", 1, "verification", "theta", 0, "value"])), json!("3fd0000000000000")),
+        ]),
+        gate("G5a", "RETAINED_PRECISION_SCALE_MISMATCH")
+    );
+    // M12 (RV80 PR3): an unavailable attempt's record bound must follow has_data.
+    assert_eq!(
+        probe(&shared, F_BASE, vec![set(rb(json!(["cases", 1, "run", "records", 1, "verification", "bound", 0, "value"])), json!(null))]),
+        gate("G5a", "RETAINED_PRECISION_SCALE_MISMATCH")
+    );
+    // The Ceiling after a p128 verification-solve failure: v256 fails with an
+    // escalating stop (two slots), the fresh p512 candidate is rejected and its
+    // v1024 only solved.
+    let schedule = rp::reader_logic::schedule;
+    let mut run = base_source(&shared, "verification_failure_skip_synthetic")["retained_precision"]["body"]["cases"][0]["run"].clone();
+    assert!(schedule(&run).is_ok());
+    let stop_rule = json!({"kind":"rejected","reason":{"space":"attempt","tag":"stop_rule","quantity":{"tag":"displacement","dof":{"node":1,"component":"UX"}},"body":0,"kind":"translation"}});
+    run["attempts"][1]["outcome"] = stop_rule.clone();
+    run["records"][2]["outcome"] = stop_rule;
+    run["records"][3]["outcome"] = json!({"kind":"solved"});
+    run["kernel_terminal"] = json!({"kind":"unresolved","reason":{"space":"unresolved","tag":"ceiling"}});
+    assert!(schedule(&run).is_ok(), "Ceiling after a p128 verification-solve failure");
+    run["kernel_terminal"] = json!({"kind":"refused","reason":{"space":"refusal","tag":"structure"}});
+    assert!(attempt_mismatch(schedule(&run)));
+    // M16: a terminal Budget stop ends on its exact translation, scope included.
+    let mut budget = base_source(&shared, ORD)["retained_precision"]["body"]["cases"][0]["run"].clone();
+    let stop = json!({"space":"attempt","tag":"stop","stop":{"space":"stop","tag":"budget","scope":"case"}});
+    budget["records"] = json!([budget["records"][0].clone()]);
+    budget["records"][0]["outcome"] = json!({"kind":"failed","reason":stop});
+    budget["attempts"][0]["outcome"] = json!({"kind":"failed","reason":stop});
+    budget["attempts"][0]["verification"] = json!(null);
+    budget["kernel_terminal"] = json!({"kind":"unresolved","reason":{"space":"unresolved","tag":"budget","scope":"case"}});
+    assert!(schedule(&budget).is_ok());
+    budget["kernel_terminal"]["reason"]["scope"] = json!("invocation");
+    assert!(attempt_mismatch(schedule(&budget)), "Budget scope is part of the translation");
+    // M08: an idle group-null Run is Budget(invocation) exactly at exhaustion.
+    let body = json!({"work":{"invocation_limit":100},"groups":[]});
+    let idle = |before: u64| {
+        json!({"records":[],"attempts":[],"case_charge":0,"invocation_increment":0,
+               "invocation_before":before,"origin":{"group":null},
+               "kernel_terminal":{"kind":"unresolved","reason":{"space":"unresolved","tag":"budget","scope":"invocation"}}})
+    };
+    assert!(rp::reader_logic::schedule_in(&idle(100), &body).is_ok());
+    assert!(attempt_mismatch(rp::reader_logic::schedule_in(&idle(99), &body)));
+    // R3 with `both`: both faults must be emitted.
+    let attempt = |extra: Value| {
+        json!({"adapter":{"fault":null},"cause":{"kind":"work_accounting","fault":"both"},
+               "count":{"kind":"unavailable","fault":"overflow"},"extra":extra})
+    };
+    assert_eq!(rp::reader_logic::accounting(&attempt(json!(null))), [true, true, false]);
+    assert_eq!(
+        rp::reader_logic::accounting(&attempt(json!({"sticky_status":"inconsistent"}))),
+        [true, true, true]
+    );
+    assert_eq!(
+        rp::reader_logic::accounting(&json!({"adapter":{"fault":null},"x":{"kind":"accounting","event":"map_write"},"y":{"lost":true}})),
+        [false, false, true]
+    );
+    // M18: G7 keeps the bare base code and carries any further text as detail.
+    let e = rp::reader_logic::g7_error("SOURCE_PREVIEW_PHYSICS_ROW_SIGNATURE: bad row");
+    assert_eq!((e.gate, e.code.as_str()), ("G7", "SOURCE_PREVIEW_PHYSICS_ROW_SIGNATURE"));
+    assert_eq!(e.detail.as_deref(), Some("SOURCE_PREVIEW_PHYSICS_ROW_SIGNATURE: bad row"));
+    let e = rp::reader_logic::g7_error("SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS");
+    assert_eq!((e.code.as_str(), e.detail), ("SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS", None));
+}
+
+/// D13: the 2^-988 switch in the absolute bound, on both sides. Expected bits
+/// from an exact rational oracle (least binary64 at or above the exact value).
+#[test]
+fn d13_absolute_bound_small_scale_switch() {
+    for (scale, value, expected) in [
+        (0x0230000000000000u64, 0x0000000000000000u64, 0x0000000000400000u64),
+        (0x0230000000000000, 0x3ff0000000000000, 0x0000000000400000),
+        (0x0230000000000000, 0x4330000000000000, 0x0000000000400000),
+        (0x022fffffffffffff, 0x0000000000000000, 0x0000000000400001),
+        (0x022fffffffffffff, 0x3ff0000000000000, 0x3ca0000000000001),
+        (0x022fffffffffffff, 0x4330000000000000, 0x3fe0000000000001),
+    ] {
+        assert_eq!(
+            rp::absolute_bound(f64::from_bits(value), f64::from_bits(scale))
+                .unwrap()
+                .to_bits(),
+            expected,
+            "{scale:016x} {value:016x}"
+        );
+    }
 }
