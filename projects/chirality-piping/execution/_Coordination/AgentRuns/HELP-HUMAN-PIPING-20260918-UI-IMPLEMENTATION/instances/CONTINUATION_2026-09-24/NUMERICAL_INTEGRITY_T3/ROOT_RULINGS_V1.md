@@ -7590,3 +7590,24 @@ RV77 reviewed I61's `c618675e84` from its own clean archive (`REVIEW_RV77/covera
 - **N2 is corrected in an addendum to I61's RETURN:** the per-body scans are unmetered, not "reads", and the 16 B `SummaryCoverage` is a conservative double count.
 - **N1** (five equivalent or unreachable mutants) is recorded.
 - **N4** (the crate-visible `certificate` field, through which crate code could pair a foreign proof) is carried with the deferred structural owner binding, to the receipt-transaction design.
+
+## Rust and TypeScript aligned to snapshot 05a; the Xcode licence blocks linking; two more parity rules (ROOT, 2026-10-03 UTC)
+
+All three readers now pass snapshot 05a: 104 mutations at their expected first gate and code, and 15 of 15 must-pass entries. Eligibility stays closed in every reader. Each is committed on READER as unaccepted work.
+
+| Reader | READER commit | Files | ROOT's own run |
+|---|---|---|---|
+| TypeScript (I64) | `ee90efd18d` | `retainedPrecision.ts` `4ce47b8a89`, `retainedPrecision.test.ts` `c643e8734d` | Vitest 161/161, tsc 0 |
+| Rust (I63) | `48b7aa2a1b` | `retained_precision.rs` `93fee7bd09`, its test file `09eea1995c` | 14/14 |
+
+**A correction to I62's C1a RETURN.** It said Rust had no Φ check. Rust's inherited G5b already checked `floor == phi_512(e_hat(E, L))` with exact bits. I63 has now made `e_hat` and `phi_512` public mirrors of the native functions, with no behaviour change.
+
+**The host's Xcode licence (owner action needed).** Xcode on this Mac was modified at 14:39 local today (`Xcode.app`'s timestamp), and its licence has not been accepted. `xcrun` exits 69, so Rust test binaries fail to link. Accepting it (`sudo xcodebuild -license`) is the owner's to do; ROOT and TASKs don't.
+- **Interim ruling, local tests only:** cargo processes may set `DEVELOPER_DIR=/Library/Developer/CommandLineTools`, the installed Command Line Tools. No system setting changes, and each record discloses the setting.
+- **No gate evidence** (DEC-025, final gates) is produced with this setting. Gates wait for the licence, or for the owner's explicit direction.
+
+**Two more parity rules for all readers** (snapshot 05b pins each with a shared mutation):
+- **Gate order across cases.** I57 keeps G0→…→G8, with earlier gates winning, so the first failure is the earliest gate across all cases: every case's G5a before any case's G5b. That is what Rust does. Python currently checks per case (G5a then G5b), so a G5b defect in an earlier selected case can be reported ahead of a G5a defect in a later unavailable case. I62 confirms this reading against the C1 contract text in C1b and aligns Python, or reports a conflict.
+- **Record body order.** For both selected and unavailable attempts, the verification record's resolution and theta entries must list bodies in ascending order 0..n−1. That is Rust's rule; Python currently compares sorted sets.
+
+**Next:** I62's C1b, with all three readers frozen on 05a.
