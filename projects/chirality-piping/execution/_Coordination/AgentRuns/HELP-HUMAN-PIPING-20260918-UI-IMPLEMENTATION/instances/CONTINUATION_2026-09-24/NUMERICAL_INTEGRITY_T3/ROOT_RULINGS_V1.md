@@ -7995,6 +7995,7 @@ Every BLOCKING and SHOULD-FIX finding is repaired before acceptance, whatever it
 - the producer identity (component and schema versions);
 - the definition and inherited-table hashes, computed over the bound bytes;
 - `receipt_version` (v2, refusing v1 relabels);
+  [Correction, 2026-10-03: C1 §4 fixes `receipt_version:1`. "Corrected v2" in C1's G0 row is the `M03-INTEGRITY-MP-v2` policy id, and v1 relabels are refused by the policy check. The receipt version itself must be exactly 1.]
 - the policy ids;
 - the canonicalization profile;
 - the 20B and 60B thresholds.
@@ -8141,3 +8142,19 @@ I62's `CHECKPOINT_A.md` (`946a75ccd4`) is verified: SHA256SUMS OK, no machine pa
 **TypeScript phase 1, committed as `e09b86958f`.** ROOT verified the file hashes, the evidence and both commands (vitest 315/315, tsc 0) and read the diff. It still carries the withdrawn D1 non-empty clause and the list-level D6a check. I64's follow-up removes both and applies D16.
 
 **Granted:** I62 phase B1 (the Python repairs in READER; snapshot 07 staged in WT/scratch); the I64 follow-up. I63's phase 1 continues with the checkpoint corrections.
+
+## Rust and TypeScript phase 1 complete; three readings settled (ROOT, 2026-10-03 UTC)
+
+**Rust phase 1, committed as `dd684fcbeb`.**
+- ROOT verified the file hashes and the evidence (OUTCOMES now lists all 178 mutations), and read the decision sites.
+- ROOT reran the contract test on the **default toolchain** (no `DEVELOPER_DIR`): 32 passed, 0 failed.
+
+**TypeScript, committed as `b86ef77191`** (phase 1 plus its checkpoint-A follow-up). ROOT verified the hashes and the evidence; vitest 318/318 and tsc 0. Both readers still pass the full 06d corpus.
+
+**The readings settled:**
+1. **D16 applies as written.** A dangling build reference is a deferred WORK defect; every other class-1 reference is ATTEMPT. I63's reading is right.
+2. **`receipt_version` is exactly 1** (D2 corrected in place). Rust's reading is right.
+3. **An absent `retained_precision` or `body` fails G0** when the producer names the retained-precision contract. This is D2's rule that an absent G0 field fails G0. Rust already does this. TypeScript currently skips the body checks when the body is absent, so it reaches G1 instead and must change in phase 2. Python confirms in B1. Snapshot 07 pins it.
+4. **A computation fault inside a WORK equation is that WORK predicate failing.** That covers a sum beyond the safe range and a negative fragment difference. It is deferred with its class (class 1 for native, class 4 for C3), and the reader continues without trusting dependent values. A non-object stage map cannot reach G5, because G1's closed shapes reject it. TypeScript's `checked` already does this; Python confirms in B1.
+
+**Next:** I62 finishes B1. Then B2 installs snapshot 07 in READER, and I63 and I64 adopt it in phase 2.
