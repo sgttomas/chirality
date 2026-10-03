@@ -22,8 +22,9 @@ The numerical candidate now passes. What stands before publication is its public
 
 ## Running now
 
-- I54’s container laws are accepted as partial source proofs after RV73 review. I54 next binds the ordinary-active/suffix memory phases; final profile/build/allowance qualification remains open.
-- I51 next implements truthful typed prepared-attempt evidence, including failed prefixes, under a bounded source grant. Only I51 holds the focused runtime lane; the existing memory guard remains active.
+- I54’s container laws are accepted as partial source proofs after RV73 review. I54 is binding the ordinary-active/suffix memory phases; final profile/build/allowance qualification remains open.
+- I51 is implementing truthful typed prepared-attempt evidence, including failed prefixes, under a bounded source grant. Only I51 holds the focused runtime lane; the existing memory guard remains active.
+- I52 has a short preparation assignment for the shared reader implementation; no reader source grant yet.
 - Native context-lifetime/backing qualification remains open. Its source investigation is stopped at its stated limit.
 
 ## Next
@@ -36,4 +37,4 @@ Complete the typed evidence and ordinary-overlap bounds, bind the actual numeric
 `codex/piping-f2a-work-exactness-20261002` is its component branch.
 A records PR must start from current main with only execution records and an empty diff outside that scope. No records PR or F2a PR exists now. Latest fetched main is `381be775ae`.
 
-No new owner decision is needed for the current proposal/review work. Pending decisions remain: dense/lane memory ceilings, PHYS-R4 refusal and availability, observation framing, KF3's lambda split and KF2's dense screen. An actual public-meaning or protected-criterion change returns with reviewed concrete options.
+No new owner decision is needed for the current bounded work. Pending decisions remain: dense/lane memory ceilings, PHYS-R4 refusal and availability, observation framing, KF3's lambda split and KF2's dense screen. An actual public-meaning or protected-criterion change returns with reviewed concrete options.
