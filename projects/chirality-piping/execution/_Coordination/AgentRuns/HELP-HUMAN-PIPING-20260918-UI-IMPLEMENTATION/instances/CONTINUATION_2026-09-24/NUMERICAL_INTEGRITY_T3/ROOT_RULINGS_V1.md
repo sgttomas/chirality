@@ -7986,6 +7986,7 @@ Every BLOCKING and SHOULD-FIX finding is repaired before acceptance, whatever it
 - **`old_coverage=complete`:** old ids equal the full member inventory.
   - For a sourced attempt, that is the source's member map, at G3. Python moves this from G5.
   - For an unsourced attempt, G3 requires a non-empty list, and the member count of any CaseSource in the receipt (there is one model). Without a CaseSource, G8 compares the list with the invocation's member count.
+    [Correction, checkpoint A, 2026-10-03: the non-empty requirement is withdrawn. No native rejection of an empty member inventory has been cited (I62 CHECKPOINT_A, D1). G3 compares an unsourced complete list only with any CaseSource's member count, and G8 compares it with the invocation. The empty-inventory conditional below is not met, so empty lists are not rejected at G3.]
   - If I62 confirms from native code that an empty CaseSource inventory cannot be emitted, an empty one also fails G3 (RV80-N2b, RV79-N3).
 - **`captured_prefix`:** G3 checks only the member part (no prepared and no new members). The null `source_ref`/`run_ref` and the unavailable result are G5 PRODUCT_ATTEMPT (F1:97, 130–131; C3:304). Rust and TypeScript move those checks out of G3.
 - **Run origin owner and source:** these are G5 class-1 checks ("native schedule/origin", C3:304), not G3. Rust moves them.
@@ -8097,3 +8098,34 @@ Under `BRIEFS/I62_I64_REVIEW_REPAIR_07.md`. I62 (corpus and Python), I63 (Rust) 
 4. **Confirmation:** the four reviewers resume on the repaired head. RV79–RV81 confirm their findings, and RV78 reruns parity on 07.
 
 Cargo now uses the default toolchain (ruling of this date). No reader is accepted before step 4 passes.
+
+## Checkpoint A: rulings on the native facts for snapshot 07 (ROOT, 2026-10-03 UTC)
+
+I62's `CHECKPOINT_A.md` (`946a75ccd4`) is verified: SHA256SUMS OK, no machine paths, and no change in READER. ROOT checked its key citations:
+- `PP/retained_receipt.rs:1` ("No serializer, public receipt…");
+- `PP/source_receipt.rs:546–550` (`not_attempted` binds `not_assessed`);
+- `FK/adaptive.rs:4349–4356` (`terminal()` maps CountRange and WorkAccounting to Unresolved);
+- `FK/adaptive.rs:2860–2875` (five Refusal variants).
+
+**A fact behind two items:** no producer serializer for case or ordinary receipt JSON exists yet. D6a and D9b are therefore decided from the contract. Each becomes an obligation on the producer receipt transaction (resume step 4), which must emit exactly what these rules accept.
+
+**The rulings:**
+- **D1, empty inventory.** The conditional is not met, and D1's unsourced "non-empty" clause is withdrawn (correction bracket in D1). A known limit remains: without an invocation and without any CaseSource, a wrongly sized unsourced complete list passes as `needs_recompute`. It can never become eligible, because eligibility needs the invocation, and G8 then rejects it.
+- **D6a.** Untyped `diagnostic_refs` must be unique and resolve (G5 ATTEMPT, class 2). No reader requires them to name the case; TypeScript drops that check. Typed references stay strict (O2, 06b). *Producer obligation:* the ordinary list holds exactly the case's actual ordinary diagnostics, each once.
+- **D6b.** A selected case's `solve_quality` is `sensitive`, `unresolved` or `failed` (G5 ATTEMPT). `not_assessed` means not attempted (source_receipt.rs:546–550), and C2:153 says a not-attempted case is never selected. Python and Rust add the rule; TypeScript already has it. I62's trace covered the report and structural-failure sites, not every PP path, and the review confirms it.
+- **D8.** Adopted, all at G5 WORK in class 4:
+  - **R1′:** an adapter fault, or any `accounting{event}` cause, is rejected (unchanged).
+  - **R2′:** `lost`, or any OperationalError `accounting`, is rejected (PP:2311–2347).
+  - **R3′:** a fault-bearing cause, in any of its three spellings (`work_accounting{fault}`, a nested `stop/work_accounting`, a view `work{fault}`), needs its fault in its owner's emitted statuses. The owner is the member work, lane work, values completion or proof trace, as I62 tabulates.
+  - **R4:** a SectionError `accounting` needs a non-exact status in that member's PreparationWork (FK product_certificate.rs:676–679).
+  - **Kernel scope:** a `work_accounting` stop or reason anywhere in a Run fails G5 ATTEMPT in class 1 (C1:66–68, consistent with the N9/N10 correction).
+  
+  **The rebase:** `prefix_attached_old_input_unbound` moves onto F′ with I62's single probed edit and keeps G8 PREPARATION. Its unsourced variant is deferred. `refused_member_conversion_kind_bits` stays as it is.
+- **D9a.** Both Refusal variants are removed, and each gets a G1 RECEIPT mutation.
+- **D9b.** `source_ref` is required on an unavailable case, as `null | U`. An absent `source_ref` fails G1, and `source_decline` appears only with null. The precedent is C2:133's explicit `source_ref:null`. P′ case 1 gains `source_ref: null`, and two G1 mutations are added. *Producer obligation:* emit an explicit null.
+- **D3.** The table is accepted. No single-defect code differs between readers, and under the class-1 convention all 178 mutations and 18 must-pass entries keep their outcomes in Python (in-memory probe). I63 and I64 confirm this for their readers in phase 1.
+- **D12.** Accepted: N11 is corrected, the checklist has 43 IDs, and RV79's status is adopted for all 13 disputed IDs.
+
+**Next:** I63 and I64 receive the D1 correction and the D6a/D6b rulings now. I62's phase B begins:
+- **B1, now:** the Python repairs in READER against 06d, with snapshot 07's shared-file edits staged under WT/scratch, not in READER.
+- **B2:** after I63 and I64 finish phase 1 and ROOT commits it, I62 installs snapshot 07 in READER.
