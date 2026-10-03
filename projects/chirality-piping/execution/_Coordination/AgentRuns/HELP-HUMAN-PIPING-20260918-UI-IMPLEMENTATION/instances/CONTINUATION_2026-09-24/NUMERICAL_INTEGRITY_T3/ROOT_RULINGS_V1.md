@@ -7289,3 +7289,22 @@ frozen hashes; joint parity and fresh complete-source review remain mandatory.
 I55 owns Cargo; ordinary Python/Vitest controls use the already source-bound
 authorities/assets. No gate, tolerance, public meaning, coverage obligation or
 future carrier/main gate is relaxed. No additional host tooling is assigned.
+
+
+## Usage interruption recovered without accepting unfinished work (ROOT, 2026-10-03 UTC)
+
+ROOT resumes the existing publication work because the owner has authorized continuation after the usage-limit interruption.
+
+The M5 host and guard are available; no compiler/solver jobs remain. Fetched
+main is still `381be775ae`. The typed evidence component remains accepted at
+local merge `b56b905251`; no reader or ordinary-bound correction is accepted.
+All prior live TASKs ended with usage-limit errors and are absent from the current
+agent tree. ROOT preserved the exact reader WIP and interrupted records externally
+with a committed hash index, and verified/preserved I54's sealed correction.
+
+BRIEFS/USAGE_RECOVERY_2026-10-03.md assigns new, explicitly bounded recovery
+executors: I57 coverage proposal, I58 shared/Python, I59 Rust, I60 TypeScript and
+fresh RV75 ordinary-bound review. Old deadlines and partial checkpoints are
+retained rather than reset retrospectively. The coverage gap and synthetic native
+digest placeholders are explicit. Unknown coverage cannot become an eligibility
+pass. Complete review/parity and all public/resource/native/main holds remain.
