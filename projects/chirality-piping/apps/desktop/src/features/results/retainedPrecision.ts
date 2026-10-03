@@ -478,6 +478,31 @@ function exactWork(v: any): boolean {
   if ((v.sticky_status && v.sticky_status !== 'exact') || v.lost === true) return false;
   return Object.values(v).every(exactWork);
 }
+const STATUS_FAULTS: Record<string, string[]> = { exact: [], overflow: ['overflow'], inconsistent: ['inconsistent'], both: ['overflow', 'inconsistent'] };
+function objects(v: any, out: Obj[] = []): Obj[] {
+  if (Array.isArray(v)) for (const x of v) objects(x, out);
+  else if (v && typeof v === 'object') { out.push(v); for (const x of Object.values(v)) objects(x, out); }
+  return out;
+}
+/** Ruling 06d (I62 ACCOUNTING_CAUSES R1-R3), G5 work class (C3:304), for every product attempt.
+ * R1: an adapter overflow fault (PP:2896-2907) or any CaptureError/G5aError accounting{event} cause
+ *     built from it (PP:2910-2912, 617, 2527, 2586) is never emittable (C3:233-236).
+ * R2: ScalarTrace.lost is set only at u64::MAX (PP:2310-2349), so it is never emittable.
+ * R3: a work_accounting{fault} cause comes from its owning trace's status (FC:358-379, 1580), so the
+ *     attempt's emitted unavailable-Count faults and sticky statuses must contain that fault. */
+/** Exported only for the reader-logic R1-R3 isolation test; not a public entry point. */
+export function accountingRules(a: Obj): boolean[] {
+  const objs = objects(a);
+  const r1 = a.adapter.fault === null && !objs.some(o => o.kind === 'accounting' && Object.hasOwn(o, 'event'));
+  const r2 = !objs.some(o => o.lost === true);
+  const seen = new Set<string>();
+  for (const o of objs) {
+    if (o.kind === 'unavailable' && Object.hasOwn(STATUS_FAULTS, o.fault)) STATUS_FAULTS[o.fault].forEach(x => seen.add(x));
+    if (typeof o.sticky_status === 'string' && Object.hasOwn(STATUS_FAULTS, o.sticky_status)) STATUS_FAULTS[o.sticky_status].forEach(x => seen.add(x));
+  }
+  const r3 = objs.filter(o => o.kind === 'work_accounting' && Object.hasOwn(o, 'fault')).every(o => Object.hasOwn(STATUS_FAULTS, o.fault) && STATUS_FAULTS[o.fault].every(x => seen.has(x)));
+  return [r1, r2, r3];
+}
 function count(v: Obj): bigint | null { return v.kind === 'exact' ? uint(v.value) : null; }
 /** G2: conversion payloads decode as finite binary64 with nonnegative relative precision. */
 function conversions(v: Obj): void {
@@ -564,6 +589,8 @@ function productAttempts(b: Obj, rows: Map<string, Obj[]>): void {
       }
       if (stage.certificate === 'completed' || p.checks.certificate.kind === 'passed' || stage.g5a === 'completed' || p.checks.g5a.kind === 'passed' || ready) fail(cov !== null);
     }
+    // R1-R3 (ruling 06d) join the deferred C3 work equations, after association and typed checks.
+    for (const ok of accountingRules(a)) work(ok);
     if (ready) {
       fail(s && c.run?.kernel_terminal.kind === 'selected' && Object.values(stage).every(v => v === 'completed') && p && Object.values(p.checks).every((v: any) => v.kind === 'passed'));
       fail(pm.length === old.length && pm.length === fresh.length && pm.every(m => m.result.kind === 'prepared') && fresh.every(m => m.result.kind === 'ready') && a.operational.old_coverage === 'complete');
@@ -1061,17 +1088,22 @@ async function invocationBinding(b: Obj, source: Obj, invocation: Obj): Promise<
 export function ordinaryAttempts(b: Obj, source: Obj): void {
   const fail = (ok: unknown, code = 'ATTEMPT_MISMATCH') => need(ok, 'G5', code);
   const ds: Obj[] = source.diagnostics;
-  const diagnostic = (ref: string | null, cid: string) => { if (ref === null) return; const d = ds.find(d => d.id === ref); fail(d && d.affected_refs?.includes(cid)); };
   b.cases.forEach((c: Obj, ci: number) => {
     const a = b.ordinary_attempts[ci], cid = c.basis_ref.ref_id, q = source.numerical_quality.cases[ci];
+    // O2 reference rule (06b settlement, C2:166): a typed diagnostic reference is listed in this
+    // attempt's diagnostic_refs, resolves, and names this case; a required one is non-null.
+    const diagnostic = (ref: string | null | undefined, _cid: string, required = false) => {
+      if (ref == null) { fail(!required); return; }
+      const d = ds.find(d => d.id === ref); fail(d && d.affected_refs?.includes(cid) && a.diagnostic_refs.includes(ref));
+    };
     fail(b.material_bases[a.material_basis_ref]?.case_indices.includes(ci));
     fail(unique(a.diagnostic_refs)); for (const ref of a.diagnostic_refs) diagnostic(ref, cid);
-    if (a.initial.kind === 'report') { diagnostic(a.initial.report_diagnostic_ref, cid); fail(a.diagnostic_refs.includes(a.initial.report_diagnostic_ref)); }
+    if (a.initial.kind === 'report') { diagnostic(a.initial.report_diagnostic_ref, cid, true); fail(a.diagnostic_refs.includes(a.initial.report_diagnostic_ref) && a.initial.outcome === q.solve_quality); }
     if (a.initial.kind === 'structural_failure') diagnostic(a.initial.diagnostic_ref, cid);
     if (a.w2.kind !== 'not_triggered') {
       fail(['formation_failure', 'structural_failure'].includes(a.initial.kind));
       fail(a.w2.trigger.tag === (a.initial.kind === 'formation_failure' ? 'formation' : 'evaluation') && same(a.w2.trigger.error, a.initial.error));
-      diagnostic(a.w2.kind === 'published' ? a.w2.report_diagnostic_ref : a.w2.diagnostic_ref, cid);
+      diagnostic(a.w2.kind === 'published' ? a.w2.report_diagnostic_ref : a.w2.diagnostic_ref, cid, true);
       if (a.w2.kind === 'published') fail(a.w2.force_scale_exponent !== 0);
     }
     if (a.formation.load_row_finding) diagnostic(a.formation.load_row_finding.diagnostic_ref, cid);

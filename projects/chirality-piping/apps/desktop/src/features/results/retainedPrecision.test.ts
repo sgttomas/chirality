@@ -100,7 +100,7 @@ describe('synthetic prepared receipt arithmetic controls, not execution evidence
   });
 });
 
-import { validateRetainedPrecision, validateRetainedPrecisionTransport, RetainedPrecisionError, phi512, eHat, stopFeasible, nativeSchedule, ordinaryAttempts } from './retainedPrecision';
+import { validateRetainedPrecision, validateRetainedPrecisionTransport, RetainedPrecisionError, phi512, eHat, stopFeasible, nativeSchedule, ordinaryAttempts, accountingRules } from './retainedPrecision';
 import { canonicalSha256HexCheckedV1 } from '../../services/hashService';
 async function rehash(source: any) {
   const body = source.retained_precision.body;
@@ -224,6 +224,15 @@ describe('reader-logic checklist controls, not corpus or producer evidence', () 
     rejects(() => nativeSchedule({ ...run, kernel_terminal: { kind: 'refused', reason: { space: 'refusal', tag: 'structure' } } }, source));
     // Leaving the ladder is never a work-accounting point, so no WorkAccounting terminal there.
     rejects(() => nativeSchedule({ ...run, kernel_terminal: { kind: 'unresolved', reason: { space: 'unresolved', tag: 'work_accounting', fault: 'overflow' } } }, source));
+  });
+  it('R1-R3: each 06d accounting mutation falsifies exactly its own rule on one attempt', async () => {
+    const intended: Record<string, boolean[]> = { adapter_fault_present: [false, true, true], accounting_cause_without_fault: [false, true, true], scalar_trace_lost_unavailable: [true, false, true], work_accounting_cause_exact_status: [true, true, false] };
+    for (const c of corpus.cases) for (const a of c.source.retained_precision.body.product_attempts) expect(accountingRules(a), c.id).toEqual([true, true, true]);
+    for (const [id, rules] of Object.entries(intended)) {
+      const m = corpus.mutations.find((x: any) => x.id === id), { source } = await applyEntry(m);
+      const failing = source.retained_precision.body.product_attempts.map((a: any) => accountingRules(a)).filter((r: boolean[]) => r.includes(false));
+      expect(failing, id).toEqual([rules]);
+    }
   });
   it('O5: a source decline names its own unavailable case and material basis', () => {
     const fixture = caseOf('two_case_preparation_failure_synthetic'), body = fixture.source.retained_precision.body;
