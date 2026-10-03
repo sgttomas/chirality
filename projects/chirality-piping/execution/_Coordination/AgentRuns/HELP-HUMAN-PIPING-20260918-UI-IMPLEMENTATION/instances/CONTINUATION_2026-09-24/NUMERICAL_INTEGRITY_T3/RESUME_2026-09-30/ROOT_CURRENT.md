@@ -34,12 +34,12 @@ final joined closure remain.
 
 ## Running now
 
-I50's repaired support/observation component is accepted and merged locally at
-`7e9597bd9c` after the same reviewer's backcheck. Both modes still numerically
-refuse; no public publishing case exists. I51's next design is sealed and awaiting
-fresh design review: genuinely source-prepared new kernel inputs and tight dual
-readouts. Its all-row analytical witness is not a live producer result.
-No compiler/model run is active. M5 Max, guard PID 5387; evidence is preserved.
+I50's repaired component is accepted and merged locally at `7e9597bd9c`.
+Both modes still numerically refuse; no public publishing case exists. Fresh
+RV67 is reviewing I51's prepared-source/tight-dual-readout design: receipt
+08:54:19Z, checkpoint 09:04:19Z, cutoff 09:24:19Z, return 09:34:19Z.
+The analytical witness is not a live producer result. No compiler/model run is
+active. M5 Max, guard PID 5387; evidence is preserved.
 
 ## Next
 

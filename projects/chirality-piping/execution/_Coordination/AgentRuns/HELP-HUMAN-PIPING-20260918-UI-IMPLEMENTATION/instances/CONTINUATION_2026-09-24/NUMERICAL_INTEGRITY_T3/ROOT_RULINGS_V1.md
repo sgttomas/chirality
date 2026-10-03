@@ -6544,3 +6544,22 @@ All later reads used the required setting; source work used the pinned NUM basis
 Future dispatches explicitly require host/clock only before instructions and
 GIT_OPTIONAL_LOCKS=0 even for an initial status read. This is run-specific execution
 correction, not a reusable instruction amendment or a reason to rewrite evidence.
+
+
+## Prepared producer independently re-derived before selection (ROOT, 2026-10-03 UTC)
+
+ROOT has dispatched fresh design review of I51 so the proposed change in actual retained source preparation and product proof is checked before code relies on it.
+
+TASK `/root/rv67_prepared_producer_design` received brief `e85ab6541b` at
+08:54:19Z: checkpoint 09:04:19Z, cutoff 09:24:19Z, return 09:34:19Z. Its first
+tool was host/cwd/clock only; all Git reads must disable optional locks. It has
+source/exact-check authority only and writes its new review packet plus manifested
+external arithmetic output. No model/compiler/native run or source edit is granted.
+
+Review covers actual new-K geometry/provenance, both residual laws, complete
+projection and public-warrant preservation, the independent analytical witness,
+formation precision and p512 floors, immutable staging/ordinary fallback, and
+concrete local work/storage/interface requirements. Proposed operation/scratch
+counts are not automatically accepted resource evidence. ROOT has selected no
+new method or public contract; the current dual-cover implementation stays in
+force pending that independent re-derivation and an explicit ruling.
