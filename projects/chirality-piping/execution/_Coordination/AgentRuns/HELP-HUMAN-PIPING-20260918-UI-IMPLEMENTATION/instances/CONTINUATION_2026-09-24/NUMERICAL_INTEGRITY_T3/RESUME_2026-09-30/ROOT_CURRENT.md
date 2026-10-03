@@ -42,9 +42,13 @@ actual-body retargeting/newmodule inventory, and new CODE/R/I45/product_vertical
 only. BRIEFS/I45_PRODUCT_VERTICAL_SUPPLEMENT_01.md selects independently reviewed
 new operational L/k_a/k_t evaluation (RV59 correction00bb882c5592); old plan/review
 had not discharged this G5a prerequisite. It is not historical capture/receipt
-custody. Missing operands still block full G5a/case success. First actual source/
-map and private numeric verdicts exist; complete-case acceptance remains pending
-all guards/oracles/controls and fresh implementation review. No NUM/frozen arithmetic source writes,
+custody. Missing operands still block full G5a/case success. The first actual ordinary
+source/map and numeric verdicts exist. I45 reports W0 numeric recipes pass but
+G5a refuses a final negative-zero force row under the unchanged +0 rule; loaded
+ordinary output has independently reproduced numeric misses. These are interim
+CODE/R/I45/product_vertical_02 pp07/oracle04 results, not final acceptance or a
+future W1 projection claim. Complete guards, failure accounting, compatibility,
+source freeze and fresh RV60 implementation review remain. No NUM/frozen arithmetic source writes,
 Git/index/API/delegation. All other TASKs stopped.
 
 Sole focused compiler lane belongs to I45: existing guard5387,4jobs/2threads,

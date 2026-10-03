@@ -1,6 +1,6 @@
 # RV60 — fresh actual ordinary product vertical implementation review
 
-Prepared only. Dispatch pins I45's frozen candidate/base/return, actual nine-path
+Prepared only. Dispatch pins I45's frozen candidate/base/return, actual ten-path
 scope and focused runtime lane. Fresh independent TASK Type2 under ROOT HELP_HUMAN.
 Read Root/TASK/Piping instructions, software-code-review skill, selected I45/RV59
 interface and actual numerical dependencies. Own only new
@@ -29,6 +29,10 @@ Review the complete source diff and connecting path, not just isolated helpers:
   source stress/max recipes, actual source/postprocessing section distinctions,
   InputDerived exactness, final row scales/classes/floors/coupling and all raw/SI
   numeric predicates; no default radius or missing branch;
+- operational G5a correction from REVIEW_RV59/product_vertical_g5a_02 at00bb882c5592:
+  newly evaluated actual built L/k_a/k_t, literal operation order and prefix work,
+  individual formation-range checks, no historical capture/receipt or builder
+  replay claim; exact final-row/source-summary/data shape and missing-entry rules;
 - actual support/max observables and fixed evidence decoder, coverage/ancillary
   classification, full-case/alias/headline/tie gates; no skipping failed rows or
   promoting partial passes to a complete case;
@@ -53,7 +57,8 @@ legacy test scope. Source correction centers never become publications. Native
 complete memory profile, source promise, domain or availability is selected.
 
 Verify exact source fence and final source-bound evidence, old oracles/test
-criteria unchanged, and S11 registration only. Return actionable findings with
+criteria unchanged, FK S11 registration only, and PP S11 existing checks retargeted
+to the actual producer bodies without scanner/assertion/criterion weakening. Return actionable findings with
 actual trigger/location/impact/evidence/severity, bounded verdict, source/process
 state and lane release. ROOT owns repair/backcheck, integration, public and
 resource qualification, final gates and owner-held decisions.
