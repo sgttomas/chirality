@@ -7,7 +7,7 @@ no cargo/rustc before dispatch. NUM merged current main a533dc2d67bc with
 
 ## Current work
 
-- I37 source is frozen, clean and pushed in wt/f2a at
+- I37 source checkpoint was frozen and pushed at
   fdae294643b798c1849da8b2e643085562593686, base14ff4e86dd. ROOT read the core
   diff and verified scope/hashes and final-source checks. ROOT merged it into NUM after RV51 clearance; it remains unmerged on main.
 - RV51 is completing the partial review in new REVIEW_RV51/checked_work_a_02.
@@ -26,14 +26,23 @@ no cargo/rustc before dispatch. NUM merged current main a533dc2d67bc with
   wt/f2a-arithmetic, clean/pushed. ROOT read helper/tests/generator and verified
   five maintained hashes, original seal and final command logs. Byte-preserved
   evidence placement is explained by the packet root RETURN/RELOCATION.
-  Fresh RV53 /root/rv53_certificate_helpers reviews it under brief538297c17a;
-  sole focused Cargo lane,4jobs/2threads/per-manifest/20min command walls.
-- I40 /root/i40_kernel_origins implements kernel call/run/group/build/cache
-  origins in wt/f2a from clean887b790c2a64, maintained sourcefdae294. Brief
- 14ce35dbe60d;75min receipt/checkpoint15/cutoff55. RV52 source hold lifted at
- 23:55 UTC. Cargo remains held for RV53. Case batches/recorded selected
-  combinations only; Prepared ordinary/PP/maps/readers remain explicit later
-  interfaces. Raw command/host evidence stays under _run_records.
+  RV53 is CLEAR, preserved940b1eba9897; helpers integrated into NUM at0a9e874997.
+  Full product/profile gates remain.
+- I40 delivered native kernel origins at38798e6ee477ce23bf9bd2a708a1b2e268def5b3
+  in wt/f2a, base887b790c2a64. Eight maintained paths; source and five final
+  command checks verified by ROOT at650a84a0f385. Fresh RV54 reviews in
+  REVIEW_RV54/kernel_origins_01 under brief2e9bcf447022. It owns the sole focused
+  Cargo lane; no source writes. Prepared ordinary/PP/maps/readers remain later.
+- I41 delivered private material/section coefficients and B64U spent seam at
+  60375c47472dac26b1ab77536b8e7b9fb0c44ab0 in wt/f2a-arithmetic, base8a6ed501655f.
+  Six maintained paths; source/oracle/three final command checks verified by
+  ROOT at650a84a0f385. Fresh RV55 reviews in REVIEW_RV55/member_coefficients_01
+  under briefc274947f253c. Compiler lane is held for RV54; source/exact checks
+  may proceed. No source-provenance witness/product caller/policy is activated.
+
+Both source checkouts are frozen/clean. Their separate mod.rs registration hunks
+will be integrated serially by ROOT after review. Raw host/command records are
+under _run_records. No helper/product full gate programme is yet released.
 
 ## Accepted and preserved bases
 
@@ -51,5 +60,5 @@ Finish these bounded reviews, repair/backcheck confirmed findings, and qualify
 I39 helpers with a fresh reviewer. Complete C2/product source identity, concrete
 profile/caller/resource work and the first source-to-verdict witness, then the
 atomic F2a/S-G1 path and required gates. S-I/F2b/F3 and owner-held decisions
-remain. Next unused IDs: I41/RV54. No full T3 completion or product activation
+remain. Next unused IDs: I42/RV56. No full T3 completion or product activation
 is claimed. See BRIEFS, owning RETURN files and latest ROOT_RULINGS_V1.md.

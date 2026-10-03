@@ -5521,3 +5521,51 @@ not native qualification. ROOT read its return/ledger and verified available
 source/output hashes. It identifies synchronous dispatch but supplies no adopted
 H, complete request-context or emergency/capacity bound. No host tooling or
 protocol-policy expansion is selected.
+
+## Numerical helpers accepted; bounded coefficients follow (ROOT, 2026-10-02 UTC)
+
+ROOT read RV53's complete source/numerical review, verified its exact51-file
+packet and seal6ebe02c8237ad478da6602113988ea50a06b510c2fca49461f47174f53c9b315,
+preserved it at940b1eba9897 and accepts helper source82fc4ebd at its bounded
+private-component scope. ROOT merged it into NUM at0a9e874997 with --no-ff
+and confirmed exact maintained core/validation correspondence. The reviewer
+independently checked every stored reference by integer/rational inequalities
+and replayed the focused debug/optimized checks. Raw-log whitespace remains
+preserved; it is not a source defect or permission to edit evidence.
+
+Release I41 under briefd89749d309f1: private normalized material/section and
+exact-K coefficient enclosures plus the reviewed B64U actual-work seam, using
+existing fixed arithmetic. Its isolated f2a-arithmetic checkout merged reviewed
+NUM records at8a6ed501655f; maintained source remains82fc4ebd. Product source
+identity, bridge/row/receipt/admission integration are explicitly outside this
+block. No new source promise, tariff or memory allowance follows.
+
+I40 owns the sole focused compiler lane after RV53 release and ROOT's empty
+cargo/rustc scan. I41 starts only source and exact oracle work until a later
+explicit lane handoff. Both exact source fences keep shared registration hunks
+separate until ROOT integration; neither TASK has Git/index/API authority.
+
+## Kernel origins and source coefficients frozen for review (ROOT, 2026-10-03 UTC)
+
+I40 returned eight maintained paths at38798e6ee477ce23bf9bd2a708a1b2e268def5b3,
+base887b790c2a64. ROOT read the origin implementation, common core/combine diff,
+tests and reservation/ownership return; verified exact source/packet hashes and
+five final command logs; and committed only that scope. Actual combined K4LED
+is preserved before prep transfer even on unavailable runs; source-record byte
+copies and strong selected-prep retention are explicitly unpriced setup/owner
+deltas, not zero work. Extracted validation/preparation drops temporary owners
+earlier than the prior lexical scopes, a real profile delta. No acceptance yet.
+Fresh RV54 reviews the frozen source and holds the sole focused compiler lane.
+
+I41 returned six maintained paths at60375c47472dac26b1ab77536b8e7b9fb0c44ab0,
+base8a6ed501655f. ROOT read the complete component/B64U/tests/exact generator
+and return, verified the exact scope and39-file packet plus final source-bound
+commands, and committed that candidate. The exact singleton c-square uses one
+DM as the selected count derivation requires. Component counts exclude still-
+unimplemented chord/bridge work. Fresh RV55 reviews source/mathematics while
+its compiler lane is held for RV54. No source provenance, price, complete memory
+profile or product certificate is accepted merely because component tests pass.
+
+ROOT verification records are preserved at650a84a0f385. Both source checkouts
+remain frozen while fresh reviews run; each registration hunk will be integrated
+serially after findings are resolved. All product/availability/gate holds remain.
