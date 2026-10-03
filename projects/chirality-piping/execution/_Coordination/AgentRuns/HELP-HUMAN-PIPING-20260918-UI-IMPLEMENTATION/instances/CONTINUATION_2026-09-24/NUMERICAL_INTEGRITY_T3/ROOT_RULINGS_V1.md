@@ -6563,3 +6563,27 @@ concrete local work/storage/interface requirements. Proposed operation/scratch
 counts are not automatically accepted resource evidence. ROOT has selected no
 new method or public contract; the current dual-cover implementation stays in
 force pending that independent re-derivation and an explicit ruling.
+
+
+## Prepared producer readiness findings and bounded completion (ROOT, 2026-10-03 UTC)
+
+ROOT accepts RV67's three design-readiness findings and returns the same component to I51, so implementation starts from an explicit production and ownership contract.
+
+RV67's sealed review is preserved at `ec6e5080f8`. ROOT read REVIEW.md and
+DESIGN_FENCE.md and verified all eight payloads and five external files against
+the seal and bulk manifest (verification/rv67_design_review_01). The review's
+independent mathematics is conditionally verified; its complete named analytical
+witness is not a live producer or public availability result.
+
+RV67-1 requires the exact formation/projection process and truthful native p/2p
+provenance. RV67-2 requires closed preparation and owner-bound dual-proof APIs
+without repeating correction work during final certification. RV67-3 requires one
+frozen candidate, actual observable regeneration, atomic transfer and explicit
+local work/storage lifetime. These are blocking before implementation. No public
+criterion, source interpretation or availability exception is accepted.
+
+I51's correction brief addresses the three findings together, with the same RV67
+backcheck before ROOT selection. Its actual receipt will set the forty-minute
+box. This is direct numerical milestone work, without runtime or tool development.
+Current dual-cover code remains binding. The first publishing target and the
+remaining public route, receipt, resource and full-gate obligations are unchanged.

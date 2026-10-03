@@ -34,19 +34,20 @@ final joined closure remain.
 
 ## Running now
 
-I50's repaired component is accepted and merged locally at `7e9597bd9c`.
-Both modes still numerically refuse; no public publishing case exists. Fresh
-RV67 is reviewing I51's prepared-source/tight-dual-readout design: receipt
-08:54:19Z, checkpoint 09:04:19Z, cutoff 09:24:19Z, return 09:34:19Z.
-The analytical witness is not a live producer result. No compiler/model run is
-active. M5 Max, guard PID 5387; evidence is preserved.
+I50's repaired support and observation component is accepted and merged locally
+at `7e9597bd9c`. Both named modes still numerically refuse. RV67 verified I51's
+conditional mathematics but found three blocking design-readiness gaps: formation
+precision, closed proof ownership, and frozen candidate staging/accounting.
+I51 is completing those corrections in one bounded design task; the same reviewer
+will backcheck. No compiler/model run is active. M5 Max, guard PID 5387.
 
 ## Next
 
-Independently re-derive I51's geometry preparation, two residual laws, complete
-producer and public-warrant preservation before ROOT selects an implementation.
-Current dual-cover code remains binding. Actual new-K solve, residual widths,
-G5a, observables and resource/custody checks remain decisive live gates.
+Close the design findings, then select a precise private implementation scope.
+The first live new-K run and complete two-mode candidate will establish whether
+the proposed projection actually advances publication. Actual residual widths,
+G5a, observables and resource/custody checks remain required. Current code remains
+binding until a reviewed replacement is selected.
 Bulk evidence stays in scratch with committed hash/size/location manifests.
 
 ## Branches and owner decisions
