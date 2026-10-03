@@ -5851,3 +5851,13 @@ not inspect the new producer bodies; scanner/assertions/protections remain intac
 The exact ten-path fence and G5a obligations are in new
 BRIEFS/I45_PRODUCT_VERTICAL_SUPPLEMENT_01.md. This does not grant other source or
 runtime work, extend the clock, or accept incomplete G5a/full-case status.
+
+
+I46 diagnosis dispatch (ROOT, 2026-10-03 UTC): while I45 completes final checks,
+release one25minute exact-arithmetic/source-read question under brief5c068b85940b:
+distinguish the observed ordinary-output refusals from any discrepancy that would
+remain in the captured native values/section primitives. Its immutable interim
+pp09/oracle09 basis is not accepted implementation evidence; no extra solver,
+projection, output or public-contract change is granted. Actual receipt03:24:07Z,
+checkpoint03:34:07, cutoff03:44:07, return03:49:07. Native TASK directly under ROOT,
+only new NUM/R/I46/product_refusal_01 writes; I45 remains sole code/compiler owner.

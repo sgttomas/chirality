@@ -49,7 +49,8 @@ ordinary output has independently reproduced numeric misses. These are interim
 CODE/R/I45/product_vertical_02 pp07/oracle04 results, not final acceptance or a
 future W1 projection claim. Complete guards, failure accounting, compatibility,
 source freeze and fresh RV60 implementation review remain. No NUM/frozen arithmetic source writes,
-Git/index/API/delegation. All other TASKs stopped.
+Git/index/API/delegation. I46 is the only parallel source-read/exact-algebra task;
+all other earlier TASKs stopped.
 
 Sole focused compiler lane belongs to I45: existing guard5387,4jobs/2threads,
 absolute manifests with locked/offline,20minute walls, separate absolute targets
@@ -58,6 +59,15 @@ installs/host-tools/pruning. The witness uses actual final ordinary rows; it doe
 not implement production W1 projection/routing/receipt/admission. A verified
 full-case finite refusal is a valid first witness; a partial pass is not a case
 certificate. See verification/i45_dispatch_01/RECORD.md for actual local join.
+
+I46 /root/i46_product_refusal_diagnosis is an arithmetic-only next-dependency
+check under brief5c068b85940b, using immutable interim pp09.log/oracle09.json
+(actual ordinary and native facts) with their hashes. Receipt03:24:07Z;
+checkpoint03:34:07, cutoff03:44:07, final03:49:07. Owns only NUM/R/I46/product_refusal_01;
+no CODE/source/Git/index/API/compiler/solver/model/native/tooling/delegation.
+It distinguishes ordinary solve/postprocessing from native-K/source-law discrepancy;
+any projected values remain algebraic, not actual producer execution or acceptance.
+No output/source/predicate change is selected. I45 keeps its original clock/lane.
 
 RV58 discloses a separate92ea status read without optional locks disabled; no
 candidate mutation was observed. Its sealed fixture's .gitignore symlink produces
@@ -84,6 +94,6 @@ emergency bounds remain unqualified. Old K6c layouts do not qualify new owners.
 Then S-I/F2b/F3 and owner-held decisions remain. No complete memory allowance,
 facade tariff, visit permit or product availability is selected by these packets.
 
-Next unallocated IDs after I45/RV59: I46/RV60. ROOT owns source/record integration,
+Next unallocated IDs after I46 and prepared RV60: I47/RV61. ROOT owns source/record integration,
 repair assignment, independent review, gates and owner checkpoints. Rulings are
 append-only; frozen raw evidence is never edited.
