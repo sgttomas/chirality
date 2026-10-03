@@ -18,9 +18,8 @@ The numerical candidate now passes. What stands before publication is its public
 
 ## Running now
 
-- I52 is making the public contract proposal concrete: definitions, closed fields, source mappings and reader controls. Draft due 13:07:04Z, complete proposal 13:27:04Z, seal 13:42:04Z.
-- RV69 cleared the initial reconciliation, with one warrant cross-reference to carry into C3. It will independently check the concrete continuation before selection.
-- I53 checks the native caller’s still-open resource-proof premise using pinned source and vendor contracts. Result due 13:37:25Z, seal 13:57:25Z. No host tool or runtime is authorized.
+- I52's concrete public contract is sealed. RV69 independently reviews its exact definition, fields, failure mappings and reader obligations; disposition due 13:32:35Z, seal 13:47:35Z.
+- I53 returned the precise native caller lifetime-census gap. Fresh RV70 reviews the evidence and the actual scope required by the existing resource contract before any profile or correction is selected.
 - No compiler or solver job is running. The existing memory guard remains active. No host tooling work is assigned.
 
 ## Next
