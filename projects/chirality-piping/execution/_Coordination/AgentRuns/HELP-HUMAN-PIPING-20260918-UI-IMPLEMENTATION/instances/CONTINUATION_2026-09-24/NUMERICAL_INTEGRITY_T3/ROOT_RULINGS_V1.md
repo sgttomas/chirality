@@ -5791,6 +5791,11 @@ No PP code/runtime grant, new truth contract or public activation is made here.
 
 ## Product ordinary vertical interface selected (ROOT, 2026-10-03 UTC)
 
+[Correction 2026-10-03 UTC: the initial plan/RV59 review did not discharge
+G5a operational L/k_a/k_t. A/Z/body extent only covered row scales. The bounded
+private correction below was independently re-derived before implementation
+reliance; missing operands continue to refuse complete G5a/case success.]
+
 ROOT read RV59's full return/review, verified its12-file packet with seal
 a4b3529f686e134482ba1e1797cb44b948d2541bc7a4f125fbd37f96196f3b5f, and preserved
 it at5691d7f7b3d0. No actionable finding remains. Select I45 plan24f24e98ba8b
@@ -5816,3 +5821,180 @@ The120minute block/checkpoint20/cutoff90 targets actual admission/source custody
 first and a coherent full-row verdict next. The existing guard/sole focused lane
 and separate absolute FK/PP targets remain; no host-tool work or broad runs.
 Fresh implementation review and all product/resource/owner gates still follow.
+
+
+I45 actual dispatch continuation (ROOT, 2026-10-03 UTC): clean wt/f2a join
+0fdd06a73389908fba87dfb0baef46dd443c4b8c carries NUMa083c1def515 and unchanged
+reviewed maintained6ba653451f9f. Source code/evidence writes are confined there,
+not NUM or frozen f2a-arithmetic. Actual receipt02:26:30Z; checkpoint02:46:30,
+first actual admission/source-map target03:11:30, cutoff03:56:30, final04:26:30.
+The sole focused compiler lane was transferred after ROOT's empty Cargo/rustc
+scan and live guard check. Nine-path grant and all pending product/resource/
+publication limits remain as selected; no additional authority is inferred.
+
+
+## G5a operand prerequisite corrected; PP inventory follows actual bodies (ROOT, 2026-10-03 UTC)
+
+I45 caught the missing G5a operational operands during implementation and held
+that path. ROOT read the governing/actual scalar source and commissioned a bounded
+same-interface RV59 follow-up. ROOT read the full return/review, verified its12-file
+seal d5eaaa52228a44cd38469684f2d1136047b8e4644be5da300f1bc458e38022cc and preserved
+it at00bb882c5592. Select that newly evaluated operational-check derivation within
+PP retained_product.rs: actual built operands, exact existing operation order and
+checks, truthful actual prefixes, no historical field/receipt claim. No predicate,
+source truth, public output or ordinary admission changes. The original plan and
+review remain historical; their missing prerequisite is now explicit and corrected.
+
+ROOT also grants PP/tests/s11f_site_test.rs solely for actual moved-body retargeting
+and new module/site inventory. Existing checks on old compatibility wrappers would
+not inspect the new producer bodies; scanner/assertions/protections remain intact.
+The exact ten-path fence and G5a obligations are in new
+BRIEFS/I45_PRODUCT_VERTICAL_SUPPLEMENT_01.md. This does not grant other source or
+runtime work, extend the clock, or accept incomplete G5a/full-case status.
+
+
+I46 diagnosis dispatch (ROOT, 2026-10-03 UTC): while I45 completes final checks,
+release one25minute exact-arithmetic/source-read question under brief5c068b85940b:
+distinguish the observed ordinary-output refusals from any discrepancy that would
+remain in the captured native values/section primitives. Its immutable interim
+pp09/oracle09 basis is not accepted implementation evidence; no extra solver,
+projection, output or public-contract change is granted. Actual receipt03:24:07Z,
+checkpoint03:34:07, cutoff03:44:07, return03:49:07. Native TASK directly under ROOT,
+only new NUM/R/I46/product_refusal_01 writes; I45 remains sole code/compiler owner.
+
+
+## Product witness and supporting diagnosis checkpoint (ROOT,2026-10-03 UTC)
+
+ROOT refreshed the M5 host, guard5387, origin/main a533dc2d67bc and GitHub
+merge facts for A1 PR1070 and K6c PR1071. Those completed scopes stand.
+The private I45 witness is not yet independently reviewed. Its author caught
+a coherent support component/id binding hole after the first freeze but before
+sealing; ROOT granted only that owned repair/control and affected PP reruns.
+RV60 waits for a new freeze, ROOT source/hash/scope check and commit.
+
+I46's original diagnosis is preserved at330dc2e405de. Fresh RV61 found that
+its supporting G5a guard uses uncoupled resolution operands. ROOT confirmed
+original analyze.py:146 and assigned a separate copied-check correction under
+brief2b2d2d86473d. Original sealed evidence remains historical; no affected
+G5a replay is accepted before the same-reviewer backcheck. The independent
+main Rx/numeric finding will receive its disposition after the complete review.
+No source contract, predicate, output, availability or product acceptance is
+changed at this checkpoint.
+
+
+I45 final freeze/dispatch continuation (ROOT,2026-10-03 UTC): source52842022cc49
+is committed and pushed after ROOT's full core/test/repair read and98payload plus
+exact ten-path verification. No independent acceptance yet. Fresh RV60 has the
+sole focused lane, receipt03:49:13Z, checkpoint04:14:13, cutoff04:34:13, final04:49:13.
+Its external review fixtures may not be sealed as live symlink trees. See
+R/verification/i45_freeze_01. I47's selected-material numerical witness is prepared
+only; it follows existing I35 §3 after this source review, not a new truth contract.
+
+
+## Captured product refusal diagnosed; RV61-C1 closed (ROOT,2026-10-03 UTC)
+
+ROOT read I46's complete diagnosis and correction, RV61's full independent review
+and backcheck, and verified their sealed inventories. The main review is preserved
+at1c16016a5239, correctione3e04c6344d2, backcheck62dcd9e1cb25. The correction
+inventory is dc9695c4d0cf3037483c5e14a7fa9a1b83b96157586c7d538e8dd02923dd5e9f;
+the backcheck inventory is5ea2949146415f7aba99e181a4ae255b4c5fd50d267245b477b1c1e153bde60e.
+Close RV61-C1. Original I46 supporting G5a arithmetic remains historically
+inaccurate; read it with the separate correction. Original sealed bytes, all
+other analysis results and the complete Rx witness remain unchanged, as verified
+by the same reviewer. No numerical source repair is claimed by this records fix.
+
+Accept the bounded diagnosis in I46 original RETURN §§Ordinary versus retained
+point results, Decisive exact Rx counterexample, and Nearby dual-cover
+incompatibility, with RV61 REVIEW's precise fixed-scale/only-Rx-varies limits.
+The actual retained Rx is correctly rounded for the admitted K law but fails
+the geometric-source sharper predicate. Ordinary recovery misses and the
+section-source discrepancy are distinct. Do not call this a false native q_K
+publication or an executed false W1 product publication. Do not claim an all-pass
+source transfer for a future projection preserving these captured native values.
+Additional solver precision alone cannot discharge this particular discrepancy.
+
+The existing selected I33/I35 conditional route permits a truthful finite refusal;
+that permission is not an availability exemption. No new owner decision is needed
+merely to finish/review the already authorized private refusal witness. RV60 still
+owns independent review of I45's actual source/rows/custody/accounting/complete
+verdict. A later product projection must be actually executed and checked across
+its final complete row universe, with unchanged source/predicates and truthful
+refusal. Any proposed change to protected truth, tolerance, output/operator
+contract or required availability remains an owner decision on concrete reviewed
+evidence; affected acceptance/merge is held at that boundary. This ruling grants
+no public activation, protected availability, resource qualification or T3 closure.
+
+
+I48 dispatch (ROOT,2026-10-03 UTC): release the20minute read-only availability-
+warrant check in brief615fdf5fae78 alongside RV60's code review. Actual receipt
+03:53:07Z, checkpoint04:01:07, cutoff04:08:07, return04:13:07. Its sole evidence
+scope is R/I48/product_availability_01; no source/runtime/tooling or new contract.
+The purpose is to locate the actual owner-decision boundary, not infer a new
+availability exception from the accepted conditional private-refusal witness.
+
+
+## RV60 validator findings and next bounded repair (ROOT,2026-10-03 UTC)
+
+ROOT read the full fresh review a231fb5d0230 and verified its45payload seal
+d2c7be29ca2114ff5291637e2f572bd9a7b9523f4dca8ffa9376d64c2c1fa204. Hold I45
+fan-in on RV60-F1/F2. ROOT independently read the existing reader's closed shape
+checks and ordinary mode producer's fixed sign string; these are existing-contract
+corrections, not numerical/source design amendments. Release the two-file repair
+under briefed0dbbc0671d, actual receipt04:04:44Z, checkpoint04:14:44, cutoff04:24:44,
+final04:34:44. After RV60 release and ROOT's empty compiler scan, the sole focused
+PP lane transferred to I45. Same RV60 backcheck precedes reliance. No value, zero
+sign, predicate, old reader or protected test is changed to produce a pass.
+
+RV60 independently confirmed the actual original specimens' numerical/G5a
+outcomes and prefixes. Its deliberately mismatched internal request/capture probe
+is retained as a future C2 boundary; the actual single observed(raw) producer
+forwards its matching parse pair. This is not arbitrary-pair custody qualification
+or a new raw-identity token. The repair does not expand to that separate seam.
+
+I48's short availability-warrant comparison is preserved74e9f4049e76. ROOT read
+its complete return, the decisive original owner/design clauses and concrete
+protected input differences, and verified7payloads plus33pinned source origins.
+It confirms the existing boundary as planning evidence: this conditional private
+refusal is not a demonstrated protected-availability regression, and grants no
+exemption. Public F2a selection/coexistence/native requirements, later retirement
+and PHYS-R4 remain distinct. A complete actual projected specimen and an actual
+required-success public input/route are different witnesses. No new contract or
+availability ruling is needed for I47's already prepared selected-material test
+step after current repair/backcheck; public changes retain their owning decisions.
+
+
+RV60 repair freeze/backcheck (ROOT, 2026-10-03 UTC): ROOT read the complete
+two-file repair and verified its 28 payloads, final source-bound PP checks, 586
+untouched core files and the original 98 I45 payloads. Candidate
+28ac57891cd5786e8f84d28f54aa7f1581f69402 is frozen; no acceptance yet. I45
+released runtime at 04:14:10 and sealed at 04:15:17. Same RV60 reviewer received
+the unchanged-control backcheck at 04:16:32Z, checkpoint 04:26:32, cutoff 04:36:32,
+return 04:41:32. New owned evidence is R/REVIEW_RV60/product_vertical_repair_02;
+new external overlay and separate PP target preserve all earlier records.
+Only the focused lane transferred after ROOT's no-compiler/live-guard check.
+
+
+## I45 private product certificate accepted and locally merged (ROOT, 2026-10-03 UTC)
+
+ROOT read the complete RV60 backcheck preserved at 6c641f94de52 and verified its
+28-payload seal 27c9ceb50ec3e0758a04bd755db452a932c64cfafb732ffa0e88516703bcac71.
+RV60-F1 and RV60-F2 are closed on source 28ac57891cd5786e8f84d28f54aa7f1581f69402. Accept that reviewed source
+for the bounded private ordinary base-material source-to-complete-verdict scope.
+ROOT locally merged it at 1d19eb51ba1a31b8507439ec9c191eeac14bdc9f, with exact maintained core/validation tree
+correspondence and no source conflict. R/verification/i45_fanin_01/LOCAL_MERGE
+records the join. This is not a main merge, public W1 selection or F2a acceptance.
+
+The unchanged review discriminator now stops at its old invalid-mode unwrap;
+its raw result remains seven passing tests and one expected failure, exit 101.
+It is evidence of the repaired rejection, not a green suite. Fresh valid candidate
+and accounting controls pass; source-bound author optimized/S11 evidence stays
+labelled as author execution. Original actual numerical/G5a outcomes remain
+identical; see RV60 backcheck RETURN and REVIEW for their exact figures/bases.
+
+Both actual private cases truthfully refuse. No ordinary value, zero sign,
+predicate or old oracle changed. The internal arbitrary raw request/capture pair
+and dynamic mode-basis text remain explicitly unqualified beyond the traced
+matching actual caller. Public C2/receipt custody cannot rely on that mode-only
+check as an identity proof. All public, resource, availability and owner gates
+remain. Continue with prepared I47's actual selected-material numerical witnesses
+under the existing I35 plan, after ROOT provides a clean updated CODE base.

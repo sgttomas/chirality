@@ -26,20 +26,59 @@ with exact maintained correspondence. R/verification/i44_fanin_01 holds ROOT
 checks and LOCAL_MERGE. Native p128/P256 evidence and full predicates are reviewed;
 higher-P actual witnesses, profiles/auxiliary costs/PP custody remain open.
 
-I45 read-only plan at R/I45/product_vertical_01 returned early, preserved24f24e98.
-It proposes one eight-path actual PP-builder/final-row W0/W1 private witness;
-its73 mechanical rows are a static expectation only. The ordinary direct/magnitude
-hull and separately evaluated represented/source stress branches require fresh
-interface review because the old Q_K subset Q_S shortcut no longer follows.
+I45 private ordinary product component is accepted at bounded scope and locally
+merged into NUM at 1d19eb51ba1a31b8507439ec9c191eeac14bdc9f. Reviewed source is 28ac57891cd5786e8f84d28f54aa7f1581f69402; original review a231fb5d0230
+found F1/F2, repaired and cleared by same-reviewer backcheck 6c641f94de52.
+ROOT read all source/repair/reviews, verified hashes and exact maintained tree
+correspondence after the no-ff join. Records: R/verification/i45_fanin_01/LOCAL_MERGE.
+No main/public/F2a acceptance follows. Actual W0/W1 complete private cases still
+truthfully refuse; source/ordinary output/numeric/G5a results are unchanged.
 
-RV59 cleared I45's interface plan, preserved5691d7f7b3d0; ROOT read and verified
-its12-file packet. The explicit ordinary hull/separate completed recipes and
-final ordinary hook are selected at that bounded scope. I45 implementation is
-released under new BRIEFS/I45_PRODUCT_VERTICAL_IMPLEMENTATION.md, pending ROOT's
-clean wt/f2a join and exact dispatch. Nine-path fence includes required S11
-registration only.120minute block, first actual admission/source/map checkpoint,
-then complete private ordinary W0/W1 verdict; no public activation. Actual receipt/
-base/lane facts will be recorded after dispatch. All other TASKs stopped.
+The old invalid-mode review control now stops at its original unwrap with the
+correct association error; raw seven-pass/one-expected-failure exit101 is retained,
+not relabelled green. Fresh valid candidate/accounting controls pass. Review
+seal is 27c9ceb50ec3e0758a04bd755db452a932c64cfafb732ffa0e88516703bcac71.
+The mode-only arbitrary request/capture pair and dynamic basis-text boundaries
+remain outside public C2 custody; only the actual matching internal caller is
+qualified here. I45 and RV60 stopped; no compiler lane retained. Existing guard
+5387 stays active. Next executable dependency is prepared I47 after clean CODE
+join/dispatch; public projection/routing/receipt/resources remain later.
+
+I46's original diagnosis is preserved330dc2e405de, with original sealed packet
+byte-relocated under R/I46/product_refusal_01/_run_records/original. It separates
+ordinary numerical misses from real source/rounded-K discrepancy; no future
+projected envelope or false native q_K publication is claimed. Fresh RV61 original
+review1c16016a5239 confirms the main numerical diagnosis and permits the existing
+honest finite-refusal path; protected availability remains unqualified. Its C1
+found an uncoupled G5a supporting check, which was not accepted as exact.
+
+I46 correctione3e04c6344d2 and same-reviewer backcheck62dcd9e1cb25 are sealed,
+read and hash-verified by ROOT. RV61-C1 is closed; corrected supporting G5a
+arithmetic is accepted with the original diagnosis. Exactly one supporting leaf
+changes, and all other numeric/Rx/projection/scale results and original bytes
+remain unchanged. The bounded main diagnosis is accepted with its actual-input,
+fixed-scale/only-Rx-varies limits. It blocks an all-pass source-transfer claim for
+this captured native Rx; it is not a false native q_K publication or actual W1
+product publication. Conditional finite refusal remains authorized; protected
+availability and any public contract change remain separate owner boundaries.
+I46/RV61 stopped; no runtime retained. See the latest ROOT ruling for disposition.
+
+I47 selected-material witness brief is prepared atf737a96abc83, not dispatched.
+It follows selected I35 §3: actual point/interpolation material through the full
+ordinary source-to-verdict path, preserving criteria/output and checking every row.
+Only PP's existing private test module plus new evidence may change, after the now-clear RV60 backcheck and a clean source grant. No new material/source design or public route.
+
+I48's bounded read-only availability comparison is preserved74e9f4049e76,
+R/I48/product_availability_01, inventory1144c14f15e1a8ab11b7939ddaa23519a667558f687865cc87c7f387da5eabd0.
+ROOT read its return and decisive original owner/design clauses, checked actual
+protected input differences and verified7payloads/33frozen origins. It supplies
+planning evidence, not new design or availability acceptance. The expressly
+conditional private specimen establishes no protected availability violation.
+F2a still requires actual naturally routed selected public results, exact-block
+coexistence and native successor Current; F2b retirement remains later. An actual
+complete projected specimen and an actual required public availability case are
+different witnesses. PHYS-R4's pending owner decision remains separate. No source,
+output, predicate, availability exception or public route is selected. I48 stopped.
 
 RV58 discloses a separate92ea status read without optional locks disabled; no
 candidate mutation was observed. Its sealed fixture's .gitignore symlink produces
@@ -66,6 +105,6 @@ emergency bounds remain unqualified. Old K6c layouts do not qualify new owners.
 Then S-I/F2b/F3 and owner-held decisions remain. No complete memory allowance,
 facade tariff, visit permit or product availability is selected by these packets.
 
-Next unallocated IDs after I45/RV59: I46/RV60. ROOT owns source/record integration,
+Next unallocated IDs after prepared I47/active I48 and allocated RV60/RV61: I49/RV62. ROOT owns source/record integration,
 repair assignment, independent review, gates and owner checkpoints. Rulings are
 append-only; frozen raw evidence is never edited.
