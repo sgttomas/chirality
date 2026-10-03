@@ -7085,3 +7085,39 @@ focused-test lane in the brief. Fresh implementation review and ROOT full-diff
 verification precede local fan-in. Source/build-bound numeric profile completion
 and M selection remain necessary before the first actual public execution; this
 checkpoint cannot be presented as that publishing milestone.
+
+
+## Caller/census checkpoint accepted and merged locally (ROOT, 2026-10-03 UTC)
+
+ROOT accepts the caller/census boundary because it prevents unqualified native access and exposes real count/capacity facts without changing ordinary results.
+
+Source `24af17c470` is independently reviewed by fresh RV72, whose sealed review
+is preserved at `0022d734f0`. The owning REVIEW records independent product
+integration 5/5, inline census/admission 5/5 and headless 3/3 checks, with stable
+source and full reap; the author's unchanged private regression 28/28 evidence
+was hash-verified rather than rerun by the reviewer. ROOT read the complete
+six-file patch and both returns, verified all payloads/bulk and the exact source
+write set, and matched the committed source blobs to the tested hashes.
+
+The no-ff local integration is `a9c2256076`; maintained Piping trees exactly
+match CODE after the merge. I51_ADMISSION_A_MERGE/RECORD.md, this ruling and the
+graph/current-state update form the same closeout pass. The initial test's wrong
+pressure-receipt assumption remains preserved; actual pressure bytes and the
+separate positive N05 source-recovery witness are checked. No numerical criterion
+or protected test changed.
+
+Explicit retained direct/headless entries now return ordinary output and non-wire
+facts. Existing shared/native/typed/headless routes remain ordinary. The bounded
+nonrecursive census distinguishes capacities from lengths and partial observation
+from completion. Every production profile/M remains absent; no capture permit can
+be constructed and no public W1 execution is enabled. This is necessary code for
+the first publishing milestone, not that milestone or full resource qualification.
+
+I54's concurrent source-only coefficient task now targets the concrete remaining
+container laws. Installed Rust source HTML and exact cached dependency/binary
+provenance are available; no new tool or installation is commissioned. I54 itself
+reported a misresolved scratch anchor. ROOT supplied the exact .claude/t3 path,
+required verified copies with originals retained, and kept the clock unchanged.
+Its final packet must disclose that placement correction. Neither a promising
+table nor a per-artifact layout observation is accepted before independent review.
+No further native/vendor investigation or new serializer is part of this work.

@@ -12,6 +12,8 @@
 
 - The corrected public formation contract is selected after RV69 review and repair confirmation. Its schemas, typed evidence and readers still need implementation.
 
+- Caller/census checkpoint A is accepted and integrated locally at `a9c2256076` after RV72 review. Ordinary behavior is preserved; production W1 remains disabled.
+
 ## Open and next milestone
 
 **RF-SKEW-T-CANT-OFF-122-r1e-04 must publish through the captured F2a entry in both modes**, under `M03-INTEGRITY-MP-v2`, agree with its independent reference, and preserve the named refusal/coexistence controls. The typed entry keeps its accepted ordinary route; both-entry checks remain required.
@@ -20,13 +22,13 @@ The numerical candidate now passes. What stands before publication is its public
 
 ## Running now
 
-- I51's conditional admission design is accepted after fresh RV71 review. The next bounded code checkpoint implements explicit caller separation, borrowed count/capacity facts and denial before allocating an observer. It leaves W1 execution disabled when qualification is missing.
-- The existing canonical JSON path stays; a new serializer has no demonstrated need. Native context-lifetime/backing qualification remains open, with that source investigation stopped at its stated limit.
-- Only I51 is assigned the focused Cargo lane under the existing memory guard; no heavy sweep or scale work is authorized now.
+- I54 derives the source/build-bound container coefficients for the first direct memory profile. A usable table is drafted; exact provenance and numeric-parser limits are being finalized. Table due 15:38:26Z, seal 15:58:26Z; independent review precedes reliance.
+- I51 and RV72 have finished the code checkpoint and released the runtime lane. No compiler or solver job is running; the existing memory guard remains active.
+- Native context-lifetime/backing qualification remains open. Its source investigation is stopped at its stated limit.
 
 ## Next
 
-Review the caller/census code checkpoint, bind the actual numeric admission profile and allowance, then complete producer, readers and carriers as a coherent public package. Existing full invocation/resource and native requirements remain dependencies; the passing private case does not waive them. Bulk evidence remains in scratch with hash/size/location manifests.
+Review the coefficient evidence, bind the actual numeric admission profile and allowance, then complete producer, readers and carriers as a coherent public package. Existing full invocation/resource and native requirements remain dependencies; the passing private case does not waive them. Bulk evidence remains in scratch with hash/size/location manifests.
 
 ## Branches and owner decisions
 
