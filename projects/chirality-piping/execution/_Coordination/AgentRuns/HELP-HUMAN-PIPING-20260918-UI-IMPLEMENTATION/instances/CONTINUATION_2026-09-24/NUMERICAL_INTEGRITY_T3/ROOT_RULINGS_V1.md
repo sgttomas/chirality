@@ -7444,3 +7444,34 @@ I62 froze the shared coverage contract as snapshot 04 in about 19 minutes. ROOT 
   
   The failure-prefix and unavailable bases also serve the readers' remaining audit (resume step 3), so they are built once.
 - **Acceptance:** no reader's coverage implementation is accepted until it passes snapshot 05 and a fresh independent review. Eligibility stays closed.
+
+## I62 checkpoint B verified; snapshot 05 is planned before it is built (ROOT, 2026-10-03 UTC)
+
+The Python reader now enforces the selected coverage rules against snapshot 04, and ROOT has checked the logic against the native code. Snapshot 05 is planned first and built only after the Rust and TypeScript readers freeze on snapshot 04.
+
+**Verified by ROOT:**
+- **ROOT's run:** 107 passed and 0 failed.
+- **Changes:** only `retained_precision.py` (`94330e168f`) and its Python-only test file (`de1c401503`) changed. The shared schema and corpus are still at snapshot 04, and the public API stays disabled.
+- **The core diff, read by ROOT:**
+  - **G3** compares the coverage roster with the attempt's source inventory.
+  - **G5** applies the §3 stage and binding rules.
+  - **G5a** runs the feasibility rule, the estimate and charge rederivation, the exact rosters and the direct data facts. It no longer uses the Cartesian roster.
+  - Checked against `final_case.rs:1371–1448`, the floor positivity is ORed after the extent coupling and outside it, as the Python does. Native p512 charge is `present ∧ positive`, which equals the force/moment stop flags in this scope, as I57 §2 derives.
+
+**This is source-level verification, not acceptance.** Python's coverage work is accepted only together with the other readers, after snapshot 05 and a fresh independent review.
+
+**The coverage-before-WORK order is I57's:** association first, then the original WORK pass. Snapshot 05 adds a coverage-plus-WORK dual-defect mutation so all three readers are held to it.
+
+**Checkpoint C is split:**
+- **C0** is a plan, with no shared-file edits while I63 and I64 test against snapshot 04. For each new base case it gives the native code path, with file:line, that makes the case one the solver can actually produce, and its expected outcome in each reader. The cases are:
+  - multiple bodies with distinguishable constraints;
+  - an absent kind;
+  - zero extent;
+  - native p512 through the p128 → p256 → p512 ladder, with zero and positive floors;
+  - a second owner or proof;
+  - the §3 failure rows (no proof; a lane failure; a certificate failing before the summary; a summary followed by a certificate failure; a partial adapter copy);
+  - unavailable and failed-certificate attempts;
+  - the positive cancelling ±x loads case.
+  
+  C0 also covers I59's and I58's shared failure-prefix controls (pre-helper, captured_prefix, unequal prefixes, K-only and Source-failed, old-Err/new-Ready, source construction failure, post-native unavailable, maxima-abandon). It promotes I62's three layout controls to shared mutations, and covers the Python G5a direct checks for unavailable attempts that keep complete coverage.
+- **C1** builds snapshot 05 after ROOT accepts the plan and I63 and I64 have frozen.
