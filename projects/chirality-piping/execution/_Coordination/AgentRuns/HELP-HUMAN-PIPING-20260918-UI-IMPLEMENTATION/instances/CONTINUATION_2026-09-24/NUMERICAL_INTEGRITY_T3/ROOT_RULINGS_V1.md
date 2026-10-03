@@ -5998,3 +5998,12 @@ matching actual caller. Public C2/receipt custody cannot rely on that mode-only
 check as an identity proof. All public, resource, availability and owner gates
 remain. Continue with prepared I47's actual selected-material numerical witnesses
 under the existing I35 plan, after ROOT provides a clean updated CODE base.
+
+
+I47 source join and dispatch (ROOT, 2026-10-03 UTC): ROOT no-ff merged accepted
+NUM cd9110cc5412 into CODE at 0215e471d293, verified clean exact maintained source
+28ac57891cd5, and actually spawned /root/i47_selected_material from a fresh
+selective TASK context. The one maintained test-file fence and actual selected-
+material witness are in brief f737a96abc83; the runtime lane transferred only
+after the empty compiler/live guard scan. R/verification/i47_dispatch_01 records
+the local join/dispatch. No new source/output/predicate or availability policy.

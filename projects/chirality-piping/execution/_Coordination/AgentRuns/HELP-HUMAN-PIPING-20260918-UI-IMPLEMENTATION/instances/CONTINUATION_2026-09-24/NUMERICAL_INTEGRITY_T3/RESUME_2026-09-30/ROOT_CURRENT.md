@@ -63,10 +63,17 @@ product publication. Conditional finite refusal remains authorized; protected
 availability and any public contract change remain separate owner boundaries.
 I46/RV61 stopped; no runtime retained. See the latest ROOT ruling for disposition.
 
-I47 selected-material witness brief is prepared atf737a96abc83, not dispatched.
-It follows selected I35 §3: actual point/interpolation material through the full
-ordinary source-to-verdict path, preserving criteria/output and checking every row.
-Only PP's existing private test module plus new evidence may change, after the now-clear RV60 backcheck and a clean source grant. No new material/source design or public route.
+I47 /root/i47_selected_material is actually dispatched under brief f737a96abc83
+from clean CODE 0215e471d293cd2d6e7f3f177913a216ab73a988 (no-ff accepted NUM join;
+maintained source 28ac57891cd5). It implements only PP/src/retained_product_tests.rs
+and new CODE/R/I47/selected_material_01, following selected I35 §3's actual point/
+interpolation complete private witness. Receipt/deadlines await the child's first
+clock report; grant is45minutes, checkpoint10/actual witness20/cutoff30.
+No production/source-contract changes. Sole focused PP lane: existing guard5387,
+4 jobs/2 threads, absolute locked/offline manifest,20minute command wall, external
+WT/targets/i47-selected-material/product_physics. No broad/heavy/UI/sweep/install/
+tooling/pruning or Git/index/API/delegation. Fresh review follows the source freeze.
+R/verification/i47_dispatch_01 records the exact join and actual dispatch.
 
 I48's bounded read-only availability comparison is preserved74e9f4049e76,
 R/I48/product_availability_01, inventory1144c14f15e1a8ab11b7939ddaa23519a667558f687865cc87c7f387da5eabd0.
