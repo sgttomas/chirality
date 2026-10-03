@@ -6323,3 +6323,31 @@ through subsequent component checkpoints. The target remains actual captured
 F2a publication in both modes, with typed-entry coexistence and full gates.
 The current assignment moves that target forward by resolving a demonstrated
 producer dependency; it does not establish public publication or a completion date.
+
+
+## Named support interface held for independent review (ROOT, 2026-10-03 UTC)
+
+ROOT has preserved I50's concrete component proposal and commissioned independent review before its new private support-row law is implemented.
+
+I50 checkpoint 0 is preserved at `848981f433`. ROOT read the complete RETURN
+and source checker, verified the current packet and its maintained-source
+comparisons, and inspected the actual spring builder and selected support-law
+warrant. The RETURN's “Concrete proposed source fence” names six files; its
+“Census, controls and next checkpoint” keeps all counts explicitly static and
+requires actual named-case execution later. No numerical tightening is proposed.
+
+The packet discloses that its first seal and three provenance payloads were
+replaced while distinguishing the initial ROOT_CURRENT snapshot from ROOT's
+later dispatch update. Those original overwritten bytes are not claimed preserved.
+Their recorded hashes and transcript remain, and a separately sealed addendum
+records the event. ROOT verified the retained final bytes. This is a provenance
+qualification, not a reason to relabel the earlier seal as preserved or to rerun
+unrelated numerical tests. Future checkpoint briefs explicitly say to seal only
+after final audit and record later corrections in separate addenda.
+
+Fresh TASK `/root/rv65_named_support_component` received its actual native
+delegation at 06:29:57Z, under brief `f58de3f5cc`: checkpoint 06:37:57Z, cutoff
+06:47:57Z, return 06:54:57Z. Its scope is the source/interface law, exact fence,
+coverage compatibility, support ownership, accounting and proposed controls. It
+has no compiler/model/source/Git write authority. I50 remains the implementer
+for the component's later checkpoints; implementation is not yet granted.

@@ -36,14 +36,14 @@ final joined closure remain.
 
 Both material-coverage backchecks are clear and accepted. They establish no false
 passing predicate in the fixed captured cases; unchanged UX has a real miss and UZ
-has a conservative refusal. I50 is running the bounded source/integration checkpoint for the named
-publishing case: receipt 06:18:21Z, checkpoint 06:28:21Z, cutoff 06:38:21Z,
-sealed return 06:48:21Z. No compiler or model run is active.
-M5 Max, existing memory guard PID5387. Original evidence remains unchanged.
+has a conservative refusal. I50 checkpoint 0 is preserved at `848981f433`. Fresh RV65 is reviewing the
+support-component interface and six-file fence: receipt 06:29:57Z, checkpoint
+06:37:57Z, cutoff 06:47:57Z, sealed return 06:54:57Z. No compiler or model run is active.
+M5 Max, existing memory guard PID 5387. Original evidence remains unchanged.
 
 ## Next
 
-Review I50 checkpoint 0, then grant its exact implementation fence and carry
+Close RV65 review, then grant I50 its exact implementation fence and carry
 the same implementer through the component checkpoints. Tightening is deferred unless it advances that case.
 Keep one reviewer through corrections and obtain fresh independent PR review.
 Bulk new evidence stays in scratch with committed hashes, sizes and locations.
