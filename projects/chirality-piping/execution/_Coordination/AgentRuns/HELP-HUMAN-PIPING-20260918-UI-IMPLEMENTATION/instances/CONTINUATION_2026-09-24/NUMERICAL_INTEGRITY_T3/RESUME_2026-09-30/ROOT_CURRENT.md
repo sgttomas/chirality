@@ -29,8 +29,14 @@ or product admission. Preserve the baseline and predicates unchanged.
   no compiler/solver/source writes. Frozen I42 basis is explicitly unreviewed.
   Any result requires fresh independent design re-derivation before reliance.
 
+RV56 has reported a failure-prefix accounting defect: relative-radius rejection
+after the five sharper-bound arithmetic operations currently records zero. ROOT
+confirmed the early return. I42 is preparing a narrow repair plan only in new
+I42/source_bridge_rv56_repair_02; source and runtime writes remain held until RV56
+releases the frozen review candidate. Original sealed evidence stays unchanged.
+
 These are delegated-harness-native TASK children of ROOT with no delegation or
-Git/index authority. All earlier TASKs are stopped. No source writer is active.
+Git/index authority. Other earlier TASKs are stopped. No source writer is active.
 Do not commission product plumbing while this numerical sufficiency question is
 unresolved. No new guard/tooling or final qualification programme is granted.
 
