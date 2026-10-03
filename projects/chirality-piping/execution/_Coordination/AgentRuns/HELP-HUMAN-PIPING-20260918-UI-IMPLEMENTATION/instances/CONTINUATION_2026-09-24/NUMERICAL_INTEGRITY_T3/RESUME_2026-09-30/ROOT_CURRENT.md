@@ -1,8 +1,11 @@
 # T3 current checkpoint
 
 **ACTIVE after explicit owner resumption. Updated 2026-10-03 UTC.**
-M5 Max; existing memguard PID5387. Latest fetch main a533dc2d67bc; NUM already
-merged it at d01b218e7ad. Relevant Piping/instruction source is unchanged.
+M5 Max; existing memguard PID5387. Latest fetch main381be775ae9b (App PR1073);
+NUM previously merged a533dc2d67bc at d01b218e7ad. The new main delta is confined
+to projects/chirality-app-v4; Piping/instruction source is unchanged. Integrate
+the unrelated update at the next clean ROOT boundary. gh reconfirms PR1070/1071
+merged at their recorded commits. No compiler lane is occupied.
 
 ## Numerical priority
 
@@ -91,21 +94,23 @@ true for their two particular readouts; the full-cover taxonomy and refinement
 recommendation are reopened. No source/output/predicate/contract change or false
 candidate PASS is established. Tighter-method exploration is held.
 
-I47 /root/i47_selected_material is now records-only under brief26160e94661e:
-NEW NUM/R/I47/source_truth_coverage_03, complete existing required interpretation
-coverage over the same four captured cases. Receipt05:57:32Z; checkpoint06:05:32,
-cutoff06:15:32, return06:22:32. No source or runtime changes. Same RV62 backcheck
-will follow. Original 47 conservative rows are qualified relative to the two
-previously checked readouts, not yet the complete required cover.
+I47's records-only full-cover addendum sealed06:08:34Z and is preserved997e5e7992ee.
+ROOT read RETURN/METHOD/checker and verified24new payloads,58unchanged originals
+and4unchanged source paths in CODE/NUM. Its reported correction changes one UX
+row and finds no false candidate PASS; see its RETURN for complete figures.
+Same RV62 is dispatched under BRIEFS/RV62_FULL_TRUTH_BACKCHECK.md, new owned
+REVIEW_RV62/source_truth_coverage_02. Receipt06:10:09Z, checkpoint06:18:09, cutoff06:28:09, seal06:35:09. No
+runtime/source work. Full-cover evidence acceptance awaits that backcheck.
 
-I49 /root/i49_conservative_predicate has a separate records-only addendum under
-the same brief commit, NEW NUM/R/I49/full_truth_addendum_02. Receipt05:57:46Z;
-checkpoint06:02:46, cutoff06:07:46, return06:12:46. Independently check the extra
-UX readout/consequence and at most one fully covered conservative UZ target.
-Same RV64 backcheck follows. Neither assignment may use Cargo/model/solver/native,
-source, Git/index/API, tooling or delegation. Existing guard5387 stays; compiler
-lane is unoccupied. ROOT stopped premature refinement exploration and recorded
-that coordination correction explicitly in the latest ruling.
+I49's addendum sealed06:01:40Z and is preserved4987f8290fbd. ROOT read the full
+RETURN/checker and verified26payloads. Same RV64 continuation received06:06:16Z,
+checkpoint06:13:16, cutoff06:20:16, seal06:26:16, owning only new
+REVIEW_RV64/full_truth_addendum_02. It checks the corrected UX consequence and
+full-positive-cover UZ target. Its early numerical report confirms both; sealed
+backcheck/ROOT acceptance remain pending. Neither active reviewer may use
+Cargo/model/solver/native, source, Git/index/API writes, tooling or delegation.
+Existing guard5387 stays; compiler lane is unoccupied. Tighter-method selection
+remains held until these evidence premises close.
 
 I48's bounded read-only availability comparison is preserved74e9f4049e76,
 R/I48/product_availability_01, inventory1144c14f15e1a8ab11b7939ddaa23519a667558f687865cc87c7f387da5eabd0.
@@ -144,6 +149,6 @@ emergency bounds remain unqualified. Old K6c layouts do not qualify new owners.
 Then S-I/F2b/F3 and owner-held decisions remain. No complete memory allowance,
 facade tariff, visit permit or product availability is selected by these packets.
 
-Next unallocated IDs after active I49/RV62 and completed RV63: I50/RV64. ROOT owns source/record integration,
+Next unallocated IDs: I50/RV65. ROOT owns source/record integration,
 repair assignment, independent review, gates and owner checkpoints. Rulings are
 append-only; frozen raw evidence is never edited.

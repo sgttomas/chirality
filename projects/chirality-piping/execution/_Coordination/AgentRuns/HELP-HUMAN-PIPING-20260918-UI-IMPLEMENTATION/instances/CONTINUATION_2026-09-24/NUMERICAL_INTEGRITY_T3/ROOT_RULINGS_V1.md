@@ -6144,3 +6144,26 @@ settling this full-cover premise. That exploration is stopped. No tighter method
 is selected or implemented; the active numerical work is the two bounded evidence
 corrections. This records ROOT's own coordination error and correction, without
 attributing it to the owner or changing any standing instruction.
+
+
+## Full-cover corrections preserved for independent backchecks (ROOT, 2026-10-03 UTC)
+
+ROOT read I49 full_truth_addendum_02 RETURN/checker and verified its26 payloads,
+preserved4987f8290fbd. ROOT read I47 source_truth_coverage_03 RETURN/METHOD/checker
+and verified24 new payloads,58 unchanged prior payloads and4 maintained source
+hashes in CODE and NUM, preserved997e5e7992ee. The owning returns correct only the
+required-truth evidence/consequence; their source, captures and candidate outcomes
+are unchanged. These preservation commits do not themselves accept the correction.
+
+Same RV64 received its records-only backcheck06:06:16Z (checkpoint06:13:16,
+cutoff06:20:16, seal06:26:16). Same RV62 received its records-only backcheck
+06:10:09Z (checkpoint06:18:09, cutoff06:28:09, seal06:35:09). Each owns only its
+new review packet, uses the existing instruction basis, and may not change source
+or execute Cargo/model/solver/native work. No new algorithm is selected. Their
+original reviews and all sealed author evidence remain historical and immutable.
+
+ROOT refreshed host/process state: M5 Max,137438953472 bytes, existing guard5387,
+no cargo/rustc. gh reconfirms A1 PR1070 and K6c PR1071 merged at their recorded
+commits. Fetch found main381be775ae9b, App PR1073; its delta from a533dc2d67bc is
+confined to projects/chirality-app-v4. No Piping or instruction basis changed;
+ROOT will join that unrelated update at the next clean boundary.
