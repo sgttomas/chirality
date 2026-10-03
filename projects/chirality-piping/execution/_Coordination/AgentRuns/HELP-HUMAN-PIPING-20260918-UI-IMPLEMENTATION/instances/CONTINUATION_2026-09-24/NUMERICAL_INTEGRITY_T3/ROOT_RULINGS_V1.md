@@ -7841,3 +7841,33 @@ Then the readers align, and one fresh, complete, independent review follows.
 **Open before the independent review:**
 - I62's analysis of whether product-level `work_accounting` causes can be emitted (C2-4). It may retire or replace must-pass entries that use synthetic accounting triggers.
 - The C3 schema's `work_accounting` shape, for the review and a later clarification.
+
+## Accounting triggers: only allocator refusals are emittable; F and P rebased as snapshot 06d (ROOT, 2026-10-03 UTC)
+
+**I62's analysis `ACCOUNTING_CAUSES.md` (sha256 `d562af562d`) is accepted.** It shows that some synthetic accounting triggers ROOT allowed describe receipts that could never be emitted.
+- **The kernel:** C1:66–68 blocks emission on a non-exact kernel work status.
+- **Product work:** C3:207 and C3:232–236 allow an unavailable product attempt with a non-exact status, provided every value the receipt must carry is the real retained value and is at most 2^53−1. Otherwise the whole receipt falls back to `receipt_encoding`.
+
+**The verdicts by class, from native code:**
+- **Adapter overflow** (`adapter.fault`): never emittable. A fault leaves the count at 2^62 or more.
+- **Scalar trace loss** (`lost`): never emittable. It occurs only with a counter at u64::MAX.
+- **Product work-status faults:** representable in principle, but overflow either forces the fallback or has no producer witness, and Inconsistent arises only from broken invariants. No corpus use is faithful.
+- **Storage (allocator refusal):** emittable.
+
+**The standing synthetic-trigger rule is narrowed.** A synthetic trigger is allowed only for a resource fault whose receipt is emittable under C1 and C3, which today means an allocator (storage) refusal at an actual reserve site. Counter overflow, trace loss and invariant-violation triggers are not allowed. ROOT's earlier rulings that allowed "accounting faults" are read with this narrowing.
+
+**Snapshot 06d (I62's C2-5):**
+- **Rebase base F onto F′:** a refused verdict-copy allocation, `storage{"adapter vector"}` (PP:3362–3365).
+- **Rebase base P onto P′:** a refused prepared-vector reserve (PP:3086).
+- **Recheck every entry derived from F or P** against the new stage shape, including the 17 mutations that inherit their triggers. Pinned defects stay pinned. If an expected outcome moves, report it with the reason.
+- **Replace seven must-pass entries with storage causes:** `prefix_captured`, `prefix_unequal_helper_new`, `maxima_abandoned`, `aliases_abandoned`, `bind_rows_abandoned`, `values_failed_separate_completion` and `cert_failed_before_summary`. Rebase `prefix_unattached_old_operand_attested` onto P′.
+- **Retire or defer five entries,** with the reason recorded for each: `prefix_after_new_evaluator`, `observables_failed_after_certificate`, `g5a_failed_after_certificate`, `cert_failed_after_summary_accounting` (unless a reserve follows coverage formation) and `prefix_helper_refused`.
+- **Add three reader rules at G5, WORK_MISMATCH,** under C3:232–236 and the class facts above:
+  - R1: reject a non-null `adapter.fault`;
+  - R2: reject any `lost = true`;
+  - R3: a `work_accounting {fault}` cause requires its owning trace's status to contain that fault.
+  
+  Python implements them first, after the rebase, so the G3 and G5a pins on F′ and P′ keep their intended first failures.
+- **Add the tightened idle sibling** `idle_budget_not_exhausted_no_group`. It is expected at G5 ATTEMPT_MISMATCH at the exhaustion rule, and I62's probe shows it isolates the rule.
+
+**Then** I63 and I64 align to 06d, and the independent review follows.
