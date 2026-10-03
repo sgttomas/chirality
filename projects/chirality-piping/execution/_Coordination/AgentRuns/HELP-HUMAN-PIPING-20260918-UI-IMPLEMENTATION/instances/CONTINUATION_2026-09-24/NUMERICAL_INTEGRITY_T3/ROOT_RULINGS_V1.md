@@ -7890,3 +7890,50 @@ Then the readers align, and one fresh, complete, independent review follows.
 **Deferred:** a faithful `prefix_helper_refused` (SectionError has no storage variant), and optional storage contexts for seven pin mutations.
 
 **Next:** I63 and I64 align to 06d (R1–R3, the replaced entries, the new mutations). Then the fresh, complete, independent review of all three readers and the shared corpus, with a joint parity run.
+
+## All three readers pass snapshot 06d; the independent review is dispatched (ROOT, 2026-10-03 UTC)
+
+**The READER head for the review is `6b607fd01f`.** Its tracked tree is clean.
+
+- **Rust (I63), committed as `185b6ef83d`.** ROOT verified both file hashes against I63's RETURN and read the whole diff:
+  - R1–R3 run at G5 WORK_MISMATCH, deferred until every attempt's association checks have passed.
+  - The schedule's record, role and outcome replay now matches Python's. Before this, Rust admitted a rejected attempt whose verification record said `verified`.
+  - The build state/reason check moved from a global ATTEMPT pass to WORK, per referenced build, as Python's `_g5_cache` does.
+  
+  Evidence: `8fb7a837f5`.
+- **TypeScript (I64), committed as `6b607fd01f`.** ROOT verified both file hashes and read the whole diff:
+  - R1–R3 join the deferred C3 work list.
+  - O2 now applies the stricter reference rule of the 06b settlement: typed references are listed, resolve and name the case; report and W2 references are required; and a report's `outcome` must equal the case's `solve_quality`.
+  - The 06d corpus is adopted.
+  
+  Evidence: `913c32694a`.
+- **ROOT's own runs on `6b607fd01f`:**
+  - Python: 221 passed.
+  - Rust: 23 passed, 0 failed, with `DEVELOPER_DIR` set to the Command Line Tools for the process only.
+  - TypeScript: vitest 271/271, and tsc exits 0.
+- **Every reader** gives all 178 mutations their expected first gate and code (G7 per reader), passes all 18 must-pass entries, and validates all 15 cases.
+- **The completeness holds remain false:**
+  - Python's `_IMPLEMENTATION_COMPLETE`, whose public entry refuses at G0;
+  - Rust's `IMPLEMENTATION_COMPLETE`;
+  - TypeScript's `SUMMARY_COVERAGE_COMPLETE`.
+
+**The known differences from Python are not settled here.** I63 lists eight, and I64 five groups, each with citations in its RETURN. No shared entry exercises any of them. Each needs a contract reading of which reader is right, so the reviewers rule on them, and each settled reading then gets a shared mutation.
+- **Rust:**
+  - the gate (G3 or G5) for run-id contiguity and execution order;
+  - the G3 member-index rules;
+  - old coverage checked against the source's member map;
+  - the preparation back-reference on every sourced attempt;
+  - the material basis checked against the ordinary attempt;
+  - the P8 reason-table edges;
+  - the order of the native checks within G5, which only matters for dual defects;
+  - the Rust-only group checks.
+- **TypeScript:**
+  - failed-verification classification (N4/N5) on records that contradict their stop;
+  - the stop-rule reason locator;
+  - the candidate record shape;
+  - the ordinary-pass extras and their order;
+  - structural-only differences.
+
+**For RV81:** `accountingRules` is exported for a reader-logic test. It is a pure predicate with no eligibility path, but it widens the module's surface.
+
+**The review dispatched now:** RV78 (the shared artefacts, the corpus and the joint parity run), RV79 (Python), RV80 (Rust) and RV81 (TypeScript), per `BRIEFS/RV78_RV81_READER_REVIEW.md`, against `6b607fd01f`. Their dispatch prompts add the known-difference lists as named questions. No reader is accepted, and nothing becomes eligible, until the review's findings are resolved and confirmed.
