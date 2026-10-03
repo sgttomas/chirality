@@ -7224,3 +7224,21 @@ numerical definition and hash remain unchanged. I52 may implement these mappings
 inside its existing sixteen-file grant and original clock. Full reader-source
 review/parity, real producer transaction, profile/M/caller/native qualification
 and every standing PR gate remain open; no synthetic fixture proves execution.
+
+
+## Prior capture cause must survive the typed preparation refusal (ROOT, 2026-10-03 UTC)
+
+ROOT requires the original capture failure to survive because a truthful failed prefix must not replace its actual cause with a generic custody message.
+
+Fresh RV74 found RV74-F1 in the new trace component at `7018513af3`. The
+replacement behavior is inherited, but it conflicts with this milestone's
+explicit cause-preservation requirement. ROOT read the guard, overwrite and
+projection and classifies it SHOULD-FIX before fan-in. Original-candidate
+confirmations passed; those passes do not repair or close this finding.
+
+BRIEFS/I51_TRACE_PRIOR_CAUSE_REPAIR.md grants only the two PP implementation/test
+paths, one justified additional PP check and compact repair evidence. Preserve
+prior cause before a sticky adapter fault or generic new prelude error can
+overwrite it, while retaining actual fault/work and ordinary bytes. Original
+source/seal deadlines remain. RV74 released its fully reaped runtime batch; I51
+now owns the lane for this repair. Same-reviewer delta confirmation is required.
