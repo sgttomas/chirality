@@ -20,29 +20,29 @@ with I44's narrow helper-visibility completion245e9fb963f6. It changes the prior
 private certificate no-new-solve plan, not the primary schedule or publication.
 The constructed-center exact control is still not an actual factor witness.
 
-I44 actual source-residual candidate6ba653451f9f is frozen in wt/f2a-arithmetic,
-base157a64b0b8bb. ROOT read core/tests/oracle/return/ownership and verified exact
-eight-source/60-packet scope and six final command source hashes/exits. Owning
-RETURN §Verification records9/9 debug and optimized,29 compatibility controls,
-S11 3/3, and52/52 full native predicates for both zero and loaded actual-factor
-witnesses. Initial narrower diagnostics were corrected without output/criterion
-changes. See verification/i44_fanin_01/ROOT_CHECK.json. It is not accepted yet.
+I44 source6ba653451f9f cleared fresh RV58 and is accepted for conditional native
+component fan-in. Review preserved24f24e98ba8b; source integrated into NUM9732457720ef
+with exact maintained correspondence. R/verification/i44_fanin_01 holds ROOT
+checks and LOCAL_MERGE. Native p128/P256 evidence and full predicates are reviewed;
+higher-P actual witnesses, profiles/auxiliary costs/PP custody remain open.
 
-Fresh RV58 /root/rv58_source_residual reviews it under brief9d7c937b4048.
-Receipt01:55:35Z; checkpoint02:20:35, cutoff02:40:35, return02:55:35. Sole focused
-Cargo lane: existing guard5387,4jobs/2threads, absolute isolated targets outside
-checkout under WT/targets, absolute manifests/locked/offline,20minute walls.
-Owns only REVIEW_RV58/source_residual_01. No source/Git/index/API/delegation writes.
-I44 is stopped; no maintained writer is active.
+I45 read-only plan at R/I45/product_vertical_01 returned early, preserved24f24e98.
+It proposes one eight-path actual PP-builder/final-row W0/W1 private witness;
+its73 mechanical rows are a static expectation only. The ordinary direct/magnitude
+hull and separately evaluated represented/source stress branches require fresh
+interface review because the old Q_K subset Q_S shortcut no longer follows.
 
-Fresh I45 /root/i45_product_vertical performs read-only checkpoint0 under brief
-c30885b8383a. Receipt01:58:37Z; checkpoint02:08:37, cutoff02:18:37, return02:23:37.
-Owns only I45/product_vertical_01. It must give the smallest coherent actual PP
-normalization/material/builder/final-row source-to-verdict implementation boundary
-from existing I35 designs, with at most two disjoint source fences. No compiler,
-solver, model, native/tooling or source write. I44 is explicitly unreviewed input;
-ROOT grants any later code only after reviewing this plan and RV58's result.
-No reader/schema/IPC activation or public contract change at this checkpoint.
+Fresh RV59 /root/rv59_product_vertical_interface reviews under brief24f24e98.
+Actual receipt02:13:37Z; checkpoint02:28:37, cutoff02:38:37, final02:43:37. Owns
+only REVIEW_RV59/product_vertical_01; exact algebra/source reading only. No source,
+Git/index/API, compiler/solver/model/native/tooling writes or delegation. All other
+TASKs stopped; no compiler lane owner or maintained writer is active. ROOT will
+select a concrete code fence only after the review/any repair closes.
+
+RV58 discloses a separate92ea status read without optional locks disabled; no
+candidate mutation was observed. Its sealed fixture's .gitignore symlink produces
+a nonblocking Git warning in NUM; original bytes/pointers and frozen source pin
+are preserved, not rewritten or represented as portable input copies.
 
 ## Completed and remaining
 
@@ -64,6 +64,6 @@ emergency bounds remain unqualified. Old K6c layouts do not qualify new owners.
 Then S-I/F2b/F3 and owner-held decisions remain. No complete memory allowance,
 facade tariff, visit permit or product availability is selected by these packets.
 
-Next unallocated IDs after I45/RV58: I46/RV59. ROOT owns source/record integration,
+Next unallocated IDs after I45/RV59: I46/RV60. ROOT owns source/record integration,
 repair assignment, independent review, gates and owner checkpoints. Rulings are
 append-only; frozen raw evidence is never edited.

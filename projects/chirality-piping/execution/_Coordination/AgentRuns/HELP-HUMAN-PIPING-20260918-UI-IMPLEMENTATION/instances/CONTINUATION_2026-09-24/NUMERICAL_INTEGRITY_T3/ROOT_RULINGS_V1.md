@@ -5756,3 +5756,34 @@ or a helper catalogue. No code/runtime/reader/schema/IPC authority is granted.
 The supplied numerical source is explicitly pending RV58; any later code grant
 requires ROOT's concrete source-fence decision and resolved source review. All
 profile/PP custody/full C2/routing/gate and owner-held obligations remain.
+
+
+## Actual residual certificate accepted for local fan-in (ROOT, 2026-10-03 UTC)
+
+ROOT read RV58's full return/review, verified its sealed161 entries (including
+104 literal machine-local fixture symlinks), and preserved it at24f24e98ba8b.
+Seal65ac54dca6d877a7042f386a1d58ef89d32d031836b28c3d62001f4c59514db2;
+no unresolved finding. Accept source6ba653451f9fd27cdb852b7974753a3921f1c483
+at its conditional native component scope. ROOT merged it locally at
+9732457720ef3c4376625cca8a707bec1b8e0e44, verified exact maintained core/validation
+correspondence, and recorded the join in R/verification/i44_fanin_01/LOCAL_MERGE.
+No main/product/profile acceptance follows; higher-P full native witnesses and
+original allocation/auxiliary-work qualification remain explicit open work.
+
+RV58 reports an initial clean git status read in the separate92ea checkout
+without optional locks disabled; incidental index refresh was not established.
+All its SOURCE/NUM reads disabled optional locks and candidate hashes stayed
+clean. The record does not make a blanket zero-incidental-index-write claim.
+Its frozen fixture includes a source .gitignore symlink; Git emits a nonblocking
+ignore-read warning when scanning NUM. Preserve the sealed evidence and source
+pin; do not silently rewrite that record to suppress a warning. The symlinks are
+machine-local replay pointers, not self-contained copies of the compiler inputs.
+
+I45's nine-file plan is preserved in the same records commit, seal
+4737491ba2b0b5743e85ce2f86d7644f6701c2aa8c4d3807096e963df560bb4d. ROOT read
+its complete proposed eight-path source-to-final-row slice. Its explicit ordinary
+direct/magnitude hull corrects the old Q_K subset Q_S shortcut for I44's distinct
+source enclosure; represented/source stress branches remain separate before their
+result hull. This affected interface is not selected yet. Fresh RV59 reviews
+that warrant and actual PP producing/final ownership under the pinned brief.
+No PP code/runtime grant, new truth contract or public activation is made here.
