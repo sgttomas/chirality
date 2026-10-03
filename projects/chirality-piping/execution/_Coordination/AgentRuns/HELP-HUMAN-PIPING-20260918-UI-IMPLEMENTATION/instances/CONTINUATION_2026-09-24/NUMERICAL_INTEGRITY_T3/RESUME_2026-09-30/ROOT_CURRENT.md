@@ -24,7 +24,7 @@ The numerical candidate now passes. What stands before publication is its public
 
 - I54’s container laws are accepted as partial source proofs after RV73 review. I54 is binding the ordinary-active/suffix memory phases; final profile/build/allowance qualification remains open.
 - I51 is implementing truthful typed prepared-attempt evidence, including failed prefixes, under a bounded source grant. Only I51 holds the focused runtime lane; the existing memory guard remains active.
-- I52 has a short preparation assignment for the shared reader implementation; no reader source grant yet.
+- I52 is implementing standalone Rust/Python/TypeScript validators, the closed schema and shared controls in an isolated worktree. Application and carrier wiring follows complete validation.
 - Native context-lifetime/backing qualification remains open. Its source investigation is stopped at its stated limit.
 
 ## Next
@@ -34,7 +34,7 @@ Complete the typed evidence and ordinary-overlap bounds, bind the actual numeric
 ## Branches and owner decisions
 
 `codex/piping-numerical-integrity-20260926` is the **F2a code integration branch**;
-`codex/piping-f2a-work-exactness-20261002` is its component branch.
+`codex/piping-f2a-work-exactness-20261002` is its producer component branch. The separate reader component is codex/piping-f2a-readers-20261003.
 A records PR must start from current main with only execution records and an empty diff outside that scope. No records PR or F2a PR exists now. Latest fetched main is `381be775ae`.
 
 No new owner decision is needed for the current bounded work. Pending decisions remain: dense/lane memory ceilings, PHYS-R4 refusal and availability, observation framing, KF3's lambda split and KF2's dense screen. An actual public-meaning or protected-criterion change returns with reviewed concrete options.

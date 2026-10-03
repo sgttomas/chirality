@@ -7152,3 +7152,31 @@ actual profile/build/allowance qualification, full invocation/combination/exact
 scope, native Current and every standing PR gate remain. Records stay compact,
 bulk evidence stays external, and the public PR will be cut separately from main
 under the existing packaging ruling. This is no main merge or completion claim.
+
+
+## Standalone readers released within the selected public contract (ROOT, 2026-10-03 UTC)
+
+ROOT releases the shared reader implementation because the first public result needs complete independent validation of its receipt and source associations.
+
+I52's sealed reader_integration_04 scope, seal `7c858ac1f0`, is an implementation
+boundary for the already selected corrected C3 contract, not a new public meaning
+or numerical amendment. ROOT read its full RETURN, verified payload/origin hashes,
+and checked current small_row_bound source and the double-rounding discriminator.
+The author's early sequential-rounding wording was corrected before code: the
+outer three-term sum is exact with one final upward rounding. Full source review
+and independent oracle controls must cover the finite helper implementation.
+
+BRIEFS/I52_READER_IMPLEMENTATION.md grants exactly its sixteen standalone reader,
+schema and shared-control paths. Later carrier/UI/native/standing paths are held
+until complete validator parity. ROOT created the isolated READER worktree at
+`a8bec61e8c` on codex/piping-f2a-readers-20261003; maintained source equals
+`24af17c470`. This component branch feeds NUM through reviewed local integration
+only. Synthetic controls are no producer/publication evidence.
+
+I51 retains the sole Cargo lane until explicit handoff. Existing CLI/WASM product
+builds are permitted afterward for source-bound validation; no new host tooling,
+dependency installation or replacement numerical authority is commissioned. The
+parent npm manifests/lock match the candidate; the installed pinned WASM toolchain
+and existing Python environment are available. Real tool blockers return to ROOT.
+Public W1, profile/M selection and full F2a/main acceptance remain held.
+
