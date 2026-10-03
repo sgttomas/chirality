@@ -126,12 +126,13 @@ enum Entry {
     Div = 3,
     R4 = 4,
     B64U = 5,
+    Sqrt = 6,
 }
 #[derive(Debug)]
 pub(super) struct NumericWork {
     wide: AttemptWork,
     sums: SumWork,
-    entries: [WorkTotal; 6],
+    entries: [WorkTotal; 7],
     // No rounded binary64 arithmetic is performed by this component. Conversion
     // entries are counted separately; abs/successor are bit operations.
     f64_arithmetic: WorkTotal,
@@ -142,7 +143,7 @@ impl NumericWork {
         Self {
             wide: AttemptWork::default(),
             sums: SumWork::default(),
-            entries: [WorkTotal::zero(); 6],
+            entries: [WorkTotal::zero(); 7],
             f64_arithmetic: WorkTotal::zero(),
             status: WorkStatus::default(),
         }
@@ -591,3 +592,5 @@ fn build_member(
 mod tests;
 
 pub(crate) mod bridge;
+
+pub(crate) mod source_residual;

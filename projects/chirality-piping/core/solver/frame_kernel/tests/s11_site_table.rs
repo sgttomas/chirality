@@ -141,6 +141,10 @@ const SOURCES: &[Source] = &[
         name: "FK/structural/retained/directed/certificate.rs",
         text: include_str!("../src/structural/retained/directed/certificate.rs"),
     },
+    Source {
+        name: "FK/structural/retained/product_certificate/source_residual.rs",
+        text: include_str!("../src/structural/retained/product_certificate/source_residual.rs"),
+    },
     // K4, D1 revision 5a.3 (ROOT's A3-0 rulings): directed rounding, the
     // certified bounds and the verification.
     Source {
@@ -167,6 +171,10 @@ const TABLE: &[(&str, &str, usize, &str)] = &[
     ("FK/structural/retained/product_certificate/bridge.rs", "d_apply", 0, "I33 ten-entry nonnegative constitutive contraction, directed upward"),
     ("FK/structural/retained/product_certificate/bridge.rs", "transpose", 0, "I33 full Bbar/Hbar nonnegative contractions, directed upward"),
 
+    ("FK/structural/retained/product_certificate/source_residual.rs", "apply", 0, "signed outward source B and D contractions, each arithmetic entry owns its actual work"),
+    ("FK/structural/retained/product_certificate/source_residual.rs", "transpose", 0, "signed outward source H/B transpose contraction"),
+    ("FK/structural/retained/product_certificate/source_residual.rs", "residual", 0, "full source residual: directed member, individual load and spring terms"),
+    ("FK/structural/retained/product_certificate/source_residual.rs", "recover", 0, "source actions, complete constrained ledger, stations and mapped magnitudes"),
     ("FK/structural/retained/wide_sum.rs", "checked_lme", 1, "integer: checked sum of raw work components"),
     ("FK/structural/retained/wide_sum.rs", "charge", 1, "integer: actual component increment after prospective checked reservation"),
     ("FK/structural/retained/adaptive.rs", "checked_total", 1, "integer: checked sum of stage totals"),
