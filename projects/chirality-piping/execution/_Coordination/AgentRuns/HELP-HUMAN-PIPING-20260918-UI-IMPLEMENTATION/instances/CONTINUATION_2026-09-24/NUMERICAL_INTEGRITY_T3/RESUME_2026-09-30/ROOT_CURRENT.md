@@ -36,13 +36,14 @@ final joined closure remain.
 ## Running now
 
 I51's first actual prepared model selected native p=128 with verification P=256
-in both modes (FIRST_NATIVE, frozen at 10:12:54Z). Complete projected rows and final
-G5a remain unrun. ROOT caught an incomplete C0 local accounting prerequisite before
-accepting the checkpoint: helper temporaries and nested snapshot copies. I51 is
-closing that bounded correction; further runtime is held for ROOT's check.
-The first run remains genuine numerical evidence, with no accounting acceptance.
-Component target: complete candidate/obstruction 11:15:06Z; edits stop 11:40:06Z;
-seal/reap 12:00:06Z. Existing guard PID 5387 remains running.
+in both modes (FIRST_NATIVE at 10:12:54Z). Complete projection/final G5a are unrun.
+ROOT caught a premature run before C0 accounting readiness. The helper schedule
+and layout check are now supplied; a narrowly granted late observation hook will
+remove broad model/build copies. I51 must fix RV67-L1/L2 (entered state/error work
+and positive completed-observation custody), then obtain same-reviewer confirmation.
+Solver/product runs remain held; isolated capture/accounting checks are permitted.
+Component target: candidate/obstruction 11:15:06Z; edits stop 11:40:06Z; seal/reap
+12:00:06Z. Existing guard PID 5387 remains running.
 
 ## Next
 

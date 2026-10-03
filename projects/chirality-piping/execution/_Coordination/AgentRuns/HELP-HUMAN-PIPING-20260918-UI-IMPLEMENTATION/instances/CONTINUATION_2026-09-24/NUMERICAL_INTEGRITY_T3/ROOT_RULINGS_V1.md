@@ -6687,3 +6687,33 @@ it is not a retrospective completion of C0. The original FIRST_NATIVE and failed
 attempts remain unchanged. ROOT granted a fifteen-minute local correction box,
 with further runtime held until its concrete correction is checked. No profile,
 RSS or host-tool work is opened, and the component's original deadlines remain.
+
+
+## Narrow late observation seam granted for C0 repair (ROOT, 2026-10-03 UTC)
+
+ROOT grants the independently checked late observation call so I51 can remove unnecessary full model/build copies while keeping source construction behind positive custody checks.
+
+The exact unapplied proposal is preserved at `d520aba770`. RV67's review at
+`29d91fa066` verifies the five-line PP/lib.rs callsite and one-case/no-combination
+coexistence argument, but leaves RV67-L1 and RV67-L2 blocking before runtime
+reliance. ROOT read the complete review and verified its five payloads and four
+external reconstruction/audit files. The added path is limited to that exact call;
+all other lib arithmetic, routing, solver, maximum and output code remains excluded.
+
+ROOT directs implementation of the specified corrections, followed by the same
+reviewer's applied-source check: remove the transient bypass latch through a closed
+inner capture helper; preserve entered work and accounting-aware comparison errors;
+require successful matching solver observations before source construction; retain
+final-envelope checks. This is a source repair grant, not closure of those findings
+or permission for product/solver execution. It supersedes the earlier instruction
+to prepare a second unapplied callback proposal; the original proposal stays intact.
+
+I51 supplied the missing helper/return-temporary schedule and a filtered layout/
+accounting check within its correction box, at 10:29:54Z. ROOT read the complete
+schedule and command record. The named layout/copy owners are explicit; no stack,
+RSS or all-in allowance is inferred. The broad snapshot remains unqualified and
+must be removed, with actual source-child/string/vector prefixes completed.
+Compilation and isolated capture/accounting controls are prospectively allowed
+under the addendum, with no native or public product solve. Further solver runs
+wait for the applied C0 check and confirmed closure of RV67-L1/L2. The fifteen-minute
+repair-return box does not reset the component's original deadlines.
