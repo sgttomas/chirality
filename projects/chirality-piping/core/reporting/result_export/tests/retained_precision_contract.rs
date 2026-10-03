@@ -208,10 +208,11 @@ fn snapshot_04_coverage_mutation_outcomes() {
     use std::collections::BTreeMap;
     let shared = corpus();
     let mutations = shared["mutations"].as_array().unwrap();
-    assert_eq!(mutations.len(), 77);
+    // Snapshot 05a appends 27 mutations after snapshot 04's 77 (byte-identical).
+    assert_eq!(mutations.len(), 104);
     let mut tally = BTreeMap::new();
     let mut matched = 0;
-    for mutation in &mutations[30..] {
+    for mutation in &mutations[30..77] {
         let case = shared["cases"]
             .as_array()
             .unwrap()
@@ -256,6 +257,153 @@ fn snapshot_04_coverage_mutation_outcomes() {
     .collect();
     assert_eq!(tally, want);
     assert_eq!(matched, 47);
+}
+
+fn observe(shared: &Value, mutation: &Value) -> Value {
+    let case = shared["cases"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|c| c["id"] == mutation["base"])
+        .unwrap();
+    let mut source = case["source"].clone();
+    for e in mutation["edits"].as_array().unwrap() {
+        edit(&mut source, e);
+    }
+    if mutation["rehash"] == "all" {
+        rehash(&mut source);
+    }
+    match rp::validate(&source, Some(&case["invocation"])) {
+        Err(e) => serde_json::json!({"gate":e.gate,"code":e.code}),
+        Ok(_) => serde_json::json!(null),
+    }
+}
+
+/// Snapshot-05a controls (I62 C1a): the 27 mutations after snapshot 04's 77.
+/// Prints one observed outcome per mutation (visible with --nocapture).
+#[test]
+fn snapshot_05a_mutation_outcomes() {
+    use std::collections::BTreeMap;
+    let shared = corpus();
+    let mutations = shared["mutations"].as_array().unwrap();
+    let mut tally = BTreeMap::new();
+    let mut matched = 0;
+    for mutation in &mutations[77..] {
+        let observed = observe(&shared, mutation);
+        let ok = observed == mutation["expected"];
+        matched += usize::from(ok);
+        *tally
+            .entry(format!(
+                "{} {}",
+                mutation["expected"]["gate"].as_str().unwrap(),
+                mutation["expected"]["code"].as_str().unwrap()
+            ))
+            .or_insert(0) += 1;
+        println!(
+            "I63_OUTCOME_05A {}",
+            serde_json::json!({"id":mutation["id"],"base":mutation["base"],"expected":mutation["expected"],"observed":observed,"match":ok})
+        );
+    }
+    let want: BTreeMap<String, usize> = [
+        ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 3),
+        ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 1),
+        ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 5),
+        ("G5 RETAINED_PRECISION_WORK_MISMATCH", 2),
+        ("G5a RETAINED_PRECISION_SCALE_MISMATCH", 16),
+    ]
+    .into_iter()
+    .map(|(k, n)| (k.to_string(), n))
+    .collect();
+    assert_eq!(tally, want);
+    assert_eq!(matched, 27);
+}
+
+/// Snapshot-05a shared must-pass entries: each rehashed rewrite keeps every
+/// public relation, so the reader admits it with the base case's
+/// classifications; eligibility stays held.
+#[test]
+fn shared_must_pass_entries_validate() {
+    let shared = corpus();
+    let entries = shared["must_pass"].as_array().unwrap();
+    assert_eq!(entries.len(), 15);
+    let mut failures = Vec::new();
+    for entry in entries {
+        assert_eq!(entry["expected"], "pass");
+        assert_eq!(entry["rehash"], "all");
+        let case = shared["cases"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|c| c["id"] == entry["base"])
+            .unwrap();
+        let mut source = case["source"].clone();
+        for e in entry["edits"].as_array().unwrap() {
+            edit(&mut source, e);
+        }
+        rehash(&mut source);
+        let got = match rp::validate(&source, Some(&case["invocation"])) {
+            Ok(got) => got,
+            Err(e) => {
+                failures.push(format!("{} rejected {e:?}", entry["id"]));
+                continue;
+            }
+        };
+        let expected = case["expected_classifications"].as_array().unwrap();
+        let same = !got.numerical_eligible
+            && got.invocation_bound
+            && got.classifications.len() == expected.len()
+            && got.classifications.iter().zip(expected).all(|(g, w)| {
+                let class = match g.class {
+                    rp::AccuracyClass::RelativeVerified => "relative_verified",
+                    rp::AccuracyClass::AbsoluteVerified { bound_bits } => {
+                        if format!("{bound_bits:016x}") != w["bound_bits"] {
+                            return false;
+                        }
+                        "absolute_verified"
+                    }
+                    rp::AccuracyClass::InputDerived => "input_derived",
+                    rp::AccuracyClass::NonQuantity => "non_quantity",
+                    rp::AccuracyClass::NotCovered => "not_covered",
+                };
+                g.result_id == w["result_id"]
+                    && g.basis_ref == w["basis_ref"]
+                    && format!("{:016x}", g.normalized_bits) == w["normalized_bits"]
+                    && g.scale_bits.map(|b| format!("{b:016x}"))
+                        == w["scale_bits"].as_str().map(str::to_owned)
+                    && class == w["class"]
+            });
+        println!("I63_MUST_PASS {} {}", entry["id"], same);
+        if !same {
+            failures.push(format!("{} classifications differ", entry["id"]));
+        }
+    }
+    assert!(failures.is_empty(), "{}", failures.join("\n"));
+}
+
+/// C1 G5b "same E/ê/Φ at p512" (FK/verify.rs:321-376). No p512 corpus base
+/// exists until C1b, so the rounding is pinned directly. Expected bits were
+/// derived independently as the least binary64 >= e·2^-438 with an exact
+/// rational oracle (hand-checked for the subnormal ties).
+#[test]
+fn p512_floor_phi_follows_native_rounding() {
+    for (input, expected) in [
+        (0x0000000000000000u64, 0x0000000000000000u64),
+        (0x3ff0000000000000, 0x2490000000000000), // 1 -> 2^-438 exactly
+        (0x1a70000000000001, 0x0000001000000001), // 2^-600(1+2^-52): nearest is below, next up
+        (0x7fefffffffffffff, 0x648fffffffffffff), // MAX scales exactly
+        (0x0000000000000001, 0x0000000000000001), // underflows to 0, next up is 2^-1074
+        (0x1838000000000000, 0x0000000000000002), // 1.5 ulp ties to even 2: not below
+        (0x1844000000000000, 0x0000000000000003), // 2.5 ulp ties to even 2: below, next up
+    ] {
+        assert_eq!(
+            rp::phi_512(f64::from_bits(input)).to_bits(),
+            expected,
+            "{input:016x}"
+        );
+    }
+    assert_eq!(rp::e_hat([3.0, 0.0], 0.0), [3.0, 0.0]);
+    assert_eq!(rp::e_hat([3.0, 0.0], 2.0), [3.0, 6.0]);
+    assert_eq!(rp::e_hat([0.0, 8.0], 2.0), [4.0, 8.0]);
 }
 
 /// Reader-local synthetic controls (not shared corpus entries), mirroring the
