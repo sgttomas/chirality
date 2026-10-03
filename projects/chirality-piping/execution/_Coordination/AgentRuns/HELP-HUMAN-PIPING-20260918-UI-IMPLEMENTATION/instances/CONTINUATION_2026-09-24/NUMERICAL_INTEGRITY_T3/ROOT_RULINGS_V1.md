@@ -7803,3 +7803,25 @@ Then the readers align, and one fresh, complete, independent review follows.
    - P5 and O2 where they differ;
    - invocation edits in their harnesses.
 3. **Then the independent review.**
+
+## Snapshot 06c verified; readers align; product-level accounting causes to be settled (ROOT, 2026-10-03 UTC)
+
+**Snapshot 06c is verified,** and committed on READER as `c765e4f5b3`.
+- **The new hashes:** corpus `d4235f59b6`, `retained_precision.py` `3200f56020`, test file `354821ddf4`.
+- **The change to existing entries is the one declared:** `escalating_end_requires_work_accounting` is renamed `ceiling_before_last_slot`, with its content unchanged.
+- **06c adds 10 mutations:** three WorkAccounting rejections at G5 ATTEMPT_MISMATCH, and seven invocation-level G8 refusals. The totals are 15 cases, 173 mutations and 23 must-pass entries.
+- **ROOT's own Python run:** 221 passed. The records verify.
+
+**The gate and code for WorkAccounting rejection are confirmed:** C1:66–68 forbids emission, C1:148 puts the terminal at G5, and the closed schema (C3:261–263) still admits the shape, so it isn't G1. The `invocation_edits` semantics are specified in SHARED_SNAPSHOT_06C.json.
+
+**Next:**
+- **I63 and I64 align to 06c:**
+  - per-reader G7, with Rust's remap dropped;
+  - P7 narrowed to attached PreparedMembers;
+  - the N10 idle rules;
+  - WorkAccounting rejection;
+  - P5 and O2 where they differ;
+  - `invocation_edits` in their harnesses;
+  - the renamed id.
+- **I62 settles, as analysis only, whether C1:66–68 also reaches product-level `work_accounting` causes.** Several must-pass entries use synthetic accounting triggers, for example `cert_failed_before_summary`. If such a receipt cannot be emitted, those entries are not native-faithful and must be replaced or retired.
+- **I62 also adds a tightened sibling** of 06b's `idle_budget_below_invocation_limit`, which does not isolate its target.
