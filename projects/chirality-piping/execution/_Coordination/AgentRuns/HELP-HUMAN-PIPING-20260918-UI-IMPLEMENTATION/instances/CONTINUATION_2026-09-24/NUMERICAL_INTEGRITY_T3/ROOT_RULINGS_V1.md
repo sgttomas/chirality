@@ -7666,3 +7666,27 @@ The producer seam (I61) awaits RV77's confirmation of its review fixes.
 1. **One contract-derived G5 checklist,** so the three readers audit against a single list. I62 first writes the checklist and a snapshot-06 plan covering the families above. Each item cites its native path and contract clause, and items that need a producer-solved witness are marked deferred.
 2. **ROOT reviews the plan.** I62 then builds 06 and the Python audit, while I63 and I64 audit Rust and TypeScript against the same checklist and align to 06.
 3. **Then a fresh, complete, independent review** of all three readers and the shared corpus, with a joint parity run on 06.
+
+## Reader audit plan approved: one 42-item G5 checklist and snapshot 06 in two grants (ROOT, 2026-10-03 UTC)
+
+I62's `READER_AUDIT_PLAN.md` (sha256 `ee3cc5918c`) is approved. It has two parts:
+- **A G5 obligation checklist of 42 items.** Each item gives its contract clause, its native path at `652ad0cc1f`, its error code, and its place in the within-gate order of C3:294–304: native schedule first, then C3 references and the stage/lane sequence, then typed check consistency, then the work equations. The items cover:
+  - native schedule, terminal and reason: 17;
+  - cache, build, call and group: 6;
+  - ordinary and source_decline: 5;
+  - C3 typed errors, stages and prefixes: 11;
+  - source-bound work, status and completion: 4.
+- **A snapshot-06 plan of 16 items,** with the items that need producer-solved witnesses deferred: the Ceiling, L = 0, source-construction failure, old-Err/new-Ready, positive subnormal or underflow rows, budget overshoot or an exhausted meter, ordinary W2, and combination calls.
+
+**Rulings on I62's three questions:**
+- **G7 codes.** C1's G7 row says "existing base failure codes", so first-failure parity compares the bare base code. Every reader reports the bare code as its error code. Any detail text is carried separately and never as part of the code, and the base validators themselves are not changed.
+- **Row-index coverage.** C3's G3 row covers "member-prefix and row-index coverage", so missing, foreign or unsorted row indices fail at G3 with COVERAGE_MISMATCH. A valid sorted subset on a Ready case fails at G5 with PRODUCT_ATTEMPT_MISMATCH, under typed result consistency.
+- **Synthetic triggers.** Items 3 (a shared failed build reused across cases) and 16 (a work-accounting terminal) may use synthetic triggers, under the rule already set: the path must be reachable only through a resource, accounting or cache fault, and the trigger is labelled synthetic.
+
+**The sequence:**
+1. **C2-1:** I62 builds snapshot 06a (plan items 1, 2, 3, 6, 7, 8, 9, 10, 12 and 13), and closes Python's checklist gaps.
+2. **Rust (I63) and TypeScript (I64)** then audit against the same checklist and align to 06a.
+3. **C2-2** follows for the rest.
+4. **Then one fresh, complete, independent review** of all three readers and the corpus, with a joint parity run.
+
+The docstring correction to the Python-only old-Err test is committed on READER.
