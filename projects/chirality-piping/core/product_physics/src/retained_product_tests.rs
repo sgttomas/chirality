@@ -2914,3 +2914,218 @@ fn prepared_trace_prior_owned_cause_precedes_sticky_adapter_and_fresh_prelude_er
         assert!(view.members.is_empty() && view.operational_new.is_empty() && view.native_run.is_none());
     }
 }
+
+// ---------------------------------------------------------------- I61 summary coverage
+// The typed C3 seam borrows the proof's own vector (I57 §1–§3). Every test names
+// its I57 §5 control; "actual" means a producer run of an existing fixture.
+fn i61_owner(capture:&ProductCapture)->&k::RetainedSolve {
+    match &capture.native.as_ref().unwrap().1.outcome {k::ExecutionOutcome::Selected(v)=>v,_=>panic!("native owner")}
+}
+fn i61_complete<'a>(view:&retained_receipt::PreparedAttemptView<'a>)->retained_receipt::CompleteCoverage<'a> {
+    match view.summary_coverage {Some(retained_receipt::SummaryCoverage::Complete(c))=>c,ref other=>panic!("complete coverage expected: {other:?}")}
+}
+fn i61_assert_roster(view:&retained_receipt::PreparedAttemptView<'_>,owner:&k::RetainedSolve,proof:&[k::ProductSummaryCoverage]) {
+    let complete=i61_complete(view);let trace=view.proof.as_ref().unwrap();
+    assert_eq!(trace.summary_coverage.as_ptr(),proof.as_ptr(),"borrowed proof-owned slice");
+    assert_eq!(complete.len(),owner.source().body_count() as usize);
+    let bodies:Vec<_>=complete.bodies().collect();assert_eq!(bodies.len(),owner.source().body_count() as usize);
+    for (i,(b,c)) in bodies.iter().zip(proof).enumerate() {
+        assert_eq!(b.body as usize,i);assert_eq!((b.body,b.stop,b.has_data),(c.body,c.stop,c.has_data));
+    }
+}
+fn i61_null(view:&retained_receipt::PreparedAttemptView<'_>) {
+    assert!(view.proof.is_some());
+    assert!(matches!(view.summary_coverage,Some(retained_receipt::SummaryCoverage::Null)),"{:?}",view.summary_coverage);
+}
+#[test]
+fn i61_ready_carries_complete_proof_owned_coverage_and_lower_p_charge_is_estimate() {
+    // §5: Ready → complete actual array; p128/p256 with the fixed 1024 product
+    // proof → charge = estimate, no floor. Actual producer run, both modes.
+    for mode in [PreviewSolverMode::SparseInteractive,PreviewSolverMode::DenseScrutiny] {
+        let raw=i50_named_request();let (request,capture)=source_receipt::CapturedInvocation::parse(raw,mode).unwrap();
+        let mut prepared=retained_product::PreparedCase::prepare_observed(request,mode,&capture).unwrap_or_else(|e|panic!("{:?}",e.capture.error));
+        prepared.solve_native().unwrap();
+        let candidate=match prepared.project_candidate(){Ok(c)=>c,Err(e)=>panic!("{:?}",e.error)};
+        let mut reads=retained_receipt::ProjectionWork::default();let view=candidate.typed_trace(&mut reads).unwrap();
+        let owner=i61_owner(candidate.capture());let p=owner.selected_precision();
+        assert!(p==128||p==256);assert!(owner.evidence().floor.is_none());
+        i61_assert_roster(&view,owner,candidate.certificate.summary_coverage());
+        let proof=view.proof.as_ref().unwrap();assert_eq!(proof.projection_conversions.exact(),Ok(88),"fixed 1024 projection ran");
+        for c in proof.summary_coverage {assert_eq!(c.charge,c.estimate);}
+        assert_eq!(candidate.capture().summary_coverage,candidate.certificate.summary_coverage(),"adapter copy complete on Ready");
+        assert!(reads.kernel.events.exact().unwrap()>=4 && !reads.local.lost);
+        println!("I61_PP_LAYOUT SummaryCoverage={} CoverageBody={} PreparedAttemptView={}",std::mem::size_of::<retained_receipt::SummaryCoverage<'static>>(),
+            std::mem::size_of::<retained_receipt::CoverageBody>(),std::mem::size_of::<retained_receipt::PreparedAttemptView<'static>>());
+        println!("I61_READY mode={} p={p} coverage={:?} costs local={:?} kernel={:?}",mode.as_str(),proof.summary_coverage,(reads.local.events,reads.local.copy_bytes),reads.kernel);
+    }
+}
+#[test]
+fn i61_specimen_zero_and_cancelled_bodies_keep_actual_flags() {
+    // §5: zero/no-data body in a complete source; +x/−x individual free-DOF
+    // loads with zero net give has_data=true (source witness: the cancelled control
+    // in actual_sparse_zero_and_cancelled_summary_coverage_is_not_inferred_from_net).
+    let mode=PreviewSolverMode::SparseInteractive;
+    let mut cancelled=specimen(false);
+    let mut term=cancelled["model"]["load_cases"][0]["primitive_loads"][0].clone();
+    let loads=cancelled["model"]["load_cases"][0]["primitive_loads"].as_array_mut().unwrap();
+    term["id"]=serde_json::json!("i61:plus");term["magnitude"]["value"]=serde_json::json!(1.0);loads.push(term.clone());
+    term["id"]=serde_json::json!("i61:minus");term["magnitude"]["value"]=serde_json::json!(-1.0);loads.push(term);
+    for (label,raw,data) in [("zero",specimen(false),false),("cancelled",cancelled,true)] {
+        let (request,capture)=source_receipt::CapturedInvocation::parse(raw,mode).unwrap();
+        let mut prepared=retained_product::PreparedCase::prepare_observed(request,mode,&capture).unwrap_or_else(|e|panic!("{label}: {:?}",e.capture.error));
+        prepared.solve_native().unwrap();
+        let (view_coverage,proof):(Vec<_>,Vec<k::ProductSummaryCoverage>)=match prepared.project_candidate() {
+            Ok(candidate)=>{let mut reads=retained_receipt::ProjectionWork::default();let view=candidate.typed_trace(&mut reads).unwrap();
+                i61_assert_roster(&view,i61_owner(candidate.capture()),candidate.certificate.summary_coverage());
+                (i61_complete(&view).bodies().collect(),candidate.certificate.summary_coverage().to_vec())},
+            Err(refusal)=>{let mut reads=retained_receipt::ProjectionWork::default();let view=refusal.typed_trace(&mut reads).unwrap();
+                println!("I61_SPECIMEN {label} refusal={:?}",refusal.error);
+                let proof=view.proof.as_ref().unwrap().summary_coverage.to_vec();
+                (i61_complete(&view).bodies().collect(),proof)},
+        };
+        assert_eq!(view_coverage.len(),1);assert_eq!(view_coverage[0].has_data,data,"{label}");
+        if !data {assert_eq!(view_coverage[0].stop,[false;4]);assert_eq!(proof[0].estimate,[false;2]);}
+        println!("I61_SPECIMEN {label} compact={view_coverage:?} proof={proof:?}");
+    }
+}
+#[test]
+fn i61_failure_prefixes_null_complete_and_adapter_prefix() {
+    use retained_product::{AdapterEvent as E,PreparedCandidateError,CaptureError};
+    use retained_receipt::{TraceFault as F,ProjectionWork};
+    // §5: no proof → no trace and no coverage object (actual preparation/native refusals).
+    let (mut observer,ordinary)=prepared_trace_observed();observer.trace_fault=Some(F::AfterPrelude);
+    let failed=match observer.prepare_case(ordinary){Err(f)=>f,Ok(_)=>panic!()};
+    let view=failed.typed_trace(&mut ProjectionWork::default()).unwrap();assert!(view.proof.is_none() && view.summary_coverage.is_none());
+    let (observer,ordinary)=prepared_trace_observed();let mut prepared=observer.prepare_case(ordinary).unwrap_or_else(|_|panic!());
+    prepared.test_capture_mut().source=None;assert!(prepared.solve_native().is_err());
+    let view=prepared.native_refusal_trace(&mut ProjectionWork::default()).unwrap();assert!(view.proof.is_none() && view.summary_coverage.is_none());
+    // §5: proof-start failure before any lane → null (actual).
+    let (_,mut prepared)=i51_ready_for_controls();let r=prepared.test_capture_mut().facts[0].radius;prepared.test_capture_mut().facts[0].radius=r*2.0;
+    let refusal=match prepared.project_candidate(){Err(e)=>e,Ok(_)=>panic!()};
+    let view=refusal.typed_trace(&mut ProjectionWork::default()).unwrap();i61_null(&view);
+    println!("I61_PROOF_START lanes={:?}",view.proof.as_ref().unwrap().lanes.iter().map(|l|l.as_ref().map(|l|l.result.is_ok())).collect::<Vec<_>>());
+    // §5: an actual admitted-K lane refusal (invalid proposed material) → null with the entered lane prefix.
+    let (_,mut prepared)=i51_ready_for_controls();prepared.test_capture_mut().facts[0].material=k::ProductMaterial::Base{e:-1.0,g:-1.0};
+    let refusal=match prepared.project_candidate(){Err(e)=>e,Ok(_)=>panic!()};
+    let view=refusal.typed_trace(&mut ProjectionWork::default()).unwrap();i61_null(&view);
+    let lanes:Vec<_>=view.proof.as_ref().unwrap().lanes.iter().map(|l|l.as_ref().map(|l|(l.law,l.result.is_ok()))).collect();
+    println!("I61_LANE_FAILURE error={:?} lanes={lanes:?}",refusal.error);
+    assert!(matches!(lanes[0],Some((k::ReadoutLaw::AdmittedK,false))),"actual K lane failure");
+    // §5: maxima abandonment and values-completion failure → null (actual hooks).
+    for fault in [F::Maxima,F::ValuesCompletion] {
+        let (_,mut prepared)=i51_ready_for_controls();prepared.test_capture_mut().trace_fault=Some(fault);
+        let refusal=match prepared.project_candidate(){Err(e)=>e,Ok(_)=>panic!()};
+        let view=refusal.typed_trace(&mut ProjectionWork::default()).unwrap();i61_null(&view);
+        assert!(view.proof.as_ref().unwrap().lanes.iter().all(|l|l.as_ref().is_some_and(|l|l.result.is_ok())));
+    }
+    // §5: summary completed, then the certificate fails → complete actual array (old source).
+    let (observer,ordinary)=prepared_trace_observed();let old_source=observer.source.clone().unwrap();let old_facts=observer.facts.clone();
+    let mut prepared=observer.prepare_case(ordinary).unwrap_or_else(|_|panic!());
+    prepared.test_capture_mut().source=Some(old_source);prepared.test_capture_mut().facts=old_facts;prepared.solve_native().unwrap();
+    let refusal=match prepared.project_candidate(){Err(e)=>e,Ok(_)=>panic!()};
+    let PreparedCandidateError::Proof(failure)=&refusal.error else {panic!("{:?}",refusal.error)};
+    assert_eq!(failure.failure().category(),"numeric_predicate");
+    let view=refusal.typed_trace(&mut ProjectionWork::default()).unwrap();
+    i61_assert_roster(&view,i61_owner(refusal.capture()),failure.work().summary_coverage());
+    assert!(matches!(view.checks[0],retained_receipt::CheckRef::Failed(_)),"complete coverage does not imply certificate success");
+    // §5: adapter copy fails partway → the proof-owned complete vector, never the
+    // adapter prefix. Actual run; the MapWrite permit is located by bisection so the
+    // first coverage write is the one refused.
+    let (_,prepared)=i51_ready_for_controls();let before=prepared.capture().adapter.counts.get()[E::MapWrite as usize];
+    let candidate=match prepared.project_candidate(){Ok(c)=>c,Err(e)=>panic!("{:?}",e.error)};
+    let writes=candidate.capture().adapter.counts.get()[E::MapWrite as usize]-before;
+    let rows=candidate.certificate.verdicts().len();let nb=candidate.certificate.summary_coverage().len();drop(candidate);
+    let probe=|allowed:u64|{let (_,prepared)=i51_ready_for_controls();let mut counts=prepared.capture().adapter.counts.get();
+        counts[E::MapWrite as usize]=u64::MAX-allowed;prepared.capture().adapter.counts.set(counts);
+        match prepared.project_candidate(){Err(e)=>e,Ok(_)=>panic!("permit {allowed} committed")}};
+    let copied=|r:&retained_product::PreparedCandidateRefusal|r.certificate.is_some() && r.capture().verdicts.len()==rows;
+    let (mut lo,mut hi)=(0u64,writes-1);assert!(copied(&probe(hi)));
+    while lo<hi {let mid=lo+(hi-lo)/2;if copied(&probe(mid)){hi=mid;}else{lo=mid+1;}}
+    let refusal=probe(lo);
+    assert!(matches!(refusal.error,PreparedCandidateError::Capture(CaptureError::Accounting(_))));
+    let adapter=&refusal.capture().summary_coverage;assert!(adapter.len()<nb,"adapter holds a strict prefix");
+    let certified=refusal.certificate.as_ref().unwrap();assert_eq!(certified.summary_coverage().len(),nb);
+    let view=refusal.typed_trace(&mut ProjectionWork::default()).unwrap();
+    i61_assert_roster(&view,i61_owner(refusal.capture()),certified.summary_coverage());
+    println!("I61_ADAPTER_PREFIX permit={lo} writes={writes} rows={rows} bodies={nb} adapter_prefix={}",adapter.len());
+}
+fn i61_fk_certificate_failure(variant:usize)->(retained_product::PreparedCase,k::ProductProofFailure) {
+    // Actual FK proof/certificate on the actual prepared owner (i51 frozen control
+    // pattern): 0 = frozen value refused before the summary; 4 = row predicate
+    // refused after the summary assignment.
+    let (ordinary,prepared)=i51_ready_for_controls();
+    let failure={
+        let (invocation,case)=prepared.capture().native.as_ref().unwrap();let owner=i61_owner(prepared.capture());
+        let base=prepared.capture().bind_rows(&ordinary,owner).unwrap();
+        let specs:Vec<_>=base.iter().map(|r|match r.recipe {
+            k::ProductRecipe::NonQuantity=>k::ProductRowSpec::mode(r.id,r.case_id,r.body,1).unwrap(),
+            k::ProductRecipe::DenseParityObservation=>k::ProductRowSpec::parity(r.id,r.case_id,r.body,r.value.to_bits()).unwrap(),
+            k::ProductRecipe::ModulusBasisRecord=>k::ProductRowSpec::material_record(r.id,r.case_id,r.body),
+            _=>k::ProductRowSpec::mechanical(r.id,r.case_id,r.unit,r.body,r.recipe).unwrap(),}).collect();
+        let draft=invocation.begin_prepared_product(case.run,owner,&prepared.capture().facts,&specs).into_ready().unwrap();
+        let (projected,builder)=draft.project().into_ready().unwrap();
+        let maxima:Vec<_>=base.iter().enumerate().filter_map(|(i,r)|if let k::ProductRecipe::CircularMaximum{member}=r.recipe {
+            Some(k::ProductMaximumValue::new(member,i,if variant==4{1.0}else{*r.value}).unwrap())}else{None}).collect();
+        let (values,value_work)=builder.complete_maxima(&maxima).into_ready().unwrap();
+        let mut actual:Vec<_>=base.iter().enumerate().map(|(i,r)|k::ProductFinalRow{id:r.id,case_id:r.case_id,value:values.value(i).unwrap(),unit:r.unit,body:r.body,recipe:r.recipe}).collect();
+        let bad_value=123.0;if variant==0 {actual[0].value=&bad_value;}
+        match projected.certify_final(&values,&actual,value_work).into_ready(){Err(e)=>e,Ok(_)=>panic!("variant {variant} certified")}
+    };
+    (prepared,failure)
+}
+fn i61_stage_trace(capture:&ProductCapture,certificate:Option<bool>,ready:bool)->retained_receipt::PreparedTrace {
+    // Synthetic stage record (labelled): completed preparation through aliases, then
+    // the given certificate outcome; Ready also completes observables and G5a.
+    use retained_receipt::Stage as S;
+    let mut t=retained_receipt::PreparedTrace::default();t.source_ready=true;
+    for s in [S::Preparation,S::Native,S::ProofStart,S::Projection,S::Maxima,S::Values,S::Aliases] {t.enter(s);t.completed(s);}
+    if let Some(passed)=certificate {t.enter(S::Certificate);t.checked(S::Certificate,0,passed);}
+    if ready {t.enter(S::Observables);t.checked(S::Observables,1,true);t.enter(S::G5a);t.checked(S::G5a,2,true);}
+    t.freeze(capture);t
+}
+#[test]
+fn i61_certificate_prefixes_and_stage_rules_with_actual_fk_proofs() {
+    use retained_receipt::{project,ResultRef,FailureRef,TraceProjectionError as T,ProjectionWork,Stage,StageState};
+    static ZERO:retained_product::ScalarWork=retained_product::ScalarWork{entered:0,checks:0,lost:false};
+    // §5: certificate entered, fails before the summary assignment → null.
+    let (prepared,early)=i61_fk_certificate_failure(0);assert!(early.work().summary_coverage().is_empty());
+    let trace=i61_stage_trace(prepared.capture(),Some(false),false);
+    let view=project(&trace,prepared.capture(),&[],&[],&ZERO,ResultRef::Unavailable(FailureRef::Proof(early.failure())),
+        Some(early.work()),Some(early.failure()),None,&mut ProjectionWork::default()).unwrap();
+    i61_null(&view);
+    // Ready (or a passed certificate) never projects null, even if handed an empty proof (synthetic).
+    let trace=i61_stage_trace(prepared.capture(),Some(true),true);
+    assert!(matches!(project(&trace,prepared.capture(),&[],&[],&ZERO,ResultRef::Ready,Some(early.work()),None,None,&mut ProjectionWork::default()),
+        Err(T::StageConsistency)));
+    let trace=i61_stage_trace(prepared.capture(),Some(true),false);
+    assert!(matches!(project(&trace,prepared.capture(),&[],&[],&ZERO,ResultRef::Unavailable(FailureRef::Proof(early.failure())),
+        Some(early.work()),None,None,&mut ProjectionWork::default()),Err(T::StageConsistency)));
+    // Projection refused after a completed proof start (synthetic stage record, actual proof work) → null.
+    let mut trace=retained_receipt::PreparedTrace::default();trace.source_ready=true;
+    for s in [Stage::Preparation,Stage::Native,Stage::ProofStart] {trace.enter(s);trace.completed(s);}
+    trace.enter(Stage::Projection);trace.fail_entered();trace.freeze(prepared.capture());
+    let view=project(&trace,prepared.capture(),&[],&[],&ZERO,ResultRef::Unavailable(FailureRef::Proof(early.failure())),
+        Some(early.work()),None,None,&mut ProjectionWork::default()).unwrap();
+    i61_null(&view);
+    // §5: summary completed, then a certificate predicate fails → complete array.
+    let (prepared,late)=i61_fk_certificate_failure(4);assert_eq!(late.failure().category(),"numeric_predicate");
+    let owner=i61_owner(prepared.capture());
+    let trace=i61_stage_trace(prepared.capture(),Some(false),false);
+    let view=project(&trace,prepared.capture(),&[],&[],&ZERO,ResultRef::Unavailable(FailureRef::Proof(late.failure())),
+        Some(late.work()),Some(late.failure()),None,&mut ProjectionWork::default()).unwrap();
+    i61_assert_roster(&view,owner,late.work().summary_coverage());
+    // Non-null coverage requires every prerequisite stage and the certificate entered (synthetic stage defects).
+    for defect in 0..3 {
+        let mut trace=i61_stage_trace(prepared.capture(),Some(false),false);
+        match defect {0=>trace.stages[Stage::Values as usize]=StageState::Failed,1=>trace.source_ready=false,
+            _=>{trace.stages[Stage::Certificate as usize]=StageState::NotEntered;trace.checks[0]=retained_receipt::CheckState::NotEntered;}}
+        let failure=if defect==2 {None} else {Some(late.failure())};
+        assert!(matches!(project(&trace,prepared.capture(),&[],&[],&ZERO,ResultRef::Unavailable(FailureRef::Proof(late.failure())),
+            Some(late.work()),failure,None,&mut ProjectionWork::default()),Err(T::StageConsistency)),"defect {defect}");
+    }
+    // A proof checked against a different selected owner refuses as an association failure.
+    let (_,other)=i51_ready_for_controls();let mut capture_trace=i61_stage_trace(other.capture(),Some(false),false);capture_trace.source_ready=true;
+    let view=project(&capture_trace,other.capture(),&[],&[],&ZERO,ResultRef::Unavailable(FailureRef::Proof(late.failure())),
+        Some(late.work()),Some(late.failure()),None,&mut ProjectionWork::default());
+    println!("I61_FOREIGN_OWNER same_public_facts_result_ok={}",view.is_ok());
+}

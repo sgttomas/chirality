@@ -82,13 +82,64 @@ pub(super) enum CheckRef<'a> {NotEntered,Passed,Failed(FailureRef<'a>)}
 pub(super) enum CompletionRef {NotEntered,Merged,SeparateFailure{visits:k::WorkTotal,capacity_bytes:usize}}
 #[derive(Default)]
 pub(super) struct ProjectionWork {pub local:TraceCosts,pub kernel:k::TraceCopyWork}
+/// I57 §1 closed compact body of C3 `summary_coverage`. Estimate and charge are
+/// rederived from public facts and are never carried here.
+#[derive(Debug,Clone,Copy,PartialEq,Eq)]
+pub(super) struct CoverageBody {pub body:u32,pub stop:[bool;4],pub has_data:bool}
+/// The proof-owned roster after its rederivation check. Only `project` builds it.
+#[derive(Debug,Clone,Copy)]
+pub(super) struct CompleteCoverage<'a> {entries:&'a [k::ProductSummaryCoverage]}
+impl<'a> CompleteCoverage<'a> {
+    pub fn len(&self)->usize {self.entries.len()}
+    /// Ascending native body ids 0..body_count-1, one compact entry each.
+    pub fn bodies(&self)->impl Iterator<Item=CoverageBody>+'a {
+        self.entries.iter().map(|c|CoverageBody{body:c.body,stop:c.stop,has_data:c.has_data})
+    }
+}
+/// Typed C3 coverage of a non-null ProofTrace. Null means no complete vector was
+/// retained by this proof; it is never zero coverage and never a prefix.
+#[derive(Debug,Clone,Copy)]
+pub(super) enum SummaryCoverage<'a> {Null,Complete(CompleteCoverage<'a>)}
+/// I57 §3 custody and stage rules. The vector is the proof's own borrowed slice,
+/// never `ProductCapture.summary_coverage`. No coverage is computed here.
+fn summary_coverage<'a>(trace:&PreparedTrace,capture:&'a p::ProductCapture,result:&ResultRef<'_>,
+    proof:Option<&k::ProductProofTrace<'a>>,costs:&mut ProjectionWork)->Result<Option<SummaryCoverage<'a>>,TraceProjectionError> {
+    let Some(proof)=proof else {return Ok(None)};
+    costs.local.record::<SummaryCoverage<'_>>();
+    let entries=proof.summary_coverage;
+    if entries.is_empty() {
+        // final_case assigns the vector only after every body completes, so empty is
+        // null. A Ready product, completed certificate or passed G5a requires coverage.
+        if matches!(result,ResultRef::Ready) || trace.checks[0]==CheckState::Passed || trace.checks[2]==CheckState::Passed {
+            return Err(TraceProjectionError::StageConsistency);
+        }
+        return Ok(Some(SummaryCoverage::Null));
+    }
+    let completed=|s:Stage|trace.stages[s as usize]==StageState::Completed;
+    let lanes=matches!(&proof.lanes,[Some(a),Some(b)] if a.law==k::ReadoutLaw::AdmittedK && a.result.is_ok()
+        && b.law==k::ReadoutLaw::AnnularSource && b.result.is_ok());
+    if !lanes || !trace.source_ready || capture.source.is_none()
+        || ![Stage::Preparation,Stage::Native,Stage::ProofStart,Stage::Projection,Stage::Maxima,Stage::Values,Stage::Aliases].into_iter().all(completed)
+        || trace.stages[Stage::Certificate as usize]==StageState::NotEntered || trace.checks[0]==CheckState::NotEntered {
+        return Err(TraceProjectionError::StageConsistency);
+    }
+    let Some((_,case))=capture.native.as_ref() else {return Err(TraceProjectionError::StageConsistency)};
+    let k::ExecutionOutcome::Selected(owner)=&case.outcome else {return Err(TraceProjectionError::StageConsistency)};
+    match proof.check_summary_coverage(owner,&mut costs.kernel) {
+        Ok(())=>Ok(Some(SummaryCoverage::Complete(CompleteCoverage{entries}))),
+        Err(e) if e.category()=="association"=>Err(TraceProjectionError::WorkAssociation),
+        Err(_)=>Err(TraceProjectionError::LostTrace),
+    }
+}
 pub(super) struct PreparedAttemptView<'a> {
     pub case:&'a str,pub result:ResultRef<'a>,pub stages:&'a [StageState;10],
     pub old_coverage:OldCoverage,pub old_vector_swapped:bool,
     pub members:&'a [PreparationEntry],pub preparation_work:&'a [k::SectionPreparationWork],
     pub operational_old:&'a [p::OperationalSpent],pub operational_new:&'a [p::OperationalSpent],
     pub prepared_source:Option<&'a k::PrimitiveSource>,pub native_run:Option<usize>,
-    pub proof:Option<k::ProductProofTrace<'a>>,pub proof_ready:bool,pub checks:[CheckRef<'a>;3],
+    pub proof:Option<k::ProductProofTrace<'a>>,
+    /// None iff `proof` is None; otherwise null or the complete proof-owned roster.
+    pub summary_coverage:Option<SummaryCoverage<'a>>,pub proof_ready:bool,pub checks:[CheckRef<'a>;3],
     pub numeric_failure:Option<&'a k::ProductFailure>,pub capture_failure:Option<&'a p::CaptureError>,
     pub completion:CompletionRef,pub adapter:&'a PrivateAdapterSnapshot,
     pub overlay_work:&'a p::ScalarWork,pub g5a_work:&'a p::ScalarWork,pub trace_costs:&'a TraceCosts,
@@ -126,12 +177,14 @@ pub(super) fn project<'a>(trace:&'a PreparedTrace,capture:&'a p::ProductCapture,
     if !costs.kernel.status().is_exact() || proof.as_ref().is_some_and(|p|!p.trace_copy_work.status().is_exact()) {
         return Err(TraceProjectionError::LostTrace);
     }
+    let summary_coverage=summary_coverage(trace,capture,&result,proof.as_ref(),costs)?;
+    if !costs.kernel.status().is_exact() || costs.local.lost {return Err(TraceProjectionError::LostTrace);}
     let (old,new)=if trace.old_vector_swapped {(old_operational,capture.operational.as_slice())}
         else{(capture.operational.as_slice(),&[][..])};
     Ok(PreparedAttemptView {case:&capture.case_id,result,stages:&trace.stages,old_coverage:trace.old_coverage,
         old_vector_swapped:trace.old_vector_swapped,members:&trace.members,preparation_work,
         operational_old:old,operational_new:new,prepared_source:if trace.source_ready{capture.source.as_ref()}else{None},
-        native_run:capture.native.as_ref().map(|(_,c)|c.run),proof,proof_ready:trace.proof_ready,
+        native_run:capture.native.as_ref().map(|(_,c)|c.run),proof,summary_coverage,proof_ready:trace.proof_ready,
         checks:[certificate,observable,g5a],numeric_failure:capture.numeric_failure.as_ref(),capture_failure:capture.error.as_ref(),
         completion,adapter,overlay_work:overlay,g5a_work:&capture.g5a_work,
         trace_costs:&trace.costs,private_commit_precharged:trace.private_commit_precharged,private_committed:trace.private_committed})
