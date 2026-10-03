@@ -5931,3 +5931,33 @@ warrant check in brief615fdf5fae78 alongside RV60's code review. Actual receipt
 scope is R/I48/product_availability_01; no source/runtime/tooling or new contract.
 The purpose is to locate the actual owner-decision boundary, not infer a new
 availability exception from the accepted conditional private-refusal witness.
+
+
+## RV60 validator findings and next bounded repair (ROOT,2026-10-03 UTC)
+
+ROOT read the full fresh review a231fb5d0230 and verified its45payload seal
+d2c7be29ca2114ff5291637e2f572bd9a7b9523f4dca8ffa9376d64c2c1fa204. Hold I45
+fan-in on RV60-F1/F2. ROOT independently read the existing reader's closed shape
+checks and ordinary mode producer's fixed sign string; these are existing-contract
+corrections, not numerical/source design amendments. Release the two-file repair
+under briefed0dbbc0671d, actual receipt04:04:44Z, checkpoint04:14:44, cutoff04:24:44,
+final04:34:44. After RV60 release and ROOT's empty compiler scan, the sole focused
+PP lane transferred to I45. Same RV60 backcheck precedes reliance. No value, zero
+sign, predicate, old reader or protected test is changed to produce a pass.
+
+RV60 independently confirmed the actual original specimens' numerical/G5a
+outcomes and prefixes. Its deliberately mismatched internal request/capture probe
+is retained as a future C2 boundary; the actual single observed(raw) producer
+forwards its matching parse pair. This is not arbitrary-pair custody qualification
+or a new raw-identity token. The repair does not expand to that separate seam.
+
+I48's short availability-warrant comparison is preserved74e9f4049e76. ROOT read
+its complete return, the decisive original owner/design clauses and concrete
+protected input differences, and verified7payloads plus33pinned source origins.
+It confirms the existing boundary as planning evidence: this conditional private
+refusal is not a demonstrated protected-availability regression, and grants no
+exemption. Public F2a selection/coexistence/native requirements, later retirement
+and PHYS-R4 remain distinct. A complete actual projected specimen and an actual
+required-success public input/route are different witnesses. No new contract or
+availability ruling is needed for I47's already prepared selected-material test
+step after current repair/backcheck; public changes retain their owning decisions.

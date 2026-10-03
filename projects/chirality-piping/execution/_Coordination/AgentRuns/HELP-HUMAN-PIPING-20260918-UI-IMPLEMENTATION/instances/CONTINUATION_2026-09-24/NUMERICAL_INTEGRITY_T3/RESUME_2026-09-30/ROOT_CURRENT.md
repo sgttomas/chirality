@@ -36,14 +36,25 @@ The self-found support component/id binding gap is fixed; original freeze record
 are preserved. Actual base-material W0/W1 complete private cases truthfully refuse;
 no public routing, projection, C2, memory or availability acceptance follows.
 
-Fresh RV60 /root/rv60_product_vertical now reviews that final candidate under
-briefd33541e51a77. Actual receipt03:49:13Z; checkpoint04:14:13, cutoff04:34:13,
-return04:49:13. Owns only R/REVIEW_RV60/product_vertical_01 evidence and separately
-granted WT/scratch/rv60-product-vertical runtime fixtures outside Git. Source and
-sealed inputs are read-only. Sole focused lane: existing guard5387,4jobs/2threads,
-absolute locked/offline manifests,20minute walls, separate external targets
-WT/targets/rv60-product-vertical/{frame_kernel,product_physics}. No heavy/UI/sweep,
-installs/tooling/pruning. ROOT verification is R/verification/i45_freeze_01.
+Fresh RV60 review is preserved ata231fb5d0230, seal
+ d2c7be29ca2114ff5291637e2f572bd9a7b9523f4dca8ffa9376d64c2c1fa204.
+ROOT read the complete review and verified45payloads. BLOCKED for bounded fan-in
+on RV60-F1 closed evidence shape/required empty combination_gates and RV60-F2
+fixed solver-mode sign convention. Actual W0/W1 numeric predicates and complete
+G5a independently agree in both builds; this does not waive the binding gaps.
+RV60 released runtime04:03:05 and sealed04:03:21, with source unchanged.
+
+I45 /root/i45_product_vertical now repairs only PP/src/retained_product.rs and
+PP/src/retained_product_tests.rs in CODE from52842022cc49, plus new
+CODE/R/I45/product_vertical_repair_03. Briefed0dbbc0671d. Actual receipt04:04:44Z;
+checkpoint04:14:44, cutoff04:24:44, return04:34:44. Same reviewer backcheck follows
+ROOT freeze/commit; old candidate/evidence remains immutable. The foreign raw
+capture probe is an explicit current internal-caller/future C2 limit, not a new
+repair mandate: the actual observed(raw) callsite forwards its matching pair.
+Sole focused PP lane uses existing guard5387,4jobs/2threads, absolute locked/
+offline manifest,20minute wall and WT/targets/i45-product-vertical/product_physics.
+No heavy/UI/sweep/install/tooling/pruning or other source/Git/index/API writes.
+ROOT verification of the original candidate is R/verification/i45_freeze_01.
 
 I46's original diagnosis is preserved330dc2e405de, with original sealed packet
 byte-relocated under R/I46/product_refusal_01/_run_records/original. It separates
@@ -70,13 +81,17 @@ ordinary source-to-verdict path, preserving criteria/output and checking every r
 Only PP's existing private test module plus new evidence may change, after RV60
 clearance and a clean source grant. No new material/source design or public route.
 
-I48 /root/i48_product_availability is now a bounded read-only warrant check under
-brief615fdf5fae78. Question: does this actual refusal conflict with an accepted
-F2a required-availability outcome, and what concrete producer witness/owner
-boundary follows? Actual receipt03:53:07Z, checkpoint04:01:07, cutoff04:08:07,
-return04:13:07. Owns only R/I48/product_availability_01; no source/compiler/model/
-solver/native/Git/index/API/tooling/delegation. No new contract or exemption.
-It cannot clear I45 or consume RV60's sole runtime lane.
+I48's bounded read-only availability comparison is preserved74e9f4049e76,
+R/I48/product_availability_01, inventory1144c14f15e1a8ab11b7939ddaa23519a667558f687865cc87c7f387da5eabd0.
+ROOT read its return and decisive original owner/design clauses, checked actual
+protected input differences and verified7payloads/33frozen origins. It supplies
+planning evidence, not new design or availability acceptance. The expressly
+conditional private specimen establishes no protected availability violation.
+F2a still requires actual naturally routed selected public results, exact-block
+coexistence and native successor Current; F2b retirement remains later. An actual
+complete projected specimen and an actual required public availability case are
+different witnesses. PHYS-R4's pending owner decision remains separate. No source,
+output, predicate, availability exception or public route is selected. I48 stopped.
 
 RV58 discloses a separate92ea status read without optional locks disabled; no
 candidate mutation was observed. Its sealed fixture's .gitignore symlink produces
