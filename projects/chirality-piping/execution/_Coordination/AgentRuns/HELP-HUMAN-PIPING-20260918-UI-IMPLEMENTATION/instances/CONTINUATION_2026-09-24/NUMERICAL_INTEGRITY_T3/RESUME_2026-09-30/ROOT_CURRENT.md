@@ -35,19 +35,20 @@ final joined closure remain.
 
 ## Running now
 
-The prepared model is admitted at native p=128/P=256 in both modes. The complete
-candidate at CODE `430bc4f798` still refuses: seven conservative certificate rows
-per mode and the support-norm guard. RV67 independently checked all 194 point
-predicates; they pass. Final G5a passes on those rows. This is unaccepted WIP.
-ROOT has selected two reviewed corrections: seed Source from corrected K midpoints,
-and form support magnitudes from their published components while retaining every
-physical certificate. I51 receives a bounded continuation; no public case yet.
-Existing guard PID 5387 and the sole runtime lane remain available.
+The first amended private candidate passes all numerical predicates, G5a and
+observables in both modes and performs its private atomic transfer. Fresh RV68
+independently confirms the actual interval/point arithmetic. No public F2a case yet.
+I51 is closing source-review findings: re-entry is confirmed repaired; ordinary
+owner custody and conversion evidence fixes are under review. Local capacity and
+old/new source provenance completion remain. The original C0 miss stays recorded.
+I51: controls/audit 12:23:46Z, edits stop 12:28:46Z, seal/reap 12:43:46Z.
+RV68: source-only until lane handoff, final review deadline 13:22:41Z.
+Existing guard PID 5387; I51 owns the sole runtime lane.
 
 ## Next
 
-Run the paired corrections, then complete independent point checks, controls and
-local accounting for the two-mode private candidate,
+Close and independently confirm the remaining local source/ownership findings,
+controls and accounting for the two-mode private candidate,
 including G5a, observables, ordinary fallback and local accounting. Public receipt/
 reader/routing/resource integration and full gates follow that private milestone.
 Bulk evidence stays in scratch with committed hash/size/location manifests.

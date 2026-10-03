@@ -6794,3 +6794,30 @@ are explicit new clocks, not a retrospective extension. The existing worktree,
 guard, runtime caps and narrow source fence remain. Full component controls and
 local accounting are still open; independent implementation review and all public
 F2a obligations remain required.
+
+
+## First private complete pass and fresh implementation review (ROOT, 2026-10-03 UTC)
+
+ROOT records the first complete private candidate pass while retaining the hold on component acceptance until fresh source review and local completion are finished.
+
+FIRST_AMENDED, frozen at 11:47:10Z, reports all 98 sparse and 99 dense verdicts,
+G5a, observables and the private commit passing for the same named request. ROOT
+checked the actual successful command/raw records and froze the source patch and
+hashes in verification/i51_first_amended_04 at `79ebfa64ae`. Native p remains128;
+this is the private path, not public F2a publication or a passed final PR gate.
+
+Fresh TASK RV68 began full private-component review from that frozen source at
+11:52:41Z, under its committed brief, with no compiler/solver lane while I51 owns
+runtime. Its source assessment and later final-delta confirmation must cover the
+actual final candidate. RV68's initial independent arithmetic checks confirm the
+point/interval/predicate, norm, maximum/headline and G5a results, with its evidence
+still in the ongoing review packet rather than a final acceptance return.
+
+The fresh source review found re-entry could create another draft and discard
+prior refusal work; it also found ordinary-envelope substitution across preparation/
+projection and missing actual conversion-outcome evidence. Same I51 is repairing
+those selected ownership/accounting obligations. RV68 confirmed the frozen re-entry
+repair; the owning entry and conversion repair are under delta review. Concrete
+remaining mask capacities, first-lane failure accounting and compact old/new section
+provenance are routed to the same component. No new source meaning or tolerance is
+introduced. Full private acceptance remains pending these repairs and final review.
