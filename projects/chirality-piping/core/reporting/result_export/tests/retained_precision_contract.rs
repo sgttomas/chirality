@@ -208,8 +208,9 @@ fn snapshot_04_coverage_mutation_outcomes() {
     use std::collections::BTreeMap;
     let shared = corpus();
     let mutations = shared["mutations"].as_array().unwrap();
-    // Snapshot 05a appends 27 mutations after snapshot 04's 77 (byte-identical).
-    assert_eq!(mutations.len(), 104);
+    // Snapshot 05a appends 27 mutations after snapshot 04's 77 and snapshot
+    // 05b/05c a further 17 (earlier entries byte-identical).
+    assert_eq!(mutations.len(), 121);
     let mut tally = BTreeMap::new();
     let mut matched = 0;
     for mutation in &mutations[30..77] {
@@ -288,7 +289,7 @@ fn snapshot_05a_mutation_outcomes() {
     let mutations = shared["mutations"].as_array().unwrap();
     let mut tally = BTreeMap::new();
     let mut matched = 0;
-    for mutation in &mutations[77..] {
+    for mutation in &mutations[77..104] {
         let observed = observe(&shared, mutation);
         let ok = observed == mutation["expected"];
         matched += usize::from(ok);
@@ -318,6 +319,46 @@ fn snapshot_05a_mutation_outcomes() {
     assert_eq!(matched, 27);
 }
 
+/// Snapshot-05b controls (I62 C1b, unchanged in 05c): the 17 mutations after
+/// 05a's 104, on the two-body, p512-ladder and two-load-case bases, plus the
+/// cross-case gate-major and record body-order pins. Prints one observed
+/// outcome per mutation (visible with --nocapture).
+#[test]
+fn snapshot_05b_mutation_outcomes() {
+    use std::collections::BTreeMap;
+    let shared = corpus();
+    let mutations = shared["mutations"].as_array().unwrap();
+    let mut tally = BTreeMap::new();
+    let mut matched = 0;
+    for mutation in &mutations[104..] {
+        let observed = observe(&shared, mutation);
+        let ok = observed == mutation["expected"];
+        matched += usize::from(ok);
+        *tally
+            .entry(format!(
+                "{} {}",
+                mutation["expected"]["gate"].as_str().unwrap(),
+                mutation["expected"]["code"].as_str().unwrap()
+            ))
+            .or_insert(0) += 1;
+        println!(
+            "I63_OUTCOME_05B {}",
+            serde_json::json!({"id":mutation["id"],"base":mutation["base"],"expected":mutation["expected"],"observed":observed,"match":ok})
+        );
+    }
+    let want: BTreeMap<String, usize> = [
+        ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 2),
+        ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 1),
+        ("G5a RETAINED_PRECISION_SCALE_MISMATCH", 13),
+        ("G5b RETAINED_PRECISION_SCALE_MISMATCH", 1),
+    ]
+    .into_iter()
+    .map(|(k, n)| (k.to_string(), n))
+    .collect();
+    assert_eq!(tally, want);
+    assert_eq!(matched, 17);
+}
+
 /// Snapshot-05a shared must-pass entries: each rehashed rewrite keeps every
 /// public relation, so the reader admits it with the base case's
 /// classifications; eligibility stays held.
@@ -325,7 +366,8 @@ fn snapshot_05a_mutation_outcomes() {
 fn shared_must_pass_entries_validate() {
     let shared = corpus();
     let entries = shared["must_pass"].as_array().unwrap();
-    assert_eq!(entries.len(), 15);
+    // Snapshot 05c: 05a's 15 plus 05b's 4, minus the 3 retired non-native entries.
+    assert_eq!(entries.len(), 16);
     let mut failures = Vec::new();
     for entry in entries {
         assert_eq!(entry["expected"], "pass");
