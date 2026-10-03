@@ -5889,3 +5889,37 @@ sole focused lane, receipt03:49:13Z, checkpoint04:14:13, cutoff04:34:13, final04
 Its external review fixtures may not be sealed as live symlink trees. See
 R/verification/i45_freeze_01. I47's selected-material numerical witness is prepared
 only; it follows existing I35 §3 after this source review, not a new truth contract.
+
+
+## Captured product refusal diagnosed; RV61-C1 closed (ROOT,2026-10-03 UTC)
+
+ROOT read I46's complete diagnosis and correction, RV61's full independent review
+and backcheck, and verified their sealed inventories. The main review is preserved
+at1c16016a5239, correctione3e04c6344d2, backcheck62dcd9e1cb25. The correction
+inventory is dc9695c4d0cf3037483c5e14a7fa9a1b83b96157586c7d538e8dd02923dd5e9f;
+the backcheck inventory is5ea2949146415f7aba99e181a4ae255b4c5fd50d267245b477b1c1e153bde60e.
+Close RV61-C1. Original I46 supporting G5a arithmetic remains historically
+inaccurate; read it with the separate correction. Original sealed bytes, all
+other analysis results and the complete Rx witness remain unchanged, as verified
+by the same reviewer. No numerical source repair is claimed by this records fix.
+
+Accept the bounded diagnosis in I46 original RETURN §§Ordinary versus retained
+point results, Decisive exact Rx counterexample, and Nearby dual-cover
+incompatibility, with RV61 REVIEW's precise fixed-scale/only-Rx-varies limits.
+The actual retained Rx is correctly rounded for the admitted K law but fails
+the geometric-source sharper predicate. Ordinary recovery misses and the
+section-source discrepancy are distinct. Do not call this a false native q_K
+publication or an executed false W1 product publication. Do not claim an all-pass
+source transfer for a future projection preserving these captured native values.
+Additional solver precision alone cannot discharge this particular discrepancy.
+
+The existing selected I33/I35 conditional route permits a truthful finite refusal;
+that permission is not an availability exemption. No new owner decision is needed
+merely to finish/review the already authorized private refusal witness. RV60 still
+owns independent review of I45's actual source/rows/custody/accounting/complete
+verdict. A later product projection must be actually executed and checked across
+its final complete row universe, with unchanged source/predicates and truthful
+refusal. Any proposed change to protected truth, tolerance, output/operator
+contract or required availability remains an owner decision on concrete reviewed
+evidence; affected acceptance/merge is held at that boundary. This ruling grants
+no public activation, protected availability, resource qualification or T3 closure.

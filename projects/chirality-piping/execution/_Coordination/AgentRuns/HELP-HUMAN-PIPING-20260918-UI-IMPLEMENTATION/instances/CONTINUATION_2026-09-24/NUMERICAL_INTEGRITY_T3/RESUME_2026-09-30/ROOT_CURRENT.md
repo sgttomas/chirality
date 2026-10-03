@@ -53,13 +53,16 @@ review1c16016a5239 confirms the main numerical diagnosis and permits the existin
 honest finite-refusal path; protected availability remains unqualified. Its C1
 found an uncoupled G5a supporting check, which was not accepted as exact.
 
-I46 correctione3e04c6344d2 is sealed at R/I46/product_refusal_correction_02,
-with ROOT's full correction/source read and14payload/seal verification. It changes
-one supporting result leaf; all other numeric/Rx/projection/scale results and
-original sealed bytes remain unchanged. RV61 has the same-reviewer backcheck at
-R/REVIEW_RV61/product_refusal_correction_02. Actual receipt03:47:40Z;
-checkpoint03:52:40, cutoff03:57:40, return04:02:40. No compiler/source/Git/index/API.
-Its reported clear result is not yet ROOT closure until the sealed return is read.
+I46 correctione3e04c6344d2 and same-reviewer backcheck62dcd9e1cb25 are sealed,
+read and hash-verified by ROOT. RV61-C1 is closed; corrected supporting G5a
+arithmetic is accepted with the original diagnosis. Exactly one supporting leaf
+changes, and all other numeric/Rx/projection/scale results and original bytes
+remain unchanged. The bounded main diagnosis is accepted with its actual-input,
+fixed-scale/only-Rx-varies limits. It blocks an all-pass source-transfer claim for
+this captured native Rx; it is not a false native q_K publication or actual W1
+product publication. Conditional finite refusal remains authorized; protected
+availability and any public contract change remain separate owner boundaries.
+I46/RV61 stopped; no runtime retained. See the latest ROOT ruling for disposition.
 
 I47 selected-material witness brief is prepared atf737a96abc83, not dispatched.
 It follows selected I35 §3: actual point/interpolation material through the full
