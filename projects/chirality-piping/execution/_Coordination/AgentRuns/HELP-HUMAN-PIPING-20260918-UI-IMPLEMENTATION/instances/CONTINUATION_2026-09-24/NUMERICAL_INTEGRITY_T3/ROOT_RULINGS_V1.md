@@ -5600,3 +5600,29 @@ enclosure from an exact source error that actually exceeds a bound. Neither
 outcome authorizes tolerance/source/publication changes; any required change
 gets its own re-derivation, review and owning decision. No extra product plumbing
 is commissioned while this first numerical observation is pending.
+
+
+## Native bridge frozen; tighten only through fresh proof (ROOT, 2026-10-03 UTC)
+
+ROOT froze I42 at4afbac6e613203f93a499b780082b28be37f6c2c against57636e987041.
+The exact source and packet scope, final command freezes, and ROOT reading are
+recorded in R/verification/i42_fanin_01/ROOT_CHECK.json. No source acceptance or
+main merge is made. The author released runtime and ROOT confirmed no cargo/rustc.
+
+I42 RETURN §Observed numerical result distinguishes native source containment
+from predicate sufficiency: both witnesses contain52/52 exact references; zero
+passes52/52 predicates and loaded7/52, while the independent oracle proves52/52
+actual source values pass for each. The45 loaded enclosure failures do not prove
+a source-output defect. Keep the baseline, source contract, publication and
+predicates unchanged; no universal availability inference follows.
+
+Dispatch fresh RV56 under brief44c0bba693 for independent code and design review,
+including the sufficient anchor warrant, with the sole focused compiler lane.
+Dispatch fresh I43 under briefa70de5f595 for a bounded tightening derivation using
+the frozen, explicitly unreviewed I42 witness. These actual native TASK children
+own separate record packets and no Git/index/source writes; receipt/deadline facts
+are in ROOT_CURRENT and their packets. Any tightening needs a fresh independent
+design re-derivation before reliance. An extra solve/factor application must be an
+explicit reviewed proposal with work/custody consequences, not a silent change
+to the prior no-new-solve plan. Public-contract changes remain owner decisions.
+Further product plumbing waits for this numerical sufficiency investigation.
