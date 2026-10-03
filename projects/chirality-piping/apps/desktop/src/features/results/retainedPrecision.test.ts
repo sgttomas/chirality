@@ -100,7 +100,7 @@ describe('synthetic prepared receipt arithmetic controls, not execution evidence
   });
 });
 
-import { validateRetainedPrecision, validateRetainedPrecisionTransport, RetainedPrecisionError, phi512, eHat, stopFeasible } from './retainedPrecision';
+import { validateRetainedPrecision, validateRetainedPrecisionTransport, RetainedPrecisionError, phi512, eHat, stopFeasible, nativeSchedule, ordinaryAttempts } from './retainedPrecision';
 import { canonicalSha256HexCheckedV1 } from '../../services/hashService';
 async function rehash(source: any) {
   const body = source.retained_precision.body;
@@ -163,6 +163,67 @@ describe('shared synthetic prepared receipt controls, never solver execution evi
     const result = await validateRetainedPrecision(source, invocation);
     expect(result.numerical_eligible).toBe(false);
     expect(result.classifications).toEqual(base.expected_classifications);
+  });
+});
+
+// Reader-logic controls mirroring Python's for checklist branches without a native-faithful
+// shared base yet (N5 verification-pass terminal, N8 Ceiling, N10 idle entry, O5 source_decline).
+describe('reader-logic checklist controls, not corpus or producer evidence', () => {
+  const caseOf = (id: string) => structuredClone(corpus.cases.find((c: any) => c.id === id));
+  const rejects = (run: () => void) => { let error: unknown; try { run(); } catch (e) { error = e; } expect(error).toBeInstanceOf(RetainedPrecisionError); expect({ gate: (error as any).gate, code: (error as any).code }).toEqual({ gate: 'G5', code: 'RETAINED_PRECISION_ATTEMPT_MISMATCH' }); };
+  const stopReason = { space: 'attempt', tag: 'stop_rule', quantity: { tag: 'displacement', dof: { node: 1, component: 'UX' } }, body: 0, kind: 'translation' };
+  it('N10/N1: an idle invocation-entry run has no records or charge and never selects', () => {
+    const base = caseOf('ordinary_prepared_synthetic').source.retained_precision.body, source = base.sources[0];
+    const idle = { ...base.cases[0].run, records: [], attempts: [], case_charge: 0, invocation_increment: 0, kernel_terminal: { kind: 'unresolved', reason: { space: 'unresolved', tag: 'budget', scope: 'invocation' } } };
+    nativeSchedule(idle, source);
+    rejects(() => nativeSchedule({ ...idle, kernel_terminal: { kind: 'selected', reason: null } }, source));
+    rejects(() => nativeSchedule({ ...idle, case_charge: 1 }, source));
+  });
+  it('N6: a rejected p128 candidate must hand its verification on, so a Ceiling there is refused', () => {
+    const base = caseOf('ordinary_prepared_synthetic').source.retained_precision.body, run = base.cases[0].run;
+    run.attempts[0].outcome = run.records[0].outcome = { kind: 'rejected', reason: stopReason };
+    run.records[1].outcome = { kind: 'solved' };
+    run.kernel_terminal = { kind: 'unresolved', reason: { space: 'unresolved', tag: 'ceiling' } };
+    rejects(() => nativeSchedule(run, base.sources[0]));
+  });
+  it('N5: a non-escalating verification-pass failure is terminal and never selects', () => {
+    const base = caseOf('ordinary_prepared_synthetic').source.retained_precision.body, run = base.cases[0].run;
+    const stop = { space: 'attempt', tag: 'stop', stop: { space: 'stop', tag: 'structure' } };
+    run.attempts[0].outcome = run.records[0].outcome = { kind: 'rejected', reason: { space: 'attempt', tag: 'verification_failed' } };
+    run.attempts[0].verification = { record: 1, precision: 256, phase: 'failed', reason: stop };
+    run.records[1].outcome = { kind: 'failed', reason: stop };
+    run.kernel_terminal = { kind: 'refused', reason: { space: 'refusal', tag: 'structure' } };
+    nativeSchedule(run, base.sources[0]);
+    rejects(() => nativeSchedule({ ...run, kernel_terminal: { kind: 'selected', reason: null } }, base.sources[0]));
+    // terminal(stop) is exact: an Unresolved terminal for a Structure refusal is not native.
+    rejects(() => nativeSchedule({ ...run, kernel_terminal: { kind: 'unresolved', reason: { space: 'unresolved', tag: 'ceiling' } } }, base.sources[0]));
+    // An escalating stop from the verification pass reaches terminal() only through a work fault.
+    const pivot = { space: 'attempt', tag: 'stop', stop: { space: 'stop', tag: 'pivot', global_dof: 0 } };
+    const escalating = structuredClone(run); escalating.attempts[0].verification.reason = pivot; escalating.records[1].outcome = { kind: 'failed', reason: pivot };
+    escalating.kernel_terminal = { kind: 'unresolved', reason: { space: 'unresolved', tag: 'pivot', global_dof: 0 } };
+    rejects(() => nativeSchedule(escalating, base.sources[0]));
+    nativeSchedule({ ...escalating, kernel_terminal: { kind: 'unresolved', reason: { space: 'unresolved', tag: 'work_accounting', fault: 'inconsistent' } } }, base.sources[0]);
+  });
+  it('N8: a rejected p512 candidate with a solved p1024 verification is the Ceiling', () => {
+    const base = caseOf('p512_ladder_synthetic').source.retained_precision.body, run = base.cases[0].run, source = base.sources[base.cases[0].source_ref];
+    run.attempts[2].outcome = run.records[2].outcome = { kind: 'rejected', reason: stopReason };
+    run.records[3].outcome = { kind: 'solved' };
+    run.kernel_terminal = { kind: 'unresolved', reason: { space: 'unresolved', tag: 'ceiling' } };
+    nativeSchedule(run, source);
+    rejects(() => nativeSchedule({ ...run, kernel_terminal: { kind: 'refused', reason: { space: 'refusal', tag: 'structure' } } }, source));
+    // Leaving the ladder is never a work-accounting point, so no WorkAccounting terminal there.
+    rejects(() => nativeSchedule({ ...run, kernel_terminal: { kind: 'unresolved', reason: { space: 'unresolved', tag: 'work_accounting', fault: 'overflow' } } }, source));
+  });
+  it('O5: a source decline names its own unavailable case and material basis', () => {
+    const fixture = caseOf('two_case_preparation_failure_synthetic'), body = fixture.source.retained_precision.body;
+    const decline = { input_owner: { case_index: 1, case_id: body.cases[1].basis_ref.ref_id, material_basis_ref: body.ordinary_attempts[1].material_basis_ref },
+      constructor_counts: { nodes: 2, members: 1, springs: 0, constraints: 6, nodal_terms: 6, stations: 3, supports: 1, id_utf8_bytes: 0, directional_springs: 0 }, error: { tag: 'no_nodes' } };
+    body.cases[1].source_decline = decline;
+    ordinaryAttempts(body, fixture.source);
+    body.cases[1].source_decline = { ...decline, input_owner: { ...decline.input_owner, case_index: 0 } };
+    rejects(() => ordinaryAttempts(body, fixture.source));
+    body.cases[1].source_decline = decline; body.cases[0].source_decline = { ...decline, input_owner: { ...decline.input_owner, case_index: 0, case_id: body.cases[0].basis_ref.ref_id } };
+    rejects(() => ordinaryAttempts(body, fixture.source));
   });
 });
 
