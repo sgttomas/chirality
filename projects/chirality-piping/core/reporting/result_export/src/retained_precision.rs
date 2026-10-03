@@ -676,6 +676,28 @@ fn g3(source: &Value, inv: Option<&Value>) -> VResult {
             fail(idx < rows.len() as u64 && prior.is_none_or(|p| idx > p))?;
             prior = Some(idx);
         }
+        // I57 s4 G3: a complete proof-owned coverage vector has exactly one entry
+        // per native body of the source associated through this attempt, in
+        // ascending body order 0..body_count-1. There is no empty complete vector
+        // (a complete source has at least one body). A null source reference is
+        // left to the G5 same-source binding; an out-of-range one already fails
+        // the existing G3 member association above.
+        let coverage = &a["proof"]["summary_coverage"];
+        if !coverage.is_null() && !a["source_ref"].is_null() {
+            let s = at(&b["sources"], &a["source_ref"], "G3", "COVERAGE_MISMATCH")?;
+            let inventory = list(&s["body_membership"]);
+            fail(
+                !inventory.is_empty()
+                    && inventory
+                        .iter()
+                        .map(|x| u(&x["body"]))
+                        .eq(0..inventory.len() as u64)
+                    && list(coverage)
+                        .iter()
+                        .map(|e| u(&e["body"]))
+                        .eq(0..inventory.len() as u64),
+            )?;
+        }
     }
     Ok(())
 }
@@ -1177,6 +1199,57 @@ fn exact_work(v: &Value) -> bool {
         _ => true,
     }
 }
+/// I57 s3/s4 G5: proof-owned summary coverage binding and stage implications,
+/// checked in the C3 association pass after the existing schedule.
+///
+/// Null means no complete vector was retained by this proof; it is never zero
+/// coverage. Ready, a completed certificate or a passed G5a requires the
+/// complete vector; a failed certificate may carry null. A complete vector
+/// requires the attempt's own source and Run (same origin source/owner), a
+/// selected native Run, both lanes completed in their declared order, completed
+/// proof_start/projection/maxima/values/aliases and an entered certificate.
+/// Complete coverage never implies certificate success.
+fn g5_coverage(a: &Value, c: &Value, s: Option<&Value>) -> VResult {
+    let pf = |ok| need(ok, "G5", "PRODUCT_ATTEMPT_MISMATCH");
+    let proof = &a["proof"];
+    if proof.is_null() {
+        return Ok(());
+    }
+    let coverage = &proof["summary_coverage"];
+    let st = &a["stages"];
+    let checks = &proof["checks"];
+    if a["result"]["kind"] == "ready"
+        || st["certificate"] == "completed"
+        || checks["certificate"]["kind"] == "passed"
+        || st["g5a"] == "completed"
+        || checks["g5a"]["kind"] == "passed"
+    {
+        pf(!coverage.is_null())?;
+    }
+    if coverage.is_null() {
+        return Ok(());
+    }
+    let run = &c["run"];
+    pf(s.is_some()
+        && !a["run_ref"].is_null()
+        && !run.is_null()
+        && run["id"] == a["run_ref"]
+        && c["source_ref"] == a["source_ref"]
+        && run["origin"]["source_ref"] == a["source_ref"]
+        && run["origin"]["owner_ref"] == a["owner_ref"]
+        && run["kernel_terminal"]["kind"] == "selected")?;
+    let lanes = list(&proof["lanes"]);
+    pf(lanes.len() == 2
+        && lanes
+            .iter()
+            .zip(["admitted_k", "annular_source"])
+            .all(|(l, law)| l["law"] == law && l["state"] == "completed"))?;
+    pf(["proof_start", "projection", "maxima", "values", "aliases"]
+        .iter()
+        .all(|k| st[*k] == "completed"))?;
+    pf(matches!(text(&st["certificate"]), "completed" | "failed")
+        && matches!(text(&checks["certificate"]["kind"]), "passed" | "failed"))
+}
 fn g5_products(source: &Value) -> VResult {
     let b = &source["retained_precision"]["body"];
     let pf = |ok| need(ok, "G5", "PRODUCT_ATTEMPT_MISMATCH");
@@ -1429,6 +1502,7 @@ fn g5_products(source: &Value) -> VResult {
         if c["status"] == "selected" {
             pf(a["result"]["kind"] == "ready")?;
         }
+        g5_coverage(a, c, s)?;
         if c["status"] == "unavailable"
             && c["reason"]["cause"]["kind"] == "prepared_product_failure"
         {
@@ -1604,6 +1678,8 @@ fn row_body<'a>(r: &Value, s: &'a Value) -> (Option<usize>, Option<&'a Value>) {
 struct NumericCase<'a> {
     case: &'a Value,
     source: &'a Value,
+    /// The proof-owned summary coverage of this selected case's product attempt.
+    coverage: &'a Value,
     rows: Vec<&'a Value>,
     extents: Vec<f64>,
     raw: Vec<[f64; 4]>,
@@ -1622,6 +1698,12 @@ fn numeric_cases(source: &Value) -> VResult<Vec<NumericCase<'_>>> {
         .filter(|c| c["status"] == "selected")
     {
         let s = at(&b["sources"], &c["source_ref"], "G5a", "SCALE_MISMATCH")?;
+        let coverage = &at(
+            &b["product_attempts"],
+            &c["product_attempt_ref"],
+            "G5a",
+            "SCALE_MISMATCH",
+        )?["proof"]["summary_coverage"];
         let rows = rows_for(source, c);
         let mut extents = Vec::new();
         let mut raw = Vec::new();
@@ -1688,6 +1770,7 @@ fn numeric_cases(source: &Value) -> VResult<Vec<NumericCase<'_>>> {
         out.push(NumericCase {
             case: c,
             source: s,
+            coverage,
             rows,
             extents,
             final_scales: raw.clone(),
@@ -1697,13 +1780,122 @@ fn numeric_cases(source: &Value) -> VResult<Vec<NumericCase<'_>>> {
     }
     Ok(out)
 }
+/// I57 s2/s4 canonical layout rebuilt from the bound source maps in the native
+/// recover::layout order. Only a constrained displacement/rotation row is
+/// input-derived, and every C3 prescription is exact +0, so D=false; a
+/// purported force/moment input-derived row (or any other flag) cannot match.
+/// G8 still independently binds these maps to the actual invocation.
+fn canonical_layout(s: &Value) -> VResult<Value> {
+    let fail = |ok| need(ok, "G5a", "SCALE_MISMATCH");
+    let maps = &s["id_maps"];
+    let bodies = list(&s["body_membership"]);
+    let body_of = |n: u64| -> VResult<usize> {
+        bodies
+            .iter()
+            .position(|b| list(&b["nodes"]).iter().any(|x| u(x) == n))
+            .ok_or_else(|| error("G5a", "SCALE_MISMATCH"))
+    };
+    let component = |v: &Value| -> VResult<usize> {
+        DOFS.iter()
+            .position(|d| v == *d)
+            .ok_or_else(|| error("G5a", "SCALE_MISMATCH"))
+    };
+    let mut fixed = BTreeSet::new();
+    for c in list(&s["constraints"]) {
+        let di = component(&c["dof"]["component"])?;
+        fail(fixed.insert((u(&c["dof"]["node"]), di)) && c["value"] == "0000000000000000")?;
+    }
+    let mut layout = Vec::new();
+    let mut add = |q: Value, kind: &str, n: u64, input: bool| -> VResult {
+        layout.push(json!({"index":layout.len(),"quantity":q,"kind":kind,"body":body_of(n)?,"input_derived":input}));
+        Ok(())
+    };
+    let nodes = list(&maps["nodes"]).len() as u64;
+    for n in 0..nodes {
+        for (di, d) in DOFS.iter().enumerate() {
+            add(
+                json!({"tag":"displacement","dof":{"node":n,"component":d}}),
+                if di < 3 { "translation" } else { "rotation" },
+                n,
+                fixed.contains(&(n, di)),
+            )?;
+        }
+    }
+    for n in 0..nodes {
+        add(
+            json!({"tag":"displacement_magnitude","node":n}),
+            "translation",
+            n,
+            false,
+        )?;
+    }
+    for m in list(&maps["members"]) {
+        for end in ["i", "j"] {
+            for (di, d) in DOFS.iter().enumerate() {
+                add(
+                    json!({"tag":"end_action","member":m["kernel_member"],"end":end,"component":d}),
+                    if di < 3 { "force" } else { "moment" },
+                    u(&m["node_i"]),
+                    false,
+                )?;
+            }
+        }
+    }
+    for st in list(&s["stations"]) {
+        let m = at(&maps["members"], &st["member"], "G5a", "SCALE_MISMATCH")?;
+        for (di, d) in DOFS.iter().enumerate() {
+            add(
+                json!({"tag":"station_action","station":st["id"],"component":d}),
+                if di < 3 { "force" } else { "moment" },
+                u(&m["node_i"]),
+                false,
+            )?;
+        }
+    }
+    for sp in list(&maps["springs"]) {
+        let di = component(&sp["component"])?;
+        add(
+            json!({"tag":"spring_action","spring":sp["kernel_spring"],"component":sp["component"]}),
+            if di < 3 { "force" } else { "moment" },
+            u(&sp["node"]),
+            false,
+        )?;
+    }
+    for c in list(&s["constraints"]) {
+        let di = component(&c["dof"]["component"])?;
+        add(
+            json!({"tag":"reaction","dof":c["dof"]}),
+            if di < 3 { "force" } else { "moment" },
+            u(&c["dof"]["node"]),
+            false,
+        )?;
+    }
+    for g in list(&s["supports"]) {
+        for (kind, tag) in [
+            ("force", "support_force_magnitude"),
+            ("moment", "support_moment_magnitude"),
+        ] {
+            add(json!({"tag":tag,"support":g["id"]}), kind, u(&g["node"]), false)?;
+        }
+    }
+    Ok(Value::Array(layout))
+}
+/// G5a for each selected case, in the I57 s4 order: existing summary encodings
+/// and ranges with native p/P/floor rules; canonical source layout and extent;
+/// compact-flag Boolean feasibility; estimate/charge rederivation; the exact
+/// PP validate_summary_shape rosters (items 1-4); directly derivable data facts.
+/// The private stop/data facts come only from the proof-owned coverage; final
+/// rows never supply a native nonzero or data fact. No Cartesian roster.
 fn g5a(cases: &[NumericCase<'_>]) -> VResult {
     let fail = |ok| need(ok, "G5a", "SCALE_MISMATCH");
     for c in cases {
         let sel = &c.case["selection"];
         let nb = c.raw.len();
+        let p = u(&sel["precision"]);
+        // Existing summary encodings/ranges and native p/P/floor rules.
         fail(
-            u(&sel["verification_precision"]) == 2 * u(&sel["precision"])
+            matches!(p, 128 | 256 | 512)
+                && u(&sel["verification_precision"]) == 2 * p
                 && sel["floor_ratio"] == "3dd0000000000000"
                 && f(&sel["pivot_margin_min"]) > 0.0
                 && f(&sel["rcond"]) > 0.0,
@@ -1745,7 +1937,7 @@ fn g5a(cases: &[NumericCase<'_>]) -> VResult {
         for v in list(&sel["certified_bound"]) {
             fail(u(&v["body"]) < nb as u64 && bs.insert(u(&v["body"])) && f(&v["value"]) > 0.0)?;
         }
-        fail(sel["floor"].is_null() == (u(&sel["precision"]) != 512))?;
+        fail(sel["floor"].is_null() == (p != 512))?;
         if !sel["floor"].is_null() {
             fail(
                 list(&sel["floor"])
@@ -1754,6 +1946,115 @@ fn g5a(cases: &[NumericCase<'_>]) -> VResult {
                     .eq(0..nb as u64),
             )?;
         }
+        let run = &c.case["run"];
+        let last = list(&run["attempts"])
+            .last()
+            .ok_or_else(|| error("G5a", "SCALE_MISMATCH"))?;
+        let record = at(
+            &run["records"],
+            &last["verification"]["record"],
+            "G5a",
+            "SCALE_MISMATCH",
+        )?;
+        let verification = &record["verification"];
+        fail(u(&record["precision"]) == 2 * p && !verification.is_null())?;
+        // Canonical source layout (extent L was rederived in adaptive::body_extent
+        // order when the case was opened).
+        fail(c.source["layout"] == canonical_layout(c.source)?)?;
+        let coverage = list(c.coverage);
+        fail(
+            coverage.len() == nb
+                && coverage
+                    .iter()
+                    .map(|e| u(&e["body"]))
+                    .eq(0..nb as u64),
+        )?;
+        let has_data: Vec<bool> = coverage.iter().map(|e| e["has_data"] == true).collect();
+        let mut want_stop = Vec::new();
+        let mut want_estimate = Vec::new();
+        let mut want_charge = Vec::new();
+        for (bi, entry) in coverage.iter().enumerate() {
+            let stop: [bool; 4] = std::array::from_fn(|k| entry["stop"][k] == true);
+            let mut present = [false; 4];
+            let mut non_input = [false; 4];
+            for m in list(&c.source["layout"]) {
+                if u(&m["body"]) != bi as u64 {
+                    continue;
+                }
+                if let Some(k) = NAMES.iter().position(|k| m["kind"] == *k) {
+                    present[k] = true;
+                    non_input[k] |= m["input_derived"] == false;
+                }
+            }
+            let l = c.extents[bi];
+            let floor = if sel["floor"].is_null() {
+                [false; 2]
+            } else {
+                [
+                    f(&sel["floor"][bi]["force"]) > 0.0,
+                    f(&sel["floor"][bi]["moment"]) > 0.0,
+                ]
+            };
+            // Necessary public consistency: some permitted private A (nonzero only
+            // where a non-input row exists; D=false) reproduces the attested stop
+            // bits under final_case.rs's formula. No A is claimed as the actual one.
+            let feasible = (0u8..16).any(|mask| {
+                let a: [bool; 4] = std::array::from_fn(|k| mask >> k & 1 == 1);
+                if (0..4).any(|k| a[k] && !non_input[k]) {
+                    return false;
+                }
+                let mut positive = if l == 0.0 {
+                    a
+                } else {
+                    [a[0] || a[1], a[0] || a[1], a[2] || a[3], a[2] || a[3]]
+                };
+                positive[2] |= floor[0];
+                positive[3] |= floor[1];
+                (0..4).all(|k| (present[k] && (positive[k] || a[k])) == stop[k])
+            });
+            fail(feasible)?;
+            let e = [
+                f(&sel["resolution_scale"][bi]["force"]) > 0.0,
+                f(&sel["resolution_scale"][bi]["moment"]) > 0.0,
+            ];
+            let hats = if l == 0.0 { e } else { [e[0] || e[1]; 2] };
+            let estimate = [present[2] && hats[0], present[3] && hats[1]];
+            // Native p512: every force/moment row is non-input-derived, so the
+            // charge flags equal the force/moment stop flags; otherwise estimate.
+            let charge = if p == 512 { [stop[2], stop[3]] } else { estimate };
+            for k in 0..4 {
+                if stop[k] {
+                    want_stop.push((bi as u64, k));
+                }
+            }
+            for k in 0..2 {
+                if estimate[k] {
+                    want_estimate.push((bi as u64, k + 2));
+                }
+                if charge[k] {
+                    want_charge.push((bi as u64, k + 2));
+                }
+            }
+        }
+        // Items 1 and 2: exactly one entry per true bit, none per false bit.
+        let roster = |key: &str| -> Vec<(u64, usize)> {
+            list(&sel[key])
+                .iter()
+                .map(|v| {
+                    (
+                        u(&v["body"]),
+                        NAMES.iter().position(|k| v["kind"] == *k).unwrap_or(4),
+                    )
+                })
+                .collect()
+        };
+        fail(
+            roster("stop_rule") == want_stop
+                && roster("verification_estimate") == want_estimate
+                && roster("verification_charge") == want_charge,
+        )?;
+        // Item 3: resolution and theta cover every body once (above); resolution
+        // keeps its original zero/sanity/lower checks.
         for bi in 0..nb {
             let scale = c.raw[bi];
             let l = c.extents[bi];
@@ -1774,28 +2075,6 @@ fn g5a(cases: &[NumericCase<'_>]) -> VResult {
                 finite_check(hat[1] * f64::from_bits(0x3ff0000000001000), "G5a")?,
             ];
             fail(upper[0] >= scale[2] && upper[1] >= scale[3])?;
-            for ki in 0..2 {
-                let present = list(&c.source["layout"])
-                    .iter()
-                    .any(|m| u(&m["body"]) == bi as u64 && m["kind"] == NAMES[ki + 2]);
-                let expected = present && hat[ki] > 0.0;
-                fail(
-                    list(&sel["verification_estimate"])
-                        .iter()
-                        .filter(|v| u(&v["body"]) == bi as u64 && v["kind"] == NAMES[ki + 2])
-                        .count()
-                        == usize::from(expected),
-                )?;
-                if u(&sel["precision"]) != 512 {
-                    fail(
-                        list(&sel["verification_charge"])
-                            .iter()
-                            .filter(|v| u(&v["body"]) == bi as u64 && v["kind"] == NAMES[ki + 2])
-                            .count()
-                            == usize::from(expected),
-                    )?;
-                }
-            }
             for r in &c.rows {
                 if row_body(r, c.source).0 == Some(bi) {
                     if let Some(k) = NAMES.iter().position(|k| *k == row_kind(r)) {
@@ -1853,6 +2132,51 @@ fn g5a(cases: &[NumericCase<'_>]) -> VResult {
                     };
                     fail(upper[k] >= lower)?;
                 }
+            }
+        }
+        // Item 4: one finite positive B iff has_data, bound to the selected
+        // verification record's per-body bound (null for a no-data body); a
+        // no-data body has theta=+0; data_blocks=0 iff no body has data and is
+        // otherwise at least the true-body count. The record is a second
+        // consistency relation, not an independent witness of the data fact.
+        fail(
+            list(&sel["certified_bound"])
+                .iter()
+                .map(|v| u(&v["body"]))
+                .eq((0..nb as u64).filter(|b| has_data[*b as usize])),
+        )?;
+        let bound = list(&verification["bound"]);
+        fail(
+            bound.len() == nb
+                && bound
+                    .iter()
+                    .enumerate()
+                    .all(|(i, x)| u(&x["body"]) == i as u64 && x["value"].is_null() != has_data[i]),
+        )?;
+        fail((0..nb).all(|bi| has_data[bi] || sel["theta"][bi]["value"] == "0000000000000000"))?;
+        let true_count = has_data.iter().filter(|x| **x).count() as u64;
+        let blocks = u(&verification["data_blocks"]);
+        fail((blocks == 0) == (true_count == 0) && blocks >= true_count)?;
+        // Directly derivable data facts from separate original contributions:
+        // no free DOF implies false; a nonzero admitted nodal term at a free DOF
+        // implies true. Netted loads or zero final rows never imply false.
+        let fixed: BTreeSet<(u64, &str)> = list(&c.source["constraints"])
+            .iter()
+            .map(|d| (u(&d["dof"]["node"]), text(&d["dof"]["component"])))
+            .collect();
+        for bi in 0..nb {
+            let nodes: Vec<u64> = list(&c.source["body_membership"][bi]["nodes"])
+                .iter()
+                .map(u)
+                .collect();
+            let free = |n: u64, d: &str| nodes.contains(&n) && !fixed.contains(&(n, d));
+            if !nodes.iter().any(|n| DOFS.iter().any(|d| free(*n, *d))) {
+                fail(!has_data[bi])?;
+            }
+            if list(&c.source["nodal_terms"]).iter().any(|t| {
+                free(u(&t["dof"]["node"]), text(&t["dof"]["component"])) && f(&t["value"]) != 0.0
+            }) {
+                fail(has_data[bi])?;
             }
         }
     }
@@ -2953,9 +3277,10 @@ fn project(source: &Value, raw: bool) -> VResult<Value> {
     }
     Ok(projected)
 }
-// Pending selected wire completion for private native summary coverage. The
-// complete public entry still runs the ordered visible checks; this flag must
-// remain false until that dependency and the frozen shared controls are closed.
+// The I57 summary-coverage checks (G1-G5a) are implemented against shared
+// snapshot 04 only. Eligibility stays held until snapshot 05's controls
+// (multi-body, absent kind/L=0, p512 floors, second owner, failed-prefix and
+// unavailable attempts) pass and a fresh independent review accepts the reader.
 const IMPLEMENTATION_COMPLETE: bool = false;
 /// Validate a raw successor statement against the original request/mode.
 /// Hashes bind the supplied statements; they do not establish producer origin.

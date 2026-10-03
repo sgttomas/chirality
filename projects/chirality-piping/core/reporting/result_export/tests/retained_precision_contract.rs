@@ -200,6 +200,213 @@ fn shared_rehashed_first_failure_mutations() {
     assert!(failures.is_empty(), "{}", failures.join("\n"));
 }
 
+/// Snapshot-04 summary-coverage controls (I57 s4/s5): the 47 new rehashed
+/// mutations follow the 30 snapshot-03 ones. Prints one observed outcome per
+/// mutation (visible with --nocapture) and checks the expected tally.
+#[test]
+fn snapshot_04_coverage_mutation_outcomes() {
+    use std::collections::BTreeMap;
+    let shared = corpus();
+    let mutations = shared["mutations"].as_array().unwrap();
+    assert_eq!(mutations.len(), 77);
+    let mut tally = BTreeMap::new();
+    let mut matched = 0;
+    for mutation in &mutations[30..] {
+        let case = shared["cases"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|c| c["id"] == mutation["base"])
+            .unwrap();
+        let mut source = case["source"].clone();
+        for e in mutation["edits"].as_array().unwrap() {
+            edit(&mut source, e);
+        }
+        if mutation["rehash"] == "all" {
+            rehash(&mut source);
+        }
+        let observed = match rp::validate(&source, Some(&case["invocation"])) {
+            Err(e) => serde_json::json!({"gate":e.gate,"code":e.code}),
+            Ok(_) => serde_json::json!(null),
+        };
+        let ok = observed == mutation["expected"];
+        matched += usize::from(ok);
+        *tally
+            .entry(format!(
+                "{} {}",
+                mutation["expected"]["gate"].as_str().unwrap(),
+                mutation["expected"]["code"].as_str().unwrap()
+            ))
+            .or_insert(0) += 1;
+        println!(
+            "I63_OUTCOME {}",
+            serde_json::json!({"id":mutation["id"],"base":mutation["base"],"expected":mutation["expected"],"observed":observed,"match":ok})
+        );
+    }
+    let want: BTreeMap<String, usize> = [
+        ("G1 RETAINED_PRECISION_RECEIPT_MISMATCH", 14),
+        ("G2 RETAINED_PRECISION_ENCODING_MISMATCH", 4),
+        ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 6),
+        ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 2),
+        ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 1),
+        ("G5a RETAINED_PRECISION_SCALE_MISMATCH", 20),
+    ]
+    .into_iter()
+    .map(|(k, n)| (k.to_string(), n))
+    .collect();
+    assert_eq!(tally, want);
+    assert_eq!(matched, 47);
+}
+
+/// Reader-local synthetic controls (not shared corpus entries), mirroring the
+/// three Python-only I62 checkpoint-B layout controls: G5a rederives the
+/// canonical layout from the bound source maps, so a purported input-derived
+/// force row, an unmarked constrained displacement or a nonzero prescription
+/// (outside this C3 D=false scope) fails at G5a before the later G8 binding.
+/// The fourth control is Rust-specific: the full canonical rebuild also rejects
+/// a non-input kind relabel at G5a (the Python draft reaches G8 for it).
+#[test]
+fn coverage_layout_controls_fail_at_g5a() {
+    use serde_json::json;
+    let shared = corpus();
+    let c = &shared["cases"][0];
+    for (name, tail, value) in [
+        (
+            "reaction force row flagged input-derived",
+            json!(["layout", 44, "input_derived"]),
+            json!(true),
+        ),
+        (
+            "constrained displacement not flagged input-derived",
+            json!(["layout", 0, "input_derived"]),
+            json!(false),
+        ),
+        (
+            "nonzero prescription",
+            json!(["constraints", 0, "value"]),
+            json!("3ff0000000000000"),
+        ),
+        (
+            "rust-specific: end-action force row relabelled translation",
+            json!(["layout", 14, "kind"]),
+            json!("translation"),
+        ),
+    ] {
+        let mut path = json!(["retained_precision", "body", "sources", 0]);
+        path.as_array_mut()
+            .unwrap()
+            .extend(tail.as_array().unwrap().iter().cloned());
+        let mut source = c["source"].clone();
+        edit(&mut source, &json!({"path":path,"op":"set","value":value}));
+        rehash(&mut source);
+        let got = rp::validate(&source, Some(&c["invocation"])).unwrap_err();
+        assert_eq!(
+            (got.gate, got.code.as_str()),
+            ("G5a", "RETAINED_PRECISION_SCALE_MISMATCH"),
+            "{name}"
+        );
+    }
+}
+
+/// I57 s4/s5 over-rejection guard, mirroring I62's Python-only controls: these
+/// rewrites keep every public relation (feasibility, rederived estimate and
+/// charge, exact rosters, record binding, direct data facts), so the reader must
+/// admit them with the base classifications; only producer custody or replay
+/// can catch such attested private flags. Eligibility stays held.
+#[test]
+fn publicly_consistent_coverage_attestations_are_not_rejected() {
+    use serde_json::json;
+    let shared = corpus();
+    let zero = "0000000000000000";
+    let coverage = json!(["retained_precision", "body", "product_attempts", 0, "proof", "summary_coverage", 0]);
+    let selection = json!(["retained_precision", "body", "cases", 0, "selection"]);
+    let verification = json!(["retained_precision", "body", "cases", 0, "run", "records", 1, "verification"]);
+    let at = |base: &Value, tail: Value| {
+        let mut p = base.as_array().unwrap().clone();
+        p.extend(tail.as_array().unwrap().iter().cloned());
+        Value::Array(p)
+    };
+    let four = json!(["translation", "rotation", "force", "moment"])
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|k| json!({"body":0,"kind":k,"value":zero}))
+        .collect::<Vec<_>>();
+    let variants = [
+        (
+            "loaded_stop_without_force_moment",
+            "ordinary_prepared_synthetic",
+            vec![
+                (at(&coverage, json!(["stop"])), json!([true, true, false, false])),
+                (at(&selection, json!(["stop_rule"])), json!(four[..2])),
+            ],
+        ),
+        (
+            "loaded_all_stop_false",
+            "ordinary_prepared_synthetic",
+            vec![
+                (at(&coverage, json!(["stop"])), json!([false, false, false, false])),
+                (at(&selection, json!(["stop_rule"])), json!([])),
+            ],
+        ),
+        (
+            "no_data_all_stop_true",
+            "ordinary_prepared_no_data_synthetic",
+            vec![
+                (at(&coverage, json!(["stop"])), json!([true, true, true, true])),
+                (at(&selection, json!(["stop_rule"])), json!(four)),
+            ],
+        ),
+        (
+            "no_data_attested_data_block",
+            "ordinary_prepared_no_data_synthetic",
+            vec![
+                (at(&coverage, json!(["has_data"])), json!(true)),
+                (
+                    at(&selection, json!(["certified_bound"])),
+                    json!([{"body":0,"value":"3ff0000000000000"}]),
+                ),
+                (
+                    at(&verification, json!(["bound"])),
+                    json!([{"body":0,"value":"3ff0000000000000"}]),
+                ),
+                (at(&verification, json!(["data_blocks"])), json!(1)),
+            ],
+        ),
+    ];
+    for (name, base, edits) in variants {
+        let case = shared["cases"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|c| c["id"] == base)
+            .unwrap();
+        let mut source = case["source"].clone();
+        for (path, value) in edits {
+            edit(&mut source, &json!({"path":path,"op":"set","value":value}));
+        }
+        rehash(&mut source);
+        let got = rp::validate(&source, Some(&case["invocation"]))
+            .unwrap_or_else(|e| panic!("{name}: {e:?}"));
+        assert!(!got.numerical_eligible, "{name}");
+        let expected = case["expected_classifications"].as_array().unwrap();
+        assert_eq!(got.classifications.len(), expected.len(), "{name}");
+        for (got, want) in got.classifications.iter().zip(expected) {
+            assert_eq!(got.result_id, want["result_id"], "{name}");
+            assert_eq!(
+                format!("{:016x}", got.normalized_bits),
+                want["normalized_bits"],
+                "{name}"
+            );
+            assert_eq!(
+                got.scale_bits.map(|b| format!("{b:016x}")),
+                want["scale_bits"].as_str().map(str::to_owned),
+                "{name}"
+            );
+        }
+    }
+}
+
 #[test]
 fn canonical_zero_and_invalid_helper_operands() {
     for zero in [0.0, -0.0] {

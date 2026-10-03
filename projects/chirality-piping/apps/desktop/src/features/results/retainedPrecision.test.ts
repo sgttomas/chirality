@@ -202,6 +202,39 @@ describe('source-bound recovery controls', () => {
       b.cases[0].selection.precision = 256; b.cases[0].selection.verification_precision = 512;
     }, 'G5', 'RETAINED_PRECISION_ATTEMPT_MISMATCH');
   });
+  // I57 §2/§4: G5a rederives the canonical layout and +0 prescription relation from
+  // the bound source maps before compact-flag feasibility; G8 binds them later.
+  it('rejects a purported input-derived force row at G5a before invocation binding', async () => {
+    await rejectedAfterRehash(source => {
+      const row = source.retained_precision.body.sources[0].layout.find((r: any) => r.kind === 'force');
+      row.input_derived = true;
+    }, 'G5a', 'RETAINED_PRECISION_SCALE_MISMATCH');
+  });
+  it('rejects a constrained displacement row not marked input-derived at G5a', async () => {
+    await rejectedAfterRehash(source => {
+      const row = source.retained_precision.body.sources[0].layout.find((r: any) => r.input_derived);
+      row.input_derived = false;
+    }, 'G5a', 'RETAINED_PRECISION_SCALE_MISMATCH');
+  });
+  it('rejects a nonzero prescription at G5a because D is false only for exact +0', async () => {
+    await rejectedAfterRehash(source => {
+      source.retained_precision.body.sources[0].constraints[0].value = '3ff0000000000000';
+    }, 'G5a', 'RETAINED_PRECISION_SCALE_MISMATCH');
+  });
+  // I57 §5 trust boundary: publicly consistent attestation rewrites must not be
+  // over-rejected; only producer custody/replay can catch them.
+  for (const [name, index, edit] of [
+    ['stop [T,T,F,F] with its exact stop roster', 0, (b: any) => { b.product_attempts[0].proof.summary_coverage[0].stop = [true, true, false, false]; b.cases[0].selection.stop_rule = b.cases[0].selection.stop_rule.slice(0, 2); }],
+    ['all-false stop with an empty stop roster', 0, (b: any) => { b.product_attempts[0].proof.summary_coverage[0].stop = [false, false, false, false]; b.cases[0].selection.stop_rule = []; }],
+    ['no-data all-true stop with four zero stop entries', 2, (b: any) => { b.product_attempts[0].proof.summary_coverage[0].stop = [true, true, true, true]; b.cases[0].selection.stop_rule = ['translation', 'rotation', 'force', 'moment'].map(kind => ({ body: 0, kind, value: '0000000000000000' })); }],
+    ['no-data body attesting one data block with its bound', 2, (b: any) => {
+      const bound = [{ body: 0, value: '3ff0000000000000' }], record = b.cases[0].run.records[1].verification;
+      b.product_attempts[0].proof.summary_coverage[0].has_data = true; b.cases[0].selection.certified_bound = bound; record.bound = structuredClone(bound); record.data_blocks = 1;
+    }],
+  ] as const) it('admits the publicly consistent rewrite: ' + name, async () => {
+    const c = structuredClone(corpus.cases[index]); edit(c.source.retained_precision.body); await rehash(c.source);
+    expect((await validateRetainedPrecision(c.source, c.invocation)).classifications).toEqual(c.expected_classifications);
+  });
   it('requires actual entered proof state and checks it before product work', async () => {
     await rejectedAfterRehash(source => {
       const a = source.retained_precision.body.product_attempts[0];

@@ -84,9 +84,10 @@ export type RowClassification = Readonly<{ result_id: string; basis_ref: Readonl
 export type RetainedPrecisionValidation = Readonly<{ invocation_bound: boolean; numerical_eligible: boolean; standing: 'eligible' | 'needs_recompute'; publication_sha256: string; classifications: readonly RowClassification[] }>;
 const SCHEMA = receiptSchema as Obj;
 const SAFE = BigInt(Number.MAX_SAFE_INTEGER);
-// Exact native summary coverage awaits its selected public wire completion.
-// Successful statement checks cannot claim complete numerical eligibility yet.
+// I57 summary-coverage checks are implemented against shared snapshot 04 only.
+// Eligibility stays held until snapshot 05 controls and independent review.
 const SUMMARY_COVERAGE_COMPLETE = false;
+const COVERAGE_KEYS = ['body', 'has_data', 'stop'];
 const BASE_ID = 'openpipestress.result_semantics/0.3.0/preview-physics-1';
 const BASE_HASH = 'ae55503d44a4750714a35c423623e38cf4132099134097193024d1635bfbc88a';
 const COMPONENTS = ['UX', 'UY', 'UZ', 'RX', 'RY', 'RZ'];
@@ -162,10 +163,19 @@ async function header(source: Obj): Promise<void> {
     for (const a of b.product_attempts ?? []) need(a.definition_id === PREPARED_DEFINITION_ID, 'G0', 'SOURCE_PRODUCER_CONTRACT_UNSUPPORTED');
   }
 }
+/** I57 §1: summary_coverage is required, null or [{ body, stop: [bool;4], has_data: bool }] with no other member. */
+function coverageShape(proof: Obj): boolean {
+  if (!Object.hasOwn(proof, 'summary_coverage')) return false;
+  const cov = proof.summary_coverage;
+  return cov === null || (Array.isArray(cov) && cov.every(e => e !== null && typeof e === 'object' && !Array.isArray(e) && same(Object.keys(e).sort(), COVERAGE_KEYS)
+    && typeof e.body === 'number' && Array.isArray(e.stop) && e.stop.length === 4 && e.stop.every((f: unknown) => typeof f === 'boolean') && typeof e.has_data === 'boolean'));
+}
 async function integrity(source: Obj, transport: boolean): Promise<Obj> {
   const r = source.retained_precision;
   need(shape(r, SCHEMA) && (transport || (Array.isArray(source.results) && source.results.every((row: Obj) => shape(row, SCHEMA.$defs.RawRow)))), 'G1', 'RECEIPT_MISMATCH');
   const b = r.body;
+  // I57 §4 G1, independent of the schema walker: exactly the required closed member.
+  for (const a of b.product_attempts) if (a.proof !== null) need(coverageShape(a.proof), 'G1', 'RECEIPT_MISMATCH');
   need(await hash('retained_precision_receipt_mp_v2', b) === r.receipt_sha256, 'G1', 'RECEIPT_MISMATCH');
   if (!transport) { const { retained_precision: _omit, ...publication } = source; need(await hash('retained_precision_publication_mp_v2', publication) === b.publication_sha256, 'G1', 'RECEIPT_MISMATCH'); }
   for (const c of b.cases) if (c.status === 'selected' && b.sources[c.source_ref]) {
@@ -196,6 +206,10 @@ function coverage(b: Obj, source: Obj, invocation?: Obj): Map<string, Obj[]> {
       if (a.operational.old_coverage === 'captured_prefix') fail(!pm.length && !fresh.length && a.source_ref === null && a.run_ref === null && a.result.kind === 'unavailable');
       if (a.source_ref !== null) { const s = b.sources[a.source_ref]; fail(s && same(old.map((m: Obj) => m.member), s.id_maps.members.map((m: Obj) => m.kernel_member))); }
       if (a.proof) { const indices = a.proof.projection_outcomes.map((x: Obj) => x.row_index); fail(unique(indices) && indices.every((x: number, j: number) => x < rows.get(ids[i])!.length && (!j || x > indices[j - 1]))); }
+      // I57 §4 G3: a non-null roster has exactly one entry per native body of the
+      // associated source, ascending 0..body_count-1. No source: G5 owns the null rule.
+      const cov = a.proof?.summary_coverage;
+      if (Array.isArray(cov) && a.source_ref !== null) fail(cov.length >= 1 && cov.length === b.sources[a.source_ref].body_membership.length && same(cov.map((e: Obj) => e.body), sequence(cov.length)));
     }
   });
   b.sources.forEach((s: Obj, i: number) => fail(s.index === i && s.owner.kind === 'case' && ids[s.owner.case_index] === s.owner.case_id));
@@ -456,6 +470,17 @@ function productAttempts(b: Obj, rows: Map<string, Obj[]>): void {
       if (p.completion.kind === 'separate_failure') fail(stage.values === 'failed');
       if (stage.values === 'completed') fail(p.completion.kind === 'merged');
       if (ready) { const expected = caseRows.flatMap((r, i) => NONQUANTITY.has(r.kind) || ['support_reaction_force_magnitude_v2', 'support_reaction_moment_magnitude_v2', 'pipe_elastic_normal_stress_maximum_v2'].includes(r.kind) ? [] : [i]); fail(same(outcomes.map(x => x.row_index), expected)); }
+      // I57 §3 custody/stage table. Non-null coverage needs this attempt's own source,
+      // its selected native Run, both lanes in order, every pre-certificate stage
+      // completed and the certificate entered. A completed certificate, a passed
+      // G5a or Ready needs non-null coverage. Coverage never implies certificate success.
+      const cov = p.summary_coverage;
+      if (cov !== null) {
+        fail(s && a.source_ref !== null && a.run_ref !== null && c.run?.kernel_terminal.kind === 'selected' && c.run.id === a.run_ref && c.run.origin.source_ref === a.source_ref && c.source_ref === a.source_ref && same(c.run.origin.owner_ref, a.owner_ref));
+        fail(lanes.length === 2 && same(lanes.map(l => l.law), ['admitted_k', 'annular_source']) && lanes.every(l => l.state === 'completed'));
+        fail(['proof_start', 'projection', 'maxima', 'values', 'aliases'].every(k => stage[k] === 'completed') && stage.certificate !== 'not_entered');
+      }
+      if (stage.certificate === 'completed' || p.checks.certificate.kind === 'passed' || stage.g5a === 'completed' || p.checks.g5a.kind === 'passed' || ready) fail(cov !== null);
     }
     if (ready) {
       fail(s && c.run?.kernel_terminal.kind === 'selected' && Object.values(stage).every(v => v === 'completed') && p && Object.values(p.checks).every((v: any) => v.kind === 'passed'));
@@ -524,7 +549,116 @@ function numericalCases(b: Obj, rows: Map<string, Obj[]>): NumericCase[] {
     return { c, s, rows: rs, values, lengths, original, scales: original.map((x: number[]) => [...x]), hats };
   });
 }
-function numericSummaries(cases: NumericCase[]): void {
+/** source.rs/recover::layout order. Only constrained displacement/rotation rows are input-derived. */
+function sourceLayout(nodeCount: number, members: Obj[], stations: Obj[], springs: Obj[], constraints: Obj[], supports: Obj[], fixed: (key: string) => boolean, bodyOf: (node: number) => number): Obj[] {
+  const layout: Obj[] = [];
+  const add = (quantity: Obj, kind: string, node: number, input = false) => layout.push({ index: layout.length, quantity, kind, body: bodyOf(node), input_derived: input });
+  for (let node = 0; node < nodeCount; node++) COMPONENTS.forEach((component, j) => add({ tag: 'displacement', dof: { node, component } }, KINDS[j < 3 ? 0 : 1], node, fixed(node + ':' + component)));
+  for (let node = 0; node < nodeCount; node++) add({ tag: 'displacement_magnitude', node }, 'translation', node);
+  for (const m of members) for (const end of ['i', 'j']) COMPONENTS.forEach((component, j) => add({ tag: 'end_action', member: m.kernel_member, end, component }, j < 3 ? 'force' : 'moment', m.node_i));
+  for (const st of stations) COMPONENTS.forEach((component, j) => add({ tag: 'station_action', station: st.id, component }, j < 3 ? 'force' : 'moment', members[st.member]?.node_i));
+  for (const spring of springs) add({ tag: 'spring_action', spring: spring.kernel_spring, component: spring.component }, COMPONENTS.indexOf(spring.component) < 3 ? 'force' : 'moment', spring.node);
+  for (const c of constraints) add({ tag: 'reaction', dof: c.dof }, COMPONENTS.indexOf(c.dof.component) < 3 ? 'force' : 'moment', c.dof.node);
+  for (const support of supports) { add({ tag: 'support_force_magnitude', support: support.id }, 'force', support.node); add({ tag: 'support_moment_magnitude', support: support.id }, 'moment', support.node); }
+  return layout;
+}
+type CoverageFacts = { present: boolean[][]; nonInput: boolean[][]; lengths: number[]; free: boolean[]; loaded: boolean[] };
+/** I57 §2/§4 public source facts per body, from the bound source maps only (never final rows):
+ * canonical layout presence, non-input presence, native extent L, free DOFs and
+ * individually nonzero original nodal terms at free DOFs (cancellation preserved). */
+function coverageFacts(s: Obj): CoverageFacts {
+  const fail = (ok: unknown) => need(ok, 'G5a', 'SCALE_MISMATCH');
+  const bodies: Obj[] = s.body_membership, maps = s.id_maps;
+  fail(bodies.length >= 1 && same(bodies.map(x => x.body), sequence(bodies.length)));
+  const bodyOf = (node: number): number => { const hit = bodies.find(x => x.nodes.includes(node)); fail(hit); return hit!.body; };
+  // C3 prescriptions are exact +0, so input-derived rows carry D = false.
+  fail(s.constraints.every((c: Obj) => c.value === ZERO));
+  const fixed = new Set<string>(s.constraints.map((c: Obj) => c.dof.node + ':' + c.dof.component));
+  fail(same(s.layout, sourceLayout(maps.nodes.length, maps.members, s.stations, maps.springs, s.constraints, s.supports, key => fixed.has(key), bodyOf)));
+  const present = bodies.map(() => [false, false, false, false]), nonInput = bodies.map(() => [false, false, false, false]);
+  for (const row of s.layout) { const k = KINDS.indexOf(row.kind); present[row.body][k] = true; if (!row.input_derived) nonInput[row.body][k] = true; }
+  const lengths = bodies.map(body => extent(body.nodes.map((i: number) => maps.nodes[i].coordinates.map(decodeBinary64))));
+  fail(lengths.every(L => Number.isFinite(L) && L >= 0));
+  const free = bodies.map(body => body.nodes.some((n: number) => COMPONENTS.some(c => !fixed.has(n + ':' + c))));
+  const loaded = bodies.map(() => false);
+  for (const t of s.nodal_terms) if (!fixed.has(t.dof.node + ':' + t.dof.component) && decodeBinary64(t.value) !== 0) loaded[bodyOf(t.dof.node)] = true;
+  return { present, nonInput, lengths, free, loaded };
+}
+/** I57 §4 Boolean feasibility: some private A over non-input-present kinds (D = false)
+ * reproduces the attested stop bits under L coupling and any positive floor. */
+function stopFeasible(stop: boolean[], present: boolean[], nonInput: boolean[], extentNonzero: boolean, floors: boolean[][]): boolean {
+  for (let mask = 0; mask < 16; mask++) {
+    const A = KINDS.map((_, k) => ((mask >> k) & 1) === 1);
+    if (A.some((v, k) => v && !nonInput[k])) continue;
+    for (const [force, moment] of floors) {
+      const positive = extentNonzero ? [A[0] || A[1], A[0] || A[1], A[2] || A[3], A[2] || A[3]] : [...A];
+      positive[2] ||= force; positive[3] ||= moment;
+      if (same(KINDS.map((_, k) => present[k] && (positive[k] || A[k])), stop)) return true;
+    }
+  }
+  return false;
+}
+const canonical = (bits: string, limit: number) => { const v = decodeBinary64(bits); return bits !== '8000000000000000' && v >= 0 && v <= limit; };
+/** Exact verification-record relations: bound null and theta +0 without data; data_blocks
+ * zero iff no body has data, otherwise at least the true-body count. */
+function recordCoverage(cov: Obj[], record: Obj, theta: Obj[]): void {
+  const fail = (ok: unknown) => need(ok, 'G5a', 'SCALE_MISMATCH');
+  const withData = cov.filter(e => e.has_data).length;
+  fail(Number.isSafeInteger(record.data_blocks) && (record.data_blocks === 0) === (withData === 0) && record.data_blocks >= withData);
+  for (const e of cov) {
+    const bound = record.bound.filter((v: Obj) => v.body === e.body);
+    fail(e.has_data ? bound.length === 1 && bound[0].value !== null : bound.every((v: Obj) => v.value === null));
+    if (!e.has_data) fail(theta.find((v: Obj) => v.body === e.body)?.value === ZERO);
+  }
+}
+/** Direct data facts: no free DOF forces false; a nonzero original free-DOF term forces true. */
+function dataCoverage(e: Obj, facts: CoverageFacts, bi: number): void {
+  if (!facts.free[bi]) need(!e.has_data, 'G5a', 'SCALE_MISMATCH');
+  if (facts.loaded[bi]) need(e.has_data, 'G5a', 'SCALE_MISMATCH');
+}
+/** I57 §4 G5a for a selected case, after the existing encodings/ranges and p/P/floor rules. */
+function selectedCoverage(x: NumericCase, b: Obj): void {
+  const fail = (ok: unknown) => need(ok, 'G5a', 'SCALE_MISMATCH');
+  const sel = x.c.selection, cov: Obj[] = at(b.product_attempts, x.c.product_attempt_ref, 'G5a', 'SCALE_MISMATCH').proof?.summary_coverage;
+  const facts = coverageFacts(x.s); fail(Array.isArray(cov) && cov.length === facts.lengths.length);
+  const stops: [number, string][] = [], estimates: [number, string][] = [], charges: [number, string][] = [];
+  for (let bi = 0; bi < cov.length; bi++) {
+    const e = cov[bi], coupled = facts.lengths[bi] !== 0;
+    const floors = sel.floor === null ? [[false, false]] : [[decodeBinary64(sel.floor[bi].force) > 0, decodeBinary64(sel.floor[bi].moment) > 0]];
+    fail(stopFeasible(e.stop, facts.present[bi], facts.nonInput[bi], coupled, floors));
+    const r = sel.resolution_scale[bi]; let hats = [decodeBinary64(r.force) > 0, decodeBinary64(r.moment) > 0];
+    if (coupled) hats = [hats[0] || hats[1], hats[0] || hats[1]];
+    const estimate = [facts.present[bi][2] && hats[0], facts.present[bi][3] && hats[1]];
+    const charge = sel.precision === 512 ? [e.stop[2], e.stop[3]] : estimate;
+    KINDS.forEach((kind, k) => { if (e.stop[k]) stops.push([bi, kind]); });
+    ['force', 'moment'].forEach((kind, k) => { if (estimate[k]) estimates.push([bi, kind]); if (charge[k]) charges.push([bi, kind]); });
+  }
+  // Exact rosters: one entry per true bit and none per false bit, whatever the value.
+  for (const [key, expected, limit] of [['stop_rule', stops, 2 ** -64], ['verification_estimate', estimates, .25], ['verification_charge', charges, 1]] as const) {
+    fail(same(sel[key].map((v: Obj) => [v.body, v.kind]), expected) && sel[key].every((v: Obj) => canonical(v.value, limit)));
+  }
+  fail(sel.resolution_scale.every((v: Obj) => canonical(v.force, Infinity) && canonical(v.moment, Infinity)) && sel.theta.every((v: Obj) => canonical(v.value, .5)));
+  fail(same(sel.certified_bound.map((v: Obj) => v.body), cov.filter(e => e.has_data).map(e => e.body)) && sel.certified_bound.every((v: Obj) => decodeBinary64(v.value) > 0));
+  const last = x.c.run.attempts.at(-1);
+  recordCoverage(cov, at(x.c.run.records, last.verification.record, 'G5a', 'SCALE_MISMATCH').verification, sel.theta);
+  cov.forEach((e, bi) => dataCoverage(e, facts, bi));
+}
+/** Non-selected attempts retaining a complete roster: structural and direct source
+ * consistency only. No Selection is invented; any p512 floor is unknown, so each sign is admitted. */
+function unselectedCoverage(b: Obj): void {
+  for (const a of b.product_attempts) {
+    const c = b.cases[a.owner_ref.index], cov = a.proof?.summary_coverage;
+    if (c.status === 'selected' || !Array.isArray(cov)) continue;
+    const facts = coverageFacts(b.sources[a.source_ref]), last = c.run.attempts.at(-1);
+    need(cov.length === facts.lengths.length, 'G5a', 'SCALE_MISMATCH');
+    const floors = last.precision === 512 ? [[false, false], [false, true], [true, false], [true, true]] : [[false, false]];
+    cov.forEach((e: Obj, bi: number) => need(stopFeasible(e.stop, facts.present[bi], facts.nonInput[bi], facts.lengths[bi] !== 0, floors), 'G5a', 'SCALE_MISMATCH'));
+    const record = at(c.run.records, last.verification.record, 'G5a', 'SCALE_MISMATCH').verification;
+    recordCoverage(cov, record, record.theta);
+    cov.forEach((e: Obj, bi: number) => dataCoverage(e, facts, bi));
+  }
+}
+function numericSummaries(cases: NumericCase[], b: Obj): void {
   const fail = (ok: unknown) => need(ok, 'G5a', 'SCALE_MISMATCH');
   for (const x of cases) {
     const sel = x.c.selection, bodies: Obj[] = x.s.body_membership, ids = bodies.map(b => b.body);
@@ -537,6 +671,7 @@ function numericSummaries(cases: NumericCase[]): void {
     fail(sel.theta.every((v: Obj) => decodeBinary64(v.value) <= .5));
     fail(unique(sel.certified_bound.map((v: Obj) => v.body)) && sel.certified_bound.every((v: Obj) => ids.includes(v.body) && decodeBinary64(v.value) > 0));
     fail((sel.floor !== null) === (sel.precision === 512)); if (sel.floor !== null) fail(same(sel.floor.map((v: Obj) => v.body), ids));
+    selectedCoverage(x, b);
     for (let bi = 0; bi < bodies.length; bi++) {
       fail(x.lengths[bi] >= 0 && Number.isFinite(x.lengths[bi]) && [...x.original[bi], ...x.hats[bi]].every(Number.isFinite));
       const e = [decodeBinary64(sel.resolution_scale[bi].force), decodeBinary64(sel.resolution_scale[bi].moment)], upper = x.hats[bi].map(v => v * decodeBinary64('3ff0000000001000'));
@@ -774,16 +909,8 @@ async function invocationBinding(b: Obj, source: Obj, invocation: Obj): Promise<
       return { constructor_ordinal: i, source_id: load.id, primitive_load_index: i, dof: { node, component }, value: binary64Bits(convert(load.magnitude, load.dimension)) };
     }).sort((a: Obj, z: Obj) => (a.dof.node * 6 + COMPONENTS.indexOf(a.dof.component)) - (z.dof.node * 6 + COMPONENTS.indexOf(z.dof.component)) || compareCodePoints(a.source_id, z.source_id) || (a.value < z.value ? -1 : a.value > z.value ? 1 : 0) || a.constructor_ordinal - z.constructor_ordinal);
     fail(same(s.nodal_terms, terms));
-    const layout: Obj[] = [], bodyOf = (node: number) => bodies.find(b => b.nodes.includes(node))!.body;
-    const add = (quantity: Obj, kind: string, node: number, input = false) => layout.push({ index: layout.length, quantity, kind, body: bodyOf(node), input_derived: input });
-    nodes.forEach((_, node) => COMPONENTS.forEach((component, j) => add({ tag: 'displacement', dof: { node, component } }, KINDS[j < 3 ? 0 : 1], node, fixed.has(node + ':' + component))));
-    nodes.forEach((_, node) => add({ tag: 'displacement_magnitude', node }, 'translation', node));
-    for (const m of maps.members) for (const end of ['i', 'j']) COMPONENTS.forEach((component, j) => add({ tag: 'end_action', member: m.kernel_member, end, component }, j < 3 ? 'force' : 'moment', m.node_i));
-    for (const st of stations) COMPONENTS.forEach((component, j) => add({ tag: 'station_action', station: st.id, component }, j < 3 ? 'force' : 'moment', maps.members[st.member].node_i));
-    for (const spring of springs) add({ tag: 'spring_action', spring: spring.kernel_spring, component: spring.component }, COMPONENTS.indexOf(spring.component) < 3 ? 'force' : 'moment', spring.node);
-    for (const c of constraints) add({ tag: 'reaction', dof: c.dof }, COMPONENTS.indexOf(c.dof.component) < 3 ? 'force' : 'moment', c.dof.node);
-    for (const support of supportRows) { add({ tag: 'support_force_magnitude', support: support.id }, 'force', support.node); add({ tag: 'support_moment_magnitude', support: support.id }, 'moment', support.node); }
-    fail(same(s.layout, layout));
+    const bodyOf = (node: number) => { const hit = bodies.find(b => b.nodes.includes(node)); fail(hit); return hit!.body; };
+    fail(same(s.layout, sourceLayout(nodes.length, maps.members, stations, springs, constraints, supportRows, key => fixed.has(key), bodyOf)));
     const identities = await nativeSourceHashes(s);
     fail(identities.source === s.kernel_source_sha256 && identities.stiffness === s.stiffness_sha256);
   }
@@ -843,7 +970,13 @@ function ordinaryAttempts(b: Obj, source: Obj): void {
     if (c.source_decline) fail(!c.run && c.source_ref == null && same(c.source_decline.input_owner, { case_index: ci, case_id: cid, material_basis_ref: a.material_basis_ref }));
   });
 }
-function conversionEncoding(b: Obj): void { for (const a of b.product_attempts) { for (const m of a.preparation.members) for (const c of m.conversions) conversions(c.outcome); for (const c of a.proof?.projection_outcomes ?? []) conversions(c.outcome); } }
+function conversionEncoding(b: Obj): void {
+  for (const a of b.product_attempts) {
+    for (const m of a.preparation.members) for (const c of m.conversions) conversions(c.outcome);
+    for (const c of a.proof?.projection_outcomes ?? []) conversions(c.outcome);
+    for (const e of a.proof?.summary_coverage ?? []) uint(e.body); // I57 §4 G2: body is a safe U.
+  }
+}
 function projection(source: Obj): Obj {
   const p = structuredClone(source); delete p.retained_precision; p.producer.semantic_contract_id = BASE_ID; p.formulation_basis.profile_id = 'product_preview_mechanics_v1';
   if (Array.isArray(p.results)) for (const row of p.results) if (Object.hasOwn(row, 'recovery_method')) delete row.recovery_method;
@@ -863,7 +996,7 @@ export async function validateRetainedPrecision(source: unknown, invocation?: un
     gate = 'G3'; const rows = coverage(b, s, actual);
     gate = 'G4'; diagnostics(b, s);
     gate = 'G5'; nativeRuns(b); ordinaryAttempts(b, s); productAttempts(b, rows);
-    gate = 'G5a'; const numeric = numericalCases(b, rows); numericSummaries(numeric);
+    gate = 'G5a'; const numeric = numericalCases(b, rows); numericSummaries(numeric, b); unselectedCoverage(b);
     gate = 'G5b'; numericalScales(numeric, s);
     gate = 'G5c'; const classes = classifications(numeric, s);
     gate = 'G6'; for (const c of b.cases) for (const row of rows.get(c.basis_ref.ref_id)!) need(c.status === 'selected' ? row.recovery_method === RETAINED_METHOD : !Object.hasOwn(row, 'recovery_method'), gate, 'ROW_METHOD_MISMATCH');
