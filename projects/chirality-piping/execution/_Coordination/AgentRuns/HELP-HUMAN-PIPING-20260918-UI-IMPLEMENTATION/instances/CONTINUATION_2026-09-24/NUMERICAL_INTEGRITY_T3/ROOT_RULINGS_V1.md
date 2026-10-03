@@ -7242,3 +7242,26 @@ prior cause before a sticky adapter fault or generic new prelude error can
 overwrite it, while retaining actual fault/work and ordinary bytes. Original
 source/seal deadlines remain. RV74 released its fully reaped runtime batch; I51
 now owns the lane for this repair. Same-reviewer delta confirmation is required.
+
+
+## Typed prepared trace accepted and merged locally (ROOT, 2026-10-03 UTC)
+
+ROOT accepts the typed evidence component because its actual successes and refusal prefixes now survive without losing their original causes.
+
+Final source `fc23cff95f` is independently CLEAR after RV74-F1 repair and
+same-reviewer confirmation. The complete RV74 REVIEW owns the validation figures,
+source scopes and explicit limits. ROOT read the full original core diff/new
+module and every repair line, both author RETURNs and the full review; all sealed
+payload/bulk hashes, exact patch reconstructions and committed source pins verify.
+
+The no-ff local integration is `b56b905251`. Maintained core bytes equal
+the component after merge. I51_PREPARED_TRACE_MERGE/RECORD.md, this ruling and the
+current/graph update close the same integration pass. The earlier generic-cause
+overwrite and S11 failure remain preserved; passing old checks did not close F1.
+
+This closes truthful private typed capture, not the public receipt transaction
+or memory admission. Native-stage failures with no recorded Run retain their
+actual capture/origin cause; they do not manufacture a wire Run. Layouts remain
+per-artifact observations and the snapshot is explicitly private. All production
+permits remain absent. Full public producer/readers, ordinary/resource/caller
+qualification, combination/exact scope, native Current and main gates remain.

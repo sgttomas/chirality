@@ -23,7 +23,7 @@ The numerical candidate now passes. What stands before publication is its public
 ## Running now
 
 - I54’s container laws are accepted as partial source proofs after RV73 review. I54 is binding the ordinary-active/suffix memory phases; final profile/build/allowance qualification remains open.
-- I51’s typed evidence source is frozen at 7018513af3; fresh RV74 reviews its full diff. I52 holds the build lane for existing authorities/helper checks; the memory guard remains active.
+- I51’s typed evidence is accepted locally at `b56b905251` after RV74 review and repair confirmation. I52 holds the build lane for the standalone readers; the memory guard remains active.
 - I52 is implementing standalone Rust/Python/TypeScript validators, the closed schema and shared controls in an isolated worktree. Application and carrier wiring follows complete validation.
 - Native context-lifetime/backing qualification remains open. Its source investigation is stopped at its stated limit.
 
