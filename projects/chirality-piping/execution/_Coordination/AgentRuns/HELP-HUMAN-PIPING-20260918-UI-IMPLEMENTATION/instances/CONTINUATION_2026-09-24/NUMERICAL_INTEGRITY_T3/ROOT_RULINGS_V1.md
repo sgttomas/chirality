@@ -6269,3 +6269,38 @@ changes. No private endpoint or radius was reconstructed. This accepts the
 evidence correction, not a new method, zero recognizer, public availability or
 F2a completion. RV62's separate all-row backcheck remains open. A refinement is
 selected only if its reviewed contribution advances the named publishing target.
+
+
+## Complete material truth coverage accepted (ROOT, 2026-10-03 UTC)
+
+ROOT closes the material-coverage evidence gap, allowing the next assignment to target a real publishing dependency without relying on the incomplete earlier taxonomy.
+
+ROOT read the full RV62 corrective REVIEW and RETURN, preserved at `bcae30c6b0`,
+and verified every committed payload and the external exact-result file against
+its size/hash/location manifest. The reviewed author addendum is `997e5e7992`.
+RV62's “Correction and result” section checks all 292 mechanical rows and 562
+applicable predicates in the four fixed captured cases. All 390 candidate PASS
+predicates have certified full-cover upper bounds. Exactly the interpolated UX
+row changes classification: the loaded interpolation case has 20 truth-miss and
+46 conservative rows. These are fixed-case figures, not public availability.
+
+Accept that correction and its finite corner/static/zero proof at the stated
+scope. Earlier two-readout comparisons and separate source/custody acceptance
+remain intact. No source defect or new runtime test is established. Every complete
+private case still refuses. The one-row RV64 correction is already accepted;
+no tighter method follows automatically from either backcheck.
+
+ROOT joined fetched main `381be775ae` into the code integration branch by merge
+commit `91a143142c`. The merge has no Piping, Root/role or project-skill change.
+This is a local integration merge, not a product merge into main.
+
+For the named publishing target, source inspection identifies the next concrete
+barrier: the existing private adapter explicitly rejects a nonempty global-spring
+list and does not populate support spring ownership. The target already has an
+actual authorable request and both-entry/both-mode D-5 test in
+`product_physics/tests/formation_check_runtime.rs`. Those source facts are not a
+fresh test execution. Prepare I50's coherent component through checkpoints 0, A,
+B and D; only the bounded source/contract checkpoint 0 is executable. It must
+resolve per-support identity/action and accounting before any implementation
+grant. Further certificate tightening is deferred until the actual target
+demonstrates that it is the relevant numerical obstacle.

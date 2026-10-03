@@ -34,14 +34,15 @@ final joined closure remain.
 
 ## Running now
 
-RV62 is completing its records-only material truth-coverage backcheck
-(deadline 06:35:09Z). RV64 has cleared the UX correction and genuinely conservative
-UZ refusal; ROOT accepted that bounded correction. No compiler or model run is
-active. M5 Max, existing memory guard PID5387. Original evidence remains unchanged.
+Both material-coverage backchecks are clear and accepted. They establish no false
+passing predicate in the fixed captured cases; unchanged UX has a real miss and UZ
+has a conservative refusal. I50 is prepared for a bounded source/integration
+checkpoint on the named publishing case. No compiler or model run is active.
+M5 Max, existing memory guard PID5387. Original evidence remains unchanged.
 
 ## Next
 
-Close those backchecks, then assign one implementer the named-case component
+Assign one implementer the named-case component
 through bounded checkpoints. Tightening is deferred unless it advances that case.
 Keep one reviewer through corrections and obtain fresh independent PR review.
 Bulk new evidence stays in scratch with committed hashes, sizes and locations.
@@ -52,9 +53,10 @@ Bulk new evidence stays in scratch with committed hashes, sizes and locations.
 not records-only. `codex/piping-f2a-work-exactness-20261002` is its component work
 branch. A records PR must be cut from current main with only execution records,
 and prove an empty diff outside that scope. No records PR exists now. Latest
-fetched main is `381be775ae`; its App-only update awaits the next clean join.
+fetched main is `381be775ae`, joined at `91a143142c`; Piping/instruction bytes
+are unchanged by that App-only merge.
 
-No new owner decision is needed for the active backchecks. Pending decisions
+No new owner decision is needed for the next bounded checkpoint. Pending decisions
 remain: dense/lane memory ceilings, PHYS-R4 refusal and availability, observation
 framing, KF3's lambda split and KF2's dense screen. Any conflict with required
 publication or change to the public numerical contract returns with reviewed options.
