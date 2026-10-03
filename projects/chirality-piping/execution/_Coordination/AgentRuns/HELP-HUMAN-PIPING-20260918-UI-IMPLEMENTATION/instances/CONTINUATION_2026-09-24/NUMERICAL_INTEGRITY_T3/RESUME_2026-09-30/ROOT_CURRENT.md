@@ -7,7 +7,7 @@ no cargo/rustc before dispatch. NUM merged current main a533dc2d67bc with
 
 ## Current work
 
-- I37 source is frozen, clean and pushed in wt/f2a at
+- I37 source checkpoint was frozen and pushed at
   fdae294643b798c1849da8b2e643085562593686, base14ff4e86dd. ROOT read the core
   diff and verified scope/hashes and final-source checks. ROOT merged it into NUM after RV51 clearance; it remains unmerged on main.
 - RV51 is completing the partial review in new REVIEW_RV51/checked_work_a_02.
@@ -26,14 +26,22 @@ no cargo/rustc before dispatch. NUM merged current main a533dc2d67bc with
   wt/f2a-arithmetic, clean/pushed. ROOT read helper/tests/generator and verified
   five maintained hashes, original seal and final command logs. Byte-preserved
   evidence placement is explained by the packet root RETURN/RELOCATION.
-  Fresh RV53 /root/rv53_certificate_helpers reviews it under brief538297c17a;
-  sole focused Cargo lane,4jobs/2threads/per-manifest/20min command walls.
+  RV53 is CLEAR, preserved940b1eba9897; helpers integrated into NUM at0a9e874997.
+  Full product/profile gates remain.
 - I40 /root/i40_kernel_origins implements kernel call/run/group/build/cache
   origins in wt/f2a from clean887b790c2a64, maintained sourcefdae294. Brief
  14ce35dbe60d;75min receipt/checkpoint15/cutoff55. RV52 source hold lifted at
- 23:55 UTC. Cargo remains held for RV53. Case batches/recorded selected
+ 23:55 UTC. RV53 released the lane and ROOT handed it to I40 after host check.
+  Case batches/recorded selected
   combinations only; Prepared ordinary/PP/maps/readers remain explicit later
   interfaces. Raw command/host evidence stays under _run_records.
+
+- I41 /root/i41_member_coefficients implements only the private material/section
+  coefficient evaluator and reviewed B64U work-return seam in wt/f2a-arithmetic
+  from8a6ed501655f, maintained bytes82fc4ebd. Briefd89749d309f1,60min/checkpoint20/
+  cutoff45. Cargo is held for I40; source and exact oracle work may proceed.
+  Its mod.rs registration is shared logically with I40 and integrated serially
+  by ROOT. No source-binding witness/product caller or policy is activated.
 
 ## Accepted and preserved bases
 
@@ -51,5 +59,5 @@ Finish these bounded reviews, repair/backcheck confirmed findings, and qualify
 I39 helpers with a fresh reviewer. Complete C2/product source identity, concrete
 profile/caller/resource work and the first source-to-verdict witness, then the
 atomic F2a/S-G1 path and required gates. S-I/F2b/F3 and owner-held decisions
-remain. Next unused IDs: I41/RV54. No full T3 completion or product activation
+remain. Next unused IDs: I42/RV54. No full T3 completion or product activation
 is claimed. See BRIEFS, owning RETURN files and latest ROOT_RULINGS_V1.md.

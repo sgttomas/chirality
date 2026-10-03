@@ -5521,3 +5521,26 @@ not native qualification. ROOT read its return/ledger and verified available
 source/output hashes. It identifies synchronous dispatch but supplies no adopted
 H, complete request-context or emergency/capacity bound. No host tooling or
 protocol-policy expansion is selected.
+
+## Numerical helpers accepted; bounded coefficients follow (ROOT, 2026-10-02 UTC)
+
+ROOT read RV53's complete source/numerical review, verified its exact51-file
+packet and seal6ebe02c8237ad478da6602113988ea50a06b510c2fca49461f47174f53c9b315,
+preserved it at940b1eba9897 and accepts helper source82fc4ebd at its bounded
+private-component scope. ROOT merged it into NUM at0a9e874997 with --no-ff
+and confirmed exact maintained core/validation correspondence. The reviewer
+independently checked every stored reference by integer/rational inequalities
+and replayed the focused debug/optimized checks. Raw-log whitespace remains
+preserved; it is not a source defect or permission to edit evidence.
+
+Release I41 under briefd89749d309f1: private normalized material/section and
+exact-K coefficient enclosures plus the reviewed B64U actual-work seam, using
+existing fixed arithmetic. Its isolated f2a-arithmetic checkout merged reviewed
+NUM records at8a6ed501655f; maintained source remains82fc4ebd. Product source
+identity, bridge/row/receipt/admission integration are explicitly outside this
+block. No new source promise, tariff or memory allowance follows.
+
+I40 owns the sole focused compiler lane after RV53 release and ROOT's empty
+cargo/rustc scan. I41 starts only source and exact oracle work until a later
+explicit lane handoff. Both exact source fences keep shared registration hunks
+separate until ROOT integration; neither TASK has Git/index/API authority.
