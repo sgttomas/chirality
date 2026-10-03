@@ -7475,3 +7475,36 @@ The Python reader now enforces the selected coverage rules against snapshot 04, 
   
   C0 also covers I59's and I58's shared failure-prefix controls (pre-helper, captured_prefix, unequal prefixes, K-only and Source-failed, old-Err/new-Ready, source construction failure, post-native unavailable, maxima-abandon). It promotes I62's three layout controls to shared mutations, and covers the Python G5a direct checks for unavailable attempts that keep complete coverage.
 - **C1** builds snapshot 05 after ROOT accepts the plan and I63 and I64 have frozen.
+
+## I61 producer seam committed for review; F1a regression found; I64 TypeScript coverage verified (ROOT, 2026-10-03 UTC)
+
+**I61, the producer's typed coverage seam.** I61 changed four files (+496 −3):
+- `final_case.rs` gains a borrowed coverage view in `ProductProofTrace`, `rederive_coverage` and `check_summary_coverage`;
+- `retained_receipt.rs` gains the null/complete projection;
+- two test files.
+
+ROOT verified the hashes against I61's RETURN and committed the work on its own branch as `c618675e84`. **It is unaccepted until independent review.**
+- **I61's results:**
+  - frame_kernel `--lib`: 477 passed, 1 ignored;
+  - `s11_site_table`: 3 passed;
+  - all six mutants killed.
+  - Actual producer runs cover Ready at p128, a zero body, cancelled ±x loads, no proof, lane, proof-start and abandonment failures, a certificate failure after the summary, and a partial adapter copy.
+  - Native p512 with a positive floor exists only at frame_kernel level, and the p512 charge mutant is killed only by a synthetic test.
+- **I61's decision points, ruled:**
+  - the placement in frame_kernel is accepted;
+  - the error mapping onto existing `TraceProjectionError` variants is accepted;
+  - proof-to-owner binding is accepted as the producer-custody limit I57 §5 states. The reviewer must confirm that the only caller passes the proof's own owner. A structural binding is reconsidered with the receipt transaction.
+
+**A regression on the integration branch.** product_physics `--lib` fails seven tests at CODE `652ad0cc1f`, before I61's change. One is the known Mac platform test `s11g t13`, which also fails on main. The other six are F1a tests, and they are a regression of the integration branch:
+- **The cause:** commit `8104a4fedd` (I50's component) changed `tests/formation_check_runtime.rs` so the `RF_SKEW_T_CANT_OFF_122_R1E_04` constant uses `include_str!` of a fixture instead of an inline literal. `src/f1a_tests.rs::p1_request` parses that file's text for the literal, so it panics.
+- **The fixture's bytes equal the old literal,** so no behaviour changed.
+- **Why it went unseen:** the component reviews ran focused tests, not the crate's full suite.
+- **The repair (granted to I61, its own commit):** restore that test file to main's exact bytes. The fixture stays for its four other users.
+- **The lesson:** local fan-ins run the full affected crate suites, not only focused ones.
+
+**I64, TypeScript coverage checks, verified.** Its two files are at `a21487a4e1` and `9f98268ef2`. ROOT's own runs: 107 vitest tests pass and `tsc` exits 0. The shared files are still at snapshot 04, the records verify, and `SUMMARY_COVERAGE_COMPLETE` stays false. The rulings on I64's questions:
+1. **Checks for unavailable attempts with a complete roster.** These are currently implemented in TypeScript, deferred in Python and untested. The rule is fixed by I62's snapshot-05 plan (C0), with expected outcomes, and all three readers align to it at C1. TypeScript's version stays provisionally and is flagged untested.
+2. **The verification-record bound rule.** Shared rule: `verification.bound` lists every body exactly once, in order, and an entry is non-null if and only if `has_data`. That is Python's form, and it follows I57 §4 item 4 and the native record's one entry per body. TypeScript aligns in its next grant, and snapshot 05 pins it with a duplicate-entry mutation.
+3. **The extra G1/G2 guards in TypeScript** are accepted as defence in depth. The reviewer confirms they cannot change any first-failure order.
+
+This is source-level verification only. Reader acceptance still waits for snapshot 05 and an independent review.
