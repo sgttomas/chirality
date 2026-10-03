@@ -5861,3 +5861,22 @@ pp09/oracle09 basis is not accepted implementation evidence; no extra solver,
 projection, output or public-contract change is granted. Actual receipt03:24:07Z,
 checkpoint03:34:07, cutoff03:44:07, return03:49:07. Native TASK directly under ROOT,
 only new NUM/R/I46/product_refusal_01 writes; I45 remains sole code/compiler owner.
+
+
+## Product witness and supporting diagnosis checkpoint (ROOT,2026-10-03 UTC)
+
+ROOT refreshed the M5 host, guard5387, origin/main a533dc2d67bc and GitHub
+merge facts for A1 PR1070 and K6c PR1071. Those completed scopes stand.
+The private I45 witness is not yet independently reviewed. Its author caught
+a coherent support component/id binding hole after the first freeze but before
+sealing; ROOT granted only that owned repair/control and affected PP reruns.
+RV60 waits for a new freeze, ROOT source/hash/scope check and commit.
+
+I46's original diagnosis is preserved at330dc2e405de. Fresh RV61 found that
+its supporting G5a guard uses uncoupled resolution operands. ROOT confirmed
+original analyze.py:146 and assigned a separate copied-check correction under
+brief2b2d2d86473d. Original sealed evidence remains historical; no affected
+G5a replay is accepted before the same-reviewer backcheck. The independent
+main Rx/numeric finding will receive its disposition after the complete review.
+No source contract, predicate, output, availability or product acceptance is
+changed at this checkpoint.

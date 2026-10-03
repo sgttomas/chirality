@@ -26,48 +26,42 @@ with exact maintained correspondence. R/verification/i44_fanin_01 holds ROOT
 checks and LOCAL_MERGE. Native p128/P256 evidence and full predicates are reviewed;
 higher-P actual witnesses, profiles/auxiliary costs/PP custody remain open.
 
-I45 read-only plan at R/I45/product_vertical_01 returned early, preserved24f24e98.
-It proposes one eight-path actual PP-builder/final-row W0/W1 private witness;
-its73 mechanical rows are a static expectation only. The ordinary direct/magnitude
-hull and separately evaluated represented/source stress branches require fresh
-interface review because the old Q_K subset Q_S shortcut no longer follows.
+I45's private actual ordinary source-to-verdict implementation is being finalized
+in wt/f2a from0fdd06a73389. The actual W0/W1 inputs, complete final row roster,
+source ownership and both honest full-case refusals are captured; these are
+candidate evidence, not independent acceptance or a future W1 projection.
+Its original source freeze03:33:08 and lane release03:35:13 are historical.
+At03:39:43 the author caught a coherent support component/id binding gap before
+sealing. ROOT returned the sole focused lane for the narrow owned repair and
+PP debug/optimized/S11 checks. Old source/test records remain preserved; unaffected
+FK coverage will be qualified by unchanged FK hashes. No wider source or clock
+extension is granted. RV60 remains prepared, not launched; it follows the final
+freeze and ROOT source/hash/write-set check and commit.
 
-RV59 cleared I45's interface plan, preserved5691d7f7b3d0; ROOT selected its
-bounded private ordinary witness at a083c1def515. I45 /root/i45_product_vertical
-is now implementing in wt/f2a from clean dispatch0fdd06a73389 (no-ff NUM join,
-maintained6ba653451f9f). Actual receipt02:26:30Z; checkpoint02:46:30, actual admission/
-source-map target03:11:30, source-expansion cutoff03:56:30, final04:26:30.
-Owns the original nine-path fence plus PP/tests/s11f_site_test.rs, limited to
-actual-body retargeting/newmodule inventory, and new CODE/R/I45/product_vertical_02
-only. BRIEFS/I45_PRODUCT_VERTICAL_SUPPLEMENT_01.md selects independently reviewed
-new operational L/k_a/k_t evaluation (RV59 correction00bb882c5592); old plan/review
-had not discharged this G5a prerequisite. It is not historical capture/receipt
-custody. Missing operands still block full G5a/case success. The first actual ordinary
-source/map and numeric verdicts exist. I45 reports W0 numeric recipes pass but
-G5a refuses a final negative-zero force row under the unchanged +0 rule; loaded
-ordinary output has independently reproduced numeric misses. These are interim
-CODE/R/I45/product_vertical_02 pp07/oracle04 results, not final acceptance or a
-future W1 projection claim. Complete guards, failure accounting, compatibility,
-source freeze and fresh RV60 implementation review remain. No NUM/frozen arithmetic source writes,
-Git/index/API/delegation. I46 is the only parallel source-read/exact-algebra task;
-all other earlier TASKs stopped.
+The exact fence remains ten maintained files under FK/PP plus new
+CODE/R/I45/product_vertical_02. No NUM or frozen arithmetic source writes.
+M5/existing guard5387,4jobs/2threads, absolute locked/offline manifests,20minute
+walls and separate targets WT/targets/i45-product-vertical/{frame_kernel,
+product_physics}. Production W1 projection/routing/C2/resources remain outside it.
 
-Sole focused compiler lane belongs to I45: existing guard5387,4jobs/2threads,
-absolute manifests with locked/offline,20minute walls, separate absolute targets
-WT/targets/i45-product-vertical/{frame_kernel,product_physics}. No heavy/UI/sweep,
-installs/host-tools/pruning. The witness uses actual final ordinary rows; it does
-not implement production W1 projection/routing/receipt/admission. A verified
-full-case finite refusal is a valid first witness; a partial pass is not a case
-certificate. See verification/i45_dispatch_01/RECORD.md for actual local join.
+I46's exact refusal diagnosis is preserved at330dc2e405de, with original sealed
+packet byte-relocated under R/I46/product_refusal_01/_run_records/original.
+It distinguishes ordinary numerical errors from source/rounded-K discrepancy;
+no future projected envelope or false native q_K publication is claimed.
+Fresh RV61 /root/rv61_product_refusal is reviewing it under brief8e0971413396,
+receipt03:34:38Z, checkpoint03:44:38, cutoff03:54:38, return03:59:38. Review found
+one supporting arithmetic error: the original G5a guard used uncoupled resolution
+values. Main Rx/numeric conclusions are reported independently unchanged; the
+supporting replay is not accepted as exact. Original review is being sealed.
 
-I46 /root/i46_product_refusal_diagnosis is an arithmetic-only next-dependency
-check under brief5c068b85940b, using immutable interim pp09.log/oracle09.json
-(actual ordinary and native facts) with their hashes. Receipt03:24:07Z;
-checkpoint03:34:07, cutoff03:44:07, final03:49:07. Owns only NUM/R/I46/product_refusal_01;
-no CODE/source/Git/index/API/compiler/solver/model/native/tooling/delegation.
-It distinguishes ordinary solve/postprocessing from native-K/source-law discrepancy;
-any projected values remain algebraic, not actual producer execution or acceptance.
-No output/source/predicate change is selected. I45 keeps its original clock/lane.
+I46 /root/i46_product_refusal_diagnosis now has a narrow correction grant at
+2b2d2d86473d, writes only R/I46/product_refusal_correction_02, generated files
+under _run_records. Actual receipt03:43:00Z, checkpoint03:48:00, cutoff03:53:00,
+return03:58:00. No compiler/model/solver/source/Git/index/API/tooling. Preserve
+all original sealed bytes; corrected copied check uses coupled hats for guard
+and original E for zero rule, with unaffected-proof comparison and a non-unit
+control. Same RV61 backcheck precedes closure. No source/output/predicate or
+protected-availability decision is made by either packet.
 
 RV58 discloses a separate92ea status read without optional locks disabled; no
 candidate mutation was observed. Its sealed fixture's .gitignore symlink produces
@@ -94,6 +88,6 @@ emergency bounds remain unqualified. Old K6c layouts do not qualify new owners.
 Then S-I/F2b/F3 and owner-held decisions remain. No complete memory allowance,
 facade tariff, visit permit or product availability is selected by these packets.
 
-Next unallocated IDs after I46 and prepared RV60: I47/RV61. ROOT owns source/record integration,
+Next unallocated IDs after I46 and allocated RV60/RV61: I47/RV62. ROOT owns source/record integration,
 repair assignment, independent review, gates and owner checkpoints. Rulings are
 append-only; frozen raw evidence is never edited.
