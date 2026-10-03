@@ -106,8 +106,6 @@ pub enum ProductRecipe {
         member: u32,
     },
     NonQuantity,
-    /// Selected-material presence record; PP owns its exact source/text binding.
-    ModulusBasisRecord,
 }
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ProductUnit {
@@ -843,7 +841,6 @@ fn run_case(
         let mut derivative_coverage = reserve(derivative_count)?;
         derivative_coverage.resize(derivative_count, false);
         let mut nonquantity = false;
-        let mut modulus_basis = false;
         spent.verdicts = reserve(spent.rows.len())?;
         spent.capacities = [
             laws.capacity(),
@@ -873,12 +870,6 @@ fn run_case(
                         return Err(bad("nonquantity coverage"));
                     }
                     nonquantity = true;
-                }
-                ProductRecipe::ModulusBasisRecord => {
-                    if modulus_basis || r.unit != ProductUnit::Record {
-                        return Err(bad("modulus basis coverage"));
-                    }
-                    modulus_basis = true;
                 }
                 ProductRecipe::Stress {
                     member,
@@ -979,10 +970,7 @@ fn run_case(
             spent.visit()?;
             let r = &spent.rows[i];
             let recipe_id = r.recipe;
-            if matches!(
-                recipe_id,
-                ProductRecipe::NonQuantity | ProductRecipe::ModulusBasisRecord
-            ) {
+            if recipe_id == ProductRecipe::NonQuantity {
                 spent.verdicts.push(ProductRowVerdict {
                     row: i,
                     normalized_bits: r.value.to_bits(),
