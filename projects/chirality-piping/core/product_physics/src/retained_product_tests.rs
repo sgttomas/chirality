@@ -520,3 +520,140 @@ fn actual_sparse_zero_and_cancelled_summary_coverage_is_not_inferred_from_net() 
         Err(G5aFailure::Shape("estimate"))
     );
 }
+
+#[test]
+fn rv60_closed_evidence_shapes_and_empty_combination_gates_refuse_mutations() {
+    use super::retained_product::{AdapterEvent, AdapterFault, CaptureError};
+    let (e, o) = observed(specimen(true));
+    o.observables(&e).unwrap();
+    let original_rows = serde_json::to_string(&e.results).unwrap();
+    let paths = [
+        "",
+        "/preview_cases/0",
+        "/preview_cases/0/stress_maximum_coverage",
+        "/preview_cases/0/support_attribution",
+    ];
+    for path in paths {
+        // An additional key and a coherent same-length replacement both violate the closed shape.
+        let mut changed = e.clone();
+        let object = changed
+            .contract_evidence
+            .as_mut()
+            .unwrap()
+            .pointer_mut(path)
+            .unwrap()
+            .as_object_mut()
+            .unwrap();
+        object.insert("foreign".into(), serde_json::json!(true));
+        assert!(
+            matches!(o.observables(&changed), Err(CaptureError::Association(_))),
+            "{path}"
+        );
+        let mut changed = e.clone();
+        let object = changed
+            .contract_evidence
+            .as_mut()
+            .unwrap()
+            .pointer_mut(path)
+            .unwrap()
+            .as_object_mut()
+            .unwrap();
+        let key = object.keys().next().unwrap().clone();
+        let value = object.remove(&key).unwrap();
+        object.insert("foreign".into(), value);
+        assert!(
+            matches!(o.observables(&changed), Err(CaptureError::Association(_))),
+            "{path}"
+        );
+    }
+    let mut missing = e.clone();
+    missing
+        .contract_evidence
+        .as_mut()
+        .unwrap()
+        .as_object_mut()
+        .unwrap()
+        .remove("combination_gates");
+    assert!(o.observables(&missing).is_err());
+    for value in [
+        serde_json::Value::Null,
+        serde_json::json!({}),
+        serde_json::json!([{"foreign":"entry"}]),
+    ] {
+        let mut changed = e.clone();
+        changed.contract_evidence.as_mut().unwrap()["combination_gates"] = value;
+        assert!(o.observables(&changed).is_err());
+        assert_eq!(
+            serde_json::to_string(&changed.results).unwrap(),
+            original_rows
+        );
+    }
+    for path in paths {
+        let mut changed = e.clone();
+        *changed
+            .contract_evidence
+            .as_mut()
+            .unwrap()
+            .pointer_mut(path)
+            .unwrap() = serde_json::json!([]);
+        assert!(o.observables(&changed).is_err(), "{path}");
+    }
+    println!("RV60_MISSING_COMBINATION_GATES_ACCEPTED false");
+    println!("RV60_FOREIGN_COMBINATION_GATES_ACCEPTED false");
+    println!("RV60_EXTRA_CASE_KEY_ACCEPTED false");
+    println!("RV60_EXTRA_COVERAGE_ACCEPTED false");
+    println!("RV60_EXTRA_ATTRIBUTION_ACCEPTED false");
+    // Synthetic near-overflow seed: new closed-key comparison cannot masquerade as a shape mismatch.
+    let mut counts = o.adapter.counts.get();
+    counts[AdapterEvent::KeyProbe as usize] = u64::MAX;
+    o.adapter.counts.set(counts);
+    assert!(matches!(
+        o.observables(&e),
+        Err(CaptureError::Accounting(AdapterFault::Overflow(
+            AdapterEvent::KeyProbe
+        )))
+    ));
+    assert_eq!(
+        o.adapter.counts.get()[AdapterEvent::KeyProbe as usize],
+        u64::MAX
+    );
+}
+
+#[test]
+fn rv60_fixed_mode_sign_refuses_in_isolated_synthetic_zero_snapshot() {
+    use super::retained_product::CaptureError;
+    let (actual, o) = observed(specimen(false));
+    let actual_bytes = serde_json::to_string(&actual).unwrap();
+    assert!(actual.results[35].value.is_sign_negative());
+    let (invocation, case) = o.native.as_ref().unwrap();
+    let k::ExecutionOutcome::Selected(owner) = &case.outcome else {
+        panic!()
+    };
+    o.bind_rows(&actual, owner).unwrap();
+    // Explicit synthetic snapshot only: remove the known -0 obstruction to numeric comparison.
+    // This never replaces the actual ordinary output or claims actual W0 availability.
+    let mut synthetic = actual.clone();
+    for row in &mut synthetic.results {
+        if row.value == 0.0 {
+            row.value = 0.0;
+        }
+    }
+    let rows = o.bind_rows(&synthetic, owner).unwrap();
+    assert!(invocation
+        .certify_product_case(case.run, owner, &o.facts, &rows)
+        .passed());
+    o.observables(&synthetic).unwrap();
+    let mut changed = synthetic.clone();
+    let mode = changed
+        .results
+        .iter_mut()
+        .find(|r| r.kind == "linear_solver_mode_basis")
+        .unwrap();
+    mode.metadata.as_mut().unwrap().sign_convention = "mode_code 1=dense_scrutiny".into();
+    let error = o.bind_rows(&changed, owner).unwrap_err();
+    assert!(matches!(error, CaptureError::Association(_)));
+    assert_eq!(error.to_string(), "ordinary sparse mode sign");
+    assert_eq!(serde_json::to_string(&actual).unwrap(), actual_bytes);
+    assert!(actual.results[35].value.is_sign_negative());
+    println!("RV60_SYNTHETIC_FULL_GATES_ACCEPT_WRONG_MODE_SIGN false");
+}

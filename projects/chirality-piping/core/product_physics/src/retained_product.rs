@@ -1008,13 +1008,58 @@ impl ProductCapture {
         self.adapter.require()?;
         self.adapter.enter(AdapterEvent::LibraryBoundary, 1); // Closed evidence inspection; serde/number internals remain unqualified.
         let evidence = e.contract_evidence.as_ref().ok_or("preview evidence")?;
+        // Existing preview-physics reader's closed namespace; this private scope has no combinations.
+        self.adapter.closed_keys(
+            evidence,
+            &["preview_cases", "combination_gates"],
+            "evidence shape",
+        )?;
+        self.adapter.enter(AdapterEvent::ValidationEntry, 1);
+        self.adapter.require()?;
+        let gates = evidence["combination_gates"]
+            .as_array()
+            .ok_or("combination gates")?;
+        if !gates.is_empty() {
+            return Err("excluded combination gates".into());
+        }
         let cases = evidence["preview_cases"]
             .as_array()
             .ok_or("preview cases")?;
-        if cases.len() != 1 || cases[0]["load_case_id"] != self.case_id {
+        if cases.len() != 1 {
             return Err("evidence case".into());
         }
         let c = &cases[0];
+        self.adapter.closed_keys(
+            c,
+            &[
+                "load_case_id",
+                "pipe_stress_extrema",
+                "stress_maximum_coverage",
+                "support_attribution",
+                "intensified_measures",
+            ],
+            "case shape",
+        )?;
+        let case_id = c["load_case_id"].as_str().ok_or("evidence case")?;
+        let case_matches = self.adapter.same(case_id, &self.case_id);
+        self.adapter.require()?;
+        if !case_matches {
+            return Err("evidence case".into());
+        }
+        self.adapter.closed_keys(
+            &c["stress_maximum_coverage"],
+            &[
+                "complete",
+                "unavailable_pipe_ids",
+                "outside_domain_pipe_ids",
+            ],
+            "stress coverage shape",
+        )?;
+        self.adapter.closed_keys(
+            &c["support_attribution"],
+            &["attributed_support_ids", "withheld"],
+            "support attribution shape",
+        )?;
         if c["stress_maximum_coverage"]["complete"] != true
             || c["stress_maximum_coverage"]["unavailable_pipe_ids"]
                 .as_array()
@@ -1239,6 +1284,16 @@ fn validate_final_metadata(
                 || row.value != 1.0
             {
                 return Err("ordinary sparse mode record".into());
+            }
+            work.enter(AdapterEvent::ValidationEntry, 1);
+            work.require()?;
+            let sign_matches = work.same(
+                &m.sign_convention,
+                "mode_code 1=sparse_interactive, 2=dense_scrutiny, 3=dense_fallback_after_sparse_failure",
+            );
+            work.require()?;
+            if !sign_matches {
+                return Err("ordinary sparse mode sign".into());
             }
             "result:solver-mode:linear-solve-basis".to_string()
         }
@@ -1982,6 +2037,38 @@ pub(super) struct AdapterWork {
     pub fault: std::cell::Cell<Option<AdapterFault>>,
 }
 impl AdapterWork {
+    /// Closed borrowed key decoder. Charge each entered group, key visit and actual comparison.
+    fn closed_keys(
+        &self,
+        value: &serde_json::Value,
+        expected: &[&str],
+        reason: &'static str,
+    ) -> Result<(), CaptureError> {
+        self.enter(AdapterEvent::ValidationEntry, 1);
+        self.enter(AdapterEvent::LibraryBoundary, 1);
+        self.require()?;
+        let object = value.as_object().ok_or(reason)?;
+        if object.len() != expected.len() {
+            return Err(reason.into());
+        }
+        for key in object.keys() {
+            self.enter(AdapterEvent::RowVisit, 1);
+            self.require()?;
+            let mut matched = false;
+            for allowed in expected {
+                let equal = self.same(key, allowed);
+                self.require()?;
+                if equal {
+                    matched = true;
+                    break;
+                }
+            }
+            if !matched {
+                return Err(reason.into());
+            }
+        }
+        Ok(())
+    }
     fn enter(&self, event: AdapterEvent, amount: u64) -> bool {
         if self.fault.get().is_some() {
             return false;
