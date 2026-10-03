@@ -591,6 +591,7 @@ fn source_bridge_rv56_collect_before_propagate_keeps_simultaneous_faults() {
     let mut work = SourceBridgeViewWork {
         visits: WorkTotal::zero(),
         f64_operations: WorkTotal::exact_count(u64::MAX),
+        ..SourceBridgeViewWork::default()
     };
     let result = s.build_source_bridge_view(s.source(), &s.prep.identity, s.selected, &mut work);
     assert!(matches!(result, Err(SourceBridgeViewIssue::Work(_))));
@@ -600,6 +601,7 @@ fn source_bridge_rv56_collect_before_propagate_keeps_simultaneous_faults() {
     let mut work = SourceBridgeViewWork {
         visits: WorkTotal::zero(),
         f64_operations: WorkTotal::exact_count(u64::MAX),
+        ..SourceBridgeViewWork::default()
     };
     let result = s.build_source_bridge_view(s.source(), &s.prep.identity, s.selected, &mut work);
     assert!(matches!(

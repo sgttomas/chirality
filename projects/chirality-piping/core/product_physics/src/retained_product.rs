@@ -72,6 +72,9 @@ pub(super) enum CaptureError {
     Source(k::SourceError),
     Origin(k::OriginError),
     NativeUnavailable,
+    PreparedArithmetic(OperationalError),
+    PreparedProof(k::ProductFailure),
+    PreparedAttemptConsumed,
 }
 #[derive(Default)]
 pub(super) struct ProductCapture {
@@ -1930,13 +1933,13 @@ impl ProductCapture {
                 return Err("extrema shape".into());
             }
             for key in ["station_fraction", "local_fraction"] {
-                let n = view.number(index,key).ok_or("extrema fraction")?;
+                let n = view.number(index,key,&self.adapter)?.ok_or("extrema fraction")?;
                 if !n.is_finite() || !(0.0..=1.0).contains(&n) {
                     return Err("extrema fraction".into());
                 }
             }
             for (key, max) in [("span_index", f64::MAX), ("subdivisions", 131072.0)] {
-                let n = view.number(index,key).ok_or("extrema integer")?;
+                let n = view.number(index,key,&self.adapter)?.ok_or("extrema integer")?;
                 if !n.is_finite() || n < 0.0 || n > max || n.fract() != 0.0 {
                     return Err("extrema integer".into());
                 }
@@ -1947,7 +1950,7 @@ impl ProductCapture {
                 "global_upper_bound_pa",
                 "certified_gap_pa",
             ] {
-                if !view.number(index,key).is_some_and(f64::is_finite) {
+                if !view.number(index,key,&self.adapter)?.is_some_and(f64::is_finite) {
                     return Err("extrema finite".into());
                 }
             }
@@ -1961,8 +1964,8 @@ impl ProductCapture {
             }
             let id = x["result_id"].as_str().ok_or("maximum ref")?;
             let row = view.rows().find(|r| r.id == id).ok_or("maximum row")?;
-            let lo = view.number(index,"value_lower_pa").ok_or("lower")?;
-            let hi = view.number(index,"value_upper_pa").ok_or("upper")?;
+            let lo = view.number(index,"value_lower_pa",&self.adapter)?.ok_or("lower")?;
+            let hi = view.number(index,"value_upper_pa",&self.adapter)?.ok_or("upper")?;
             if !(lo >= 0.0
                 && lo <= *row.value
                 && *row.value <= hi
@@ -1978,34 +1981,32 @@ impl ProductCapture {
         for (id, _) in &self.supports {
             self.adapter.enter(AdapterEvent::RowVisit, 1);
             self.adapter.require()?;
-            let rows: Vec<_> = view.rows()
-                .filter(|r| &r.entity_ref == id && r.kind == "support_reaction_component_v2")
-                .collect();
-            if rows.len() != 6 {
-                return Err("support coverage".into());
+            let mut rows=[None;6];let mut count=0usize;
+            for row in view.rows().filter(|r| &r.entity_ref==id && r.kind=="support_reaction_component_v2") {
+                self.capture_entry(AdapterEvent::RowVisit)?;
+                if count<6 {rows[count]=Some(row);}
+                count=count.checked_add(1).ok_or(CaptureError::CountRange("support rows"))?;
             }
+            if count!=6{return Err("support coverage".into());}
             for (components, kind) in [
                 (["Fx", "Fy", "Fz"], "support_reaction_force_magnitude_v2"),
                 (["Mx", "My", "Mz"], "support_reaction_moment_magnitude_v2"),
             ] {
                 let mut v = [0.0; 3];
                 for (i, c) in components.into_iter().enumerate() {
-                    let matches: Vec<_> = rows
-                        .iter()
-                        .filter(|r| r.metadata.as_ref().is_some_and(|m| m.component == c))
-                        .collect();
-                    if matches.len() != 1 {
-                        return Err("support component identity".into());
+                    let mut found=None;
+                    for r in rows.iter().flatten().filter(|r|r.metadata.as_ref().is_some_and(|m|m.component==c)) {
+                        self.capture_entry(AdapterEvent::RowVisit)?;
+                        if found.is_some(){return Err("support component identity".into());}found=Some(*r.value);
                     }
-                    v[i] = *matches[0].value;
+                    v[i]=found.ok_or("support component identity")?;
                 }
-                let matches: Vec<_> = view.rows()
-                    .filter(|r| &r.entity_ref == id && r.kind == kind)
-                    .collect();
-                if matches.len() != 1 {
-                    return Err("support magnitude identity".into());
+                let mut found=None;
+                for r in view.rows().filter(|r| &r.entity_ref==id && r.kind==kind) {
+                    self.capture_entry(AdapterEvent::RowVisit)?;
+                    if found.is_some(){return Err("support magnitude identity".into());}found=Some(*r.value);
                 }
-                let y = *matches[0].value;
+                let y=found.ok_or("support magnitude identity")?;
                 if (y - v[0].hypot(v[1]).hypot(v[2])).abs()
                     > 64.0 * f64::EPSILON * y.abs().max(f64::MIN_POSITIVE)
                 {
@@ -2806,23 +2807,16 @@ pub(super) fn validate_summary_shape(
         }
     }
     for c in coverage {
-        let theta: Vec<_> = e.theta.iter().filter(|v| v.0 == c.body).collect();
-        let resolution: Vec<_> = e
-            .resolution_scale
-            .iter()
-            .filter(|v| v.0 == c.body)
-            .collect();
-        if theta.len() != 1 || resolution.len() != 1 {
+        let mut theta=e.theta.iter().filter(|v|v.0==c.body);
+        let first=theta.next();
+        if first.is_none() || theta.next().is_some() || e.resolution_scale.iter().filter(|v|v.0==c.body).count()!=1 {
             return Err(G5aFailure::Shape("theta/resolution"));
         }
-        if !nonnegative(theta[0].1) || theta[0].1 > 0.5 {
-            return Err(G5aFailure::Summary("theta"));
-        }
-        let bounds: Vec<_> = e.certified_bound.iter().filter(|v| v.0 == c.body).collect();
-        if bounds.len() != usize::from(c.has_data) {
+        if !nonnegative(first.unwrap().1) || first.unwrap().1>0.5{return Err(G5aFailure::Summary("theta"));}
+        if e.certified_bound.iter().filter(|v|v.0==c.body).count()!=usize::from(c.has_data) {
             return Err(G5aFailure::Shape("B data coverage"));
         }
-        for b in bounds {
+        for b in e.certified_bound.iter().filter(|v|v.0==c.body) {
             let value = f64::from_bits(b.1);
             if !value.is_finite() || value <= 0.0 {
                 return Err(G5aFailure::Summary("B"));
@@ -3095,13 +3089,29 @@ fn prepared_string(adapter:&AdapterWork,capacities:&mut [usize;16],text:&str)->R
     adapter.enter(AdapterEvent::RustCapacityBytes,s.capacity() as u64);adapter.require()?;
     adapter.enter(AdapterEvent::MapWrite,1);adapter.require()?;s.push_str(text);Ok(s)
 }
+#[derive(Debug)]
+pub(super) struct PreparedAssociation {
+    pub member:u32,
+    /// E, G, A, Iy, Iz, J from the authenticated old PrimitiveSource.
+    pub old_source:[u64;6],
+    /// D, effective t, A, I, J, Z, c from its matched old product facts.
+    pub old_facts:[u64;7],
+    /// A, I, J, Z, c returned by the actual closed preparation.
+    pub prepared:[u64;5],
+}
 pub(super) struct PreparedCase {
-    pub capture: ProductCapture,
+    ordinary: Option<MechanicsEnvelope>,
+    proof_attempted: bool,
+    overlay_work: ScalarWork,
+    associations: Vec<PreparedAssociation>,
+    capture: ProductCapture,
     pub preparations: Vec<k::PreparedAnnulus>,
     pub preparation_work: Vec<k::SectionPreparationWork>,
     pub old_operational: Vec<OperationalSpent>,
 }
 pub(super) struct PreparedCaseFailure {
+    pub associations: Vec<PreparedAssociation>,
+    pub ordinary: MechanicsEnvelope,
     pub capture: ProductCapture,
     pub preparations: Vec<k::PreparedAnnulus>,
     pub preparation_work: Vec<k::SectionPreparationWork>,
@@ -3110,14 +3120,18 @@ pub(super) struct PreparedCaseFailure {
 }
 impl ProductCapture {
     pub(super) fn prepared_probe() -> Self { Self {prepared_probe:true,..Self::default()} }
-    pub(super) fn prepare_case(mut self, ordinary:&MechanicsEnvelope) -> Result<PreparedCase,PreparedCaseFailure> {
-        let mut preparations=Vec::new(); let mut work=Vec::new();
+    #[cfg(test)]
+    pub(super) fn prepare_case(self,ordinary:MechanicsEnvelope)->Result<PreparedCase,PreparedCaseFailure> {self.prepare_owned_case(ordinary)}
+    fn prepare_owned_case(mut self, ordinary:MechanicsEnvelope) -> Result<PreparedCase,PreparedCaseFailure> {
+        let mut preparations=Vec::new(); let mut work=Vec::new();let mut associations=Vec::new();
         let mut preparation_error=None;
         let mut old_operational=Vec::new();
         let outcome=(|| -> Result<(),CaptureError> {
+            let ordinary=&ordinary;
             self.adapter.require()?;
             if !self.prepared_probe || self.final_calls!=1 || self.error.is_some()
-                || ordinary.source_block_recovery.is_some() || self.native.is_some() {
+                || ordinary.source_block_recovery.is_some() || self.native.is_some()
+                || ordinary.producer.semantic_contract_id!=preview_physics::ID || ordinary.status.mechanics!="MECHANICS_SOLVED" {
                 return Err("prepared case custody/permit".into());
             }
             self.bind_observations(ordinary)?;
@@ -3135,6 +3149,7 @@ impl ProductCapture {
             parts.loads=prepared_reserve(&self.adapter,&mut self.prepared_capacity_bytes,6,old.loads().len())?;
             preparations=prepared_reserve(&self.adapter,&mut self.prepared_capacity_bytes,7,old.members().len())?;
             work=prepared_reserve(&self.adapter,&mut self.prepared_capacity_bytes,8,old.members().len())?;
+            associations=prepared_reserve(&self.adapter,&mut self.prepared_capacity_bytes,13,old.members().len())?;
             let new_operational=prepared_reserve(&self.adapter,&mut self.prepared_capacity_bytes,9,old.members().len())?;
             old_operational=std::mem::replace(&mut self.operational,new_operational);
             for x in old.nodes() { self.capture_entry(AdapterEvent::MapWrite)?; parts.nodes.push(*x); }
@@ -3170,6 +3185,13 @@ impl ProductCapture {
                     preparation_error=Some(e); return Err("annulus preparation refused".into());
                 }};
                 if prep.input_bits()!=[f.diameter.to_bits(),f.effective_wall.to_bits()] {return Err("prepared input bits".into());}
+                // Fixed infallible group: five returned bit copies plus nineteen record fields.
+                self.adapter.enter(AdapterEvent::MapWrite,24);self.adapter.require()?;
+                self.adapter.enter(AdapterEvent::RequestedCopyBytes,std::mem::size_of::<PreparedAssociation>() as u64);self.adapter.require()?;
+                associations.push(PreparedAssociation{member:m.id,
+                    old_source:[m.elastic_modulus.to_bits(),m.shear_modulus.to_bits(),m.area.to_bits(),m.second_moment_y.to_bits(),m.second_moment_z.to_bits(),m.torsion_constant.to_bits()],
+                    old_facts:[f.diameter.to_bits(),f.effective_wall.to_bits(),f.area.to_bits(),f.second_moment.to_bits(),f.torsion_constant.to_bits(),f.section_modulus.to_bits(),f.radius.to_bits()],
+                    prepared:prep.section_bits().bits()});
                 let [a,ii,j,z,c]=prep.section_bits().values();
                 self.adapter.enter(AdapterEvent::RequestedCopyBytes,std::mem::size_of::<k::StraightMember>() as u64);self.adapter.require()?;
                 self.capture_entry(AdapterEvent::MapWrite)?;let mut new=*m;
@@ -3190,12 +3212,22 @@ impl ProductCapture {
             self.source=Some(new);
             Ok(())
         })();
-        match outcome { Ok(())=>Ok(PreparedCase{capture:self,preparations,preparation_work:work,old_operational}),
-            Err(e)=>{self.error=Some(e); Err(PreparedCaseFailure{capture:self,preparations,
+        match outcome { Ok(())=>Ok(PreparedCase{ordinary:Some(ordinary),proof_attempted:false,overlay_work:ScalarWork::default(),associations,capture:self,preparations,preparation_work:work,old_operational}),
+            Err(e)=>{self.error=Some(e); Err(PreparedCaseFailure{associations,ordinary,capture:self,preparations,
                 preparation_work:work,preparation_error,old_operational})} }
     }
 }
 impl PreparedCase {
+    pub(super) fn capture(&self)->&ProductCapture {&self.capture}
+    #[cfg(test)]
+    pub(super) fn test_capture_mut(&mut self)->&mut ProductCapture {&mut self.capture}
+    pub(super) fn prepare_observed(request:LinearStaticPreviewRequest,mode:PreviewSolverMode,
+        capture:&source_receipt::CapturedInvocation)->Result<Self,PreparedCaseFailure> {
+        let mut observer=ProductCapture::prepared_probe();
+        let ordinary=run_linear_static_preview_observed(request,mode,Some(capture),&mut SourceRecoveryBudget::default(),Some(&mut observer));
+        observer.prepare_owned_case(ordinary)
+    }
+    pub(super) fn ordinary(&self)->&MechanicsEnvelope {self.ordinary.as_ref().expect("owned ordinary before attempt")}
     pub(super) fn solve_native(&mut self) -> Result<(),CaptureError> {
         let o=&mut self.capture;
         if o.native.is_some() {return Err("duplicate prepared solve".into());}
@@ -3227,11 +3259,23 @@ impl<'a> ProductCaseView<'a> {
         self.ordinary().results.iter().enumerate().map(move |(i,r)|ProductRowView{original:r,value:match self {
             Self::Ordinary(_)=>&r.value,Self::Prepared{payload,..}=>payload.values.value(i).expect("validated overlay length")}})
     }
-    fn number(self,index:usize,key:&str)->Option<f64> {
+    fn number(self,index:usize,key:&str,adapter:&AdapterWork)->Result<Option<f64>,CaptureError> {
         match self {Self::Prepared{payload,..}=>{
-            let slot=PREPARED_MAX_KEYS.iter().position(|k|*k==key)?;
-            payload.maxima.iter().find(|m|m.evidence_index==index)?.numbers[slot].as_f64()
-        },Self::Ordinary(e)=>e.contract_evidence.as_ref()?["preview_cases"][0]["pipe_stress_extrema"][index][key].as_f64()}
+            let mut slot=None;
+            for (i,k) in PREPARED_MAX_KEYS.iter().enumerate() {
+                let same=adapter.same(k,key);adapter.require()?;
+                if same{slot=Some(i);break;}
+            }
+            let Some(slot)=slot else{return Ok(None);};
+            for m in &payload.maxima {
+                adapter.enter(AdapterEvent::RowVisit,1);adapter.require()?;
+                if m.evidence_index==index {
+                    adapter.enter(AdapterEvent::ValidationEntry,1);adapter.require()?;
+                    return Ok(m.numbers[slot].as_f64());
+                }
+            }
+            Ok(None)
+        },Self::Ordinary(e)=>Ok(e.contract_evidence.as_ref().and_then(|e|e["preview_cases"][0]["pipe_stress_extrema"][index][key].as_f64()))}
     }
     fn headline(self,stress:bool)->Option<&'a LocatedQuantity> {match self {
         Self::Ordinary(e)=>if stress{e.summary.max_open_formula_stress.as_ref()}else{e.summary.max_displacement.as_ref()},
@@ -3241,12 +3285,20 @@ impl<'a> ProductCaseView<'a> {
 pub(super) enum PreparedCandidateError {Capture(CaptureError),Proof(k::ProductProofFailure),
     Values{failure:k::ProductValuesFailure,proof:k::ProductProofFailure},Abandoned{cause:CaptureError,proof:k::ProductProofFailure},Numeric,Observable,G5a}
 pub(super) struct PreparedCandidateRefusal {
-    pub ordinary:MechanicsEnvelope,pub prepared:PreparedCase,pub error:PreparedCandidateError,
+    pub ordinary:MechanicsEnvelope,prepared:PreparedCase,pub error:PreparedCandidateError,
     pub certificate:Option<k::CertifiedProductProof>,pub values:Option<k::FrozenProductValues>,
 }
-pub(super) struct PrivatePreparedCandidate { envelope:MechanicsEnvelope,pub prepared:PreparedCase,
+pub(super) struct PrivatePreparedCandidate { envelope:MechanicsEnvelope,prepared:PreparedCase,
     pub certificate:k::CertifiedProductProof }
-impl PrivatePreparedCandidate {pub(super) fn envelope(&self)->&MechanicsEnvelope{&self.envelope}}
+impl PrivatePreparedCandidate {
+    pub(super) fn envelope(&self)->&MechanicsEnvelope{&self.envelope}
+    pub(super) fn capture(&self)->&ProductCapture{&self.prepared.capture}
+    pub(super) fn local_work(&self)->(&ScalarWork,&[PreparedAssociation]){(&self.prepared.overlay_work,&self.prepared.associations)}
+}
+impl PreparedCandidateRefusal {
+    pub(super) fn capture(&self)->&ProductCapture{&self.prepared.capture}
+    pub(super) fn local_work(&self)->(&ScalarWork,&[PreparedAssociation]){(&self.prepared.overlay_work,&self.prepared.associations)}
+}
 impl ProductCapture {
     fn bind_observations_view(&self,view:ProductCaseView<'_>)->Result<(),CaptureError> {
         self.bind_observations(view.ordinary())?;
@@ -3274,13 +3326,17 @@ impl ProductCapture {
                 k::ProductRecipe::DenseParityObservation=>k::ProductRowSpec::parity(r.id,r.case_id,r.body,r.value.to_bits()),
                 k::ProductRecipe::ModulusBasisRecord=>Ok(k::ProductRowSpec::material_record(r.id,r.case_id,r.body)),
                 _=>k::ProductRowSpec::mechanical(r.id,r.case_id,r.unit,r.body,r.recipe),
-            }.map_err(|e|CaptureError::Association(format!("prepared descriptor: {e:?}")))?;
+            }.map_err(CaptureError::PreparedProof)?;
             self.capture_entry(AdapterEvent::MapWrite)?;specs.push(spec);
         }
         Ok(specs)
     }
+    fn prepared_row_index(&self,rows:&[k::ProductFinalRow<'_>],recipe:k::ProductRecipe)->Result<usize,CaptureError> {
+        for (i,r) in rows.iter().enumerate() {self.capture_entry(AdapterEvent::RowVisit)?;if r.recipe==recipe{return Ok(i);}}
+        Err("prepared row identity".into())
+    }
     fn prepared_maxima(&self,e:&MechanicsEnvelope,owner:&k::RetainedSolve,rows:&[k::ProductFinalRow<'_>],
-        values:&k::ProductValuesBuilder)->Result<(Vec<PreparedMaximumPatch>,Vec<k::ProductMaximumValue>),CaptureError> {
+        values:&mut k::ProductValuesBuilder,work:&mut ScalarWork)->Result<(Vec<PreparedMaximumPatch>,Vec<k::ProductMaximumValue>),CaptureError> {
         let evidence=e.contract_evidence.as_ref().ok_or("prepared maximum evidence")?;
         let extrema=evidence["preview_cases"][0]["pipe_stress_extrema"].as_array().ok_or("prepared maximum records")?;
         if extrema.len()!=self.members.len(){return Err("prepared maximum complete domain".into());}
@@ -3289,23 +3345,23 @@ impl ProductCapture {
         for (mi,m) in owner.source().members().iter().enumerate() {
             self.capture_entry(AdapterEvent::SourceVisit)?;
             let f=&self.facts[mi];let id=&self.members[mi].id;
-            let row=rows.iter().position(|r|r.recipe==k::ProductRecipe::CircularMaximum{member:m.id}).ok_or("prepared maximum row")?;
+            let row=self.prepared_row_index(rows,k::ProductRecipe::CircularMaximum{member:m.id})?;
             let mut found=None;
             for (i,x) in extrema.iter().enumerate() {
                 self.capture_entry(AdapterEvent::RowVisit)?;
-                if x["pipe_id"]==id.as_str()&&x["result_id"]==rows[row].id {
+                if self.checked_same(x["pipe_id"].as_str().ok_or("maximum pipe id")?,id)? && self.checked_same(x["result_id"].as_str().ok_or("maximum result id")?,rows[row].id)? {
                     if found.is_some(){return Err("prepared maximum identity".into());}
                     found=Some(i);
                 }
             }
             let index=found.ok_or("prepared maximum identity")?;
-            for key in PREPARED_MAX_KEYS {if extrema[index][key].as_number().is_none(){return Err("prepared maximum numeric slot".into());}}
+            for key in PREPARED_MAX_KEYS {self.capture_entry(AdapterEvent::ValidationEntry)?;if extrema[index][key].as_number().is_none(){return Err("prepared maximum numeric slot".into());}}
             let mut ends=[0f64;12];
             for (j,v) in ends.iter_mut().enumerate() {
                 self.capture_entry(AdapterEvent::RowVisit)?;
                 let q=k::QuantityId::EndAction{member:m.id,end:if j<6{k::End::I}else{k::End::J},component:k::Component::ALL[j%6]};
-                let at=rows.iter().position(|r|r.recipe==k::ProductRecipe::Native(q)).ok_or("prepared endpoint action")?;
-                *v=values.value(at).ok_or("unprojected endpoint action")?;
+                let at=self.prepared_row_index(rows,k::ProductRecipe::Native(q))?;
+                *v=values.value(at).map_err(CaptureError::PreparedProof)?.ok_or("unprojected endpoint action")?;
             }
             let source=owner.source();
             let pipe=StraightPipeElement{element_id:self.adapter.copy(id)?,
@@ -3319,12 +3375,15 @@ impl ProductCapture {
                 membrane_radius:f.radius,wall_thickness:f.effective_wall};
             self.capture_entry(AdapterEvent::LibraryBoundary)?;
             let maximum=exact_straight_summary_extrema(&pipe,&ends,&[],&section,None).map_err(CaptureError::Association)?;
-            let value=maximum.value_lower+0.5*(maximum.value_upper-maximum.value_lower);
-            let n=|v:f64|serde_json::Number::from_f64(v).ok_or_else(||CaptureError::Association("maximum number range".into()));
-            let numbers=[n(maximum.station)?,serde_json::Number::from(maximum.span_index),n(maximum.local_fraction)?,
+            let gap=work.op(ScalarOperation::Sub,maximum.value_upper,maximum.value_lower).map_err(CaptureError::PreparedArithmetic)?;
+            let half=work.op(ScalarOperation::Mul,0.5,gap).map_err(CaptureError::PreparedArithmetic)?;
+            let value=work.op(ScalarOperation::Add,maximum.value_lower,half).map_err(CaptureError::PreparedArithmetic)?;
+            let n=|v:f64|{self.capture_entry(AdapterEvent::MapWrite)?;serde_json::Number::from_f64(v).ok_or_else(||CaptureError::Association("maximum number range".into()))};
+            let nu=|v:u64|->Result<serde_json::Number,CaptureError>{self.capture_entry(AdapterEvent::MapWrite)?;Ok(serde_json::Number::from(v))};
+            let numbers=[n(maximum.station)?,nu(u64::try_from(maximum.span_index).map_err(|_|CaptureError::CountRange("maximum span index"))?)?,n(maximum.local_fraction)?,
                 n(maximum.value_lower)?,n(maximum.value_upper)?,n(maximum.upper_bound)?,n(maximum.certified_gap)?,
-                serde_json::Number::from(maximum.subdivisions)];
-            let output=k::ProductMaximumValue::new(m.id,row,value).map_err(|e|CaptureError::Association(format!("maximum result: {e:?}")))?;
+                nu(u64::try_from(maximum.subdivisions).map_err(|_|CaptureError::CountRange("maximum subdivisions"))?)?];
+            let output=k::ProductMaximumValue::new(m.id,row,value).map_err(CaptureError::PreparedProof)?;
             self.capture_entry(AdapterEvent::MapWrite)?;outputs.push(output);
             self.capture_entry(AdapterEvent::MapWrite)?;patches.push(PreparedMaximumPatch{evidence_index:index,row,member:m.id,numbers});
         }
@@ -3343,19 +3402,23 @@ impl ProductCapture {
     }
 }
 impl PreparedCase {
-    pub(super) fn project_candidate(mut self,ordinary:MechanicsEnvelope)->Result<PrivatePreparedCandidate,PreparedCandidateRefusal> {
+    pub(super) fn project_candidate(mut self)->Result<PrivatePreparedCandidate,PreparedCandidateRefusal> {
+        let ordinary=self.ordinary.take().expect("closed owning preparation transition");
         let native=self.capture.native.take();
         let mut certificate=None;let mut saved_values=None;
         let result=(||->Result<PreparedPayload,PreparedCandidateError>{
+            if self.proof_attempted {return Err(PreparedCandidateError::Capture(CaptureError::PreparedAttemptConsumed));}
             let (invocation,case)=native.as_ref().ok_or_else(||PreparedCandidateError::Capture("missing prepared native owner".into()))?;
             let k::ExecutionOutcome::Selected(owner)=&case.outcome else{return Err(PreparedCandidateError::Capture(CaptureError::NativeUnavailable));};
             let base_rows=self.capture.bind_rows(&ordinary,owner).map_err(PreparedCandidateError::Capture)?;
             let specs=self.capture.prepared_specs(&base_rows).map_err(PreparedCandidateError::Capture)?;
+            self.capture.capture_entry(AdapterEvent::MapWrite).map_err(PreparedCandidateError::Capture)?;
+            self.proof_attempted=true;
             let draft=invocation.begin_prepared_product(case.run,owner,&self.capture.facts,&specs).into_ready().map_err(PreparedCandidateError::Proof)?;
             #[cfg(test)] println!("I51_DUAL_LANES {:?}",draft.lane_debug());
-            let (projected,builder)=draft.project().into_ready().map_err(PreparedCandidateError::Proof)?;
-            let (patches,maxima)=match self.capture.prepared_maxima(&ordinary,owner,&base_rows,&builder) {
-                Ok(v)=>v,Err(cause)=>return Err(PreparedCandidateError::Abandoned{cause,proof:projected.abandon()})};
+            let (projected,mut builder)=draft.project().into_ready().map_err(PreparedCandidateError::Proof)?;
+            let (patches,maxima)=match self.capture.prepared_maxima(&ordinary,owner,&base_rows,&mut builder,&mut self.overlay_work) {
+                Ok(v)=>v,Err(cause)=>return Err(PreparedCandidateError::Abandoned{cause,proof:projected.abandon_values(builder.abandon())})};
             let (values,value_work)=match builder.complete_maxima(&maxima).into_ready() {
                 Ok(v)=>v,Err(failure)=>return Err(PreparedCandidateError::Values{failure,proof:projected.abandon()})};
             let displacement=match self.capture.prepared_alias(&ordinary,&values,"displacement_magnitude") {
@@ -3371,7 +3434,8 @@ impl PreparedCase {
                     self.capture.numeric_pass=false;
                     self.capture.numeric_failure=Some(failure.failure().clone());
                     self.capture.source_correction_calls=failure.work().source_correction_calls();
-                    self.capture.work=format!("{:?}; lanes={:?}",failure.work().work_summary(),failure.work().prepared_lane_work());
+                    #[cfg(test)]
+                    {self.capture.work=format!("{:?}; lanes={:?}",failure.work().work_summary(),failure.work().prepared_lane_work());}
                     if let Err(e)=self.capture.prepared_verdict_copy(failure.work().verdicts(),failure.work().summary_coverage()) {self.capture.error=Some(e);}
                     if self.capture.error.is_none() && self.capture.verdicts.len()==rows.len() {
                         self.capture.observable_error=self.capture.observables_view(view).err();
@@ -3394,7 +3458,8 @@ impl PreparedCase {
                 return Err(PreparedCandidateError::Capture(e));
             }
             self.capture.numeric_pass=certified.passed();self.capture.source_correction_calls=certified.work().source_correction_calls();
-            self.capture.work=format!("{:?}; lanes={:?}",certified.work().work_summary(),certified.work().prepared_lane_work());
+            #[cfg(test)]
+            {self.capture.work=format!("{:?}; lanes={:?}",certified.work().work_summary(),certified.work().prepared_lane_work());}
             self.capture.observable_error=self.capture.observables_view(view).err();
             self.capture.g5a_error=self.capture.g5a(owner,&rows).err();
             #[cfg(test)] println!("I51_FROZEN_ROWS {}",serde_json::json!({"rows":view.rows().map(|r|serde_json::json!({"id":r.id,"kind":r.kind,"unit":r.unit,"value":r.value,"bits":format!("{:016x}",r.value.to_bits())})).collect::<Vec<_>>(),
@@ -3431,4 +3496,34 @@ impl PreparedCase {
             }
         }
     }
+}
+
+#[cfg(test)]
+impl PreparedCandidateRefusal {
+    pub(super) fn test_reentry(mut self)->(Self,PreparedCandidateError) {
+        let old=self.error;let counts=self.prepared.capture.adapter.counts.get();
+        self.prepared.ordinary=Some(self.ordinary);
+        let next=match self.prepared.project_candidate(){Err(e)=>e,Ok(_)=>panic!("reentry succeeded")};
+        assert_eq!(counts,next.capture().adapter.counts.get());
+        assert!(matches!(&next.error,PreparedCandidateError::Capture(CaptureError::PreparedAttemptConsumed)));
+        (next,old)
+    }
+}
+#[cfg(test)]
+impl PrivatePreparedCandidate {
+    pub(super) fn test_reentry(mut self)->(PreparedCandidateRefusal,k::CertifiedProductProof) {
+        let counts=self.prepared.capture.adapter.counts.get();
+        self.prepared.ordinary=Some(self.envelope);
+        let next=match self.prepared.project_candidate(){Err(e)=>e,Ok(_)=>panic!("success reentry succeeded")};
+        assert_eq!(counts,next.capture().adapter.counts.get());
+        (next,self.certificate)
+    }
+}
+
+#[cfg(test)]
+pub(super) fn i51_overlay_layout() {
+    macro_rules! layout {($t:ty)=>{println!("I51_OVERLAY_LAYOUT {} {} {}",stringify!($t),std::mem::size_of::<$t>(),std::mem::align_of::<$t>());};}
+    layout!(PreparedCase);layout!(PreparedAssociation);layout!(PreparedMaximumPatch);layout!(PreparedPayload);layout!(ProductCaseView<'static>);
+    layout!(ProductRowView<'static>);layout!(PrivatePreparedCandidate);layout!(PreparedCandidateRefusal);
+    layout!(serde_json::Number);layout!(LocatedQuantity);layout!(ScalarWork);
 }

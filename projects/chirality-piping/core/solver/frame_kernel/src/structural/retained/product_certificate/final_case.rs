@@ -218,8 +218,10 @@ pub struct ProductCertificateSpent<'a> {
     scalar_operations: WorkTotal,
     /// laws, native coverage, represented intervals, verdicts, derivatives, support slots, scales.
     pub capacities: [usize; 7],
-    /// Prepared values, descriptor rows, maximum slots, completion flags, anchor layout (bytes).
-    pub prepared_capacities: [usize; 5],
+    /// Prepared values, descriptor rows, maximum slots, completion flags, anchor layout, conversion records (bytes).
+    pub prepared_capacities: [usize; 6],
+    projection_outcomes:Vec<(usize,super::super::wide::multi::Binary64Outcome)>,
+    projection_conversions:WorkTotal,
 }
 impl<'a> ProductCertificateSpent<'a> {
     fn new(rows: &'a [ProductFinalRow<'a>]) -> Self {
@@ -235,7 +237,8 @@ impl<'a> ProductCertificateSpent<'a> {
             visits: WorkTotal::zero(),
             scalar_operations: WorkTotal::zero(),
             capacities: [0; 7],
-            prepared_capacities: [0; 5],
+            prepared_capacities: [0; 6],
+            projection_outcomes:Vec::new(),projection_conversions:WorkTotal::zero(),
         }
     }
     pub fn status(&self) -> WorkStatus {
@@ -244,7 +247,7 @@ impl<'a> ProductCertificateSpent<'a> {
             .status()
             .join(self.comparisons.checked_lme().status())
             .join(self.visits.status())
-            .join(self.scalar_operations.status());
+            .join(self.scalar_operations.status()).join(self.projection_conversions.status());
         if let Some(w) = &self.native { s = s.join(w.status()); }
         if let Some(w) = &self.native_k { s = s.join(w.status()); }
         s
@@ -265,8 +268,10 @@ impl<'a> ProductCertificateSpent<'a> {
             && self.verdicts.iter().all(|v| v.passed)
     }
     pub fn source_correction_calls(&self) -> Option<WorkTotal> {
-        self.native.as_ref().map(|w| self.native_k.as_ref().map_or(w.correction.calls,
-            |k| w.correction.calls.add(k.correction.calls)))
+        match (&self.native_k,&self.native) {
+            (None,None)=>None,(Some(k),None)=>Some(k.correction.calls),(None,Some(s))=>Some(s.correction.calls),
+            (Some(k),Some(s))=>Some(k.correction.calls.add(s.correction.calls)),
+        }
     }
     pub fn native_work(&self) -> Option<&impl std::fmt::Debug> {
         self.native.as_ref()
@@ -279,13 +284,15 @@ impl<'a> ProductCertificateSpent<'a> {
             self.visits,
             self.scalar_operations,
             self.prepared_capacities,
+            (&self.projection_outcomes,self.projection_conversions),
         )
     }
     fn rebind<'b>(self, rows:&'b [ProductFinalRow<'b>]) -> ProductCertificateSpent<'b> {
         ProductCertificateSpent { rows, verdicts:self.verdicts, failure:self.failure,
             coverage:self.coverage, native:self.native, native_k:self.native_k,
             numeric:self.numeric, comparisons:self.comparisons, visits:self.visits,
-            scalar_operations:self.scalar_operations, capacities:self.capacities, prepared_capacities:self.prepared_capacities }
+            scalar_operations:self.scalar_operations, capacities:self.capacities, prepared_capacities:self.prepared_capacities,
+            projection_outcomes:self.projection_outcomes,projection_conversions:self.projection_conversions }
     }
     fn prepared_reserve<T>(&mut self, slot:usize, n:usize)->Result<Vec<T>,ProductFailure> {
         self.visit()?;
@@ -968,7 +975,13 @@ fn row_scales(owner:&adaptive::RetainedSolve,facts:&[ProductMemberFacts],spent:&
         let mut nonquantity = false;
         let mut modulus_basis = false;
         let mut dense_parity = false;
-        spent.verdicts = reserve(spent.rows.len())?;
+        if spent.verdicts.capacity()<spent.rows.len() {
+            spent.visit()?;
+            // Release the previous allocation before reserving; normal prepared
+            // begin/final uses the first capacity unchanged.
+            drop(std::mem::take(&mut spent.verdicts));
+            spent.verdicts=reserve(spent.rows.len())?;
+        }else{spent.verdicts.clear();}
         spent.capacities[3] = spent.verdicts.capacity();
         let support_count = source.supports().len().checked_mul(6)
             .ok_or_else(|| ProductFailure { cause: Cause::CountRange("support rows") })?;
@@ -1411,12 +1424,21 @@ impl<'a> ProductRowSpec<'a> {
     fn row<'v>(&'v self,value:&'v f64)->ProductFinalRow<'v> {
         ProductFinalRow{id:self.id,case_id:self.case_id,value,unit:self.unit,body:self.body,recipe:self.recipe}
     }
-    fn matches(&self,r:&ProductFinalRow<'_>)->bool {
-        self.id==r.id && self.case_id==r.case_id && self.unit==r.unit && self.body==r.body && self.recipe==r.recipe
+    fn matches(&self,r:&ProductFinalRow<'_>,work:&mut ProductCertificateSpent<'_>)->Result<bool,ProductFailure> {
+        work.visit()?;
+        if self.unit!=r.unit || self.body!=r.body || self.recipe!=r.recipe{return Ok(false);}
+        for (a,b) in [(self.id,r.id),(self.case_id,r.case_id)] {
+            work.visit()?;if a.len()!=b.len(){return Ok(false);}
+            for (x,y) in a.bytes().zip(b.bytes()) {work.visit()?;work.visit()?;if x!=y{return Ok(false);}}
+        }
+        Ok(true)
     }
 }
 #[derive(Debug)]
-struct ProofAnchor { owner:super::super::origins::ProductOwnerStamp }
+pub(super) struct ProofAnchor { owner:super::super::origins::ProductOwnerStamp }
+impl ProofAnchor {pub(super) fn matches_owner(&self,owner:&adaptive::RetainedSolve)->bool {
+    std::sync::Arc::ptr_eq(&self.owner.prep,&owner.prep)
+}}
 struct ProofData<'s,'m> {
     owner:&'s adaptive::RetainedSolve, facts:&'s [ProductMemberFacts], specs:&'m [ProductRowSpec<'m>],
     k:source_residual::LaneReadouts, source:source_residual::LaneReadouts,
@@ -1450,6 +1472,10 @@ pub(crate) fn begin_prepared_product<'s,'m>(invocation:&RecordedInvocation,run:u
         work.visit()?;
         let stamp=invocation.product_owner_stamp(run,owner).ok_or_else(||bad("prepared recorded owner"))?;
         let source=owner.source();
+        work.visit()?;
+        work.prepared_capacities[4]=std::mem::size_of::<ProofAnchor>().checked_add(2*std::mem::size_of::<usize>())
+            .ok_or(ProductFailure{cause:Cause::CountRange("proof anchor layout")})?;
+        let anchor=std::sync::Arc::new(ProofAnchor{owner:stamp});
         if facts.len()!=source.members().len() || specs.is_empty() {return Err(bad("prepared facts/specs"));}
         let mut values=work.prepared_reserve(0,specs.len())?;
         for spec in specs {
@@ -1489,11 +1515,11 @@ pub(crate) fn begin_prepared_product<'s,'m>(invocation:&RecordedInvocation,run:u
         }
         let kspent=source_residual::source_residual_for_law(owner,source,&owner.evidence().source_encoding,
             owner.selected_precision(),&laws,source_residual::ReadoutLaw::AdmittedK);
-        let (kr,kw)=kspent.into_readouts();work.native_k=Some(kw);
+        let (kr,kw)=kspent.into_readouts(&anchor);work.native_k=Some(kw);
         let k=kr.map_err(|e|ProductFailure{cause:Cause::Native(e)})?;
-        let sspent=source_residual::source_residual_for_law(owner,source,&owner.evidence().source_encoding,
-            owner.selected_precision(),&laws,source_residual::ReadoutLaw::AnnularSource);
-        let (sr,sw)=sspent.into_readouts();work.native=Some(sw);
+        let sspent=source_residual::source_residual_prepared(owner,source,&owner.evidence().source_encoding,
+            owner.selected_precision(),&laws,&anchor,&k);
+        let (sr,sw)=sspent.into_readouts(&anchor);work.native=Some(sw);
         let source_rows=sr.map_err(|e|ProductFailure{cause:Cause::Native(e)})?;
         if k.data!=source_rows.data || k.rows.len()!=owner.publish().rows.len()
             || source_rows.rows.len()!=k.rows.len() {return Err(bad("lane coverage/data"));}
@@ -1501,50 +1527,65 @@ pub(crate) fn begin_prepared_product<'s,'m>(invocation:&RecordedInvocation,run:u
         work.visit()?;
         work.prepared_capacities[4]=std::mem::size_of::<ProofAnchor>().checked_add(2*std::mem::size_of::<usize>())
             .ok_or(ProductFailure{cause:Cause::CountRange("proof anchor layout")})?;
-        Ok(ProofData{owner,facts,specs,k,source:source_rows,anchor:std::sync::Arc::new(ProofAnchor{owner:stamp}),values})
+        Ok(ProofData{owner,facts,specs,k,source:source_rows,anchor,values})
     })();
     ProductProofStartSpent{result,work}
 }
 fn section_for(owner:&adaptive::RetainedSolve,facts:&[ProductMemberFacts],r:ProductRecipe,
     work:&mut ProductCertificateSpent<'_>)->Result<Option<MemberEnclosures>,ProductFailure> {
     let member=match r {ProductRecipe::Stress{member,..}|ProductRecipe::CircularMaximum{member}=>member,_=>return Ok(None)};
-    let i=owner.source().member_index(member).ok_or_else(||bad("projection member"))?;
+    let mut found=None;
+    for (i,m) in owner.source().members().iter().enumerate() {work.visit()?;if m.id==member {found=Some(i);break;}}
+    let i=found.ok_or_else(||bad("projection member"))?;
     let (m,f)=(&owner.source().members()[i],&facts[i]);
     Ok(Some(build_member(&MemberOperands{diameter:f.diameter,effective_wall:f.effective_wall,material:f.material.operands(),
         admitted:AdmittedOperands{e:m.elastic_modulus,g:m.shear_modulus,a:m.area,j:m.torsion_constant,
             iy:m.second_moment_y,iz:m.second_moment_z,z_hat:f.section_modulus}},&mut work.numeric)?))
 }
-fn project_hull(interval:Enclosure,unit:ProductUnit,work:&mut ProductCertificateSpent<'_>)->Result<f64,ProductFailure> {
+fn project_hull(interval:Enclosure,unit:ProductUnit,row:usize,work:&mut ProductCertificateSpent<'_>)->Result<f64,ProductFailure> {
     work.visit()?;
     let mut ctx=WideContext::<16>::new(1024).map_err(AttemptStop::from).map_err(NumericError::from)?;
-    let result=(|| -> Result<f64,NumericError> {
-        let sum=ctx.add(&interval.lo,&interval.hi).map_err(AttemptStop::from)?;
-        let midpoint=shift(&sum,-1)?;
+    let result=(|| -> Result<f64,ProductFailure> {
+        work.visit()?;
+        let sum=ctx.add(&interval.lo,&interval.hi).map_err(AttemptStop::from).map_err(NumericError::from)?;
+        work.visit()?;let midpoint=shift(&sum,-1)?;
         let raw=match unit {
-            ProductUnit::Millimetre=>ctx.mul(&midpoint,&lift(1000.)?).map_err(AttemptStop::from)?,
-            ProductUnit::Megapascal=>ctx.div(&midpoint,&lift(1_000_000.)?).map_err(AttemptStop::from)?,
-            ProductUnit::Record=>return Err(NumericError::InvalidMaterial),_=>midpoint,
+            ProductUnit::Millimetre=>{work.visit()?;let scale=lift(1000.)?;
+                ctx.mul(&midpoint,&scale).map_err(AttemptStop::from).map_err(NumericError::from)?},
+            ProductUnit::Megapascal=>{work.visit()?;let scale=lift(1_000_000.)?;
+                ctx.div(&midpoint,&scale).map_err(AttemptStop::from).map_err(NumericError::from)?},
+            ProductUnit::Record=>return Err(bad("record projection")),_=>midpoint,
         };
-        match raw.to_binary64() {
+        work.visit()?;
+        if work.projection_outcomes.len()>=work.projection_outcomes.capacity(){return Err(bad("projection outcome capacity"));}
+        work.projection_conversions=work.projection_conversions.add(WorkTotal::exact_count(1));
+        if let Some(f)=work.status().fault(){return Err(ProductFailure{cause:Cause::Accounting(f)});}
+        let outcome=raw.to_binary64();
+        // Reserved and charged before entry; no fallible operation can lose the actual outcome.
+        work.projection_outcomes.push((row,outcome));
+        match outcome {
             super::super::wide::multi::Binary64Outcome::Normal(y)|super::super::wide::multi::Binary64Outcome::Subnormal{value:y,..}=>Ok(if y==0.0 {0.0}else{y}),
             super::super::wide::multi::Binary64Outcome::Underflow{..}=>Ok(0.0),
-            _=>Err(NumericError::Binary64Range),
+            _=>Err(NumericError::Binary64Range.into()),
         }
     })();
     work.numeric.wide.record(&ctx);
-    result.map_err(ProductFailure::from)
+    result
 }
 pub struct ProductValuesBuilder {
-    values:Vec<f64>, maxima:Vec<(usize,u32)>, anchor:std::sync::Arc<ProofAnchor>,
+    values:Vec<f64>, maxima:Vec<(usize,u32)>, anchor:std::sync::Arc<ProofAnchor>, visits:WorkTotal,
 }
 impl ProductValuesBuilder {
-    pub fn value(&self,row:usize)->Option<f64> {
-        if self.maxima.iter().any(|m|m.0==row) {None}else{self.values.get(row).copied()}
+    pub fn value(&mut self,row:usize)->Result<Option<f64>,ProductFailure> {
+        for m in &self.maxima {values_visit(&mut self.visits)?;if m.0==row{return Ok(None);}}
+        values_visit(&mut self.visits)?;
+        Ok(self.values.get(row).copied())
     }
-    pub fn len(&self)->usize {self.values.len()}
+    pub fn abandon(self)->ValuesCompletionWork {ValuesCompletionWork{visits:self.visits,capacity:0,anchor:self.anchor}}
     pub fn complete_maxima(mut self,maxima:&[ProductMaximumValue])->ProductValuesSpent {
-        let mut visits=WorkTotal::zero();let mut capacity=0;
+        let mut visits=self.visits;let mut capacity=0;
         let result=(|| {
+            values_visit(&mut visits)?;
             let mut seen=reserve::<bool>(self.maxima.len())?;capacity=seen.capacity();
             for _ in &self.maxima {values_visit(&mut visits)?;seen.push(false);}
             if maxima.len()!=self.maxima.len() {return Err(bad("maximum completion count"));}
@@ -1560,8 +1601,14 @@ impl ProductValuesBuilder {
             if let Some(f)=visits.status().fault() {return Err(ProductFailure{cause:Cause::Accounting(f)});}
             Ok(())
         })();
-        let work=ValuesCompletionWork{visits,capacity,anchor:std::sync::Arc::clone(&self.anchor)};
-        ProductValuesSpent{result:result.map(|()|FrozenProductValues{values:self.values,anchor:self.anchor}),work}
+        let result=result.and_then(|()|values_visit(&mut visits));
+        match result {
+            Err(e)=>ProductValuesSpent{result:Err(e),work:ValuesCompletionWork{visits,capacity,anchor:self.anchor}},
+            Ok(())=>{
+                let work=ValuesCompletionWork{visits,capacity,anchor:std::sync::Arc::clone(&self.anchor)};
+                ProductValuesSpent{result:Ok(FrozenProductValues{values:self.values,anchor:self.anchor}),work}
+            }
+        }
     }
 }
 fn values_visit(visits:&mut WorkTotal)->Result<(),ProductFailure> {
@@ -1596,21 +1643,57 @@ impl<'s,'m> ProductProofDraft<'s,'m> {
     pub fn project(mut self)->ProductProjectionSpent<'s,'m> {
         let result=(|| {
             let mut maxima=self.work.prepared_reserve(2,self.data.facts.len())?;
+            self.work.projection_outcomes=self.work.prepared_reserve(5,self.data.specs.len())?;
             for (i,spec) in self.data.specs.iter().enumerate() {
                 self.work.visit()?;
-                if let Some(bits)=spec.observed {self.data.values[i]=f64::from_bits(bits);continue;}
-                if let ProductRecipe::CircularMaximum{member}=spec.recipe {maxima.push((i,member));continue;}
+                if let Some(bits)=spec.observed {self.work.visit()?;self.data.values[i]=f64::from_bits(bits);continue;}
+                if let ProductRecipe::CircularMaximum{member}=spec.recipe {self.work.visit()?;maxima.push((i,member));continue;}
+                if matches!(spec.recipe,ProductRecipe::Native(QuantityId::SupportForceMagnitude(_)|QuantityId::SupportMomentMagnitude(_))){continue;}
                 let section=section_for(self.data.owner,self.data.facts,spec.recipe,&mut self.work)?;
                 let k=recipe(self.data.owner,&mut self.work,&self.data.k.rows,spec.recipe,section.as_ref(),self.data.facts,true)?;
                 let s=recipe(self.data.owner,&mut self.work,&self.data.source.rows,spec.recipe,section.as_ref(),self.data.facts,false)?;
-                self.data.values[i]=project_hull(hull(k,s),spec.unit,&mut self.work)?;
+                self.work.visit()?;
+                let value=project_hull(hull(k,s),spec.unit,i,&mut self.work)?;
+                self.work.visit()?;self.data.values[i]=value;
             }
+            for (i,spec) in self.data.specs.iter().enumerate() {
+                let (support,first,unit)=match spec.recipe {
+                    ProductRecipe::Native(QuantityId::SupportForceMagnitude(s))=>(s,0,ProductUnit::Newton),
+                    ProductRecipe::Native(QuantityId::SupportMomentMagnitude(s))=>(s,3,ProductUnit::NewtonMetre),_=>continue,
+                };
+                let value=support_hypot(self.data.specs,&self.data.values,support,first,unit,&mut self.work)?;
+                self.work.visit()?;self.data.values[i]=value;
+            }
+            self.work.visit()?;
             let values=ProductValuesBuilder{values:std::mem::take(&mut self.data.values),maxima,
-                anchor:std::sync::Arc::clone(&self.data.anchor)};
+                anchor:std::sync::Arc::clone(&self.data.anchor),visits:WorkTotal::zero()};
             Ok(values)
         })();
         ProductProjectionSpent{result:result.map(|v|(self.data,v)),work:self.work}
     }
+}
+fn support_hypot(specs:&[ProductRowSpec<'_>],values:&[f64],support:u32,first:usize,unit:ProductUnit,
+    work:&mut ProductCertificateSpent<'_>)->Result<f64,ProductFailure> {
+    let mut v=[0.0;3];
+    if specs.len()!=values.len(){return Err(bad("support projection shape"));}
+    for j in 0..3 {
+        let mut found=false;
+        for (i,spec) in specs.iter().enumerate() {
+            work.visit()?;
+            if spec.recipe!=(ProductRecipe::SupportComponent{support,component:Component::ALL[first+j]}){continue;}
+            if found || spec.unit!=unit || !values[i].is_finite(){return Err(bad("support projection identity/unit"));}
+            work.visit()?;v[j]=values[i];found=true;
+        }
+        if !found{return Err(bad("support projection missing component"));}
+    }
+    work.visit()?;work.scalar_operations=work.scalar_operations.add(WorkTotal::exact_count(1));
+    if let Some(f)=work.status().fault(){return Err(ProductFailure{cause:Cause::Accounting(f)});}
+    let xy=v[0].hypot(v[1]);
+    work.visit()?;work.scalar_operations=work.scalar_operations.add(WorkTotal::exact_count(1));
+    if let Some(f)=work.status().fault(){return Err(ProductFailure{cause:Cause::Accounting(f)});}
+    let value=xy.hypot(v[2]);
+    if !value.is_finite() || value<0.0{return Err(bad("support projection hypot range"));}
+    Ok(if value==0.0{0.0}else{value})
 }
 pub struct CertifiedProductProof {
     work:ProductCertificateSpent<'static>, anchor:std::sync::Arc<ProofAnchor>,
@@ -1643,7 +1726,7 @@ impl<'s,'m> ProjectedProofDraft<'s,'m> {
             }
             for ((spec,r),y) in self.data.specs.iter().zip(rows).zip(&values.values) {
                 work.visit()?;
-                if !spec.matches(r) || r.value.to_bits()!=y.to_bits()
+                if !spec.matches(r,&mut work)? || r.value.to_bits()!=y.to_bits()
                     || spec.observed.is_some_and(|b|b!=y.to_bits()) {return Err(bad("frozen descriptor/value"));}
             }
             check_intervals(self.data.owner,self.data.facts,&self.data.k.rows,&self.data.source.rows,&self.data.k.data,&mut work)?;

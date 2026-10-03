@@ -331,3 +331,126 @@ fn i51_prepared_reserve_and_value_prefixes_are_checked() {
     assert!(ProductRowSpec::mechanical("mode","case",ProductUnit::Record,0,ProductRecipe::NonQuantity).is_err());
     assert!(ProductRowSpec::parity("parity","case",0,f64::NAN.to_bits()).is_err());
 }
+
+fn i51_support_specs(order:&[usize])->Vec<ProductRowSpec<'static>> {
+    order.iter().map(|&i|ProductRowSpec::mechanical(["fx","fy","fz"][i],"case",ProductUnit::Newton,0,
+        ProductRecipe::SupportComponent{support:3,component:Component::ALL[i]}).unwrap()).collect()
+}
+#[test]
+fn i51_support_hypot_identity_order_zero_subnormal_and_failed_prefixes() {
+    for input in [[3.0,4.0,12.0],[-0.0,0.0,-0.0],[f64::from_bits(1),f64::from_bits(2),f64::from_bits(3)]] {
+        let expected=input[0].hypot(input[1]).hypot(input[2]);
+        for order in [[0,1,2],[2,0,1]] {
+            let specs=i51_support_specs(&order);let values=order.map(|i|input[i]);let mut w=ProductCertificateSpent::new(&[]);
+            let value=support_hypot(&specs,&values,3,0,ProductUnit::Newton,&mut w).unwrap();
+            assert_eq!(value.to_bits(),expected.to_bits());assert_eq!(w.scalar_operations.exact(),Ok(2));
+            if input[0].is_subnormal(){assert!(value.is_subnormal());}
+        }
+    }
+    for variant in 0..5 {
+        let mut specs=i51_support_specs(&[0,1,2]);let mut values=vec![3.0,4.0,12.0];
+        match variant {0=>{specs.pop();values.pop();},1=>{specs.push(i51_support_specs(&[0]).remove(0));values.push(3.0);},
+            2=>specs[1].unit=ProductUnit::NewtonMetre,3=>specs[1].recipe=ProductRecipe::SupportComponent{support:4,component:Component::Uy},_=>values[0]=f64::NAN}
+        let mut w=ProductCertificateSpent::new(&[]);assert!(support_hypot(&specs,&values,3,0,ProductUnit::Newton,&mut w).is_err());
+        assert_eq!(w.scalar_operations.exact(),Ok(0));
+    }
+    let specs=i51_support_specs(&[0,1,2]);let mut w=ProductCertificateSpent::new(&[]);
+    w.scalar_operations=WorkTotal::exact_count(u64::MAX-1);
+    assert_eq!(support_hypot(&specs,&[3.0,4.0,12.0],3,0,ProductUnit::Newton,&mut w).unwrap_err().category(),"work_accounting");
+    assert_eq!(w.visits.exact(),Ok(14));assert!(w.status().fault().is_some());
+    let before=w.scalar_operations;
+    assert!(support_hypot(&specs,&[3.0,4.0,12.0],3,0,ProductUnit::Newton,&mut w).is_err());assert_eq!(w.scalar_operations,before);
+    let mut w=ProductCertificateSpent::new(&[]);assert!(support_hypot(&specs,&[f64::MAX,f64::MAX,0.0],3,0,ProductUnit::Newton,&mut w).is_err());
+    assert_eq!(w.scalar_operations.exact(),Ok(2));
+}
+fn i51_seed_source()->super::super::super::source::PrimitiveSource {
+    use super::super::super::source::*;
+    PrimitiveSource::new(SourceParts{nodes:vec![[0.;3],[1.,0.,0.]],
+        members:vec![StraightMember{id:7,node_i:0,node_j:1,elastic_modulus:200e9,shear_modulus:80e9,
+            area:f64::from_bits(0x3f7872fa3a37ac13),second_moment_y:f64::from_bits(0x3efc52664442210a),
+            second_moment_z:f64::from_bits(0x3efc52664442210a),torsion_constant:f64::from_bits(0x3f0c52664442210a),y_reference:[0.,1.,0.]}],
+        constraints:Component::ALL.iter().map(|&component|Constraint{dof:Dof{node:0,component},value:if component==Component::Ux{0.001}else{0.}}).collect(),
+        loads:vec![NodalLoad{dof:Dof{node:1,component:Component::Ux},value:1.,source_id:"tip".into()}],
+        supports:vec![SupportGroup{id:3,node:0,restrained:[true;6],springs:vec![],directional_springs:vec![]}],..SourceParts::default()}).unwrap()
+}
+#[test]
+fn i51_seed_is_same_draft_bound_and_prescriptions_are_never_seeded() {
+    use super::super::super::origins::*;
+    use crate::structural::retained_api::{CaseLimit,ExecutionOutcome};
+    let source=i51_seed_source();let mut invocation=RecordedInvocation::new(u64::MAX,OriginCapacity::for_calls(&[1],&[]).unwrap()).unwrap();
+    let cases=invocation.solve_cases(&[source],CaseLimit::new(u64::MAX)).unwrap();
+    let owner=match &cases[0].outcome {ExecutionOutcome::Selected(v)=>v,_=>panic!("native fixture")};
+    let anchor=std::sync::Arc::new(ProofAnchor{owner:invocation.product_owner_stamp(cases[0].run,owner).unwrap()});
+    let mode_value=1.0;let only_mode=[ProductFinalRow{id:"mode",case_id:"case",value:&mode_value,unit:ProductUnit::Record,body:0,recipe:ProductRecipe::NonQuantity}];
+    let mut bound=ProductCertificateSpent::new(&only_mode);assert!(row_scales(owner,&[],&mut bound).is_err());
+    let ptr=bound.verdicts.as_ptr();let capacity=bound.verdicts.capacity();assert!(capacity>=1);
+    assert!(row_scales(owner,&[],&mut bound).is_err());assert_eq!(bound.verdicts.as_ptr(),ptr);assert_eq!(bound.verdicts.capacity(),capacity);
+
+    let stale=std::sync::Arc::new(ProofAnchor{owner:invocation.product_owner_stamp(cases[0].run,owner).unwrap()});
+    let mut foreign_inv=RecordedInvocation::new(u64::MAX,OriginCapacity::for_calls(&[1],&[]).unwrap()).unwrap();
+    let foreign_cases=foreign_inv.solve_cases(&[i51_seed_source()],CaseLimit::new(u64::MAX)).unwrap();
+    let foreign_owner=match &foreign_cases[0].outcome{ExecutionOutcome::Selected(v)=>v,_=>panic!()};
+    let foreign_anchor=std::sync::Arc::new(ProofAnchor{owner:foreign_inv.product_owner_stamp(foreign_cases[0].run,foreign_owner).unwrap()});
+    let mut builder=ProductValuesBuilder{values:vec![2.0,3.0],maxima:vec![(0,7)],anchor:std::sync::Arc::clone(&anchor),visits:WorkTotal::zero()};
+    assert_eq!(builder.value(0).unwrap(),None);assert_eq!(builder.value(1).unwrap(),Some(3.0));assert_eq!(builder.visits.exact(),Ok(3));
+    builder.visits=WorkTotal::exact_count(u64::MAX);assert_eq!(builder.value(1).unwrap_err().category(),"work_accounting");
+    assert!(builder.abandon().visits.status().fault().is_some());
+
+    let law=[bridge::ProposedMemberLaw{member:&owner.source().members()[0],diameter:0.2,effective_wall:0.01,
+        material:MaterialOperands::Ordinary{e:200e9,g:80e9},represented_z:f64::from_bits(0x3f31b37feaa954a6)}];
+    let first=source_residual::source_residual_for_law(owner,owner.source(),&owner.evidence().source_encoding,owner.selected_precision(),&law,source_residual::ReadoutLaw::AdmittedK);
+    let post=source_residual::source_residual_for_law(owner,owner.source(),&owner.evidence().source_encoding,owner.selected_precision(),&law,source_residual::ReadoutLaw::AdmittedK);
+    let (post_error,post_work)=post.into_readouts(&foreign_anchor);assert!(post_error.is_err());assert_eq!(post_work.correction.calls.exact(),Ok(1));
+    let mut only_k=ProductCertificateSpent::new(&[]);assert!(only_k.source_correction_calls().is_none());only_k.native_k=Some(post_work);
+    assert_eq!(only_k.source_correction_calls().unwrap().exact(),Ok(1));assert!(only_k.native.is_none());
+    let (seed,mut kw)=first.into_readouts(&anchor);let mut seed=seed.unwrap();assert_eq!(kw.correction.calls.exact(),Ok(1));
+    let source_run=|seed:&source_residual::LaneReadouts,anchor:&std::sync::Arc<ProofAnchor>|source_residual::source_residual_prepared(owner,owner.source(),&owner.evidence().source_encoding,owner.selected_precision(),&law,anchor,seed);
+    let foreign=source_run(&seed,&foreign_anchor);assert!(foreign.result().is_err());assert_eq!(foreign.work.correction.calls.exact(),Ok(0));
+    let stale_run=source_run(&seed,&stale);assert!(stale_run.result().is_err());assert_eq!(stale_run.work.correction.calls.exact(),Ok(0));assert!(stale_run.work.data_capacity>0);
+    let last=seed.rows.pop().unwrap();let missing=source_run(&seed,&anchor);assert!(missing.result().is_err());assert_eq!(missing.work.correction.calls.exact(),Ok(0));seed.rows.push(last);
+    let saved=seed.rows[6];seed.rows[6]=Enclosure{lo:Endpoint::ONE,hi:Endpoint::ZERO};let inverted=source_run(&seed,&anchor);assert!(inverted.result().is_err());assert_eq!(inverted.work.correction.calls.exact(),Ok(0));seed.rows[6]=saved;
+    seed.rows[0]=Enclosure::point(lift(123.0).unwrap());
+    let good=source_run(&seed,&anchor);let value=good.result().unwrap();let exact=lift(0.001).unwrap();
+    assert_eq!(value.rows[0].lo,exact);assert_eq!(value.rows[0].hi,exact);assert_eq!(good.work.correction.calls.exact(),Ok(1));
+    let (wrong_law,_)=good.into_readouts(&anchor);let wrong_law=wrong_law.unwrap();assert!(source_run(&wrong_law,&anchor).result().is_err());
+    kw.readout_law=source_residual::ReadoutLaw::AnnularSource;kw.visits=WorkTotal::exact_count(u64::MAX);
+    let view=owner.source_bridge_view(owner.source(),&owner.evidence().source_encoding,owner.selected_precision()).result.unwrap();
+    assert!(source_residual::validate_seed(&view,&anchor,&seed,&mut kw).is_err());assert!(kw.status().fault().is_some());
+}
+
+#[test]
+fn i51_proof_layout_and_arc_capacity_are_concrete() {
+    macro_rules! layout {($t:ty)=>{println!("I51_PROOF_LAYOUT {} {} {}",stringify!($t),std::mem::size_of::<$t>(),std::mem::align_of::<$t>());};}
+    layout!(ProofAnchor);layout!(ProofData<'static,'static>);layout!(ProductProofDraft<'static,'static>);
+    layout!(ProjectedProofDraft<'static,'static>);layout!(ProductProjectionSpent<'static,'static>);
+    layout!(ProductRowSpec<'static>);layout!(ProductFinalRow<'static>);layout!(ProductCertificateSpent<'static>);
+    layout!(source_residual::LaneReadouts);layout!(ResidualWork);layout!(ProductValuesBuilder);layout!(FrozenProductValues);
+    layout!(ProductMaximumValue);layout!(ValuesCompletionWork);layout!(CertifiedProductProof);layout!(ProductProofFailure);
+    layout!(ProductRowVerdict);layout!(ProductSummaryCoverage);layout!(MemberEnclosures);layout!((usize,super::super::super::wide::multi::Binary64Outcome));
+    assert!(std::alloc::Layout::array::<source_residual::LaneReadouts>(usize::MAX).is_err());
+}
+
+#[test]
+fn i51_projection_conversion_failure_retains_entered_arithmetic() {
+    let mut work=ProductCertificateSpent::new(&[]);work.visits=WorkTotal::exact_count(u64::MAX-2);
+    let e=project_hull(Enclosure::point(lift(1.).unwrap()),ProductUnit::Newton,0,&mut work).unwrap_err();
+    assert_eq!(e.category(),"work_accounting");assert!(work.numeric.wide.checked_lme().exact().unwrap()>0);
+}
+
+#[test]
+fn i51_projection_keeps_normal_subnormal_underflow_and_overflow_outcomes() {
+    use super::super::super::wide::multi::Binary64Outcome as B;
+    for (x,expected) in [(lift(1.).unwrap(),0),(lift(f64::from_bits(1)).unwrap(),1),
+        (shift(&Endpoint::ONE,-1076).unwrap(),2),(shift(&Endpoint::ONE,1024).unwrap(),3)] {
+        let mut work=ProductCertificateSpent::new(&[]);work.projection_outcomes=work.prepared_reserve(5,1).unwrap();
+        let value=project_hull(Enclosure::point(x),ProductUnit::Newton,17,&mut work);
+        assert_eq!(work.projection_conversions.exact(),Ok(1));assert_eq!(work.projection_outcomes.len(),1);
+        assert_eq!(work.projection_outcomes[0].0,17);
+        match work.projection_outcomes[0].1 {
+            B::Normal(v)=>{assert_eq!(expected,0);assert_eq!(value.unwrap(),v);},
+            B::Subnormal{value:v,relative_precision}=>{assert_eq!(expected,1);assert_eq!(value.unwrap(),v);assert!(relative_precision>0.);},
+            B::Underflow{negative}=>{assert_eq!(expected,2);assert!(!negative);assert_eq!(value.unwrap().to_bits(),0);},
+            B::Overflow{negative}=>{assert_eq!(expected,3);assert!(!negative);assert_eq!(value.unwrap_err().category(),"numeric");},
+        }
+    }
+}

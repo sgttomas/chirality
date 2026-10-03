@@ -2395,7 +2395,7 @@ fn i51_first_prepared_native_both_modes() {
         let e=run_linear_static_preview_observed(request,mode,Some(&capture),&mut SourceRecoveryBudget::default(),Some(&mut observer));
         assert!(observer.native.is_none(),"no old source solve");
         assert!(observer.error.is_none(),"{:?}",observer.error);
-        let mut prepared=observer.prepare_case(&e).unwrap_or_else(|o|panic!("prepare {:?} {:?}",o.capture.error,o.preparation_error));
+        let mut prepared=observer.prepare_case(e.clone()).unwrap_or_else(|o|panic!("prepare {:?} {:?}",o.capture.error,o.preparation_error));
         for (p,w) in prepared.preparations.iter().zip(&prepared.preparation_work) {
             println!("I51_PREPARATION mode={} input={:?} prepared={:?} work={:?}",mode.as_str(),p.input_bits(),p.section_bits().bits(),w);
             assert_eq!(p.section_bits().bits(),[0x3f7872fa3a37ac13,0x3efc52664442210a,0x3f0c52664442210a,0x3f31b37feaa954a6,0x3fb999999999999a]);
@@ -2404,11 +2404,11 @@ fn i51_first_prepared_native_both_modes() {
             assert_eq!(w.conversions.exact(),Ok(9));
         }
         prepared.solve_native().unwrap();
-        i50_dump(&e,&prepared.capture,mode);
-        let (invocation,case)=prepared.capture.native.as_ref().unwrap();
+        i50_dump(&e,prepared.capture(),mode);
+        let (invocation,case)=prepared.capture().native.as_ref().unwrap();
         assert_eq!(invocation.calls().len(),1);
         if let k::ExecutionOutcome::Selected(owner)=&case.outcome {
-            println!("I51_NATIVE mode={} p={} evidence={:?} late_source_hooks={}",mode.as_str(),owner.selected_precision(),owner.evidence(),prepared.capture.prepared_late_calls);
+            println!("I51_NATIVE mode={} p={} evidence={:?} late_source_hooks={}",mode.as_str(),owner.selected_precision(),owner.evidence(),prepared.capture().prepared_late_calls);
         } else {panic!("prepared unavailable");}
         let ordinary=run_linear_static_preview_value_with_mode(raw,mode).unwrap();
         assert_eq!(serde_json::to_string(&e).unwrap(),serde_json::to_string(&ordinary).unwrap());
@@ -2517,18 +2517,18 @@ fn i51_c0_isolated_late_hook_custody_and_prefixes() {
             assert_eq!(serde_json::to_vec(&e).unwrap(),bytes,"capture never mutates envelope");
             if name=="valid" {
                 assert!(o.error.is_none(),"{:?}",o.error);assert!(o.source.is_some());
-                let prepared=o.prepare_case(&e).unwrap_or_else(|f|panic!("{:?}",f.capture.error));
+                let prepared=o.prepare_case(e.clone()).unwrap_or_else(|f|panic!("{:?}",f.capture.error));
                 assert_eq!(prepared.preparations.len(),1);assert_eq!(prepared.preparation_work.len(),1);
-                assert!(prepared.capture.native.is_none());
-                assert_eq!(prepared.capture.prepared_capacity_bytes[11],3*std::mem::size_of::<u32>());
-                assert_eq!(prepared.capture.prepared_capacity_bytes[10],18);
+                assert!(prepared.capture().native.is_none());
+                assert_eq!(prepared.capture().prepared_capacity_bytes[11],3*std::mem::size_of::<u32>());
+                assert_eq!(prepared.capture().prepared_capacity_bytes[10],18);
                 println!("I51_C0_SEAM valid prepared source_entries=1 preparation_entries=1 native_calls=0 capacities={:?} work={:?}",
-                    prepared.capture.prepared_capacity_bytes,prepared.capture.adapter);
+                    prepared.capture().prepared_capacity_bytes,prepared.capture().adapter);
                 continue;
             }
             else if name=="prepared reserve fault" {
                 let mut counts=o.adapter.counts.get();counts[E::RustCapacityBytes as usize]=u64::MAX;o.adapter.counts.set(counts);
-                let failure=match o.prepare_case(&e) {Ok(_)=>panic!("injected preparation allocation must fail"),Err(f)=>f};
+                let failure=match o.prepare_case(e.clone()) {Ok(_)=>panic!("injected preparation allocation must fail"),Err(f)=>f};
                 assert!(matches!(failure.capture.error,Some(CaptureError::Accounting(_))));
                 assert!(failure.capture.prepared_capacity_bytes[0]>0,"successful reserve survives later counter fault");
                 assert!(failure.preparations.is_empty() && failure.capture.native.is_none());
@@ -2585,23 +2585,26 @@ fn i51_complete_prepared_candidate_both_modes() {
     let mut all=true;
     for mode in [PreviewSolverMode::SparseInteractive,PreviewSolverMode::DenseScrutiny] {
         let raw=i50_named_request();let (request,capture)=source_receipt::CapturedInvocation::parse(raw.clone(),mode).unwrap();
-        let mut observer=ProductCapture::prepared_probe();
-        let ordinary=run_linear_static_preview_observed(request,mode,Some(&capture),&mut SourceRecoveryBudget::default(),Some(&mut observer));
-        assert!(observer.error.is_none(),"{:?}",observer.error);
-        let original=serde_json::to_vec(&ordinary).unwrap();
-        let mut prepared=observer.prepare_case(&ordinary).unwrap_or_else(|e|panic!("{:?}",e.capture.error));
+        let mut prepared=retained_product::PreparedCase::prepare_observed(request,mode,&capture).unwrap_or_else(|e|panic!("{:?}",e.capture.error));
+        let original=serde_json::to_vec(prepared.ordinary()).unwrap();
         prepared.solve_native().unwrap();
-        match prepared.project_candidate(ordinary) {
+        match prepared.project_candidate() {
             Ok(candidate)=>{
                 println!("I51_CANDIDATE mode={} committed_private=true",mode.as_str());
                 assert!(candidate.certificate.passed());
+                let (work,associations)=candidate.local_work();assert_eq!(work.entered,3);assert!(!work.lost);
+                assert_eq!(associations.len(),1);assert_eq!(associations[0].old_source[5],0x3f0c52664442210e);
+                assert_eq!(associations[0].old_facts[3],associations[0].old_source[3]);
+                assert_eq!(associations[0].old_facts[4],associations[0].old_source[5]);
+                assert_eq!(associations[0].prepared,[0x3f7872fa3a37ac13,0x3efc52664442210a,0x3f0c52664442210a,0x3f31b37feaa954a6,0x3fb999999999999a]);
+                println!("I51_ASSOCIATION mode={} {:?}",mode.as_str(),candidate.local_work());
                 assert_eq!(candidate.certificate.work().source_correction_calls().unwrap().exact(),Ok(2));
-                i50_dump(candidate.envelope(),&candidate.prepared.capture,mode);
+                i50_dump(candidate.envelope(),candidate.capture(),mode);
             }
             Err(failure)=>{
                 println!("I51_CANDIDATE mode={} committed_private=false error={:?}",mode.as_str(),failure.error);
                 assert_eq!(serde_json::to_vec(&failure.ordinary).unwrap(),original,"failure preserves fallback");
-                i50_dump(&failure.ordinary,&failure.prepared.capture,mode);
+                i50_dump(&failure.ordinary,failure.capture(),mode);
                 all=false;
             }
         }
@@ -2619,10 +2622,103 @@ fn i51_actual_exact_pressure_selection_suppresses_all_prepared_work() {
         assert_eq!(observer.source_capture_entries,0);
         assert!(observer.source.is_none());assert!(observer.native.is_none());
         assert_eq!(observer.prepared_capacity_bytes,[0;16]);
-        let failure=match observer.prepare_case(&ordinary) {Err(e)=>e,Ok(_)=>panic!("exact selection must suppress prepared W1")};
+        let failure=match observer.prepare_case(ordinary.clone()) {Err(e)=>e,Ok(_)=>panic!("exact selection must suppress prepared W1")};
         assert!(failure.preparations.is_empty());assert!(failure.preparation_work.is_empty());
         assert!(failure.capture.native.is_none());
         let public=run_linear_static_preview_value_with_mode(raw.clone(),mode).unwrap();
         assert_eq!(serde_json::to_vec(&ordinary).unwrap(),serde_json::to_vec(&public).unwrap());
     }
+}
+
+fn i51_ready_for_controls()->(MechanicsEnvelope,retained_product::PreparedCase) {
+    let mode=PreviewSolverMode::SparseInteractive;let raw=i50_named_request();
+    let (request,capture)=source_receipt::CapturedInvocation::parse(raw,mode).unwrap();
+    let mut prepared=retained_product::PreparedCase::prepare_observed(request,mode,&capture).unwrap_or_else(|e|panic!("{:?}",e.capture.error));
+    let ordinary=prepared.ordinary().clone(); // Test oracle copy; never accepted by projection.
+    prepared.solve_native().unwrap();(ordinary,prepared)
+}
+
+#[test]
+fn i51_frozen_owner_values_and_numeric_refusal_controls() {
+    for variant in 0..5 {
+        let (ordinary,prepared)=i51_ready_for_controls();
+        let (invocation,case)=prepared.capture().native.as_ref().unwrap();let owner=match &case.outcome{k::ExecutionOutcome::Selected(v)=>v,_=>panic!()};
+        let base=prepared.capture().bind_rows(&ordinary,owner).unwrap();
+        let specs:Vec<_>=base.iter().map(|r|match r.recipe {
+            k::ProductRecipe::NonQuantity=>k::ProductRowSpec::mode(r.id,r.case_id,r.body,1).unwrap(),
+            k::ProductRecipe::DenseParityObservation=>k::ProductRowSpec::parity(r.id,r.case_id,r.body,r.value.to_bits()).unwrap(),
+            k::ProductRecipe::ModulusBasisRecord=>k::ProductRowSpec::material_record(r.id,r.case_id,r.body),
+            _=>k::ProductRowSpec::mechanical(r.id,r.case_id,r.unit,r.body,r.recipe).unwrap(),}).collect();
+        let draft=invocation.begin_prepared_product(case.run,owner,&prepared.capture().facts,&specs).into_ready().unwrap();
+        let (projected,builder)=draft.project().into_ready().unwrap();
+        let maxima:Vec<_>=base.iter().enumerate().filter_map(|(i,r)|if let k::ProductRecipe::CircularMaximum{member}=r.recipe {
+            Some(k::ProductMaximumValue::new(member,i,if variant==4{1.0}else{*r.value}).unwrap())}else{None}).collect();
+        let (values,value_work)=builder.complete_maxima(&maxima).into_ready().unwrap();
+        let mut actual:Vec<_>=base.iter().enumerate().map(|(i,r)|k::ProductFinalRow{id:r.id,case_id:r.case_id,value:values.value(i).unwrap(),unit:r.unit,body:r.body,recipe:r.recipe}).collect();
+        let bad_value=123.0;
+        match variant {
+            0=>actual[0].value=&bad_value,
+            1=>actual[1].id="stale-id",
+            2=>actual[1].unit=k::ProductUnit::Pascal,
+            3=>{let at=base.iter().position(|r|matches!(r.recipe,k::ProductRecipe::Stress{stress:k::ProductStress::Torsion,..}) && r.value.to_bits()!=values.value(base.iter().position(|q|q.id==r.id).unwrap()).unwrap().to_bits()).unwrap();actual[at].value=base[at].value;},
+            _=>{},
+        }
+        let failure=match projected.certify_final(&values,&actual,value_work).into_ready(){Err(e)=>e,Ok(_)=>panic!("mutant certified {variant}")};
+        assert_eq!(failure.work().source_correction_calls().unwrap().exact(),Ok(2));
+        if variant==4 {assert_eq!(failure.failure().category(),"numeric_predicate");assert!(failure.work().verdicts().iter().any(|v|!v.passed));}
+        else {assert_eq!(failure.failure().category(),"association");}
+    }
+    // A different recorded owner is rejected before any residual or correction.
+    let (ordinary,a)=i51_ready_for_controls();let (_,b)=i51_ready_for_controls();
+    let (ai,ac)=a.capture().native.as_ref().unwrap();let (_,bc)=b.capture().native.as_ref().unwrap();
+    let foreign=match &bc.outcome{k::ExecutionOutcome::Selected(v)=>v,_=>panic!()};
+    let failed=match ai.begin_prepared_product(ac.run,foreign,&a.capture().facts,&[]).into_ready(){Err(e)=>e,Ok(_)=>panic!("foreign accepted")};
+    assert_eq!(failed.failure().category(),"association");assert!(failed.work().source_correction_calls().is_none());drop(ordinary);
+}
+#[test]
+fn i51_old_source_refuses_and_private_driver_cannot_reenter() {
+    let mode=PreviewSolverMode::SparseInteractive;let raw=i50_named_request();let (request,capture)=source_receipt::CapturedInvocation::parse(raw,mode).unwrap();
+    let mut observer=ProductCapture::prepared_probe();let ordinary=run_linear_static_preview_observed(request,mode,Some(&capture),&mut SourceRecoveryBudget::default(),Some(&mut observer));
+    let old_source=observer.source.clone().unwrap();let old_facts=observer.facts.clone();let original=serde_json::to_vec(&ordinary).unwrap();
+    let mut prepared=observer.prepare_case(ordinary.clone()).unwrap_or_else(|e|panic!("{:?}",e.capture.error));
+    prepared.test_capture_mut().source=Some(old_source);prepared.test_capture_mut().facts=old_facts;prepared.solve_native().unwrap();
+    let refusal=match prepared.project_candidate(){Err(e)=>e,Ok(_)=>panic!("old source certified")};
+    assert_eq!(serde_json::to_vec(&refusal.ordinary).unwrap(),original);
+    assert!(matches!(&refusal.error,retained_product::PreparedCandidateError::Proof(p) if p.failure().category()=="numeric_predicate"));
+    let (again,old)=refusal.test_reentry();assert_eq!(serde_json::to_vec(&again.ordinary).unwrap(),original);
+    assert!(matches!(old,retained_product::PreparedCandidateError::Proof(p) if p.work().source_correction_calls().unwrap().exact()==Ok(2)));
+    let (_ordinary,prepared)=i51_ready_for_controls();let candidate=match prepared.project_candidate(){Ok(v)=>v,Err(e)=>panic!("{:?}",e.error)};
+    let original=serde_json::to_vec(candidate.envelope()).unwrap();let (again,proof)=candidate.test_reentry();assert!(proof.passed());
+    assert_eq!(proof.work().source_correction_calls().unwrap().exact(),Ok(2));assert_eq!(serde_json::to_vec(&again.ordinary).unwrap(),original);
+}
+
+#[test]
+fn i51_atomic_commit_accounting_refusal_keeps_all_checked_work() {
+    use retained_product::{AdapterEvent as E,PreparedCandidateError,CaptureError};
+    retained_product::i51_overlay_layout();
+    let (_ordinary,prepared)=i51_ready_for_controls();let before=prepared.capture().adapter.counts.get()[E::MapWrite as usize];
+    let candidate=match prepared.project_candidate(){Ok(c)=>c,Err(e)=>panic!("{:?}",e.error)};
+    let writes=candidate.capture().adapter.counts.get()[E::MapWrite as usize]-before;
+    assert!(writes>108);let (ordinary,prepared)=i51_ready_for_controls();let original=serde_json::to_vec(&ordinary).unwrap();
+    let mut counts=prepared.capture().adapter.counts.get();counts[E::MapWrite as usize]=u64::MAX-(writes-1);prepared.capture().adapter.counts.set(counts);
+    let refusal=match prepared.project_candidate(){Err(e)=>e,Ok(_)=>panic!("commit permit should refuse")};
+    assert_eq!(serde_json::to_vec(&refusal.ordinary).unwrap(),original);
+    assert!(matches!(refusal.error,PreparedCandidateError::Capture(CaptureError::Accounting(_))));
+    let proof=refusal.certificate.as_ref().expect("numerical work survives commit refusal");assert!(proof.passed());
+    assert_eq!(proof.work().source_correction_calls().unwrap().exact(),Ok(2));assert!(refusal.capture().adapter.fault.get().is_some());
+}
+
+#[test]
+fn i51_owned_ordinary_cannot_be_substituted_after_finish() {
+    let (mut substitute,prepared)=i51_ready_for_controls();
+    let expected=(prepared.ordinary().schema_version.clone(),prepared.ordinary().producer.clone(),
+        prepared.ordinary().document_kind.clone(),prepared.ordinary().run_id.clone(),prepared.ordinary().model_ref.clone(),prepared.ordinary().status.clone());
+    // This detached copy has identical rows and observations, but every challenged header differs.
+    substitute.schema_version="foreign".into();substitute.producer.semantic_contract_id="foreign".into();
+    substitute.document_kind="foreign".into();substitute.run_id="foreign".into();substitute.model_ref="foreign".into();
+    substitute.status.mechanics="BLOCKED".into();substitute.source_block_recovery=Some(serde_json::json!({"foreign":true}));
+    let candidate=match prepared.project_candidate(){Ok(c)=>c,Err(e)=>panic!("{:?}",e.error)};
+    let actual=candidate.envelope();assert_eq!((&actual.schema_version,&actual.producer,&actual.document_kind,&actual.run_id,&actual.model_ref,&actual.status),
+        (&expected.0,&expected.1,&expected.2,&expected.3,&expected.4,&expected.5));assert!(actual.source_block_recovery.is_none());
+    assert_ne!(actual.run_id,substitute.run_id);assert!(candidate.certificate.passed());
 }

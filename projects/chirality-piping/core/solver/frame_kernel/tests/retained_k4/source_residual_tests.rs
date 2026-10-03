@@ -821,3 +821,35 @@ fn source_residual_combination_and_missing_uniqueness_are_explicit_refusals() {
     ));
     assert_eq!(spent.work.correction.calls.exact(), Ok(0));
 }
+
+#[test]
+fn i51_view_failure_keeps_both_entered_mask_capacities() {
+    let s=solved(source(true,false));
+    let law=laws(&s);
+    let early=source_residual(&s,s.source(),&s.prep.identity,512,&law);
+    assert!(early.result().is_err());assert_eq!(early.work.view.prescribed_capacity,0);assert_eq!(early.work.data_capacity,0);
+    assert_eq!(early.work.correction.calls.exact(),Ok(0));
+    let good=s.source_bridge_view(s.source(),&s.prep.identity,s.selected);
+    let visits=good.work.visits.exact().unwrap();let mut after_prescribed=false;
+    for budget in 0..visits {
+        let mut work=SourceBridgeViewWork{visits:WorkTotal::exact_count(u64::MAX-budget),..SourceBridgeViewWork::default()};
+        let result=s.build_source_bridge_view(s.source(),&s.prep.identity,s.selected,&mut work);
+        if work.prescribed_capacity>0 && work.data_capacity==0 {
+            assert!(matches!(result,Err(SourceBridgeViewIssue::Work(_))));after_prescribed=true;break;
+        }
+    }
+    assert!(after_prescribed,"actual view-only accounting prefix after prescribed allocation; no correction is called");
+    for fault in 0..2 {
+        let mut changed=(*s).clone();
+        if fault==0 {changed.cache.s256=None;}else{changed.evidence.certified_bound.clear();}
+        let spent=changed.source_bridge_view(changed.source(),&changed.prep.identity,changed.selected);
+        assert!(spent.result.is_err());
+        assert!(spent.work.prescribed_capacity>=changed.source().dof_count());
+        assert!(spent.work.data_capacity>=changed.group.blocks.len());
+        let law=laws(&changed);
+        let residual=source_residual(&changed,changed.source(),&changed.prep.identity,changed.selected,&law);
+        assert!(residual.result().is_err());assert_eq!(residual.work.data_capacity,spent.work.data_capacity);
+        assert_eq!(residual.work.correction.calls.exact(),Ok(0));
+        println!("I51_FAILED_VIEW_CAPACITY fault={fault} prescribed={} data={}",spent.work.prescribed_capacity,spent.work.data_capacity);
+    }
+}
