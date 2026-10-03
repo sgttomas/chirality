@@ -7569,3 +7569,24 @@ This is source-level verification only. Reader acceptance still waits for snapsh
 **Next:**
 - I63 and I64 align to 05a: the G5b Φ check, the unavailable-attempt G5a checks, the p128 ladder start for TypeScript, and a loop over `must_pass`.
 - C1b (two bodies, two load cases, the p512 ladder with the Ceiling) starts after they freeze, so the shared files don't move under them.
+
+## RV77's review of the producer coverage seam: PASS; the missing tests are added before acceptance (ROOT, 2026-10-03 UTC)
+
+RV77 reviewed I61's `c618675e84` from its own clean archive (`REVIEW_RV77/coverage_producer_01/REVIEW.md`, sha256 `def7a1bca3`): **PASS**, with 0 BLOCKING, 1 SHOULD-FIX and 4 NOTEs.
+- **Custody, the stage rules and the no-new-computation rule** all hold against the I57 §3 seams.
+- **`rederive_coverage` is bit-for-bit equal to native `summary_coverage_data`,** by RV77's own derivation and an enumeration: 589,824 genuine cases with 0 refusals and 0 mismatches. I61's extra refusals never refuse a genuine vector.
+- **The only production caller passes the Selected owner,** and no reachable path pairs a proof with a foreign owner.
+- **The candidate adds no failure.** frame_kernel `--lib`: 477 passed. product_physics: the same seven pre-existing failures at base and candidate, plus I61's four new tests passing.
+- **The F1a repair `e0fc33b4f7` is confirmed:** six f1a tests pass, and only s11g t13 remains.
+
+**Rulings:**
+- **RV77-S1 is fixed before acceptance.** Three enforced rules have no committed test:
+  - a positive floor forcing its stop at L = 0;
+  - null refused on a passed G5a;
+  - non-null coverage requiring `capture.source`.
+  
+  I61 adopts RV77's tests (`tests/rv77_enum.rs`, `tests/rv77_pp.rs`) into the fenced test files. Mutants R1, R6 and R10 must then be killed by the committed suite. RV77 confirms the new head.
+- **N3 is fixed in the same pass:** the comment at `retained_product_tests.rs:3126` claims a refusal the test doesn't assert. I61 corrects the comment, or asserts the actual behaviour.
+- **N2 is corrected in an addendum to I61's RETURN:** the per-body scans are unmetered, not "reads", and the 16 B `SummaryCoverage` is a conservative double count.
+- **N1** (five equivalent or unreachable mutants) is recorded.
+- **N4** (the crate-visible `certificate` field, through which crate code could pair a foreign proof) is carried with the deferred structural owner binding, to the receipt-transaction design.
