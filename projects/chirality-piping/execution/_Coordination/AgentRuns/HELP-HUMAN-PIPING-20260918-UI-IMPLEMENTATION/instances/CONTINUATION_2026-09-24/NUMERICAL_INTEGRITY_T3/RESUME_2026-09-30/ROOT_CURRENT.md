@@ -36,13 +36,10 @@ final joined closure remain.
 ## Running now
 
 I50's repaired support and observation component is accepted and merged locally
-at `7e9597bd9c`. Both named modes still numerically refuse. RV67 verified I51's
-conditional mathematics but found three blocking design-readiness gaps: formation
-precision, closed proof ownership, and frozen candidate staging/accounting.
-I51 is completing those corrections in one bounded design task; the same reviewer
-will backcheck. I51 receipt 09:20:11Z; checkpoint 09:30:11Z, concrete design
-09:45:11Z, cutoff 09:50:11Z, sealed return 10:00:11Z. No compiler/model run
-is active. M5 Max, guard PID 5387.
+at `7e9597bd9c`. Both named modes still numerically refuse. I51 sealed the three
+design-readiness corrections at 09:48:46Z; ROOT verified the packet and has scoped
+RV67's same-reviewer backcheck. The proposed producer remains unselected pending
+that review. No compiler/model run is active. M5 Max, guard PID 5387.
 
 ## Next
 
