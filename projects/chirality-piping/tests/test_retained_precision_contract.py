@@ -2,6 +2,7 @@
 import json
 import math
 import struct
+from copy import deepcopy
 from fractions import Fraction
 from pathlib import Path
 
@@ -286,3 +287,60 @@ def test_p512_floor_phi_follows_native_rounding():
     assert rp._e_hat([3.0, 0.0], 0.0) == [3.0, 0.0]
     assert rp._e_hat([3.0, 0.0], 2.0) == [3.0, 6.0]
     assert rp._e_hat([0.0, 8.0], 2.0) == [4.0, 8.0]
+
+
+def _raises(fn, gate, code):
+    with pytest.raises(rp.RetainedPrecisionError) as error:
+        fn()
+    assert (error.value.gate, error.value.code) == (gate, "RETAINED_PRECISION_" + code)
+
+
+def _fail_g5(ok, code="ATTEMPT_MISMATCH"):
+    rp._need(ok, "G5", code)
+
+
+def test_schedule_replay_terminal_branches_reader_logic():
+    """Python-only reader-logic controls for checklist N8-N11 branches that have no native-faithful
+    shared base yet (Ceiling, idle/pre-schedule runs, verification-pass terminal)."""
+    selected = deepcopy(corpus()["cases"][0]["source"]["retained_precision"]["body"]["cases"][0]["run"])
+    idle = dict(selected, records=[], attempts=[], case_charge=0, invocation_increment=0,
+                kernel_terminal={"kind": "unresolved", "reason": {"space": "unresolved", "tag": "budget", "scope": "invocation"}})
+    rp._g5_schedule(idle, [], [], _fail_g5)
+    _raises(lambda: rp._g5_schedule(dict(idle, kernel_terminal={"kind": "selected", "reason": None}), [], [], _fail_g5), "G5", "ATTEMPT_MISMATCH")
+    # A rejected candidate at p128 must hand its verification to a reused p256 candidate.
+    rejected = deepcopy(selected)
+    reason = {"space": "attempt", "tag": "stop_rule", "quantity": {"tag": "displacement", "dof": {"node": 1, "component": "UX"}}, "body": 0, "kind": "translation"}
+    rejected["attempts"][0]["outcome"] = rejected["records"][0]["outcome"] = {"kind": "rejected", "reason": reason}
+    rejected["records"][1]["outcome"] = {"kind": "solved"}
+    rejected["kernel_terminal"] = {"kind": "unresolved", "reason": {"space": "unresolved", "tag": "ceiling"}}
+    _raises(lambda: rp._g5_schedule(rejected, rejected["records"], rejected["attempts"], _fail_g5), "G5", "ATTEMPT_MISMATCH")
+    # A non-escalating verification-pass failure is terminal (no next attempt, non-selected terminal).
+    vfail = deepcopy(selected)
+    stop = {"space": "attempt", "tag": "stop", "stop": {"space": "stop", "tag": "structure"}}
+    vfail["attempts"][0]["outcome"] = vfail["records"][0]["outcome"] = {"kind": "rejected", "reason": {"space": "attempt", "tag": "verification_failed"}}
+    vfail["attempts"][0]["verification"] = {"record": 1, "precision": 256, "phase": "failed", "reason": stop}
+    vfail["records"][1]["outcome"] = {"kind": "failed", "reason": stop}
+    vfail["kernel_terminal"] = {"kind": "refused", "reason": {"space": "refusal", "tag": "structure"}}
+    rp._g5_schedule(vfail, vfail["records"], vfail["attempts"], _fail_g5)
+    _raises(lambda: rp._g5_schedule(dict(vfail, kernel_terminal={"kind": "selected", "reason": None}), vfail["records"], vfail["attempts"], _fail_g5), "G5", "ATTEMPT_MISMATCH")
+    # Ceiling (N8): the reused p512 candidate is rejected and its p1024 verification only solved.
+    ladder = deepcopy(next(f for f in corpus()["cases"] if f["id"] == "p512_ladder_synthetic")["source"]["retained_precision"]["body"]["cases"][0]["run"])
+    ladder["attempts"][2]["outcome"] = ladder["records"][2]["outcome"] = {"kind": "rejected", "reason": reason}
+    ladder["records"][3]["outcome"] = {"kind": "solved"}
+    ladder["kernel_terminal"] = {"kind": "unresolved", "reason": {"space": "unresolved", "tag": "ceiling"}}
+    rp._g5_schedule(ladder, ladder["records"], ladder["attempts"], _fail_g5)
+    _raises(lambda: rp._g5_schedule(dict(ladder, kernel_terminal={"kind": "refused", "reason": {"space": "refusal", "tag": "structure"}}), ladder["records"], ladder["attempts"], _fail_g5), "G5", "ATTEMPT_MISMATCH")
+
+
+def test_source_decline_relation_reader_logic():
+    """Python-only reader-logic control for checklist O5 (no native-faithful source_decline base yet)."""
+    fixture = next(f for f in corpus()["cases"] if f["id"] == "two_case_preparation_failure_synthetic")
+    body = deepcopy(fixture["source"]["retained_precision"]["body"])
+    diags = fixture["source"]["diagnostics"]
+    decline = {"input_owner": {"case_index": 1, "case_id": "case:unavailable-row", "material_basis_ref": 0},
+               "constructor_counts": {"nodes": 2, "members": 1, "springs": 0, "constraints": 6, "nodal_terms": 6, "stations": 3, "supports": 1, "id_utf8_bytes": 0, "directional_springs": 0},
+               "error": {"tag": "no_nodes"}}
+    body["cases"][1]["source_decline"] = decline
+    rp._g5_ordinary(body, body["cases"], diags)
+    body["cases"][1]["source_decline"] = dict(decline, input_owner=dict(decline["input_owner"], case_index=0))
+    _raises(lambda: rp._g5_ordinary(body, body["cases"], diags), "G5", "ATTEMPT_MISMATCH")

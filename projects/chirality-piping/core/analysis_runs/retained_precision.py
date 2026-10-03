@@ -30,8 +30,8 @@ _IMPLEMENTATION_COMPLETE = False
 
 
 class RetainedPrecisionError(ValueError):
-    def __init__(self, gate: str, code: str):
-        self.gate, self.code = gate, code
+    def __init__(self, gate: str, code: str, detail: str | None = None):
+        self.gate, self.code, self.detail = gate, code, detail
         super().__init__(code)
 
 
@@ -270,6 +270,129 @@ def _preparation_payload(a):
                 for m in a["preparation"]["members"]]}
 
 
+ESCALATING_STOPS = {"pivot", "condition", "residual_gate"}
+PRECISION_SLOTS = [128, 256, 512, 1024]
+SLOT_ORDER = ["s128", "s256", "s512", "s1024", "v256", "v512", "v1024"]
+
+
+def _stop_of(reason):
+    """The native AttemptStop carried by a Reason, or None (C1:114 closed translation)."""
+    if not isinstance(reason, dict):
+        return None
+    if reason.get("space") == "stop":
+        return reason
+    if reason.get("space") == "attempt" and reason.get("tag") == "stop":
+        return reason.get("stop")
+    return None
+
+
+def _g5_schedule(run, records, attempts, fail):
+    """Checklist N1-N9, N13, N14: replay the actual native ladder (FK/adaptive.rs:4519-4766).
+
+    Candidates at slots 128/256/512, each verified at 2p. A candidate solve failure with an
+    escalating stop (Pivot/Condition/ResidualGate) advances one slot (4542-4552); a failed
+    verification solve rejects the candidate (VerificationFailed) and, if escalating, advances
+    two slots (4576-4590); a verification-pass failure is terminal (4593-4611); a rejected
+    candidate's completed verification becomes the next candidate while c+1<3 (4713-4758);
+    Accepted+Verified selects (4696-4711); leaving the loop is the Ceiling (4762-4766).
+    """
+    fail(all(int(r["corrections"]) <= 3 for r in records))
+    terminal = run["kernel_terminal"]
+    if not attempts:
+        # Pre-schedule return (idle invocation entry, group refusal or pre-attempt refusal).
+        fail(not records and int(run["case_charge"]) == 0 and int(run["invocation_increment"]) == 0
+             and terminal["kind"] != "selected" and terminal["reason"] is not None)
+        return
+    c, next_record, ended = 0, 0, False
+    for ai, a in enumerate(attempts):
+        fail(not ended and c < 3 and a["precision"] == PRECISION_SLOTS[c])
+        cr_i = int(a["candidate_record"])
+        cr = _at(records, cr_i, code="ATTEMPT_MISMATCH")
+        if a["origin"]["kind"] == "fresh":
+            fail(cr_i == next_record and cr["role"] == "candidate")
+        else:
+            prev = attempts[ai - 1] if ai else None
+            fail(prev is not None and a["origin"].get("attempt") == ai - 1 and prev["outcome"]["kind"] == "rejected"
+                 and prev["verification"] is not None and prev["verification"]["phase"] == "completed"
+                 and int(prev["verification"]["record"]) == cr_i == next_record - 1 and cr["role"] == "verification_then_candidate")
+        next_record = max(next_record, cr_i + 1)
+        v, out = a["verification"], a["outcome"]
+        kind = out["kind"]
+        fail(kind in ("accepted", "rejected", "failed"))
+        if v is not None:
+            vi = int(v["record"])
+            fail(vi == cr_i + 1 == next_record)
+            vr = _at(records, vi, code="ATTEMPT_MISMATCH")
+            next_record = vi + 1
+            if v["phase"] == "failed":
+                fail(vr["role"] == "verification" and vr["outcome"]["kind"] == "failed" and v["reason"] == vr["outcome"].get("reason")
+                     and kind == "rejected" and out.get("reason") == {"space": "attempt", "tag": "verification_failed"})
+            else:
+                fail(v["phase"] == "completed" and v["reason"] is None)
+                if vr["role"] == "verification":
+                    fail(vr["outcome"]["kind"] == ("verified" if kind == "accepted" else "solved"))
+                else:
+                    fail(vr["role"] == "verification_then_candidate" and kind == "rejected")
+        else:
+            fail(kind == "failed" and _stop_of(out.get("reason")) is not None)
+        last = ai == len(attempts) - 1
+        if kind == "accepted":
+            fail(v is not None and v["phase"] == "completed" and last)
+            ended = True
+        elif v is None:
+            if _stop_of(out["reason"]).get("tag") in ESCALATING_STOPS:
+                c += 1
+            else:
+                ended = True
+        elif v["phase"] == "failed":
+            # Solve failure with an escalating stop skips two slots; a verification-pass
+            # failure (or any other stop) is terminal. Both are publicly admissible.
+            if not last and (_stop_of(v["reason"]) or {}).get("tag") in ESCALATING_STOPS:
+                c += 2
+            else:
+                ended = True
+        elif kind == "rejected":
+            c += 1
+            if c < 3:
+                fail(not last and attempts[ai + 1]["origin"]["kind"] == "reused_verification")
+        else:
+            ended = True  # failed after a completed verification: decision/pair/certificate stop
+    fail(next_record == len(records))
+    if attempts[-1]["outcome"]["kind"] == "accepted":
+        fail(terminal["kind"] == "selected" and terminal["reason"] is None)
+    else:
+        fail(terminal["kind"] in ("unresolved", "refused") and terminal["reason"] is not None)
+        if not ended:
+            fail(terminal == {"kind": "unresolved", "reason": {"space": "unresolved", "tag": "ceiling"}})
+
+
+def _g5_cache(body, run, records, fail):
+    """Checklist C1-C3 (FK/adaptive.rs:3984-4026 obtain): a cached slot is reused, never
+    rebuilt; a non-budget failure is cached and reused with the same build id; a budget
+    failure is not cached; cache_after = cache_before plus this run's cacheable builds; a
+    failed build fails the requesting record with the same stop."""
+    wf = lambda ok: _need(ok, "G5", "WORK_MISMATCH")
+    cache = {e["slot"]: int(e["build"]) for e in run["cache_before"]}
+    fail_ok = True
+    for r in records:
+        for field, flag in (("shared_build_ref", "shared_built_here"), ("verification_shared_build_ref", "verification_shared_built_here")):
+            bi = r[field]
+            if bi is None:
+                continue
+            b = _at(body["builds"], bi, code="WORK_MISMATCH")
+            if r["work"][flag]:
+                wf(b["slot"] not in cache)
+                if b["state"] != "budget_failure":
+                    cache[b["slot"]] = int(bi)
+            else:
+                wf(cache.get(b["slot"]) == int(bi))
+            wf((b["state"] == "success") == (b["reason"] is None))
+            wf((b["state"] == "budget_failure") == ((b["reason"] or {}).get("tag") == "budget"))
+            if b["state"] != "success":
+                fail(r["outcome"]["kind"] == "failed" and _stop_of(r["outcome"].get("reason")) == b["reason"])
+    wf(run["cache_after"] == sorted([{"slot": k, "build": v} for k, v in cache.items()], key=lambda e: SLOT_ORDER.index(e["slot"])))
+
+
 def _g5_native(body):
     runs = [c["run"] for c in body["cases"] if c.get("run") is not None]
     runs.sort(key=lambda r: r["id"])
@@ -296,6 +419,8 @@ def _g5_native(body):
             fail(len(attempts) <= 3 and (not records) == (not attempts))
             if attempts: fail(attempts[0]["precision"] == 128 and attempts[0]["candidate_record"] == 0 and attempts[0]["origin"] == {"kind": "fresh"})
             fail([r["precision"] for r in records] == sorted(set(r["precision"] for r in records)))
+            _g5_schedule(run, records, attempts, fail)
+            _g5_cache(body, run, records, fail)
             amounts = []
             for r in records:
                 w = r["work"]
@@ -354,6 +479,12 @@ def _g5_native(body):
             charge = sum(x[0] for x in amounts); debit = sum(x[1] for x in amounts)
             fail(charge == run["case_charge"] == sum(a["case_charge"] for a in attempts), "WORK_MISMATCH")
             fail(debit == run["invocation_increment"] == sum(a["invocation_increment"] for a in attempts), "WORK_MISMATCH")
+            if run["invocation_before"] >= body["work"]["invocation_limit"]:
+                fail(not attempts and run["origin"]["group"] is None
+                     and run["kernel_terminal"]["reason"] == {"space": "unresolved", "tag": "budget", "scope": "invocation"})
+            budget = run["kernel_terminal"]["reason"] if run["kernel_terminal"]["kind"] == "unresolved" else None
+            if isinstance(budget, dict) and budget.get("tag") == "budget" and attempts:
+                fail(charge > body["work"]["case_limit"] if budget.get("scope") == "case" else current + debit > body["work"]["invocation_limit"], "WORK_MISMATCH")
             current += debit
             fail(current == run["invocation_after"] and current <= SAFE, "WORK_MISMATCH")
             if run["kernel_terminal"]["kind"] == "selected":
@@ -372,6 +503,25 @@ def _g5_native(body):
         fail(call["invocation_after"] == current, "WORK_MISMATCH")
     fail([r for call in body["calls"] for r in call["run_refs"]] == list(range(len(runs))))
     fail(body["work"]["charged"] == current, "WORK_MISMATCH")
+    for call_id, call in enumerate(body["calls"]):
+        # C2:143 call-local groups at first equality of full stiffness bytes, first-seen order;
+        # an idle (group-null) run never formed a group (adaptive.rs:4994-5015).
+        call_groups = [g for g in body["groups"] if g["call"] == call_id]
+        order, members, of_run = [], {}, []
+        for ri, si in zip(call["run_refs"], call["source_refs"]):
+            run = runs[int(ri)]
+            if run["origin"]["group"] is None:
+                continue
+            key = body["sources"][int(si)]["stiffness_sha256"]
+            if key not in members:
+                order.append(key); members[key] = []
+            members[key].append(si); of_run.append((run, order.index(key)))
+        fail([(g["stiffness_sha256"], g["source_refs"]) for g in call_groups] == [(k, members[k]) for k in order])
+        for run, gi in of_run:
+            fail(int(run["origin"]["group"]) == call_groups[gi]["id"])
+            if call_groups[gi]["preparation"]["kind"] == "refused":
+                # N11: a refused group preparation returns before any attempt.
+                fail(not run["attempts"] and run["kernel_terminal"] == {"kind": "refused", "reason": call_groups[gi]["preparation"]["reason"]})
     for i, group in enumerate(body["groups"]):
         fail(group["id"] == i and bool(group["source_refs"]) and group["first_source_ref"] == group["source_refs"][0])
         for si in group["source_refs"]: fail(_at(body["sources"], si)["stiffness_sha256"] == group["stiffness_sha256"])
@@ -415,9 +565,96 @@ def _g5_coverage(a, case, source, fail):
     fail(stages["certificate"] in ("completed", "failed") and checks["certificate"]["kind"] in ("passed", "failed"))
 
 
+STAGE_ORDER = ["preparation", "native", "proof_start", "projection", "maxima", "values", "aliases", "certificate", "observables", "g5a"]
+
+
+def _g5_stages(a, case, fail):
+    """Checklist P2, P6, P11 (C3:196-201, 253-257; retained_receipt.rs:45-54,111-113)."""
+    st, proof = a["stages"], a["proof"]
+    pipeline = [st[k] for k in STAGE_ORDER[:8]]
+    seen_end = False
+    for state in pipeline:
+        if seen_end:
+            fail(state == "not_entered")
+        elif state != "completed":
+            seen_end = True
+    obs, g5a = st["observables"], st["g5a"]
+    fail((obs == "not_entered") == (g5a == "not_entered"))
+    if obs != "not_entered":
+        fail(st["certificate"] in ("completed", "failed"))
+    run = case.get("run")
+    if st["native"] == "not_entered":
+        fail(a["run_ref"] is None)
+    else:
+        fail(a["run_ref"] is not None and run is not None and (st["native"] == "completed") == (run["kernel_terminal"]["kind"] == "selected"))
+    fail((st["preparation"] == "completed") == (a["source_ref"] is not None) or st["preparation"] == "not_entered" and a["source_ref"] is None)
+    if proof is None:
+        fail(st["proof_start"] == "not_entered")
+        return
+    fail(st["proof_start"] != "not_entered")
+    checks = proof["checks"]
+    for stage, check in (("certificate", "certificate"), ("observables", "observables"), ("g5a", "g5a")):
+        fail({"not_entered": "not_entered", "completed": "passed", "failed": "failed"}[st[stage]] == checks[check]["kind"])
+    completion = proof["completion"]["kind"]
+    if st["values"] == "failed":
+        fail(completion == "separate_failure")
+    elif st["certificate"] != "not_entered" or "failed" in (st["maxima"], st["aliases"]) or (st["aliases"] == "completed"):
+        fail(completion == "merged")
+    elif st["projection"] != "completed":
+        fail(completion == "not_entered")
+
+
+def _g5_typed(a, fail):
+    """Checklist P9 (C3:279-287): failed checks carry their own PublicFailure wrapper, and the
+    attempt result error matches the first failing stage (PP:3469-3543, S06:30-45)."""
+    proof, st, result = a["proof"], a["stages"], a["result"]
+    if proof is not None:
+        for check, kinds in (("certificate", ("proof",)), ("observables", ("observable",)), ("g5a", ("g5a",))):
+            c = proof["checks"][check]
+            if c["kind"] == "failed":
+                fail(c["error"]["kind"] in kinds)
+    if result["kind"] != "unavailable":
+        return
+    error = result["error"]["kind"]
+    first_failed = next((k for k in STAGE_ORDER[:8] if st[k] == "failed"), None)
+    expected = {"preparation": ("preparation", "capture"), "native": ("native", "capture"), "proof_start": ("proof",),
+                "projection": ("proof",), "maxima": ("abandoned",), "values": ("values",), "aliases": ("abandoned",),
+                "certificate": ("proof",)}
+    if first_failed is not None:
+        fail(error in expected[first_failed])
+
+
+def _g5_ordinary(body, cases, diags):
+    """Checklist O2-O5 (C2:149-161; S06:51): typed ordinary evidence and source_decline."""
+    fail = lambda ok: _need(ok, "G5", "ATTEMPT_MISMATCH")
+    ids = {d["id"] for d in diags}
+    resolves = lambda ref: ref is None or ref in ids
+    for i, c in enumerate(cases):
+        o = body["ordinary_attempts"][i]
+        initial, w2 = o["initial"], o["w2"]
+        if initial["kind"] == "structural_failure":
+            fail(resolves(initial["diagnostic_ref"]))
+        # W2 runs only after an actual Formation/Structural failure and never erases it.
+        fail((w2["kind"] == "not_triggered") or initial["kind"] in ("structural_failure", "formation_failure"))
+        if w2["kind"] == "published":
+            fail(w2["report_diagnostic_ref"] in ids)
+        if w2["kind"] == "failed":
+            fail(w2["diagnostic_ref"] in ids)
+        finding = o["formation"]["load_row_finding"]
+        fail(resolves(o["formation"]["d5_diagnostic_ref"]) and (finding is None or resolves(finding["diagnostic_ref"])))
+        fail(resolves(o["legacy_source"]["diagnostic_ref"]))
+        decline = c.get("source_decline")
+        if decline is not None:
+            owner = decline["input_owner"]
+            mb = _at(body["material_bases"], owner["material_basis_ref"], code="ATTEMPT_MISMATCH")
+            fail(c["status"] == "unavailable" and c.get("source_ref") is None and c.get("run") is None
+                 and owner["case_index"] == i and owner["case_id"] == c["basis_ref"]["ref_id"] and i in mb["case_indices"])
+
+
 def _g5_products(body, rows_by_case):
     fail = lambda ok: _need(ok, "G5", "PRODUCT_ATTEMPT_MISMATCH")
-    wf = lambda ok: _need(ok, "G5", "WORK_MISMATCH")
+    work_checks = []
+    wf = work_checks.append
     for ai, a in enumerate(body["product_attempts"]):
         case = _at(body["cases"], a["owner_ref"]["index"])
         fail(a["id"] == ai and case["product_attempt_ref"] == ai and a["ordinary_attempt_ref"] == case["ordinary"]["attempt_ref"])
@@ -470,6 +707,7 @@ def _g5_products(body, rows_by_case):
                     value = 0.0 if outcome["kind"] == "underflow" else from_bits(outcome["value"])
                     fail(bits(float(row["value"])) == bits(value if value != 0 else 0.0))
         _g5_coverage(a, case, source, fail)
+        _g5_stages(a, case, fail)
         if a["result"]["kind"] == "ready":
             fail(source is not None and a["run_ref"] is not None and case["run"]["kernel_terminal"]["kind"] == "selected")
             fail(source["preparation"] is not None and source["preparation"]["attempt_ref"] == ai)
@@ -492,9 +730,16 @@ def _g5_products(body, rows_by_case):
                 fail(run is not None and run["kernel_terminal"]["kind"] == "selected")
                 expected = ("facade_certificate", "facade")
             fail((case["reason"]["code"], case["reason"]["phase"]) == expected)
+    for a in body["product_attempts"]:
+        _g5_typed(a, fail)
+    for ok in work_checks:
+        _need(ok, "G5", "WORK_MISMATCH")
 
 
 COMPONENTS = ["UX", "UY", "UZ", "RX", "RY", "RZ"]
+NONQUANTITY_KINDS = {"linear_solver_mode_basis", "sparse_live_path_dense_parity_relative_delta", "modulus_basis_record", "combination_modulus_basis_record"}
+# C3:178-181: hull projection covers quantity rows except observed ancillary rows, support norms and maxima.
+HULL_EXCLUDED = NONQUANTITY_KINDS | {"support_reaction_force_magnitude_v2", "support_reaction_moment_magnitude_v2", "pipe_elastic_normal_stress_maximum_v2"}
 NONQUANTITY = {"linear_solver_mode_basis", "sparse_live_path_dense_parity_relative_delta", "modulus_basis_record", "combination_modulus_basis_record"}
 INPUT_KINDS = {"pipe_lame_hoop_stress_v2", "pipe_lame_radial_stress_v2", "pipe_section_pressure_hoop_stress", "pipe_section_pressure_longitudinal_stress", "constant_effort_support_applied_load", "component_user_stress_multiplier_review", "component_user_stiffness_macro_element_review", "constant_effort_user_input_review", "spring_hanger_user_input_review", "expansion_joint_pressure_thrust_load_review"}
 FORCE = {"element_local_axial_force", "element_local_shear_force_y", "element_local_shear_force_z", "pipe_wall_axial_force_v2", "pipe_effective_axial_force_v2", "reaction_resultant", "support_reaction_force_magnitude_v2"}
@@ -983,6 +1228,26 @@ def _g8(body, source, invocation):
                     if op["result"]["kind"]=="ready":
                         need(op["result"]==operational(op["inputs"]))
                         need(all(op["result"][k]==section[k] for k in ["length","axial_stiffness","torsional_stiffness"]))
+    # F1:101-106 / checklist P7-G8: an attempt without a constructed source still binds its
+    # retained old operational inputs, and any PreparedMember old tuple, to the invocation.
+    for a in body["product_attempts"]:
+        if a["source_ref"] is not None:
+            continue
+        case = model["load_cases"][int(a["owner_ref"]["index"])]
+        members = a["preparation"]["members"]
+        for j, op_old in enumerate(a["operational"]["old"]):
+            pipe = pipes[int(op_old["member"])]
+            ends = [next(n for n in nodes if n["id"] == pipe[k]) for k in ("from", "to")]
+            positions = [bits(unit({"value": n["position"][axis], "unit": model["project"]["units"]["length"]}, "length")) for n in ends for axis in "xyz"]
+            material = next(m for m in materials if m["id"] == pipe["material"])
+            pair, _ = selected_material(material, case)
+            need(op_old["inputs"][:8] == positions + [bits(v) for v in pair])
+            if j < len(members):
+                old, facts = members[j]["old_source"], members[j]["old_facts"]
+                d = unit(pipe["section"]["outside_diameter"], "length"); wall = unit(pipe["section"]["wall_thickness"], "length")
+                tolerance = unit(pipe["section"]["mill_tolerance"], "length") if pipe["section"].get("mill_tolerance") is not None else 0.
+                need(old[:2] == [bits(v) for v in pair] and facts[:2] == [bits(d), bits(wall - tolerance)]
+                     and op_old["inputs"][6:] == [old[i] for i in (0, 1, 2, 5)])
 
 
 def validate_retained_precision(source: Any, invocation: Any = None) -> dict[str, Any]:
@@ -1048,8 +1313,8 @@ def _validate_draft(source: Any, invocation: Any = None) -> dict[str, Any]:
             _need([x["member"] for x in old]==list(range(len(old))) and [x["member"] for x in pm]==list(range(len(pm))) and [x["member"] for x in new]==list(range(len(new))) and len(new)<=len(pm)<=len(old),gate,"COVERAGE_MISMATCH")
             if a["operational"]["old_coverage"]=="captured_prefix":_need(not pm and not new,gate,"COVERAGE_MISMATCH")
             if a["proof"] is not None:
-                indices=[x["row_index"] for x in a["proof"]["projection_outcomes"]]
-                _need(indices==sorted(set(indices)) and all(x<len(rows[c["basis_ref"]["ref_id"]]) for x in indices),gate,"COVERAGE_MISMATCH")
+                indices=[x["row_index"] for x in a["proof"]["projection_outcomes"]];case_rows=rows[c["basis_ref"]["ref_id"]]
+                _need(indices==sorted(set(indices)) and all(x<len(case_rows) and case_rows[int(x)]["kind"] not in HULL_EXCLUDED for x in indices),gate,"COVERAGE_MISMATCH")
                 # I57 s4 G3: a complete proof-owned roster lists the attempt's source bodies
                 # exactly once, ascending 0..body_count-1. A null/invalid source reference is
                 # left to the G5 association pass.
@@ -1066,7 +1331,7 @@ def _validate_draft(source: Any, invocation: Any = None) -> dict[str, Any]:
             _need(len(selected)==int(c["status"]=="selected") and len(unavailable)==int(c["status"]=="unavailable") and all(d["affected_refs"]==[cid] for d in selected+unavailable),gate,"DIAGNOSTIC_MISMATCH")
             if c["status"]=="unavailable":_need(unavailable[0]["id"]==c["diagnostic_ref"],gate,"DIAGNOSTIC_MISMATCH")
             if c["status"]=="selected":_need(not any(d["code"]=="SOURCE_BLOCK_RECOVERY_UNAVAILABLE" and cid in d.get("affected_refs",[]) for d in diags),gate,"DIAGNOSTIC_MISMATCH")
-        gate="G5";_g5_native(body);_g5_products(body,rows)
+        gate="G5";_g5_native(body);_g5_ordinary(body,cases,diags);_g5_products(body,rows)
         for i,c in enumerate(cases):
             ordinary=body["ordinary_attempts"][i];diagids={d["id"] for d in diags}
             _need(all(x in diagids for x in ordinary["diagnostic_refs"]),gate,"ATTEMPT_MISMATCH")
@@ -1085,7 +1350,10 @@ def _validate_draft(source: Any, invocation: Any = None) -> dict[str, Any]:
         for row in projected["results"]:row.pop("recovery_method",None)
         from .compatibility import _source_contract
         try:_source_contract(projected)
-        except ValueError as exc:raise RetainedPrecisionError("G7",str(exc)) from exc
+        except ValueError as exc:
+            text=str(exc);match=re.match(r"[A-Z][A-Z0-9_]*",text)
+            error=RetainedPrecisionError("G7",match.group(0) if match else "SOURCE_PREVIEW_PHYSICS_INVALID");error.detail=text
+            raise error from exc
         gate="G8"
         if invocation is not None:_g8(body,snapshot,invocation)
         eligible=_IMPLEMENTATION_COMPLETE and invocation is not None and snapshot["status"]["mechanics"]=="MECHANICS_SOLVED" and all(c["status"] in ("selected","not_required") for c in cases)
