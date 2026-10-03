@@ -6495,3 +6495,52 @@ next design dependency or identify a genuinely owner-held choice, but selects
 neither. The selected cover remains binding until a replacement is independently
 derived and selected. Code acceptance, numerical obstruction and public-meaning
 decisions remain distinct; no new source law or availability exception follows.
+
+
+## I50 support and observation component accepted and locally merged (ROOT, 2026-10-03 UTC)
+
+ROOT accepts the repaired private component because independent review now confirms both its source/custody behavior and its local work accounting.
+
+Same RV65's complete backcheck is preserved at `8d025201b8`. ROOT read it and
+verified its payloads/external evidence. RV65-I1 is closed by the actual counted
+initialization loop and correction-sensitive prefixes; the boolean duplicate-hit
+hardening retains the earlier production-uniqueness qualification. No actionable
+finding remains at this component scope. Accept source `c79a1c293d` and its
+complete two-mode private verdict behavior.
+
+ROOT no-ff merged it locally at `7e9597bd9c` and verified exact maintained
+Piping source correspondence. `verification/i50_fanin_01/LOCAL_MERGE/RECORD.md`
+records the join. No main/public acceptance follows. Author and reviewer returns
+distinguish true output misses, conservative refusals and ancillary observations;
+both named cases still refuse numerically. The original code-review failure,
+initial dense prefix and all original evidence stay preserved.
+
+## Existing authority and next producer design (ROOT, 2026-10-03 UTC)
+
+ROOT commissions a replacement numerical design under the actual delegated engineering authority, while keeping every public warrant and current check in force until review.
+
+I48's decision memo is preserved at `0869aa6265`. ROOT read it and the actual
+OWNER_PHYSICS_AUTHORITY, CORRECTNESS_ACTIVATION and route-direction records;
+origins are recorded in verification/owner_authority_2026-10-03. Developing a
+different sound formulation/producer does not itself require another owner prompt.
+An unsupported public-meaning choice, protected-criterion change or availability
+exception still does. The private dual cover remains selected until a concrete
+replacement is independently derived and selected. No check is silently dropped.
+
+Fresh TASK I51 received design brief `36acb1ef39` at 08:08:34Z, checkpoint
+08:18:34Z, candidate/obstruction 08:28:34Z, cutoff 08:38:34Z, seal 08:48:34Z.
+It returned a source-prepared new-K/two-readout producer proposal, now preserved
+at `8d025201b8`. ROOT has read RETURN, WITNESS and INTERFACE and verified its
+seal and three external control files. The owning WITNESS gives an analytical
+complete-row candidate; no actual producer run, residual-width, new-K G5a or
+resource qualification is claimed. Its methods, interfaces and public-warrant
+preservation are not yet selected; fresh independent design review is next.
+
+I51 discloses initial read-intent Git status/rev-parse in the inherited 92ea
+worktree without optional locks disabled, before detailed brief loading. No
+intentional mutation or maintained change is reported, but an optional index
+refresh cannot be excluded. Do not assert blanket no-index writes for that run.
+All later reads used the required setting; source work used the pinned NUM basis.
+Future dispatches explicitly require host/clock only before instructions and
+GIT_OPTIONAL_LOCKS=0 even for an initial status read. This is run-specific execution
+correction, not a reusable instruction amendment or a reason to rewrite evidence.

@@ -34,21 +34,20 @@ final joined closure remain.
 
 ## Running now
 
-I50's two-mode component is frozen at `8104a4fedd` on the component branch.
-RV65 is reviewing its code and evidence (return by 08:22:48Z); focused tests pass,
-but an initialization-work accounting finding remains open. Its runtime is released.
-RV66's torsion obstruction is independently checked and accepted at its fixed-scale
-and algebraic-projection scope. I48 is checking the exact next decision/authority
-boundary (return by 08:05:59Z). No public projection is selected.
-M5 Max, existing memory guard PID 5387; original evidence is preserved.
+I50's repaired support/observation component is accepted and merged locally at
+`7e9597bd9c` after the same reviewer's backcheck. Both modes still numerically
+refuse; no public publishing case exists. I51's next design is sealed and awaiting
+fresh design review: genuinely source-prepared new kernel inputs and tight dual
+readouts. Its all-row analytical witness is not a live producer result.
+No compiler/model run is active. M5 Max, guard PID 5387; evidence is preserved.
 
 ## Next
 
-Close the code-review findings with I50 and the same reviewer. Use I48’s source
-warrants to choose the smallest next design dependency; a new proof needs independent
-review before reliance. The simple projection is blocked at its checked scales.
-Keep one reviewer through corrections and obtain fresh independent PR review.
-Bulk new evidence stays in scratch with committed hashes, sizes and locations.
+Independently re-derive I51's geometry preparation, two residual laws, complete
+producer and public-warrant preservation before ROOT selects an implementation.
+Current dual-cover code remains binding. Actual new-K solve, residual widths,
+G5a, observables and resource/custody checks remain decisive live gates.
+Bulk evidence stays in scratch with committed hash/size/location manifests.
 
 ## Branches and owner decisions
 
