@@ -21,7 +21,7 @@ Record the files you actually read, with their sha256, in your RETURN.
 
 ## Paths
 
-- `WT` = /Users/ryan/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3
+- `WT` = the T3 worktree root on the M5 host. Your dispatch prompt gives its absolute path; committed text uses the placeholder.
 - **Your worktree:** `READER` = `WT/f2a-readers`, branch `codex/piping-f2a-readers-20261003`. Its head `ae97b7d5c2` is ROOT's unaccepted WIP commit of the frozen reader drafts. Edit only there, and only on your paths.
 - `NUM` = `WT/numerics` (records; read from here).
 - `P` = projects/chirality-piping
@@ -94,11 +94,11 @@ The memory guard must be running (`pgrep -fl memguard`). The test command, which
 ```
 OPENPIPESTRESS_CHECKED_JSON_BIN=WT/targets/i52-readers/canonical_json/release/openpipestress_jcs_ijson \
 OPENPIPESTRESS_UNITS_BIN=WT/targets/i52-readers/units/release/openpipestress_units \
-/Users/ryan/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/projects/chirality-piping/.venv/bin/python -m pytest -q \
+VENV/bin/python -m pytest -q \
   tests/test_retained_precision_contract.py tests/test_retained_precision_schema.py
 ```
 
-- Expand `WT` to its absolute path.
+- Expand `WT` and `VENV` to the absolute paths in your dispatch prompt. `VENV` is the control checkout's `projects/chirality-piping/.venv`.
 - **Both environment variables are required,** or the conftest can launch a hidden Cargo build.
 - Put a 1,200-second wall on each run.
 - **Never** run Cargo, an install, new tooling, or any solver or native job. I61 runs Cargo beside you in another worktree.

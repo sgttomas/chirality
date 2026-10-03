@@ -13,7 +13,7 @@ Record the files you actually read, with their sha256, in your RETURN.
 
 ## Paths
 
-- `WT` = /Users/ryan/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3
+- `WT` = the T3 worktree root on the M5 host. Your dispatch prompt gives its absolute path; committed text uses the placeholder.
 - **Your worktree:** `WT/f2a-coverage`, on branch `codex/piping-f2a-coverage-20261003`, which starts at CODE `652ad0cc1f`. Its maintained source equals NUM's. Edit only there.
 - `NUM` = `WT/numerics` (records; read from here).
 - `P` = projects/chirality-piping
