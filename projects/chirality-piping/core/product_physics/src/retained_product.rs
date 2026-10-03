@@ -43,6 +43,27 @@ pub(super) struct MemberIdentity {
     pub nodes: [usize; 2],
 }
 #[derive(Debug)]
+pub(super) struct SpringIdentity {
+    pub boundary: usize,
+    pub support: usize,
+    pub dof: usize,
+    pub bits: u64,
+}
+#[derive(Debug)]
+pub(super) struct ObservationValue {
+    pub value_bits: u64,
+    pub basis: String,
+}
+#[derive(Debug)]
+pub(super) struct SolverObservations {
+    pub case: String,
+    pub mode: PreviewSolverMode,
+    pub mode_row: ObservationValue,
+    /// Independent producing-prefix fact, never inferred from the owned snapshot.
+    pub parity_produced: bool,
+    pub parity: Option<ObservationValue>,
+}
+#[derive(Debug)]
 pub(super) enum CaptureError {
     Association(String),
     CountRange(&'static str),
@@ -55,6 +76,14 @@ pub(super) enum CaptureError {
 #[derive(Default)]
 pub(super) struct ProductCapture {
     pub adapter: AdapterWork,
+    pub invocation_calls: usize,
+    pub invocation_mode: Option<PreviewSolverMode>,
+    pub observation_calls: usize,
+    pub observations: Option<SolverObservations>,
+    /// Successfully allocated case/mode-basis/parity-basis capacities, even on later failure.
+    pub observation_capacity_bytes: [usize; 3],
+    #[cfg(test)]
+    pub observation_storage_failure: Option<usize>,
     pub normalized_calls: usize,
     pub case_calls: usize,
     pub final_calls: usize,
@@ -69,6 +98,11 @@ pub(super) struct ProductCapture {
     pub members: Vec<MemberIdentity>,
     pub terms: Vec<TermIdentity>,
     pub supports: Vec<(String, usize)>,
+    pub spring_map: Vec<SpringIdentity>,
+    pub support_fixed: Vec<[bool; 6]>,
+    /// Actual capacity bytes: built-used, spring-used, rigid-owned, spring-map,
+    /// source springs, group child lists (sum), fixed-component maps.
+    pub support_capacity_bytes: [usize; 7],
     pub facts: Vec<k::ProductMemberFacts>,
     pub source: Option<k::PrimitiveSource>,
     pub case_id: String,
@@ -92,9 +126,16 @@ impl ProductCapture {
         capture: Option<&source_receipt::CapturedInvocation>,
         mode: PreviewSolverMode,
     ) {
+        if self.error.is_some() { return; }
+        let Some(calls) = self.invocation_calls.checked_add(1) else { self.fail_count("invocation calls"); return; };
+        self.invocation_calls = calls;
+        if calls != 1 { self.fail("duplicate invocation capture"); return; }
         if capture.is_none_or(|c| c.mode() != mode) {
             self.fail("missing/mismatched actual invocation capture");
+            return;
         }
+        if !self.adapter.enter(AdapterEvent::MapWrite, 1) { self.fail("invocation accounting"); return; }
+        self.invocation_mode = Some(mode);
     }
     fn fail(&mut self, s: impl Into<String>) {
         if self.error.is_none() {
@@ -447,6 +488,578 @@ impl ProductCapture {
         }
         Ok(())
     }
+    fn observation_copy(&mut self, text: &str, slot: usize) -> Result<String, CaptureError> {
+        std::alloc::Layout::array::<u8>(text.len())
+            .map_err(|_| CaptureError::CountRange("observation layout"))?;
+        let n =
+            u64::try_from(text.len()).map_err(|_| CaptureError::CountRange("observation bytes"))?;
+        self.capture_entry(AdapterEvent::AllocationRequest)?;
+        self.adapter.enter(AdapterEvent::RequestedCopyBytes, n);
+        self.adapter.require()?;
+        self.capture_entry(AdapterEvent::MapWrite)?;
+        self.capture_entry(AdapterEvent::LibraryBoundary)?;
+        let mut value = String::new();
+        #[cfg(test)]
+        if self.observation_storage_failure == Some(slot) {
+            return Err(CaptureError::Storage(
+                "observation text (injected allocator refusal)",
+            ));
+        }
+        value
+            .try_reserve_exact(text.len())
+            .map_err(|_| CaptureError::Storage("observation text"))?;
+        self.observation_capacity_bytes[slot] = value.capacity();
+        let bytes = u64::try_from(value.capacity())
+            .map_err(|_| CaptureError::CountRange("observation capacity"))?;
+        self.adapter.enter(AdapterEvent::RustCapacityBytes, bytes);
+        self.adapter.require()?;
+        self.capture_entry(AdapterEvent::LibraryBoundary)?;
+        value.push_str(text);
+        Ok(value)
+    }
+    fn observation_fields(
+        &self,
+        row: &ResultItem,
+        case: &str,
+        mode: PreviewSolverMode,
+        parity: bool,
+        final_row: bool,
+        captured: Option<&ObservationValue>,
+    ) -> Result<(), CaptureError> {
+        self.capture_entry(AdapterEvent::ValidationEntry)?;
+        let m = row.metadata.as_ref().ok_or("observation metadata")?;
+        let (id, kind, unit, entity, component, location, sign) = if parity {
+            ("result:sparse-live:dense-parity-relative-delta", "sparse_live_path_dense_parity_relative_delta",
+             "unitless", "solver:sparse_direct", "sparse_live_path", "load_case",
+             "unitless max absolute dense-sparse solution delta divided by max dense solution magnitude; no release threshold asserted")
+        } else {
+            ("result:solver-mode:linear-solve-basis", "linear_solver_mode_basis", "mode_code",
+             "solver:linear_static_preview", "linear_solver_mode", case,
+             "mode_code 1=sparse_interactive, 2=dense_scrutiny, 3=dense_fallback_after_sparse_failure")
+        };
+        let fixed = self.adapter.same(&row.id, id)
+            && self.adapter.same(&row.kind, kind)
+            && self.adapter.same(&row.unit, unit)
+            && self.adapter.same(&row.entity_ref, entity)
+            && self.adapter.same(&m.component, component)
+            && self.adapter.same(&m.coordinate_system, "reduced_system")
+            && self.adapter.same(&m.location, location);
+        self.adapter.require()?;
+        if !fixed || !row.source_result_refs.is_empty() {
+            return Err("observation fixed fields".into());
+        }
+        let sign_matches = self.adapter.same(&m.sign_convention, sign);
+        self.adapter.require()?;
+        if !sign_matches {
+            return Err(if parity {
+                "observation parity sign"
+            } else {
+                "ordinary sparse mode sign"
+            }
+            .into());
+        }
+        if final_row {
+            let basis = row.basis_ref.as_ref().ok_or("observation final basis")?;
+            let same = self.adapter.same(&basis.ref_type, "load_case")
+                && self.adapter.same(&basis.ref_id, case);
+            self.adapter.require()?;
+            if !same {
+                return Err("observation final case".into());
+            }
+        } else if row.basis_ref.is_some() {
+            return Err("observation producer basis".into());
+        }
+        if parity {
+            if mode != PreviewSolverMode::DenseScrutiny || !row.value.is_finite() || row.value < 0.0
+            {
+                return Err("observation parity mode/value".into());
+            }
+        } else {
+            let expected = match mode {
+                PreviewSolverMode::SparseInteractive => 1.0f64,
+                PreviewSolverMode::DenseScrutiny => 2.0f64,
+            };
+            if row.value.to_bits() != expected.to_bits() {
+                return Err("observation mode value/fallback".into());
+            }
+        }
+        if let Some(captured) = captured {
+            let same = self.adapter.same(&m.basis, &captured.basis);
+            self.adapter.require()?;
+            if !same || row.value.to_bits() != captured.value_bits {
+                return Err("observation captured value/text".into());
+            }
+        }
+        Ok(())
+    }
+    pub(super) fn solver_observations(
+        &mut self,
+        case: &PreviewLoadCase,
+        mode: PreviewSolverMode,
+        produced_rows: &[ResultItem],
+    ) {
+        if self.error.is_some() {
+            return;
+        }
+        if let Some(fault) = self.adapter.fault.get() {
+            self.error = Some(CaptureError::Accounting(fault));
+            return;
+        }
+        let result = (|| -> Result<(), CaptureError> {
+            let calls = self
+                .observation_calls
+                .checked_add(1)
+                .ok_or(CaptureError::CountRange("observation calls"))?;
+            self.capture_entry(AdapterEvent::MapWrite)?;
+            self.observation_calls = calls;
+            self.capture_entry(AdapterEvent::ValidationEntry)?;
+            if calls != 1 || self.observations.is_some() {
+                return Err("duplicate observation completion".into());
+            }
+            let same_case = self.adapter.same(&case.id, &self.case_id);
+            self.adapter.require()?;
+            if self.invocation_calls != 1
+                || self.invocation_mode != Some(mode)
+                || self.case_calls != 1
+                || !same_case
+            {
+                return Err("observation invocation/case/mode".into());
+            }
+            let mut mode_row = None;
+            let mut parity_row = None;
+            for row in produced_rows {
+                self.capture_entry(AdapterEvent::SourceVisit)?;
+                let is_mode = self.adapter.same(&row.kind, "linear_solver_mode_basis");
+                let is_parity = self
+                    .adapter
+                    .same(&row.kind, "sparse_live_path_dense_parity_relative_delta");
+                self.adapter.require()?;
+                if is_mode {
+                    if mode_row.is_some() {
+                        return Err("duplicate produced mode".into());
+                    }
+                    self.capture_entry(AdapterEvent::MapWrite)?;
+                    mode_row = Some(row);
+                }
+                if is_parity {
+                    if parity_row.is_some() {
+                        return Err("duplicate produced parity".into());
+                    }
+                    self.capture_entry(AdapterEvent::MapWrite)?;
+                    parity_row = Some(row);
+                }
+            }
+            let mode_row = mode_row.ok_or("missing produced mode")?;
+            self.observation_fields(mode_row, &case.id, mode, false, false, None)?;
+            if let Some(row) = parity_row {
+                self.observation_fields(row, &case.id, mode, true, false, None)?;
+            }
+            let parity_produced = parity_row.is_some();
+            let captured_case = self.observation_copy(&case.id, 0)?;
+            let captured_mode = ObservationValue {
+                value_bits: mode_row.value.to_bits(),
+                basis: self.observation_copy(&mode_row.metadata.as_ref().unwrap().basis, 1)?,
+            };
+            let parity = match parity_row {
+                Some(row) => Some(ObservationValue {
+                    value_bits: row.value.to_bits(),
+                    basis: self.observation_copy(&row.metadata.as_ref().unwrap().basis, 2)?,
+                }),
+                None => None,
+            };
+            self.capture_entry(AdapterEvent::MapWrite)?;
+            self.observations = Some(SolverObservations {
+                case: captured_case,
+                mode,
+                mode_row: captured_mode,
+                parity_produced,
+                parity,
+            });
+            Ok(())
+        })();
+        if let Err(error) = result {
+            self.error = Some(error);
+        }
+    }
+    pub(super) fn bind_observations(
+        &self,
+        envelope: &MechanicsEnvelope,
+    ) -> Result<(), CaptureError> {
+        self.adapter.require()?;
+        if self.error.is_some() {
+            return Err("prior observation capture refusal".into());
+        }
+        self.capture_entry(AdapterEvent::ValidationEntry)?;
+        let captured = self
+            .observations
+            .as_ref()
+            .ok_or("missing observation completion")?;
+        let same = self.adapter.same(&captured.case, &self.case_id);
+        self.adapter.require()?;
+        if self.invocation_calls != 1
+            || self.case_calls != 1
+            || self.observation_calls != 1
+            || self.invocation_mode != Some(captured.mode)
+            || !same
+            || captured.parity_produced != captured.parity.is_some()
+        {
+            return Err("observation completion/presence custody".into());
+        }
+        let mut mode_count = 0usize;
+        let mut parity_count = 0usize;
+        for row in &envelope.results {
+            self.capture_entry(AdapterEvent::RowVisit)?;
+            let is_mode = self.adapter.same(&row.kind, "linear_solver_mode_basis");
+            let is_parity = self
+                .adapter
+                .same(&row.kind, "sparse_live_path_dense_parity_relative_delta");
+            self.adapter.require()?;
+            if is_mode {
+                mode_count = mode_count
+                    .checked_add(1)
+                    .ok_or(CaptureError::CountRange("final modes"))?;
+                self.observation_fields(
+                    row,
+                    &captured.case,
+                    captured.mode,
+                    false,
+                    true,
+                    Some(&captured.mode_row),
+                )?;
+            }
+            if is_parity {
+                parity_count = parity_count
+                    .checked_add(1)
+                    .ok_or(CaptureError::CountRange("final parity"))?;
+                let snapshot = captured.parity.as_ref().ok_or("unexpected final parity")?;
+                self.observation_fields(
+                    row,
+                    &captured.case,
+                    captured.mode,
+                    true,
+                    true,
+                    Some(snapshot),
+                )?;
+            }
+        }
+        if mode_count != 1 || parity_count != usize::from(captured.parity_produced) {
+            return Err("observation final presence".into());
+        }
+        Ok(())
+    }
+    fn capture_entry(&self, event: AdapterEvent) -> Result<(), CaptureError> {
+        self.adapter.enter(event, 1);
+        self.adapter.require()
+    }
+    pub(super) fn support_reserve<T>(
+        &mut self,
+        n: usize,
+        slot: usize,
+    ) -> Result<Vec<T>, CaptureError> {
+        std::alloc::Layout::array::<T>(n)
+            .map_err(|_| CaptureError::CountRange("support layout"))?;
+        self.capture_entry(AdapterEvent::AllocationRequest)?;
+        self.capture_entry(AdapterEvent::MapWrite)?; // capacity record entry before allocation
+        let mut v = Vec::new();
+        self.capture_entry(AdapterEvent::LibraryBoundary)?;
+        v.try_reserve_exact(n)
+            .map_err(|_| CaptureError::Storage("support vector"))?;
+        let bytes = v
+            .capacity()
+            .checked_mul(std::mem::size_of::<T>())
+            .ok_or(CaptureError::CountRange("support capacity bytes"))?;
+        self.support_capacity_bytes[slot] = self.support_capacity_bytes[slot]
+            .checked_add(bytes)
+            .ok_or(CaptureError::CountRange("support capacity total"))?;
+        let bytes = u64::try_from(bytes)
+            .map_err(|_| CaptureError::CountRange("support capacity conversion"))?;
+        self.adapter.enter(AdapterEvent::RustCapacityBytes, bytes);
+        self.adapter.require()?;
+        Ok(v)
+    }
+    pub(super) fn capture_supports(
+        &mut self,
+        model: &PreviewModel,
+        built: &BuiltModel,
+        restrained: &[usize],
+        springs: &[SpringEntry],
+        parts: &mut k::SourceParts,
+    ) -> Result<(), CaptureError> {
+        self.adapter.require()?;
+        let n = model
+            .nodes
+            .len()
+            .checked_mul(6)
+            .ok_or(CaptureError::CountRange("support dofs"))?;
+        for count in [
+            springs.len(),
+            model.supports.len(),
+            built.supports.len(),
+            restrained.len(),
+        ] {
+            self.capture_entry(AdapterEvent::ValidationEntry)?;
+            u32::try_from(count).map_err(|_| CaptureError::CountRange("support count"))?;
+        }
+        model
+            .supports
+            .len()
+            .checked_mul(6)
+            .ok_or(CaptureError::CountRange("support slots"))?;
+        let q = model
+            .nodes
+            .len()
+            .checked_mul(7)
+            .and_then(|v| {
+                model
+                    .pipe_segments
+                    .len()
+                    .checked_mul(30)
+                    .and_then(|m| v.checked_add(m))
+            })
+            .and_then(|v| v.checked_add(springs.len()))
+            .and_then(|v| v.checked_add(restrained.len()))
+            .and_then(|v| {
+                model
+                    .supports
+                    .len()
+                    .checked_mul(2)
+                    .and_then(|g| v.checked_add(g))
+            })
+            .ok_or(CaptureError::CountRange("support layout quantities"))?;
+        u32::try_from(q).map_err(|_| CaptureError::CountRange("support layout quantities"))?;
+        let mut built_used = self.support_reserve(built.supports.len(), 0)?;
+        built_used.resize(built.supports.len(), false);
+        let mut spring_used = self.support_reserve(springs.len(), 1)?;
+        spring_used.resize(springs.len(), false);
+        let mut rigid_owned = self.support_reserve(n, 2)?;
+        rigid_owned.resize(n, false);
+        self.spring_map = self.support_reserve(springs.len(), 3)?;
+        parts.springs = self.support_reserve(springs.len(), 4)?;
+        self.support_fixed = self.support_reserve(model.supports.len(), 6)?;
+        for (i, authored) in model.supports.iter().enumerate() {
+            self.capture_entry(AdapterEvent::SourceVisit)?;
+            let mut node = None;
+            for (j, p) in model.nodes.iter().enumerate() {
+                self.capture_entry(AdapterEvent::SourceVisit)?;
+                let equal = self.adapter.same(&p.id, &authored.node);
+                self.adapter.require()?;
+                if equal {
+                    node = Some(j);
+                    break;
+                }
+            }
+            let node = node.ok_or("support node")?;
+            let mut matched = None;
+            for (j, b) in built.supports.iter().enumerate() {
+                self.capture_entry(AdapterEvent::SourceVisit)?;
+                let equal = self.adapter.same(&b.support_id, &authored.id);
+                self.adapter.require()?;
+                if equal {
+                    if matched.is_some() || built_used[j] {
+                        return Err("duplicate built support".into());
+                    }
+                    matched = Some(j);
+                }
+            }
+            let bi = matched.ok_or("missing built support")?;
+            let b = &built.supports[bi];
+            self.capture_entry(AdapterEvent::ValidationEntry)?;
+            if b.node_index != node || b.imposed_displacement.is_some() {
+                return Err("support build node/motion".into());
+            }
+            let is_spring = authored.family.as_deref() == Some("spring");
+            let family = match authored.family.as_deref() {
+                Some("spring") => SupportFamily::Spring,
+                Some("anchor") => SupportFamily::Anchor,
+                Some("guide") => SupportFamily::Guide,
+                Some("line_stop") => SupportFamily::LineStop,
+                Some("vertical_support") => SupportFamily::VerticalSupport,
+                None if authored.restraints.len() == 6 => SupportFamily::Anchor,
+                None => SupportFamily::Guide,
+                _ => return Err("unsupported support family".into()),
+            };
+            if b.family != family || b.restrained_dofs.len() != authored.restraints.len() {
+                return Err("support build family/axes".into());
+            }
+            let mut fixed = [false; 6];
+            for (a, d) in authored.restraints.iter().zip(&b.restrained_dofs) {
+                self.capture_entry(AdapterEvent::SourceVisit)?;
+                self.capture_entry(AdapterEvent::LibraryBoundary)?;
+                if parse_dof(a).map_err(CaptureError::from)? != *d {
+                    return Err("support axis".into());
+                }
+                if !is_spring {
+                    let axis = dof_index(*d);
+                    let global = node
+                        .checked_mul(6)
+                        .and_then(|v| v.checked_add(axis))
+                        .ok_or(CaptureError::CountRange("support global dof"))?;
+                    if fixed[axis] || rigid_owned[global] {
+                        return Err("ambiguous rigid ownership".into());
+                    }
+                    let mut hits = 0;
+                    for &g in restrained {
+                        self.capture_entry(AdapterEvent::SourceVisit)?;
+                        self.capture_entry(AdapterEvent::ValidationEntry)?;
+                        if g == global {
+                            hits += 1;
+                        }
+                    }
+                    if hits != 1 {
+                        return Err("rigid boundary identity".into());
+                    }
+                    self.capture_entry(AdapterEvent::MapWrite)?;
+                    fixed[axis] = true;
+                    rigid_owned[global] = true;
+                }
+            }
+            let mut children = self.support_reserve(usize::from(is_spring), 5)?;
+            let mut found_spring = false;
+            for (j, spring) in springs.iter().enumerate() {
+                self.capture_entry(AdapterEvent::SourceVisit)?;
+                let equal = self.adapter.same(&spring.support_id, &authored.id);
+                self.adapter.require()?;
+                if !equal {
+                    continue;
+                }
+                self.capture_entry(AdapterEvent::ValidationEntry)?;
+                if !is_spring || found_spring || spring_used[j] {
+                    return Err("duplicate/extra support spring".into());
+                }
+                let input = authored
+                    .stiffness
+                    .as_ref()
+                    .ok_or("authored spring stiffness")?;
+                let stiffness = b.stiffness.as_ref().ok_or("built spring stiffness")?;
+                self.capture_entry(AdapterEvent::LibraryBoundary)?;
+                let dof = parse_dof(&input.dof).map_err(CaptureError::from)?;
+                let dimension = if dof.is_translational() {
+                    QuantityDimension::TranslationalStiffness
+                } else {
+                    QuantityDimension::RotationalStiffness
+                };
+                if b.restrained_dofs.as_slice() != [dof]
+                    || spring.node_dof.node_index != node
+                    || spring.node_dof.dof != dof
+                    || stiffness.dimension != dimension
+                    || spring.stiffness.dimension != dimension
+                    || !input.value.value.is_finite()
+                    || input.value.value.to_bits() != stiffness.value.to_bits()
+                    || input.value.value.to_bits() != spring.stiffness.value.to_bits()
+                {
+                    return Err("spring source identity".into());
+                }
+                let global = spring.node_dof.global_index();
+                self.capture_entry(AdapterEvent::MapWrite)?;
+                spring_used[j] = true;
+                found_spring = true;
+                self.capture_entry(AdapterEvent::MapWrite)?;
+                children.push(j as u32);
+                self.capture_entry(AdapterEvent::MapWrite)?;
+                parts.springs.push(k::Spring {
+                    id: j as u32,
+                    dof: k::Dof::from_global(global),
+                    stiffness: spring.stiffness.value,
+                });
+                self.capture_entry(AdapterEvent::MapWrite)?;
+                self.spring_map.push(SpringIdentity {
+                    boundary: j,
+                    support: i,
+                    dof: global,
+                    bits: spring.stiffness.value.to_bits(),
+                });
+            }
+            if is_spring != found_spring || (!is_spring && b.stiffness.is_some()) {
+                return Err("missing/foreign support stiffness".into());
+            }
+            let id = self.adapter.copy(&authored.id)?;
+            self.capture_entry(AdapterEvent::MapWrite)?;
+            built_used[bi] = true;
+            self.capture_entry(AdapterEvent::MapWrite)?;
+            self.supports.push((id, node));
+            self.capture_entry(AdapterEvent::MapWrite)?;
+            self.support_fixed.push(fixed);
+            self.capture_entry(AdapterEvent::MapWrite)?;
+            parts.supports.push(k::SupportGroup {
+                id: i as u32,
+                node: node as u32,
+                restrained: fixed,
+                springs: children,
+                directional_springs: Vec::new(),
+            });
+        }
+        for used in built_used.into_iter().chain(spring_used) {
+            self.capture_entry(AdapterEvent::ValidationEntry)?;
+            if !used {
+                return Err("unconsumed built/boundary support".into());
+            }
+        }
+        for &g in restrained {
+            self.capture_entry(AdapterEvent::SourceVisit)?;
+            if !rigid_owned.get(g).copied().unwrap_or(false) {
+                return Err("unowned rigid boundary".into());
+            }
+        }
+        Ok(())
+    }
+    fn check_support_source(&self, source: &k::PrimitiveSource) -> Result<(), CaptureError> {
+        self.check_support_maps(source.supports(), source.springs(), true)
+    }
+    pub(super) fn check_support_maps(
+        &self,
+        groups: &[k::SupportGroup],
+        springs: &[k::Spring],
+        canonical: bool,
+    ) -> Result<(), CaptureError> {
+        self.adapter.require()?;
+        if groups.len() != self.supports.len()
+            || springs.len() != self.spring_map.len()
+            || self.support_fixed.len() != self.supports.len()
+        {
+            return Err("canonical support counts".into());
+        }
+        for (i, group) in groups.iter().enumerate() {
+            self.capture_entry(AdapterEvent::SourceVisit)?;
+            if group.id != i as u32
+                || group.node as usize != self.supports[i].1
+                || group.restrained != self.support_fixed[i]
+                || !group.directional_springs.is_empty()
+            {
+                return Err("canonical support identity".into());
+            }
+            let mut count = 0;
+            for map in &self.spring_map {
+                self.capture_entry(AdapterEvent::SourceVisit)?;
+                if map.support != i {
+                    continue;
+                }
+                count += 1;
+                if group.springs.as_slice() != [map.boundary as u32] {
+                    return Err("canonical support membership".into());
+                }
+                let mut found = None;
+                for (index, spring) in springs.iter().enumerate() {
+                    self.capture_entry(AdapterEvent::SourceVisit)?;
+                    self.capture_entry(AdapterEvent::ValidationEntry)?;
+                    if spring.id != map.boundary as u32 {
+                        continue;
+                    }
+                    if found.is_some() || (canonical && index != map.boundary) {
+                        return Err("canonical spring occurrence".into());
+                    }
+                    found = Some(spring);
+                }
+                let spring = found.ok_or("canonical spring")?;
+                if spring.dof.global() != map.dof || spring.stiffness.to_bits() != map.bits {
+                    return Err("canonical spring identity".into());
+                }
+            }
+            if count != group.springs.len() {
+                return Err("canonical support coverage".into());
+            }
+        }
+        Ok(())
+    }
     pub fn case_source(
         &mut self,
         model: &PreviewModel,
@@ -471,8 +1084,7 @@ impl ProductCapture {
             self.error = Some(e);
             return;
         }
-        if !springs.is_empty()
-            || !built.nonlinear_supports.is_empty()
+        if !built.nonlinear_supports.is_empty()
             || !built.user_stiffness_elements.is_empty()
             || !built.curved_bend_elements.is_empty()
             || !thermal.is_empty()
@@ -706,51 +1318,13 @@ impl ProductCapture {
                 value: 0.0,
             });
         }
-        for (i, s) in model.supports.iter().enumerate() {
-            if !self.adapter.enter(AdapterEvent::SourceVisit, 1)
-                || !self.adapter.enter(AdapterEvent::ValidationEntry, 1)
-            {
-                self.fail("support accounting");
-                return;
-            }
-            let Some(n) = model
-                .nodes
-                .iter()
-                .position(|n| self.adapter.same(&n.id, &s.node))
-            else {
-                self.fail("support node");
-                return;
-            };
-            let Some(b) = built
-                .supports
-                .iter()
-                .find(|b| self.adapter.same(&b.support_id, &s.id))
-            else {
-                self.fail("support build");
-                return;
-            };
-            let mut fixed = [false; 6];
-            for d in &b.restrained_dofs {
-                fixed[dof_index(*d)] = true;
-            }
-            if !self.adapter.enter(AdapterEvent::MapWrite, 1) {
-                self.fail("map-write accounting");
-                return;
-            }
-            parts.supports.push(k::SupportGroup {
-                id: i as u32,
-                node: n as u32,
-                restrained: fixed,
-                springs: vec![],
-                directional_springs: vec![],
-            });
-            if !self.adapter.enter(AdapterEvent::LibraryBoundary, 1)
-                || !self.adapter.enter(AdapterEvent::MapWrite, 1)
-            {
-                self.fail("support-write accounting");
-                return;
-            }
-            self.supports.push((s.id.clone(), n));
+        if let Err(e) = self.capture_supports(model, built, restrained, springs, &mut parts) {
+            self.error = Some(e);
+            return;
+        }
+        if let Err(e) = self.check_support_maps(&parts.supports, &parts.springs, false) {
+            self.error = Some(e);
+            return;
         }
         let mut used = match self.adapter.reserve(case.primitive_loads.len()) {
             Ok(v) => v,
@@ -838,6 +1412,10 @@ impl ProductCapture {
                     used[i] = true;
                     self.terms[i].canonical = canonical;
                 }
+                if let Err(e) = self.check_support_source(&source) {
+                    self.error = Some(e);
+                    return;
+                }
                 self.source = Some(source);
             }
             Err(e) => self.error = Some(CaptureError::Source(e)),
@@ -849,6 +1427,9 @@ impl ProductCapture {
             ("members", self.members.capacity()),
             ("terms", self.terms.capacity()),
             ("facts", self.facts.capacity()),
+            ("supports", self.supports.capacity()),
+            ("spring_map", self.spring_map.capacity()),
+            ("support_fixed", self.support_fixed.capacity()),
         ];
     }
     pub fn finish(&mut self, envelope: &MechanicsEnvelope) {
@@ -946,6 +1527,7 @@ impl ProductCapture {
         if self.error.is_some() {
             return Err("prior capture refusal".into());
         }
+        self.bind_observations(e)?;
         self.adapter.enter(AdapterEvent::ValidationEntry, 1);
         self.adapter.require()?;
         if self.basis_expected != self.basis_record.is_some()
@@ -987,6 +1569,8 @@ impl ProductCapture {
                     return Err("mode unit".into());
                 }
                 (k::ProductRecipe::NonQuantity, 0, k::ProductUnit::Record)
+            } else if r.kind == "sparse_live_path_dense_parity_relative_delta" {
+                (k::ProductRecipe::DenseParityObservation, 0, k::ProductUnit::Record)
             } else if r.kind == "modulus_basis_record" {
                 if modulus_basis || !self.basis_expected {
                     return Err("modulus record coverage".into());
@@ -1039,29 +1623,16 @@ impl ProductCapture {
             } else if r.kind.starts_with("support_reaction_") {
                 let s = support.ok_or("support")?;
                 let m = r.metadata.as_ref().ok_or("support metadata")?;
-                let id = if r.kind == "support_reaction_force_magnitude_v2" {
-                    k::QuantityId::SupportForceMagnitude(s as u32)
+                let (recipe, unit) = if r.kind == "support_reaction_force_magnitude_v2" {
+                    (k::ProductRecipe::Native(k::QuantityId::SupportForceMagnitude(s as u32)), k::ProductUnit::Newton)
                 } else if r.kind == "support_reaction_moment_magnitude_v2" {
-                    k::QuantityId::SupportMomentMagnitude(s as u32)
+                    (k::ProductRecipe::Native(k::QuantityId::SupportMomentMagnitude(s as u32)), k::ProductUnit::NewtonMetre)
                 } else if r.kind == "support_reaction_component_v2" {
-                    let c = ["Fx", "Fy", "Fz", "Mx", "My", "Mz"]
-                        .iter()
-                        .position(|v| *v == m.component)
-                        .ok_or("support component")?;
-                    k::QuantityId::Reaction(k::Dof {
-                        node: self.supports[s].1 as u32,
-                        component: k::Component::ALL[c],
-                    })
-                } else {
-                    return Err("unsupported support row".into());
-                };
-                let unit = match id {
-                    k::QuantityId::SupportMomentMagnitude(_) => k::ProductUnit::NewtonMetre,
-                    k::QuantityId::Reaction(d) if d.component.index() >= 3 => {
-                        k::ProductUnit::NewtonMetre
-                    }
-                    _ => k::ProductUnit::Newton,
-                };
+                    let c = ["Fx", "Fy", "Fz", "Mx", "My", "Mz"].iter()
+                        .position(|v| *v == m.component).ok_or("support component")?;
+                    (k::ProductRecipe::SupportComponent { support: s as u32, component: k::Component::ALL[c] },
+                        if c < 3 { k::ProductUnit::Newton } else { k::ProductUnit::NewtonMetre })
+                } else { return Err("unsupported support row".into()); };
                 if r.unit
                     != if unit == k::ProductUnit::Newton {
                         "N"
@@ -1072,7 +1643,7 @@ impl ProductCapture {
                     return Err("support unit".into());
                 }
                 (
-                    k::ProductRecipe::Native(id),
+                    recipe,
                     owner.source().body_of_node(self.supports[s].1 as u32),
                     unit,
                 )
@@ -1457,9 +2028,9 @@ fn validate_final_metadata(
                 || m.component != "linear_solver_mode"
                 || m.coordinate_system != "reduced_system"
                 || m.location != case
-                || row.value != 1.0
+                || !(row.value == 1.0 || row.value == 2.0)
             {
-                return Err("ordinary sparse mode record".into());
+                return Err("ordinary mode record".into());
             }
             work.enter(AdapterEvent::ValidationEntry, 1);
             work.require()?;
@@ -1472,6 +2043,12 @@ fn validate_final_metadata(
                 return Err("ordinary sparse mode sign".into());
             }
             "result:solver-mode:linear-solve-basis".to_string()
+        }
+        k::ProductRecipe::DenseParityObservation => {
+            let m=m.ok_or("parity metadata")?;
+            meta("sparse_live_path","reduced_system","load_case",&m.basis,
+                "unitless max absolute dense-sparse solution delta divided by max dense solution magnitude; no release threshold asserted")?;
+            "result:sparse-live:dense-parity-relative-delta".to_string()
         }
         k::ProductRecipe::Native(k::QuantityId::DisplacementMagnitude(_)) => {
             if m.is_some() {
@@ -1562,14 +2139,13 @@ fn validate_final_metadata(
                 ][i]
             )
         }
-        k::ProductRecipe::Native(
-            k::QuantityId::Reaction(_)
-            | k::QuantityId::SupportForceMagnitude(_)
+        k::ProductRecipe::SupportComponent { .. } | k::ProductRecipe::Native(
+            k::QuantityId::SupportForceMagnitude(_)
             | k::QuantityId::SupportMomentMagnitude(_),
         ) => {
             let component = match recipe {
-                k::ProductRecipe::Native(k::QuantityId::Reaction(dof)) => {
-                    ["Fx", "Fy", "Fz", "Mx", "My", "Mz"][dof.component.index()]
+                k::ProductRecipe::SupportComponent { component, .. } => {
+                    ["Fx", "Fy", "Fz", "Mx", "My", "Mz"][component.index()]
                 }
                 k::ProductRecipe::Native(k::QuantityId::SupportForceMagnitude(_)) => {
                     "force_magnitude"
@@ -1838,6 +2414,7 @@ pub(super) fn evaluate_operational(nodes: [[f64; 3]; 2], properties: [f64; 4]) -
 }
 #[derive(Debug, Clone, PartialEq)]
 pub(super) enum G5aFailure {
+    Accounting(AdapterFault),
     Shape(&'static str),
     Summary(&'static str),
     Zero {
@@ -1876,11 +2453,12 @@ impl ProductCapture {
                 .iter()
                 .all(|o| !o.work.lost && o.result.is_ok())
     }
-    fn g5a(
+    pub(super) fn g5a(
         &mut self,
         owner: &k::RetainedSolve,
         rows: &[k::ProductFinalRow<'_>],
     ) -> Result<(), G5aFailure> {
+        if let Some(fault) = self.adapter.fault.get() { return Err(G5aFailure::Accounting(fault)); }
         let source = owner.source();
         let evidence = owner.evidence();
         let nb = source.body_count() as usize;
@@ -1926,26 +2504,37 @@ impl ProductCapture {
                 if row.body != b as u32 {
                     continue;
                 }
-                if let k::ProductRecipe::Native(id) = row.recipe {
-                    let meta = owner
-                        .publish()
-                        .rows
-                        .iter()
-                        .find(|r| r.id == id)
-                        .ok_or(G5aFailure::Shape("native row"))?;
-                    let kind = match meta.kind {
-                        k::Kind::Translation => 0,
-                        k::Kind::Rotation => 1,
-                        k::Kind::Force => 2,
-                        k::Kind::Moment => 3,
-                    };
+                let classified = match row.recipe {
+                    k::ProductRecipe::Native(id) => {
+                        let meta = owner.publish().rows.iter().find(|r| r.id == id)
+                            .ok_or(G5aFailure::Shape("native row"))?;
+                        let kind = match meta.kind { k::Kind::Translation => 0, k::Kind::Rotation => 1,
+                            k::Kind::Force => 2, k::Kind::Moment => 3 };
+                        Some((kind, meta.class == k::RowClass::InputDerived))
+                    }
+                    k::ProductRecipe::SupportComponent { support, component } => {
+                        let mut group = None;
+                        for g in source.supports() {
+                            if !self.adapter.enter(AdapterEvent::RowVisit, 1)
+                                || !self.adapter.enter(AdapterEvent::ValidationEntry, 1) {
+                                return Err(G5aFailure::Accounting(self.adapter.fault.get().unwrap()));
+                            }
+                            if g.id == support { group = Some(g); break; }
+                        }
+                        let group = group.ok_or(G5aFailure::Shape("support group"))?;
+                        if source.body_of_node(group.node) != row.body {
+                            return Err(G5aFailure::Shape("support body"));
+                        }
+                        Some((if component.index() < 3 { 2 } else { 3 }, false))
+                    }
+                    _ => None,
+                };
+                if let Some((kind, input)) = classified {
                     let n = f64::from_bits(self.verdicts[i].normalized_bits);
                     if kind >= 2 && resolution[kind - 2] == 0.0 && n.to_bits() != 0 {
                         return Err(G5aFailure::Zero { row: i });
                     }
-                    if meta.class != k::RowClass::InputDerived {
-                        scales[kind] = scales[kind].max(n.abs());
-                    }
+                    if !input { scales[kind] = scales[kind].max(n.abs()); }
                 }
             }
             if extent != 0.0 {

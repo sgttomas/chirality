@@ -1,5 +1,121 @@
 use super::*;
 #[test]
+fn dense_parity_coverage_is_typed_nonnegative_and_keeps_zero_bits() {
+    for value in [0.0, -0.0, 1e-9] {
+        let row = ProductFinalRow {
+            id: "parity",
+            case_id: "case",
+            value: &value,
+            unit: ProductUnit::Record,
+            body: 0,
+            recipe: ProductRecipe::DenseParityObservation,
+        };
+        let rows = [];
+        let mut spent = ProductCertificateSpent::new(&rows);
+        let mut seen = false;
+        mark_dense_parity(&mut spent, &row, &mut seen).unwrap();
+        assert!(seen);
+        assert_eq!(
+            mark_dense_parity(&mut spent, &row, &mut seen)
+                .unwrap_err()
+                .category(),
+            "association"
+        );
+    }
+    for (value, unit, body) in [
+        (-1.0, ProductUnit::Record, 0),
+        (f64::INFINITY, ProductUnit::Record, 0),
+        (0.0, ProductUnit::Newton, 0),
+        (0.0, ProductUnit::Record, 1),
+    ] {
+        let row = ProductFinalRow {
+            id: "parity",
+            case_id: "case",
+            value: &value,
+            unit,
+            body,
+            recipe: ProductRecipe::DenseParityObservation,
+        };
+        let rows = [];
+        let mut spent = ProductCertificateSpent::new(&rows);
+        let mut seen = false;
+        assert_eq!(
+            mark_dense_parity(&mut spent, &row, &mut seen)
+                .unwrap_err()
+                .category(),
+            "association"
+        );
+        assert!(!seen);
+    }
+    let value = 0.0;
+    let row = ProductFinalRow {
+        id: "parity",
+        case_id: "case",
+        value: &value,
+        unit: ProductUnit::Record,
+        body: 0,
+        recipe: ProductRecipe::DenseParityObservation,
+    };
+    let rows = [];
+    let mut spent = ProductCertificateSpent::new(&rows);
+    spent.visits = WorkTotal::exact_count(u64::MAX);
+    let mut seen = false;
+    assert_eq!(
+        mark_dense_parity(&mut spent, &row, &mut seen)
+            .unwrap_err()
+            .category(),
+        "work_accounting"
+    );
+    assert!(!seen);
+}
+#[test]
+fn support_empty_law_uses_unchanged_mechanical_gate_and_work() {
+    let value = -0.0;
+    let rows = [ProductFinalRow {
+        id: "empty",
+        case_id: "case",
+        value: &value,
+        unit: ProductUnit::Newton,
+        body: 0,
+        recipe: ProductRecipe::SupportComponent {
+            support: 0,
+            component: Component::Ux,
+        },
+    }];
+    let mut spent = ProductCertificateSpent::new(&rows);
+    let verdict = gate(&mut spent, 0, Enclosure::point(Endpoint::ZERO), 0.0, false).unwrap();
+    assert!(verdict.passed);
+    assert_eq!(verdict.normalized_bits, (-0.0f64).to_bits());
+    assert_eq!(
+        verdict.class,
+        Some(adaptive::RowClass::AbsoluteVerified { bound_bits: 0 })
+    );
+    let tiny = f64::from_bits(1);
+    let rows = [ProductFinalRow {
+        id: "tiny",
+        case_id: "case",
+        value: &tiny,
+        unit: ProductUnit::Newton,
+        body: 0,
+        recipe: ProductRecipe::SupportComponent {
+            support: 0,
+            component: Component::Ux,
+        },
+    }];
+    let mut spent = ProductCertificateSpent::new(&rows);
+    assert!(
+        gate(&mut spent, 0, Enclosure::point(Endpoint::ZERO), 1.0, false)
+            .unwrap()
+            .passed,
+        "a nonzero empty-law output is decided by its actual allowance, not always rejected"
+    );
+    spent.visits = WorkTotal::exact_count(u64::MAX);
+    let before = spent.scalar_operations;
+    assert_eq!(spent.visit().unwrap_err().category(), "work_accounting");
+    assert_eq!(spent.scalar_operations, before);
+}
+
+#[test]
 fn product_final_case_raw_units_are_exactly_the_producer_normalization() {
     assert_eq!(
         ProductUnit::Millimetre.normalize(1.0).to_bits(),
