@@ -67,8 +67,8 @@ I47 /root/i47_selected_material is actually dispatched under brief f737a96abc83
 from clean CODE 0215e471d293cd2d6e7f3f177913a216ab73a988 (no-ff accepted NUM join;
 maintained source 28ac57891cd5). It implements only PP/src/retained_product_tests.rs
 and new CODE/R/I47/selected_material_01, following selected I35 §3's actual point/
-interpolation complete private witness. Receipt/deadlines await the child's first
-clock report; grant is45minutes, checkpoint10/actual witness20/cutoff30.
+interpolation complete private witness. Actual receipt 04:24:03Z; checkpoint 04:34:03, first actual witness 04:44:03,
+new-work cutoff 04:54:03, sealed return 05:09:03.
 No production/source-contract changes. Sole focused PP lane: existing guard5387,
 4 jobs/2 threads, absolute locked/offline manifest,20minute command wall, external
 WT/targets/i47-selected-material/product_physics. No broad/heavy/UI/sweep/install/
@@ -112,6 +112,6 @@ emergency bounds remain unqualified. Old K6c layouts do not qualify new owners.
 Then S-I/F2b/F3 and owner-held decisions remain. No complete memory allowance,
 facade tariff, visit permit or product availability is selected by these packets.
 
-Next unallocated IDs after prepared I47/active I48 and allocated RV60/RV61: I49/RV62. ROOT owns source/record integration,
+Next unallocated IDs after active I47/completed I48 and prepared RV62: I49/RV63. ROOT owns source/record integration,
 repair assignment, independent review, gates and owner checkpoints. Rulings are
 append-only; frozen raw evidence is never edited.
