@@ -3140,8 +3140,14 @@ impl ProductCapture {
         let mut trace=trace::PreparedTrace::default();trace.enter(trace::Stage::Preparation);
         let outcome=(|| -> Result<(),CaptureError> {
             let ordinary=&ordinary;
+            // A prior owned cause precedes fresh prelude/accounting checks.
+            // Move its owner without cloning payload text or clearing sticky work.
+            if self.error.is_some() {
+                trace.costs.record::<Option<CaptureError>>();
+                return Err(self.error.take().expect("observed prior capture cause"));
+            }
             self.adapter.require()?;
-            if !self.prepared_probe || self.final_calls!=1 || self.error.is_some()
+            if !self.prepared_probe || self.final_calls!=1
                 || ordinary.source_block_recovery.is_some() || self.native.is_some()
                 || ordinary.producer.semantic_contract_id!=preview_physics::ID || ordinary.status.mechanics!="MECHANICS_SOLVED" {
                 return Err("prepared case custody/permit".into());

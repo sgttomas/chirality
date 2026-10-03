@@ -2852,3 +2852,65 @@ fn prepared_trace_completion_merge_and_separate_failure_keep_distinct_owners() {
         }
     }
 }
+
+
+#[test]
+fn prepared_trace_prior_owned_cause_precedes_sticky_adapter_and_fresh_prelude_errors() {
+    use retained_product::{CaptureError,AdapterEvent,AdapterFault};
+    use retained_receipt::{ResultRef,FailureRef,OldCoverage,Stage,StageState};
+    for sticky in [false,true] {
+        let (mut observer,ordinary)=prepared_trace_observed();let bytes=serde_json::to_vec(&ordinary).unwrap();
+        let old_inputs=observer.operational[0].inputs;
+        let old_result=observer.operational[0].result.as_ref().unwrap();
+        let old_bits=[old_result.length.to_bits(),old_result.axial.to_bits(),old_result.torsion.to_bits()];
+        let old_work=(observer.operational[0].work.entered,observer.operational[0].work.checks,observer.operational[0].work.lost);
+        let mut cause=String::with_capacity(127);cause.push_str("original capture cause: member identity");
+        let cause_ptr=cause.as_ptr();let cause_capacity=cause.capacity();
+        observer.error=Some(CaptureError::Association(cause));
+        if sticky {
+            let mut counts=observer.adapter.counts.get();counts[AdapterEvent::MapWrite as usize]=u64::MAX;
+            observer.adapter.counts.set(counts);observer.adapter.fault.set(Some(AdapterFault::Overflow(AdapterEvent::MapWrite)));
+        }
+        let counts=observer.adapter.counts.get();let fault=observer.adapter.fault.get();
+        let failed=match observer.prepare_case(ordinary){Err(f)=>f,Ok(_)=>panic!("prior cause must refuse")};
+        let mut projection=retained_receipt::ProjectionWork::default();let view=failed.typed_trace(&mut projection).unwrap();
+        match &view.result {
+            ResultRef::Unavailable(FailureRef::Preparation{capture,section})=>{
+                assert!(section.is_none());
+                match capture {CaptureError::Association(text)=>{
+                    assert_eq!(text,"original capture cause: member identity");
+                    assert_eq!(text.as_ptr(),cause_ptr,"same owned String allocation, no replacement clone");
+                    assert_eq!(text.capacity(),cause_capacity);
+                },other=>panic!("original variant was replaced: {other:?}")}
+            },_=>panic!("wrong typed terminal"),
+        }
+        assert_eq!(view.adapter.counts,counts);assert_eq!(view.adapter.fault,fault);
+        assert_eq!(failed.capture.adapter.counts.get(),counts);assert_eq!(failed.capture.adapter.fault.get(),fault);
+        assert_eq!(view.old_coverage,OldCoverage::CapturedPrefix);assert!(!view.old_vector_swapped);
+        assert_eq!(view.operational_old[0].inputs,old_inputs);
+        let old=view.operational_old[0].result.as_ref().unwrap();assert_eq!([old.length.to_bits(),old.axial.to_bits(),old.torsion.to_bits()],old_bits);
+        assert_eq!((view.operational_old[0].work.entered,view.operational_old[0].work.checks,view.operational_old[0].work.lost),old_work);
+        assert!(view.members.is_empty() && view.preparation_work.is_empty() && view.operational_new.is_empty());
+        assert!(failed.preparations.is_empty() && view.prepared_source.is_none() && view.native_run.is_none() && view.proof.is_none());
+        assert_eq!(view.stages[Stage::Preparation as usize],StageState::Failed);
+        assert!(view.stages[1..].iter().all(|s|*s==StageState::NotEntered));
+        assert_eq!(serde_json::to_vec(&failed.ordinary).unwrap(),bytes);
+        println!("I51_PRIOR_CAUSE sticky={sticky} cause=Association(original capture cause: member identity) same_owner=true adapter_fault={fault:?} helper=0 new_evaluator=0 native=0 old_work={old_work:?} trace_costs={:?}",view.trace_costs);
+    }
+    // Without a prior cause, a genuine fresh prelude error keeps its own cause.
+    for sticky in [false,true] {
+        let (mut observer,ordinary)=prepared_trace_observed();assert!(observer.error.is_none());
+        if sticky {observer.adapter.fault.set(Some(AdapterFault::Overflow(AdapterEvent::MapWrite)));}
+        else {observer.final_calls=0;}
+        let failed=match observer.prepare_case(ordinary){Err(f)=>f,Ok(_)=>panic!("fresh prelude failure")};
+        let mut projection=retained_receipt::ProjectionWork::default();let view=failed.typed_trace(&mut projection).unwrap();
+        match &view.result {
+            ResultRef::Unavailable(FailureRef::Preparation{capture,..})=>match (sticky,capture) {
+                (true,CaptureError::Accounting(AdapterFault::Overflow(AdapterEvent::MapWrite)))=>{},
+                (false,CaptureError::Association(s))=>assert_eq!(s,"prepared case custody/permit"),
+                _=>panic!("fresh cause replaced: {capture:?}"),
+            },_=>panic!(),
+        }
+        assert!(view.members.is_empty() && view.operational_new.is_empty() && view.native_run.is_none());
+    }
+}
