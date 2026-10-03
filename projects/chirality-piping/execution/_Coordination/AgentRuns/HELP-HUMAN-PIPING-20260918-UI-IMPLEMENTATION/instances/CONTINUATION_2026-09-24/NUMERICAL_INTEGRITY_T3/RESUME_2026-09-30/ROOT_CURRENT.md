@@ -31,7 +31,7 @@ in wt/f2a from0fdd06a73389. The actual W0/W1 inputs, complete final row roster,
 source ownership and both honest full-case refusals are captured; these are
 candidate evidence, not independent acceptance or a future W1 projection.
 Its original source freeze03:33:08 and lane release03:35:13 are historical.
-At03:39:43 the author caught a coherent support component/id binding gap before
+During ROOT’s resumed inspection the author caught a coherent support component/id binding gap before
 sealing. ROOT returned the sole focused lane for the narrow owned repair and
 PP debug/optimized/S11 checks. Old source/test records remain preserved; unaffected
 FK coverage will be qualified by unchanged FK hashes. No wider source or clock
@@ -52,7 +52,7 @@ Fresh RV61 /root/rv61_product_refusal is reviewing it under brief8e0971413396,
 receipt03:34:38Z, checkpoint03:44:38, cutoff03:54:38, return03:59:38. Review found
 one supporting arithmetic error: the original G5a guard used uncoupled resolution
 values. Main Rx/numeric conclusions are reported independently unchanged; the
-supporting replay is not accepted as exact. Original review is being sealed.
+supporting replay is not accepted as exact. Original review sealed03:43:32; RV61-C1 remains open until the correction backcheck.
 
 I46 /root/i46_product_refusal_diagnosis now has a narrow correction grant at
 2b2d2d86473d, writes only R/I46/product_refusal_correction_02, generated files
