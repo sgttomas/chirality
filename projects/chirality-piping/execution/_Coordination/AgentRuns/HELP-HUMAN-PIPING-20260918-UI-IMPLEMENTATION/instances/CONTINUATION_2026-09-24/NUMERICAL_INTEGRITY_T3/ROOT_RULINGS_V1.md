@@ -7736,3 +7736,32 @@ I64 reported six places where TypeScript reads the native code differently from 
 **The `prior` field is open too.** Native `WorkAccounting` carries `prior`. I64 removed it from the TypeScript terminal as absent from the wire format. C2-2 confirms against C1 and C3 whether the wire projection omits it, and the independent review checks that.
 
 **C2-2 pins all of these with shared entries:** must-pass entries for the genuine N9 and N10 native shapes (using the synthetic accounting trigger, under the standing rule) and mutations for N5's over-acceptance. Rust's audit (I63) is awaited first, so its readings are included.
+
+## Rust checklist audit verified; N17 settled from native code; the remaining readings go to C2-2 (ROOT, 2026-10-03 UTC)
+
+**The Rust audit against all 42 IDs and 06a is committed on READER as `5467f46e7b`.** ROOT's own run: 19/19, linked with the Command Line Tools. The records (`I63/reader_audit_06a/`) verify. Rust's per-ID status matches TypeScript's in shape:
+- checked by Rust reader-logic tests only: N5, N8, N10 and O5;
+- partly checked: N9 and N17;
+- no control: N11;
+- not publicly checkable: W4.
+
+**N17 is settled by the native code.** The budget test (`adaptive.rs:276`) checks the case room before the invocation room, so an invocation-scope Budget implies the case limit was not exceeded. Rust and TypeScript already enforce this. Python aligns. Idle runs (no attempts) carry no case usage, so the rule holds trivially there.
+
+**For C2-2 to settle against the contract and native code, with citations:**
+- **G7 code families.** The base validators report different families: Python's base reports every evidence failure as `EVIDENCE_INVALID: <detail>`, while Rust's unchanged base reports finer codes (here `SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS`). C1's G7 row says "existing base failure codes", so no reader remaps a base code until C2-2 establishes how the existing base contract specifies codes across languages (semantic-contract fixtures, existing parity tests):
+  - if the base contract fixes one cross-language family, use it;
+  - if it allows each language's own codes, the corpus expects per-language G7 codes.
+  
+  Rust's current mapping (finer codes reported as `SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID`, with the finer code in `detail`) stays provisional.
+- **P5 scope.** Rust and TypeScript check conversions on every member; Python does not. Is C3's P5 every conversion?
+- **P7.** Old-tuple binding for every attempt (TypeScript) or only sourceless ones (Python, Rust).
+- **O2.** Rust also requires a diagnostic reference to affect the case and appear in `diagnostic_refs`.
+- **WorkAccounting's `prior`.** Whether the wire format carries it.
+
+**C2-2's scope:**
+- plan items 4, 5, 11, 14, 15 and 16;
+- the settlements above, with citations;
+- Python's alignment to N5, N9, N10 and N17;
+- shared entries pinning N5, N9, N10 and N17, and whatever the settlements decide.
+
+Then the readers align, and one fresh, complete, independent review follows.
