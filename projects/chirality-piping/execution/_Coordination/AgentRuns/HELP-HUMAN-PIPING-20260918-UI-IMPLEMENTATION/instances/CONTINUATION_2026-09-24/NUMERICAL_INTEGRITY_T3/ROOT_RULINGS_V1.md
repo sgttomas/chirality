@@ -6618,3 +6618,439 @@ prepared new-K native solve, before the full overlay. No method, public route,
 resource profile or implementation is selected yet. RV67's backcheck is limited
 to closure of the three findings and concrete new defects, with unchanged verified
 mathematics retained as its earlier conditional result.
+
+
+## Prepared ordinary producer selected for private implementation (ROOT, 2026-10-03 UTC)
+
+ROOT selects the reviewed prepared-source and dual-readout producer for bounded private implementation because it addresses the named case's section-rounding obstruction while preserving every publication accuracy check.
+
+The selected design is I51/prepared_producer_completion_02 at `cf515e3725`,
+DESIGN.md §1–2, API.md §1–3 and FENCE.md. RV67's independent original re-derivation
+is preserved at `ec6e5080f8`; its backcheck at `863956b0c5` closes RV67-1, RV67-2
+and RV67-3. ROOT read the full BACKCHECK, checked its five payloads and external
+audit, and verified its pinned origins. The verification record preserves ROOT's
+corrected origin-loop assumption; no partial pass or commit was credited.
+
+This selects the prospective D1 process amendment for this prepared ordinary
+producer: genuine new annular section primitives; unchanged native p/P, stop and
+R7/A1 admission; separate fixed-precision final projection; direct certification
+against both required readouts of the actual final values. D1's affected product
+formation language is prospectively replaced only at the stated scope. The native
+stop list is never represented as convergence evidence for those different final
+values. Actual native p512 alone selects the existing floors. Original criteria,
+source/material meanings, scale/class rules and observable requirements remain.
+No historical design or sealed evidence is rewritten.
+
+The selected APIs use one owner-bound pair of residual results through projection
+and certification, and one frozen candidate through numeric, observable and G5a
+checks. The private transfer preserves ordinary fallback before success. The
+existing coefficient maximum is regenerated from actual candidate actions and
+prepared section data. Local size/copy/capacity and failure-work obligations are
+mandatory; they do not establish an all-in invocation debit or resource profile.
+
+ROOT grants same TASK I51 the exact twelve-path private FENCE, with the two
+narrowly conditional S11 inventory paths, through the implementation brief.
+CODE is clean at `8bbc04e8a3` after ROOT's no-ff synchronization; maintained Piping
+and applicable instruction bytes remain identical to the reviewed `c79a1c293d`
+basis. The single guarded runtime lane is available. The first live checkpoint
+must establish actual prepared new-K admission and resolution before a full
+candidate overlay. A complete private success remains a dependency of the public
+F2a milestone, not publication.
+
+Public activation still requires explicit method/formation and replay/reader
+integration, receipt/custody and invocation-wide charging, full resource/caller
+qualification, all protected availability/coexistence checks, native Current and
+the standing PR gates. This selection changes no public identity or receipt today
+and creates no new source-meaning or availability exception. The existing delegated
+correctness authority covers this technical formulation; no new owner-held choice
+was found by the independent backcheck. Actual future public-meaning changes still
+return to the owner with a reviewed concrete proposal.
+
+
+## First prepared native run and explicit C0 sequencing miss (ROOT, 2026-10-03 UTC)
+
+The prepared model now reaches native admission in both modes, but ROOT holds further runtime until the local accounting prerequisite missed before that run is closed.
+
+I51's FIRST_NATIVE report, frozen at 10:12:54Z, records native p=128 and verification
+P=256, one actual new-source native call and 58 native rows per mode. ROOT read the
+report, successful command, relevant raw records and complete frozen C1_SOURCE
+patch, and verified their manifested hashes (verification/i51_first_native_03).
+The prepared property bits match the reviewed design and the actual source is new.
+This is an observed numerical checkpoint, not independent source acceptance,
+complete product-row certification, final G5a or public publication.
+
+ROOT challenged I51's statement that helper/snapshot accounting remained to finish.
+I51 then confirmed that the required callee/return-temporary live schedule and full
+nested-copy/capacity ledger were incomplete before C1, despite measured principal
+layouts and arithmetic-entry records. This is I51's premature run, caught by ROOT;
+it is not a retrospective completion of C0. The original FIRST_NATIVE and failed
+attempts remain unchanged. ROOT granted a fifteen-minute local correction box,
+with further runtime held until its concrete correction is checked. No profile,
+RSS or host-tool work is opened, and the component's original deadlines remain.
+
+
+## Narrow late observation seam granted for C0 repair (ROOT, 2026-10-03 UTC)
+
+ROOT grants the independently checked late observation call so I51 can remove unnecessary full model/build copies while keeping source construction behind positive custody checks.
+
+The exact unapplied proposal is preserved at `d520aba770`. RV67's review at
+`29d91fa066` verifies the five-line PP/lib.rs callsite and one-case/no-combination
+coexistence argument, but leaves RV67-L1 and RV67-L2 blocking before runtime
+reliance. ROOT read the complete review and verified its five payloads and four
+external reconstruction/audit files. The added path is limited to that exact call;
+all other lib arithmetic, routing, solver, maximum and output code remains excluded.
+
+ROOT directs implementation of the specified corrections, followed by the same
+reviewer's applied-source check: remove the transient bypass latch through a closed
+inner capture helper; preserve entered work and accounting-aware comparison errors;
+require successful matching solver observations before source construction; retain
+final-envelope checks. This is a source repair grant, not closure of those findings
+or permission for product/solver execution. It supersedes the earlier instruction
+to prepare a second unapplied callback proposal; the original proposal stays intact.
+
+I51 supplied the missing helper/return-temporary schedule and a filtered layout/
+accounting check within its correction box, at 10:29:54Z. ROOT read the complete
+schedule and command record. The named layout/copy owners are explicit; no stack,
+RSS or all-in allowance is inferred. The broad snapshot remains unqualified and
+must be removed, with actual source-child/string/vector prefixes completed.
+Compilation and isolated capture/accounting controls are prospectively allowed
+under the addendum, with no native or public product solve. Further solver runs
+wait for the applied C0 check and confirmed closure of RV67-L1/L2. The fifteen-minute
+repair-return box does not reset the component's original deadlines.
+
+
+## Local C0 closed and private solver tests restored (ROOT, 2026-10-03 UTC)
+
+ROOT restores the existing private solver/product test grant after the applied capture repair and local accounting boundary cleared the same independent reviewer.
+
+RV67's backcheck at `8b7c1c2ce4` closes RV67-L1/L2 and identifies no remaining
+concrete local C0 blocker in the supplied boundary. ROOT read it completely,
+verified its five payloads and seven external files, and rechecked the three
+current PP source hashes against the frozen applied boundary at `9754381f53`.
+ROOT had also read the complete applied patch, helper schedule and isolated-test
+records. The broad clone graph and bypass latch are removed; positive observation
+custody, accounting-aware comparisons and explicit new copy/capacity prefixes
+replace them. The owning backcheck states the local evidence and its limits.
+
+I51 may now apply the staged continuation onto this corrected source and resume
+only the already selected private component under the existing guard, single
+runtime lane, command caps and original deadlines. Preserve the checked C0
+changes and rerun affected controls as the full candidate changes. Neither this
+restoration nor the earlier native success accepts the unreviewed dual-proof/
+projection implementation, its resource profile or any public F2a output.
+
+The first native run's premature-C0 chronology remains explicit. The next numerical
+checkpoint is the complete actual two-mode candidate: projected raw/SI values,
+full predicates, actual final G5a, observables, work/lifetimes and independent truth
+comparison. ROOT's early source read also flagged the in-progress final-proof
+success-token invariant and newly introduced accounting for completion during
+this same component. No failed numerical verdict may yield a successful certified
+state, and no private test is counted as public publication.
+
+
+## Actual C2 refusal preserved; paired producer corrections selected (ROOT, 2026-10-03 UTC)
+
+ROOT selects the independently checked K-seeded source center and support-component hypot formation together because the actual candidate exposed both conservative enclosure refusals and a separate support-norm inconsistency.
+
+I51 sealed the implementation refusal at 11:29:13Z. ROOT read its RETURN, C4
+limitations and full maintained core diff, verified fifteen payloads, seventy-three
+external files, eleven changed source files and the other baseline files, and
+preserved the unaccepted WIP on CODE at `430bc4f798`. It is not merged into NUM
+or main, is not a passing component, and has no public publication claim. The
+verification record is verification/i51_implementation_refusal_03.
+
+RV67's review at `73383ae6d7` independently verifies all 194 actual mechanical
+point predicates while confirming seven conservative Absolute certificate refusals
+per mode and the separate support-norm failure. Its §1 distinguishes full width,
+half-width and actual interval-distance error; that table corrects the proposal's
+loose K-width wording. The first C2 command stopped before observables/G5a; the later
+same-row diagnostic command checked them and still returned numerical refusal.
+G5a passed there. Its exact diagnostic source was recovered afterwards, with all
+ten file hashes independently matched; it was not originally archived at execution.
+ROOT read the complete review and verified its seven payloads and six bulk files.
+
+Select REVIEW §2's same-draft K midpoint initialization only for AnnularSource,
+with actual owner/DOF/unit binding, exact prescribed coordinates, fixed-precision
+midpoint arithmetic, at most one correction per lane and fresh source residual/
+radius/recovery. The existing arbitrary-finite-center theorem supplies the warrant;
+a narrower future enclosure is not assumed from the seed alone.
+
+Select REVIEW §3's support-only formation amendment: complete the authenticated
+component slots, form force/moment magnitudes with the actual two-call binary64
+hypot order, and retain independent dual physical norm certification plus the
+unchanged observable guard and all actual final scale/class/predicate checks.
+Displacement magnitudes, stresses and coefficient maxima retain their selected
+formations. Record this row-family distinction in private algorithm provenance
+and later public method/reader integration. No criterion, source interpretation,
+structural-zero exemption or availability exception is changed. The reviewer finds
+no new owner-held public-meaning choice.
+
+The two amendments must be tested together: moving the norm near its components
+without reducing the current broad source enclosure would itself fail the norm
+certificate (RV67 §1). ROOT releases one sixty-minute same-implementer continuation
+under its committed brief, with a first live result by minute fifteen, new-edit
+cutoff forty-five and seal/reap sixty. The earlier task has already sealed; these
+are explicit new clocks, not a retrospective extension. The existing worktree,
+guard, runtime caps and narrow source fence remain. Full component controls and
+local accounting are still open; independent implementation review and all public
+F2a obligations remain required.
+
+
+## First private complete pass and fresh implementation review (ROOT, 2026-10-03 UTC)
+
+ROOT records the first complete private candidate pass while retaining the hold on component acceptance until fresh source review and local completion are finished.
+
+FIRST_AMENDED, frozen at 11:47:10Z, reports all 98 sparse and 99 dense verdicts,
+G5a, observables and the private commit passing for the same named request. ROOT
+checked the actual successful command/raw records and froze the source patch and
+hashes in verification/i51_first_amended_04 at `79ebfa64ae`. Native p [Correction 2026-10-03: remains 128 bits];
+this is the private path, not public F2a publication or a passed final PR gate.
+
+Fresh TASK RV68 began full private-component review from that frozen source at
+11:52:41Z, under its committed brief, with no compiler/solver lane while I51 owns
+runtime. Its source assessment and later final-delta confirmation must cover the
+actual final candidate. RV68's initial independent arithmetic checks confirm the
+point/interval/predicate, norm, maximum/headline and G5a results, with its evidence
+still in the ongoing review packet rather than a final acceptance return.
+
+The fresh source review found re-entry could create another draft and discard
+prior refusal work; it also found ordinary-envelope substitution across preparation/
+projection and missing actual conversion-outcome evidence. Same I51 is repairing
+those selected ownership/accounting obligations. RV68 confirmed the frozen re-entry
+repair; the owning entry and conversion repair are under delta review. Concrete
+remaining mask capacities, first-lane failure accounting and compact old/new section
+provenance are routed to the same component. No new source meaning or tolerance is
+introduced. Full private acceptance remains pending these repairs and final review.
+
+
+## Failed source-view capacity prefix granted (ROOT, 2026-10-03 UTC)
+
+ROOT grants the minimal view-work telemetry change so a source-view refusal retains capacities allocated before that refusal.
+
+ROOT and RV68 independently inspected the actual build_source_bridge_view path:
+prescribed allocation precedes prescription checks, and data allocation precedes
+cache/body-bound/work checks. Recording capacity only after a successful view
+loses those failed prefixes. The exact additional adaptive.rs scope is two usize
+fields in SourceBridgeViewWork and actual-capacity assignments immediately after
+those existing allocations, plus the already permitted into_data seam. Record
+Vec<bool> capacity units faithfully; no allocation strategy or numerical/native
+algorithm changes. source_residual.rs transfers that work before matching success
+or error. Two existing SourceBridgeViewWork literals in source_bridge_tests.rs may
+add only Default tails, retaining their injected faults and all assertions.
+
+I51's new failed-view control stays in the already fenced source_residual_tests.rs.
+It must distinguish before-allocation, after-prescribed and after-data failures,
+retain original errors and zero correction, and rerun affected view/residual and
+layout checks. RV68's source-only assessment has no objection to this exact scope;
+actual final-diff/hash confirmation remains pending. ROOT sent the grant before
+the original new-edit cutoff; it does not extend that clock or close the component.
+
+
+## Passing private producer accepted and merged locally (ROOT, 2026-10-03 UTC)
+
+ROOT accepts the independently reviewed private prepared producer because the named case now passes both physical certificates and all unchanged final publication checks in both modes.
+
+The accepted source is `922db9dce3`, relative to accepted I50 source
+`c79a1c293d`. RV68's complete-component REVIEW, sealed at 12:53:15Z and preserved
+at `94dbd2dcee`, closes its re-entry, ordinary-owner substitution, conversion
+evidence, failed-prefix and provenance findings. Its Independent checks section
+owns the 194 mechanical point and dual-certificate predicate checks, 232 native
+interval containments, and the three focused runs (28/28, 24/24 and 1/1).
+Native precision remains p = 128 / P = 256 for this request; fixed 1024-bit product
+proof/formation is separate. These figures describe the named private candidate,
+not public availability or all possible inputs.
+
+ROOT read the complete review and author return, had read the complete maintained
+component and final eight-file delta, and verified the sealed payloads, external
+manifests and all thirteen final maintained source hashes. The owning verification
+records are verification/i51_completion_04 and verification/rv68_component_01.
+The no-ff local merge is `458603880a`; the maintained Piping trees exactly match
+the independently checked source after integration. Its merge record is
+RESUME_2026-09-30/I51_PREPARED_MERGE/RECORD.md. This is the F2a integration branch,
+not main, and it does not claim final PR gates.
+
+The last authorized source edit missed its cutoff by 14.116 seconds, as RV68's
+Local account and qualifications section records. ROOT accepts the reviewed bytes
+while retaining that procedural departure; the cutoff is not retroactively
+extended. No further source edit occurred and the final seal/reap deadline held.
+The earlier premature-C0 run, failures, after-run source recovery and timing
+corrections remain preserved. Future cutoff crossings must stop edits and return
+the remaining item explicitly; success does not erase a process miss.
+
+Public receipts, registered formation/source/work evidence, invocation and
+combination ownership, the three readers/carriers, complete resource/caller
+qualification and native Current remain open. I52's sealed reconciliation at
+`897f2092e4` is preserved as a proposal; fresh RV69 is independently reviewing it.
+The same I52 now realizes its exact C3 contract under the bounded brief at
+`190f7ec53d`. C3 denotes the prepared-producer delta to the earlier C1/C2 public
+wire proposals. No name, public contract or producer activation is selected by
+those assignments. They directly advance the first public publishing milestone.
+
+
+## Public formation reconciliation cleared for concrete realization (ROOT, 2026-10-03 UTC)
+
+ROOT accepts the bounded reconciliation because independent source tracing supports preserving the existing reader checks while making the prepared producer's warrant explicit.
+
+I52's reconciliation at `897f2092e4` is independently checked by fresh RV69,
+whose REVIEW/RETURN sealed at 12:57:26Z. ROOT read both completely and verified
+the seven sealed payloads and external manifest. RV69's G7/G8 section owns the
+three-language source comparison: preserve the literal base validator and use
+only relevant authored-fact helpers; the historical binary64 stress recipe and
+exact-profile E/nu assumption do not apply to the ordinary prepared route.
+This is a checked interface conclusion, not executed three-reader parity.
+
+Carry RV69-N1 into the concrete C3 definition: D2 §4.9.10, §4.11.2 and §5 I-9
+need scoped successor cross-references separating native convergence from direct
+final-candidate certification. Keep all bounds, inequalities, source meaning and
+later S-I timing. Historical design bytes remain unchanged. Typed lane/work/error
+and preparation evidence still need actual implementation; Debug strings or
+invented current facts are forbidden. The exact C3 definition, fields, names,
+error mapping and maintained fence still need independent confirmation and ROOT
+selection before maintained implementation.
+
+I53 is separately dispatched for the already open native caller resource premise,
+using I38's preserved source result. It must prove the actual finite callback/
+request-context premise or return the precise missing term and smallest product
+correction. This is a public-publication dependency, not host-tool development.
+It receives no runtime, installation, source-write or policy authority. No memory
+allowance, unsupported H multiplier or platform guarantee is selected.
+
+
+## Public PR packaging must preserve evidence without carrying the bulk corpus (ROOT, 2026-10-03 UTC)
+
+ROOT will prepare a compact public PR candidate because directly merging the current integration branch would carry a large inherited evidence corpus into main.
+
+At integration head `b704de561f` against main `381be775ae`, a scoped Git path
+census found 2,449 changed execution-record files whose current files total
+88,494,825 bytes. This is a current-file byte sum, not patch size or compressed
+Git-pack growth. Sixty-five other changed Piping files total 3,142,550 current
+bytes. The count is a packaging observation, not a review finding on their
+numerical validity. No new maintained diff line referenced the dated run roots
+or local host paths in the bounded source scan.
+
+Continue numerical/public integration first. Before opening the public F2a PR,
+cut its candidate from current main with the exact reviewed maintained code and
+only the concise records, decisive outputs, small inputs/scripts and manifests
+needed for review/recovery. Preserve the complete integration branch and original
+hash-bound evidence; bulk may remain in a verified archive/scratch with committed
+hash, size and stable location/immutable revision references. Do not rewrite sealed
+records, force-push history or prune originals. Ensure all retained references
+resolve through the archive/index rather than silently breaking local links.
+The final candidate needs source-equality verification, independent full-diff
+review and all normal gates; prior local checks alone do not qualify the cut.
+
+Each PR body will state its actual record file count and bytes with the reason.
+This is a prospective packaging plan within the owner's direction, not a new
+standing instruction or a selected repository-wide records budget. It creates
+no current archive/tooling assignment and does not interrupt the publication path.
+
+
+## Corrected prepared public contract selected (ROOT, 2026-10-03 UTC)
+
+ROOT selects the corrected prepared ordinary contract so public evidence can state the actual formation, source and work without attributing the final values to the native stop list.
+
+The selection is I52/prepared_public_contract_02 at `77bb95e4ac`, including
+DEFINITION.json and C3_DELTA.md, **together with** the corrective ADDENDUM.md at
+`7b4709bcec`. The uncorrected delta alone is not selected. RV69's complete C3
+review and same-reviewer F1 backcheck, sealed at 13:22:16Z and preserved at
+`a387fceab1`, close RV69-N1 and RV69-C3-F1. ROOT read the complete review,
+proposal/definition and correction, verified their payloads and external review
+manifest, and repeated collision/source-equality checks after refreshing main.
+Main remains `381be775ae`; no F2a PR is open.
+
+The registered definition is RP-PREPARED-ORDINARY-DUAL-v1, with its nested
+RP-PREPARED-ANNULUS-v1 preparation. Its exact raw bytes and domain hash are in
+verification/rv69_c3_selection_02/CHECKS.json and the author manifest. Reserve the
+C1/C3 identities, profiles, policy names, hash domains and failure-code spellings
+listed by that verification for this F2a realization. Existing kernel policy and
+internal method placeholder retain their meanings. These are scoped prospective
+reservations, not installed schemas/tables or public activation; final successor
+and inherited table hashes still bind the actual atomic implementation.
+
+Native p/P, stop summaries and actual-p512 floor activation remain separate from
+fixed 1024-bit preparation/proof/projection. The two physical readings, row-family
+formations, all final bounds/classes/predicates and literal base reader checks
+remain binding. D2 §4.9.10, §4.11.2 and §5 I-9 receive the scoped prospective
+warrant cross-reference in the new definition; historical bytes are untouched.
+This realizes the already selected numerical guarantee and introduces no new
+owner-held meaning, criterion, availability or interval-binding choice.
+
+Old operational records bind their actual old operands, results and work; only
+new successful records bind prepared C2 terms. Preserve old errors, separate
+entered prefixes and the actual prelude/vector transition. The added old_coverage
+stamp and typed preparation/lane/work/error/conversion seams must be implemented
+at their real boundaries. Existing cardinality checks, Debug output or expected
+control flow do not supply them. The full review owns the source-to-wire and
+trust-boundary qualifications; no unrun cross-language parity is credited.
+
+No maintained write grant follows from this ruling alone. I51 now owns one
+coherent producer admission/ownership milestone under brief `92790ca0cc`, reusing
+accepted P1/P3 and implemented private work rather than reopening numerical search.
+Its concrete composition, pre-execution permits, source/failure/copy lifetimes,
+receipt transaction and qualified build/caller terms precede a scoped implementation
+grant. Full invocation/combination and promised exact scope, all three readers/
+carriers, native Current, resource qualification and every standing PR gate remain.
+
+
+## Native caller gap accepted within its actual window (ROOT, 2026-10-03 UTC)
+
+ROOT accepts the independently checked native prerequisite result while withholding a complete native allocation claim because the included context census is still unproved.
+
+I53 at `77bb95e4ac` and fresh RV70's review preserved at `51930cf747` identify
+the exact lifetime/capacity term. ROOT read both fully and verified their sealed
+payloads. The accepted window remains application-owned Rust through guarded
+JSON-body transfer, including attributable prefix/carryover owners that overlap
+that window. Transferred output queues, unrelated jobs and framework/TS heaps
+remain excluded. Main-thread affinity and one pending JS poll do not prove the
+missing bound; arbitrary raw IPC is not automatically required scope.
+
+Continue the already selected first-party route only, through I53's bounded
+profile/ownership brief at `51930cf747`. It must produce concrete source-qualified
+terms or the exact external/decision prerequisite, not another generic platform
+investigation. No numeric H, memory allowance, finite-use restriction, ordinary
+behavior change, Wry patch or host tooling is selected. I51 keeps the native
+interface explicitly unqualified while completing the producer composition.
+
+
+## Corrected caller interface accepted; first publication stays the next milestone (ROOT, 2026-10-03 UTC)
+
+ROOT accepts the corrected conditional caller interface so producer accounting preserves resident ownership without turning a reply boundary into a false release.
+
+The accepted input is I53 first_party_profile_02 at `6d9ec9092c` together with
+correction_03 at `d85300e1d7`. RV70's complete continuation review and same-reviewer
+backcheck sealed at 13:36:28Z close P2 RV70-P02-1. ROOT read both, read the full
+author addendum, and verified every sealed payload. The owning record is
+verification/rv70_profile_02. Logical call/envelope facts retain their explicit
+units and source limits in the review; they are not native population measurements.
+
+Upstream producer/resident ownership U includes the stored result and lease until
+actual last-owner Drop. Compose it with the separate caller allocation account only
+at actual overlap; do not add the resident result twice or release it at final
+poll, registration or UI detachment. Original request/context, ordinary response
+and W1 response allocations have distinct owners. Reservations bind actual native
+invocations/jobs, not an assumed one worker per logical UI start.
+
+The finite included native-context/tail and attributable backing premise remains
+unproved, along with its capacity/build/emergency qualifications. No H, byte
+allowance, global IPC/RSS guarantee, finite-use restriction, ordinary behavior
+change or source patch is accepted. This bounded source investigation is concluded
+at its stated limit; no further vendor/host-tool work is assigned. Native activation
+still needs the explicit qualification. I51 may use the corrected conditional
+interface while deriving producer and direct/headless terms.
+
+I51's next admission checkpoint is deliberately the first generic eligible captured
+ordinary single-case publication, in both modes, through the real producer/receipt
+transaction. It is not a fixture-ID special case, full F2a C0 or a main merge. Keep
+typed ordinary handling, whole-invocation exact-block bypass, untouched fallback
+and protected controls. The current ninety-minute clock and no-code grant remain.
+ROOT sent this narrower milestone before the initial interface deadline.
+
+The source comparison also identified a later mandatory extension: selected
+prepared geometry changes stiffness, while ordinary combination operands may not
+be numerically solved on demand. C3's case-only attempt requires a selected native
+Run and cannot represent that preparation-only operand capability. Preserve this
+concrete gap for the full F2a package; do not invent hidden solves, fake readiness
+or an availability exception, and do not branch this checkpoint into combination
+design. Promised exact and source-compatible combination routes, resource/caller
+qualification, all three readers/carriers, native Current and full PR gates remain
+mandatory before the complete F2a main merge.
