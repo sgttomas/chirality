@@ -6914,3 +6914,32 @@ request-context premise or return the precise missing term and smallest product
 correction. This is a public-publication dependency, not host-tool development.
 It receives no runtime, installation, source-write or policy authority. No memory
 allowance, unsupported H multiplier or platform guarantee is selected.
+
+
+## Public PR packaging must preserve evidence without carrying the bulk corpus (ROOT, 2026-10-03 UTC)
+
+ROOT will prepare a compact public PR candidate because directly merging the current integration branch would carry a large inherited evidence corpus into main.
+
+At integration head `b704de561f` against main `381be775ae`, a scoped Git path
+census found 2,449 changed execution-record files whose current files total
+88,494,825 bytes. This is a current-file byte sum, not patch size or compressed
+Git-pack growth. Sixty-five other changed Piping files total 3,142,550 current
+bytes. The count is a packaging observation, not a review finding on their
+numerical validity. No new maintained diff line referenced the dated run roots
+or local host paths in the bounded source scan.
+
+Continue numerical/public integration first. Before opening the public F2a PR,
+cut its candidate from current main with the exact reviewed maintained code and
+only the concise records, decisive outputs, small inputs/scripts and manifests
+needed for review/recovery. Preserve the complete integration branch and original
+hash-bound evidence; bulk may remain in a verified archive/scratch with committed
+hash, size and stable location/immutable revision references. Do not rewrite sealed
+records, force-push history or prune originals. Ensure all retained references
+resolve through the archive/index rather than silently breaking local links.
+The final candidate needs source-equality verification, independent full-diff
+review and all normal gates; prior local checks alone do not qualify the cut.
+
+Each PR body will state its actual record file count and bytes with the reason.
+This is a prospective packaging plan within the owner's direction, not a new
+standing instruction or a selected repository-wide records budget. It creates
+no current archive/tooling assignment and does not interrupt the publication path.

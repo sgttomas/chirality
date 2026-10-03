@@ -76,3 +76,8 @@ ROOT's bounded trace found no changes from current main in the public reader,
 desktop-source or schema trees. This is why the work remains substantial after
 the private numerical milestone. Source/reading basis is in
 [the compact manifest](verification/publication_path_2026-10-03/ORIGINS.json).
+
+Before the public PR, cut a compact candidate from current main with verified
+maintained-source equality and a concise evidence package. Preserve the full
+integration branch and hash-bound bulk outside the PR with recoverable manifests.
+The latest packaging ruling owns this requirement; no history rewrite or pruning.
