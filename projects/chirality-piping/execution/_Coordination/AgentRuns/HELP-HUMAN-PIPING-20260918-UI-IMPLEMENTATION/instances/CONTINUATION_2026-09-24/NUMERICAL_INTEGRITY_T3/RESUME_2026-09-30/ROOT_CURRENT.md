@@ -14,6 +14,8 @@
 
 - Caller/census checkpoint A is accepted and integrated locally at `a9c2256076` after RV72 review. Ordinary behavior is preserved; production W1 remains disabled.
 
+- Typed private evidence is accepted locally at `b56b905251` after RV74 review and cause-preservation repair. The public receipt transaction is still required.
+
 ## Open and next milestone
 
 **RF-SKEW-T-CANT-OFF-122-r1e-04 must publish through the captured F2a entry in both modes**, under `M03-INTEGRITY-MP-v2`, agree with its independent reference, and preserve the named refusal/coexistence controls. The typed entry keeps its accepted ordinary route; both-entry checks remain required.
@@ -22,9 +24,8 @@ The numerical candidate now passes. What stands before publication is its public
 
 ## Running now
 
-- I54’s container laws are accepted as partial source proofs after RV73 review. I54 is binding the ordinary-active/suffix memory phases; final profile/build/allowance qualification remains open.
-- I51’s typed evidence is accepted locally at `b56b905251` after RV74 review and repair confirmation. I52 holds the build lane for the standalone readers; the memory guard remains active.
-- I52 is implementing standalone Rust/Python/TypeScript validators, the closed schema and shared controls in an isolated worktree. Application and carrier wiring follows complete validation.
+- I54 is correcting ordinary-memory owner omissions found by RV73. Container laws remain accepted; complete ordinary/profile/build/allowance qualification remains open.
+- I52 owns shared schema/control inputs and Python; I55 owns Rust; I56 owns TypeScript. They work on disjoint paths in READER. I55 owns Cargo; the guard remains active. Full parity precedes application/carrier wiring.
 - Native context-lifetime/backing qualification remains open. Its source investigation is stopped at its stated limit.
 
 ## Next
