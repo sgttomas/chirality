@@ -5998,3 +5998,623 @@ matching actual caller. Public C2/receipt custody cannot rely on that mode-only
 check as an identity proof. All public, resource, availability and owner gates
 remain. Continue with prepared I47's actual selected-material numerical witnesses
 under the existing I35 plan, after ROOT provides a clean updated CODE base.
+
+
+I47 source join and dispatch (ROOT, 2026-10-03 UTC): ROOT no-ff merged accepted
+NUM cd9110cc5412 into CODE at 0215e471d293, verified clean exact maintained source
+28ac57891cd5, and actually spawned /root/i47_selected_material from a fresh
+selective TASK context. The one maintained test-file fence and actual selected-
+material witness are in brief f737a96abc83; the runtime lane transferred only
+after the empty compiler/live guard scan. R/verification/i47_dispatch_01 records
+the local join/dispatch. No new source/output/predicate or availability policy.
+
+
+## Selected-material ancillary completion selected (ROOT, 2026-10-03 UTC)
+
+I47's tests-only first actual executions found the missing modulus_basis_record
+binding before any final certificate or G5a ran. ROOT read the complete new test
+diff and blocker return, verified the 57-payload seal, exact one-file scope,
+source-bound expected failed regressions and preserved original test prefix, and
+committed the unaccepted blocker at CODE 58912a48b3fb. It is not merged into NUM.
+The packet remains a failed required-witness result, not a numerical-predicate
+refusal or selected-material qualification. The overinclusive --lib s11 run and
+its old fallback-byte failure remain disclosed; the intended site target's pass
+does not erase it or establish causation. No broad baseline or old-test repair
+is granted. ROOT also identified the copied unexecuted row35 expectation as
+inapplicable after the actual prepended ancillary row.
+
+ROOT read RV63's complete independent interface review, preserved at 08a4e9017de5,
+and verified its 12-payload seal 9a1f143df434a5aee89d8cadb3613aae8ca91a4693d8e9edc3d81ae4415dd03e.
+Select its full sufficient rule before implementation reliance. Expected selected
+status comes from the actual case independently of optional capture presence.
+Selected requires one successful aggregate source-text capture and one final
+modulus row; base requires neither. Capturing only per-material success is
+insufficient. Keep actual case/selection association, full producer-defined
+metadata and dynamic text equality, mandatory solver-mode coverage, and a distinct
+at-most-one typed modulus recipe that contributes no mechanical scale/class.
+Derive row associations and failure ordinals from the actual roster.
+
+Authorize the exact four-file completion in brief f8d1bf148464. The retained/**
+touch is the private enum/coverage/nonmechanical-verdict seam only; no numerical
+publication arithmetic, resolver rule, public output or D2 published contract
+changes. New capture storage and work remain explicitly unqualified for public
+resources. The actual matching caller/future C2 limits remain. Fresh RV62 covers
+the eventual cumulative four-file code/test/independent-oracle diff before any
+fan-in. Original sealed evidence and actual ordinary values remain unchanged.
+
+
+I47 actual source-completion dispatch (ROOT, 2026-10-03 UTC): the separate
+four-file grant f8d1bf148464 was received at 04:43:36Z on clean CODE 58912a48b3fb.
+Checkpoint 04:53:36, first complete verdict 04:58:36, cutoff 05:13:36, final
+05:23:36. Only new selected_material_02 evidence may be written; the original
+blocker remains sealed. The existing guarded focused lane transferred after
+ROOT observed no compiler processes. Fresh RV62 implementation review remains
+required. This is an actual native TASK continuation, not just a written brief.
+
+
+## Selected-material implementation freeze and conservative-refusal check (ROOT, 2026-10-03 UTC)
+
+ROOT read the full four-file I47 completion and oracle correction, verified its
+58-payload seal c6d0a1ee33ff09fb038d4ece5735264d2c704d70cf4695ff0818b1f7a22abb9d,
+source-bound command maps and preserved blocker/original tests. Candidate
+d0daa18717f8243a7232e898c9ef9b4f4d18d9e4 is committed in CODE, not accepted
+or merged into NUM. ROOT's first verification compared the declared changed-source
+digest to the full inventory path; the corrected artifact lookup verified both
+without editing evidence or making a prior Git mutation.
+
+The new selected oracle initially assumed the base specimen's absence of
+conservative refusals generalized. That assumption is withdrawn only in the new
+owned oracle. The selected conditional certificate permits such refusal; source
+truth, predicates, scale/class checks and false-pass rejection remain unchanged.
+ROOT additionally checked every actual candidate passing predicate against its
+independent truth upper bound, with no undecided interval accepted. The exact
+figures and distinct categories are in I47 selected_material_02 RETURN §Actual
+outcomes; no internal-interval reconstruction or availability success follows.
+
+Fresh RV62 received the complete cumulative source/records review at05:04:23Z,
+checkpoint05:14:23, cutoff05:24:23, return05:34:23, and holds the sole focused
+compiler lane after I47/ROOT process release checks. Its fresh review is required
+before fan-in. Separately I49 received brief19703b23a89e at05:09:07Z, checkpoint
+05:17:07, cutoff05:24:07, return05:31:07. It investigates one conservative UX
+predicate through exact arithmetic and pinned source only, with no compiler lane,
+source change or broader numerical programme. Its purpose is to determine the
+next numerical/producer dependency rather than assume more solver precision or
+more facade plumbing is the remedy. All public/owner-held boundaries remain.
+
+
+## Selected-material component accepted and locally merged (ROOT, 2026-10-03 UTC)
+
+[Correction 2026-10-03 UTC, ROOT: the independent truth-miss/conservative
+classification cited below covered K and source-annulus with exact interpolated
+moduli. I36 also requires the source-annulus interpretation with actual resolved
+moduli. That additional comparison was not independently included. The prior
+47-row category is relative to the two checked readouts, not established for the
+complete accepted cover. Broader truth-coverage reliance is reopened pending
+separate corrected evidence and backcheck; no source-code defect or false PASS
+is established by this gap. The bounded source/custody acceptance remains distinct.]
+
+ROOT read complete fresh RV62 REVIEW/RETURN preserved at 8b2d87ca7b68 and verified
+its 59-payload seal 5824e5240417871bdb6779c2f6bab816f9a456bded71f419f9978e76322cc7bf.
+No actionable finding remains. Accept source d0daa18717f8243a7232e898c9ef9b4f4d18d9e4 at its bounded private
+selected-material source-to-complete-verdict scope. ROOT no-ff merged it locally
+at 21ca7af33b68ca3be833403e700640f4f02606c2; maintained core/validation trees match exactly with no source conflict.
+R/verification/i47_fanin_01/LOCAL_MERGE records the join.
+
+RV62 independently checks all actual mechanical truths, source/represented material
+semantics, raw/SI predicates, scales/classes/bounds, G5a and observables, with
+certified upper bounds for every actual candidate passing predicate. Its owning
+RETURN and REVIEW distinguish actual truth misses from conservative refusals.
+All complete cases still refuse; no private endpoint reconstruction, successful
+protected availability, public route, C2/resource qualification or main merge
+follows. The old overinclusive S11 failure and reviewer decoder-development
+failures remain historical. Cumulative raw-evidence whitespace is disclosed; no
+sealed logs or excerpts are rewritten to make a source diff check look green.
+
+The next numerical dependency is I49's separately sealed conservative-refusal
+derivation. Its reported material-hull/shared-radius mechanism is not adopted
+until fresh independent review. Do not infer that native projection, more solver
+precision or changed source semantics cures it. Existing numerical/source/output
+criteria and owner-held public/availability decisions remain unchanged.
+
+
+## Material interpretation coverage reopened before refinement (ROOT, 2026-10-03 UTC)
+
+ROOT read RV64's complete one-row proof and verified its 32-payload seal, preserved
+at 62f502b80454. Its geometric inflation lower bound, the two stated point
+comparisons and algebraic native-projection equality are independently supported.
+The proof remains valid. Before selecting a tighter method, ROOT re-read I36's
+accepted source-material warrants and found the additional resolved-moduli/source-
+geometry readout missing from that point comparison and I47/RV62's truth taxonomy.
+The existing H_E/H_G cover cannot be narrowed by calling K's rounded section the
+same readout. ROOT's exact coverage challenge is preserved at 26160e94661e.
+
+For the same UX, ROOT's preliminary additional readout misses the sharper bound.
+Do not seek to admit that unchanged row by merely tightening the certificate
+until this consequence is independently checked. Preserve all original proofs,
+scripts and captures. No public source meaning, output or predicate is changed.
+I47 has a records-only all-row cover completion, actual receipt05:57:32Z,
+checkpoint06:05:32, cutoff06:15:32, return06:22:32. I49 has the narrower readout/
+planning addendum and at most one genuinely conservative UZ target, receipt
+05:57:46Z, checkpoint06:02:46, cutoff06:07:46, return06:12:46. No compiler/model/
+solver/native/source/Git/index/API or tooling work is granted to either. Same
+RV62 and RV64 independent backchecks precede closure.
+
+Process observation: ROOT spent too long exploring possible refinements before
+settling this full-cover premise. That exploration is stopped. No tighter method
+is selected or implemented; the active numerical work is the two bounded evidence
+corrections. This records ROOT's own coordination error and correction, without
+attributing it to the owner or changing any standing instruction.
+
+
+## Full-cover corrections preserved for independent backchecks (ROOT, 2026-10-03 UTC)
+
+ROOT read I49 full_truth_addendum_02 RETURN/checker and verified its26 payloads,
+preserved4987f8290fbd. ROOT read I47 source_truth_coverage_03 RETURN/METHOD/checker
+and verified24 new payloads,58 unchanged prior payloads and4 maintained source
+hashes in CODE and NUM, preserved997e5e7992ee. The owning returns correct only the
+required-truth evidence/consequence; their source, captures and candidate outcomes
+are unchanged. These preservation commits do not themselves accept the correction.
+
+Same RV64 received its records-only backcheck06:06:16Z (checkpoint06:13:16,
+cutoff06:20:16, seal06:26:16). Same RV62 received its records-only backcheck
+06:10:09Z (checkpoint06:18:09, cutoff06:28:09, seal06:35:09). Each owns only its
+new review packet, uses the existing instruction basis, and may not change source
+or execute Cargo/model/solver/native work. No new algorithm is selected. Their
+original reviews and all sealed author evidence remain historical and immutable.
+
+ROOT refreshed host/process state: M5 Max,137438953472 bytes, existing guard5387,
+no cargo/rustc. gh reconfirms A1 PR1070 and K6c PR1071 merged at their recorded
+commits. Fetch found main381be775ae9b, App PR1073; its delta from a533dc2d67bc is
+confined to projects/chirality-app-v4. No Piping or instruction basis changed;
+ROOT will join that unrelated update at the next clean boundary.
+
+
+## Readable recovery summary and F2a branch roles (ROOT, 2026-10-03 UTC)
+
+ROOT is making the next F2a publishing milestone and branch boundaries explicit so numerical progress can be judged without reconstructing every component record.
+
+This applies the owner-supplied advice from the previous T3 ROOT prospectively.
+It changes execution planning and record presentation, not a numerical contract,
+standing gate or instruction file. Start with the short
+[ROOT_CURRENT](RESUME_2026-09-30/ROOT_CURRENT.md) and
+[glossary](RESUME_2026-09-30/GLOSSARY.md). Earlier sealed evidence and rulings remain
+historical; this summary does not replace their qualifications.
+
+**Recovery from 2026-09-30 to now:**
+
+- The audit identified a real defect in the published-scale proof. C17 supplied
+  an actual false-publication witness, ending that search. A fresh independent
+  design re-derivation preceded the correction. A1 reached main in PR1070 at
+  `3a0251874d`, after its required gates. The audit finding is closed on that route.
+- The earlier response PR1066 was closed without merging. The owner caught and
+  stopped its tooling drift. Its material remains selectively usable evidence,
+  not accepted numerical remediation. Preserved raw Mac evidence was not pruned.
+- K6c reached main in PR1071 at `49034a940f`. Its conditional accounting and
+  finite measurements retain their explicit limits. The owner-approved scoped
+  KF3 comparison does not establish historic published-value equality.
+- F2a, the retained-precision product-facade slice, is still incomplete. Reviewed
+  arithmetic, source-certificate and actual product-capture components are
+  integrated locally. Every complete private witness still refuses; none is a
+  successful public F2a publication. Correct refusal is evidence, not availability.
+- ROOT caught incomplete material-truth coverage before selecting a further
+  tightening method. The original comparisons and shared-radius proof survive
+  at their stated narrower scopes. The author corrections and same-reviewer
+  backchecks now determine the complete truth taxonomy. No public source
+  interpretation, value, predicate or allowance was changed.
+
+**Branch roles are now explicit.** `codex/piping-numerical-integrity-20260926`
+is the F2a **code integration branch**. It also retains development records, so
+it must never be submitted directly as a records-only PR. ROOT verified its
+non-execution diff against fetched main is nonempty. The component branch
+`codex/piping-f2a-work-exactness-20261002` supplies bounded reviewed changes.
+No current branch is designated a clean records-only PR branch.
+
+Any records PR will start from current main and contain only the deliberately
+selected execution-record paths. Before opening it, this command must print
+nothing, using that actual candidate branch:
+
+```sh
+git diff --stat origin/main...<records-branch> -- . ':!projects/chirality-piping/execution'
+```
+
+No local code fan-in implies main acceptance. F2a code reaches main through its
+own product PR, with independent review covering the actual candidate, hosted
+CI and full-SHA dispatch, exact-final-head Mac DEC-025, GEN-8, T9 and the both-entry
+gate. The existing immediate main-movement check and post-merge records remain.
+
+**First publishing target:** the named synthetic skew cantilever
+`RF-SKEW-T-CANT-OFF-122-r1e-04`, through the actual captured entry in both solver
+modes, publishing under `M03-INTEGRITY-MP-v2` with the unchanged strict predicates
+and independent reference agreement. The accepted typed entry has no actual
+request capture and keeps its ordinary route; its both-entry accuracy/standing
+gates remain mandatory. This target does not grant a new custody-bearing API.
+I48's RETURN table and I30's checkpoint-0 PLAN section2 provide these existing
+input and entry boundaries. Current pressure-control tests retain the named
+`NUMERICAL_INTEGRITY_UNRESOLVED` refusal and required no-pressure publication;
+no broader PHYS-R4 decision is made here.
+
+This target is planned, not demonstrated. The next component assignment begins
+by binding the actual authorable input, natural routing, complete output roster
+and numerical obstacle. If a required-publication conflict is established, bring
+reviewed options to the owner rather than redefine success. Certificate tightening
+is deferred unless it advances this target. Use one implementer through bounded
+checkpoints for the coherent component, retain its reviewer for corrections,
+and obtain fresh independent review of the final PR. No implementation grant is
+created by this planning paragraph.
+
+New evidence packaging will be proportionate: commit readable summaries, decisive
+outputs, small inputs/scripts and manifests of SHA-256, byte size and preserved
+location. Keep bulk logs/case dumps in the existing scratch/archive area unless
+an owner requirement calls for Git. Every future PR body will state committed
+record-file count and bytes with a reason. No mass evidence migration, pruning,
+archive tooling or rewrite of sealed packets is commissioned.
+
+
+## UX correction and conservative UZ witness accepted (ROOT, 2026-10-03 UTC)
+
+ROOT accepts the corrected UX diagnosis and one genuinely conservative UZ refusal, so further work cannot mistake a real accuracy miss for certificate overestimation.
+
+ROOT read the full RV64 corrective RETURN and verified its sealed payloads,
+preserved at `1c7902c73a`. The reviewed I49 addendum is at `4987f8290f`. RV64's
+sections “Existing cover and the corrected UX conclusion” and “UZ is conservative
+throughout the positive cover” independently establish the different outcomes:
+resolved-modulus/source-annulus UX genuinely misses both sharper allowances;
+actual UZ has exact zero truth throughout the full positive cover but the shared
+certificate radius forces refusal. The old inflation proof and its narrower
+point comparisons remain valid. The original tightening-only UX recommendation
+is withdrawn, without rewriting its sealed historical record.
+
+No numerical source, published value, scale, predicate or source interpretation
+changes. No private endpoint or radius was reconstructed. This accepts the
+evidence correction, not a new method, zero recognizer, public availability or
+F2a completion. RV62's separate all-row backcheck remains open. A refinement is
+selected only if its reviewed contribution advances the named publishing target.
+
+
+## Complete material truth coverage accepted (ROOT, 2026-10-03 UTC)
+
+ROOT closes the material-coverage evidence gap, allowing the next assignment to target a real publishing dependency without relying on the incomplete earlier taxonomy.
+
+ROOT read the full RV62 corrective REVIEW and RETURN, preserved at `bcae30c6b0`,
+and verified every committed payload and the external exact-result file against
+its size/hash/location manifest. The reviewed author addendum is `997e5e7992`.
+RV62's “Correction and result” section checks all 292 mechanical rows and 562
+applicable predicates in the four fixed captured cases. All 390 candidate PASS
+predicates have certified full-cover upper bounds. Exactly the interpolated UX
+row changes classification: the loaded interpolation case has 20 truth-miss and
+46 conservative rows. These are fixed-case figures, not public availability.
+
+Accept that correction and its finite corner/static/zero proof at the stated
+scope. Earlier two-readout comparisons and separate source/custody acceptance
+remain intact. No source defect or new runtime test is established. Every complete
+private case still refuses. The one-row RV64 correction is already accepted;
+no tighter method follows automatically from either backcheck.
+
+ROOT joined fetched main `381be775ae` into the code integration branch by merge
+commit `91a143142c`. The merge has no Piping, Root/role or project-skill change.
+This is a local integration merge, not a product merge into main.
+
+For the named publishing target, source inspection identifies the next concrete
+barrier: the existing private adapter explicitly rejects a nonempty global-spring
+list and does not populate support spring ownership. The target already has an
+actual authorable request and both-entry/both-mode D-5 test in
+`product_physics/tests/formation_check_runtime.rs`. Those source facts are not a
+fresh test execution. Prepare I50's coherent component through checkpoints 0, A,
+B and D; only the bounded source/contract checkpoint 0 is executable. It must
+resolve per-support identity/action and accounting before any implementation
+grant. Further certificate tightening is deferred until the actual target
+demonstrates that it is the relevant numerical obstacle.
+
+
+## Named-case component dispatched (ROOT, 2026-10-03 UTC)
+
+ROOT has dispatched I50 to resolve the spring/support producer barrier that prevents the named first-publishing case from reaching a complete private verdict.
+
+TASK `/root/i50_named_case_component` was actually spawned through native
+delegation with fresh selective context and no descendants. It received brief
+`fa1439c425` at 06:18:21Z. Checkpoint: 06:28:21Z; new-analysis cutoff: 06:38:21Z;
+sealed return: 06:48:21Z. Only checkpoint 0 is executable: source/contract review
+and the concrete component manifest. No source, compiler or model execution is
+granted. Its owned return is `I50/first_publishing_component_01`; any bulk belongs
+in the specifically granted external scratch directory with a committed manifest.
+
+ROOT will select the exact source fence before implementation and retain I50
+through subsequent component checkpoints. The target remains actual captured
+F2a publication in both modes, with typed-entry coexistence and full gates.
+The current assignment moves that target forward by resolving a demonstrated
+producer dependency; it does not establish public publication or a completion date.
+
+
+## Named support interface held for independent review (ROOT, 2026-10-03 UTC)
+
+ROOT has preserved I50's concrete component proposal and commissioned independent review before its new private support-row law is implemented.
+
+I50 checkpoint 0 is preserved at `848981f433`. ROOT read the complete RETURN
+and source checker, verified the current packet and its maintained-source
+comparisons, and inspected the actual spring builder and selected support-law
+warrant. The RETURN's “Concrete proposed source fence” names six files; its
+“Census, controls and next checkpoint” keeps all counts explicitly static and
+requires actual named-case execution later. No numerical tightening is proposed.
+
+The packet discloses that its first seal and three provenance payloads were
+replaced while distinguishing the initial ROOT_CURRENT snapshot from ROOT's
+later dispatch update. Those original overwritten bytes are not claimed preserved.
+Their recorded hashes and transcript remain, and a separately sealed addendum
+records the event. ROOT verified the retained final bytes. This is a provenance
+qualification, not a reason to relabel the earlier seal as preserved or to rerun
+unrelated numerical tests. Future checkpoint briefs explicitly say to seal only
+after final audit and record later corrections in separate addenda.
+
+Fresh TASK `/root/rv65_named_support_component` received its actual native
+delegation at 06:29:57Z, under brief `f58de3f5cc`: checkpoint 06:37:57Z, cutoff
+06:47:57Z, return 06:54:57Z. Its scope is the source/interface law, exact fence,
+coverage compatibility, support ownership, accounting and proposed controls. It
+has no compiler/model/source/Git write authority. I50 remains the implementer
+for the component's later checkpoints; implementation is not yet granted.
+
+
+## Named support component selected with RV65 corrections (ROOT, 2026-10-03 UTC)
+
+ROOT selects the reviewed support component with both required corrections so the named skew case can reach a complete private certificate without bypassing support scales or coverage.
+
+ROOT read RV65's full REVIEW/RETURN and verified its sealed packet, preserved at
+`c1331b5764`. Its verdict is FINDINGS, not unconditional clearance: RV65-1 names
+the omitted PP G5a consumer; RV65-2 resolves legacy Native coverage ambiguity.
+The reviewer independently re-derived the existing support-law warrant and
+explicitly permits resolving these plan findings by selecting its exact
+dispositions in the same six-file grant, without another mathematical redesign.
+
+Select **both dispositions in full**, as written in RV65's “Required corrections
+for the implementation brief” and in BRIEFS/I50_NAMED_SUPPORT_IMPLEMENTATION.md.
+Every support component remains mechanical and participates in FK and PP final
+scales, existing coupling, zero/sign rules and unchanged predicates. Only the
+attributed recipe fills its group/component slot; direct Native quantities keep
+independent native coverage without aliasing that slot. Duplicate contributors
+and missing attributed slots remain distinct failures. The implementation must
+prove these conditions with the specified controls; no code-review clearance is
+claimed now. Same RV65 will confirm them on the actual frozen implementation.
+
+The authorized retained/** touch is confined to the private final-case recipe
+and coverage seam. There is no kernel publication, public D2 contract, source
+meaning, output producer, predicate, routing or availability amendment. Existing
+finite-law warrants suffice at this narrow scope. The exact named fixture bytes
+and all protected ordinary expectations remain unchanged.
+
+I50 receives checkpoints A/B/D for this coherent component, with a sixty-minute
+receipt-based bound, checkpoint15, first actual named result by minute35, new-work
+cutoff50 and sealed return60. Focused guarded runtime only: one Cargo job, four
+build jobs, two test threads, locked/offline absolute manifests and twenty-minute
+command walls. Bulk new evidence stays in external scratch with committed
+hash/size/location manifests. The named case's actual numerical result, not
+additional certificate speculation, determines the next publishing dependency.
+
+
+I50 implementation dispatch (ROOT, 2026-10-03 UTC): the same TASK received the
+selected grant `d7b1711dc6` at 06:40:47Z. Checkpoint: 06:55:47Z; first actual named
+result: 07:15:47Z; cutoff: 07:30:47Z; sealed return: 07:40:47Z. ROOT confirmed only
+the existing guard was running before assigning the sole focused compiler lane.
+The active implementation stays within the selected six files and private scope.
+
+
+## Dense observation completion selected (ROOT, 2026-10-03 UTC)
+
+ROOT selects a narrow observation-custody completion so the existing dense-mode output can reach a complete private verdict without changing its numerical meaning.
+
+The first immutable named-run record is preserved at `d87eb0fb59`; all twelve
+external files were hash/size verified. RV65's independent delta review is
+preserved at `d0acf8ce78`. ROOT read the full review and verified its seal. The
+review's “Existing classification and observed correction” establishes sparse
+98 final rows and dense 99, both with 97 mechanical rows and native Q58. Dense
+includes its already existing parity observation; the earlier mode-independent
+98 expectation was wrong. Its no-verdict G5a None was not a performed G5a check.
+
+The adopted D1/D2 table already classifies parity as non_quantity. Select the
+review's full exact seven-file delta through I50_DENSE_OBSERVATION_ADDENDUM.md:
+add only the specified optional PP lib.rs producer-boundary capture call, actual
+mode/value/text custody, independent completed/present state, exact final binding
+and separate typed maximum coverage. A missing capture cannot become valid
+absence. Mode remains mandatory; mechanical scales and gates are unchanged.
+No observation algorithm, source semantics, public route or D2 contract changes.
+
+I50 continues the same component and original cutoff/return clocks. The sparse
+full-cover numerical result and torsional dual-readout separation remain author
+findings pending independent numerical review. They are not a false-publication
+claim or a proof about every future recomputed scale. No projection or further
+certificate method is selected on their basis.
+
+
+## Named torsion feasibility review dispatched (ROOT, 2026-10-03 UTC)
+
+ROOT has commissioned an independent mathematical check of the actual named-case obstruction before deciding whether retained projection can advance the publishing milestone.
+
+Fresh TASK `/root/rv66_named_torsion_feasibility` received brief `dbffe0d814` at
+07:05:35Z: checkpoint 07:15:35Z, cutoff 07:25:35Z, sealed return 07:35:35Z. Its
+source/exact-arithmetic scope uses the immutable first-run captures and selected
+readout warrants. It must retain the proposed value's contribution to its own
+allowance and distinguish actual fixed scales, algebraic native-primary projection
+and any broader future-producer claim. It neither takes the runtime lane nor
+selects new source semantics, criteria or an output algorithm.
+
+I50 continues the already selected two-mode component. The independent numerical
+review and the later frozen-code review have separate purposes; a mathematically
+real obstruction does not excuse an implementation/custody defect, and a clear
+implementation cannot turn truthful refusal into public availability.
+
+
+## Named torsion obstruction accepted at its proved scope (ROOT, 2026-10-03 UTC)
+
+ROOT accepts the independent torsion obstruction and holds the planned simple native-primary projection because it cannot satisfy the selected cover at the checked scales.
+
+RV66's complete REVIEW/RETURN is preserved at `c0c7fa9e0f`. ROOT read it and
+verified the six payloads and all manifested external files. Its “Fixed-scale
+proof, with proposed-value dependence” proves no common real SharperExact center
+and no binary64 SharperBinary64 center at the sparse scale, the scale reconstructed
+from captured dense ordinary rows, and the specified algebraic native-primary
+projection scale. Absolute classification cannot escape at those normal scales.
+The source/K separation exceeds 1.44415e-14 Pa; the exact positive margins and
+units are in that section and RESULTS.json. Proposed-value dependence is included.
+
+Accept this bounded result and the source/ledger/statics binding. The original
+dense FIRST_RUN had no verdict; its scale here is independently reconstructed,
+not an observed certificate result. The hypothetical projection is not an executed
+producer. The successful artificial large-scale scalar control expressly limits
+the claim: no arbitrary-future-scale or complete-producer impossibility, false
+K publication, false public product publication or automatic availability breach
+is established. No public truth, criterion, scale policy or replacement fixture
+is selected. Tightening an interval cannot remove the proved point separation.
+
+## Named component frozen for code review (ROOT, 2026-10-03 UTC)
+
+ROOT preserves the complete two-mode private component for independent review while keeping its numerical refusal distinct from a publishing milestone.
+
+I50 candidate `8104a4fedd` is committed and pushed on the component branch, not
+accepted or merged into NUM. ROOT read every production/test diff and RETURN,
+verified all seven maintained files, the ten-file packet and all 73 external bulk
+files (12,147,592 bytes), and checked 950 other baseline files unchanged. The
+shared fixture equals the original literal exactly; PP lib.rs changes only the
+reviewed three-line observer hook. Verification is at `59a85f6165`. Author RETURN
+“Actual result and corrected census” records complete sparse/dense verdicts,
+passing G5a/observables and numerical refusal; no public route changed.
+
+Same RV65 received frozen-code review at 07:37:48Z: checkpoint 07:52:48Z, cutoff
+08:12:48Z, sealed return 08:22:48Z. Its fresh focused runtime has passed and is
+released; source/evidence review continues against the fixed candidate. ROOT's
+local initialization-work and counter-range questions are explicitly assigned.
+An early local-accounting finding is not treated as a clear review. Any repair
+will precede bounded acceptance and receive the same reviewer's confirmation.
+
+## Decision-boundary comparison continued (ROOT, 2026-10-03 UTC)
+
+ROOT has continued I48's authority comparison so the next numerical step follows the actual owner mandate rather than an assumed permission gate.
+
+The same TASK received brief `39c1cfb2eb` at 07:40:59Z: checkpoint 07:48:59Z,
+cutoff 07:58:59Z, return 08:05:59Z. It compares adopted public promises, the
+selected sufficient private certificate, actual first-case requirements and
+ROOT's delegated correctness/formulation authority. It may recommend a concrete
+next design dependency or identify a genuinely owner-held choice, but selects
+neither. The selected cover remains binding until a replacement is independently
+derived and selected. Code acceptance, numerical obstruction and public-meaning
+decisions remain distinct; no new source law or availability exception follows.
+
+
+## I50 support and observation component accepted and locally merged (ROOT, 2026-10-03 UTC)
+
+ROOT accepts the repaired private component because independent review now confirms both its source/custody behavior and its local work accounting.
+
+Same RV65's complete backcheck is preserved at `8d025201b8`. ROOT read it and
+verified its payloads/external evidence. RV65-I1 is closed by the actual counted
+initialization loop and correction-sensitive prefixes; the boolean duplicate-hit
+hardening retains the earlier production-uniqueness qualification. No actionable
+finding remains at this component scope. Accept source `c79a1c293d` and its
+complete two-mode private verdict behavior.
+
+ROOT no-ff merged it locally at `7e9597bd9c` and verified exact maintained
+Piping source correspondence. `verification/i50_fanin_01/LOCAL_MERGE/RECORD.md`
+records the join. No main/public acceptance follows. Author and reviewer returns
+distinguish true output misses, conservative refusals and ancillary observations;
+both named cases still refuse numerically. The original code-review failure,
+initial dense prefix and all original evidence stay preserved.
+
+## Existing authority and next producer design (ROOT, 2026-10-03 UTC)
+
+ROOT commissions a replacement numerical design under the actual delegated engineering authority, while keeping every public warrant and current check in force until review.
+
+I48's decision memo is preserved at `0869aa6265`. ROOT read it and the actual
+OWNER_PHYSICS_AUTHORITY, CORRECTNESS_ACTIVATION and route-direction records;
+origins are recorded in verification/owner_authority_2026-10-03. Developing a
+different sound formulation/producer does not itself require another owner prompt.
+An unsupported public-meaning choice, protected-criterion change or availability
+exception still does. The private dual cover remains selected until a concrete
+replacement is independently derived and selected. No check is silently dropped.
+
+Fresh TASK I51 received design brief `36acb1ef39` at 08:08:34Z, checkpoint
+08:18:34Z, candidate/obstruction 08:28:34Z, cutoff 08:38:34Z, seal 08:48:34Z.
+It returned a source-prepared new-K/two-readout producer proposal, now preserved
+at `8d025201b8`. ROOT has read RETURN, WITNESS and INTERFACE and verified its
+seal and three external control files. The owning WITNESS gives an analytical
+complete-row candidate; no actual producer run, residual-width, new-K G5a or
+resource qualification is claimed. Its methods, interfaces and public-warrant
+preservation are not yet selected; fresh independent design review is next.
+
+I51 discloses initial read-intent Git status/rev-parse in the inherited 92ea
+worktree without optional locks disabled, before detailed brief loading. No
+intentional mutation or maintained change is reported, but an optional index
+refresh cannot be excluded. Do not assert blanket no-index writes for that run.
+All later reads used the required setting; source work used the pinned NUM basis.
+Future dispatches explicitly require host/clock only before instructions and
+GIT_OPTIONAL_LOCKS=0 even for an initial status read. This is run-specific execution
+correction, not a reusable instruction amendment or a reason to rewrite evidence.
+
+
+## Prepared producer independently re-derived before selection (ROOT, 2026-10-03 UTC)
+
+ROOT has dispatched fresh design review of I51 so the proposed change in actual retained source preparation and product proof is checked before code relies on it.
+
+TASK `/root/rv67_prepared_producer_design` received brief `e85ab6541b` at
+08:54:19Z: checkpoint 09:04:19Z, cutoff 09:24:19Z, return 09:34:19Z. Its first
+tool was host/cwd/clock only; all Git reads must disable optional locks. It has
+source/exact-check authority only and writes its new review packet plus manifested
+external arithmetic output. No model/compiler/native run or source edit is granted.
+
+Review covers actual new-K geometry/provenance, both residual laws, complete
+projection and public-warrant preservation, the independent analytical witness,
+formation precision and p512 floors, immutable staging/ordinary fallback, and
+concrete local work/storage/interface requirements. Proposed operation/scratch
+counts are not automatically accepted resource evidence. ROOT has selected no
+new method or public contract; the current dual-cover implementation stays in
+force pending that independent re-derivation and an explicit ruling.
+
+
+## Prepared producer readiness findings and bounded completion (ROOT, 2026-10-03 UTC)
+
+ROOT accepts RV67's three design-readiness findings and returns the same component to I51, so implementation starts from an explicit production and ownership contract.
+
+RV67's sealed review is preserved at `ec6e5080f8`. ROOT read REVIEW.md and
+DESIGN_FENCE.md and verified all eight payloads and five external files against
+the seal and bulk manifest (verification/rv67_design_review_01). The review's
+independent mathematics is conditionally verified; its complete named analytical
+witness is not a live producer or public availability result.
+
+RV67-1 requires the exact formation/projection process and truthful native p/2p
+provenance. RV67-2 requires closed preparation and owner-bound dual-proof APIs
+without repeating correction work during final certification. RV67-3 requires one
+frozen candidate, actual observable regeneration, atomic transfer and explicit
+local work/storage lifetime. These are blocking before implementation. No public
+criterion, source interpretation or availability exception is accepted.
+
+I51's correction brief addresses the three findings together, with the same RV67
+backcheck before ROOT selection. Its actual receipt will set the forty-minute
+box. This is direct numerical milestone work, without runtime or tool development.
+Current dual-cover code remains binding. The first publishing target and the
+remaining public route, receipt, resource and full-gate obligations are unchanged.
+
+
+I51 received correction brief `42727b2af5` at 09:20:11Z, with the host/cwd/clock-only
+first tool verified by its receipt. Checkpoint is 09:30:11Z, concrete completion
+09:45:11Z, new-analysis cutoff 09:50:11Z and sealed return 10:00:11Z. No runtime
+lane is granted; the existing guard remains running and no compiler/model process
+was active at dispatch. ROOT refreshed GitHub/main during this checkpoint: main
+remains `381be775ae`, and no F2a PR is open.
+
+
+## Prepared producer design completion returned for backcheck (ROOT, 2026-10-03 UTC)
+
+ROOT has frozen I51's concrete formation, ownership and staging corrections for the same independent reviewer before granting implementation.
+
+The owning completion packet is RESUME_2026-09-30/I51/prepared_producer_completion_02,
+sealed at 09:48:46Z. ROOT read RETURN, DESIGN, API and FENCE completely, checked the
+eight payloads and external origin-audit output, and verified the twenty pinned
+origins. The maintained Piping source still matches `c79a1c293d`; verification is
+in verification/i51_design_completion_02. ROOT's earlier unsealed-draft feedback
+closed the proposed ancillary observation-bit path and clarified the file fence;
+it was not independent acceptance. The packet preserves its corrected early
+checkpoint clock attribution.
+
+The completion explicitly replaces the affected product formation process while
+keeping native p/P, native admission and every final criterion. It proposes one
+owner-bound dual proof, one frozen candidate, actual maximum/alias regeneration,
+and non-fallible private transfer. The first implementation milestone is the actual
+prepared new-K native solve, before the full overlay. No method, public route,
+resource profile or implementation is selected yet. RV67's backcheck is limited
+to closure of the three findings and concrete new defects, with unchanged verified
+mathematics retained as its earlier conditional result.
