@@ -7413,3 +7413,34 @@ The owner started this ROOT through the development-loop init prompt, with `HAND
   - reader eligibility stays closed, and no public activation, M or permit follows;
   - no new host tooling;
   - the next free IDs after this wave are I65 and RV77.
+
+## I62 checkpoint A: snapshot 04 accepted for reader coverage work (ROOT, 2026-10-03 UTC)
+
+I62 froze the shared coverage contract as snapshot 04 in about 19 minutes. ROOT verified it and releases all three readers on it. The coverage controls it cannot yet express go into a snapshot 05, which every reader must pass before acceptance.
+
+**Verified by ROOT:**
+- **Changes:** only the two expected shared files changed in READER:
+  - the receipt schema `f943ebd351` (was `5652929173`);
+  - the corpus `8e333e632c` (was `67d5cbcc00`).
+- **The record folder:** RETURN, SHARED_SNAPSHOT_04 (`cb7aa0bbd7`) and its SHA256SUMS verify.
+- **The two complete cases** differ from snapshot 03 only by the added `summary_coverage` and their `receipt_sha256`. That matches I57 §5: the receipt hash binds the field, and the source, preparation and publication hashes don't move.
+- **The 30 snapshot-03 mutations** are byte-identical.
+- **The new content:** 47 mutations, plus one synthetic no-data positive case.
+- **ROOT's own run** of the two Python test files: 86 passed and 14 failed. The 14 are exactly the checks checkpoint B implements.
+
+**Rulings:**
+- **Both of I62's deviations are accepted:**
+  - the 2^53 body-id control is dropped, because the checked canonical JSON refuses unsafe integers before any gate;
+  - the ordering control `certified_bound_unbound_drop_existing_g5` is added.
+- **I62 was right to discard its p512 prototype.** The native ladder always starts at p128, so a corpus case must be one the native solver can produce.
+- **The readers are released now.** I62 continues to checkpoint B (the Python checks). I63 (Rust) and I64 (TypeScript) start on snapshot 04 under `BRIEFS/I63_I64_COVERAGE_READERS.md`. I63's Cargo may run beside I61's, on separate targets.
+- **Snapshot 05 follows as I62's checkpoint C,** after checkpoint B. It adds faithful synthetic base cases for the §5 controls snapshot 04 cannot express:
+  - multi-body swaps;
+  - an absent kind and zero extent;
+  - native p512 reached through the p128 → p256 → p512 ladder, with zero and positive floors;
+  - a second owner or proof;
+  - failed-prefix, unavailable and failed-certificate attempts;
+  - the positive cancelling ±x loads control.
+  
+  The failure-prefix and unavailable bases also serve the readers' remaining audit (resume step 3), so they are built once.
+- **Acceptance:** no reader's coverage implementation is accepted until it passes snapshot 05 and a fresh independent review. Eligibility stays closed.
