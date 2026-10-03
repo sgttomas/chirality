@@ -5787,3 +5787,32 @@ source enclosure; represented/source stress branches remain separate before thei
 result hull. This affected interface is not selected yet. Fresh RV59 reviews
 that warrant and actual PP producing/final ownership under the pinned brief.
 No PP code/runtime grant, new truth contract or public activation is made here.
+
+
+## Product ordinary vertical interface selected (ROOT, 2026-10-03 UTC)
+
+ROOT read RV59's full return/review, verified its12-file packet with seal
+a4b3529f686e134482ba1e1797cb44b948d2541bc7a4f125fbd37f96196f3b5f, and preserved
+it at5691d7f7b3d0. No actionable finding remains. Select I45 plan24f24e98ba8b
+for one bounded private actual-ordinary source-to-verdict implementation. Explicit
+ordinary direct/magnitude hull(Q_K,Q_G) supersedes the earlier subset shortcut at
+this changed interface; represented/source stress/max recipes are evaluated
+separately before their result hull. This preserves existing source meanings.
+It changes no exact-profile truth, published value or product contract.
+
+The reviewed final hook is valid for the stipulated ordinary route only, after
+all relevant mutations. It does not implement a new W1 projection/routing or
+qualify0.4 fallback, combinations, C2/readers/receipt, section_terms or resources.
+The expected73 mechanical rows plus ancillary rows are static until observed.
+A truthful full-case finite refusal with unchanged ordinary output is a valid
+private witness, not a partial success or public selection.
+
+Release I45 under new BRIEFS/I45_PRODUCT_VERTICAL_IMPLEMENTATION.md after ROOT
+joins accepted NUM into the clean existing wt/f2a checkout and pins the actual
+base at dispatch. One integration owner writes the eight reviewed paths plus
+S11's necessary new-module/site registration path; this mechanical addition
+preserves existing scanner/assertions/dispositions. No other scope expansion.
+The120minute block/checkpoint20/cutoff90 targets actual admission/source custody
+first and a coherent full-row verdict next. The existing guard/sole focused lane
+and separate absolute FK/PP targets remain; no host-tool work or broad runs.
+Fresh implementation review and all product/resource/owner gates still follow.
