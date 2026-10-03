@@ -7948,3 +7948,152 @@ Then the readers align, and one fresh, complete, independent review follows.
 **From now on, Cargo runs use the default toolchain,** with no `DEVELOPER_DIR` override. Gate evidence (DEC-025, the final gates, and the T9 and both-entry runs) must come from the default toolchain.
 
 The reader review now running (RV78–RV81) was dispatched with the override and may keep it. Its results are review evidence, not gate evidence, and each reviewer discloses the override.
+
+## Reader review RV78–RV81: consolidated ruling and the repair wave (ROOT, 2026-10-03 UTC)
+
+**The four reviews of READER `6b607fd01f`:**
+
+| Review | Scope | Verdict | BLOCKING / SHOULD-FIX / NOTE | Record |
+|---|---|---|---|---|
+| RV78 | Corpus and joint parity | FAIL | 1 / 4 / 9 | `e2f7fe8b34` |
+| RV79 | Python | FAIL | 2 / 5 / 7 | `d0a7e6e9ff` |
+| RV80 | Rust | PASS | 0 / 2 / 8 | `0df84b882b` |
+| RV81 | TypeScript | FAIL | 2 / 2 / 8 | `1762a1c25a` |
+
+ROOT verified each record's SHA256SUMS and found no machine paths.
+
+**ROOT also confirmed these findings in the source at `6b607fd01f`:**
+- **RV80-S1:** a native error with a selected Run takes Rust's facade branch, and its `run_ref` is never compared (RS:1890, 1902–1905).
+- **RV80-S2 = RV81-B1, one defect:** Rust and TypeScript check only that old member ids are unique (RS:649–652, TS:213).
+- **RV81-B2:** the `prepared_product_failure` binding is checked only from the product-attempt loop (PY:835, RS:1878–1882, TS:600), and the ordinary pass skips that cause (TS:1114). A case claiming the cause without an attempt of its own is never bound, in any of the three readers.
+- **RV79-B1c:** Python maps a `preparation` error without requiring a null Run (PY:839).
+- **RV79-S2:** Python's ordinary, rcond and selected-case ATTEMPT checks run after `_g5_products` has raised its WORK list (PY:1446–1455).
+- **RV79-S3:** a single gate variable spans G5a and G5b, and the catch-all maps ZeroDivisionError to SCALE_MISMATCH (PY:1456, 1473).
+
+**What the review established:**
+- **The corpus is sound.** All 211 entries agree across the three readers and with the contract. RV78 reproduced every hash independently and recomputed every p512 floor with exact rationals.
+- **The arithmetic is sound in all three readers:** zero mismatches over about 300k exact-rational comparisons.
+- **No reader can reach eligibility.**
+- **The failures** are false accepts and first-gate divergences, all on inputs the corpus never exercises.
+
+Every BLOCKING and SHOULD-FIX finding is repaired before acceptance, whatever its label.
+
+### Decisions
+
+**D1. G3 coverage (COVERAGE_MISMATCH)** (C1 G3 row; C3:302; F1:101, 110, 130):
+- **Run ids and execution order:** each run id equals its execution-order position, and the execution order is a bijection (C2:117). Python moves this check from G5.
+- **Member ids:** old, prepared and new ids are exactly `0..len−1` in native order, and prepared and new are prefixes of old (C2:98; PP:1238, 1296). Rust and TypeScript.
+- **`old_coverage=complete`:** old ids equal the full member inventory.
+  - For a sourced attempt, that is the source's member map, at G3. Python moves this from G5.
+  - For an unsourced attempt, G3 requires a non-empty list, and the member count of any CaseSource in the receipt (there is one model). Without a CaseSource, G8 compares the list with the invocation's member count.
+  - If I62 confirms from native code that an empty CaseSource inventory cannot be emitted, an empty one also fails G3 (RV80-N2b, RV79-N3).
+- **`captured_prefix`:** G3 checks only the member part (no prepared and no new members). The null `source_ref`/`run_ref` and the unavailable result are G5 PRODUCT_ATTEMPT (F1:97, 130–131; C3:304). Rust and TypeScript move those checks out of G3.
+- **Run origin owner and source:** these are G5 class-1 checks ("native schedule/origin", C3:304), not G3. Rust moves them.
+
+**D2. G0 scope** (C1 G0 row; C3 G0 row). G0 covers exactly:
+- the producer identity (component and schema versions);
+- the definition and inherited-table hashes, computed over the bound bytes;
+- `receipt_version` (v2, refusing v1 relabels);
+- the policy ids;
+- the canonicalization profile;
+- the 20B and 60B thresholds.
+
+All three readers check this union at G0. A G0 field that is absent or of the wrong type fails G0; every other shape defect waits for G1. The changes:
+- Python adds the thresholds and canonicalization, rather than relying on schema constants, and types its malformed-producer error (RV79-N2).
+- TypeScript adds the component and schema versions, and hashes the table bytes.
+
+**D3. G5 order** (C3:304). Four classes, in order:
+1. native schedule/origin, including native WORK;
+2. C3 run/source/ordinary references and the stage/lane sequence;
+3. typed checks;
+4. the C3 work/status/conversion-prefix/merge equations.
+
+Python moves its ordinary, rcond and selected-case checks into class 2 (RV79-S2, RV78 T-4e). The contract fixes no order inside class 1, so ROOT sets a convention for the C3 clarification: a native class containing an ATTEMPT defect reports ATTEMPT, and reports WORK only when it has no ATTEMPT defect. Readers defer native WORK predicates to the end of class 1, as C3 defers its own work equations. This fixes the first code for every dual defect (R-7). The per-check ATTEMPT/WORK mapping is the shared convention already in the readers; I62 tabulates it and reports any check where the readers differ (RV78-N7).
+
+**D4. Association (G5 PRODUCT_ATTEMPT), in all readers:**
+- **a.** On every sourced attempt, `source.preparation` is non-null and its `attempt_ref` equals the attempt (C3:146–148).
+- **b.** `attempt.material_basis_ref` equals its ordinary attempt's (C3:165).
+- **c.** A case with a `prepared_product_failure` cause has its own `product_attempt_ref`, equal to the cause's (S06 §1; C3:165 "resolves once"). Applies to all three readers.
+- **d.** The reason table (S06 §1):
+  - `preparation` requires a null Run and a failed preparation;
+  - `native` requires a nonselected Run (selected is invalid), and its `run_ref` must equal the case's Run id;
+  - `capture` follows Run presence and terminal, as S06 tabulates.
+- **e.** `run_ref` is null if and only if no native call happened (C3:167).
+
+**D5. Native records (G5 ATTEMPT):**
+- **a.** A candidate record has a null verification, no verification shared build, and `verification_lme` 0 (C1:105; adaptive.rs:4076–4079, 4333).
+- **b.** An escalating stop on a failed verification is a solve failure. A record showing the verification pass ran with such a stop is invalid (adaptive.rs:4593–4611, 4377).
+- **c.** `rejected(verification_failed)` requires the failed phase.
+- **d.** A stop-rule reason's quantity resolves to a layout row with the same body and kind (C2:22, :54; C1:114).
+- **e.** A group's call exists, and its sources are unique and listed in that call (C2:119, :135).
+
+**D6. The ordinary pass (G5 ATTEMPT, class 2):**
+- **a.** `diagnostic_refs` are unique and resolve (C1:100; the G5 row's "ordinary refs resolve"). Whether each listed diagnostic must name the case depends on the producer. I62 checks the producer's ordinary diagnostic list: if it lists only diagnostics naming the case, every reader enforces that; otherwise no reader does, and TypeScript drops its check (RV81 4a).
+- **b.** A selected case's `solve_quality` is not `checks_passed` (C1:101; C2:164). For `not_assessed`, I62 checks I30's routing, and the readers admit exactly the statuses that route to retained precision.
+- **c.** A published W2 has a nonzero `force_scale_exponent`, and its trigger matches the initial failure's kind and error (C2:158).
+- **d.** `legacy_source.work_ref` resolves into `legacy_source_work`, with `case_index` equal to the case. It is a reference check, so the code is G5 ATTEMPT (C2:166). TypeScript changes its code from WORK, and Python and Rust add the check (RV81-N2).
+
+**D7. G4:** every RETAINED_PRECISION_SELECTED or _UNAVAILABLE diagnostic names exactly one requested case, so one naming no requested case fails G4 (C1 G4 row; RV79-B2f).
+
+**D8. The accounting class** (RV78-S2). The R1–R3 class facts apply to the meaning (an accounting event, a fault, a lost flag), not to the field spelling. I62:
+- enumerates every schema shape carrying an accounting event, a fault or a lost flag, with its native emission condition;
+- proposes R1′–R4, all at G5 WORK. RV78's starting point:
+  - R3′: any fault-bearing cause, whatever its spelling;
+  - R2′: OperationalError and G5a-operational accounting are never emittable;
+  - R4: SectionError accounting requires a non-exact PreparationWork status;
+- rebases `prefix_attached_old_input_unbound` first (RV78-N2);
+- states whether R3 can bind to the owning trace or only to the attempt (RV80-N5, RV81-N4).
+
+ROOT rules on the proposal.
+
+**D9. Schema:**
+- **a.** Remove the Refusal variants `work_accounting{fault}` and `count_range{name}`. Native has five variants (adaptive.rs:2860–2875), as do C2:41–45 and C1:114. Add a G1 mutation for each. If I62 finds a contract or native source for either, it stops and reports instead.
+- **b.** "No source" on an unavailable case gets one encoding: whatever the producer's `retained_receipt` projection emits. The other encoding fails G1, and `source_decline` excludes `source_ref` (RV78-N3).
+- **c.** Add a `$comment`: the integer and bit constraints are G2 (RV78-N4).
+- **d.** The later C3 clarification records three things:
+  - the type domain may exceed the emitted domain, and G5 enforces the emitted one (RV78-N8);
+  - the D3 convention;
+  - the per-check mapping.
+
+**D10. Python only:**
+- An arithmetic fault in G5b (zero area or modulus) reports G5b's adopted code (RV79-S3).
+- Counters must be JSON integers; an integral float fails G2 (RV79-N5).
+
+**D11. Corpus 07** (I62). Shared mutations for:
+- every D1–D7 and D9 relation with a faithful base, starting from RV78's PROBES.json edits;
+- the S4 gaps: P8 on F′ and on P′, C6, N13 (including a rejected attempt with a `verified` record), O1, W3, N1, N7, N11 and W2;
+- equal-E variants for the strict-bracket pins (RV78-N1).
+
+Pins that need a deferred base stay deferred and are listed. The format admits only `rehash:"all"`: each harness rejects any other value, and Rust's edit handles array removal (RV78-N5).
+
+**D12. The checklist:**
+- N11 is corrected. A group preparation refusal gives a Run with its group index (adaptive.rs:5043, `Some(index)`), a refused terminal and no attempts. Group null belongs to the exhausted-before-start Run (C2:209 item 3).
+- The checklist has 43 IDs, not 42.
+- I62 updates the status table for the 13 IDs RV79 disputes.
+
+**D13. Reader-local pins** for rules with no shared base:
+- theta = +0 on a no-data body;
+- the Ceiling after a p128 verification-solve failure;
+- R3 with `both`;
+- the 2^-988 switch in the absolute bound, on both sides;
+- the strict bracket.
+
+Each reader also adds tests that kill its review's surviving mutants wherever the rule is implemented.
+
+**D14. Exports:** the test-only exports stay, marked internal: `@internal` in TypeScript, `#[doc(hidden)]` in Rust (RV80-N4, RV81-N5).
+
+**D15. Small items:**
+- Rust's stale comment (RV80-N6).
+- I63's outcome file must list all 178 mutations (RV78-N9).
+- RV79-N7 (the dead recheck) is the author's choice.
+- The WASM assets missing from a `git archive` are not a defect. They are untracked build outputs in `public/`; reviewers copy them, as RV78 and RV81 did.
+
+### The repair wave
+
+Under `BRIEFS/I62_I64_REVIEW_REPAIR_07.md`. I62 (corpus and Python), I63 (Rust) and I64 (TypeScript) resume with their context.
+1. **I62 checkpoint A:** the native fact checks for D1 (empty inventory), D6a, D6b, D8, D9a and D9b, the D3 per-check table and the checklist corrections. ROOT rules on them.
+2. **At the same time,** I63 and I64 implement every decision that does not wait on checkpoint A, with reader-local tests built from RV78's PROBES.json edits.
+3. **I62 builds snapshot 07 and repairs Python.** Then I63 and I64 adopt 07 and the conditional decisions.
+4. **Confirmation:** the four reviewers resume on the repaired head. RV79–RV81 confirm their findings, and RV78 reruns parity on 07.
+
+Cargo now uses the default toolchain (ruling of this date). No reader is accepted before step 4 passes.
