@@ -5816,3 +5816,13 @@ The120minute block/checkpoint20/cutoff90 targets actual admission/source custody
 first and a coherent full-row verdict next. The existing guard/sole focused lane
 and separate absolute FK/PP targets remain; no host-tool work or broad runs.
 Fresh implementation review and all product/resource/owner gates still follow.
+
+
+I45 actual dispatch continuation (ROOT, 2026-10-03 UTC): clean wt/f2a join
+0fdd06a73389908fba87dfb0baef46dd443c4b8c carries NUMa083c1def515 and unchanged
+reviewed maintained6ba653451f9f. Source code/evidence writes are confined there,
+not NUM or frozen f2a-arithmetic. Actual receipt02:26:30Z; checkpoint02:46:30,
+first actual admission/source-map target03:11:30, cutoff03:56:30, final04:26:30.
+The sole focused compiler lane was transferred after ROOT's empty Cargo/rustc
+scan and live guard check. Nine-path grant and all pending product/resource/
+publication limits remain as selected; no additional authority is inferred.

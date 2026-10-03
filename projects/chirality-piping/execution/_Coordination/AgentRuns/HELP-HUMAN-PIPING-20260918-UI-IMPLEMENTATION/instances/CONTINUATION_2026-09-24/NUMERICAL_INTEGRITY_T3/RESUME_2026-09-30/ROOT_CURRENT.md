@@ -32,14 +32,22 @@ its73 mechanical rows are a static expectation only. The ordinary direct/magnitu
 hull and separately evaluated represented/source stress branches require fresh
 interface review because the old Q_K subset Q_S shortcut no longer follows.
 
-RV59 cleared I45's interface plan, preserved5691d7f7b3d0; ROOT read and verified
-its12-file packet. The explicit ordinary hull/separate completed recipes and
-final ordinary hook are selected at that bounded scope. I45 implementation is
-released under new BRIEFS/I45_PRODUCT_VERTICAL_IMPLEMENTATION.md, pending ROOT's
-clean wt/f2a join and exact dispatch. Nine-path fence includes required S11
-registration only.120minute block, first actual admission/source/map checkpoint,
-then complete private ordinary W0/W1 verdict; no public activation. Actual receipt/
-base/lane facts will be recorded after dispatch. All other TASKs stopped.
+RV59 cleared I45's interface plan, preserved5691d7f7b3d0; ROOT selected its
+bounded private ordinary witness at a083c1def515. I45 /root/i45_product_vertical
+is now implementing in wt/f2a from clean dispatch0fdd06a73389 (no-ff NUM join,
+maintained6ba653451f9f). Actual receipt02:26:30Z; checkpoint02:46:30, actual admission/
+source-map target03:11:30, source-expansion cutoff03:56:30, final04:26:30.
+Owns the nine-path fence in BRIEFS/I45_PRODUCT_VERTICAL_IMPLEMENTATION.md and new
+CODE/R/I45/product_vertical_02 only. No NUM/frozen arithmetic source writes,
+Git/index/API/delegation. All other TASKs stopped.
+
+Sole focused compiler lane belongs to I45: existing guard5387,4jobs/2threads,
+absolute manifests with locked/offline,20minute walls, separate absolute targets
+WT/targets/i45-product-vertical/{frame_kernel,product_physics}. No heavy/UI/sweep,
+installs/host-tools/pruning. The witness uses actual final ordinary rows; it does
+not implement production W1 projection/routing/receipt/admission. A verified
+full-case finite refusal is a valid first witness; a partial pass is not a case
+certificate. See verification/i45_dispatch_01/RECORD.md for actual local join.
 
 RV58 discloses a separate92ea status read without optional locks disabled; no
 candidate mutation was observed. Its sealed fixture's .gitignore symlink produces
