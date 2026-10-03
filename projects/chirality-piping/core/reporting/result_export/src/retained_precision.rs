@@ -811,12 +811,6 @@ fn g5_native(b: &Value) -> VResult {
     }
     for (i, build) in list(&b["builds"]).iter().enumerate() {
         wf(u(&build["id"]) == i as u64 && u(&build["work"]) == stages_sum(&build["stages"])?)?;
-        af((build["state"] == "success") == build["reason"].is_null())?;
-        if build["state"] == "budget_failure" {
-            af(build["reason"]["tag"] == "budget")?;
-        } else if build["state"] == "nonbudget_failure" {
-            af(build["reason"]["tag"] != "budget")?;
-        }
     }
     for (call_id, call) in list(&b["calls"]).iter().enumerate() {
         af(u(&call["id"]) == call_id as u64
@@ -960,6 +954,11 @@ fn g5_native(b: &Value) -> VResult {
                     } else {
                         wf(cache.get(&slot) == Some(&bi) && build["state"] != "budget_failure")?;
                     }
+                    // C1 build state/reason (WORK, as Python _g5_cache); every build
+                    // is referenced by its building record (builds_seen check).
+                    wf((build["state"] == "success") == build["reason"].is_null()
+                        && (build["state"] == "budget_failure")
+                            == (build["reason"]["tag"] == "budget"))?;
                     // C1: a failed build fails its requesting record with the same stop.
                     if build["state"] != "success" {
                         af(record["outcome"]["kind"] == "failed"
@@ -1335,13 +1334,64 @@ fn g5_schedule(r: &Value, body: Option<&Value>) -> VResult {
     let mut ended = false;
     let mut escalated = false;
     let mut end_stop = Value::Null;
+    let mut next_record = 0u64;
     for (ai, a) in attempts.iter().enumerate() {
         af(!ended && c < 3 && u(&a["precision"]) == 128u64 << c)?;
         let last = ai + 1 == attempts.len();
         let v = &a["verification"];
+        // Physical record replay: a fresh candidate opens the next record; a
+        // reused one is the prior rejected attempt's completed verification.
+        let cr_i = u(&a["candidate_record"]);
+        let cr = records
+            .get(cr_i as usize)
+            .ok_or_else(|| error("G5", "ATTEMPT_MISMATCH"))?;
+        if a["origin"]["kind"] == "fresh" {
+            af(cr_i == next_record && cr["role"] == "candidate")?;
+        } else {
+            af(ai > 0 && {
+                let p = &attempts[ai - 1];
+                u(&a["origin"]["attempt"]) == ai as u64 - 1
+                    && p["outcome"]["kind"] == "rejected"
+                    && !p["verification"].is_null()
+                    && p["verification"]["phase"] == "completed"
+                    && u(&p["verification"]["record"]) == cr_i
+                    && cr_i + 1 == next_record
+                    && cr["role"] == "verification_then_candidate"
+            })?;
+        }
+        next_record = next_record.max(cr_i.saturating_add(1));
+        let kind = text(&a["outcome"]["kind"]);
+        af(matches!(kind, "accepted" | "rejected" | "failed"))?;
+        if !v.is_null() {
+            let vi = u(&v["record"]);
+            af(vi == cr_i.saturating_add(1) && vi == next_record)?;
+            let vr = records
+                .get(vi as usize)
+                .ok_or_else(|| error("G5", "ATTEMPT_MISMATCH"))?;
+            next_record = vi + 1;
+            if v["phase"] == "failed" {
+                af(vr["role"] == "verification"
+                    && vr["outcome"]["kind"] == "failed"
+                    && v["reason"] == vr["outcome"]["reason"]
+                    && kind == "rejected"
+                    && a["outcome"]["reason"] == json!({"space":"attempt","tag":"verification_failed"}))?;
+            } else {
+                af(v["phase"] == "completed" && v["reason"].is_null())?;
+                if vr["role"] == "verification" {
+                    af(vr["outcome"]["kind"] == if kind == "accepted" { "verified" } else { "solved" })?;
+                } else {
+                    af(vr["role"] == "verification_then_candidate" && kind == "rejected")?;
+                }
+            }
+        } else {
+            af(kind == "failed" && stop_of(&a["outcome"]["reason"]).is_some())?;
+        }
         escalated = false;
-        match text(&a["outcome"]["kind"]) {
-            "accepted" => ended = true,
+        match kind {
+            "accepted" => {
+                af(!v.is_null() && v["phase"] == "completed" && last)?;
+                ended = true
+            }
             _ if v.is_null() => {
                 if escalating(&a["outcome"]["reason"]) {
                     c += 1;
@@ -1374,6 +1424,7 @@ fn g5_schedule(r: &Value, body: Option<&Value>) -> VResult {
             }
         }
     }
+    af(next_record == records.len() as u64)?;
     let ceiling = json!({"kind":"unresolved","reason":{"space":"unresolved","tag":"ceiling"}});
     if attempts[attempts.len() - 1]["outcome"]["kind"] == "accepted" {
         af(terminal["kind"] == "selected" && terminal["reason"].is_null())
@@ -1433,6 +1484,66 @@ pub mod reader_logic {
     pub fn ordinary(source: &Value) -> Result<(), ValidationError> {
         g5_ordinary(source)
     }
+}
+/// Every JSON object inside `v`, `v` first (depth-first, document order).
+fn objects<'a>(v: &'a Value, out: &mut Vec<&'a serde_json::Map<String, Value>>) {
+    match v {
+        Value::Object(o) => {
+            out.push(o);
+            for x in o.values() {
+                objects(x, out);
+            }
+        }
+        Value::Array(a) => {
+            for x in a {
+                objects(x, out);
+            }
+        }
+        _ => {}
+    }
+}
+/// A work status as its fault set: overflow = 1, inconsistent = 2, both = 3.
+fn status_faults(v: &Value) -> Option<u8> {
+    match v.as_str()? {
+        "exact" => Some(0),
+        "overflow" => Some(1),
+        "inconsistent" => Some(2),
+        "both" => Some(3),
+        _ => None,
+    }
+}
+/// Ruling 06d (ACCOUNTING_CAUSES R1-R3), for one product attempt:
+/// R1: an adapter overflow is never emittable (its retained prefix is at least
+/// 2^62, PP:2896-2907; C3:233-236), so `adapter.fault` is null and no
+/// CaptureError/G5aError `accounting{event}` cause appears (PP:2910-2912).
+/// R2: no ScalarTrace is `lost` (set only at u64::MAX, PP:2310-2349).
+/// R3: each `work_accounting{fault}` cause's faults are contained in the join
+/// of the attempt's emitted unavailable-Count faults and sticky statuses
+/// (FC:358-379, 1580).
+fn accounting_rules(a: &Value) -> [bool; 3] {
+    let mut objs = Vec::new();
+    objects(a, &mut objs);
+    let r1 = a["adapter"]["fault"].is_null()
+        && !objs
+            .iter()
+            .any(|o| o.get("kind").is_some_and(|k| k == "accounting") && o.contains_key("event"));
+    let r2 = !objs.iter().any(|o| o.get("lost") == Some(&Value::Bool(true)));
+    let mut seen = 0u8;
+    for o in &objs {
+        if o.get("kind").is_some_and(|k| k == "unavailable") {
+            if let Some(f) = o.get("fault").and_then(status_faults) {
+                seen |= f;
+            }
+        }
+        if let Some(f) = o.get("sticky_status").and_then(status_faults) {
+            seen |= f;
+        }
+    }
+    let r3 = objs
+        .iter()
+        .filter(|o| o.get("kind").is_some_and(|k| k == "work_accounting") && o.contains_key("fault"))
+        .all(|o| o.get("fault").and_then(status_faults).is_some_and(|f| f & !seen == 0));
+    [r1, r2, r3]
 }
 fn exact_count(v: &Value) -> Option<u64> {
     (v["kind"] == "exact").then(|| u(&v["value"]))
@@ -1759,6 +1870,11 @@ fn g5_products(source: &Value) -> VResult {
         }
         g5_coverage(a, c, s)?;
         g5_stages(a, &pf)?;
+        // R1-R3 (06d ruling; C3:232-236): work-class rules, deferred with the
+        // other C3 WORK equations until every attempt's association passed.
+        for ok in accounting_rules(a) {
+            wf(ok)?;
+        }
         if c["status"] == "unavailable"
             && c["reason"]["cause"]["kind"] == "prepared_product_failure"
         {

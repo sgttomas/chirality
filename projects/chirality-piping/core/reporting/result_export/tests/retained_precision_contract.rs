@@ -229,12 +229,12 @@ fn shared_rehashed_first_failure_mutations() {
 
 /// Observe one slice of the shared mutations against this reader's own
 /// expectation, print one outcome per mutation (visible with --nocapture) and
-/// check the slice tally. Snapshot 06c holds 173 mutations in all.
+/// check the slice tally. Snapshot 06d holds 178 mutations in all.
 fn slice_outcomes(tag: &str, range: std::ops::Range<usize>, want: &[(&str, usize)]) {
     use std::collections::BTreeMap;
     let shared = corpus();
     let mutations = shared["mutations"].as_array().unwrap();
-    assert_eq!(mutations.len(), 173);
+    assert_eq!(mutations.len(), 178);
     let mut tally = BTreeMap::new();
     let mut matched = 0;
     for mutation in &mutations[range.clone()] {
@@ -357,6 +357,20 @@ fn snapshot_06c_mutation_outcomes() {
     );
 }
 
+
+/// Snapshot-06d (I62 C2-5), mutations 173..178: R1-R3 at G5 WORK, and the
+/// tightened idle sibling at the exhaustion rule.
+#[test]
+fn snapshot_06d_mutation_outcomes() {
+    slice_outcomes(
+        "I63_OUTCOME_06D",
+        173..178,
+        &[
+            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 1),
+            ("G5 RETAINED_PRECISION_WORK_MISMATCH", 4),
+        ],
+    );
+}
 
 fn observe(shared: &Value, mutation: &Value) -> Value {
     let (source, invocation) = apply_entry(shared, mutation);
@@ -603,8 +617,9 @@ fn g5_audit_local_controls() {
 fn shared_must_pass_entries_validate() {
     let shared = corpus();
     let entries = shared["must_pass"].as_array().unwrap();
-    // Snapshot 06c: 05c's 16 plus 06b's 7.
-    assert_eq!(entries.len(), 23);
+    // Snapshot 06d: 06c's 23, with six replaced by allocator-refusal causes,
+    // one renamed and five retired or deferred.
+    assert_eq!(entries.len(), 18);
     let mut failures = Vec::new();
     for entry in entries {
         assert_eq!(entry["expected"], "pass");
