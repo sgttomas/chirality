@@ -183,6 +183,8 @@ review directly precede producer/reader integration; full invocation/resource,
 native and PR qualification remain required. The compact T3 current-state page
 and append-only rulings supersede earlier in-flight statuses above.
 
+**T3 resumption (next ROOT, 2026-10-03 UTC):** the owner handed T3 to a new ROOT with the 2026-10-03 handoff as steering. The handed-over state was verified (ruling "Resumption by the next ROOT; coverage implementation planned"). The next step is the selected summary-coverage design: the producer's typed seam (I61) and the shared schema/corpus with the Python reader (I62) in parallel, then the Rust (I63) and TypeScript (I64) readers. Reader eligibility stays closed. The first public milestone is unchanged: RF-SKEW-T-CANT-OFF-122-r1e-04 through the captured facade in both modes.
+
 ## Predecessor and recovery
 
 The immutable predecessor is [WORK_GRAPH.json at 44a30112](https://github.com/sgttomas/chirality/blob/44a30112a2d4af21768a9eef822ad1974a3869ec/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.json), branch `codex/swbpipe-continuation-20260919`. Its directory and historical graph files remain preserved. Its old pauses, worker assignments, provisional mappings and intermediate statuses are historical.

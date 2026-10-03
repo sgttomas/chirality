@@ -7384,3 +7384,32 @@ The successor follows the owner's start direction. Actual summary capture, full
 reader branch controls/review/parity, admission/profile/M, public transaction,
 wider exact/combination/caller/native scope and all main gates remain. T3 is
 not complete and the passing private case is not a public F2a publication.
+
+## Resumption by the next ROOT; coverage implementation planned (ROOT, 2026-10-03 UTC)
+
+The owner started this ROOT through the development-loop init prompt, with `HANDOFF_2026-10-03_TO_NEXT_ROOT.md` as the run's steering. ROOT verified the handed-over state before any new work, and plans the selected summary-coverage implementation as the next bounded step.
+
+**Verified at resumption:**
+- **Host:** the M5 Max (128 GiB). The existing memory guard is running as PID 5387. No cargo, rustc, pytest or vitest process is running.
+- **Git:** main is still `381be775ae`, and no F2a PR is open.
+  - NUM is clean at `b4a31da406` and matches its remote.
+  - CODE is clean at `652ad0cc1f`. It is fully contained in NUM.
+  - READER is at `a8bec61e8c`, branched from NUM before the typed-evidence merge, so NUM is 33 commits ahead of it.
+- **The reader drafts:**
+  - all 16 owned source hashes in `HANDOFF_2026-10-03/READER_STATE.json` match the files in READER, and so does the archive's sha256;
+  - every other uncommitted path in READER is either an author record packet or the ROOT-owned `node_modules` link. No stray source.
+  - 33 of the packet files are byte-identical to NUM's copies.
+  - The other four (I52's two files, and I55's and I56's receipts) exist only in scratch. Their hashes are committed in `RESUME_2026-10-03_1904/INTERRUPTED_RECORDS.json`, and they match.
+- **The design anchors:** NUM's maintained core source is unchanged since `fc23cff95f`, the basis of I57's selected coverage design, so its file:line references hold.
+
+**Plan for resume step 2 (the selected coverage design, I57 ADDENDUM at `11d6dbb6c1`):**
+- **First, an unaccepted WIP commit.** ROOT commits READER's 13 changed reader paths as a single commit on the local READER branch, labelled unaccepted WIP. Their bytes are the archive's. This gives the next authors and reviewers a diffable base. It is not a fan-in, an acceptance or a main candidate. Author record packets stay on NUM and are not staged on READER.
+- **Wave 1 runs two disjoint grants in parallel:**
+  - **I61, the producer's typed seam.** On a new branch from NUM `b4a31da406`, I61 carries the proof-owned coverage vector through `ProductProofTrace` and the private C3 projection. It applies the null/complete rules and the nine-flag reconstruction cross-check, with producer-side custody and partial-failure controls. No serializer, public receipt or JSON encoding exists yet, and none is added: that belongs to the receipt transaction (resume step 4).
+  - **I62, the shared schema and Python reader.** In READER, I62 adds the closed `summary_coverage` member to the schema, adds the I57 §5 controls to the shared synthetic corpus, and implements the Python reader's G1, G2, G3, G5 and G5a coverage checks. It then publishes a frozen shared snapshot 04.
+- **Wave 2,** after snapshot 04 is verified: the Rust reader (I63) and the TypeScript reader (I64) implement the same checks against it, on disjoint paths.
+- **Scope of every grant:** coverage only. Each reader's remaining audit and failure-prefix controls (resume step 3) follow under a separate grant. A fresh independent review covers each component before ROOT accepts it.
+- **Unchanged:**
+  - reader eligibility stays closed, and no public activation, M or permit follows;
+  - no new host tooling;
+  - the next free IDs after this wave are I65 and RV77.
