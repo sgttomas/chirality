@@ -24,10 +24,11 @@ checks must pass. Its lack of captured-request custody is not silently waived.
 Existing exact-block selections remain unchanged. The pressure refusal control
 retains `NUMERICAL_INTEGRITY_UNRESOLVED`; its no-pressure control must still publish.
 
-This is a target, not a demonstrated admission. Its first checkpoint must bind
-the actual authorable input, routing, complete rows and numerical obstacle before
-selecting more certificate work. Retained-value projection, invocation/receipt
-custody, readers, bounded resources and public routing still stand before success.
+This is a target, not a demonstrated admission. The actual input, routing and
+complete rows are now bound, and the old geometry's numerical obstacle is proved.
+The proposed prepared geometry and projection have a checked analytical witness;
+their actual producer, invocation/receipt custody, readers, bounded resources and
+public routing still stand before success.
 Several substantive integration and qualification stages remain; timing is not
 yet credible. Then the full F2a gates, interval binding, per-domain retirement and
 final joined closure remain.

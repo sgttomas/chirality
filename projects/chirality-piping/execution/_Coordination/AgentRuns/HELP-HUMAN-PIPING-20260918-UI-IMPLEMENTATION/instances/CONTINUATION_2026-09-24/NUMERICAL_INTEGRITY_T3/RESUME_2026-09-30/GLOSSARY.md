@@ -19,6 +19,10 @@ These are navigation aids, not new contracts. The owning designs and rulings gov
 | C2 | Source/capture/owner association contract in the receipt and invocation integration work. |
 | B64U | Existing upward-to-binary64 conversion with actual checked work returned to its caller. |
 | K | Exact problem defined by admitted kernel primitive bits; distinct from source-annulus geometry. |
+| Prepared K | Proposed new kernel source whose section properties are correctly rounded from the actual normalized annular inputs; it must be constructed and solved, not substituted into evidence from the old K. |
+| Dual readout | The private product proof covers both the admitted-K response and the required annular-source response. |
+| Projection | Choosing a finite product row value from the proved readout intervals, then checking that actual value with the unchanged publication predicates. |
+| p / P | Actual selected native solver precision / its verification precision, P = 2p. A separate fixed 1024-bit product proof or projection does not change these values. |
 | E / G | Young's modulus / shear modulus. Source interpolation and resolved binary64 values are both included where required. |
 | UX / UZ / RX | X translation / Z translation / X rotation; a row ordinal is not its identity. |
 | Conservative refusal | Certificate refuses although independently established required truths meet the unchanged predicates. |
