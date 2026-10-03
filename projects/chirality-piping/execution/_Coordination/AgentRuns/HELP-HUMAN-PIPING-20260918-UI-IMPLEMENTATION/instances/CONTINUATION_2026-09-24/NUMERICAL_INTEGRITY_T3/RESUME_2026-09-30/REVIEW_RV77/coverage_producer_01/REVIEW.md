@@ -247,3 +247,45 @@ Commit `e0fc33b4f7`, parent `c618675e84`, changes exactly one line of
 - **N4/N3:** record with the deferred structural owner binding when the receipt
   transaction is designed.
 - Nothing here needs an owner ruling.
+
+## Confirmation at fa225abded
+
+**Verdict: CONFIRMED.** S1 and N3 are fixed, and the N2 correction is accurate. The
+new head adds no failure. The PASS stands, with no open BLOCKING or SHOULD-FIX finding.
+N1 is recorded, and N4 is carried to the receipt-transaction design, as ROOT ruled.
+
+This confirms source and tests only. It is not acceptance, merge or release.
+
+**How this was checked**
+- ROOT asked for this in its message and in the ruling "RV77's review of the producer
+  coverage seam: PASS; the missing tests are added before acceptance" (NUM `059e876617`).
+- RV77 used its own `git archive fa225abded` in WT/rv77c, deleted afterwards, and the
+  existing targets WT/targets/rv77/{frame_kernel,product_physics}.
+- The memory guard ran (PID 5387), and only one cargo job ran at a time, with
+  `--locked --offline`, CARGO_BUILD_JOBS=4 and RUST_TEST_THREADS=2.
+- There were no Git writes. Git reads used `GIT_OPTIONAL_LOCKS=0`.
+- **Disclosed host deviation (ROOT interim ruling):** the Xcode licence on this Mac is
+  unaccepted, so every cargo command ran with
+  `DEVELOPER_DIR=/Library/Developer/CommandLineTools` (Apple clang 21.0.0) in its own
+  environment. No system setting was changed.
+- The runs took place from 2026-10-03T20:58Z to 21:10:39Z. Records are in
+  `confirm_fa225abded/`:
+  - RESULTS.txt;
+  - RUNS.txt, the bulk sha256;
+  - run.sh, the driver.
+
+| Check | Result |
+|---|---|
+| Delta `e0fc33b4f7..fa225abded` | One commit, `fa225abded` (parent `e0fc33b4f7`). It changes only `PP/retained_product_tests.rs` (+61 −1) and `P/core/solver/frame_kernel/tests/retained_k4/product_final_case_tests.rs` (+149 −0). |
+| Source unchanged | At `fa225abded`, final_case.rs = 3986919726e962b5… and retained_receipt.rs = 55dc8cb505261041…, byte-identical to `c618675e84`. formation_check_runtime.rs = faaf940d8973… (the F1a repair, as confirmed above). |
+| Tests verbatim | The body of `mod rv77_enum { … }` (product_final_case_tests.rs:640–782) has sha256 7cc8d74bcc652bfe…, and the body of `mod rv77_pp { … }` (retained_product_tests.rs:3140–3190) has 24290692e4fd9c18…. Both are byte-identical to tests/rv77_enum.rs and tests/rv77_pp.rs here. The only additions are the module wrapper and a three-line provenance comment each. rv77_enum now sits inside `product_final_case_tests`, and its `use super::*` still resolves: it compiles and passes. |
+| R1, R6, R10 killed by the committed suite | NONE passes (`fk:product_certificate` 34 passed; `pp:retained` 48 passed). R1 is killed by `rv77_enum::rv77_full_payload_domain…` ("missing refusal p=512 floor=Some([3.0, 0.0]) present=[false,false,true,false] stop=[false;4]"). R6 is killed by `rv77_pp::rv77_stage_rules…` ("null with passed G5a"), and R10 by the same test ("missing capture.source"). RV77's committed mutation diffs applied with `patch -p1`; each restore was sha256-verified. |
+| N3 | Lines 3126–3133 now say a proof projected against a different selected owner with identical public facts is *not* refused, and that owner identity rests on producer custody. The test asserts `view.is_ok()`. The run prints `I61_FOREIGN_OWNER same_public_facts_result_ok=true`, so the comment is accurate. |
+| frame_kernel `--lib` | 480 passed, 0 failed, 1 ignored (593 s): 477 plus the 3 rv77_enum tests. Warnings: 0. |
+| frame_kernel `--test s11_site_table` | 3 passed. |
+| product_physics `--lib` | 456 passed, 1 failed, 1 ignored. The only failure is `s11g_tests::t13_committed_fallback_uz_is_byte_identical` ("SparseInteractive: committed bytes changed"), the known Mac test that also fails at base. The count is 455 at `e0fc33b4f7` plus rv77_pp. Warnings: the same five pre-existing ones. **No failure is added.** |
+| N2 correction (I61 ADDENDUM_RV77.md, "Corrections…") | **Accurate.** It now lists, as unmetered compute (TraceCopyWork counts copies only): one layout pass, two node passes, two linear lookup scans (resolution_scale and floor) and the 9 binary64 extent operations plus min/max, giving O(bodies × (layout rows + nodes)) overall. The lookup scans add O(bodies²), which that bound covers because there are at least as many layout rows as bodies. It names the 16 B `SummaryCoverage` as a conservative double count, restates the extent bit-check as a regression guard (N1), and claims no allowance. The sizes and `size_of` charges are unchanged. |
+
+One small point in I61's addendum is stale but harmless: its status line still says
+"uncommitted … (branch head `e0fc33b4f7`)", although the work is now committed as
+`fa225abded`. It needs no action.
