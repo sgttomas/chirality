@@ -7598,7 +7598,7 @@ All three readers now pass snapshot 05a: 104 mutations at their expected first g
 | Reader | READER commit | Files | ROOT's own run |
 |---|---|---|---|
 | TypeScript (I64) | `ee90efd18d` | `retainedPrecision.ts` `4ce47b8a89`, `retainedPrecision.test.ts` `c643e8734d` | Vitest 161/161, tsc 0 |
-| Rust (I63) | `48b7aa2a1b` | `retained_precision.rs` `93fee7bd09`, its test file `09eea1995c` | 14/14 |
+| Rust (I63) | `48b7aa2a1b` [Correction (ROOT, 2026-10-03): the commit is `706c8558f2`; ROOT typed a hash that names nothing] | `retained_precision.rs` `93fee7bd09`, its test file `09eea1995c` | 14/14 |
 
 **A correction to I62's C1a RETURN.** It said Rust had no Φ check. Rust's inherited G5b already checked `floor == phi_512(e_hat(E, L))` with exact bits. I63 has now made `e_hat` and `phi_512` public mirrors of the native functions, with no behaviour change.
 
@@ -7611,3 +7611,5 @@ All three readers now pass snapshot 05a: 104 mutations at their expected first g
 - **Record body order.** For both selected and unavailable attempts, the verification record's resolution and theta entries must list bodies in ascending order 0..n−1. That is Rust's rule; Python currently compares sorted sets.
 
 **Next:** I62's C1b, with all three readers frozen on 05a.
+
+**ROOT's method change after two wrong hashes in one hour:** rulings that cite a commit now take the hash from Git by command substitution in the same command that writes them. No hash is typed by hand.
