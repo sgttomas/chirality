@@ -8129,3 +8129,15 @@ I62's `CHECKPOINT_A.md` (`946a75ccd4`) is verified: SHA256SUMS OK, no machine pa
 **Next:** I63 and I64 receive the D1 correction and the D6a/D6b rulings now. I62's phase B begins:
 - **B1, now:** the Python repairs in READER against 06d, with snapshot 07's shared-file edits staged under WT/scratch, not in READER.
 - **B2:** after I63 and I64 finish phase 1 and ROOT commits it, I62 installs snapshot 07 in READER.
+
+## Dangling references; TypeScript phase 1 committed (ROOT, 2026-10-03 UTC)
+
+**D16, dangling references.** A reference that does not resolve reports the code of the check that follows it, not a gate-wide catch-all default.
+- In class 1, a dangling reference is an ATTEMPT defect, unless it belongs to a WORK check: a build reference, for example, is WORK under C1 build provenance.
+- In classes 2 and 3, it takes the code of its association check: PRODUCT_ATTEMPT for C3 references, ATTEMPT for ordinary references.
+- The readers' catch-all exception paths remain only as fail-closed fallbacks. Parity is claimed only on what snapshot 07 pins, which is at least one dangling reference per G5 class.
+- TypeScript's phase-1 crash fallback ("WORK if a WORK defect was already recorded") is a heuristic and is replaced under this rule.
+
+**TypeScript phase 1, committed as `e09b86958f`.** ROOT verified the file hashes, the evidence and both commands (vitest 315/315, tsc 0) and read the diff. It still carries the withdrawn D1 non-empty clause and the list-level D6a check. I64's follow-up removes both and applies D16.
+
+**Granted:** I62 phase B1 (the Python repairs in READER; snapshot 07 staged in WT/scratch); the I64 follow-up. I63's phase 1 continues with the checkpoint corrections.
