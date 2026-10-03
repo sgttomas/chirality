@@ -112,6 +112,12 @@ mod pressure_material;
 mod pressure_runtime;
 mod preview_physics;
 mod retained_product;
+mod retained_memory;
+pub use retained_memory::{
+    borrowed_request_census, borrowed_value_census, AllowanceStatus, BorrowedRequestFacts,
+    BorrowedValueFacts, CapacityFact, CensusStatus, HeadlessRootFacts, MissingAdmissionTerm,
+    ProfileStatus, RetainedAdmissionReport, RetainedCaller, RetainedHeadlessContext,
+};
 #[cfg(test)]
 mod retained_product_tests;
 pub use pressure_runtime::{PressureContractInput, PressureRegionInput, PressureTerminalInput};
@@ -2155,11 +2161,53 @@ pub fn run_linear_static_preview_value_with_mode(
     actual_request: serde_json::Value,
     solver_mode: PreviewSolverMode,
 ) -> Result<MechanicsEnvelope, String> {
+    // Shared/native compatibility never selects a retained caller profile.
+    run_linear_static_preview_value_dispatch(actual_request, solver_mode, None)
+        .map(|outcome| outcome.envelope)
+}
+
+/// Ordinary result plus non-wire admission facts. No production permit exists.
+pub struct RetainedPreviewOutput {
+    envelope: MechanicsEnvelope,
+    admission: Option<RetainedAdmissionReport>,
+}
+impl RetainedPreviewOutput {
+    pub fn envelope(&self) -> &MechanicsEnvelope { &self.envelope }
+    /// None means the existing pre-parse refusal returned before census entry.
+    pub fn admission(&self) -> Option<&RetainedAdmissionReport> { self.admission.as_ref() }
+    pub fn into_parts(self) -> (MechanicsEnvelope, Option<RetainedAdmissionReport>) {
+        (self.envelope, self.admission)
+    }
+}
+
+pub fn run_linear_static_preview_value_with_retained_direct(
+    actual_request: serde_json::Value,
+    solver_mode: PreviewSolverMode,
+) -> Result<RetainedPreviewOutput, String> {
+    run_linear_static_preview_value_dispatch(actual_request, solver_mode, Some(retained_memory::Entry::Direct))
+}
+
+pub fn run_linear_static_preview_value_with_retained_headless(
+    actual_request: serde_json::Value,
+    solver_mode: PreviewSolverMode,
+    context: RetainedHeadlessContext<'_>,
+) -> Result<RetainedPreviewOutput, String> {
+    run_linear_static_preview_value_dispatch(actual_request, solver_mode, Some(retained_memory::Entry::Headless(context)))
+}
+
+fn run_linear_static_preview_value_dispatch(
+    actual_request: serde_json::Value,
+    solver_mode: PreviewSolverMode,
+    retained_entry: Option<retained_memory::Entry<'_>>,
+) -> Result<RetainedPreviewOutput, String> {
     if let Some(refused) = preview_physics::imposed_displacement_refusal(&actual_request) {
-        return refused;
+        return refused.map(|envelope| RetainedPreviewOutput { envelope, admission: None });
     }
     let (request, capture) = source_receipt::CapturedInvocation::parse(actual_request, solver_mode)
         .map_err(|error| error.0)?;
+    // Census runs before any ProductCapture can be installed. Its refusal is
+    // private evidence only; the once-only ordinary route below is unchanged.
+    let admission = retained_entry.map(|entry| retained_memory::assess(&capture, &request, entry));
     // The composite profile pays for retained-source and physical evidence.
     // This closed resource policy does not change old source-blocks-1 or the
     // exact helper defaults, and never changes the numerical criterion.
@@ -2167,13 +2215,15 @@ pub fn run_linear_static_preview_value_with_mode(
     if pressure_runtime::is_exact(&request.model) {
         budget.per_case_limit = PHYSICS_SOURCE_WORK_LIMIT;
     }
+    #[cfg(test)]
+    retained_memory::tests::ordinary_dispatch_entered();
     let result = run_linear_static_preview_captured(request, solver_mode, Some(&capture), &mut budget);
     if matches!(result.producer.semantic_contract_id.as_str(), SOURCE_BLOCKS_SEMANTIC_CONTRACT_ID | PHYSICS_SOURCE_SEMANTIC_CONTRACT_ID | LOAD_REFERENCE_SOURCE_SEMANTIC_CONTRACT_ID)
         && result.source_block_recovery.is_none()
     {
         return Err("SOURCE_BLOCKS_FINALIZATION_FAILED".into());
     }
-    Ok(result)
+    Ok(RetainedPreviewOutput { envelope: result, admission })
 }
 
 fn run_linear_static_preview_captured(
