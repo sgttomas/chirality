@@ -2,7 +2,7 @@
 
 **Active. F2a has no complete publishing case yet.** The immediate objective is
 to carry a named difficult case through the retained-precision product facade,
-then qualify the complete route. [Terms](GLOSSARY.md) ·
+then qualify the complete route. [Terms](GLOSSARY.md) · [Path to publication](FIRST_PUBLICATION_PATH.md) ·
 [Decisions and recovery summary](../ROOT_RULINGS_V1.md#readable-recovery-summary-and-f2a-branch-roles-root-2026-10-03-utc).
 
 ## Closed
@@ -38,8 +38,9 @@ final joined closure remain.
 I50's repaired support/observation component is integrated locally at `7e9597bd9c`.
 RV67 backcheck `863956b0c5` closed all three design-readiness findings. ROOT has
 selected I51's prepared-source, dual-readout and frozen-candidate design for one
-bounded private implementation in CODE at `8bbc04e8a3`. The actual new producer
-has not run. M5 Max, existing guard PID 5387; one runtime lane is reserved for I51.
+bounded private implementation in CODE at `8bbc04e8a3`. I51 received the grant at 10:00:06Z: first live solve by 10:35:06Z, complete
+candidate/obstruction by 11:15:06Z, edits stop 11:40:06Z, seal/reap 12:00:06Z.
+M5 Max, existing guard PID 5387; I51 owns the sole runtime lane.
 
 ## Next
 
