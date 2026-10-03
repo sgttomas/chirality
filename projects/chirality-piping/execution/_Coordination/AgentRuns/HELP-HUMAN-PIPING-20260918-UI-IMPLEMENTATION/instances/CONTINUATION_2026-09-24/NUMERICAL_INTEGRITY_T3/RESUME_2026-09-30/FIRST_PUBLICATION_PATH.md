@@ -10,14 +10,13 @@ independent reference, and preserves the named refusal/coexistence controls.
 The typed entry retains its accepted ordinary route. A private candidate pass
 does not yet satisfy this milestone or permit a producer-only main merge.
 
-## 1. Actual private candidate — I51 is implementing
+## 1. Actual private candidate — accepted locally
 
-The selected [prepared producer](I51/prepared_producer_completion_02/RETURN.md)
-first establishes actual new-source admission and resolution, then complete
-projected rows and their unchanged certificates, observables, G5a, fallback and
-local accounting. Its [independent backcheck](REVIEW_RV67/prepared_producer_completion_02/BACKCHECK.md)
-closes design readiness; source correctness and actual run results remain open.
-Keep this implementer on the component through its checkpoints and repairs.
+The prepared producer at `922db9dce3` is independently reviewed by RV68 and
+integrated locally at `458603880a`. Both actual modes pass the unchanged complete
+numeric predicates, observables and G5a. [RV68's review](REVIEW_RV68/prepared_producer_01/REVIEW.md)
+owns its source/validation evidence and qualifications. This closes the private
+candidate milestone; no public route, receipt or all-in resource claim follows.
 
 ## 2. Reconcile the public integration contract against that actual result
 

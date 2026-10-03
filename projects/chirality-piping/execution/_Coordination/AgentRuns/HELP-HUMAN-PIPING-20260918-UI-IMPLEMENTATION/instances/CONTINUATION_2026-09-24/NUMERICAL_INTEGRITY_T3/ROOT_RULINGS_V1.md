@@ -6844,3 +6844,44 @@ retain original errors and zero correction, and rerun affected view/residual and
 layout checks. RV68's source-only assessment has no objection to this exact scope;
 actual final-diff/hash confirmation remains pending. ROOT sent the grant before
 the original new-edit cutoff; it does not extend that clock or close the component.
+
+
+## Passing private producer accepted and merged locally (ROOT, 2026-10-03 UTC)
+
+ROOT accepts the independently reviewed private prepared producer because the named case now passes both physical certificates and all unchanged final publication checks in both modes.
+
+The accepted source is `922db9dce3`, relative to accepted I50 source
+`c79a1c293d`. RV68's complete-component REVIEW, sealed at 12:53:15Z and preserved
+at `94dbd2dcee`, closes its re-entry, ordinary-owner substitution, conversion
+evidence, failed-prefix and provenance findings. Its Independent checks section
+owns the 194 mechanical point and dual-certificate predicate checks, 232 native
+interval containments, and the three focused runs (28/28, 24/24 and 1/1).
+Native precision remains p = 128 / P = 256 for this request; fixed 1024-bit product
+proof/formation is separate. These figures describe the named private candidate,
+not public availability or all possible inputs.
+
+ROOT read the complete review and author return, had read the complete maintained
+component and final eight-file delta, and verified the sealed payloads, external
+manifests and all thirteen final maintained source hashes. The owning verification
+records are verification/i51_completion_04 and verification/rv68_component_01.
+The no-ff local merge is `458603880a`; the maintained Piping trees exactly match
+the independently checked source after integration. Its merge record is
+RESUME_2026-09-30/I51_PREPARED_MERGE/RECORD.md. This is the F2a integration branch,
+not main, and it does not claim final PR gates.
+
+The last authorized source edit missed its cutoff by 14.116 seconds, as RV68's
+Local account and qualifications section records. ROOT accepts the reviewed bytes
+while retaining that procedural departure; the cutoff is not retroactively
+extended. No further source edit occurred and the final seal/reap deadline held.
+The earlier premature-C0 run, failures, after-run source recovery and timing
+corrections remain preserved. Future cutoff crossings must stop edits and return
+the remaining item explicitly; success does not erase a process miss.
+
+Public receipts, registered formation/source/work evidence, invocation and
+combination ownership, the three readers/carriers, complete resource/caller
+qualification and native Current remain open. I52's sealed reconciliation at
+`897f2092e4` is preserved as a proposal; fresh RV69 is independently reviewing it.
+The same I52 now realizes its exact C3 contract under the bounded brief at
+`190f7ec53d`. C3 denotes the prepared-producer delta to the earlier C1/C2 public
+wire proposals. No name, public contract or producer activation is selected by
+those assignments. They directly advance the first public publishing milestone.
