@@ -24,13 +24,13 @@ The numerical candidate now passes. What stands before publication is its public
 
 ## Running now
 
-- I54 is correcting ordinary-memory owner omissions found by RV73. Container laws remain accepted; complete ordinary/profile/build/allowance qualification remains open.
-- I52 owns shared schema/control inputs and Python; I55 owns Rust; I56 owns TypeScript. They work on disjoint paths in READER. I55 owns Cargo; the guard remains active. Full parity precedes application/carrier wiring.
+- I54’s ordinary-memory correction is sealed. Fresh RV75 independently reviews the combined bound because RV73 was interrupted before backcheck. Complete memory qualification remains open.
+- After the usage interruption, I58 owns shared schema/Python, I59 Rust and I60 TypeScript, with disjoint READER paths. I59 owns Cargo; the guard remains active. I57 proposes the missing summary-coverage representation before reader eligibility can be enabled.
 - Native context-lifetime/backing qualification remains open. Its source investigation is stopped at its stated limit.
 
 ## Next
 
-Complete the typed evidence and ordinary-overlap bounds, bind the actual numeric admission profile and allowance, then complete producer, readers and carriers as a coherent public package. Existing full invocation/resource and native requirements remain dependencies; the passing private case does not waive them. Bulk evidence remains in scratch with hash/size/location manifests.
+Close and independently review summary coverage, finish shared-reader parity and the ordinary-memory review, then bind the full admission profile/allowance and producer receipt transaction. Existing full invocation/resource and native requirements remain dependencies; the passing private case does not waive them. Bulk evidence remains in scratch with hash/size/location manifests.
 
 ## Branches and owner decisions
 
