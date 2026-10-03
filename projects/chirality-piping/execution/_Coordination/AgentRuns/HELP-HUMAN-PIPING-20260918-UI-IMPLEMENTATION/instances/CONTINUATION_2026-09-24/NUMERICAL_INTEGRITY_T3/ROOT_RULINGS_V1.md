@@ -7690,3 +7690,11 @@ I62's `READER_AUDIT_PLAN.md` (sha256 `ee3cc5918c`) is approved. It has two parts
 4. **Then one fresh, complete, independent review** of all three readers and the corpus, with a joint parity run.
 
 The docstring correction to the Python-only old-Err test is committed on READER.
+
+## Producer coverage seam accepted and merged into NUM (ROOT, 2026-10-03 UTC)
+
+**I61's typed C3 coverage seam is accepted at its bounded scope** and merged into NUM (merge `f044127b1c`, second parent `fa225abded`). Its maintained source equals the reviewed head exactly. The merge also carries the F1a test-file repair (`e0fc33b4f7`), so NUM's F1a regression is fixed.
+- **RV77:** PASS, with S1 fixed and N3 corrected. Its confirmation at `fa225abded` verified that its tests went in verbatim and that the surviving mutants R1, R6 and R10 are now killed. frame_kernel `--lib`: 480 passed. product_physics `--lib`: only the known Mac test `s11g t13` fails.
+- **The toolchain deviation:** those runs linked with the Command Line Tools (`DEVELOPER_DIR`) under the interim ruling. The evidence is local acceptance evidence, not gate evidence.
+
+**This is a local fan-in, not a main merge.** The seam carries no serializer or public receipt. Producer custody and the owner binding (RV77-N4) are carried to the receipt-transaction design. The stale status line in I61's ADDENDUM_RV77 (it names branch head `e0fc33b4f7`) is noted, not edited.
