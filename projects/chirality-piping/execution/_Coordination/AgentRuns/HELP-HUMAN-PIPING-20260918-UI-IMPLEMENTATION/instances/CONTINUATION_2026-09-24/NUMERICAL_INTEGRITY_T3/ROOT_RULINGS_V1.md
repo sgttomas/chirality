@@ -7613,3 +7613,25 @@ All three readers now pass snapshot 05a: 104 mutations at their expected first g
 **Next:** I62's C1b, with all three readers frozen on 05a.
 
 **ROOT's method change after two wrong hashes in one hour:** rulings that cite a commit now take the hash from Git by command substitution in the same command that writes them. No hash is typed by hand.
+
+## Snapshot 05b verified; three non-native must-pass entries retired as 05c; producer-solved witnesses deferred (ROOT, 2026-10-03 UTC)
+
+**Snapshot 05b is verified,** and committed on READER as `8430571cc4` with Python's gate-major alignment.
+- **The new hashes:** corpus `ea6fe2c757`, `retained_precision.py` `3b12ca7511`.
+- **05a's content is byte-identical inside 05b:** 6 cases, 104 mutations and 15 must-pass entries.
+- **05b adds:**
+  - three synthetic cases: two bodies; a p512 ladder with Φ positive on the loaded body and zero on the unloaded one; two selected load cases;
+  - 17 mutations, including the cross-case order and record-order pins;
+  - 4 must-pass entries.
+- **ROOT's own Python run:** 167 passed. The records (SHARED_SNAPSHOT_05B, RETURN_C1B, SHA256SUMS_C1B) verify.
+
+**Gate-major order is confirmed by the contract:** C3_DELTA §4 ("Keep C1 order G0,…,G8 … First failure wins") and C1 §6. Python now runs each gate across all cases before the next. An empty body or a non-finite normalized value fails at G5a, as in Rust, because both are prerequisites of the G5a resolution tests.
+
+**Rulings:**
+- **Three 05a must-pass entries are retired,** because their stated native path cannot occur:
+  - `cert_failed_after_summary` and `cert_failed_predicate_null_undetectable` claim a numeric predicate failure in case 1 of base F. That case repeats case 0's inputs, and case 0 passed its certificate. The accounting-trigger replacement `cert_failed_after_summary_accounting` (from 05b) stands.
+  - `old_operational_error_new_ready` claims a coefficient-range refusal on ordinary operands, with no established native trigger. It stays open until a trigger is shown.
+  
+  I62 removes all three as snapshot 05c and records why. Every other entry stays byte-identical.
+- **The native Ceiling row and the L = 0 base are deferred until the producer can emit real receipts** (the receipt transaction, resume step 4). A faithful Ceiling needs a case with genuinely different numerics, and L = 0 needs a confirmed producer admission. Synthetic attestation cannot supply either faithfully.
+- **Next:** I63 (Rust) and I64 (TypeScript) align to 05c: the 17 new mutations and the remaining must-pass entries, gate-major order across cases, record body order, and failing an empty body or non-finite normalized value at G5a.
