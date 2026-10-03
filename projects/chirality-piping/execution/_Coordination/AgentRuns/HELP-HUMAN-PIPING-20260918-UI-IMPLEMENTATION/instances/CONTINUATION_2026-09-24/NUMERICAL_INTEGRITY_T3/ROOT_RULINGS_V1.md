@@ -7937,3 +7937,14 @@ Then the readers align, and one fresh, complete, independent review follows.
 **For RV81:** `accountingRules` is exported for a reader-logic test. It is a pure predicate with no eligibility path, but it widens the module's surface.
 
 **The review dispatched now:** RV78 (the shared artefacts, the corpus and the joint parity run), RV79 (Python), RV80 (Rust) and RV81 (TypeScript), per `BRIEFS/RV78_RV81_READER_REVIEW.md`, against `6b607fd01f`. Their dispatch prompts add the known-difference lists as named questions. No reader is accepted, and nothing becomes eligible, until the review's findings are resolved and confirmed.
+
+## The Xcode licence is accepted; the toolchain override is retired (ROOT, 2026-10-03 UTC)
+
+**The owner accepted the Xcode licence.** ROOT confirmed it on the host:
+- `xcodebuild -license check` exits 0;
+- the selected developer directory is Xcode's;
+- `xcrun` resolves `cc` (Apple clang 21.0.0) and the macOS SDK.
+
+**From now on, Cargo runs use the default toolchain,** with no `DEVELOPER_DIR` override. Gate evidence (DEC-025, the final gates, and the T9 and both-entry runs) must come from the default toolchain.
+
+The reader review now running (RV78–RV81) was dispatched with the override and may keep it. Its results are review evidence, not gate evidence, and each reviewer discloses the override.
