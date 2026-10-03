@@ -28720,8 +28720,8 @@
                   "error": {
                     "kind": "capture",
                     "cause": {
-                      "kind": "accounting",
-                      "event": "map_write"
+                      "kind": "storage",
+                      "detail": "adapter vector"
                     }
                   }
                 },
@@ -29761,10 +29761,7 @@
                     0,
                     0
                   ],
-                  "fault": {
-                    "kind": "overflow",
-                    "event": "map_write"
-                  },
+                  "fault": null,
                   "prepared_capacity_bytes": [
                     0,
                     0,
@@ -29880,7 +29877,7 @@
               }
             ]
           },
-          "receipt_sha256": "a751feac5c0e324d67a25cf340c03cab70f4eb7d694f6bceb692aaeb7a731aa1"
+          "receipt_sha256": "89e64f2549798aaa12c1bbda31cce0eaa024f3fa4c4bedcffc8af08ae58e684f"
         }
       },
       "invocation": {
@@ -31016,7 +31013,7 @@
         "numerical_eligible": false,
         "standing": "needs_recompute"
       },
-      "qualification": "DRAFT: synthetic two-case unavailable template (C1a). Case 1: certificate passed, then adapter verdict copy refused by a synthetic accounting fault; complete proof-owned summary_coverage retained. Not producer execution; public API intentionally rejects."
+      "qualification": "DRAFT: synthetic two-case unavailable template (C1a; rebased 06d). Case 1: certificate passed, then the adapter verdict-copy reservation was refused by the allocator (PP prepared_verdict_copy -> AdapterWork::reserve, Storage(\"adapter vector\")); complete proof-owned summary_coverage retained. Synthetic allocator refusal; not producer execution; public API intentionally rejects."
     },
     {
       "id": "two_case_preparation_failure_synthetic",
@@ -36811,8 +36808,8 @@
                   "error": {
                     "kind": "preparation",
                     "capture": {
-                      "kind": "accounting",
-                      "event": "rust_capacity_bytes"
+                      "kind": "storage",
+                      "detail": "prepared vector"
                     },
                     "section": null
                   }
@@ -36846,10 +36843,7 @@
                     0,
                     0
                   ],
-                  "fault": {
-                    "kind": "overflow",
-                    "event": "rust_capacity_bytes"
-                  },
+                  "fault": null,
                   "prepared_capacity_bytes": [
                     0,
                     0,
@@ -36933,7 +36927,7 @@
               }
             ]
           },
-          "receipt_sha256": "d9771b663c70c3e009f87ca17d7af8d419f51cc8c37814ff4b90aba524c5e519"
+          "receipt_sha256": "2af7e010b0531d4dbedf2e32bba31e08b42f2e145ce6f535f9dd33a88a1e2f25"
         }
       },
       "invocation": {
@@ -38069,7 +38063,7 @@
         "numerical_eligible": false,
         "standing": "needs_recompute"
       },
-      "qualification": "DRAFT: synthetic two-case unavailable template (C1a). Case 1: preparation refused before the first annulus helper by a synthetic allocation accounting fault; no proof, no source, no native run. Not producer execution; public API intentionally rejects."
+      "qualification": "DRAFT: synthetic two-case unavailable template (C1a; rebased 06d). Case 1: preparation refused before the first annulus helper by an allocator refusal at the first prepared reservation (PP prepared_reserve, Storage(\"prepared vector\")); no proof, no source, no native run. Synthetic allocator refusal; not producer execution; public API intentionally rejects."
     },
     {
       "id": "two_body_synthetic",
@@ -122144,6 +122138,353 @@
           }
         }
       ]
+    },
+    {
+      "id": "adapter_fault_present",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "adapter",
+            "fault"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "overflow",
+            "event": "map_write"
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_WORK_MISMATCH"
+      }
+    },
+    {
+      "id": "accounting_cause_without_fault",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "result"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "unavailable",
+            "error": {
+              "kind": "capture",
+              "cause": {
+                "kind": "accounting",
+                "event": "map_write"
+              }
+            }
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_WORK_MISMATCH"
+      }
+    },
+    {
+      "id": "scalar_trace_lost_unavailable",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "overlay_work",
+            "lost"
+          ],
+          "op": "set",
+          "value": true
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_WORK_MISMATCH"
+      }
+    },
+    {
+      "id": "work_accounting_cause_exact_status",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "result"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "unavailable",
+            "error": {
+              "kind": "proof",
+              "cause": {
+                "kind": "work_accounting",
+                "fault": "overflow"
+              }
+            }
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "adapter",
+            "fault"
+          ],
+          "op": "set",
+          "value": null
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "proof",
+            "summary_coverage"
+          ],
+          "op": "set",
+          "value": null
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "stages"
+          ],
+          "op": "set",
+          "value": {
+            "preparation": "completed",
+            "native": "completed",
+            "proof_start": "completed",
+            "projection": "completed",
+            "maxima": "completed",
+            "values": "completed",
+            "aliases": "completed",
+            "certificate": "failed",
+            "observables": "not_entered",
+            "g5a": "not_entered"
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "proof",
+            "checks"
+          ],
+          "op": "set",
+          "value": {
+            "certificate": {
+              "kind": "failed",
+              "error": {
+                "kind": "proof",
+                "cause": {
+                  "kind": "work_accounting",
+                  "fault": "overflow"
+                }
+              }
+            },
+            "observables": {
+              "kind": "not_entered"
+            },
+            "g5a": {
+              "kind": "not_entered"
+            }
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_WORK_MISMATCH"
+      }
+    },
+    {
+      "id": "idle_budget_not_exhausted_no_group",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "records"
+          ],
+          "op": "set",
+          "value": []
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "attempts"
+          ],
+          "op": "set",
+          "value": []
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "case_charge"
+          ],
+          "op": "set",
+          "value": 0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "invocation_increment"
+          ],
+          "op": "set",
+          "value": 0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "invocation_after"
+          ],
+          "op": "set",
+          "value": 17
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "calls",
+            0,
+            "invocation_after"
+          ],
+          "op": "set",
+          "value": 17
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "work",
+            "charged"
+          ],
+          "op": "set",
+          "value": 17
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "origin",
+            "group"
+          ],
+          "op": "set",
+          "value": null
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "kernel_terminal"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "unresolved",
+            "reason": {
+              "space": "unresolved",
+              "tag": "budget",
+              "scope": "invocation"
+            }
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "groups",
+            0,
+            "source_refs"
+          ],
+          "op": "set",
+          "value": [
+            0
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "cache_before"
+          ],
+          "op": "set",
+          "value": []
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "cache_after"
+          ],
+          "op": "set",
+          "value": []
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
     }
   ],
   "must_pass": [
@@ -122448,8 +122789,7 @@
             "error": {
               "kind": "proof",
               "cause": {
-                "kind": "work_accounting",
-                "fault": "overflow"
+                "kind": "storage"
               }
             }
           }
@@ -122516,8 +122856,7 @@
               "error": {
                 "kind": "proof",
                 "cause": {
-                  "kind": "work_accounting",
-                  "fault": "overflow"
+                  "kind": "storage"
                 }
               }
             },
@@ -123204,8 +123543,8 @@
             "error": {
               "kind": "abandoned",
               "cause": {
-                "kind": "accounting",
-                "event": "map_write"
+                "kind": "storage",
+                "detail": "adapter vector"
               },
               "proof": {
                 "kind": "association",
@@ -123304,424 +123643,19 @@
             "error": {
               "kind": "preparation",
               "capture": {
-                "kind": "accounting",
-                "event": "allocation_request"
+                "kind": "storage",
+                "detail": "observation text"
               },
               "section": null
             }
           }
-        },
-        {
-          "path": [
-            "retained_precision",
-            "body",
-            "product_attempts",
-            1,
-            "adapter",
-            "fault"
-          ],
-          "op": "set",
-          "value": {
-            "kind": "overflow",
-            "event": "allocation_request"
-          }
         }
       ],
       "rehash": "all",
       "expected": "pass"
     },
     {
-      "id": "prefix_helper_refused",
-      "base": "two_case_preparation_failure_synthetic",
-      "edits": [
-        {
-          "path": [
-            "retained_precision",
-            "body",
-            "product_attempts",
-            1,
-            "preparation",
-            "members"
-          ],
-          "op": "set",
-          "value": [
-            {
-              "member": 0,
-              "old_source": [
-                "42474876e8000000",
-                "4231ed8ec2000000",
-                "3f6c4f3caf32fd23",
-                "3ed61aa4872838bf",
-                "3ed61aa4872838bf",
-                "3ee61aa4872838c0"
-              ],
-              "old_facts": [
-                "3fbeb851eb851eb8",
-                "3f847ae147ae147b",
-                "3f6c4f3caf32fd23",
-                "3ed61aa4872838bf",
-                "3ee61aa4872838c0",
-                "3f17066b621f3b1c",
-                "3faeb851eb851eb8"
-              ],
-              "result": {
-                "kind": "refused",
-                "error": {
-                  "kind": "accounting"
-                }
-              },
-              "work": {
-                "numeric": {
-                  "wide_lme": {
-                    "kind": "exact",
-                    "value": 0
-                  },
-                  "exact_sum_lme": {
-                    "kind": "exact",
-                    "value": 0
-                  },
-                  "entries": [
-                    {
-                      "kind": "exact",
-                      "value": 2
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 4
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 11
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 2
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 0
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 0
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 0
-                    }
-                  ],
-                  "f64_arithmetic": {
-                    "kind": "exact",
-                    "value": 0
-                  },
-                  "sticky_status": "exact"
-                },
-                "initialized_endpoints": {
-                  "kind": "exact",
-                  "value": 27
-                },
-                "conversions": {
-                  "kind": "exact",
-                  "value": 0
-                },
-                "checks": {
-                  "kind": "exact",
-                  "value": 0
-                },
-                "endpoint_assignments": {
-                  "kind": "exact",
-                  "value": 0
-                },
-                "layout_bytes": [
-                  0,
-                  0,
-                  0,
-                  0,
-                  0,
-                  0,
-                  0,
-                  0
-                ]
-              },
-              "conversions": []
-            }
-          ]
-        },
-        {
-          "path": [
-            "retained_precision",
-            "body",
-            "product_attempts",
-            1,
-            "result"
-          ],
-          "op": "set",
-          "value": {
-            "kind": "unavailable",
-            "error": {
-              "kind": "preparation",
-              "capture": {
-                "kind": "association",
-                "detail": "annulus preparation refused"
-              },
-              "section": {
-                "kind": "accounting"
-              }
-            }
-          }
-        },
-        {
-          "path": [
-            "retained_precision",
-            "body",
-            "product_attempts",
-            1,
-            "adapter",
-            "fault"
-          ],
-          "op": "set",
-          "value": null
-        }
-      ],
-      "rehash": "all",
-      "expected": "pass"
-    },
-    {
-      "id": "prefix_unequal_helper_new",
-      "base": "two_case_preparation_failure_synthetic",
-      "edits": [
-        {
-          "path": [
-            "retained_precision",
-            "body",
-            "product_attempts",
-            1,
-            "preparation",
-            "members"
-          ],
-          "op": "set",
-          "value": [
-            {
-              "member": 0,
-              "old_source": [
-                "42474876e8000000",
-                "4231ed8ec2000000",
-                "3f6c4f3caf32fd23",
-                "3ed61aa4872838bf",
-                "3ed61aa4872838bf",
-                "3ee61aa4872838c0"
-              ],
-              "old_facts": [
-                "3fbeb851eb851eb8",
-                "3f847ae147ae147b",
-                "3f6c4f3caf32fd23",
-                "3ed61aa4872838bf",
-                "3ee61aa4872838c0",
-                "3f17066b621f3b1c",
-                "3faeb851eb851eb8"
-              ],
-              "result": {
-                "kind": "prepared",
-                "section": [
-                  "3f6c4f3caf32fd23",
-                  "3ed61aa4872838bf",
-                  "3ee61aa4872838bf",
-                  "3f17066b621f3b1c",
-                  "3faeb851eb851eb8"
-                ]
-              },
-              "work": {
-                "numeric": {
-                  "wide_lme": {
-                    "kind": "exact",
-                    "value": 0
-                  },
-                  "exact_sum_lme": {
-                    "kind": "exact",
-                    "value": 0
-                  },
-                  "entries": [
-                    {
-                      "kind": "exact",
-                      "value": 2
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 4
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 11
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 2
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 0
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 0
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 0
-                    }
-                  ],
-                  "f64_arithmetic": {
-                    "kind": "exact",
-                    "value": 0
-                  },
-                  "sticky_status": "exact"
-                },
-                "initialized_endpoints": {
-                  "kind": "exact",
-                  "value": 27
-                },
-                "conversions": {
-                  "kind": "exact",
-                  "value": 9
-                },
-                "checks": {
-                  "kind": "exact",
-                  "value": 0
-                },
-                "endpoint_assignments": {
-                  "kind": "exact",
-                  "value": 0
-                },
-                "layout_bytes": [
-                  0,
-                  0,
-                  0,
-                  0,
-                  0,
-                  0,
-                  0,
-                  0
-                ]
-              },
-              "conversions": [
-                {
-                  "property": "area",
-                  "endpoint": "lo",
-                  "outcome": {
-                    "kind": "normal",
-                    "value": "3f6c4f3caf32fd23"
-                  }
-                },
-                {
-                  "property": "area",
-                  "endpoint": "hi",
-                  "outcome": {
-                    "kind": "normal",
-                    "value": "3f6c4f3caf32fd23"
-                  }
-                },
-                {
-                  "property": "second_moment",
-                  "endpoint": "lo",
-                  "outcome": {
-                    "kind": "normal",
-                    "value": "3ed61aa4872838bf"
-                  }
-                },
-                {
-                  "property": "second_moment",
-                  "endpoint": "hi",
-                  "outcome": {
-                    "kind": "normal",
-                    "value": "3ed61aa4872838bf"
-                  }
-                },
-                {
-                  "property": "polar_moment",
-                  "endpoint": "lo",
-                  "outcome": {
-                    "kind": "normal",
-                    "value": "3ee61aa4872838bf"
-                  }
-                },
-                {
-                  "property": "polar_moment",
-                  "endpoint": "hi",
-                  "outcome": {
-                    "kind": "normal",
-                    "value": "3ee61aa4872838bf"
-                  }
-                },
-                {
-                  "property": "section_modulus",
-                  "endpoint": "lo",
-                  "outcome": {
-                    "kind": "normal",
-                    "value": "3f17066b621f3b1c"
-                  }
-                },
-                {
-                  "property": "section_modulus",
-                  "endpoint": "hi",
-                  "outcome": {
-                    "kind": "normal",
-                    "value": "3f17066b621f3b1c"
-                  }
-                },
-                {
-                  "property": "radius",
-                  "endpoint": "exact",
-                  "outcome": {
-                    "kind": "normal",
-                    "value": "3faeb851eb851eb8"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "path": [
-            "retained_precision",
-            "body",
-            "product_attempts",
-            1,
-            "result"
-          ],
-          "op": "set",
-          "value": {
-            "kind": "unavailable",
-            "error": {
-              "kind": "preparation",
-              "capture": {
-                "kind": "accounting",
-                "event": "requested_copy_bytes"
-              },
-              "section": null
-            }
-          }
-        },
-        {
-          "path": [
-            "retained_precision",
-            "body",
-            "product_attempts",
-            1,
-            "adapter",
-            "fault"
-          ],
-          "op": "set",
-          "value": {
-            "kind": "overflow",
-            "event": "requested_copy_bytes"
-          }
-        }
-      ],
-      "rehash": "all",
-      "expected": "pass"
-    },
-    {
-      "id": "cert_failed_after_summary_accounting",
+      "id": "cert_failed_after_summary_storage",
       "base": "two_case_facade_after_certificate_synthetic",
       "edits": [
         {
@@ -123738,8 +123672,7 @@
             "error": {
               "kind": "proof",
               "cause": {
-                "kind": "work_accounting",
-                "fault": "overflow"
+                "kind": "storage"
               }
             }
           }
@@ -123794,8 +123727,7 @@
               "error": {
                 "kind": "proof",
                 "cause": {
-                  "kind": "work_accounting",
-                  "fault": "overflow"
+                  "kind": "storage"
                 }
               }
             },
@@ -124138,442 +124070,6 @@
       "expected": "pass"
     },
     {
-      "id": "prefix_after_new_evaluator",
-      "base": "two_case_preparation_failure_synthetic",
-      "edits": [
-        {
-          "path": [
-            "retained_precision",
-            "body",
-            "product_attempts",
-            1,
-            "preparation",
-            "members"
-          ],
-          "op": "set",
-          "value": [
-            {
-              "member": 0,
-              "old_source": [
-                "42474876e8000000",
-                "4231ed8ec2000000",
-                "3f6c4f3caf32fd23",
-                "3ed61aa4872838bf",
-                "3ed61aa4872838bf",
-                "3ee61aa4872838c0"
-              ],
-              "old_facts": [
-                "3fbeb851eb851eb8",
-                "3f847ae147ae147b",
-                "3f6c4f3caf32fd23",
-                "3ed61aa4872838bf",
-                "3ee61aa4872838c0",
-                "3f17066b621f3b1c",
-                "3faeb851eb851eb8"
-              ],
-              "result": {
-                "kind": "prepared",
-                "section": [
-                  "3f6c4f3caf32fd23",
-                  "3ed61aa4872838bf",
-                  "3ee61aa4872838bf",
-                  "3f17066b621f3b1c",
-                  "3faeb851eb851eb8"
-                ]
-              },
-              "work": {
-                "numeric": {
-                  "wide_lme": {
-                    "kind": "exact",
-                    "value": 0
-                  },
-                  "exact_sum_lme": {
-                    "kind": "exact",
-                    "value": 0
-                  },
-                  "entries": [
-                    {
-                      "kind": "exact",
-                      "value": 2
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 4
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 11
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 2
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 0
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 0
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 0
-                    }
-                  ],
-                  "f64_arithmetic": {
-                    "kind": "exact",
-                    "value": 0
-                  },
-                  "sticky_status": "exact"
-                },
-                "initialized_endpoints": {
-                  "kind": "exact",
-                  "value": 27
-                },
-                "conversions": {
-                  "kind": "exact",
-                  "value": 9
-                },
-                "checks": {
-                  "kind": "exact",
-                  "value": 0
-                },
-                "endpoint_assignments": {
-                  "kind": "exact",
-                  "value": 0
-                },
-                "layout_bytes": [
-                  0,
-                  0,
-                  0,
-                  0,
-                  0,
-                  0,
-                  0,
-                  0
-                ]
-              },
-              "conversions": [
-                {
-                  "property": "area",
-                  "endpoint": "lo",
-                  "outcome": {
-                    "kind": "normal",
-                    "value": "3f6c4f3caf32fd23"
-                  }
-                },
-                {
-                  "property": "area",
-                  "endpoint": "hi",
-                  "outcome": {
-                    "kind": "normal",
-                    "value": "3f6c4f3caf32fd23"
-                  }
-                },
-                {
-                  "property": "second_moment",
-                  "endpoint": "lo",
-                  "outcome": {
-                    "kind": "normal",
-                    "value": "3ed61aa4872838bf"
-                  }
-                },
-                {
-                  "property": "second_moment",
-                  "endpoint": "hi",
-                  "outcome": {
-                    "kind": "normal",
-                    "value": "3ed61aa4872838bf"
-                  }
-                },
-                {
-                  "property": "polar_moment",
-                  "endpoint": "lo",
-                  "outcome": {
-                    "kind": "normal",
-                    "value": "3ee61aa4872838bf"
-                  }
-                },
-                {
-                  "property": "polar_moment",
-                  "endpoint": "hi",
-                  "outcome": {
-                    "kind": "normal",
-                    "value": "3ee61aa4872838bf"
-                  }
-                },
-                {
-                  "property": "section_modulus",
-                  "endpoint": "lo",
-                  "outcome": {
-                    "kind": "normal",
-                    "value": "3f17066b621f3b1c"
-                  }
-                },
-                {
-                  "property": "section_modulus",
-                  "endpoint": "hi",
-                  "outcome": {
-                    "kind": "normal",
-                    "value": "3f17066b621f3b1c"
-                  }
-                },
-                {
-                  "property": "radius",
-                  "endpoint": "exact",
-                  "outcome": {
-                    "kind": "normal",
-                    "value": "3faeb851eb851eb8"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "path": [
-            "retained_precision",
-            "body",
-            "product_attempts",
-            1,
-            "operational",
-            "new"
-          ],
-          "op": "set",
-          "value": [
-            {
-              "member": 0,
-              "inputs": [
-                "0000000000000000",
-                "0000000000000000",
-                "0000000000000000",
-                "3ff0000000000000",
-                "0000000000000000",
-                "0000000000000000",
-                "42474876e8000000",
-                "4231ed8ec2000000",
-                "3f6c4f3caf32fd23",
-                "3ee61aa4872838bf"
-              ],
-              "result": {
-                "kind": "ready",
-                "length": "3ff0000000000000",
-                "axial_stiffness": "41c4990f17e516ad",
-                "torsional_stiffness": "4128c47ead23fa7f",
-                "normalization": [
-                  "3ff0000000000000",
-                  "0000000000000000",
-                  "0000000000000000"
-                ]
-              },
-              "work": {
-                "entered": 0,
-                "checks": 0,
-                "lost": false
-              }
-            }
-          ]
-        },
-        {
-          "path": [
-            "retained_precision",
-            "body",
-            "product_attempts",
-            1,
-            "result"
-          ],
-          "op": "set",
-          "value": {
-            "kind": "unavailable",
-            "error": {
-              "kind": "preparation",
-              "capture": {
-                "kind": "accounting",
-                "event": "map_write"
-              },
-              "section": null
-            }
-          }
-        },
-        {
-          "path": [
-            "retained_precision",
-            "body",
-            "product_attempts",
-            1,
-            "adapter",
-            "fault"
-          ],
-          "op": "set",
-          "value": {
-            "kind": "overflow",
-            "event": "map_write"
-          }
-        }
-      ],
-      "rehash": "all",
-      "expected": "pass"
-    },
-    {
-      "id": "observables_failed_after_certificate",
-      "base": "two_case_facade_after_certificate_synthetic",
-      "edits": [
-        {
-          "path": [
-            "retained_precision",
-            "body",
-            "product_attempts",
-            1,
-            "stages"
-          ],
-          "op": "set",
-          "value": {
-            "preparation": "completed",
-            "native": "completed",
-            "proof_start": "completed",
-            "projection": "completed",
-            "maxima": "completed",
-            "values": "completed",
-            "aliases": "completed",
-            "certificate": "completed",
-            "observables": "failed",
-            "g5a": "completed"
-          }
-        },
-        {
-          "path": [
-            "retained_precision",
-            "body",
-            "product_attempts",
-            1,
-            "proof",
-            "checks"
-          ],
-          "op": "set",
-          "value": {
-            "certificate": {
-              "kind": "passed"
-            },
-            "observables": {
-              "kind": "failed",
-              "error": {
-                "kind": "observable",
-                "cause": {
-                  "kind": "accounting",
-                  "event": "map_write"
-                }
-              }
-            },
-            "g5a": {
-              "kind": "passed"
-            }
-          }
-        },
-        {
-          "path": [
-            "retained_precision",
-            "body",
-            "product_attempts",
-            1,
-            "result"
-          ],
-          "op": "set",
-          "value": {
-            "kind": "unavailable",
-            "error": {
-              "kind": "observable",
-              "cause": {
-                "kind": "accounting",
-                "event": "map_write"
-              }
-            }
-          }
-        }
-      ],
-      "rehash": "all",
-      "expected": "pass"
-    },
-    {
-      "id": "g5a_failed_after_certificate",
-      "base": "two_case_facade_after_certificate_synthetic",
-      "edits": [
-        {
-          "path": [
-            "retained_precision",
-            "body",
-            "product_attempts",
-            1,
-            "stages"
-          ],
-          "op": "set",
-          "value": {
-            "preparation": "completed",
-            "native": "completed",
-            "proof_start": "completed",
-            "projection": "completed",
-            "maxima": "completed",
-            "values": "completed",
-            "aliases": "completed",
-            "certificate": "completed",
-            "observables": "completed",
-            "g5a": "failed"
-          }
-        },
-        {
-          "path": [
-            "retained_precision",
-            "body",
-            "product_attempts",
-            1,
-            "proof",
-            "checks"
-          ],
-          "op": "set",
-          "value": {
-            "certificate": {
-              "kind": "passed"
-            },
-            "observables": {
-              "kind": "passed"
-            },
-            "g5a": {
-              "kind": "failed",
-              "error": {
-                "kind": "g5a",
-                "cause": {
-                  "kind": "accounting",
-                  "event": "map_write"
-                }
-              }
-            }
-          }
-        },
-        {
-          "path": [
-            "retained_precision",
-            "body",
-            "product_attempts",
-            1,
-            "result"
-          ],
-          "op": "set",
-          "value": {
-            "kind": "unavailable",
-            "error": {
-              "kind": "g5a",
-              "cause": {
-                "kind": "accounting",
-                "event": "map_write"
-              }
-            }
-          }
-        }
-      ],
-      "rehash": "all",
-      "expected": "pass"
-    },
-    {
       "id": "values_failed_separate_completion",
       "base": "two_case_facade_after_certificate_synthetic",
       "edits": [
@@ -124666,12 +124162,11 @@
             "error": {
               "kind": "values",
               "cause": {
-                "kind": "work_accounting",
-                "fault": "overflow"
+                "kind": "storage"
               },
               "proof": {
                 "kind": "association",
-                "detail": "PP abandoned completed values"
+                "detail": "PP abandoned prepared draft"
               }
             }
           }
@@ -124754,8 +124249,8 @@
             "error": {
               "kind": "abandoned",
               "cause": {
-                "kind": "accounting",
-                "event": "map_write"
+                "kind": "storage",
+                "detail": "identity copy"
               },
               "proof": {
                 "kind": "association",
@@ -124842,8 +124337,8 @@
             "error": {
               "kind": "abandoned",
               "cause": {
-                "kind": "accounting",
-                "event": "map_write"
+                "kind": "storage",
+                "detail": "adapter vector"
               },
               "proof": {
                 "kind": "association",

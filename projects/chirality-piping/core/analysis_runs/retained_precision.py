@@ -196,6 +196,42 @@ def _count(record):
     return int(record["value"]) if record["kind"] == "exact" else None
 
 
+STATUS_FAULTS = {"exact": frozenset(), "overflow": frozenset({"overflow"}), "inconsistent": frozenset({"inconsistent"}),
+                 "both": frozenset({"overflow", "inconsistent"})}
+
+
+def _objects(value):
+    if isinstance(value, dict):
+        yield value
+        for v in value.values(): yield from _objects(v)
+    elif isinstance(value, list):
+        for v in value: yield from _objects(v)
+
+
+def _accounting_rules(a):
+    """Ruling 06d (I62 ACCOUNTING_CAUSES R1-R3), G5 work class (C3:304), for every product attempt.
+
+    R1: an adapter overflow is never emittable. AdapterWork::enter (PP:2896-2907) faults only when
+    counts[event] + amount overflows and keeps counts[event]; every amount is < 2^63 + 2^61, so the
+    retained prefix is >= 2^62, which C3:233-236 requires to be emitted and forbids above safe-U.
+    Every CaptureError/G5aError accounting{event} cause is built from that sticky fault
+    (PP:2910-2912, 617, 2527, 2586), so it is covered too.
+    R2: ScalarTrace.lost is set only when entered/checks is at u64::MAX (PP:2310-2349).
+    R3: a work_accounting{fault} cause is raised from the owning trace's status (FC:358-379, 1580;
+    FK product_certificate.rs:186-206), so the attempt's emitted Count faults and sticky statuses
+    must contain that fault."""
+    objs = list(_objects(a))
+    r1 = a["adapter"]["fault"] is None and not any(o.get("kind") == "accounting" and "event" in o for o in objs)
+    r2 = not any(o.get("lost") is True for o in objs)
+    seen = set()
+    for o in objs:
+        if o.get("kind") == "unavailable" and o.get("fault") in STATUS_FAULTS: seen |= STATUS_FAULTS[o["fault"]]
+        if o.get("sticky_status") in STATUS_FAULTS: seen |= STATUS_FAULTS[o["sticky_status"]]
+    r3 = all(o.get("fault") in STATUS_FAULTS and STATUS_FAULTS[o["fault"]] <= seen
+             for o in objs if o.get("kind") == "work_accounting" and "fault" in o)
+    return r1, r2, r3
+
+
 def _exact_work(value):
     if isinstance(value, dict):
         if value.get("kind") == "unavailable" and "fault" in value: return False
@@ -785,6 +821,7 @@ def _g5_products(body, rows_by_case):
                     fail(bits(float(row["value"])) == bits(value if value != 0 else 0.0))
         _g5_coverage(a, case, source, fail)
         _g5_stages(a, case, fail)
+        for ok in _accounting_rules(a): wf(ok)
         if a["result"]["kind"] == "ready":
             fail(source is not None and a["run_ref"] is not None and case["run"]["kernel_terminal"]["kind"] == "selected")
             fail(source["preparation"] is not None and source["preparation"]["attempt_ref"] == ai)
