@@ -7330,3 +7330,31 @@ layout association, nested input capacities/construction, H_formation128, comple
 text grammar, generic deep legacy-exact, stack and whole producer/publication/
 caller composition remain genuine gaps. No further closure task is started here
 because the owner requested a graceful handoff.
+
+
+## Summary-coverage representation selected for the successor (ROOT, 2026-10-03 UTC)
+
+ROOT selects the compact proof-owned coverage representation because public rows cannot determine the private verification facts required by exact summary coverage.
+
+The selected design is I57 ADDENDUM at `11d6dbb6c1`, seal `aa066abea6`.
+Fresh RV76 independently derived the source algebra before reading the proposal,
+then reviewed the full contract, custody, prefix/null, gate and trust implications.
+Its seal `6d5e385e08` at 19:18:02Z reports CLEAR with no unresolved finding.
+ROOT read the entire proposal/review and verified sealed payload/source hashes;
+verification/rv76_summary_coverage owns that check. The review owns its Boolean
+check counts and exact derivation. No new owner-held meaning change is found
+within the existing producer-attestation/source-review/Rust-replay boundary.
+
+C3 ProofTrace gains one nullable complete body roster of body, stop[4] and
+has_data, sourced from the proof owner, never the fallible adapter copy. Public
+layout/E/extent/floor facts derive estimate and charge, including native p512
+force/moment charge equal to its stop flags. The receipt hash binds the outcome;
+source/preparation identity and the numerical definition retain their meanings.
+All source/Run/owner, null/prefix, exact roster and consistency rules in I57 are
+required. Unkeyed hashes do not authenticate a coherently forged whole attestation.
+
+This is design selection only. At the owner's graceful-handoff request, no
+typed-trace/schema/reader/corpus implementation follows in this run. Readers
+remain disabled/ineligible, and the successor must implement and independently
+verify the full selected rules and actual producer custody before reliance.
+Full F2a, memory/M, caller/native, carrier and main gates remain open.
