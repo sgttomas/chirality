@@ -1,0 +1,209 @@
+{
+  "probe": "Existing surface_roles functions over owned LIVE_MANAGER tree, not full GEN8",
+  "unresolved_portability_surfaces": [],
+  "records": [
+    {
+      "id": 1,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 2,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 3,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 4,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 5,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 6,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 7,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 8,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 9,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 10,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 11,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 12,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 13,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 14,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 15,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 16,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 17,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 18,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 19,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 20,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 21,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 22,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 23,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 24,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 25,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 26,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 27,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 28,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    },
+    {
+      "id": 29,
+      "raw_equals_head_original": true,
+      "pointer_target_exists": true,
+      "role": "EVIDENCE",
+      "historical_relative_reference_base_exists": true
+    }
+  ]
+}

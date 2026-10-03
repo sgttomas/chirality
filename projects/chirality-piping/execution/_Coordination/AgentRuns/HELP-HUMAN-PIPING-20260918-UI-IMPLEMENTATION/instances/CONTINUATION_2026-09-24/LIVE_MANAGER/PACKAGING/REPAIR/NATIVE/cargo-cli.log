@@ -1,0 +1,36 @@
+   Compiling openpipestress-desktop v0.1.0 (/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri)
+warning: constant `MAX_DESCRIPTOR_BYTES` is never used
+ --> src/live_control_wire.rs:9:11
+  |
+9 | pub const MAX_DESCRIPTOR_BYTES: usize = 16_384;
+  |           ^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `read_attachment` is never used
+   --> src/live_control_wire.rs:237:12
+    |
+237 |     pub fn read_attachment(path: &Path) -> Result<Attachment, WireError> {
+    |            ^^^^^^^^^^^^^^^
+
+warning: `openpipestress-desktop` (lib) generated 2 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.86s
+     Running unittests src/live_control_cli/swbpipe-control.rs (projects/chirality-piping/apps/desktop/src-tauri/target/debug/deps/swbpipe_control-172b843f2ec69612)
+
+running 4 tests
+test tests::cli_rejects_wrong_correlation_and_extra_envelope_fields ... ok
+test wire::tests::reply_cannot_replace_correlation_or_mix_result_and_error ... ok
+test tests::cli_requires_exact_keys_and_explicit_typed_correlation ... ok
+test wire::tests::frame_boundary_and_unterminated_are_explicit ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.11s
+
+     Running tests/live_control_cli.rs (projects/chirality-piping/apps/desktop/src-tauri/target/debug/deps/live_control_cli-869835796b235a73)
+
+running 3 tests
+test malformed_invocation_is_one_structured_error ... ok
+test help_and_describe_are_offline_json_and_apply_is_rejected ... ok
+test macos::real_cli_preserves_correlation_historical_status_and_nonzero_errors ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.33s
+

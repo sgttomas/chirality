@@ -1,0 +1,14 @@
+{
+  "manager": "/root/live_manager",
+  "task": "/root/live_manager/native",
+  "mechanism": "retained delegated-harness-native TASK, full canonical role supplied/read",
+  "pid": 84816,
+  "exit_code": 0,
+  "raw_output_integrity": true,
+  "flag_only_argv": true,
+  "binary_sha256": "23849ca75ae43eca05b7cf8142b2e3d13715df1a3ff8b2699b7233defc29030b",
+  "wrapper_directory_observed_and_absent_after": true,
+  "sentinel_preserved_and_only_parent_entry": true,
+  "source_unchanged": true,
+  "scope_limit": "Read-only manager confirmation of this private invocation and recorded wrapper observations; not a filesystem-wide trace or GUI/controller/human witness."
+}

@@ -1,0 +1,19 @@
+{
+  "head": "2d2b341819d74ee60932942e20cd53cfe96eee9c",
+  "binary": "projects/chirality-piping/apps/desktop/src-tauri/target/debug/bundle/macos/SWBPIPE.app/Contents/MacOS/openpipestress-desktop",
+  "binary_sha256": "23849ca75ae43eca05b7cf8142b2e3d13715df1a3ff8b2699b7233defc29030b",
+  "origins_sha256": {
+    "AGENTS.md": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+    "agents/AGENT_TASK.md": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+    "projects/chirality-piping/AGENTS.md": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/SELF_TEST/BRIEF.md": "a48b257d8c21de6e64f6af69b5b566eef89d37eb797ea61271ad21c3747965e1",
+    "projects/chirality-piping/apps/desktop/src-tauri/src/main.rs": "03c5b9f8fc8812114d1a7db1b1e2c5c9f2ce6c7bbf0f000565fbb872e7a1d5ca",
+    "projects/chirality-piping/apps/desktop/src-tauri/src/lib.rs": "9bf20ec511f761eb4549a5b3ad051f1de72866f79b90593c9700320ef6f41979"
+  },
+  "protected_selftest_section_sha256": "067cf00ccf6167c1c2eada73837b07cc055b6e3837f80de3720f9ac513714018",
+  "protected_section_identical_to_base2b310992": true,
+  "main_flag_guard_identical_to_base2b310992": true,
+  "main_and_lib_identical_to_reviewed4dcd48fe": true,
+  "verified_section": "Entire intent, embedded frozen model and agent intent, protected hashes, numeric expected values/tolerance, lifecycle and temp-store cleanup wrapper, ending before save_local_result_json",
+  "no_product_write": true
+}

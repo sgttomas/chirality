@@ -1,0 +1,9 @@
+{
+  "repair": "Construct fixture RAII guard before UnixListener bind so denied/failed setup removes directory.",
+  "source_sha256": "482d1516366fa6f6fe51c04989be501d44589e81141310eed3abeefb94bb3c0b",
+  "removed_empty_fixture_directories": [
+    "/private/tmp/swb-test-e71beba1731d2fee4c2",
+    "/private/tmp/swb-test-8dd8a45e2d385c9e851"
+  ],
+  "ownership_evidence": "Exactly two unique swb-test directories created at failed test timestamp1790225884.857; both empty; removed using nonrecursive rmdir."
+}

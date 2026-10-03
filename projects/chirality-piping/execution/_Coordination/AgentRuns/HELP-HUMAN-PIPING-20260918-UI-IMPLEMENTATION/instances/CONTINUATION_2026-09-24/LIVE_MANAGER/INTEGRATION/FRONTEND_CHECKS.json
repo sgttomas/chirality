@@ -1,0 +1,22 @@
+{
+  "candidate": "b0cb8bce5c9f1057b317bc593e86abe2d665d605",
+  "typecheck": {
+    "command": "./node_modules/.bin/tsc -p apps/desktop/tsconfig.json --noEmit",
+    "exit_code": 0,
+    "log": "typecheck.raw.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "components": {
+    "command": "npm run test:desktop -- --maxWorkers=1 <nine affected suites named in raw log>",
+    "exit_code": 0,
+    "suites": 9,
+    "tests": 124,
+    "log": "components.raw.txt",
+    "sha256": "1755ab8c1355622b6c0e9a809ee10e0271698594aff3a1faa962ce509e482ff9",
+    "worker_limit_deviation": "Nested npm consumed --maxWorkers and warned; actual Vitest command used default worker settings. No other manager heavy process ran concurrently. Do not claim one-worker execution.",
+    "scope": "four live/session suites plus EngineeringTable,OverflowRail,ModelTree.table,ModelTree,App.tableOperations",
+    "limits": "jsdom canvas getContext unavailability messages retained. No browser/viewport/native qualification."
+  },
+  "supplemental_native_retained": "Exact tree/blob equality in MERGE_RESULT.json; no unnecessary rerun.",
+  "root_worker_flag_disposition": "ROOT accepted truthful deviation: no repeat of passing functional run solely for worker count; no calibrated timing claim. Future capped invocations must demonstrably forward the worker flag."
+}

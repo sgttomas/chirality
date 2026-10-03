@@ -1,0 +1,427 @@
+{
+  "executor": "/root/live_resume/metadata_repair",
+  "parent": "/root/live_resume",
+  "parent_parent": "/root",
+  "role": "TASK Type2; nondelegating",
+  "mechanism": "delegated-harness-native child",
+  "execution_repository": "/private/tmp/piping-live-control-20260924",
+  "candidate": "0c907da03184690dd34f99af5df7c15c471d2cc9",
+  "original_base": "b92f250655d4a28fca93c9990e27025c15b7b877",
+  "consulted_origins_before_edits": [
+    {
+      "repository_relative_path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "repository_relative_path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "c712b6487faa3fab461e181aad1a6c16a2cb0eb734c510744e5037289105df1b"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PORTABILITY_REPAIR/REVIEW/RETURN.md",
+      "sha256": "ad84a63859e748f7ca0bb789d086e5b69bd396dd12fd3f0ab9e6bd18c732deb1"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PORTABILITY_REPAIR/RETURN.md",
+      "sha256": "0bbe084ff515e0d3c0e9c73c9f4769032ae6f6743a63ae8bdc7cc0fb678447cf"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PORTABILITY_REPAIR/MOVE_MANIFEST.json",
+      "sha256": "8fecdb9ce25a06abc9e21248988291dd9692c52b1ca2dda24c3f441c13ed82ee"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/DELEGATION.json",
+      "sha256": "d2fa8c6152832db10067fe5000a641536abad919678d2128271b743b866e28d9"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/FRONTEND/ACK.md",
+      "sha256": "2ba0d7ca75717417b09379bf80ee29fd69dd581d5583dbc59c0126424131bd29"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/MANAGER_ACTIVATION.md",
+      "sha256": "9f13aedb6cc030806d0ff6c0d1717d6fa9eced0b1fe18200e5c722e811c0c669"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/ACK.md",
+      "sha256": "7c969312132ea24296fa66e5d8f88905a14d0c1b849a06cf11fcd662d2ac7aae"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/FIXTURE_CLEANUP_REPAIR.json",
+      "sha256": "8c94d4018fcdb3333e63c39b239e3daee446c623a70f1f0ff56cf4bf7a364752"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/REPAIR_PLAN.json",
+      "sha256": "b1286e2c9eb8b2811a6e03cc0b707ff5ec30c58e348ed9d694ffeda5eacd2e1a"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/REPAIR_RUNS.json",
+      "sha256": "b61e6de4f8597615d6a3bf7ba5576b6612c9a21ac67111d456fb055d94c92527"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/RUNS.json",
+      "sha256": "9d7a740f67209ac0b8a77b3b50a7158a9f66347c75f3197b46f714a71d080ea9"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/REVIEW/BACKCHECK_ORIGINS.json",
+      "sha256": "47c2975cf5eb1756d8de7993f4f8d36ae5a169f348ed2e14e5afa22907718453"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/REVIEW/CONSULTED_SOURCES.json",
+      "sha256": "9e6ab679d94dbccc887e7d1b55f1b2b26c181e83c9c8067986d3aecb8684df7c"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/REVIEW_BRIEF.md",
+      "sha256": "073ab892193a2d581a2f07c5002f4b74c89e144256a71faa9ac5c76a735ac315"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/NATIVE/ARTIFACTS.json",
+      "sha256": "0a8a0c21a8c54cec01b647ccd0e6f9ff9dfc85d9ebf7ac94c91199d7d77eff34"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/NATIVE/PRE_RUN.json",
+      "sha256": "8fb25dcdfec5d6f2796d0244604f2bc7a41b2502b808ca940dc1cd1c89b895c5"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/NATIVE/RUNS.json",
+      "sha256": "bc2e2d8894b0084f6f06b4c589fb6c6feced1ffb686dff5b49292c37ea3ba7a0"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/NATIVE/SELF_TEST/RUN_RESULT.json",
+      "sha256": "a508f93c8f2cf9cf8976a73c957be086d78babcc2055210c57b40ac12c9dd4d7"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/NATIVE/SELF_TEST/RUN_STARTED.json",
+      "sha256": "92e150aa469f69fa2adf7dee5c8decdd0ada6f04acfb51072b3ce6ce8f27412e"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/NATIVE_BRIEF.md",
+      "sha256": "3ccb0667415393d257198dae66e08bcebd5e3378d581d90f95a1db5b5ac5e5ef"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/REVIEW/BRIEF.md",
+      "sha256": "343dc283d74e7e163bccbd6a66b7b962ecb8ff26e8c772e87aed5b1fcf31f419"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/REVIEW/MANIFEST.json",
+      "sha256": "9abd1f697014d673a835094d80ae8cd7857a69bd76670f345c76a3c78fbe2398"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/ARTIFACTS.json",
+      "sha256": "7edb408e9f8cb44efaf41e50889869d66b89a381cb7c45b93a54b09a305a6225"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/DESIGN/SOURCES.json",
+      "sha256": "e35a81f72dca65ec36da23ece373c3f7ea1018239664366d2c9084d926a6f862"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/REPAIR/NATIVE/IMMEDIATE_PRE_NORMAL_BUILD.json",
+      "sha256": "cf70e8a72a0639035d45daf6975ee443bef6ffab4adf079befb51d988fe614ea"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/REPAIR/NATIVE/PRE_EDIT.json",
+      "sha256": "de2b1ee9024f159a0a5d691b9601cc72d348177ae379befae7def0f8bca5eec3"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/REPAIR/NATIVE/RUNS.json",
+      "sha256": "d25dc65c0c2e6d8636dbffe13d8b019a08c92c4020e000581b058da2c88e3484"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/REVIEW/BRIEF.md",
+      "sha256": "b7eeaa9c577d3495f8daab6e3ffc3aa956a1428179f0214e78999cac685ac7f4"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/REVIEW/SOURCES.json",
+      "sha256": "780570c9ac499b9b899581307d5b1d496b5255a91047b63365a9a0b5330d0faf"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/SELF_TEST/BRIEF.md",
+      "sha256": "ef4c1a1fd8eed91d215c0f591f476238cca895cb2e23c30f6f44e920923a5f31"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/SELF_TEST/RUN_RESULT.json",
+      "sha256": "a74faeea284b99fe3d9df3c97fbbdec87ee9d77c25ee800ed79fb6dd773c5293"
+    },
+    {
+      "repository_relative_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/SELF_TEST/RUN_STARTED.json",
+      "sha256": "22b2736afb664e4081a6d24dc2568cce018c9d63017f5a912839528a3c7cc6e5"
+    }
+  ],
+  "checks": [
+    {
+      "id": 1,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "504ccb87006d874dd655c5d1682ed7e292494a334b0eb1cff56d8219f80a848f",
+      "notice_count": 1
+    },
+    {
+      "id": 2,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "f13b3deb0a64e97e9d6fe15e3fce0c7fd9bd53ca4221d525de2185a2f2aae63a",
+      "notice_count": 1
+    },
+    {
+      "id": 3,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "624013f75915b5162b3fdddf114f6d04ab86850fce6b2917cb21c190ce67c233",
+      "notice_count": 1
+    },
+    {
+      "id": 4,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "6b94b26c5d3137d11f82333f40760c1b74a8243ce7aa2c01ce97d86456dbdd94",
+      "notice_count": 1
+    },
+    {
+      "id": 5,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "8facd3fcc5d932ff9822e20d4e5be55e227a414ec1a748efcb17ec3b8247a491",
+      "notice_count": 1
+    },
+    {
+      "id": 6,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "354947d4758e7644ecf8d6f6707ed957cd13117388d693dca5d39714f2a38717",
+      "notice_count": 1
+    },
+    {
+      "id": 7,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "fc3eef8829f1c75da7cb687e7106965f8081c00fcdedbccafc9b3432a1416c43",
+      "notice_count": 1
+    },
+    {
+      "id": 8,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "152d94e7d591596d449d7817ee9fe0a4a54996c364108dd07820d85cb7715d93",
+      "notice_count": 1
+    },
+    {
+      "id": 9,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "74c96c8d8971f65bcadcc1fc4145734e56c3bc16db119d2167105d65b69bb6d7",
+      "notice_count": 1
+    },
+    {
+      "id": 10,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "be0f52bcd7bd82d23a5d388a331cd79d03ba6674c6d5d763a0f8a7c18d3d43ac",
+      "notice_count": 1
+    },
+    {
+      "id": 11,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "ecb4edd3591e359d6ab255be09da651323935025a37fa996dbe70189a81ed840",
+      "notice_count": 1
+    },
+    {
+      "id": 12,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "4bf288c0f6757d500b91ff78ccc8f09931d2babfc3f5bf1272a5d468a1a62fe1",
+      "notice_count": 1
+    },
+    {
+      "id": 13,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "27b7a0c8400654adb935452a9b74eb13f5b5befc3abb66c777cc21f4c68d1b29",
+      "notice_count": 1
+    },
+    {
+      "id": 14,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "e6e03469b5e0eedd22f1509590ed92da7601b89f14a4f8cb4fe9a7ec85fafb81",
+      "notice_count": 1
+    },
+    {
+      "id": 15,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "42623121343ff84a79e7a0a510cb8129c475f44445aab9fbbd618795d2cf73a9",
+      "notice_count": 1
+    },
+    {
+      "id": 16,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "d76d2542b88039824ff3fe3b33b606bece76d0eeed4a893a2686e13c9a737dc7",
+      "notice_count": 1
+    },
+    {
+      "id": 17,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "510e0f664579c5b8db0eab85d017d2e043400a80212349c47b112e3afd7e144d",
+      "notice_count": 1
+    },
+    {
+      "id": 18,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "3266ee1a2d5756a4ca620ed47ad5db6b6bf3dc2ab6ec9b6445ffe3ca60371d02",
+      "notice_count": 1
+    },
+    {
+      "id": 19,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "d351ddbc20addeffbe335fc808c01ee984dd8786d74d04e9954ff2541a254696",
+      "notice_count": 1
+    },
+    {
+      "id": 20,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "e5dd91111056abbc2edd12c0d42fe820e965d969263bdf601409f2cecd70fa42",
+      "notice_count": 1
+    },
+    {
+      "id": 21,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "d9d7910f6afd83d4954baf2e694c4a54914802182af1545214edc5896963d709",
+      "notice_count": 1
+    },
+    {
+      "id": 22,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "785d27ab696301974b300267a436c7417a542c11527683e8f945ee46e930fb53",
+      "notice_count": 1
+    },
+    {
+      "id": 23,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "155c72c10751024ebe980c16fef02635b63d6da58cca0d2e6283ec1e1f33aff5",
+      "notice_count": 1
+    },
+    {
+      "id": 24,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "1f9345afe26c7c678d34f19b501eca18b88d29666811f090de8c66012e23bd62",
+      "notice_count": 1
+    },
+    {
+      "id": 25,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "cb0300fc8635c664d38b51384f93bfae0c67bde0bb2ad1547ba3be1cc16edf56",
+      "notice_count": 1
+    },
+    {
+      "id": 26,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "40525da66677ff7fa144a0dba845d516bd799178a21c327425ffb56537d7afc6",
+      "notice_count": 1
+    },
+    {
+      "id": 27,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "b61d666e0b540ee687635990aad98ad12dfa2e3ffa6511463571c800dd9a532f",
+      "notice_count": 1
+    },
+    {
+      "id": 28,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "87aac5fb8016626e36dba06746a396ff0abf72aa459bda431ca909495fee500a",
+      "notice_count": 1
+    },
+    {
+      "id": 29,
+      "raw_equals_base": true,
+      "raw_sha256_matches_original": true,
+      "raw_length_matches": true,
+      "portable_surface_sha256": "f4b5ad461d0d368912a9a03e66bb12189c2e56aa7f3edbff0c17a8d790d1aa9e",
+      "notice_count": 1
+    }
+  ],
+  "manifest_only_portable_hash_values_changed": true,
+  "changed_paths": [
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/DELEGATION.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/FRONTEND/ACK.md",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/MANAGER_ACTIVATION.md",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/ACK.md",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/FIXTURE_CLEANUP_REPAIR.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/REPAIR_PLAN.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/REPAIR_RUNS.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/RUNS.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/REVIEW/BACKCHECK_ORIGINS.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/REVIEW/CONSULTED_SOURCES.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/REVIEW_BRIEF.md",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/NATIVE/ARTIFACTS.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/NATIVE/PRE_RUN.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/NATIVE/RUNS.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/NATIVE/SELF_TEST/RUN_RESULT.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/NATIVE/SELF_TEST/RUN_STARTED.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/NATIVE_BRIEF.md",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/REVIEW/BRIEF.md",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/INTEGRATION/REVIEW/MANIFEST.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/ARTIFACTS.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/DESIGN/SOURCES.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/REPAIR/NATIVE/IMMEDIATE_PRE_NORMAL_BUILD.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/REPAIR/NATIVE/PRE_EDIT.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/REPAIR/NATIVE/RUNS.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/REVIEW/BRIEF.md",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/REVIEW/SOURCES.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/SELF_TEST/BRIEF.md",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/SELF_TEST/RUN_RESULT.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/SELF_TEST/RUN_STARTED.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PORTABILITY_REPAIR/MOVE_MANIFEST.json",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PORTABILITY_REPAIR/RETURN.md",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PORTABILITY_REPAIR/P1_REPAIR/RETURN.md",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PORTABILITY_REPAIR/P1_REPAIR/_run_records/verification.json"
+  ],
+  "verification_method": "Python byte comparisons and hashlib SHA-256; read-only git show of each original base blob; no GEN8 or product test rerun"
+}

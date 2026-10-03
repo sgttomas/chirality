@@ -1,0 +1,11 @@
+import type { ModelHashEvidence, PreviewModel } from "../../types";
+import type { OperationBatch } from "../../services/operationBatchService";
+export type LiveError = { code: string; message: string; retryable: boolean; next_action: string };
+export type LiveResponse = { result: unknown } | { error: LiveError };
+export type LiveRequest = { registration_id: string; controller_session_id: string; dispatch_id: string; request_id: string; app_instance_id: string; method: string; params: unknown };
+export type LiveIdentity = { app_instance_id: string; controller_session_id: string; workspace_id: string; project_generation: number; project_id: string };
+export type LiveBasis = LiveIdentity & { model_revision: number; model_hash: ModelHashEvidence };
+export type LiveSnapshot = { model: PreviewModel; generation: number; revision: number; internalRevision: number; hash: ModelHashEvidence; selection: { object_type: string; ref: string }[] };
+export type LiveAdmission = { token: string; ticket: string; workspace: string; batch: OperationBatch; model: PreviewModel; hash: ModelHashEvidence; internalRevision: number; generation: number; revision: number; requestId: string };
+export type LivePublication = { token: string; model: PreviewModel; revision: number; undoCheckpointId: string; appliedReceiptId: string; batchReceiptId: string };
+export type LiveReceipt = { ticket: string; workspace: string; identity: LiveIdentity; batch_id: string; operation_ids: string[]; origin: { actor_type: "agent"; source_channel: "local_json_cli"; request_id: string }; acceptance: { route: "local_review_apply"; identity_verification: "not_performed"; professional_approval: false }; before: { model_revision: number; model_hash: ModelHashEvidence }; after: { model_revision: number; model_hash: ModelHashEvidence }; publication: { undo_checkpoint_id: string; applied_receipt_id: string; batch_receipt_id: string; queue_entry_removed: true; computed_results_invalidated: true }; persistence_status: "session_state_only_not_yet_saved" };

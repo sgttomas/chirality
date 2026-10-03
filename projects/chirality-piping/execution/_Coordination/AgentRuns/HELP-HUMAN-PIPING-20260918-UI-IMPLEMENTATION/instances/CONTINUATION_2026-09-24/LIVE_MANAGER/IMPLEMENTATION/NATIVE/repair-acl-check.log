@@ -1,0 +1,49 @@
+{
+  "result": "PASS",
+  "generated_capability": {
+    "identifier": "live-control",
+    "description": "Permit local main webview event subscriptions for the live-control bridge.",
+    "local": true,
+    "webviews": [
+      "main"
+    ],
+    "permissions": [
+      "core:event:allow-listen",
+      "core:event:allow-unlisten"
+    ]
+  },
+  "resolved_permissions": {
+    "core:event:allow-listen": {
+      "identifier": "allow-listen",
+      "description": "Enables the listen command without any pre-configured scope.",
+      "commands": {
+        "allow": [
+          "listen"
+        ],
+        "deny": []
+      }
+    },
+    "core:event:allow-unlisten": {
+      "identifier": "allow-unlisten",
+      "description": "Enables the unlisten command without any pre-configured scope.",
+      "commands": {
+        "allow": [
+          "unlisten"
+        ],
+        "deny": []
+      }
+    }
+  },
+  "artifact_sha256": {
+    "projects/chirality-piping/apps/desktop/src-tauri/gen/schemas/capabilities.json": "13a4ae450bc58e18617f7bd6108724fc025ab87d542ba5f722bcd695eba63d59",
+    "projects/chirality-piping/apps/desktop/src-tauri/target/debug/build/openpipestress-desktop-4f55822ee98d78f6/out/capabilities.json": "13a4ae450bc58e18617f7bd6108724fc025ab87d542ba5f722bcd695eba63d59",
+    "projects/chirality-piping/apps/desktop/src-tauri/target/debug/build/openpipestress-desktop-56002360c732c218/out/capabilities.json": "13a4ae450bc58e18617f7bd6108724fc025ab87d542ba5f722bcd695eba63d59",
+    "projects/chirality-piping/apps/desktop/src-tauri/capabilities/live-control.json": "76293ac8a3d010a8646baa72eee6085c5d26eb9414edc9163ea2005c06882272",
+    "projects/chirality-piping/apps/desktop/src-tauri/gen/schemas/acl-manifests.json": "d3eace193b1e453756736eaf27bb156df62c7a41b2fe101403ee92ef93e69699",
+    "projects/chirality-piping/apps/desktop/src-tauri/gen/schemas/desktop-schema.json": "2a16f62c90a059a1b67e4501216bb3476f402087e99ba659dd38c9d0521f3b07",
+    "projects/chirality-piping/apps/desktop/src-tauri/src/live_control.rs": "bdc865616b21ce388f2976ccbac37f56748a521dea66aa030a801fd18af4dee3",
+    "projects/chirality-piping/apps/desktop/src/services/liveControlBridge.ts": "211e0ec6b7d2faa4ed3e7e85e020610c2a30313d054fa250c72a7b7de31d5855"
+  },
+  "sender_receiver_target": "WebviewWindow/main on both native events and frontend listeners",
+  "limits": "Build-time/source admission and routing evidence only. Tauri Any listeners may also receive targeted events. No actual runtime handshake or non-main denial was exercised."
+}

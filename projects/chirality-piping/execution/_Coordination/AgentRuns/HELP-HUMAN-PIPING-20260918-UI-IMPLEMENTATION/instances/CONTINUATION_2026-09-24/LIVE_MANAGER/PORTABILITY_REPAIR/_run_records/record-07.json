@@ -1,0 +1,41 @@
+[
+  {
+    "command": "CARGO_BUILD_JOBS=2 CARGO_TARGET_DIR=/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target cargo test --manifest-path projects/chirality-piping/apps/desktop/src-tauri/Cargo.toml --locked --offline --lib live_control",
+    "exit_code": 0,
+    "result": "8 passed; 102 filtered",
+    "permission": "default sandbox",
+    "log": "repair-cargo-lib-1.log",
+    "sha256": "5e96a6785af1169060df5f5c0fbba328bb6f4403f378456ff7ac65fe1619d35d"
+  },
+  {
+    "command": "CARGO_BUILD_JOBS=2 CARGO_TARGET_DIR=/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target cargo test --manifest-path projects/chirality-piping/apps/desktop/src-tauri/Cargo.toml --locked --offline --test live_control_transport",
+    "exit_code": 0,
+    "result": "7 passed",
+    "permission": "require_escalated; approved controlled temporary Unix fixtures",
+    "log": "repair-cargo-transport-1.log",
+    "sha256": "3b70d862392b24d18e43dc62c1d03acb9fe449df372964adaac47f64ae9ab21d"
+  },
+  {
+    "command": "CARGO_BUILD_JOBS=2 CARGO_TARGET_DIR=/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target cargo test --manifest-path projects/chirality-piping/apps/desktop/src-tauri/Cargo.toml --locked --offline --features live-control-cli --bin swbpipe-control --test live_control_cli",
+    "exit_code": 0,
+    "result": "4 binary unit + 3 CLI integration passed",
+    "permission": "require_escalated; approved controlled temporary Unix fixtures",
+    "log": "repair-cargo-cli-1.log",
+    "sha256": "2fa5102a4fc73d3686e2e969badbca9265dbb552d164a0dd62c3e4fc8de3d8a5"
+  },
+  {
+    "command": "CARGO_BUILD_JOBS=2 CARGO_TARGET_DIR=/private/tmp/piping-live-control-20260924/projects/chirality-piping/apps/desktop/src-tauri/target cargo build --manifest-path projects/chirality-piping/apps/desktop/src-tauri/Cargo.toml --locked --offline --features live-control-cli --bin swbpipe-control",
+    "exit_code": 0,
+    "result": "explicit CLI build passed",
+    "permission": "default sandbox",
+    "log": "repair-cargo-build-1.log",
+    "sha256": "1f91ba57ac20ad3ff3cc6293544c418bf7a98bbf9d42f1019d534ffc649de679"
+  },
+  {
+    "command": "python3 projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/REPAIR_ACL_CHECK.py",
+    "exit_code": 0,
+    "result": "PASS generated source/build capability exact equality; listen/unlisten command definitions; sender/receiver target source agreement",
+    "log": "repair-acl-check.log",
+    "sha256": "cd1a6c4d70462e926f358fcfe776ac546ef04c7bd5cf554e3f2d3b2082cd3c2b"
+  }
+]

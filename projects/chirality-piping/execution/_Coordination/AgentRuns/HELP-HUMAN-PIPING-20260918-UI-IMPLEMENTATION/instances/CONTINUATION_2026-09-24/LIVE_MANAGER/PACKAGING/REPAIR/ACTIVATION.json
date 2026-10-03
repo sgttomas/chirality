@@ -1,0 +1,39 @@
+{
+  "candidate": "c6837e02c79d6691ff5c66ce5e6bc6171b45fb3f",
+  "parent": "/root",
+  "manager": "/root/live_manager",
+  "native_executor": "/root/live_manager/native",
+  "mechanism": "existing delegated-harness-native TASK resumed; no descendants",
+  "model_allocation": "retained Astra/low TASK, WORKING_ITEMS Astra/high, independent reviewer Astra/xhigh",
+  "origins": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd"
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/SCOPE_ADDENDUM.md",
+      "sha256": "32745ffd72cf35c50246b9bdadb4ca0d1e171c62f8a37b367c7d27781769a7c9"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/DESIGN/RETURN.md",
+      "sha256": "7f91e02897de0a15a8d502e9dc351a77e6949d68b369cd891d44940f81a2da55"
+    }
+  ],
+  "failed_bundle_preserved_at": "projects/chirality-piping/apps/desktop/src-tauri/target/packaging-evidence/c6837e02-failed/SWBPIPE.app",
+  "preserved_manifest_matches_original": true,
+  "failed_bundle_manifest_sha256": "1a283b2a280db132792a7bce2f2a27ee193139e9d6f95ea7a70e12ef86565710",
+  "normal_bundle_path_untouched_by_preservation": true,
+  "normal_build_rule": "Keep a feature-built CLI artifact present in same target; compare immediately pre-normal-build and post-normal-build hashes. No cleaning, removal, output surgery or launch."
+}

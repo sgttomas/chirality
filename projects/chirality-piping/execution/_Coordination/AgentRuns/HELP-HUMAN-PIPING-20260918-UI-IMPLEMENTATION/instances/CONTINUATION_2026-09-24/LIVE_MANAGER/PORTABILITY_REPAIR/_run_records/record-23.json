@@ -1,0 +1,45 @@
+{
+  "repo_root": "/private/tmp/piping-live-control-20260924",
+  "head": "c6837e02c79d6691ff5c66ce5e6bc6171b45fb3f",
+  "role": "TASK /root/live_manager/native; parent /root/live_manager; no descendants",
+  "consulted_origins": {
+    "AGENTS.md": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+    "agents/AGENT_TASK.md": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+    "projects/chirality-piping/AGENTS.md": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/SCOPE_ADDENDUM.md": "32745ffd72cf35c50246b9bdadb4ca0d1e171c62f8a37b367c7d27781769a7c9",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/DESIGN/RETURN.md": "7f91e02897de0a15a8d502e9dc351a77e6949d68b369cd891d44940f81a2da55",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/DESIGN/SOURCES.json": "10319c814b4bb80d0eeb930fa2cc954daa88f255ac02b367d9fe528c813c5bd0",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/RETURN.md": "55c58b41f7ff3e2caf33b5633f0dac1dd3ef234d9a871b96be8f26ccf9f3bd49",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/ARTIFACTS.json": "52d7bbd0d1e32ac9af6bd0e7d02821d73598f73bb0ae42a94a519c94bca34cd2",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/REPAIR/ACTIVATION.json": "73f38b32c69fcf521d222d97dc4ec0bc7560112c84f48b8a8cac339ae4c0998e",
+    "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/PACKAGING/PRE_RUN.json": "bac5d2de516dbc4b515754fdb1b1319b980283d0e1eab9633f3fa08d57ca778a"
+  },
+  "source_before": {
+    "projects/chirality-piping/apps/desktop/src-tauri/src/bin/swbpipe-control.rs": "725033045d7765b8aa750492cb081ca12c0a543c16f1886048e9f6abcb9275f5",
+    "projects/chirality-piping/apps/desktop/src-tauri/Cargo.toml": "ad7ee4d05b548c22e3ad2bf0cbf9ae98a78e525f62d694bd8e7a1ed15f00f18c",
+    "projects/chirality-piping/apps/desktop/src-tauri/Cargo.lock": "8b68e437515761bf5877a485cc99c52947bac386595f0182f5dcbc17732c71af",
+    "projects/chirality-piping/apps/desktop/src-tauri/src/main.rs": "03c5b9f8fc8812114d1a7db1b1e2c5c9f2ce6c7bbf0f000565fbb872e7a1d5ca",
+    "projects/chirality-piping/apps/desktop/src-tauri/src/lib.rs": "9bf20ec511f761eb4549a5b3ad051f1de72866f79b90593c9700320ef6f41979",
+    "projects/chirality-piping/apps/desktop/src-tauri/src/live_control.rs": "bdc865616b21ce388f2976ccbac37f56748a521dea66aa030a801fd18af4dee3",
+    "projects/chirality-piping/apps/desktop/src-tauri/src/live_control_wire.rs": "7de038550e4f288423927f70e564c0ea6ac443914d13443356e7cce6fd0fdae5",
+    "projects/chirality-piping/apps/desktop/src-tauri/tauri.conf.json": "b3de0965f205e1ed34f07744939314c9ac40dd00af2ee8c0de336c6e2bfba5d0",
+    "projects/chirality-piping/apps/desktop/src-tauri/capabilities/live-control.json": "76293ac8a3d010a8646baa72eee6085c5d26eb9414edc9163ea2005c06882272",
+    "projects/chirality-piping/apps/desktop/src-tauri/tests/live_control_cli.rs": "2580b515e7d40b531e48777e663b60da85860d7f0d7efed48bfafcf32b0cfc8f",
+    "projects/chirality-piping/apps/desktop/src-tauri/tests/live_control_transport.rs": "bb666b0544a561b37ed0631bb1bb2566658bf5f967b1aee24049603751c55cdd",
+    "projects/chirality-piping/docs/LIVE_CONTROL_DEVELOPMENT.md": "50a71b13d86079df21bfb9f3899303cb44a47f1ffcacb0975d6823f564e56514"
+  },
+  "original_existing_cli_artifact_sha256": "ff2073bb59b62a3c8b06ae82a88320ac2a8a8fc9ed36321fbb29c5797e96f175",
+  "environment_presence_only": {
+    "SWBPIPE_LIVE_CONTROL": false,
+    "TAURI_CONFIG": false,
+    "APPLE_SIGNING_IDENTITY": false,
+    "APPLE_CERTIFICATE": false,
+    "APPLE_CERTIFICATE_PASSWORD": false,
+    "APPLE_ID": false,
+    "APPLE_PASSWORD": false,
+    "APPLE_TEAM_ID": false,
+    "APPLE_API_ISSUER": false,
+    "APPLE_API_KEY": false,
+    "APPLE_API_KEY_PATH": false
+  }
+}

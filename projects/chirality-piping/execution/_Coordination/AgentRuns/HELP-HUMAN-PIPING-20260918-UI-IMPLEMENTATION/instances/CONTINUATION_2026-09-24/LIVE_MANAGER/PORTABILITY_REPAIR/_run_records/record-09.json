@@ -1,0 +1,325 @@
+{
+  "reviewer": "/root/live_manager/implementation_review",
+  "role": "independent nonimplementing TASK Type2; no descendants",
+  "candidate": "de52a7cfc6cca083877ef53df559f5ee73701615",
+  "initial_reviewed_candidate": "1811d70a129419d8d06502b61ef28bb2977a6d93",
+  "complete_diff_base": "2b31099233df5f3504959cdf8d9fbf90904ff938",
+  "status": "FINAL PASS for implementation fan-in: R1-R5 closed; actual native/package/I1I2/H1H2 and ROOT integration checks remain outstanding",
+  "repair_delta_worktree_equal_candidate": true,
+  "repair_source_manifest_comparisons": 13,
+  "hash_mismatches": [],
+  "tests_or_builds_run_by_reviewer": false,
+  "sources": [
+    {
+      "path": "/Users/ryan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-2.11.1/src/event/listener.rs",
+      "sha256": "67b976df6d02aba2000215f006808ae1eddbfaf7a8f8b6e8198e557cc0346581",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "/Users/ryan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-2.11.1/src/ipc/authority.rs",
+      "sha256": "6da0f6200de5d8a417d0a13b5f6b08f69dafe6f78517691cc072a1dbc7e3859b",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "/Users/ryan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-2.11.1/src/lib.rs",
+      "sha256": "dd9d3eeec873339b8fcdd0aa1719e3a875c440462f449a0dc8833685d95996d2",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "/Users/ryan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-2.11.1/src/manager/mod.rs",
+      "sha256": "3b35d04bded3a068d3d9e1737d52a66a69ccfbc4b2300ec00ed6a5deaa85c79a",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "/Users/ryan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-utils-2.9.1/src/acl/capability.rs",
+      "sha256": "c462dac16d29c2904d9ca649c36dbcb73fb49362d1d885078df46054a945fbdf",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "c8ce87ef342902cb081bc659b26fc9a4edda1b6dba513814e5cb1e14e0b1dffd",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d9481951912ceffdd5bc47dbb6549bf0044f5d92f9fe6a9b11ba5969bfebc792",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/build.rs",
+      "sha256": "487059eaf8a947b80f20a9aacac038a5047b2ad69d2401b827376c67d6fe847f",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/capabilities/live-control.json",
+      "sha256": "76293ac8a3d010a8646baa72eee6085c5d26eb9414edc9163ea2005c06882272",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/gen/schemas/acl-manifests.json",
+      "sha256": "d3eace193b1e453756736eaf27bb156df62c7a41b2fe101403ee92ef93e69699",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/src/bin/swbpipe-control.rs",
+      "sha256": "725033045d7765b8aa750492cb081ca12c0a543c16f1886048e9f6abcb9275f5",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/src/live_control.rs",
+      "sha256": "bdc865616b21ce388f2976ccbac37f56748a521dea66aa030a801fd18af4dee3",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/tauri.conf.json",
+      "sha256": "b3de0965f205e1ed34f07744939314c9ac40dd00af2ee8c0de336c6e2bfba5d0",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/tests/live_control_transport.rs",
+      "sha256": "bb666b0544a561b37ed0631bb1bb2566658bf5f967b1aee24049603751c55cdd",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/liveControlController.test.ts",
+      "sha256": "92ad476180a54a929ad63f350aacd1725d6a05d1db373b90caf243dee620090f",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/liveControlController.ts",
+      "sha256": "84bd87ae36a9420ca46b72243a726ce86438766817bcb09b7137b8f338059d64",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/liveControlTypes.ts",
+      "sha256": "70d5a4e8cd319b7deeade59fc83ad97600272da37cf89dbdfb9fe2dee9f70d19",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.liveControl.test.tsx",
+      "sha256": "c51b736d7fd619446ad2436bbd12be85ba60df0da2d9b07a7373d36c58c2b940",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts",
+      "sha256": "62096d15fd9cca561061893b8cd14370188c79c43dcb4c534ffbd9dd06743bca",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/liveControlBridge.test.ts",
+      "sha256": "57d827144f9fa5113ef3c8d0a6d8ad91b41ca0429e717dbce546afe3ffe20887",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/liveControlBridge.ts",
+      "sha256": "211e0ec6b7d2faa4ed3e7e85e020610c2a30313d054fa250c72a7b7de31d5855",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/docs/LIVE_CONTROL_DEVELOPMENT.md",
+      "sha256": "50a71b13d86079df21bfb9f3899303cb44a47f1ffcacb0975d6823f564e56514",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/BACKCHECK_BRIEF.md",
+      "sha256": "f2f195307c87cb5b743b2beac0d1af2cbce373c4a13c8f27f57ece1284c3e011",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/FRONTEND/REPAIR_R2_R3_R4.md",
+      "sha256": "1b5f7c8e26f9e9a33e42c39e567dd704fc0cf5b6978154d32109757e1306cb08",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/FRONTEND/RETURN.md",
+      "sha256": "5a6aee0af2a3532c6df8721500dfb9bc3c2830e43598cb989b69c27d93d07d63",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/FRONTEND/SOURCE_READY.json",
+      "sha256": "609a39f1cacd35f14c4bdeff8b4e57c8ea12c549559ed8fe81826fa1d573b28b",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/IMPLEMENTATION_RETURN.md",
+      "sha256": "3407f6c0184c89df9e017d93b23330820e1ffc54f3390f3c301c8f7f4c7db805",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/REPAIR_PLAN.json",
+      "sha256": "5da1fd4502119abd16e5a4069560ed427bee956cc6c9540a58df181c706ccc7a",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/REPAIR_SOURCE.json",
+      "sha256": "5242381c95f300d29065579c0ed9303e4c762be11446c249ba45821af5610726",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/REPAIR_SOURCE_READY.md",
+      "sha256": "4274ec02b1d8d587cb72b501adb5c3ca45c54555390ded1aa66846f46a4471e3",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/REPAIR_SCOPE.md",
+      "sha256": "c7546bcdefaf7940b84c93ef9ceceaeefd8e83c2ee1097c2cdb5e2db82496ef1",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/REVIEW/CONSULTED_SOURCES.json",
+      "sha256": "c01b24430fb99afea44f655a34d7f8b600834fd9ec4eb3c57f137a83b7be379d",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/REVIEW/RETURN.md",
+      "sha256": "eeb939a6c4c93e2e5f41d93e18bc9d12ba815fcd284a7a7d71a5d942643c0ada",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/REVIEW_BRIEF.md",
+      "sha256": "8175807138314016cba25e887d863a61c61f53009c84424f76edafc465617fe4",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/REVIEW_EXECUTION.json",
+      "sha256": "4925feef1c599ce13232a4c7d1b37c844969ffc3a6d7b1ddd94ae920148330df",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/node_modules/@tauri-apps/api/event.d.ts",
+      "sha256": "0d738dff2ba5e25de6ef3fe078235a1f32f4c93438f50c4146cac00c9c0e7456",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    },
+    {
+      "path": "projects/chirality-piping/node_modules/@tauri-apps/api/event.js",
+      "sha256": "f00d22c559ce7e58a85d860e35fd60d20826f13d7f534a5f3548a7ef94446e84",
+      "consultation": "repair delta/current relevant sections; unchanged instructions and supplier context carried forward from initial review where already read"
+    }
+  ],
+  "prior_status": "PROVISIONAL SOURCE BACKCHECK; final disposition held for manager execution evidence and final identity",
+  "final_identity_checks": {
+    "candidate": "de52a7cfc6cca083877ef53df559f5ee73701615",
+    "complete_diff_product_test_guide_paths_byte_equal_candidate": 18,
+    "source_log_generated_artifact_binary_and_retained_engine_sha256_comparisons": 40,
+    "mismatches": [],
+    "core_git_tree": "2ab2ed323ff47ae779473abb54da5951b2d75fd3",
+    "core_worktree_diff": ""
+  },
+  "final_evidence_sources": [
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/capabilities/live-control.json",
+      "sha256": "76293ac8a3d010a8646baa72eee6085c5d26eb9414edc9163ea2005c06882272",
+      "consultation": "final repaired-candidate evidence read/hashed; no checks rerun by reviewer"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/gen/schemas/acl-manifests.json",
+      "sha256": "d3eace193b1e453756736eaf27bb156df62c7a41b2fe101403ee92ef93e69699",
+      "consultation": "final repaired-candidate evidence read/hashed; no checks rerun by reviewer"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/gen/schemas/capabilities.json",
+      "sha256": "13a4ae450bc58e18617f7bd6108724fc025ab87d542ba5f722bcd695eba63d59",
+      "consultation": "final repaired-candidate evidence read/hashed; no checks rerun by reviewer"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/gen/schemas/desktop-schema.json",
+      "sha256": "2a16f62c90a059a1b67e4501216bb3476f402087e99ba659dd38c9d0521f3b07",
+      "consultation": "final repaired-candidate evidence read/hashed; no checks rerun by reviewer"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/src/live_control.rs",
+      "sha256": "bdc865616b21ce388f2976ccbac37f56748a521dea66aa030a801fd18af4dee3",
+      "consultation": "final repaired-candidate evidence read/hashed; no checks rerun by reviewer"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/target/debug/build/openpipestress-desktop-4f55822ee98d78f6/out/capabilities.json",
+      "sha256": "13a4ae450bc58e18617f7bd6108724fc025ab87d542ba5f722bcd695eba63d59",
+      "consultation": "final repaired-candidate evidence read/hashed; no checks rerun by reviewer"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/target/debug/build/openpipestress-desktop-56002360c732c218/out/capabilities.json",
+      "sha256": "13a4ae450bc58e18617f7bd6108724fc025ab87d542ba5f722bcd695eba63d59",
+      "consultation": "final repaired-candidate evidence read/hashed; no checks rerun by reviewer"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/liveControlBridge.ts",
+      "sha256": "211e0ec6b7d2faa4ed3e7e85e020610c2a30313d054fa250c72a7b7de31d5855",
+      "consultation": "final repaired-candidate evidence read/hashed; no checks rerun by reviewer"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/REPAIR_ACL_CHECK.py",
+      "sha256": "901550b216ed0ff34d69a134c194fdf8ed3e0c9e66b19bd433eab99b42071e68",
+      "consultation": "final repaired-candidate evidence read/hashed; no checks rerun by reviewer"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/REPAIR_FINAL_SOURCE.json",
+      "sha256": "0bfdd603a72993c129f2d268499acdc63d86f7fd6cf801eb4441414a79db132e",
+      "consultation": "final repaired-candidate evidence read/hashed; no checks rerun by reviewer"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/REPAIR_PRE_RUN.json",
+      "sha256": "88ea0e8b150f1df5c3e2ffa0a501d0c9ac3c6b5eeb57226442971686a9484b01",
+      "consultation": "final repaired-candidate evidence read/hashed; no checks rerun by reviewer"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/REPAIR_RETURN.md",
+      "sha256": "b74a03f95da7a65a4506759e14c1bd1d660e2097b986f3f6cbb1e17945de048e",
+      "consultation": "final repaired-candidate evidence read/hashed; no checks rerun by reviewer"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/REPAIR_RUNS.json",
+      "sha256": "7209fb63110132e7ecc2ba764a70e4dec0121ae667d94a96af6c30cee2935c6d",
+      "consultation": "final repaired-candidate evidence read/hashed; no checks rerun by reviewer"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/repair-acl-check.log",
+      "sha256": "cd1a6c4d70462e926f358fcfe776ac546ef04c7bd5cf554e3f2d3b2082cd3c2b",
+      "consultation": "final repaired-candidate evidence read/hashed; no checks rerun by reviewer"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/repair-cargo-build-1.log",
+      "sha256": "1f91ba57ac20ad3ff3cc6293544c418bf7a98bbf9d42f1019d534ffc649de679",
+      "consultation": "final repaired-candidate evidence read/hashed; no checks rerun by reviewer"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/repair-cargo-cli-1.log",
+      "sha256": "2fa5102a4fc73d3686e2e969badbca9265dbb552d164a0dd62c3e4fc8de3d8a5",
+      "consultation": "final repaired-candidate evidence read/hashed; no checks rerun by reviewer"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/repair-cargo-lib-1.log",
+      "sha256": "5e96a6785af1169060df5f5c0fbba328bb6f4403f378456ff7ac65fe1619d35d",
+      "consultation": "final repaired-candidate evidence read/hashed; no checks rerun by reviewer"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/NATIVE/repair-cargo-transport-1.log",
+      "sha256": "3b70d862392b24d18e43dc62c1d03acb9fe449df372964adaac47f64ae9ab21d",
+      "consultation": "final repaired-candidate evidence read/hashed; no checks rerun by reviewer"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/REPAIR_FRONTEND_VALIDATION.json",
+      "sha256": "8a931024c6abccc69ad30adc8ee1ebb57b16cce7fc196b37dbfd78b40f8f0783",
+      "consultation": "final repaired-candidate evidence read/hashed; no checks rerun by reviewer"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/repair-frontend-tests.raw.txt",
+      "sha256": "5ee3e6a90227e7e60be4ac5625e79f7a3b62245e0335606a23c0cc561cc60cd4",
+      "consultation": "final repaired-candidate evidence read/hashed; no checks rerun by reviewer"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_MANAGER/IMPLEMENTATION/repair-tsc.raw.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "consultation": "final repaired-candidate evidence read/hashed; no checks rerun by reviewer"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "candidate": "de52a7cfc6cca083877ef53df559f5ee73701615",
+  "source_matches_commit": true,
+  "sources": [
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.ts",
+      "sha256": "62096d15fd9cca561061893b8cd14370188c79c43dcb4c534ffbd9dd06743bca"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/liveControlController.ts",
+      "sha256": "84bd87ae36a9420ca46b72243a726ce86438766817bcb09b7137b8f338059d64"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/liveControlTypes.ts",
+      "sha256": "70d5a4e8cd319b7deeade59fc83ad97600272da37cf89dbdfb9fe2dee9f70d19"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/liveControlController.test.ts",
+      "sha256": "92ad476180a54a929ad63f350aacd1725d6a05d1db373b90caf243dee620090f"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.liveControl.test.tsx",
+      "sha256": "c51b736d7fd619446ad2436bbd12be85ba60df0da2d9b07a7373d36c58c2b940"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/workspace/workspaceSession.shell.test.tsx",
+      "sha256": "4b546c8e5dd6bd056a13f1ac3afb4c271851dac1e19e1b9d0dc3cd1e439e40dd"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/liveControlBridge.ts",
+      "sha256": "211e0ec6b7d2faa4ed3e7e85e020610c2a30313d054fa250c72a7b7de31d5855"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/services/liveControlBridge.test.ts",
+      "sha256": "57d827144f9fa5113ef3c8d0a6d8ad91b41ca0429e717dbce546afe3ffe20887"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src/features/toolkit/BatchReviewPanel.tsx",
+      "sha256": "6606236822ab4b126eb6e2b722bfce03eebdc8c2a3c3ee45806067ce1eb5d345"
+    }
+  ],
+  "checks": [
+    {
+      "command": "./node_modules/.bin/tsc -p apps/desktop/tsconfig.json --noEmit",
+      "cwd": "projects/chirality-piping",
+      "log": "repair-tsc.raw.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    {
+      "command": "npm run test:desktop -- src/features/workspace/liveControlController.test.ts src/features/workspace/workspaceSession.liveControl.test.tsx src/services/liveControlBridge.test.ts src/features/workspace/workspaceSession.shell.test.tsx",
+      "cwd": "projects/chirality-piping",
+      "log": "repair-frontend-tests.raw.txt",
+      "sha256": "5ee3e6a90227e7e60be4ac5625e79f7a3b62245e0335606a23c0cc561cc60cd4",
+      "exit_code": 0,
+      "result": "4 suites,37 tests PASS"
+    }
+  ],
+  "resource": "Sequential manager execution after ROOT repair-slot release; complete before native repair phase. No browser/native/app endpoint."
+}

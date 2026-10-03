@@ -1,0 +1,7 @@
+{
+  "source_commit": "adc346bcc4a5685a5dd3adcec0589742ffe9a21d",
+  "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/LIVE_IMPLEMENTATION_ACTIVATION.md",
+  "sha256": "9fda39962acb516469ddcfa7898119e16a9104316b57ebb0d2a5e6b9356c6628",
+  "byte_equality": true,
+  "authority": "ROOT explicitly granted commit-only ownership for unchanged supplied activation; no revision or graph authority"
+}

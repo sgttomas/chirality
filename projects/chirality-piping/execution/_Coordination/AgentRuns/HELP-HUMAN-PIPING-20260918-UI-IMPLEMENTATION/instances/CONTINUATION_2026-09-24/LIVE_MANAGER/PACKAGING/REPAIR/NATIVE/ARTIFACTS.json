@@ -1,0 +1,49 @@
+{
+  "build_exit_code": 0,
+  "time_utc": "2026-09-24T06:13:18.460624+00:00",
+  "macos_entries": [
+    "openpipestress-desktop"
+  ],
+  "cli_present_after": true,
+  "cli_immediate_pre_hash": "75c4f82e60effee3ee65047e19a027229c18a302de84af6163ff374e05385a3d",
+  "cli_post_hash": "75c4f82e60effee3ee65047e19a027229c18a302de84af6163ff374e05385a3d",
+  "cli_hash_unchanged_by_normal_build": true,
+  "plist": {
+    "CFBundleDevelopmentRegion": "English",
+    "CFBundleDisplayName": "SWBPIPE",
+    "CFBundleExecutable": "openpipestress-desktop",
+    "CFBundleIdentifier": "com.chirality.swbpipe",
+    "CFBundleInfoDictionaryVersion": "6.0",
+    "CFBundleName": "SWBPIPE",
+    "CFBundlePackageType": "APPL",
+    "CFBundleShortVersionString": "0.1.0",
+    "CFBundleVersion": "0.1.0",
+    "CSResourcesFileMapped": true,
+    "LSMinimumSystemVersion": "10.13",
+    "CFBundleIconFile": "icon.icns",
+    "LSRequiresCarbon": true,
+    "NSHighResolutionCapable": true
+  },
+  "desktop_matches_target": true,
+  "desktop_file_description": "projects/chirality-piping/apps/desktop/src-tauri/target/debug/bundle/macos/SWBPIPE.app/Contents/MacOS/openpipestress-desktop: Mach-O 64-bit executable arm64",
+  "files": [
+    {
+      "path": "Contents/Info.plist",
+      "size": 979,
+      "sha256": "573a9848c4b521dc352ba10ef10298c645702b53f0557e62bade6a1855261fd8"
+    },
+    {
+      "path": "Contents/MacOS/openpipestress-desktop",
+      "size": 57105528,
+      "sha256": "23849ca75ae43eca05b7cf8142b2e3d13715df1a3ff8b2699b7233defc29030b"
+    },
+    {
+      "path": "Contents/Resources/icon.icns",
+      "size": 77148,
+      "sha256": "2ddf5cdbfe7c2023349d49fd45efee4debad28e72a4cf8401834aa402f3d238e"
+    }
+  ],
+  "bundle_manifest_sha256": "086d5ed9cbc98526106180237735b4f506af1793636727d0b6fa3ca232cd8566",
+  "self_test_argument_bytes_present": true,
+  "no_app_or_selftest_execution": true
+}
