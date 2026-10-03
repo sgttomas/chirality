@@ -20,12 +20,6 @@ pub(super) struct MaterialSelection {
     pub source_alpha: [Option<f64>; 2],
 }
 #[derive(Debug)]
-pub(super) struct BasisRecord {
-    pub case: String,
-    pub selector: MaterialSelector,
-    pub text: String,
-}
-#[derive(Debug)]
 pub(super) struct TermIdentity {
     pub original: usize,
     pub occurrence: usize,
@@ -62,10 +56,6 @@ pub(super) struct ProductCapture {
     pub nodes: Vec<(String, [f64; 3])>,
     pub materials: Vec<(String, f64, f64)>,
     pub selections: Vec<MaterialSelection>,
-    pub basis_record: Option<BasisRecord>,
-    pub basis_record_calls: usize,
-    /// Set from the actual source case, independently of successful text capture.
-    pub basis_expected: bool,
     pub members: Vec<MemberIdentity>,
     pub terms: Vec<TermIdentity>,
     pub supports: Vec<(String, usize)>,
@@ -316,137 +306,6 @@ impl ProductCapture {
             source_alpha,
         });
     }
-    /// Observe only the actual successful aggregate resolver return, before case_source.
-    /// This owned text is a presence-record warrant, never a numerical source law.
-    pub fn successful_basis_record(&mut self, case: &PreviewLoadCase, text: &str) {
-        if self.error.is_some() {
-            return;
-        }
-        let result = (|| -> Result<BasisRecord, CaptureError> {
-            self.adapter.enter(AdapterEvent::SourceVisit, 1);
-            self.adapter.enter(AdapterEvent::ValidationEntry, 1);
-            self.adapter.require()?;
-            let calls = self
-                .basis_record_calls
-                .checked_add(1)
-                .ok_or(CaptureError::CountRange("basis record calls"))?;
-            self.adapter.enter(AdapterEvent::MapWrite, 1);
-            self.adapter.require()?;
-            self.basis_record_calls = calls;
-            if calls != 1 || self.basis_record.is_some() {
-                return Err("duplicate successful basis record".into());
-            }
-            self.validate_selected_case(case)?;
-            let selector = match load_case_selector(case) {
-                Some(SelectorRef::Point(id)) => MaterialSelector::Point(self.adapter.copy(id)?),
-                Some(SelectorRef::Temperature(bits)) => MaterialSelector::Temperature(bits),
-                None => return Err("unexpected base basis record".into()),
-            };
-            Ok(BasisRecord {
-                case: self.adapter.copy(&case.id)?,
-                selector,
-                text: self.adapter.copy(text)?,
-            })
-        })();
-        match result {
-            Ok(record) => {
-                if self.adapter.enter(AdapterEvent::MapWrite, 1) {
-                    self.basis_record = Some(record);
-                } else {
-                    self.fail("basis record write accounting");
-                }
-            }
-            Err(e) => self.error = Some(e),
-        }
-    }
-    fn selector_matches(
-        &self,
-        selected: &MaterialSelector,
-        case: &PreviewLoadCase,
-    ) -> Result<bool, CaptureError> {
-        self.adapter.enter(AdapterEvent::ValidationEntry, 1);
-        self.adapter.require()?;
-        let matches = match (selected, load_case_selector(case)) {
-            (MaterialSelector::Point(a), Some(SelectorRef::Point(b))) => self.adapter.same(a, b),
-            (MaterialSelector::Temperature(a), Some(SelectorRef::Temperature(b))) => *a == b,
-            _ => false,
-        };
-        self.adapter.require()?;
-        Ok(matches)
-    }
-    fn validate_selected_case(&self, case: &PreviewLoadCase) -> Result<(), CaptureError> {
-        self.adapter.enter(AdapterEvent::ValidationEntry, 1);
-        self.adapter.require()?;
-        if load_case_selector(case).is_none() || self.selections.is_empty() {
-            return Err("missing selected basis source".into());
-        }
-        for selection in &self.selections {
-            self.adapter.enter(AdapterEvent::SourceVisit, 1);
-            self.adapter.require()?;
-            let same_case = self.adapter.same(&selection.case, &case.id);
-            self.adapter.require()?;
-            if !same_case || !self.selector_matches(&selection.selector, case)? {
-                return Err("basis record source case/selector".into());
-            }
-        }
-        Ok(())
-    }
-    fn basis_source_case(&mut self, case: &PreviewLoadCase) -> Result<(), CaptureError> {
-        self.adapter.enter(AdapterEvent::ValidationEntry, 1);
-        self.adapter.enter(AdapterEvent::MapWrite, 1);
-        self.adapter.require()?;
-        self.basis_expected = load_case_selector(case).is_some();
-        match (self.basis_expected, &self.basis_record) {
-            (false, None) if self.basis_record_calls == 0 => Ok(()),
-            (true, Some(record)) if self.basis_record_calls == 1 => {
-                self.validate_selected_case(case)?;
-                let same_case = self.adapter.same(&record.case, &case.id);
-                self.adapter.require()?;
-                if !same_case || !self.selector_matches(&record.selector, case)? {
-                    return Err("basis record producing case/selector".into());
-                }
-                Ok(())
-            }
-            _ => Err("basis record source presence".into()),
-        }
-    }
-    fn validate_modulus_record(&self, row: &ResultItem) -> Result<(), CaptureError> {
-        self.adapter.enter(AdapterEvent::ValidationEntry, 1);
-        self.adapter.require()?;
-        let record = self
-            .basis_record
-            .as_ref()
-            .ok_or("missing successful basis record")?;
-        let metadata = row.metadata.as_ref().ok_or("modulus record metadata")?;
-        let basis = row.basis_ref.as_ref().ok_or("modulus record case basis")?;
-        if !self.basis_expected
-            || self.basis_record_calls != 1
-            || row.value.to_bits() != 1.0f64.to_bits()
-            || !row.source_result_refs.is_empty()
-        {
-            return Err("modulus record value/presence/references".into());
-        }
-        self.adapter.enter(AdapterEvent::LibraryBoundary, 1); // Existing fixed-id formatting; internals unqualified.
-        self.adapter.require()?;
-        let id = format!("result:modulus-basis:{}", stable_suffix(&self.case_id));
-        let matches = self.adapter.same(&record.case, &self.case_id)
-            && self.adapter.same(&row.kind, "modulus_basis_record")
-            && self.adapter.same(&row.id, &id)
-            && self.adapter.same(&row.unit, "record")
-            && self.adapter.same(&row.entity_ref, &self.case_id)
-            && self.adapter.same(&basis.ref_type, "load_case")
-            && self.adapter.same(&basis.ref_id, &self.case_id)
-            && self.adapter.same(&metadata.component, "material_modulus_basis")
-            && self.adapter.same(&metadata.coordinate_system, "not_applicable")
-            && self.adapter.same(&metadata.location, &self.case_id)
-            && self.adapter.same(&metadata.sign_convention, "presence record; value 1.0 means the load case solved with the recorded user-entered property basis")
-            && self.adapter.same(&metadata.basis, &record.text);
-        self.adapter.require()?;
-        if !matches {
-            return Err("modulus record association".into());
-        }
-        Ok(())
-    }
     pub fn case_source(
         &mut self,
         model: &PreviewModel,
@@ -465,10 +324,6 @@ impl ProductCapture {
         }
         if self.case_calls != 1 || model.load_cases.len() != 1 {
             self.fail("private witness has exactly one actual case");
-            return;
-        }
-        if let Err(e) = self.basis_source_case(case) {
-            self.error = Some(e);
             return;
         }
         if !springs.is_empty()
@@ -943,17 +798,6 @@ impl ProductCapture {
         owner: &k::RetainedSolve,
     ) -> Result<Vec<k::ProductFinalRow<'a>>, CaptureError> {
         self.adapter.require()?;
-        if self.error.is_some() {
-            return Err("prior capture refusal".into());
-        }
-        self.adapter.enter(AdapterEvent::ValidationEntry, 1);
-        self.adapter.require()?;
-        if self.basis_expected != self.basis_record.is_some()
-            || self.basis_record_calls != usize::from(self.basis_expected)
-        {
-            return Err("basis record capture presence".into());
-        }
-        let mut modulus_basis = false;
         let mut out = self.adapter.reserve(e.results.len())?;
         for r in &e.results {
             if !self.adapter.enter(AdapterEvent::RowVisit, 1)
@@ -962,10 +806,7 @@ impl ProductCapture {
                 self.adapter.require()?;
             }
             let basis = r.basis_ref.as_ref().ok_or("final basis")?;
-            let same_case =
-                basis.ref_type == "load_case" && self.adapter.same(&basis.ref_id, &self.case_id);
-            self.adapter.require()?;
-            if !same_case {
+            if basis.ref_type != "load_case" || !self.adapter.same(&basis.ref_id, &self.case_id) {
                 return Err("case binding".into());
             }
             let node = self
@@ -980,24 +821,12 @@ impl ProductCapture {
                 .supports
                 .iter()
                 .position(|s| self.adapter.same(&s.0, &r.entity_ref));
-            self.adapter.require()?;
             let loc = r.metadata.as_ref().map(|m| m.location.as_str());
             let (recipe, body, unit) = if r.kind == "linear_solver_mode_basis" {
                 if r.unit != "mode_code" {
                     return Err("mode unit".into());
                 }
                 (k::ProductRecipe::NonQuantity, 0, k::ProductUnit::Record)
-            } else if r.kind == "modulus_basis_record" {
-                if modulus_basis || !self.basis_expected {
-                    return Err("modulus record coverage".into());
-                }
-                self.validate_modulus_record(r)?;
-                modulus_basis = true;
-                (
-                    k::ProductRecipe::ModulusBasisRecord,
-                    0,
-                    k::ProductUnit::Record,
-                )
             } else if r.kind == "displacement_magnitude" {
                 let n = node.ok_or("node")?;
                 if r.unit != "mm" {
@@ -1160,9 +989,7 @@ impl ProductCapture {
                     }
                 }
             };
-            if recipe != k::ProductRecipe::ModulusBasisRecord {
-                validate_final_metadata(r, recipe, &self.case_id, &self.adapter)?;
-            }
+            validate_final_metadata(r, recipe, &self.case_id, &self.adapter)?;
             self.adapter.enter(AdapterEvent::MapWrite, 1);
             self.adapter.require()?;
             out.push(k::ProductFinalRow {
@@ -1175,9 +1002,6 @@ impl ProductCapture {
             });
         }
         self.adapter.require()?;
-        if modulus_basis != self.basis_expected {
-            return Err("missing final modulus record".into());
-        }
         Ok(out)
     }
     pub(super) fn observables(&self, e: &MechanicsEnvelope) -> Result<(), CaptureError> {

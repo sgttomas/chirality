@@ -9390,9 +9390,6 @@ fn materials_for_modulus_basis_observed(
                 provenance_records.join(" | ")
             )
         };
-        if let Some(observer) = product.as_deref_mut() {
-            observer.successful_basis_record(load_case, &basis_record);
-        }
         Some((resolved, basis_record))
     }
 }
