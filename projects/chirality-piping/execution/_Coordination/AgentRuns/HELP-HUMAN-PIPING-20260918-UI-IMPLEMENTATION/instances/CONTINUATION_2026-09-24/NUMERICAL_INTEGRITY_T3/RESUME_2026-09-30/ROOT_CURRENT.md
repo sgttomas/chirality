@@ -37,8 +37,14 @@ bounded private ordinary witness at a083c1def515. I45 /root/i45_product_vertical
 is now implementing in wt/f2a from clean dispatch0fdd06a73389 (no-ff NUM join,
 maintained6ba653451f9f). Actual receipt02:26:30Z; checkpoint02:46:30, actual admission/
 source-map target03:11:30, source-expansion cutoff03:56:30, final04:26:30.
-Owns the nine-path fence in BRIEFS/I45_PRODUCT_VERTICAL_IMPLEMENTATION.md and new
-CODE/R/I45/product_vertical_02 only. No NUM/frozen arithmetic source writes,
+Owns the original nine-path fence plus PP/tests/s11f_site_test.rs, limited to
+actual-body retargeting/newmodule inventory, and new CODE/R/I45/product_vertical_02
+only. BRIEFS/I45_PRODUCT_VERTICAL_SUPPLEMENT_01.md selects independently reviewed
+new operational L/k_a/k_t evaluation (RV59 correction00bb882c5592); old plan/review
+had not discharged this G5a prerequisite. It is not historical capture/receipt
+custody. Missing operands still block full G5a/case success. First actual source/
+map and private numeric verdicts exist; complete-case acceptance remains pending
+all guards/oracles/controls and fresh implementation review. No NUM/frozen arithmetic source writes,
 Git/index/API/delegation. All other TASKs stopped.
 
 Sole focused compiler lane belongs to I45: existing guard5387,4jobs/2threads,

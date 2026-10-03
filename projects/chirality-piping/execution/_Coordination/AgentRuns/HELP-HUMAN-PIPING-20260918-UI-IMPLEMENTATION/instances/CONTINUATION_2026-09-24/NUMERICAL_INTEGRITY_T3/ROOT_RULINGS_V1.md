@@ -5791,6 +5791,11 @@ No PP code/runtime grant, new truth contract or public activation is made here.
 
 ## Product ordinary vertical interface selected (ROOT, 2026-10-03 UTC)
 
+[Correction 2026-10-03 UTC: the initial plan/RV59 review did not discharge
+G5a operational L/k_a/k_t. A/Z/body extent only covered row scales. The bounded
+private correction below was independently re-derived before implementation
+reliance; missing operands continue to refuse complete G5a/case success.]
+
 ROOT read RV59's full return/review, verified its12-file packet with seal
 a4b3529f686e134482ba1e1797cb44b948d2541bc7a4f125fbd37f96196f3b5f, and preserved
 it at5691d7f7b3d0. No actionable finding remains. Select I45 plan24f24e98ba8b
@@ -5826,3 +5831,23 @@ first actual admission/source-map target03:11:30, cutoff03:56:30, final04:26:30.
 The sole focused compiler lane was transferred after ROOT's empty Cargo/rustc
 scan and live guard check. Nine-path grant and all pending product/resource/
 publication limits remain as selected; no additional authority is inferred.
+
+
+## G5a operand prerequisite corrected; PP inventory follows actual bodies (ROOT, 2026-10-03 UTC)
+
+I45 caught the missing G5a operational operands during implementation and held
+that path. ROOT read the governing/actual scalar source and commissioned a bounded
+same-interface RV59 follow-up. ROOT read the full return/review, verified its12-file
+seal d5eaaa52228a44cd38469684f2d1136047b8e4644be5da300f1bc458e38022cc and preserved
+it at00bb882c5592. Select that newly evaluated operational-check derivation within
+PP retained_product.rs: actual built operands, exact existing operation order and
+checks, truthful actual prefixes, no historical field/receipt claim. No predicate,
+source truth, public output or ordinary admission changes. The original plan and
+review remain historical; their missing prerequisite is now explicit and corrected.
+
+ROOT also grants PP/tests/s11f_site_test.rs solely for actual moved-body retargeting
+and new module/site inventory. Existing checks on old compatibility wrappers would
+not inspect the new producer bodies; scanner/assertions/protections remain intact.
+The exact ten-path fence and G5a obligations are in new
+BRIEFS/I45_PRODUCT_VERTICAL_SUPPLEMENT_01.md. This does not grant other source or
+runtime work, extend the clock, or accept incomplete G5a/full-case status.
