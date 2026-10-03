@@ -7265,3 +7265,27 @@ actual capture/origin cause; they do not manufacture a wire Run. Layouts remain
 per-artifact observations and the snapshot is explicitly private. All production
 permits remain absent. Full public producer/readers, ordinary/resource/caller
 qualification, combination/exact scope, native Current and main gates remain.
+
+
+## Reader implementation divided at coherent language boundaries (ROOT, 2026-10-03 UTC)
+
+ROOT reallocates the standalone readers because three complete validators exceeded the original single-implementer window.
+
+I52 reported the risk before its working checkpoint: schema/Python drafts existed,
+but Rust/TypeScript had only finite helpers and refusing stubs, and the complete
+shared receipt control was absent. ROOT owns that oversized allocation. The
+original checkpoint remains partial; no helper pass is credited as a validator.
+
+The exact sixteen-file scope is unchanged: I52 retains nine shared fixture/schema/
+Python paths, I55 owns four Rust paths, and I56 owns three TypeScript paths.
+LANGUAGE_HANDOFF at 17:15:47Z freezes the seven language paths. ROOT read every
+new helper/test line and module delta, verified all seven hashes, and preserved
+recoverable bytes in external scratch with a committed manifest. This preserves
+unaccepted work; it supplies no complete-reader or independent arithmetic claim.
+
+The new language tasks have disjoint writes in READER and bounded clocks. I52's
+original clock remains. Only I52 owns shared inputs and publishes their final
+frozen hashes; joint parity and fresh complete-source review remain mandatory.
+I55 owns Cargo; ordinary Python/Vitest controls use the already source-bound
+authorities/assets. No gate, tolerance, public meaning, coverage obligation or
+future carrier/main gate is relaxed. No additional host tooling is assigned.
