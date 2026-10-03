@@ -222,3 +222,62 @@ def test_native_source_encoding_domain_and_load_separation():
     source["nodal_terms"][0]["source_id"] = "load:\u03b1"
     assert rp._native_source_encoding(source, True) != raw
     assert rp._native_source_encoding(source, False) == stiffness
+
+
+COVERAGE = ["retained_precision", "body", "product_attempts", 0, "proof", "summary_coverage"]
+SELECTION = ["retained_precision", "body", "cases", 0, "selection"]
+VERIFICATION = ["retained_precision", "body", "cases", 0, "run", "records", 1, "verification"]
+ZERO = "0000000000000000"
+
+
+def _set(path, value):
+    return {"path": path, "op": "set", "value": value}
+
+
+@pytest.mark.parametrize("entry", corpus().get("must_pass", []), ids=lambda x: x["id"])
+def test_shared_publicly_consistent_attestations_must_pass(entry):
+    """I57 s4/s5: public coverage rules are necessary conditions only. These shared
+    rewrites keep every public relation, so readers must accept them; only producer
+    custody/replay can catch such attested private flags."""
+    fixture = next(f for f in corpus()["cases"] if f["id"] == entry["base"])
+    assert entry["expected"] == "pass"
+    result = rp._validate_draft(apply_mutation(fixture["source"], entry), fixture["invocation"])
+    assert result["classifications"] == fixture["expected_classifications"]
+    assert result["numerical_eligible"] is False
+
+
+def _layout_index(source, predicate):
+    layout = source["retained_precision"]["body"]["sources"][0]["layout"]
+    return next(i for i, row in enumerate(layout) if predicate(row))
+
+
+@pytest.mark.parametrize("change", ["force_row_input_derived", "constrained_displacement_not_input_derived", "nonzero_prescription"])
+def test_g5a_rederives_canonical_layout_and_zero_prescription(change):
+    """Python-only (not shared corpus): D is rederived from source maps, never trusted."""
+    fixture = corpus()["cases"][0]
+    source = fixture["source"]
+    layout = ["retained_precision", "body", "sources", 0, "layout"]
+    if change == "force_row_input_derived":
+        index = _layout_index(source, lambda r: r["kind"] == "force" and r["quantity"]["tag"] == "reaction")
+        edits = [_set(layout + [index, "input_derived"], True)]
+    elif change == "constrained_displacement_not_input_derived":
+        index = _layout_index(source, lambda r: r["input_derived"])
+        edits = [_set(layout + [index, "input_derived"], False)]
+    else:
+        edits = [_set(["retained_precision", "body", "sources", 0, "constraints", 0, "value"], "3ff0000000000000")]
+    with pytest.raises(rp.RetainedPrecisionError) as error:
+        rp._validate_draft(apply_mutation(source, {"edits": edits, "rehash": "all"}), fixture["invocation"])
+    assert (error.value.gate, error.value.code) == ("G5a", "RETAINED_PRECISION_SCALE_MISMATCH")
+
+
+def test_p512_floor_phi_follows_native_rounding():
+    """C1 G5b 'same E/e-hat/Phi at p512' (verify.rs:321-376). Python-only until the
+    C1b p512 ladder base exists: Phi = fl-up(2^-438 * e-hat), e-hat uncoupled at L=0."""
+    assert rp._phi_512(0.0) == 0.0
+    assert rp._phi_512(1.0) == math.ldexp(1.0, -438)
+    # 2^-1038 * (1 + 2^-52) rounds to 2^-1038 in the subnormal range; nearest * 2^438 is
+    # below e-hat, so the native next-up applies.
+    assert rp._phi_512(math.ldexp(1.0 + 2.0 ** -52, -600)) == math.ldexp(1.0, -1038) + math.ldexp(1.0, -1074)
+    assert rp._e_hat([3.0, 0.0], 0.0) == [3.0, 0.0]
+    assert rp._e_hat([3.0, 0.0], 2.0) == [3.0, 6.0]
+    assert rp._e_hat([0.0, 8.0], 2.0) == [4.0, 8.0]

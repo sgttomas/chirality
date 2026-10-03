@@ -290,6 +290,11 @@ def _g5_native(body):
             fail(run["invocation_before"] == current, "WORK_MISMATCH")
             records, attempts = run["records"], run["attempts"]
             fail(len(records) <= 4 and [r["index"] for r in records] == list(range(len(records))))
+            # C1 s1 items 1-5 / G5 "actual logical/native schedule": the native ladder
+            # always opens with a fresh p128 candidate in record 0 (adaptive.rs:4519-4521);
+            # later slots advance only by the stated failure/reuse rules.
+            fail(len(attempts) <= 3 and (not records) == (not attempts))
+            if attempts: fail(attempts[0]["precision"] == 128 and attempts[0]["candidate_record"] == 0 and attempts[0]["origin"] == {"kind": "fresh"})
             fail([r["precision"] for r in records] == sorted(set(r["precision"] for r in records)))
             amounts = []
             for r in records:
@@ -382,6 +387,34 @@ def _g5_native(body):
                 fail(b["slot"] == entry["slot"] and b["state"] != "budget_failure" and b["group"] == run["origin"]["group"] and b["origin"]["run"] <= run["id"], "WORK_MISMATCH")
 
 
+def _g5_coverage(a, case, source, fail):
+    """I57 s3/s4 G5: proof-owned summary coverage binding and stage implications.
+
+    Null means no complete vector was retained; it is never all-false coverage.
+    A completed certificate, passed G5a or Ready product requires the complete
+    vector; a failed certificate may carry null. A complete vector requires the
+    attempt's own source/Run, a selected native Run, both lanes completed in
+    order, completed proof stages through aliases and an entered certificate.
+    Complete coverage never implies certificate success.
+    """
+    proof = a["proof"]
+    if proof is None:
+        return
+    coverage, stages, checks = proof["summary_coverage"], a["stages"], proof["checks"]
+    if (a["result"]["kind"] == "ready" or stages["certificate"] == "completed" or checks["certificate"]["kind"] == "passed"
+            or stages["g5a"] == "completed" or checks["g5a"]["kind"] == "passed"):
+        fail(coverage is not None)
+    if coverage is None:
+        return
+    run = case.get("run")
+    fail(source is not None and a["run_ref"] is not None and run is not None and run["id"] == a["run_ref"]
+         and case["source_ref"] == a["source_ref"] and run["origin"]["source_ref"] == a["source_ref"]
+         and run["origin"]["owner_ref"] == a["owner_ref"] and run["kernel_terminal"]["kind"] == "selected")
+    fail([lane["law"] for lane in proof["lanes"]] == ["admitted_k", "annular_source"] and all(lane["state"] == "completed" for lane in proof["lanes"]))
+    fail(all(stages[k] == "completed" for k in ("proof_start", "projection", "maxima", "values", "aliases")))
+    fail(stages["certificate"] in ("completed", "failed") and checks["certificate"]["kind"] in ("passed", "failed"))
+
+
 def _g5_products(body, rows_by_case):
     fail = lambda ok: _need(ok, "G5", "PRODUCT_ATTEMPT_MISMATCH")
     wf = lambda ok: _need(ok, "G5", "WORK_MISMATCH")
@@ -436,6 +469,7 @@ def _g5_products(body, rows_by_case):
                     fail(outcome["kind"] != "overflow")
                     value = 0.0 if outcome["kind"] == "underflow" else from_bits(outcome["value"])
                     fail(bits(float(row["value"])) == bits(value if value != 0 else 0.0))
+        _g5_coverage(a, case, source, fail)
         if a["result"]["kind"] == "ready":
             fail(source is not None and a["run_ref"] is not None and case["run"]["kernel_terminal"]["kind"] == "selected")
             fail(source["preparation"] is not None and source["preparation"]["attempt_ref"] == ai)
@@ -508,31 +542,192 @@ def _extent(nodes):
     return math.sqrt(((d[0] * d[0]) + (d[1] * d[1])) + (d[2] * d[2]))
 
 
+def _e_hat(e, length):
+    """verify.rs:321-334 e_hat: a single-node body (L=0) keeps E."""
+    if length == 0:
+        return list(e)
+    fo, mo = e
+    return [max(fo, mo / length), max(mo, length * fo)]
+
+
+def _phi_512(e_hat):
+    """verify.rs:365-376: Phi = fl-up(2^-438 * e_hat), nearest then next up when below."""
+    nearest = e_hat * float.fromhex("0x1p-438")
+    return math.nextafter(nearest, math.inf) if nearest * float.fromhex("0x1p+438") < e_hat else nearest
+
+
+def _canonical_layout(source, need):
+    """Full canonical layout rebuilt from the bound source maps (FK/recover.rs:101 order).
+
+    Constraints must be unique and prescribe exact +0 in this C3 scope (D=false).
+    """
+    maps = source["id_maps"]
+    def body_of(n):
+        hits = [b["body"] for b in source["body_membership"] if n in b["nodes"]]
+        need(len(hits) == 1)
+        return hits[0]
+    fixed = set()
+    for c in source["constraints"]:
+        key = (c["dof"]["node"], COMPONENTS.index(c["dof"]["component"]))
+        need(key not in fixed and c["value"] == "0000000000000000")
+        fixed.add(key)
+    layout = []
+    def add(q, kind, n, inp=False):
+        layout.append({"index": len(layout), "quantity": q, "kind": kind, "body": body_of(n), "input_derived": inp})
+    count = len(maps["nodes"])
+    for n in range(count):
+        for j, c in enumerate(COMPONENTS):
+            add({"tag": "displacement", "dof": {"node": n, "component": c}}, "translation" if j < 3 else "rotation", n, (n, j) in fixed)
+    for n in range(count):
+        add({"tag": "displacement_magnitude", "node": n}, "translation", n)
+    for m in maps["members"]:
+        for end in ("i", "j"):
+            for j, c in enumerate(COMPONENTS):
+                add({"tag": "end_action", "member": m["kernel_member"], "end": end, "component": c}, "force" if j < 3 else "moment", m["node_i"])
+    for st in source["stations"]:
+        m = maps["members"][int(st["member"])]
+        for j, c in enumerate(COMPONENTS):
+            add({"tag": "station_action", "station": st["id"], "component": c}, "force" if j < 3 else "moment", m["node_i"])
+    for spring in maps["springs"]:
+        add({"tag": "spring_action", "spring": spring["kernel_spring"], "component": spring["component"]},
+            "force" if COMPONENTS.index(spring["component"]) < 3 else "moment", spring["node"])
+    for c in source["constraints"]:
+        add({"tag": "reaction", "dof": c["dof"]}, "force" if COMPONENTS.index(c["dof"]["component"]) < 3 else "moment", c["dof"]["node"])
+    for g in source["supports"]:
+        add({"tag": "support_force_magnitude", "support": g["id"]}, "force", g["node"])
+        add({"tag": "support_moment_magnitude", "support": g["id"]}, "moment", g["node"])
+    return layout
+
+
 def _coupled(s, length):
     tr, ro, fo, mo = s
     return list(s) if length == 0 else [max(tr, length * ro), max(ro, tr / length), max(fo, mo / length), max(mo, length * fo)]
+
+
+def _g5a_coverage(body, case, source, s, need):
+    """I57 s2/s4 G5a from the proof-owned coverage only.
+
+    Selected case (s is its Selection), in order: native p/P and the selected
+    verification record; canonical source layout and extent; compact-flag Boolean
+    feasibility; estimate/charge rederivation; exact summary rosters (PP
+    validate_summary_shape items 1-4); directly derivable data facts.
+
+    Unavailable case that keeps a complete vector (s is None): the same source,
+    feasibility, verification-record and direct data checks, with the p512 floor
+    positivity derived from the selected Run's verification record (Phi > 0 iff
+    e-hat > 0, adaptive.rs:2294-2307); no Selection rosters and no selected pass
+    condition. Native coverage is computed before any certificate verdict
+    (final_case.rs:1371-1448, assigned at 1195), so every complete vector meets these.
+    Final rows never supply a private nonzero or data fact.
+    """
+    names = ["translation", "rotation", "force", "moment"]
+    bodies = source["body_membership"]; ids = [b["body"] for b in bodies]
+    coverage = body["product_attempts"][int(case["product_attempt_ref"])]["proof"]["summary_coverage"]
+    need(coverage is not None and [x["body"] for x in coverage] == ids)
+    last = case["run"]["attempts"][-1]
+    p = s["precision"] if s is not None else last["precision"]
+    need(p in (128, 256, 512))
+    record = case["run"]["records"][int(last["verification"]["record"])]
+    verification = record["verification"]
+    need(record["precision"] == 2 * p and verification is not None and (s is None or s["verification_precision"] == 2 * p))
+    # Reader parity rule 1: the full canonical layout rebuilt from the bound source
+    # maps must equal the receipt layout (relabelled, dropped, reordered or foreign-body
+    # rows fail). Only constrained displacement/rotation rows are input-derived and every
+    # prescription is exact +0 in this C3 scope, so D=false.
+    need(_same(source["layout"], _canonical_layout(source, need)))
+    fixed = {(c["dof"]["node"], c["dof"]["component"]) for c in source["constraints"]}
+    floors = {} if s is None or s["floor"] is None else {x["body"]: x for x in s["floor"]}
+    resolution = {x["body"]: x for x in (verification["resolution"] if s is None else s["resolution_scale"])}
+    need(sorted(resolution) == ids)
+    expected = {"stop_rule": [], "verification_estimate": [], "verification_charge": []}
+    for b, entry in zip(bodies, coverage):
+        bi = b["body"]
+        rows = [r for r in source["layout"] if r["body"] == bi]
+        present = [any(r["kind"] == k for r in rows) for k in names]
+        non_input = [any(r["kind"] == k and not r["input_derived"] for r in rows) for k in names]
+        coords = [[from_bits(v) for v in source["id_maps"]["nodes"][int(i)]["coordinates"]] for i in b["nodes"]]
+        _need(bool(coords), "G5b", "SCALE_MISMATCH")
+        length = _extent(coords)  # adaptive::body_extent operation order
+        floor = floors.get(bi)
+        floor_positive = [False, False] if floor is None else [from_bits(floor["force"]) > 0, from_bits(floor["moment"]) > 0]
+        if s is None and p == 512:
+            hat = _e_hat([from_bits(resolution[bi]["force"]), from_bits(resolution[bi]["moment"])], length)
+            floor_positive = [_phi_512(hat[0]) > 0, _phi_512(hat[1]) > 0]
+        stop = entry["stop"]
+        # Necessary public consistency: some permitted private A reproduces the attested
+        # stop bits (final_case.rs coverage formula). No A is claimed as the actual one.
+        feasible = False
+        for mask in range(16):
+            a = [bool(mask >> k & 1) for k in range(4)]
+            if any(a[k] and not non_input[k] for k in range(4)): continue
+            positive = list(a) if length == 0 else [a[0] or a[1], a[0] or a[1], a[2] or a[3], a[2] or a[3]]
+            positive[2] = positive[2] or floor_positive[0]
+            positive[3] = positive[3] or floor_positive[1]
+            if [present[k] and (positive[k] or a[k]) for k in range(4)] == stop:
+                feasible = True
+                break
+        need(feasible)
+        e = resolution[bi]
+        hats = [from_bits(e["force"]) > 0, from_bits(e["moment"]) > 0]
+        if length != 0: hats = [hats[0] or hats[1]] * 2
+        estimate = [present[2] and hats[0], present[3] and hats[1]]
+        # Native p512: every force/moment row is non-input-derived, so charge is stop.
+        charge = [stop[2], stop[3]] if p == 512 else estimate
+        expected["stop_rule"] += [(bi, k) for k, bit in zip(names, stop) if bit]
+        expected["verification_estimate"] += [(bi, k) for k, bit in zip(names[2:], estimate) if bit]
+        expected["verification_charge"] += [(bi, k) for k, bit in zip(names[2:], charge) if bit]
+    has_data = {x["body"]: x["has_data"] for x in coverage}
+    if s is not None:
+        need([(x["body"], x["kind"]) for x in s["stop_rule"]] == expected["stop_rule"])
+        need([(x["body"], x["kind"]) for x in s["verification_estimate"]] == expected["verification_estimate"])
+        need([(x["body"], x["kind"]) for x in s["verification_charge"]] == expected["verification_charge"])
+        need([x["body"] for x in s["certified_bound"]] == [bi for bi in ids if has_data[bi]])
+    # Parity rule 3: one record bound per body, in order, non-null iff has_data.
+    need([x["body"] for x in verification["bound"]] == ids and all((x["value"] is not None) == has_data[x["body"]] for x in verification["bound"]))
+    theta = {x["body"]: x["value"] for x in verification["theta"]}
+    need(sorted(theta) == ids)
+    need(all(has_data[bi] or theta[bi] == "0000000000000000" for bi in ids))
+    true_count = sum(1 for bi in ids if has_data[bi])
+    need((verification["data_blocks"] == 0) == (true_count == 0) and verification["data_blocks"] >= true_count)
+    # Directly derivable data facts from separate original contributions; a netted load
+    # or a zero final row never implies has_data=false.
+    for b in bodies:
+        free = {(n, c) for n in b["nodes"] for c in COMPONENTS} - fixed
+        if not free: need(not has_data[b["body"]])
+        if any(t["dof"]["node"] in b["nodes"] and (t["dof"]["node"], t["dof"]["component"]) in free and from_bits(t["value"]) != 0
+               for t in source["nodal_terms"]):
+            need(has_data[b["body"]])
 
 
 def _g5_numeric(body, rows_by_case):
     classes = []
     deferred_class_checks = []
     for case in body["cases"]:
-        if case["status"] != "selected": continue
+        if case["status"] != "selected":
+            # I57 s4: an unavailable attempt that keeps a complete vector still meets the
+            # structural/source-consistency checks; no Selection or selected pass condition.
+            ai = case.get("product_attempt_ref")
+            a = None if ai is None else body["product_attempts"][int(ai)]
+            if case["status"] == "unavailable" and a is not None and a["proof"] is not None and a["proof"]["summary_coverage"] is not None:
+                _g5a_coverage(body, case, body["sources"][int(a["source_ref"])], None,
+                              lambda ok, suffix="SCALE_MISMATCH": _need(ok, "G5a", suffix))
+            continue
         source = body["sources"][int(case["source_ref"])]; s = case["selection"]
         rows = rows_by_case[case["basis_ref"]["ref_id"]]
         bodies = source["body_membership"]; names = ["translation", "rotation", "force", "moment"]
         need = lambda ok, suffix="SCALE_MISMATCH": _need(ok, "G5a", suffix)
         need(s["verification_precision"] == 2 * s["precision"] and s["floor_ratio"] == "3dd0000000000000")
         need(from_bits(s["pivot_margin_min"]) > 0 and from_bits(s["rcond"]) > 0)
-        for key, kinds, limit in [("stop_rule", names, 2.0 ** -64), ("verification_estimate", ["force", "moment"], .25), ("verification_charge", ["force", "moment"], 1.)]:
-            items = s[key]
-            need([(x["body"], x["kind"]) for x in items] == [(b["body"], k) for b in bodies for k in kinds])
-            need(all(0 <= from_bits(x["value"]) <= limit for x in items))
+        # Existing summary encodings/ranges. The exact rosters are the actual native
+        # summary coverage below (I57 s4), never a Cartesian body x kind product.
+        for key, limit in [("stop_rule", 2.0 ** -64), ("verification_estimate", .25), ("verification_charge", 1.)]:
+            need(all(0 <= from_bits(x["value"]) <= limit for x in s[key]))
         for key in ["resolution_scale", "theta", "body_scales"]: need([x["body"] for x in s[key]] == [b["body"] for b in bodies])
         need(all(0 <= from_bits(x["value"]) <= .5 for x in s["theta"]))
         need(len({x["body"] for x in s["certified_bound"]}) == len(s["certified_bound"]) and all(x["body"] in [b["body"] for b in bodies] and from_bits(x["value"]) > 0 for x in s["certified_bound"]))
         need((s["floor"] is not None) == (s["precision"] == 512))
         if s["floor"] is not None: need([x["body"] for x in s["floor"]] == [b["body"] for b in bodies])
+        _g5a_coverage(body, case, source, s, need)
         prescribed = {(x["node_id"], x["component"]) for x in s["input_derived_dofs"]}
         need(len(prescribed) == len(s["input_derived_dofs"]))
         actual = {(source["id_maps"]["nodes"][int(c["dof"]["node"])]["id"], c["dof"]["component"]) for c in source["constraints"]}
@@ -586,6 +781,9 @@ def _g5_numeric(body, rows_by_case):
             result = list(scale)
             if s["precision"] == 512:
                 floor = s["floor"][int(bi)]
+                resolution = s["resolution_scale"][int(bi)]
+                hat = _e_hat([from_bits(resolution["force"]), from_bits(resolution["moment"])], extents[bi])
+                _need([bits(_phi_512(hat[0])), bits(_phi_512(hat[1]))] == [floor["force"], floor["moment"]], "G5b", "SCALE_MISMATCH")
                 result[2] = max(result[2], from_bits(floor["force"])); result[3] = max(result[3], from_bits(floor["moment"]))
             _need([bits(x) for x in result] == [s["body_scales"][int(bi)][k] for k in names], "G5b", "SCALE_MISMATCH")
             final_scales[bi] = result
@@ -843,6 +1041,13 @@ def _validate_draft(source: Any, invocation: Any = None) -> dict[str, Any]:
             if a["proof"] is not None:
                 indices=[x["row_index"] for x in a["proof"]["projection_outcomes"]]
                 _need(indices==sorted(set(indices)) and all(x<len(rows[c["basis_ref"]["ref_id"]]) for x in indices),gate,"COVERAGE_MISMATCH")
+                # I57 s4 G3: a complete proof-owned roster lists the attempt's source bodies
+                # exactly once, ascending 0..body_count-1. A null/invalid source reference is
+                # left to the G5 association pass.
+                coverage=a["proof"]["summary_coverage"];si=a["source_ref"]
+                if coverage is not None and type(si) is int and 0<=si<len(body["sources"]):
+                    inventory=[b["body"] for b in body["sources"][si]["body_membership"]]
+                    _need([x["body"] for x in coverage]==inventory==list(range(len(inventory))),gate,"COVERAGE_MISMATCH")
         for i,c in enumerate(cases):
             _need(c["ordinary"]["attempt_ref"]==i and c["ordinary"]["quality_binding"]=={"kind":"present","index":i} and body["ordinary_attempts"][i]["case_index"]==i and body["ordinary_attempts"][i]["case_id"]==ids[i],gate,"COVERAGE_MISMATCH")
         gate="G4";diags=snapshot["diagnostics"]

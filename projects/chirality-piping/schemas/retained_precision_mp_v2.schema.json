@@ -2987,6 +2987,42 @@
             "g5a"
           ],
           "additionalProperties": false
+        },
+        "summary_coverage": {
+          "$comment": "I57 section 1: null means no complete proof-owned coverage vector was retained; otherwise one closed entry per native body in ascending body id 0..body_count-1; stop order is translation, rotation, force, moment.",
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "$ref": "#/$defs/U"
+                  },
+                  "stop": {
+                    "type": "array",
+                    "items": {
+                      "type": "boolean"
+                    },
+                    "minItems": 4,
+                    "maxItems": 4
+                  },
+                  "has_data": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "body",
+                  "stop",
+                  "has_data"
+                ],
+                "additionalProperties": false
+              }
+            }
+          ]
         }
       },
       "required": [
@@ -3000,7 +3036,8 @@
         "capacities",
         "prepared_capacity_bytes",
         "completion",
-        "checks"
+        "checks",
+        "summary_coverage"
       ],
       "additionalProperties": false
     },
