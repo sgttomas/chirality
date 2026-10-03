@@ -5972,3 +5972,29 @@ the unchanged-control backcheck at 04:16:32Z, checkpoint 04:26:32, cutoff 04:36:
 return 04:41:32. New owned evidence is R/REVIEW_RV60/product_vertical_repair_02;
 new external overlay and separate PP target preserve all earlier records.
 Only the focused lane transferred after ROOT's no-compiler/live-guard check.
+
+
+## I45 private product certificate accepted and locally merged (ROOT, 2026-10-03 UTC)
+
+ROOT read the complete RV60 backcheck preserved at 6c641f94de52 and verified its
+28-payload seal 27c9ceb50ec3e0758a04bd755db452a932c64cfafb732ffa0e88516703bcac71.
+RV60-F1 and RV60-F2 are closed on source 28ac57891cd5786e8f84d28f54aa7f1581f69402. Accept that reviewed source
+for the bounded private ordinary base-material source-to-complete-verdict scope.
+ROOT locally merged it at 1d19eb51ba1a31b8507439ec9c191eeac14bdc9f, with exact maintained core/validation tree
+correspondence and no source conflict. R/verification/i45_fanin_01/LOCAL_MERGE
+records the join. This is not a main merge, public W1 selection or F2a acceptance.
+
+The unchanged review discriminator now stops at its old invalid-mode unwrap;
+its raw result remains seven passing tests and one expected failure, exit 101.
+It is evidence of the repaired rejection, not a green suite. Fresh valid candidate
+and accounting controls pass; source-bound author optimized/S11 evidence stays
+labelled as author execution. Original actual numerical/G5a outcomes remain
+identical; see RV60 backcheck RETURN and REVIEW for their exact figures/bases.
+
+Both actual private cases truthfully refuse. No ordinary value, zero sign,
+predicate or old oracle changed. The internal arbitrary raw request/capture pair
+and dynamic mode-basis text remain explicitly unqualified beyond the traced
+matching actual caller. Public C2/receipt custody cannot rely on that mode-only
+check as an identity proof. All public, resource, availability and owner gates
+remain. Continue with prepared I47's actual selected-material numerical witnesses
+under the existing I35 plan, after ROOT provides a clean updated CODE base.

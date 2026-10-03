@@ -26,43 +26,23 @@ with exact maintained correspondence. R/verification/i44_fanin_01 holds ROOT
 checks and LOCAL_MERGE. Native p128/P256 evidence and full predicates are reviewed;
 higher-P actual witnesses, profiles/auxiliary costs/PP custody remain open.
 
-I45 original review base52842022cc49d0c9dd8d0760e727963d29015842 remains
-preserved and pushed. Its repaired successor is the current CODE head below. ROOT read the complete core/adapter/tests and metadata repair,
-verified the exact ten-path fence and all98 sealed payloads, and matched the
-repaired PP source-bound checks plus explicitly unaffected FK/ordinary coverage.
-Seal ef1b7f2f69c5b7ff0c81e943018ebe3dd078437842b5618c1df2907c3c2b7f1e;
-final source inventory753b19858a949894c7f3123b344c28b9241a5b1d844210b2b87cd6623b6882e2.
-The self-found support component/id binding gap is fixed; original freeze records
-are preserved. Actual base-material W0/W1 complete private cases truthfully refuse;
-no public routing, projection, C2, memory or availability acceptance follows.
+I45 private ordinary product component is accepted at bounded scope and locally
+merged into NUM at 1d19eb51ba1a31b8507439ec9c191eeac14bdc9f. Reviewed source is 28ac57891cd5786e8f84d28f54aa7f1581f69402; original review a231fb5d0230
+found F1/F2, repaired and cleared by same-reviewer backcheck 6c641f94de52.
+ROOT read all source/repair/reviews, verified hashes and exact maintained tree
+correspondence after the no-ff join. Records: R/verification/i45_fanin_01/LOCAL_MERGE.
+No main/public/F2a acceptance follows. Actual W0/W1 complete private cases still
+truthfully refuse; source/ordinary output/numeric/G5a results are unchanged.
 
-Fresh RV60 review is preserved ata231fb5d0230, seal
- d2c7be29ca2114ff5291637e2f572bd9a7b9523f4dca8ffa9376d64c2c1fa204.
-ROOT read the complete review and verified45payloads. BLOCKED for bounded fan-in
-on RV60-F1 closed evidence shape/required empty combination_gates and RV60-F2
-fixed solver-mode sign convention. Actual W0/W1 numeric predicates and complete
-G5a independently agree in both builds; this does not waive the binding gaps.
-RV60 released runtime04:03:05 and sealed04:03:21, with source unchanged.
-
-I45's repair is frozen at 28ac57891cd5786e8f84d28f54aa7f1581f69402 in CODE.
-ROOT read the full two-file diff and verified all 28 sealed payloads, matching
-source-bound PP checks, all 586 untouched core files and the original 98 payloads.
-Packet: CODE/R/I45/product_vertical_repair_03; seal
-140318fec18e51287b65491abde7960bc75d3af17a1b150d7bb30ab75b1c3f63.
-The actual requests/source/ordinary rows/numeric/G5a/native results remain unchanged.
-No other source or criterion changed. I45 sealed 04:15:17 and released runtime
-04:14:10; it is stopped. ROOT checks: R/verification/i45_repair_freeze_02.
-
-Same RV60 reviewer now backchecks F1/F2 at that frozen candidate. Actual receipt
-04:16:32Z; checkpoint 04:26:32, cutoff 04:36:32, return 04:41:32. Owns only new
-R/REVIEW_RV60/product_vertical_repair_02 evidence and external overlay
-WT/scratch/rv60-product-vertical-repair. Preserved controls are reconstructed
-byte-for-byte; old packets are read-only. Sole focused PP lane: guard5387,
-4 jobs/2 threads, absolute locked/offline manifest, 20-minute walls and external
-WT/targets/rv60-product-vertical-repair/product_physics. No broad/runtime/tooling
-expansion. No bounded fan-in until both findings are independently closed.
-The internal arbitrary request/capture-pair and dynamic basis-text limits remain;
-this repair creates no raw-identity token or completed C2 custody.
+The old invalid-mode review control now stops at its original unwrap with the
+correct association error; raw seven-pass/one-expected-failure exit101 is retained,
+not relabelled green. Fresh valid candidate/accounting controls pass. Review
+seal is 27c9ceb50ec3e0758a04bd755db452a932c64cfafb732ffa0e88516703bcac71.
+The mode-only arbitrary request/capture pair and dynamic basis-text boundaries
+remain outside public C2 custody; only the actual matching internal caller is
+qualified here. I45 and RV60 stopped; no compiler lane retained. Existing guard
+5387 stays active. Next executable dependency is prepared I47 after clean CODE
+join/dispatch; public projection/routing/receipt/resources remain later.
 
 I46's original diagnosis is preserved330dc2e405de, with original sealed packet
 byte-relocated under R/I46/product_refusal_01/_run_records/original. It separates
@@ -86,8 +66,7 @@ I46/RV61 stopped; no runtime retained. See the latest ROOT ruling for dispositio
 I47 selected-material witness brief is prepared atf737a96abc83, not dispatched.
 It follows selected I35 §3: actual point/interpolation material through the full
 ordinary source-to-verdict path, preserving criteria/output and checking every row.
-Only PP's existing private test module plus new evidence may change, after RV60
-clearance and a clean source grant. No new material/source design or public route.
+Only PP's existing private test module plus new evidence may change, after the now-clear RV60 backcheck and a clean source grant. No new material/source design or public route.
 
 I48's bounded read-only availability comparison is preserved74e9f4049e76,
 R/I48/product_availability_01, inventory1144c14f15e1a8ab11b7939ddaa23519a667558f687865cc87c7f387da5eabd0.
