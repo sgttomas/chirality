@@ -5626,3 +5626,26 @@ design re-derivation before reliance. An extra solve/factor application must be 
 explicit reviewed proposal with work/custody consequences, not a silent change
 to the prior no-new-solve plan. Public-contract changes remain owner decisions.
 Further product plumbing waits for this numerical sufficiency investigation.
+
+
+## RV56-F1 repair release (ROOT, 2026-10-03 UTC)
+
+ROOT read RV56's complete review, derivation and replay; verified its exact
+48-file inventory6ed85406f8808decd87d8926ce7b38e678defbdb207dda3b25a6c919da8c585e
+and preserved it atf2b9a89356981c246da2bfbeeecd35193c09d20d. The sole blocking
+finding RV56-F1 is confirmed: the relative-radius validator can execute five
+sharper-bound arithmetic operations and refuse before the view collects them.
+The injected private-radius witness tests the implemented refusal contract;
+it is not evidence of public-constructor reachability or a false numerical row.
+No bounded source-enclosure or sufficient-anchor theorem defect was found.
+
+ROOT accepts I42's narrow repair plan (PLAN SHA256 ceddf500cb9389eed312ea7facc98bb5801a18d3e1c5ce8666ab0ed263980305) and releases only
+retained/adaptive.rs and tests/retained_k4/source_bridge_tests.rs in the frozen
+4afbac6e61 checkout. Actual helper work must be collected on all exits through
+one execution, preserving numerical order/results/errors and early-zero prefixes.
+No other maintained path is authorized without a concrete scope amendment.
+Original I42/reviewer evidence remains unchanged. The sole focused compiler lane
+is transferred after RV56 release and ROOT's process check; same four-job/two-
+thread/isolated-target/twenty-minute walls apply. Thirty-minute TASK block with
+checkpoint10/code cutoff20; no tooling or broad run. ROOT freezes the repair and
+RV56 backchecks the actual revised source before any source fan-in acceptance.
