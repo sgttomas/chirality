@@ -6803,7 +6803,7 @@ ROOT records the first complete private candidate pass while retaining the hold 
 FIRST_AMENDED, frozen at 11:47:10Z, reports all 98 sparse and 99 dense verdicts,
 G5a, observables and the private commit passing for the same named request. ROOT
 checked the actual successful command/raw records and froze the source patch and
-hashes in verification/i51_first_amended_04 at `79ebfa64ae`. Native p remains128;
+hashes in verification/i51_first_amended_04 at `79ebfa64ae`. Native p [Correction 2026-10-03: remains 128 bits];
 this is the private path, not public F2a publication or a passed final PR gate.
 
 Fresh TASK RV68 began full private-component review from that frozen source at
@@ -6821,3 +6821,26 @@ repair; the owning entry and conversion repair are under delta review. Concrete
 remaining mask capacities, first-lane failure accounting and compact old/new section
 provenance are routed to the same component. No new source meaning or tolerance is
 introduced. Full private acceptance remains pending these repairs and final review.
+
+
+## Failed source-view capacity prefix granted (ROOT, 2026-10-03 UTC)
+
+ROOT grants the minimal view-work telemetry change so a source-view refusal retains capacities allocated before that refusal.
+
+ROOT and RV68 independently inspected the actual build_source_bridge_view path:
+prescribed allocation precedes prescription checks, and data allocation precedes
+cache/body-bound/work checks. Recording capacity only after a successful view
+loses those failed prefixes. The exact additional adaptive.rs scope is two usize
+fields in SourceBridgeViewWork and actual-capacity assignments immediately after
+those existing allocations, plus the already permitted into_data seam. Record
+Vec<bool> capacity units faithfully; no allocation strategy or numerical/native
+algorithm changes. source_residual.rs transfers that work before matching success
+or error. Two existing SourceBridgeViewWork literals in source_bridge_tests.rs may
+add only Default tails, retaining their injected faults and all assertions.
+
+I51's new failed-view control stays in the already fenced source_residual_tests.rs.
+It must distinguish before-allocation, after-prescribed and after-data failures,
+retain original errors and zero correction, and rerun affected view/residual and
+layout checks. RV68's source-only assessment has no objection to this exact scope;
+actual final-diff/hash confirmation remains pending. ROOT sent the grant before
+the original new-edit cutoff; it does not extend that clock or close the component.
