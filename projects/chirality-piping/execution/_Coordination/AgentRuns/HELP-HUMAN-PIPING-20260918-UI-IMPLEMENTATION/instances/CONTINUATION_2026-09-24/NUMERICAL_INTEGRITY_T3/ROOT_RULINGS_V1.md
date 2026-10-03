@@ -5649,3 +5649,33 @@ is transferred after RV56 release and ROOT's process check; same four-job/two-
 thread/isolated-target/twenty-minute walls apply. Thirty-minute TASK block with
 checkpoint10/code cutoff20; no tooling or broad run. ROOT freezes the repair and
 RV56 backchecks the actual revised source before any source fan-in acceptance.
+
+
+## Native source bridge accepted for local fan-in; residual proposal under review (ROOT, 2026-10-03 UTC)
+
+ROOT read RV56's complete same-reviewer backcheck, verified its exact31-file
+inventory b2545c71f9472d98e26aab6e7558e9f4d3f0b87eec98b97206314e96e56f510b,
+and preserved it with ROOT's repair verification at7b6f82377f60. RV56-F1 is closed
+on17ded278c64e0bb96db2b93ec6ebf3a1f1600907. Accept I42 only as the conditional
+native source-bridge component, with the independent sufficient-anchor/theorem
+review and all source-custody/resource/availability limits preserved. ROOT merged
+it locally with --no-ff atb009fb09e2163948f94a70abc297920dd2314109 and verified
+exact maintained core/validation correspondence. R/verification/i42_fanin_01/
+LOCAL_MERGE/RECORD.md records the local join. This is not main/product acceptance.
+
+I43's proposed tightening is preserved at401ec14c0a73099dc0859835af8c79e09da3a877.
+ROOT read its theorem, full exact-control script and interface/work/storage
+manifest, verified the29-file packet and final-command hashes, and sent it to
+fresh RV57 under brief06b41a0dd96f. The proposal is not selected yet. Its RETURN
+§5 exact algebra control retains7/52 loaded passes for sign-only, gives52/52 for
+a constructed correction plus full source residual, and7/52 for a wrong center;
+no actual retained-factor execution is claimed. Initial input decoding failure
+and later changed-live-input guard refusal are preserved; four immutable4af
+inputs keep the mathematical basis distinct from the concurrent accounting repair.
+
+ROOT clarified before seal that no-data proves only free-motion zero. All exact
+prescriptions, constrained loads and source recovery remain; fully fixed bodies
+can have nonzero actions/reactions. The final algebra counter-control includes
+that case. No extra factorization, changed publication/predicate/source contract,
+resource permit or universal availability follows. Wait for fresh design review
+before any reliance on the proposed one-application residual certificate.

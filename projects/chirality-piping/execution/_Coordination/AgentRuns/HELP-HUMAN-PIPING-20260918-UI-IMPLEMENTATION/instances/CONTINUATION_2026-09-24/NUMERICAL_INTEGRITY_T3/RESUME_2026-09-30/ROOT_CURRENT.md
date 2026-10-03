@@ -6,39 +6,28 @@ merged it at d01b218e7ad. Relevant Piping/instruction source is unchanged.
 
 ## Numerical priority
 
-I42 source bridge is frozen at 4afbac6e613203f93a499b780082b28be37f6c2c in
-wt/f2a-arithmetic, base57636e987041. ROOT read the source/tests/oracle and
-verified exact write set, packet hashes and final source-bound command logs
-(verification/i42_fanin_01/ROOT_CHECK.json). The owning RETURN is in that checkout
-at R/I42/source_bridge_01; it is pending independent review, not accepted.
+I42 conditional native bridge source17ded278c64e is reviewed and accepted for
+local component fan-in. RV56-F1 failure accounting is fixed/backchecked; original
+reviewf2b9a8935698, backcheck7b6f82377f60. ROOT merged it into NUMb009fb09e216 with
+exact maintained correspondence. No main/product/profile qualification follows.
+R/verification/i42_fanin_01 contains ROOT checks and LOCAL_MERGE/RECORD.md.
+I42 and RV56 stopped and released runtime; existing guard5387 remains active.
 
-Its RETURN §Observed numerical result records source containment52/52 for both
-small native witnesses. Zero enclosure passes52/52 native predicates; loaded
-passes7/52 while the independent exact oracle proves all52 actual source values
-pass. This is conservative enclosure insufficiency, not a source-output defect
-or product admission. Preserve the baseline and predicates unchanged.
+I43 proposal401ec14c0a73 at R/I43/source_tightening_01 is under fresh RV57 design
+review (brief06b41a0dd96f). One retained verification-factor application plus an
+independently computed source residual is proposed; it is not selected or code.
+Its RETURN §5 constructed-center exact control gives52/52 loaded predicate passes
+versus7/52 for sign-only and7/52 for a wrong center. Actual factor execution,
+general directed frame/source recovery and full work/storage code remain untested.
+No-data proves only free-motion zero; constrained loads/prescriptions still recover.
 
-- Fresh RV56 /root/rv56_source_bridge completed code/design review under
-  brief44c0bba693; its result and repair boundary are below.
-- Fresh I43 /root/i43_source_tightness derives a smaller sound enclosure under
-  brief a70de5f595. Receipt01:00:51Z; checkpoint01:15:51, cutoff01:30:51,
-  return01:40:51. Owns only I43/source_tightening_01 in NUM. Exact algebra only;
-  no compiler/solver/source writes. Frozen I42 basis is explicitly unreviewed.
-  Any result requires fresh independent design re-derivation before reliance.
-
-RV56 completed original review at01:09:52Z, preservedf2b9a8935698: one blocking
-accounting finding RV56-F1, no bounded enclosure/theorem defect. ROOT verified
-its48-file inventory. I42's two-file repair is frozen17ded278c64e, source clean;
-ROOT read the diff/return, verified33 packet files/final freezes and unchanged
-native traces (verification/i42_fanin_01/REPAIR_ROOT_CHECK.json). Runtime released
-01:14:54Z. Same RV56 now owns the focused Cargo lane for a20minute backcheck,
-writing only new REVIEW_RV56/source_bridge_repair_02; source writes are held.
-
-These are delegated-harness-native TASK children of ROOT with no delegation or
-Git/index authority. Other earlier TASKs are stopped. RV57's fresh mathematical
-review brief is prepared at06b41a0dd96f; it is not yet dispatched.
-Do not commission product plumbing while this numerical sufficiency question is
-unresolved. No new guard/tooling or final qualification programme is granted.
+RV57 /root/rv57_source_residual_design owns only REVIEW_RV57/source_tightening_01,
+with45minutes from receipt/checkpoint20/cutoff35, standard-library exact algebra
+only. No source/runtime/Git/index writes or delegation. All other TASKs are stopped;
+no maintained writer or Cargo lane owner is active. ROOT will select/repair the
+proposal after fresh review, then bound an actual native implementation/witness.
+Do not commission unrelated product plumbing or host tools while this numerical
+sufficiency step remains open. No heavy/UI/sweep programme is granted.
 
 ## Completed and remaining
 
@@ -60,6 +49,6 @@ emergency bounds remain unqualified. Old K6c layouts do not qualify new owners.
 Then S-I/F2b/F3 and owner-held decisions remain. No complete memory allowance,
 facade tariff, visit permit or product availability is selected by these packets.
 
-Next unused IDs after I43/RV56 and reserved RV57: I44/RV58. ROOT owns source/record integration,
+Next unused IDs: I44/RV58. ROOT owns source/record integration,
 repair assignment, independent review, gates and owner checkpoints. Rulings are
 append-only; frozen raw evidence is never edited.
