@@ -41,8 +41,9 @@ the independently reviewed dense-observation completion (seven files).
 Receipt: 06:40:47Z; checkpoint: 06:55:47Z; first actual named result by
 07:15:47Z; cutoff: 07:30:47Z; sealed return: 07:40:47Z. It holds the sole focused
 compiler lane on the M5 Max under existing memory guard PID 5387. Sparse has a complete refusing verdict; dense observation binding is being
-completed. The author reports a fixed-scale torsional dual-readout obstruction;
-independent numerical and frozen-code reviews remain. Original evidence is unchanged.
+completed. RV66 independently checks the frozen torsional dual-readout finding:
+receipt 07:05:35Z, checkpoint 07:15:35Z, cutoff 07:25:35Z, seal 07:35:35Z.
+Projection remains held; frozen-code review follows. Original evidence is unchanged.
 
 ## Next
 

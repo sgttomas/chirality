@@ -6421,3 +6421,21 @@ full-cover numerical result and torsional dual-readout separation remain author
 findings pending independent numerical review. They are not a false-publication
 claim or a proof about every future recomputed scale. No projection or further
 certificate method is selected on their basis.
+
+
+## Named torsion feasibility review dispatched (ROOT, 2026-10-03 UTC)
+
+ROOT has commissioned an independent mathematical check of the actual named-case obstruction before deciding whether retained projection can advance the publishing milestone.
+
+Fresh TASK `/root/rv66_named_torsion_feasibility` received brief `dbffe0d814` at
+07:05:35Z: checkpoint 07:15:35Z, cutoff 07:25:35Z, sealed return 07:35:35Z. Its
+source/exact-arithmetic scope uses the immutable first-run captures and selected
+readout warrants. It must retain the proposed value's contribution to its own
+allowance and distinguish actual fixed scales, algebraic native-primary projection
+and any broader future-producer claim. It neither takes the runtime lane nor
+selects new source semantics, criteria or an output algorithm.
+
+I50 continues the already selected two-mode component. The independent numerical
+review and the later frozen-code review have separate purposes; a mathematically
+real obstruction does not excuse an implementation/custody defect, and a clear
+implementation cannot turn truthful refusal into public availability.
