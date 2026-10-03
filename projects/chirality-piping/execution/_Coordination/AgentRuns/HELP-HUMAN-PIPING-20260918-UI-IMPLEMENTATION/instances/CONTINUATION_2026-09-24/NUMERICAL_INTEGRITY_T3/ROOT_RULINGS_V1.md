@@ -5487,3 +5487,332 @@ seal dc78333a9940897ce0c9066adabf9faf099a64d5977d9af8e44c7eb00c0d4941.
 Accept RV50-INT02-1 as required B64U custody correction before full integration
 reliance. I35 repair is bounded by briefaff15c8151e; same-reviewer confirmation
 will follow. The separately reviewed sqrt/small-bound helper grant remains valid.
+
+## Certificate and ownership repairs closed; code continuation (ROOT, 2026-10-02 UTC)
+
+ROOT read/verified RV50 correction confirmation at1e5434d315a6 and closes
+RV50-INT02-1 at contractd2ced80f725f. Select its narrow spent-return B64U design
+with actual producing SumWork/status on every exit and unchanged legacy result
+projection. This is not implemented B64U or a selected tariff/visit allowance.
+ROOT read/verified RV52 backcheck at0a86763d473a, inventory
+02dfa48eb66a1e1bee5d8e221563e29f9e523a0cb8f1707c89008584a19b2d09,
+and closes RV52-1 atf3af1b800c77. Select the corrected symbolic P3 source-owner
+roster, including hats and its real overlap/moving term. Actual profile, C2 and
+caller additions remain required; no numeric memory guarantee follows.
+
+I39 delivered two private numerical helpers at82fc4ebdca04. ROOT read the complete
+helper/test/generator source, verified exact five-path scope/hashes and final
+command results, and preserved its original sealed packet byte-for-byte under
+_run_records/original with a relocation map. Fresh RV53 owns review and the
+focused Cargo lane; no public caller or policy was activated.
+
+Release I40 under brief14ce35dbe60d for actual native call/run/group/build/cache
+origins, preserving legacy numerical core/output and no legacy origin allocation.
+The existing f2a checkout merged reviewed NUM records/main at887b790c2a64 and
+retains fdae294 maintained bytes. Source edits were held until RV52 completed;
+that hold is now lifted. Compiler work remains held for RV53. Product/Prepared
+ordinary/serialized maps remain explicit successors to this code boundary.
+A context-owned meter is a permitted implementation of the one-invocation-owner
+requirement, with truthful increments and no reset/refund; selected registry
+identity must bind actual run/snapshot and count its retention.
+
+I38's bounded native source report at0d90e2fe470e is preserved as input for P4/P5,
+not native qualification. ROOT read its return/ledger and verified available
+source/output hashes. It identifies synchronous dispatch but supplies no adopted
+H, complete request-context or emergency/capacity bound. No host tooling or
+protocol-policy expansion is selected.
+
+## Numerical helpers accepted; bounded coefficients follow (ROOT, 2026-10-02 UTC)
+
+ROOT read RV53's complete source/numerical review, verified its exact51-file
+packet and seal6ebe02c8237ad478da6602113988ea50a06b510c2fca49461f47174f53c9b315,
+preserved it at940b1eba9897 and accepts helper source82fc4ebd at its bounded
+private-component scope. ROOT merged it into NUM at0a9e874997 with --no-ff
+and confirmed exact maintained core/validation correspondence. The reviewer
+independently checked every stored reference by integer/rational inequalities
+and replayed the focused debug/optimized checks. Raw-log whitespace remains
+preserved; it is not a source defect or permission to edit evidence.
+
+Release I41 under briefd89749d309f1: private normalized material/section and
+exact-K coefficient enclosures plus the reviewed B64U actual-work seam, using
+existing fixed arithmetic. Its isolated f2a-arithmetic checkout merged reviewed
+NUM records at8a6ed501655f; maintained source remains82fc4ebd. Product source
+identity, bridge/row/receipt/admission integration are explicitly outside this
+block. No new source promise, tariff or memory allowance follows.
+
+I40 owns the sole focused compiler lane after RV53 release and ROOT's empty
+cargo/rustc scan. I41 starts only source and exact oracle work until a later
+explicit lane handoff. Both exact source fences keep shared registration hunks
+separate until ROOT integration; neither TASK has Git/index/API authority.
+
+## Kernel origins and source coefficients frozen for review (ROOT, 2026-10-03 UTC)
+
+I40 returned eight maintained paths at38798e6ee477ce23bf9bd2a708a1b2e268def5b3,
+base887b790c2a64. ROOT read the origin implementation, common core/combine diff,
+tests and reservation/ownership return; verified exact source/packet hashes and
+five final command logs; and committed only that scope. Actual combined K4LED
+is preserved before prep transfer even on unavailable runs; source-record byte
+copies and strong selected-prep retention are explicitly unpriced setup/owner
+deltas, not zero work. Extracted validation/preparation drops temporary owners
+earlier than the prior lexical scopes, a real profile delta. No acceptance yet.
+Fresh RV54 reviews the frozen source and holds the sole focused compiler lane.
+
+I41 returned six maintained paths at60375c47472dac26b1ab77536b8e7b9fb0c44ab0,
+base8a6ed501655f. ROOT read the complete component/B64U/tests/exact generator
+and return, verified the exact scope and39-file packet plus final source-bound
+commands, and committed that candidate. The exact singleton c-square uses one
+DM as the selected count derivation requires. Component counts exclude still-
+unimplemented chord/bridge work. Fresh RV55 reviews source/mathematics while
+its compiler lane is held for RV54. No source provenance, price, complete memory
+profile or product certificate is accepted merely because component tests pass.
+
+ROOT verification records are preserved at650a84a0f385. Both source checkouts
+remain frozen while fresh reviews run; each registration hunk will be integrated
+serially after findings are resolved. All product/availability/gate holds remain.
+
+## Origins and coefficients accepted for local fan-in; native bridge next (ROOT, 2026-10-03 UTC)
+
+ROOT read the complete RV54/RV55 returns, verified exact packet trees/manifests,
+and preserved both atf2dd0dd6d4c0. RV54 seal
+f413042d48405f1fa927291220f5c0f069a32e2652daabdc061978eca0b3be2f;
+RV55 seal b2eec69f69154ebc7916868b1d9e7ad05ae6a4bf22d662cce31430e8812b6400.
+Accept native origin source38798e6ee477 and coefficient/B64U source60375c47472d
+for bounded component fan-in. No actionable source findings remain. ROOT merged
+them into NUM at77d1b640400e and c7252b7d496a with --no-ff; the two module
+registrations joined cleanly. Both focused origin/coefficient suites pass on
+that unchanged combined source, with commands/hashes/raw logs under verification/
+combined_components_01. This is not a main merge, complete C2, numeric profile
+or full product/availability acceptance. RV54 removed only its disposable review
+target directories after retaining compiler facts/raw evidence/reproduction inputs.
+
+Release I42 under briefe89bb4527a98 on clean f2a-arithmetic57636e987041, which
+contains that reviewed combined source. Implement the accepted I33/RV45 full
+source-action theorem with actual owner-bound R7/A1 state and fixed arithmetic,
+and test small native zero/loaded cases against an independent exact oracle.
+A conservative fully-fixed-anchor test may establish sufficient no-data uniqueness
+for the initial component; its absence is missing warrant/certificate insufficiency,
+never a new domain rule or singularity claim. General PP source and final-row
+binding remains unfinished and may not be asserted by a scalar input record.
+
+ROOT prioritizes an early sufficiency diagnostic against unchanged native SI
+predicates wherever directly applicable. Distinguish a loose conservative
+enclosure from an exact source error that actually exceeds a bound. Neither
+outcome authorizes tolerance/source/publication changes; any required change
+gets its own re-derivation, review and owning decision. No extra product plumbing
+is commissioned while this first numerical observation is pending.
+
+
+## Native bridge frozen; tighten only through fresh proof (ROOT, 2026-10-03 UTC)
+
+ROOT froze I42 at4afbac6e613203f93a499b780082b28be37f6c2c against57636e987041.
+The exact source and packet scope, final command freezes, and ROOT reading are
+recorded in R/verification/i42_fanin_01/ROOT_CHECK.json. No source acceptance or
+main merge is made. The author released runtime and ROOT confirmed no cargo/rustc.
+
+I42 RETURN §Observed numerical result distinguishes native source containment
+from predicate sufficiency: both witnesses contain52/52 exact references; zero
+passes52/52 predicates and loaded7/52, while the independent oracle proves52/52
+actual source values pass for each. The45 loaded enclosure failures do not prove
+a source-output defect. Keep the baseline, source contract, publication and
+predicates unchanged; no universal availability inference follows.
+
+Dispatch fresh RV56 under brief44c0bba693 for independent code and design review,
+including the sufficient anchor warrant, with the sole focused compiler lane.
+Dispatch fresh I43 under briefa70de5f595 for a bounded tightening derivation using
+the frozen, explicitly unreviewed I42 witness. These actual native TASK children
+own separate record packets and no Git/index/source writes; receipt/deadline facts
+are in ROOT_CURRENT and their packets. Any tightening needs a fresh independent
+design re-derivation before reliance. An extra solve/factor application must be an
+explicit reviewed proposal with work/custody consequences, not a silent change
+to the prior no-new-solve plan. Public-contract changes remain owner decisions.
+Further product plumbing waits for this numerical sufficiency investigation.
+
+
+## RV56-F1 repair release (ROOT, 2026-10-03 UTC)
+
+ROOT read RV56's complete review, derivation and replay; verified its exact
+48-file inventory6ed85406f8808decd87d8926ce7b38e678defbdb207dda3b25a6c919da8c585e
+and preserved it atf2b9a89356981c246da2bfbeeecd35193c09d20d. The sole blocking
+finding RV56-F1 is confirmed: the relative-radius validator can execute five
+sharper-bound arithmetic operations and refuse before the view collects them.
+The injected private-radius witness tests the implemented refusal contract;
+it is not evidence of public-constructor reachability or a false numerical row.
+No bounded source-enclosure or sufficient-anchor theorem defect was found.
+
+ROOT accepts I42's narrow repair plan (PLAN SHA256 ceddf500cb9389eed312ea7facc98bb5801a18d3e1c5ce8666ab0ed263980305) and releases only
+retained/adaptive.rs and tests/retained_k4/source_bridge_tests.rs in the frozen
+4afbac6e61 checkout. Actual helper work must be collected on all exits through
+one execution, preserving numerical order/results/errors and early-zero prefixes.
+No other maintained path is authorized without a concrete scope amendment.
+Original I42/reviewer evidence remains unchanged. The sole focused compiler lane
+is transferred after RV56 release and ROOT's process check; same four-job/two-
+thread/isolated-target/twenty-minute walls apply. Thirty-minute TASK block with
+checkpoint10/code cutoff20; no tooling or broad run. ROOT freezes the repair and
+RV56 backchecks the actual revised source before any source fan-in acceptance.
+
+
+## Native source bridge accepted for local fan-in; residual proposal under review (ROOT, 2026-10-03 UTC)
+
+ROOT read RV56's complete same-reviewer backcheck, verified its exact31-file
+inventory b2545c71f9472d98e26aab6e7558e9f4d3f0b87eec98b97206314e96e56f510b,
+and preserved it with ROOT's repair verification at7b6f82377f60. RV56-F1 is closed
+on17ded278c64e0bb96db2b93ec6ebf3a1f1600907. Accept I42 only as the conditional
+native source-bridge component, with the independent sufficient-anchor/theorem
+review and all source-custody/resource/availability limits preserved. ROOT merged
+it locally with --no-ff atb009fb09e2163948f94a70abc297920dd2314109 and verified
+exact maintained core/validation correspondence. R/verification/i42_fanin_01/
+LOCAL_MERGE/RECORD.md records the local join. This is not main/product acceptance.
+
+I43's proposed tightening is preserved at401ec14c0a73099dc0859835af8c79e09da3a877.
+ROOT read its theorem, full exact-control script and interface/work/storage
+manifest, verified the29-file packet and final-command hashes, and sent it to
+fresh RV57 under brief06b41a0dd96f. The proposal is not selected yet. Its RETURN
+§5 exact algebra control retains7/52 loaded passes for sign-only, gives52/52 for
+a constructed correction plus full source residual, and7/52 for a wrong center;
+no actual retained-factor execution is claimed. Initial input decoding failure
+and later changed-live-input guard refusal are preserved; four immutable4af
+inputs keep the mathematical basis distinct from the concurrent accounting repair.
+
+ROOT clarified before seal that no-data proves only free-motion zero. All exact
+prescriptions, constrained loads and source recovery remain; fully fixed bodies
+can have nonzero actions/reactions. The final algebra counter-control includes
+that case. No extra factorization, changed publication/predicate/source contract,
+resource permit or universal availability follows. Wait for fresh design review
+before any reliance on the proposed one-application residual certificate.
+
+
+## One retained-factor source-residual design selected (ROOT, 2026-10-03 UTC)
+
+ROOT read RV57's complete return, review and independent re-derivation, verified
+its48-file seal844a98c560bb379b64b079d966ab95bcb3c89881fe95ae3edd80243c1dc1a31e,
+and preserved it at3576b4c0a0fb578d31fa570de9fd9de8ac53b534. No unresolved
+finding remains. RV57-M1's omitted helper visibility hunk is closed by the
+independently inspected I44 manifest245e9fb963f6c854c959d104d4387eda76afaca1;
+I43's original packet remains unchanged. The review discloses its own corrected
+interval-nesting comparison and actual first-observed clock without backdating.
+
+Select I43 proposal401ec14c0a73099dc0859835af8c79e09da3a877 with that narrow
+manifest completion for bounded private native implementation. This explicitly
+amends the previous F2a certificate plan's no-new-solve restriction: permit at
+most one counted solve_scaled application of the same owner's matching successful
+verification factor, followed by directed full source residual and recovery at
+the actual resulting finite center. Skip that application where the no-data proof
+warrants it, while still recovering actual prescribed actions/constrained loads.
+No factorization, primary solve schedule, source law, public value, radius, class,
+predicate or contract is changed. The new correction is proof scratch only.
+
+The residual theorem must prove the result for any finite center, without assuming
+factor/cast/midpoint accuracy. All actual work, failure prefixes and simultaneous
+accounting/numeric causes remain; there is no free kernel/facade work or silently
+absorbed20B/60B budget. Old three-pass/storage counts do not qualify this route.
+The general exact source frame must be enclosed; its rounded cached operators
+cannot stand in for exact G. Missing positive interval denominators mean finite
+certificate insufficiency, not a new physical singularity/domain claim.
+
+Release fresh I44 under brief245e9fb963f6 only after ROOT joins these records into
+the clean reviewed17ded278c6 source checkout and verifies maintained correspondence.
+The dispatched base will name that actual merge. Exact source fence,75minute
+block/checkpoint15/cutoff55, existing guard and single focused compiler lane are
+as briefed. The first priority is an actual factor/cast/center/source-residual
+witness against independent source truth, not more product plumbing. The I43
+constructed center is not an actual factor result or production expected value.
+Fresh implementation review, full profile/work qualification, PP source/final-row
+custody and all final F2a gates remain. No universal availability is accepted.
+
+
+I44 dispatch continuation (ROOT, 2026-10-03 UTC): the clean source-record join is
+157a64b0b8bb4ad4b3170a7f9b249d218c17d529, maintained bytes17ded278c6. ROOT verified
+no Cargo/rustc and the existing guard before transferring the focused lane to
+native TASK /root/i44_source_residual. Actual receipt01:30:41Z; checkpoint01:45:41,
+source-expansion cutoff02:25:41, final02:45:41. Exact fence and return obligations
+remain brief245e9fb963f6, no additional source authority. This is an executing
+child, not merely a written plan. Other TASKs have stopped; all public/final gates
+remain outstanding.
+
+
+## Actual source-residual witness frozen; product custody checkpoint released (ROOT, 2026-10-03 UTC)
+
+ROOT froze I44 at6ba653451f9fd27cdb852b7974753a3921f1c483, base157a64b0b8bb,
+after reading source/tests/oracle/ownership/return and verifying the exact scope,
+packet seal and final command/source hashes. R/verification/i44_fanin_01 records
+those checks. The owning RETURN §Verification gives full native source/predicate
+results for actual factor/cast/center/residual execution. It is not source fan-in
+acceptance; fresh RV58 now reviews the frozen component with the sole focused
+compiler lane. Its receipt/cutoff/deadline are recorded in ROOT_CURRENT.
+
+Early ROOT checks caught incomplete predicate diagnostics and separated storage/
+identity/count refusals from true work faults, avoided heterogeneous-unit sums,
+and required checked successful extraction. The initial predicate logs retain
+their narrower meaning; final predicates add exact and decimal conditions without
+changing outputs or limits. The first target directory was moved intact outside
+the checkout after release, with its relocation record preserved. Equivalent new
+test-field cfg spelling leaves the unchanged S11 scanner checking those fields;
+its failed run remains. These process corrections create no tool or new allowance.
+
+Release fresh I45 only for a25minute read-only product source-to-verdict interface
+checkpoint under briefc30885b8383a. The next objective is an actual PP-builder and
+final-row witness using existing B1/B2/I35 designs, not further abstract arithmetic
+or a helper catalogue. No code/runtime/reader/schema/IPC authority is granted.
+The supplied numerical source is explicitly pending RV58; any later code grant
+requires ROOT's concrete source-fence decision and resolved source review. All
+profile/PP custody/full C2/routing/gate and owner-held obligations remain.
+
+
+## Actual residual certificate accepted for local fan-in (ROOT, 2026-10-03 UTC)
+
+ROOT read RV58's full return/review, verified its sealed161 entries (including
+104 literal machine-local fixture symlinks), and preserved it at24f24e98ba8b.
+Seal65ac54dca6d877a7042f386a1d58ef89d32d031836b28c3d62001f4c59514db2;
+no unresolved finding. Accept source6ba653451f9fd27cdb852b7974753a3921f1c483
+at its conditional native component scope. ROOT merged it locally at
+9732457720ef3c4376625cca8a707bec1b8e0e44, verified exact maintained core/validation
+correspondence, and recorded the join in R/verification/i44_fanin_01/LOCAL_MERGE.
+No main/product/profile acceptance follows; higher-P full native witnesses and
+original allocation/auxiliary-work qualification remain explicit open work.
+
+RV58 reports an initial clean git status read in the separate92ea checkout
+without optional locks disabled; incidental index refresh was not established.
+All its SOURCE/NUM reads disabled optional locks and candidate hashes stayed
+clean. The record does not make a blanket zero-incidental-index-write claim.
+Its frozen fixture includes a source .gitignore symlink; Git emits a nonblocking
+ignore-read warning when scanning NUM. Preserve the sealed evidence and source
+pin; do not silently rewrite that record to suppress a warning. The symlinks are
+machine-local replay pointers, not self-contained copies of the compiler inputs.
+
+I45's nine-file plan is preserved in the same records commit, seal
+4737491ba2b0b5743e85ce2f86d7644f6701c2aa8c4d3807096e963df560bb4d. ROOT read
+its complete proposed eight-path source-to-final-row slice. Its explicit ordinary
+direct/magnitude hull corrects the old Q_K subset Q_S shortcut for I44's distinct
+source enclosure; represented/source stress branches remain separate before their
+result hull. This affected interface is not selected yet. Fresh RV59 reviews
+that warrant and actual PP producing/final ownership under the pinned brief.
+No PP code/runtime grant, new truth contract or public activation is made here.
+
+
+## Product ordinary vertical interface selected (ROOT, 2026-10-03 UTC)
+
+ROOT read RV59's full return/review, verified its12-file packet with seal
+a4b3529f686e134482ba1e1797cb44b948d2541bc7a4f125fbd37f96196f3b5f, and preserved
+it at5691d7f7b3d0. No actionable finding remains. Select I45 plan24f24e98ba8b
+for one bounded private actual-ordinary source-to-verdict implementation. Explicit
+ordinary direct/magnitude hull(Q_K,Q_G) supersedes the earlier subset shortcut at
+this changed interface; represented/source stress/max recipes are evaluated
+separately before their result hull. This preserves existing source meanings.
+It changes no exact-profile truth, published value or product contract.
+
+The reviewed final hook is valid for the stipulated ordinary route only, after
+all relevant mutations. It does not implement a new W1 projection/routing or
+qualify0.4 fallback, combinations, C2/readers/receipt, section_terms or resources.
+The expected73 mechanical rows plus ancillary rows are static until observed.
+A truthful full-case finite refusal with unchanged ordinary output is a valid
+private witness, not a partial success or public selection.
+
+Release I45 under new BRIEFS/I45_PRODUCT_VERTICAL_IMPLEMENTATION.md after ROOT
+joins accepted NUM into the clean existing wt/f2a checkout and pins the actual
+base at dispatch. One integration owner writes the eight reviewed paths plus
+S11's necessary new-module/site registration path; this mechanical addition
+preserves existing scanner/assertions/dispositions. No other scope expansion.
+The120minute block/checkpoint20/cutoff90 targets actual admission/source custody
+first and a coherent full-row verdict next. The existing guard/sole focused lane
+and separate absolute FK/PP targets remain; no host-tool work or broad runs.
+Fresh implementation review and all product/resource/owner gates still follow.
