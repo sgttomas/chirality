@@ -10,7 +10,7 @@
 - K6c accounting and finite measurements: PR1071, merged as `49034a940f`, with its recorded qualifications. Historic value equality remains unclaimed.
 - Private prepared producer `922db9dce3` passed the named case in both modes, received RV68's complete source review and repair confirmations, and was integrated locally at `458603880a`. Independent numerical checks and focused runs are in [RV68's review](REVIEW_RV68/prepared_producer_01/REVIEW.md). This is a component result, not a main merge or public publication.
 
-- The corrected public formation contract is selected after RV69 review and repair confirmation. Its schemas, typed evidence and readers still need implementation.
+- The corrected public formation contract and its wire completions are selected after RV69 review/backchecks. Actual schemas, typed evidence and readers still need implementation/review.
 
 - Caller/census checkpoint A is accepted and integrated locally at `a9c2256076` after RV72 review. Ordinary behavior is preserved; production W1 remains disabled.
 
@@ -23,7 +23,7 @@ The numerical candidate now passes. What stands before publication is its public
 ## Running now
 
 - I54’s container laws are accepted as partial source proofs after RV73 review. I54 is binding the ordinary-active/suffix memory phases; final profile/build/allowance qualification remains open.
-- I51 is implementing truthful typed prepared-attempt evidence, including failed prefixes, under a bounded source grant. Only I51 holds the focused runtime lane; the existing memory guard remains active.
+- I51’s typed evidence source is frozen at 7018513af3; fresh RV74 reviews its full diff. I52 holds the build lane for existing authorities/helper checks; the memory guard remains active.
 - I52 is implementing standalone Rust/Python/TypeScript validators, the closed schema and shared controls in an isolated worktree. Application and carrier wiring follows complete validation.
 - Native context-lifetime/backing qualification remains open. Its source investigation is stopped at its stated limit.
 

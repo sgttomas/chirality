@@ -7193,3 +7193,34 @@ inventory update, preserving all prior scans/assertions. The new capacity guard
 must precede the entered-conversion count, with a full-buffer refusal control.
 This is no numerical exemption or protected-criterion relaxation. The original
 clock remains and independent full-diff review must cover the new source and row.
+
+
+## Prepared receipt wire completions selected after independent correction review (ROOT, 2026-10-03 UTC)
+
+ROOT selects three wire completions so the public receipt can preserve actual failures and row provenance with one unambiguous validation order.
+
+The selected basis is I52 reader_contract_seams_06 at `c5890453d7`, together
+with correction_07 at `a82b89774f` and G4 clarification_08 at `55e6722a40`.
+RV69's complete independent review and same-reviewer backchecks, seal
+`3e168ab329` at 16:34:04Z, close selection-blocking RS-F1. ROOT read all three
+addenda and the full review, checked the actual row/source/error interfaces, and
+verified every sealed review payload and external file. The owning verification
+is verification/rv69_reader_seams_03. Original proposals and seals stay unchanged.
+
+An outer prepared_product_failure cause refers to the same case's actual
+unavailable ProductAttempt and its exact error, stage and Run. It invents no
+SourceError or Run. A private Ready followed by receipt failure stays Ready and
+uses the existing receipt/ordinary-fallback route. The scalar row method path
+is results[i].recovery_method. G1 enforces the optional direct string and closed
+row/metadata shape; G4 checks diagnostics; G6 enforces token presence/value/owner
+scope. G7 removes only that direct member after G6 binds it. Both valid and
+compound-defect controls must follow the reviewed first-failure matrix. Finally,
+quantity_kind replaces only the colliding numeric payload in the two G5a errors.
+
+These are faithful prospective wire completions within delegated technical
+authority. The independent review identifies no new owner-held numerical meaning,
+criterion, availability, standing or interval-binding choice. The selected
+numerical definition and hash remain unchanged. I52 may implement these mappings
+inside its existing sixteen-file grant and original clock. Full reader-source
+review/parity, real producer transaction, profile/M/caller/native qualification
+and every standing PR gate remain open; no synthetic fixture proves execution.
