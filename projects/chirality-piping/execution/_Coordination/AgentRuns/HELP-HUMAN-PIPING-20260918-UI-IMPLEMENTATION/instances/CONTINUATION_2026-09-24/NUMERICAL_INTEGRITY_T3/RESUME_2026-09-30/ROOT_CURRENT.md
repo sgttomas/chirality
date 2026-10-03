@@ -20,24 +20,29 @@ with I44's narrow helper-visibility completion245e9fb963f6. It changes the prior
 private certificate no-new-solve plan, not the primary schedule or publication.
 The constructed-center exact control is still not an actual factor witness.
 
-I44 /root/i44_source_residual is implementing under brief245e9fb963f6 and ROOT
-selectione5656922c0db in wt/f2a-arithmetic. Clean dispatch157a64b0b8bb is a no-ff
-records join, with maintained core/validation identical to reviewed17ded278c6.
-Actual receipt01:30:41Z; checkpoint01:45:41, source-expansion cutoff02:25:41,
-return02:45:41. It owns the sole focused Cargo lane:4jobs/2threads/isolated
-per-manifest targets/20minute command walls, existing guard5387. Exact source
-fence is in the brief; no factor/public API/PP changes without new explicit scope.
-Only its R/I44/source_residual_01 records and fenced private source may be written.
-Early native_debug_01 execution reports52/52 unchanged predicates for both zero
-and loaded witnesses; ROOT decoded the raw row records. This is mutable-candidate
-evidence, not final review/acceptance. The actual P256 factor was executed, not
-I43's constructed center. ROOT early review clarified separate storage/identity/
-count refusals, homogeneous work-status joins and checked result extraction.
-The first quiescent build target was preserved by rename outside the checkout;
-verification/i44_target_placement_01/RELOCATION.json records exact paths. Current
-CARGO_TARGET_DIR is WT/targets/i44-source-residual/frame_kernel. No new host tool.
-Fresh RV58 implementation-review brief is prepared, not dispatched.
-No Git/index/API/delegation. All other TASKs are stopped. No heavy/UI/sweep/tools.
+I44 actual source-residual candidate6ba653451f9f is frozen in wt/f2a-arithmetic,
+base157a64b0b8bb. ROOT read core/tests/oracle/return/ownership and verified exact
+eight-source/60-packet scope and six final command source hashes/exits. Owning
+RETURN §Verification records9/9 debug and optimized,29 compatibility controls,
+S11 3/3, and52/52 full native predicates for both zero and loaded actual-factor
+witnesses. Initial narrower diagnostics were corrected without output/criterion
+changes. See verification/i44_fanin_01/ROOT_CHECK.json. It is not accepted yet.
+
+Fresh RV58 /root/rv58_source_residual reviews it under brief9d7c937b4048.
+Receipt01:55:35Z; checkpoint02:20:35, cutoff02:40:35, return02:55:35. Sole focused
+Cargo lane: existing guard5387,4jobs/2threads, absolute isolated targets outside
+checkout under WT/targets, absolute manifests/locked/offline,20minute walls.
+Owns only REVIEW_RV58/source_residual_01. No source/Git/index/API/delegation writes.
+I44 is stopped; no maintained writer is active.
+
+Fresh I45 /root/i45_product_vertical performs read-only checkpoint0 under brief
+c30885b8383a. Receipt01:58:37Z; checkpoint02:08:37, cutoff02:18:37, return02:23:37.
+Owns only I45/product_vertical_01. It must give the smallest coherent actual PP
+normalization/material/builder/final-row source-to-verdict implementation boundary
+from existing I35 designs, with at most two disjoint source fences. No compiler,
+solver, model, native/tooling or source write. I44 is explicitly unreviewed input;
+ROOT grants any later code only after reviewing this plan and RV58's result.
+No reader/schema/IPC activation or public contract change at this checkpoint.
 
 ## Completed and remaining
 
@@ -59,6 +64,6 @@ emergency bounds remain unqualified. Old K6c layouts do not qualify new owners.
 Then S-I/F2b/F3 and owner-held decisions remain. No complete memory allowance,
 facade tariff, visit permit or product availability is selected by these packets.
 
-Next unallocated IDs after I44 and prepared RV58: I45/RV59. ROOT owns source/record integration,
+Next unallocated IDs after I45/RV58: I46/RV59. ROOT owns source/record integration,
 repair assignment, independent review, gates and owner checkpoints. Rulings are
 append-only; frozen raw evidence is never edited.

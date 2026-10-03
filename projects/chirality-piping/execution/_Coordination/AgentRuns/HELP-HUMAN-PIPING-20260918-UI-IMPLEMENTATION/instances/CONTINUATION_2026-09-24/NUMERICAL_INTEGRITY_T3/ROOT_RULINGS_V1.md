@@ -5728,3 +5728,31 @@ source-expansion cutoff02:25:41, final02:45:41. Exact fence and return obligatio
 remain brief245e9fb963f6, no additional source authority. This is an executing
 child, not merely a written plan. Other TASKs have stopped; all public/final gates
 remain outstanding.
+
+
+## Actual source-residual witness frozen; product custody checkpoint released (ROOT, 2026-10-03 UTC)
+
+ROOT froze I44 at6ba653451f9fd27cdb852b7974753a3921f1c483, base157a64b0b8bb,
+after reading source/tests/oracle/ownership/return and verifying the exact scope,
+packet seal and final command/source hashes. R/verification/i44_fanin_01 records
+those checks. The owning RETURN §Verification gives full native source/predicate
+results for actual factor/cast/center/residual execution. It is not source fan-in
+acceptance; fresh RV58 now reviews the frozen component with the sole focused
+compiler lane. Its receipt/cutoff/deadline are recorded in ROOT_CURRENT.
+
+Early ROOT checks caught incomplete predicate diagnostics and separated storage/
+identity/count refusals from true work faults, avoided heterogeneous-unit sums,
+and required checked successful extraction. The initial predicate logs retain
+their narrower meaning; final predicates add exact and decimal conditions without
+changing outputs or limits. The first target directory was moved intact outside
+the checkout after release, with its relocation record preserved. Equivalent new
+test-field cfg spelling leaves the unchanged S11 scanner checking those fields;
+its failed run remains. These process corrections create no tool or new allowance.
+
+Release fresh I45 only for a25minute read-only product source-to-verdict interface
+checkpoint under briefc30885b8383a. The next objective is an actual PP-builder and
+final-row witness using existing B1/B2/I35 designs, not further abstract arithmetic
+or a helper catalogue. No code/runtime/reader/schema/IPC authority is granted.
+The supplied numerical source is explicitly pending RV58; any later code grant
+requires ROOT's concrete source-fence decision and resolved source review. All
+profile/PP custody/full C2/routing/gate and owner-held obligations remain.
