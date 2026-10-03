@@ -6351,3 +6351,39 @@ delegation at 06:29:57Z, under brief `f58de3f5cc`: checkpoint 06:37:57Z, cutoff
 coverage compatibility, support ownership, accounting and proposed controls. It
 has no compiler/model/source/Git write authority. I50 remains the implementer
 for the component's later checkpoints; implementation is not yet granted.
+
+
+## Named support component selected with RV65 corrections (ROOT, 2026-10-03 UTC)
+
+ROOT selects the reviewed support component with both required corrections so the named skew case can reach a complete private certificate without bypassing support scales or coverage.
+
+ROOT read RV65's full REVIEW/RETURN and verified its sealed packet, preserved at
+`c1331b5764`. Its verdict is FINDINGS, not unconditional clearance: RV65-1 names
+the omitted PP G5a consumer; RV65-2 resolves legacy Native coverage ambiguity.
+The reviewer independently re-derived the existing support-law warrant and
+explicitly permits resolving these plan findings by selecting its exact
+dispositions in the same six-file grant, without another mathematical redesign.
+
+Select **both dispositions in full**, as written in RV65's “Required corrections
+for the implementation brief” and in BRIEFS/I50_NAMED_SUPPORT_IMPLEMENTATION.md.
+Every support component remains mechanical and participates in FK and PP final
+scales, existing coupling, zero/sign rules and unchanged predicates. Only the
+attributed recipe fills its group/component slot; direct Native quantities keep
+independent native coverage without aliasing that slot. Duplicate contributors
+and missing attributed slots remain distinct failures. The implementation must
+prove these conditions with the specified controls; no code-review clearance is
+claimed now. Same RV65 will confirm them on the actual frozen implementation.
+
+The authorized retained/** touch is confined to the private final-case recipe
+and coverage seam. There is no kernel publication, public D2 contract, source
+meaning, output producer, predicate, routing or availability amendment. Existing
+finite-law warrants suffice at this narrow scope. The exact named fixture bytes
+and all protected ordinary expectations remain unchanged.
+
+I50 receives checkpoints A/B/D for this coherent component, with a sixty-minute
+receipt-based bound, checkpoint15, first actual named result by minute35, new-work
+cutoff50 and sealed return60. Focused guarded runtime only: one Cargo job, four
+build jobs, two test threads, locked/offline absolute manifests and twenty-minute
+command walls. Bulk new evidence stays in external scratch with committed
+hash/size/location manifests. The named case's actual numerical result, not
+additional certificate speculation, determines the next publishing dependency.

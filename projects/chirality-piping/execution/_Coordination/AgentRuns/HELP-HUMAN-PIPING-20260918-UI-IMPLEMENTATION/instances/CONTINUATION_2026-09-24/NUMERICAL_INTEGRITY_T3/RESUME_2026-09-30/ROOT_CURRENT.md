@@ -36,15 +36,16 @@ final joined closure remain.
 
 Both material-coverage backchecks are clear and accepted. They establish no false
 passing predicate in the fixed captured cases; unchanged UX has a real miss and UZ
-has a conservative refusal. I50 checkpoint 0 is preserved at `848981f433`. Fresh RV65 is reviewing the
-support-component interface and six-file fence: receipt 06:29:57Z, checkpoint
-06:37:57Z, cutoff 06:47:57Z, sealed return 06:54:57Z. No compiler or model run is active.
+has a conservative refusal. I50 checkpoint 0 is preserved at `848981f433`. RV65's two plan corrections
+are selected explicitly in the six-file implementation grant. I50 A/B/D is
+prepared: actual spring capture, support components, coverage and named-case
+execution. Code review and the actual numerical outcome remain outstanding. No compiler or model run is active.
 M5 Max, existing memory guard PID 5387. Original evidence remains unchanged.
 
 ## Next
 
-Close RV65 review, then grant I50 its exact implementation fence and carry
-the same implementer through the component checkpoints. Tightening is deferred unless it advances that case.
+Carry I50 through the component checkpoints, then have RV65 review the frozen
+diff and actual evidence. Tightening is deferred unless it advances that case.
 Keep one reviewer through corrections and obtain fresh independent PR review.
 Bulk new evidence stays in scratch with committed hashes, sizes and locations.
 
