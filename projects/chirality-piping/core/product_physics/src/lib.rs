@@ -111,6 +111,9 @@ mod pressure_exact;
 mod pressure_material;
 mod pressure_runtime;
 mod preview_physics;
+mod retained_product;
+#[cfg(test)]
+mod retained_product_tests;
 pub use pressure_runtime::{PressureContractInput, PressureRegionInput, PressureTerminalInput};
 
 const DEC_046_PRODUCT_PREVIEW_ACTIVE_SET_POLICY_REF: &str =
@@ -2217,6 +2220,17 @@ fn run_linear_static_preview_captured_once(
     capture: Option<&source_receipt::CapturedInvocation>,
     source_budget: &mut SourceRecoveryBudget,
 ) -> MechanicsEnvelope {
+    run_linear_static_preview_observed(request, solver_mode, capture, source_budget, None)
+}
+
+fn run_linear_static_preview_observed(
+    request: LinearStaticPreviewRequest,
+    solver_mode: PreviewSolverMode,
+    capture: Option<&source_receipt::CapturedInvocation>,
+    source_budget: &mut SourceRecoveryBudget,
+    mut product: Option<&mut retained_product::ProductCapture>,
+) -> MechanicsEnvelope {
+    if let Some(observer)=product.as_deref_mut(){observer.invocation(capture,solver_mode);}
     let mut model = request.model;
     let request_materials_supplied = !request.materials.is_empty();
     let mut materials = if request.materials.is_empty() {
@@ -2278,6 +2292,9 @@ fn run_linear_static_preview_captured_once(
     preview_physics::refuse_unqualified_joint_elements(&model, &mut diagnostics);
     if has_blocking(&diagnostics) {
         return blocked_envelope(model, diagnostics);
+    }
+    if let Some(observer) = product.as_deref_mut() {
+        observer.normalized(&model, &materials, request_materials_supplied);
     }
     let resolved_cases = if load_state {
         let resolved = model
@@ -2431,7 +2448,7 @@ fn run_linear_static_preview_captured_once(
             };
             let (_, basis_materials, basis_built, basis_stiffness, _) =
                 &basis_solve_states[state_index];
-            match solve_load_case(
+            match solve_load_case_observed(
                 &model,
                 basis_built,
                 basis_materials,
@@ -2445,6 +2462,7 @@ fn run_linear_static_preview_captured_once(
                 source_budget,
                 Some(resolved),
                 &mut diagnostics,
+                product.as_deref_mut(),
             ) {
                 Ok(solve) => load_case_solves.push(solve),
                 Err(error) => return solver_blocked(model, diagnostics, error),
@@ -2460,7 +2478,7 @@ fn run_linear_static_preview_captured_once(
             }
             let (_, basis_materials, basis_built, basis_stiffness, basis_record) =
                 &basis_solve_states[0];
-            match solve_load_case(
+            match solve_load_case_observed(
                 &model,
                 basis_built,
                 basis_materials,
@@ -2474,6 +2492,7 @@ fn run_linear_static_preview_captured_once(
                 source_budget,
                 None,
                 &mut diagnostics,
+                product.as_deref_mut(),
             ) {
                 Ok(solve) => load_case_solves.push(solve),
                 Err(error) => return solver_blocked(model, diagnostics, error),
@@ -2490,7 +2509,7 @@ fn run_linear_static_preview_captured_once(
             Some(index) => index,
             None => {
                 let Some((basis_materials, basis_record)) =
-                    materials_for_modulus_basis(&model, &materials, load_case, &mut diagnostics)
+                    materials_for_modulus_basis_observed(&model, &materials, load_case, &mut diagnostics, product.as_deref_mut())
                 else {
                     return blocked_envelope(model, diagnostics);
                 };
@@ -2517,7 +2536,7 @@ fn run_linear_static_preview_captured_once(
         };
         let (_, basis_materials, basis_built, basis_stiffness, basis_record) =
             &basis_solve_states[state_index];
-        match solve_load_case(
+        match solve_load_case_observed(
             &model,
             basis_built,
             basis_materials,
@@ -2531,6 +2550,7 @@ fn run_linear_static_preview_captured_once(
             source_budget,
             None,
             &mut diagnostics,
+            product.as_deref_mut(),
         ) {
             Ok(solve) => load_case_solves.push(solve),
             Err(error) => return solver_blocked(model, diagnostics, error),
@@ -2740,6 +2760,7 @@ fn run_linear_static_preview_captured_once(
             }
         }
     }
+    if let Some(observer) = product.as_deref_mut() { observer.finish(&envelope); }
     envelope
 }
 
@@ -3319,6 +3340,26 @@ fn solve_load_case(
     load_state: Option<&case_state::resolve::ResolvedCase>,
     diagnostics: &mut Vec<Diagnostic>,
 ) -> Result<LoadCaseSolve, FrameKernelError> {
+    solve_load_case_observed(model, built, materials, stiffness, restrained_dofs, spring_entries,
+        load_case, modulus_basis_record, solver_mode, capture, source_budget, load_state, diagnostics, None)
+}
+
+fn solve_load_case_observed(
+    model: &PreviewModel,
+    built: &BuiltModel,
+    materials: &[MaterialInput],
+    stiffness: &BasisStiffness,
+    restrained_dofs: &[usize],
+    spring_entries: &[SpringEntry],
+    load_case: &PreviewLoadCase,
+    modulus_basis_record: Option<&str>,
+    solver_mode: PreviewSolverMode,
+    capture: Option<&source_receipt::CapturedInvocation>,
+    source_budget: &mut SourceRecoveryBudget,
+    load_state: Option<&case_state::resolve::ResolvedCase>,
+    diagnostics: &mut Vec<Diagnostic>,
+    mut product: Option<&mut retained_product::ProductCapture>,
+) -> Result<LoadCaseSolve, FrameKernelError> {
     // A resolved case supplies the complete ordinary-source ledger: only its
     // declared, factored primitives are applied, exactly once.
     let load_case = load_state.map_or(load_case, |state| &state.effective_case);
@@ -3431,6 +3472,10 @@ fn solve_load_case(
         &load_case.id,
         diagnostics,
     );
+    if let Some(observer) = product.as_deref_mut() {
+        observer.case_source(model, built, materials, load_case, restrained_dofs, spring_entries,
+            &load_application, &thermal_loads, &pressure_thrust_loads);
+    }
     let force = finish_case_ledger(ledger, built.nodes.len())?;
     // S11-G section 3.5: the load-row guard reads the ledger's formation
     // records once, before the solve; its finding gates retained-source
@@ -8995,6 +9040,12 @@ fn materials_for_modulus_basis(
     load_case: &PreviewLoadCase,
     diagnostics: &mut Vec<Diagnostic>,
 ) -> Option<(Vec<MaterialInput>, String)> {
+    materials_for_modulus_basis_observed(model, materials, load_case, diagnostics, None)
+}
+fn materials_for_modulus_basis_observed(
+    model: &PreviewModel, materials: &[MaterialInput], load_case: &PreviewLoadCase,
+    diagnostics: &mut Vec<Diagnostic>, mut product: Option<&mut retained_product::ProductCapture>,
+) -> Option<(Vec<MaterialInput>, String)> {
     if pressure_runtime::is_exact(model) {
         return pressure_material::resolve_case(model, materials, load_case, diagnostics);
     }
@@ -9012,6 +9063,7 @@ fn materials_for_modulus_basis(
             resolved.push(material.clone());
             continue;
         }
+        let mut selected_ordinals = None;
         let (elastic_modulus, shear_modulus, thermal_expansion_coefficient, provenance) =
             if let Some(basis_ref) = load_case.modulus_basis_ref.as_deref() {
                 let Some(point) = material
@@ -9076,6 +9128,9 @@ fn materials_for_modulus_basis(
                     blocked = true;
                     continue;
                 };
+                if product.is_some() {
+                    selected_ordinals = material.temperature_points.iter().position(|p| std::ptr::eq(p, point)).map(|i| (i, None));
+                }
                 (
                     elastic_modulus,
                     shear_modulus,
@@ -9207,6 +9262,11 @@ fn materials_for_modulus_basis(
                     blocked = true;
                     continue;
                 }
+                if product.is_some() {
+                    let lo = material.temperature_points.iter().position(|p| std::ptr::eq(p, lower)).expect("selected lower");
+                    let hi = material.temperature_points.iter().position(|p| std::ptr::eq(p, upper)).expect("selected upper");
+                    selected_ordinals = Some((lo, Some(hi)));
+                }
                 let fraction = (solve_temperature - lower_temperature)
                     / (upper_temperature - lower_temperature);
                 let interpolated_e = lower_e.value + fraction * (upper_e.value - lower_e.value);
@@ -9294,6 +9354,10 @@ fn materials_for_modulus_basis(
             ));
             blocked = true;
             continue;
+        }
+        if let Some(observer) = product.as_deref_mut() {
+            observer.selection(load_case, materials, material, selected_ordinals,
+                elastic_modulus.value, shear_modulus.value, thermal_expansion_coefficient.as_ref().map(|a| a.value));
         }
         provenance_records.push(provenance);
         resolved.push(MaterialInput {

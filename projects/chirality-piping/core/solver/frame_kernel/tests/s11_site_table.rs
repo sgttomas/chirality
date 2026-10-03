@@ -38,6 +38,10 @@ struct Source {
 
 const SOURCES: &[Source] = &[
     Source {
+        name: "FK/structural/retained/product_certificate/final_case.rs",
+        text: include_str!("../src/structural/retained/product_certificate/final_case.rs"),
+    },
+    Source {
         name: "FK/lib.rs",
         text: include_str!("../src/lib.rs"),
     },
@@ -163,6 +167,9 @@ const SOURCES: &[Source] = &[
 
 /// (file, function, exact match count, disposition of each match).
 const TABLE: &[(&str, &str, usize, &str)] = &[
+    ("FK/structural/retained/product_certificate/final_case.rs", "corners", 0, "fixed four-corner signed product/quotient; directed arithmetic with producing work"),
+    ("FK/structural/retained/product_certificate/final_case.rs", "exact_test", 0, "exact final allowance/decimal comparison; producing sum collected on every exit"),
+    ("FK/structural/retained/product_certificate/final_case.rs", "gate", 0, "fixed raw/SI endpoint distances and unchanged final predicates"),
     ("FK/structural/retained/directed/certificate.rs", "compare_owned", 1, "integer: comparison counter increment after the explicit 64-comparison guard; each comparison uses one exact sum"),
     ("FK/structural/retained/product_certificate.rs", "status", 1, "integer: joins checked entry/work status; no floating reduction"),
     ("FK/structural/retained/product_certificate.rs", "scalar_owned", 0, "fixed directed arithmetic; each actual context and exact sum collected on all exits"),

@@ -594,3 +594,5 @@ mod tests;
 pub(crate) mod bridge;
 
 pub(crate) mod source_residual;
+
+pub(crate) mod final_case;

@@ -8,6 +8,11 @@ mod retained;
 /// crate names this module. `PrecisionState` and `RetainedSolve::state` stay
 /// crate-private (ROOT's ruling C-2).
 pub mod retained_api {
+    pub use super::retained::origins::{
+        ProductMaterial, ProductMemberFacts, ProductSite, ProductStress, ProductRecipe,
+        ProductUnit, ProductFinalRow, ProductPredicate, ProductRowVerdict,
+        ProductFailure, ProductCertificateSpent, ProductSummaryCoverage,
+    };
     pub use super::retained::adaptive::{
         absolute_bound, body_extent, classify, classify_rows, classify_rows_floored,
         coupled_scales, intensified_k, solve_case, solve_cases, stress_scale, threshold,

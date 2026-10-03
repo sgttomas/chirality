@@ -781,3 +781,28 @@ impl BatchRecording<'_> {
 #[cfg(test)]
 #[path = "../../../tests/retained_k4/origins_tests.rs"]
 mod tests;
+
+
+impl RecordedInvocation {
+    /// Fixed diagnostic certificate; does not mutate the numerical invocation meter.
+    pub fn certify_product_case<'a>(
+        &self, run: usize, selected: &RetainedSolve,
+        facts: &[super::product_certificate::final_case::ProductMemberFacts],
+        rows: &'a [super::product_certificate::final_case::ProductFinalRow<'a>],
+    ) -> super::product_certificate::final_case::ProductCertificateSpent<'a> {
+        super::product_certificate::final_case::certify(self, run, selected, facts, rows)
+    }
+    pub(crate) fn product_case_owner(&self, run:usize, solve:&RetainedSolve)->bool {
+        self.store.selected.iter().any(|s| s.run==run && Arc::ptr_eq(&s.prep,&solve.prep)
+            && matches!(self.store.runs[run].owner, NativeOwner::Case(_))
+            && self.store.sources[s.source].identity==solve.prep.identity
+            && solve.cache.matches_origins(&s.slots))
+    }
+}
+
+
+pub use super::product_certificate::final_case::{
+    ProductMaterial, ProductMemberFacts, ProductSite, ProductStress, ProductRecipe,
+    ProductUnit, ProductFinalRow, ProductPredicate, ProductRowVerdict,
+    ProductFailure, ProductCertificateSpent, ProductSummaryCoverage,
+};
