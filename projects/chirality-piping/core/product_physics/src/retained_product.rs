@@ -1,6 +1,7 @@
 //! Private same-run diagnostic adapter. Public entrypoints never construct it.
 #![allow(dead_code)]
 use super::*;
+use super::retained_receipt as trace;
 use open_pipe_stress_frame_kernel::structural::retained_api as k;
 
 #[derive(Debug)]
@@ -83,6 +84,8 @@ pub(super) struct ProductCapture {
     pub prepared_late_calls: usize,
     prepared_source_permit: bool,
     pub source_capture_entries: usize,
+    #[cfg(test)]
+    pub trace_fault:Option<trace::TraceFault>,
     pub prepared_capacity_bytes: [usize; 16],
     pub adapter: AdapterWork,
     pub invocation_calls: usize,
@@ -1289,7 +1292,8 @@ impl ProductCapture {
                 self.fail("map-write accounting");
                 return;
             }
-            self.operational.push(evaluate_operational(
+            if !self.adapter.enter(AdapterEvent::RequestedCopyBytes,std::mem::size_of::<Option<u32>>() as u64){self.fail("operational identity accounting");return;}
+            self.operational.push(evaluate_member_operational(id,
                 [b.node_i.coordinates, b.node_j.coordinates],
                 [
                     b.section.elastic_modulus,
@@ -2408,9 +2412,13 @@ pub(super) struct OperationalOperands {
 }
 #[derive(Debug)]
 pub(super) struct OperationalSpent {
+    pub member:Option<u32>,
     pub inputs: [u64; 10],
     pub result: Result<OperationalOperands, OperationalError>,
     pub work: ScalarWork,
+}
+fn evaluate_member_operational(member:u32,nodes:[[f64;3];2],properties:[f64;4])->OperationalSpent {
+    let mut spent=evaluate_operational(nodes,properties);spent.member=Some(member);spent
 }
 /// Newly evaluated operational expressions, never historical formation capture.
 pub(super) fn evaluate_operational(nodes: [[f64; 3]; 2], properties: [f64; 4]) -> OperationalSpent {
@@ -2464,6 +2472,7 @@ pub(super) fn evaluate_operational(nodes: [[f64; 3]; 2], properties: [f64; 4]) -
         })
     })();
     OperationalSpent {
+        member:None,
         inputs: input.map(f64::to_bits),
         result,
         work,
@@ -3108,6 +3117,7 @@ pub(super) struct PreparedCase {
     pub preparations: Vec<k::PreparedAnnulus>,
     pub preparation_work: Vec<k::SectionPreparationWork>,
     pub old_operational: Vec<OperationalSpent>,
+    pub trace:trace::PreparedTrace,
 }
 pub(super) struct PreparedCaseFailure {
     pub associations: Vec<PreparedAssociation>,
@@ -3117,6 +3127,7 @@ pub(super) struct PreparedCaseFailure {
     pub preparation_work: Vec<k::SectionPreparationWork>,
     pub preparation_error: Option<k::SectionPreparationError>,
     pub old_operational: Vec<OperationalSpent>,
+    pub trace:trace::PreparedTrace,
 }
 impl ProductCapture {
     pub(super) fn prepared_probe() -> Self { Self {prepared_probe:true,..Self::default()} }
@@ -3126,6 +3137,7 @@ impl ProductCapture {
         let mut preparations=Vec::new(); let mut work=Vec::new();let mut associations=Vec::new();
         let mut preparation_error=None;
         let mut old_operational=Vec::new();
+        let mut trace=trace::PreparedTrace::default();trace.enter(trace::Stage::Preparation);
         let outcome=(|| -> Result<(),CaptureError> {
             let ordinary=&ordinary;
             self.adapter.require()?;
@@ -3139,6 +3151,13 @@ impl ProductCapture {
             if old.members().len()!=self.facts.len() || old.members().len()!=self.operational.len() {
                 return Err("old source/facts/operational coverage".into());
             }
+            // Complete inventory/order is independent of later old-to-old section checks.
+            for (m,op) in old.members().iter().zip(&self.operational) {
+                trace.costs.record::<(u32,Option<u32>)>();
+                if op.member!=Some(m.id){return Err("old operational member order".into());}
+            }
+            trace.costs.record::<trace::OldCoverage>();trace.old_coverage=trace::OldCoverage::Complete;
+            #[cfg(test)] if self.trace_fault==Some(trace::TraceFault::AfterPrelude){return Err("trace control after prelude".into());}
             let mut parts=k::SourceParts::default();
             parts.nodes=prepared_reserve(&self.adapter,&mut self.prepared_capacity_bytes,0,old.nodes().len())?;
             parts.members=prepared_reserve(&self.adapter,&mut self.prepared_capacity_bytes,1,old.members().len())?;
@@ -3152,6 +3171,8 @@ impl ProductCapture {
             associations=prepared_reserve(&self.adapter,&mut self.prepared_capacity_bytes,13,old.members().len())?;
             let new_operational=prepared_reserve(&self.adapter,&mut self.prepared_capacity_bytes,9,old.members().len())?;
             old_operational=std::mem::replace(&mut self.operational,new_operational);
+            trace.costs.record::<bool>();trace.old_vector_swapped=true;
+            trace.members=prepared_reserve(&self.adapter,&mut self.prepared_capacity_bytes,14,old.members().len())?;
             for x in old.nodes() { self.capture_entry(AdapterEvent::MapWrite)?; parts.nodes.push(*x); }
             for x in old.constraints() { self.capture_entry(AdapterEvent::MapWrite)?; parts.constraints.push(*x); }
             for x in old.springs() { self.capture_entry(AdapterEvent::MapWrite)?; parts.springs.push(*x); }
@@ -3179,8 +3200,18 @@ impl ProductCapture {
                 // Enter the reserved work-record write before the producer. Every
                 // producing return is immediately owned, with no fallible gap.
                 self.capture_entry(AdapterEvent::MapWrite)?;
+                if trace.members.len()==trace.members.capacity() || work.len()==work.capacity(){return Err("prepared trace/work capacity".into());}
+                trace.costs.record::<trace::PreparationEntry>();
+                trace.members.push(trace::PreparationEntry {member:m.id,
+                    old_source:[m.elastic_modulus.to_bits(),m.shear_modulus.to_bits(),m.area.to_bits(),m.second_moment_y.to_bits(),m.second_moment_z.to_bits(),m.torsion_constant.to_bits()],
+                    old_facts:[f.diameter.to_bits(),f.effective_wall.to_bits(),f.area.to_bits(),f.second_moment.to_bits(),f.torsion_constant.to_bits(),f.section_modulus.to_bits(),f.radius.to_bits()],
+                    result:trace::PreparationResult::Entered,work_index:work.len()});
                 let spent=k::prepare_product_annulus(f.diameter,f.effective_wall);
-                let (result,w)=spent.into_parts();work.push(w);
+                let (result,w)=spent.into_parts();work.push(w); // reserved/precharged: no fallible return gap
+                trace.costs.record::<trace::PreparationResult>();
+                trace.members.last_mut().unwrap().result=match &result {
+                    Ok(p)=>trace::PreparationResult::Prepared(p.section_bits()),Err(e)=>trace::PreparationResult::Refused(e.clone())};
+                #[cfg(test)] if self.trace_fault==Some(trace::TraceFault::AfterHelper){return Err("trace control after helper".into());}
                 let prep=match result { Ok(p)=>p, Err(e)=>{
                     preparation_error=Some(e); return Err("annulus preparation refused".into());
                 }};
@@ -3201,20 +3232,24 @@ impl ProductCapture {
                 self.adapter.enter(AdapterEvent::MapWrite,5);self.adapter.require()?;
                 let f=&mut self.facts[i];f.area=a;f.second_moment=ii;f.torsion_constant=j;f.section_modulus=z;f.radius=c;
                 self.capture_entry(AdapterEvent::MapWrite)?;
-                self.operational.push(evaluate_operational([parts.nodes[m.node_i as usize],parts.nodes[m.node_j as usize]],
+                self.adapter.enter(AdapterEvent::RequestedCopyBytes,std::mem::size_of::<Option<u32>>() as u64);self.adapter.require()?;
+                self.operational.push(evaluate_member_operational(m.id,[parts.nodes[m.node_i as usize],parts.nodes[m.node_j as usize]],
                     [m.elastic_modulus,m.shear_modulus,a,j]));
+                #[cfg(test)] if self.trace_fault==Some(trace::TraceFault::AfterEvaluation){return Err("trace control after evaluator".into());}
                 self.capture_entry(AdapterEvent::MapWrite)?;preparations.push(prep);
             }
             self.adapter.require()?;
+            #[cfg(test)] if self.trace_fault==Some(trace::TraceFault::SourceConstruction){parts.members[0].area=0.0;}
             let new=k::PrimitiveSource::new(parts).map_err(CaptureError::Source)?;
             self.check_support_source(&new)?;
             self.capture_entry(AdapterEvent::MapWrite)?;
-            self.source=Some(new);
+            self.source=Some(new);trace.costs.record::<bool>();trace.source_ready=true;
+            trace.completed(trace::Stage::Preparation);
             Ok(())
         })();
-        match outcome { Ok(())=>Ok(PreparedCase{ordinary:Some(ordinary),proof_attempted:false,overlay_work:ScalarWork::default(),associations,capture:self,preparations,preparation_work:work,old_operational}),
-            Err(e)=>{self.error=Some(e); Err(PreparedCaseFailure{associations,ordinary,capture:self,preparations,
-                preparation_work:work,preparation_error,old_operational})} }
+        match outcome { Ok(())=>Ok(PreparedCase{ordinary:Some(ordinary),proof_attempted:false,overlay_work:ScalarWork::default(),associations,capture:self,preparations,preparation_work:work,old_operational,trace}),
+            Err(e)=>{trace.fail_entered();self.error=Some(e);trace.freeze(&self); Err(PreparedCaseFailure{associations,ordinary,capture:self,preparations,
+                preparation_work:work,preparation_error,old_operational,trace})} }
     }
 }
 impl PreparedCase {
@@ -3228,7 +3263,12 @@ impl PreparedCase {
         observer.prepare_owned_case(ordinary)
     }
     pub(super) fn ordinary(&self)->&MechanicsEnvelope {self.ordinary.as_ref().expect("owned ordinary before attempt")}
-    pub(super) fn solve_native(&mut self) -> Result<(),CaptureError> {
+    pub(super) fn solve_native(&mut self) -> Result<(),&CaptureError> {
+        if self.trace.stages[trace::Stage::Native as usize]!=trace::StageState::NotEntered {
+            return Err(&CaptureError::PreparedAttemptConsumed);
+        }
+        self.trace.enter(trace::Stage::Native);
+        let result=(||->Result<(),CaptureError>{
         let o=&mut self.capture;
         if o.native.is_some() {return Err("duplicate prepared solve".into());}
         let source=o.source.as_ref().ok_or("prepared source")?;
@@ -3239,7 +3279,11 @@ impl PreparedCase {
         let selected=matches!(case.outcome,k::ExecutionOutcome::Selected(_));
         o.native=Some((invocation,case));
         if selected {Ok(())} else {Err(CaptureError::NativeUnavailable)}
+        })();
+        match result {Ok(())=>{self.trace.completed(trace::Stage::Native);Ok(())},
+            Err(e)=>{self.trace.fail_entered();self.trace.native_error=Some(e);self.trace.freeze(&self.capture);Err(self.trace.native_error.as_ref().unwrap())}}
     }
+
 }
 
 // I51 frozen overlay. One ordinary owner remains untouched until the final move.
@@ -3337,6 +3381,7 @@ impl ProductCapture {
     }
     fn prepared_maxima(&self,e:&MechanicsEnvelope,owner:&k::RetainedSolve,rows:&[k::ProductFinalRow<'_>],
         values:&mut k::ProductValuesBuilder,work:&mut ScalarWork)->Result<(Vec<PreparedMaximumPatch>,Vec<k::ProductMaximumValue>),CaptureError> {
+        #[cfg(test)] if self.trace_fault==Some(trace::TraceFault::Maxima){return Err(CaptureError::Storage("trace maximum allocation fault"));}
         let evidence=e.contract_evidence.as_ref().ok_or("prepared maximum evidence")?;
         let extrema=evidence["preview_cases"][0]["pipe_stress_extrema"].as_array().ok_or("prepared maximum records")?;
         if extrema.len()!=self.members.len(){return Err("prepared maximum complete domain".into());}
@@ -3414,23 +3459,34 @@ impl PreparedCase {
             let specs=self.capture.prepared_specs(&base_rows).map_err(PreparedCandidateError::Capture)?;
             self.capture.capture_entry(AdapterEvent::MapWrite).map_err(PreparedCandidateError::Capture)?;
             self.proof_attempted=true;
+            self.trace.enter(trace::Stage::ProofStart);
             let draft=invocation.begin_prepared_product(case.run,owner,&self.capture.facts,&specs).into_ready().map_err(PreparedCandidateError::Proof)?;
+            self.trace.completed(trace::Stage::ProofStart);
             #[cfg(test)] println!("I51_DUAL_LANES {:?}",draft.lane_debug());
+            self.trace.enter(trace::Stage::Projection);
             let (projected,mut builder)=draft.project().into_ready().map_err(PreparedCandidateError::Proof)?;
+            self.trace.completed(trace::Stage::Projection);self.trace.enter(trace::Stage::Maxima);
             let (patches,maxima)=match self.capture.prepared_maxima(&ordinary,owner,&base_rows,&mut builder,&mut self.overlay_work) {
                 Ok(v)=>v,Err(cause)=>return Err(PreparedCandidateError::Abandoned{cause,proof:projected.abandon_values(builder.abandon())})};
-            let (values,value_work)=match builder.complete_maxima(&maxima).into_ready() {
+            self.trace.completed(trace::Stage::Maxima);self.trace.enter(trace::Stage::Values);
+            #[cfg(test)] let maxima_input=if self.capture.trace_fault==Some(trace::TraceFault::ValuesCompletion){&maxima[..0]}else{&maxima[..]};
+            #[cfg(not(test))] let maxima_input=&maxima[..];
+            let (values,value_work)=match builder.complete_maxima(maxima_input).into_ready() {
                 Ok(v)=>v,Err(failure)=>return Err(PreparedCandidateError::Values{failure,proof:projected.abandon()})};
+            self.trace.completed(trace::Stage::Values);self.trace.enter(trace::Stage::Aliases);
             let displacement=match self.capture.prepared_alias(&ordinary,&values,"displacement_magnitude") {
                 Ok(v)=>v,Err(cause)=>return Err(PreparedCandidateError::Abandoned{cause,proof:projected.abandon_values(value_work)})};
             let stress=match self.capture.prepared_alias(&ordinary,&values,"pipe_elastic_normal_stress_maximum_v2") {
                 Ok(v)=>v,Err(cause)=>return Err(PreparedCandidateError::Abandoned{cause,proof:projected.abandon_values(value_work)})};
+            self.trace.completed(trace::Stage::Aliases);
             let payload=PreparedPayload{values,maxima:patches,displacement,stress};
             let view=ProductCaseView::Prepared{ordinary:&ordinary,payload:&payload};
             let rows=match self.capture.bind_rows_view(view,owner) {
                 Ok(v)=>v,Err(cause)=>return Err(PreparedCandidateError::Abandoned{cause,proof:projected.abandon_values(value_work)})};
+            self.trace.enter(trace::Stage::Certificate);
             let certified=match projected.certify_final(&payload.values,&rows,value_work).into_ready() {
-                Ok(v)=>v,Err(failure)=>{
+                Ok(v)=>{self.trace.checked(trace::Stage::Certificate,0,true);self.trace.costs.record::<bool>();self.trace.proof_ready=true;v},Err(failure)=>{
+                    self.trace.checked(trace::Stage::Certificate,0,false);
                     self.capture.numeric_pass=false;
                     self.capture.numeric_failure=Some(failure.failure().clone());
                     self.capture.source_correction_calls=failure.work().source_correction_calls();
@@ -3438,8 +3494,12 @@ impl PreparedCase {
                     {self.capture.work=format!("{:?}; lanes={:?}",failure.work().work_summary(),failure.work().prepared_lane_work());}
                     if let Err(e)=self.capture.prepared_verdict_copy(failure.work().verdicts(),failure.work().summary_coverage()) {self.capture.error=Some(e);}
                     if self.capture.error.is_none() && self.capture.verdicts.len()==rows.len() {
+                        self.trace.enter(trace::Stage::Observables);
                         self.capture.observable_error=self.capture.observables_view(view).err();
+                        self.trace.checked(trace::Stage::Observables,1,self.capture.observable_error.is_none());
+                        self.trace.enter(trace::Stage::G5a);
                         self.capture.g5a_error=self.capture.g5a(owner,&rows).err();
+                        self.trace.checked(trace::Stage::G5a,2,self.capture.g5a_error.is_none());
                     }
                     #[cfg(test)] println!("I51_FROZEN_REFUSAL {}",serde_json::json!({"mode":self.capture.invocation_mode.unwrap().as_str(),
                         "rows":view.rows().map(|r|serde_json::json!({"id":r.id,"kind":r.kind,"unit":r.unit,"value":r.value,"bits":format!("{:016x}",r.value.to_bits())})).collect::<Vec<_>>(),
@@ -3460,8 +3520,12 @@ impl PreparedCase {
             self.capture.numeric_pass=certified.passed();self.capture.source_correction_calls=certified.work().source_correction_calls();
             #[cfg(test)]
             {self.capture.work=format!("{:?}; lanes={:?}",certified.work().work_summary(),certified.work().prepared_lane_work());}
+            self.trace.enter(trace::Stage::Observables);
             self.capture.observable_error=self.capture.observables_view(view).err();
+            self.trace.checked(trace::Stage::Observables,1,self.capture.observable_error.is_none());
+            self.trace.enter(trace::Stage::G5a);
             self.capture.g5a_error=self.capture.g5a(owner,&rows).err();
+            self.trace.checked(trace::Stage::G5a,2,self.capture.g5a_error.is_none());
             #[cfg(test)] println!("I51_FROZEN_ROWS {}",serde_json::json!({"rows":view.rows().map(|r|serde_json::json!({"id":r.id,"kind":r.kind,"unit":r.unit,"value":r.value,"bits":format!("{:016x}",r.value.to_bits())})).collect::<Vec<_>>(),
                 "verdicts":self.capture.verdicts.iter().map(|v|serde_json::json!({"row":v.row,"n":format!("{:016x}",v.normalized_bits),"scale":format!("{:016x}",v.scale_bits),"class":format!("{:?}",v.class),"passed":v.passed,"predicates":v.predicates})).collect::<Vec<_>>(),
                 "numeric_pass":self.capture.numeric_pass,"observables":format!("{:?}",self.capture.observable_error),"g5a":format!("{:?}",self.capture.g5a_error),"work":self.capture.work}));
@@ -3477,11 +3541,12 @@ impl PreparedCase {
                 .and_then(|v|v.checked_add(2)).ok_or_else(||PreparedCandidateError::Capture(CaptureError::CountRange("commit moves")))?;
             self.capture.adapter.enter(AdapterEvent::MapWrite,u64::try_from(moves).map_err(|_|PreparedCandidateError::Capture(CaptureError::CountRange("commit count")))?);
             self.capture.adapter.require().map_err(PreparedCandidateError::Capture)?;
+            self.trace.costs.record::<bool>();self.trace.private_commit_precharged=true;
             Ok(payload)
         })();
         self.capture.native=native;
         match result {
-            Err(error)=>Err(PreparedCandidateRefusal{ordinary,prepared:self,error,certificate,values:saved_values}),
+            Err(error)=>{self.trace.fail_entered();self.trace.freeze(&self.capture);Err(PreparedCandidateRefusal{ordinary,prepared:self,error,certificate,values:saved_values})},
             Ok(payload)=>{
                 let mut envelope=ordinary;
                 for (i,row) in envelope.results.iter_mut().enumerate(){row.value=*payload.values.value(i).expect("checked frozen index");}
@@ -3492,6 +3557,7 @@ impl PreparedCase {
                     for (key,number) in PREPARED_MAX_KEYS.into_iter().zip(patch.numbers){*object.get_mut(key).unwrap()=serde_json::Value::Number(number);}
                 }
                 envelope.summary.max_displacement=Some(payload.displacement);envelope.summary.max_open_formula_stress=Some(payload.stress);
+                self.trace.costs.record::<bool>();self.trace.private_committed=true;self.trace.freeze(&self.capture);
                 Ok(PrivatePreparedCandidate{envelope,prepared:self,certificate:certificate.unwrap()})
             }
         }
@@ -3526,4 +3592,38 @@ pub(super) fn i51_overlay_layout() {
     layout!(PreparedCase);layout!(PreparedAssociation);layout!(PreparedMaximumPatch);layout!(PreparedPayload);layout!(ProductCaseView<'static>);
     layout!(ProductRowView<'static>);layout!(PrivatePreparedCandidate);layout!(PreparedCandidateRefusal);
     layout!(serde_json::Number);layout!(LocatedQuantity);layout!(ScalarWork);
+}
+
+// Closed terminal projections borrow the original producing owners. They never
+// reconstruct entered work from successful-vector cardinality or Debug strings.
+impl PreparedCaseFailure {
+    pub(super) fn typed_trace<'a>(&'a self,costs:&mut trace::ProjectionWork)->Result<trace::PreparedAttemptView<'a>,trace::TraceProjectionError> {
+        static ZERO:ScalarWork=ScalarWork{entered:0,checks:0,lost:false};
+        trace::project(&self.trace,&self.capture,&self.preparation_work,&self.old_operational,&ZERO,
+            trace::ResultRef::Unavailable(trace::FailureRef::Preparation{capture:self.capture.error.as_ref().ok_or(trace::TraceProjectionError::MissingFailure)?,section:self.preparation_error.as_ref()}),
+            None,None,None,costs)
+    }
+}
+impl PreparedCase {
+    pub(super) fn native_refusal_trace<'a>(&'a self,costs:&mut trace::ProjectionWork)->Result<trace::PreparedAttemptView<'a>,trace::TraceProjectionError> {
+        trace::project(&self.trace,&self.capture,&self.preparation_work,&self.old_operational,&self.overlay_work,
+            trace::ResultRef::Unavailable(trace::FailureRef::Native(self.trace.native_error.as_ref().ok_or(trace::TraceProjectionError::MissingFailure)?)),None,None,None,costs)
+    }
+}
+impl PrivatePreparedCandidate {
+    pub(super) fn typed_trace<'a>(&'a self,costs:&mut trace::ProjectionWork)->Result<trace::PreparedAttemptView<'a>,trace::TraceProjectionError> {
+        let p=&self.prepared;
+        trace::project(&p.trace,&p.capture,&p.preparation_work,&p.old_operational,&p.overlay_work,
+            trace::ResultRef::Ready,Some(self.certificate.work()),None,None,costs)
+    }
+}
+impl PreparedCandidateRefusal {
+    pub(super) fn typed_trace<'a>(&'a self,costs:&mut trace::ProjectionWork)->Result<trace::PreparedAttemptView<'a>,trace::TraceProjectionError> {
+        let p=&self.prepared;
+        let failure=match &self.error {PreparedCandidateError::Proof(e)=>Some(e),PreparedCandidateError::Values{proof,..}|PreparedCandidateError::Abandoned{proof,..}=>Some(proof),_=>None};
+        let work=failure.map(|f|f.work()).or_else(||self.certificate.as_ref().map(|c|c.work()));
+        let values=match &self.error{PreparedCandidateError::Values{failure,..}=>Some(failure),_=>None};
+        trace::project(&p.trace,&p.capture,&p.preparation_work,&p.old_operational,&p.overlay_work,
+            trace::ResultRef::Unavailable(trace::FailureRef::Candidate(&self.error)),work,failure.map(|f|f.failure()),values,costs)
+    }
 }

@@ -42,8 +42,43 @@ fn count_mul(a: usize, b: usize) -> Result<usize, Error> {
     a.checked_mul(b).ok_or(Error::CountRange)
 }
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub(crate) enum ReadoutLaw { AdmittedK, AnnularSource }
+pub enum ReadoutLaw { AdmittedK, AnnularSource }
 
+#[derive(Debug,Clone,Copy,PartialEq,Eq)]
+pub enum ViewFailure {
+    Certificate(super::super::adaptive::CertificateIssue),ForeignOwner,UnsupportedCombination,
+    VerificationCache,Ordering,BodyBound,CountRange,Work(super::super::work::WorkFault),
+}
+#[derive(Debug)]
+pub enum BridgeFailure<'a> {
+    View(ViewFailure),Numeric(&'a NumericError),MemberOwner,UnsupportedDirectionalSpring,
+    MissingRadius(usize),MissingUniquenessWarrant(u32),RowIdentity(usize),CountRange,Storage,
+    AlphaCondition{block:usize},
+}
+pub(crate) fn bridge_failure(error:&Error)->BridgeFailure<'_> {
+    use super::super::adaptive::SourceBridgeViewIssue as V;
+    match error {
+        Error::View(v)=>BridgeFailure::View(match v {
+            V::Certificate(c)=>ViewFailure::Certificate(*c),V::ForeignOwner=>ViewFailure::ForeignOwner,
+            V::UnsupportedCombination=>ViewFailure::UnsupportedCombination,V::VerificationCache=>ViewFailure::VerificationCache,
+            V::Ordering=>ViewFailure::Ordering,V::BodyBound=>ViewFailure::BodyBound,V::CountRange=>ViewFailure::CountRange,
+            V::Work(f)=>ViewFailure::Work(*f)}),
+        Error::Numeric(e)=>BridgeFailure::Numeric(e),Error::MemberOwner=>BridgeFailure::MemberOwner,
+        Error::UnsupportedDirectionalSpring=>BridgeFailure::UnsupportedDirectionalSpring,
+        Error::MissingRadius(n)=>BridgeFailure::MissingRadius(*n),Error::MissingUniquenessWarrant(n)=>BridgeFailure::MissingUniquenessWarrant(*n),
+        Error::RowIdentity(n)=>BridgeFailure::RowIdentity(*n),Error::CountRange=>BridgeFailure::CountRange,
+        Error::Storage=>BridgeFailure::Storage,Error::Alpha{block,..}=>BridgeFailure::AlphaCondition{block:*block},
+    }
+}
+#[derive(Debug)]
+pub struct LaneWorkTrace<'a> {
+    pub numeric:NumericTrace,pub point_lme:WorkTotal,
+    pub view_visits:WorkTotal,pub view_f64_operations:WorkTotal,pub prescribed_capacity:usize,pub view_data_capacity:usize,
+    pub correction_cast_lme:WorkTotal,pub correction_factor_lme:WorkTotal,pub correction_visits:WorkTotal,pub correction_calls:WorkTotal,
+    pub correction_capacities:[usize;3],pub visits:WorkTotal,pub member_builds:WorkTotal,pub frame_builds:WorkTotal,
+    pub b_products:WorkTotal,pub d_products:WorkTotal,pub h_products:WorkTotal,
+    pub capacities:&'a [(&'static str,usize)],pub data_capacity:usize,pub status:WorkStatus,
+}
 #[derive(Debug)]
 pub(crate) struct ResidualWork {
     pub(crate) readout_law: ReadoutLaw,
@@ -66,6 +101,18 @@ pub(crate) struct ResidualWork {
     pub(crate) data_capacity: usize,
 }
 impl ResidualWork {
+    pub(crate) fn typed_trace<'a>(&'a self,copies:&mut TraceCopyWork)->LaneWorkTrace<'a> {
+        copies.record::<LaneWorkTrace<'_>>();
+        LaneWorkTrace {numeric:self.numeric.trace(copies),point_lme:self.point.checked_lme(),
+            view_visits:self.view.visits,view_f64_operations:self.view.f64_operations,
+            prescribed_capacity:self.view.prescribed_capacity,view_data_capacity:self.view.data_capacity,
+            correction_cast_lme:self.correction.cast.checked_lme(),correction_factor_lme:self.correction.factor.checked_lme(),
+            correction_visits:self.correction.visits,correction_calls:self.correction.calls,
+            correction_capacities:[self.correction.rhs_capacity,self.correction.output_capacity,self.correction.converted_capacity],
+            visits:self.visits,member_builds:self.member_builds,frame_builds:self.frame_builds,b_products:self.b_products,
+            d_products:self.d_products,h_products:self.h_products,capacities:&self.capacities[..self.capacity_entries],
+            data_capacity:self.data_capacity,status:self.status()}
+    }
     fn new() -> Self {
         Self {
             readout_law: ReadoutLaw::AnnularSource,

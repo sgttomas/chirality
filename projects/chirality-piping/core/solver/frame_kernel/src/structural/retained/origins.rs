@@ -832,3 +832,8 @@ impl RecordedInvocation {
         super::product_certificate::final_case::begin_prepared_product(self,run,owner,facts,specs)
     }
 }
+
+// Typed prepared evidence, with no endpoint/radius access.
+pub use super::product_certificate::{NumericTrace, NumericError, TraceCopyWork, PreparationEndpoint, PreparationConversion};
+pub use super::product_certificate::source_residual::{ReadoutLaw,ViewFailure,BridgeFailure,LaneWorkTrace};
+pub use super::product_certificate::final_case::{ProductFailureView,HelperFailure,LaneTrace,ProductProofTrace};

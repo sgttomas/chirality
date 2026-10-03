@@ -172,6 +172,7 @@ const TABLE: &[(&str, &str, usize, &str)] = &[
     ("FK/structural/retained/product_certificate/final_case.rs", "gate", 0, "fixed raw/SI endpoint distances and unchanged final predicates"),
     ("FK/structural/retained/directed/certificate.rs", "compare_owned", 1, "integer: comparison counter increment after the explicit 64-comparison guard; each comparison uses one exact sum"),
     ("FK/structural/retained/product_certificate.rs", "status", 1, "integer: joins checked entry/work status; no floating reduction"),
+    ("FK/structural/retained/product_certificate.rs", "round", 1, "integer: actual preparation conversion prefix advances only after the fixed nine-slot pre-call guard; no floating reduction"),
     ("FK/structural/retained/product_certificate.rs", "scalar_owned", 0, "fixed directed arithmetic; each actual context and exact sum collected on all exits"),
     ("FK/structural/retained/product_certificate.rs", "r4_owned", 0, "four separate products in one exact sum with sign before lower rounding"),
     ("FK/structural/retained/product_certificate/bridge.rs", "b_forward", 0, "I33 nonnegative majorant: each product and accumulation directed upward with actual owner work"),

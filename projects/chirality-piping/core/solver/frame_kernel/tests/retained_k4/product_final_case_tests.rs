@@ -454,3 +454,46 @@ fn i51_projection_keeps_normal_subnormal_underflow_and_overflow_outcomes() {
         }
     }
 }
+
+#[test]
+fn prepared_trace_typed_failure_has_no_endpoint_and_absence_is_not_zero_work() {
+    let error=ProductFailure{cause:Cause::Native(bridge::BridgeError::Alpha{block:7,alpha_hi:Endpoint::ONE})};
+    let mut copies=TraceCopyWork::default();
+    assert!(matches!(error.typed_cause(&mut copies),ProductFailureView::Native(source_residual::BridgeFailure::AlphaCondition{block:7})));
+    let mut work=ProductCertificateSpent::new(&[]);
+    let typed=work.typed_trace(&mut copies);
+    assert!(typed.lanes.iter().all(Option::is_none));assert!(!typed.completion_merged);
+    assert!(typed.projection_outcomes.is_empty());
+    work.projection_outcomes=work.prepared_reserve(5,1).unwrap();
+    let _=project_hull(Enclosure::point(Endpoint::ONE),ProductUnit::Newton,17,&mut work).unwrap();
+    let typed=work.typed_trace(&mut copies);assert_eq!(typed.projection_outcomes.len(),1);
+    assert_eq!(typed.projection_outcomes[0].0,17);
+    assert!(matches!(typed.projection_outcomes[0].1,super::super::super::wide::multi::Binary64Outcome::Normal(1.0)));
+    assert_eq!(typed.projection_conversions.exact(),Ok(1));
+    println!("I51_TRACE_LAYOUT ProductCertificateSpent={} ProductProofTrace={} ProductFailureView={}",
+        std::mem::size_of::<ProductCertificateSpent<'static>>(),std::mem::size_of::<ProductProofTrace<'static>>(),std::mem::size_of::<ProductFailureView<'static>>());
+}
+
+#[test]
+fn prepared_trace_actual_completed_k_and_failed_source_remain_an_entered_prefix() {
+    use super::super::super::origins::*;
+    use crate::structural::retained_api::{CaseLimit,ExecutionOutcome};
+    let mut invocation=RecordedInvocation::new(u64::MAX,OriginCapacity::for_calls(&[1],&[]).unwrap()).unwrap();
+    let cases=invocation.solve_cases(&[i51_seed_source()],CaseLimit::new(u64::MAX)).unwrap();
+    let owner=match &cases[0].outcome{ExecutionOutcome::Selected(v)=>v,_=>panic!("native fixture")};
+    let anchor=std::sync::Arc::new(ProofAnchor{owner:invocation.product_owner_stamp(cases[0].run,owner).unwrap()});
+    let stale=std::sync::Arc::new(ProofAnchor{owner:invocation.product_owner_stamp(cases[0].run,owner).unwrap()});
+    let law=[bridge::ProposedMemberLaw{member:&owner.source().members()[0],diameter:0.2,effective_wall:0.01,
+        material:MaterialOperands::Ordinary{e:200e9,g:80e9},represented_z:f64::from_bits(0x3f31b37feaa954a6)}];
+    let first=source_residual::source_residual_for_law(owner,owner.source(),&owner.evidence().source_encoding,owner.selected_precision(),&law,source_residual::ReadoutLaw::AdmittedK);
+    let (result,work)=first.into_readouts(&anchor);let mut proof=ProductCertificateSpent::new(&[]);
+    let seed=proof.retain_lane(result,work).unwrap();let mut reads=TraceCopyWork::default();
+    {let view=proof.typed_trace(&mut reads);assert!(view.lanes[0].as_ref().unwrap().result.is_ok());assert!(view.lanes[1].is_none());}
+    let second=source_residual::source_residual_prepared(owner,owner.source(),&owner.evidence().source_encoding,owner.selected_precision(),&law,&stale,&seed);
+    let (result,work)=second.into_readouts(&stale);assert!(proof.retain_lane(result,work).is_err());
+    let view=proof.typed_trace(&mut reads);assert!(matches!(view.lanes[1].as_ref().unwrap().result,Err(source_residual::BridgeFailure::MemberOwner)));
+    assert_eq!(view.lanes[0].as_ref().unwrap().work.correction_calls.exact(),Ok(1));
+    assert_eq!(view.lanes[1].as_ref().unwrap().work.correction_calls.exact(),Ok(0));
+    assert!(view.lanes[1].as_ref().unwrap().work.view_data_capacity>0);
+    assert!(view.projection_outcomes.is_empty() && !view.completion_merged);
+}

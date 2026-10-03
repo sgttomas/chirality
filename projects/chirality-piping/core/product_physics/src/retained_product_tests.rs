@@ -2722,3 +2722,133 @@ fn i51_owned_ordinary_cannot_be_substituted_after_finish() {
         (&expected.0,&expected.1,&expected.2,&expected.3,&expected.4,&expected.5));assert!(actual.source_block_recovery.is_none());
     assert_ne!(actual.run_id,substitute.run_id);assert!(candidate.certificate.passed());
 }
+
+fn prepared_trace_observed()->(ProductCapture,MechanicsEnvelope) {
+    let mode=PreviewSolverMode::SparseInteractive;
+    let (request,capture)=source_receipt::CapturedInvocation::parse(i50_named_request(),mode).unwrap();
+    let mut observer=ProductCapture::prepared_probe();
+    let ordinary=run_linear_static_preview_observed(request,mode,Some(&capture),&mut SourceRecoveryBudget::default(),Some(&mut observer));
+    assert!(observer.error.is_none());(observer,ordinary)
+}
+#[test]
+fn prepared_trace_preserves_prelude_swap_helper_evaluator_and_source_failure_prefixes() {
+    use retained_receipt::{TraceFault as F,OldCoverage as O,PreparationResult as P,Stage,StageState};
+    for fault in [F::AfterPrelude,F::AfterHelper,F::AfterEvaluation,F::SourceConstruction] {
+        let (mut observer,ordinary)=prepared_trace_observed();let original=serde_json::to_vec(&ordinary).unwrap();
+        observer.trace_fault=Some(fault);
+        let failed=match observer.prepare_case(ordinary){Err(f)=>f,Ok(_)=>panic!("fault not entered")};
+        let mut reads=retained_receipt::ProjectionWork::default();let view=failed.typed_trace(&mut reads).unwrap();
+        assert_eq!(serde_json::to_vec(&failed.ordinary).unwrap(),original);
+        assert_eq!(view.old_coverage,O::Complete);assert_eq!(view.operational_old.len(),1);
+        assert_eq!(view.operational_old[0].member,Some(0));
+        assert_eq!(view.stages[Stage::Preparation as usize],StageState::Failed);
+        assert!(view.prepared_source.is_none() && view.native_run.is_none() && view.proof.is_none());
+        let (helpers,new,swapped)=match fault{F::AfterPrelude=>(0,0,false),F::AfterHelper=>(1,0,true),_=>(1,1,true)};
+        assert_eq!(view.members.len(),helpers);assert_eq!(view.operational_new.len(),new);assert_eq!(view.old_vector_swapped,swapped);
+        if helpers==1 {
+            assert!(matches!(view.members[0].result,P::Prepared(_)));
+            let work=&view.preparation_work[view.members[0].work_index];assert_eq!(work.conversion_outcomes().len(),9);
+            assert_eq!(work.conversions.exact(),Ok(9));
+            assert_eq!(view.operational_old[0].inputs[9],view.members[0].old_source[5]);
+        }
+        if new==1 {
+            assert_ne!(view.operational_old[0].inputs[9],view.operational_new[0].inputs[9]);
+            assert_eq!(view.operational_new[0].member,Some(0));
+        }
+        if fault==F::AfterEvaluation {assert!(failed.preparations.is_empty());}
+        if fault==F::SourceConstruction {assert!(matches!(failed.capture.error,Some(retained_product::CaptureError::Source(_))));}
+        assert!(reads.local.events>0 && !reads.local.lost);
+        println!("I51_TRACE_PREFIX {:?} old={} helper={} new={} swapped={} costs={:?} capacity14={}",fault,view.operational_old.len(),helpers,new,swapped,view.trace_costs,view.adapter.prepared_capacity_bytes[14]);
+    }
+}
+#[test]
+fn prepared_trace_actual_helper_refusal_and_earlier_old_prefix_are_retained() {
+    use retained_receipt::{OldCoverage,PreparationResult};
+    let (mut observer,ordinary)=prepared_trace_observed();observer.facts[0].diameter=0.0;
+    let failed=match observer.prepare_case(ordinary){Err(f)=>f,Ok(_)=>panic!("invalid helper geometry")};
+    let mut reads=retained_receipt::ProjectionWork::default();let view=failed.typed_trace(&mut reads).unwrap();
+    assert_eq!(view.old_coverage,OldCoverage::Complete);assert_eq!(view.members.len(),1);
+    assert!(matches!(view.members[0].result,PreparationResult::Refused(k::SectionPreparationError::InvalidGeometry)));
+    assert_eq!(view.members[0].old_facts[0],0f64.to_bits());
+    assert!(view.preparation_work[0].conversion_outcomes().is_empty());assert!(view.operational_new.is_empty());
+    let (mut observer,ordinary)=prepared_trace_observed();
+    // Actual earlier evaluator refusal is retained verbatim by the prefix view;
+    // this injected incomplete owner is deliberately not a Ready/source claim.
+    let mut actual=retained_product::evaluate_operational([[0.0;3];2],[1.0;4]);
+    actual.member=observer.operational[0].member;observer.operational[0]=actual;
+    observer.error=Some(retained_product::CaptureError::Association("test earlier capture failure".into()));
+    let failed=match observer.prepare_case(ordinary){Err(f)=>f,Ok(_)=>panic!("earlier failed capture")};
+    let view=failed.typed_trace(&mut reads).unwrap();assert_eq!(view.old_coverage,OldCoverage::CapturedPrefix);
+    assert!(!view.old_vector_swapped);assert!(view.members.is_empty() && view.operational_new.is_empty());
+    assert!(view.operational_old[0].result.is_err());
+}
+#[test]
+fn prepared_trace_ready_is_private_and_later_g5a_failure_does_not_erase_proof() {
+    use retained_receipt::{ResultRef,CheckRef,CompletionRef};
+    let (_,prepared)=i51_ready_for_controls();
+    let candidate=match prepared.project_candidate(){Ok(c)=>c,Err(e)=>panic!("{:?}",e.error)};
+    let mut reads=retained_receipt::ProjectionWork::default();let view=candidate.typed_trace(&mut reads).unwrap();
+    assert!(matches!(view.result,ResultRef::Ready));assert!(view.proof_ready);
+    assert!(view.private_commit_precharged && view.private_committed);
+    assert!(view.checks.iter().all(|c|matches!(c,CheckRef::Passed)));assert!(matches!(view.completion,CompletionRef::Merged));
+    let proof=view.proof.as_ref().unwrap();assert_eq!(proof.projection_conversions.exact(),Ok(88));assert_eq!(proof.projection_outcomes.len(),88);
+    for (i,lane) in proof.lanes.iter().enumerate() {let lane=lane.as_ref().unwrap();assert!(lane.result.is_ok());assert_eq!(lane.work.correction_calls.exact(),Ok(1));
+        assert_eq!(lane.law,if i==0{k::ReadoutLaw::AdmittedK}else{k::ReadoutLaw::AnnularSource});}
+    assert_eq!(view.operational_old[0].inputs[9],view.members[0].old_source[5]);
+    assert_ne!(view.operational_old[0].inputs[9],view.operational_new[0].inputs[9]);
+    let mut lost=retained_receipt::ProjectionWork::default();lost.local.events=u64::MAX;
+    assert!(matches!(candidate.typed_trace(&mut lost),Err(retained_receipt::TraceProjectionError::LostTrace)));
+    let (reentry,prior)=candidate.test_reentry();assert!(prior.passed());
+    assert!(matches!(reentry.typed_trace(&mut reads),Err(retained_receipt::TraceProjectionError::MissingFailure)));
+    let (ordinary,mut prepared)=i51_ready_for_controls();prepared.test_capture_mut().g5a_work.lost=true;
+    let failure=match prepared.project_candidate(){Err(e)=>e,Ok(_)=>panic!("lost G5a must refuse")};
+    let view=failure.typed_trace(&mut reads).unwrap();assert!(view.proof_ready);assert!(!view.private_committed);
+    assert!(matches!(view.checks[0],CheckRef::Passed));assert!(matches!(view.checks[2],CheckRef::Failed(_)));
+    assert!(matches!(view.result,ResultRef::Unavailable(_)));assert_eq!(serde_json::to_vec(&ordinary).unwrap(),serde_json::to_vec(&failure.ordinary).unwrap());
+    println!("I51_TRACE_LAYOUT PreparedTrace={} PreparationEntry={} PrivateAdapterSnapshot={} PreparedAttemptView={} ProjectionWork={} OperationalSpent={}",
+        std::mem::size_of::<retained_receipt::PreparedTrace>(),std::mem::size_of::<retained_receipt::PreparationEntry>(),
+        std::mem::size_of::<retained_receipt::PrivateAdapterSnapshot>(),std::mem::size_of::<retained_receipt::PreparedAttemptView<'static>>(),
+        std::mem::size_of::<retained_receipt::ProjectionWork>(),std::mem::size_of::<retained_product::OperationalSpent>());
+    println!("I51_TRACE_PP_DEPENDENCY_LAYOUT SectionPreparationWork={} ProductCertificateSpent={} ProductProofFailure={} ProductProofTrace={} CertifiedProductProof={}",
+        std::mem::size_of::<k::SectionPreparationWork>(),std::mem::size_of::<k::ProductCertificateSpent<'static>>(),
+        std::mem::size_of::<k::ProductProofFailure>(),std::mem::size_of::<k::ProductProofTrace<'static>>(),std::mem::size_of::<k::CertifiedProductProof>());
+}
+#[test]
+fn prepared_trace_certificate_refusal_preserves_actual_later_checks_and_native_refusal() {
+    use retained_receipt::{CheckRef,Stage,StageState};
+    let (observer,ordinary)=prepared_trace_observed();let old_source=observer.source.clone().unwrap();let old_facts=observer.facts.clone();
+    let mut prepared=observer.prepare_case(ordinary).unwrap_or_else(|_|panic!("preparation"));
+    prepared.test_capture_mut().source=Some(old_source);prepared.test_capture_mut().facts=old_facts;prepared.solve_native().unwrap();
+    let failure=match prepared.project_candidate(){Err(e)=>e,Ok(_)=>panic!("old source must refuse certificate")};
+    let mut reads=retained_receipt::ProjectionWork::default();let view=failure.typed_trace(&mut reads).unwrap();
+    assert!(matches!(view.checks[0],CheckRef::Failed(_)));assert!(!view.proof_ready);
+    assert_ne!(view.stages[Stage::Observables as usize],StageState::NotEntered);
+    assert_ne!(view.stages[Stage::G5a as usize],StageState::NotEntered);
+    assert!(view.proof.as_ref().unwrap().lanes.iter().all(|l|l.as_ref().is_some_and(|l|l.result.is_ok())));
+    let (observer,ordinary)=prepared_trace_observed();let mut prepared=observer.prepare_case(ordinary).unwrap_or_else(|_|panic!());
+    prepared.test_capture_mut().source=None;assert!(prepared.solve_native().is_err());
+    let view=prepared.native_refusal_trace(&mut reads).unwrap();assert_eq!(view.stages[Stage::Native as usize],StageState::Failed);
+    assert!(view.native_run.is_none() && view.proof.is_none());
+}
+
+#[test]
+fn prepared_trace_completion_merge_and_separate_failure_keep_distinct_owners() {
+    use retained_receipt::{TraceFault,Stage,StageState,CompletionRef};
+    for fault in [TraceFault::Maxima,TraceFault::ValuesCompletion] {
+        let (ordinary,mut prepared)=i51_ready_for_controls();prepared.test_capture_mut().trace_fault=Some(fault);
+        let failure=match prepared.project_candidate(){Err(e)=>e,Ok(_)=>panic!("injected completion refusal")};
+        let mut reads=retained_receipt::ProjectionWork::default();let view=failure.typed_trace(&mut reads).unwrap();
+        assert_eq!(serde_json::to_vec(&failure.ordinary).unwrap(),serde_json::to_vec(&ordinary).unwrap());
+        let proof=view.proof.as_ref().unwrap();assert_eq!(proof.projection_outcomes.len(),88);
+        assert_eq!(view.stages[Stage::Aliases as usize],StageState::NotEntered);
+        match fault {
+            TraceFault::Maxima=>{assert!(matches!(view.completion,CompletionRef::Merged));assert!(proof.completion_merged);
+                assert_eq!(view.stages[Stage::Maxima as usize],StageState::Failed);assert_eq!(view.stages[Stage::Values as usize],StageState::NotEntered);},
+            TraceFault::ValuesCompletion=>{
+                let original=match &failure.error{retained_product::PreparedCandidateError::Values{failure,..}=>failure,_=>panic!()};
+                match view.completion {CompletionRef::SeparateFailure{visits,capacity_bytes}=>{assert_eq!(visits,original.visits);assert_eq!(capacity_bytes,original.capacity);},_=>panic!()}
+                assert!(!proof.completion_merged);assert_eq!(view.stages[Stage::Values as usize],StageState::Failed);
+            },_=>unreachable!(),
+        }
+    }
+}
