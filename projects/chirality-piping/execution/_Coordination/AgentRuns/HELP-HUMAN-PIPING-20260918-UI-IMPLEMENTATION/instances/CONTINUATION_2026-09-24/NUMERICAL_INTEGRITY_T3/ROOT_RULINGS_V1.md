@@ -7698,3 +7698,23 @@ The docstring correction to the Python-only old-Err test is committed on READER.
 - **The toolchain deviation:** those runs linked with the Command Line Tools (`DEVELOPER_DIR`) under the interim ruling. The evidence is local acceptance evidence, not gate evidence.
 
 **This is a local fan-in, not a main merge.** The seam carries no serializer or public receipt. Producer custody and the owner binding (RV77-N4) are carried to the receipt-transaction design. The stale status line in I61's ADDENDUM_RV77 (it names branch head `e0fc33b4f7`) is noted, not edited.
+
+## Snapshot 06a and the Python checklist audit verified (ROOT, 2026-10-03 UTC)
+
+**Snapshot 06a and the Python audit are committed on READER as `e7dac8d4d9`.**
+- **The new hashes:** corpus `58562c88dc`, `retained_precision.py` `5bb6357a36`, test file `514745e245`.
+- **05c's content is byte-identical inside 06a.** 06a adds three synthetic native-ladder bases and 30 mutations, for 12 cases, 151 mutations and 16 must-pass entries in all. No existing expected outcome moved.
+- **ROOT's own Python run:** 196 passed. The records (SHARED_SNAPSHOT_06A, RETURN_C2_1, SHA256SUMS_C2_1) verify.
+
+**RETURN_C2_1 is now the authoritative status table for the 42 checklist IDs.**
+- **Checked by shared mutations or bases:** 33 IDs.
+- **Checked only by Python reader-logic tests** (shared base deferred): N5, N8, N10 and O5.
+- **Partly checked:**
+  - N9: the work-accounting fault cause is not publicly derivable, so it stays attested;
+  - N17: the overshoot rules are implemented, but a shared base needs 20B or 60B of real work.
+- **Implemented but untested:** N11 (refused group); no native-faithful base has been found.
+- **Not publicly checkable:** W4.
+
+**Python's within-G5 order now follows C3:304:** native schedule, then ordinary, then C3 association, then typed checks, then the C3 work equations, which run after every attempt's association checks.
+
+**Next:** Rust (I63) and TypeScript (I64) audit against the same 42 IDs and align to 06a. C2-2 (plan items 4, 5, 11, 14, 15 and 16) follows.
