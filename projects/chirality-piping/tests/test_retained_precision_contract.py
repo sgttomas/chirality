@@ -132,6 +132,11 @@ def test_shared_draft_first_failure_controls(mutation):
 
 
 def test_old_operational_error_is_retained_independently_of_new_ready():
+    """Reader logic only: a receipt shape whose old operational result is refused while
+    the new result is ready must still validate with unchanged classifications. No native
+    trigger is established for this coefficient_range refusal on ordinary-magnitude
+    operands; this is not a native-faithful producer control (retired from the shared
+    corpus as 05c)."""
     fixture = corpus()["cases"][0]
     source = apply_mutation(fixture["source"], {"edits":[{
         "path":["retained_precision","body","product_attempts",0,"operational","old",0,"result"],
