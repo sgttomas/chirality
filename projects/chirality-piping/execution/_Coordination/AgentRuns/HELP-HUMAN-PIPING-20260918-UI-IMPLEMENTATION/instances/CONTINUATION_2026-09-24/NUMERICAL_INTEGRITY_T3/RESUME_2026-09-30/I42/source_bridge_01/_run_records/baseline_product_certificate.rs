@@ -18,9 +18,6 @@ pub(super) struct Enclosure {
     hi: Endpoint,
 }
 impl Enclosure {
-    pub(crate) fn endpoints(&self) -> (&Endpoint, &Endpoint) {
-        (&self.lo, &self.hi)
-    }
     fn point(x: Endpoint) -> Self {
         Self { lo: x, hi: x }
     }
@@ -589,5 +586,3 @@ fn build_member(
 #[cfg(test)]
 #[path = "../../../tests/retained_k4/product_certificate_tests.rs"]
 mod tests;
-
-pub(crate) mod bridge;

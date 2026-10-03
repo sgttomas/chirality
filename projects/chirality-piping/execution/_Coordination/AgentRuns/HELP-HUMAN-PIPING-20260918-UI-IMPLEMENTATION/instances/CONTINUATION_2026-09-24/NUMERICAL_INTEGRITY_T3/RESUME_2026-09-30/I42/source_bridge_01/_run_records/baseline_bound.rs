@@ -156,48 +156,6 @@ where
     data
 }
 
-/// Borrowed bridge fill of exactly the R7 predicate above. The caller validates
-/// dimensions and owns the output; no new report or hidden data allocation.
-/// Visits include each free position, ledger comparison and inspected adjacency.
-pub(crate) fn fill_data_blocks<const L: usize>(
-    blocks: &FreeBlocks,
-    ordering: &Ordering,
-    structure: &Structure,
-    ledger: &RetainedLedger,
-    prescribed_nonzero: &[bool],
-    u: &[Wide<L>],
-    data: &mut [bool],
-) -> super::work::WorkTotal
-where
-    Wide<L>: SupportedWidth,
-{
-    use super::work::WorkTotal;
-    data.fill(false);
-    let mut visits = WorkTotal::zero();
-    for (a, &g) in ordering.free.iter().enumerate() {
-        visits = visits.add(WorkTotal::exact_count(1));
-        let b = blocks.of[a] as usize;
-        if data[b] {
-            continue;
-        }
-        let (nonzero, spent) = ledger.nonzero_term_spent(g);
-        visits = visits.add(spent);
-        if nonzero || !u[g].is_zero() {
-            data[b] = true;
-            continue;
-        }
-        for index in structure.pattern.row_range(g) {
-            visits = visits.add(WorkTotal::exact_count(1));
-            let c = structure.pattern.column(index);
-            if ordering.position[c] == usize::MAX && prescribed_nonzero[c] {
-                data[b] = true;
-                break;
-            }
-        }
-    }
-    visits
-}
-
 // ------------------------------------------------------------ est_c (7c)
 
 /// Per block, the largest ratio ‖(K̃⁻¹x)_c‖₁/‖x_c‖₁ over the condition
