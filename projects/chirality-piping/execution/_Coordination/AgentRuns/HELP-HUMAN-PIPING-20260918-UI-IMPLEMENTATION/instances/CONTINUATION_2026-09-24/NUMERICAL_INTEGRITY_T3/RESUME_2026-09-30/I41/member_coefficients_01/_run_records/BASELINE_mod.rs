@@ -39,7 +39,6 @@ pub(crate) mod directed;
 pub(crate) mod factor;
 pub(crate) mod ledger;
 pub(crate) mod recover;
-mod product_certificate;
 // V-K's seeded faults (T3 D1 §4.10, §7.3): compiled only for tests and under
 // the `mutation-controls` feature, which only numerical_robustness's mutation
 // run enables; inactive unless `FK_SEEDED_FAULT` names a fault.
