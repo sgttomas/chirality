@@ -36,11 +36,11 @@ final joined closure remain.
 
 Both material-coverage backchecks are clear and accepted. They establish no false
 passing predicate in the fixed captured cases; unchanged UX has a real miss and UZ
-has a conservative refusal. I50 checkpoint 0 is preserved at `848981f433`. RV65's two plan corrections
-are selected explicitly in the six-file implementation grant. I50 A/B/D is
-prepared: actual spring capture, support components, coverage and named-case
-execution. Code review and the actual numerical outcome remain outstanding. No compiler or model run is active.
-M5 Max, existing memory guard PID 5387. Original evidence remains unchanged.
+has a conservative refusal. I50 is implementing the six-file component with both RV65 plan corrections.
+Receipt: 06:40:47Z; checkpoint: 06:55:47Z; first actual named result by
+07:15:47Z; cutoff: 07:30:47Z; sealed return: 07:40:47Z. It holds the sole focused
+compiler lane on the M5 Max under existing memory guard PID 5387. Code review
+and the actual numerical outcome remain outstanding. Original evidence is unchanged.
 
 ## Next
 

@@ -6387,3 +6387,10 @@ build jobs, two test threads, locked/offline absolute manifests and twenty-minut
 command walls. Bulk new evidence stays in external scratch with committed
 hash/size/location manifests. The named case's actual numerical result, not
 additional certificate speculation, determines the next publishing dependency.
+
+
+I50 implementation dispatch (ROOT, 2026-10-03 UTC): the same TASK received the
+selected grant `d7b1711dc6` at 06:40:47Z. Checkpoint: 06:55:47Z; first actual named
+result: 07:15:47Z; cutoff: 07:30:47Z; sealed return: 07:40:47Z. ROOT confirmed only
+the existing guard was running before assigning the sole focused compiler lane.
+The active implementation stays within the selected six files and private scope.
