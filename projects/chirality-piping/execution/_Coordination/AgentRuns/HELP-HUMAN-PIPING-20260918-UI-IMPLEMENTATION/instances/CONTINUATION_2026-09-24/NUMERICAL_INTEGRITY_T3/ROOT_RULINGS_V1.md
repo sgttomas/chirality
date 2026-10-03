@@ -6394,3 +6394,30 @@ selected grant `d7b1711dc6` at 06:40:47Z. Checkpoint: 06:55:47Z; first actual na
 result: 07:15:47Z; cutoff: 07:30:47Z; sealed return: 07:40:47Z. ROOT confirmed only
 the existing guard was running before assigning the sole focused compiler lane.
 The active implementation stays within the selected six files and private scope.
+
+
+## Dense observation completion selected (ROOT, 2026-10-03 UTC)
+
+ROOT selects a narrow observation-custody completion so the existing dense-mode output can reach a complete private verdict without changing its numerical meaning.
+
+The first immutable named-run record is preserved at `d87eb0fb59`; all twelve
+external files were hash/size verified. RV65's independent delta review is
+preserved at `d0acf8ce78`. ROOT read the full review and verified its seal. The
+review's “Existing classification and observed correction” establishes sparse
+98 final rows and dense 99, both with 97 mechanical rows and native Q58. Dense
+includes its already existing parity observation; the earlier mode-independent
+98 expectation was wrong. Its no-verdict G5a None was not a performed G5a check.
+
+The adopted D1/D2 table already classifies parity as non_quantity. Select the
+review's full exact seven-file delta through I50_DENSE_OBSERVATION_ADDENDUM.md:
+add only the specified optional PP lib.rs producer-boundary capture call, actual
+mode/value/text custody, independent completed/present state, exact final binding
+and separate typed maximum coverage. A missing capture cannot become valid
+absence. Mode remains mandatory; mechanical scales and gates are unchanged.
+No observation algorithm, source semantics, public route or D2 contract changes.
+
+I50 continues the same component and original cutoff/return clocks. The sparse
+full-cover numerical result and torsional dual-readout separation remain author
+findings pending independent numerical review. They are not a false-publication
+claim or a proof about every future recomputed scale. No projection or further
+certificate method is selected on their basis.
