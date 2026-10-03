@@ -41,8 +41,12 @@ fn count_add(a: usize, b: usize) -> Result<usize, Error> {
 fn count_mul(a: usize, b: usize) -> Result<usize, Error> {
     a.checked_mul(b).ok_or(Error::CountRange)
 }
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub(crate) enum ReadoutLaw { AdmittedK, AnnularSource }
+
 #[derive(Debug)]
 pub(crate) struct ResidualWork {
+    pub(crate) readout_law: ReadoutLaw,
     pub(crate) numeric: NumericWork,
     pub(crate) point: AttemptWork,
     pub(crate) view: SourceBridgeViewWork,
@@ -63,6 +67,7 @@ pub(crate) struct ResidualWork {
 impl ResidualWork {
     fn new() -> Self {
         Self {
+            readout_law: ReadoutLaw::AnnularSource,
             numeric: NumericWork::new(),
             point: AttemptWork::default(),
             view: SourceBridgeViewWork::default(),
@@ -233,7 +238,7 @@ fn coefficients(
     if !std::ptr::eq(m, law.member) {
         return Err(Error::MemberOwner);
     }
-    Ok(build_member(
+    let mut coefficients = build_member(
         &MemberOperands {
             diameter: law.diameter,
             effective_wall: law.effective_wall,
@@ -249,7 +254,15 @@ fn coefficients(
             },
         },
         &mut w.numeric,
-    )?)
+    )?;
+    if w.readout_law == ReadoutLaw::AdmittedK {
+        for i in 0..4 {
+            w.visit()?;
+            coefficients.coefficients[i]=Enclosure::point(coefficients.admitted_products[i]);
+            coefficients.coefficient_differences[i]=Endpoint::ZERO;
+        }
+    }
+    Ok(coefficients)
 }
 fn member(
     view: &SourceBridgeView<'_>,
@@ -628,6 +641,26 @@ impl<'a> ResidualSpent<'a> {
         }
     }
 }
+#[derive(Debug)]
+pub(crate) struct LaneReadouts {
+    pub(crate) rows: Vec<Enclosure>,
+    pub(crate) data: Vec<bool>,
+    pub(crate) alpha: Vec<Endpoint>,
+    pub(crate) epsilon: Vec<Endpoint>,
+}
+impl ResidualSpent<'_> {
+    pub(crate) fn into_readouts(self) -> (Result<LaneReadouts,Error>, ResidualWork) {
+        let result=match self.result {
+            Err(e)=>Err(e),
+            Ok(native)=>match self.work.status().fault() {
+                Some(f)=>Err(Error::Numeric(NumericError::Arithmetic(AttemptStop::WorkAccounting(f)))),
+                None=>Ok(LaneReadouts { rows:native.rows, data:native.view.into_data(),
+                    alpha:native.alpha, epsilon:native.epsilon }),
+            },
+        };
+        (result,self.work)
+    }
+}
 pub(crate) fn source_residual<'a>(
     owner: &'a RetainedSolve,
     source: &'a PrimitiveSource,
@@ -635,7 +668,14 @@ pub(crate) fn source_residual<'a>(
     precision: u32,
     laws: &'a [ProposedMemberLaw<'a>],
 ) -> ResidualSpent<'a> {
+    source_residual_for_law(owner,source,identity,precision,laws,ReadoutLaw::AnnularSource)
+}
+pub(crate) fn source_residual_for_law<'a>(
+    owner:&'a RetainedSolve, source:&'a PrimitiveSource, identity:&[u8], precision:u32,
+    laws:&'a [ProposedMemberLaw<'a>], readout_law:ReadoutLaw,
+) -> ResidualSpent<'a> {
     let mut work = ResidualWork::new();
+    work.readout_law=readout_law;
     let view = owner.source_bridge_view(source, identity, precision);
     work.view = view.work;
     let result = match view.result {

@@ -2384,3 +2384,245 @@ fn i47_modulus_binding_accounting_failure_remains_typed() {
     ));
     assert_eq!(layout.counts.get(), [0; 10]);
 }
+
+
+#[test]
+fn i51_first_prepared_native_both_modes() {
+    for mode in [PreviewSolverMode::SparseInteractive,PreviewSolverMode::DenseScrutiny] {
+        let raw=i50_named_request();
+        let (request,capture)=source_receipt::CapturedInvocation::parse(raw.clone(),mode).unwrap();
+        let mut observer=ProductCapture::prepared_probe();
+        let e=run_linear_static_preview_observed(request,mode,Some(&capture),&mut SourceRecoveryBudget::default(),Some(&mut observer));
+        assert!(observer.native.is_none(),"no old source solve");
+        assert!(observer.error.is_none(),"{:?}",observer.error);
+        let mut prepared=observer.prepare_case(&e).unwrap_or_else(|o|panic!("prepare {:?} {:?}",o.capture.error,o.preparation_error));
+        for (p,w) in prepared.preparations.iter().zip(&prepared.preparation_work) {
+            println!("I51_PREPARATION mode={} input={:?} prepared={:?} work={:?}",mode.as_str(),p.input_bits(),p.section_bits().bits(),w);
+            assert_eq!(p.section_bits().bits(),[0x3f7872fa3a37ac13,0x3efc52664442210a,0x3f0c52664442210a,0x3f31b37feaa954a6,0x3fb999999999999a]);
+            assert!(w.status().is_exact());
+            assert_eq!(w.layout_bytes[0],27*w.layout_bytes[1],"named prep frame, helper frames separate");
+            assert_eq!(w.conversions.exact(),Ok(9));
+        }
+        prepared.solve_native().unwrap();
+        i50_dump(&e,&prepared.capture,mode);
+        let (invocation,case)=prepared.capture.native.as_ref().unwrap();
+        assert_eq!(invocation.calls().len(),1);
+        if let k::ExecutionOutcome::Selected(owner)=&case.outcome {
+            println!("I51_NATIVE mode={} p={} evidence={:?} late_source_hooks={}",mode.as_str(),owner.selected_precision(),owner.evidence(),prepared.capture.prepared_late_calls);
+        } else {panic!("prepared unavailable");}
+        let ordinary=run_linear_static_preview_value_with_mode(raw,mode).unwrap();
+        assert_eq!(serde_json::to_string(&e).unwrap(),serde_json::to_string(&ordinary).unwrap());
+    }
+}
+
+
+fn i51_c0_mode_observation() -> ResultItem {
+    ResultItem {id:"result:solver-mode:linear-solve-basis".into(),kind:"linear_solver_mode_basis".into(),
+        value:1.,unit:"mode_code".into(),entity_ref:"solver:linear_static_preview".into(),basis_ref:None,source_result_refs:Vec::new(),
+        metadata:Some(ResultMetadata{component:"linear_solver_mode".into(),coordinate_system:"reduced_system".into(),
+            location:"case".into(),basis:"isolated successful ordinary observation fixture".into(),
+            sign_convention:"mode_code 1=sparse_interactive, 2=dense_scrutiny, 3=dense_fallback_after_sparse_failure".into()})}
+}
+fn i51_c0_envelope(mut mode:ResultItem)->MechanicsEnvelope {
+    mode.basis_ref=Some(ResultBasisRef{ref_type:"load_case".into(),ref_id:"case".into()});
+    let mut producer=mechanics_producer();producer.semantic_contract_id=preview_physics::ID.into();
+    MechanicsEnvelope {contract_evidence:None,schema_version:MECHANICS_SCHEMA_VERSION.into(),producer,
+        numerical_quality:unassessed_numerical_quality(),source_block_recovery:None,
+        formulation_basis:preview_physics::formulation_basis(),document_kind:"isolated_C0_fixture".into(),
+        run_id:"isolated_C0_no_solve".into(),model_ref:"fixture".into(),
+        status:StatusEnvelope{mechanics:"MECHANICS_SOLVED".into(),rule_check:"not_performed".into(),professional_acceptance:"not_provided".into()},
+        summary:Summary{node_count:2,segment_count:1,support_count:4,load_case_count:1,component_stress_modifier_count:0,
+            component_user_stiffness_macro_element_count:0,component_pressure_thrust_load_count:0,spring_hanger_user_input_count:0,
+            max_displacement:None,max_open_formula_stress:None},results:vec![mode],diagnostics:Vec::new(),
+        professional_boundary:professional_boundary(),accepted_model_state_mutated:false}
+}
+#[test]
+fn i51_c0_isolated_late_hook_custody_and_prefixes() {
+    use super::retained_product::{AdapterEvent as E,CaptureError};
+    // Only construct ordinary inputs and exercise capture. No public preview,
+    // full model solve, native invocation, factor or certificate is called.
+    for name in ["valid","missing early","missing observations","foreign case","wrong invocation mode",
+        "wrong observation mode","wrong observation owner","wrong parity presence","wrong mode bits",
+        "multiple cases","combination","selected","duplicate","inner capture failure",
+        "key accounting","identity accounting","marker accounting","inner accounting","missing late",
+        "final identity","final status","final source selected","final value","final metadata","prepared reserve fault"] {
+        let raw=i50_named_request();
+        let (mut request,inv)=source_receipt::CapturedInvocation::parse(raw,PreviewSolverMode::SparseInteractive).unwrap();
+        let mut diagnostics=Vec::new();
+        let built=build_model(&request.model,&request.model.materials,&mut diagnostics).unwrap();
+        let boundary=prepare_boundary(built.nodes.len(),&built.supports);
+        assert!(diagnostics.is_empty() && boundary.findings.is_empty());
+        let application=LoadApplication{nodal_loads:request.model.load_cases[0].primitive_loads.iter().enumerate().map(|(i,l)|
+            open_pipe_stress_primitive_loads::NodalLoadContribution{load_id:l.id.clone(),node_index:1,global_dof:9+i,value:l.magnitude.value}).collect(),
+            element_uniform_loads:Vec::new(),imposed_displacements:Vec::new(),findings:Vec::new()};
+        let mut o=ProductCapture::prepared_probe();
+        o.invocation(Some(&inv),PreviewSolverMode::SparseInteractive);
+        o.normalized(&request.model,&request.model.materials,false);
+        let mode_row=i51_c0_mode_observation();
+        if name!="missing early" {
+            o.case_source(&request.model,&built,&request.model.materials,&request.model.load_cases[0],
+                &boundary.restrained_dofs,&boundary.springs,&application,&[],&[]);
+        }
+        assert!(o.source.is_none() && o.source_capture_entries==0 && o.native.is_none());
+        if name!="missing observations" && name!="missing early" {
+            o.solver_observations(&request.model.load_cases[0],PreviewSolverMode::SparseInteractive,std::slice::from_ref(&mode_row));
+            assert!(o.error.is_none(),"{name}: {:?}",o.error);
+        }
+        match name {
+            "foreign case"=>request.model.load_cases[0].id="foreign".into(),
+            "wrong invocation mode"=>o.invocation_mode=Some(PreviewSolverMode::DenseScrutiny),
+            "wrong observation mode"=>o.observations.as_mut().unwrap().mode=PreviewSolverMode::DenseScrutiny,
+            "wrong observation owner"=>o.observations.as_mut().unwrap().case="foreign".into(),
+            "wrong parity presence"=>o.observations.as_mut().unwrap().parity_produced=true,
+            "wrong mode bits"=>o.observations.as_mut().unwrap().mode_row.value_bits=2f64.to_bits(),
+            "multiple cases"=>request.model.load_cases.push(request.model.load_cases[0].clone()),
+            "combination"=>request.model.combinations.push(serde_json::from_value(serde_json::json!({"id":"C","basis":"mechanics"})).unwrap()),
+            "inner capture failure"=>request.model.load_cases[0].primitive_loads[0].magnitude.value=1.,
+            "key accounting"|"identity accounting"|"marker accounting"|"inner accounting"=>{
+                let mut counts=o.adapter.counts.get();
+                let (event,value)=match name {"key accounting"=>(E::KeyProbe,u64::MAX),"identity accounting"=>(E::IdentityByteRead,u64::MAX),
+                    "marker accounting"=>(E::MapWrite,u64::MAX),_=>(E::MapWrite,u64::MAX-2)};
+                counts[event as usize]=value;o.adapter.counts.set(counts);
+            },_=>{}
+        }
+        if name!="missing late" {
+            o.prepared_case_source(name=="selected",&request.model,&built,&request.model.materials,&request.model.load_cases[0],
+                &boundary.restrained_dofs,&boundary.springs,&application,&[],&[]);
+        }
+        if name=="duplicate" {
+            let entries=o.source_capture_entries;
+            o.prepared_case_source(false,&request.model,&built,&request.model.materials,&request.model.load_cases[0],
+                &boundary.restrained_dofs,&boundary.springs,&application,&[],&[]);
+            assert_eq!(o.source_capture_entries,entries);
+        }
+        assert!(o.native.is_none(),"zero native calls");
+        if name.ends_with("accounting") {
+            assert!(matches!(o.error,Some(CaptureError::Accounting(_))),"{name}: {:?}",o.error);
+            let counts=o.adapter.counts.get();
+            o.prepared_case_source(false,&request.model,&built,&request.model.materials,&request.model.load_cases[0],
+                &boundary.restrained_dofs,&boundary.springs,&application,&[],&[]);
+            assert_eq!(o.adapter.counts.get(),counts,"prior fault blocks repeat source work");
+        }
+        let after_capture=matches!(name,"valid"|"duplicate"|"inner capture failure"|"final identity"|"final status"|"final source selected"|"final value"|"final metadata"|"prepared reserve fault");
+        assert_eq!(o.source_capture_entries,usize::from(after_capture),"{name}");
+        if name=="valid" || name.starts_with("final ") || name=="missing late" || name=="prepared reserve fault" {
+            let mut e=i51_c0_envelope(mode_row);
+            match name {"final identity"=>e.producer.semantic_contract_id="foreign".into(),
+                "final status"=>e.status.mechanics="blocked".into(),
+                "final source selected"=>e.source_block_recovery=Some(serde_json::json!({})),
+                "final value"=>e.results[0].value=2.,
+                "final metadata"=>e.results[0].metadata.as_mut().unwrap().basis="foreign".into(),_=>{}}
+            let bytes=serde_json::to_vec(&e).unwrap();
+            o.finish(&e);
+            assert_eq!(serde_json::to_vec(&e).unwrap(),bytes,"capture never mutates envelope");
+            if name=="valid" {
+                assert!(o.error.is_none(),"{:?}",o.error);assert!(o.source.is_some());
+                let prepared=o.prepare_case(&e).unwrap_or_else(|f|panic!("{:?}",f.capture.error));
+                assert_eq!(prepared.preparations.len(),1);assert_eq!(prepared.preparation_work.len(),1);
+                assert!(prepared.capture.native.is_none());
+                assert_eq!(prepared.capture.prepared_capacity_bytes[11],3*std::mem::size_of::<u32>());
+                assert_eq!(prepared.capture.prepared_capacity_bytes[10],18);
+                println!("I51_C0_SEAM valid prepared source_entries=1 preparation_entries=1 native_calls=0 capacities={:?} work={:?}",
+                    prepared.capture.prepared_capacity_bytes,prepared.capture.adapter);
+                continue;
+            }
+            else if name=="prepared reserve fault" {
+                let mut counts=o.adapter.counts.get();counts[E::RustCapacityBytes as usize]=u64::MAX;o.adapter.counts.set(counts);
+                let failure=match o.prepare_case(&e) {Ok(_)=>panic!("injected preparation allocation must fail"),Err(f)=>f};
+                assert!(matches!(failure.capture.error,Some(CaptureError::Accounting(_))));
+                assert!(failure.capture.prepared_capacity_bytes[0]>0,"successful reserve survives later counter fault");
+                assert!(failure.preparations.is_empty() && failure.capture.native.is_none());
+                println!("I51_C0_SEAM {name} source_entries={} preparation_entries={} native_calls=0 capacities={:?} work={:?}",
+                    failure.capture.source_capture_entries,failure.preparation_work.len(),failure.capture.prepared_capacity_bytes,failure.capture.adapter);
+                continue;
+            } else {assert!(o.error.is_some(),"{name}");}
+        } else {assert!(o.error.is_some(),"{name}");}
+        println!("I51_C0_SEAM {name} late={} source_entries={} preparation_entries=0 native_calls=0 support_caps={:?} work={:?} error={:?}",
+            o.prepared_late_calls,o.source_capture_entries,o.support_capacity_bytes,o.adapter,o.error);
+    }
+}
+
+
+#[test]
+fn i51_c0_isolated_guard_accounting_boundaries() {
+    use super::retained_product::{AdapterEvent as E,CaptureError};
+    let raw=i50_named_request();let (request,inv)=source_receipt::CapturedInvocation::parse(raw,PreviewSolverMode::SparseInteractive).unwrap();
+    let mut d=Vec::new();let built=build_model(&request.model,&request.model.materials,&mut d).unwrap();
+    let boundary=prepare_boundary(built.nodes.len(),&built.supports);
+    let empty=LoadApplication{nodal_loads:Vec::new(),element_uniform_loads:Vec::new(),imposed_displacements:Vec::new(),findings:Vec::new()};
+    let case=&request.model.load_cases[0];
+    let mut checked=0;
+    for late in [false,true] {
+        for (event,count) in [(E::KeyProbe,if late{4}else{1}),
+            (E::IdentityByteRead,if late{32}else{8}),
+            (E::ValidationEntry,if late{6}else{2}),
+            (E::MapWrite,if late{3}else{3})] {
+            for offset in 0..count {
+                let mut o=ProductCapture::prepared_probe();o.invocation(Some(&inv),PreviewSolverMode::SparseInteractive);
+                o.normalized(&request.model,&request.model.materials,false);
+                if late {
+                    o.case_source(&request.model,&built,&request.model.materials,case,&boundary.restrained_dofs,&boundary.springs,&empty,&[],&[]);
+                    o.solver_observations(case,PreviewSolverMode::SparseInteractive,&[i51_c0_mode_observation()]);
+                }
+                let mut counters=o.adapter.counts.get();counters[event as usize]=u64::MAX-offset;o.adapter.counts.set(counters);
+                if late {o.prepared_case_source(false,&request.model,&built,&request.model.materials,case,&boundary.restrained_dofs,&boundary.springs,&empty,&[],&[]);}
+                else {o.case_source(&request.model,&built,&request.model.materials,case,&boundary.restrained_dofs,&boundary.springs,&empty,&[],&[]);}
+                assert!(matches!(o.error,Some(CaptureError::Accounting(_))),"late={late} event={event:?} offset={offset}: {:?}",o.error);
+                assert_eq!(o.source_capture_entries,0);assert!(o.source.is_none() && o.native.is_none());
+                let after=o.adapter.counts.get();
+                o.prepared_case_source(false,&request.model,&built,&request.model.materials,case,&boundary.restrained_dofs,&boundary.springs,&empty,&[],&[]);
+                assert_eq!(o.adapter.counts.get(),after);checked+=1;
+                println!("I51_C0_BOUNDARY late={late} event={event:?} offset={offset} source_entries=0 native_calls=0 prefix={after:?}");
+            }
+        }
+    }
+    assert_eq!(checked,59);
+}
+
+
+#[test]
+fn i51_complete_prepared_candidate_both_modes() {
+    let mut all=true;
+    for mode in [PreviewSolverMode::SparseInteractive,PreviewSolverMode::DenseScrutiny] {
+        let raw=i50_named_request();let (request,capture)=source_receipt::CapturedInvocation::parse(raw.clone(),mode).unwrap();
+        let mut observer=ProductCapture::prepared_probe();
+        let ordinary=run_linear_static_preview_observed(request,mode,Some(&capture),&mut SourceRecoveryBudget::default(),Some(&mut observer));
+        assert!(observer.error.is_none(),"{:?}",observer.error);
+        let original=serde_json::to_vec(&ordinary).unwrap();
+        let mut prepared=observer.prepare_case(&ordinary).unwrap_or_else(|e|panic!("{:?}",e.capture.error));
+        prepared.solve_native().unwrap();
+        match prepared.project_candidate(ordinary) {
+            Ok(candidate)=>{
+                println!("I51_CANDIDATE mode={} committed_private=true",mode.as_str());
+                assert!(candidate.certificate.passed());
+                assert_eq!(candidate.certificate.work().source_correction_calls().unwrap().exact(),Ok(2));
+                i50_dump(candidate.envelope(),&candidate.prepared.capture,mode);
+            }
+            Err(failure)=>{
+                println!("I51_CANDIDATE mode={} committed_private=false error={:?}",mode.as_str(),failure.error);
+                assert_eq!(serde_json::to_vec(&failure.ordinary).unwrap(),original,"failure preserves fallback");
+                i50_dump(&failure.ordinary,&failure.prepared.capture,mode);
+                all=false;
+            }
+        }
+    }
+    assert!(all,"both private prepared modes must pass; first failures preserved");
+}
+
+#[test]
+fn i51_actual_exact_pressure_selection_suppresses_all_prepared_work() {
+    let raw:serde_json::Value=serde_json::from_str(include_str!("../tests/fixtures/exact_pressure_connected_request.json")).unwrap();
+    for mode in [PreviewSolverMode::SparseInteractive,PreviewSolverMode::DenseScrutiny] {
+        let (request,capture)=source_receipt::CapturedInvocation::parse(raw.clone(),mode).unwrap();
+        let mut observer=ProductCapture::prepared_probe();
+        let ordinary=run_linear_static_preview_observed(request,mode,Some(&capture),&mut SourceRecoveryBudget::default(),Some(&mut observer));
+        assert_eq!(observer.source_capture_entries,0);
+        assert!(observer.source.is_none());assert!(observer.native.is_none());
+        assert_eq!(observer.prepared_capacity_bytes,[0;16]);
+        let failure=match observer.prepare_case(&ordinary) {Err(e)=>e,Ok(_)=>panic!("exact selection must suppress prepared W1")};
+        assert!(failure.preparations.is_empty());assert!(failure.preparation_work.is_empty());
+        assert!(failure.capture.native.is_none());
+        let public=run_linear_static_preview_value_with_mode(raw.clone(),mode).unwrap();
+        assert_eq!(serde_json::to_vec(&ordinary).unwrap(),serde_json::to_vec(&public).unwrap());
+    }
+}

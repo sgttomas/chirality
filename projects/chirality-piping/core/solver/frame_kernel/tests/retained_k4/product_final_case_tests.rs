@@ -312,3 +312,22 @@ fn produced_comparison_and_helper_errors_survive_collection_loss() {
     );
     assert_eq!(stopped.visits.exact(), Ok(0));
 }
+
+#[test]
+fn i51_prepared_reserve_and_value_prefixes_are_checked() {
+    let mut spent=ProductCertificateSpent::new(&[]);
+    let v=spent.prepared_reserve::<Enclosure>(0,3).unwrap();
+    assert_eq!(spent.prepared_capacities[0],v.capacity()*std::mem::size_of::<Enclosure>());
+    spent.visits=WorkTotal::exact_count(u64::MAX);
+    let before=spent.prepared_capacities;
+    assert_eq!(spent.prepared_reserve::<Enclosure>(1,4).unwrap_err().category(),"work_accounting");
+    assert_eq!(spent.prepared_capacities,before);
+    let mut visits=WorkTotal::exact_count(u64::MAX);
+    assert_eq!(values_visit(&mut visits).unwrap_err().category(),"work_accounting");
+    assert_eq!(values_visit(&mut visits).unwrap_err().category(),"work_accounting");
+    let specs=[ProductRowSpec::mode("mode","case",0,1).unwrap(),ProductRowSpec::parity("parity","case",0,(-0.0f64).to_bits()).unwrap()];
+    assert_eq!(specs[0].observed,Some(1f64.to_bits()));
+    assert_eq!(specs[1].observed,Some((-0.0f64).to_bits()));
+    assert!(ProductRowSpec::mechanical("mode","case",ProductUnit::Record,0,ProductRecipe::NonQuantity).is_err());
+    assert!(ProductRowSpec::parity("parity","case",0,f64::NAN.to_bits()).is_err());
+}

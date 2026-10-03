@@ -423,3 +423,45 @@ fn product_certificate_b64u_each_refusal_prefix_and_collection_status() {
         Err(NumericError::Arithmetic(AttemptStop::Exponent))
     );
 }
+
+
+#[test]
+fn i51_c0_layout_and_accounting_only() {
+    // No source, model, factor, native solve or product invocation is created.
+    use std::mem::{size_of,align_of};
+    macro_rules! layout { ($name:expr,$t:ty) => {
+        println!("I51_C0_LAYOUT {} size={} align={}",$name,size_of::<$t>(),align_of::<$t>());
+    }; }
+    layout!("SectionPrepFrame",SectionPrepFrame);
+    layout!("SectionPreparationWork",SectionPreparationWork);
+    layout!("NumericWork",NumericWork);
+    layout!("WideContext16",WideContext<16>);
+    layout!("ExactWideSum",ExactWideSum);
+    layout!("Endpoint",Endpoint);
+    layout!("Enclosure",Enclosure);
+    layout!("ScalarResult",Result<Endpoint,NumericError>);
+    layout!("DirectedResult",Result<Endpoint,super::super::adaptive::AttemptStop>);
+    layout!("WideResult",Result<Endpoint,super::super::wide::WideError>);
+    layout!("ProductPair",(Endpoint,Endpoint));
+    layout!("WidePairResult",Result<(Endpoint,Endpoint),super::super::wide::WideError>);
+    layout!("RoundDetailResult",Result<(Endpoint,usize,bool),super::super::wide::WideError>);
+    layout!("Magnitude",[u64;128]);
+    layout!("TrimmedTerm",[u64;130]);
+    layout!("ScaledTerm",[u64;17]);
+    layout!("WideDouble",[u64;32]);
+    layout!("Significand",[u64;16]);
+    layout!("Binary64Outcome",super::super::wide::multi::Binary64Outcome);
+    layout!("AnnulusResult",Result<PreparedAnnulus,SectionPreparationError>);
+    layout!("AnnulusSpent",AnnulusPreparationSpent);
+    assert_eq!(size_of::<SectionPrepFrame>(),27*size_of::<Endpoint>());
+    assert_eq!(size_of::<Enclosure>(),2*size_of::<Endpoint>());
+    let mut w=SectionPreparationWork::new();
+    w.conversions=WorkTotal::exact_count(u64::MAX);
+    assert_eq!(w.round(&Endpoint::ONE,0),Err(SectionPreparationError::Accounting));
+    assert!(!w.status().is_exact());
+    assert_eq!(w.initialized_endpoints.exact(),Ok(0));
+    let old=w.conversions;
+    assert_eq!(w.round(&Endpoint::ONE,0),Err(SectionPreparationError::Accounting));
+    assert_eq!(w.conversions,old,"prior fault prevents a second conversion entry");
+    println!("I51_C0_ACCOUNTING overflow and prior-fault prefix verified; no numerical producer run");
+}

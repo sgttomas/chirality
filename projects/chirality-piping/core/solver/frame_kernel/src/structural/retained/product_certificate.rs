@@ -587,6 +587,149 @@ fn build_member(
     })
 }
 
+// I51's fixed scalar preparation. This result proves geometry rounding only;
+// PP must independently authenticate the normalized input and actual new source.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum AnnulusPreparationVersion { NormalizedAnnulusV1 }
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub struct PreparedSectionBits { bits: [u64; 5] }
+impl PreparedSectionBits {
+    pub fn bits(self) -> [u64; 5] { self.bits }
+    pub fn values(self) -> [f64; 5] { self.bits.map(f64::from_bits) }
+}
+#[derive(Debug)]
+pub struct PreparedAnnulus {
+    input: [u64; 2], section: PreparedSectionBits,
+}
+impl PreparedAnnulus {
+    pub fn input_bits(&self) -> [u64; 2] { self.input }
+    pub fn section_bits(&self) -> PreparedSectionBits { self.section }
+    pub fn algorithm(&self) -> AnnulusPreparationVersion { AnnulusPreparationVersion::NormalizedAnnulusV1 }
+}
+#[derive(Debug, Clone, PartialEq)]
+pub enum SectionPreparationError {
+    InvalidGeometry, AmbiguousRounding(usize), PrimitiveRange(usize),
+    Arithmetic(PreparationArithmeticCause), Accounting,
+}
+#[derive(Debug, Clone, PartialEq)]
+pub struct PreparationArithmeticCause(NumericError);
+#[derive(Debug)]
+pub struct SectionPreparationWork {
+    numeric: NumericWork,
+    pub initialized_endpoints: WorkTotal,
+    pub conversions: WorkTotal,
+    pub checks: WorkTotal,
+    pub endpoint_assignments: WorkTotal,
+    pub layout_bytes: [usize; 8],
+}
+impl SectionPreparationWork {
+    fn new() -> Self {
+        Self { numeric: NumericWork::new(), initialized_endpoints: WorkTotal::zero(),
+            conversions: WorkTotal::zero(), checks: WorkTotal::zero(),
+            endpoint_assignments: WorkTotal::zero(), layout_bytes: [
+                std::mem::size_of::<SectionPrepFrame>(), std::mem::size_of::<Endpoint>(),
+                std::mem::size_of::<NumericWork>(), std::mem::size_of::<WideContext<16>>(),
+                std::mem::size_of::<ExactWideSum>(), std::mem::size_of::<PreparedAnnulus>(),
+                std::mem::size_of::<super::wide::multi::Binary64Outcome>(),
+                std::mem::align_of::<SectionPrepFrame>() ] }
+    }
+    pub fn status(&self) -> WorkStatus {
+        self.numeric.status().join(self.initialized_endpoints.status())
+            .join(self.conversions.status()).join(self.checks.status()).join(self.endpoint_assignments.status())
+    }
+    fn check(&mut self, n: u64) -> Result<(), SectionPreparationError> {
+        self.checks = self.checks.add(WorkTotal::exact_count(n));
+        if self.status().is_exact() { Ok(()) } else { Err(SectionPreparationError::Accounting) }
+    }
+    fn assigned(&mut self, n: u64) -> Result<(), SectionPreparationError> {
+        self.endpoint_assignments = self.endpoint_assignments.add(WorkTotal::exact_count(n));
+        self.check(0)
+    }
+    fn round(&mut self, value: &Endpoint, property: usize) -> Result<f64, SectionPreparationError> {
+        self.check(1)?;
+        self.conversions = self.conversions.add(WorkTotal::exact_count(1));
+        self.check(0)?;
+        // Existing conversion has no arithmetic tariff; this records its entered
+        // call. Its internal integer visits remain explicit auxiliary work.
+        match value.to_binary64() {
+            super::wide::multi::Binary64Outcome::Normal(v) if v.is_normal() && v > 0.0 => Ok(v),
+            _ => Err(SectionPreparationError::PrimitiveRange(property)),
+        }
+    }
+}
+// Exactly 27 Endpoint fields. Existing helper/caller/return temporaries are
+// separate from this named frame and are reported by the C0 layout evidence.
+struct SectionPrepFrame {
+    d: Endpoint, t: Endpoint, c: Endpoint, ri: Enclosure, dm: Enclosure,
+    p: Enclosure, c2: Endpoint, ri2: Enclosure, q: Enclosure, g: Enclosure,
+    pi: Enclosure, a: Enclosure, i: Enclosure, j: Enclosure, z: Enclosure,
+    returned: Endpoint,
+}
+impl SectionPrepFrame {
+    fn zero() -> Self {
+        let z = Enclosure::point(Endpoint::ZERO);
+        Self { d: Endpoint::ZERO, t: Endpoint::ZERO, c: Endpoint::ZERO,
+            ri:z,dm:z,p:z,c2:Endpoint::ZERO,ri2:z,q:z,g:z,pi:z,a:z,i:z,j:z,z:z,
+            returned:Endpoint::ZERO }
+    }
+}
+#[derive(Debug)]
+pub struct AnnulusPreparationSpent {
+    result: Result<PreparedAnnulus, SectionPreparationError>, work: SectionPreparationWork,
+}
+impl AnnulusPreparationSpent {
+    pub fn result(&self) -> Result<&PreparedAnnulus, &SectionPreparationError> { self.result.as_ref() }
+    pub fn work(&self) -> &SectionPreparationWork { &self.work }
+    pub fn into_parts(self) -> (Result<PreparedAnnulus, SectionPreparationError>, SectionPreparationWork) {
+        (self.result, self.work)
+    }
+}
+pub fn prepare_product_annulus(diameter:f64,effective_wall:f64) -> AnnulusPreparationSpent {
+    let mut work=SectionPreparationWork::new();
+    let result=(|| {
+        work.check(3)?;
+        if !diameter.is_finite() || !effective_wall.is_finite() || diameter<=0.0 || effective_wall<=0.0 {
+            return Err(SectionPreparationError::InvalidGeometry);
+        }
+        work.initialized_endpoints=WorkTotal::exact_count(27);
+        let mut f=SectionPrepFrame::zero();
+        let numeric=(|| -> Result<(),NumericError> {
+            macro_rules! assign { ($field:ident,$n:expr,$value:expr) => {{
+                work.endpoint_assignments=work.endpoint_assignments.add(WorkTotal::exact_count($n));
+                if let Some(e)=work.status().fault() {return Err(NumericError::Arithmetic(AttemptStop::WorkAccounting(e)));}
+                f.$field=$value;
+            }}; }
+            assign!(d,1,pos_lift(diameter)?); assign!(t,1,pos_lift(effective_wall)?); assign!(c,1,shift(&f.d,-1)?);
+            if f.t.cmp_value(&f.c)!=Ordering::Less { return Err(NumericError::InvalidGeometry); }
+            assign!(ri,2,work.numeric.sub_pair(&f.c,&f.t)?.positive()?);
+            assign!(dm,2,work.numeric.sub_pair(&f.d,&f.t)?.positive()?);
+            assign!(p,2,work.numeric.mul(Enclosure::point(f.t),f.dm)?);
+            assign!(c2,1,work.numeric.scalar(Entry::Mul,&f.c,&f.c,Toward::Up)?);
+            assign!(ri2,2,work.numeric.mul(f.ri,f.ri)?);
+            assign!(q,2,work.numeric.add(Enclosure::point(f.c2),f.ri2)?.positive()?);
+            assign!(g,2,work.numeric.mul(f.p,f.q)?);
+            assign!(pi,2,pi()?);
+            assign!(a,2,work.numeric.mul(f.pi,f.p)?);
+            assign!(i,2,shift_interval(work.numeric.mul(f.pi,f.g)?,-2)?);
+            assign!(j,2,shift_interval(f.i,1)?);
+            assign!(z,2,work.numeric.div(f.i,Enclosure::point(f.c))?);
+            Ok(())
+        })();
+        numeric.map_err(|e| SectionPreparationError::Arithmetic(PreparationArithmeticCause(e)))?;
+        let mut bits=[0;5];
+        for (i,iv) in [&f.a,&f.i,&f.j,&f.z].into_iter().enumerate() {
+            let lo=work.round(&iv.lo,i)?; let hi=work.round(&iv.hi,i)?;
+            work.check(1)?;
+            if lo.to_bits()!=hi.to_bits() { return Err(SectionPreparationError::AmbiguousRounding(i)); }
+            bits[i]=lo.to_bits();
+        }
+        bits[4]=work.round(&f.c,4)?.to_bits();
+        work.check(0)?;
+        Ok(PreparedAnnulus {input:[diameter.to_bits(),effective_wall.to_bits()],section:PreparedSectionBits{bits}})
+    })();
+    AnnulusPreparationSpent{result,work}
+}
+
 #[cfg(test)]
 #[path = "../../../tests/retained_k4/product_certificate_tests.rs"]
 mod tests;

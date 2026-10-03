@@ -806,3 +806,29 @@ pub use super::product_certificate::final_case::{
     ProductUnit, ProductFinalRow, ProductPredicate, ProductRowVerdict,
     ProductFailure, ProductCertificateSpent, ProductSummaryCoverage,
 };
+
+pub use super::product_certificate::{prepare_product_annulus, PreparedAnnulus, PreparedSectionBits, AnnulusPreparationVersion, AnnulusPreparationSpent, SectionPreparationError, SectionPreparationWork};
+
+/// Owned identity only; no second solve or verification report is retained.
+pub(crate) struct ProductOwnerStamp { pub(crate) prep: Arc<CasePrep>, pub(crate) run: usize }
+impl std::fmt::Debug for ProductOwnerStamp {
+    fn fmt(&self,f:&mut std::fmt::Formatter<'_>)->std::fmt::Result {
+        f.debug_struct("ProductOwnerStamp").field("run",&self.run).finish_non_exhaustive()
+    }
+}
+impl RecordedInvocation {
+    pub(crate) fn product_owner_stamp(&self,run:usize,owner:&RetainedSolve)->Option<ProductOwnerStamp> {
+        self.product_case_owner(run,owner).then(||ProductOwnerStamp{prep:Arc::clone(&owner.prep),run})
+    }
+}
+
+pub use super::product_certificate::final_case::{ProductRowSpec, ProductProofStartSpent,
+    ProductProofDraft, ProductProofFailure, ProductProjectionSpent, ProjectedProofDraft,
+    ProductValuesBuilder, FrozenProductValues, ProductMaximumValue, ProductValuesSpent,
+    ValuesCompletionWork, ProductValuesFailure, CertifiedProductProof, ProductFinalSpent};
+impl RecordedInvocation {
+    pub fn begin_prepared_product<'s,'m>(&self,run:usize,owner:&'s RetainedSolve,
+        facts:&'s [ProductMemberFacts],specs:&'m [ProductRowSpec<'m>])->ProductProofStartSpent<'s,'m> {
+        super::product_certificate::final_case::begin_prepared_product(self,run,owner,facts,specs)
+    }
+}

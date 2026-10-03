@@ -75,6 +75,12 @@ pub(super) enum CaptureError {
 }
 #[derive(Default)]
 pub(super) struct ProductCapture {
+    prepared_probe: bool,
+    prepared_one_case_seen: bool,
+    pub prepared_late_calls: usize,
+    prepared_source_permit: bool,
+    pub source_capture_entries: usize,
+    pub prepared_capacity_bytes: [usize; 16],
     pub adapter: AdapterWork,
     pub invocation_calls: usize,
     pub invocation_mode: Option<PreviewSolverMode>,
@@ -1096,10 +1102,24 @@ impl ProductCapture {
         thermal: &[ThermalElementLoad],
         pressure: &[PressureThrustLoad],
     ) {
-        self.case_calls = self.case_calls.checked_add(1).expect("bounded cases");
+        if self.prepared_probe {
+            if self.error.is_some() {return;}
+            if let Err(e)=self.prepared_case_seen(model,case) {self.error=Some(e);}
+            return;
+        }
+        self.case_calls=self.case_calls.checked_add(1).expect("bounded cases");
+        self.capture_case_source(model,built,materials,case,restrained,springs,application,thermal,pressure);
+    }
+    fn capture_case_source(&mut self, model:&PreviewModel, built:&BuiltModel,
+        materials:&[MaterialInput], case:&PreviewLoadCase, restrained:&[usize],
+        springs:&[SpringEntry], application:&LoadApplication, thermal:&[ThermalElementLoad],
+        pressure:&[PressureThrustLoad]) {
         if self.error.is_some() {
             return;
         }
+        let Some(entries)=self.source_capture_entries.checked_add(1) else {self.fail_count("source capture entries");return;};
+        if let Err(e)=self.capture_entry(AdapterEvent::MapWrite) {self.error=Some(e);return;}
+        self.source_capture_entries=entries;
         if self.case_calls != 1 || model.load_cases.len() != 1 {
             self.fail("private witness has exactly one actual case");
             return;
@@ -1479,6 +1499,14 @@ impl ProductCapture {
             self.fail("not final ordinary preview");
             return;
         }
+        if self.prepared_probe {
+            if self.prepared_late_calls!=1 || !self.prepared_source_permit
+                || !self.prepared_one_case_seen || self.source_capture_entries!=1 || self.source.is_none() {
+                self.fail("missing successful prepared late source hook");return;
+            }
+            if let Err(e)=self.bind_observations(envelope) {self.error=Some(e);}
+            return;
+        }
         let Some(source) = self.source.as_ref() else {
             self.fail("missing actual source");
             return;
@@ -1547,11 +1575,16 @@ impl ProductCapture {
         e: &'a MechanicsEnvelope,
         owner: &k::RetainedSolve,
     ) -> Result<Vec<k::ProductFinalRow<'a>>, CaptureError> {
+        self.bind_rows_view(ProductCaseView::Ordinary(e),owner)
+    }
+    fn bind_rows_view<'a>(&self,view:ProductCaseView<'a>,owner:&k::RetainedSolve)
+        -> Result<Vec<k::ProductFinalRow<'a>>,CaptureError> {
+        let e=view.ordinary();
         self.adapter.require()?;
         if self.error.is_some() {
             return Err("prior capture refusal".into());
         }
-        self.bind_observations(e)?;
+        self.bind_observations_view(view)?;
         self.adapter.enter(AdapterEvent::ValidationEntry, 1);
         self.adapter.require()?;
         if self.basis_expected != self.basis_record.is_some()
@@ -1561,7 +1594,8 @@ impl ProductCapture {
         }
         let mut modulus_basis = false;
         let mut out = self.adapter.reserve(e.results.len())?;
-        for r in &e.results {
+        for observed in view.rows() {
+            let r=observed.original;let final_value=observed.value;
             if !self.adapter.enter(AdapterEvent::RowVisit, 1)
                 || !self.adapter.enter(AdapterEvent::ValidationEntry, 1)
             {
@@ -1763,7 +1797,7 @@ impl ProductCapture {
             out.push(k::ProductFinalRow {
                 id: &r.id,
                 case_id: &basis.ref_id,
-                value: &r.value,
+                value: final_value,
                 unit,
                 body,
                 recipe,
@@ -1776,6 +1810,10 @@ impl ProductCapture {
         Ok(out)
     }
     pub(super) fn observables(&self, e: &MechanicsEnvelope) -> Result<(), CaptureError> {
+        self.observables_view(ProductCaseView::Ordinary(e))
+    }
+    fn observables_view(&self,view:ProductCaseView<'_>)->Result<(),CaptureError> {
+        let e=view.ordinary();
         self.adapter.require()?;
         self.adapter.enter(AdapterEvent::LibraryBoundary, 1); // Closed evidence inspection; serde/number internals remain unqualified.
         let evidence = e.contract_evidence.as_ref().ok_or("preview evidence")?;
@@ -1892,13 +1930,13 @@ impl ProductCapture {
                 return Err("extrema shape".into());
             }
             for key in ["station_fraction", "local_fraction"] {
-                let n = x[key].as_f64().ok_or("extrema fraction")?;
+                let n = view.number(index,key).ok_or("extrema fraction")?;
                 if !n.is_finite() || !(0.0..=1.0).contains(&n) {
                     return Err("extrema fraction".into());
                 }
             }
             for (key, max) in [("span_index", f64::MAX), ("subdivisions", 131072.0)] {
-                let n = x[key].as_f64().ok_or("extrema integer")?;
+                let n = view.number(index,key).ok_or("extrema integer")?;
                 if !n.is_finite() || n < 0.0 || n > max || n.fract() != 0.0 {
                     return Err("extrema integer".into());
                 }
@@ -1909,7 +1947,7 @@ impl ProductCapture {
                 "global_upper_bound_pa",
                 "certified_gap_pa",
             ] {
-                if !x[key].as_f64().is_some_and(f64::is_finite) {
+                if !view.number(index,key).is_some_and(f64::is_finite) {
                     return Err("extrema finite".into());
                 }
             }
@@ -1922,13 +1960,13 @@ impl ProductCapture {
                 return Err("extrema duplicate".into());
             }
             let id = x["result_id"].as_str().ok_or("maximum ref")?;
-            let row = e.results.iter().find(|r| r.id == id).ok_or("maximum row")?;
-            let lo = x["value_lower_pa"].as_f64().ok_or("lower")?;
-            let hi = x["value_upper_pa"].as_f64().ok_or("upper")?;
+            let row = view.rows().find(|r| r.id == id).ok_or("maximum row")?;
+            let lo = view.number(index,"value_lower_pa").ok_or("lower")?;
+            let hi = view.number(index,"value_upper_pa").ok_or("upper")?;
             if !(lo >= 0.0
-                && lo <= row.value
-                && row.value <= hi
-                && row.value == lo + 0.5 * (hi - lo))
+                && lo <= *row.value
+                && *row.value <= hi
+                && *row.value == lo + 0.5 * (hi - lo))
             {
                 return Err("maximum midpoint".into());
             }
@@ -1940,9 +1978,7 @@ impl ProductCapture {
         for (id, _) in &self.supports {
             self.adapter.enter(AdapterEvent::RowVisit, 1);
             self.adapter.require()?;
-            let rows: Vec<_> = e
-                .results
-                .iter()
+            let rows: Vec<_> = view.rows()
                 .filter(|r| &r.entity_ref == id && r.kind == "support_reaction_component_v2")
                 .collect();
             if rows.len() != 6 {
@@ -1961,17 +1997,15 @@ impl ProductCapture {
                     if matches.len() != 1 {
                         return Err("support component identity".into());
                     }
-                    v[i] = matches[0].value;
+                    v[i] = *matches[0].value;
                 }
-                let matches: Vec<_> = e
-                    .results
-                    .iter()
+                let matches: Vec<_> = view.rows()
                     .filter(|r| &r.entity_ref == id && r.kind == kind)
                     .collect();
                 if matches.len() != 1 {
                     return Err("support magnitude identity".into());
                 }
-                let y = matches[0].value;
+                let y = *matches[0].value;
                 if (y - v[0].hypot(v[1]).hypot(v[2])).abs()
                     > 64.0 * f64::EPSILON * y.abs().max(f64::MIN_POSITIVE)
                 {
@@ -1980,16 +2014,14 @@ impl ProductCapture {
             }
         }
         for (headline, kind) in [
-            (&e.summary.max_displacement, "displacement_magnitude"),
+            (view.headline(false), "displacement_magnitude"),
             (
-                &e.summary.max_open_formula_stress,
+                view.headline(true),
                 "pipe_elastic_normal_stress_maximum_v2",
             ),
         ] {
-            let h = headline.as_ref().ok_or("headline")?;
-            let best = e
-                .results
-                .iter()
+            let h = headline.ok_or("headline")?;
+            let best = view.rows()
                 .filter(|r| r.kind == kind)
                 .max_by(|a, b| {
                     a.value
@@ -2980,5 +3012,423 @@ fn load_case_selector(case: &PreviewLoadCase) -> Option<SelectorRef<'_>> {
         case.modulus_basis_temperature
             .as_ref()
             .map(|t| SelectorRef::Temperature(t.value.to_bits()))
+    }
+}
+
+
+// Private prepared-only custody. The actual ordinary inputs remain borrowed at
+// the granted late callsite; no DeferredCaseInputs clone graph or bypass latch.
+impl ProductCapture {
+    fn checked_same(&self,a:&str,b:&str)->Result<bool,CaptureError> {
+        let same=self.adapter.same(a,b);self.adapter.require()?;Ok(same)
+    }
+    fn prepared_case_seen(&mut self,model:&PreviewModel,case:&PreviewLoadCase)->Result<(),CaptureError> {
+        self.capture_entry(AdapterEvent::ValidationEntry)?;
+        if self.case_calls!=0 || self.prepared_one_case_seen || model.load_cases.len()!=1 || !model.combinations.is_empty() {
+            return Err("prepared one-case/no-combination source scope".into());
+        }
+        if !self.checked_same(&model.load_cases[0].id,&case.id)? {return Err("prepared early case identity".into());}
+        let id=self.adapter.copy(&case.id)?;
+        self.capture_entry(AdapterEvent::MapWrite)?;self.case_id=id;
+        self.capture_entry(AdapterEvent::MapWrite)?;self.case_calls=1;
+        self.capture_entry(AdapterEvent::MapWrite)?;self.prepared_one_case_seen=true;
+        Ok(())
+    }
+    fn prepared_observation_custody(&self,case:&str)->Result<(),CaptureError> {
+        self.capture_entry(AdapterEvent::ValidationEntry)?;
+        let observed=self.observations.as_ref().ok_or("missing successful solver observations")?;
+        if self.invocation_calls!=1 || self.normalized_calls!=1 || self.observation_calls!=1
+            || self.invocation_mode!=Some(observed.mode) || self.case_calls!=1
+            || observed.parity_produced!=observed.parity.is_some()
+            || (observed.mode==PreviewSolverMode::SparseInteractive && observed.parity_produced)
+            || observed.mode_row.value_bits!=observed.mode.mode_code().to_bits() {
+            return Err("prepared observation ownership/presence".into());
+        }
+        if !self.checked_same(&observed.case,case)? || !self.checked_same(&self.case_id,case)? {
+            return Err("prepared observation case".into());
+        }
+        if let Some(parity)=&observed.parity {
+            self.capture_entry(AdapterEvent::ValidationEntry)?;
+            let v=f64::from_bits(parity.value_bits);
+            if !v.is_finite() || v<0.0 {return Err("prepared observation parity value".into());}
+        }
+        Ok(())
+    }
+    pub(super) fn prepared_case_source(&mut self,source_selected:bool,model:&PreviewModel,
+        built:&BuiltModel,materials:&[MaterialInput],case:&PreviewLoadCase,restrained:&[usize],
+        springs:&[SpringEntry],application:&LoadApplication,thermal:&[ThermalElementLoad],pressure:&[PressureThrustLoad]) {
+        if !self.prepared_probe || self.error.is_some() {return;}
+        let checked=(||->Result<(),CaptureError>{
+            self.adapter.require()?;
+            let count=self.prepared_late_calls.checked_add(1).ok_or(CaptureError::CountRange("prepared late hooks"))?;
+            self.capture_entry(AdapterEvent::MapWrite)?;self.prepared_late_calls=count;
+            self.capture_entry(AdapterEvent::ValidationEntry)?;
+            if count!=1 || !self.prepared_one_case_seen || self.case_calls!=1 || model.load_cases.len()!=1
+                || !model.combinations.is_empty() {return Err("prepared late hook scope/presence".into());}
+            if !self.checked_same(&model.load_cases[0].id,&case.id)? || !self.checked_same(&self.case_id,&case.id)? {
+                return Err("prepared late case identity".into());
+            }
+            self.prepared_observation_custody(&case.id)?;
+            if source_selected {return Err("exact-block selected: prepared source suppressed".into());}
+            self.capture_entry(AdapterEvent::MapWrite)?;self.prepared_source_permit=true;
+            Ok(())
+        })();
+        if let Err(e)=checked {self.error=Some(e);return;}
+        self.capture_case_source(model,built,materials,case,restrained,springs,application,thermal,pressure);
+    }
+}
+fn prepared_reserve<T>(adapter:&AdapterWork,capacities:&mut [usize;16],slot:usize,n:usize)->Result<Vec<T>,CaptureError> {
+    std::alloc::Layout::array::<T>(n).map_err(|_|CaptureError::CountRange("prepared layout"))?;
+    adapter.enter(AdapterEvent::AllocationRequest,1);adapter.require()?;
+    let mut v=Vec::new();v.try_reserve_exact(n).map_err(|_|CaptureError::Storage("prepared vector"))?;
+    let bytes=v.capacity().checked_mul(std::mem::size_of::<T>()).ok_or(CaptureError::CountRange("prepared capacity"))?;
+    capacities[slot]=capacities[slot].checked_add(bytes).ok_or(CaptureError::CountRange("prepared capacity sum"))?;
+    adapter.enter(AdapterEvent::RustCapacityBytes,u64::try_from(bytes).map_err(|_|CaptureError::CountRange("prepared capacity conversion"))?);
+    adapter.require()?;Ok(v)
+}
+fn prepared_string(adapter:&AdapterWork,capacities:&mut [usize;16],text:&str)->Result<String,CaptureError> {
+    let n=u64::try_from(text.len()).map_err(|_|CaptureError::CountRange("prepared string length"))?;
+    adapter.enter(AdapterEvent::AllocationRequest,1);adapter.require()?;
+    adapter.enter(AdapterEvent::RequestedCopyBytes,n);adapter.require()?;
+    let mut s=String::new();s.try_reserve_exact(text.len()).map_err(|_|CaptureError::Storage("prepared string"))?;
+    capacities[10]=capacities[10].checked_add(s.capacity()).ok_or(CaptureError::CountRange("prepared string capacity"))?;
+    adapter.enter(AdapterEvent::RustCapacityBytes,s.capacity() as u64);adapter.require()?;
+    adapter.enter(AdapterEvent::MapWrite,1);adapter.require()?;s.push_str(text);Ok(s)
+}
+pub(super) struct PreparedCase {
+    pub capture: ProductCapture,
+    pub preparations: Vec<k::PreparedAnnulus>,
+    pub preparation_work: Vec<k::SectionPreparationWork>,
+    pub old_operational: Vec<OperationalSpent>,
+}
+pub(super) struct PreparedCaseFailure {
+    pub capture: ProductCapture,
+    pub preparations: Vec<k::PreparedAnnulus>,
+    pub preparation_work: Vec<k::SectionPreparationWork>,
+    pub preparation_error: Option<k::SectionPreparationError>,
+    pub old_operational: Vec<OperationalSpent>,
+}
+impl ProductCapture {
+    pub(super) fn prepared_probe() -> Self { Self {prepared_probe:true,..Self::default()} }
+    pub(super) fn prepare_case(mut self, ordinary:&MechanicsEnvelope) -> Result<PreparedCase,PreparedCaseFailure> {
+        let mut preparations=Vec::new(); let mut work=Vec::new();
+        let mut preparation_error=None;
+        let mut old_operational=Vec::new();
+        let outcome=(|| -> Result<(),CaptureError> {
+            self.adapter.require()?;
+            if !self.prepared_probe || self.final_calls!=1 || self.error.is_some()
+                || ordinary.source_block_recovery.is_some() || self.native.is_some() {
+                return Err("prepared case custody/permit".into());
+            }
+            self.bind_observations(ordinary)?;
+            let old=self.source.as_ref().ok_or("old source validation missing")?;
+            if old.members().len()!=self.facts.len() || old.members().len()!=self.operational.len() {
+                return Err("old source/facts/operational coverage".into());
+            }
+            let mut parts=k::SourceParts::default();
+            parts.nodes=prepared_reserve(&self.adapter,&mut self.prepared_capacity_bytes,0,old.nodes().len())?;
+            parts.members=prepared_reserve(&self.adapter,&mut self.prepared_capacity_bytes,1,old.members().len())?;
+            parts.constraints=prepared_reserve(&self.adapter,&mut self.prepared_capacity_bytes,2,old.constraints().len())?;
+            parts.springs=prepared_reserve(&self.adapter,&mut self.prepared_capacity_bytes,3,old.springs().len())?;
+            parts.stations=prepared_reserve(&self.adapter,&mut self.prepared_capacity_bytes,4,old.stations().len())?;
+            parts.supports=prepared_reserve(&self.adapter,&mut self.prepared_capacity_bytes,5,old.supports().len())?;
+            parts.loads=prepared_reserve(&self.adapter,&mut self.prepared_capacity_bytes,6,old.loads().len())?;
+            preparations=prepared_reserve(&self.adapter,&mut self.prepared_capacity_bytes,7,old.members().len())?;
+            work=prepared_reserve(&self.adapter,&mut self.prepared_capacity_bytes,8,old.members().len())?;
+            let new_operational=prepared_reserve(&self.adapter,&mut self.prepared_capacity_bytes,9,old.members().len())?;
+            old_operational=std::mem::replace(&mut self.operational,new_operational);
+            for x in old.nodes() { self.capture_entry(AdapterEvent::MapWrite)?; parts.nodes.push(*x); }
+            for x in old.constraints() { self.capture_entry(AdapterEvent::MapWrite)?; parts.constraints.push(*x); }
+            for x in old.springs() { self.capture_entry(AdapterEvent::MapWrite)?; parts.springs.push(*x); }
+            for x in old.stations() { self.capture_entry(AdapterEvent::MapWrite)?; parts.stations.push(*x); }
+            for x in old.supports() {
+                let mut children=prepared_reserve(&self.adapter,&mut self.prepared_capacity_bytes,11,x.springs.len())?;
+                for &id in &x.springs {self.capture_entry(AdapterEvent::MapWrite)?;children.push(id);}
+                let mut directional=prepared_reserve(&self.adapter,&mut self.prepared_capacity_bytes,12,x.directional_springs.len())?;
+                for &id in &x.directional_springs {self.capture_entry(AdapterEvent::MapWrite)?;directional.push(id);}
+                self.capture_entry(AdapterEvent::MapWrite)?;
+                parts.supports.push(k::SupportGroup{id:x.id,node:x.node,restrained:x.restrained,springs:children,directional_springs:directional});
+            }
+            for x in old.loads() {
+                let id=prepared_string(&self.adapter,&mut self.prepared_capacity_bytes,&x.source_id)?;
+                self.capture_entry(AdapterEvent::MapWrite)?;
+                parts.loads.push(k::NodalLoad{dof:x.dof,value:x.value,source_id:id});
+            }
+            for (i,m) in old.members().iter().enumerate() {
+                self.capture_entry(AdapterEvent::SourceVisit)?;
+                let f=self.facts.get(i).ok_or("prepared fact coverage")?;
+                if f.member!=m.id || f.area.to_bits()!=m.area.to_bits()
+                    || f.second_moment.to_bits()!=m.second_moment_y.to_bits()
+                    || f.second_moment.to_bits()!=m.second_moment_z.to_bits()
+                    || f.torsion_constant.to_bits()!=m.torsion_constant.to_bits() {return Err("old-to-old section".into());}
+                // Enter the reserved work-record write before the producer. Every
+                // producing return is immediately owned, with no fallible gap.
+                self.capture_entry(AdapterEvent::MapWrite)?;
+                let spent=k::prepare_product_annulus(f.diameter,f.effective_wall);
+                let (result,w)=spent.into_parts();work.push(w);
+                let prep=match result { Ok(p)=>p, Err(e)=>{
+                    preparation_error=Some(e); return Err("annulus preparation refused".into());
+                }};
+                if prep.input_bits()!=[f.diameter.to_bits(),f.effective_wall.to_bits()] {return Err("prepared input bits".into());}
+                let [a,ii,j,z,c]=prep.section_bits().values();
+                self.adapter.enter(AdapterEvent::RequestedCopyBytes,std::mem::size_of::<k::StraightMember>() as u64);self.adapter.require()?;
+                self.capture_entry(AdapterEvent::MapWrite)?;let mut new=*m;
+                self.adapter.enter(AdapterEvent::MapWrite,4);self.adapter.require()?;
+                new.area=a;new.second_moment_y=ii;new.second_moment_z=ii;new.torsion_constant=j;
+                self.capture_entry(AdapterEvent::MapWrite)?;parts.members.push(new);
+                self.adapter.enter(AdapterEvent::MapWrite,5);self.adapter.require()?;
+                let f=&mut self.facts[i];f.area=a;f.second_moment=ii;f.torsion_constant=j;f.section_modulus=z;f.radius=c;
+                self.capture_entry(AdapterEvent::MapWrite)?;
+                self.operational.push(evaluate_operational([parts.nodes[m.node_i as usize],parts.nodes[m.node_j as usize]],
+                    [m.elastic_modulus,m.shear_modulus,a,j]));
+                self.capture_entry(AdapterEvent::MapWrite)?;preparations.push(prep);
+            }
+            self.adapter.require()?;
+            let new=k::PrimitiveSource::new(parts).map_err(CaptureError::Source)?;
+            self.check_support_source(&new)?;
+            self.capture_entry(AdapterEvent::MapWrite)?;
+            self.source=Some(new);
+            Ok(())
+        })();
+        match outcome { Ok(())=>Ok(PreparedCase{capture:self,preparations,preparation_work:work,old_operational}),
+            Err(e)=>{self.error=Some(e); Err(PreparedCaseFailure{capture:self,preparations,
+                preparation_work:work,preparation_error,old_operational})} }
+    }
+}
+impl PreparedCase {
+    pub(super) fn solve_native(&mut self) -> Result<(),CaptureError> {
+        let o=&mut self.capture;
+        if o.native.is_some() {return Err("duplicate prepared solve".into());}
+        let source=o.source.as_ref().ok_or("prepared source")?;
+        let cap=k::OriginCapacity::for_calls(&[1],&[]).map_err(CaptureError::Origin)?;
+        let mut invocation=k::RecordedInvocation::new(60_000_000_000,cap).map_err(CaptureError::Origin)?;
+        let mut cases=invocation.solve_cases(std::slice::from_ref(source),k::CaseLimit::new(20_000_000_000)).map_err(CaptureError::Origin)?;
+        let case=cases.remove(0);
+        let selected=matches!(case.outcome,k::ExecutionOutcome::Selected(_));
+        o.native=Some((invocation,case));
+        if selected {Ok(())} else {Err(CaptureError::NativeUnavailable)}
+    }
+}
+
+// I51 frozen overlay. One ordinary owner remains untouched until the final move.
+const PREPARED_MAX_KEYS:[&str;8]=["station_fraction","span_index","local_fraction","value_lower_pa",
+    "value_upper_pa","global_upper_bound_pa","certified_gap_pa","subdivisions"];
+struct PreparedMaximumPatch { evidence_index:usize, row:usize, member:u32, numbers:[serde_json::Number;8] }
+struct PreparedPayload { values:k::FrozenProductValues, maxima:Vec<PreparedMaximumPatch>,
+    displacement:LocatedQuantity, stress:LocatedQuantity }
+#[derive(Clone,Copy)]
+struct ProductRowView<'a> { original:&'a ResultItem, value:&'a f64 }
+impl std::ops::Deref for ProductRowView<'_> {type Target=ResultItem;fn deref(&self)->&ResultItem{self.original}}
+#[derive(Clone,Copy)]
+enum ProductCaseView<'a> {Ordinary(&'a MechanicsEnvelope),Prepared{ordinary:&'a MechanicsEnvelope,payload:&'a PreparedPayload}}
+impl<'a> ProductCaseView<'a> {
+    fn ordinary(self)->&'a MechanicsEnvelope {match self{Self::Ordinary(e)|Self::Prepared{ordinary:e,..}=>e}}
+    fn rows(self)->impl Iterator<Item=ProductRowView<'a>> {
+        self.ordinary().results.iter().enumerate().map(move |(i,r)|ProductRowView{original:r,value:match self {
+            Self::Ordinary(_)=>&r.value,Self::Prepared{payload,..}=>payload.values.value(i).expect("validated overlay length")}})
+    }
+    fn number(self,index:usize,key:&str)->Option<f64> {
+        match self {Self::Prepared{payload,..}=>{
+            let slot=PREPARED_MAX_KEYS.iter().position(|k|*k==key)?;
+            payload.maxima.iter().find(|m|m.evidence_index==index)?.numbers[slot].as_f64()
+        },Self::Ordinary(e)=>e.contract_evidence.as_ref()?["preview_cases"][0]["pipe_stress_extrema"][index][key].as_f64()}
+    }
+    fn headline(self,stress:bool)->Option<&'a LocatedQuantity> {match self {
+        Self::Ordinary(e)=>if stress{e.summary.max_open_formula_stress.as_ref()}else{e.summary.max_displacement.as_ref()},
+        Self::Prepared{payload,..}=>Some(if stress{&payload.stress}else{&payload.displacement})}}
+}
+#[derive(Debug)]
+pub(super) enum PreparedCandidateError {Capture(CaptureError),Proof(k::ProductProofFailure),
+    Values{failure:k::ProductValuesFailure,proof:k::ProductProofFailure},Abandoned{cause:CaptureError,proof:k::ProductProofFailure},Numeric,Observable,G5a}
+pub(super) struct PreparedCandidateRefusal {
+    pub ordinary:MechanicsEnvelope,pub prepared:PreparedCase,pub error:PreparedCandidateError,
+    pub certificate:Option<k::CertifiedProductProof>,pub values:Option<k::FrozenProductValues>,
+}
+pub(super) struct PrivatePreparedCandidate { envelope:MechanicsEnvelope,pub prepared:PreparedCase,
+    pub certificate:k::CertifiedProductProof }
+impl PrivatePreparedCandidate {pub(super) fn envelope(&self)->&MechanicsEnvelope{&self.envelope}}
+impl ProductCapture {
+    fn bind_observations_view(&self,view:ProductCaseView<'_>)->Result<(),CaptureError> {
+        self.bind_observations(view.ordinary())?;
+        for r in view.rows() {
+            self.capture_entry(AdapterEvent::RowVisit)?;
+            if matches!(r.kind.as_str(),"linear_solver_mode_basis"|"sparse_live_path_dense_parity_relative_delta"|"modulus_basis_record")
+                && r.value.to_bits()!=r.original.value.to_bits() {return Err("overlay ancillary bits".into());}
+        }
+        Ok(())
+    }
+    fn prepared_verdict_copy(&mut self,verdicts:&[k::ProductRowVerdict],coverage:&[k::ProductSummaryCoverage])->Result<(),CaptureError> {
+        self.verdicts=self.adapter.reserve(verdicts.len())?;
+        for v in verdicts {self.capture_entry(AdapterEvent::MapWrite)?;self.verdicts.push(v.clone());}
+        self.summary_coverage=self.adapter.reserve(coverage.len())?;
+        for v in coverage {self.capture_entry(AdapterEvent::MapWrite)?;self.summary_coverage.push(*v);}
+        Ok(())
+    }
+    fn prepared_specs<'a>(&self,rows:&[k::ProductFinalRow<'a>])->Result<Vec<k::ProductRowSpec<'a>>,CaptureError> {
+        let mut specs=self.adapter.reserve(rows.len())?;
+        for r in rows {
+            self.capture_entry(AdapterEvent::RowVisit)?;
+            let spec=match r.recipe {
+                k::ProductRecipe::NonQuantity=>k::ProductRowSpec::mode(r.id,r.case_id,r.body,
+                    if r.value.to_bits()==1f64.to_bits(){1}else if r.value.to_bits()==2f64.to_bits(){2}else{0}),
+                k::ProductRecipe::DenseParityObservation=>k::ProductRowSpec::parity(r.id,r.case_id,r.body,r.value.to_bits()),
+                k::ProductRecipe::ModulusBasisRecord=>Ok(k::ProductRowSpec::material_record(r.id,r.case_id,r.body)),
+                _=>k::ProductRowSpec::mechanical(r.id,r.case_id,r.unit,r.body,r.recipe),
+            }.map_err(|e|CaptureError::Association(format!("prepared descriptor: {e:?}")))?;
+            self.capture_entry(AdapterEvent::MapWrite)?;specs.push(spec);
+        }
+        Ok(specs)
+    }
+    fn prepared_maxima(&self,e:&MechanicsEnvelope,owner:&k::RetainedSolve,rows:&[k::ProductFinalRow<'_>],
+        values:&k::ProductValuesBuilder)->Result<(Vec<PreparedMaximumPatch>,Vec<k::ProductMaximumValue>),CaptureError> {
+        let evidence=e.contract_evidence.as_ref().ok_or("prepared maximum evidence")?;
+        let extrema=evidence["preview_cases"][0]["pipe_stress_extrema"].as_array().ok_or("prepared maximum records")?;
+        if extrema.len()!=self.members.len(){return Err("prepared maximum complete domain".into());}
+        let mut patches=self.adapter.reserve(self.members.len())?;
+        let mut outputs=self.adapter.reserve(self.members.len())?;
+        for (mi,m) in owner.source().members().iter().enumerate() {
+            self.capture_entry(AdapterEvent::SourceVisit)?;
+            let f=&self.facts[mi];let id=&self.members[mi].id;
+            let row=rows.iter().position(|r|r.recipe==k::ProductRecipe::CircularMaximum{member:m.id}).ok_or("prepared maximum row")?;
+            let mut found=None;
+            for (i,x) in extrema.iter().enumerate() {
+                self.capture_entry(AdapterEvent::RowVisit)?;
+                if x["pipe_id"]==id.as_str()&&x["result_id"]==rows[row].id {
+                    if found.is_some(){return Err("prepared maximum identity".into());}
+                    found=Some(i);
+                }
+            }
+            let index=found.ok_or("prepared maximum identity")?;
+            for key in PREPARED_MAX_KEYS {if extrema[index][key].as_number().is_none(){return Err("prepared maximum numeric slot".into());}}
+            let mut ends=[0f64;12];
+            for (j,v) in ends.iter_mut().enumerate() {
+                self.capture_entry(AdapterEvent::RowVisit)?;
+                let q=k::QuantityId::EndAction{member:m.id,end:if j<6{k::End::I}else{k::End::J},component:k::Component::ALL[j%6]};
+                let at=rows.iter().position(|r|r.recipe==k::ProductRecipe::Native(q)).ok_or("prepared endpoint action")?;
+                *v=values.value(at).ok_or("unprojected endpoint action")?;
+            }
+            let source=owner.source();
+            let pipe=StraightPipeElement{element_id:self.adapter.copy(id)?,
+                node_i:FrameNode{index:m.node_i as usize,coordinates:source.nodes()[m.node_i as usize]},
+                node_j:FrameNode{index:m.node_j as usize,coordinates:source.nodes()[m.node_j as usize]},
+                section:StraightPipeSectionProperties{elastic_modulus:m.elastic_modulus,shear_modulus:m.shear_modulus,
+                    area:m.area,second_moment_y:m.second_moment_y,second_moment_z:m.second_moment_z,
+                    torsion_constant:m.torsion_constant,mass_per_length:None},y_reference:m.y_reference};
+            let section=DerivedSection{area:f.area,internal_area:0.0,second_moment:f.second_moment,
+                torsion_constant:f.torsion_constant,section_modulus:f.section_modulus,torsion_radius:f.radius,
+                membrane_radius:f.radius,wall_thickness:f.effective_wall};
+            self.capture_entry(AdapterEvent::LibraryBoundary)?;
+            let maximum=exact_straight_summary_extrema(&pipe,&ends,&[],&section,None).map_err(CaptureError::Association)?;
+            let value=maximum.value_lower+0.5*(maximum.value_upper-maximum.value_lower);
+            let n=|v:f64|serde_json::Number::from_f64(v).ok_or_else(||CaptureError::Association("maximum number range".into()));
+            let numbers=[n(maximum.station)?,serde_json::Number::from(maximum.span_index),n(maximum.local_fraction)?,
+                n(maximum.value_lower)?,n(maximum.value_upper)?,n(maximum.upper_bound)?,n(maximum.certified_gap)?,
+                serde_json::Number::from(maximum.subdivisions)];
+            let output=k::ProductMaximumValue::new(m.id,row,value).map_err(|e|CaptureError::Association(format!("maximum result: {e:?}")))?;
+            self.capture_entry(AdapterEvent::MapWrite)?;outputs.push(output);
+            self.capture_entry(AdapterEvent::MapWrite)?;patches.push(PreparedMaximumPatch{evidence_index:index,row,member:m.id,numbers});
+        }
+        Ok((patches,outputs))
+    }
+    fn prepared_alias(&self,e:&MechanicsEnvelope,values:&k::FrozenProductValues,kind:&str)->Result<LocatedQuantity,CaptureError> {
+        let mut best=None;
+        for (i,r) in e.results.iter().enumerate() {
+            self.capture_entry(AdapterEvent::RowVisit)?;
+            if r.kind!=kind {continue;}
+            let value=*values.value(i).ok_or("alias value")?;
+            if best.is_none_or(|(j,v):(usize,f64)|value>v || (value==v && r.entity_ref<e.results[j].entity_ref)) {best=Some((i,value));}
+        }
+        let (i,value)=best.ok_or("alias complete domain")?;let r=&e.results[i];
+        Ok(LocatedQuantity{value,unit:self.adapter.copy(&r.unit)?,location_ref:self.adapter.copy(&r.entity_ref)?,result_ref:self.adapter.copy(&r.id)?})
+    }
+}
+impl PreparedCase {
+    pub(super) fn project_candidate(mut self,ordinary:MechanicsEnvelope)->Result<PrivatePreparedCandidate,PreparedCandidateRefusal> {
+        let native=self.capture.native.take();
+        let mut certificate=None;let mut saved_values=None;
+        let result=(||->Result<PreparedPayload,PreparedCandidateError>{
+            let (invocation,case)=native.as_ref().ok_or_else(||PreparedCandidateError::Capture("missing prepared native owner".into()))?;
+            let k::ExecutionOutcome::Selected(owner)=&case.outcome else{return Err(PreparedCandidateError::Capture(CaptureError::NativeUnavailable));};
+            let base_rows=self.capture.bind_rows(&ordinary,owner).map_err(PreparedCandidateError::Capture)?;
+            let specs=self.capture.prepared_specs(&base_rows).map_err(PreparedCandidateError::Capture)?;
+            let draft=invocation.begin_prepared_product(case.run,owner,&self.capture.facts,&specs).into_ready().map_err(PreparedCandidateError::Proof)?;
+            #[cfg(test)] println!("I51_DUAL_LANES {:?}",draft.lane_debug());
+            let (projected,builder)=draft.project().into_ready().map_err(PreparedCandidateError::Proof)?;
+            let (patches,maxima)=match self.capture.prepared_maxima(&ordinary,owner,&base_rows,&builder) {
+                Ok(v)=>v,Err(cause)=>return Err(PreparedCandidateError::Abandoned{cause,proof:projected.abandon()})};
+            let (values,value_work)=match builder.complete_maxima(&maxima).into_ready() {
+                Ok(v)=>v,Err(failure)=>return Err(PreparedCandidateError::Values{failure,proof:projected.abandon()})};
+            let displacement=match self.capture.prepared_alias(&ordinary,&values,"displacement_magnitude") {
+                Ok(v)=>v,Err(cause)=>return Err(PreparedCandidateError::Abandoned{cause,proof:projected.abandon_values(value_work)})};
+            let stress=match self.capture.prepared_alias(&ordinary,&values,"pipe_elastic_normal_stress_maximum_v2") {
+                Ok(v)=>v,Err(cause)=>return Err(PreparedCandidateError::Abandoned{cause,proof:projected.abandon_values(value_work)})};
+            let payload=PreparedPayload{values,maxima:patches,displacement,stress};
+            let view=ProductCaseView::Prepared{ordinary:&ordinary,payload:&payload};
+            let rows=match self.capture.bind_rows_view(view,owner) {
+                Ok(v)=>v,Err(cause)=>return Err(PreparedCandidateError::Abandoned{cause,proof:projected.abandon_values(value_work)})};
+            let certified=match projected.certify_final(&payload.values,&rows,value_work).into_ready() {
+                Ok(v)=>v,Err(failure)=>{
+                    self.capture.numeric_pass=false;
+                    self.capture.numeric_failure=Some(failure.failure().clone());
+                    self.capture.source_correction_calls=failure.work().source_correction_calls();
+                    self.capture.work=format!("{:?}; lanes={:?}",failure.work().work_summary(),failure.work().prepared_lane_work());
+                    if let Err(e)=self.capture.prepared_verdict_copy(failure.work().verdicts(),failure.work().summary_coverage()) {self.capture.error=Some(e);}
+                    if self.capture.error.is_none() && self.capture.verdicts.len()==rows.len() {
+                        self.capture.observable_error=self.capture.observables_view(view).err();
+                        self.capture.g5a_error=self.capture.g5a(owner,&rows).err();
+                    }
+                    #[cfg(test)] println!("I51_FROZEN_REFUSAL {}",serde_json::json!({"mode":self.capture.invocation_mode.unwrap().as_str(),
+                        "rows":view.rows().map(|r|serde_json::json!({"id":r.id,"kind":r.kind,"unit":r.unit,"value":r.value,"bits":format!("{:016x}",r.value.to_bits())})).collect::<Vec<_>>(),
+                        "verdicts":self.capture.verdicts.iter().map(|v|serde_json::json!({"row":v.row,"n":format!("{:016x}",v.normalized_bits),"scale":format!("{:016x}",v.scale_bits),"class":format!("{:?}",v.class),"passed":v.passed,"predicates":v.predicates})).collect::<Vec<_>>(),
+                        "maxima":payload.maxima.iter().map(|m|serde_json::json!({"row":m.row,"member":m.member,"numbers":m.numbers})).collect::<Vec<_>>(),
+                        "numeric_pass":false,"observables":format!("{:?}",self.capture.observable_error),"g5a":format!("{:?}",self.capture.g5a_error),"work":self.capture.work}));
+                    drop(rows);saved_values=Some(payload.values);return Err(PreparedCandidateError::Proof(failure));
+                }
+            };
+            if !certified.matches_values(&payload.values){
+                certificate=Some(certified);drop(rows);saved_values=Some(payload.values);
+                return Err(PreparedCandidateError::Capture("frozen proof/value owner".into()));
+            }
+            if let Err(e)=self.capture.prepared_verdict_copy(certified.verdicts(),certified.summary_coverage()) {
+                certificate=Some(certified);drop(rows);saved_values=Some(payload.values);
+                return Err(PreparedCandidateError::Capture(e));
+            }
+            self.capture.numeric_pass=certified.passed();self.capture.source_correction_calls=certified.work().source_correction_calls();
+            self.capture.work=format!("{:?}; lanes={:?}",certified.work().work_summary(),certified.work().prepared_lane_work());
+            self.capture.observable_error=self.capture.observables_view(view).err();
+            self.capture.g5a_error=self.capture.g5a(owner,&rows).err();
+            #[cfg(test)] println!("I51_FROZEN_ROWS {}",serde_json::json!({"rows":view.rows().map(|r|serde_json::json!({"id":r.id,"kind":r.kind,"unit":r.unit,"value":r.value,"bits":format!("{:016x}",r.value.to_bits())})).collect::<Vec<_>>(),
+                "verdicts":self.capture.verdicts.iter().map(|v|serde_json::json!({"row":v.row,"n":format!("{:016x}",v.normalized_bits),"scale":format!("{:016x}",v.scale_bits),"class":format!("{:?}",v.class),"passed":v.passed,"predicates":v.predicates})).collect::<Vec<_>>(),
+                "numeric_pass":self.capture.numeric_pass,"observables":format!("{:?}",self.capture.observable_error),"g5a":format!("{:?}",self.capture.g5a_error),"work":self.capture.work}));
+            let pass=self.capture.full_case_passed();certificate=Some(certified);
+            drop(rows);drop(base_rows);drop(specs);
+            if !pass {
+                saved_values=Some(payload.values);
+                return Err(if self.capture.observable_error.is_some(){PreparedCandidateError::Observable}
+                    else if self.capture.g5a_error.is_some(){PreparedCandidateError::G5a}else{PreparedCandidateError::Numeric});
+            }
+            // The finite move plan is checked/charged before any ordinary mutation.
+            let moves=payload.values.len().checked_add(payload.maxima.len().checked_mul(8).ok_or_else(||PreparedCandidateError::Capture(CaptureError::CountRange("commit maxima")))?)
+                .and_then(|v|v.checked_add(2)).ok_or_else(||PreparedCandidateError::Capture(CaptureError::CountRange("commit moves")))?;
+            self.capture.adapter.enter(AdapterEvent::MapWrite,u64::try_from(moves).map_err(|_|PreparedCandidateError::Capture(CaptureError::CountRange("commit count")))?);
+            self.capture.adapter.require().map_err(PreparedCandidateError::Capture)?;
+            Ok(payload)
+        })();
+        self.capture.native=native;
+        match result {
+            Err(error)=>Err(PreparedCandidateRefusal{ordinary,prepared:self,error,certificate,values:saved_values}),
+            Ok(payload)=>{
+                let mut envelope=ordinary;
+                for (i,row) in envelope.results.iter_mut().enumerate(){row.value=*payload.values.value(i).expect("checked frozen index");}
+                let cases=envelope.contract_evidence.as_mut().unwrap().as_object_mut().unwrap().get_mut("preview_cases").unwrap().as_array_mut().unwrap();
+                let extrema=cases[0].as_object_mut().unwrap().get_mut("pipe_stress_extrema").unwrap().as_array_mut().unwrap();
+                for patch in payload.maxima {
+                    let object=extrema[patch.evidence_index].as_object_mut().unwrap();
+                    for (key,number) in PREPARED_MAX_KEYS.into_iter().zip(patch.numbers){*object.get_mut(key).unwrap()=serde_json::Value::Number(number);}
+                }
+                envelope.summary.max_displacement=Some(payload.displacement);envelope.summary.max_open_formula_stress=Some(payload.stress);
+                Ok(PrivatePreparedCandidate{envelope,prepared:self,certificate:certificate.unwrap()})
+            }
+        }
     }
 }

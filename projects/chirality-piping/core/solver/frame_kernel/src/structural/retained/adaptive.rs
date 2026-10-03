@@ -5311,6 +5311,9 @@ impl<'a> SourceBridgeView<'a> {
     pub(crate) fn data_capacity(&self) -> usize {
         self.data.capacity()
     }
+    /// Consume only the private view; move the owned data bitmap without copying.
+    pub(crate) fn into_data(self) -> Vec<bool> { self.data }
+
     pub(crate) fn row(&self, index: usize) -> (&'a PublishedRow, Option<f64>) {
         let row = &self.owner.publication.rows[index];
         let bits = self.owner.publication_radius_bits[index];
