@@ -7825,3 +7825,19 @@ Then the readers align, and one fresh, complete, independent review follows.
   - the renamed id.
 - **I62 settles, as analysis only, whether C1:66–68 also reaches product-level `work_accounting` causes.** Several must-pass entries use synthetic accounting triggers, for example `cert_failed_before_summary`. If such a receipt cannot be emitted, those entries are not native-faithful and must be replaced or retired.
 - **I62 also adds a tightened sibling** of 06b's `idle_budget_below_invocation_limit`, which does not isolate its target.
+
+## All three readers pass snapshot 06c (ROOT, 2026-10-03 UTC)
+
+**All three readers pass the complete snapshot-06c corpus:** 15 cases, 173 mutations at their expected first gate and code (per reader where the corpus says so), and 23 must-pass entries. No reader reports a remaining divergence from the others on 06c. Eligibility stays closed in every reader, and nothing is accepted.
+
+| Reader | Commit | ROOT's own run |
+|---|---|---|
+| Python (I62) | `c765e4f5b3` | 221 passed |
+| Rust (I63) | `3154d5eb5d` | 22/22, linked with the Command Line Tools |
+| TypeScript (I64) | `8e70db0198` | Vitest 270/270, tsc 0 |
+
+**The probes isolate the new checks.** I63 ran the previous 06a Rust reader under the new harness: it failed exactly the six entries this grant targets. I64's 06a baseline failed exactly six. One raising-line difference is recorded: `idle_work_accounting_run` raises at TypeScript's N10 idle line but Python's WorkAccounting line, with the same G5 ATTEMPT_MISMATCH.
+
+**Open before the independent review:**
+- I62's analysis of whether product-level `work_accounting` causes can be emitted (C2-4). It may retire or replace must-pass entries that use synthetic accounting triggers.
+- The C3 schema's `work_accounting` shape, for the review and a later clarification.
