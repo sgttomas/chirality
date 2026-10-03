@@ -7543,3 +7543,29 @@ This is source-level verification only. Reader acceptance still waits for snapsh
   - The p128 ladder start is enforced only where the existing selected contract (C1/C3 with 06/07/08) already requires it, at that contract's gate.
   - The floor equality Φ = `phi_512(ê)` likewise. I57 adds no floor formula.
   - If the contract does not already require one of these, readers keep consuming it as attested, and it is recorded as a candidate contract amendment for ROOT to route. C1a reports the contract citations.
+
+## Snapshot 05a verified; floor and ladder are existing contract (ROOT, 2026-10-03 UTC)
+
+**Snapshot 05a is verified.** It is committed on READER as `bd3dc16a1d`, together with the snapshot-04 schema and the Python checks.
+
+**Verified by ROOT:**
+- **The new hashes:** corpus `159ef78c47`, `retained_precision.py` `27fc1797c2`, test file `7eab5b3793`. The schema is unchanged since snapshot 04.
+- **Snapshot 04's three cases and 77 mutations** are byte-identical inside 05a.
+- **05a adds:**
+  - three synthetic cases: cancelled ±x loads, and two unavailable templates (F: adapter copy refused after a passed certificate; P: preparation refused);
+  - 27 mutations, including the parity-rule pins;
+  - a new `must_pass` array of 15 entries.
+- **ROOT's own Python run:** 146 passed. The records (SHARED_SNAPSHOT_05A `fed637869f`, RETURN_C1A, SHA256SUMS_C1A) verify, with no machine paths.
+
+**Contract readings, checked by ROOT against C1 `WIRE_CONTRACT.md`:**
+- **The p512 floor equality** Φ = `phi_512(e_hat(E, L))` is existing contract. C1's G5b row explicitly requires "same E/ê/Φ at p512" with exact scale bits, failing as SCALE_MISMATCH. All readers implement it at G5b. Its shared mutation waits for C1b's p512 base.
+- **The p128 ladder start** is existing contract, not an amendment. C1's G5 row requires the actual native schedule. C1 §1 item 5 allows skipped precisions only through recorded failed solves, and the native ladder always opens at p128 (`adaptive.rs:4519–4521`). G5 fails a schedule that doesn't open there, with ATTEMPT_MISMATCH. Rust already does this; TypeScript aligns.
+
+**Deferrals:**
+- **The source-construction failure base is deferred** until a natural trigger exists. It is not a row that only defensive checks reach, so a synthetic trigger would assert a path that may not exist.
+- **Post-native unavailable (the Ceiling case) and the flag-swap must-pass entries** move to C1b, which builds the reuse chain and the second body or proof.
+- **L = 0 is deferred.** The preview producer appears to admit a memberless node (`PP lib.rs:6549–6640`), but that is not confirmed end to end. The feasibility rule's L = 0 branch stays covered only by each reader's own tests until a producer run confirms the case.
+
+**Next:**
+- I63 and I64 align to 05a: the G5b Φ check, the unavailable-attempt G5a checks, the p128 ladder start for TypeScript, and a loop over `must_pass`.
+- C1b (two bodies, two load cases, the p512 ladder with the Ceiling) starts after they freeze, so the shared files don't move under them.
