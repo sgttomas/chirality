@@ -6304,3 +6304,22 @@ B and D; only the bounded source/contract checkpoint 0 is executable. It must
 resolve per-support identity/action and accounting before any implementation
 grant. Further certificate tightening is deferred until the actual target
 demonstrates that it is the relevant numerical obstacle.
+
+
+## Named-case component dispatched (ROOT, 2026-10-03 UTC)
+
+ROOT has dispatched I50 to resolve the spring/support producer barrier that prevents the named first-publishing case from reaching a complete private verdict.
+
+TASK `/root/i50_named_case_component` was actually spawned through native
+delegation with fresh selective context and no descendants. It received brief
+`fa1439c425` at 06:18:21Z. Checkpoint: 06:28:21Z; new-analysis cutoff: 06:38:21Z;
+sealed return: 06:48:21Z. Only checkpoint 0 is executable: source/contract review
+and the concrete component manifest. No source, compiler or model execution is
+granted. Its owned return is `I50/first_publishing_component_01`; any bulk belongs
+in the specifically granted external scratch directory with a committed manifest.
+
+ROOT will select the exact source fence before implementation and retain I50
+through subsequent component checkpoints. The target remains actual captured
+F2a publication in both modes, with typed-entry coexistence and full gates.
+The current assignment moves that target forward by resolving a demonstrated
+producer dependency; it does not establish public publication or a completion date.
