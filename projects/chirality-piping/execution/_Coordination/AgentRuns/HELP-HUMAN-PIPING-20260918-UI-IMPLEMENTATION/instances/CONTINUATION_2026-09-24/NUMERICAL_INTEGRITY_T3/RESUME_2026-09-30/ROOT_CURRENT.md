@@ -1,41 +1,53 @@
-# T3 current state — 2026-10-03
+# T3 current state — handoff pause, 2026-10-03
 
-**Active: the first complete private candidate is accepted locally; public F2a is still open.**
-[Terms](GLOSSARY.md) · [Path to publication](FIRST_PUBLICATION_PATH.md) ·
+**Paused for the owner-requested handoff. No TASK, compiler, solver or test is
+running. The existing memory guard remains active.**
+[Handoff](../HANDOFF_2026-10-03_TO_NEXT_ROOT.md) · [Terms](GLOSSARY.md) ·
 [Decision history](../ROOT_RULINGS_V1.md)
 
-## Closed
+## Closed or accepted
 
-- A1 publication repair: PR1070, merged as `3a0251874d`. The audit defect is closed on that route.
-- K6c accounting and finite measurements: PR1071, merged as `49034a940f`, with its recorded qualifications. Historic value equality remains unclaimed.
-- Private prepared producer `922db9dce3` passed the named case in both modes, received RV68's complete source review and repair confirmations, and was integrated locally at `458603880a`. Independent numerical checks and focused runs are in [RV68's review](REVIEW_RV68/prepared_producer_01/REVIEW.md). This is a component result, not a main merge or public publication.
+- A1 publication repair: PR1070, main merge `3a0251874d`.
+- K6c accounting/finite measurements: PR1071, main merge `49034a940f`, with
+  recorded qualifications; historical value equality remains unclaimed.
+- The private prepared candidate passes the named case in both modes (RV68;
+  local merge `458603880a`). Caller/census and typed evidence are accepted
+  locally at `a9c2256076` and `b56b905251` after RV72/RV74 review and repairs.
+- Corrected C3/F1 and wire completions are selected. The compact summary-coverage
+  design is also selected after RV76; it is **not implemented**.
+- Corrected ordinary-memory source formulas are accepted after fresh RV75
+  combined review, with all full-profile gaps retained.
 
-- The corrected public formation contract and its wire completions are selected after RV69 review/backchecks. Actual schemas, typed evidence and readers still need implementation/review.
+## Open
 
-- Caller/census checkpoint A is accepted and integrated locally at `a9c2256076` after RV72 review. Ordinary behavior is preserved; production W1 remains disabled.
+No public F2a publishing case exists. The target remains
+RF-SKEW-T-CANT-OFF-122-r1e-04 through the actual captured facade in both modes,
+under M03-INTEGRITY-MP-v2, with independent reference agreement and preserved
+refusal/coexistence controls. Typed entry stays ordinary; both-entry gates remain.
 
-- Typed private evidence is accepted locally at `b56b905251` after RV74 review and cause-preservation repair. The public receipt transaction is still required.
-
-## Open and next milestone
-
-**RF-SKEW-T-CANT-OFF-122-r1e-04 must publish through the captured F2a entry in both modes**, under `M03-INTEGRITY-MP-v2`, agree with its independent reference, and preserve the named refusal/coexistence controls. The typed entry keeps its accepted ordinary route; both-entry checks remain required.
-
-The numerical candidate now passes. What stands before publication is its public formation/source/work contract, atomic producer and invocation/combination custody, receipts and three readers, resource/caller qualification, and native and PR gates. Several substantial integration stages remain; a completion date is not yet credible. Then interval binding, per-domain retirement and final joined T3 closure follow.
-
-## Running now
-
-- I54’s ordinary-memory correction is sealed. Fresh RV75 independently reviews the combined bound because RV73 was interrupted before backcheck. Complete memory qualification remains open.
-- After the usage interruption, I58 owns shared schema/Python, I59 Rust and I60 TypeScript, with disjoint READER paths. I59 owns Cargo; the guard remains active. I57 proposes the missing summary-coverage representation before reader eligibility can be enabled.
-- Native context-lifetime/backing qualification remains open. Its source investigation is stopped at its stated limit.
+Reader code is frozen, uncommitted and unaccepted in READER. Its shared snapshot,
+source hashes, full recoverable archive and partial author returns are linked in
+[READER_STATE](HANDOFF_2026-10-03/READER_STATE.json). Coverage implementation,
+complete gate/failure controls, independent full review and joint parity remain.
+Production permits and M remain absent. Complete memory/caller qualification,
+actual receipt transaction, wider invocation/combination/exact routes, carriers,
+native Current and full PR gates remain; then S-I, per-domain F2b and F3.
 
 ## Next
 
-Close and independently review summary coverage, finish shared-reader parity and the ordinary-memory review, then bind the full admission profile/allowance and producer receipt transaction. Existing full invocation/resource and native requirements remain dependencies; the passing private case does not waive them. Bulk evidence remains in scratch with hash/size/location manifests.
+The successor should verify the preserved state and implement the selected
+coverage contract under a bounded grant, then finish/review the readers and
+admission/producer work. The handoff names precise gaps and evidence. No next
+assignment or PR is active. No new host-tool work is needed.
 
 ## Branches and owner decisions
 
-`codex/piping-numerical-integrity-20260926` is the **F2a code integration branch**;
-`codex/piping-f2a-work-exactness-20261002` is its producer component branch. The separate reader component is codex/piping-f2a-readers-20261003.
-A records PR must start from current main with only execution records and an empty diff outside that scope. No records PR or F2a PR exists now. Latest fetched main is `381be775ae`.
+NUM is the F2a code integration branch. CODE is the accepted producer component;
+READER is the unaccepted reader component. Records-only and final product PRs
+must be cut separately from current main under the recorded packaging rule.
+No F2a PR exists; latest verified main is `381be775ae`.
 
-No new owner decision is needed for the current bounded work. Pending decisions remain: dense/lane memory ceilings, PHYS-R4 refusal and availability, observation framing, KF3's lambda split and KF2's dense screen. An actual public-meaning or protected-criterion change returns with reviewed concrete options.
+No new owner-held decision arose from the completed reviews. Existing decisions
+remain dense/lane ceilings, PHYS-R4 refusal/availability, observation framing,
+KF3 lambda split and KF2 dense screen. Any actual public meaning change returns
+with independently reviewed concrete options.

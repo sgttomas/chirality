@@ -7358,3 +7358,29 @@ typed-trace/schema/reader/corpus implementation follows in this run. Readers
 remain disabled/ineligible, and the successor must implement and independently
 verify the full selected rules and actual producer custody before reliance.
 Full F2a, memory/M, caller/native, carrier and main gates remain open.
+
+
+## Graceful handoff: frozen partial readers and no active work (ROOT, 2026-10-03 UTC)
+
+ROOT stops at the owner's handoff request, preserving the reviewed decisions and exact unfinished reader code without treating it as accepted.
+
+The current reviews finished: ordinary source terms are accepted only with their
+correction and full-profile qualifications; summary-coverage design is selected
+for the successor, not implemented. The three reader authors froze at their
+current useful checkpoints and released all runtime. Their RETURNs own the
+actual test counts, failures, source scopes and missing gate obligations. ROOT
+read all returns and verified sealed payloads, bulk, source/snapshot hashes and
+the exact sixteen-path fence. No full reader-core review or source acceptance
+is claimed. The thirteen changed reader files remain uncommitted in READER.
+
+HANDOFF_2026-10-03/READER_STATE.json records the recoverable external archive,
+verified by a full readback, and the complete source/packet identities. Compact
+sealed author records are preserved verbatim on NUM; bulk remains external. No
+source is pruned, force-pushed or merged into main. The final handoff, short
+ROOT_CURRENT and graph distinguish accepted work, selected design and unaccepted
+WIP. No new TASK/slice/PR was started after the graceful-close instruction.
+
+The successor follows the owner's start direction. Actual summary capture, full
+reader branch controls/review/parity, admission/profile/M, public transaction,
+wider exact/combination/caller/native scope and all main gates remain. T3 is
+not complete and the passing private case is not a public F2a publication.
