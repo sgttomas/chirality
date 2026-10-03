@@ -35,17 +35,19 @@ final joined closure remain.
 
 ## Running now
 
-I50's repaired support/observation component is integrated locally at `7e9597bd9c`.
-RV67 backcheck `863956b0c5` closed all three design-readiness findings. ROOT has
-selected I51's prepared-source, dual-readout and frozen-candidate design for one
-bounded private implementation in CODE at `8bbc04e8a3`. I51 received the grant at 10:00:06Z: first live solve by 10:35:06Z, complete
-candidate/obstruction by 11:15:06Z, edits stop 11:40:06Z, seal/reap 12:00:06Z.
-M5 Max, existing guard PID 5387; I51 owns the sole runtime lane.
+I51's first actual prepared model selected native p=128 with verification P=256
+in both modes (FIRST_NATIVE, frozen at 10:12:54Z). Complete projected rows and final
+G5a remain unrun. ROOT caught an incomplete C0 local accounting prerequisite before
+accepting the checkpoint: helper temporaries and nested snapshot copies. I51 is
+closing that bounded correction; further runtime is held for ROOT's check.
+The first run remains genuine numerical evidence, with no accounting acceptance.
+Component target: complete candidate/obstruction 11:15:06Z; edits stop 11:40:06Z;
+seal/reap 12:00:06Z. Existing guard PID 5387 remains running.
 
 ## Next
 
-First establish actual prepared new-K admission, selected precision and resolution.
-Then produce and independently check the complete two-mode private candidate,
+Close the local accounting prerequisite, then produce and independently check
+the complete two-mode private candidate,
 including G5a, observables, ordinary fallback and local accounting. Public receipt/
 reader/routing/resource integration and full gates follow that private milestone.
 Bulk evidence stays in scratch with committed hash/size/location manifests.

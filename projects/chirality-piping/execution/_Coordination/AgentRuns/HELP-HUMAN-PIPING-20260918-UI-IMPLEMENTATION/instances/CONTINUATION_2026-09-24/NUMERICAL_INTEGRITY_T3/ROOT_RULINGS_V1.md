@@ -6665,3 +6665,25 @@ and creates no new source-meaning or availability exception. The existing delega
 correctness authority covers this technical formulation; no new owner-held choice
 was found by the independent backcheck. Actual future public-meaning changes still
 return to the owner with a reviewed concrete proposal.
+
+
+## First prepared native run and explicit C0 sequencing miss (ROOT, 2026-10-03 UTC)
+
+The prepared model now reaches native admission in both modes, but ROOT holds further runtime until the local accounting prerequisite missed before that run is closed.
+
+I51's FIRST_NATIVE report, frozen at 10:12:54Z, records native p=128 and verification
+P=256, one actual new-source native call and 58 native rows per mode. ROOT read the
+report, successful command, relevant raw records and complete frozen C1_SOURCE
+patch, and verified their manifested hashes (verification/i51_first_native_03).
+The prepared property bits match the reviewed design and the actual source is new.
+This is an observed numerical checkpoint, not independent source acceptance,
+complete product-row certification, final G5a or public publication.
+
+ROOT challenged I51's statement that helper/snapshot accounting remained to finish.
+I51 then confirmed that the required callee/return-temporary live schedule and full
+nested-copy/capacity ledger were incomplete before C1, despite measured principal
+layouts and arithmetic-entry records. This is I51's premature run, caught by ROOT;
+it is not a retrospective completion of C0. The original FIRST_NATIVE and failed
+attempts remain unchanged. ROOT granted a fifteen-minute local correction box,
+with further runtime held until its concrete correction is checked. No profile,
+RSS or host-tool work is opened, and the component's original deadlines remain.
