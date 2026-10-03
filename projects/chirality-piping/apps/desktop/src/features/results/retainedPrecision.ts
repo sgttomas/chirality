@@ -252,6 +252,10 @@ export function nativeSchedule(run: Obj, source: Obj): void {
   fail(attempts.length <= 3 && (records.length === 0) === (attempts.length === 0));
   // N14: at most three iterative corrections per physical record (adaptive.rs run! table).
   fail(records.every(r => Number.isSafeInteger(r.corrections) && r.corrections >= 0 && r.corrections <= 3));
+  // C1:66-68 (ruling): a WorkAccounting terminal exists natively only with a non-exact work status
+  // (adaptive.rs:4545, 4777, 4996), and such a run is never emitted. It lies outside the emitted
+  // terminal domain (C1:148) wherever it appears, idle or not.
+  fail(!(run.kernel_terminal.kind === 'unresolved' && run.kernel_terminal.reason?.space === 'unresolved' && run.kernel_terminal.reason?.tag === 'work_accounting'));
   const stopOf = outcomeStop;
   const escalates = (stop: Obj | null) => stop && ['pivot', 'condition', 'residual_gate'].includes(stop.tag);
   const terminalFor = (stop: Obj): Obj => {
@@ -309,12 +313,6 @@ export function nativeSchedule(run: Obj, source: Obj): void {
   fail((terminal.kind === 'selected') === (last.outcome.kind === 'accepted'));
   if (terminal.kind === 'selected') return;
   let stop = stopOf(last.outcome), expected: Obj | null = null;
-  // N9 (adaptive.rs finish_terminal): a non-exact work status at any stop-ending point returns
-  // Unresolved{WorkAccounting{fault}} instead of terminal(stop), before any escalation. The fault is
-  // not publicly derivable, so it is accepted as attested wherever the ladder ended at a stop.
-  if (last.verification?.phase === 'failed') stop = stopOf(at(records, last.verification.record, 'G5', 'ATTEMPT_MISMATCH').outcome);
-  if (stop && terminal.kind === 'unresolved' && terminal.reason?.tag === 'work_accounting') return;
-  stop = stopOf(last.outcome);
   if (last.verification?.phase === 'failed') {
     const vr = at(records, last.verification.record, 'G5', 'ATTEMPT_MISMATCH');
     stop = stopOf(vr.outcome);
@@ -348,17 +346,19 @@ function nativeRuns(b: Obj): void {
       fail(oi.kind === 'case' && oi.index > previousCase); previousCase = oi.index;
       fail(same(run.origin, { call: ci, position: pos, group: run.origin.group, source_ref: si, owner_ref: oi }) && same(c.run, run) && c.source_ref === si && s.owner.case_index === oi.index);
       work(uint(run.invocation_before) === current);
-      // N10 (adaptive.rs:4994-5015): an invocation-entry return is idle with group null. A meter
-      // fault gives WorkAccounting (attested); otherwise an exhausted meter gives Budget(invocation).
-      const exhausted = current >= uint(b.work.invocation_limit), entryReason = run.kernel_terminal.reason;
+      // N10 (adaptive.rs:4994-5015): an invocation-entry return is idle with group null. Its only
+      // emitted form is Budget(invocation) once invocation_before >= Li (a meter fault is never emitted).
+      const exhausted = current >= uint(b.work.invocation_limit);
       if (exhausted) fail(run.origin.group === null);
       if (run.origin.group === null) {
-        fail(!run.records.length && !run.attempts.length && !run.cache_before.length && !run.cache_after.length && run.kernel_terminal.kind === 'unresolved'
-          && (entryReason?.tag === 'work_accounting' || (exhausted && same(entryReason, INVOCATION_BUDGET))));
+        fail(exhausted && !run.records.length && !run.attempts.length && !run.cache_before.length && !run.cache_after.length && run.kernel_terminal.kind === 'unresolved'
+          && same(run.kernel_terminal.reason, INVOCATION_BUDGET));
       } else {
         const group = at(b.groups, run.origin.group, 'G5', 'ATTEMPT_MISMATCH');
         fail(group.call === ci && group.source_refs.includes(si) && group.stiffness_sha256 === s.stiffness_sha256);
         if (group.preparation.kind === 'refused') fail(!run.records.length && !run.attempts.length && run.kernel_terminal.kind === 'refused' && same(run.kernel_terminal.reason, group.preparation.reason));
+        // N10 (adaptive.rs:5055-5075): a run with no attempt in a ready group is the CasePrep refusal.
+        else if (!run.attempts.length) fail(run.kernel_terminal.kind === 'refused' && run.kernel_terminal.reason?.tag === 'ledger_unavailable');
       }
       const cache = live.get(run.origin.group) ?? new Map<string, number>();
       const inventory = () => SLOTS.filter(slot => cache.has(slot)).map(slot => ({ slot, build: cache.get(slot) }));
@@ -947,7 +947,11 @@ async function invocationBinding(b: Obj, source: Obj, invocation: Obj): Promise<
     const t = convert(c.modulus_basis_temperature, 'temperature'), ordered = points.filter(p => p.temperature != null).map(p => ({ p, t: convert(p.temperature, 'temperature') })).sort((a, z) => a.t - z.t);
     fail(unique(ordered.map(p => p.t)));
     const i = ordered.findIndex((p, j) => j + 1 < ordered.length && p.t < t && t < ordered[j + 1].t); fail(i >= 0);
-    const lo = ordered[i], hi = ordered[i + 1], ratio = (t - lo.t) / (hi.t - lo.t), a = pair(lo.p), z = pair(hi.p);
+    const lo = ordered[i], hi = ordered[i + 1];
+    // lib.rs:9258-9333 requires all three source quantities at both bracket points, even on the
+    // nonthermal ordinary route, before interpolating; a missing one is a source refusal.
+    fail([lo.p, hi.p].every(p => ['elastic_modulus', 'shear_modulus', 'thermal_expansion_coefficient'].every(k => p[k] != null)));
+    const ratio = (t - lo.t) / (hi.t - lo.t), a = pair(lo.p), z = pair(hi.p);
     const values = a.map((v, j) => v + (ratio * (z[j] - v))); fail(values.every(v => Number.isFinite(v) && v > 0));
     return { pair: values, selection: { kind: 'interpolated', lower_point_id: lo.p.id, upper_point_id: hi.p.id, target_kelvin: binary64Bits(t) } };
   }
@@ -1032,12 +1036,8 @@ async function invocationBinding(b: Obj, source: Obj, invocation: Obj): Promise<
     const mb = b.material_bases[a.material_basis_ref]; fail(mb && mb.case_indices.includes(a.owner_ref.index));
     if (a.operational.old_coverage === 'complete') fail(same(a.operational.old.map((m: Obj) => m.member), sequence(pipes.length)));
     else fail(same(a.operational.old.map((m: Obj) => m.member), sequence(a.operational.old.length)));
-    // F1:101-106 / P7: every retained old operational tuple, with or without a constructed source
-    // or a PreparedMember, binds its end positions and selected E/G to the invocation.
-    a.operational.old.forEach((op: Obj) => {
-      const p = pipes[op.member], material = p && mb.materials.find((v: Obj) => v.id === p.material);
-      fail(material && same(op.inputs.slice(0, 8), [...coordinates[nodeIndex(p.from)], ...coordinates[nodeIndex(p.to)], material.elastic_modulus, material.shear_modulus]));
-    });
+    // P7 settlement (F1:101-106; C3:155-158): old inputs are bound wherever a PreparedMember exists,
+    // for every attempt (below); other retained old entries stay producer attestations.
     for (let j = 0; j < a.preparation.members.length; j++) {
       const m = a.preparation.members[j], p = pipes[m.member], old = m.old_source, facts = m.old_facts, material = mb.materials.find((v: Obj) => v.id === p.material);
       fail(material && same(old.slice(0, 2), [material.elastic_modulus, material.shear_modulus]) && old[2] === facts[2] && old[3] === facts[3] && old[4] === facts[3] && old[5] === facts[4] && same(facts.slice(0, 2), geometry[m.member]));

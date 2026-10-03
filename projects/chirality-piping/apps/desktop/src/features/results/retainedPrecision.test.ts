@@ -115,6 +115,22 @@ async function rehash(source: any) {
   body.publication_sha256 = await canonicalSha256HexCheckedV1({ domain: 'retained_precision_publication_mp_v2', payload: publication });
   source.retained_precision.receipt_sha256 = await canonicalSha256HexCheckedV1({ domain: 'retained_precision_receipt_mp_v2', payload: body });
 }
+function applyEdits(root: any, edits: any[] | undefined): void {
+  for (const edit of edits ?? []) {
+    let value = root; for (const key of edit.path.slice(0, -1)) value = value[key];
+    const key = edit.path.at(-1); if (edit.op === 'remove') delete value[key]; else value[key] = structuredClone(edit.value);
+  }
+}
+/** SHARED_SNAPSHOT_06C format_change: source edits; invocation edits on a copy of the base
+ * invocation; a non-empty invocation edit list rebinds the receipt's invocation digest; then rehash. */
+async function applyEntry(m: any): Promise<{ base: any; source: any; invocation: any }> {
+  const base = corpus.cases.find((c: any) => c.id === m.base), source = structuredClone(base.source), invocation = structuredClone(base.invocation);
+  applyEdits(source, m.edits);
+  applyEdits(invocation, m.invocation_edits);
+  if (m.invocation_edits?.length) source.retained_precision.body.invocation.value = await canonicalSha256HexCheckedV1({ domain: 'source_blocks_invocation_v1', payload: invocation });
+  if (m.rehash) await rehash(source);
+  return { base, source, invocation };
+}
 describe('shared synthetic prepared receipt controls, never solver execution evidence', () => {
   for (const c of corpus.cases) {
     it(c.id, async () => {
@@ -141,25 +157,16 @@ describe('shared synthetic prepared receipt controls, never solver execution evi
     });
   }
   for (const m of corpus.mutations ?? []) it(m.id, async () => {
-    const base = corpus.cases.find((c: any) => c.id === m.base), source = structuredClone(base.source), invocation = structuredClone(base.invocation);
-    for (const edit of m.edits) {
-      let value = source; for (const key of edit.path.slice(0, -1)) value = value[key];
-      const key = edit.path.at(-1); if (edit.op === 'remove') delete value[key]; else value[key] = structuredClone(edit.value);
-    }
-    if (m.rehash) await rehash(source);
+    const { source, invocation } = await applyEntry(m);
     let error: unknown; try { await validateRetainedPrecision(source, invocation); } catch (e) { error = e; }
     expect(error).toBeInstanceOf(RetainedPrecisionError);
-    expect({ gate: (error as RetainedPrecisionError).gate, code: (error as RetainedPrecisionError).code }).toEqual(m.expected);
+    // Per-reader expectations (06b G7 settlement) override the shared expectation for TypeScript.
+    expect({ gate: (error as RetainedPrecisionError).gate, code: (error as RetainedPrecisionError).code }).toEqual(m.expected_by_reader?.typescript ?? m.expected);
   });
   // Snapshot 05a: publicly consistent or permitted failure-path rewrites the reader must accept.
   for (const m of corpus.must_pass ?? []) it('must pass: ' + m.id, async () => {
     expect(m.expected).toBe('pass');
-    const base = corpus.cases.find((c: any) => c.id === m.base), source = structuredClone(base.source), invocation = structuredClone(base.invocation);
-    for (const edit of m.edits) {
-      let value = source; for (const key of edit.path.slice(0, -1)) value = value[key];
-      const key = edit.path.at(-1); if (edit.op === 'remove') delete value[key]; else value[key] = structuredClone(edit.value);
-    }
-    if (m.rehash) await rehash(source);
+    const { base, source, invocation } = await applyEntry(m);
     const result = await validateRetainedPrecision(source, invocation);
     expect(result.numerical_eligible).toBe(false);
     expect(result.classifications).toEqual(base.expected_classifications);
@@ -178,6 +185,8 @@ describe('reader-logic checklist controls, not corpus or producer evidence', () 
     nativeSchedule(idle, source);
     rejects(() => nativeSchedule({ ...idle, kernel_terminal: { kind: 'selected', reason: null } }, source));
     rejects(() => nativeSchedule({ ...idle, case_charge: 1 }, source));
+    // A meter fault at invocation entry is never emitted (C1:66-68): an idle WorkAccounting run is refused.
+    rejects(() => nativeSchedule({ ...idle, kernel_terminal: { kind: 'unresolved', reason: { space: 'unresolved', tag: 'work_accounting', fault: 'overflow' } } }, source));
   });
   it('N6: a rejected p128 candidate must hand its verification on, so a Ceiling there is refused', () => {
     const base = caseOf('ordinary_prepared_synthetic').source.retained_precision.body, run = base.cases[0].run;
@@ -197,12 +206,14 @@ describe('reader-logic checklist controls, not corpus or producer evidence', () 
     rejects(() => nativeSchedule({ ...run, kernel_terminal: { kind: 'selected', reason: null } }, base.sources[0]));
     // terminal(stop) is exact: an Unresolved terminal for a Structure refusal is not native.
     rejects(() => nativeSchedule({ ...run, kernel_terminal: { kind: 'unresolved', reason: { space: 'unresolved', tag: 'ceiling' } } }, base.sources[0]));
-    // An escalating stop from the verification pass reaches terminal() only through a work fault.
+    // An escalating verification-pass stop has no terminal() translation, and the work-fault
+    // WorkAccounting alternative is never emitted (C1:66-68), so neither terminal is admitted.
     const pivot = { space: 'attempt', tag: 'stop', stop: { space: 'stop', tag: 'pivot', global_dof: 0 } };
     const escalating = structuredClone(run); escalating.attempts[0].verification.reason = pivot; escalating.records[1].outcome = { kind: 'failed', reason: pivot };
     escalating.kernel_terminal = { kind: 'unresolved', reason: { space: 'unresolved', tag: 'pivot', global_dof: 0 } };
     rejects(() => nativeSchedule(escalating, base.sources[0]));
-    nativeSchedule({ ...escalating, kernel_terminal: { kind: 'unresolved', reason: { space: 'unresolved', tag: 'work_accounting', fault: 'inconsistent' } } }, base.sources[0]);
+    rejects(() => nativeSchedule({ ...escalating, kernel_terminal: { kind: 'unresolved', reason: { space: 'unresolved', tag: 'work_accounting', fault: 'inconsistent' } } }, base.sources[0]));
+    rejects(() => nativeSchedule({ ...run, kernel_terminal: { kind: 'unresolved', reason: { space: 'unresolved', tag: 'work_accounting', fault: 'overflow' } } }, base.sources[0]));
   });
   it('N8: a rejected p512 candidate with a solved p1024 verification is the Ceiling', () => {
     const base = caseOf('p512_ladder_synthetic').source.retained_precision.body, run = base.cases[0].run, source = base.sources[base.cases[0].source_ref];
