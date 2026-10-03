@@ -233,6 +233,9 @@ function diagnostics(b: Obj, source: Obj): void {
 function nativeSchedule(run: Obj, source: Obj): void {
   const fail = (ok: unknown) => need(ok, 'G5', 'ATTEMPT_MISMATCH');
   const records: Obj[] = run.records, attempts: Obj[] = run.attempts;
+  // C1 actual native schedule: at most the p128/p256/p512 logical attempts, records exist iff
+  // attempts do, and the ladder opens with a fresh p128 candidate in record 0 (below).
+  fail(attempts.length <= 3 && (records.length === 0) === (attempts.length === 0));
   const stopOf = (outcome: Obj) => outcome.kind === 'failed' && outcome.reason.space === 'attempt' && outcome.reason.tag === 'stop' ? outcome.reason.stop : null;
   const escalates = (stop: Obj | null) => stop && ['pivot', 'condition', 'residual_gate'].includes(stop.tag);
   const terminalFor = (stop: Obj): Obj => {
@@ -537,7 +540,17 @@ function component(r: Obj): string | null {
 }
 function extent(points: number[][]): number { const d = [0, 1, 2].map(j => Math.max(...points.map(p => p[j])) - Math.min(...points.map(p => p[j]))); return Math.sqrt(((d[0] * d[0]) + (d[1] * d[1])) + (d[2] * d[2])); }
 function couple(s: number[], length: number): number[] { const [tr, ro, fo, mo] = s; return length === 0 ? [...s] : [Math.max(tr, length * ro), Math.max(ro, tr / length), Math.max(fo, mo / length), Math.max(mo, length * fo)]; }
-function phi(hat: number): number { const n = hat * (2 ** -438); return n * (2 ** 438) < hat ? numberFromWord(BigInt('0x' + binary64Bits(n)) + 1n) : n; }
+/** verify.rs e_hat: ê_fo = max(E_fo, fl(E_mo/L)), ê_mo = max(E_mo, fl(L·E_fo)); L = 0 keeps E. */
+export function eHat(force: number, moment: number, extent: number): [number, number] {
+  return extent === 0 ? [force, moment] : [Math.max(force, moment / extent), Math.max(moment, extent * force)];
+}
+/** verify.rs phi_512: Φ = fl↑(2^-438·ê). Take the nearest product, then adaptive::next_up
+ * (zero steps to the least subnormal) when scaling back by 2^438 is below ê. */
+export function phi512(hat: number): number {
+  const nearest = hat * numberFromWord(0x2490000000000000n), back = numberFromWord(0x5b50000000000000n);
+  if (!(nearest * back < hat)) return nearest;
+  return nearest === 0 ? numberFromWord(1n) : numberFromWord(BigInt('0x' + binary64Bits(nearest)) + 1n);
+}
 type NumericCase = { c: Obj; s: Obj; rows: Obj[]; values: { kind: string; body: number | null; member: Obj | null; n: number; input: boolean }[]; lengths: number[]; original: number[][]; scales: number[][]; hats: number[][] };
 function numericalCases(b: Obj, rows: Map<string, Obj[]>): NumericCase[] {
   return b.cases.filter((c: Obj) => c.status === 'selected').map((c: Obj) => {
@@ -545,7 +558,7 @@ function numericalCases(b: Obj, rows: Map<string, Obj[]>): NumericCase[] {
     const values = rs.map(r => ({ kind: rowKind(r), ...rowOwner(r, s), n: normalized(r), input: component(r) !== null && prescribed.some((x: Obj) => x.node_id === r.entity_ref && x.component === component(r)) }));
     const lengths = s.body_membership.map((body: Obj) => extent(body.nodes.map((i: number) => s.id_maps.nodes[i].coordinates.map(decodeBinary64))));
     const original = s.body_membership.map((body: Obj, i: number) => { const max = [0, 0, 0, 0]; values.forEach(v => { const k = KINDS.indexOf(v.kind); if (v.body === body.body && k >= 0 && !v.input) max[k] = Math.max(max[k], Math.abs(v.n)); }); return couple(max, lengths[i]); });
-    const hats = c.selection.resolution_scale.map((e: Obj, i: number) => { const f = decodeBinary64(e.force), m = decodeBinary64(e.moment); return lengths[i] === 0 ? [f, m] : [Math.max(f, m / lengths[i]), Math.max(m, lengths[i] * f)]; });
+    const hats = c.selection.resolution_scale.map((e: Obj, i: number) => eHat(decodeBinary64(e.force), decodeBinary64(e.moment), lengths[i]));
     return { c, s, rows: rs, values, lengths, original, scales: original.map((x: number[]) => [...x]), hats };
   });
 }
@@ -572,8 +585,8 @@ function coverageFacts(s: Obj): CoverageFacts {
   fail(bodies.length >= 1 && same(bodies.map(x => x.body), sequence(bodies.length)));
   const bodyOf = (node: number): number => { const hit = bodies.find(x => x.nodes.includes(node)); fail(hit); return hit!.body; };
   // C3 prescriptions are exact +0, so input-derived rows carry D = false.
-  fail(s.constraints.every((c: Obj) => c.value === ZERO));
   const fixed = new Set<string>(s.constraints.map((c: Obj) => c.dof.node + ':' + c.dof.component));
+  fail(fixed.size === s.constraints.length && s.constraints.every((c: Obj) => c.value === ZERO));
   fail(same(s.layout, sourceLayout(maps.nodes.length, maps.members, s.stations, maps.springs, s.constraints, s.supports, key => fixed.has(key), bodyOf)));
   const present = bodies.map(() => [false, false, false, false]), nonInput = bodies.map(() => [false, false, false, false]);
   for (const row of s.layout) { const k = KINDS.indexOf(row.kind); present[row.body][k] = true; if (!row.input_derived) nonInput[row.body][k] = true; }
@@ -586,7 +599,7 @@ function coverageFacts(s: Obj): CoverageFacts {
 }
 /** I57 §4 Boolean feasibility: some private A over non-input-present kinds (D = false)
  * reproduces the attested stop bits under L coupling and any positive floor. */
-function stopFeasible(stop: boolean[], present: boolean[], nonInput: boolean[], extentNonzero: boolean, floors: boolean[][]): boolean {
+export function stopFeasible(stop: boolean[], present: boolean[], nonInput: boolean[], extentNonzero: boolean, floors: boolean[][]): boolean {
   for (let mask = 0; mask < 16; mask++) {
     const A = KINDS.map((_, k) => ((mask >> k) & 1) === 1);
     if (A.some((v, k) => v && !nonInput[k])) continue;
@@ -599,17 +612,15 @@ function stopFeasible(stop: boolean[], present: boolean[], nonInput: boolean[], 
   return false;
 }
 const canonical = (bits: string, limit: number) => { const v = decodeBinary64(bits); return bits !== '8000000000000000' && v >= 0 && v <= limit; };
-/** Exact verification-record relations: bound null and theta +0 without data; data_blocks
- * zero iff no body has data, otherwise at least the true-body count. */
-function recordCoverage(cov: Obj[], record: Obj, theta: Obj[]): void {
+/** Exact verification-record relations (shared 05a rule): one bound entry per body in
+ * body order, non-null iff has_data; the record's theta is +0 without data; data_blocks
+ * is zero iff no body has data, otherwise at least the true-body count. */
+function recordCoverage(cov: Obj[], record: Obj): void {
   const fail = (ok: unknown) => need(ok, 'G5a', 'SCALE_MISMATCH');
   const withData = cov.filter(e => e.has_data).length;
   fail(Number.isSafeInteger(record.data_blocks) && (record.data_blocks === 0) === (withData === 0) && record.data_blocks >= withData);
-  for (const e of cov) {
-    const bound = record.bound.filter((v: Obj) => v.body === e.body);
-    fail(e.has_data ? bound.length === 1 && bound[0].value !== null : bound.every((v: Obj) => v.value === null));
-    if (!e.has_data) fail(theta.find((v: Obj) => v.body === e.body)?.value === ZERO);
-  }
+  fail(same(record.bound.map((v: Obj) => v.body), cov.map(e => e.body)) && cov.every((e, i) => (record.bound[i].value !== null) === e.has_data));
+  for (const e of cov) if (!e.has_data) fail(record.theta.find((v: Obj) => v.body === e.body)?.value === ZERO);
 }
 /** Direct data facts: no free DOF forces false; a nonzero original free-DOF term forces true. */
 function dataCoverage(e: Obj, facts: CoverageFacts, bi: number): void {
@@ -640,21 +651,28 @@ function selectedCoverage(x: NumericCase, b: Obj): void {
   fail(sel.resolution_scale.every((v: Obj) => canonical(v.force, Infinity) && canonical(v.moment, Infinity)) && sel.theta.every((v: Obj) => canonical(v.value, .5)));
   fail(same(sel.certified_bound.map((v: Obj) => v.body), cov.filter(e => e.has_data).map(e => e.body)) && sel.certified_bound.every((v: Obj) => decodeBinary64(v.value) > 0));
   const last = x.c.run.attempts.at(-1);
-  recordCoverage(cov, at(x.c.run.records, last.verification.record, 'G5a', 'SCALE_MISMATCH').verification, sel.theta);
+  recordCoverage(cov, at(x.c.run.records, last.verification.record, 'G5a', 'SCALE_MISMATCH').verification);
   cov.forEach((e, bi) => dataCoverage(e, facts, bi));
 }
-/** Non-selected attempts retaining a complete roster: structural and direct source
- * consistency only. No Selection is invented; any p512 floor is unknown, so each sign is admitted. */
+/** Non-selected attempts retaining a complete roster (05a): canonical layout, feasibility,
+ * record relations and direct data facts; no Selection rosters are applied or invented.
+ * At native p512 floor positivity comes from the Run's verification record: Φ > 0 iff ê(E, L) > 0. */
 function unselectedCoverage(b: Obj): void {
   for (const a of b.product_attempts) {
     const c = b.cases[a.owner_ref.index], cov = a.proof?.summary_coverage;
     if (c.status === 'selected' || !Array.isArray(cov)) continue;
     const facts = coverageFacts(b.sources[a.source_ref]), last = c.run.attempts.at(-1);
     need(cov.length === facts.lengths.length, 'G5a', 'SCALE_MISMATCH');
-    const floors = last.precision === 512 ? [[false, false], [false, true], [true, false], [true, true]] : [[false, false]];
-    cov.forEach((e: Obj, bi: number) => need(stopFeasible(e.stop, facts.present[bi], facts.nonInput[bi], facts.lengths[bi] !== 0, floors), 'G5a', 'SCALE_MISMATCH'));
     const record = at(c.run.records, last.verification.record, 'G5a', 'SCALE_MISMATCH').verification;
-    recordCoverage(cov, record, record.theta);
+    cov.forEach((e: Obj, bi: number) => {
+      let floor = [false, false];
+      if (last.precision === 512) {
+        const r = record.resolution.find((v: Obj) => v.body === e.body); need(r, 'G5a', 'SCALE_MISMATCH');
+        floor = eHat(decodeBinary64(r.force), decodeBinary64(r.moment), facts.lengths[bi]).map(v => v > 0);
+      }
+      need(stopFeasible(e.stop, facts.present[bi], facts.nonInput[bi], facts.lengths[bi] !== 0, [floor]), 'G5a', 'SCALE_MISMATCH');
+    });
+    recordCoverage(cov, record);
     cov.forEach((e: Obj, bi: number) => dataCoverage(e, facts, bi));
   }
 }
@@ -700,7 +718,8 @@ function numericalScales(cases: NumericCase[], source: Obj): void {
     const sel = x.c.selection;
     for (let bi = 0; bi < x.scales.length; bi++) {
       if (sel.precision === 512) {
-        fail(same([sel.floor[bi].force, sel.floor[bi].moment], x.hats[bi].map(v => binary64Bits(phi(v)))));
+        // C1 G5b: at native p512 the floor is exactly Φ = phi_512(ê(E, L)) per body.
+        fail(same([sel.floor[bi].force, sel.floor[bi].moment], x.hats[bi].map(v => binary64Bits(phi512(v)))));
         x.scales[bi][2] = Math.max(x.scales[bi][2], decodeBinary64(sel.floor[bi].force)); x.scales[bi][3] = Math.max(x.scales[bi][3], decodeBinary64(sel.floor[bi].moment));
       }
       fail(x.scales[bi].every(Number.isFinite) && same(x.scales[bi].map(binary64Bits), KINDS.map(k => sel.body_scales[bi][k])));

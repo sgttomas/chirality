@@ -100,7 +100,7 @@ describe('synthetic prepared receipt arithmetic controls, not execution evidence
   });
 });
 
-import { validateRetainedPrecision, validateRetainedPrecisionTransport, RetainedPrecisionError } from './retainedPrecision';
+import { validateRetainedPrecision, validateRetainedPrecisionTransport, RetainedPrecisionError, phi512, eHat, stopFeasible } from './retainedPrecision';
 import { canonicalSha256HexCheckedV1 } from '../../services/hashService';
 async function rehash(source: any) {
   const body = source.retained_precision.body;
@@ -150,6 +150,79 @@ describe('shared synthetic prepared receipt controls, never solver execution evi
     let error: unknown; try { await validateRetainedPrecision(source, invocation); } catch (e) { error = e; }
     expect(error).toBeInstanceOf(RetainedPrecisionError);
     expect({ gate: (error as RetainedPrecisionError).gate, code: (error as RetainedPrecisionError).code }).toEqual(m.expected);
+  });
+  // Snapshot 05a: publicly consistent or permitted failure-path rewrites the reader must accept.
+  for (const m of corpus.must_pass ?? []) it('must pass: ' + m.id, async () => {
+    expect(m.expected).toBe('pass');
+    const base = corpus.cases.find((c: any) => c.id === m.base), source = structuredClone(base.source), invocation = structuredClone(base.invocation);
+    for (const edit of m.edits) {
+      let value = source; for (const key of edit.path.slice(0, -1)) value = value[key];
+      const key = edit.path.at(-1); if (edit.op === 'remove') delete value[key]; else value[key] = structuredClone(edit.value);
+    }
+    if (m.rehash) await rehash(source);
+    const result = await validateRetainedPrecision(source, invocation);
+    expect(result.numerical_eligible).toBe(false);
+    expect(result.classifications).toEqual(base.expected_classifications);
+  });
+});
+
+describe('native p512 floor rounding, independent of any corpus case', () => {
+  // Literal transcription of verify.rs phi_512 and adaptive.rs next_up, for comparison only.
+  const fromWord = (word: bigint) => { const v = new DataView(new ArrayBuffer(8)); v.setBigUint64(0, word); return v.getFloat64(0); };
+  function nativePhi(hat: number): number {
+    const nearest = hat * fromWord(0x2490000000000000n);
+    if (!(nearest * fromWord(0x5b50000000000000n) < hat)) return nearest;
+    return nearest === 0 ? fromWord(1n) : fromWord(BigInt('0x' + binary64Bits(nearest)) + 1n);
+  }
+  const words = [0n, 1n, 3n, 0x000fffffffffffffn, 0x0010000000000000n, 0x1b6fffffffffffffn, 0x1b70000000000001n, 0x1b80000000000003n, 0x2000000000000001n,
+    0x249fffffffffffffn, 0x3ff0000000000000n, 0x3ff0000000000001n, 0x426d1a94a2000000n, 0x7fefffffffffffffn];
+  let seed = 0x9e3779b97f4a7c15n;
+  for (let i = 0; i < 200; i++) { seed = (seed * 6364136223846793005n + 1442695040888963407n) & ((1n << 64n) - 1n); words.push(seed % 0x7ff0000000000000n); }
+  it('phi512 is the least binary64 at or above 2^-438 * e_hat and equals the native transcription', () => {
+    for (const word of words) {
+      const hat = fromWord(word), phi = phi512(hat);
+      expect(binary64Bits(phi), word.toString(16)).toBe(binary64Bits(nativePhi(hat)));
+      const exact = multiply(fraction(word), [1n, 1n << 438n]);
+      expect(BigInt('0x' + binary64Bits(phi)), word.toString(16)).toBe(upperWord(exact));
+      expect(phi > 0).toBe(hat > 0);
+    }
+  });
+  // Row-level transcription of final_case.rs summary_coverage_data (D = false in C3): every
+  // kind is absent, input-only, non-input zero or non-input nonzero; L = 0 or not; floor none or
+  // any sign pair. The feasible stop set must equal the natively generated set exactly.
+  it('stopFeasible admits exactly the natively generated stop vectors, including L = 0', () => {
+    const bits = (n: number) => [0, 1, 2, 3].map(k => ((n >> k) & 1) === 1);
+    let groups = 0;
+    for (let state = 0; state < 256; state++) {
+      const kinds = [0, 1, 2, 3].map(k => (state >> (2 * k)) & 3); // 0 absent, 1 input-only, 2 non-input zero, 3 non-input nonzero
+      const present = kinds.map(s => s > 0), nonInput = kinds.map(s => s >= 2);
+      for (const extentNonzero of [false, true]) for (const floor of [null, [false, false], [false, true], [true, false], [true, true]] as (boolean[] | null)[]) {
+        const native = (nonzero: boolean[]) => {
+          let positive = [0, 1, 2, 3].map(k => nonInput[k] && nonzero[k]);
+          if (extentNonzero) positive = [positive[0] || positive[1], positive[0] || positive[1], positive[2] || positive[3], positive[2] || positive[3]];
+          if (floor) { positive[2] ||= floor[0]; positive[3] ||= floor[1]; }
+          return [0, 1, 2, 3].map(k => present[k] && (positive[k] || (nonInput[k] && nonzero[k])));
+        };
+        const generated = new Set<string>();
+        for (let a = 0; a < 16; a++) generated.add(JSON.stringify(native(bits(a))));
+        const floors = [floor ?? [false, false]];
+        for (let s = 0; s < 16; s++) {
+          const stop = bits(s);
+          expect(stopFeasible(stop, present, nonInput, extentNonzero, floors), JSON.stringify({ kinds, extentNonzero, floor, stop })).toBe(generated.has(JSON.stringify(stop)));
+        }
+        groups++;
+      }
+    }
+    expect(groups).toBe(2560);
+    // L = 0 keeps translation/rotation independent; L != 0 couples them.
+    expect(stopFeasible([true, false, false, false], [true, true, true, true], [true, true, true, true], false, [[false, false]])).toBe(true);
+    expect(stopFeasible([true, false, false, false], [true, true, true, true], [true, true, true, true], true, [[false, false]])).toBe(false);
+  });
+  it('e_hat couples force and moment only for a nonzero extent', () => {
+    expect(eHat(2, 3, 0)).toEqual([2, 3]);
+    expect(eHat(2, 3, 4)).toEqual([2, 8]);
+    expect(eHat(1, 0, 1)).toEqual([1, 1]);
+    expect(eHat(0, 0, 5)).toEqual([0, 0]);
   });
 });
 
