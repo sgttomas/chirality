@@ -100,7 +100,7 @@ pub(super) struct MemberEnclosures {
     represented_z: Option<Enclosure>,
 }
 #[derive(Debug, Clone, PartialEq)]
-pub(super) enum NumericError {
+pub enum NumericError {
     Arithmetic(AttemptStop),
     NonFinite,
     NonpositiveSource,
@@ -118,6 +118,25 @@ impl From<AttemptStop> for NumericError {
     }
 }
 
+/// Typed counts only; no endpoints or public radius authority.
+#[derive(Debug, Clone, Copy)]
+pub struct NumericTrace {
+    pub wide_lme: WorkTotal, pub exact_sum_lme: WorkTotal,
+    pub entries: [WorkTotal;7], pub f64_arithmetic: WorkTotal, pub sticky_status: WorkStatus,
+}
+/// Additional local trace writes/return-copy work, never native LME. Checked and
+/// sticky; the public transaction must separately account its later projections.
+#[derive(Debug, Default)]
+pub struct TraceCopyWork { pub events: WorkTotal, pub bytes: WorkTotal }
+impl TraceCopyWork {
+    pub(crate) fn record<T>(&mut self) {
+        self.events=self.events.add(WorkTotal::exact_count(1));
+        let bytes=match u64::try_from(std::mem::size_of::<T>()) {Ok(n)=>WorkTotal::exact_count(n),
+            Err(_)=>WorkTotal::zero().join_status(WorkStatus::from_fault(super::work::WorkFault::Overflow))};
+        self.bytes=self.bytes.add(bytes);
+    }
+    pub fn status(&self)->WorkStatus {self.events.status().join(self.bytes.status())}
+}
 #[derive(Debug, Clone, Copy)]
 enum Entry {
     Add = 0,
@@ -139,6 +158,11 @@ pub(super) struct NumericWork {
     status: WorkStatus,
 }
 impl NumericWork {
+    fn trace(&self, copies:&mut TraceCopyWork)->NumericTrace {
+        copies.record::<NumericTrace>();
+        NumericTrace {wide_lme:self.wide.checked_lme(),exact_sum_lme:self.sums.checked_lme(),
+            entries:self.entries,f64_arithmetic:self.f64_arithmetic,sticky_status:self.status}
+    }
     fn new() -> Self {
         Self {
             wide: AttemptWork::default(),
@@ -613,6 +637,12 @@ pub enum SectionPreparationError {
 }
 #[derive(Debug, Clone, PartialEq)]
 pub struct PreparationArithmeticCause(NumericError);
+impl PreparationArithmeticCause { pub fn cause(&self)->&NumericError {&self.0} }
+#[derive(Debug,Clone,Copy,PartialEq,Eq)]
+pub enum PreparationEndpoint { Lo, Hi, Exact }
+#[derive(Debug,Clone,Copy,PartialEq)]
+pub struct PreparationConversion {pub property:usize,pub endpoint:PreparationEndpoint,pub outcome:super::wide::multi::Binary64Outcome}
+
 #[derive(Debug)]
 pub struct SectionPreparationWork {
     numeric: NumericWork,
@@ -621,6 +651,8 @@ pub struct SectionPreparationWork {
     pub checks: WorkTotal,
     pub endpoint_assignments: WorkTotal,
     pub layout_bytes: [usize; 8],
+    conversion_outcomes:[Option<PreparationConversion>;9], conversion_entries:usize,
+    pub trace_copy_work:TraceCopyWork,
 }
 impl SectionPreparationWork {
     fn new() -> Self {
@@ -631,8 +663,12 @@ impl SectionPreparationWork {
                 std::mem::size_of::<NumericWork>(), std::mem::size_of::<WideContext<16>>(),
                 std::mem::size_of::<ExactWideSum>(), std::mem::size_of::<PreparedAnnulus>(),
                 std::mem::size_of::<super::wide::multi::Binary64Outcome>(),
-                std::mem::align_of::<SectionPrepFrame>() ] }
+                std::mem::align_of::<SectionPrepFrame>() ],
+            conversion_outcomes:[None;9],conversion_entries:0,trace_copy_work:TraceCopyWork {events:WorkTotal::exact_count(9),
+                bytes:WorkTotal::exact_count(std::mem::size_of::<[Option<PreparationConversion>;9]>() as u64)} }
     }
+    pub fn numeric_trace(&self,copies:&mut TraceCopyWork)->NumericTrace {self.numeric.trace(copies)}
+    pub fn conversion_outcomes(&self)->&[Option<PreparationConversion>] {&self.conversion_outcomes[..self.conversion_entries]}
     pub fn status(&self) -> WorkStatus {
         self.numeric.status().join(self.initialized_endpoints.status())
             .join(self.conversions.status()).join(self.checks.status()).join(self.endpoint_assignments.status())
@@ -645,13 +681,20 @@ impl SectionPreparationWork {
         self.endpoint_assignments = self.endpoint_assignments.add(WorkTotal::exact_count(n));
         self.check(0)
     }
-    fn round(&mut self, value: &Endpoint, property: usize) -> Result<f64, SectionPreparationError> {
+    fn round(&mut self, value: &Endpoint, property: usize, endpoint:PreparationEndpoint) -> Result<f64, SectionPreparationError> {
         self.check(1)?;
+        // Capacity admission precedes the actual entered-call counter.
+        self.trace_copy_work.record::<usize>();
+        if self.conversion_entries>=self.conversion_outcomes.len(){return Err(SectionPreparationError::Accounting);}
         self.conversions = self.conversions.add(WorkTotal::exact_count(1));
         self.check(0)?;
         // Existing conversion has no arithmetic tariff; this records its entered
         // call. Its internal integer visits remain explicit auxiliary work.
-        match value.to_binary64() {
+        let outcome=value.to_binary64();
+        self.conversion_outcomes[self.conversion_entries]=Some(PreparationConversion{property,endpoint,outcome});
+        self.conversion_entries+=1;
+        self.trace_copy_work.record::<PreparationConversion>();
+        match outcome {
             super::wide::multi::Binary64Outcome::Normal(v) if v.is_normal() && v > 0.0 => Ok(v),
             _ => Err(SectionPreparationError::PrimitiveRange(property)),
         }
@@ -718,12 +761,12 @@ pub fn prepare_product_annulus(diameter:f64,effective_wall:f64) -> AnnulusPrepar
         numeric.map_err(|e| SectionPreparationError::Arithmetic(PreparationArithmeticCause(e)))?;
         let mut bits=[0;5];
         for (i,iv) in [&f.a,&f.i,&f.j,&f.z].into_iter().enumerate() {
-            let lo=work.round(&iv.lo,i)?; let hi=work.round(&iv.hi,i)?;
+            let lo=work.round(&iv.lo,i,PreparationEndpoint::Lo)?; let hi=work.round(&iv.hi,i,PreparationEndpoint::Hi)?;
             work.check(1)?;
             if lo.to_bits()!=hi.to_bits() { return Err(SectionPreparationError::AmbiguousRounding(i)); }
             bits[i]=lo.to_bits();
         }
-        bits[4]=work.round(&f.c,4)?.to_bits();
+        bits[4]=work.round(&f.c,4,PreparationEndpoint::Exact)?.to_bits();
         work.check(0)?;
         Ok(PreparedAnnulus {input:[diameter.to_bits(),effective_wall.to_bits()],section:PreparedSectionBits{bits}})
     })();

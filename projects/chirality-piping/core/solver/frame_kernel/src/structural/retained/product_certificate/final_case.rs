@@ -177,7 +177,29 @@ enum Cause {
 pub struct ProductFailure {
     cause: Cause,
 }
+#[derive(Debug)]
+pub enum HelperFailure<'a> {Arithmetic(&'a AttemptStop),InvalidSmallBoundInput,Binary64Range,Invariant}
+#[derive(Debug)]
+pub enum ProductFailureView<'a> {
+    Association(&'static str),Numeric(&'a NumericError),Native(source_residual::BridgeFailure<'a>),
+    Accounting(WorkFault),CountRange(&'static str),Storage,G5a(&'static str),
+    Predicate{row:usize,predicate:ProductPredicate},Helper(HelperFailure<'a>),
+}
 impl ProductFailure {
+    pub fn typed_cause(&self,copies:&mut TraceCopyWork)->ProductFailureView<'_> {
+        copies.record::<ProductFailureView<'_>>();
+        match &self.cause {
+            Cause::Association(s)=>ProductFailureView::Association(s),Cause::Numeric(e)=>ProductFailureView::Numeric(e),
+            Cause::Native(e)=>ProductFailureView::Native(source_residual::bridge_failure(e)),Cause::Accounting(f)=>ProductFailureView::Accounting(*f),
+            Cause::CountRange(s)=>ProductFailureView::CountRange(s),Cause::Storage=>ProductFailureView::Storage,Cause::G5a(s)=>ProductFailureView::G5a(s),
+            Cause::Predicate{row,predicate}=>ProductFailureView::Predicate{row:*row,predicate:*predicate},
+            Cause::Helper(e)=>ProductFailureView::Helper(match e {
+                directed::certificate::HelperError::Arithmetic(e)=>HelperFailure::Arithmetic(e),
+                directed::certificate::HelperError::InvalidSmallBoundInput=>HelperFailure::InvalidSmallBoundInput,
+                directed::certificate::HelperError::Binary64Range=>HelperFailure::Binary64Range,
+                directed::certificate::HelperError::Invariant=>HelperFailure::Invariant}),
+        }
+    }
     pub fn category(&self) -> &'static str {
         match self.cause {
             Cause::Association(_) => "association",
@@ -205,6 +227,16 @@ fn bad(s: &'static str) -> ProductFailure {
     }
 }
 #[derive(Debug)]
+pub struct LaneTrace<'a> {pub law:source_residual::ReadoutLaw,pub result:Result<(),source_residual::BridgeFailure<'a>>,pub work:source_residual::LaneWorkTrace<'a>}
+#[derive(Debug)]
+pub struct ProductProofTrace<'a> {
+    pub lanes:[Option<LaneTrace<'a>>;2],pub numeric:NumericTrace,pub comparisons_lme:WorkTotal,
+    pub visits:WorkTotal,pub scalar_operations:WorkTotal,pub projection_conversions:WorkTotal,
+    pub projection_outcomes:&'a [(usize,super::super::wide::multi::Binary64Outcome)],
+    pub capacities:[usize;7],pub prepared_capacity_bytes:[usize;6],pub completion_merged:bool,
+    pub trace_copy_work:&'a TraceCopyWork,
+}
+#[derive(Debug)]
 pub struct ProductCertificateSpent<'a> {
     rows: &'a [ProductFinalRow<'a>],
     verdicts: Vec<ProductRowVerdict>,
@@ -222,6 +254,8 @@ pub struct ProductCertificateSpent<'a> {
     pub prepared_capacities: [usize; 6],
     projection_outcomes:Vec<(usize,super::super::wide::multi::Binary64Outcome)>,
     projection_conversions:WorkTotal,
+    lane_errors:[Option<bridge::BridgeError>;2],completion_merged:bool,
+    trace_copy_work:TraceCopyWork,
 }
 impl<'a> ProductCertificateSpent<'a> {
     fn new(rows: &'a [ProductFinalRow<'a>]) -> Self {
@@ -239,7 +273,19 @@ impl<'a> ProductCertificateSpent<'a> {
             capacities: [0; 7],
             prepared_capacities: [0; 6],
             projection_outcomes:Vec::new(),projection_conversions:WorkTotal::zero(),
+            lane_errors:[None,None],completion_merged:false,trace_copy_work:TraceCopyWork::default(),
         }
+    }
+    pub fn typed_trace<'b>(&'b self,copies:&mut TraceCopyWork)->ProductProofTrace<'b> {
+        copies.record::<ProductProofTrace<'_>>();
+        let lane=|work:&'b ResidualWork,index:usize,copies:&mut TraceCopyWork| LaneTrace {
+            law:work.readout_law,result:match &self.lane_errors[index] {None=>Ok(()),Some(e)=>Err(source_residual::bridge_failure(e))},
+            work:work.typed_trace(copies)};
+        ProductProofTrace {lanes:[self.native_k.as_ref().map(|w|lane(w,0,copies)),self.native.as_ref().map(|w|lane(w,1,copies))],
+            numeric:self.numeric.trace(copies),comparisons_lme:self.comparisons.checked_lme(),visits:self.visits,
+            scalar_operations:self.scalar_operations,projection_conversions:self.projection_conversions,
+            projection_outcomes:&self.projection_outcomes,capacities:self.capacities,prepared_capacity_bytes:self.prepared_capacities,
+            completion_merged:self.completion_merged,trace_copy_work:&self.trace_copy_work}
     }
     pub fn status(&self) -> WorkStatus {
         let mut s = self
@@ -292,7 +338,15 @@ impl<'a> ProductCertificateSpent<'a> {
             coverage:self.coverage, native:self.native, native_k:self.native_k,
             numeric:self.numeric, comparisons:self.comparisons, visits:self.visits,
             scalar_operations:self.scalar_operations, capacities:self.capacities, prepared_capacities:self.prepared_capacities,
-            projection_outcomes:self.projection_outcomes,projection_conversions:self.projection_conversions }
+            projection_outcomes:self.projection_outcomes,projection_conversions:self.projection_conversions,
+            lane_errors:self.lane_errors,completion_merged:self.completion_merged,trace_copy_work:self.trace_copy_work }
+    }
+    fn retain_lane(&mut self,result:Result<source_residual::LaneReadouts,bridge::BridgeError>,work:ResidualWork)
+        ->Result<source_residual::LaneReadouts,ProductFailure> {
+        let index=match work.readout_law {source_residual::ReadoutLaw::AdmittedK=>0,source_residual::ReadoutLaw::AnnularSource=>1};
+        self.lane_errors[index]=result.as_ref().err().cloned();self.trace_copy_work.record::<Option<bridge::BridgeError>>();
+        if index==0{self.native_k=Some(work);}else{self.native=Some(work);}
+        result.map_err(|e|ProductFailure{cause:Cause::Native(e)})
     }
     fn prepared_reserve<T>(&mut self, slot:usize, n:usize)->Result<Vec<T>,ProductFailure> {
         self.visit()?;
@@ -930,8 +984,10 @@ fn run_case(
         owner.selected_precision(),
         &laws,
     );
+    let lane_result=residual.result();
+    spent.lane_errors[1]=lane_result.as_ref().err().cloned();spent.trace_copy_work.record::<Option<bridge::BridgeError>>();
     let result = (|| {
-        let native = residual.result().map_err(|e| ProductFailure {
+        let native = lane_result.map_err(|e| ProductFailure {
             cause: Cause::Native(e),
         })?;
         let mut k = reserve(owner.publish().rows.len())?;
@@ -1515,12 +1571,10 @@ pub(crate) fn begin_prepared_product<'s,'m>(invocation:&RecordedInvocation,run:u
         }
         let kspent=source_residual::source_residual_for_law(owner,source,&owner.evidence().source_encoding,
             owner.selected_precision(),&laws,source_residual::ReadoutLaw::AdmittedK);
-        let (kr,kw)=kspent.into_readouts(&anchor);work.native_k=Some(kw);
-        let k=kr.map_err(|e|ProductFailure{cause:Cause::Native(e)})?;
+        let (kr,kw)=kspent.into_readouts(&anchor);let k=work.retain_lane(kr,kw)?;
         let sspent=source_residual::source_residual_prepared(owner,source,&owner.evidence().source_encoding,
             owner.selected_precision(),&laws,&anchor,&k);
-        let (sr,sw)=sspent.into_readouts(&anchor);work.native=Some(sw);
-        let source_rows=sr.map_err(|e|ProductFailure{cause:Cause::Native(e)})?;
+        let (sr,sw)=sspent.into_readouts(&anchor);let source_rows=work.retain_lane(sr,sw)?;
         if k.data!=source_rows.data || k.rows.len()!=owner.publish().rows.len()
             || source_rows.rows.len()!=k.rows.len() {return Err(bad("lane coverage/data"));}
         if let Some(f)=work.status().fault() {return Err(ProductFailure{cause:Cause::Accounting(f)});}
@@ -1710,12 +1764,14 @@ impl ProductFinalSpent {pub fn into_ready(self)->Result<CertifiedProductProof,Pr
 impl<'s,'m> ProjectedProofDraft<'s,'m> {
     pub fn abandon(self)->ProductProofFailure {ProductProofFailure{failure:bad("PP abandoned prepared draft"),work:self.work}}
     pub fn abandon_values(mut self,values_work:ValuesCompletionWork)->ProductProofFailure {
+        self.work.completion_merged=true;self.work.trace_copy_work.record::<bool>();
         self.work.visits=self.work.visits.add(values_work.visits);
         self.work.prepared_capacities[3]=values_work.capacity;
         ProductProofFailure{failure:bad("PP abandoned completed values"),work:self.work}
     }
     pub fn certify_final(self,values:&FrozenProductValues,rows:&[ProductFinalRow<'_>],values_work:ValuesCompletionWork)->ProductFinalSpent {
         let mut work=self.work.rebind(rows);
+        work.completion_merged=true;work.trace_copy_work.record::<bool>();
         work.visits=work.visits.add(values_work.visits);
         work.prepared_capacities[3]=values_work.capacity;
         let result=(|| {

@@ -112,6 +112,7 @@ mod pressure_material;
 mod pressure_runtime;
 mod preview_physics;
 mod retained_product;
+mod retained_receipt;
 mod retained_memory;
 pub use retained_memory::{
     borrowed_request_census, borrowed_value_census, AllowanceStatus, BorrowedRequestFacts,

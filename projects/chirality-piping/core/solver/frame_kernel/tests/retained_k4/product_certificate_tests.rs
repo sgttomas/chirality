@@ -457,11 +457,51 @@ fn i51_c0_layout_and_accounting_only() {
     assert_eq!(size_of::<Enclosure>(),2*size_of::<Endpoint>());
     let mut w=SectionPreparationWork::new();
     w.conversions=WorkTotal::exact_count(u64::MAX);
-    assert_eq!(w.round(&Endpoint::ONE,0),Err(SectionPreparationError::Accounting));
+    assert_eq!(w.round(&Endpoint::ONE,0,PreparationEndpoint::Lo),Err(SectionPreparationError::Accounting));
     assert!(!w.status().is_exact());
     assert_eq!(w.initialized_endpoints.exact(),Ok(0));
     let old=w.conversions;
-    assert_eq!(w.round(&Endpoint::ONE,0),Err(SectionPreparationError::Accounting));
+    assert_eq!(w.round(&Endpoint::ONE,0,PreparationEndpoint::Lo),Err(SectionPreparationError::Accounting));
     assert_eq!(w.conversions,old,"prior fault prevents a second conversion entry");
     println!("I51_C0_ACCOUNTING overflow and prior-fault prefix verified; no numerical producer run");
+}
+
+#[test]
+fn prepared_trace_actual_conversion_success_and_refusal_prefixes() {
+    let spent=prepare_product_annulus(0.1,0.005);
+    let section=spent.result().unwrap().section_bits().bits();
+    let outcomes=spent.work().conversion_outcomes();assert_eq!(outcomes.len(),9);
+    for (i,entry) in outcomes.iter().enumerate() {
+        let e=entry.as_ref().unwrap();let property=if i==8{4}else{i/2};
+        assert_eq!(e.property,property);
+        assert_eq!(e.endpoint,if i==8{PreparationEndpoint::Exact}else if i%2==0{PreparationEndpoint::Lo}else{PreparationEndpoint::Hi});
+        assert!(matches!(e.outcome,super::super::wide::multi::Binary64Outcome::Normal(v) if v.to_bits()==section[property]));
+    }
+    let invalid=prepare_product_annulus(0.0,0.005);
+    assert!(matches!(invalid.result(),Err(SectionPreparationError::InvalidGeometry)));
+    assert!(invalid.work().conversion_outcomes().is_empty());
+    for (d,t,overflow) in [(1e200,1e190,true),(1e-200,1e-210,false)] {
+        let spent=prepare_product_annulus(d,t);assert!(spent.result().is_err());
+        assert_eq!(spent.work().conversion_outcomes().len(),1);
+        let outcome=spent.work().conversion_outcomes()[0].unwrap().outcome;
+        assert!(if overflow{matches!(outcome,super::super::wide::multi::Binary64Outcome::Overflow{..})}
+            else{matches!(outcome,super::super::wide::multi::Binary64Outcome::Underflow{..})});
+        assert_eq!(spent.work().conversions.exact(),Ok(1));
+    }
+    let mut reads=TraceCopyWork::default();let trace=spent.work().numeric_trace(&mut reads);
+    assert_eq!(trace.entries,spent.work().numeric.entries);
+    assert_eq!(trace.wide_lme,spent.work().numeric.wide.checked_lme());
+    assert!(reads.events.exact().unwrap()>0 && reads.bytes.exact().unwrap()>0);
+    println!("I51_TRACE_LAYOUT SectionPreparationWork={} PreparationConversion={} TraceCopyWork={} NumericTrace={}",
+        std::mem::size_of::<SectionPreparationWork>(),std::mem::size_of::<PreparationConversion>(),std::mem::size_of::<TraceCopyWork>(),std::mem::size_of::<NumericTrace>());
+}
+
+#[test]
+fn prepared_trace_full_conversion_storage_refuses_before_entered_counter() {
+    let mut work=SectionPreparationWork::new();
+    for _ in 0..9 {assert_eq!(work.round(&Endpoint::ONE,0,PreparationEndpoint::Lo),Ok(1.0));}
+    let count=work.conversions;let prefix=work.conversion_outcomes;
+    assert_eq!(work.round(&Endpoint::ONE,0,PreparationEndpoint::Lo),Err(SectionPreparationError::Accounting));
+    assert_eq!(work.conversions,count);assert_eq!(work.conversion_outcomes,prefix);
+    assert_eq!(work.conversions.exact(),Ok(9));assert_eq!(work.conversion_outcomes().len(),9);
 }

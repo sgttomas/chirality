@@ -8,6 +8,8 @@ mod retained;
 /// crate names this module. `PrecisionState` and `RetainedSolve::state` stay
 /// crate-private (ROOT's ruling C-2).
 pub mod retained_api {
+    pub use super::retained::origins::{NumericTrace,NumericError,TraceCopyWork,PreparationEndpoint,PreparationConversion,
+        ReadoutLaw,ViewFailure,BridgeFailure,LaneWorkTrace,ProductFailureView,HelperFailure,LaneTrace,ProductProofTrace};
     pub use super::retained::origins::{ProductRowSpec, ProductProofStartSpent,
         ProductProofDraft, ProductProofFailure, ProductProjectionSpent, ProjectedProofDraft,
         ProductValuesBuilder, FrozenProductValues, ProductMaximumValue, ProductValuesSpent,
