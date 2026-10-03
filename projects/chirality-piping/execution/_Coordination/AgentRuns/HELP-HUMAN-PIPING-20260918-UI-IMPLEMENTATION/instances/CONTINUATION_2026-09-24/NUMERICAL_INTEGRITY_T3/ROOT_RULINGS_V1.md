@@ -5544,3 +5544,28 @@ I40 owns the sole focused compiler lane after RV53 release and ROOT's empty
 cargo/rustc scan. I41 starts only source and exact oracle work until a later
 explicit lane handoff. Both exact source fences keep shared registration hunks
 separate until ROOT integration; neither TASK has Git/index/API authority.
+
+## Kernel origins and source coefficients frozen for review (ROOT, 2026-10-03 UTC)
+
+I40 returned eight maintained paths at38798e6ee477ce23bf9bd2a708a1b2e268def5b3,
+base887b790c2a64. ROOT read the origin implementation, common core/combine diff,
+tests and reservation/ownership return; verified exact source/packet hashes and
+five final command logs; and committed only that scope. Actual combined K4LED
+is preserved before prep transfer even on unavailable runs; source-record byte
+copies and strong selected-prep retention are explicitly unpriced setup/owner
+deltas, not zero work. Extracted validation/preparation drops temporary owners
+earlier than the prior lexical scopes, a real profile delta. No acceptance yet.
+Fresh RV54 reviews the frozen source and holds the sole focused compiler lane.
+
+I41 returned six maintained paths at60375c47472dac26b1ab77536b8e7b9fb0c44ab0,
+base8a6ed501655f. ROOT read the complete component/B64U/tests/exact generator
+and return, verified the exact scope and39-file packet plus final source-bound
+commands, and committed that candidate. The exact singleton c-square uses one
+DM as the selected count derivation requires. Component counts exclude still-
+unimplemented chord/bridge work. Fresh RV55 reviews source/mathematics while
+its compiler lane is held for RV54. No source provenance, price, complete memory
+profile or product certificate is accepted merely because component tests pass.
+
+ROOT verification records are preserved at650a84a0f385. Both source checkouts
+remain frozen while fresh reviews run; each registration hunk will be integrated
+serially after findings are resolved. All product/availability/gate holds remain.

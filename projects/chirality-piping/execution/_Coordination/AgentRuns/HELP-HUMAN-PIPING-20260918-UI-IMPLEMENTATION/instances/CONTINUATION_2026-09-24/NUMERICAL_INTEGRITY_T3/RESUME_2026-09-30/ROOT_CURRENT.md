@@ -28,20 +28,21 @@ no cargo/rustc before dispatch. NUM merged current main a533dc2d67bc with
   evidence placement is explained by the packet root RETURN/RELOCATION.
   RV53 is CLEAR, preserved940b1eba9897; helpers integrated into NUM at0a9e874997.
   Full product/profile gates remain.
-- I40 /root/i40_kernel_origins implements kernel call/run/group/build/cache
-  origins in wt/f2a from clean887b790c2a64, maintained sourcefdae294. Brief
- 14ce35dbe60d;75min receipt/checkpoint15/cutoff55. RV52 source hold lifted at
- 23:55 UTC. RV53 released the lane and ROOT handed it to I40 after host check.
-  Case batches/recorded selected
-  combinations only; Prepared ordinary/PP/maps/readers remain explicit later
-  interfaces. Raw command/host evidence stays under _run_records.
+- I40 delivered native kernel origins at38798e6ee477ce23bf9bd2a708a1b2e268def5b3
+  in wt/f2a, base887b790c2a64. Eight maintained paths; source and five final
+  command checks verified by ROOT at650a84a0f385. Fresh RV54 reviews in
+  REVIEW_RV54/kernel_origins_01 under brief2e9bcf447022. It owns the sole focused
+  Cargo lane; no source writes. Prepared ordinary/PP/maps/readers remain later.
+- I41 delivered private material/section coefficients and B64U spent seam at
+  60375c47472dac26b1ab77536b8e7b9fb0c44ab0 in wt/f2a-arithmetic, base8a6ed501655f.
+  Six maintained paths; source/oracle/three final command checks verified by
+  ROOT at650a84a0f385. Fresh RV55 reviews in REVIEW_RV55/member_coefficients_01
+  under briefc274947f253c. Compiler lane is held for RV54; source/exact checks
+  may proceed. No source-provenance witness/product caller/policy is activated.
 
-- I41 /root/i41_member_coefficients implements only the private material/section
-  coefficient evaluator and reviewed B64U work-return seam in wt/f2a-arithmetic
-  from8a6ed501655f, maintained bytes82fc4ebd. Briefd89749d309f1,60min/checkpoint20/
-  cutoff45. Cargo is held for I40; source and exact oracle work may proceed.
-  Its mod.rs registration is shared logically with I40 and integrated serially
-  by ROOT. No source-binding witness/product caller or policy is activated.
+Both source checkouts are frozen/clean. Their separate mod.rs registration hunks
+will be integrated serially by ROOT after review. Raw host/command records are
+under _run_records. No helper/product full gate programme is yet released.
 
 ## Accepted and preserved bases
 
@@ -59,5 +60,5 @@ Finish these bounded reviews, repair/backcheck confirmed findings, and qualify
 I39 helpers with a fresh reviewer. Complete C2/product source identity, concrete
 profile/caller/resource work and the first source-to-verdict witness, then the
 atomic F2a/S-G1 path and required gates. S-I/F2b/F3 and owner-held decisions
-remain. Next unused IDs: I42/RV54. No full T3 completion or product activation
+remain. Next unused IDs: I42/RV56. No full T3 completion or product activation
 is claimed. See BRIEFS, owning RETURN files and latest ROOT_RULINGS_V1.md.
