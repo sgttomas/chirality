@@ -5718,3 +5718,13 @@ witness against independent source truth, not more product plumbing. The I43
 constructed center is not an actual factor result or production expected value.
 Fresh implementation review, full profile/work qualification, PP source/final-row
 custody and all final F2a gates remain. No universal availability is accepted.
+
+
+I44 dispatch continuation (ROOT, 2026-10-03 UTC): the clean source-record join is
+157a64b0b8bb4ad4b3170a7f9b249d218c17d529, maintained bytes17ded278c6. ROOT verified
+no Cargo/rustc and the existing guard before transferring the focused lane to
+native TASK /root/i44_source_residual. Actual receipt01:30:41Z; checkpoint01:45:41,
+source-expansion cutoff02:25:41, final02:45:41. Exact fence and return obligations
+remain brief245e9fb963f6, no additional source authority. This is an executing
+child, not merely a written plan. Other TASKs have stopped; all public/final gates
+remain outstanding.

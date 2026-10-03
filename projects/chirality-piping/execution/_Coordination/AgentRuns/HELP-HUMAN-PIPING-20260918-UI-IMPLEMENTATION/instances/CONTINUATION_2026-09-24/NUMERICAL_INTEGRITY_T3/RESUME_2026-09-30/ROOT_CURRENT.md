@@ -20,10 +20,15 @@ with I44's narrow helper-visibility completion245e9fb963f6. It changes the prior
 private certificate no-new-solve plan, not the primary schedule or publication.
 The constructed-center exact control is still not an actual factor witness.
 
-I44's bounded native implementation is released under prepared brief245e9fb963f6
-subject to ROOT's clean source-record join; dispatch will pin its actual base.
-No other TASK is active; RV56/RV57 released all execution. ROOT will record actual
-I44 receipt/lane and source base after dispatch. No heavy/UI/sweep or new tools.
+I44 /root/i44_source_residual is implementing under brief245e9fb963f6 and ROOT
+selectione5656922c0db in wt/f2a-arithmetic. Clean dispatch157a64b0b8bb is a no-ff
+records join, with maintained core/validation identical to reviewed17ded278c6.
+Actual receipt01:30:41Z; checkpoint01:45:41, source-expansion cutoff02:25:41,
+return02:45:41. It owns the sole focused Cargo lane:4jobs/2threads/isolated
+per-manifest targets/20minute command walls, existing guard5387. Exact source
+fence is in the brief; no factor/public API/PP changes without new explicit scope.
+Only its R/I44/source_residual_01 records and fenced private source may be written.
+No Git/index/API/delegation. All other TASKs are stopped. No heavy/UI/sweep/tools.
 
 ## Completed and remaining
 
