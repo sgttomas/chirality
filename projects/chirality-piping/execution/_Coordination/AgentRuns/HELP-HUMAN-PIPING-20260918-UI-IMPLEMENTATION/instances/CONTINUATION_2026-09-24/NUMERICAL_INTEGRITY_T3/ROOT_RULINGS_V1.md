@@ -5923,3 +5923,11 @@ refusal. Any proposed change to protected truth, tolerance, output/operator
 contract or required availability remains an owner decision on concrete reviewed
 evidence; affected acceptance/merge is held at that boundary. This ruling grants
 no public activation, protected availability, resource qualification or T3 closure.
+
+
+I48 dispatch (ROOT,2026-10-03 UTC): release the20minute read-only availability-
+warrant check in brief615fdf5fae78 alongside RV60's code review. Actual receipt
+03:53:07Z, checkpoint04:01:07, cutoff04:08:07, return04:13:07. Its sole evidence
+scope is R/I48/product_availability_01; no source/runtime/tooling or new contract.
+The purpose is to locate the actual owner-decision boundary, not infer a new
+availability exception from the accepted conditional private-refusal witness.

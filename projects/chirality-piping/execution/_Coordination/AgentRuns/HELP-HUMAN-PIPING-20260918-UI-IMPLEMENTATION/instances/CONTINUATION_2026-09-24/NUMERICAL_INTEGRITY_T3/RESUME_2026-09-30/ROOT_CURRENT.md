@@ -70,6 +70,14 @@ ordinary source-to-verdict path, preserving criteria/output and checking every r
 Only PP's existing private test module plus new evidence may change, after RV60
 clearance and a clean source grant. No new material/source design or public route.
 
+I48 /root/i48_product_availability is now a bounded read-only warrant check under
+brief615fdf5fae78. Question: does this actual refusal conflict with an accepted
+F2a required-availability outcome, and what concrete producer witness/owner
+boundary follows? Actual receipt03:53:07Z, checkpoint04:01:07, cutoff04:08:07,
+return04:13:07. Owns only R/I48/product_availability_01; no source/compiler/model/
+solver/native/Git/index/API/tooling/delegation. No new contract or exemption.
+It cannot clear I45 or consume RV60's sole runtime lane.
+
 RV58 discloses a separate92ea status read without optional locks disabled; no
 candidate mutation was observed. Its sealed fixture's .gitignore symlink produces
 a nonblocking Git warning in NUM; original bytes/pointers and frozen source pin
@@ -95,6 +103,6 @@ emergency bounds remain unqualified. Old K6c layouts do not qualify new owners.
 Then S-I/F2b/F3 and owner-held decisions remain. No complete memory allowance,
 facade tariff, visit permit or product availability is selected by these packets.
 
-Next unallocated IDs after prepared I47 and allocated RV60/RV61: I48/RV62. ROOT owns source/record integration,
+Next unallocated IDs after prepared I47/active I48 and allocated RV60/RV61: I49/RV62. ROOT owns source/record integration,
 repair assignment, independent review, gates and owner checkpoints. Rulings are
 append-only; frozen raw evidence is never edited.
