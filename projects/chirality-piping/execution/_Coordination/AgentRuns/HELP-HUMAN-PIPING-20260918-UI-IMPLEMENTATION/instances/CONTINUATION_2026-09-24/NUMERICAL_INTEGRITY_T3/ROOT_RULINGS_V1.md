@@ -6050,3 +6050,33 @@ Checkpoint 04:53:36, first complete verdict 04:58:36, cutoff 05:13:36, final
 blocker remains sealed. The existing guarded focused lane transferred after
 ROOT observed no compiler processes. Fresh RV62 implementation review remains
 required. This is an actual native TASK continuation, not just a written brief.
+
+
+## Selected-material implementation freeze and conservative-refusal check (ROOT, 2026-10-03 UTC)
+
+ROOT read the full four-file I47 completion and oracle correction, verified its
+58-payload seal c6d0a1ee33ff09fb038d4ece5735264d2c704d70cf4695ff0818b1f7a22abb9d,
+source-bound command maps and preserved blocker/original tests. Candidate
+d0daa18717f8243a7232e898c9ef9b4f4d18d9e4 is committed in CODE, not accepted
+or merged into NUM. ROOT's first verification compared the declared changed-source
+digest to the full inventory path; the corrected artifact lookup verified both
+without editing evidence or making a prior Git mutation.
+
+The new selected oracle initially assumed the base specimen's absence of
+conservative refusals generalized. That assumption is withdrawn only in the new
+owned oracle. The selected conditional certificate permits such refusal; source
+truth, predicates, scale/class checks and false-pass rejection remain unchanged.
+ROOT additionally checked every actual candidate passing predicate against its
+independent truth upper bound, with no undecided interval accepted. The exact
+figures and distinct categories are in I47 selected_material_02 RETURN §Actual
+outcomes; no internal-interval reconstruction or availability success follows.
+
+Fresh RV62 received the complete cumulative source/records review at05:04:23Z,
+checkpoint05:14:23, cutoff05:24:23, return05:34:23, and holds the sole focused
+compiler lane after I47/ROOT process release checks. Its fresh review is required
+before fan-in. Separately I49 received brief19703b23a89e at05:09:07Z, checkpoint
+05:17:07, cutoff05:24:07, return05:31:07. It investigates one conservative UX
+predicate through exact arithmetic and pinned source only, with no compiler lane,
+source change or broader numerical programme. Its purpose is to determine the
+next numerical/producer dependency rather than assume more solver precision or
+more facade plumbing is the remedy. All public/owner-held boundaries remain.
