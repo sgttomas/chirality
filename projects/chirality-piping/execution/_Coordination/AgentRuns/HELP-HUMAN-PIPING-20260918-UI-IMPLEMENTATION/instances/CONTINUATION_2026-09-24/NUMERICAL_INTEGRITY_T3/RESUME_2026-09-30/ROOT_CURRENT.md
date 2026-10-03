@@ -13,21 +13,17 @@ exact maintained correspondence. No main/product/profile qualification follows.
 R/verification/i42_fanin_01 contains ROOT checks and LOCAL_MERGE/RECORD.md.
 I42 and RV56 stopped and released runtime; existing guard5387 remains active.
 
-I43 proposal401ec14c0a73 at R/I43/source_tightening_01 is under fresh RV57 design
-review (brief06b41a0dd96f). One retained verification-factor application plus an
-independently computed source residual is proposed; it is not selected or code.
-Its RETURN §5 constructed-center exact control gives52/52 loaded predicate passes
-versus7/52 for sign-only and7/52 for a wrong center. Actual factor execution,
-general directed frame/source recovery and full work/storage code remain untested.
-No-data proves only free-motion zero; constrained loads/prescriptions still recover.
+I43 proposal401ec14c0a73 at R/I43/source_tightening_01 cleared fresh RV57 design
+review, preserved3576b4c0a0fb. Its48-file seal verifies. ROOT has selected the
+one-counted-retained-factor plus independently recomputed source-residual theorem,
+with I44's narrow helper-visibility completion245e9fb963f6. It changes the prior
+private certificate no-new-solve plan, not the primary schedule or publication.
+The constructed-center exact control is still not an actual factor witness.
 
-RV57 /root/rv57_source_residual_design owns only REVIEW_RV57/source_tightening_01,
-with45minutes from receipt/checkpoint20/cutoff35, standard-library exact algebra
-only. No source/runtime/Git/index writes or delegation. All other TASKs are stopped;
-no maintained writer or Cargo lane owner is active. ROOT will select/repair the
-proposal after fresh review, then bound an actual native implementation/witness.
-Do not commission unrelated product plumbing or host tools while this numerical
-sufficiency step remains open. No heavy/UI/sweep programme is granted.
+I44's bounded native implementation is released under prepared brief245e9fb963f6
+subject to ROOT's clean source-record join; dispatch will pin its actual base.
+No other TASK is active; RV56/RV57 released all execution. ROOT will record actual
+I44 receipt/lane and source base after dispatch. No heavy/UI/sweep or new tools.
 
 ## Completed and remaining
 
@@ -49,6 +45,6 @@ emergency bounds remain unqualified. Old K6c layouts do not qualify new owners.
 Then S-I/F2b/F3 and owner-held decisions remain. No complete memory allowance,
 facade tariff, visit permit or product availability is selected by these packets.
 
-Next unused IDs: I44/RV58. ROOT owns source/record integration,
+Next unused IDs after assigned I44: I45/RV58. ROOT owns source/record integration,
 repair assignment, independent review, gates and owner checkpoints. Rulings are
 append-only; frozen raw evidence is never edited.
