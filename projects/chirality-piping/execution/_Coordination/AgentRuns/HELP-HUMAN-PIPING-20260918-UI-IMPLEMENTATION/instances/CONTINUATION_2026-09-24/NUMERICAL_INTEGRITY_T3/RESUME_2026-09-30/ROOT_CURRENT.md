@@ -1,64 +1,50 @@
 # T3 current checkpoint
 
-**ACTIVE after explicit owner resumption, 2026-10-02.** The session-pause
-handoff remains history. ROOT verified M5 Max / 128 GiB, memguard PID5387 and
-no cargo/rustc before dispatch. NUM merged current main a533dc2d67bc with
---no-ff at d01b218e7ad; Piping and relevant instructions are unchanged.
+**ACTIVE after explicit owner resumption. Updated 2026-10-03 UTC.**
+M5 Max; existing memguard PID5387. Latest fetch main a533dc2d67bc; NUM already
+merged it at d01b218e7ad. Relevant Piping/instruction source is unchanged.
 
-## Current work
+## Numerical priority
 
-- I37 source checkpoint was frozen and pushed at
-  fdae294643b798c1849da8b2e643085562593686, base14ff4e86dd. ROOT read the core
-  diff and verified scope/hashes and final-source checks. ROOT merged it into NUM after RV51 clearance; it remains unmerged on main.
-- RV51 is completing the partial review in new REVIEW_RV51/checked_work_a_02.
-  It is CLEAR for bounded prerequisite fan-in, preserved at4d9358b550.
-  Independent debug/release controls and count/consumer trace are complete. Prior partial packet remains unchanged and is not clearance.
-- RV50 completed integration review and confirmed B64U correction. Original
-  reviewdf2ba0a07d97; corrected contractd2ced80f725f; backcheck1e5434d315a6.
-  The actual-work seam is accepted as design only; implementation still follows.
-- RV52 confirmed P3 hats correction at0a86763d473a againstf3af1b800c77.
-  Symbolic source-owner roster is accepted; actual profile/C2/P4 remain open.
-- I38 native source result preserved0d90e2fe470e. Poll-to-body is synchronous;
-  native dispatch/nesting H, request contexts and emergency/capacity proof remain
-  unqualified. No native allowance or availability accepted. Original packet
-  bytes live under I38/f2a_native_reply_overlap_02/_run_records/original.
-- I39 helper candidate is82fc4ebdca043c25c701d435e09b8830640fe950 in
-  wt/f2a-arithmetic, clean/pushed. ROOT read helper/tests/generator and verified
-  five maintained hashes, original seal and final command logs. Byte-preserved
-  evidence placement is explained by the packet root RETURN/RELOCATION.
-  RV53 is CLEAR, preserved940b1eba9897; helpers integrated into NUM at0a9e874997.
-  Full product/profile gates remain.
-- I40 delivered native kernel origins at38798e6ee477ce23bf9bd2a708a1b2e268def5b3
-  in wt/f2a, base887b790c2a64. Eight maintained paths; source and five final
-  command checks verified by ROOT at650a84a0f385. Fresh RV54 reviews in
-  REVIEW_RV54/kernel_origins_01 under brief2e9bcf447022. It owns the sole focused
-  Cargo lane; no source writes. Prepared ordinary/PP/maps/readers remain later.
-- I41 delivered private material/section coefficients and B64U spent seam at
-  60375c47472dac26b1ab77536b8e7b9fb0c44ab0 in wt/f2a-arithmetic, base8a6ed501655f.
-  Six maintained paths; source/oracle/three final command checks verified by
-  ROOT at650a84a0f385. Fresh RV55 reviews in REVIEW_RV55/member_coefficients_01
-  under briefc274947f253c. Compiler lane is held for RV54; source/exact checks
-  may proceed. No source-provenance witness/product caller/policy is activated.
+I42 conditional native bridge source17ded278c64e is reviewed and accepted for
+local component fan-in. RV56-F1 failure accounting is fixed/backchecked; original
+reviewf2b9a8935698, backcheck7b6f82377f60. ROOT merged it into NUMb009fb09e216 with
+exact maintained correspondence. No main/product/profile qualification follows.
+R/verification/i42_fanin_01 contains ROOT checks and LOCAL_MERGE/RECORD.md.
+I42 and RV56 stopped and released runtime; existing guard5387 remains active.
 
-Both source checkouts are frozen/clean. Their separate mod.rs registration hunks
-will be integrated serially by ROOT after review. Raw host/command records are
-under _run_records. No helper/product full gate programme is yet released.
+I43 proposal401ec14c0a73 at R/I43/source_tightening_01 cleared fresh RV57 design
+review, preserved3576b4c0a0fb. Its48-file seal verifies. ROOT has selected the
+one-counted-retained-factor plus independently recomputed source-residual theorem,
+with I44's narrow helper-visibility completion245e9fb963f6. It changes the prior
+private certificate no-new-solve plan, not the primary schedule or publication.
+The constructed-center exact control is still not an actual factor witness.
 
-## Accepted and preserved bases
+I44's bounded native implementation is released under prepared brief245e9fb963f6
+subject to ROOT's clean source-record join; dispatch will pin its actual base.
+No other TASK is active; RV56/RV57 released all execution. ROOT will record actual
+I44 receipt/lane and source base after dispatch. No heavy/UI/sweep or new tools.
 
-A1 PR1070 and K6c PR1071 remain merged; accepted scopes/qualifications unchanged.
-Do not repeat completed gates merely to resume. RV47-C1 exact-K control defect
-is closed after correction and same-reviewer confirmation; original raw and
-theorem remain unchanged. I29 P3 and I35 integration-02 started at2fc3e8f71df2; their narrow
-corrections/backchecks above now govern conditional component reliance. No visit-permit value, facade tariff or complete
-numeric memory allowance is selected. The kernel20B/60B LME thresholds retain
-their exact-accounting and overshoot qualifications.
+## Completed and remaining
 
-## Next
+A1 PR1070 (3a0251874d6a) and K6c PR1071 (49034a940f3f) remain merged at their
+stated scopes. AUD-T3-01 is closed on corrected retained publication. Historical
+K6c qualifications and owner-approved scoped KF3 comparison remain; do not repeat
+completed gates merely to resume.
 
-Finish these bounded reviews, repair/backcheck confirmed findings, and qualify
-I39 helpers with a fresh reviewer. Complete C2/product source identity, concrete
-profile/caller/resource work and the first source-to-verdict witness, then the
-atomic F2a/S-G1 path and required gates. S-I/F2b/F3 and owner-held decisions
-remain. Next unused IDs: I42/RV56. No full T3 completion or product activation
-is claimed. See BRIEFS, owning RETURN files and latest ROOT_RULINGS_V1.md.
+Checked-work fdae294, private helpers82fc4ebd, native origins38798e6, and member
+coefficients/B64U60375c47 have fresh bounded reviews and are integrated locally
+in NUMc7252b7d. Combined focused origin/coefficient checks pass. RV50/RV52 narrow
+accounting/ownership corrections are closed. None establishes full F2a acceptance.
+
+After useful source certification: actual PP normalized/material/owner/final-row
+custody, Prepared ordinary operands, full C2/readers/receipt, bounded facade work,
+concrete memory/profile/caller qualification and atomic F2a/S-G1 with required
+full gates. I38's synchronous native source trace is preserved; dispatch/context/
+emergency bounds remain unqualified. Old K6c layouts do not qualify new owners.
+Then S-I/F2b/F3 and owner-held decisions remain. No complete memory allowance,
+facade tariff, visit permit or product availability is selected by these packets.
+
+Next unused IDs after assigned I44: I45/RV58. ROOT owns source/record integration,
+repair assignment, independent review, gates and owner checkpoints. Rulings are
+append-only; frozen raw evidence is never edited.

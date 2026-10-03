@@ -5569,3 +5569,152 @@ profile or product certificate is accepted merely because component tests pass.
 ROOT verification records are preserved at650a84a0f385. Both source checkouts
 remain frozen while fresh reviews run; each registration hunk will be integrated
 serially after findings are resolved. All product/availability/gate holds remain.
+
+## Origins and coefficients accepted for local fan-in; native bridge next (ROOT, 2026-10-03 UTC)
+
+ROOT read the complete RV54/RV55 returns, verified exact packet trees/manifests,
+and preserved both atf2dd0dd6d4c0. RV54 seal
+f413042d48405f1fa927291220f5c0f069a32e2652daabdc061978eca0b3be2f;
+RV55 seal b2eec69f69154ebc7916868b1d9e7ad05ae6a4bf22d662cce31430e8812b6400.
+Accept native origin source38798e6ee477 and coefficient/B64U source60375c47472d
+for bounded component fan-in. No actionable source findings remain. ROOT merged
+them into NUM at77d1b640400e and c7252b7d496a with --no-ff; the two module
+registrations joined cleanly. Both focused origin/coefficient suites pass on
+that unchanged combined source, with commands/hashes/raw logs under verification/
+combined_components_01. This is not a main merge, complete C2, numeric profile
+or full product/availability acceptance. RV54 removed only its disposable review
+target directories after retaining compiler facts/raw evidence/reproduction inputs.
+
+Release I42 under briefe89bb4527a98 on clean f2a-arithmetic57636e987041, which
+contains that reviewed combined source. Implement the accepted I33/RV45 full
+source-action theorem with actual owner-bound R7/A1 state and fixed arithmetic,
+and test small native zero/loaded cases against an independent exact oracle.
+A conservative fully-fixed-anchor test may establish sufficient no-data uniqueness
+for the initial component; its absence is missing warrant/certificate insufficiency,
+never a new domain rule or singularity claim. General PP source and final-row
+binding remains unfinished and may not be asserted by a scalar input record.
+
+ROOT prioritizes an early sufficiency diagnostic against unchanged native SI
+predicates wherever directly applicable. Distinguish a loose conservative
+enclosure from an exact source error that actually exceeds a bound. Neither
+outcome authorizes tolerance/source/publication changes; any required change
+gets its own re-derivation, review and owning decision. No extra product plumbing
+is commissioned while this first numerical observation is pending.
+
+
+## Native bridge frozen; tighten only through fresh proof (ROOT, 2026-10-03 UTC)
+
+ROOT froze I42 at4afbac6e613203f93a499b780082b28be37f6c2c against57636e987041.
+The exact source and packet scope, final command freezes, and ROOT reading are
+recorded in R/verification/i42_fanin_01/ROOT_CHECK.json. No source acceptance or
+main merge is made. The author released runtime and ROOT confirmed no cargo/rustc.
+
+I42 RETURN §Observed numerical result distinguishes native source containment
+from predicate sufficiency: both witnesses contain52/52 exact references; zero
+passes52/52 predicates and loaded7/52, while the independent oracle proves52/52
+actual source values pass for each. The45 loaded enclosure failures do not prove
+a source-output defect. Keep the baseline, source contract, publication and
+predicates unchanged; no universal availability inference follows.
+
+Dispatch fresh RV56 under brief44c0bba693 for independent code and design review,
+including the sufficient anchor warrant, with the sole focused compiler lane.
+Dispatch fresh I43 under briefa70de5f595 for a bounded tightening derivation using
+the frozen, explicitly unreviewed I42 witness. These actual native TASK children
+own separate record packets and no Git/index/source writes; receipt/deadline facts
+are in ROOT_CURRENT and their packets. Any tightening needs a fresh independent
+design re-derivation before reliance. An extra solve/factor application must be an
+explicit reviewed proposal with work/custody consequences, not a silent change
+to the prior no-new-solve plan. Public-contract changes remain owner decisions.
+Further product plumbing waits for this numerical sufficiency investigation.
+
+
+## RV56-F1 repair release (ROOT, 2026-10-03 UTC)
+
+ROOT read RV56's complete review, derivation and replay; verified its exact
+48-file inventory6ed85406f8808decd87d8926ce7b38e678defbdb207dda3b25a6c919da8c585e
+and preserved it atf2b9a89356981c246da2bfbeeecd35193c09d20d. The sole blocking
+finding RV56-F1 is confirmed: the relative-radius validator can execute five
+sharper-bound arithmetic operations and refuse before the view collects them.
+The injected private-radius witness tests the implemented refusal contract;
+it is not evidence of public-constructor reachability or a false numerical row.
+No bounded source-enclosure or sufficient-anchor theorem defect was found.
+
+ROOT accepts I42's narrow repair plan (PLAN SHA256 ceddf500cb9389eed312ea7facc98bb5801a18d3e1c5ce8666ab0ed263980305) and releases only
+retained/adaptive.rs and tests/retained_k4/source_bridge_tests.rs in the frozen
+4afbac6e61 checkout. Actual helper work must be collected on all exits through
+one execution, preserving numerical order/results/errors and early-zero prefixes.
+No other maintained path is authorized without a concrete scope amendment.
+Original I42/reviewer evidence remains unchanged. The sole focused compiler lane
+is transferred after RV56 release and ROOT's process check; same four-job/two-
+thread/isolated-target/twenty-minute walls apply. Thirty-minute TASK block with
+checkpoint10/code cutoff20; no tooling or broad run. ROOT freezes the repair and
+RV56 backchecks the actual revised source before any source fan-in acceptance.
+
+
+## Native source bridge accepted for local fan-in; residual proposal under review (ROOT, 2026-10-03 UTC)
+
+ROOT read RV56's complete same-reviewer backcheck, verified its exact31-file
+inventory b2545c71f9472d98e26aab6e7558e9f4d3f0b87eec98b97206314e96e56f510b,
+and preserved it with ROOT's repair verification at7b6f82377f60. RV56-F1 is closed
+on17ded278c64e0bb96db2b93ec6ebf3a1f1600907. Accept I42 only as the conditional
+native source-bridge component, with the independent sufficient-anchor/theorem
+review and all source-custody/resource/availability limits preserved. ROOT merged
+it locally with --no-ff atb009fb09e2163948f94a70abc297920dd2314109 and verified
+exact maintained core/validation correspondence. R/verification/i42_fanin_01/
+LOCAL_MERGE/RECORD.md records the local join. This is not main/product acceptance.
+
+I43's proposed tightening is preserved at401ec14c0a73099dc0859835af8c79e09da3a877.
+ROOT read its theorem, full exact-control script and interface/work/storage
+manifest, verified the29-file packet and final-command hashes, and sent it to
+fresh RV57 under brief06b41a0dd96f. The proposal is not selected yet. Its RETURN
+§5 exact algebra control retains7/52 loaded passes for sign-only, gives52/52 for
+a constructed correction plus full source residual, and7/52 for a wrong center;
+no actual retained-factor execution is claimed. Initial input decoding failure
+and later changed-live-input guard refusal are preserved; four immutable4af
+inputs keep the mathematical basis distinct from the concurrent accounting repair.
+
+ROOT clarified before seal that no-data proves only free-motion zero. All exact
+prescriptions, constrained loads and source recovery remain; fully fixed bodies
+can have nonzero actions/reactions. The final algebra counter-control includes
+that case. No extra factorization, changed publication/predicate/source contract,
+resource permit or universal availability follows. Wait for fresh design review
+before any reliance on the proposed one-application residual certificate.
+
+
+## One retained-factor source-residual design selected (ROOT, 2026-10-03 UTC)
+
+ROOT read RV57's complete return, review and independent re-derivation, verified
+its48-file seal844a98c560bb379b64b079d966ab95bcb3c89881fe95ae3edd80243c1dc1a31e,
+and preserved it at3576b4c0a0fb578d31fa570de9fd9de8ac53b534. No unresolved
+finding remains. RV57-M1's omitted helper visibility hunk is closed by the
+independently inspected I44 manifest245e9fb963f6c854c959d104d4387eda76afaca1;
+I43's original packet remains unchanged. The review discloses its own corrected
+interval-nesting comparison and actual first-observed clock without backdating.
+
+Select I43 proposal401ec14c0a73099dc0859835af8c79e09da3a877 with that narrow
+manifest completion for bounded private native implementation. This explicitly
+amends the previous F2a certificate plan's no-new-solve restriction: permit at
+most one counted solve_scaled application of the same owner's matching successful
+verification factor, followed by directed full source residual and recovery at
+the actual resulting finite center. Skip that application where the no-data proof
+warrants it, while still recovering actual prescribed actions/constrained loads.
+No factorization, primary solve schedule, source law, public value, radius, class,
+predicate or contract is changed. The new correction is proof scratch only.
+
+The residual theorem must prove the result for any finite center, without assuming
+factor/cast/midpoint accuracy. All actual work, failure prefixes and simultaneous
+accounting/numeric causes remain; there is no free kernel/facade work or silently
+absorbed20B/60B budget. Old three-pass/storage counts do not qualify this route.
+The general exact source frame must be enclosed; its rounded cached operators
+cannot stand in for exact G. Missing positive interval denominators mean finite
+certificate insufficiency, not a new physical singularity/domain claim.
+
+Release fresh I44 under brief245e9fb963f6 only after ROOT joins these records into
+the clean reviewed17ded278c6 source checkout and verifies maintained correspondence.
+The dispatched base will name that actual merge. Exact source fence,75minute
+block/checkpoint15/cutoff55, existing guard and single focused compiler lane are
+as briefed. The first priority is an actual factor/cast/center/source-residual
+witness against independent source truth, not more product plumbing. The I43
+constructed center is not an actual factor result or production expected value.
+Fresh implementation review, full profile/work qualification, PP source/final-row
+custody and all final F2a gates remain. No universal availability is accepted.
