@@ -129149,6 +129149,56 @@
         "gate": "G3",
         "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
       }
+    },
+    {
+      "id": "verification_summary_on_escalating_failed_verification",
+      "base": "verification_failure_skip_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            1,
+            "verification"
+          ],
+          "op": "set",
+          "value": {
+            "resolution": [
+              {
+                "body": 0,
+                "force": "426d1a94a2000000",
+                "moment": "426d1a94a2000000"
+              }
+            ],
+            "theta": [
+              {
+                "body": 0,
+                "value": "0000000000000000"
+              }
+            ],
+            "bound": [
+              {
+                "body": 0,
+                "value": "3ff0000000000000"
+              }
+            ],
+            "data_blocks": 1,
+            "shift_factorizations": 0,
+            "g_max": 0,
+            "uc_missing": null,
+            "g_violation": null
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
     }
   ],
   "must_pass": [

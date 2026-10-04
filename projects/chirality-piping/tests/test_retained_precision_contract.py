@@ -548,10 +548,10 @@ def test_rv79_surviving_mutants_m06_m09_m14():
 
 
 def test_snapshot_07_counts_and_entry_format():
-    """Snapshot 07b (I62; D19-D30): 15 cases, 253 mutations, 19 must-pass; only rehash "all" (D11);
+    """Snapshot 07c (I62; D19-D30, D21 widened): 15 cases, 254 mutations, 19 must-pass; only rehash "all" (D11);
     one expectation per entry except the per-reader G7 entry."""
     c = corpus()
-    assert (len(c["cases"]), len(c["mutations"]), len(c["must_pass"])) == (15, 253, 19)
+    assert (len(c["cases"]), len(c["mutations"]), len(c["must_pass"])) == (15, 254, 19)
     entries = c["mutations"] + c["must_pass"]
     assert all(e["rehash"] == "all" for e in entries)
     assert all(set(e) <= {"id", "base", "edits", "invocation_edits", "after_rehash", "rehash", "expected", "expected_by_reader"} for e in entries)

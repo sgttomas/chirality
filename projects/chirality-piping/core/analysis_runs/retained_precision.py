@@ -615,7 +615,9 @@ def _g5_native_checks(body, runs, fail, wf):
                 if r["role"] == "verification" and stop is not None and stop.get("tag") in ESCALATING_STOPS:
                     # D5b (adaptive.rs:4593-4611, 4377): an escalating stop is a verification *solve*
                     # failure; the verification pass never ran.
-                    fail(w["verification_lme"] == 0 and r["verification_shared_build_ref"] is None)  # D21
+                    # D21 (widened): pass evidence is verification_lme > 0, a verification shared build
+                    # (adaptive.rs:4286) or a verification summary (set only by verify_precision, 4333).
+                    fail(w["verification_lme"] == 0 and r["verification_shared_build_ref"] is None and r["verification"] is None)
                 fail(r["residual_basis"] == (1024 if r["precision"] == 1024 else r["precision"] + 64))
                 fail(r["storage"]["limbs_per_entry"] == (4 if r["precision"] <= 256 else 8 if r["precision"] == 512 else 16))
                 own = int(w["wide_lme"]) + int(w["exact_sum_lme"])
