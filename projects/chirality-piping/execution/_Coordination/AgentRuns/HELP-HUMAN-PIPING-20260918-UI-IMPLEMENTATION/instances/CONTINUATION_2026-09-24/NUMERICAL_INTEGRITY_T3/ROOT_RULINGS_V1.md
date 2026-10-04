@@ -8061,6 +8061,7 @@ ROOT rules on the proposal.
 - An arithmetic fault in G5b (zero area or modulus) reports G5b's adopted code (RV79-S3).
   [Correction, D18, 2026-10-03: a zero area or modulus is a section-truth defect, caught by the G5b echo's positivity check as SECTION_MISMATCH. It is not reached as SCALE through arithmetic. D10's arithmetic-fault rule applies only to faults no adopted check catches first.]
 - Counters must be JSON integers; an integral float fails G2 (RV79-N5).
+  [Correction, D25, 2026-10-03: withdrawn. Readers validate parsed JSON values; under I-JSON and JCS, `17.0` and `17` are the same number with the same canonical hash. Python drops the integral-float rule.]
 
 **D11. Corpus 07** (I62). Shared mutations for:
 - every D1–D7 and D9 relation with a faithful base, starting from RV78's PROBES.json edits;
@@ -8268,3 +8269,65 @@ Every reader gives all 236 mutations their expected first gate and code (G7 per 
 
 **Proposed to the owner (reserved):** activating the parts of T4 that are independent of T3's precision work, under their own WORKING_ITEMS manager on disjoint files, to shorten the critical path.
 [Correction, 2026-10-03: ROOT withdrew this proposal on reflection, when the owner asked whether it still stood. The constraint is coordination capacity and T3's unproved receipt path, not production capacity (workflow §4). The boundary is not clear: T3's next step, the producer serializer, writes `core/product_physics`, the same shared facade where much of T4's mechanics lives, and the graph serializes writes to it. Revisit once the first real receipt passes all three readers and I61's scoping shows the producer's write set. Then propose only a T4 slice outside that set, if one exists (for example M07 in the frame kernel's element code).]
+
+## Confirmation findings: disposition D19–D26 and the repair round (ROOT, 2026-10-03 UTC)
+
+**The confirmation reviews of READER `b36739112a`:**
+
+| Review | Verdict | Findings |
+|---|---|---|
+| RV78 | PASS | 2 SHOULD-FIX, 5 NOTE. Full three-reader parity on 270 entries; all 60 new entries contract-faithful; no check weakened |
+| RV81 | PASS | 1 SHOULD-FIX, 5 NOTE |
+| RV79 | FAIL | 1 BLOCKING, 3 SHOULD-FIX, 4 NOTE |
+| RV80 | Pending | Its findings join this round by a follow-up disposition |
+
+Per workflow §5, the confirmed shared blocker (RV79-C1) is disposed of now.
+
+**ROOT confirmed these findings in the source:**
+- **RV79-C1:** the reason table runs only when a case claims `prepared_product_failure`, in all three readers (PY:903, RS:1878, TS:600).
+- **RV79-C2:** D5b's evidence is `verification_lme` only (PY:616).
+- **RV78-S1:** Python compares lengths (PY:1592).
+
+**The decisions:**
+- **D19, the converse of D4c (BLOCKING, all readers).**
+  - A case whose product attempt is **unavailable** carries `prepared_product_failure` naming that attempt. S06 §1: existing C2 cause branches apply only "for outcomes without an actual C3 product attempt."
+  - A case with a **Ready** attempt is selected, or unavailable with a `receipt_failure` cause. I62 first checks that no native path emits another cause beside a Ready attempt. If it finds one, it stops and reports, and the readers hold this half.
+  - Both are G5 PRODUCT_ATTEMPT, in class 2. D4d's reason table then applies by the attempt's own error.
+  - Shared pins: an unavailable C3 attempt under a C2 cause (at least facade_failure and source_error), and a `preparation` error with a selected Run under a C2 cause.
+- **D20.** A selected case with no C3 attempt fails G5 PRODUCT_ATTEMPT. It is a C3 association (C3:165), checked in class 2 after the ordinary checks (D17). The readers split it out of the combined ordinary check, which reports ATTEMPT today. Shared pin.
+- **D21, D5b evidence widened.** Evidence that the verification pass ran is `verification_lme` > 0 **or** a verification shared build being present. Natively that build is obtained only inside `verify_precision` (adaptive.rs:4286). Python widens to match; TypeScript already complies. Shared pin.
+- **D22.** A dangling `product_attempts[i].source_ref` reports G5 PRODUCT_ATTEMPT (D16; C3:146–148). The G3 checks that depend on the source are skipped when the reference does not resolve. TypeScript fixes this; Rust checks it. Shared pin.
+- **D23.** For a sourced attempt, complete old coverage compares member **ids** with the source map's `kernel_member` sequence at G3 (D1's text). Python aligns. Shared pin from RV78's probe.
+- **D24, G1 hash pins.** The corpus format gains one optional field, `after_rehash`: an edit list applied after `rehash:"all"`. All three harnesses implement it. Four pins, each giving G1: a forged receipt, publication, preparation or source-identity hash. The T4c deferred note is corrected, and T4c is pinned if `after_rehash` now expresses it.
+- **D25, numbers are values.** Readers validate parsed JSON values. Under the I-JSON profile and JCS, `17.0` and `17` are the same number with the same canonical hash, and TypeScript cannot tell them apart. Python drops its integral-float rule (RV78-N1). D10's integral-float clause is corrected in place.
+- **D26, the D13 gap.** RV79's vector killing M21 becomes a shared pin.
+
+**Recorded, not repaired:**
+- **RV81-N4:** without an invocation, a receipt with wrong member properties passes as `needs_recompute`. It can never be eligible; this is the same limit as D1's.
+- **RV78-N2:** isolating the N13 pin needs the Ceiling base (deferred list).
+- **RV78-N3:** pin overlap. **RV78-N5:** D16 pins cover classes 1 and 2, the classes that read references in Python.
+
+**The repair round, as standing assignments (workflow §2).**
+- **I62 owns the corpus and Python:**
+  - the D19 native check first;
+  - snapshot 07b with the D19–D26 pins and the `after_rehash` format;
+  - the Python repairs for D19, D20, D21, D23, D24 and D25;
+  - SHARED_SNAPSHOT_07B.json in its records when installed.
+- **I63 owns Rust:**
+  - D19, D20 and D22 (check);
+  - the `after_rehash` harness;
+  - adoption of 07b;
+  - RV80's findings once disposed.
+- **I64 owns TypeScript:**
+  - D19, D20 and D22;
+  - the `after_rehash` harness;
+  - the kernel-scope test's state name (RV81-N2) and a refreshed outcome file (RV78-N4);
+  - adoption of 07b.
+
+**The adoption boundary:** I63 and I64 adopt 07b once I62's SHARED_SNAPSHOT_07B.json is in its records and READER's corpus hash matches it. No ROOT round trip is needed for that step. Each author returns once: done, or stopped on a stop condition. ROOT verifies every return before commit (§3).
+
+**Stop conditions:**
+- an expectation believed wrong;
+- removing or weakening a check (§2);
+- a path outside the fence;
+- the D19 native check failing.
