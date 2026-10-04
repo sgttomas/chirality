@@ -8407,3 +8407,5 @@ I63 and I64 adopt 07b in their standing rounds.
 **The repair round D19–D30 is complete in all three readers on 07b.**
 
 **D21 widened by a third indicator (from I63's remaining known difference).** A record's `verification` summary is set only by `verify_precision` (adaptive.rs:4333, the basis of D5a). So on an escalating failed verification record, a non-null verification summary is also evidence that the pass ran (G5 ATTEMPT). Rust already does this. Python and TypeScript add it, and I62 adds one shared pin. This is a small addition before the reviewers re-confirm, so they review one settled head.
+
+**Snapshot 07c with Python, committed as `986088a466`.** ROOT's diff against 07b shows exactly one new mutation and nothing else changed. The corpus hash is `d33667719e`, and ROOT's own Python run gives 348 passed. I63 and I64 adopt 07c in their standing steps.
