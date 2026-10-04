@@ -9225,3 +9225,58 @@ The refusal map gains both clauses under `source_family` and `resource_admission
 - **Reminder to I65:** scratch files go under `WT/scratch/`, never the system temp directory.
 
 The next unused IDs are I66 and RV85.
+
+## U3 grant 1 verified; R-1, R-2 and R-3 ruled (ROOT, 2026-10-04 UTC)
+
+**I61's U3 grant 1** is `R/I61/u3_facade_01/` (SHA256SUMS OK; no machine paths). ROOT committed it, with the R-3 lock deltas, as `bee3dc07ca` on `codex/piping-f2a-facade-20261004` (from `b54caba7ab`), and pushed it. Every changed-file hash matches I61's record.
+
+**ROOT's verification:**
+- **The production dispatch, read in full.**
+  - `admit` is the former `assess` body returning `Result`, and `assess` now wraps it.
+  - `RegisteredProfile` is still uninhabited, so `permitted_dispatch` is statically unreachable.
+  - The refused path is `ordinary_dispatch`, with the same census, budget, captured run and finalization check as before.
+- **ROOT's test run** (default toolchain): PP `--lib` gave 492 passed, 1 failed, 1 ignored. t13 is the only failure, and the five facade tests pass.
+- **I61's evidence:**
+  - a 324-output sweep (36 fixtures × 5 routes × 2 modes, including the admission report), byte-identical to base;
+  - PP outcomes unchanged plus 6 added tests; runner/headless identical;
+  - 33 of 33 mutants killed;
+  - a disposable-stub run of the actual Direct entry that publishes U1's pinned successor bytes in both modes, with the stub absent from maintained code.
+
+**R-1, the carrier: Proposal A is adopted.** It is additive:
+- `RetainedPreviewOutput::successor()`;
+- `into_publication() -> RetainedPublication { Ordinary | Successor }`;
+- `envelope()` and `into_parts()` unchanged.
+
+It returns a successor only under a permit, so until U4 G6 it always yields the ordinary publication. It lands in U3 grant 1b. U6 reviews it as the carrier interface. Public activation stays with U7.
+
+**R-2, the notice: N1 is adopted, as the accepted design texts require.** The texts are ROUTING:96/98, C1:64/68, D1:573 and COMP:66.
+- **When no W1 work ran,** the publication keeps exactly the ordinary bytes. That covers G-A, G-B and G-C refusals, a stack spawn failure, the domain guard and coexistence.
+- **After W1 work ran** (a preparation, native, candidate, serializer or precommit fallback), exactly one info `RETAINED_PRECISION_UNAVAILABLE` diagnostic is appended after the ordinary prefix:
+  - `affected_refs` is `[case]`;
+  - the text is fixed product text;
+  - there is no receipt reference;
+  - on a receipt-encoding fallback, the text carries C1:68's reason and detail token from `ReceiptFailure::check.wire()`, never Debug text.
+- **The space is reserved before W1 starts.** G4 prices it.
+- **A condition still to be established.** ROOT checked that every base schema types a diagnostic's `code` as an open string. Grant 1b must establish, by test, that the base `preview-physics-1` readers and carriers accept such a publication: result_export's base readers, the desktop result admission and runner/headless. **If any rejects it, that is a stop.** The conflict then returns to ROOT, and through ROOT to the owner, because the fix would be a base-reader change.
+- **Who sees it:** this changes published bytes only for permitted invocations. None exists until U4 G6, and the desktop app calls only the ordinary wrapper.
+
+**R-3, the downstream locks: accepted, and applied by ROOT** in `bee3dc07ca`. Each of the six `Cargo.lock` files gains only the in-repo `open_pipe_stress_result_export` edge, and the package block where it was missing. No registry package or version changes.
+- `cargo metadata --locked --offline` passes for PP and five of the six manifests.
+- The Tauri app's check needs an uncached registry crate offline; its delta is the same one-line edge as runner/headless.
+- CI's `--locked` run verifies all six online.
+- The D-6 lock re-pin follows, in I65 G4.
+
+**Findings routed:**
+- **F-5, to I65 G5:** under D-2, `admit` must refuse Headless.
+- **F-2, F-3, F-4, F-6 and F-8:** noted.
+
+**Flagged by ROOT for RV85 and grant 2:**
+- **`CapturePermit` now derives `Copy`.** Should a permit be linear (consumed once) rather than copyable?
+- **The test fault hooks are `thread_local!`.** Once the permitted path runs on the reserved-stack thread, a hook set on the caller's thread would not fire. Grant 2's committed fault tests must not pass vacuously.
+
+**Next:**
+- **RV85** reviews `bee3dc07ca` under `BRIEFS/RV85_U3_FACADE_REVIEW.md`.
+- **I61** does U3 grant 1b (R-1, R-2 and the base-reader acceptance test), then U5: the reference comparison on the pinned successor bytes against I50's named oracle.
+- **U3 grant 2** (the real `admit`, and committed permit-path tests) waits for U4 G5.
+
+The next unused IDs are I66 and RV86.
