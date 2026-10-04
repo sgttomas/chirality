@@ -8474,3 +8474,24 @@ I61's analysis (`R/I61/contract_tensions_t1_t2/RETURN.md`) is verified: SHA256SU
 - **Options rejected:** (b), amending G4, would reverse the design and show "selected" beside "did not produce a selected response". (c), routing, would change bytes the coexistence rule (D-15) and the fallback (C1 §2) protect.
 - **The tension arose** because F2a keeps the exact-block method running first, so the ordinary route emits the diagnostic before W1 runs. The design did not foresee that.
 - **Why it goes to the owner:** on a successor result the diagnostics panel no longer shows the legacy "did not produce a selected response" row, and the legacy attempt moves into the receipt. ROOT recommends (a) and is asking the owner to confirm. The readers are unaffected either way.
+
+**RV79 confirmation 03: FAIL** (1 BLOCKING, 0 SHOULD-FIX, 4 NOTE). All four confirm_02 findings are fixed, and all 48 of RV79's probes give their ruled outcome. The BLOCKING finding, E1, is a consequence of ROOT's own D25.
+
+**E1, confirmed by ROOT.** D25 made readers accept integral-valued numbers (`0.0` is `0`), but Python still guards four index sites with `type(x) is int` (PY:1572, 1578, 1606, 1617), and its G0 limits likewise (PY:1561). A forged `source_identity_sha256` on a selected case with `source_ref: 0.0` therefore passes every gate in Python. The G5 recheck that once caught it was removed as dead under D15.
+
+ROOT also checked Rust, for RV79's N-f:
+- Rust's `uint()` is value-based (RS:243 and `uint`);
+- but its G0 checks use `is_u64`/`as_u64` (RS:478, 492), so `receipt_version: 1.0` or a float-written limit fails G0 in Rust only.
+
+The three readers therefore treat integral floats three different ways.
+
+**D32, D25 made uniform.** Wherever a reader requires an integer (U, an index or reference, a version, a limit or a counter), it tests the numeric **value**: finite, integral, within range, and not −0. It never tests the host language's integer type.
+- **Python:** normalizes integral-valued numbers to `int` once, immediately after G2, or uses value tests at every integer site. Either way, the five sites above must behave as for `int`. Reader-local tests for each.
+- **Rust:** replaces the `is_u64`/`as_u64` uses (RS:478, 492 and any others) with `uint()`.
+- **TypeScript:** confirms its value-based tests (`Number.isSafeInteger`) at every integer site.
+- **The Python harness** indexes with integral values (RV79-N-e).
+- **Shared pins:**
+  - a must-pass entry whose integer fields and references are written as integral floats;
+  - the forged-source-identity case with `source_ref: 0.0`, expected G1.
+
+RV79's other notes are carried: N-a (the harness rehashes with the reader's own functions; RV78's independent rehash covers this) and N-b (deferred bases).
