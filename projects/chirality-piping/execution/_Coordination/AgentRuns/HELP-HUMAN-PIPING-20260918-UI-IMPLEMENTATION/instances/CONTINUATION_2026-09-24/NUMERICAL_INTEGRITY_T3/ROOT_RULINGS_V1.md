@@ -8244,3 +8244,26 @@ Every reader gives all 236 mutations their expected first gate and code (G7 per 
 **Known differences the authors report:** only those by design (the G7 base codes per language) or unreachable (the fail-closed fallback codes, the bundled-file G0 codes, and Python's integral-float rule, which is Python-only by ruling). TypeScript's D1 sourced-coverage comparison differs from Python's only on a source map that G8 rejects in both readers, and no shared entry pins it. RV78 is asked to judge whether it needs a pin.
 
 **Dispatched:** RV78–RV81 resume under `BRIEFS/RV78_RV81_CONFIRMATION.md`, against `b36739112a`.
+
+## Workflow adopted: coordinated-knowledge-work; T3 self-assessment (ROOT, 2026-10-03 UTC)
+
+**The selection:** `bundled:chirality-root/coordinated-knowledge-work`, published on origin/main `e9bb7ea2c0` (WORKFLOW.md blob `26a4a77c1c`, sha256 `44049bcd38b88378…`). The owner directed "consider adopting it where appropriate". It applies to T3's coordination from here, entered at the unfinished decision with the existing evidence (preamble). It adds no gates to T3's governing requirements.
+
+**The self-assessment against the method:**
+- **§1 is not met.** T3's consumer path runs from a real producer receipt for RF-SKEW-T-CANT-OFF-122-r1e-04, through the three readers, to the published standing. It has never been traversed. The producer has no serializer (checkpoint A). Meanwhile the readers were hardened against a synthetic corpus, which "proves reader logic, not producer reachability" (RV78-N6). The reader repairs close real fail-open defects, but further expansion of the reader component waits on the unproved premise that the readers' wire contract matches what the producer will emit. The rulings already place obligations on the producer that are untested: the D6a ordinary list and the D9b explicit null.
+- **§2, micro-dispatch.** About a dozen bounded grants to I62, I63 and I64 each returned within 3–25 minutes and then waited for ROOT. Standing assignments would have removed most of those round trips.
+- **The preamble and §4, alignment displaced by integration.** The work graph's T3 row stayed "PAUSED" until the owner asked. The critical-path effect on T4 and T5 was raised only when asked. Status reports led with counts, which §4 says are not throughput.
+- **What held:**
+  - one recorded disposition for cross-owner findings (§5);
+  - visible corrections, with adoption checked in the actual returns (§5);
+  - return verification, with identifiers taken from source (§3);
+  - versioned shared inputs with adoption boundaries (§5);
+  - an independent check of the shared basis (RV78, §3).
+
+**Changes, effective now:**
+1. **The early end-to-end unit (§1).** The producer receipt transaction for the single milestone case starts now, in parallel with the running confirmation review, rather than strictly after reader acceptance. That brings forward handoff step 4's receipt work, without changing its scope or gates. Its first target: one real receipt for the milestone case, in both modes, validated by all three readers. Until that receipt passes, no new reader or corpus expansion is commissioned beyond what the confirmation review's findings require.
+2. **The reader closure condition (§6).** The readers are accepted when the confirmation review passes and they validate the first real receipt. Further unexercised-input hardening is tracked, not a gate, unless it concerns a receipt the producer emits.
+3. **Standing assignments (§2).** Each author owns its component through findings, repairs and the adoption of ROOT-committed snapshots, and returns at defined stop conditions and completions, not per step.
+4. **Alignment (§4).** The work graph is updated at each T3 boundary, and reports lead with usable results and material gaps.
+
+**Proposed to the owner (reserved):** activating the parts of T4 that are independent of T3's precision work, under their own WORKING_ITEMS manager on disjoint files, to shorten the critical path.
