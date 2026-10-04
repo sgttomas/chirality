@@ -134066,6 +134066,99 @@
         "numerical_eligible": true,
         "standing": "eligible"
       }
+    },
+    {
+      "id": "not_required_second_case_checks_passed",
+      "base": "two_case_preparation_failure_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1
+          ],
+          "op": "set",
+          "value": {
+            "basis_ref": {
+              "ref_type": "load_case",
+              "ref_id": "case:unavailable-row"
+            },
+            "ordinary": {
+              "attempt_ref": 1,
+              "quality_binding": {
+                "kind": "present",
+                "index": 1
+              }
+            },
+            "product_attempt_ref": null,
+            "status": "not_required"
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "diagnostics",
+            16
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "diagnostics",
+            13,
+            "code"
+          ],
+          "op": "set",
+          "value": "NUMERICAL_INTEGRITY_CHECKS_PASSED"
+        },
+        {
+          "path": [
+            "diagnostics",
+            13,
+            "severity"
+          ],
+          "op": "set",
+          "value": "info"
+        },
+        {
+          "path": [
+            "numerical_quality",
+            "cases",
+            1,
+            "solve_quality"
+          ],
+          "op": "set",
+          "value": "checks_passed"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "ordinary_attempts",
+            1,
+            "initial",
+            "outcome"
+          ],
+          "op": "set",
+          "value": "checks_passed"
+        }
+      ],
+      "rehash": "all",
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": true,
+        "standing": "eligible"
+      }
     }
   ],
   "d37": {

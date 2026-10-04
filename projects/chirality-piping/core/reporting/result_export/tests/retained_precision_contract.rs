@@ -831,8 +831,8 @@ fn shared_must_pass_entries_validate() {
     let shared = corpus();
     let entries = shared["must_pass"].as_array().unwrap();
     // Snapshot 07: 06d's 18 plus the equal-E bracket control; 07h adds F5's
-    // reordered-envelope exact-list control (RV90 N2).
-    assert_eq!(entries.len(), 23);
+    // reordered-envelope exact-list control (RV90 N2); 07j adds C04's not_required case.
+    assert_eq!(entries.len(), 24);
     let mut failures = Vec::new();
     for entry in entries {
         assert_eq!(entry["expected"], "pass");
