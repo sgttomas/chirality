@@ -8617,3 +8617,32 @@ By §6 this is not an acceptance condition. It is recorded for the next format c
 - D34;
 - RV81-N1's D33 kind-set pins (a rotation estimate fails, a moment estimate passes);
 - RV78-N1's rehash indexing rule, written into the format and aligned across the harnesses.
+
+**RV80 confirmation 04: PASS** (0 BLOCKING, 0 SHOULD-FIX, 2 NOTE). The probing went deep:
+- `integral_receipt` touches only receipt numbers;
+- −0 and booleans are still rejected;
+- out-of-range numbers fail at G1 before normalization runs;
+- 44 of 52 mutants are killed.
+
+Its notes are optional and recorded: N1, the receipt-only scope of `integral_receipt` is unpinned; N2, the defence-in-depth guards stay through any later reordering of the gates.
+
+## Round 04 closed; 07e is the last repair round before acceptance (ROOT, 2026-10-03 UTC)
+
+**Round 04:** all four reviewers PASS. The real milestone receipts pass all three readers on `abcb16fd27`.
+
+**What remains, as ruled:**
+- RV79-S1, three G0 pins;
+- D34, −0 rejected everywhere at G2;
+- RV81-N1, the D33 kind-set: a rotation-row estimate fails, and a moment-row estimate passes as a must-pass entry;
+- RV78-N1: the snapshot format states the rehash indexing rule (strict integral value; booleans and non-integral values are not indexes), and all three harnesses align to it.
+
+**Assignments,** standing, returning once:
+- I62: the corpus (07e), the format rule, Python D34 and its harness;
+- I63: Rust D34 and its harness, then 07e;
+- I64: TypeScript D34 and its harness, then 07e.
+
+**The final check is scoped (workflow §3):**
+- RV79 confirms S1 and D34 in Python, as the reviewer who raised them;
+- RV78 runs parity on 07e and probes D34 in all three readers.
+
+**The readers are accepted when that check passes.**
