@@ -8707,3 +8707,23 @@ I63 may add the N1 test in the D35 round, at no extra cost.
 The NOTEs are tracked under D36:
 - R35, the −0 mapping widened to tiny values, is unpinned. The reader is correct.
 - −0 at an enum position where 0 is invalid, such as `precision`, fails at G1 by value semantics.
+
+**RV79 final check (confirm 05): its three scoped items pass** (S1, D34, and the diff); nothing is weakened. It reports one new finding, **X1**, outside the scope and present at every head reviewed. RV79 labelled it BLOCKING by the B1c/C1 precedent.
+
+**X1 and D35 are one relation.** Python checks an unavailable attempt's error kind against its stage record in one direction only (`_g5_typed`, PY:854–872). So it accepts errors that contradict the stages: `g5a` with G5a not entered; `observable` with observables not entered; `proof` with the certificate passed; `values` with values completed; `numeric` with observables and G5a not entered. D35 already covers the last three in part.
+
+**Classification under D36:** not gating. X1 affects unavailable attempts only and cannot change eligibility or a selected case's standing. It is repaired now anyway, because it is the same relation, in the same files, as the D35 round already under way. That means one disposition, not two.
+
+**D37, D35 widened.** For every product-attempt error kind (`preparation`, `native`, `capture`, `proof`, `values`, `abandoned`, `numeric`, `observable`, `g5a`), the error must agree with the stage record **in both directions**:
+- the kind is one the first failed or terminal stage can produce;
+- every stage the kind presupposes as entered, completed or passed is recorded so;
+- the code is G5 PRODUCT_ATTEMPT, in class 3 (typed checks).
+
+**Basis:** the native sequence in PP/retained_product.rs:3469–3543, which I62 tabulates exactly in its return; S06 §1, "Existing stage consistency still applies"; D4d and D35.
+
+**Who does what:**
+- All three readers implement or confirm D37.
+- Shared pins: RV78's Y1, Y2 and Y4, and RV79's five X1 probes on F′. Y6, the consistent shape, stays passing.
+- I63 also adds RV80-N1's transport-path D34 test.
+
+**The check of this round is scoped to D37:** RV78 for parity and probes in all three readers, RV79 for Python. New findings from it are triaged under D36.
