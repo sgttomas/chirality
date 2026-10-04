@@ -9813,3 +9813,40 @@ The next unused IDs are I68 and RV91.
 - **F8, F9 and F10:** noted.
 
 **RV88** reviews U6d after U6a (the standing U6 reviewer).
+
+## RV89 on U4 G5 part 1: PASS; routing into part 2 (ROOT, 2026-10-04 UTC)
+
+**RV89's report** is `R/REVIEW_RV89/u4_g5_01/REVIEW.md` (sha256 `9af26f9f…`; SHA256SUMS 106/106 OK; no machine paths). Verdict: **PASS** on `1e323058f3`, with 0 BLOCKING, 1 SHOULD-FIX and 6 NOTE findings.
+
+**What RV89 established independently:**
+- **No permit can exist:**
+  - `REGISTERED_PROFILES` is `&[]`;
+  - `admission()` is the only constructor;
+  - there is no test permit and no `unsafe`;
+  - the bound is `Unpriced`, and the gate bounds are 0. G-B and G-C refuse the milestone in both modes.
+- **Nothing published changes:** a 4,022-line sweep (71 inputs × 2 modes × 5 routes, with every public admission-report field) is byte-identical to base. PP, runner/headless and result_export outcomes equal base apart from the 23 new tests.
+- **D1.0–D1.11 match DOMAIN.md as amended.** Through G-A, the cap+1 value refuses for 20 facts, and the D1.10 and D1.11 edges behave as derived.
+- **Allocation-free:** G-A, the census extensions and both gate checks perform 0 allocations, with a positive control.
+- **D-6:**
+  - the SHA-256 matches `sha2` and the NIST vectors on 3,270 inputs, including the padding edges;
+  - the escaping round-trips every byte and byte pair, and 400 hostile identities forge no key;
+  - `build.rs` exits 0 under 12 crafted environments;
+  - the 14 reviewed-input hashes equal G4's ORIGINS.
+- **The bounds:** G-C's longest-string bounds are exact, and the bound arithmetic is checked, with M−1, M and M+1 correct.
+- **Mutants:** I65's 84 reproduce exactly. RV89's own 24 are all accounted for.
+
+**Routed to part 2 (I65):**
+- **S-1 (tests only):** four D1 weakenings survive I65's tests:
+  - V03: D1.3's expansion-law check weakened from "any" to "all";
+  - V06: Σ restraint capacity read as the per-support maximum;
+  - V07 and V08: the typed walk skips request-level materials, or temperature-point ids.
+  
+  Add tests that kill them, and re-run them.
+- **N-2:** add tests that kill V17 (an overflowed gate sum must saturate, not read 0) and V24 (the longest-string fact must cover `affected_refs`).
+- **N-4, ruled as a code guard:** `bindings_hold` gets the same `=unavailable` refusal as `identity_match`, so that a build that cannot read a reviewed input is `Stale` by construction. A G6 process check would rely on a later step to catch it. This is inside U4's fence.
+- **N-3:** accepted. The compiler identity pins std's entry-tuple layouts. Part 2 may record them, but does not have to.
+- **N-1:** I65's tally is restated as 81 behavioural kills, 2 text pins and 1 equivalent.
+- **N-5:** the private `law` field is included in the derived `Debug` and `PartialEq` only. Noted.
+- **N-6:** R4_CALLGRAPH §2's load_ledger.rs:131 wording; the totals are unchanged.
+
+**RV89 keeps its build caches** (WT/targets/rv89) for part 2, and deletes them after part 2's review.
