@@ -48,7 +48,7 @@ import {
   ordinaryCaseEligible, retainedPrecisionDowngrade, sourceContract, sourceSemanticBinding,
 } from "./numericalResultQuality";
 import {
-  RETAINED_METHOD, RETAINED_PRECISION_ID, RETAINED_PRECISION_PROFILE, decodeBinary64, validateRetainedPrecision,
+  RETAINED_METHOD, RETAINED_PRECISION_ID, RETAINED_PRECISION_PROFILE, decodeBinary64, validateRetainedPrecision, validateRetainedPrecisionTransport,
   type RetainedPrecisionValidation,
 } from "./retainedPrecision";
 import {
@@ -73,13 +73,39 @@ const root = resolve(__dirname, "../../../../../");
 const caseFile = JSON.parse(readFileSync(resolve(root, "fixtures/results/retained_precision_carrier_cases.json"), "utf8"));
 const MODES = ["sparse_interactive", "dense_scrutiny"] as const;
 const sha256 = (bytes: Buffer | string) => createHash("sha256").update(bytes).digest("hex");
-/** The pinned successor and its invocation, checked by sha256 (D-U6-5). */
-function milestone(mode: PreviewSolverMode) {
-  const entry = caseFile.fixtures[`milestone_${mode}`];
+/** A shared-file fixture by id, checked by sha256 (D-U6-5). Format v2: a
+ * `milestone` file is {id, invocation, source}; a `raw` file is the source itself
+ * and has no invocation. */
+function sharedFixture(id: string): { source: MechanicsResult; invocation: Json | null; model: PreviewModel | null } {
+  const entry = caseFile.fixtures[id];
   const bytes = readFileSync(resolve(root, entry.path));
   expect(sha256(bytes)).toBe(entry.sha256);
   const doc = JSON.parse(bytes.toString("utf8"));
-  return { source: doc.source as MechanicsResult, invocation: doc.invocation as Json, model: doc.invocation.request.model as PreviewModel };
+  if (entry.shape === "milestone") return { source: doc.source, invocation: doc.invocation, model: doc.invocation.request.model };
+  expect(entry.shape).toBe("raw");
+  return { source: doc, invocation: null, model: null };
+}
+/** The pinned successor and its invocation, checked by sha256 (D-U6-5). */
+function milestone(mode: PreviewSolverMode) {
+  const { source, invocation, model } = sharedFixture(`milestone_${mode}`);
+  return { source, invocation: invocation as Json, model: model! };
+}
+/** A shared case or declared-difference entry applied to a fixture, delivered as
+ * TS would receive it: an invocation case is a capture of that invocation through
+ * mocked IPC; no invocation is a delivery without a capture. The standing model
+ * carries the requested load cases. */
+async function applyShared(c: Json, fixtureId: string) {
+  const doc = sharedFixture(fixtureId);
+  const source = structuredClone(doc.source) as Json, invocation = structuredClone(doc.invocation);
+  for (const edit of c.edits) {
+    expect(edit.op).toBe("set");
+    setPath(edit.target === "source" ? source : invocation, edit.path, edit.value);
+  }
+  const solveMode = (c.invocation === null ? doc.invocation?.solver_mode ?? "sparse_interactive" : invocation.solver_mode) as PreviewSolverMode;
+  const received = await deliverDirect(source, c.invocation === null ? null : invocation.request.model, solveMode);
+  const requestedIds: string[] = c.requested === "invocation" ? caseIds(doc.model!) : c.requested.map((r: Json) => r.ref_id);
+  const model = { load_cases: requestedIds.map(id => ({ id })) } as unknown as PreviewModel;
+  return { received, model };
 }
 const OTHER: Record<PreviewSolverMode, PreviewSolverMode> = { sparse_interactive: "dense_scrutiny", dense_scrutiny: "sparse_interactive" };
 let jobSequence = 0;
@@ -126,10 +152,20 @@ afterEach(() => {
 });
 
 describe("the inputs and the pinned identity", () => {
-  it("uses PP's byte-identical successors and the shared 14-case file", () => {
-    expect(caseFile.format).toBe("I66-U6-CARRIER-CASES-v1");
-    expect(caseFile.cases).toHaveLength(14);
+  it("uses PP's byte-identical successors and the shared 20-case file (format v2)", () => {
+    expect(caseFile.format).toBe("I66-U6-CARRIER-CASES-v2");
+    expect(caseFile.cases).toHaveLength(20);
+    expect(Object.keys(caseFile.fixtures).sort()).toStrictEqual(["legacy_preview_0_1", "milestone_dense_scrutiny", "milestone_sparse_interactive", "preview_physics_1_invented_sparse"]);
     for (const mode of MODES) expect(milestone(mode).source.producer!.semantic_contract_id).toBe(RETAINED_PRECISION_ID);
+  });
+  it("the raw fixtures' guard cases are refused only through their edit (as Rust asserts)", () => {
+    for (const [id, route] of [["legacy_preview_0_1", "legacy"], ["preview_physics_1_invented_sparse", "preview_physics"]] as const) {
+      const { source, invocation } = sharedFixture(id);
+      expect(invocation).toBeNull();
+      expect(sourceContract(source)).toBe(route);
+      expect(retainedPrecisionDowngrade(source)).toBe(false);
+      expect(numericalResultStanding(source, null).status).toBe("needs_recompute");
+    }
   });
   it("dispatch constants equal the accepted reader's and the pinned table, whose rows are preview-physics-1's", () => {
     expect(PREVIEW_PHYSICS_RETAINED_CONTRACT_ID).toBe(RETAINED_PRECISION_ID);
@@ -512,41 +548,76 @@ describe("the downgrade guard (F-5)", () => {
   });
 });
 
-// The declared parity difference F1 (I67 U6d F1; RV91 N-1; RR "RV91 on U6d: PASS",
-// accepted). TypeScript standing is synchronous and registration-based (plan 3 rule 1),
-// so an unregistered successor whose statement is invalid reads `needs_recompute` with
-// RETAINED_PRECISION_VALIDATION_REQUIRED, where Rust and Python, validating without an
-// invocation, read `unsupported`. It fails closed: never eligible, every row refused,
-// and the reader still refuses the statement wherever TypeScript relies on it.
-describe.each(MODES)("%s: the declared parity difference F1 (pinned in TS only)", (mode) => {
-  it.each([
-    ["an edited covered row", (s: Json) => { s.results[0].value = 12345; }],
-    ["numerical_quality rewritten to checks_passed", (s: Json) => { s.numerical_quality.status = "checks_passed"; s.numerical_quality.cases[0].solve_quality = "checks_passed"; }],
-  ] as const)("an unregistered successor with %s reads needs_recompute, not unsupported", async (_label, edit) => {
+// The ruled differences between the languages' carriers (and F5's shared semantics),
+// read from the shared file's `declared_differences` with TypeScript's own
+// expectations (RR "RV88 on U6a, U6c, U6b (and U6d)…", which moved the F1 pin from a
+// TS-local test into the shared file). Rust and Python assert theirs from the same
+// entries; any other difference is a defect.
+const DECLARED = ["F-U6b-2:python_refuses_transport", "F5:refused_statement_binding", "I67-F1:unregistered_invalid_statement", "I67-F2:display_only_binding_precheck"];
+const NOTICES: Record<string, string> = { N_RP_UNVALIDATED };
+describe("the declared differences, with TypeScript's expectations", () => {
+  it("are exactly the four ruled entries, each with a ruling and one expectation per language", () => {
+    const entries = caseFile.declared_differences as Json[];
+    expect(entries.map(e => e.id).sort()).toStrictEqual(DECLARED);
+    for (const entry of entries) {
+      expect(typeof entry.ruling === "string" && entry.ruling.length > 0, entry.id).toBe(true);
+      expect(Object.keys(entry.expected).sort(), entry.id).toStrictEqual(["python", "rust", "typescript"]);
+    }
+  });
+  it.each<[string, string, Json]>((caseFile.declared_differences as Json[]).flatMap(e => (e.fixtures as string[]).map(f => [e.id, f, e] as [string, string, Json])))("%s on %s", async (_id, fixtureId, entry) => {
+    const expected = entry.expected.typescript;
+    const { received, model } = await applyShared(entry, fixtureId);
+    if (entry.subject === "standing") {
+      const standing = retainedPrecisionStanding(received, model);
+      expect(standing.standing).toBe(expected.standing);
+      expect(standing.findings[0]).toBe(expected.finding);
+      expect(numericalResultStanding(received, model)).toStrictEqual({ contract: "retained_preview_physics", status: expected.standing, eligible: false, findings: [expected.finding] });
+    } else if (entry.subject === "transport") {
+      const route = sourceContract(received);
+      const got = route === "unsupported" ? numericalResultStanding(received, model).findings[0] : await validateRetainedPrecisionTransport(received).then(() => "ok", (error: Json) => error.code);
+      expect(got).toBe(expected.transport);
+    } else {
+      expect(entry.subject).toBe("binding");
+      const rows = received.results;
+      const got = rows.map(row => ruleBindingRefusal(received, row));
+      if (expected.binding === "by_validated_class") {
+        const classes = new Map((await validateRetainedPrecision(received)).classifications.map(c => [c.result_id, c.class]));
+        expect(got).toStrictEqual(rows.map(row => classBindingRefusal(classes.get(row.id))));
+      } else {
+        const code = String(expected.binding).replace(/^every_row:/, "");
+        expect(expected.binding).toBe(`every_row:${code}`);
+        expect(got).toStrictEqual(rows.map(() => code));
+        // The display-only precheck shows the declared notice on every row.
+        const plan: RuleCheckBindingPlan = { solverInputs: rows.map(row => ({ input_id: row.id, name: row.id, dimension: "x", unit_ref: "x", solver_result_ref: { result_id: row.id } })), valueInputs: [], valueSlots: [], libraryInputs: [] };
+        const notices = ruleBindingPrecheck(received, plan);
+        expect(notices).toHaveLength(rows.length);
+        expect(new Set(notices.map(f => f.notice))).toStrictEqual(new Set([NOTICES[expected.notice]]));
+      }
+    }
+    expect(numericalResultStanding(received, model).eligible).toBe(false);
+  });
+  // An additional TypeScript input for the same declared difference (I67-F1): a
+  // rewritten ordinary quality claim, unregistered, also reads needs_recompute.
+  it.each(MODES)("%s: I67-F1 also holds for numerical_quality rewritten to checks_passed", async (mode) => {
+    const entry = (caseFile.declared_differences as Json[]).find(e => e.id === "I67-F1:unregistered_invalid_statement");
     const { source, model } = milestone(mode);
-    const invalid = structuredClone(source); edit(invalid);
+    const invalid = structuredClone(source) as Json;
+    invalid.numerical_quality.status = "checks_passed"; invalid.numerical_quality.cases[0].solve_quality = "checks_passed";
     await expect(validateRetainedPrecision(invalid)).rejects.toThrow("RETAINED_PRECISION_RECEIPT_MISMATCH");
-    expect(retainedPrecisionStanding(invalid, model)).toStrictEqual({ standing: "needs_recompute", eligible: false, findings: [RETAINED_PRECISION_VALIDATION_REQUIRED] });
-    expect(numericalResultStanding(invalid, model)).toStrictEqual({ contract: "retained_preview_physics", status: "needs_recompute", eligible: false, findings: [RETAINED_PRECISION_VALIDATION_REQUIRED] });
+    const standing = retainedPrecisionStanding(invalid, model);
+    expect([standing.standing, standing.findings[0]]).toStrictEqual([entry.expected.typescript.standing, entry.expected.typescript.finding]);
     expect(ruleBindingRefusal(invalid, invalid.results[1])).toBe(RULE_QUANTITY_NOT_COVERED);
   });
 });
 
-describe("the 14 shared parity scenarios agree with Rust U6a", () => {
+describe("the 20 shared parity scenarios agree with Rust U6a and Python U6b", () => {
+  it("covers every case of the shared file", () => {
+    expect((caseFile.cases as Json[]).map(c => c.fixture).filter((f: string) => !Object.hasOwn(caseFile.fixtures, f))).toStrictEqual([]);
+  });
   it.each<[string, Json]>((caseFile.cases as Json[]).map(c => [c.id, c]))("%s", async (_id, c) => {
-    const mode = c.fixture.replace(/^milestone_/, "") as PreviewSolverMode;
-    const doc = milestone(mode);
-    const source = structuredClone(doc.source) as Json, invocation = structuredClone(doc.invocation);
-    for (const edit of c.edits) {
-      expect(edit.op).toBe("set");
-      setPath(edit.target === "source" ? source : invocation, edit.path, edit.value);
-    }
     // TS has no synchronous reader: the invocation case is a capture of that
     // invocation through mocked IPC; no invocation is a delivery without a capture.
-    const solveMode = invocation.solver_mode as PreviewSolverMode;
-    const received = await deliverDirect(source, c.invocation === null ? null : invocation.request.model, solveMode);
-    const requestedIds = c.requested === "invocation" ? caseIds(doc.model) : c.requested.map((r: Json) => r.ref_id);
-    const model = withLoadCases(doc.model, requestedIds);
+    const { received, model } = await applyShared(c, c.fixture);
     const route = sourceContract(received);
     const standing = route === "unsupported" ? "unsupported" : route === "retained_preview_physics" ? retainedPrecisionStanding(received, model).standing : "unexpected";
     expect(standing).toBe(c.expected_standing);
@@ -575,7 +646,10 @@ describe("notices, labels and the results-panel standing text", () => {
     expect(N_RP_ABSOLUTE).toContain("±{b} {unit}");
     // b is in the SI unit the reader classified the quantity in.
     const one = "3ff0000000000000";
-    for (const [unit, si] of [["mm", "m"], ["kN", "N"], ["kN*m", "N*m"], ["MPa", "Pa"], ["N", "N"], ["rad", "rad"]]) expect(retainedAbsoluteNotice(one, unit)).toBe(N_RP_ABSOLUTE.replace("{b}", "1.01e+0").replace("{unit}", si));
+    // The same table as Rust derivative::si_unit (RV88 U6a S-2), every entry.
+    for (const [unit, si] of [["m", "m"], ["mm", "m"], ["rad", "rad"], ["N", "N"], ["kN", "N"], ["N*m", "N*m"], ["kN*m", "N*m"], ["Pa", "Pa"], ["MPa", "Pa"]]) expect(retainedAbsoluteNotice(one, unit)).toBe(N_RP_ABSOLUTE.replace("{b}", "1.01e+0").replace("{unit}", si));
+    // A unit the reader does not normalize names no bound, as in Rust (labelled uncovered).
+    for (const unit of ["degC", "mode_code", "unitless", "toString", ""]) expect(retainedAbsoluteNotice(one, unit)).toBe(N_RP_NOT_COVERED);
   });
   it.each(MODES)("%s: registered rows carry their class label with an upward b in SI units; notices summarize per case", async (mode) => {
     const { source, model } = milestone(mode);

@@ -160,18 +160,23 @@ describe.each(MODES)("%s: the AnalysisRun copies the receipt and validates its e
 describe("the historical v0.2 builder never drops a receipt (RV91 SF-1; Python's F-U6b-3 twin)", () => {
   const legacy = () => JSON.parse(readFileSync(resolve(root, "fixtures/product_preview/invented_mechanics_result.json"), "utf8")) as MechanicsResult;
   const legacyManifest = (source: MechanicsResult) => ({ manifest_ref: { object_type: "InputManifest", ref: "manifest:invented-legacy" }, manifest_sha256: "1".repeat(64), manifest: { model_basis: { model_ref: source.model_ref }, solver_basis: { solver_name: "synthetic", solver_version: "1", solver_build_ref: "synthetic@1" } } });
-  it("a legacy-shaped source without a receipt or token still builds (control)", async () => {
-    const source = bindSourceResultDimensions(legacy());
+  // Both legacy record shapes the builder accepts (RV91 N-1 on round 02): 0.1.0 and 0.2.0.
+  const shaped = (version: string) => { const source = bindSourceResultDimensions(legacy()) as Json; source.schema_version = version; return source; };
+  it.each(["0.1.0", "0.2.0"])("a %s legacy-shaped source without a receipt or token still builds (control)", async (version) => {
+    const source = shaped(version);
+    expect(source.results.length).toBeGreaterThan(2);
     const record = await buildAnalysisRunV02(source, legacyManifest(source));
     expect(record.schema_version).toBe("0.2.0");
     expect(Object.hasOwn(record.analysis_run, "retained_precision")).toBe(false);
   });
-  it.each([
-    ["a retained_precision object", (s: Json) => { s.retained_precision = structuredClone(milestone("sparse_interactive").source.retained_precision); }],
-    ["a null retained_precision member", (s: Json) => { s.retained_precision = null; }],
-    ["one W1 token row", (s: Json) => { s.results[0].recovery_method = "contribution_preserving_multiprecision_v1"; }],
-  ] as const)("a legacy-shaped source carrying %s is refused ANALYSIS_LEGACY_SOURCE_DOWNGRADE_FORBIDDEN", async (_label, edit) => {
-    const source = bindSourceResultDimensions(legacy()) as Json; edit(source);
+  it.each(["0.1.0", "0.2.0"].flatMap(version => [
+    [version, "a retained_precision object", (s: Json) => { s.retained_precision = structuredClone(milestone("sparse_interactive").source.retained_precision); }],
+    [version, "an empty retained_precision object", (s: Json) => { s.retained_precision = {}; }],
+    [version, "a null retained_precision member", (s: Json) => { s.retained_precision = null; }],
+    [version, "a W1 token on the first row", (s: Json) => { s.results[0].recovery_method = "contribution_preserving_multiprecision_v1"; }],
+    [version, "a W1 token on the last row only", (s: Json) => { s.results[s.results.length - 1].recovery_method = "contribution_preserving_multiprecision_v1"; }],
+  ] as [string, string, (s: Json) => void][]))("a %s legacy-shaped source carrying %s is refused ANALYSIS_LEGACY_SOURCE_DOWNGRADE_FORBIDDEN", async (version, _label, edit) => {
+    const source = shaped(version); edit(source);
     await expect(buildAnalysisRunV02(source, legacyManifest(source))).rejects.toThrow(ANALYSIS_LEGACY_SOURCE_DOWNGRADE_FORBIDDEN);
   });
   it("a source with precision metadata keeps its existing refusal", async () => {

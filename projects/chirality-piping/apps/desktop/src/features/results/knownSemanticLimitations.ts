@@ -55,8 +55,11 @@ export const RULE_QUANTITY_NOT_COVERED = "RULE_QUANTITY_NOT_COVERED";
 export const N_RP_ABSOLUTE = "Uncovered quantity: verified only to an absolute bound of ±{b} {unit}, below the relative accuracy floor for this body. It is shown for inspection; rule checks cannot bind to it.";
 export const N_RP_NOT_COVERED = "Uncovered quantity: no verified accuracy for this quantity kind. It is shown for inspection; rule checks cannot bind to it.";
 export const N_RP_UNVALIDATED = "Retained-precision accuracy classes are unavailable for these exact bytes (not validated in this session, or refused by the reader). No quantity of this result is shown as verified, and rule checks cannot bind to any of them.";
-/** The reader's normalization (mm, kN, kN*m and MPa to SI); other units as published. */
-const RETAINED_SI_UNIT: Readonly<Record<string, string>> = Object.freeze({ mm: "m", kN: "N", "kN*m": "N*m", MPa: "Pa" });
+/** The SI unit the reader normalizes a row's unit to, and so the unit the receipt's
+ * absolute bound b is published in. The same table as Rust `derivative::si_unit`
+ * (RV88 U6a S-2): m and mm to m, rad, N and kN to N, N*m and kN*m to N*m, Pa and MPa
+ * to Pa. TS emits only this display label, never the derivative's disclosure message. */
+const RETAINED_SI_UNIT: Readonly<Record<string, string>> = Object.freeze({ m: "m", mm: "m", rad: "rad", N: "N", kN: "N", "N*m": "N*m", "kN*m": "N*m", Pa: "Pa", MPa: "Pa" });
 /** b with three significant digits, rounded upward: the printed bound is never below b. */
 export function upwardBoundText(b: number): string {
   if (b === 0) return "0";
@@ -66,8 +69,11 @@ export function upwardBoundText(b: number): string {
   if (digits >= 1000) { digits = 100; power += 1; }
   return `${(digits / 100).toFixed(2)}e${power < 0 ? "-" : "+"}${Math.abs(power)}`;
 }
+/** The absolute-class label in the bound's SI unit. As in Rust, a unit the reader
+ * does not normalize names no bound: the row is labelled uncovered instead. */
 export function retainedAbsoluteNotice(boundBits: string, unit: string): string {
-  return N_RP_ABSOLUTE.replace("{b}", upwardBoundText(decodeBinary64(boundBits))).replace("{unit}", RETAINED_SI_UNIT[unit] ?? unit);
+  const si = Object.hasOwn(RETAINED_SI_UNIT, unit) ? RETAINED_SI_UNIT[unit] : null;
+  return si === null ? N_RP_NOT_COVERED : N_RP_ABSOLUTE.replace("{b}", upwardBoundText(decodeBinary64(boundBits))).replace("{unit}", si);
 }
 /** The binding refusal of one validated class (D2 4.9.9, before S-I). */
 export function classBindingRefusal(cls: AccuracyClass | null | undefined): string | null {
