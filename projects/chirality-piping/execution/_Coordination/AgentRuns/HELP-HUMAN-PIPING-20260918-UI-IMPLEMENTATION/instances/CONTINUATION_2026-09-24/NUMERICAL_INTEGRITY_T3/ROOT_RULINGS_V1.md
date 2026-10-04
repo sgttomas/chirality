@@ -10726,3 +10726,31 @@ The memory branch merges into NUM after these.
 **N-3** (any future basis needs G7's tool) and **N-4** (F5 is not yet in T17_V4, which is RV89's item) are noted.
 
 **Batched with RV89's findings** on Pass A, which are pending, into one I65 repair round. Then Pass B runs on the final basis.
+
+## The D-U6-5 follow-on committed: the milestone holds under U6's 07h reader (ROOT, 2026-10-04 UTC)
+
+**I61's return** is `R/I61/u3_grant2_02/` (SHA256SUMS 19/19 OK; no machine paths). The stop condition did not trigger.
+- **The milestone holds under U6's reader.** On the merged base, with U6's 07h reader at precommit, the actual Direct entry still publishes the milestone's successor in both modes, with U1's pinned bytes.
+- **D-U6-5:** one test, `u3g2_d_u6_5_carrier_fixtures_are_the_live_successors` (test file only). U6's two carrier fixtures equal the live successor documents byte for byte, with U1's pinned file and receipt hashes. Two mutants are both killed.
+- **The reruns match grant 2:**
+
+  | Run | Result |
+  |---|---|
+  | PP, registered and Stale | 705 passed, 1 failed (t13), 10 ignored, outcome-identical |
+  | runner/headless | 85 passed, 2 failed |
+  | 324-output sweep, registered and Stale | byte-identical to grant 2's |
+  | U5, on the live bytes through the 07h Python reader | byte-identical to U5's report, 97/97 per mode |
+
+**ROOT's verification:**
+- **The diff** is `retained_facade_tests.rs` only, +31 lines.
+- **On the merged base,** the build-script identity and reviewed inputs equal the registered entry, and the six `u3g2_*` tests pass.
+
+**Committed** as `f71478696b` on the memory branch (pushed).
+
+**RV93 extends its review** to the follow-on delta (`f8ce1eb32b..f71478696b`) when its grant-2 review returns.
+
+**Still before the memory merge:**
+- RV89's review of G7 Pass A and the T17_V4 line;
+- the I65 repair round (Pass B fail-closed: RV87 SF-1 and N-1, plus RV89's findings);
+- the T17_V4 line;
+- Pass B on the final basis.
