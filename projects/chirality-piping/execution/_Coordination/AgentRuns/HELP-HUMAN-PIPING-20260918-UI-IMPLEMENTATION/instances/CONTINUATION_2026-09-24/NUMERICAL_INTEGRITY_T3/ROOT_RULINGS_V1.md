@@ -11508,3 +11508,34 @@ Records go in `R/I61/u9_g5g6_01/`.
 - **Pass B:** the hunk is in a D1 crate, but in `source_blocks` (behind `for_source`/`edge_zero`, like PR1080). RV89 classifies it in its G9a confirmation, and ROOT reruns Pass B mechanically on the frozen head.
 - **G5, G6 and G8** are unaffected on 64-bit by construction. Both-entry uses C = `92a5a9da1c` if not yet built.
 - **RV95** reviews the fix, and also checks for other 32-bit hazards in code wasm now compiles.
+
+## RV89 confirms G9a: the full Pass B on the PR holds; the frozen-head rerun needs one entry (ROOT, 2026-10-04 UTC)
+
+**RV89's report** is `R/REVIEW_RV89/u4_g7_03/REVIEW.md` (sha256 `3bcc025a…`; SHA256SUMS 15/15 OK). Verdict: **PASS**, with 0 BLOCKING, 0 SHOULD-FIX and 1 NOTE finding.
+
+**PR1080** (`validate_in`) **cannot run on D1.**
+- By reading: it is reached only via `for_source` branches that D1 never takes, which the premise pins hold.
+- I65's graph agrees.
+- **RV89's counters:** 0 entries on the milestone's Direct entry, in both modes, and across the 71-input sweep.
+- Where it is reached (n05 and multicase), the allocation counts and bytes equal its parent's in 8 pairs.
+
+**The new reviewed entry is confirmed:** `retained_memory_law_tests.rs:1238`, doc comment only.
+
+**The run is confirmed** in RV89's own registered build of `6b9bb19a5f`:
+
+| Check | Result |
+|---|---|
+| PP | 705/1/10, so the delta is exactly the six tests |
+| runner, law, record, witnesses, challenge | identical |
+| maxima | 0.8881 / 0.8929 M |
+| sweeps | byte-identical to G6R's |
+| the entry | byte-identical to `0c7827b6ad`'s |
+
+**The moved head:**
+- **`fd3cbebb42`** is CI Python only, classed `not-d1`. No rerun.
+- **`92a5a9da1c`'s `integer` reorder** cannot run on D1: 0 entries on the milestone in both modes and across the sweep, measured with the file in place. Where reached, it allocates identically (8 pairs). **No rerun now; the mechanical rerun on the frozen head suffices.**
+
+**N-1, for the frozen-head rerun.**
+- The reorder diffs as a deletion-only hunk, which `delta_inventory2.py:186` classes as `item`. Without an entry, the run exits 5 (fingerprint `27181031…585`).
+- **Ruled:** I65 adds that reviewed entry before the frozen-head rerun, with the content RV89 confirmed: the deletion half of the `integer` reorder, re-added at `:57`, unreachable on D1, allocation-identical.
+- Teaching the tool to take a deletion-only hunk's enclosing function from the old file is optional, and routed to the tool's next grant.
