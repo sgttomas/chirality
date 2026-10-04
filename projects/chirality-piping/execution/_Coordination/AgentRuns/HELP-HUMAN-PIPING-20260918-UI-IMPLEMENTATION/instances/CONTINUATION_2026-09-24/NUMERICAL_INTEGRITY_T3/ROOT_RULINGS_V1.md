@@ -9784,3 +9784,32 @@ The next unused IDs are I68 and RV91.
 - **F-U6c-1:** adopted, as above.
 - **F-U6c-2,** which predates T3's F2a work (since T0R): the dispatcher `schemas/results.schema.yaml`'s v0.3 branch knows only precision-1, so it refuses every newer v0.3 identity, including preview-physics-1, physics-1 and the successor. Every v0.3 test validates against `results.v0.3.schema.yaml` directly. **Routed to T6** (PLANNED), via its work-graph row.
 - **F-U6c-3:** whether T6 ever emits successor packages is T6's question. The stress-neutral successor branch admits the transport shape only, and the Python packager still refuses it.
+
+## U6d (TypeScript carriers) verified and committed; S-1 ruled (ROOT, 2026-10-04 UTC)
+
+**I67's U6d** is `R/I67/u6d_typescript_01/` (RETURN sha256 `54121176…`; SHA256SUMS 42/42 OK; no machine paths). ROOT committed it, with the S-1 test patch, as `9555b6ffc2` on `codex/piping-f2a-carriers-ts-20261004` (from `844448112f`) and pushed it. The local `node_modules` link and the copied WASM assets are not committed.
+
+**S-1, ruled:** the existing pin test `knownSemanticLimitations.test.ts:46–50` asserts the exact fresh-identity set, and D-U6-6 adds the successor to it. The fence is extended to I67's 3-line patch, which adds the ruled id and keeps exact equality, as U6a did for Rust's pin. ROOT applied it at commit.
+
+**ROOT's verification:**
+- **The removed lines, read by ROOT:** they are rewrites that extend each function to the successor route.
+  - `NUMERICAL_CASE_EVIDENCE_INCOMPLETE`'s condition moved, unchanged in logic, into the exported `ordinaryCaseEligible` (its De Morgan form).
+  - `SOURCE_NUMERICAL_CONTRACT_UNSUPPORTED` stays; the downgrade guard adds a more specific code. Nothing is narrowed.
+- **ROOT's runs:** desktop Vitest **3,417/3,417** (138 files), and `tsc --noEmit` clean.
+- **I67's evidence:**
+  - base 3,258 tests, all unchanged apart from the S-1 pin;
+  - 159 new tests;
+  - 63 existing-identity envelopes identical to base across 17 carrier outcomes;
+  - the 14 parity cases agree with Rust U6a;
+  - 103 of 103 mutants killed, the last six by added tests. One equivalent guard (K24) in new code was removed.
+
+**Findings:**
+- **F1:** an unregistered invalid successor reads `needs_recompute` in TS, but `unsupported` in Rust and Python. Neither is ever eligible. **A declared parity difference, for RV88 and U6f to judge.**
+- **F2 and F6:** RV88 reviews the display-only binding precheck and the new product text.
+- **F3:** PP's pinned request model is not a complete desktop model. A native witness will need a desktop-shaped request. This goes to the native-activation scope.
+- **F4:** a header-only stress-neutral packet cannot carry the receipt, and fails closed. Noted for T6.
+- **F5:** ComparisonPanel shows the successor's dimension as unknown. Display only; noted for T6.
+- **F7:** the new names are recorded under D-U6-4 (COLLISIONS.json). All are absent from committed trees, apart from the deliberate reuse of U6a's `PREVIEW_PHYSICS_RETAINED_PROFILE`.
+- **F8, F9 and F10:** noted.
+
+**RV88** reviews U6d after U6a (the standing U6 reviewer).
