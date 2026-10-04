@@ -140,6 +140,10 @@ pub(super) struct ProductCapture {
     /// typed at its sites in `solve_load_case_observed` (C2 §5; D39). Only an
     /// installed observer records it; the observer=None route is unchanged.
     pub ordinary: Vec<OrdinarySeed>,
+    /// U3: the capture permit the facade installed with this observer (G-B), and
+    /// G-B's refusal if the late gate refused (the late capture is then skipped).
+    permit: Option<super::retained_memory::CapturePermit>,
+    late_refusal: Option<super::retained_memory::PhaseRefusal>,
 }
 /// G-b/G-l (I61 U1): one case's ordinary attempt as the route actually ran it.
 /// Diagnostic references are the ids of the diagnostics actually pushed; no
@@ -3235,6 +3239,12 @@ impl ProductCapture {
             Ok(())
         })();
         if let Err(e)=checked {self.error=Some(e);return;}
+        // U3, G-B (I51 COMPOSITION §2): immediately before the late old-source
+        // capture. A refusal skips the capture; the ordinary solve is unaffected.
+        if let Some(permit)=self.permit {
+            let facts=super::retained_memory::LateFacts{model,built,materials,case,restrained,springs};
+            if let Err(refusal)=permit.check_late(&facts) {self.late_refusal=Some(refusal);return;}
+        }
         self.capture_case_source(model,built,materials,case,restrained,springs,application,thermal,pressure);
     }
 }
@@ -3289,7 +3299,12 @@ pub(super) struct PreparedCaseFailure {
 }
 impl ProductCapture {
     pub(super) fn prepared_probe() -> Self { Self {prepared_probe:true,..Self::default()} }
-    #[cfg(test)]
+    /// U3: the facade's observer, bound to its capture permit for G-B.
+    pub(super) fn permitted_probe(permit:super::retained_memory::CapturePermit) -> Self {
+        Self {prepared_probe:true,permit:Some(permit),..Self::default()}
+    }
+    pub(super) fn late_refusal(&self)->Option<&super::retained_memory::PhaseRefusal> {self.late_refusal.as_ref()}
+    /// Preparation over the single actual ordinary run's capture (U3 and tests).
     pub(super) fn prepare_case(self,ordinary:MechanicsEnvelope)->Result<PreparedCase,PreparedCaseFailure> {self.prepare_owned_case(ordinary)}
     fn prepare_owned_case(mut self, ordinary:MechanicsEnvelope) -> Result<PreparedCase,PreparedCaseFailure> {
         let mut preparations=Vec::new(); let mut work=Vec::new();let mut associations=Vec::new();
@@ -3427,6 +3442,8 @@ impl PreparedCase {
         observer.prepare_owned_case(ordinary)
     }
     pub(super) fn ordinary(&self)->&MechanicsEnvelope {self.ordinary.as_ref().expect("owned ordinary before attempt")}
+    /// U3 fallback after a native refusal: the untouched ordinary envelope.
+    pub(super) fn into_ordinary(mut self)->MechanicsEnvelope {self.ordinary.take().expect("owned ordinary before attempt")}
     /// The owned ordinary envelope, if this case still owns it (no panic).
     pub(super) fn owned_ordinary(&self)->Option<&MechanicsEnvelope> {self.ordinary.as_ref()}
     pub(super) fn solve_native(&mut self) -> Result<(),&CaptureError> {
@@ -3622,7 +3639,15 @@ impl ProductCapture {
     }
 }
 impl PreparedCase {
-    pub(super) fn project_candidate(mut self)->Result<PrivatePreparedCandidate,PreparedCandidateRefusal> {
+    /// The private driver's all-in-one form: freeze, then commit the overlay into
+    /// the owned ordinary envelope (unchanged behaviour and bytes).
+    pub(super) fn project_candidate(self)->Result<PrivatePreparedCandidate,PreparedCandidateRefusal> {
+        self.freeze_candidate().map(FrozenCandidate::commit_private)
+    }
+    /// U3 (I51 frozen-candidate split): every private gate, proof and move-plan
+    /// check runs, and the ordinary envelope is returned **untouched** beside the
+    /// frozen payload. No ordinary mutation happens here; the fallback owns it (D-b).
+    pub(super) fn freeze_candidate(mut self)->Result<FrozenCandidate,PreparedCandidateRefusal> {
         let ordinary=self.ordinary.take().expect("closed owning preparation transition");
         let native=self.capture.native.take();
         let mut certificate=None;let mut saved_values=None;
@@ -3723,19 +3748,62 @@ impl PreparedCase {
         match result {
             Err(error)=>{self.trace.fail_entered();self.trace.freeze(&self.capture);Err(PreparedCandidateRefusal{ordinary,prepared:self,error,certificate,values:saved_values})},
             Ok(payload)=>{
-                let mut envelope=ordinary;
-                for (i,row) in envelope.results.iter_mut().enumerate(){row.value=*payload.values.value(i).expect("checked frozen index");}
-                let cases=envelope.contract_evidence.as_mut().unwrap().as_object_mut().unwrap().get_mut("preview_cases").unwrap().as_array_mut().unwrap();
-                let extrema=cases[0].as_object_mut().unwrap().get_mut("pipe_stress_extrema").unwrap().as_array_mut().unwrap();
-                for patch in payload.maxima {
-                    let object=extrema[patch.evidence_index].as_object_mut().unwrap();
-                    for (key,number) in PREPARED_MAX_KEYS.into_iter().zip(patch.numbers){*object.get_mut(key).unwrap()=serde_json::Value::Number(number);}
+                // The adapter snapshot is final here: no adapter event follows.
+                self.trace.freeze(&self.capture);
+                match certificate {
+                    Some(certificate)=>Ok(FrozenCandidate{ordinary,payload,prepared:self,certificate}),
+                    None=>{self.trace.fail_entered();Err(PreparedCandidateRefusal{ordinary,prepared:self,
+                        error:PreparedCandidateError::Capture("frozen candidate without certificate".into()),certificate:None,values:Some(payload.values)})}
                 }
-                envelope.summary.max_displacement=Some(payload.displacement);envelope.summary.max_open_formula_stress=Some(payload.stress);
-                self.trace.costs.record::<bool>();self.trace.private_committed=true;self.trace.freeze(&self.capture);
-                Ok(PrivatePreparedCandidate{envelope,prepared:self,certificate:certificate.unwrap()})
             }
         }
+    }
+}
+
+/// The frozen overlay (values, maxima patches and summary aliases) applied to one
+/// envelope. Shared by the private commit and the facade's staging copy, so both
+/// produce the same rows.
+fn apply_prepared_overlay(envelope:&mut MechanicsEnvelope,payload:&PreparedPayload) {
+    for (i,row) in envelope.results.iter_mut().enumerate(){row.value=*payload.values.value(i).expect("checked frozen index");}
+    let cases=envelope.contract_evidence.as_mut().unwrap().as_object_mut().unwrap().get_mut("preview_cases").unwrap().as_array_mut().unwrap();
+    let extrema=cases[0].as_object_mut().unwrap().get_mut("pipe_stress_extrema").unwrap().as_array_mut().unwrap();
+    for patch in &payload.maxima {
+        let object=extrema[patch.evidence_index].as_object_mut().unwrap();
+        for (key,number) in PREPARED_MAX_KEYS.into_iter().zip(patch.numbers.iter()){*object.get_mut(key).unwrap()=serde_json::Value::Number(number.clone());}
+    }
+    envelope.summary.max_displacement=Some(payload.displacement.clone());envelope.summary.max_open_formula_stress=Some(payload.stress.clone());
+}
+
+/// U3 (I51 frozen-candidate split): a certified, private-gate-passed candidate whose
+/// ordinary envelope is still intact. The facade stages its successor from a copy
+/// and either transfers it or returns the untouched ordinary bytes (D-b).
+pub(super) struct FrozenCandidate { ordinary:MechanicsEnvelope,payload:PreparedPayload,prepared:PreparedCase,
+    certificate:k::CertifiedProductProof }
+impl FrozenCandidate {
+    pub(super) fn ordinary(&self)->&MechanicsEnvelope{&self.ordinary}
+    pub(super) fn capture(&self)->&ProductCapture{&self.prepared.capture}
+    pub(super) fn certificate(&self)->&k::CertifiedProductProof{&self.certificate}
+    /// The staging copy: the ordinary envelope cloned, with the frozen overlay
+    /// applied. The ordinary owner is not touched.
+    pub(super) fn staged_envelope(&self)->MechanicsEnvelope {
+        let mut staged=self.ordinary.clone();
+        apply_prepared_overlay(&mut staged,&self.payload);
+        staged
+    }
+    /// The fallback: the untouched ordinary envelope; every W1 owner drops here.
+    pub(super) fn into_ordinary(self)->MechanicsEnvelope {self.ordinary}
+    /// The private driver's commit (unchanged bytes): the overlay moves into the
+    /// owned ordinary envelope.
+    fn commit_private(mut self)->PrivatePreparedCandidate {
+        let mut envelope=self.ordinary;
+        apply_prepared_overlay(&mut envelope,&self.payload);
+        self.prepared.trace.costs.record::<bool>();self.prepared.trace.private_committed=true;self.prepared.trace.freeze(&self.prepared.capture);
+        PrivatePreparedCandidate{envelope,prepared:self.prepared,certificate:self.certificate}
+    }
+    pub(super) fn typed_trace<'a>(&'a self,costs:&mut trace::ProjectionWork)->Result<trace::PreparedAttemptView<'a>,trace::TraceProjectionError> {
+        let p=&self.prepared;
+        trace::project(&p.trace,&p.capture,&p.preparation_work,&p.old_operational,&p.overlay_work,
+            trace::ResultRef::Ready,Some(self.certificate.work()),None,None,costs)
     }
 }
 

@@ -25,8 +25,5 @@ open_pipe_stress_stress_recovery = { path = "../loads/stress_recovery" }
 open_pipe_stress_units = { path = "../units" }
 serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1", features = ["float_roundtrip"] }
-
-[dev-dependencies]
-# I61 U1: the accepted Rust reader validates the serializer's output in tests only.
-# The runtime path dependency for precommit validation (decision 5) belongs to U3.
+# U3 (decision 5): the accepted Rust reader validates the successor precommit.
 open_pipe_stress_result_export = { path = "../reporting/result_export" }

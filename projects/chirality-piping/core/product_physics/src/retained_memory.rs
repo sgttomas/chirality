@@ -297,8 +297,55 @@ impl RetainedAdmissionReport {
 // No values of this type, including test values, exist. Adding a registered
 // production profile is a later reviewed source change, not a public constructor.
 enum RegisteredProfile {}
+#[derive(Clone, Copy)]
 pub(super) struct CapturePermit {
     _profile: &'static RegisteredProfile,
+}
+
+// ---- U3 consumer shim (D-5; R/I65/u4_g2_01/API.md §2) ----------------------
+// The signatures U3's dispatch calls. U4 G5 replaces these bodies and fixes the
+// fact fields (G3); no profile or permit is constructed here (decision 7). With
+// `RegisteredProfile` uninhabited, every body below is statically unreachable.
+/// G-B facts: the live ordinary owners at the late old-source capture, borrowed.
+/// Read by U4 G5's bodies; unread while every body is unreachable.
+#[allow(dead_code)]
+pub(super) struct LateFacts<'a> {
+    pub(super) model: &'a crate::PreviewModel,
+    pub(super) built: &'a crate::BuiltModel,
+    pub(super) materials: &'a [crate::MaterialInput],
+    pub(super) case: &'a crate::PreviewLoadCase,
+    pub(super) restrained: &'a [usize],
+    pub(super) springs: &'a [crate::SpringEntry],
+}
+/// G-C facts: the complete ordinary owner, borrowed.
+#[allow(dead_code)]
+pub(super) struct CompleteFacts<'a> {
+    pub(super) ordinary: &'a crate::MechanicsEnvelope,
+}
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[allow(dead_code)]
+pub(super) enum PhaseGate {
+    Late,
+    Complete,
+}
+/// U4 extends this with the failing fact, observed value and cap (API.md §2).
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub(super) struct PhaseRefusal {
+    pub(super) gate: PhaseGate,
+}
+impl CapturePermit {
+    /// R from STACK_PLAN.md §1.
+    pub(super) fn reserved_stack_bytes(&self) -> usize {
+        match *self._profile {}
+    }
+    /// G-B, immediately before the late old-source capture.
+    pub(super) fn check_late(&self, _facts: &LateFacts<'_>) -> Result<(), PhaseRefusal> {
+        match *self._profile {}
+    }
+    /// G-C, after the complete ordinary owner returns.
+    pub(super) fn check_complete(&self, _facts: &CompleteFacts<'_>) -> Result<(), PhaseRefusal> {
+        match *self._profile {}
+    }
 }
 fn admission(report: RetainedAdmissionReport) -> Result<CapturePermit, RetainedAdmissionReport> {
     // All counts and missing premises survive the refusal, including incomplete
@@ -309,11 +356,26 @@ pub(super) enum Entry<'a> {
     Direct,
     Headless(RetainedHeadlessContext<'a>),
 }
+// The dispatch calls `admit` since U3; `assess` keeps its report-only form for
+// the existing census tests.
+#[cfg_attr(not(test), allow(dead_code))]
 pub(super) fn assess(
     capture: &CapturedInvocation,
     request: &LinearStaticPreviewRequest,
     entry: Entry<'_>,
 ) -> RetainedAdmissionReport {
+    match admit(capture, request, entry) {
+        Err(report) => report,
+        Ok(permit) => match *permit._profile {},
+    }
+}
+/// G-A (API.md §2): the census, then the admission decision. U4 G5 adds the D1
+/// predicate and the registered profile; until then every call refuses.
+pub(super) fn admit(
+    capture: &CapturedInvocation,
+    request: &LinearStaticPreviewRequest,
+    entry: Entry<'_>,
+) -> Result<CapturePermit, RetainedAdmissionReport> {
     let (caller, headless) = match entry {
         Entry::Direct => (RetainedCaller::Direct, None),
         Entry::Headless(c) => (
@@ -336,10 +398,7 @@ pub(super) fn assess(
         profile: ProfileStatus::Missing,
         allowance: AllowanceStatus::Unselected,
     };
-    match admission(report) {
-        Err(report) => report,
-        Ok(permit) => match *permit._profile {},
-    }
+    admission(report)
 }
 
 #[cfg(test)]

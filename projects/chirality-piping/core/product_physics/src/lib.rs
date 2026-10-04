@@ -125,6 +125,8 @@ pub use retained_memory::{
 mod retained_product_tests;
 #[cfg(test)]
 mod retained_wire_tests;
+#[cfg(test)]
+mod retained_facade_tests;
 pub use pressure_runtime::{PressureContractInput, PressureRegionInput, PressureTerminalInput};
 
 const DEC_046_PRODUCT_PREVIEW_ACTIVE_SET_POLICY_REF: &str =
@@ -2175,9 +2177,47 @@ pub fn run_linear_static_preview_value_with_mode(
 pub struct RetainedPreviewOutput {
     envelope: MechanicsEnvelope,
     admission: Option<RetainedAdmissionReport>,
+    /// U3 (D-a): a permitted invocation's W1 result: the checked successor, or
+    /// the private cause of its fallback. `None` on every refused or shared call.
+    /// Crate-private in U3 grant 1: no public type changes before ROOT rules
+    /// checkpoint item 1. Read only by tests until a permit exists (U4 G5).
+    #[cfg_attr(not(test), allow(dead_code))]
+    retained: Option<Result<RetainedSuccessor, W1Fallback>>,
+}
+/// U3 (D-a): the successor document (the envelope with `retained_precision`),
+/// staged, serialized and validated before the transfer moved it here.
+#[derive(Debug, Clone, PartialEq)]
+pub(crate) struct RetainedSuccessor(serde_json::Value);
+impl RetainedSuccessor {
+    #[cfg_attr(not(test), allow(dead_code))]
+    pub(crate) fn value(&self) -> &serde_json::Value { &self.0 }
+}
+/// U3: why a permitted invocation published the untouched ordinary bytes.
+#[derive(Debug, Clone, PartialEq)]
+pub(crate) enum W1Fallback {
+    /// Load-state or exact-pressure model: outside D1 (D1.3), the ordinary route.
+    Domain,
+    /// The reserved-stack thread could not be spawned (STACK_PLAN §1).
+    StackReservation,
+    /// Exact-block selected on the ordinary route (coexistence, D-15).
+    Coexistence,
+    /// G-B or G-C refused.
+    LateGate(retained_memory::PhaseRefusal),
+    CompleteGate(retained_memory::PhaseRefusal),
+    /// The prepared attempt refused at a stage (one-case: no successor, RR:8436).
+    Preparation,
+    Native,
+    Candidate,
+    /// The serializer refused typed.
+    Serializer(retained_wire::ReceiptFailure),
+    /// Precommit validation (decision 5): the accepted Rust reader's first failure.
+    Precommit { gate: &'static str, code: String },
 }
 impl RetainedPreviewOutput {
     pub fn envelope(&self) -> &MechanicsEnvelope { &self.envelope }
+    /// U3: the permitted invocation's W1 result (see `retained`).
+    #[cfg_attr(not(test), allow(dead_code))]
+    pub(crate) fn retained(&self) -> Option<&Result<RetainedSuccessor, W1Fallback>> { self.retained.as_ref() }
     /// None means the existing pre-parse refusal returned before census entry.
     pub fn admission(&self) -> Option<&RetainedAdmissionReport> { self.admission.as_ref() }
     pub fn into_parts(self) -> (MechanicsEnvelope, Option<RetainedAdmissionReport>) {
@@ -2206,13 +2246,30 @@ fn run_linear_static_preview_value_dispatch(
     retained_entry: Option<retained_memory::Entry<'_>>,
 ) -> Result<RetainedPreviewOutput, String> {
     if let Some(refused) = preview_physics::imposed_displacement_refusal(&actual_request) {
-        return refused.map(|envelope| RetainedPreviewOutput { envelope, admission: None });
+        return refused.map(|envelope| RetainedPreviewOutput { envelope, admission: None, retained: None });
     }
     let (request, capture) = source_receipt::CapturedInvocation::parse(actual_request, solver_mode)
         .map_err(|error| error.0)?;
-    // Census runs before any ProductCapture can be installed. Its refusal is
-    // private evidence only; the once-only ordinary route below is unchanged.
-    let admission = retained_entry.map(|entry| retained_memory::assess(&capture, &request, entry));
+    // G-A (API.md §2): census, then admission, before any ProductCapture can be
+    // installed. A refusal is private evidence only; the once-only ordinary route
+    // below is unchanged. No permit exists until U4 G5 (decision 7).
+    let admission = match retained_entry.map(|entry| retained_memory::admit(&capture, &request, entry)) {
+        Some(Ok(permit)) => return permitted_dispatch(permit, request, capture, solver_mode),
+        Some(Err(report)) => Some(report),
+        None => None,
+    };
+    ordinary_dispatch(request, &capture, solver_mode, admission, None)
+}
+
+/// The unchanged ordinary route of every refused or shared call (and of a
+/// permitted call whose reserved-stack thread could not be spawned).
+fn ordinary_dispatch(
+    request: LinearStaticPreviewRequest,
+    capture: &source_receipt::CapturedInvocation,
+    solver_mode: PreviewSolverMode,
+    admission: Option<RetainedAdmissionReport>,
+    retained: Option<Result<RetainedSuccessor, W1Fallback>>,
+) -> Result<RetainedPreviewOutput, String> {
     // The composite profile pays for retained-source and physical evidence.
     // This closed resource policy does not change old source-blocks-1 or the
     // exact helper defaults, and never changes the numerical criterion.
@@ -2222,13 +2279,16 @@ fn run_linear_static_preview_value_dispatch(
     }
     #[cfg(test)]
     retained_memory::tests::ordinary_dispatch_entered();
-    let result = run_linear_static_preview_captured(request, solver_mode, Some(&capture), &mut budget);
-    if matches!(result.producer.semantic_contract_id.as_str(), SOURCE_BLOCKS_SEMANTIC_CONTRACT_ID | PHYSICS_SOURCE_SEMANTIC_CONTRACT_ID | LOAD_REFERENCE_SOURCE_SEMANTIC_CONTRACT_ID)
-        && result.source_block_recovery.is_none()
-    {
+    let result = run_linear_static_preview_captured(request, solver_mode, Some(capture), &mut budget);
+    if source_finalization_failed(&result) {
         return Err("SOURCE_BLOCKS_FINALIZATION_FAILED".into());
     }
-    Ok(RetainedPreviewOutput { envelope: result, admission })
+    Ok(RetainedPreviewOutput { envelope: result, admission, retained })
+}
+
+fn source_finalization_failed(envelope: &MechanicsEnvelope) -> bool {
+    matches!(envelope.producer.semantic_contract_id.as_str(), SOURCE_BLOCKS_SEMANTIC_CONTRACT_ID | PHYSICS_SOURCE_SEMANTIC_CONTRACT_ID | LOAD_REFERENCE_SOURCE_SEMANTIC_CONTRACT_ID)
+        && envelope.source_block_recovery.is_none()
 }
 
 fn run_linear_static_preview_captured(
@@ -2817,6 +2877,156 @@ fn run_linear_static_preview_observed(
     }
     if let Some(observer) = product.as_deref_mut() { observer.finish(&envelope); }
     envelope
+}
+
+/// U3: a permitted retained invocation (API.md §3). Everything after G-A runs on
+/// one scoped thread with the permit's reserved stack (STACK_PLAN §1, D-3 = S1):
+/// the single observed ordinary run, G-B (inside the capture), G-C and every W1
+/// phase. A spawn failure runs the unchanged ordinary route on this thread.
+/// Unreachable until U4 G5 adds a registered profile.
+fn permitted_dispatch(
+    permit: retained_memory::CapturePermit,
+    request: LinearStaticPreviewRequest,
+    capture: source_receipt::CapturedInvocation,
+    solver_mode: PreviewSolverMode,
+) -> Result<RetainedPreviewOutput, String> {
+    let mut slot = Some(request);
+    let ran = on_reserved_stack(permit.reserved_stack_bytes(), || {
+        slot.take().map(|request| permitted_run(permit, request, &capture, solver_mode))
+    });
+    match (ran.flatten(), slot) {
+        (Some(result), _) => result,
+        (None, Some(request)) => ordinary_dispatch(request, &capture, solver_mode, None, Some(Err(W1Fallback::StackReservation))),
+        (None, None) => Err("retained dispatch lost its request".into()),
+    }
+}
+
+/// STACK_PLAN §1: run `work` on one scoped thread with `bytes` of reserved stack,
+/// borrowing the caller's owners. `None` when the thread cannot be spawned (the
+/// work did not run). A panic is re-raised here with its original payload.
+fn on_reserved_stack<T: Send>(bytes: usize, work: impl FnOnce() -> T + Send) -> Option<T> {
+    std::thread::scope(|scope| {
+        match std::thread::Builder::new().stack_size(bytes).spawn_scoped(scope, work) {
+            Ok(handle) => Some(match handle.join() {
+                Ok(value) => value,
+                Err(payload) => std::panic::resume_unwind(payload),
+            }),
+            Err(_) => None,
+        }
+    })
+}
+
+/// The permitted run on the reserved-stack thread: the single observed ordinary
+/// run with capture installed, G-C, then the W1 phases.
+fn permitted_run(
+    permit: retained_memory::CapturePermit,
+    request: LinearStaticPreviewRequest,
+    capture: &source_receipt::CapturedInvocation,
+    solver_mode: PreviewSolverMode,
+) -> Result<RetainedPreviewOutput, String> {
+    // D1.3: load-state and exact-pressure models never reach W1; defensively, a
+    // permit for one takes the unchanged ordinary route (with its SF-1 logic).
+    if case_state::is_load_state(&request.model) || pressure_runtime::is_exact(&request.model) {
+        return ordinary_dispatch(request, capture, solver_mode, None, Some(Err(W1Fallback::Domain)));
+    }
+    let mut budget = SourceRecoveryBudget::default();
+    let mut observer = retained_product::ProductCapture::permitted_probe(permit);
+    let ordinary = run_linear_static_preview_observed(request, solver_mode, Some(capture), &mut budget, Some(&mut observer));
+    if source_finalization_failed(&ordinary) {
+        return Err("SOURCE_BLOCKS_FINALIZATION_FAILED".into());
+    }
+    let (envelope, retained) = match permit.check_complete(&retained_memory::CompleteFacts { ordinary: &ordinary }) {
+        Err(refusal) => (ordinary, Err(W1Fallback::CompleteGate(refusal))),
+        Ok(()) => retained_w1(observer, ordinary, capture),
+    };
+    Ok(RetainedPreviewOutput { envelope, admission: None, retained: Some(retained) })
+}
+
+/// U3: the W1 phases over the single actual ordinary run's capture: coexistence,
+/// G-B's outcome, preparation, native, proof (the frozen candidate), staging,
+/// serialization, precommit validation and the transfer. The ordinary envelope
+/// is never mutated: it returns untouched on every fallback (D-b), and beside the
+/// successor on success. No fallible step follows the transfer's first move.
+fn retained_w1(
+    observer: retained_product::ProductCapture,
+    ordinary: MechanicsEnvelope,
+    capture: &source_receipt::CapturedInvocation,
+) -> (MechanicsEnvelope, Result<RetainedSuccessor, W1Fallback>) {
+    if ordinary.source_block_recovery.is_some() {
+        return (ordinary, Err(W1Fallback::Coexistence));
+    }
+    if let Some(refusal) = observer.late_refusal() {
+        let refusal = refusal.clone();
+        return (ordinary, Err(W1Fallback::LateGate(refusal)));
+    }
+    let mut prepared = match observer.prepare_case(ordinary) {
+        Ok(prepared) => prepared,
+        Err(failure) => return (failure.ordinary, Err(W1Fallback::Preparation)),
+    };
+    #[cfg(test)]
+    retained_tests_hooks::before_native(&mut prepared);
+    if prepared.solve_native().is_err() {
+        return (prepared.into_ordinary(), Err(W1Fallback::Native));
+    }
+    let frozen = match prepared.freeze_candidate() {
+        Ok(frozen) => frozen,
+        Err(refusal) => return (refusal.ordinary, Err(W1Fallback::Candidate)),
+    };
+    // Staging: the overlay applies to a copy; the ordinary owner stays intact.
+    let staged = frozen.staged_envelope();
+    let serialized = retained_wire::serialize_frozen(&frozen, &staged, capture);
+    drop(staged);
+    #[cfg_attr(not(test), allow(unused_mut))]
+    let mut successor = match serialized {
+        Ok(successor) => successor,
+        Err(failure) => return (frozen.into_ordinary(), Err(W1Fallback::Serializer(failure))),
+    };
+    #[cfg(test)]
+    retained_tests_hooks::before_precommit(&mut successor);
+    // Decision 5: precommit validation by the accepted Rust reader, against the
+    // actual invocation (eligibility stays off).
+    #[cfg_attr(not(test), allow(unused_mut))]
+    let mut invocation = serde_json::json!({"request": capture.borrowed_raw(), "solver_mode": capture.mode().as_str()});
+    #[cfg(test)]
+    retained_tests_hooks::before_precommit_invocation(&mut invocation);
+    if let Err(error) = open_pipe_stress_result_export::retained_precision::validate(&successor, Some(&invocation)) {
+        return (frozen.into_ordinary(), Err(W1Fallback::Precommit { gate: error.gate, code: error.code }));
+    }
+    drop(invocation);
+    // The transfer: moves only.
+    (frozen.into_ordinary(), Ok(RetainedSuccessor(successor)))
+}
+
+/// Test-only fault seam for the precommit stage (decision 7 permits no test
+/// permit; this injects a fault into the W1 phases the private driver reaches).
+#[cfg(test)]
+pub(crate) mod retained_tests_hooks {
+    thread_local! {
+        static CORRUPT: std::cell::Cell<bool> = const { std::cell::Cell::new(false) };
+        static WITHDRAW: std::cell::Cell<bool> = const { std::cell::Cell::new(false) };
+        static REBIND: std::cell::Cell<bool> = const { std::cell::Cell::new(false) };
+    }
+    /// Precommit binding fault: the next precommit validates against the other mode.
+    pub(crate) fn rebind_next_precommit_invocation() { REBIND.with(|c| c.set(true)); }
+    pub(crate) fn before_precommit_invocation(invocation: &mut serde_json::Value) {
+        if REBIND.with(|c| c.replace(false)) {
+            let other = if invocation["solver_mode"] == "dense_scrutiny" { "sparse_interactive" } else { "dense_scrutiny" };
+            invocation["solver_mode"] = serde_json::json!(other);
+        }
+    }
+    pub(crate) fn corrupt_next_precommit() { CORRUPT.with(|c| c.set(true)); }
+    /// Native-stage fault: the prepared source is withdrawn before the native solve.
+    pub(crate) fn withdraw_next_native_source() { WITHDRAW.with(|c| c.set(true)); }
+    pub(crate) fn before_native(prepared: &mut super::retained_product::PreparedCase) {
+        if WITHDRAW.with(|c| c.replace(false)) {
+            prepared.test_capture_mut().source = None;
+        }
+    }
+    pub(crate) fn before_precommit(successor: &mut serde_json::Value) {
+        if CORRUPT.with(|c| c.replace(false)) {
+            successor["retained_precision"]["receipt_sha256"] = serde_json::json!("0".repeat(64));
+        }
+    }
 }
 
 /// Resolved thermal+fit eigenstrain with each member's own E and the exact
