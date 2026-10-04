@@ -8932,3 +8932,55 @@ These fields are written through `WorkTotal::legacy_saturated()` (FK/structural/
 - Mutants pin the legacy-field substitutions and the stage-status check.
 
 The detail-token vocabulary is D-4b, ruled at G2's return. I61 was messaged during the grant. RV82's brief (`BRIEFS/RV82_U1_SERIALIZER_REVIEW.md`, item 6) checks adoption in the returned code.
+
+## U4 G2 verified; D-4, D-4b and S-1 ruled (ROOT, 2026-10-04 UTC)
+
+**I65's G2 return** is `R/I65/u4_g2_01/`. SHA256SUMS covers 18 files and verifies OK, and there are no machine paths. It is records only: no Cargo, solver or native job, and no Git write.
+
+**The results:**
+- T02, T06, T07 and T22 close at the D1 caps;
+- T03 and T08 close in part, as planned;
+- DOMAIN.md gives D1 as a field-level predicate (D1.0–D1.9);
+- BUILD.md designs the D-6 check;
+- STACK_PLAN.md plans T20 under S1;
+- API.md proposes the U3/U4 interface.
+
+**ROOT spot-checked the citations D-4 relies on:**
+- the C1:68 tokens, matching the schema's `receipt_failure.check` enum (:6505–6514);
+- PP's ledger limits and guard (lib.rs:837–839 and :880–896);
+- the exact-boundary `Work::charge` with `checked_add`;
+- the Rust reader's `work_accounting` refusal (retained_precision.rs:904–917);
+- `WorkTotal::exact` and `legacy_saturated` (FK work.rs).
+
+All hold. The T08 pre-filter is stated as a lead only ("a site G3 does not cover is a missing term, never zero"), which is the right standard.
+
+**D-4 is ruled as drafted** (D4_RECONCILIATION.md §5), for D1. C1 §2's upstream no-wrap premise is met by four things together:
+- the accepted checked/sticky work custody (I34 API-02, RR:5260; source `fdae294643b`, RR:5468);
+- the checked count and index sites with D1's caps (RESIDUALS T22);
+- the guarded legacy ledger;
+- U1's exact-only projection (§3, items 1–6).
+
+This applies C1 §2's own named alternative, whose conditions (its own design, maintained write-set and review) the accepted I34/I37/RV51 records meet. It changes no schema, reader or public meaning. A work fault abandons the successor to the preserved ordinary base with the pre-reserved unavailable notice. RV82 checks items 1–6 in U1, and G4 records conformance. Wider F2a (combinations, several cases) needs its own reading.
+
+**D-4b: stay inside the accepted vocabulary.** Any typed check or unavailable detail uses C1:68's tokens, which are the schema enum: overflow → `work_counter_range`; inconsistent (I or OI) → `work_counter_inconsistent`; a saturated legacy `rejected` → `saturation_not_excluded`. I34's `work_counter_overflow` and `work_counter_unknown` are not used in D1.
+- A missing checked view must be unreachable by construction, because every amount is read through one (RR "Checked work custody in U1"). So "unknown" needs no token.
+- No schema or reader change.
+
+**S-1 is accepted.** R is reported as its own priced term, and the admission law checks `E_mov,max + R ≤ M`.
+- This refines D-7's wording: M bounds the moving and requested heap plus the reserved stack R. It still makes no claim about RSS, measured stack, allocator overhead, concurrency or supported machines.
+- R = 64 MiB and k = 16 (witness at 4 MiB) are provisional, confirmed or revised by G3's call-graph inventory.
+- Each qualified build identity gets its own witness run (S1's standard: measured evidence, not proof).
+
+**API.md** is accepted as the working interface for U3 (design-to-budget) and G5, subject to RV83. `CapturePermit` stays `pub(super)`, and maintained code has no test permit (decision 7).
+
+**Next:**
+- **RV83** gives G2 an independent re-derivation review (`BRIEFS/RV83_U4_G2_REVIEW.md`).
+- **I65 continues to G3** (producer composition at the caps; records only; 8–12 h), in parallel with RV83, as the plan's standing assignment allows. G3 also owes:
+  - the T08 per-site multiplicity and D1 reachability for all 707 sites;
+  - the stack call-graph inventory, with the thread-local inventory for FK, LS, PL, SR, canonical_json and result_export;
+  - the stride roster's use.
+  
+  If RV83 finds a G2 defect that G3 relied on, I65 repairs it in G3's packet with a pointer back.
+- **I61 is told D-4b** for U1.
+
+The next unused IDs are I66 and RV84; RV82 is reserved for U1.
