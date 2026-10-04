@@ -8651,3 +8651,15 @@ Its notes are optional and recorded: N1, the receipt-only scope of `integral_rec
 [Correction, 2026-10-03: the one removed line in the Python **reader** is its G2 call (`_encoding` then `_normalize_integrals`). It is replaced by the same call with D34's −0 check between the two; ROOT checked the replacement. The harness's `int()` indexing was replaced separately, in the test file.]
 
 **Rust 07e, committed as `2bef5062f7`.** ROOT verified the hashes and the evidence, and ran 56 passed on the default toolchain. D34 had to be applied, not just confirmed: −0 in the enum/const fields previously reached G5. Rust now has a single `g2()` that rejects −0 anywhere before D32's normalization. TypeScript's 07e round is pending.
+
+**TypeScript 07e, committed as `63355a91d2`.** ROOT verified the hashes and the evidence; vitest 428/428, tsc 0. ROOT read the G1 change: the const and enum comparison maps only −0 to 0, which is the one JSON value `Object.is` distinguishes, so nothing else is newly admitted. `negativeZeroFree` then rejects it at G2 over the whole receipt.
+
+**All three readers pass snapshot 07e on READER `63355a91d2`** (15 cases, 263 mutations, 22 must-pass entries). ROOT's own runs: Python 365, Rust 56, TypeScript 428. The tracked tree is clean.
+
+**The final scoped check (workflow §3)** is done by the reviewer of each change:
+- RV79: S1 and D34 in Python;
+- RV80: Rust's `g2()` refactor and D34, including the transport-metadata path;
+- RV81: the TypeScript G1/G2 change and D34;
+- RV78: parity on 07e, D34 probes in all three readers, and the format rule across the harnesses.
+
+**The readers are accepted when all four pass.**
