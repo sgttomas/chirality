@@ -3292,6 +3292,12 @@
                   "work_ref": null
                 },
                 "diagnostic_refs": [
+                  "diagnostic:load:load-fixture-global_x:category-mapping",
+                  "diagnostic:load:load-fixture-global_y:category-mapping",
+                  "diagnostic:load:load-fixture-global_z:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_x:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_y:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_z:category-mapping",
                   "diagnostic:numerical-integrity:case:six-component-load"
                 ]
               }
@@ -4463,7 +4469,7 @@
               }
             ]
           },
-          "receipt_sha256": "22bc47412362e04a80a5d1d8d7653ab163737f8662db6e276081eb058c54e788"
+          "receipt_sha256": "97222de4be57432e247bd74011a112b736a2810473df754fd6f05b86753c6460"
         }
       },
       "invocation": {
@@ -8628,6 +8634,12 @@
                   "work_ref": null
                 },
                 "diagnostic_refs": [
+                  "diagnostic:load:load-fixture-global_x:category-mapping",
+                  "diagnostic:load:load-fixture-global_y:category-mapping",
+                  "diagnostic:load:load-fixture-global_z:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_x:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_y:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_z:category-mapping",
                   "diagnostic:numerical-integrity:case:six-component-load"
                 ]
               }
@@ -9799,7 +9811,7 @@
               }
             ]
           },
-          "receipt_sha256": "884ae243c9b18fee31934bf50b8f6b00c883903d2d2b1d03e866240c84b717d5"
+          "receipt_sha256": "8b761fa354225220cfd5e45de90b249f5e637b51f65fb435e93dc71ee1b33b5c"
         }
       },
       "invocation": {
@@ -14172,6 +14184,12 @@
                   "work_ref": null
                 },
                 "diagnostic_refs": [
+                  "diagnostic:load:load-fixture-global_x:category-mapping",
+                  "diagnostic:load:load-fixture-global_y:category-mapping",
+                  "diagnostic:load:load-fixture-global_z:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_x:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_y:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_z:category-mapping",
                   "diagnostic:numerical-integrity:case:six-component-load"
                 ]
               }
@@ -15343,7 +15361,7 @@
               }
             ]
           },
-          "receipt_sha256": "bf35a348165f0dc94a6c9c9b6d82e7ba99b015f68bb179031bbf169d0b1680c1"
+          "receipt_sha256": "f46503feaad66f2462a1c60216bd92d76209271c16cd24bb8a5c6489470c3d7b"
         }
       },
       "invocation": {
@@ -19626,6 +19644,8 @@
                   "work_ref": null
                 },
                 "diagnostic_refs": [
+                  "diagnostic:load:load-fixture-cancel-plus:category-mapping",
+                  "diagnostic:load:load-fixture-cancel-minus:category-mapping",
                   "diagnostic:numerical-integrity:case:six-component-load"
                 ]
               }
@@ -20797,7 +20817,7 @@
               }
             ]
           },
-          "receipt_sha256": "f2f9d263ba6d62cef76f0e26df8caa21d32c46637329feee23ac5a8f055e7a16"
+          "receipt_sha256": "f70342e528f3ef110a35690337ed2f005cc14ee2aef15b77db63bdc19cb371fa"
         }
       },
       "invocation": {
@@ -27509,6 +27529,12 @@
                   "work_ref": null
                 },
                 "diagnostic_refs": [
+                  "diagnostic:load:load-fixture-global_x:category-mapping",
+                  "diagnostic:load:load-fixture-global_y:category-mapping",
+                  "diagnostic:load:load-fixture-global_z:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_x:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_y:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_z:category-mapping",
                   "diagnostic:numerical-integrity:case:six-component-load"
                 ]
               },
@@ -27535,6 +27561,12 @@
                   "work_ref": null
                 },
                 "diagnostic_refs": [
+                  "diagnostic:load:load-fixture-u-global_x:category-mapping",
+                  "diagnostic:load:load-fixture-u-global_y:category-mapping",
+                  "diagnostic:load:load-fixture-u-global_z:category-mapping",
+                  "diagnostic:load:load-fixture-u-rotation_x:category-mapping",
+                  "diagnostic:load:load-fixture-u-rotation_y:category-mapping",
+                  "diagnostic:load:load-fixture-u-rotation_z:category-mapping",
                   "diagnostic:numerical-integrity:case:unavailable-row"
                 ]
               }
@@ -29877,7 +29909,7 @@
               }
             ]
           },
-          "receipt_sha256": "89e64f2549798aaa12c1bbda31cce0eaa024f3fa4c4bedcffc8af08ae58e684f"
+          "receipt_sha256": "9c78171e0aa21f8fe8a7faabc24a15c390c45d02152f814bd9a08d2a32c799d1"
         }
       },
       "invocation": {
@@ -35598,6 +35630,12 @@
                   "work_ref": null
                 },
                 "diagnostic_refs": [
+                  "diagnostic:load:load-fixture-global_x:category-mapping",
+                  "diagnostic:load:load-fixture-global_y:category-mapping",
+                  "diagnostic:load:load-fixture-global_z:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_x:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_y:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_z:category-mapping",
                   "diagnostic:numerical-integrity:case:six-component-load"
                 ]
               },
@@ -35624,6 +35662,12 @@
                   "work_ref": null
                 },
                 "diagnostic_refs": [
+                  "diagnostic:load:load-fixture-u-global_x:category-mapping",
+                  "diagnostic:load:load-fixture-u-global_y:category-mapping",
+                  "diagnostic:load:load-fixture-u-global_z:category-mapping",
+                  "diagnostic:load:load-fixture-u-rotation_x:category-mapping",
+                  "diagnostic:load:load-fixture-u-rotation_y:category-mapping",
+                  "diagnostic:load:load-fixture-u-rotation_z:category-mapping",
                   "diagnostic:numerical-integrity:case:unavailable-row"
                 ]
               }
@@ -36928,7 +36972,7 @@
               }
             ]
           },
-          "receipt_sha256": "c487fd9cb2e663d2f8d5663edad4440f0dfea274a0bd4e18a6961d995a50b35c"
+          "receipt_sha256": "9dc2252eebcfdc0b871eef0b41c9a8e71f461a5008388b9439e1d71d3b96adc5"
         }
       },
       "invocation": {
@@ -43671,6 +43715,12 @@
                   "work_ref": null
                 },
                 "diagnostic_refs": [
+                  "diagnostic:load:load-fixture-global_x:category-mapping",
+                  "diagnostic:load:load-fixture-global_y:category-mapping",
+                  "diagnostic:load:load-fixture-global_z:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_x:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_y:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_z:category-mapping",
                   "diagnostic:numerical-integrity:case:six-component-load"
                 ]
               }
@@ -45581,7 +45631,7 @@
               }
             ]
           },
-          "receipt_sha256": "0f0c7143279bd8493c231074863738722e9bdd3044edb7e9fe7924dbef673993"
+          "receipt_sha256": "052487a9f6287a8f0affb6a8ac9ff81830ec88e988cb1979735304566c16d9d9"
         }
       },
       "invocation": {
@@ -53591,6 +53641,12 @@
                   "work_ref": null
                 },
                 "diagnostic_refs": [
+                  "diagnostic:load:load-fixture-global_x:category-mapping",
+                  "diagnostic:load:load-fixture-global_y:category-mapping",
+                  "diagnostic:load:load-fixture-global_z:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_x:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_y:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_z:category-mapping",
                   "diagnostic:numerical-integrity:case:six-component-load"
                 ]
               }
@@ -55501,7 +55557,7 @@
               }
             ]
           },
-          "receipt_sha256": "2654932742d88ca661637ae68ddf91518f724b2333861bdd73dad88da598a938"
+          "receipt_sha256": "61421ad123b27af54cea6ac5697cb820cddabd1ea5b26dcc146e005941b69674"
         }
       },
       "invocation": {
@@ -63547,6 +63603,12 @@
                   "work_ref": null
                 },
                 "diagnostic_refs": [
+                  "diagnostic:load:load-fixture-global_x:category-mapping",
+                  "diagnostic:load:load-fixture-global_y:category-mapping",
+                  "diagnostic:load:load-fixture-global_z:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_x:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_y:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_z:category-mapping",
                   "diagnostic:numerical-integrity:case:six-component-load"
                 ]
               },
@@ -63573,6 +63635,12 @@
                   "work_ref": null
                 },
                 "diagnostic_refs": [
+                  "diagnostic:load:load-fixture-z-global_x:category-mapping",
+                  "diagnostic:load:load-fixture-z-global_y:category-mapping",
+                  "diagnostic:load:load-fixture-z-global_z:category-mapping",
+                  "diagnostic:load:load-fixture-z-rotation_x:category-mapping",
+                  "diagnostic:load:load-fixture-z-rotation_y:category-mapping",
+                  "diagnostic:load:load-fixture-z-rotation_z:category-mapping",
                   "diagnostic:numerical-integrity:case:zero-load"
                 ]
               }
@@ -65908,7 +65976,7 @@
               }
             ]
           },
-          "receipt_sha256": "1d7f01602f0048e23f26a16cf3e268f998107c23400ac016d0c4aab25b41b1d4"
+          "receipt_sha256": "54e7bf8ea9f10d9a712c6aec776996113e6d2595e21baa145d593c0a19c29552"
         }
       },
       "invocation": {
@@ -71127,6 +71195,12 @@
                   "work_ref": null
                 },
                 "diagnostic_refs": [
+                  "diagnostic:load:load-fixture-global_x:category-mapping",
+                  "diagnostic:load:load-fixture-global_y:category-mapping",
+                  "diagnostic:load:load-fixture-global_z:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_x:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_y:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_z:category-mapping",
                   "diagnostic:numerical-integrity:case:six-component-load"
                 ]
               }
@@ -72298,7 +72372,7 @@
               }
             ]
           },
-          "receipt_sha256": "89d8dd8929daa9693c9ef54c649d856842ee45ab9810a8bad2434690b440026f"
+          "receipt_sha256": "40258e5f212b9d85b31c83654fe6c382c591e03f4f5057b978314454698e9e3f"
         }
       },
       "invocation": {
@@ -76738,6 +76812,12 @@
                   "work_ref": null
                 },
                 "diagnostic_refs": [
+                  "diagnostic:load:load-fixture-global_x:category-mapping",
+                  "diagnostic:load:load-fixture-global_y:category-mapping",
+                  "diagnostic:load:load-fixture-global_z:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_x:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_y:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_z:category-mapping",
                   "diagnostic:numerical-integrity:case:six-component-load"
                 ]
               }
@@ -77909,7 +77989,7 @@
               }
             ]
           },
-          "receipt_sha256": "f9feb1e6e168e348162ac84fca2fdf1db395cffebfffbfe74b86814399b1420d"
+          "receipt_sha256": "65870ec164f91b6340b54cf99dfbc907fea373890140a4f933643017e26e27bf"
         }
       },
       "invocation": {
@@ -85163,6 +85243,12 @@
                   "work_ref": null
                 },
                 "diagnostic_refs": [
+                  "diagnostic:load:load-fixture-global_x:category-mapping",
+                  "diagnostic:load:load-fixture-global_y:category-mapping",
+                  "diagnostic:load:load-fixture-global_z:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_x:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_y:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_z:category-mapping",
                   "diagnostic:numerical-integrity:case:six-component-load"
                 ]
               },
@@ -85189,6 +85275,12 @@
                   "work_ref": null
                 },
                 "diagnostic_refs": [
+                  "diagnostic:load:load-fixture-u-global_x:category-mapping",
+                  "diagnostic:load:load-fixture-u-global_y:category-mapping",
+                  "diagnostic:load:load-fixture-u-global_z:category-mapping",
+                  "diagnostic:load:load-fixture-u-rotation_x:category-mapping",
+                  "diagnostic:load:load-fixture-u-rotation_y:category-mapping",
+                  "diagnostic:load:load-fixture-u-rotation_z:category-mapping",
                   "diagnostic:numerical-integrity:case:unavailable-row"
                 ]
               }
@@ -87524,7 +87616,7 @@
               }
             ]
           },
-          "receipt_sha256": "360f9382e3819a01b0a7fe3a597705b7875057e80838de572c28b41f795bd8e8"
+          "receipt_sha256": "48b7f29c61f801188c20b9d76185f48b13d773cb6b613273be46ac4b7736aa2c"
         }
       },
       "invocation": {
@@ -95533,6 +95625,12 @@
                   "work_ref": null
                 },
                 "diagnostic_refs": [
+                  "diagnostic:load:load-fixture-global_x:category-mapping",
+                  "diagnostic:load:load-fixture-global_y:category-mapping",
+                  "diagnostic:load:load-fixture-global_z:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_x:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_y:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_z:category-mapping",
                   "diagnostic:numerical-integrity:case:six-component-load"
                 ]
               },
@@ -95559,6 +95657,12 @@
                   "work_ref": null
                 },
                 "diagnostic_refs": [
+                  "diagnostic:load:load-fixture-s-global_x:category-mapping",
+                  "diagnostic:load:load-fixture-s-global_y:category-mapping",
+                  "diagnostic:load:load-fixture-s-global_z:category-mapping",
+                  "diagnostic:load:load-fixture-s-rotation_x:category-mapping",
+                  "diagnostic:load:load-fixture-s-rotation_y:category-mapping",
+                  "diagnostic:load:load-fixture-s-rotation_z:category-mapping",
                   "diagnostic:numerical-integrity:case:stiff-basis"
                 ]
               }
@@ -97894,7 +97998,7 @@
               }
             ]
           },
-          "receipt_sha256": "6ff336b8a946de11472d44df566d4ac840356f5b620c2b90f4d1284a02513b80"
+          "receipt_sha256": "60137676bdfb1265e95b025320c195eea46358382a7eb53b0b5d9b8ec48990a4"
         }
       },
       "invocation": {
@@ -102979,6 +103083,12 @@
                   "work_ref": null
                 },
                 "diagnostic_refs": [
+                  "diagnostic:load:load-fixture-global_x:category-mapping",
+                  "diagnostic:load:load-fixture-global_y:category-mapping",
+                  "diagnostic:load:load-fixture-global_z:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_x:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_y:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_z:category-mapping",
                   "diagnostic:numerical-integrity:case:six-component-load"
                 ]
               }
@@ -104150,7 +104260,7 @@
               }
             ]
           },
-          "receipt_sha256": "8d2a96ecca187616500a3178f6e1bc2c36d5611089e5b82328aa90726dfbd3a3"
+          "receipt_sha256": "85b9d843bf89b87a0ba07161795612eacf075a38ed9acd725b881ab0940c795a"
         }
       },
       "invocation": {
@@ -108340,6 +108450,12 @@
                   "work_ref": null
                 },
                 "diagnostic_refs": [
+                  "diagnostic:load:load-fixture-global_x:category-mapping",
+                  "diagnostic:load:load-fixture-global_y:category-mapping",
+                  "diagnostic:load:load-fixture-global_z:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_x:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_y:category-mapping",
+                  "diagnostic:load:load-fixture-rotation_z:category-mapping",
                   "diagnostic:numerical-integrity:case:six-component-load"
                 ]
               }
@@ -109511,7 +109627,7 @@
               }
             ]
           },
-          "receipt_sha256": "6f8e28c3fa9f258c5ad57cab41bd7dbd90d00e99da19264fd742c849aca95646"
+          "receipt_sha256": "d972efce0cf7b63c43dee81376fe0beed9ff4a542d339c96335d920acfe60363"
         }
       },
       "invocation": {
@@ -130982,6 +131098,356 @@
         "gate": "G5",
         "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
       }
+    },
+    {
+      "id": "f5_ordinary_refs_omit_naming_diagnostic",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "ordinary_attempts",
+            0,
+            "diagnostic_refs"
+          ],
+          "op": "set",
+          "value": [
+            "diagnostic:load:load-fixture-global_y:category-mapping",
+            "diagnostic:load:load-fixture-global_z:category-mapping",
+            "diagnostic:load:load-fixture-rotation_x:category-mapping",
+            "diagnostic:load:load-fixture-rotation_y:category-mapping",
+            "diagnostic:load:load-fixture-rotation_z:category-mapping",
+            "diagnostic:numerical-integrity:case:six-component-load"
+          ]
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "f5_ordinary_refs_out_of_envelope_order",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "ordinary_attempts",
+            0,
+            "diagnostic_refs"
+          ],
+          "op": "set",
+          "value": [
+            "diagnostic:load:load-fixture-global_y:category-mapping",
+            "diagnostic:load:load-fixture-global_x:category-mapping",
+            "diagnostic:load:load-fixture-global_z:category-mapping",
+            "diagnostic:load:load-fixture-rotation_x:category-mapping",
+            "diagnostic:load:load-fixture-rotation_y:category-mapping",
+            "diagnostic:load:load-fixture-rotation_z:category-mapping",
+            "diagnostic:numerical-integrity:case:six-component-load"
+          ]
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "f5_ordinary_refs_list_retained_precision_m09",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "ordinary_attempts",
+            0,
+            "diagnostic_refs"
+          ],
+          "op": "set",
+          "value": [
+            "diagnostic:load:load-fixture-global_x:category-mapping",
+            "diagnostic:load:load-fixture-global_y:category-mapping",
+            "diagnostic:load:load-fixture-global_z:category-mapping",
+            "diagnostic:load:load-fixture-rotation_x:category-mapping",
+            "diagnostic:load:load-fixture-rotation_y:category-mapping",
+            "diagnostic:load:load-fixture-rotation_z:category-mapping",
+            "diagnostic:numerical-integrity:case:six-component-load",
+            "diagnostic:retained:synthetic"
+          ]
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "f5_ordinary_refs_list_invocation_level_m10",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "ordinary_attempts",
+            0,
+            "diagnostic_refs"
+          ],
+          "op": "set",
+          "value": [
+            "diagnostic:load:load-fixture-global_x:category-mapping",
+            "diagnostic:load:load-fixture-global_y:category-mapping",
+            "diagnostic:load:load-fixture-global_z:category-mapping",
+            "diagnostic:load:load-fixture-rotation_x:category-mapping",
+            "diagnostic:load:load-fixture-rotation_y:category-mapping",
+            "diagnostic:load:load-fixture-rotation_z:category-mapping",
+            "diagnostic:numerical-integrity:case:six-component-load",
+            "diagnostic:physics:rule-inputs-missing"
+          ]
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "f5_ordinary_refs_list_other_case",
+      "base": "two_case_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "ordinary_attempts",
+            0,
+            "diagnostic_refs"
+          ],
+          "op": "set",
+          "value": [
+            "diagnostic:load:load-fixture-global_x:category-mapping",
+            "diagnostic:load:load-fixture-global_y:category-mapping",
+            "diagnostic:load:load-fixture-global_z:category-mapping",
+            "diagnostic:load:load-fixture-rotation_x:category-mapping",
+            "diagnostic:load:load-fixture-rotation_y:category-mapping",
+            "diagnostic:load:load-fixture-rotation_z:category-mapping",
+            "diagnostic:numerical-integrity:case:six-component-load",
+            "diagnostic:numerical-integrity:case:zero-load"
+          ]
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "f5_ordinary_refs_relaxed_d6a_form",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "ordinary_attempts",
+            0,
+            "diagnostic_refs"
+          ],
+          "op": "set",
+          "value": [
+            "diagnostic:numerical-integrity:case:six-component-load"
+          ]
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "f5_affected_refs_string_names_no_case",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "diagnostics",
+            0,
+            "affected_refs"
+          ],
+          "op": "set",
+          "value": "case:six-component-load"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "f5_ordinary_refs_second_case_relaxed_d6a_form",
+      "base": "two_case_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "ordinary_attempts",
+            1,
+            "diagnostic_refs"
+          ],
+          "op": "set",
+          "value": [
+            "diagnostic:numerical-integrity:case:zero-load"
+          ]
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "f5_ordinary_refs_strict_prefix",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "diagnostics"
+          ],
+          "op": "set",
+          "value": [
+            {
+              "id": "diagnostic:load:load-fixture-global_y:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_force is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-global_y",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-global_z:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_force is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-global_z",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-rotation_x:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_moment is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-rotation_x",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-rotation_y:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_moment is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-rotation_y",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-rotation_z:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_moment is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-rotation_z",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:numerical-integrity:case:six-component-load",
+              "code": "NUMERICAL_INTEGRITY_SENSITIVE",
+              "severity": "warning",
+              "message": "Synthetic ordinary-sensitive reader control. Native records below are constructed statements, not execution evidence.",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:physics:rule-inputs-missing",
+              "code": "RULE_CHECK_INPUTS_MISSING",
+              "severity": "warning",
+              "message": "rule-check inputs and protected criteria are absent; no compliance result is produced",
+              "source": "core/product_physics"
+            },
+            {
+              "id": "diagnostic:retained:synthetic",
+              "code": "RETAINED_PRECISION_SELECTED",
+              "severity": "info",
+              "message": "Synthetic reader control; no producer or native Current evidence.",
+              "source": "synthetic_reader_control",
+              "affected_refs": [
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-global_x:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_force is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-global_x",
+                "case:six-component-load"
+              ]
+            }
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "ordinary_attempts",
+            0,
+            "diagnostic_refs"
+          ],
+          "op": "set",
+          "value": [
+            "diagnostic:load:load-fixture-global_y:category-mapping",
+            "diagnostic:load:load-fixture-global_z:category-mapping",
+            "diagnostic:load:load-fixture-rotation_x:category-mapping",
+            "diagnostic:load:load-fixture-rotation_y:category-mapping",
+            "diagnostic:load:load-fixture-rotation_z:category-mapping",
+            "diagnostic:numerical-integrity:case:six-component-load"
+          ]
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
     }
   ],
   "must_pass": [
@@ -133357,6 +133823,226 @@
       ],
       "rehash": "all",
       "expected": "pass"
+    },
+    {
+      "id": "f5_envelope_reordered_exact_list",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "diagnostics"
+          ],
+          "op": "set",
+          "value": [
+            {
+              "id": "diagnostic:load:load-fixture-global_y:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_force is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-global_y",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-global_z:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_force is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-global_z",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-rotation_x:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_moment is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-rotation_x",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-rotation_y:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_moment is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-rotation_y",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-rotation_z:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_moment is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-rotation_z",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:numerical-integrity:case:six-component-load",
+              "code": "NUMERICAL_INTEGRITY_SENSITIVE",
+              "severity": "warning",
+              "message": "Synthetic ordinary-sensitive reader control. Native records below are constructed statements, not execution evidence.",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:physics:rule-inputs-missing",
+              "code": "RULE_CHECK_INPUTS_MISSING",
+              "severity": "warning",
+              "message": "rule-check inputs and protected criteria are absent; no compliance result is produced",
+              "source": "core/product_physics"
+            },
+            {
+              "id": "diagnostic:retained:synthetic",
+              "code": "RETAINED_PRECISION_SELECTED",
+              "severity": "info",
+              "message": "Synthetic reader control; no producer or native Current evidence.",
+              "source": "synthetic_reader_control",
+              "affected_refs": [
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-global_x:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_force is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-global_x",
+                "case:six-component-load"
+              ]
+            }
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "ordinary_attempts",
+            0,
+            "diagnostic_refs"
+          ],
+          "op": "set",
+          "value": [
+            "diagnostic:load:load-fixture-global_y:category-mapping",
+            "diagnostic:load:load-fixture-global_z:category-mapping",
+            "diagnostic:load:load-fixture-rotation_x:category-mapping",
+            "diagnostic:load:load-fixture-rotation_y:category-mapping",
+            "diagnostic:load:load-fixture-rotation_z:category-mapping",
+            "diagnostic:numerical-integrity:case:six-component-load",
+            "diagnostic:load:load-fixture-global_x:category-mapping"
+          ]
+        }
+      ],
+      "rehash": "all",
+      "expected": "pass"
     }
-  ]
+  ],
+  "d37": {
+    "basis": "RV79-N1 (D36): D37's expected table, derived from the native sequence and C3, not from any reader. PP/core/product_physics/src/retained_product.rs at 844448112f: prepare_owned_case (enter Preparation :3313, completed :3426, fail_entered :3430); solve_native (enter Native :3453; a selected outcome completes :3466; a nonselected outcome after the Run is recorded is NativeUnavailable, the `native` kind; any earlier error is the `capture` kind (a); fail_entered :3467); freeze_candidate (capture (b) before ProofStart :3655-3660; ProofStart :3662-3664 and Projection :3666-3668 failures are `proof`; Maxima :3668-3671 `abandoned`; Values :3671-3676 `values`; Aliases :3676-3681 `abandoned`; bind_rows_view :3684-3685 `abandoned` with the certificate not entered; Certificate :3686-3709: a failed certificate is `proof`, with Observables and G5a both entered and checked when the verdict copy covers every row (:3696-3703); after a passed certificate the frozen owner or verdict copy :3712-3719 is `capture` (c); Observables and G5a :3723-3728, then `observable` (observables failed), `g5a` (observables passed, G5a failed) or `numeric` (both passed) :3734-3738; the precharged commit :3740-3743 is `capture` (d), every stage completed); the error return calls fail_entered :3749. Trace transitions: retained_receipt.rs enter/completed/checked/fail_entered. Error kinds: C3's PublicError (preparation, native, capture, proof, values, abandoned, numeric, observable, g5a). Facade order (PP/core/product_physics/src/lib.rs:2962-2974, unchanged from 844448112f to 5e1e2625ac): prepare_case :2962, then solve_native :2968, and freeze_candidate :2971 runs only after solve_native returns Ok; the only other caller, project_candidate (retained_product.rs:3644-3646), is reached only from #[cfg(test)] code. So capture (b) never sees Native not entered, and C--------- is not a `capture` record.",
+    "stage_order": [
+      "preparation",
+      "native",
+      "proof_start",
+      "projection",
+      "maxima",
+      "values",
+      "aliases",
+      "certificate",
+      "observables",
+      "g5a"
+    ],
+    "marks": {
+      "-": "not_entered",
+      "C": "completed",
+      "F": "failed"
+    },
+    "records": [
+      "CCCCCCCCCC",
+      "CCCCCCCCCF",
+      "CCCCCCCCFC",
+      "CCCCCCCCFF",
+      "CCCCCCCC--",
+      "CCCCCCCFCC",
+      "CCCCCCCFCF",
+      "CCCCCCCFFC",
+      "CCCCCCCFFF",
+      "CCCCCCCF--",
+      "CCCCCCC---",
+      "CCCCCCF---",
+      "CCCCCC----",
+      "CCCCCF----",
+      "CCCCC-----",
+      "CCCCF-----",
+      "CCCC------",
+      "CCCF------",
+      "CCC-------",
+      "CCF-------",
+      "CC--------",
+      "CF--------",
+      "C---------",
+      "F---------",
+      "----------"
+    ],
+    "records_rule": "every stage-2-consistent record: a completed prefix of the eight pipeline stages, then at most one stage failed or not entered, the rest not entered; Observables and G5a entered together, only after the certificate was entered, each completed or failed",
+    "kinds": {
+      "preparation": [
+        "F---------"
+      ],
+      "native": [
+        "CF--------"
+      ],
+      "capture": [
+        "CF--------",
+        "CC--------",
+        "CCCCCCCC--",
+        "CCCCCCCCCC"
+      ],
+      "proof": [
+        "CCF-------",
+        "CCCF------",
+        "CCCCCCCF--",
+        "CCCCCCCFCC",
+        "CCCCCCCFCF",
+        "CCCCCCCFFC",
+        "CCCCCCCFFF"
+      ],
+      "values": [
+        "CCCCCF----"
+      ],
+      "abandoned": [
+        "CCCCF-----",
+        "CCCCCCF---",
+        "CCCCCCC---"
+      ],
+      "numeric": [
+        "CCCCCCCCCC"
+      ],
+      "observable": [
+        "CCCCCCCCFC",
+        "CCCCCCCCFF"
+      ],
+      "g5a": [
+        "CCCCCCCCCF"
+      ]
+    },
+    "unknown_kinds": [
+      "storage"
+    ]
+  }
 }

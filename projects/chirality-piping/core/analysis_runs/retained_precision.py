@@ -24,8 +24,9 @@ TABLE_HASH = "c74742ce6a936384e00986006e6a0b2e6bb11f190451e876eed9ffa11903c6a8"
 METHOD = "contribution_preserving_multiprecision_v1"
 SAFE = (1 << 53) - 1
 MAX_BITS = 0x7FEFFFFFFFFFFFFF
-# This remains false until the entire standalone gate chain and shared corpus
-# have passed. Draft subchecks are not an eligibility API.
+# D-U6-1 (I66 U6a): this flag gates eligibility only, as Rust's
+# IMPLEMENTATION_COMPLETE and TypeScript's SUMMARY_COVERAGE_COMPLETE do. It stays
+# false until U7; every gate runs regardless.
 _IMPLEMENTATION_COMPLETE = False
 
 
@@ -904,8 +905,15 @@ def _g5_ordinary(body, cases, diags, quality):
     for i, c in enumerate(cases):
         o = body["ordinary_attempts"][i]
         refs = o["diagnostic_refs"]
-        # D6a (C1:100, C1:148, C2:166): untyped refs are unique and resolve; they need not name the case.
+        # D6a (C1:100, C1:148, C2:166): untyped refs are unique and resolve.
         fail(len(set(refs)) == len(refs) and all(x in by_id for x in refs))
+        # F5 (D-U6-7; decision 2, A2, RR:8821, amending checkpoint A's D6a, RR:8117): the list is
+        # exactly the diagnostics whose affected_refs name the case, once each, in envelope order,
+        # excluding RETAINED_PRECISION_* (a T1 (a)-omitted disclosure is absent from the envelope).
+        name = c["basis_ref"]["ref_id"]
+        # A non-array affected_refs names no case (S1, RV90: parity with Rust list() and TS Array.isArray).
+        fail(refs == [d["id"] for d in diags if isinstance(d.get("affected_refs"), list) and name in d["affected_refs"]
+                      and not str(d.get("code")).startswith("RETAINED_PRECISION_")])
         fail(o["initial"]["kind"] != "not_attempted" if c["status"] in ("selected", "not_required") else True)
         if o["initial"]["kind"] == "report":
             fail(o["initial"]["report_diagnostic_ref"] in by_id and o["initial"]["outcome"] == quality[i]["solve_quality"])
@@ -1580,8 +1588,9 @@ def _g8(body, source, invocation):
 
 
 def validate_retained_precision(source: Any, invocation: Any = None) -> dict[str, Any]:
-    """Ordered reader under implementation; incomplete work cannot admit use."""
-    _need(_IMPLEMENTATION_COMPLETE, "G0", "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+    """The accepted ordered reader (G0-G8). D-U6-1: every gate runs, and
+    `_IMPLEMENTATION_COMPLETE` gates only `numerical_eligible`, so a valid
+    statement reads needs_recompute while it is false."""
     return _validate_draft(source, invocation)
 
 
