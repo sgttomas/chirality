@@ -10898,3 +10898,35 @@ The memory branch then merges into NUM, after RV93's review of grant 2 and the f
 - **I65:** RV89 N-4 and N-5 in the Pass B script, before slice Q.
 
 **RV94** (fresh) reviews the whole switch after slices L and Q. RV89 confirms the U7 Pass B.
+
+## U7 slice A returned: the switch inventory, the eligibility oracle and 07i prepared (ROOT, 2026-10-04 UTC)
+
+**I61's return** is `R/I61/u7_slice_a_01/` (RETURN.md `461cccb0…`; SHA256SUMS 8/8 OK; no machine paths). It is records only.
+
+**The inventory:**
+- the three flags and their gates;
+- nine stale comments with proposed text; the two Rust ones are line-neutral;
+- every eligibility pin in all three languages and in PP's `retained_wire_tests.rs:122`, each with its exact post-U7 value. **None is deleted;**
+- every consumer that changes, and the unchanged ones: the derivative, row binding, transports, the packager and D-U6-9;
+- the D-U7-6 sentences.
+
+**The oracle.** `eligibility_oracle.py` is stdlib only and reads only the shared JSON. Its rules R0–R4 come from C1:160 and :162, D2 §4.9.4 and D-U6-1.
+- **The pre-U7 self-check is exact:** 15/15 bases and 20/20 carrier standings.
+- **After U7:**
+  - 13/15 bases and 13/23 must-pass entries become eligible; the ones that don't have an unavailable case;
+  - all 277 mutations stay `unsupported`;
+  - 2 of 20 carrier cases change: the two `…:invocation` milestone cases go from `needs_recompute` to `numerically_eligible`;
+  - the live milestone is `numerically_eligible` with its invocation and `needs_recompute` without it.
+
+**07i's patch** (`u7_07i_expectations.patch`) reproduces the staged files byte for byte:
+- **07i** `1e53ea9c…`, from 07h `d0a4ee21…`;
+- **the case file** `f20a7db0…`, from `bbc05bd2…`.
+
+Slice F's order is RETURN §3.
+
+**N-6's diff** (`n6_docs_line_neutral.diff`) adds inline `#[doc]` on `lib.rs:2235` and `:2254`, keeps `pub`, and keeps the line count. It is for slice P.
+
+**Rulings:**
+- **The TS notice** (`knownSemanticLimitations.ts:168` summarizing without the model) goes to slice T. I67 decides whether to pass the model.
+- **The corpus bases' `qualification` strings** ("DRAFT: … public API intentionally rejects"): **slice F updates any fixture or comment text that the switch makes false,** these strings included, if it does so. Otherwise they stay. RV94 checks that no stale claim remains.
+- **I61's disclosure.** One snapshot command briefly wrote a copy of a committed repository test file to `/tmp/x`, which was deleted at once; ROOT confirms it is absent. This breached the host rule (nothing in the system temp directory). It is recorded, with no consequence: the file was a copy of committed content.
