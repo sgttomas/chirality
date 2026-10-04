@@ -8398,3 +8398,12 @@ I63 and I64 adopt 07b in their standing rounds.
 - ROOT's own run: vitest 407/407, tsc 0.
 - ROOT read each removed line: every one is replaced by an equal or stricter check (D20, D22, D27, D29). Nothing is weakened.
 - I63 (Rust) is still in its round.
+
+**Rust, committed as `0c81e09b09`** (I63's single return, with no stop condition).
+- ROOT verified the file hashes and the evidence.
+- ROOT's own run on the default toolchain: 47 passed, 0 failed.
+- ROOT confirmed that the factored `reason_table` keeps every rule of the removed block, and that D19, D22 and D27–D29 are present. Nothing is weakened.
+
+**The repair round D19–D30 is complete in all three readers on 07b.**
+
+**D21 widened by a third indicator (from I63's remaining known difference).** A record's `verification` summary is set only by `verify_precision` (adaptive.rs:4333, the basis of D5a). So on an escalating failed verification record, a non-null verification summary is also evidence that the pass ran (G5 ATTEMPT). Rust already does this. Python and TypeScript add it, and I62 adds one shared pin. This is a small addition before the reviewers re-confirm, so they review one settled head.
