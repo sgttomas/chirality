@@ -8442,3 +8442,13 @@ I63 and I64 adopt 07b in their standing rounds.
 - The confirmation review (03) on `a894d9d0ba` runs now. It covers the D19–D30 dispositions; the T1/T2 delta gets a scoped check later (workflow §3).
 - I61 analyses T1 and T2.
 - The provisional readings A1–A4 and the producer gaps become inputs to the real serializer's brief.
+
+**RV78 confirmation 03: PASS** (0 BLOCKING, 0 SHOULD-FIX, 2 NOTE).
+- **Parity:** all 288 entries on 07c agree across the three readers.
+- **New entries:** all 18 are contract-faithful.
+- **Weakening:** nothing is weakened. The only removed test is the integral-float rule D25 retired.
+- **Probes:** all 52 earlier probes give their ruled outcome.
+
+The two NOTEs are optional by §6. They are taken up in the next corpus change, the T1/T2 round, rather than in a round of their own:
+- N1: D19's Ready direction can become two shared pins.
+- N2: `unavailable_attempt_under_source_error_cause` should get a self-consistent `source_decline`, so that a future consistency check cannot move it.
