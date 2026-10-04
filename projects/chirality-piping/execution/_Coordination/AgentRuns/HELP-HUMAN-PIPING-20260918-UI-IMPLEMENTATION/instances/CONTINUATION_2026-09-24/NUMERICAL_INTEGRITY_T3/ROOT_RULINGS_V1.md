@@ -11655,3 +11655,31 @@ ROOT applied the diff to NUM and checked mechanically that every changed line is
 **The carry-over ruling.** From C2 to the source head **`35d8ae59a7`**, the changes are comment- and doc-only, line-neutral edits in PP production files (`lib.rs`, `retained_memory.rs`, `retained_wire.rs`) plus test files. The release builds G5 and G6 use are therefore unaffected, so **G5 and G6 transfer to `35d8ae59a7`.**
 
 **I61 regenerates the package for the freeze** (S-2): `source_equality.py`'s check 3 generalized, the counts, the PR1080 sentence, the U1 pin scope, N-7, the reviews, the obligations (N-6), the checklist (N-4), the gates done, and the gates on F pointed to the post-merge record. Records go in `R/I61/u9_freeze_01/`. **ROOT places the package as one execution-only commit, which makes F.**
+
+## The freeze: F = 20dd3d929d (ROOT, 2026-10-04 UTC)
+
+**I61's regenerated package** is `R/I61/u9_freeze_01/` (RETURN.md `a7e0aae7…`; SHA256SUMS 9/9 OK). The package itself is 10 files, 192,326 B; its SHA256SUMS hashes to `c8893d64…`. It has no placeholders.
+- **Source equality** is generalized: every S file that main also changed equals its recorded three-way merge. `compatibility.py` resolves its one conflict by rule; `source_blocks.rs` merges cleanly. **5/5 PASS** on `35d8ae59a7`, and 3 negative controls fail as designed.
+- **Citations:** 368/0/0.
+- **GEN-8:** passes on a placed copy.
+
+**The freeze.** Main was unmoved (`5fdc5ab601`), and the PR worktree was clean at the source head `35d8ae59a7`.
+- The package was placed with the same file list, and its SHA256SUMS verifies.
+- **GEN-8 on the placement: 1 passed.**
+- It is committed as **F = `20dd3d929d`** (pushed), and the PR body is updated from `PR_BODY.md`.
+- **On F:** source_equality **5/5 PASS** (|S| = 139; 137 identical to NUM `bb3d766379`; 2 recorded three-way merges; the execution files are exactly the package), and citations **368/0/0 PASS**.
+- F's non-execution diff against `35d8ae59a7` is empty.
+
+**CI before the freeze,** on `35d8ae59a7`: 10 passed, 0 failed. The numerical cargo suite was still running and is superseded by F's run. Selection plans from the whole PR diff, so the numerical suite runs on F.
+
+**Dispatched on F:**
+- **I65:** the prepared frozen-head Pass B (`R/I65/u4_g7_06/`), then RV89's confirmation;
+- **RV95:** the same-reviewer confirmation of S-1, S-2 and N-3, and of the gate evidence available now.
+
+**Still on F:**
+- hosted CI and the full-SHA dispatch (`target_base` = M);
+- the Mac baseline and DEC-025 (ROOT, on a quiet host);
+- the native witness;
+- RV95's final read-only confirmation.
+
+**ROOT asks the owner** about the merge hold, and about the native witness, which the precedent at T0R and T1 left outstanding on the owner's Mac.
