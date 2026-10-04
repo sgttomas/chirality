@@ -8411,3 +8411,34 @@ I63 and I64 adopt 07b in their standing rounds.
 **Snapshot 07c with Python, committed as `986088a466`.** ROOT's diff against 07b shows exactly one new mutation and nothing else changed. The corpus hash is `d33667719e`, and ROOT's own Python run gives 348 passed. I63 and I64 adopt 07c in their standing steps.
 
 **TypeScript D21 and 07c, committed as `68113dbd70`.** ROOT verified the hashes and the evidence. ROOT's own run: vitest 409/409, tsc 0. The change only adds a rejection condition. Rust's adoption of 07c is pending.
+
+## All readers on 07c; the real-receipt experiment's findings (ROOT, 2026-10-03 UTC)
+
+**READER `a894d9d0ba`:** all three readers pass snapshot 07c (15 cases, 254 mutations, 19 must-pass entries). ROOT's own runs: Python 348, Rust 47 (default toolchain), TypeScript vitest 409 with tsc 0. Rust's 07c change was its harness only. The tracked tree is clean.
+
+**I61's experiment** (`R/I61/receipt_experiment_01/`, SHA256SUMS OK) emitted real producer receipts for RF-SKEW-T-CANT-OFF-122-r1e-04, sparse and dense, plus a preparation-refusal receipt. It checked them against READER `b36739112a`. This is wire-contract evidence only; it does not satisfy the public milestone.
+
+**What the experiment established:**
+- **Schema and hashes:** 0 schema violations. All four producer hashes (receipt, publication, source identity, preparation) agree with all three readers, and the invocation digest agrees with G8.
+- **G0–G3:** the milestone receipts pass as emitted, in all three readers.
+- **With labelled counterfactuals** (probe B removes one diagnostic; probe C sets the model `schema_version` to 0.2.0), both modes pass G0–G8 in all three readers with `needs_recompute`. Every reader's row classifications equal the producer's own certificate verdicts, row for row (98 rows sparse, 99 dense).
+- **Host load:** about 1.3 s and about 20 MB peak RSS for one producer run.
+- **Emitter bug E1, fixed in the experiment:** `absolute_verified` comes from the certificate's published-row verdicts.
+
+**Contract tensions:**
+- **T1, G4, blocks the main line.** For this case the actual ordinary route attempts the legacy source-block method, which fails at source closure (46,628 charged). It then emits `SOURCE_BLOCK_RECOVERY_UNAVAILABLE` naming the case.
+  - C1's G4 row forbids a source-unavailable diagnostic naming a retained-selected case.
+  - C2:160 says `legacy_source` "preserves original source failure disclosure", and that a W1 successor may carry `disposition: unavailable`.
+  - The diagnostic is also consumed by the load-reference evidence readers (`loadReferenceEvidence.ts`, `load_reference.rs`, `load_reference_evidence.py`).
+  
+  **Not ruled yet.** It changes public disclosure semantics, possibly across routes. I61 analyses the options and their consumer effects first. If the chosen reading changes what users see, the owner decides.
+- **T2, G8.** All three readers admit only model `schema_version` 0.2.0 or 0.3.0 (PY:1366, RS:3278, TS). The producer accepts 0.1.0 (for example PP pressure_runtime.rs:113) and certified the 0.1.0 milestone request in both modes. I61 found no basis for the rule in C1–C3. Until a basis is found, this is presumed a false reject of an emittable receipt. I61 traces where the rule came from before ROOT rules. Re-authoring the milestone request instead would change its digest, and that needs the owner.
+- **T3, decided:**
+  - Multi-case prepared support is wider-F2a scope, not the first milestone. The private driver handles one load case, and a one-case invocation whose case is unavailable has no successor publication.
+  - The readers' unavailable branch (D9b, D19) therefore stays validated by the synthetic corpus only, until wider F2a. This is a recorded limit.
+  - **Reader closure condition, amended:** the confirmation review passes, and the readers validate the real milestone receipts in both modes once T1 and T2 are resolved.
+
+**Next:**
+- The confirmation review (03) on `a894d9d0ba` runs now. It covers the D19–D30 dispositions; the T1/T2 delta gets a scoped check later (workflow §3).
+- I61 analyses T1 and T2.
+- The provisional readings A1–A4 and the producer gaps become inputs to the real serializer's brief.
