@@ -158,8 +158,11 @@ describe.each(MODES)("%s: stress-neutral, result export and the report package k
     // retained_precision member until T6), so the successor header reads unsupported.
     await expect(validateStressNeutralExportPacket({ schema_version: "0.3.0", producer: result.producer, numerical_quality: result.numerical_quality, formulation_basis: result.formulation_basis, contract_evidence: result.contract_evidence, retained_precision: result.retained_precision, export_profile: {} })).rejects.toThrow("SN-PRECISION-CONTRACT-MISMATCH");
     render(<StressNeutralExportPanel model={model} result={result} analysisRun={analysisRun} />);
-    expect(screen.getByTestId("stress-neutral-empty")).toBeTruthy();
-    expect(screen.queryByTestId("stress-neutral-load-reference-output-unavailable")).toBeNull();
+    // U7 slice T (RV91 N-5): the panel shows the shared refusal for a successor (it showed
+    // its generic empty text before); the load/reference text is never shown.
+    expect(screen.getByTestId("stress-neutral-load-reference-output-unavailable").textContent).toBe(RETAINED_PRECISION_OUTPUT_REFUSAL);
+    expect(screen.queryByTestId("stress-neutral-empty")).toBeNull();
+    expect(screen.queryByText(LOAD_REFERENCE_OUTPUT_REFUSAL)).toBeNull();
     expect(document.querySelectorAll("a[download]")).toHaveLength(0);
   });
   it("result export build, document validation, derivation and panel all refuse", async () => {

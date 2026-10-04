@@ -28,6 +28,9 @@ import type { MechanicsResult, PreviewModel } from "../../types";
 export const RETAINED_PRECISION_VALIDATION_REQUIRED = "RETAINED_PRECISION_VALIDATION_REQUIRED";
 /** The registered validation does not make the successor numerically eligible. */
 export const RETAINED_PRECISION_NOT_NUMERICALLY_ELIGIBLE = "RETAINED_PRECISION_NOT_NUMERICALLY_ELIGIBLE";
+/** U7 slice T (RV91 N-2 = RV88 U6d S-1; D-U7-4): a statement that would be
+ * eligible, but without the live native capture of these bytes for this model. */
+export const RETAINED_PRECISION_NATIVE_CAPTURE_REQUIRED = "RETAINED_PRECISION_NATIVE_CAPTURE_REQUIRED";
 
 export type RetainedStandingToken = "numerically_eligible" | "needs_recompute" | "unsupported";
 export type RetainedClassificationSummary = {
@@ -43,7 +46,11 @@ export type RetainedClassificationSummary = {
 type Json = any; // eslint-disable-line @typescript-eslint/no-explicit-any
 type Fingerprint = { text: string; negativeZeros: string };
 type Outcome = { validation: RetainedPrecisionValidation; error: null } | { validation: null; error: string };
-type Registration = { source: Fingerprint; invocation: unknown; outcome: Outcome };
+/** Whether the live native capture still holds for these bytes and a given model:
+ * previewService's `hasNativeMechanicsInvocation` (an unchanged, not invalidated
+ * capture; unchanged source bytes; that model equal to the captured one). */
+export type LiveNativeCapture = (model: unknown) => boolean;
+type Registration = { source: Fingerprint; invocation: unknown; outcome: Outcome; live: LiveNativeCapture | null };
 const registrations = new WeakMap<object, Registration>();
 
 function negativeZeroPaths(value: unknown): string {
@@ -74,12 +81,14 @@ function receiptCases(source: MechanicsResult): Json[] {
  * (`previewService.validateCapturedSource`). Runs the accepted reader with the
  * captured invocation and records its outcome, validation or first code,
  * against the exact bytes it validated. A refusal is rethrown after it is
- * recorded, so the caller does not register the native invocation. */
-export async function registerRetainedPrecision(source: MechanicsResult, invocation: unknown): Promise<RetainedPrecisionValidation> {
+ * recorded, so the caller does not register the native invocation.
+ * `live` is the native capture's liveness for these bytes; only previewService
+ * passes it. Without it the registration can never stand eligible (U7 slice T). */
+export async function registerRetainedPrecision(source: MechanicsResult, invocation: unknown, live: LiveNativeCapture | null = null): Promise<RetainedPrecisionValidation> {
   // Captured before the reader's first await, as the reader snapshots its inputs.
   // Bytes outside the checked JSON profile never register (the reader refuses them).
   const sourcePrint = fingerprint(source), captured = structuredClone(invocation);
-  const record = (outcome: Outcome) => { if (sourcePrint) registrations.set(source, { source: sourcePrint, invocation: captured, outcome }); };
+  const record = (outcome: Outcome) => { if (sourcePrint) registrations.set(source, { source: sourcePrint, invocation: captured, outcome, live }); };
   try {
     const validation = await validateRetainedPrecision(source, invocation);
     record({ validation, error: null });
@@ -146,13 +155,19 @@ function requestedRefs(model: Pick<PreviewModel, "load_cases"> | null | undefine
  * - nothing registered for these bytes: `needs_recompute`, VALIDATION_REQUIRED;
  * - the registered reader refused: `unsupported`, with the reader's first code;
  * - otherwise D2 4.9.4 with the model's requested load cases; not eligible gives
- *   `needs_recompute`, NOT_NUMERICALLY_ELIGIBLE. */
+ *   `needs_recompute`, NOT_NUMERICALLY_ELIGIBLE;
+ * - eligible by D2 4.9.4, but the live native capture does not hold for these
+ *   bytes and this model (a stale model, an invalidated or raced capture, or a
+ *   registration without a capture): `needs_recompute`, NATIVE_CAPTURE_REQUIRED
+ *   (U7 slice T; D-U7-4's declared difference: Rust and Python require the actual
+ *   invocation argument, TS the live capture). */
 export function retainedPrecisionStanding(source: MechanicsResult, model?: Pick<PreviewModel, "load_cases"> | null): { standing: RetainedStandingToken; eligible: boolean; findings: string[] } {
   const registration = registered(source);
   if (!registration) return { standing: "needs_recompute", eligible: false, findings: [RETAINED_PRECISION_VALIDATION_REQUIRED] };
   if (registration.outcome.error !== null) return { standing: "unsupported", eligible: false, findings: [registration.outcome.error] };
-  if (retainedStandingFrom(registration.outcome.validation, source, requestedRefs(model)) === "numerically_eligible") return { standing: "numerically_eligible", eligible: true, findings: [] };
-  return { standing: "needs_recompute", eligible: false, findings: [RETAINED_PRECISION_NOT_NUMERICALLY_ELIGIBLE] };
+  if (retainedStandingFrom(registration.outcome.validation, source, requestedRefs(model)) !== "numerically_eligible") return { standing: "needs_recompute", eligible: false, findings: [RETAINED_PRECISION_NOT_NUMERICALLY_ELIGIBLE] };
+  if (registration.live?.(model) !== true) return { standing: "needs_recompute", eligible: false, findings: [RETAINED_PRECISION_NATIVE_CAPTURE_REQUIRED] };
+  return { standing: "numerically_eligible", eligible: true, findings: [] };
 }
 /** The registered invocation, for the rule-check backend's existing
  * `sourceBlockInvocation` argument; null unless the standing is eligible. */

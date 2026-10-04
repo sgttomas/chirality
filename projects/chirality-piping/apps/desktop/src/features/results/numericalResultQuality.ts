@@ -136,6 +136,10 @@ export async function sourceContractTransport(source: MechanicsResult): Promise<
   if (route === "retained_preview_physics") await validateRetainedPrecisionTransport(source);
   return route;
 }
+/** TS's standing status for each carrier token of the successor (RV92 N-8: carriers
+ * compare the token; this mapping is pinned separately). TS has no `unsupported`
+ * status: a refused statement reads `needs_recompute` with the reader's code. */
+export const RETAINED_STANDING_STATUS = Object.freeze({ numerically_eligible: "integrity_checked", needs_recompute: "needs_recompute", unsupported: "needs_recompute" } as const);
 export function numericalResultStanding(source: MechanicsResult, model?: (Pick<PreviewModel, "load_cases"> & Partial<Pick<PreviewModel, "pipe_segments" | "supports">>) | null) {
   const contract = sourceContract(source);
   const findings: string[] = [];
@@ -155,7 +159,7 @@ export function numericalResultStanding(source: MechanicsResult, model?: (Pick<P
     // U6d (D2 4.9.4; plan 3): standing reads only the registered accepted-reader
     // validation of these exact bytes. numerical_quality never contributes.
     const standing = retainedPrecisionStanding(source, model);
-    return { contract, status: standing.eligible ? "integrity_checked" as const : "needs_recompute" as const, eligible: standing.eligible, findings: standing.findings };
+    return { contract, status: RETAINED_STANDING_STATUS[standing.standing], eligible: standing.eligible, findings: standing.findings };
   }
   else {
     const q = source.numerical_quality!;
