@@ -10698,3 +10698,31 @@ The memory branch still merges into NUM only after grant 2, RV93, the D-U6-5 fol
 5. RV89 confirms Pass B.
 
 The memory branch merges into NUM after these.
+
+## RV87 on G7 Pass A's TEXT-tool fix and §11: PASS; Pass B made fail-closed (ROOT, 2026-10-04 UTC)
+
+**RV87's report** is `R/REVIEW_RV87/u4_g7_01/REVIEW.md` (sha256 `3b9be056…`; SHA256SUMS 16/16 OK; no machine paths). Verdict: **PASS**, with 0 BLOCKING, 1 SHOULD-FIX and 4 NOTE findings.
+
+**Independently confirmed:**
+- **G6's graph had no multi-function cycle,** with or without the cuts, and G6's TEXT reproduces byte for byte on it. **G6's registered numbers were never affected.**
+- **The cut-first rule is sound.** The 6 new cuts lie only in the `is_retained` branches of `for_source` and `for_source_metadata`. Those branches are dead on D1: `validate`'s G7 projection sets preview-physics-1 unconditionally (`retained_precision.rs:4253`).
+- **The fail-closed check catches every cycle in the graph as built.** RV87's three controls fail as designed. The defect is general to G6's tool, which reports complete at −112.85 MB on the same synthetic edge.
+- **The 7 new rows have multiplicity 0.** The call graph, lexicon and inventory regenerate byte-identical, and the four TEXT runs reproduce.
+- **RV87's independent model re-derives every phase.** Only T17_V4 changes (F5). The maximum stays 0.8881 / 0.8929 M.
+- **§11:** the 410 non-candidates are exactly RV87's, U6 adds no alias, and the explicit-row deferral is acceptable subject to SF-1.
+
+**SF-1, ruled: fixed before Pass B is relied on.** `g7_pass.sh` runs with `set -u` only. It ignores `noncand_compare.py`'s verdict (`:63`) and reports incomplete TEXT, including an `scc` finding, only in its summary, so it exits 0. QUALIFICATION_G7 §4.2 says Pass B "stops", and the §11 deferral rests on that.
+- **The fix (I65, records tooling only):** Pass B exits non-zero on any of:
+  - a non-candidate set different from the reviewed 410;
+  - incomplete TEXT;
+  - an `scc` finding;
+  - any other unverified verdict in its summary.
+- **Each stop gets a control** that shows it firing.
+
+**N-1, adopted in the same round.** Pass B also fails on any self-recursive text ancestor outside an approved list. The list is the 11 that G6 and G7 share, with the reason each one's text is priced elsewhere.
+
+**N-2** (the check is only as complete as the call graph) **is stated in QUALIFICATION_G7 §4.1.**
+
+**N-3** (any future basis needs G7's tool) and **N-4** (F5 is not yet in T17_V4, which is RV89's item) are noted.
+
+**Batched with RV89's findings** on Pass A, which are pending, into one I65 repair round. Then Pass B runs on the final basis.
