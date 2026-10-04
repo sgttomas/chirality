@@ -9850,3 +9850,19 @@ The next unused IDs are I68 and RV91.
 - **N-6:** R4_CALLGRAPH §2's load_ledger.rs:131 wording; the totals are unchanged.
 
 **RV89 keeps its build caches** (WT/targets/rv89) for part 2, and deletes them after part 2's review.
+
+## U6c (schemas) with the pin repair verified and committed (ROOT, 2026-10-04 UTC)
+
+**I66 applied the ruled pin patch.** Its hunks are identical to the 78-line proposal, and nothing is removed. The addendum is `R/I66/u6c_schemas_01/ADDENDUM_01.md` (SHA256SUMS 26/26 OK; no machine paths).
+
+ROOT committed U6c as `cb03315779` on `codex/piping-f2a-carriers-20261004`, on top of `844448112f`, and pushed it. It changes seven files: the three schemas, `test_retained_precision_schema.py`, and the three pin tests.
+
+**ROOT's verification:**
+- **The removed lines, read by ROOT:**
+  - in the schemas, only list-ending lines, rewritten to take the appended entries;
+  - in the pin tests, the "last entry" and count-7 pins, replaced by stricter "last two entries" and count-8 pins.
+- **ROOT ran the 24-file schema sweep plus the retained schema test,** as ROOT's acceptance runs now require, in the worktree: **1,785 passed, 30 skipped, 0 failed.** That equals I66's count. The three pin tests that failed on NUM since the fan-in now pass.
+
+**Review:** RV88 reviews U6c, with the pin patch, after U6a and U6d.
+
+**Next:** I66 starts U6b, the Python carriers including D-U6-9.
