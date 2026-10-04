@@ -9756,3 +9756,31 @@ The next unused IDs are I68 and RV90.
 **I61 is idle until U4 G5 part 2 returns.** Then it takes U3 grant 2.
 
 The next unused IDs are I68 and RV91.
+
+## U6c returned with a stop: three pin tests broken since the reader fan-in (a ROOT miss); ruled (ROOT, 2026-10-04 UTC)
+
+**I66's U6c** (the successor carrier schemas) is `R/I66/u6c_schemas_01/` (RETURN sha256 `e8741c47…`; SHA256SUMS 21/21 OK; no machine paths). It is uncommitted in `WT/f2a-carriers`.
+- **D-U6-2's two `RowDisclosure` codes** are admitted only in the successor branch of `results.v0.3`.
+- **The AnalysisRun and stress-neutral successor branches** are added, and each existing branch refuses `retained_precision`.
+- **RV78-N2's probes Y0–Y11** become 25 new schema tests.
+- **Controls:** 49 committed documents give the same verdict under base and candidate schemas; U6a's derivatives validate; 26 of 26 mutants are killed.
+
+**The stop, and ROOT's error.** Three existing pin tests fail on NUM, and have failed since the reader fan-in at `c15e64b756`, which appended the eighth (successor) `results.v0.3` branch. ROOT confirmed this on NUM HEAD:
+- `tests/test_load_reference_schema.py::test_carrier_branches_are_appended_after_the_existing_methods`;
+- `tests/test_load_reference_source_schema.py::test_joined_branches_are_appended_with_pinned_identities`;
+- `tests/test_source_block_schema_contract.py::test_actual_composite_maximum_metadata_has_a_method_scoped_canonical_route`.
+
+**ROOT's acceptance runs for the fan-in, and since, covered only the retained-precision contract tests, so the regression went unseen.**
+- **Corrected from now on:** for any schema, reader or carrier change, ROOT's acceptance runs include I66's 24-file schema sweep (`R/I66/u6c_schemas_01/_run_records/sweep_test_files.txt`), together with the full result_export and analysis_runs suites.
+- The fan-in record is not rewritten. This entry is its correction.
+
+**Ruled:**
+- **The pins follow the accepted design.** D2 §4.9.6 and C1:162 have T3's successor branch appended after T1's. The tests pinned the pre-F2a count (7) and "T1's entries are last".
+- **I66's 78-line patch** (`_run_records/proposed_pin_tests.diff`) removes no assertion and weakens none. Each "last entry" pin becomes a stricter "last two entries" pin (T1's, then the successor), and the count becomes 8.
+- **U6c's fence is extended to those three test files, for exactly that patch.** I66 applies it and runs the 24-file sweep. RV88 reviews it as a pin update together with U6c.
+- **T1 and T0R are COMPLETE** (merged to main as PR963 and PR952), so no active loop is affected.
+
+**Other findings:**
+- **F-U6c-1:** adopted, as above.
+- **F-U6c-2,** which predates T3's F2a work (since T0R): the dispatcher `schemas/results.schema.yaml`'s v0.3 branch knows only precision-1, so it refuses every newer v0.3 identity, including preview-physics-1, physics-1 and the successor. Every v0.3 test validates against `results.v0.3.schema.yaml` directly. **Routed to T6** (PLANNED), via its work-graph row.
+- **F-U6c-3:** whether T6 ever emits successor packages is T6's question. The stress-neutral successor branch admits the transport shape only, and the Python packager still refuses it.
