@@ -11322,3 +11322,24 @@ The checklist is kept in the work graph's T3 row once U9 merges.
 **Committed:** ROOT verified the 9 files' hashes and committed them as **`e543c3d8f3`**, the U7 head (pushed).
 
 **RV94 confirms the whole round** (`ffe65ef203..e543c3d8f3`). **Then U9's cut.**
+
+## U9's evidence package drafted; design-document citations to be indexed (ROOT, 2026-10-04 UTC)
+
+**I61's draft** is `R/I61/u9_package_01/` (10 files, 159,676 B; SHA256SUMS 9/9 OK; SHA256SUMS sha256 `48ace1cf…`). It is keyed to `e543c3d8f3`.
+
+**Its contents:**
+- `source_equality.py`. Its self-test against main `5fdc5ab601` shows:
+  - 135 files would match;
+  - `compatibility.py` has exactly one conflict, with main's `_same_canonical` byte-identical inside ours;
+  - the expected post-cut blob is `767da340…`.
+- `check_citations.py` and `citations.json`: 65 record citations, 0 unresolved, at NUM `cfcdb5997a`, with 3 of 3 negative controls.
+- Four copies (111,187 B). The G7 Pass A tree and generator regenerate the FORMS block byte for byte.
+- CHANGE_RECORD.md and PR_BODY.md, with placeholders for the final head, the reviews and the gates.
+
+**Its list of what depends on the final head** is accepted: main at the cut, the reviewed head, the NUM pin, the placeholders, the reseal at `T3/IMPLEMENTATION/F2A_D1/` with GEN-8, and the script runs on the real PR head.
+
+**Ruled: the 211 design-document citations without a path get a document-level table.**
+- Each name maps to a source-set or main path, or to a commit-pinned NUM URL.
+- Ambiguous names are resolved by citing context, with the rule recorded.
+- Anchors are verified.
+- The check fails only on unresolved citations. **ROOT rules on any that stay ambiguous.**
