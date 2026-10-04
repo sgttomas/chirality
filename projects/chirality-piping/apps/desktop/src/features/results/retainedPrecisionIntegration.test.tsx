@@ -70,7 +70,7 @@ import {
 } from "./numericalResultQuality";
 import {
   RETAINED_METHOD, RETAINED_PRECISION_ID, RETAINED_PRECISION_PROFILE, decodeBinary64, validateRetainedPrecision, validateRetainedPrecisionTransport,
-  type RetainedPrecisionValidation,
+  type RetainedPrecisionValidation, type RowClassification,
 } from "./retainedPrecision";
 import {
   RETAINED_PRECISION_NATIVE_CAPTURE_REQUIRED, RETAINED_PRECISION_NOT_NUMERICALLY_ELIGIBLE, RETAINED_PRECISION_VALIDATION_REQUIRED, classificationSummary, classificationSummaryFrom,
@@ -632,6 +632,14 @@ describe("the downgrade guard (F-5)", () => {
 // from the same forms; any other difference is a defect.
 const DECLARED = ["D-U7-4:ts_requires_live_native_capture", "F-U6b-2:python_refuses_transport", "F5:refused_statement_binding", "I67-F1:unregistered_invalid_statement", "I67-F2:display_only_binding_precheck", "RV92-N2-N5:ts_refuses_token_rows_at_the_header"];
 const NOTICES: Record<string, string> = { N_RP_UNVALIDATED };
+/** The shared 'summary' vocabulary, counted here from the reader's classes, not through the
+ * seam: per receipt case, interval_bindable 0; `withheld` is every quantity row, or when
+ * Current ('by_validated_class_current', U7 repair, RV94 S-1) only the absolute and not-covered rows. */
+const expectedSummary = (classes: readonly RowClassification[], source: Json, current: boolean) => (source.retained_precision.body.cases as Json[]).map(c => {
+  const n = (k: string) => classes.filter(r => r.basis_ref.ref_id === c.basis_ref.ref_id && r.class === k).length;
+  return { case_id: c.basis_ref.ref_id, relative_verified: n("relative_verified"), absolute_verified: n("absolute_verified"), interval_bindable: 0, not_covered: n("not_covered"), input_derived: n("input_derived"), non_quantity: n("non_quantity"),
+    withheld: current ? n("absolute_verified") + n("not_covered") : n("relative_verified") + n("absolute_verified") + n("not_covered") + n("input_derived") };
+});
 const SUMMARY_KIND = "open_formula_stress_summary";
 const declaredForms = (caseFile.declared_differences as Json[]).flatMap(e => (e.forms as Json[]).flatMap(form => (form.fixtures as string[]).map(f => [`${e.id} / ${form.label}`, f, form] as [string, string, Json])));
 describe("the declared differences, with TypeScript's expectations", () => {
@@ -659,7 +667,13 @@ describe("the declared differences, with TypeScript's expectations", () => {
     expect(capture.forms.map((f: Json) => [f.label, f.subject, f.expected.typescript])).toStrictEqual([
       ["invocation_without_native_capture", "standing", { standing: "needs_recompute", finding: RETAINED_PRECISION_NATIVE_CAPTURE_REQUIRED }],
       ["stale_current_model_same_case_ids", "standing", { standing: "needs_recompute", finding: RETAINED_PRECISION_NATIVE_CAPTURE_REQUIRED }],
+      // U7 repair (RV94 S-1): the summary follows TS's standing, so TS's summary is not Current.
+      ["invocation_without_native_capture:summary", "summary", { summary: "by_validated_class" }],
+      ["stale_current_model_same_case_ids:summary", "summary", { summary: "by_validated_class" }],
     ]);
+    // Each summary form reads the same inputs as its standing twin.
+    const inputs = (f: Json) => { const { label: _l, subject: _s, expected: _e, ...rest } = f; return rest; };
+    expect(capture.forms.slice(2).map(inputs)).toStrictEqual(capture.forms.slice(0, 2).map(inputs));
   });
   it("carry the N-4 scope: differences inherited from the base carriers are not U6's", () => {
     expect(caseFile.scope).toMatch(/inherited from the base carriers are not U6 differences/);
@@ -668,6 +682,8 @@ describe("the declared differences, with TypeScript's expectations", () => {
     expect(caseFile.scope).toMatch(/no carrier authenticates producer origin/);
     // I66 U7 slice F observation 3: a blocked envelope is refused at G7 with each language's own base code.
     expect(caseFile.scope).toMatch(/a blocked envelope is refused at G7 with each language's own base code[^.]*TS SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID/);
+    // RV94 N-3 (U7 repair): an invalid enum value in a not_required case's quality, TS's G7 contract check first.
+    expect(caseFile.scope).toMatch(/An invalid enum value in a not_required case's quality is refused at G7 with each language's own code[^.]*TS SOURCE_PRODUCER_CONTRACT_UNSUPPORTED/);
   });
   it.each<[string, string, Json]>(declaredForms)("%s on %s", async (_id, fixtureId, form) => {
     const expected = form.expected.typescript;
@@ -684,8 +700,8 @@ describe("the declared differences, with TypeScript's expectations", () => {
     } else if (form.subject === "summary") {
       if (expected.summary === "empty") expect(classificationSummary(received, model)).toStrictEqual([]);
       else {
-        expect(expected.summary).toBe("by_validated_class");
-        expect(classificationSummary(received, model)).toStrictEqual(classificationSummaryFrom(await validateRetainedPrecision(received), received, model.load_cases.map(c => ({ ref_type: "load_case", ref_id: c.id }))));
+        expect(["by_validated_class", "by_validated_class_current"]).toContain(expected.summary);
+        expect(classificationSummary(received, model)).toStrictEqual(expectedSummary((await validateRetainedPrecision(received)).classifications, received, expected.summary === "by_validated_class_current"));
       }
     } else {
       expect(form.subject).toBe("binding");

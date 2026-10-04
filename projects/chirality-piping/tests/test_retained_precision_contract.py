@@ -636,11 +636,11 @@ def test_rv79_surviving_mutants_m06_m09_m14():
 
 
 def test_snapshot_07_counts_and_entry_format():
-    """Snapshot 07j (U7 slice L, C04, on 07i: U7, D-U7-2; 07h: I61 U6e repair; RV90 S1, N1, N2, N4):
-    15 cases, 277 mutations, 24 must-pass and the D37 table; only rehash "all" (D11); one expectation
-    per entry except the per-reader G7 entry; each must-pass entry also states its eligibility."""
+    """Snapshot 07j plus RV94 N-3's G7 probe (U7 repair; 07j: U7 slice L, C04; 07i: D-U7-2; 07h: RV90 S1, N1, N2, N4):
+    15 cases, 278 mutations, 24 must-pass and the D37 table; only rehash "all" (D11); one expectation
+    per entry except the two per-reader G7 entries; each must-pass entry also states its eligibility."""
     c = corpus()
-    assert (len(c["cases"]), len(c["mutations"]), len(c["must_pass"])) == (15, 277, 24)
+    assert (len(c["cases"]), len(c["mutations"]), len(c["must_pass"])) == (15, 278, 24)
     assert set(c) == {"version", "provenance", "arithmetic", "cases", "mutations", "must_pass", "d37"}
     entries = c["mutations"] + c["must_pass"]
     assert all(e["rehash"] == "all" for e in entries)
@@ -651,7 +651,7 @@ def test_snapshot_07_counts_and_entry_format():
     # 07j (C04): one must-pass entry has a not_required case that passes every gate, eligible.
     statuses = lambda e: [x["status"] for x in apply_entry(next(f for f in c["cases"] if f["id"] == e["base"]), e)[0]["retained_precision"]["body"]["cases"]]
     assert [e["id"] for e in c["must_pass"] if "not_required" in statuses(e)] == ["not_required_second_case_checks_passed"]
-    assert [e["id"] for e in entries if "expected_by_reader" in e] == ["g7_maximum_off_enclosure"]
+    assert [e["id"] for e in entries if "expected_by_reader" in e] == ["g7_maximum_off_enclosure", "g7_not_required_quality_enum_invalid"]
     assert len({e["id"] for e in entries}) == len(entries)
 
 

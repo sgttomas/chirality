@@ -772,7 +772,7 @@ fn u7_d_u7_4_forms_rust_side_standing_and_summary() {
     let entry = cases["declared_differences"].as_array().unwrap().iter().find(|e| e["id"] == "D-U7-4:ts_requires_live_native_capture").unwrap();
     let other = vec![json!({"ref_type":"load_case","ref_id":"other"})];
     for form in entry["forms"].as_array().unwrap() {
-        assert_eq!(form["expected"]["rust"]["standing"], "numerically_eligible");
+        assert_eq!(form["expected"]["rust"], if form["subject"] == "standing" { json!({"standing": "numerically_eligible"}) } else { json!({"summary": "by_validated_class_current"}) });
         for fid in form["fixtures"].as_array().unwrap() {
             let fixture = fixtures.iter().find(|f| fid == f.0.as_str()).unwrap();
             let (source, invocation, requested) = apply_shared(form, fixture);
@@ -819,7 +819,7 @@ fn expected_binding(source: &Value, expected: &str) -> Vec<Option<String>> {
 #[test]
 fn u6_declared_differences_rust() {
     let cases: Value = serde_json::from_str(CASES).unwrap();
-    assert!(["G7 parity compares the reader's (gate, code)", "parity there compares only accept against refuse", "no carrier authenticates producer origin", "a blocked envelope is refused at G7 with each language's own base code", "Rust SOURCE_PREVIEW_PHYSICS_BLOCKED_ENVELOPE"].iter().all(|p| cases["scope"].as_str().unwrap().contains(p)));
+    assert!(["G7 parity compares the reader's (gate, code)", "parity there compares only accept against refuse", "no carrier authenticates producer origin", "a blocked envelope is refused at G7 with each language's own base code", "Rust SOURCE_PREVIEW_PHYSICS_BLOCKED_ENVELOPE", "An invalid enum value in a not_required case's quality is refused at G7 with each language's own code", "Rust SOURCE_NUMERICAL_CASE_INVALID"].iter().all(|p| cases["scope"].as_str().unwrap().contains(p)));
     let fixtures = shared_fixtures(&cases);
     let entries = cases["declared_differences"].as_array().unwrap();
     let mut ids: Vec<&str> = entries.iter().map(|e| e["id"].as_str().unwrap()).collect();
@@ -883,7 +883,7 @@ fn u6_declared_differences_rust() {
                     }
                     "summary" => {
                         let got = json!(s::classification_summary(&source, invocation.as_ref(), &requested));
-                        let want = match expected["summary"].as_str().unwrap() { "by_validated_class" => expected_summary(&source), _ => json!([]) };
+                        let want = match expected["summary"].as_str().unwrap() { "by_validated_class" => expected_summary(&source), "by_validated_class_current" => { subjects.insert("summary:current".to_string()); expected_summary_with(&source, true) } _ => json!([]) };
                         assert!(want.as_array().is_some_and(|w| !w.is_empty()), "{id} {label}");
                         assert_eq!(got, want, "{id} {label}");
                     }
@@ -899,7 +899,7 @@ fn u6_declared_differences_rust() {
     // Every subject, the v4 fields and D-U7-4's side (eligible with the actual invocation) are exercised.
     assert_eq!(
         subjects.into_iter().collect::<Vec<_>>(),
-        ["binding", "capture", "current_model_edits", "standing", "standing:numerically_eligible", "summary", "transport"]
+        ["binding", "capture", "current_model_edits", "standing", "standing:numerically_eligible", "summary", "summary:current", "transport"]
     );
 }
 

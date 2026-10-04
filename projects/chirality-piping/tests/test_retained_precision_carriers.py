@@ -288,7 +288,7 @@ def test_declared_differences_python():
     asserts its own from the same entries, and TS (I67) its own."""
     cases, docs = shared_cases()
     assert all(p in cases["scope"] for p in ("G7 parity compares the reader's (gate, code)", "parity there compares only accept against refuse",
-                                              "no carrier authenticates producer origin", "a blocked envelope is refused at G7 with each language's own base code", "Python SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"))
+                                              "no carrier authenticates producer origin", "a blocked envelope is refused at G7 with each language's own base code", "Python SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID", "An invalid enum value in a not_required case's quality is refused at G7 with each language's own code", "Python SOURCE_NUMERICAL_CASE_INVALID"))
     entries = cases["declared_differences"]
     assert {entry["id"] for entry in entries} == DECLARED and len(entries) == len(DECLARED)
     seen = set()
@@ -325,14 +325,14 @@ def test_declared_differences_python():
                 elif form["subject"] == "transport":
                     assert dispatch_transport(source) == expected["transport"], label
                 elif form["subject"] == "summary":
-                    want = expected_summary(source) if expected["summary"] == "by_validated_class" else []
+                    want = expected_summary(source, current=expected["summary"] == "by_validated_class_current") if expected["summary"] in ("by_validated_class", "by_validated_class_current") else []
                     assert want and c.classification_summary(source, context, refs) == want, label
                 else:
                     assert form["subject"] == "binding", label
                     assert [c.rule_binding_refusal(source, row) for row in source["results"]] == expected_binding(source, expected["binding"]), label
     # Every subject, vocabulary and v4 field that Python consumes is exercised, D-U7-4's side included.
     assert {subject for subject, _ in seen} == {"standing", "transport", "binding", "summary", "current_model_edits", "capture"}
-    assert ("standing", "numerically_eligible") in seen
+    assert ("standing", "numerically_eligible") in seen and ("summary", "by_validated_class_current") in seen
 
 
 def dispatch_transport(source):
@@ -516,7 +516,7 @@ def test_d_u7_4_forms_python_side_standing_and_summary():
     cases, docs = shared_cases()
     entry = next(e for e in cases["declared_differences"] if e["id"] == "D-U7-4:ts_requires_live_native_capture")
     for form in entry["forms"]:
-        assert form["expected"]["python"]["standing"] == "numerically_eligible"
+        assert form["expected"]["python"] == ({"standing": "numerically_eligible"} if form["subject"] == "standing" else {"summary": "by_validated_class_current"}), form["label"]
         for fid in form["fixtures"]:
             source, context, refs = apply_case(form, docs[fid])
             assert c.numerical_use_standing(source, refs, context) == "numerically_eligible", form["label"]

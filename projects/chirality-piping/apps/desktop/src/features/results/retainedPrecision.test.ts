@@ -958,4 +958,16 @@ describe('07g round (I61 U6e): F5 and RV79-N1', () => {
       }
     }
   });
+  it('RV94 N-3: an invalid enum value in a not_required case\'s quality is refused at G7 with TS\'s own code', async () => {
+    // The scope clause's class on 07j's not_required entry (TS's G7 contract check fires before the base validator);
+    // the shared corpus probe g7_not_required_quality_enum_invalid is accuracy_evidence.
+    const nr = corpus.must_pass.find((m: any) => m.id === 'not_required_second_case_checks_passed');
+    const accepted = await applyEntry(nr); expect((await validateRetainedPrecision(accepted.source, accepted.invocation)).numerical_eligible).toBe(true);
+    for (const [field, value] of [['accuracy_evidence', 'estimated'], ['structural_status', 'mechanism_detected'], ['model_matrix_fidelity', 'reduced']]) {
+      const { source, invocation } = await applyEntry({ ...structuredClone(nr), id: 'rv94_n3_' + field, edits: [...structuredClone(nr.edits), { path: ['numerical_quality', 'cases', 1, field], op: 'set', value }] });
+      expect(await firstFailure(source, invocation), field).toEqual({ gate: 'G7', code: 'SOURCE_PRODUCER_CONTRACT_UNSUPPORTED' });
+    }
+    const probe = corpus.mutations.find((m: any) => m.id === 'g7_not_required_quality_enum_invalid');
+    expect(probe.expected_by_reader.typescript).toEqual({ gate: 'G7', code: 'SOURCE_PRODUCER_CONTRACT_UNSUPPORTED' });
+  });
 });

@@ -131448,6 +131448,121 @@
         "gate": "G5",
         "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
       }
+    },
+    {
+      "id": "g7_not_required_quality_enum_invalid",
+      "base": "two_case_preparation_failure_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1
+          ],
+          "op": "set",
+          "value": {
+            "basis_ref": {
+              "ref_type": "load_case",
+              "ref_id": "case:unavailable-row"
+            },
+            "ordinary": {
+              "attempt_ref": 1,
+              "quality_binding": {
+                "kind": "present",
+                "index": 1
+              }
+            },
+            "product_attempt_ref": null,
+            "status": "not_required"
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "diagnostics",
+            16
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "diagnostics",
+            13,
+            "code"
+          ],
+          "op": "set",
+          "value": "NUMERICAL_INTEGRITY_CHECKS_PASSED"
+        },
+        {
+          "path": [
+            "diagnostics",
+            13,
+            "severity"
+          ],
+          "op": "set",
+          "value": "info"
+        },
+        {
+          "path": [
+            "numerical_quality",
+            "cases",
+            1,
+            "solve_quality"
+          ],
+          "op": "set",
+          "value": "checks_passed"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "ordinary_attempts",
+            1,
+            "initial",
+            "outcome"
+          ],
+          "op": "set",
+          "value": "checks_passed"
+        },
+        {
+          "path": [
+            "numerical_quality",
+            "cases",
+            1,
+            "accuracy_evidence"
+          ],
+          "op": "set",
+          "value": "estimated"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G7",
+        "code": "SOURCE_NUMERICAL_CASE_INVALID"
+      },
+      "expected_by_reader": {
+        "python": {
+          "gate": "G7",
+          "code": "SOURCE_NUMERICAL_CASE_INVALID"
+        },
+        "typescript": {
+          "gate": "G7",
+          "code": "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+        },
+        "rust": {
+          "gate": "G7",
+          "code": "SOURCE_NUMERICAL_CASE_INVALID"
+        }
+      }
     }
   ],
   "must_pass": [
