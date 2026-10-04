@@ -8737,3 +8737,15 @@ The NOTEs are tracked under D36:
 **I63 handed back early** (a forced hand-off) with D37 and the transport test done in its working tree but not reconciled with I62's published table, and not run on 07f. It is resumed to finish; a successor takes over from its written state if needed. I64's round continues.
 
 **TypeScript D37 and 07f, committed as `624507c71b`.** ROOT verified the hashes and the evidence; vitest 436/436, tsc 0. The reader's diff removes no line. Its table matches I62's row for row. Rust's finish is pending.
+
+**Rust D37 and 07f, committed as `85905e95e9`.** ROOT verified the hashes and the evidence, and ran 58 passed on the default toolchain. The removed block is the old one-direction P9 mapping, replaced by `error_stages`, which matches I62's table on all 16 rows and is stricter. The D34 transport test kills M56.
+
+**All three readers pass snapshot 07f on READER `85905e95e9`** (15 cases, 268 mutations, 22 must-pass entries). ROOT's own runs: Python 371, Rust 58, TypeScript 436. The tracked tree is clean.
+
+**Tracked under D36, not gating (from I63):** I62's table includes `capture` (a), a `solve_native` failure before any Run is recorded (PP:3279–3285). Rust and Python require a Run whenever the native stage was entered (Rust's `g5_products`; PY:833–836), so they would reject that record. TypeScript's table includes the record; whether its Run rule admits it is unconfirmed. This concerns unavailable paths only. It needs a ruling on the Run representation for an early prepared-solve failure, taken in the next reader round after fan-in, alongside the producer serializer, which decides what is emitted there.
+
+**The D37-scoped check is dispatched:**
+- RV78: parity on 07f, D37 probes in all three readers, and the capture (a) record across readers;
+- RV79: D37 in Python.
+
+New findings are triaged under D36.
