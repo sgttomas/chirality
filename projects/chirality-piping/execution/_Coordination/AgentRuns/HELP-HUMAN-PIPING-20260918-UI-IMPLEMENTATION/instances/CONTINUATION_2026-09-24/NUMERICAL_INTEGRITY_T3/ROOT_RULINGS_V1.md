@@ -10142,3 +10142,37 @@ Then I65 reruns TEXT, regenerates the profile and the pinned record, and re-conf
 - aligning to I66's SI-unit wording.
 
 **U6d is accepted on review.** ROOT merges it into the carriers branch once I66's repair round is committed there, so that I66's uncommitted work is not disturbed.
+
+## RV89 on U4 G5 part 2: PASS; the routing into G6 and the margin standard (ROOT, 2026-10-04 UTC)
+
+**RV89's report** is `R/REVIEW_RV89/u4_g5_02/REVIEW.md` (sha256 `4e5590f1…`; SHA256SUMS 33/33 OK; no machine paths). Verdict: **PASS** on `cba3e9fda7`, with 0 BLOCKING, 3 SHOULD-FIX and 6 NOTE findings.
+
+**What RV89 established independently:**
+- **Still no permit:** the registry is `&[]`, and the bound stays `Unpriced` at 1, 41, 42 and 1000 Estimates.
+- **Nothing published changes:** the 4,022-line sweep is byte-identical.
+- **Suites:** PP, runner/headless, FK `--lib` and SR are identical to base apart from additions.
+- **The profile reproduces exactly:** all 47 forms and 244 atoms, RV89's own phase composition, its own build's 244 atom values (31 recomputed independently), and the in-build maximum of **0.884342 / 0.889237 M**.
+- **The +73.3 MB rise over G4** decomposes to the byte into the routed corrections plus in-build strides.
+- **The witnesses and challenge reproduce.** RV89's own permitted-path challenge peaks at no more than 0.4% of W3.
+- **The part-1 findings are closed.**
+- **I65's mutants reproduce** (146 of 148 killed); RV89 killed 10 of its own 12.
+
+**Routed into G6 (I65):**
+- **S-1:** five result-id copies are still priced by receiver spelling (source_receipt.rs:1016; rows.rs:533, :590, :592; lib.rs:5592), all on branch X; X1 is about 0.8241 M. **These are already inside G6's class-wide identifier audit,** which classifies by source type, never by name. RV87 confirms.
+- **S-2: commit a deep-input witness.**
+  - The milestone with a quote and backslash in every provenance plus a depth-16 raw value, publishing a successor at R/16 and at 1 MiB, in both modes. RV89 showed it passes, as evidence.
+  - Assert W2's and W2b's outcomes; today they stop at fallbacks and assert nothing.
+  
+  This completes the S1 evidence STACK_INVENTORY assigns.
+- **S-3:** a pure `maximum` test in which each phase in turn is the largest, killing Q10 (X1 and X2 skipped).
+
+**The margin standard (RV89 N-1),** ruled. The dense margin is 43 MB, and about 73% of W3 is layout-free text and byte constants. Text revisions, not strides, are the risk; part 2's own S-2 moved W3 by +53 MB.
+- **G6's record states a text-error budget:** the TAV_W fraction that would consume the margin, which is about 2.8% today.
+- **G6's identifier audit must close the class.** After it, the maximum must still be ≤ 0.9 M at in-build strides.
+- **If it exceeds 0.9 M,** I65 stops. ROOT then considers G3's phase-aware ordinary span (about −0.085 M), which is held in reserve and would need its own review, before any further cap change.
+- **M itself keeps 446 MB of headroom.**
+
+**Also ruled:**
+- **N-4 and I65's decision 1:** the pinned in-build record is accepted, and G6 re-pins it per registered identity.
+- **N-6 and RV85 U1:** binding the permit to its invocation is **not required before registration.** The permit is linear: neither `Clone` nor `Copy`, created by `admit` from the invocation's own parse, and consumed by that invocation's `permitted_dispatch`, so cross-invocation reuse is not constructible. It stays a wider-F2a hardening.
+- **N-2, N-3 and N-5:** noted.
