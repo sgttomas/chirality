@@ -11558,3 +11558,58 @@ Records go in `R/I61/u9_g5g6_01/`.
 - This is a test file, not a qualification test, so no Pass B entry is needed. G5, G6 and G8 are unaffected.
 
 **RV95** judges whether gating or a per-target pin is right, and whether target dependence anywhere else breaks a PR claim. **CI reruns;** ROOT relays any further Linux-only results.
+
+## RV95 on PR #1082: PASS; S-1 and S-2 before the freeze; the freeze sequence (ROOT, 2026-10-04 UTC)
+
+**RV95's report** is `R/REVIEW_RV95/u9_01/REVIEW.md` (sha256 `2918e063…`; SHA256SUMS 59/59 OK; no machine paths). It reviewed the cut `6b9bb19a5f` in full against M, and then `fd3cbebb42`, `92a5a9da1c` and `6d8f8a82b2`. Verdict: **PASS**, with 0 BLOCKING, 2 SHOULD-FIX and 7 NOTE findings.
+
+**Independently established:**
+- **Source equality and citations.** On the cut: source equality 5/5 (RV95's own git agrees; `compatibility.py` is exactly main's two call sites) and citations 368/0/0. The citations still give 368/0/0 at the head.
+- **The ledger.** All 99 source commits from B to U map to a review, and none of the 35 merges has a combined-diff hunk on S.
+- **The milestone.** The registered Direct entry publishes `ac6986b0…` / `6cd1d249…`, equal to the fixtures.
+- **The sweep.** The 324-output sweep is unchanged.
+- **The readers' standing.** It agrees across the three readers on the live successors.
+- **PHYS-R4.** Exact bytes through the Direct entry.
+- **The suites:**
+
+  | Suite | Result |
+  |---|---|
+  | PP, registered and Stale | 705/1/10 |
+  | result_export | 172 |
+  | runner | 85/2 |
+  | vitest | 3,552 |
+  | tsc | clean |
+
+- **Mutants:** 9/9 killed at the seams.
+- **ROOT's three CI fixes are confirmed:**
+  - the CI policy, whose guard belongs in PP: moving it to src-tauri would take it out of both hosted CI and DEC-025;
+  - the 32-bit bound: identical on 64-bit; wasm32 is clean with it, and fails at `:57` without it;
+  - the gated U1 pin: right, because a Linux pin would tie CI to a runner image and libm. No PR claim depends on dense bytes being the same across targets.
+- **A correction to ROOT's premise:** the wasm crates import only PP's self-weight helpers, types and constants. No F2a code runs on wasm.
+
+**Rulings:**
+- **S-1, six stale pre-registration texts** (`lib.rs:2176`, `retained_memory.rs:2757`, `retained_wire.rs:6–7` and `:14`, and the headers of the law, witness and challenge test files): **repair all six,** comment- and doc-only and line-neutral. I65 does it, in a scratch copy of NUM `d069ab3ccf`; ROOT applies it to NUM and carries it to the PR. Hunks in the qualification-test files get reviewed entries at the frozen-head Pass B.
+- **S-2, the package describes the cut:** it is **regenerated at the freeze** by I61, once its gates finish. That covers:
+  - S at the head (139 files, plus the S-1 files where they are new to S);
+  - the counts and bytes;
+  - `source_equality.py`'s check 3, generalized to "every S file that main also changed equals the recorded three-way merge" (`compatibility.py` with its conflict resolution; `source_blocks.rs` clean);
+  - the PR1080 sentence corrected;
+  - the U1 pin's target scope stated;
+  - N-7's "capped counts" added to the D1 list;
+  - the gate results.
+- **N-1** (U3 grant 1d had no fresh diff review before RV95): RV95 read it in full. It is test-only and `#[cfg(test)]`, with 0 hook symbols in non-test binaries. **Closed** by RV95's reading.
+- **N-2** (two accurate bare code-line numbers, and un-indexed run mentions): noted. The regeneration may extend the check.
+- **N-3** (the policy pin survives emptying): **fixed** on NUM as **`c5adc16384`**. `test_ci_e2e_plan` now asserts that the set is exactly the desktop source. 57 OK; the C2 mutant fails.
+- **N-4** (about 30 `u(..) as usize` index casts in the Rust reader would truncate on 32-bit; no 32-bit target reaches the reader today): this **joins the public-activation checklist,** as a 32-bit review before any 32-bit consumer of the reader or PP's retained path.
+- **N-5** (the 2^53−1 bound in `source_blocks::integer` is untested; main's gap): **routed to T6.**
+- **N-6** (retained values use platform `hypot`): **a re-qualification obligation.** Registering any other build (release, or another target) must re-establish the milestone's bytes and verdicts on that build.
+- **N-7:** in the regeneration.
+- **`6d8f8a82b2`** is an ordinary PP test file. It classes `test` in the frozen-head Pass B, alongside RV89 N-1's reviewed entry.
+
+**The freeze sequence:**
+1. I65's S-1 repair: ROOT applies it to NUM and carries it, with N-3, to the PR.
+2. Hosted CI passes on that head, including the numerical cargo suite.
+3. I61 finishes T9 and both-entry, then regenerates the package (S-2), giving the frozen head F. F differs from the source head only in execution paths.
+4. On F: I65's mechanical Pass B rerun with its prepared entries, and RV89's confirmation; RV95's same-reviewer confirmation of S-1, S-2 and the gate evidence.
+5. ROOT asks the owner about the merge hold. Then, on F: the full-SHA dispatch, GEN-8, the Mac baseline and DEC-025, and the native witness.
+6. The merge, with records, ruling and graph in the same pass.
