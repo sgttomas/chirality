@@ -103,7 +103,9 @@ describe('synthetic prepared receipt arithmetic controls, not execution evidence
 import { validateRetainedPrecision, validateRetainedPrecisionTransport, RetainedPrecisionError, phi512, eHat, stopFeasible, nativeSchedule, ordinaryAttempts, accountingRules, nativeRuns } from './retainedPrecision';
 import { canonicalSha256HexCheckedV1 } from '../../services/hashService';
 async function rehash(source: any) {
-  const body = source.retained_precision.body;
+  // Snapshot 07 format: an entry that removes retained_precision or its body (a G0 pin) has nothing to rehash.
+  const body = source.retained_precision?.body;
+  if (!body || typeof body !== 'object') return;
   for (const s of body.sources) if (s.preparation) {
     const a = body.product_attempts[s.preparation.attempt_ref];
     s.preparation.sha256 = await canonicalSha256HexCheckedV1({ domain: 'retained_precision_preparation_v1', payload: {
@@ -231,9 +233,13 @@ describe('reader-logic checklist controls, not corpus or producer evidence', () 
     // Leaving the ladder is never a work-accounting point, so no WorkAccounting terminal there.
     rejects(() => nativeSchedule({ ...run, kernel_terminal: { kind: 'unresolved', reason: { space: 'unresolved', tag: 'work_accounting', fault: 'overflow' } } }, source));
   });
-  it('R1-R3: each 06d accounting mutation falsifies exactly its own rule on one attempt', async () => {
-    const intended: Record<string, boolean[]> = { adapter_fault_present: [false, true, true], accounting_cause_without_fault: [false, true, true], scalar_trace_lost_unavailable: [true, false, true], work_accounting_cause_exact_status: [true, true, false] };
-    for (const c of corpus.cases) for (const a of c.source.retained_precision.body.product_attempts) expect(accountingRules(a), c.id).toEqual([true, true, true]);
+  it('R1\'-R4 (D8): each accounting mutation falsifies exactly its own rule on one attempt', async () => {
+    const intended: Record<string, boolean[]> = {
+      adapter_fault_present: [false, true, true, true], accounting_cause_without_fault: [false, true, true, true],
+      scalar_trace_lost_unavailable: [true, false, true, true], old_operational_accounting_not_lost: [true, false, true, true],
+      work_accounting_cause_exact_status: [true, true, false, true], nested_stop_work_accounting_exact_status: [true, true, false, true], view_work_fault_exact_status: [true, true, false, true],
+      section_accounting_exact_status: [true, true, true, false] };
+    for (const c of corpus.cases) for (const a of c.source.retained_precision.body.product_attempts) expect(accountingRules(a), c.id).toEqual([true, true, true, true]);
     for (const [id, rules] of Object.entries(intended)) {
       const m = corpus.mutations.find((x: any) => x.id === id), { source } = await applyEntry(m);
       const failing = source.retained_precision.body.product_attempts.map((a: any) => accountingRules(a)).filter((r: boolean[]) => r.includes(false));
@@ -367,6 +373,15 @@ describe('review repair 07: decisions without a probe (reader-local)', () => {
     for (const q of ['sensitive', 'unresolved', 'failed']) expect(run(q), q).toBe('pass');
     for (const q of ['checks_passed', 'not_assessed']) expect(run(q), q).toBe('RETAINED_PRECISION_ATTEMPT_MISMATCH');
   });
+  it('D8 kernel scope: a work_accounting stop or reason anywhere in a Run, build or group preparation fails G5 ATTEMPT', async () => {
+    const stop = { space: 'stop', tag: 'work_accounting', fault: 'overflow' };
+    const inBuild = await edited('candidate_failure_skip_synthetic', s => { const b = s.retained_precision.body; const i = b.builds.findIndex((x: any) => x.state === 'failure'); b.builds[i >= 0 ? i : 0].reason = stop; });
+    expect(await firstFailure(inBuild.source, inBuild.invocation)).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
+    const body = structuredClone(corpus.cases[0]).source.retained_precision.body;
+    body.groups[0].preparation = { kind: 'refused', reason: { space: 'unresolved', tag: 'work_accounting', fault: 'overflow' } };
+    let e: any; try { nativeRuns(body); } catch (x) { e = x; }
+    expect({ gate: e?.gate, code: e?.code }).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
+  });
   it('native class: each dangling reference reports the code of the check that follows it', async () => {
     const build = await edited('two_case_synthetic', s => { s.retained_precision.body.cases[0].run.records[0].shared_build_ref = 99; });
     expect(await firstFailure(build.source, build.invocation)).toEqual(G('G5', 'WORK_MISMATCH'));
@@ -399,12 +414,23 @@ describe('review repair 07: decisions without a probe (reader-local)', () => {
     let error: any; try { nativeSchedule(truncated, base.sources[base.cases[0].source_ref]); } catch (e) { error = e; }
     expect({ gate: error?.gate, code: error?.code }).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
   });
-  it('D13/RV81-M08: R3 needs every fault of every work_accounting cause, including both', () => {
-    const attempt = (causes: any[], statuses: string[]) => ({ adapter: { fault: null }, causes, work: statuses.map(s => ({ sticky_status: s })) });
-    expect(accountingRules(attempt([{ kind: 'work_accounting', fault: 'both' }], ['overflow']))[2]).toBe(false);
-    expect(accountingRules(attempt([{ kind: 'work_accounting', fault: 'both' }], ['overflow', 'inconsistent']))[2]).toBe(true);
-    expect(accountingRules(attempt([{ kind: 'work_accounting', fault: 'both' }], ['both']))[2]).toBe(true);
-    expect(accountingRules(attempt([{ kind: 'work_accounting', fault: 'overflow' }, { kind: 'work_accounting', fault: 'inconsistent' }], ['overflow']))[2]).toBe(false);
+  it('D13/RV81-M08 and D8 owner scopes: R3\' needs every fault of every fault-bearing cause in its owner, including both', () => {
+    const base = structuredClone(corpus.cases.find((c: any) => c.id === 'two_case_facade_after_certificate_synthetic')).source.retained_precision.body.product_attempts[1];
+    // Causes on the certificate check belong to the whole ProofTrace; statuses are placed on lane 0's work, inside it.
+    const attempt = (causes: any[], statuses: string[], where: 'proof' | 'member' = 'proof') => {
+      const a = structuredClone(base); a.proof.checks.certificate = { kind: 'failed', error: { kind: 'proof', cause: causes.length === 1 ? causes[0] : { kind: 'numeric', cause: causes } } };
+      const target = where === 'proof' ? a.proof.lanes[0].work : a.preparation.members[0].work;
+      statuses.forEach((s, i) => { target['i64_status_' + i] = { sticky_status: s }; });
+      return accountingRules(a)[2];
+    };
+    expect(attempt([{ kind: 'work_accounting', fault: 'both' }], ['overflow'])).toBe(false);
+    expect(attempt([{ kind: 'work_accounting', fault: 'both' }], ['overflow', 'inconsistent'])).toBe(true);
+    expect(attempt([{ kind: 'work_accounting', fault: 'both' }], ['both'])).toBe(true);
+    expect(attempt([{ kind: 'work_accounting', fault: 'overflow' }, { kind: 'work_accounting', fault: 'inconsistent' }], ['overflow'])).toBe(false);
+    expect(attempt([{ space: 'stop', tag: 'work_accounting', fault: 'overflow' }], ['overflow'])).toBe(true);
+    expect(attempt([{ kind: 'view', issue: { kind: 'work', fault: 'inconsistent' } }], ['overflow'])).toBe(false);
+    // A status outside the owner scope does not satisfy it: a member's work is not part of the ProofTrace.
+    expect(attempt([{ kind: 'work_accounting', fault: 'overflow' }], ['overflow'], 'member')).toBe(false);
   });
   it('D13: the absolute bound switches at S = 2^-988 on both sides', () => {
     const value = 3, valueWord = BigInt('0x' + binary64Bits(value));

@@ -179,8 +179,11 @@ async function header(source: Obj): Promise<void> {
   fail(table.semantic_contract_id === RETAINED_PRECISION_ID && table.formulation_profile_id === RETAINED_PRECISION_PROFILE && table.inherited_semantic_contract_sha256 === BASE_HASH && same(table.product_formation_definitions, [{ id: PREPARED_DEFINITION_ID, sha256: PREPARED_DEFINITION_HASH }]), 'FORMATION_MISMATCH');
   fail(await hash('retained_precision_formation_v1', definition) === PREPARED_DEFINITION_HASH, 'FORMATION_MISMATCH');
   fail(await sha256Text(tableBytes) === TABLE_HASH && await sha256Text(inheritedTableBytes) === table.inherited_semantic_contract_sha256);
+  // Settled reading (D2): with the retained-precision contract named, an absent or mistyped
+  // retained_precision or body is an absent G0 field and fails G0.
   const b = isObj(source.retained_precision) ? source.retained_precision.body : undefined;
-  if (isObj(b)) {
+  fail(isObj(b));
+  {
     for (const [k, v] of Object.entries({ receipt_version: 1, policy: 'M03-INTEGRITY-MP-v2', projection_policy: 'RP-LOGICAL-ATTEMPTS-v1', work_policy: 'W1-LME-20B-60B-v1', facade_policy: 'RP-FACADE-SI-v2', canonicalization: 'openpipestress_jcs_ijson_v1' })) fail(b[k] === v);
     fail(isObj(b.work) && b.work.case_limit === 20_000_000_000 && b.work.invocation_limit === 60_000_000_000);
     if (Array.isArray(b.product_attempts)) for (const a of b.product_attempts) if (isObj(a)) fail(a.definition_id === PREPARED_DEFINITION_ID);
@@ -223,7 +226,7 @@ function coverage(b: Obj, source: Obj, invocation?: Obj): Map<string, Obj[]> {
   b.cases.forEach((c: Obj, i: number) => {
     const o = b.ordinary_attempts[i]; fail(c.ordinary.attempt_ref === i && same(c.ordinary.quality_binding, { kind: 'present', index: i }) && o.case_index === i && o.case_id === ids[i]);
     if (c.product_attempt_ref !== null) {
-      const a = b.product_attempts[c.product_attempt_ref]; fail(a.id === c.product_attempt_ref && same(a.owner_ref, { kind: 'case', index: i }) && a.ordinary_attempt_ref === i);
+      const a = b.product_attempts[c.product_attempt_ref]; fail(a.id === c.product_attempt_ref && same(a.owner_ref, { kind: 'case', index: i }));
       const old = a.operational.old, pm = a.preparation.members, fresh = a.operational.new;
       // D1 (C2:98; PP:1238, 1296; F1:130): old, prepared and new member ids are exactly 0..len-1 in
       // native order, so prepared and new are prefixes of old.
@@ -371,6 +374,10 @@ export function nativeRuns(b: Obj): void {
 function nativeClass(b: Obj, work: (ok: unknown) => void): void {
   const fail = (ok: unknown, code = 'ATTEMPT_MISMATCH') => need(ok, 'G5', code);
   const checked = (n: bigint): bigint => { work(n >= 0n && n <= SAFE); return n; };
+  // D8 kernel scope (checkpoint A; C1:66-68; adaptive.rs:4545, 4777, 4996): a work_accounting stop or
+  // reason anywhere in a Run, a build or a group preparation is outside the emitted domain (class 1, ATTEMPT).
+  const kernelRuns = b.cases.filter((c: Obj) => c.run).map((c: Obj) => c.run);
+  fail(!locate([kernelRuns, b.builds, b.groups.map((g: Obj) => g.preparation)]).some(([, o]) => o.tag === 'work_accounting'));
   // A build reference is followed by WORK checks (slot, group, work, stages), so a dangling one fails WORK.
   const buildOf = (bi: unknown): Obj | null => Number.isSafeInteger(bi) && (bi as number) >= 0 && (bi as number) < b.builds.length ? b.builds[bi as number] : null;
   const runs: Obj[] = b.cases.filter((c: Obj) => c.run).map((c: Obj) => c.run).sort((a: Obj, z: Obj) => a.id - z.id);
@@ -535,16 +542,56 @@ function objects(v: any, out: Obj[] = []): Obj[] {
  *     attempt's emitted unavailable-Count faults and sticky statuses must contain that fault. */
 /** @internal Exported only for the reader-logic R1-R3 isolation test; not a public entry point. */
 export function accountingRules(a: Obj): boolean[] {
-  const objs = objects(a);
-  const r1 = a.adapter.fault === null && !objs.some(o => o.kind === 'accounting' && Object.hasOwn(o, 'event'));
-  const r2 = !objs.some(o => o.lost === true);
+  const located = locate(a), proof = a.proof;
+  // R1': adapter overflow, or any CaptureError/G5aError accounting{event} cause (PP:2896-2912, 617, 2527, 2586).
+  const r1 = a.adapter.fault === null && !located.some(([, o]) => o.kind === 'accounting' && Object.hasOwn(o, 'event'));
+  // R2': lost, or an OperationalError accounting located as a MemberOperational error, a CaptureError
+  // prepared_arithmetic cause or a G5aError operational/arithmetic cause (PP:2311-2347).
+  const error = a.result.kind === 'unavailable' ? a.result.error : null;
+  const operational: unknown[] = ['old', 'new'].flatMap(side => a.operational[side].filter((m: Obj) => m.result.kind !== 'ready').map((m: Obj) => m.result.error));
+  const g5aCauses = (cause: unknown) => locate(cause).filter(([, x]) => ['operational', 'arithmetic'].includes(x.kind) && isObj(x.cause)).map(([, x]) => x.cause);
+  for (const [, o] of locate(error)) {
+    if (o.kind === 'prepared_arithmetic') operational.push(o.cause);
+    if (o.kind === 'g5a') operational.push(...g5aCauses(o.cause));
+  }
+  for (const check of Object.values(proof?.checks ?? {}) as Obj[]) if (check.kind === 'failed' && check.error?.kind === 'g5a') operational.push(...g5aCauses(check.error.cause));
+  const r2 = !located.some(([, o]) => o.lost === true) && !operational.some(e => isObj(e) && e.kind === 'accounting' && !Object.hasOwn(e, 'event'));
+  // R3': every fault-bearing cause, in any spelling, has its fault in its owner's emitted statuses.
+  let r3 = true;
+  for (const [path, o] of located) {
+    if (!((o.kind === 'work_accounting' || o.tag === 'work_accounting' || o.kind === 'work') && Object.hasOwn(o, 'fault'))) continue;
+    const owner = faultOwner(a, path);
+    r3 &&= owner != null && Object.hasOwn(STATUS_FAULTS, o.fault) && STATUS_FAULTS[o.fault].every(x => statuses(owner).has(x));
+  }
+  // R4: a SectionError accounting needs a non-exact status in that member's PreparationWork (FK product_certificate.rs:676-679).
+  let r4 = true;
+  for (const m of a.preparation.members) if (m.result.kind !== 'prepared' && m.result.error?.kind === 'accounting') r4 &&= statuses(m.work).size > 0;
+  if (error?.kind === 'preparation' && error.section?.kind === 'accounting') { const members = a.preparation.members; r4 &&= members.length > 0 && statuses(members.at(-1).work).size > 0; }
+  return [r1, r2, r3, r4];
+}
+/** Objects in a value with their key paths. */
+function locate(v: unknown, path: (string | number)[] = [], out: [(string | number)[], Obj][] = []): [(string | number)[], Obj][] {
+  if (Array.isArray(v)) v.forEach((x, i) => locate(x, [...path, i], out));
+  else if (isObj(v)) { out.push([path, v]); for (const [k, x] of Object.entries(v)) locate(x, [...path, k], out); }
+  return out;
+}
+/** Emitted non-exact statuses in a work value: unavailable Count faults and sticky statuses. */
+function statuses(v: unknown): Set<string> {
   const seen = new Set<string>();
-  for (const o of objs) {
+  for (const o of objects(v)) {
     if (o.kind === 'unavailable' && Object.hasOwn(STATUS_FAULTS, o.fault)) STATUS_FAULTS[o.fault].forEach(x => seen.add(x));
     if (typeof o.sticky_status === 'string' && Object.hasOwn(STATUS_FAULTS, o.sticky_status)) STATUS_FAULTS[o.sticky_status].forEach(x => seen.add(x));
   }
-  const r3 = objs.filter(o => o.kind === 'work_accounting' && Object.hasOwn(o, 'fault')).every(o => Object.hasOwn(STATUS_FAULTS, o.fault) && STATUS_FAULTS[o.fault].every(x => seen.has(x)));
-  return [r1, r2, r3];
+  return seen;
+}
+/** R3' owner scopes (checkpoint A, D8): a member's PreparationWork; a lane's work; the values completion; else the ProofTrace. */
+function faultOwner(a: Obj, path: (string | number)[]): unknown {
+  const proof = a.proof;
+  if (path[0] === 'preparation' && path[1] === 'members') return a.preparation.members[path[2] as number]?.work;
+  if (path[0] === 'result' && path[1] === 'error' && path[2] === 'section') return a.preparation.members.at(-1)?.work ?? null;
+  if (path[0] === 'proof' && path[1] === 'lanes') return proof?.lanes?.[path[2] as number]?.work;
+  if (path[0] === 'result' && path[1] === 'error' && path[2] === 'cause' && a.result.error?.kind === 'values') return proof ? proof.completion : null;
+  return proof;
 }
 function count(v: Obj): bigint | null { return v.kind === 'exact' ? uint(v.value) : null; }
 /** G2: conversion payloads decode as finite binary64 with nonnegative relative precision. */
@@ -574,7 +621,9 @@ function productAttempts(b: Obj, rows: Map<string, Obj[]>): void {
   for (const a of b.product_attempts) {
     const c = at(b.cases, a.owner_ref.index), s = a.source_ref === null ? null : at(b.sources, a.source_ref), pm: Obj[] = a.preparation.members, old: Obj[] = a.operational.old, fresh: Obj[] = a.operational.new;
     const stage = a.stages, p = a.proof, ready = a.result.kind === 'ready';
-    fail(a.ordinary_attempt_ref === c.ordinary.attempt_ref && a.material_basis_ref === b.ordinary_attempts[a.ordinary_attempt_ref].material_basis_ref);
+    // D16: the ordinary reference resolves explicitly; a dangling one fails its C3 association check.
+    const ordinary = at(b.ordinary_attempts, a.ordinary_attempt_ref);
+    fail(a.ordinary_attempt_ref === c.ordinary.attempt_ref && a.material_basis_ref === ordinary.material_basis_ref);
     if (s) fail(s.owner.case_index === a.owner_ref.index && s.material_basis_ref === a.material_basis_ref && s.preparation?.attempt_ref === a.id && c.source_ref === a.source_ref);
     fail((a.run_ref === null) === !c.run); if (c.run) fail(c.run.id === a.run_ref && c.run.origin.source_ref === a.source_ref && same(c.run.origin.owner_ref, a.owner_ref));
     fail((stage.native === 'not_entered') === (a.run_ref === null));
@@ -898,8 +947,10 @@ function numericalScales(cases: NumericCase[], source: Obj): void {
     fail(sel.section_terms.length === x.s.section_terms.length, 'SECTION_MISMATCH');
     x.s.section_terms.forEach((section: Obj, i: number) => {
       const m = x.s.id_maps.members.find((v: Obj) => v.kernel_member === section.member), actual = sel.section_terms[i];
-      fail(m && actual.member_id === m.id && ['area', 'section_modulus', 'length', 'axial_stiffness', 'torsional_stiffness'].every(k => actual[k] === section[k] && decodeBinary64(section[k]) > 0), 'SECTION_MISMATCH');
-      fail(section.area === m.A_K && section.geometry.actual_second_moment === m.Iy_K && m.Iy_K === m.Iz_K && section.geometry.actual_polar_moment === m.J_K, 'SECTION_MISMATCH');
+      // G5b echo (C1 G5b row): the selection repeats the source's section terms. A zero or non-finite term
+      // is not an echo defect; it fails the stress-scale arithmetic below as SCALE (D10 reading, snapshot 07
+      // g5b_zero_section_area). The term-versus-member-map identity is G8's binding.
+      fail(m && actual.member_id === m.id && ['area', 'section_modulus', 'length', 'axial_stiffness', 'torsional_stiffness'].every(k => actual[k] === section[k]), 'SECTION_MISMATCH');
     });
     // Ensure every prospective stress scale is finite before any G5c list checks.
     for (let i = 0; i < x.rows.length; i++) if (x.values[i].kind === 'stress' && x.values[i].member && x.values[i].body !== null) stressScale(x, i, source);
