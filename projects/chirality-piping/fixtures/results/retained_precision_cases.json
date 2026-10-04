@@ -126567,7 +126567,7 @@
       "rehash": "all",
       "expected": {
         "gate": "G5b",
-        "code": "RETAINED_PRECISION_SCALE_MISMATCH"
+        "code": "RETAINED_PRECISION_SECTION_MISMATCH"
       }
     },
     {
@@ -126603,6 +126603,44 @@
       "expected": {
         "gate": "G5",
         "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "g5b_zero_section_length",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "sources",
+            0,
+            "section_terms",
+            0,
+            "length"
+          ],
+          "op": "set",
+          "value": "0000000000000000"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "selection",
+            "section_terms",
+            0,
+            "length"
+          ],
+          "op": "set",
+          "value": "0000000000000000"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5b",
+        "code": "RETAINED_PRECISION_SECTION_MISMATCH"
       }
     }
   ],

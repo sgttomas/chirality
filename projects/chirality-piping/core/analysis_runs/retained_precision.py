@@ -1306,7 +1306,8 @@ def _g5_numeric(body, rows_by_case, phase=None):
         _need(len(s["section_terms"]) == len(source["section_terms"]), "G5b", "SECTION_MISMATCH")
         for left, right in zip(s["section_terms"], source["section_terms"]):
             member = next(m for m in source["id_maps"]["members"] if m["kernel_member"] == right["member"])
-            _need(left["member_id"] == member["id"] and all(left[k] == right[k] for k in ["area", "section_modulus", "length", "axial_stiffness", "torsional_stiffness"]), "G5b", "SECTION_MISMATCH")
+            # D18 (PP:2360, 2442, 2462; endpoint_maximum.rs:128): each echoed term equals the source's and is positive.
+            _need(left["member_id"] == member["id"] and all(left[k] == right[k] and from_bits(left[k]) > 0 for k in ["area", "section_modulus", "length", "axial_stiffness", "torsional_stiffness"]), "G5b", "SECTION_MISMATCH")
         absolute = []; uncovered = []
         for ri, row in enumerate(rows):
             kind, bi, member, n, inp = values[ri]; scale = None; bound = None

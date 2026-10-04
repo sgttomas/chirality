@@ -381,10 +381,12 @@ def test_g2_counters_are_json_integers_d10():
     _raises(lambda: _validate_entry(O_BASE, [_set(B + ["cases", 0, "run", "case_charge"], float(_cases()[O_BASE]["source"]["retained_precision"]["body"]["cases"][0]["run"]["case_charge"]))]), "G2", "ENCODING_MISMATCH")
 
 
-def test_g5b_arithmetic_fault_reports_g5b_d10():
-    zero = "0000000000000000"
-    for key in ("area", "section_modulus"):
-        _raises(lambda: _validate_entry(O_BASE, [_set(B + ["sources", 0, "section_terms", 0, key], zero), _set(B + ["cases", 0, "selection", "section_terms", 0, key], zero)]), "G5b", "SCALE_MISMATCH")
+def test_g5b_section_echo_terms_positive_d18():
+    """D18 (D10 corrected): an echoed section term equal to the source's but not positive fails
+    G5b SECTION_MISMATCH explicitly, never through the arithmetic fallback."""
+    for key in ("area", "section_modulus", "length", "axial_stiffness", "torsional_stiffness"):
+        for value in ("0000000000000000", "8000000000000000", "bff0000000000000"):
+            _raises(lambda: _validate_entry(O_BASE, [_set(B + ["sources", 0, "section_terms", 0, key], value), _set(B + ["cases", 0, "selection", "section_terms", 0, key], value)]), "G5b", "SECTION_MISMATCH")
 
 
 def test_class1_attempt_defect_wins_over_native_work_d3():
@@ -537,10 +539,10 @@ def test_rv79_surviving_mutants_m06_m09_m14():
 
 
 def test_snapshot_07_counts_and_entry_format():
-    """Snapshot 07 (I62 B2): 15 cases, 235 mutations, 19 must-pass; only rehash "all" (D11);
+    """Snapshot 07a (I62; D18): 15 cases, 236 mutations, 19 must-pass; only rehash "all" (D11);
     one expectation per entry except the per-reader G7 entry."""
     c = corpus()
-    assert (len(c["cases"]), len(c["mutations"]), len(c["must_pass"])) == (15, 235, 19)
+    assert (len(c["cases"]), len(c["mutations"]), len(c["must_pass"])) == (15, 236, 19)
     entries = c["mutations"] + c["must_pass"]
     assert all(e["rehash"] == "all" for e in entries)
     assert [e["id"] for e in entries if "expected_by_reader" in e] == ["g7_maximum_off_enclosure"]
