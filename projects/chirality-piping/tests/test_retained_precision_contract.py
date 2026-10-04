@@ -557,10 +557,10 @@ def test_rv79_surviving_mutants_m06_m09_m14():
 
 
 def test_snapshot_07_counts_and_entry_format():
-    """Snapshot 07e (I62; S1, D34, RV81-N1, RV78-N1): 15 cases, 263 mutations, 22 must-pass; only rehash "all" (D11);
+    """Snapshot 07f (I62; D37): 15 cases, 268 mutations, 22 must-pass; only rehash "all" (D11);
     one expectation per entry except the per-reader G7 entry."""
     c = corpus()
-    assert (len(c["cases"]), len(c["mutations"]), len(c["must_pass"])) == (15, 263, 22)
+    assert (len(c["cases"]), len(c["mutations"]), len(c["must_pass"])) == (15, 268, 22)
     entries = c["mutations"] + c["must_pass"]
     assert all(e["rehash"] == "all" for e in entries)
     assert all(set(e) <= {"id", "base", "edits", "invocation_edits", "after_rehash", "rehash", "expected", "expected_by_reader"} for e in entries)
@@ -673,3 +673,25 @@ def test_rehash_index_rule_07e():
     items = ["a", "b"]
     assert [_rehash_ref(items, r) for r in (0, 1, 1.0, 0.0)] == ["a", "b", "b", "a"]
     assert [_rehash_ref(items, r) for r in (True, False, 0.5, -0.0, -1, 2, float("nan"), None, "0")] == [None] * 9
+
+
+def test_error_kind_agrees_with_stage_record_d37():
+    """D37 (D35 widened), G5 PRODUCT_ATTEMPT class 3: every error kind against every native stage
+    record, in both directions (PP/retained_product.rs:3136-3290, 3456-3567)."""
+    C, F, N = "completed", "failed", "not_entered"
+    records = rp.ERROR_STAGE_RECORDS
+    assert records["g5a"] == {tuple([C] * 9 + [F])}
+    assert records["observable"] == {tuple([C] * 8 + [F, C]), tuple([C] * 8 + [F, F])}
+    assert records["numeric"] == {tuple([C] * 10)} and records["preparation"] == {tuple([F] + [N] * 9)}
+    assert tuple([C] * 8 + [N, N]) in records["capture"] and tuple([C] * 8 + [N, N]) not in records["proof"]
+    fail_pa = lambda ok: rp._need(ok, "G5", "PRODUCT_ATTEMPT_MISMATCH")
+    base = deepcopy(_cases()[F_BASE]["source"]["retained_precision"]["body"]["product_attempts"][1])
+    every = set().union(*records.values())
+    for kind, allowed in records.items():
+        for record in every:
+            a = deepcopy(base); a["proof"] = None
+            a["stages"] = dict(zip(rp.STAGE_ORDER, record)); a["result"] = {"kind": "unavailable", "error": {"kind": kind}}
+            if record in allowed:
+                rp._g5_typed(a, fail_pa)
+            else:
+                _raises(lambda: rp._g5_typed(a, fail_pa), "G5", "PRODUCT_ATTEMPT_MISMATCH")

@@ -130827,6 +130827,161 @@
         "gate": "G5",
         "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
       }
+    },
+    {
+      "id": "g5a_error_with_g5a_not_entered",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "result"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "unavailable",
+            "error": {
+              "kind": "g5a",
+              "cause": {
+                "kind": "sanity",
+                "body": 0,
+                "quantity_kind": 0
+              }
+            }
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "observable_error_with_observables_not_entered",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "result"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "unavailable",
+            "error": {
+              "kind": "observable",
+              "cause": {
+                "kind": "storage",
+                "detail": "x"
+              }
+            }
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "numeric_error_with_checks_not_entered",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "result"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "unavailable",
+            "error": {
+              "kind": "numeric",
+              "cause": null
+            }
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "proof_error_with_certificate_passed",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "result"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "unavailable",
+            "error": {
+              "kind": "proof",
+              "cause": {
+                "kind": "storage"
+              }
+            }
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "values_error_with_values_completed",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "result"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "unavailable",
+            "error": {
+              "kind": "values",
+              "cause": {
+                "kind": "storage"
+              },
+              "proof": {
+                "kind": "association",
+                "detail": "PP abandoned prepared draft"
+              }
+            }
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
     }
   ],
   "must_pass": [

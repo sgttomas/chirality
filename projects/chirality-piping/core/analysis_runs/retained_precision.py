@@ -862,13 +862,33 @@ def _g5_typed(a, fail):
                 fail(c["error"]["kind"] in kinds)
     if result["kind"] != "unavailable":
         return
-    error = result["error"]["kind"]
-    first_failed = next((k for k in STAGE_ORDER[:8] if st[k] == "failed"), None)
-    expected = {"preparation": ("preparation", "capture"), "native": ("native", "capture"), "proof_start": ("proof",),
-                "projection": ("proof",), "maxima": ("abandoned",), "values": ("values",), "aliases": ("abandoned",),
-                "certificate": ("proof",)}
-    if first_failed is not None:
-        fail(error in expected[first_failed])
+    # D37 (D35 widened; PP/retained_product.rs:3136-3290, 3456-3567; S06 s1): the error kind and the
+    # whole stage record agree in both directions. ERROR_STAGE_RECORDS lists every record the native
+    # sequence can leave for each kind (stage completed <=> its check passed is checked in class 2).
+    fail(tuple(st[k] for k in STAGE_ORDER) in ERROR_STAGE_RECORDS.get(result["error"]["kind"], ()))
+
+
+def _error_stage_records():
+    C, F, N = "completed", "failed", "not_entered"
+    done = lambda n, rest: tuple([C] * n + list(rest) + [N] * (10 - n - len(rest)))
+    return {
+        "preparation": {done(0, [F])},                                   # prepare_owned_case fails (3140, 3257)
+        "native": {done(1, [F])},                                        # solve_native, nonselected Run (3276, 3290)
+        "capture": {done(1, [F]),                                        # solve_native before any Run (3279-3286)
+                    done(2, []),                                         # project_candidate before ProofStart (3461-3466)
+                    done(8, []),                                         # after a passed certificate (3517-3525)
+                    done(10, [])},                                       # the commit (3546-3549)
+        "proof": {done(2, [F]), done(3, [F])}                            # begin_prepared_product, project (3469, 3473)
+                 | {done(7, [F, x, y]) for x, y in ((N, N), (C, C), (C, F), (F, C), (F, F))},  # certify_final (3493-3515)
+        "values": {done(5, [F])},                                        # complete_maxima (3480-3481)
+        "abandoned": {done(4, [F]), done(6, [F]), done(7, [])},           # maxima, aliases, bind_rows_view (3476, 3484-3491)
+        "numeric": {done(10, [])},                                       # both checks passed, pass false (3538-3543)
+        "observable": {done(8, [F, C]), done(8, [F, F])},                # observables failed (3528-3543)
+        "g5a": {done(9, [F])},                                           # observables passed, G5a failed (3528-3543)
+    }
+
+
+ERROR_STAGE_RECORDS = _error_stage_records()
 
 
 RCOND_LABEL = "sensitivity to matrix-entry perturbation, not to authored parameters"
