@@ -9172,3 +9172,56 @@ The next unused IDs are I66 and RV84; RV82 is reserved for U1.
 **Open items:**
 - **U3** is running (I61, `WT/f2a-facade`, from `b54caba7ab`), and **U4 G3** is running (I65).
 - **The next reader round** gathers the D36-tracked items: RV79-N1, RV80-N2, RV78's N1 and N2, and F5. D38's pin moves to wider F2a (RR "U1 grant 2: I61's stop resolved").
+
+## U4 G3 verified; D1.10 and D1.11 adopted; the margin rule (ROOT, 2026-10-04 UTC)
+
+**I65's G3 return** is `R/I65/u4_g3_01/`. SHA256SUMS: 56/56 OK, with no machine paths. Records only.
+
+It closes:
+- T05, including the O-N row;
+- T11–T15 and T21;
+- the new T25 (RV83 B-1);
+- T08 text over the whole D1 call graph (B-2 and S-6), covering 1,881 functions and 2,563 sites;
+- T07 and T22 as repaired (S-1, S-2);
+- the T20 recursion inventory: 18 self-recursive functions, no mutual recursion, R = 64 MiB and k = 16 confirmed;
+- the G2 amendments for B-3/S-5 (a one-line escaped identity read with `option_env!`), S-3 and S-4;
+- COMPOSITION §4's `LateFacts` and `CompleteFacts` for API.md.
+
+**I65 found and fixed a defect in its own call graph during the grant.** Multi-segment path calls were dropped. RV84 samples the graph.
+
+**The fit at the caps** (M = 4,026,531,840 B; ASSUMED strides; E_mov + R):
+- **Branch X** (exact-block selected; finalization T25 runs under G-A's span):
+  - 5.54–5.56 GB with today's D1, which does not fit;
+  - 3.50–3.52 GB with D1.11, which fits, at 0.87 M.
+- **Branch W** (W1 runs), the G3 part only: 1.93–1.95 GB, or 0.48 M. That leaves about 2.08 GB for G4's T16–T19.
+- **`admit` must cover `max(E_X, E_W + G4)`,** because it decides before the branch is known.
+
+**Adopted into D1.** ROOT rules on D1, and the milestone complies with both clauses. The census checks each without allocating.
+- **D1.10:** no primitive load's `provenance` begins, after whitespace, with `{`. This keeps every D1 input out of the self-weight validation module. Its per-load parse attempt stays priced in O-N.
+- **D1.11:** no raw string value or key contains a byte below 0x20 or the byte 0x7F. That caps JSON escape expansion at 2.
+
+The refusal map gains both clauses under `source_family` and `resource_admission` respectively. I65 confirms the kinds in G4.
+
+**D-4's T22 citation** is re-pointed to `R/I65/u4_g3_01/RESIDUALS_G3.md` §T22. D-4's outcome is unchanged.
+
+**The margin rule.** It applies at G4 with illustrative strides, and G5 re-evaluates in-build. The composed maximum, `max(E_X, E_W + G4) + R`, must be at most **0.9 M**. The margin absorbs stride differences in the build.
+- If G4's composition exceeds 0.9 M, I65 returns a **sensitivity table**: the maximum as a function of each cap (n, m, g, r, s, l, the text caps, the raw totals) and of ε.
+- ROOT then chooses:
+  - **tighter caps** (preferred, as the smallest intervention); or
+  - **the lifetime-aware text model,** as a separate grant; or
+  - **a bound evaluated per invocation** at the actual census facts, which the monotonicity lemmas allow, in place of a cap-priced constant.
+- The text refinement is **not** scheduled now. Branch X passes at 0.87 M, and G4's number decides whether any refinement is needed.
+
+**Next:**
+- **RV83** confirms its G2 findings against `G2_AMENDMENTS.md`, `RESIDUALS_G3.md` (T07, T22, T25) and `TEXT.md`.
+- **RV84** (new) reviews G3 under `BRIEFS/RV84_U4_G3_REVIEW.md`.
+- **I65 proceeds to G4** (design-to-budget; records only):
+  - T16–T19 against U1 as merged in NUM, at `4a13e369b9` and later;
+  - the U1 text part of T08;
+  - the T24 composition per caller and mode, with the margin rule and, if needed, the sensitivity table;
+  - RV82-N5 (producer conservation leaves build flags and execution order to the readers);
+  - the D-6 lock re-pin after U3's runtime dependency;
+  - the budgets U3 must meet.
+- **Reminder to I65:** scratch files go under `WT/scratch/`, never the system temp directory.
+
+The next unused IDs are I66 and RV85.
