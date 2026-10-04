@@ -9950,3 +9950,17 @@ All three readers must pass 07h. No 07g outcome may change except through the ne
   - 14 of 14 mutants killed, including each of RV90's six survivors, by exactly its new entry.
 
 **RV90 confirms S1, N1–N4 and the count correction.**
+
+## RV90 confirms U6e's 07h round; U6e merged into the carriers branch (ROOT, 2026-10-04 UTC)
+
+**RV90's confirmation** is `R/REVIEW_RV90/u6e_reader_round_02/REVIEW.md` (sha256 `64bcbbb2…`; SHA256SUMS 29/29 OK; no machine paths). Verdict: **CONFIRMED**, with 0 BLOCKING, 0 SHOULD-FIX and 0 NOTE findings. S1, N1, N2, N3, N4 and the count correction are all fixed.
+- RV90's 6 malformed probes agree at the gate across all three 07h readers, and the typed-integrity probe agrees too.
+- Each of RV90's surviving mutants is killed by exactly its new shared entry.
+- 0 of 311 07g outcomes change, and every reader matches all 315 07h entries.
+- The milestone receipts and the flags are unchanged.
+
+**Optional hardening, not ruled necessary:** shared entries for S1's number and object forms. They are pinned in Python's own test, and Rust and TS already agree. Tracked for U6f's discretion.
+
+**The merge.** ROOT merged `codex/piping-f2a-readers-round-20261004` (`cc4dd61d67`) into `codex/piping-f2a-carriers-20261004` with `--no-ff` and pushed it. The merge is clean: the U6e and U6a–U6c files are disjoint, and the three readers and the corpus equal `cc4dd61d67` byte for byte. **The carriers branch now holds U6a, U6b, U6c and U6e,** and U6d is on its own branch. It merges into NUM after RV88's and RV91's reviews and the U6f complete review.
+
+**Next:** RV88 (U6a, U6c, U6b) and RV91 (U6d), then U6f, a fresh complete-diff review with the three-language parity table.
