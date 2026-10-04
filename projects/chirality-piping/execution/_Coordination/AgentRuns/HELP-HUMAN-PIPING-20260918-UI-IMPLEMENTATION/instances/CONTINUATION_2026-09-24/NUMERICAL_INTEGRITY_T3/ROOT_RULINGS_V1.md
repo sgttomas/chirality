@@ -11613,3 +11613,21 @@ Records go in `R/I61/u9_g5g6_01/`.
 4. On F: I65's mechanical Pass B rerun with its prepared entries, and RV89's confirmation; RV95's same-reviewer confirmation of S-1, S-2 and the gate evidence.
 5. ROOT asks the owner about the merge hold. Then, on F: the full-SHA dispatch, GEN-8, the Mac baseline and DEC-025, and the native witness.
 6. The merge, with records, ruling and graph in the same pass.
+
+## RV95 S-1 repaired; the PR source head for the freeze (ROOT, 2026-10-04 UTC)
+
+**I65's repair** is `R/I65/u9_repair_01/` (`u9_repair.diff`, sha256 `f608cb2b…`; SHA256SUMS 57/57 OK). The six stale texts are corrected, comment- and doc-only and line-neutral:
+- `lib.rs:2176`;
+- `retained_memory.rs:2757`;
+- `retained_wire.rs:6–7` and `:14`;
+- the law, witness and challenge test headers.
+
+ROOT applied the diff to NUM and checked mechanically that every changed line is a comment and that line counts are unchanged. PP compiles (`--no-run`). It is committed as **`bb3d766379`**.
+
+**Carried to the PR** together with RV95 N-3's test pin (NUM `c5adc16384`) as **`35d8ae59a7`**, the intended **source head for the freeze**, pending CI and I61's G5 and G6.
+
+**The frozen-head Pass B is prepared** (`u9_repair_01/_run_records/pass_b/`, 11 reviewed entries):
+- RV89 N-1's deletion-half entry;
+- three doc-comment entries for the S-1 hunks in the qualification-test files. Their fingerprints are computed exactly as the tool does: they match only if the hunks land as in `u9_repair.diff`, and they did, by `git apply`.
+
+`6d8f8a82b2` classifies as `test`. I65 runs the prepared Pass B on F.
