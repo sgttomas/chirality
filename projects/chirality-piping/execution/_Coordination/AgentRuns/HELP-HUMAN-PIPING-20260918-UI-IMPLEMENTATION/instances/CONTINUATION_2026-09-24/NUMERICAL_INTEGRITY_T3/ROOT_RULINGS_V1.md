@@ -8215,3 +8215,14 @@ The Python change is not committed alone, because its suite only passes with 07 
 - I62 updates the expectation, adds the pin and repairs Python (07a).
 - I64 restores TypeScript's positivity check.
 - I63 reruns on 07a.
+
+## Snapshot 07a verified; Python and TypeScript pass it (ROOT, 2026-10-03 UTC)
+
+**Snapshot 07a with Python's D18 change is committed on READER as `3dd3b5ff24`.**
+- **ROOT's diff against 07:** exactly two changes. `g5b_zero_section_area` now expects SECTION instead of SCALE, and `g5b_zero_section_length` is new. The cases and must-pass entries are unchanged.
+- **The counts:** 15 cases, 236 mutations, 19 must-pass entries.
+- **ROOT's Python run:** 328 passed.
+
+**TypeScript's D18 change is committed as `a491db2f4c`.** Positivity is restored at the G5b echo. ROOT's run gives vitest 379/379 and tsc 0.
+
+**Rust** already gives SECTION for both pins. It needs only its count and slice updates for 07a; I63 is granted that.
