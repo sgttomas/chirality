@@ -8861,3 +8861,40 @@ Experiment 02's merging of the first two rows is corrected in U1.
 **Stage 2 (U1 with U2) is confirmed** under I61's grant-1 proposal: its write fence, its deliverable (a private, production-unreachable serializer), protected byte controls 1–5, mutants, and a cost of about 6–8 hours plus about 3 hours of joint review.
 - `result_export` may be added as a **dev-dependency** for U1's tests. The runtime path dependency for precommit validation (decision 5) belongs to U3.
 - G-i and D38 go to U1 grant 2.
+
+## U4 plan: decisions, and two questions for the owner (ROOT, 2026-10-04 UTC)
+
+I65's U4 plan (`R/I65/u4_plan_01/PLAN.md`, SHA256SUMS OK, no machine paths) maps 24 terms:
+- 2 priced, 12 partial, 2 symbolic, 5 missing;
+- 1 out of domain (native context);
+- 1 non-claim (RSS, allocator overhead and concurrency);
+- 1 missing and **stopped: stack (T20).**
+
+Every term except stack has a closing route inside a bounded first domain.
+
+**Native context, tail and backing close by construction.** No admitted invocation has a native owner: the Tauri app calls only the ordinary wrapper (apps/desktop/src-tauri/src/lib.rs:1562, 1696), an existing source test asserts it never calls the retained entries (PP/tests/retained_precision_admission.rs:217–222), `Entry` has only Direct and Headless, and `CapturePermit` is `pub(super)`. Native W1 qualification stays held, and I53/RV70's external warrant is unchanged.
+
+**The estimate grows** to about 33–49 hours of authoring plus 11–15 hours of review, across grants G2–G6. The precommit reader, the nested census, build identity and stack account for the increase over I61's figure.
+
+**Ruled by ROOT:**
+- **D-1:** the domain is the Direct caller, one load case, no combinations or components, the preview family, no pressure, straight members, rigid and scalar-spring supports, nodal loads only and the default basis. The build is aarch64 with rustc 1.97.1 and the PP lock. The caps are as proposed: 32 nodes, members and supports; 192 restraints, springs and loads; 128-byte identifiers; census depth 16 and the existing 16,384-value limit. I51's gates G-A, G-B and G-C stay, and anything outside goes to the ordinary path.
+- **D-2:** Direct only for the milestone; Headless later.
+- **D-5:** U4 owns `retained_memory.rs` and U3 owns the dispatch. I61 is the single integration owner for any `PP/lib.rs` edit.
+- **D-8:** deep legacy-exact is derived under the existing exact-boundary limits.
+- **D-9:** the caps are confirmed for the milestone and the L = 0 base. The Ceiling witness (U8, post-milestone) may revisit them.
+- **Design-to-budget for G4** is adopted. U4 sets budgets for the precommit reader and transfer, and U3 must meet them. This decouples U4 from U3's freeze.
+- **D-4 (the C1 §2 no-wrap reconciliation)** is drafted by I65 in G2 with citations, and ROOT rules on it at G2's return.
+- **D-7:** at G6, M is set as the per-invocation W1 admission threshold on requested and moving heap bytes, within the provisional 3.75 GiB target (RR:4938). It makes no RSS, stack, concurrency or machine claim. A supported-machine reading stays owner-held.
+
+**Put to the owner:**
+- **D-3, the stack evidence standard** (the stop item). The options are:
+  - S1: a reserved-stack thread, plus a structural recursion bound from source, plus a measured witness with margin;
+  - S2: a frame census from the build's disassembly, which needs a new analysis script, that is, host tooling;
+  - S3: hold the permit.
+  
+  It is the owner's choice because it sets what counts as qualified for a priced term, against the handoff's "no permit on symbolic or partially priced terms", and S2 needs host tooling.
+- **D-6, build-identity enforcement.** The options are:
+  - (a) a PP build script records the rustc identity, and any mismatch marks the profile Stale. That fails closed to the ordinary path. It is a new in-product guard, so the owner's "no new guards" constraint applies;
+  - (b) gate-bound qualification only.
+
+**Dispatch:** U4 G2 (the domain, build binding and residual closure; records only) goes ahead now. G2–G4 do not depend on D-3. G5 cannot enable a permit until D-3 is resolved.
