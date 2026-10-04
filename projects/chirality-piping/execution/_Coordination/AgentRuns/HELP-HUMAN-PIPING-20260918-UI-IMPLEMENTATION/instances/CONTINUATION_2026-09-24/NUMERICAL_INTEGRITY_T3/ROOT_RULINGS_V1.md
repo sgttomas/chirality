@@ -11701,3 +11701,31 @@ ROOT asked the owner two questions in the session.
   - the desktop calls only the ordinary wrapper (RR:9261), and no product caller of the Direct entry exists (G9b);
   - the panel gates are covered by vitest and the hosted browser E2E shards;
   - the src-tauri suite passed 116/116 (G7).
+
+## The frozen-head Pass B holds; the Mac baseline and DEC-025 started (ROOT, 2026-10-04 UTC)
+
+**I65's run** is `R/I65/u4_g7_06/` (RETURN.md `b4022b8b…`; SHA256SUMS 72/72 OK), on F `20dd3d929d`.
+- **Exit 6.** The only delta is the six added PP tests.
+- **Every other gate is 0:**
+  - tree 2,950;
+  - the entry, byte-identical to `0c7827b6ad`'s, M included;
+  - law 42/0;
+  - statics;
+  - the line map and the premise pins;
+  - TEXT (D 14,734);
+  - delta (35 files, 86 rows classified);
+  - FORMS and §11 (410);
+  - controls 12/12;
+  - the runner, the witnesses 9/9 and the challenge.
+- **All 11 reviewed entries matched,** including RV89 N-1's deletion half and the three S-1 qualification-test doc hunks.
+- **The maxima are unchanged** (0.8881 / 0.8929 M).
+- **RV89 confirms by reading** and by rerunning the gate checks on the recorded outputs, with no builds during ROOT's quiet-host window. It may request a registered build afterwards.
+
+**DEC-025 (G3), ROOT:**
+- **The driver** is the recorded `M03_SKEW_PIN_MERGE/dec025/dec025_mac.sh.txt`, copied unchanged (sha256 equal), in the sweep worktree `sweep-skewpin`, detached at **F**, clean.
+- **The target** is fresh. The previous one is preserved, not pruned, as `sweep-skewpin-target-k6c-preserved-20261004`.
+- **The fresh Mac baseline** (U9 decision 11) is `run_suites_nff.sh` on a clean worktree of **M** (`base-m`), with its own fresh target.
+- **The wrapper** (`WT/scratch/u9_dec025/run_all.sh`) waits for a quiet host (6 consecutive quiet samples, 20 s apart), checks memguard, then runs the baseline, then DEC-025.
+- **RV95 and RV89** are asked not to build during the window.
+
+**Hosted CI and the full-SHA dispatch** (`target_base` = M, run 37244157642) are running on F.
