@@ -9902,3 +9902,28 @@ Mutants that weaken F5 in each way survive all three suites. **Ruled: add the sh
 - the RETURN §3 count.
 
 All three readers must pass 07h. No 07g outcome may change except through the new entries. RV90 confirms. The next unused IDs are I68 and RV91.
+
+## U6b (Python carriers) verified and committed; the pin and findings ruled (ROOT, 2026-10-04 UTC)
+
+**I66's U6b** is `R/I66/u6b_python_01/` (RETURN sha256 `e1619218…`; SHA256SUMS 27/27 OK; no machine paths). ROOT committed it, with the pin patch, as `c89a7a986c` on `codex/piping-f2a-carriers-20261004` (on top of U6c) and pushed it.
+
+**The stop, ruled:** `tests/test_preview_physics_consumer_contract.py::test_table_identity_and_registry` pins `FRESH_CONTRACT_IDS` exactly, and D-U6-6 adds the successor. The fence is extended to I66's 3-line patch (an import, the ruled id, and a comment), which keeps exact equality, as for Rust and TS. ROOT applied it.
+
+**ROOT's verification:**
+- **The removed lines, read by ROOT:** three inline allow-lists are replaced by the named `CURRENT_RECORD_CONTRACT_IDS`, which equals the old seven plus the successor. The v0.2 builder's forbidden-member list gains `retained_precision` only.
+- **ROOT's acceptance sweep,** in the worktree: the 24 files, plus the retained schema and new carrier tests, gave **1,806 passed, 30 skipped, 0 failed**. That is I66's 1,805 plus the pin test.
+- **I66's evidence:**
+  - 5 other Python consumers unchanged (428);
+  - 62 documents × 11 carrier outcomes, unchanged on the 60 non-successors;
+  - 19 of 21 new tests fail at base;
+  - 59 of 60 mutants killed (S04 is equivalent).
+
+**Findings:**
+- **F-U6b-2:** the Python reader has no transport validator, so a transported successor fails closed with `SOURCE_PRODUCER_CONTRACT_UNSUPPORTED`. Its only caller, T6's packager, refuses successors anyway. **Tracked to wider F2a,** before T6 admits successor packages. It does not gate the milestone.
+- **F-U6b-3, accepted:** `build_analysis_run_v0_2` now refuses `retained_precision`, rather than silently dropping it. **TS alignment is routed to U6d's repair round,** after RV88's U6d review.
+- **F-U6b-4:** the plan text said the 0.1.0 wrapper "accepts any source"; it already refused both milestones. Noted.
+- **I67's F1** is unchanged in Python; RV88 and U6f judge it.
+
+**Limits:** the fixtures are single-case producer outputs (D-U6-5). The post-U7 summary and eligibility are tested through the internal helper with eligibility forced. U7 or U9 reruns them on live output.
+
+**RV88** reviews U6b after U6a, U6d and U6c. All four carrier units are now committed; U6e's 07h round is in verification.
