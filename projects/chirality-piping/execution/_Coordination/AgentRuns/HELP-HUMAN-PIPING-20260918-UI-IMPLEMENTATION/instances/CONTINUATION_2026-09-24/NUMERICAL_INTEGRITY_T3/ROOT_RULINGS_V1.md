@@ -10043,3 +10043,23 @@ The margin rule holds. The dense margin is narrower than G4's estimate, mainly b
 - **N-3:** the deepest call chain from the Direct root is now **40 frames**, not 39; about 1.47 MiB by G3's arithmetic, so R and k are unchanged. **G6's record carries 40.**
 
 **R-4 is closed,** and with it RV83's G2 review cycle.
+
+## RV87 on S-2 in G5 part 2: NOT CONFIRMED; a class-wide identifier audit goes into G6 (ROOT, 2026-10-04 UTC)
+
+**RV87's confirmation** is `R/REVIEW_RV87/u4_g4_02/REVIEW.md` (sha256 `7f0203d2…`; SHA256SUMS OK; no machine paths). Verdict: **NOT CONFIRMED (S-2 only)**, with 0 BLOCKING, 1 SHOULD-FIX and 4 NOTE findings.
+- **The 16 repaired sites are right,** and +71.9 MB is exactly their delta.
+- **S-1, N-1(a)–(e) and N-2 are confirmed** in the generated profile. RV87's own G4 model reproduces the tree's T16 and T17 forms on every stride atom, and all 47 generated `FORMS` equal `profile_tree.json`.
+
+**SF-1:** **18 more result-id copies are still priced in the 128-B identifier class:**
+- 8 belong in the 1,024-B class (lib.rs:5592; source_receipt/rows.rs:308, :390, :533, :590, :592, :625; source_receipt.rs:1016);
+- 10 are bounded by their own id templates (lib.rs:13044, :13074, :11617, :11649, and `result_id.clone()` at :4624, :5276, :5281, :5314, :5329, :5359).
+
+That is +32.4 MB to the TAV. **In-build W3 dense rises to at most 0.8907 M,** still 37.5 MB under 0.9 M. **N-1:** diagnostic-id copies (ids up to 2,330 B) are priced at 128 B too; that is at most 40 KB.
+
+**Ruled: repaired in G6, before registration, and as a class, not site by site.** This is the third round of underpriced identifier copies: G4 S-2's 6, part 2's 16, and now these 18. Repeated site-level repairs are not converging. I65 therefore audits the **whole class** in G6:
+- every clone, format or `to_string` of an identifier-bearing field (result, diagnostic, case, member, support, node, load and source ids, and the like) on the D1 call graph;
+- each priced at its source's bound (the 128-B input cap, a result id's 1,024-B class, a diagnostic id's 2,330 B, or its own template), never by name-pattern alone;
+- every site stated with its bound, so RV87 can check the class as a whole.
+
+Then I65 reruns TEXT, regenerates the profile and the pinned record, and re-confirms that the in-build maximum is ≤ 0.9 M. RV87 confirms the class audit at G6's review.
+- **N-3** (string classes up to 745 B above exact sizes) and **N-4** (TAV_X counts two sites twice, so the estimate is conservative) are noted.
