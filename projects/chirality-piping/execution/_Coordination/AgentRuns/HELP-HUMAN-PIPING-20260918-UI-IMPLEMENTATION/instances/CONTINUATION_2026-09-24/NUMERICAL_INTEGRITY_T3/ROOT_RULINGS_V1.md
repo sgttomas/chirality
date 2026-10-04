@@ -8690,3 +8690,11 @@ From here, findings are triaged as follows:
 - **Tracked, not gating:** a finding that affects only unavailable or refused paths and cannot change eligibility. It is repaired in the next reader round, on the integration branch after fan-in.
 
 D35 is repaired now, because the round is small and already scoped. But the check of D35 is scoped to D35 alone (RV78 for parity, RV79 for Python). Any new finding from that check is triaged under D36 rather than starting another round.
+
+**RV80 final check (confirm 05): PASS** (0 BLOCKING, 0 SHOULD-FIX, 2 NOTE). D34 works in `validate` (with and without an invocation) and in `validate_transport_metadata`, on both enum/const fields and on U fields. The `g2()` refactor drops and weakens nothing.
+
+Both NOTEs fall under D36's "tracked, not gating":
+- N1: D34 on the transport path is unpinned (M56). Add a transport-path call to the D34 test in the next round.
+- N2: `integral_receipt`'s receipt-only scope is unpinned (M50).
+
+I63 may add the N1 test in the D35 round, at no extra cost.
