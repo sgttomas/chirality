@@ -10289,3 +10289,28 @@ Then I65 reruns TEXT, regenerates the profile and the pinned record, and re-conf
 - **No regressions:** Vitest 3,466 and `tsc` clean; an 86-envelope sweep identical.
 
 **U6d's review cycle is closed.** All U6 units are now reviewed and confirmed, apart from RV88's U6a N-3 and N-1, which are routed to the post-U6f round. RV92 (U6f) is running.
+
+## U4 G6 committed unregistered; RV89 and RV87 dispatched (ROOT, 2026-10-04 UTC)
+
+**I65's G6, with the 2(a) addendum,** is `R/I65/u4_g6_01/` (SHA256SUMS 75/75 OK; no machine paths). ROOT committed it, **unregistered**, as `2bb81ec1ea` on `codex/piping-f2a-memory-20261004`, on top of `cba3e9fda7`, and pushed it. The worktree's diff equals I65's recorded `candidate_g6.diff` byte for byte.
+
+**ROOT's verification:**
+- `REGISTERED_PROFILES` is still `&[]`.
+- **The 2(a) predicate** is `ordinary_solve_attempted`: at least one seed, and every seed's `initial` is set. The seed is set exactly at the solve attempt or at the report.
+- **ROOT's runs:** PP `--lib` gave 533 passed, 1 failed (t13), 10 ignored; **all 9 witnesses pass**; the challenge passes.
+
+**2(a), as implemented:** `PhaseFact::OrdinarySolveNotAttempted` (cap 0). It deliberately ignores envelope status, which is ambiguous because `blocked_envelope` is returned both before and after an attempted solve.
+- **Declined** (exact bytes, no notice): an invalid document kind, an invalid load category, no supports, and a lone spring.
+- **Proceeding:** the milestone; a 1e-300 spring, whose attempt fails; W6; and **`rejected_stress_range`.** Its solve ran (Sensitive) and only afterwards did the legacy finalization block it, so under the ruled rule it reaches W1 and, on fallback, carries the N1 notice. It is the only blocked example whose bytes change under registration. **This is accepted:** W1 work actually ran (ROUTING:98).
+
+**The registered scratch run** (`registration.diff`, 4 files):
+- PP 698 passed, 1 failed (t13);
+- the milestone publishes in both modes;
+- every retained report is Registered;
+- the unattempted-solve examples are byte-identical to the value route.
+
+**The reviews:**
+- **RV89** reviews G6 together with `registration.diff`;
+- **RV87** confirms the identifier-class audit (`ID_CLASS_AUDIT.md`), including its own 18 sites and RV89's 5.
+
+**ROOT applies the registration only after both pass,** and selects M = 4,026,531,840 B under D-7.
