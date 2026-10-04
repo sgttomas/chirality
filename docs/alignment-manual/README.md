@@ -8,7 +8,7 @@ This directory contains a field book, a general project-management reference, an
 | --- | --- |
 | [Project Management for Human–Agent Teams — Field Book](Project_Management_for_Human_Agent_Teams_Field_Book_v1.html) · [Markdown](Project_Management_for_Human_Agent_Teams_Field_Book_v1.md) | Abbreviated human reference: eight sections following the work from intent to delivery, with a recurring execution loop and links to the full treatment. |
 | [Project Management for Human–Agent Teams](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md) · [Word](Project_Management_for_Human_Agent_Teams_Consolidated_v8.docx) · [PDF](Project_Management_for_Human_Agent_Teams_Consolidated_v8.pdf) | General management practice from conception through delivery, written as a technical reference. |
-| [Chirality Agent User Manual v3 — HTML](CHIRALITY_AGENT_USER_MANUAL_v3.html) · [Markdown](CHIRALITY_AGENT_USER_MANUAL_v3.md) | Operational guidance for entry, coordination, project development, checking, continuity, and closeout across App, Piping, Runtime, and PEC. The HTML is the offline reading edition. |
+| [Chirality Agent User Manual v3 — HTML](CHIRALITY_AGENT_USER_MANUAL_v3.html) · [Markdown](CHIRALITY_AGENT_USER_MANUAL_v3.md) | Operational guidance for entry, coordination, project development, checking, continuity, and closeout across App, App v4, Piping, Runtime, and PEC. The HTML is the offline reading edition. |
 
 The companion describes the management manual’s current methods and identifies where adopted project instructions still differ. Reading either manual does not amend those instructions or adopt a new execution basis.
 

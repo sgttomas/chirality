@@ -2,7 +2,7 @@
 
 Version 3 · 22 September 2026 · repository source basis `b3e2ce4ec74e01d6f393fc0bc069699bb079df91`
 
-*Revised 4 October 2026: 60% gate guidance in §5 ([Discern and pass the 60% gate](#gate-60)) and §8; links now point to the book's current edition. Other content and its source basis are unchanged.*
+*Revised 4 October 2026: 60% gate guidance in §5 ([Discern and pass the 60% gate](#gate-60)) and §8; receipt content and decision recording in §13; [App v4 entry](#app-v4) in §14; links now point to the book's current edition. Other content and its source basis are unchanged.*
 
 An operational companion to the current edition of [*Project Management for Human–Agent Teams*](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md), for agents developing projects in the Chirality repository.
 
@@ -204,7 +204,7 @@ Delivery likewise follows an actual arrangement, not a universal invented final 
 
 ### Discern and pass the 60% gate
 
-The 60% gate is the human's judgment that the project DAG will not change at the level that directs work, and that every SCC has an accepted treatment under which its work can proceed, so that development can continue in parallel with few or no conflicting outcomes. The DAG directs work by establishing which deliverables exist and the order in which groups of them can be completed. Finer relationships, such as the order of parts within a coupled group, the wording of an interface, or a newly found cross-reference, keep changing. Local work graphs order them; step 4 below says where relationships found later are recorded. Do not treat the gate as requiring a deliverable-level DAG with every cycle-closing reference reworded away. The project loop states who assesses the position; the App v4 loop, for example, reserves the 60% assessment to the human. [Human manual §4.12][human-manual] · [Cycle-driven resolution §§2, 4][cycles] · [App v4 loop][app-v4-loop]
+The 60% gate is the human's judgment that the project DAG will not change at the level that directs work, and that every SCC has an accepted treatment under which its work can proceed, so that development can continue in parallel with few or no conflicting outcomes. The DAG directs work by establishing which deliverables exist and the order in which groups of them can be completed. Finer relationships, such as the order of parts within a coupled group, the wording of an interface, or a newly found cross-reference, keep changing. Local work graphs order them; step 4 below says where relationships found later are recorded. Do not treat the gate as requiring a deliverable-level DAG with every cycle-closing reference reworded away. The project loop states who assesses the position; the App v4 loop, for example, reserves each stage-gate assessment to the human. [Human manual §4.12][human-manual] · [Cycle-driven resolution §§2, 4][cycles] · [App v4 loop][app-v4-loop]
 
 **Assemble the assessment.** The coordinating agent assembles it: HELP_HUMAN for the project position, with WORKING_ITEMS supplying the technical position of the undertakings it manages. TASK can run a bounded part, such as a design inventory, a grouping check, or a reach check on proposed rows, and returns findings without deciding. Work from the accepted DAG through `_DAG/_LATEST.md`, its held candidate layer, the live registers, and the reviewed Design files.
 
@@ -495,7 +495,7 @@ Formal R6 backcheck creates a new derivative bound to the repaired source state 
 
 First identify what changed. A local implementation choice, an observed defect, a stale description, an unresolved design question, a changed accepted commitment, and a new human priority require different responses. Record the affected statement or interface, candidate, observation, consequence, and proposed next step. Exercise ordinary discretion inside the brief. An explicit adopted choice, protected criterion, owner-held act, or material scope change needs its owning decision before reversal. [WORKING_ITEMS][working-items] · [App selection and decisions][app-agents] · [Piping decisions][piping-agents]
 
-Prepare human decisions as concrete reviewable packages. Explain the current basis, finding, alternatives, recommendation, affected scope, risks, reversibility, and what each choice enables. Include the proposed text or artifact when feasible. Name the actual act requested: choosing an interface, accepting an amendment, opening a fence, freezing a candidate, or authorizing release. Do not smuggle several different acts into a generic “approve.” Preserve the human's words and distinguish them from the agent's interpretation; silence is no ruling. [Root entry][root-entry] · [CONTRACT K-AUTH-1, K-BIND-1][contract]
+Prepare human decisions as concrete reviewable packages. Explain the current basis, finding, alternatives, recommendation, affected scope, risks, reversibility, and what each choice enables. Include the proposed text or artifact when feasible. Name the actual act requested: choosing an interface, accepting an amendment, opening a fence, freezing a candidate, or authorizing release. Do not smuggle several different acts into a generic “approve.” Preserve the human's words and distinguish them from the agent's interpretation; silence is no ruling. Record each decision with the human's exact words, their source and their custody (for example, the session transcript), apart from your interpretation, and imply no review the human did not perform. [Root entry][root-entry] · [CONTRACT K-AUTH-1, K-BIND-1][contract]
 
 For accepted decomposition change, use the selected applicable `scope-change` method. Its current package groups preparation around the requested change and impact, the exact amendment and propagation plan, and the independently examined poststate. Preserve stable identity and lineage. Apply only accepted changes, route remediation to the owners of affected surfaces, regenerate or explicitly account for derivatives, and return unresolved obligations. Use the project's adopted checkpoint edition rather than imposing a new one from this guide. [Scope change][scope-change] · [Decomposition standard][decomp-standard]
 
@@ -514,6 +514,8 @@ Task Management makes concerns visible for human disposition and routes resultin
 ### Index the run without duplicating its decisions
 
 Under the revised arrangement, add a terse entry near final PR preparation in each affected deliverable's `MEMORY.md` Runs table. Use a stable run ID and date, state the work performed in that deliverable, and link the PR, central evidence, applicable rulings, scope changes, and Task Management transfers. Include only applicable references. Decision substance and detailed rationale stay at their central sources; label a pending proposal or intake as pending. The table has no future-work queue. [Human manual §§4.11, 5.6, 5.8][human-manual]
+
+Where the loop's method calls for one, write the undertaking's single central receipt near final PR preparation, at the location the method names (for `construct-local-work-graph`, `execution/_Coordination/AgentRuns/<RunID>/RECEIPT.md`, under the graph's stable run ID). It is a concise, derivative account of what landed: the affected deliverables, the actual PRs, the checks and evidence, any decisions or Task Management transfers, and material limits. Its result, checks and limits supply the final PR description. It is not a second execution graph, a future-work list or a decision record. Link the graph and the detailed sources rather than copying them. A graph node or a Task Management invocation creates no further receipt.
 
 | Run / date | Work performed here | Central references |
 |---|---|---|
@@ -585,6 +587,12 @@ Source principally lives under `frontend/src`, `frontend/electron`, `frontend/pa
 The registered App checks include `frontend-test`, `frontend-typecheck`, `frontend-build`, `frontend-premerge`, `harness-self-check`, `harness-pytest`, and `app-hold-integrity`. Project instructions additionally specify their applicable closeout, product-source, UI, native-host, packaging, and corpus-reconciliation obligations. Stop the ordinary dev server before build/package/premerge operations. The registered premerge check owns a stub service and `HARNESS_BASE_URL`; calling its npm script alone does not supply that setup. [App profile][app-profile] · [App checks][app-agents]
 
 `npm test`, `npm run typecheck`, and `npm run build` are declared in the frontend manifest; use them only as selected authorized checks. Packaging is separate: `desktop:prepare` prepares/builds inputs, while `desktop:pack` and `desktop:dist` consume prepared inputs and perform their declared verifiers. Their existence grants no signing, notarization, distribution, or release authority. Retained compatibility scripts do not establish another qualified MVP engine. Codex remains the App target, with application-owned Runtime hosting the stock Codex App Server under the current accepted boundaries. [App package manifest][app-package] · [App development boundaries][app-agents] · [Runtime PRD revision][runtime-revision]
+
+<a id="app-v4"></a>
+
+### Enter App v4 development
+
+App v4 (`projects/chirality-app-v4`) is a separate project from the App development described above. Enter through its `init/dev-loop-init-prompt.md`, which leads to `loop/LOOP_INIT.md`. App v4 has no project `AGENTS.md`. Its `LOOP_INIT.md` binds it to this manual, the Field Book and the bundled workflows, and holds its project pointers, conventions and standing constraints. Nothing earlier in this section applies to App v4: the APP-HOLD-1 preflight, the `frontend/` layout, the App software profile and its registered checks belong to App development. [App v4 loop][app-v4-loop]
 
 <a id="piping"></a>
 
