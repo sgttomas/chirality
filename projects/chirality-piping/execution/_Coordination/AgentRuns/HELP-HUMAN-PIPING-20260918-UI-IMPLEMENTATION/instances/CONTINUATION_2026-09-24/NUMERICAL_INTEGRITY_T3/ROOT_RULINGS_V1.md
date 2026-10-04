@@ -11462,3 +11462,26 @@ Records go in `R/I61/u9_g5g6_01/`.
 - `source_equality` on `fd3cbebb42` against INT `c7bc3fd54e`: **5/5 PASS**, |S| = 138.
 - **No Pass B rerun:** these are CI tooling and Python tests, not a D1 crate, a reviewed input or production `.rs`.
 - The package's counts (136 → 138) are updated at the freeze.
+
+## U9 G9a: the full Pass B on the PR head holds the registered entry (ROOT, 2026-10-04 UTC)
+
+**I65's run** is `R/I65/u4_g7_05/` (RETURN.md `ec93eb99…`; SHA256SUMS 101/101 OK; no machine paths). It ran on `6b9bb19a5f` (read-only `git archive`).
+- **Exit 6.** The only delta is the six added PP tests.
+- **Every gate is 0:**
+  - tree 2,950;
+  - the entry, byte-identical to `0c7827b6ad`'s, M included;
+  - law 42/0, with all 14 reviewed-input hashes;
+  - statics;
+  - the line map and the premise pins;
+  - TEXT (D 14,734, identical to Pass A);
+  - delta (30 files, 75 rows classified);
+  - FORMS and §11 (410);
+  - controls 12/12;
+  - the runner, the witnesses 9/9 and the challenge.
+- **The maxima are unchanged** (0.8881 / 0.8929 M).
+- **PR1080** (`source_blocks.rs:1055–1058`, `validate_in`) is classed not live on D1, by reachability: it is reached only via `for_source` behind the `edge_zero` rules the premise pins hold. If it were reached, its walk only borrows.
+- **One new reviewed entry:** `retained_memory_law_tests.rs:1238`, doc-comment only (the N-5 rule).
+
+**RV89 confirms** (`R/REVIEW_RV89/u4_g7_03/`), including whether `fd3cbebb42`'s CI-only commit needs no rerun.
+
+**I61's both-entry part 1 is cleared** to follow T9. Part 2 still needs a quiet host.
