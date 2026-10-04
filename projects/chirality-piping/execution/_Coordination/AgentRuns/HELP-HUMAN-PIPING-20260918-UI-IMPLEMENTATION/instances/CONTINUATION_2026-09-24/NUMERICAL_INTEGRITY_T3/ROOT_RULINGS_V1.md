@@ -8648,3 +8648,4 @@ Its notes are optional and recorded: N1, the receipt-only scope of `integral_rec
 **The readers are accepted when that check passes.**
 
 **Snapshot 07e with Python, committed as `b890ce6c30`.** ROOT's diff against 07d shows only additions (4 mutations, 1 must-pass entry), with nothing changed or removed. Totals: 15 cases, 263 mutations, 22 must-pass entries. ROOT's Python run gives 365 passed. The removed Python lines are the harness's `int()` indexing, replaced by the strict rule. I63 and I64 adopt 07e.
+[Correction, 2026-10-03: the one removed line in the Python **reader** is its G2 call (`_encoding` then `_normalize_integrals`). It is replaced by the same call with D34's −0 check between the two; ROOT checked the replacement. The harness's `int()` indexing was replaced separately, in the test file.]
