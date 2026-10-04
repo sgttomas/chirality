@@ -10440,3 +10440,18 @@ Then I65 reruns TEXT, regenerates the profile and the pinned record, and re-conf
 **Registration follows both.**
 
 **U6 post-U6f:** I66's part is committed as `6383e8e70e` (canonical receipt compare, case format v3 with five declared differences, the whole-file seam guard). ROOT's runs: result_export 168/168; Python carrier and schema tests 78/78; **the full 24-file sweep plus the schema, carrier and contract tests, 1,843 passed, 30 skipped, 0 failed.** I67's TS part (N-1 transport, v3) is in progress.
+
+## The post-U6f round complete; RV92 confirms (ROOT, 2026-10-04 UTC)
+
+**I67's part** is `R/I67/u6d_typescript_04/` (SHA256SUMS 26/26 OK; no machine paths). ROOT committed it as `b10ee5cf08` on `codex/piping-f2a-carriers-20261004`, on top of I66's `6383e8e70e`, and pushed it.
+
+**What it does:**
+- **N-1:** TS's `sourceContractTransport`, the twin of Rust's `for_source_metadata`, runs the header dispatch and then the reader's `validateRetainedPrecisionTransport`. RV92's 10 tampered probes are refused with Rust's codes, and an untampered transport passes, full and header-only.
+- **TS consumes case format v3** (20 cases, 5 declared entries with 20 forms) and confirms every `typescript` expectation I66 wrote.
+
+**ROOT's verification:**
+- The only product-code removal is a replaced import.
+- **ROOT's runs:** Vitest **3,494/3,494**, `tsc` clean.
+- **I67's evidence:** every other file's outcomes are identical; 123 of 123 mutants killed.
+
+**The post-U6f round is complete:** I66's `6383e8e70e` (the Python sweep 1,843 passed, 0 failed) and I67's `b10ee5cf08`. **RV92 confirms both,** covering S-1, N-1 and the declared N-2 to N-5, the v3 case file, and RV88's U6a N-3 guard. **U6 then merges into NUM.** A new U6d item for T6's notice: no product caller of a transported successor exists, and every TS consumer is a T6 surface that refuses first.
