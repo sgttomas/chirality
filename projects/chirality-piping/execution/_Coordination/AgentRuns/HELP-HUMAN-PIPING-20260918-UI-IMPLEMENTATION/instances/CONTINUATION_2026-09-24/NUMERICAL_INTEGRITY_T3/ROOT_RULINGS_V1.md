@@ -9511,3 +9511,15 @@ The next unused IDs are I67 and RV87.
 - **U4 → the grant-2 brief:** after N1, the G-B check that matters is `permitted_run`'s (RV85's SV18 kills its removal), and V07 is equivalent. Grant 2's committed permit-path test targets it.
 - **U1 → I65 G5, optional:** bind the permit to its invocation, and check linearity structurally, not by text.
 - **U3, U5, U6 and U7:** no action. The R-2 condition still holds.
+
+## U3 grant 1d (test-only) committed; held for grant 2's review (ROOT, 2026-10-04 UTC)
+
+**I61's grant 1d** is `R/I61/u3_facade_04/` (18 files OK; no machine paths). ROOT committed it on the facade branch, on top of `886bef131a`, and pushed it.
+- **T1:** the notice's `publish` is pinned to allocate nothing, by checking that capacity is unchanged; RV85's W01 and W02 are killed. `RECEIPT_ENCODING_DETAIL_MAX` is pinned to the longest token over all eleven `ReceiptCheck` values.
+- **U2:** unfired armed faults are handed back to the caller across the hop, including on a spawn failure.
+
+**ROOT read the diff.** Every `lib.rs` change is `#[cfg(test)]` or test-module code, so production code is unchanged. A production build is clean. PP `--lib` gave 499 passed, 1 failed (t13), 1 ignored. I61 killed 6 of 6 mutants.
+
+**It is held on the facade branch,** not merged. RV85 confirms T1 and U2 as their originator in grant 2's review, and 1d merges with grant 2. Nothing in NUM depends on it.
+
+**I61 is idle until U4 G5,** or until a U6 fan-out unit is assigned.
