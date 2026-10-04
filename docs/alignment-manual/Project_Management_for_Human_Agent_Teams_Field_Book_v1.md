@@ -79,7 +79,8 @@ HAND OFF TO 90%
     skeleton through the most coupled core first. Agreed contracts frozen
     under change control. Found relationships recorded where those who
     depend on them will see them: the group's work graph within a group,
-    a shared list every loop reads across groups. Register and Scope of
+    a shared list every loop reads across groups; read both before
+    declaring work ready. Register and Scope of
     Work updates where wording would otherwise mislead, decided by the
     human in batches under the departure rules. Effectiveness measured
     on delivery.
