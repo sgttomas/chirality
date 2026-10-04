@@ -10176,3 +10176,35 @@ Then I65 reruns TEXT, regenerates the profile and the pinned record, and re-conf
 - **N-4 and I65's decision 1:** the pinned in-build record is accepted, and G6 re-pins it per registered identity.
 - **N-6 and RV85 U1:** binding the permit to its invocation is **not required before registration.** The permit is linear: neither `Clone` nor `Copy`, created by `admit` from the invocation's own parse, and consumed by that invocation's `permitted_dispatch`, so cross-invocation reuse is not constructible. It stays a wider-F2a hardening.
 - **N-2, N-3 and N-5:** noted.
+
+## I66's U6 repair round committed; U6d merged into the carriers branch; TS follows the shared format (ROOT, 2026-10-04 UTC)
+
+**I66's repair round** is `R/I66/u6_repairs_01/` (SHA256SUMS 25/25 OK; no machine paths). ROOT committed it as `da274dd961` on `codex/piping-f2a-carriers-20261004`.
+
+**ROOT's verification:**
+- **The removed lines, read by ROOT:**
+  - Python's guards are reordered so the token guard runs on every legacy path.
+  - The removed Rust test assertions are re-expressed over wider forms: the real receipt, null, `{}` and a string, on base derivatives and raw sources.
+  - The old disclosure-text assertion now runs over all nine units.
+  - Nothing is dropped.
+- **ROOT's runs:** result_export **167/167** (164 unchanged); the 24-file sweep plus the schema, carrier and contract tests, **1,843 passed, 30 skipped, 0 failed**.
+- **The S-2 text** names the SI unit:
+  - `… absolute bound b = {b} {SI} (binary64 {bits}), below the relative accuracy floor; …`;
+  - `{SI}` maps m and mm to `m`, rad to `rad`, N and kN to `N`, N*m and kN*m to `N*m`, and Pa and MPa to `Pa`;
+  - `{b}` is Rust's `{:e}`.
+  
+  **`N*m` (the repository's own spelling) is accepted.**
+- **The shared carrier case file is now format v2:** 20 cases, plus a `declared_differences` section of exactly four ruled entries (I67-F1, I67-F2, F-U6b-2 and F5), with per-language expectations. Rust and Python consume it.
+- **Beyond D-U6-9:** the 0.1.0 wrapper also refuses token rows. Accepted; it is the same guard.
+
+**The merge.** ROOT merged `codex/piping-f2a-carriers-ts-20261004` (`968adb44fe`, U6d with its repair round) into the carriers branch as `52052ece61`, and pushed it. **The carriers branch now holds all of U6:** U6a, U6b, U6c, U6d and U6e, with their repairs.
+
+**ROOT's Vitest run on the merged head:** 3,442 passed and **7 failed**. All 7 are U6d's shared-parity tests, which read the v1 case format. They are the format pin, plus the six new parity cases on raw legacy 0.1.0 and preview-physics-1 fixtures. **This is expected,** pending I67's follow-up; nothing else fails.
+
+**I67's follow-up, in `WT/f2a-carriers` (I66 is idle there):**
+- the TS consumer adopts case format v2, including the six new cases;
+- TS reads its F1 and F2 expectations from `declared_differences`, replacing the TS-local pin;
+- TS disclosure text matches the S-2 wording and `{:e}` number format wherever TS emits that message;
+- RV91's N-1 tests: a 0.2.0 legacy shape, and a token on a later row.
+
+**Then:** RV88 confirms I66's repairs, RV91 confirms I67's follow-up, and U6f follows.
