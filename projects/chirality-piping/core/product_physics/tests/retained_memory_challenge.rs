@@ -15,8 +15,12 @@ use serde_json::{json, Value};
 use std::alloc::{GlobalAlloc, Layout, System};
 use std::sync::atomic::{AtomicUsize, Ordering};
 
-/// The profile's in-build W1 phase (requested + moving, without R), sparse and dense.
-const W1_PHASE_BYTES: [u64; 2] = [1_850_979_440, 1_870_689_888];
+/// The profile's in-build W1 phase (requested + moving, without R), sparse and dense, in the
+/// pinned record's build (the lib test `challenge_bounds_are_the_profile` checks it there).
+const W1_PHASE_BYTES: [u64; 2] = [1_855_295_186, 1_875_005_634];
+/// The profile's in-build maximum over every phase (E_mov,max, without R; W3 in both modes),
+/// the bound once a permit admits the W1 phases (a registered build, G6).
+const MAX_PHASE_BYTES: [u64; 2] = [3_507_808_260, 3_527_518_708];
 const CAP_BYTES: usize = 6 << 30;
 
 static CURRENT: AtomicUsize = AtomicUsize::new(0);
@@ -117,11 +121,14 @@ fn retained_direct_peak_is_within_the_profiles_ordinary_span() {
             println!("I65_G5_CHALLENGE_RUN {label} {mode:?} mechanics={} rows={} blocking={blocking:?}", output.envelope().status.mechanics,
                 output.envelope().results.len());
             let peak = PEAK.load(Ordering::SeqCst) - base;
-            assert!(output.successor().is_none(), "no permit exists");
+            // Without a permit the ordinary span runs (the W1 phase bounds it); with one (a
+            // registered build) the W1 phases run too, and the whole maximum bounds it.
+            let permitted = output.successor().is_some();
+            let bound = if permitted { MAX_PHASE_BYTES[m] } else { W1_PHASE_BYTES[m] };
             drop(output);
-            println!("I65_G5_CHALLENGE {label} {mode:?} peak_bytes={peak} w1_phase_bytes={} ratio={:.6}", W1_PHASE_BYTES[m],
-                peak as f64 / W1_PHASE_BYTES[m] as f64);
-            assert!(peak as u64 <= W1_PHASE_BYTES[m], "{label} {mode:?}: measured peak {peak} above the profile's W1 phase");
+            println!("I65_G5_CHALLENGE {label} {mode:?} permitted={permitted} peak_bytes={peak} bound_bytes={bound} ratio={:.6}",
+                peak as f64 / bound as f64);
+            assert!(peak as u64 <= bound, "{label} {mode:?}: measured peak {peak} above the profile's bound {bound}");
         }
     }
 }

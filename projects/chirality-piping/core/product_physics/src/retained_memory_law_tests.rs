@@ -634,7 +634,9 @@ fn law_order_reports_the_first_failing_clause() {
     assert_eq!(law_order(RetainedCaller::Direct, Ok(2), Ok(()), bound(Ok(7))), Ok(2));
     assert_eq!(AdmissionRefusal::Bound(BoundRefusal::Overflow).precondition().as_str(), "resource_admission");
     assert_eq!(AdmissionRefusal::Profile(ProfileStatus::Stale).clause(), Some(D1Clause::Build));
-    assert_eq!(cap_priced_maximum(PreviewSolverMode::SparseInteractive), Err(BoundRefusal::Unpriced), "fail-closed until priced");
+    // G6: every atom is priced, so the bound is the mode's in-build maximum; still no profile is
+    // registered, so D1.1 refuses first in every build (no_profile_or_permit_is_constructible).
+    assert_eq!(cap_priced_maximum(PreviewSolverMode::SparseInteractive).map(|b| b > 0), Ok(true));
 }
 
 #[test]
@@ -892,23 +894,35 @@ fn profile_in_build_record() {
         println!("I65_G5_ATOM {:?}\t{}\t{}\t{}", ATOM_BINDINGS[i], ATOM_NAMES[i], ATOM_VALUES[i], ATOM_ASSUMED[i]);
     }
     assert!(SPARSE.is_some() && DENSE.is_some());
-    // The printed record G6 uses (part2/IMPLEMENTATION_PART2.md §2; this build: rustc 1.97.1,
-    // aarch64-apple-darwin). Each phase's requested + moving bytes, without R. Any change to an
-    // atom's binding, a form, a combination or a phase changes it: regenerate the record with
-    // the profile, never one without the other.
-    const RECORD: [[u64; PHASES]; 2] = [
-        [1_850_979_440, 1_949_018_238, 3_493_720_906, 3_467_363_071, 2_121_274_320, 3_222_167_488, 1_742_905_402],
-        [1_870_689_888, 1_968_728_686, 3_513_431_354, 3_487_073_519, 2_140_984_768, 3_241_877_936, 1_762_615_850],
-    ];
-    for (m, phases) in [phases_sparse(&ATOM_VALUES), phases_dense(&ATOM_VALUES)].iter().enumerate() {
-        assert_eq!(phases.map(|(req, mov)| req.unwrap() + mov.unwrap()), RECORD[m], "mode {m}");
-    }
-    assert_eq!((SPARSE, DENSE), (Some((RECORD[0][2], 2)), Some((RECORD[1][2], 2))), "W3 is the maximum in both modes");
     assert_eq!(PHASE_NAMES.map(|n| n.split(' ').next().unwrap()), ["W1", "W2", "W3", "W4", "W5", "X1", "X2"]);
+    // The pinned record G6 qualifies (R/I65/u4_g6_01/QUALIFICATION.md §3): each phase's requested
+    // + moving bytes, without R, in the build whose identity is PINNED_RECORD_IDENTITY. It is
+    // asserted only in that build (ROOT's ruling on part 2's decision 1); another identity has
+    // its own layouts and prints a skip. Any change to a binding, form, combination or phase
+    // changes it: regenerate the record with the profile, never one without the other.
+    if super::COMPILED_IDENTITY != Some(PINNED_RECORD_IDENTITY) {
+        println!("I65_G6_RECORD_SKIP the compiled identity is not the pinned record's: {:?}", super::COMPILED_IDENTITY);
+        return;
+    }
+    for (m, phases) in [phases_sparse(&ATOM_VALUES), phases_dense(&ATOM_VALUES)].iter().enumerate() {
+        assert_eq!(phases.map(|(req, mov)| req.unwrap() + mov.unwrap()), PINNED_RECORD[m], "mode {m}");
+    }
+    assert_eq!((SPARSE, DENSE), (Some((PINNED_RECORD[0][2], 2)), Some((PINNED_RECORD[1][2], 2))), "W3 is the maximum in both modes");
 }
+/// The build identity of the pinned profile record (the qualified dev/test build of G6).
+pub(super) const PINNED_RECORD_IDENTITY: &str = "v1;rustc.release=1.97.1;rustc.commit=8bab26f4f68e0e26f0bb7960be334d5b520ea452;rustc.host=aarch64-apple-darwin;rustc.llvm=22.1.6;target=aarch64-apple-darwin;target.arch=aarch64;target.pointer_width=64;target.endian=little;target.os=macos;target.env=;panic=unwind;profile=debug;opt_level=0;debug_assertions=true;rustflags=;pkg=open_pipe_stress_product_physics@0.2.0";
+/// The pinned record (W1, W2, W3, W4, W5, X1, X2), sparse then dense, in that build.
+pub(super) const PINNED_RECORD: [[u64; 7]; 2] = [
+    [1_855_295_186, 1_963_105_592, 3_507_808_260, 3_481_450_425, 2_135_361_674, 3_255_462_986, 1_776_200_900],
+    [1_875_005_634, 1_982_816_040, 3_527_518_708, 3_501_160_873, 2_155_072_122, 3_275_173_434, 1_795_911_348],
+];
 
 #[test]
 fn challenge_bounds_are_the_profile() {
+    if COMPILED_IDENTITY != Some(PINNED_RECORD_IDENTITY) {
+        println!("I65_G6_RECORD_SKIP the challenge bounds are pinned to {PINNED_RECORD_IDENTITY}");
+        return;
+    }
     // The isolated challenge binary (tests/retained_memory_challenge.rs) holds the profile's
     // W1 phase as literals; they must equal the in-build evaluation.
     let text = include_str!("../tests/retained_memory_challenge.rs");
@@ -918,6 +932,35 @@ fn challenge_bounds_are_the_profile() {
     let sparse = profile::phases_sparse(&profile::ATOM_VALUES)[w1];
     let dense = profile::phases_dense(&profile::ATOM_VALUES)[w1];
     assert_eq!(digits, [sparse.0.unwrap() + sparse.1.unwrap(), dense.0.unwrap() + dense.1.unwrap()]);
+    let line = text.lines().find(|l| l.starts_with("const MAX_PHASE_BYTES: [u64; 2] = [")).unwrap();
+    let digits: Vec<u64> = line.split(['[', ']', ',']).filter_map(|t| t.trim().replace('_', "").parse().ok()).collect();
+    assert_eq!(digits, [profile::SPARSE.unwrap().0, profile::DENSE.unwrap().0]);
+}
+
+/// RV89 G5 part 2 S-3: `profile::maximum` takes every phase, X1 and X2 included. Each phase
+/// in turn is the largest; ties keep the earliest; an overflowed phase is no maximum at all.
+#[test]
+fn maximum_takes_every_phase() {
+    use profile::{maximum, PHASES};
+    for winner in 0..PHASES {
+        let mut phases = [(Some(100u64), Some(5u64)); PHASES];
+        phases[winner] = (Some(100), Some(6));
+        assert_eq!(maximum(&phases), Some((106, winner)), "phase {winner} largest");
+        // The moving part alone can decide it.
+        let mut phases = [(Some(100u64), Some(0u64)); PHASES];
+        phases[winner] = (Some(99), Some(2));
+        assert_eq!(maximum(&phases), Some((101, winner)), "phase {winner} by its moving part");
+    }
+    assert_eq!(maximum(&[(Some(7u64), Some(0u64)); PHASES]), Some((7, 0)), "a tie keeps the earliest phase");
+    for broken in 0..PHASES {
+        let mut phases = [(Some(1u64), Some(1u64)); PHASES];
+        phases[broken] = (None, Some(1));
+        assert_eq!(maximum(&phases), None, "phase {broken} overflowed in its requested part");
+        phases[broken] = (Some(1), None);
+        assert_eq!(maximum(&phases), None, "phase {broken} overflowed in its moving part");
+        phases[broken] = (Some(u64::MAX), Some(1));
+        assert_eq!(maximum(&phases), None, "phase {broken}'s sum overflowed");
+    }
 }
 
 #[test]
@@ -956,9 +999,10 @@ fn profile_laws_hold_in_this_build() {
     assert_eq!(text_atoms::ROW, 11_474);
     // Every atom is bound; the source-derived and estimate atoms are the recorded ones.
     let count = |b| profile::ATOM_BINDINGS.iter().filter(|x| **x == b).count();
-    assert_eq!((count(profile::Binding::SourceUpper), count(profile::Binding::Text), count(profile::Binding::Estimate)), (6, 6, profile::ESTIMATES));
-    assert_eq!(profile::ESTIMATES, 42, "G6 closes every Estimate before a profile can register");
-    assert_eq!(cap_priced_maximum(PreviewSolverMode::SparseInteractive), Err(BoundRefusal::Unpriced), "fail-closed while estimates are open");
+    assert_eq!((count(profile::Binding::SourceUpper), count(profile::Binding::Text), count(profile::Binding::Estimate)), (16, 6, 0));
+    assert_eq!(profile::ESTIMATES, 0, "G6 closed every Estimate");
+    assert_eq!(cap_priced_maximum(PreviewSolverMode::SparseInteractive), Ok(profile::SPARSE.unwrap().0), "priced in-build");
+    assert_eq!(cap_priced_maximum(PreviewSolverMode::DenseScrutiny), Ok(profile::DENSE.unwrap().0), "priced in-build");
     // The in-build maximum is within the 0.9 M margin rule in both modes (RR "U4 G3 verified").
     let r = RESERVED_STACK_BYTES as u64;
     for (bytes, _) in [profile::SPARSE.unwrap(), profile::DENSE.unwrap()] {
@@ -1086,4 +1130,75 @@ fn an_unreadable_reviewed_input_never_binds() {
     assert_eq!(identity_match(Some(build_identity::IDENTITY_UNAVAILABLE), [build_identity::IDENTITY_UNAVAILABLE].into_iter()),
         Err(ProfileStatus::Stale), "the identity's own unavailable value is Stale");
     assert!(COMPILED_REVIEWED_INPUTS.is_some_and(|text| !text.contains("unavailable")), "this build read every reviewed input");
+}
+
+// ---- G6: G-C declines W1 when the ordinary solve was not attempted ---------------
+
+/// D1 inputs whose ordinary route returns before attempting the case's solve (ROOT's G6
+/// ruling): an invalid document kind (validation), an invalid load category (the
+/// load-application findings, PP/lib.rs:3918), no supports (validation) and a lone spring
+/// support (the mechanism refusal before the attempt). Every one is inside D1.
+pub(super) fn not_attempted_examples() -> Vec<(&'static str, Value)> {
+    let mut doc = milestone();
+    doc["model"]["document_kind"] = json!("invalid-kind");
+    let mut category = milestone();
+    category["model"]["load_cases"][0]["primitive_loads"][0]["category"] = json!("not_a_category");
+    let mut unsupported = milestone();
+    unsupported["model"]["supports"] = json!([]);
+    let mut mechanism = milestone();
+    let spring = mechanism["model"]["supports"][1].clone();
+    mechanism["model"]["supports"] = json!([spring]);
+    vec![("document kind", doc), ("load category", category), ("no supports", unsupported), ("lone spring", mechanism)]
+}
+/// D1 inputs whose ordinary solve ran: the milestone (Sensitive), a 1e-300 spring whose
+/// attempt fails NumericallyUnresolved (a blocked envelope after the attempt), and the
+/// rejected_stress_range pair (solved Sensitive, then blocked by the legacy source-block
+/// finalization).
+pub(super) fn attempted_examples() -> Vec<(&'static str, Value)> {
+    let mut failed = milestone();
+    failed["model"]["supports"][1]["stiffness"]["value"]["value"] = json!(1e-300);
+    vec![
+        ("milestone", milestone()),
+        ("failed attempt", failed),
+        ("rejected_stress_range sparse", serde_json::from_str(include_str!(
+            "../../../fixtures/product_preview/source_blocks/rejected_stress_range/sparse_interactive.request.json")).unwrap()),
+        ("rejected_stress_range dense", serde_json::from_str(include_str!(
+            "../../../fixtures/product_preview/source_blocks/rejected_stress_range/dense_scrutiny.request.json")).unwrap()),
+    ]
+}
+#[test]
+fn g_c_declines_w1_when_the_ordinary_solve_was_not_attempted() {
+    let caps = phase_caps().complete;
+    assert_eq!(caps[COMPLETE_FACTS - 1], 0, "the bound is 0");
+    for (attempted, examples) in [(false, not_attempted_examples()), (true, attempted_examples())] {
+        for (label, raw) in examples {
+            for mode in MODES {
+                let (request, capture) = CapturedInvocation::parse(raw.clone(), mode).unwrap();
+                assert_eq!(assess(&capture, &request, Entry::Direct).law().domain, None, "{label}: inside D1");
+                let mut observer = crate::retained_product::ProductCapture::prepared_probe();
+                let ordinary = crate::run_linear_static_preview_observed(request, mode, Some(&capture), &mut crate::SourceRecoveryBudget::default(), Some(&mut observer));
+                assert_eq!(ordinary_solve_attempted(&observer), attempted, "{label} {mode:?}");
+                let o = complete_observations(&CompleteFacts { ordinary: &ordinary, capture: &observer });
+                let fact = o.iter().find(|x| x.fact == PhaseFact::OrdinarySolveNotAttempted).unwrap();
+                assert_eq!(fact.observed, u64::from(!attempted), "{label} {mode:?}");
+                let checked = check_phase(PhaseGate::Complete, &o, &caps);
+                if attempted {
+                    assert_eq!(checked, Ok(()), "{label} {mode:?}: a solve that ran, at any quality, proceeds to W1");
+                } else {
+                    assert_eq!(checked, Err(PhaseRefusal { gate: PhaseGate::Complete, fact: PhaseFact::OrdinarySolveNotAttempted, observed: 1, cap: 0 }), "{label} {mode:?}");
+                    assert_eq!(ordinary.status.mechanics, "MODEL_INCOMPLETE", "{label}: a blocked envelope");
+                }
+            }
+        }
+    }
+    // The predicate reads the observer, not the envelope: no seed, or a seed whose
+    // attempt outcome is unset, is not attempted.
+    let mut empty = crate::retained_product::ProductCapture::prepared_probe();
+    assert!(!ordinary_solve_attempted(&empty));
+    let raw = milestone();
+    let (request, capture) = CapturedInvocation::parse(raw, PreviewSolverMode::SparseInteractive).unwrap();
+    let _ = crate::run_linear_static_preview_observed(request, PreviewSolverMode::SparseInteractive, Some(&capture), &mut crate::SourceRecoveryBudget::default(), Some(&mut empty));
+    assert!(ordinary_solve_attempted(&empty));
+    empty.ordinary[0].initial = None;
+    assert!(!ordinary_solve_attempted(&empty), "a seed without an attempt outcome");
 }

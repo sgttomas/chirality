@@ -9,8 +9,9 @@ use super::exact_boundary::functionals::{
     AffineTerm, FunctionalDescriptor, QualifiedFunctionalProjection, RetainedFunctionalProjection,
 };
 use super::exact_boundary::{BlockWitness, ForceContribution, QualifiedProjection, Ratio, RetainedProjection};
-use super::retained::adaptive::{CasePrep, GroupPrep, PrecisionState, Shared, Solved};
-use super::retained::assemble::{BoundedCoefficients, MemberOperators};
+use super::retained::adaptive::{AttemptStop, BoundedExtremeTracker, CasePrep, GroupPrep, PrecisionState, Shared, Solved};
+use super::retained::assemble::{BoundedCoefficients, Contribution, MemberOperators};
+use super::retained::origins::ProductOwnerStamp;
 use super::retained::bound::{BlockBound, BlockCertificate};
 use super::retained::factor::PivotScreen;
 use super::retained::ledger::LedgerNet;
@@ -18,7 +19,9 @@ use super::retained::verify::{BlockNorms, BodyReport, VerificationReport, Verify
 use super::retained::wide::Wide;
 use super::retained::wide_sum::ExactWideSum;
 use super::retained_api::{
-    AttemptRecord, Binary64Outcome, BlockRefusal, BodyGeometry, BoundRefusal, Constraint, Kind, NodalLoad,
+    AttemptRecord, Binary64Outcome, BlockRefusal, BodyGeometry, BoundRefusal, BuildOrigin, CallOrigin, Constraint,
+    GroupOrigin, Kind, NodalLoad, PreparationConversion, PreparedAnnulus, ProductCertificateSpent, ProductMaximumValue,
+    ProductSummaryCoverage, RunOrigins, SectionPreparationWork, SlotSnapshot, SourceOrigin,
     ProductFinalRow, ProductMemberFacts, ProductRecipe, ProductRowSpec, ProductRowVerdict, PublishedRow,
     QuantityId, QuantityMeta, RecordedCase, RecordedInvocation, RetainedSolve, Spring, SpringKind,
     Station, StraightMember, SupportGroup,
@@ -73,10 +76,23 @@ sizes! {
     FLAGGED_WIDE_16 = (bool, f64, Wide<16>);
     OPTION_BOUND_REFUSAL = Option<BoundRefusal>; PRODUCT_FINAL_ROW = ProductFinalRow<'static>;
     FORMATION = Formation;
+    // G6: the Estimate atoms' kernel types (I65 u4_g6_01 QUALIFICATION.md §2).
+    LAZY_ROW = (ExactWideSum, ExactWideSum, u64, u64); TRACKER = BoundedExtremeTracker; ATTEMPT_STOP = AttemptStop;
+    KIND = Kind; EXPANSION_6 = [Expansion; 6]; CONTRIBUTION = Contribution; TAGGED_CONTRIBUTION = (usize, Contribution);
+    PRODUCT_OWNER_STAMP = ProductOwnerStamp; CALL_ORIGIN = CallOrigin; SOURCE_ORIGIN = SourceOrigin;
+    GROUP_ORIGIN = GroupOrigin; BUILD_ORIGIN = BuildOrigin; RUN_ORIGINS = RunOrigins; SLOT_SNAPSHOT = SlotSnapshot;
+    SECTION_PREPARATION_WORK = SectionPreparationWork; PREPARED_ANNULUS = PreparedAnnulus;
+    OPTION_PREPARATION_CONVERSION = Option<PreparationConversion>; PRODUCT_SUMMARY_COVERAGE = ProductSummaryCoverage;
+    PRODUCT_MAXIMUM_VALUE = ProductMaximumValue; PRODUCT_CERTIFICATE_SPENT = ProductCertificateSpent<'static>;
+    INDEXED_OUTCOME = (usize, Binary64Outcome);
 }
 /// The alignment of `load_ledger::Formation`, for the product's field-sum upper bound on the
 /// ledger's private `Option<FormationRecord>` slot (formation, an f64 and a bool).
 pub const FORMATION_ALIGN: usize = align_of::<Formation>();
+/// G6: alignments for the product's field-sum upper bounds over private kernel records.
+pub const TRACKER_ALIGN: usize = align_of::<BoundedExtremeTracker>();
+pub const ATTEMPT_STOP_ALIGN: usize = align_of::<AttemptStop>();
+pub const KIND_ALIGN: usize = align_of::<Kind>();
 /// The largest alignment among the exported kernel types (a witness for the
 /// hashbrown premise align(K) <= 16, BUILD.md §4).
 pub const MAX_ALIGN: usize = {

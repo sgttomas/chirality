@@ -1072,8 +1072,8 @@ pub(super) mod profile {
     /// longest-string atoms of the hash route (RV84 C-N1; RV87 N-3).
     pub(crate) const TEXT_D: u64 = 14734; // D
     pub(crate) const TEXT_D_ENV: u64 = 9361; // D_env
-    pub(crate) const TEXT_TAV_TEXT_MOVING: u64 = 2119206254; // TAV_text_moving
-    pub(crate) const TEXT_TAV_TEXT_REQUESTED: u64 = 2116606292; // TAV_text_requested
+    pub(crate) const TEXT_TAV_TEXT_MOVING: u64 = 2152502008; // TAV_text_moving
+    pub(crate) const TEXT_TAV_TEXT_REQUESTED: u64 = 2149902046; // TAV_text_requested
     pub(crate) const TEXT_TEXT_AUDIT_ERROR: u64 = 16384; // Text(audit_error)
     pub(crate) const TEXT_TEXT_DIAG_ENV: u64 = 68720236; // Text(diag_env)
     pub(crate) const TEXT_TEXT_DIAG_TOTAL: u64 = 94906464; // Text(diag_total)
@@ -1342,8 +1342,8 @@ pub(super) mod profile {
         Binding::InBuild,
         Binding::SourceUpper,
         Binding::InBuild,
-        Binding::Estimate,
-        Binding::Estimate,
+        Binding::SourceUpper,
+        Binding::SourceUpper,
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
@@ -1380,20 +1380,6 @@ pub(super) mod profile {
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
-        Binding::Estimate,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::Estimate,
-        Binding::InBuild,
-        Binding::Estimate,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::Estimate,
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
@@ -1409,9 +1395,6 @@ pub(super) mod profile {
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
-        Binding::Estimate,
-        Binding::InBuild,
-        Binding::Estimate,
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
@@ -1419,47 +1402,12 @@ pub(super) mod profile {
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
-        Binding::Estimate,
-        Binding::Estimate,
-        Binding::InBuild,
-        Binding::Estimate,
-        Binding::Estimate,
-        Binding::Estimate,
-        Binding::SourceUpper,
-        Binding::InBuild,
-        Binding::Estimate,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::Estimate,
-        Binding::Estimate,
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
-        Binding::Estimate,
-        Binding::Estimate,
-        Binding::Estimate,
-        Binding::Estimate,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::Estimate,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::Estimate,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::Estimate,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::Estimate,
-        Binding::Estimate,
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
@@ -1472,52 +1420,14 @@ pub(super) mod profile {
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
-        Binding::Estimate,
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::Estimate,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::Estimate,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::Estimate,
-        Binding::SourceUpper,
-        Binding::Estimate,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::Estimate,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::Estimate,
         Binding::InBuild,
         Binding::InBuild,
         Binding::SourceUpper,
-        Binding::Estimate,
-        Binding::Estimate,
+        Binding::InBuild,
+        Binding::SourceUpper,
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
@@ -1528,7 +1438,17 @@ pub(super) mod profile {
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
-        Binding::Estimate,
+        Binding::InBuild,
+        Binding::SourceUpper,
+        Binding::InBuild,
+        Binding::SourceUpper,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::SourceUpper,
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
@@ -1536,24 +1456,104 @@ pub(super) mod profile {
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
-        Binding::Estimate,
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
-        Binding::Estimate,
         Binding::InBuild,
-        Binding::Estimate,
-        Binding::Estimate,
-        Binding::InBuild,
-        Binding::Estimate,
-        Binding::Estimate,
+        Binding::SourceUpper,
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
-        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::SourceUpper,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::SourceUpper,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::SourceUpper,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::SourceUpper,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::SourceUpper,
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
@@ -1589,8 +1589,8 @@ pub(super) mod profile {
         (btree_node_upper(size_of::<String>(), align_of::<String>(), size_of::<crate::ResultItem>(), align_of::<crate::ResultItem>())) as u64, // Node(String,ResultItem) (BUILD.md §4: max(Leaf_up, Internal_up) at the in-build size and alignment of K and V)
         (btree_node_upper(size_of::<String>(), align_of::<String>(), up(size_of::<String>(), max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<&'static str>()), align_of::<Option<String>>()), align_of::<Option<&'static str>>()), align_of::<Vec<String>>())) + up(size_of::<&'static str>(), max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<&'static str>()), align_of::<Option<String>>()), align_of::<Option<&'static str>>()), align_of::<Vec<String>>())) + up(size_of::<Option<String>>(), max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<&'static str>()), align_of::<Option<String>>()), align_of::<Option<&'static str>>()), align_of::<Vec<String>>())) + up(size_of::<Option<&'static str>>(), max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<&'static str>()), align_of::<Option<String>>()), align_of::<Option<&'static str>>()), align_of::<Vec<String>>())) + up(size_of::<Vec<String>>(), max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<&'static str>()), align_of::<Option<String>>()), align_of::<Option<&'static str>>()), align_of::<Vec<String>>())), max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<&'static str>()), align_of::<Option<String>>()), align_of::<Option<&'static str>>()), align_of::<Vec<String>>()))) as u64, // Node(String,RowTreatment) (BUILD.md §4 node at K = String and V = RowTreatment's field-sum upper (monotone in the value size))
         (btree_node_upper(size_of::<String>(), align_of::<String>(), size_of::<Value>(), align_of::<Value>())) as u64, // Node(String,Value) (BUILD.md §4: max(Leaf_up, Internal_up) at the in-build size and alignment of K and V)
-        512, // Node(TrackerKey,()): ESTIMATE (the kernel stop rule's tracker key set (design record P3): G6 names the key type)
-        4096, // Node(TrackerKey,Tracker): ESTIMATE (the kernel stop rule's tracker map (design record P3): G6 names the key and value types)
+        (btree_node_upper((up(1, max_usize(4, fkr::KIND_ALIGN)) + up(4, max_usize(4, fkr::KIND_ALIGN)) + up(fkr::KIND, max_usize(4, fkr::KIND_ALIGN))), max_usize(4, fkr::KIND_ALIGN), 0, 1)) as u64, // Node(TrackerKey,()) (TrackerSet.holding: BTreeSet<(RuleTest, u32, Kind)>)
+        (btree_node_upper((up(1, max_usize(4, fkr::KIND_ALIGN)) + up(4, max_usize(4, fkr::KIND_ALIGN)) + up(fkr::KIND, max_usize(4, fkr::KIND_ALIGN))), max_usize(4, fkr::KIND_ALIGN), fkr::TRACKER, fkr::TRACKER_ALIGN)) as u64, // Node(TrackerKey,Tracker) (TrackerSet.trackers: BTreeMap<(RuleTest, u32, Kind), BoundedExtremeTracker>; RuleTest (private, fieldless) <= 1 byte)
         (btree_node_upper(size_of::<usize>(), align_of::<usize>(), size_of::<()>(), align_of::<()>())) as u64, // Node(usize,()) (BUILD.md §4: max(Leaf_up, Internal_up) at the in-build size and alignment of K and V)
         (btree_node_upper(size_of::<usize>(), align_of::<usize>(), size_of::<crate::ResultItem>(), align_of::<crate::ResultItem>())) as u64, // Node(usize,ResultItem) (BUILD.md §4: max(Leaf_up, Internal_up) at the in-build size and alignment of K and V)
         (btree_node_upper(size_of::<usize>(), align_of::<usize>(), size_of::<String>(), align_of::<String>())) as u64, // Node(usize,String) (BUILD.md §4: max(Leaf_up, Internal_up) at the in-build size and alignment of K and V)
@@ -1627,20 +1627,20 @@ pub(super) mod profile {
         (fkr::INDEXED_ACCUMULATOR) as u64, // s((usize,ExactAccumulator,bool)) (kernel export structural::retained_resource)
         (fkr::INDEXED_LEDGER_NET) as u64, // s((usize,LedgerNet)) (kernel export structural::retained_resource)
         (fkr::INDEXED_PUBLISHED_VALUE) as u64, // s((usize,PublishedValue)) (kernel export structural::retained_resource)
-        32, // s((usize,VecPair)): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<(usize, Vec<(f64, f64)>)>()) as u64, // s((usize,VecPair)) (CasePrep.prescribed: Vec<(usize, Vec<(f64, f64)>)> (adaptive.rs:926))
         (size_of::<(usize, [f64; 3], usize, [f64; 3])>()) as u64, // s((usize,[f64;3],usize,[f64;3]))
         (size_of::<(usize, f64)>()) as u64, // s((usize,f64))
         (size_of::<(usize, f64, f64)>()) as u64, // s((usize,f64,f64))
         (size_of::<(usize, usize)>()) as u64, // s((usize,usize))
         (size_of::<(usize, usize, open_pipe_stress_frame_kernel::Matrix12)>()) as u64, // s((usize,usize,Matrix12))
         (size_of::<(usize, usize, bool)>()) as u64, // s((usize,usize,bool))
-        512, // s(AdapterSnapshot): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<crate::retained_receipt::PrivateAdapterSnapshot>()) as u64, // s(AdapterSnapshot) (PreparedTrace.adapter: PrivateAdapterSnapshot)
         (fkr::AFFINE_TERM) as u64, // s(AffineTerm) (kernel export structural::retained_resource)
-        32, // s(AliasE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<crate::LocatedQuantity>()) as u64, // s(AliasE) (the two alias LocatedQuantity values (their strings are B(P_final*RID)))
         (size_of::<open_pipe_stress_stress_recovery::AnalysisStatus>()) as u64, // s(AnalysisStatus)
         (2 * size_of::<usize>() + fkr::CASE_PREP) as u64, // s(ArcCasePrep) (Arc<CasePrep>'s allocation: two counters and the value)
         (2 * size_of::<usize>() + fkr::GROUP_PREP) as u64, // s(ArcGroupPrep) (Arc<GroupPrep>'s allocation: two counters and the value)
-        512, // s(ArcPrepared): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (2 * size_of::<usize>() + fkr::PRODUCT_OWNER_STAMP) as u64, // s(ArcPrepared) (Arc<ProofAnchor{owner: ProductOwnerStamp}>: two counters and the value)
         (fkr::ATTEMPT_RECORD) as u64, // s(AttemptRecord) (kernel export structural::retained_resource)
         (size_of::<crate::Authored<Vec<crate::ExpansionLawInput>>>()) as u64, // s(Authored<Vec<ExpansionLawInput>>)
         (size_of::<crate::retained_product::BasisRecord>()) as u64, // s(BasisRecord)
@@ -1656,9 +1656,9 @@ pub(super) mod profile {
         (fkr::BLOCK_NORMS_8) as u64, // s(BlockNorms<8>) (kernel export structural::retained_resource)
         (fkr::BLOCK_REFUSAL) as u64, // s(BlockRefusal) (kernel export structural::retained_resource)
         (fkr::BLOCK_WITNESS) as u64, // s(BlockWitness) (kernel export structural::retained_resource)
-        32, // s(BodyCoverage): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (2 * fkr::PRODUCT_SUMMARY_COVERAGE + size_of::<[f64; 4]>()) as u64, // s(BodyCoverage) (per body: the kernel's and PP's ProductSummaryCoverage and row_scales' scales [f64; 4])
         (fkr::BODY_GEOMETRY) as u64, // s(BodyGeometry) (kernel export structural::retained_resource)
-        56, // s(BodyMapE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (2 * size_of::<Vec<u32>>() + size_of::<u32>()) as u64, // s(BodyMapE) (C2 body map entry (two u32 child lists and an id): no distinct owner at this basis (source.body_of_node is in PrimitiveSource; body_nodes() temporaries are covered by C_u32(n,b)); the entry upper is kept)
         (fkr::BODY_REPORT_16) as u64, // s(BodyReport<16>) (kernel export structural::retained_resource)
         (fkr::BODY_REPORT_4) as u64, // s(BodyReport<4>) (kernel export structural::retained_resource)
         (fkr::BODY_REPORT_8) as u64, // s(BodyReport<8>) (kernel export structural::retained_resource)
@@ -1666,47 +1666,47 @@ pub(super) mod profile {
         (fkr::BOUNDED_COEFFICIENTS_4) as u64, // s(BoundedCoefficients<4>) (kernel export structural::retained_resource)
         (fkr::BOUNDED_COEFFICIENTS_8) as u64, // s(BoundedCoefficients<8>) (kernel export structural::retained_resource)
         (size_of::<crate::retained_product::CaptureError>()) as u64, // s(CaptureError)
-        40, // s(ConstraintMapE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
-        40, // s(ContributionE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (max_usize(fkr::SOURCE_CONSTRAINT, size_of::<(String, usize)>())) as u64, // s(ConstraintMapE) (C2 constraint map: the kernel Constraint or a support identity entry, the larger)
+        (fkr::CONTRIBUTION) as u64, // s(ContributionE) (assemble.rs: Structure.items Vec<Contribution>)
         (fkr::CONTRIBUTION_ROUNDING) as u64, // s(ContributionRounding) (kernel export structural::retained_resource)
-        48, // s(ConversionE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
-        64, // s(ConversionEvent): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
-        32, // s(CoverageFact): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (fkr::INDEXED_OUTCOME) as u64, // s(ConversionE) (the projection conversion record (usize, Binary64Outcome): no second owner; a double count)
+        (fkr::OPTION_PREPARATION_CONVERSION) as u64, // s(ConversionEvent) (the 9 inline conversion outcomes per member (inside SectionPreparationWork): a double count)
+        (size_of::<[f64; 3]>()) as u64, // s(CoverageFact) (coverage_facts' coordinates Vec<[f64; 3]> (<= n))
         (up(size_of::<crate::ResultItem>(), max_usize(max_usize(align_of::<crate::ResultItem>(), align_of::<&'static str>()), align_of::<Vec<String>>())) + up(size_of::<&'static str>(), max_usize(max_usize(align_of::<crate::ResultItem>(), align_of::<&'static str>()), align_of::<Vec<String>>())) + up(size_of::<Vec<String>>(), max_usize(max_usize(align_of::<crate::ResultItem>(), align_of::<&'static str>()), align_of::<Vec<String>>()))) as u64, // s(Derived) (source_receipt/rows.rs:324 Derived {row: ResultItem, recipe: &str, inputs: Vec<String>}: field-sum upper)
         (size_of::<crate::Diagnostic>()) as u64, // s(Diagnostic)
-        304, // s(EnclosureE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (2 * fkr::WIDE_16) as u64, // s(EnclosureE) (Enclosure {lo, hi: Wide<16>} (product_certificate.rs:16): LaneReadouts.rows)
         (fkr::EXACT_ACCUMULATOR) as u64, // s(ExactAccumulator) (kernel export structural::retained_resource)
         (fkr::EXACT_WIDE_SUM) as u64, // s(ExactWideSum) (kernel export structural::retained_resource)
         (fkr::EXPANSION) as u64, // s(Expansion) (kernel export structural::retained_resource)
-        144, // s(Expansion6): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
-        64, // s(FinalRowConversion): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (fkr::EXPANSION_6) as u64, // s(Expansion6) (rigid_body.rs:210: [Expansion; 6] per node)
+        (fkr::INDEXED_OUTCOME) as u64, // s(FinalRowConversion) (the final-row conversion record (usize, Binary64Outcome): a double count of projection_outcomes)
         (size_of::<crate::source_receipt::FinalizedSourceBlockCase>()) as u64, // s(FinalizedSourceBlockCase)
         (fkr::FORCE_CONTRIBUTION) as u64, // s(ForceContribution) (kernel export structural::retained_resource)
         (fkr::FORCE_TERM) as u64, // s(ForceTerm) (kernel export structural::retained_resource)
         (size_of::<open_pipe_stress_frame_kernel::FrameElement>()) as u64, // s(FrameElement)
         (size_of::<open_pipe_stress_frame_kernel::FrameNode>()) as u64, // s(FrameNode)
         (fkr::FUNCTIONAL_DESCRIPTOR) as u64, // s(FunctionalDescriptor) (kernel export structural::retained_resource)
-        32, // s(IntervalE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
-        256, // s(LaneTerminal): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
-        64, // s(LawE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
-        2232, // s(LazyE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (2 * fkr::WIDE_16) as u64, // s(IntervalE) (run_case's k: Vec<Enclosure> (Q); the second Q term is slack)
+        (fkr::PRODUCT_CERTIFICATE_SPENT) as u64, // s(LaneTerminal) (the lanes' terminal work (Option<ResidualWork> x2 inline in ProductCertificateSpent): the whole record, per lane)
+        (size_of::<&'static open_pipe_stress_frame_kernel::structural::retained_api::StraightMember>() + 3 * size_of::<f64>() + 9 * size_of::<f64>() + size_of::<u64>()) as u64, // s(LawE) (bridge::ProposedMemberLaw {&StraightMember, D, t, MaterialOperands (<= 9 f64 + tag), z} by field sum)
+        (fkr::LAZY_ROW) as u64, // s(LazyE) (BoundedExtremeTracker.lazy: (ExactWideSum, ExactWideSum, u64, u64))
         (size_of::<open_pipe_stress_linear_supports::LinearSupport>()) as u64, // s(LinearSupport)
         (fkr::LOAD_FIDELITY_ROW) as u64, // s(LoadFidelityRow) (kernel export structural::retained_resource)
-        96, // s(MaterialDescriptor): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (max_usize(size_of::<crate::retained_product::MaterialSelection>(), size_of::<(String, f64, f64)>())) as u64, // s(MaterialDescriptor) (ProductCapture.selections / materials, the larger)
         (size_of::<crate::MaterialInput>()) as u64, // s(MaterialInput)
         (size_of::<crate::retained_product::MaterialSelection>()) as u64, // s(MaterialSelection)
-        128, // s(MaximumE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<(usize, u32)>() + fkr::PRODUCT_MAXIMUM_VALUE + 2 * up(8, max_usize(8, align_of::<serde_json::Number>())) + up(4, max_usize(8, align_of::<serde_json::Number>())) + up(8 * size_of::<serde_json::Number>(), max_usize(8, align_of::<serde_json::Number>())) + size_of::<bool>()) as u64, // s(MaximumE) (per member: the kernel maxima slot (usize, u32), PP's ProductMaximumValue output, PP's PreparedMaximumPatch {usize, usize, u32, [Number; 8]} (field sum) and the completion flag)
         (size_of::<crate::MechanicsEnvelope>()) as u64, // s(MechanicsEnvelope)
         (size_of::<crate::retained_product::MemberIdentity>()) as u64, // s(MemberIdentity)
-        64, // s(MemberMapE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<crate::retained_product::MemberIdentity>()) as u64, // s(MemberMapE) (C2 member map = ProductCapture.members (MemberIdentity); also in T11.3)
         (fkr::MEMBER_OPERATORS_16) as u64, // s(MemberOperators<16>) (kernel export structural::retained_resource)
         (fkr::MEMBER_OPERATORS_4) as u64, // s(MemberOperators<4>) (kernel export structural::retained_resource)
         (fkr::MEMBER_OPERATORS_8) as u64, // s(MemberOperators<8>) (kernel export structural::retained_resource)
         (size_of::<crate::preview_physics::MemberRecord>()) as u64, // s(MemberRecord)
         (size_of::<crate::source_recovery::MemberRecovery>()) as u64, // s(MemberRecovery)
         (size_of::<open_pipe_stress_primitive_loads::NodalLoadContribution>()) as u64, // s(NodalLoadContribution)
-        48, // s(NodalMapE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
-        40, // s(NodeMapE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<crate::retained_product::TermIdentity>()) as u64, // s(NodalMapE) (C2 nodal-load map = ProductCapture.terms (TermIdentity); also in T11.3)
+        (size_of::<(String, [f64; 3])>()) as u64, // s(NodeMapE) (C2 node map = ProductCapture.nodes (String, [f64; 3]); also priced in T11.1)
         (open_pipe_stress_stress_recovery::elastic_extrema::NODE_STRIDE) as u64, // s(Node_SR) (SR export elastic_extrema::NODE_STRIDE)
         (size_of::<crate::retained_product::OperationalSpent>()) as u64, // s(OperationalSpent)
         (fkr::OPTION_BOUND_REFUSAL) as u64, // s(Option<BoundRefusal>) (kernel export structural::retained_resource)
@@ -1719,14 +1719,14 @@ pub(super) mod profile {
         (size_of::<Option<i32>>()) as u64, // s(Option<i32>)
         (size_of::<Option<usize>>()) as u64, // s(Option<usize>)
         (size_of::<crate::retained_product::OrdinarySeed>()) as u64, // s(OrdinarySeed)
-        16, // s(Pair): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<(f64, f64)>()) as u64, // s(Pair) (the prescribed pairs (f64, f64) (adaptive.rs:926))
         (fkr::PIVOT_EVIDENCE) as u64, // s(PivotEvidence) (kernel export structural::retained_resource)
         (fkr::PIVOT_SCREEN_16) as u64, // s(PivotScreen<16>) (kernel export structural::retained_resource)
         (fkr::PIVOT_SCREEN_4) as u64, // s(PivotScreen<4>) (kernel export structural::retained_resource)
         (fkr::PIVOT_SCREEN_8) as u64, // s(PivotScreen<8>) (kernel export structural::retained_resource)
         (fkr::PRECISION_STATE) as u64, // s(PrecisionState) (kernel export structural::retained_resource)
         (size_of::<crate::retained_receipt::PreparedAttemptView<'static>>()) as u64, // s(PreparedAttemptView)
-        256, // s(PreparedMemberEvent): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<crate::retained_receipt::PreparationEntry>() + size_of::<crate::retained_product::PreparedAssociation>() + fkr::PREPARED_ANNULUS + fkr::SECTION_PREPARATION_WORK) as u64, // s(PreparedMemberEvent) (per member: trace.members PreparationEntry, associations, preparations PreparedAnnulus, preparation_work SectionPreparationWork)
         (size_of::<crate::PreviewLoadCase>()) as u64, // s(PreviewLoadCase)
         (size_of::<crate::PreviewNode>()) as u64, // s(PreviewNode)
         (size_of::<crate::PreviewPipe>()) as u64, // s(PreviewPipe)
@@ -1735,12 +1735,12 @@ pub(super) mod profile {
         (size_of::<crate::PreviewPrimitiveLoad>()) as u64, // s(PrimitiveLoadInput)
         (fkr::PRODUCT_MEMBER_FACTS) as u64, // s(ProductMemberFacts) (kernel export structural::retained_resource)
         (fkr::PRODUCT_RECIPE) as u64, // s(ProductRecipe) (kernel export structural::retained_resource)
-        96, // s(ProductRow): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (fkr::PRODUCT_FINAL_ROW + fkr::PRODUCT_ROW_VERDICT) as u64, // s(ProductRow) (per final row: the descriptor ProductFinalRow and PP's verdict copy)
         (fkr::PRODUCT_ROW_SPEC) as u64, // s(ProductRowSpec) (kernel export structural::retained_resource)
         (fkr::PRODUCT_ROW_VERDICT) as u64, // s(ProductRowVerdict) (kernel export structural::retained_resource)
-        32, // s(ProductValue): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<f64>() + size_of::<bool>()) as u64, // s(ProductValue) (per final row: the values f64 and (21m <= P_final) derivative_coverage bools)
         (up(size_of::<String>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>())) + up(size_of::<String>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>())) + up(size_of::<String>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>())) + up(size_of::<&'static str>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>())) + up(size_of::<f64>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>())) + up(size_of::<String>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>())) + up(size_of::<&'static str>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>())) + up(size_of::<[f64; 2]>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>())) + up(size_of::<f64>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>())) + up(size_of::<f64>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>())) + up(size_of::<f64>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>())) + up(size_of::<&'static str>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>()))) as u64, // s(Projection) (source_receipt.rs:582 Projection {4 String, 3 &str, 4 f64, [f64; 2]}: field-sum upper)
-        64, // s(ProjectionOutcome): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (fkr::INDEXED_OUTCOME) as u64, // s(ProjectionOutcome) (ProductCertificateSpent.projection_outcomes: Vec<(usize, Binary64Outcome)>)
         (fkr::PUBLISHED_ROW) as u64, // s(PublishedRow) (kernel export structural::retained_resource)
         (fkr::PUBLISHED_VALUE) as u64, // s(PublishedValue) (kernel export structural::retained_resource)
         (size_of::<open_pipe_stress_stress_recovery::elastic_extrema::QuadraticStressSpan>()) as u64, // s(QuadraticStressSpan)
@@ -1752,19 +1752,19 @@ pub(super) mod profile {
         (fkr::RECORDED_CASE) as u64, // s(RecordedCase) (kernel export structural::retained_resource)
         (fkr::RECORDED_INVOCATION) as u64, // s(RecordedInvocation) (kernel export structural::retained_resource)
         (size_of::<crate::formation_guard::RecoveryRecord>()) as u64, // s(RecoveryRecord)
-        128, // s(RegistryE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (fkr::CALL_ORIGIN + fkr::SOURCE_ORIGIN + fkr::GROUP_ORIGIN + fkr::BUILD_ORIGIN + fkr::RUN_ORIGINS + 3 * size_of::<usize>() + fkr::SLOT_SNAPSHOT) as u64, // s(RegistryE) (OriginStore's six registries (origins.rs:290-297), each <= 8 entries for one case: one entry of each, SelectedOrigin {Arc, usize, usize, SlotSnapshot} by field sum)
         (fkr::RESIDUAL_ROW) as u64, // s(ResidualRow) (kernel export structural::retained_resource)
         (size_of::<crate::ResultBasisRef>()) as u64, // s(ResultBasisRef)
         (size_of::<crate::ResultItem>()) as u64, // s(ResultItem)
         (fkr::RETAINED_FUNCTIONAL_PROJECTION) as u64, // s(RetainedFunctionalProjection) (kernel export structural::retained_resource)
         (fkr::RETAINED_PROJECTION) as u64, // s(RetainedProjection) (kernel export structural::retained_resource)
         (fkr::RETAINED_SOLVE) as u64, // s(RetainedSolve) (kernel export structural::retained_resource)
-        48, // s(Row6): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<[f64; 6]>()) as u64, // s(Row6) (rigid_body.rs: Vec<[f64; 6]> rows and motions)
         (fkr::PRODUCT_FINAL_ROW) as u64, // s(RowBinding) (bind_rows' element (retained_product.rs:1742): the kernel's ProductFinalRow, exported by structural::retained_resource)
         (size_of::<open_pipe_stress_result_export::retained_precision::RowClassification>()) as u64, // s(RowClassification)
         (up(size_of::<String>(), max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<&'static str>()), align_of::<Option<String>>()), align_of::<Option<&'static str>>()), align_of::<Vec<String>>())) + up(size_of::<&'static str>(), max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<&'static str>()), align_of::<Option<String>>()), align_of::<Option<&'static str>>()), align_of::<Vec<String>>())) + up(size_of::<Option<String>>(), max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<&'static str>()), align_of::<Option<String>>()), align_of::<Option<&'static str>>()), align_of::<Vec<String>>())) + up(size_of::<Option<&'static str>>(), max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<&'static str>()), align_of::<Option<String>>()), align_of::<Option<&'static str>>()), align_of::<Vec<String>>())) + up(size_of::<Vec<String>>(), max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<&'static str>()), align_of::<Option<String>>()), align_of::<Option<&'static str>>()), align_of::<Vec<String>>()))) as u64, // s(RowTreatment) (source_receipt.rs:597 RowTreatment {result_id: String, treatment: &str, projection_id: Option<String>, recipe_id: Option<&str>, input_result_ids: Vec<String>}: field-sum upper)
-        32, // s(RunRow): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
-        64, // s(SectionMapE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<bool>()) as u64, // s(RunRow) (row_scales' native_coverage Vec<bool> (Q))
+        (fkr::PRODUCT_MEMBER_FACTS) as u64, // s(SectionMapE) (C2 section map = ProductCapture.facts (ProductMemberFacts); also in T11.3)
         (fkr::SHARED_16_16) as u64, // s(Shared<16>) (kernel export structural::retained_resource)
         (max_usize(fkr::SHARED_4_4, fkr::SHARED_4_8)) as u64, // s(Shared<4>) (the two L = 4 instantiations, Shared<4,4> and Shared<4,8>)
         (fkr::SHARED_8_16) as u64, // s(Shared<8>) (kernel export structural::retained_resource)
@@ -1775,7 +1775,7 @@ pub(super) mod profile {
         (size_of::<crate::source_recovery::SpringAction>()) as u64, // s(SpringAction)
         (size_of::<open_pipe_stress_linear_supports::SpringEntry>()) as u64, // s(SpringEntry)
         (size_of::<crate::retained_product::SpringIdentity>()) as u64, // s(SpringIdentity)
-        48, // s(SpringMapE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<crate::retained_product::SpringIdentity>()) as u64, // s(SpringMapE) (C2 spring map = ProductCapture.spring_map (SpringIdentity); also in T11.3)
         (fkr::SOURCE_CONSTRAINT) as u64, // s(SrcConstraint) (kernel export structural::retained_resource)
         (fkr::SOURCE_COORD) as u64, // s(SrcCoord) (kernel export structural::retained_resource)
         (fkr::SOURCE_MEMBER) as u64, // s(SrcMember) (kernel export structural::retained_resource)
@@ -1783,24 +1783,24 @@ pub(super) mod profile {
         (fkr::SOURCE_SPRING) as u64, // s(SrcSpring) (kernel export structural::retained_resource)
         (fkr::SOURCE_STATION) as u64, // s(SrcStation) (kernel export structural::retained_resource)
         (fkr::SOURCE_SUPPORT) as u64, // s(SrcSupport) (kernel export structural::retained_resource)
-        32, // s(StationMapE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (fkr::SOURCE_STATION) as u64, // s(StationMapE) (C2 station map: the kernel Station (SourceParts.stations))
         (size_of::<crate::StationResultants>()) as u64, // s(StationResultants)
         (fkr::STIFFNESS_CONTRIBUTION) as u64, // s(StiffnessContribution) (kernel export structural::retained_resource)
         (size_of::<open_pipe_stress_straight_pipe::StraightPipeElement>()) as u64, // s(StraightPipeElement)
         (size_of::<open_pipe_stress_stress_recovery::StressFinding>()) as u64, // s(StressFinding)
         (size_of::<String>()) as u64, // s(String)
         (size_of::<crate::source_recovery::SupportActions>()) as u64, // s(SupportActions)
-        64, // s(SupportCoverage): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (6 * size_of::<bool>()) as u64, // s(SupportCoverage) (row_scales' support_coverage Vec<bool> (6g))
         (size_of::<open_pipe_stress_linear_supports::SupportFinding>()) as u64, // s(SupportFinding)
-        64, // s(SupportMapE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
-        80, // s(SupportVector): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<(String, usize)>() + size_of::<[bool; 6]>()) as u64, // s(SupportMapE) (C2 support map = ProductCapture.supports (String, usize) and support_fixed [bool; 6]; also in T11.3)
+        (size_of::<(String, [f64; 6])>()) as u64, // s(SupportVector) (CaseRecord.support_vectors: Vec<(String, [f64; 6])> (preview_physics.rs:170))
         (size_of::<open_pipe_stress_sparse_direct::SymmetricMatrixEntry>()) as u64, // s(SymmetricMatrixEntry)
-        48, // s(TableE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
-        8, // s(Tag): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        ((up(8, max_usize(8, fkr::ATTEMPT_STOP_ALIGN)) + (up(8, max_usize(8, fkr::ATTEMPT_STOP_ALIGN)) + up(fkr::ATTEMPT_STOP, max_usize(8, fkr::ATTEMPT_STOP_ALIGN)) + up(1, max_usize(8, fkr::ATTEMPT_STOP_ALIGN))))) as u64, // s(TableE) (BoundedExtremeTracker.table: (u64, Evaluated); Evaluated (private) <= tag + seq u64 + AttemptStop by field sum)
+        (fkr::TAGGED_CONTRIBUTION) as u64, // s(Tag) (assemble.rs: tagged Vec<(usize, Contribution)>)
         (size_of::<crate::MaterialTemperaturePointInput>()) as u64, // s(TemperaturePoint)
         (size_of::<crate::retained_product::TermIdentity>()) as u64, // s(TermIdentity)
         (size_of::<Option<std::thread::Result<Option<Result<crate::RetainedPreviewOutput, String>>>>>()) as u64, // s(ThreadPacketOutput)
-        64, // s(TrackerE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (fkr::LAZY_ROW + 3 * (up(8, max_usize(8, fkr::ATTEMPT_STOP_ALIGN)) + (up(8, max_usize(8, fkr::ATTEMPT_STOP_ALIGN)) + up(fkr::ATTEMPT_STOP, max_usize(8, fkr::ATTEMPT_STOP_ALIGN)) + up(1, max_usize(8, fkr::ATTEMPT_STOP_ALIGN))))) as u64, // s(TrackerE) (one BoundedExtremeTracker over F offers, per offer: a lazy row, a table and a kept-table entry and the stable-sort scratch entry (P3 ENVELOPE Tracker(O) law; the pivot, residual and fallback trackers))
         (size_of::<open_pipe_stress_result_export::retained_precision::Validation>()) as u64, // s(Validation)
         (size_of::<Value>()) as u64, // s(Value)
         (size_of::<Vec<u8>>()) as u64, // s(Vec)
@@ -2124,8 +2124,8 @@ pub(super) mod profile {
         Form { name: "T25_S5", constant: 70217356, terms: &[(8, 13718), (100, 1), (159, 2048), (182, 2115), (222, 9036)] },
         Form { name: "T25_carried_case", constant: 45678294, terms: &[(8, 7369), (159, 2048), (182, 2115), (222, 4806)] },
         Form { name: "T25_moving", constant: 189079500, terms: &[] },
-        Form { name: "TAV_W", constant: 1564864714, terms: &[] },
-        Form { name: "TAV_X", constant: 1406259436, terms: &[] },
+        Form { name: "TAV_W", constant: 1569180716, terms: &[] },
+        Form { name: "TAV_X", constant: 1439555190, terms: &[] },
         Form { name: "TXT_moving", constant: 2599962, terms: &[] },
     ];
     pub(crate) const F_BODY: usize = 0;
@@ -2280,7 +2280,7 @@ pub(super) mod profile {
     pub(crate) const DENSE: Option<(u64, usize)> = maximum(&phases_dense(&ATOM_VALUES));
     /// The Python chain's own evaluation (ASSUMED strides), for the transcription check.
     #[cfg(test)]
-    pub(crate) const PYTHON_CHECK: [(u64, &str); 2] = [(3432697737, "W3 publication (T16) with the staged copy"), (3452408185, "W3 publication (T16) with the staged copy")];
+    pub(crate) const PYTHON_CHECK: [(u64, &str); 2] = [(3437013739, "W3 publication (T16) with the staged copy"), (3456724187, "W3 publication (T16) with the staged copy")];
 }
 // ---- END GENERATED PROFILE ----
 
@@ -2369,6 +2369,9 @@ pub(super) enum PhaseFact {
     ObservationBytes,
     OrdinarySeedBytes,
     RetainedErrorTextBytes,
+    /// G6 (ROOT, C1:64, ROUTING:98): 1 when the ordinary route returned without
+    /// attempting the case's solve; its bound is 0, so G-C declines W1 there.
+    OrdinarySolveNotAttempted,
 }
 /// A gate's refusal: the gate, the first fact above its bound, the observed
 /// value (saturated at `u64::MAX` when a sum overflows) and the bound.
@@ -2385,7 +2388,7 @@ pub(super) struct PhaseObservation {
     pub(super) observed: u64,
 }
 pub(super) const LATE_FACTS: usize = 9;
-pub(super) const COMPLETE_FACTS: usize = 18;
+pub(super) const COMPLETE_FACTS: usize = 19;
 /// The bound for each fact, in `late_observations`/`complete_observations` order.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub(super) struct PhaseCaps {
@@ -2523,7 +2526,24 @@ pub(super) fn complete_observations(f: &CompleteFacts<'_>) -> [PhaseObservation;
         o(P::ObservationBytes, capture_bytes(f.capture)),
         o(P::OrdinarySeedBytes, seeds.get()),
         o(P::RetainedErrorTextBytes, retained_error_text(f.capture).get()),
+        o(P::OrdinarySolveNotAttempted, u64::from(!ordinary_solve_attempted(f.capture))),
     ]
+}
+/// G6 (ROOT's ruling on D1's blocked ordinary runs; C1:64 declines W1 before execution,
+/// ROUTING:98 allows a notice only for W1 work that ran): whether the ordinary route
+/// attempted the case's solve. The observer's own G-b record decides it, never the
+/// envelope's status (`blocked_envelope` is also returned after an attempted solve):
+/// `OrdinarySeed::initial` is set exactly at the attempt (`solve_load_case_observed`,
+/// PP/lib.rs:4125-4148: `ordinary_initial_failure` for a structural failure or a
+/// deferred-basis formation refusal, the F1b attempt that routes to W2) or at the
+/// published report of a successful solve (`ordinary_report`, :4543, the only exit of
+/// an `Ok` attempt inside D1, whose nonlinear supports D1.6 excludes). Every return
+/// before the attempt (validation's `blocked_envelope`s in
+/// `run_linear_static_preview_observed`; the load-input, ledger and reduction exits of
+/// `solve_load_case_observed`, :3918, :4011, :4042, :4098) leaves no seed or a seed
+/// with `initial` None. D1.4 admits one case, so one seed. Allocates nothing.
+pub(super) fn ordinary_solve_attempted(capture: &crate::retained_product::ProductCapture) -> bool {
+    !capture.ordinary.is_empty() && capture.ordinary.iter().all(|seed| seed.initial.is_some())
 }
 /// The first observation above its bound. Pure.
 pub(super) fn check_phase<const N: usize>(gate: PhaseGate, observations: &[PhaseObservation; N], caps: &[u64; N]) -> Result<(), PhaseRefusal> {
@@ -2604,6 +2624,7 @@ pub(super) const fn phase_caps() -> PhaseCaps {
             profile_bytes(profile::F_T11),
             profile_bytes(profile::F_T11_ORDINARY_SEED),
             (3 * m + 1) * text_atoms::ERR,
+            0,
         ],
     }
 }

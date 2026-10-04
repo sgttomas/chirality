@@ -48,6 +48,29 @@ fn permitted_work(raw: Value, mode: PreviewSolverMode, before_w1: impl FnOnce(&m
         Err(fallback) => Ran::Fallback(format!("{fallback:?}")),
     }
 }
+/// Append a quote and a backslash to every provenance string (maximal escaping under D1.11).
+fn escape_every_provenance(v: &mut Value) {
+    match v {
+        Value::Object(m) => {
+            for (k, x) in m.iter_mut() {
+                match x {
+                    Value::String(s) if k == "provenance" => s.push_str(" q\"b\\"),
+                    _ => escape_every_provenance(x),
+                }
+            }
+        }
+        Value::Array(a) => a.iter_mut().for_each(escape_every_provenance),
+        _ => {}
+    }
+}
+/// A raw value of depth 16 at the root (D1.2's cap: root at 0, 17 levels).
+fn depth_16_value() -> Value {
+    let mut deep = json!(1);
+    for _ in 0..14 {
+        deep = json!([deep]);
+    }
+    deep
+}
 fn witness(label: &str, stack: usize, work: impl FnOnce() -> Ran + Send) -> Ran {
     let ran = crate::on_reserved_stack(stack, crate::carry_test_hooks(work)).unwrap_or_else(|| panic!("{label}: the reserved thread did not spawn"));
     println!("I65_G5_WITNESS {label} stack={stack} ran={ran:?}");
@@ -66,21 +89,40 @@ fn witness_w1_milestone() {
 }
 
 /// W2 (and W5's dense half): the cap-maximal D1 input (law_tests::cap_maximal), both
-/// modes: the largest counts, 128-byte identifiers, maximal escaping.
+/// modes: the largest counts, 128-byte identifiers, a quote and a backslash in every
+/// provenance, and a raw value of depth 16. Its support shapes stop it at preparation.
 #[test]
 #[ignore]
 fn witness_w2_cap_maximal() {
     for mode in MODES {
         let mut raw = super::law_tests::cap_maximal();
-        // Every string with a quote and a backslash (maximal escaping under D1.11), and raw depth 16.
-        raw["model"]["nodes"][0]["provenance"] = json!("q\"b\\");
-        let mut deep = json!(1);
-        for _ in 0..14 {
-            deep = json!([deep]);
-        }
-        raw["model"]["unknown_depth_witness"] = deep;
+        escape_every_provenance(&mut raw);
+        raw["model"]["unknown_depth_witness"] = depth_16_value();
         let ran = witness(&format!("W2 {mode:?}"), WITNESS_STACK, move || permitted_work(raw, mode, |_| {}));
-        println!("I65_G5_WITNESS_OUTCOME W2 {mode:?} {ran:?}");
+        assert_eq!(ran, Ran::Fallback("Preparation".into()), "W2 {mode:?}");
+    }
+}
+
+/// W2's publishing half (RV89 G5 part 2 S-2): the milestone with a quote and a backslash
+/// in every provenance and a raw value of depth 16, inside D1. It publishes a successor
+/// at R/16 and at R/64 = 1 MiB in both modes, so the deepest raw Value and the maximal
+/// escaping run through the serializer and the precommit reader on the witness stack.
+#[test]
+#[ignore]
+fn witness_w2_deep_milestone_publishes() {
+    for mode in MODES {
+        let mut raw = milestone();
+        escape_every_provenance(&mut raw);
+        raw["model"]["deep_input_witness"] = depth_16_value();
+        let (request, capture) = CapturedInvocation::parse(raw.clone(), mode).unwrap();
+        let report = super::assess(&capture, &request, super::Entry::Direct);
+        assert_eq!(report.law().domain, None, "inside D1");
+        assert_eq!(report.raw.maximum_depth, 16, "raw depth 16");
+        for stack in [WITNESS_STACK, RESERVED_STACK_BYTES / 64] {
+            let raw = raw.clone();
+            let ran = witness(&format!("W2-deep {mode:?}"), stack, move || permitted_work(raw, mode, |_| {}));
+            assert_eq!(ran, Ran::Successor, "W2-deep {mode:?} at {stack} B");
+        }
     }
 }
 
@@ -103,7 +145,7 @@ fn witness_w2b_cap_maximal_solvable() {
             }
         }
         let ran = witness(&format!("W2b {mode:?}"), WITNESS_STACK, move || permitted_work(raw, mode, |_| {}));
-        println!("I65_G5_WITNESS_OUTCOME W2b {mode:?} {ran:?}");
+        assert_eq!(ran, Ran::Fallback("Candidate".into()), "W2b {mode:?}: the full native run, then the candidate refuses");
     }
 }
 
@@ -135,9 +177,8 @@ fn witness_w4_preparation_refusal() {
 /// W6: an in-domain force-scaled (W2) case: PHYS-R4's cantilever (OD 4e-77 m, tip
 /// load about 1e-307) in the legacy namespace, so the ordinary run scales by an exact
 /// power of two (f1b_w2_runtime.rs `phys_r4(false)`, without its pressure contract).
-#[test]
-#[ignore]
-fn witness_w6_force_scaled() {
+/// W6's input: PHYS-R4's cantilever in the legacy namespace (force-scaled).
+pub(super) fn w6_input() -> Value {
     let (a, b) = ("node:section-a", "node:section-b");
     let tip = f64::from_bits(0x0031fa182c40c60d);
     let p = "invented_t3_g5_witness_input_no_library_data";
@@ -155,6 +196,13 @@ fn witness_w6_force_scaled() {
             {"id": "load:tip-y", "category": "concentrated_force", "target": {"type": "node", "node": b}, "direction": "global_y", "dimension": "force", "magnitude": {"value": tip, "unit": "N"}, "provenance": p},
             {"id": "load:tip-torque", "category": "concentrated_moment", "target": {"type": "node", "node": b}, "direction": "rotation_x", "dimension": "moment", "magnitude": {"value": tip, "unit": "N*m"}, "provenance": p}]}],
         "combinations": []}, "materials": []});
+    raw
+}
+
+#[test]
+#[ignore]
+fn witness_w6_force_scaled() {
+    let raw = w6_input();
     let plain = crate::run_linear_static_preview_value_with_mode(raw.clone(), PreviewSolverMode::SparseInteractive).unwrap();
     let scaled = plain.diagnostics.iter().any(|d| d.message.contains("range_scaling: force_scale_exponent=") && !d.message.contains("force_scale_exponent=none"));
     println!("I65_G5_WITNESS_INPUT W6 force_scaled={scaled}");
