@@ -10063,3 +10063,37 @@ That is +32.4 MB to the TAV. **In-build W3 dense rises to at most 0.8907 M,** st
 
 Then I65 reruns TEXT, regenerates the profile and the pinned record, and re-confirms that the in-build maximum is ≤ 0.9 M. RV87 confirms the class audit at G6's review.
 - **N-3** (string classes up to 745 B above exact sizes) and **N-4** (TAV_X counts two sites twice, so the estimate is conservative) are noted.
+
+## RV88 on U6a, U6c, U6b (and U6d): all PASS; repair rounds and the shared declared-difference cases (ROOT, 2026-10-04 UTC)
+
+**RV88's reports** are in `R/REVIEW_RV88/`, with SHA256SUMS OK and no machine paths. Every unit passes, with 0 BLOCKING findings:
+
+| Unit | Report | Verdict | Findings |
+|---|---|---|---|
+| U6a | `u6a_01` (`90212964…`) | PASS | 2 SHOULD-FIX, 5 NOTE |
+| U6c | `u6c_01` (`7ed8af6f…`) | PASS | 0 SHOULD-FIX, 4 NOTE |
+| U6b | `u6b_01` (`ba2d029a…`) | PASS | 1 SHOULD-FIX, 3 NOTE |
+| U6d | `u6d_01` (`1206cab0…`) | PASS | 1 SHOULD-FIX, 4 NOTE |
+
+**RV88's U6d review was finished before the reassignment arrived. It is kept,** so U6d now has two independent passes (RV88 and RV91).
+
+**Rulings:**
+- **U6b S-1, repaired now (I66):** compatibility.py:371–374 returns before the token guard at :404. A legacy 0.1.0 source with a W1 token row is therefore accepted by Python's dispatch, the v0.2 builder and the 0.1.0 wrapper, while Rust and TS refuse it. This is an **undeclared** cross-language difference, which D2 §4.7 forbids. Run the guard first.
+- **U6a S-1, tests now (I66):** a token on a non-first row; a null member on a base derivative; a legacy 0.1.0 source carrying a receipt; and the two-case requested-ref order (mutants R01, R02, R05, R06).
+- **U6a S-2, repaired now (I66):** derivative.rs:31's disclosure gives b "in the SI unit" without naming the unit. Read in a row's own unit (mm), it understates the bound 1000×. **The message must name the SI unit explicitly.** This is a truthfulness requirement on product text, and TS's labels (I67) must match.
+- **U6c N-1 and N-4, tests and record (I66):** the Y-probes run over all 17 statements, as claimed, or the claim is corrected; and W06 (the successor stress-neutral branch's `source_annotations` requirement) is pinned.
+- **U6b N-3, tests (I66):** kill Q02 (the token guard reads only the first row) and Q06 (requested refs compared as a set).
+- **U6a N-3, a test (I66):** no product code calls the `#[doc(hidden)]` public seams.
+- **The declared differences go into the shared parity file,** with per-language expectations. **This revises ROOT's RV91 ruling**, which pinned F1 in TS's test only; RV88 and RV91 both recommend the shared file. `retained_precision_carrier_cases.json` gains a `declared_differences` section. Each entry cites its ruling and gives one expectation per language:
+  - I67's F1 (an unregistered invalid successor);
+  - I67's F2 (the display-only binding precheck);
+  - F-U6b-2 (Python refuses transport);
+  - F5's refused-statement binding.
+  
+  Rust and Python consume it (I66), and TS consumes it (I67). Any other difference between the languages is a defect.
+- **U6d S-1** (TS standing not bound to the current model or a valid capture) is the same as RV91's N-2: **a U7 precondition**, already ruled.
+- **U6d N-3, repaired in I67's round:** the standing text says "historical values only" for a delivery refused in this session. Make it truthful for that case.
+- **U6a N-2,** binding revalidates the whole statement per row (3.8 s for 98 rows in debug): a U6f cost item, alongside F7.
+- **U6a N-5,** pre-existing: `validate_document` fails a canonical round trip because `0.0` ≠ `0`. Tracked to the result_export owner; it does not gate U6.
+
+**Confirmation:** RV88 confirms I66's repairs, and RV91 confirms I67's. Then U6f.
