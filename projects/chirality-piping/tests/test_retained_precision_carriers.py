@@ -250,16 +250,18 @@ def test_shared_carrier_cases_python():
         assert dispatch(docs[fid]["source"]) == "ok" and c.numerical_use_standing(docs[fid]["source"], []) == "needs_recompute", fid
 
 
-def expected_summary(source):
+def expected_summary(source, current=False):
     """'by_validated_class': per receipt case, the reader's class counts, interval
-    binding 0, and the not-Current withheld count (these forms carry no invocation)."""
+    binding 0, and the not-Current withheld count (these forms carry no invocation).
+    With `current`, the Current count: only absolute and not-covered rows."""
     classes = rp.validate_retained_precision(source)["classifications"]
     out = []
     for case in source["retained_precision"]["body"]["cases"]:
         mine = [item["class"] for item in classes if item["basis_ref"] == case["basis_ref"]]
         n = {name: mine.count(name) for name in ("relative_verified", "absolute_verified", "not_covered", "input_derived", "non_quantity")}
         out.append({"case_id": case["basis_ref"]["ref_id"], **n, "interval_bindable": 0,
-                    "withheld": n["relative_verified"] + n["absolute_verified"] + n["not_covered"] + n["input_derived"]})
+                    "withheld": n["absolute_verified"] + n["not_covered"] if current else
+                    n["relative_verified"] + n["absolute_verified"] + n["not_covered"] + n["input_derived"]})
     return out
 
 
@@ -324,7 +326,7 @@ def test_declared_differences_python():
                     assert dispatch_transport(source) == expected["transport"], label
                 elif form["subject"] == "summary":
                     want = expected_summary(source) if expected["summary"] == "by_validated_class" else []
-                    assert want and c.classification_summary(source, context) == want, label
+                    assert want and c.classification_summary(source, context, refs) == want, label
                 else:
                     assert form["subject"] == "binding", label
                     assert [c.rule_binding_refusal(source, row) for row in source["results"]] == expected_binding(source, expected["binding"]), label
@@ -474,8 +476,15 @@ def test_classification_summary_counts_validated_classes(mode):
                  "withheld": relative + absolute + input_derived}]
     current = deepcopy(expected)
     current[0]["withheld"] = absolute
-    # U7: with its actual invocation the envelope is Current, so only absolute (and not-covered) rows stay withheld.
-    assert c.classification_summary(source, invocation) == current
+    # U7, aligned (RV94 S-1): Current only when the standing with the caller's requested refs is
+    # eligible, so only absolute (and not-covered) rows stay withheld; with no refs or other refs, all.
+    assert c.numerical_use_standing(source, requested(invocation), invocation) == "numerically_eligible"
+    assert c.classification_summary(source, invocation, requested(invocation)) == current
+    assert c.classification_summary(source, invocation) == expected
+    other_refs = [{"ref_type": "load_case", "ref_id": "other"}]
+    assert c.numerical_use_standing(source, other_refs, invocation) == "needs_recompute"
+    assert c.classification_summary(source, invocation, other_refs) == expected
+    assert c.classification_summary(source, None, requested(invocation)) == expected
     assert c.classification_summary(source) == expected
     broken = deepcopy(source)
     broken["results"][0]["value"] = 12345.0
@@ -483,22 +492,60 @@ def test_classification_summary_counts_validated_classes(mode):
     assert c.classification_summary(projected(source)) == []
     # Through the seam: only absolute and not-covered rows stay withheld when Current.
     validation = dict(rp.validate_retained_precision(source, invocation), numerical_eligible=True)
-    assert c._classification_summary_from(validation, source, invocation) == current
-    assert c._classification_summary_from(validation, source, None) == expected
-    other = deepcopy(invocation)
-    other["request"]["model"]["load_cases"][0]["id"] = "other"
-    assert c._classification_summary_from(validation, source, other) == expected
+    assert c._classification_summary_from(validation, source, requested(invocation)) == current
+    assert c._classification_summary_from(validation, source, []) == expected
+    assert c._classification_summary_from(validation, source, other_refs) == expected
     classes = deepcopy(validation["classifications"])
     index = next(i for i, item in enumerate(classes) if item["class"] == "relative_verified")
     classes[index]["class"] = "not_covered"
     uncovered = deepcopy(current)
     uncovered[0].update(relative_verified=relative - 1, not_covered=1, withheld=absolute + 1)
-    assert c._classification_summary_from(dict(validation, classifications=classes), source, invocation) == uncovered
+    assert c._classification_summary_from(dict(validation, classifications=classes), source, requested(invocation)) == uncovered
     uncovered[0]["withheld"] = relative + absolute + input_derived
-    assert c._classification_summary_from(dict(validation, classifications=classes, numerical_eligible=False), source, invocation) == uncovered
+    assert c._classification_summary_from(dict(validation, classifications=classes, numerical_eligible=False), source, requested(invocation)) == uncovered
     # Counts are per case: a classification under another case is not counted here.
     stray = dict(classes[index], basis_ref={"ref_type": "load_case", "ref_id": "other"})
-    assert c._classification_summary_from(dict(validation, classifications=classes + [stray], numerical_eligible=False), source, invocation) == uncovered
+    assert c._classification_summary_from(dict(validation, classifications=classes + [stray], numerical_eligible=False), source, requested(invocation)) == uncovered
+
+
+def test_d_u7_4_forms_python_side_standing_and_summary():
+    """RV94 S-1: on both D-U7-4 forms Python, given the invocation and the requested refs, stands
+    numerically_eligible and its summary is Current (69 withheld). TS's side (needs_recompute, the
+    not-Current 97) is pinned in TS. With other requested refs Python reads needs_recompute and the
+    not-Current summary, so the summary never says Current when the standing does not."""
+    cases, docs = shared_cases()
+    entry = next(e for e in cases["declared_differences"] if e["id"] == "D-U7-4:ts_requires_live_native_capture")
+    for form in entry["forms"]:
+        assert form["expected"]["python"]["standing"] == "numerically_eligible"
+        for fid in form["fixtures"]:
+            source, context, refs = apply_case(form, docs[fid])
+            assert c.numerical_use_standing(source, refs, context) == "numerically_eligible", form["label"]
+            summary = c.classification_summary(source, context, refs)
+            assert summary == expected_summary(source, current=True) and summary[0]["withheld"] == summary[0]["absolute_verified"] == 69, form["label"]
+            other = [{"ref_type": "load_case", "ref_id": "other"}]
+            assert c.numerical_use_standing(source, other, context) == "needs_recompute"
+            assert c.classification_summary(source, context, other) == expected_summary(source) and summary != expected_summary(source)
+
+
+def test_07j_not_required_case_omitted_or_reordered_is_not_current():
+    """RV94 S-1 on 07j's two-case statement whose second case is not_required: with the receipt's
+    case order the standing is eligible and the summary Current; with the not_required case omitted,
+    or the two reordered, the standing is needs_recompute and the summary not-Current ([73, 0])."""
+    from tests.test_retained_precision_contract import apply_entry, corpus
+    data = corpus()
+    entry = next(e for e in data["must_pass"] if e["id"] == "not_required_second_case_checks_passed")
+    fixture = next(f for f in data["cases"] if f["id"] == entry["base"])
+    source, invocation = apply_entry(fixture, entry)
+    order = [case["basis_ref"] for case in source["retained_precision"]["body"]["cases"]]
+    assert [case["status"] for case in source["retained_precision"]["body"]["cases"]] == ["selected", "not_required"]
+    assert c.numerical_use_standing(source, order, invocation) == "numerically_eligible"
+    current = c.classification_summary(source, invocation, order)
+    not_current = c.classification_summary(source, invocation)
+    assert [case["withheld"] for case in not_current] == [73, 0] and current != not_current
+    assert current == expected_summary(source, current=True) and not_current == expected_summary(source)
+    for refs in (order[:1], order[::-1]):
+        assert c.numerical_use_standing(source, refs, invocation) == "needs_recompute", refs
+        assert c.classification_summary(source, invocation, refs) == not_current, refs
 
 
 @pytest.mark.parametrize("mode", MODES)

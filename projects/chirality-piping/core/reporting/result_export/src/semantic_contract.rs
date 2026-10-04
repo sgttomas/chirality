@@ -657,13 +657,13 @@ fn retained_standing(
 /// D2 4.9.9: per-case counts over the validated G5c classes of a successor
 /// (rows of selected cases). `withheld` counts the quantity rows (every class
 /// but `non_quantity`) that cannot bind under the envelope's standing: all of
-/// them unless the standing with the invocation's requested cases is
-/// `numerically_eligible`; otherwise the absolute and not-covered rows, since
-/// S-I has not landed (`interval_bindable` is 0). Any other identity, or a
-/// statement the reader refuses, returns nothing.
-pub fn classification_summary(source: &Value, invocation: Option<&Value>) -> Vec<Value> {
+/// them unless the standing with the caller's requested refs is
+/// `numerically_eligible` (RV94 S-1, as TS); then the absolute and not-covered
+/// rows, since S-I has not landed (`interval_bindable` is 0). Any other
+/// identity, or a statement the reader refuses, returns nothing.
+pub fn classification_summary(source: &Value, invocation: Option<&Value>, requested_basis_refs: &[Value]) -> Vec<Value> {
     match crate::retained_precision::validate(source, invocation) {
-        Ok(validation) => classification_summary_from(&validation, source, invocation),
+        Ok(validation) => classification_summary_from(&validation, source, requested_basis_refs),
         Err(_) => Vec::new(),
     }
 }
@@ -672,19 +672,19 @@ pub fn classification_summary(source: &Value, invocation: Option<&Value>) -> Vec
 pub fn classification_summary_from(
     validation: &crate::retained_precision::Validation,
     source: &Value,
-    invocation: Option<&Value>,
+    requested_basis_refs: &[Value],
 ) -> Vec<Value> {
     use crate::retained_precision::AccuracyClass;
-    let requested: Vec<Value> = invocation
-        .and_then(|i| i["request"]["model"]["load_cases"].as_array())
-        .map(|cases| {
-            cases
-                .iter()
-                .map(|c| serde_json::json!({"ref_type":"load_case","ref_id":c["id"]}))
-                .collect()
-        })
-        .unwrap_or_default();
-    let current = retained_standing_from(validation, source, &requested) == "numerically_eligible";
+    // RV94 S-1 (the U7 repair, as TS's summary since e5e1693ceb): `withheld`
+    // counts as Current only when the standing with the caller's requested refs
+    // is `numerically_eligible`; with no refs, or other refs, it is the
+    // not-Current count. The invocation only binds the validation; its own
+    // cases are never substituted for the caller's refs (RV94 N-4), so this
+    // borrows the caller's slice and builds no list of its own. A caller with no
+    // refs (a library reader, or a summary shown without a model) therefore
+    // sees every quantity row withheld.
+    let current =
+        retained_standing_from(validation, source, requested_basis_refs) == "numerically_eligible";
     source["retained_precision"]["body"]["cases"]
         .as_array()
         .map(Vec::as_slice)

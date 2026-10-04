@@ -566,25 +566,31 @@ fn u6a_classification_summary_counts_validated_classes() {
         let expected = json!([{"case_id":case_id,"relative_verified":relative,"absolute_verified":absolute,
             "interval_bindable":0,"not_covered":0,"input_derived":input,"non_quantity":non_quantity,
             "withheld":relative + absolute + input}]);
-        // U7: with its actual invocation the envelope is Current, so only absolute
-        // and not-covered rows stay withheld; without it every quantity row is.
+        // U7, aligned (RV94 S-1): Current only when the standing with the caller's
+        // requested refs is eligible, so only absolute and not-covered rows stay
+        // withheld; with no refs or other refs every quantity row is.
+        let refs = requested(&m.invocation);
+        let other = vec![json!({"ref_type":"load_case","ref_id":"other"})];
         let mut current = expected.clone();
         current[0]["withheld"] = json!(absolute);
-        assert_eq!(json!(s::classification_summary(&m.source, Some(&m.invocation))), current);
-        assert_eq!(json!(s::classification_summary(&m.source, None)), expected);
+        assert_eq!(s::numerical_use_standing_with_context(&m.source, &refs, Some(&m.invocation)), "numerically_eligible");
+        assert_eq!(json!(s::classification_summary(&m.source, Some(&m.invocation), &refs)), current);
+        assert_eq!(json!(s::classification_summary(&m.source, Some(&m.invocation), &[])), expected);
+        assert_eq!(s::numerical_use_standing_with_context(&m.source, &other, Some(&m.invocation)), "needs_recompute");
+        assert_eq!(json!(s::classification_summary(&m.source, Some(&m.invocation), &other)), expected);
+        assert_eq!(json!(s::classification_summary(&m.source, None, &refs)), expected);
+        assert_eq!(json!(s::classification_summary(&m.source, None, &[])), expected);
         let mut broken = m.source.clone();
         broken["results"][0]["value"] = json!(12345.0);
-        assert!(s::classification_summary(&broken, Some(&m.invocation)).is_empty());
-        assert!(s::classification_summary(&projected_base(&m.source), None).is_empty());
+        assert!(s::classification_summary(&broken, Some(&m.invocation), &refs).is_empty());
+        assert!(s::classification_summary(&projected_base(&m.source), None, &[]).is_empty());
         // Through the seam: only absolute and not-covered rows stay withheld, and
         // only for the invocation's requested cases.
         let mut validation = rp::validate(&m.source, Some(&m.invocation)).unwrap();
         validation.numerical_eligible = true;
-        assert_eq!(json!(s::classification_summary_from(&validation, &m.source, Some(&m.invocation))), current);
-        assert_eq!(json!(s::classification_summary_from(&validation, &m.source, None)), expected);
-        let mut other = m.invocation.clone();
-        other["request"]["model"]["load_cases"][0]["id"] = json!("other");
-        assert_eq!(json!(s::classification_summary_from(&validation, &m.source, Some(&other))), expected);
+        assert_eq!(json!(s::classification_summary_from(&validation, &m.source, &refs)), current);
+        assert_eq!(json!(s::classification_summary_from(&validation, &m.source, &[])), expected);
+        assert_eq!(json!(s::classification_summary_from(&validation, &m.source, &other)), expected);
         // A not_covered row (none exists in any validated statement here) is
         // withheld whether or not the envelope is Current.
         let relative = validation.classifications.iter().position(|c| c.class == rp::AccuracyClass::RelativeVerified).unwrap();
@@ -593,10 +599,10 @@ fn u6a_classification_summary_counts_validated_classes() {
         uncovered[0]["relative_verified"] = json!(25 - 1);
         uncovered[0]["not_covered"] = json!(1);
         uncovered[0]["withheld"] = json!(absolute + 1);
-        assert_eq!(json!(s::classification_summary_from(&validation, &m.source, Some(&m.invocation))), uncovered);
+        assert_eq!(json!(s::classification_summary_from(&validation, &m.source, &refs)), uncovered);
         validation.numerical_eligible = false;
         uncovered[0]["withheld"] = json!(relative_count(&expected) + absolute + input);
-        assert_eq!(json!(s::classification_summary_from(&validation, &m.source, Some(&m.invocation))), uncovered);
+        assert_eq!(json!(s::classification_summary_from(&validation, &m.source, &refs)), uncovered);
     }
 }
 
@@ -731,8 +737,9 @@ fn u6a_shared_carrier_cases_rust() {
 
 /// 'by_validated_class' for the summary subject: per receipt case, the reader's
 /// class counts, interval binding 0, and the not-Current withheld count (these
-/// forms carry no invocation).
-fn expected_summary(source: &Value) -> Value {
+/// forms carry no invocation). With `current`, the Current count: only absolute
+/// and not-covered rows.
+fn expected_summary_with(source: &Value, current: bool) -> Value {
     let v = rp::validate(source, None).unwrap();
     let cases = source["retained_precision"]["body"]["cases"].as_array().unwrap();
     Value::Array(cases.iter().map(|case| {
@@ -747,8 +754,38 @@ fn expected_summary(source: &Value) -> Value {
             }] += 1;
         }
         json!({"case_id":case["basis_ref"]["ref_id"],"relative_verified":n[0],"absolute_verified":n[1],"interval_bindable":0,
-            "not_covered":n[2],"input_derived":n[3],"non_quantity":n[4],"withheld":n[0] + n[1] + n[2] + n[3]})
+            "not_covered":n[2],"input_derived":n[3],"non_quantity":n[4],"withheld":if current { n[1] + n[2] } else { n[0] + n[1] + n[2] + n[3] }})
     }).collect())
+}
+fn expected_summary(source: &Value) -> Value {
+    expected_summary_with(source, false)
+}
+
+/// RV94 S-1: on both D-U7-4 forms Rust, given the invocation and the requested
+/// refs, stands `numerically_eligible` and its summary is Current (69 withheld);
+/// TS's side (needs_recompute, the not-Current 97) is pinned in TS. With other
+/// requested refs Rust reads `needs_recompute` and the not-Current summary.
+#[test]
+fn u7_d_u7_4_forms_rust_side_standing_and_summary() {
+    let cases: Value = serde_json::from_str(CASES).unwrap();
+    let fixtures = shared_fixtures(&cases);
+    let entry = cases["declared_differences"].as_array().unwrap().iter().find(|e| e["id"] == "D-U7-4:ts_requires_live_native_capture").unwrap();
+    let other = vec![json!({"ref_type":"load_case","ref_id":"other"})];
+    for form in entry["forms"].as_array().unwrap() {
+        assert_eq!(form["expected"]["rust"]["standing"], "numerically_eligible");
+        for fid in form["fixtures"].as_array().unwrap() {
+            let fixture = fixtures.iter().find(|f| fid == f.0.as_str()).unwrap();
+            let (source, invocation, requested) = apply_shared(form, fixture);
+            let label = form["label"].as_str().unwrap();
+            assert_eq!(s::numerical_use_standing_with_context(&source, &requested, invocation.as_ref()), "numerically_eligible", "{label}");
+            let summary = json!(s::classification_summary(&source, invocation.as_ref(), &requested));
+            assert_eq!(summary, expected_summary_with(&source, true), "{label}");
+            assert!(summary[0]["withheld"] == 69 && summary[0]["absolute_verified"] == 69, "{label}");
+            assert_eq!(s::numerical_use_standing_with_context(&source, &other, invocation.as_ref()), "needs_recompute");
+            let not_current = json!(s::classification_summary(&source, invocation.as_ref(), &other));
+            assert!(not_current == expected_summary(&source) && not_current != summary, "{label}");
+        }
+    }
 }
 /// The expected binding of every row, from the entry's vocabulary.
 fn expected_binding(source: &Value, expected: &str) -> Vec<Option<String>> {
@@ -845,7 +882,7 @@ fn u6_declared_differences_rust() {
                         assert_eq!(got, expected["transport"].as_str().unwrap(), "{id} {label}");
                     }
                     "summary" => {
-                        let got = json!(s::classification_summary(&source, invocation.as_ref()));
+                        let got = json!(s::classification_summary(&source, invocation.as_ref(), &requested));
                         let want = match expected["summary"].as_str().unwrap() { "by_validated_class" => expected_summary(&source), _ => json!([]) };
                         assert!(want.as_array().is_some_and(|w| !w.is_empty()), "{id} {label}");
                         assert_eq!(got, want, "{id} {label}");

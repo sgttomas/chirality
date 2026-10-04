@@ -3287,3 +3287,30 @@ fn d37_error_kind_agrees_with_stage_record() {
     }
     assert!(misses.is_empty(), "{}", misses.join("\n"));
 }
+
+/// RV94 S-1 on 07j's two-case statement whose second case is not_required: with
+/// the receipt's case order the standing is eligible and the summary Current;
+/// with the not_required case omitted, or the two reordered, the standing is
+/// `needs_recompute` and the summary not-Current ([73, 0]).
+#[test]
+fn u7_07j_not_required_case_omitted_or_reordered_is_not_current() {
+    use open_pipe_stress_result_export::semantic_contract as s;
+    let shared = corpus();
+    let entry = shared["must_pass"].as_array().unwrap().iter().find(|e| e["id"] == "not_required_second_case_checks_passed").unwrap();
+    let (source, invocation) = apply_entry(&shared, entry);
+    let cases = source["retained_precision"]["body"]["cases"].as_array().unwrap();
+    assert_eq!(cases.iter().map(|c| c["status"].as_str().unwrap()).collect::<Vec<_>>(), ["selected", "not_required"]);
+    let order: Vec<Value> = cases.iter().map(|c| c["basis_ref"].clone()).collect();
+    assert_eq!(s::numerical_use_standing_with_context(&source, &order, Some(&invocation)), "numerically_eligible");
+    let withheld = |refs: &[Value]| -> Vec<u64> {
+        s::classification_summary(&source, Some(&invocation), refs).iter().map(|c| c["withheld"].as_u64().unwrap()).collect()
+    };
+    let current = withheld(&order);
+    assert_eq!(withheld(&[]), [73, 0]);
+    assert_ne!(current, [73, 0]);
+    let reversed: Vec<Value> = order.iter().rev().cloned().collect();
+    for refs in [order[..1].to_vec(), reversed] {
+        assert_eq!(s::numerical_use_standing_with_context(&source, &refs, Some(&invocation)), "needs_recompute", "{refs:?}");
+        assert_eq!(withheld(&refs), [73, 0], "{refs:?}");
+    }
+}
