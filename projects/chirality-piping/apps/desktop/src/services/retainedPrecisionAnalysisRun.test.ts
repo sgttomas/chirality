@@ -84,7 +84,8 @@ describe.each(MODES)("%s: the AnalysisRun copies the receipt and validates its e
     const back = { ...structuredClone(publication), retained_precision: structuredClone(run.retained_precision) };
     const original = await validateRetainedPrecision(received, invocation);
     expect(await validateRetainedPrecision(back, invocation)).toStrictEqual(original);
-    expect(original.numerical_eligible).toBe(false);
+    // U7: the revalidated record is eligible with its invocation, as the original is.
+    expect([original.numerical_eligible, original.standing]).toStrictEqual([true, "eligible"]);
   });
 
   it("row interpretation equals the base preview-physics-1 projection's except the contract binding", async () => {

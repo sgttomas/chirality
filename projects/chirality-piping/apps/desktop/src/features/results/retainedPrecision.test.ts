@@ -192,7 +192,8 @@ describe('shared synthetic prepared receipt controls, never solver execution evi
     expect(m.expected).toBe('pass');
     const { base, source, invocation } = await applyEntry(m);
     const result = await validateRetainedPrecision(source, invocation);
-    expect(result.numerical_eligible).toBe(false);
+    // U7 (07i): each entry's own eligibility per C1:160.
+    expect({ invocation_bound: result.invocation_bound, numerical_eligible: result.numerical_eligible, standing: result.standing }).toEqual(m.expected_eligibility);
     expect(result.classifications).toEqual(base.expected_classifications);
   });
 });
@@ -283,8 +284,10 @@ async function rehashOuter(source: any) {
   body.publication_sha256 = await canonicalSha256HexCheckedV1({ domain: 'retained_precision_publication_mp_v2', payload: publication });
   source.retained_precision.receipt_sha256 = await canonicalSha256HexCheckedV1({ domain: 'retained_precision_receipt_mp_v2', payload: body });
 }
+// C1:160, computed here without the reader: an invocation, MECHANICS_SOLVED, and every receipt case selected or not_required.
+const c160 = (source: any, invocation?: any) => invocation != null && source.status?.mechanics === 'MECHANICS_SOLVED' && source.retained_precision.body.cases.every((c: any) => c.status === 'selected' || c.status === 'not_required');
 async function firstFailure(source: any, invocation?: any): Promise<{ gate: string; code: string } | 'pass'> {
-  try { const r = await validateRetainedPrecision(source, invocation); expect(r.numerical_eligible).toBe(false); return 'pass'; }
+  try { const r = await validateRetainedPrecision(source, invocation), eligible = c160(source, invocation); expect([r.numerical_eligible, r.standing]).toEqual([eligible, eligible ? 'eligible' : 'needs_recompute']); return 'pass'; }
   catch (e) { expect(e).toBeInstanceOf(RetainedPrecisionError); return { gate: (e as any).gate, code: (e as any).code }; }
 }
 async function edited(baseId: string, edit: (source: any, invocation: any) => void, rehashAll = true) {
@@ -923,7 +926,7 @@ describe('07g round (I61 U6e): F5 and RV79-N1', () => {
       const doc = JSON.parse(text), source = doc.source, cid = source.retained_precision.body.cases[0].basis_ref.ref_id;
       const accepted = await validateRetainedPrecision(structuredClone(source), structuredClone(doc.invocation));
       expect(['relative_verified', 'absolute_verified', 'input_derived', 'non_quantity'].map(k => accepted.classifications.filter((c: any) => c.class === k).length)).toEqual(classes);
-      expect(accepted.numerical_eligible).toBe(false); expect(accepted.standing).toBe('needs_recompute');
+      expect(accepted.numerical_eligible).toBe(true); expect(accepted.standing).toBe('eligible');
       const names = (d: any) => Array.isArray(d.affected_refs) && d.affected_refs.includes(cid), retained = (d: any) => String(d.code).startsWith('RETAINED_PRECISION_');
       const exact = source.diagnostics.filter((d: any) => names(d) && !retained(d)).map((d: any) => d.id);
       expect(source.retained_precision.body.ordinary_attempts[0].diagnostic_refs).toEqual(exact);
@@ -939,6 +942,20 @@ describe('07g round (I61 U6e): F5 and RV79-N1', () => {
         expect(await firstFailure(edited, structuredClone(doc.invocation))).toEqual(want);
       }
       const resealed = structuredClone(source); await rehash(resealed); expect(resealed).toEqual(source);
+    }
+  });
+  it('U7: a solved status is required before the eligibility conjunct; a blocked envelope is refused at G7 with TS\'s own base code', async () => {
+    // I66 U7 slice F observation 3: each language's own base code (06b); the case file's scope names all three.
+    for (const text of [milestoneSparseText, milestoneDenseText]) {
+      const doc = JSON.parse(text);
+      for (const status of ['MODEL_INCOMPLETE', 'MECHANICS_FAILED', 'NOT_RUN']) {
+        const unsolved = structuredClone(doc.source); unsolved.status.mechanics = status; await rehash(unsolved);
+        expect(unsolved.retained_precision.receipt_sha256, status).not.toBe(doc.source.retained_precision.receipt_sha256);
+        let error: any; try { await validateRetainedPrecision(unsolved, structuredClone(doc.invocation)); } catch (e) { error = e; }
+        expect(error, status).toBeInstanceOf(RetainedPrecisionError);
+        // TS's base validator has one code; its detail names the blocked-envelope check.
+        expect({ gate: error.gate, code: error.code, detail: error.detail }, status).toEqual({ gate: 'G7', code: 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID', detail: 'blocked envelope carries evidence, rows or headlines' });
+      }
     }
   });
 });

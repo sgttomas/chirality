@@ -3153,7 +3153,7 @@ fn retained_w1(
     #[cfg(test)]
     retained_tests_hooks::before_precommit(&mut successor);
     // Decision 5: precommit validation by the accepted Rust reader, against the
-    // actual invocation (eligibility stays off).
+    // actual invocation (only Ok/Err is used here; eligibility is not read).
     #[cfg_attr(not(test), allow(unused_mut))]
     let mut invocation = serde_json::json!({"request": capture.borrowed_raw(), "solver_mode": capture.mode().as_str()});
     #[cfg(test)]

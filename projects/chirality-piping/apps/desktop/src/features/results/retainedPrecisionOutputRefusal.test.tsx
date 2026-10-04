@@ -27,7 +27,7 @@ import {
 } from "./loadReferenceOutputAvailability";
 import { N_REPORT, REPORT_PACKAGE_FRESH_RESULT_UNAVAILABLE, isFreshSemanticResult } from "./knownSemanticLimitations";
 import { currentSemanticContract, numericalResultStanding } from "./numericalResultQuality";
-import { RETAINED_PRECISION_NOT_NUMERICALLY_ELIGIBLE } from "./retainedPrecisionStanding";
+import { RETAINED_PRECISION_NATIVE_CAPTURE_REQUIRED, RETAINED_PRECISION_VALIDATION_REQUIRED } from "./retainedPrecisionStanding";
 import { KnownSemanticNotices } from "./KnownSemanticNotices";
 import { reportPackageUnavailableReason } from "../report/reportPackageRequest";
 import { buildStressNeutralExportPacket, validateStressNeutralExportPacket, StressNeutralExportPanel } from "../stress-neutral/StressNeutralExportPanel";
@@ -183,13 +183,15 @@ describe.each(MODES)("%s: stress-neutral, result export and the report package k
   });
 });
 
-describe("other consumers are unchanged and never make a successor Current", () => {
+describe("other consumers are unchanged; the standing session Current reads of a successor", () => {
   // The session hook may be imported only by workspaceSession.ts (sessionBoundary.test.ts),
   // and the pinned request model is not a complete desktop session model (no load-case
   // status), so a full session replay is not possible here. Pinned instead: the inputs
-  // resultsSessionState.ts:62-76 composes. Current requires a fresh identity AND eligible
-  // standing; a registered successor is fresh and its standing is held.
-  it.each(MODES)("%s: a registered successor is fresh but never numerically eligible, so it is never Current", async (mode) => {
+  // resultsSessionState.ts:62-76 composes. Current requires a fresh identity, eligible
+  // standing and a live native capture for the manifest's model, among its other
+  // conjuncts. Since U7 a registered successor is fresh and eligible for its captured
+  // model; a copy, or another current model, is not eligible.
+  it.each(MODES)("%s: a registered successor is fresh and numerically eligible for its captured model only (U7)", async (mode) => {
     const { source, model } = milestone(mode);
     (window as Json).__TAURI_INTERNALS__ = {};
     invokeMock.mockImplementation(async () => structuredClone(source));
@@ -197,7 +199,11 @@ describe("other consumers are unchanged and never make a successor Current", () 
     expect(hasNativeMechanicsInvocation(received, model, mode)).toBe(true);
     expect(isFreshSemanticResult(received)).toBe(true);
     expect(currentSemanticContract(received)).not.toBeNull();
-    expect(numericalResultStanding(received, model)).toMatchObject({ eligible: false, findings: [RETAINED_PRECISION_NOT_NUMERICALLY_ELIGIBLE] });
+    expect(numericalResultStanding(received, model)).toMatchObject({ status: "integrity_checked", eligible: true, findings: [] });
+    expect(numericalResultStanding(structuredClone(received), model)).toMatchObject({ eligible: false, findings: [RETAINED_PRECISION_VALIDATION_REQUIRED] });
+    const moved = structuredClone(model) as Json; moved.nodes[0].position.x += 1;
+    expect(hasNativeMechanicsInvocation(received, moved, mode)).toBe(false);
+    expect(numericalResultStanding(received, moved)).toMatchObject({ eligible: false, findings: [RETAINED_PRECISION_NATIVE_CAPTURE_REQUIRED] });
     // The pinned request model lacks desktop load-case status, which the manifest requires.
     await expect(buildCurrentSessionInputManifest({ model, solver: { solver_name: "x", solver_version: "x", solver_build_ref: "x", solver_mode: mode, settings: {} }, active_rule_packs: [], external_assets: [] })).rejects.toThrow("INPUT-MANIFEST-LOAD-BASIS-INCOMPLETE");
   });

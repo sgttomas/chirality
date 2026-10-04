@@ -578,8 +578,8 @@ pub fn class_binding_refusal(
 /// eligibility is set; requested refs equal to the receipt's case order;
 /// `MECHANICS_SOLVED`; and every `not_required` case ordinarily eligible by
 /// the base rules (C1:160; I66 F-7). `numerical_quality` never contributes
-/// for a selected case. While the reader's eligibility is held this always
-/// yields `needs_recompute`.
+/// for a selected case. The reader's eligibility is on since U7; the other
+/// conjuncts still apply.
 #[doc(hidden)]
 pub fn retained_standing_from(
     validation: &crate::retained_precision::Validation,

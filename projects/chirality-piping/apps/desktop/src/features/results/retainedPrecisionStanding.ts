@@ -10,8 +10,7 @@
  *   (T1's `loadReferenceSourceEvidence` pattern). A copy, a header, a hash or a
  *   saved record never registers, and any later byte change voids it;
  * - synchronous standing from that registration only (D2 4.9.4; plan 3).
- *   `numerical_quality` never contributes. While the reader's eligibility is
- *   held (until U7) the result is never better than `needs_recompute`;
+ *   `numerical_quality` never contributes;
  * - validated row classes for binding refusals and the per-case summary
  *   (D2 4.9.9). An unregistered or refused statement has no validated class.
  *
@@ -209,7 +208,8 @@ export function classificationSummary(source: MechanicsResult | null | undefined
  * (RV91 N-4). Text only; it changes no standing. */
 export function retainedPrecisionStandingText(source: MechanicsResult): string {
   const outcome = retainedPrecisionRegistration(source);
-  const tail = "Current use is checked separately against the actual invocation and the requested cases. Numerical checks do not establish engineering correctness.";
+  // D-U7-6: eligibility is a property of the supplied statement and its invocation.
+  const tail = "Current use is checked separately against the actual invocation and the requested cases. The reader checks these bytes and their invocation; it does not establish which producer made them. Numerical checks do not establish engineering correctness.";
   if (!outcome) return `Retained precision: receipt not validated for these exact bytes in this session (saved, reference or copied data never register); needs recompute. ${tail}`;
   if (outcome.error !== null) return `Retained precision: receipt refused by the retained-precision reader (${outcome.error}); unsupported, values shown for inspection only. ${tail}`;
   const cases = receiptCases(source);

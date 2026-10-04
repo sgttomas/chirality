@@ -146,11 +146,12 @@ def test_complete_synthetic_draft_control_is_not_qualification():
         result = rp._validate_draft(source, invocation)
         assert result["classifications"] == fixture["expected_classifications"]
         assert result["invocation_bound"]
-        assert result["numerical_eligible"] is False
-        assert result["standing"] == "needs_recompute"
+        # U7 (07i, D-U7-2): the shared expectation; 13 bases are eligible, the two with an unavailable case are not.
+        assert result["numerical_eligible"] is fixture["expected"]["numerical_eligible"]
+        assert result["standing"] == fixture["expected"]["standing"]
         assert source == fixture["source"] and invocation == fixture["invocation"]
         assert rp._validate_draft(source)["numerical_eligible"] is False
-        # D-U6-1: the public entry runs every gate; the flag holds eligibility only.
+        # D-U6-1: the public entry runs every gate; the flag gates eligibility only.
         assert rp.validate_retained_precision(source, invocation) == result
         assert rp.validate_retained_precision(source)["numerical_eligible"] is False
 
@@ -162,16 +163,22 @@ def _outcome(entry, source, invocation):
         return ("refuse", error.gate, error.code, error.detail)
 
 
+NOT_ELIGIBLE = {"invocation_bound": False, "numerical_eligible": False, "standing": "needs_recompute"}
+
+
 def _corpus_entries():
+    """(label, source, invocation, expected eligibility if it passes): a base's
+    `expected`, a must-pass entry's `expected_eligibility` (07i), or not eligible
+    without an invocation. Mutations all refuse, so they carry None."""
     data = corpus()
     for fixture in data["cases"]:
-        yield fixture["id"], deepcopy(fixture["source"]), deepcopy(fixture["invocation"])
-        yield fixture["id"] + ":no-invocation", deepcopy(fixture["source"]), None
+        yield fixture["id"], deepcopy(fixture["source"]), deepcopy(fixture["invocation"]), fixture["expected"]
+        yield fixture["id"] + ":no-invocation", deepcopy(fixture["source"]), None, NOT_ELIGIBLE
     for kind in ("mutations", "must_pass"):
         for entry in data.get(kind, []):
             fixture = next(f for f in data["cases"] if f["id"] == entry["base"])
             source, invocation = apply_entry(fixture, entry)
-            yield entry["id"], source, invocation
+            yield entry["id"], source, invocation, entry.get("expected_eligibility")
 
 
 MILESTONE_PINS = {
@@ -190,14 +197,16 @@ def _milestone(mode):
 
 def test_public_entry_equals_the_draft_on_every_corpus_entry():
     """D-U6-1: no input changes its accept/refuse outcome except by reaching the
-    gates the public entry previously short-circuited at G0; eligibility stays off."""
+    gates the public entry previously short-circuited at G0. U7: a passing entry's
+    eligibility is its shared expectation (07i)."""
     count = 0
-    for label, source, invocation in _corpus_entries():
+    for label, source, invocation, eligibility in _corpus_entries():
         public = _outcome(rp.validate_retained_precision, deepcopy(source), deepcopy(invocation))
         draft = _outcome(rp._validate_draft, deepcopy(source), deepcopy(invocation))
         assert public == draft, label
         if public[0] == "pass":
-            assert public[1]["numerical_eligible"] is False and public[1]["standing"] == "needs_recompute", label
+            got = {key: public[1][key] for key in ("invocation_bound", "numerical_eligible", "standing")}
+            assert got == eligibility, label
         count += 1
     assert count == 2 * len(corpus()["cases"]) + len(corpus()["mutations"]) + len(corpus().get("must_pass", []))
 
@@ -208,7 +217,9 @@ def test_public_entry_on_the_real_milestone_receipts(mode):
     for invocation in (doc["invocation"], None):
         public = rp.validate_retained_precision(deepcopy(doc["source"]), deepcopy(invocation))
         assert public == rp._validate_draft(deepcopy(doc["source"]), deepcopy(invocation))
-        assert public["numerical_eligible"] is False and public["standing"] == "needs_recompute"
+        # U7: with its actual invocation the solved one-case milestone is eligible; without, not.
+        assert public["numerical_eligible"] is (invocation is not None)
+        assert public["standing"] == ("eligible" if invocation is not None else "needs_recompute")
         assert public["invocation_bound"] is (invocation is not None)
         counts = [sum(1 for c in public["classifications"] if c["class"] == k) for k in ("relative_verified", "absolute_verified", "input_derived", "non_quantity")]
         assert counts == MILESTONE_PINS[mode][1], (mode, counts)
@@ -242,7 +253,9 @@ def test_old_operational_error_is_retained_independently_of_new_ready():
     }], "rehash":"all"})
     result = rp._validate_draft(source, fixture["invocation"])
     assert result["classifications"] == fixture["expected_classifications"]
-    assert result["numerical_eligible"] is False
+    # U7: the edit touches product_attempts only, so the base's eligibility holds.
+    assert fixture["expected"]["numerical_eligible"] is True
+    assert result["numerical_eligible"] is True
 
 
 def test_native_source_encoding_domain_and_load_separation():
@@ -277,7 +290,9 @@ def test_shared_publicly_consistent_attestations_must_pass(entry):
     source, invocation = apply_entry(fixture, entry)
     result = rp._validate_draft(source, invocation)
     assert result["classifications"] == fixture["expected_classifications"]
-    assert result["numerical_eligible"] is False
+    # U7 (07i): 13 entries are eligible; the 10 with an unavailable case are not.
+    got = {key: result[key] for key in ("invocation_bound", "numerical_eligible", "standing")}
+    assert got == entry["expected_eligibility"]
 
 
 def _layout_index(source, predicate):
@@ -621,14 +636,18 @@ def test_rv79_surviving_mutants_m06_m09_m14():
 
 
 def test_snapshot_07_counts_and_entry_format():
-    """Snapshot 07h (I61 U6e repair; RV90 S1, N1, N2, N4): 15 cases, 277 mutations, 23 must-pass and
-    the D37 table; only rehash "all" (D11); one expectation per entry except the per-reader G7 entry."""
+    """Snapshot 07i (U7, D-U7-2, on 07h: I61 U6e repair; RV90 S1, N1, N2, N4): 15 cases, 277 mutations,
+    23 must-pass and the D37 table; only rehash "all" (D11); one expectation per entry except the
+    per-reader G7 entry; each must-pass entry also states its eligibility."""
     c = corpus()
     assert (len(c["cases"]), len(c["mutations"]), len(c["must_pass"])) == (15, 277, 23)
     assert set(c) == {"version", "provenance", "arithmetic", "cases", "mutations", "must_pass", "d37"}
     entries = c["mutations"] + c["must_pass"]
     assert all(e["rehash"] == "all" for e in entries)
-    assert all(set(e) <= {"id", "base", "edits", "invocation_edits", "after_rehash", "rehash", "expected", "expected_by_reader"} for e in entries)
+    assert all(set(e) <= {"id", "base", "edits", "invocation_edits", "after_rehash", "rehash", "expected", "expected_by_reader", "expected_eligibility"} for e in entries)
+    assert all(("expected_eligibility" in e) == (e in c["must_pass"]) for e in entries)
+    eligible = lambda items, key: sum(item[key]["numerical_eligible"] for item in items)
+    assert (eligible(c["cases"], "expected"), eligible(c["must_pass"], "expected_eligibility")) == (13, 13)
     assert [e["id"] for e in entries if "expected_by_reader" in e] == ["g7_maximum_off_enclosure"]
     assert len({e["id"] for e in entries}) == len(entries)
 

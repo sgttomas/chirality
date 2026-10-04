@@ -5503,10 +5503,10 @@
       ],
       "expected": {
         "invocation_bound": true,
-        "numerical_eligible": false,
-        "standing": "needs_recompute"
+        "numerical_eligible": true,
+        "standing": "eligible"
       },
-      "qualification": "DRAFT: full control and receipt work attestation audit incomplete; public API intentionally rejects."
+      "qualification": "DRAFT: full control and receipt work attestation audit incomplete; the public reader accepts it (D-U6-1); its eligibility is its expected value (U7)."
     },
     {
       "id": "ordinary_prepared_dense_synthetic",
@@ -10856,10 +10856,10 @@
       ],
       "expected": {
         "invocation_bound": true,
-        "numerical_eligible": false,
-        "standing": "needs_recompute"
+        "numerical_eligible": true,
+        "standing": "eligible"
       },
-      "qualification": "DRAFT: full control and receipt work attestation audit incomplete; public API intentionally rejects."
+      "qualification": "DRAFT: full control and receipt work attestation audit incomplete; the public reader accepts it (D-U6-1); its eligibility is its expected value (U7)."
     },
     {
       "id": "ordinary_prepared_no_data_synthetic",
@@ -16395,10 +16395,10 @@
       ],
       "expected": {
         "invocation_bound": true,
-        "numerical_eligible": false,
-        "standing": "needs_recompute"
+        "numerical_eligible": true,
+        "standing": "eligible"
       },
-      "qualification": "DRAFT: synthetic I57 section-5 zero/no-data positive control; zero-load receipt and its summary_coverage flags are synthetic producer attestations, not producer execution; full control and receipt work attestation audit incomplete; public API intentionally rejects."
+      "qualification": "DRAFT: synthetic I57 section-5 zero/no-data positive control; zero-load receipt and its summary_coverage flags are synthetic producer attestations, not producer execution; full control and receipt work attestation audit incomplete; the public reader accepts it (D-U6-1); its eligibility is its expected value (U7)."
     },
     {
       "id": "ordinary_prepared_cancelled_loads_synthetic",
@@ -21791,10 +21791,10 @@
       ],
       "expected": {
         "invocation_bound": true,
-        "numerical_eligible": false,
-        "standing": "needs_recompute"
+        "numerical_eligible": true,
+        "standing": "eligible"
       },
-      "qualification": "DRAFT: synthetic I57 section-5 cancelled +x/-x positive control (native witness PP/retained_product_tests.rs:1460-1487); zero rows, synthetic B and summary_coverage attestations, not producer execution; public API intentionally rejects."
+      "qualification": "DRAFT: synthetic I57 section-5 cancelled +x/-x positive control (native witness PP/retained_product_tests.rs:1460-1487); zero rows, synthetic B and summary_coverage attestations, not producer execution; the public reader accepts it (D-U6-1); its eligibility is its expected value (U7)."
     },
     {
       "id": "two_case_facade_after_certificate_synthetic",
@@ -31045,7 +31045,7 @@
         "numerical_eligible": false,
         "standing": "needs_recompute"
       },
-      "qualification": "DRAFT: synthetic two-case unavailable template (C1a; rebased 06d). Case 1: certificate passed, then the adapter verdict-copy reservation was refused by the allocator (PP prepared_verdict_copy -> AdapterWork::reserve, Storage(\"adapter vector\")); complete proof-owned summary_coverage retained. Synthetic allocator refusal; not producer execution; public API intentionally rejects."
+      "qualification": "DRAFT: synthetic two-case unavailable template (C1a; rebased 06d). Case 1: certificate passed, then the adapter verdict-copy reservation was refused by the allocator (PP prepared_verdict_copy -> AdapterWork::reserve, Storage(\"adapter vector\")); complete proof-owned summary_coverage retained. Synthetic allocator refusal; not producer execution; the public reader accepts it (D-U6-1); its eligibility is its expected value (U7)."
     },
     {
       "id": "two_case_preparation_failure_synthetic",
@@ -38108,7 +38108,7 @@
         "numerical_eligible": false,
         "standing": "needs_recompute"
       },
-      "qualification": "DRAFT: synthetic two-case unavailable template (C1a; rebased 06d). Case 1: preparation refused before the first annulus helper by an allocator refusal at the first prepared reservation (PP prepared_reserve, Storage(\"prepared vector\")); no proof, no source, no native run. Synthetic allocator refusal; not producer execution; public API intentionally rejects. (07: explicit source_ref null, D9b.)"
+      "qualification": "DRAFT: synthetic two-case unavailable template (C1a; rebased 06d). Case 1: preparation refused before the first annulus helper by an allocator refusal at the first prepared reservation (PP prepared_reserve, Storage(\"prepared vector\")); no proof, no source, no native run. Synthetic allocator refusal; not producer execution; the public reader accepts it (D-U6-1); its eligibility is its expected value (U7). (07: explicit source_ref null, D9b.)"
     },
     {
       "id": "two_body_synthetic",
@@ -47526,10 +47526,10 @@
       ],
       "expected": {
         "invocation_bound": true,
-        "numerical_eligible": false,
-        "standing": "needs_recompute"
+        "numerical_eligible": true,
+        "standing": "eligible"
       },
-      "qualification": "DRAFT: synthetic two-body model (C1b): a second, separately anchored, unloaded cantilever; body-1 zeros are source-forced, body-0 summaries and all work are synthetic attestations. Not producer execution; public API intentionally rejects."
+      "qualification": "DRAFT: synthetic two-body model (C1b): a second, separately anchored, unloaded cantilever; body-1 zeros are source-forced, body-0 summaries and all work are synthetic attestations. Not producer execution; the public reader accepts it (D-U6-1); its eligibility is its expected value (U7)."
     },
     {
       "id": "p512_ladder_synthetic",
@@ -57452,10 +57452,10 @@
       ],
       "expected": {
         "invocation_bound": true,
-        "numerical_eligible": false,
-        "standing": "needs_recompute"
+        "numerical_eligible": true,
+        "standing": "eligible"
       },
-      "qualification": "DRAFT: synthetic two-body native p512 ladder (p128 rejected, reused p256 rejected, reused p512 accepted, p1024 verified); rejection triggers, work and summaries are synthetic attestations, floors are Phi = phi_512(e_hat). Not producer execution; public API intentionally rejects."
+      "qualification": "DRAFT: synthetic two-body native p512 ladder (p128 rejected, reused p256 rejected, reused p512 accepted, p1024 verified); rejection triggers, work and summaries are synthetic attestations, floors are Phi = phi_512(e_hat). Not producer execution; the public reader accepts it (D-U6-1); its eligibility is its expected value (U7)."
     },
     {
       "id": "two_case_synthetic",
@@ -67923,10 +67923,10 @@
       ],
       "expected": {
         "invocation_bound": true,
-        "numerical_eligible": false,
-        "standing": "needs_recompute"
+        "numerical_eligible": true,
+        "standing": "eligible"
       },
-      "qualification": "DRAFT: synthetic two-load-case selected model (case 1 zero loads); summaries, work and coverage are synthetic attestations. Not producer execution; public API intentionally rejects."
+      "qualification": "DRAFT: synthetic two-load-case selected model (case 1 zero loads); summaries, work and coverage are synthetic attestations. Not producer execution; the public reader accepts it (D-U6-1); its eligibility is its expected value (U7)."
     },
     {
       "id": "candidate_failure_skip_synthetic",
@@ -73406,8 +73406,8 @@
       ],
       "expected": {
         "invocation_bound": true,
-        "numerical_eligible": false,
-        "standing": "needs_recompute"
+        "numerical_eligible": true,
+        "standing": "eligible"
       },
       "qualification": "DRAFT: synthetic single-case native skip (p128 shared build Pivot failure, fresh p256 accepted, p512 verified); the Pivot and work are synthetic attestations. Not producer execution."
     },
@@ -79023,8 +79023,8 @@
       ],
       "expected": {
         "invocation_bound": true,
-        "numerical_eligible": false,
-        "standing": "needs_recompute"
+        "numerical_eligible": true,
+        "standing": "eligible"
       },
       "qualification": "DRAFT: synthetic single-case native two-slot skip (p256 verification Condition failure, fresh p512 accepted, p1024 verified); the Condition and work are synthetic attestations. Not producer execution."
     },
@@ -89563,8 +89563,8 @@
       ],
       "expected": {
         "invocation_bound": true,
-        "numerical_eligible": false,
-        "standing": "needs_recompute"
+        "numerical_eligible": true,
+        "standing": "eligible"
       },
       "qualification": "DRAFT: synthetic two-case shared cache (identical inputs; cached non-budget Pivot failure of s128 reused by case 1); triggers and work are synthetic attestations. Not producer execution."
     },
@@ -99967,8 +99967,8 @@
       ],
       "expected": {
         "invocation_bound": true,
-        "numerical_eligible": false,
-        "standing": "needs_recompute"
+        "numerical_eligible": true,
+        "standing": "eligible"
       },
       "qualification": "DRAFT: synthetic two-case model; case 1 selects a named material point with E and G doubled, forming a second stiffness group in the same call. Rows derived by exact power-of-two scaling; work and summaries are synthetic attestations. Not producer execution."
     },
@@ -105338,8 +105338,8 @@
       ],
       "expected": {
         "invocation_bound": true,
-        "numerical_eligible": false,
-        "standing": "needs_recompute"
+        "numerical_eligible": true,
+        "standing": "eligible"
       },
       "qualification": "DRAFT: synthetic base with a temperature-interpolated material (exact 200e9 at 301 K by the native operation order); not producer execution."
     },
@@ -110661,8 +110661,8 @@
       ],
       "expected": {
         "invocation_bound": true,
-        "numerical_eligible": false,
-        "standing": "needs_recompute"
+        "numerical_eligible": true,
+        "standing": "eligible"
       },
       "qualification": "DRAFT: synthetic base with project length unit mm (positions x1000); not producer execution."
     }
@@ -131499,7 +131499,12 @@
         }
       ],
       "rehash": "all",
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": true,
+        "standing": "eligible"
+      }
     },
     {
       "id": "loaded_all_stop_false",
@@ -131538,7 +131543,12 @@
         }
       ],
       "rehash": "all",
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": true,
+        "standing": "eligible"
+      }
     },
     {
       "id": "no_data_all_stop_true",
@@ -131598,7 +131608,12 @@
         }
       ],
       "rehash": "all",
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": true,
+        "standing": "eligible"
+      }
     },
     {
       "id": "no_data_attested_data_block",
@@ -131672,7 +131687,12 @@
         }
       ],
       "rehash": "all",
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": true,
+        "standing": "eligible"
+      }
     },
     {
       "id": "cancelled_all_stop_true",
@@ -131732,7 +131752,12 @@
         }
       ],
       "rehash": "all",
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": true,
+        "standing": "eligible"
+      }
     },
     {
       "id": "cert_failed_before_summary",
@@ -131833,7 +131858,12 @@
         }
       ],
       "rehash": "all",
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": false,
+        "standing": "needs_recompute"
+      }
     },
     {
       "id": "lane_k_failed",
@@ -132102,7 +132132,12 @@
         }
       ],
       "rehash": "all",
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": false,
+        "standing": "needs_recompute"
+      }
     },
     {
       "id": "lane_source_failed",
@@ -132486,7 +132521,12 @@
         }
       ],
       "rehash": "all",
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": false,
+        "standing": "needs_recompute"
+      }
     },
     {
       "id": "maxima_abandoned",
@@ -132574,7 +132614,12 @@
         }
       ],
       "rehash": "all",
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": false,
+        "standing": "needs_recompute"
+      }
     },
     {
       "id": "prefix_captured",
@@ -132615,7 +132660,12 @@
         }
       ],
       "rehash": "all",
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": false,
+        "standing": "needs_recompute"
+      }
     },
     {
       "id": "cert_failed_after_summary_storage",
@@ -132704,7 +132754,12 @@
         }
       ],
       "rehash": "all",
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": false,
+        "standing": "needs_recompute"
+      }
     },
     {
       "id": "two_body_swap_stop_with_rosters",
@@ -132778,7 +132833,12 @@
         }
       ],
       "rehash": "all",
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": true,
+        "standing": "eligible"
+      }
     },
     {
       "id": "p512_charge_follows_stop_zero_floor_body",
@@ -132891,7 +132951,12 @@
         }
       ],
       "rehash": "all",
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": true,
+        "standing": "eligible"
+      }
     },
     {
       "id": "copy_flags_into_unloaded",
@@ -133007,7 +133072,12 @@
         }
       ],
       "rehash": "all",
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": true,
+        "standing": "eligible"
+      }
     },
     {
       "id": "prefix_unattached_old_operand_attested",
@@ -133030,7 +133100,12 @@
         }
       ],
       "rehash": "all",
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": false,
+        "standing": "needs_recompute"
+      }
     },
     {
       "id": "values_failed_separate_completion",
@@ -133136,7 +133211,12 @@
         }
       ],
       "rehash": "all",
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": false,
+        "standing": "needs_recompute"
+      }
     },
     {
       "id": "aliases_abandoned",
@@ -133224,7 +133304,12 @@
         }
       ],
       "rehash": "all",
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": false,
+        "standing": "needs_recompute"
+      }
     },
     {
       "id": "bind_rows_abandoned",
@@ -133312,7 +133397,12 @@
         }
       ],
       "rehash": "all",
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": false,
+        "standing": "needs_recompute"
+      }
     },
     {
       "id": "interpolation_equal_e_bracketed_control",
@@ -133353,7 +133443,12 @@
           }
         }
       ],
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": true,
+        "standing": "eligible"
+      }
     },
     {
       "id": "integral_float_integers_and_references",
@@ -133744,7 +133839,12 @@
         }
       ],
       "rehash": "all",
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": true,
+        "standing": "eligible"
+      }
     },
     {
       "id": "model_schema_version_0_1_0_accepted",
@@ -133762,7 +133862,12 @@
           "value": "0.1.0"
         }
       ],
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": true,
+        "standing": "eligible"
+      }
     },
     {
       "id": "verification_estimate_names_moment_row",
@@ -133822,7 +133927,12 @@
         }
       ],
       "rehash": "all",
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": true,
+        "standing": "eligible"
+      }
     },
     {
       "id": "f5_envelope_reordered_exact_list",
@@ -133950,7 +134060,12 @@
         }
       ],
       "rehash": "all",
-      "expected": "pass"
+      "expected": "pass",
+      "expected_eligibility": {
+        "invocation_bound": true,
+        "numerical_eligible": true,
+        "standing": "eligible"
+      }
     }
   ],
   "d37": {

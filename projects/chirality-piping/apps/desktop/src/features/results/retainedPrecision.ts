@@ -92,9 +92,9 @@ export type RowClassification = Readonly<{ result_id: string; basis_ref: Readonl
 export type RetainedPrecisionValidation = Readonly<{ invocation_bound: boolean; numerical_eligible: boolean; standing: 'eligible' | 'needs_recompute'; publication_sha256: string; classifications: readonly RowClassification[] }>;
 const SCHEMA = receiptSchema as Obj;
 const SAFE = BigInt(Number.MAX_SAFE_INTEGER);
-// I57 summary-coverage checks are implemented against shared snapshot 04 only.
-// Eligibility stays held until snapshot 05 controls and independent review.
-const SUMMARY_COVERAGE_COMPLETE = false;
+// Eligibility is on since U7 (D-U7-5);
+// every gate runs regardless.
+const SUMMARY_COVERAGE_COMPLETE = true;
 const COVERAGE_KEYS = ['body', 'has_data', 'stop'];
 const BASE_ID = 'openpipestress.result_semantics/0.3.0/preview-physics-1';
 const BASE_HASH = 'ae55503d44a4750714a35c423623e38cf4132099134097193024d1635bfbc88a';
@@ -1304,7 +1304,7 @@ function projection(source: Obj): Obj {
   return p;
 }
 const defaultErrors: Record<string, string> = { G0: 'SOURCE_PRODUCER_CONTRACT_UNSUPPORTED', G1: 'RETAINED_PRECISION_RECEIPT_MISMATCH', G2: 'RETAINED_PRECISION_ENCODING_MISMATCH', G3: 'RETAINED_PRECISION_COVERAGE_MISMATCH', G4: 'RETAINED_PRECISION_DIAGNOSTIC_MISMATCH', G5: 'RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH', G5a: 'RETAINED_PRECISION_SCALE_MISMATCH', G5b: 'RETAINED_PRECISION_SCALE_MISMATCH', G5c: 'RETAINED_PRECISION_CLASSIFICATION_MISMATCH', G6: 'RETAINED_PRECISION_ROW_METHOD_MISMATCH', G7: 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID', G8: 'RETAINED_PRECISION_PREPARATION_MISMATCH' };
-/** Ordered standalone reader; pending summary coverage keeps eligibility held.
+/** Ordered standalone reader; eligibility as in C1:160.
  * No registration, mutable eligibility cache, or private proof replay. */
 export async function validateRetainedPrecision(source: unknown, invocation?: unknown): Promise<RetainedPrecisionValidation> {
   let gate = 'G0';

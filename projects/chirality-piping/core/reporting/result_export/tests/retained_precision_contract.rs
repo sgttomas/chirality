@@ -197,15 +197,18 @@ fn apply_entry(shared: &Value, entry: &Value) -> (Value, Value) {
     (source, invocation)
 }
 #[test]
-fn complete_synthetic_controls_keep_eligibility_held() {
+fn complete_synthetic_controls_carry_their_shared_eligibility() {
     let shared = corpus();
     for case in shared["cases"].as_array().unwrap() {
         let got = rp::validate(&case["source"], Some(&case["invocation"]))
             .unwrap_or_else(|e| panic!("{}: {e:?}", case["id"]));
         assert!(got.invocation_bound);
-        assert!(
-            !got.numerical_eligible,
-            "native summary coverage remains held"
+        // U7 (07i, D-U7-2): 13 bases are eligible; the two with an unavailable case are not.
+        assert_eq!(
+            got.numerical_eligible,
+            case["expected"]["numerical_eligible"].as_bool().unwrap(),
+            "{}: the shared eligibility",
+            case["id"]
         );
         assert_eq!(
             got.publication_sha256,
@@ -822,7 +825,7 @@ fn g5_audit_local_controls() {
 
 /// Snapshot-05a shared must-pass entries: each rehashed rewrite keeps every
 /// public relation, so the reader admits it with the base case's
-/// classifications; eligibility stays held.
+/// classifications and the eligibility the entry states (07i, U7).
 #[test]
 fn shared_must_pass_entries_validate() {
     let shared = corpus();
@@ -849,7 +852,9 @@ fn shared_must_pass_entries_validate() {
             }
         };
         let expected = case["expected_classifications"].as_array().unwrap();
-        let same = !got.numerical_eligible
+        // U7 (07i): each must-pass entry states its eligibility.
+        let same = got.numerical_eligible
+            == entry["expected_eligibility"]["numerical_eligible"].as_bool().unwrap()
             && got.invocation_bound
             && got.classifications.len() == expected.len()
             && got.classifications.iter().zip(expected).all(|(g, w)| {
@@ -960,7 +965,7 @@ fn coverage_layout_controls_fail_at_g5a() {
 /// rewrites keep every public relation (feasibility, rederived estimate and
 /// charge, exact rosters, record binding, direct data facts), so the reader must
 /// admit them with the base classifications; only producer custody or replay
-/// can catch such attested private flags. Eligibility stays held.
+/// can catch such attested private flags. Since U7 they keep the base's eligibility.
 #[test]
 fn publicly_consistent_coverage_attestations_are_not_rejected() {
     use serde_json::json;
@@ -1036,7 +1041,8 @@ fn publicly_consistent_coverage_attestations_are_not_rejected() {
         rehash(&mut source);
         let got = rp::validate(&source, Some(&case["invocation"]))
             .unwrap_or_else(|e| panic!("{name}: {e:?}"));
-        assert!(!got.numerical_eligible, "{name}");
+        assert!(case["expected"]["numerical_eligible"].as_bool().unwrap(), "{name}: an eligible base");
+        assert!(got.numerical_eligible, "{name}");
         let expected = case["expected_classifications"].as_array().unwrap();
         assert_eq!(got.classifications.len(), expected.len(), "{name}");
         for (got, want) in got.classifications.iter().zip(expected) {

@@ -3,8 +3,9 @@ standing, binding refusal, classification summary, the AnalysisRun, and the
 refusals of the legacy wrapper and the stress-neutral packager).
 
 The milestone inputs are byte-identical copies of PP's pinned successor files
-(D-U6-5): producer test outputs, not native Current evidence. Eligibility is held,
-so standing is needs_recompute (D-U6-6); U7 owns the switch."""
+(D-U6-5): producer test outputs, not native Current evidence. Since U7 (D-U7-5) the
+reader's eligibility is on: with its actual invocation and requested cases the milestone
+stands numerically_eligible, and without them needs_recompute."""
 from copy import deepcopy
 import hashlib
 import json
@@ -104,13 +105,13 @@ def test_dispatch_admits_the_successor_through_the_accepted_reader_only(mode):
 
 
 @pytest.mark.parametrize("mode", MODES)
-def test_standing_is_needs_recompute_and_comes_only_from_the_receipt(mode):
+def test_standing_is_eligible_only_with_the_invocation_and_comes_only_from_the_receipt(mode):
     source, invocation = milestone(mode)
     refs = requested(invocation)
     assert c.numerical_use_standing(source, refs) == "needs_recompute"
-    assert c.numerical_use_standing(source, refs, invocation) == "needs_recompute"
+    assert c.numerical_use_standing(source, refs, invocation) == "numerically_eligible"
     validation = rp.validate_retained_precision(source, invocation)
-    assert validation["invocation_bound"] and not validation["numerical_eligible"]
+    assert validation["invocation_bound"] and validation["numerical_eligible"]
     row = deepcopy(source)
     row["results"][0]["value"] = row["results"][0]["value"] * 2.0 + 1.0
     assert c.numerical_use_standing(row, refs) == "unsupported"
@@ -131,8 +132,23 @@ def test_standing_is_needs_recompute_and_comes_only_from_the_receipt(mode):
     assert c.numerical_use_standing(claimed, refs, invocation) == "unsupported"
 
 
+@pytest.mark.parametrize("mode", MODES)
+def test_a_solved_status_is_required_before_the_eligibility_conjunct(mode):
+    """U7: a hash-consistent successor whose mechanics status is not MECHANICS_SOLVED is refused
+    at G7 by the base preview validator (a blocked envelope carries no preview evidence), so the
+    reader's own MECHANICS_SOLVED conjunct is never the deciding one (I66 U7 slice F, mutant C2)."""
+    source, invocation = milestone(mode)
+    for status in ("MODEL_INCOMPLETE", "MECHANICS_FAILED", "NOT_RUN"):
+        unsolved = deepcopy(source)
+        unsolved["status"]["mechanics"] = status
+        with pytest.raises(rp.RetainedPrecisionError) as error:
+            rp.validate_retained_precision(rehash(unsolved), invocation)
+        assert (error.value.gate, error.value.code) == ("G7", "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"), status
+        assert c.numerical_use_standing(rehash(unsolved), requested(invocation), invocation) == "unsupported"
+
+
 def test_standing_rule_conjuncts_with_eligibility_set():
-    """The post-U7 rule, through the seam with eligibility set; no flag is touched."""
+    """The standing rule's conjuncts, through the seam (the reader's eligibility is on since U7)."""
     source, invocation = milestone("sparse_interactive")
     refs = requested(invocation)
     validation = dict(rp.validate_retained_precision(source, invocation), numerical_eligible=True)
@@ -183,14 +199,17 @@ CASES = ROOT / "fixtures/results/retained_precision_carrier_cases.json"
 # RR "RV88 on U6a, U6c, U6b (and U6d)": the only ruled differences between the
 # languages' carriers; any other difference is a defect.
 # RR "RV92 (U6f) on the whole of U6" adds the fifth (N-2, with N-5) and widens I67-F2 (N-3).
+# RR "The memory branch merged into NUM; U7 slices T and P committed" adds D-U7-4 (format v4).
 DECLARED = {"I67-F1:unregistered_invalid_statement", "I67-F2:display_only_binding_precheck",
             "F-U6b-2:python_refuses_transport", "F5:refused_statement_binding",
-            "RV92-N2-N5:ts_refuses_token_rows_at_the_header"}
+            "RV92-N2-N5:ts_refuses_token_rows_at_the_header", "D-U7-4:ts_requires_live_native_capture"}
+# Every field a v4 form may carry; any other field is a defect, never silently ignored.
+FORM_FIELDS = {"label", "fixtures", "invocation", "capture", "requested", "edits", "current_model_edits", "subject", "expected"}
 
 
 def shared_cases():
     cases = json.loads(CASES.read_text())
-    assert cases["format"] == "I66-U6-CARRIER-CASES-v3"
+    assert cases["format"] == "I66-U6-CARRIER-CASES-v4"
     docs = {}
     for fid, spec in cases["fixtures"].items():
         raw = (ROOT / spec["path"]).read_bytes()
@@ -233,7 +252,7 @@ def test_shared_carrier_cases_python():
 
 def expected_summary(source):
     """'by_validated_class': per receipt case, the reader's class counts, interval
-    binding 0, and the held withheld count (eligibility is held until U7)."""
+    binding 0, and the not-Current withheld count (these forms carry no invocation)."""
     classes = rp.validate_retained_precision(source)["classifications"]
     out = []
     for case in source["retained_precision"]["body"]["cases"]:
@@ -266,7 +285,8 @@ def test_declared_differences_python():
     """Each ruled difference, form by form, with Python's own expectation; Rust
     asserts its own from the same entries, and TS (I67) its own."""
     cases, docs = shared_cases()
-    assert all(p in cases["scope"] for p in ("G7 parity compares the reader's (gate, code)", "parity there compares only accept against refuse"))
+    assert all(p in cases["scope"] for p in ("G7 parity compares the reader's (gate, code)", "parity there compares only accept against refuse",
+                                              "no carrier authenticates producer origin", "a blocked envelope is refused at G7 with each language's own base code", "Python SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"))
     entries = cases["declared_differences"]
     assert {entry["id"] for entry in entries} == DECLARED and len(entries) == len(DECLARED)
     seen = set()
@@ -274,10 +294,29 @@ def test_declared_differences_python():
         assert entry["ruling"] and entry["kind"] in {"language", "semantics"} and entry["forms"], entry["id"]
         for form in entry["forms"]:
             assert set(form["expected"]) == {"rust", "python", "typescript"}, (entry["id"], form["label"])
+            assert set(form) <= FORM_FIELDS, (entry["id"], form["label"], set(form) - FORM_FIELDS)
+            # v4 'capture': 'none' is TS's (no IPC capture); Python reads the invocation argument as for 'fixture'.
+            assert form.get("capture", "none") == "none" and ("capture" not in form or form["invocation"] == "fixture"), form["label"]
             expected = form["expected"]["python"]
             for fid in form["fixtures"]:
                 source, context, refs = apply_case(form, docs[fid])
                 label = (entry["id"], form["label"], fid)
+                # v4 'current_model_edits' change only TS's current model: applied here to a copy of the
+                # invocation's model, they must change it, and Python's inputs (source, invocation, refs) stay as they are.
+                if "current_model_edits" in form:
+                    model = deepcopy(docs[fid]["invocation"]["request"]["model"])
+                    before = deepcopy(model)
+                    for edit in form["current_model_edits"]:
+                        assert edit["op"] == "set" and set(edit) == {"path", "op", "value"}, label
+                        target = model
+                        for key in edit["path"][:-1]:
+                            target = target[key]
+                        assert edit["path"][-1] in target, label
+                        target[edit["path"][-1]] = edit["value"]
+                    assert model != before and context == docs[fid]["invocation"], label
+                    seen.add(("current_model_edits", True))
+                if "capture" in form:
+                    seen.add(("capture", form["capture"]))
                 seen.add((form["subject"], expected.get(form["subject"])))
                 if form["subject"] == "standing":
                     assert c.numerical_use_standing(source, refs, context) == expected["standing"], label
@@ -289,8 +328,9 @@ def test_declared_differences_python():
                 else:
                     assert form["subject"] == "binding", label
                     assert [c.rule_binding_refusal(source, row) for row in source["results"]] == expected_binding(source, expected["binding"]), label
-    # Every subject and vocabulary that Python consumes is exercised.
-    assert {subject for subject, _ in seen} == {"standing", "transport", "binding", "summary"}
+    # Every subject, vocabulary and v4 field that Python consumes is exercised, D-U7-4's side included.
+    assert {subject for subject, _ in seen} == {"standing", "transport", "binding", "summary", "current_model_edits", "capture"}
+    assert ("standing", "numerically_eligible") in seen
 
 
 def dispatch_transport(source):
@@ -432,16 +472,17 @@ def test_classification_summary_counts_validated_classes(mode):
     expected = [{"case_id": case_id, "relative_verified": relative, "absolute_verified": absolute, "interval_bindable": 0,
                  "not_covered": 0, "input_derived": input_derived, "non_quantity": non_quantity,
                  "withheld": relative + absolute + input_derived}]
-    assert c.classification_summary(source, invocation) == expected
+    current = deepcopy(expected)
+    current[0]["withheld"] = absolute
+    # U7: with its actual invocation the envelope is Current, so only absolute (and not-covered) rows stay withheld.
+    assert c.classification_summary(source, invocation) == current
     assert c.classification_summary(source) == expected
     broken = deepcopy(source)
     broken["results"][0]["value"] = 12345.0
     assert c.classification_summary(broken, invocation) == []
     assert c.classification_summary(projected(source)) == []
-    # After U7 (through the seam): only absolute and not-covered rows stay withheld.
+    # Through the seam: only absolute and not-covered rows stay withheld when Current.
     validation = dict(rp.validate_retained_precision(source, invocation), numerical_eligible=True)
-    current = deepcopy(expected)
-    current[0]["withheld"] = absolute
     assert c._classification_summary_from(validation, source, invocation) == current
     assert c._classification_summary_from(validation, source, None) == expected
     other = deepcopy(invocation)

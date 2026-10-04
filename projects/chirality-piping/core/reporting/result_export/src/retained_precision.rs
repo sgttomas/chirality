@@ -4264,9 +4264,9 @@ fn project(source: &Value, raw: bool) -> VResult<Value> {
     }
     Ok(projected)
 }
-// Eligibility stays held: the reader is unaccepted until the snapshot-07 repair
-// wave (review RV78-RV81) is confirmed by the reviewers and ROOT accepts it.
-const IMPLEMENTATION_COMPLETE: bool = false;
+// Eligibility is on (U7, D-U7-5): an invocation-bound statement of a solved
+// model whose cases are selected or not_required is eligible; every gate runs.
+const IMPLEMENTATION_COMPLETE: bool = true;
 /// Validate a raw successor statement against the original request/mode.
 /// Hashes bind the supplied statements; they do not establish producer origin.
 pub fn validate(source: &Value, actual_invocation: Option<&Value>) -> VResult<Validation> {

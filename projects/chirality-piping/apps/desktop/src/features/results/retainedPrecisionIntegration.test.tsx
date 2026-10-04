@@ -6,15 +6,16 @@
  * unit transport replay, NOT a native witness: Tauri never delivers a successor
  * in the milestone domain (plan F-1; D-U6-3 qualification limit).
  *
- * The reader's eligibility stays held until U7, so every real standing here is
- * at best `needs_recompute`. The post-U7 rules are exercised two ways without
- * touching the flag: the pure seams (`retainedStandingFrom`,
- * `classificationSummaryFrom`) and a test-only wrapper of the accepted reader
- * (`u7.simulate`) that sets `numerical_eligible` on an invocation-bound
- * validation, and optionally marks one row `not_covered` (no available
- * statement has one; U6a F3) or reclassifies the absolute rows, to reach the
- * summary branches. With `u7.simulate` false the wrapper returns the reader's own
- * frozen result unchanged.
+ * Since U7 (D-U7-5) the reader's eligibility is on: the unedited successor with
+ * its captured invocation reads `numerically_eligible` through the real reader.
+ * The pure seams (`retainedStandingFrom`, `classificationSummaryFrom`) are
+ * exercised directly. A test-only wrapper of the accepted reader has two uses:
+ * `u7.simulate` marks one row `not_covered` (no available statement has one;
+ * U6a F3) or reclassifies the absolute rows, to reach the summary branches; and
+ * `u7.held` returns the reader's validation as it was before U7 (never eligible,
+ * standing `needs_recompute`, every gate and class unchanged), so the carriers'
+ * and gates' not-eligible branches stay exercised. With both false the wrapper
+ * returns the reader's own frozen result unchanged.
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, render, screen } from "@testing-library/react";
@@ -23,13 +24,15 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 const invokeMock = vi.hoisted(() => vi.fn());
 vi.mock("@tauri-apps/api/core", () => ({ invoke: invokeMock }));
-const u7 = vi.hoisted(() => ({ simulate: false, notCovered: null as string | null, noAbsolute: false }));
+const u7 = vi.hoisted(() => ({ simulate: false, held: false, notCovered: null as string | null, noAbsolute: false }));
 vi.mock("./retainedPrecision", async (importOriginal) => {
   const actual = await importOriginal<typeof import("./retainedPrecision")>();
   return {
     ...actual,
     validateRetainedPrecision: async (source: unknown, invocation?: unknown) => {
       const validation = await actual.validateRetainedPrecision(source, invocation);
+      // The pre-U7 reader (its flag false): the same gates and classes, never eligible.
+      if (u7.held) return Object.freeze({ ...validation, numerical_eligible: false, standing: "needs_recompute" as const });
       if (!u7.simulate || !validation.invocation_bound) return validation;
       return Object.freeze({
         ...validation, numerical_eligible: true, standing: "eligible" as const,
@@ -113,13 +116,23 @@ function milestone(mode: PreviewSolverMode) {
   const { source, invocation, model } = sharedFixture(`milestone_${mode}`);
   return { source, invocation: invocation as Json, model: model! };
 }
+/** The shared file's closed field sets (v4), as Python's and Rust's FORM_FIELDS:
+ * any other field fails. */
+const CASE_FIELDS = ["edits", "expected_dispatch", "expected_standing", "fixture", "id", "invocation", "requested"];
+const FORM_FIELDS = ["capture", "current_model_edits", "edits", "expected", "fixtures", "invocation", "label", "requested", "subject"];
 /** A shared case or declared-difference form applied to a fixture, delivered as
  * TS would receive it: a `"fixture"` invocation (edited if the form says so) is a
  * capture of it through mocked IPC; no invocation is a delivery without a capture;
  * a literal invocation object (v3, such as `{}`), which no IPC capture can carry,
  * is offered to the product registration after a capture-less delivery. The
- * standing model carries the requested load cases. */
+ * standing model carries the requested load cases. v4: `capture: "none"` delivers
+ * the same bytes without a capture and registers them with the fixture invocation
+ * and no live native capture; `current_model_edits` set-edit a copy of the
+ * invocation's model, which is then the session's current model. */
 async function applyShared(c: Json, fixtureId: string) {
+  const label = String(c.id ?? c.label);
+  const fields = Object.hasOwn(c, "label") ? FORM_FIELDS : CASE_FIELDS;
+  expect(Object.keys(c).filter(k => !fields.includes(k)), label).toStrictEqual([]);
   const doc = sharedFixture(fixtureId);
   const literal = c.invocation !== null && c.invocation !== "fixture";
   const source = structuredClone(doc.source) as Json, invocation = structuredClone(literal ? c.invocation : doc.invocation);
@@ -127,15 +140,33 @@ async function applyShared(c: Json, fixtureId: string) {
     expect(edit.op).toBe("set");
     setPath(edit.target === "source" ? source : invocation, edit.path, edit.value);
   }
-  const captured = c.invocation === "fixture";
-  const solveMode = (captured ? invocation.solver_mode : doc.invocation?.solver_mode ?? "sparse_interactive") as PreviewSolverMode;
+  if (Object.hasOwn(c, "capture")) expect([c.capture, c.invocation], label).toStrictEqual(["none", "fixture"]);
+  const fromFixture = c.invocation === "fixture", captured = fromFixture && !Object.hasOwn(c, "capture");
+  const solveMode = (fromFixture ? invocation.solver_mode : doc.invocation?.solver_mode ?? "sparse_interactive") as PreviewSolverMode;
   const received = await deliverDirect(source, captured ? invocation.request.model : null, solveMode);
   if (literal) await registerRetainedPrecision(received, invocation).catch(() => undefined);
+  // v4 `capture: "none"`: the product registration with the actual invocation, and no live capture.
+  else if (fromFixture && !captured) await registerRetainedPrecision(received, invocation);
   const requestedIds: string[] = c.requested === "invocation" ? caseIds(doc.model!) : c.requested.map((r: Json) => r.ref_id);
-  // The session's current model is the captured one when a capture exists and the
-  // requested refs are its cases (U7 slice T binds standing to that model);
-  // otherwise a model carrying just the requested load cases.
-  const model = captured && c.requested === "invocation" ? invocation.request.model as PreviewModel : { load_cases: requestedIds.map(id => ({ id })) } as unknown as PreviewModel;
+  // The session's current model is the invocation's when it comes from the fixture
+  // and the requested refs are its cases (U7 slice T binds standing to the captured
+  // model); otherwise a model carrying just the requested load cases.
+  let model = fromFixture && c.requested === "invocation" ? invocation.request.model as PreviewModel : { load_cases: requestedIds.map(id => ({ id })) } as unknown as PreviewModel;
+  if (Object.hasOwn(c, "current_model_edits")) {
+    expect(fromFixture && c.requested === "invocation", label).toBe(true);
+    const before = model;
+    model = structuredClone(model);
+    for (const edit of c.current_model_edits as Json[]) {
+      expect([Object.keys(edit).sort(), edit.op], label).toStrictEqual([["op", "path", "value"], "set"]);
+      let at = model as Json;
+      for (const key of edit.path.slice(0, -1)) at = at[key];
+      expect(Object.hasOwn(at, edit.path[edit.path.length - 1]), label).toBe(true);
+      at[edit.path[edit.path.length - 1]] = edit.value;
+    }
+    // The edits change the model but keep its load-case ids.
+    expect(model, label).not.toStrictEqual(before);
+    expect(caseIds(model), label).toStrictEqual(caseIds(before));
+  }
   return { received, model };
 }
 const OTHER: Record<PreviewSolverMode, PreviewSolverMode> = { sparse_interactive: "dense_scrutiny", dense_scrutiny: "sparse_interactive" };
@@ -174,17 +205,17 @@ function setPath(target: Json, path: (string | number)[], value: unknown) {
 const caseIds = (model: PreviewModel) => model.load_cases.map(c => c.id);
 const withLoadCases = (model: PreviewModel, ids: string[]) => ({ ...model, load_cases: ids.map(id => ({ ...model.load_cases[0], id })) }) as PreviewModel;
 
-beforeEach(() => { u7.simulate = false; u7.notCovered = null; u7.noAbsolute = false; t6.throwless = false; t6.noRefusal = false; t6.builderDoc = null; });
+beforeEach(() => { u7.simulate = false; u7.held = false; u7.notCovered = null; u7.noAbsolute = false; t6.throwless = false; t6.noRefusal = false; t6.builderDoc = null; });
 afterEach(() => {
   cleanup();
   invokeMock.mockReset();
   delete (window as Json).__TAURI_INTERNALS__;
-  u7.simulate = false; u7.notCovered = null; u7.noAbsolute = false; t6.throwless = false; t6.noRefusal = false; t6.builderDoc = null;
+  u7.simulate = false; u7.held = false; u7.notCovered = null; u7.noAbsolute = false; t6.throwless = false; t6.noRefusal = false; t6.builderDoc = null;
 });
 
 describe("the inputs and the pinned identity", () => {
-  it("uses PP's byte-identical successors and the shared 20-case file (format v3)", () => {
-    expect(caseFile.format).toBe("I66-U6-CARRIER-CASES-v3");
+  it("uses PP's byte-identical successors and the shared 20-case file (format v4)", () => {
+    expect(caseFile.format).toBe("I66-U6-CARRIER-CASES-v4");
     expect(caseFile.cases).toHaveLength(20);
     expect(Object.keys(caseFile.fixtures).sort()).toStrictEqual(["legacy_preview_0_1", "milestone_dense_scrutiny", "milestone_sparse_interactive", "preview_physics_1_invented_sparse", "source_blocks_n05_sparse"]);
     for (const mode of MODES) expect(milestone(mode).source.producer!.semantic_contract_id).toBe(RETAINED_PRECISION_ID);
@@ -222,12 +253,13 @@ describe.each(MODES)("%s: registration through mocked IPC", (mode) => {
     const outcome = retainedPrecisionRegistration(received)!;
     expect(outcome.error).toBeNull();
     expect(outcome.validation!.invocation_bound).toBe(true);
-    expect(outcome.validation!.numerical_eligible).toBe(false);
+    expect(outcome.validation!.numerical_eligible).toBe(true);
     expect(outcome.validation!.classifications).toHaveLength(source.results.length);
-    // Synchronous standing reads only the registration: held eligibility gives needs_recompute.
-    expect(numericalResultStanding(received, model)).toStrictEqual({ contract: "retained_preview_physics", status: "needs_recompute", eligible: false, findings: [RETAINED_PRECISION_NOT_NUMERICALLY_ELIGIBLE] });
-    expect(retainedPrecisionStanding(received, model).standing).toBe("needs_recompute");
-    expect(retainedPrecisionInvocation(received, model)).toBeNull();
+    // Synchronous standing reads only the registration: since U7 the live capture with
+    // its captured model is eligible, and the rule-check route receives the invocation.
+    expect(numericalResultStanding(received, model)).toStrictEqual({ contract: "retained_preview_physics", status: "integrity_checked", eligible: true, findings: [] });
+    expect(retainedPrecisionStanding(received, model).standing).toBe("numerically_eligible");
+    expect(retainedPrecisionInvocation(received, model)).toStrictEqual(invocation);
     // Fresh by membership (D-U6-6), never by standing.
     expect(isFreshSemanticResult(received)).toBe(true);
     expect(currentSemanticContract(received)).toStrictEqual({ id: RETAINED_PRECISION_ID, sha256: PREVIEW_PHYSICS_RETAINED_CONTRACT_SHA256 });
@@ -350,7 +382,6 @@ describe.each(MODES)("%s: registration through mocked IPC", (mode) => {
   });
 
   it("the registered invocation is a private copy: neither the caller's object nor a returned copy can alter it (RV03, RV04)", async () => {
-    u7.simulate = true;
     const { source, invocation, model } = milestone(mode);
     const own = structuredClone(source), callers = structuredClone(invocation);
     // A live-capture predicate stands in for previewService's native capture (U7 slice T).
@@ -371,7 +402,7 @@ describe.each(MODES)("%s: registration through mocked IPC", (mode) => {
   });
 });
 
-describe("the post-U7 standing rules (seams; the reader's flag is untouched)", () => {
+describe("the post-U7 standing rules (seams, independent of the reader's flag)", () => {
   const { source } = milestone("sparse_interactive");
   const requested = [{ ref_type: "load_case", ref_id: "case" }];
   const bound = { invocation_bound: true, numerical_eligible: true };
@@ -422,9 +453,8 @@ describe("the post-U7 standing rules (seams; the reader's flag is untouched)", (
   });
 });
 
-describe.each(MODES)("%s: the simulated post-U7 path through the real carriers", (mode) => {
+describe.each(MODES)("%s: the post-U7 path through the real carriers", (mode) => {
   it("standing becomes eligible only for the requested cases, and the rule-check gate passes the registered invocation", async () => {
-    u7.simulate = true;
     const { source, invocation, model } = milestone(mode);
     const received = await deliverDirect(source, model, mode);
     expect(numericalResultStanding(received, model)).toStrictEqual({ contract: "retained_preview_physics", status: "integrity_checked", eligible: true, findings: [] });
@@ -443,7 +473,7 @@ describe.each(MODES)("%s: the simulated post-U7 path through the real carriers",
     const route = await runRuleChecks({ rulePackDocument: {} as RulePackDocument, model, solvedEnvelope: received });
     expect(route.route).toBe("tauri_backend");
     expect(invokeMock).toHaveBeenCalledTimes(1);
-    // Saved or copied bytes still never register, even with the post-U7 reader.
+    // Saved or copied bytes still never register.
     expect(numericalResultStanding(structuredClone(received), model).findings).toStrictEqual([RETAINED_PRECISION_VALIDATION_REQUIRED]);
   });
   it("a not_covered row is labelled, refused and counted (fabricated class; no statement has one)", async () => {
@@ -468,18 +498,32 @@ describe.each(MODES)("%s: the simulated post-U7 path through the real carriers",
   });
 });
 
-describe.each(MODES)("%s: the rule-check gate and binding refusals (eligibility held)", (mode) => {
+describe.each(MODES)("%s: the rule-check gate and binding refusals", (mode) => {
   const pack = {} as RulePackDocument;
-  it("refuses a registered successor before any rule backend call, and unregistered bytes as not native", async () => {
-    const { source, model } = milestone(mode);
+  it("passes a registered successor to the rule backend with its invocation (U7); copies and refused bytes are not native; the held reader's needs_recompute is refused before any backend call", async () => {
+    const { source, invocation, model } = milestone(mode);
     const received = await deliverDirect(source, model, mode);
     invokeMock.mockReset();
-    await expect(runRuleChecks({ rulePackDocument: pack, model, solvedEnvelope: received })).rejects.toThrow(`${RETAINED_PRECISION_NOT_NUMERICALLY_ELIGIBLE}: the retained-precision result is not numerically eligible for rule checks.`);
+    invokeMock.mockImplementation(async (command: string, args: Json) => {
+      expect(command).toBe("run_rule_checks");
+      expect(args.sourceBlockInvocation).toStrictEqual(invocation);
+      return { document_kind: "rule_check_run", rule_pack_id: "invented", grammar_version: "1.0.0", aggregate_status: "RULE_INPUTS_INCOMPLETE", checks: [], professional_boundary_notice: "unit simulation" };
+    });
+    expect((await runRuleChecks({ rulePackDocument: pack, model, solvedEnvelope: received })).route).toBe("tauri_backend");
+    expect(invokeMock).toHaveBeenCalledTimes(1);
+    invokeMock.mockReset();
     await expect(runRuleChecks({ rulePackDocument: pack, model, solvedEnvelope: structuredClone(received) })).rejects.toThrow("RULE_NATIVE_INVOCATION_REQUIRED");
     const edited = structuredClone(source); edited.results[0].value = 12345;
     const refused = await deliverDirect(edited, model, mode);
     invokeMock.mockReset();
     await expect(runRuleChecks({ rulePackDocument: pack, model, solvedEnvelope: refused })).rejects.toThrow("RULE_NATIVE_INVOCATION_REQUIRED");
+    expect(invokeMock).not.toHaveBeenCalled();
+    // The held reader (u7.held, the pre-U7 output): a live registration that reads
+    // needs_recompute is refused by the gate itself.
+    u7.held = true;
+    const held = await deliverDirect(source, model, mode);
+    invokeMock.mockReset();
+    await expect(runRuleChecks({ rulePackDocument: pack, model, solvedEnvelope: held })).rejects.toThrow(`${RETAINED_PRECISION_NOT_NUMERICALLY_ELIGIBLE}: the retained-precision result is not numerically eligible for rule checks.`);
     expect(invokeMock).not.toHaveBeenCalled();
   });
   it("binds rows by validated class; a headline is refused as the row it names; unregistered rows are all refused", async () => {
@@ -512,7 +556,8 @@ describe.each(MODES)("%s: the rule-check gate and binding refusals (eligibility 
   it("summarizes classes per case over the registration only", async () => {
     const { source, model } = milestone(mode);
     const received = await deliverDirect(source, model, mode);
-    expect(classificationSummary(received, model)).toStrictEqual([{ case_id: "case", relative_verified: 25, absolute_verified: 69, interval_bindable: 0, not_covered: 0, input_derived: 3, non_quantity: mode === "sparse_interactive" ? 1 : 2, withheld: 97 }]);
+    // U7: Current for the captured model, so only the absolute rows are withheld.
+    expect(classificationSummary(received, model)).toStrictEqual([{ case_id: "case", relative_verified: 25, absolute_verified: 69, interval_bindable: 0, not_covered: 0, input_derived: 3, non_quantity: mode === "sparse_interactive" ? 1 : 2, withheld: 69 }]);
     expect(classificationSummary(structuredClone(received), model)).toStrictEqual([]);
     expect(classificationSummary(null)).toStrictEqual([]);
   });
@@ -585,28 +630,44 @@ describe("the downgrade guard (F-5)", () => {
 // one or more forms) with TypeScript's own expectations (RR "RV88 on U6a, U6c, U6b
 // (and U6d)…" and "RV92 (U6f) on the whole of U6…"). Rust and Python assert theirs
 // from the same forms; any other difference is a defect.
-const DECLARED = ["F-U6b-2:python_refuses_transport", "F5:refused_statement_binding", "I67-F1:unregistered_invalid_statement", "I67-F2:display_only_binding_precheck", "RV92-N2-N5:ts_refuses_token_rows_at_the_header"];
+const DECLARED = ["D-U7-4:ts_requires_live_native_capture", "F-U6b-2:python_refuses_transport", "F5:refused_statement_binding", "I67-F1:unregistered_invalid_statement", "I67-F2:display_only_binding_precheck", "RV92-N2-N5:ts_refuses_token_rows_at_the_header"];
 const NOTICES: Record<string, string> = { N_RP_UNVALIDATED };
 const SUMMARY_KIND = "open_formula_stress_summary";
 const declaredForms = (caseFile.declared_differences as Json[]).flatMap(e => (e.forms as Json[]).flatMap(form => (form.fixtures as string[]).map(f => [`${e.id} / ${form.label}`, f, form] as [string, string, Json])));
 describe("the declared differences, with TypeScript's expectations", () => {
-  it("are exactly the five ruled entries, each with a ruling, forms and one expectation per language", () => {
+  it("are exactly the six ruled entries, each with a ruling, forms and one expectation per language, in closed field sets", () => {
     const entries = caseFile.declared_differences as Json[];
     expect(entries.map(e => e.id).sort()).toStrictEqual(DECLARED);
-    const subjects = new Set<string>();
+    const subjects = new Set<string>(), v4 = new Set<string>();
     for (const entry of entries) {
       expect(typeof entry.ruling === "string" && entry.ruling.length > 0, entry.id).toBe(true);
       expect(entry.forms.length, entry.id).toBeGreaterThan(0);
       for (const form of entry.forms) {
         expect(Object.keys(form.expected).sort(), `${entry.id} ${form.label}`).toStrictEqual(["python", "rust", "typescript"]);
+        expect(Object.keys(form).filter(k => !FORM_FIELDS.includes(k)), `${entry.id} ${form.label}`).toStrictEqual([]);
         subjects.add(form.subject);
+        for (const field of ["capture", "current_model_edits"]) if (Object.hasOwn(form, field)) v4.add(field);
       }
     }
+    for (const c of caseFile.cases as Json[]) expect(Object.keys(c).filter(k => !CASE_FIELDS.includes(k)), c.id).toStrictEqual([]);
     expect([...subjects].sort()).toStrictEqual(["binding", "standing", "summary", "transport"]);
+    // Both v4 fields TS consumes are exercised.
+    expect([...v4].sort()).toStrictEqual(["capture", "current_model_edits"]);
+    // D-U7-4, TS's side: without a live native capture of these bytes and the current
+    // model, a valid successor with its invocation reads needs_recompute.
+    const capture = entries.find(e => e.id === "D-U7-4:ts_requires_live_native_capture");
+    expect(capture.forms.map((f: Json) => [f.label, f.subject, f.expected.typescript])).toStrictEqual([
+      ["invocation_without_native_capture", "standing", { standing: "needs_recompute", finding: RETAINED_PRECISION_NATIVE_CAPTURE_REQUIRED }],
+      ["stale_current_model_same_case_ids", "standing", { standing: "needs_recompute", finding: RETAINED_PRECISION_NATIVE_CAPTURE_REQUIRED }],
+    ]);
   });
   it("carry the N-4 scope: differences inherited from the base carriers are not U6's", () => {
     expect(caseFile.scope).toMatch(/inherited from the base carriers are not U6 differences/);
     expect(caseFile.scope).toMatch(/G7 parity compares the reader's \(gate, code\)[\s\S]*parity there compares only accept against refuse/);
+    // D-U7-6: eligibility is a property of the supplied statement and its invocation.
+    expect(caseFile.scope).toMatch(/no carrier authenticates producer origin/);
+    // I66 U7 slice F observation 3: a blocked envelope is refused at G7 with each language's own base code.
+    expect(caseFile.scope).toMatch(/a blocked envelope is refused at G7 with each language's own base code[^.]*TS SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID/);
   });
   it.each<[string, string, Json]>(declaredForms)("%s on %s", async (_id, fixtureId, form) => {
     const expected = form.expected.typescript;
@@ -712,12 +773,11 @@ describe("the carrier transport route on other identities is the header route", 
 
 // U7 slice T (RV91 N-2 = RV88 U6d S-1; D-U7-4): a successor's standing is bound to
 // the live native capture of these bytes and to the current model, as
-// hasNativeMechanicsInvocation is. Eligibility is forced through the test-only
-// reader wrapper (u7.simulate); the flags are untouched.
+// hasNativeMechanicsInvocation is. Since U7 the reader's own eligibility is used;
+// the held reader (u7.held) shows the pre-U7 reading.
 describe.each(MODES)("%s: standing is bound to the live native capture and the current model (U7 slice T)", (mode) => {
   const movedNode = (model: PreviewModel) => { const m = structuredClone(model) as Json; m.nodes[0].position.x += 1; return m as PreviewModel; };
   it("eligible only for the captured model; another model with the same case ids reads needs_recompute", async () => {
-    u7.simulate = true;
     const { source, model } = milestone(mode);
     const received = await deliverDirect(source, model, mode);
     expect(retainedPrecisionStanding(received, model)).toStrictEqual({ standing: "numerically_eligible", eligible: true, findings: [] });
@@ -732,7 +792,6 @@ describe.each(MODES)("%s: standing is bound to the live native capture and the c
     expect(retainedPrecisionStanding(received, null).findings).toStrictEqual([RETAINED_PRECISION_NOT_NUMERICALLY_ELIGIBLE]);
   });
   it("an edit of the caller's model object after the capture voids the binding", async () => {
-    u7.simulate = true;
     const { source, model } = milestone(mode);
     const callerModel = structuredClone(model);
     const received = await deliverDirect(source, callerModel, mode);
@@ -742,7 +801,6 @@ describe.each(MODES)("%s: standing is bound to the live native capture and the c
     expect(retainedPrecisionStanding(received, model).findings).toStrictEqual([RETAINED_PRECISION_NATIVE_CAPTURE_REQUIRED]);
   });
   it("a job cancelled while the reader validates keeps no live capture", async () => {
-    u7.simulate = true;
     const { source, model } = milestone(mode);
     (window as Json).__TAURI_INTERNALS__ = {};
     const jobId = `unit-transport-replay:retained:cancel:${++jobSequence}`;
@@ -762,14 +820,14 @@ describe.each(MODES)("%s: standing is bound to the live native capture and the c
     expect(retainedPrecisionStanding(received, model)).toStrictEqual({ standing: "needs_recompute", eligible: false, findings: [RETAINED_PRECISION_NATIVE_CAPTURE_REQUIRED] });
   });
   it("a registration without a native capture is never eligible", async () => {
-    u7.simulate = true;
     const { source, invocation, model } = milestone(mode);
     const own = structuredClone(source);
     expect((await registerRetainedPrecision(own, structuredClone(invocation))).numerical_eligible).toBe(true);
     expect(retainedPrecisionStanding(own, model).findings).toStrictEqual([RETAINED_PRECISION_NATIVE_CAPTURE_REQUIRED]);
     expect(retainedPrecisionInvocation(own, model)).toBeNull();
   });
-  it("with eligibility held, every one of these reads exactly as before (NOT_NUMERICALLY_ELIGIBLE)", async () => {
+  it("with the held reader (u7.held), every one of these reads as before U7 (NOT_NUMERICALLY_ELIGIBLE)", async () => {
+    u7.held = true;
     const { source, invocation, model } = milestone(mode);
     const received = await deliverDirect(source, model, mode);
     for (const m of [model, movedNode(model), { load_cases: model.load_cases } as PreviewModel]) {
@@ -789,9 +847,11 @@ describe.each(MODES)("%s: standing is bound to the live native capture and the c
 describe.each(MODES)("%s: the class notices do not depend on standing (U7 slice T)", (mode) => {
   it("an eligible successor shows exactly the notices a held one does; only `withheld` would differ", async () => {
     const { source, model } = milestone(mode);
+    u7.held = true;
     const held = await deliverDirect(source, model, mode);
+    expect(numericalResultStanding(held, model).eligible).toBe(false);
     const heldNotices = knownSemanticNotices(held);
-    u7.simulate = true;
+    u7.held = false;
     const eligible = await deliverDirect(source, model, mode);
     expect(numericalResultStanding(eligible, model).eligible).toBe(true);
     expect(knownSemanticNotices(eligible)).toStrictEqual(heldNotices);
@@ -803,12 +863,11 @@ describe.each(MODES)("%s: the class notices do not depend on standing (U7 slice 
 
 // U7 slice T (RV91 N-5): the result-export and stress-neutral panels refuse a successor
 // by an explicit gate on the shared output refusal, not by a builder throwing. Each
-// test forces eligibility, registers through mocked IPC with the pinned model, and
+// test registers an eligible successor through mocked IPC with the pinned model, and
 // lets the builders proceed (t6.*) so that only the gate can refuse; the positive
 // control removes the refusal and shows the packet the gate withholds.
 describe.each(MODES)("%s: the T6 panels refuse a successor by an explicit gate (U7 slice T)", (mode) => {
   async function eligibleSuccessor() {
-    u7.simulate = true;
     const { source, model } = milestone(mode);
     const received = await deliverDirect(source, model, mode);
     expect(numericalResultStanding(received, model).eligible).toBe(true);
@@ -852,11 +911,13 @@ describe("standing compares by the carrier token; TS's status mapping is pinned 
     expect(RETAINED_STANDING_STATUS).toStrictEqual({ numerically_eligible: "integrity_checked", needs_recompute: "needs_recompute", unsupported: "needs_recompute" });
     expect(Object.isFrozen(RETAINED_STANDING_STATUS)).toBe(true);
   });
-  // With eligibility forced, exactly the two capture-bound, requested-as-invoked,
-  // unedited milestone cases become numerically_eligible (written out, not derived).
+  // Since U7, exactly the two capture-bound, requested-as-invoked, unedited milestone
+  // cases are numerically_eligible (written out, not derived from the shared file).
   const ELIGIBLE_AFTER_FLIP = new Set(["sparse_interactive:invocation", "dense_scrutiny:invocation"]);
-  it.each<[string, Json]>((caseFile.cases as Json[]).map(c => [c.id, c]))("%s: token and status with eligibility forced", async (_id, c) => {
-    u7.simulate = true;
+  it("the shared file's eligible cases are exactly these", () => {
+    expect((caseFile.cases as Json[]).filter(c => c.expected_standing === "numerically_eligible").map(c => c.id).sort()).toStrictEqual([...ELIGIBLE_AFTER_FLIP].sort());
+  });
+  it.each<[string, Json]>((caseFile.cases as Json[]).map(c => [c.id, c]))("%s: token and status", async (_id, c) => {
     const { received, model } = await applyShared(c, c.fixture);
     const route = sourceContract(received);
     const token = route === "unsupported" ? "unsupported" : retainedPrecisionStanding(received, model).standing;
@@ -884,7 +945,7 @@ describe("the 20 shared parity scenarios agree with Rust U6a and Python U6b", ()
     if (route === "unsupported") dispatch = numericalResultStanding(received, model).findings[0];
     else dispatch = await validateRetainedPrecision(received).then(() => "ok", (error: Json) => error.code);
     expect(dispatch).toBe(c.expected_dispatch);
-    expect(numericalResultStanding(received, model).eligible).toBe(false);
+    expect(numericalResultStanding(received, model).eligible).toBe(c.expected_standing === "numerically_eligible");
   });
 });
 
@@ -958,6 +1019,10 @@ describe("notices, labels and the results-panel standing text", () => {
     expect(retainedPrecisionStandingText(received)).toContain("Selected cases: 1 of 1.");
     expect(retainedPrecisionStandingText(refused)).not.toContain("Selected cases");
     expect(retainedPrecisionStandingText(structuredClone(received))).not.toContain("Selected cases");
+    // D-U7-6 (I61 slice A 1.5): every standing text says the reader does not establish producer origin.
+    for (const s of [received, refused, structuredClone(received)]) {
+      expect(retainedPrecisionStandingText(s)).toContain("against the actual invocation and the requested cases. The reader checks these bytes and their invocation; it does not establish which producer made them. Numerical checks do not establish engineering correctness.");
+    }
   });
   it("the case count is the validated receipt's selected cases over all its cases (RV91 N-4)", async () => {
     // A valid two-case statement from the shared reader corpus: one selected, one unavailable.

@@ -25,9 +25,9 @@ METHOD = "contribution_preserving_multiprecision_v1"
 SAFE = (1 << 53) - 1
 MAX_BITS = 0x7FEFFFFFFFFFFFFF
 # D-U6-1 (I66 U6a): this flag gates eligibility only, as Rust's
-# IMPLEMENTATION_COMPLETE and TypeScript's SUMMARY_COVERAGE_COMPLETE do. It stays
-# false until U7; every gate runs regardless.
-_IMPLEMENTATION_COMPLETE = False
+# IMPLEMENTATION_COMPLETE and TypeScript's SUMMARY_COVERAGE_COMPLETE do. It is on
+# since U7 (D-U7-5); every gate runs regardless.
+_IMPLEMENTATION_COMPLETE = True
 
 
 class RetainedPrecisionError(ValueError):
@@ -1588,14 +1588,14 @@ def _g8(body, source, invocation):
 
 
 def validate_retained_precision(source: Any, invocation: Any = None) -> dict[str, Any]:
-    """The accepted ordered reader (G0-G8). D-U6-1: every gate runs, and
-    `_IMPLEMENTATION_COMPLETE` gates only `numerical_eligible`, so a valid
-    statement reads needs_recompute while it is false."""
+    """The accepted ordered reader (G0-G8). D-U6-1: every gate runs; since U7 a valid invocation-bound
+    statement of a solved model whose cases are selected or not_required reads eligible. Hashes bind
+    the supplied statements; they do not establish producer origin (D-U7-6)."""
     return _validate_draft(source, invocation)
 
 
 def _validate_draft(source: Any, invocation: Any = None) -> dict[str, Any]:
-    """Unqualified development checks; eligibility remains disabled with the API."""
+    """The ordered checks behind the public entry (D-U6-1)."""
     gate="G0"
     try:
         producer=source.get("producer") if type(source) is dict else None;basis=source.get("formulation_basis") if type(source) is dict else None

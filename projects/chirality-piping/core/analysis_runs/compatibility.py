@@ -319,7 +319,7 @@ def _retained_standing_from(validation: Mapping[str, Any], source: Mapping[str, 
     """D2 4.9.4: numerically_eligible needs an invocation-bound validation with
     eligibility set, requested refs equal to the receipt's case order,
     MECHANICS_SOLVED and the not_required conjunct. numerical_quality never
-    contributes. While the reader's eligibility is held, needs_recompute."""
+    contributes."""
     cases = source["retained_precision"]["body"]["cases"]
     expected = [case["basis_ref"] for case in cases]
     if (not validation["invocation_bound"] or not validation["numerical_eligible"] or list(requested_basis_refs) != expected
