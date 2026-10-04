@@ -9073,3 +9073,33 @@ The next unused IDs are I66 and RV84; RV82 is reserved for U1.
 **The estimate.** B-1 and B-2 add real scope to G3. I65 re-estimates at its next boundary. If G3 exceeds its 12-hour upper by more than half, it returns the completed part and a precise remainder rather than continuing silently.
 
 **Confirmation.** RV83 confirms the G2 repairs when G3 returns. A fresh reviewer, RV84, reviews G3 itself. The next unused IDs are I66 and RV85.
+
+## RV82 on U1 grant 1: PASS; routing (ROOT, 2026-10-04 UTC)
+
+**RV82's report** is `R/REVIEW_RV82/u1_serializer_01/REVIEW.md` (sha256 `cffa9313…c1f`; SHA256SUMS 36/36 OK; no machine paths). Verdict: **PASS**, with 0 BLOCKING, 2 SHOULD-FIX and 9 NOTE findings, on `59a5de2032`.
+
+**What RV82 established independently:**
+- **Its own derivation of the milestone receipt agrees in 86 of 86 checks,** in both modes. It covers T1 (a), D39, decision 2, A1, G-a, G-b, G-d, G-e, G-j, the fixture hashes and every receipt hash.
+- **The difference from experiment 03 is reproduced exactly** by applying only G-a and F1.
+- **The three readers pass with RV82's own invocation,** with parity 98/98 and 99/99.
+- **Ordinary bytes are identical** with and without capture for 41 fixture requests × 2 modes. The PP, runner/headless and result_export outcome sets equal base apart from the added tests.
+- **U2 is sound for one case,** and checked work custody holds.
+- **F1's predicate holds exactly,** in source and over 90 captured seeds. **F2 matches T1 (a) and D39.**
+- **Mutants:** I61's 39/39 are killed again; RV82's own: 10 of 18 killed. The survivors are listed in S1, N1 and N2.
+
+**ROOT confirmed S2 in the code at `59a5de2032`.** `serialize_selected` checks `pc.invocation_mode` against the invocation's mode, and takes the case id from the invocation's raw request. Nothing else binds the invocation argument to the capture.
+
+**Routing:**
+- **S1, to U1 grant 2:** pin F1 in both directions. Add `d5_diagnostic_ref == None` in `u1_load_row_case_capture`, which kills R06.
+- **S2, to U1 grant 2, before U3 wires the serializer:** `ProductCapture::invocation` records the invocation's identity (its digest), and the serializer refuses `association` on any mismatch. Add a test with a same-mode invocation whose case label differs.
+- **N1, to grant 2:** add committed negative tests for the six defensive checks (R08–R10, R13, R14 and R22), so that each survivor is killed.
+- **N6, to grant 2:** correct the doc comment ("last member").
+- **N7, to grant 2:** make the encoder record the first failure strictly, or document the precedence.
+- **N3, to U3:** B′ becomes a committed test with the permit path. Correct the test comment in grant 2.
+- **N4:** already in grant 2 (refusal `certificate` private).
+- **N5, to I65 G4:** record that producer-side conservation leaves build flags and execution order to the readers.
+- **N8, to wider F2a:** `owner_matches` and the stamp's `run` for several cases.
+- **N9, noted:** G-d's one-owner-per-DOF is stricter than C2 and fails closed in D1. Revisit in wider F2a.
+- **N2:** an equivalent mutant; no action.
+
+**U1 grant 1 is accepted on review.** It merges into NUM with grant 2 once grant 2 has been verified and reviewed, so no intermediate merge is made. RV82 confirms S1, S2 and N1 in grant 2's review.
