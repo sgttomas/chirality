@@ -131,8 +131,160 @@ pub(super) struct ProductCapture {
     pub source_correction_calls: Option<k::WorkTotal>,
     pub work: String,
     pub capacities: Vec<(&'static str, usize)>,
+    /// G-b/G-l (I61 U1): each solved case's actual ordinary attempt, captured
+    /// typed at its sites in `solve_load_case_observed` (C2 §5; D39). Only an
+    /// installed observer records it; the observer=None route is unchanged.
+    pub ordinary: Vec<OrdinarySeed>,
+}
+/// G-b/G-l (I61 U1): one case's ordinary attempt as the route actually ran it.
+/// Diagnostic references are the ids of the diagnostics actually pushed; no
+/// diagnostic text is read back. Payloads are owned copies made only while an
+/// observer is installed (memory: counted by U4, not by the adapter arrays).
+#[derive(Debug, Clone)]
+pub(super) struct OrdinarySeed {
+    pub case: String,
+    /// None until the initial attempt's outcome is known (a case that returns
+    /// before its solve keeps None: its not-attempted cause is not captured).
+    pub initial: Option<InitialSeed>,
+    pub w2: W2Seed,
+    pub load_row_finding: Option<FindingSeed>,
+    pub d5_diagnostic_ref: Option<String>,
+    /// R-b' (`amend_integrity_report`) demoted the published verdict after the
+    /// report: no wire member carries that finding, so the serializer declines.
+    pub recovery_demoted: bool,
+    pub legacy: Option<LegacySeed>,
+}
+/// C2 §5 `initial`, before any W2 consumption of the attempt.
+#[derive(Debug, Clone)]
+pub(super) enum InitialSeed {
+    /// The actual successful ordinary solve: its integrity diagnostic as published
+    /// (code after load-row/D5 demotion; R-b' tracked separately).
+    Report { code: String, report_diagnostic_ref: String },
+    /// An actual attempted solve failure; the reference is the diagnostic emitted
+    /// for it before any W2, else None.
+    StructuralFailure { error: StructuralError, diagnostic_ref: Option<String> },
+    /// A deferred unformed basis (F1b): its formation `NumericalRange`.
+    FormationFailure { error: FrameKernelError },
+}
+/// C2 §5 `w2`.
+#[derive(Debug, Clone, Default)]
+pub(super) enum W2Seed {
+    #[default]
+    NotTriggered,
+    Published { trigger: RangeTrigger, force_scale_exponent: i32, report_diagnostic_ref: Option<String> },
+    Failed { trigger: RangeTrigger, failure: ForceScalingFailure, diagnostic_ref: String },
+}
+/// The S11-G load-row finding and the diagnostic that discloses it, if any.
+#[derive(Debug, Clone)]
+pub(super) struct FindingSeed {
+    pub sentence: String,
+    pub fired: Vec<String>,
+    pub diagnostic_ref: Option<String>,
+}
+/// G-l with D39 (ROOT, 2026-10-04): the legacy source route's actual branch.
+#[derive(Debug, Clone)]
+pub(super) enum LegacySeed {
+    /// `!source_eligible`.
+    NotEligible,
+    /// `source_eligible && !needs_source_recovery`.
+    NotRequired,
+    /// A formation-guard or range-formation decline (no attempt; WorkReport 0/0/0).
+    DeclinedWithoutAttempt { work: LegacyWork, diagnostic_ref: String },
+    /// An actual `solve_ordinary` attempt that did not select.
+    Unavailable { work: LegacyWork, diagnostic_ref: String },
+    /// `Ok(recovery)`: exact-block selected; coexistence bypass (D-15), no successor.
+    ExactSelected,
+}
+/// The typed `RecoveryFailure` stage and its actual `WorkReport`.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub(super) struct LegacyWork {
+    pub stage: &'static str,
+    pub helper_stage: open_pipe_stress_frame_kernel::structural::exact_boundary::functionals::AttemptStage,
+    pub charged: usize,
+    pub rejected: usize,
+    pub limit: usize,
 }
 impl ProductCapture {
+    fn ordinary_seed(&mut self, case: &str) -> &mut OrdinarySeed {
+        if self.ordinary.last().is_none_or(|seed| seed.case != case) {
+            self.ordinary.push(OrdinarySeed {
+                case: case.to_owned(), initial: None, w2: W2Seed::NotTriggered, load_row_finding: None,
+                d5_diagnostic_ref: None, recovery_demoted: false, legacy: None,
+            });
+        }
+        let last = self.ordinary.len() - 1;
+        &mut self.ordinary[last]
+    }
+    /// G-b: the S11-G load-row finding, before the solve (its disclosure, if any, at the report).
+    pub(super) fn ordinary_finding(&mut self, case: &str, finding: Option<&formation_guard::FormationFinding>) {
+        let seed = self.ordinary_seed(case);
+        seed.load_row_finding = finding.map(|f| FindingSeed { sentence: f.sentence.clone(), fired: f.fired.clone(), diagnostic_ref: None });
+    }
+    /// G-b: the initial attempt's failure, before W2 consumes it.
+    pub(super) fn ordinary_initial_failure(&mut self, case: &str, failure: &OrdinaryFailure) {
+        self.ordinary_seed(case).initial = Some(match failure {
+            OrdinaryFailure::Structural(error) => InitialSeed::StructuralFailure { error: error.clone(), diagnostic_ref: None },
+            OrdinaryFailure::Formation(error) => InitialSeed::FormationFailure { error: error.clone() },
+        });
+    }
+    /// G-b: the initial structural failure's own integrity diagnostic (no W2).
+    pub(super) fn ordinary_failure_diagnostic(&mut self, case: &str, diagnostic_ref: &str) {
+        if let Some(InitialSeed::StructuralFailure { diagnostic_ref: slot, .. }) = &mut self.ordinary_seed(case).initial {
+            *slot = Some(diagnostic_ref.to_owned());
+        }
+    }
+    /// G-l: the typed `RecoveryFailure` at the attempt's `Err` arm (D39).
+    pub(super) fn ordinary_legacy_failure(&mut self, case: &str, attempted: bool,
+        failure: &source_recovery::RecoveryFailure, diagnostic_ref: &str) {
+        let work = LegacyWork { stage: failure.stage, helper_stage: failure.helper_stage, charged: failure.work.charged,
+            rejected: failure.work.rejected, limit: failure.work.limit };
+        let diagnostic_ref = diagnostic_ref.to_owned();
+        self.ordinary_seed(case).legacy = Some(if attempted {
+            LegacySeed::Unavailable { work, diagnostic_ref }
+        } else {
+            LegacySeed::DeclinedWithoutAttempt { work, diagnostic_ref }
+        });
+    }
+    /// G-l: the branches without a `RecoveryFailure` (D39 rows 1, 2 and 5).
+    pub(super) fn ordinary_legacy_route(&mut self, case: &str, source_eligible: bool, needs_source_recovery: bool, exact_selected: bool) {
+        let seed = self.ordinary_seed(case);
+        if !source_eligible {
+            seed.legacy = Some(LegacySeed::NotEligible);
+        } else if !needs_source_recovery {
+            seed.legacy = Some(LegacySeed::NotRequired);
+        } else if exact_selected {
+            seed.legacy = Some(LegacySeed::ExactSelected);
+        }
+    }
+    /// G-b: W2 published at b != 0 (its report reference is set at the report).
+    pub(super) fn ordinary_w2_published(&mut self, case: &str, trigger: &RangeTrigger, force_scale_exponent: i32) {
+        self.ordinary_seed(case).w2 = W2Seed::Published { trigger: trigger.clone(), force_scale_exponent, report_diagnostic_ref: None };
+    }
+    /// G-b: W2's actual failure and the diagnostic it emitted, before the early return.
+    pub(super) fn ordinary_w2_failed(&mut self, case: &str, trigger: &RangeTrigger, failure: &ForceScalingFailure, diagnostic_ref: &str) {
+        self.ordinary_seed(case).w2 = W2Seed::Failed { trigger: trigger.clone(), failure: failure.clone(), diagnostic_ref: diagnostic_ref.to_owned() };
+    }
+    /// G-b: the integrity report actually published for the case's solve.
+    pub(super) fn ordinary_report(&mut self, case: &str, record: &Diagnostic, finding_disclosed: bool, d5_line: bool) {
+        let seed = self.ordinary_seed(case);
+        match &mut seed.w2 {
+            W2Seed::Published { report_diagnostic_ref, .. } => *report_diagnostic_ref = Some(record.id.clone()),
+            _ if seed.initial.is_none() => {
+                seed.initial = Some(InitialSeed::Report { code: record.code.clone(), report_diagnostic_ref: record.id.clone() });
+            }
+            _ => {}
+        }
+        if let (Some(finding), true) = (&mut seed.load_row_finding, finding_disclosed) {
+            finding.diagnostic_ref = Some(record.id.clone());
+        }
+        if d5_line {
+            seed.d5_diagnostic_ref = Some(record.id.clone());
+        }
+    }
+    /// G-b: R-b' demoted the case's published integrity report after the report.
+    pub(super) fn ordinary_recovery_demoted(&mut self, case: &str) {
+        self.ordinary_seed(case).recovery_demoted = true;
+    }
     pub(super) fn invocation(
         &mut self,
         capture: Option<&source_receipt::CapturedInvocation>,
@@ -3339,9 +3491,11 @@ pub(super) struct PreparedCandidateRefusal {
     pub certificate:Option<k::CertifiedProductProof>,pub values:Option<k::FrozenProductValues>,
 }
 pub(super) struct PrivatePreparedCandidate { envelope:MechanicsEnvelope,prepared:PreparedCase,
-    pub certificate:k::CertifiedProductProof }
+    certificate:k::CertifiedProductProof }
 impl PrivatePreparedCandidate {
     pub(super) fn envelope(&self)->&MechanicsEnvelope{&self.envelope}
+    /// U2: read-only; the serializer binds it to the selected owner structurally.
+    pub(super) fn certificate(&self)->&k::CertifiedProductProof{&self.certificate}
     pub(super) fn capture(&self)->&ProductCapture{&self.prepared.capture}
     pub(super) fn local_work(&self)->(&ScalarWork,&[PreparedAssociation]){(&self.prepared.overlay_work,&self.prepared.associations)}
 }
@@ -3583,6 +3737,11 @@ impl PreparedCandidateRefusal {
 }
 #[cfg(test)]
 impl PrivatePreparedCandidate {
+    /// I61 U2 control: exchange the certified proofs of two candidates whose public
+    /// facts are identical, so each carries a proof of a foreign selected owner.
+    pub(super) fn test_swap_certificate(&mut self, other: &mut Self) {
+        std::mem::swap(&mut self.certificate, &mut other.certificate);
+    }
     pub(super) fn test_reentry(mut self)->(PreparedCandidateRefusal,k::CertifiedProductProof) {
         let counts=self.prepared.capture.adapter.counts.get();
         self.prepared.ordinary=Some(self.envelope);

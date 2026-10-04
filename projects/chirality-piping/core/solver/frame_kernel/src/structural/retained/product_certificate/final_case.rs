@@ -1848,6 +1848,9 @@ impl CertifiedProductProof {
     pub fn summary_coverage(&self)->&[ProductSummaryCoverage] {&self.work.coverage}
     pub fn work(&self)->&ProductCertificateSpent<'static> {&self.work}
     pub fn matches_values(&self,values:&FrozenProductValues)->bool {std::sync::Arc::ptr_eq(&self.anchor,&values.anchor)}
+    /// RV77-N4 (I61 U2): whether this proof was started on `owner`'s own prepared
+    /// solve. Structural owner binding through the proof anchor, not custody.
+    pub fn owner_matches(&self,owner:&adaptive::RetainedSolve)->bool {self.anchor.matches_owner(owner)}
 }
 pub struct ProductFinalSpent {result:Result<CertifiedProductProof,ProductProofFailure>}
 impl ProductFinalSpent {pub fn into_ready(self)->Result<CertifiedProductProof,ProductProofFailure>{self.result}}

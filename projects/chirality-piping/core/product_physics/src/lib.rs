@@ -114,6 +114,8 @@ mod preview_physics;
 mod retained_product;
 mod retained_receipt;
 mod retained_memory;
+// I61 U1: the private serializer (production-unreachable until U3).
+mod retained_wire;
 pub use retained_memory::{
     borrowed_request_census, borrowed_value_census, AllowanceStatus, BorrowedRequestFacts,
     BorrowedValueFacts, CapacityFact, CensusStatus, HeadlessRootFacts, MissingAdmissionTerm,
@@ -121,6 +123,8 @@ pub use retained_memory::{
 };
 #[cfg(test)]
 mod retained_product_tests;
+#[cfg(test)]
+mod retained_wire_tests;
 pub use pressure_runtime::{PressureContractInput, PressureRegionInput, PressureTerminalInput};
 
 const DEC_046_PRODUCT_PREVIEW_ACTIVE_SET_POLICY_REF: &str =
@@ -3539,6 +3543,10 @@ fn solve_load_case_observed(
         |dof| integrity_dof_label(model, dof),
         &load_case.id,
     );
+    // I61 U1 (G-b): the typed finding; its disclosure, if any, is set at the report.
+    if let Some(observer) = product.as_deref_mut() {
+        observer.ordinary_finding(&load_case.id, load_row_finding.as_ref());
+    }
 
     // F1b: the basis's formed values (none when its range refusal was
     // deferred, ROOT Q2).
@@ -3657,6 +3665,10 @@ fn solve_load_case_observed(
         // range refusal; nothing was formed to attempt.
         BasisStiffness::RangeDeferred(error) => Err(OrdinaryFailure::Formation(error.clone())),
     };
+    // I61 U1 (G-b; C2 §5): the initial failure, captured before W2 consumes it.
+    if let (Some(observer), Err(failure)) = (product.as_deref_mut(), &attempted_linear) {
+        observer.ordinary_initial_failure(&load_case.id, failure);
+    }
     let report_sensitive = matches!(&attempted_linear, Ok(solve) if solve.structural_report.quality == SolveQuality::Sensitive);
     let attempt_err = attempted_linear.is_err();
     let needs_source_recovery =
@@ -3697,6 +3709,8 @@ fn solve_load_case_observed(
         // route would not attempt (report Passed, no Err) is declined for its
         // load-row finding without running an attempt, so the invocation
         // ledger equals the unguarded one.
+        // I61 U1 (G-l; D39): whether an actual `solve_ordinary` attempt ran.
+        let mut legacy_attempted = false;
         let attempt = if !crate::needs_source_recovery(report_sensitive, attempt_err, None) {
             Err(source_recovery::formation_decline_without_attempt())
         } else if formed.is_none() {
@@ -3707,6 +3721,7 @@ fn solve_load_case_observed(
             Err(source_recovery::range_formation_decline_without_attempt())
         } else {
             source_budget.attempts += 1;
+            legacy_attempted = true;
             let case_limit = source_budget.case_limit();
             source_recovery::solve_ordinary(
                 recovery_input(),
@@ -3756,9 +3771,17 @@ fn solve_load_case_observed(
                     format!("The bounded retained-source method did not produce a selected response: {failure:?}{withheld}"),
                     vec![load_case.id.clone()],
                 ));
+                // I61 U1 (G-l; C2:160-162): the typed failure and its actual WorkReport.
+                if let (Some(observer), Some(record)) = (product.as_deref_mut(), diagnostics.last()) {
+                    observer.ordinary_legacy_failure(&load_case.id, legacy_attempted, &failure, &record.id);
+                }
                 source_failure = Some(failure);
             }
         }
+    }
+    // I61 U1 (G-l; D39): the route rows that carry no RecoveryFailure.
+    if let Some(observer) = product.as_deref_mut() {
+        observer.ordinary_legacy_route(&load_case.id, source_eligible, needs_source_recovery, selected_source.is_some());
     }
     if load_state.is_some() && selected_source.is_none() {
         let attempt = if !needs_source_recovery {
@@ -3829,6 +3852,10 @@ fn solve_load_case_observed(
                     solver_mode,
                 ) {
                     Ok((solve, publication)) => {
+                        // I61 U1 (G-b): W2 published at b != 0.
+                        if let Some(observer) = product.as_deref_mut() {
+                            observer.ordinary_w2_published(&load_case.id, &trigger, publication.force_scale_exponent);
+                        }
                         w2_publication = Some(publication);
                         Some(solve)
                     }
@@ -3840,6 +3867,10 @@ fn solve_load_case_observed(
                             &trigger,
                             model,
                         );
+                        // I61 U1 (G-b): W2's actual failure, before the early return.
+                        if let (Some(observer), Some(record)) = (product.as_deref_mut(), diagnostics.last()) {
+                            observer.ordinary_w2_failed(&load_case.id, &trigger, &refusal, &record.id);
+                        }
                         return Ok(LoadCaseSolve {
                 load_state_evidence: None,
                 pressure_evidence: Vec::new(),
@@ -3867,6 +3898,10 @@ fn solve_load_case_observed(
                 // actual error alone.
                 (None, OrdinaryFailure::Structural(error)) => {
                     append_integrity_failure(diagnostics, &load_case.id, &error, model);
+                    // I61 U1 (G-b): the initial failure's own integrity diagnostic.
+                    if let (Some(observer), Some(record)) = (product.as_deref_mut(), diagnostics.last()) {
+                        observer.ordinary_failure_diagnostic(&load_case.id, &record.id);
+                    }
                     return Ok(LoadCaseSolve {
                 load_state_evidence: None,
                 pressure_evidence: Vec::new(),
@@ -4025,6 +4060,16 @@ fn solve_load_case_observed(
                 linear.formation_check.as_ref(),
                 w2_publication.as_ref(),
             );
+            // I61 U1 (G-b): the published report; `demote` discloses the finding
+            // only on a Passed report, and K-D5's record is one line of it.
+            if let (Some(observer), Some(record)) = (product.as_deref_mut(), diagnostics.last()) {
+                observer.ordinary_report(
+                    &load_case.id,
+                    record,
+                    load_row_finding.is_some() && linear.structural_report.quality != SolveQuality::Sensitive,
+                    linear.formation_check.is_some(),
+                );
+            }
             if let Some(report) = &linear.load_fidelity {
                 append_load_contribution_absorbed(diagnostics, &load_case.id, report);
             }
@@ -4891,11 +4936,15 @@ fn solve_load_case_observed(
         if let Some(finding) =
             formation_guard::recovery_finding(&recovery_records, &scales, &load_case.id)
         {
-            formation_guard::amend_integrity_report(
+            let demoted = formation_guard::amend_integrity_report(
                 diagnostics,
                 &integrity_diagnostic_id(&load_case.id),
                 &finding,
             );
+            // I61 U1 (G-b): no wire member carries R-b''s finding.
+            if let (true, Some(observer)) = (demoted, product.as_deref_mut()) {
+                observer.ordinary_recovery_demoted(&load_case.id);
+            }
         }
     }
     require_finite_mechanics(results.iter().map(|row| row.value))?;
