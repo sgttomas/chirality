@@ -8378,3 +8378,17 @@ At the G0–G2 point, I61 writes a progress note in its records but does not ret
 - a reader result that needs a contract reading to proceed (stop and report);
 - removing or weakening a check in any harness;
 - unexpected host load.
+
+## Snapshot 07b and Python verified (ROOT, 2026-10-03 UTC)
+
+**Committed on READER as `bd2060d685`.** I62 returned once, with no stop condition. ROOT verified:
+- **The file hashes:** Python `f6ec97fb09`, tests `57257094da`, corpus `729c12574a`; the schema is unchanged.
+- **The evidence:** SHA256SUMS OK, no machine paths.
+- **ROOT's own diff of 07b against 07a:**
+  - 17 mutations added; nothing changed or removed; carried order kept;
+  - the four G1 hash pins are the only entries using `after_rehash`;
+  - the totals are 15 cases, 253 mutations and 19 must-pass entries.
+- **ROOT's own Python run:** 347 passed.
+- **D19's native check passed.** `project_candidate` has a single Ready exit (PP/retained_product.rs:3556), which ROOT read. So D19's second half stands as ruled.
+
+I63 and I64 adopt 07b in their standing rounds.
