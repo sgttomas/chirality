@@ -5,7 +5,7 @@ import { validatePreviewPhysicsEvidence } from "./previewPhysicsEvidence";
 import { validateLoadReferenceEvidence } from "./loadReferenceEvidence";
 import { loadReferenceSourceReceiptShape, loadReferenceSourceStanding, LOAD_REFERENCE_SOURCE_PROFILE } from "./loadReferenceSourceEvidence";
 import { retainedPrecisionStanding } from "./retainedPrecisionStanding";
-import { RETAINED_METHOD } from "./retainedPrecision";
+import { RETAINED_METHOD, validateRetainedPrecisionTransport } from "./retainedPrecision";
 import type { MechanicsResult, PreviewModel } from "../../types";
 export const PRECISION_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/precision-1";
 export const PRECISION_CONTRACT_SHA256 = "d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e";
@@ -120,6 +120,21 @@ export function ordinaryCaseEligible(c: NonNullable<MechanicsResult["numerical_q
   return !!c && c.structural_status === "passive_model_basis" && c.solve_quality === "checks_passed"
     && c.model_matrix_fidelity === "represented_equations_retained" && ["not_claimed", "reference_verified"].includes(c.accuracy_evidence)
     && Array.isArray(c.evidence_refs) && !!c.evidence_refs.length && c.evidence_refs.every(id => emitted.has(id));
+}
+/** The carrier transport route: the header-only dispatch of a transported
+ * statement, the TS twin of Rust `semantic_contract::for_source_metadata`
+ * (RV88 and RV92 N-1). TS has one header dispatch, `sourceContract`, which also
+ * reads raw rows when they are present (RV92 N-2, a declared difference). For
+ * the successor it then runs the accepted reader's transport checks
+ * (`validateRetainedPrecisionTransport`: G0-G2, and the base transport metadata
+ * on its projection), as Rust does, so a tampered transported receipt is refused
+ * with the reader's code. Resolves the route; rejects with the first refusal code.
+ * A transported statement is never numerically eligible. */
+export async function sourceContractTransport(source: MechanicsResult): Promise<Exclude<SourceContract, "unsupported">> {
+  const route = sourceContract(source);
+  if (route === "unsupported") throw new Error(retainedPrecisionDowngrade(source) ? RETAINED_PRECISION_DOWNGRADE_FORBIDDEN : "SOURCE_NUMERICAL_CONTRACT_UNSUPPORTED");
+  if (route === "retained_preview_physics") await validateRetainedPrecisionTransport(source);
+  return route;
 }
 export function numericalResultStanding(source: MechanicsResult, model?: (Pick<PreviewModel, "load_cases"> & Partial<Pick<PreviewModel, "pipe_segments" | "supports">>) | null) {
   const contract = sourceContract(source);
