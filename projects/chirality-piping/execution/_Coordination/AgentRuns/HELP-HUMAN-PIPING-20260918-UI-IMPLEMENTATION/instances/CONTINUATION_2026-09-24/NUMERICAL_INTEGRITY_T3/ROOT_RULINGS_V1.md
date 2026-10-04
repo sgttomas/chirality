@@ -10002,3 +10002,29 @@ The margin rule holds. The dense margin is narrower than G4's estimate, mainly b
 - **RV83** confirms R-4's text run.
 
 **G6 is granted to I65** under `BRIEFS/I65_U4_G6_QUALIFICATION.md`. The registration step waits for RV89's part-2 PASS.
+
+## RV91 on U6d: PASS; the U6d repair round granted; U7 preconditions added (ROOT, 2026-10-04 UTC)
+
+**RV91's report** is `R/REVIEW_RV91/u6d_01/REVIEW.md` (sha256 `67c7155f…`; SHA256SUMS 38/38 OK; no machine paths). Verdict: **PASS** on `9555b6ffc2`, with 0 BLOCKING, 1 SHOULD-FIX and 5 NOTE findings.
+
+**What RV91 established independently:**
+- **Existing behaviour unchanged.** Vitest gave base 3,258 and candidate 3,417, with `tsc` clean. RV91's own 69-envelope sweep is identical to base on all 25 outcomes.
+- **Registration is bound to the exact bytes:** 8 kinds of edit each void it, and an edit made while the reader awaits does not register.
+- **Standing never reads `numerical_quality`.**
+- **Parity:** all 14 shared cases agree (TS 14/14, Python 14/14), and registered TS binding and summaries equal Python's row for row (98/98, 99/99).
+- **Every guard and refusal code is as ruled;** all T6 surfaces refuse.
+- **The S-1 pin patch keeps exact equality.**
+- **New text:** D2's texts appear verbatim. The printed bound was never below b on 25,017 values.
+- **Merge preview:** the carriers branch plus U6d gives 3,429/3,429.
+
+**Rulings:**
+- **I67's F1 is accepted as a declared parity difference.** An unregistered invalid successor reads `needs_recompute` in TS, but `unsupported` in Rust and Python.
+  - It fails closed, and the accepted plan's §3 rule 1 prescribes it.
+  - Because the expectation differs by language, it is pinned in TS's own test, not in the shared case file. U6f's three-language parity table records it.
+- **SF-1 → the U6d repair round:** TS's `buildAnalysisRunV02` (analysisRunCompatibility.ts:79) must refuse a legacy-shaped source carrying a `retained_precision` member (object or null) or W1 token rows. It is the TS twin of I66's F-U6b-3, and the scope is confirmed.
+- **N-3 → the repair round:** add tests that kill RV08 (the successor selected by route, not producer id, in `ruleBindingRefusal`) and RV09 (the registration fingerprint taken after the reader's await).
+- **N-4 → the repair round:** the standing text must show "Selected cases: n of m" only from a validated registration.
+- **N-2, a U7 precondition:** after U7, TS successor standing must be tied to the live native registration and to the model. Today every consumer also checks `hasNativeMechanicsInvocation`, so nothing is exposed.
+- **N-5, for U7 and T6:** after U7, the result-export and stress-neutral panels must refuse a successor by an explicit gate, not by a builder throwing. It is added to T6's notice at U7.
+
+**I67's repair round** is in `WT/f2a-carriers-ts` on top of `9555b6ffc2`, covering SF-1, N-3, N-4 and the F1 pin. RV91 confirms it.
