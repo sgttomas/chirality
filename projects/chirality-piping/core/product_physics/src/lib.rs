@@ -3003,7 +3003,7 @@ fn permitted_run(
         (ordinary, Err(W1Fallback::LateGate(refusal)))
     } else {
         // G-C, with the observer's own permit.
-        match observer.permit().map(|permit| permit.check_complete(&retained_memory::CompleteFacts { ordinary: &ordinary })) {
+        match observer.permit().map(|permit| permit.check_complete(&retained_memory::CompleteFacts { ordinary: &ordinary, capture: &observer })) {
             Some(Ok(())) => retained_w1(observer, ordinary, capture),
             Some(Err(refusal)) => (ordinary, Err(W1Fallback::CompleteGate(refusal))),
             None => (ordinary, Err(W1Fallback::PermitUnbound)),
