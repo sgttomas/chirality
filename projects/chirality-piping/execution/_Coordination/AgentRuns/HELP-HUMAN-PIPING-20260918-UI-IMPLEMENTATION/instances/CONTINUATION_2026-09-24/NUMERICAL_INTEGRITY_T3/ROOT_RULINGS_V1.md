@@ -9622,3 +9622,37 @@ It moves no figure and does not gate G5's code. **R-1 and B-2 are closed as conf
 - **C-N3(b),** whether the reader's process-lifetime statics (5.4 MB) count against M in every phase after the first permitted invocation: **ruled conservatively.** They are counted in every phase from G5 onward, and the G6 record states it. That is about 0.13% of M.
 
 **The G3 review cycle is closed.** RV87's review of G4's new terms is still running.
+
+## U6a verified and committed; fan-out (ROOT, 2026-10-04 UTC)
+
+**I66's U6a** is `R/I66/u6a_slice_01/` (RETURN sha256 `543b761e…`; SHA256SUMS 30/30 OK; no machine paths). ROOT committed it as `844448112f` on `codex/piping-f2a-carriers-20261004` and pushed it.
+
+**ROOT's verification:**
+- **The removed lines, read by ROOT:**
+  - the Python public entry's G0 completeness `_need` is removed, as D-U6-1 rules. Eligibility is still `_IMPLEMENTATION_COMPLETE and …` (retained_precision.py:1702), with the flag false, matching Rust's `IMPLEMENTATION_COMPLETE` (RS:4260, :4300);
+  - the derivative's disposition block now also discloses rows that carry a class disclosure. Nothing is narrowed.
+- **The fixtures** are byte-identical to PP's pinned successors (`ac6986b0…`, `6cd1d249…`).
+- **ROOT's runs** (default toolchain): result_export gave **159/159** (the 149 existing plus 10 new), and the Python reader contract tests gave **362/362**.
+- **I66's evidence:**
+  - a 63-envelope existing-identity sweep, unchanged against base, with one base-variant exception (F1);
+  - runner/headless identical;
+  - PP's pin tests 35/35 against the new result_export;
+  - the slice byte-equal and revalidating in all three readers;
+  - 62/62 mutants killed.
+
+**Findings:**
+- **F1:** the source-blocks validator's first error code varies between runs on the two `rejected_stress_range` fixtures, at base too. It refuses either way. This is a determinism defect outside T3's fence; it is flagged as a separate task for its owner, and does not gate U6.
+- **F2:** `results.v0.3` refuses the derivatives until U6c adds the two `RowDisclosure` codes. **U6c lands before anything schema-validates a successor export.**
+- **F3:** `not_covered` is tested only through the class seams, because no available statement has such a row. It is a stated limit, revisited when a witness supplies one.
+- **F4:** `SOURCE_PREVIEW_PHYSICS_RETAINED_TABLE_HASH` and `SOURCE_PREVIEW_PHYSICS_RETAINED_TABLE_IDENTITY` are **reserved** for U6.
+- **F5 (fail-closed):** a refused statement makes binding refuse every row with `RULE_QUANTITY_NOT_COVERED`. This is accepted, subject to RV88.
+- **F6:** the class-disclosure message is new product text, for RV88 to review.
+- **F7:** 2–4 revalidations per carrier call. A U6f cost note; carriers are outside W1's admission.
+
+**The fan-out** (`BRIEFS/U6_FANOUT_COMMON.md`):
+- **I66 (owner):** U6c, the schemas (F2 first), then U6b, Python carriers including D-U6-9. Work in `WT/f2a-carriers`, on top of `844448112f`.
+- **I67 (new):** U6d, TypeScript, under `BRIEFS/I67_U6D_TYPESCRIPT.md`, in `WT/f2a-carriers-ts`. This is the longest chain.
+- **I61:** U6e, the reader round (F5, RV79-N1, RV80-N2; snapshot 07g), under `BRIEFS/I61_U6E_READER_ROUND.md`, in `WT/f2a-readers-round`, until U4 G5 returns.
+- **RV88 (new):** the standing U6 reviewer, under `BRIEFS/RV88_U6_STANDING_REVIEW.md`, starting with U6a.
+
+Branches merge into the carriers branch after review. U6f, a fresh complete-diff review, precedes U7. The next unused IDs are I68 and RV89.
