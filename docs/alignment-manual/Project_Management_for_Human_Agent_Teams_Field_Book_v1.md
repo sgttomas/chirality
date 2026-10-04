@@ -47,7 +47,7 @@ At a stage gate, present what has been established, what remains unresolved, wha
 
 ### The 60% gate
 
-The project DAG directs work: which Deliverables exist and the order in which groups of them can be completed. The gate expects no change at that level. Finer relationships keep changing: the local work graphs order them, and an added or removed relationship or changed cycle is still a departure for the human to decide under the adopted rules. The gate does not require a DAG with every cross-reference or cycle removed.
+The project DAG directs work: which Deliverables exist and the order in which groups of them can be completed. The gate expects no change at that level. Finer relationships keep changing; record each where those who depend on it will see it. The gate does not require a DAG with every cross-reference or cycle removed.
 
 ```text
 DISCERN
@@ -77,11 +77,18 @@ HAND OFF TO 90%
     One development loop per group or several groups, each with a local
     work graph from the group order accepted at the gate. A walking
     skeleton through the most coupled core first. Agreed contracts frozen
-    under change control. Registers updated, and checked against the DAG,
-    as loops reach each Deliverable. Departures decided as the adopted
-    rules require, batched per scope amendment into one successor; only a
-    change to the Deliverable set or group order reopens the route.
-    Effectiveness measured on delivery.
+    under change control. Found relationships recorded where those who
+    depend on them will see them: the group's work graph within a group,
+    a shared list every loop reads across groups. Register and Scope of
+    Work updates where wording would otherwise mislead, decided by the
+    human in batches under the departure rules. Effectiveness measured
+    on delivery.
+
+ASK THE HUMAN AT ONCE
+    about anything that seems to run against the group order, forms a
+    cycle across groups, changes the Deliverable set, would make another
+    group's finished work wrong, or suggests the grouping is wrong.
+    In doubt, ask. (From one project's experience; no thresholds.)
 ```
 
 The gate is the human's act. Present a short assessment; record the human's exact words with their source and custody. Agent checking does not pass the gate.
@@ -197,7 +204,7 @@ State the intended result and completion conditions. Give each work node an outp
 
 Prepare one planned final documentation and governance closeout after the intended implementation and evidence have been integrated. Documents and reconciliations needed to perform or constitute an earlier contribution travel with that contribution.
 
-Renew the project DAG as the adopted departure rules require: an added or removed relationship or a changed cycle is decided by the human, and several departures can be decided in one successor. A change to the Deliverable set or the order between groups also reopens the route. Finer ordering belongs to the work graph. A new conversation or rearranged assignment alone does not require a successor DAG.
+Renew the project DAG as the adopted departure rules require when the dependency records change; the human can decide several departures in one successor. A change to the Deliverable set or the order between groups also reopens the route. Finer relationships belong in the work graph, or in a shared list where they cross groups. A new conversation or rearranged assignment alone does not require a successor DAG.
 
 ### 3. Commission ready work
 
