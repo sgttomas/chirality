@@ -11131,3 +11131,47 @@ Slice F's order is RETURN §3.
   - (d) no production `.rs` change lands in the D1 crates.
   
   **Otherwise, rerun Pass B on that head.** ROOT has relayed these conditions to I61 as a fence note.
+
+## U7 slice L committed; RV94 dispatched on the whole switch (ROOT, 2026-10-04 UTC)
+
+**I61's return** is `R/I61/u7_slice_l_01/` (RETURN.md `f6c951b1…`; SHA256SUMS 37/37 OK; no machine paths).
+
+**The RV92 N-8 live reruns.**
+- PP's actual Direct entry in the registered U7 head publishes U1's pinned bytes, which equal U6's carrier fixtures.
+- **The tokens on the live bytes, through each reader and carrier** (TS via the real mocked IPC with a live capture):
+
+  | Form | Python | Rust | TS |
+  |---|---|---|---|
+  | with its invocation | `numerically_eligible` | `numerically_eligible` | `numerically_eligible` (status `integrity_checked`) |
+  | without it | `needs_recompute` | `needs_recompute` | `needs_recompute` |
+  | both D-U7-4 forms | `numerically_eligible` | `numerically_eligible` | `needs_recompute`, `NATIVE_CAPTURE_REQUIRED` |
+
+  There are 0 mismatches against the oracle or the case file.
+- **The survival chain** holds on the live bytes in all three languages.
+
+**U5 on the live bytes** differs from U5's report only in `reader.numerical_eligible` (now true) and `reader.standing` (now `eligible`). That is U7's own switch: substituting U5's old values reproduces U5's report and log byte for byte, and all 97 class claims are unchanged. **Ruled: the milestone's reference claim (RR "RV86 on U5…") is unaffected.** The post-U7 report is the new baseline.
+
+**The PP sweeps** are cited from I66: every PP and `result_export` production file hash-matches.
+
+**07j closes C04.**
+- `not_required_second_case_checks_passed` is a two-case statement whose second case takes the contract's `not_required` form. It passes every gate and is eligible in all three readers.
+- The C04 mutant is now killed in all three languages.
+- TS's IPC harness refuses the entry at G8, because the corpus invocation is not the desktop's captured request. TS's reader marks it eligible. RV94 checks that this is a harness limit.
+
+**The suites:**
+
+| Suite | Result |
+|---|---|
+| Python retained | 460 |
+| The 24-file sweep | 1,846 |
+| result_export | 169 |
+| vitest | 3,542 |
+| tsc | clean |
+
+**RV89's four Pass B conditions hold,** so no Pass B rerun is needed.
+
+**Committed:** ROOT verified the three files' hashes and committed them as **`ffe65ef203`**, the U7 head (pushed).
+
+**RV94** (fresh; `BRIEFS/RV94_U7_SWITCH_REVIEW.md`) is dispatched on `3f5fca3010..ffe65ef203`.
+
+**I61 drafts the U9 plan in parallel** (read-only): the gates and the compact main PR.
