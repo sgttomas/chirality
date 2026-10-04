@@ -9030,3 +9030,46 @@ The next unused IDs are I66 and RV84; RV82 is reserved for U1.
   
   RV82's findings on grant 1 are repaired in the same stream, and each is reported separately.
 - **A D38 receipt** is expected to fail the current readers only at the stricter "native entered ⇒ Run" rule. I61 records the exact check. The next reader round relaxes the readers to D38 and pins that receipt. No other reader failure is acceptable.
+
+## RV83 on U4 G2: FAIL; dispositions and the G2 repairs routed into G3 (ROOT, 2026-10-04 UTC)
+
+**RV83's report** is `R/REVIEW_RV83/u4_g2_01/REVIEW.md` (sha256 `14856555…bf6`; SHA256SUMS OK; no machine paths). Verdict: FAIL, with 3 BLOCKING, 6 SHOULD-FIX and 13 NOTE findings. None reopens D-1, D-3, D-4b, D-6 = (a) or S-1.
+
+**ROOT confirmed the blocking findings in source:**
+- **B-1:** in PP/lib.rs:4965–4976, the exact-selected branch calls `FinalizedSourceBlockCase::exact`. `requested()` is `serde_json::from_value(self.raw.clone())` (source_receipt.rs:136–139), and it is called again at :875 and :965.
+- **B-3:** BUILD.md:34–55 emits newline-separated text through one `cargo:rustc-env` directive. Cargo reads build-script output line by line, so only the first line survives.
+- **S-4:** `normalize_model_units` runs on every request that passes validation (PP/lib.rs:2326–2331), not only on requests with sections.
+
+**What re-derived** (NOTE): T02, T06, the derived counts and monotonicity, the T03 roster, BTree 640/736 and the hashbrown law, the f64 spellings, the milestone counts, the refusal map, every T22 site's existence at its line, D-4's quotations and citations, R/k as a provisional proposal, and API.md.
+
+**Dispositions.** I65 repairs each item inside G3's packet, as a G2 amendment with a pointer back.
+- **B-1, accepted.** Selected source-blocks finalization becomes a new term, **T25**, in G3. Its owners at the caps:
+  - per case: `check_input` and `check_input_with_physical` (the re-parse, normalization, model build, dense stiffness, loads and force ledger);
+  - per invocation: two more `requested()` calls and `serialized(envelope)`.
+  
+  T07's "Remaining: none" is withdrawn, and T07 points to T25. A field predicate cannot exclude these inputs, so D1 is unchanged. STACK_PLAN's witness W3 already exercises this path.
+- **B-2, accepted.** The G3 direction "all 707 sites" is replaced: **every text-producing site on the D1 call graph,** across every linked crate. That covers:
+  - `format!`, `write!`, `diag`;
+  - `to_string`;
+  - Display and Debug impls, including str/String Debug.
+  
+  The 707 inventory is a starting subset. A bound may be per site or per function family, provided every reachable site is covered by exactly one stated bound. Each exclusion needs a call-path argument. A site not covered is a missing term.
+- **B-3 and S-5, accepted. The D-6 design is amended before G5:**
+  - the identity is one line, with an explicit escaping rule; one `rustc-env` per key, compared jointly, is also acceptable;
+  - the profile reads it with `option_env!`, and absence means `Stale`;
+  - a G5 test proves that the compiled value carries every key in order;
+  - G6 generates the registered texts with the same encoder.
+  
+  This implements the owner's option (a) correctly; it is not a new owner question.
+- **S-1, accepted.** T07 is repaired: the two `Snapshot.identity` copies, `to_string` capacity rather than length, descriptors counted before the count check, capacity slack, and the 3-versus-7 descriptor count reconciled.
+- **S-2, accepted.** T22 is repaired: I34's `r*r` (`ceil_sqrt` and the unchecked `2*ceil_sqrt`), the source.rs:358 label, the remaining I34 DESIGN.md:255–265 classes, and a reproducible `CountRange` count. **The D-4 ruling's T22 citation is re-pointed** to the repaired table in G3's packet. D-4's outcome is unchanged, and RV83 found the reading applies C1 §2's own alternative.
+- **S-3, accepted.** D1.9 gains typed capacity caps (Strings, Vecs, property trees, typed Values), read from actual capacities by the T03 census. I65 proposes the values.
+- **S-4, ruled: both.**
+  - **D1 is narrowed:** `pipe_segments[i].section_ref` is None and `model.sections` is empty. The milestone has none. If I65 finds that the L = 0 base or a U8 witness needs sections, it reports that rather than pricing them now.
+  - **G3 adds a T05 row** for the phase that runs on every request: `normalize_model_units` and the no-section `resolve_shared_sections`, with their old/new pairs.
+- **S-6, accepted.** Add str/String Debug (6·len+2) and `{:032x}`, and complete the composite-Debug split, inside the B-2 work.
+- **NOTE items:** I65's discretion. The T06 citation should name `wide/multi.rs`.
+
+**The estimate.** B-1 and B-2 add real scope to G3. I65 re-estimates at its next boundary. If G3 exceeds its 12-hour upper by more than half, it returns the completed part and a precise remainder rather than continuing silently.
+
+**Confirmation.** RV83 confirms the G2 repairs when G3 returns. A fresh reviewer, RV84, reviews G3 itself. The next unused IDs are I66 and RV85.
