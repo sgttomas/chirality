@@ -5,7 +5,7 @@ import { validateLoadReferenceEvidence } from "../features/results/loadReference
 import { validateLoadReferenceSourceEvidence } from "../features/results/loadReferenceSourceEvidence";
 import { validateRetainedPrecision } from "../features/results/retainedPrecision";
 import { semanticContractForSource, semanticSourceBasisMatches } from "../features/results/resultSemantics";
-import { sourceContract, sourceSemanticBinding, hasCurrentSourceContract } from "../features/results/numericalResultQuality";
+import { sourceContract, sourceSemanticBinding, hasCurrentSourceContract, retainedPrecisionDowngrade } from "../features/results/numericalResultQuality";
 import type { AnalysisRunEnvelope, CanonicalResultDimension, MechanicsResult, ObjectRef, PreviewModel } from "../types";
 import { canonicalSha256HexCheckedV1, checkedJsonText } from "./hashService";
 
@@ -17,6 +17,9 @@ export const SEMANTIC_CONTRACT_SHA256 = "4d6886d19e304db897e5e9f8f0054cbee91ba77
 export const ANALYSIS_RETAINED_PRECISION_RECEIPT_MISMATCH = "ANALYSIS_RETAINED_PRECISION_RECEIPT_MISMATCH";
 /** U6d: a record of any other identity carries a retained-precision receipt. */
 export const ANALYSIS_RETAINED_PRECISION_DOWNGRADE_FORBIDDEN = "ANALYSIS_RETAINED_PRECISION_DOWNGRADE_FORBIDDEN";
+/** U6d repair (RV91 SF-1; TS twin of Python's code, I66 F-U6b-3): the historical
+ * builder never silently drops a retained-precision receipt or its row tokens. */
+export const ANALYSIS_LEGACY_SOURCE_DOWNGRADE_FORBIDDEN = "ANALYSIS_LEGACY_SOURCE_DOWNGRADE_FORBIDDEN";
 type ManifestEvidence = { manifest_ref: ObjectRef; manifest_sha256: string; manifest: { model_basis: { model_ref: string }; solver_basis: { solver_name: string; solver_version: string; solver_build_ref: string } } };
 const provenance = { source_name: "OpenPipeStress analysis record 0.2", source_location: "analysis_run.compatibility.v0.2", source_license: "project-governed", review_status: "pending", professional_claim: false };
 
@@ -77,6 +80,8 @@ export function analysisRecordProjection(record: AnalysisRunEnvelope): AnalysisR
 /** Explicit historical builder; never a fallback for precision admission. */
 export async function buildAnalysisRunV02(result: MechanicsResult, inputManifest: ManifestEvidence, ruleCheckStatus?: string | null, loadBasisRefs: ObjectRef[] = []): Promise<AnalysisRunEnvelope> {
   if (!["0.1.0", "0.2.0"].includes(result.schema_version) || ["producer", "numerical_quality", "formulation_basis", "contract_evidence", "source_block_recovery"].some(key => Object.hasOwn(result, key))) throw new Error("HISTORICAL_ANALYSIS_SOURCE_UNSUPPORTED");
+  // A `retained_precision` member (object or null) or a W1 token row: refused, never dropped.
+  if (retainedPrecisionDowngrade(result)) throw new Error(ANALYSIS_LEGACY_SOURCE_DOWNGRADE_FORBIDDEN);
   return buildAnalysisRecord(result, inputManifest, "legacy", ruleCheckStatus, loadBasisRefs);
 }
 export async function buildAnalysisRunV03(result: MechanicsResult, inputManifest: ManifestEvidence, ruleCheckStatus?: string | null, loadBasisRefs?: ObjectRef[]): Promise<AnalysisRunEnvelope> {

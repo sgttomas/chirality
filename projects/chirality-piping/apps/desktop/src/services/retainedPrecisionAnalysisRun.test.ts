@@ -14,7 +14,7 @@ const invokeMock = vi.hoisted(() => vi.fn());
 vi.mock("@tauri-apps/api/core", () => ({ invoke: invokeMock }));
 import type { AnalysisRunEnvelope, MechanicsResult, PreviewModel } from "../types";
 import {
-  ANALYSIS_RETAINED_PRECISION_DOWNGRADE_FORBIDDEN, ANALYSIS_RETAINED_PRECISION_RECEIPT_MISMATCH, analysisRecordProjection, buildAnalysisRunV02, buildAnalysisRunV03,
+  ANALYSIS_LEGACY_SOURCE_DOWNGRADE_FORBIDDEN, ANALYSIS_RETAINED_PRECISION_DOWNGRADE_FORBIDDEN, ANALYSIS_RETAINED_PRECISION_RECEIPT_MISMATCH, analysisRecordProjection, buildAnalysisRunV02, buildAnalysisRunV03,
   modelLoadBasisRefs, validateAnalysisRunV03, verifyAnalysisRunRecord,
 } from "./analysisRunCompatibility";
 import { bindSourceResultDimensions, buildAnalysisRunPreview, runPreviewMechanics, type PreviewSolverMode } from "./previewService";
@@ -154,6 +154,29 @@ describe.each(MODES)("%s: the AnalysisRun copies the receipt and validates its e
     expect(checkedJsonText(received)).toBe(before);
     // Legacy dimension binding is a no-op for the successor: the same object back.
     expect(bindSourceResultDimensions(received)).toBe(received);
+  });
+});
+
+describe("the historical v0.2 builder never drops a receipt (RV91 SF-1; Python's F-U6b-3 twin)", () => {
+  const legacy = () => JSON.parse(readFileSync(resolve(root, "fixtures/product_preview/invented_mechanics_result.json"), "utf8")) as MechanicsResult;
+  const legacyManifest = (source: MechanicsResult) => ({ manifest_ref: { object_type: "InputManifest", ref: "manifest:invented-legacy" }, manifest_sha256: "1".repeat(64), manifest: { model_basis: { model_ref: source.model_ref }, solver_basis: { solver_name: "synthetic", solver_version: "1", solver_build_ref: "synthetic@1" } } });
+  it("a legacy-shaped source without a receipt or token still builds (control)", async () => {
+    const source = bindSourceResultDimensions(legacy());
+    const record = await buildAnalysisRunV02(source, legacyManifest(source));
+    expect(record.schema_version).toBe("0.2.0");
+    expect(Object.hasOwn(record.analysis_run, "retained_precision")).toBe(false);
+  });
+  it.each([
+    ["a retained_precision object", (s: Json) => { s.retained_precision = structuredClone(milestone("sparse_interactive").source.retained_precision); }],
+    ["a null retained_precision member", (s: Json) => { s.retained_precision = null; }],
+    ["one W1 token row", (s: Json) => { s.results[0].recovery_method = "contribution_preserving_multiprecision_v1"; }],
+  ] as const)("a legacy-shaped source carrying %s is refused ANALYSIS_LEGACY_SOURCE_DOWNGRADE_FORBIDDEN", async (_label, edit) => {
+    const source = bindSourceResultDimensions(legacy()) as Json; edit(source);
+    await expect(buildAnalysisRunV02(source, legacyManifest(source))).rejects.toThrow(ANALYSIS_LEGACY_SOURCE_DOWNGRADE_FORBIDDEN);
+  });
+  it("a source with precision metadata keeps its existing refusal", async () => {
+    const { source } = milestone("dense_scrutiny");
+    await expect(buildAnalysisRunV02(source, legacyManifest(source))).rejects.toThrow("HISTORICAL_ANALYSIS_SOURCE_UNSUPPORTED");
   });
 });
 

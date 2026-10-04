@@ -267,6 +267,33 @@ describe.each(MODES)("%s: registration through mocked IPC", (mode) => {
     expect(retainedPrecisionInvocation(own, model)).toBeNull();
   });
 
+  it("registration binds the bytes captured before the reader's await: an edit made while it awaits never registers (RV91 N-3, RV09)", async () => {
+    const { source, invocation } = milestone(mode);
+    const fresh = structuredClone(source);
+    const pending = registerRetainedPrecision(fresh, structuredClone(invocation));
+    const original = fresh.results[3].value;
+    fresh.results[3].value = original + 1; // edited while the reader awaits
+    // The reader validates the bytes it snapshotted synchronously.
+    expect((await pending).invocation_bound).toBe(true);
+    expect(retainedPrecisionRegistration(fresh)).toBeNull();
+    expect(numericalResultStanding(fresh, null).findings).toStrictEqual([RETAINED_PRECISION_VALIDATION_REQUIRED]);
+    fresh.results[3].value = original;
+    // The validation belongs to exactly these (reverted) bytes.
+    expect(retainedPrecisionRegistration(fresh)?.validation?.invocation_bound).toBe(true);
+  });
+
+  it("the registered invocation is a private copy: neither the caller's object nor a returned copy can alter it (RV03, RV04)", async () => {
+    u7.simulate = true;
+    const { source, invocation, model } = milestone(mode);
+    const own = structuredClone(source), callers = structuredClone(invocation);
+    await registerRetainedPrecision(own, callers);
+    callers.solver_mode = OTHER[mode];
+    const first = retainedPrecisionInvocation(own, model) as Json;
+    expect(first).toStrictEqual(invocation);
+    first.solver_mode = OTHER[mode];
+    expect(retainedPrecisionInvocation(own, model)).toStrictEqual(invocation);
+  });
+
   it("a foreign solver mode is refused at the reader's invocation binding", async () => {
     const { source, model } = milestone(mode);
     const received = await deliverDirect(source, model, OTHER[mode]);
@@ -478,7 +505,30 @@ describe("the downgrade guard (F-5)", () => {
       const s = structuredClone(source) as Json; edit(s);
       expect(sourceContract(s)).toBe("unsupported");
       expect(numericalResultStanding(s, null).findings).toStrictEqual(["SOURCE_NUMERICAL_CONTRACT_UNSUPPORTED"]);
+      // RV91 N-3 (RV08): binding selects the successor by producer id, as Rust does,
+      // so a header-broken successor still has no validated class and every row is refused.
+      for (const row of s.results.slice(0, 3)) expect(ruleBindingRefusal(s, row)).toBe(RULE_QUANTITY_NOT_COVERED);
     }
+  });
+});
+
+// The declared parity difference F1 (I67 U6d F1; RV91 N-1; RR "RV91 on U6d: PASS",
+// accepted). TypeScript standing is synchronous and registration-based (plan 3 rule 1),
+// so an unregistered successor whose statement is invalid reads `needs_recompute` with
+// RETAINED_PRECISION_VALIDATION_REQUIRED, where Rust and Python, validating without an
+// invocation, read `unsupported`. It fails closed: never eligible, every row refused,
+// and the reader still refuses the statement wherever TypeScript relies on it.
+describe.each(MODES)("%s: the declared parity difference F1 (pinned in TS only)", (mode) => {
+  it.each([
+    ["an edited covered row", (s: Json) => { s.results[0].value = 12345; }],
+    ["numerical_quality rewritten to checks_passed", (s: Json) => { s.numerical_quality.status = "checks_passed"; s.numerical_quality.cases[0].solve_quality = "checks_passed"; }],
+  ] as const)("an unregistered successor with %s reads needs_recompute, not unsupported", async (_label, edit) => {
+    const { source, model } = milestone(mode);
+    const invalid = structuredClone(source); edit(invalid);
+    await expect(validateRetainedPrecision(invalid)).rejects.toThrow("RETAINED_PRECISION_RECEIPT_MISMATCH");
+    expect(retainedPrecisionStanding(invalid, model)).toStrictEqual({ standing: "needs_recompute", eligible: false, findings: [RETAINED_PRECISION_VALIDATION_REQUIRED] });
+    expect(numericalResultStanding(invalid, model)).toStrictEqual({ contract: "retained_preview_physics", status: "needs_recompute", eligible: false, findings: [RETAINED_PRECISION_VALIDATION_REQUIRED] });
+    expect(ruleBindingRefusal(invalid, invalid.results[1])).toBe(RULE_QUANTITY_NOT_COVERED);
   });
 });
 
@@ -571,11 +621,25 @@ describe("notices, labels and the results-panel standing text", () => {
     cleanup();
     const edited = structuredClone(source); edited.results[0].value = 12345;
     const refused = await deliverDirect(edited, model, "sparse_interactive");
-    expect(retainedPrecisionStandingText(refused)).toContain("refused by the retained-precision reader (RETAINED_PRECISION_RECEIPT_MISMATCH); unsupported");
+    expect(retainedPrecisionStandingText(refused)).toContain("refused by the retained-precision reader (RETAINED_PRECISION_RECEIPT_MISMATCH); unsupported, values shown for inspection only.");
+    // RV91 N-4: the receipt's case count is shown only from a validated registration.
     expect(retainedPrecisionStandingText(received)).toContain("Selected cases: 1 of 1.");
-    const twoCases = structuredClone(source) as Json;
-    twoCases.retained_precision.body.cases.push({ basis_ref: { ref_type: "load_case", ref_id: "second" }, status: "not_required" });
-    expect(retainedPrecisionStandingText(twoCases)).toContain("Selected cases: 1 of 2.");
+    expect(retainedPrecisionStandingText(refused)).not.toContain("Selected cases");
+    expect(retainedPrecisionStandingText(structuredClone(received))).not.toContain("Selected cases");
+  });
+  it("the case count is the validated receipt's selected cases over all its cases (RV91 N-4)", async () => {
+    // A valid two-case statement from the shared reader corpus: one selected, one unavailable.
+    const corpus = JSON.parse(readFileSync(resolve(root, "fixtures/results/retained_precision_cases.json"), "utf8"));
+    const entry = corpus.cases.find((c: Json) => c.id === "two_case_facade_after_certificate_synthetic");
+    const statuses = entry.source.retained_precision.body.cases.map((c: Json) => c.status);
+    expect(statuses).toStrictEqual(["selected", "unavailable"]);
+    const own = structuredClone(entry.source) as MechanicsResult;
+    const unclaimed = retainedPrecisionStandingText(own);
+    expect(unclaimed).toContain("receipt not validated for these exact bytes");
+    expect(unclaimed).not.toContain("Selected cases");
+    await registerRetainedPrecision(own, structuredClone(entry.invocation));
+    expect(retainedPrecisionStandingText(own)).toContain("against the actual invocation for these exact bytes. Selected cases: 1 of 2.");
+    expect(retainedPrecisionStanding(own, null).findings).toStrictEqual([RETAINED_PRECISION_NOT_NUMERICALLY_ELIGIBLE]);
   });
 });
 

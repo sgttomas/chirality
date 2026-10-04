@@ -90,7 +90,9 @@ export async function registerRetainedPrecision(source: MechanicsResult, invocat
     throw error;
   }
 }
-/** The registration of these exact bytes, or null (absent, or bytes changed). */
+/** The registration of these exact bytes, or null (absent, or bytes changed). The
+ * comparison is the exact checked JSON text, so an in-place edit that only reorders
+ * a member's keys also voids it (fail closed; RV88 U6d N-2). */
 function registered(source: MechanicsResult | null | undefined): Registration | null {
   const registration = registrations.get(source as object);
   if (!registration) return null;
@@ -187,13 +189,15 @@ export function classificationSummary(source: MechanicsResult | null | undefined
   return validation ? classificationSummaryFrom(validation, source!, requestedRefs(model)) : [];
 }
 /** Results-panel standing text from the registered receipt only, never from the
- * ordinary `numerical_quality` (D2 4.9.2). Text only; it changes no standing. */
+ * ordinary `numerical_quality` (D2 4.9.2). The receipt's case count is shown only
+ * from a validated registration, never from an unvalidated or refused receipt
+ * (RV91 N-4). Text only; it changes no standing. */
 export function retainedPrecisionStandingText(source: MechanicsResult): string {
   const outcome = retainedPrecisionRegistration(source);
+  const tail = "Current use is checked separately against the actual invocation and the requested cases. Numerical checks do not establish engineering correctness.";
+  if (!outcome) return `Retained precision: receipt not validated for these exact bytes in this session (saved, reference or copied data never register); needs recompute. ${tail}`;
+  if (outcome.error !== null) return `Retained precision: receipt refused by the retained-precision reader (${outcome.error}); unsupported, values shown for inspection only. ${tail}`;
   const cases = receiptCases(source);
   const selected = cases.filter(c => c?.status === "selected").length;
-  const receipt = !outcome ? "not validated for these exact bytes in this session (saved, reference or copied data never register); needs recompute"
-    : outcome.error !== null ? `refused by the retained-precision reader (${outcome.error}); unsupported, historical values only`
-    : `validated by the retained-precision reader ${outcome.validation.invocation_bound ? "against the actual invocation" : "without an invocation"} for these exact bytes`;
-  return `Retained precision: receipt ${receipt}. Selected cases: ${selected} of ${cases.length}. Current use is checked separately against the actual invocation and the requested cases. Numerical checks do not establish engineering correctness.`;
+  return `Retained precision: receipt validated by the retained-precision reader ${outcome.validation.invocation_bound ? "against the actual invocation" : "without an invocation"} for these exact bytes. Selected cases: ${selected} of ${cases.length}. ${tail}`;
 }
