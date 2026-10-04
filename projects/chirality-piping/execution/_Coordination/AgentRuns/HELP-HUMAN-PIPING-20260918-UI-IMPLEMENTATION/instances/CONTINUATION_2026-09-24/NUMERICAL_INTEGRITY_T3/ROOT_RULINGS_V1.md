@@ -8545,3 +8545,11 @@ This implements the selected design (DESIGN_NUMERICS/DESIGN.md:1004, D1 §5 item
 I63 and I64 adopt 07d in their standing rounds.
 
 **Rust 07d, committed as `265f764fa4`.** ROOT verified the hashes and the evidence, and ran 53 passed on the default toolchain. The three removed lines are the two G0 type tests D32 replaced and the old version rule D31 replaced. `uint()` still rejects booleans. TypeScript's 07d round is pending.
+
+**TypeScript 07d, committed as `abcb16fd27`.** ROOT verified the hashes and the evidence; vitest 419/419, tsc 0. The only removed line is the old 0.2.0/0.3.0 rule that D31 replaced.
+
+**All three readers pass snapshot 07d on READER `abcb16fd27`** (15 cases, 259 mutations, 21 must-pass entries). ROOT's own runs: Python 358, Rust 53, TypeScript 419. The tracked tree is clean.
+
+**Next, in parallel:**
+- **Confirmation round 04,** scoped to the 07d delta (D31–D33, D32's normalization, the new entries) by RV78–RV81.
+- **I61 reruns the real-receipt experiment** on `abcb16fd27`, with no counterfactuals, now that T1 (owner-confirmed option a, emitted by the experiment's emitter) and T2 (D31) are resolved.
