@@ -8791,3 +8791,15 @@ RV79's D37 check is pending.
 - the deferred-base survivors.
 
 **This closes handoff step 3.** Next is step 4: memory/profile/M and the producer receipt transaction. Its serializer brief carries the producer gaps G-a to G-l, the assumptions A1, A2 and A4, T1's emission, D6a's exact ordinary list, D9b's explicit null, RV77-N4's owner binding and the deferred producer-solved witnesses.
+
+**RV78 on the carried artefacts: PASS** (0 BLOCKING, 1 SHOULD-FIX, 4 NOTE; none gating under D36).
+- **The table:** it differs from the inherited one in exactly 8 places, each grounded in C1 or C3: the contract id and profile, the inherited raw-file hash, and five added members, including the definition H. All 73 rows and the inherited policies are unchanged.
+- **The YAML branch:** it is the preview-physics-1 branch plus a required closed `retained_precision`. The seven existing branches now forbid that member, so none is loosened. RV78 ran 26 probes; the schema test passes 12/12.
+
+The two artefacts are therefore accepted with the readers.
+
+**Routed:**
+- **S1 → the carrier work (handoff step 5, wider F2a):** C1:162 requires successor branches in the AnalysisRun and stress-neutral carrier schemas, and neither exists. The documents fail closed, and the T6 export refusal stands.
+- **N3 → the carrier work:** the successor does not constrain the derivative's absolute/not_covered disclosures.
+- **N1 and N2 → the next reader round:** the table does not bind the policies and limits the readers enforce as G0 constants, and RV78's probes become schema tests.
+- **N4:** a re-serialized `§`, with the same JSON value; recorded.
