@@ -579,7 +579,7 @@ describe("the declared differences, with TypeScript's expectations", () => {
   });
   it("carry the N-4 scope: differences inherited from the base carriers are not U6's", () => {
     expect(caseFile.scope).toMatch(/inherited from the base carriers are not U6 differences/);
-    expect(caseFile.scope).toMatch(/G7 parity compares the reader's \(gate, code\)/);
+    expect(caseFile.scope).toMatch(/G7 parity compares the reader's \(gate, code\)[\s\S]*parity there compares only accept against refuse/);
   });
   it.each<[string, string, Json]>(declaredForms)("%s on %s", async (_id, fixtureId, form) => {
     const expected = form.expected.typescript;

@@ -755,7 +755,7 @@ fn expected_binding(source: &Value, expected: &str) -> Vec<Option<String>> {
 #[test]
 fn u6_declared_differences_rust() {
     let cases: Value = serde_json::from_str(CASES).unwrap();
-    assert!(cases["scope"].as_str().unwrap().contains("G7 parity compares the reader's (gate, code)"));
+    assert!(["G7 parity compares the reader's (gate, code)", "parity there compares only accept against refuse"].iter().all(|p| cases["scope"].as_str().unwrap().contains(p)));
     let fixtures = shared_fixtures(&cases);
     let entries = cases["declared_differences"].as_array().unwrap();
     let mut ids: Vec<&str> = entries.iter().map(|e| e["id"].as_str().unwrap()).collect();

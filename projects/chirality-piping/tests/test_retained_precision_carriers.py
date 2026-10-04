@@ -266,7 +266,7 @@ def test_declared_differences_python():
     """Each ruled difference, form by form, with Python's own expectation; Rust
     asserts its own from the same entries, and TS (I67) its own."""
     cases, docs = shared_cases()
-    assert "G7 parity compares the reader's (gate, code)" in cases["scope"]
+    assert all(p in cases["scope"] for p in ("G7 parity compares the reader's (gate, code)", "parity there compares only accept against refuse"))
     entries = cases["declared_differences"]
     assert {entry["id"] for entry in entries} == DECLARED and len(entries) == len(DECLARED)
     seen = set()
