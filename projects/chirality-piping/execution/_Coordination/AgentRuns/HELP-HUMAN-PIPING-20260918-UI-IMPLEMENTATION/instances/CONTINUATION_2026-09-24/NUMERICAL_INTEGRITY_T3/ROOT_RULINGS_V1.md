@@ -9103,3 +9103,42 @@ The next unused IDs are I66 and RV84; RV82 is reserved for U1.
 - **N2:** an equivalent mutant; no action.
 
 **U1 grant 1 is accepted on review.** It merges into NUM with grant 2 once grant 2 has been verified and reviewed, so no intermediate merge is made. RV82 confirms S1, S2 and N1 in grant 2's review.
+
+## U1 grant 2: I61's stop resolved (a ROOT error corrected); committed as `b54caba7ab`; RV82 re-dispatched (ROOT, 2026-10-04 UTC)
+
+**I61 stopped as instructed.** Every one-case unavailable receipt, including both D38 receipts, fails first at G3 `COVERAGE_MISMATCH` ("no selected case") in all three readers, not at the later "native entered ⇒ Run" check that ROOT's grant expected.
+
+**The error was ROOT's.** ROOT's own earlier ruling "T3, decided" (in "All readers on 07c; the real-receipt experiment's findings", RR:8436–8437) states that "a one-case invocation whose case is unavailable has no successor publication". The readers enforce exactly that.
+- **Corrected:** grant 2's expectation, and decision 4's "pinned in the next reader round".
+- **Not corrected, because it was right:** D38's representation itself.
+
+**The disposition:**
+- **The readers are faithful;** no reader changes.
+- **The D38 reader relaxation and its pin move to wider F2a.** Only a multi-case successor can carry an unavailable case beside a selected one. They are tracked under D36.
+- **The milestone domain is unaffected.** A one-case unavailable invocation takes U3's ordinary fallback with `RETAINED_PRECISION_UNAVAILABLE` and preserved ordinary bytes.
+- **`serialize_unavailable` stays private and is not a publication.** It is kept for wider F2a, and review covers it.
+- **S-2 (D38 with a prepared source) and S-3 (a source-constructor `source_decline`) stay fail-closed, accepted.** Their contract readings (C2 §4 identity bytes before registration; the constructor counts) are wider F2a and do not gate the milestone.
+- **`UnresolvedReason::WorkAccounting`'s `prior`:** this is C2 §2's own wire form, which carries the fault only; the private prior stays private. In D1 a work fault abandons the successor anyway, under checked custody and D-4, so it never reaches the wire.
+
+**ROOT's verification:**
+- SHA256SUMS for `R/I61/u1_serializer_02/`: 21/21 OK, no machine paths.
+- All six changed-file hashes match the committed bytes.
+- `lib.rs` is unchanged.
+
+**ROOT read the diffs:**
+- **FK** adds `anchor: Option<Arc<ProofAnchor>>` to `ProductCertificateSpent`, set where the anchor is created, plus `owner_matches` on the work and on `ProductProofFailure`. No `strong_count` or `try_unwrap` use exists in product_certificate.
+- **PP:**
+  - `invocation_digest` is recorded at `invocation()`;
+  - `PreparedCandidateRefusal.certificate` is private, with accessors;
+  - the C3 seam refuses foreign proof work.
+- **Tests:** the only removed lines are a doc comment (N3), and the two-case expectation, which changes from `Scope` to `Association{invocation}`. That is stricter, because S2 now refuses the foreign invocation first.
+- **No panic or legacy work read** on any production path.
+
+**ROOT's run** (default toolchain): PP `--lib` gave 486 passed, 1 failed, 1 ignored. t13 is the only failure, and all 30 serializer tests pass. **I61's run:** PP 648/1/1 with only added tests, runner/headless identical, FK `--lib` 480, and 46 of 48 mutants killed. The two survivors cannot be constructed from PP.
+
+**For RV82 to assess:** a proof whose start fails before its anchor exists now projects as `WorkAssociation`, not as its own failure. It is fail-closed, but the classification may be wrong. In D1 this does not reach a publication.
+
+**Next:**
+- **RV82** reviews grant 2 and confirms its S1, S2 and N1 on `b54caba7ab`.
+- **U1 merges into NUM** after RV82 passes.
+- **U3** is prepared: the brief and I61's design checkpoint on D-a to D-d.
