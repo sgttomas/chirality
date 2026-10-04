@@ -11631,3 +11631,27 @@ ROOT applied the diff to NUM and checked mechanically that every changed line is
 - three doc-comment entries for the S-1 hunks in the qualification-test files. Their fingerprints are computed exactly as the tool does: they match only if the hunks land as in `u9_repair.diff`, and they did, by `git apply`.
 
 `6d8f8a82b2` classifies as `test`. I65 runs the prepared Pass B on F.
+
+## U9 G5 (T9) and G6 (both-entry) pass; the package regeneration dispatched (ROOT, 2026-10-04 UTC)
+
+**I61's record** is `R/I61/u9_g5g6_01/` (RETURN.md `37f7938d…`; SHA256SUMS 84/84 OK). It ran on M `5fdc5ab601`, C `6b9bb19a5f` and C2 `92a5a9da1c`, using `git archive` trees whose blobs all match.
+
+**G5, T9: PASS.**
+- 112/112 common outputs byte-identical.
+- Exactly 2 added outputs, the milestone request in both modes. Each equals the Stale value-route bytes: `9c7ec1a1…` sparse, `21ca629c…` dense.
+- The extra corpus is 16/16.
+- C2 reproduces C on every output.
+
+**G6 part 1: PASS.**
+- gate_check PASS on base, C and C2: 764 evaluated, 332 trusted, 0 trusted breach triples.
+- **884/884 identical** for base against C and base against C2.
+- 0 heap-cap aborts, 0 timeouts, every exit 0.
+- `full/` and `envelopes/` are identical, and equal KF2's.
+
+**G6 part 2: PASS.** Every execution is `refused_blocked`, `NUMERICAL_INTEGRITY_UNRESOLVED`, with base and candidate envelopes identical and equal to KF2's.
+- **The timings:** 45.4–52.8 s across 24 run executions, against the 1,800 s limit. The clean execution ran 45.8–46.2 s.
+- **I61's disclosure:** its first execution's watcher had a parsing bug and mis-reported 0 overlap when the real overlap was 7 of 8 runs. I61 corrected the record, fixed the watcher, and reran. The third execution was clean (0 of 73 samples), so every run has a clean execution.
+
+**The carry-over ruling.** From C2 to the source head **`35d8ae59a7`**, the changes are comment- and doc-only, line-neutral edits in PP production files (`lib.rs`, `retained_memory.rs`, `retained_wire.rs`) plus test files. The release builds G5 and G6 use are therefore unaffected, so **G5 and G6 transfer to `35d8ae59a7`.**
+
+**I61 regenerates the package for the freeze** (S-2): `source_equality.py`'s check 3 generalized, the counts, the PR1080 sentence, the U1 pin scope, N-7, the reviews, the obligations (N-6), the checklist (N-4), the gates done, and the gates on F pointed to the post-merge record. Records go in `R/I61/u9_freeze_01/`. **ROOT places the package as one execution-only commit, which makes F.**
