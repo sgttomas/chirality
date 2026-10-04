@@ -8984,3 +8984,49 @@ This applies C1 §2's own named alternative, whose conditions (its own design, m
 - **I61 is told D-4b** for U1.
 
 The next unused IDs are I66 and RV84; RV82 is reserved for U1.
+
+## U1 grant 1 with U2 verified and committed; findings F1–F6; grant 2 and RV82 dispatched (ROOT, 2026-10-04 UTC)
+
+**I61's return** is `R/I61/u1_serializer_01/`. SHA256SUMS has 27 entries and verifies OK, with no machine paths. ROOT committed the source on `codex/piping-f2a-serializer-20261004` as `59a5de2032` (base `43a6368c21`) and pushed it. All nine changed-file hashes in RETURN.md match the committed bytes.
+
+**ROOT's own verification:**
+- **The full core diff, read by ROOT.**
+  - `lib.rs`: two `mod` lines, plus nine capture calls, each inside `if let Some(observer) = product.as_deref_mut()`. The only other changes are a local `legacy_attempted` flag, which is set and never branched on, and binding `amend_integrity_report`'s existing return value to `demoted`. No diagnostic, debit, message or control flow changes.
+  - `retained_product_tests.rs`: `.certificate` → `.certificate()`, plus a comment. No assertion is removed or weakened.
+  - `s11g_tests.rs`: one added test.
+  - FK: one added method.
+  - `Cargo.toml` and `Cargo.lock`: the `result_export` dev-dependency only, with no new external crate.
+- **Unreachable in production:** `serialize_selected` is `pub(super)` with no non-test caller. The serializer has no `unwrap`, `expect` or `panic!`, and reads no legacy work field.
+- **ROOT's test run** (default toolchain): PP `--lib` gave 472 passed, 1 failed, 1 ignored. The only failure is the known Mac platform test `t13_committed_fallback_uz_is_byte_identical`. All 16 U1/U2 tests pass, including `u1_milestone_successor_both_modes` (pinned successor bytes) and `u1_ordinary_bytes_unchanged_under_capture`.
+- **I61's wider suites:** PP lib plus 21 integration targets, and runner/headless, each give the same outcome set as base apart from the added tests. result_export 149/149; FK `--lib` 480. The three readers pass G0–G8 in both modes with parity 98/98 and 99/99. 39/39 mutants are killed, none by a compile error.
+- **Adoption of later decisions:**
+  - "Checked work custody in U1": every amount goes through a checked view; stage slots need an exact status; a source-guard test forbids the legacy fields.
+  - D-4b: `ReceiptCheck::wire()` maps only onto C1:68's tokens.
+  
+  Both are confirmed in the code, not only in the return.
+
+**The byte differences against experiment 03** are the three members per mode that I61 lists (G-a's selected id and message, and F1), plus the two dependent hashes.
+
+**Findings:**
+- **F1, accepted as an application of C2:160.** `formation.d5_diagnostic_ref` names the integrity diagnostic when K-D5's `formation_check` line is part of it. C2:160 asks for "existing diagnostic evidence"; null would understate evidence that exists. RV82 checks that the capture predicate (`formation_check.is_some()` at the report) holds exactly when that line is written into that diagnostic.
+- **F2, accepted as T1 (a) composed with D39.** T1 (a) omits the legacy disclosure on a retained-selected case, and D39 gives the disposition by branch. A selected case whose legacy route declined without an attempt is `{declined_without_attempt, null, work_ref → its actual 0/0/0 WorkReport}`. The owner's T1 decision concerns the omitted disclosure; this applies it, so it is not a new owner question. The milestone does not exercise this branch.
+- **F3, fail-closed, held.** A case demoted after the report by R-b′ is refused typed and never emitted with a disguised outcome. A wire representation for it is a contract question for wider F2a. It does not gate the milestone, which does not reach it. U3 maps the refusal to the unavailable fallback.
+- **F4, routed to I65:** the T11 delta pass now that U1(a) is frozen at `59a5de2032`. `OrdinarySeed` and the serializer's JSON working set enter M.
+- **F5, tracked (D36):** the exact D6a list and the method token are pinned by the committed bytes, not by the readers. This is a candidate for the next reader round.
+- **F6, noted:** the meter fault is killed by the source guard, because the meter cannot be faulted from PP.
+
+**Fence notes, accepted:**
+- the two `mod` declarations are the wiring the new files need;
+- the `s11g_tests.rs` addition is test-only and additive (it kills M19);
+- `PreparedCandidateRefusal.certificate` stays `pub` until grant 2 serializes a refusal. Completing U2 on the failure path is in grant 2.
+
+**Dispatch:**
+- **RV82** reviews `59a5de2032` under `BRIEFS/RV82_U1_SERIALIZER_REVIEW.md`, plus F1's predicate check.
+- **I61: U1 grant 2,** in the same worktree on top of `59a5de2032`, while RV82 reviews. It covers:
+  - G-i's closed translations;
+  - D38's representation (`run: null`, `run_ref: null`, a `capture` error) for an early prepared-solve failure;
+  - the refusal and failure-work owner binding, with `PreparedCandidateRefusal.certificate` made private;
+  - the remaining mutants.
+  
+  RV82's findings on grant 1 are repaired in the same stream, and each is reported separately.
+- **A D38 receipt** is expected to fail the current readers only at the stricter "native entered ⇒ Run" rule. I61 records the exact check. The next reader round relaxes the readers to D38 and pins that receipt. No other reader failure is acceptable.
