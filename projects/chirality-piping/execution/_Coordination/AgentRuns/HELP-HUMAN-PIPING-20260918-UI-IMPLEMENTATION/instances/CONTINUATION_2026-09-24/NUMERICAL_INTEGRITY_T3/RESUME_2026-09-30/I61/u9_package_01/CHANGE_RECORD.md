@@ -195,7 +195,7 @@ Commits are on NUM and the U7 branch. Reviews are fresh and independent, and eac
 | File | Purpose |
 |---|---|
 | `source_equality.py` | The five equality checks (U9 decision 2) |
-| `check_citations.py`, `citations.json` | Every record citation the PR adds resolves (U9 decision 5). There are 41 distinct citations, 65 occurrences, 0 unresolved at `e543c3d8f3`. Citations of named design documents without a path (C1:…, D1 §…, BUILD.md, …; 211 occurrences) are reported, not indexed |
+| `check_citations.py`, `citations.json` | Every record and design-document citation the PR adds resolves (U9 decision 5). At `e543c3d8f3`:<br>• **Totals:** 353 resolved, 1 ambiguous, 0 unresolved.<br>• **Records and RR:** 65 occurrences, 41 distinct.<br>• **Design documents:** 289 citations against a table of 23 names. Anchors are verified in the pinned version; D1 resolves on main; one name, `API.md`, is decided by a recorded context rule.<br>• **Ambiguous:** `COMP:66` (`lib.rs:3034`) has two candidate files, listed for ROOT.<br>• **Outside the check:** 38 code line citations (`PP:…`, `FC:…`, `FK/…:…`) are listed only |
 | `copies/g5_profile.py`, `copies/profile_tree.json` | The generator and input that regenerate `retained_memory.rs`'s GENERATED PROFILE block byte for byte at `e543c3d8f3`: `python3 g5_profile.py profile_tree.json retained_memory.rs` |
 | `copies/QUALIFICATION.md` | G6's qualification, the basis of M and the registered identity |
 | `copies/G2_AMENDMENTS.md` | D-6's identity encoding (`build_identity.rs`) |

@@ -25,9 +25,24 @@ at the index's pinned NUM commit:
   - an rr_line lies in the recorded section, whose heading text matches;
   - an rr_title starts the recorded heading.
 
-Exit 1 on any unresolved occurrence or failed verification; exit 0 otherwise. Citations of named
-design documents without a path (C1:160, D1 §4.4, BUILD.md §2.1, API.md, STACK_PLAN, ROUTING:98,
-COMP:66) are counted and reported, but not resolved by this index: they are report-only.
+Design documents (class "document"). The index's `documents` table maps each cited name
+(C1, C2, C3, F1, S06, D1, D2, ROUTING, COMP, I57, I51 COMPOSITION, G4 NOTES and the U4 notes
+DOMAIN.md, BUILD.md, API.md, API_G4.md, STACK_PLAN, STACK_INVENTORY.md, G2_AMENDMENTS,
+QUALIFICATION.md, TRANSFER_COMPLETION.md, ADDENDUM_L128.md, NOTES_G4.md, COMPOSITION_G4.md) to one
+location:
+  - main, when the base holds the same blob at the same path;
+  - else a copy in this package;
+  - else a commit-pinned URL on NUM.
+A name with several candidate files is resolved only by the context rule recorded for it (the
+citing file's path prefix). Otherwise it is ambiguous, listed with its candidates. Bare short names
+(C1, D1, ROUTING, ...) count only with an anchor; names ending in .md count with or without one.
+Anchors are verified in the pinned version: each line number of `:n`, `:a-b` and `:a, b` must lie
+within the document, and each section of `§x.y` must head a Markdown section.
+
+Counts reported: resolved, ambiguous, unresolved. Exit 1 only on unresolved citations or failed
+verifications (an ambiguous citation is listed for ROOT's ruling and does not fail). Code
+line citations (PP:2896, FC:358, FK/adaptive.rs:...) cite maintained code itself, at revisions that
+moved since. They are counted and listed (source_line) and are outside this check.
 """
 import argparse, hashlib, json, os, re, subprocess, sys
 
@@ -57,7 +72,11 @@ CLASSES = [
     ("rr_line", re.compile(r"\bRR:\d+(?:[–-]\d+)?")),
     ("rr_title", re.compile(r'\bRR "([^"]+)"|ROOT_RULINGS_V1 \\"(.+?)\\"|ROOT_RULINGS_V1 "([^"\\]+)"')),
 ]
-REPORT_ONLY = re.compile(r"\b(?:C[123]:\d+|C[123] §|D[12] §|D[12]:\d+|BUILD\.md|API\.md|STACK_PLAN|ROUTING:\d+|COMP:\d+)")
+DOCS = idx.get("documents", {})
+ALIAS = {al: name for name, d in DOCS.items() for al in d["aliases"]}
+ANCH = r"(?::\d+(?:\s*[–\-/]\s*\d+)*(?:,\s*\d+(?:\s*[–\-]\s*\d+)*)*|\s§\s?\d[\d.]*(?:\s*[–\-/]\s*§?\s?\d[\d.]*)*)"
+DOC_RX = re.compile(r"(?<![\w/.])(" + "|".join(re.escape(x) for x in sorted(ALIAS, key=len, reverse=True)) + r")(" + ANCH + r")?") if ALIAS else None
+SOURCE_LINE = re.compile(r"\b(?:PP|FC|FK|SR|PY|RS|TS)(?:/[\w./]+)?:\d+")
 def norm_title(t): return t.rstrip("…").rstrip(".").strip()
 
 def tokens(line):
@@ -70,14 +89,18 @@ def tokens(line):
 
 S = [n for n in git("diff", "--name-only", a.base, a.head, "--", ".", ":!" + P + "execution", ":!execution").stdout.decode().split("\n") if n]
 diff = git("diff", "-U0", a.base, a.head, "--", *S).stdout.decode("utf-8", errors="replace") if S else ""
-occ, report_only, f, ln = [], 0, None, 0
+occ, report_only, f, ln, docs = [], 0, None, 0, []
 for line in diff.split("\n"):
     if line.startswith("+++ "): f = line[6:] if line.startswith("+++ b/") else None; continue
     m = re.match(r"@@ -\S+ \+(\d+)(?:,\d+)? @@", line)
     if m: ln = int(m.group(1)); continue
     if line.startswith("+") and f:
         for cls, tok in tokens(line[1:]): occ.append((f, ln, cls, tok))
-        report_only += len(REPORT_ONLY.findall(line)); ln += 1
+        if DOC_RX:
+            for m in DOC_RX.finditer(line[1:]):
+                name, anchor = ALIAS[m.group(1)], (m.group(2) or "").strip().rstrip(".,;")
+                if anchor or m.group(1).endswith(".md"): docs.append((f, ln, name, m.group(1), anchor))
+        report_only += len(SOURCE_LINE.findall(line)); ln += 1
 
 entries = {(e["class"], e["token"]): e for e in idx["citations"]}
 unresolved = [o for o in occ if (o[2], o[3]) not in entries]
@@ -116,7 +139,40 @@ for key in sorted(used):
             failed.append((key, "title is not the heading's prefix"))
         out.append(f"{idx['github']}/blob/{NUM}/{RR}#L{hl} — \"{e['heading']}\"")
     rows.append((key, out))
+# design documents: location, context rules, anchors
+doc_text, doc_res = {}, {"resolved": [], "ambiguous": [], "unresolved": []}
+def lines_of(path):
+    if path not in doc_text:
+        r = git("cat-file", "blob", f"{NUM}:{path}", ok=(0, 128))
+        doc_text[path] = r.stdout.decode("utf-8", errors="replace").split("\n") if r.returncode == 0 else None
+    return doc_text[path]
+def where(path, d):
+    nb = git("rev-parse", f"{NUM}:{path}", ok=(0, 128)).stdout.decode().strip()
+    bb = git("rev-parse", f"{a.base}:{path}", ok=(0, 128)).stdout.decode().strip()
+    if nb and nb == bb: return f"main: {path}"
+    if d.get("copy"): return f"package: {d['copy']} (and {idx['github']}/blob/{NUM}/{path})"
+    return f"{idx['github']}/blob/{NUM}/{path}"
+def anchor_ok(text, anchor):
+    if anchor.startswith(":"):
+        return all(1 <= int(n) <= len(text) for n in re.findall(r"\d+", anchor))
+    for sec in re.findall(r"\d+(?:\.\d+)*", anchor):
+        if not any(re.match(r"^#+\s+(?:§\s*)?" + re.escape(sec) + r"(?:[.\s):]|$)", l) for l in text): return False
+    return True
+def label(alias, anchor): return alias + (anchor if anchor.startswith(":") or not anchor else " " + anchor)
+for f_, l_, name, alias, anchor in docs:
+    d = DOCS[name]; path = d.get("path")
+    if d.get("candidates"):
+        rule = next((r for r in d.get("rules", []) if f_.startswith(r["file_prefix"])), None)
+        if not rule:
+            doc_res["ambiguous"].append((f_, l_, label(alias, anchor), d["candidates"])); continue
+        path = rule["resolve"]
+    text = lines_of(path)
+    if text is None or (anchor and not anchor_ok(text, anchor)):
+        doc_res["unresolved"].append((f_, l_, label(alias, anchor), path)); continue
+    doc_res["resolved"].append((f_, l_, label(alias, anchor), where(path, d)))
 for o in unresolved: print(f"UNRESOLVED {o[0]}:{o[1]} [{o[2]}] {o[3]}")
+for o in doc_res["unresolved"]: print(f"UNRESOLVED {o[0]}:{o[1]} [document] {o[2]} (anchor not found in {o[3]})")
+for o in doc_res["ambiguous"]: print(f"AMBIGUOUS {o[0]}:{o[1]} [document] {o[2]} candidates {o[3]}")
 if a.suggest:
     sug, seen = [], set()
     heads = [(i + 1, l[3:]) for i, l in enumerate(rr_text()) if l.startswith("## ")]
@@ -140,14 +196,24 @@ if a.suggest:
     print(f"suggested {len(sug)} entries, {sum('TODO' in e for e in sug)} TODO -> {a.suggest}")
 for k, why in failed: print(f"FAILED {k[0]} {k[1]!r}: {why}")
 unused = sorted(set(entries) - used)
-print(f"occurrences {len(occ)}; distinct {len({(o[2], o[3]) for o in occ})}; unresolved {len(unresolved)}; "
-      f"verification failures {len(failed)}; unused index entries {len(unused)}; report-only design-doc citations {report_only}")
+n_res = len(occ) - len(unresolved) + len(doc_res["resolved"])
+print(f"COUNTS resolved {n_res}; ambiguous {len(doc_res['ambiguous'])}; unresolved {len(unresolved) + len(doc_res['unresolved'])}")
+print(f"  records/RR: occurrences {len(occ)}, distinct {len({(o[2], o[3]) for o in occ})}, unresolved {len(unresolved)}; "
+      f"documents: {len(docs)} citations ({len(doc_res['resolved'])} resolved, {len(doc_res['ambiguous'])} ambiguous, "
+      f"{len(doc_res['unresolved'])} unresolved); verification failures {len(failed)}; unused index entries {len(unused)}; "
+      f"source_line (outside the check) {report_only}")
 for k in unused: print(f"  unused: {k[0]} {k[1]!r}")
 if a.list:
     for o in occ: print(f"  {o[0]}:{o[1]}\t{o[2]}\t{o[3]}")
+    for o in doc_res["resolved"]: print(f"  {o[0]}:{o[1]}\tdocument\t{o[2]}\t{o[3]}")
 if a.out:
     with open(a.out, "w", encoding="utf-8") as w:
         w.write(f"# Resolved citations (NUM {NUM})\n\n| Class | Token | Resolves to |\n|---|---|---|\n")
         for (c, t), out in rows: w.write(f"| {c} | `{t}` | {'<br>'.join(out)} |\n")
-print("RESULT", "PASS" if not unresolved and not failed else "FAIL")
-sys.exit(0 if not unresolved and not failed else 1)
+        seen = {}
+        for f_, l_, tok, loc in doc_res["resolved"]: seen.setdefault((tok, loc), f"{f_}:{l_}")
+        for (tok, loc), first in sorted(seen.items()): w.write(f"| document | `{tok}` | {loc} |\n")
+        for f_, l_, tok, cands in doc_res["ambiguous"]: w.write(f"| document (AMBIGUOUS) | `{tok}` at {f_}:{l_} | {' / '.join(cands)} |\n")
+bad = unresolved or failed or doc_res["unresolved"]
+print("RESULT", "FAIL" if bad else ("PASS (ambiguous citations listed for ROOT)" if doc_res["ambiguous"] else "PASS"))
+sys.exit(1 if bad else 0)

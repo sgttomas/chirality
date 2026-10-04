@@ -11343,3 +11343,21 @@ The checklist is kept in the work graph's T3 row once U9 merges.
 - Ambiguous names are resolved by citing context, with the rule recorded.
 - Anchors are verified.
 - The check fails only on unresolved citations. **ROOT rules on any that stay ambiguous.**
+
+## Design-document citations indexed; COMP:66 resolved; code line citations to be reworded (ROOT, 2026-10-04 UTC)
+
+**I61's updated package** is `R/I61/u9_package_01/` (174,398 B; SHA256SUMS 9/9 OK; SHA256SUMS sha256 `5c421723…`).
+- **The document table** covers 23 names. The location rule is: main if it holds the same blob, else the package copy, else a commit-pinned NUM URL. D1 and D2 are on main.
+- **The anchors** are verified: line numbers in the file, `§x.y` against headings.
+- **`API.md`** is resolved by context to `R/I65/u4_g2_01/API.md` for PP's citations.
+- **The result:** 353 resolved, 1 ambiguous, 0 unresolved. The controls fail as designed.
+
+**`COMP:66` (PP `lib.rs:3034`), ruled: I51's COMPOSITION,** line 66, the atomic transfer/fallback row.
+- The comment came with U3 grant 1b (`4b31bbf23a`), whose design basis is I51's COMPOSITION.
+- That row's "no fallible allocation after first mutation" is the reason the N1 notice's space is reserved before W1.
+- I61 records the rule in `citations.json`, so the check reports 0 ambiguous.
+
+**The 38 code line citations** (`PP:…`, `FC:…`, `FK/…:…`), pointing at maintained code in older revisions, **are reworded to name the symbol before the cut.**
+- They are comment-only and line-neutral, with no Pass B rule key on an edited line.
+- The citation check is extended to fail on stale or bare code line citations.
+- I61 does this in WT/f2a-u7 (`R/I61/u9_citations_01/`), and RV95 covers it.
