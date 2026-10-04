@@ -3241,8 +3241,8 @@ impl ProductCapture {
         if let Err(e)=checked {self.error=Some(e);return;}
         // U3, G-B (I51 COMPOSITION §2): immediately before the late old-source
         // capture. A refusal skips the capture; the ordinary solve is unaffected.
-        if let Some(permit)=self.permit.as_ref() {
-            let facts=super::retained_memory::LateFacts{model,built,materials,case,restrained,springs};
+        if let Some(permit)=self.permit.as_ref() { #[cfg(test)] crate::retained_tests_hooks::before_late_gate(&*self);
+            let facts=super::retained_memory::LateFacts{model,built,materials,case,restrained,springs,capture:&*self};
             if let Err(refusal)=permit.check_late(&facts) {self.late_refusal=Some(refusal);return;}
         }
         self.capture_case_source(model,built,materials,case,restrained,springs,application,thermal,pressure);
