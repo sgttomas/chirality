@@ -11175,3 +11175,43 @@ Slice F's order is RETURN §3.
 **RV94** (fresh; `BRIEFS/RV94_U7_SWITCH_REVIEW.md`) is dispatched on `3f5fca3010..ffe65ef203`.
 
 **I61 drafts the U9 plan in parallel** (read-only): the gates and the compact main PR.
+
+## U9 planned and ruled: the D1 milestone PR (ROOT, 2026-10-04 UTC)
+
+**I61's plan** is `R/I61/u9_plan_01/PLAN.md` (sha256 `6ea1d91b…`; SHA256SUMS 1/1 OK). Its basis is NUM `fd5032f6cb`, the U7 head `ffe65ef203` and `origin/main` `5fdc5ab601`.
+- It gives each gate with its definition, commands, owner, duration, expected result and evidence location.
+- It gives the packaging: 136 source files under P (59 added, 77 modified, 11.8 MB) in a two-commit compact branch from main, with five equality commands written into a SOURCE_EQUALITY manifest.
+- It covers the scope statement, the order, owners and estimate (about 22–32 agent-hours, 12–18 h wall), and 12 decisions.
+
+**Three things change the work:**
+1. **Main has moved 87 commits,** and the owner's two cloud tasks are merged:
+   - **PR1078** adds `_same_canonical` to `compatibility.py`, with a body byte-identical to the U7 branch's. One three-way conflict.
+   - **PR1080** changes `result_export/src/source_blocks.rs`, a production file in a crate PP's precommit links. **RV89's condition (d) fails, so a full Pass B runs on the PR head.**
+2. **Six maintained comments still say no permit exists:** PP `lib.rs:2185`, `:2286`, `:2919`; `retained_memory.rs:5–8`, `:2847`; `retained_facade_tests.rs:2`.
+3. **About 30 maintained comment lines cite records the compact PR does not carry.**
+
+**Decisions:**
+1. **The PR is the D1 milestone PR,** an intermediate F2a PR under the accepted step-4 order (RR "Step 4 planned…": U7 → U9). U8 and wider F2a stay open by name.
+   - The handoff's H:161–162 places "the final product gates/PR" after complete wider F2a. That governs the **final** F2a PR; this PR omits no obligation.
+   - **The owner is told, not asked.** ROOT surfaced this order to the owner on 2026-10-04 and invited a hold; none was given. The PR body and the work graph state the scope.
+2. **The two-commit compact branch** from current main is accepted.
+3. **`compatibility.py`:** keep one copy of `_same_canonical`, and take main's two changed lines. ROOT verifies the function bodies are byte-identical at the cut.
+4. **Pass B runs in full** on the PR head (I65), and RV89 confirms.
+5. **The citations are resolved by an index,** plus copies of 4 small files the comments depend on (about 111 KB).
+   - The records delta from main is 5,677 files, 191.4 MB.
+   - The records PR stays separate (handoff packaging rule), with bulk manifests, off U9's critical path.
+6. **The six stale comments** are repaired before the freeze, line-neutral and comment-only. I61 owns `lib.rs` and `retained_facade_tests.rs`; I65 owns `retained_memory.rs`. They are batched with RV94's findings.
+7. **Native Current at U9** is a native witness of the ordinary route and the panel gates. Native Current for successors moves to public activation (D-U7-1).
+8. **A hold on main merges** is an owner request. ROOT asks the owner at the freeze; until then, the default is to absorb main and re-gate.
+9. **DEC-025** is ROOT's: the recorded driver unchanged, at 8 jobs and 4 test threads, on a quiet host (no other cargo jobs).
+10. **Probe and T9 builds** use `--offline` without `--locked`, followed by a lock-diff check. No lock change lands without review, and **PP's `Cargo.lock`, a reviewed input, must stay unchanged.**
+11. **A fresh Mac baseline** on current main.
+12. **RV95** (fresh) reviews the complete PR diff, with a ledger mapping each file to its prior review, and confirms the gate evidence.
+
+**The order:**
+1. RV94's verdict and repairs, plus the comment repair.
+2. ROOT cuts the PR branch, with a draft PR for early Linux CI.
+3. RV95, the full Pass B, the controls and ROOT's gates (the baseline, DEC-025, T9, both-entry, the native witness).
+4. Repairs and confirmation.
+5. The freeze, with the exact-final-head gates.
+6. The owner's hold question, then the merge, with records, ruling and graph in the same pass.
