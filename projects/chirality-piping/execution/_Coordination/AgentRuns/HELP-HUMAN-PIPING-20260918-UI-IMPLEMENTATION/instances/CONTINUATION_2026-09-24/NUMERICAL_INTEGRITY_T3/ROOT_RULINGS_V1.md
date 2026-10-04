@@ -9280,3 +9280,28 @@ It returns a successor only under a permit, so until U4 G6 it always yields the 
 - **U3 grant 2** (the real `admit`, and committed permit-path tests) waits for U4 G5.
 
 The next unused IDs are I66 and RV86.
+
+## RV83 confirmation of the G2 repairs: NOT CONFIRMED (B-2 only); R-1–R-3 routed to G4 (ROOT, 2026-10-04 UTC)
+
+**RV83's confirmation** is `R/REVIEW_RV83/u4_g2_02/REVIEW.md` (sha256 `f13d61a6…`; SHA256SUMS OK; no machine paths). Its earlier packet `u4_g2_01` still verifies 10/10 and is unchanged in Git, after the probe slip RV83 disclosed.
+
+**Its findings:**
+- B-1, B-3, S-1, S-2, S-3, S-5 and S-6 are **fixed**.
+- S-4 is **superseded** by ROOT's "both" ruling, and implemented as ruled.
+- **B-2 is not fixed.** Two residuals remain.
+- **D1.10's argument holds.**
+
+**New findings, with ROOT's rulings:**
+- **R-1 (SHOULD-FIX): the T08 call graph is not an over-approximation.** It drops method calls on generic-typed receivers (24 calls hiding 64 functions) and chained calls such as `f().g(` and `x?.g(` (21 names hiding 44 functions); the `METHOD` regex is defined but unused. The only D1 text hidden is formation_check.rs's 5 sites, which T05's `Text(formation_detail)` already prices. **But STACK_INVENTORY's "no mutual recursion" was computed on the same graph.**
+  - **Ruled:** I65 repairs the call graph in G4: generic receivers, chained calls, and any similar pattern its own audit finds. It reruns TEXT and STACK_INVENTORY on the repaired graph, and replaces the claim "never under-counts" with a stated method and its limits.
+  - RV84, which is sampling the graph now, is told.
+- **R-2 (SHOULD-FIX): `validate_profile`'s exclusion is false.** ROOT confirmed this at pressure_runtime.rs:207–225. In a non-exact model, a nonzero primitive load with `category == "pressure"` emits `PRESSURE_MODEL_REAUTHOR_REQUIRED`, and D1.7 does not constrain `category`. The invocation then blocks, so W1 never runs.
+  - **Ruled: price it** and drop the exclusion: about 2 KB per load, about 0.4 MB at the caps. A new D1 clause would add census code and a refusal-map entry to avoid an immaterial term.
+- **R-3 (SHOULD-FIX):** the O-N row lacks the provenance-parse term, which the D1.10 ruling relied on. The transient can be a parsed non-object JSON Value of up to about 30 KB, not a 40-byte `Error`.
+  - **Ruled:** add it to O-N in G4 at its true bound.
+- **NOTEs, to G5:**
+  - `rerun-if-changed=src/build_identity.rs`;
+  - an empty environment variable is a value, not a read failure (`target.env` is empty on Apple);
+  - add `collect::<String>` (lib.rs:1757) to the lexicon.
+
+**Closure.** R-1, R-2 and R-3 close as G4 carry-overs. **B-2 counts as confirmed** when RV83, or RV84 if RV83 is unavailable, confirms those repairs at G4's return. No composed figure changes materially in the meantime: R-1's hidden text is already priced, and R-2 adds about 0.4 MB.
