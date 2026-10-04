@@ -8832,3 +8832,32 @@ U8, the deferred witnesses, follows the milestone. The estimate is about 57–91
 - **I65 (new):** U4 grant 1, the derivation plan, under `BRIEFS/I65_U4_MEMORY_PROFILE.md`.
 
 The next unused IDs are I66 and RV82.
+
+## Experiment 03: the real facade produces the same certified receipt (ROOT, 2026-10-04 UTC)
+
+I61's experiment 03 (`R/I61/receipt_experiment_03/`, SHA256SUMS OK, no machine paths) ran in a disposable archive. It called the actual facade function `run_linear_static_preview_value_with_retained_direct` on the unchanged 0.1.0 milestone request, in both modes. Capture was installed in the single ordinary run behind a test-only permit stub (decision 7); the maintained `retained_memory.rs` is untouched and still refuses.
+
+**The result:**
+- All three accepted readers at NUM pass G0–G8 with eligibility off. Classification parity is 98/98 and 99/99.
+- The receipts are **byte-identical** to experiment 02's (the private driver). ROOT compared the `retained_precision` members itself: equal in both modes, with receipt hashes `2c8cee1a84…` (sparse) and `dbcc7dd03e…` (dense).
+- The G-l typed capture equals the values experiment 02 parsed from text.
+- The ordinary-byte controls A, B and B′ hold in both modes, and reruns are deterministic.
+- The only PP `--lib` failure is the known Mac platform failure t13, which fails the same way at base.
+
+**This retires the phase's main premise:** the facade's single ordinary run yields the private driver's certified receipt. The design inputs D-a to D-d go to U3.
+
+**D39, the `legacy_source` disposition mapping (R-U1-1).** C2:160 names four dispositions without producer sites. They map to the PP/lib.rs:3662–3769 branches as follows:
+
+| Producer branch | Disposition |
+|---|---|
+| `!source_eligible` | `not_eligible` |
+| `!needs_source_recovery` | `not_required` |
+| a formation-guard or range-formation decline (WorkReport 0/0/0) | `declined_without_attempt` |
+| an actual attempt that failed | `unavailable` |
+| `Ok(recovery)` | the coexistence bypass: exact-block selected, W1 not attempted (D-15), so no successor |
+
+Experiment 02's merging of the first two rows is corrected in U1.
+
+**Stage 2 (U1 with U2) is confirmed** under I61's grant-1 proposal: its write fence, its deliverable (a private, production-unreachable serializer), protected byte controls 1–5, mutants, and a cost of about 6–8 hours plus about 3 hours of joint review.
+- `result_export` may be added as a **dev-dependency** for U1's tests. The runtime path dependency for precommit validation (decision 5) belongs to U3.
+- G-i and D38 go to U1 grant 2.
