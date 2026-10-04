@@ -10314,3 +10314,31 @@ Then I65 reruns TEXT, regenerates the profile and the pinned record, and re-conf
 - **RV87** confirms the identifier-class audit (`ID_CLASS_AUDIT.md`), including its own 18 sites and RV89's 5.
 
 **ROOT applies the registration only after both pass,** and selects M = 4,026,531,840 B under D-7.
+
+## RV87 on the identifier-class audit: NOT CONFIRMED; the class closes before registration (ROOT, 2026-10-04 UTC)
+
+**RV87's report** is `R/REVIEW_RV87/u4_g6_01/REVIEW.md` (sha256 `f2b0bf72…`; SHA256SUMS 9/9 OK; no machine paths). Verdict: **NOT CONFIRMED**, with 0 BLOCKING, 3 SHOULD-FIX and 3 NOTE findings.
+
+**Confirmed:**
+- RV87's 18 sites and RV89's 5 are at the right bounds.
+- G6's TEXT run and every phase of the maximum reproduce exactly.
+- The deltas reconcile (+32,373,120 B from the 18 sites, +922,634 B from 50 other rows, none lowered).
+
+**Not confirmed: the class is closed.**
+- **SF-1:** the node-DOF label, `integrity_dof_label(model, dof)`, produces up to 131 B but is priced as a 20-B integer, because `_dof` matches the integer rule first. That affects five format sites (lib.rs:1632, :1644, :1708, :1721, :1739) and the `:1763` template bound.
+- **SF-2:** the adapter's `copy(s)` (retained_product.rs:3125) is priced by its variable name (the f64 rule), because G4's site rule is keyed to a stale line (2963). Three `site_zero` keys match no row at all.
+- **SF-3:** the enforcement fires only when an identifier rule matches. Copies priced by non-identifier rules or by site overrides go unchecked, and by RV87's static count 15 of 735 entries could be removed silently.
+
+**The cost is small.** With SF-1 and SF-2 priced, W3 dense is 0.8929 M, 28.6 MB under 0.9 M.
+
+**Ruled: SF-1 to SF-3 are repaired before registration.**
+- **Why.** Margin is not the reason. ROOT's standing rule is that "a site … not cover[ed] is a missing term, never zero", and the handoff forbids enabling a permit on partially priced terms. A known unpriced identifier copy is such a term. A coverage claim that cannot be checked is not established (workflow §3).
+- **The repair (I65):**
+  - price the label placeholders and `:1763` at the label's bound;
+  - re-key or audit `copy()` at its actual line and price it by source; G4's intended class for all 199 copies is acceptable as a conservative bound;
+  - make TEXT **fail** when a site-keyed rule matches no row, and when any identifier-bearing candidate is missing from the table, **whichever rule would price it**;
+  - remove or re-key the stale `site_zero` keys;
+  - regenerate the profile and the identity-gated pinned record, and update `registration.diff`;
+  - re-confirm the maximum is ≤ 0.9 M.
+- **N-1 and N-2** are wording: the audit's scope states which name-filtered copies other families price; the `suffix` rows are labelled as input ids.
+- **The review:** RV87 confirms the repair. RV89 reviews the code delta (the constants and the pinned record) as part of its G6 review, together with `registration.diff`. **Registration waits for both.**
