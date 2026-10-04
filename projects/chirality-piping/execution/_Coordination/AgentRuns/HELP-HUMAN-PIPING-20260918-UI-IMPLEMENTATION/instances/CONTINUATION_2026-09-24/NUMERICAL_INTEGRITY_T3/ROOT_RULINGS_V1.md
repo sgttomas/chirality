@@ -8663,3 +8663,30 @@ Its notes are optional and recorded: N1, the receipt-only scope of `integral_rec
 - RV78: parity on 07e, D34 probes in all three readers, and the format rule across the harnesses.
 
 **The readers are accepted when all four pass.**
+
+**RV78 final check (confirm 05): the four scoped items pass.**
+- **Parity:** all 300 entries on 07e agree across the three readers.
+- **D34:** confirmed in all three readers.
+- **The rehash format rule:** followed by all three harnesses.
+- **New entries:** all 5 are faithful.
+
+Its control probes also found **2 SHOULD-FIX defects outside the delta**, both on unavailable attempts. Neither can reach eligibility.
+
+**D35, product-attempt error versus stage outcome (RV78-S1, S2).** After certification the producer always enters and checks both the Observables and the G5a stages. It then returns `Observable` if the observables check failed, else `G5a` if the G5a check failed, else `Numeric` (PP/retained_product.rs:3529–3543, which ROOT read; C3:279–284). So:
+- an `observable` error requires the observables check failed;
+- a `g5a` error requires observables passed and the G5a check failed;
+- a `numeric` error requires both stages entered and both checks passed.
+
+The code is G5 PRODUCT_ATTEMPT.
+- Python aligns S1 (as TS:737–738 already does); all three readers apply S2.
+- Shared pins: RV78's Y1, Y2 and Y4. Y6, the consistent shape, stays passing.
+
+**D36, a finite closure rule for the reader acceptance (workflow §6).** Every review round since 01 has found new defects by probing further into input space the real producer cannot yet emit. The agreed acceptance conditions are:
+- (a) the confirmation findings are repaired;
+- (b) the real milestone receipts pass all three readers. This is met.
+
+From here, findings are triaged as follows:
+- **Before acceptance:** a BLOCKING finding, or any finding that could change a statement's eligibility or a selected case's standing.
+- **Tracked, not gating:** a finding that affects only unavailable or refused paths and cannot change eligibility. It is repaired in the next reader round, on the integration branch after fan-in.
+
+D35 is repaired now, because the round is small and already scoped. But the check of D35 is scoped to D35 alone (RV78 for parity, RV79 for Python). Any new finding from that check is triaged under D36 rather than starting another round.
