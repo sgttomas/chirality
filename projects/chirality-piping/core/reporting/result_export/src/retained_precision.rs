@@ -446,6 +446,25 @@ fn encoding(v: &Value, s: &Value) -> VResult {
     }
     Ok(())
 }
+/// G2: the receipt's wire encodings, then D34 (C1 §4 "canonical +0, never
+/// negative zero"; C1's G2 row): a JSON number equal to -0 anywhere in the
+/// receipt is a non-canonical spelling, including the integer fields the
+/// schema writes as enum or const values (`G5aError.quantity_kind`,
+/// `source_decline.constructor_counts.directional_springs`), which the
+/// value-based shape check admits.
+fn g2(source: &Value) -> VResult {
+    fn negative_zero(v: &Value) -> bool {
+        match v {
+            Value::Number(n) => n.as_f64().is_some_and(|x| x == 0.0 && x.is_sign_negative()),
+            Value::Array(a) => a.iter().any(negative_zero),
+            Value::Object(o) => o.values().any(negative_zero),
+            _ => false,
+        }
+    }
+    let r = &source["retained_precision"];
+    encoding(r, schema())?;
+    need(!negative_zero(r), "G2", "ENCODING_MISMATCH")
+}
 fn source_hash(s: &Value) -> VResult<String> {
     let mut x = s.clone();
     x.as_object_mut()
@@ -4198,7 +4217,7 @@ const IMPLEMENTATION_COMPLETE: bool = false;
 pub fn validate(source: &Value, actual_invocation: Option<&Value>) -> VResult<Validation> {
     g0(source)?;
     g1(source, true)?;
-    encoding(&source["retained_precision"], schema())?;
+    g2(source)?;
     let normalized = integral_receipt(source);
     let source: &Value = &normalized;
     g3(source, actual_invocation)?;
@@ -4250,7 +4269,7 @@ pub fn validate(source: &Value, actual_invocation: Option<&Value>) -> VResult<Va
 pub fn validate_transport_metadata(source: &Value) -> VResult<Validation> {
     g0(source)?;
     g1(source, false)?;
-    encoding(&source["retained_precision"], schema())?;
+    g2(source)?;
     let normalized = integral_receipt(source);
     let source: &Value = &normalized;
     let projected = project(source, false)?;

@@ -48,13 +48,19 @@ fn finite_product_vectors_and_ranges() {
     }
 }
 
-/// D32 (RV79-N-e): the harness indexes by integral value, as the readers
-/// do: a finite, integral, non-negative number that is not -0.
+/// D32 (RV79-N-e) and the 07e format rule (RV78-N1): a rehash or edit-path
+/// index is a strict integral value: a JSON number, never a boolean, finite,
+/// integral, >= 0 and not -0.
 fn index(v: &Value) -> Option<usize> {
     let n = v.as_f64()?;
     (n.is_finite() && n >= 0.0 && n.fract() == 0.0 && !(n == 0.0 && n.is_sign_negative()))
         .then_some(n as usize)
 }
+/// The 07e format rule (SHARED_SNAPSHOT_07E `format_rule`): 1 preparation
+/// hashes, for each `sources[*].preparation.attempt_ref` that resolves and
+/// whose members are all prepared; 2 source identities, for each selected
+/// case whose `source_ref` resolves; 3 publication hash; 4 receipt hash. A
+/// reference that is not an index, or does not resolve, is skipped.
 fn rehash(source: &mut Value) {
     use open_pipe_stress_result_export::source_blocks::domain_hash;
     // Snapshot 07 format: an entry that removes retained_precision or its body
@@ -92,8 +98,8 @@ fn rehash(source: &mut Value) {
     }
     let sources = b["sources"].clone();
     for c in b["cases"].as_array_mut().unwrap() {
-        if c.get("source_identity_sha256").is_some() {
-            // As G1: only an addressable source has an identity digest.
+        if c["status"] == "selected" {
+            // Only a resolving source has an identity digest to recompute.
             let Some(mut s) = index(&c["source_ref"])
                 .and_then(|i| sources.get(i))
                 .filter(|s| s.is_object())
@@ -264,12 +270,12 @@ fn shared_rehashed_first_failure_mutations() {
 
 /// Observe one slice of the shared mutations against this reader's own
 /// expectation, print one outcome per mutation (visible with --nocapture) and
-/// check the slice tally. Snapshot 07d holds 259 mutations in all.
+/// check the slice tally. Snapshot 07e holds 263 mutations in all.
 fn slice_outcomes(tag: &str, range: std::ops::Range<usize>, want: &[(&str, usize)]) {
     use std::collections::BTreeMap;
     let shared = corpus();
     let mutations = shared["mutations"].as_array().unwrap();
-    assert_eq!(mutations.len(), 259);
+    assert_eq!(mutations.len(), 263);
     let mut tally = BTreeMap::new();
     let mut matched = 0;
     for mutation in &mutations[range.clone()] {
@@ -483,6 +489,20 @@ fn snapshot_07d_mutation_outcomes() {
             ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 1),
             ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 2),
             ("G8 RETAINED_PRECISION_INVOCATION_MISMATCH", 1),
+        ],
+    );
+}
+
+/// Snapshot-07e pins (I62; RV79-S1's three non-integral G0 values and
+/// RV81-N1's D33 rotation row), mutations 259..263.
+#[test]
+fn snapshot_07e_mutation_outcomes() {
+    slice_outcomes(
+        "I63_OUTCOME_07E",
+        259..263,
+        &[
+            ("G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED", 3),
+            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 1),
         ],
     );
 }
@@ -733,7 +753,7 @@ fn shared_must_pass_entries_validate() {
     let shared = corpus();
     let entries = shared["must_pass"].as_array().unwrap();
     // Snapshot 07: 06d's 18 plus the equal-E bracket control.
-    assert_eq!(entries.len(), 21);
+    assert_eq!(entries.len(), 22);
     let mut failures = Vec::new();
     for entry in entries {
         assert_eq!(entry["expected"], "pass");
@@ -2983,4 +3003,91 @@ fn d21_last_slot_verification_shared_build() {
     let replay = &mutated["retained_precision"]["body"]["cases"][0]["run"];
     assert!(rp::reader_logic::schedule(replay).is_ok());
     assert_eq!(observe(&shared, &entry), gate("G5", ATTEMPT));
+}
+
+/// D34 (RV79-N1): a JSON number equal to -0 anywhere in the receipt fails G2
+/// ENCODING, including the integer fields the schema writes as enum or const
+/// values, which no base carries: `G5aError.quantity_kind` (on F_BASE's
+/// unavailable attempt) and `source_decline.constructor_counts.directional_springs`
+/// (on the shared `unavailable_attempt_under_source_error_cause` entry). Each
+/// control with +0 passes G1 and G2 and fails where it did.
+#[test]
+fn d34_negative_zero_anywhere_in_receipt_fails_g2() {
+    use serde_json::json;
+    let shared = corpus();
+    let g2 = gate("G2", "RETAINED_PRECISION_ENCODING_MISMATCH");
+    let mut misses = Vec::new();
+    let mut check = |name: &str, got: Value, want: &Value| {
+        if got != *want {
+            misses.push(format!("{name}: got {got}, want {want}"));
+        }
+    };
+    let error = rb(json!(["product_attempts", 1, "result", "error"]));
+    for kind in ["sanity", "lower"] {
+        let cause = |q: Value| {
+            let mut c = json!({"kind":kind,"quantity_kind":q});
+            c[if kind == "sanity" { "body" } else { "member" }] = json!(0);
+            json!({"kind":"g5a","cause":c})
+        };
+        let control = probe(&shared, F_BASE, vec![set(error.clone(), cause(json!(0)))]);
+        assert!(
+            !matches!(control["gate"].as_str(), Some("G0" | "G1" | "G2")) && !control.is_null(),
+            "{kind} control: {control}"
+        );
+        check(&format!("{kind} quantity_kind -0"), probe(&shared, F_BASE, vec![set(error.clone(), cause(json!(-0.0)))]), &g2);
+        check(&format!("{kind} quantity_kind 1"), probe(&shared, F_BASE, vec![set(error.clone(), cause(json!(1)))]), &control);
+        // The JSON text "-0" parses as -0 and is caught the same way.
+        let entry = json!({"id":"i63_d34_text","base":F_BASE,"rehash":"all","edits":[set(error.clone(), cause(json!(-0.0)))]});
+        let (source, invocation) = apply_entry(&shared, &entry);
+        let text = serde_json::to_string(&source).unwrap().replace("\"quantity_kind\":-0.0", "\"quantity_kind\":-0");
+        assert!(text.contains("\"quantity_kind\":-0}") || text.contains("\"quantity_kind\":-0,"));
+        let parsed: Value = serde_json::from_str(&text).unwrap();
+        let got = rp::validate(&parsed, Some(&invocation)).unwrap_err();
+        check(&format!("{kind} text -0"), json!({"gate":got.gate,"code":got.code}), &g2);
+    }
+    let mut entry = shared["mutations"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|m| m["id"] == "unavailable_attempt_under_source_error_cause")
+        .unwrap()
+        .clone();
+    check("source_decline control", observe(&shared, &entry), expected_for(&entry));
+    entry["edits"][1]["value"]["constructor_counts"]["directional_springs"] = json!(-0.0);
+    check("directional_springs -0", observe(&shared, &entry), &g2);
+    entry["edits"][1]["value"]["constructor_counts"]["directional_springs"] = json!(1);
+    check("directional_springs 1", observe(&shared, &entry), &gate("G1", "RETAINED_PRECISION_RECEIPT_MISMATCH"));
+    // An encoded U field written as -0 stays G2.
+    check(
+        "case_charge -0",
+        probe(&shared, ORD, vec![set(rb(json!(["cases", 0, "run", "case_charge"])), json!(-0.0))]),
+        &g2,
+    );
+    assert!(misses.is_empty(), "{}", misses.join("\n"));
+}
+
+/// RV78-N1 (07e format rule): the harness rehash indexes only a strict integral
+/// value: a JSON number, never a boolean, finite, integral, >= 0 and not -0
+/// (0.0 is index 0; 0.5, true and -0.0 are not). A reference that is not an
+/// index, or does not resolve, is skipped and left for the reader to report.
+#[test]
+fn rehash_index_rule_07e() {
+    use serde_json::json;
+    for (v, want) in [(json!(0), 0), (json!(1), 1), (json!(1.0), 1), (json!(0.0), 0), (json!(7), 7)] {
+        assert_eq!(index(&v), Some(want), "{v}");
+    }
+    for v in [json!(true), json!(false), json!(0.5), json!(-0.0), json!(-1), json!(-1.0), json!(null), json!("0"), json!([0]), json!({"index":0})] {
+        assert_eq!(index(&v), None, "{v}");
+    }
+    // Unresolvable references are skipped: the rehash leaves the stated digest
+    // for the reader, which reports the dangling or malformed reference.
+    let shared = corpus();
+    let mut source = base_source(&shared, ORD);
+    let before = source["retained_precision"]["body"]["cases"][0]["source_identity_sha256"].clone();
+    for r in [json!(true), json!(0.5), json!(-0.0), json!(9)] {
+        source["retained_precision"]["body"]["cases"][0]["source_ref"] = r.clone();
+        source["retained_precision"]["body"]["sources"][0]["preparation"]["attempt_ref"] = r.clone();
+        rehash(&mut source);
+        assert_eq!(source["retained_precision"]["body"]["cases"][0]["source_identity_sha256"], before, "{r}");
+    }
 }
