@@ -50,6 +50,15 @@ fn finite_product_vectors_and_ranges() {
 
 fn rehash(source: &mut Value) {
     use open_pipe_stress_result_export::source_blocks::domain_hash;
+    // Snapshot 07 format: an entry that removes retained_precision or its body
+    // (a G0 pin) has nothing to rehash.
+    if !source
+        .get("retained_precision")
+        .and_then(|r| r.get("body"))
+        .is_some_and(Value::is_object)
+    {
+        return;
+    }
     let b = &mut source["retained_precision"]["body"];
     let attempts = b["product_attempts"].clone();
     for s in b["sources"].as_array_mut().unwrap() {
@@ -237,12 +246,12 @@ fn shared_rehashed_first_failure_mutations() {
 
 /// Observe one slice of the shared mutations against this reader's own
 /// expectation, print one outcome per mutation (visible with --nocapture) and
-/// check the slice tally. Snapshot 06d holds 178 mutations in all.
+/// check the slice tally. Snapshot 07 holds 235 mutations in all.
 fn slice_outcomes(tag: &str, range: std::ops::Range<usize>, want: &[(&str, usize)]) {
     use std::collections::BTreeMap;
     let shared = corpus();
     let mutations = shared["mutations"].as_array().unwrap();
-    assert_eq!(mutations.len(), 178);
+    assert_eq!(mutations.len(), 235);
     let mut tally = BTreeMap::new();
     let mut matched = 0;
     for mutation in &mutations[range.clone()] {
@@ -402,6 +411,26 @@ fn snapshot_06d_mutation_outcomes() {
         &[
             ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 1),
             ("G5 RETAINED_PRECISION_WORK_MISMATCH", 4),
+        ],
+    );
+}
+
+/// Snapshot-07 review-repair pins (I62 B2), mutations 178..235.
+#[test]
+fn snapshot_07_mutation_outcomes() {
+    slice_outcomes(
+        "I63_OUTCOME_07",
+        178..235,
+        &[
+            ("G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED", 6),
+            ("G1 RETAINED_PRECISION_RECEIPT_MISMATCH", 4),
+            ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 7),
+            ("G4 RETAINED_PRECISION_DIAGNOSTIC_MISMATCH", 1),
+            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 16),
+            ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 11),
+            ("G5 RETAINED_PRECISION_WORK_MISMATCH", 7),
+            ("G5b RETAINED_PRECISION_SCALE_MISMATCH", 1),
+            ("G8 RETAINED_PRECISION_PREPARATION_MISMATCH", 4),
         ],
     );
 }
@@ -651,9 +680,8 @@ fn g5_audit_local_controls() {
 fn shared_must_pass_entries_validate() {
     let shared = corpus();
     let entries = shared["must_pass"].as_array().unwrap();
-    // Snapshot 06d: 06c's 23, with six replaced by allocator-refusal causes,
-    // one renamed and five retired or deferred.
-    assert_eq!(entries.len(), 18);
+    // Snapshot 07: 06d's 18 plus the equal-E bracket control.
+    assert_eq!(entries.len(), 19);
     let mut failures = Vec::new();
     for entry in entries {
         assert_eq!(entry["expected"], "pass");
@@ -2371,20 +2399,40 @@ fn d13_reader_local_pins_and_mutant_kills() {
     };
     assert!(rp::reader_logic::schedule_in(&idle(100), &body).is_ok());
     assert!(attempt_mismatch(rp::reader_logic::schedule_in(&idle(99), &body)));
-    // R3 with `both`: both faults must be emitted.
-    let attempt = |extra: Value| {
-        json!({"adapter":{"fault":null},"cause":{"kind":"work_accounting","fault":"both"},
-               "count":{"kind":"unavailable","fault":"overflow"},"extra":extra})
+    // R3' with `both`: both faults must be emitted by the cause's owner (here
+    // the ProofTrace, for a proof cause).
+    let attempt = |proof: Value| {
+        json!({"adapter":{"fault":null},
+               "result":{"kind":"unavailable","error":{"kind":"proof","cause":{"kind":"work_accounting","fault":"both"}}},
+               "proof":proof})
     };
-    assert_eq!(rp::reader_logic::accounting(&attempt(json!(null))), [true, true, false]);
     assert_eq!(
-        rp::reader_logic::accounting(&attempt(json!({"sticky_status":"inconsistent"}))),
-        [true, true, true]
+        rp::reader_logic::accounting(&attempt(json!({"numeric":{"kind":"unavailable","fault":"overflow"}}))),
+        [true, true, false, true]
     );
+    assert_eq!(
+        rp::reader_logic::accounting(&attempt(json!({"numeric":{"kind":"unavailable","fault":"overflow"},"sticky_status":"inconsistent"}))),
+        [true, true, true, true]
+    );
+    // R3' binds to the owner: a fault emitted elsewhere in the attempt does not count.
+    let mut elsewhere = attempt(json!({"numeric":{"kind":"exact","value":0}}));
+    elsewhere["overlay_work"] = json!({"sticky_status":"both"});
+    assert_eq!(rp::reader_logic::accounting(&elsewhere), [true, true, false, true]);
+    // R1' and R2' (lost; OperationalError accounting on an old operational entry).
     assert_eq!(
         rp::reader_logic::accounting(&json!({"adapter":{"fault":null},"x":{"kind":"accounting","event":"map_write"},"y":{"lost":true}})),
-        [false, false, true]
+        [false, false, true, true]
     );
+    assert_eq!(
+        rp::reader_logic::accounting(&json!({"adapter":{"fault":null},"operational":{"old":[{"result":{"kind":"refused","error":{"kind":"accounting"}}}],"new":[]}})),
+        [true, false, true, true]
+    );
+    // R4: a SectionError accounting needs a non-exact status in its member's work.
+    let member = |work: Value| {
+        json!({"adapter":{"fault":null},"preparation":{"members":[{"result":{"kind":"refused","error":{"kind":"accounting"}},"work":work}]}})
+    };
+    assert_eq!(rp::reader_logic::accounting(&member(json!({"sticky_status":"exact"}))), [true, true, true, false]);
+    assert_eq!(rp::reader_logic::accounting(&member(json!({"sticky_status":"overflow"}))), [true, true, true, true]);
     // M18: G7 keeps the bare base code and carries any further text as detail.
     let e = rp::reader_logic::g7_error("SOURCE_PREVIEW_PHYSICS_ROW_SIGNATURE: bad row");
     assert_eq!((e.gate, e.code.as_str()), ("G7", "SOURCE_PREVIEW_PHYSICS_ROW_SIGNATURE"));
@@ -2413,4 +2461,34 @@ fn d13_absolute_bound_small_scale_switch() {
             "{scale:016x} {value:016x}"
         );
     }
+}
+
+/// D8 kernel scope (checkpoint A; C1:66-68): a work_accounting stop anywhere in
+/// a Run, a build or a group preparation is a class-1 ATTEMPT defect, ahead of
+/// the deferred native WORK checks (a failed build reason here would be WORK).
+#[test]
+fn d8_kernel_scope_work_accounting_anywhere() {
+    use serde_json::json;
+    let shared = corpus();
+    let wa = json!({"space":"stop","tag":"work_accounting","fault":"overflow"});
+    for (name, edits) in [
+        ("build reason", vec![set(rb(json!(["builds", 0, "reason"])), wa.clone())]),
+        ("record outcome", vec![
+            set(rb(json!(["cases", 0, "run", "records", 0, "outcome"])), json!({"kind":"failed","reason":{"space":"attempt","tag":"stop","stop":wa}})),
+        ]),
+    ] {
+        assert_eq!(probe(&shared, ORD, edits), gate("G5", ATTEMPT), "{name}");
+    }
+}
+
+/// D8 R2' and R4 on shared bases (also pinned by 07's shared mutations).
+#[test]
+fn d8_accounting_rules_on_shared_bases() {
+    use serde_json::json;
+    let shared = corpus();
+    assert_eq!(
+        probe(&shared, P_BASE, vec![set(rb(json!(["product_attempts", 1, "operational", "old", 0, "result"])), json!({"kind":"refused","error":{"kind":"accounting"}}))]),
+        gate("G5", "RETAINED_PRECISION_WORK_MISMATCH"),
+        "R2' old operational accounting without a lost trace"
+    );
 }

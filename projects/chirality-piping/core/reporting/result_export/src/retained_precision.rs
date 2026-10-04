@@ -828,6 +828,21 @@ fn g5_native(b: &Value) -> VResult {
         .filter_map(|(ci, c)| c.get("run").filter(|r| !r.is_null()).map(|r| (ci, c, r)))
         .collect();
     runs.sort_by_key(|(_, _, r)| u(&r["id"]));
+    // D8 kernel scope (checkpoint A; C1:66-68): a work_accounting stop or reason
+    // anywhere in a Run, a build or a group preparation is outside the emitted
+    // domain (adaptive.rs:4545, 4777, 4996).
+    for item in runs
+        .iter()
+        .map(|(_, _, r)| *r)
+        .chain(list(&b["builds"]))
+        .chain(list(&b["groups"]).iter().map(|g| &g["preparation"]))
+    {
+        let mut objs = Vec::new();
+        objects(item, &mut objs);
+        af(!objs
+            .iter()
+            .any(|o| o.get("tag").is_some_and(|t| t == "work_accounting")))?;
+    }
     let mut current = 0;
     let mut run_order = Vec::new();
     let mut builds_seen = BTreeSet::new();
@@ -1572,8 +1587,8 @@ pub mod reader_logic {
     pub fn schedule_in(run: &Value, body: &Value) -> Result<(), ValidationError> {
         g5_schedule(run, Some(body))
     }
-    /// R1-R3 for one product attempt.
-    pub fn accounting(attempt: &Value) -> [bool; 3] {
+    /// R1'-R4 for one product attempt.
+    pub fn accounting(attempt: &Value) -> [bool; 4] {
         accounting_rules(attempt)
     }
     /// The G7 bare-code/detail split of a base failure text.
@@ -1608,22 +1623,37 @@ fn status_faults(v: &Value) -> Option<u8> {
         _ => None,
     }
 }
-/// Ruling 06d (ACCOUNTING_CAUSES R1-R3), for one product attempt:
-/// R1: an adapter overflow is never emittable (its retained prefix is at least
-/// 2^62, PP:2896-2907; C3:233-236), so `adapter.fault` is null and no
-/// CaptureError/G5aError `accounting{event}` cause appears (PP:2910-2912).
-/// R2: no ScalarTrace is `lost` (set only at u64::MAX, PP:2310-2349).
-/// R3: each `work_accounting{fault}` cause's faults are contained in the join
-/// of the attempt's emitted unavailable-Count faults and sticky statuses
-/// (FC:358-379, 1580).
-fn accounting_rules(a: &Value) -> [bool; 3] {
+/// Every JSON object inside `v` with its path (object keys and array indices
+/// as text), `v` first, in document order.
+fn located<'a>(
+    v: &'a Value,
+    path: &mut Vec<String>,
+    out: &mut Vec<(Vec<String>, &'a serde_json::Map<String, Value>)>,
+) {
+    match v {
+        Value::Object(o) => {
+            out.push((path.clone(), o));
+            for (k, x) in o {
+                path.push(k.clone());
+                located(x, path, out);
+                path.pop();
+            }
+        }
+        Value::Array(a) => {
+            for (i, x) in a.iter().enumerate() {
+                path.push(i.to_string());
+                located(x, path, out);
+                path.pop();
+            }
+        }
+        _ => {}
+    }
+}
+/// The emitted fault set of a work owner: unavailable-Count faults and sticky
+/// statuses anywhere inside it ("both" is overflow plus inconsistent).
+fn statuses(v: &Value) -> u8 {
     let mut objs = Vec::new();
-    objects(a, &mut objs);
-    let r1 = a["adapter"]["fault"].is_null()
-        && !objs
-            .iter()
-            .any(|o| o.get("kind").is_some_and(|k| k == "accounting") && o.contains_key("event"));
-    let r2 = !objs.iter().any(|o| o.get("lost") == Some(&Value::Bool(true)));
+    objects(v, &mut objs);
     let mut seen = 0u8;
     for o in &objs {
         if o.get("kind").is_some_and(|k| k == "unavailable") {
@@ -1635,11 +1665,126 @@ fn accounting_rules(a: &Value) -> [bool; 3] {
             seen |= f;
         }
     }
-    let r3 = objs
-        .iter()
-        .filter(|o| o.get("kind").is_some_and(|k| k == "work_accounting") && o.contains_key("fault"))
-        .all(|o| o.get("fault").and_then(status_faults).is_some_and(|f| f & !seen == 0));
-    [r1, r2, r3]
+    seen
+}
+/// R3' owner scopes (checkpoint A, D8): a member's PreparationWork, a lane's
+/// LaneWork, the values completion, else the whole ProofTrace.
+fn fault_owner<'a>(a: &'a Value, path: &[String]) -> Option<&'a Value> {
+    let proof = &a["proof"];
+    let p = |i: usize| path.get(i).map(String::as_str);
+    let index = |i: usize| path.get(i).and_then(|x| x.parse::<usize>().ok());
+    let owner = if (p(0), p(1)) == (Some("preparation"), Some("members")) {
+        index(2).map(|i| &a["preparation"]["members"][i]["work"])
+    } else if (p(0), p(1), p(2)) == (Some("result"), Some("error"), Some("section")) {
+        list(&a["preparation"]["members"]).last().map(|m| &m["work"])
+    } else if (p(0), p(1)) == (Some("proof"), Some("lanes")) {
+        index(2).map(|i| &proof["lanes"][i]["work"])
+    } else if (p(0), p(1), p(2)) == (Some("result"), Some("error"), Some("cause"))
+        && a["result"]["error"]["kind"] == "values"
+    {
+        Some(&proof["completion"])
+    } else {
+        Some(proof)
+    };
+    owner.filter(|o| !o.is_null())
+}
+/// The OperationalError causes of an attempt, located as Python does: a
+/// non-ready MemberOperational's error, a CaptureError `prepared_arithmetic`
+/// cause, and a G5aError `operational`/`arithmetic` cause (result or check).
+fn operational_errors(a: &Value) -> Vec<&Value> {
+    let mut out = Vec::new();
+    for side in ["old", "new"] {
+        for m in list(&a["operational"][side]) {
+            if m["result"]["kind"] != "ready" {
+                out.push(&m["result"]["error"]);
+            }
+        }
+    }
+    let null = &Value::Null;
+    let error = if a["result"]["kind"] == "unavailable" {
+        &a["result"]["error"]
+    } else {
+        null
+    };
+    let mut objs = Vec::new();
+    located(error, &mut Vec::new(), &mut objs);
+    let mut g5a_roots: Vec<&Value> = Vec::new();
+    for (_, o) in &objs {
+        let cause = o.get("cause").unwrap_or(null);
+        if o.get("kind").is_some_and(|k| k == "prepared_arithmetic") {
+            out.push(cause);
+        }
+        if o.get("kind").is_some_and(|k| k == "g5a") {
+            g5a_roots.push(cause);
+        }
+    }
+    for check in a["proof"]["checks"].as_object().into_iter().flat_map(|c| c.values()) {
+        if check["kind"] == "failed" && check["error"]["kind"] == "g5a" {
+            g5a_roots.push(&check["error"]["cause"]);
+        }
+    }
+    for root in g5a_roots {
+        let mut inner = Vec::new();
+        located(root, &mut Vec::new(), &mut inner);
+        for (_, x) in inner {
+            if x.get("kind").is_some_and(|k| k == "operational" || k == "arithmetic") {
+                if let Some(cause) = x.get("cause").filter(|c| c.is_object()) {
+                    out.push(cause);
+                }
+            }
+        }
+    }
+    out
+}
+/// Checkpoint A, D8 (C3:232-236; G5 WORK, class 4), for one product attempt:
+/// R1': no adapter fault and no CaptureError/G5aError `accounting{event}`
+/// (an adapter overflow leaves a count of at least 2^62, PP:2896-2907).
+/// R2': no ScalarTrace is `lost`, and no OperationalError `accounting`
+/// (returned only for a lost ScalarWork, PP:2311-2347).
+/// R3': every fault-bearing cause, in any spelling (`work_accounting{fault}`,
+/// a nested `stop/work_accounting`, a view `work{fault}`), has its fault in
+/// its owner's emitted statuses (`fault_owner`).
+/// R4: a SectionError `accounting` (on a PreparedMember, or as the preparation
+/// error's section, owned by the last member) needs a non-exact status in that
+/// member's PreparationWork (FK product_certificate.rs:676-679).
+fn accounting_rules(a: &Value) -> [bool; 4] {
+    let mut objs = Vec::new();
+    located(a, &mut Vec::new(), &mut objs);
+    let r1 = a["adapter"]["fault"].is_null()
+        && !objs
+            .iter()
+            .any(|(_, o)| o.get("kind").is_some_and(|k| k == "accounting") && o.contains_key("event"));
+    let r2 = !objs.iter().any(|(_, o)| o.get("lost") == Some(&Value::Bool(true)))
+        && !operational_errors(a)
+            .iter()
+            .any(|e| e["kind"] == "accounting" && e.get("event").is_none());
+    let r3 = objs.iter().all(|(path, o)| {
+        let spelled = (o.get("kind").is_some_and(|k| k == "work_accounting" || k == "work")
+            || o.get("tag").is_some_and(|t| t == "work_accounting"))
+            && o.contains_key("fault");
+        !spelled
+            || fault_owner(a, path).is_some_and(|owner| {
+                o.get("fault")
+                    .and_then(status_faults)
+                    .is_some_and(|f| f & !statuses(owner) == 0)
+            })
+    });
+    let mut r4 = true;
+    for m in list(&a["preparation"]["members"]) {
+        if m["result"]["kind"] != "prepared" && m["result"]["error"]["kind"] == "accounting" {
+            r4 &= statuses(&m["work"]) != 0;
+        }
+    }
+    let error = &a["result"]["error"];
+    if a["result"]["kind"] == "unavailable"
+        && error["kind"] == "preparation"
+        && error["section"]["kind"] == "accounting"
+    {
+        r4 &= list(&a["preparation"]["members"])
+            .last()
+            .is_some_and(|m| statuses(&m["work"]) != 0);
+    }
+    [r1, r2, r3, r4]
 }
 fn exact_count(v: &Value) -> Option<u64> {
     (v["kind"] == "exact").then(|| u(&v["value"]))
@@ -1981,8 +2126,8 @@ fn g5_products(source: &Value) -> VResult {
         }
         g5_coverage(a, c, s)?;
         g5_stages(a, &pf)?;
-        // R1-R3 (06d ruling; C3:232-236): work-class rules, deferred with the
-        // other C3 WORK equations until every attempt's association passed.
+        // R1'-R4 (checkpoint A, D8; C3:232-236): work-class rules, deferred with
+        // the other C3 WORK equations until every attempt's association passed.
         for ok in accounting_rules(a) {
             wf(ok)?;
         }
