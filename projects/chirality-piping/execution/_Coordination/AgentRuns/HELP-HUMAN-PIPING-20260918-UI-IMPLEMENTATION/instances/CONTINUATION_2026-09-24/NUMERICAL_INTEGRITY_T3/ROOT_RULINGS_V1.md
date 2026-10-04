@@ -8543,3 +8543,5 @@ This implements the selected design (DESIGN_NUMERICS/DESIGN.md:1004, D1 §5 item
 - **Weakening:** ROOT read the removed Python lines; each type test is replaced by the D32 value test.
 
 I63 and I64 adopt 07d in their standing rounds.
+
+**Rust 07d, committed as `265f764fa4`.** ROOT verified the hashes and the evidence, and ran 53 passed on the default toolchain. The three removed lines are the two G0 type tests D32 replaced and the old version rule D31 replaced. `uint()` still rejects booleans. TypeScript's 07d round is pending.
