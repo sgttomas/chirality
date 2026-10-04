@@ -8452,3 +8452,25 @@ I63 and I64 adopt 07b in their standing rounds.
 The two NOTEs are optional by §6. They are taken up in the next corpus change, the T1/T2 round, rather than in a round of their own:
 - N1: D19's Ready direction can become two shared pins.
 - N2: `unavailable_attempt_under_source_error_cause` should get a self-consistent `source_decline`, so that a future consistency check cannot move it.
+
+**RV81 confirmation 03: PASS** (0 BLOCKING, 0 SHOULD-FIX, 3 NOTE). Every confirm_02 finding is fixed, nothing is weakened, and 36 of 40 mutants are killed; the four survivors are equivalent, redundant or unreachable.
+
+## T1 and T2: I61's analysis and the rulings (ROOT, 2026-10-03 UTC)
+
+I61's analysis (`R/I61/contract_tensions_t1_t2/RETURN.md`) is verified: SHA256SUMS OK, no machine paths. ROOT checked its citations:
+- `DESIGN_NUMERICS/DESIGN.md:1004` (D1 §5 item 11): "fresh solves no longer emit `SOURCE_BLOCK_RECOVERY_UNAVAILABLE` beside a selected case";
+- the T2 rule first appears in READER `ae97b7d5c2` (the reader drafts frozen at the handoff), with no brief, return or contract basis;
+- the producer treats model 0.1.0 and 0.2.0 on one branch (PP pressure_runtime.rs:113–118).
+
+**D31 (T2), ruled.** G8 admits model `schema_version` ∈ {"0.1.0", "0.2.0", "0.3.0"}. 0.4.0 stays excluded (C1's G8 row, "no 0.4 extension"), and every other G8 check is unchanged.
+- The previous rule had no basis, and it rejected an emittable receipt: the milestone request at 0.1.0, which the producer certifies in both modes.
+- On this route 0.1.0 and 0.2.0 differ only in the version field, and in the invocation and receipt hashes that bind it.
+- All three readers change. Shared pins: a 0.1.0 invocation that passes G8, and a 0.4.0 one that fails G8.
+- The milestone request and its digest are unchanged; no owner decision is needed.
+
+**T1, recommended and put to the owner.** Option (a): the successor facade omits the legacy `SOURCE_BLOCK_RECOVERY_UNAVAILABLE` diagnostic on a retained-selected case. The case's `legacy_source` becomes `{disposition: "unavailable", diagnostic_ref: null, work_ref: k}`, and `legacy_source_work[k]` carries the actual WorkReport.
+- **This implements the selected design** (D1 §5 item 11). It agrees with C1's G4 row and is compatible with C2:160, whose `diagnostic_ref` is nullable. No reader rule is relaxed.
+- **What changes:** a producer obligation for the serializer, plus one optional shared pin.
+- **Options rejected:** (b), amending G4, would reverse the design and show "selected" beside "did not produce a selected response". (c), routing, would change bytes the coexistence rule (D-15) and the fallback (C1 §2) protect.
+- **The tension arose** because F2a keeps the exact-block method running first, so the ordinary route emits the diagnostic before W1 runs. The design did not foresee that.
+- **Why it goes to the owner:** on a successor result the diagnostics panel no longer shows the legacy "did not produce a selected response" row, and the legacy attempt moves into the receipt. ROOT recommends (a) and is asking the owner to confirm. The readers are unaffected either way.
