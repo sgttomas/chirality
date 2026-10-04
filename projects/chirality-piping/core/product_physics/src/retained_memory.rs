@@ -3,9 +3,9 @@
 //! G-A (`admit`) runs the census, the D1 predicate (D1.0–D1.11), the D-6 build
 //! status and the cap-priced admission bound against M. G-B and G-C
 //! (`check_late`, `check_complete`) cross-check the live owners. Nothing here
-//! allocates. No production profile is registered (`REGISTERED_PROFILES` is
-//! empty until G6, decision 7), so no capture permit can be constructed and every
-//! call refuses, keeping every fact and the first failing clause.
+//! allocates. One production profile is registered (`REGISTERED_PROFILES`: the
+//! dev/test identity, M = 4,026,531,840 B under D-7; G6/G7). Every other build is
+//! Stale and keeps the ordinary route; a refusal keeps every fact and the first failing clause.
 use crate::{source_receipt::CapturedInvocation, LinearStaticPreviewRequest};
 use serde_json::Value;
 
@@ -2739,7 +2739,7 @@ const UNKNOWN_TERMS: [MissingAdmissionTerm; 7] = [
     MissingAdmissionTerm::CallerCompletion,
     MissingAdmissionTerm::MovingAndTemporaryOwners,
 ];
-/// D-6's build status. `Missing` while no profile is registered (until G6);
+/// D-6's build status. `Missing` when no profile is registered (none since G6);
 /// `Stale` when a profile is registered but this build does not match it;
 /// `Registered` only for a build matching a registered profile.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -2844,7 +2844,7 @@ impl CapturePermit {
 fn admission(report: RetainedAdmissionReport) -> Result<CapturePermit, RetainedAdmissionReport> {
     // All counts and missing premises survive the refusal, including incomplete
     // traversal and overflow. A permit exists only for a registered profile that
-    // the whole law selected; with none registered (until G6), never.
+    // the whole law selected: the one registered dev/test profile; any other build is Stale.
     match (report.law.refusal, report.law.registered.and_then(|index| REGISTERED_PROFILES.get(index))) {
         (None, Some(profile)) => Ok(CapturePermit { _profile: profile }),
         _ => Err(report),

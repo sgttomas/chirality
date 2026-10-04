@@ -1,5 +1,5 @@
-//! I61 U3 grants 1 and 1b: the facade's W1 phases through the private driver. No permit
-//! exists until U4 G5 and decision 7 forbids a test permit, so these tests enter
+//! I61 U3 grants 1 and 1b: the facade's W1 phases through the private driver. A permit
+//! needs the registered build, and decision 7 forbids a test permit, so these tests enter
 //! `retained_w1` (the body the permitted dispatch runs after G-C) with an observer
 //! installed in the actual single ordinary run, exactly as the facade does.
 use super::retained_product as rp;

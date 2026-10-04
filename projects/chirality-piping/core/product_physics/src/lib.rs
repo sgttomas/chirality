@@ -2182,7 +2182,7 @@ pub struct RetainedPreviewOutput {
     retained: Option<Result<RetainedSuccessor, W1Fallback>>,
 }
 /// R-1 (ROOT, NUM efde9ca2d1, Proposal A): the one publication of a retained entry.
-/// Without a permit (until U4 G6) it is always `Ordinary`.
+/// Without a permit it is always `Ordinary`, as in every Stale (unregistered) build.
 #[derive(Debug, Clone)]
 pub enum RetainedPublication {
     /// The ordinary base, with R-2's unavailable notice when a permitted
@@ -2283,7 +2283,7 @@ fn run_linear_static_preview_value_dispatch(
         .map_err(|error| error.0)?;
     // G-A (API.md §2): census, then admission, before any ProductCapture can be
     // installed. A refusal is private evidence only; the once-only ordinary route
-    // below is unchanged. No permit exists until U4 G5 (decision 7).
+    // below is unchanged. Only D1 Direct calls in the registered build get a permit.
     let admission = match retained_entry.map(|entry| retained_memory::admit(&capture, &request, entry)) {
         Some(Ok((permit, report))) => return permitted_dispatch(permit, report, request, capture, solver_mode),
         Some(Err(report)) => Some(report),
@@ -2916,7 +2916,7 @@ fn run_linear_static_preview_observed(
 /// phase. A spawn failure runs the unchanged ordinary route on this thread.
 /// The permit is linear (U3 grant 1b): it moves onto the reserved-stack thread and
 /// into the observer, and drops with the work, or unrun with it on a spawn failure.
-/// Unreachable until U4 G5 adds a registered profile.
+/// Only D1 Direct calls in the registered dev/test build reach it (M = 4,026,531,840 B, D-7).
 fn permitted_dispatch(
     permit: retained_memory::CapturePermit,
     report: RetainedAdmissionReport,
