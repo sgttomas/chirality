@@ -2567,9 +2567,9 @@ pub(super) fn complete_observations(f: &CompleteFacts<'_>) -> [PhaseObservation;
 /// attempted the case's solve. The observer's own G-b record decides it, never the
 /// envelope's status (`blocked_envelope` is also returned after an attempted solve):
 /// `OrdinarySeed::initial` is set exactly at the attempt (`solve_load_case_observed`,
-/// PP/lib.rs:4125-4148: `ordinary_initial_failure` for a structural failure or a
+/// lib.rs `solve_load_case_observed`: `ordinary_initial_failure` for a structural failure or a
 /// deferred-basis formation refusal, the F1b attempt that routes to W2) or at the
-/// published report of a successful solve (`ordinary_report`, :4543, the only exit of
+/// published report of a successful solve (`ordinary_report` in lib.rs, the only exit of
 /// an `Ok` attempt inside D1, whose nonlinear supports D1.6 excludes). Every return
 /// before the attempt (validation's `blocked_envelope`s in
 /// `run_linear_static_preview_observed`; the load-input, ledger and reduction exits of

@@ -1235,7 +1235,7 @@ fn an_unreadable_reviewed_input_never_binds() {
 
 /// D1 inputs whose ordinary route returns before attempting the case's solve (ROOT's G6
 /// ruling): an invalid document kind (validation), an invalid load category (the
-/// load-application findings, PP/lib.rs:3918), no supports (validation) and a lone spring
+/// load-application findings, lib.rs `solve_load_case_observed`), no supports (validation) and a lone spring
 /// support (the mechanism refusal before the attempt). Every one is inside D1.
 pub(super) fn not_attempted_examples() -> Vec<(&'static str, Value)> {
     let mut doc = milestone();

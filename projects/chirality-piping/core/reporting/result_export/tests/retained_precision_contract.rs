@@ -885,7 +885,7 @@ fn shared_must_pass_entries_validate() {
     assert!(failures.is_empty(), "{}", failures.join("\n"));
 }
 
-/// C1 G5b "same E/ê/Φ at p512" (FK/verify.rs:321-376). No p512 corpus base
+/// C1 G5b "same E/ê/Φ at p512" (verify.rs `e_hat` through `phi_512`). No p512 corpus base
 /// exists until C1b, so the rounding is pinned directly. Expected bits were
 /// derived independently as the least binary64 >= e·2^-438 with an exact
 /// rational oracle (hand-checked for the subnormal ties).

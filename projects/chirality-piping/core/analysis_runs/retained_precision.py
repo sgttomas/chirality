@@ -248,22 +248,22 @@ def _accounting_rules(a):
     """Checkpoint A rulings (D8: R1', R2', R3', R4), G5 WORK class 4 (C3:304), every product attempt.
 
     R2' adds OperationalError accounting, which PP returns only for a lost ScalarWork
-    (PP:2311-2347), located as a MemberOperational error, a CaptureError prepared_arithmetic cause
+    (retained_product.rs `ScalarWork::check` through `ScalarWork::operation`), located as a MemberOperational error, a CaptureError prepared_arithmetic cause
     or a G5aError operational/arithmetic cause. R3' covers every fault-bearing spelling
     (work_accounting{fault}, a nested stop/work_accounting, a view work{fault}) against its owner.
     R4: a SectionError accounting needs a non-exact status in that member's PreparationWork
-    (FK product_certificate.rs:676-679).
+    (FK product_certificate.rs `SectionPreparationWork::check`).
 
     Ruling 06d (I62 ACCOUNTING_CAUSES R1-R3) for the base classes:
 
-    R1: an adapter overflow is never emittable. AdapterWork::enter (PP:2896-2907) faults only when
+    R1: an adapter overflow is never emittable. AdapterWork::enter (retained_product.rs `AdapterWork::enter`) faults only when
     counts[event] + amount overflows and keeps counts[event]; every amount is < 2^63 + 2^61, so the
     retained prefix is >= 2^62, which C3:233-236 requires to be emitted and forbids above safe-U.
     Every CaptureError/G5aError accounting{event} cause is built from that sticky fault
-    (PP:2910-2912, 617, 2527, 2586), so it is covered too.
-    R2: ScalarTrace.lost is set only when entered/checks is at u64::MAX (PP:2310-2349).
-    R3: a work_accounting{fault} cause is raised from the owning trace's status (FC:358-379, 1580;
-    FK product_certificate.rs:186-206), so the attempt's emitted Count faults and sticky statuses
+    (retained_product.rs `AdapterWork::require`, `ProductCapture::solver_observations`, `ProductCapture::g5a`), so it is covered too.
+    R2: ScalarTrace.lost is set only when entered/checks is at u64::MAX (retained_product.rs `ScalarWork::check` through `ScalarWork::operation`).
+    R3: a work_accounting{fault} cause is raised from the owning trace's status (final_case.rs `ProductCertificateSpent::visit`, `ProductCertificateSpent::f64_op`, `begin_prepared_product`;
+    FK product_certificate.rs `NumericWork::begin`, `NumericWork::checked`), so the attempt's emitted Count faults and sticky statuses
     must contain that fault."""
     located = list(_located(a))
     r1 = a["adapter"]["fault"] is None and not any(o.get("kind") == "accounting" and "event" in o for _, o in located)
@@ -309,7 +309,7 @@ def _source_hash(source):
 
 
 def _native_source_encoding(source, include_loads):
-    """Existing K4SRC/K4STF bytes, source.rs:778–905; no solve or exact ledger."""
+    """Existing K4SRC/K4STF bytes, source.rs `PrimitiveSource::encoding` and `PrimitiveSource::stiffness_encoding`; no solve or exact ledger."""
     out = bytearray(b"K4SRC\x01" if include_loads else b"K4STF\x01")
     def uint(value):
         if type(value) not in (int, float) or int(value) != value or not 0 <= value <= 0xffffffff:
@@ -392,7 +392,7 @@ _UNRESOLVED_OF_STOP = {"count_range": ("count_range", ("name",)), "work_accounti
 
 
 def _terminal_of(stop):
-    """FK/adaptive.rs:4349-4378 terminal(): the exact kernel terminal of a terminal stop, or
+    """adaptive.rs `terminal` terminal(): the exact kernel terminal of a terminal stop, or
     None for an escalating stop (unreachable there). The wire omits WorkAccounting's private
     `prior` (schema Unresolved work_accounting {fault}; C3:261-263)."""
     if not isinstance(stop, dict):
@@ -414,7 +414,7 @@ def _is_work_accounting(terminal):
 
 
 def _g5_schedule(run, records, attempts, fail, body=None):
-    """Checklist N1-N9, N13, N14: replay the actual native ladder (FK/adaptive.rs:4519-4766).
+    """Checklist N1-N9, N13, N14: replay the actual native ladder (adaptive.rs `run_schedule_inner`).
 
     Candidates at slots 128/256/512, each verified at 2p. A candidate solve failure with an
     escalating stop (Pivot/Condition/ResidualGate) advances one slot (4542-4552); a failed
@@ -426,12 +426,12 @@ def _g5_schedule(run, records, attempts, fail, body=None):
     fail(all(int(r["corrections"]) <= 3 for r in records))
     terminal = run["kernel_terminal"]
     # A WorkAccounting terminal exists natively only when a work status is not exact
-    # (adaptive.rs:4545, 4777, 4996); C1:66-68 forbids emitting such a run, and C2's
+    # (adaptive.rs `run_schedule_inner`, `finish_terminal`, `solve_cases_projected`); C1:66-68 forbids emitting such a run, and C2's
     # reachable Reason map (C2:17-40) has no unresolved/work_accounting. It lies outside
     # the emitted domain of the actual native schedule/terminal (C1:148), idle or not.
     fail(not _is_work_accounting(terminal))
     if not attempts:
-        # Pre-schedule returns (adaptive.rs:4994-5075): invocation entry with a meter fault
+        # Pre-schedule returns (adaptive.rs `solve_cases_projected`): invocation entry with a meter fault
         # (WorkAccounting, prior None, takes precedence) or exhaustion (Budget(invocation));
         # a refused group (its refusal, checked with C5); a CasePrep failure (LedgerUnavailable).
         fail(not records and int(run["case_charge"]) == 0 and int(run["invocation_increment"]) == 0
@@ -477,7 +477,7 @@ def _g5_schedule(run, records, attempts, fail, body=None):
         else:
             fail(kind == "failed" and _stop_of(out.get("reason")) is not None)
         if out.get("reason") == {"space": "attempt", "tag": "verification_failed"}:
-            # D5c (adaptive.rs:4576-4590; C1:27): set only on a failed verification solve.
+            # D5c (adaptive.rs `run_schedule_inner`; C1:27): set only on a failed verification solve.
             fail(v is not None and v["phase"] == "failed")
         last = ai == len(attempts) - 1
         escalated = False
@@ -493,7 +493,7 @@ def _g5_schedule(run, records, attempts, fail, body=None):
         elif v["phase"] == "failed":
             # A verification *solve* failure with an escalating stop skips two slots; a
             # verification-pass failure is terminal and never escalating (terminal() would be
-            # unreachable for it, adaptive.rs:4377).
+            # unreachable for it, adaptive.rs `terminal`).
             stop = _stop_of(v["reason"]) or {}
             if stop.get("tag") in ESCALATING_STOPS:
                 c += 2; escalated = True
@@ -510,11 +510,11 @@ def _g5_schedule(run, records, attempts, fail, body=None):
     if attempts[-1]["outcome"]["kind"] == "accepted":
         fail(terminal["kind"] == "selected" and terminal["reason"] is None)
     elif ended:
-        # N5: a terminal stop ends on its exact terminal() translation (adaptive.rs:4349-4378).
+        # N5: a terminal stop ends on its exact terminal() translation (adaptive.rs `terminal`).
         fail(terminal == _terminal_of(end_stop))
     elif escalated and c < 3:
         # N9: an escalating last stop with slots left ends only through a work fault
-        # (adaptive.rs:4545-4546, 4581-4582), which is never emitted (C1:66-68).
+        # (adaptive.rs `run_schedule_inner`), which is never emitted (C1:66-68).
         fail(False)
     elif escalated:
         fail(terminal == ceiling)
@@ -523,7 +523,7 @@ def _g5_schedule(run, records, attempts, fail, body=None):
 
 
 def _g5_cache(body, run, records, fail, wf):
-    """Checklist C1-C3 (FK/adaptive.rs:3984-4026 obtain): a cached slot is reused, never
+    """Checklist C1-C3 (adaptive.rs `obtain` obtain): a cached slot is reused, never
     rebuilt; a non-budget failure is cached and reused with the same build id; a budget
     failure is not cached; cache_after = cache_before plus this run's cacheable builds; a
     failed build fails the requesting record with the same stop."""
@@ -600,7 +600,7 @@ def _g5_native(body):
 
 def _g5_native_checks(body, runs, fail, wf):
     # Kernel scope (checkpoint A, D8; C1:66-68): a work_accounting stop or reason anywhere in a
-    # Run, a build or a group refusal is outside the emitted domain (adaptive.rs:4545, 4777, 4996).
+    # Run, a build or a group refusal is outside the emitted domain (adaptive.rs `run_schedule_inner`, `finish_terminal`, `solve_cases_projected`).
     for item in runs + body["builds"] + [g["preparation"] for g in body["groups"]]:
         fail(not any(o.get("tag") == "work_accounting" for o in _objects(item)))
     current = 0
@@ -618,7 +618,7 @@ def _g5_native_checks(body, runs, fail, wf):
             records, attempts = run["records"], run["attempts"]
             fail(len(records) <= 4 and [r["index"] for r in records] == list(range(len(records))))
             # C1 s1 items 1-5 / G5 "actual logical/native schedule": the native ladder
-            # always opens with a fresh p128 candidate in record 0 (adaptive.rs:4519-4521);
+            # always opens with a fresh p128 candidate in record 0 (adaptive.rs `run_schedule_inner`);
             # later slots advance only by the stated failure/reuse rules.
             fail(len(attempts) <= 3 and (not records) == (not attempts))
             if attempts: fail(attempts[0]["precision"] == 128 and attempts[0]["candidate_record"] == 0 and attempts[0]["origin"] == {"kind": "fresh"})
@@ -629,9 +629,9 @@ def _g5_native_checks(body, runs, fail, wf):
             for item in records + attempts:
                 reason = item["outcome"].get("reason") or {}
                 if reason.get("space") == "attempt" and "quantity" in reason:
-                    # D33 (FK/retained/verify.rs:880): the verification estimate exists only for force/moment rows.
+                    # D33 (verify.rs `verify_state`): the verification estimate exists only for force/moment rows.
                     fail(reason.get("tag") != "verification_estimate" or reason["kind"] in ("force", "moment"))
-                    # D5d/D28 (C2:22-24, :54; C1:114; adaptive.rs:4169-4197, 4714-4720): stop_rule,
+                    # D5d/D28 (C2:22-24, :54; C1:114; adaptive.rs `rejection_reason`, `run_schedule_inner`): stop_rule,
                     # verification_estimate, charge and publication_enclosure quantities resolve to a
                     # layout row of the Run's source with the same body and kind.
                     fail(any(row["quantity"] == reason["quantity"] and row["body"] == reason["body"] and row["kind"] == reason["kind"] for row in layout))
@@ -639,14 +639,14 @@ def _g5_native_checks(body, runs, fail, wf):
             for r in records:
                 w = r["work"]
                 if r["role"] == "candidate":
-                    # D5a (C1:105; adaptive.rs:4076-4079, 4333): only verification passes write these.
+                    # D5a (C1:105; adaptive.rs `solve_precision`, `verify_precision`): only verification passes write these.
                     fail(r["verification"] is None and r["verification_shared_build_ref"] is None and w["verification_lme"] == 0)
                 stop = _stop_of(r["outcome"].get("reason")) if r["outcome"]["kind"] == "failed" else None
                 if r["role"] == "verification" and stop is not None and stop.get("tag") in ESCALATING_STOPS:
-                    # D5b (adaptive.rs:4593-4611, 4377): an escalating stop is a verification *solve*
+                    # D5b (adaptive.rs `run_schedule_inner`, `terminal`): an escalating stop is a verification *solve*
                     # failure; the verification pass never ran.
                     # D21 (widened): pass evidence is verification_lme > 0, a verification shared build
-                    # (adaptive.rs:4286) or a verification summary (set only by verify_precision, 4333).
+                    # (adaptive.rs `verify_precision`) or a verification summary (set only by verify_precision, 4333).
                     fail(w["verification_lme"] == 0 and r["verification_shared_build_ref"] is None and r["verification"] is None)
                 fail(r["residual_basis"] == (1024 if r["precision"] == 1024 else r["precision"] + 64))
                 fail(r["storage"]["limbs_per_entry"] == (4 if r["precision"] <= 256 else 8 if r["precision"] == 512 else 16))
@@ -711,7 +711,7 @@ def _g5_native_checks(body, runs, fail, wf):
                      and run["kernel_terminal"]["reason"] == {"space": "unresolved", "tag": "budget", "scope": "invocation"})
             budget = run["kernel_terminal"]["reason"] if run["kernel_terminal"]["kind"] == "unresolved" else None
             if isinstance(budget, dict) and budget.get("tag") == "budget" and attempts:
-                # N17: the budget test checks case room first (adaptive.rs:276-286).
+                # N17: the budget test checks case room first (adaptive.rs `StageGuard::test`).
                 if budget.get("scope") == "case":
                     fail(charge > body["work"]["case_limit"], "WORK_MISMATCH")
                 else:
@@ -740,7 +740,7 @@ def _g5_native_checks(body, runs, fail, wf):
     fail(body["work"]["charged"] == current, "WORK_MISMATCH")
     for call_id, call in enumerate(body["calls"]):
         # C2:143 call-local groups at first equality of full stiffness bytes, first-seen order;
-        # an idle (group-null) run never formed a group (adaptive.rs:4994-5015).
+        # an idle (group-null) run never formed a group (adaptive.rs `solve_cases_projected`).
         call_groups = [g for g in body["groups"] if g["call"] == call_id]
         order, members, of_run = [], {}, []
         for ri, si in zip(call["run_refs"], call["source_refs"]):
@@ -817,7 +817,7 @@ STAGE_ORDER = ["preparation", "native", "proof_start", "projection", "maxima", "
 
 
 def _g5_stages(a, case, fail):
-    """Checklist P2, P6, P11 (C3:196-201, 253-257; retained_receipt.rs:45-54,111-113)."""
+    """Checklist P2, P6, P11 (C3:196-201, 253-257; retained_receipt.rs `PreparedTrace::enter` through `PreparedTrace::checked`, `project`)."""
     st, proof = a["stages"], a["proof"]
     pipeline = [st[k] for k in STAGE_ORDER[:8]]
     seen_end = False
@@ -854,7 +854,7 @@ def _g5_stages(a, case, fail):
 
 def _g5_typed(a, fail):
     """Checklist P9 (C3:279-287): failed checks carry their own PublicFailure wrapper, and the
-    attempt result error matches the first failing stage (PP:3469-3543, S06:30-45)."""
+    attempt result error matches the first failing stage (retained_product.rs `PreparedCase::project_candidate`, S06:30-45)."""
     proof, st, result = a["proof"], a["stages"], a["result"]
     if proof is not None:
         for check, kinds in (("certificate", ("proof",)), ("observables", ("observable",)), ("g5a", ("g5a",))):
@@ -863,7 +863,7 @@ def _g5_typed(a, fail):
                 fail(c["error"]["kind"] in kinds)
     if result["kind"] != "unavailable":
         return
-    # D37 (D35 widened; PP/retained_product.rs:3136-3290, 3456-3567; S06 s1): the error kind and the
+    # D37 (D35 widened; retained_product.rs `ProductCapture::prepare_owned_case` through `PreparedCase::solve_native`, `PreparedCase::project_candidate`; S06 s1): the error kind and the
     # whole stage record agree in both directions. ERROR_STAGE_RECORDS lists every record the native
     # sequence can leave for each kind (stage completed <=> its check passed is checked in class 2).
     fail(tuple(st[k] for k in STAGE_ORDER) in ERROR_STAGE_RECORDS.get(result["error"]["kind"], ()))
@@ -920,7 +920,7 @@ def _g5_ordinary(body, cases, diags, quality):
         if c["status"] == "not_required":
             fail(c["product_attempt_ref"] is None and quality[i]["solve_quality"] == "checks_passed")
         if c["status"] == "selected":
-            # D6b (C1:101; C2:153, :164; source_receipt.rs:546-550): only an attempted trigger selects.
+            # D6b (C1:101; C2:153, :164; source_receipt.rs `OrdinaryAttempt::wire`): only an attempted trigger selects.
             fail(quality[i]["solve_quality"] in ("sensitive", "unresolved", "failed"))
             fail(c["selection"]["rcond_label"] == RCOND_LABEL)
         listed = set(refs)
@@ -1120,7 +1120,7 @@ def _extent(nodes):
 
 
 def _e_hat(e, length):
-    """verify.rs:321-334 e_hat: a single-node body (L=0) keeps E."""
+    """verify.rs `e_hat` e_hat: a single-node body (L=0) keeps E."""
     if length == 0:
         return list(e)
     fo, mo = e
@@ -1128,13 +1128,13 @@ def _e_hat(e, length):
 
 
 def _phi_512(e_hat):
-    """verify.rs:365-376: Phi = fl-up(2^-438 * e_hat), nearest then next up when below."""
+    """verify.rs `phi_512`: Phi = fl-up(2^-438 * e_hat), nearest then next up when below."""
     nearest = e_hat * float.fromhex("0x1p-438")
     return math.nextafter(nearest, math.inf) if nearest * float.fromhex("0x1p+438") < e_hat else nearest
 
 
 def _canonical_layout(source, need):
-    """Full canonical layout rebuilt from the bound source maps (FK/recover.rs:101 order).
+    """Full canonical layout rebuilt from the bound source maps (recover.rs `layout` order).
 
     Constraints must be unique and prescribe exact +0 in this C3 scope (D=false).
     """
@@ -1192,9 +1192,9 @@ def _g5a_coverage(body, case, source, s, need):
     Unavailable case that keeps a complete vector (s is None): the same source,
     feasibility, verification-record and direct data checks, with the p512 floor
     positivity derived from the selected Run's verification record (Phi > 0 iff
-    e-hat > 0, adaptive.rs:2294-2307); no Selection rosters and no selected pass
+    e-hat > 0, adaptive.rs `rule`); no Selection rosters and no selected pass
     condition. Native coverage is computed before any certificate verdict
-    (final_case.rs:1371-1448, assigned at 1195), so every complete vector meets these.
+    (final_case.rs `summary_coverage_data`, assigned once every body completes), so every complete vector meets these.
     Final rows never supply a private nonzero or data fact.
     """
     names = ["translation", "rotation", "force", "moment"]
@@ -1376,7 +1376,7 @@ def _g5_numeric(body, rows_by_case, phase=None):
         _need(len(s["section_terms"]) == len(source["section_terms"]), "G5b", "SECTION_MISMATCH")
         for left, right in zip(s["section_terms"], source["section_terms"]):
             member = next(m for m in source["id_maps"]["members"] if m["kernel_member"] == right["member"])
-            # D18 (PP:2360, 2442, 2462; endpoint_maximum.rs:128): each echoed term equals the source's and is positive.
+            # D18 (retained_product.rs `ScalarWork::operation`, `evaluate_operational`; endpoint_maximum.rs `endpoint_maximum`): each echoed term equals the source's and is positive.
             _need(left["member_id"] == member["id"] and all(left[k] == right[k] and from_bits(left[k]) > 0 for k in ["area", "section_modulus", "length", "axial_stiffness", "torsional_stiffness"]), "G5b", "SECTION_MISMATCH")
         absolute = []; uncovered = []
         for ri, row in enumerate(rows):
@@ -1443,10 +1443,10 @@ def _g8(body, source, invocation):
         ordered = sorted([(unit(p["temperature"], "temperature"), p) for p in points if p.get("temperature") is not None], key=lambda p:p[0])
         need(len({p[0] for p in ordered}) == len(ordered))
         bracket = next(((a,b) for a,b in zip(ordered,ordered[1:]) if a[0] < t < b[0]), None)
-        need(bracket is not None)  # strict adjacent bracket (PP/lib.rs:9237-9250); D16: an explicit G8 check
+        need(bracket is not None)  # strict adjacent bracket (lib.rs `materials_for_modulus_basis_observed`); D16: an explicit G8 check
         lo, hi = bracket
         ratio = (t - lo[0]) / (hi[0] - lo[0])
-        # lib.rs:9258-9333 requires all three source quantities even for the
+        # lib.rs `materials_for_modulus_basis_observed` requires all three source quantities even for the
         # nonthermal ordinary route, then evaluates lo + f * (hi - lo).
         need(all(p.get(k) is not None for p in (lo[1],hi[1]) for k in ("elastic_modulus","shear_modulus","thermal_expansion_coefficient")))
         result = tuple(unit(lo[1][key], "stress") + ratio * (unit(hi[1][key], "stress") - unit(lo[1][key], "stress")) for key in ("elastic_modulus","shear_modulus"))

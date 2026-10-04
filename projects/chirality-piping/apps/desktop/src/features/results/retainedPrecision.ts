@@ -236,7 +236,7 @@ function coverage(b: Obj, source: Obj, invocation?: Obj): Map<string, Obj[]> {
     if (c.product_attempt_ref !== null) {
       const a = b.product_attempts[c.product_attempt_ref]; fail(a.id === c.product_attempt_ref && same(a.owner_ref, { kind: 'case', index: i }));
       const old = a.operational.old, pm = a.preparation.members, fresh = a.operational.new;
-      // D1 (C2:98; PP:1238, 1296; F1:130): old, prepared and new member ids are exactly 0..len-1 in
+      // D1 (C2:98; retained_product.rs `ProductCapture::capture_case_source`; F1:130): old, prepared and new member ids are exactly 0..len-1 in
       // native order, so prepared and new are prefixes of old.
       fail(fresh.length <= pm.length && pm.length <= old.length && [old, pm, fresh].every(list => same(list.map((m: Obj) => m.member), sequence(list.length))));
       // D1: a captured prefix owns no prepared or new member here; its null source/run and
@@ -259,7 +259,7 @@ function coverage(b: Obj, source: Obj, invocation?: Obj): Map<string, Obj[]> {
       if (Array.isArray(cov) && sourced) fail(cov.length >= 1 && cov.length === sourced.body_membership.length && same(cov.map((e: Obj) => e.body), sequence(cov.length)));
     }
   });
-  // D29: a CaseSource with an empty body inventory cannot be emitted (source.rs:498 NoNodes; I57 §1).
+  // D29: a CaseSource with an empty body inventory cannot be emitted (source.rs `PrimitiveSource::new` NoNodes; I57 §1).
   b.sources.forEach((s: Obj, i: number) => fail(s.body_membership.length >= 1 && s.index === i && s.owner.kind === 'case' && ids[s.owner.case_index] === s.owner.case_id));
   b.material_bases.forEach((m: Obj, i: number) => fail(m.index === i && unique(m.case_indices) && m.case_indices.every((c: number) => c < ids.length)));
   const runs = b.cases.filter((c: Obj) => c.run).map((c: Obj) => c.run).sort((a: Obj, z: Obj) => a.id - z.id);
@@ -291,13 +291,13 @@ export function nativeSchedule(run: Obj, source: Obj): void {
   // N14: at most three iterative corrections per physical record (adaptive.rs run! table).
   fail(records.every(r => Number.isSafeInteger(r.corrections) && r.corrections >= 0 && r.corrections <= 3));
   // C1:66-68 (ruling): a WorkAccounting terminal exists natively only with a non-exact work status
-  // (adaptive.rs:4545, 4777, 4996), and such a run is never emitted. It lies outside the emitted
+  // (adaptive.rs `run_schedule_inner`, `finish_terminal`, `solve_cases_projected`), and such a run is never emitted. It lies outside the emitted
   // terminal domain (C1:148) wherever it appears, idle or not.
   fail(!(run.kernel_terminal.kind === 'unresolved' && run.kernel_terminal.reason?.space === 'unresolved' && run.kernel_terminal.reason?.tag === 'work_accounting'));
   const stopOf = outcomeStop;
   const escalates = (stop: Obj | null) => stop && ['pivot', 'condition', 'residual_gate'].includes(stop.tag);
   // D5b/D21: a failed verification is a solve failure only if nothing shows its pass ran: no verification
-  // shared build (adaptive.rs:4286), no verification work, and no verification summary (adaptive.rs:4333).
+  // shared build (adaptive.rs `verify_precision`), no verification work, and no verification summary (adaptive.rs `verify_precision`).
   const solveFailure = (vr: Obj) => vr.verification_shared_build_ref === null && vr.work.verification_lme === 0 && vr.verification === null;
   const terminalFor = (stop: Obj): Obj => {
     const { space: _space, tag, ...payload } = stop;
@@ -311,7 +311,7 @@ export function nativeSchedule(run: Obj, source: Obj): void {
   for (const record of records) {
     const reason = record.outcome.reason;
     if (reason?.quantity) fail(source.layout.some((row: Obj) => same(row.quantity, reason.quantity) && row.body === reason.body && row.kind === reason.kind));
-    // D33: the native verification estimate exists only for force and moment rows (FK/retained/verify.rs:880).
+    // D33: the native verification estimate exists only for force and moment rows (verify.rs `verify_state`).
     if (reason?.space === 'attempt' && reason.tag === 'verification_estimate') fail(['force', 'moment'].includes(reason.kind));
     if (record.role === 'candidate') fail(record.verification === null && record.verification_shared_build_ref === null && record.work.verification_lme === 0);
   }
@@ -345,7 +345,7 @@ export function nativeSchedule(run: Obj, source: Obj): void {
       }
     }
     fail(['accepted', 'rejected', 'failed'].includes(a.outcome.kind));
-    // D5c (adaptive.rs:4576-4579): rejected(verification_failed) only with a failed verification phase.
+    // D5c (adaptive.rs `run_schedule_inner`): rejected(verification_failed) only with a failed verification phase.
     if (a.outcome.kind === 'rejected' && a.outcome.reason?.space === 'attempt' && a.outcome.reason.tag === 'verification_failed') fail(a.verification?.phase === 'failed');
   }
   const last = attempts.at(-1), terminal = run.kernel_terminal;
@@ -391,7 +391,7 @@ export function nativeRuns(b: Obj): void {
 function nativeClass(b: Obj, work: (ok: unknown) => void): void {
   const fail = (ok: unknown, code = 'ATTEMPT_MISMATCH') => need(ok, 'G5', code);
   const checked = (n: bigint): bigint => { work(n >= 0n && n <= SAFE); return n; };
-  // D8 kernel scope (checkpoint A; C1:66-68; adaptive.rs:4545, 4777, 4996): a work_accounting stop or
+  // D8 kernel scope (checkpoint A; C1:66-68; adaptive.rs `run_schedule_inner`, `finish_terminal`, `solve_cases_projected`): a work_accounting stop or
   // reason anywhere in a Run, a build or a group preparation is outside the emitted domain (class 1, ATTEMPT).
   const kernelRuns = b.cases.filter((c: Obj) => c.run).map((c: Obj) => c.run);
   fail(!locate([kernelRuns, b.builds, b.groups.map((g: Obj) => g.preparation)]).some(([, o]) => o.tag === 'work_accounting'));
@@ -411,7 +411,7 @@ function nativeClass(b: Obj, work: (ok: unknown) => void): void {
       fail(oi.kind === 'case' && oi.index > previousCase); previousCase = oi.index;
       fail(same(run.origin, { call: ci, position: pos, group: run.origin.group, source_ref: si, owner_ref: oi }) && same(c.run, run) && c.source_ref === si && s.owner.case_index === oi.index);
       work(uint(run.invocation_before) === current);
-      // N10 (adaptive.rs:4994-5015): an invocation-entry return is idle with group null. Its only
+      // N10 (adaptive.rs `solve_cases_projected`): an invocation-entry return is idle with group null. Its only
       // emitted form is Budget(invocation) once invocation_before >= Li (a meter fault is never emitted).
       // D27: an ATTEMPT check reads the Run's recorded invocation_before, never the WORK-derived running sum
       // (a broken meter chain is reported by the deferred WORK predicate above).
@@ -424,7 +424,7 @@ function nativeClass(b: Obj, work: (ok: unknown) => void): void {
         const group = at(b.groups, run.origin.group, 'G5', 'ATTEMPT_MISMATCH');
         fail(group.call === ci && group.source_refs.includes(si) && group.stiffness_sha256 === s.stiffness_sha256);
         if (group.preparation.kind === 'refused') fail(!run.records.length && !run.attempts.length && run.kernel_terminal.kind === 'refused' && same(run.kernel_terminal.reason, group.preparation.reason));
-        // N10 (adaptive.rs:5055-5075): a run with no attempt in a ready group is the CasePrep refusal.
+        // N10 (adaptive.rs `solve_cases_projected`): a run with no attempt in a ready group is the CasePrep refusal.
         else if (!run.attempts.length) fail(run.kernel_terminal.kind === 'refused' && run.kernel_terminal.reason?.tag === 'ledger_unavailable');
       }
       const cache = live.get(run.origin.group) ?? new Map<string, number>();
@@ -525,7 +525,7 @@ function nativeClass(b: Obj, work: (ok: unknown) => void): void {
     fail(g.source_refs.every((si: number) => call.source_refs.includes(si) && b.sources[si]?.stiffness_sha256 === g.stiffness_sha256));
     fail(same(g.source_refs, runs.filter(r => r.origin.group === i).map(r => r.origin.source_ref)));
   });
-  // C5 (C2:143; adaptive.rs:4989-5030): call-local groups partition the call's non-idle sources by
+  // C5 (C2:143; adaptive.rs `solve_cases_projected`): call-local groups partition the call's non-idle sources by
   // full stiffness bytes in first-seen order, and each run names its own group.
   b.calls.forEach((call: Obj, ci: number) => {
     const order: string[] = [], members = new Map<string, number[]>(), runGroups: [Obj, number][] = [];
@@ -554,18 +554,18 @@ function objects(v: any, out: Obj[] = []): Obj[] {
   return out;
 }
 /** Ruling 06d (I62 ACCOUNTING_CAUSES R1-R3), G5 work class (C3:304), for every product attempt.
- * R1: an adapter overflow fault (PP:2896-2907) or any CaptureError/G5aError accounting{event} cause
- *     built from it (PP:2910-2912, 617, 2527, 2586) is never emittable (C3:233-236).
- * R2: ScalarTrace.lost is set only at u64::MAX (PP:2310-2349), so it is never emittable.
- * R3: a work_accounting{fault} cause comes from its owning trace's status (FC:358-379, 1580), so the
+ * R1: an adapter overflow fault (retained_product.rs `AdapterWork::enter`) or any CaptureError/G5aError accounting{event} cause
+ *     built from it (retained_product.rs `AdapterWork::require`, `ProductCapture::solver_observations`, `ProductCapture::g5a`) is never emittable (C3:233-236).
+ * R2: ScalarTrace.lost is set only at u64::MAX (retained_product.rs `ScalarWork::check` through `ScalarWork::operation`), so it is never emittable.
+ * R3: a work_accounting{fault} cause comes from its owning trace's status (final_case.rs `ProductCertificateSpent::visit`, `ProductCertificateSpent::f64_op`, `begin_prepared_product`), so the
  *     attempt's emitted unavailable-Count faults and sticky statuses must contain that fault. */
 /** @internal Exported only for the reader-logic R1-R3 isolation test; not a public entry point. */
 export function accountingRules(a: Obj): boolean[] {
   const located = locate(a), proof = a.proof;
-  // R1': adapter overflow, or any CaptureError/G5aError accounting{event} cause (PP:2896-2912, 617, 2527, 2586).
+  // R1': adapter overflow, or any CaptureError/G5aError accounting{event} cause (retained_product.rs `AdapterWork::enter`, `AdapterWork::require`, `ProductCapture::solver_observations`, `ProductCapture::g5a`).
   const r1 = a.adapter.fault === null && !located.some(([, o]) => o.kind === 'accounting' && Object.hasOwn(o, 'event'));
   // R2': lost, or an OperationalError accounting located as a MemberOperational error, a CaptureError
-  // prepared_arithmetic cause or a G5aError operational/arithmetic cause (PP:2311-2347).
+  // prepared_arithmetic cause or a G5aError operational/arithmetic cause (retained_product.rs `ScalarWork::check` through `ScalarWork::operation`).
   const error = a.result.kind === 'unavailable' ? a.result.error : null;
   const operational: unknown[] = ['old', 'new'].flatMap(side => a.operational[side].filter((m: Obj) => m.result.kind !== 'ready').map((m: Obj) => m.result.error));
   const g5aCauses = (cause: unknown) => locate(cause).filter(([, x]) => ['operational', 'arithmetic'].includes(x.kind) && isObj(x.cause)).map(([, x]) => x.cause);
@@ -582,7 +582,7 @@ export function accountingRules(a: Obj): boolean[] {
     const owner = faultOwner(a, path);
     r3 &&= owner != null && Object.hasOwn(STATUS_FAULTS, o.fault) && STATUS_FAULTS[o.fault].every(x => statuses(owner).has(x));
   }
-  // R4: a SectionError accounting needs a non-exact status in that member's PreparationWork (FK product_certificate.rs:676-679).
+  // R4: a SectionError accounting needs a non-exact status in that member's PreparationWork (FK product_certificate.rs `SectionPreparationWork::check`).
   let r4 = true;
   for (const m of a.preparation.members) if (m.result.kind !== 'prepared' && m.result.error?.kind === 'accounting') r4 &&= statuses(m.work).size > 0;
   if (error?.kind === 'preparation' && error.section?.kind === 'accounting') { const members = a.preparation.members; r4 &&= members.length > 0 && statuses(members.at(-1).work).size > 0; }
@@ -690,7 +690,7 @@ export function productAttempts(b: Obj, rows: Map<string, Obj[]>): void {
     fail((p === null) === (stage.proof_start === 'not_entered'));
     if (stage.proof_start !== 'not_entered') fail(stage.native === 'completed' && p !== null);
     if (p === null) fail(stage.proof_start === 'not_entered' && ['projection', 'maxima', 'values', 'aliases', 'certificate', 'observables', 'g5a'].every(k => stage[k] === 'not_entered'));
-    // P2 (C3:196-201; PP:3511-3537): only returned transitions are retained. Preparation completed iff
+    // P2 (C3:196-201; retained_product.rs `PreparedCase::project_candidate`): only returned transitions are retained. Preparation completed iff
     // a source was built; observables and G5a are entered together, only after the certificate ended.
     fail((stage.preparation === 'completed') === (a.source_ref !== null));
     fail((stage.observables === 'not_entered') === (stage.g5a === 'not_entered'));
@@ -722,7 +722,7 @@ export function productAttempts(b: Obj, rows: Map<string, Obj[]>): void {
       if (p.completion.kind === 'merged') fail(stage.projection === 'completed');
       if (p.completion.kind === 'separate_failure') fail(stage.values === 'failed');
       if (stage.values === 'completed') fail(p.completion.kind === 'merged');
-      // P6 (C3:253-257; PP:3476-3491): a values failure keeps its own completion; abandonment after
+      // P6 (C3:253-257; retained_product.rs `PreparedCase::project_candidate`): a values failure keeps its own completion; abandonment after
       // maxima/aliases/bind-rows or any certificate entry merges; nothing before projection completes.
       if (stage.values === 'failed') fail(p.completion.kind === 'separate_failure');
       else if (stage.certificate !== 'not_entered' || stage.maxima === 'failed' || stage.aliases !== 'not_entered') fail(p.completion.kind === 'merged');
@@ -1005,8 +1005,8 @@ function numericalScales(cases: NumericCase[], source: Obj): void {
     x.s.section_terms.forEach((section: Obj, i: number) => {
       const m = x.s.id_maps.members.find((v: Obj) => v.kernel_member === section.member), actual = sel.section_terms[i];
       // D18 (G5b section truth; C1 G5b row): each echoed term equals the source's term and is positive, else
-      // SECTION. Native rejects nonpositive inputs (PP:2442, 2462), range-checks EA/L and GJ/L (PP:2360) and
-      // needs area, Z > 0 (endpoint_maximum.rs:128). The term-versus-member-map identity is G8's binding.
+      // SECTION. Native rejects nonpositive inputs (retained_product.rs `evaluate_operational`), range-checks EA/L and GJ/L (retained_product.rs `ScalarWork::operation`) and
+      // needs area, Z > 0 (endpoint_maximum.rs `endpoint_maximum`). The term-versus-member-map identity is G8's binding.
       fail(m && actual.member_id === m.id && ['area', 'section_modulus', 'length', 'axial_stiffness', 'torsional_stiffness'].every(k => actual[k] === section[k] && decodeBinary64(section[k]) > 0), 'SECTION_MISMATCH');
     });
     // Ensure every prospective stress scale is finite before any G5c list checks.
@@ -1110,7 +1110,7 @@ async function invocationBinding(b: Obj, source: Obj, invocation: Obj): Promise<
   fail(same(Object.keys(invocation).sort(), ['request', 'solver_mode']) && ['dense_scrutiny', 'sparse_interactive'].includes(invocation.solver_mode), 'INVOCATION_MISMATCH');
   fail(await hash('source_blocks_invocation_v1', invocation) === b.invocation.value, 'INVOCATION_MISMATCH');
   const request = invocation.request, model = request.model;
-  // D31: the model schema_version is 0.1.0, 0.2.0 or 0.3.0 (PP pressure_runtime.rs:113-118 treats 0.1.0 and
+  // D31: the model schema_version is 0.1.0, 0.2.0 or 0.3.0 (PP pressure_runtime.rs `validate_profile` treats 0.1.0 and
   // 0.2.0 on one branch); 0.4.0 stays excluded (C1 G8 row, "no 0.4 extension").
   fail(model?.project?.id === source.model_ref && ['0.1.0', '0.2.0', '0.3.0'].includes(model.schema_version), 'INVOCATION_MISMATCH');
   fail(!model.pressure_contract && !model.combinations?.length && !model.components?.length, 'INVOCATION_MISMATCH');
@@ -1135,7 +1135,7 @@ async function invocationBinding(b: Obj, source: Obj, invocation: Obj): Promise<
     fail(unique(ordered.map(p => p.t)));
     const i = ordered.findIndex((p, j) => j + 1 < ordered.length && p.t < t && t < ordered[j + 1].t); fail(i >= 0);
     const lo = ordered[i], hi = ordered[i + 1];
-    // lib.rs:9258-9333 requires all three source quantities at both bracket points, even on the
+    // lib.rs `materials_for_modulus_basis_observed` requires all three source quantities at both bracket points, even on the
     // nonthermal ordinary route, before interpolating; a missing one is a source refusal.
     fail([lo.p, hi.p].every(p => ['elastic_modulus', 'shear_modulus', 'thermal_expansion_coefficient'].every(k => p[k] != null)));
     const ratio = (t - lo.t) / (hi.t - lo.t), a = pair(lo.p), z = pair(hi.p);

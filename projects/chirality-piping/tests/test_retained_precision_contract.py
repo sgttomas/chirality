@@ -320,7 +320,7 @@ def test_g5a_rederives_canonical_layout_and_zero_prescription(change):
 
 
 def test_p512_floor_phi_follows_native_rounding():
-    """C1 G5b 'same E/e-hat/Phi at p512' (verify.rs:321-376). Python-only until the
+    """C1 G5b 'same E/e-hat/Phi at p512' (verify.rs `e_hat` through `phi_512`). Python-only until the
     C1b p512 ladder base exists: Phi = fl-up(2^-438 * e-hat), e-hat uncoupled at L=0."""
     assert rp._phi_512(0.0) == 0.0
     assert rp._phi_512(1.0) == math.ldexp(1.0, -438)
@@ -350,7 +350,7 @@ def test_schedule_replay_terminal_branches_reader_logic():
                 kernel_terminal={"kind": "unresolved", "reason": {"space": "unresolved", "tag": "budget", "scope": "invocation"}})
     rp._g5_schedule(idle, [], [], _fail_g5)
     _raises(lambda: rp._g5_schedule(dict(idle, kernel_terminal={"kind": "selected", "reason": None}), [], [], _fail_g5), "G5", "ATTEMPT_MISMATCH")
-    # N10 (adaptive.rs:4994-5002): exhaustion gives Budget(invocation) and requires
+    # N10 (adaptive.rs `solve_cases_projected`): exhaustion gives Budget(invocation) and requires
     # invocation_before >= the invocation limit; a WorkAccounting idle run is never emitted
     # (C1:66-68) and is rejected.
     body = deepcopy(corpus()["cases"][0]["source"]["retained_precision"]["body"])
@@ -737,7 +737,7 @@ def test_model_schema_versions_d31():
 
 
 def test_verification_estimate_names_force_or_moment_d33():
-    """D33 (FK/retained/verify.rs:880): an estimate rejection naming a translation or rotation row fails G5 ATTEMPT."""
+    """D33 (verify.rs `verify_state`): an estimate rejection naming a translation or rotation row fails G5 ATTEMPT."""
     reason = {"space": "attempt", "tag": "verification_estimate", "quantity": {"tag": "displacement", "dof": {"node": 1, "component": "UX"}}, "body": 0, "kind": "translation"}
     run = B + ["cases", 0, "run"]
     _raises(lambda: _validate_entry("p512_ladder_synthetic", [_set(run + ["records", 0, "outcome", "reason"], reason), _set(run + ["attempts", 0, "outcome", "reason"], reason)]), "G5", "ATTEMPT_MISMATCH")

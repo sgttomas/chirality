@@ -187,7 +187,7 @@ describe("other consumers are unchanged; the standing session Current reads of a
   // The session hook may be imported only by workspaceSession.ts (sessionBoundary.test.ts),
   // and the pinned request model is not a complete desktop session model (no load-case
   // status), so a full session replay is not possible here. Pinned instead: the inputs
-  // resultsSessionState.ts:62-76 composes. Current requires a fresh identity, eligible
+  // resultsSessionState.ts `currentSolvedResult` composes. Current requires a fresh identity, eligible
   // standing and a live native capture for the manifest's model, among its other
   // conjuncts. Since U7 a registered successor is fresh and eligible for its captured
   // model; a copy, or another current model, is not eligible.
