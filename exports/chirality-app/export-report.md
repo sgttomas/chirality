@@ -2,7 +2,7 @@
 
 Generated from the public `chirality` source profile `exports/chirality-app`.
 
-- Staging path: `/private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-test-ci-optimization-f6cacd/a7659cd3-fdee-45df-ac08-f767111a9f26/scratchpad/export-stage`
+- Staging path: `exports/chirality-app/staging`
 - Manifest rows: 1872
 - Text files sanitized for machine-absolute paths: 0
 - Boundary findings: 0

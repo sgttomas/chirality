@@ -4,10 +4,8 @@ title: D-GOV-52 proposal candidate - align two Root AGENTS.md passages with App 
 date: 2026-10-03
 basis: 1c0cec9794c649fc3042a0e90807ff30fc9aed00
 
-# Placement: move this file to
-# docs/governance_harness/tranche_manifests/ROOT-DGOV52-PROPOSAL-20261003.yaml
-# before committing the packet. G4 reads manifests only from that directory,
-# and the packet's new paths are instruction surface (root docs/).
+# Placed here from the packet folder and committed together with the
+# application tranche ROOT-DGOV52-APPLICATION-20261004.
 
 instruction_surface_paths:
   - docs/governance_harness/_PROPOSALS/D-GOV-52_agents-md-app-v4-alignment_2026-10-03/PACKET.md
@@ -56,8 +54,9 @@ derivative_paths:
   - exports/chirality-app/staging/
 
 derivative_disposition:
-  status: deferred
+  status: regenerated
   rationale: >-
-    The proposal changes no exported byte. The export pins the current Root
-    AGENTS.md (export-manifest.csv row AGENTS.md, sha256 c8ce87ef...). Its
-    regeneration or recorded deferral belongs to the application tranche.
+    The packet files are under docs/ and are exported. They were committed
+    together with the application tranche ROOT-DGOV52-APPLICATION-20261004,
+    which regenerates the export at its head, so this tranche's rows are in
+    that regeneration.
