@@ -3,6 +3,7 @@ import { validatePhysicsEvidence } from "../features/results/physicsResultEviden
 import { validatePreviewPhysicsEvidence } from "../features/results/previewPhysicsEvidence";
 import { validateLoadReferenceEvidence } from "../features/results/loadReferenceEvidence";
 import { validateLoadReferenceSourceEvidence } from "../features/results/loadReferenceSourceEvidence";
+import { validateRetainedPrecision } from "../features/results/retainedPrecision";
 import { semanticContractForSource, semanticSourceBasisMatches } from "../features/results/resultSemantics";
 import { sourceContract, sourceSemanticBinding, hasCurrentSourceContract } from "../features/results/numericalResultQuality";
 import type { AnalysisRunEnvelope, CanonicalResultDimension, MechanicsResult, ObjectRef, PreviewModel } from "../types";
@@ -12,6 +13,10 @@ export const ANALYSIS_RUN_V02 = "0.2.0";
 export const ANALYSIS_RUN_V03 = "0.3.0";
 export const CHECKED_PROFILE_V1 = "openpipestress_jcs_ijson_v1";
 export const SEMANTIC_CONTRACT_SHA256 = "4d6886d19e304db897e5e9f8f0054cbee91ba7795868f9698e2bbe070bde94da";
+/** U6d (C1:162; D2 4.9.6): the record's receipt copy differs from the source's. */
+export const ANALYSIS_RETAINED_PRECISION_RECEIPT_MISMATCH = "ANALYSIS_RETAINED_PRECISION_RECEIPT_MISMATCH";
+/** U6d: a record of any other identity carries a retained-precision receipt. */
+export const ANALYSIS_RETAINED_PRECISION_DOWNGRADE_FORBIDDEN = "ANALYSIS_RETAINED_PRECISION_DOWNGRADE_FORBIDDEN";
 type ManifestEvidence = { manifest_ref: ObjectRef; manifest_sha256: string; manifest: { model_basis: { model_ref: string }; solver_basis: { solver_name: string; solver_version: string; solver_build_ref: string } } };
 const provenance = { source_name: "OpenPipeStress analysis record 0.2", source_location: "analysis_run.compatibility.v0.2", source_license: "project-governed", review_status: "pending", professional_claim: false };
 
@@ -78,7 +83,7 @@ export async function buildAnalysisRunV03(result: MechanicsResult, inputManifest
   if (!hasCurrentSourceContract(result)) throw new Error("SOURCE_SEMANTIC_CONTRACT_UNSUPPORTED");
   return buildAnalysisRecord(result, inputManifest, sourceContract(result) as V03Route, ruleCheckStatus, loadBasisRefs);
 }
-type V03Route = "precision" | "physics" | "source_blocks" | "physics_source" | "preview_physics" | "load_reference" | "load_reference_source";
+type V03Route = "precision" | "physics" | "source_blocks" | "physics_source" | "preview_physics" | "load_reference" | "load_reference_source" | "retained_preview_physics";
 /** T1: the load/reference-state readers run before a record is built or
  * validated, as Python `_source_contract` runs them (raw evidence). */
 async function validateLoadReferenceRoute(source: MechanicsResult): Promise<void> {
@@ -90,6 +95,8 @@ async function buildAnalysisRecord(result: MechanicsResult, inputManifest: Manif
   await validateLoadReferenceRoute(result);
   // Preview-evidence check: a preview-physics-1 source is recorded only after its closed reader checks pass.
   if (sourceContract(result) === "preview_physics") validatePreviewPhysicsEvidence(result);
+  // U6d: a successor is recorded only after the accepted reader passes (G0-G7, no invocation).
+  if (route === "retained_preview_physics") await validateRetainedPrecision(result);
   if (route === "source_blocks" || route === "physics_source") await validateRetainedRecoverySource(result);
   if (route !== "legacy") { validateSourceRuleStatus(result); expectedLoadBasis(result, loadBasisRefs); }
   if (inputManifest.manifest.model_basis.model_ref !== result.model_ref) throw new Error("ANALYSIS-RUN-INPUT-MANIFEST-MODEL-MISMATCH");
@@ -140,6 +147,8 @@ async function buildAnalysisRecord(result: MechanicsResult, inputManifest: Manif
   // namespace), load-reference-source-1 like physics-source-1 (both retained).
   if (route === "physics_source" || route === "load_reference_source") record.analysis_run.contract_evidence = structuredClone(result.contract_evidence);
   if (route === "source_blocks" || route === "physics_source" || route === "load_reference_source") record.analysis_run.source_block_recovery = structuredClone(result.source_block_recovery);
+  // U6d (C1:162; D2 4.9.6): the complete receipt is copied whole, never recomputed or repaired.
+  if (route === "retained_preview_physics") record.analysis_run.retained_precision = structuredClone(result.retained_precision);
   record.analysis_run.hashes.unshift({ algorithm: "sha256", canonicalization: CHECKED_PROFILE_V1, payload_ref: runRef, payload_scope: "analysis_run_record", value: await canonicalSha256HexCheckedV1(analysisRecordProjection(record)) });
   if (route !== "legacy") await validateAnalysisRunV03(record, result, loadBasisRefs);
   return record;
@@ -178,6 +187,12 @@ export async function validateAnalysisRunV03(record: AnalysisRunEnvelope, source
   if (sourceContract(source) === "physics_source" || sourceContract(source) === "load_reference_source") {
     if (!same(run.contract_evidence, source.contract_evidence)) throw new Error("ANALYSIS_PHYSICS_SOURCE_EVIDENCE_MISMATCH");
   } else if (Object.hasOwn(run, "contract_evidence")) throw new Error("ANALYSIS_PHYSICS_SOURCE_DOWNGRADE_FORBIDDEN");
+  // U6d: the successor's record carries its complete receipt, equal to the source's
+  // (which the accepted reader verifies); no other record carries one.
+  if (sourceContract(source) === "retained_preview_physics") {
+    await validateRetainedPrecision(source);
+    if (!same(run.retained_precision, source.retained_precision)) throw new Error(ANALYSIS_RETAINED_PRECISION_RECEIPT_MISMATCH);
+  } else if (Object.hasOwn(run, "retained_precision")) throw new Error(ANALYSIS_RETAINED_PRECISION_DOWNGRADE_FORBIDDEN);
   if (!same(run.diagnostics, source.diagnostics.map(source_annotation => ({ source_annotation })))) throw new Error("ANALYSIS_SOURCE_DIAGNOSTICS_MISMATCH");
   if (!["MECHANICS_SOLVED", "MODEL_INCOMPLETE"].includes(source.status.mechanics)) throw new Error("ANALYSIS_SOURCE_MECHANICS_STATUS_INVALID");
   const statuses = run.analysis_status;
