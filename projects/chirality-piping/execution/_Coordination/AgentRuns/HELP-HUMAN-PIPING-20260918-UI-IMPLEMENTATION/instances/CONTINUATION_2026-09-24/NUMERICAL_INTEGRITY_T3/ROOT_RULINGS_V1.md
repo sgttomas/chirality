@@ -10455,3 +10455,26 @@ Then I65 reruns TEXT, regenerates the profile and the pinned record, and re-conf
 - **I67's evidence:** every other file's outcomes are identical; 123 of 123 mutants killed.
 
 **The post-U6f round is complete:** I66's `6383e8e70e` (the Python sweep 1,843 passed, 0 failed) and I67's `b10ee5cf08`. **RV92 confirms both,** covering S-1, N-1 and the declared N-2 to N-5, the v3 case file, and RV88's U6a N-3 guard. **U6 then merges into NUM.** A new U6d item for T6's notice: no product caller of a transported successor exists, and every TS consumer is a T6 surface that refuses first.
+
+## RV87 confirms the identifier class closed; the syntactic residual accepted as a re-qualification obligation (ROOT, 2026-10-04 UTC)
+
+**RV87's confirmation** is `R/REVIEW_RV87/u4_g6_02/REVIEW.md` (sha256 `dabfdf5f…`; SHA256SUMS 9/9 OK). Verdict: **CONFIRMED** on `b43378d90a`, with 0 BLOCKING, 0 SHOULD-FIX and 3 NOTE findings.
+
+**Confirmed:**
+- **SF-1:** the five label sites are at 131 B, and the sixth site (lib.rs:1149, `global_dof`) is real.
+- **SF-2:** `copy()` is priced at its actual line, and the stale keys are gone.
+- **SF-3:** the enforcement is authoritative. RV87's four controls fail exactly, including the non-identifier fallback that was silent at G6, a moved entry and a stale key.
+- **N-1 is confirmed;** N-2 is confirmed apart from two labels.
+- **TEXT and every phase of the maximum reproduce;** W3 dense is 0.8929 M, 28.4 MB under 0.9 M.
+
+**The residual, ruled.** The candidate predicate is syntactic: an id aliased under a token-less local name is not a candidate. RV87 showed this is real, with an aliased `end` at :1721 that silently drops 85 KB. RV87 then established that **nothing currently hides behind it**:
+- all 410 positive-multiplicity non-candidate expressions were read by type, and none is an aliased identifier;
+- none of the 1,494 non-test lines added since `1e323058f3` produces text.
+
+**Accepted for this registration, as a bound re-qualification obligation.** It is recorded in QUALIFICATION.md and in the D-6 record. **Any code change on the D1 call graph re-runs TEXT and repeats RV87's non-candidate review,** unless the gap is first closed by RV87's suggested inversion (requiring an explicit table row for any bare-local expression priced by a non-identifier class). That obligation joins U9's gates and every re-registration.
+
+**Optional, non-gating, routed to I65:**
+- N-2: relabel the two leftover `suffix` rows (retained_product.rs:2332, :2351) as IN128;
+- N-3: strip the code comment from the `lib.rs:1149` audit key.
+
+**Registration now waits only for RV89's follow-on.**
