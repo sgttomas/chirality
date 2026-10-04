@@ -8803,3 +8803,32 @@ The two artefacts are therefore accepted with the readers.
 - **N3 → the carrier work:** the successor does not constrain the derivative's absolute/not_covered disclosures.
 - **N1 and N2 → the next reader round:** the table does not bind the policies and limits the readers enforce as G0 constants, and RV78's probes become schema tests.
 - **N4:** a re-serialized `§`, with the same JSON value; recorded.
+
+## Step 4 planned: decisions and dispatch (ROOT, 2026-10-03 UTC)
+
+I61's plan (`R/I61/step4_plan_01/PLAN.md`, SHA256SUMS OK, no machine paths) gives the route to the first public milestone. The sequence is:
+- **U1** (the real serializer) with **U2** (RV77-N4's owner binding);
+- **U3** (facade capture behind the permit gate);
+- **U4** (the memory profile and permit; the critical path, started now);
+- **U5** (the reference comparison) and **U6** (carriers and standing);
+- **U7** (eligibility switch-on);
+- **U9** (gates and the product PR).
+
+U8, the deferred witnesses, follows the milestone. The estimate is about 57–91 agent-hours plus 20–30 hours of review, and elapsed time is set by U4.
+
+**Decisions** (I61's numbering):
+1. **A1:** `retained_state_sha256` is the raw SHA256 of the retained-state bytes, by C1 §3's kernel-bytes rule and C2:91's `ledger_sha256` convention. It is a producer attestation; no reader recomputes it.
+2. **A2, D6a's exact list:** each case's ordinary `diagnostic_refs` lists exactly the diagnostics whose `affected_refs` name that case, once each, in envelope order. It excludes the `RETAINED_PRECISION_*` diagnostics and the legacy disclosure omitted under T1 (a). Invocation-level diagnostics are attributed to no case.
+3. **A4:** closed by the fan-in, together with RV78's carried-artefact review.
+4. **D38, the Run representation.** A Run exists if and only if a kernel schedule ran (C1:103: "`run:null` is legal only when no kernel schedule ran"; C3:167; RR:7262–7264). An early prepared-solve failure before any kernel schedule carries `run: null`, `run_ref: null` and a `capture` error with the actual cause. The readers' stricter rule ("native entered ⇒ Run") is relaxed to D38 in the next reader round. This is a ruled change, pinned there once the serializer emits such a receipt; it is not a silent weakening.
+5. **Precommit validation:** PP takes a path dependency on `result_export` and runs the Rust reader before transfer (I51's design). There is no cycle; ROOT checked that `result_export` does not depend on `product_physics`.
+6. **The first admission domain:** one load case, no combinations, the preview family, no pressure, capped counts. M is selected after U4 qualifies, within the provisional 3.75 GiB target.
+7. **Experiment 03's test permit** is a stub only in the disposable archive. Maintained code keeps its "no test values" rule.
+8. **The milestone reference:** I50's named oracle.
+9. **Owner-held:** stating M as a supported-machine figure. None is needed before U4 returns.
+
+**Dispatch:**
+- **I61:** experiment 03 (the early end-to-end slice through the actual facade function, with eligibility off), then U1 and U2.
+- **I65 (new):** U4 grant 1, the derivation plan, under `BRIEFS/I65_U4_MEMORY_PROFILE.md`.
+
+The next unused IDs are I66 and RV82.
