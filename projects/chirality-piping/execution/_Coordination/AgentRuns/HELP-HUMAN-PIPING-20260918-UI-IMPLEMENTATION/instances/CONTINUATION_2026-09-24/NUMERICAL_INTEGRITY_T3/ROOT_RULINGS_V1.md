@@ -8646,3 +8646,5 @@ Its notes are optional and recorded: N1, the receipt-only scope of `integral_rec
 - RV78 runs parity on 07e and probes D34 in all three readers.
 
 **The readers are accepted when that check passes.**
+
+**Snapshot 07e with Python, committed as `b890ce6c30`.** ROOT's diff against 07d shows only additions (4 mutations, 1 must-pass entry), with nothing changed or removed. Totals: 15 cases, 263 mutations, 22 must-pass entries. ROOT's Python run gives 365 passed. The removed Python lines are the harness's `int()` indexing, replaced by the strict rule. I63 and I64 adopt 07e.
