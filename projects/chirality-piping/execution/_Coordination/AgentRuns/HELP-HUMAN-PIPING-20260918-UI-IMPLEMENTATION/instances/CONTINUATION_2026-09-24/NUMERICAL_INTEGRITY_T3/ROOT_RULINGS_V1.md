@@ -10564,3 +10564,43 @@ Then I65 reruns TEXT, regenerates the profile and the pinned record, and re-conf
 - U5 rerun on the live successor bytes in both modes.
 
 An independent review (RV93) of grant 2 follows. Then the memory branch (U3 1d, G5, G6, the registration and grant 2) merges into NUM.
+
+## RV92 confirms N-9; U6 merged into NUM; the U6 reader delta routes U4 to G7 before the memory branch merges (ROOT, 2026-10-04 UTC)
+
+**RV92's addendum** is `R/REVIEW_RV92/u6f_02/ADDENDUM_01.md` (sha256 `ffc3c816…`; SHA256SUMS 53/53 OK). Verdict: **PASS**. I66's scope sentence truthfully and fully declares N-9 (a) and (b), and the three pins hold it. Re-checked:
+- Rust: 14/14 identical;
+- Python: 78 passed, identical;
+- Vitest: 224/224 identical.
+
+**O-1** (pin the TS code in the scope text) and **O-2** (Rust reaches its base header code after the reader's G0–G2) are optional and noted, not taken.
+
+I66's change is committed on the carriers branch as `5f8d6291b8` (4 files, one line each). ROOT checked each file's sha256 against I66's return. Records are in `R/I66/u6_postf_02`.
+
+**U6 is merged into NUM at `f172f86abe`.** The merge was clean: 40 files. On NUM's side, only four `PP/src` files differ from the carriers tip, so Python, TypeScript, schemas, fixtures and `result_export` are byte-identical to the reviewed tip. ROOT's acceptance runs on the merged tree:
+
+| Suite | Result |
+|---|---|
+| PP, all targets | 660 passed, 1 failed (t13), 1 ignored |
+| runner/headless | 85 passed, 2 failed (base's `load_reference`) |
+| result_export | 168 passed |
+| The 24-file Python sweep plus the three retained suites | 1,843 passed, 30 skipped, 0 failed (RV92's count) |
+
+Vitest is not re-run, since its inputs are byte-identical to the reviewed tip. Receipts keep `needs_recompute` standing, and reader eligibility stays closed until U7.
+
+**The integration finding (ROOT): the registered profile was priced on the pre-U6 reader.**
+- The memory branch carries the precommit reader from before U6.
+- U6 changes `result_export`'s production code: the F5 exact `diagnostic_refs` list in `retained_precision.rs`, plus `semantic_contract.rs` and `derivative.rs`.
+- No reviewed input changes. The one new `include_str!` is in a `#[cfg(test)]` module.
+- The code that T17 prices does change. Under D-6's extension and QUALIFICATION.md §11, that is a re-qualification trigger.
+
+**Ruled:** the memory branch does not merge into NUM until **U4 G7** (I65, `BRIEFS/I65_U4_G7_DELTA_REQUALIFICATION.md`, `d25d5393dc`) re-qualifies the registered profile on the integrated basis, and its delta is reviewed.
+- **Pass A** works on the clean merge tree of `f172f86abe` and `0c7827b6ad` (`ba1faa1c…`, extracted read-only for I65).
+- **Pass B** mechanically reruns Pass A's script on the final basis, after grant 2.
+- **The reviewer of G7 is RV89,** which reviewed G5, G6 and the pre-registration delta. It is resumed when G7 returns.
+
+**U3 grant 2 is adjusted (I61 informed):**
+- D-U6-5's `include_str!` assertion is deferred, because U6's carrier fixtures are not on the memory branch.
+- After grant 2 returns, ROOT commits it and merges NUM, with U6, into the memory branch.
+- I61's short follow-on there adds D-U6-5 and reruns the permit-path tests and U5 on the merged base, where the precommit reader is U6's 07h reader.
+
+**RV93 is briefed** (`BRIEFS/RV93_U3_GRANT2_REVIEW.md`, `501837c05b`) and is dispatched when grant 2 is committed.
