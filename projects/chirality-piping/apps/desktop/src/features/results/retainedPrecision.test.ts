@@ -100,7 +100,9 @@ describe('synthetic prepared receipt arithmetic controls, not execution evidence
   });
 });
 
-import { validateRetainedPrecision, validateRetainedPrecisionTransport, RetainedPrecisionError, phi512, eHat, stopFeasible, nativeSchedule, ordinaryAttempts, accountingRules, nativeRuns, productAttempts } from './retainedPrecision';
+import { validateRetainedPrecision, validateRetainedPrecisionTransport, RetainedPrecisionError, phi512, eHat, stopFeasible, nativeSchedule, ordinaryAttempts, accountingRules, nativeRuns, productAttempts, errorStageRecordAgrees } from './retainedPrecision';
+import milestoneSparseText from '../../../../../fixtures/results/retained_precision_milestone_successor_sparse_interactive.json?raw';
+import milestoneDenseText from '../../../../../fixtures/results/retained_precision_milestone_successor_dense_scrutiny.json?raw';
 import { canonicalSha256HexCheckedV1 } from '../../services/hashService';
 /** Snapshot 07e format rule (RV78-N1): a rehash index is a strict integral value, a JSON number that is never a
  * boolean, finite, integral, >= 0 and not -0 (0.0 is index 0; 0.5, true and -0 are not). A reference that is not
@@ -371,12 +373,13 @@ describe('review repair 07: decisions without a probe (reader-local)', () => {
     rejects(w => { w.trigger.tag = 'evaluation'; });
     rejects(w => { w.trigger.error = { tag: 'other' }; });
   });
-  it('D6a (checkpoint A): untyped diagnostic_refs are unique and resolve, without naming the case; typed references stay strict', () => {
+  it('D6a as amended by F5 (D-U6-7; A2): the untyped list is exactly the diagnostics naming the case; typed references stay strict', () => {
     const fixture = structuredClone(corpus.cases[0]), body = fixture.source.retained_precision.body, o = body.ordinary_attempts[0];
     const other = { ...structuredClone(fixture.source.diagnostics[0]), id: 'diagnostic:i64:model-level', affected_refs: null };
     fixture.source.diagnostics.push(other);
     const run = (edit: (b: any) => void) => { const b = structuredClone(body); edit(b); let e: any; try { ordinaryAttempts(b, fixture.source); } catch (x) { e = x; } return e ? { gate: e.gate, code: e.code } : 'pass'; };
-    expect(run(b => { b.ordinary_attempts[0].diagnostic_refs.push(other.id); })).toBe('pass');
+    expect(run(() => {})).toBe('pass'); // the repaired base's exact list (snapshot 07g)
+    expect(run(b => { b.ordinary_attempts[0].diagnostic_refs.push(other.id); })).toEqual(G('G5', 'ATTEMPT_MISMATCH')); // F5: a model-level diagnostic is not the case's
     expect(run(b => { b.ordinary_attempts[0].diagnostic_refs.push('diagnostic:i64:absent'); })).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
     expect(run(b => { b.ordinary_attempts[0].diagnostic_refs.push(o.diagnostic_refs[0]); })).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
     expect(run(b => { b.ordinary_attempts[0].diagnostic_refs.push(other.id); b.ordinary_attempts[0].formation.d5_diagnostic_ref = other.id; })).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
@@ -901,5 +904,41 @@ describe('source-bound recovery controls', () => {
       a.stages.proof_start = 'not_entered';
       a.preparation.members[0].work.conversions.value = 0;
     }, 'G5', 'RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH');
+  });
+});
+
+describe('07g round (I61 U6e): F5 and RV79-N1', () => {
+  it('RV79-N1: D37 agrees with the corpus table (native source and C3, never this reader) on every well-formed record', () => {
+    const table = corpus.d37, order = ['preparation', 'native', 'proof_start', 'projection', 'maxima', 'values', 'aliases', 'certificate', 'observables', 'g5a'];
+    expect(table.stage_order).toEqual(order); expect(table.records).toHaveLength(25);
+    const misses: string[] = [];
+    for (const kind of [...Object.keys(table.kinds), ...table.unknown_kinds]) for (const record of table.records) {
+      const stages = Object.fromEntries(order.map((k, i) => [k, table.marks[record[i]]]));
+      if (errorStageRecordAgrees(kind, stages) !== (table.kinds[kind] ?? []).includes(record)) misses.push(`${kind} ${record}`);
+    }
+    expect(misses).toEqual([]);
+  });
+  it('F5: U1\'s M09, M10 and M20 are refused on the real milestone receipts (resealed like corpus entries)', async () => {
+    for (const [text, classes] of [[milestoneSparseText, [25, 69, 3, 1]], [milestoneDenseText, [25, 69, 3, 2]]] as const) {
+      const doc = JSON.parse(text), source = doc.source, cid = source.retained_precision.body.cases[0].basis_ref.ref_id;
+      const accepted = await validateRetainedPrecision(structuredClone(source), structuredClone(doc.invocation));
+      expect(['relative_verified', 'absolute_verified', 'input_derived', 'non_quantity'].map(k => accepted.classifications.filter((c: any) => c.class === k).length)).toEqual(classes);
+      expect(accepted.numerical_eligible).toBe(false); expect(accepted.standing).toBe('needs_recompute');
+      const names = (d: any) => Array.isArray(d.affected_refs) && d.affected_refs.includes(cid), retained = (d: any) => String(d.code).startsWith('RETAINED_PRECISION_');
+      const exact = source.diagnostics.filter((d: any) => names(d) && !retained(d)).map((d: any) => d.id);
+      expect(source.retained_precision.body.ordinary_attempts[0].diagnostic_refs).toEqual(exact);
+      const m09 = source.diagnostics.filter(names).map((d: any) => d.id), m10 = source.diagnostics.filter((d: any) => !retained(d)).map((d: any) => d.id);
+      expect(m09).not.toEqual(exact); expect(m10).not.toEqual(exact);
+      const refs = ['retained_precision', 'body', 'ordinary_attempts', 0, 'diagnostic_refs'];
+      for (const [edits, want] of [
+        [[{ path: refs, op: 'set', value: m09 }], G('G5', 'ATTEMPT_MISMATCH')],
+        [[{ path: refs, op: 'set', value: m10 }], G('G5', 'ATTEMPT_MISMATCH')],
+        [[{ path: ['results', 0, 'recovery_method'], op: 'set', value: 'other' }], G('G6', 'ROW_METHOD_MISMATCH')],
+      ] as const) {
+        const edited = structuredClone(source); applyEdits(edited, edits as any); await rehash(edited);
+        expect(await firstFailure(edited, structuredClone(doc.invocation))).toEqual(want);
+      }
+      const resealed = structuredClone(source); await rehash(resealed); expect(resealed).toEqual(source);
+    }
   });
 });
