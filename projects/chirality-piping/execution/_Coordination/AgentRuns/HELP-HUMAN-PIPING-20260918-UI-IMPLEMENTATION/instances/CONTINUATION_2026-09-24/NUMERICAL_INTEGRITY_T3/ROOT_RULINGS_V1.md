@@ -10478,3 +10478,22 @@ Then I65 reruns TEXT, regenerates the profile and the pinned record, and re-conf
 - N-3: strip the code comment from the `lib.rs:1149` audit key.
 
 **Registration now waits only for RV89's follow-on.**
+
+## RV89 passes the pre-registration delta; one runner-test change before registration (ROOT, 2026-10-04 UTC)
+
+**RV89's follow-on** is `R/REVIEW_RV89/u4_g6_02/REVIEW.md` (sha256 `b7a6223e…`; SHA256SUMS 22/22 OK). Verdict: **PASS** on `b43378d90a`, with the updated `registration.diff` (`976b722d…`) applied in RV89's own copy. 0 BLOCKING, 0 SHOULD-FIX and 3 NOTE findings; **no reason not to register.**
+
+**Confirmed:**
+- **S-1:** runner/headless is identical to base when registered.
+- **S-2:** R8 is killed.
+- **S-3:** `admission_bound` adds the constant R, then compares with M; the edges hold; `required` = E + R; R6 is killed.
+- **The maximum reproduces:** 0.888054 / 0.892949 M.
+- **Stale is still enforced** for the RUSTFLAGS and release builds, and the pinned successor is unchanged.
+
+**N-1, ruled: fixed before registration.** S-1's new runner test calls the Direct entry on `rf_skew_t_cant_off_122`, an input inside D1. Under registration, the runner workspace (serde_json 1.0.151, against PP's reviewed 1.0.149) would therefore admit it and run W1. That makes **a live Direct caller outside PP's lock,** which ROOT's G6 ruling forbids without re-qualification ("any future Direct caller from another workspace requires re-qualification"). The successor bytes RV89 saw were identical, but that does not discharge the rule.
+- **The fix (I65):** the runner test reads the profile status from an input that D1 refuses after the build clause, such as the two-case variant (refused at D1.4). The report then still carries Registered or Stale, and **W1 never runs outside PP's lock.**
+- `registration.diff` is regenerated, and the registered runner/headless run is re-run.
+
+**N-2** (R9 is equivalent) and **N-3** (Addendum 2's "uncommitted" wording) are noted.
+
+**Then ROOT applies the registration.**
