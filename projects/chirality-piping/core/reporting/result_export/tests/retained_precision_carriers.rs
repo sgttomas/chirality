@@ -273,6 +273,18 @@ fn u6a_standing_rule_conjuncts_with_eligibility_set() {
         case["retained_precision"]["body"]["cases"][0]["status"] = json!(status);
         assert_eq!(s::retained_standing_from(&validation, &case, &refs), "needs_recompute", "{status}");
     }
+    // RV88 U6a S-1 (R05): with two cases the requested refs follow the receipt's case order.
+    let mut two = m.source.clone();
+    let mut second = two["retained_precision"]["body"]["cases"][0].clone();
+    second["basis_ref"] = json!({"ref_type":"load_case","ref_id":"case-2"});
+    two["retained_precision"]["body"]["cases"].as_array_mut().unwrap().push(second);
+    let ordered: Vec<Value> = two["retained_precision"]["body"]["cases"].as_array().unwrap().iter().map(|c| c["basis_ref"].clone()).collect();
+    assert_eq!(s::retained_standing_from(&validation, &two, &ordered), "numerically_eligible");
+    let reversed: Vec<Value> = ordered.iter().rev().cloned().collect();
+    let repeated = vec![ordered[0].clone(), ordered[1].clone(), ordered[0].clone()];
+    for wrong in [reversed, ordered[..1].to_vec(), ordered[1..].to_vec(), repeated] {
+        assert_eq!(s::retained_standing_from(&validation, &two, &wrong), "needs_recompute", "{wrong:?}");
+    }
 }
 
 #[test]
@@ -314,6 +326,7 @@ fn u6a_derivative_carries_the_receipt_and_it_comes_back_out() {
         let accounting = e["row_accounting"].as_array().unwrap();
         assert_eq!(accounting.len(), m.source["results"].as_array().unwrap().len());
         let mut counts = [0u64; 4];
+        let mut si_units = std::collections::BTreeMap::new();
         for c in &before.classifications {
             let i = m.source["results"].as_array().unwrap().iter().position(|r| r["id"] == c.result_id.as_str()).unwrap();
             match c.class {
@@ -324,6 +337,17 @@ fn u6a_derivative_carries_the_receipt_and_it_comes_back_out() {
                     let x = doc["result_envelope"]["row_disclosures"].as_array().unwrap().iter().find(|x| x["source_result_id"] == c.result_id.as_str()).unwrap();
                     let message = x["message"].as_str().unwrap();
                     assert!(message.contains(&format!("{bound_bits:016x}")) && message.contains("absolute bound"), "{message}");
+                    // S-2: the bound names the SI unit of the row's own unit.
+                    let si = match m.source["results"][i]["unit"].as_str().unwrap() {
+                        "mm" | "m" => "m",
+                        "MPa" | "Pa" => "Pa",
+                        "N" | "kN" => "N",
+                        "N*m" | "kN*m" => "N*m",
+                        "rad" => "rad",
+                        other => panic!("{other}"),
+                    };
+                    assert!(message.contains(&format!("b = {:e} {si} (binary64 {bound_bits:016x}), below", f64::from_bits(bound_bits))), "{message}");
+                    *si_units.entry(si).or_insert(0) += 1;
                     assert!(!message.contains("stop") && !message.contains("enclos"), "{message}");
                     assert_eq!(x["source_value"], m.source["results"][i]["value"]);
                 }
@@ -339,6 +363,8 @@ fn u6a_derivative_carries_the_receipt_and_it_comes_back_out() {
         }
         let expected = CLASSES.iter().find(|(mode, _)| *mode == m.mode).unwrap().1;
         assert_eq!(counts, expected, "{}", m.mode);
+        // The milestone's absolute rows span lengths, forces, moments and stresses.
+        assert!(["m", "N", "N*m", "Pa"].iter().all(|u| si_units.contains_key(u)), "{si_units:?}");
         // Withholding never touches the received values: every disclosure keeps
         // the source value and unit.
         assert_eq!(
@@ -405,10 +431,13 @@ fn u6a_downgrades_to_a_base_identity_are_refused() {
         tokens.as_object_mut().unwrap().remove("retained_precision");
         assert_eq!(s::for_source(&tokens).unwrap_err(), s::RETAINED_PRECISION_DOWNGRADE_FORBIDDEN);
         assert_eq!(s::numerical_use_standing(&tokens, &requested(&m.invocation)), "unsupported");
-        // ... and an absent-but-present member (null) is still a member.
-        let mut null = projected_base(&m.source);
-        null["retained_precision"] = Value::Null;
-        assert_eq!(s::for_source(&null).unwrap_err(), s::RETAINED_PRECISION_DOWNGRADE_FORBIDDEN);
+        // ... and any present member (null, empty, a string) is still a member.
+        for member in [Value::Null, json!({}), json!("receipt")] {
+            let mut carrying = projected_base(&m.source);
+            carrying["retained_precision"] = member.clone();
+            assert_eq!(s::for_source(&carrying).unwrap_err(), s::RETAINED_PRECISION_DOWNGRADE_FORBIDDEN, "{member}");
+            assert_eq!(s::for_source_metadata(&carrying).unwrap_err(), s::RETAINED_PRECISION_DOWNGRADE_FORBIDDEN, "{member}");
+        }
         // The reader's own projection is the unchanged base document.
         let base = projected_base(&m.source);
         assert_eq!(s::for_source(&base).unwrap().0["semantic_contract_id"], s::PREVIEW_PHYSICS_ID);
@@ -416,11 +445,60 @@ fn u6a_downgrades_to_a_base_identity_are_refused() {
         let mut seeded = base_document();
         seeded["result_envelope"]["retained_precision"] = m.source["retained_precision"].clone();
         assert_eq!(derive_with(&base, seeded).unwrap_err(), s::RETAINED_PRECISION_DOWNGRADE_FORBIDDEN);
-        let mut doc = derive(&base).unwrap();
+        let doc = derive(&base).unwrap();
         d::validate_document(&doc, &base).unwrap();
-        doc["result_envelope"]["retained_precision"] = m.source["retained_precision"].clone();
-        assert_eq!(d::validate_document(&doc, &base).unwrap_err(), s::RETAINED_PRECISION_DOWNGRADE_FORBIDDEN);
+        // RV88 U6a S-1 (R02): any member on a base derivative, null included.
+        for member in [m.source["retained_precision"].clone(), Value::Null, json!({}), json!("receipt")] {
+            let mut seeded = doc.clone();
+            seeded["result_envelope"]["retained_precision"] = member.clone();
+            assert_eq!(d::validate_document(&seeded, &base).unwrap_err(), s::RETAINED_PRECISION_DOWNGRADE_FORBIDDEN, "{member}");
+        }
+        // RV88 U6a S-1 (R01): one token on one non-first row of a base source is enough.
+        let last = base["results"].as_array().unwrap().len() - 1;
+        for index in [last, last / 2] {
+            let mut one = base.clone();
+            one["results"][index]["recovery_method"] = json!(rp::METHOD);
+            assert_eq!(s::for_source(&one).unwrap_err(), s::RETAINED_PRECISION_DOWNGRADE_FORBIDDEN, "{index}");
+            assert_eq!(s::numerical_use_standing(&one, &requested(&m.invocation)), "unsupported");
+            assert_eq!(derive(&one).unwrap_err(), s::RETAINED_PRECISION_DOWNGRADE_FORBIDDEN);
+            // The header-only metadata view cannot see rows.
+            assert!(s::for_source_metadata(&one).is_ok());
+        }
+        // Another method string is not the W1 token.
+        let mut other = base.clone();
+        other["results"][last]["recovery_method"] = json!("other_method");
+        assert!(s::for_source(&other).is_ok());
     }
+}
+
+const LEGACY: &str = include_str!("../../../../fixtures/product_preview/invented_mechanics_result.json");
+
+/// RV88 U6a S-1 (R06) and U6b S-1: a legacy 0.1.0 source is refused with a
+/// receipt member of any value, at raw, metadata, standing and derive, and with
+/// the W1 token on one row, at raw, standing and derive.
+#[test]
+fn u6a_legacy_sources_carrying_a_receipt_or_token_are_refused() {
+    let legacy: Value = serde_json::from_str(LEGACY).unwrap();
+    assert_eq!(legacy["schema_version"], "0.1.0");
+    assert!(s::for_source(&legacy).is_ok());
+    assert_eq!(s::numerical_use_standing(&legacy, &[]), "needs_recompute");
+    assert!(derive(&legacy).is_ok());
+    let m = &milestones()[0];
+    for member in [m.source["retained_precision"].clone(), Value::Null, json!({})] {
+        let mut carrying = legacy.clone();
+        carrying["retained_precision"] = member.clone();
+        assert_eq!(s::for_source(&carrying).unwrap_err(), s::RETAINED_PRECISION_DOWNGRADE_FORBIDDEN, "{member}");
+        assert_eq!(s::for_source_metadata(&carrying).unwrap_err(), s::RETAINED_PRECISION_DOWNGRADE_FORBIDDEN, "{member}");
+        assert_eq!(s::numerical_use_standing(&carrying, &[]), "unsupported");
+        assert_eq!(derive(&carrying).unwrap_err(), s::RETAINED_PRECISION_DOWNGRADE_FORBIDDEN);
+    }
+    let mut token = legacy.clone();
+    let last = token["results"].as_array().unwrap().len() - 1;
+    token["results"][last]["recovery_method"] = json!(rp::METHOD);
+    assert_eq!(s::for_source(&token).unwrap_err(), s::RETAINED_PRECISION_DOWNGRADE_FORBIDDEN);
+    assert!(s::for_source_metadata(&token).is_ok());
+    assert_eq!(s::numerical_use_standing(&token, &[]), "unsupported");
+    assert_eq!(derive(&token).unwrap_err(), s::RETAINED_PRECISION_DOWNGRADE_FORBIDDEN);
 }
 
 #[test]
@@ -510,68 +588,204 @@ fn u6a_each_class_maps_to_its_refusal_and_disclosure() {
     assert_eq!(s::class_binding_refusal(&C::NotCovered), Some(s::RULE_QUANTITY_NOT_COVERED));
     for class in [C::RelativeVerified, C::InputDerived, C::NonQuantity] {
         assert_eq!(s::class_binding_refusal(&class), None);
-        assert_eq!(d::class_disclosure("k", Some(&class)), None);
+        assert_eq!(d::class_disclosure("k", "N", Some(&class)), None);
     }
-    assert_eq!(d::class_disclosure("k", None), None);
-    let (code, message) = d::class_disclosure("element_local_axial_force", Some(&absolute)).unwrap();
+    assert_eq!(d::class_disclosure("k", "N", None), None);
+    let (code, message) = d::class_disclosure("element_local_axial_force", "kN", Some(&absolute)).unwrap();
     assert_eq!(code, d::RETAINED_ABSOLUTE_VERIFIED);
-    assert_eq!(message, format!("element_local_axial_force: retained_precision_absolute_verified; verified only to the receipt's absolute bound b = {:e} (binary64 3b58df09e8b2978b) in the SI unit of this quantity, below the relative accuracy floor; source value/unit and annotation retained; withheld from rule binding and reliance", f64::from_bits(0x3b58_df09_e8b2_978b)));
+    // RV88 U6a S-2: the bound names its SI unit (the unit the reader normalizes to).
+    assert_eq!(message, format!("element_local_axial_force: retained_precision_absolute_verified; verified only to the receipt's absolute bound b = {:e} N (binary64 3b58df09e8b2978b), below the relative accuracy floor; source value/unit and annotation retained; withheld from rule binding and reliance", f64::from_bits(0x3b58_df09_e8b2_978b)));
+    for (unit, si) in [("m", "m"), ("mm", "m"), ("rad", "rad"), ("N", "N"), ("kN", "N"), ("N*m", "N*m"), ("kN*m", "N*m"), ("Pa", "Pa"), ("MPa", "Pa")] {
+        let (_, text) = d::class_disclosure("k", unit, Some(&absolute)).unwrap();
+        assert!(text.contains(&format!(" {si} (binary64 3b58df09e8b2978b), below")), "{unit}: {text}");
+    }
     // The bound's bits are printed in full, leading zeros included.
-    let (_, tiny) = d::class_disclosure("k", Some(&C::AbsoluteVerified { bound_bits: 1 })).unwrap();
+    let (_, tiny) = d::class_disclosure("k", "Pa", Some(&C::AbsoluteVerified { bound_bits: 1 })).unwrap();
     assert!(tiny.contains("(binary64 0000000000000001)"), "{tiny}");
-    let (code, message) = d::class_disclosure("pipe_axial_membrane_stress_v2", Some(&C::NotCovered)).unwrap();
-    assert_eq!(code, d::RETAINED_NOT_COVERED);
-    assert_eq!(message, "pipe_axial_membrane_stress_v2: retained_precision_not_covered; no verified accuracy for this quantity kind; source value/unit and annotation retained; withheld from rule binding and reliance");
+    let not_covered = "pipe_axial_membrane_stress_v2: retained_precision_not_covered; no verified accuracy for this quantity kind; source value/unit and annotation retained; withheld from rule binding and reliance";
+    let (code, message) = d::class_disclosure("pipe_axial_membrane_stress_v2", "MPa", Some(&C::NotCovered)).unwrap();
+    assert_eq!((code, message.as_str()), (d::RETAINED_NOT_COVERED, not_covered));
+    // A unit the reader never classes absolute: still withheld, with no bound claimed.
+    for unit in ["", "mode_code", "furlong", "M"] {
+        let (code, message) = d::class_disclosure("pipe_axial_membrane_stress_v2", unit, Some(&absolute)).unwrap();
+        assert_eq!((code, message.as_str()), (d::RETAINED_NOT_COVERED, not_covered), "{unit}");
+    }
 }
 
-/// The shared three-language standing-parity scenarios (U6b and U6d consume
-/// the same file): the Rust carrier's standing and raw dispatch per case.
-#[test]
-fn u6a_shared_carrier_cases_rust() {
-    let cases: Value = serde_json::from_str(include_str!(
-        "../../../../fixtures/results/retained_precision_carrier_cases.json"
-    ))
-    .unwrap();
-    assert_eq!(cases["format"], "I66-U6-CARRIER-CASES-v1");
-    let fixtures: Vec<(String, Value)> = cases["fixtures"]
+const PREVIEW_SPARSE: &str = include_str!("../../../../fixtures/results/preview_physics_invented_sparse.json");
+const CASES: &str = include_str!("../../../../fixtures/results/retained_precision_carrier_cases.json");
+/// RR "RV88 on U6a, U6c, U6b (and U6d)": the only ruled differences between the
+/// languages' carriers (and F5's shared semantics); any other is a defect.
+const DECLARED: [&str; 4] = [
+    "I67-F1:unregistered_invalid_statement",
+    "I67-F2:display_only_binding_precheck",
+    "F-U6b-2:python_refuses_transport",
+    "F5:refused_statement_binding",
+];
+
+/// The shared file's fixtures, by id, as (source, invocation or Null).
+fn shared_fixtures(cases: &Value) -> Vec<(String, Value, Value)> {
+    cases["fixtures"]
         .as_object()
         .unwrap()
         .iter()
         .map(|(id, f)| {
             let text = match f["path"].as_str().unwrap() {
-                p if p.ends_with("sparse_interactive.json") => SPARSE,
-                p if p.ends_with("dense_scrutiny.json") => DENSE,
+                "fixtures/results/retained_precision_milestone_successor_sparse_interactive.json" => SPARSE,
+                "fixtures/results/retained_precision_milestone_successor_dense_scrutiny.json" => DENSE,
+                "fixtures/product_preview/invented_mechanics_result.json" => LEGACY,
+                "fixtures/results/preview_physics_invented_sparse.json" => PREVIEW_SPARSE,
                 p => panic!("{p}"),
             };
             assert_eq!(format!("{:x}", Sha256::digest(text.as_bytes())), f["sha256"].as_str().unwrap());
-            (id.clone(), serde_json::from_str(text).unwrap())
+            let doc: Value = serde_json::from_str(text).unwrap();
+            match f["shape"].as_str().unwrap() {
+                "milestone" => (id.clone(), doc["source"].clone(), doc["invocation"].clone()),
+                "raw" => (id.clone(), doc, Value::Null),
+                other => panic!("{other}"),
+            }
         })
-        .collect();
+        .collect()
+}
+/// One shared case or declared-difference entry applied to a fixture:
+/// (source, invocation if any, requested refs).
+fn apply_shared(c: &Value, fixture: &(String, Value, Value)) -> (Value, Option<Value>, Vec<Value>) {
+    let (mut source, mut invocation) = (fixture.1.clone(), fixture.2.clone());
+    for edit in c["edits"].as_array().unwrap() {
+        assert_eq!(edit["op"], "set");
+        let target = if edit["target"] == "source" { &mut source } else { &mut invocation };
+        let mut at = target;
+        for key in edit["path"].as_array().unwrap() {
+            at = match key {
+                Value::String(k) => &mut at[k.as_str()],
+                Value::Number(i) => &mut at[i.as_u64().unwrap() as usize],
+                _ => panic!("path"),
+            };
+        }
+        *at = edit["value"].clone();
+    }
+    let requested = if c["requested"] == "invocation" { requested(&fixture.2) } else { c["requested"].as_array().unwrap().clone() };
+    (source, (!c["invocation"].is_null()).then_some(invocation), requested)
+}
+
+/// The shared three-language standing-parity scenarios (U6b and U6d consume
+/// the same file): the Rust carrier's standing and raw dispatch per case,
+/// the F-5 guard forms on legacy and preview-physics-1 sources included.
+#[test]
+fn u6a_shared_carrier_cases_rust() {
+    let cases: Value = serde_json::from_str(CASES).unwrap();
+    assert_eq!(cases["format"], "I66-U6-CARRIER-CASES-v2");
+    let fixtures = shared_fixtures(&cases);
     let mut n = 0;
     for c in cases["cases"].as_array().unwrap() {
-        let doc = &fixtures.iter().find(|(id, _)| c["fixture"] == id.as_str()).unwrap().1;
-        let (mut source, mut invocation) = (doc["source"].clone(), doc["invocation"].clone());
-        for edit in c["edits"].as_array().unwrap() {
-            assert_eq!(edit["op"], "set");
-            let target = if edit["target"] == "source" { &mut source } else { &mut invocation };
-            let mut at = target;
-            for key in edit["path"].as_array().unwrap() {
-                at = match key {
-                    Value::String(k) => &mut at[k.as_str()],
-                    Value::Number(i) => &mut at[i.as_u64().unwrap() as usize],
-                    _ => panic!("path"),
-                };
-            }
-            *at = edit["value"].clone();
-        }
-        let invocation = (!c["invocation"].is_null()).then_some(invocation);
-        let requested = if c["requested"] == "invocation" { requested(&doc["invocation"]) } else { c["requested"].as_array().unwrap().clone() };
+        let fixture = fixtures.iter().find(|f| c["fixture"] == f.0.as_str()).unwrap();
+        let (source, invocation, requested) = apply_shared(c, fixture);
         assert_eq!(s::numerical_use_standing_with_context(&source, &requested, invocation.as_ref()), c["expected_standing"], "{}", c["id"]);
         let dispatch = match s::for_source(&source) { Ok(_) => "ok".to_string(), Err(e) => e };
         assert_eq!(dispatch, c["expected_dispatch"].as_str().unwrap(), "{}", c["id"]);
         n += 1;
     }
-    assert_eq!(n, 14);
+    assert_eq!(n, 20);
+    // The raw fixtures' guard cases are refused only through their edit.
+    for fixture in fixtures.iter().filter(|f| f.2.is_null()) {
+        assert!(s::for_source(&fixture.1).is_ok(), "{}", fixture.0);
+        assert_eq!(s::numerical_use_standing(&fixture.1, &[]), "needs_recompute", "{}", fixture.0);
+    }
+}
+
+/// Each ruled difference, with Rust's own expectation; Python asserts its own
+/// from the same entries, and TS (I67) its own.
+#[test]
+fn u6_declared_differences_rust() {
+    let cases: Value = serde_json::from_str(CASES).unwrap();
+    let fixtures = shared_fixtures(&cases);
+    let entries = cases["declared_differences"].as_array().unwrap();
+    let mut ids: Vec<&str> = entries.iter().map(|e| e["id"].as_str().unwrap()).collect();
+    ids.sort();
+    let mut declared = DECLARED.to_vec();
+    declared.sort();
+    assert_eq!(ids, declared);
+    for entry in entries {
+        let id = entry["id"].as_str().unwrap();
+        assert!(entry["ruling"].as_str().is_some_and(|r| !r.is_empty()), "{id}");
+        let languages: Vec<&String> = entry["expected"].as_object().unwrap().keys().collect();
+        assert_eq!(languages, ["python", "rust", "typescript"], "{id}");
+        let expected = &entry["expected"]["rust"];
+        for fid in entry["fixtures"].as_array().unwrap() {
+            let fixture = fixtures.iter().find(|f| fid == f.0.as_str()).unwrap();
+            let (source, invocation, requested) = apply_shared(entry, fixture);
+            match entry["subject"].as_str().unwrap() {
+                "standing" => assert_eq!(s::numerical_use_standing_with_context(&source, &requested, invocation.as_ref()), expected["standing"], "{id}"),
+                "transport" => {
+                    let got = match s::for_source_metadata(&source) { Ok(_) => "ok".to_string(), Err(e) => e };
+                    assert_eq!(got, expected["transport"].as_str().unwrap(), "{id}");
+                }
+                "binding" => {
+                    let rows = source["results"].as_array().unwrap();
+                    let got: Vec<Option<&str>> = rows.iter().map(|row| s::rule_binding_refusal(&source, row)).collect();
+                    let want: Vec<Option<&str>> = match expected["binding"].as_str().unwrap() {
+                        "by_validated_class" => {
+                            let v = rp::validate(&source, None).unwrap();
+                            rows.iter().map(|row| v.classifications.iter().find(|c| row["id"] == c.result_id.as_str()).and_then(|c| match c.class {
+                                rp::AccuracyClass::AbsoluteVerified { .. } => Some(s::RULE_QUANTITY_BELOW_VERIFIED_FLOOR),
+                                rp::AccuracyClass::NotCovered => Some(s::RULE_QUANTITY_NOT_COVERED),
+                                _ => None,
+                            })).collect()
+                        }
+                        every => {
+                            let code = every.strip_prefix("every_row:").unwrap();
+                            assert_eq!(code, s::RULE_QUANTITY_NOT_COVERED);
+                            vec![Some(s::RULE_QUANTITY_NOT_COVERED); rows.len()]
+                        }
+                    };
+                    assert!(want.contains(&None) || expected["binding"] != "by_validated_class", "{id}");
+                    assert_eq!(got, want, "{id}");
+                }
+                other => panic!("{other}"),
+            }
+        }
+    }
+}
+
+/// RV88 U6a N-3: the `#[doc(hidden)]` public seams are test seams. No product
+/// source file outside their defining module names them, and the defining
+/// modules use them exactly as pinned here (definition plus internal calls).
+#[test]
+fn u6_doc_hidden_seams_have_no_product_callers() {
+    const SEAMS: [(&str, &str, usize); 4] = [
+        ("class_binding_refusal", "core/reporting/result_export/src/semantic_contract.rs", 2),
+        ("retained_standing_from", "core/reporting/result_export/src/semantic_contract.rs", 3),
+        ("classification_summary_from", "core/reporting/result_export/src/semantic_contract.rs", 2),
+        ("class_disclosure", "core/reporting/result_export/src/derivative.rs", 3),
+    ];
+    let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../..").canonicalize().unwrap();
+    let mut files = Vec::new();
+    let mut stack = vec![root.clone()];
+    while let Some(dir) = stack.pop() {
+        for entry in std::fs::read_dir(&dir).unwrap() {
+            let path = entry.unwrap().path();
+            let name = path.file_name().unwrap().to_string_lossy().to_string();
+            if path.is_dir() {
+                if !matches!(name.as_str(), "target" | "node_modules" | "tests" | "execution" | "fixtures" | ".git" | ".venv" | "dist") {
+                    stack.push(path);
+                }
+            } else if name.ends_with(".rs") {
+                files.push(path);
+            }
+        }
+    }
+    assert!(files.len() > 50, "{}", files.len());
+    for (seam, home, uses) in SEAMS {
+        for file in &files {
+            let text = std::fs::read_to_string(file).unwrap();
+            // Product code only: an inline test module is not product code.
+            let product = text.split("#[cfg(test)]").next().unwrap();
+            let count = product.matches(&format!("{seam}(")).count();
+            let relative = file.strip_prefix(&root).unwrap().to_string_lossy().replace('\\', "/");
+            let expected = if relative == home { uses } else { 0 };
+            assert_eq!(count, expected, "{seam} in {relative}");
+        }
+    }
 }
 
 /// The relative count of a one-case expected summary.

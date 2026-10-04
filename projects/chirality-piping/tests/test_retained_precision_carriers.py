@@ -169,32 +169,94 @@ def test_standing_rule_conjuncts_with_eligibility_set():
         case = deepcopy(not_required)
         case["retained_precision"]["body"]["cases"][0]["status"] = status
         assert c._retained_standing_from(validation, case, refs) == "needs_recompute", status
+    # RV88 N-3 (Q06): with two cases the requested refs must follow the receipt's case order.
+    two = deepcopy(source)
+    second = dict(deepcopy(two["retained_precision"]["body"]["cases"][0]), basis_ref={"ref_type": "load_case", "ref_id": "case-2"})
+    two["retained_precision"]["body"]["cases"].append(second)
+    ordered = [case["basis_ref"] for case in two["retained_precision"]["body"]["cases"]]
+    assert c._retained_standing_from(validation, two, ordered) == "numerically_eligible"
+    for wrong in (ordered[::-1], ordered[:1], ordered[1:], ordered + ordered[:1]):
+        assert c._retained_standing_from(validation, two, wrong) == "needs_recompute", wrong
 
 
-def test_shared_carrier_cases_python():
-    """The 14 shared standing-parity scenarios: the same expectations Rust (U6a)
-    and TypeScript (U6d) read from this file."""
-    cases = json.loads((ROOT / "fixtures/results/retained_precision_carrier_cases.json").read_text())
-    assert cases["format"] == "I66-U6-CARRIER-CASES-v1"
-    fixtures = {}
+CASES = ROOT / "fixtures/results/retained_precision_carrier_cases.json"
+# RR "RV88 on U6a, U6c, U6b (and U6d)": the only ruled differences between the
+# languages' carriers; any other difference is a defect.
+DECLARED = {"I67-F1:unregistered_invalid_statement", "I67-F2:display_only_binding_precheck",
+            "F-U6b-2:python_refuses_transport", "F5:refused_statement_binding"}
+
+
+def shared_cases():
+    cases = json.loads(CASES.read_text())
+    assert cases["format"] == "I66-U6-CARRIER-CASES-v2"
+    docs = {}
     for fid, spec in cases["fixtures"].items():
         raw = (ROOT / spec["path"]).read_bytes()
         assert hashlib.sha256(raw).hexdigest() == spec["sha256"]
-        fixtures[fid] = json.loads(raw)
+        doc = json.loads(raw)
+        docs[fid] = doc if spec["shape"] == "milestone" else {"source": doc, "invocation": None}
+    return cases, docs
+
+
+def apply_case(case, doc):
+    """(source, invocation or None, requested refs) of one shared case."""
+    source, invocation = deepcopy(doc["source"]), deepcopy(doc["invocation"])
+    for edit in case["edits"]:
+        assert edit["op"] == "set"
+        target = source if edit["target"] == "source" else invocation
+        for key in edit["path"][:-1]:
+            target = target[key]
+        target[edit["path"][-1]] = edit["value"]
+    refs = requested(doc["invocation"]) if case["requested"] == "invocation" else case["requested"]
+    return source, (invocation if case["invocation"] is not None else None), refs
+
+
+def test_shared_carrier_cases_python():
+    """The shared standing-parity scenarios: the same expectations Rust (U6a)
+    and TypeScript (U6d) read from this file, the F-5 guard forms included."""
+    cases, docs = shared_cases()
     for case in cases["cases"]:
-        doc = fixtures[case["fixture"]]
-        source, invocation = deepcopy(doc["source"]), deepcopy(doc["invocation"])
-        for edit in case["edits"]:
-            assert edit["op"] == "set"
-            target = source if edit["target"] == "source" else invocation
-            for key in edit["path"][:-1]:
-                target = target[key]
-            target[edit["path"][-1]] = edit["value"]
-        refs = requested(doc["invocation"]) if case["requested"] == "invocation" else case["requested"]
-        context = invocation if case["invocation"] is not None else None
+        source, context, refs = apply_case(case, docs[case["fixture"]])
         assert c.numerical_use_standing(source, refs, context) == case["expected_standing"], case["id"]
         assert dispatch(source) == case["expected_dispatch"], case["id"]
-    assert len(cases["cases"]) == 14
+    assert len(cases["cases"]) == 20
+    # The raw fixtures' guard cases are refused only through their edit.
+    for fid in ("legacy_preview_0_1", "preview_physics_1_invented_sparse"):
+        assert dispatch(docs[fid]["source"]) == "ok" and c.numerical_use_standing(docs[fid]["source"], []) == "needs_recompute", fid
+
+
+def test_declared_differences_python():
+    """Each ruled difference, with Python's own expectation; Rust asserts its own
+    from the same entries, and TS (I67) its own."""
+    cases, docs = shared_cases()
+    entries = cases["declared_differences"]
+    assert {entry["id"] for entry in entries} == DECLARED and len(entries) == len(DECLARED)
+    for entry in entries:
+        assert entry["ruling"] and set(entry["expected"]) == {"rust", "python", "typescript"}, entry["id"]
+        expected = entry["expected"]["python"]
+        for fid in entry["fixtures"]:
+            source, context, refs = apply_case(entry, docs[fid])
+            if entry["subject"] == "standing":
+                assert c.numerical_use_standing(source, refs, context) == expected["standing"], entry["id"]
+            elif entry["subject"] == "transport":
+                assert dispatch_transport(source) == expected["transport"], entry["id"]
+            else:
+                got = [c.rule_binding_refusal(source, row) for row in source["results"]]
+                if expected["binding"] == "by_validated_class":
+                    classes = {item["result_id"]: item["class"] for item in rp.validate_retained_precision(source)["classifications"]}
+                    want = [{"absolute_verified": c.RULE_QUANTITY_BELOW_VERIFIED_FLOOR, "not_covered": c.RULE_QUANTITY_NOT_COVERED}.get(classes[row["id"]]) for row in source["results"]]
+                    assert c.RULE_QUANTITY_BELOW_VERIFIED_FLOOR in want and None in want, entry["id"]
+                else:
+                    want = [expected["binding"].split(":", 1)[1]] * len(source["results"])
+                assert got == want, entry["id"]
+
+
+def dispatch_transport(source):
+    try:
+        c._source_contract(source, check_receipt=False)
+        return "ok"
+    except ValueError as error:
+        return str(error)
 
 
 @pytest.mark.parametrize("mode", MODES)
@@ -254,6 +316,12 @@ def test_downgrades_are_refused(mode):
     null = deepcopy(base)
     null["retained_precision"] = None
     raises(c.RETAINED_PRECISION_DOWNGRADE_FORBIDDEN, c._source_contract, null)
+    # RV88 N-3 (Q02): one token on the last row alone is enough; another method string is not a token.
+    for index, method in ((-1, c.RETAINED_METHOD), (len(base["results"]) // 2, c.RETAINED_METHOD), (0, "other_method")):
+        one = deepcopy(base)
+        one["results"][index]["recovery_method"] = method
+        assert dispatch(one) == ("ok" if method == "other_method" else c.RETAINED_PRECISION_DOWNGRADE_FORBIDDEN), index
+        assert c.numerical_use_standing(one, refs) == ("needs_recompute" if method == "other_method" else "unsupported"), index
     # A base record carrying a receipt is refused; the legacy 0.2 builder refuses one too.
     record = build(base)
     c.validate_analysis_run_v0_3(record, base)
@@ -356,6 +424,49 @@ def test_legacy_record_wrapper_refuses_a_receipt(mode):
     assert build_preview_analysis_run_envelope(preview)["schema_version"] == "0.1.0"
     for receipt in (deepcopy(source["retained_precision"]), None):
         raises("ANALYSIS_RETAINED_PRECISION_DOWNGRADE_FORBIDDEN", build_preview_analysis_run_envelope, dict(preview, retained_precision=receipt))
+
+
+def test_legacy_sources_with_a_token_row_are_refused_on_every_python_path():
+    """RV88 U6b S-1: a legacy 0.1.0 source with the W1 token on one row (the last)
+    is refused by the raw dispatch, standing, the AnalysisRun router, the explicit
+    0.2 constructor and the 0.1.0 wrapper, as Rust and TS refuse it. The header-only
+    transport dispatch reads no rows, as Rust's for_source_metadata."""
+    from core.analysis_runs.records import build_preview_analysis_run_envelope
+    legacy = json.loads((ROOT / "fixtures/product_preview/invented_mechanics_result.json").read_text())
+    assert legacy["schema_version"] == "0.1.0"
+    manifest = {"input_manifest_ref": {"object_type": "InputManifest", "ref": "manifest:u6b"}, "input_manifest_hash": "1" * 64}
+    for method, refused in ((c.RETAINED_METHOD, True), ("other_method", False)):
+        token = deepcopy(legacy)
+        token["results"][-1]["recovery_method"] = method
+        if refused:
+            raises(c.RETAINED_PRECISION_DOWNGRADE_FORBIDDEN, c._source_contract, token)
+            assert c.numerical_use_standing(token, []) == "unsupported"
+            raises(c.RETAINED_PRECISION_DOWNGRADE_FORBIDDEN, lambda s: c.build_analysis_run(s, **manifest), token)
+            raises("ANALYSIS_LEGACY_SOURCE_DOWNGRADE_FORBIDDEN", lambda s: c.build_analysis_run_v0_2(s, **manifest), token)
+            raises("ANALYSIS_RETAINED_PRECISION_DOWNGRADE_FORBIDDEN", build_preview_analysis_run_envelope, token)
+        else:
+            assert c._source_contract(token)[0] == c.SEMANTIC_CONTRACT_ID
+            assert c.numerical_use_standing(token, []) == "needs_recompute"
+            assert c.build_analysis_run(token, **manifest)["schema_version"] == "0.2.0"
+            assert c.build_analysis_run_v0_2(token, **manifest)["schema_version"] == "0.2.0"
+            assert build_preview_analysis_run_envelope(token)["schema_version"] == "0.1.0"
+        assert c._source_contract(token, check_receipt=False)[0] == c.SEMANTIC_CONTRACT_ID
+    # A legacy receipt member, empty or null, is refused before the version branch.
+    for receipt in ({}, None):
+        raises(c.RETAINED_PRECISION_DOWNGRADE_FORBIDDEN, c._source_contract, dict(legacy, retained_precision=receipt))
+
+
+def test_private_seams_have_no_product_callers():
+    """As Rust's #[doc(hidden)] guard (RV88 U6a N-3): the eligibility-forcing seams
+    are used by compatibility.py itself and by tests only."""
+    seams = {"_retained_standing_from": 3, "_classification_summary_from": 2, "_class_binding_refusal": 2}
+    files = [path for path in (ROOT / "core").rglob("*.py")] + [path for path in (ROOT / "tools").rglob("*.py")]
+    assert len(files) > 20
+    for seam, uses in seams.items():
+        for path in files:
+            count = path.read_text(encoding="utf-8").count(f"{seam}(")
+            expected = uses if path == ROOT / "core/analysis_runs/compatibility.py" else 0
+            assert count == expected, (seam, str(path.relative_to(ROOT)))
 
 
 @pytest.mark.parametrize("mode", MODES)

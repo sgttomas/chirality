@@ -15,27 +15,47 @@ pub const CANONICALIZATION: &str = "openpipestress_jcs_ijson_v1";
 /// D-U6-2 (D2 4.9.9, option A): a successor row whose validated class is
 /// `absolute_verified` or `not_covered` is withheld from the derivative's
 /// values and disclosed with one of these reason codes. The bound is the
-/// receipt's published `fl-up(2^-64 S*)` in SI; the receipt travels with the
-/// document. No other claim (no stop-rule bound, no extrema enclosure) is made.
+/// receipt's published `fl-up(2^-64 S*)`, in the SI unit the message names; the
+/// receipt travels with the document. No other claim (no stop-rule bound, no
+/// extrema enclosure) is made.
 pub const RETAINED_ABSOLUTE_VERIFIED: &str = "retained_precision_absolute_verified";
 pub const RETAINED_NOT_COVERED: &str = "retained_precision_not_covered";
 pub const RETAINED_PRECISION_RECEIPT_BINDING_MISMATCH: &str =
     "RETAINED_PRECISION_RECEIPT_BINDING_MISMATCH";
-/// The disclosure of one validated class: its reason code and message.
+/// The SI unit that the reader normalizes a row's unit to (retained_precision.rs
+/// `normalized`, `row_kind`), and so the unit the receipt's absolute bound b
+/// is published in (RV88 U6a S-2: the message names it).
+fn si_unit(unit: &str) -> Option<&'static str> {
+    match unit {
+        "m" | "mm" => Some("m"),
+        "rad" => Some("rad"),
+        "N" | "kN" => Some("N"),
+        "N*m" | "kN*m" => Some("N*m"),
+        "Pa" | "MPa" => Some("Pa"),
+        _ => None,
+    }
+}
+fn not_covered_message(kind: &str) -> String {
+    format!("{kind}: {RETAINED_NOT_COVERED}; no verified accuracy for this quantity kind; source value/unit and annotation retained; withheld from rule binding and reliance")
+}
+/// The disclosure of one validated class of a row with the given `kind` and
+/// source `unit`: its reason code and message. The reader classes a row
+/// `absolute_verified` only in a unit it normalizes, so `si_unit` is always
+/// known there; were it not, the row is still withheld, with no bound claimed.
 #[doc(hidden)]
-pub fn class_disclosure(kind: &str, class: Option<&AccuracyClass>) -> Option<(&'static str, String)> {
+pub fn class_disclosure(kind: &str, unit: &str, class: Option<&AccuracyClass>) -> Option<(&'static str, String)> {
     match class? {
-        AccuracyClass::AbsoluteVerified { bound_bits } => Some((
-            RETAINED_ABSOLUTE_VERIFIED,
-            format!(
-                "{kind}: {RETAINED_ABSOLUTE_VERIFIED}; verified only to the receipt's absolute bound b = {:e} (binary64 {bound_bits:016x}) in the SI unit of this quantity, below the relative accuracy floor; source value/unit and annotation retained; withheld from rule binding and reliance",
-                f64::from_bits(*bound_bits)
+        AccuracyClass::AbsoluteVerified { bound_bits } => Some(match si_unit(unit) {
+            Some(si) => (
+                RETAINED_ABSOLUTE_VERIFIED,
+                format!(
+                    "{kind}: {RETAINED_ABSOLUTE_VERIFIED}; verified only to the receipt's absolute bound b = {:e} {si} (binary64 {bound_bits:016x}), below the relative accuracy floor; source value/unit and annotation retained; withheld from rule binding and reliance",
+                    f64::from_bits(*bound_bits)
+                ),
             ),
-        )),
-        AccuracyClass::NotCovered => Some((
-            RETAINED_NOT_COVERED,
-            format!("{kind}: {RETAINED_NOT_COVERED}; no verified accuracy for this quantity kind; source value/unit and annotation retained; withheld from rule binding and reliance"),
-        )),
+            None => (RETAINED_NOT_COVERED, not_covered_message(kind)),
+        }),
+        AccuracyClass::NotCovered => Some((RETAINED_NOT_COVERED, not_covered_message(kind))),
         _ => None,
     }
 }
@@ -220,7 +240,7 @@ pub fn derive_document(
         let review_missing = disposition == "exported_review" && !complete_metadata(row);
         let physical_missing =
             disposition == "exported_quantity" && mandatory && metadata.is_none();
-        let class = class_disclosure(kind, classes.as_ref().and_then(|c| c.get(id)));
+        let class = class_disclosure(kind, unit, classes.as_ref().and_then(|c| c.get(id)));
         let actual = if review_missing || physical_missing || class.is_some() {
             "disclosed"
         } else {
@@ -539,6 +559,7 @@ pub fn validate_document(doc: &Value, source: &Value) -> Result<(), String> {
         }
         let class = class_disclosure(
             row["kind"].as_str().ok_or("SOURCE_KIND_MISSING")?,
+            row["unit"].as_str().ok_or("SOURCE_UNIT_MISSING")?,
             classes.as_ref().and_then(|c| c.get(id)),
         );
         if class.is_some() {

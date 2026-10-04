@@ -159,34 +159,66 @@ def test_rv78_n2_y0_every_successor_statement_has_a_valid_derivative_shape(label
     check("results.v0.3.schema.yaml", results_document(source), True, label)
 
 
-def test_rv78_n2_receipt_and_branch_probes():
-    """RV78's Y1-Y11 probes (YAML_PROBES.json), each a discriminating pair: the
-    unmodified document validates, the single change is refused."""
-    base = results_document(CORPUS["cases"][0]["source"])
-    check("results.v0.3.schema.yaml", base, True, "Y0 control")
+def foreign_source_block_recovery():
+    """A shape-valid foreign member: the real physics-source n05 receipt (RV88 U6c N-1)."""
+    raw = json.loads((ROOT / "fixtures/product_preview/physics_source/n05-sparse_interactive.raw.json").read_text())
+    return deepcopy(raw["source_block_recovery"])
+
+
+def real_value_row(document):
+    """A real derivative value row (load-reference-1's first displacement), on the
+    document's own basis, so Y11's token is the only change (RV88 U6c N-1)."""
+    source = json.loads((ROOT / "fixtures/results/load_reference_connected_sparse.document.json").read_text())
+    row = deepcopy(source["result_envelope"]["result_sets"][0]["values"][0])
+    row["basis_ref"] = deepcopy(document["result_envelope"]["result_sets"][0]["basis_ref"])
+    return row
+
+
+@pytest.mark.parametrize("label,source", successors(), ids=lambda x: x if isinstance(x, str) else "")
+def test_rv78_n2_receipt_and_branch_probes(label, source):
+    """RV78's Y1-Y11 probes (YAML_PROBES.json), each a discriminating pair over every
+    successor statement: the unmodified document validates, the single change is
+    refused. Y4's member and Y11's row are shape-valid, so only the branch refuses."""
+    base = results_document(source)
+    check("results.v0.3.schema.yaml", base, True, f"Y0 {label} control")
+    with_row = deepcopy(base)
+    with_row["result_envelope"]["result_sets"][0]["values"] = [real_value_row(base)]
+    check("results.v0.3.schema.yaml", with_row, True, f"Y11 {label} control: a real value row")
     edits = {
         "Y1_receipt_policy_v1": lambda e: e["retained_precision"]["body"].__setitem__("policy", "M03-INTEGRITY-MP-v1"),
         "Y2_receipt_unknown_member": lambda e: e["retained_precision"]["body"].__setitem__("unknown", 1),
         "Y3_receipt_empty_body": lambda e: e.__setitem__("retained_precision", {"body": {}, "receipt_sha256": "0" * 64}),
-        "Y4_source_block_recovery": lambda e: e.__setitem__("source_block_recovery", {}),
+        "Y4_source_block_recovery": lambda e: e.__setitem__("source_block_recovery", foreign_source_block_recovery()),
         "Y5_preview_profile": lambda e: e["formulation_basis"].__setitem__("profile_id", "product_preview_mechanics_v1"),
         "Y6_limitations_changed": lambda e: e["formulation_basis"].__setitem__("limitations", e["formulation_basis"]["limitations"][:-1]),
         "Y7_contract_ref_mismatch": lambda e: e["semantic_contract_ref"].__setitem__("ref_id", PREVIEW),
         "Y8_no_contract_evidence": lambda e: e.pop("contract_evidence"),
-        "Y11_derivative_value_row_token": lambda e: e["result_sets"][0].__setitem__("values", [{"result_id": "x", "recovery_method": "contribution_preserving_multiprecision_v1"}]),
         "missing_receipt": lambda e: e.pop("retained_precision"),
+        "null_receipt": lambda e: e.__setitem__("retained_precision", None),
     }
     for name, edit in edits.items():
         document = deepcopy(base)
         edit(document["result_envelope"])
-        check("results.v0.3.schema.yaml", document, False, name)
+        check("results.v0.3.schema.yaml", document, False, f"{name} {label}")
+    token = deepcopy(with_row)
+    token["result_envelope"]["result_sets"][0]["values"][0]["recovery_method"] = "contribution_preserving_multiprecision_v1"
+    check("results.v0.3.schema.yaml", token, False, f"Y11_derivative_value_row_token {label}")
     # Y9 and Y10: the base identity's branch admits the projection, and refuses it
     # only once a receipt is added.
-    for label, source in successors():
-        base_document = results_document(projected(source))
-        check("results.v0.3.schema.yaml", base_document, True, f"Y10 {label} projection")
-        base_document["result_envelope"]["retained_precision"] = deepcopy(source["retained_precision"])
-        check("results.v0.3.schema.yaml", base_document, False, f"Y9 {label} receipt on the base branch")
+    base_document = results_document(projected(source))
+    check("results.v0.3.schema.yaml", base_document, True, f"Y10 {label} projection")
+    base_document["result_envelope"]["retained_precision"] = deepcopy(source["retained_precision"])
+    check("results.v0.3.schema.yaml", base_document, False, f"Y9 {label} receipt on the base branch")
+
+
+def test_rv78_n2_y4_member_is_shape_valid_where_it_belongs():
+    """Y4's foreign member is a real receipt, accepted on its own identity's
+    branch, so its refusal on the successor branch is the branch's."""
+    raw = json.loads((ROOT / "fixtures/product_preview/physics_source/n05-sparse_interactive.raw.json").read_text())
+    document = results_document(raw)
+    check("results.v0.3.schema.yaml", document, False, "physics-source n05 without its receipt")
+    document["result_envelope"]["source_block_recovery"] = foreign_source_block_recovery()
+    check("results.v0.3.schema.yaml", document, True, "physics-source n05 with its own receipt")
     historical = json.loads((ROOT / "fixtures/results/preview_physics_connected_sparse.json").read_text())
     check("results.v0.3.schema.yaml", results_document(historical), True, "Y10 historical preview")
 
@@ -322,8 +354,10 @@ def test_stress_neutral_successor_branch_is_transport_shape_only(mode):
         "preview_profile": lambda p: p["formulation_basis"].__setitem__("profile_id", "product_preview_mechanics_v1"),
         "preview_sha": lambda p: p["semantic_contract"].__setitem__("sha256", PREVIEW_SHA),
         "contract_ref_mismatch": lambda p: p["semantic_contract_ref"].__setitem__("ref_id", PREVIEW),
-        "source_block_recovery": lambda p: p.__setitem__("source_block_recovery", {}),
+        "source_block_recovery": lambda p: p.__setitem__("source_block_recovery", foreign_source_block_recovery()),
         "no_contract_evidence": lambda p: p.pop("contract_evidence"),
+        # RV88 U6c N-4 (W06): the successor branch requires the source annotations.
+        "no_source_annotations": lambda p: p.pop("source_annotations"),
     }
     for name, edit in refused.items():
         changed = deepcopy(packet)

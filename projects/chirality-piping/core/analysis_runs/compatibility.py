@@ -83,7 +83,7 @@ def _build_analysis_run(
 ) -> dict[str, Any]:
     received = deepcopy(dict(mechanics_result))
     if record_version == "0.2.0":
-        if any(key in received for key in ("producer", "numerical_quality", "formulation_basis", "contract_evidence", "source_block_recovery", "retained_precision")):
+        if any(key in received for key in ("producer", "numerical_quality", "formulation_basis", "contract_evidence", "source_block_recovery", "retained_precision")) or _has_retained_rows(received):
             raise ValueError("ANALYSIS_LEGACY_SOURCE_DOWNGRADE_FORBIDDEN")
         source_version = received.get("schema_version")
         if type(source_version) is not str or source_version not in ("0.1.0", "0.2.0"):
@@ -244,6 +244,13 @@ RULE_SOURCE_BLOCKS_SUMMARY_NOT_RELIABLE = "RULE_SOURCE_BLOCKS_SUMMARY_NOT_RELIAB
 
 
 
+def _has_retained_rows(source: Any) -> bool:
+    """F-5 (C1 G6): some raw row carries the W1 method token. Only the
+    successor may; every other identity, legacy 0.1.0 included, is refused."""
+    rows = source.get("results") if isinstance(source, Mapping) else None
+    return isinstance(rows, list) and any(isinstance(row, Mapping) and row.get("recovery_method") == RETAINED_METHOD for row in rows)
+
+
 def _is_retained(source: Any) -> bool:
     producer = source.get("producer") if isinstance(source, Mapping) else None
     return isinstance(producer, Mapping) and producer.get("semantic_contract_id") == PREVIEW_PHYSICS_RETAINED_CONTRACT_ID
@@ -371,6 +378,9 @@ def _source_contract(source: Mapping[str, Any], *, check_receipt: bool = True) -
     if version == "0.1.0":
         if any(key in source for key in ("producer", "numerical_quality", "formulation_basis", "contract_evidence", "source_block_recovery")):
             raise ValueError("LEGACY_SOURCE_METADATA_CONTRADICTION")
+        # F-5, as in Rust and TS: a legacy row with the W1 token is refused too.
+        if check_receipt and _has_retained_rows(source):
+            raise ValueError(RETAINED_PRECISION_DOWNGRADE_FORBIDDEN)
         return SEMANTIC_CONTRACT_ID, SEMANTIC_CONTRACT_SHA256, _CONTRACT_PATH
     if version != "0.2.0":
         raise ValueError("SOURCE_SCHEMA_VERSION_UNSUPPORTED")
@@ -402,7 +412,7 @@ def _source_contract(source: Mapping[str, Any], *, check_receipt: bool = True) -
     if not isinstance(formulation, Mapping) or set(formulation) != {"profile_id", "limitations"} or formulation.get("profile_id") != (LOAD_REFERENCE_PROFILE if load_reference else LOAD_REFERENCE_SOURCE_PROFILE if joined else "exact_straight_pressure_v2" if physics else "product_preview_mechanics_v1") or not isinstance(formulation.get("limitations"), list) or not formulation["limitations"] or not all(isinstance(item, str) and item for item in formulation["limitations"]):
         raise ValueError("SOURCE_FORMULATION_BASIS_UNSUPPORTED")
     # F-5 (C1 G6): no raw row outside the successor carries the W1 method token.
-    if check_receipt and isinstance(source.get("results"), list) and any(isinstance(row, Mapping) and row.get("recovery_method") == RETAINED_METHOD for row in source["results"]):
+    if check_receipt and _has_retained_rows(source):
         raise ValueError(RETAINED_PRECISION_DOWNGRADE_FORBIDDEN)
     if physics and isinstance(source.get("contract_evidence"), Mapping) and "load_reference_states" in source["contract_evidence"]:
         # Already refused by the closed physics namespaces; the shared code names
