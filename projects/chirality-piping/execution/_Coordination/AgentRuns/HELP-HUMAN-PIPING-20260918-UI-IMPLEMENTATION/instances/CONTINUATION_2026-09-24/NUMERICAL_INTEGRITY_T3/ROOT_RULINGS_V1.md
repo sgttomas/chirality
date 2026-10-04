@@ -11260,3 +11260,33 @@ Slice F's order is RETURN §3.
 6. **A fresh review** of the activation itself.
 
 The checklist is kept in the work graph's T3 row once U9 merges.
+
+## The RV94 repair round, part 1: the comments corrected and the summaries aligned (ROOT, 2026-10-04 UTC)
+
+**The stale comments (U9 decision 6)** are committed as **`fc575c7e56`**: comment-only and line-neutral, with line counts unchanged.
+- **I61** (`R/I61/u7_repair_01/`, RETURN.md `76586c50…`): PP `lib.rs:2185`, `:2286`, `:2919` and `retained_facade_tests.rs:1–2`. Line 1 is included because the stale sentence began there.
+- **I65** (`R/I65/u7_repair_01/`): `retained_memory.rs:6–8`, `:2847`, and the extra stale line `:2742` I65 found (`ProfileStatus` doc), fixed at ROOT's direction.
+- **The checks:** no Pass B rule key on an edited line; the FORMS block is untouched; PP compiles.
+
+**The summary alignment (RV94 S-1 and N-4)** is committed as **`8c84e7ae14`**, the U7 head (pushed).
+- **I66** (`R/I66/u7_repair_01/`, RETURN.md `3e956b18…`; SHA256SUMS 34/34 OK): Python and Rust `classification_summary` take the caller's requested refs and count as Current only when the standing with those refs is eligible, as TS does.
+- **The Rust edit** is line-neutral (`semantic_contract.rs` stays 855 lines), in a region Pass B classes unreachable from D1.
+- **The oracle diff (381 inputs)** changes only the summary, on exactly 6 inputs. **The summary is Current exactly when the token is eligible.**
+- **The suites:**
+
+  | Suite | Result |
+  |---|---|
+  | Python | 1,848 (2 new) |
+  | result_export | 171 (2 new) |
+  | PP, registered and Stale | 705/1 (t13) |
+  | runner | 85/2 |
+  | mutants | 8/8 killed |
+
+**ROOT** verified all 8 files' hashes against the three returns before committing.
+
+**Part 2 (I67),** on `8c84e7ae14`:
+- D-U7-4's summary forms (TS not-Current while Python and Rust are Current, the live-capture difference);
+- N-2's docstring;
+- N-3's scope clause.
+
+**Then RV94 confirms the whole round.**
