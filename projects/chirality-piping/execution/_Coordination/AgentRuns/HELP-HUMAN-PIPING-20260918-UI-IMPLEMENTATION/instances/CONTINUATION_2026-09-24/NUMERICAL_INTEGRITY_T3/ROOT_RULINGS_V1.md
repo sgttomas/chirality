@@ -8331,3 +8331,19 @@ Per workflow §5, the confirmed shared blocker (RV79-C1) is disposed of now.
 - removing or weakening a check (§2);
 - a path outside the fence;
 - the D19 native check failing.
+
+## RV80 confirmation: disposition D27–D30 (ROOT, 2026-10-03 UTC)
+
+**RV80 confirms the Rust reader at PASS:** 0 BLOCKING, 2 SHOULD-FIX, 4 NOTE. Every original finding is fixed or superseded. No check was removed or weakened beyond what a decision requires. The oracle again found 0 mismatches. RV80 disclosed that a stale script briefly set `DEVELOPER_DIR`; it stopped that run before any result was recorded and reran everything on the default toolchain.
+
+**The decisions:**
+- **D27, recorded inputs in class 1 (RV80-C1).** An ATTEMPT check in G5 class 1 reads recorded receipt fields, never a value derived through a native WORK equation. Otherwise D3's deferral would report a broken WORK chain as ATTEMPT. The idle (group-null) Run rule therefore reads the Run's recorded `invocation_before` against `invocation_limit`, as Python does (PY:439, 675). That replaces the condition with the recorded value; it does not remove it. A broken meter chain reports WORK. Rust changes. Shared pin from RV80's PR14, expected G5 WORK.
+- **D28, D5d widened (RV80-C2).** Every attempt reason carrying a quantity must resolve to a layout row of its Run's source with the same body and kind: `stop_rule`, `verification_estimate`, `charge` and `publication_enclosure` (C2:22–24, :54). Natively all four come from a layout row (FK/adaptive.rs:4169–4197, 4714–4720). The code is G5 ATTEMPT. All readers confirm or widen, with shared pins (at least `verification_estimate` and `publication_enclosure`).
+- **D29, the empty body inventory (RV80-C4).** A CaseSource with an empty body inventory cannot be emitted: the native source constructor refuses a source with no nodes (FK/retained/source.rs:498, `NoNodes`), and I57 §1 admits no empty complete vector. It fails G3 COVERAGE. The checkpoint-A withdrawal concerned the *member* inventory and stands. Python aligns (PY:1603–1605); Rust complies. Shared pin.
+- **D30, the native `run_ref` on a nonselected Run (RV80-C3).** No faithful shared base has a nonselected native Run (the deferred R-6b), so each reader adds a reader-local test that kills the M13-type mutant.
+
+**Noted:**
+- C5: three more hidden test hooks, with no path to eligibility (D14).
+- C6: class 1 continues on saturated values; D27 removes the one ATTEMPT reader of such a value that RV80 found.
+
+**Routing:** D27–D30 join the standing repair round of D19–D26, unchanged in form. I62 adds the pins and repairs Python (D28, D29). I63 covers D27, D28 and D30. I64 covers D28 and D30, and confirms D29.
