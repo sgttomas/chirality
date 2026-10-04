@@ -297,7 +297,8 @@ impl RetainedAdmissionReport {
 // No values of this type, including test values, exist. Adding a registered
 // production profile is a later reviewed source change, not a public constructor.
 enum RegisteredProfile {}
-#[derive(Clone, Copy)]
+/// Linear (U3 grant 1b): neither `Clone` nor `Copy`. The facade moves it onto the
+/// reserved-stack thread and into the observer, which uses it for G-B and G-C.
 pub(super) struct CapturePermit {
     _profile: &'static RegisteredProfile,
 }

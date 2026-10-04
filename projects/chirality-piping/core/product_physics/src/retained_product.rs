@@ -140,8 +140,8 @@ pub(super) struct ProductCapture {
     /// typed at its sites in `solve_load_case_observed` (C2 §5; D39). Only an
     /// installed observer records it; the observer=None route is unchanged.
     pub ordinary: Vec<OrdinarySeed>,
-    /// U3: the capture permit the facade installed with this observer (G-B), and
-    /// G-B's refusal if the late gate refused (the late capture is then skipped).
+    /// U3: the capture permit the facade moved into this observer (G-B, then G-C),
+    /// and G-B's refusal if the late gate refused (the late capture is then skipped).
     permit: Option<super::retained_memory::CapturePermit>,
     late_refusal: Option<super::retained_memory::PhaseRefusal>,
 }
@@ -3241,7 +3241,7 @@ impl ProductCapture {
         if let Err(e)=checked {self.error=Some(e);return;}
         // U3, G-B (I51 COMPOSITION §2): immediately before the late old-source
         // capture. A refusal skips the capture; the ordinary solve is unaffected.
-        if let Some(permit)=self.permit {
+        if let Some(permit)=self.permit.as_ref() {
             let facts=super::retained_memory::LateFacts{model,built,materials,case,restrained,springs};
             if let Err(refusal)=permit.check_late(&facts) {self.late_refusal=Some(refusal);return;}
         }
@@ -3304,6 +3304,8 @@ impl ProductCapture {
         Self {prepared_probe:true,permit:Some(permit),..Self::default()}
     }
     pub(super) fn late_refusal(&self)->Option<&super::retained_memory::PhaseRefusal> {self.late_refusal.as_ref()}
+    /// The facade's capture permit, owned by this observer (U3 grant 1b: linear), for G-C.
+    pub(super) fn permit(&self)->Option<&super::retained_memory::CapturePermit> {self.permit.as_ref()}
     /// Preparation over the single actual ordinary run's capture (U3 and tests).
     pub(super) fn prepare_case(self,ordinary:MechanicsEnvelope)->Result<PreparedCase,PreparedCaseFailure> {self.prepare_owned_case(ordinary)}
     fn prepare_owned_case(mut self, ordinary:MechanicsEnvelope) -> Result<PreparedCase,PreparedCaseFailure> {
