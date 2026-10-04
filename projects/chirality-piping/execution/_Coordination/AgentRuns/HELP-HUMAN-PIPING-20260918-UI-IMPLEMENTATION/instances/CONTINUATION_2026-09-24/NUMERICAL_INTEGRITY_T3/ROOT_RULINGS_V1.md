@@ -9690,3 +9690,40 @@ Branches merge into the carriers branch after review. U6f, a fresh complete-diff
 - **NOTEs N-1 to N-8:** I65's discretion within G5. N-3 suggests G-C check the longest-string atoms; N-4 notes a 0.22 GB over-count lever, available but not needed.
 
 **The G4 review cycle is closed.** G5 is running.
+
+## U4 G5 part 1 verified and committed; I65's four decisions; part 2 granted (ROOT, 2026-10-04 UTC)
+
+**I65's part 1** is `R/I65/u4_g5_01/` (SHA256SUMS 39/39 OK; no machine paths). ROOT committed it as `1e323058f3` on `codex/piping-f2a-memory-20261004` (from `8abb5274a9`) and pushed it.
+
+**ROOT's verification:**
+- **The production diff, read by ROOT:**
+  - the two authorized struct-construction edits are the only changes to `lib.rs` and `retained_product.rs` (`CompleteFacts{…, capture: &observer}`, `LateFacts{…, capture: &*self}`);
+  - `build.rs` never fails the build: any read failure gives `v1;unavailable`, and it adds no build-dependency;
+  - `REGISTERED_PROFILES` is the empty slice `&[]`, and `admission()` constructs a permit only from a registered index with no refusal. The bound is `Unpriced` until part 2. **So no permit can be constructed, in two independent ways** (decision 7).
+- **ROOT's run** (default toolchain): PP `--lib` gave 522 passed, 1 failed (t13), 1 ignored, with 23 new tests.
+- **The production build** emits a one-line identity (`v1;rustc.release=1.97.1;…;target=aarch64-apple-darwin;…`) and the reviewed-input hashes. The PP lock hash is `4f494db6…`, matching G4's record.
+- **I65's evidence:**
+  - the 324-line fixture sweep is byte-identical to base, including every public admission-report field;
+  - PP is base plus 23 tests, and runner/headless is identical;
+  - 83 of 84 mutants are killed. The survivor (`build_status` ignoring bindings) is unobservable while nothing is registered.
+
+**I65's decisions, ruled:**
+1. **The reviewed-lock record, accepted as built:** build-time hashing with the self-contained SHA-256. It is tested against `sha2`, it adds no Cargo manifest dependency, and it only gates fail-closed: a wrong hash gives `Stale`. RV89 verifies it independently against `sha2`, on the NIST vectors and the padding edges.
+2. **RV87 S-4, the restrained and springs capacities: accepted as built.** G-B reads lengths through the slices, and O prices the capacities by construction law from those lengths. No hook change for I61.
+3. **The late capture as its own fact: not added.** G-C's adapter capacity tally measures it after it is made. That meets S-6(c)'s intent without a new observer field outside the fence.
+4. **R-4's remaining limit: accepted as stated.** A name rebound with a different type within one function body can lose calls. At this basis those calls carry no text and close no cycle. The general fix over-approximates to 3.26 GB with an incomplete text run, so it is not adopted for D1. RV83 confirms the R-4 record.
+
+**Also recorded:**
+- **The API correction (RV87 S-3):** `admit` returns `Result<(CapturePermit, RetainedAdmissionReport), RetainedAdmissionReport>`.
+- **The N1 reserve** is tightened to grant 1b's exact reservation, about 0.9 KB.
+
+**Part 2 is granted.** It covers:
+- the cap-priced constants as in-build expressions, with the FK resource module;
+- RV84's C-N1(b), C-N2 and C-N3, and RV87's S-1, S-2, N-1 and N-2;
+- the witness tests W1–W7 at R/16, and the allocation challenge;
+- carry items 3, 8 and 11;
+- RV85 U1, optional.
+
+**Review:** RV89 (fresh) reviews part 1 now under `BRIEFS/RV89_U4_G5_REVIEW.md`, and part 2 when it lands. RV83 confirms R-4 and RV87's S-2 at part 2.
+
+The next unused IDs are I68 and RV90.
