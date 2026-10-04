@@ -10233,3 +10233,28 @@ Then I65 reruns TEXT, regenerates the profile and the pinned record, and re-conf
 3. **The two test hunks outside U4's fence** in registration.diff are applied with the entry, as part of the same reviewed change.
 
 **The sequence:** I65's 2(a) addendum, then ROOT commits G6 unregistered. **RV89** then reviews G6 and registration.diff, and **RV87** confirms the identifier audit. **ROOT applies the registration only after both pass,** and selects M = 4,026,531,840 B under D-7. That makes permits constructible in the registered dev/test build on this host. Reader eligibility and public activation stay closed until U7.
+
+## U6d follow-up (round 03) verified and committed; all of U6 is green on the carriers branch (ROOT, 2026-10-04 UTC)
+
+**I67's round 03** is `R/I67/u6d_typescript_03/` (SHA256SUMS 29/29 OK; no machine paths). ROOT committed it as `76477534f6` on `codex/piping-f2a-carriers-20261004` and pushed it.
+
+**What it does:**
+- **TS consumes case format v2:** 20 cases, raw and milestone fixtures, each sha-checked.
+- **F1 and F2 come from the shared `declared_differences`,** replacing the TS-local pin. I67 confirms that all four of I66's `typescript` expectations are correct, by test.
+- **The absolute label's unit** uses Rust's nine-entry SI table, and an unknown unit claims no bound. TS emits only the display label, never the derivative message, because every successor output is refused in TS; the label's b rounded upward to 3 significant digits is by design.
+- **RV91's N-1:** SF-1 tests on the 0.1.0 and 0.2.0 legacy shapes and on a later-row token.
+
+**ROOT's verification:**
+- The only product-code removal is the old four-entry unit map, replaced by the stricter nine-entry table.
+- **ROOT's runs on the carriers branch:** Vitest **3,466/3,466**, and `tsc` clean. The 7 failures expected after the v2 move now pass.
+- **I67's evidence:**
+  - 3,437 outcomes unchanged;
+  - 21 new tests;
+  - the sweep of 63 existing-identity and 17 successor envelopes is identical;
+  - 118 of 118 mutants killed.
+
+**The carriers branch now holds all of U6 with every repair,** and is green: Rust result_export 167, the Python sweep 1,843, and desktop Vitest 3,466.
+
+**Next:**
+- RV91 confirms round 03, and RV88 confirms I66's repair round (in flight).
+- **Then U6f:** a fresh complete-diff review of U6 against NUM, with the three-language parity table and the R-1 carrier-interface items C-1 to C-3.
