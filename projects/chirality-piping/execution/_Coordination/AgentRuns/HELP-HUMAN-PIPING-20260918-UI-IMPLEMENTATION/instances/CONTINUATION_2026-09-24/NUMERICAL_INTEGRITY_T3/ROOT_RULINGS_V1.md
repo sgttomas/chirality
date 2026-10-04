@@ -9727,3 +9727,32 @@ Branches merge into the carriers branch after review. U6f, a fresh complete-diff
 **Review:** RV89 (fresh) reviews part 1 now under `BRIEFS/RV89_U4_G5_REVIEW.md`, and part 2 when it lands. RV83 confirms R-4 and RV87's S-2 at part 2.
 
 The next unused IDs are I68 and RV90.
+
+## U6e (the reader round) verified and committed; RV90 dispatched (ROOT, 2026-10-04 UTC)
+
+**I61's U6e** is `R/I61/u6e_reader_round_01/` (SHA256SUMS 19/19 OK; no machine paths). ROOT committed it as `5e1e2625ac` on `codex/piping-f2a-readers-round-20261004` (from `844448112f`) and pushed it.
+
+**ROOT's verification:**
+- **The removed lines, read by ROOT:**
+  - D6a's "need not name the case" comments are removed. D6a's unique-and-resolve check is **kept**, and F5's exact-list check is **added** in all three readers.
+  - TypeScript's D37 check moved, unchanged, into the helper `errorStageRecordAgrees`, which `productAttempts` calls.
+  - The two flipped tests (Rust, TS) asserted 07f's relaxed rule; they now assert F5's refusal, which is the ruled change.
+  - The count pins go from 268 to 274.
+- **ROOT's runs** (default toolchain): result_export gave **163/163** (+4), and the Python contract tests **372/372** (+10). The corpus sha256 is `aa8e930e…`, as recorded.
+
+**I61's evidence:**
+- TS vitest 444 (+8) and `tsc` 0;
+- 0 outcome changes from 07f, other than the 6 new F5 mutations;
+- the milestone receipts still give 25/69/3/1 and 25/69/3/2, with standing `needs_recompute`;
+- 22 of 22 mutants killed.
+
+**What it contains:**
+- **F5:** the readers enforce A2's exact per-case list, which kills U1's M09 and M10 at the readers (M20 at G6). The 15 corpus bases were repaired: only `diagnostic_refs` and the receipt hash changed, and each repair is listed.
+- **RV79-N1:** a D37 table derived from native source alone, pinned as the corpus's `d37`, from which every reader's D37 test now takes its expectations. This is a U7 condition. RV79's M35 and M37 are killed.
+- **RV80-N2:** `integral_receipt`'s receipt-only scope is pinned in Rust and Python.
+
+**Review:** a fresh **RV90** reviews U6e under `BRIEFS/RV90_U6E_READER_ROUND_REVIEW.md`, including an independent derivation of the D37 table.
+
+**I61 is idle until U4 G5 part 2 returns.** Then it takes U3 grant 2.
+
+The next unused IDs are I68 and RV91.
