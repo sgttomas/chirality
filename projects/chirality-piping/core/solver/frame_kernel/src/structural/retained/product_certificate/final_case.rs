@@ -345,6 +345,9 @@ pub struct ProductCertificateSpent<'a> {
     projection_conversions:WorkTotal,
     lane_errors:[Option<bridge::BridgeError>;2],completion_merged:bool,
     trace_copy_work:TraceCopyWork,
+    /// RV77-N4 (I61 U2, failure path): the proof's anchor once it exists, so the
+    /// work of a refused proof stays structurally bound to its selected owner.
+    anchor:Option<std::sync::Arc<ProofAnchor>>,
 }
 impl<'a> ProductCertificateSpent<'a> {
     fn new(rows: &'a [ProductFinalRow<'a>]) -> Self {
@@ -363,7 +366,13 @@ impl<'a> ProductCertificateSpent<'a> {
             prepared_capacities: [0; 6],
             projection_outcomes:Vec::new(),projection_conversions:WorkTotal::zero(),
             lane_errors:[None,None],completion_merged:false,trace_copy_work:TraceCopyWork::default(),
+            anchor:None,
         }
+    }
+    /// RV77-N4 (I61 U2): whether this work belongs to a proof started on `owner`'s
+    /// own prepared solve. False before the anchor exists (a refused proof start).
+    pub fn owner_matches(&self,owner:&adaptive::RetainedSolve)->bool {
+        self.anchor.as_ref().is_some_and(|anchor|anchor.matches_owner(owner))
     }
     pub fn typed_trace<'b>(&'b self,copies:&mut TraceCopyWork)->ProductProofTrace<'b> {
         copies.record::<ProductProofTrace<'_>>();
@@ -429,7 +438,7 @@ impl<'a> ProductCertificateSpent<'a> {
             numeric:self.numeric, comparisons:self.comparisons, visits:self.visits,
             scalar_operations:self.scalar_operations, capacities:self.capacities, prepared_capacities:self.prepared_capacities,
             projection_outcomes:self.projection_outcomes,projection_conversions:self.projection_conversions,
-            lane_errors:self.lane_errors,completion_merged:self.completion_merged,trace_copy_work:self.trace_copy_work }
+            lane_errors:self.lane_errors,completion_merged:self.completion_merged,trace_copy_work:self.trace_copy_work,anchor:self.anchor }
     }
     fn retain_lane(&mut self,result:Result<source_residual::LaneReadouts,bridge::BridgeError>,work:ResidualWork)
         ->Result<source_residual::LaneReadouts,ProductFailure> {
@@ -1602,6 +1611,8 @@ impl std::fmt::Debug for ProductProofFailure {
 impl ProductProofFailure {
     pub fn failure(&self)->&ProductFailure { &self.failure }
     pub fn work(&self)->&ProductCertificateSpent<'static> { &self.work }
+    /// RV77-N4 (I61 U2, failure path): structural owner binding of a refused proof.
+    pub fn owner_matches(&self,owner:&adaptive::RetainedSolve)->bool { self.work.owner_matches(owner) }
 }
 pub struct ProductProofDraft<'s,'m> { data:ProofData<'s,'m>, work:ProductCertificateSpent<'static> }
 impl<'s,'m> ProductProofStartSpent<'s,'m> {
@@ -1622,6 +1633,7 @@ pub(crate) fn begin_prepared_product<'s,'m>(invocation:&RecordedInvocation,run:u
         work.prepared_capacities[4]=std::mem::size_of::<ProofAnchor>().checked_add(2*std::mem::size_of::<usize>())
             .ok_or(ProductFailure{cause:Cause::CountRange("proof anchor layout")})?;
         let anchor=std::sync::Arc::new(ProofAnchor{owner:stamp});
+        work.anchor=Some(std::sync::Arc::clone(&anchor));
         if facts.len()!=source.members().len() || specs.is_empty() {return Err(bad("prepared facts/specs"));}
         let mut values=work.prepared_reserve(0,specs.len())?;
         for spec in specs {

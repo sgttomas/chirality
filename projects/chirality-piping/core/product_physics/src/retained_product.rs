@@ -90,6 +90,11 @@ pub(super) struct ProductCapture {
     pub adapter: AdapterWork,
     pub invocation_calls: usize,
     pub invocation_mode: Option<PreviewSolverMode>,
+    /// RV82-S2 (I61 U1 grant 2): the actual invocation's identity, its
+    /// `source_blocks_invocation_v1` digest, so a serializer binds structurally to
+    /// the invocation this capture observed (not only to its mode). Untracked by
+    /// the adapter arrays (receipt bytes unchanged; counted by U4).
+    pub invocation_digest: Option<String>,
     pub observation_calls: usize,
     pub observations: Option<SolverObservations>,
     /// Successfully allocated case/mode-basis/parity-basis capacities, even on later failure.
@@ -300,6 +305,7 @@ impl ProductCapture {
         }
         if !self.adapter.enter(AdapterEvent::MapWrite, 1) { self.fail("invocation accounting"); return; }
         self.invocation_mode = Some(mode);
+        self.invocation_digest = capture.map(|c| c.borrowed_digest().clone());
     }
     fn fail(&mut self, s: impl Into<String>) {
         if self.error.is_none() {
@@ -3421,6 +3427,8 @@ impl PreparedCase {
         observer.prepare_owned_case(ordinary)
     }
     pub(super) fn ordinary(&self)->&MechanicsEnvelope {self.ordinary.as_ref().expect("owned ordinary before attempt")}
+    /// The owned ordinary envelope, if this case still owns it (no panic).
+    pub(super) fn owned_ordinary(&self)->Option<&MechanicsEnvelope> {self.ordinary.as_ref()}
     pub(super) fn solve_native(&mut self) -> Result<(),&CaptureError> {
         if self.trace.stages[trace::Stage::Native as usize]!=trace::StageState::NotEntered {
             return Err(&CaptureError::PreparedAttemptConsumed);
@@ -3488,7 +3496,7 @@ pub(super) enum PreparedCandidateError {Capture(CaptureError),Proof(k::ProductPr
     Values{failure:k::ProductValuesFailure,proof:k::ProductProofFailure},Abandoned{cause:CaptureError,proof:k::ProductProofFailure},Numeric,Observable,G5a}
 pub(super) struct PreparedCandidateRefusal {
     pub ordinary:MechanicsEnvelope,prepared:PreparedCase,pub error:PreparedCandidateError,
-    pub certificate:Option<k::CertifiedProductProof>,pub values:Option<k::FrozenProductValues>,
+    certificate:Option<k::CertifiedProductProof>,pub values:Option<k::FrozenProductValues>,
 }
 pub(super) struct PrivatePreparedCandidate { envelope:MechanicsEnvelope,prepared:PreparedCase,
     certificate:k::CertifiedProductProof }
@@ -3500,6 +3508,13 @@ impl PrivatePreparedCandidate {
     pub(super) fn local_work(&self)->(&ScalarWork,&[PreparedAssociation]){(&self.prepared.overlay_work,&self.prepared.associations)}
 }
 impl PreparedCandidateRefusal {
+    /// U2 (failure path): read-only; a serialized refusal binds it structurally.
+    pub(super) fn certificate(&self)->Option<&k::CertifiedProductProof>{self.certificate.as_ref()}
+    /// The refused proof's own failure work, when a proof was started.
+    pub(super) fn proof_failure(&self)->Option<&k::ProductProofFailure>{
+        match &self.error {PreparedCandidateError::Proof(e)=>Some(e),
+            PreparedCandidateError::Values{proof,..}|PreparedCandidateError::Abandoned{proof,..}=>Some(proof),_=>None}
+    }
     pub(super) fn capture(&self)->&ProductCapture{&self.prepared.capture}
     pub(super) fn local_work(&self)->(&ScalarWork,&[PreparedAssociation]){(&self.prepared.overlay_work,&self.prepared.associations)}
 }
@@ -3733,6 +3748,18 @@ impl PreparedCandidateRefusal {
         assert_eq!(counts,next.capture().adapter.counts.get());
         assert!(matches!(&next.error,PreparedCandidateError::Capture(CaptureError::PreparedAttemptConsumed)));
         (next,old)
+    }
+}
+#[cfg(test)]
+impl PreparedCandidateRefusal {
+    /// I61 U2 (failure path) control: exchange the refusal causes (and their proof
+    /// work) of two refusals whose public facts are identical.
+    pub(super) fn test_swap_error(&mut self, other: &mut Self) {
+        std::mem::swap(&mut self.error, &mut other.error);
+    }
+    /// The same for a commit refusal's surviving certified proof.
+    pub(super) fn test_swap_certificate(&mut self, other: &mut Self) {
+        std::mem::swap(&mut self.certificate, &mut other.certificate);
     }
 }
 #[cfg(test)]

@@ -2704,7 +2704,7 @@ fn i51_atomic_commit_accounting_refusal_keeps_all_checked_work() {
     let refusal=match prepared.project_candidate(){Err(e)=>e,Ok(_)=>panic!("commit permit should refuse")};
     assert_eq!(serde_json::to_vec(&refusal.ordinary).unwrap(),original);
     assert!(matches!(refusal.error,PreparedCandidateError::Capture(CaptureError::Accounting(_))));
-    let proof=refusal.certificate.as_ref().expect("numerical work survives commit refusal");assert!(proof.passed());
+    let proof=refusal.certificate().expect("numerical work survives commit refusal");assert!(proof.passed());
     assert_eq!(proof.work().source_correction_calls().unwrap().exact(),Ok(2));assert!(refusal.capture().adapter.fault.get().is_some());
 }
 
@@ -3038,13 +3038,13 @@ fn i61_failure_prefixes_null_complete_and_adapter_prefix() {
     let probe=|allowed:u64|{let (_,prepared)=i51_ready_for_controls();let mut counts=prepared.capture().adapter.counts.get();
         counts[E::MapWrite as usize]=u64::MAX-allowed;prepared.capture().adapter.counts.set(counts);
         match prepared.project_candidate(){Err(e)=>e,Ok(_)=>panic!("permit {allowed} committed")}};
-    let copied=|r:&retained_product::PreparedCandidateRefusal|r.certificate.is_some() && r.capture().verdicts.len()==rows;
+    let copied=|r:&retained_product::PreparedCandidateRefusal|r.certificate().is_some() && r.capture().verdicts.len()==rows;
     let (mut lo,mut hi)=(0u64,writes-1);assert!(copied(&probe(hi)));
     while lo<hi {let mid=lo+(hi-lo)/2;if copied(&probe(mid)){hi=mid;}else{lo=mid+1;}}
     let refusal=probe(lo);
     assert!(matches!(refusal.error,PreparedCandidateError::Capture(CaptureError::Accounting(_))));
     let adapter=&refusal.capture().summary_coverage;assert!(adapter.len()<nb,"adapter holds a strict prefix");
-    let certified=refusal.certificate.as_ref().unwrap();assert_eq!(certified.summary_coverage().len(),nb);
+    let certified=refusal.certificate().unwrap();assert_eq!(certified.summary_coverage().len(),nb);
     let view=refusal.typed_trace(&mut ProjectionWork::default()).unwrap();
     i61_assert_roster(&view,i61_owner(refusal.capture()),certified.summary_coverage());
     println!("I61_ADAPTER_PREFIX permit={lo} writes={writes} rows={rows} bodies={nb} adapter_prefix={}",adapter.len());
@@ -3123,16 +3123,17 @@ fn i61_certificate_prefixes_and_stage_rules_with_actual_fk_proofs() {
         assert!(matches!(project(&trace,prepared.capture(),&[],&[],&ZERO,ResultRef::Unavailable(FailureRef::Proof(late.failure())),
             Some(late.work()),failure,None,&mut ProjectionWork::default()),Err(T::StageConsistency)),"defect {defect}");
     }
-    // Documented custody limit (I57 §5, RV77-N3): a proof *failure* projected against a
-    // different selected owner with identical public facts is NOT refused by this seam.
-    // U2 (I61 U1 grant 1) flips this deliberately for the certified path: the serializer
-    // refuses a foreign owner structurally (retained_wire_tests::u2_foreign_owner_refused).
-    // The failure seam keeps custody binding until a refusal is serialized (U1 grant 2).
+    // RV77-N4, deliberately flipped (I61 U1 grant 2, U2 on the failure path): this seam
+    // formerly accepted a proof *failure* projected against a different selected owner
+    // with identical public facts (custody only; I57 §5, RV77-N3). The proof work now
+    // carries its anchor, so the foreign owner is refused structurally; the same failure
+    // against its own owner still projects (the late-failure roster above).
     let (_,other)=i51_ready_for_controls();let mut capture_trace=i61_stage_trace(other.capture(),Some(false),false);capture_trace.source_ready=true;
     let view=project(&capture_trace,other.capture(),&[],&[],&ZERO,ResultRef::Unavailable(FailureRef::Proof(late.failure())),
         Some(late.work()),Some(late.failure()),None,&mut ProjectionWork::default());
     println!("I61_FOREIGN_OWNER same_public_facts_result_ok={}",view.is_ok());
-    assert!(view.is_ok(),"custody limit: same-public-facts foreign owner is accepted by the seam");
+    assert!(matches!(view,Err(T::WorkAssociation)),"foreign owner refused structurally at the seam");
+    assert!(late.owner_matches(i61_owner(prepared.capture())) && !late.owner_matches(i61_owner(other.capture())));
 }
 
 // ---------------------------------------------------------------- RV77 reviewer tests (RV77-S1)

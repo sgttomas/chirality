@@ -53,8 +53,9 @@ fn pretty(v: &Value) -> String {
     serde_json::to_string_pretty(v).unwrap()
 }
 
-/// Protected byte control 1 (experiment 03 A, B, B'): capture never changes
-/// the ordinary bytes, and the no-permit retained entry is the plain route.
+/// Protected byte control 1 (experiment 03 A and B): capture never changes the
+/// ordinary bytes, and the no-permit retained entry is the plain route. B' (the
+/// envelope returned on a permit path) belongs to U3, which installs that path.
 #[test]
 fn u1_ordinary_bytes_unchanged_under_capture() {
     for (mode, (name, len, digest)) in MODES.into_iter().zip(ORDINARY_SHA256) {
@@ -382,13 +383,15 @@ fn u1_refusals_are_typed() {
     let (candidate, _, _) = milestone_candidate(mode);
     let (_, other) = source_receipt::CapturedInvocation::parse(milestone_raw(), PreviewSolverMode::DenseScrutiny).unwrap();
     assert_eq!(wire::serialize_selected(&candidate, &other).err().map(|f| f.field_path), Some("invocation"));
-    // A second requested case is wider F2a (G-j): refused before any projection.
+    // A second requested case is wider F2a; since RV82-S2 such an invocation is
+    // also not the one this candidate observed, so it is refused as foreign first
+    // (the Scope branch remains for the candidate's own invocation).
     let mut raw = milestone_raw();
     let mut second = raw["model"]["load_cases"][0].clone();
     second["id"] = json!("case-2");
     raw["model"]["load_cases"].as_array_mut().unwrap().push(second);
     let (_, two) = source_receipt::CapturedInvocation::parse(raw, mode).unwrap();
-    assert_eq!(wire::serialize_selected(&candidate, &two).err(), Some(wire::ReceiptFailure { check: wire::ReceiptCheck::Scope, field_path: "cases" }));
+    assert_eq!(wire::serialize_selected(&candidate, &two).err(), Some(wire::ReceiptFailure { check: wire::ReceiptCheck::Association, field_path: "invocation" }));
 }
 
 /// G-b and D39 on an actual load-row case (S11-G T1, RF-CANCEL-UDL-W1e8, captured
@@ -416,6 +419,8 @@ fn u1_load_row_case_capture() {
         let finding = seed.load_row_finding.as_ref().expect("load-row finding");
         assert_eq!(finding.diagnostic_ref.as_deref(), Some(integrity.as_str()), "{mode:?}: disclosed by demotion");
         assert!(!finding.sentence.is_empty() && finding.fired.iter().any(|f| f.contains("S1:RZ")), "{mode:?}: {finding:?}");
+        // RV82-S1: F1 in the absent direction; this case's report carries no K-D5 line.
+        assert_eq!(seed.d5_diagnostic_ref, None, "{mode:?}: no K-D5 line, so no d5 reference");
         let record = observed.diagnostics.iter().find(|d| d.id == integrity).unwrap();
         assert!(record.message.ends_with(&finding.sentence) || record.message.contains(&finding.sentence), "test oracle only");
         match &seed.legacy {
@@ -427,4 +432,315 @@ fn u1_load_row_case_capture() {
         }
         println!("I61_U1_LOAD_ROW {} initial=report(sensitive) finding_ref={:?} d5={:?} legacy=declined_without_attempt", mode.as_str(), finding.diagnostic_ref, seed.d5_diagnostic_ref);
     }
+}
+
+/// G-i (U1 grant 2): every constructible variant of each closed translation table,
+/// against the pinned golden corpus (each value is also validated against its
+/// schema `$def` in the Python lane). Variants without a wire form record their
+/// typed failure instead of a value.
+#[test]
+fn u1g2_translation_corpus() {
+    let entries = wire::corpus::build();
+    let corpus: Vec<Value> = entries.iter().map(|x| json!({"def":x.def,"label":x.label,"value":x.value,
+        "failures":x.failures.iter().map(|f| json!({"check":f.check.wire(),"path":f.field_path,"typed":format!("{:?}", f.check)})).collect::<Vec<_>>()})).collect();
+    let text = serde_json::to_string_pretty(&corpus).unwrap();
+    if let Some(dir) = std::env::var("I61_U1_OUT").ok().map(std::path::PathBuf::from) {
+        std::fs::write(dir.join("translation_corpus.json"), &text).unwrap();
+    }
+    println!("I61_U1G2_CORPUS entries={} sha256={}", corpus.len(), sha(text.as_bytes()));
+    assert_eq!(sha(text.as_bytes()), GOLDEN_CORPUS_SHA256, "pinned translation corpus");
+}
+const GOLDEN_CORPUS_SHA256: &str = "4489a9df4ba668811ce5948b307b55432bc7ba95d801d103c47351a497b4c6f6";
+
+/// The private driver up to a refused candidate (selected native Run, then an
+/// injected facade fault after the proof started).
+fn refused_candidate(mode: PreviewSolverMode, fault: super::retained_receipt::TraceFault)
+    -> (rp::PreparedCandidateRefusal, source_receipt::CapturedInvocation) {
+    let (request, capture) = source_receipt::CapturedInvocation::parse(milestone_raw(), mode).unwrap();
+    let mut prepared = rp::PreparedCase::prepare_observed(request, mode, &capture).unwrap_or_else(|e| panic!("{:?}", e.capture.error));
+    prepared.test_capture_mut().trace_fault = Some(fault);
+    prepared.solve_native().unwrap();
+    match prepared.project_candidate() { Err(r) => (r, capture), Ok(_) => panic!("refusal expected") }
+}
+fn write_receipt(name: &str, successor: &Value, mode: PreviewSolverMode) {
+    if let Some(dir) = std::env::var("I61_U1_OUT").ok().map(std::path::PathBuf::from) {
+        std::fs::write(dir.join(format!("{name}.json")), pretty(&json!({"id":name,"source":successor,"invocation":invocation(mode)}))).unwrap();
+    }
+}
+fn body(successor: &Value) -> &Value {
+    &successor["retained_precision"]["body"]
+}
+
+/// Grant 2, item 4: the C1-C3 unavailable representation of an actual
+/// preparation refusal (injected trigger, as experiment 02: facts[0] diameter 0).
+/// Under T3 it is not a publication; every accepted reader refuses it at G3.
+#[test]
+fn u1g2_preparation_refusal_representation() {
+    let mode = PreviewSolverMode::SparseInteractive;
+    let (request, capture) = source_receipt::CapturedInvocation::parse(milestone_raw(), mode).unwrap();
+    let mut observer = rp::ProductCapture::prepared_probe();
+    let ordinary = run_linear_static_preview_observed(request, mode, Some(&capture), &mut SourceRecoveryBudget::default(), Some(&mut observer));
+    observer.facts[0].diameter = 0.0;
+    let failed = match observer.prepare_case(ordinary) { Err(f) => f, Ok(_) => panic!("helper refusal expected") };
+    let successor = wire::serialize_unavailable(wire::Refused::Preparation(&failed), &capture).unwrap_or_else(|f| panic!("{f:?}"));
+    let b = body(&successor);
+    let case = &b["cases"][0];
+    assert_eq!((case["status"].as_str(), &case["reason"]), (Some("unavailable"),
+        &json!({"code":"source_unavailable","phase":"preparation","cause":{"kind":"prepared_product_failure","product_attempt_ref":0}})));
+    assert_eq!((&case["run"], &case["source_ref"], &b["sources"], &b["work"]["execution_order"], &b["calls"]), (&Value::Null, &Value::Null, &json!([]), &json!([]), &json!([])));
+    let attempt = &b["product_attempts"][0];
+    assert_eq!((attempt["result"]["kind"].as_str(), attempt["result"]["error"]["kind"].as_str(), &attempt["run_ref"], &attempt["source_ref"]),
+        (Some("unavailable"), Some("preparation"), &Value::Null, &Value::Null));
+    // Unselected: the legacy disclosure is kept and referenced (C2:160), no method token.
+    assert_eq!(b["ordinary_attempts"][0]["legacy_source"], json!({"disposition":"unavailable","diagnostic_ref":"diagnostic:source-recovery:case","work_ref":0}));
+    assert!(successor["diagnostics"].as_array().unwrap().iter().any(|d| d["code"] == "SOURCE_BLOCK_RECOVERY_UNAVAILABLE"));
+    assert!(successor["results"].as_array().unwrap().iter().all(|r| r.get("recovery_method").is_none()));
+    let unavailable: Vec<&Value> = successor["diagnostics"].as_array().unwrap().iter().filter(|d| d["code"] == wire::UNAVAILABLE_CODE).collect();
+    assert_eq!(unavailable.len(), 1);
+    assert_eq!((unavailable[0]["id"].as_str(), &case["diagnostic_ref"]), (Some("diagnostic:retained-precision:case:unavailable"), &unavailable[0]["id"]));
+    write_receipt("u1g2_preparation_refusal_sparse_interactive", &successor, mode);
+}
+
+/// Grant 2, item 2 (D38): a prepared solve that fails before any kernel schedule
+/// (injected: the prepared source is withdrawn) carries `run:null`, `run_ref:null`
+/// and a `capture` error with the actual cause.
+#[test]
+fn u1g2_d38_failure_before_any_run() {
+    for mode in MODES {
+        let (request, capture) = source_receipt::CapturedInvocation::parse(milestone_raw(), mode).unwrap();
+        let mut prepared = rp::PreparedCase::prepare_observed(request, mode, &capture).unwrap_or_else(|e| panic!("{:?}", e.capture.error));
+        prepared.test_capture_mut().source = None;
+        assert!(prepared.solve_native().is_err());
+        assert!(prepared.capture().native.is_none(), "precondition: no kernel schedule ran");
+        let successor = wire::serialize_unavailable(wire::Refused::Native(&prepared), &capture).unwrap_or_else(|f| panic!("{f:?}"));
+        let b = body(&successor);
+        let (case, attempt) = (&b["cases"][0], &b["product_attempts"][0]);
+        assert_eq!((&case["run"], &attempt["run_ref"], &case["source_ref"], &attempt["source_ref"]), (&Value::Null, &Value::Null, &Value::Null, &Value::Null));
+        assert_eq!(attempt["result"], json!({"kind":"unavailable","error":{"kind":"capture","cause":{"kind":"association","detail":"prepared source"}}}));
+        assert_eq!(attempt["stages"]["native"], json!("failed"), "the native stage was entered");
+        assert_eq!((&case["reason"]["code"], &case["reason"]["phase"]), (&json!("source_unavailable"), &json!("preparation")));
+        assert_eq!((&b["work"]["charged"], &b["work"]["execution_order"], &b["calls"]), (&json!(0), &json!([]), &json!([])));
+        write_receipt(&format!("u1g2_d38_{}", mode.as_str()), &successor, mode);
+    }
+}
+
+/// Grant 2, items 3 and 4: a candidate refused after its selected native Run (an
+/// injected facade fault). The refused proof binds to its owner (U2, failure path);
+/// the case is unavailable at the facade with the actual selected Run.
+#[test]
+fn u1g2_candidate_refusal_after_selected_run() {
+    use super::retained_receipt::TraceFault as F;
+    let mode = PreviewSolverMode::SparseInteractive;
+    for (fault, error) in [(F::Maxima, "abandoned"), (F::ValuesCompletion, "values")] {
+        let (refused, capture) = refused_candidate(mode, fault);
+        let successor = wire::serialize_unavailable(wire::Refused::Candidate(&refused), &capture).unwrap_or_else(|f| panic!("{fault:?}: {f:?}"));
+        let b = body(&successor);
+        let (case, attempt) = (&b["cases"][0], &b["product_attempts"][0]);
+        assert_eq!(attempt["result"]["error"]["kind"].as_str(), Some(error), "{fault:?}");
+        assert_eq!((&case["reason"]["code"], &case["reason"]["phase"]), (&json!("facade_certificate"), &json!("facade")));
+        assert_eq!(case["run"]["kernel_terminal"], json!({"kind":"selected","reason":null}));
+        assert_eq!((&case["source_ref"], &attempt["source_ref"], &attempt["run_ref"]), (&json!(0), &json!(0), &json!(0)));
+        assert_eq!(b["sources"].as_array().map(Vec::len), Some(1));
+        assert!(case.get("selection").is_none() && case.get("method").is_none());
+        write_receipt(&format!("u1g2_candidate_{error}_sparse_interactive"), &successor, mode);
+    }
+}
+
+/// U2 on the failure path: a refused proof of another selected owner with
+/// identical public facts is refused structurally.
+#[test]
+fn u2_failure_path_foreign_owner_refused() {
+    use super::retained_receipt::TraceFault as F;
+    let mode = PreviewSolverMode::SparseInteractive;
+    let (mut first, capture) = refused_candidate(mode, F::ValuesCompletion);
+    let (mut second, _) = refused_candidate(mode, F::ValuesCompletion);
+    assert!(wire::serialize_unavailable(wire::Refused::Candidate(&first), &capture).is_ok(), "own refused proof serializes");
+    first.test_swap_error(&mut second);
+    let refused = wire::serialize_unavailable(wire::Refused::Candidate(&first), &capture);
+    println!("I61_FOREIGN_OWNER failure_path_serializer_refused={}", refused.is_err());
+    assert_eq!(refused.err(), Some(wire::ReceiptFailure { check: wire::ReceiptCheck::Association, field_path: "product_attempts[].proof.owner" }));
+}
+
+/// C1 §1 item 2 (grant 2): a failed verification keeps its translated failure
+/// reason; a completed one has none. The milestone's records, with the
+/// verification outcome replaced (a projection control, not a native run).
+#[test]
+fn u1g2_failed_verification_keeps_its_reason() {
+    let (candidate, _, _) = milestone_candidate(PreviewSolverMode::SparseInteractive);
+    let k::ExecutionOutcome::Selected(owner) = &candidate.capture().native.as_ref().unwrap().1.outcome else { panic!("selected") };
+    let mut records = owner.evidence().attempts.clone();
+    assert!(matches!(records[1].role, k::AttemptRole::Verification), "precondition: a candidate/verification pair");
+    let (completed, _) = wire::test_logical(&records);
+    assert_eq!(completed[0]["verification"]["phase"], json!("completed"));
+    assert_eq!(completed[0]["verification"]["reason"], Value::Null);
+    records[1].outcome = k::AttemptOutcome::Failed(k::AttemptReason::Stop(k::AttemptStop::Condition));
+    let (failed, failures) = wire::test_logical(&records);
+    assert!(failures.is_empty(), "{failures:?}");
+    assert_eq!(failed[0]["verification"], json!({"record":1,"precision":records[1].precision,"phase":"failed",
+        "reason":{"space":"attempt","tag":"stop","stop":{"space":"stop","tag":"condition"}}}));
+    records[1].outcome = k::AttemptOutcome::Rejected(k::AttemptReason::VerificationFailed);
+    let (_, failures) = wire::test_logical(&records);
+    assert_eq!(failures.iter().map(|f| f.field_path).collect::<Vec<_>>(), vec!["run.attempts[].verification.phase"]);
+}
+
+/// C1 §4 Run.kernel_terminal for each kernel outcome (grant 2).
+#[test]
+fn u1g2_kernel_terminals() {
+    let (candidate, _, _) = milestone_candidate(PreviewSolverMode::SparseInteractive);
+    let outcome = &candidate.capture().native.as_ref().unwrap().1.outcome;
+    let k::ExecutionOutcome::Selected(owner) = outcome else { panic!("selected") };
+    let records = owner.evidence().attempts.clone();
+    assert_eq!(wire::test_kernel_terminal(outcome), (records.len(), json!({"kind":"selected","reason":null})));
+    let unresolved = k::ExecutionOutcome::Unresolved { reason: k::UnresolvedReason::Ceiling, attempts: records.clone(), geometry: Vec::new() };
+    assert_eq!(wire::test_kernel_terminal(&unresolved), (records.len(), json!({"kind":"unresolved","reason":{"space":"unresolved","tag":"ceiling"}})));
+    let refused = k::ExecutionOutcome::Refused { refusal: k::Refusal::Structure, attempts: Vec::new(), geometry: Vec::new() };
+    assert_eq!(wire::test_kernel_terminal(&refused), (0, json!({"kind":"refused","reason":{"space":"refusal","tag":"structure"}})));
+}
+
+/// C2/C3: a source-constructor refusal needs `source_decline`, whose constructor
+/// counts are not captured typed in grant 1-2, so it fails closed (typed).
+#[test]
+fn u1g2_source_constructor_refusal_fails_closed() {
+    use super::retained_receipt::TraceFault as F;
+    let mode = PreviewSolverMode::SparseInteractive;
+    let (request, capture) = source_receipt::CapturedInvocation::parse(milestone_raw(), mode).unwrap();
+    let mut observer = rp::ProductCapture::prepared_probe();
+    let ordinary = run_linear_static_preview_observed(request, mode, Some(&capture), &mut SourceRecoveryBudget::default(), Some(&mut observer));
+    observer.trace_fault = Some(F::SourceConstruction);
+    let failed = match observer.prepare_case(ordinary) { Err(f) => f, Ok(_) => panic!("source refusal expected") };
+    assert!(matches!(failed.capture.error, Some(rp::CaptureError::Source(_))), "precondition: {:?}", failed.capture.error);
+    assert_eq!(wire::serialize_unavailable(wire::Refused::Preparation(&failed), &capture).err(),
+        Some(wire::ReceiptFailure { check: wire::ReceiptCheck::Untranslated, field_path: "cases[].source_decline" }));
+}
+
+/// U2 on the failure path, certified proof of a commit refusal: the proof survives
+/// an atomic-commit accounting refusal (as i51's control); a foreign one is refused.
+#[test]
+fn u2_failure_path_foreign_certificate_refused() {
+    use rp::AdapterEvent as E;
+    let mode = PreviewSolverMode::SparseInteractive;
+    let commit_refusal = || {
+        let (request, capture) = source_receipt::CapturedInvocation::parse(milestone_raw(), mode).unwrap();
+        let prepared_case = || {
+            let mut p = rp::PreparedCase::prepare_observed(request.clone(), mode, &capture).unwrap_or_else(|e| panic!("{:?}", e.capture.error));
+            p.solve_native().unwrap();
+            p
+        };
+        let first = prepared_case();
+        let before = first.capture().adapter.counts.get()[E::MapWrite as usize];
+        let candidate = match first.project_candidate() { Ok(c) => c, Err(e) => panic!("{:?}", e.error) };
+        let writes = candidate.capture().adapter.counts.get()[E::MapWrite as usize] - before;
+        let prepared = prepared_case();
+        let mut counts = prepared.capture().adapter.counts.get();
+        counts[E::MapWrite as usize] = u64::MAX - (writes - 1);
+        prepared.capture().adapter.counts.set(counts);
+        let refusal = match prepared.project_candidate() { Err(r) => r, Ok(_) => panic!("commit refusal expected") };
+        assert!(refusal.certificate().is_some() && refusal.proof_failure().is_none(), "precondition: certified proof survives");
+        (refusal, capture)
+    };
+    let (mut first, capture) = commit_refusal();
+    let (mut second, _) = commit_refusal();
+    first.test_swap_certificate(&mut second);
+    let refused = wire::serialize_unavailable(wire::Refused::Candidate(&first), &capture);
+    assert_eq!(refused.err(), Some(wire::ReceiptFailure { check: wire::ReceiptCheck::Association, field_path: "product_attempts[].proof.owner" }));
+}
+
+/// RV82-S2: the supplied invocation binds structurally (its digest), not by mode
+/// and case id alone: a same-mode invocation with another case label, project id
+/// or load is refused before projection, on both serializer paths.
+#[test]
+fn u1g2_foreign_invocation_refused() {
+    let mode = PreviewSolverMode::SparseInteractive;
+    let (candidate, own, _) = milestone_candidate(mode);
+    assert!(wire::serialize_selected(&candidate, &own).is_ok(), "own invocation serializes");
+    let foreign = |edit: &dyn Fn(&mut Value)| {
+        let mut raw = milestone_raw();
+        edit(&mut raw);
+        source_receipt::CapturedInvocation::parse(raw, mode).unwrap().1
+    };
+    let refused = Some(wire::ReceiptFailure { check: wire::ReceiptCheck::Association, field_path: "invocation" });
+    for (label, edit) in [
+        ("label", &(|r: &mut Value| r["model"]["load_cases"][0]["label"] = json!("another label")) as &dyn Fn(&mut Value)),
+        ("project_id", &|r: &mut Value| r["model"]["project"]["id"] = json!("another-project")),
+        ("load", &|r: &mut Value| r["model"]["load_cases"][0]["primitive_loads"][0]["magnitude"]["value"] = json!(0.0049)),
+    ] {
+        let other = foreign(edit);
+        assert_eq!(other.mode(), mode, "{label}: same mode");
+        assert_ne!(other.borrowed_digest(), own.borrowed_digest(), "{label}: a different invocation");
+        assert_eq!(wire::serialize_selected(&candidate, &other).err(), refused, "{label}");
+    }
+    let (refusal, own_refusal_invocation) = refused_candidate(mode, super::retained_receipt::TraceFault::ValuesCompletion);
+    assert!(wire::serialize_unavailable(wire::Refused::Candidate(&refusal), &own_refusal_invocation).is_ok());
+    let other = foreign(&|r: &mut Value| r["model"]["load_cases"][0]["label"] = json!("another label"));
+    assert_eq!(wire::serialize_unavailable(wire::Refused::Candidate(&refusal), &other).err(), refused);
+}
+
+/// RV82-N1 (R08, R09): run after = before + increment, and body charged = the
+/// final after, each refused as `work_counter_inconsistent` when violated.
+#[test]
+fn u1g2_run_and_body_charge_conservation_negatives() {
+    assert_eq!(wire::test_after_conserved(5, 7, 12), (true, Vec::new()));
+    let (ok, failures) = wire::test_after_conserved(5, 7, 13);
+    assert!(!ok && failures.is_empty(), "R08: the after check fails without an encoder fault");
+    let (sparse, _, _) = milestone_candidate(PreviewSolverMode::SparseInteractive);
+    let (inv, case) = sparse.capture().native.as_ref().unwrap();
+    let run = &inv.runs()[case.run];
+    assert!(wire::test_invocation_arrays(inv, run).is_ok(), "own run");
+    // An invocation whose meter never charged this run (same policy limit).
+    let capacity = k::OriginCapacity::for_calls(&[1], &[]).unwrap();
+    let fresh = k::RecordedInvocation::new(wire::INVOCATION_LIMIT, capacity).unwrap();
+    assert_eq!(fresh.meter().checked_charged().exact(), Ok(0));
+    assert_eq!(wire::test_invocation_arrays(&fresh, run).err(),
+        Some(wire::ReceiptFailure { check: wire::ReceiptCheck::WorkCounterInconsistent, field_path: "work.charged" }), "R09");
+}
+
+/// RV82-N1 (R10, R14): T1 (a)'s guards on a doctored envelope: another legacy
+/// disclosure still naming the selected case (G4), and an omitted id whose
+/// diagnostic is not the legacy disclosure.
+#[test]
+fn u1g2_t1a_guard_negatives() {
+    let (candidate, _, _) = milestone_candidate(PreviewSolverMode::SparseInteractive);
+    let base = serde_json::to_value(candidate.envelope()).unwrap();
+    let legacy_id = "diagnostic:source-recovery:case";
+    let mut own = base.clone();
+    assert!(wire::test_successor_envelope(&mut own, "case", Some(legacy_id)).is_ok(), "precondition: the actual envelope");
+    // R10: a second legacy disclosure naming the selected case survives the omission.
+    let mut doubled = base.clone();
+    let mut copy = doubled["diagnostics"].as_array().unwrap().iter().find(|d| d["id"] == legacy_id).unwrap().clone();
+    copy["id"] = json!("diagnostic:source-recovery:case:second");
+    doubled["diagnostics"].as_array_mut().unwrap().push(copy);
+    assert_eq!(wire::test_successor_envelope(&mut doubled, "case", Some(legacy_id)).err(),
+        Some(wire::ReceiptFailure { check: wire::ReceiptCheck::Association, field_path: "diagnostics[legacy]" }), "R10");
+    // R14: the captured id resolves to a diagnostic naming the case with another code.
+    let mut recoded = base.clone();
+    for d in recoded["diagnostics"].as_array_mut().unwrap() {
+        if d["id"] == legacy_id { d["code"] = json!("NUMERICAL_INTEGRITY_SENSITIVE"); }
+    }
+    assert_eq!(wire::test_successor_envelope(&mut recoded, "case", Some(legacy_id)).err(),
+        Some(wire::ReceiptFailure { check: wire::ReceiptCheck::Association, field_path: "diagnostics[-legacy]" }), "R14");
+}
+
+/// RV82-N1 (R13): the report outcome must equal the unchanged assessed quality.
+#[test]
+fn u1g2_initial_quality_crosscheck_negative() {
+    let (candidate, _, _) = milestone_candidate(PreviewSolverMode::SparseInteractive);
+    let [seed] = &candidate.capture().ordinary[..] else { panic!("one seed") };
+    let mut env = serde_json::to_value(candidate.envelope()).unwrap();
+    assert!(wire::test_ordinary_value(&env, "case", seed).is_ok(), "precondition: sensitive = sensitive");
+    env["numerical_quality"]["cases"][0]["solve_quality"] = json!("checks_passed");
+    assert_eq!(wire::test_ordinary_value(&env, "case", seed).err(),
+        Some(wire::ReceiptFailure { check: wire::ReceiptCheck::Association, field_path: "ordinary_attempts[].initial.outcome" }), "R13");
+}
+
+/// RV82-N1 (R22): 2^53-1 itself is a safe JSON integer; only beyond it refuses.
+#[test]
+fn u1g2_safe_range_boundary() {
+    let max_safe = (1usize << 53) - 1;
+    let at = rp::LegacyWork { stage: "solve", helper_stage: AttemptStage::Solve, charged: max_safe, rejected: max_safe, limit: max_safe };
+    let mut work = Vec::new();
+    assert!(wire::test_legacy_source(Some(&rp::LegacySeed::Unavailable { work: at, diagnostic_ref: "d".into() }), 0, &mut work).is_ok(), "R22: 2^53-1 is in range");
+    assert_eq!(work[0]["charged"], json!(max_safe as u64));
+    let beyond = rp::LegacyWork { charged: max_safe + 1, ..at };
+    assert_eq!(wire::test_legacy_source(Some(&rp::LegacySeed::Unavailable { work: beyond, diagnostic_ref: "d".into() }), 0, &mut Vec::new()).err().map(|f| f.check),
+        Some(wire::ReceiptCheck::WorkCounterRange));
 }
