@@ -9482,3 +9482,32 @@ The next unused IDs are I67 and RV87.
 The next unused IDs are I67 and RV87.
 
 *Text repair (ROOT, 2026-10-04): this entry was first committed in `6e796235c8` with seven code names dropped by a shell-quoting error. They are restored above, and nothing else is changed.*
+
+## RV85 on U3 grants 1b and 1c: PASS; merged into NUM (ROOT, 2026-10-04 UTC)
+
+**RV85's report** is `R/REVIEW_RV85/u3_facade_02/REVIEW.md` (sha256 `59d1c7ad…`; SHA256SUMS 56/56 OK; no machine paths). Verdict: **PASS** on both `4b31bbf23a` (1b) and `886bef131a` (1c), with 0 BLOCKING, 1 SHOULD-FIX and 7 NOTE findings.
+
+**Confirmed by RV85, as their originator:**
+- **S1:** the permit is linear.
+- **S2:** caller-armed faults fire on the reserved-stack thread. Removing the carry brings the hazard back, and the stub catches it.
+- **S3:** `admission()` is `Some` on every permitted path.
+- **N1:** G-C is never reached after a G-B refusal or an exact selection.
+- **N6:** a staging fault falls back typed, with the notice.
+- **N7:** the stronger single-parse guard holds.
+
+**Also established:**
+- **R-1 is additive,** and no existing public signature changed. Without a permit, all 196 retained calls give `Ordinary` with the plain bytes. Under RV85's own stub, success gives `Successor` with U1's pinned bytes.
+- **R-2's notice** appears only where W1 work ran (the five fallbacks plus Staging). RV85's independent expectation matched all 196 stub calls, F-1 is faithful to C1:68, and the base readers accept the real notice bytes with standing unchanged.
+- **No published byte changes without a permit:**
+  - the 550-row sweep is byte-identical across base, grant 1, 1b and 1c;
+  - the PP outcomes equal grant 1's plus the added tests;
+  - runner/headless and result_export are unchanged.
+
+**The merge.** ROOT merged the facade branch at `886bef131a` into NUM as `a634ac8b53` with `--no-ff`. NUM's maintained source equals `886bef131a` byte for byte.
+
+**Routing:**
+- **T1 (SHOULD-FIX) → I61, as a small grant 1d now:** a test that fails if the notice's `publish` allocates, killing RV85's W01 and W02. The 196-byte reservation is correct but untested.
+- **U2 → grant 1d:** unfired armed faults are handed back to the caller after the hop, not dropped silently.
+- **U4 → the grant-2 brief:** after N1, the G-B check that matters is `permitted_run`'s (RV85's SV18 kills its removal), and V07 is equivalent. Grant 2's committed permit-path test targets it.
+- **U1 → I65 G5, optional:** bind the permit to its invocation, and check linearity structurally, not by text.
+- **U3, U5, U6 and U7:** no action. The R-2 condition still holds.
