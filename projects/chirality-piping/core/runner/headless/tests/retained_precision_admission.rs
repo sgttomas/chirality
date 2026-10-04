@@ -4,7 +4,9 @@ use open_pipe_stress_headless_runner::{
     RunnerOperation, RunnerRequest, TbdDecisions,
 };
 use open_pipe_stress_product_physics::{
-    MissingAdmissionTerm, PreviewSolverMode, ProfileStatus, RetainedCaller,
+    run_linear_static_preview_value_with_mode as run_value_with_mode,
+    run_linear_static_preview_value_with_retained_direct, MissingAdmissionTerm,
+    PreviewSolverMode, ProfileStatus, RetainedCaller,
 };
 use serde_json::Value;
 
@@ -79,7 +81,33 @@ fn explicit_headless_refusal_preserves_output_and_completion_fields_both_modes()
         );
         let report = actual.admission().unwrap();
         assert_eq!(report.caller, RetainedCaller::Headless);
-        assert_eq!(report.profile, ProfileStatus::Missing);
+        // G6 registration (RV89 S-1): a profile is registered, so the report states this PP
+        // build's own status: `Registered` in the qualified build, `Stale` in any other;
+        // never `Missing`. Headless itself stays refused (D1.0): its output is the ordinary
+        // run's (above). The oracle is the Direct entry on an input that D1 refuses after the
+        // build clause, a second load case (D1.4), so this workspace, whose lock is not PP's
+        // reviewed one, is never granted a permit and never runs W1 (RV89 G6r N-1).
+        let mut refused = ordinary();
+        let case = refused["model"]["load_cases"][0].clone();
+        refused["model"]["load_cases"]
+            .as_array_mut()
+            .unwrap()
+            .push(case);
+        let plain = run_value_with_mode(refused.clone(), mode).unwrap();
+        let direct = run_linear_static_preview_value_with_retained_direct(refused, mode).unwrap();
+        assert_eq!(
+            serde_json::to_vec(direct.envelope()).unwrap(),
+            serde_json::to_vec(&plain).unwrap(),
+            "no permit: the ordinary bytes"
+        );
+        assert!(direct.successor().is_none());
+        let built = direct.admission().unwrap();
+        assert_eq!(built.typed.load_cases.length, 2, "outside D1 (D1.4)");
+        assert!(matches!(
+            built.profile,
+            ProfileStatus::Registered | ProfileStatus::Stale
+        ));
+        assert_eq!(report.profile, built.profile);
         assert!(report.headless.is_some());
         assert!(!report.headless.unwrap().payload_and_invocation_alias);
         assert!(report

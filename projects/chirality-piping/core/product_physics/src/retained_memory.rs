@@ -941,9 +941,24 @@ pub(super) struct RegisteredProfile {
     /// heap bytes plus R, selected by ROOT at G6.
     threshold_bytes: u64,
 }
-/// The registered builds. Empty until G6 (decision 7): no profile, and so no
-/// permit, can be constructed in maintained code or tests.
-static REGISTERED_PROFILES: &[RegisteredProfile] = &[];
+/// The registered builds (G6, R/I65/u4_g6_01/QUALIFICATION.md): the qualified
+/// dev/test build only. Decision 7 still holds: this is the production profile,
+/// registered by reviewed change, not a test permit; every other build identity is
+/// `Stale` and keeps the ordinary route.
+static REGISTERED_PROFILES: &[RegisteredProfile] = &[RegisteredProfile {
+    // aarch64-apple-darwin, rustc 1.97.1 (8bab26f4f68e), profile=debug, opt_level=0,
+    // debug_assertions=true, panic=unwind, no RUSTFLAGS.
+    identity: "v1;rustc.release=1.97.1;rustc.commit=8bab26f4f68e0e26f0bb7960be334d5b520ea452;rustc.host=aarch64-apple-darwin;rustc.llvm=22.1.6;target=aarch64-apple-darwin;target.arch=aarch64;target.pointer_width=64;target.endian=little;target.os=macos;target.env=;panic=unwind;profile=debug;opt_level=0;debug_assertions=true;rustflags=;pkg=open_pipe_stress_product_physics@0.2.0",
+    reviewed_inputs: "v1;Cargo.lock=4f494db6d8a6eca87e7a16d8561197f20b1951a033bd3a6c424acfff5613475b;../../schemas/physics_source_recovery.schema.json=3bb969555d5616af6eefdb68788ee4a74a8a3681c42fe9aae577a5d25a51ac5c;../../schemas/retained_precision_mp_v2.schema.json=07951edacfedd410c153929ee75bb5bada15dbd222369ec63240c678b233b61c;../../fixtures/results/retained_precision_prepared_ordinary_v1.json=3e0779a45a74cf0bb3a4ed08ed3a6b44347aea8a3c33b59e9dd92130426ee296;../../fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json=c74742ce6a936384e00986006e6a0b2e6bb11f190451e876eed9ffa11903c6a8;../../fixtures/results/semantic_contract_v0_2.json=4d6886d19e304db897e5e9f8f0054cbee91ba7795868f9698e2bbe070bde94da;../../fixtures/results/semantic_contract_v0_3_precision_1.json=d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e;../../fixtures/results/semantic_contract_v0_3_physics_1.json=9a2cf6268b57bd5265a1a115497c07450819dd4d03cd5ab618097bd9d19da8cc;../../fixtures/results/semantic_contract_v0_3_load_reference_1.json=44bc41c06f589fab6ce931ac0eaa5344765ff64fd5f880cc2dd69ecb839c4f4d;../../fixtures/results/semantic_contract_v0_3_load_reference_source_1.json=d1628194a7730f427843b00228dd233cf92b8e7d26f3bc31c660a3ea59e28337;../../fixtures/results/semantic_contract_v0_3_preview_physics_1.json=ae55503d44a4750714a35c423623e38cf4132099134097193024d1635bfbc88a;../../fixtures/results/semantic_contract_v0_3_physics_source_1.json=ba13f2aefd7a38bd725e5f111e6ec30144bc8776aa957c6278ee7b1178298ba1;../../fixtures/results/semantic_contract_v0_3_source_blocks_1.json=5f299065f15a157bbedf9467a598994ae684c4ecb3f851bbcb291981ec550a9f;../../schemas/source_block_recovery.schema.json=544e196d2f7bef27276acc160aa19ab738a4f7949e846d2e8871328d2208129c",
+    reader_layouts: [
+        TypeLayout { size: 56, align: 8 },
+        TypeLayout { size: 64, align: 8 },
+        TypeLayout { size: 96, align: 8 },
+        TypeLayout { size: 16, align: 8 },
+    ],
+    // M (D-7, proposed in QUALIFICATION.md §6): E_mov,max + R <= 0.8927 M in this build.
+    threshold_bytes: 4_026_531_840,
+}];
 
 /// D-6 identity matching (G2_AMENDMENTS §1): `Missing` with nothing registered;
 /// otherwise the index of the byte-equal registered identity, or `Stale` when the
@@ -2955,10 +2970,15 @@ pub(super) mod tests {
     }
     #[test]
     fn actual_retained_entry_dispatches_ordinary_once() {
-        let raw: Value = serde_json::from_str(include_str!(
+        // G6: the counted dispatch is the unpermitted one; the milestone is made out of D1
+        // (a second load case, D1.4) so no build admits it. The permitted path's single
+        // ordinary run (U3's B-1) is not counted by this hook (QUALIFICATION.md §7).
+        let mut raw: Value = serde_json::from_str(include_str!(
             "../../../fixtures/product_preview/rf_skew_t_cant_off_122_r1e-04.request.json"
         ))
         .unwrap();
+        let case = raw["model"]["load_cases"][0].clone();
+        raw["model"]["load_cases"].as_array_mut().unwrap().push(case);
         for mode in [
             crate::PreviewSolverMode::SparseInteractive,
             crate::PreviewSolverMode::DenseScrutiny,
@@ -2967,7 +2987,10 @@ pub(super) mod tests {
             let result =
                 crate::run_linear_static_preview_value_with_retained_direct(raw.clone(), mode)
                     .unwrap();
-            assert_eq!(result.admission().unwrap().profile, ProfileStatus::Missing);
+            // G6: the qualified build admits the milestone (one dispatch, capture installed);
+            // any other build is Stale. Either way the ordinary run is dispatched once.
+            let expected = build_status().map_or_else(|status| status, |_| ProfileStatus::Registered);
+            assert_eq!(result.admission().unwrap().profile, expected);
             DISPATCH_COUNT.with(|c| {
                 assert_eq!(c.get(), Some(1));
                 c.set(None);
@@ -3038,6 +3061,8 @@ pub(super) mod tests {
                 let mut report = base;
                 report.profile = profile;
                 report.raw.status = status;
+                // G6: the law records D1.1's refusal for a Missing/Stale build (a profile now exists).
+                report.law.refusal = Some(AdmissionRefusal::Profile(profile));
                 let refusal = match admission(report) {
                     Err(r) => r,
                     Ok(_) => panic!("no profile can authorize execution"),

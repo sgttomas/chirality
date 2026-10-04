@@ -205,12 +205,16 @@ fn u3_r2_notice_bytes_are_pinned() {
     assert_eq!(RETAINED_UNAVAILABLE_NOTICE.len() + RECEIPT_ENCODING_REASON.len() + RECEIPT_ENCODING_DETAIL_MAX + 1, 196, "the reserved message bytes");
 }
 
-/// Control 1: with no permit (always, until U4 G5) both retained entries and the
-/// shared route are the unchanged ordinary route, with no W1 result.
+/// Control 1: with no permit both retained entries and the shared route are the
+/// unchanged ordinary route, with no W1 result. G6: a profile is registered, so the
+/// control uses the milestone made out of D1 (a second load case, D1.4), which no build
+/// admits.
 #[test]
 fn u3_no_permit_entries_are_the_ordinary_route() {
     for mode in MODES {
-        let raw = raw();
+        let mut raw = raw();
+        let case = raw["model"]["load_cases"][0].clone();
+        raw["model"]["load_cases"].as_array_mut().unwrap().push(case);
         let plain = plain(mode, &raw);
         let direct = run_linear_static_preview_value_with_retained_direct(raw.clone(), mode).unwrap();
         assert_eq!(serde_json::to_vec(direct.envelope()).unwrap(), plain);
