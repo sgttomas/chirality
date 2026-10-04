@@ -10208,3 +10208,28 @@ Then I65 reruns TEXT, regenerates the profile and the pinned record, and re-conf
 - RV91's N-1 tests: a 0.2.0 legacy shape, and a token on a later row.
 
 **Then:** RV88 confirms I66's repairs, RV91 confirms I67's follow-up, and U6f follows.
+
+## U4 G6 returned; registration rulings; blocked ordinary runs decline W1 at G-C (ROOT, 2026-10-04 UTC)
+
+**I65's G6** is `R/I65/u4_g6_01/` (SHA256SUMS 70/70 OK; no machine paths). It is uncommitted in `WT/f2a-memory` on top of `cba3e9fda7`.
+
+**What it establishes:**
+- **The 42 Estimates are closed** (ESTIMATES = 0), adding +9.77 MB.
+- **The class-wide identifier audit** (`ID_CLASS_AUDIT.md`) covers 747 copy entries over 599 sites, each priced by its source. 72 were raised and none lowered. TEXT now enforces the table, and TEXT is 2,149,902,046 B, complete.
+- **The in-build maximum** (dev/test build; the release record is byte-identical) is **0.8878 M sparse and 0.8927 M dense,** 49.0 MB and 29.3 MB under 0.9 M. The text-error budget is 1.86% dense.
+- **The S1 evidence:** 9 witnesses at R/16 in both builds, plus the deep-input witness (RV89 S-2), and S-3's phase test.
+- **QUALIFICATION.md** proposes M = 4,026,531,840 B.
+- **registration.diff** is prepared and not applied.
+
+**Rulings:**
+1. **Register the dev/test identity only:** aarch64-apple-darwin, rustc 1.97.1 `8bab26f4f68e`, debug, opt-level 0, debug assertions on, panic=unwind, no RUSTFLAGS. It is the build in which U3 grant 2's milestone run, U7's publications and U9's gates on this host run. The release identity is qualified but unregistered, until a release run is named. Hosted Linux CI stays Stale, so it uses the ordinary route.
+2. **(a) A blocked ordinary run declines W1 at G-C, with exact ordinary bytes.** Under registration, D1 admits Direct requests whose ordinary run is blocked before any solve (an invalid category or document kind, `rejected_stress_range`). Those would otherwise publish the ordinary envelope plus a `RETAINED_PRECISION_UNAVAILABLE` notice. C1:64 ("decline W1 before execution and preserve the ordinary transaction") and ROUTING:98 (a notice only for W1 work that actually ran) rule that out.
+   - G-C gains a fact that refuses **when the ordinary route returned without attempting the case's solve**.
+   - It is a `CompleteGate` fallback with **no notice**, so the bytes are identical to the value route.
+   - **Cases whose solve ran, at any quality (sensitive, unresolved, failed), proceed as before.** They are D6b's routed cases, and the milestone is Sensitive.
+   - I65 derives the exact predicate from source, or stops if it is ambiguous. It is inside U4's fence.
+   
+   **(b)** B-1's single-dispatch count test goes to U3 grant 2 (I61).
+3. **The two test hunks outside U4's fence** in registration.diff are applied with the entry, as part of the same reviewed change.
+
+**The sequence:** I65's 2(a) addendum, then ROOT commits G6 unregistered. **RV89** then reviews G6 and registration.diff, and **RV87** confirms the identifier audit. **ROOT applies the registration only after both pass,** and selects M = 4,026,531,840 B under D-7. That makes permits constructible in the registered dev/test build on this host. Reader eligibility and public activation stay closed until U7.
