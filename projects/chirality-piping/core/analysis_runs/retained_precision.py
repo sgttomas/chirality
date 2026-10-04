@@ -557,6 +557,14 @@ def _integral(value):
     return None
 
 
+def _negative_zero(value):
+    """D34: any JSON number equal to -0 anywhere in the receipt (C1 s4; C1 G2 row)."""
+    if type(value) is float: return value == 0 and math.copysign(1.0, value) < 0
+    if isinstance(value, dict): return any(_negative_zero(v) for v in value.values())
+    if isinstance(value, list): return any(_negative_zero(v) for v in value)
+    return False
+
+
 def _normalize_integrals(value):
     """D32: after G2 every receipt number is a U or I32 (schema), so integral floats become int once."""
     if isinstance(value, dict):
@@ -1600,7 +1608,7 @@ def _validate_draft(source: Any, invocation: Any = None) -> dict[str, Any]:
                     a=body["product_attempts"][ai]
                     if all(m["result"]["kind"]=="prepared" for m in a["preparation"]["members"]):
                         _need(prep["sha256"]==_hash("retained_precision_preparation_v1",_preparation_payload(a)),gate,"RECEIPT_MISMATCH")
-        gate="G2";_encoding(receipt,schema);_normalize_integrals(receipt)
+        gate="G2";_encoding(receipt,schema);_need(not _negative_zero(receipt),gate,"ENCODING_MISMATCH");_normalize_integrals(receipt)  # D34, then D32
         gate="G3";cases=body["cases"];quality=snapshot["numerical_quality"]["cases"]
         ids=[c["basis_ref"]["ref_id"] for c in cases]
         _need(len(set(ids))==len(ids) and [c["basis_ref"] for c in cases]==[q["basis_ref"] for q in quality] and any(c["status"]=="selected" for c in cases),gate,"COVERAGE_MISMATCH")

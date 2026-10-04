@@ -130700,6 +130700,133 @@
         "gate": "G5",
         "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
       }
+    },
+    {
+      "id": "g0_receipt_version_non_integral",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "receipt_version"
+          ],
+          "op": "set",
+          "value": 1.5
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G0",
+        "code": "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+      }
+    },
+    {
+      "id": "g0_case_limit_non_integral",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "work",
+            "case_limit"
+          ],
+          "op": "set",
+          "value": 20000000000.5
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G0",
+        "code": "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+      }
+    },
+    {
+      "id": "g0_invocation_limit_non_integral",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "work",
+            "invocation_limit"
+          ],
+          "op": "set",
+          "value": 60000000000.5
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G0",
+        "code": "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+      }
+    },
+    {
+      "id": "verification_estimate_names_rotation_row",
+      "base": "p512_ladder_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            0,
+            "outcome",
+            "reason"
+          ],
+          "op": "set",
+          "value": {
+            "space": "attempt",
+            "tag": "verification_estimate",
+            "quantity": {
+              "tag": "displacement",
+              "dof": {
+                "node": 0,
+                "component": "RX"
+              }
+            },
+            "body": 0,
+            "kind": "rotation"
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "attempts",
+            0,
+            "outcome",
+            "reason"
+          ],
+          "op": "set",
+          "value": {
+            "space": "attempt",
+            "tag": "verification_estimate",
+            "quantity": {
+              "tag": "displacement",
+              "dof": {
+                "node": 0,
+                "component": "RX"
+              }
+            },
+            "body": 0,
+            "kind": "rotation"
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
     }
   ],
   "must_pass": [
@@ -133014,6 +133141,66 @@
           "value": "0.1.0"
         }
       ],
+      "expected": "pass"
+    },
+    {
+      "id": "verification_estimate_names_moment_row",
+      "base": "p512_ladder_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            0,
+            "outcome",
+            "reason"
+          ],
+          "op": "set",
+          "value": {
+            "space": "attempt",
+            "tag": "verification_estimate",
+            "quantity": {
+              "tag": "end_action",
+              "member": 0,
+              "end": "i",
+              "component": "RX"
+            },
+            "body": 0,
+            "kind": "moment"
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "attempts",
+            0,
+            "outcome",
+            "reason"
+          ],
+          "op": "set",
+          "value": {
+            "space": "attempt",
+            "tag": "verification_estimate",
+            "quantity": {
+              "tag": "end_action",
+              "member": 0,
+              "end": "i",
+              "component": "RX"
+            },
+            "body": 0,
+            "kind": "moment"
+          }
+        }
+      ],
+      "rehash": "all",
       "expected": "pass"
     }
   ]

@@ -89,6 +89,15 @@ def _apply_edits(value, edits):
             parent[key] = deepcopy(edit["value"])
 
 
+def _rehash_ref(items, ref):
+    """07e format rule (RV78-N1): a rehash index is a strict integral value: a JSON number, never a
+    boolean, finite, integral, >= 0 and not -0 (0.0 is index 0; 0.5, true and -0.0 are not). A
+    reference that is not an index, or does not resolve, is skipped (the reader reports it)."""
+    if type(ref) not in (int, float) or not math.isfinite(ref) or ref != int(ref) or ref < 0 or (ref == 0 and math.copysign(1.0, ref) < 0):
+        return None
+    return items[int(ref)] if int(ref) < len(items) else None
+
+
 def apply_mutation(base, mutation):
     value = deepcopy(base)
     _apply_edits(value, mutation["edits"])
@@ -102,13 +111,13 @@ def apply_mutation(base, mutation):
         body = receipt["body"]
         for source in body["sources"]:
             preparation = source["preparation"]
-            if preparation is not None:
-                attempt = body["product_attempts"][int(preparation["attempt_ref"])]  # D32: index by integral value
-                if all(m["result"]["kind"] == "prepared" for m in attempt["preparation"]["members"]):
-                    preparation["sha256"] = rp._hash("retained_precision_preparation_v1", rp._preparation_payload(attempt))
+            attempt = _rehash_ref(body["product_attempts"], preparation["attempt_ref"]) if preparation is not None else None
+            if attempt is not None and all(m["result"]["kind"] == "prepared" for m in attempt["preparation"]["members"]):
+                preparation["sha256"] = rp._hash("retained_precision_preparation_v1", rp._preparation_payload(attempt))
         for case in body["cases"]:
-            if case["status"] == "selected":
-                case["source_identity_sha256"] = rp._source_hash(body["sources"][int(case["source_ref"])])
+            source = _rehash_ref(body["sources"], case.get("source_ref")) if case["status"] == "selected" else None
+            if source is not None:
+                case["source_identity_sha256"] = rp._source_hash(source)
         body["publication_sha256"] = rp._hash("retained_precision_publication_mp_v2", {k:v for k,v in value.items() if k != "retained_precision"})
         receipt["receipt_sha256"] = rp._hash("retained_precision_receipt_mp_v2", body)
     # D24 (snapshot 07b): optional after_rehash edits are applied literally after rehash "all",
@@ -548,10 +557,10 @@ def test_rv79_surviving_mutants_m06_m09_m14():
 
 
 def test_snapshot_07_counts_and_entry_format():
-    """Snapshot 07d (I62; D31-D33): 15 cases, 259 mutations, 21 must-pass; only rehash "all" (D11);
+    """Snapshot 07e (I62; S1, D34, RV81-N1, RV78-N1): 15 cases, 263 mutations, 22 must-pass; only rehash "all" (D11);
     one expectation per entry except the per-reader G7 entry."""
     c = corpus()
-    assert (len(c["cases"]), len(c["mutations"]), len(c["must_pass"])) == (15, 259, 21)
+    assert (len(c["cases"]), len(c["mutations"]), len(c["must_pass"])) == (15, 263, 22)
     entries = c["mutations"] + c["must_pass"]
     assert all(e["rehash"] == "all" for e in entries)
     assert all(set(e) <= {"id", "base", "edits", "invocation_edits", "after_rehash", "rehash", "expected", "expected_by_reader"} for e in entries)
@@ -645,3 +654,22 @@ def test_verification_estimate_names_force_or_moment_d33():
     reason = {"space": "attempt", "tag": "verification_estimate", "quantity": {"tag": "displacement", "dof": {"node": 1, "component": "UX"}}, "body": 0, "kind": "translation"}
     run = B + ["cases", 0, "run"]
     _raises(lambda: _validate_entry("p512_ladder_synthetic", [_set(run + ["records", 0, "outcome", "reason"], reason), _set(run + ["attempts", 0, "outcome", "reason"], reason)]), "G5", "ATTEMPT_MISMATCH")
+
+
+def test_negative_zero_anywhere_in_the_receipt_d34():
+    """D34 (C1 s4; C1 G2 row): -0 fails G2 ENCODING anywhere in the receipt, including the enum/const
+    integer fields G5aError.quantity_kind and source_decline.constructor_counts.directional_springs."""
+    sanity = {"kind": "unavailable", "error": {"kind": "g5a", "cause": {"kind": "sanity", "body": 0, "quantity_kind": -0.0}}}
+    _raises(lambda: _validate_entry(F_BASE, [_set(A1 + ["result"], sanity)]), "G2", "ENCODING_MISMATCH")
+    decline = {"input_owner": {"case_index": 1, "case_id": "case:unavailable-row", "material_basis_ref": 0},
+               "constructor_counts": {"nodes": 0, "members": 1, "springs": 0, "constraints": 6, "nodal_terms": 6, "stations": 3, "supports": 1, "id_utf8_bytes": 0, "directional_springs": -0.0},
+               "error": {"tag": "no_nodes"}}
+    _raises(lambda: _validate_entry(P_BASE, [_set(B + ["cases", 1, "source_decline"], decline)]), "G2", "ENCODING_MISMATCH")
+    _raises(lambda: _validate_entry(O_BASE, [_set(B + ["cases", 0, "run", "records", 0, "corrections"], -0.0)]), "G2", "ENCODING_MISMATCH")
+
+
+def test_rehash_index_rule_07e():
+    """RV78-N1: the harness indexes only strict integral values and skips everything else."""
+    items = ["a", "b"]
+    assert [_rehash_ref(items, r) for r in (0, 1, 1.0, 0.0)] == ["a", "b", "b", "a"]
+    assert [_rehash_ref(items, r) for r in (True, False, 0.5, -0.0, -1, 2, float("nan"), None, "0")] == [None] * 9
