@@ -79,7 +79,9 @@ HAND OFF TO 90%
     skeleton through the most coupled core first. Agreed contracts frozen
     under change control. Found relationships recorded where those who
     depend on them will see them: the group's work graph within a group,
-    the work graph of each affected loop across groups; read them before
+    the work graph of each affected loop across groups. A loop
+    constructing or resuming its graph reads the other groups' graphs
+    for relationships recorded against its group; read them before
     declaring work ready. Register and Scope of
     Work updates where wording would otherwise mislead, decided by the
     human in batches under the departure rules. Effectiveness measured
