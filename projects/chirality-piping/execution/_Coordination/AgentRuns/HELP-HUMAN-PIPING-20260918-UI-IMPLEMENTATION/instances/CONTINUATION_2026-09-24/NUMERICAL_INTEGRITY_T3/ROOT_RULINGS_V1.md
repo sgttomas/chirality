@@ -8578,3 +8578,16 @@ I61's second experiment (`R/I61/receipt_experiment_02/`, SHA256SUMS OK, no machi
 - the new gap G-l: the typed legacy RecoveryFailure and its WorkReport must be captured at PP/lib.rs:3747–3760. The experiment read them back from diagnostic text, which C2 forbids for the real serializer.
 
 **Remaining before reader acceptance:** confirmation round 04 (RV78–RV81), now running.
+
+**RV78 confirmation 04: PASS** (0 BLOCKING, 0 SHOULD-FIX, 1 NOTE).
+- **Parity:** all 295 entries on 07d agree across the three readers and with the corpus.
+- **The integral-float must-pass entry:** its four hashes are byte-equal to the integer-written base.
+- **New entries:** all 8 are new or changed, and all are contract-faithful.
+- **Probes:** all 55 earlier probes and six integral-value edge probes give their ruled outcome. RV78's N1 and N2 are fixed.
+
+**N1, latent harness rehash differences.** No 07d entry triggers any of them:
+- Python's `int()` truncates and accepts booleans;
+- Rust tests strictly;
+- TypeScript indexes directly.
+
+By §6 this is not an acceptance condition. It is recorded for the next format change: the snapshot format will state the rehash indexing rule (strict integral value), and all harnesses will align to it.
