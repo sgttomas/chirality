@@ -8158,3 +8158,20 @@ I62's `CHECKPOINT_A.md` (`946a75ccd4`) is verified: SHA256SUMS OK, no machine pa
 4. **A computation fault inside a WORK equation is that WORK predicate failing.** That covers a sum beyond the safe range and a negative fragment difference. It is deferred with its class (class 1 for native, class 4 for C3), and the reader continues without trusting dependent values. A non-object stage map cannot reach G5, because G1's closed shapes reject it. TypeScript's `checked` already does this; Python confirms in B1.
 
 **Next:** I62 finishes B1. Then B2 installs snapshot 07 in READER, and I63 and I64 adopt it in phase 2.
+
+## Python B1 verified; D17 order inside G5 class 2; B2 granted (ROOT, 2026-10-03 UTC)
+
+**I62's phase B1 is verified:**
+- **Python file hashes** match RETURN_B1: `retained_precision.py` `dddac2fa96`, tests `5fb053fa46`.
+- **The staged snapshot 07** matches: schema `07951edacf`, corpus `cb148a0f7d` (15 cases, 234 mutations, 19 must-pass entries).
+- **The evidence** verifies.
+- **ROOT's own Python run on 06d:** 266 passed and 1 failed. The failure is `prefix_attached_old_input_unbound`, moving from G8 to G5 WORK as R4 requires (ruled in checkpoint A). The 07 rebase onto F′ restores G8.
+- **I62's in-memory run of staged 07:** every entry at its expectation.
+
+The Python change is not committed alone, because its suite only passes with 07 installed. It will be committed together with 07 after B2.
+
+**D17, the order inside G5 class 2.** C3:304 places "C3 run/source/ordinary references and allowed stage/lane sequence" in one class but fixes no order inside it. The convention: ordinary references (ATTEMPT) come first, then the C3 run/source references and the stage/lane sequence (PRODUCT_ATTEMPT). This follows TypeScript's order, ROOT's 06a record of the intended order, and RV78's T-4e reading. B2 adds one shared pin for it.
+
+**Unreachable differences, accepted:** the fail-closed fallback codes differ (Python PRODUCT_ATTEMPT, TypeScript ATTEMPT). Every reader resolves its references explicitly under D16, and none knows an input that reaches its fallback.
+
+**B2 granted:** install 07 in READER, add the D17 pin, update the Python counts, and write SHARED_SNAPSHOT_07.
