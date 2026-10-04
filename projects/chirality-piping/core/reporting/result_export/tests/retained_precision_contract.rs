@@ -270,12 +270,12 @@ fn shared_rehashed_first_failure_mutations() {
 
 /// Observe one slice of the shared mutations against this reader's own
 /// expectation, print one outcome per mutation (visible with --nocapture) and
-/// check the slice tally. Snapshot 07e holds 263 mutations in all.
+/// check the slice tally. Snapshot 07f holds 268 mutations in all.
 fn slice_outcomes(tag: &str, range: std::ops::Range<usize>, want: &[(&str, usize)]) {
     use std::collections::BTreeMap;
     let shared = corpus();
     let mutations = shared["mutations"].as_array().unwrap();
-    assert_eq!(mutations.len(), 263);
+    assert_eq!(mutations.len(), 268);
     let mut tally = BTreeMap::new();
     let mut matched = 0;
     for mutation in &mutations[range.clone()] {
@@ -504,6 +504,17 @@ fn snapshot_07e_mutation_outcomes() {
             ("G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED", 3),
             ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 1),
         ],
+    );
+}
+
+/// Snapshot-07f pins (I62; D37, RV79's five X1 probes on F', which include
+/// RV78's Y1, Y2 and Y4), mutations 263..268.
+#[test]
+fn snapshot_07f_mutation_outcomes() {
+    slice_outcomes(
+        "I63_OUTCOME_07F",
+        263..268,
+        &[("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 5)],
     );
 }
 
@@ -3005,6 +3016,21 @@ fn d21_last_slot_verification_shared_build() {
     assert_eq!(observe(&shared, &entry), gate("G5", ATTEMPT));
 }
 
+/// RV80-N1 (M56): the same entry on the metadata-only transport path.
+fn transport(shared: &Value, entry: &Value) -> Value {
+    let (source, _) = apply_entry(shared, entry);
+    match rp::validate_transport_metadata(&source) {
+        Err(e) => serde_json::json!({"gate":e.gate,"code":e.code}),
+        Ok(_) => serde_json::json!(null),
+    }
+}
+fn transport_probe(shared: &Value, base: &str, edits: Vec<Value>) -> Value {
+    transport(
+        shared,
+        &serde_json::json!({"id": "i63_transport_probe", "base": base, "edits": edits, "rehash": "all"}),
+    )
+}
+
 /// D34 (RV79-N1): a JSON number equal to -0 anywhere in the receipt fails G2
 /// ENCODING, including the integer fields the schema writes as enum or const
 /// values, which no base carries: `G5aError.quantity_kind` (on F_BASE's
@@ -3035,6 +3061,10 @@ fn d34_negative_zero_anywhere_in_receipt_fails_g2() {
             "{kind} control: {control}"
         );
         check(&format!("{kind} quantity_kind -0"), probe(&shared, F_BASE, vec![set(error.clone(), cause(json!(-0.0)))]), &g2);
+        // RV80-N1 (M56): the transport path applies the same G2.
+        check(&format!("{kind} quantity_kind -0 transport"), transport_probe(&shared, F_BASE, vec![set(error.clone(), cause(json!(-0.0)))]), &g2);
+        let t = transport_probe(&shared, F_BASE, vec![set(error.clone(), cause(json!(0)))]);
+        assert!(t != g2 && !matches!(t["gate"].as_str(), Some("G0" | "G1")), "{kind} transport control: {t}");
         check(&format!("{kind} quantity_kind 1"), probe(&shared, F_BASE, vec![set(error.clone(), cause(json!(1)))]), &control);
         // The JSON text "-0" parses as -0 and is caught the same way.
         let entry = json!({"id":"i63_d34_text","base":F_BASE,"rehash":"all","edits":[set(error.clone(), cause(json!(-0.0)))]});
@@ -3044,6 +3074,10 @@ fn d34_negative_zero_anywhere_in_receipt_fails_g2() {
         let parsed: Value = serde_json::from_str(&text).unwrap();
         let got = rp::validate(&parsed, Some(&invocation)).unwrap_err();
         check(&format!("{kind} text -0"), json!({"gate":got.gate,"code":got.code}), &g2);
+        let got = rp::validate(&parsed, None).unwrap_err();
+        check(&format!("{kind} text -0 without invocation"), json!({"gate":got.gate,"code":got.code}), &g2);
+        let got = rp::validate_transport_metadata(&parsed).unwrap_err();
+        check(&format!("{kind} text -0 transport"), json!({"gate":got.gate,"code":got.code}), &g2);
     }
     let mut entry = shared["mutations"]
         .as_array()
@@ -3055,12 +3089,18 @@ fn d34_negative_zero_anywhere_in_receipt_fails_g2() {
     check("source_decline control", observe(&shared, &entry), expected_for(&entry));
     entry["edits"][1]["value"]["constructor_counts"]["directional_springs"] = json!(-0.0);
     check("directional_springs -0", observe(&shared, &entry), &g2);
+    check("directional_springs -0 transport", transport(&shared, &entry), &g2);
     entry["edits"][1]["value"]["constructor_counts"]["directional_springs"] = json!(1);
     check("directional_springs 1", observe(&shared, &entry), &gate("G1", "RETAINED_PRECISION_RECEIPT_MISMATCH"));
     // An encoded U field written as -0 stays G2.
     check(
         "case_charge -0",
         probe(&shared, ORD, vec![set(rb(json!(["cases", 0, "run", "case_charge"])), json!(-0.0))]),
+        &g2,
+    );
+    check(
+        "case_charge -0 transport",
+        transport_probe(&shared, ORD, vec![set(rb(json!(["cases", 0, "run", "case_charge"])), json!(-0.0))]),
         &g2,
     );
     assert!(misses.is_empty(), "{}", misses.join("\n"));
@@ -3090,4 +3130,77 @@ fn rehash_index_rule_07e() {
         rehash(&mut source);
         assert_eq!(source["retained_precision"]["body"]["cases"][0]["source_identity_sha256"], before, "{r}");
     }
+}
+
+/// D37 (D35 widened; RV78-S1/S2, RV79-X1): every product-attempt error kind
+/// agrees with the stage record in both directions, at G5 PRODUCT_ATTEMPT.
+/// Probes on F_BASE's unavailable attempt 1 (every pipeline stage completed,
+/// certificate passed, observables and G5a not entered, a capture error), on
+/// P_BASE's preparation failure, and on the must-pass shapes for the other
+/// kinds. Each consistent shape stays clear of PRODUCT_ATTEMPT.
+#[test]
+fn d37_error_kind_agrees_with_stage_record() {
+    use serde_json::json;
+    let shared = corpus();
+    let product = gate("G5", PRODUCT);
+    let a1 = |k: &str| rb(json!(["product_attempts", 1, k]));
+    let error = rb(json!(["product_attempts", 1, "result", "error"]));
+    let storage = json!({"kind":"storage","detail":"adapter vector"});
+    let proof_error = |k: &str| json!({"kind":k,"cause":{"kind":"storage"}});
+    let g5a_error = json!({"kind":"g5a","cause":{"kind":"zero","row":0}});
+    let observable_error = json!({"kind":"observable","cause":storage});
+    let mut stages = base_source(&shared, F_BASE)["retained_precision"]["body"]["product_attempts"][1]["stages"].clone();
+    let checks = |obs: Value, g: Value| json!({"certificate":{"kind":"passed"},"observables":obs,"g5a":g});
+    let mut misses = Vec::new();
+    let mut run = |name: &str, base: &str, edits: Vec<Value>, rejected: bool| {
+        let got = probe(&shared, base, edits);
+        if (got == product) != rejected {
+            misses.push(format!("{name}: got {got}, rejected wanted {rejected}"));
+        }
+    };
+    // The base shape (capture after a completed certificate) is consistent.
+    run("capture after certificate (base)", F_BASE, vec![], false);
+    // X1 / Y-direction: the kind presupposes stages the record does not show.
+    run("g5a with G5a not entered", F_BASE, vec![set(error.clone(), g5a_error.clone())], true);
+    run("observable with observables not entered", F_BASE, vec![set(error.clone(), observable_error.clone())], true);
+    run("proof with certificate passed", F_BASE, vec![set(error.clone(), proof_error("proof"))], true);
+    run("values with values completed", F_BASE, vec![set(error.clone(), json!({"kind":"values","cause":{"kind":"storage"},"proof":{"kind":"storage"}}))], true);
+    run("numeric with checks not entered", F_BASE, vec![set(error.clone(), json!({"kind":"numeric","cause":null}))], true);
+    run("abandoned with certificate completed", F_BASE, vec![set(error.clone(), json!({"kind":"abandoned","cause":storage,"proof":{"kind":"storage"}}))], true);
+    // After a completed certificate both checks are entered.
+    stages["observables"] = json!("completed");
+    stages["g5a"] = json!("completed");
+    let all_passed = vec![set(a1("stages"), stages.clone()), set(rb(json!(["product_attempts", 1, "proof", "checks"])), checks(json!({"kind":"passed"}), json!({"kind":"passed"})))];
+    let with = |mut v: Vec<Value>, e: Value| {
+        v.push(set(error.clone(), e));
+        v
+    };
+    run("numeric with both checks passed", F_BASE, with(all_passed.clone(), json!({"kind":"numeric","cause":null})), false);
+    run("capture at the commit (every stage completed)", F_BASE, with(all_passed.clone(), json!({"kind":"capture","cause":storage})), false);
+    run("g5a with G5a passed", F_BASE, with(all_passed.clone(), g5a_error.clone()), true);
+    run("observable with observables passed", F_BASE, with(all_passed.clone(), observable_error.clone()), true);
+    let mut g5a_failed = stages.clone();
+    g5a_failed["g5a"] = json!("failed");
+    let g5a_shape = vec![set(a1("stages"), g5a_failed.clone()), set(rb(json!(["product_attempts", 1, "proof", "checks"])), checks(json!({"kind":"passed"}), json!({"kind":"failed","error":g5a_error})))];
+    run("g5a with observables passed and G5a failed", F_BASE, with(g5a_shape.clone(), g5a_error.clone()), false);
+    run("numeric with G5a failed", F_BASE, with(g5a_shape.clone(), json!({"kind":"numeric","cause":null})), true);
+    run("capture with G5a failed", F_BASE, with(g5a_shape, json!({"kind":"capture","cause":storage})), true);
+    let mut observable_failed = stages.clone();
+    observable_failed["observables"] = json!("failed");
+    let observable_shape = vec![set(a1("stages"), observable_failed.clone()), set(rb(json!(["product_attempts", 1, "proof", "checks"])), checks(json!({"kind":"failed","error":observable_error}), json!({"kind":"passed"})))];
+    run("observable with observables failed", F_BASE, with(observable_shape.clone(), observable_error.clone()), false);
+    run("g5a with observables failed", F_BASE, with(observable_shape.clone(), g5a_error.clone()), true);
+    run("numeric with observables failed", F_BASE, with(observable_shape, json!({"kind":"numeric","cause":null})), true);
+    // The other direction on a failed stage (P9): P_BASE's failed preparation.
+    let p_error = rb(json!(["product_attempts", 1, "result", "error"]));
+    run("preparation failure (base)", P_BASE, vec![], false);
+    for (name, e) in [
+        ("proof after failed preparation", proof_error("proof")),
+        ("numeric after failed preparation", json!({"kind":"numeric","cause":null})),
+        ("g5a after failed preparation", g5a_error.clone()),
+        ("capture after failed preparation", json!({"kind":"capture","cause":{"kind":"storage","detail":"prepared vector"}})),
+    ] {
+        run(name, P_BASE, vec![set(p_error.clone(), e)], true);
+    }
+    assert!(misses.is_empty(), "{}", misses.join("\n"));
 }

@@ -2305,28 +2305,74 @@ fn g5_products(source: &Value) -> VResult {
             reason_table(c, a)?;
         }
     }
-    // P9 (C3:279-287): an unavailable result's error matches the first failed
-    // pipeline stage; runs after every attempt's association checks.
+    // P9 (C3:279-287) and D37 (D35 widened): an unavailable result's error
+    // agrees with its stage record in both directions; runs after every
+    // attempt's association checks (class 3, typed checks).
     for a in list(&b["product_attempts"]) {
         if a["result"]["kind"] != "unavailable" {
             continue;
         }
-        let st = &a["stages"];
-        if let Some(k) = STAGE8.iter().find(|k| st[**k] == "failed") {
-            let allowed: &[&str] = match *k {
-                "preparation" => &["preparation", "capture"],
-                "native" => &["native", "capture"],
-                "proof_start" | "projection" | "certificate" => &["proof"],
-                "maxima" | "aliases" => &["abandoned"],
-                _ => &["values"],
-            };
-            pf(allowed.contains(&text(&a["result"]["error"]["kind"])))?;
-        }
+        pf(error_stages(a))?;
     }
     for ok in pending_work {
         need(ok, "G5", "WORK_MISMATCH")?;
     }
     Ok(())
+}
+/// D37 (D35 widened; RV78-S1/S2, RV79-X1): the native transition sequence
+/// (PP/retained_product.rs:3140-3290 preparation and native, 3460-3555 the
+/// prepared candidate; retained_receipt.rs:45-54 trace states) fixes, for each
+/// public error kind, the stage record it leaves:
+/// - `preparation`: preparation failed; `native`: native failed (a nonselected
+///   native outcome); `values`: values failed;
+/// - `capture`: native failed before any Run; or, with no failed stage, the
+///   capture checks before proof_start (native completed, proof_start not
+///   entered), after a completed certificate (observables and G5a not
+///   entered), or at the precharged commit (every stage completed). A failed
+///   preparation is always the `preparation` kind, which carries its capture
+///   cause;
+/// - `proof`: proof_start, projection or certificate failed;
+/// - `abandoned`: maxima or aliases failed, or the bound-rows view failed
+///   after completed aliases (certificate not entered);
+/// - after a completed certificate both checks are entered: `observable`
+///   requires observables failed; `g5a` observables passed and G5a failed;
+///   `numeric` both passed (every stage completed).
+/// The kind must be one the first failed or terminal stage produces, and every
+/// stage it presupposes is recorded so (g5_stages fixes the not-entered tail,
+/// observables and G5a entered together, and stage <=> check). Row by row this
+/// is I62's native table (R/I62/review_repair_07/RETURN_07F.md section 1):
+/// capture (a)-(d), proof (a)-(c), abandoned (a)-(c), and one record each for
+/// preparation, native, values, numeric, observable and g5a.
+fn error_stages(a: &Value) -> bool {
+    let st = &a["stages"];
+    let is = |k: &str, v: &str| st[k] == v;
+    let first_failed = STAGE8.iter().copied().find(|k| is(k, "failed"));
+    let certified = first_failed.is_none() && is("certificate", "completed");
+    let all_completed = certified && is("observables", "completed") && is("g5a", "completed");
+    match text(&a["result"]["error"]["kind"]) {
+        "preparation" => first_failed == Some("preparation"),
+        "native" => first_failed == Some("native"),
+        "values" => first_failed == Some("values"),
+        "capture" => {
+            first_failed == Some("native")
+                || (first_failed.is_none()
+                    && is("native", "completed")
+                    && is("proof_start", "not_entered"))
+                || (certified && is("observables", "not_entered") && is("g5a", "not_entered"))
+                || all_completed
+        }
+        "proof" => matches!(first_failed, Some("proof_start" | "projection" | "certificate")),
+        "abandoned" => {
+            matches!(first_failed, Some("maxima" | "aliases"))
+                || (first_failed.is_none()
+                    && is("aliases", "completed")
+                    && is("certificate", "not_entered"))
+        }
+        "observable" => certified && is("observables", "failed") && !is("g5a", "not_entered"),
+        "g5a" => certified && is("observables", "completed") && is("g5a", "failed"),
+        "numeric" => all_completed,
+        _ => false,
+    }
 }
 const STAGE8: [&str; 8] = [
     "preparation",
