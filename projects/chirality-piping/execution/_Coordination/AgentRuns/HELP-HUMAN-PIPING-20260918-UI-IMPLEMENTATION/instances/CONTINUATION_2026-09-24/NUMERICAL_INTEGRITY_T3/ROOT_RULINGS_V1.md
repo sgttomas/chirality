@@ -10754,3 +10754,34 @@ The memory branch merges into NUM after these.
 - the I65 repair round (Pass B fail-closed: RV87 SF-1 and N-1, plus RV89's findings);
 - the T17_V4 line;
 - Pass B on the final basis.
+
+## RV89 on G7 Pass A: PASS; T17_V4 line applied; Pass B hardened before reliance (ROOT, 2026-10-04 UTC)
+
+**RV89's report** is `R/REVIEW_RV89/u4_g7_01/REVIEW.md` (sha256 `7a35f12e…`; SHA256SUMS 25/25 OK; no machine paths). Verdict: **PASS**, with 0 BLOCKING, 1 SHOULD-FIX and 3 NOTE findings.
+
+**Independently confirmed:**
+- **The `is_retained` branches and the new static are dead on D1, hostile inputs included.**
+  - **From the code:** PP calls into `result_export` only at `lib.rs:3161`. `validate` dispatches only `for_source(&projected)` (`retained_precision.rs:4305`), and `project` assigns the preview-physics-1 id (`:4252–4253`).
+  - **By instrumentation:** 13 hostile in-D1 variants (26 runs) plus a 71-input sweep. Across 54 `validate` calls and 216 `is_retained` calls there were 0 true results and 0 static initializations. The positive control fires both counters.
+- **The integrated build is Registered:** the identity, 14/14 input hashes and layouts match. RV89's own witnesses, challenge, PP 699/1/10 and runner 85/2 all match, and its sweep is byte-identical to G6's.
+- **F5's pricing:** 8 × 25,745 = 205,960 B in V4, 1,131,825,961 B below V2_hash. Domination at every census is not needed: T17 is the max of the stages evaluated once at the caps, and s(&Value) = 8 is fixed by the identity.
+- **The T17_V4 proposal is right and complete.** It is byte-identical to regeneration from G7's `profile_tree.json`; no FORMS pin exists; nothing moves.
+
+**Applied.** The T17_V4 line (`t17_v4_f5.diff`, sha256 `5455cd5b…`) is committed as **`7f07a2f7b4`** on the memory branch (pushed).
+- **ROOT's run:** PP 705 passed, 1 failed (t13), 10 ignored, with the challenge passing; witnesses 9/9.
+- **The code delta** from Pass A's basis is exactly six PP files: grant 2, D-U6-5 and this line. It is extracted read-only for Pass B.
+
+**S-1 (Pass B), ruled: hardened before reliance, together with RV87 SF-1 and N-1, in one I65 round** (`R/I65/u4_g7_02/`):
+- a production-delta inventory that classifies every hunk; an unpriced D1-live hunk stops the run;
+- one final verdict, with a non-zero exit on any delta: tree, statics, TEXT, outcomes, controls, §11, incomplete TEXT, `scc`;
+- the entry compared byte for byte with `0c7827b6ad`'s, the threshold included; the FORMS block equal to regeneration; a gate on the law tests;
+- D read from the run;
+- the dead-branch premise pinned as rule lines: `project`'s literal-id lines and `validate`'s call;
+- a stop on self-recursive text ancestors outside the approved 11;
+- a control for each stop.
+
+**N-2 is the reason the premise is pinned.** If the branch were ever live on D1, a second `validate` would push dense W4 to at least 3,749,527,510 B, above 0.9 M. The dead-branch argument therefore carries more weight than the static's size.
+
+**N-1** (refs ≤ D_env rests on the producer's construction; at most 8 B) and RV87 N-2 are written into QUALIFICATION_G7. **N-3** is cosmetic.
+
+RV89's copy under WT/rv89_g7 is kept for its confirmation of Pass B.
