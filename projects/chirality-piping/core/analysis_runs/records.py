@@ -87,6 +87,10 @@ def build_preview_analysis_run_envelope(
 ) -> dict[str, Any]:
     """Build a deterministic DEL-14-02 wrapper for a preview mechanics result."""
 
+    # D-U6-9: this historical 0.1.0 wrapper cannot carry a receipt, so a source
+    # carrying one is refused rather than recorded with its receipt dropped.
+    if isinstance(mechanics_result, Mapping) and "retained_precision" in mechanics_result:
+        raise ValueError("ANALYSIS_RETAINED_PRECISION_DOWNGRADE_FORBIDDEN")
     result = deepcopy(dict(mechanics_result))
     run_id = str(result.get("run_id", "run:preview-linear-static-unknown"))
     result_envelope_ref = _ref("ResultEnvelope", f"result-envelope:{run_id}")
