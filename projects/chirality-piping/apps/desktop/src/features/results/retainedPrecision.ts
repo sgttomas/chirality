@@ -288,6 +288,9 @@ export function nativeSchedule(run: Obj, source: Obj): void {
   fail(!(run.kernel_terminal.kind === 'unresolved' && run.kernel_terminal.reason?.space === 'unresolved' && run.kernel_terminal.reason?.tag === 'work_accounting'));
   const stopOf = outcomeStop;
   const escalates = (stop: Obj | null) => stop && ['pivot', 'condition', 'residual_gate'].includes(stop.tag);
+  // D5b/D21: a failed verification is a solve failure only if nothing shows its pass ran: no verification
+  // shared build (adaptive.rs:4286), no verification work, and no verification summary (adaptive.rs:4333).
+  const solveFailure = (vr: Obj) => vr.verification_shared_build_ref === null && vr.work.verification_lme === 0 && vr.verification === null;
   const terminalFor = (stop: Obj): Obj => {
     const { space: _space, tag, ...payload } = stop;
     const refused = ['negative_energy', 'structure'].includes(tag);
@@ -311,7 +314,7 @@ export function nativeSchedule(run: Obj, source: Obj): void {
         fail(escalates(stopOf(previous.outcome)) && a.precision === previous.precision * 2 && a.origin.kind === 'fresh' && cr.index === previous.candidate_record + 1);
       } else if (v.phase === 'failed') {
         const vr = at(records, v.record, 'G5', 'ATTEMPT_MISMATCH');
-        fail(escalates(stopOf(vr.outcome)) && vr.verification_shared_build_ref === null && vr.work.verification_lme === 0);
+        fail(escalates(stopOf(vr.outcome)) && solveFailure(vr));
         fail(a.precision === previous.precision * 4 && a.origin.kind === 'fresh' && cr.index === v.record + 1);
       } else {
         fail(previous.outcome.kind === 'rejected' && previous.outcome.reason.tag !== 'verification_failed');
@@ -348,7 +351,7 @@ export function nativeSchedule(run: Obj, source: Obj): void {
   if (last.verification?.phase === 'failed') {
     const vr = at(records, last.verification.record, 'G5', 'ATTEMPT_MISMATCH');
     stop = stopOf(vr.outcome);
-    if (escalates(stop) && vr.verification_shared_build_ref === null && vr.work.verification_lme === 0) {
+    if (escalates(stop) && solveFailure(vr)) {
       fail(last.precision * 4 > 512); expected = { kind: 'unresolved', reason: { space: 'unresolved', tag: 'ceiling' } };
     }
   } else if (last.verification === null && escalates(stop)) {

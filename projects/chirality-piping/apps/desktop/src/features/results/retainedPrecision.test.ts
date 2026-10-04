@@ -567,6 +567,11 @@ describe('confirmation repair round (D19-D30, RV81-N1/N2): reader-local relation
     const { source, invocation } = await applyEntry(p);
     expect(await firstFailure(source, invocation)).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
   });
+  it('D21 widened: a non-null verification summary on an escalating failed verification shows the pass ran', async () => {
+    const summary = structuredClone(corpus.cases.find((c: any) => c.id === 'verification_failure_skip_synthetic')).source.retained_precision.body.cases[0].run.records.find((r: any) => r.verification !== null).verification;
+    const c = await edited('verification_failure_skip_synthetic', s => { const r = s.retained_precision.body.cases[0].run.records[1]; expect(r.outcome.kind).toBe('failed'); r.verification = structuredClone(summary); });
+    expect(await firstFailure(c.source, c.invocation)).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
+  });
   it('RV81-N2: the kernel scope alone decides for an unreferenced build carrying a work_accounting stop', () => {
     const body = structuredClone(corpus.cases[0]).source.retained_precision.body;
     const extra = (reason: any) => { const b = structuredClone(body); b.builds.push({ ...structuredClone(b.builds[0]), id: b.builds.length, state: 'nonbudget_failure', reason }); let e: any; try { nativeRuns(b); } catch (x) { e = x; } return { gate: e?.gate, code: e?.code }; };
