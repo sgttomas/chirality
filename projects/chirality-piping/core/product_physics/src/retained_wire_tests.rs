@@ -54,8 +54,10 @@ fn pretty(v: &Value) -> String {
 }
 
 /// Protected byte control 1 (experiment 03 A and B): capture never changes the
-/// ordinary bytes, and the no-permit retained entry is the plain route. B' (the
-/// envelope returned on a permit path) belongs to U3, which installs that path.
+/// ordinary bytes, and the Direct entry's ordinary envelope is the plain route's. B'
+/// (the envelope returned on the permit path) is U3 grant 2's committed test,
+/// `retained_facade_tests::u3g2_direct_entry_publishes_the_pinned_successor` (RV82 N3);
+/// in the registered build the Direct entry below is that permitted path.
 #[test]
 fn u1_ordinary_bytes_unchanged_under_capture() {
     for (mode, (name, len, digest)) in MODES.into_iter().zip(ORDINARY_SHA256) {
@@ -63,7 +65,7 @@ fn u1_ordinary_bytes_unchanged_under_capture() {
         let plain = serde_json::to_vec(&run_linear_static_preview_value_with_mode(milestone_raw(), mode).unwrap()).unwrap();
         assert_eq!((plain.len(), sha(&plain).as_str()), (len, digest), "{name}: protected ordinary bytes");
         let direct = run_linear_static_preview_value_with_retained_direct(milestone_raw(), mode).unwrap();
-        assert_eq!(serde_json::to_vec(direct.envelope()).unwrap(), plain, "{name}: A, no-permit direct entry");
+        assert_eq!(serde_json::to_vec(direct.envelope()).unwrap(), plain, "{name}: A, the Direct entry's ordinary envelope");
         let (candidate, _, captured) = milestone_candidate(mode);
         assert_eq!(captured, plain, "{name}: B, the ordinary run with capture installed");
         drop(candidate);

@@ -10832,3 +10832,101 @@ The first final run stopped with exit 5, as designed, on grant 2's three `#[cfg(
 - the final run.
 
 The memory branch then merges into NUM, after RV93's review of grant 2 and the follow-on.
+
+## RV93 on U3 grant 2: PASS; RV89 confirms the final basis re-qualified; U7 planned and ruled (ROOT, 2026-10-04 UTC)
+
+**RV93's report** is `R/REVIEW_RV93/u3_grant2_01/REVIEW.md` (sha256 `919a0cc5…`; SHA256SUMS 39/39 OK; no machine paths). It reviewed `664f8df7b7` against `0c7827b6ad`. Verdict: **PASS**, with 0 BLOCKING, 1 SHOULD-FIX and 6 NOTE findings.
+
+**Independently established with RV93's own oracles** (process-global counters, a byte oracle for the notice, four sweeps, a permit log and a non-test example):
+- **The milestone.** It publishes U1's pinned successor through the actual Direct entry in both modes (`cmp`-identical), from exactly 1 ordinary run, 1 solve, 1 G-B check and 1 G-C check, on the worker thread. A non-test build publishes the same bytes.
+- **The readers.** Rust PASS. Python `_validate_draft` PASS.
+- **U5.** It reproduces byte for byte.
+- **Fallbacks and refusals.** Every fallback class, built by RV93, gives the plain bytes plus exactly one notice; Preparation and Candidate are also reached from real inputs. Every no-W1 refusal gives exact bytes.
+- **The hooks** fire on the reserved-stack thread.
+- **The sweep.** 468 rows, registered and Stale, equal base.
+- **Permits.** None in the runner, against positive controls of 42 and 2.
+- **Production text** is unchanged without the `cfg(test)` fragments.
+- **Mutants.** 28 of 28 killed (I61's 11 plus 17 of RV93's).
+
+**RV93's findings, ruled:**
+- **S-1, recorded as test-only; no rename.** U4's tools would read `grant2.rs` as production. G7's hardened Pass B classifies it `test`, since it is declared only inside `#[cfg(test)] mod retained_tests_hooks`, and reports no statics added. RV89 confirmed by `nm` (no hook symbol in any non-test binary) and by a counting allocator (0 allocations).
+- **N-1, accepted for the merge.** TypeScript was not run live. `retainedPrecision.test.ts:922` validates the real milestone receipts through U6's 07h TS reader, and D-U6-5 proves those fixtures equal the live bytes. The live TS rerun is U7's (RV92 N-8).
+- **N-3, accepted:** RV85 U1's residual risk is not real in the registered build. The permit is crate-private and linear, with one constructor and one call site.
+- **N-2, N-4 and N-6** are noted.
+- **N-5, routed to U7's slice L** as optional: a real-input Candidate test.
+- **RV93 extends its review** to `664f8df7b7..7f07a2f7b4`: the merge, D-U6-5 and the T17_V4 line, including a Precommit fallback triggered by the 07h F5 check.
+
+**RV89's G7 addendum** is `R/REVIEW_RV89/u4_g7_01/ADDENDUM_01.md` (sha256 `89ce7538…`; SHA256SUMS 30/30 OK). Verdict: **PASS**, with 0 BLOCKING, 0 SHOULD-FIX and 2 NOTE findings.
+- **The hardened Pass B gates fire as ruled.** RV89 ran them on its own logs and edited copies.
+- **The three reviewed `#[cfg(test)]` entries are confirmed:**
+  - absent from every non-test binary (`nm`);
+  - 0 allocations in the lib test binary, unarmed and armed (the positive control registers 1);
+  - no text added.
+- **RV89's own registered build of `7f07a2f7b4`:**
+  - PP 705 passed, 1 failed (t13), 10 ignored, differing from Pass A only by the six added tests;
+  - law 42/0;
+  - the record and the witnesses identical;
+  - its sweep byte-identical to G6R's (`25cce1e1…`);
+  - the entry equal to `0c7827b6ad`'s.
+- **The final basis is re-qualified.**
+- **N-4** (a reused tag can pass on stale outputs; the exit codes of the TEXT chain, §11 and controls are not gated) and **N-5** (the qualification's own law, witness and challenge test files are unguarded) **go to I65 before the next Pass B,** which is U7's slice Q.
+
+**The memory branch merges into NUM** once RV93's extension passes.
+
+**U7, I61's plan** (`R/I61/u7_scoping_01/PLAN.md`, sha256 `dce78f8f…`):
+- The switch is three constants and their gates: PY `retained_precision.py:30`, RS `retained_precision.rs:4269` and TS `retainedPrecision.ts:97`.
+- A live successor validated with its actual invocation then carries the standing `numerically_eligible`, in place of `needs_recompute`. TS reports it as `integrity_checked`.
+- The plan inventories the preconditions (closed and open), slices A, T, P, F, L, Q and R, and the controls. The estimate is 11–16 agent-hours plus 4–7 hours of review.
+
+**Decisions:**
+- **D-U7-1, ruled as proposed.** U7 switches reader eligibility, in all three readers, for supplied statements with their invocations: library consumers and TS's seam path. It adds no product caller.
+  - **Public activation** is ruled separately, later, with its own review: a product caller (native or desktop W1) publishing successors to users, with N-7's memoization and T6's outputs. This narrows RR:9250's wording; it does not expand scope.
+  - Any supported-machine statement of M stays with the owner (decision 9).
+- **D-U7-2:** snapshot 07i, a shared `eligible` expectation on the bases and must-pass entries, drawn from slice A's stdlib oracle.
+- **D-U7-3, amended.** N-6 is **documentation only and line-neutral**: inline `#[doc]` on `into_parts()` (C-1) and on `successor()` (C-3).
+  - `successor()` stays `pub`. It has three callers outside the crate: the registered runner test, the memory challenge and PP's admission integration test, so `pub(crate)` would break them.
+  - It lands on the U7 branch, and Pass B covers it.
+- **D-U7-4:** TS's N-2 strictness becomes a declared difference in the carrier case file. TS requires the live native capture, while Python and Rust require the actual invocation.
+- **D-U7-5:** the order is slices A and T now, then the memory merge, then P and F. **F sets all three flags in one commit.**
+- **D-U7-6, confirmed.** Eligibility is a property of a supplied statement and its invocation, with no producer-origin claim (C-2; `retained_precision.rs:4270–4271`). The standing text and the carrier scope must say so.
+
+**The U7 branch** is `codex/piping-f2a-u7-20261004`, cut from NUM `071eec5c04`, in WT/f2a-u7. NUM is merged into it after the memory merge.
+
+**Dispatched now:**
+- **slice A (I61):** the inventory, plus a stdlib oracle of the expected eligibility and 07i's expectations, prepared as records;
+- **slice T (I67):** RV91 N-2 = RV88 U6d S-1, RV91 N-5 and the token pin, in TS, uncommitted in WT/f2a-u7. ROOT adds the T6 notice for N-5;
+- **I65:** RV89 N-4 and N-5 in the Pass B script, before slice Q.
+
+**RV94** (fresh) reviews the whole switch after slices L and Q. RV89 confirms the U7 Pass B.
+
+## U7 slice A returned: the switch inventory, the eligibility oracle and 07i prepared (ROOT, 2026-10-04 UTC)
+
+**I61's return** is `R/I61/u7_slice_a_01/` (RETURN.md `461cccb0…`; SHA256SUMS 8/8 OK; no machine paths). It is records only.
+
+**The inventory:**
+- the three flags and their gates;
+- nine stale comments with proposed text; the two Rust ones are line-neutral;
+- every eligibility pin in all three languages and in PP's `retained_wire_tests.rs:122`, each with its exact post-U7 value. **None is deleted;**
+- every consumer that changes, and the unchanged ones: the derivative, row binding, transports, the packager and D-U6-9;
+- the D-U7-6 sentences.
+
+**The oracle.** `eligibility_oracle.py` is stdlib only and reads only the shared JSON. Its rules R0–R4 come from C1:160 and :162, D2 §4.9.4 and D-U6-1.
+- **The pre-U7 self-check is exact:** 15/15 bases and 20/20 carrier standings.
+- **After U7:**
+  - 13/15 bases and 13/23 must-pass entries become eligible; the ones that don't have an unavailable case;
+  - all 277 mutations stay `unsupported`;
+  - 2 of 20 carrier cases change: the two `…:invocation` milestone cases go from `needs_recompute` to `numerically_eligible`;
+  - the live milestone is `numerically_eligible` with its invocation and `needs_recompute` without it.
+
+**07i's patch** (`u7_07i_expectations.patch`) reproduces the staged files byte for byte:
+- **07i** `1e53ea9c…`, from 07h `d0a4ee21…`;
+- **the case file** `f20a7db0…`, from `bbc05bd2…`.
+
+Slice F's order is RETURN §3.
+
+**N-6's diff** (`n6_docs_line_neutral.diff`) adds inline `#[doc]` on `lib.rs:2235` and `:2254`, keeps `pub`, and keeps the line count. It is for slice P.
+
+**Rulings:**
+- **The TS notice** (`knownSemanticLimitations.ts:168` summarizing without the model) goes to slice T. I67 decides whether to pass the model.
+- **The corpus bases' `qualification` strings** ("DRAFT: … public API intentionally rejects"): **slice F updates any fixture or comment text that the switch makes false,** these strings included, if it does so. Otherwise they stay. RV94 checks that no stale claim remains.
+- **I61's disclosure.** One snapshot command briefly wrote a copy of a committed repository test file to `/tmp/x`, which was deleted at once; ROOT confirms it is absent. This breached the host rule (nothing in the system temp directory). It is recorded, with no consequence: the file was a copy of committed content.

@@ -56,6 +56,8 @@ pub mod retained_api {
     pub use super::retained::work::{WorkFault, WorkStatus, WorkTotal};
 }
 mod sparse;
+// U4 G5 part 2: the kernel's in-build strides for the product's retained-memory profile.
+pub mod retained_resource;
 
 pub use formation_check::{
     CurvedFormation, FormationCheck, FormationCheckReason, FormationSource, FORMATION_CRITERION,

@@ -38,6 +38,15 @@ fn ordinary() -> Value {
     ))
     .unwrap()
 }
+/// G6: the registered build (QUALIFICATION.md) reports `Registered`; any other build `Stale`.
+const REGISTERED_IDENTITY: &str = "v1;rustc.release=1.97.1;rustc.commit=8bab26f4f68e0e26f0bb7960be334d5b520ea452;rustc.host=aarch64-apple-darwin;rustc.llvm=22.1.6;target=aarch64-apple-darwin;target.arch=aarch64;target.pointer_width=64;target.endian=little;target.os=macos;target.env=;panic=unwind;profile=debug;opt_level=0;debug_assertions=true;rustflags=;pkg=open_pipe_stress_product_physics@0.2.0";
+fn expected_profile() -> ProfileStatus {
+    if option_env!("OPS_RETAINED_BUILD_IDENTITY") == Some(REGISTERED_IDENTITY) {
+        ProfileStatus::Registered
+    } else {
+        ProfileStatus::Stale
+    }
+}
 fn bytes(e: &MechanicsEnvelope) -> Vec<u8> {
     serde_json::to_vec(e).unwrap()
 }
@@ -58,7 +67,7 @@ fn retained_direct_preserves_actual_ordinary_both_modes_and_generic_identity() {
             assert_eq!(bytes(actual.envelope()), bytes(&expected));
             let report = actual.admission().unwrap();
             assert_eq!(report.caller, RetainedCaller::Direct);
-            assert_eq!(report.profile, ProfileStatus::Missing);
+            assert_eq!(report.profile, expected_profile());
             assert_eq!(report.allowance, AllowanceStatus::Unselected);
             assert!(report.census_complete());
             assert_eq!(report.typed.nodes.length, 2);
@@ -97,13 +106,17 @@ fn exact_and_invalid_ordinary_results_are_preserved() {
         assert!(selected.source_block_recovery.is_some());
         let refused = run_linear_static_preview_value_with_retained_direct(source, mode).unwrap();
         assert_eq!(bytes(refused.envelope()), bytes(&selected));
-        assert_eq!(refused.admission().unwrap().profile, ProfileStatus::Missing);
+        assert_eq!(refused.admission().unwrap().profile, expected_profile());
         let mut invalid = ordinary();
         invalid["model"]["document_kind"] = Value::String("invalid-kind".into());
         let expected = run_linear_static_preview_value_with_mode(invalid.clone(), mode).unwrap();
         let actual = run_linear_static_preview_value_with_retained_direct(invalid, mode).unwrap();
+        // G6 (ROOT): the invalid document's ordinary route returns before attempting the
+        // case's solve, so G-C declines W1 and the bytes are the value route's exactly,
+        // with no notice, registered or not.
         assert_eq!(bytes(actual.envelope()), bytes(&expected));
-        assert_eq!(actual.admission().unwrap().profile, ProfileStatus::Missing);
+        assert!(actual.successor().is_none());
+        assert_eq!(actual.admission().unwrap().profile, expected_profile());
     }
     let bad = serde_json::json!({"model": null});
     assert_eq!(
