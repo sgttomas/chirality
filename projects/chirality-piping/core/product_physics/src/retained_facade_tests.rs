@@ -196,6 +196,13 @@ fn u3_r2_notice_bytes_are_pinned() {
     assert!(!RETAINED_UNAVAILABLE_NOTICE.contains("receipt"), "no receipt reference");
     let longest = ["work_counter_range", "work_counter_inconsistent", "saturation_not_excluded", "publication_hash_range"].map(str::len).into_iter().max();
     assert_eq!(longest, Some(25), "the reserved message capacity covers every detail token");
+    // RV85 T1: the constant the reservation uses is the longest detail
+    // `receipt_encoding_detail` can return, over every typed check.
+    use super::retained_wire::ReceiptCheck as C;
+    let every = [C::Encoding, C::PublicationHashRange, C::WorkCounter(k::WorkFault::Overflow), C::WorkCounter(k::WorkFault::Inconsistent),
+        C::WorkCounter(k::WorkFault::Both), C::WorkCounterRange, C::WorkCounterInconsistent, C::SaturationNotExcluded, C::Association, C::Scope, C::Untranslated];
+    assert_eq!(every.iter().filter_map(|c| receipt_encoding_detail(*c)).map(str::len).max(), Some(RECEIPT_ENCODING_DETAIL_MAX));
+    assert_eq!(RETAINED_UNAVAILABLE_NOTICE.len() + RECEIPT_ENCODING_REASON.len() + RECEIPT_ENCODING_DETAIL_MAX + 1, 196, "the reserved message bytes");
 }
 
 /// Control 1: with no permit (always, until U4 G5) both retained entries and the
@@ -303,6 +310,45 @@ fn u3_test_hooks_follow_the_reserved_stack_thread() {
     assert_eq!(DENSE_SCRUTINY_CEILING_OVERRIDE.with(|c| c.replace(None)), Some(7));
 }
 
+/// RV85 U2: faults that do not fire on the reserved-stack thread are handed back to
+/// the caller, which re-arms them, rather than vanishing with the worker. That holds
+/// after the work ran and when the work never ran (a spawn failure).
+#[test]
+fn u3_unfired_hooks_come_back_across_the_hop() {
+    let mode = PreviewSolverMode::SparseInteractive;
+    let raw = raw();
+    // Preparation refuses, so an armed precommit fault never fires there.
+    let preparation_refuses = || {
+        let (capture, mut observer, ordinary) = observed(mode, &raw);
+        observer.facts[0].diameter = 0.0;
+        retained_w1(observer, ordinary, &capture).1.map(|_| ())
+    };
+    retained_tests_hooks::corrupt_next_precommit();
+    retained_tests_hooks::fail_next_serializer(retained_wire::ReceiptCheck::Encoding);
+    assert_eq!(on_reserved_stack(64 << 20, carry_test_hooks(preparation_refuses)), Some(Err(W1Fallback::Preparation)));
+    assert!(retained_tests_hooks::armed_names().is_empty(), "in transit until reclaimed");
+    retained_tests_hooks::reclaim_handed_back();
+    assert_eq!(retained_tests_hooks::armed_names(), ["precommit", "serializer"], "the unfired faults are visible to the caller");
+    retained_tests_hooks::disarm();
+    // A fault that does fire there does not come back.
+    retained_tests_hooks::withdraw_next_native_source();
+    let run_w1 = || {
+        let (capture, observer, ordinary) = observed(mode, &raw);
+        retained_w1(observer, ordinary, &capture).1.map(|_| ())
+    };
+    assert_eq!(on_reserved_stack(64 << 20, carry_test_hooks(run_w1)), Some(Err(W1Fallback::Native)));
+    retained_tests_hooks::reclaim_handed_back();
+    assert!(retained_tests_hooks::armed_names().is_empty(), "the native fault fired and was consumed");
+    // A spawn failure: the unrun work drops here and hands its faults straight back.
+    retained_tests_hooks::rebind_next_precommit_invocation();
+    let mut ran = false;
+    assert_eq!(on_reserved_stack(1usize << 62, carry_test_hooks(|| ran = true)), None);
+    assert!(!ran);
+    retained_tests_hooks::reclaim_handed_back();
+    assert_eq!(retained_tests_hooks::armed_names(), ["rebind"]);
+    retained_tests_hooks::disarm();
+}
+
 /// RV82 N9 (single-parse custody): each invocation is parsed exactly once. The
 /// typed request that runs and the captured invocation the serializer binds (S2's
 /// digest) are the two halves of that one `CapturedInvocation::parse`: the capture
@@ -345,8 +391,10 @@ fn u3_n9_single_parse_custody() {
         "run_linear_static_preview_observed(request, solver_mode, Some(capture), &mut budget, Some(&mut observer))",
         "Some(Ok(())) => retained_w1(observer, ordinary, capture),",
         "retained_wire::serialize_frozen(&frozen, &staged, capture)",
-        // ROOT's flag: the permitted work carries the armed test hooks.
+        // ROOT's flag: the permitted work carries the armed test hooks, and (RV85 U2)
+        // the caller re-arms the unfired ones after the hop.
         "on_reserved_stack(bytes, carry_test_hooks(move || {",
+        "    }));\n    #[cfg(test)]\n    retained_tests_hooks::reclaim_handed_back();\n    match (ran.flatten(), slot) {",
     ] {
         assert!(permitted.contains(required), "{required}");
     }

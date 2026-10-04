@@ -2930,6 +2930,8 @@ fn permitted_dispatch(
     let ran = on_reserved_stack(bytes, carry_test_hooks(move || {
         pending.take().map(|request| permitted_run(permit, report, request, captured, solver_mode))
     }));
+    #[cfg(test)]
+    retained_tests_hooks::reclaim_handed_back();
     match (ran.flatten(), slot) {
         (Some(result), _) => result,
         (None, Some(request)) => ordinary_dispatch(request, &capture, solver_mode, Some(report), Some(Err(W1Fallback::StackReservation))),
@@ -2954,15 +2956,20 @@ fn on_reserved_stack<T: Send>(bytes: usize, work: impl FnOnce() -> T + Send) -> 
 
 /// Production: the work itself. Test builds: the caller thread's armed fault hooks
 /// (thread-local) move with the work onto the reserved-stack thread, so a committed
-/// fault test cannot pass vacuously there (ROOT's flag on grant 1).
+/// fault test cannot pass vacuously there (ROOT's flag on grant 1). Faults that did
+/// not fire there are handed back to the caller (RV85 U2): after the work, or as the
+/// unrun work drops on a spawn failure; the caller re-arms them with
+/// `reclaim_handed_back`.
 #[cfg(not(test))]
 fn carry_test_hooks<F>(work: F) -> F { work }
 #[cfg(test)]
 fn carry_test_hooks<T, F: FnOnce() -> T + Send>(work: F) -> impl FnOnce() -> T + Send {
-    let armed = retained_tests_hooks::take_armed();
+    let carried = retained_tests_hooks::Carried::take();
     move || {
-        retained_tests_hooks::install_armed(armed);
-        work()
+        let caller = carried.install();
+        let value = work();
+        retained_tests_hooks::hand_back(caller);
+        value
     }
 }
 
@@ -3040,6 +3047,8 @@ impl ReservedNotice {
         let mut message = String::new();
         message.try_reserve_exact(RETAINED_UNAVAILABLE_NOTICE.len() + RECEIPT_ENCODING_REASON.len() + RECEIPT_ENCODING_DETAIL_MAX + 1).ok()?;
         message.push_str(RETAINED_UNAVAILABLE_NOTICE);
+        #[cfg(test)]
+        assert!(message.capacity() >= RETAINED_UNAVAILABLE_NOTICE.len() + RECEIPT_ENCODING_REASON.len() + RECEIPT_ENCODING_DETAIL_MAX + 1);
         Some(Self(Diagnostic {
             id,
             code: retained_wire::UNAVAILABLE_CODE.to_owned(),
@@ -3053,6 +3062,10 @@ impl ReservedNotice {
     /// ran. Within the reserved capacity: no allocation.
     fn publish(self, mut ordinary: MechanicsEnvelope, cause: W1Fallback) -> (MechanicsEnvelope, Result<RetainedSuccessor, W1Fallback>) {
         let Self(mut notice) = self;
+        // RV85 T1: rendering and appending allocate nothing (the capacities reserved
+        // before W1 are the capacities published).
+        #[cfg(test)]
+        let reserved = (ordinary.diagnostics.capacity(), notice.message.capacity());
         if let W1Fallback::Serializer(failure) = &cause {
             if let Some(detail) = receipt_encoding_detail(failure.check) {
                 notice.message.push_str(RECEIPT_ENCODING_REASON);
@@ -3061,9 +3074,11 @@ impl ReservedNotice {
             }
         }
         #[cfg(test)]
-        assert!(ordinary.diagnostics.len() < ordinary.diagnostics.capacity() && notice.message.len() <= notice.message.capacity(),
-            "the notice's space was reserved before W1");
+        assert!(ordinary.diagnostics.len() < ordinary.diagnostics.capacity() && notice.message.capacity() == reserved.1,
+            "the notice's space was reserved before W1: rendering allocated nothing");
         ordinary.diagnostics.push(notice);
+        #[cfg(test)]
+        assert_eq!(ordinary.diagnostics.capacity(), reserved.0, "appending the notice allocated nothing");
         (ordinary, Err(cause))
     }
 }
@@ -3186,6 +3201,61 @@ pub(crate) mod retained_tests_hooks {
         super::DENSE_SCRUTINY_CEILING_OVERRIDE.with(|c| c.set(armed.ceiling));
         ARMED.with(|a| a.set(Armed { ceiling: None, ..armed }));
     }
+    /// RV85 U2: faults handed back across the hop, by the caller's thread.
+    static HANDED_BACK: std::sync::Mutex<Vec<(std::thread::ThreadId, Armed)>> = std::sync::Mutex::new(Vec::new());
+    fn record(caller: std::thread::ThreadId, armed: Armed) {
+        let faults = Armed { ceiling: None, ..armed };
+        if faults != Armed::default() {
+            HANDED_BACK.lock().unwrap().push((caller, faults));
+        }
+    }
+    /// The caller's faults in transit: installed on the worker, or handed back as
+    /// they drop unrun (a spawn failure drops the work on the caller's thread).
+    pub(crate) struct Carried { armed: Option<Armed>, caller: std::thread::ThreadId }
+    impl Carried {
+        pub(crate) fn take() -> Self { Self { armed: Some(take_armed()), caller: std::thread::current().id() } }
+        /// On the worker: install the carried faults; returns the caller to hand back to.
+        pub(crate) fn install(mut self) -> std::thread::ThreadId {
+            install_armed(self.armed.take().unwrap_or_default());
+            self.caller
+        }
+    }
+    impl Drop for Carried {
+        fn drop(&mut self) {
+            if let Some(armed) = self.armed.take() {
+                record(self.caller, armed);
+            }
+        }
+    }
+    /// On the worker, after the work: this thread's unfired faults go back to the caller.
+    pub(crate) fn hand_back(caller: std::thread::ThreadId) {
+        record(caller, ARMED.with(|a| a.take()));
+    }
+    /// On the caller, after the hop: re-arm every fault handed back to this thread.
+    pub(crate) fn reclaim_handed_back() {
+        let me = std::thread::current().id();
+        let mut back = HANDED_BACK.lock().unwrap();
+        let mut mine = Vec::new();
+        back.retain(|(owner, armed)| if *owner == me { mine.push(*armed); false } else { true });
+        drop(back);
+        for faults in mine {
+            arm(|a| {
+                a.corrupt |= faults.corrupt;
+                a.withdraw |= faults.withdraw;
+                a.rebind |= faults.rebind;
+                a.serializer = a.serializer.or(faults.serializer);
+                a.staging |= faults.staging;
+            });
+        }
+    }
+    /// The names of the faults armed on this thread (test assertions).
+    pub(crate) fn armed_names() -> Vec<&'static str> {
+        let a = armed();
+        [(a.corrupt, "precommit"), (a.withdraw, "native"), (a.rebind, "rebind"), (a.serializer.is_some(), "serializer"), (a.staging, "staging")]
+            .into_iter().filter(|(on, _)| *on).map(|(_, name)| name).collect()
+    }
+    /// Disarm every fault on this thread (test cleanup).
+    pub(crate) fn disarm() { ARMED.with(|a| a.set(Armed { ceiling: None, ..Armed::default() })); }
     /// Precommit binding fault: the next precommit validates against the other mode.
     pub(crate) fn rebind_next_precommit_invocation() { arm(|a| a.rebind = true); }
     pub(crate) fn before_precommit_invocation(invocation: &mut serde_json::Value) {
