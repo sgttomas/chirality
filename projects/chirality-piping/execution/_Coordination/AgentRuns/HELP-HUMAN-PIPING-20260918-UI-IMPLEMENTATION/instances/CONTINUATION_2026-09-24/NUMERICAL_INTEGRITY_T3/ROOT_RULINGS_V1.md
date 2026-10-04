@@ -8735,3 +8735,5 @@ The NOTEs are tracked under D36:
 - **RV78's Y1, Y2 and Y4** are byte-identical to three of the X1 pins, so they are pinned once.
 
 **I63 handed back early** (a forced hand-off) with D37 and the transport test done in its working tree but not reconciled with I62's published table, and not run on 07f. It is resumed to finish; a successor takes over from its written state if needed. I64's round continues.
+
+**TypeScript D37 and 07f, committed as `624507c71b`.** ROOT verified the hashes and the evidence; vitest 436/436, tsc 0. The reader's diff removes no line. Its table matches I62's row for row. Rust's finish is pending.
