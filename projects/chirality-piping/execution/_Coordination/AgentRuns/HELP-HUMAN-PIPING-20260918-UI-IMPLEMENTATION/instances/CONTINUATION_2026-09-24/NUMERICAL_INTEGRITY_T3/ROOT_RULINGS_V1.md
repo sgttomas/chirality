@@ -8597,3 +8597,23 @@ By §6 this is not an acceptance condition. It is recorded for the next format c
 - **Mutants:** 39 of 47 killed.
 - **Optional (NOTE 1):** D33 is pinned only with a translation row, so the mutants admitting a rotation estimate or refusing a moment estimate survive. The reader is correct on both by probe. A rotation pin and a moment control are added in the next corpus change.
 - **NOTE 2:** −0 rejection is backed up twice, in `uint` and in the G2 encoding check, and the pair is pinned.
+
+**RV79 confirmation 04: PASS** (0 BLOCKING, 1 SHOULD-FIX, 3 NOTE).
+- **E1 is fixed by D32,** checked with RV79's own probes: the forged source identity behind `0.0`, the float `attempt_ref`, and the D23 and coverage float refs all fail at their ruled gates.
+- **Booleans and −0:** booleans fail G0 or G1, and −0 fails G2 in counter and index fields.
+- **Normalization:** it cannot truncate, because G1 and G2 have already proved every receipt number integral.
+- **Weakening:** nothing is weakened.
+- **Mutants:** 21 of 29 killed.
+
+**S1 (SHOULD-FIX, tests only).** No test kills M29 (`_integral` truncating non-integral floats). Three shared G0 pins are added: `receipt_version: 1.5`, `case_limit: 20000000000.5` and `invocation_limit: 60000000000.5`.
+
+**D34, −0 everywhere (RV79-N1).** A JSON number equal to −0 anywhere in the receipt fails G2 ENCODING. That includes the integer fields the schema writes as enum or const values (`G5aError.quantity_kind`, `source_decline.constructor_counts.directional_springs`).
+- **Basis:** C1 §4 ("Nonnegative quantities require canonical +0, never negative zero") and C1's G2 row ("no -0 counter"); D32's "not −0".
+- Canonical JCS writes 0, so no emitter produces −0. Accepting it would admit a non-canonical spelling.
+- All readers confirm or apply it, with reader-local tests: no base carries those two fields.
+
+**The 07e round waits for RV80's report,** so that every round-04 item lands together:
+- S1's three G0 pins;
+- D34;
+- RV81-N1's D33 kind-set pins (a rotation estimate fails, a moment estimate passes);
+- RV78-N1's rehash indexing rule, written into the format and aligned across the harnesses.
