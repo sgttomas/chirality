@@ -11047,3 +11047,21 @@ Slice F's order is RETURN §3.
 **Slice L (I61)** follows I67's fix: the live reruns in all three languages, the PP sweeps in both builds, U5, tokens, 07j and N-5 (RV93, optional).
 
 **RV94** reviews after L and Q.
+
+## The withheld fix committed; slice L dispatched (ROOT, 2026-10-04 UTC)
+
+**I67's follow-on** is `R/I67/u7_slice_f_02/` (RETURN.md `179fa584…`; SHA256SUMS 29/29 OK).
+- **The change:** `classificationSummary` passes the requested refs only when the standing is eligible, the live capture included. On both D-U7-4 forms, `withheld` is now 97 (not Current), not 69.
+- **Tests:** vitest 3,541/3,541 (4 new) and tsc clean.
+- **Mutants:** W01–W03 are killed by assertion.
+- **The TS oracle dump** changes only the 4 D-U7-4 `ipc` summaries, which return to the pre-U7 value.
+
+**ROOT** verified the two files (`b22e8460…`, `77dea429…`) and committed them as **`e5e1693ceb`**, the U7 head (pushed).
+
+**Slice L (I61) is dispatched** on `e5e1693ceb`:
+- the RV92 N-8 live reruns in all three languages, with tokens compared;
+- U5 on the U7 head's live bytes;
+- the PP sweeps, cited from I66 if the code is hash-identical;
+- **07j:** a shared `not_required` must-pass entry closing C04, or a contract-cited reason why none can be valid.
+
+**RV93 N-5** (a real-input Candidate test) is **deferred to U8,** so that no PP change follows slice Q.
