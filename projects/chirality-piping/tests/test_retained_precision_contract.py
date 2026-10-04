@@ -621,10 +621,11 @@ def test_rv79_surviving_mutants_m06_m09_m14():
 
 
 def test_snapshot_07_counts_and_entry_format():
-    """Snapshot 07f (I62; D37): 15 cases, 268 mutations, 22 must-pass; only rehash "all" (D11);
-    one expectation per entry except the per-reader G7 entry."""
+    """Snapshot 07g (I61 U6e; F5, RV79-N1): 15 cases, 274 mutations, 22 must-pass and the D37
+    table; only rehash "all" (D11); one expectation per entry except the per-reader G7 entry."""
     c = corpus()
-    assert (len(c["cases"]), len(c["mutations"]), len(c["must_pass"])) == (15, 268, 22)
+    assert (len(c["cases"]), len(c["mutations"]), len(c["must_pass"])) == (15, 274, 22)
+    assert set(c) == {"version", "provenance", "arithmetic", "cases", "mutations", "must_pass", "d37"}
     entries = c["mutations"] + c["must_pass"]
     assert all(e["rehash"] == "all" for e in entries)
     assert all(set(e) <= {"id", "base", "edits", "invocation_edits", "after_rehash", "rehash", "expected", "expected_by_reader"} for e in entries)
@@ -740,8 +741,33 @@ def test_rehash_index_rule_07e():
 
 
 def test_error_kind_agrees_with_stage_record_d37():
-    """D37 (D35 widened), G5 PRODUCT_ATTEMPT class 3: every error kind against every native stage
-    record, in both directions (PP/retained_product.rs:3136-3290, 3456-3567)."""
+    """D37 (D35 widened), G5 PRODUCT_ATTEMPT class 3: every error kind against every well-formed stage
+    record, in both directions. RV79-N1 (snapshot 07g): the expected table is the corpus's `d37`,
+    derived from the native sequence and C3, never from this reader's own table."""
+    table = corpus()["d37"]
+    marks = table["marks"]
+    expected = {kind: {tuple(marks[m] for m in r) for r in records} for kind, records in table["kinds"].items()}
+    universe = [tuple(marks[m] for m in r) for r in table["records"]]
+    assert table["stage_order"] == list(rp.STAGE_ORDER) and len(universe) == len(set(universe)) == 25
+    assert all(record in universe for allowed in expected.values() for record in allowed)
+    fail_pa = lambda ok: rp._need(ok, "G5", "PRODUCT_ATTEMPT_MISMATCH")
+    base = deepcopy(_cases()[F_BASE]["source"]["retained_precision"]["body"]["product_attempts"][1])
+    misses = []
+    for kind in list(expected) + table["unknown_kinds"]:
+        for record in universe:
+            a = deepcopy(base); a["proof"] = None
+            a["stages"] = dict(zip(rp.STAGE_ORDER, record)); a["result"] = {"kind": "unavailable", "error": {"kind": kind}}
+            try:
+                rp._g5_typed(a, fail_pa); accepted = True
+            except rp.RetainedPrecisionError as error:
+                assert (error.gate, error.code) == ("G5", "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"); accepted = False
+            if accepted != (record in expected.get(kind, set())):
+                misses.append((kind, record, accepted))
+    assert not misses, misses
+
+
+def test_error_kind_agrees_with_stage_record_d37_reader_table_pins():
+    """07f's direct pins on the reader's own table, kept beside the corpus comparison."""
     C, F, N = "completed", "failed", "not_entered"
     records = rp.ERROR_STAGE_RECORDS
     assert records["g5a"] == {tuple([C] * 9 + [F])}
@@ -759,3 +785,51 @@ def test_error_kind_agrees_with_stage_record_d37():
                 rp._g5_typed(a, fail_pa)
             else:
                 _raises(lambda: rp._g5_typed(a, fail_pa), "G5", "PRODUCT_ATTEMPT_MISMATCH")
+
+
+def _resealed(doc, edits):
+    """A real milestone receipt edited and resealed like a corpus entry (rehash "all")."""
+    return apply_entry({"source": doc["source"], "invocation": doc["invocation"]}, {"id": "u6e", "edits": edits, "rehash": "all"})
+
+
+@pytest.mark.parametrize("mode", sorted(MILESTONE_PINS))
+def test_f5_kills_u1_m09_m10_m20_on_the_real_milestone_receipts(mode):
+    """F5 (D-U6-7; A2): the readers enforce the exact ordinary list, so U1's producer mutants M09
+    (RETAINED_PRECISION_* listed), M10 (diagnostics that do not name the case listed) and M20
+    (another row method token) are refused on the real receipt, not only by PP's committed bytes."""
+    doc = _milestone(mode)
+    source = doc["source"]
+    case = source["retained_precision"]["body"]["cases"][0]["basis_ref"]["ref_id"]
+    refs = source["retained_precision"]["body"]["ordinary_attempts"][0]["diagnostic_refs"]
+    assert refs == [d["id"] for d in source["diagnostics"] if case in (d.get("affected_refs") or []) and not d["code"].startswith("RETAINED_PRECISION_")]
+    path = ["retained_precision", "body", "ordinary_attempts", 0, "diagnostic_refs"]
+    m09 = [d["id"] for d in source["diagnostics"] if case in (d.get("affected_refs") or [])]
+    m10 = [d["id"] for d in source["diagnostics"] if not d["code"].startswith("RETAINED_PRECISION_")]
+    assert m09 != refs and m10 != refs, "the mutants differ from the exact list on this receipt"
+    for edits, want in [([{"path": path, "op": "set", "value": m09}], ("G5", "RETAINED_PRECISION_ATTEMPT_MISMATCH")),
+                        ([{"path": path, "op": "set", "value": m10}], ("G5", "RETAINED_PRECISION_ATTEMPT_MISMATCH")),
+                        ([{"path": ["results", 0, "recovery_method"], "op": "set", "value": "other"}], ("G6", "RETAINED_PRECISION_ROW_METHOD_MISMATCH"))]:
+        edited, invocation = _resealed(doc, edits)
+        with pytest.raises(rp.RetainedPrecisionError) as error:
+            rp._validate_draft(edited, invocation)
+        assert (error.value.gate, error.value.code) == want, edits
+    resealed, invocation = _resealed(doc, [])
+    assert rp._validate_draft(resealed, invocation)["classifications"] == rp._validate_draft(deepcopy(source), deepcopy(doc["invocation"]))["classifications"]
+
+
+def test_rv80_n2_integral_normalization_touches_only_the_receipt(monkeypatch):
+    """RV80-N2 (07g): D32's normalization of integral floats runs on the receipt only, never on the
+    statement's rows, diagnostics or quality (Rust pins the same with `integral_receipt`)."""
+    calls = []
+    original = rp._normalize_integrals
+    def recording(value):
+        calls.append(value)
+        return original(value)
+    monkeypatch.setattr(rp, "_normalize_integrals", recording)
+    fixture = _cases()[O_BASE]
+    source = deepcopy(fixture["source"])
+    source["retained_precision"]["body"]["work"]["charged"] = float(source["retained_precision"]["body"]["work"]["charged"])
+    source["retained_precision"]["receipt_sha256"] = rp._hash("retained_precision_receipt_mp_v2", source["retained_precision"]["body"])
+    rp._validate_draft(source, deepcopy(fixture["invocation"]))
+    assert calls and set(calls[0]) == {"body", "receipt_sha256"}, "the outermost call is the receipt"
+    assert not any(isinstance(v, dict) and "results" in v for v in calls), "the statement is never normalized"

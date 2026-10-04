@@ -647,6 +647,12 @@ const NATIVE_STAGE_RECORDS: Record<string, string[]> = {
   g5a: ['CCCCCCCCCF'],                                              // Observables passed, G5a failed
 };
 const stageRecordMatches = (pattern: string, record: string): boolean => [...pattern].every((m, i) => m === '?' ? 'CF'.includes(record[i]) : m === record[i]);
+/** D37: whether an unavailable error kind can leave this stage record.
+ * @internal Exported only for the RV79-N1 corpus-table test; not a public entry point. */
+export function errorStageRecordAgrees(kind: string, stages: Obj): boolean {
+  const record = STAGE_ORDER.map(k => STAGE_MARK[stages[k]]).join('');
+  return NATIVE_STAGE_RECORDS[kind]?.some(pattern => stageRecordMatches(pattern, record)) === true;
+}
 /** @internal Exported only for the reader-logic D30 test (no faithful nonselected-Run base); not a public entry point. */
 export function productAttempts(b: Obj, rows: Map<string, Obj[]>): void {
   // A later product association/check defect precedes product work consistency.
@@ -776,8 +782,7 @@ export function productAttempts(b: Obj, rows: Map<string, Obj[]>): void {
     const first = pipeline.find(k => a.stages[k] === 'failed');
     if (first) fail(allowed[first].includes(a.result.error.kind));
     // D37 (D35 widened; RV79-X1): the error kind and the stage record agree in both directions.
-    const record = STAGE_ORDER.map(k => STAGE_MARK[a.stages[k]]).join('');
-    fail(NATIVE_STAGE_RECORDS[a.result.error.kind]?.some(pattern => stageRecordMatches(pattern, record)) === true);
+    fail(errorStageRecordAgrees(a.result.error.kind, a.stages));
   }
   // C3 work equations, deferred until every attempt's association and typed checks.
   for (const ok of workChecks) need(ok, 'G5', 'WORK_MISMATCH');
@@ -1252,8 +1257,13 @@ export function ordinaryAttempts(b: Obj, source: Obj): void {
       const d = ds.find(d => d.id === ref); fail(d && d.affected_refs?.includes(cid) && a.diagnostic_refs.includes(ref));
     };
     fail(b.material_bases[a.material_basis_ref]?.case_indices.includes(ci));
-    // D6a (checkpoint A): untyped diagnostic_refs are unique and resolve; they need not name the case.
+    // D6a (checkpoint A): untyped diagnostic_refs are unique and resolve.
     fail(unique(a.diagnostic_refs) && a.diagnostic_refs.every((ref: string) => ds.some(d => d.id === ref)));
+    // F5 (D-U6-7; decision 2, A2, RR:8821, amending checkpoint A's D6a, RR:8117): the list is exactly the diagnostics
+    // whose affected_refs name the case, once each, in envelope order, excluding RETAINED_PRECISION_* (a T1 (a)-omitted
+    // disclosure is absent from the published envelope).
+    const exact = ds.filter(d => Array.isArray(d.affected_refs) && d.affected_refs.includes(cid) && !String(d.code).startsWith('RETAINED_PRECISION_')).map(d => d.id);
+    fail(a.diagnostic_refs.length === exact.length && a.diagnostic_refs.every((ref: string, i: number) => ref === exact[i]));
     if (a.initial.kind === 'report') { diagnostic(a.initial.report_diagnostic_ref, cid, true); fail(a.diagnostic_refs.includes(a.initial.report_diagnostic_ref) && a.initial.outcome === q.solve_quality); }
     if (a.initial.kind === 'structural_failure') diagnostic(a.initial.diagnostic_ref, cid);
     if (a.w2.kind !== 'not_triggered') {

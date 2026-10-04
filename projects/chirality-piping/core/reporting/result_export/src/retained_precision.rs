@@ -4128,12 +4128,21 @@ fn g5_ordinary(source: &Value) -> VResult {
                 .ok_or_else(|| error("G5", "ATTEMPT_MISMATCH"))
         };
         // D6a (checkpoint-A ruling): the untyped diagnostic_refs are unique and
-        // resolve; a listed diagnostic need not name the case. Typed references
-        // below must be listed and name the case (C2:166).
+        // resolve. Typed references below must be listed and name the case (C2:166).
         let mut refs = BTreeSet::new();
         for id in list(&o["diagnostic_refs"]) {
             fail(refs.insert(text(id)) && ds.iter().any(|d| d["id"] == *id))?;
         }
+        // F5 (D-U6-7; decision 2, A2, RR:8821, amending checkpoint A's D6a,
+        // RR:8117): the list is exactly the diagnostics whose affected_refs name
+        // the case, once each, in envelope order, excluding RETAINED_PRECISION_*
+        // (a T1 (a)-omitted disclosure is absent from the published envelope).
+        let exact: Vec<&Value> = ds
+            .iter()
+            .filter(|d| list(&d["affected_refs"]).contains(cid) && !text(&d["code"]).starts_with("RETAINED_PRECISION_"))
+            .map(|d| &d["id"])
+            .collect();
+        fail(list(&o["diagnostic_refs"]).iter().collect::<Vec<_>>() == exact)?;
         for path in [
             &o["initial"]["diagnostic_ref"],
             &o["initial"]["report_diagnostic_ref"],
@@ -4332,4 +4341,62 @@ pub fn validate_transport_metadata(source: &Value) -> VResult<Validation> {
             .into(),
         classifications: Vec::new(),
     })
+}
+
+/// I61 U6e (snapshot 07g): reader-local pins for RV79-N1 (D37's expected table is
+/// the corpus's, derived from native source, never this reader's) and RV80-N2
+/// (`integral_receipt` touches only the receipt).
+#[cfg(test)]
+mod u6e_reader_round_tests {
+    use super::*;
+    fn corpus() -> Value {
+        serde_json::from_str(include_str!("../../../../fixtures/results/retained_precision_cases.json")).unwrap()
+    }
+
+    #[test]
+    fn d37_error_stages_matches_the_corpus_table_rv79_n1() {
+        let table = corpus()["d37"].clone();
+        let order: Vec<String> = table["stage_order"].as_array().unwrap().iter().map(|s| s.as_str().unwrap().to_owned()).collect();
+        let pipeline: Vec<&str> = STAGE8.to_vec();
+        assert_eq!(order[..8], pipeline[..], "the pipeline order");
+        assert_eq!(order[8..], ["observables".to_owned(), "g5a".to_owned()]);
+        let records: Vec<String> = table["records"].as_array().unwrap().iter().map(|r| r.as_str().unwrap().to_owned()).collect();
+        assert_eq!(records.len(), 25);
+        let stages = |r: &str| -> Value {
+            Value::Object(order.iter().zip(r.chars()).map(|(k, m)| (k.clone(), table["marks"][m.to_string().as_str()].clone())).collect())
+        };
+        let mut kinds: Vec<String> = table["kinds"].as_object().unwrap().keys().cloned().collect();
+        kinds.extend(table["unknown_kinds"].as_array().unwrap().iter().map(|k| k.as_str().unwrap().to_owned()));
+        let mut misses = Vec::new();
+        for kind in &kinds {
+            let allowed = table["kinds"].get(kind.as_str()).and_then(Value::as_array).cloned().unwrap_or_default();
+            for r in &records {
+                let attempt = json!({"stages": stages(r), "result": {"kind": "unavailable", "error": {"kind": kind}}});
+                if error_stages(&attempt) != allowed.contains(&json!(r)) {
+                    misses.push(format!("{kind} {r}"));
+                }
+            }
+        }
+        assert!(misses.is_empty(), "{misses:?}");
+    }
+
+    #[test]
+    fn rv80_n2_integral_receipt_touches_only_the_receipt() {
+        let shared = corpus();
+        let mut source = shared["cases"][0]["source"].clone();
+        let charged = source["retained_precision"]["body"]["work"]["charged"].as_u64().unwrap();
+        source["retained_precision"]["body"]["work"]["charged"] = json!(charged as f64);
+        source["results"][1]["value"] = json!(17.0);
+        source["diagnostics"][0]["probe"] = json!(3.0);
+        let normalized = integral_receipt(&source);
+        assert!(matches!(normalized, std::borrow::Cow::Owned(_)), "the receipt's integral float is normalized");
+        assert!(normalized["retained_precision"]["body"]["work"]["charged"].is_u64());
+        assert_eq!(normalized["retained_precision"]["body"]["work"]["charged"], json!(charged));
+        for (key, value) in source.as_object().unwrap() {
+            if key != "retained_precision" {
+                assert_eq!(serde_json::to_string(&normalized[key.as_str()]).unwrap(), serde_json::to_string(value).unwrap(), "{key} is byte-identical");
+            }
+        }
+        assert!(normalized["results"][1]["value"].is_f64(), "a row's 17.0 stays 17.0");
+    }
 }

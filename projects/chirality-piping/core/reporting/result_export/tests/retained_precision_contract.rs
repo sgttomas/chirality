@@ -270,12 +270,12 @@ fn shared_rehashed_first_failure_mutations() {
 
 /// Observe one slice of the shared mutations against this reader's own
 /// expectation, print one outcome per mutation (visible with --nocapture) and
-/// check the slice tally. Snapshot 07f holds 268 mutations in all.
+/// check the slice tally. Snapshot 07g holds 274 mutations in all.
 fn slice_outcomes(tag: &str, range: std::ops::Range<usize>, want: &[(&str, usize)]) {
     use std::collections::BTreeMap;
     let shared = corpus();
     let mutations = shared["mutations"].as_array().unwrap();
-    assert_eq!(mutations.len(), 268);
+    assert_eq!(mutations.len(), 274);
     let mut tally = BTreeMap::new();
     let mut matched = 0;
     for mutation in &mutations[range.clone()] {
@@ -516,6 +516,58 @@ fn snapshot_07f_mutation_outcomes() {
         263..268,
         &[("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 5)],
     );
+}
+
+/// Snapshot-07g pins (I61 U6e; F5, D-U6-7): A2's exact ordinary list, the
+/// omission, order, RETAINED_PRECISION_* (U1 M09), invocation-level (U1 M10),
+/// another case and 07f's relaxed form, mutations 268..274.
+#[test]
+fn snapshot_07g_mutation_outcomes() {
+    slice_outcomes(
+        "I61_OUTCOME_07G",
+        268..274,
+        &[("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 6)],
+    );
+}
+
+/// F5 (D-U6-7; A2) on the real milestone receipts: U1's producer mutants M09
+/// (RETAINED_PRECISION_* listed), M10 (diagnostics that do not name the case
+/// listed) and M20 (another row method token) are refused by this reader, each
+/// resealed as a corpus entry would be.
+#[test]
+fn f5_kills_u1_m09_m10_m20_on_the_real_milestone_receipts() {
+    use serde_json::json;
+    for (mode, text) in [
+        ("sparse_interactive", include_str!("../../../../fixtures/results/retained_precision_milestone_successor_sparse_interactive.json")),
+        ("dense_scrutiny", include_str!("../../../../fixtures/results/retained_precision_milestone_successor_dense_scrutiny.json")),
+    ] {
+        let doc: Value = serde_json::from_str(text).unwrap();
+        let (source, invocation) = (&doc["source"], &doc["invocation"]);
+        let case = source["retained_precision"]["body"]["cases"][0]["basis_ref"]["ref_id"].clone();
+        let names = |d: &Value| d["affected_refs"].as_array().is_some_and(|a| a.contains(&case));
+        let retained = |d: &Value| d["code"].as_str().unwrap().starts_with("RETAINED_PRECISION_");
+        let ds = source["diagnostics"].as_array().unwrap();
+        let exact: Vec<Value> = ds.iter().filter(|d| names(d) && !retained(d)).map(|d| d["id"].clone()).collect();
+        assert_eq!(source["retained_precision"]["body"]["ordinary_attempts"][0]["diagnostic_refs"], json!(exact), "{mode}");
+        let m09: Vec<Value> = ds.iter().filter(|d| names(d)).map(|d| d["id"].clone()).collect();
+        let m10: Vec<Value> = ds.iter().filter(|d| !retained(d)).map(|d| d["id"].clone()).collect();
+        assert!(m09 != exact && m10 != exact, "{mode}: the mutants differ from the exact list");
+        let refs = json!(["retained_precision", "body", "ordinary_attempts", 0, "diagnostic_refs"]);
+        for (edit_, want) in [
+            (set(refs.clone(), json!(m09)), ("G5", ATTEMPT)),
+            (set(refs.clone(), json!(m10)), ("G5", ATTEMPT)),
+            (set(json!(["results", 0, "recovery_method"]), json!("other")), ("G6", "RETAINED_PRECISION_ROW_METHOD_MISMATCH")),
+        ] {
+            let mut edited = source.clone();
+            edit(&mut edited, &edit_);
+            rehash(&mut edited);
+            let got = rp::validate(&edited, Some(invocation)).err().map(|e| (e.gate, e.code));
+            assert_eq!(got.as_ref().map(|(g, c)| (*g, c.as_str())), Some(want), "{mode} {edit_}");
+        }
+        let mut resealed = source.clone();
+        rehash(&mut resealed);
+        assert_eq!(resealed, *source, "{mode}: the receipt reseals to itself");
+    }
 }
 
 fn observe(shared: &Value, mutation: &Value) -> Value {
@@ -2360,8 +2412,10 @@ fn d6_d7_ordinary_and_diagnostic_relations() {
         probe(&shared, ORD, vec![set(json!(["numerical_quality", "cases", 0, "solve_quality"]), json!("not_assessed"))]),
         gate("G5", ATTEMPT)
     );
-    // D6a (checkpoint A): untyped diagnostic_refs are unique and resolve; a
-    // listed diagnostic need not name the case.
+    // D6a as amended by F5 (D-U6-7; A2): the untyped list is exactly the
+    // diagnostics naming the case, in envelope order, excluding
+    // RETAINED_PRECISION_*. Checkpoint A's relaxed form (a listed diagnostic of
+    // another scope is admitted) is refused since snapshot 07g.
     let other = base_source(&shared, ORD)["diagnostics"]
         .as_array()
         .unwrap()
@@ -2376,9 +2430,10 @@ fn d6_d7_ordinary_and_diagnostic_relations() {
         let other = other.expect("a diagnostic of another scope in the base");
         assert_eq!(
             probe(&shared, ORD, vec![set(rb(json!(["ordinary_attempts", 0, "diagnostic_refs"])), json!(["diagnostic:numerical-integrity:case:six-component-load", other]))]),
-            Value::Null,
-            "a listed diagnostic of another scope is admitted"
+            gate("G5", ATTEMPT),
+            "F5: a listed diagnostic of another scope is refused"
         );
+        assert_eq!(probe(&shared, ORD, vec![]), Value::Null, "F5: the repaired base's exact list is admitted");
     }
     for (name, refs) in [
         ("duplicate (RV78 T4a)", json!(["diagnostic:numerical-integrity:case:six-component-load", "diagnostic:numerical-integrity:case:six-component-load"])),
