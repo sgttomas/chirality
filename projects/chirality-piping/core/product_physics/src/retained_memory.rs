@@ -962,7 +962,9 @@ pub(super) fn identity_match<'a>(
     registered.position(|identity| identity == compiled).ok_or(ProfileStatus::Stale)
 }
 /// The bindings a matched identity also needs: the layout witnesses, the
-/// reviewed inputs (byte-equal) and the reader layouts. Pure.
+/// reviewed inputs (byte-equal, and every input read: a field build.rs could
+/// not read, `<path>=unavailable`, is a mismatch exactly as `identity_match`
+/// treats an unavailable identity, RV89 N-4) and the reader layouts. Pure.
 pub(super) fn bindings_hold(
     witnesses: bool,
     compiled_inputs: Option<&str>,
@@ -970,7 +972,11 @@ pub(super) fn bindings_hold(
     build_layouts: &[TypeLayout],
     registered_layouts: &[TypeLayout],
 ) -> bool {
-    witnesses && compiled_inputs == Some(registered_inputs) && build_layouts == registered_layouts
+    let every_input_read = |text: &str| !text.split(';').any(|field| field.ends_with("=unavailable"));
+    witnesses
+        && compiled_inputs.is_some_and(every_input_read)
+        && compiled_inputs == Some(registered_inputs)
+        && build_layouts == registered_layouts
 }
 /// D1.1's status of this build: a registered profile's index, or why not.
 fn build_status() -> Result<usize, ProfileStatus> {
@@ -1006,14 +1012,1278 @@ fn reserved_stack() -> usize {
 /// under this precondition (DOMAIN.md §3).
 #[allow(dead_code)]
 pub(super) const STACK_RESERVATION_PRECONDITION: UnavailablePrecondition = UnavailablePrecondition::ResourceAdmission;
-/// The cap-priced admission maximum without R: the maximum over both branches of
-/// every phase through caller completion (COMPOSITION_G4.md §1; RR "RV84 on U4
-/// G3", S-5), in requested plus moving heap bytes, for the invocation's mode.
-/// G5 part 2 writes its in-build expressions; until then it is unpriced, and the
-/// law refuses (fail-closed).
-fn cap_priced_maximum(_mode: crate::PreviewSolverMode) -> Result<u64, BoundRefusal> {
-    Err(BoundRefusal::Unpriced)
+/// The cap-priced admission maximum without R (E_mov,max): the maximum over both branches of
+/// every phase through caller completion (COMPOSITION_G4.md §1; RR "RV84 on U4 G3", S-5), in
+/// requested plus moving heap bytes, for the invocation's mode, evaluated in this build by the
+/// generated `profile`. It fails closed (Unpriced) while any atom is still a design-record
+/// Estimate (G6 closes them), and on overflow.
+fn cap_priced_maximum(mode: crate::PreviewSolverMode) -> Result<u64, BoundRefusal> {
+    priced_maximum(profile::ESTIMATES, mode)
 }
+/// The generated profile's in-build maximum for a mode (without R), or `Unpriced`
+/// while any Estimate atom remains. Pure.
+pub(super) fn priced_maximum(estimates: usize, mode: crate::PreviewSolverMode) -> Result<u64, BoundRefusal> {
+    if estimates != 0 {
+        return Err(BoundRefusal::Unpriced);
+    }
+    let maximum = match mode {
+        crate::PreviewSolverMode::SparseInteractive => profile::SPARSE,
+        crate::PreviewSolverMode::DenseScrutiny => profile::DENSE,
+    };
+    maximum.map(|(bytes, _)| bytes).ok_or(BoundRefusal::Overflow)
+}
+
+// ---- BEGIN GENERATED PROFILE (part2/_run_records/g5_profile.py from profile_tree.json; do not edit by hand) ----
+/// U4 G5 part 2: the cap-priced admission maximum as named in-build expressions. Every term is a
+/// linear form over layout atoms at the D1 caps (l <= 128); every maximum (stages, phases, moving
+/// candidates) is taken here, in the build. Source: the G4 chain with RV84/RV87's corrections at
+/// NUM 1e323058f3 (G5 part 1 code); text at l <= 128 on the R-4 graph.
+pub(super) mod profile {
+    #![allow(clippy::all, dead_code)]
+    use open_pipe_stress_frame_kernel::structural::retained_resource as fkr;
+    use serde_json::Value;
+    use std::mem::{align_of, size_of};
+
+    #[derive(Debug, Clone, Copy, PartialEq, Eq)]
+    pub(crate) enum Binding {
+        /// size_of/align_of of the actual type in this build.
+        InBuild,
+        /// A source-derived upper bound for a type the product cannot name (cited).
+        SourceUpper,
+        /// A text byte count from the T08 closure (layout-free).
+        Text,
+        /// A G3 design-record stride with no in-build type identified: the profile is incomplete.
+        Estimate,
+    }
+    const fn up(x: usize, a: usize) -> usize {
+        (x + a - 1) / a * a
+    }
+    const fn max_usize(a: usize, b: usize) -> usize {
+        if a > b { a } else { b }
+    }
+    /// BUILD.md §4: a BTreeMap<K, V> node, max(Leaf_up, Internal_up), at A = max(8, align K, align V).
+    pub(crate) const fn btree_node_upper(sk: usize, ak: usize, sv: usize, av: usize) -> usize {
+        let a = max_usize(8, max_usize(ak, av));
+        let leaf = up(8, a) + up(2, a) + up(2, a) + up(11 * sk, a) + up(11 * sv, a);
+        let internal = up(up(leaf, 8) + 12 * 8, a);
+        max_usize(leaf, internal)
+    }
+    /// The text atoms of the T08 closure at this basis (byte counts, layout-free), and the
+    /// longest-string atoms of the hash route (RV84 C-N1; RV87 N-3).
+    pub(crate) const TEXT_D: u64 = 14734; // D
+    pub(crate) const TEXT_D_ENV: u64 = 9361; // D_env
+    pub(crate) const TEXT_TAV_TEXT_MOVING: u64 = 2119206254; // TAV_text_moving
+    pub(crate) const TEXT_TAV_TEXT_REQUESTED: u64 = 2116606292; // TAV_text_requested
+    pub(crate) const TEXT_TEXT_AUDIT_ERROR: u64 = 16384; // Text(audit_error)
+    pub(crate) const TEXT_TEXT_DIAG_ENV: u64 = 68720236; // Text(diag_env)
+    pub(crate) const TEXT_TEXT_DIAG_TOTAL: u64 = 94906464; // Text(diag_total)
+    pub(crate) const TEXT_TEXT_ERR: u64 = 16384; // Text(err)
+    pub(crate) const TEXT_TEXT_FORMATION_DETAIL: u64 = 16426; // Text(formation_detail)
+    pub(crate) const TEXT_TEXT_RECOVERY_FINDING: u64 = 10466306; // Text(recovery_finding)
+    pub(crate) const TEXT_TEXT_ROW: u64 = 11474; // Text(row)
+    pub(crate) const TEXT_TEXT_SYM: u64 = 368; // Text(sym)
+    pub(crate) const L_DIAGID: u64 = 2330;
+    pub(crate) const L_PUB: u64 = 2599962;
+    pub(crate) const ATOMS: usize = 244;
+    /// The atoms, in index order: their names (as the records write them) and bindings.
+    pub(crate) const ATOM_NAMES: [&str; ATOMS] = [
+        "Node(&String,())",
+        "Node(&str,&ResultItem)",
+        "Node(&str,())",
+        "Node((String,String),())",
+        "Node(String,())",
+        "Node(String,BTreeMap)",
+        "Node(String,ResultItem)",
+        "Node(String,RowTreatment)",
+        "Node(String,Value)",
+        "Node(TrackerKey,())",
+        "Node(TrackerKey,Tracker)",
+        "Node(usize,())",
+        "Node(usize,ResultItem)",
+        "Node(usize,String)",
+        "Text(audit_error)",
+        "Text(err)",
+        "Text(formation_detail)",
+        "Text(recovery_finding)",
+        "Text(row)",
+        "Text(sym)",
+        "s(&Value)",
+        "s(&str)",
+        "s((&str,&T))",
+        "s((&str,&Value))",
+        "s((&str,StressRecoveryResult))",
+        "s((&str,usize))",
+        "s((&str,usize,u64))",
+        "s((Content,Content))",
+        "s((EWS,EWS,f64))",
+        "s((QuantityId,Binary64Outcome))",
+        "s((QuantityId,u64))",
+        "s((String,DerivedSection))",
+        "s((String,ResultItem))",
+        "s((String,String))",
+        "s((String,[f64;3]))",
+        "s((String,[f64;6]))",
+        "s((String,f64,f64))",
+        "s((String,usize))",
+        "s((Wide,Wide,Wide))",
+        "s((bool,f64,Wide))",
+        "s((f64,f64))",
+        "s((u32,Kind,u64))",
+        "s((u32,SpringKind))",
+        "s((usize,(f64,f64)))",
+        "s((usize,ExactAccumulator,bool))",
+        "s((usize,LedgerNet))",
+        "s((usize,PublishedValue))",
+        "s((usize,VecPair))",
+        "s((usize,[f64;3],usize,[f64;3]))",
+        "s((usize,f64))",
+        "s((usize,f64,f64))",
+        "s((usize,usize))",
+        "s((usize,usize,Matrix12))",
+        "s((usize,usize,bool))",
+        "s(AdapterSnapshot)",
+        "s(AffineTerm)",
+        "s(AliasE)",
+        "s(AnalysisStatus)",
+        "s(ArcCasePrep)",
+        "s(ArcGroupPrep)",
+        "s(ArcPrepared)",
+        "s(AttemptRecord)",
+        "s(Authored<Vec<ExpansionLawInput>>)",
+        "s(BasisRecord)",
+        "s(Binary64Outcome)",
+        "s(BlockBound<16>)",
+        "s(BlockBound<4>)",
+        "s(BlockBound<8>)",
+        "s(BlockCertificate<16>)",
+        "s(BlockCertificate<4>)",
+        "s(BlockCertificate<8>)",
+        "s(BlockNorms<16>)",
+        "s(BlockNorms<4>)",
+        "s(BlockNorms<8>)",
+        "s(BlockRefusal)",
+        "s(BlockWitness)",
+        "s(BodyCoverage)",
+        "s(BodyGeometry)",
+        "s(BodyMapE)",
+        "s(BodyReport<16>)",
+        "s(BodyReport<4>)",
+        "s(BodyReport<8>)",
+        "s(BoundedCoefficients<16>)",
+        "s(BoundedCoefficients<4>)",
+        "s(BoundedCoefficients<8>)",
+        "s(CaptureError)",
+        "s(ConstraintMapE)",
+        "s(ContributionE)",
+        "s(ContributionRounding)",
+        "s(ConversionE)",
+        "s(ConversionEvent)",
+        "s(CoverageFact)",
+        "s(Derived)",
+        "s(Diagnostic)",
+        "s(EnclosureE)",
+        "s(ExactAccumulator)",
+        "s(ExactWideSum)",
+        "s(Expansion)",
+        "s(Expansion6)",
+        "s(FinalRowConversion)",
+        "s(FinalizedSourceBlockCase)",
+        "s(ForceContribution)",
+        "s(ForceTerm)",
+        "s(FrameElement)",
+        "s(FrameNode)",
+        "s(FunctionalDescriptor)",
+        "s(IntervalE)",
+        "s(LaneTerminal)",
+        "s(LawE)",
+        "s(LazyE)",
+        "s(LinearSupport)",
+        "s(LoadFidelityRow)",
+        "s(MaterialDescriptor)",
+        "s(MaterialInput)",
+        "s(MaterialSelection)",
+        "s(MaximumE)",
+        "s(MechanicsEnvelope)",
+        "s(MemberIdentity)",
+        "s(MemberMapE)",
+        "s(MemberOperators<16>)",
+        "s(MemberOperators<4>)",
+        "s(MemberOperators<8>)",
+        "s(MemberRecord)",
+        "s(MemberRecovery)",
+        "s(NodalLoadContribution)",
+        "s(NodalMapE)",
+        "s(NodeMapE)",
+        "s(Node_SR)",
+        "s(OperationalSpent)",
+        "s(Option<BoundRefusal>)",
+        "s(Option<FormationRecord>)",
+        "s(Option<Wide<16>>)",
+        "s(Option<Wide<4>>)",
+        "s(Option<Wide<8>>)",
+        "s(Option<[f64;3]>)",
+        "s(Option<f64>)",
+        "s(Option<i32>)",
+        "s(Option<usize>)",
+        "s(OrdinarySeed)",
+        "s(Pair)",
+        "s(PivotEvidence)",
+        "s(PivotScreen<16>)",
+        "s(PivotScreen<4>)",
+        "s(PivotScreen<8>)",
+        "s(PrecisionState)",
+        "s(PreparedAttemptView)",
+        "s(PreparedMemberEvent)",
+        "s(PreviewLoadCase)",
+        "s(PreviewNode)",
+        "s(PreviewPipe)",
+        "s(PreviewSupport)",
+        "s(PrimitiveLoad)",
+        "s(PrimitiveLoadInput)",
+        "s(ProductMemberFacts)",
+        "s(ProductRecipe)",
+        "s(ProductRow)",
+        "s(ProductRowSpec)",
+        "s(ProductRowVerdict)",
+        "s(ProductValue)",
+        "s(Projection)",
+        "s(ProjectionOutcome)",
+        "s(PublishedRow)",
+        "s(PublishedValue)",
+        "s(QuadraticStressSpan)",
+        "s(QualifiedFunctionalProjection)",
+        "s(QualifiedProjection)",
+        "s(QuantityMeta)",
+        "s(Ratio)",
+        "s(RecordOutcome)",
+        "s(RecordedCase)",
+        "s(RecordedInvocation)",
+        "s(RecoveryRecord)",
+        "s(RegistryE)",
+        "s(ResidualRow)",
+        "s(ResultBasisRef)",
+        "s(ResultItem)",
+        "s(RetainedFunctionalProjection)",
+        "s(RetainedProjection)",
+        "s(RetainedSolve)",
+        "s(Row6)",
+        "s(RowBinding)",
+        "s(RowClassification)",
+        "s(RowTreatment)",
+        "s(RunRow)",
+        "s(SectionMapE)",
+        "s(Shared<16>)",
+        "s(Shared<4>)",
+        "s(Shared<8>)",
+        "s(Solved<16>)",
+        "s(Solved<4>)",
+        "s(Solved<8>)",
+        "s(SolverObservations)",
+        "s(SpringAction)",
+        "s(SpringEntry)",
+        "s(SpringIdentity)",
+        "s(SpringMapE)",
+        "s(SrcConstraint)",
+        "s(SrcCoord)",
+        "s(SrcMember)",
+        "s(SrcNodal)",
+        "s(SrcSpring)",
+        "s(SrcStation)",
+        "s(SrcSupport)",
+        "s(StationMapE)",
+        "s(StationResultants)",
+        "s(StiffnessContribution)",
+        "s(StraightPipeElement)",
+        "s(StressFinding)",
+        "s(String)",
+        "s(SupportActions)",
+        "s(SupportCoverage)",
+        "s(SupportFinding)",
+        "s(SupportMapE)",
+        "s(SupportVector)",
+        "s(SymmetricMatrixEntry)",
+        "s(TableE)",
+        "s(Tag)",
+        "s(TemperaturePoint)",
+        "s(TermIdentity)",
+        "s(ThreadPacketOutput)",
+        "s(TrackerE)",
+        "s(Validation)",
+        "s(Value)",
+        "s(Vec)",
+        "s(Vec<&ForceTerm>)",
+        "s(Vec<Expansion>)",
+        "s(Vec<Wide>)",
+        "s(Vec<f64>)",
+        "s(Vec<usize>)",
+        "s(VerificationReport<16>)",
+        "s(VerificationReport<4>)",
+        "s(VerificationReport<8>)",
+        "s(VerifyShared<16>)",
+        "s(VerifyShared<4>)",
+        "s(VerifyShared<8>)",
+        "s(Wide<16>)",
+        "s(Wide<4>)",
+        "s(Wide<8>)",
+        "s([PublishedValue;12])",
+        "s([bool;6])",
+        "s(f64)",
+        "s(u32)",
+        "s(u64)",
+        "s(usize)",
+    ];
+    pub(crate) const ATOM_BINDINGS: [Binding; ATOMS] = [
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::SourceUpper,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::Text,
+        Binding::Text,
+        Binding::Text,
+        Binding::Text,
+        Binding::Text,
+        Binding::Text,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::SourceUpper,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::Estimate,
+        Binding::Estimate,
+        Binding::SourceUpper,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::Estimate,
+        Binding::Estimate,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::SourceUpper,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::SourceUpper,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::SourceUpper,
+        Binding::Estimate,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::Estimate,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+    ];
+    /// The in-build value of each atom (Estimate atoms carry their design-record stride).
+    pub(crate) const ATOM_VALUES: [u64; ATOMS] = [
+        (btree_node_upper(size_of::<&'static String>(), align_of::<&'static String>(), size_of::<()>(), align_of::<()>())) as u64, // Node(&String,()) (BUILD.md §4: max(Leaf_up, Internal_up) at the in-build size and alignment of K and V)
+        (btree_node_upper(size_of::<&'static str>(), align_of::<&'static str>(), size_of::<&'static crate::ResultItem>(), align_of::<&'static crate::ResultItem>())) as u64, // Node(&str,&ResultItem) (BUILD.md §4: max(Leaf_up, Internal_up) at the in-build size and alignment of K and V)
+        (btree_node_upper(size_of::<&'static str>(), align_of::<&'static str>(), size_of::<()>(), align_of::<()>())) as u64, // Node(&str,()) (BUILD.md §4: max(Leaf_up, Internal_up) at the in-build size and alignment of K and V)
+        (btree_node_upper(size_of::<(String, String)>(), align_of::<(String, String)>(), size_of::<()>(), align_of::<()>())) as u64, // Node((String,String),()) (BUILD.md §4: max(Leaf_up, Internal_up) at the in-build size and alignment of K and V)
+        (btree_node_upper(size_of::<String>(), align_of::<String>(), size_of::<()>(), align_of::<()>())) as u64, // Node(String,()) (BUILD.md §4: max(Leaf_up, Internal_up) at the in-build size and alignment of K and V)
+        (btree_node_upper(size_of::<String>(), align_of::<String>(), size_of::<std::collections::BTreeMap<String, String>>(), align_of::<std::collections::BTreeMap<String, String>>())) as u64, // Node(String,BTreeMap) (BUILD.md §4: max(Leaf_up, Internal_up) at the in-build size and alignment of K and V)
+        (btree_node_upper(size_of::<String>(), align_of::<String>(), size_of::<crate::ResultItem>(), align_of::<crate::ResultItem>())) as u64, // Node(String,ResultItem) (BUILD.md §4: max(Leaf_up, Internal_up) at the in-build size and alignment of K and V)
+        (btree_node_upper(size_of::<String>(), align_of::<String>(), up(size_of::<String>(), max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<&'static str>()), align_of::<Option<String>>()), align_of::<Option<&'static str>>()), align_of::<Vec<String>>())) + up(size_of::<&'static str>(), max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<&'static str>()), align_of::<Option<String>>()), align_of::<Option<&'static str>>()), align_of::<Vec<String>>())) + up(size_of::<Option<String>>(), max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<&'static str>()), align_of::<Option<String>>()), align_of::<Option<&'static str>>()), align_of::<Vec<String>>())) + up(size_of::<Option<&'static str>>(), max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<&'static str>()), align_of::<Option<String>>()), align_of::<Option<&'static str>>()), align_of::<Vec<String>>())) + up(size_of::<Vec<String>>(), max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<&'static str>()), align_of::<Option<String>>()), align_of::<Option<&'static str>>()), align_of::<Vec<String>>())), max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<&'static str>()), align_of::<Option<String>>()), align_of::<Option<&'static str>>()), align_of::<Vec<String>>()))) as u64, // Node(String,RowTreatment) (BUILD.md §4 node at K = String and V = RowTreatment's field-sum upper (monotone in the value size))
+        (btree_node_upper(size_of::<String>(), align_of::<String>(), size_of::<Value>(), align_of::<Value>())) as u64, // Node(String,Value) (BUILD.md §4: max(Leaf_up, Internal_up) at the in-build size and alignment of K and V)
+        512, // Node(TrackerKey,()): ESTIMATE (the kernel stop rule's tracker key set (design record P3): G6 names the key type)
+        4096, // Node(TrackerKey,Tracker): ESTIMATE (the kernel stop rule's tracker map (design record P3): G6 names the key and value types)
+        (btree_node_upper(size_of::<usize>(), align_of::<usize>(), size_of::<()>(), align_of::<()>())) as u64, // Node(usize,()) (BUILD.md §4: max(Leaf_up, Internal_up) at the in-build size and alignment of K and V)
+        (btree_node_upper(size_of::<usize>(), align_of::<usize>(), size_of::<crate::ResultItem>(), align_of::<crate::ResultItem>())) as u64, // Node(usize,ResultItem) (BUILD.md §4: max(Leaf_up, Internal_up) at the in-build size and alignment of K and V)
+        (btree_node_upper(size_of::<usize>(), align_of::<usize>(), size_of::<String>(), align_of::<String>())) as u64, // Node(usize,String) (BUILD.md §4: max(Leaf_up, Internal_up) at the in-build size and alignment of K and V)
+        16384, // Text(audit_error): text closure
+        16384, // Text(err): text closure
+        16426, // Text(formation_detail): text closure
+        10466306, // Text(recovery_finding): text closure
+        11474, // Text(row): text closure
+        368, // Text(sym): text closure
+        (size_of::<&'static Value>()) as u64, // s(&Value)
+        (size_of::<&'static str>()) as u64, // s(&str)
+        (size_of::<(&'static str, &'static u8)>()) as u64, // s((&str,&T))
+        (size_of::<(&'static str, &'static Value)>()) as u64, // s((&str,&Value))
+        (size_of::<(&'static str, open_pipe_stress_stress_recovery::StressRecoveryResult)>()) as u64, // s((&str,StressRecoveryResult))
+        (size_of::<(&'static str, usize)>()) as u64, // s((&str,usize))
+        (size_of::<(&'static str, usize, u64)>()) as u64, // s((&str,usize,u64))
+        (64) as u64, // s((Content,Content)) (serde 1.0.228 private::de::Content: its largest variants (String, ByteBuf, Seq, Map) hold one 24-byte owner, plus the tag, <= 32; a pair <= 64 (G6 witness))
+        (fkr::EXACT_WIDE_SUM_PAIR) as u64, // s((EWS,EWS,f64)) (kernel export structural::retained_resource)
+        (fkr::QUANTITY_ID_OUTCOME) as u64, // s((QuantityId,Binary64Outcome)) (kernel export structural::retained_resource)
+        (fkr::QUANTITY_ID_U64) as u64, // s((QuantityId,u64)) (kernel export structural::retained_resource)
+        (size_of::<(String, crate::DerivedSection)>()) as u64, // s((String,DerivedSection))
+        (size_of::<(String, crate::ResultItem)>()) as u64, // s((String,ResultItem))
+        (size_of::<(String, String)>()) as u64, // s((String,String))
+        (size_of::<(String, [f64; 3])>()) as u64, // s((String,[f64;3]))
+        (size_of::<(String, [f64; 6])>()) as u64, // s((String,[f64;6]))
+        (size_of::<(String, f64, f64)>()) as u64, // s((String,f64,f64))
+        (size_of::<(String, usize)>()) as u64, // s((String,usize))
+        (fkr::WIDE_TRIPLE_16) as u64, // s((Wide,Wide,Wide)) (kernel export structural::retained_resource)
+        (fkr::FLAGGED_WIDE_16) as u64, // s((bool,f64,Wide)) (kernel export structural::retained_resource)
+        (size_of::<(f64, f64)>()) as u64, // s((f64,f64))
+        (fkr::U32_KIND_U64) as u64, // s((u32,Kind,u64)) (kernel export structural::retained_resource)
+        (fkr::U32_SPRING_KIND) as u64, // s((u32,SpringKind)) (kernel export structural::retained_resource)
+        (size_of::<(usize, (f64, f64))>()) as u64, // s((usize,(f64,f64)))
+        (fkr::INDEXED_ACCUMULATOR) as u64, // s((usize,ExactAccumulator,bool)) (kernel export structural::retained_resource)
+        (fkr::INDEXED_LEDGER_NET) as u64, // s((usize,LedgerNet)) (kernel export structural::retained_resource)
+        (fkr::INDEXED_PUBLISHED_VALUE) as u64, // s((usize,PublishedValue)) (kernel export structural::retained_resource)
+        32, // s((usize,VecPair)): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<(usize, [f64; 3], usize, [f64; 3])>()) as u64, // s((usize,[f64;3],usize,[f64;3]))
+        (size_of::<(usize, f64)>()) as u64, // s((usize,f64))
+        (size_of::<(usize, f64, f64)>()) as u64, // s((usize,f64,f64))
+        (size_of::<(usize, usize)>()) as u64, // s((usize,usize))
+        (size_of::<(usize, usize, open_pipe_stress_frame_kernel::Matrix12)>()) as u64, // s((usize,usize,Matrix12))
+        (size_of::<(usize, usize, bool)>()) as u64, // s((usize,usize,bool))
+        512, // s(AdapterSnapshot): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (fkr::AFFINE_TERM) as u64, // s(AffineTerm) (kernel export structural::retained_resource)
+        32, // s(AliasE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<open_pipe_stress_stress_recovery::AnalysisStatus>()) as u64, // s(AnalysisStatus)
+        (2 * size_of::<usize>() + fkr::CASE_PREP) as u64, // s(ArcCasePrep) (Arc<CasePrep>'s allocation: two counters and the value)
+        (2 * size_of::<usize>() + fkr::GROUP_PREP) as u64, // s(ArcGroupPrep) (Arc<GroupPrep>'s allocation: two counters and the value)
+        512, // s(ArcPrepared): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (fkr::ATTEMPT_RECORD) as u64, // s(AttemptRecord) (kernel export structural::retained_resource)
+        (size_of::<crate::Authored<Vec<crate::ExpansionLawInput>>>()) as u64, // s(Authored<Vec<ExpansionLawInput>>)
+        (size_of::<crate::retained_product::BasisRecord>()) as u64, // s(BasisRecord)
+        (fkr::BINARY64_OUTCOME) as u64, // s(Binary64Outcome) (kernel export structural::retained_resource)
+        (fkr::BLOCK_BOUND_16) as u64, // s(BlockBound<16>) (kernel export structural::retained_resource)
+        (fkr::BLOCK_BOUND_4) as u64, // s(BlockBound<4>) (kernel export structural::retained_resource)
+        (fkr::BLOCK_BOUND_8) as u64, // s(BlockBound<8>) (kernel export structural::retained_resource)
+        (fkr::BLOCK_CERTIFICATE_16) as u64, // s(BlockCertificate<16>) (kernel export structural::retained_resource)
+        (fkr::BLOCK_CERTIFICATE_4) as u64, // s(BlockCertificate<4>) (kernel export structural::retained_resource)
+        (fkr::BLOCK_CERTIFICATE_8) as u64, // s(BlockCertificate<8>) (kernel export structural::retained_resource)
+        (fkr::BLOCK_NORMS_16) as u64, // s(BlockNorms<16>) (kernel export structural::retained_resource)
+        (fkr::BLOCK_NORMS_4) as u64, // s(BlockNorms<4>) (kernel export structural::retained_resource)
+        (fkr::BLOCK_NORMS_8) as u64, // s(BlockNorms<8>) (kernel export structural::retained_resource)
+        (fkr::BLOCK_REFUSAL) as u64, // s(BlockRefusal) (kernel export structural::retained_resource)
+        (fkr::BLOCK_WITNESS) as u64, // s(BlockWitness) (kernel export structural::retained_resource)
+        32, // s(BodyCoverage): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (fkr::BODY_GEOMETRY) as u64, // s(BodyGeometry) (kernel export structural::retained_resource)
+        56, // s(BodyMapE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (fkr::BODY_REPORT_16) as u64, // s(BodyReport<16>) (kernel export structural::retained_resource)
+        (fkr::BODY_REPORT_4) as u64, // s(BodyReport<4>) (kernel export structural::retained_resource)
+        (fkr::BODY_REPORT_8) as u64, // s(BodyReport<8>) (kernel export structural::retained_resource)
+        (fkr::BOUNDED_COEFFICIENTS_16) as u64, // s(BoundedCoefficients<16>) (kernel export structural::retained_resource)
+        (fkr::BOUNDED_COEFFICIENTS_4) as u64, // s(BoundedCoefficients<4>) (kernel export structural::retained_resource)
+        (fkr::BOUNDED_COEFFICIENTS_8) as u64, // s(BoundedCoefficients<8>) (kernel export structural::retained_resource)
+        (size_of::<crate::retained_product::CaptureError>()) as u64, // s(CaptureError)
+        40, // s(ConstraintMapE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        40, // s(ContributionE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (fkr::CONTRIBUTION_ROUNDING) as u64, // s(ContributionRounding) (kernel export structural::retained_resource)
+        48, // s(ConversionE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        64, // s(ConversionEvent): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        32, // s(CoverageFact): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (up(size_of::<crate::ResultItem>(), max_usize(max_usize(align_of::<crate::ResultItem>(), align_of::<&'static str>()), align_of::<Vec<String>>())) + up(size_of::<&'static str>(), max_usize(max_usize(align_of::<crate::ResultItem>(), align_of::<&'static str>()), align_of::<Vec<String>>())) + up(size_of::<Vec<String>>(), max_usize(max_usize(align_of::<crate::ResultItem>(), align_of::<&'static str>()), align_of::<Vec<String>>()))) as u64, // s(Derived) (source_receipt/rows.rs:324 Derived {row: ResultItem, recipe: &str, inputs: Vec<String>}: field-sum upper)
+        (size_of::<crate::Diagnostic>()) as u64, // s(Diagnostic)
+        304, // s(EnclosureE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (fkr::EXACT_ACCUMULATOR) as u64, // s(ExactAccumulator) (kernel export structural::retained_resource)
+        (fkr::EXACT_WIDE_SUM) as u64, // s(ExactWideSum) (kernel export structural::retained_resource)
+        (fkr::EXPANSION) as u64, // s(Expansion) (kernel export structural::retained_resource)
+        144, // s(Expansion6): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        64, // s(FinalRowConversion): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<crate::source_receipt::FinalizedSourceBlockCase>()) as u64, // s(FinalizedSourceBlockCase)
+        (fkr::FORCE_CONTRIBUTION) as u64, // s(ForceContribution) (kernel export structural::retained_resource)
+        (fkr::FORCE_TERM) as u64, // s(ForceTerm) (kernel export structural::retained_resource)
+        (size_of::<open_pipe_stress_frame_kernel::FrameElement>()) as u64, // s(FrameElement)
+        (size_of::<open_pipe_stress_frame_kernel::FrameNode>()) as u64, // s(FrameNode)
+        (fkr::FUNCTIONAL_DESCRIPTOR) as u64, // s(FunctionalDescriptor) (kernel export structural::retained_resource)
+        32, // s(IntervalE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        256, // s(LaneTerminal): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        64, // s(LawE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        2232, // s(LazyE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<open_pipe_stress_linear_supports::LinearSupport>()) as u64, // s(LinearSupport)
+        (fkr::LOAD_FIDELITY_ROW) as u64, // s(LoadFidelityRow) (kernel export structural::retained_resource)
+        96, // s(MaterialDescriptor): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<crate::MaterialInput>()) as u64, // s(MaterialInput)
+        (size_of::<crate::retained_product::MaterialSelection>()) as u64, // s(MaterialSelection)
+        128, // s(MaximumE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<crate::MechanicsEnvelope>()) as u64, // s(MechanicsEnvelope)
+        (size_of::<crate::retained_product::MemberIdentity>()) as u64, // s(MemberIdentity)
+        64, // s(MemberMapE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (fkr::MEMBER_OPERATORS_16) as u64, // s(MemberOperators<16>) (kernel export structural::retained_resource)
+        (fkr::MEMBER_OPERATORS_4) as u64, // s(MemberOperators<4>) (kernel export structural::retained_resource)
+        (fkr::MEMBER_OPERATORS_8) as u64, // s(MemberOperators<8>) (kernel export structural::retained_resource)
+        (size_of::<crate::preview_physics::MemberRecord>()) as u64, // s(MemberRecord)
+        (size_of::<crate::source_recovery::MemberRecovery>()) as u64, // s(MemberRecovery)
+        (size_of::<open_pipe_stress_primitive_loads::NodalLoadContribution>()) as u64, // s(NodalLoadContribution)
+        48, // s(NodalMapE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        40, // s(NodeMapE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (open_pipe_stress_stress_recovery::elastic_extrema::NODE_STRIDE) as u64, // s(Node_SR) (SR export elastic_extrema::NODE_STRIDE)
+        (size_of::<crate::retained_product::OperationalSpent>()) as u64, // s(OperationalSpent)
+        (fkr::OPTION_BOUND_REFUSAL) as u64, // s(Option<BoundRefusal>) (kernel export structural::retained_resource)
+        (up(fkr::FORMATION, max_usize(fkr::FORMATION_ALIGN, align_of::<f64>())) + up(size_of::<f64>(), max_usize(fkr::FORMATION_ALIGN, align_of::<f64>())) + up(size_of::<bool>(), max_usize(fkr::FORMATION_ALIGN, align_of::<f64>())) + up(size_of::<bool>(), max_usize(fkr::FORMATION_ALIGN, align_of::<f64>()))) as u64, // s(Option<FormationRecord>) (FK load_ledger.rs:101 FormationRecord {formation: Formation, operand_bound: f64, self_equilibrated: bool} (private): field-sum upper at the exported Formation layout, plus one aligned slot for the Option tag)
+        (fkr::OPTION_WIDE_16) as u64, // s(Option<Wide<16>>) (kernel export structural::retained_resource)
+        (fkr::OPTION_WIDE_4) as u64, // s(Option<Wide<4>>) (kernel export structural::retained_resource)
+        (fkr::OPTION_WIDE_8) as u64, // s(Option<Wide<8>>) (kernel export structural::retained_resource)
+        (size_of::<Option<[f64; 3]>>()) as u64, // s(Option<[f64;3]>)
+        (size_of::<Option<f64>>()) as u64, // s(Option<f64>)
+        (size_of::<Option<i32>>()) as u64, // s(Option<i32>)
+        (size_of::<Option<usize>>()) as u64, // s(Option<usize>)
+        (size_of::<crate::retained_product::OrdinarySeed>()) as u64, // s(OrdinarySeed)
+        16, // s(Pair): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (fkr::PIVOT_EVIDENCE) as u64, // s(PivotEvidence) (kernel export structural::retained_resource)
+        (fkr::PIVOT_SCREEN_16) as u64, // s(PivotScreen<16>) (kernel export structural::retained_resource)
+        (fkr::PIVOT_SCREEN_4) as u64, // s(PivotScreen<4>) (kernel export structural::retained_resource)
+        (fkr::PIVOT_SCREEN_8) as u64, // s(PivotScreen<8>) (kernel export structural::retained_resource)
+        (fkr::PRECISION_STATE) as u64, // s(PrecisionState) (kernel export structural::retained_resource)
+        (size_of::<crate::retained_receipt::PreparedAttemptView<'static>>()) as u64, // s(PreparedAttemptView)
+        256, // s(PreparedMemberEvent): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<crate::PreviewLoadCase>()) as u64, // s(PreviewLoadCase)
+        (size_of::<crate::PreviewNode>()) as u64, // s(PreviewNode)
+        (size_of::<crate::PreviewPipe>()) as u64, // s(PreviewPipe)
+        (size_of::<crate::PreviewSupport>()) as u64, // s(PreviewSupport)
+        (size_of::<open_pipe_stress_primitive_loads::PrimitiveLoad>()) as u64, // s(PrimitiveLoad)
+        (size_of::<crate::PreviewPrimitiveLoad>()) as u64, // s(PrimitiveLoadInput)
+        (fkr::PRODUCT_MEMBER_FACTS) as u64, // s(ProductMemberFacts) (kernel export structural::retained_resource)
+        (fkr::PRODUCT_RECIPE) as u64, // s(ProductRecipe) (kernel export structural::retained_resource)
+        96, // s(ProductRow): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (fkr::PRODUCT_ROW_SPEC) as u64, // s(ProductRowSpec) (kernel export structural::retained_resource)
+        (fkr::PRODUCT_ROW_VERDICT) as u64, // s(ProductRowVerdict) (kernel export structural::retained_resource)
+        32, // s(ProductValue): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (up(size_of::<String>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>())) + up(size_of::<String>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>())) + up(size_of::<String>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>())) + up(size_of::<&'static str>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>())) + up(size_of::<f64>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>())) + up(size_of::<String>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>())) + up(size_of::<&'static str>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>())) + up(size_of::<[f64; 2]>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>())) + up(size_of::<f64>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>())) + up(size_of::<f64>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>())) + up(size_of::<f64>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>())) + up(size_of::<&'static str>(), max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<String>()), align_of::<String>()), align_of::<&'static str>()), align_of::<f64>()), align_of::<String>()), align_of::<&'static str>()), align_of::<[f64; 2]>()), align_of::<f64>()), align_of::<f64>()), align_of::<f64>()), align_of::<&'static str>()))) as u64, // s(Projection) (source_receipt.rs:582 Projection {4 String, 3 &str, 4 f64, [f64; 2]}: field-sum upper)
+        64, // s(ProjectionOutcome): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (fkr::PUBLISHED_ROW) as u64, // s(PublishedRow) (kernel export structural::retained_resource)
+        (fkr::PUBLISHED_VALUE) as u64, // s(PublishedValue) (kernel export structural::retained_resource)
+        (size_of::<open_pipe_stress_stress_recovery::elastic_extrema::QuadraticStressSpan>()) as u64, // s(QuadraticStressSpan)
+        (fkr::QUALIFIED_FUNCTIONAL_PROJECTION) as u64, // s(QualifiedFunctionalProjection) (kernel export structural::retained_resource)
+        (fkr::QUALIFIED_PROJECTION) as u64, // s(QualifiedProjection) (kernel export structural::retained_resource)
+        (fkr::QUANTITY_META) as u64, // s(QuantityMeta) (kernel export structural::retained_resource)
+        (fkr::RATIO) as u64, // s(Ratio) (kernel export structural::retained_resource)
+        (fkr::RECORD_OUTCOME) as u64, // s(RecordOutcome) (kernel export structural::retained_resource)
+        (fkr::RECORDED_CASE) as u64, // s(RecordedCase) (kernel export structural::retained_resource)
+        (fkr::RECORDED_INVOCATION) as u64, // s(RecordedInvocation) (kernel export structural::retained_resource)
+        (size_of::<crate::formation_guard::RecoveryRecord>()) as u64, // s(RecoveryRecord)
+        128, // s(RegistryE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (fkr::RESIDUAL_ROW) as u64, // s(ResidualRow) (kernel export structural::retained_resource)
+        (size_of::<crate::ResultBasisRef>()) as u64, // s(ResultBasisRef)
+        (size_of::<crate::ResultItem>()) as u64, // s(ResultItem)
+        (fkr::RETAINED_FUNCTIONAL_PROJECTION) as u64, // s(RetainedFunctionalProjection) (kernel export structural::retained_resource)
+        (fkr::RETAINED_PROJECTION) as u64, // s(RetainedProjection) (kernel export structural::retained_resource)
+        (fkr::RETAINED_SOLVE) as u64, // s(RetainedSolve) (kernel export structural::retained_resource)
+        48, // s(Row6): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (fkr::PRODUCT_FINAL_ROW) as u64, // s(RowBinding) (bind_rows' element (retained_product.rs:1742): the kernel's ProductFinalRow, exported by structural::retained_resource)
+        (size_of::<open_pipe_stress_result_export::retained_precision::RowClassification>()) as u64, // s(RowClassification)
+        (up(size_of::<String>(), max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<&'static str>()), align_of::<Option<String>>()), align_of::<Option<&'static str>>()), align_of::<Vec<String>>())) + up(size_of::<&'static str>(), max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<&'static str>()), align_of::<Option<String>>()), align_of::<Option<&'static str>>()), align_of::<Vec<String>>())) + up(size_of::<Option<String>>(), max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<&'static str>()), align_of::<Option<String>>()), align_of::<Option<&'static str>>()), align_of::<Vec<String>>())) + up(size_of::<Option<&'static str>>(), max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<&'static str>()), align_of::<Option<String>>()), align_of::<Option<&'static str>>()), align_of::<Vec<String>>())) + up(size_of::<Vec<String>>(), max_usize(max_usize(max_usize(max_usize(align_of::<String>(), align_of::<&'static str>()), align_of::<Option<String>>()), align_of::<Option<&'static str>>()), align_of::<Vec<String>>()))) as u64, // s(RowTreatment) (source_receipt.rs:597 RowTreatment {result_id: String, treatment: &str, projection_id: Option<String>, recipe_id: Option<&str>, input_result_ids: Vec<String>}: field-sum upper)
+        32, // s(RunRow): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        64, // s(SectionMapE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (fkr::SHARED_16_16) as u64, // s(Shared<16>) (kernel export structural::retained_resource)
+        (max_usize(fkr::SHARED_4_4, fkr::SHARED_4_8)) as u64, // s(Shared<4>) (the two L = 4 instantiations, Shared<4,4> and Shared<4,8>)
+        (fkr::SHARED_8_16) as u64, // s(Shared<8>) (kernel export structural::retained_resource)
+        (fkr::SOLVED_16) as u64, // s(Solved<16>) (kernel export structural::retained_resource)
+        (fkr::SOLVED_4) as u64, // s(Solved<4>) (kernel export structural::retained_resource)
+        (fkr::SOLVED_8) as u64, // s(Solved<8>) (kernel export structural::retained_resource)
+        (size_of::<crate::retained_product::SolverObservations>()) as u64, // s(SolverObservations)
+        (size_of::<crate::source_recovery::SpringAction>()) as u64, // s(SpringAction)
+        (size_of::<open_pipe_stress_linear_supports::SpringEntry>()) as u64, // s(SpringEntry)
+        (size_of::<crate::retained_product::SpringIdentity>()) as u64, // s(SpringIdentity)
+        48, // s(SpringMapE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (fkr::SOURCE_CONSTRAINT) as u64, // s(SrcConstraint) (kernel export structural::retained_resource)
+        (fkr::SOURCE_COORD) as u64, // s(SrcCoord) (kernel export structural::retained_resource)
+        (fkr::SOURCE_MEMBER) as u64, // s(SrcMember) (kernel export structural::retained_resource)
+        (fkr::SOURCE_NODAL) as u64, // s(SrcNodal) (kernel export structural::retained_resource)
+        (fkr::SOURCE_SPRING) as u64, // s(SrcSpring) (kernel export structural::retained_resource)
+        (fkr::SOURCE_STATION) as u64, // s(SrcStation) (kernel export structural::retained_resource)
+        (fkr::SOURCE_SUPPORT) as u64, // s(SrcSupport) (kernel export structural::retained_resource)
+        32, // s(StationMapE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<crate::StationResultants>()) as u64, // s(StationResultants)
+        (fkr::STIFFNESS_CONTRIBUTION) as u64, // s(StiffnessContribution) (kernel export structural::retained_resource)
+        (size_of::<open_pipe_stress_straight_pipe::StraightPipeElement>()) as u64, // s(StraightPipeElement)
+        (size_of::<open_pipe_stress_stress_recovery::StressFinding>()) as u64, // s(StressFinding)
+        (size_of::<String>()) as u64, // s(String)
+        (size_of::<crate::source_recovery::SupportActions>()) as u64, // s(SupportActions)
+        64, // s(SupportCoverage): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<open_pipe_stress_linear_supports::SupportFinding>()) as u64, // s(SupportFinding)
+        64, // s(SupportMapE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        80, // s(SupportVector): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<open_pipe_stress_sparse_direct::SymmetricMatrixEntry>()) as u64, // s(SymmetricMatrixEntry)
+        48, // s(TableE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        8, // s(Tag): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<crate::MaterialTemperaturePointInput>()) as u64, // s(TemperaturePoint)
+        (size_of::<crate::retained_product::TermIdentity>()) as u64, // s(TermIdentity)
+        (size_of::<Option<std::thread::Result<Option<Result<crate::RetainedPreviewOutput, String>>>>>()) as u64, // s(ThreadPacketOutput)
+        64, // s(TrackerE): ESTIMATE (G3 design-record stride (producer_caps.py / ordinary_caps.py nickname); no single in-build type identified in G5: G6 closes it)
+        (size_of::<open_pipe_stress_result_export::retained_precision::Validation>()) as u64, // s(Validation)
+        (size_of::<Value>()) as u64, // s(Value)
+        (size_of::<Vec<u8>>()) as u64, // s(Vec)
+        (size_of::<Vec<u8>>()) as u64, // s(Vec<&ForceTerm>)
+        (size_of::<Vec<u8>>()) as u64, // s(Vec<Expansion>)
+        (size_of::<Vec<u8>>()) as u64, // s(Vec<Wide>)
+        (size_of::<Vec<f64>>()) as u64, // s(Vec<f64>)
+        (size_of::<Vec<usize>>()) as u64, // s(Vec<usize>)
+        (fkr::VERIFICATION_REPORT_16) as u64, // s(VerificationReport<16>) (kernel export structural::retained_resource)
+        (fkr::VERIFICATION_REPORT_4) as u64, // s(VerificationReport<4>) (kernel export structural::retained_resource)
+        (fkr::VERIFICATION_REPORT_8) as u64, // s(VerificationReport<8>) (kernel export structural::retained_resource)
+        (fkr::VERIFY_SHARED_16_16) as u64, // s(VerifyShared<16>) (kernel export structural::retained_resource)
+        (fkr::VERIFY_SHARED_4_8) as u64, // s(VerifyShared<4>) (kernel export structural::retained_resource)
+        (fkr::VERIFY_SHARED_8_16) as u64, // s(VerifyShared<8>) (kernel export structural::retained_resource)
+        (fkr::WIDE_16) as u64, // s(Wide<16>) (kernel export structural::retained_resource)
+        (fkr::WIDE_4) as u64, // s(Wide<4>) (kernel export structural::retained_resource)
+        (fkr::WIDE_8) as u64, // s(Wide<8>) (kernel export structural::retained_resource)
+        (fkr::PUBLISHED_VALUES_12) as u64, // s([PublishedValue;12]) (kernel export structural::retained_resource)
+        (size_of::<[bool; 6]>()) as u64, // s([bool;6])
+        (size_of::<f64>()) as u64, // s(f64)
+        (size_of::<u32>()) as u64, // s(u32)
+        (size_of::<u64>()) as u64, // s(u64)
+        (size_of::<usize>()) as u64, // s(usize)
+    ];
+    /// G3/G4's illustrative values, for the transcription check against the Python chain.
+    #[cfg(test)]
+    pub(crate) const ATOM_ASSUMED: [u64; ATOMS] = [
+        200,
+        376,
+        288,
+        600,
+        376,
+        640,
+        3632,
+        1520,
+        736,
+        512,
+        4096,
+        200,
+        3456,
+        464,
+        16384,
+        16384,
+        16426,
+        10466306,
+        11474,
+        368,
+        8,
+        16,
+        24,
+        32,
+        216,
+        24,
+        32,
+        64,
+        2216,
+        32,
+        16,
+        120,
+        320,
+        48,
+        48,
+        72,
+        40,
+        32,
+        432,
+        160,
+        16,
+        16,
+        8,
+        24,
+        1120,
+        40,
+        56,
+        32,
+        64,
+        16,
+        24,
+        16,
+        1168,
+        24,
+        512,
+        32,
+        32,
+        24,
+        1024,
+        1024,
+        512,
+        256,
+        32,
+        96,
+        24,
+        576,
+        192,
+        320,
+        576,
+        192,
+        320,
+        288,
+        96,
+        160,
+        48,
+        120,
+        32,
+        160,
+        56,
+        1152,
+        384,
+        640,
+        20736,
+        6912,
+        11520,
+        48,
+        40,
+        40,
+        96,
+        48,
+        64,
+        32,
+        360,
+        152,
+        304,
+        1104,
+        1104,
+        32,
+        144,
+        64,
+        1200,
+        40,
+        48,
+        200,
+        40,
+        128,
+        32,
+        256,
+        64,
+        2232,
+        120,
+        160,
+        96,
+        224,
+        64,
+        128,
+        640,
+        120,
+        64,
+        20736,
+        6912,
+        11520,
+        200,
+        696,
+        64,
+        48,
+        40,
+        64,
+        96,
+        56,
+        64,
+        152,
+        56,
+        88,
+        32,
+        16,
+        8,
+        16,
+        400,
+        16,
+        48,
+        448,
+        160,
+        256,
+        64,
+        512,
+        256,
+        512,
+        96,
+        384,
+        400,
+        120,
+        256,
+        512,
+        16,
+        96,
+        96,
+        48,
+        32,
+        80,
+        64,
+        64,
+        48,
+        64,
+        96,
+        96,
+        32,
+        64,
+        48,
+        1024,
+        1024,
+        152,
+        128,
+        120,
+        48,
+        296,
+        72,
+        72,
+        2048,
+        48,
+        64,
+        128,
+        104,
+        32,
+        64,
+        400,
+        400,
+        400,
+        120,
+        120,
+        120,
+        96,
+        48,
+        80,
+        64,
+        48,
+        16,
+        24,
+        96,
+        48,
+        24,
+        24,
+        72,
+        32,
+        104,
+        24,
+        256,
+        80,
+        24,
+        128,
+        64,
+        80,
+        64,
+        80,
+        24,
+        48,
+        8,
+        208,
+        64,
+        2048,
+        64,
+        96,
+        32,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        400,
+        400,
+        400,
+        240,
+        240,
+        240,
+        144,
+        48,
+        80,
+        576,
+        6,
+        8,
+        4,
+        8,
+        8,
+    ];
+    /// One term: a constant plus coefficient x atom pairs.
+    pub(crate) struct Form {
+        pub(crate) name: &'static str,
+        pub(crate) constant: u64,
+        pub(crate) terms: &'static [(usize, u64)],
+    }
+    pub(crate) const FORMS: [Form; 47] = [
+        Form { name: "BODY", constant: 27280370, terms: &[(8, 30639), (222, 21865)] },
+        Form { name: "HELPER_moving", constant: 8388608, terms: &[] },
+        Form { name: "INVOC", constant: 262272, terms: &[(8, 19662), (222, 32768)] },
+        Form { name: "NOTICE", constant: 718, terms: &[(93, 1), (208, 1)] },
+        Form { name: "NOTICE_moving", constant: 0, terms: &[(93, 9361)] },
+        Form { name: "O_base_dense", constant: 55367725, terms: &[(0, 1891), (5, 2115), (6, 2403), (8, 45463), (14, 8), (15, 98), (16, 5), (17, 1), (18, 8302), (19, 5), (21, 640), (22, 464), (24, 3), (25, 256), (26, 32), (31, 64), (32, 512), (33, 8192), (35, 64), (37, 192), (40, 28032), (43, 64), (46, 192), (48, 96), (49, 992), (51, 224), (52, 96), (53, 128), (55, 49552), (57, 49), (62, 4), (75, 448), (88, 47776), (93, 16384), (95, 576), (97, 480192), (101, 384), (102, 1024), (103, 512), (104, 32), (105, 6608), (110, 64), (111, 2048), (113, 16), (122, 32), (123, 32), (124, 256), (127, 262144), (130, 640), (134, 224), (135, 384), (136, 576), (137, 1344), (140, 1728), (147, 1), (148, 32), (149, 32), (150, 32), (151, 256), (152, 128), (162, 448), (163, 4), (164, 2048), (165, 512), (167, 4288), (168, 5248), (171, 32), (173, 2560), (174, 1), (175, 10191), (176, 1760), (177, 384), (182, 1891), (192, 32), (193, 32), (204, 4), (205, 42048), (206, 32), (207, 24), (208, 7815), (209, 32), (211, 256), (213, 32), (214, 8192), (217, 256), (222, 70102), (223, 52874), (224, 576), (225, 2304), (227, 576), (228, 2656), (238, 64), (243, 2558)] },
+        Form { name: "O_base_sparse", constant: 48247885, terms: &[(0, 1891), (5, 2115), (6, 2403), (8, 45463), (14, 8), (15, 98), (16, 5), (17, 1), (18, 8302), (19, 5), (21, 640), (22, 464), (24, 3), (25, 256), (26, 32), (31, 64), (32, 512), (33, 8192), (35, 64), (37, 192), (40, 28032), (43, 64), (46, 192), (48, 96), (49, 992), (50, 1152), (51, 1376), (52, 96), (53, 128), (55, 49552), (57, 49), (62, 4), (75, 448), (88, 47776), (93, 16384), (95, 576), (97, 93504), (101, 384), (102, 1024), (103, 512), (104, 32), (105, 6608), (110, 64), (111, 2048), (113, 16), (122, 32), (123, 32), (124, 256), (127, 262144), (130, 640), (134, 224), (135, 384), (136, 576), (137, 1152), (140, 1728), (147, 1), (148, 32), (149, 32), (150, 32), (151, 256), (152, 128), (162, 448), (163, 4), (164, 2048), (165, 512), (167, 4288), (168, 5248), (171, 32), (173, 2560), (174, 1), (175, 10191), (176, 1760), (177, 384), (182, 1891), (192, 32), (193, 32), (204, 4), (205, 42048), (206, 32), (207, 24), (208, 7815), (209, 32), (211, 256), (213, 32), (214, 4096), (217, 256), (222, 70102), (223, 47114), (224, 576), (227, 1152), (228, 3424), (238, 64), (243, 2556)] },
+        Form { name: "STAGED", constant: 93142218, terms: &[(8, 177), (93, 9361), (116, 1), (175, 2115), (208, 8460), (222, 160)] },
+        Form { name: "STATICS", constant: 369376, terms: &[(8, 5801), (222, 23712)] },
+        Form { name: "SUCC", constant: 122167538, terms: &[(8, 64583), (222, 79858)] },
+        Form { name: "T07_moving", constant: 1797413, terms: &[] },
+        Form { name: "T11", constant: 99904, terms: &[(34, 32), (36, 8), (37, 32), (63, 1), (85, 1), (114, 8), (117, 32), (128, 64), (135, 192), (138, 4), (153, 32), (191, 1), (194, 32), (196, 256), (197, 32), (198, 32), (199, 128), (200, 32), (201, 128), (202, 32), (218, 128), (239, 32), (241, 192)] },
+        Form { name: "T11_late_capture", constant: 16512, terms: &[(135, 192), (196, 256), (197, 32), (198, 32), (199, 128), (200, 32), (201, 128), (202, 32), (241, 192)] },
+        Form { name: "T11_ordinary_seed", constant: 10368, terms: &[(138, 4)] },
+        Form { name: "T12", constant: 531730, terms: &[(44, 128), (45, 128), (47, 256), (51, 4096), (58, 1), (59, 1), (77, 32), (78, 32), (86, 256), (87, 4096), (96, 4), (98, 32), (112, 8), (118, 32), (125, 128), (126, 32), (135, 384), (139, 1152), (166, 2048), (172, 8), (179, 672), (184, 32), (195, 32), (196, 704), (197, 128), (198, 112), (199, 384), (200, 112), (201, 352), (202, 112), (203, 128), (212, 32), (216, 4096), (228, 768), (241, 768), (242, 17920), (243, 41919)] },
+        Form { name: "T13", constant: 250566, terms: &[(9, 52), (10, 52), (28, 256), (29, 2048), (30, 2048), (38, 512), (39, 256), (41, 128), (42, 64), (61, 5), (64, 2048), (65, 512), (66, 256), (67, 256), (68, 256), (69, 256), (70, 256), (71, 256), (72, 256), (73, 256), (74, 3584), (77, 32), (79, 32), (80, 32), (81, 32), (82, 96), (83, 32), (84, 32), (109, 512), (119, 64), (120, 64), (121, 32), (129, 256), (131, 21248), (132, 10496), (133, 10496), (141, 256), (142, 512), (143, 256), (144, 4), (161, 4096), (166, 2048), (178, 1), (185, 1), (186, 2), (187, 1), (188, 1), (189, 2), (190, 1), (215, 20800), (220, 1792), (226, 1344), (228, 192), (229, 1), (230, 1), (231, 1), (232, 1), (233, 1), (234, 1), (235, 139584), (236, 75584), (237, 50976)] },
+        Form { name: "T14", constant: 2183568, terms: &[(56, 4096), (60, 1), (76, 32), (89, 4096), (91, 32), (94, 4096), (106, 4096), (108, 4096), (115, 32), (127, 262144), (155, 4096), (156, 4096), (157, 4096), (158, 8192), (160, 4096), (183, 2048), (210, 32), (235, 4608), (240, 4096)] },
+        Form { name: "T15", constant: 4096, terms: &[(54, 1), (90, 512), (99, 4096), (107, 2), (128, 64), (146, 32), (169, 1), (170, 1)] },
+        Form { name: "T16_P1", constant: 110858314, terms: &[(8, 71696), (22, 4096), (145, 1), (154, 2115), (180, 2115), (208, 4352), (222, 93306)] },
+        Form { name: "T16_P2", constant: 1121806665, terms: &[(8, 175860), (22, 4096), (145, 1), (154, 2115), (180, 2115), (208, 4352), (222, 522480)] },
+        Form { name: "T16_P3", constant: 428916421, terms: &[(8, 169252), (22, 4096), (145, 1), (154, 2115), (180, 2115), (208, 4384), (222, 269584)] },
+        Form { name: "T16_P4", constant: 184773892, terms: &[(8, 138614), (22, 4096), (145, 1), (154, 2115), (180, 2115), (208, 4096), (222, 138394)] },
+        Form { name: "T16_moving", constant: 189303281, terms: &[] },
+        Form { name: "T17_V1", constant: 271422963, terms: &[(8, 61278), (208, 288), (222, 153055)] },
+        Form { name: "T17_V2_clone", constant: 122167538, terms: &[(8, 64583), (222, 79858)] },
+        Form { name: "T17_V2_hash", constant: 1059200230, terms: &[(8, 101829), (208, 256), (222, 463944)] },
+        Form { name: "T17_V3", constant: 10771580, terms: &[(8, 28452), (208, 384), (222, 27392)] },
+        Form { name: "T17_V4", constant: 6920061, terms: &[(2, 4189), (3, 39), (8, 8037), (20, 57880), (21, 1024), (23, 12288), (181, 4096), (208, 51309), (222, 8460), (223, 8192)] },
+        Form { name: "T17_V5", constant: 124603799, terms: &[(2, 4189), (3, 39), (8, 66698), (20, 57880), (21, 1024), (23, 12288), (181, 4096), (208, 51309), (222, 79858), (223, 8192)] },
+        Form { name: "T17_V6", constant: 106446543, terms: &[(2, 4189), (3, 39), (8, 109536), (20, 57880), (21, 1024), (23, 12288), (181, 4096), (208, 51853), (222, 295945), (223, 8192)] },
+        Form { name: "T17_moving_invocation", constant: 1179864, terms: &[] },
+        Form { name: "T17_moving_publication", constant: 189303281, terms: &[] },
+        Form { name: "T17_output", constant: 0, terms: &[(181, 4096), (221, 1)] },
+        Form { name: "T19", constant: 8192, terms: &[(219, 1)] },
+        Form { name: "T25_I1", constant: 1157082476, terms: &[(2, 2296), (4, 424), (8, 163110), (27, 16384), (62, 4), (113, 8), (147, 1), (148, 32), (149, 32), (150, 32), (152, 128), (175, 2115), (208, 2499), (217, 128), (222, 544711)] },
+        Form { name: "T25_I2", constant: 428699838, terms: &[(2, 2296), (4, 424), (8, 112938), (27, 16384), (62, 4), (113, 8), (147, 1), (148, 32), (149, 32), (150, 32), (152, 128), (175, 2115), (208, 2563), (217, 128), (222, 184736)] },
+        Form { name: "T25_I3", constant: 217461894, terms: &[(2, 2296), (4, 424), (8, 104507), (27, 16384), (62, 4), (113, 8), (147, 1), (148, 32), (149, 32), (150, 32), (152, 128), (175, 2115), (208, 2307), (217, 128), (222, 145340)] },
+        Form { name: "T25_S1", constant: 20350012, terms: &[(8, 39320), (21, 384), (22, 400), (25, 192), (26, 32), (27, 16384), (31, 64), (37, 64), (49, 256), (53, 32), (55, 16784), (62, 4), (75, 256), (97, 37248), (101, 256), (102, 256), (103, 64), (104, 32), (105, 3088), (110, 64), (113, 12), (124, 128), (130, 256), (134, 32), (135, 192), (137, 192), (147, 1), (148, 32), (149, 32), (150, 32), (151, 256), (152, 128), (167, 2144), (193, 32), (205, 12832), (206, 32), (208, 2272), (211, 256), (217, 192), (222, 65536), (223, 14154), (228, 640), (243, 256)] },
+        Form { name: "T25_S2", constant: 5594299, terms: &[(21, 384), (22, 320), (25, 128), (26, 32), (37, 64), (49, 64), (53, 32), (55, 16784), (101, 128), (102, 128), (103, 32), (105, 3088), (130, 128), (134, 32), (135, 192), (137, 192), (205, 8192), (208, 2080), (223, 13386), (228, 192)] },
+        Form { name: "T25_S3", constant: 78439670, terms: &[(1, 424), (4, 353), (7, 424), (8, 2034), (12, 353), (13, 353), (92, 2115), (159, 2048), (182, 2115), (222, 1152)] },
+        Form { name: "T25_S4", constant: 367697553, terms: &[(8, 384010), (11, 78), (159, 2048), (182, 2115), (208, 512), (222, 1051510), (228, 192)] },
+        Form { name: "T25_S5", constant: 70217356, terms: &[(8, 13718), (100, 1), (159, 2048), (182, 2115), (222, 9036)] },
+        Form { name: "T25_carried_case", constant: 45678294, terms: &[(8, 7369), (159, 2048), (182, 2115), (222, 4806)] },
+        Form { name: "T25_moving", constant: 189079500, terms: &[] },
+        Form { name: "TAV_W", constant: 1564864714, terms: &[] },
+        Form { name: "TAV_X", constant: 1406259436, terms: &[] },
+        Form { name: "TXT_moving", constant: 2599962, terms: &[] },
+    ];
+    pub(crate) const F_BODY: usize = 0;
+    pub(crate) const F_HELPER_MOVING: usize = 1;
+    pub(crate) const F_INVOC: usize = 2;
+    pub(crate) const F_NOTICE: usize = 3;
+    pub(crate) const F_NOTICE_MOVING: usize = 4;
+    pub(crate) const F_O_BASE_DENSE: usize = 5;
+    pub(crate) const F_O_BASE_SPARSE: usize = 6;
+    pub(crate) const F_STAGED: usize = 7;
+    pub(crate) const F_STATICS: usize = 8;
+    pub(crate) const F_SUCC: usize = 9;
+    pub(crate) const F_T07_MOVING: usize = 10;
+    pub(crate) const F_T11: usize = 11;
+    pub(crate) const F_T11_LATE_CAPTURE: usize = 12;
+    pub(crate) const F_T11_ORDINARY_SEED: usize = 13;
+    pub(crate) const F_T12: usize = 14;
+    pub(crate) const F_T13: usize = 15;
+    pub(crate) const F_T14: usize = 16;
+    pub(crate) const F_T15: usize = 17;
+    pub(crate) const F_T16_P1: usize = 18;
+    pub(crate) const F_T16_P2: usize = 19;
+    pub(crate) const F_T16_P3: usize = 20;
+    pub(crate) const F_T16_P4: usize = 21;
+    pub(crate) const F_T16_MOVING: usize = 22;
+    pub(crate) const F_T17_V1: usize = 23;
+    pub(crate) const F_T17_V2_CLONE: usize = 24;
+    pub(crate) const F_T17_V2_HASH: usize = 25;
+    pub(crate) const F_T17_V3: usize = 26;
+    pub(crate) const F_T17_V4: usize = 27;
+    pub(crate) const F_T17_V5: usize = 28;
+    pub(crate) const F_T17_V6: usize = 29;
+    pub(crate) const F_T17_MOVING_INVOCATION: usize = 30;
+    pub(crate) const F_T17_MOVING_PUBLICATION: usize = 31;
+    pub(crate) const F_T17_OUTPUT: usize = 32;
+    pub(crate) const F_T19: usize = 33;
+    pub(crate) const F_T25_I1: usize = 34;
+    pub(crate) const F_T25_I2: usize = 35;
+    pub(crate) const F_T25_I3: usize = 36;
+    pub(crate) const F_T25_S1: usize = 37;
+    pub(crate) const F_T25_S2: usize = 38;
+    pub(crate) const F_T25_S3: usize = 39;
+    pub(crate) const F_T25_S4: usize = 40;
+    pub(crate) const F_T25_S5: usize = 41;
+    pub(crate) const F_T25_CARRIED_CASE: usize = 42;
+    pub(crate) const F_T25_MOVING: usize = 43;
+    pub(crate) const F_TAV_W: usize = 44;
+    pub(crate) const F_TAV_X: usize = 45;
+    pub(crate) const F_TXT_MOVING: usize = 46;
+    /// A form's value at the given atom values, in checked arithmetic.
+    pub(crate) const fn form(f: &Form, v: &[u64; ATOMS]) -> Option<u64> {
+        let mut total = f.constant;
+        let mut i = 0;
+        while i < f.terms.len() {
+            let (a, c) = f.terms[i];
+            let Some(x) = v[a].checked_mul(c) else { return None };
+            let Some(t) = total.checked_add(x) else { return None };
+            total = t;
+            i += 1;
+        }
+        Some(total)
+    }
+    pub(crate) const fn add(a: Option<u64>, b: Option<u64>) -> Option<u64> {
+        match (a, b) {
+            (Some(a), Some(b)) => a.checked_add(b),
+            _ => None,
+        }
+    }
+    pub(crate) const fn max(a: Option<u64>, b: Option<u64>) -> Option<u64> {
+        match (a, b) {
+            (Some(a), Some(b)) => Some(if a > b { a } else { b }),
+            _ => None,
+        }
+    }
+    /// T12_T15 (sum of its terms, taken in the build).
+    pub(crate) const fn t12_t15(v: &[u64; ATOMS]) -> Option<u64> {
+        add(add(add(form(&FORMS[14], v), form(&FORMS[15], v)), form(&FORMS[16], v)), form(&FORMS[17], v))
+    }
+    /// T16 (maximum of its terms, taken in the build).
+    pub(crate) const fn t16(v: &[u64; ATOMS]) -> Option<u64> {
+        max(max(max(form(&FORMS[18], v), form(&FORMS[19], v)), form(&FORMS[20], v)), form(&FORMS[21], v))
+    }
+    /// T17 (sum of its terms, taken in the build).
+    pub(crate) const fn t17(v: &[u64; ATOMS]) -> Option<u64> {
+        add(max(max(max(max(max(max(form(&FORMS[23], v), form(&FORMS[24], v)), form(&FORMS[25], v)), form(&FORMS[26], v)), form(&FORMS[27], v)), form(&FORMS[28], v)), form(&FORMS[29], v)), form(&FORMS[32], v))
+    }
+    /// T25 (sum of its terms, taken in the build).
+    pub(crate) const fn t25(v: &[u64; ATOMS]) -> Option<u64> {
+        add(form(&FORMS[42], v), max(max(max(max(max(max(max(form(&FORMS[37], v), form(&FORMS[38], v)), form(&FORMS[39], v)), form(&FORMS[40], v)), form(&FORMS[41], v)), form(&FORMS[34], v)), form(&FORMS[35], v)), form(&FORMS[36], v)))
+    }
+    pub(crate) const PHASES: usize = 7;
+    pub(crate) const PHASE_NAMES: [&str; PHASES] = [
+        "W1 ordinary span (W1 not yet run)",
+        "W2 G-B, G-C and the W1 phases (T12-T15) with the N1 reserve",
+        "W3 publication (T16) with the staged copy",
+        "W4 precommit validation (T17) with the successor and the invocation Value",
+        "W5 transfer and Direct completion (T18, T19)",
+        "X1 ordinary span with T25 (selected finalization)",
+        "X2 X completion: retained receipt + reserve + Direct completion",
+    ];
+    /// The phases for sparse mode: requested bytes, and the largest moving extra (E_mov, without R).
+    pub(crate) const fn phases_sparse(v: &[u64; ATOMS]) -> [(Option<u64>, Option<u64>); PHASES] {
+        [
+            (add(add(add(add(form(&FORMS[6], v), form(&FORMS[44], v)), form(&FORMS[11], v)), form(&FORMS[33], v)), form(&FORMS[8], v)), max(max(form(&FORMS[46], v), form(&FORMS[1], v)), form(&FORMS[10], v))), // W1
+            (add(add(add(add(add(add(form(&FORMS[6], v), form(&FORMS[44], v)), t12_t15(v)), form(&FORMS[3], v)), form(&FORMS[11], v)), form(&FORMS[33], v)), form(&FORMS[8], v)), max(max(form(&FORMS[46], v), form(&FORMS[1], v)), form(&FORMS[4], v))), // W2
+            (add(add(add(add(add(add(add(add(form(&FORMS[6], v), form(&FORMS[44], v)), t12_t15(v)), form(&FORMS[3], v)), form(&FORMS[11], v)), form(&FORMS[33], v)), form(&FORMS[8], v)), form(&FORMS[7], v)), t16(v)), max(max(form(&FORMS[46], v), form(&FORMS[1], v)), form(&FORMS[22], v))), // W3
+            (add(add(add(add(add(add(add(add(add(form(&FORMS[6], v), form(&FORMS[44], v)), t12_t15(v)), form(&FORMS[3], v)), form(&FORMS[11], v)), form(&FORMS[33], v)), form(&FORMS[8], v)), form(&FORMS[9], v)), form(&FORMS[2], v)), t17(v)), max(max(max(form(&FORMS[46], v), form(&FORMS[1], v)), form(&FORMS[31], v)), form(&FORMS[30], v))), // W4
+            (add(add(add(add(add(add(add(form(&FORMS[6], v), form(&FORMS[44], v)), t12_t15(v)), form(&FORMS[3], v)), form(&FORMS[11], v)), form(&FORMS[33], v)), form(&FORMS[8], v)), form(&FORMS[9], v)), max(form(&FORMS[46], v), form(&FORMS[1], v))), // W5
+            (add(add(add(add(add(form(&FORMS[6], v), t25(v)), form(&FORMS[45], v)), form(&FORMS[11], v)), form(&FORMS[33], v)), form(&FORMS[8], v)), max(max(form(&FORMS[43], v), form(&FORMS[46], v)), form(&FORMS[1], v))), // X1
+            (add(add(add(add(add(add(form(&FORMS[6], v), form(&FORMS[0], v)), form(&FORMS[45], v)), form(&FORMS[3], v)), form(&FORMS[11], v)), form(&FORMS[33], v)), form(&FORMS[8], v)), max(max(form(&FORMS[46], v), form(&FORMS[1], v)), form(&FORMS[4], v))), // X2
+        ]
+    }
+    /// The phases for dense mode: requested bytes, and the largest moving extra (E_mov, without R).
+    pub(crate) const fn phases_dense(v: &[u64; ATOMS]) -> [(Option<u64>, Option<u64>); PHASES] {
+        [
+            (add(add(add(add(form(&FORMS[5], v), form(&FORMS[44], v)), form(&FORMS[11], v)), form(&FORMS[33], v)), form(&FORMS[8], v)), max(max(form(&FORMS[46], v), form(&FORMS[1], v)), form(&FORMS[10], v))), // W1
+            (add(add(add(add(add(add(form(&FORMS[5], v), form(&FORMS[44], v)), t12_t15(v)), form(&FORMS[3], v)), form(&FORMS[11], v)), form(&FORMS[33], v)), form(&FORMS[8], v)), max(max(form(&FORMS[46], v), form(&FORMS[1], v)), form(&FORMS[4], v))), // W2
+            (add(add(add(add(add(add(add(add(form(&FORMS[5], v), form(&FORMS[44], v)), t12_t15(v)), form(&FORMS[3], v)), form(&FORMS[11], v)), form(&FORMS[33], v)), form(&FORMS[8], v)), form(&FORMS[7], v)), t16(v)), max(max(form(&FORMS[46], v), form(&FORMS[1], v)), form(&FORMS[22], v))), // W3
+            (add(add(add(add(add(add(add(add(add(form(&FORMS[5], v), form(&FORMS[44], v)), t12_t15(v)), form(&FORMS[3], v)), form(&FORMS[11], v)), form(&FORMS[33], v)), form(&FORMS[8], v)), form(&FORMS[9], v)), form(&FORMS[2], v)), t17(v)), max(max(max(form(&FORMS[46], v), form(&FORMS[1], v)), form(&FORMS[31], v)), form(&FORMS[30], v))), // W4
+            (add(add(add(add(add(add(add(form(&FORMS[5], v), form(&FORMS[44], v)), t12_t15(v)), form(&FORMS[3], v)), form(&FORMS[11], v)), form(&FORMS[33], v)), form(&FORMS[8], v)), form(&FORMS[9], v)), max(form(&FORMS[46], v), form(&FORMS[1], v))), // W5
+            (add(add(add(add(add(form(&FORMS[5], v), t25(v)), form(&FORMS[45], v)), form(&FORMS[11], v)), form(&FORMS[33], v)), form(&FORMS[8], v)), max(max(form(&FORMS[43], v), form(&FORMS[46], v)), form(&FORMS[1], v))), // X1
+            (add(add(add(add(add(add(form(&FORMS[5], v), form(&FORMS[0], v)), form(&FORMS[45], v)), form(&FORMS[3], v)), form(&FORMS[11], v)), form(&FORMS[33], v)), form(&FORMS[8], v)), max(max(form(&FORMS[46], v), form(&FORMS[1], v)), form(&FORMS[4], v))), // X2
+        ]
+    }
+    /// The admission maximum without R: max over the phases of requested + moving.
+    pub(crate) const fn maximum(phases: &[(Option<u64>, Option<u64>); PHASES]) -> Option<(u64, usize)> {
+        let mut best: Option<(u64, usize)> = None;
+        let mut i = 0;
+        while i < PHASES {
+            let Some(e) = add(phases[i].0, phases[i].1) else { return None };
+            best = match best {
+                Some((b, j)) if b >= e => Some((b, j)),
+                _ => Some((e, i)),
+            };
+            i += 1;
+        }
+        best
+    }
+    /// The count of Estimate atoms (the profile is complete only when it is zero).
+    pub(crate) const ESTIMATES: usize = {
+        let mut n = 0;
+        let mut i = 0;
+        while i < ATOMS {
+            if matches!(ATOM_BINDINGS[i], Binding::Estimate) {
+                n += 1;
+            }
+            i += 1;
+        }
+        n
+    };
+    pub(crate) const SPARSE: Option<(u64, usize)> = maximum(&phases_sparse(&ATOM_VALUES));
+    pub(crate) const DENSE: Option<(u64, usize)> = maximum(&phases_dense(&ATOM_VALUES));
+    /// The Python chain's own evaluation (ASSUMED strides), for the transcription check.
+    #[cfg(test)]
+    pub(crate) const PYTHON_CHECK: [(u64, &str); 2] = [(3432697737, "W3 publication (T16) with the staged copy"), (3452408185, "W3 publication (T16) with the staged copy")];
+}
+// ---- END GENERATED PROFILE ----
+
 /// S-1: `E_mov,max + R ≤ M`, in checked arithmetic. Pure.
 pub(super) fn bound_admits(maximum: u64, reserved_stack: u64, threshold: u64) -> Result<u64, BoundRefusal> {
     let required = maximum.checked_add(reserved_stack).ok_or(BoundRefusal::Overflow)?;
@@ -1262,44 +2532,65 @@ pub(super) fn check_phase<const N: usize>(gate: PhaseGate, observations: &[Phase
         None => Ok(()),
     }
 }
-/// A bound G5 part 2 has not yet written as an in-build expression. Zero, so the
-/// gate refuses (fail-closed) until it is priced.
-pub(super) const UNPRICED: u64 = 0;
-/// The source-derived text atoms at the caps (G4 at `l ≤ 128`: ADDENDUM_L128.md
-/// §2; `text_closure.caps.l128.json`). Byte counts of text, independent of layout.
+/// The text atoms the gates use, from the generated profile (the T08 closure at l <= 128 on
+/// this code basis; RV84 C-N1 and RV87 N-3 for the longest strings).
 pub(super) mod text_atoms {
+    use super::profile as p;
     /// D_env: the envelope's own diagnostics.
-    pub(crate) const D_ENV: u64 = 9_360;
+    pub(crate) const D_ENV: u64 = p::TEXT_D_ENV;
     /// Text(diag_env): the envelope diagnostics' text bytes.
-    pub(crate) const DIAG_ENV: u64 = 68_709_540;
+    pub(crate) const DIAG_ENV: u64 = p::TEXT_TEXT_DIAG_ENV;
     /// Text(row): one result row's text bytes.
-    pub(crate) const ROW: u64 = 11_474;
+    pub(crate) const ROW: u64 = p::TEXT_TEXT_ROW;
     /// Text(err): one retained error text.
-    pub(crate) const ERR: u64 = 16_384;
-    /// L_PUB: the longest envelope string, the final integrity message (RV84 C-N1:
-    /// PP lib.rs:1137 and formation_guard.rs:487, 2,599,962 B, not G4's 2,549,385).
-    pub(crate) const L_PUB: u64 = 2_599_962;
+    pub(crate) const ERR: u64 = p::TEXT_TEXT_ERR;
+    /// L_PUB: the longest envelope string (the final integrity message, RV84 C-N1).
+    pub(crate) const L_PUB: u64 = p::L_PUB;
     /// L_DIAGID: the longest reached `diagnostic:` id template (RV87 N-3).
-    pub(crate) const L_DIAGID: u64 = 2_330;
+    pub(crate) const L_DIAGID: u64 = p::L_DIAGID;
+}
+/// A profile form's in-build value; 0 (a bound every positive fact exceeds, so the gate
+/// refuses, fail-closed) if its checked arithmetic overflows.
+pub(super) const fn profile_bytes(index: usize) -> u64 {
+    checked_or_zero(profile::form(&profile::FORMS[index], &profile::ATOM_VALUES))
+}
+/// A checked profile value, or 0 (fail-closed as a gate cap) when its arithmetic overflowed.
+pub(super) const fn checked_or_zero(bytes: Option<u64>) -> u64 {
+    match bytes {
+        Some(bytes) => bytes,
+        None => 0,
+    }
+}
+/// The capacity of a Vec built by `h` pushes from empty (RawVec's doubling from 4).
+pub(super) const fn push_capacity(h: u64) -> u64 {
+    if h == 0 {
+        return 0;
+    }
+    let mut c = 4;
+    while c < h {
+        c *= 2;
+    }
+    c
 }
 /// P_final ≤ 7n + 51m + 8g + 3 (DOMAIN.md §2, derived).
 pub(super) const P_FINAL: u64 = (7 * caps::NODES + 51 * caps::MEMBERS + 8 * caps::SUPPORTS + 3) as u64;
 /// The gate bounds. Count bounds are D1's caps; text bounds are 2× the G4 text
 /// atoms (exact-capacity copies at most double: API_G4.md §2); the preview tree
-/// bounds are ordinary_caps.py's PREVIEW facts at the caps. Byte bounds that
-/// depend on in-build strides (T11, T11.P1, T11.4) are G5 part 2's.
+/// bounds are ordinary_caps.py's PREVIEW facts at the caps. The byte bounds (T11, T11
+/// without its late capture, T11.4) are the generated profile's in-build forms.
 pub(super) const fn phase_caps() -> PhaseCaps {
     use caps::*;
     let (n, m, g) = (NODES as u64, MEMBERS as u64, SUPPORTS as u64);
     let k = if 6 * n < RESTRAINTS as u64 { 6 * n } else { RESTRAINTS as u64 };
     PhaseCaps {
-        late: [n, m, m, g, LOADS as u64, k, SPRINGS as u64, 2 * MATERIALS as u64, UNPRICED],
+        late: [n, m, m, g, LOADS as u64, k, SPRINGS as u64, 2 * MATERIALS as u64,
+            profile_bytes(profile::F_T11).saturating_sub(profile_bytes(profile::F_T11_LATE_CAPTURE))],
         complete: [
             P_FINAL,
-            UNPRICED,
+            push_capacity(P_FINAL),
             2 * P_FINAL * text_atoms::ROW,
             text_atoms::D_ENV,
-            UNPRICED,
+            push_capacity(text_atoms::D_ENV),
             2 * text_atoms::DIAG_ENV,
             text_atoms::L_PUB,
             text_atoms::L_DIAGID,
@@ -1310,8 +2601,8 @@ pub(super) const fn phase_caps() -> PhaseCaps {
             m * (128 + 1024 + 3 * 120) + (2 * m + g) * 128 + g * (128 + 64),
             (9 + 15 * m + 2 * g) * 40,
             0,
-            UNPRICED,
-            UNPRICED,
+            profile_bytes(profile::F_T11),
+            profile_bytes(profile::F_T11_ORDINARY_SEED),
             (3 * m + 1) * text_atoms::ERR,
         ],
     }
@@ -1320,7 +2611,7 @@ pub(super) const fn phase_caps() -> PhaseCaps {
 // ---- U3's budgets (TRANSFER_COMPLETION.md §3) -------------------------------
 
 /// The budgets U3 meets (B-1 to B-10). Structural budgets are counts; byte
-/// budgets are in-build expressions where G5 part 1 has them, else `UNPRICED`.
+/// budgets are the generated profile's in-build forms.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub(super) struct PhaseBudgets {
     /// B-1 (RV84 S-7): ordinary runs per invocation.
@@ -1357,11 +2648,11 @@ const NOTICE_RESERVE_BYTES: u64 = {
 };
 static PHASE_BUDGETS: PhaseBudgets = PhaseBudgets {
     ordinary_runs: 1,
-    staged_copy_bytes: UNPRICED,
-    successor_bytes: UNPRICED,
-    precommit_invocation_bytes: UNPRICED,
-    precommit_reader_bytes: UNPRICED,
-    reader_statics_bytes: UNPRICED,
+    staged_copy_bytes: profile_bytes(profile::F_STAGED),
+    successor_bytes: profile_bytes(profile::F_SUCC),
+    precommit_invocation_bytes: profile_bytes(profile::F_INVOC),
+    precommit_reader_bytes: checked_or_zero(profile::t17(&profile::ATOM_VALUES)),
+    reader_statics_bytes: profile_bytes(profile::F_STATICS),
     notice_reserve_bytes: NOTICE_RESERVE_BYTES,
     fallible_allocations_after_first_mutation: 0,
     thread_heap_bytes: (8 << 10) + std::mem::size_of::<crate::RetainedPreviewOutput>() as u64,
@@ -1604,6 +2895,9 @@ pub(super) fn admit(
 #[cfg(test)]
 #[path = "retained_memory_law_tests.rs"]
 mod law_tests;
+#[cfg(test)]
+#[path = "retained_memory_witness_tests.rs"]
+mod witness_tests;
 
 #[cfg(test)]
 pub(super) mod tests {

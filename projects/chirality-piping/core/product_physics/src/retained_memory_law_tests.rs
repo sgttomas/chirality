@@ -52,9 +52,14 @@ fn text(prefix: &str, len: usize) -> String {
 /// temperature points each, and one 128-byte identifier.
 pub(super) fn cap_maximal() -> Value {
     let p = "invented_t3_g5_cap_maximal_input_no_library_data";
-    let nodes: Vec<Value> = (0..32).map(|i| json!({"id": format!("N{i}"), "position": {"x": i as f64, "y": 0.0, "z": 0.0}, "provenance": p})).collect();
+    let nodes: Vec<Value> = (0..32)
+        .map(|i| {
+            let t = 2.0 * std::f64::consts::PI * i as f64 / 32.0;
+            json!({"id": format!("N{i}"), "position": {"x": 10.0 * t.cos(), "y": 10.0 * t.sin(), "z": 0.0}, "provenance": p})
+        })
+        .collect();
     let pipes: Vec<Value> = (0..32)
-        .map(|i| json!({"id": format!("M{i}"), "from": format!("N{i}"), "to": format!("N{}", (i + 1) % 32), "material": "mat:0",
+        .map(|i| json!({"id": format!("M{i}"), "from": format!("N{i}"), "to": format!("N{}", (i + 1) % 32), "material": "mat:0", "y_reference": {"x": 0.0, "y": 0.0, "z": 1.0},
             "section": {"outside_diameter": {"value": 0.2, "unit": "m"}, "wall_thickness": {"value": 0.01, "unit": "m"}}, "provenance": p}))
         .collect();
     let supports: Vec<Value> = (0..32)
@@ -63,7 +68,8 @@ pub(super) fn cap_maximal() -> Value {
         .collect();
     let loads: Vec<Value> = (0..128)
         .map(|i| json!({"id": format!("L{i}"), "category": "concentrated_force", "target": {"type": "node", "node": format!("N{}", i % 32)},
-            "direction": "FY", "magnitude": {"value": 1.0, "unit": "N"}, "dimension": if i % 2 == 0 { "force" } else { "moment" }, "provenance": p}))
+            "direction": if i % 2 == 0 { "global_y" } else { "rotation_x" }, "magnitude": {"value": 1.0, "unit": if i % 2 == 0 { "N" } else { "N*m" }},
+            "dimension": if i % 2 == 0 { "force" } else { "moment" }, "provenance": p}))
         .collect();
     let points: Vec<Value> = (0..16).map(|i| json!({"id": format!("T{i}"), "provenance": p})).collect();
     let materials: Vec<Value> = (0..4)
@@ -73,8 +79,8 @@ pub(super) fn cap_maximal() -> Value {
     json!({
         "model": {
             "schema_version": "0.1.0",
-            "document_kind": "openpipestress.preview_model",
-            "analysis_status": {"mechanics": "preview", "rule_check": "not_run", "professional_acceptance": "not_accepted"},
+            "document_kind": "openpipestress.product_preview.model",
+            "analysis_status": {"mechanics": "ready_for_preview_diagnostics", "rule_check": "not_performed_user_rule_inputs_missing", "professional_acceptance": "not_provided"},
             "project": {"id": text("project:", 128), "units": {"length": "m", "force": "N"}},
             "nodes": nodes,
             "pipe_segments": pipes,
@@ -678,7 +684,11 @@ fn every_phase_fact_admits_its_cap_and_refuses_cap_plus_one() {
     assert_eq!(caps.late[..8], [32, 32, 32, 32, 128, 192, 192, 8], "D1's counts: n, m, m, g, l, k = min(6n, r), s, 4 + 4");
     assert_eq!(P_FINAL, 2_115);
     assert_eq!(caps.complete[2], 2 * 2_115 * 11_474, "2·P_final·Text(row)");
-    assert_eq!(caps.complete[5], 137_419_080, "2·Text(diag_env) at l ≤ 128 (API_G4.md, S-6(d))");
+    assert_eq!(caps.complete[5], 2 * profile::TEXT_TEXT_DIAG_ENV, "2·Text(diag_env) at l ≤ 128 (API_G4.md, S-6(d))");
+    assert_eq!(profile::TEXT_TEXT_DIAG_ENV, 68_720_236, "the part-2 text closure (1e323058f3, R-4 graph, RV87 S-2)");
+    assert_eq!((caps.complete[1], caps.complete[4]), (4_096, 16_384), "PushCap(P_final), PushCap(D_env)");
+    assert!(caps.late[LATE_FACTS - 1] > 0 && caps.late[LATE_FACTS - 1] < caps.complete[15], "T11 without its late capture < T11");
+    assert!(caps.complete[16] > 0 && caps.complete[16] < caps.complete[15], "T11.4 < T11");
     assert_eq!((caps.complete[6], caps.complete[7]), (2_599_962, 2_330), "L_PUB (RV84 C-N1) and L_DIAGID (RV87 N-3)");
     assert_eq!(caps.complete[17], 97 * 16_384, "(3m + 1)·Text(err)");
     let complete_facts: Vec<PhaseFact> = complete_observations_of_milestone().iter().map(|o| o.fact).collect();
@@ -767,9 +777,7 @@ fn complete_facts_read_the_actual_owners() {
         // The count and text facts sit well inside their bounds for the milestone.
         let caps = phase_caps().complete;
         for (x, cap) in o.iter().zip(caps) {
-            if cap != UNPRICED || x.observed == 0 {
-                assert!(x.observed <= cap, "{:?}: {} > {}", x.fact, x.observed, cap);
-            }
+            assert!(x.observed <= cap, "{:?}: {} > {}", x.fact, x.observed, cap);
         }
     }
 }
@@ -795,6 +803,13 @@ fn structural_budgets_are_u3s() {
     let diagnostic = std::mem::size_of::<crate::Diagnostic>() as u64;
     assert!(b.notice_reserve_bytes >= diagnostic + 196, "the slot and the 196-byte message reservation");
     assert!(b.notice_reserve_bytes <= 2_048, "G4's push-growth figure tightened to grant 1b's exact reservation");
+    // Part 2: every byte budget is a priced in-build form.
+    for (name, bytes) in [("staged", b.staged_copy_bytes), ("successor", b.successor_bytes), ("invocation", b.precommit_invocation_bytes),
+        ("reader", b.precommit_reader_bytes), ("statics", b.reader_statics_bytes)] {
+        assert!(bytes > 1_000_000, "{name}: {bytes}");
+        println!("I65_G5_BUDGET {name} {bytes}");
+    }
+    assert!(b.precommit_reader_bytes > b.successor_bytes && b.successor_bytes > b.staged_copy_bytes);
 }
 
 #[test]
@@ -835,4 +850,240 @@ fn late_facts_read_the_actual_owners() {
     // The milestone's distinct counts tell the readers apart.
     assert_eq!((built.nodes.len(), built.pipes.len(), built.frame_elements.len(), built.supports.len()), (2, 1, 1, 4), "pipes and frame elements coincide in D1 (straight members)");
     assert_eq!(check_phase(PhaseGate::Late, &o, &{ let mut c = phase_caps().late; c[LATE_FACTS - 1] = u64::MAX; c }), Ok(()));
+}
+
+// ---- G5 part 2: the generated profile ---------------------------------------------
+
+#[test]
+fn profile_transcribes_the_python_chain_exactly() {
+    // Under the chain's own illustrative values, the generated expressions reproduce its
+    // maximum and phase in both modes: the transcription is exact.
+    for (i, phases) in [profile::phases_sparse(&profile::ATOM_ASSUMED), profile::phases_dense(&profile::ATOM_ASSUMED)].iter().enumerate() {
+        let (bytes, phase) = profile::maximum(phases).unwrap();
+        assert_eq!((bytes, profile::PHASE_NAMES[phase]), profile::PYTHON_CHECK[i], "mode {i}");
+    }
+}
+
+#[test]
+fn profile_in_build_record() {
+    use profile::*;
+    let r = RESERVED_STACK_BYTES as u64;
+    let mut estimate_weight = [0u64; 2];
+    for (m, (name, phases)) in [("sparse", phases_sparse(&ATOM_VALUES)), ("dense", phases_dense(&ATOM_VALUES))].iter().enumerate() {
+        let (bytes, phase) = maximum(phases).unwrap();
+        println!("I65_G5_PROFILE mode={name} max_without_R={bytes} E_mov_plus_R={} fraction_of_M={:.4} phase={}", bytes + r,
+            (bytes + r) as f64 / 4_026_531_840.0, PHASE_NAMES[phase]);
+        for (i, (req, mov)) in phases.iter().enumerate() {
+            println!("I65_G5_PHASE mode={name} phase={} requested={} moving={} E_mov_plus_R={}", PHASE_NAMES[i].split(' ').next().unwrap(),
+                req.unwrap(), mov.unwrap(), req.unwrap() + mov.unwrap() + r);
+        }
+        // The Estimate atoms' weight in the maximum: the maximum with every Estimate at zero.
+        let mut zeroed = ATOM_VALUES;
+        for i in 0..ATOMS {
+            if ATOM_BINDINGS[i] == Binding::Estimate {
+                zeroed[i] = 0;
+            }
+        }
+        let without = maximum(&if m == 0 { phases_sparse(&zeroed) } else { phases_dense(&zeroed) }).unwrap().0;
+        estimate_weight[m] = bytes - without;
+        println!("I65_G5_ESTIMATE_WEIGHT mode={name} bytes={}", estimate_weight[m]);
+    }
+    for i in 0..ATOMS {
+        println!("I65_G5_ATOM {:?}\t{}\t{}\t{}", ATOM_BINDINGS[i], ATOM_NAMES[i], ATOM_VALUES[i], ATOM_ASSUMED[i]);
+    }
+    assert!(SPARSE.is_some() && DENSE.is_some());
+    // The printed record G6 uses (part2/IMPLEMENTATION_PART2.md §2; this build: rustc 1.97.1,
+    // aarch64-apple-darwin). Each phase's requested + moving bytes, without R. Any change to an
+    // atom's binding, a form, a combination or a phase changes it: regenerate the record with
+    // the profile, never one without the other.
+    const RECORD: [[u64; PHASES]; 2] = [
+        [1_850_979_440, 1_949_018_238, 3_493_720_906, 3_467_363_071, 2_121_274_320, 3_222_167_488, 1_742_905_402],
+        [1_870_689_888, 1_968_728_686, 3_513_431_354, 3_487_073_519, 2_140_984_768, 3_241_877_936, 1_762_615_850],
+    ];
+    for (m, phases) in [phases_sparse(&ATOM_VALUES), phases_dense(&ATOM_VALUES)].iter().enumerate() {
+        assert_eq!(phases.map(|(req, mov)| req.unwrap() + mov.unwrap()), RECORD[m], "mode {m}");
+    }
+    assert_eq!((SPARSE, DENSE), (Some((RECORD[0][2], 2)), Some((RECORD[1][2], 2))), "W3 is the maximum in both modes");
+    assert_eq!(PHASE_NAMES.map(|n| n.split(' ').next().unwrap()), ["W1", "W2", "W3", "W4", "W5", "X1", "X2"]);
+}
+
+#[test]
+fn challenge_bounds_are_the_profile() {
+    // The isolated challenge binary (tests/retained_memory_challenge.rs) holds the profile's
+    // W1 phase as literals; they must equal the in-build evaluation.
+    let text = include_str!("../tests/retained_memory_challenge.rs");
+    let line = text.lines().find(|l| l.starts_with("const W1_PHASE_BYTES: [u64; 2] = [")).unwrap();
+    let digits: Vec<u64> = line.split(['[', ']', ',']).filter_map(|t| t.trim().replace('_', "").parse().ok()).collect();
+    let w1 = profile::PHASE_NAMES.iter().position(|n| n.starts_with("W1 ")).unwrap();
+    let sparse = profile::phases_sparse(&profile::ATOM_VALUES)[w1];
+    let dense = profile::phases_dense(&profile::ATOM_VALUES)[w1];
+    assert_eq!(digits, [sparse.0.unwrap() + sparse.1.unwrap(), dense.0.unwrap() + dense.1.unwrap()]);
+}
+
+#[test]
+fn profile_laws_hold_in_this_build() {
+    use profile::btree_node_upper;
+    use std::mem::{align_of, size_of};
+    // BUILD.md §4's check: (String, Value) is Leaf_up 640 and Internal_up 736 on a 64-bit build.
+    assert_eq!(btree_node_upper(size_of::<String>(), align_of::<String>(), size_of::<Value>(), align_of::<Value>()), 736);
+    assert_eq!(btree_node_upper(8, 8, 0, 1), 208, "a usize-keyed set node: leaf 112, internal 208");
+    assert_eq!(btree_node_upper(4, 4, 0, 1), 168, "A is at least 8: leaf 72, internal 168");
+    // The combinators are checked: an overflowed sum is None (the bound then refuses), and max is the larger.
+    assert_eq!((profile::add(Some(u64::MAX), Some(1)), profile::add(Some(2), Some(3)), profile::add(None, Some(3))), (None, Some(5), None));
+    assert_eq!((profile::max(Some(2), Some(9)), profile::max(Some(9), Some(2)), profile::max(Some(1), None)), (Some(9), Some(9), None));
+    // The bound is the mode's own maximum once no Estimate remains; Unpriced before.
+    assert_eq!(priced_maximum(0, PreviewSolverMode::SparseInteractive), Ok(profile::SPARSE.unwrap().0));
+    assert_eq!(priced_maximum(0, PreviewSolverMode::DenseScrutiny), Ok(profile::DENSE.unwrap().0));
+    assert_eq!(priced_maximum(1, PreviewSolverMode::DenseScrutiny), Err(BoundRefusal::Unpriced));
+    assert_ne!(profile::SPARSE.unwrap().0, profile::DENSE.unwrap().0, "the modes differ, so a swap is visible");
+    // The kernel exports agree with the kernel types PP can also name.
+    {
+        use open_pipe_stress_frame_kernel::load_ledger::Formation;
+        use open_pipe_stress_frame_kernel::structural::retained_api as k;
+        use open_pipe_stress_frame_kernel::structural::retained_resource as fkr;
+        assert_eq!((fkr::FORMATION, fkr::FORMATION_ALIGN), (size_of::<Formation>(), align_of::<Formation>()));
+        assert_eq!((fkr::PRODUCT_FINAL_ROW, fkr::PRODUCT_RECIPE, fkr::RETAINED_SOLVE),
+            (size_of::<k::ProductFinalRow<'static>>(), size_of::<k::ProductRecipe>(), size_of::<k::RetainedSolve>()));
+        assert!(fkr::MAX_ALIGN >= align_of::<Formation>() && fkr::MAX_ALIGN <= 16, "BUILD.md §4's premise align(K) <= 16");
+    }
+    // RawVec's doubling from 4.
+    assert_eq!([0, 1, 4, 5, 4096, 4097].map(push_capacity), [0, 4, 4, 8, 4096, 8192]);
+    // An overflowed profile value is a 0 cap (every positive fact refuses), never u64::MAX.
+    assert_eq!((checked_or_zero(None), checked_or_zero(Some(5))), (0, 5));
+    // The gate's D_env and text bounds are the profile's text closure.
+    let caps = phase_caps();
+    assert_eq!(caps.complete[3], 9_361);
+    assert_eq!(text_atoms::ROW, 11_474);
+    // Every atom is bound; the source-derived and estimate atoms are the recorded ones.
+    let count = |b| profile::ATOM_BINDINGS.iter().filter(|x| **x == b).count();
+    assert_eq!((count(profile::Binding::SourceUpper), count(profile::Binding::Text), count(profile::Binding::Estimate)), (6, 6, profile::ESTIMATES));
+    assert_eq!(profile::ESTIMATES, 42, "G6 closes every Estimate before a profile can register");
+    assert_eq!(cap_priced_maximum(PreviewSolverMode::SparseInteractive), Err(BoundRefusal::Unpriced), "fail-closed while estimates are open");
+    // The in-build maximum is within the 0.9 M margin rule in both modes (RR "U4 G3 verified").
+    let r = RESERVED_STACK_BYTES as u64;
+    for (bytes, _) in [profile::SPARSE.unwrap(), profile::DENSE.unwrap()] {
+        assert!(bytes + r <= 3_623_878_656, "{} above 0.9 M", bytes + r);
+    }
+    assert!(profile::DENSE.unwrap().0 >= profile::SPARSE.unwrap().0, "the dense parity tail");
+}
+
+// ---- RV89 on part 1 (S-1, N-2, N-4) ----------------------------------------------
+
+/// S-1 (V03): D1.3 refuses one authored expansion law among several materials,
+/// wherever it sits, in the model list and in the request list.
+#[test]
+fn d1_3_refuses_one_authored_law_among_several_materials() {
+    let two = || {
+        let mut raw = milestone();
+        let mut second = raw["model"]["materials"][0].clone();
+        second["id"] = json!("mat:second");
+        raw["model"]["materials"].as_array_mut().unwrap().push(second);
+        raw
+    };
+    assert_eq!(domain(two()), None, "two model materials, no law: inside D1");
+    for authored in 0..2 {
+        let mut raw = two();
+        raw["model"]["materials"][authored]["expansion_laws"] = Value::Null;
+        assert_eq!(domain(raw), family(D1Clause::Namespace, FamilyFact::MaterialExpansionLaw), "model material {authored}");
+    }
+    let request_material = |id: &str| json!({"id": id, "elastic_modulus": {"value": 1.0, "unit": "Pa"}});
+    let mut raw = milestone();
+    raw["materials"] = json!([request_material("r0"), request_material("r1")]);
+    assert_eq!(domain(raw.clone()), None, "two request materials, no law: inside D1");
+    for authored in 0..2 {
+        let mut with = raw.clone();
+        with["materials"][authored]["expansion_laws"] = Value::Null;
+        assert_eq!(domain(with), family(D1Clause::Namespace, FamilyFact::RequestExpansionLaws), "request material {authored}");
+    }
+}
+
+/// S-1 (V06): the Σ restraint-capacity row is the sum over supports, so a total
+/// above 192 refuses even when every single capacity is within 192.
+#[test]
+fn restraint_capacity_total_is_the_sum_over_supports() {
+    let (mut request, capture) = CapturedInvocation::parse(cap_maximal(), PreviewSolverMode::SparseInteractive).unwrap();
+    request.model.supports[0].restraints.reserve_exact(100);
+    let facts = nested_typed_census(&request);
+    assert!(facts.max_restraint_capacity <= caps::RESTRAINTS, "every single capacity is within the cap");
+    assert!(facts.restraint_capacity > caps::RESTRAINTS, "the total is above it: {}", facts.restraint_capacity);
+    assert_eq!(assess(&capture, &request, Entry::Direct).law().domain,
+        Some(AdmissionRefusal::Cap { fact: CapFact::RestraintCapacityTotal, observed: facts.restraint_capacity, cap: caps::RESTRAINTS }));
+}
+
+/// S-1 (V07, V08): the typed walk reads the request-level materials and every
+/// temperature-point id, in both material lists, for length and for capacity.
+#[test]
+fn typed_walk_reads_request_materials_and_temperature_point_ids() {
+    type Change = Box<dyn Fn(&mut LinearStaticPreviewRequest)>;
+    let over = caps::TEXT_BYTES + 1;
+    let rows: Vec<(&str, CapFact, Change)> = vec![
+        ("request material id", CapFact::TypedTextBytes, Box::new(move |r| r.materials[3].id = text("m", over))),
+        ("request material id capacity", CapFact::TypedTextCapacity, Box::new(|r| r.materials[3].id.reserve_exact(200))),
+        ("request temperature-point id", CapFact::TypedTextBytes, Box::new(move |r| r.materials[2].temperature_points[15].id = text("t", over))),
+        ("request temperature-point id capacity", CapFact::TypedTextCapacity,
+            Box::new(|r| r.materials[2].temperature_points[15].id.reserve_exact(200))),
+        ("model temperature-point id", CapFact::TypedTextBytes, Box::new(move |r| r.model.materials[1].temperature_points[7].id = text("t", over))),
+        ("model temperature-point id capacity", CapFact::TypedTextCapacity,
+            Box::new(|r| r.model.materials[1].temperature_points[7].id.reserve_exact(200))),
+    ];
+    for (label, fact, change) in rows {
+        let report = admitted_typed(cap_maximal(), |r| change(r));
+        assert!(cap(fact)(report.law().domain), "{label}: {:?}", report.law().domain);
+        if fact == CapFact::TypedTextBytes {
+            assert!(matches!(report.law().domain, Some(AdmissionRefusal::Cap { observed, .. }) if observed == over), "{label}");
+        }
+    }
+}
+
+/// N-2 (V17, V24): a gate sum that overflows saturates at u64::MAX (above every
+/// bound), never 0; G-C's longest string reads a diagnostic's `source` and every
+/// `affected_refs` entry.
+#[test]
+fn gate_sums_saturate_and_the_longest_string_reads_every_diagnostic_field() {
+    assert_eq!(Bytes::ZERO.add(7).get(), 7);
+    assert_eq!(Bytes::ZERO.add(usize::MAX).add(1).get(), u64::MAX);
+    assert_eq!(Bytes::times(usize::MAX, 2).get(), u64::MAX);
+    assert_eq!(Bytes::ZERO.add(3).plus(Bytes::times(usize::MAX, 3)).get(), u64::MAX);
+    let mode = PreviewSolverMode::SparseInteractive;
+    let (request, capture) = CapturedInvocation::parse(milestone(), mode).unwrap();
+    let mut observer = crate::retained_product::ProductCapture::prepared_probe();
+    let ordinary = crate::run_linear_static_preview_observed(request, mode, Some(&capture), &mut crate::SourceRecoveryBudget::default(), Some(&mut observer));
+    let long = 200_000;
+    assert!(longest_string(&ordinary) < long);
+    type Change = Box<dyn Fn(&mut crate::Diagnostic)>;
+    let changes: [(&str, Change); 3] = [
+        ("source", Box::new(move |d| d.source = Some(text("s", long)))),
+        ("affected_refs first", Box::new(move |d| d.affected_refs.insert(0, text("a", long)))),
+        ("affected_refs last", Box::new(move |d| d.affected_refs.push(text("a", long)))),
+    ];
+    for (label, change) in changes {
+        let mut e = ordinary.clone();
+        change(e.diagnostics.last_mut().unwrap());
+        assert_eq!(longest_string(&e), long, "{label}");
+        let o = complete_observations(&CompleteFacts { ordinary: &e, capture: &observer });
+        assert_eq!(o.iter().find(|x| x.fact == PhaseFact::EnvelopeMaxStringBytes).unwrap().observed, long as u64, "{label}");
+    }
+}
+
+/// N-4: a reviewed-input record with any unreadable input (`<path>=unavailable`)
+/// never binds, even when the registered text is identical: an unreadable
+/// reviewed input is Stale by construction, as an unavailable identity is.
+#[test]
+fn an_unreadable_reviewed_input_never_binds() {
+    let layouts = READER_LAYOUTS;
+    let read = build_identity::encode_reviewed_inputs(&[Some([7; 32]); 14]);
+    assert!(!read.contains("unavailable"));
+    assert!(bindings_hold(true, Some(&read), &read, &layouts, &layouts), "every input read: the record binds");
+    for i in 0..14 {
+        let mut digests = [Some([7u8; 32]); 14];
+        digests[i] = None;
+        let unread = build_identity::encode_reviewed_inputs(&digests);
+        assert!(unread.contains("=unavailable"));
+        assert!(!bindings_hold(true, Some(&unread), &unread, &layouts, &layouts), "input {i} unreadable");
+    }
+    let none = build_identity::encode_reviewed_inputs(&[None; 14]);
+    assert!(!bindings_hold(true, Some(&none), &none, &layouts, &layouts), "no input read");
+    assert_eq!(identity_match(Some(build_identity::IDENTITY_UNAVAILABLE), [build_identity::IDENTITY_UNAVAILABLE].into_iter()),
+        Err(ProfileStatus::Stale), "the identity's own unavailable value is Stale");
+    assert!(COMPILED_REVIEWED_INPUTS.is_some_and(|text| !text.contains("unavailable")), "this build read every reviewed input");
 }
