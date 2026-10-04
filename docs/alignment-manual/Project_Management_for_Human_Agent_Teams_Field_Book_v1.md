@@ -35,7 +35,7 @@ Authorise delivery and transfer responsibility
 | Conceptual | Intended outcome, users, scope, constraints, and an accepted project basis. |
 | FEED — front-end engineering design | Accepted division into packages and deliverables; workspace and coordination arrangements. |
 | 30% — execution definition | Local production contracts, evaluation arrangements, dependencies, and an initial project directed acyclic graph (DAG). |
-| 60% — detailed development | Developed design and interfaces; an execution route for which further structural changes are no longer anticipated. |
+| 60% — detailed development | Developed design and interfaces; an execution route for which further structural changes (the Deliverable set, the order between groups) are no longer anticipated; each SCC treated so its work can proceed. |
 | 90% — produced deliverables | Intended contributions integrated, records reconciled, and an identified product ready for concentrated examination in use and debugging. |
 | 100% — delivery | Applicable acceptance and delivery decisions completed; identified product delivered with its limitations and continuing responsibilities. |
 
@@ -43,7 +43,41 @@ Percentage labels describe development positions. They do not measure effort, co
 
 At a stage gate, present what has been established, what remains unresolved, what the next work would rely on, and the proposed continuation. The human decides whether to advance, qualify, redirect, or require further work.
 
-Reference: [Manual §1.7](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_1_7).
+### The 60% gate
+
+The project DAG directs work: which Deliverables exist and the order in which groups of them can be completed. Finer relationships keep changing and belong to the local work graphs. The gate does not require a DAG with every cross-reference or cycle removed.
+
+```text
+DISCERN
+[ ] Every Deliverable has a reviewed design with its interfaces.
+[ ] Grouping test holds:
+    - each SCC's members, with closely bound Deliverables, in one group;
+    - every held relationship inside one group;
+    - dependencies between groups run one way;
+    - each residual risk contained, with an owner.
+[ ] Co-designed groups taken as one undertaking by human decision (a merge).
+[ ] Thin designs named with owners as completion work.
+[ ] Open matters sorted by who closes them; any that could add or
+    remove a Deliverable or reverse the group order is settled.
+[ ] Evidence standing stated as it is.
+
+STOP ANALYSING AND BRING THE GATE WHEN
+    each round finds more coupling than it removes; moves leave runtime
+    residuals; authors narrow designs to close cycles; supporting work
+    grows while no product advances.
+
+HAND OFF TO 90%
+    One development loop per group or several groups, each with a local
+    work graph from the group order. A walking skeleton through the most
+    coupled core first. Agreed contracts frozen under change control.
+    Registers updated, and checked against the DAG, as loops reach each
+    Deliverable. Successor DAG only on a structural event or as the
+    adopted departure rules require. Effectiveness measured on delivery.
+```
+
+The gate is the human's act. Present a short assessment; record the human's exact words with their source and custody. Agent checking does not pass the gate.
+
+Reference: [Manual §1.7](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_1_7); for the 60% gate, [Manual v8 §4.12](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_4_12).
 
 ## 2. Responsibilities and information
 
@@ -132,7 +166,7 @@ Resolve cycles according to their actual meaning:
 | Merge | Make the coupled work one accepted unit, with combined inputs, responsibility, and examination. Human decision required. |
 | Cut | Establish that the relationship falls outside the graph's stated objective; retain its other consequences. Human decision required. |
 
-A grouped cycle still contains work whose order needs resolution. Excluding an unresolved relationship from a graph does not supply its missing input. Hold the dependent work; continue separately authorised investigation and independent work.
+A grouped cycle still contains work whose order needs resolution. Excluding an unresolved relationship from a graph does not supply its missing input. Hold the dependent work; continue separately authorised investigation and independent work. Where co-designed members are grouped as one undertaking, their held relationships stay non-gating and the group's work graph orders the parts.
 
 Establish the initial project DAG before the 30% gate. Preserve its objective, node inventory, relationship meaning, source revisions, exclusions, examination, and decisions. Dependencies may remain pending within an accepted DAG.
 
@@ -154,7 +188,7 @@ State the intended result and completion conditions. Give each work node an outp
 
 Prepare one planned final documentation and governance closeout after the intended implementation and evidence have been integrated. Documents and reconciliations needed to perform or constitute an earlier contribution travel with that contribution.
 
-Renew the project DAG when its governing relationships change. A new conversation or rearranged assignment alone does not require a successor DAG.
+Renew the project DAG when its governing relationships change: the Deliverable set or the order between groups, or as the adopted departure rules require. Finer ordering belongs to the work graph. A new conversation or rearranged assignment alone does not require a successor DAG.
 
 ### 3. Commission ready work
 
