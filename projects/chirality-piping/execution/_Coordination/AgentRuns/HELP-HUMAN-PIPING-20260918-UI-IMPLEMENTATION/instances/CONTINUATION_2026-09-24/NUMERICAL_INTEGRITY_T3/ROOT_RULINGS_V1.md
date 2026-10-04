@@ -9927,3 +9927,26 @@ All three readers must pass 07h. No 07g outcome may change except through the ne
 **Limits:** the fixtures are single-case producer outputs (D-U6-5). The post-U7 summary and eligibility are tested through the internal helper with eligibility forced. U7 or U9 reruns them on live output.
 
 **RV88** reviews U6b after U6a, U6d and U6c. All four carrier units are now committed; U6e's 07h round is in verification.
+
+## U6e repair round (snapshot 07h) verified and committed; RV90 confirms (ROOT, 2026-10-04 UTC)
+
+**I61's repair round** is `R/I61/u6e_reader_round_02/` (SHA256SUMS 29/29 OK; no machine paths), plus the count correction `R/I61/u6e_reader_round_01/ADDENDUM_01.md`. ROOT committed it as `cc4dd61d67` on `codex/piping-f2a-readers-round-20261004`, on top of `5e1e2625ac`, and pushed it.
+
+**What it does:**
+- **S1:** Python's F5 uses `isinstance(…, list) and name in …`, as in Rust and TS. There is a new shared mutation, plus a Python-local test for the string, number and object forms.
+- **N1 and N2:** shared mutations for F5 on a case after the first, and for a strict-prefix list, with a must-pass control (`f5_envelope_reordered_exact_list`).
+- **N4:** the facade-order premise is added to `d37.basis`.
+- **N3:** Rust's D6a probe now isolates its defect.
+
+**Snapshot 07h:** 15 cases, 277 mutations, 23 must-pass entries; sha256 `d0a4ee21…`. Rust and TS reader code is byte-unchanged.
+
+**ROOT's verification:**
+- **The removed lines, read by ROOT:** only the old Python predicate (replaced by the stricter one), the count pins, and the sharpened Rust probe.
+- **ROOT's runs:** result_export **164/164**. The 24-file sweep plus the retained schema and contract tests: **1,774 passed, 30 skipped and 3 failed.** The 3 are exactly the branch-order pins broken since the reader fan-in, which U6c repaired on the carriers branch (`cb03315779`). This branch predates U6c, so they fail here and resolve when the branches merge. There are no new failures.
+- **I61's evidence:**
+  - Python 391, Rust 164, TS 448, `tsc` 0;
+  - parity on all 277 mutations, 23 must-pass entries and 15 bases;
+  - no 07g outcome change except the 4 new entries;
+  - 14 of 14 mutants killed, including each of RV90's six survivors, by exactly its new entry.
+
+**RV90 confirms S1, N1–N4 and the count correction.**
