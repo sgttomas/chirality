@@ -9866,3 +9866,39 @@ ROOT committed U6c as `cb03315779` on `codex/piping-f2a-carriers-20261004`, on t
 **Review:** RV88 reviews U6c, with the pin patch, after U6a and U6d.
 
 **Next:** I66 starts U6b, the Python carriers including D-U6-9.
+
+## RV90 on U6e: PASS; a repair round (snapshot 07h) granted (ROOT, 2026-10-04 UTC)
+
+**RV90's report** is `R/REVIEW_RV90/u6e_reader_round_01/REVIEW.md` (sha256 `186b2235…`; SHA256SUMS 55/55 OK; no machine paths). Verdict: **PASS** on `5e1e2625ac`, with 0 BLOCKING, 1 SHOULD-FIX and 4 NOTE findings.
+
+**What RV90 established independently:**
+- **F5 matches A2** in all three readers: the same gate and code (G5 ATTEMPT), class 2 and position.
+- **Both milestone receipts pass all six readers** (base and candidate) and reseal to identical bytes. No legitimate producer output is refused.
+- **All 15 base repairs** change only `diagnostic_refs` and the receipt hash.
+- **RV90's own D37 derivation matches the corpus** on all 9 kinds and 25 records. Perturbing the corpus table fails exactly each reader's D37 test.
+- **RV80-N2 holds.**
+- **Outcomes:** 0 of 305 07f outcomes change, and only the 6 F5 mutations differ.
+- **Suites:** Python 384, Rust 163 and TS 444, with `tsc` 0. The flags are still false.
+
+**S1 (SHOULD-FIX), a parity regression in the check under review.** Python's F5 test, `name in (d.get("affected_refs") or [])` (PY:914), treats a non-array `affected_refs` (a string, a number or an object) differently from Rust (`list()`) and TS (`Array.isArray`). On 6 malformed probes, the candidate readers diverge, with Python the odd one out every time; the base readers agree. Every version refuses these inputs, so eligibility cannot change. **Ruled: repair now.** The readers' first-failure parity is the accepted standard, and the fix is one line.
+
+**N1 and N2 (test-only gaps on the eligible path):**
+- **N1:** no shared entry pins F5 on a case after the first.
+- **N2:** no shared entry pins a strict-prefix list.
+
+Mutants that weaken F5 in each way survive all three suites. **Ruled: add the shared mutations now,** in the same round, rather than as a later U7 condition, because F5 sits on the eligible path.
+
+**N3:** Rust's flipped probe does not isolate F5; the shared m10 entry covers it. Sharpening it is optional.
+
+**N4:** add the facade-order premise to the corpus `d37.basis`: `freeze_candidate` runs only after `solve_native` succeeds (PP/lib.rs:2962–2974).
+
+**A wording slip:** I61's RETURN §3 says 197 tests kill Python's M50 analogue; the record gives 130.
+
+**I61: the U6e repair round, snapshot 07h,** in `WT/f2a-readers-round` on top of `5e1e2625ac`:
+- S1's Python fix, plus one shared mutation;
+- N1's and N2's shared mutations;
+- N4's basis wording;
+- N3, optionally;
+- the RETURN §3 count.
+
+All three readers must pass 07h. No 07g outcome may change except through the new entries. RV90 confirms. The next unused IDs are I68 and RV91.
