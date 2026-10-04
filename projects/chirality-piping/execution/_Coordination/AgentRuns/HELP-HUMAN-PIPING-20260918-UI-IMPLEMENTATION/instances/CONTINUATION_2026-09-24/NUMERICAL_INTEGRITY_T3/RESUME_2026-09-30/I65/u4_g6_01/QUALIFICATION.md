@@ -15,14 +15,16 @@
 
 **Registration is not applied.** `REGISTERED_PROFILES` is still `&[]`. The change is prepared as `registration.diff` (§8). ROOT applies it after G6's independent review; RV89 has passed part 2.
 
+**Revised by the pre-registration repair** (RR "RV87 … NOT CONFIRMED" and RR "RV89 on U4 G6 with registration.diff: PASS"; RETURN.md, Addendum 2). G6 is committed unregistered as `2bb81ec1ea`; the repair is uncommitted in WT/f2a-memory on top of it, in 3 files inside the fence (`retained_memory.rs`, the law tests and the challenge, +142 / −14 lines, `_run_records_g6r/candidate_g6r.diff`; the witness tests and the FK module are unchanged). This record's numbers are the repaired ones; G6's sealed text is at NUM `c4a1bcefa2`. The repaired TEXT inputs and outputs are in `_run_records_g6r/`.
+
 ## 1. What G6 did
 
 | Step | Result |
 |---|---|
 | 1. Close the 42 Estimates | **Done.** `profile::ESTIMATES` = 0: 190 InBuild atoms, 16 SourceUpper, 6 Text (§2). The bound is now **priced** in every build. Admission still refuses at D1.1 until a profile is registered |
-| ROOT's addition: the identifier-class audit | **Done.** 747 copy sites priced by source, and the run enforces coverage. TEXT +33.3 MB; RV87's 18 sites are exactly at RV87's bounds (`ID_CLASS_AUDIT.md`) |
+| ROOT's addition: the identifier-class audit | **Done.** 795 entries priced by source (G6: 747; the repair adds 48), and the run enforces coverage by type, whichever rule prices a candidate, and fails on stale site keys. TEXT +34.2 MB over part 2; RV87's 18 sites are exactly at RV87's bounds, and SF-1/SF-2 are priced by source (`ID_CLASS_AUDIT.md`) |
 | Re-run TEXT; regenerate the profile and the record | Done (`_run_records/text_g6/`, `per_identity/`) |
-| In-build maximum ≤ 0.9 M | **Yes.** Dense W3: E_mov,max + R = 3,594,627,572 B = **0.8927 M**, 29,251,084 B under 0.9 M. Sparse: 0.8878 M (§3) |
+| In-build maximum ≤ 0.9 M | **Yes.** Dense W3: E_mov,max + R = 3,595,488,734 B = **0.8929 M**, 28,389,922 B under 0.9 M. Sparse: 0.8881 M (§3). G6 was 0.8927 / 0.8878 M |
 | 2. Choose the build identity | **The dev/test build on this host** (§5). The release build is qualified too, but not proposed for registration |
 | 3. Gate the pinned record on build identity | **Done.** `profile_in_build_record` and `challenge_bounds_are_the_profile` assert only when `COMPILED_IDENTITY` equals `PINNED_RECORD_IDENTITY`, and otherwise print `I65_G6_RECORD_SKIP`. Seen in the release build |
 | 4. This record | This file |
@@ -106,30 +108,32 @@ Closing the 42 atoms adds **+9,771,352 B** to the maximum in both modes. Part 2'
 
 | Phase | Sparse | Dense |
 |---|---|---|
-| W1 ordinary span | 1,855,295,186 | 1,875,005,634 |
-| W2 G-B, G-C, T12–T15, N1 reserve | 1,963,105,592 | 1,982,816,040 |
-| **W3 publication (T16) + staged copy** | **3,507,808,260** | **3,527,518,708** |
-| W4 precommit (T17) + successor + invocation | 3,481,450,425 | 3,501,160,873 |
-| W5 transfer and Direct completion | 2,135,361,674 | 2,155,072,122 |
-| X1 ordinary span with T25 | 3,255,462,986 | 3,275,173,434 |
-| X2 X completion | 1,776,200,900 | 1,795,911,348 |
+| W1 ordinary span | 1,856,156,348 | 1,875,866,796 |
+| W2 G-B, G-C, T12–T15, N1 reserve | 1,963,966,754 | 1,983,677,202 |
+| **W3 publication (T16) + staged copy** | **3,508,669,422** | **3,528,379,870** |
+| W4 precommit (T17) + successor + invocation | 3,482,311,587 | 3,502,022,035 |
+| W5 transfer and Direct completion | 2,136,222,836 | 2,155,933,284 |
+| X1 ordinary span with T25 | 3,256,308,814 | 3,276,019,262 |
+| X2 X completion | 1,777,046,728 | 1,796,757,176 |
+
+**The repair's change to every phase** (both modes, against G6's record): W1–W5 +861,162 = TAV_W +861,146 plus 16; X1–X2 +845,828 = TAV_X +845,812 plus 16. The 16 B is `s(ThreadPacketOutput)`: `RetainedPreviewOutput` holds the admission report, whose private law record gains S-3's `required: Option<u64>`. No other atom or form moved (`_run_records_g6r/per_identity/`).
 
 | Direct | Sparse | Dense |
 |---|---|---|
-| E_req,max (W3 requested) | 3,318,504,979 | 3,338,215,427 |
+| E_req,max (W3 requested) | 3,319,366,141 | 3,339,076,589 |
 | W3 moving extra | 189,303,281 | 189,303,281 |
-| **E_mov,max** (W3) | **3,507,808,260** | **3,527,518,708** |
-| E_mov,max + R | 3,574,917,124 = **0.8878 M** | 3,594,627,572 = **0.8927 M** |
-| Below 0.9 M (3,623,878,656) | 48,961,532 | 29,251,084 |
+| **E_mov,max** (W3) | **3,508,669,422** | **3,528,379,870** |
+| E_mov,max + R | 3,575,778,286 = **0.8881 M** | 3,595,488,734 = **0.8929 M** |
+| Below 0.9 M (3,623,878,656) | 48,100,370 | 28,389,922 |
 
 **The margin standard** (RR "RV89 on U4 G5 part 2: PASS; … the margin standard").
 - **The text-error budget**, the fraction of TAV_W that would consume the 0.9 M margin, is:
-  - **dense:** 29,251,084 / 1,569,180,716 = **1.86 %**;
-  - **sparse:** 48,961,532 / 1,569,180,716 = 3.12 %.
+  - **dense:** 28,389,922 / 1,570,041,862 = **1.81 %** (G6: 1.86 %);
+  - **sparse:** 48,100,370 / 1,570,041,862 = 3.06 % (G6: 3.12 %).
 - The figure was about 2.8 % at part 2. The audit and the closed Estimates used the difference.
 - **The in-build maximum is still ≤ 0.9 M after the identifier audit.** So the phase-aware span (−0.085 M) stays in reserve, unused.
 
-**The 0.9 M rule holds after the Estimates closed and the audit.** The in-build evaluation is the admission's own bound: `cap_priced_maximum(mode)` returns E_mov,max, and `bound_admits` adds R and compares with the registered M. So a build whose layouts moved the maximum above M would be refused at admission, not admitted.
+**The 0.9 M rule holds after the Estimates closed, the audit and its repair.** The in-build evaluation is the admission's own bound: `cap_priced_maximum(mode)` returns E_mov,max, and `admission_bound` adds the constant R and compares with the registered M (RV89 G6 S-3: a named pure function, tested at M − R − 1, M − R and M − R + 1; `admit` prices its bound only through it, and the law record keeps the `required` bytes it computed). So a build whose layouts moved the maximum above M would be refused at admission, not admitted.
 
 **Test-only layouts.** The pinned record comes from the test harness's build of the crate. The production build of the same identity compiles without `#[cfg(test)]`. The only PP types with test-only fields are `ProductCapture`, `FrozenCandidate` and `ReservedNotice`:
 - none is a profile atom;
@@ -230,17 +234,17 @@ Refusals map to `caller`, `resource_admission` or `source_family`, as in DOMAIN 
 ## 7. The identifier-class audit (ROOT's addition)
 
 See `ID_CLASS_AUDIT.md`. In short:
-- **Coverage.** Every identifier-bearing copy on the D1 graph (747 entries, 599 sites) is priced by its source: input 128, result id 1,024, diagnostic id 2,330, its own template, composite 600, or static.
-- **Enforcement.** An identifier-class rule hit at a positive-multiplicity site outside the audit table makes TEXT incomplete. The enforcement control removed `lib.rs:5592`'s entry and the run reported `id-unaudited lib.rs:5592 matched[0].id` (`_run_records/controls/audit_enforcement.txt`).
-- **TEXT** goes to 2,149,902,046 B (+33,295,754 B). TAV_W is +4,316,002 and TAV_X is +33,295,754.
+- **Coverage.** Every identifier-bearing copy on the D1 graph (795 entries, 641 sites) is priced by its source: input 128, the node-DOF label 131, result id 1,024, diagnostic id 2,330, its own template, composite 600, or static.
+- **Enforcement (repaired, RV87 SF-3).** Every identifier-bearing candidate at a positive-multiplicity site, chosen by type and whichever rule would price it, must be in the table, or TEXT is incomplete (`id-unaudited`). A site key matching no row (`stale-key`), or an entry naming no expression at its site (`stale-audit-entry`), also makes it incomplete. Eight controls each fail with their own finding, including RV87's `primitive_loads/src/lib.rs:299` removal and a stale key (`_run_records_g6r/controls/`); G6's own control (`lib.rs:5592`) still fails.
+- **TEXT** goes to 2,150,800,830 B: +33,295,754 B at G6 and +898,784 B in the repair. TAV_W is 1,570,041,862 (+861,146 in the repair) and TAV_X is 1,440,401,002 (+845,812).
 
 ## 8. The registration change (prepared, not applied): `registration.diff`
 
-**What it changes** (4 files, 287 lines). The last two files are outside U4's fence; ROOT ruled that they are applied with the entry, as part of the same reviewed change:
+**What it changes** (5 files, 323 lines; G6's reviewed 287-line version is kept as `registration.g6.diff`). The last three files are outside U4's fence; ROOT ruled that such flips are applied with the entry, as part of the same reviewed change (ruling 3; RV89 G6 S-1 adds the runner's):
 - **`retained_memory.rs`:** `REGISTERED_PROFILES` gets one entry: the identity, the reviewed inputs, the reader layouts and `threshold_bytes: 4_026_531_840`. Decision 7 holds: this is the production profile, registered by reviewed change. There is no test permit and no constructor.
 - **`retained_memory_law_tests.rs`:**
   - `the_registered_profile_is_the_only_permit_source` replaces `no_profile_or_permit_is_constructible`. It checks: exactly one entry, the pinned identity, M; a forged index past the list or a refused report mints nothing; and this build is Registered or Stale, never Missing.
-  - **`admit_grants_a_permit_for_the_milestone_in_the_registered_build`:** in the registered build, `admit` returns a permit for the milestone in both modes, with no refusal and `required ≤ 0.9 M`. Headless is still refused at D1.0. A two-case variant is refused at D1.4. In another build: `Stale`.
+  - **`admit_grants_a_permit_for_the_milestone_in_the_registered_build`:** in the registered build, `admit` returns a permit for the milestone in both modes, with no refusal, its law record's `required` equal to `cap_priced_maximum(mode) + R` (RV89 G6 S-3), and `required ≤ 0.9 M`. Headless is still refused at D1.0. A two-case variant is refused at D1.4. In another build: `Stale`, with nothing `required`.
   - Two tests now expect D1.1's status from `build_status()` instead of `Missing`.
   - **`registered_g_c_declines_only_unattempted_solves`** (ROOT's ruling 2(a)), in the registered build:
     - each not-attempted example takes G-C's `CompleteGate(OrdinarySolveNotAttempted)` fallback, and Direct's bytes equal the value route's exactly, with no notice. The examples are an invalid document kind, an invalid load category, no supports and a lone spring;
@@ -253,8 +257,10 @@ See `ID_CLASS_AUDIT.md`. In short:
 - **`tests/retained_precision_admission.rs`** (outside U4's fence):
   - the expected profile is `Registered` in the registered build and `Stale` otherwise;
   - the invalid-document request's Direct bytes equal the value route's exactly in every build: its ordinary route never attempts the solve, so G-C declines.
+- **`runner/headless/tests/retained_precision_admission.rs`** (outside U4's fence; RV89 G6 S-1): `explicit_headless_refusal_…` expects the Headless report's profile to be this PP build's own status, the one the Direct entry reports for the same input (`Registered` in the qualified build, `Stale` otherwise, never `Missing`). The runner's workspace builds PP with the registered identity, so under registration the report reads `Registered`. Headless itself stays refused at D1.0, and the output still equals the ordinary run's.
 
 **Tested in a scratch copy** (`_run_records/registration/`):
+- **The repair's re-run** (`_run_records_g6r/registration/`, the updated diff): PP 699 passed, 1 failed (t13), 11 ignored; runner/headless identical to base, with S-1's test passing; the sweep sha256 unchanged at `3b22de97…0f60`; the challenge peaks 3,541,898 / 2,252,863 B against E_mov,max 3,508,669,422 / 3,528,379,870 B. G6's figures follow.
 - **PP:** 698 passed, 1 failed (the known Mac t13), 11 ignored.
 - **Challenge:** the milestone now runs the **permitted** path with a successor, peaking at 3,541,866 B (sparse) and 2,252,831 B (dense), against E_mov,max 3.51/3.53 GB. The large input is not permitted (no successor) and stays within its W1 phase.
 - **The fixture sweep changes, as registration should** (`sweep_reg_diff.txt`):
@@ -297,8 +303,13 @@ See `ID_CLASS_AUDIT.md`. In short:
 | A 1e-300 spring | the attempt fails `NumericallyUnresolved`, then blocked | yes | proceeds to W1 |
 | `rejected_stress_range` (both) | solved Sensitive, then `SOURCE_BLOCK_RECOVERY_FINALIZATION_FAILED` blocks | yes | proceeds; N1 notice on fallback |
 | W6, PHYS-R4 force-scaled | the attempt fails Range, then W2 publishes | yes | proceeds |
+| K2a's partial-underflow product reach (repair, RV89 G6 S-2) | F1b's deferred formation: the attempt's seed is `FormationFailure` (asserted) | yes | proceeds; under registration W1 falls back at `Candidate` with the N1 notice (RV89's observation) |
+
+**The deferred-formation arm is pinned** (repair, RV89 G6 S-2). `attempted_examples()` now includes K2a's `product-reach-partial-underflow` shape (built in the law tests as K2a's `PARTIAL_UNDERFLOW` request), and `g_c_declines_…` asserts that its one seed is `InitialSeed::FormationFailure`. So `g_c_declines_…` and the registered `registered_g_c_…` both pin the arm; RV89's R8 (a `FormationFailure` seed not counted) is now killed (§9).
 
 ## 9. Controls (unregistered G6 candidate, against base `8abb5274a9`; `_run_records/controls/`)
+
+**The repair's re-run** (the same controls on the repaired code, `_run_records_g6r/controls/`) is summarised in RETURN.md, Addendum 2; the table below is G6's.
 
 **Host:** the default toolchain (rustc 1.97.1), `--locked --offline`, `CARGO_BUILD_JOBS=4`, `RUST_TEST_THREADS=2`, one cargo job at a time, with memguard (PID 5387) checked before each job.
 

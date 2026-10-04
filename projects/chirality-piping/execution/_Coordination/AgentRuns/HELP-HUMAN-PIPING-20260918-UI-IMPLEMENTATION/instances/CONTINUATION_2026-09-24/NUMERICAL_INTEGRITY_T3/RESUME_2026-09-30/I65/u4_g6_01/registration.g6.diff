@@ -28,7 +28,7 @@
  
  /// D-6 identity matching (G2_AMENDMENTS §1): `Missing` with nothing registered;
  /// otherwise the index of the byte-equal registered identity, or `Stale` when the
-@@ -2955,10 +2970,15 @@
+@@ -2933,10 +2948,15 @@
      }
      #[test]
      fn actual_retained_entry_dispatches_ordinary_once() {
@@ -45,7 +45,7 @@
          for mode in [
              crate::PreviewSolverMode::SparseInteractive,
              crate::PreviewSolverMode::DenseScrutiny,
-@@ -2967,7 +2987,10 @@
+@@ -2945,7 +2965,10 @@
              let result =
                  crate::run_linear_static_preview_value_with_retained_direct(raw.clone(), mode)
                      .unwrap();
@@ -57,7 +57,7 @@
              DISPATCH_COUNT.with(|c| {
                  assert_eq!(c.get(), Some(1));
                  c.set(None);
-@@ -3038,6 +3061,8 @@
+@@ -3016,6 +3039,8 @@
                  let mut report = base;
                  report.profile = profile;
                  report.raw.status = status;
@@ -83,7 +83,7 @@
  }
  /// The actual G-A over a raw request: parse once, as the dispatch does, then admit.
  fn admitted(raw: Value) -> RetainedAdmissionReport {
-@@ -256,20 +264,68 @@
+@@ -256,22 +264,67 @@
  }
  
  #[test]
@@ -118,8 +118,8 @@
 +        Some(id) if id == REGISTERED_PROFILES[0].identity => assert_eq!(build_status(), Ok(0)),
 +        _ => assert_eq!(build_status(), Err(ProfileStatus::Stale)),
 +    }
-+}
-+
+ }
+ 
 +/// G6 (brief step 5): under the registered build, `admit` grants a permit for the in-domain
 +/// milestone Direct invocation in both modes; Headless and out-of-domain requests stay refused.
 +#[test]
@@ -131,15 +131,12 @@
 +        if !registered {
 +            let report = admitted.err().expect("an unregistered build is refused");
 +            assert_eq!(report.law().refusal, Some(AdmissionRefusal::Profile(ProfileStatus::Stale)));
-+            assert_eq!(report.law().required, None, "refused before the bound: nothing computed");
 +            continue;
 +        }
 +        let (_permit, report) = admitted.unwrap_or_else(|r| panic!("{mode:?}: refused {:?}", r.law().refusal));
 +        assert_eq!(report.law().refusal, None);
 +        assert_eq!(report.law().registered, Some(0));
 +        let required = cap_priced_maximum(mode).unwrap() + RESERVED_STACK_BYTES as u64;
-+        // RV89 G6 S-3: admission's own bound is the mode's maximum plus R (64 MiB).
-+        assert_eq!(report.law().required, Some(required), "{mode:?}: admit adds R before comparing with M");
 +        assert!(required <= 3_623_878_656, "the 0.9 M margin holds at admission");
 +        // Headless is refused at D1.0 even in the registered build.
 +        let raw = milestone();
@@ -156,10 +153,12 @@
 +        let (request, capture) = CapturedInvocation::parse(out, mode).unwrap();
 +        assert!(matches!(admit(&capture, &request, Entry::Direct).err().unwrap().law().refusal, Some(AdmissionRefusal::Family(..))));
 +    }
- }
- 
++}
++
  // ---- The census --------------------------------------------------------------
-@@ -320,8 +376,8 @@
+ 
+ #[test]
+@@ -320,8 +373,8 @@
              let (request, capture) = CapturedInvocation::parse(raw.clone(), mode).unwrap();
              let report = assess(&capture, &request, Entry::Direct);
              assert_eq!(report.law().domain, None, "inside D1");
@@ -170,7 +169,7 @@
              assert_eq!(report.law().raw_text.control_bytes, 0);
              let invocation = json!({"request": raw, "solver_mode": mode.as_str()});
              let id = String::from("g5");
-@@ -605,7 +661,7 @@
+@@ -605,7 +658,7 @@
              assert_eq!(serde_json::to_vec(output.envelope()).unwrap(), plain, "ordinary bytes");
              let report = output.admission().unwrap();
              assert_eq!(report.law().domain, expected);
@@ -179,11 +178,10 @@
              assert!(output.successor().is_none());
          }
      }
-@@ -1307,4 +1363,38 @@
-     assert!(ordinary_solve_attempted(&empty));
+@@ -1202,3 +1255,37 @@
      empty.ordinary[0].initial = None;
      assert!(!ordinary_solve_attempted(&empty), "a seed without an attempt outcome");
-+}
+ }
 +
 +/// G6 (ROOT's ruling 2(a)), in the registered build: a D1 request whose ordinary route
 +/// returns without attempting the case's solve takes G-C's CompleteGate fallback, and
@@ -217,7 +215,7 @@
 +            }
 +        }
 +    }
- }
++}
 --- a/projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs
 +++ b/projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs
 @@ -205,12 +205,16 @@
@@ -287,37 +285,3 @@
      }
      let bad = serde_json::json!({"model": null});
      assert_eq!(
---- a/projects/chirality-piping/core/runner/headless/tests/retained_precision_admission.rs
-+++ b/projects/chirality-piping/core/runner/headless/tests/retained_precision_admission.rs
-@@ -4,7 +4,8 @@
-     RunnerOperation, RunnerRequest, TbdDecisions,
- };
- use open_pipe_stress_product_physics::{
--    MissingAdmissionTerm, PreviewSolverMode, ProfileStatus, RetainedCaller,
-+    run_linear_static_preview_value_with_retained_direct, MissingAdmissionTerm,
-+    PreviewSolverMode, ProfileStatus, RetainedCaller,
- };
- use serde_json::Value;
- 
-@@ -79,7 +80,20 @@
-         );
-         let report = actual.admission().unwrap();
-         assert_eq!(report.caller, RetainedCaller::Headless);
--        assert_eq!(report.profile, ProfileStatus::Missing);
-+        // G6 registration (RV89 S-1): a profile is registered, so the report states this PP
-+        // build's own status, the one the Direct entry reports for the same input:
-+        // `Registered` in the qualified build, `Stale` in any other; never `Missing`.
-+        // Headless itself stays refused (D1.0): its output is the ordinary run's (above).
-+        let built = run_linear_static_preview_value_with_retained_direct(ordinary(), mode)
-+            .unwrap()
-+            .admission()
-+            .unwrap()
-+            .profile;
-+        assert!(matches!(
-+            built,
-+            ProfileStatus::Registered | ProfileStatus::Stale
-+        ));
-+        assert_eq!(report.profile, built);
-         assert!(report.headless.is_some());
-         assert!(!report.headless.unwrap().payload_and_invocation_alias);
-         assert!(report

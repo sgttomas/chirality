@@ -10413,3 +10413,30 @@ Then I65 reruns TEXT, regenerates the profile and the pinned record, and re-conf
 - **N-3 to N-6:** noted.
 
 **RV89 reviews I65's delta as a follow-on** (it kept its copies and caches), and RV87 confirms its SF items. **Registration follows both.**
+
+## U4 G6 pre-registration repair committed; I66's post-U6f part committed; confirmations dispatched (ROOT, 2026-10-04 UTC)
+
+**I65's repair** is `R/I65/u4_g6_01/`, Addendum 2 (SHA256SUMS 118/118 OK; no machine paths; `_run_records/` keeps G6's sealed bytes). ROOT committed it as `b43378d90a` on `codex/piping-f2a-memory-20261004`, on top of `2bb81ec1ea`, and pushed it. The worktree's diff equals `candidate_g6r.diff`, and `REGISTERED_PROFILES` is still `&[]`.
+
+**What it does:**
+- **SF-1:** the node-DOF label is priced at 131 B at the five sites, plus a sixth (lib.rs:1149) that the new enforcement found. `:1763` goes from 8,241 to 8,352.
+- **SF-2:** `copy(s)` is priced by source at its actual line (327 → 1,024 B), and the stale `site_zero` keys are removed.
+- **SF-3:** TEXT fails on `id-unaudited`, `stale-key` and `stale-audit-entry`. 8 controls each fail with their own finding, including RV87's `primitive_loads lib.rs:299` removal. **Stated residual:** the candidate predicate is syntactic, so an id aliased under a token-less local name, or a key drifting onto another row on the same line, is not detected.
+- **N-1 and N-2** (wording) are done.
+- **RV89 S-1:** registration.diff now includes the runner/headless flip; registered, runner/headless is identical to base.
+- **RV89 S-2:** the deferred-formation shape kills R8.
+- **RV89 S-3:** `admission_bound` is a named pure function, tested at M−R−1, M−R, M−R+1 and M; `required` is in the law record; R6 is killed.
+
+**The in-build maximum:** **0.8881 M sparse, 0.8929 M dense,** 28.4 MB under 0.9 M dense. The text-error budget is 1.81% dense.
+
+**ROOT's runs:** PP `--lib` gave 534 passed, 1 failed (t13), 10 ignored; the challenge passes.
+
+**The updated `registration.diff`** has sha256 `976b722d…` (5 files, 323 lines). G6's reviewed version is kept as `registration.g6.diff` (`35c72703…`).
+
+**Confirmations:**
+- **RV89** reviews this delta and the updated `registration.diff` as its G6 follow-on;
+- **RV87** confirms SF-1 to SF-3 and N-1/N-2.
+
+**Registration follows both.**
+
+**U6 post-U6f:** I66's part is committed as `6383e8e70e` (canonical receipt compare, case format v3 with five declared differences, the whole-file seam guard). ROOT's runs: result_export 168/168; Python carrier and schema tests 78/78; **the full 24-file sweep plus the schema, carrier and contract tests, 1,843 passed, 30 skipped, 0 failed.** I67's TS part (N-1 transport, v3) is in progress.

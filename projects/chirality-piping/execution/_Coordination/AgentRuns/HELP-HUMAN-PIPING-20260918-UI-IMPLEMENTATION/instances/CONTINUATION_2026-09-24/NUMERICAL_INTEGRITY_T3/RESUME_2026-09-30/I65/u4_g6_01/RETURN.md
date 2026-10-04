@@ -137,3 +137,148 @@
   - the blocked examples are byte-identical (the test above).
 - **`registration.diff`** is regenerated: 4 files, 287 lines.
 - **Mutants:** 167 run, 163 killed by a test, 0 compile-only. The 5 new G-C mutants are all killed, and the 4 survivors are unchanged and recorded.
+
+## Addendum 2: the pre-registration repair (RV87 SF-1 to SF-3, N-1, N-2; RV89 S-1 to S-3)
+
+**Basis.**
+- RR "U4 G6 committed unregistered as `2bb81ec1ea`; RV87 did not confirm the identifier audit; repair before registration" (`R/REVIEW_RV87/u4_g6_01/REVIEW.md`).
+- RR "RV89 on U4 G6 with registration.diff: PASS; three items join the pre-registration delta" (`R/REVIEW_RV89/u4_g6_01/REVIEW.md`).
+
+**Status.** The repair is done and **uncommitted** in WT/f2a-memory on top of `2bb81ec1ea`: 3 files inside the fence, +142 / −14 (`_run_records_g6r/candidate_g6r.diff`). `REGISTERED_PROFILES` is still `&[]`. `registration.diff` is updated, and the reviewed G6 version is kept as `registration.g6.diff`.
+
+**The numbers after the repair** (the in-build record, `_run_records_g6r/per_identity/`):
+
+| | Sparse | Dense |
+|---|---|---|
+| E_mov,max (W3) | 3,508,669,422 | 3,528,379,870 |
+| E_mov,max + R | **0.8881 M** | **0.8929 M** |
+| Below 0.9 M | 48,100,370 B | 28,389,922 B |
+| Text-error budget (margin / TAV_W) | 3.06 % | **1.81 %** |
+| Change from G6 (every W phase / X phase) | +861,162 / +845,828 | the same |
+
+- **The maximum is ≤ 0.9 M,** and it matches RV87's estimate (0.8929 M dense). No stop.
+- The change is TAV_W +861,146 and TAV_X +845,812, plus 16 B in every phase. The 16 B is `s(ThreadPacketOutput)` (1,688 → 1,704): the admission report inside `RetainedPreviewOutput` gains S-3's `required: Option<u64>`. No other atom or form moved.
+- The release record equals the dev/test record apart from the identity and the identity-gated skips.
+
+### Each item, separately
+
+**SF-1: the node-DOF label is priced at its source bound.**
+- The five format sites (`lib.rs:1632`, `:1644`, `:1708`, `:1721`, `:1739`) price `integrity_dof_label(..)` at 131 B: an input node id (≤ 128), `:` and a 2-B DOF name.
+- An `integrity_dof_label\(` argument rule now precedes the integer rule (`_dof`), and each site is in the audit table (class TPLLABEL).
+- The by-type enforcement found a sixth label site, `lib.rs:1149` (`formation_check`'s `global_dof` label, multiplicity 2), now priced the same way.
+- **The `:1763` template bound** (TPL_ENTRY) is recomputed from the raised `:1699–1753` rows: 8,241 → **8,352** (the site 8,243 → 8,354).
+- **Δ:** +620,934 B on RV87's rows, exactly RV87's figures, plus +444 B at `:1149`.
+
+**SF-2: the adapter's `copy(s)` is priced by source.**
+- G4's `lex_site_size` entry (class result_id, 1,024 B) is re-keyed from the stale `:2963` to its actual line, `retained_product.rs:3125`, and the copy is audited as RES. That is G4's intended class for all 199 copies, which ROOT accepted.
+- **Δ:** 327 → 1,024 B, **+277,406 B** (RV87's own figure for that class).
+- **The three `site_zero` keys that matched no row are removed** (`retained_product.rs:529`, `structural/formation_check.rs:524`, `structural/retained/assemble.rs:15`), and recorded under `site_zero_removed_g6` in `text_args.g4.json`. None changed any row.
+
+**SF-3: the enforcement is by type, and it fails on stale keys** (`_run_records_g6r/text_budget.py`).
+- **Every identifier-bearing candidate** at a positive-multiplicity site must be in the audit table, **whichever rule would price it**, or TEXT is incomplete (`id-unaudited`). A candidate is an expression that:
+  - names an id, ids, ref, refs, name, key, label, suffix or identity, in any receiver or call; or
+  - is a bare text parameter (`&str`, `String`, `impl Into<String>`, …) of its function, so `copy(s)` qualifies; or
+  - is matched first by an identifier-class rule.
+  
+  This covers sites priced by `site_size`/`site_aggregate` (their audited evaluation then applies when larger) and by `lex_site_size` (the entry applies when larger).
+- **A site-keyed rule matching no row fails.** That is any key of `site_size`, `lex_site_size`, `site_total`, `site_zero`, `site_from`, `site_aggregate` or `id_audit` (`stale-key`), or an audit entry naming no expression at its site (`stale-audit-entry`).
+- **The enforcement found 48 candidates outside G6's table.** Each was read at its site and classified (ID_CLASS_AUDIT.md §2a):
+  - 6 TPLLABEL (SF-1);
+  - 1 RES (SF-2);
+  - 10 IN128;
+  - 24 STATIC (`&'static str` parameters and literal tables);
+  - 7 NOTID (finding and error message text, and a JSON pointer).
+  
+  Only the SF-1 and SF-2 rows change; every other entry keeps its row's bytes.
+- **Site overrides keep their floor.** Where a `site_size` override priced the site, the entry is the source bound and the override stays the floor. That applies to `source_receipt/source.rs:27` (188), `:51` (129) and `lib.rs:13834` (150).
+- **The table converged in three runs** (`iter_g6r.sh`): the functional-id template bound read 2,233 B while `case` was unaudited, then 188; the third table equals the second.
+- **Controls** (`_run_records_g6r/controls/audit_controls_g6r.out.json`). The unmodified copy is complete. Each of the following makes TEXT incomplete with exactly its own finding:
+
+| Control | Finding |
+|---|---|
+| **c1: RV87's `primitive_loads/src/lib.rs:299` removal** (G6: complete, −370 B) | `id-unaudited` |
+| **c2: a stale `site_zero` key** | `stale-key` |
+| c3: `lib.rs:5592` removed (G6's control) | `id-unaudited` |
+| c4: `lib.rs:1708`'s label removed (SF-1) | `id-unaudited` |
+| c5: `retained_product.rs:3125` removed (SF-2) | `id-unaudited` |
+| c6: the `copy()` key moved back to stale `:2963` (SF-2's original state) | `stale-key` |
+| c7: an entry naming no expression | `stale-audit-entry` |
+| c8: a STATIC entry removed (`lib.rs:8795` `label`) | `id-unaudited` |
+
+- **Residual** (stated in the audit): the predicate is syntactic. A local alias of an identifier under a name with no token above, and not a text parameter, is not a candidate. A key that drifted onto another row on the same line is not detected.
+
+**The TEXT delta** (`_run_records_g6r/text_g6r/`, against `text_g6/`; inputs otherwise byte-identical: part 2's edges and lexicon, G6's inventory and loop bounds):
+
+| Run | G6 | Repaired | Δ |
+|---|---|---|---|
+| TAV (whole) | 2,149,902,046 | 2,150,800,830 | +898,784 |
+| TAV_W | 1,569,180,716 | 1,570,041,862 | +861,146 |
+| TAV_X | 1,439,555,190 | 1,440,401,002 | +845,812 |
+
+- 8 rows change, all upward. No row is lowered, D and D_env are unchanged, and the run is complete.
+- The whole-run Δ is SF-1 +620,934, plus `:1149` +444, plus SF-2 +277,406.
+
+**N-1: the audit's scope names the copies priced elsewhere.** One paragraph in ID_CLASS_AUDIT.md's scope names the `TEXT_NAMES`-filtered data clones and non-literal `.into()` (RV87's eight sites) and the families that price them: row text in O (Text(row), 4 × 1,024-B refs) or T25, and diagnostic refs in Text(diag) at 152 B per ref.
+
+**N-2: the `suffix` rows are labelled as input ids.** A provenance rule ahead of the STATIC literal rule classes `suffix = stable_suffix(<id>)` as IN128. That relabels 25 rows (RV87's rows 44–54 and the other `let suffix = stable_suffix(..)` rows). The bound is the same 128 B, and no row's bytes change.
+
+**RV89 S-1: the runner's Headless profile flip is in `registration.diff`.**
+- `runner/headless/tests/retained_precision_admission.rs`, `explicit_headless_refusal_…`: the expected profile is this PP build's own status, the one the Direct entry reports for the same input. That is `Registered` in the qualified build and `Stale` otherwise, never `Missing`. A runner test cannot read PP's build-script identity, so the Direct entry in the same build is the oracle.
+- Headless itself stays refused at D1.0, and the output still equals the ordinary run's.
+- The flip is applied with the entry under ruling 3.
+- **Re-run registered:** runner/headless is now **identical to base**: 85 passed, and 2 failed, base's own two `load_reference` failures. `explicit_headless_refusal_…` passes with `Registered`. Unregistered it is identical to base too.
+
+**RV89 S-2: the deferred-formation arm is pinned.**
+- `attempted_examples()` gains K2a's `product-reach-partial-underflow` shape, built in the law tests as K2a's `PARTIAL_UNDERFLOW` request.
+- `g_c_declines_…` asserts it is inside D1 and attempted, and that its one seed is `InitialSeed::FormationFailure`. `registered_g_c_…` (in `registration.diff`) iterates the same examples, so the arm is pinned in both builds.
+- **RV89's R8 is now killed** (below).
+
+**RV89 S-3: admission's bound adds R, and that is tested.**
+- `admit` prices its bound through a named pure function, `admission_bound(maximum, threshold)`. It is `bound_admits(maximum?, RESERVED_STACK_BYTES, threshold)`: the constant R, never the `cfg(test)` stack override.
+- The private law record keeps the bound's `required` bytes (`bound_required`: admitted or exceeded; `None` when unpriced, overflowed, or refused earlier).
+- `admission_bound_adds_r_before_comparing_with_m` tests it in both builds:
+  - at M − R − 1, M − R and M − R + 1, at M itself, Unpriced and Overflow;
+  - on this build's own maxima, with the override set;
+  - in `admit`'s source: one `admission_bound(..)` call, `required` recorded, and no direct `bound_admits`.
+- In the registered build, `admit_grants_…` (in `registration.diff`) asserts `law.required == Some(cap_priced_maximum(mode) + R)`. In another build it asserts `None`.
+- **RV89's R6, at its new home, is killed** (below).
+
+### The re-run (`_run_records_g6r/controls/`, `registration/`, `per_identity/`)
+
+| Check | Result |
+|---|---|
+| Unregistered sweep | byte-identical to base, `0690bc64…41e1` |
+| PP (unregistered) | 697 passed, 1 failed (the Mac t13), 11 ignored. The only change from G6 is the new `admission_bound_adds_r_…` |
+| runner/headless (unregistered) | identical to base |
+| Law suite | 40 passed in both builds |
+| Witnesses | all nine pass in both builds, one process each, with the same outcomes as G6 |
+| `challenge_bounds_are_the_profile` / `profile_in_build_record` | pass in the pinned dev/test build; skip in release (`I65_G6_RECORD_SKIP`) |
+| Registered copy (`registration.diff` applied with `patch -p1`) | PP: 699 passed, 1 failed (t13), 11 ignored. Challenge: the milestone runs the permitted path (peaks 3,541,898 / 2,252,863 B against 3,508,669,422 / 3,528,379,870). Sweep sha256 `3b22de97…0f60`, identical to G6's registered sweep. runner/headless: identical to base, with S-1's test passing |
+| Mutants (`controls/mutants_g6r.out.jsonl`) | **89 run, 86 killed by a test, 0 compile-only, 0 not applied.** The sets are RV89's 24, part 2's 40, G6's 19 and the repair's 6 (`G6R`). **All 6 G6R mutants are killed:**<br>– RV89's R6 at its new home (`admission_bound` passes 0 for R);<br>– `admit` bypassing `admission_bound` without R;<br>– the bound reading the test stack override;<br>– `required` not recorded;<br>– an exceeded bound recording nothing (all five by `admission_bound_adds_r_…`);<br>– RV89's R8, a `FormationFailure` seed not counted (by `g_c_declines_…`).<br>The 3 survivors are G6's recorded ones: V19, and the two Estimate-count mutants, equivalent at ESTIMATES = 0.<br>Part 1's 84 were not re-run in full: their anchors are untouched by the repair (checked), and the first 12, run before the full run was stopped for time, are all killed (`mutants_g6r_full_partial.out.jsonl`) |
+
+### Record changes
+
+- **Updated in place:**
+  - `QUALIFICATION.md`: a revision note at the head; §1, §3, §7 and §8; §8a's example; §9's pointer;
+  - `ID_CLASS_AUDIT.md`: scope (N-1), result, method and enforcement (SF-3), the class table, the new §2a, §3, and §4 regenerated (795 rows, N-2);
+  - `registration.diff`: 5 files, 323 lines, sha256 `976b722d…bcbf`;
+  - this file.
+  
+  G6's sealed versions are at NUM `c4a1bcefa2`. `SHA256SUMS`' lines for these four files are replaced, and the new files are appended.
+- **New:**
+  - `registration.g6.diff` (the reviewed G6 package, sha256 `35c72703…4fd2a`, unchanged);
+  - `_run_records_g6r/`: the repaired `text_budget.py`, `text_args.g4.json` and `mutants_g6.py` (`G6R` set); `audit_controls_g6r.py`; `iter_g6r.sh`; `run_g6r.sh`; `candidate_g6r.diff`; and `text_g6r/`, `id_audit/`, `controls/`, `per_identity/` and `registration/`.
+- **Unchanged:** `_run_records/` keeps G6's sealed inputs and outputs. To reproduce the repaired run, overlay `_run_records_g6r/{text_budget.py,text_args.g4.json}` on a copy of `_run_records/`.
+
+### Execution record (repair)
+
+- **Who and when:** I65, TASK (Type 2) under ROOT, no descendants; 2026-10-04.
+- **Memory guard:** PID 5387 was running throughout, and every cargo job and mutant checked it.
+- **Cargo:** the default toolchain, `--locked --offline`, `CARGO_BUILD_JOBS=4`, `RUST_TEST_THREADS=2` (1 for the witnesses), one cargo job at a time; `TMPDIR` in scratch.
+- **Writes:**
+  - three code files in WT/f2a-memory;
+  - this folder;
+  - WT/scratch/i65_u4_g6_01/;
+  - WT/targets/i65-g5/ and i65-g6/.
+- **Not run:** no Git writes (reads used `GIT_OPTIONAL_LOCKS=0`; the sealed G6 inputs were restored from `git show HEAD:` into the working files), no installs, no new tooling, and no native, solver-at-scale or DEC-025 jobs.
+- **Records:** placeholder paths only.
