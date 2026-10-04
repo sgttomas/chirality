@@ -103,12 +103,12 @@ def apply_mutation(base, mutation):
         for source in body["sources"]:
             preparation = source["preparation"]
             if preparation is not None:
-                attempt = body["product_attempts"][preparation["attempt_ref"]]
+                attempt = body["product_attempts"][int(preparation["attempt_ref"])]  # D32: index by integral value
                 if all(m["result"]["kind"] == "prepared" for m in attempt["preparation"]["members"]):
                     preparation["sha256"] = rp._hash("retained_precision_preparation_v1", rp._preparation_payload(attempt))
         for case in body["cases"]:
             if case["status"] == "selected":
-                case["source_identity_sha256"] = rp._source_hash(body["sources"][case["source_ref"]])
+                case["source_identity_sha256"] = rp._source_hash(body["sources"][int(case["source_ref"])])
         body["publication_sha256"] = rp._hash("retained_precision_publication_mp_v2", {k:v for k,v in value.items() if k != "retained_precision"})
         receipt["receipt_sha256"] = rp._hash("retained_precision_receipt_mp_v2", body)
     # D24 (snapshot 07b): optional after_rehash edits are applied literally after rehash "all",
@@ -548,10 +548,10 @@ def test_rv79_surviving_mutants_m06_m09_m14():
 
 
 def test_snapshot_07_counts_and_entry_format():
-    """Snapshot 07c (I62; D19-D30, D21 widened): 15 cases, 254 mutations, 19 must-pass; only rehash "all" (D11);
+    """Snapshot 07d (I62; D31-D33): 15 cases, 259 mutations, 21 must-pass; only rehash "all" (D11);
     one expectation per entry except the per-reader G7 entry."""
     c = corpus()
-    assert (len(c["cases"]), len(c["mutations"]), len(c["must_pass"])) == (15, 254, 19)
+    assert (len(c["cases"]), len(c["mutations"]), len(c["must_pass"])) == (15, 259, 21)
     entries = c["mutations"] + c["must_pass"]
     assert all(e["rehash"] == "all" for e in entries)
     assert all(set(e) <= {"id", "base", "edits", "invocation_edits", "after_rehash", "rehash", "expected", "expected_by_reader"} for e in entries)
@@ -603,3 +603,45 @@ def test_native_run_ref_on_nonselected_run_d30():
     for wrong in (run_id + 1, 0 if run_id else 1):
         bad = deepcopy(body); bad["product_attempts"][1]["result"]["error"]["run_ref"] = wrong
         _raises(lambda: rp._g5_products(bad, rows), "G5", "PRODUCT_ATTEMPT_MISMATCH")
+
+
+def test_integers_by_value_at_every_site_d32():
+    """D32 (D25 made uniform): each former host-integer site behaves for an integral float exactly as for int."""
+    expected = _cases()[O_BASE]["expected_classifications"]
+    zero64 = "0" * 64
+    # G0 (receipt_version and the 20B/60B limits)
+    assert _validate_entry(O_BASE, [_set(B + ["receipt_version"], 1.0), _set(B + ["work", "case_limit"], 20000000000.0),
+                                    _set(B + ["work", "invocation_limit"], 60000000000.0)])["classifications"] == expected
+    with pytest.raises(rp.RetainedPrecisionError) as error:
+        _validate_entry(O_BASE, [_set(B + ["receipt_version"], 2.0)])
+    assert (error.value.gate, error.value.code) == ("G0", "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+    # G1 source identity with source_ref 0.0 (RV79-E1) and the preparation hash with attempt_ref 0.0
+    _raises(lambda: _validate_entry(O_BASE, [_set(B + ["cases", 0, "source_ref"], 0.0)], post=[_set(B + ["cases", 0, "source_identity_sha256"], zero64)]), "G1", "RECEIPT_MISMATCH")
+    def forged_preparation():
+        value, invocation = apply_entry(_cases()[O_BASE], {"edits": [_set(B + ["sources", 0, "preparation", "attempt_ref"], 0.0)], "rehash": "all"})
+        body = value["retained_precision"]["body"]
+        body["sources"][0]["preparation"]["sha256"] = zero64
+        body["cases"][0]["source_identity_sha256"] = rp._source_hash(body["sources"][0])
+        value["retained_precision"]["receipt_sha256"] = rp._hash("retained_precision_receipt_mp_v2", body)
+        return rp._validate_draft(value, invocation)
+    _raises(forged_preparation, "G1", "RECEIPT_MISMATCH")
+    # G3 complete old ids against the source map, and the coverage roster, with source_ref 0.0
+    _raises(lambda: _validate_entry("two_body_synthetic", [_set(B + ["sources", 0, "id_maps", "members", 1, "kernel_member"], 5),
+                                                         _set(B + ["product_attempts", 0, "source_ref"], 0.0)]), "G3", "COVERAGE_MISMATCH")
+    _raises(lambda: _validate_entry(O_BASE, [_set(B + ["product_attempts", 0, "proof", "summary_coverage"], [{"body": 1, "stop": [True, True, True, True], "has_data": True}]),
+                                             _set(B + ["product_attempts", 0, "source_ref"], 0.0)]), "G3", "COVERAGE_MISMATCH")
+
+
+def test_model_schema_versions_d31():
+    """D31: G8 admits model schema_version 0.1.0, 0.2.0 and 0.3.0; 0.4.0 stays excluded."""
+    expected = _cases()[O_BASE]["expected_classifications"]
+    for version in ("0.1.0", "0.2.0", "0.3.0"):
+        assert _validate_entry(O_BASE, [], [{"path": ["request", "model", "schema_version"], "op": "set", "value": version}])["classifications"] == expected
+    _raises(lambda: _validate_entry(O_BASE, [], [{"path": ["request", "model", "schema_version"], "op": "set", "value": "0.4.0"}]), "G8", "INVOCATION_MISMATCH")
+
+
+def test_verification_estimate_names_force_or_moment_d33():
+    """D33 (FK/retained/verify.rs:880): an estimate rejection naming a translation or rotation row fails G5 ATTEMPT."""
+    reason = {"space": "attempt", "tag": "verification_estimate", "quantity": {"tag": "displacement", "dof": {"node": 1, "component": "UX"}}, "body": 0, "kind": "translation"}
+    run = B + ["cases", 0, "run"]
+    _raises(lambda: _validate_entry("p512_ladder_synthetic", [_set(run + ["records", 0, "outcome", "reason"], reason), _set(run + ["attempts", 0, "outcome", "reason"], reason)]), "G5", "ATTEMPT_MISMATCH")

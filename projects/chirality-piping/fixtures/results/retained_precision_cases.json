@@ -126714,7 +126714,7 @@
               "material_basis_ref": 0
             },
             "constructor_counts": {
-              "nodes": 2,
+              "nodes": 0,
               "members": 1,
               "springs": 0,
               "constraints": 6,
@@ -129199,6 +129199,1507 @@
         "gate": "G5",
         "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
       }
+    },
+    {
+      "id": "model_schema_version_0_4_0_rejected",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [],
+      "rehash": "all",
+      "expected": {
+        "gate": "G8",
+        "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+      },
+      "invocation_edits": [
+        {
+          "path": [
+            "request",
+            "model",
+            "schema_version"
+          ],
+          "op": "set",
+          "value": "0.4.0"
+        }
+      ]
+    },
+    {
+      "id": "forged_source_identity_float_source_ref",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "source_ref"
+          ],
+          "op": "set",
+          "value": 0.0
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G1",
+        "code": "RETAINED_PRECISION_RECEIPT_MISMATCH"
+      },
+      "after_rehash": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "source_identity_sha256"
+          ],
+          "op": "set",
+          "value": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "receipt_sha256"
+          ],
+          "op": "set",
+          "value": "e10e24969d19208c1d0b95cbffc76be62a2b3b2768c7ab7c5e5e0e5e002498e4"
+        }
+      ]
+    },
+    {
+      "id": "verification_estimate_names_translation_row",
+      "base": "p512_ladder_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            0,
+            "outcome",
+            "reason"
+          ],
+          "op": "set",
+          "value": {
+            "space": "attempt",
+            "tag": "verification_estimate",
+            "quantity": {
+              "tag": "displacement",
+              "dof": {
+                "node": 1,
+                "component": "UX"
+              }
+            },
+            "body": 0,
+            "kind": "translation"
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "attempts",
+            0,
+            "outcome",
+            "reason"
+          ],
+          "op": "set",
+          "value": {
+            "space": "attempt",
+            "tag": "verification_estimate",
+            "quantity": {
+              "tag": "displacement",
+              "dof": {
+                "node": 1,
+                "component": "UX"
+              }
+            },
+            "body": 0,
+            "kind": "translation"
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "ready_attempt_under_facade_failure_cause",
+      "base": "two_case_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "status"
+          ],
+          "op": "set",
+          "value": "unavailable"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "selection"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "source_identity_sha256"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "diagnostic_ref"
+          ],
+          "op": "set",
+          "value": "diagnostic:retained:synthetic-zero-load"
+        },
+        {
+          "path": [
+            "diagnostics",
+            16,
+            "code"
+          ],
+          "op": "set",
+          "value": "RETAINED_PRECISION_UNAVAILABLE"
+        },
+        {
+          "path": [
+            "results",
+            74,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            75,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            76,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            77,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            78,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            79,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            80,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            81,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            82,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            83,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            84,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            85,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            86,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            87,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            88,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            89,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            90,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            91,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            92,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            93,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            94,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            95,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            96,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            97,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            98,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            99,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            100,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            101,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            102,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            103,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            104,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            105,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            106,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            107,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            108,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            109,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            110,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            111,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            112,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            113,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            114,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            115,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            116,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            117,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            118,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            119,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            120,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            121,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            122,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            123,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            124,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            125,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            126,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            127,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            128,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            129,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            130,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            131,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            132,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            133,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            134,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            135,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            136,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            137,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            138,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            139,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            140,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            141,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            142,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            143,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            144,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            145,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            146,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            147,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "reason"
+          ],
+          "op": "set",
+          "value": {
+            "code": "facade_certificate",
+            "phase": "facade",
+            "cause": {
+              "kind": "facade_failure",
+              "owner_ref": {
+                "kind": "case",
+                "index": 1
+              },
+              "row_id": null,
+              "recipe": "identity",
+              "operand_index": null,
+              "check": "identity",
+              "predicate": null
+            }
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "ready_attempt_under_prepared_product_failure",
+      "base": "two_case_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "status"
+          ],
+          "op": "set",
+          "value": "unavailable"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "selection"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "source_identity_sha256"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "diagnostic_ref"
+          ],
+          "op": "set",
+          "value": "diagnostic:retained:synthetic-zero-load"
+        },
+        {
+          "path": [
+            "diagnostics",
+            16,
+            "code"
+          ],
+          "op": "set",
+          "value": "RETAINED_PRECISION_UNAVAILABLE"
+        },
+        {
+          "path": [
+            "results",
+            74,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            75,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            76,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            77,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            78,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            79,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            80,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            81,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            82,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            83,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            84,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            85,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            86,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            87,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            88,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            89,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            90,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            91,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            92,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            93,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            94,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            95,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            96,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            97,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            98,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            99,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            100,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            101,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            102,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            103,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            104,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            105,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            106,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            107,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            108,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            109,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            110,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            111,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            112,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            113,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            114,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            115,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            116,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            117,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            118,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            119,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            120,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            121,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            122,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            123,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            124,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            125,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            126,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            127,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            128,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            129,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            130,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            131,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            132,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            133,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            134,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            135,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            136,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            137,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            138,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            139,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            140,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            141,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            142,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            143,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            144,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            145,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            146,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "results",
+            147,
+            "recovery_method"
+          ],
+          "op": "remove"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "reason"
+          ],
+          "op": "set",
+          "value": {
+            "code": "facade_certificate",
+            "phase": "facade",
+            "cause": {
+              "kind": "prepared_product_failure",
+              "product_attempt_ref": 1
+            }
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
     }
   ],
   "must_pass": [
@@ -131102,6 +132603,415 @@
             "value": 200000000000.0,
             "unit": "Pa"
           }
+        }
+      ],
+      "expected": "pass"
+    },
+    {
+      "id": "integral_float_integers_and_references",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "receipt_version"
+          ],
+          "op": "set",
+          "value": 1.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "work",
+            "case_limit"
+          ],
+          "op": "set",
+          "value": 20000000000.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "work",
+            "invocation_limit"
+          ],
+          "op": "set",
+          "value": 60000000000.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "work",
+            "charged"
+          ],
+          "op": "set",
+          "value": 17.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "work",
+            "execution_order",
+            0,
+            "index"
+          ],
+          "op": "set",
+          "value": 0.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "source_ref"
+          ],
+          "op": "set",
+          "value": 0.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "product_attempt_ref"
+          ],
+          "op": "set",
+          "value": 0.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "ordinary",
+            "attempt_ref"
+          ],
+          "op": "set",
+          "value": 0.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "id"
+          ],
+          "op": "set",
+          "value": 0.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "origin",
+            "call"
+          ],
+          "op": "set",
+          "value": 0.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "origin",
+            "source_ref"
+          ],
+          "op": "set",
+          "value": 0.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "origin",
+            "group"
+          ],
+          "op": "set",
+          "value": 0.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            0,
+            "index"
+          ],
+          "op": "set",
+          "value": 0.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            1,
+            "index"
+          ],
+          "op": "set",
+          "value": 1.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            0,
+            "shared_build_ref"
+          ],
+          "op": "set",
+          "value": 0.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "attempts",
+            0,
+            "candidate_record"
+          ],
+          "op": "set",
+          "value": 0.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "attempts",
+            0,
+            "verification",
+            "record"
+          ],
+          "op": "set",
+          "value": 1.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "case_charge"
+          ],
+          "op": "set",
+          "value": 17.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "calls",
+            0,
+            "run_refs"
+          ],
+          "op": "set",
+          "value": [
+            0.0
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "calls",
+            0,
+            "source_refs"
+          ],
+          "op": "set",
+          "value": [
+            0.0
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "groups",
+            0,
+            "source_refs"
+          ],
+          "op": "set",
+          "value": [
+            0.0
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "groups",
+            0,
+            "first_source_ref"
+          ],
+          "op": "set",
+          "value": 0.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "builds",
+            0,
+            "id"
+          ],
+          "op": "set",
+          "value": 0.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "sources",
+            0,
+            "preparation",
+            "attempt_ref"
+          ],
+          "op": "set",
+          "value": 0.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "sources",
+            0,
+            "index"
+          ],
+          "op": "set",
+          "value": 0.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            0,
+            "id"
+          ],
+          "op": "set",
+          "value": 0.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            0,
+            "source_ref"
+          ],
+          "op": "set",
+          "value": 0.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            0,
+            "run_ref"
+          ],
+          "op": "set",
+          "value": 0.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            0,
+            "ordinary_attempt_ref"
+          ],
+          "op": "set",
+          "value": 0.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            0,
+            "material_basis_ref"
+          ],
+          "op": "set",
+          "value": 0.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            0,
+            "operational",
+            "old",
+            0,
+            "member"
+          ],
+          "op": "set",
+          "value": 0.0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "ordinary_attempts",
+            0,
+            "case_index"
+          ],
+          "op": "set",
+          "value": 0.0
+        }
+      ],
+      "rehash": "all",
+      "expected": "pass"
+    },
+    {
+      "id": "model_schema_version_0_1_0_accepted",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [],
+      "rehash": "all",
+      "invocation_edits": [
+        {
+          "path": [
+            "request",
+            "model",
+            "schema_version"
+          ],
+          "op": "set",
+          "value": "0.1.0"
         }
       ],
       "expected": "pass"

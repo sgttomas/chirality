@@ -550,6 +550,25 @@ def _g5_cache(body, run, records, fail, wf):
     wf(run["cache_after"] == sorted([{"slot": k, "build": v} for k, v in cache.items()], key=lambda e: SLOT_ORDER.index(e["slot"])))
 
 
+def _integral(value):
+    """D32: an integer by value (finite, integral, not -0, not a bool), else None."""
+    if type(value) is int: return value
+    if type(value) is float and math.isfinite(value) and value == int(value) and not (value == 0 and math.copysign(1, value) < 0): return int(value)
+    return None
+
+
+def _normalize_integrals(value):
+    """D32: after G2 every receipt number is a U or I32 (schema), so integral floats become int once."""
+    if isinstance(value, dict):
+        for k, v in value.items():
+            if type(v) is float: value[k] = int(v)
+            else: _normalize_integrals(v)
+    elif isinstance(value, list):
+        for i, v in enumerate(value):
+            if type(v) is float: value[i] = int(v)
+            else: _normalize_integrals(v)
+
+
 def _ref(items, index):
     """A reference that resolves, else None (D16: the caller reports its own check's code)."""
     return items[int(index)] if type(index) in (int, float) and int(index) == index and 0 <= index < len(items) else None
@@ -601,6 +620,8 @@ def _g5_native_checks(body, runs, fail, wf):
             for item in records + attempts:
                 reason = item["outcome"].get("reason") or {}
                 if reason.get("space") == "attempt" and "quantity" in reason:
+                    # D33 (FK/retained/verify.rs:880): the verification estimate exists only for force/moment rows.
+                    fail(reason.get("tag") != "verification_estimate" or reason["kind"] in ("force", "moment"))
                     # D5d/D28 (C2:22-24, :54; C1:114; adaptive.rs:4169-4197, 4714-4720): stop_rule,
                     # verification_estimate, charge and publication_enclosure quantities resolve to a
                     # layout row of the Run's source with the same body and kind.
@@ -1363,7 +1384,7 @@ def _g8(body, source, invocation):
     except (ValueError, RuntimeError): need(False, "INVOCATION_MISMATCH")
     request = invocation["request"]; model = request["model"]
     need(model["project"]["id"] == source["model_ref"], "INVOCATION_MISMATCH")
-    need(model.get("schema_version") in ("0.2.0", "0.3.0") and not model.get("pressure_contract") and not model.get("combinations"), "INVOCATION_MISMATCH")
+    need(model.get("schema_version") in ("0.1.0", "0.2.0", "0.3.0") and not model.get("pressure_contract") and not model.get("combinations"), "INVOCATION_MISMATCH")
     need(not model.get("components"), "INVOCATION_MISMATCH")
     nodes, pipes, supports = model["nodes"], model["pipe_segments"], model["supports"]
     need(len({x["id"] for x in nodes}) == len(nodes) and len({x["id"] for x in pipes}) == len(pipes) and len({x["id"] for x in supports}) == len(supports))
@@ -1556,9 +1577,9 @@ def _validate_draft(source: Any, invocation: Any = None) -> dict[str, Any]:
         if True:
             b=receipt["body"]
             for key,value in {"receipt_version":1,"policy":"M03-INTEGRITY-MP-v2","projection_policy":"RP-LOGICAL-ATTEMPTS-v1","work_policy":"W1-LME-20B-60B-v1","facade_policy":"RP-FACADE-SI-v2","canonicalization":"openpipestress_jcs_ijson_v1"}.items():
-                _need(type(b.get(key)) is type(value) and b.get(key)==value,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+                _need((_integral(b.get(key))==value) if type(value) is int else (type(b.get(key)) is str and b.get(key)==value),gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
             w=b.get("work")
-            _need(type(w) is dict and type(w.get("case_limit")) is int and w["case_limit"]==20_000_000_000 and type(w.get("invocation_limit")) is int and w["invocation_limit"]==60_000_000_000,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+            _need(type(w) is dict and _integral(w.get("case_limit"))==20_000_000_000 and _integral(w.get("invocation_limit"))==60_000_000_000,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
             for attempt in b.get("product_attempts",[]) if type(b.get("product_attempts")) is list else []:
                 if type(attempt) is dict:_need(attempt.get("definition_id")==DEFINITION_ID,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
         gate="G1";_need(_shape(receipt,schema) and type(snapshot.get("results")) is list and all(_shape(r,schema["$defs"]["RawRow"]) for r in snapshot["results"]),gate,"RECEIPT_MISMATCH")
@@ -1568,18 +1589,18 @@ def _validate_draft(source: Any, invocation: Any = None) -> dict[str, Any]:
         # Integrity is G1. Invalid reference representation/coverage is left for
         # G2/G3; only already-addressable records have an integrity comparison.
         for c in body["cases"]:
-            si=c.get("source_ref")
-            if c["status"]=="selected" and type(si) is int and 0<=si<len(body["sources"]):
+            si=_integral(c.get("source_ref"))
+            if c["status"]=="selected" and si is not None and 0<=si<len(body["sources"]):
                 _need(c["source_identity_sha256"]==_source_hash(body["sources"][si]),gate,"RECEIPT_MISMATCH")
         for s in body["sources"]:
             prep=s["preparation"]
             if prep is not None:
-                ai=prep["attempt_ref"]
-                if type(ai) is int and 0<=ai<len(body["product_attempts"]):
+                ai=_integral(prep["attempt_ref"])
+                if ai is not None and 0<=ai<len(body["product_attempts"]):
                     a=body["product_attempts"][ai]
                     if all(m["result"]["kind"]=="prepared" for m in a["preparation"]["members"]):
                         _need(prep["sha256"]==_hash("retained_precision_preparation_v1",_preparation_payload(a)),gate,"RECEIPT_MISMATCH")
-        gate="G2";_encoding(receipt,schema)
+        gate="G2";_encoding(receipt,schema);_normalize_integrals(receipt)
         gate="G3";cases=body["cases"];quality=snapshot["numerical_quality"]["cases"]
         ids=[c["basis_ref"]["ref_id"] for c in cases]
         _need(len(set(ids))==len(ids) and [c["basis_ref"] for c in cases]==[q["basis_ref"] for q in quality] and any(c["status"]=="selected" for c in cases),gate,"COVERAGE_MISMATCH")
@@ -1602,8 +1623,8 @@ def _validate_draft(source: Any, invocation: Any = None) -> dict[str, Any]:
             if a["operational"]["old_coverage"]=="complete":
                 # D1 (F1:101, 130; C3:302): complete old ids equal the member inventory: the source's
                 # map when sourced, else every CaseSource's (one model); without one, G8 binds it.
-                si=a["source_ref"]
-                if type(si) is int and 0<=si<len(body["sources"]):_need([x["member"] for x in old]==[m["kernel_member"] for m in body["sources"][si]["id_maps"]["members"]],gate,"COVERAGE_MISMATCH")  # D23
+                si=_integral(a["source_ref"])
+                if si is not None and 0<=si<len(body["sources"]):_need([x["member"] for x in old]==[m["kernel_member"] for m in body["sources"][si]["id_maps"]["members"]],gate,"COVERAGE_MISMATCH")  # D23
                 elif si is None:
                     for s in body["sources"]:
                         if s["owner"]["kind"]=="case":_need(len(old)==len(s["id_maps"]["members"]),gate,"COVERAGE_MISMATCH")
@@ -1613,8 +1634,8 @@ def _validate_draft(source: Any, invocation: Any = None) -> dict[str, Any]:
                 # I57 s4 G3: a complete proof-owned roster lists the attempt's source bodies
                 # exactly once, ascending 0..body_count-1. A null/invalid source reference is
                 # left to the G5 association pass.
-                coverage=a["proof"]["summary_coverage"];si=a["source_ref"]
-                if coverage is not None and type(si) is int and 0<=si<len(body["sources"]):
+                coverage=a["proof"]["summary_coverage"];si=_integral(a["source_ref"])
+                if coverage is not None and si is not None and 0<=si<len(body["sources"]):
                     inventory=[b["body"] for b in body["sources"][si]["body_membership"]]
                     _need(bool(inventory) and [x["body"] for x in coverage]==inventory==list(range(len(inventory))),gate,"COVERAGE_MISMATCH")
         # D1 (C2:117; C1:146): each run id is its execution-order position; the order is a bijection.
