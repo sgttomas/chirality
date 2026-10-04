@@ -8226,3 +8226,21 @@ The Python change is not committed alone, because its suite only passes with 07 
 **TypeScript's D18 change is committed as `a491db2f4c`.** Positivity is restored at the G5b echo. ROOT's run gives vitest 379/379 and tsc 0.
 
 **Rust** already gives SECTION for both pins. It needs only its count and slice updates for 07a; I63 is granted that.
+
+## All three readers pass snapshot 07a; confirmation review dispatched (ROOT, 2026-10-03 UTC)
+
+**The READER head for confirmation is `b36739112a`.** Its tracked tree is clean.
+
+ROOT's own runs on this head:
+
+| Reader | Result |
+|---|---|
+| Python | 328 passed |
+| Rust (default toolchain) | 35 passed, 0 failed |
+| TypeScript | vitest 379/379; tsc exit 0 |
+
+Every reader gives all 236 mutations their expected first gate and code (G7 per reader), passes all 19 must-pass entries, and validates all 15 cases. The completeness holds remain false in all three.
+
+**Known differences the authors report:** only those by design (the G7 base codes per language) or unreachable (the fail-closed fallback codes, the bundled-file G0 codes, and Python's integral-float rule, which is Python-only by ruling). TypeScript's D1 sourced-coverage comparison differs from Python's only on a source map that G8 rejects in both readers, and no shared entry pins it. RV78 is asked to judge whether it needs a pin.
+
+**Dispatched:** RV78–RV81 resume under `BRIEFS/RV78_RV81_CONFIRMATION.md`, against `b36739112a`.
