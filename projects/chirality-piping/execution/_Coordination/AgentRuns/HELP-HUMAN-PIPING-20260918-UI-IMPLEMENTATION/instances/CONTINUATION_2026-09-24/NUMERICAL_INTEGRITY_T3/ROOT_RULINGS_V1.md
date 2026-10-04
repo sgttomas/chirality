@@ -9435,3 +9435,48 @@ The next unused IDs are I67 and RV87.
   - RV86's 7,240-byte extract of I50's log is committed with its derivation script. It is all U5 reads, and it reproduces the report and log byte for byte.
   - At grant 2's rerun, I61 switches the script to the committed extract (the two-line pin change), keeping the hash assertion against I50's BULK_MANIFEST entry for the full log.
 - **N-1, N-3 and N-5:** noted. The reader's G1 and G5c, not the comparison alone, refuse inflated bounds.
+
+## U6 plan accepted: D-U6-1 to D-U6-9; U3 grant 1c committed; U6a dispatched (ROOT, 2026-10-04 UTC)
+
+**I66's U6 scoping plan** is `R/I66/u6_scoping_01/PLAN.md` (sha256 `8742d105…`; SHA256SUMS 7/7 OK; no machine paths). Records only.
+- **The estimate:** U6 is about 2.5 times I61's: 19–26 h of carrier authoring, 6–9 h for the reader round and 12.5–16.5 h of review, about 15–20 h elapsed with units in parallel. It stays off the critical path, which runs through U4 G4–G6 and U3 grant 2.
+- **The milestone wording, checked by ROOT.** HANDOFF_2026-10-03_TO_NEXT_ROOT:48–51 reads: "through the actual captured facade in both solver modes, under M03-INTEGRITY-MP-v2, matching its independent reference and preserving refusal/coexistence controls."
+- **F-1 is consistent with it, and is recorded as a scope fact for the owner:** in the milestone domain, no product caller can deliver a successor.
+  - The Direct facade is a library entry with no product caller.
+  - The desktop app calls only the ordinary wrapper.
+  - Headless is refused under D-2.
+  
+  So the first publication reaches library consumers (Rust and Python). A desktop or native witness needs native activation, which is later work.
+
+**All nine decisions are accepted as proposed.** Each puts an accepted design into effect (D1, D2, C1 or RR) without a new numerical meaning or criterion; none is owner-reserved.
+- **D-U6-1:** the Python reader's public entry runs every gate, and  gates eligibility only, as in Rust and TS. It is reviewed as a reader change.
+- **D-U6-2, option (A):**  and  rows are  in the derivative, with the reason codes  and , admitted only in the successor branch. This follows D2 §4.9.9 and C1:162.
+- **D-U6-3:** the full TypeScript carrier set in U6, tested with mocked IPC. The native witness is a stated qualification limit (F-1).
+- **D-U6-4:** the 25 names and 9 paths in  (COLLISIONS) are reserved for U6, and rechecked at each grant.
+- **D-U6-5:** fixtures are byte-identical copies of PP's pinned successor files, checked by sha256. U3 grant 2 adds the one PP assertion that compares them with the live serializer output.
+- **D-U6-6:** the successor joins the Current-admission sets. Standing, not freshness, gates every reliance, and it stays  until U7.
+- **D-U6-7:** the reader round (U6e) takes F5, RV79-N1, RV80-N2 and D-U6-1.
+  - F5 amends checkpoint A's D6a: the readers enforce A2's exact per-case list.
+  - RV78-N2 goes into U6c.
+  - RV78-N1 is deferred to wider F2a, because of its re-pin cascade. It is D36-tracked and non-gating.
+  - F-7, on the reader side, goes to wider F2a.
+- **D-U6-8:** the stress-neutral schema and  are reserved for U6. ROOT posts a notice on T6's work-graph row (T6 is PLANNED, not active).
+- **D-U6-9:** the legacy 0.1.0 AnalysisRun wrapper refuses sources carrying .
+
+**Order (workflow §1):**
+- **U6a first:** the end-to-end slice, with D-U6-1 and the fixtures. It is granted to I66 now under , in , branch .
+- **U6b–U6e fan out after the slice is verified,** under I66's ownership. Authors are assigned at that point.
+- **U6f, the complete-diff review,** comes before U7.
+
+**U3 grant 1c** is `R/I61/u3_facade_03/` (18 files OK; no machine paths). ROOT committed it as `886bef131a` and pushed it.
+- **S3:** `admit` returns `(permit, report)`, and permitted outputs keep their admission report.
+- **N1:** G-C follows exact-block arbitration and G-B only.
+- **N6:** the staging overlay falls back typed (`W1Fallback::Staging`), with the notice.
+- **N7:** the single-parse guard is strengthened.
+- **ROOT's run:** PP `--lib` gave 498 passed, 1 failed (t13), 1 ignored. **I61's:** the 324-output sweep is unchanged, runner/headless is identical, and 23 of 23 mutants are killed.
+- `PreparedCase::into_ordinary`'s `expect` stays; it cannot fire, and a typed version would need a split. It is optional in grant 2.
+- **I65 records `admit`'s new signature in API.md §2.**
+- **The U5 addendum** (`R/I61/u5_reference_01/ADDENDUM_01.md`) corrects S-1 and N-2 as ruled.
+- **RV85** reviews 1c together with 1b.
+
+The next unused IDs are I67 and RV87.
