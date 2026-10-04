@@ -9305,3 +9305,49 @@ The next unused IDs are I66 and RV86.
   - add `collect::<String>` (lib.rs:1757) to the lexicon.
 
 **Closure.** R-1, R-2 and R-3 close as G4 carry-overs. **B-2 counts as confirmed** when RV83, or RV84 if RV83 is unavailable, confirms those repairs at G4's return. No composed figure changes materially in the meantime: R-1's hidden text is already priced, and R-2 adds about 0.4 MB.
+
+## RV84 on U4 G3: PASS; routing to G4 and U3, and the admission law restated (ROOT, 2026-10-04 UTC)
+
+**RV84's report** is `R/REVIEW_RV84/u4_g3_01/REVIEW.md` (sha256 `706fe500…`; SHA256SUMS 36/36 OK; no machine paths). Verdict: **PASS**, with 0 BLOCKING, 7 SHOULD-FIX and 13 NOTE findings. No ruling moves.
+
+**What reproduces independently:**
+- the headline figures, within 0.01%;
+- T07, T22 and T11 (`OrdinarySeed` plus `invocation_digest`);
+- the six I54 milestone sub-expressions and the monotonicity lemmas;
+- the thread-local inventory;
+- D1.10, and D1.11's cap of 2 on escaping;
+- 29 of 30 sampled functions against the site inventory.
+
+**The call graph.** RV84 cites RV83's R-1 and confirms it with an independent fan-out: 1,982 functions reached, not 1,881. It adds one more dropped pattern (S-1). Its augmented graph shows 17 new cycles; the one traced is a name collision. So "no mutual recursion" is **open, not refuted** (N-3), and R and k are unaffected on present evidence.
+
+**Routed to I65's G4.** Each is a G3 repair reported separately:
+- **S-1:** the `CALL` lookbehind drops `"k":f(x)`. That hides T25's commitment text: 84.8 MB at the packet's byte classes, 9.1 MB at real spellings.
+- **S-2:** broad zero rules (`components`, `wind` matching "windows", `intensity`) zero real D1 loops; about 35.9 MB is missed.
+- **S-3:** the hash route omits the per-string `serde_json::to_string` temporary: 10.2 MB at ε = 2. Fix it before G4 reuses the route for T16 and T17.
+- **S-4:** T25's commitment coefficients are missing the identity string, the N² aggregate-bits matrix and the per-atom factor objects: 0.10–0.22 GB. They do not set the peak.
+- **N-2:** `?` conversions into `CaptureError` allocate a few bytes. Correct TEXT.md's claim.
+- **N-3:** re-establish "no mutual recursion" on the repaired graph, together with RV83's R-1.
+
+**S-5: the admission law is restated.** This corrects ROOT's G3 ruling, which wrote `max(E_X, E_W + G4)`. `admit` covers **the maximum, over both branches, of every phase through caller completion**:
+- **branch X:** the ordinary span with T25, plus its own completion: the fallback reserve (T18) and Direct completion (T19);
+- **branch W:** the ordinary span, plus G-B, G-C, the W1 phases, publication, validation, transfer and completion.
+
+The margin rule (≤ 0.9 M at illustrative strides) applies to this maximum.
+
+**The margin.** On RV84's figures, S-1–S-3 at the packet's byte classes put branch X (dense, ε = 2) at 0.907 M, over the rule. With RV84's tighter T25 model it is 0.881 M.
+- G4 applies the rule to the repaired text and the corrected T25 together.
+- **If it trips,** the sensitivity table must include RV84's two levers, in addition to the caps:
+  - **N-6:** T25 priced only where exact selection is possible. 41,760 descriptor units exceed the 16,384 limit, so selection is impossible at the full caps;
+  - **S-7:** removing the double-counted ordinary-route text.
+
+**S-6: the gate facts.**
+- The G-B hook (`prepared_case_source`, PP/lib.rs:5009) does not receive rows, diagnostics or errors.
+- `source_cases` no longer exists at G-C.
+- The late capture is never measured after it is made.
+- `diag_total` is mislabelled.
+
+**Ruled:** I65 amends API.md in G4 with the exact hook signatures and the facts each gate reads. The PP/lib.rs hook change is I61's, as integration owner under D-5: it lands in U3 grant 2 or at the G5 integration point, to I65's specification.
+
+**S-7, a U3 budget:** "exactly one ordinary run per invocation." I51's single observed run and U3's dispatch already intend this. G4 records it as a budget, and U3 grant 2 pins it with a test on the permitted path; `ordinary_dispatch_entered` exists for this.
+
+**NOTEs:** N-7 (the `checked_mul` scope wording), N-11 (the undocumented 2 MiB moving candidate) and N-13 (the top-ten counts are over-counts) go to G4 as wording corrections.
