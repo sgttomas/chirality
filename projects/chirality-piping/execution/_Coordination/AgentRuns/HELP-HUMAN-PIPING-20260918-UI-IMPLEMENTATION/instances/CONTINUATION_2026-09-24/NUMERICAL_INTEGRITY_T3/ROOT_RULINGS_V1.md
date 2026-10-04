@@ -8059,6 +8059,7 @@ ROOT rules on the proposal.
 
 **D10. Python only:**
 - An arithmetic fault in G5b (zero area or modulus) reports G5b's adopted code (RV79-S3).
+  [Correction, D18, 2026-10-03: a zero area or modulus is a section-truth defect, caught by the G5b echo's positivity check as SECTION_MISMATCH. It is not reached as SCALE through arithmetic. D10's arithmetic-fault rule applies only to faults no adopted check catches first.]
 - Counters must be JSON integers; an integral float fails G2 (RV79-N5).
 
 **D11. Corpus 07** (I62). Shared mutations for:
@@ -8190,3 +8191,27 @@ The Python change is not committed alone, because its suite only passes with 07 
 - Nothing was removed, and every carried entry keeps its order. This matches I62's declaration exactly.
 
 **Phase 2 granted** to I63 (Rust) and I64 (TypeScript): adopt 07, D8, D9 and D17, plus TypeScript's absent-body G0 change. The bar is every 07 entry at its expectation, with per-reader G7.
+
+## Phase 2 returns; D18 section truth includes positive echo terms (ROOT, 2026-10-03 UTC)
+
+**The returns, verified and committed as WIP on READER:**
+- **Rust (`16f917d616`):** 234/235 mutations, 19/19 must-pass, 15 cases. ROOT's own run gives 33 passed and 2 failed, both on `g5b_zero_section_area`. I63 stopped on that expectation, as instructed, and did not adjust it.
+- **TypeScript (`babcce075e`):** 235/235, vitest 377/377, tsc 0. But to meet the same expectation, I64 removed TypeScript's G5b positivity check.
+
+**D18 (G5b section truth).** At G5b, each of the five echoed section terms (area, section_modulus, length, axial_stiffness, torsional_stiffness) must equal the source's term **and be positive**. A failure is G5b SECTION_MISMATCH.
+- **Basis:** C1's G5b row ("section truth", with the adopted section code).
+- **Native positivity:** the operational evaluator rejects nonpositive E, G, A and J inputs (PP:2442) and a nonpositive length (PP:2462). EA/L and GJ/L are range-checked (PP:2360). The endpoint maximum requires area > 0 and Z > 0 (PP/source_receipt/endpoint_maximum.rs:128). So no emittable receipt carries a zero term.
+- **D16 applies:** a failing check reports its own code. Python reached SCALE only through its catch-all (a ZeroDivisionError), which is a fallback, not an adopted check.
+- **D10 corrected in place:** see the bracket.
+
+**The consequences:**
+- `g5b_zero_section_area` expects G5b SECTION, and a zero-length pin is added. Without D18, a zero length passes G5b in Python and TypeScript, because no stress scale divides by it.
+- Python adds positivity to its echo check, and TypeScript restores its own. Rust already complies.
+- TypeScript's other removal is right and stays removed. That was its G5b duplicate of the native member-property equality (`area = A_K`, `Iy_K = Iz_K`, …), which all three readers enforce at G8 (PY:1422, RS:3563, TS:1128). C1's G8 row binds "source/maps/sections".
+
+**A rule for future briefs:** if meeting an expectation requires removing or weakening an existing check, that is a stop condition, just like an expectation believed wrong. The author reports instead of removing the check.
+
+**Next:**
+- I62 updates the expectation, adds the pin and repairs Python (07a).
+- I64 restores TypeScript's positivity check.
+- I63 reruns on 07a.
