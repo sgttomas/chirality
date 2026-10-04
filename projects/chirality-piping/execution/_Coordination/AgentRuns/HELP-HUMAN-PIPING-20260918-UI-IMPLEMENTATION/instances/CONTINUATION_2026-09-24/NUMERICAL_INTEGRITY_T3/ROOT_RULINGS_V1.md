@@ -11539,3 +11539,22 @@ Records go in `R/I61/u9_g5g6_01/`.
 - The reorder diffs as a deletion-only hunk, which `delta_inventory2.py:186` classes as `item`. Without an entry, the run exits 5 (fingerprint `27181031…585`).
 - **Ruled:** I65 adds that reviewed entry before the frozen-head rerun, with the content RV89 confirmed: the deletion half of the `integer` reorder, re-added at `:57`, unreachable on D1, allocation-identical.
 - Teaching the tool to take a deletion-only hunk's enclosing function from the old file is optional, and routed to the tool's next grant.
+
+## PR #1082's third hosted run: a target-specific ordinary-bytes pin, gated (ROOT, 2026-10-04 UTC)
+
+**The third hosted run on `92a5a9da1c`** (run 37240946900):
+- "Select source coverage" passes;
+- **the numerical cargo suite failed** in PP's `cargo test` (Linux x86_64): `retained_wire_tests::u1_ordinary_bytes_unchanged_under_capture` at `:66`, on the protected ordinary-bytes pin for **dense_scrutiny**. The length is the same (69,366), but the sha256 is Linux `aa8b93ba…` against the Mac pin `21ca629c…`. Sparse matched.
+- Every other PP test passed (542/1/10), including the successor pins and D-U6-5.
+- The suite is fail-fast, so later crates did not run on this pass.
+
+**The reading:** dense ordinary floating-point bytes are target-dependent. The pin was recorded on the registered target, aarch64-apple-darwin, and the known Mac failure t13 is the mirror case. The successor and its pins are platform-stable, because they matched on Linux.
+
+**The fix (ROOT-authored, reviewed by RV95):**
+- `ORDINARY_PINNED_TARGET = cfg!(all(target_arch = "aarch64", target_os = "macos"))` gates only the protected-bytes assertion.
+- On every target the test still asserts its claims: the Direct entry's ordinary envelope, and the captured run, equal the plain bytes.
+- On this Mac the U1 tests pass 30/30.
+- **Committed** on NUM as `d069ab3ccf`, and carried to the PR as **`6d8f8a82b2`** (pushed).
+- This is a test file, not a qualification test, so no Pass B entry is needed. G5, G6 and G8 are unaffected.
+
+**RV95** judges whether gating or a per-target pin is right, and whether target dependence anywhere else breaks a PR claim. **CI reruns;** ROOT relays any further Linux-only results.
