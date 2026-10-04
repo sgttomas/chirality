@@ -10930,3 +10930,52 @@ Slice F's order is RETURN §3.
 - **The TS notice** (`knownSemanticLimitations.ts:168` summarizing without the model) goes to slice T. I67 decides whether to pass the model.
 - **The corpus bases' `qualification` strings** ("DRAFT: … public API intentionally rejects"): **slice F updates any fixture or comment text that the switch makes false,** these strings included, if it does so. Otherwise they stay. RV94 checks that no stale claim remains.
 - **I61's disclosure.** One snapshot command briefly wrote a copy of a committed repository test file to `/tmp/x`, which was deleted at once; ROOT confirms it is absent. This breached the host rule (nothing in the system temp directory). It is recorded, with no consequence: the file was a copy of committed content.
+
+## The memory branch merged into NUM; U7 slices T and P committed (ROOT, 2026-10-04 UTC)
+
+**RV93's addendum** is `R/REVIEW_RV93/u3_grant2_01/ADDENDUM_01.md` (sha256 `4d5a17cd…`; SHA256SUMS 58/58 OK). Verdict: **PASS** on `7f07a2f7b4`, with 0 BLOCKING, 0 SHOULD-FIX and 0 NOTE findings.
+- **The milestone** still publishes U1's pinned successor under the 07h reader at precommit, in both modes and in a non-test build.
+- **The 468-row sweep** is byte-identical, registered (`7955b640…`) and Stale (`d51c84d1…`).
+- **A new F5-triggered Precommit fallback** gives the plain bytes plus one N1 notice. Its control: removing F5's line admits the edit.
+- **D-U6-5:** 7/7 mutants killed.
+- **PP** 705/1/10, registered and Stale; the maxima are unchanged.
+
+**Merged: the memory branch into NUM at `3f5fca3010`** (U3 grants 1d and 2, D-U6-5, U4 G5–G7, the registration and the T17_V4 line). NUM's code is now byte-identical to the reviewed memory head `7f07a2f7b4`.
+
+**ROOT's acceptance runs on NUM:**
+
+| Suite | Result |
+|---|---|
+| The 24-file Python sweep plus the retained suites | 1,843 passed, 30 skipped, 0 failed |
+| PP | 705 passed, 1 failed (t13), 10 ignored |
+| runner/headless | 85 passed, 2 failed (known) |
+| result_export | 168 passed |
+
+**The milestone is met on the integration branch:** RF-SKEW-T-CANT-OFF-122-r1e-04 runs through the actual captured facade in both solver modes, under M03-INTEGRITY-MP-v2, matching its independent reference, with the refusal and coexistence controls preserved.
+
+**I65's Pass B notes** are in `R/I65/u4_g7_03/` (RETURN.md `9a3516ab…`; SHA256SUMS 68/68 OK).
+- **RV89 N-4 fixed:** the tag folder is cleared, and the TEXT chain, §11 and the controls run are now gated. The control proves the old script passed on stale outputs.
+- **RV89 N-5 fixed:** qualification-test hunks need a reviewed entry, or the run exits 6.
+- **The self-test** on `7f07a2f7b4` still gives exit 6 with exactly the six added tests. This is the Pass B tool for slice Q.
+
+**U7 slice T (I67)** is in `R/I67/u7_slice_t_01/` (RETURN.md `652f75f0…`; SHA256SUMS 36/36 OK). The flags are unchanged.
+- **RV91 N-2 = RV88 U6d S-1:** a would-be-eligible successor stands eligible only while the live native capture holds for these bytes and the current model. Otherwise it reads `needs_recompute` with `RETAINED_PRECISION_NATIVE_CAPTURE_REQUIRED`.
+- **RV91 N-5:** the explicit `loadReferenceOutputRefusal(result) !== null` gate on both panels.
+- **RV92 N-8:** standing maps by token through the pinned `RETAINED_STANDING_STATUS`.
+- **The notices** keep omitting the model, which is justified and pinned: `withheld` is never displayed.
+- **Tests and mutants:** vitest 3,531/3,531 (3,494 existing tests with unchanged outcomes, plus 37 new); tsc clean; 80 envelopes identical on unforced paths; 136/136 mutants killed by assertion.
+- **ROOT read the production diff and committed it** as `0ca5449c87` on the U7 branch.
+
+**NUM is merged into the U7 branch** at `1d93b6f022`. Its code is NUM plus slice T.
+
+**Slice P** is committed as `12a849a7bd`: I61's N-6 text applied by ROOT, line-neutral (`lib.rs` stays 24,333 lines), compiling clean. `successor()` and `into_parts()` stay `pub`.
+
+**Rulings on slice T's questions:**
+- **The D-U7-4 entry's format: adopt I67's draft fields** (`capture: "none"`, `current_model_edits`).
+  - The case file's format moves to **v4**.
+  - All three languages' declared-difference consumers read v4 and the new fields explicitly, with no silent ignore. Python and Rust assert their side (`numerically_eligible` with the actual invocation); TS asserts `needs_recompute` with the new finding.
+  - I66 applies this in slice F, and I67 completes TS.
+- **The `liveStressBinding` export is accepted** as the test seam. Its comment says why it is exported; RV94 checks it.
+- **The T6 notice** for N-5 is posted in the work graph's T6 row: T6's successor outputs must replace the explicit refusal deliberately, under their own review.
+
+**Next: slice F part 1 (I66),** under `BRIEFS/U7_SLICE_F_SWITCH.md`, in WT/f2a-u7 at `12a849a7bd`.
