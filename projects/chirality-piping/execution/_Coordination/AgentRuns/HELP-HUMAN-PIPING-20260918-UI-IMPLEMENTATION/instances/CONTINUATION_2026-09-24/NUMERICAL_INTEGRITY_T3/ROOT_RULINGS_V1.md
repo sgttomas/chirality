@@ -10604,3 +10604,43 @@ Vitest is not re-run, since its inputs are byte-identical to the reviewed tip. R
 - I61's short follow-on there adds D-U6-5 and reruns the permit-path tests and U5 on the merged base, where the precommit reader is U6's 07h reader.
 
 **RV93 is briefed** (`BRIEFS/RV93_U3_GRANT2_REVIEW.md`, `501837c05b`) and is dispatched when grant 2 is committed.
+
+## U4 G7 Pass A returned: the registered entry holds on the integrated basis; one tool defect and one completeness line, both to review (ROOT, 2026-10-04 UTC)
+
+**I65's return** is `R/I65/u4_g7_01/` (RETURN.md `074d4b93…`, QUALIFICATION_G7.md `37b83fc1…`). SHA256SUMS: 78/78 OK, no unlisted files, no machine paths. The basis is tree `ba1faa1c…`; I65's copy equals it blob for blob. No source changed.
+
+**I65's claims:**
+- **The inventory.** 40 files changed, 3 of them production Rust (24 hunks).
+  - **New and priced:** F5's two `Vec<&Value>` in `g5_ordinary`, +205,960 B in T17_V4.
+  - **Dead on D1:** `semantic_contract`'s `is_retained` branches and their new `OnceLock` + `include_bytes!` static (at most 286,836 B if ever initialized). The `forbid_retained_*` checks run but allocate nothing.
+  - **Unreachable:** `derivative.rs`.
+- **Registered on the integrated basis:** the identity, the 14 inputs and the 4 layouts all equal the registered entry; `build_status()` is `Ok(0)`.
+- **The maxima are unchanged:** 0.8881 / 0.8929 M, and the pinned record does not move.
+- **TEXT is identical to G6:** TAV 2,150,800,830 / 1,570,041,862 / 1,440,401,002; all 2,807 rows match; the 7 new rows have multiplicity 0.
+- **The enforced audit is clean** (11/11 controls). §11 is discharged by rerunning the by-type sweep (the same 410 non-candidates).
+- **Witnesses, challenge and suites (registered) are outcome-identical to `0c7827b6ad`:** PP 699/1/10; runner 85/2.
+  - Against NUM unregistered, the only differences are the 48 memory-branch tests.
+- **The Pass B script** is `_run_records/g7_pass.sh`. It fails closed: exit 3 if the build is Stale, exit 4 if a rule's line falls in an edited hunk.
+
+**I65's TEXT-tool finding (records tooling):**
+- G6's `text_budget.py` passes multiplicity only between strongly connected components. U6's two lexical cycles made it silently zero everything below `for_source`; the first run came back TAV −112.85 MB, with no flag.
+- G7's tool cuts `edge_zero` edges first, then fails on any multi-function cycle (control c9).
+- G6's graph had no cycle, and the new tool reproduces G6's outputs exactly, so **G6's registered numbers stand, subject to review.**
+- **Routed to RV87,** which reviewed the TEXT chain and the §11 sweep. RV87 checks:
+  - that G6 had no such cycle;
+  - that the cut-first rule is sound, edge by edge, on D1;
+  - that the fail-closed check covers cycles the lexical graph could miss;
+  - the 410-set and the explicit-row deferral.
+
+**The completeness line (I65's proposal, `pass_a/proposal/t17_v4_f5.diff`):** T17_V4's census-20 coefficient goes from 57,880 to 83,625, folding F5 into the form.
+- **The omission is not a safety gap.** The worst case at the caps is unchanged, and per-invocation bounds are monotone in the census. But a priced form that omits a real allocation sits against the standing constraint "Do not enable a permit on symbolic or partially priced terms."
+- **Ruled: adopted, subject to RV89's confirmation** of the coefficient and of anything that must be regenerated with it. ROOT applies it on the memory branch after U3 grant 2 is committed, as a reviewed source change in U4's file. Pass B then runs on the final basis, including it.
+
+**RV89 reviews the rest of Pass A:**
+- reachability, above all that the `is_retained` branches and the new static are dead on every D1 input;
+- that the integrated build is Registered, with RV89's own witness run;
+- F5's counting rule, and whether V2_hash dominates V4 for every D1 census (V2_hash has no census-20 term);
+- the proposal;
+- the Pass B script.
+
+The memory branch still merges into NUM only after grant 2, RV93, the D-U6-5 follow-on, Pass B, and these reviews.
