@@ -751,6 +751,35 @@
     },
     {
       "kind": "workflow",
+      "name": "coordinated-knowledge-work",
+      "source": "bundled",
+      "sourceRootId": "chirality-root",
+      "description": "Use when related contributions must become one usable knowledge-work result and the team needs sustained ownership, independent assurance, and control of handoffs, shared changes, and completion.",
+      "central": false,
+      "compatibility": "canonical",
+      "executionRoleIds": [
+        "HELP_HUMAN",
+        "HELPS_HUMANS",
+        "WORKING_ITEMS",
+        "TASK"
+      ],
+      "resources": [
+        "REVIEW-NOTES.md",
+        "WORKFLOW.md"
+      ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 5,
+        "group": {
+          "key": "plan-organize",
+          "label": "Plan & organize",
+          "order": 0
+        }
+      }
+    },
+    {
+      "kind": "workflow",
       "name": "create-workflow",
       "source": "bundled",
       "sourceRootId": "chirality-root",
