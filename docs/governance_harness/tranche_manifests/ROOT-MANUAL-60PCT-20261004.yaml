@@ -15,6 +15,9 @@ instruction_surface_paths:
   - projects/chirality-app-v4/loop/LOOP_INIT.md
   - projects/chirality-app-v4/init/dev-loop-init-prompt.md
   - docs/governance_harness/tranche_manifests/ROOT-MANUAL-60PCT-20261004.yaml
+  - projects/chirality-app-v4/execution/_Coordination/NOTICE_2026-10-04_ROOT_MANUAL_60PCT.md
+  - exports/chirality-app/export-manifest.csv
+  - exports/chirality-app/export-report.md
 m2_gate:
   authorization: |-
     Owner Ryan Tufts, 2026-10-04, in the chat session with HELP_HUMAN.
@@ -49,7 +52,7 @@ m2_gate:
 m6_notice:
   disposition: routed
   routed_to:
-    - projects/chirality-app-v4/loop/LOOP_INIT.md (adopted in this tranche)
+    - projects/chirality-app-v4/execution/_Coordination/NOTICE_2026-10-04_ROOT_MANUAL_60PCT.md
   rationale: >-
     App v4 is the only loop whose instructions or basis records reference
     or pin these manuals. Its CURRENT_EXECUTION_BASIS.md and earlier records
@@ -62,6 +65,6 @@ review:
   - projects/chirality-app-v4/execution/_Coordination/AgentRuns/APP-V4-GRAPH-CLOSURE-20261004/reviews/MR-MANUAL.md (READY after addenda A–D)
   - projects/chirality-app-v4/execution/_Coordination/AgentRuns/APP-V4-GRAPH-CLOSURE-20261004/reviews/MR-LOOPINIT.md (READY after Addendum A)
 scope_limits:
-  - manual text and formats, catalog README, App v4 LOOP_INIT and its dev-loop init prompt only
+  - manual text and formats, catalog README, App v4 LOOP_INIT and its dev-loop init prompt, the App v4 notice and the regenerated export manifest and report only
   - no Root AGENTS.md, SPEC, workflow or other loop instruction change
   - no rebase, force-push or history rewrite
