@@ -126642,6 +126642,2513 @@
         "gate": "G5b",
         "code": "RETAINED_PRECISION_SECTION_MISMATCH"
       }
+    },
+    {
+      "id": "unavailable_attempt_under_facade_failure_cause",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "reason",
+            "cause"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "facade_failure",
+            "owner_ref": {
+              "kind": "case",
+              "index": 1
+            },
+            "row_id": null,
+            "recipe": "identity",
+            "operand_index": null,
+            "check": "identity",
+            "predicate": null
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "unavailable_attempt_under_source_error_cause",
+      "base": "two_case_preparation_failure_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "reason",
+            "cause"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "source_error",
+            "error": {
+              "tag": "no_nodes"
+            }
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "source_decline"
+          ],
+          "op": "set",
+          "value": {
+            "input_owner": {
+              "case_index": 1,
+              "case_id": "case:unavailable-row",
+              "material_basis_ref": 0
+            },
+            "constructor_counts": {
+              "nodes": 2,
+              "members": 1,
+              "springs": 0,
+              "constraints": 6,
+              "nodal_terms": 6,
+              "stations": 3,
+              "supports": 1,
+              "id_utf8_bytes": 0,
+              "directional_springs": 0
+            },
+            "error": {
+              "tag": "no_nodes"
+            }
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "preparation_error_selected_run_under_receipt_cause",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "result",
+            "error"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "preparation",
+            "capture": {
+              "kind": "storage",
+              "detail": "prepared vector"
+            },
+            "section": null
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "reason",
+            "cause"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "receipt_failure",
+            "check": "encoding",
+            "field_path": "retained_precision.body.cases[1]"
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "reason",
+            "code"
+          ],
+          "op": "set",
+          "value": "receipt_encoding"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "reason",
+            "phase"
+          ],
+          "op": "set",
+          "value": "receipt"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "selected_case_without_c3_attempt",
+      "base": "two_case_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts"
+          ],
+          "op": "set",
+          "value": [
+            {
+              "id": 0,
+              "definition_id": "RP-PREPARED-ORDINARY-DUAL-v1",
+              "owner_ref": {
+                "kind": "case",
+                "index": 1
+              },
+              "ordinary_attempt_ref": 1,
+              "material_basis_ref": 0,
+              "source_ref": 1,
+              "run_ref": 1,
+              "result": {
+                "kind": "ready"
+              },
+              "preparation": {
+                "members": [
+                  {
+                    "member": 0,
+                    "old_source": [
+                      "42474876e8000000",
+                      "4231ed8ec2000000",
+                      "3f6c4f3caf32fd23",
+                      "3ed61aa4872838bf",
+                      "3ed61aa4872838bf",
+                      "3ee61aa4872838c0"
+                    ],
+                    "old_facts": [
+                      "3fbeb851eb851eb8",
+                      "3f847ae147ae147b",
+                      "3f6c4f3caf32fd23",
+                      "3ed61aa4872838bf",
+                      "3ee61aa4872838c0",
+                      "3f17066b621f3b1c",
+                      "3faeb851eb851eb8"
+                    ],
+                    "result": {
+                      "kind": "prepared",
+                      "section": [
+                        "3f6c4f3caf32fd23",
+                        "3ed61aa4872838bf",
+                        "3ee61aa4872838bf",
+                        "3f17066b621f3b1c",
+                        "3faeb851eb851eb8"
+                      ]
+                    },
+                    "work": {
+                      "numeric": {
+                        "wide_lme": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "exact_sum_lme": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "entries": [
+                          {
+                            "kind": "exact",
+                            "value": 2
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 4
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 11
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 2
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          }
+                        ],
+                        "f64_arithmetic": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "sticky_status": "exact"
+                      },
+                      "initialized_endpoints": {
+                        "kind": "exact",
+                        "value": 27
+                      },
+                      "conversions": {
+                        "kind": "exact",
+                        "value": 9
+                      },
+                      "checks": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "endpoint_assignments": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "layout_bytes": [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    },
+                    "conversions": [
+                      {
+                        "property": "area",
+                        "endpoint": "lo",
+                        "outcome": {
+                          "kind": "normal",
+                          "value": "3f6c4f3caf32fd23"
+                        }
+                      },
+                      {
+                        "property": "area",
+                        "endpoint": "hi",
+                        "outcome": {
+                          "kind": "normal",
+                          "value": "3f6c4f3caf32fd23"
+                        }
+                      },
+                      {
+                        "property": "second_moment",
+                        "endpoint": "lo",
+                        "outcome": {
+                          "kind": "normal",
+                          "value": "3ed61aa4872838bf"
+                        }
+                      },
+                      {
+                        "property": "second_moment",
+                        "endpoint": "hi",
+                        "outcome": {
+                          "kind": "normal",
+                          "value": "3ed61aa4872838bf"
+                        }
+                      },
+                      {
+                        "property": "polar_moment",
+                        "endpoint": "lo",
+                        "outcome": {
+                          "kind": "normal",
+                          "value": "3ee61aa4872838bf"
+                        }
+                      },
+                      {
+                        "property": "polar_moment",
+                        "endpoint": "hi",
+                        "outcome": {
+                          "kind": "normal",
+                          "value": "3ee61aa4872838bf"
+                        }
+                      },
+                      {
+                        "property": "section_modulus",
+                        "endpoint": "lo",
+                        "outcome": {
+                          "kind": "normal",
+                          "value": "3f17066b621f3b1c"
+                        }
+                      },
+                      {
+                        "property": "section_modulus",
+                        "endpoint": "hi",
+                        "outcome": {
+                          "kind": "normal",
+                          "value": "3f17066b621f3b1c"
+                        }
+                      },
+                      {
+                        "property": "radius",
+                        "endpoint": "exact",
+                        "outcome": {
+                          "kind": "normal",
+                          "value": "3faeb851eb851eb8"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "stages": {
+                "preparation": "completed",
+                "native": "completed",
+                "proof_start": "completed",
+                "projection": "completed",
+                "maxima": "completed",
+                "values": "completed",
+                "aliases": "completed",
+                "certificate": "completed",
+                "observables": "completed",
+                "g5a": "completed"
+              },
+              "proof": {
+                "lanes": [
+                  {
+                    "law": "admitted_k",
+                    "state": "completed",
+                    "error": null,
+                    "work": {
+                      "numeric": {
+                        "wide_lme": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "exact_sum_lme": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "entries": [
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          }
+                        ],
+                        "f64_arithmetic": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "sticky_status": "exact"
+                      },
+                      "point_lme": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "view": {
+                        "visits": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "f64_operations": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "prescribed_capacity": 0,
+                        "data_capacity": 0
+                      },
+                      "correction": {
+                        "cast_lme": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "factor_lme": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "visits": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "calls": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "rhs_capacity": 0,
+                        "output_capacity": 0,
+                        "converted_capacity": 0
+                      },
+                      "visits": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "member_builds": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "frame_builds": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "b_products": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "d_products": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "h_products": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "capacities": [],
+                      "data_capacity": 0
+                    }
+                  },
+                  {
+                    "law": "annular_source",
+                    "state": "completed",
+                    "error": null,
+                    "work": {
+                      "numeric": {
+                        "wide_lme": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "exact_sum_lme": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "entries": [
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          }
+                        ],
+                        "f64_arithmetic": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "sticky_status": "exact"
+                      },
+                      "point_lme": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "view": {
+                        "visits": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "f64_operations": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "prescribed_capacity": 0,
+                        "data_capacity": 0
+                      },
+                      "correction": {
+                        "cast_lme": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "factor_lme": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "visits": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "calls": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "rhs_capacity": 0,
+                        "output_capacity": 0,
+                        "converted_capacity": 0
+                      },
+                      "visits": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "member_builds": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "frame_builds": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "b_products": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "d_products": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "h_products": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "capacities": [],
+                      "data_capacity": 0
+                    }
+                  }
+                ],
+                "numeric": {
+                  "wide_lme": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "exact_sum_lme": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "entries": [
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    }
+                  ],
+                  "f64_arithmetic": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "sticky_status": "exact"
+                },
+                "comparisons_lme": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "visits": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "scalar_operations": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "projection_conversions": {
+                  "kind": "exact",
+                  "value": 70
+                },
+                "projection_outcomes": [
+                  {
+                    "row_index": 1,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 2,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 3,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 4,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 5,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 6,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 7,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 8,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 9,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 10,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 11,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 12,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 13,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 14,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 15,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 16,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 17,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 18,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 19,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 20,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 23,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 24,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 25,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 26,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 27,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 28,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 29,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 30,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 31,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 32,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 33,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 34,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 35,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 36,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 37,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 38,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 39,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 40,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 41,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 42,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 43,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 44,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 45,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 46,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 47,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 48,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 49,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 50,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 51,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 52,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 53,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 54,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 55,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 56,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 57,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 58,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 59,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 60,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 61,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 62,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 63,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 64,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 65,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 66,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 67,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 68,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 69,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 70,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 71,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 72,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  }
+                ],
+                "capacities": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "prepared_capacity_bytes": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "completion": {
+                  "kind": "merged"
+                },
+                "checks": {
+                  "certificate": {
+                    "kind": "passed"
+                  },
+                  "observables": {
+                    "kind": "passed"
+                  },
+                  "g5a": {
+                    "kind": "passed"
+                  }
+                },
+                "summary_coverage": [
+                  {
+                    "body": 0,
+                    "stop": [
+                      false,
+                      false,
+                      false,
+                      false
+                    ],
+                    "has_data": false
+                  }
+                ]
+              },
+              "adapter": {
+                "counts": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "fault": null,
+                "prepared_capacity_bytes": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "observation_capacity_bytes": [
+                  0,
+                  0,
+                  0
+                ],
+                "support_capacity_bytes": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "operational": {
+                "old_coverage": "complete",
+                "old": [
+                  {
+                    "member": 0,
+                    "inputs": [
+                      "0000000000000000",
+                      "0000000000000000",
+                      "0000000000000000",
+                      "3ff0000000000000",
+                      "0000000000000000",
+                      "0000000000000000",
+                      "42474876e8000000",
+                      "4231ed8ec2000000",
+                      "3f6c4f3caf32fd23",
+                      "3ee61aa4872838c0"
+                    ],
+                    "result": {
+                      "kind": "ready",
+                      "length": "3ff0000000000000",
+                      "axial_stiffness": "41c4990f17e516ad",
+                      "torsional_stiffness": "4128c47ead23fa80",
+                      "normalization": [
+                        "3ff0000000000000",
+                        "0000000000000000",
+                        "0000000000000000"
+                      ]
+                    },
+                    "work": {
+                      "entered": 0,
+                      "checks": 0,
+                      "lost": false
+                    }
+                  }
+                ],
+                "new": [
+                  {
+                    "member": 0,
+                    "inputs": [
+                      "0000000000000000",
+                      "0000000000000000",
+                      "0000000000000000",
+                      "3ff0000000000000",
+                      "0000000000000000",
+                      "0000000000000000",
+                      "42474876e8000000",
+                      "4231ed8ec2000000",
+                      "3f6c4f3caf32fd23",
+                      "3ee61aa4872838bf"
+                    ],
+                    "result": {
+                      "kind": "ready",
+                      "length": "3ff0000000000000",
+                      "axial_stiffness": "41c4990f17e516ad",
+                      "torsional_stiffness": "4128c47ead23fa7f",
+                      "normalization": [
+                        "3ff0000000000000",
+                        "0000000000000000",
+                        "0000000000000000"
+                      ]
+                    },
+                    "work": {
+                      "entered": 0,
+                      "checks": 0,
+                      "lost": false
+                    }
+                  }
+                ]
+              },
+              "overlay_work": {
+                "entered": 0,
+                "checks": 0,
+                "lost": false
+              },
+              "g5a_work": {
+                "entered": 0,
+                "checks": 0,
+                "lost": false
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "product_attempt_ref"
+          ],
+          "op": "set",
+          "value": null
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "product_attempt_ref"
+          ],
+          "op": "set",
+          "value": 0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "sources",
+            0,
+            "preparation"
+          ],
+          "op": "set",
+          "value": null
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "sources",
+            1,
+            "preparation",
+            "attempt_ref"
+          ],
+          "op": "set",
+          "value": 0
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "vbuild_on_escalating_failed_verification",
+      "base": "verification_failure_skip_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "builds"
+          ],
+          "op": "set",
+          "value": [
+            {
+              "id": 0,
+              "group": 0,
+              "slot": "s128",
+              "origin": {
+                "call": 0,
+                "run": 0,
+                "physical_record": 0,
+                "phase": "shared"
+              },
+              "state": "success",
+              "reason": null,
+              "work": 3,
+              "stages": {
+                "formation": 3,
+                "assembly": 0,
+                "residual_formation": 0,
+                "factor": 0,
+                "condition": 0,
+                "rhs": 0,
+                "solve": 0,
+                "refinement": 0,
+                "recovery": 0,
+                "stop_rule": 0,
+                "bounded_gate": 0,
+                "scale": 0,
+                "estimate": 0,
+                "charge": 0,
+                "bound": 0,
+                "shift": 0,
+                "bounded_formation": 0,
+                "wide_formation": 0,
+                "uc": 0
+              }
+            },
+            {
+              "id": 1,
+              "group": 0,
+              "slot": "s256",
+              "origin": {
+                "call": 0,
+                "run": 0,
+                "physical_record": 1,
+                "phase": "shared"
+              },
+              "state": "nonbudget_failure",
+              "reason": {
+                "space": "stop",
+                "tag": "condition"
+              },
+              "work": 4,
+              "stages": {
+                "formation": 4,
+                "assembly": 0,
+                "residual_formation": 0,
+                "factor": 0,
+                "condition": 0,
+                "rhs": 0,
+                "solve": 0,
+                "refinement": 0,
+                "recovery": 0,
+                "stop_rule": 0,
+                "bounded_gate": 0,
+                "scale": 0,
+                "estimate": 0,
+                "charge": 0,
+                "bound": 0,
+                "shift": 0,
+                "bounded_formation": 0,
+                "wide_formation": 0,
+                "uc": 0
+              }
+            },
+            {
+              "id": 2,
+              "group": 0,
+              "slot": "s512",
+              "origin": {
+                "call": 0,
+                "run": 0,
+                "physical_record": 2,
+                "phase": "shared"
+              },
+              "state": "success",
+              "reason": null,
+              "work": 6,
+              "stages": {
+                "formation": 6,
+                "assembly": 0,
+                "residual_formation": 0,
+                "factor": 0,
+                "condition": 0,
+                "rhs": 0,
+                "solve": 0,
+                "refinement": 0,
+                "recovery": 0,
+                "stop_rule": 0,
+                "bounded_gate": 0,
+                "scale": 0,
+                "estimate": 0,
+                "charge": 0,
+                "bound": 0,
+                "shift": 0,
+                "bounded_formation": 0,
+                "wide_formation": 0,
+                "uc": 0
+              }
+            },
+            {
+              "id": 3,
+              "group": 0,
+              "slot": "s1024",
+              "origin": {
+                "call": 0,
+                "run": 0,
+                "physical_record": 3,
+                "phase": "shared"
+              },
+              "state": "success",
+              "reason": null,
+              "work": 8,
+              "stages": {
+                "formation": 8,
+                "assembly": 0,
+                "residual_formation": 0,
+                "factor": 0,
+                "condition": 0,
+                "rhs": 0,
+                "solve": 0,
+                "refinement": 0,
+                "recovery": 0,
+                "stop_rule": 0,
+                "bounded_gate": 0,
+                "scale": 0,
+                "estimate": 0,
+                "charge": 0,
+                "bound": 0,
+                "shift": 0,
+                "bounded_formation": 0,
+                "wide_formation": 0,
+                "uc": 0
+              }
+            },
+            {
+              "id": 4,
+              "group": 0,
+              "slot": "v1024",
+              "origin": {
+                "call": 0,
+                "run": 0,
+                "physical_record": 3,
+                "phase": "verification_shared"
+              },
+              "state": "success",
+              "reason": null,
+              "work": 9,
+              "stages": {
+                "formation": 0,
+                "assembly": 0,
+                "residual_formation": 0,
+                "factor": 0,
+                "condition": 0,
+                "rhs": 0,
+                "solve": 0,
+                "refinement": 0,
+                "recovery": 0,
+                "stop_rule": 0,
+                "bounded_gate": 0,
+                "scale": 0,
+                "estimate": 0,
+                "charge": 0,
+                "bound": 0,
+                "shift": 0,
+                "bounded_formation": 9,
+                "wide_formation": 0,
+                "uc": 0
+              }
+            },
+            {
+              "id": 5,
+              "group": 0,
+              "slot": "v256",
+              "origin": {
+                "call": 0,
+                "run": 0,
+                "physical_record": 1,
+                "phase": "verification_shared"
+              },
+              "state": "success",
+              "reason": null,
+              "work": 1,
+              "stages": {
+                "formation": 1,
+                "assembly": 0,
+                "residual_formation": 0,
+                "factor": 0,
+                "condition": 0,
+                "rhs": 0,
+                "solve": 0,
+                "refinement": 0,
+                "recovery": 0,
+                "stop_rule": 0,
+                "bounded_gate": 0,
+                "scale": 0,
+                "estimate": 0,
+                "charge": 0,
+                "bound": 0,
+                "shift": 0,
+                "bounded_formation": 0,
+                "wide_formation": 0,
+                "uc": 0
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            1,
+            "verification_shared_build_ref"
+          ],
+          "op": "set",
+          "value": 5
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            1,
+            "work"
+          ],
+          "op": "set",
+          "value": {
+            "wide_lme": 0,
+            "exact_sum_lme": 0,
+            "own_lme": 0,
+            "shared_lme": 4,
+            "stop_rule_lme": 0,
+            "verification_lme": 0,
+            "verification_shared_lme": 1,
+            "own_stages": {
+              "formation": 0,
+              "assembly": 0,
+              "residual_formation": 0,
+              "factor": 0,
+              "condition": 0,
+              "rhs": 0,
+              "solve": 0,
+              "refinement": 0,
+              "recovery": 0,
+              "stop_rule": 0,
+              "bounded_gate": 0,
+              "scale": 0,
+              "estimate": 0,
+              "charge": 0,
+              "bound": 0,
+              "shift": 0,
+              "bounded_formation": 0,
+              "wide_formation": 0,
+              "uc": 0
+            },
+            "shared_stages": {
+              "formation": 5,
+              "assembly": 0,
+              "residual_formation": 0,
+              "factor": 0,
+              "condition": 0,
+              "rhs": 0,
+              "solve": 0,
+              "refinement": 0,
+              "recovery": 0,
+              "stop_rule": 0,
+              "bounded_gate": 0,
+              "scale": 0,
+              "estimate": 0,
+              "charge": 0,
+              "bound": 0,
+              "shift": 0,
+              "bounded_formation": 0,
+              "wide_formation": 0,
+              "uc": 0
+            },
+            "shared_built_here": true,
+            "verification_shared_built_here": true
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "cache_after"
+          ],
+          "op": "set",
+          "value": [
+            {
+              "slot": "s128",
+              "build": 0
+            },
+            {
+              "slot": "s256",
+              "build": 1
+            },
+            {
+              "slot": "s512",
+              "build": 2
+            },
+            {
+              "slot": "s1024",
+              "build": 3
+            },
+            {
+              "slot": "v256",
+              "build": 5
+            },
+            {
+              "slot": "v1024",
+              "build": 4
+            }
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "attempts",
+            0,
+            "case_charge"
+          ],
+          "op": "set",
+          "value": 9
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "attempts",
+            0,
+            "invocation_increment"
+          ],
+          "op": "set",
+          "value": 9
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "case_charge"
+          ],
+          "op": "set",
+          "value": 37
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "invocation_increment"
+          ],
+          "op": "set",
+          "value": 37
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "invocation_after"
+          ],
+          "op": "set",
+          "value": 37
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "calls",
+            0,
+            "invocation_after"
+          ],
+          "op": "set",
+          "value": 37
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "work",
+            "charged"
+          ],
+          "op": "set",
+          "value": 37
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "dangling_attempt_source_ref",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "source_ref"
+          ],
+          "op": "set",
+          "value": 7
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "source_member_map_kernel_id_noncanonical",
+      "base": "two_body_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "sources",
+            0,
+            "id_maps",
+            "members",
+            1,
+            "kernel_member"
+          ],
+          "op": "set",
+          "value": 5
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G3",
+        "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+      }
+    },
+    {
+      "id": "forged_publication_hash",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [],
+      "rehash": "all",
+      "expected": {
+        "gate": "G1",
+        "code": "RETAINED_PRECISION_RECEIPT_MISMATCH"
+      },
+      "after_rehash": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "publication_sha256"
+          ],
+          "op": "set",
+          "value": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "receipt_sha256"
+          ],
+          "op": "set",
+          "value": "f76cece40d08fffa7cbd09b83ffaca30a4b5e7e03e16e739cdd9e0004c21dc0f"
+        }
+      ]
+    },
+    {
+      "id": "forged_preparation_hash",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [],
+      "rehash": "all",
+      "expected": {
+        "gate": "G1",
+        "code": "RETAINED_PRECISION_RECEIPT_MISMATCH"
+      },
+      "after_rehash": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "sources",
+            0,
+            "preparation",
+            "sha256"
+          ],
+          "op": "set",
+          "value": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "source_identity_sha256"
+          ],
+          "op": "set",
+          "value": "ad0924d56774688e9564fbac0ce83a0c93a01db2be85df1e147e364427aeea55"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "receipt_sha256"
+          ],
+          "op": "set",
+          "value": "afd0af9f5640b26ddb953ee329afd6fab7c71752e327553f24b8ec6602685c2f"
+        }
+      ]
+    },
+    {
+      "id": "source_identity_stale_receipt_rehashed",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [],
+      "rehash": "all",
+      "expected": {
+        "gate": "G1",
+        "code": "RETAINED_PRECISION_RECEIPT_MISMATCH"
+      },
+      "after_rehash": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "source_identity_sha256"
+          ],
+          "op": "set",
+          "value": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "receipt_sha256"
+          ],
+          "op": "set",
+          "value": "e10e24969d19208c1d0b95cbffc76be62a2b3b2768c7ab7c5e5e0e5e002498e4"
+        }
+      ]
+    },
+    {
+      "id": "forged_receipt_hash",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [],
+      "rehash": "all",
+      "expected": {
+        "gate": "G1",
+        "code": "RETAINED_PRECISION_RECEIPT_MISMATCH"
+      },
+      "after_rehash": [
+        {
+          "path": [
+            "retained_precision",
+            "receipt_sha256"
+          ],
+          "op": "set",
+          "value": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "g5a_sanity_margin_between_2m40_and_2m39",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "selection",
+            "resolution_scale"
+          ],
+          "op": "set",
+          "value": [
+            {
+              "body": 0,
+              "force": "40ad3b5094ffa1f5",
+              "moment": "40ad3b5094ffa1f5"
+            }
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            1,
+            "verification",
+            "resolution"
+          ],
+          "op": "set",
+          "value": [
+            {
+              "body": 0,
+              "force": "40ad3b5094ffa1f5",
+              "moment": "40ad3b5094ffa1f5"
+            }
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "sources",
+            0,
+            "section_terms",
+            0,
+            "axial_stiffness"
+          ],
+          "op": "set",
+          "value": "3f44990f17e516ad"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "sources",
+            0,
+            "section_terms",
+            0,
+            "torsional_stiffness"
+          ],
+          "op": "set",
+          "value": "3ea8c47ead23fa7f"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "selection",
+            "section_terms",
+            0,
+            "axial_stiffness"
+          ],
+          "op": "set",
+          "value": "3f44990f17e516ad"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "selection",
+            "section_terms",
+            0,
+            "torsional_stiffness"
+          ],
+          "op": "set",
+          "value": "3ea8c47ead23fa7f"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5a",
+        "code": "RETAINED_PRECISION_SCALE_MISMATCH"
+      }
+    },
+    {
+      "id": "idle_run_exhausted_meter_chain_broken",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "records"
+          ],
+          "op": "set",
+          "value": []
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "attempts"
+          ],
+          "op": "set",
+          "value": []
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "case_charge"
+          ],
+          "op": "set",
+          "value": 0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "invocation_increment"
+          ],
+          "op": "set",
+          "value": 0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "origin",
+            "group"
+          ],
+          "op": "set",
+          "value": null
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "kernel_terminal"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "unresolved",
+            "reason": {
+              "space": "unresolved",
+              "tag": "budget",
+              "scope": "invocation"
+            }
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "groups",
+            0,
+            "source_refs"
+          ],
+          "op": "set",
+          "value": [
+            0
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "cache_before"
+          ],
+          "op": "set",
+          "value": []
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "cache_after"
+          ],
+          "op": "set",
+          "value": []
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "invocation_before"
+          ],
+          "op": "set",
+          "value": 60000000000
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "invocation_after"
+          ],
+          "op": "set",
+          "value": 60000000000
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "calls",
+            0,
+            "invocation_after"
+          ],
+          "op": "set",
+          "value": 60000000000
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "work",
+            "charged"
+          ],
+          "op": "set",
+          "value": 60000000000
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_WORK_MISMATCH"
+      }
+    },
+    {
+      "id": "verification_estimate_quantity_not_in_layout",
+      "base": "p512_ladder_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            0,
+            "outcome",
+            "reason"
+          ],
+          "op": "set",
+          "value": {
+            "space": "attempt",
+            "tag": "verification_estimate",
+            "quantity": {
+              "tag": "displacement",
+              "dof": {
+                "node": 99,
+                "component": "UX"
+              }
+            },
+            "body": 0,
+            "kind": "translation"
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "attempts",
+            0,
+            "outcome",
+            "reason"
+          ],
+          "op": "set",
+          "value": {
+            "space": "attempt",
+            "tag": "verification_estimate",
+            "quantity": {
+              "tag": "displacement",
+              "dof": {
+                "node": 99,
+                "component": "UX"
+              }
+            },
+            "body": 0,
+            "kind": "translation"
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "charge_quantity_not_in_layout",
+      "base": "p512_ladder_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            0,
+            "outcome",
+            "reason"
+          ],
+          "op": "set",
+          "value": {
+            "space": "attempt",
+            "tag": "charge",
+            "quantity": {
+              "tag": "displacement",
+              "dof": {
+                "node": 99,
+                "component": "UX"
+              }
+            },
+            "body": 0,
+            "kind": "translation"
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "attempts",
+            0,
+            "outcome",
+            "reason"
+          ],
+          "op": "set",
+          "value": {
+            "space": "attempt",
+            "tag": "charge",
+            "quantity": {
+              "tag": "displacement",
+              "dof": {
+                "node": 99,
+                "component": "UX"
+              }
+            },
+            "body": 0,
+            "kind": "translation"
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "publication_enclosure_quantity_not_in_layout",
+      "base": "p512_ladder_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            0,
+            "outcome",
+            "reason"
+          ],
+          "op": "set",
+          "value": {
+            "space": "attempt",
+            "tag": "publication_enclosure",
+            "quantity": {
+              "tag": "displacement",
+              "dof": {
+                "node": 99,
+                "component": "UX"
+              }
+            },
+            "body": 0,
+            "kind": "translation",
+            "predicate": "absolute_bound"
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "attempts",
+            0,
+            "outcome",
+            "reason"
+          ],
+          "op": "set",
+          "value": {
+            "space": "attempt",
+            "tag": "publication_enclosure",
+            "quantity": {
+              "tag": "displacement",
+              "dof": {
+                "node": 99,
+                "component": "UX"
+              }
+            },
+            "body": 0,
+            "kind": "translation",
+            "predicate": "absolute_bound"
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "empty_body_inventory",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "sources",
+            0,
+            "body_membership"
+          ],
+          "op": "set",
+          "value": []
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            0,
+            "proof",
+            "summary_coverage"
+          ],
+          "op": "set",
+          "value": []
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G3",
+        "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+      }
     }
   ],
   "must_pass": [

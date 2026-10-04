@@ -170,7 +170,7 @@ def _encoding(value, spec):
         return _encoding(value, next(s for s in spec["oneOf"] if _shape(value, s)))
     tag = spec.get("x-rp-encoding")
     if tag in ("uint", "i32"):
-        _need(type(value) is int and math.isfinite(value) and int(value) == value and spec["minimum"] <= value <= spec["maximum"] and not (value == 0 and math.copysign(1, value) < 0), "G2", "ENCODING_MISMATCH")
+        _need(type(value) in (int, float) and math.isfinite(value) and int(value) == value and spec["minimum"] <= value <= spec["maximum"] and not (value == 0 and math.copysign(1, value) < 0), "G2", "ENCODING_MISMATCH")
     if tag in ("bits", "nonnegative_bits"):
         try: number = from_bits(value)
         except (ValueError, OverflowError): _need(False, "G2", "ENCODING_MISMATCH")
@@ -600,8 +600,10 @@ def _g5_native_checks(body, runs, fail, wf):
             layout = source["layout"]
             for item in records + attempts:
                 reason = item["outcome"].get("reason") or {}
-                if reason.get("tag") == "stop_rule":
-                    # D5d (C2:22, :54; C1:114): the quantity resolves to a layout row, same body and kind.
+                if reason.get("space") == "attempt" and "quantity" in reason:
+                    # D5d/D28 (C2:22-24, :54; C1:114; adaptive.rs:4169-4197, 4714-4720): stop_rule,
+                    # verification_estimate, charge and publication_enclosure quantities resolve to a
+                    # layout row of the Run's source with the same body and kind.
                     fail(any(row["quantity"] == reason["quantity"] and row["body"] == reason["body"] and row["kind"] == reason["kind"] for row in layout))
             amounts = []
             for r in records:
@@ -613,7 +615,7 @@ def _g5_native_checks(body, runs, fail, wf):
                 if r["role"] == "verification" and stop is not None and stop.get("tag") in ESCALATING_STOPS:
                     # D5b (adaptive.rs:4593-4611, 4377): an escalating stop is a verification *solve*
                     # failure; the verification pass never ran.
-                    fail(w["verification_lme"] == 0)
+                    fail(w["verification_lme"] == 0 and r["verification_shared_build_ref"] is None)  # D21
                 fail(r["residual_basis"] == (1024 if r["precision"] == 1024 else r["precision"] + 64))
                 fail(r["storage"]["limbs_per_entry"] == (4 if r["precision"] <= 256 else 8 if r["precision"] == 512 else 16))
                 own = int(w["wide_lme"]) + int(w["exact_sum_lme"])
@@ -860,7 +862,7 @@ def _g5_ordinary(body, cases, diags, quality):
             fail(c["product_attempt_ref"] is None and quality[i]["solve_quality"] == "checks_passed")
         if c["status"] == "selected":
             # D6b (C1:101; C2:153, :164; source_receipt.rs:546-550): only an attempted trigger selects.
-            fail(c["product_attempt_ref"] is not None and quality[i]["solve_quality"] in ("sensitive", "unresolved", "failed"))
+            fail(quality[i]["solve_quality"] in ("sensitive", "unresolved", "failed"))
             fail(c["selection"]["rcond_label"] == RCOND_LABEL)
         listed = set(refs)
         cid = c["basis_ref"]["ref_id"]
@@ -900,12 +902,21 @@ def _g5_products(body, rows_by_case):
     wf = work_checks.append
     for case in body["cases"]:
         cause = (case.get("reason") or {}).get("cause") or {}
+        if case["status"] == "selected":
+            fail(case["product_attempt_ref"] is not None)  # D20 (C3:165): class 2, after the ordinary pass (D17)
         if case["status"] == "unavailable" and cause.get("kind") == "prepared_product_failure":
             # D4c (S06 s1; C3:165): the case's own attempt, resolved once.
             fail(case["product_attempt_ref"] is not None and case["product_attempt_ref"] == cause["product_attempt_ref"])
     for ai, a in enumerate(body["product_attempts"]):
         case = _at(body["cases"], a["owner_ref"]["index"])
         fail(a["id"] == ai and case["product_attempt_ref"] == ai and a["ordinary_attempt_ref"] == case["ordinary"]["attempt_ref"])
+        cause = (case.get("reason") or {}).get("cause") or {}
+        if a["result"]["kind"] == "unavailable":
+            # D19 (S06 s1): an actual unavailable C3 attempt is carried by prepared_product_failure.
+            fail(case["status"] == "unavailable" and cause.get("kind") == "prepared_product_failure" and cause.get("product_attempt_ref") == ai)
+        else:
+            # D19: a Ready attempt is selected, or unavailable only by a later receipt failure.
+            fail(case["status"] == "selected" or (case["status"] == "unavailable" and cause.get("kind") == "receipt_failure"))
         ordinary = _at(body["ordinary_attempts"], a["ordinary_attempt_ref"])
         fail(a["material_basis_ref"] == ordinary["material_basis_ref"])  # D4b (C3:165)
         if a["run_ref"] is not None: fail(case.get("run") is not None and case["run"]["id"] == a["run_ref"] and a["source_ref"] == case["source_ref"])
@@ -1576,6 +1587,7 @@ def _validate_draft(source: Any, invocation: Any = None) -> dict[str, Any]:
             _need(row["id"] not in seen and row.get("basis_ref",{}).get("ref_type")=="load_case" and row["basis_ref"]["ref_id"] in rows,gate,"COVERAGE_MISMATCH")
             seen.add(row["id"]);rows[row["basis_ref"]["ref_id"]].append(row)
         _need(len(body["ordinary_attempts"])==len(cases),gate,"COVERAGE_MISMATCH")
+        for s in body["sources"]:_need(len(s["body_membership"])>0,gate,"COVERAGE_MISMATCH")  # D29
         refs=[c["product_attempt_ref"] for c in cases if c["product_attempt_ref"] is not None]
         _need(sorted(refs)==list(range(len(body["product_attempts"]))),gate,"COVERAGE_MISMATCH")
         for ai,a in enumerate(body["product_attempts"]):
@@ -1589,7 +1601,7 @@ def _validate_draft(source: Any, invocation: Any = None) -> dict[str, Any]:
                 # D1 (F1:101, 130; C3:302): complete old ids equal the member inventory: the source's
                 # map when sourced, else every CaseSource's (one model); without one, G8 binds it.
                 si=a["source_ref"]
-                if type(si) is int and 0<=si<len(body["sources"]):_need(len(old)==len(body["sources"][si]["id_maps"]["members"]),gate,"COVERAGE_MISMATCH")
+                if type(si) is int and 0<=si<len(body["sources"]):_need([x["member"] for x in old]==[m["kernel_member"] for m in body["sources"][si]["id_maps"]["members"]],gate,"COVERAGE_MISMATCH")  # D23
                 elif si is None:
                     for s in body["sources"]:
                         if s["owner"]["kind"]=="case":_need(len(old)==len(s["id_maps"]["members"]),gate,"COVERAGE_MISMATCH")
@@ -1602,7 +1614,7 @@ def _validate_draft(source: Any, invocation: Any = None) -> dict[str, Any]:
                 coverage=a["proof"]["summary_coverage"];si=a["source_ref"]
                 if coverage is not None and type(si) is int and 0<=si<len(body["sources"]):
                     inventory=[b["body"] for b in body["sources"][si]["body_membership"]]
-                    _need([x["body"] for x in coverage]==inventory==list(range(len(inventory))),gate,"COVERAGE_MISMATCH")
+                    _need(bool(inventory) and [x["body"] for x in coverage]==inventory==list(range(len(inventory))),gate,"COVERAGE_MISMATCH")
         # D1 (C2:117; C1:146): each run id is its execution-order position; the order is a bijection.
         order=body["work"]["execution_order"];with_run=[i for i,c in enumerate(cases) if c.get("run") is not None]
         _need(all(e["kind"]=="case" for e in order) and sorted(e["index"] for e in order)==with_run and all(cases[e["index"]]["run"]["id"]==k for k,e in enumerate(order)),gate,"COVERAGE_MISMATCH")

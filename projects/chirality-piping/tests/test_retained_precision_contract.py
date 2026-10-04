@@ -111,6 +111,9 @@ def apply_mutation(base, mutation):
                 case["source_identity_sha256"] = rp._source_hash(body["sources"][case["source_ref"]])
         body["publication_sha256"] = rp._hash("retained_precision_publication_mp_v2", {k:v for k,v in value.items() if k != "retained_precision"})
         receipt["receipt_sha256"] = rp._hash("retained_precision_receipt_mp_v2", body)
+    # D24 (snapshot 07b): optional after_rehash edits are applied literally after rehash "all",
+    # with no further hashing (the G1 hash-integrity pins).
+    _apply_edits(value, mutation.get("after_rehash") or [])
     return value
 
 
@@ -377,8 +380,14 @@ def test_g0_union_d2():
         g0(lambda: rp._validate_draft(source, fixture["invocation"]))
 
 
-def test_g2_counters_are_json_integers_d10():
-    _raises(lambda: _validate_entry(O_BASE, [_set(B + ["cases", 0, "run", "case_charge"], float(_cases()[O_BASE]["source"]["retained_precision"]["body"]["cases"][0]["run"]["case_charge"]))]), "G2", "ENCODING_MISMATCH")
+def test_numbers_are_values_d25():
+    """D25 (D10's integral-float clause corrected): 17.0 and 17 are the same parsed value under
+    I-JSON/JCS, so an integral float counter is accepted with the same canonical receipt hash; a
+    non-integral one still fails G2."""
+    charge = _cases()[O_BASE]["source"]["retained_precision"]["body"]["work"]["charged"]
+    expected = _cases()[O_BASE]["expected_classifications"]
+    assert _validate_entry(O_BASE, [_set(B + ["work", "charged"], float(charge))])["classifications"] == expected
+    _raises(lambda: _validate_entry(O_BASE, [_set(B + ["work", "charged"], charge + 0.5)]), "G2", "ENCODING_MISMATCH")
 
 
 def test_g5b_section_echo_terms_positive_d18():
@@ -539,12 +548,13 @@ def test_rv79_surviving_mutants_m06_m09_m14():
 
 
 def test_snapshot_07_counts_and_entry_format():
-    """Snapshot 07a (I62; D18): 15 cases, 236 mutations, 19 must-pass; only rehash "all" (D11);
+    """Snapshot 07b (I62; D19-D30): 15 cases, 253 mutations, 19 must-pass; only rehash "all" (D11);
     one expectation per entry except the per-reader G7 entry."""
     c = corpus()
-    assert (len(c["cases"]), len(c["mutations"]), len(c["must_pass"])) == (15, 236, 19)
+    assert (len(c["cases"]), len(c["mutations"]), len(c["must_pass"])) == (15, 253, 19)
     entries = c["mutations"] + c["must_pass"]
     assert all(e["rehash"] == "all" for e in entries)
+    assert all(set(e) <= {"id", "base", "edits", "invocation_edits", "after_rehash", "rehash", "expected", "expected_by_reader"} for e in entries)
     assert [e["id"] for e in entries if "expected_by_reader" in e] == ["g7_maximum_off_enclosure"]
     assert len({e["id"] for e in entries}) == len(entries)
 
@@ -556,3 +566,40 @@ def test_class2_ordinary_before_association_d17():
     _raises(lambda: _validate_entry(F_BASE, [dangling]), "G5", "ATTEMPT_MISMATCH")
     _raises(lambda: _validate_entry(F_BASE, [no_prep]), "G5", "PRODUCT_ATTEMPT_MISMATCH")
     _raises(lambda: _validate_entry(F_BASE, [dangling, no_prep]), "G5", "ATTEMPT_MISMATCH")
+
+
+def test_d19_unavailable_attempt_needs_its_cause_and_ready_needs_receipt_failure():
+    """D19 (S06 s1), G5 PRODUCT_ATTEMPT class 2: both directions, reader logic beside the shared pins."""
+    receipt = {"kind": "receipt_failure", "check": "encoding", "field_path": "x"}
+    _raises(lambda: _validate_entry(F_BASE, [_set(B + ["cases", 1, "reason", "cause"], receipt), _set(B + ["cases", 1, "reason", "code"], "receipt_encoding"),
+                                             _set(B + ["cases", 1, "reason", "phase"], "receipt")]), "G5", "PRODUCT_ATTEMPT_MISMATCH")
+    fixture = _cases()[O_BASE]
+    body = deepcopy(fixture["source"]["retained_precision"]["body"])
+    rows = {c["basis_ref"]["ref_id"]: [r for r in fixture["source"]["results"] if r["basis_ref"]["ref_id"] == c["basis_ref"]["ref_id"]] for c in body["cases"]}
+    case = body["cases"][0]
+    for cause, ok in ((receipt, True), ({"kind": "unavailable_precondition", "precondition": "caller", "affected_refs": []}, False)):
+        bad = deepcopy(body); c = bad["cases"][0]
+        for k in ("method", "selection", "source_identity_sha256"): c.pop(k, None)
+        c.update(status="unavailable", reason={"code": "receipt_encoding", "phase": "receipt", "cause": cause}, diagnostic_ref="diagnostic:x")
+        if ok:
+            rp._g5_products(bad, rows)
+        else:
+            _raises(lambda: rp._g5_products(bad, rows), "G5", "PRODUCT_ATTEMPT_MISMATCH")
+
+
+def test_native_run_ref_on_nonselected_run_d30():
+    """D30: a native error names the case's own nonselected Run (S06:38); kills the M13-type mutant."""
+    fixture = _cases()[F_BASE]
+    body = deepcopy(fixture["source"]["retained_precision"]["body"])
+    rows = {c["basis_ref"]["ref_id"]: [r for r in fixture["source"]["results"] if r["basis_ref"]["ref_id"] == c["basis_ref"]["ref_id"]] for c in body["cases"]}
+    case, a = body["cases"][1], body["product_attempts"][1]
+    run_id = case["run"]["id"]
+    case["run"]["kernel_terminal"] = {"kind": "unresolved", "reason": {"space": "unresolved", "tag": "ceiling"}}
+    case["reason"].update(code="kernel_unresolved", phase="kernel")
+    a["proof"] = None
+    a["stages"] = {k: ("completed" if k == "preparation" else "failed" if k == "native" else "not_entered") for k in a["stages"]}
+    a["result"] = {"kind": "unavailable", "error": {"kind": "native", "run_ref": run_id}}
+    rp._g5_products(body, rows)
+    for wrong in (run_id + 1, 0 if run_id else 1):
+        bad = deepcopy(body); bad["product_attempts"][1]["result"]["error"]["run_ref"] = wrong
+        _raises(lambda: rp._g5_products(bad, rows), "G5", "PRODUCT_ATTEMPT_MISMATCH")
