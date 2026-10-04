@@ -190,9 +190,12 @@ project context through supported additive instruction inputs that preserve
 Codex's own base instructions, and records evidence from the complete event
 stream. It does not filter Codex's notifications, leave a server request
 unanswered, veto the user's Codex configuration, pin approval or sandbox
-policy, or run a patched supplier. Approval and sandbox policy are the user's
-choice per project and per turn; changing them grants nothing beyond what the
-host enforces. Local models are Codex model providers, not a second engine.
+policy, or run a patched supplier. A setting the App passes only to Codex
+processes it owns, such as turning off Codex's analytics, is not a veto: it is
+shown and recorded, and the user's configuration file is unchanged. Approval
+and sandbox policy are the user's choice per project and per turn; changing
+them grants nothing beyond what the host enforces. Local models are Codex
+model providers, not a second engine.
 
 The App's shared behavioral guidance is maintained at
 `projects/chirality-app-dev/instructions/AGENTS.md` and packaged as its default
@@ -202,8 +205,10 @@ This repository entry remains guidance for work in the Chirality repository;
 the distinction is applicability, not confidentiality. Codex owns native global
 and project instruction discovery. Fresh named children receive the shared
 product guidance and their intended full role. Instruction changes take effect
-at a verified idle boundary, preserving prior supplied content and conversation
-history. A full-history fork alone does not establish a different role.
+at a verified idle boundary or, where the App fixes a conversation's role
+guidance for its life, in new conversations only, preserving prior supplied
+content and conversation history. A full-history fork alone does not establish
+a different role.
 
 The shared governance is in `docs/DIRECTIVE.md`, `docs/CONTRACT.md`,
 `docs/SPEC.md`, and `docs/TYPES.md`, with accepted amendments. Component design
