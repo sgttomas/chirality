@@ -621,10 +621,10 @@ def test_rv79_surviving_mutants_m06_m09_m14():
 
 
 def test_snapshot_07_counts_and_entry_format():
-    """Snapshot 07g (I61 U6e; F5, RV79-N1): 15 cases, 274 mutations, 22 must-pass and the D37
-    table; only rehash "all" (D11); one expectation per entry except the per-reader G7 entry."""
+    """Snapshot 07h (I61 U6e repair; RV90 S1, N1, N2, N4): 15 cases, 277 mutations, 23 must-pass and
+    the D37 table; only rehash "all" (D11); one expectation per entry except the per-reader G7 entry."""
     c = corpus()
-    assert (len(c["cases"]), len(c["mutations"]), len(c["must_pass"])) == (15, 274, 22)
+    assert (len(c["cases"]), len(c["mutations"]), len(c["must_pass"])) == (15, 277, 23)
     assert set(c) == {"version", "provenance", "arithmetic", "cases", "mutations", "must_pass", "d37"}
     entries = c["mutations"] + c["must_pass"]
     assert all(e["rehash"] == "all" for e in entries)
@@ -801,9 +801,10 @@ def test_f5_kills_u1_m09_m10_m20_on_the_real_milestone_receipts(mode):
     source = doc["source"]
     case = source["retained_precision"]["body"]["cases"][0]["basis_ref"]["ref_id"]
     refs = source["retained_precision"]["body"]["ordinary_attempts"][0]["diagnostic_refs"]
-    assert refs == [d["id"] for d in source["diagnostics"] if case in (d.get("affected_refs") or []) and not d["code"].startswith("RETAINED_PRECISION_")]
+    names = lambda d: isinstance(d.get("affected_refs"), list) and case in d["affected_refs"]
+    assert refs == [d["id"] for d in source["diagnostics"] if names(d) and not d["code"].startswith("RETAINED_PRECISION_")]
     path = ["retained_precision", "body", "ordinary_attempts", 0, "diagnostic_refs"]
-    m09 = [d["id"] for d in source["diagnostics"] if case in (d.get("affected_refs") or [])]
+    m09 = [d["id"] for d in source["diagnostics"] if names(d)]
     m10 = [d["id"] for d in source["diagnostics"] if not d["code"].startswith("RETAINED_PRECISION_")]
     assert m09 != refs and m10 != refs, "the mutants differ from the exact list on this receipt"
     for edits, want in [([{"path": path, "op": "set", "value": m09}], ("G5", "RETAINED_PRECISION_ATTEMPT_MISMATCH")),
@@ -816,6 +817,20 @@ def test_f5_kills_u1_m09_m10_m20_on_the_real_milestone_receipts(mode):
     resealed, invocation = _resealed(doc, [])
     assert rp._validate_draft(resealed, invocation)["classifications"] == rp._validate_draft(deepcopy(source), deepcopy(doc["invocation"]))["classifications"]
 
+
+@pytest.mark.parametrize("value", ["case:six-component-load", 5, {"case:six-component-load": 1}], ids=["string", "number", "object"])
+def test_f5_non_array_affected_refs_names_no_case_s1(value):
+    """RV90 S1 (07h): a non-array `affected_refs` names no case, as Rust's `list()` and TypeScript's
+    `Array.isArray` read it (never a substring or key test, never an exception). Still listed, the
+    diagnostic fails F5 (G5 ATTEMPT, the shared `f5_affected_refs_string_names_no_case`); unlisted,
+    F5 passes and G7 refuses the malformed diagnostic, as every reader did before F5."""
+    refs = _cases()[O_BASE]["source"]["retained_precision"]["body"]["ordinary_attempts"][0]["diagnostic_refs"]
+    malformed = _set(["diagnostics", 0, "affected_refs"], value)
+    _raises(lambda: _validate_entry(O_BASE, [malformed]), "G5", "ATTEMPT_MISMATCH")
+    unlisted = _set(B + ["ordinary_attempts", 0, "diagnostic_refs"], refs[1:])
+    with pytest.raises(rp.RetainedPrecisionError) as error:
+        _validate_entry(O_BASE, [malformed, unlisted])
+    assert (error.value.gate, error.value.code) == ("G7", "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID")
 
 def test_rv80_n2_integral_normalization_touches_only_the_receipt(monkeypatch):
     """RV80-N2 (07g): D32's normalization of integral floats runs on the receipt only, never on the

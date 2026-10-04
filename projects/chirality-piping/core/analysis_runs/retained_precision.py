@@ -911,7 +911,9 @@ def _g5_ordinary(body, cases, diags, quality):
         # exactly the diagnostics whose affected_refs name the case, once each, in envelope order,
         # excluding RETAINED_PRECISION_* (a T1 (a)-omitted disclosure is absent from the envelope).
         name = c["basis_ref"]["ref_id"]
-        fail(refs == [d["id"] for d in diags if name in (d.get("affected_refs") or []) and not str(d.get("code")).startswith("RETAINED_PRECISION_")])
+        # A non-array affected_refs names no case (S1, RV90: parity with Rust list() and TS Array.isArray).
+        fail(refs == [d["id"] for d in diags if isinstance(d.get("affected_refs"), list) and name in d["affected_refs"]
+                      and not str(d.get("code")).startswith("RETAINED_PRECISION_")])
         fail(o["initial"]["kind"] != "not_attempted" if c["status"] in ("selected", "not_required") else True)
         if o["initial"]["kind"] == "report":
             fail(o["initial"]["report_diagnostic_ref"] in by_id and o["initial"]["outcome"] == quality[i]["solve_quality"])

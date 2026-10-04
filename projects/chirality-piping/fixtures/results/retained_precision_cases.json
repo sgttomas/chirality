@@ -131274,6 +131274,180 @@
         "gate": "G5",
         "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
       }
+    },
+    {
+      "id": "f5_affected_refs_string_names_no_case",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "diagnostics",
+            0,
+            "affected_refs"
+          ],
+          "op": "set",
+          "value": "case:six-component-load"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "f5_ordinary_refs_second_case_relaxed_d6a_form",
+      "base": "two_case_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "ordinary_attempts",
+            1,
+            "diagnostic_refs"
+          ],
+          "op": "set",
+          "value": [
+            "diagnostic:numerical-integrity:case:zero-load"
+          ]
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "f5_ordinary_refs_strict_prefix",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "diagnostics"
+          ],
+          "op": "set",
+          "value": [
+            {
+              "id": "diagnostic:load:load-fixture-global_y:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_force is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-global_y",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-global_z:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_force is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-global_z",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-rotation_x:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_moment is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-rotation_x",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-rotation_y:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_moment is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-rotation_y",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-rotation_z:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_moment is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-rotation_z",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:numerical-integrity:case:six-component-load",
+              "code": "NUMERICAL_INTEGRITY_SENSITIVE",
+              "severity": "warning",
+              "message": "Synthetic ordinary-sensitive reader control. Native records below are constructed statements, not execution evidence.",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:physics:rule-inputs-missing",
+              "code": "RULE_CHECK_INPUTS_MISSING",
+              "severity": "warning",
+              "message": "rule-check inputs and protected criteria are absent; no compliance result is produced",
+              "source": "core/product_physics"
+            },
+            {
+              "id": "diagnostic:retained:synthetic",
+              "code": "RETAINED_PRECISION_SELECTED",
+              "severity": "info",
+              "message": "Synthetic reader control; no producer or native Current evidence.",
+              "source": "synthetic_reader_control",
+              "affected_refs": [
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-global_x:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_force is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-global_x",
+                "case:six-component-load"
+              ]
+            }
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "ordinary_attempts",
+            0,
+            "diagnostic_refs"
+          ],
+          "op": "set",
+          "value": [
+            "diagnostic:load:load-fixture-global_y:category-mapping",
+            "diagnostic:load:load-fixture-global_z:category-mapping",
+            "diagnostic:load:load-fixture-rotation_x:category-mapping",
+            "diagnostic:load:load-fixture-rotation_y:category-mapping",
+            "diagnostic:load:load-fixture-rotation_z:category-mapping",
+            "diagnostic:numerical-integrity:case:six-component-load"
+          ]
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
     }
   ],
   "must_pass": [
@@ -133649,10 +133823,138 @@
       ],
       "rehash": "all",
       "expected": "pass"
+    },
+    {
+      "id": "f5_envelope_reordered_exact_list",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "diagnostics"
+          ],
+          "op": "set",
+          "value": [
+            {
+              "id": "diagnostic:load:load-fixture-global_y:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_force is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-global_y",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-global_z:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_force is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-global_z",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-rotation_x:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_moment is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-rotation_x",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-rotation_y:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_moment is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-rotation_y",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-rotation_z:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_moment is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-rotation_z",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:numerical-integrity:case:six-component-load",
+              "code": "NUMERICAL_INTEGRITY_SENSITIVE",
+              "severity": "warning",
+              "message": "Synthetic ordinary-sensitive reader control. Native records below are constructed statements, not execution evidence.",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:physics:rule-inputs-missing",
+              "code": "RULE_CHECK_INPUTS_MISSING",
+              "severity": "warning",
+              "message": "rule-check inputs and protected criteria are absent; no compliance result is produced",
+              "source": "core/product_physics"
+            },
+            {
+              "id": "diagnostic:retained:synthetic",
+              "code": "RETAINED_PRECISION_SELECTED",
+              "severity": "info",
+              "message": "Synthetic reader control; no producer or native Current evidence.",
+              "source": "synthetic_reader_control",
+              "affected_refs": [
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-global_x:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_force is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-global_x",
+                "case:six-component-load"
+              ]
+            }
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "ordinary_attempts",
+            0,
+            "diagnostic_refs"
+          ],
+          "op": "set",
+          "value": [
+            "diagnostic:load:load-fixture-global_y:category-mapping",
+            "diagnostic:load:load-fixture-global_z:category-mapping",
+            "diagnostic:load:load-fixture-rotation_x:category-mapping",
+            "diagnostic:load:load-fixture-rotation_y:category-mapping",
+            "diagnostic:load:load-fixture-rotation_z:category-mapping",
+            "diagnostic:numerical-integrity:case:six-component-load",
+            "diagnostic:load:load-fixture-global_x:category-mapping"
+          ]
+        }
+      ],
+      "rehash": "all",
+      "expected": "pass"
     }
   ],
   "d37": {
-    "basis": "RV79-N1 (D36): D37's expected table, derived from the native sequence and C3, not from any reader. PP/core/product_physics/src/retained_product.rs at 844448112f: prepare_owned_case (enter Preparation :3313, completed :3426, fail_entered :3430); solve_native (enter Native :3453; a selected outcome completes :3466; a nonselected outcome after the Run is recorded is NativeUnavailable, the `native` kind; any earlier error is the `capture` kind (a); fail_entered :3467); freeze_candidate (capture (b) before ProofStart :3655-3660; ProofStart :3662-3664 and Projection :3666-3668 failures are `proof`; Maxima :3668-3671 `abandoned`; Values :3671-3676 `values`; Aliases :3676-3681 `abandoned`; bind_rows_view :3684-3685 `abandoned` with the certificate not entered; Certificate :3686-3709: a failed certificate is `proof`, with Observables and G5a both entered and checked when the verdict copy covers every row (:3696-3703); after a passed certificate the frozen owner or verdict copy :3712-3719 is `capture` (c); Observables and G5a :3723-3728, then `observable` (observables failed), `g5a` (observables passed, G5a failed) or `numeric` (both passed) :3734-3738; the precharged commit :3740-3743 is `capture` (d), every stage completed); the error return calls fail_entered :3749. Trace transitions: retained_receipt.rs enter/completed/checked/fail_entered. Error kinds: C3's PublicError (preparation, native, capture, proof, values, abandoned, numeric, observable, g5a).",
+    "basis": "RV79-N1 (D36): D37's expected table, derived from the native sequence and C3, not from any reader. PP/core/product_physics/src/retained_product.rs at 844448112f: prepare_owned_case (enter Preparation :3313, completed :3426, fail_entered :3430); solve_native (enter Native :3453; a selected outcome completes :3466; a nonselected outcome after the Run is recorded is NativeUnavailable, the `native` kind; any earlier error is the `capture` kind (a); fail_entered :3467); freeze_candidate (capture (b) before ProofStart :3655-3660; ProofStart :3662-3664 and Projection :3666-3668 failures are `proof`; Maxima :3668-3671 `abandoned`; Values :3671-3676 `values`; Aliases :3676-3681 `abandoned`; bind_rows_view :3684-3685 `abandoned` with the certificate not entered; Certificate :3686-3709: a failed certificate is `proof`, with Observables and G5a both entered and checked when the verdict copy covers every row (:3696-3703); after a passed certificate the frozen owner or verdict copy :3712-3719 is `capture` (c); Observables and G5a :3723-3728, then `observable` (observables failed), `g5a` (observables passed, G5a failed) or `numeric` (both passed) :3734-3738; the precharged commit :3740-3743 is `capture` (d), every stage completed); the error return calls fail_entered :3749. Trace transitions: retained_receipt.rs enter/completed/checked/fail_entered. Error kinds: C3's PublicError (preparation, native, capture, proof, values, abandoned, numeric, observable, g5a). Facade order (PP/core/product_physics/src/lib.rs:2962-2974, unchanged from 844448112f to 5e1e2625ac): prepare_case :2962, then solve_native :2968, and freeze_candidate :2971 runs only after solve_native returns Ok; the only other caller, project_candidate (retained_product.rs:3644-3646), is reached only from #[cfg(test)] code. So capture (b) never sees Native not entered, and C--------- is not a `capture` record.",
     "stage_order": [
       "preparation",
       "native",

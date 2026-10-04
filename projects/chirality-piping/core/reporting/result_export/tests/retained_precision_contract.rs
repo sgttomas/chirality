@@ -270,12 +270,12 @@ fn shared_rehashed_first_failure_mutations() {
 
 /// Observe one slice of the shared mutations against this reader's own
 /// expectation, print one outcome per mutation (visible with --nocapture) and
-/// check the slice tally. Snapshot 07g holds 274 mutations in all.
+/// check the slice tally. Snapshot 07h holds 277 mutations in all.
 fn slice_outcomes(tag: &str, range: std::ops::Range<usize>, want: &[(&str, usize)]) {
     use std::collections::BTreeMap;
     let shared = corpus();
     let mutations = shared["mutations"].as_array().unwrap();
-    assert_eq!(mutations.len(), 274);
+    assert_eq!(mutations.len(), 277);
     let mut tally = BTreeMap::new();
     let mut matched = 0;
     for mutation in &mutations[range.clone()] {
@@ -527,6 +527,18 @@ fn snapshot_07g_mutation_outcomes() {
         "I61_OUTCOME_07G",
         268..274,
         &[("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 6)],
+    );
+}
+
+/// Snapshot-07h pins (I61 U6e repair; RV90 S1, N1, N2): a non-array
+/// `affected_refs` names no case, F5 on the second case, and a strict prefix
+/// of A2's list, mutations 274..277.
+#[test]
+fn snapshot_07h_mutation_outcomes() {
+    slice_outcomes(
+        "I61_OUTCOME_07H",
+        274..277,
+        &[("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 3)],
     );
 }
 
@@ -815,8 +827,9 @@ fn g5_audit_local_controls() {
 fn shared_must_pass_entries_validate() {
     let shared = corpus();
     let entries = shared["must_pass"].as_array().unwrap();
-    // Snapshot 07: 06d's 18 plus the equal-E bracket control.
-    assert_eq!(entries.len(), 22);
+    // Snapshot 07: 06d's 18 plus the equal-E bracket control; 07h adds F5's
+    // reordered-envelope exact-list control (RV90 N2).
+    assert_eq!(entries.len(), 23);
     let mut failures = Vec::new();
     for entry in entries {
         assert_eq!(entry["expected"], "pass");
@@ -2428,8 +2441,17 @@ fn d6_d7_ordinary_and_diagnostic_relations() {
         .map(|d| d["id"].clone());
     {
         let other = other.expect("a diagnostic of another scope in the base");
+        // RV90 N3 (07h): the base's exact list plus the other-scope element, so
+        // that element is the only defect (`[integrity, other]` was also 07f's
+        // relaxed form, refused under F5 without `other`).
+        let mut refs = base_source(&shared, ORD)["retained_precision"]["body"]["ordinary_attempts"][0]["diagnostic_refs"]
+            .as_array()
+            .unwrap()
+            .clone();
+        assert!(!refs.contains(&other));
+        refs.push(other);
         assert_eq!(
-            probe(&shared, ORD, vec![set(rb(json!(["ordinary_attempts", 0, "diagnostic_refs"])), json!(["diagnostic:numerical-integrity:case:six-component-load", other]))]),
+            probe(&shared, ORD, vec![set(rb(json!(["ordinary_attempts", 0, "diagnostic_refs"])), Value::Array(refs))]),
             gate("G5", ATTEMPT),
             "F5: a listed diagnostic of another scope is refused"
         );
