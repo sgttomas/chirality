@@ -8534,3 +8534,12 @@ This implements the selected design (DESIGN_NUMERICS/DESIGN.md:1004, D1 §5 item
 - **The producer serializer** is bound by this; it is an input to the serializer brief.
 - **The readers** need no change. G4 and the existing `legacy_source` reference checks (O4, D6d) already enforce it.
 - **The user:** on a successor result, the diagnostics panel shows "retained precision selected" without the legacy "did not produce a selected response" row.
+
+**Snapshot 07d with Python, committed as `2af4a5dc50`.**
+- **ROOT's diff against 07c:** 5 mutations and 2 must-pass entries added. One entry changed, `unavailable_attempt_under_source_error_cause`, made self-consistent (RV78-N2) with its expectation unchanged. Nothing removed.
+- **Totals:** 15 cases, 259 mutations, 21 must-pass entries.
+- **Corpus hash:** `12da125d9d`.
+- **ROOT's own Python run:** 358 passed.
+- **Weakening:** ROOT read the removed Python lines; each type test is replaced by the D32 value test.
+
+I63 and I64 adopt 07d in their standing rounds.
