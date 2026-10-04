@@ -8553,3 +8553,28 @@ I63 and I64 adopt 07d in their standing rounds.
 **Next, in parallel:**
 - **Confirmation round 04,** scoped to the 07d delta (D31–D33, D32's normalization, the new entries) by RV78–RV81.
 - **I61 reruns the real-receipt experiment** on `abcb16fd27`, with no counterfactuals, now that T1 (owner-confirmed option a, emitted by the experiment's emitter) and T2 (D31) are resolved.
+
+## The real milestone receipts pass all three readers (ROOT, 2026-10-03 UTC)
+
+I61's second experiment (`R/I61/receipt_experiment_02/`, SHA256SUMS OK, no machine paths) ran on READER `abcb16fd27` and NUM `83732c5677`. It applied no counterfactual: T1 option (a) is emitted as the owner confirmed it, and the request is unchanged at model 0.1.0.
+
+**The result:** the real receipts for RF-SKEW-T-CANT-OFF-122-r1e-04 pass G0–G8 in Python, Rust and TypeScript, in both the sparse and the dense mode, with standing `needs_recompute`.
+- **Classification parity:** the three readers' classifications are identical, and equal the producer's certificate verdicts row for row: 98/98 sparse, 99/99 dense.
+- **Repeatability:** a second producer run gave byte-identical receipts; one run takes about 1.5 s at about 20.5 MB.
+
+**ROOT's own independent check.** Not using I61's harness, ROOT called the Python reader at READER `abcb16fd27` directly on both emitted receipts:
+- each is selected, `needs_recompute`, and invocation-bound;
+- the classes are 69 absolute-verified, 25 relative-verified, 3 input-derived, and 1 non-quantity sparse or 2 dense;
+- `legacy_source` is `{unavailable, null, 0}` with `legacy_source_work[0]` carrying the 46,628-unit WorkReport;
+- no `SOURCE_BLOCK_RECOVERY_UNAVAILABLE` is present;
+- the request's model `schema_version` is 0.1.0.
+
+**This meets the real-receipt half of the reader closure condition.** It is wire-contract evidence through the test-only prepared driver. **It is not the public milestone,** which still needs the real serializer, the captured facade, permit/M and RV77-N4's binding.
+
+**Carried to the serializer brief:**
+- the producer gaps G-a to G-k;
+- the assumptions A1, A2 and A4;
+- T1's emission;
+- the new gap G-l: the typed legacy RecoveryFailure and its WorkReport must be captured at PP/lib.rs:3747–3760. The experiment read them back from diagnostic text, which C2 forbids for the real serializer.
+
+**Remaining before reader acceptance:** confirmation round 04 (RV78–RV81), now running.
